@@ -1,0 +1,4 @@
+SessionID,LinkID,chainType,instIDChain,wordID1,wordID2,ClickTimeWord1,ClickTimeWord2,Deleted,PlayerID,Text1,Text2
+0,1,Rez,101433,204,404,1.04,1.65,false,0,such,surprises
+0,2,Rez,101433,404,604,1.65,2.37,false,0,surprises,has
+0,3,Rez,101433,604,NULL,2.37,NULL,false,0,has,NULL

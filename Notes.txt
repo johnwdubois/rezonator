@@ -1,0 +1,215 @@
+2018-03-04
+	This week
+	-add Author field to code headers
+	-Stack icon changes colors
+	-Each item in stack list in chainWindow is corresponding to color
+
+	Misc.
+	-Rezonator website
+	-Couch co-op in Rezonator games
+
+2018-03-11
+	small moment of silence between lines
+
+	lines that overlap or are adjacent shouldnt need to stop
+
+	soundScroll for filter
+	-if "Before" is on, only play visible lines
+
+	stay centered on stack when "Before" or "Between" is pressed
+
+	stack icon in toolbar has current stack color,
+	any active tool in toolbar gets some kind of color
+
+	phrases into anaph chains
+	phrase positioning in rezchains
+
+	combine draw code for rezchain and anaphchain
+
+2018-03-25
+	anytime you click on a word or line play audio of that line
+
+2018-04-13
+	keep all toolbar + chainwindow stuff at top
+	cut off leading spaces in sorting on linestring
+	
+	fixing errors
+
+2018-04-19
+	beware # in data
+
+	make versatile dropdown list and scrollbar script
+
+	fancy mockup in Illustrator
+
+
+2018-05-10
+	instead of phrase, call it span
+	allow for multiple lines in span
+	displayGrid: usually adopts from lineGrid	
+
+	lag happens over time
+	lag doesnt happen at end?
+
+	open up multiple files
+
+
+2018-05-25
+	lineID needs to be called unitID
+	"line" is display variable
+	lineGrid should be called unitGrid
+	
+	new lineGrid:
+		col: displayRow
+		col: wordIDList
+		col: lineState
+	lineGrid can be resized, rows can be combined, etc
+
+	dynamicWordGrid
+
+2018-05-29
+	dynamicWordGrid_colX --> dymamocWprdGrid_colPixelX
+
+	wordString --> wordToken
+	wordStringDT --> wordTranscript
+
+	new column in dynamicWordGrid called dynamicWordGrid_colLineWordSeq
+
+	page up / page down feature --> hop one screen of dialog
+	CTRL+pgup / CTRL+pgdn --> hop entire dialog
+
+	for up/down, it only goes fast once held down button
+
+
+	TEST FOLLOWING:
+		-shuffle lines
+		-shuffle lineWordSeq
+		-combine/merge lines
+		-be able to return to normal
+
+2018-06-05
+	comment more!
+
+	gridView for lineGrid and dynamicWordGrid up top (with headers)
+	
+	get all lines back (line 8 on .sbc011 is missing?)	
+
+	chain system that works with only one chain object
+		-possibly a grid that contains lists of Word IDs?
+
+2018-06-08
+	colPositionCol -> colDisplayCol
+	colLineWordSeq - > colDisplayWordSeq
+	colX -> colPixelX
+	colStringDisplay -> colDisplayString
+	colInChainsList -> colInChainList
+
+	colUnit -> colUnitID
+
+	delete chainIDType
+
+
+	headers on gridViewMini
+
+	allowing multiple discourses
+		- put discourse # to left of unit #pp
+
+	.exe of new rezonator
+
+	work on chains 
+
+2018-06-12
+	for speaker labels:
+		-hue is unique
+		-sat & val are within range
+
+2018-07-06
+	for speaker labels:
+		turn down saturation
+		color wheel that cycles, but it offsets every cycle
+
+	search for word, align by centering
+
+2018-07-10
+	in searching:
+		wildcard characters (*)
+		only search for 
+		searching the: 206 repeats 3 times--->
+			if there are multiple instances of the same word in a unit,
+			have that line repeat that number of times, each time showing a different word
+			
+		color text of the word searched for
+		
+		COMMENTS
+
+2018-07-13
+	gridView system:
+		wordGrid & dynamicWordGrid view together, scroll together
+		unitGrid & lineGrid view together, scroll together
+		unitGrid & wordGrid view together, scroll together
+
+	stack:
+	list of units
+	when drawLine(), we check if any of the words in that line contain
+	a unit that is within a stack
+
+
+
+
+	in chains:
+		sorting, deleting
+	when person adds to chain, sort then
+
+	click times
+
+	chainOut -> chainList
+	chainIn -> chainContents
+
+	obj_panelPane -> obj_pane
+
+	get rid of chainIDType
+
+
+2018-07-19
+	word that appears twice in the same line: center on different word for each
+	scrollbar: put minimum size, add up/down buttons
+	gridView: when you click on something, it shows full string of hovered cell
+
+	stack pane: relevant information shown
+	stacks: apply correct information when adding stack in search
+
+
+
+	scrollbar in panes
+
+	dont create chains if im outside of the panel
+
+2018-08-10
+
+	chains: sorting!
+	filtering!
+
+	chainGrids based off of linkGrid
+
+	only have pickwhip when you have focused link
+
+	not have another tool's pickwhip when on a different tool
+
+	not be able to see chains in searchgrid
+
+	two of the same chain on same word
+
+	-chainGrids based off linkGrid
+	-zero indexing
+	-default sort order for filter
+	-peek feature
+	-between -> tween
+
+	add to dynamicWordGrid
+	-focus
+	-show
+	-flag (boolean, default: false)
+
+	chains follow words better (when filtering)
+
+	add shape variable to control object
