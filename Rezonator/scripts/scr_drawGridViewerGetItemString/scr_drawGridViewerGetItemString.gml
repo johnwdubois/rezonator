@@ -13,6 +13,13 @@ if (grid == obj_control.unitGrid)
 		itemList = currentCell;
 	}
 }
+else if (grid == obj_control.filterGrid)
+{
+	if (col == obj_control.lineGrid_colWordIDList)
+	{
+		itemList = currentCell;
+	}
+}
 else if (grid == obj_control.lineGrid)
 {
 	if (col == obj_control.lineGrid_colWordIDList)

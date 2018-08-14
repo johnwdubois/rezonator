@@ -1,8 +1,8 @@
 scrollTogether = false;
 
 gridList = ds_list_create();
-ds_list_add(gridList, obj_control.unitGrid, obj_control.lineGrid, obj_control.wordGrid, obj_control.dynamicWordGrid,
-obj_control.filterGrid, obj_chain.linkGrid, obj_chain.rezChainGrid, obj_chain.anaphChainGrid, obj_chain.stackChainGrid);
+ds_list_add(gridList, obj_control.unitGrid, obj_control.lineGrid, obj_control.wordGrid, obj_control.dynamicWordGrid, obj_control.filterGrid);
+alarm[0] = 1;
 
 grid[0] = obj_control.unitGrid;
 grid[1] = obj_control.lineGrid;

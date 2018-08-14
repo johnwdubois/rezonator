@@ -66,10 +66,37 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					currentWordInfoCol[getInfoLoop] = string(currentWordID);
 					break;
 				case 1:
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID));
+					if (functionChainList_currentTab == functionChainList_tabStackBrush)
+					{
+						currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID);
+					}
+					else
+					{
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1));
+					}
 					break;
 				case 2:
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID));
+					if (functionChainList_currentTab == functionChainList_tabStackBrush)
+					{
+						currentWordInfoCol[getInfoLoop] = "";
+						var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
+						for (var i = 0; i < ds_list_size(currentWordIDList); i++)
+						{
+							var currentWordID = ds_list_find_value(currentWordIDList, i);
+							var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+							currentWordInfoCol[getInfoLoop] += currentWordString + " ";
+						}
+						
+						if (string_length(currentWordInfoCol[getInfoLoop]) > 16)
+						{
+							currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 12, string_length(currentWordInfoCol[getInfoLoop]) - 12);
+							currentWordInfoCol[getInfoLoop] += "...";
+						}
+					}
+					else
+					{
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1));
+					}
 					break;
 				default:
 					currentWordInfoCol[getInfoLoop] = string(currentWordID);
@@ -104,13 +131,34 @@ for (var i = 0; i < 3; i++)
 		// 1 --> unitID
 		// 2 --> wordTranscript
 		case 0:
-			colName = "wordID";
+			if (functionChainList_currentTab == functionChainList_tabStackBrush)
+			{
+				colName = "unitID";
+			}
+			else
+			{
+				colName = "wordID";
+			}
 			break;
 		case 1:
-			colName = "unitID";
+			if (functionChainList_currentTab == functionChainList_tabStackBrush)
+			{
+				colName = "speaker"
+			}
+			else
+			{
+				colName = "unitID";
+			}
 			break;
 		case 2:
-			colName = "wordTranscript";
+			if (functionChainList_currentTab == functionChainList_tabStackBrush)
+			{
+				colName = "utterance";
+			}
+			else
+			{
+				colName = "wordTranscript";
+			}
 			break;
 		default:
 			colName = "";

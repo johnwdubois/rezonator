@@ -80,6 +80,21 @@ for (var i = 0; i < ds_grid_height(grid); i++)
 			}
 			else
 			{
+				switch (functionChainList_currentTab)
+				{
+					case functionChainList_tabRezBrush:
+						obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
+						break;
+					case functionChainList_tabAnaphBrush:
+						obj_toolPane.currentTool = obj_toolPane.toolAnaphBrush;
+						break;
+					case functionChainList_tabStackBrush:
+						obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+						break;
+					default:
+						break;
+				}
+				
 				for (var j = 0; j < ds_grid_height(grid); j++)
 				{
 					if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus)

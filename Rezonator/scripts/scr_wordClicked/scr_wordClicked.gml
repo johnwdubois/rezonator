@@ -32,15 +32,11 @@ if (ds_list_find_index(inChainsList, obj_toolPane.currentTool) == -1)
 {
 	ds_list_add(inChainsList, obj_toolPane.currentTool);
 	
-	if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus))
-	{
-		var currentChainGridRow = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);	
-		scr_newChainItem(wordID, unitID, currentChainGridRow);
-	}
-	else
+	if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus))
 	{
 		scr_newChain(wordID, unitID);
 	}
 }
 
 scr_newLink(wordID);
+scr_refreshChainGrid();

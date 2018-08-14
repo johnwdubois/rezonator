@@ -34,7 +34,10 @@ for (var i = 0; i < 3; i++)
 	{
 		if (mouse_check_button_pressed(mb_left))
 		{
-			functionFilter_peek[i] = !functionFilter_peek[i];
+			with (obj_panelPane)
+			{
+				functionFilter_peek[i] = !functionFilter_peek[i];
+			}
 		}
 	}
 	
@@ -53,7 +56,7 @@ for (var i = 0; i < 3; i++)
 			buttonText = "Before";
 			break;
 		case 1:
-			buttonText = "Between";
+			buttonText = "Tween";
 			break;
 		case 2:
 			buttonText = "After";

@@ -35,7 +35,7 @@ for (var i = 0; i < 3; i++)
 		{
 			if (i == 2)
 			{
-				var currentUnitID = ds_list_find_value(currentIDList, k) + 1;
+				var currentUnitID = ds_list_find_value(currentIDList, k);
 			}
 			else
 			{
@@ -63,13 +63,113 @@ for (var i = 0; i < 3; i++)
 			ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
 			ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 			ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDListUnitGrid);
-			
-			//ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
 		}
 	}
 }
 
-//ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
+ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
+for (var i = 0; i < ds_grid_height(filterGrid); i++)
+{
+	ds_grid_set(filterGrid, lineGrid_colDisplayRow, i, i);
+}
+
+var firstUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, 0);
+var lastUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, ds_grid_height(filterGrid) - 1);
+
+if (obj_panelPane.functionFilter_peek[0] == 1)
+{
+	
+	for (var i = 0; i < firstUnit - 1; i++)
+	{
+		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
+		
+		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID))
+		{
+			continue;
+		}
+		
+		var currentDiscoID = ds_grid_get(unitGrid, unitGrid_colDiscoID, currentUnitID - 1);
+		var currentUtteranceID = ds_grid_get(unitGrid, unitGrid_colUtteranceID, currentUnitID - 1);
+		var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
+		
+		ds_grid_resize(filterGrid, lineGridWidth, ds_grid_height(filterGrid) + 1);
+		var currentRowFilterGrid = ds_grid_height(filterGrid) - 1;
+		
+		ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
+		ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
+		ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
+		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, room_height + gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
+		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
+		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
+	}
+}
+
+if (obj_panelPane.functionFilter_peek[1] == 1)
+{	
+	for (var i = firstUnit; i < lastUnit; i++)
+	{
+		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
+		
+		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID))
+		{
+			continue;
+		}
+		
+		var currentDiscoID = ds_grid_get(unitGrid, unitGrid_colDiscoID, currentUnitID - 1);
+		var currentUtteranceID = ds_grid_get(unitGrid, unitGrid_colUtteranceID, currentUnitID - 1);
+		var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
+		
+		ds_grid_resize(filterGrid, lineGridWidth, ds_grid_height(filterGrid) + 1);
+		var currentRowFilterGrid = ds_grid_height(filterGrid) - 1;
+		
+		ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
+		ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
+		ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
+		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, room_height + gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
+		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
+		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
+	}
+}
+
+if (obj_panelPane.functionFilter_peek[2] == 1)
+{	
+	for (var i = lastUnit; i < ds_grid_height(unitGrid); i++)
+	{
+		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
+		
+		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID))
+		{
+			continue;
+		}
+		
+		var currentDiscoID = ds_grid_get(unitGrid, unitGrid_colDiscoID, currentUnitID - 1);
+		var currentUtteranceID = ds_grid_get(unitGrid, unitGrid_colUtteranceID, currentUnitID - 1);
+		var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
+		
+		ds_grid_resize(filterGrid, lineGridWidth, ds_grid_height(filterGrid) + 1);
+		var currentRowFilterGrid = ds_grid_height(filterGrid) - 1;
+		
+		ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
+		ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
+		ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
+		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, room_height + gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
+		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
+		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
+	}
+}
+
+
+
+
+
+ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
+for (var i = 0; i < ds_grid_height(filterGrid); i++)
+{
+	ds_grid_set(filterGrid, lineGrid_colDisplayRow, i, i);
+}
 
 searchGridActive = false;
 filterGridActive = true;
