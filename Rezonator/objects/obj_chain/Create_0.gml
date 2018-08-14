@@ -1,10 +1,11 @@
-chainGridWidth = 6;
+chainGridWidth = 7;
 chainGrid_colChainID = 0;
 chainGrid_colChainState = 1;
 chainGrid_colWordIDList = 2;
 chainGrid_colName = 3;
 chainGrid_colColor = 4;
 chainGrid_colInFilter = 5;
+chainGrid_colAlign = 6;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 anaphChainGrid = ds_grid_create(chainGridWidth, 0);

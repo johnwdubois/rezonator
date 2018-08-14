@@ -31,7 +31,14 @@ switch (functionChainList_currentTab)
 
 var filterRectMargin = 8;
 var filterRectSize = 8;
-var textMarginLeft = 24;
+if (functionChainList_currentTab == functionChainList_tabStackBrush)
+{
+	var textMarginLeft = 24;
+}
+else
+{
+	var textMarginLeft = 48;
+}
 var textMarginTop = 8;
 var textPlusY = 0;
 var chainNameRectMinusY = 4;
@@ -137,6 +144,43 @@ for (var i = 0; i < ds_grid_height(grid); i++)
 		if (mouse_check_button_pressed(mb_left))
 		{
 			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, !inFilter);
+			
+			if (obj_control.filterGridActive)
+			{
+				with (obj_control)
+				{
+					scr_renderFilter();
+				}
+			}
+		}
+	}
+	
+	if (functionChainList_currentTab == functionChainList_tabRezBrush
+	or functionChainList_currentTab == functionChainList_tabAnaphBrush)
+	{
+		draw_set_color(c_purple);
+		
+		var chainAlignRectX1 = x + (filterRectMargin * 2) + filterRectSize;
+		var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2);
+		var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
+		var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;
+		var isAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, i);
+	
+		if (isAligned)
+		{
+			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
+		}
+		else
+		{
+			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, true);
+		}
+	
+		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2))
+		{
+			if (mouse_check_button_pressed(mb_left))
+			{
+				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, !isAligned);
+			}
 		}
 	}
 }

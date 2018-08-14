@@ -38,6 +38,14 @@ for (var i = 0; i < 3; i++)
 			{
 				functionFilter_peek[i] = !functionFilter_peek[i];
 			}
+			
+			if (obj_control.filterGridActive)
+			{
+				with (obj_control)
+				{
+					scr_renderFilter();
+				}
+			}
 		}
 	}
 	

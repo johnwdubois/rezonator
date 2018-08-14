@@ -85,6 +85,12 @@ for (var i = 0; i < ds_grid_height(anaphChainGrid); i++)
 		}
 	}
 	
+	var isAligned = ds_grid_get(anaphChainGrid, chainGrid_colAlign, i);
+	if (isAligned)
+	{
+		scr_alignChain(currentWordIDList);
+	}
+	
 }
 
 if (not (mouseLineX == undefined or mouseLineY == undefined))

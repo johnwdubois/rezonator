@@ -12,6 +12,11 @@ wordLeftMarginDest = 170;
 c_ltblue = make_color_rgb(183, 183, 255);
 
 
+shapeText = 0;
+shapeBlock = 1;
+shape = shapeBlock;
+
+
 unitGridWidth = 9;
 unitGrid_colUnitID = 0;
 unitGrid_colUtteranceID = 1;

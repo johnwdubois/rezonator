@@ -343,6 +343,14 @@
             }
         },
         {
+            "Key": "93ec584d-5334-4edd-a749-7888e632eb4c",
+            "Value": {
+                "id": "80002512-2db1-4ecd-8395-80ac8df9b904",
+                "resourcePath": "scripts\\scr_alignChain\\scr_alignChain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "943630f7-d610-4dfd-9cca-a13dbecb5ddd",
             "Value": {
                 "id": "df967ef1-0db2-410b-96f1-6e17be3cf6a9",
@@ -630,6 +638,7 @@
         "9c146d82-4f65-4ba7-925e-de5c12c08a4d",
         "93084380-e8e1-4e66-baa4-0e8b526646ab",
         "ede68f46-236b-441e-9b29-3fd1810cdfd6",
+        "93ec584d-5334-4edd-a749-7888e632eb4c",
         "1fc73ccb-fa5e-4385-b7e2-4edfda6f2e58",
         "165008df-c14b-4eb3-8665-d50a5f702d8f",
         "449692e4-69be-4739-84c1-b1053fe28d5f",

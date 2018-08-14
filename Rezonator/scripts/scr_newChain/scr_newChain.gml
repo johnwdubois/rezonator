@@ -16,6 +16,8 @@ var unitID = argument1;
 var chainGrid = currentChainGrid;
 var chainName = currentChainName + " " + string(ds_grid_height(chainGrid) + 1);
 
+var aligned = false;
+
 switch (obj_toolPane.currentTool)
 {
 	case obj_toolPane.toolRezBrush:
@@ -23,6 +25,7 @@ switch (obj_toolPane.currentTool)
 		{
 			functionChainList_currentTab = functionChainList_tabRezBrush;
 		}
+		aligned = true;
 		break;
 	case obj_toolPane.toolAnaphBrush:
 		with (obj_panelPane)
@@ -83,6 +86,8 @@ ds_grid_set(chainGrid, chainGrid_colChainState, currentRowChainGrid, chainStateF
 ds_grid_set(chainGrid, chainGrid_colWordIDList, currentRowChainGrid, wordIDList);
 ds_grid_set(chainGrid, chainGrid_colName, currentRowChainGrid, chainName);
 ds_grid_set(chainGrid, chainGrid_colColor, currentRowChainGrid, chainColor);
+ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
+ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
 
 currentFocusedChainID = currentChainID;
 

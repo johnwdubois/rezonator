@@ -3,6 +3,9 @@ var previousWordDisplayCol = argument1;
 var currentLineY = argument2;
 var drawLineLoop = argument3;
 
+var shapeTextX = wordLeftMargin;
+var shapeTextSpace = 24;
+
 for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawWordLoop++)
 {
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
@@ -29,6 +32,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	}
 		
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
+	if (shape == shapeText)
+	{
+		currentWordDestX = shapeTextX;
+	}
+	
 	var currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow);
 		
 	if (currentWordX < currentWordDestX)
@@ -77,7 +85,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	draw_set_valign(fa_middle);
 	draw_text(currentWordX, currentLineY, currentWordString);
 		
-	//dbWordIDList += string(currentWordID) + ", "
-		
 	previousWordDisplayCol = currentWordDisplayCol;
+	
+	shapeTextX += string_width(currentWordString) + shapeTextSpace;
 }

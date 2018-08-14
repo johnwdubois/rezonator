@@ -78,30 +78,10 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 		}
 	}
 	
-	if (ds_list_size(currentWordIDList) > 0)
+	var isAligned = ds_grid_get(rezChainGrid, chainGrid_colAlign, i);
+	if (isAligned)
 	{
-		furthestWordID = ds_list_find_value(currentWordIDList, 0);
-		
-		for (var displayColLoop = 0; displayColLoop < ds_list_size(currentWordIDList); displayColLoop++)
-		{
-			var currenWordID = ds_list_find_value(currentWordIDList, displayColLoop);
-			var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currenWordID - 1);
-			furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
-		
-			if (currentDisplayCol > furthestDisplayCol)
-			{
-				furthestWordID = currenWordID;
-			}
-		}
-		
-		furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
-		
-		for (var setDisplayColLoop = 0; setDisplayColLoop < ds_list_size(currentWordIDList); setDisplayColLoop++)
-		{
-			var currenWordID = ds_list_find_value(currentWordIDList, setDisplayColLoop);
-			
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currenWordID - 1, furthestDisplayCol);
-		}
+		scr_alignChain(currentWordIDList);
 	}
 }
 
