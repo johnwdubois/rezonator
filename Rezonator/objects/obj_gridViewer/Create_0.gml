@@ -1,7 +1,7 @@
 scrollTogether = false;
 
 gridList = ds_list_create();
-ds_list_add(gridList, obj_control.unitGrid, obj_control.lineGrid, obj_control.wordGrid, obj_control.dynamicWordGrid, obj_control.filterGrid);
+ds_list_add(gridList, obj_control.unitGrid, obj_control.lineGrid, obj_control.wordGrid, obj_control.dynamicWordGrid, obj_control.filterGrid, obj_control.searchGrid, obj_control.hitGrid);
 alarm[0] = 1;
 
 grid[0] = obj_control.unitGrid;

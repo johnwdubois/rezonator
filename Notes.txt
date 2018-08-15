@@ -213,3 +213,30 @@
 	chains follow words better (when filtering)
 
 	add shape variable to control object
+
+2018-08-14
+
+	fix searching
+	include shapeText in search ability
+
+	add to dynamicWordGrid
+	-focus
+	-show
+	-flag (boolean, default: false)
+
+	ability to delete from chain (mark link as deadg)
+
+	RezChain 1 -> Rez 1
+	AnaphChain -> Track
+
+	be able to modify column sizes in chainContents
+
+	in chainContents utterance column, have it be beginning and end of sentence with dots in the middle
+
+	rezChains: try to make lines as vertical as possible (dont go thru center of word)
+
+	rectangular border around words
+
+	in textShape, tighten it up a bit
+
+	change graphic for filter

@@ -38,7 +38,7 @@ if (grid == obj_control.unitGrid)
 			break;
 	}
 }
-else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid)
+else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid == obj_control.searchGrid)
 {
 	switch (col)
 	{
@@ -61,10 +61,46 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid)
 			colName = "lineState";
 			break;
 		case obj_control.lineGrid_colWordIDList:
-			colName = "wordIDList";
+			if (grid == obj_control.searchGrid)
+			{
+				colName = "hitIDList";
+			}
+			else
+			{
+				colName = "wordIDList";
+			}
 			break;
 		case obj_control.lineGrid_colAlignedWordID:
 			colName = "alignedWordID";
+			break;
+		default:
+			break;
+	}
+}
+else if (grid == obj_control.hitGrid)
+{
+	switch (col)
+	{
+		case obj_control.hitGrid_colWordID:
+			colName = "wordID";
+			break;
+		case obj_control.hitGrid_colUnitID:
+			colName = "unitID";
+			break;
+		case obj_control.hitGrid_colHitID:
+			colName = "hitID";
+			break;
+		case obj_control.hitGrid_colWordState:
+			colName = "wordState";
+			break;
+		case obj_control.hitGrid_colHitBool:
+			colName = "hitBool";
+			break;
+		case obj_control.hitGrid_colDisplayCol:
+			colName = "displayCol";
+			break;
+		case obj_control.hitGrid_colPixelX:
+			colName = "pixelX";
 			break;
 		default:
 			break;
@@ -176,6 +212,9 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.anaphChainGrid or g
 			break;
 		case obj_chain.chainGrid_colInFilter:
 			colName = "inFilter";
+			break;
+		case obj_chain.chainGrid_colAlign:
+			colName = "align";
 			break;
 		default:
 			break;

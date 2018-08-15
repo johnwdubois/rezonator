@@ -59,7 +59,7 @@ for (var i = 0; i < ds_grid_height(anaphChainGrid); i++)
 			}
 			else
 			{
-				scr_drawCurvedLine(lineX1, lineY1, lineX2, lineY2, currentChainColor);
+				scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
 			}
 		}
 	}
@@ -79,8 +79,10 @@ for (var i = 0; i < ds_grid_height(anaphChainGrid); i++)
 			
 			var currentWordStringWidth = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
 			var currentWordStringHeight = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
+			
+			//show_debug_message(string(currentWordStringWidth));
 		
-			mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID - 1) + (currentWordStringWidth / 2);
+			mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID - 1) + currentWordStringWidth;
 			mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex) + (currentWordStringHeight / 2);
 		}
 	}

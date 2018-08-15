@@ -41,6 +41,13 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.anaphChainGrid or g
 		itemList = currentCell;
 	}
 }
+else if (grid == obj_control.searchGrid)
+{
+	if (col == obj_control.searchGrid_colHitIDList)
+	{
+		itemList = currentCell;
+	}
+}
 
 
 

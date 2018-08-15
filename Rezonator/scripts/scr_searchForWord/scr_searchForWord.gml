@@ -31,7 +31,7 @@ hitGrid = ds_grid_create(hitGridWidth, 0);
 
 var db = "";
 
-var hitIDCounter = 0;
+var hitIDCounter = 1;
 
 for (var i = 0; i < ds_grid_height(unitGrid); i++)
 {
@@ -84,6 +84,7 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++)
 				
 				ds_grid_resize(hitGrid, hitGridWidth, ds_grid_height(hitGrid) + 1);
 				var currentRowHitGrid = ds_grid_height(hitGrid) - 1;
+
 				
 				ds_grid_set(hitGrid, hitGrid_colWordID, currentRowHitGrid, hitGridCurrentWordID);
 				ds_grid_set(hitGrid, hitGrid_colUnitID, currentRowHitGrid, hitGridCurrentUnitID);

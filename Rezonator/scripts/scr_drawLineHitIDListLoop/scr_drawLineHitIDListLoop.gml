@@ -3,16 +3,17 @@ var previousWordDisplayCol = argument1;
 var currentLineY = argument2;
 var drawLineLoop = argument3;
 
+draw_set_alpha(1);
 
 for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWordLoop++)
 {
 	var currentHitID = ds_list_find_value(currentHitIDList, drawWordLoop);
 	
-	var currentWordID = ds_grid_get(hitGrid, hitGrid_colWordID, currentHitID);
-	var currentWordDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, currentHitID);
+	var currentWordID = ds_grid_get(hitGrid, hitGrid_colWordID, currentHitID - 1);
+	var currentWordDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, currentHitID - 1);
 		
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
-	var currentWordX = ds_grid_get(hitGrid, hitGrid_colPixelX, currentHitID);
+	var currentWordX = ds_grid_get(hitGrid, hitGrid_colPixelX, currentHitID - 1);
 		
 	if (currentWordX < currentWordDestX)
 	{
@@ -23,9 +24,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		currentWordX -= abs(currentWordX - currentWordDestX) / 6;
 	}
 		
-	ds_grid_set(hitGrid, hitGrid_colPixelX, currentHitID, currentWordX);
+	ds_grid_set(hitGrid, hitGrid_colPixelX, currentHitID - 1, currentWordX);
 		
-	var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID);
+	var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1);
 		
 	var wordRectX1 = currentWordX;
 	var wordRectY1 = currentLineY - (string_height(currentWordString) / 2);
@@ -42,7 +43,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		{
 			with (obj_chain)
 			{
-				scr_wordClicked(currentHitID, drawLineLoop);
+				//scr_wordClicked(currentHitID, drawLineLoop);
 			}
 		}
 	}

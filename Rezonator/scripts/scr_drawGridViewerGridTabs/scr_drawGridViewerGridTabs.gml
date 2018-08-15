@@ -50,6 +50,12 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 		case obj_control.filterGrid:
 			colName = "filterGrid";
 			break;
+		case obj_control.searchGrid:
+			colName = "searchGrid";
+			break;
+		case obj_control.hitGrid:
+			colName = "hitGrid";
+			break;
 		case obj_chain.linkGrid:
 			colName = "linkGrid";
 			break;
