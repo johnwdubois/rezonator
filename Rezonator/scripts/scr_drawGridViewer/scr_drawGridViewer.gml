@@ -20,6 +20,9 @@ draw_rectangle(windowX1 - scrollBarWidth, windowY1, windowX1, windowY2, false);
 draw_set_font(fnt_debug);
 
 var currentItemString = " ";
+var mouseoverItemString = " ";
+var mouseoverRow = -1;
+var mouseoverCol = -1;
 
 for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gridLoopCol++)
 {
@@ -72,6 +75,9 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gri
 		
 		if (point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2))
 		{
+			mouseoverRow = gridLoopRow;
+			mouseoverCol = gridLoopCol;
+			mouseoverItemString = currentItemString;
 			mouseoverRelativeRow[gridArrayIndex] = gridLoopRow;
 			draw_set_color(c_dkgray);
 			draw_rectangle(currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2, true);
@@ -174,6 +180,12 @@ if (scrollBarHolding[gridArrayIndex])
 
 draw_set_color(c_black);
 draw_rectangle(windowX1, windowY1, windowX2, windowY2, true);
+
+draw_set_font(fnt_main);
+draw_set_halign(fa_right);
+draw_text(windowX1 + 100 - 20, windowY2 + 70, "(" + string(mouseoverCol) + "," + string(mouseoverRow) + "):")
+draw_set_halign(fa_left);
+draw_text(windowX1 + 100, windowY2 + 70, mouseoverItemString);
 
 for (var j = 0; j < 5; j++)
 {

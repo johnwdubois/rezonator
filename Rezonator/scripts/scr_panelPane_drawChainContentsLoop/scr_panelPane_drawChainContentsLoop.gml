@@ -36,11 +36,16 @@ switch (functionChainList_currentTab)
 
 var textMarginTop = 32;
 var textPlusY = 0;
+var ableToBeMouseOver = true;
 
 if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus))
 {
 	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-	functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
+	var chainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, rowInChainGrid);
+	with (obj_panelPane)
+	{
+		functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
+	}
 	
 	for (var j = functionChainContents_scrollRangeMin[functionChainList_currentTab]; j < functionChainContents_scrollRangeMax[functionChainList_currentTab]; j++)
 	{	
@@ -52,6 +57,34 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
 		var currentWordInfoCol;
 		currentWordInfoCol[0] = "";
+		
+		var stringHeight = 14;
+		var rectX1 = x;
+		var rectY1 = y + textMarginTop + textPlusY - (stringHeight / 2);
+		var rectX2 = x + windowWidth;
+		var rectY2 = rectY1 + stringHeight;
+		
+		var rowInLinkGrid = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentWordID, obj_chain.linkGrid_colChainID, chainID);
+		var focusedLink = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid);
+			
+		if (focusedLink)
+		{
+			draw_set_color(c_ltgray);
+			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+		}
+		else if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver)
+		{
+			ableToBeMouseOver = false;
+			draw_set_color(c_ltgray);
+			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+			
+			if (mouse_check_button_pressed(mb_left))
+			{
+				ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+				ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
+				scr_refreshChainGrid();
+			}
+		}
 		
 		for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++)
 		{
@@ -105,10 +138,12 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			
 			var textX = x + (getInfoLoop * (windowWidth / 3));
 			var textY = y + textMarginTop + textPlusY;
+			
+			draw_set_color(c_black);
 			draw_text(textX, textY, currentWordInfoCol[getInfoLoop]);
 		}
 		
-		textPlusY += string_height(currentWordInfoCol[0]);
+		textPlusY += string_height(currentWordInfoCol[0]) * 0.75;
 	}
 }
 

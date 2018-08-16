@@ -38,5 +38,5 @@ if (ds_list_find_index(inChainsList, obj_toolPane.currentTool) == -1)
 	}
 }
 
-scr_newLink(wordID);
+scr_newLink(wordID, -1);
 scr_refreshChainGrid();

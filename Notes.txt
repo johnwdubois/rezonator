@@ -240,3 +240,10 @@
 	in textShape, tighten it up a bit
 
 	change graphic for filter
+
+2018-08-16
+	mark two links as dead when deleting from a chain
+	add to linkGrid: autogg
+	hovering over nav window turns off visibility of pickwhip
+	when focused on link, that link becomes highlighted (as well as word itself)
+	pickwhip comes out of whatever link is focused in linkgrid

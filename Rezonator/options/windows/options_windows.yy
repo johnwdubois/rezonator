@@ -10,7 +10,7 @@
     "option_windows_copyright_info": "(c) 2018 Rezonator Games",
     "option_windows_description_info": "Rezonator: A Game With a Purpose",
     "option_windows_display_cursor": true,
-    "option_windows_display_name": "Rezonator 0.8.2",
+    "option_windows_display_name": "Rezonator 0.8.3",
     "option_windows_enable_steam": false,
     "option_windows_executable_name": "${project_name}",
     "option_windows_icon": "${options_dir}\\windows\\icons\\icon.ico",
@@ -32,7 +32,7 @@
         "build": 0,
         "major": 0,
         "minor": 8,
-        "revision": 2
+        "revision": 3
     },
     "option_windows_vsync": false
 }

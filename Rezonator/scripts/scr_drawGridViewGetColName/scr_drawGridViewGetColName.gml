@@ -180,6 +180,9 @@ else if (grid == obj_chain.linkGrid)
 		case obj_chain.linkGrid_colFocus:
 			colName = "focus";
 			break;
+		case obj_chain.linkGrid_colDead:
+			colName = "dead";
+			break;
 		default:
 			break;
 	}

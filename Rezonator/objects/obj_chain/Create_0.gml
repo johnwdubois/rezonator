@@ -36,13 +36,14 @@ chainColorID[3] = 0;
 ds_list_add(chainColorList, c_blue, c_red, c_green, c_purple, c_olive, c_orange, c_fuchsia, c_teal);
 
 
-linkGridWidth = 6;
+linkGridWidth = 7;
 linkGrid_colTier = 0;
 linkGrid_colChainID = 1;
 linkGrid_colLinkID = 2;
 linkGrid_colSource = 3;
 linkGrid_colGoal = 4;
 linkGrid_colFocus = 5;
+linkGrid_colDead = 6;
 linkGrid = ds_grid_create(linkGridWidth, 0);
 
 linkIDCounter = 0;

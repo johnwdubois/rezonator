@@ -35,9 +35,14 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 	var rowInTempGrid = ds_grid_value_y(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(tempGrid), chainID);
 	var source = ds_grid_get(tempGrid, obj_chain.linkGrid_colSource, rowInTempGrid);
 	var goal = ds_grid_get(tempGrid, obj_chain.linkGrid_colGoal, rowInTempGrid);
+	var dead = ds_grid_get(tempGrid, obj_chain.linkGrid_colDead, rowInTempGrid);
 	
 	ds_grid_set(tempGrid, obj_chain.linkGrid_colChainID, rowInTempGrid, -1);
 	
+	if (dead)
+	{
+		continue;
+	}
 	if (source == -1)
 	{
 		continue;
