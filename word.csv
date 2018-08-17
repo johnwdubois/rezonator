@@ -1,1 +1,1 @@
-discoID,uID,wID,start,end,lenSec,place,placeBack,tokenPlace,word,text,kind,class,lemma,overlap,overlapLoc,qualities,qualityOffsets,clitic,morph,tags,gloss,wordTempo,unitStart,unitEnd,unitLenWords
+discoID,uID,wID,tokenPlace,place,placeBack,word,text,lemma,kind,class,clitic,morph,gloss,overlap,overlapLoc,qualities,qualityOffsets,tags,start,end,lenSec,wordTempo,unitStart,unitEnd,unitLenWords
