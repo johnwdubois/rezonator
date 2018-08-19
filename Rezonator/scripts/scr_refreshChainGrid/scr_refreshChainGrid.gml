@@ -27,6 +27,14 @@ else
 	exit;
 }
 
+var oldIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
+for (var i = 0; i < ds_list_size(oldIDList); i++)
+{
+	var currentID = ds_list_find_value(oldIDList, i);
+	ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+}
+
+
 var tempGrid = ds_grid_create(ds_grid_width(obj_chain.linkGrid), ds_grid_height(obj_chain.linkGrid));
 ds_grid_copy(tempGrid, obj_chain.linkGrid);
 
@@ -78,5 +86,11 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 
 ds_list_sort(idList, true);
 ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
+
+for (var i = 0; i < ds_list_size(idList); i++)
+{
+	var currentID = ds_list_find_value(idList, i);
+	ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
+}
 
 ds_grid_destroy(tempGrid);

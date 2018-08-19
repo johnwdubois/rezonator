@@ -15,4 +15,14 @@ for (var i = 0; i < ds_grid_height(wordGrid); i++)
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentRowDynamicWordGrid, currentWordX);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentRowDynamicWordGrid, currentWordTranscript);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colInChainList, currentRowDynamicWordGrid, emptyList);
+	
+	
+	
+	ds_grid_resize(wordDrawGrid, wordDrawGridWidth, ds_grid_height(wordDrawGrid) + 1);
+	var currentRowWordDrawGrid = ds_grid_height(wordDrawGrid) - 1;
+	
+	ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentRowWordDrawGrid, false);
+	ds_grid_set(wordDrawGrid, wordDrawGrid_colFillRect, currentRowWordDrawGrid, false);
+	ds_grid_set(wordDrawGrid, wordDrawGrid_colTextColor, currentRowWordDrawGrid, c_black);
+	ds_grid_set(wordDrawGrid, wordDrawGrid_colEffectColor, currentRowWordDrawGrid, c_ltblue);
 }

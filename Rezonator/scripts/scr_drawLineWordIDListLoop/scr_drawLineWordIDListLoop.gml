@@ -62,6 +62,15 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	draw_set_alpha(1);
 	draw_set_color(c_white);
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+	
+	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+	
+	if (drawBorder)
+	{
+		var borderColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);
+		draw_set_color(borderColor);
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
+	}
 		
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))
 	{
@@ -77,10 +86,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	}
+	
+	var textColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colTextColor, currentWordID - 1);
 		
 	draw_set_alpha(1);
 	draw_set_font(fnt_main);
-	draw_set_color(wordColor);
+	draw_set_color(textColor);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(currentWordX, currentLineY, currentWordString);

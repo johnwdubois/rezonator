@@ -91,6 +91,15 @@ dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
 
 
+wordDrawGridWidth = 4;
+wordDrawGrid_colBorder = 0;
+wordDrawGrid_colFillRect = 1;
+wordDrawGrid_colTextColor = 2;
+wordDrawGrid_colEffectColor = 3;
+wordDrawGrid = ds_grid_create(wordDrawGridWidth, 0);
+
+
+
 
 
 hitGridWidth = 7;
