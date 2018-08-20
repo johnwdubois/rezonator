@@ -224,7 +224,7 @@
 	-show
 	-flag (boolean, default: false)
 
-	ability to delete from chain (mark link as deadg)
+	ability to delete from chain (mark link as dead)
 
 	RezChain 1 -> Rez 1
 	AnaphChain -> Track
@@ -241,4 +241,13 @@
 
 	change graphic for filter
 
-2018-08-16
+2018-08-20
+
+	make scrollbar in chainList and chainContents hop
+
+	when deleting from word 
+
+	default sort for user's view of the chain is UnitID then placeg
+
+
+	going past the last line (jump to last line)

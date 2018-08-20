@@ -67,13 +67,26 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 	{
 		continue;
 	}
+	/*
 	if (ds_list_find_index(idList, goal) == -1)
 	{
 		ds_list_add(idList, goal);
 	}
+	*/
 	
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
 	{
+		/*
+		for (var i = 0; i < ds_list_size(stackListSource); i++)
+		{
+			var stackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, i);
+			if (ds_list_find_index(stackListSource, chainID) > -1)
+			{
+				ds_list_delete(stackList, ds_list_find_index(stackListSource, chainID));
+			}
+		}
+		*/
+		
 		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, source - 1);
 		var stackListGoal = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, goal - 1);
 		if (ds_list_find_index(stackListSource, chainID) == -1)
