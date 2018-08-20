@@ -263,6 +263,14 @@
             }
         },
         {
+            "Key": "78b73f4b-e410-4d17-892e-f555fc69e9e1",
+            "Value": {
+                "id": "eff2c8fc-b5c0-4f72-be08-932191b5011d",
+                "resourcePath": "sprites\\spr_logo\\spr_logo.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "7abdcd91-22cf-4799-8471-225021a1ee98",
             "Value": {
                 "id": "8d7e9951-6d8a-419e-89e6-5b7df0d4dff4",
@@ -495,14 +503,6 @@
             }
         },
         {
-            "Key": "b7d6ca0d-d679-4a2d-a46e-1b23f87e6aa4",
-            "Value": {
-                "id": "bbe74fc8-9bc9-4163-bfd3-ce9b38a2b4b7",
-                "resourcePath": "scripts\\scr_searchForWordNew\\scr_searchForWordNew.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "bf97f54a-5570-48b5-8ed6-979512745cc3",
             "Value": {
                 "id": "00d46716-fac4-4f18-87fb-833c78d3f8aa",
@@ -618,7 +618,7 @@
             "Key": "ede68f46-236b-441e-9b29-3fd1810cdfd6",
             "Value": {
                 "id": "96e3b4fb-052e-4820-912a-cc075c4979f0",
-                "resourcePath": "scripts\\scr_drawAnaphChain\\scr_drawAnaphChain.yy",
+                "resourcePath": "scripts\\scr_drawTrackChain\\scr_drawTrackChain.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -664,7 +664,6 @@
         "ede68f46-236b-441e-9b29-3fd1810cdfd6",
         "93ec584d-5334-4edd-a749-7888e632eb4c",
         "1fc73ccb-fa5e-4385-b7e2-4edfda6f2e58",
-        "b7d6ca0d-d679-4a2d-a46e-1b23f87e6aa4",
         "165008df-c14b-4eb3-8665-d50a5f702d8f",
         "449692e4-69be-4739-84c1-b1053fe28d5f",
         "e9ea7131-5e7f-464c-a11a-1a3c41b6ee2c",

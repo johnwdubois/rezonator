@@ -136,7 +136,6 @@ if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2)
 
 
 var scrollBarHeight = (scrollRange[gridArrayIndex] * windowHeight[gridArrayIndex]) / ds_grid_height(grid[gridArrayIndex]);
-
 var scrollBarRectX1 = windowX1 - scrollBarWidth;
 var scrollBarRectY1 = windowY1 + ((gridCurrentTopViewRow[gridArrayIndex] * windowHeight[gridArrayIndex]) / ds_grid_height(grid[gridArrayIndex]));
 var scrollBarRectX2 = scrollBarRectX1 + scrollBarWidth;

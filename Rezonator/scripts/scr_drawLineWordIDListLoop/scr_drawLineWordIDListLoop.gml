@@ -54,22 +54,46 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 	var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
 		
-	var wordRectX1 = currentWordX;
-	var wordRectY1 = currentLineY - (string_height(currentWordString) / 2);
-	var wordRectX2 = wordRectX1 + string_width(currentWordString);
-	var wordRectY2 = wordRectY1 + string_height(currentWordString);
+	var wordRectBuffer = 2;
+	var wordRectX1 = currentWordX - wordRectBuffer;
+	var wordRectY1 = currentLineY - (string_height(currentWordString) / 2) - wordRectBuffer;
+	var wordRectX2 = wordRectX1 + string_width(currentWordString) + (wordRectBuffer * 2);
+	var wordRectY2 = wordRectY1 + string_height(currentWordString) + (wordRectBuffer * 2);
 	
 	draw_set_alpha(1);
 	draw_set_color(c_white);
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 	
+	var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordID - 1);
 	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);
+	
+	
+	if (drawFillRect)
+	{
+		draw_set_color(effectColor);
+		draw_set_alpha(0.25);
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+		draw_set_alpha(1);
+	}
+	
 	
 	if (drawBorder)
 	{
-		var borderColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);
-		draw_set_color(borderColor);
-		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
+		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
+		draw_set_color(effectColor);
+		
+		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++)
+		{
+			if (borderRounded)
+			{
+				draw_roundrect(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
+			}
+			else
+			{
+				draw_rectangle(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
+			}
+		}
 	}
 		
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))

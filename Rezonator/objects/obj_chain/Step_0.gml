@@ -12,11 +12,11 @@ switch (obj_toolPane.currentTool)
 {
 	case obj_toolPane.toolRezBrush:
 		currentChainGrid = rezChainGrid;
-		currentChainName = "RezChain";
+		currentChainName = "Rez";
 		break;
-	case obj_toolPane.toolAnaphBrush:
-		currentChainGrid = anaphChainGrid;
-		currentChainName = "AnaphChain";
+	case obj_toolPane.toolTrackBrush:
+		currentChainGrid = trackChainGrid;
+		currentChainName = "Track";
 		break;
 	case obj_toolPane.toolStackBrush:
 		currentChainGrid = stackChainGrid;
@@ -24,4 +24,15 @@ switch (obj_toolPane.currentTool)
 		break;
 	default:
 		break;
+}
+
+mouseLineHide = false;
+for (var i = 0; i < instance_number(obj_panelPane); i++)
+{
+	var currentPanelPaneInst = instance_find(obj_panelPane, i);
+	
+	if (point_in_rectangle(mouse_x, mouse_y, currentPanelPaneInst.x, currentPanelPaneInst.y, currentPanelPaneInst.x + currentPanelPaneInst.windowWidth, currentPanelPaneInst.y + currentPanelPaneInst.windowHeight))
+	{
+		mouseLineHide = true;
+	}
 }

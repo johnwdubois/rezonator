@@ -5,7 +5,7 @@
 	
 	Called from: obj_panelPane
 	
-	Purpose: draw Rez, Anaph, and Stack tabs on chainList panel pane
+	Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
 	
 	Mechanism: loop 3 times and create a rectangle button tab for each type of chain
 */

@@ -91,11 +91,12 @@ dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
 
 
-wordDrawGridWidth = 4;
+wordDrawGridWidth = 5;
 wordDrawGrid_colBorder = 0;
-wordDrawGrid_colFillRect = 1;
-wordDrawGrid_colTextColor = 2;
-wordDrawGrid_colEffectColor = 3;
+wordDrawGrid_colBorderRounded = 1;
+wordDrawGrid_colFillRect = 2;
+wordDrawGrid_colTextColor = 3;
+wordDrawGrid_colEffectColor = 4;
 wordDrawGrid = ds_grid_create(wordDrawGridWidth, 0);
 
 
@@ -172,3 +173,5 @@ alignment = 0;
 //0 = left, 1 = center, 2 = right
 
 gridView = false;
+
+showDevVars = false;

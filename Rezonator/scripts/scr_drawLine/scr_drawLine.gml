@@ -128,10 +128,13 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	
 }
 
-draw_set_alpha(1);
-draw_set_font(fnt_debug);
-draw_set_halign(fa_right);
-draw_text(room_width - 100, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
+if (showDevVars)
+{
+	draw_set_alpha(1);
+	draw_set_font(fnt_debug);
+	draw_set_halign(fa_right);
+	draw_text(room_width - 100, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
+}
 
 if (drawRangeStart > 0)
 {

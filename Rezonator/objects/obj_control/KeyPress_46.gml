@@ -1,7 +1,7 @@
 if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true))
-{
-	//var rowInLinkGridSource = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true);
+{	
 	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
+	var chainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
 	var dead = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridSource);
 	
 	if (dead)
@@ -15,24 +15,14 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	var newSource = -1;
 	var newGoal = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, rowInLinkGridSource);
 	
-	if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, 0, obj_chain.linkGrid_colGoal, ds_grid_height(obj_chain.linkGrid), source))
+	if (scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, source, obj_chain.linkGrid_colChainID, chainID) > -1)
 	{
-		//rowInLinkGridGoal = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, 0, obj_chain.linkGrid_colGoal, ds_grid_height(obj_chain.linkGrid), source);
-		rowInLinkGridGoal = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, source, obj_chain.linkGrid_colDead, false);
+		rowInLinkGridGoal = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, source, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
 		newSource = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridGoal);
 		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridGoal, true);
 	}
 	
-	/*
-	var previousLinkSource = source;
-	var goal = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, rowInLinkGrid);
-	if (rowInLinkGrid > 0)
-	{
-		previousLinkSource = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGrid - 1);
-	}
-	*/
-	
-	//show_message(string(source) + "," + string(goal));
+	show_message(string(newSource) + "," + string(newGoal));
 	
 	if not (newSource == -1 or newSource == undefined or newGoal == undefined)
 	{
@@ -41,6 +31,8 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 			scr_newLink(newSource, newGoal);
 		}
 	}
+	
+	ds_grid_set(wordDrawGrid, wordDrawGrid_colFillRect, source - 1, false);
 }
 
 scr_refreshChainGrid();

@@ -11,6 +11,8 @@
 				from word information
 */
 
+draw_set_font(fnt_main);
+
 var lineX1 = undefined;
 var lineY1 = undefined;
 var lineX2 = undefined;
@@ -21,10 +23,25 @@ var mouseLineY = undefined;
 var furthestWordID = -1;
 var furthestDisplayCol = -1;
 
+var minWordWidth = 9999999;
+var linePlusX = 0;
+
 for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 {
 	var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, i);
 	var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, i);
+	
+	for (var j = 0; j < ds_list_size(currentWordIDList); j++)
+	{
+		var currentWordID = ds_list_find_value(currentWordIDList, j);
+		var currentWordWidth = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
+		
+		if (currentWordWidth < minWordWidth)
+		{
+			minWordWidth = currentWordWidth;
+			linePlusX = minWordWidth;
+		}
+	}
 	
 	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++)
 	{
@@ -52,7 +69,8 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 		{
 			draw_set_color(currentChainColor);
 			draw_set_alpha(1);
-			draw_line_width(lineX1 + (currentWordStringWidth1 / 2), lineY1 + (currentWordStringHeight1 / 2), lineX2 + (currentWordStringWidth2 / 2), lineY2 + (currentWordStringHeight2 / 2), 2);
+			//draw_line_width(lineX1 + (currentWordStringWidth1 / 2), lineY1 + (currentWordStringHeight1 / 2), lineX2 + (currentWordStringWidth2 / 2), lineY2 + (currentWordStringHeight2 / 2), 2);
+			draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
 		}
 	}
 	
@@ -61,8 +79,8 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 	{
 		if (ds_list_size(currentWordIDList) > 1)
 		{
-			mouseLineX = lineX2;
-			mouseLineY = lineY2;
+			mouseLineX = lineX2 + (currentWordStringWidth2 / 2);
+			mouseLineY = lineY2 + (currentWordStringHeight2 / 2);
 		}
 		else if (ds_list_size(currentWordIDList) > 0)
 		{
@@ -92,7 +110,11 @@ if (not (mouseLineX == undefined or mouseLineY == undefined))
 		var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
 		currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
 		draw_set_color(currentChainColor);
-		draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+		
+		if (not mouseLineHide)
+		{
+			draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+		}
 	}
 }
 

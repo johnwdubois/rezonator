@@ -1,4 +1,7 @@
 draw_set_alpha(1);
+
+draw_sprite(spr_logo, 0, room_width / 2, room_height / 4);
+
 draw_set_font(fnt_main);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);

@@ -187,7 +187,7 @@ else if (grid == obj_chain.linkGrid)
 			break;
 	}
 }
-else if (grid == obj_chain.rezChainGrid or grid == obj_chain.anaphChainGrid or grid == obj_chain.stackChainGrid)
+else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid)
 {
 	switch (col)
 	{

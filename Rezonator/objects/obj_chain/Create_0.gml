@@ -8,7 +8,7 @@ chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
-anaphChainGrid = ds_grid_create(chainGridWidth, 0);
+trackChainGrid = ds_grid_create(chainGridWidth, 0);
 stackChainGrid = ds_grid_create(chainGridWidth, 0);
 
 unitInStackGridWidth = 2;
@@ -49,3 +49,5 @@ linkGrid = ds_grid_create(linkGridWidth, 0);
 linkIDCounter = 0;
 
 currentFocusedChainID = -1;
+
+mouseLineHide = false;

@@ -5,7 +5,7 @@
 	
 	Called from: obj_chain
 	
-	Purpose: draw curved line between given points (for anaphChains)
+	Purpose: draw curved line between given points (for trackChains)
 	
 	Mechanism: create several tiny lines to draw that form a curve in between the two points
 */

@@ -62,8 +62,8 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 		case obj_chain.rezChainGrid:
 			colName = "rezChainGrid";
 			break;
-		case obj_chain.anaphChainGrid:
-			colName = "anaphChainGrid";
+		case obj_chain.trackChainGrid:
+			colName = "trackChainGrid";
 			break;
 		case obj_chain.stackChainGrid:
 			colName = "stackChainGrid";

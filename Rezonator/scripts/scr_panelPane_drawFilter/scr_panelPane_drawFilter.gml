@@ -21,7 +21,7 @@ else
 	draw_text(filterButtonX, filterButtonY, "F");
 }
 
-draw_set_halign(fa_left);
+draw_set_halign(fa_center);
 
 for (var i = 0; i < 3; i++)
 {
@@ -55,24 +55,27 @@ for (var i = 0; i < 3; i++)
 		draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, false);
 	}
 	
-	draw_set_color(c_black);
+	
 	
 	var buttonText = "";
 	switch (i)
 	{
 		case 0:
-			buttonText = "Before";
+			buttonText = ">>>";
 			break;
 		case 1:
-			buttonText = "Tween";
+			buttonText = "|||";
 			break;
 		case 2:
-			buttonText = "After";
+			buttonText = "<<<";
 			break;
 		default:
 			break;
 	}
-	draw_text_transformed(mean(peekButtonRectX1, peekButtonRectX2), peekButtonRectY2, buttonText, 1, 1, 90);
+	
+	draw_set_color(c_black);
+	draw_set_alpha(1);
+	draw_text_transformed(mean(peekButtonRectX1, peekButtonRectX2), mean(peekButtonRectY1, peekButtonRectY2), buttonText, 1, 1, 90);
 	
 	draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, true);
 }

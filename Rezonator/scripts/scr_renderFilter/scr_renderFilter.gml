@@ -11,7 +11,7 @@ for (var i = 0; i < 3; i++)
 			grid = obj_chain.rezChainGrid;
 			break;
 		case 1:
-			grid = obj_chain.anaphChainGrid;
+			grid = obj_chain.trackChainGrid;
 			break;
 		case 2:
 			grid = obj_chain.stackChainGrid;

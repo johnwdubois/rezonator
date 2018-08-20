@@ -20,7 +20,7 @@ var wordID = argument0;
 var unitID = argument1;
 
 if not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush
-or obj_toolPane.currentTool == obj_toolPane.toolAnaphBrush
+or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush
 or obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
 {
 	exit;

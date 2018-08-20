@@ -3,12 +3,12 @@ functionChainContents = 1;
 functionFilter = 2;
 
 functionChainList_tabRezBrush = 0;
-functionChainList_tabAnaphBrush = 1;
+functionChainList_tabTrackBrush = 1;
 functionChainList_tabStackBrush = 2;
 functionChainList_currentTab = functionChainList_tabRezBrush;
 functionChainList_maxScrollRange = 5;
 functionChainList_tabName[0] = "Rez";
-functionChainList_tabName[1] = "Anaph";
+functionChainList_tabName[1] = "Track";
 functionChainList_tabName[2] = "Stack";
 functionChainList_scrollRangeMin[0] = 0;
 functionChainList_scrollRangeMax[0] = functionChainList_maxScrollRange;
@@ -31,6 +31,9 @@ for (var i = 0; i < 3; i++)
 	functionFilter_peekList[i] = ds_list_create();
 }
 
+scrollBarHolding = false;
+scrollBarHoldingPlusY = 0;
+currentTopViewRow = 0;
 
 
 //windowWidth = 300;

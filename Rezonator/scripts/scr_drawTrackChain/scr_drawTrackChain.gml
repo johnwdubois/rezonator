@@ -1,15 +1,17 @@
 /*
-	scr_drawAnaphChain();
+	scr_drawTrackChain();
 	
 	Last Updated: 2018-07-12
 	
 	Called from: obj_chain
 	
-	Purpose: draw anaphChains with information from anaphChainGrid
+	Purpose: draw trackChains with information from trackChainGrid
 	
-	Mechanism: loop through each row in anaphChainGrid, get the wordIDList from each chain, and call scr_drawCurvedLine
+	Mechanism: loop through each row in trackChainGrid, get the wordIDList from each chain, and call scr_drawCurvedLine
 				with x and y values for words in wordIDList
 */
+
+draw_set_font(fnt_main);
 
 var lineX1 = undefined;
 var lineY1 = undefined;
@@ -21,10 +23,10 @@ var mouseLineY = undefined;
 var furthestWordID = -1;
 var furthestDisplayCol = -1;
 
-for (var i = 0; i < ds_grid_height(anaphChainGrid); i++)
+for (var i = 0; i < ds_grid_height(trackChainGrid); i++)
 {
-	var currentWordIDList = ds_grid_get(anaphChainGrid, chainGrid_colWordIDList, i);
-	var currentChainColor = ds_grid_get(anaphChainGrid, chainGrid_colColor, i);
+	var currentWordIDList = ds_grid_get(trackChainGrid, chainGrid_colWordIDList, i);
+	var currentChainColor = ds_grid_get(trackChainGrid, chainGrid_colColor, i);
 	
 	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++)
 	{
@@ -64,12 +66,12 @@ for (var i = 0; i < ds_grid_height(anaphChainGrid); i++)
 		}
 	}
 	
-	if (ds_grid_get(anaphChainGrid, chainGrid_colChainState, i) == chainStateFocus)
+	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, i) == chainStateFocus)
 	{
 		if (ds_list_size(currentWordIDList) > 1)
 		{
-			mouseLineX = lineX2;
-			mouseLineY = lineY2;
+			mouseLineX = lineX2 + (currentWordStringWidth2 / 2);
+			mouseLineY = lineY2 + (currentWordStringHeight2 / 2);
 		}
 		else if (ds_list_size(currentWordIDList) > 0)
 		{
@@ -82,12 +84,12 @@ for (var i = 0; i < ds_grid_height(anaphChainGrid); i++)
 			
 			//show_debug_message(string(currentWordStringWidth));
 		
-			mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID - 1) + currentWordStringWidth;
+			mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID - 1) + (currentWordStringWidth / 2);
 			mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex) + (currentWordStringHeight / 2);
 		}
 	}
 	
-	var isAligned = ds_grid_get(anaphChainGrid, chainGrid_colAlign, i);
+	var isAligned = ds_grid_get(trackChainGrid, chainGrid_colAlign, i);
 	if (isAligned)
 	{
 		scr_alignChain(currentWordIDList);
@@ -97,15 +99,19 @@ for (var i = 0; i < ds_grid_height(anaphChainGrid); i++)
 
 if (not (mouseLineX == undefined or mouseLineY == undefined))
 {
-	if (ds_grid_value_exists(obj_chain.anaphChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.anaphChainGrid), obj_chain.chainStateFocus))
+	if (ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus))
 	{
-		var rowInChainGrid = ds_grid_value_y(obj_chain.anaphChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.anaphChainGrid), obj_chain.chainStateFocus);
-		currentChainColor = ds_grid_get(obj_chain.anaphChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
+		var rowInChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
+		currentChainColor = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
 		draw_set_color(currentChainColor);
-		draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+		
+		if (not mouseLineHide)
+		{
+			draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+		}
 	}
 }
 
 
 
-scr_unfocusOtherChains(obj_toolPane.toolAnaphBrush);
+scr_unfocusOtherChains(obj_toolPane.toolTrackBrush);

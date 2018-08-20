@@ -27,10 +27,10 @@ switch (obj_toolPane.currentTool)
 		}
 		aligned = true;
 		break;
-	case obj_toolPane.toolAnaphBrush:
+	case obj_toolPane.toolTrackBrush:
 		with (obj_panelPane)
 		{
-			functionChainList_currentTab = functionChainList_tabAnaphBrush;
+			functionChainList_currentTab = functionChainList_tabTrackBrush;
 		}
 		break;
 	case obj_toolPane.toolStackBrush:

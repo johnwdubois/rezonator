@@ -5,3 +5,4 @@ windowWidth = 300;
 windowHeight = 150;
 
 currentFunction = 0;
+scrollRange = 6;

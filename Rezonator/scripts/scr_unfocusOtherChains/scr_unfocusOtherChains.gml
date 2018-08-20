@@ -6,8 +6,8 @@ switch (tool)
 	case obj_toolPane.toolRezBrush:
 		grid = obj_chain.rezChainGrid;
 		break;
-	case obj_toolPane.toolAnaphBrush:
-		grid = obj_chain.anaphChainGrid;
+	case obj_toolPane.toolTrackBrush:
+		grid = obj_chain.trackChainGrid;
 		break;
 	case obj_toolPane.toolStackBrush:
 		grid = obj_chain.stackChainGrid;

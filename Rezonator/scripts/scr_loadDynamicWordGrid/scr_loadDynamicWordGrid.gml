@@ -22,6 +22,7 @@ for (var i = 0; i < ds_grid_height(wordGrid); i++)
 	var currentRowWordDrawGrid = ds_grid_height(wordDrawGrid) - 1;
 	
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentRowWordDrawGrid, false);
+	ds_grid_set(wordDrawGrid, wordDrawGrid_colBorderRounded, currentRowWordDrawGrid, false);
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colFillRect, currentRowWordDrawGrid, false);
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colTextColor, currentRowWordDrawGrid, c_black);
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colEffectColor, currentRowWordDrawGrid, c_ltblue);

@@ -18,8 +18,8 @@ switch (functionChainList_currentTab)
 	case functionChainList_tabRezBrush:
 		grid = obj_chain.rezChainGrid;
 		break;
-	case functionChainList_tabAnaphBrush:
-		grid = obj_chain.anaphChainGrid;
+	case functionChainList_tabTrackBrush:
+		grid = obj_chain.trackChainGrid;
 		break;
 	case functionChainList_tabStackBrush:
 		grid = obj_chain.stackChainGrid;
@@ -39,18 +39,27 @@ else
 {
 	var textMarginLeft = 48;
 }
+
 var textMarginTop = 8;
 var textPlusY = 0;
 var chainNameRectMinusY = 4;
 
+var scrollBarWidth = 16;
+draw_set_color(c_white);
+draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
+
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
+draw_set_color(c_black);
 draw_set_font(fnt_chainList);
 
-for (var i = 0; i < ds_grid_height(grid); i++)
+currentTopViewRow = max(0, currentTopViewRow);
+currentTopViewRow = min(ds_grid_height(grid) - scrollRange, currentTopViewRow);
+
+for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 {
-	if (i < functionChainList_scrollRangeMin[functionChainList_currentTab] or i > functionChainList_scrollRangeMax[functionChainList_currentTab])
+	if (i < 0 or i > ds_grid_height(grid))
 	{
 		continue;
 	}
@@ -92,8 +101,8 @@ for (var i = 0; i < ds_grid_height(grid); i++)
 					case functionChainList_tabRezBrush:
 						obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 						break;
-					case functionChainList_tabAnaphBrush:
-						obj_toolPane.currentTool = obj_toolPane.toolAnaphBrush;
+					case functionChainList_tabTrackBrush:
+						obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
 						break;
 					case functionChainList_tabStackBrush:
 						obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
@@ -156,7 +165,7 @@ for (var i = 0; i < ds_grid_height(grid); i++)
 	}
 	
 	if (functionChainList_currentTab == functionChainList_tabRezBrush
-	or functionChainList_currentTab == functionChainList_tabAnaphBrush)
+	or functionChainList_currentTab == functionChainList_tabTrackBrush)
 	{
 		draw_set_color(c_purple);
 		
@@ -183,4 +192,44 @@ for (var i = 0; i < ds_grid_height(grid); i++)
 			}
 		}
 	}
+}
+
+var scrollBarHeight = ((scrollRange * windowHeight) / ds_grid_height(grid));
+var scrollBarRectX1 = x + windowWidth - scrollBarWidth;
+var scrollBarRectY1 = y + ((currentTopViewRow * windowHeight) / ds_grid_height(grid));
+var scrollBarRectX2 = scrollBarRectX1 + scrollBarWidth;
+var scrollBarRectY2 = scrollBarRectY1 + scrollBarHeight;
+
+scrollBarRectY1 = max(scrollBarRectY1, y + (textMarginTop * 2));
+scrollBarRectY2 = max(scrollBarRectY2, y + (textMarginTop * 2));
+
+if (ds_grid_height(grid) == 0)
+{
+	scrollBarRectY1 = y + (textMarginTop * 2);
+	scrollBarRectY2 = y + windowHeight;
+	scrollBarHolding = false;
+}
+
+draw_set_color(c_ltgray);
+draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
+
+if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))
+{
+	if (mouse_check_button_pressed(mb_left))
+	{
+		scrollBarHolding = true;
+		scrollBarHoldingPlusY = mouse_y - scrollBarRectY1;
+	}
+}
+
+scrollBarHoldingPlusY = 0;
+
+if (mouse_check_button_released(mb_left))
+{
+	scrollBarHolding = false;
+}
+
+if (scrollBarHolding)
+{
+	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_grid_height(grid)) / (windowHeight));
 }

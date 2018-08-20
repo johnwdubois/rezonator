@@ -5,8 +5,8 @@ switch (obj_toolPane.currentTool)
 	case obj_toolPane.toolRezBrush:
 		grid = obj_chain.rezChainGrid;
 		break;
-	case obj_toolPane.toolAnaphBrush:
-		grid = obj_chain.anaphChainGrid;
+	case obj_toolPane.toolTrackBrush:
+		grid = obj_chain.trackChainGrid;
 		break;
 	case obj_toolPane.toolStackBrush:
 		grid = obj_chain.stackChainGrid;
@@ -30,8 +30,12 @@ else
 var oldIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 for (var i = 0; i < ds_list_size(oldIDList); i++)
 {
-	var currentID = ds_list_find_value(oldIDList, i);
-	ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+	if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid)
+	{
+		var currentID = ds_list_find_value(oldIDList, i);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, false);
+	}
 }
 
 
@@ -89,8 +93,22 @@ ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
 
 for (var i = 0; i < ds_list_size(idList); i++)
 {
-	var currentID = ds_list_find_value(idList, i);
-	ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
+	if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid)
+	{
+		var currentID = ds_list_find_value(idList, i);
+		var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, rowInChainGrid);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentID - 1, chainColor);
+		
+		if (grid == obj_chain.rezChainGrid)
+		{
+			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, false);
+		}
+		else if (grid == obj_chain.trackChainGrid)
+		{
+			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, true);
+		}
+	}
 }
 
 ds_grid_destroy(tempGrid);
