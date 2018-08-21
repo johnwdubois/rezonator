@@ -21,9 +21,8 @@ As a research tool, it is designed for:
 * linguistic analysis
 * data visualization
 
-As a game design platform, the focus is on creating Games With a Purpose (GWAP), with appealing game play and clear visualization. An example of a game built with Rezonator is:
+As a game design platform, the focus is on creating Games With a Purpose (GWAP), with appealing game play and clear visualization. The code is written GameMaker Language (GML) using  GameMaker Studio 2. An example of a game built with Rezonator is:
 
 * [RezTet](https://github.com/johnwdubois/rezonator_v2/wiki/6.1--RezTet:-A-game-of-words-in-all-the-right-places) (under development)
 
 To learn more about this project, consult the [Rezonator wiki](https://github.com/johnwdubois/rezonator_v2/wiki). Our wiki is where we post goals, plans, specifications, ideas, feedback, and so on for the development of Rezonator. For information on the status of specific tasks, consult our [project board](https://github.com/johnwdubois/rezonator_v2/projects/1).
-
