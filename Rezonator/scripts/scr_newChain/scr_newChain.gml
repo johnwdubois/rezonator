@@ -14,7 +14,7 @@ var wordID = argument0;
 var unitID = argument1;
 
 var chainGrid = currentChainGrid;
-var chainName = currentChainName + " " + string(ds_grid_height(chainGrid) + 1);
+var chainName = "";
 
 var aligned = false;
 
@@ -26,18 +26,24 @@ switch (obj_toolPane.currentTool)
 			functionChainList_currentTab = functionChainList_tabRezBrush;
 		}
 		aligned = true;
+		rezChainNameCounter++;
+		chainName = currentChainName + " " + string(rezChainNameCounter);
 		break;
 	case obj_toolPane.toolTrackBrush:
 		with (obj_panelPane)
 		{
 			functionChainList_currentTab = functionChainList_tabTrackBrush;
 		}
+		trackChainNameCounter++;
+		chainName = currentChainName + " " + string(trackChainNameCounter);
 		break;
 	case obj_toolPane.toolStackBrush:
 		with (obj_panelPane)
 		{
 			functionChainList_currentTab = functionChainList_tabStackBrush;
 		}
+		stackChainNameCounter++;
+		chainName = currentChainName + " " + string(stackChainNameCounter);
 		break;
 	default:
 		exit;

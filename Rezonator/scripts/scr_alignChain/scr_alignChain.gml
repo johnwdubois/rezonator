@@ -22,8 +22,10 @@ if (ds_list_size(wordIDList) > 0)
 		
 	for (var setDisplayColLoop = 0; setDisplayColLoop < ds_list_size(wordIDList); setDisplayColLoop++)
 	{
-		var currenWordID = ds_list_find_value(wordIDList, setDisplayColLoop);
-			
-		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currenWordID - 1, furthestDisplayCol);
+		var currentWordID = ds_list_find_value(wordIDList, setDisplayColLoop);		
+		var nextWordID = currentWordID + 1;
+		var nextWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, nextWordID - 1);
+
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, furthestDisplayCol);
 	}
 }

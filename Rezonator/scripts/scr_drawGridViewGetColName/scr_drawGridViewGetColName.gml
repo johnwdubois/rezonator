@@ -223,5 +223,19 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 			break;
 	}
 }
+else if (grid == obj_chain.unitInStackGrid)
+{
+	switch (col)
+	{
+		case obj_chain.unitInStackGrid_colUnitID:
+			colName = "unitID";
+			break;
+		case obj_chain.unitInStackGrid_colStackList:
+			colName = "stackList";
+			break;
+		default:
+			break;
+	}
+}
 
 return colName;

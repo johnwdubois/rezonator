@@ -25,9 +25,10 @@ chainStateActive = 1;
 chainStateFocus = 2;
 chainStateInactive = 3;
 chainStateHidden = 4;
+chainStateDead = 5;
 
 currentChainGrid = rezChainGrid;
-currentChainName = "RezChain";
+currentChainName = "Rez";
 
 chainColorList = ds_list_create();
 chainColorID[1] = 0;
@@ -47,7 +48,12 @@ linkGrid_colDead = 6;
 linkGrid = ds_grid_create(linkGridWidth, 0);
 
 linkIDCounter = 0;
+rezChainNameCounter = 0;
+trackChainNameCounter = 0;
+stackChainNameCounter = 0;
 
 currentFocusedChainID = -1;
 
 mouseLineHide = false;
+
+mouseLineWordID = -1;

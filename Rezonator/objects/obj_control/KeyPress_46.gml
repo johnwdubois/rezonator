@@ -25,6 +25,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		rowInLinkGridGoal = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, source, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
 		newSource = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridGoal);
 		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridGoal, true);
+		
 	}
 	
 	//show_message(string(newSource) + "," + string(newGoal))
@@ -32,13 +33,17 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	if (tier == 3)
 	{
 	
-	/*
-		if (ds_list_find_index(stackListSource, source) > -1)
-		{
-			ds_list_delete(stackListSource, ds_list_find_index(stackListSource, source));
-		}
-	*/	
+		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, source - 1);
 		
+		if not (stackListSource == undefined)
+		{
+			if (ds_list_find_index(stackListSource, chainID) > -1)
+			{
+				ds_list_delete(stackListSource, ds_list_find_index(stackListSource, chainID));
+			}
+		}
+
+
 		
 		if (newSource > 0)
 		{
@@ -75,3 +80,5 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 }
 
 scr_refreshChainGrid();
+scr_killEmptyChains(obj_chain.currentChainGrid);
+obj_chain.mouseLineWordID = -1;

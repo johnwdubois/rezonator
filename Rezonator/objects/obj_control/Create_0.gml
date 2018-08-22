@@ -78,7 +78,7 @@ currentActiveLineGrid = lineGrid;
 
 
 
-dynamicWordGridWidth = 7;
+dynamicWordGridWidth = 8;
 dynamicWordGrid_colWordID = 0;
 dynamicWordGrid_colDisplayWordSeq = 1; //dynamicWordGrid_colLineWordSeq = 1;
 dynamicWordGrid_colDisplayCol = 2; //dynamicWordGrid_colPositionCol = 2;
@@ -86,6 +86,7 @@ dynamicWordGrid_colPixelX = 3; //dynamicWordGrid_colX = 3;
 dynamicWordGrid_colWordState = 4;
 dynamicWordGrid_colDisplayString = 5; //dynamicWordGrid_colStringDisplay = 5;
 dynamicWordGrid_colInChainList = 6; //dynamicWordGrid_colInChains = 6;
+dynamicWordGrid_colAligned = 7;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 

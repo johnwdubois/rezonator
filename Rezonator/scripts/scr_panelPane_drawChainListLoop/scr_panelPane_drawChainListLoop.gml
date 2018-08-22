@@ -64,6 +64,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		continue;
 	}
 	
+	var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 	var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
 	var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 	
@@ -189,6 +190,13 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 			if (mouse_check_button_pressed(mb_left))
 			{
 				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, !isAligned);
+				
+				var wordIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
+				for (var k = 0; k < ds_list_size(wordIDList); k++)
+				{
+					var currentWordID = ds_list_find_value(wordIDList, k);
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, isAligned);
+				}
 			}
 		}
 	}

@@ -48,6 +48,13 @@ else if (grid == obj_control.searchGrid)
 		itemList = currentCell;
 	}
 }
+else if (grid == obj_chain.unitInStackGrid)
+{
+	if (col == obj_chain.unitInStackGrid_colStackList)
+	{
+		itemList = currentCell;
+	}
+}
 
 
 

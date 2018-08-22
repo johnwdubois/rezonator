@@ -53,3 +53,11 @@ ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow,
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, currentLinkGridRow, false);
 
 scr_gridMultiColSort(linkGrid, linkGrid_colTier, true, linkGrid_colChainID, true, linkGrid_colLinkID, true, linkGrid_colDead, true);
+
+with (obj_panelPane)
+{
+	if (currentFunction == functionChainContents)
+	{
+		functionChainContents_hop = idSet;
+	}
+}

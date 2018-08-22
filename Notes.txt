@@ -243,11 +243,36 @@
 
 2018-08-20
 
+	DELETING STACKS
+
 	make scrollbar in chainList and chainContents hop
 
 	when deleting from word 
 
-	default sort for user's view of the chain is UnitID then placeg
+	default sort for user's view of the chain is UnitID then place
 
+	in chainContents:
+		1st col: unitID
+		2nd col: place
+		3rd col: text
+	resize columns in chainContents
+
+	dont create chains from clicks in the chainWindow
 
 	going past the last line (jump to last line)
+
+	kill chain if every word in it is dead
+	if i hit escape on chain with 1 word, mark that link as dead
+	1 word chains can only exist with whip!
+
+	allow 1-line stack
+
+	when we set displayRows, run through chains to reset their positions
+
+	if user clicks on link, if that word is not on screen, jump to it
+	pickwhip comes out of focused link
+
+	resume chain by clicking on word
+	clicking on word in main screen will focus it if it is already in proper chain
+
+	dialog box before putting word in 2 chains of same tier

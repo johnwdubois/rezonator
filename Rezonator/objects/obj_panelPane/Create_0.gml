@@ -24,6 +24,7 @@ functionChainContents_infoCol[2] = 2;
 functionChainContents_maxScrollRange = 8;
 functionChainContents_scrollRangeMin[0] = 0;
 functionChainContents_scrollRangeMax[0] = functionChainContents_maxScrollRange;
+functionChainContents_hop = -1;
 
 for (var i = 0; i < 3; i++)
 {

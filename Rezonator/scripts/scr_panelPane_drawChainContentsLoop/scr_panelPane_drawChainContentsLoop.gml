@@ -54,6 +54,16 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 	}
 	
+	if (functionChainContents_hop > -1)
+	{
+		if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1)
+		{
+			currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);//functionChainContents_hop;
+		}
+		
+		functionChainContents_hop = -1;
+	}
+	
 	currentTopViewRow = max(0, currentTopViewRow);
 	currentTopViewRow = min(ds_list_size(functionChainContents_IDList) - scrollRange, currentTopViewRow);
 	
@@ -87,6 +97,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			{
 				ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, sourceWordID - 1, true);
+				obj_chain.mouseLineWordID = sourceWordID;
 			}
 		}
 		else if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver)
@@ -113,7 +124,14 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 				// 1 --> unitID
 				// 2 --> wordTranscript
 				case 0:
-					currentWordInfoCol[getInfoLoop] = string(currentWordID);
+					if (functionChainList_currentTab == functionChainList_tabStackBrush)
+					{
+						currentWordInfoCol[getInfoLoop] = string(currentWordID);
+					}
+					else
+					{
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1));
+					}
 					break;
 				case 1:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush)
@@ -122,7 +140,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					}
 					else
 					{
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1));
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
 					}
 					break;
 				case 2:
@@ -189,7 +207,7 @@ for (var i = 0; i < 3; i++)
 			}
 			else
 			{
-				colName = "wordID";
+				colName = "unitID";
 			}
 			break;
 		case 1:
@@ -199,7 +217,7 @@ for (var i = 0; i < 3; i++)
 			}
 			else
 			{
-				colName = "unitID";
+				colName = "place";
 			}
 			break;
 		case 2:
@@ -209,7 +227,7 @@ for (var i = 0; i < 3; i++)
 			}
 			else
 			{
-				colName = "wordTranscript";
+				colName = "text";
 			}
 			break;
 		default:
