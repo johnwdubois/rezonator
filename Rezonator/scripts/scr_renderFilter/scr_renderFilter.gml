@@ -76,6 +76,11 @@ for (var i = 0; i < ds_grid_height(filterGrid); i++)
 var firstUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, 0);
 var lastUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, ds_grid_height(filterGrid) - 1);
 
+if (firstUnit == undefined or lastUnit == undefined)
+{
+	exit;
+}
+
 if (obj_panelPane.functionFilter_peek[0] == 1)
 {
 	

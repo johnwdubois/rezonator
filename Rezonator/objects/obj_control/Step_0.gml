@@ -95,6 +95,7 @@ if (keyboard_check_pressed(ord("Q")))
 	scr_refreshLineGridDisplayRow();
 }
 
+
 if (keyboard_check_pressed(ord("E")))
 {
 	scr_shuffleDisplayRows();

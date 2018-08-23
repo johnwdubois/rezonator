@@ -276,3 +276,40 @@
 	clicking on word in main screen will focus it if it is already in proper chain
 
 	dialog box before putting word in 2 chains of same tier
+
+2018-08-23
+
+	gets rid of border from word when hitting escape to delete chain
+	
+	ds_list_find_index argument 1 incorrect type (undefined) expecting a Number (YYGI32)
+	 at gml_Script_scr_refreshChainGrid (line 96) -               if (ds_list_find_index(stackListGoal, chainID) == -1)
+
+	make chainList window hop to newest chain
+
+
+	update all positions of words in chains (even if they are off screen)
+
+
+
+	DoSub :2: undefined value
+	 at gml_Script_scr_renderFilter (line 82) -        for (var i = 0; i < firstUnit - 1; i++)
+	############################################################################################
+	--------------------------------------------------------------------------------------------	
+	stack frame is
+	gml_Script_scr_renderFilter (line 82)
+	called from - gml_Script_scr_panelPane_drawChainListLoop (line 162) -                                    scr_renderFilter();
+	called from - gml_Object_obj_panelPane_Draw_0 (line 13) -        scr_panelPane_drawChainListLoop();
+
+
+
+
+	DoAdd :2: undefined value
+	 at gml_Script_scr_drawRezChain (line 92) -                      mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordGridIndex) + (mouseLineWordStringHeight / 2);
+	############################################################################################
+	--------------------------------------------------------------------------------------------
+	stack frame is
+	gml_Script_scr_drawRezChain (line 92)
+	called from - gml_Object_obj_chain_Draw_0 (line 1) - scr_drawRezChain();
+
+	
+	
