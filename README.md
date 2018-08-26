@@ -1,4 +1,4 @@
-## Rezonator: Exploring the dynamics of human engagement
+## Rezonator: Dynamics of human engagement
 
 Welcome to Rezonator!
 
