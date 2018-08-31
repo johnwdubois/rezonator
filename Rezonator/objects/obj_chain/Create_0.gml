@@ -15,7 +15,6 @@ unitInStackGridWidth = 2;
 unitInStackGrid_colUnitID = 0;
 unitInStackGrid_colStackList = 1;
 unitInStackGrid = ds_grid_create(unitInStackGridWidth, 0);
-alarm[0] = 1;
 
 currentChainID = 0;
 

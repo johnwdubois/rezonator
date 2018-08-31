@@ -38,6 +38,10 @@ switch (obj_toolPane.currentTool)
 		chainName = currentChainName + " " + string(trackChainNameCounter);
 		break;
 	case obj_toolPane.toolStackBrush:
+		if (ds_grid_height(obj_chain.unitInStackGrid) < ds_grid_height(obj_control.unitGrid))
+		{
+			exit;
+		}
 		with (obj_panelPane)
 		{
 			functionChainList_currentTab = functionChainList_tabStackBrush;

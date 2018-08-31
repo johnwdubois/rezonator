@@ -21,6 +21,19 @@ for (var i = 0; i < ds_grid_height(grid); i++)
 	{
 		chainState = obj_chain.chainStateDead;
 		ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, chainState);
+		
+		if (ds_list_size(idList) == 1)
+		{
+			var lastItemId = ds_list_find_value(idList, 0);
+			if (grid == rezChainGrid)
+			{
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, lastItemId - 1, false);
+			}
+			else if (grid == trackChainGrid)
+			{
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, lastItemId - 1, false);
+			}
+		}
 	}
 }
 

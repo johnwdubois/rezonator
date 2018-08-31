@@ -11,7 +11,7 @@
 				to an existing chain
 */
 
-if (obj_control.gridView)
+if (obj_control.gridView || obj_control.mouseoverPanelPane)
 {
 	exit;
 }
@@ -28,10 +28,39 @@ or obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
 
 var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
 
-		if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus))
+for (var i = 0; i < ds_list_size(inChainsList); i++)
+{
+	var currentChainID = ds_list_find_value(inChainsList, i);
+	if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID))
+	{
+		var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID);
+		ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
+		currentFocusedChainID = currentChainID;
+	
+		
+		var rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
+		if (rowInLinkGrid >= 0 and rowInLinkGrid < ds_grid_height(linkGrid))
 		{
-			scr_newChain(wordID, unitID);
+			ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
+			scr_refreshChainGrid();
+			
+			if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid)
+			{
+				ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, wordID - 1, true);
+				obj_chain.mouseLineWordID = wordID;
+				exit;
+			}
 		}
+		
+	}
+}
+
+if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus))
+{
+	scr_newChain(wordID, unitID);
+}
 
 scr_newLink(wordID, -1);
 scr_refreshChainGrid();

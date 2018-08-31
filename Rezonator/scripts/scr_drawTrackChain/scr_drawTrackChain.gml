@@ -50,7 +50,22 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++)
 		lineX2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID2 - 1);
 		lineY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex2);
 		
+		var currentLineGridIndex1InDrawRange = true;
+		var currentLineGridIndex2InDrawRange = true;
+		
+		if (currentLineGridIndex1 < obj_control.drawRangeStart or currentLineGridIndex1 > obj_control.drawRangeEnd)
+		{
+			currentLineGridIndex1InDrawRange = false;
+		}
+		
+		if (currentLineGridIndex2 < obj_control.drawRangeStart or currentLineGridIndex2 > obj_control.drawRangeEnd)
+		{
+			currentLineGridIndex2InDrawRange = false;
+		}
+		
 		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
+		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
+		and not (obj_control.searchGridActive)
 		{
 			draw_set_color(currentChainColor);
 			draw_set_alpha(1);

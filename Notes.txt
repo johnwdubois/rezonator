@@ -313,3 +313,34 @@
 
 	
 	
+2018-08-27
+
+ds_list_add argument 1 incorrect type (undefined) expecting a Number (YYGI32)
+ at gml_Script_scr_newChain (line 65) -        ds_list_add(stackList, currentChainID);
+############################################################################################
+--------------------------------------------------------------------------------------------
+stack frame is
+gml_Script_scr_newChain (line 65)
+called from - gml_Script_scr_wordClicked (line 62) -        scr_newChain(wordID, unitID);
+called from - gml_Script_scr_drawLineWordIDListLoop (line 109) -                             scr_wordClicked(currentWordID, drawLineLoop);
+called from - gml_Script_scr_drawLine (line 109) -               scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, currentLineY, drawLineLoop);
+called from - gml_Object_obj_control_Draw_0 (line 35) - scr_drawLine();
+
+
+	page up/page down for grid view
+
+
+	when you are in chain, and you click on other chain of same tier, it does NOT add a link
+
+	if you click on word in chain, it would switch you to that tool
+
+	test for duplicates
+
+	continue button -> "Go!" button
+
+	import discourse -> "open file" becomes "open another"
+
+	progress bar
+
+
+	wordGrid: add colUser and colDead

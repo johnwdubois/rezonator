@@ -29,12 +29,20 @@ if (fileExtCharAt > 0)
 
 var discoID = fileName;
 
+if (ds_grid_value_exists(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, 0, global.fileLineRipGrid_colDiscoID, ds_grid_height(global.fileLineRipGrid), discoID))
+{
+	show_message("Duplicate file imported");
+	exit;
+}
+
 var fileOpenRead = file_text_open_read(xmlFile);
 var newLine = false;
 
 var wordsInLine = 0;
 
 var currentFileLineRipList = ds_list_create();
+
+var linesInCurrentDisco = 0;
 
 while (not file_text_eof(fileOpenRead))
 {
@@ -46,6 +54,7 @@ while (not file_text_eof(fileOpenRead))
 	if (string_count("<u who=", lineInFile) > 0)
 	{
 		lineTotal++;
+		linesInCurrentDisco++;
 	}
 	
 	if (string_count("</g>", lineInFile) > 0)
@@ -65,5 +74,6 @@ ds_grid_resize(global.fileLineRipGrid, global.fileLineRipGripWidth, ds_grid_heig
 var currentFileLineRipGridRow = ds_grid_height(global.fileLineRipGrid) - 1;
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, currentFileLineRipGridRow, discoID);
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colFileLineRipList, currentFileLineRipGridRow, currentFileLineRipList);
+ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colUnitAmount, currentFileLineRipGridRow, linesInCurrentDisco);
 
 file_text_close(fileOpenRead);

@@ -120,9 +120,6 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			
 			switch (functionChainContents_infoCol[getInfoLoop])
 			{
-				// 0 --> wordID
-				// 1 --> unitID
-				// 2 --> wordTranscript
 				case 0:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush)
 					{
@@ -130,7 +127,8 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					}
 					else
 					{
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1));
+						var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
 					}
 					break;
 				case 1:

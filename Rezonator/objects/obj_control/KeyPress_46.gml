@@ -76,7 +76,10 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		}
 	}
 	
-	ds_grid_set(wordDrawGrid, wordDrawGrid_colFillRect, source - 1, false);
+	if not (source == undefined)
+	{
+		ds_grid_set(wordDrawGrid, wordDrawGrid_colFillRect, source - 1, false);
+	}
 }
 
 scr_refreshChainGrid();

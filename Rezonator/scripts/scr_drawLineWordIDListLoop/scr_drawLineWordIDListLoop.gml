@@ -2,9 +2,10 @@ var currentWordIDList = argument0;
 var previousWordDisplayCol = argument1;
 var currentLineY = argument2;
 var drawLineLoop = argument3;
+var unitID = argument4;
 
 var shapeTextX = wordLeftMargin;
-var shapeTextSpace = 24;
+var shapeTextSpace = 12;
 
 for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawWordLoop++)
 {
@@ -96,7 +97,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 	}
 		
-	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))
+	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord))
 	{
 		draw_set_alpha(1);
 		draw_set_color(c_black);
@@ -109,6 +110,28 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				scr_wordClicked(currentWordID, drawLineLoop);
 			}
 		}
+	}
+	
+	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord)
+	{
+		if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID)
+		{
+			draw_set_color(c_ltblue);
+			draw_line_width(wordRectX2, wordRectY1, wordRectX2, wordRectY2, 2);
+		}
+		
+		if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2))
+		{
+			newWordHoverUnitID = unitID;
+			newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+			newWordHoverWordID = currentWordID;
+			
+			if (mouse_check_button_pressed(mb_left))
+			{
+				scr_newWord(newWordHoverUnitID, newWordHoverWordSeq);
+			}
+		}
+
 	}
 	
 	var textColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colTextColor, currentWordID - 1);

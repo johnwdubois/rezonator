@@ -57,25 +57,9 @@ for (var i = 0; i < 3; i++)
 	
 	
 	
-	var buttonText = "";
-	switch (i)
-	{
-		case 0:
-			buttonText = ">>>";
-			break;
-		case 1:
-			buttonText = "|||";
-			break;
-		case 2:
-			buttonText = "<<<";
-			break;
-		default:
-			break;
-	}
-	
 	draw_set_color(c_black);
 	draw_set_alpha(1);
-	draw_text_transformed(mean(peekButtonRectX1, peekButtonRectX2), mean(peekButtonRectY1, peekButtonRectY2), buttonText, 1, 1, 90);
+	draw_sprite(spr_filterArrows, i, mean(peekButtonRectX1, peekButtonRectX2), mean(peekButtonRectY1, peekButtonRectY2));
 	
 	draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, true);
 }

@@ -7,19 +7,25 @@ draw_set_alpha(1);
 draw_set_color(c_white);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
-if (currentFunction == 0)
+switch (currentFunction)
 {
-	scr_panelPane_drawChainTabs();
-	scr_panelPane_drawChainListLoop();
+	case functionChainList:
+		scr_panelPane_drawChainTabs();
+		scr_panelPane_drawChainListLoop();
+		break;
+	case functionChainContents:
+		scr_panelPane_drawChainContentsLoop();
+		break;
+	case functionFilter:
+		scr_panelPane_drawFilter();
+		break;
+	case functionSort:
+		scr_panelPane_drawSort();
+		break;
+	default:
+		break;
 }
-else if (currentFunction == 1)
-{
-	scr_panelPane_drawChainContentsLoop();
-}
-else if (currentFunction == 2)
-{
-	scr_panelPane_drawFilter();
-}
+
 
 draw_set_alpha(1);
 draw_set_color(c_black);

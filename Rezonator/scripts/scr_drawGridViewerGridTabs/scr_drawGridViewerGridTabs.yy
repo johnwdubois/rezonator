@@ -1,5 +1,5 @@
 {
-    "id": "b2cca057-9709-4529-93eb-58095ef2e600",
+    "id": "378c69b4-37f8-44ed-ade5-cd140f704de9",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "scr_drawGridViewerGridTabs",

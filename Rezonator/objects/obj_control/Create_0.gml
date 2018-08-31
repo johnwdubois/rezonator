@@ -50,7 +50,7 @@ wordTranscriptView = true;
 
 
 
-lineGridWidth = 8;
+lineGridWidth = 10;
 lineGrid_colDisplayRow = 0;
 lineGrid_colDiscoID = 1;
 lineGrid_colUnitID = 2; //lineGrid_colUnit = 2;
@@ -59,6 +59,8 @@ lineGrid_colPixelY = 4; //lineGrid_colY = 3;
 lineGrid_colLineState = 5;
 lineGrid_colWordIDList = 6;
 lineGrid_colAlignedWordID = 7;
+lineGrid_colUnitStart = 8;
+lineGrid_colUnitEnd = 9;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
 
@@ -124,8 +126,8 @@ hitGrid = ds_grid_create(hitGridWidth, 0);
 participantList = ds_list_create();
 participantColorList = ds_list_create();
 
-scr_loadUnitGrid();
-scr_loadDynamicWordGrid();
+//scr_loadUnitGrid();
+//scr_loadDynamicWordGrid();
 
 
 /*
@@ -176,3 +178,7 @@ alignment = 0;
 gridView = false;
 
 showDevVars = false;
+
+newWordHoverUnitID = -1;
+newWordHoverWordSeq = -1;
+newWordHoverWordID = -1;

@@ -178,6 +178,8 @@ for (var fileLineRipGridLoop = 0; fileLineRipGridLoop < ds_grid_height(global.fi
 			ds_grid_set(lineGrid, lineGrid_colDiscoID, currentRowLineGrid, currentDiscoID);
 			ds_grid_set(lineGrid, lineGrid_colLineNumberLabel, currentRowLineGrid, currentUtteranceID);
 			ds_grid_set(lineGrid, lineGrid_colAlignedWordID, currentRowLineGrid, ds_list_find_value(lineGridWordIDList, 0));
+			ds_grid_set(lineGrid, lineGrid_colUnitStart, currentRowLineGrid, currentUnitStart);
+			ds_grid_set(lineGrid, lineGrid_colUnitEnd, currentRowLineGrid, currentUnitEnd);
 			
 			ds_grid_set(unitGrid, unitGrid_colWordIDList, currentRowUnitGrid, lineGridWordIDList);
 		}

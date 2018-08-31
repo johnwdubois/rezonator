@@ -104,3 +104,28 @@ if (keyboard_check_pressed(ord("E")))
 
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
+
+mouseoverPanelPane = false;
+for (var i = 0; i < instance_number(obj_panelPane); i++)
+{
+	var panelPaneInst = instance_find(obj_panelPane, i);
+	if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight))
+	{
+		mouseoverPanelPane = true;
+	}
+}
+
+if (ds_grid_height(unitGrid) == global.totalUnitAmount and ds_grid_height(obj_chain.unitInStackGrid) == 0)
+{
+	with (obj_chain)
+	{
+		scr_loadUnitInStackGrid();
+	}
+}
+
+if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentActiveLineGrid == lineGrid)
+{
+	newWordHoverUnitID = -1;
+	newWordHoverWordSeq = -1;
+	newWordHoverWordID = -1;
+}

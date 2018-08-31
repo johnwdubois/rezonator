@@ -39,7 +39,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gri
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
-	var colName = scr_drawGridViewGetColName(grid[gridArrayIndex], gridLoopCol)
+	var colName = scr_getColNameString(grid[gridArrayIndex], gridLoopCol);
 	draw_text(colRectX1, colRectY1 + (colNameHeight / 2), colName);
 	
 	textY = colRectY1 + colNameHeight;
@@ -136,10 +136,15 @@ if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2)
 
 
 var scrollBarHeight = (scrollRange[gridArrayIndex] * windowHeight[gridArrayIndex]) / ds_grid_height(grid[gridArrayIndex]);
+scrollBarHeight = max(scrollBarHeight, 24);
+
 var scrollBarRectX1 = windowX1 - scrollBarWidth;
 var scrollBarRectY1 = windowY1 + ((gridCurrentTopViewRow[gridArrayIndex] * windowHeight[gridArrayIndex]) / ds_grid_height(grid[gridArrayIndex]));
 var scrollBarRectX2 = scrollBarRectX1 + scrollBarWidth;
 var scrollBarRectY2 = scrollBarRectY1 + scrollBarHeight;
+
+scrollBarRectY1 = min(scrollBarRectY1, windowY2 - scrollBarHeight);
+scrollBarRectY2 = min(scrollBarRectY2, windowY2);
 
 
 draw_set_color(c_ltgray);
