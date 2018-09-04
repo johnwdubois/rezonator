@@ -52,7 +52,7 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 			colName = "unitID";
 			break;
 		case obj_control.lineGrid_colLineNumberLabel:
-			colName = "lineNumberLabel";
+			colName = "uID";
 			break;
 		case obj_control.lineGrid_colPixelY:
 			colName = "pixelY";

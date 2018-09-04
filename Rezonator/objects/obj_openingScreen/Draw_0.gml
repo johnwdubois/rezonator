@@ -100,6 +100,10 @@ var scrollBarWidth = 16;
 currentTopViewRow = max(0, currentTopViewRow);
 currentTopViewRow = min(ds_grid_height(global.fileLineRipGrid) - scrollRange, currentTopViewRow);
 
+var mouseoverAny = false;
+var calloutBubbleX = -1;
+var calloutBubbleY = -1;
+var calloutBubbleText = "";
 
 var textPlusY = 24;
 for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
@@ -117,12 +121,38 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		continue;
 	}
 	
+	var currentParticipantList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colParticipantList, i);
+	
 	var textBuffer = 10;
 	draw_set_color(c_black);
 	draw_set_halign(fa_left);
 	draw_text(importWindowX1 + textBuffer, importWindowY1 + textPlusY, discoID);
 	draw_set_halign(fa_right);
 	draw_text(importWindowX2 - scrollBarWidth - textBuffer, importWindowY1 + (textPlusY), unitAmount + " lines");
+	
+	var participantRectColorList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, i);
+	for (var j = 0; j < ds_list_size(currentParticipantList); j++)
+	{
+		var participantRectX1 = importWindowX1 + 100 + (j * 20);
+		var participantRectY1 = importWindowY1 + textPlusY - 5;
+		var participantRectX2 = participantRectX1 + 10;
+		var participantRectY2 = participantRectY1 + 10;
+		
+		var participantRectColor = ds_list_find_value(participantRectColorList, j);
+		
+		draw_set_color(participantRectColor);
+		draw_rectangle(participantRectX1, participantRectY1, participantRectX2, participantRectY2, false);
+		
+		var participantName = ds_list_find_value(currentParticipantList, j);
+		
+		if point_in_rectangle(mouse_x, mouse_y, participantRectX1, participantRectY1, participantRectX2, participantRectY2)
+		{
+			mouseoverAny = true;
+			calloutBubbleX = mean(participantRectX1, participantRectX2);
+			calloutBubbleY = mean(participantRectY1, participantRectY2);
+			calloutBubbleText = participantName;
+		}
+	}
 	
 	textPlusY += string_height(".");
 }
@@ -167,6 +197,15 @@ if (mouse_check_button_released(mb_left))
 if (scrollBarHolding)
 {
 	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_grid_height(global.fileLineRipGrid)) / (importWindowHeight));
+}
+
+if (mouseoverAny and calloutBubbleX > -1 and calloutBubbleY > -1)
+{
+	draw_sprite(spr_calloutBubble, 0, calloutBubbleX, calloutBubbleY);
+	draw_set_color(c_black);
+	draw_set_halign(fa_center);
+	draw_set_font(fnt_calloutBubble);
+	draw_text(calloutBubbleX, calloutBubbleY - 15, calloutBubbleText);
 }
 
 draw_set_color(c_black);

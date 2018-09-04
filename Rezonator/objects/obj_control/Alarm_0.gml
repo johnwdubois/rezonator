@@ -1,0 +1,2 @@
+ableToCreateDropDown = true;
+ableToCreateDropDownAlarmSet = false;

@@ -182,3 +182,8 @@ showDevVars = false;
 newWordHoverUnitID = -1;
 newWordHoverWordSeq = -1;
 newWordHoverWordID = -1;
+
+ableToCreateDropDown = true;
+ableToCreateDropDownAlarmSet = false;
+
+ableToHotkey = true;

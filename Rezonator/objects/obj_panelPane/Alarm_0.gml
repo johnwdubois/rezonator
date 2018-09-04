@@ -1,6 +1,12 @@
 if not (currentFunction == functionSort)
 {
-	exit
+	exit;
+}
+
+for (var i = 0; i < 10; i++)
+{
+	var textMarginTop = 20;
+	functionSort_colY[i] = y + textMarginTop + 24 + (i * 24) - (sprite_get_height(spr_ascend) / 2);
 }
 
 
@@ -8,10 +14,13 @@ if not (currentFunction == functionSort)
 var sortGridLineGrid = ds_grid_create(functionSort_gridSortGridWidth, 3);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 0, obj_control.lineGrid_colUnitStart);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 0, true);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 0, false);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 1, obj_control.lineGrid_colUnitEnd);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 1, true);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 1, false);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 2, obj_control.lineGrid_colLineNumberLabel);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 2, false);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 2, false);
 	
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colGrid, 0, obj_control.lineGrid);
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colHard, 0, false);
@@ -25,6 +34,7 @@ ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colSortGrid, 0, sortGri
 var sortGridUnitGrid = ds_grid_create(functionSort_gridSortGridWidth, 1);
 ds_grid_set(sortGridUnitGrid, functionSort_gridSortColGrid_colCol, 0, obj_control.unitGrid_colUnitID);
 ds_grid_set(sortGridUnitGrid, functionSort_gridSortColGrid_colAscend, 0, true);
+ds_grid_set(sortGridUnitGrid, functionSort_gridSortColGrid_colMouseover, 0, false);
 
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colGrid, 1, obj_control.unitGrid);
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colHard, 1, true);
@@ -38,6 +48,7 @@ ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colSortGrid, 1, sortGri
 var sortGridWordGrid = ds_grid_create(functionSort_gridSortGridWidth, 1);
 ds_grid_set(sortGridWordGrid, functionSort_gridSortColGrid_colCol, 0, obj_control.wordGrid_colWordID);
 ds_grid_set(sortGridWordGrid, functionSort_gridSortColGrid_colAscend, 0, true);
+ds_grid_set(sortGridWordGrid, functionSort_gridSortColGrid_colMouseover, 0, false);
 
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colGrid, 2, obj_control.wordGrid);
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colHard, 2, true);

@@ -36,6 +36,8 @@ functionSort_gridGrid = ds_grid_create(3, 3);
 functionSort_gridSortGridWidth = 3;
 functionSort_gridSortColGrid_colCol = 0;
 functionSort_gridSortColGrid_colAscend = 1;
+functionSort_gridSortColGrid_colMouseover = 2;
+
 
 for (var i = 0; i < 3; i++)
 {

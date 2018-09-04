@@ -102,6 +102,23 @@ if (keyboard_check_pressed(ord("E")))
 	scr_refreshLineGridDisplayRow();
 }
 
+
+if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHotkey)
+{
+	ableToHotkey = false;
+	scr_exportREZ();
+}
+else if (keyboard_check(vk_control) and keyboard_check_pressed(ord("O")) and ableToHotkey)
+{
+	ableToHotkey = false;
+	//scr_importLinks();
+}
+if (not keyboard_check(vk_control) and not ableToHotkey)
+{
+	ableToHotkey = true;
+}
+
+
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 
@@ -128,4 +145,15 @@ if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentAct
 	newWordHoverUnitID = -1;
 	newWordHoverWordSeq = -1;
 	newWordHoverWordID = -1;
+}
+
+
+if (instance_exists(obj_dropDown))
+{
+	ableToCreateDropDown = false;
+}
+if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet)
+{
+	alarm[0] = 2;
+	ableToCreateDropDownAlarmSet = true;
 }

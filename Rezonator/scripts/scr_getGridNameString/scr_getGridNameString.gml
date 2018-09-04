@@ -3,40 +3,40 @@ var colName = string(argument0);
 switch (argument0)
 {
 	case obj_control.unitGrid:
-		colName = "unitGrid";
+		colName = "Unit";
 		break;
 	case obj_control.lineGrid:
-		colName = "lineGrid";
+		colName = "Line";
 		break;
 	case obj_control.wordGrid:
-		colName = "wordGrid";
+		colName = "Word";
 		break;
 	case obj_control.dynamicWordGrid:
-		colName = "dynamicWordGrid";
+		colName = "DynamicWord";
 		break;
 	case obj_control.filterGrid:
-		colName = "filterGrid";
+		colName = "Filter";
 		break;
 	case obj_control.searchGrid:
-		colName = "searchGrid";
+		colName = "Search";
 		break;
 	case obj_control.hitGrid:
-		colName = "hitGrid";
+		colName = "Hit";
 		break;
 	case obj_chain.linkGrid:
-		colName = "linkGrid";
+		colName = "Link";
 		break;
 	case obj_chain.rezChainGrid:
-		colName = "rezChainGrid";
+		colName = "RezChain";
 		break;
 	case obj_chain.trackChainGrid:
-		colName = "trackChainGrid";
+		colName = "TrackChain";
 		break;
 	case obj_chain.stackChainGrid:
-		colName = "stackChainGrid";
+		colName = "StackChain";
 		break;
 	case obj_chain.unitInStackGrid:
-		colName = "unitInStackGrid";
+		colName = "UnitInStack";
 		break;
 	default:
 		break;

@@ -44,8 +44,10 @@ var currentFileLineRipList = ds_list_create();
 
 var linesInCurrentDisco = 0;
 
+var participantList = ds_list_create();
+
 while (not file_text_eof(fileOpenRead))
-{
+{	
 	var lineInFile = file_text_readln(fileOpenRead);
 	ds_list_add(global.fileLineRipList, lineInFile);
 	
@@ -68,12 +70,32 @@ while (not file_text_eof(fileOpenRead))
 		ds_list_add(wordAmountList, wordsInLine);
 		wordsInLine = 0;
 	}
+	
+	var currentUnitParticipantName = scr_fileLineRipListSearch(ds_list_size(global.fileLineRipList) - 1, "u who=\"", "\"", global.fileLineRipList);
+	if (ds_list_find_index(participantList, currentUnitParticipantName) == -1)
+	{
+		ds_list_add(participantList, currentUnitParticipantName);
+	}
 }
+
+ds_list_delete(participantList, 0);
+
+var colorList = ds_list_create();
+for (var i = 0; i < ds_list_size(participantList); i++)
+{
+	var hue = (255 / ds_list_size(participantList) * i) + participantHueOffset;
+	var color = make_color_hsv(hue, random_range(100, 200),  random_range(100, 200));
+	ds_list_add(colorList, color);
+}
+
+participantHueOffset += 20;
 
 ds_grid_resize(global.fileLineRipGrid, global.fileLineRipGripWidth, ds_grid_height(global.fileLineRipGrid) + 1);
 var currentFileLineRipGridRow = ds_grid_height(global.fileLineRipGrid) - 1;
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, currentFileLineRipGridRow, discoID);
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colFileLineRipList, currentFileLineRipGridRow, currentFileLineRipList);
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colUnitAmount, currentFileLineRipGridRow, linesInCurrentDisco);
+ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colParticipantList, currentFileLineRipGridRow, participantList);
+ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, currentFileLineRipGridRow, colorList);
 
 file_text_close(fileOpenRead);

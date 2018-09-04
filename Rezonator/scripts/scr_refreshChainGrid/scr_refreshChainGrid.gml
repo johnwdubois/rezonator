@@ -67,25 +67,9 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 	{
 		continue;
 	}
-	/*
-	if (ds_list_find_index(idList, goal) == -1)
-	{
-		ds_list_add(idList, goal);
-	}
-	*/
 	
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
 	{
-		/*
-		for (var i = 0; i < ds_list_size(stackListSource); i++)
-		{
-			var stackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, i);
-			if (ds_list_find_index(stackListSource, chainID) > -1)
-			{
-				ds_list_delete(stackList, ds_list_find_index(stackListSource, chainID));
-			}
-		}
-		*/
 		
 		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, source - 1);
 		var stackListGoal = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, goal - 1);
@@ -101,30 +85,6 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 	}
 }
 
-/*
-for (var i = 0; i < ds_grid_height(obj_chain.linkGrid); i++)
-{
-	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, i);
-	var dead = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colDead, i);
-	if (tier < 3 or dead)
-	{
-		continue;
-	}
-	
-	var source = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, i);
-	var goal = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, i);
-	
-	if not (source == -1 or source == undefined)
-	{
-		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, source - 1);
-		if (ds_list_find_index(stackListSource, chainID) == -1)
-		{
-			ds_list_add(stackListSource, chainID);
-		}
-	}
-	
-}
-*/
 
 ds_list_sort(idList, true);
 ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);

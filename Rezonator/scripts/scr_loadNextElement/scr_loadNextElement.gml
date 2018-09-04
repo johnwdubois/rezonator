@@ -74,7 +74,8 @@ if (string_count("</u>", currentElement) > 0)
 	{
 		ds_list_add(participantsInCurrentDiscoList, currentUnitParticipantName);
 		ds_list_add(obj_control.participantList, currentUnitParticipantName);
-		ds_list_add(obj_control.participantColorList, make_color_rgb(random(255), random(255), random(255)));
+		var participantColor = ds_list_find_value(global.participantColorList, ds_list_size(obj_control.participantList) - 1);
+		ds_list_add(obj_control.participantColorList, participantColor);
 		
 		obj_control.participantColor[ds_list_size(obj_control.participantList) - 1] = ds_list_find_value(obj_control.participantColorList, ds_list_size(obj_control.participantColorList) - 1);
 		
@@ -148,4 +149,9 @@ if (string_count("</u>", currentElement) > 0)
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitEnd, currentRowLineGrid, currentUnitEnd);
 			
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentRowUnitGrid, lineGridWordIDList);
+}
+
+if (string_count("<Link>", currentElement) > 0)
+{
+	scr_importLinks(fileLineRipListElement);
 }
