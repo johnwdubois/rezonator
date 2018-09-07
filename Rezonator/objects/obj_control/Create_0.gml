@@ -17,7 +17,7 @@ shapeBlock = 1;
 shape = shapeBlock;
 
 
-unitGridWidth = 9;
+unitGridWidth = global.unitGridWidth;
 unitGrid_colUnitID = 0;
 unitGrid_colUtteranceID = 1;
 unitGrid_colWordIDList = 2;
@@ -32,7 +32,7 @@ unitGrid = ds_grid_create(unitGridWidth, 0);
 
 
 
-wordGridWidth = 5;
+wordGridWidth = global.wordGridWidth;
 wordGrid_colWordID = 0;
 wordGrid_colUnitID = 1;
 wordGrid_colWordSeq = 2;
@@ -80,7 +80,7 @@ currentActiveLineGrid = lineGrid;
 
 
 
-dynamicWordGridWidth = 8;
+dynamicWordGridWidth = global.dynamicWordGridWidth;
 dynamicWordGrid_colWordID = 0;
 dynamicWordGrid_colDisplayWordSeq = 1; //dynamicWordGrid_colLineWordSeq = 1;
 dynamicWordGrid_colDisplayCol = 2; //dynamicWordGrid_colPositionCol = 2;
@@ -185,5 +185,3 @@ newWordHoverWordID = -1;
 
 ableToCreateDropDown = true;
 ableToCreateDropDownAlarmSet = false;
-
-ableToHotkey = true;

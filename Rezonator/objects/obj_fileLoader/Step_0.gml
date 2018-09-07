@@ -7,7 +7,17 @@ for (var i = 0; i < fileLoadRate; i++)
 	{
 		exit;
 	}
-
+	
+	if not instance_exists(obj_control)
+	{
+		exit;
+	}
+	
+	if (ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount)
+	{
+		exit;
+	}
+	
 
 
 	fileLineRipList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colFileLineRipList, discourseProcessing);

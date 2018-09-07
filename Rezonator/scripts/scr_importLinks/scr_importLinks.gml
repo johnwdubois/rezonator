@@ -99,24 +99,6 @@ for (var i = 0; i < ds_grid_height(tempGrid); i++)
 	currentSource = ds_grid_get(tempGrid, obj_chain.linkGrid_colSource, i);
 	currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentSource - 1);
 	
-	with (obj_toolPane)
-	{
-		switch (currentTier)
-		{
-			case 1:
-				currentTool = toolRezBrush;
-				break;
-			case 2:
-				currentTool = toolTrackBrush;
-				break;
-			case 3:
-				currentTool = toolStackBrush;
-				break;
-			default:
-				break;
-		}
-	}
-	
 	if not (ds_grid_get(tempGrid, obj_chain.linkGrid_colChainID, i) == currentChainID)
 	{
 		with (obj_chain)
@@ -124,6 +106,24 @@ for (var i = 0; i < ds_grid_height(tempGrid); i++)
 			scr_chainDeselect();
 		}
 		currentChainID = ds_grid_get(tempGrid, obj_chain.linkGrid_colChainID, i);
+		
+		with (obj_toolPane)
+		{
+			switch (currentTier)
+			{
+				case 1:
+					currentTool = toolRezBrush;
+					break;
+				case 2:
+					currentTool = toolTrackBrush;
+					break;
+				case 3:
+					currentTool = toolStackBrush;
+					break;
+				default:
+					break;
+			}
+	}
 	}
 	
 	with (obj_chain)

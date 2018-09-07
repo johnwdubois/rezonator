@@ -124,8 +124,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	
 	var participantColorIndex = ds_grid_get(unitGrid, unitGrid_colParticipantColorIndex, unitID - 1);
 	draw_set_alpha(1);
-	draw_set_color(participantColor[participantColorIndex]);
-	//draw_set_color(c_red);
+	//draw_set_color(participantColor[participantColorIndex]);
+	draw_set_color(c_red);
 	draw_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, false);
 
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);

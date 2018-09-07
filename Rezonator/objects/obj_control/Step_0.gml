@@ -103,20 +103,7 @@ if (keyboard_check_pressed(ord("E")))
 }
 
 
-if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHotkey)
-{
-	ableToHotkey = false;
-	scr_exportREZ();
-}
-else if (keyboard_check(vk_control) and keyboard_check_pressed(ord("O")) and ableToHotkey)
-{
-	ableToHotkey = false;
-	//scr_importLinks();
-}
-if (not keyboard_check(vk_control) and not ableToHotkey)
-{
-	ableToHotkey = true;
-}
+
 
 
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);

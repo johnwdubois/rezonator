@@ -26,3 +26,5 @@ participantsInCurrentDiscoList = ds_list_create();
 hueOffset = 0;
 
 fileLoadRate = 50;
+
+ableToHotkey = true;

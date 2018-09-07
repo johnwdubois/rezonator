@@ -12,6 +12,10 @@ global.totalUnitAmount = 0;
 
 global.participantColorList = ds_list_create();
 
+global.wordGridWidth = 5;
+global.dynamicWordGridWidth = 8;
+global.unitGridWidth = 9;
+
 wordAmountList = ds_list_create();
 
 lineTotal = 0;
