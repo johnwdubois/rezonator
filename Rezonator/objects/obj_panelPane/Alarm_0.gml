@@ -11,16 +11,19 @@ for (var i = 0; i < 10; i++)
 
 
 //lineGrid
-var sortGridLineGrid = ds_grid_create(functionSort_gridSortGridWidth, 3);
-ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 0, obj_control.lineGrid_colUnitStart);
+var sortGridLineGrid = ds_grid_create(functionSort_gridSortGridWidth, 4);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 0, obj_control.lineGrid_colDiscoID);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 0, true);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 0, false);
-ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 1, obj_control.lineGrid_colUnitEnd);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 1, obj_control.lineGrid_colUnitStart);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 1, true);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 1, false);
-ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 2, obj_control.lineGrid_colLineNumberLabel);
-ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 2, false);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 2, obj_control.lineGrid_colUnitEnd);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 2, true);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 2, false);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 3, obj_control.lineGrid_colUID);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 3, true);
+ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 3, false);
 	
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colGrid, 0, obj_control.lineGrid);
 ds_grid_set(functionSort_gridGrid, functionSort_gridGrid_colHard, 0, false);

@@ -122,10 +122,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		draw_text(mouse_x, mouse_y, dbWordIDList);
 	}
 	
-	var participantColorIndex = ds_grid_get(unitGrid, unitGrid_colParticipantColorIndex, unitID - 1);
+	var participantColor = ds_grid_get(unitGrid, unitGrid_colParticipantColor, unitID - 1);
 	draw_set_alpha(1);
-	//draw_set_color(participantColor[participantColorIndex]);
-	draw_set_color(c_red);
+	draw_set_color(participantColor);
+	//draw_set_color(c_red);
 	draw_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, false);
 
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);

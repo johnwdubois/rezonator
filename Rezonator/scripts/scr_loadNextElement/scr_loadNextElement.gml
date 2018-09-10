@@ -77,14 +77,15 @@ if (string_count("</u>", currentElement) > 0)
 		var participantColor = ds_list_find_value(global.participantColorList, ds_list_size(obj_control.participantList) - 1);
 		ds_list_add(obj_control.participantColorList, participantColor);
 		
-		obj_control.participantColor[ds_list_size(obj_control.participantList) - 1] = ds_list_find_value(obj_control.participantColorList, ds_list_size(obj_control.participantColorList) - 1);
-		
-		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColorIndex, currentRowUnitGrid, ds_list_size(obj_control.participantList) - 1);
+		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, participantColor);
 			
 	}
 	else
 	{
-		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColorIndex, currentRowUnitGrid, ds_list_find_index(obj_control.participantList, currentUnitParticipantName));
+		var colorIndex = ds_list_find_index(obj_control.participantList, currentUnitParticipantName);
+		var participantColor = ds_list_find_value(obj_control.participantColorList, colorIndex);
+		
+		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, participantColor);
 	}
 		
 		
@@ -147,6 +148,7 @@ if (string_count("</u>", currentElement) > 0)
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colAlignedWordID, currentRowLineGrid, ds_list_find_value(lineGridWordIDList, 0));
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, currentRowLineGrid, currentUnitStart);
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitEnd, currentRowLineGrid, currentUnitEnd);
+	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUID, currentRowLineGrid, currentUtteranceID);
 			
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentRowUnitGrid, lineGridWordIDList);
 }

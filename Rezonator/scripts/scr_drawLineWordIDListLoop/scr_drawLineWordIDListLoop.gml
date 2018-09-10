@@ -19,7 +19,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, 0);
 	}
 		
-	if (drawWordLoop > 0 and not filterGridActive)
+	if (drawWordLoop > 0)// and not filterGridActive)
 	{	
 		if (currentWordDisplayCol - previousWordDisplayCol > 1)
 		{

@@ -44,11 +44,33 @@ if (!gridView)
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down))
 	{
 		currentCenterDisplayRow = ds_grid_height(currentActiveLineGrid) - 1;
+		
+		for (var i = (currentCenterDisplayRow - drawRangeEnd); i < currentCenterDisplayRow; i++)
+		{
+			if (i < 0 or i >= ds_grid_height(lineGrid))
+			{
+				break;
+			}
+			
+			var currentLineDestY = (ds_grid_get(currentActiveLineGrid, lineGrid_colDisplayRow, i) - currentCenterDisplayRow) * gridSpaceVertical + (room_height / 2);
+			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
+		}
 	}
 
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up))
 	{
 		currentCenterDisplayRow = 0;
+		
+		for (var i = currentCenterDisplayRow; i < drawRange + 10; i++)
+		{
+			if (i >= ds_grid_height(lineGrid))
+			{
+				break;
+			}
+			
+			var currentLineDestY = (ds_grid_get(currentActiveLineGrid, lineGrid_colDisplayRow, i) - currentCenterDisplayRow) * gridSpaceVertical + (room_height / 2);
+			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
+		}
 	}
 
 	if (keyboard_check_pressed(vk_left))

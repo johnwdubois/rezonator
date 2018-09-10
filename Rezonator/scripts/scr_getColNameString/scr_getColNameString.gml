@@ -11,7 +11,7 @@ if (grid == obj_control.unitGrid)
 			colName = "unitID";
 			break;
 		case obj_control.unitGrid_colUtteranceID:
-			colName = "utteranceID";
+			colName = "uID";
 			break;
 		case obj_control.unitGrid_colWordIDList:
 			colName = "wordIDList";
@@ -31,8 +31,8 @@ if (grid == obj_control.unitGrid)
 		case obj_control.unitGrid_colUnitEnd:
 			colName = "unitEnd";
 			break;
-		case obj_control.unitGrid_colParticipantColorIndex:
-			colName = "participantColorIndex";
+		case obj_control.unitGrid_colParticipantColor:
+			colName = "participantColor";
 			break;
 		default:
 			break;
@@ -78,6 +78,9 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 			break;
 		case obj_control.lineGrid_colUnitEnd:
 			colName = "unitEnd";
+			break;
+		case obj_control.lineGrid_colUID:
+			colName = "uID";
 			break;
 		default:
 			break;

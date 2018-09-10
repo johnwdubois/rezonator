@@ -68,7 +68,7 @@ draw_set_font(fnt_sortPane);
 draw_set_halign(fa_right);
 
 var colSort;
-for (var i = 0; i < 3; i++)
+for (var i = 0; i < 4; i++)
 {
 	colSort[i, 0] = 0;
 	colSort[i, 1] = true;
@@ -184,9 +184,16 @@ if (point_in_rectangle(mouse_x, mouse_y, refreshButtonX1, refreshButtonY1, refre
 	
 	if (mouse_check_button_pressed(mb_left))
 	{
-		scr_gridMultiColSort(selectedGrid, colSort[0, 0], colSort[0, 1], colSort[1, 0], colSort[1, 1], colSort[2, 0], colSort[2, 1]);
-		scr_refreshLineGridDisplayRow();
+		functionSort_performSort = true;
 	}
+}
+
+if (functionSort_performSort)
+{
+	functionSort_performSort = false;
+	
+	scr_gridMultiColSort(selectedGrid, colSort[0, 0], colSort[0, 1], colSort[1, 0], colSort[1, 1], colSort[2, 0], colSort[2, 1], colSort[3, 0], colSort[3, 1]);
+	scr_refreshLineGridDisplayRow();
 }
 
 draw_set_color(c_black);

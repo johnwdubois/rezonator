@@ -26,7 +26,7 @@ unitGrid_colpID = 4;
 unitGrid_colParticipantName = 5;
 unitGrid_colUnitStart = 6;
 unitGrid_colUnitEnd = 7;
-unitGrid_colParticipantColorIndex = 8;
+unitGrid_colParticipantColor = 8;
 
 unitGrid = ds_grid_create(unitGridWidth, 0);
 
@@ -50,7 +50,7 @@ wordTranscriptView = true;
 
 
 
-lineGridWidth = 10;
+lineGridWidth = 11;
 lineGrid_colDisplayRow = 0;
 lineGrid_colDiscoID = 1;
 lineGrid_colUnitID = 2; //lineGrid_colUnit = 2;
@@ -61,6 +61,7 @@ lineGrid_colWordIDList = 6;
 lineGrid_colAlignedWordID = 7;
 lineGrid_colUnitStart = 8;
 lineGrid_colUnitEnd = 9;
+lineGrid_colUID = 10;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
 
@@ -126,36 +127,9 @@ hitGrid = ds_grid_create(hitGridWidth, 0);
 participantList = ds_list_create();
 participantColorList = ds_list_create();
 
-//scr_loadUnitGrid();
-//scr_loadDynamicWordGrid();
 
-
-/*
-ds_list_add(participantColorList,make_color_rgb(255, 107, 107));
-ds_list_add(participantColorList,make_color_rgb(107, 134, 255));
-ds_list_add(participantColorList,make_color_rgb(107, 255, 141));
-ds_list_add(participantColorList,make_color_rgb(252, 255, 107));
-ds_list_add(participantColorList,make_color_rgb(181, 107, 255));
-ds_list_add(participantColorList,make_color_rgb(107, 247, 255));
-ds_list_add(participantColorList,make_color_rgb(255, 178, 107));
-ds_list_add(participantColorList,make_color_rgb(255, 107, 200));
-*/
-
-/*
-for (var participantColorListLoop = 0; participantColorListLoop < ds_list_size(participantList); participantColorListLoop++)
-{
-	var hue = (255 / ds_list_size(participantList)) * participantColorListLoop;
-	var newColor = make_color_hsv(hue, 200, 255);
-	ds_list_add(participantColorList, newColor);
-}
-*/
 randomise();
-//ds_list_shuffle(participantColorList);
 
-for (var participantColorLoop = 0; participantColorLoop < ds_list_size(participantList); participantColorLoop++)
-{
-	participantColor[participantColorLoop] = ds_list_find_value(participantColorList, min(ds_list_size(participantColorList) - 1, participantColorLoop));
-}
 
 
 cursorBox = 0;

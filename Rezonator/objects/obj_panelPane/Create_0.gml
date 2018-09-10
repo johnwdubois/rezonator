@@ -27,6 +27,8 @@ functionChainContents_scrollRangeMin[0] = 0;
 functionChainContents_scrollRangeMax[0] = functionChainContents_maxScrollRange;
 functionChainContents_hop = -1;
 
+functionSort_initialSort = false;
+functionSort_performSort = false;
 functionSort_grid = -1;
 functionSort_gridGridSelected = 0;
 functionSort_gridGrid_colGrid = 0;
