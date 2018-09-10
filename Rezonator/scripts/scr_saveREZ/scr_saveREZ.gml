@@ -18,7 +18,7 @@ with (obj_saveParent)
 		var mapUnitGrid = scr_gridToJSONLists(unitGrid);
 		var mapLineGrid = scr_gridToJSONLists(lineGrid);
 		
-		//ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
+		ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
 		ds_map_add_list(map, "wordGrid", mapWordGrid);
 		ds_map_add_list(map, "dynaWordGrid", mapDynaWordGrid);
 		ds_map_add_list(map, "wordDrawGrid", mapWordDrawGrid);

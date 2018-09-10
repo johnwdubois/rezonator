@@ -98,4 +98,6 @@ ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colUnitAmount, curren
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colParticipantList, currentFileLineRipGridRow, participantList);
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, currentFileLineRipGridRow, colorList);
 
+ds_grid_sort(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, true);
+
 file_text_close(fileOpenRead);

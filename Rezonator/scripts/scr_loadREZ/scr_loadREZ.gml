@@ -13,19 +13,19 @@ if (file_exists(fileName))
 		
 		var objectIndex = ds_map_find_value(map, "objectIndex");
 		
+		//show_message("objindex: " + string(objectIndex));
+		
 		//var instCreate = instance_create_layer(0, 0, layer, asset_get_index(objectIndex));
 		
 		//ds_list_add(newInstList, instCreate);
 		
 		with (objectIndex)
 		{
-			if (object_index == obj_control)
+			if (objectIndex == "obj_control")
 			{
 				currentCenterDisplayRow = 0;
 				
-
-				
-				//scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
+				scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
 				scr_loadREZGridReset(wordGrid, map, "wordGrid");
 				scr_loadREZGridReset(dynamicWordGrid, map, "dynaWordGrid");
 				scr_loadREZGridReset(wordDrawGrid, map, "wordDrawGrid");
@@ -34,14 +34,21 @@ if (file_exists(fileName))
 				
 				global.totalUnitAmount = scr_getTotalUnitAmount();
 			}
-			else if (object_index == obj_chain)
+			else if (objectIndex == "obj_chain")
 			{
-			
-				scr_loadREZGridReset(linkGrid, map, "linkGrid");
-				scr_loadREZGridReset(rezChainGrid, map, "rezChainGrid");
-				scr_loadREZGridReset(trackChainGrid, map, "trackChainGrid");
-				scr_loadREZGridReset(stackChainGrid, map, "stackChainGrid");
-				scr_loadREZGridReset(unitInStackGrid, map, "unitInStackGrid");
+				
+				scr_loadREZGridReset(obj_chain.linkGrid, map, "linkGrid");
+				scr_loadREZGridReset(obj_chain.rezChainGrid, map, "rezChainGrid");
+				scr_loadREZGridReset(obj_chain.trackChainGrid, map, "trackChainGrid");
+				scr_loadREZGridReset(obj_chain.stackChainGrid, map, "stackChainGrid");
+				scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
+				
+				obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
+				scr_refreshChainGrid();
+				obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
+				scr_refreshChainGrid();
+				obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+				scr_refreshChainGrid();
 				
 			}
 		}

@@ -55,6 +55,15 @@ else if (grid == obj_chain.unitInStackGrid)
 		itemList = currentCell;
 	}
 }
+else if (grid == global.fileLineRipGrid)
+{
+	if (col == global.fileLineRipGrid_colFileLineRipList
+	or col == global.fileLineRipGrid_colParticipantList
+	or col == global.fileLineRipGrid_colColorList)
+	{
+		itemList = currentCell;
+	}
+}
 
 
 
