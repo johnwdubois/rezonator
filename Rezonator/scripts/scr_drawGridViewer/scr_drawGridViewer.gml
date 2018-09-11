@@ -1,3 +1,17 @@
+/*
+	scr_drawGridViewer(gridArrayIndex);
+	
+	Last Updated: 2018-09-11
+	
+	Called from: obj_gridViewer
+	
+	Purpose: display Rezonator's backend grids for debugging and research purposes
+	
+	Mechanism: loop through the selected grid and draw a string version of every cell value
+	
+	Author: Terry DuBois
+*/
+
 var gridArrayIndex = argument0;
 
 scr_drawGridViewerGridTabs(gridArrayIndex);

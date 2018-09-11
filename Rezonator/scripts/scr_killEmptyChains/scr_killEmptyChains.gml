@@ -1,3 +1,18 @@
+/*
+	scr_findInGridTwoParameters(grid);
+	
+	Last Updated: 2018-09-11
+	
+	Called from: obj_chain
+	
+	Purpose: delete any chain that contains 1 or less items
+	
+	Mechanism: iterate over specified chainGrid to check every chain's idList size, and
+				if the size is less than or equal to 1, delete the row in the chainGrid
+	
+	Author: Terry DuBois
+*/
+
 var grid = argument0;
 
 

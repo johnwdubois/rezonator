@@ -1,3 +1,18 @@
+/*
+	scr_renderFilter();
+	
+	Last Updated: 2018-09-11
+	
+	Called from: obj_control
+	
+	Purpose: clear and then populate filterGrid with necessary units
+	
+	Mechanism: check all chains to see if they are flagged with the filter option, and if they are
+				then add a row to the filterGrid
+	
+	Author: Terry DuBois
+*/
+
 ds_grid_destroy(filterGrid);
 filterGrid = ds_grid_create(lineGridWidth, 0);
 

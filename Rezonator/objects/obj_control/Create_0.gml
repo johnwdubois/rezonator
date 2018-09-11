@@ -50,7 +50,7 @@ wordTranscriptView = true;
 
 
 
-lineGridWidth = 11;
+lineGridWidth = 10;
 lineGrid_colDisplayRow = 0;
 lineGrid_colDiscoID = 1;
 lineGrid_colUnitID = 2; //lineGrid_colUnit = 2;
@@ -61,7 +61,6 @@ lineGrid_colWordIDList = 6;
 lineGrid_colAlignedWordID = 7;
 lineGrid_colUnitStart = 8;
 lineGrid_colUnitEnd = 9;
-lineGrid_colUID = 10;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
 

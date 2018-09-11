@@ -1,3 +1,19 @@
+/*
+	scr_refreshChainGrid();
+	
+	Last Updated: 2018-09-11
+	
+	Called from: any object
+	
+	Purpose: update the chainGrid of the current selected tool, so that the chains have all the link
+			information they need
+	
+	Mechanism: search the idLists in the chainGrid and refresh them, adding or removing ID values
+				based on the information from the linkGrid
+	
+	Author: Terry DuBois
+*/
+
 var grid = obj_chain.rezChainGrid;
 
 switch (obj_toolPane.currentTool)
@@ -73,6 +89,9 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 		
 		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, source - 1);
 		var stackListGoal = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, goal - 1);
+		
+		
+		//show_message("source: " + string(source) + ", goal: " + string(goal));
 		if (ds_list_find_index(stackListSource, chainID) == -1)
 		{
 			ds_list_add(stackListSource, chainID);
@@ -81,6 +100,7 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 		{
 			ds_list_add(stackListGoal, chainID);
 		}
+		
 		
 	}
 }

@@ -35,6 +35,7 @@ for (var i = 0; i < ds_grid_height(functionSort_gridGrid); i++)
 		}
 	}
 	
+	draw_set_alpha(1);
 	draw_set_color(c_black);
 	draw_text(gridNameRectX1, mean(gridNameRectY1, gridNameRectY2), gridName);
 	
@@ -129,6 +130,9 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 					case obj_control.lineGrid:
 						ds_list_add(dropDownOptionList, "discoID", "unitStart", "unitEnd", "uID", "unitID");
 						break;
+					case obj_control.searchGrid:
+						ds_list_add(dropDownOptionList, "discoID", "unitStart", "unitEnd", "uID", "unitID");
+						break;
 					default:
 						break;
 				}
@@ -145,6 +149,33 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 			}
 		}
 	}
+	
+	if (functionSort_animationSeq == i)
+	{
+		draw_set_color(obj_control.c_ltblue);
+		draw_set_alpha(max(functionSort_animationAlpha, 0));
+		draw_rectangle(colNameRectX1, colNameRectY1, colNameRectX2, colNameRectY2, false);
+		
+		if (functionSort_animationAlpha > 0)
+		{
+			functionSort_animationAlpha -= 0.2;
+		}
+		else
+		{
+			if (functionSort_animationSeq < ds_grid_height(functionSort_sortGrid) - 1)
+			{
+				functionSort_animationSeq++;
+				functionSort_animationAlpha = 1;
+			}
+			else
+			{
+				functionSort_animationSeq = -1;
+				functionSort_animationAlpha = 1;
+			}
+		}
+	}
+	
+	draw_set_alpha(1);
 	
 	if (not colAscend)
 	{
@@ -170,31 +201,83 @@ if (not mouseoverAnyOption and not instance_exists(obj_dropDown))
 }
 
 
+var refreshButtonAlpha = 0;
 var refreshButtonX1 = x + windowWidth - sprite_get_width(spr_refresh);
 var refreshButtonY1 = y + windowHeight - sprite_get_height(spr_refresh);
 var refreshButtonX2 = refreshButtonX1 + sprite_get_width(spr_refresh);
 var refreshButtonY2 = refreshButtonY1 + sprite_get_height(spr_refresh);
 
-draw_sprite_ext(spr_refresh, 0, mean(refreshButtonX1, refreshButtonX2), mean(refreshButtonY1, refreshButtonY2), 1, 1, 0, obj_control.c_ltblue, 1);
+var restoreDefButtonAlpha = 0;
+var restoreDefButtonX1 = ascendButtonX1;
+var restoreDefButtonY1 = refreshButtonY1;
+var restoreDefButtonX2 = refreshButtonX1;
+var restoreDefButtonY2 = refreshButtonY2;
 
-draw_set_alpha(0.5);
+draw_sprite_ext(spr_refresh, 0, mean(refreshButtonX1, refreshButtonX2), mean(refreshButtonY1, refreshButtonY2), 1, 1, 0, obj_control.c_ltblue, 1);
+draw_set_alpha(1);
+draw_set_color(c_black);
+draw_set_halign(fa_left);
+draw_text(restoreDefButtonX1 + 10, mean(restoreDefButtonY1, restoreDefButtonY2), "Restore default");
+
 if (point_in_rectangle(mouse_x, mouse_y, refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2) and not selectedGridHard and not instance_exists(obj_dropDown))
 {
-	draw_set_alpha(1);
+	refreshButtonAlpha = 0.25;
 	
 	if (mouse_check_button_pressed(mb_left))
 	{
 		functionSort_performSort = true;
 	}
 }
+else if (point_in_rectangle(mouse_x, mouse_y, restoreDefButtonX1, restoreDefButtonY1, restoreDefButtonX2, restoreDefButtonY2) and not selectedGridHard and not instance_exists(obj_dropDown))
+{
+	restoreDefButtonAlpha = 0.25;
+	
+	if (mouse_check_button_pressed(mb_left))
+	{
+		scr_panelPane_sortDefaultSetup();
+		
+		alarm[2] = 1;
+	}
+}
+
+
 
 if (functionSort_performSort)
 {
 	functionSort_performSort = false;
 	
 	scr_gridMultiColSort(selectedGrid, colSort[0, 0], colSort[0, 1], colSort[1, 0], colSort[1, 1], colSort[2, 0], colSort[2, 1], colSort[3, 0], colSort[3, 1]);
-	scr_refreshLineGridDisplayRow();
+	
+	switch (selectedGrid)
+	{
+		case obj_control.lineGrid:
+			scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+			break;
+		case obj_control.searchGrid:
+			scr_refreshLineGridDisplayRow(obj_control.searchGrid);
+			break;
+		default:
+			break;
+	}
+	
+	functionSort_animationSeq = 0;
+	functionSort_animationAlpha = 1;
 }
 
 draw_set_color(c_black);
+draw_set_alpha(1);
 draw_rectangle(refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2, true);
+if (refreshButtonAlpha > 0)
+{
+	draw_set_alpha(refreshButtonAlpha);
+	draw_rectangle(refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2, false);
+}
+
+draw_set_color(c_black);
+draw_set_alpha(1);
+draw_rectangle(restoreDefButtonX1, restoreDefButtonY1, restoreDefButtonX2, restoreDefButtonY2, true);
+if (restoreDefButtonAlpha > 0)
+{
+	draw_set_alpha(restoreDefButtonAlpha);
+	draw_rectangle(restoreDefButtonX1, restoreDefButtonY1, restoreDefButtonX2, restoreDefButtonY2, false);
+}

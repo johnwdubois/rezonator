@@ -23,7 +23,7 @@ if (string_count("uID=", currentElement) > 0)
 {
 	currentUtteranceID = real(scr_fileLineRipListSearch(fileLineRipListElement, "uID=\"u", "\"", fileLineRipList));
 
-	show_debug_message(string(currentUtteranceID) + "..... " + currentElement);
+	//show_debug_message("LOADED: uID " + string(currentUtteranceID) + "..... " + currentElement);
 }
 	
 if (string_count("PID=", currentElement) > 0)
@@ -53,7 +53,7 @@ if (string_count("</g>", currentElement) > 0)
 	ds_list_add(linesWithWordsList, fileLineRipListElement);
 }
 
-if (string_count("</u>", currentElement) > 0)
+if (string_count("/>", currentElement) > 0)
 {
 	unitIDCounter++;
 	currentUnitID = unitIDCounter;
@@ -148,7 +148,6 @@ if (string_count("</u>", currentElement) > 0)
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colAlignedWordID, currentRowLineGrid, ds_list_find_value(lineGridWordIDList, 0));
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, currentRowLineGrid, currentUnitStart);
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitEnd, currentRowLineGrid, currentUnitEnd);
-	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUID, currentRowLineGrid, currentUtteranceID);
 			
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentRowUnitGrid, lineGridWordIDList);
 }

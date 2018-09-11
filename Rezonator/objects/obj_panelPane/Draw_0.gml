@@ -22,6 +22,9 @@ switch (currentFunction)
 	case functionSort:
 		scr_panelPane_drawSort();
 		break;
+	case functionSearch:
+		scr_panelPane_drawSearch();
+		break;
 	default:
 		break;
 }

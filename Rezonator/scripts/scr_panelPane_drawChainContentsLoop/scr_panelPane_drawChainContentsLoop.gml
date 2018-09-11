@@ -123,7 +123,8 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 				case 0:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush)
 					{
-						currentWordInfoCol[getInfoLoop] = string(currentWordID);
+						var unitID = currentWordID;
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
 					}
 					else
 					{
@@ -201,11 +202,11 @@ for (var i = 0; i < 3; i++)
 		case 0:
 			if (functionChainList_currentTab == functionChainList_tabStackBrush)
 			{
-				colName = "unitID";
+				colName = "uID";
 			}
 			else
 			{
-				colName = "unitID";
+				colName = "uID";
 			}
 			break;
 		case 1:

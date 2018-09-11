@@ -1,3 +1,18 @@
+/*
+	scr_drawGridViewerGridTabs(gridArrayIndex);
+	
+	Last Updated: 2018-09-11
+	
+	Called from: obj_gridViewer
+	
+	Purpose: draw the tabs showing all of the viewable grids for the gridViewer
+	
+	Mechanism: loop through a list of the viewable grids and draw tabs for each grid,
+				and when the tab is clicked on, that is the grid to be shown
+	
+	Author: Terry DuBois
+*/
+
 var gridArrayIndex = argument0;
 
 draw_set_alpha(1);

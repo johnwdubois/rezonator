@@ -2,6 +2,7 @@ functionChainList = 0;
 functionChainContents = 1;
 functionFilter = 2;
 functionSort = 3;
+functionSearch = 4;
 
 functionChainList_tabRezBrush = 0;
 functionChainList_tabTrackBrush = 1;
@@ -29,12 +30,14 @@ functionChainContents_hop = -1;
 
 functionSort_initialSort = false;
 functionSort_performSort = false;
+functionSort_animationSeq = -1;
+functionSort_animationAlpha = 0;
 functionSort_grid = -1;
 functionSort_gridGridSelected = 0;
 functionSort_gridGrid_colGrid = 0;
 functionSort_gridGrid_colHard = 1;
 functionSort_gridGrid_colSortGrid = 2;
-functionSort_gridGrid = ds_grid_create(3, 3);
+functionSort_gridGrid = ds_grid_create(3, 4);
 functionSort_gridSortGridWidth = 3;
 functionSort_gridSortColGrid_colCol = 0;
 functionSort_gridSortColGrid_colAscend = 1;

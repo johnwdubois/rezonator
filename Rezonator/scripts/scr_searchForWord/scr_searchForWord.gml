@@ -1,7 +1,7 @@
 /*
 	scr_searchForWord();
 	
-	Last Updated: 2018-07-12
+	Last Updated: 2018-09-11
 	
 	Called from: obj_chain
 	
@@ -38,6 +38,8 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++)
 	var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, i);
 	var currentDiscoID = ds_grid_get(unitGrid, unitGrid_colDiscoID, i);
 	var currentUtteranceID = ds_grid_get(unitGrid, unitGrid_colUtteranceID, i);
+	var currentUnitStart = ds_grid_get(unitGrid, unitGrid_colUnitStart, i);
+	var currentUnitEnd = ds_grid_get(unitGrid, unitGrid_colUnitEnd, i);
 	
 	for (var j = 0; j < ds_list_size(currentWordIDList); j++)
 	{
@@ -58,6 +60,8 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++)
 			ds_grid_set(searchGrid, lineGrid_colPixelY, currentRowSearchGrid, room_height + gridSpaceVertical);
 			ds_grid_set(searchGrid, lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);
 			ds_grid_set(searchGrid, lineGrid_colLineNumberLabel, currentRowSearchGrid, currentUtteranceID);
+			ds_grid_set(searchGrid, lineGrid_colUnitStart, currentRowSearchGrid, currentUnitStart);
+			ds_grid_set(searchGrid, lineGrid_colUnitEnd, currentRowSearchGrid, currentUnitEnd);
 			
 			var currentHitIDList = ds_list_create();
 			

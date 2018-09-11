@@ -114,14 +114,14 @@ if (keyboard_check_pressed(ord("Q")))
 {
 	displayRowAscending = !displayRowAscending;
 	ds_grid_sort(currentActiveLineGrid, lineGrid_colDisplayRow, displayRowAscending);
-	scr_refreshLineGridDisplayRow();
+	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 }
 
 
 if (keyboard_check_pressed(ord("E")))
 {
 	scr_shuffleDisplayRows();
-	scr_refreshLineGridDisplayRow();
+	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 }
 
 

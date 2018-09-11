@@ -107,7 +107,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		{
 			with (obj_chain)
 			{
-				scr_wordClicked(currentWordID, drawLineLoop);
+				scr_wordClicked(currentWordID, unitID);//drawLineLoop);
 			}
 		}
 	}

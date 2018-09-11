@@ -10,7 +10,7 @@
 	Mechanism: loop through entire lineGrid
 */
 
-var grid = obj_control.lineGrid;
+var grid = argument0;
 var col = obj_control.lineGrid_colDisplayRow;
 
 for (var i = 0; i < ds_grid_height(grid); i++)

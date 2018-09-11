@@ -63,9 +63,9 @@ var wordIDList = ds_list_create();
 
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
 {
-	ds_list_add(wordIDList, unitID + 1);
+	ds_list_add(wordIDList, unitID);
 	
-	var stackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID);
+	var stackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
 	ds_list_add(stackList, currentChainID);
 }
 else
