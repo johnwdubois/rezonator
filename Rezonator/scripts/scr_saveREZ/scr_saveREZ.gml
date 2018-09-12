@@ -46,6 +46,8 @@ var wrapper = ds_map_create();
 ds_map_add_list(wrapper, "ROOT", rootList);
 
 var jsonString = json_encode(wrapper);
-scr_saveFileBuffer("savefile.rez", jsonString);
+
+var saveFileName = get_save_filename("REZ file|*.rez", "");
+scr_saveFileBuffer(saveFileName, jsonString);
 
 ds_map_destroy(wrapper);

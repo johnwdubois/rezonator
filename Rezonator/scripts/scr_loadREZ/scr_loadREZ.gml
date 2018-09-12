@@ -1,4 +1,4 @@
-var fileName = "savefile.rez";
+var fileName = get_open_filename("REZ file|*.rez", "");
 
 var newInstList = ds_list_create();
 
