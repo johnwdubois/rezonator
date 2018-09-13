@@ -1,5 +1,10 @@
 var fileName = get_open_filename("REZ file|*.rez", "");
 
+if (fileName == "")
+{
+	exit;
+}
+
 var newInstList = ds_list_create();
 
 if (file_exists(fileName))

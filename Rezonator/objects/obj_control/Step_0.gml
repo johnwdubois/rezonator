@@ -82,7 +82,6 @@ if (!gridView)
 	{
 		wordLeftMarginDest += gridSpaceHorizontal;
 	}
-
 }
 
 if (wordLeftMargin < wordLeftMarginDest)

@@ -40,11 +40,11 @@ for (var i = 0; i < ds_grid_height(grid); i++)
 		if (ds_list_size(idList) == 1)
 		{
 			var lastItemId = ds_list_find_value(idList, 0);
-			if (grid == rezChainGrid)
+			if (grid == obj_chain.rezChainGrid)
 			{
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, lastItemId - 1, false);
 			}
-			else if (grid == trackChainGrid)
+			else if (grid == obj_chain.trackChainGrid)
 			{
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, lastItemId - 1, false);
 			}

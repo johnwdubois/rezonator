@@ -135,7 +135,9 @@ cursorBox = 0;
 cursorBoxX = 0;
 cursorBoxY = 0;
 
-drawRange = 30;
+drawRange = 30
+drawRangeStart = 0;
+drawRangeEnd = 0;
 
 
 displayRowAscending = true;

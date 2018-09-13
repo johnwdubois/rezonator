@@ -16,11 +16,22 @@ global.wordGridWidth = 5;
 global.dynamicWordGridWidth = 8;
 global.unitGridWidth = 9;
 
+global.openProject = false;
+global.newProject = false;
+
 wordAmountList = ds_list_create();
 
 lineTotal = 0;
 wordTotal = 0;
 wordsToLoad = 0;
+
+windowWidth = (room_width * 0.6);
+windowHeight = (room_height * 0.6);
+windowX1 = (room_width * 0.2);
+windowY1 = (room_height * 0.4) - 20;
+windowX2 = windowX1 + windowWidth;
+windowY2 = windowY1 + windowHeight;
+
 
 importWindowWidth = room_width / 2;
 importWindowHeight = room_height / 5;

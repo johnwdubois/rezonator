@@ -366,3 +366,26 @@ called from - gml_Object_obj_control_Draw_0 (line 35) - scr_drawLine();
 	write card for hashtable approach
 
 	"restore default" button in sortPane
+
+2018-09-12
+
+	
+___________________________________________
+############################################################################################
+FATAL ERROR in
+action number 1
+of Key Press Event for <Delete> Key
+for object obj_control:
+
+ds_list_find_index argument 1 incorrect type (undefined) expecting a Number (YYGI32)
+ at gml_Script_scr_refreshChainGrid (line 99) -               if (ds_list_find_index(stackListGoal, chainID) == -1)
+############################################################################################
+--------------------------------------------------------------------------------------------
+stack frame is
+gml_Script_scr_refreshChainGrid (line 99)
+called from - gml_Object_obj_control_KeyPress_46 (line 85) - scr_refreshChainGrid();
+
+	have info in nav window stay even after unfocused from chain
+	if you filter or align chain, it focuses that chain
+	when hopping between rez/track/stack tabs in nav window, save which chain was focused
+	up/down arrow keys for moving around nav window

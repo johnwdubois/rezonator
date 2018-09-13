@@ -92,16 +92,18 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 		
 		
 		//show_message("source: " + string(source) + ", goal: " + string(goal));
-		if (ds_list_find_index(stackListSource, chainID) == -1)
+		//show_message(string(chainID));
+		if not (chainID == undefined or stackListSource == undefined or stackListGoal == undefined)
 		{
-			ds_list_add(stackListSource, chainID);
+			if (ds_list_find_index(stackListSource, chainID) == -1)
+			{
+				ds_list_add(stackListSource, chainID);
+			}
+			if (ds_list_find_index(stackListGoal, chainID) == -1)
+			{
+				ds_list_add(stackListGoal, chainID);
+			}
 		}
-		if (ds_list_find_index(stackListGoal, chainID) == -1)
-		{
-			ds_list_add(stackListGoal, chainID);
-		}
-		
-		
 	}
 }
 

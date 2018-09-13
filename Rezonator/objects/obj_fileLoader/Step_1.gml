@@ -1,3 +1,9 @@
+if (global.openProject and ds_grid_height(obj_control.wordGrid) < 1)
+{
+	scr_loadREZ();
+
+}
+
 if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHotkey)
 {
 	ableToHotkey = false;

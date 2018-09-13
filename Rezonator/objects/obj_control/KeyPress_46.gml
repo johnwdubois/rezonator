@@ -1,6 +1,12 @@
 if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true))
 {	
 	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
+	
+	if (rowInLinkGridSource == -1)
+	{
+		exit;
+	}
+	
 	var chainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
 	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowInLinkGridSource);
 	var dead = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridSource);
@@ -32,8 +38,14 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	
 	if (tier == 3)
 	{
-	
-		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, source - 1);
+		var rowInUnitInStackGrid = ds_grid_value_y(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colUnitID, 0, obj_chain.unitInStackGrid_colUnitID, ds_grid_height(obj_chain.unitInStackGrid), source);
+		
+		if (rowInUnitInStackGrid < 0 or rowInUnitInStackGrid >= ds_grid_height(obj_chain.unitInStackGrid))
+		{
+			exit;
+		}
+		
+		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, rowInUnitInStackGrid);
 		
 		if not (stackListSource == undefined)
 		{
@@ -49,18 +61,24 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		{
 			var idListNewSource = ds_grid_get(unitGrid, unitGrid_colWordIDList, newSource - 1);
 			
-			if (ds_list_size(idListNewSource) > 0)
+			if not (idListNewSource == undefined)
 			{
-				newSource = ds_list_find_value(idListNewSource, 0);
+				if (ds_list_size(idListNewSource) > 0)
+				{
+					newSource = ds_list_find_value(idListNewSource, 0);
+				}
 			}
 		}
 		if (newGoal > 0)
 		{
 			var idListNewGoal = ds_grid_get(unitGrid, unitGrid_colWordIDList, newGoal - 1);
 			
-			if (ds_list_size(idListNewGoal) > 0)
+			if not (idListNewGoal == undefined)
 			{
-				newGoal = ds_list_find_value(idListNewGoal, 0);
+				if (ds_list_size(idListNewGoal) > 0)
+				{
+					newGoal = ds_list_find_value(idListNewGoal, 0);
+				}
 			}
 		}
 		
