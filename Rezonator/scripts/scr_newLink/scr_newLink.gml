@@ -65,8 +65,23 @@ scr_gridMultiColSort(linkGrid, linkGrid_colTier, true, linkGrid_colChainID, true
 
 with (obj_panelPane)
 {
-	if (currentFunction == functionChainContents)
+	switch (obj_toolPane.currentTool)
 	{
+		case obj_toolPane.toolRezBrush:
+			functionChainList_currentTab = functionChainList_tabRezBrush;
+			break;
+		case obj_toolPane.toolTrackBrush:
+			functionChainList_currentTab = functionChainList_tabTrackBrush;
+			break;
+		case obj_toolPane.toolStackBrush:
+			functionChainList_currentTab = functionChainList_tabStackBrush;
+			break;
+		default:
+			break;
+	}
+		
+	if (currentFunction == functionChainContents)
+	{		
 		functionChainContents_hop = idSet;
 	}
 }

@@ -160,3 +160,11 @@ newWordHoverWordID = -1;
 
 ableToCreateDropDown = true;
 ableToCreateDropDownAlarmSet = false;
+
+progressBarX = 24;
+progressBarY = room_height - 80;
+progressBarWidth = 200;
+progressBarHeight = 32;
+progressBarBackColor = c_gray;
+progressBarFrontColor = c_blue;
+progressBarFont = fnt_mainBold;

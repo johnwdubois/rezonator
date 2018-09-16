@@ -1,8 +1,12 @@
-var saveFileName = get_save_filename("REZ file|*.rez", "");
-
-if (saveFileName == "")
+if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName))
 {
-	exit;
+	global.fileSaveName = get_save_filename("REZ file|*.rez", "");
+
+	if (global.fileSaveName == "" or global.fileSaveName == "undefined")
+	{
+		global.fileSaveName = "undefined";
+		exit;
+	}
 }
 
 var rootList = ds_list_create();
@@ -54,6 +58,6 @@ ds_map_add_list(wrapper, "ROOT", rootList);
 
 var jsonString = json_encode(wrapper);
 
-scr_saveFileBuffer(saveFileName, jsonString);
+scr_saveFileBuffer(global.fileSaveName, jsonString);
 
 ds_map_destroy(wrapper);

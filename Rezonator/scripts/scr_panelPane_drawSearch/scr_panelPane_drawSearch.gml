@@ -5,7 +5,7 @@ var iconX = x + (windowWidth / 2);
 var iconY = y + (windowHeight / 2);
 
 var mouseover = false;
-if (point_in_rectangle(mouse_x, mouse_y, x, y + textMarginTop + 12, x + windowWidth, y + windowHeight))
+if (point_in_rectangle(mouse_x, mouse_y, x, y + textMarginTop + 12, x + windowWidth, y + windowHeight) and not instance_exists(obj_dropDown))
 {
 	mouseover = true;
 }

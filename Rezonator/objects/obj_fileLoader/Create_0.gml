@@ -28,3 +28,4 @@ hueOffset = 0;
 fileLoadRate = 50;
 
 ableToHotkey = true;
+

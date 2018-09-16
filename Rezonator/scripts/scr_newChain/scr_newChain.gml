@@ -101,8 +101,6 @@ ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
 
 currentFocusedChainID = currentChainID;
 
-
-
 with (obj_panelPane)
 {
 	functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;

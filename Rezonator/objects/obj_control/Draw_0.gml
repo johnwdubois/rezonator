@@ -38,16 +38,11 @@ scr_drawLine();
 
 if (ds_grid_height(unitGrid) < global.totalUnitAmount)
 {
-	var loadbarX1 = 24;
-	var loadbarY1 = room_height - 80;
-	var loadbarX2 = loadbarX1 + 200;
-	var loadbarY2 = loadbarY1 + 32;
-	var loadbarValue = (ds_grid_height(unitGrid) / global.totalUnitAmount) * 100;
-	var backColor = make_color_rgb(220, 220, 220);
+	var progressBarValue = (ds_grid_height(unitGrid) / global.totalUnitAmount) * 100;
 	
-	draw_healthbar(loadbarX1, loadbarY1, loadbarX2, loadbarY2, loadbarValue, c_gray, c_blue, c_blue, 0, true, false);
+	draw_healthbar(progressBarX, progressBarY, progressBarX + progressBarWidth, progressBarY + progressBarHeight, progressBarValue, progressBarBackColor, progressBarFrontColor, progressBarFrontColor, 0, true, false);
 	
-	draw_set_font(fnt_mainBold);
+	draw_set_font(progressBarFont);
 	draw_set_color(c_white);
-	draw_text(loadbarX1 + 12, mean(loadbarY1, loadbarY2) + 1, string(loadbarValue) + "%");
+	draw_text(progressBarX + 12, mean(progressBarY, progressBarY + progressBarHeight) + 1, string(progressBarValue) + "%");
 }

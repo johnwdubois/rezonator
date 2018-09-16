@@ -11,4 +11,4 @@ toolTrackBrush = 2;
 toolStackBrush = 3;
 toolNewWord = 4;
 
-currentTool = toolPointer;
+currentTool = toolRezBrush;

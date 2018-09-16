@@ -1,9 +1,12 @@
 var fileName = get_open_filename("REZ file|*.rez", "");
 
-if (fileName == "")
+if (fileName == "" or not file_exists(fileName))
 {
+	game_restart();
 	exit;
 }
+
+global.fileSaveName = fileName;
 
 var newInstList = ds_list_create();
 
@@ -62,3 +65,9 @@ if (file_exists(fileName))
 }
 
 ds_list_destroy(newInstList);
+
+obj_chain.currentChainID = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid));
+obj_chain.linkIDCounter = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, 0, obj_chain.linkGrid_colLinkID, ds_grid_height(obj_chain.linkGrid));
+obj_chain.rezChainNameCounter = ds_grid_height(obj_chain.rezChainGrid);
+obj_chain.trackChainNameCounter = ds_grid_height(obj_chain.trackChainGrid);
+obj_chain.stackChainNameCounter = ds_grid_height(obj_chain.stackChainGrid);

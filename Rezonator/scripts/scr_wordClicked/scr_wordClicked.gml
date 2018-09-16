@@ -50,8 +50,28 @@ for (var i = 0; i < ds_list_size(inChainsList); i++)
 				ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, wordID - 1, true);
 				obj_chain.mouseLineWordID = wordID;
+				
+				with (obj_panelPane)
+				{
+					switch (obj_chain.currentChainGrid)
+					{
+						case obj_chain.rezChainGrid:
+							functionChainList_currentTab = functionChainList_tabRezBrush;
+							break;
+						case obj_chain.trackChainGrid:
+							functionChainList_currentTab = functionChainList_tabTrackBrush;
+							break;
+						case obj_chain.stackChainGrid:
+							functionChainList_currentTab = functionChainList_tabStackBrush;
+							break;
+						default:
+							break;
+					}
+				}
+				
 				exit;
 			}
+			
 		}
 		
 	}
@@ -71,10 +91,8 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 	var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);
 	var chainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, rowInChainGrid);
 	
-	if (ds_list_find_index(inChainsList, chainID) == -1)//obj_toolPane.currentTool) == -1)
+	if (ds_list_find_index(inChainsList, chainID) == -1)
 	{
-		ds_list_add(inChainsList, chainID);//obj_toolPane.currentTool);
-	
+		ds_list_add(inChainsList, chainID);
 	}
 }
-

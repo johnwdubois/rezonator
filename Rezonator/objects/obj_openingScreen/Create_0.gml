@@ -19,6 +19,8 @@ global.unitGridWidth = 9;
 global.openProject = false;
 global.newProject = false;
 
+global.fileSaveName = "undefined";
+
 wordAmountList = ds_list_create();
 
 lineTotal = 0;
