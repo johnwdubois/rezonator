@@ -12,3 +12,13 @@ toolStackBrush = 3;
 toolNewWord = 4;
 
 currentTool = toolRezBrush;
+
+
+
+progressBarX = room_width - 100;
+progressBarY = 150 - 32;
+progressBarWidth = 100;
+progressBarHeight = 32;
+progressBarBackColor = c_gray;
+progressBarFrontColor = c_blue;
+progressBarFont = fnt_mainBold;

@@ -246,5 +246,37 @@ else if (grid == obj_chain.unitInStackGrid)
 			break;
 	}
 }
+else if (grid == obj_chain.cliqueGrid)
+{
+	switch (col)
+	{
+		case obj_chain.cliqueGrid_colCliqueID:
+			colName = "cliqueID";
+			break;
+		case obj_chain.cliqueGrid_colChainIDList:
+			colName = "chainIDList";
+			break;
+		case obj_chain.cliqueGrid_colUnitIDList:
+			colName = "unitIDList";
+			break;
+		case obj_chain.cliqueGrid_colRangeStart:
+			colName = "rangeStart";
+			break;
+		case obj_chain.cliqueGrid_colRangeEnd:
+			colName = "rangeEnd";
+			break;
+		case obj_chain.cliqueGrid_colLength:
+			colName = "length";
+			break;
+		case obj_chain.cliqueGrid_colBreak:
+			colName = "break";
+			break;
+		case obj_chain.cliqueGrid_colName:
+			colName = "name";
+			break;
+		default:
+			break;
+	}
+}
 
 return colName;

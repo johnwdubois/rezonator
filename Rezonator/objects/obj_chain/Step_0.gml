@@ -1,7 +1,26 @@
+ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, 0, obj_control.wordDrawGrid_colFocused, ds_grid_height(obj_control.wordDrawGrid), false);
+
 if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus))
 {
 	var index = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);
 	currentFocusedChainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, index);
+	
+	if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid)
+	{
+		var idList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, index);
+	
+		for (var i = 0; i < ds_list_size(idList); i++)
+		{
+			var currentID = ds_list_find_value(idList, i);
+			var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentID -1);
+			
+			if (isVisible)
+			{
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentID - 1, true);
+			}
+		}
+	}
+	
 }
 else
 {

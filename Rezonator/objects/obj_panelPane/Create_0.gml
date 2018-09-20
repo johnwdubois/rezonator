@@ -3,6 +3,7 @@ functionChainContents = 1;
 functionFilter = 2;
 functionSort = 3;
 functionSearch = 4;
+functionClique = 5;
 
 functionChainList_tabRezBrush = 0;
 functionChainList_tabTrackBrush = 1;
@@ -53,6 +54,8 @@ for (var i = 0; i < 3; i++)
 scrollBarHolding = false;
 scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
+
+doubleClickTimer = -1;
 
 
 alarm[0] = 1;

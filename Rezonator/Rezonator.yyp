@@ -191,6 +191,14 @@
             }
         },
         {
+            "Key": "253822df-02b8-490c-a3bc-6049fd770f34",
+            "Value": {
+                "id": "d63550d8-1ed8-4a34-a248-044a2d3f4e47",
+                "resourcePath": "scripts\\scr_cliqueGridCheckForBreak\\scr_cliqueGridCheckForBreak.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "26f1fa2e-34e4-496b-ad6d-19f45e31327b",
             "Value": {
                 "id": "83abc00e-6c95-4ea0-8824-a38bec6149bd",
@@ -303,6 +311,14 @@
             }
         },
         {
+            "Key": "44ad126c-0505-47a9-a70d-15ea6cf90004",
+            "Value": {
+                "id": "5cc2d13f-32a5-4c21-b46f-159093e6b06f",
+                "resourcePath": "scripts\\scr_cliqueGridRefreshUnitIDList\\scr_cliqueGridRefreshUnitIDList.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "463a561c-c2a5-4f71-a1d7-730ccd21e940",
             "Value": {
                 "id": "5fed543e-f098-46ba-8c74-cda2fdc21479",
@@ -407,11 +423,27 @@
             }
         },
         {
+            "Key": "6880a14c-983e-44d2-9b56-e1007dc227b6",
+            "Value": {
+                "id": "7862e28a-ed4e-4364-bed5-095e13a0752c",
+                "resourcePath": "scripts\\scr_addToCliqueGrid\\scr_addToCliqueGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "6904e7a8-7700-4fd5-99a4-4b5ea0f3422a",
             "Value": {
                 "id": "a2347e3e-b2e0-4c9e-97ee-29ce8d949291",
                 "resourcePath": "views\\6904e7a8-7700-4fd5-99a4-4b5ea0f3422a.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "69846e25-74b9-4922-a924-f57c406a5a72",
+            "Value": {
+                "id": "748678c7-d1f6-4e5e-9c0d-b6a839092e15",
+                "resourcePath": "scripts\\scr_setAllValuesInCol\\scr_setAllValuesInCol.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -515,6 +547,14 @@
             "Value": {
                 "id": "466d35fd-1924-4479-a516-eb60df42ac08",
                 "resourcePath": "scripts\\scr_drawGridViewer\\scr_drawGridViewer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "86d712e5-8944-4c97-a29c-925c573202c9",
+            "Value": {
+                "id": "de43ba28-49b6-41ba-8896-b30449b8ba1a",
+                "resourcePath": "scripts\\scr_panelPane_drawClique\\scr_panelPane_drawClique.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -831,6 +871,14 @@
             }
         },
         {
+            "Key": "d09e8d70-53bc-4bc4-9f4e-42e18db9ce1b",
+            "Value": {
+                "id": "c497dc83-846b-4723-8700-2b3b969cca22",
+                "resourcePath": "sprites\\spr_focusPoint\\spr_focusPoint.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "d4b3cd55-d58f-4ff7-9024-b65845cead6f",
             "Value": {
                 "id": "caab39c3-da8e-4698-8b9d-793f83e923d8",
@@ -1015,6 +1063,14 @@
             }
         },
         {
+            "Key": "fbc689fc-efdf-49d2-a69c-75a0de497661",
+            "Value": {
+                "id": "f16e6dfc-f4ca-4014-8dc2-350eb3399dfe",
+                "resourcePath": "scripts\\scr_drawImportProgressBar\\scr_drawImportProgressBar.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ffa3ad1e-ce90-429c-96a5-5072e8af2a2b",
             "Value": {
                 "id": "f53cdc53-25f9-4a6b-9781-d7249fbe6e09",
@@ -1042,6 +1098,9 @@
         "87cca19c-0cf7-4b86-920a-66fe3f14768e",
         "9da07010-2c1b-4f0a-a42b-fce287773ff8",
         "e51171b4-b52f-4c5f-bd91-586f8b20ddaa",
+        "6880a14c-983e-44d2-9b56-e1007dc227b6",
+        "44ad126c-0505-47a9-a70d-15ea6cf90004",
+        "253822df-02b8-490c-a3bc-6049fd770f34",
         "813236db-8d59-4d5c-9441-7fa78631f370",
         "0954d65f-9a82-4fdf-959f-c69c4eb90baf",
         "12ff6432-8b22-45cf-9519-8e7022a49a92",
@@ -1057,6 +1116,7 @@
         "c5d139b8-4c6d-434c-8280-4ff3b6d3ea6e",
         "a5f9ac41-9a02-4abb-bf10-b1ae7ae6abba",
         "207f7a01-23f9-4bb8-ac22-1f696d1e08e7",
+        "86d712e5-8944-4c97-a29c-925c573202c9",
         "4780a6db-dc73-40e3-8286-7eb084a8b47b",
         "2c4abd01-f056-4203-accc-7a49a37cdfee",
         "8527467f-60ba-4b6d-8e16-ec6891e4a3e2",
@@ -1085,7 +1145,9 @@
         "425fdc02-29ad-4d6a-a6f5-cb9a29e2c1fb",
         "d7714c6a-620c-423a-a004-56a2af4eb313",
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",
-        "10e45e9e-c2ac-4f14-83ca-5f75f53611af"
+        "10e45e9e-c2ac-4f14-83ca-5f75f53611af",
+        "69846e25-74b9-4922-a924-f57c406a5a72",
+        "fbc689fc-efdf-49d2-a69c-75a0de497661"
     ],
     "tutorial": ""
 }

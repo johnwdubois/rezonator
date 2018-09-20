@@ -13,7 +13,22 @@ var newInstList = ds_list_create();
 if (file_exists(fileName))
 {
 	var wrapper = scr_loadJSONBuffer(fileName);
+	
+	if (not ds_exists(wrapper, ds_type_map))
+	{
+		show_message("Error loading " + fileName);
+		game_restart();
+		exit;
+	}
+	
 	var list = ds_map_find_value(wrapper, "ROOT");
+	
+	if (is_undefined(list))
+	{
+		show_message("Error loading " + fileName);
+		game_restart();
+		exit;
+	}
 	
 	for (var i = 0; i < ds_list_size(list); i++)
 	{
@@ -50,6 +65,7 @@ if (file_exists(fileName))
 				scr_loadREZGridReset(obj_chain.trackChainGrid, map, "trackChainGrid");
 				scr_loadREZGridReset(obj_chain.stackChainGrid, map, "stackChainGrid");
 				scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
+				scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
 				
 				obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 				scr_refreshChainGrid();
@@ -68,6 +84,7 @@ ds_list_destroy(newInstList);
 
 obj_chain.currentChainID = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid));
 obj_chain.linkIDCounter = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, 0, obj_chain.linkGrid_colLinkID, ds_grid_height(obj_chain.linkGrid));
+obj_chain.cliqueIDCounter = ds_grid_get_max(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colCliqueID, 0, obj_chain.cliqueGrid_colCliqueID, ds_grid_height(obj_chain.cliqueGrid));
 obj_chain.rezChainNameCounter = ds_grid_height(obj_chain.rezChainGrid);
 obj_chain.trackChainNameCounter = ds_grid_height(obj_chain.trackChainGrid);
 obj_chain.stackChainNameCounter = ds_grid_height(obj_chain.stackChainGrid);

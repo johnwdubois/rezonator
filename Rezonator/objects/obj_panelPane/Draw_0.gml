@@ -25,6 +25,9 @@ switch (currentFunction)
 	case functionSearch:
 		scr_panelPane_drawSearch();
 		break;
+	case functionClique:
+		scr_panelPane_drawClique();
+		break;
 	default:
 		break;
 }

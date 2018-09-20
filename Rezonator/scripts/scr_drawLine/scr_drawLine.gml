@@ -15,6 +15,8 @@ if (gridView || ds_grid_height(dynamicWordGrid) < 1)
 	exit;
 }
 
+ds_grid_set_region(wordDrawGrid, wordDrawGrid_colVisible, 0, wordDrawGrid_colVisible, ds_grid_height(wordDrawGrid), false);
+
 draw_set_font(fnt_main);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
@@ -62,9 +64,11 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	
 	//var currentLineInStack = ds_grid_get(lineGrid, lineGrid_colInStack, drawLineLoop);
 	var currentLineInStack = false;
+	var currentLineInStackList = -1;
 	
 	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid))
 	{
+		/*
 		for (var stackTestLoop = 0; stackTestLoop < ds_list_size(currentWordIDList); stackTestLoop++)
 		{
 			var currentWordID = ds_list_find_value(currentWordIDList, stackTestLoop) - 1;
@@ -75,9 +79,39 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 				currentLineInStack = ds_list_find_value(stackList, 0);
 			}
 		}
+		
+		currentLineInStack = ds_list_find_value(stackList, 0);
+		*/
+		currentLineInStackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
 	}
 	
+	if (not (currentLineInStackList == -1) and ds_exists(currentLineInStackList, ds_type_list))
+	{
+		for (var i = 0; i < ds_list_size(currentLineInStackList); i++)
+		{
+			var currentStackChainID = ds_list_find_value(currentLineInStackList, i);
+			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackChainID);
+			var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
+			
+			if not (typeof(stackColor) == "number")
+			{
+				continue
+			}
+		
+			draw_set_color(stackColor);
+			draw_set_alpha(0.2);
+			
+			var stackRectWidth = (room_width - speakerRectX2) / ds_list_size(currentLineInStackList);
+			var stackRectX1 = speakerRectX2 + (i * stackRectWidth);
+			var stackRectY1 = speakerRectY1;
+			var stackRectX2 = stackRectX1 + stackRectWidth;
+			var stackRectY2 = speakerRectY2;
+			
+			draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+		}
+	}
 	
+	/*
 	if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentLineInStack))
 	{
 		var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentLineInStack);
@@ -93,6 +127,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		
 		draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
 	}
+	*/
 	
 	
 	

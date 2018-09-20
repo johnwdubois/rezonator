@@ -94,14 +94,19 @@ dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
 
 
-wordDrawGridWidth = 5;
+wordDrawGridWidth = 7;
 wordDrawGrid_colBorder = 0;
 wordDrawGrid_colBorderRounded = 1;
 wordDrawGrid_colFillRect = 2;
 wordDrawGrid_colTextColor = 3;
 wordDrawGrid_colEffectColor = 4;
+wordDrawGrid_colVisible = 5;
+wordDrawGrid_colFocused = 6;
 wordDrawGrid = ds_grid_create(wordDrawGridWidth, 0);
 
+wordDrawGridFocusedAnimation = 0;
+wordDrawGridFocusedAnimationInc = true;
+wordDrawGridFocusedAnimationMax = 2;
 
 
 
@@ -160,11 +165,3 @@ newWordHoverWordID = -1;
 
 ableToCreateDropDown = true;
 ableToCreateDropDownAlarmSet = false;
-
-progressBarX = 24;
-progressBarY = room_height - 80;
-progressBarWidth = 200;
-progressBarHeight = 32;
-progressBarBackColor = c_gray;
-progressBarFrontColor = c_blue;
-progressBarFont = fnt_mainBold;

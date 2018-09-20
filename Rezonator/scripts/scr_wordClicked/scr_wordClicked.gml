@@ -39,8 +39,16 @@ for (var i = 0; i < ds_list_size(inChainsList); i++)
 	
 		
 		var rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
-		if (rowInLinkGrid >= 0 and rowInLinkGrid < ds_grid_height(linkGrid))
+		
+		if (rowInLinkGrid == -1)
 		{
+			scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+			scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+			scr_setAllValuesInCol(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+		}
+		else if (rowInLinkGrid >= 0 and rowInLinkGrid < ds_grid_height(linkGrid))
+		{
+			
 			ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
 			scr_refreshChainGrid();
@@ -70,10 +78,8 @@ for (var i = 0; i < ds_list_size(inChainsList); i++)
 				}
 				
 				exit;
-			}
-			
+			}	
 		}
-		
 	}
 }
 

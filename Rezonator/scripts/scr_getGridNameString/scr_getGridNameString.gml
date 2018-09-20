@@ -38,6 +38,9 @@ switch (argument0)
 	case obj_chain.unitInStackGrid:
 		colName = "UnitInStack";
 		break;
+	case obj_chain.cliqueGrid:
+		colName = "Clique";
+		break;
 	default:
 		break;
 }

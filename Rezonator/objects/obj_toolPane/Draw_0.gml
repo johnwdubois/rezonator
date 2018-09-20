@@ -11,6 +11,11 @@ var iconHorizontalSpacing = 20;
 
 for (var i = 0; i < sprite_get_number(spr_tools); i++)
 {
+	if (i == sprite_get_number(spr_tools) - 1)
+	{
+		continue;
+	}
+	
 	var iconX = x + (windowWidth / 2);
 	var iconY = y + iconMarginTop + iconPlusY;
 	
@@ -53,3 +58,5 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++)
 		iconPlusY += iconPlusYIncrement;
 	}
 }
+
+scr_drawImportProgressBar();

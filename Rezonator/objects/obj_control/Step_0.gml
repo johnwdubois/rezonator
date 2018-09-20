@@ -82,6 +82,29 @@ if (!gridView)
 	{
 		wordLeftMarginDest += gridSpaceHorizontal;
 	}
+	
+	if (wordDrawGridFocusedAnimationInc)
+	{
+		if (wordDrawGridFocusedAnimation < wordDrawGridFocusedAnimationMax)
+		{
+			wordDrawGridFocusedAnimation += 0.1;
+		}
+		else
+		{
+			wordDrawGridFocusedAnimationInc = false;
+		}
+	}
+	else
+	{	
+		if (wordDrawGridFocusedAnimation > 0)
+		{
+			wordDrawGridFocusedAnimation -= 0.1;
+		}
+		else
+		{
+			wordDrawGridFocusedAnimationInc = true;
+		}
+	}
 }
 
 if (wordLeftMargin < wordLeftMarginDest)

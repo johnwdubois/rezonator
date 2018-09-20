@@ -12,13 +12,13 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHo
 	else
 	{
 		draw_set_alpha(1);
-		draw_set_color(obj_control.progressBarFrontColor);
-		draw_rectangle(obj_control.progressBarX, obj_control.progressBarY, obj_control.progressBarX + obj_control.progressBarWidth, obj_control.progressBarY + obj_control.progressBarHeight, false);
+		draw_set_color(obj_toolPane.progressBarFrontColor);
+		draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
 		draw_set_color(c_white);
-		draw_set_font(obj_control.progressBarFont);
+		draw_set_font(obj_toolPane.progressBarFont);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(obj_control.progressBarX + 12, mean(obj_control.progressBarY, obj_control.progressBarY + obj_control.progressBarHeight), "Saving project...");
+		draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Saving...");
 		
 		ableToHotkey = false;
 		alarm[0] = 1;

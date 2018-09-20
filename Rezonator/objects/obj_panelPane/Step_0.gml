@@ -17,3 +17,15 @@ switch (currentFunction)
 	default:
 		break;
 }
+
+if (doubleClickTimer > -1)
+{
+	if (doubleClickTimer < 20)
+	{
+		doubleClickTimer++;
+	}
+	else
+	{
+		doubleClickTimer = -1;
+	}
+}

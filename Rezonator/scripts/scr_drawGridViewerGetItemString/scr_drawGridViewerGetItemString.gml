@@ -70,6 +70,13 @@ else if (grid == obj_chain.unitInStackGrid)
 		itemList = currentCell;
 	}
 }
+else if (grid == obj_chain.cliqueGrid)
+{
+	if (col == obj_chain.cliqueGrid_colChainIDList or col == obj_chain.cliqueGrid_colUnitIDList)
+	{
+		itemList = currentCell;
+	}
+}
 else if (grid == global.fileLineRipGrid)
 {
 	if (col == global.fileLineRipGrid_colFileLineRipList

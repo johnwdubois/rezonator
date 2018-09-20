@@ -85,3 +85,8 @@ with (obj_panelPane)
 		functionChainContents_hop = idSet;
 	}
 }
+
+if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush)
+{
+	scr_addToCliqueGrid(wordID, currentFocusedChainID);
+}

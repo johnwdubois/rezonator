@@ -121,6 +121,14 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 				}
 				
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
+				
+				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
+				
+				if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid))
+				{
+					scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
+				}
+				obj_chain.mouseLineWordID = -1;
 			}
 			
 			with (obj_panelPane)
