@@ -398,3 +398,8 @@ called from - gml_Object_obj_control_KeyPress_46 (line 85) - scr_refreshChainGri
 	put progress bar in toolbar
 
 	press CTRL+U to switch to new-word-tool
+
+2018-09-20
+
+	users can only create rezChains or cliques in default sort
+	chains only align in defaul sort
