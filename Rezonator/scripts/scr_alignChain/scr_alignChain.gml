@@ -10,6 +10,8 @@ if (ds_list_size(wordIDList) > 0)
 	{
 		var currenWordID = ds_list_find_value(wordIDList, displayColLoop);
 		var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currenWordID - 1);
+		currentDisplayCol += ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colZigzag, currenWordID - 1);
+		
 		furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
 		
 		if (currentDisplayCol > furthestDisplayCol)

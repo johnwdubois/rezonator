@@ -41,7 +41,7 @@ if (expandingCliqueRow >= 0 and expandingCliqueRow < ds_grid_height(obj_chain.cl
 	alarm[1] = 2;
 	exit;
 }
-if (expandingCliqueRow >= 0 and mergeCliqueRow2 >= 0 and mergeCliqueRow2 < ds_grid_height(obj_chain.cliqueGrid))
+if (expandingCliqueRow >= 0 and mergeCliqueRow2 >= 0 and mergeCliqueRow2 < ds_grid_height(obj_chain.cliqueGrid) and expandingCliqueRow != mergeCliqueRow2)
 {
 	
 	var chainIDListMergeCliqueRow1 = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, mergeCliqueRow1);
@@ -62,7 +62,12 @@ if (expandingCliqueRow >= 0 and mergeCliqueRow2 >= 0 and mergeCliqueRow2 < ds_gr
 	cliqueGridRowToRefresh = mergeCliqueRow2;
 	alarm[1] = 2;
 	exit;
-	
+}
+else if (mergeCliqueRow2 >= 0 and mergeCliqueRow2 < ds_grid_height(obj_chain.cliqueGrid))
+{
+	cliqueGridRowToRefresh = mergeCliqueRow2;
+	alarm[1] = 2;
+	exit;
 }
 
 

@@ -90,6 +90,7 @@ dynamicWordGrid_colWordState = 4;
 dynamicWordGrid_colDisplayString = 5; //dynamicWordGrid_colStringDisplay = 5;
 dynamicWordGrid_colInChainList = 6; //dynamicWordGrid_colInChains = 6;
 dynamicWordGrid_colAligned = 7;
+dynamicWordGrid_colZigzag = 8;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
