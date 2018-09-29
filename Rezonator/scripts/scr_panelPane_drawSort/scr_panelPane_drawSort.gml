@@ -281,3 +281,41 @@ if (restoreDefButtonAlpha > 0)
 	draw_set_alpha(restoreDefButtonAlpha);
 	draw_rectangle(restoreDefButtonX1, restoreDefButtonY1, restoreDefButtonX2, restoreDefButtonY2, false);
 }
+
+
+
+//check to see if lineGrid has default sort
+var lineGridSortGrid = ds_grid_get(functionSort_gridGrid, functionSort_gridGrid_colSortGrid, 0);
+if (ds_grid_get(lineGridSortGrid, functionSort_gridSortColGrid_colCol, 0) != obj_control.lineGrid_colDiscoID
+or ds_grid_get(lineGridSortGrid, functionSort_gridSortColGrid_colCol, 1) != obj_control.lineGrid_colUnitStart
+or ds_grid_get(lineGridSortGrid, functionSort_gridSortColGrid_colCol, 2) != obj_control.lineGrid_colUnitEnd
+or ds_grid_get(lineGridSortGrid, functionSort_gridSortColGrid_colCol, 3) != obj_control.lineGrid_colLineNumberLabel)
+{
+	obj_control.lineGridDefaultSort = false;
+	
+	while (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), true))
+	{
+		var rowToChange = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), true);
+		ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, rowToChange, -1);
+	}
+	while (ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.trackChainGrid), true))
+	{
+		var rowToChange = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.trackChainGrid), true);
+		ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, rowToChange, -1);
+	}
+}
+else
+{
+	obj_control.lineGridDefaultSort = true;
+	
+	while (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), -1))
+	{
+		var rowToChange = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), -1);
+		ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, rowToChange, true);
+	}
+	while (ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.trackChainGrid), -1))
+	{
+		var rowToChange = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.trackChainGrid), -1);
+		ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, rowToChange, true);
+	}
+}

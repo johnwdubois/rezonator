@@ -63,6 +63,7 @@ lineGrid_colUnitStart = 8;
 lineGrid_colUnitEnd = 9;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
+lineGridDefaultSort = true;
 
 
 

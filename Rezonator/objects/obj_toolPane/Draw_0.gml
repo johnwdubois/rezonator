@@ -34,7 +34,22 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++)
 		spriteColor = c_fuchsia;
 	}
 	
-	draw_sprite_ext(spr_tools, i, iconX, iconY, 1, 1, 0, spriteColor, 1);
+	var iconAlpha = 1;
+	
+	if (not obj_control.lineGridDefaultSort)
+	{
+		if (currentTool == toolRezBrush)
+		{
+		currentTool = toolPointer;
+		}
+		
+		if (i == 1)
+		{
+			iconAlpha = 0.5;
+		}
+	}
+	
+	draw_sprite_ext(spr_tools, i, iconX, iconY, 1, 1, 0, spriteColor, iconAlpha);
 	
 	var mouseoverRectX1 = iconX - sprite_get_width(spr_tools) / 2;
 	var mouseoverRectY1 = iconY - sprite_get_height(spr_tools) / 2;

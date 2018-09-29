@@ -176,6 +176,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	if (functionChainList_currentTab == functionChainList_tabRezBrush
 	or functionChainList_currentTab == functionChainList_tabTrackBrush)
 	{
+		draw_set_alpha(1);
 		draw_set_color(c_purple);
 		
 		var chainAlignRectX1 = x + (filterRectMargin * 2) + filterRectSize;
@@ -188,10 +189,18 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		{
 			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
 		}
+		else if (isAligned == -1)
+		{
+			draw_set_alpha(0.5);
+			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
+		}
 		else
 		{
+			draw_set_alpha(1);
 			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, true);
 		}
+		
+		draw_set_alpha(1);
 	
 		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2))
 		{
