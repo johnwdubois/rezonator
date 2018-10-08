@@ -403,3 +403,23 @@ called from - gml_Object_obj_control_KeyPress_46 (line 85) - scr_refreshChainGri
 
 	users can only create rezChains or cliques in default sort
 	chains only align in defaul sort
+	
+2018-09-29
+	when adding to a clique, if a break is detected, newest word to add to chain doesnt have pushing rights
+	
+	if you click on rez tool while on different line sort, ask user if they want to restore default line sort
+	
+	when adding to a clique, and break is detected, go through the clique's chainList, and unalign chains 1 by 1 starting with the shortest chain and checking for breaks again
+	each time
+	
+	add aligned column to dynamicWordGrid, when adding to a clique and break is detected, go through chains in clique 1 by 1 unaligning them to test which chain causes a break, 
+	now you know what chain caused the break, now see which word in that chain causes a break, mark that word as strong bond (unalignable)
+	
+	
+	take away break detection developer messages
+	
+	remove chain from clique if the chain is deleted
+	
+	first word in chain we do not need to check for break
+	
+	press Q reverses line sort for every paradigm

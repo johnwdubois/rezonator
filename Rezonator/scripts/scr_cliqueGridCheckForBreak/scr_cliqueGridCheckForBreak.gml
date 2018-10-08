@@ -64,8 +64,13 @@ for (var displayColCheck = displayColCheckMin; displayColCheck < displayColCheck
 	
 	if not (wordInDisplayCol)
 	{
+<<<<<<< HEAD
 		//show_message("Break detected in display column " + string(displayColCheck));
 		//var wordToZigzagString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, wordToZigzag - 1);
+=======
+		show_message("Break detected in display column " + string(displayColCheck));
+		var wordToZigzagString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, wordToZigzag - 1);
+>>>>>>> 2a33cc9fb5ff13a7709a172c659ecb26fd8e40ec
 		//show_message("Adding -1 to wordID " + string(wordToZigzag) + ", " + wordToZigzagString);
 		//var wordToZigzagCurrentZigzag = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colZigzag, wordToZigzag - 1);
 		//ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colZigzag, wordToZigzag -1, wordToZigzagCurrentZigzag - 1);
