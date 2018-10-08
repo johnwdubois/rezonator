@@ -167,3 +167,5 @@ newWordHoverWordID = -1;
 
 ableToCreateDropDown = true;
 ableToCreateDropDownAlarmSet = false;
+
+showDevMessages = false;

@@ -1,1 +1,1 @@
-scr_loadDynamicWordGrid();
+//scr_loadDynamicWordGrid();
