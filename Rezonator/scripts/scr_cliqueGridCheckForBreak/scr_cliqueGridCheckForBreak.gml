@@ -63,9 +63,9 @@ for (var displayColCheck = displayColCheckMin; displayColCheck < displayColCheck
 	{
 		show_message("Break detected in display column " + string(displayColCheck));
 		var wordToZigzagString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, wordToZigzag - 1);
-		show_message("Adding -1 to wordID " + string(wordToZigzag) + ", " + wordToZigzagString);
-		var wordToZigzagCurrentZigzag = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colZigzag, wordToZigzag - 1);
-		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colZigzag, wordToZigzag -1, wordToZigzagCurrentZigzag - 1);
+		//show_message("Adding -1 to wordID " + string(wordToZigzag) + ", " + wordToZigzagString);
+		//var wordToZigzagCurrentZigzag = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colZigzag, wordToZigzag - 1);
+		//ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colZigzag, wordToZigzag -1, wordToZigzagCurrentZigzag - 1);
 		
 		cliqueGridRowToCheckBreak = rowInCliqueGrid;
 		alarm[2] = 1;
