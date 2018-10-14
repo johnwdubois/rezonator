@@ -423,3 +423,10 @@ called from - gml_Object_obj_control_KeyPress_46 (line 85) - scr_refreshChainGri
 	first word in chain we do not need to check for break
 	
 	press Q reverses line sort for every paradigm
+	
+2018-10-08
+	when finding minimum and maximum display column values for cliques (flanks), only look at words within the chains within the clique
+	
+	words within flank in clique recieve light background color rectangle
+	
+	no pickwhip when clicking on word in Nav window
