@@ -55,3 +55,16 @@ for (var i = 0; i < instance_number(obj_panelPane); i++)
 		mouseLineHide = true;
 	}
 }
+
+
+
+if (not obj_control.gridView and ds_grid_height(cliqueGrid) > 0)
+{
+	cliqueGridRowToRefreshFlanks = min(cliqueGridRowToRefreshFlanks + 1, ds_grid_height(cliqueGrid) - 1);
+	scr_cliqueGridRefreshFlanks(cliqueGridRowToRefreshFlanks);
+	
+	if (cliqueGridRowToRefreshFlanks = ds_grid_height(cliqueGrid) - 1)
+	{
+		cliqueGridRowToRefresh = 0;
+	}
+}

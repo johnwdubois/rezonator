@@ -140,6 +140,9 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 			var cliqueLength = ds_list_size(unitIDList);
 			ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colRangeStart, currentCliqueGridRow, cliqueRangeStart);
 			ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colRangeEnd, currentCliqueGridRow, cliqueRangeEnd);
+			ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankLeft, currentCliqueGridRow, -1);
+			ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankRight, currentCliqueGridRow, -1);
+			
 			ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colLength, currentCliqueGridRow, cliqueLength);
 			
 			

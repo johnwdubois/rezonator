@@ -169,3 +169,5 @@ ableToCreateDropDown = true;
 ableToCreateDropDownAlarmSet = false;
 
 showDevMessages = false;
+
+showDisplayCols = false;

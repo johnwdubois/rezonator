@@ -3,6 +3,19 @@ if (gridView)
 	exit;
 }
 
+if (showDisplayCols)
+{
+	draw_set_alpha(0.25);
+	draw_set_color(c_black);
+	
+	for (var i = 0; i < 15; i++)
+	{
+		var displayColX = speakerLabelMargin + (i * gridSpaceHorizontal);
+		draw_line(displayColX, 0, displayColX, room_height);
+		draw_text(displayColX, 160, string(i));
+	}
+}
+
 draw_set_color(c_ltgray);
 draw_line(0, room_height / 2, room_width, room_height / 2);
 

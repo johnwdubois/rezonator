@@ -1,1 +1,2 @@
 showDevMessages = !showDevMessages;
+showDisplayCols = !showDisplayCols;

@@ -265,6 +265,12 @@ else if (grid == obj_chain.cliqueGrid)
 		case obj_chain.cliqueGrid_colRangeEnd:
 			colName = "rangeEnd";
 			break;
+		case obj_chain.cliqueGrid_colFlankLeft:
+			colName = "flankLeft";
+			break;
+		case obj_chain.cliqueGrid_colFlankRight:
+			colName = "flankRight";
+			break;
 		case obj_chain.cliqueGrid_colLength:
 			colName = "length";
 			break;

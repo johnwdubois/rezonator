@@ -4,4 +4,4 @@ if (cliqueGridRowToCheckBreak < 0 or cliqueGridRowToCheckBreak >= ds_grid_height
 }
 
 scr_cliqueGridCheckForBreak(cliqueGridRowToCheckBreak);
-cliqueGridRowToCheckBreak = -1;
+//cliqueGridRowToCheckBreak = -1;

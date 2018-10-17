@@ -58,18 +58,25 @@ mouseLineHide = false;
 mouseLineWordID = -1;
 
 
-cliqueGridWidth = 8;
+cliqueGridWidth = 10;
 cliqueGrid_colCliqueID = 0;
 cliqueGrid_colChainIDList = 1;
 cliqueGrid_colUnitIDList = 2;
 cliqueGrid_colRangeStart = 3;
 cliqueGrid_colRangeEnd = 4;
-cliqueGrid_colLength = 5;
-cliqueGrid_colBreak = 6;
-cliqueGrid_colName = 7;
+cliqueGrid_colFlankLeft = 5;
+cliqueGrid_colFlankRight = 6;
+cliqueGrid_colLength = 7;
+cliqueGrid_colBreak = 8;
+cliqueGrid_colName = 9;
 cliqueGrid = ds_grid_create(cliqueGridWidth, 0);
 
 cliqueIDCounter = 0;
 
 cliqueGridRowToRefresh = -1;
 cliqueGridRowToCheckBreak = -1;
+
+cliqueGridChainIDTakenOut = -1;
+cliqueGridChainIndexToTakeOut = -1;
+
+cliqueGridRowToRefreshFlanks = -1;

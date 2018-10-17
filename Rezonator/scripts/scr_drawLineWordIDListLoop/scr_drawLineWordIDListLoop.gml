@@ -20,11 +20,18 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	}
 		
 	if (drawWordLoop > 0)// and not filterGridActive)
-	{	
+	{
+		
 		if (currentWordDisplayCol - previousWordDisplayCol > 1)
 		{
-			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
+			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordDisplayCol - 1)
+			and not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordDisplayCol - 1))
+			{
+				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
+			}
+			
 		}
+		
 			
 		if (previousWordDisplayCol >= currentWordDisplayCol)
 		{

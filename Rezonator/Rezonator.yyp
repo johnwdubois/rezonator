@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "01c3e6ce-5513-43f2-9111-a627c1499646",
+            "Value": {
+                "id": "f79c15ef-0ca3-4663-9da8-bc0db6e2828d",
+                "resourcePath": "scripts\\scr_cliqueGridRefreshFlanks\\scr_cliqueGridRefreshFlanks.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "022a6748-068c-41c9-991f-89116c09318f",
             "Value": {
                 "id": "9765a2f2-f624-4d79-a2f3-ccc9d16a9871",
@@ -84,6 +92,14 @@
                 "id": "54050f18-6390-4d68-9622-8805426006a3",
                 "resourcePath": "objects\\obj_gridViewer\\obj_gridViewer.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "0dbad598-124c-4727-a96e-e1aad5bfc727",
+            "Value": {
+                "id": "073c2c5a-10fc-4555-9b1e-d0632f731ee6",
+                "resourcePath": "scripts\\scr_getChainAlign\\scr_getChainAlign.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -823,6 +839,14 @@
             }
         },
         {
+            "Key": "b2832938-5700-4043-8039-0eb91e8d94c3",
+            "Value": {
+                "id": "971ce9cb-dc9c-47e0-b922-280fcca03f64",
+                "resourcePath": "scripts\\scr_setChainAlign\\scr_setChainAlign.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b2cca057-9709-4529-93eb-58095ef2e600",
             "Value": {
                 "id": "c3fdca5e-513c-47aa-a5c8-e47c100b3314",
@@ -1155,7 +1179,10 @@
         "fbc689fc-efdf-49d2-a69c-75a0de497661",
         "6880a14c-983e-44d2-9b56-e1007dc227b6",
         "44ad126c-0505-47a9-a70d-15ea6cf90004",
-        "253822df-02b8-490c-a3bc-6049fd770f34"
+        "253822df-02b8-490c-a3bc-6049fd770f34",
+        "01c3e6ce-5513-43f2-9111-a627c1499646",
+        "b2832938-5700-4043-8039-0eb91e8d94c3",
+        "0dbad598-124c-4727-a96e-e1aad5bfc727"
     ],
     "tutorial": ""
 }
