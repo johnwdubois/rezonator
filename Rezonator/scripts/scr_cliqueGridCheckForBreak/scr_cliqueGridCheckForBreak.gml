@@ -1,6 +1,9 @@
 var rowInCliqueGrid = argument0;
 
-show_message("break check in clique grid row " + string(rowInCliqueGrid));
+if (obj_control.showDevMessages)
+{
+	show_message("break check in clique grid row " + string(rowInCliqueGrid));
+}
 
 if (rowInCliqueGrid < 0 or rowInCliqueGrid >= ds_grid_height(obj_chain.cliqueGrid))
 {

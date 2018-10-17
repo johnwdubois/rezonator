@@ -22,6 +22,9 @@ if (ds_list_size(wordIDList) > 0)
 		}
 	}
 	
+	//if (ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, furthestWordID) > 0)
+	//var furthestPreviousWordID = furthestWordID - 1;
+	
 	if (keyboard_check(vk_space) and obj_control.showDevMessages)
 	{
 		var dbb = "";

@@ -430,3 +430,12 @@ called from - gml_Object_obj_control_KeyPress_46 (line 85) - scr_refreshChainGri
 	words within flank in clique recieve light background color rectangle
 	
 	no pickwhip when clicking on word in Nav window
+
+
+2018-10-17
+
+	simple race test: before pulling (aligning) chain, check every word in chain to see if it has a blank space to the left. if so, pull entire
+	chain back (or dont pull at all?)
+
+	clique box: find leftmost column in clique from words in chains. clique box starts one column to the left of that. this is so we can detect
+	break in leftmost chain

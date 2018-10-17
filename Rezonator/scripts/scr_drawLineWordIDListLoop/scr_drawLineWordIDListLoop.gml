@@ -13,11 +13,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var currentWordGridRow = currentWordID - 1;
 	
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
-		
+	
+	/*
 	if (drawWordLoop == 0 and not filterGridActive)
 	{
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, 0);
 	}
+	*/
 		
 	if (drawWordLoop > 0)// and not filterGridActive)
 	{
