@@ -8,9 +8,9 @@ if (showDisplayCols)
 	draw_set_alpha(0.25);
 	draw_set_color(c_black);
 	
-	for (var i = 0; i < 15; i++)
+	for (var i = 0; i < 20; i++)
 	{
-		var displayColX = speakerLabelMargin + (i * gridSpaceHorizontal);
+		var displayColX = wordLeftMargin + (i * gridSpaceHorizontal);
 		draw_line(displayColX, 0, displayColX, room_height);
 		draw_text(displayColX, 160, string(i));
 	}

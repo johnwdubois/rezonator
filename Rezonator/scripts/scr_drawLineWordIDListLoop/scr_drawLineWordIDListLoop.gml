@@ -24,8 +24,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 		if (currentWordDisplayCol - previousWordDisplayCol > 1)
 		{
-			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordDisplayCol - 1)
-			and not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordDisplayCol - 1))
+			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow)
+			and not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow))
 			{
 				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
 			}
@@ -38,6 +38,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol + 1);
 		}
 	}
+	
+	currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 		
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
 	if (shape == shapeText)

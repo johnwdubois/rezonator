@@ -24,9 +24,12 @@ if (ds_list_size(wordIDList) > 0)
 	
 	if (keyboard_check(vk_space) and obj_control.showDevMessages)
 	{
-		//var dbb = "";
-		//for (db = 0; db < ds_list_size(wordIDList); db++)
-		show_message("furthest: " + string(furthestDisplayCol));
+		var dbb = "";
+		for (db = 0; db < ds_list_size(wordIDList); db++)
+		{
+			dbb += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, ds_list_find_value(wordIDList, db) - 1)) + ", ";
+		}
+		show_message(dbb + "... furthest: " + string(furthestDisplayCol));
 	}
 		
 	//furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
@@ -35,10 +38,13 @@ if (ds_list_size(wordIDList) > 0)
 	{
 		var currentWordID = ds_list_find_value(wordIDList, setDisplayColLoop);
 		
-		if (keyboard_check(vk_space) and obj_control.showDevMessages)
-		{
-			show_message("currentWordID: " + string(currentWordID));
-		}
+		
+		//if (obj_control.showDevMessages)
+		//{
+		//	show_message("currentWordID: " + string(currentWordID));
+		//}
+		
+		
 		//var nextWordID = currentWordID + 1;
 		//var nextWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, nextWordID - 1);
 

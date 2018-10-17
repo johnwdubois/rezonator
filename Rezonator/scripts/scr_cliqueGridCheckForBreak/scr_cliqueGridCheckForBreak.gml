@@ -1,5 +1,7 @@
 var rowInCliqueGrid = argument0;
 
+show_message("break check in clique grid row " + string(rowInCliqueGrid));
+
 if (rowInCliqueGrid < 0 or rowInCliqueGrid >= ds_grid_height(obj_chain.cliqueGrid))
 {
 	exit;
@@ -8,10 +10,7 @@ if (rowInCliqueGrid < 0 or rowInCliqueGrid >= ds_grid_height(obj_chain.cliqueGri
 var rangeStart = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colRangeStart, rowInCliqueGrid);
 var rangeEnd = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colRangeEnd, rowInCliqueGrid);
 
-if (obj_control.showDevMessages)
-{
-	show_message("break check from " + string(rangeStart) + " to " + string(rangeEnd));
-}
+
 
 
 
@@ -23,23 +22,37 @@ var flankLeft = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankL
 var flankRight = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankRight, rowInCliqueGrid);
 
 
+if (obj_control.showDevMessages)
+{
+	show_message("break check from Unit" + string(rangeStart) + " to Unit" + string(rangeEnd)
+	+ "and flank " + string(flankLeft) + " to flank " + string(flankRight));
+}
 
 
 
 
+//var wordToZigzag = -1;
 
-var wordToZigzag = -1;
-
-for (var displayColCheck = flankLeft; displayColCheck < flankRight; displayColCheck++)
+for (var displayColCheck = flankLeft; displayColCheck <= flankRight; displayColCheck++)
 {	
 	var wordInDisplayCol = false;
 	
 	for (var i = rangeStart; i < rangeEnd; i++)
 	{
+		if (wordInDisplayCol)
+		{
+			continue;
+		}
+		
 		var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, i - 1);
 	
 		for (var j = 0; j < ds_list_size(currentWordIDList); j++)
 		{
+			if (wordInDisplayCol)
+			{
+				continue;
+			}
+			
 			var currentWordID = ds_list_find_value(currentWordIDList, j);
 		
 			if (currentWordID >= 0 and currentWordID <= ds_grid_height(obj_control.wordGrid))
@@ -50,7 +63,13 @@ for (var displayColCheck = flankLeft; displayColCheck < flankRight; displayColCh
 				{
 					
 					wordInDisplayCol = true;
-					wordToZigzag = currentWordID;
+					//wordToZigzag = currentWordID;
+					
+					if (obj_control.showDevMessages)
+					{
+						var wordFoundString = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
+						show_message("word found in col " + string(displayColCheck) + ": " + wordFoundString);
+					}
 				}
 			}
 		}
@@ -63,7 +82,7 @@ for (var displayColCheck = flankLeft; displayColCheck < flankRight; displayColCh
 			show_message("Break detected in display column " + string(displayColCheck));
 		}
 		
-		
+		/*
 		if (cliqueGridChainIndexToTakeOut >= 0 and cliqueGridChainIDTakenOut >= 0
 		and ds_list_find_index(chainIDList, cliqueGridChainIDTakenOut) == -1)
 		{
@@ -132,5 +151,7 @@ for (var displayColCheck = flankLeft; displayColCheck < flankRight; displayColCh
 	else
 	{
 		cliqueGridRowToCheckBreak = -1;
+	}
+	*/
 	}
 }
