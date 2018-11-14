@@ -73,12 +73,12 @@ if (!gridView)
 		}
 	}
 
-	if (keyboard_check_pressed(vk_right))
+	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control))
 	{
 		wordLeftMarginDest -= gridSpaceHorizontal;
 	}
 
-	if (keyboard_check_pressed(vk_left))
+	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control))
 	{
 		wordLeftMarginDest += gridSpaceHorizontal;
 	}
