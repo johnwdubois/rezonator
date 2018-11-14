@@ -18,12 +18,14 @@ draw_set_valign(fa_middle);
 var textMarginLeft = 5;
 var tabHeight = 16;
 
-for (var i = 0; i < 3; i++)
+var tabAmount = 4;
+
+for (var i = 0; i < tabAmount; i++)
 {
 	
-	var tabRectX1 = x + (i * (windowWidth / 3));
+	var tabRectX1 = x + (i * (windowWidth / tabAmount));
 	var tabRectY1 = y;
-	var tabRectX2 = tabRectX1 + (windowWidth / 3);
+	var tabRectX2 = tabRectX1 + (windowWidth / tabAmount);
 	var tabRectY2 = tabRectY1 + tabHeight;
 	
 	if (i == functionChainList_currentTab)

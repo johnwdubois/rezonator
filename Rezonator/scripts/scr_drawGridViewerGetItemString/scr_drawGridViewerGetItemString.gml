@@ -49,7 +49,7 @@ else if (grid == obj_control.dynamicWordGrid)
 		itemList = currentCell;
 	}
 }
-else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid)
+else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid)
 {
 	if (col == obj_chain.chainGrid_colWordIDList)
 	{

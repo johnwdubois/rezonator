@@ -52,3 +52,7 @@ if (obj_control.showDevMessages)
 			
 ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankLeft, rowInCliqueGrid, flankLeft);
 ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankRight, rowInCliqueGrid, flankRight);
+
+
+
+

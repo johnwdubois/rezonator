@@ -158,3 +158,4 @@ for (var displayColCheck = flankLeft; displayColCheck <= flankRight; displayColC
 	*/
 	}
 }
+

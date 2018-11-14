@@ -196,7 +196,7 @@ else if (grid == obj_chain.linkGrid)
 			break;
 	}
 }
-else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid)
+else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid)
 {
 	switch (col)
 	{
@@ -207,7 +207,7 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 			colName = "chainState";
 			break;
 		case obj_chain.chainGrid_colWordIDList:
-			if (grid == obj_chain.stackChainGrid)
+			if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid)
 			{
 				colName = "unitIDList";
 			}

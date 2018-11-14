@@ -115,6 +115,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 			obj_chain.cliqueIDCounter++;
 			
 			ds_grid_resize(obj_chain.cliqueGrid, obj_chain.cliqueGridWidth, ds_grid_height(obj_chain.cliqueGrid) + 1);
+			ds_grid_resize(obj_chain.cliqueDisplayGrid, obj_chain.chainGridWidth, ds_grid_height(obj_chain.cliqueDisplayGrid) + 1);
 			var currentCliqueGridRow = ds_grid_height(obj_chain.cliqueGrid) - 1;
 			
 			var unitIDList = ds_list_create();

@@ -1,1 +1,1 @@
-ds_list_add(gridList, obj_chain.linkGrid, obj_chain.rezChainGrid, obj_chain.trackChainGrid, obj_chain.stackChainGrid, obj_chain.unitInStackGrid, obj_chain.cliqueGrid);
+ds_list_add(gridList, obj_chain.linkGrid, obj_chain.rezChainGrid, obj_chain.trackChainGrid, obj_chain.stackChainGrid, obj_chain.unitInStackGrid, obj_chain.cliqueGrid, obj_chain.cliqueDisplayGrid);

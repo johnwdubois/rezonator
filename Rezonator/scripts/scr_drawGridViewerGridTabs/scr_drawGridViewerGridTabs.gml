@@ -88,6 +88,10 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 			break;
 		case obj_chain.cliqueGrid:
 			colName = "cliqueGrid";
+			break;
+		case obj_chain.cliqueDisplayGrid:
+			colName = "cliqueDisplayGrid";
+			break;
 		default:
 			break;
 	}
