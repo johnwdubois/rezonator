@@ -84,3 +84,6 @@ cliqueGridChainIDTakenOut = -1;
 cliqueGridChainIndexToTakeOut = -1;
 
 cliqueGridRowToRefreshFlanks = -1;
+
+
+rezChainGridRowToRefreshTilt = -1;

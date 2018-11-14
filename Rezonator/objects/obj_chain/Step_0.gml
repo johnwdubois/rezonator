@@ -68,3 +68,15 @@ if (not obj_control.gridView and ds_grid_height(cliqueGrid) > 0)
 		cliqueGridRowToRefresh = 0;
 	}
 }
+
+
+if (ds_grid_height(rezChainGrid) > 0)
+{
+	rezChainGridRowToRefreshTilt = min(rezChainGridRowToRefreshTilt + 1, ds_grid_height(rezChainGrid) - 1);
+	scr_refreshTilt(rezChainGridRowToRefreshTilt);
+	
+	if (rezChainGridRowToRefreshTilt = ds_grid_height(rezChainGrid) - 1)
+	{
+		rezChainGridRowToRefreshTilt = 0;
+	}
+}
