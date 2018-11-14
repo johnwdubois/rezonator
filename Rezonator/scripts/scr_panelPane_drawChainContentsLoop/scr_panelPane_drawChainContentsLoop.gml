@@ -29,6 +29,9 @@ switch (functionChainList_currentTab)
 	case 2:
 		grid = obj_chain.stackChainGrid;
 		break;
+	case 3:
+		grid = obj_chain.cliqueDisplayGrid;
+		break;
 	default:
 		grid = obj_chain.rezChainGrid;
 		break;
@@ -126,7 +129,8 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					
 				var rowInLineGrid = -1;
 					
-				if (functionChainList_currentTab == functionChainList_tabStackBrush)
+				if (functionChainList_currentTab == functionChainList_tabStackBrush
+				or functionChainList_currentTab == functionChainList_tabClique)
 				{
 					var currentUnitID = currentWordID;
 					rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
@@ -160,7 +164,8 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			switch (functionChainContents_infoCol[getInfoLoop])
 			{
 				case 0:
-					if (functionChainList_currentTab == functionChainList_tabStackBrush)
+					if (functionChainList_currentTab == functionChainList_tabStackBrush
+					or functionChainList_currentTab == functionChainList_tabClique)
 					{
 						var unitID = currentWordID;
 						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
@@ -172,7 +177,8 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					}
 					break;
 				case 1:
-					if (functionChainList_currentTab == functionChainList_tabStackBrush)
+					if (functionChainList_currentTab == functionChainList_tabStackBrush
+					or functionChainList_currentTab == functionChainList_tabClique)
 					{
 						currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID);
 					}
@@ -182,7 +188,8 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					}
 					break;
 				case 2:
-					if (functionChainList_currentTab == functionChainList_tabStackBrush)
+					if (functionChainList_currentTab == functionChainList_tabStackBrush
+					or functionChainList_currentTab == functionChainList_tabClique)
 					{
 						currentWordInfoCol[getInfoLoop] = "";
 						var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
@@ -203,9 +210,6 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					{
 						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1));
 					}
-					break;
-				default:
-					currentWordInfoCol[getInfoLoop] = string(currentWordID);
 					break;
 			}
 			
@@ -239,7 +243,8 @@ for (var i = 0; i < 3; i++)
 		// 1 --> unitID
 		// 2 --> wordTranscript
 		case 0:
-			if (functionChainList_currentTab == functionChainList_tabStackBrush)
+			if (functionChainList_currentTab == functionChainList_tabStackBrush
+			or functionChainList_currentTab == functionChainList_tabClique)
 			{
 				colName = "uID";
 			}
@@ -249,9 +254,10 @@ for (var i = 0; i < 3; i++)
 			}
 			break;
 		case 1:
-			if (functionChainList_currentTab == functionChainList_tabStackBrush)
+			if (functionChainList_currentTab == functionChainList_tabStackBrush
+			or functionChainList_currentTab == functionChainList_tabClique)
 			{
-				colName = "speaker"
+				colName = "speaker";
 			}
 			else
 			{
@@ -259,7 +265,8 @@ for (var i = 0; i < 3; i++)
 			}
 			break;
 		case 2:
-			if (functionChainList_currentTab == functionChainList_tabStackBrush)
+			if (functionChainList_currentTab == functionChainList_tabStackBrush
+			or functionChainList_currentTab == functionChainList_tabClique)
 			{
 				colName = "utterance";
 			}

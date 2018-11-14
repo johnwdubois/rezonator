@@ -1,4 +1,4 @@
-chainGridWidth = 7;
+chainGridWidth = 8;
 chainGrid_colChainID = 0;
 chainGrid_colChainState = 1;
 chainGrid_colWordIDList = 2;
@@ -6,6 +6,7 @@ chainGrid_colName = 3;
 chainGrid_colColor = 4;
 chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
+chainGrid_colTiltSum = 7;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);
@@ -37,7 +38,7 @@ chainColorID[3] = 0;
 ds_list_add(chainColorList, c_blue, c_red, c_green, c_purple, c_olive, c_orange, c_fuchsia, c_teal);
 
 
-linkGridWidth = 7;
+linkGridWidth = 8;
 linkGrid_colTier = 0;
 linkGrid_colChainID = 1;
 linkGrid_colLinkID = 2;
@@ -45,6 +46,8 @@ linkGrid_colSource = 3;
 linkGrid_colGoal = 4;
 linkGrid_colFocus = 5;
 linkGrid_colDead = 6;
+linkGrid_colTilt = 7;
+
 linkGrid = ds_grid_create(linkGridWidth, 0);
 
 linkIDCounter = 0;

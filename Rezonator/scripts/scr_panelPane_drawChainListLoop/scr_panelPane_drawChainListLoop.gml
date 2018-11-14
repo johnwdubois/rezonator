@@ -24,6 +24,9 @@ switch (functionChainList_currentTab)
 	case functionChainList_tabStackBrush:
 		grid = obj_chain.stackChainGrid;
 		break;
+	case functionChainList_tabClique:
+		grid = obj_chain.cliqueDisplayGrid;
+		break;
 	default:
 		grid = obj_chain.rezChainGrid;
 		break;

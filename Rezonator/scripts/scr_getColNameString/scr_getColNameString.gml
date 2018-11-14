@@ -192,6 +192,9 @@ else if (grid == obj_chain.linkGrid)
 		case obj_chain.linkGrid_colDead:
 			colName = "dead";
 			break;
+		case obj_chain.linkGrid_colTilt:
+			colName = "tilt";
+			break;
 		default:
 			break;
 	}
@@ -227,6 +230,9 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 			break;
 		case obj_chain.chainGrid_colAlign:
 			colName = "align";
+			break;
+		case obj_chain.chainGrid_colTiltSum:
+			colName = "tiltSum";
 			break;
 		default:
 			break;
