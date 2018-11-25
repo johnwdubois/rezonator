@@ -77,26 +77,27 @@ if (!gridView)
 	{
 		wordLeftMarginDest -= gridSpaceHorizontal;
 	}
-	else if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
+	if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
+	or keyboard_check_pressed(vk_end))
 	{
-		var rowInLineGrid = ds_grid_value_y(lineGrid, lineGrid_colDisplayRow, 0, lineGrid_colDisplayRow, ds_grid_height(lineGrid), currentCenterDisplayRow);
-		if (rowInLineGrid >= 0 && rowInLineGrid < ds_grid_height(lineGrid))
-		{
-			var wordIDList = ds_grid_get(lineGrid, lineGrid_colWordIDList, rowInLineGrid);
-			var lastWordInList = ds_list_find_value(wordIDList, ds_list_size(wordIDList) - 1);
-			var lastWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, lastWordInList - 1);
-			
-			wordLeftMarginDest = -(lastWordDisplayCol * gridSpaceHorizontal) + (gridSpaceHorizontal * 5);
-		}
+		scr_jumpToEnd(false);
 	}
 
 	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control))
 	{
 		wordLeftMarginDest += gridSpaceHorizontal;
 	}
-	else if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
+	if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
+	or keyboard_check_pressed(vk_home))
 	{
-		wordLeftMarginDest = speakerLabelMargin;
+		if (searchGridActive)
+		{
+			scr_jumpToEnd(true);
+		}
+		else
+		{
+			wordLeftMarginDest = speakerLabelMargin;
+		}
 	}
 	
 	if (wordDrawGridFocusedAnimationInc)

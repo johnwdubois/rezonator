@@ -1,1 +1,1 @@
-gridView = !gridView;
+scr_jumpToLine();

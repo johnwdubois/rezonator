@@ -1,2 +1,2 @@
-showDevMessages = !showDevMessages;
-showDisplayCols = !showDisplayCols;
+//showDevMessages = !showDevMessages;
+//showDisplayCols = !showDisplayCols;
