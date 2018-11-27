@@ -100,6 +100,11 @@ if (!gridView)
 		}
 	}
 	
+	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D")))
+	{
+		showDevVars = !showDevVars;
+	}
+	
 	if (wordDrawGridFocusedAnimationInc)
 	{
 		if (wordDrawGridFocusedAnimation < wordDrawGridFocusedAnimationMax)

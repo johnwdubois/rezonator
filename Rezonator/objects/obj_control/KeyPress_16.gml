@@ -1,2 +1,0 @@
-showDevVars = !showDevVars;
-
