@@ -50,7 +50,7 @@ wordTranscriptView = true;
 
 
 
-lineGridWidth = 10;
+lineGridWidth = 12;
 lineGrid_colDisplayRow = 0;
 lineGrid_colDiscoID = 1;
 lineGrid_colUnitID = 2; //lineGrid_colUnit = 2;
@@ -61,10 +61,13 @@ lineGrid_colWordIDList = 6;
 lineGrid_colAlignedWordID = 7;
 lineGrid_colUnitStart = 8;
 lineGrid_colUnitEnd = 9;
+lineGrid_colVoidMax = 10;
+lineGrid_colVoidSum = 11;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
 lineGridDefaultSort = true;
 
+voidLimit = 25;
 
 
 searchGrid_colHitIDList = lineGrid_colWordIDList;
@@ -90,7 +93,7 @@ dynamicWordGrid_colWordState = 4;
 dynamicWordGrid_colDisplayString = 5; //dynamicWordGrid_colStringDisplay = 5;
 dynamicWordGrid_colInChainList = 6; //dynamicWordGrid_colInChains = 6;
 dynamicWordGrid_colAligned = 7;
-dynamicWordGrid_colZigzag = 8;
+dynamicWordGrid_colVoid = 8;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 

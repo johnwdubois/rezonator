@@ -41,4 +41,5 @@ for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
 	ds_grid_set(obj_chain.cliqueDisplayGrid, obj_chain.chainGrid_colColor, i, currentColor);
 	ds_grid_set(obj_chain.cliqueDisplayGrid, obj_chain.chainGrid_colInFilter, i, currentInFilter);
 	ds_grid_set(obj_chain.cliqueDisplayGrid, obj_chain.chainGrid_colAlign, i, currentAlign);
+	
 }

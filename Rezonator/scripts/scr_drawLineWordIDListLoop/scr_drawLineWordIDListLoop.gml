@@ -7,6 +7,9 @@ var unitID = argument4;
 var shapeTextX = wordLeftMargin;
 var shapeTextSpace = 12;
 
+var voidMax = 0;
+var voidSum = 0;
+
 for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawWordLoop++)
 {
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
@@ -20,9 +23,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, 0);
 	}
 	*/
+	var currentWordVoid = 0;
 		
 	if (drawWordLoop > 0)// and not filterGridActive)
 	{
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol - (previousWordDisplayCol + 1)));
 		
 		if (currentWordDisplayCol - previousWordDisplayCol > 1)
 		{
@@ -34,12 +39,25 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			
 		}
 		
+		currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 			
 		if (previousWordDisplayCol >= currentWordDisplayCol)
 		{
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol + 1);
 		}
 	}
+	else {
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol));
+		
+		if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow)
+		and not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow)
+		and abs(currentWordDisplayCol) > 0) {
+			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
+		}
+	}
+	currentWordVoid = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow);
+	voidSum += currentWordVoid;
+	voidMax = max(voidMax, currentWordVoid);
 	
 	currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 		
@@ -169,3 +187,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	shapeTextX += string_width(currentWordString) + shapeTextSpace;
 }
+
+ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidMax, drawLineLoop, voidMax);
+ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidSum, drawLineLoop, voidSum);

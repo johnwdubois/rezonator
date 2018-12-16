@@ -34,6 +34,11 @@ if (obj_control.showDevMessages)
 
 
 
+
+
+
+
+
 //var wordToZigzag = -1;
 
 for (var displayColCheck = flankLeft; displayColCheck <= flankRight; displayColCheck++)

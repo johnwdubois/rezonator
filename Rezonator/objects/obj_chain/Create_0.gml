@@ -62,7 +62,7 @@ mouseLineHide = false;
 mouseLineWordID = -1;
 
 
-cliqueGridWidth = 10;
+cliqueGridWidth = 11;
 cliqueGrid_colCliqueID = 0;
 cliqueGrid_colChainIDList = 1;
 cliqueGrid_colUnitIDList = 2;
@@ -72,7 +72,8 @@ cliqueGrid_colFlankLeft = 5;
 cliqueGrid_colFlankRight = 6;
 cliqueGrid_colLength = 7;
 cliqueGrid_colBreak = 8;
-cliqueGrid_colName = 9;
+cliqueGrid_colTilt = 9;
+cliqueGrid_colName = 10;
 cliqueGrid = ds_grid_create(cliqueGridWidth, 0);
 
 cliqueIDCounter = 0;

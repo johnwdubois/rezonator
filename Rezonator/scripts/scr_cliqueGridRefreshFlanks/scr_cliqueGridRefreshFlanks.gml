@@ -56,3 +56,23 @@ ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankRight, rowInCliqu
 
 
 
+
+
+// Get clique tilt
+var cliqueTilt = 0;
+var chainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, rowInCliqueGrid);
+for (var j = 0; j < ds_list_size(chainIDList); j++)
+{
+	var currentChainID = ds_list_find_value(chainIDList, j);
+	var currentRowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID);
+	if (currentRowInChainGrid < 0 or currentRowInChainGrid >= ds_grid_height(obj_chain.rezChainGrid))
+	{
+		continue;
+	}
+	cliqueTilt += ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colTiltSum, currentRowInChainGrid);
+}
+
+ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colTilt, rowInCliqueGrid, cliqueTilt);
+
+
+scr_cliqueAnalyzeTilt(rowInCliqueGrid);

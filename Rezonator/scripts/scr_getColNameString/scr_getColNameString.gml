@@ -79,8 +79,14 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 		case obj_control.lineGrid_colUnitEnd:
 			colName = "unitEnd";
 			break;
-		case obj_control.lineGrid_colUID:
-			colName = "uID";
+		//case obj_control.lineGrid_col:
+		//	colName = "uID";
+		//	break;
+		case obj_control.lineGrid_colVoidMax:
+			colName = "voidMax";
+			break;
+		case obj_control.lineGrid_colVoidSum:
+			colName = "voidSum";
 			break;
 		default:
 			break;
@@ -162,6 +168,12 @@ else if (grid == obj_control.dynamicWordGrid)
 			break;
 		case obj_control.dynamicWordGrid_colInChainList:
 			colName = "inChainList";
+			break;
+		case obj_control.dynamicWordGrid_colAligned:
+			colName = "aligned";
+			break;
+		case obj_control.dynamicWordGrid_colVoid:
+			colName = "void";
 			break;
 		default:
 			break;
@@ -282,6 +294,9 @@ else if (grid == obj_chain.cliqueGrid)
 			break;
 		case obj_chain.cliqueGrid_colBreak:
 			colName = "break";
+			break;
+		case obj_chain.cliqueGrid_colTilt:
+			colName = "tilt";
 			break;
 		case obj_chain.cliqueGrid_colName:
 			colName = "name";
