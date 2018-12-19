@@ -1,3 +1,13 @@
+if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)
+and not obj_control.gridView)
+{
+	with (obj_chain)
+	{
+		scr_chainDeselect();
+	}
+}
+
+
 draw_set_alpha(1);
 draw_set_color(c_white);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
@@ -8,6 +18,7 @@ var iconMarginTop = 30;
 var iconPlusY = 0;
 var iconPlusYIncrement = sprite_get_height(spr_tools) * 1.5;
 var iconHorizontalSpacing = 20;
+
 
 for (var i = 0; i < sprite_get_number(spr_tools); i++)
 {

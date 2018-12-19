@@ -42,23 +42,23 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 {
 	
 	var currentChainID = ds_list_find_value(chainIDList, i);
-	var rowInLinkGrid = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), currentChainID);
+	var rowInviLinkGrid = ds_grid_value_y(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, 0, obj_chain.vizLinkGrid_colChainID, ds_grid_height(obj_chain.vizLinkGrid), currentChainID);
 	
-	if (rowInLinkGrid < 0 or rowInLinkGrid >= ds_grid_height(obj_chain.linkGrid))
+	if (rowInVizLinkGrid < 0 or rowInVizLinkGrid >= ds_grid_height(obj_chain.vizLinkGrid))
 	{
 		continue;
 	}
 	
 	var plusRow = 0;
-	while (ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGrid + plusRow) == currentChainID)
+	while (ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, rowInVizLinkGrid + plusRow) == currentChainID)
 	{
-		var currentSource1 = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGrid + plusRow);
-		var currentGoal1 = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, rowInLinkGrid + plusRow);
+		var currentSource1 = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, rowInVizLinkGrid + plusRow);
+		var currentGoal1 = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colGoal, rowInVizLinkGrid + plusRow);
 		
 		if (currentSource1 == -1 or currentGoal1 == -1)
 		{
 			plusRow++;
-			if (rowInLinkGrid + plusRow >= ds_grid_height(obj_chain.linkGrid))
+			if (rowInVizLinkGrid + plusRow >= ds_grid_height(obj_chain.vizLinkGrid))
 			{
 				break;
 			}
@@ -74,7 +74,7 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 		if (rowInLineGridcurrentSource1 < 0 or rowInLineGridcurrentSource1 >= ds_grid_height(obj_control.lineGrid))
 		{
 			plusRow++;
-			if (rowInLinkGrid + plusRow >= ds_grid_height(obj_chain.linkGrid))
+			if (rowInVizLinkGrid + plusRow >= ds_grid_height(obj_chain.vizLinkGrid))
 			{
 				break;
 			}
@@ -83,7 +83,7 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 		if (rowInLineGridcurrentGoal1 < 0 or rowInLineGridcurrentGoal1 >= ds_grid_height(obj_control.lineGrid))
 		{
 			plusRow++;
-			if (rowInLinkGrid + plusRow >= ds_grid_height(obj_chain.linkGrid))
+			if (rowInVizLinkGrid + plusRow >= ds_grid_height(obj_chain.vizLinkGrid))
 			{
 				break;
 			}
@@ -107,13 +107,13 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 			
 			for (var l = lookupGridStart; l < lookupGridEnd; l++)
 			{
-				if (l < 0 or l >= ds_grid_height(obj_chain.linkGrid))
+				if (l < 0 or l >= ds_grid_height(obj_chain.vizLinkGrid))
 				{
 					continue;
 				}
 				
-				var currentSource2 = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, l);
-				var currentGoal2 = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, l);
+				var currentSource2 = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, l);
+				var currentGoal2 = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colGoal, l);
 				
 				if (currentSource2 == -1 or currentGoal2 == -1)
 				{
@@ -148,15 +148,16 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 				var goal2PixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, rowInLineGridcurrentGoal2);
 				
 				var intersection = scr_lineIntersection(source1PixelX, source1PixelY, goal1PixelX, goal1PixelY, source2PixelX, source2PixelY, goal2PixelX, goal2PixelY, true);
-				if (intersection > 0 and intersection <= 1)
-				{
-					show_message("CROSS");
-				}
+				//if (intersection > 0 and intersection <= 1)
+				//{
+					ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colCross, l, intersection);
+					//show_message("CROSS");
+				//}
 			}
 		}
 		
 		plusRow++;
-		if (rowInLinkGrid + plusRow >= ds_grid_height(obj_chain.linkGrid))
+		if (rowInVizLinkGrid + plusRow >= ds_grid_height(obj_chain.vizLinkGrid))
 		{
 			break;
 		}

@@ -543,6 +543,14 @@
             }
         },
         {
+            "Key": "7bf96896-31d5-4157-8f09-1b534bc78c46",
+            "Value": {
+                "id": "6f813811-dc7d-4a04-a375-3ccbaa986d81",
+                "resourcePath": "scripts\\scr_windowCameraAdjust\\scr_windowCameraAdjust.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7f4c8d8a-4661-4484-bfd7-3c6a8738f929",
             "Value": {
                 "id": "f5fef835-c025-4178-9971-7a3c36a7af74",
@@ -1254,7 +1262,8 @@
         "41f85881-a7a2-4f22-b877-a19729a75ea2",
         "9146ba34-4533-4847-bd78-62a3180074ca",
         "e89e7d24-cd7e-4a07-842a-378024f03309",
-        "78dd04f8-666d-4dd4-b00a-ed955eff2096"
+        "78dd04f8-666d-4dd4-b00a-ed955eff2096",
+        "7bf96896-31d5-4157-8f09-1b534bc78c46"
     ],
     "tutorial": ""
 }

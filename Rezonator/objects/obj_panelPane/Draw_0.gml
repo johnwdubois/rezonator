@@ -36,3 +36,12 @@ switch (currentFunction)
 draw_set_alpha(1);
 draw_set_color(c_black);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+
+if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)
+and not obj_control.gridView)
+{
+	with (obj_chain)
+	{
+		scr_chainDeselect();
+	}
+}

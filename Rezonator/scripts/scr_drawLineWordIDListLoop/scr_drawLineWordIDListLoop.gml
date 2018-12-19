@@ -23,7 +23,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 	if (drawWordLoop > 0)
 	{
-		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol - (previousWordDisplayCol + 1)));
+		currentWordVoid = abs(currentWordDisplayCol - (previousWordDisplayCol + 1));
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, currentWordVoid);
+		
 		
 		if (currentWordDisplayCol - previousWordDisplayCol > 1)
 		{
@@ -58,6 +60,38 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	currentWordVoid = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow);
 	voidSum += currentWordVoid;
 	voidMax = max(voidMax, currentWordVoid);
+	
+	
+	if (currentWordVoid > 2)
+	{
+		if (drawWordLoop > 0)
+		{
+			var voidRectX1 = ((previousWordDisplayCol + 1) * obj_control.gridSpaceHorizontal) + wordLeftMargin;
+		}
+		else
+		{
+			var voidRectX1 = 0;
+		}
+		var voidRectY1 = currentLineY - 10;
+		var voidRectX2 = (currentWordDisplayCol * obj_control.gridSpaceHorizontal) + wordLeftMargin;
+		var voidRectY2 = currentLineY + 15;
+			
+		draw_set_alpha(0.5);
+		draw_set_color(c_green);
+		if (currentWordVoid > 6)
+		{
+			draw_set_color(c_yellow);
+			if (currentWordVoid > 10)
+			{
+				draw_set_color(c_orange);
+				if (currentWordVoid > 17)
+				{
+					draw_set_color(c_red);
+				}
+			}
+		}
+		draw_rectangle(voidRectX1, voidRectY1, voidRectX2, voidRectY2, false);
+	}
 	
 	//currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 		
