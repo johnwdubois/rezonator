@@ -91,3 +91,5 @@ if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush)
 {
 	scr_addToCliqueGrid(wordID, currentFocusedChainID);
 }
+
+alarm[3] = 1;

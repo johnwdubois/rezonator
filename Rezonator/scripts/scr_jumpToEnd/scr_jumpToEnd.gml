@@ -45,7 +45,7 @@ for (var i = 0; i < 2; i++)
 			{
 				var firstWordDisplayCol = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colDisplayCol, firstWordInList - 1);
 			
-				if (firstWordDisplayCol < firstWordDisplayCol)
+				if (firstWordDisplayCol < furthestDisplayCol)
 				{
 					furthestDisplayCol = firstWordDisplayCol;
 				}
@@ -79,7 +79,7 @@ for (var i = 0; i < 2; i++)
 
 if (jumpToStart)
 {
-	obj_control.wordLeftMarginDest = -(furthestDisplayCol * obj_control.gridSpaceHorizontal) + (obj_control.gridSpaceHorizontal * 5);
+	obj_control.wordLeftMarginDest = -(furthestDisplayCol * obj_control.gridSpaceHorizontal) + (obj_control.gridSpaceHorizontal * 2);
 }
 else
 {

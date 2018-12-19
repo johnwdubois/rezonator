@@ -41,3 +41,5 @@ if (maxTilt < 1)
 {
 	exit;
 }
+
+scr_cliqueGetCross(rowInCliqueGrid);

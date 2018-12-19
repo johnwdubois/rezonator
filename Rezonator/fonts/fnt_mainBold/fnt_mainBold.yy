@@ -5,6 +5,7 @@
     "name": "fnt_mainBold",
     "AntiAlias": 1,
     "TTFName": "",
+    "ascenderOffset": 0,
     "bold": true,
     "charset": 0,
     "first": 0,

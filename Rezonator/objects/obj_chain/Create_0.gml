@@ -50,6 +50,21 @@ linkGrid_colTilt = 7;
 
 linkGrid = ds_grid_create(linkGridWidth, 0);
 
+
+
+vizLinkGridWidth = 9;
+vizLinkGrid_colTier = 0;
+vizLinkGrid_colChainID = 1;
+vizLinkGrid_colLinkID = 2;
+vizLinkGrid_colSource = 3;
+vizLinkGrid_colGoal = 4;
+vizLinkGrid_colFocus = 5;
+vizLinkGrid_colTilt = 6;
+vizLinkGrid_colCross = 7;
+vizLinkGrid_colStretch = 8;
+
+vizLinkGrid = ds_grid_create(vizLinkGridWidth, 0);
+
 linkIDCounter = 0;
 rezChainNameCounter = 0;
 trackChainNameCounter = 0;

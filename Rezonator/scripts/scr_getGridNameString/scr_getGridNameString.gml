@@ -26,6 +26,9 @@ switch (argument0)
 	case obj_chain.linkGrid:
 		colName = "Link";
 		break;
+	case obj_chain.vizLinkGrid:
+		colName = "VizLink";
+		break;
 	case obj_chain.rezChainGrid:
 		colName = "RezChain";
 		break;

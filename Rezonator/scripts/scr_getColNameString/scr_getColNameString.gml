@@ -211,6 +211,41 @@ else if (grid == obj_chain.linkGrid)
 			break;
 	}
 }
+else if (grid == obj_chain.vizLinkGrid)
+{
+	switch (col)
+	{
+		case obj_chain.vizLinkGrid_colTier:
+			colName = "tier";
+			break;
+		case obj_chain.vizLinkGrid_colChainID:
+			colName = "chainID";
+			break;
+		case obj_chain.vizLinkGrid_colLinkID:
+			colName = "linkID";
+			break;
+		case obj_chain.vizLinkGrid_colSource:
+			colName = "source";
+			break;
+		case obj_chain.vizLinkGrid_colGoal:
+			colName = "goal";
+			break;
+		case obj_chain.vizLinkGrid_colFocus:
+			colName = "focus";
+			break;
+		case obj_chain.vizLinkGrid_colTilt:
+			colName = "tilt";
+			break;
+		case obj_chain.vizLinkGrid_colCross:
+			colName = "cross";
+			break;
+		case obj_chain.vizLinkGrid_colStretch:
+			colName = "stretch";
+			break;
+		default:
+			break;
+	}
+}
 else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid)
 {
 	switch (col)

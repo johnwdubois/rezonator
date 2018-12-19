@@ -5,6 +5,7 @@
     "name": "fnt_dropDown",
     "AntiAlias": 1,
     "TTFName": "",
+    "ascenderOffset": 0,
     "bold": false,
     "charset": 0,
     "first": 0,

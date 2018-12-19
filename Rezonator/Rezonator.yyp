@@ -399,6 +399,14 @@
             }
         },
         {
+            "Key": "4c094514-2d61-4bee-9090-4151ab22e154",
+            "Value": {
+                "id": "4a0a985d-e78a-433a-8c24-f2962964b131",
+                "resourcePath": "scripts\\scr_cliqueGetCross\\scr_cliqueGetCross.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "59b16c54-3183-4f51-8b1c-2b030c2c268b",
             "Value": {
                 "id": "808817d8-ca04-4288-99f6-15e98955281c",
@@ -516,6 +524,14 @@
                 "id": "eff2c8fc-b5c0-4f72-be08-932191b5011d",
                 "resourcePath": "sprites\\spr_logo\\spr_logo.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "78dd04f8-666d-4dd4-b00a-ed955eff2096",
+            "Value": {
+                "id": "b00dde0d-47e7-4834-b120-e4079969a080",
+                "resourcePath": "scripts\\scr_lineIntersection\\scr_lineIntersection.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1055,6 +1071,14 @@
             }
         },
         {
+            "Key": "e89e7d24-cd7e-4a07-842a-378024f03309",
+            "Value": {
+                "id": "38cbf7ae-de97-4fad-88bf-29c953fcf180",
+                "resourcePath": "scripts\\scr_refreshVizLinkGrid\\scr_refreshVizLinkGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e9ea7131-5e7f-464c-a11a-1a3c41b6ee2c",
             "Value": {
                 "id": "30aeaa82-b4cf-4815-8c73-738a03a44099",
@@ -1223,11 +1247,14 @@
         "01c3e6ce-5513-43f2-9111-a627c1499646",
         "dc9ed3d5-ded4-41cf-8ff9-16e7cf91fb5b",
         "8f60f1f9-9d47-4bc6-a9dc-31f69529b55b",
+        "4c094514-2d61-4bee-9090-4151ab22e154",
         "b2832938-5700-4043-8039-0eb91e8d94c3",
         "0dbad598-124c-4727-a96e-e1aad5bfc727",
         "150d9a89-e6ed-4d7e-8b49-011248595228",
         "41f85881-a7a2-4f22-b877-a19729a75ea2",
-        "9146ba34-4533-4847-bd78-62a3180074ca"
+        "9146ba34-4533-4847-bd78-62a3180074ca",
+        "e89e7d24-cd7e-4a07-842a-378024f03309",
+        "78dd04f8-666d-4dd4-b00a-ed955eff2096"
     ],
     "tutorial": ""
 }

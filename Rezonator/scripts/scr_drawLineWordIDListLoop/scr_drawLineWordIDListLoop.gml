@@ -12,20 +12,16 @@ var voidSum = 0;
 
 for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawWordLoop++)
 {
+	var shake = false;
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 	var currentWordGridRow = currentWordID - 1;
 	
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 	
-	/*
-	if (drawWordLoop == 0 and not filterGridActive)
-	{
-		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, 0);
-	}
-	*/
+
 	var currentWordVoid = 0;
 		
-	if (drawWordLoop > 0)// and not filterGridActive)
+	if (drawWordLoop > 0)
 	{
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol - (previousWordDisplayCol + 1)));
 		
@@ -40,11 +36,15 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		
 		currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
+		
+
 			
 		if (previousWordDisplayCol >= currentWordDisplayCol)
 		{
-			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol + 1);
+			currentWordDisplayCol++;
+			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
 		}
+		
 	}
 	else {
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol));
@@ -59,7 +59,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	voidSum += currentWordVoid;
 	voidMax = max(voidMax, currentWordVoid);
 	
-	currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
+	//currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 		
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
 	if (shape == shapeText)
