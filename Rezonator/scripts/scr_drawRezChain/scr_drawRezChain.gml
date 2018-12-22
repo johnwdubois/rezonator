@@ -109,10 +109,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 	
 	
 	var isAligned = ds_grid_get(rezChainGrid, chainGrid_colAlign, i);
-	if (isAligned)
-	{
-		scr_alignChain(currentWordIDList);
-	}
+	scr_alignChain(currentWordIDList, isAligned);
 }
 
 if (not (mouseLineX == undefined or mouseLineY == undefined))

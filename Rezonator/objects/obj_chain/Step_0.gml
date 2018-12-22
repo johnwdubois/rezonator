@@ -1,3 +1,18 @@
+if (mouseLineHide)
+{
+	var focusedRezChain = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
+	var focusedTrackChain = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
+	scr_chainDeselect();
+	if (focusedRezChain > -1)
+	{
+		ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, focusedRezChain, obj_chain.chainStateFocus);
+	}
+	if (focusedTrackChain > -1)
+	{
+		ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, focusedTrackChain, obj_chain.chainStateFocus);
+	}
+}
+
 ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, 0, obj_control.wordDrawGrid_colFocused, ds_grid_height(obj_control.wordDrawGrid), false);
 
 if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus))

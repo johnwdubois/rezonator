@@ -110,7 +110,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 		var currentWordID = ds_list_find_value(currentWordIDList, j);
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
-		if (newUnitID == currentUnitID and newWordID != currentWordID)
+		if (newUnitID == currentUnitID and newWordID != currentWordID and chainID != currentChainID)
 		{	
 			obj_chain.cliqueIDCounter++;
 			
@@ -149,5 +149,15 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 			
 			exit;
 		}
+	}
+}
+
+for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
+{
+	var currentChainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, i++);
+	if (ds_list_size(currentChainIDList) < 2)
+	{
+		scr_gridDeleteRow(obj_chain.cliqueGrid, i);
+		i--;
 	}
 }

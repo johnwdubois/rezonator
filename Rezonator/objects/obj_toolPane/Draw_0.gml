@@ -1,3 +1,6 @@
+x = camera_get_view_width(view_camera[0]) - windowWidth;
+y = 0;
+
 if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)
 and not obj_control.gridView)
 {
@@ -85,4 +88,5 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++)
 	}
 }
 
+progressBarX = camera_get_view_width(view_camera[0]) - 100;
 scr_drawImportProgressBar();

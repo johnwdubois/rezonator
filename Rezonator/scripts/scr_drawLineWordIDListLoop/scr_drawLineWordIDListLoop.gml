@@ -93,8 +93,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_rectangle(voidRectX1, voidRectY1, voidRectX2, voidRectY2, false);
 	}
 	
-	//currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
-		
+	currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
+	if (previousWordDisplayCol >= currentWordDisplayCol)
+	{
+		currentWordDisplayCol++;
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
+	}
+	
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
 	if (shape == shapeText)
 	{
@@ -168,9 +173,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 		draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 	}
-		
+	
+	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord))
 	{
+		mouseover = true;
 		draw_set_alpha(1);
 		draw_set_color(c_black);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
@@ -216,6 +223,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(currentWordX, currentLineY, currentWordString);
+	/*
+	if (mouseover)
+	{
+		draw_set_font(fnt_debug);
+		draw_text(currentWordX - 15, currentLineY - 15, string(previousWordDisplayCol) + ", " + string(currentWordDisplayCol));
+	}
+	*/
 		
 	previousWordDisplayCol = currentWordDisplayCol;
 	

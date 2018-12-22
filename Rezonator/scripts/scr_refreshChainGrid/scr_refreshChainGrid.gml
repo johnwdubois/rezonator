@@ -111,6 +111,8 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 ds_list_sort(idList, true);
 ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
 
+//var firstInLineIDList = ds_list_create();
+
 for (var i = 0; i < ds_list_size(idList); i++)
 {
 	if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid)
@@ -130,5 +132,7 @@ for (var i = 0; i < ds_list_size(idList); i++)
 		}
 	}
 }
+
+//ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, firstInLineIDList);
 
 ds_grid_destroy(tempGrid);

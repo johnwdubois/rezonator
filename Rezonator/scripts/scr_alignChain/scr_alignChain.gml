@@ -1,4 +1,5 @@
 var wordIDList = argument0;
+var pushOut = argument1;
 
 var furthestDisplayCol = 0;
 
@@ -20,8 +21,22 @@ if (ds_list_size(wordIDList) > 0)
 		}
 		ds_list_add(unitIDList, currentUnitID);
 		
+		var currentVoid = 0;
 		var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-		var currentVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1);
+		var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+		if (currentWordSeq == 0 or currentWordID - 2 < 0)
+		{
+			currentVoid = currentDisplayCol;
+		}
+		else 
+		{
+			var previousDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 2);
+			currentVoid = abs(currentDisplayCol - (previousDisplayCol + 1));
+		}
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1, currentVoid);
+		
+		
+		//currentVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1);
 		
 		if (currentDisplayCol > furthestDisplayCol)
 		{
@@ -32,6 +47,12 @@ if (ds_list_size(wordIDList) > 0)
 		if (currentVoid < 1)
 		{
 			nonVoidWordExists = true;
+		}
+		if (not pushOut and currentVoid > 0)
+		{
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol - 1);
+			currentVoid = abs(currentDisplayCol - (previousDisplayCol + 1));
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1, currentVoid);
 		}
 	}
 	
@@ -75,7 +96,10 @@ if (ds_list_size(wordIDList) > 0)
 		if (ds_list_find_index(unitIDList2, currentUnitID) == -1)
 		{
 			ds_list_add(unitIDList2, currentUnitID);
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, furthestDisplayCol);
+			if (pushOut)
+			{
+				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, furthestDisplayCol);
+			}
 		}
 	}
 	ds_list_destroy(unitIDList2);
@@ -83,16 +107,13 @@ if (ds_list_size(wordIDList) > 0)
 
 if (not nonVoidWordExists)
 {
-	//show_message("prob")
 	for (var i = 0; i < ds_list_size(wordIDList); i++)
 	{
 		var currentWordID = ds_list_find_value(wordIDList, i);
 		var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 		var currentUnitID = ds_grid_get(obj_control.dynamicWordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-		//if (ds_list_find_index(unitIDList, currentUnitID) > -1)
-		//{
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol - 1);
-		//}
+
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol - 1);
 	}
 }
 

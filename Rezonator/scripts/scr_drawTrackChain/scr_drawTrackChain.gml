@@ -100,10 +100,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++)
 	
 	
 	var isAligned = ds_grid_get(trackChainGrid, chainGrid_colAlign, i);
-	if (isAligned)
-	{
-		scr_alignChain(currentWordIDList);
-	}
+	scr_alignChain(currentWordIDList, isAligned);
 	
 }
 

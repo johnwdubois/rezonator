@@ -103,3 +103,5 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 scr_refreshChainGrid();
 scr_killEmptyChains(obj_chain.currentChainGrid);
 obj_chain.mouseLineWordID = -1;
+
+scr_refreshVizLinkGrid();

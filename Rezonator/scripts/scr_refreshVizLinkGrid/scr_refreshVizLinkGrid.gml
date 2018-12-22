@@ -1,5 +1,26 @@
-ds_grid_resize(obj_chain.vizLinkGrid, obj_chain.vizLinkGridWidth, ds_grid_height(obj_chain.linkGrid));
-ds_grid_copy(obj_chain.vizLinkGrid, obj_chain.linkGrid);
+var linkGridCopy = ds_grid_create(obj_chain.vizLinkGridWidth, ds_grid_height(obj_chain.linkGrid));
+ds_grid_copy(linkGridCopy, obj_chain.linkGrid);
+
+while (ds_grid_value_exists(linkGridCopy, obj_chain.linkGrid_colDead, 0, obj_chain.linkGrid_colDead, ds_grid_height(linkGridCopy), true))
+{
+	var rowToDelete = ds_grid_value_y(linkGridCopy, obj_chain.linkGrid_colDead, 0, obj_chain.linkGrid_colDead, ds_grid_height(linkGridCopy), true);
+	scr_gridDeleteRow(linkGridCopy, rowToDelete);
+}
+
+for (var i = 0; i < ds_grid_height(linkGridCopy); i++)
+{
+	var currentChainID = ds_grid_get(linkGridCopy, obj_chain.linkGrid_colChainID, i);
+	if (not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID))
+	{
+		scr_gridDeleteRow(linkGridCopy, i);
+		i--;
+	}
+}
+
+
+ds_grid_resize(obj_chain.vizLinkGrid, obj_chain.vizLinkGridWidth, ds_grid_height(linkGridCopy));
+ds_grid_copy(obj_chain.vizLinkGrid, linkGridCopy);
+
 
 for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 {

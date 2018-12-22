@@ -35,7 +35,13 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 		chainMaxTilt = currentChainID;
 		maxTilt = currentTilt;
 	}
+	
+	var wordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, currentRowInChainGrid);
+		
+	
 }
+
+scr_cliqueGetBreak(rowInCliqueGrid);
 
 if (maxTilt < 1)
 {
