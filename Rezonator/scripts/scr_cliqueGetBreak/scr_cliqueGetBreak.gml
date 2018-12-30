@@ -32,7 +32,8 @@ for (var i = 0; i < ds_list_size(unitIDList); i++)
 	
 	var j = 0;
 	var currentWordID = ds_list_find_value(currentWordIDList, j);
-	while (j < ds_list_size(currentWordIDList) and ds_list_find_index(fullWordIDList, currentWordID) == -1)
+	while (j < ds_list_size(currentWordIDList) and ds_list_find_index(fullWordIDList, currentWordID) == -1
+	and ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1))
 	{
 		j++;
 		currentWordID = ds_list_find_value(currentWordIDList, j);
@@ -45,6 +46,15 @@ var breakExists = true;
 for (var i = 0; i < ds_list_size(firstWordList); i++)
 {
 	var currentWordID = ds_list_find_value(firstWordList, i);
+	if (currentWordID == undefined)
+	{
+		continue;
+	}
+	if (currentWordID < 0 or currentWordID >= ds_grid_height(obj_control.dynamicWordGrid))
+	{
+		continue;
+	}
+	
 	var currentVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1);
 	
 	if (currentVoid < 1)
@@ -74,5 +84,35 @@ if (breakExists)
 		}
 	}
 	
-	ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, maxTiltRowInChainGrid, false);
+	var currentRowInLinkGrid = ds_grid_value_y(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, 0, obj_chain.vizLinkGrid_colChainID, ds_grid_height(obj_chain.vizLinkGrid), currentChain);
+	if (currentRowInLinkGrid < 0 or currentRowInLinkGrid >= ds_grid_height(obj_chain.vizLinkGrid))
+	{
+		exit;
+	}
+	
+	maxTilt = -1;
+	var maxTiltChainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, maxTiltRowInChainGrid);
+	var maxTiltWordID = -1;
+	while (ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, currentRowInLinkGrid) == maxTiltChainID)
+	{
+		var currentWordID = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentRowInLinkGrid);
+		if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1))
+		{
+			currentRowInLinkGrid++;
+			continue;
+		}
+		
+		var currentTilt = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colTilt, currentRowInLinkGrid);
+		if (currentTilt > maxTilt)
+		{
+			maxTilt = currentTilt;
+			maxTiltWordID = currentWordID;
+		}
+		
+		currentRowInLinkGrid++;
+	}
+	
+	/////ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, maxTiltWordID - 1, false);
+	
+	//ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, maxTiltRowInChainGrid, false);
 }

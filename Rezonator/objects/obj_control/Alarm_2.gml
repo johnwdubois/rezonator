@@ -1,0 +1,1 @@
+mostRecentlyAddedWordMoved = -1;

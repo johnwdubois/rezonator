@@ -839,6 +839,14 @@
             }
         },
         {
+            "Key": "a6389f1c-8bbd-4c62-b162-b90d54e90acf",
+            "Value": {
+                "id": "513350f3-e35e-4d62-999f-ff577dc7425a",
+                "resourcePath": "objects\\obj_point\\obj_point.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "a6c69439-d939-4a02-98d4-962d25247a6a",
             "Value": {
                 "id": "2228b473-fc99-4391-8455-80436e265da0",
@@ -895,6 +903,14 @@
             }
         },
         {
+            "Key": "aef4ddd3-edc8-48c5-8959-c05974d29dd6",
+            "Value": {
+                "id": "a28da07b-3721-4bf3-bb3e-1119466c72d7",
+                "resourcePath": "sprites\\spr_xButton\\spr_xButton.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "af5832dc-6a6a-4b99-b324-c93ce1aae428",
             "Value": {
                 "id": "041bdd42-f716-465a-b9a1-fd194c343ecb",
@@ -915,6 +931,14 @@
             "Value": {
                 "id": "c3fdca5e-513c-47aa-a5c8-e47c100b3314",
                 "resourcePath": "scripts\\scr_getColNameString\\scr_getColNameString.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "baa8251d-a6a3-4fcf-bc51-f2fb7eea630b",
+            "Value": {
+                "id": "0e5901ce-1261-4a2e-b945-44588ae08568",
+                "resourcePath": "scripts\\scr_alignLinks\\scr_alignLinks.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1202,6 +1226,7 @@
         "93084380-e8e1-4e66-baa4-0e8b526646ab",
         "ede68f46-236b-441e-9b29-3fd1810cdfd6",
         "93ec584d-5334-4edd-a749-7888e632eb4c",
+        "baa8251d-a6a3-4fcf-bc51-f2fb7eea630b",
         "1fc73ccb-fa5e-4385-b7e2-4edfda6f2e58",
         "df1e32cd-3604-4cea-bd31-a9d305c01be3",
         "18d019a7-af73-4cb5-91b6-f7efec25e5ce",

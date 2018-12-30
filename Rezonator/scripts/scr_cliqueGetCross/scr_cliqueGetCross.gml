@@ -148,11 +148,12 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 				var goal2PixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, rowInLineGridcurrentGoal2);
 				
 				var intersection = scr_lineIntersection(source1PixelX, source1PixelY, goal1PixelX, goal1PixelY, source2PixelX, source2PixelY, goal2PixelX, goal2PixelY, true);
-				//if (intersection > 0 and intersection <= 1)
-				//{
-					ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colCross, l, intersection);
+				if (intersection > 0 and intersection <= 1)
+				{
+					var currentCross = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colCross, l);
+					ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colCross, l, currentCross + 1);
 					//show_message("CROSS");
-				//}
+				}
 			}
 		}
 		

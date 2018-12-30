@@ -69,7 +69,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	
 	var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 	var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
-	var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
+	var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
 	
 	textPlusY += string_height(currentChainName);
 	
@@ -145,6 +145,11 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	draw_set_color(c_black);
 	draw_text(x + textMarginLeft, y + textMarginTop + textPlusY, currentChainName);
 	
+	draw_set_color(currentChainColor);
+	draw_circle(x + textMarginLeft + string_width(currentChainName) + 10, y + textMarginTop + textPlusY - 2, 5, false);
+	
+	draw_set_color(c_black);
+	
 	var chainFilterRectX1 = x + filterRectMargin;
 	var chainFilterRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2);
 	var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
@@ -211,12 +216,14 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 			{
 				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, !isAligned);
 				
+				/*
 				var wordIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
 				for (var k = 0; k < ds_list_size(wordIDList); k++)
 				{
 					var currentWordID = ds_list_find_value(wordIDList, k);
 					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, isAligned);
 				}
+				*/
 			}
 		}
 	}

@@ -20,6 +20,7 @@ for (var i = 0; i < ds_grid_height(linkGridCopy); i++)
 
 ds_grid_resize(obj_chain.vizLinkGrid, obj_chain.vizLinkGridWidth, ds_grid_height(linkGridCopy));
 ds_grid_copy(obj_chain.vizLinkGrid, linkGridCopy);
+ds_grid_resize(obj_chain.vizLinkGrid, obj_chain.vizLinkGridWidth, ds_grid_height(linkGridCopy));
 
 
 for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
@@ -47,7 +48,6 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 		if (sourceCol)
 		{
 			ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, rowInVizLinkGrid + k, currentVal);
-			
 			sourceCol = false;
 		}
 		else
@@ -66,6 +66,20 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 	}
 	//}
 }
+
+for (var i = 0; i < ds_grid_height(obj_chain.vizLinkGrid); i++)
+{
+	var currentSource = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, i);
+	
+	if (currentSource < 0 or currentSource >= ds_grid_height(obj_control.dynamicWordGrid))
+	{
+		continue;
+	}
+	
+	var currentAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentSource - 1);
+	ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, i, currentAligned);
+}
+
 /*
 var col1 = obj_chain.vizLinkGrid_colTier;
 var col2 = obj_chain.vizLinkGrid_colChainID;

@@ -41,17 +41,22 @@ var textMarginTop = 32;
 var textPlusY = 0;
 var ableToBeMouseOver = true;
 
+var alignTabWidth = 12;
+
 var scrollBarWidth = 16;
 draw_set_color(c_white);
 draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
 
 var focusedChainExists = false;
+var alignRectSize = 8;
 
 if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus))
 {
 	focusedChainExists = true;
 	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	var chainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, rowInChainGrid);
+	var chainAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, rowInChainGrid);
+	
 	with (obj_panelPane)
 	{
 		functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
@@ -78,11 +83,12 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		}
 		
 		var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+		var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 		var currentWordInfoCol;
 		currentWordInfoCol[0] = "";
 		
 		var stringHeight = 14;
-		var rectX1 = x;
+		var rectX1 = x + alignTabWidth;
 		var rectY1 = y + textMarginTop + textPlusY - (stringHeight / 2);
 		var rectX2 = x + windowWidth - scrollBarWidth;
 		var rectY2 = rectY1 + stringHeight;
@@ -213,24 +219,57 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 					break;
 			}
 			
-			var textX = x + (getInfoLoop * (windowWidth / 3));
+			var textX = x + (getInfoLoop * (windowWidth / 3)) + alignTabWidth;
 			var textY = y + textMarginTop + textPlusY;
 			
 			draw_set_color(c_black);
+			draw_set_alpha(1);
 			draw_text(textX, textY, currentWordInfoCol[getInfoLoop]);
 		}
+		
+		if (point_in_rectangle(mouse_x, mouse_y, x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2), x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2)) and mouse_check_button_pressed(mb_left)
+		and chainAligned)
+		{
+			currentWordAligned = !currentWordAligned;
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
+			
+			if (ds_grid_height(obj_chain.vizLinkGrid) > 0)
+			{
+				var rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+				while (rowInVizLinkGrid >= 0 and rowInVizLinkGrid < ds_grid_height(obj_chain.vizLinkGrid))
+				{
+					ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, rowInVizLinkGrid, currentWordAligned);
+					rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+				}
+			}
+		}
+		
+		if (chainAligned)
+		{
+			draw_set_alpha(1);
+		}
+		else
+		{
+			draw_set_alpha(0.5);
+		}
+		draw_set_color(c_purple);
+		draw_rectangle(x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2), x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2), !currentWordAligned)
 		
 		textPlusY += string_height(currentWordInfoCol[0]) * 0.75;
 	}
 }
 
+draw_set_alpha(1);
+
 
 draw_set_font(fnt_panelTab);
 var tabHeight = 16;
 
+//draw_line(x + alignTabWidth, y, x + alignTabWidth, y + tabHeight);
+
 for (var i = 0; i < 3; i++)
 {
-	var colRectX1 = x + (i * (windowWidth / 3));
+	var colRectX1 = x + (i * (windowWidth / 3)) + alignTabWidth;
 	var colRectY1 = y;
 	var colRectX2 = colRectX1 + (windowWidth / 3);
 	var colRectY2 = colRectY1 + windowHeight;
@@ -282,9 +321,10 @@ for (var i = 0; i < 3; i++)
 	
 	draw_set_color(c_black);
 	draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY2, true);
-	draw_line(x, y + tabHeight, x + windowWidth, y + tabHeight);
 	draw_text(colRectX1, y + (tabHeight / 2), colName);
 }
+
+draw_line(x, y + tabHeight, x + windowWidth, y + tabHeight);
 
 
 var scrollBarHeight = ((scrollRange * windowHeight) / ds_list_size(functionChainContents_IDList));
