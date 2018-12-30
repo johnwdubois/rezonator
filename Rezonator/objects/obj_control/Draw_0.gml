@@ -44,6 +44,9 @@ if (showDevVars)
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 330, "currentChainID: " + string(obj_chain.currentChainID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 400, "newWordHoverWordID: " + string(newWordHoverWordID));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 600, "mostRecentlyAddedWord: " + string(mostRecentlyAddedWord));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 650, "mostRecentlyAddedWordMoved: " + string(mostRecentlyAddedWordMoved));
 }
 
 

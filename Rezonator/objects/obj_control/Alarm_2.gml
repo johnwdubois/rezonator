@@ -1,1 +1,1 @@
-mostRecentlyAddedWordMoved = -1;
+mostRecentlyAddedWordMoved = false;

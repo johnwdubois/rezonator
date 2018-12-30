@@ -85,13 +85,26 @@ if (ds_list_size(wordIDList) > 0)
 	for (var setDisplayColLoop = 0; setDisplayColLoop < ds_list_size(wordIDList); setDisplayColLoop++)
 	{
 		var currentWordID = ds_list_find_value(wordIDList, setDisplayColLoop);
+		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
 		if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1))
 		{
+			/*
+			var nextWordID = currentWordID + 1;
+			if (nextWordID >= 0 and nextWordID < ds_grid_height(obj_control.wordGrid))
+			{
+				var nextUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, nextWordID - 1);
+				if (nextUnitID == currentUnitID)
+				{
+					var nextDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, nextWordID - 1);
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, nextDisplayCol - 1);
+				}
+			}
+			*/
+			
 			continue;
 		}
 		
-		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		var currentRowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
 		if (currentRowInLineGrid >= 0 and currentRowInLineGrid < ds_grid_height(obj_control.lineGrid))
 		{
@@ -132,7 +145,6 @@ if (ds_list_size(wordIDList) > 0)
 				}
 				else
 				{
-
 					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, furthestDisplayCol);
 				}
 			}
