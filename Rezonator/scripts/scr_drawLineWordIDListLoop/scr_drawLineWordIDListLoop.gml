@@ -73,7 +73,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	voidMax = max(voidMax, currentWordVoid);
 	
 	
-	if (currentWordVoid > 2)
+	if (currentWordVoid > 0)
 	{
 		if (drawWordLoop > 0)
 		{

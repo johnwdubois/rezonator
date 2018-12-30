@@ -178,3 +178,6 @@ showDisplayCols = false;
 
 mostRecentlyAddedWord = -1;
 mostRecentlyAddedWordMoved = -1;
+
+canPressPlus = true;
+canPressMinus = true;
