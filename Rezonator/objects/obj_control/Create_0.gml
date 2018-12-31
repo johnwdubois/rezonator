@@ -94,6 +94,7 @@ dynamicWordGrid_colDisplayString = 5; //dynamicWordGrid_colStringDisplay = 5;
 dynamicWordGrid_colInChainList = 6; //dynamicWordGrid_colInChains = 6;
 dynamicWordGrid_colAligned = 7;
 dynamicWordGrid_colVoid = 8;
+dynamicWordGrid_colStretch = 9;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
@@ -174,3 +175,9 @@ ableToCreateDropDownAlarmSet = false;
 showDevMessages = false;
 
 showDisplayCols = false;
+
+mostRecentlyAddedWord = -1;
+mostRecentlyAddedWordMoved = -1;
+
+canPressPlus = true;
+canPressMinus = true;

@@ -52,7 +52,7 @@ linkGrid = ds_grid_create(linkGridWidth, 0);
 
 
 
-vizLinkGridWidth = 9;
+vizLinkGridWidth = 10;
 vizLinkGrid_colTier = 0;
 vizLinkGrid_colChainID = 1;
 vizLinkGrid_colLinkID = 2;
@@ -62,6 +62,7 @@ vizLinkGrid_colFocus = 5;
 vizLinkGrid_colTilt = 6;
 vizLinkGrid_colCross = 7;
 vizLinkGrid_colStretch = 8;
+vizLinkGrid_colAlign = 9;
 
 vizLinkGrid = ds_grid_create(vizLinkGridWidth, 0);
 
@@ -103,3 +104,8 @@ cliqueGridRowToRefreshFlanks = -1;
 
 
 rezChainGridRowToRefreshTilt = -1;
+
+
+recentlyMovedLinks = ds_list_create();
+recentlyMovedWords = ds_list_create();
+alarm[4] = 30;

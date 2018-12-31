@@ -175,6 +175,9 @@ else if (grid == obj_control.dynamicWordGrid)
 		case obj_control.dynamicWordGrid_colVoid:
 			colName = "void";
 			break;
+		case obj_control.dynamicWordGrid_colStretch:
+			colName = "stretch";
+			break;
 		default:
 			break;
 	}
@@ -241,6 +244,9 @@ else if (grid == obj_chain.vizLinkGrid)
 			break;
 		case obj_chain.vizLinkGrid_colStretch:
 			colName = "stretch";
+			break;
+		case obj_chain.vizLinkGrid_colAlign:
+			colName = "align";
 			break;
 		default:
 			break;

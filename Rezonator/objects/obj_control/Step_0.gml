@@ -56,8 +56,7 @@ if (!gridView)
 			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
 		}
 	}
-
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up))
+	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up))
 	{
 		currentCenterDisplayRow = 0;
 		
@@ -71,6 +70,25 @@ if (!gridView)
 			var currentLineDestY = (ds_grid_get(currentActiveLineGrid, lineGrid_colDisplayRow, i) - currentCenterDisplayRow) * gridSpaceVertical + (room_height / 2);
 			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
 		}
+	}
+	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
+	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus and gridSpaceHorizontal > 40)
+	{
+		canPressPlus = false;
+		alarm[3] = 15;
+		gridSpaceHorizontal -= 20;
+	}
+	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
+	or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus and gridSpaceHorizontal < 400)
+	{
+		canPressMinus = false;
+		alarm[4] = 15;
+		gridSpaceHorizontal += 20;
+	}
+	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_numpad0)
+	or keyboard_check(vk_control) and keyboard_check_pressed(ord("0")))
+	{
+		gridSpaceHorizontal = 100;
 	}
 
 	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control))

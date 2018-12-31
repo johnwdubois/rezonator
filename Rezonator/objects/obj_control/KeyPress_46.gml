@@ -20,7 +20,12 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	
 
 	var source = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridSource);
-
+	var sourceInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, source - 1);
+	var indexOfChainIDInChainsList = ds_list_find_index(sourceInChainsList, chainID);
+	if (indexOfChainIDInChainsList > -1)
+	{
+		ds_list_delete(sourceInChainsList, indexOfChainIDInChainsList);
+	}
 	
 	var rowInLinkGridGoal = -1;
 	var newSource = -1;

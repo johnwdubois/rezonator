@@ -32,6 +32,7 @@ if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
 else
 {
 	var idSet = wordID;
+	obj_control.mostRecentlyAddedWord = wordID;
 }
 
 if (currentFocusedChainID == -1)
