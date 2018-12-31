@@ -142,6 +142,12 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		}
 	}
 	
+	//Color codes the chain lists for User
+	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); //access color of new chain
+	draw_set_color(merge_color(chainColor, c_white, 0.65)); //soften the color
+	draw_rectangle(x + textMarginLeft -2, y + textMarginTop + textPlusY - 9, x + textMarginLeft + 50, y + textMarginTop + textPlusY + 7, false);
+	//unsure if this solution can scale with different resolutions
+	
 	draw_set_color(c_black);
 	draw_text(x + textMarginLeft, y + textMarginTop + textPlusY, currentChainName);
 	

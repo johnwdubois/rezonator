@@ -30,3 +30,6 @@ scrollBarHoldingPlusY[1] = 0;
 
 mouseoverRelativeRow[0] = -1;
 mouseoverRelativeRow[1] = -1;
+
+holdUp = 0; //for controlling the speed of gridView's scrolling
+holdDown = 0;
