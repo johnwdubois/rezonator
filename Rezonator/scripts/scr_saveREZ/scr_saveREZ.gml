@@ -22,6 +22,7 @@ with (obj_saveParent)
 	var mapObjectIndex = object_get_name(object_index);
 	ds_map_add(map, "objectIndex", mapObjectIndex);
 	
+	
 	if (object_index == obj_control)
 	{
 		var mapFileLineRipGrid = scr_gridToJSONLists(global.fileLineRipGrid);
@@ -47,12 +48,17 @@ with (obj_saveParent)
 		var mapUnitInStackGrid = scr_gridToJSONLists(unitInStackGrid);
 		var mapCliqueGrid = scr_gridToJSONLists(cliqueGrid);
 		
+
 		ds_map_add_list(map, "linkGrid", mapLinkGrid);
 		ds_map_add_list(map, "rezChainGrid", mapRezChainGrid);
 		ds_map_add_list(map, "trackChainGrid", mapTrackChainGrid);
 		ds_map_add_list(map, "stackChainGrid", mapStackChainGrid);
 		ds_map_add_list(map, "unitInStackGrid", mapUnitInStackGrid);
 		ds_map_add_list(map, "cliqueGrid", mapCliqueGrid);
+		
+		ds_map_add(map, "chainColorID1", chainColorID[1]);
+		ds_map_add(map, "chainColorID2", chainColorID[2]);
+		ds_map_add(map, "chainColorID3", chainColorID[3]);
 	}
 	
 }

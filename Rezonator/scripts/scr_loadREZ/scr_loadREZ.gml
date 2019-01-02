@@ -74,6 +74,10 @@ if (file_exists(fileName))
 				obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 				scr_refreshChainGrid();
 				
+				obj_chain.chainColorID[1] = ds_map_find_value(map, "chainColorID1");
+				obj_chain.chainColorID[2] = ds_map_find_value(map, "chainColorID2");
+				obj_chain.chainColorID[3] = ds_map_find_value(map, "chainColorID3");
+				
 			}
 		}		
 	}
