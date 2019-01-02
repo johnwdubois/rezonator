@@ -1,8 +1,11 @@
-if (shape == shapeBlock)
+if (not keyboard_check(vk_shift) and not keyboard_check(vk_alt))
 {
-	shape = shapeText;
-}
-else
-{
-	shape = shapeBlock;
+	if (shape == shapeBlock)
+	{
+		shape = shapeText;
+	}
+	else
+	{
+		shape = shapeBlock;
+	}
 }

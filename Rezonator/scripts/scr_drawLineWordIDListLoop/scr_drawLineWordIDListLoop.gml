@@ -73,7 +73,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	voidMax = max(voidMax, currentWordVoid);
 	
 	
-	if (currentWordVoid > 0)
+	if ((obj_control.showDevVars and currentWordVoid > 0) or currentWordVoid > 17)
 	{
 		if (drawWordLoop > 0)
 		{
@@ -101,8 +101,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				}
 			}
 		}
+		
 		draw_rectangle(voidRectX1, voidRectY1, voidRectX2, voidRectY2, false);
 	}
+	
 	
 	currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 	if (previousWordDisplayCol >= currentWordDisplayCol)

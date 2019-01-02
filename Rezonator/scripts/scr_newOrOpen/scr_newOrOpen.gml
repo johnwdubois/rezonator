@@ -5,8 +5,8 @@ draw_set_valign(fa_middle);
 var buttonWidth = 200;
 var buttonHeight = 60;
 
-var newProjectButtonX1 = (room_width / 2) - (buttonWidth / 2);
-var newProjectButtonY1 = (room_height * 0.6);
+var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+var newProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.6);
 var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
 

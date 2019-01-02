@@ -1,3 +1,5 @@
+scr_windowCameraAdjust();
+
 if (gridView)
 {
 	exit;
@@ -16,20 +18,21 @@ if (showDisplayCols)
 	}
 }
 
-draw_set_color(c_ltgray);
-draw_line(0, camera_get_view_height(view_camera[1]) / 2, camera_get_view_width(view_camera[1]), camera_get_view_height(view_camera[1]) / 2);
-
 
 
 
 draw_set_font(fnt_debug);
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
-draw_set_color(c_black);
 draw_set_alpha(1);
 
 if (showDevVars)
 {
+	
+	draw_set_color(c_ltgray);
+	draw_line(0, camera_get_view_height(view_camera[1]) / 2, camera_get_view_width(view_camera[1]), camera_get_view_height(view_camera[1]) / 2);
+
+	draw_set_color(c_black);
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 100, "fps: " + string(fps));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 130, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 150, "currentCenterDisplayRow: " + string(currentCenterDisplayRow));

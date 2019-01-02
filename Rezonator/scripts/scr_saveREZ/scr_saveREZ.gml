@@ -71,3 +71,5 @@ var jsonString = json_encode(wrapper);
 scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
 
 ds_map_destroy(wrapper);
+
+scr_exportGrids();

@@ -127,6 +127,14 @@
             }
         },
         {
+            "Key": "0ee82ecb-9ecd-4bcb-923f-3eb1406d3915",
+            "Value": {
+                "id": "9ae91cc3-0aee-448b-ade0-dd08b4bc1262",
+                "resourcePath": "scripts\\scr_exportGrids\\scr_exportGrids.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "10d41c58-047f-4472-a565-a5ab62c9445b",
             "Value": {
                 "id": "a361d5c7-ed72-4a3e-bec9-7b14e8653b24",
@@ -203,6 +211,14 @@
             "Value": {
                 "id": "7fb35d77-3c60-41ae-ac1d-2d260fb20186",
                 "resourcePath": "scripts\\scr_panelPane_drawFilter\\scr_panelPane_drawFilter.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "1d4eb4b6-a79a-4939-b194-42b663501c60",
+            "Value": {
+                "id": "f7ad2614-0e58-469f-9db5-ae9966260a0b",
+                "resourcePath": "scripts\\scr_gridToCSV\\scr_gridToCSV.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1300,6 +1316,8 @@
         "35694f1b-e84c-4ce4-90d1-dfb1a48e918d",
         "f279c299-f4d9-4360-8c54-8318d421f154",
         "2fe811c4-caa2-4a8b-9162-d4bad73589a8",
+        "1d4eb4b6-a79a-4939-b194-42b663501c60",
+        "0ee82ecb-9ecd-4bcb-923f-3eb1406d3915",
         "425fdc02-29ad-4d6a-a6f5-cb9a29e2c1fb",
         "d7714c6a-620c-423a-a004-56a2af4eb313",
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",

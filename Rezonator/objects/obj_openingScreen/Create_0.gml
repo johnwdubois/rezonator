@@ -35,10 +35,10 @@ windowX2 = windowX1 + windowWidth;
 windowY2 = windowY1 + windowHeight;
 
 
-importWindowWidth = room_width / 2;
-importWindowHeight = room_height / 5;
-importWindowX1 = room_width * 0.25;
-importWindowY1 = room_height * 0.4;
+importWindowWidth = camera_get_view_width(view_camera[0]) / 2;
+importWindowHeight = camera_get_view_height(view_camera[0]) / 5;
+importWindowX1 = camera_get_view_width(view_camera[0]) * 0.25;
+importWindowY1 = camera_get_view_height(view_camera[0]) * 0.4;
 importWindowX2 = importWindowX1 + importWindowWidth;
 importWindowY2 = importWindowY1 + importWindowHeight;
 
