@@ -7,7 +7,6 @@ if (window_get_fullscreen())
 }
 else
 {
-
 	view_set_visible(0, false);
 	view_set_visible(1, true);
 	window_set_fullscreen(true);

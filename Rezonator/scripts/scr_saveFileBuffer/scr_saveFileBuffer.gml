@@ -1,11 +1,14 @@
 //Credit goes to Juju Adams
 
-var fileName = argument0;
-var stringToSave = argument1;
+var fileNameWD = argument0;
+var fileNameUser = argument1;
+var stringToSave = argument2;
 
 var buffer = buffer_create(string_byte_length(stringToSave) + 1, buffer_fixed, 1);
 buffer_write(buffer, buffer_string, stringToSave);
-buffer_save(buffer, fileName);
+buffer_save_ns(buffer, fileNameWD);
 buffer_delete(buffer);
 
-show_debug_message(filename_path(fileName));
+file_copy_ns(fileNameWD, fileNameUser);
+
+show_debug_message(filename_path(fileNameWD));

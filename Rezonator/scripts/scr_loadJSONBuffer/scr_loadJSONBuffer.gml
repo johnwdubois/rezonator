@@ -2,7 +2,7 @@
 
 var fileName = argument0;
 
-var buffer = buffer_load(fileName);
+var buffer = buffer_load_ns(fileName);
 var bufferString = buffer_read(buffer, buffer_string);
 buffer_delete(buffer);
 

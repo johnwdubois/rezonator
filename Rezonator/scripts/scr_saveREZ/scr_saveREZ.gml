@@ -5,9 +5,11 @@ if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName))
 	if (global.fileSaveName == "" or global.fileSaveName == "undefined")
 	{
 		global.fileSaveName = "undefined";
+		show_message("Error in saving: fileSaveName == " + string(global.fileSaveName));
 		exit;
 	}
 }
+
 
 var rootList = ds_list_create();
 
@@ -60,6 +62,6 @@ ds_map_add_list(wrapper, "ROOT", rootList);
 
 var jsonString = json_encode(wrapper);
 
-scr_saveFileBuffer(global.fileSaveName, jsonString);
+scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
 
 ds_map_destroy(wrapper);

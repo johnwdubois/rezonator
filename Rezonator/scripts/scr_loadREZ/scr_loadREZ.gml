@@ -75,8 +75,7 @@ if (file_exists(fileName))
 				scr_refreshChainGrid();
 				
 			}
-		}
-		
+		}		
 	}
 }
 
@@ -88,3 +87,4 @@ obj_chain.cliqueIDCounter = ds_grid_get_max(obj_chain.cliqueGrid, obj_chain.cliq
 obj_chain.rezChainNameCounter = ds_grid_height(obj_chain.rezChainGrid);
 obj_chain.trackChainNameCounter = ds_grid_height(obj_chain.trackChainGrid);
 obj_chain.stackChainNameCounter = ds_grid_height(obj_chain.stackChainGrid);
+scr_refreshVizLinkGrid();

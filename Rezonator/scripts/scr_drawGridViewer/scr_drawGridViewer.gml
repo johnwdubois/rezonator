@@ -110,7 +110,7 @@ scrollRange[gridArrayIndex] = (windowHeight[gridArrayIndex] / string_height(curr
 
 if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2))
 {
-	if (mouse_wheel_up() || keyboard_check(vk_up))
+	if (mouse_wheel_up() or keyboard_check(vk_up))
 	{
 		if (gridCurrentTopViewRow[gridArrayIndex] > 0)
 		{
@@ -128,7 +128,7 @@ if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2)
 			}
 		}
 	}
-	else if (mouse_wheel_down() || keyboard_check(vk_down))
+	else if (mouse_wheel_down() or keyboard_check(vk_down))
 	{
 		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex]))
 		{

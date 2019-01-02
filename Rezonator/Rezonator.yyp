@@ -87,11 +87,27 @@
             }
         },
         {
+            "Key": "0a597430-14a0-4676-ae4f-d754d2b12c2e",
+            "Value": {
+                "id": "f17ef516-8724-44f0-9bf5-e5ddbb0c179c",
+                "resourcePath": "datafiles_yy\\nsfs-doc.html.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "0c73e3dd-a8e3-44c2-93ed-8740ef556cb6",
             "Value": {
                 "id": "54050f18-6390-4d68-9622-8805426006a3",
                 "resourcePath": "objects\\obj_gridViewer\\obj_gridViewer.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "0d280dcd-4202-4253-bc2c-2ea02bac4020",
+            "Value": {
+                "id": "b0e68067-dd42-4847-a28c-569933b33882",
+                "resourcePath": "extensions\\nsfs\\nsfs.yy",
+                "resourceType": "GMExtension"
             }
         },
         {
@@ -1044,6 +1060,14 @@
                 "id": "a9d5af24-ee07-4eb5-8fa2-b56936e97430",
                 "resourcePath": "sprites\\spr_calloutBubble\\spr_calloutBubble.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "dedeb608-2c03-41af-aa9e-687873f7d24c",
+            "Value": {
+                "id": "93c985df-c417-4b12-82ae-6408a847f62b",
+                "resourcePath": "notes\\compatibility_report_010119_2032583258.yy",
+                "resourceType": "GMNotes"
             }
         },
         {
