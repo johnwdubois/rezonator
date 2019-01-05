@@ -46,6 +46,9 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 		}
 	}
 	
+	var wordsInSameUnit = false;
+	var firstWordInUnit = -1;
+	
 	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++)
 	{
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
@@ -61,6 +64,32 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 		var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
 		var currentUnitID2 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID2 - 1);
 		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID2);
+		
+		if (currentUnitID1 == currentUnitID2)
+		{
+			wordsInSameUnit = true;
+			if (firstWordInUnit < 0)
+			{
+				firstWordInUnit = currentWordID1;
+			}
+		}
+		else
+		{
+			if (wordsInSameUnit and firstWordInUnit >= 0 and firstWordInUnit < ds_grid_height(obj_control.wordGrid))
+			{
+				currentWordID1 = firstWordInUnit;
+				currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
+				currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
+		
+				currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
+				currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
+		
+				lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
+				lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex1);
+			}
+			
+			firstWordInUnit = -1;
+		}
 		
 		var currentWordStringWidth2 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1));
 		var currentWordStringHeight2 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1));
