@@ -10,11 +10,16 @@ for (var i = -1; i < ds_grid_height(grid); i++)
 	{
 		if (i == -1)
 		{
-			lineStr += scr_getColNameString(grid, j) + ",";
+			lineStr += scr_getColNameString(grid, j);
 		}
 		else if (i >= 0)
 		{
-			lineStr += scr_drawGridViewerGetItemString(grid, j, i) + ",";
+			lineStr += scr_drawGridViewerGetItemString(grid, j, i);
+		}
+		
+		if (i >= -1 and j < ds_grid_width(grid) - 1)
+		{
+			lineStr += ",";
 		}
 	}
 	

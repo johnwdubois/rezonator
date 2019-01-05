@@ -1,6 +1,11 @@
 var windowWidth = window_get_width();
 var windowHeight = window_get_height();
 
+if (windowWidth < 1 or windowHeight < 1)
+{
+	exit;
+}
+
 view_hport[0] = windowHeight;
 view_wport[0] = windowWidth;
 
