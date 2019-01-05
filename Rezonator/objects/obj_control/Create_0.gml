@@ -1,4 +1,5 @@
 currentCenterDisplayRow = 0;
+//prevCenterDisplayRow = 0;
 
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 33.4;

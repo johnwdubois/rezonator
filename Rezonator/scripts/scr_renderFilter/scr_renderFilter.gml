@@ -117,7 +117,7 @@ if (obj_panelPane.functionFilter_peek[0] == 1)
 		var currentUtteranceID = ds_grid_get(unitGrid, unitGrid_colUtteranceID, currentUnitID - 1);
 		var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
 		
-		ds_grid_resize(filterGrid, lineGridWidth, ds_grid_height(filterGrid) + 1);
+		ds_grid_resize(filterGrid, lineGridWidth, ds_grid_height(filterGrid) + 1); 
 		var currentRowFilterGrid = ds_grid_height(filterGrid) - 1;
 		
 		ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
@@ -128,6 +128,7 @@ if (obj_panelPane.functionFilter_peek[0] == 1)
 		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 	}
+	
 }
 
 if (obj_panelPane.functionFilter_peek[1] == 1)
@@ -156,6 +157,8 @@ if (obj_panelPane.functionFilter_peek[1] == 1)
 		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 	}
+	//currentCenterDisplayRow = floor((ds_grid_get(filterGrid, lineGrid_colUnitID, firstUnit) + ds_grid_get(filterGrid, lineGrid_colUnitID, lastUnit)) / 2);
+	//absolutely does not work, something about an unloaded object, check error message
 }
 
 if (obj_panelPane.functionFilter_peek[2] == 1)
@@ -187,7 +190,14 @@ if (obj_panelPane.functionFilter_peek[2] == 1)
 }
 
 
-
+/*if (obj_panelPane.functionFilter_peek[0] == 1 and obj_panelPane.functionFilter_peek[2] != 1)
+{//this one works for some reason
+	currentCenterDisplayRow = ds_grid_get(filterGrid, lineGrid_colUnitID, firstUnit);
+}
+if (obj_panelPane.functionFilter_peek[2] == 1 and obj_panelPane.functionFilter_peek[0] != 1)
+{//yet this one does not, wild
+	currentCenterDisplayRow = ds_grid_get(filterGrid, lineGrid_colUnitID, lastUnit);
+}*/
 
 
 ds_grid_sort(filterGrid, lineGrid_colUnitID, true);

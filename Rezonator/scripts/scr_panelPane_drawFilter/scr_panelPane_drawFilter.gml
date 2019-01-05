@@ -69,9 +69,11 @@ if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButton
 	if (mouse_check_button_pressed(mb_left))
 	{
 		if (obj_control.filterGridActive)
-		{
+		{//maybe this is where I can get filterFocus to work?
+			//obj_control.prevCenterDisplayRow = obj_control.currentCenterDisplayRow;
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			//obj_control.currentCenterDisplayRow = obj_control.prevCenterDisplayRow;
 		}
 		else
 		{
