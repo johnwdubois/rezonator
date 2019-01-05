@@ -105,20 +105,27 @@ for (var i = 0; i < 2; i++)
 	var viewIconRectY1 = y + iconPlusY - (sprite_get_height(spr_viewIcons) / 2);
 	var viewIconRectX2 = viewIconRectX1 + sprite_get_width(spr_viewIcons);
 	var viewIconRectY2 = viewIconRectY1 + sprite_get_height(spr_viewIcons);
-	var mouseover = false;
 	
+	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, viewIconRectX1, viewIconRectY1, viewIconRectX2, viewIconRectY2))
 	{
 		mouseover = true;
 	}
 	
-	if (mouseover)
+	var selected = false;
+	if (i == 0 and not obj_control.gridView
+	or i == 1 and obj_control.gridView)
+	{
+		selected = true;
+	}
+	
+	if (mouseover or selected)
 	{
 		var rectBuffer = 2;
 		draw_set_color(c_gray);
 		draw_rectangle(viewIconRectX1 - rectBuffer, viewIconRectY1 - rectBuffer, viewIconRectX2 + rectBuffer, viewIconRectY2 + rectBuffer, true);
 		
-		if (mouse_check_button_pressed(mb_left))
+		if (mouseover and mouse_check_button_pressed(mb_left))
 		{
 			if (i == 0)
 			{
@@ -131,14 +138,10 @@ for (var i = 0; i < 2; i++)
 		}
 	}
 	
-	var selected = false;
 	var imageBlend = c_black;
-	if (i == 0 and not obj_control.gridView
-	or i == 1 and obj_control.gridView)
+	if (selected)
 	{
-		selected = true;
-		imageBlend = c_white;
-		
+		imageBlend = c_white;	
 		draw_set_color(c_black);
 		draw_set_alpha(1);
 		draw_rectangle(viewIconRectX1, viewIconRectY1, viewIconRectX2, viewIconRectY2, false);

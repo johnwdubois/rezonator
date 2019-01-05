@@ -141,6 +141,7 @@ if (ds_list_size(wordIDList) > 0)
 					{
 						//show_message("BREAK");
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, false);
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1, true);
 					}
 				}
 				else

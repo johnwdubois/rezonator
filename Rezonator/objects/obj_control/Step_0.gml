@@ -1,5 +1,23 @@
 if (!gridView)
 {
+	if (ds_grid_height(currentActiveLineGrid) > 0)
+	{
+		var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
+		if (firstLinePixelY > 150 + gridSpaceVertical)
+		{
+			currentCenterDisplayRow++;
+		}
+		
+		
+		var lastLinePixelY = (room_height / 2) + ((ds_grid_height(currentActiveLineGrid) - currentCenterDisplayRow) * gridSpaceVertical);
+		if (lastLinePixelY < camera_get_view_height(view_camera[0]) - 30
+		and currentCenterDisplayRow + drawRange >= ds_grid_height(currentActiveLineGrid))
+		{
+			currentCenterDisplayRow--;
+		}
+		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
+		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
+	}
 
 	if (keyboard_check(vk_down))
 	{
@@ -171,6 +189,9 @@ if (keyboard_check_pressed(ord("M")))
 {
 	gridSpaceVertical -= 10;
 }
+
+gridSpaceVertical = min(gridSpaceVertical, 303.40);
+gridSpaceVertical = max(gridSpaceVertical, 23.40);
 
 if (keyboard_check_pressed(ord("Q")))
 {

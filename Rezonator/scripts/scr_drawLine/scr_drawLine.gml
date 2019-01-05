@@ -30,6 +30,31 @@ drawRangeEnd = currentCenterDisplayRow + drawRange;
 drawRangeStart = max(drawRangeStart, 0);
 drawRangeEnd = min(drawRangeEnd, ds_grid_height(currentActiveLineGrid));
 
+if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0)
+{
+	var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
+	draw_set_color(c_ltgray);
+	draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
+}
+if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) and ds_grid_height(currentActiveLineGrid) > 0)
+{
+	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
+	draw_set_color(c_ltgray);
+	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), room_width, room_height, false);
+}
+
+if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin + obj_control.speakerLabelMarginBuffer)
+{
+	draw_set_color(c_ltgray);
+	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin - obj_control.speakerLabelMarginBuffer;
+	var leftOutOfBoundsRectY1 = 0;
+	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - obj_control.speakerLabelMarginBuffer;
+	var leftOutOfBoundsRectY2 = room_height;
+	draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
+}
+
+draw_set_color(c_black);
+
 for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoop++)
 {
 	if (drawLineLoop < 0 or drawLineLoop >= ds_grid_height(currentActiveLineGrid))
@@ -44,11 +69,11 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	
 	if (currentLineY < currentLineDestY)
 	{
-		currentLineY += abs(currentLineY - currentLineDestY) / 6;
+		currentLineY += abs(currentLineY - currentLineDestY) / 4;
 	}
 	else if (currentLineY > currentLineDestY)
 	{
-		currentLineY -= abs(currentLineY - currentLineDestY) / 6;
+		currentLineY -= abs(currentLineY - currentLineDestY) / 4;
 	}
 	
 	ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop, currentLineY);

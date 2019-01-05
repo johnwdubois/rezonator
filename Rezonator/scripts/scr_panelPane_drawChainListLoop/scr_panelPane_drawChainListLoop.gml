@@ -78,19 +78,23 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	var chainNameRectX2 = chainNameRectX1 + string_width(currentChainName);
 	var chainNameRectY2 = chainNameRectY1 + string_height(currentChainName) - chainNameRectMinusY;
 	
+	/*
 	if (currentChainState == obj_chain.chainStateFocus)
 	{
 		draw_set_color(obj_control.c_ltblue);
 		draw_rectangle(chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, false);
 	}
+	*/
 	
 	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2))
 	{
+		/*
 		if (currentChainState != obj_chain.chainStateFocus)
 		{
 			draw_set_color(c_ltgray);
 			draw_rectangle(chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, false);
 		}
+		*/
 		
 		if (mouse_check_button_pressed(mb_left))
 		{
@@ -144,8 +148,19 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	
 	//Color codes the chain lists for User
 	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); //access color of new chain
+	var rectX1 = x + textMarginLeft - 2;
+	var rectX2 = x + textMarginLeft + 50;
+	if (currentChainState == obj_chain.chainStateFocus)
+	{
+		rectX1 = x;
+	}
 	draw_set_color(merge_color(chainColor, c_white, 0.65)); //soften the color
-	draw_rectangle(x + textMarginLeft -2, y + textMarginTop + textPlusY - 9, x + textMarginLeft + 50, y + textMarginTop + textPlusY + 7, false);
+	draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, false);
+	if (currentChainState == obj_chain.chainStateFocus)
+	{
+		draw_set_color(c_black);
+		draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, true);
+	}
 	//unsure if this solution can scale with different resolutions
 	
 	draw_set_color(c_black);

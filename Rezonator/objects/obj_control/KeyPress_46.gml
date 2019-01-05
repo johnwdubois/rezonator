@@ -27,6 +27,16 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		ds_list_delete(sourceInChainsList, indexOfChainIDInChainsList);
 	}
 	
+	if (source >= 0 and source < ds_grid_height(obj_control.dynamicWordGrid) and tier == 1)
+	{
+		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, source - 1))
+		{
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, source - 1, false);
+		}
+		
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, source - 1, true);
+	}
+	
 	var rowInLinkGridGoal = -1;
 	var newSource = -1;
 	var newGoal = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, rowInLinkGridSource);

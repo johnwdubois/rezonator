@@ -96,10 +96,18 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		var rowInLinkGrid = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentWordID, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
 		var focusedLink = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid);
 		var sourceWordID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGrid);
+		
+		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1))
+		{
+			draw_set_alpha(0.25);
+			draw_set_color(c_red);
+			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+		}
 			
 		if (focusedLink)
 		{
-			draw_set_color(c_ltgray);
+			draw_set_alpha(0.25);
+			draw_set_color(c_black);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 			
 			if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid)
@@ -112,7 +120,8 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		else if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver)
 		{
 			ableToBeMouseOver = false;
-			draw_set_color(c_ltgray);
+			draw_set_alpha(0.25);
+			draw_set_color(c_black);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 			
 			if (mouse_check_button_pressed(mb_left))
@@ -124,7 +133,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 				
 			}
 		}
-		
+		draw_set_alpha(1);
 	
 		
 		
@@ -228,7 +237,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		}
 		
 		if (point_in_rectangle(mouse_x, mouse_y, x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2), x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2)) and mouse_check_button_pressed(mb_left)
-		and chainAligned)
+		and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1))
 		{
 			currentWordAligned = !currentWordAligned;
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
