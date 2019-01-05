@@ -109,7 +109,7 @@ draw_rectangle(windowX1, windowY1, windowX2, windowY1 + colNameHeight, true);
 scrollRange[gridArrayIndex] = (windowHeight[gridArrayIndex] / string_height(currentItemString)) - 2;
 
 if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2))
-{
+{//implemented "speed limit" for scrolling in gridView
 	if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_gridViewer.holdUp < 2 || obj_gridViewer.holdUp > 30))
 	{
 		if (gridCurrentTopViewRow[gridArrayIndex] > 0)
@@ -142,6 +142,79 @@ if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2)
 				if (scrollTogetherLoop != gridArrayIndex)
 				{
 					gridCurrentTopViewRow[scrollTogetherLoop]++;
+				}
+			}
+		}
+	}
+	if (keyboard_check_pressed(vk_pageup))
+	{//added pageUp/pageDown functionality to gridView
+		if (gridCurrentTopViewRow[gridArrayIndex] > 0)
+		{
+			gridCurrentTopViewRow[gridArrayIndex] -= scrollRange[gridArrayIndex];
+			
+			if (scrollTogether)
+			{
+				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
+				{
+					if (scrollTogetherLoop != gridArrayIndex)
+					{
+						gridCurrentTopViewRow[scrollTogetherLoop] -= scrollRange[gridArrayIndex];
+					}
+				}
+			}
+		}
+	}
+	if (keyboard_check_pressed(vk_pagedown))
+	{
+		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex]))
+		{
+			gridCurrentTopViewRow[gridArrayIndex] += scrollRange[gridArrayIndex];
+		}
+		
+		if (scrollTogether)
+		{
+			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
+			{
+				if (scrollTogetherLoop != gridArrayIndex)
+				{
+					gridCurrentTopViewRow[scrollTogetherLoop] += scrollRange[gridArrayIndex];
+				}
+			}
+		}
+	}
+	
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up))
+	{//added pageUp/pageDown functionality to gridView
+		if (gridCurrentTopViewRow[gridArrayIndex] > 0)
+		{
+			gridCurrentTopViewRow[gridArrayIndex] -= ds_grid_height(grid[gridArrayIndex]);
+			
+			if (scrollTogether)
+			{
+				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
+				{
+					if (scrollTogetherLoop != gridArrayIndex)
+					{
+						gridCurrentTopViewRow[scrollTogetherLoop] -= ds_grid_height(grid[gridArrayIndex]);
+					}
+				}
+			}
+		}
+	}
+	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down))
+	{
+		
+		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex]))
+		{
+			gridCurrentTopViewRow[gridArrayIndex] += ds_grid_height(grid[gridArrayIndex]);
+		}
+		if (scrollTogether)
+		{
+			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
+			{
+				if (scrollTogetherLoop != gridArrayIndex)
+				{
+					gridCurrentTopViewRow[scrollTogetherLoop] += ds_grid_height(grid[gridArrayIndex]);
 				}
 			}
 		}

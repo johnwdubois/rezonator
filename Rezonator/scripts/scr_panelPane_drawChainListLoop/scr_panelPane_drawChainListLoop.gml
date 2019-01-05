@@ -150,11 +150,10 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	
 	draw_set_color(c_black);
 	draw_text(x + textMarginLeft, y + textMarginTop + textPlusY, currentChainName);
-	
+	/*
 	draw_set_color(currentChainColor);
 	draw_circle(x + textMarginLeft + string_width(currentChainName) + 10, y + textMarginTop + textPlusY - 2, 5, false);
-	
-	draw_set_color(c_black);
+	draw_set_color(c_black);*/
 	
 	var chainFilterRectX1 = x + filterRectMargin;
 	var chainFilterRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2);
