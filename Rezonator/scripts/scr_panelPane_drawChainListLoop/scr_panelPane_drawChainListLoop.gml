@@ -220,6 +220,13 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		{
 			if (mouse_check_button_pressed(mb_left))
 			{
+				
+				
+				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned)
+				{
+					scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
+				}
+				
 				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, !isAligned);
 				
 				/*
