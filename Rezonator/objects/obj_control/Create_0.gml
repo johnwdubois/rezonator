@@ -1,5 +1,5 @@
 currentCenterDisplayRow = 0;
-//prevCenterDisplayRow = 0;
+prevCenterDisplayRow = 0;
 
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 33.4;
@@ -182,3 +182,5 @@ mostRecentlyAddedWordMoved = -1;
 
 canPressPlus = true;
 canPressMinus = true;
+
+

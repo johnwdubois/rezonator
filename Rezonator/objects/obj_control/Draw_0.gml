@@ -19,12 +19,14 @@ if (showDisplayCols)
 }
 
 
-
+scr_drawLine();
 
 draw_set_font(fnt_debug);
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
 draw_set_alpha(1);
+
+
 
 if (showDevVars)
 {
@@ -45,8 +47,19 @@ if (showDevVars)
 
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 310, "displayRowAscending: " + string(displayRowAscending));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 330, "currentChainID: " + string(obj_chain.currentChainID));
-	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 400, "newWordHoverWordID: " + string(newWordHoverWordID));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 485, "chainIDModifyList: ");
+	var modifyListStr = "{";
+	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) 
+	{
+			modifyListStr += string(ds_list_find_value(obj_chain.chainIDModifyList, i));
+			if(i < ds_list_size(obj_chain.chainIDModifyList) - 1)
+			{
+				modifyListStr += ", ";
+			}
+	}
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, modifyListStr + "}");
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 600, "mostRecentlyAddedWord: " + string(mostRecentlyAddedWord));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 650, "mostRecentlyAddedWordMoved: " + string(mostRecentlyAddedWordMoved));
@@ -57,4 +70,4 @@ if (showDevVars)
 }
 
 
-scr_drawLine();
+
