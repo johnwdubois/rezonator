@@ -583,6 +583,14 @@
             }
         },
         {
+            "Key": "79e73708-91c0-467f-ab87-2d0ed15beb30",
+            "Value": {
+                "id": "82144cbb-e735-4e3d-b3a9-5312ae30ea73",
+                "resourcePath": "scripts\\scr_panelPane_drawHelp\\scr_panelPane_drawHelp.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7abdcd91-22cf-4799-8471-225021a1ee98",
             "Value": {
                 "id": "8d7e9951-6d8a-419e-89e6-5b7df0d4dff4",
@@ -1299,6 +1307,7 @@
         "a5f9ac41-9a02-4abb-bf10-b1ae7ae6abba",
         "207f7a01-23f9-4bb8-ac22-1f696d1e08e7",
         "86d712e5-8944-4c97-a29c-925c573202c9",
+        "79e73708-91c0-467f-ab87-2d0ed15beb30",
         "4780a6db-dc73-40e3-8286-7eb084a8b47b",
         "2c4abd01-f056-4203-accc-7a49a37cdfee",
         "8527467f-60ba-4b6d-8e16-ec6891e4a3e2",
