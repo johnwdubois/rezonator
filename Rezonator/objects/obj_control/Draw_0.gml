@@ -30,7 +30,7 @@ if (showDevVars)
 {
 	
 	draw_set_color(c_ltgray);
-	draw_line(0, camera_get_view_height(view_camera[1]) / 2, camera_get_view_width(view_camera[1]), camera_get_view_height(view_camera[1]) / 2);
+	draw_line(0, 150 + (camera_get_view_height(view_camera[0]) - 150) / 2, camera_get_view_width(view_camera[0]), 150 + (camera_get_view_height(view_camera[0]) - 150) / 2);
 
 	draw_set_color(c_black);
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 100, "fps: " + string(fps));
@@ -58,3 +58,4 @@ if (showDevVars)
 
 
 scr_drawLine();
+

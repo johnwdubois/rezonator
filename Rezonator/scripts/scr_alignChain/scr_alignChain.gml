@@ -17,8 +17,19 @@ if (ds_list_size(wordIDList) > 0)
 		var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
-		if (ds_list_find_index(unitIDList, currentUnitID) > -1)
-		{
+		if (ds_list_find_index(unitIDList, currentUnitID) > -1) {
+			if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1) > 0) {
+				var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
+				var previousWordID = currentWordID - 1;
+				var previousUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, previousWordID - 1);
+				if (currentUnitID == previousUnitID)
+				{
+					var previousDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, previousWordID - 1);
+					if ((currentWordDisplayCol - previousDisplayCol) > 1) {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentWordDisplayCol - 1);
+					}
+				}
+			}
 			continue;
 		}
 		ds_list_add(unitIDList, currentUnitID);

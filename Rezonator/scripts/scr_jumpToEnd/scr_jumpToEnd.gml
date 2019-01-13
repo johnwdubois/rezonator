@@ -83,5 +83,11 @@ if (jumpToStart)
 }
 else
 {
-	obj_control.wordLeftMarginDest = -(furthestDisplayCol * obj_control.gridSpaceHorizontal) + (obj_control.gridSpaceHorizontal * 10);
+	var factor = floor(camera_get_view_width(view_camera[0]) / 100);
+	//show_message(string(factor))
+	var moveRight = -(furthestDisplayCol * obj_control.gridSpaceHorizontal) + (obj_control.gridSpaceHorizontal * factor);
+	if (moveRight < 0) {
+		obj_control.wordLeftMarginDest = moveRight;
+	}
+	
 }
