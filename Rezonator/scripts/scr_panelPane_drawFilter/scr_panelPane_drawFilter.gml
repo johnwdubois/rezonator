@@ -69,11 +69,17 @@ if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButton
 	if (mouse_check_button_pressed(mb_left))
 	{
 		if (obj_control.filterGridActive)
-		{//maybe this is where I can get filterFocus to work?
-			//obj_control.prevCenterDisplayRow = obj_control.currentCenterDisplayRow;
+		{
+			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) 
+			{
+				obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+				with (obj_control) 
+				{
+					alarm[5] = 3;//play with the feeling of this plenty
+				}
+			}
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
-			//obj_control.currentCenterDisplayRow = obj_control.prevCenterDisplayRow;
 		}
 		else
 		{
@@ -81,6 +87,7 @@ if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButton
 			{
 				scr_renderFilter();
 			}
+			
 		}
 	}
 }

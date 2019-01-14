@@ -12,6 +12,14 @@
 	Author: Terry DuBois
 */
 
+//New funtionality for recording chain modification
+while(ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) 
+{
+	var ind = ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID);
+	ds_list_delete(obj_chain.chainIDModifyList, ind);
+}
+ds_list_insert(obj_chain.chainIDModifyList, 0, currentFocusedChainID);
+
 var wordID = argument0;
 var goal = argument1;
 var focus = true;
