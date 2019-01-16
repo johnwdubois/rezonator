@@ -35,12 +35,17 @@ for (var i = 0; i < tabAmount; i++)
 	}
 	
 	if (point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2))
-	{
+	{//tab focus might be solved here
 		if (mouse_check_button_pressed(mb_left))
 		{
 			functionChainList_currentTab = i;
 			
 			scr_unFocusAllChains();
+			
+			//call reFocus function
+			if(functionChainList_currentTab >= 0) {
+				scr_reFocusOldChains();
+			}
 		}
 	}
 	

@@ -118,3 +118,9 @@ unitIDOfLastWord = -1;
 focusPrior = false;
 focusTween = false;
 focusNext = false;
+
+//Fields for keeping tabFocus
+oldRezFocus = -1;
+oldTrackFocus = -1;
+oldStackFocus = -1;
+

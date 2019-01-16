@@ -239,6 +239,14 @@
             }
         },
         {
+            "Key": "2314d808-a273-4c27-b262-bd599936310c",
+            "Value": {
+                "id": "bcdaf2fd-fd13-4cf7-9685-f3737cecb12b",
+                "resourcePath": "scripts\\scr_reFocusOldChains\\scr_reFocusOldChains.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "24a4f03c-31b0-4a4c-b724-913a80e28037",
             "Value": {
                 "id": "8fdb6bb6-72a6-46d7-889d-032d96f89b8e",
