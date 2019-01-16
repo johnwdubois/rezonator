@@ -102,7 +102,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 			{
 				currentChainState = obj_chain.chainStateNormal;
 			}
-			else
+			else//focuses on selected chain
 			{
 				switch (functionChainList_currentTab)
 				{
