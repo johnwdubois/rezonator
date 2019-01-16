@@ -144,7 +144,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var wordRectY2 = wordRectY1 + string_height(currentWordString) + (wordRectBuffer * 2);
 	
 	draw_set_alpha(1);
-	draw_set_color(c_white);
+	if (obj_control.darkTheme) {
+		draw_set_color(obj_control.darkThemeBackColor);
+	}
+	else {
+		draw_set_color(obj_control.lightThemeBackColor);
+	}
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 	
 	var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordID - 1);
@@ -193,7 +198,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	{
 		mouseover = true;
 		draw_set_alpha(1);
-		draw_set_color(c_black);
+		if (obj_control.darkTheme) {
+			draw_set_color(obj_control.darkThemeTextColor);
+		}
+		else {
+			draw_set_color(obj_control.lightThemeTextColor);
+		}
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 		if (mouse_check_button_pressed(mb_left))

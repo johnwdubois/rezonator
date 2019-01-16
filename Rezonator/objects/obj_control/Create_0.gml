@@ -184,3 +184,8 @@ canPressPlus = true;
 canPressMinus = true;
 
 
+darkTheme = false;
+darkThemeBackColor = c_dkgray;
+darkThemeTextColor = c_white;
+lightThemeBackColor = c_white;
+lightThemeTextColor = c_black;

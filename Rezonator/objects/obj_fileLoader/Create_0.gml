@@ -1,8 +1,5 @@
 discourseProcessing = 0;
-
 fileLineRipListElement = 0;
-
-
 
 
 wordIDCounter = 0;

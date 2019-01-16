@@ -2,8 +2,8 @@ if (currentFunction != functionHelp) {
 	exit;
 }
 
-var helpGridHeight = 15;
-ds_grid_resize(functionHelp_helpGridRez, functionHelp_helpGridWidth, helpGridHeight);
+var helpGridHeightRez = 15;
+ds_grid_resize(functionHelp_helpGridRez, functionHelp_helpGridWidth, helpGridHeightRez);
 
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 0, "[CLICK]");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 0, "Focus a word (and if whip is present, add to chain)");
@@ -59,18 +59,19 @@ ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 15, "Mute a
 
 
 
+var helpGridHeightNav = 7;
+ds_grid_resize(functionHelp_helpGridNav, functionHelp_helpGridWidth, helpGridHeightNav);
 
-
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 0, "↑");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 0, "UP ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 0, "move up to previous line");
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 1, "↓");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 1, "DOWN ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 1, "move down to next line");
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 2, "←");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 2, "LEFT ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 2, "move left");
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 3, "→");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 3, "RIGHT ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 3, "move right");
 
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 4, "[HOME]");

@@ -55,6 +55,10 @@ if (string_count("</g>", currentElement) > 0)
 
 if (string_count("/>", currentElement) > 0)
 {
+	if (string_length(string_digits(string(currentUnitpID))) < 1) {
+		exit;
+	}
+	
 	unitIDCounter++;
 	currentUnitID = unitIDCounter;
 			

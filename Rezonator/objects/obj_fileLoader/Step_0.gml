@@ -1,14 +1,17 @@
 fileLoadRate = ceil(fps);
 
+//if (keyboard_check_pressed(vk_decimal)) {
+	//show_message(string(fileLineRipListElement) + "unitIDCounter: " + string(unitIDCounter));
+//}
+
 for (var i = 0; i < fileLoadRate; i++)
 {
-
 	if (discourseProcessing < 0 or discourseProcessing >= ds_grid_height(global.fileLineRipGrid))
 	{
 		exit;
 	}
 	
-	if not instance_exists(obj_control)
+	if (not instance_exists(obj_control))
 	{
 		exit;
 	}
@@ -18,7 +21,7 @@ for (var i = 0; i < fileLoadRate; i++)
 		exit;
 	}
 	
-
+	
 
 	fileLineRipList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colFileLineRipList, discourseProcessing);
 	currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, discourseProcessing);
@@ -29,8 +32,6 @@ for (var i = 0; i < fileLoadRate; i++)
 
 
 	currentElement = ds_list_find_value(fileLineRipList, fileLineRipListElement);
-	
-	
 	scr_loadNextElement();
 
 
@@ -43,5 +44,4 @@ for (var i = 0; i < fileLoadRate; i++)
 		fileLineRipListElement = 0;
 		discourseProcessing++;
 	}
-
 }

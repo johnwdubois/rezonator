@@ -191,7 +191,12 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);
 	draw_set_alpha(1);
 	draw_set_font(fnt_main);
-	draw_set_color(c_black);
+	if (obj_control.darkTheme) {
+		draw_set_color(obj_control.darkThemeTextColor);
+	}
+	else {
+		draw_set_color(obj_control.lightThemeTextColor);
+	}
 	draw_set_halign(fa_left);
 	
 	if (speakerRectY1 == undefined or speakerRectY2 == undefined or currentDiscoID == undefined or currentLineNumberLabel == undefined or participantName == undefined)
