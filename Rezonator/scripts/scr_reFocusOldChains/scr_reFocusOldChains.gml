@@ -13,6 +13,7 @@
 
 var grid = obj_chain.rezChainGrid;
 
+//switch to focused grid
 switch (functionChainList_currentTab)
 {
 	case functionChainList_tabRezBrush:
@@ -32,7 +33,8 @@ switch (functionChainList_currentTab)
 		break;
 }
 
-/*switch (functionChainList_currentTab)
+//added functionality of switching to the tool of the focused tab.
+switch (functionChainList_currentTab)
 {
 	case functionChainList_tabRezBrush:
 		obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
@@ -45,8 +47,9 @@ switch (functionChainList_currentTab)
 		break;
 	default:
 		break;
-}*/
+}
 				
+//switch to focused chain				
 switch (functionChainList_currentTab)
 {
 	case functionChainList_tabRezBrush:
@@ -61,12 +64,3 @@ switch (functionChainList_currentTab)
 	default:
 		break;
 }
-				
-				
-/*scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-				
-if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid))
-{
-	scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
-}
-obj_chain.mouseLineWordID = -1;*/
