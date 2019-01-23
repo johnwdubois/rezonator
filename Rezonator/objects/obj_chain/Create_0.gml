@@ -124,3 +124,12 @@ oldRezFocus = -1;
 oldTrackFocus = -1;
 oldStackFocus = -1;
 
+
+/*
+raceGridWidth = 3;
+raceGrid_colWordID = 0;
+raceGrid_colRaceSteps = 1;
+raceGrid_colRaceRank = 2;
+*/
+
+chainIDRaceCheck = -1;

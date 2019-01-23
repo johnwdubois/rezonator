@@ -295,3 +295,47 @@ if (scrollBarHolding)
 {
 	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_grid_height(grid)) / (windowHeight));
 }
+
+if(obj_panelPane.clickedIn) {
+	if ((mouse_wheel_up() || keyboard_check(vk_up)))
+	{
+		if (currentTopViewRow > 0)
+		{
+			currentTopViewRow--;
+			
+		}
+	}
+	if (keyboard_check_pressed(vk_pageup)){//added pageUp/pageDown functionality to gridView
+		if (currentTopViewRow > 0){
+			currentTopViewRow -= scrollRange;
+		}
+	}
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up))
+	{//added pageUp/pageDown functionality to gridView
+		if (currentTopViewRow > 0)
+		{
+			currentTopViewRow -= ds_grid_height(grid);
+		}
+	}
+}
+if(obj_panelPane.clickedIn) {
+	if ((mouse_wheel_down() || keyboard_check(vk_down))){
+		if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
+			currentTopViewRow++;
+			
+		}
+	}
+	if (keyboard_check_pressed(vk_pagedown)){
+		if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
+			currentTopViewRow += scrollRange;
+		}
+	}
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down))
+	{
+		
+		if (currentTopViewRow + scrollRange < ds_grid_height(grid))
+		{
+			currentTopViewRow += ds_grid_height(grid);
+		}
+	}
+}

@@ -41,9 +41,18 @@ draw_set_color(c_black);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 
 var mouseover = false;
-point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)
+if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight))
 {
 	mouseover = true;
+}
+
+if (mouse_check_button_pressed(mb_left) and mouseover) {
+	clickedIn = true;
+	//show_message("true");
+}
+if (mouse_check_button_pressed(mb_left) and not mouseover) {
+	//show_message("false");
+	clickedIn = false;
 }
 
 

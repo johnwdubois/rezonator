@@ -75,3 +75,5 @@ doubleClickTimer = -1;
 
 
 alarm[0] = 1;
+
+clickedIn = false;

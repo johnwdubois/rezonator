@@ -142,17 +142,17 @@ if (ds_list_size(wordIDList) > 0)
 				var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 				if (currentWordID == obj_control.mostRecentlyAddedWord and furthestDisplayCol > currentDisplayCol)
 				{
-					if (not obj_control.mostRecentlyAddedWordMoved)
+					if (obj_control.mostRecentlyAddedWordMoved)
+					{
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, false);
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1, true);
+						
+					}
+					else
 					{
 						obj_control.mostRecentlyAddedWordMoved = true;
 						obj_control.alarm[2] = 5;
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, furthestDisplayCol);
-					}
-					else
-					{
-						//show_message("BREAK");
-						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, false);
-						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1, true);
 					}
 				}
 				else
