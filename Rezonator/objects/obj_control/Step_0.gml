@@ -18,7 +18,7 @@ if (!gridView)
 		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 	}
-
+if(obj_panelPane.clickedIn == false){
 	if (keyboard_check(vk_down))
 	{
 		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
@@ -108,7 +108,7 @@ if (!gridView)
 	{
 		gridSpaceHorizontal = 100;
 	}
-
+}
 	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control))
 	{
 		wordLeftMarginDest -= gridSpaceHorizontal;
