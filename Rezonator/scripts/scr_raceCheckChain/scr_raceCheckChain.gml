@@ -1,3 +1,5 @@
+//show_message("here")
+
 var grid = argument0;
 var rowInChainGrid =  argument1;
 
@@ -8,6 +10,42 @@ var displayColGrid_colDisplayCol = 1;
 var displayColGrid = ds_grid_create(displayColGridWidth, 0);
 
 var wordIDList = ds_grid_get(grid, chainGrid_colWordIDList, rowInChainGrid);
+
+
+
+
+var furthestBackWord = ds_list_find_value(wordIDList, 0);
+for (var i = 1; i < ds_list_size(wordIDList); i++) {
+	var currentWordID = ds_list_find_value(wordIDList, i);
+	var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
+	if (not currentWordAligned) {
+		continue;
+	}
+	var currentWordStretch = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1);
+	if (currentWordStretch) {
+		continue;
+	}
+	var furthestBackDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, furthestBackWord - 1);
+	var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1);
+	if (currentWordDisplayCol < furthestBackDisplayCol) {
+		furthestBackWord = currentWordID;
+	}
+}
+
+if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, furthestBackWord - 1) > 0) {
+	//show_message("furthest back void... " + string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, furthestBackWord - 1)));
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, furthestBackWord - 1, false);
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, furthestBackWord - 1, true);
+}
+
+
+
+
+
+
+
+
+
 for (var i = 0; i < ds_list_size(wordIDList); i++) {
 	var currentWordID = ds_list_find_value(wordIDList, i);
 	var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
@@ -55,7 +93,7 @@ for (var i = 0; i < ds_list_size(firstDisplayColWordIDList); i++) {
 	var currentWordID = ds_list_find_value(firstDisplayColWordIDList, i);
 	str += string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1)) + ", ";
 }
-show_message(str);
+//show_message(str);
 //show_message(scr_getStringOfList(firstDisplayColWordIDList));
 
 var displayColGridFirst_wordID = ds_list_find_value(firstDisplayColWordIDList, 0);
@@ -82,29 +120,7 @@ ds_grid_destroy(displayColGrid);
 ds_list_destroy(firstDisplayColWordIDList);
 
 
-var furthestBackWord = ds_list_find_value(wordIDList, 0);
-for (var i = 1; i < ds_list_size(wordIDList); i++) {
-	var currentWordID = ds_list_find_value(wordIDList, i);
-	var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
-	if (not currentWordAligned) {
-		continue;
-	}
-	var currentWordStretch = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1);
-	if (currentWordStretch) {
-		continue;
-	}
-	var furthestBackDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, furthestBackWord - 1);
-	var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1);
-	if (currentWordDisplayCol < furthestBackDisplayCol) {
-		furthestBackWord = currentWordID;
-	}
-}
 
-if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, furthestBackWord - 1) > 0) {
-	show_message("furthest back void");
-	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, furthestBackWord - 1, false);
-	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, furthestBackWord - 1, true);
-}
 
 with (obj_chain) {
 	alarm[6] = 2;

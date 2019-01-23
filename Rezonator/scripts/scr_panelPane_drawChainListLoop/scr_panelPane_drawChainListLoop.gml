@@ -67,6 +67,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		continue;
 	}
 	
+	var currentChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i);
 	var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 	var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
 	var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
@@ -241,7 +242,14 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 					scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
 				}
 				
-				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, !isAligned);
+				isAligned = !isAligned;
+				if (isAligned) {
+					with (obj_chain) {
+						alarm[6] = 5;
+						chainIDRaceCheck = currentChainID;
+					}
+				}
+				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
 				
 				/*
 				var wordIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);

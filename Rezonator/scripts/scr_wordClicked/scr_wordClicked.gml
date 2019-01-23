@@ -8,7 +8,9 @@
 	Purpose: handle reaction to user clicking on a word
 	
 	Mechanism: check obj_toolPane to see if a chainBrush is selected, if so either spawn a new chain or add
-				to an existing chain
+				to an existing 
+				
+	Author: Terry DuBois
 */
 
 if (obj_control.gridView || obj_control.mouseoverPanelPane)
