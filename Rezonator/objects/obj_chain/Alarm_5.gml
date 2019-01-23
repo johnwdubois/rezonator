@@ -1,6 +1,6 @@
 /*
 Alarm for displaying the correct focus for all contexts
-
+Author: Terry DuBois and Georgio Klironomos
 */
 if (unitIDOfFirstWord < 0 or unitIDOfLastWord < 0) {
 	exit;
@@ -29,6 +29,7 @@ if(obj_chain.focusPrior) {
 	obj_control.currentCenterDisplayRow = lastUnitDisplayRow;
 }	
 
+//reset variables for next use
 obj_chain.focusPrior = false;
 obj_chain.focusTween = false;
 obj_chain.focusNext = false;

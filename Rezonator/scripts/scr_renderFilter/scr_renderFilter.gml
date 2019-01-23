@@ -146,23 +146,24 @@ if (obj_panelPane.functionFilter_peek[0] == 1) //Prior Context
 			}
 		}
 		
+		//mechanism for recording specific lines to keep user's focus
 		if (relevantRow >= 0 and relevantRow < ds_grid_height(relevantGrid)) {
 			if (ds_grid_get(relevantGrid, obj_chain.chainGrid_colInFilter, relevantRow)) {
 				if(relevantGrid == obj_chain.stackChainGrid) {//for Stacks
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
 					obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-				} else {//for Rez/Tracks
+				} else {//navigate through grids to find first & last lines
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					var firstWordOfChain = ds_list_find_value(IDList, 0);
 					var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
 					obj_chain.unitIDOfFirstWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, firstWordOfChain - 1);
 					obj_chain.unitIDOfLastWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, lastWordOfChain - 1);
 				}
-				
+				//
 				with (obj_chain) {
 					focusPrior = true;
-					alarm[5] = 3;
+					alarm[5] = 3;//alarm for focusing on the correct lines
 				}
 				
 				break;
@@ -215,14 +216,14 @@ if (obj_panelPane.functionFilter_peek[1] == 1) //Tween Context
 				relevantGrid = obj_chain.trackChainGrid;
 			}
 		}
-		
+		//mechanism for recording specific lines to keep user's focus
 		if (relevantRow >= 0 and relevantRow < ds_grid_height(relevantGrid)) {
 			if (ds_grid_get(relevantGrid, obj_chain.chainGrid_colInFilter, relevantRow)) {
 				if(relevantGrid == obj_chain.stackChainGrid) {
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
 					obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-				} else {
+				} else {//navigate through grids to find first & last lines
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					var firstWordOfChain = ds_list_find_value(IDList, 0);
 					var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
@@ -232,7 +233,7 @@ if (obj_panelPane.functionFilter_peek[1] == 1) //Tween Context
 				
 				with (obj_chain) {
 					focusTween = true;
-					alarm[5] = 3;
+					alarm[5] = 3;//alarm for focusing on the correct lines
 				}
 				
 				break;
@@ -283,14 +284,14 @@ if (obj_panelPane.functionFilter_peek[2] == 1) //Next Context
 				relevantGrid = obj_chain.trackChainGrid;
 			}
 		}
-		
+		//mechanism for recording specific lines to keep user's focus
 		if (relevantRow >= 0 and relevantRow < ds_grid_height(relevantGrid)) {
 			if (ds_grid_get(relevantGrid, obj_chain.chainGrid_colInFilter, relevantRow)) {
 				if(relevantGrid == obj_chain.stackChainGrid) {//for stacks
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
 					obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-				} else {//for rez/tracks
+				} else {//navigate through grids to find first & last lines
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					var firstWordOfChain = ds_list_find_value(IDList, 0);
 					var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
@@ -299,7 +300,7 @@ if (obj_panelPane.functionFilter_peek[2] == 1) //Next Context
 				}
 				with (obj_chain) {
 					focusNext = true;
-					alarm[5] = 3;
+					alarm[5] = 3;//alarm for focusing on the correct lines
 				}
 				
 				break;
