@@ -9,7 +9,5 @@ if (currentRowInLinkGrid < 0 or currentRowInLinkGrid >= ds_grid_height(obj_chain
 
 while (ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, currentRowInLinkGrid) == chainID)
 {
-	
-	
 	currentRowInLinkGrid++;
 }

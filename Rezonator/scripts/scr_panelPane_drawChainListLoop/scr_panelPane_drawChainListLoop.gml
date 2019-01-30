@@ -150,7 +150,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	//Color codes the chain lists for User
 	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); //access color of new chain
 	var rectX1 = x + textMarginLeft - 2;
-	var rectX2 = x + textMarginLeft + 50;
+	var rectX2 = chainNameRectX2 + 5; //x + textMarginLeft + 50;
 	if (currentChainState == obj_chain.chainStateFocus)
 	{
 		rectX1 = x;

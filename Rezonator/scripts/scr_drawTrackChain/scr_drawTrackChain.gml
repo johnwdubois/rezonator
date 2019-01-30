@@ -9,6 +9,8 @@
 	
 	Mechanism: loop through each row in trackChainGrid, get the wordIDList from each chain, and call scr_drawCurvedLine
 				with x and y values for words in wordIDList
+				
+	Author: Terry DuBois
 */
 
 draw_set_font(fnt_main);
@@ -23,13 +25,14 @@ var mouseLineY = undefined;
 var furthestWordID = -1;
 var furthestDisplayCol = -1;
 
-for (var i = 0; i < ds_grid_height(trackChainGrid); i++)
-{
+// loop through rezChainGrid to get chain info
+for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 	var currentWordIDList = ds_grid_get(trackChainGrid, chainGrid_colWordIDList, i);
 	var currentChainColor = ds_grid_get(trackChainGrid, chainGrid_colColor, i);
 	
-	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++)
-	{
+	
+	// loop through wordIDList in current track chain to draw lines
+	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++) {
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
@@ -53,39 +56,33 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++)
 		var currentLineGridIndex1InDrawRange = true;
 		var currentLineGridIndex2InDrawRange = true;
 		
-		if (currentLineGridIndex1 < obj_control.drawRangeStart or currentLineGridIndex1 > obj_control.drawRangeEnd)
-		{
+		if (currentLineGridIndex1 < obj_control.drawRangeStart or currentLineGridIndex1 > obj_control.drawRangeEnd) {
 			currentLineGridIndex1InDrawRange = false;
 		}
 		
-		if (currentLineGridIndex2 < obj_control.drawRangeStart or currentLineGridIndex2 > obj_control.drawRangeEnd)
-		{
+		if (currentLineGridIndex2 < obj_control.drawRangeStart or currentLineGridIndex2 > obj_control.drawRangeEnd) {
 			currentLineGridIndex2InDrawRange = false;
 		}
 		
 		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
 		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
-		and not (obj_control.searchGridActive)
-		{
+		and not (obj_control.searchGridActive) {
 			draw_set_color(currentChainColor);
 			draw_set_alpha(1);
 			
-			if (lineY1 == lineY2)
-			{
+			if (lineY1 == lineY2) {
 				draw_line_width(lineX1, lineY1, lineX2, lineY2, 2);
 			}
-			else
-			{
+			else {
 				scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
 			}
 		}
 	}
 	
 	
-	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, i) == chainStateFocus)
-	{	
-		if (mouseLineWordID >= 0 && mouseLineWordID < ds_grid_height(obj_control.wordGrid))
-		{
+	// get X,Y position of where pickwhip to mouse should start
+	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, i) == chainStateFocus) {	
+		if (mouseLineWordID >= 0 && mouseLineWordID < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
 			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
 			
@@ -104,16 +101,14 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++)
 	
 }
 
-if (not (mouseLineX == undefined or mouseLineY == undefined))
-{
-	if (ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus))
-	{
+// draw pickwhip line to mouse
+if (not (mouseLineX == undefined or mouseLineY == undefined)) {
+	if (ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus)) {
 		var rowInChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
 		currentChainColor = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
 		draw_set_color(currentChainColor);
 		
-		if (not mouseLineHide)
-		{
+		if (not mouseLineHide) {
 			draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
 		}
 	}

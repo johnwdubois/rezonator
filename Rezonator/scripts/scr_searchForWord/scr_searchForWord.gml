@@ -9,12 +9,13 @@
 	
 	Mechanism: loop through unitGrid looking at every wordIDList for searched word, if that row in unitGrid contains searched word,
 				add that row to new lineGrid
+	
+	Author: Terry DuBois
 */
 
 var wordToFind = get_string("Type string to find", "");
 
-if (string_length(wordToFind) < 1)
-{
+if (string_length(wordToFind) < 1) {
 	exit;
 }
 
@@ -23,33 +24,30 @@ var tempSearchGrid = ds_grid_create(ds_grid_width(lineGrid), ds_grid_height(line
 ds_grid_copy(tempSearchGrid, lineGrid);
 
 
-
+// create new searchGrid so we can populate it from scratch
 ds_grid_destroy(searchGrid);
 searchGrid = ds_grid_create(ds_grid_width(lineGrid), 0);
 ds_grid_destroy(hitGrid);
 hitGrid = ds_grid_create(hitGridWidth, 0);
 
-var db = "";
-
 var hitIDCounter = 1;
 
-for (var i = 0; i < ds_grid_height(unitGrid); i++)
-{
+// loop through unitGrid, so we can get the wordID list of every unit
+for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 	var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, i);
 	var currentDiscoID = ds_grid_get(unitGrid, unitGrid_colDiscoID, i);
 	var currentUtteranceID = ds_grid_get(unitGrid, unitGrid_colUtteranceID, i);
 	var currentUnitStart = ds_grid_get(unitGrid, unitGrid_colUnitStart, i);
 	var currentUnitEnd = ds_grid_get(unitGrid, unitGrid_colUnitEnd, i);
 	
-	for (var j = 0; j < ds_list_size(currentWordIDList); j++)
-	{
+	// now we loop through every word in wordID list to see if matches our search word
+	for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
 		var currentWordID = ds_list_find_value(currentWordIDList, j);
 		var currentWordToken = ds_grid_get(wordGrid, wordGrid_colWordToken, currentWordID - 1);
 		var currentWordTranscript = ds_grid_get(wordGrid, wordGrid_colWordTranscript, currentWordID - 1);
 		
-		//if (string_count(string_lower(wordToFind), string_lower(currentWordToken)) > 0 or string_count(string_lower(wordToFind), string_lower(currentWordTranscript)) > 0)
-		if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript))
-		{
+		// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
+		if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript)) {
 			
 			ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
 			var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
@@ -65,23 +63,15 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++)
 			
 			var currentHitIDList = ds_list_create();
 			
-			for (var k = 0; k < ds_list_size(currentWordIDList); k++)
-			{
-				
-				/*
-				var currentWordID2 = ds_list_find_value(currentWordIDList, k) - 1;
-				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordID2, k - j);
-				
-				var currentWordDisplayString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID2);
-				*/
+			// add all the words in this unit to the searchGrid
+			for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
 				
 				var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
 				var hitGridCurrentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
 				var hitGridCurrentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
 				var hitGridCurrentHitBool = false;
 				
-				if (hitGridCurrentWordID == currentWordID)
-				{
+				if (hitGridCurrentWordID == currentWordID) {
 					hitGridCurrentHitBool = true;
 				}
 				var hitGridCurrentDisplayCol = k - j;
@@ -107,18 +97,16 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++)
 	}
 }
 
-if (ds_grid_height(searchGrid) > 0)
-{
+// check if we actually got any matches (check height of searchGrid)
+if (ds_grid_height(searchGrid) > 0) {
 	filterGridActive = false;
 	searchGridActive = true;
 	currentActiveLineGrid = searchGrid;
 	currentCenterDisplayRow = 0;
 	wordLeftMarginDest = room_width / 2;
 }
-else
-{
+else {
 	show_message("found zero matches");
 }
 
 ds_grid_destroy(tempSearchGrid);
-
