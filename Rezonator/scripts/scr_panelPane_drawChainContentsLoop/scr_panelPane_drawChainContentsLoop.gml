@@ -115,21 +115,19 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		}
 			
 		// Sets the link focused in the panelPane to the link focused in the main screen
-		if (focusedLink)
-		{
+		if (focusedLink) {
+			// Fill in square
 			draw_set_alpha(0.25);
 			draw_set_color(c_black);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 			
-			if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid)
-			{
+			if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
 				ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, sourceWordID - 1, true);
 				obj_chain.mouseLineWordID = sourceWordID;
 			}
 		}
-		else if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver)
-		{
+		else if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
 			ableToBeMouseOver = false;
 			draw_set_alpha(0.25);
 			draw_set_color(c_black);
