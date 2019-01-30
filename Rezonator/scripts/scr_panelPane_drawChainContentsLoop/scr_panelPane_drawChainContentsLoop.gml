@@ -107,8 +107,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		var sourceWordID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGrid);
 		
 		// Create little boxes 
-		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1))
-		{
+		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1)) {
 			draw_set_alpha(0.25);
 			draw_set_color(c_red);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
@@ -116,11 +115,13 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			
 		// Sets the link focused in the panelPane to the link focused in the main screen
 		if (focusedLink) {
+			
 			// Fill in square
 			draw_set_alpha(0.25);
 			draw_set_color(c_black);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 			
+			// Focus in the main screen
 			if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
 				ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, sourceWordID - 1, true);
@@ -133,6 +134,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			draw_set_color(c_black);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 			
+			// Focus in the main screen
 			if (mouse_check_button_pressed(mb_left))
 			{	
 				ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
@@ -144,88 +146,71 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		}
 		draw_set_alpha(1);
 	
-		
-		
-		if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and mouse_check_button_pressed(mb_left))
-		{
-			if (doubleClickTimer > -1)
-			{	
-					
+		// Check for double click
+		if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and mouse_check_button_pressed(mb_left)) {
+			if (doubleClickTimer > -1) {	
+				
 				var rowInLineGrid = -1;
-					
+				
+				// Set double clicked word to center display row, if possible
 				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique)
-				{
+				or functionChainList_currentTab == functionChainList_tabClique) {
 					var currentUnitID = currentWordID;
 					rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
 				}
-				else
-				{
+				else {
 					var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 					rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
 				}
 					
-				if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.lineGrid))
-				{
+				if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.lineGrid)) {
 					var displayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, rowInLineGrid);
 					obj_control.currentCenterDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, displayRow);
 				}
 			}
-			else
-			{
+			else {
 				doubleClickTimer = 0;
 			}
 		
 		}
 		
-		
-		
-		
-		for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++)
-		{
+		// Set collected info into correct places
+		for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
 			currentWordInfoCol[getInfoLoop] = "";
 			
-			switch (functionChainContents_infoCol[getInfoLoop])
-			{
+			switch (functionChainContents_infoCol[getInfoLoop]) {
 				case 0:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush
-					or functionChainList_currentTab == functionChainList_tabClique)
-					{
+					or functionChainList_currentTab == functionChainList_tabClique) {
 						var unitID = currentWordID;
 						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
 					}
-					else
-					{
+					else {
 						var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
 					}
 					break;
 				case 1:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush
-					or functionChainList_currentTab == functionChainList_tabClique)
-					{
+					or functionChainList_currentTab == functionChainList_tabClique) {
 						currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID);
 					}
-					else
-					{
+					else {
 						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
 					}
 					break;
 				case 2:
 					if (functionChainList_currentTab == functionChainList_tabStackBrush
-					or functionChainList_currentTab == functionChainList_tabClique)
-					{
+					or functionChainList_currentTab == functionChainList_tabClique) {
 						currentWordInfoCol[getInfoLoop] = "";
 						var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
-						for (var i = 0; i < ds_list_size(currentWordIDList); i++)
-						{
+						for (var i = 0; i < ds_list_size(currentWordIDList); i++) {
 							var currentWordID = ds_list_find_value(currentWordIDList, i);
 							var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
 							currentWordInfoCol[getInfoLoop] += currentWordString + " ";
 						}
 						
-						if (string_length(currentWordInfoCol[getInfoLoop]) > 16)
-						{
+						if (string_length(currentWordInfoCol[getInfoLoop]) > 16) {
 							currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 12, string_length(currentWordInfoCol[getInfoLoop]) - 12);
 							currentWordInfoCol[getInfoLoop] += "...";
 						}
@@ -246,16 +231,13 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		}
 		
 		if (point_in_rectangle(mouse_x, mouse_y, x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2), x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2)) and mouse_check_button_pressed(mb_left)
-		and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1))
-		{
+		and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
 			currentWordAligned = !currentWordAligned;
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
 			
-			if (ds_grid_height(obj_chain.vizLinkGrid) > 0)
-			{
+			if (ds_grid_height(obj_chain.vizLinkGrid) > 0) {
 				var rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
-				while (rowInVizLinkGrid >= 0 and rowInVizLinkGrid < ds_grid_height(obj_chain.vizLinkGrid))
-				{
+				while (rowInVizLinkGrid >= 0 and rowInVizLinkGrid < ds_grid_height(obj_chain.vizLinkGrid)) {
 					ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, rowInVizLinkGrid, currentWordAligned);
 					rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
 				}

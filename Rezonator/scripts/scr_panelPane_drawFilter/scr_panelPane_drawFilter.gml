@@ -1,3 +1,18 @@
+/*
+	scr_panelPane_drawFilter();
+	
+	Last Updated: 2019-01-29
+	
+	Called from: obj_panelPane
+	
+	Purpose: Renders the filter in the main screen, and sets only selected chains to be filtered to appear in the chain list when filter is turned on Renders the filter in the main screen
+	
+	Mechanism: Loop through chain list to check for filtered chains, and check for mouse clicks to filter a certain chain
+	
+	Author: Terry DuBois, Georgio Klironomos
+*/
+
+// Set contraints for filter button
 var filterButtonRadius = 8;
 
 draw_set_halign(fa_center);
@@ -7,15 +22,14 @@ draw_set_font(fnt_chainContents);
 var filterButtonX = x + (windowWidth / 2);
 var filterButtonY = y + filterButtonRadius;
 
-if (obj_control.filterGridActive)
-{	
+// Draw filter button, and check for coloring
+if (obj_control.filterGridActive) {	
 	draw_set_color(c_black);
 	draw_circle(filterButtonX, filterButtonY, filterButtonRadius, false);
 	draw_set_color(c_white);
 	draw_text(filterButtonX, filterButtonY, "F");
 }
-else
-{
+else {
 	draw_set_color(c_black);
 	draw_circle(filterButtonX, filterButtonY, filterButtonRadius, true);
 	draw_text(filterButtonX, filterButtonY, "F");
@@ -23,40 +37,40 @@ else
 
 draw_set_halign(fa_center);
 
-for (var i = 0; i < 3; i++)
-{
+// Draw Next, Tween, and Previous buttons, and check for mouse clicks
+for (var i = 0; i < 3; i++) {
+	
+	// Draw rectangles
 	var peekButtonRectX1 = x;
 	var peekButtonRectY1 = y + (filterButtonRadius * 2) + (i * ((windowHeight - (filterButtonRadius * 2)) / 3));
 	var peekButtonRectX2 = peekButtonRectX1 + windowWidth;
 	var peekButtonRectY2 = peekButtonRectY1 + ((windowHeight - (filterButtonRadius * 2)) / 3);
 	
-	if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2))
-	{
-		if (mouse_check_button_pressed(mb_left))
-		{
-			with (obj_panelPane)
-			{
+	// If mouse clicked in button, activate/deavtivate button's function
+	if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)){
+		if (mouse_check_button_pressed(mb_left)) {
+			
+			// Re/activate function
+			with (obj_panelPane) {
 				functionFilter_peek[i] = !functionFilter_peek[i];
 			}
-			
-			if (obj_control.filterGridActive)
-			{
-				with (obj_control)
-				{
+
+			// Rerender filter
+			if (obj_control.filterGridActive) {
+				with (obj_control) {
 					scr_renderFilter();
 				}
 			}
 		}
 	}
 	
-	if (functionFilter_peek[i])
-	{
+	// Recolor slected buttons
+	if (functionFilter_peek[i]) {
 		draw_set_color(obj_control.c_ltblue);
 		draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, false);
 	}
 	
-	
-	
+	// Draw icons in buttons
 	draw_set_color(c_black);
 	draw_set_alpha(1);
 	draw_sprite(spr_filterArrows, i, mean(peekButtonRectX1, peekButtonRectX2), mean(peekButtonRectY1, peekButtonRectY2));
@@ -64,30 +78,31 @@ for (var i = 0; i < 3; i++)
 	draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, true);
 }
 
-if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius))
-{
-	if (mouse_check_button_pressed(mb_left))
-	{
-		if (obj_control.filterGridActive)
-		{
-			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) 
-			{
+// Check for mouse clicks on filter button
+if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius)) {
+	if (mouse_check_button_pressed(mb_left)) {
+		
+		// If filter is active, deactivate it
+		if (obj_control.filterGridActive) {
+			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid))  {
 				obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
-				with (obj_control) 
-				{
-					alarm[5] = 3;//play with the feeling of this plenty
+				
+				// Keep the focus on previous currentCenterDisplayRow
+				with (obj_control) {
+					alarm[5] = 3;
 				}
 			}
+			
+			// Switch to active grid
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
 		}
-		else
-		{
-			with (obj_control)
-			{
+		else {
+			
+			// If filter is unactive. activate it
+			with (obj_control) {
 				scr_renderFilter();
 			}
-			
 		}
 	}
 }

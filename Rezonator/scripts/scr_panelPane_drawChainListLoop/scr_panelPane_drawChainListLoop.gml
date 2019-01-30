@@ -16,8 +16,7 @@
 var grid = obj_chain.rezChainGrid;
 
 // Based on user selection, get the grid of the current tab
-switch (functionChainList_currentTab)
-{
+switch (functionChainList_currentTab) {
 	case functionChainList_tabRezBrush:
 		grid = obj_chain.rezChainGrid;
 		break;
@@ -38,12 +37,10 @@ switch (functionChainList_currentTab)
 // Set text margin area
 var filterRectMargin = 8;
 var filterRectSize = 8;
-if (functionChainList_currentTab == functionChainList_tabStackBrush)
-{
+if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 	var textMarginLeft = 24;
 }
-else
-{
+else {
 	var textMarginLeft = 48;
 }
 
@@ -68,11 +65,10 @@ draw_set_font(fnt_chainList);
 currentTopViewRow = max(0, currentTopViewRow);
 currentTopViewRow = min(ds_grid_height(grid) - scrollRange, currentTopViewRow);
 
-for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) // main mechanism
-{
+// Main mechanism
+for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	// Safety check
-	if (i < 0 or i > ds_grid_height(grid))
-	{
+	if (i < 0 or i > ds_grid_height(grid)) {
 		continue;
 	}
 	
@@ -155,16 +151,14 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) // mai
 	var rectX1 = x + textMarginLeft - 2; // Create the colored rectangle
 	var rectX2 = chainNameRectX2 + 5; //x + textMarginLeft + 50;
 
-	if (currentChainState == obj_chain.chainStateFocus)
-	{
+	if (currentChainState == obj_chain.chainStateFocus) {
 		rectX1 = x;
 	}
 	draw_set_color(merge_color(chainColor, c_white, 0.65)); //soften the color
 	draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, false);
 	
 	// Outline the rectangle in black
-	if (currentChainState == obj_chain.chainStateFocus)
-	{
+	if (currentChainState == obj_chain.chainStateFocus) {
 		draw_set_color(c_black);
 		draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, true);
 	}
@@ -181,28 +175,22 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) // mai
 	var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
 	
 	// Fill in boxes if filtered
-	if (inFilter)
-	{
+	if (inFilter) {
 		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, false);
 	}
-	else
-	{
+	else {
 		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 	}
 	
 	// Check boxes for user selection with mouse click
-	if (point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2))
-	{
-		if (mouse_check_button_pressed(mb_left))
-		{
+	if (point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2)) {
+		if (mouse_check_button_pressed(mb_left)) {
 			// Set selected objects to be filtered
 			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, !inFilter);
 			
 			// Render the filter in the mainscreen
-			if (obj_control.filterGridActive)
-			{
-				with (obj_control)
-				{
+			if (obj_control.filterGridActive) {
+				with (obj_control) {
 					scr_renderFilter();
 				}
 			}
@@ -211,8 +199,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) // mai
 	
 	// Create little boxes for alignment selection
 	if (functionChainList_currentTab == functionChainList_tabRezBrush
-	or functionChainList_currentTab == functionChainList_tabTrackBrush)
-	{
+	or functionChainList_currentTab == functionChainList_tabTrackBrush) {
 		draw_set_alpha(1);
 		draw_set_color(c_purple);
 		
@@ -224,17 +211,14 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) // mai
 		var isAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, i);
 	
 		// Fill in selected boxes
-		if (isAligned)
-		{
+		if (isAligned) {
 			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
 		}
-		else if (isAligned == -1)
-		{
+		else if (isAligned == -1) {
 			draw_set_alpha(0.5);
 			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
 		}
-		else
-		{
+		else {
 			draw_set_alpha(1);
 			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, true);
 		}
@@ -242,14 +226,11 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) // mai
 		draw_set_alpha(1);
 	
 		//Check for user selection of alignment with mouse clicks
-		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2))
-		{
-			if (mouse_check_button_pressed(mb_left))
-			{
+		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
+			if (mouse_check_button_pressed(mb_left)) {
 				
 				// Unselect alignment if already selected
-				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned)
-				{
+				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {
 					scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
 				}
 				
@@ -281,8 +262,7 @@ scrollBarRectY1 = max(scrollBarRectY1, y + (textMarginTop * 2));
 scrollBarRectY2 = max(scrollBarRectY2, y + (textMarginTop * 2));
 
 //Don't draw scroll bars if there's no chains
-if (ds_grid_height(grid) == 0)
-{
+if (ds_grid_height(grid) == 0) {
 	scrollBarRectY1 = y + (textMarginTop * 2);
 	scrollBarRectY2 = y + windowHeight;
 	scrollBarHolding = false;
@@ -293,10 +273,8 @@ draw_set_color(c_ltgray);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
 // Check mouse clicks for scroll bar use
-if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))
-{
-	if (mouse_check_button_pressed(mb_left))
-	{
+if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2)) {
+	if (mouse_check_button_pressed(mb_left)) {
 		scrollBarHolding = true;
 		scrollBarHoldingPlusY = mouse_y - scrollBarRectY1;
 	}
@@ -305,13 +283,11 @@ if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrol
 scrollBarHoldingPlusY = 0;
 
 //Let clicked mouse move the scroll bar, until unclicked
-if (mouse_check_button_released(mb_left))
-{
+if (mouse_check_button_released(mb_left)) {
 	scrollBarHolding = false;
 }
 
-if (scrollBarHolding)
-{
+if (scrollBarHolding) {
 	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_grid_height(grid)) / (windowHeight));
 }
 

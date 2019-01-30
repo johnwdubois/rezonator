@@ -1,3 +1,17 @@
+/*
+	scr_panelPane_drawchainContentsLoop();
+	
+	Last Updated: 2018-07-12
+	
+	Called from: obj_panelPane
+	
+	Purpose: whatever chain is focused on in the chainList panelPane, draw information on the individual contents of that chain
+	
+	Mechanism: loop through the IDList of the focused chain and gather information from corresponding grids
+	
+	Author: Terry DuBois
+*/
+
 if not (currentFunction == functionSort)
 {
 	exit;
