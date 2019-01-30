@@ -9,6 +9,8 @@
 	
 	Mechanism: loop through each row in rezChainGrid, get the wordIDList from each chain, and draw lines
 				from word information
+				
+	Author: Terry DuBois
 */
 
 draw_set_font(fnt_main);
@@ -26,15 +28,15 @@ var furthestDisplayCol = -1;
 var minWordWidth = 9999999;
 var linePlusX = 0;
 
-for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
-{
+// loop through rezChainGrid to get chain info
+for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 	minWordWidth = 9999999;
 	
 	var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, i);
 	var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, i);
 	
-	for (var j = 0; j < ds_list_size(currentWordIDList); j++)
-	{
+	// find minimum word width so we know the X position of the chain
+	for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
 		var currentWordID = ds_list_find_value(currentWordIDList, j);
 		var currentWordWidth = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1)) / 2;
 		currentWordWidth = max(currentWordWidth, 0);
@@ -49,6 +51,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 	var wordsInSameUnit = false;
 	var firstWordInUnit = -1;
 	
+	// loop through current chain's wordIDList to draw the lines of the chain
 	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++)
 	{
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
@@ -110,6 +113,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 			currentLineGridIndex2InDrawRange = false;
 		}
 		
+		// only draw line if every value is real and we are in the draw range
 		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
 		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
 		and not (obj_control.searchGridActive)
@@ -121,10 +125,9 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 	}
 	
 	
-	if (ds_grid_get(rezChainGrid, chainGrid_colChainState, i) == chainStateFocus)
-	{	
-		if (mouseLineWordID >= 0 && mouseLineWordID < ds_grid_height(obj_control.wordGrid))
-		{
+	
+	if (ds_grid_get(rezChainGrid, chainGrid_colChainState, i) == chainStateFocus) {	
+		if (mouseLineWordID >= 0 && mouseLineWordID < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
 			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
 			
@@ -141,16 +144,15 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++)
 	scr_alignChain(currentWordIDList, isAligned);
 }
 
-if (not (mouseLineX == undefined or mouseLineY == undefined))
-{
-	if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus))
-	{
+// draw pickwhip line to mouse from chain
+if (not (mouseLineX == undefined or mouseLineY == undefined)) {
+	if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)) {
+		
 		var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
 		currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
 		draw_set_color(currentChainColor);
 		
-		if (not mouseLineHide)
-		{
+		if (not mouseLineHide) {
 			draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
 		}
 	}

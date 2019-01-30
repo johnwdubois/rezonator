@@ -10,7 +10,7 @@
 	Mechanism: check all chains to see if they are flagged with the filter option, and if they are
 				then add a row to the filterGrid
 	
-	Author: Terry DuBois
+	Author: Terry DuBois, Georgio Klironomos
 */
 
 ds_grid_destroy(filterGrid);
@@ -18,10 +18,8 @@ filterGrid = ds_grid_create(lineGridWidth, 0);
 
 var grid;
 
-for (var i = 0; i < 3; i++)
-{
-	switch (i)
-	{
+for (var i = 0; i < 3; i++) {
+	switch (i) {
 		case 0:
 			grid = obj_chain.rezChainGrid;
 			break;
@@ -35,10 +33,9 @@ for (var i = 0; i < 3; i++)
 			break;
 	}
 	
-	for (var j = 0; j < ds_grid_height(grid); j++)
-	{
-		if (not ds_grid_get(grid, obj_chain.chainGrid_colInFilter, j))
-		{
+	// loop through current chainGrid to include chains marked with filter
+	for (var j = 0; j < ds_grid_height(grid); j++) {
+		if (not ds_grid_get(grid, obj_chain.chainGrid_colInFilter, j)) {
 			continue;
 		}
 		
@@ -46,20 +43,17 @@ for (var i = 0; i < 3; i++)
 		
 		ds_list_sort(currentIDList, true);
 		
-		for (var k = 0; k < ds_list_size(currentIDList); k++)
-		{
-			if (i == 2)
-			{
+		// set information in filterGrid for words in this chain
+		for (var k = 0; k < ds_list_size(currentIDList); k++) {
+			if (i == 2) {
 				var currentUnitID = ds_list_find_value(currentIDList, k);
 			}
-			else
-			{
+			else {
 				var currentWordID = ds_list_find_value(currentIDList, k);
 				var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
 			}
 			
-			if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID))
-			{
+			if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
 				continue;
 			}
 			
@@ -82,34 +76,30 @@ for (var i = 0; i < 3; i++)
 	}
 }
 
+// sort filterGrid
 ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
-for (var i = 0; i < ds_grid_height(filterGrid); i++)
-{
+for (var i = 0; i < ds_grid_height(filterGrid); i++) {
 	ds_grid_set(filterGrid, lineGrid_colDisplayRow, i, i);
 }
 
 var firstUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, 0);
 var lastUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, ds_grid_height(filterGrid) - 1);
 
-if (firstUnit == undefined or lastUnit == undefined)
-{
+if (firstUnit == undefined or lastUnit == undefined) {
 	exit;
 }
 
-if (obj_panelPane.functionFilter_peek[0] == 1) //Prior Context
-{
+//Prior Context (Before)
+if (obj_panelPane.functionFilter_peek[0] == 1) {
 	
-	for (var i = 0; i < firstUnit - 1; i++)
-	{
-		if (i < 0 or i > ds_grid_height(unitGrid))
-		{
+	for (var i = 0; i < firstUnit - 1; i++) {
+		if (i < 0 or i > ds_grid_height(unitGrid)) {
 			continue;
 		}
 		
 		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
 		
-		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID))
-		{
+		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
 			continue;
 		}
 		
@@ -141,7 +131,8 @@ if (obj_panelPane.functionFilter_peek[0] == 1) //Prior Context
 				if (relevantRow >= 0) {
 					relevantGrid = obj_chain.stackChainGrid;
 				}
-			} else {
+			}
+			else {
 				relevantGrid = obj_chain.trackChainGrid;
 			}
 		}
@@ -153,7 +144,8 @@ if (obj_panelPane.functionFilter_peek[0] == 1) //Prior Context
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
 					obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-				} else {//navigate through grids to find first & last lines
+				}
+				else {//navigate through grids to find first & last lines
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					var firstWordOfChain = ds_list_find_value(IDList, 0);
 					var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
@@ -173,14 +165,13 @@ if (obj_panelPane.functionFilter_peek[0] == 1) //Prior Context
 	
 }
 
-if (obj_panelPane.functionFilter_peek[1] == 1) //Tween Context
-{	
-	for (var i = firstUnit; i < lastUnit; i++)
-	{
+
+//Tween Context
+if (obj_panelPane.functionFilter_peek[1] == 1) {	
+	for (var i = firstUnit; i < lastUnit; i++) {
 		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
 		
-		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID))
-		{
+		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
 			continue;
 		}
 		
@@ -200,7 +191,7 @@ if (obj_panelPane.functionFilter_peek[1] == 1) //Tween Context
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 	}
 	
-	for(var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++)  {
+	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++)  {
 		var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
 		var relevantGrid = obj_chain.rezChainGrid;
 		var relevantRow = -1;
@@ -212,7 +203,8 @@ if (obj_panelPane.functionFilter_peek[1] == 1) //Tween Context
 				if (relevantRow >= 0) {
 					relevantGrid = obj_chain.stackChainGrid;
 				}
-			} else {
+			}
+			else {
 				relevantGrid = obj_chain.trackChainGrid;
 			}
 		}
@@ -223,7 +215,8 @@ if (obj_panelPane.functionFilter_peek[1] == 1) //Tween Context
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
 					obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-				} else {//navigate through grids to find first & last lines
+				}
+				else {//navigate through grids to find first & last lines
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					var firstWordOfChain = ds_list_find_value(IDList, 0);
 					var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
@@ -242,14 +235,13 @@ if (obj_panelPane.functionFilter_peek[1] == 1) //Tween Context
 	}
 }
 
-if (obj_panelPane.functionFilter_peek[2] == 1) //Next Context
-{	
+//Next Context
+if (obj_panelPane.functionFilter_peek[2] == 1) {	
 	for (var i = lastUnit; i < ds_grid_height(unitGrid); i++)
 	{
 		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
 		
-		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID))
-		{
+		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
 			continue;
 		}
 		
@@ -268,7 +260,7 @@ if (obj_panelPane.functionFilter_peek[2] == 1) //Next Context
 		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 	}
-	for(var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) {
+	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) {
 		var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
 		var relevantGrid = obj_chain.rezChainGrid;
 		var relevantRow = -1;
@@ -280,7 +272,8 @@ if (obj_panelPane.functionFilter_peek[2] == 1) //Next Context
 				if (relevantRow >= 0) {
 					relevantGrid = obj_chain.stackChainGrid;
 				}
-			} else {
+			}
+			else {
 				relevantGrid = obj_chain.trackChainGrid;
 			}
 		}
@@ -291,7 +284,8 @@ if (obj_panelPane.functionFilter_peek[2] == 1) //Next Context
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
 					obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-				} else {//navigate through grids to find first & last lines
+				}
+				else {//navigate through grids to find first & last lines
 					var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
 					var firstWordOfChain = ds_list_find_value(IDList, 0);
 					var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
@@ -309,10 +303,9 @@ if (obj_panelPane.functionFilter_peek[2] == 1) //Next Context
 	}
 }
 
-
+// sort filterGrid again
 ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
-for (var i = 0; i < ds_grid_height(filterGrid); i++)
-{
+for (var i = 0; i < ds_grid_height(filterGrid); i++) {
 	ds_grid_set(filterGrid, lineGrid_colDisplayRow, i, i);
 }
 
