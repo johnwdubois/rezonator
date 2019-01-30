@@ -1,7 +1,7 @@
 /*
 	scr_panelPane_drawChainListLoop();
 	
-	Last Updated: 2018-07-12
+	Last Updated: 2019-01-29
 	
 	Called from: obj_panelPane
 	
@@ -9,10 +9,13 @@
 			set chainContents panelPane to look at that chain
 	
 	Mechanism: loop through chainGrid of whatever tab you are on and draw chainName
+	
+	Author: Terry DuBois, Georgio Klironomos
 */
 
 var grid = obj_chain.rezChainGrid;
 
+// Based on user selection, get the grid of the current tab
 switch (functionChainList_currentTab)
 {
 	case functionChainList_tabRezBrush:
@@ -32,6 +35,7 @@ switch (functionChainList_currentTab)
 		break;
 }
 
+// Set text margin area
 var filterRectMargin = 8;
 var filterRectSize = 8;
 if (functionChainList_currentTab == functionChainList_tabStackBrush)
@@ -47,63 +51,58 @@ var textMarginTop = 8;
 var textPlusY = 0;
 var chainNameRectMinusY = 4;
 
+
+// Create scroll bars
 var scrollBarWidth = 16;
 draw_set_color(c_white);
 draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
 
+// Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_color(c_black);
 draw_set_font(fnt_chainList);
 
+// set constraints for row in top view
 currentTopViewRow = max(0, currentTopViewRow);
 currentTopViewRow = min(ds_grid_height(grid) - scrollRange, currentTopViewRow);
 
-for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
+for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) // main mechanism
 {
+	// Safety check
 	if (i < 0 or i > ds_grid_height(grid))
 	{
 		continue;
 	}
 	
+	// Get grid info of current chain
 	var currentChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i);
 	var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 	var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
 	var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
 	
+	// Get height of chain name
 	textPlusY += string_height(currentChainName);
 	
+	// Get dimensions of rectagle around chain name
 	var chainNameRectX1 = x + textMarginLeft;
 	var chainNameRectY1 = y + textMarginTop + textPlusY - (string_height(currentChainName) / 2);
 	var chainNameRectX2 = chainNameRectX1 + string_width(currentChainName);
 	var chainNameRectY2 = chainNameRectY1 + string_height(currentChainName) - chainNameRectMinusY;
 	
-	/*
-	if (currentChainState == obj_chain.chainStateFocus)
-	{
-		draw_set_color(obj_control.c_ltblue);
-		draw_rectangle(chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, false);
-	}
-	*/
-	
+	//Check mouse clicks to focus a chain in the list
 	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2))
 	{
-		/*
-		if (currentChainState != obj_chain.chainStateFocus)
-		{
-			draw_set_color(c_ltgray);
-			draw_rectangle(chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, false);
-		}
-		*/
 		
 		if (mouse_check_button_pressed(mb_left))
 		{
+			// Unfocus chain if previously focused
 			if (currentChainState == obj_chain.chainStateFocus)
 			{
 				currentChainState = obj_chain.chainStateNormal;
 			}
-			else//focuses on selected chain
+			else// Focuses on selected chain
 			{
 				switch (functionChainList_currentTab)
 				{
@@ -120,6 +119,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 						break;
 				}
 				
+				// Unfocus any already focused chains
 				for (var j = 0; j < ds_grid_height(grid); j++)
 				{
 					if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus)
@@ -128,10 +128,12 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 					}
 				}
 				
+				// Set chain to focus in the grid
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
 				
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 				
+				// Set chain to focus in the main screen
 				if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid))
 				{
 					scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
@@ -139,6 +141,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 				obj_chain.mouseLineWordID = -1;
 			}
 			
+			// Set scroll range in the chain list
 			with (obj_panelPane)
 			{
 				functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
@@ -147,9 +150,9 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		}
 	}
 	
-	//Color codes the chain lists for User
-	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); //access color of new chain
-	var rectX1 = x + textMarginLeft - 2;
+	// Color codes the chain lists for User
+	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); // Access color of new chain
+	var rectX1 = x + textMarginLeft - 2; // Create the colored rectangle
 	var rectX2 = x + textMarginLeft + 50;
 	if (currentChainState == obj_chain.chainStateFocus)
 	{
@@ -157,26 +160,26 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	}
 	draw_set_color(merge_color(chainColor, c_white, 0.65)); //soften the color
 	draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, false);
+	
+	// Outline the rectangle in black
 	if (currentChainState == obj_chain.chainStateFocus)
 	{
 		draw_set_color(c_black);
 		draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, true);
 	}
-	//unsure if this solution can scale with different resolutions
 	
+	// Draw text of chain names
 	draw_set_color(c_black);
 	draw_text(x + textMarginLeft, y + textMarginTop + textPlusY, currentChainName);
-	/*
-	draw_set_color(currentChainColor);
-	draw_circle(x + textMarginLeft + string_width(currentChainName) + 10, y + textMarginTop + textPlusY - 2, 5, false);
-	draw_set_color(c_black);*/
 	
+	// Draw little boxes for filter selection
 	var chainFilterRectX1 = x + filterRectMargin;
 	var chainFilterRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2);
 	var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
 	var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
 	var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
 	
+	// Fill in boxes if filtered
 	if (inFilter)
 	{
 		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, false);
@@ -186,12 +189,15 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 	}
 	
+	// Check boxes for user selection with mouse click
 	if (point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2))
 	{
 		if (mouse_check_button_pressed(mb_left))
 		{
+			// Set selected objects to be filtered
 			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, !inFilter);
 			
+			// Render the filter in the mainscreen
 			if (obj_control.filterGridActive)
 			{
 				with (obj_control)
@@ -202,18 +208,21 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		}
 	}
 	
+	// Create little boxes for alignment selection
 	if (functionChainList_currentTab == functionChainList_tabRezBrush
 	or functionChainList_currentTab == functionChainList_tabTrackBrush)
 	{
 		draw_set_alpha(1);
 		draw_set_color(c_purple);
 		
+		// Set dimensions for little boxes
 		var chainAlignRectX1 = x + (filterRectMargin * 2) + filterRectSize;
 		var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2);
 		var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
 		var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;
 		var isAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, i);
 	
+		// Fill in selected boxes
 		if (isAligned)
 		{
 			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
@@ -231,39 +240,36 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		
 		draw_set_alpha(1);
 	
+		//Check for user selection of alignment with mouse clicks
 		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2))
 		{
 			if (mouse_check_button_pressed(mb_left))
 			{
 				
-				
+				// Unselect alignment if already selected
 				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned)
 				{
 					scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
 				}
 				
+				// Show alignments in main screen
 				isAligned = !isAligned;
 				if (isAligned) {
 					with (obj_chain) {
 						alarm[6] = 5;
+						// Protect against RaceToInfinity
 						chainIDRaceCheck = currentChainID;
 					}
 				}
-				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
 				
-				/*
-				var wordIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
-				for (var k = 0; k < ds_list_size(wordIDList); k++)
-				{
-					var currentWordID = ds_list_find_value(wordIDList, k);
-					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, isAligned);
-				}
-				*/
+				// Set alignment in grid
+				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
 			}
 		}
 	}
 }
 
+// Create scroll bars
 var scrollBarHeight = ((scrollRange * windowHeight) / ds_grid_height(grid));
 var scrollBarRectX1 = x + windowWidth - scrollBarWidth;
 var scrollBarRectY1 = y + ((currentTopViewRow * windowHeight) / ds_grid_height(grid));
@@ -273,6 +279,7 @@ var scrollBarRectY2 = scrollBarRectY1 + scrollBarHeight;
 scrollBarRectY1 = max(scrollBarRectY1, y + (textMarginTop * 2));
 scrollBarRectY2 = max(scrollBarRectY2, y + (textMarginTop * 2));
 
+//Don't draw scroll bars if there's no chains
 if (ds_grid_height(grid) == 0)
 {
 	scrollBarRectY1 = y + (textMarginTop * 2);
@@ -280,9 +287,11 @@ if (ds_grid_height(grid) == 0)
 	scrollBarHolding = false;
 }
 
+// Set color of scroll bars
 draw_set_color(c_ltgray);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
+// Check mouse clicks for scroll bar use
 if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))
 {
 	if (mouse_check_button_pressed(mb_left))
@@ -294,6 +303,7 @@ if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrol
 
 scrollBarHoldingPlusY = 0;
 
+//Let clicked mouse move the scroll bar, until unclicked
 if (mouse_check_button_released(mb_left))
 {
 	scrollBarHolding = false;
@@ -304,45 +314,52 @@ if (scrollBarHolding)
 	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_grid_height(grid)) / (windowHeight));
 }
 
+// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in panelPane
 if(obj_panelPane.clickedIn) {
-	if ((mouse_wheel_up() || keyboard_check(vk_up)))
-	{
-		if (currentTopViewRow > 0)
-		{
+	
+	// Scroll up with mouse/key
+	if ((mouse_wheel_up() || keyboard_check(vk_up))) {
+		if (currentTopViewRow > 0) {
 			currentTopViewRow--;
-			
 		}
 	}
-	if (keyboard_check_pressed(vk_pageup)){//added pageUp/pageDown functionality to gridView
+	
+	// Scroll up with pgUp/key
+	if (keyboard_check_pressed(vk_pageup)){
 		if (currentTopViewRow > 0){
 			currentTopViewRow -= scrollRange;
 		}
 	}
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up))
-	{//added pageUp/pageDown functionality to gridView
-		if (currentTopViewRow > 0)
-		{
+	
+	// Scroll up with ctrl+key
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
+		if (currentTopViewRow > 0) {
 			currentTopViewRow -= ds_grid_height(grid);
 		}
 	}
 }
+
+// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in panelPane
 if(obj_panelPane.clickedIn) {
+	
+	// Scroll down with mouse/key
 	if ((mouse_wheel_down() || keyboard_check(vk_down))){
 		if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
 			currentTopViewRow++;
 			
 		}
 	}
+	
+	// Scroll down with pgDwn
 	if (keyboard_check_pressed(vk_pagedown)){
 		if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
 			currentTopViewRow += scrollRange;
 		}
 	}
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down))
-	{
-		
-		if (currentTopViewRow + scrollRange < ds_grid_height(grid))
-		{
+	
+	// Scroll down with ctrl+key
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
+		if (currentTopViewRow + scrollRange < ds_grid_height(grid)) {
 			currentTopViewRow += ds_grid_height(grid);
 		}
 	}

@@ -8,18 +8,20 @@
 	Purpose: whatever chain is focused on in the chainList panelPane, draw information on the individual contents of that chain
 	
 	Mechanism: loop through the IDList of the focused chain and gather information from corresponding grids
+	
+	Author: Terry DuBois
 */
 
+// Set opacity, alignment, and font of contents list
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_font(fnt_chainContents);
 
-
 var grid = obj_chain.rezChainGrid;
 
-switch (functionChainList_currentTab)
-{
+// Find current tab to draw correct contents
+switch (functionChainList_currentTab) {
 	case 0:
 		grid = obj_chain.rezChainGrid;
 		break;
@@ -37,12 +39,14 @@ switch (functionChainList_currentTab)
 		break;
 }
 
+// Set text margins
 var textMarginTop = 32;
 var textPlusY = 0;
 var ableToBeMouseOver = true;
 
 var alignTabWidth = 12;
 
+// Create scroll bars
 var scrollBarWidth = 16;
 draw_set_color(c_white);
 draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
@@ -50,53 +54,59 @@ draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + wi
 var focusedChainExists = false;
 var alignRectSize = 8;
 
-if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus))
-{
+// Check for focused chain, gather information from grids
+if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus)) {
+	// Collect beginning of chain info
 	focusedChainExists = true;
 	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	var chainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, rowInChainGrid);
 	var chainAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, rowInChainGrid);
 	
-	with (obj_panelPane)
-	{
+	// Get wordID list
+	with (obj_panelPane) {
 		functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 	}
 	
-	if (functionChainContents_hop > -1)
-	{
-		if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1)
-		{
-			currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);//functionChainContents_hop;
+	// Select top of the content list
+	if (functionChainContents_hop > -1) {
+		if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
+			currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
 		}
 		
 		functionChainContents_hop = -1;
 	}
 	
+	// Set contraints for top view
 	currentTopViewRow = max(0, currentTopViewRow);
 	currentTopViewRow = min(ds_list_size(functionChainContents_IDList) - scrollRange, currentTopViewRow);
 	
-	for (var j = currentTopViewRow; j < currentTopViewRow + scrollRange; j++)
-	{	
-		if (j < 0 or j >= ds_list_size(functionChainContents_IDList))
-		{
+	// Gather specfic information on words
+	for (var j = currentTopViewRow; j < currentTopViewRow + scrollRange; j++) {	
+		
+		//Safety check
+		if (j < 0 or j >= ds_list_size(functionChainContents_IDList)) {
 			continue;
 		}
 		
+		//Get info on current word
 		var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
 		var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 		var currentWordInfoCol;
 		currentWordInfoCol[0] = "";
 		
+		//Set size of rectangle around word
 		var stringHeight = 14;
 		var rectX1 = x + alignTabWidth;
 		var rectY1 = y + textMarginTop + textPlusY - (stringHeight / 2);
 		var rectX2 = x + windowWidth - scrollBarWidth;
 		var rectY2 = rectY1 + stringHeight;
 		
+		// Find link info
 		var rowInLinkGrid = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentWordID, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
 		var focusedLink = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid);
 		var sourceWordID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGrid);
 		
+		// Create little boxes 
 		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1))
 		{
 			draw_set_alpha(0.25);
@@ -104,6 +114,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		}
 			
+		// Sets the link focused in the panelPane to the link focused in the main screen
 		if (focusedLink)
 		{
 			draw_set_alpha(0.25);
