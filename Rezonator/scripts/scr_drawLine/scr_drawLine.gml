@@ -17,7 +17,7 @@ if (gridView || ds_grid_height(dynamicWordGrid) < 1)
 
 ds_grid_set_region(wordDrawGrid, wordDrawGrid_colVisible, 0, wordDrawGrid_colVisible, ds_grid_height(wordDrawGrid), false);
 
-draw_set_font(fnt_main);
+draw_set_font(global.fontMain);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_color(c_black);
@@ -190,7 +190,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);
 	draw_set_alpha(1);
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	if (obj_control.darkTheme) {
 		draw_set_color(obj_control.darkThemeTextColor);
 	}
@@ -216,6 +216,7 @@ if (showDevVars)
 	draw_text(room_width - 100, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 }
 
+/*
 if (drawRangeStart > 0)
 {
 	ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeStart - 1, -gridSpaceVertical);
@@ -223,4 +224,14 @@ if (drawRangeStart > 0)
 if (drawRangeEnd < ds_grid_height(currentActiveLineGrid) - 1)
 {
 	ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeEnd + 1, room_height + gridSpaceVertical);
+}
+*/
+
+for (var i = 1; i < drawRange; i++) {
+	if (drawRangeStart - i >= 0 and drawRangeStart - i < ds_grid_height(lineGrid)) {
+		ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeStart - i, -gridSpaceVertical);
+	}
+	if (drawRangeEnd + i >= 0 and drawRangeEnd + i < ds_grid_height(lineGrid)) {
+		ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeEnd + i, room_height + gridSpaceVertical);
+	}
 }

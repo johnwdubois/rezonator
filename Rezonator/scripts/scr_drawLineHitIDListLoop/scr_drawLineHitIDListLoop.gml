@@ -51,7 +51,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordID - 1, true);
 		
 	draw_set_alpha(1);
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_set_color(wordColor);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);

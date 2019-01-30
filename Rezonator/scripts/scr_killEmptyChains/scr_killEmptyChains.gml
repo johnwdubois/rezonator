@@ -1,5 +1,5 @@
 /*
-	scr_findInGridTwoParameters(grid);
+	scr_killEmptyChains(grid);
 	
 	Last Updated: 2018-09-11
 	
@@ -15,37 +15,30 @@
 
 var grid = argument0;
 
-
-for (var i = 0; i < ds_grid_height(grid); i++)
-{
-	if (i >= ds_grid_height(grid))
-	{
+// loop through chainGrid 
+for (var i = 0; i < ds_grid_height(grid); i++) {
+	if (i >= ds_grid_height(grid)) {
 		continue;
 	}
 	
 	var idList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
 	var chainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 	
-	if (ds_list_size(idList) == 0)
-	{
+	if (ds_list_size(idList) == 0) {
 		chainState = obj_chain.chainStateDead;
 		ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, chainState);
 	}
 	
-	if (ds_list_size(idList) <= 1 and not (chainState == obj_chain.chainStateFocus) and not (chainState == obj_chain.chainStateDead))
-	{
+	if (ds_list_size(idList) <= 1 and not (chainState == obj_chain.chainStateFocus) and not (chainState == obj_chain.chainStateDead)) {
 		chainState = obj_chain.chainStateDead;
 		ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, chainState);
 		
-		if (ds_list_size(idList) == 1)
-		{
+		if (ds_list_size(idList) == 1) {
 			var lastItemId = ds_list_find_value(idList, 0);
-			if (grid == obj_chain.rezChainGrid)
-			{
+			if (grid == obj_chain.rezChainGrid) {
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, lastItemId - 1, false);
 			}
-			else if (grid == obj_chain.trackChainGrid)
-			{
+			else if (grid == obj_chain.trackChainGrid) {
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, lastItemId - 1, false);
 			}
 		}

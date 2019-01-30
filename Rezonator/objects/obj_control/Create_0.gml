@@ -189,3 +189,9 @@ darkThemeBackColor = c_dkgray;
 darkThemeTextColor = c_white;
 lightThemeBackColor = c_white;
 lightThemeTextColor = c_black;
+
+global.fontSize = 0;
+global.fontMain = fnt_main;
+
+scrollFast = 0;
+

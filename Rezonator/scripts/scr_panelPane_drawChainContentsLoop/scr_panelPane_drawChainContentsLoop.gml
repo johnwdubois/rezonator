@@ -16,7 +16,7 @@
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_set_font(fnt_chainContents);
+draw_set_font(global.fontChainContents);
 
 var grid = obj_chain.rezChainGrid;
 
@@ -344,19 +344,31 @@ for (var i = 0; i < 3; i++)
 
 draw_line(x, y + tabHeight, x + windowWidth, y + tabHeight);
 
+draw_set_font(global.fontChainContents);
+var str = "a";
+scrollRange = floor((windowHeight - tabHeight) / string_height(str)) + 2;
 
-var scrollBarHeight = ((scrollRange * windowHeight) / ds_list_size(functionChainContents_IDList));
+
+var windowHeightMinus = windowHeight + tabHeight;
+var scrollBarHeight = ((scrollRange * (windowHeight - tabHeight)) / (ds_list_size(functionChainContents_IDList)));
 var scrollBarRectX1 = x + windowWidth - scrollBarWidth;
-var scrollBarRectY1 = y + ((currentTopViewRow * windowHeight) / ds_list_size(functionChainContents_IDList));
+var scrollBarRectY1 = y + tabHeight + ((currentTopViewRow * windowHeight) / (ds_list_size(functionChainContents_IDList)));
 var scrollBarRectX2 = scrollBarRectX1 + scrollBarWidth;
 var scrollBarRectY2 = scrollBarRectY1 + scrollBarHeight;
 
-scrollBarRectY1 = max(scrollBarRectY1, y + (textMarginTop / 2));
-scrollBarRectY2 = max(scrollBarRectY2, y + (textMarginTop / 2));
+if (ds_list_size(functionChainContents_IDList) < scrollRange) {
+	scrollBarRectY1 = y + tabHeight;
+	scrollBarRectY2 = y + windowHeight;
+}
+else {
+	scrollBarRectY1 = max(scrollBarRectY1, y + tabHeight);
+	scrollBarRectY2 = min(scrollBarRectY2, y + windowHeight);
+}
 
-if (ds_list_size(functionChainContents_IDList) == 0 or not focusedChainExists)
+
+if (ds_list_size(functionChainContents_IDList) < 1 or not focusedChainExists)
 {
-	scrollBarRectY1 = y + (textMarginTop / 2);
+	scrollBarRectY1 = y + tabHeight;
 	scrollBarRectY2 = y + windowHeight;
 	scrollBarHolding = false;
 }
@@ -382,5 +394,5 @@ if (mouse_check_button_released(mb_left))
 
 if (scrollBarHolding)
 {
-	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_list_size(functionChainContents_IDList)) / (windowHeight));
+	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * (ds_list_size(functionChainContents_IDList))) / (windowHeight));
 }

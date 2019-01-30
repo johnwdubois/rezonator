@@ -21,17 +21,14 @@ args = argument[1];
 argsSize = array_height_2d(args);
 i = argument[2];
 
-if (typeof(args[i,0]) != "number")
-{
+if (typeof(args[i,0]) != "number") {
 	exit;
 }
-else
-{
+else {
 	ds_grid_sort(grid,args[i,0],args[i,1]);
 }
 
-if argsSize -1 = i
-{
+if argsSize -1 = i {
 	return -1;
 }
 
@@ -40,12 +37,10 @@ var col, colNext, rowI;
 col = args[i,0];
 rowI = 0;
 
-for (var row = 1; row <= gridHeight; row++)
-{
-	if (row = gridHeight || grid[# col,row] != grid[# col,rowI])
-	{
-		if (row - rowI > 1)
-		{
+// change cells of grid for each column we sort on
+for (var row = 1; row <= gridHeight; row++) {
+	if (row = gridHeight || grid[# col,row] != grid[# col,rowI]) {
+		if (row - rowI > 1) {
             var tempGrid = ds_grid_create(gridWidth,row - rowI);
 		
             ds_grid_set_grid_region(tempGrid,grid,0,rowI,gridWidth - 1,row - 1,0,0);

@@ -13,8 +13,7 @@
 */
 
 //New funtionality for recording chain modification
-while(ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) 
-{
+while (ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) {
 	var ind = ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID);
 	ds_list_delete(obj_chain.chainIDModifyList, ind);
 }
@@ -24,42 +23,39 @@ var wordID = argument0;
 var goal = argument1;
 var focus = true;
 
-
-if (goal > -1)
-{
+if (goal > -1) {
 	focus = false;
 }
 
-
 var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
 
-if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
-{
+
+if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	var idSet = unitID;
 }
-else
-{
+else {
 	var idSet = wordID;
 	obj_control.mostRecentlyAddedWord = wordID;
 }
 
-if (currentFocusedChainID == -1)
-{
+
+if (currentFocusedChainID == -1) {
 	exit;
 }
 
+// add new row to linkGrid
 ds_grid_resize(obj_chain.linkGrid, obj_chain.linkGridWidth, ds_grid_height(obj_chain.linkGrid) + 1);
 var currentLinkGridRow = ds_grid_height(obj_chain.linkGrid) - 1;
 
 linkIDCounter++;
 
 
-if (scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentFocusedChainID, obj_chain.linkGrid_colGoal, -1) > -1)
-{
-	var focusedRow = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentFocusedChainID, obj_chain.linkGrid_colGoal, -1);
+var focusedRow = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentFocusedChainID, obj_chain.linkGrid_colGoal, -1)
+if (focusedRow > -1) {
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, focusedRow, idSet);
 }
 
+// fill in info for new row in linkGrid
 ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentLinkGridRow, currentFocusedChainID);
@@ -73,10 +69,9 @@ ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTilt, currentLinkGridRow, 
 
 scr_gridMultiColSort(linkGrid, linkGrid_colTier, true, linkGrid_colChainID, true, linkGrid_colLinkID, true, linkGrid_colDead, true);
 
-with (obj_panelPane)
-{
-	switch (obj_toolPane.currentTool)
-	{
+// switch panel pane to corresponding tab
+with (obj_panelPane) {
+	switch (obj_toolPane.currentTool) {
 		case obj_toolPane.toolRezBrush:
 			functionChainList_currentTab = functionChainList_tabRezBrush;
 			break;
@@ -90,14 +85,12 @@ with (obj_panelPane)
 			break;
 	}
 		
-	if (currentFunction == functionChainContents)
-	{		
+	if (currentFunction == functionChainContents) {
 		functionChainContents_hop = idSet;
 	}
 }
 
-if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush)
-{
+if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 	scr_addToCliqueGrid(wordID, currentFocusedChainID);
 }
 
