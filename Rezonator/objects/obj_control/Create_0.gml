@@ -195,3 +195,4 @@ global.fontMain = fnt_main;
 
 scrollFast = 0;
 
+leftScreenBound = 0;

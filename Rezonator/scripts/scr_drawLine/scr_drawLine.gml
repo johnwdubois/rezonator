@@ -50,11 +50,16 @@ if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin + obj_control.sp
 	var leftOutOfBoundsRectY1 = 0;
 	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - obj_control.speakerLabelMarginBuffer;
 	var leftOutOfBoundsRectY2 = room_height;
+	
+	if (currentActiveLineGrid == searchGrid) {
+		leftOutOfBoundsRectX2 = leftScreenBound;
+	}
 	draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
 }
 
 draw_set_color(c_black);
 
+obj_control.leftScreenBound = room_width;
 for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoop++)
 {
 	if (drawLineLoop < 0 or drawLineLoop >= ds_grid_height(currentActiveLineGrid))
@@ -93,20 +98,6 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	
 	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid))
 	{
-		/*
-		for (var stackTestLoop = 0; stackTestLoop < ds_list_size(currentWordIDList); stackTestLoop++)
-		{
-			var currentWordID = ds_list_find_value(currentWordIDList, stackTestLoop) - 1;
-			var stackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
-		
-			if (ds_list_size(stackList) > 0)
-			{
-				currentLineInStack = ds_list_find_value(stackList, 0);
-			}
-		}
-		
-		currentLineInStack = ds_list_find_value(stackList, 0);
-		*/
 		currentLineInStackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
 	}
 	

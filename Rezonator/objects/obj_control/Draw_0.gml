@@ -66,4 +66,6 @@ if (showDevVars)
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 750, "chainColorID[1]: " + string(obj_chain.chainColorID[1]));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 770, "chainColorID[2]: " + string(obj_chain.chainColorID[2]));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 790, "chainColorID[3]: " + string(obj_chain.chainColorID[3]));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 810, "leftScreenBound: " + string(leftScreenBound));
 }
