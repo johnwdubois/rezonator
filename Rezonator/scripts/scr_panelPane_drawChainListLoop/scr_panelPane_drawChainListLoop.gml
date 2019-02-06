@@ -116,22 +116,18 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 				}
 				
 				// Unfocus any already focused chains
-				for (var j = 0; j < ds_grid_height(grid); j++)
-				{
-					if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus)
-					{
+				for (var j = 0; j < ds_grid_height(grid); j++) {
+					if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
 						ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
 					}
 				}
 				
 				// Set chain to focus in the grid
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
-				
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 				
 				// Set chain to focus in the main screen
-				if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid))
-				{
+				if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
 					scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 				}
 				obj_chain.mouseLineWordID = -1;
@@ -292,52 +288,55 @@ if (scrollBarHolding) {
 }
 
 // Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in panelPane
-if(obj_panelPane.clickedIn) {
+with (obj_panelPane) {
+	if (currentFunction == functionChainList and clickedIn) {
 	
-	// Scroll up with mouse/key
-	if ((mouse_wheel_up() || keyboard_check(vk_up))) {
-		if (currentTopViewRow > 0) {
-			currentTopViewRow--;
+		// Scroll up with mouse/key
+		if ((mouse_wheel_up() || keyboard_check(vk_up))) {
+			if (currentTopViewRow > 0) {
+				currentTopViewRow--;
+			}
+		}
+	
+		// Scroll up with pgUp/key
+		if (keyboard_check_pressed(vk_pageup)){
+			if (currentTopViewRow > 0){
+				currentTopViewRow -= scrollRange;
+			}
+		}
+	
+		// Scroll up with ctrl+key
+		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
+			if (currentTopViewRow > 0) {
+				currentTopViewRow -= ds_grid_height(grid);
+			}
 		}
 	}
-	
-	// Scroll up with pgUp/key
-	if (keyboard_check_pressed(vk_pageup)){
-		if (currentTopViewRow > 0){
-			currentTopViewRow -= scrollRange;
-		}
-	}
-	
-	// Scroll up with ctrl+key
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
-		if (currentTopViewRow > 0) {
-			currentTopViewRow -= ds_grid_height(grid);
-		}
-	}
-}
+
 
 // Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in panelPane
-if(obj_panelPane.clickedIn) {
+	if (currentFunction == functionChainList and clickedIn) {
 	
-	// Scroll down with mouse/key
-	if ((mouse_wheel_down() || keyboard_check(vk_down))){
-		if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
-			currentTopViewRow++;
+		// Scroll down with mouse/key
+		if ((mouse_wheel_down() || keyboard_check(vk_down))){
+			if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
+				currentTopViewRow++;
 			
+			}
 		}
-	}
 	
-	// Scroll down with pgDwn
-	if (keyboard_check_pressed(vk_pagedown)){
-		if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
-			currentTopViewRow += scrollRange;
+		// Scroll down with pgDwn
+		if (keyboard_check_pressed(vk_pagedown)){
+			if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
+				currentTopViewRow += scrollRange;
+			}
 		}
-	}
 	
-	// Scroll down with ctrl+key
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
-		if (currentTopViewRow + scrollRange < ds_grid_height(grid)) {
-			currentTopViewRow += ds_grid_height(grid);
+		// Scroll down with ctrl+key
+		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
+			if (currentTopViewRow + scrollRange < ds_grid_height(grid)) {
+				currentTopViewRow += ds_grid_height(grid);
+			}
 		}
 	}
 }
