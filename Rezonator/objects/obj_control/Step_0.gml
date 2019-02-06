@@ -15,7 +15,8 @@ if (!gridView) {
 		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 	}
 	
-with(obj_panelPane) {//try just using clickedIn
+// Retrieve booleans for NavWindow.	
+with(obj_panelPane) {
 	if(currentFunction == functionChainList){
 		var list = clickedIn;
 	}
@@ -23,9 +24,10 @@ with(obj_panelPane) {//try just using clickedIn
 		var contents = clickedIn;
 	}
 }
+
+// Check if user is in the NavWindow. If not, allow key control on main screen.
 if(list == false and contents == false){
-	if (keyboard_check(vk_down))
-	{
+	if (keyboard_check(vk_down)) {
 		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
 		{
 			currentCenterDisplayRow++;
@@ -52,12 +54,10 @@ if(list == false and contents == false){
 
 	if (keyboard_check_pressed(vk_pagedown)) {
 		currentCenterDisplayRow += drawRange;
-		//scrollFast = -drawRange;
 	}
 
 	if (keyboard_check_pressed(vk_pageup)) {
 		currentCenterDisplayRow -= drawRange;
-		//scrollFast = drawRange;
 	}
 
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
@@ -163,11 +163,6 @@ if (wordLeftMargin < wordLeftMarginDest) {
 else if (wordLeftMargin > wordLeftMarginDest) {
 	wordLeftMargin -= abs(wordLeftMargin - wordLeftMarginDest) / 6;
 }
-
-
-
-
-
 
 
 if (keyboard_check_pressed(ord("P"))) {

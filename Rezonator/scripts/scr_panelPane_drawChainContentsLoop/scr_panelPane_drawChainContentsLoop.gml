@@ -9,7 +9,7 @@
 	
 	Mechanism: loop through the IDList of the focused chain and gather information from corresponding grids
 	
-	Author: Terry DuBois
+	Author: Terry DuBois, Georgio Klironomos
 */
 
 // Set opacity, alignment, and font of contents list
@@ -379,18 +379,19 @@ if (scrollBarHolding)
 	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_list_size(functionChainContents_IDList)) / (windowHeight));
 }
 
+// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 with(obj_panelPane){
 	if (currentFunction == functionChainContents and clickedIn) {
 	
 		// Scroll up with mouse/key
-		if ((mouse_wheel_up() || keyboard_check(vk_up))) {
+		if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
 			if (currentTopViewRow > 0) {
 				currentTopViewRow--;
 			}
 		}
 	
 		// Scroll down with mouse/key
-		if ((mouse_wheel_down() || keyboard_check(vk_down))){
+		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)){
 			if (currentTopViewRow + scrollRange < ds_list_size(functionChainContents_IDList)){
 				currentTopViewRow++;
 			}

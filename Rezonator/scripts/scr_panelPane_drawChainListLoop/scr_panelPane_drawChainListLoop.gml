@@ -287,12 +287,12 @@ if (scrollBarHolding) {
 	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_grid_height(grid)) / (windowHeight));
 }
 
-// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in panelPane
+// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 with (obj_panelPane) {
 	if (currentFunction == functionChainList and clickedIn) {
 	
 		// Scroll up with mouse/key
-		if ((mouse_wheel_up() || keyboard_check(vk_up))) {
+		if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
 			if (currentTopViewRow > 0) {
 				currentTopViewRow--;
 			}
@@ -313,12 +313,11 @@ with (obj_panelPane) {
 		}
 	}
 
-
-// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in panelPane
+// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	if (currentFunction == functionChainList and clickedIn) {
 	
 		// Scroll down with mouse/key
-		if ((mouse_wheel_down() || keyboard_check(vk_down))){
+		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)){
 			if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
 				currentTopViewRow++;
 			
