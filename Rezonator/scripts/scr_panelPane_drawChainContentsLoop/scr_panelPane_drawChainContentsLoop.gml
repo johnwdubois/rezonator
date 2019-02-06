@@ -106,11 +106,13 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		var focusedLink = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid);
 		var sourceWordID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGrid);
 		
-		// Create little boxes 
-		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1)) {
-			draw_set_alpha(0.25);
-			draw_set_color(c_red);
-			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+		// Draw red rectangles if stretch word
+		if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
+			if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1)) {
+				draw_set_alpha(0.25);
+				draw_set_color(c_red);
+				draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+			}
 		}
 			
 		// Sets the link focused in the panelPane to the link focused in the main screen
