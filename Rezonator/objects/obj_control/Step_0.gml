@@ -14,9 +14,20 @@ if (!gridView) {
 		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 	}
-if (obj_panelPane.clickedIn == false) {
-	if (keyboard_check(vk_down)) {
-		if (holdDownArrowKey == 0 or holdDownArrowKey > 30) {
+	
+with(obj_panelPane) {//try just using clickedIn
+	if(currentFunction == functionChainList){
+		var list = clickedIn;
+	}
+	if(currentFunction == functionChainContents){
+		var contents = clickedIn;
+	}
+}
+if(list == false and contents == false){
+	if (keyboard_check(vk_down))
+	{
+		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
+		{
 			currentCenterDisplayRow++;
 		}
 	
