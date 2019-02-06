@@ -50,10 +50,11 @@ if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin + obj_control.sp
 	var leftOutOfBoundsRectY1 = 0;
 	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - obj_control.speakerLabelMarginBuffer;
 	var leftOutOfBoundsRectY2 = room_height;
-	
+
 	if (currentActiveLineGrid == searchGrid) {
 		leftOutOfBoundsRectX2 = leftScreenBound;
 	}
+	
 	draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
 }
 
@@ -92,7 +93,6 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
 	var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
 	
-	//var currentLineInStack = ds_grid_get(lineGrid, lineGrid_colInStack, drawLineLoop);
 	var currentLineInStack = false;
 	var currentLineInStackList = -1;
 	
@@ -127,29 +127,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		}
 	}
 	
-	/*
-	if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentLineInStack))
-	{
-		var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentLineInStack);
-		var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
-		
-		draw_set_color(stackColor);
-		draw_set_alpha(0.2);
-		
-		var stackRectX1 = speakerRectX2;
-		var stackRectY1 = speakerRectY1;
-		var stackRectX2 = room_width;
-		var stackRectY2 = speakerRectY2;
-		
-		draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
-	}
-	*/
 	
-	
-	
-	
-	
-	var dbWordIDList = "";
+
 	
 	var previousWordDisplayCol = -1;
 	
@@ -165,18 +144,12 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 
 	
 	
-	if (point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2))
-	{
-		draw_set_alpha(1);
-		draw_set_font(fnt_debug);
-		draw_set_color(c_red);
-		draw_text(mouse_x, mouse_y, dbWordIDList);
-	}
-	
 	var participantColor = ds_grid_get(unitGrid, unitGrid_colParticipantColor, unitID - 1);
 	draw_set_alpha(1);
 	draw_set_color(participantColor);
-	//draw_set_color(c_red);
+	
+	
+	
 	draw_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, false);
 
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);
@@ -207,16 +180,6 @@ if (showDevVars)
 	draw_text(room_width - 100, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 }
 
-/*
-if (drawRangeStart > 0)
-{
-	ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeStart - 1, -gridSpaceVertical);
-}
-if (drawRangeEnd < ds_grid_height(currentActiveLineGrid) - 1)
-{
-	ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeEnd + 1, room_height + gridSpaceVertical);
-}
-*/
 
 for (var i = 1; i < drawRange; i++) {
 	if (drawRangeStart - i >= 0 and drawRangeStart - i < ds_grid_height(lineGrid)) {
