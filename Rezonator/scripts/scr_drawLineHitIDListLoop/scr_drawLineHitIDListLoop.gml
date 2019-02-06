@@ -14,6 +14,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
 	var currentWordX = ds_grid_get(hitGrid, hitGrid_colPixelX, currentHitID - 1);
+	obj_control.leftScreenBound = min(currentWordX, obj_control.leftScreenBound);
 		
 	if (currentWordX < currentWordDestX)
 	{

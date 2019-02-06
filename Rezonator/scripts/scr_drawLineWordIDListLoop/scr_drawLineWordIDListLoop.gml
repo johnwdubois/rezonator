@@ -121,6 +121,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	}
 	
 	var currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow);
+	obj_control.leftScreenBound = min(currentWordX, obj_control.leftScreenBound);
 		
 	if (currentWordX < currentWordDestX)
 	{

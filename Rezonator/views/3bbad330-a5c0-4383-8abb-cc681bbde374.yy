@@ -6,8 +6,7 @@
     "children": [
         "4780a6db-dc73-40e3-8286-7eb084a8b47b",
         "2c4abd01-f056-4203-accc-7a49a37cdfee",
-        "8527467f-60ba-4b6d-8e16-ec6891e4a3e2",
-        "79e73708-91c0-467f-ab87-2d0ed15beb30"
+        "8527467f-60ba-4b6d-8e16-ec6891e4a3e2"
     ],
     "filterType": "GMScript",
     "folderName": "drawLine",

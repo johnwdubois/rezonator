@@ -8,6 +8,9 @@ speakerLabelMargin = 170;
 speakerLabelMarginBuffer = 20;
 wordLeftMargin = 170;
 wordLeftMarginDest = 170;
+for (var i = 0; i < 3; i++) {
+	speakerLabelColX[i] = (speakerLabelMargin / 3) * i;
+}
 
 
 c_ltblue = make_color_rgb(183, 183, 255);
@@ -195,3 +198,4 @@ global.fontMain = fnt_main;
 
 scrollFast = 0;
 
+leftScreenBound = 0;

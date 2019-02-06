@@ -1,7 +1,7 @@
 /*
 	scr_wordClicked(wordID, unitID);
 	
-	Last Updated: 2018-07-12
+	Last Updated: 2019-02-05
 	
 	Called from: obj_control
 	
@@ -13,7 +13,7 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView || obj_control.mouseoverPanelPane) {
+if (obj_control.gridView or obj_control.mouseoverPanelPane) {
 	exit;
 }
 
@@ -27,7 +27,12 @@ or obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	exit;
 }
 
-var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
+if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+	var inChainsList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
+}
+else {
+	var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
+}
 
 // loop through the chains that this word is already in (if any) to refocus that chain
 for (var i = 0; i < ds_list_size(inChainsList); i++) {
@@ -36,9 +41,14 @@ for (var i = 0; i < ds_list_size(inChainsList); i++) {
 		var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID);
 		ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
 		currentFocusedChainID = currentChainID;
-	
 		
-		var rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
+		var rowInLinkGrid = -1;
+		if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+			rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, unitID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
+		}
+		else {
+			rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
+		}
 		
 		if (rowInLinkGrid == -1) {
 			scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
@@ -55,25 +65,25 @@ for (var i = 0; i < ds_list_size(inChainsList); i++) {
 				ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, wordID - 1, true);
 				obj_chain.mouseLineWordID = wordID;
-				
-				with (obj_panelPane) {
-					switch (obj_chain.currentChainGrid) {
-						case obj_chain.rezChainGrid:
-							functionChainList_currentTab = functionChainList_tabRezBrush;
-							break;
-						case obj_chain.trackChainGrid:
-							functionChainList_currentTab = functionChainList_tabTrackBrush;
-							break;
-						case obj_chain.stackChainGrid:
-							functionChainList_currentTab = functionChainList_tabStackBrush;
-							break;
-						default:
-							break;
-					}
+		
+			}
+			with (obj_panelPane) {
+				switch (obj_chain.currentChainGrid) {
+					case obj_chain.rezChainGrid:
+						functionChainList_currentTab = functionChainList_tabRezBrush;
+						break;
+					case obj_chain.trackChainGrid:
+						functionChainList_currentTab = functionChainList_tabTrackBrush;
+						break;
+					case obj_chain.stackChainGrid:
+						functionChainList_currentTab = functionChainList_tabStackBrush;
+						break;
+					default:
+						break;
 				}
-				
-				exit;
-			}	
+			}
+			
+			exit;
 		}
 	}
 }
