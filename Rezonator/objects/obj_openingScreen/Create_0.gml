@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+scr_colorThemeGridInit();
+
 global.fileLineRipList = ds_list_create();
 
 global.fileLineRipGripWidth = 5;

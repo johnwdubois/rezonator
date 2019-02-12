@@ -4,7 +4,7 @@ if (obj_control.gridView)
 }
 
 draw_set_alpha(1);
-draw_set_color(c_white);
+draw_set_color(global.colorThemePaneBG);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 switch (currentFunction)
@@ -20,7 +20,7 @@ switch (currentFunction)
 		}
 		if(clickedIn == true) {
 			draw_set_alpha(1);
-			draw_set_color(c_black);
+			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
 			draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
 		}
@@ -35,7 +35,7 @@ switch (currentFunction)
 		}
 		if(clickedIn == true) {
 			draw_set_alpha(1);
-			draw_set_color(c_black);
+			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
 			draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
 		}
@@ -61,7 +61,7 @@ switch (currentFunction)
 
 
 draw_set_alpha(1);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 
 

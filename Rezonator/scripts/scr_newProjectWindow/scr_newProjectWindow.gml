@@ -1,5 +1,4 @@
-if (keyboard_check_pressed(vk_escape))
-{
+if (keyboard_check_pressed(vk_escape)) {
 	global.newProject = false;
 	global.openProject = false;
 }
@@ -16,29 +15,26 @@ var importButtonRectY1 = (camera_get_view_height(view_camera[0]) / 4) * 3 - (imp
 var importButtonRectX2 = importButtonRectX1 + importButtonRectWidth;
 var importButtonRectY2 = importButtonRectY1 + importButtonRectHeight;
 
-if (point_in_rectangle(mouse_x, mouse_y, importButtonRectX1, importButtonRectY1, importButtonRectX2, importButtonRectY2))
-{
-	draw_set_color(c_ltgray);
+if (point_in_rectangle(mouse_x, mouse_y, importButtonRectX1, importButtonRectY1, importButtonRectX2, importButtonRectY2)) {
+	draw_set_color(global.colorThemeSelected1);
 	
-	if (mouse_check_button_pressed(mb_left))
-	{
+	if (mouse_check_button_pressed(mb_left)) {
 		scr_openXML();
 	}
 }
-else
-{
-	draw_set_color(c_white);
+else {
+	draw_set_color(global.colorThemeBG);
 }
 draw_rectangle(importButtonRectX1, importButtonRectY1, importButtonRectX2, importButtonRectY2, false);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_rectangle(importButtonRectX1, importButtonRectY1, importButtonRectX2, importButtonRectY2, true);
 
 var importButtonString = "Open file";
-if (ds_grid_height(global.fileLineRipGrid) >= 1)
-{
+if (ds_grid_height(global.fileLineRipGrid) >= 1) {
 	importButtonString = "Open another file";
 }
 
+draw_set_color(global.colorThemeText);
 draw_text(mean(importButtonRectX1, importButtonRectX2), mean(importButtonRectY1, importButtonRectY2), importButtonString);
 
 
@@ -54,33 +50,28 @@ var continueButtonRectY1 = (camera_get_view_height(view_camera[0]) / 8) * 7 - (c
 var continueButtonRectX2 = continueButtonRectX1 + continueButtonRectWidth;
 var continueButtonRectY2 = continueButtonRectY1 + continueButtonRectHeight;
 
-if (point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2) && canContinue)
-{
-	draw_set_color(c_ltgray);
+if (point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2) && canContinue) {
+	draw_set_color(global.colorThemeSelected1);
 	
-	if (mouse_check_button_pressed(mb_left))
-	{
+	if (mouse_check_button_pressed(mb_left)) {
 		room_goto_next();
 	}
 }
-else
-{
-	draw_set_color(c_white);
+else {
+	draw_set_color(global.colorThemeBG);
 }
 
-if (canContinue)
-{
+if (canContinue) {
 	draw_set_alpha(1);
 }
-else
-{
+else {
 	draw_set_alpha(0.25);
 }
 
 draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
-
+draw_set_color(global.colorThemeText);
 draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Go!");
 
 
@@ -88,8 +79,7 @@ draw_set_alpha(1);
 
 
 var totalUnitAmount = 0;
-for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++)
-{
+for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 	totalUnitAmount += ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colUnitAmount, i);
 }
 global.totalUnitAmount = totalUnitAmount;
@@ -110,23 +100,19 @@ var calloutBubbleText = "";
 var ableToMouseover = true;
 
 var textPlusY = 24;
-for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
-{
-	if (ds_grid_height(global.fileLineRipGrid) < 1)
-	{
+for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
+	if (ds_grid_height(global.fileLineRipGrid) < 1) {
 		continue;
 	}
 	
-	if (i < 0 or i > ds_grid_height(global.fileLineRipGrid))
-	{
+	if (i < 0 or i > ds_grid_height(global.fileLineRipGrid)) {
 		continue;
 	}
 	
 	var discoID = string(ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, i));
 	var unitAmount = string(ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colUnitAmount, i));
 	
-	if (discoID == "undefined" or unitAmount == "undefined")
-	{
+	if (discoID == "undefined" or unitAmount == "undefined") {
 		continue;
 	}
 	
@@ -137,11 +123,10 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	var rectX2 = importWindowX1 + importWindowWidth;
 	var rectY2 = rectY1 + 24;
 	
-	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToMouseover)
-	{
+	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToMouseover) {
 		ableToMouseover = false;
 		
-		draw_set_color(c_ltgray);
+		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		
 		var xButtonRectX1 = importWindowX1 + 8;
@@ -151,13 +136,11 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		
 		draw_sprite_ext(spr_xButton, 0, mean(xButtonRectX1, xButtonRectX2), mean(xButtonRectY1, xButtonRectY2) - 1, 1, 1, 0, c_white, 1);
 	
-		if (point_in_rectangle(mouse_x, mouse_y, xButtonRectX1, xButtonRectY1, xButtonRectX2, xButtonRectY2))
-		{
-			draw_set_color(c_gray);
+		if (point_in_rectangle(mouse_x, mouse_y, xButtonRectX1, xButtonRectY1, xButtonRectX2, xButtonRectY2)) {
+			draw_set_color(global.colorThemeGrid_colSelected);
 			draw_rectangle(xButtonRectX1, xButtonRectY1, xButtonRectX2, xButtonRectY2, true);
 			
-			if (mouse_check_button_pressed(mb_left))
-			{
+			if (mouse_check_button_pressed(mb_left)) {
 				scr_gridDeleteRow(global.fileLineRipGrid, i);
 				exit;
 			}
@@ -165,15 +148,14 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 	}
 	
 	var textBuffer = 40;
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_text(importWindowX1 + textBuffer, importWindowY1 + textPlusY, discoID);
 	draw_set_halign(fa_right);
 	draw_text(importWindowX2 - scrollBarWidth - textBuffer, importWindowY1 + (textPlusY), unitAmount + " lines");
 	
 	var participantRectColorList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, i);
-	for (var j = 0; j < ds_list_size(currentParticipantList); j++)
-	{
+	for (var j = 0; j < ds_list_size(currentParticipantList); j++) {
 		var participantRectX1 = importWindowX1 + 100 + (j * 20);
 		var participantRectY1 = importWindowY1 + textPlusY - 5;
 		var participantRectX2 = participantRectX1 + 10;
@@ -186,8 +168,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++)
 		
 		var participantName = ds_list_find_value(currentParticipantList, j);
 		
-		if point_in_rectangle(mouse_x, mouse_y, participantRectX1, participantRectY1, participantRectX2, participantRectY2)
-		{
+		if point_in_rectangle(mouse_x, mouse_y, participantRectX1, participantRectY1, participantRectX2, participantRectY2) {
 			mouseoverAny = true;
 			calloutBubbleX = mean(participantRectX1, participantRectX2);
 			calloutBubbleY = mean(participantRectY1, participantRectY2);
@@ -209,20 +190,17 @@ scrollBarRectY1 = max(scrollBarRectY1, importWindowY1 + 1);
 scrollBarRectY2 = max(scrollBarRectY2, importWindowY1 + 24);
 scrollBarRectY2 = min(scrollBarRectY2, importWindowY2);
 
-if (ds_grid_height(global.fileLineRipGrid) == 0)
-{
+if (ds_grid_height(global.fileLineRipGrid) == 0) {
 	scrollBarRectY1 = importWindowY1 + 1;
 	scrollBarRectY2 = importWindowY1 + importWindowHeight;
 	scrollBarHolding = false;
 }
 
-draw_set_color(c_ltgray);
+draw_set_color(global.colorThemeSelected1);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
-if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))
-{
-	if (mouse_check_button_pressed(mb_left))
-	{
+if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2)) {
+	if (mouse_check_button_pressed(mb_left)) {
 		scrollBarHolding = true;
 		scrollBarHoldingPlusY = mouse_y - scrollBarRectY1;
 	}
@@ -230,24 +208,21 @@ if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrol
 
 scrollBarHoldingPlusY = 0;
 
-if (mouse_check_button_released(mb_left))
-{
+if (mouse_check_button_released(mb_left)) {
 	scrollBarHolding = false;
 }
 
-if (scrollBarHolding)
-{
+if (scrollBarHolding) {
 	currentTopViewRow = floor(((mouse_y - y - scrollBarHoldingPlusY) * ds_grid_height(global.fileLineRipGrid)) / (importWindowHeight));
 }
 
-if (mouseoverAny and calloutBubbleX > -1 and calloutBubbleY > -1)
-{
+if (mouseoverAny and calloutBubbleX > -1 and calloutBubbleY > -1) {
 	draw_sprite(spr_calloutBubble, 0, calloutBubbleX, calloutBubbleY);
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_font(fnt_calloutBubble);
 	draw_text(calloutBubbleX, calloutBubbleY - 15, calloutBubbleText);
 }
 
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_rectangle(importWindowX1, importWindowY1, importWindowX2, importWindowY2, true);

@@ -575,6 +575,14 @@
             }
         },
         {
+            "Key": "730a5783-5fcd-4b1e-af7f-eb156d322068",
+            "Value": {
+                "id": "11b178de-09a4-46b4-af14-5172ffa99694",
+                "resourcePath": "scripts\\scr_colorThemeGridInit\\scr_colorThemeGridInit.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "74116bf7-7090-45a1-9e1a-7ca610c6f80f",
             "Value": {
                 "id": "aed3062e-104d-47a1-a953-57ee8ac88513",
@@ -828,6 +836,14 @@
                 "id": "e98b3ef6-2c9b-4d3c-8167-9a92954c012c",
                 "resourcePath": "objects\\obj_openingScreen\\obj_openingScreen.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "9bf8a465-d045-4287-92ab-cc25d14c9539",
+            "Value": {
+                "id": "b349aba6-06e6-4f24-aad7-47e373c4dadf",
+                "resourcePath": "scripts\\scr_colorThemeControl\\scr_colorThemeControl.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1431,7 +1447,9 @@
         "7bf96896-31d5-4157-8f09-1b534bc78c46",
         "2314d808-a273-4c27-b262-bd599936310c",
         "af095078-d1ac-4e66-8957-21caafa26853",
-        "fc1067ad-8999-4c32-b44e-52ec42f636c0"
+        "fc1067ad-8999-4c32-b44e-52ec42f636c0",
+        "730a5783-5fcd-4b1e-af7f-eb156d322068",
+        "9bf8a465-d045-4287-92ab-cc25d14c9539"
     ],
     "tutorial": ""
 }

@@ -213,3 +213,11 @@ global.fontMain = fnt_main;
 scrollFast = 0;
 
 leftScreenBound = 0;
+
+
+
+// set BG color based on color theme
+var layerID = layer_get_id("Background");
+var backID = layer_background_get_id(layerID);
+var BGcolor = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBG, global.colorTheme);
+layer_background_blend(backID, BGcolor);

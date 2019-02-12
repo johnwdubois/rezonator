@@ -12,6 +12,10 @@
 	Author: Terry DuBois
 */
 
+// color theme control
+scr_colorThemeControl();
+
+// adjust view to window size
 scr_windowCameraAdjust();
 
 if (gridView) {
@@ -44,7 +48,7 @@ if (showDevVars) {
 	draw_set_color(c_ltgray);
 	draw_line(0, 150 + (camera_get_view_height(view_camera[0]) - 150) / 2, camera_get_view_width(view_camera[0]), 150 + (camera_get_view_height(view_camera[0]) - 150) / 2);
 
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 100, "fps: " + string(fps));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 130, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 150, "currentCenterDisplayRow: " + string(currentCenterDisplayRow));

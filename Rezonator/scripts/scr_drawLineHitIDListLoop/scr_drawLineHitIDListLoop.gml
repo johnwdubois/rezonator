@@ -37,7 +37,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))
 	{
 		draw_set_alpha(1);
-		draw_set_color(c_black);
+		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 		if (mouse_check_button_pressed(mb_left))
@@ -53,7 +53,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		
 	draw_set_alpha(1);
 	draw_set_font(global.fontMain);
-	draw_set_color(wordColor);
+	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(currentWordX, currentLineY, currentWordString);

@@ -145,12 +145,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var wordRectY2 = wordRectY1 + string_height(currentWordString) + (wordRectBuffer * 2);
 	
 	draw_set_alpha(1);
-	if (obj_control.darkTheme) {
-		draw_set_color(obj_control.darkThemeBackColor);
-	}
-	else {
-		draw_set_color(obj_control.lightThemeBackColor);
-	}
+	draw_set_color(global.colorThemeBG);
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 	
 	// figure out whether or not to draw fill/border for this word
@@ -193,13 +188,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord)) {
 		mouseover = true;
+		
+		draw_set_color(global.colorThemeBorders);
 		draw_set_alpha(1);
-		if (obj_control.darkTheme) {
-			draw_set_color(obj_control.darkThemeTextColor);
-		}
-		else {
-			draw_set_color(obj_control.lightThemeTextColor);
-		}
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 		if (mouse_check_button_pressed(mb_left)) {
@@ -230,7 +221,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordID - 1, true);
 	
-	var textColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colTextColor, currentWordID - 1);
+	//var textColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colTextColor, currentWordID - 1);
+	var textColor = global.colorThemeText;
 		
 	// finally, draw the word to the main view
 	draw_set_alpha(1);

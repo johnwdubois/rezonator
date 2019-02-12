@@ -1,3 +1,5 @@
+scr_colorThemeControl();
+
 importWindowWidth = camera_get_view_width(view_camera[0]) / 2;
 importWindowHeight = camera_get_view_height(view_camera[0]) / 5;
 importWindowX1 = camera_get_view_width(view_camera[0]) * 0.25;

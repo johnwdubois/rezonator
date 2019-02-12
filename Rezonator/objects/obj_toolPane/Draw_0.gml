@@ -14,9 +14,9 @@ if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y,
 
 
 draw_set_alpha(1);
-draw_set_color(c_white);
+draw_set_color(global.colorThemeBG);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 
 var iconMarginTop = 30;
@@ -81,7 +81,7 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++)
 	if (mouseover or currentTool == i)
 	{
 		var rectBuffer = 2;
-		draw_set_color(c_gray);
+		draw_set_color(global.colorThemeSelected2);
 		draw_rectangle(mouseoverRectX1 - rectBuffer, mouseoverRectY1 - rectBuffer, mouseoverRectX2 + rectBuffer, mouseoverRectY2 + rectBuffer, true);
 		
 		if (mouseover and mouse_check_button_pressed(mb_left))
@@ -122,7 +122,7 @@ for (var i = 0; i < 2; i++)
 	if (mouseover or selected)
 	{
 		var rectBuffer = 2;
-		draw_set_color(c_gray);
+		draw_set_color(global.colorThemeSelected2);
 		draw_rectangle(viewIconRectX1 - rectBuffer, viewIconRectY1 - rectBuffer, viewIconRectX2 + rectBuffer, viewIconRectY2 + rectBuffer, true);
 		
 		if (mouseover and mouse_check_button_pressed(mb_left))
@@ -138,11 +138,11 @@ for (var i = 0; i < 2; i++)
 		}
 	}
 	
-	var imageBlend = c_black;
+	var imageBlend = global.colorThemeText;
 	if (selected)
 	{
-		imageBlend = c_white;	
-		draw_set_color(c_black);
+		imageBlend = global.colorThemeBG;	
+		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_rectangle(viewIconRectX1, viewIconRectY1, viewIconRectX2, viewIconRectY2, false);
 	}
