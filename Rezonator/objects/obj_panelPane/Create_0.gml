@@ -1,3 +1,17 @@
+/*
+	obj_panelPane: Create
+	
+	Last Updated: 2019-02-11
+	
+	Called from: The creation of panelPane objects
+	
+	Purpose: Instantiate all variables used by panelPane objects
+	
+	Mechanism: variable creation and assignment
+	
+	Author: Terry DuBois
+*/
+
 functionChainList = 0;
 functionChainContents = 1;
 functionFilter = 2;

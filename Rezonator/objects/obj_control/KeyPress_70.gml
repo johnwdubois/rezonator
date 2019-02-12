@@ -1,3 +1,4 @@
+// Activates and deactivates the search grid
 if (searchGridActive)
 {
 	searchGridActive = false;

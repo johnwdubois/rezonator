@@ -1,3 +1,17 @@
+/*
+	obj_control: Create
+	
+	Last Updated: 2019-02-11
+	
+	Called from: The creation of a control object
+	
+	Purpose: Instantiate all variables used by control objects
+	
+	Mechanism: variable creation and assignment
+	
+	Author: Terry DuBois
+*/
+
 currentCenterDisplayRow = 0;
 prevCenterDisplayRow = 0;
 

@@ -15,6 +15,7 @@
 var tool = argument0;
 var grid = obj_chain.rezChainGrid;
 
+// Select current chain type
 switch (tool)
 {
 	case obj_toolPane.toolRezBrush:
@@ -30,6 +31,7 @@ switch (tool)
 		break;
 }
 
+// Unfocus chains of previously used tool
 if (not obj_toolPane.currentTool == tool)
 {
 	while (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus))

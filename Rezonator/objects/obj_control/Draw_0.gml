@@ -1,17 +1,29 @@
+/*
+	obj_control: Draw
+	
+	Last Updated: 2019-02-11
+	
+	Called from: Every frame of the game
+	
+	Purpose: Call the camera adjuster, show the display columns and the developer variables
+	
+	Mechanism: DevVars: checks for necessity, then draws developer variables wherever the camera is
+	
+	Author: Terry DuBois
+*/
+
 scr_windowCameraAdjust();
 
-if (gridView)
-{
+if (gridView) {
 	exit;
 }
 
-if (showDisplayCols)
-{
+// Turns on a grid of lines
+if (showDisplayCols) {
 	draw_set_alpha(0.25);
 	draw_set_color(c_black);
 	
-	for (var i = 0; i < 20; i++)
-	{
+	for (var i = 0; i < 20; i++) {
 		var displayColX = wordLeftMargin + (i * gridSpaceHorizontal);
 		draw_line(displayColX, 0, displayColX, room_height);
 		draw_text(displayColX, 160, string(i));
@@ -26,9 +38,8 @@ draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
 draw_set_alpha(1);
 
-
-if (showDevVars)
-{
+// Shows variables used for in game bugtesting
+if (showDevVars) {
 	
 	draw_set_color(c_ltgray);
 	draw_line(0, 150 + (camera_get_view_height(view_camera[0]) - 150) / 2, camera_get_view_width(view_camera[0]), 150 + (camera_get_view_height(view_camera[0]) - 150) / 2);
@@ -50,11 +61,9 @@ if (showDevVars)
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 485, "chainIDModifyList: ");
 	var modifyListStr = "{";
-	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) 
-	{
+	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) {
 			modifyListStr += string(ds_list_find_value(obj_chain.chainIDModifyList, i));
-			if(i < ds_list_size(obj_chain.chainIDModifyList) - 1)
-			{
+			if(i < ds_list_size(obj_chain.chainIDModifyList) - 1) {
 				modifyListStr += ", ";
 			}
 	}

@@ -1,3 +1,17 @@
+/*
+	obj_openingScreen: Create
+	
+	Last Updated: 2019-02-11
+	
+	Called from: The creation of the openingScreen object
+	
+	Purpose: Instantiate all variables used by the openingScreen object
+	
+	Mechanism: variable creation and assignment
+	
+	Author: Terry DuBois
+*/
+
 global.fileLineRipList = ds_list_create();
 
 global.fileLineRipGripWidth = 5;

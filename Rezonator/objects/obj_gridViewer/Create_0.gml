@@ -1,3 +1,17 @@
+/*
+	obj_gridViewer: Create
+	
+	Last Updated: 2019-02-11
+	
+	Called from: The creation of the gridViewer object
+	
+	Purpose: Instantiate all variables used by the gridViewer object
+	
+	Mechanism: variable creation and assignment
+	
+	Author: Terry DuBois
+*/
+
 scrollTogether = false;
 
 gridList = ds_list_create();

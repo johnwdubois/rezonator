@@ -1,3 +1,17 @@
+/*
+	obj_span: Create
+	
+	Last Updated: 2019-02-11
+	
+	Called from: The creation of openingScreen objects
+	
+	Purpose: Instantiate all variables used by openingScreen objects
+	
+	Mechanism: variable creation and assignment
+	
+	Author: Terry DuBois
+*/
+
 spanGrid_width = 5;
 spanGrid_colWordID = 0;
 spanGrid_colspanID = 1;

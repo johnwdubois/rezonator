@@ -1,3 +1,17 @@
+/*
+	obj_chain: Create
+	
+	Last Updated: 2019-02-11
+	
+	Called from: The creation of a chain object
+	
+	Purpose: Instantiate all variables used by the chain objects
+	
+	Mechanism: variable creation and assignment
+	
+	Author: Terry DuBois
+*/
+
 chainGridWidth = 8;
 chainGrid_colChainID = 0;
 chainGrid_colChainState = 1;

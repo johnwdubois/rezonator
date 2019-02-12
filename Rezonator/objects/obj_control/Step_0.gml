@@ -1,3 +1,19 @@
+/*
+	obj_control: Step
+	
+	Last Updated: 2019-02-11
+	
+	Called from: Every frame of the game
+	
+	Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
+	
+	Mechanism: Check keys every frame for input, and control the speed of navigation using conditionals
+	
+	Author: Terry DuBois
+*/
+
+
+// Mechanism to update center display row
 if (!gridView) {
 	if (ds_grid_height(currentActiveLineGrid) > 0) {
 		var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
@@ -59,7 +75,7 @@ if(list == false and contents == false){
 	if (keyboard_check_pressed(vk_pageup)) {
 		currentCenterDisplayRow -= drawRange;
 	}
-
+	// Sends user to the bottom of the main screen
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
 		currentCenterDisplayRow = ds_grid_height(currentActiveLineGrid) - 1;
 		
@@ -72,6 +88,7 @@ if(list == false and contents == false){
 			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
 		}
 	}
+	// Sends user to the top of the main screen
 	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
 		currentCenterDisplayRow = 0;
 		
@@ -84,6 +101,7 @@ if(list == false and contents == false){
 			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
 		}
 	}
+	// Adjust the font size
 	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
 	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus and gridSpaceHorizontal > 40) {
 		if (keyboard_check(vk_shift)) {
@@ -189,12 +207,10 @@ if (keyboard_check_pressed(ord("E"))) {
 }
 
 
-
-
-
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 
+// Check for mouse over of the Panel Pane
 mouseoverPanelPane = false;
 for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	var panelPaneInst = instance_find(obj_panelPane, i);
@@ -224,7 +240,7 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 	ableToCreateDropDownAlarmSet = true;
 }
 
-
+// Set and adjust the font size
 global.fontSize = min(global.fontSize, 2);
 global.fontSize = max(global.fontSize, 0);
 
