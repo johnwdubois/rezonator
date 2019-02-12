@@ -29,7 +29,7 @@ var windowY2 = windowY1 + windowHeight[gridArrayIndex];
 gridCurrentTopViewRow[gridArrayIndex] = max(0, gridCurrentTopViewRow[gridArrayIndex]);
 gridCurrentTopViewRow[gridArrayIndex] = min(ds_grid_height(grid[gridArrayIndex]) - scrollRange[gridArrayIndex], gridCurrentTopViewRow[gridArrayIndex]);
 
-draw_set_color(c_white);
+draw_set_color(global.colorThemeBG);
 draw_rectangle(windowX1 - scrollBarWidth, windowY1, windowX1, windowY2, false);
 draw_set_font(fnt_debug);
 
@@ -45,9 +45,9 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gri
 	var colRectX2 = colRectX1 + gridColWidth;//windowWidth[gridArrayIndex];
 	var colRectY2 = colRectY1 + windowHeight[gridArrayIndex];
 		
-	draw_set_color(c_white);
+	draw_set_color(global.colorThemeBG);
 	draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY2, false);
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY2, true);
 	
 	draw_set_halign(fa_left);
@@ -83,7 +83,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gri
 		
 		if (gridLoopRow == mouseoverRelativeRow[gridArrayIndex])
 		{
-			draw_set_color(c_ltgray);
+			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2, false);
 		}
 		
@@ -93,17 +93,17 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gri
 			mouseoverCol = gridLoopCol;
 			mouseoverItemString = currentItemString;
 			mouseoverRelativeRow[gridArrayIndex] = gridLoopRow;
-			draw_set_color(c_dkgray);
+			draw_set_color(global.colorThemeSelected2);
 			draw_rectangle(currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2, true);
 		}
 
 		
-		draw_set_color(c_black);
+		draw_set_color(global.colorThemeText);
 		draw_text(textX, textY, currentItemString);
 	}
 }
 
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_rectangle(windowX1, windowY1, windowX2, windowY1 + colNameHeight, true);
 
 scrollRange[gridArrayIndex] = (windowHeight[gridArrayIndex] / string_height(currentItemString)) - 2;
@@ -234,7 +234,7 @@ scrollBarRectY1 = min(scrollBarRectY1, windowY2 - scrollBarHeight);
 scrollBarRectY2 = min(scrollBarRectY2, windowY2);
 
 
-draw_set_color(c_ltgray);
+draw_set_color(global.colorThemeGrid_colSelected1);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
 if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))
@@ -269,18 +269,19 @@ if (scrollBarHolding[gridArrayIndex])
 	}
 }
 
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_rectangle(windowX1, windowY1, windowX2, windowY2, true);
 
 draw_set_font(fnt_main);
 draw_set_halign(fa_right);
+draw_set_color(global.colorThemeText);
 draw_text(windowX1 + 100 - 20, windowY2 + 70, "(" + string(mouseoverCol) + "," + string(mouseoverRow) + "):")
 draw_set_halign(fa_left);
 draw_text(windowX1 + 100, windowY2 + 70, mouseoverItemString);
 
 for (var j = 0; j < 5; j++)
 {
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(windowX1 - scrollBarWidth - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
 }
 

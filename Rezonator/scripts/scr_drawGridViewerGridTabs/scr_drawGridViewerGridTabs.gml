@@ -38,12 +38,12 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 	}
 	else
 	{
-		draw_set_color(c_white);
+		draw_set_color(global.colorThemeBG);
 	}
 	
 	draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 	
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
 	
 	var colName = "";
