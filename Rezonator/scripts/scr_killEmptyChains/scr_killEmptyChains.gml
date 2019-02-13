@@ -42,10 +42,17 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, lastItemId - 1, false);
 			}
 		}
+		
+		// if deleting a stack chain with one unit, mark that change in unitInStackGrid
+		if (grid == obj_chain.stackChainGrid and ds_list_size(idList) > 0) {
+			var unitID = ds_list_find_value(idList, 0);
+			var unitInStackGridStackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
+			ds_list_clear(unitInStackGridStackList);
+		}
 	}
 }
 
-
+// delet dead chains from chainGrid
 while (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateDead))
 {
 	var deadRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateDead);
