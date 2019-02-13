@@ -16,12 +16,11 @@ draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
-draw_set_font(fnt_chainList);
 
 var textMarginLeft = 12;
 var textMarginTop = 20;
 
-draw_set_font(fnt_sortPane);
+draw_set_font(global.fontSortPane);
 
 var selectedGridName = "";
 
@@ -79,7 +78,7 @@ draw_set_font(fnt_sortPaneBold);
 draw_text(x + (windowWidth / 3) + textMarginLeft, y + textMarginTop, selectedGridName + " sort order");
 
 
-draw_set_font(fnt_sortPane);
+draw_set_font(global.fontSortPane);
 draw_set_halign(fa_right);
 
 var colSort;
@@ -227,11 +226,14 @@ var restoreDefButtonY1 = refreshButtonY1;
 var restoreDefButtonX2 = refreshButtonX1;
 var restoreDefButtonY2 = refreshButtonY2;
 
-draw_sprite_ext(spr_refresh, 0, mean(refreshButtonX1, refreshButtonX2), mean(refreshButtonY1, refreshButtonY2), 1, 1, 0, obj_control.c_ltblue, 1);
 draw_set_alpha(1);
 draw_set_color(global.colorThemeText);
 draw_set_halign(fa_left);
 draw_text(restoreDefButtonX1 + 10, mean(restoreDefButtonY1, restoreDefButtonY2), "Restore default");
+
+draw_set_color(global.colorThemeBG);
+draw_rectangle(refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2, false);
+draw_sprite_ext(spr_refresh, 0, mean(refreshButtonX1, refreshButtonX2), mean(refreshButtonY1, refreshButtonY2), 1, 1, 0, obj_control.c_ltblue, 1);
 
 if (point_in_rectangle(mouse_x, mouse_y, refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2) and not selectedGridHard and not instance_exists(obj_dropDown))
 {
