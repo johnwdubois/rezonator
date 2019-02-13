@@ -246,6 +246,13 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	}
 }
 
+draw_set_font(global.fontChainList);
+var str = "a";
+scrollRange = ceil((windowHeight - textMarginTop) / (string_height(str))) - 2;
+if (global.fontChainList != fnt_chainList) {
+	scrollRange++;
+}
+
 // Create scroll bars
 var scrollBarHeight = ((scrollRange * windowHeight) / ds_grid_height(grid));
 var scrollBarRectX1 = x + windowWidth - scrollBarWidth;

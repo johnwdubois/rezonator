@@ -214,6 +214,7 @@ lightThemeTextColor = c_black;
 global.fontSize = 0;
 global.fontMain = fnt_main;
 global.fontChainList = fnt_chainList;
+global.fontPanelTab = fnt_panelTab;
 
 scrollFast = 0;
 

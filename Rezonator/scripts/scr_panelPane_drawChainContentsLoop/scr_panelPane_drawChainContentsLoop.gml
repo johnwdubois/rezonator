@@ -264,7 +264,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 draw_set_alpha(1);
 
 
-draw_set_font(fnt_panelTab);
+draw_set_font(global.fontPanelTab);
 var tabHeight = 16;
 
 //draw_line(x + alignTabWidth, y, x + alignTabWidth, y + tabHeight);
@@ -324,7 +324,7 @@ for (var i = 0; i < 3; i++)
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(colRectX1, y + (tabHeight / 2), colName);
+	draw_text(colRectX1 + 4, y + (tabHeight / 2), colName);
 }
 
 draw_line(x, y + tabHeight, x + windowWidth, y + tabHeight);

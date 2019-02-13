@@ -251,15 +251,18 @@ switch (global.fontSize) {
 		global.fontMain = fnt_main;
 		global.fontChainContents = fnt_chainContents;
 		global.fontChainList = fnt_chainList;
+		global.fontPanelTab = fnt_panelTab;
 		break;
 	case 1:
 		global.fontMain = fnt_mainLarge1;
 		global.fontChainContents = fnt_chainContentsLarge1;
 		global.fontChainList = fnt_chainListLarge1;
+		global.fontPanelTab = fnt_panelTabLarge1;
 		break;
 	case 2:
 		global.fontMain = fnt_mainLarge2;
 		global.fontChainContents = fnt_chainContentsLarge2;
 		global.fontChainList = fnt_chainListLarge2;
+		global.fontPanelTab = fnt_panelTabLarge2;
 		break;
 }
