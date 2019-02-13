@@ -198,8 +198,14 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				scr_wordClicked(currentWordID, unitID);
 			}
 		}
+	} // Allows for adding to a stack anywhere in a line
+	else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, wordRectX2 + 40, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+		if (mouse_check_button_pressed(mb_left)) {
+			with (obj_chain) {
+				scr_wordClicked(currentWordID, unitID);
+			}
+		}
 	}
-	
 	// if the user has the New-Word tool selected, create a new word right next to this word
 	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 		if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
