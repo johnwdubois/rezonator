@@ -34,7 +34,7 @@ for (var i = 0; i < tabAmount; i++)// main mechanism
 	// highlight current tab
 	if (i == functionChainList_currentTab)
 	{
-		draw_set_color(c_ltgray);
+		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, false);
 	}
 	
@@ -56,8 +56,9 @@ for (var i = 0; i < tabAmount; i++)// main mechanism
 	}
 	
 	// keeps drawing the name of the tabs
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, true);
+	draw_set_color(global.colorThemeText);
 	draw_text(tabRectX1 + textMarginLeft, mean(tabRectY1, tabRectY2), functionChainList_tabName[i]);
 	
 

@@ -49,16 +49,15 @@ var textPlusY = 0;
 var chainNameRectMinusY = 4;
 
 
-// Create scroll bars
 var scrollBarWidth = 16;
-draw_set_color(c_white);
+draw_set_color(global.colorThemeBG);
 draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
 
 // Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 draw_set_font(fnt_chainList);
 
 // set constraints for row in top view
@@ -150,17 +149,17 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	if (currentChainState == obj_chain.chainStateFocus) {
 		rectX1 = x;
 	}
-	draw_set_color(merge_color(chainColor, c_white, 0.65)); //soften the color
+	draw_set_color(merge_color(chainColor, global.colorThemeBG, 0.65)); //soften the color
 	draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, false);
 	
 	// Outline the rectangle in black
 	if (currentChainState == obj_chain.chainStateFocus) {
-		draw_set_color(c_black);
+		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(rectX1, y + textMarginTop + textPlusY - 9, rectX2, y + textMarginTop + textPlusY + 7, true);
 	}
 	
 	// Draw text of chain names
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_text(x + textMarginLeft, y + textMarginTop + textPlusY, currentChainName);
 	
 	// Draw little boxes for filter selection
@@ -265,7 +264,7 @@ if (ds_grid_height(grid) == 0) {
 }
 
 // Set color of scroll bars
-draw_set_color(c_ltgray);
+draw_set_color(global.colorThemeSelected1);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
 // Check mouse clicks for scroll bar use

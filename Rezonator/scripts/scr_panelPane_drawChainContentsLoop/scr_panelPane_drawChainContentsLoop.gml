@@ -48,7 +48,7 @@ var alignTabWidth = 12;
 
 // Create scroll bars
 var scrollBarWidth = 16;
-draw_set_color(c_white);
+draw_set_color(global.colorThemeBG);
 draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
 
 var focusedChainExists = false;
@@ -120,7 +120,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			
 			// Fill in square
 			draw_set_alpha(0.25);
-			draw_set_color(c_black);
+			draw_set_color(global.colorThemeText);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 			
 			// Focus in the main screen
@@ -133,7 +133,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 		else if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
 			ableToBeMouseOver = false;
 			draw_set_alpha(0.25);
-			draw_set_color(c_black);
+			draw_set_color(global.colorThemeText);
 			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 			
 			// Focus in the main screen
@@ -227,7 +227,7 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 			var textX = x + (getInfoLoop * (windowWidth / 3)) + alignTabWidth;
 			var textY = y + textMarginTop + textPlusY;
 			
-			draw_set_color(c_black);
+			draw_set_color(global.colorThemeText);
 			draw_set_alpha(1);
 			draw_text(textX, textY, currentWordInfoCol[getInfoLoop]);
 		}
@@ -321,7 +321,7 @@ for (var i = 0; i < 3; i++)
 			break;
 	}
 	
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY2, true);
 	draw_text(colRectX1, y + (tabHeight / 2), colName);
 }
@@ -357,7 +357,7 @@ if (ds_list_size(functionChainContents_IDList) < 1 or not focusedChainExists)
 	scrollBarHolding = false;
 }
 
-draw_set_color(c_ltgray);
+draw_set_color(global.colorThemeSelected1);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
 if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))

@@ -24,13 +24,13 @@ var filterButtonY = y + filterButtonRadius;
 
 // Draw filter button, and check for coloring
 if (obj_control.filterGridActive) {	
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_circle(filterButtonX, filterButtonY, filterButtonRadius, false);
-	draw_set_color(c_white);
+	draw_set_color(global.colorThemeBG);
 	draw_text(filterButtonX, filterButtonY, "F");
 }
 else {
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_circle(filterButtonX, filterButtonY, filterButtonRadius, true);
 	draw_text(filterButtonX, filterButtonY, "F");
 }
@@ -71,7 +71,7 @@ for (var i = 0; i < 3; i++) {
 	}
 	
 	// Draw icons in buttons
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_sprite(spr_filterArrows, i, mean(peekButtonRectX1, peekButtonRectX2), mean(peekButtonRectY1, peekButtonRectY2));
 	

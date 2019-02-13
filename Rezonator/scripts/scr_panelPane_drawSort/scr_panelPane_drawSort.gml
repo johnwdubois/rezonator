@@ -15,7 +15,7 @@
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 draw_set_font(fnt_chainList);
 
 var textMarginLeft = 12;
@@ -40,7 +40,7 @@ for (var i = 0; i < ds_grid_height(functionSort_gridGrid); i++)
 	if (point_in_rectangle(mouse_x, mouse_y, gridNameRectX1, gridNameRectY1, gridNameRectX2, gridNameRectY2)
 	or i == functionSort_gridGridSelected)
 	{
-		draw_set_color(c_ltgray);
+		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(gridNameRectX1, gridNameRectY1, gridNameRectX2, gridNameRectY2, false);
 		
 		if (mouse_check_button_pressed(mb_left))
@@ -50,7 +50,7 @@ for (var i = 0; i < ds_grid_height(functionSort_gridGrid); i++)
 	}
 	
 	draw_set_alpha(1);
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_text(gridNameRectX1, mean(gridNameRectY1, gridNameRectY2), gridName);
 	
 	if (i == functionSort_gridGridSelected)
@@ -67,14 +67,14 @@ var selectedGridHard = ds_grid_get(functionSort_gridGrid, functionSort_gridGrid_
 
 if (selectedGridHard)
 {
-	draw_set_color(c_ltgray);
+	draw_set_color(global.colorThemeSelected1);
 	draw_rectangle(x + (windowWidth / 3), y + textMarginTop + 12, x + windowWidth, y + windowHeight, false);
 }
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 draw_line(x + (windowWidth / 3), y, x + (windowWidth) / 3, y + windowHeight);
 draw_line(x + (windowWidth / 3), y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
 
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 draw_set_font(fnt_sortPaneBold);
 draw_text(x + (windowWidth / 3) + textMarginLeft, y + textMarginTop, selectedGridName + " sort order");
 
@@ -113,7 +113,7 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 	{
 		if (point_in_rectangle(mouse_x, mouse_y, ascendButtonX1, ascendButtonY1, ascendButtonX2, ascendButtonY2))
 		{
-			draw_set_color(c_ltgray);
+			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(ascendButtonX1, ascendButtonY1, ascendButtonX2, ascendButtonY2, true);
 		
 			if (mouse_check_button_pressed(mb_left))
@@ -132,7 +132,7 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 		var mouseoverCurrentSortCol = ds_grid_get(functionSort_sortGrid, functionSort_gridSortColGrid_colMouseover, i);
 		if (mouseoverCurrentSortCol)
 		{
-			draw_set_color(c_ltgray);
+			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(colNameRectX1, colNameRectY1, colNameRectX2, colNameRectY2, false);
 			
 			if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, colNameRectX1, colNameRectY1, colNameRectX2, colNameRectY2))
@@ -196,9 +196,9 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 		ascendButtonYScale = -1;
 	}
 	
-	draw_sprite_ext(spr_ascend, 0, mean(ascendButtonX1, ascendButtonX2), mean(ascendButtonY1, ascendButtonY2), 1, ascendButtonYScale, 0, c_dkgray, 1);
+	draw_sprite_ext(spr_ascend, 0, mean(ascendButtonX1, ascendButtonX2), mean(ascendButtonY1, ascendButtonY2), 1, ascendButtonYScale, 0, global.colorThemeSelected2, 1);
 	
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_text(textX, textY, colName);
 	
 	colSort[i, 0] = ds_grid_get(functionSort_sortGrid, functionSort_gridSortColGrid_colCol, i);
@@ -229,7 +229,7 @@ var restoreDefButtonY2 = refreshButtonY2;
 
 draw_sprite_ext(spr_refresh, 0, mean(refreshButtonX1, refreshButtonX2), mean(refreshButtonY1, refreshButtonY2), 1, 1, 0, obj_control.c_ltblue, 1);
 draw_set_alpha(1);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 draw_set_halign(fa_left);
 draw_text(restoreDefButtonX1 + 10, mean(restoreDefButtonY1, restoreDefButtonY2), "Restore default");
 
@@ -278,7 +278,7 @@ if (functionSort_performSort)
 	functionSort_animationAlpha = 1;
 }
 
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2, true);
 if (refreshButtonAlpha > 0)
@@ -287,7 +287,7 @@ if (refreshButtonAlpha > 0)
 	draw_rectangle(refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2, false);
 }
 
-draw_set_color(c_black);
+draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(restoreDefButtonX1, restoreDefButtonY1, restoreDefButtonX2, restoreDefButtonY2, true);
 if (restoreDefButtonAlpha > 0)

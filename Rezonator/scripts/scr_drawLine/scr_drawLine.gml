@@ -23,7 +23,7 @@ ds_grid_set_region(wordDrawGrid, wordDrawGrid_colVisible, 0, wordDrawGrid_colVis
 draw_set_font(global.fontMain);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 draw_set_alpha(1);
 
 // set range of lines that we want to draw
@@ -36,18 +36,18 @@ drawRangeEnd = min(drawRangeEnd, ds_grid_height(currentActiveLineGrid));
 // draw out of bounds rectangles on top & bottom of discourse
 if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
 	var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
-	draw_set_color(c_ltgray);
+	draw_set_color(global.colorThemeSelected1);
 	draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
 }
 if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) and ds_grid_height(currentActiveLineGrid) > 0) {
 	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
-	draw_set_color(c_ltgray);
+	draw_set_color(global.colorThemeSelected1);
 	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), room_width, room_height, false);
 }
 
 // draw out of bounds rectangle on left
 if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin + obj_control.speakerLabelMarginBuffer) {
-	draw_set_color(c_ltgray);
+	draw_set_color(global.colorThemeSelected1);
 	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin - obj_control.speakerLabelMarginBuffer;
 	var leftOutOfBoundsRectY1 = 0;
 	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - obj_control.speakerLabelMarginBuffer;
@@ -60,7 +60,7 @@ if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin + obj_control.sp
 	draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
 }
 
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 
 obj_control.leftScreenBound = room_width;
 
