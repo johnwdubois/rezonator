@@ -42,7 +42,7 @@ with(obj_panelPane) {
 }
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
-if(list == false and contents == false){
+if(list == false and contents == false) {
 	if (keyboard_check(vk_down)) {
 		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
 		{
@@ -101,8 +101,10 @@ if(list == false and contents == false){
 			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
 		}
 	}
+}
+
 	// Adjust the font size
-	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
 	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus and gridSpaceHorizontal > 40) {
 		if (keyboard_check(vk_shift)) {
 			global.fontSize--;
@@ -128,7 +130,7 @@ if(list == false and contents == false){
 	or keyboard_check(vk_control) and keyboard_check_pressed(ord("0"))) {
 		gridSpaceHorizontal = 100;
 	}
-}
+
 	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control)) {
 		wordLeftMarginDest -= gridSpaceHorizontal;
 	}
@@ -248,13 +250,16 @@ switch (global.fontSize) {
 	case 0:
 		global.fontMain = fnt_main;
 		global.fontChainContents = fnt_chainContents;
+		global.fontChainList = fnt_chainList;
 		break;
 	case 1:
 		global.fontMain = fnt_mainLarge1;
 		global.fontChainContents = fnt_chainContentsLarge1;
+		global.fontChainList = fnt_chainListLarge1;
 		break;
 	case 2:
 		global.fontMain = fnt_mainLarge2;
 		global.fontChainContents = fnt_chainContentsLarge2;
+		global.fontChainList = fnt_chainListLarge2;
 		break;
 }

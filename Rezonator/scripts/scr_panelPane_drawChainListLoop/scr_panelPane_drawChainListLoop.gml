@@ -58,7 +58,7 @@ draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
-draw_set_font(fnt_chainList);
+draw_set_font(global.fontChainList);
 
 // set constraints for row in top view
 currentTopViewRow = max(0, currentTopViewRow);

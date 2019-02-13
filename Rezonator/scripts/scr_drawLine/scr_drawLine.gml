@@ -36,18 +36,18 @@ drawRangeEnd = min(drawRangeEnd, ds_grid_height(currentActiveLineGrid));
 // draw out of bounds rectangles on top & bottom of discourse
 if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
 	var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
-	draw_set_color(global.colorThemeSelected1);
+	draw_set_color(global.colorThemeOutOfBounds);
 	draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
 }
 if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) and ds_grid_height(currentActiveLineGrid) > 0) {
 	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
-	draw_set_color(global.colorThemeSelected1);
+	draw_set_color(global.colorThemeOutOfBounds);
 	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), room_width, room_height, false);
 }
 
 // draw out of bounds rectangle on left
 if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin + obj_control.speakerLabelMarginBuffer) {
-	draw_set_color(global.colorThemeSelected1);
+	draw_set_color(global.colorThemeOutOfBounds);
 	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin - obj_control.speakerLabelMarginBuffer;
 	var leftOutOfBoundsRectY1 = 0;
 	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - obj_control.speakerLabelMarginBuffer;
@@ -127,7 +127,6 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	}
 	
 	
-	
 	var previousWordDisplayCol = -1;
 	
 	// draw hits if in search view, otherwise draw words for this line
@@ -138,32 +137,50 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
 	}
 	
+	
 
 	
 	var participantColor = ds_grid_get(unitGrid, unitGrid_colParticipantColor, unitID - 1);
-	draw_set_alpha(1);
-	draw_set_color(participantColor);
-	
-	
-	// draw speaker label
-	draw_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, false);
-
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);
 	draw_set_alpha(1);
-	draw_set_font(global.fontMain);
-	if (obj_control.darkTheme) {
-		draw_set_color(obj_control.darkThemeTextColor);
-	}
-	else {
-		draw_set_color(obj_control.lightThemeTextColor);
-	}
 	draw_set_halign(fa_left);
+	draw_set_color(participantColor);
+	var speakerLabelTextBuffer = 3;
 	
-	if (speakerRectY1 == undefined or speakerRectY2 == undefined or currentDiscoID == undefined or currentLineNumberLabel == undefined or participantName == undefined) {
-		continue;
+	
+	// draw speaker label parts
+	var speakerLabelPlusX = 0;
+	for (var i = 0; i < 3; i++) {
+		if (i == 0 and ds_grid_height(global.fileLineRipGrid) < 2) {
+			continue;
+		}
+		
+		var speakerLabelCurrentColX1 = speakerLabelPlusX;
+		var speakerLabelCurrentColY1 = speakerRectY1;
+		var speakerLabelCurrentColX2 = speakerLabelCurrentColX1 + speakerLabelColWidth[i];
+		var speakerLabelCurrentColY2 = speakerRectY2;
+		
+		draw_set_color(participantColor);
+		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, false);
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, true);
+		
+		var speakerLabelCurrentColStr = "";
+		if (i == 0 and currentDiscoID != undefined) {
+			speakerLabelCurrentColStr = string(currentDiscoID);
+		}
+		else if (i == 1 and currentLineNumberLabel != undefined) {
+			speakerLabelCurrentColStr = string(currentLineNumberLabel);
+		}
+		else if (i == 2 and participantName != undefined) {
+			speakerLabelCurrentColStr = string(participantName);
+		}
+		
+		draw_set_color(global.colorThemeText);
+		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
+		
+		speakerLabelPlusX += speakerLabelColWidth[i];
 	}
-	
-	draw_text(0, mean(speakerRectY1, speakerRectY2), string(currentDiscoID) + ", " + string(currentLineNumberLabel) + " " + participantName);
 	
 }
 

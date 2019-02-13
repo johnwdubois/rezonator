@@ -22,8 +22,12 @@ speakerLabelMargin = 170;
 speakerLabelMarginBuffer = 20;
 wordLeftMargin = 170;
 wordLeftMarginDest = 170;
+var speakerLabelColWidthDivider = 3;
+if (ds_grid_height(global.fileLineRipGrid) < 2) {
+	speakerLabelColWidthDivider = 2;
+}
 for (var i = 0; i < 3; i++) {
-	speakerLabelColX[i] = (speakerLabelMargin / 3) * i;
+	speakerLabelColWidth[i] = (speakerLabelMargin - speakerLabelMarginBuffer) / speakerLabelColWidthDivider;
 }
 
 
@@ -209,6 +213,7 @@ lightThemeTextColor = c_black;
 
 global.fontSize = 0;
 global.fontMain = fnt_main;
+global.fontChainList = fnt_chainList;
 
 scrollFast = 0;
 

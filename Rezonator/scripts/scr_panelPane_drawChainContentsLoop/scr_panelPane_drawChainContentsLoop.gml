@@ -48,8 +48,8 @@ var alignTabWidth = 12;
 
 // Create scroll bars
 var scrollBarWidth = 16;
-draw_set_color(global.colorThemeBG);
-draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
+//draw_set_color(c_red);
+//draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
 
 var focusedChainExists = false;
 var alignRectSize = 8;
@@ -323,6 +323,7 @@ for (var i = 0; i < 3; i++)
 	
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY2, true);
+	draw_set_color(global.colorThemeText);
 	draw_text(colRectX1, y + (tabHeight / 2), colName);
 }
 
@@ -330,7 +331,10 @@ draw_line(x, y + tabHeight, x + windowWidth, y + tabHeight);
 
 draw_set_font(global.fontChainContents);
 var str = "a";
-scrollRange = floor((windowHeight - tabHeight) / string_height(str)) + 2;
+scrollRange = ceil((windowHeight - tabHeight) / (string_height(str)));
+if (global.fontChainContents == fnt_chainContents) {
+	scrollRange++;
+}
 
 
 var windowHeightMinus = windowHeight + tabHeight;

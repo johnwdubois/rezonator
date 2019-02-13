@@ -234,7 +234,7 @@ scrollBarRectY1 = min(scrollBarRectY1, windowY2 - scrollBarHeight);
 scrollBarRectY2 = min(scrollBarRectY2, windowY2);
 
 
-draw_set_color(global.colorThemeGrid_colSelected1);
+draw_set_color(global.colorThemeSelected1);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
 if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))
