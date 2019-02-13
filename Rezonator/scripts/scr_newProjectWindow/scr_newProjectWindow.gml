@@ -3,6 +3,9 @@ if (keyboard_check_pressed(vk_escape)) {
 	global.openProject = false;
 }
 
+draw_set_color(global.colorThemePaneBG);
+draw_rectangle(importWindowX1, importWindowY1, importWindowX2, importWindowY2, false);
+
 draw_set_font(fnt_main);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
@@ -126,18 +129,20 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToMouseover) {
 		ableToMouseover = false;
 		
+		draw_set_alpha(0.75);
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+		draw_set_alpha(1);
 		
 		var xButtonRectX1 = importWindowX1 + 8;
 		var xButtonRectY1 = importWindowY1 + textPlusY - 8;
 		var xButtonRectX2 = xButtonRectX1 + 20;
-		var xButtonRectY2 = xButtonRectY1 + 20;
+		var xButtonRectY2 = xButtonRectY1 + 19;
 		
 		draw_sprite_ext(spr_xButton, 0, mean(xButtonRectX1, xButtonRectX2), mean(xButtonRectY1, xButtonRectY2) - 1, 1, 1, 0, c_white, 1);
 	
 		if (point_in_rectangle(mouse_x, mouse_y, xButtonRectX1, xButtonRectY1, xButtonRectX2, xButtonRectY2)) {
-			draw_set_color(global.colorThemeGrid_colSelected);
+			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(xButtonRectX1, xButtonRectY1, xButtonRectX2, xButtonRectY2, true);
 			
 			if (mouse_check_button_pressed(mb_left)) {
@@ -218,7 +223,7 @@ if (scrollBarHolding) {
 
 if (mouseoverAny and calloutBubbleX > -1 and calloutBubbleY > -1) {
 	draw_sprite(spr_calloutBubble, 0, calloutBubbleX, calloutBubbleY);
-	draw_set_color(global.colorThemeText);
+	draw_set_color(c_black);
 	draw_set_halign(fa_center);
 	draw_set_font(fnt_calloutBubble);
 	draw_text(calloutBubbleX, calloutBubbleY - 15, calloutBubbleText);
