@@ -191,7 +191,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 		draw_set_color(global.colorThemeBorders);
 		draw_set_alpha(1);
-		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);	
 			
 		if (mouse_check_button_pressed(mb_left)) {
 			with (obj_chain) {
@@ -199,7 +199,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	} // Allows for adding to a stack anywhere in a line
-	else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, wordRectX2 + 40, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+	else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, wordRectX2 + 140, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 		if (mouse_check_button_pressed(mb_left)) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);

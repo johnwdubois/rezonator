@@ -11,12 +11,12 @@
 	
 	Author: Georgio Klironomos, Terry DuBois
 */
-
 if (ds_grid_height(searchGrid) > 0) {
 	if(gridView and currentActiveLineGrid == lineGrid) {
 		searchGridActive = true;
 		filterGridActive = false;
 		currentActiveLineGrid = searchGrid;
+		preSwitchDisplayRow = currentCenterDisplayRow;
 		currentCenterDisplayRow = 0;
 		wordLeftMarginDest = room_width / 2;
 		
@@ -26,6 +26,7 @@ if (ds_grid_height(searchGrid) > 0) {
 		searchGridActive = false;
 		filterGridActive = false;
 		currentActiveLineGrid = lineGrid;
+		currentCenterDisplayRow = preSwitchDisplayRow;
 		wordLeftMarginDest = 170;
 	}
 	else {
