@@ -1,3 +1,17 @@
+/*
+	obj_fileLoader: Draw
+	
+	Last Updated: 2019-02-14
+	
+	Called from: Every frame of the game
+	
+	Purpose: Help Rez load files without interruptions
+	
+	Mechanism: Prevent hot keys and other functionality from operating before file has completely loaded
+	
+	Author: Terry DuBois
+*/
+
 if (global.openProject and ds_grid_height(obj_control.wordGrid) < 1)
 {
 	scr_loadREZ();

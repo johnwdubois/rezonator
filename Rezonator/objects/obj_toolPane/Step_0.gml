@@ -1,3 +1,4 @@
+// Check for user inputs to switch between chain tools
 if (not obj_control.gridView)
 {
 	if (keyboard_check_pressed(ord("R")))

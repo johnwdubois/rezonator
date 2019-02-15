@@ -1,8 +1,18 @@
-fileLoadRate = ceil(fps);
+/*
+	obj_fileLoader: Step
+	
+	Last Updated: 2019-02-14
+	
+	Called from: Every frame of the game
+	
+	Purpose: Load words in XML doc into Rez as fast as possible
+	
+	Mechanism: Speed up or slow down the calling of functions depending on the FPS
+	
+	Author: Terry DuBois
+*/
 
-//if (keyboard_check_pressed(vk_decimal)) {
-	//show_message(string(fileLineRipListElement) + "unitIDCounter: " + string(unitIDCounter));
-//}
+fileLoadRate = ceil(fps);
 
 for (var i = 0; i < fileLoadRate; i++)
 {

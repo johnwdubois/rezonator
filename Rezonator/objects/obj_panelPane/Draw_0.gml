@@ -1,3 +1,17 @@
+/*
+	obj_panelPane: Step
+	
+	Last Updated: 2019-02-14
+	
+	Called from: Every frame of the game
+	
+	Purpose: Create the visuals of the panel pane
+	
+	Mechanism: Draw the outlines, call the drawing functions of each window, and check for user's mouse in the panel pane
+	
+	Author: Terry DuBois
+*/
+
 if (obj_control.gridView)
 {
 	exit;

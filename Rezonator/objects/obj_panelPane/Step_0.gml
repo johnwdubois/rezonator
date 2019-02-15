@@ -1,3 +1,17 @@
+/*
+	obj_control: Step
+	
+	Last Updated: 2019-02-14
+	
+	Called from: Every frame of the game
+	
+	Purpose: Keep panel pane running smoothly
+	
+	Mechanism: Ensure correct funtion is being used, keep time for double clicks and scrolling
+	
+	Author: Terry DuBois
+*/
+
 switch (currentFunction)
 {
 	case functionChainList:

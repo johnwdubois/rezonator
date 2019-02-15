@@ -1,3 +1,17 @@
+/*
+	obj_chain: Step
+	
+	Last Updated: 2019-02-14
+	
+	Called from: Every frame of the game
+	
+	Purpose: Consistently update attributes of chain objects
+	
+	Mechanism: Hide/reveal the mouseLine depending on mouse position, use on the grid connected to the tool in use, and keep focused chains visible in the focus view. 
+	
+	Author: Terry DuBois
+*/
+
 if (mouseLineHide)
 {
 	var focusedRezChain = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);

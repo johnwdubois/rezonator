@@ -1,3 +1,17 @@
+/*
+	obj_span: Draw
+	
+	Last Updated: 2019-02-11
+	
+	Called from: Every frame of the game
+	
+	Purpose: Draw the attributes of spans
+	
+	Mechanism: Collect information from the span grids then draw them to the screen
+	
+	Author: Terry DuBois
+*/
+
 for (var i = 0; i < ds_grid_height(spanGrid); i++)
 {
 	var currentFirstWordID = ds_grid_get(spanGrid, spanGrid_colFirstWordID, i);

@@ -1,3 +1,4 @@
+//  Race to infinity safety checks
 var grid;
 var rowInChainGrid = -1;
 rowInChainGrid = ds_grid_value_y(rezChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(rezChainGrid), chainIDRaceCheck);

@@ -1,3 +1,17 @@
+/*
+	obj_openingScreen: Draw
+	
+	Last Updated: 2019-02-14
+	
+	Called from: Every frame of the game
+	
+	Purpose: Control the layout and functionality of the opening screen
+	
+	Mechanism: Draw the text, import window, and send the user to the main screen once ready
+	
+	Author: Terry DuBois
+*/
+
 scr_colorThemeControl();
 
 importWindowWidth = camera_get_view_width(view_camera[0]) / 2;

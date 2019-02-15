@@ -1,7 +1,17 @@
 /*
-Alarm for displaying the correct focus for all contexts
-Author: Terry DuBois and Georgio Klironomos
+	obj_chain: Alarm 5
+	
+	Last Updated: 2019-02-14
+	
+	Called from: The focusing of a chain object
+	
+	Purpose: Display the correct focus for all contexts
+	
+	Mechanism: Retrieve unitID's and set display rows in the focus screen
+	
+	Author: Terry DuBois, Georgio Klironomos
 */
+
 if (unitIDOfFirstWord < 0 or unitIDOfLastWord < 0) {
 	exit;
 }

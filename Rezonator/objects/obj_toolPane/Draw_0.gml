@@ -1,3 +1,17 @@
+/*
+	obj_toolPane: Draw
+	
+	Last Updated: 2019-02-14
+	
+	Called from: Every frame of the game
+	
+	Purpose: Draw the tool pane and all of its contents
+	
+	Mechanism: Draw all text, icons, and boxes in the tool pane, and check for user mouseover
+	
+	Author: Terry DuBois
+*/
+
 x = camera_get_view_width(view_camera[0]) - windowWidth;
 y = 0;
 
