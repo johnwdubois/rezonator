@@ -70,3 +70,5 @@ scrollRange = 6;
 canContinue = false;
 
 participantHueOffset = 0;
+
+showDevVars = false;

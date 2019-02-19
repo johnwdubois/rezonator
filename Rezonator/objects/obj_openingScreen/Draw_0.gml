@@ -34,6 +34,18 @@ versionString = string_delete(versionString, 1, string_length("Rezonator"));
 versionString = "Version" + versionString;
 draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2), (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2), versionString);
 
+
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
+	showDevVars = !showDevVars;
+}
+if (showDevVars) {
+	var workingDirStr = "Working Dir: " + string(working_directory);
+	var programDirStr = "Program Dir: " + string(program_directory);
+	draw_set_halign(fa_left);
+	draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2) + 30, workingDirStr);
+	draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2) + 50, programDirStr);
+}
+
 if not (global.newProject or global.openProject)
 {
 	scr_newOrOpen();
@@ -46,3 +58,4 @@ else if (not global.newProject and global.openProject)
 {
 	room_goto(rm_mainScreen);
 }
+
