@@ -1,3 +1,17 @@
+/*
+	obj_dropDown: Draw
+	
+	Last Updated: 2019-02-15
+	
+	Called from: Every frame of the game
+	
+	Purpose: Create the visuals of any drop down menus
+	
+	Mechanism: Draw the outlines and text, and check for user mouse input
+	
+	Author: Terry DuBois
+*/
+
 var optionSpacing = 20;
 var ableToMouseover = true;
 var windowHeight = (ds_list_size(optionList) * optionSpacing);

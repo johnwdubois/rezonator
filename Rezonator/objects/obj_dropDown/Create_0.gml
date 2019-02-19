@@ -1,3 +1,4 @@
+// Instatiates drop down object
 windowWidth = 100;
 ableToClick = false;
 alarm[0] = 2;

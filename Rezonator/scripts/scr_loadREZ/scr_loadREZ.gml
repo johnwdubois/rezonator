@@ -1,4 +1,4 @@
-var fileName = get_open_filename("REZ file|*.rez", "");
+var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");
 
 if (fileName == "" or not file_exists(fileName))
 {

@@ -1,6 +1,6 @@
 if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName))
 {
-	global.fileSaveName = get_save_filename("REZ file|*.rez", "");
+	global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
 	if (global.fileSaveName == "" or global.fileSaveName == "undefined")
 	{

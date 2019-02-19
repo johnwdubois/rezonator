@@ -9,6 +9,14 @@ buffer_write(buffer, buffer_string, stringToSave);
 buffer_save_ns(buffer, fileNameWD);
 buffer_delete(buffer);
 
-file_copy_ns(fileNameWD, fileNameUser);
+//file_copy_ns(fileNameWD, fileNameUser);
 
 show_debug_message(filename_path(fileNameWD));
+
+var dirName = filename_path(global.fileSaveName) + string_lettersdigits(filename_name(global.fileSaveName)) + " BoyBoys";
+
+if (not directory_exists_ns(dirName)) {
+	directory_create_ns(dirName);
+}
+
+file_copy_ns(fileNameWD, dirName + "/maybe.rez");

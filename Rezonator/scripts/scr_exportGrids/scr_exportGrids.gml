@@ -1,7 +1,6 @@
 var dirName = filename_path(global.fileSaveName) + string_lettersdigits(filename_name(global.fileSaveName)) + " CSV";
 
-if (not directory_exists_ns(dirName))
-{
+if (not directory_exists_ns(dirName)) {
 	directory_create_ns(dirName);
 }
 

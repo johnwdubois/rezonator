@@ -1,3 +1,4 @@
+// Draws the scroll together button in grid view and handles funtionality, calls funtion to draw both grids
 if (!obj_control.gridView)
 {
 	exit;

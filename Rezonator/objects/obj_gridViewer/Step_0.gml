@@ -1,6 +1,4 @@
-/// @description Insert description here
-// You can write your code in this editor
-
+// Controls the speed of scolling in grid view
 
 if (keyboard_check(vk_down)) 
 {
