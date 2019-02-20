@@ -6,7 +6,7 @@ var stringToSave = argument2;
 
 var buffer = buffer_create(string_byte_length(stringToSave) + 1, buffer_fixed, 1);
 buffer_write(buffer, buffer_string, stringToSave);
-//buffer_save_ns(buffer, fileNameWD);
+buffer_save_ns(buffer, fileNameWD);
 buffer_save_ns(buffer, fileNameUser);
 buffer_delete(buffer);
 

@@ -72,3 +72,5 @@ canContinue = false;
 participantHueOffset = 0;
 
 showDevVars = false;
+
+scr_importPackage();
