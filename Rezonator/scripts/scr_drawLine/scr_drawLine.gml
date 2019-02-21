@@ -19,6 +19,8 @@ if (gridView || ds_grid_height(dynamicWordGrid) < 1)
 
 ds_grid_set_region(wordDrawGrid, wordDrawGrid_colVisible, 0, wordDrawGrid_colVisible, ds_grid_height(wordDrawGrid), false);
 
+scr_setSpeakerLabelColWidth();
+
 // set draw variables for column text
 draw_set_font(global.fontMain);
 draw_set_halign(fa_left);

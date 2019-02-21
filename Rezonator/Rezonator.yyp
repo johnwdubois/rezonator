@@ -239,6 +239,14 @@
             }
         },
         {
+            "Key": "17fbc186-e7bd-4438-a2d4-cc3080f6b690",
+            "Value": {
+                "id": "f7a6cbd4-8ba4-4074-8c69-479e9d60c2d3",
+                "resourcePath": "scripts\\scr_setSpeakerLabelColWidth\\scr_setSpeakerLabelColWidth.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "18d019a7-af73-4cb5-91b6-f7efec25e5ce",
             "Value": {
                 "id": "1e8f1b23-9976-4fef-8dc4-b147f7031ca5",
@@ -1936,6 +1944,7 @@
         "4780a6db-dc73-40e3-8286-7eb084a8b47b",
         "2c4abd01-f056-4203-accc-7a49a37cdfee",
         "8527467f-60ba-4b6d-8e16-ec6891e4a3e2",
+        "17fbc186-e7bd-4438-a2d4-cc3080f6b690",
         "a41c9611-6ae7-40bb-951c-f8f78c402127",
         "65edb833-7e62-4ee1-b4ba-649645f5e40d",
         "ab958ed3-5d2b-493d-8352-352b31d9a9ef",

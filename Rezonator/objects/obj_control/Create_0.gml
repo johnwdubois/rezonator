@@ -18,10 +18,10 @@ prevCenterDisplayRow = 0;
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 33.4;
 
-speakerLabelMargin = 170;
+speakerLabelMargin = 200;
 speakerLabelMarginBuffer = 20;
-wordLeftMargin = 170;
-wordLeftMarginDest = 170;
+wordLeftMargin = 200;
+wordLeftMarginDest = 200;
 var speakerLabelColWidthDivider = 3;
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	speakerLabelColWidthDivider = 2;
