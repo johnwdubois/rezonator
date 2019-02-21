@@ -1,5 +1,5 @@
 /*
-	ibj_control: Key Press - Tab
+	obj_control: Key Press - Tab
 	
 	Last Updated: 2018-02-05
 	
