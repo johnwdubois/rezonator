@@ -1103,6 +1103,14 @@
             }
         },
         {
+            "Key": "91821492-c37d-48b6-92c2-50fca01eb458",
+            "Value": {
+                "id": "523c2396-8b76-4478-a152-3c7422d80874",
+                "resourcePath": "datafiles_yy\\README.txt.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "91f2217c-32c1-4cd5-847e-e1c4911c305d",
             "Value": {
                 "id": "46117712-cfe0-4ce9-afa6-1c5292f1b2bc",
