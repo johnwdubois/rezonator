@@ -8,7 +8,7 @@ under the MIT License.
 --DOWNLOAD--
 Either from Rezonator.com/download or from our Github, you can download the newest installation package of 
 Rezonator. This package, which is 45.9MB, includes an executable file of the Rezonator main program, a folder 
-containing 60 XML's of the Santa Barnara Corpus, an extension used for file management, and a GameMaker Studio 
+containing 60 XML's of the Santa Barbara Corpus, an extension used for file management, and a GameMaker Studio 
 license agreement.	
 
 
@@ -28,7 +28,7 @@ XML's to get started.
 New Features-
 -Beta Release installation package implemented.
 -Stacks can be added anywhere within a line.
--Larger font size extended to all onscreen text.
+-Larger font size extended to all on screen text.
 Solved Bugs-
 -Corrupted export of CSV data.
 -".Rez" file not saved
@@ -50,6 +50,6 @@ Rezonator Team--
 -Georgio Klironomos: Application Programming
 Marketplace Sources--
 -YellowAfterlife: https://marketplace.yoyogames.com/assets/5172/non-sandboxed-filesystem
--Homonculus: https://marketplace.yoyogames.com/assets/1592/gmsdb-gm-simple-database
+-Homunculus: https://marketplace.yoyogames.com/assets/1592/gmsdb-gm-simple-database
 -Juju Adams & Shaun Spalding: https://www.youtube.com/watch?v=QmxQb1BFQRE
 
