@@ -50,6 +50,6 @@ Rezonator Team--
 -Georgio Klironomos: Application Programming
 Marketplace Sources--
 -YellowAfterlife: https://marketplace.yoyogames.com/assets/5172/non-sandboxed-filesystem
--Homonculus: https://marketplace.yoyogames.com/assets/1592/gmsdb-gm-simple-database
+-Homunculus: https://marketplace.yoyogames.com/assets/1592/gmsdb-gm-simple-database
 -Juju Adams & Shaun Spalding: https://www.youtube.com/watch?v=QmxQb1BFQRE
 
