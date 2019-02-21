@@ -1,5 +1,6 @@
 var grid = argument0;
 var gridClone = ds_grid_create(ds_grid_width(grid), ds_grid_height(grid));
+
 ds_grid_copy(gridClone, grid);
 
 var colList = ds_list_create();
@@ -7,7 +8,8 @@ var colList = ds_list_create();
 for (var i = 0; i < ds_grid_width(gridClone); i++)
 {
 	var cellContainsList = false;
-	if (string_count("}", scr_drawGridViewerGetItemString(grid, i, 0)) > 0)
+	//if (string_count("}", scr_drawGridViewerGetItemString(grid, i, 0)) > 0)
+	if (scr_isItemAList(grid, i, 0))
 	{
 		cellContainsList = true;
 	}
@@ -23,6 +25,10 @@ for (var i = 0; i < ds_grid_width(gridClone); i++)
 		if (cellContainsList)
 		{
 			var valueList = ds_list_create();
+			if (typeof(value) == "string") {
+				show_message("Error:" + value);
+			}
+			
 			ds_list_copy(valueList, value);
 			value = valueList;
 		}

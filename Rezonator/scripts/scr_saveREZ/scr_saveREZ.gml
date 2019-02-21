@@ -1,11 +1,11 @@
-if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName))
-{
+if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
 	global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
 	if (global.fileSaveName == "" or global.fileSaveName == "undefined")
 	{
 		global.fileSaveName = "undefined";
-		show_message("Error in saving: fileSaveName == " + string(global.fileSaveName));
+		//show_message("Error in saving: fileSaveName == " + string(global.fileSaveName));
+		show_message("Error in saving");
 		exit;
 	}
 }
@@ -13,8 +13,7 @@ if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName))
 
 var rootList = ds_list_create();
 
-with (obj_saveParent)
-{
+with (obj_saveParent) {
 	var map = ds_map_create();
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
@@ -23,8 +22,7 @@ with (obj_saveParent)
 	ds_map_add(map, "objectIndex", mapObjectIndex);
 	
 	
-	if (object_index == obj_control)
-	{
+	if (object_index == obj_control) {
 		var mapFileLineRipGrid = scr_gridToJSONLists(global.fileLineRipGrid);
 		var mapWordGrid = scr_gridToJSONLists(wordGrid);
 		var mapDynaWordGrid = scr_gridToJSONLists(dynamicWordGrid);
@@ -39,8 +37,7 @@ with (obj_saveParent)
 		ds_map_add_list(map, "unitGrid", mapUnitGrid);
 		ds_map_add_list(map, "lineGrid", mapLineGrid);
 	}
-	else if (object_index == obj_chain)
-	{
+	else if (object_index == obj_chain) {
 		var mapLinkGrid = scr_gridToJSONLists(linkGrid);
 		var mapRezChainGrid = scr_gridToJSONLists(rezChainGrid);
 		var mapTrackChainGrid = scr_gridToJSONLists(trackChainGrid);

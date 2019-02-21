@@ -12,7 +12,7 @@
 
 
 //xmlFile = get_open_filename("XML file|*.xml|REZ file|*.rez", "");
-xmlFile = get_open_filename_ext("XML file|*.xml|REZ file|*.rez", "", program_directory, "Import XML");
+xmlFile = get_open_filename_ext("XML file|*.xml", "", program_directory, "Import XML");
 
 if (xmlFile == "")
 {
