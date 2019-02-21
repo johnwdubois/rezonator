@@ -174,7 +174,13 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		}
 		else if (i == 2 and participantName != undefined) {
 			speakerLabelCurrentColStr = string(participantName);
+			/*
 			if (string_width(speakerLabelCurrentColStr) > obj_control.speakerLabelColWidth[2]) {
+				
+			}
+			*/
+			while (string_width(speakerLabelCurrentColStr) > obj_control.speakerLabelColWidth[2]) {
+				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
 			}
 		}
 		

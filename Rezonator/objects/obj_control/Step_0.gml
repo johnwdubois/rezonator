@@ -118,8 +118,10 @@ if (list == false and contents == false) {
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
 	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus and gridSpaceHorizontal > 40) {
 		if (keyboard_check(vk_shift)) {
-			global.fontSize--;
-			scr_setSpeakerLabelColWidth();
+			if (global.fontSize > 0) {
+				global.fontSize--;
+				scr_setSpeakerLabelColWidth();
+			}
 		}
 		else {
 			gridSpaceHorizontal -= 20;
@@ -130,8 +132,10 @@ if (list == false and contents == false) {
 	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
 	or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus and gridSpaceHorizontal < 400) {
 		if (keyboard_check(vk_shift)) {
-			global.fontSize++;
-			scr_setSpeakerLabelColWidth();
+			if (global.fontSize < 2) {
+				global.fontSize++;
+				scr_setSpeakerLabelColWidth();
+			}
 		}
 		else {
 			gridSpaceHorizontal += 20;
@@ -157,13 +161,11 @@ if (list == false and contents == false) {
 	}
 	if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
 	or keyboard_check_pressed(vk_home)) {
-		if (searchGridActive)
-		{
+		if (searchGridActive) {
 			scr_jumpToEnd(true);
 		}
-		else
-		{
-			wordLeftMarginDest = speakerLabelMargin;
+		else {
+			wordLeftMarginDest = speakerLabelMargin + speakerLabelMarginBuffer;
 		}
 	}
 	

@@ -27,12 +27,12 @@ if (mouseover and mouse_check_button_pressed(mb_left)) {
 
 draw_set_alpha(1);
 draw_set_font(fnt_mainBold);
-draw_set_color(c_black);
+draw_set_color(global.colorThemeText);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
 if (functionHelp_collapsed) {
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_text(x + 10, y + (windowHeight / 2), "Help");
 	
 	if (functionHelp_plusX <= camWidth) {
@@ -41,9 +41,9 @@ if (functionHelp_collapsed) {
 
 }
 else {
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-	draw_set_color(c_white);
+	draw_set_color(global.colorThemeBG);
 	draw_text(x + 10, y + (windowHeight / 2), "Help");
 
 	if (functionHelp_plusX <= camWidth - functionHelp_windowWidth) {
@@ -55,13 +55,13 @@ else {
 }
 
 if !(abs(functionHelp_plusX - camWidth) < 0.1) {
-	draw_set_color(c_white);
 	var helpWindowX1 = functionHelp_plusX;
 	var helpWindowY1 = obj_toolPane.y + obj_toolPane.windowHeight + windowHeight;
 	var helpWindowX2 = helpWindowX1 + functionHelp_windowWidth;
 	var helpWindowY2 = camera_get_view_height(view_camera[0]);
+	draw_set_color(global.colorThemeBG);
 	draw_rectangle(helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2, false);
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2, true);
 	functionHelp_helpWindowRectX1 = helpWindowX1;
 	functionHelp_helpWindowRectY1 = helpWindowY1;
@@ -74,6 +74,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	draw_set_font(fnt_mainBold);
 	var titleTextX = helpWindowX1 + textBuffer;
 	var titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY;
+	draw_set_color(global.colorThemeText);
 	var titleTextStr = "Rezonator Functions";
 	draw_text(titleTextX, titleTextY, titleTextStr);
 	var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 2);
@@ -87,7 +88,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	}
 	
 	if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 10) {
-		draw_set_color(c_black);
+		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_circle(gridCollapseButtonX, gridCollapseButtonY, 10, true);
 		if (mouse_check_button_pressed(mb_left)) {
@@ -106,13 +107,13 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			var cellRectY2 = cellRectY1 + cellHeight;
 		
 			if (i mod 2) {
-				draw_set_color(c_white);
+				draw_set_color(global.colorThemeBG);
 			}
 			else {
-				draw_set_color(c_ltgray);
+				draw_set_color(global.colorThemeSelected1);
 			}
 			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
-			draw_set_color(c_black);
+			draw_set_color(global.colorThemeText);
 			draw_set_font(fnt_chainContents);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
@@ -130,6 +131,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	titleTextX = helpWindowX1 + textBuffer;
 	titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY;
 	titleTextStr = "Navigator Functions";
+	draw_set_color(global.colorThemeText);
 	draw_text(titleTextX, titleTextY, titleTextStr);
 	var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 2);
 	var gridCollapseButtonY = titleTextY;
@@ -141,7 +143,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	}
 	
 	if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 10) {
-		draw_set_color(c_black);
+		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_circle(gridCollapseButtonX, gridCollapseButtonY, 10, true);
 		if (mouse_check_button_pressed(mb_left)) {
@@ -159,13 +161,13 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			var cellRectY2 = cellRectY1 + cellHeight;
 		
 			if (i mod 2) {
-				draw_set_color(c_white);
+				draw_set_color(global.colorThemeBG);
 			}
 			else {
-				draw_set_color(c_ltgray);
+				draw_set_color(global.colorThemeSelected1);
 			}
 			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
-			draw_set_color(c_black);
+			draw_set_color(global.colorThemeText);
 			draw_set_font(fnt_chainContents);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);

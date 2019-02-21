@@ -103,7 +103,7 @@ if (ds_grid_height(searchGrid) > 0) {
 	searchGridActive = true;
 	currentActiveLineGrid = searchGrid;
 	currentCenterDisplayRow = 0;
-	wordLeftMarginDest = room_width / 2;
+	wordLeftMarginDest = window_get_width() / 2;
 }
 else {
 	show_message("found zero matches");
