@@ -63,67 +63,118 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	draw_rectangle(helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2, false);
 	draw_set_color(c_black);
 	draw_rectangle(helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2, true);
+	functionHelp_helpWindowRectX1 = helpWindowX1;
+	functionHelp_helpWindowRectY1 = helpWindowY1;
+	functionHelp_helpWindowRectX2 = helpWindowX2;
+	functionHelp_helpWindowRectY2 = helpWindowY2;
 	
 	var textBuffer = 10;
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle)
 	draw_set_font(fnt_mainBold);
-	draw_text(helpWindowX1 + textBuffer, helpWindowY1 + (textBuffer * 2) + functionHelp_plusY, "Rezonator Functions");
+	var titleTextX = helpWindowX1 + textBuffer;
+	var titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY;
+	var titleTextStr = "Rezonator Functions";
+	draw_text(titleTextX, titleTextY, titleTextStr);
+	var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 2);
+	var gridCollapseButtonY = titleTextY;
+	
+	if (functionHelp_rezCollapsed) {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 270, c_white, 1);
+	}
+	else {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 180, c_white, 1);
+	}
+	
+	if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 10) {
+		draw_set_color(c_black);
+		draw_set_alpha(1);
+		draw_circle(gridCollapseButtonX, gridCollapseButtonY, 10, true);
+		if (mouse_check_button_pressed(mb_left)) {
+			functionHelp_rezCollapsed = !functionHelp_rezCollapsed;
+		}
+	}
 	
 	var cellHeight = 14;
 	var cellPlusY = 16;
-	for (var i = 0; i < ds_grid_height(functionHelp_helpGridRez); i++) {
-		var cellRectX1 = helpWindowX1 + textBuffer;
-		var cellRectY1 = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY;
-		var cellRectX2 = helpWindowX2 - textBuffer;
-		var cellRectY2 = cellRectY1 + cellHeight;
+	
+	if (!functionHelp_rezCollapsed) {
+		for (var i = 0; i < ds_grid_height(functionHelp_helpGridRez); i++) {
+			var cellRectX1 = helpWindowX1 + textBuffer;
+			var cellRectY1 = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY;
+			var cellRectX2 = helpWindowX2 - textBuffer;
+			var cellRectY2 = cellRectY1 + cellHeight;
 		
-		if (i mod 2) {
-			draw_set_color(c_white);
-		}
-		else {
-			draw_set_color(c_ltgray);
-		}
-		draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
-		draw_set_color(c_black);
-		draw_set_font(fnt_chainContents);
-		draw_set_halign(fa_left);
-		draw_set_valign(fa_middle);
-		var currentStrKey = ds_grid_get(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, i);
-		var currentStrDesc = ds_grid_get(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, i);
-		draw_text(cellRectX1 + textBuffer, mean(cellRectY1, cellRectY2), currentStrKey);
-		draw_text(mean(cellRectX1, cellRectX2) + textBuffer, mean(cellRectY1, cellRectY2), currentStrDesc);
+			if (i mod 2) {
+				draw_set_color(c_white);
+			}
+			else {
+				draw_set_color(c_ltgray);
+			}
+			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
+			draw_set_color(c_black);
+			draw_set_font(fnt_chainContents);
+			draw_set_halign(fa_left);
+			draw_set_valign(fa_middle);
+			var currentStrKey = ds_grid_get(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, i);
+			var currentStrDesc = ds_grid_get(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, i);
+			draw_text(cellRectX1 + textBuffer, mean(cellRectY1, cellRectY2), currentStrKey);
+			draw_text(mean(cellRectX1, cellRectX2) + textBuffer, mean(cellRectY1, cellRectY2), currentStrDesc);
 		
-		cellPlusY += cellHeight;
+			cellPlusY += cellHeight;
+		}
 	}
 	
 	cellPlusY += 16;
 	draw_set_font(fnt_mainBold);
-	draw_text(helpWindowX1 + textBuffer, helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY, "Navigator Functions");
+	titleTextX = helpWindowX1 + textBuffer;
+	titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY;
+	titleTextStr = "Navigator Functions";
+	draw_text(titleTextX, titleTextY, titleTextStr);
+	var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 2);
+	var gridCollapseButtonY = titleTextY;
+	if (functionHelp_navCollapsed) {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 270, c_white, 1);
+	}
+	else {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 180, c_white, 1);
+	}
+	
+	if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 10) {
+		draw_set_color(c_black);
+		draw_set_alpha(1);
+		draw_circle(gridCollapseButtonX, gridCollapseButtonY, 10, true);
+		if (mouse_check_button_pressed(mb_left)) {
+			functionHelp_navCollapsed = !functionHelp_navCollapsed;
+		}
+	}
+	
 	cellPlusY += 16;
 	
-	for (var i = 0; i < ds_grid_height(functionHelp_helpGridNav); i++) {
-		var cellRectX1 = helpWindowX1 + textBuffer;
-		var cellRectY1 = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY;
-		var cellRectX2 = helpWindowX2 - textBuffer;
-		var cellRectY2 = cellRectY1 + cellHeight;
+	if (!functionHelp_navCollapsed) {
+		for (var i = 0; i < ds_grid_height(functionHelp_helpGridNav); i++) {
+			var cellRectX1 = helpWindowX1 + textBuffer;
+			var cellRectY1 = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY;
+			var cellRectX2 = helpWindowX2 - textBuffer;
+			var cellRectY2 = cellRectY1 + cellHeight;
 		
-		if (i mod 2) {
-			draw_set_color(c_white);
-		}
-		else {
-			draw_set_color(c_ltgray);
-		}
-		draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
-		draw_set_color(c_black);
-		draw_set_font(fnt_chainContents);
-		draw_set_halign(fa_left);
-		draw_set_valign(fa_middle);
-		var currentStrKey = ds_grid_get(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, i);
-		var currentStrDesc = ds_grid_get(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, i);
-		draw_text(cellRectX1 + textBuffer, mean(cellRectY1, cellRectY2), currentStrKey);
-		draw_text(mean(cellRectX1, cellRectX2) + textBuffer, mean(cellRectY1, cellRectY2), currentStrDesc);
+			if (i mod 2) {
+				draw_set_color(c_white);
+			}
+			else {
+				draw_set_color(c_ltgray);
+			}
+			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
+			draw_set_color(c_black);
+			draw_set_font(fnt_chainContents);
+			draw_set_halign(fa_left);
+			draw_set_valign(fa_middle);
+			var currentStrKey = ds_grid_get(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, i);
+			var currentStrDesc = ds_grid_get(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, i);
+			draw_text(cellRectX1 + textBuffer, mean(cellRectY1, cellRectY2), currentStrKey);
+			draw_text(mean(cellRectX1, cellRectX2) + textBuffer, mean(cellRectY1, cellRectY2), currentStrDesc);
 		
-		cellPlusY += cellHeight;
+			cellPlusY += cellHeight;
+		}
 	}
 }

@@ -79,30 +79,28 @@ for (var i = 0; i < 3; i++) {
 }
 
 // Check for mouse clicks on filter button
-if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius)) {
-	if (mouse_check_button_pressed(mb_left)) {
-		
-		// If filter is active, deactivate it
-		if (obj_control.filterGridActive) {
-			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid))  {
-				obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius) and mouse_check_button_pressed(mb_left))
+or (keyboard_check(vk_control) and keyboard_check_pressed(ord("P")))) {
+	// If filter is active, deactivate it
+	if (obj_control.filterGridActive) {
+		if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid))  {
+			obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
 				
-				// Keep the focus on previous currentCenterDisplayRow
-				with (obj_control) {
-					alarm[5] = 3;
-				}
-			}
-			
-			// Switch to active grid
-			obj_control.filterGridActive = false;
-			obj_control.currentActiveLineGrid = obj_control.lineGrid;
-		}
-		else {
-			
-			// If filter is unactive. activate it
+			// Keep the focus on previous currentCenterDisplayRow
 			with (obj_control) {
-				scr_renderFilter();
+				alarm[5] = 3;
 			}
+		}
+			
+		// Switch to active grid
+		obj_control.filterGridActive = false;
+		obj_control.currentActiveLineGrid = obj_control.lineGrid;
+	}
+	else {
+			
+		// If filter is unactive. activate it
+		with (obj_control) {
+			scr_renderFilter();
 		}
 	}
 }

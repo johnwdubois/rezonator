@@ -26,6 +26,7 @@ switch (currentFunction)
 			{
 				functionSort_initialSort = true;
 				functionSort_performSort = true;
+				scr_setSpeakerLabelColWidth();
 			}
 		}
 	default:

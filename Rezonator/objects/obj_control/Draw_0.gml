@@ -81,4 +81,9 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 790, "chainColorID[3]: " + string(obj_chain.chainColorID[3]));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 810, "leftScreenBound: " + string(leftScreenBound));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 840, "speakerLabelColWidth[0]: " + string(speakerLabelColWidth[0]));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 860, "speakerLabelColWidth[1]: " + string(speakerLabelColWidth[1]));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 880, "speakerLabelColWidth[2]: " + string(speakerLabelColWidth[2]));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 900, "speakerLabelMargin: " + string(speakerLabelMargin));
 }

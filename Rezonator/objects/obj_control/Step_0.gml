@@ -119,6 +119,7 @@ if (list == false and contents == false) {
 	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus and gridSpaceHorizontal > 40) {
 		if (keyboard_check(vk_shift)) {
 			global.fontSize--;
+			scr_setSpeakerLabelColWidth();
 		}
 		else {
 			gridSpaceHorizontal -= 20;
@@ -130,6 +131,7 @@ if (list == false and contents == false) {
 	or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus and gridSpaceHorizontal < 400) {
 		if (keyboard_check(vk_shift)) {
 			global.fontSize++;
+			scr_setSpeakerLabelColWidth();
 		}
 		else {
 			gridSpaceHorizontal += 20;
@@ -196,22 +198,30 @@ else if (wordLeftMargin > wordLeftMarginDest) {
 }
 
 
-if (keyboard_check_pressed(ord("P"))) {
-	gridSpaceVertical += 10;
-}
+if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
+	if (keyboard_check_direct(187) and canPressPlus) {
+		canPressPlus = false;
+		gridSpaceVertical += 10;
+		alarm[3] = 15;
+	}
 
-if (keyboard_check_pressed(ord("M"))) {
-	gridSpaceVertical -= 10;
+	if (keyboard_check_direct(189) and canPressMinus) {
+		canPressMinus = false;
+		gridSpaceVertical -= 10;
+		alarm[4] = 15;
+	}
 }
 
 gridSpaceVertical = min(gridSpaceVertical, 303.40);
 gridSpaceVertical = max(gridSpaceVertical, 23.40);
 
+/*
 if (keyboard_check_pressed(ord("Q"))) {
 	displayRowAscending = !displayRowAscending;
 	ds_grid_sort(currentActiveLineGrid, lineGrid_colDisplayRow, displayRowAscending);
 	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 }
+*/
 
 
 if (keyboard_check_pressed(ord("E"))) {
@@ -219,9 +229,9 @@ if (keyboard_check_pressed(ord("E"))) {
 	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 }
 
-
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
+
 
 // Check for mouse over of the Panel Pane
 mouseoverPanelPane = false;
@@ -229,6 +239,13 @@ for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	var panelPaneInst = instance_find(obj_panelPane, i);
 	if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
 		mouseoverPanelPane = true;
+	}
+	if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
+		if (!panelPaneInst.functionHelp_collapsed) {
+			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.functionHelp_helpWindowRectX1, panelPaneInst.functionHelp_helpWindowRectY1, panelPaneInst.functionHelp_helpWindowRectX2, panelPaneInst.functionHelp_helpWindowRectY2)) {
+				mouseoverPanelPane = true;
+			}
+		}
 	}
 }
 

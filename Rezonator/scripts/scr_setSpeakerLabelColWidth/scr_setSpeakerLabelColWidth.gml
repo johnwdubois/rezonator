@@ -1,3 +1,6 @@
+var minSpeakerLabelWidth = 150;
+var maxSpeakerLabelWidth = 220;
+
 draw_set_font(global.fontMain);
 
 // get width of the widest particant name and widest discourse name
@@ -36,7 +39,17 @@ obj_control.speakerLabelColWidth[1] = string_width("8888");
 // we search for the longest particpant name in the discourse and set the width of the column to that
 obj_control.speakerLabelColWidth[2] = maxParticipantStrWidth;
 
+var speakerLabelWidthFull = obj_control.speakerLabelColWidth[0] + obj_control.speakerLabelColWidth[1] + obj_control.speakerLabelColWidth[2];
+if (speakerLabelWidthFull < minSpeakerLabelWidth) {
+	obj_control.speakerLabelColWidth[2] = minSpeakerLabelWidth - obj_control.speakerLabelColWidth[0] - obj_control.speakerLabelColWidth[1];
+}
+else if (speakerLabelWidthFull > maxSpeakerLabelWidth) {
+	obj_control.speakerLabelColWidth[2] = maxSpeakerLabelWidth - obj_control.speakerLabelColWidth[0] - obj_control.speakerLabelColWidth[1];
+}
 
 
-obj_control.speakerLabelMargin = obj_control.speakerLabelColWidth[0] + obj_control.speakerLabelColWidth[1] + obj_control.speakerLabelColWidth[2];
+
+speakerLabelWidthFull = obj_control.speakerLabelColWidth[0] + obj_control.speakerLabelColWidth[1] + obj_control.speakerLabelColWidth[2];
+obj_control.speakerLabelMargin = speakerLabelWidthFull;
+
 obj_control.wordLeftMarginDest = obj_control.speakerLabelMargin + obj_control.speakerLabelMarginBuffer;

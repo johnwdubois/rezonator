@@ -72,6 +72,13 @@ functionHelp_helpGrid_colKey = 0;
 functionHelp_helpGrid_colDesc = 1;
 functionHelp_helpGridRez = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridNav = ds_grid_create(functionHelp_helpGridWidth, 0);
+functionHelp_rezCollapsed = false;
+functionHelp_navCollapsed = false;
+
+functionHelp_helpWindowRectX1 = 0;
+functionHelp_helpWindowRectY1 = 0;
+functionHelp_helpWindowRectX2 = 0;
+functionHelp_helpWindowRectY2 = 0;
 alarm[3] = 1;
 
 
