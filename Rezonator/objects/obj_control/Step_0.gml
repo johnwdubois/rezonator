@@ -32,7 +32,7 @@ if (!gridView) {
 	}
 	
 // Retrieve booleans for NavWindow.	
-with(obj_panelPane) {
+with (obj_panelPane) {
 	if(currentFunction == functionChainList){
 		var list = clickedIn;
 	}
@@ -42,29 +42,40 @@ with(obj_panelPane) {
 }
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
-if(list == false and contents == false) {
-	if (keyboard_check(vk_down)) {
+if (list == false and contents == false) {
+	if (keyboard_check(vk_down) or mouse_wheel_down()) {
 		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
 		{
 			currentCenterDisplayRow++;
 		}
-	
 		holdDownArrowKey++;
+		if (mouse_wheel_down()) {
+			holdDownArrowKey = 31;
+		}
 	}
 
-	if (keyboard_check_released(vk_down)) {
+	if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {
+		holdDownArrowKey = 0;
+	}
+	if (holdDownArrowKey > 0 and !mouse_wheel_down() and !keyboard_check(vk_down)) {
 		holdDownArrowKey = 0;
 	}
 
 
-	if (keyboard_check(vk_up)) {
+	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if (holdUpArrowKey == 0 or holdUpArrowKey > 30) {
 			currentCenterDisplayRow--;
 		}
 		holdUpArrowKey++;
+		if (mouse_wheel_up()) {
+			holdUpArrowKey = 31;
+		}
 	}
 
-	if (keyboard_check_released(vk_up)) {
+	if (keyboard_check_released(vk_up) and !mouse_wheel_up()) {
+		holdUpArrowKey = 0;
+	}
+	if (holdUpArrowKey > 0 and !mouse_wheel_up() and !keyboard_check(vk_up)) {
 		holdUpArrowKey = 0;
 	}
 
