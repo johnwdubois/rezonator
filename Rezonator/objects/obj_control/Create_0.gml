@@ -230,5 +230,7 @@ var BGcolor = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBG, gl
 layer_background_blend(backID, BGcolor);
 
 preSwitchDisplayRow = 0;
+preSwitchSearchDisplayRow = 0;
+highlightedSearchRow = 0;
 
 simulateRightArrow = 0;

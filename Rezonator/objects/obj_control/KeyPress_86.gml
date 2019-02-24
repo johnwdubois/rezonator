@@ -17,15 +17,17 @@ if (ds_grid_height(searchGrid) > 0) {
 		filterGridActive = false;
 		currentActiveLineGrid = searchGrid;
 		preSwitchDisplayRow = currentCenterDisplayRow;
-		currentCenterDisplayRow = 0;
-		wordLeftMarginDest = room_width / 2;
+		highlightedSearchRow = 0;
+		currentCenterDisplayRow = preSwitchSearchDisplayRow;
 		
+		wordLeftMarginDest = window_get_width() / 2;
 		gridView = !gridView;
 	}
 	else if(not gridView and currentActiveLineGrid == searchGrid) {
 		searchGridActive = false;
 		filterGridActive = false;
 		currentActiveLineGrid = lineGrid;
+		preSwitchSearchDisplayRow = currentCenterDisplayRow;
 		currentCenterDisplayRow = preSwitchDisplayRow;
 		wordLeftMarginDest = 170;
 	}
