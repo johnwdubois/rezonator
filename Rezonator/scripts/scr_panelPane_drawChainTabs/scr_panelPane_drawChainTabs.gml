@@ -49,9 +49,11 @@ for (var i = 0; i < tabAmount; i++)// main mechanism
 			scr_unFocusAllChains();
 			
 			//refocus chains related to currently selected tab
+			
 			if(functionChainList_currentTab >= 0) {
 				scr_reFocusOldChains();
 			}
+			
 		}
 	}
 	
@@ -60,6 +62,5 @@ for (var i = 0; i < tabAmount; i++)// main mechanism
 	draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, true);
 	draw_set_color(global.colorThemeText);
 	draw_text(tabRectX1 + textMarginLeft, mean(tabRectY1, tabRectY2), functionChainList_tabName[i]);
-	
 
 }

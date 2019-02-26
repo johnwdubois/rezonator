@@ -21,14 +21,16 @@ if (!obj_control.gridView) {
 	
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
-			if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-				functionChainList_currentTab = functionChainList_tabRezBrush;
-			}
-			else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-				functionChainList_currentTab = functionChainList_tabTrackBrush;
-			}
-			else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-				functionChainList_currentTab = functionChainList_tabStackBrush;
+			if (functionChainList_currentTab != functionChainList_tabClique) {
+				if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+					functionChainList_currentTab = functionChainList_tabRezBrush;
+				}
+				else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+					functionChainList_currentTab = functionChainList_tabTrackBrush;
+				}
+				else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+					functionChainList_currentTab = functionChainList_tabStackBrush;
+				}
 			}
 		}
 	}
