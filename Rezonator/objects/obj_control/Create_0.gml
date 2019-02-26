@@ -236,4 +236,4 @@ highlightedSearchRowAlpha = 0;
 
 simulateRightArrow = 0;
 
-allSaved = false;
+allSaved = true;

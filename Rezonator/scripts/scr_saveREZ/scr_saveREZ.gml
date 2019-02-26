@@ -1,10 +1,8 @@
 if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
 	global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
-	if (global.fileSaveName == "" or global.fileSaveName == "undefined")
-	{
+	if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 		global.fileSaveName = "undefined";
-		//show_message("Error in saving: fileSaveName == " + string(global.fileSaveName));
 		show_message("Error in saving");
 		exit;
 	}
@@ -76,3 +74,5 @@ scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), globa
 ds_map_destroy(wrapper);
 
 scr_exportGrids();
+
+obj_control.allSaved = true;
