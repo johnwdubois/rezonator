@@ -126,6 +126,28 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		}
 	}
 	
+	// Set the opacity of the Highlight
+	if(currentActiveLineGrid == obj_control.searchGrid) {
+		highlightedSearchRowAlpha = 0.3;
+	}
+	else {
+		highlightedSearchRowAlpha -= 0.00005;
+	}
+	highlightedSearchRowAlpha = max(0, highlightedSearchRowAlpha);
+	
+	// Highlight last clicked word in Search view
+	if(unitID == highlightedSearchRow) {
+		draw_set_color(global.colorThemeHighlight);
+		draw_set_alpha(highlightedSearchRowAlpha);
+			
+		var highlightRectX1 = speakerRectX2;
+		var highlightRectY1 = speakerRectY1;
+		var highlightRectX2 = room_width;
+		var highlightRectY2 = speakerRectY2;
+		
+		draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
+	}
+	
 	
 	var previousWordDisplayCol = -1;
 	

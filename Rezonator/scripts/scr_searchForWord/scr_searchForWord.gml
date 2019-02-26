@@ -107,6 +107,12 @@ if (ds_grid_height(searchGrid) > 0) {
 }
 else {
 	show_message("found zero matches");
+	searchGridActive = false;
+	filterGridActive = false;
+	currentActiveLineGrid = lineGrid;
+	preSwitchSearchDisplayRow = currentCenterDisplayRow;
+	currentCenterDisplayRow = preSwitchDisplayRow;
+	wordLeftMarginDest = 170;
 }
 
 ds_grid_destroy(tempSearchGrid);
