@@ -8,6 +8,12 @@ if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) 
 		show_message("Error in saving");
 		exit;
 	}
+	
+	if (string_count(program_directory, global.fileSaveName) > 0) {
+		show_message("Error in saving. Please save outside of Rezonator program directory.");
+		scr_saveREZ();
+		exit;
+	}
 }
 
 

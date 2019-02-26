@@ -234,3 +234,5 @@ preSwitchSearchDisplayRow = 0;
 highlightedSearchRow = 0;
 
 simulateRightArrow = 0;
+
+allSaved = false;
