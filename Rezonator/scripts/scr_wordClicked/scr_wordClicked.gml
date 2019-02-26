@@ -111,3 +111,5 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 		ds_list_add(inChainsList, chainID);
 	}
 }
+
+obj_control.allSaved = false;

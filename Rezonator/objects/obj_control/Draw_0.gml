@@ -86,4 +86,6 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 860, "speakerLabelColWidth[1]: " + string(speakerLabelColWidth[1]));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 880, "speakerLabelColWidth[2]: " + string(speakerLabelColWidth[2]));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 900, "speakerLabelMargin: " + string(speakerLabelMargin));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 930, "allSaved: " + string(allSaved));
 }
