@@ -10,9 +10,12 @@
 	Mechanism: Loop through entire text file and add each line to global.fileLineRipList
 */
 
-
-//xmlFile = get_open_filename("XML file|*.xml|REZ file|*.rez", "");
-xmlFile = get_open_filename_ext("XML file|*.xml", "", program_directory, "Import XML");
+if (directory_exists_ns(global.rezonatorDirString)) {
+	xmlFile = get_open_filename_ext("XML file|*.xml", "", global.rezonatorDirString, "Import XML");
+}
+else {
+	xmlFile = get_open_filename("XML file|*.xml|REZ file|*.rez", "");
+}
 
 if (xmlFile == "")
 {

@@ -40,3 +40,5 @@ fileLoadRate = 50;
 
 ableToHotkey = true;
 
+inititalAutosave = false;
+initialAutosaveComplete = false;

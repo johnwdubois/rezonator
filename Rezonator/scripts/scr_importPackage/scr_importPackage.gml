@@ -1,24 +1,14 @@
-var documentsDirString = "";
+var driveStr = working_directory + "nsfs.dll";
+var userStr = environment_get_variable("USERNAME");
 
+global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
+global.rezonatorDirString = global.documentsDirString + "\\Rezonator";
 
-if (directory_exists_ns(working_directory + "\DefaultXMLS")) {
-	//var firstFile = file_find_first(working_directory + "\*.xml", fa_readonly);
-	//show_message(string(firstFile));
-}
-
-
-/*
-if (!directory_exists_ns("C:\Users\terry\Documents\Rezonator")) {
-	show_message("creating Rezonator folder...");
-	directory_create_ns("C:\Users\terry\Documents\Rezonator");
-	
-	//show_message(nsfs_status);
-}
-else {
-	show_message("niiice");
-}
-*/
-
-if (!directory_exists_ns("Documents\Rezonator\Default XML Files")) {
-	
+if (directory_exists_ns(global.documentsDirString)) {
+	if (directory_exists_ns(working_directory)) {
+		
+		if (!directory_exists_ns(global.rezonatorDirString)) {
+			directory_copy_ns(working_directory, global.rezonatorDirString);
+		}
+	}
 }

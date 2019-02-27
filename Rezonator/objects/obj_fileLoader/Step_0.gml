@@ -14,6 +14,20 @@
 
 fileLoadRate = ceil(fps);
 
+if (not inititalAutosave) {
+	if (ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount and ds_grid_height(obj_control.unitGrid) > 0) {
+		if (!file_exists_ns(global.fileSaveName)) {
+			alarm[1] = 1;
+			inititalAutosave = true;
+			show_message("autosaveeee! 1");
+		}
+		else {
+			alarm[1] = 36000;
+			inititalAutosave = true;
+		}
+	}
+}
+
 for (var i = 0; i < fileLoadRate; i++) {
 	if (discourseProcessing < 0 or discourseProcessing >= ds_grid_height(global.fileLineRipGrid)) {
 		exit;
