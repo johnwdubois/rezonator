@@ -12,6 +12,7 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("B"))) {
 	global.colorThemeBorders = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBorders, global.colorTheme);
 	global.colorThemePaneBG = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, global.colorTheme);
 	global.colorThemeOutOfBounds = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, global.colorTheme);
+	global.colorThemeHighlight = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colHighlight, global.colorTheme);
 	
 	var layerID = layer_get_id("Background");
 	var backID = layer_background_get_id(layerID);

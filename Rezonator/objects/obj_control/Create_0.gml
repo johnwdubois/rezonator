@@ -232,6 +232,7 @@ layer_background_blend(backID, BGcolor);
 preSwitchDisplayRow = 0;
 preSwitchSearchDisplayRow = 0;
 highlightedSearchRow = 0;
+highlightedSearchRowAlpha = 0;
 
 simulateRightArrow = 0;
 
