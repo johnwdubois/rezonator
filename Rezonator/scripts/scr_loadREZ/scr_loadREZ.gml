@@ -1,4 +1,9 @@
-var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");
+if (directory_exists_ns(global.rezonatorDirString)) {
+	var fileName = get_open_filename_ext("REZ file|*.rez", "", global.rezonatorDirString, "Open REZ");
+}
+else {
+	var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");
+}
 
 if (fileName == "" or not file_exists(fileName))
 {
