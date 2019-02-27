@@ -12,3 +12,9 @@ if (directory_exists_ns(global.documentsDirString)) {
 		}
 	}
 }
+
+if (directory_exists_ns(global.rezonatorDirString)) {
+	if (!directory_exists_ns(global.rezonatorDirString + "\\Autosave")) {
+		directory_create_ns(global.rezonatorDirString + "\\Autosave");
+	}
+}

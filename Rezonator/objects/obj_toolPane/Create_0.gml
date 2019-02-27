@@ -36,3 +36,5 @@ progressBarHeight = 32;
 progressBarBackColor = c_gray;
 progressBarFrontColor = c_blue;
 progressBarFont = fnt_mainBold;
+
+alarm[0] = 2;
