@@ -1,60 +1,49 @@
-if (string_count("<u who=", currentElement) == 0)
-{
-	if (not firstValidLineReached)
-	{
+if (string_count("<u who=", currentElement) == 0) {
+	if (not firstValidLineReached) {
 		exit;
 	}
 }
-else
-{
+else {
 	firstValidLineReached = true;
 }
 
 	
-if (string_length(currentElement) == 0)
-{
+if (string_length(currentElement) == 0) {
 	exit;
 }
 	
 	
 
 	
-if (string_count("uID=", currentElement) > 0)
-{
+if (string_count("uID=", currentElement) > 0) {
 	currentUtteranceID = real(scr_fileLineRipListSearch(fileLineRipListElement, "uID=\"u", "\"", fileLineRipList));
 
 	//show_debug_message("LOADED: uID " + string(currentUtteranceID) + "..... " + currentElement);
 }
 	
-if (string_count("PID=", currentElement) > 0)
-{
+if (string_count("PID=", currentElement) > 0) {
 	currentUnitpID = scr_fileLineRipListSearch(fileLineRipListElement, "PID=\"", "\"", fileLineRipList);
 }
 	
-if (string_count("<u who=", currentElement) > 0)
-{
+if (string_count("<u who=", currentElement) > 0) {
 		
 	currentUnitParticipantName = scr_fileLineRipListSearch(fileLineRipListElement, "u who=\"", "\"", fileLineRipList);
 
 }
 	
-if (string_count("start=", currentElement) > 0)
-{
+if (string_count("start=", currentElement) > 0) {
 	currentUnitStart = real(scr_fileLineRipListSearch(fileLineRipListElement, "start=\"", "\"", fileLineRipList));
 }
 	
-if (string_count("end=", currentElement) > 0)
-{
+if (string_count("end=", currentElement) > 0) {
 	currentUnitEnd = real(scr_fileLineRipListSearch(fileLineRipListElement, "end=\"", "\"", fileLineRipList));
 }
 	
-if (string_count("</g>", currentElement) > 0)
-{
+if (string_count("</g>", currentElement) > 0) {
 	ds_list_add(linesWithWordsList, fileLineRipListElement);
 }
 
-if (string_count("/>", currentElement) > 0)
-{
+if (string_count("/>", currentElement) > 0) {
 	if (string_length(string_digits(string(currentUnitpID))) < 1) {
 		exit;
 	}
@@ -74,19 +63,16 @@ if (string_count("/>", currentElement) > 0)
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentRowUnitGrid, currentUnitStart);
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentRowUnitGrid, currentUnitEnd);
 
-	if (ds_list_find_index(obj_control.participantList, currentUnitParticipantName) == -1)
-	{
-		ds_list_add(participantsInCurrentDiscoList, currentUnitParticipantName);
-		ds_list_add(obj_control.participantList, currentUnitParticipantName);
+	if (ds_list_find_index(obj_control.participantList, currentUnitpID) == -1) {
+		ds_list_add(participantsInCurrentDiscoList, currentUnitpID);
+		ds_list_add(obj_control.participantList, currentUnitpID);
 		var participantColor = ds_list_find_value(global.participantColorList, ds_list_size(obj_control.participantList) - 1);
 		ds_list_add(obj_control.participantColorList, participantColor);
 		
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, participantColor);
-			
 	}
-	else
-	{
-		var colorIndex = ds_list_find_index(obj_control.participantList, currentUnitParticipantName);
+	else {
+		var colorIndex = ds_list_find_index(obj_control.participantList, currentUnitpID);
 		var participantColor = ds_list_find_value(obj_control.participantColorList, colorIndex);
 		
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, participantColor);
@@ -101,18 +87,15 @@ if (string_count("/>", currentElement) > 0)
 	var lineGridWordIDList = ds_list_create();
 	var dbstr = "";
 		
-	for (var j = 0; j < ds_list_size(linesWithWordsList); j++)
-	{
+	for (var j = 0; j < ds_list_size(linesWithWordsList); j++) {
 		var lineNumber = ds_list_find_value(linesWithWordsList, j);
 			
 		wordIDCounter++;
 			
-		if (string_count("<g><w>", ds_list_find_value(fileLineRipList, lineNumber)) > 0)
-		{
+		if (string_count("<g><w>", ds_list_find_value(fileLineRipList, lineNumber)) > 0) {
 			var wordToken = scr_fileLineRipListSearch(lineNumber, "<g><w>", "<", fileLineRipList);
 		}
-		else
-		{
+		else {
 			var wordToken = "";
 		}
 		var wordTranscript = scr_fileLineRipListSearch(lineNumber, "<ga type=\"dt\">", "<", fileLineRipList);
@@ -165,7 +148,6 @@ if (string_count("/>", currentElement) > 0)
 	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitInStackGridCurrentRow, emptyList);
 }
 
-if (string_count("<Link>", currentElement) > 0)
-{
+if (string_count("<Link>", currentElement) > 0) {
 	scr_importLinks(fileLineRipListElement);
 }

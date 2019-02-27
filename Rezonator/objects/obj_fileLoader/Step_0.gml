@@ -19,7 +19,6 @@ if (not inititalAutosave) {
 		if (!file_exists_ns(global.fileSaveName)) {
 			alarm[1] = 1;
 			inititalAutosave = true;
-			show_message("autosaveeee! 1");
 		}
 		else {
 			alarm[1] = 36000;
