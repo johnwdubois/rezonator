@@ -41,6 +41,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
+		// Record user's click in the Search screen to highlight and th	
 		if (mouse_check_button_pressed(mb_left)) {
 			var newSwitch = ds_grid_get(hitGrid, hitGrid_colUnitID, currentHitID)
 			with (obj_control) {
@@ -51,26 +52,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 	}
 	
-	/*var speakerRectX1 = 0;
-	var speakerRectY1 = highlightedSearchRow - (gridSpaceVertical / 2);
-	var speakerRectX2 = speakerLabelMargin - speakerLabelMarginBuffer;
-	var speakerRectY2 = speakerRectY1 + gridSpaceVertical;
-	
-	
-	if (highlightedSearchRow == currentHitID) {
-		//show_message(string(speakerRectX1) + ", " + string(speakerRectY1)+ ", " + string(speakerRectX2)+ ", " + string(speakerRectY2));
-		draw_set_color(c_yellow);
-			draw_set_alpha(0.5);
-			
-			var stackRectWidth = (room_width - speakerRectX2) / ds_list_size(currentHitIDList);
-			var stackRectX1 = speakerRectX2;
-			var stackRectY1 = speakerRectY1;
-			var stackRectX2 = stackRectX1 + stackRectWidth;
-			var stackRectY2 = speakerRectY2;
-			//show_message(string(stackRectX1) + ", " + string(stackRectY1)+ ", " + string(stackRectX2)+ ", " + string(stackRectY2));
-			
-			draw_rectangle(0, wordRectY1 - 5, wordRectX2 + 500, wordRectY2 + 5, false);
-	}*/
 	
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordID - 1, true);
 		
