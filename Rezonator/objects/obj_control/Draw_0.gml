@@ -37,6 +37,14 @@ if (showDisplayCols) {
 
 scr_drawLine();
 
+// Draw the mouse drag rectangle
+scr_mouseRect();
+// Create the quickStack with the mouse drag, if possible
+if((mouseRectMade == true) and (quickStackAbleToInitiate == true)) {
+	quickStackAbleToInitiate = false;
+	alarm[7] = 5;
+}
+
 draw_set_font(fnt_debug);
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);

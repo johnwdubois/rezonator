@@ -237,3 +237,12 @@ highlightedSearchRowAlpha = 0;
 simulateRightArrow = 0;
 
 allSaved = true;
+
+mouseHoldRectX1 = 0;
+mouseHoldRectY1 = 0;
+mouseHoldRectX2 = 0;
+mouseHoldRectY2 = 0;
+mouseRectMade = false;
+inRectWordIDList = ds_list_create();
+inRectUnitIDList = ds_list_create();
+quickStackAbleToInitiate = true;
