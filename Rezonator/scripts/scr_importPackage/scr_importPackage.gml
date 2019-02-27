@@ -10,6 +10,5 @@ if (directory_exists_ns(global.documentsDirString)) {
 		if (!directory_exists_ns(global.rezonatorDirString)) {
 			directory_copy_ns(working_directory, global.rezonatorDirString);
 		}
-		
 	}
 }

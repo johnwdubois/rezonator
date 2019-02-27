@@ -1,16 +1,20 @@
-if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
-	global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+var autosave = argument0;
 
-	if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
-		global.fileSaveName = "undefined";
-		show_message("Error in saving");
-		exit;
-	}
+if (not autosave) {
+	if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
+		global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
+
+		if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
+			global.fileSaveName = "undefined";
+			show_message("Error in saving");
+			exit;
+		}
 	
-	if (string_count(program_directory, global.fileSaveName) > 0) {
-		show_message("Error in saving. Please save outside of Rezonator program directory.");
-		scr_saveREZ();
-		exit;
+		if (string_count(program_directory, global.fileSaveName) > 0) {
+			show_message("Error in saving. Please save outside of Rezonator program directory.");
+			scr_saveREZ(false);
+			exit;
+		}
 	}
 }
 
@@ -69,10 +73,22 @@ ds_map_add_list(wrapper, "ROOT", rootList);
 
 var jsonString = json_encode(wrapper);
 
-scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
+if (autosave) {
+	if (directory_exists_ns(global.rezonatorDirString)) {
+		scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "\\autosave.rez", jsonString);
+	}
+	else {
+		scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
+	}
+}
+else {
+	scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
+}
 
 ds_map_destroy(wrapper);
 
 scr_exportGrids();
 
-obj_control.allSaved = true;
+if (not autosave) {
+	obj_control.allSaved = true;
+}
