@@ -3,6 +3,11 @@ if (currentFunction != functionHelp) {
 	exit;
 }
 
+var controlStr = "CTRL";
+if (os_type == os_macosx) {
+	controlStr = "CMD";
+}
+
 var helpGridHeightRez = 21;
 ds_grid_resize(functionHelp_helpGridRez, functionHelp_helpGridWidth, helpGridHeightRez);
 
@@ -39,16 +44,16 @@ ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 9, "Justifi
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 10, "w");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 10, "Words vs. transcriptions displayed");
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 11, "CTRL/CMD+p");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 11, controlStr + "+p");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 11, "Show just the current picks");
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 12, "CTRL/CMD+t");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 12, controlStr + "+t");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 12, "Align current Track");
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 13, "CTRL+- [minus]");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 13, controlStr + "+- [minus]");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 13, "Smaller columns (more info)");
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 14, "CTRL++ [plus]");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 14, controlStr + "++ [plus]");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 14, "Larger columns (less info)");
 
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 15, "SHIFT+- [minus]");
@@ -63,10 +68,10 @@ ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 17, "Find a
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 18, "g");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 18, "Go to user-specified line");
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 19, "CTRL/CMD+o");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 19, controlStr + "+o");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 19, "Open file or project");
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 20, "CTRL/CMD+s");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 20, controlStr + "+s");
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 20, "Save file");
 
 
@@ -91,13 +96,13 @@ ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 3, "move ri
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 4, "[HOME]");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 4, "Jump to beginning of current line");
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 5, "CTRL+LEFT ARROW");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 5, controlStr + "+LEFT ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 5, "Jump to beginning of current line");
 
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 6, "[END]");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 6, "Jump to end of current line");
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 7, "CTRL+RIGHT ARROW");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 7, controlStr + "+RIGHT ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 7, "Jump to end of current line");
 
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 8, "[PAGEUP]");
@@ -106,10 +111,11 @@ ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 8, "scroll 
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 9, "[PAGEDOWN]");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 9, "scroll down one screen at a time");
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 10, "CTRL+UP ARROW");
+
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 10, controlStr + "+UP ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 10, "Jump to first line of conversation");
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 11, "CTRL+DOWN ARROW");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 11, controlStr + "+DOWN ARROW");
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 11, "Jump to last line of conversation");
 
 ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 12, "[TAB]");
