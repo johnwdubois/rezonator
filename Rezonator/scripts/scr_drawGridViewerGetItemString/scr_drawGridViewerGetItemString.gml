@@ -69,6 +69,10 @@ else if (grid == obj_chain.unitInStackGrid)
 	{
 		itemList = currentCell;
 	}
+	if (col == obj_chain.unitInStackGrid_colTempStackList)
+	{
+		itemList = currentCell;
+	}
 }
 else if (grid == obj_chain.cliqueGrid)
 {

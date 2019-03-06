@@ -10,7 +10,32 @@ if(ds_list_size(inRectUnitIDList) > 1 and (obj_toolPane.currentTool == obj_toolP
 			scr_wordClicked(currentWordID, currentUnitID);
 		}
 	}
+	scr_unFocusAllChains();
 }
+
+for (var i = 0; i < ds_list_size(inRectUnitIDList); i++) {
+	var currentUnitID = ds_list_find_value(inRectUnitIDList, i);
+	var currentUnitInTempStackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colTempStackList, currentUnitID - 1);
+	
+	//ds_list_clear(currentUnitInTempStackList);
+	//ds_list_add(currentUnitInTempStackList, )
+	
+	/*
+	var stackID = -1;
+	if (ds_grid_height(obj_chain.stackChainGrid) > 0) {
+		var stackGridRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
+		if (stackGridRow >= 0 and stackGridRow < ds_grid_height(obj_chain.stackChainGrid)) {
+			stackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackGridRow);
+		}
+	}
+	*/
+	
+	//show_message("stackID: " + string(stackID));
+	
+	//ds_list_clear(currentUnitInTempStackList);
+	//ds_list_add(currentUnitInTempStackList, )
+}
+
 // Clear lists for next quickStack
 if(ds_list_size(inRectUnitIDList) != 0) {
 	ds_list_clear(inRectUnitIDList);
@@ -23,4 +48,5 @@ mouseHoldRectX2 = 0;
 mouseHoldRectY1 = 0; 
 mouseHoldRectX2 = 0; 
 mouseRectMade = false;
+mouseRectReleased = false;
 quickStackAbleToInitiate = true;

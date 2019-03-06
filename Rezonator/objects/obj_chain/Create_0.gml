@@ -27,9 +27,10 @@ trackChainGrid = ds_grid_create(chainGridWidth, 0);
 stackChainGrid = ds_grid_create(chainGridWidth, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 
-unitInStackGridWidth = 2;
+unitInStackGridWidth = 3;
 unitInStackGrid_colUnitID = 0;
 unitInStackGrid_colStackList = 1;
+unitInStackGrid_colTempStackList = 2;
 unitInStackGrid = ds_grid_create(unitInStackGridWidth, 0);
 
 currentChainID = 0;

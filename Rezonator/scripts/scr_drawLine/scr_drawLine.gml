@@ -125,6 +125,36 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 			draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
 		}
 	}
+	else {
+		if (ds_list_size(inRectUnitIDList) > 0) {
+			if (ds_list_find_index(inRectUnitIDList, unitID) > -1) {
+				if (ds_grid_height(obj_chain.stackChainGrid) > 0) {
+					var focusedStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
+					if (focusedStackRow >= 0 and focusedStackRow < ds_grid_height(obj_chain.stackChainGrid)) {
+						var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, focusedStackRow);
+						var stackRectWidth = (room_width - speakerRectX2) / ds_list_size(currentLineInStackList);
+						var stackRectX1 = speakerRectX2 + (i * stackRectWidth);
+						var stackRectY1 = speakerRectY1;
+						var stackRectX2 = stackRectX1 + stackRectWidth;
+						var stackRectY2 = speakerRectY2;
+						
+						draw_set_color(stackColor);
+						draw_set_alpha(0.2);
+						
+						draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// Set the opacity of the Highlight
 	if(currentActiveLineGrid == obj_control.searchGrid) {

@@ -209,10 +209,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
 	if((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade == true) {
-		var downRight = rectangle_in_rectangle(0, wordRectY1, wordRectX2 + 140, wordRectY2, mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2);
-		var downLeft = rectangle_in_rectangle(0, wordRectY1, wordRectX2 + 140, wordRectY2, mouseHoldRectX2, mouseHoldRectY1, mouseHoldRectX1, mouseHoldRectY2);
-		var upRight = rectangle_in_rectangle(0, wordRectY1, wordRectX2 + 140, wordRectY2, mouseHoldRectX1, mouseHoldRectY2, mouseHoldRectX2, mouseHoldRectY1);
-		var upLeft = rectangle_in_rectangle(0, wordRectY1, wordRectX2 + 140, wordRectY2, mouseHoldRectX2, mouseHoldRectY2, mouseHoldRectX1, mouseHoldRectY1);
+		var downRight = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2);
+		var downLeft = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX2, mouseHoldRectY1, mouseHoldRectX1, mouseHoldRectY2);
+		var upRight = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX1, mouseHoldRectY2, mouseHoldRectX2, mouseHoldRectY1);
+		var upLeft = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX2, mouseHoldRectY2, mouseHoldRectX1, mouseHoldRectY1);
 		
 		if(downRight or downLeft or upRight or upLeft) {
 			//show_message("in drawLineCatch");

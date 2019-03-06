@@ -65,17 +65,15 @@ if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.c
 	// Get wordID list
 	with (obj_panelPane) {
 		functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
-	}
 	
-	// Select top of the content list
-	if (functionChainContents_hop > -1) {
-		if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
-			currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
+		// Select top of the content list
+		if (functionChainContents_hop > -1) {
+			if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
+				currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
+			}
+			functionChainContents_hop = -1;
 		}
-		
-		functionChainContents_hop = -1;
 	}
-	
 	// Set contraints for top view
 	currentTopViewRow = max(0, currentTopViewRow);
 	currentTopViewRow = min(ds_list_size(functionChainContents_IDList) - scrollRange, currentTopViewRow);
