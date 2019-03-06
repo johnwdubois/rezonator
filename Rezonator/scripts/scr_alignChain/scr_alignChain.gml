@@ -84,16 +84,6 @@ if (ds_list_size(wordIDList) > 0) {
 		}
 
 	}
-	
-	/*
-	if (keyboard_check(vk_space) and obj_control.showDevMessages) {
-		var dbb = "";
-		for (db = 0; db < ds_list_size(wordIDList); db++) {
-			dbb += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, ds_list_find_value(wordIDList, db) - 1)) + ", ";
-		}
-		//show_message(dbb + "... furthest: " + string(furthestDisplayCol));
-	}
-	*/
 		
 	//furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
 	var unitIDList2 = ds_list_create();
@@ -102,18 +92,6 @@ if (ds_list_size(wordIDList) > 0) {
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
 		if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1)) {
-			/*
-			var nextWordID = currentWordID + 1;
-			if (nextWordID >= 0 and nextWordID < ds_grid_height(obj_control.wordGrid))
-			{
-				var nextUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, nextWordID - 1);
-				if (nextUnitID == currentUnitID)
-				{
-					var nextDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, nextWordID - 1);
-					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, nextDisplayCol - 1);
-				}
-			}
-			*/
 			
 			continue;
 		}
@@ -133,6 +111,7 @@ if (ds_list_size(wordIDList) > 0) {
 				var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 				if (currentWordID == obj_control.mostRecentlyAddedWord and furthestDisplayCol > currentDisplayCol) {
 					if (obj_control.mostRecentlyAddedWordMoved) {
+						//show_message("now here!");
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, false);
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1, true);
 						
@@ -148,6 +127,7 @@ if (ds_list_size(wordIDList) > 0) {
 				}
 			}
 		}
+		
 	}
 	ds_list_destroy(unitIDList2);
 }

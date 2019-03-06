@@ -11,9 +11,13 @@ var displayColGrid = ds_grid_create(displayColGridWidth, 0);
 
 var wordIDList = ds_grid_get(grid, chainGrid_colWordIDList, rowInChainGrid);
 
+if (ds_list_size(wordIDList) < 1) {
+	exit;
+}
 
 
 
+// find the leftmost word in the word list for this chain
 var furthestBackWord = ds_list_find_value(wordIDList, 0);
 for (var i = 1; i < ds_list_size(wordIDList); i++) {
 	var currentWordID = ds_list_find_value(wordIDList, i);
@@ -25,18 +29,21 @@ for (var i = 1; i < ds_list_size(wordIDList); i++) {
 	if (currentWordStretch) {
 		continue;
 	}
-	var furthestBackDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, furthestBackWord - 1);
-	var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1);
+	var furthestBackDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestBackWord - 1);
+	var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 	if (currentWordDisplayCol < furthestBackDisplayCol) {
 		furthestBackWord = currentWordID;
 	}
 }
 
+/*
+// if the leftmost word has a void greater than 0, mark it as a stretch and unalign it
 if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, furthestBackWord - 1) > 0) {
 	//show_message("furthest back void... " + string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, furthestBackWord - 1)));
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, furthestBackWord - 1, false);
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, furthestBackWord - 1, true);
 }
+*/
 
 
 
@@ -45,10 +52,17 @@ if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid
 
 
 
+var unitIDList = ds_list_create();
 
 for (var i = 0; i < ds_list_size(wordIDList); i++) {
 	var currentWordID = ds_list_find_value(wordIDList, i);
 	var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
+	var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+	if (ds_list_size(unitIDList) > 0) {
+		if (ds_list_find_index(unitIDList, currentUnitID) > -1) {
+			continue;
+		}
+	}
 	if (not currentWordAligned) {
 		continue;
 	}
@@ -58,13 +72,17 @@ for (var i = 0; i < ds_list_size(wordIDList); i++) {
 	}
 	var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 	
+	ds_list_add(unitIDList, currentUnitID);
+	
 	//ds_list_add(displayColList, currentWordDisplayCol);
 	ds_grid_resize(displayColGrid, displayColGridWidth, ds_grid_height(displayColGrid) + 1);
 	ds_grid_set(displayColGrid, displayColGrid_colWordID, ds_grid_height(displayColGrid) - 1, currentWordID);
 	ds_grid_set(displayColGrid, displayColGrid_colDisplayCol, ds_grid_height(displayColGrid) - 1, currentWordDisplayCol);
 }
+ds_list_destroy(unitIDList);
 
 if (ds_grid_height(displayColGrid) < 2) {
+	ds_grid_destroy(displayColGrid);
 	exit;
 }
 ds_grid_sort(displayColGrid, displayColGrid_colDisplayCol, true);
@@ -102,9 +120,10 @@ var displayColGridFirst_wordID = ds_list_find_value(firstDisplayColWordIDList, 0
 //show_message(string(displayColGridFirst_displayCol) + "," + string(displayColGridLast_displayCol));
 
 if (displayColGridFirst_displayCol < displayColGridLast_displayCol) {
+	/*
 	var displayColGridFirst_str = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, displayColGridFirst_wordID - 1);
-	
-	//show_message(displayColGridFirst_str);
+	show_message(displayColGridFirst_str);
+	*/
 	
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, displayColGridFirst_wordID - 1, false);
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, displayColGridFirst_wordID - 1, true);
@@ -118,7 +137,6 @@ else {
 
 ds_grid_destroy(displayColGrid);
 ds_list_destroy(firstDisplayColWordIDList);
-
 
 
 
