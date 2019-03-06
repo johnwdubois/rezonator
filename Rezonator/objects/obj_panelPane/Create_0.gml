@@ -82,6 +82,8 @@ functionHelp_helpWindowRectX2 = 0;
 functionHelp_helpWindowRectY2 = 0;
 alarm[3] = 1;
 
+functionGoToLine_selectedDisco = 0;
+
 
 for (var i = 0; i < 3; i++)
 {
