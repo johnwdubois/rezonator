@@ -18,7 +18,12 @@ if (obj_control.gridView)
 }
 
 draw_set_alpha(1);
-draw_set_color(global.colorThemePaneBG);
+if (currentFunction != functionGoToLine) {
+	draw_set_color(global.colorThemePaneBG);
+}
+else {
+	draw_set_color(c_red);
+}
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 switch (currentFunction)
@@ -68,6 +73,9 @@ switch (currentFunction)
 		break;
 	case functionHelp:
 		scr_panelPane_drawHelp();
+		break;
+	case functionGoToLine:
+		scr_panelPane_drawGoToLine();
 		break;
 	default:
 		break;

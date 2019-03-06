@@ -19,6 +19,7 @@ functionSort = 3;
 functionSearch = 4;
 functionClique = 5;
 functionHelp = 6;
+functionGoToLine = 7;
 
 functionChainList_tabRezBrush = 0;
 functionChainList_tabTrackBrush = 1;
