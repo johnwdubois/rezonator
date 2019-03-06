@@ -81,6 +81,20 @@ if (showDevVars) {
 	}
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, modifyListStr + "}");
 	
+	
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 550, "inRectUnitIDList: ");
+	var inRectListStr = "{";
+	for (var i = 0; i < ds_list_size(inRectUnitIDList); i++) {
+			inRectListStr += string(ds_list_find_value(inRectUnitIDList, i));
+			if(i < ds_list_size(inRectUnitIDList) - 1) {
+				inRectListStr += ", ";
+			}
+	}
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 570, inRectListStr + "}");
+	
+	
+	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 600, "mostRecentlyAddedWord: " + string(mostRecentlyAddedWord));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 650, "mostRecentlyAddedWordMoved: " + string(mostRecentlyAddedWordMoved));
 	

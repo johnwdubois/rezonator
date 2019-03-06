@@ -243,6 +243,7 @@ mouseHoldRectY1 = 0;
 mouseHoldRectX2 = 0;
 mouseHoldRectY2 = 0;
 mouseRectMade = false;
+mouseRectReleased = false;
 inRectWordIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;

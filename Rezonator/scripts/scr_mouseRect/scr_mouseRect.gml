@@ -12,7 +12,9 @@ if(mouse_check_button(mb_left)) {
 	draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
 	draw_set_alpha(1);
 	draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
+	
 }
 if(mouse_check_button_released(mb_left) and (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) ) {
+	
 	mouseRectMade = true;
 }

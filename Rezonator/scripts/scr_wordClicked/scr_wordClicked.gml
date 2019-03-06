@@ -85,6 +85,9 @@ for (var i = 0; i < ds_list_size(inChainsList); i++) {
 					default:
 						break;
 				}
+				if (currentFunction == functionChainContents) {
+					functionChainContents_hop = wordID;
+				}
 			}
 			
 			exit;
