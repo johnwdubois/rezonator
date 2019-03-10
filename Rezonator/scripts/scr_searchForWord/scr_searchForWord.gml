@@ -101,12 +101,15 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 if (ds_grid_height(searchGrid) > 0) {
 	filterGridActive = false;
 	searchGridActive = true;
+	scr_unFocusAllChains();
+	//scr_chainDeselect();
+	//scr_refreshVizLinkGrid();
 	currentActiveLineGrid = searchGrid;
 	currentCenterDisplayRow = 0;
 	wordLeftMarginDest = window_get_width() / 2;
 }
 else {
-	show_message("found zero matches");
+	show_message("Search string not found");
 	searchGridActive = false;
 	filterGridActive = false;
 	currentActiveLineGrid = lineGrid;
