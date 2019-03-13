@@ -247,3 +247,8 @@ mouseRectReleased = false;
 inRectWordIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
+
+shortcutsEnabled = true;
+
+sessionStartTime = current_time;
+currentSessionTime = 0;

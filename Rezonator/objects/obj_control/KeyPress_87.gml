@@ -1,3 +1,7 @@
+if (!shortcutsEnabled) {
+	exit;
+}
+
 wordTranscriptView = !wordTranscriptView;
 
 for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {

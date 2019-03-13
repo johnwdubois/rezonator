@@ -11,6 +11,9 @@
 	
 	Author: Georgio Klironomos, Terry DuBois
 */
+if (!shortcutsEnabled) {
+	exit;
+}
 
 // Check for gridView switch first
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and !gridView) {

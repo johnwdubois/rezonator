@@ -10,6 +10,10 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+if (instance_exists(obj_input_text)) {
+	exit;
+}
+
 var panelPaneChainListID = -1;
 var panelPaneChainContentsID = -1;
 

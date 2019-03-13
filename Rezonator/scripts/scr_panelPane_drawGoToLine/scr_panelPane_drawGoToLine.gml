@@ -1,9 +1,6 @@
-/*
 if (mouse_check_button(mb_right)) {
-	x = mouse_x;
-	y = mouse_y;
+	instance_destroy();
 }
-*/
 
 /*
 if (instance_number(obj_input_text) < 1) {
@@ -20,6 +17,8 @@ else {
 	}
 }
 */
+
+
 draw_set_color(c_purple);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
@@ -28,6 +27,7 @@ draw_set_font(fnt_main);
 
 var plusY = 20;
 
+var selectedDiscoID = "";
 for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 	var currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, i);
 	var selectedRectX1 = x + 20;
@@ -43,17 +43,44 @@ for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 		}
 	}
 	
-	
+	draw_set_color(c_purple);
 	if (i == functionGoToLine_selectedDisco) {
 		draw_rectangle(selectedRectX1, selectedRectY1, selectedRectX2, selectedRectY2, false);
+		selectedDiscoID = currentDiscoID;
 	}
 	else {
 		draw_rectangle(selectedRectX1, selectedRectY1, selectedRectX2, selectedRectY2, true);
 	}
 	
+	draw_set_color(global.colorThemeText);
 	draw_text(selectedRectX2 + 20, mean(selectedRectY1, selectedRectY2), string(currentDiscoID));
 	
 	plusY += 20;
 }
 
-windowHeight = plusY;
+var specifyLineRectX1 = x + 10;
+var specifyLineRectY1 = y + plusY + 10;
+var specifyLineRectX2 = x + windowWidth - 20;
+var specifyLineRectY2 = specifyLineRectY1 + 20;
+
+if (point_in_rectangle(mouse_x, mouse_y, specifyLineRectX1, specifyLineRectY1, specifyLineRectX2, specifyLineRectY2)) {
+	draw_set_color(global.colorThemeSelected1);
+	
+	if (mouse_check_button_pressed(mb_left)) {
+		scr_jumpToLine(selectedDiscoID);
+		instance_destroy();
+	}
+}
+else {
+	draw_set_color(global.colorThemePaneBG);
+}
+draw_rectangle(specifyLineRectX1, specifyLineRectY1, specifyLineRectX2, specifyLineRectY2, false);
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(specifyLineRectX1, specifyLineRectY1, specifyLineRectX2, specifyLineRectY2, true);
+
+draw_set_color(global.colorThemeText);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_text(mean(specifyLineRectX1, specifyLineRectX2), mean(specifyLineRectY1, specifyLineRectY2), "Specify Line...");
+
+windowHeight = plusY + 40;

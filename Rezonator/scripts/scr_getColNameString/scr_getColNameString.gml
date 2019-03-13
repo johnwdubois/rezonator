@@ -210,6 +210,9 @@ else if (grid == obj_chain.linkGrid)
 		case obj_chain.linkGrid_colTilt:
 			colName = "tilt";
 			break;
+		case obj_chain.linkGrid_colTimeStamp:
+			colName = "timeStamp";
+			break;
 		default:
 			break;
 	}

@@ -1,3 +1,7 @@
+if (!shortcutsEnabled) {
+	exit;
+}
+
 // Activates word searching using search grid
 if(currentActiveLineGrid == lineGrid) {
 preSwitchDisplayRow = currentCenterDisplayRow;
