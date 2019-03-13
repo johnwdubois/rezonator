@@ -1,11 +1,10 @@
-/*
+
 if (mouse_check_button(mb_right)) {
 	x = mouse_x;
 	y = mouse_y;
 }
-*/
 
-/*
+
 if (instance_number(obj_input_text) < 1) {
 	var inst = input_text_create_singleline(x + 10, y + 10, windowWidth - 20, fnt_main);
 	inst.instTied = self.id;
@@ -19,7 +18,8 @@ else {
 		}
 	}
 }
-*/
+
+
 draw_set_color(c_purple);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
@@ -51,6 +51,7 @@ for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 		draw_rectangle(selectedRectX1, selectedRectY1, selectedRectX2, selectedRectY2, true);
 	}
 	
+	draw_set_color(global.colorThemeText);
 	draw_text(selectedRectX2 + 20, mean(selectedRectY1, selectedRectY2), string(currentDiscoID));
 	
 	plusY += 20;
