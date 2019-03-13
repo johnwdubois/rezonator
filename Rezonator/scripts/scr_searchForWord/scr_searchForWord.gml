@@ -25,12 +25,12 @@ var tempSearchGrid = ds_grid_create(ds_grid_width(lineGrid), ds_grid_height(line
 
 ds_grid_copy(tempSearchGrid, lineGrid);
 
-/*if (ds_grid_height(searchGrid) > 0) {
+if (ds_grid_height(searchGrid) > 0) {
 	var oldSearch = ds_grid_create(ds_grid_width(searchGrid), ds_grid_height(searchGrid));
 	ds_grid_copy(oldSearch, searchGrid);
 	var oldHit = ds_grid_create(ds_grid_width(hitGrid), ds_grid_height(hitGrid));
 	ds_grid_copy(oldHit, hitGrid);
-}*/
+}
 
 // create new searchGrid so we can populate it from scratch
 ds_grid_destroy(searchGrid);
@@ -110,20 +110,25 @@ if (ds_grid_height(searchGrid) > 0) {
 	filterGridActive = false;
 	searchGridActive = true;
 	scr_unFocusAllChains();
-	//scr_chainDeselect();
-	//scr_refreshVizLinkGrid();
+	with(obj_control) {
+		highlightedSearchRow = 0;// Reset the highlight with a new search
+	}
 	currentActiveLineGrid = searchGrid;
 	currentCenterDisplayRow = 0;
 	wordLeftMarginDest = window_get_width() / 2;
 }
 else {
 	show_message("Search string not found");
-	searchGridActive = false;
+	if (ds_grid_height(oldSearch) > 0) {
+		ds_grid_copy(searchGrid, oldSearch);
+		ds_grid_copy( hitGrid, oldHit);
+	}
+	/*searchGridActive = false;
 	filterGridActive = false;
 	currentActiveLineGrid = lineGrid;
 	preSwitchSearchDisplayRow = currentCenterDisplayRow;
 	currentCenterDisplayRow = preSwitchDisplayRow;
-	wordLeftMarginDest = 170;
+	wordLeftMarginDest = 170;*/
 }
 
 ds_grid_destroy(tempSearchGrid);

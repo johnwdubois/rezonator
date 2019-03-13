@@ -148,3 +148,5 @@ raceGrid_colRaceRank = 2;
 */
 
 chainIDRaceCheck = -1;
+
+oldFocusedContentsRow = -1;

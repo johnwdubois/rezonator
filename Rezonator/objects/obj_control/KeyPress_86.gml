@@ -36,6 +36,9 @@ else if(ds_grid_height(searchGrid) > 0 and !gridView) {
 		filterGridActive = false;
 		currentActiveLineGrid = lineGrid;
 		preSwitchSearchDisplayRow = currentCenterDisplayRow;
+		if(highlightedSearchRow > 0){
+			preSwitchDisplayRow = highlightedSearchRow
+		}
 		currentCenterDisplayRow = preSwitchDisplayRow;
 		wordLeftMarginDest = 170;
 	}

@@ -53,12 +53,26 @@ var scrollBarWidth = 16;
 
 var focusedChainExists = false;
 var alignRectSize = 8;
+var oldRow = -1;
+
+
+
+if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus)) {
+	with(obj_chain) {
+		oldFocusedContentsRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
+	}
+}
+with(obj_chain) {
+	if(oldFocusedContentsRow >= 0) {
+		oldRow = oldFocusedContentsRow;
+	}
+}
 
 // Check for focused chain, gather information from grids
-if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus)) {
+if (oldRow >= 0) {
 	// Collect beginning of chain info
 	focusedChainExists = true;
-	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
+	var rowInChainGrid = oldRow;
 	var chainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, rowInChainGrid);
 	var chainAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, rowInChainGrid);
 	

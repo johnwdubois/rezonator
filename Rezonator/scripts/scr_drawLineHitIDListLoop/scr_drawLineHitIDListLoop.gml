@@ -41,11 +41,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-		// Record user's click in the Search screen to highlight and th	
+		// Record user's click in the Search screen to highlight.
 		if (mouse_check_button_pressed(mb_left)) {
 			var newSwitch = ds_grid_get(hitGrid, hitGrid_colUnitID, currentHitID)
 			with (obj_control) {
-				preSwitchDisplayRow = newSwitch;
+				//preSwitchDisplayRow = newSwitch;
 				highlightedSearchRow = newSwitch;
 				
 			}
