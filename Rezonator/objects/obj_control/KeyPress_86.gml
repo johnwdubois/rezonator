@@ -11,8 +11,17 @@
 	
 	Author: Georgio Klironomos, Terry DuBois
 */
-if (ds_grid_height(searchGrid) > 0) {
-	if(gridView and currentActiveLineGrid == lineGrid) {
+
+// Check for gridView switch first
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and !gridView) {
+		gridView = true;
+}
+else if(gridView) {
+	gridView = false;
+}// If we're not in grid view and there is a search, switch between the main and search screen
+else if(ds_grid_height(searchGrid) > 0 and !gridView) {
+	// Main to search
+	if(currentActiveLineGrid == lineGrid) { 
 		searchGridActive = true;
 		filterGridActive = false;
 		currentActiveLineGrid = searchGrid;
@@ -21,9 +30,8 @@ if (ds_grid_height(searchGrid) > 0) {
 		currentCenterDisplayRow = preSwitchSearchDisplayRow;
 		
 		wordLeftMarginDest = window_get_width() / 2;
-		gridView = !gridView;
-	}
-	else if(not gridView and currentActiveLineGrid == searchGrid) {
+	}// Search to main
+	else if(currentActiveLineGrid == searchGrid) { 
 		searchGridActive = false;
 		filterGridActive = false;
 		currentActiveLineGrid = lineGrid;
@@ -31,10 +39,4 @@ if (ds_grid_height(searchGrid) > 0) {
 		currentCenterDisplayRow = preSwitchDisplayRow;
 		wordLeftMarginDest = 170;
 	}
-	else {
-		gridView = !gridView;
-	}
-}
-else {
-	gridView = !gridView;
 }
