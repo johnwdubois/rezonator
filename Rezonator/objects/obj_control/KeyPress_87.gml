@@ -1,4 +1,4 @@
-if (instance_exists(obj_input_text)) {
+if (!shortcutsEnabled) {
 	exit;
 }
 

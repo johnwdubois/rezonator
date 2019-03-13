@@ -110,4 +110,6 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 900, "speakerLabelMargin: " + string(speakerLabelMargin));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 930, "allSaved: " + string(allSaved));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 960, "current_time: " + string(current_time));
 }

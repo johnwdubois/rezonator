@@ -1,3 +1,5 @@
+var discoID = argument0;
+
 var lineStr = get_string("Type in the line you would like to jump to.", "");
 
 if (lineStr == "")
@@ -9,21 +11,27 @@ if (string_length(string_digits(lineStr)) < string_length(lineStr)
 or string_length(lineStr) < 1)
 {
 	show_message("Numbers only.");
-	scr_jumpToLine();
+	scr_jumpToLine(discoID);
 }
 
 var lineNum = real(lineStr);
 
-lineNum = min(lineNum, ds_grid_get_max(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid)));
-lineNum = max(lineNum, ds_grid_get_min(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid)));
+var lineNumMin = ds_grid_get_min(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid));
+var lineNumMax = ds_grid_get_max(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid));
 
-var rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid), lineNum);
+lineNum = clamp(lineNum, lineNumMin, lineNumMax);
+
+var rowInLineGrid = -1;
+if (discoID == "") {
+	rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid), lineNum);
+}
+else {
+	rowInLineGrid = scr_findInGridTwoParameters(obj_control.lineGrid, obj_control.lineGrid_colDiscoID, discoID, obj_control.lineGrid_colLineNumberLabel, lineNum);
+}
 	
-if (rowInLineGrid >= 0)
-{
+if (rowInLineGrid >= 0) {
 	obj_control.currentCenterDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, rowInLineGrid);
 }
-else
-{
+else {
 	exit;
 }

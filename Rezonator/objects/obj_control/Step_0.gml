@@ -12,6 +12,20 @@
 	Author: Terry DuBois
 */
 
+shortcutsEnabled = true;
+/*
+if (instance_exists(obj_input_text)) {
+	for (var i = 0; i < instance_number(obj_input_text); i++) {
+		var currentInputTextInst = instance_find(obj_input_text, i);
+		if (instance_exists(currentInputTextInst)) {
+			if (currentInputTextInst.enabled) {
+				shortcutsEnabled = false;
+			}
+		}
+	}
+}
+*/
+
 
 // Mechanism to update center display row
 if (!gridView) {
@@ -200,17 +214,19 @@ else if (wordLeftMargin > wordLeftMarginDest) {
 }
 
 
-if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
-	if (keyboard_check_direct(187) and canPressPlus) {
-		canPressPlus = false;
-		gridSpaceVertical += 10;
-		alarm[3] = 15;
-	}
+if (shortcutsEnabled) {
+	if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
+		if (keyboard_check_direct(187) and canPressPlus) {
+			canPressPlus = false;
+			gridSpaceVertical += 10;
+			alarm[3] = 15;
+		}
 
-	if (keyboard_check_direct(189) and canPressMinus) {
-		canPressMinus = false;
-		gridSpaceVertical -= 10;
-		alarm[4] = 15;
+		if (keyboard_check_direct(189) and canPressMinus) {
+			canPressMinus = false;
+			gridSpaceVertical -= 10;
+			alarm[4] = 15;
+		}
 	}
 }
 
@@ -226,7 +242,7 @@ if (keyboard_check_pressed(ord("Q"))) {
 */
 
 
-if (keyboard_check_pressed(ord("E")) && !instance_exists(obj_input_text)) {
+if (keyboard_check_pressed(ord("E")) && shortcutsEnabled) {
 	scr_shuffleDisplayRows();
 	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 }
