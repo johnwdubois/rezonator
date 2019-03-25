@@ -68,8 +68,8 @@ with(obj_chain) {
 	}
 }
 
-// Check for focused chain, gather information from grids
-if (oldRow >= 0) {
+// Check for focused chain and make sure grid is not empty, gather information from grids
+if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 	// Collect beginning of chain info
 	focusedChainExists = true;
 	var rowInChainGrid = oldRow;
