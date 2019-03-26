@@ -54,16 +54,23 @@ var scrollBarWidth = 16;
 var focusedChainExists = false;
 var alignRectSize = 8;
 var oldRow = -1;
+/*var olderRow = -1;
 
+with(obj_panelPane) {
+	if(olderFocusedRow >=0) {
+		oldRow = olderFocusedRow;
+	}
+}*/
 
-
-if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus)) {
+if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus) ) {
 	with(obj_chain) {
-		oldFocusedContentsRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
+			oldFocusedContentsRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	}
 }
+
 with(obj_chain) {
-	if(oldFocusedContentsRow >= 0) {
+	if(oldFocusedContentsRow >= 0 ) {//&& ds_grid_value_exists(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), oldFocusedContentsRow)) {
+		olderRow = oldRow;
 		oldRow = oldFocusedContentsRow;
 	}
 }
@@ -88,6 +95,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			functionChainContents_hop = -1;
 		}
 	}
+	
 	// Set contraints for top view
 	currentTopViewRow = max(0, currentTopViewRow);
 	currentTopViewRow = min(ds_list_size(functionChainContents_IDList) - scrollRange, currentTopViewRow);
@@ -271,6 +279,11 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 		
 		textPlusY += string_height(currentWordInfoCol[0]) * 0.75;
 	}
+	/*if(ds_list_size(ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid)) = 1) {
+		with(obj_panelPane) {
+			olderFocusedRow = olderRow;
+		}
+	}*/
 }
 
 draw_set_alpha(1);
