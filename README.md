@@ -10,7 +10,7 @@ Rezonator is a project to explore the dynamics of resonance and engagement in di
 
 To learn more about Rezonator, check out the following:
 * [**Roadmap:**](https://github.com/johnwdubois/rezonator/wiki/1.-Roadmap) Plans for Rezonator development
-* [**Fundamentals**](https://github.com/johnwdubois/rezonator/wiki/2.-Fundamentals) Basic structures that underlie the design of Rezonator
+* [**Fundamentals:**](https://github.com/johnwdubois/rezonator/wiki/2.-Fundamentals) Basic structures that underlie the design of Rezonator
 * [**Functions:**](https://github.com/johnwdubois/rezonator/wiki/3.-Functions) Features and functionality of Rezonator
 * [**Research:**](https://github.com/johnwdubois/rezonator/wiki/5.-Research) Research tools and strategies, including Rezonator Analytics
 * [**Data:**](https://github.com/johnwdubois/rezonator/wiki/6.-Data) Types of data for use with Rezonator 
