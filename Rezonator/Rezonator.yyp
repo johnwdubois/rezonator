@@ -263,6 +263,14 @@
             }
         },
         {
+            "Key": "149dbd0e-ade3-430d-bd80-76c59b9f2cca",
+            "Value": {
+                "id": "cff78724-e3cf-4f44-bea3-ab753689d73e",
+                "resourcePath": "scripts\\scr_unfocusChain\\scr_unfocusChain.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "150d9a89-e6ed-4d7e-8b49-011248595228",
             "Value": {
                 "id": "989a1e82-0459-4b44-9c2f-1369552df017",
@@ -2815,6 +2823,7 @@
         "730a5783-5fcd-4b1e-af7f-eb156d322068",
         "9bf8a465-d045-4287-92ab-cc25d14c9539",
         "3f336589-fadf-4ed7-8a96-a645f60d347d",
+        "149dbd0e-ade3-430d-bd80-76c59b9f2cca",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
         "bc2f5ec3-50e1-4cc0-8fb7-e25c9ba4ad32",

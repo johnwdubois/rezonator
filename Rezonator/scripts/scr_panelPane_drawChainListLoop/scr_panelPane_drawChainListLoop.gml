@@ -181,7 +181,8 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	if ((point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2) and mouse_check_button_pressed(mb_left))
 	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) {
 		// Set selected objects to be filtered
-		ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, !inFilter);
+		inFilter = !inFilter;
+		ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
 			
 		// Render the filter in the mainscreen
 		if (obj_control.filterGridActive) {
@@ -189,6 +190,9 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 				scr_renderFilter();
 			}
 		}
+	}
+	if (not inFilter and obj_control.filterGridActive) {
+		scr_unfocusChain(currentChainID);
 	}
 	
 	// Create little boxes for alignment selection
