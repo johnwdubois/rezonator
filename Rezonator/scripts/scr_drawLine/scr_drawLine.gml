@@ -119,7 +119,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 			var stackRectWidth = (room_width - speakerRectX2) / ds_list_size(currentLineInStackList);
 			var stackRectX1 = speakerRectX2 + (i * stackRectWidth);
 			var stackRectY1 = speakerRectY1;
-			var stackRectX2 = stackRectX1 + stackRectWidth;
+			var stackRectX2 = room_width;//stackRectX1 + stackRectWidth;
 			var stackRectY2 = speakerRectY2;
 			
 			draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
@@ -135,7 +135,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 						var stackRectWidth = (room_width - speakerRectX2) / ds_list_size(currentLineInStackList);
 						var stackRectX1 = speakerRectX2 + (i * stackRectWidth);
 						var stackRectY1 = speakerRectY1;
-						var stackRectX2 = stackRectX1 + stackRectWidth;
+						var stackRectX2 = room_width;//stackRectX1 + stackRectWidth;
 						var stackRectY2 = speakerRectY2;
 						
 						draw_set_color(stackColor);
@@ -178,6 +178,21 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
 	}
 	
+	/*Draw quickstack highlights here 
+	if(ds_list_size(quickStackList) > 0)
+	{ if(ds_list_find_index(quickStackList, unitID) != -1) {
+	draw_set_color(curretnStackColor + 1);
+		draw_set_alpha(stackAlpha);
+			
+		var quickStackRectX1 = speakerRectX2;
+		var quickStackRectY1 = speakerRectY1;
+		var quickStackRectX2 = room_width;
+		var quickStackRectY2 = speakerRectY2;
+		
+		draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
+		}
+		}
+		*/
 	
 	var previousWordDisplayCol = -1;
 	

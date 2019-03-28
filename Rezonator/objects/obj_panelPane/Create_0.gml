@@ -94,7 +94,8 @@ for (var i = 0; i < 3; i++)
 scrollBarHolding = false;
 scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
-olderFocusedRow = -1;
+//oldFocusedContentsRow = -1;
+//backupFocusedRow = -1;
 
 doubleClickTimer = -1;
 

@@ -95,6 +95,10 @@ ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
 ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
 
 currentFocusedChainID = currentChainID;
+var newTop = currentChainID;
+with(obj_panelPane) {
+			currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
+		}
 
 with (obj_panelPane) {
 	functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;

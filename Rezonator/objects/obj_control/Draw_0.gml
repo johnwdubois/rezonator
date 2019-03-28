@@ -39,6 +39,8 @@ scr_drawLine();
 
 // Draw the mouse drag rectangle
 scr_mouseRect();
+//draw highlights instead here!
+
 // Create the quickStack with the mouse drag, if possible
 if((mouseRectMade == true) and (quickStackAbleToInitiate == true)) {
 	quickStackAbleToInitiate = false;
