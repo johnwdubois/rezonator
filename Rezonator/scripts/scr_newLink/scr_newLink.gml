@@ -50,9 +50,11 @@ var currentLinkGridRow = ds_grid_height(obj_chain.linkGrid) - 1;
 linkIDCounter++;
 
 
+// if this new word is the goal of a previous link, we must update the linkGrid on that row
 var focusedRow = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentFocusedChainID, obj_chain.linkGrid_colGoal, -1)
-if (focusedRow > -1) {
+if (focusedRow > -1 and focusedRow < ds_grid_height(obj_chain.linkGrid)) {
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, focusedRow, idSet);
+	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoalClickTime, focusedRow, (current_time - obj_control.sessionStartTime) / 1000);
 }
 
 // fill in info for new row in linkGrid
@@ -66,7 +68,8 @@ ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, currentLinkGridRow, 
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, focus);
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, currentLinkGridRow, false);
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTilt, currentLinkGridRow, 0);
-ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTimeStamp, currentLinkGridRow, (current_time - obj_control.sessionStartTime) / 1000);
+ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colSourceClickTime, currentLinkGridRow, (current_time - obj_control.sessionStartTime) / 1000);
+ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoalClickTime, currentLinkGridRow, -1);
 
 scr_gridMultiColSort(linkGrid, linkGrid_colTier, true, linkGrid_colChainID, true, linkGrid_colLinkID, true, linkGrid_colDead, true);
 

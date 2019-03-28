@@ -1,7 +1,6 @@
 var colName = string(argument0);
 
-switch (argument0)
-{
+switch (argument0) {
 	case obj_control.unitGrid:
 		colName = "Unit";
 		break;

@@ -3,10 +3,8 @@ var col = argument1;
 
 var colName = "";
 
-if (grid == obj_control.unitGrid)
-{
-	switch (col)
-	{
+if (grid == obj_control.unitGrid) {
+	switch (col) {
 		case obj_control.unitGrid_colUnitID:
 			colName = "unitID";
 			break;
@@ -38,10 +36,8 @@ if (grid == obj_control.unitGrid)
 			break;
 	}
 }
-else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid == obj_control.searchGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid == obj_control.searchGrid) {
+	switch (col) {
 		case obj_control.lineGrid_colDisplayRow:
 			colName = "displayRow";
 			break;
@@ -61,12 +57,10 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 			colName = "lineState";
 			break;
 		case obj_control.lineGrid_colWordIDList:
-			if (grid == obj_control.searchGrid)
-			{
+			if (grid == obj_control.searchGrid) {
 				colName = "hitIDList";
 			}
-			else
-			{
+			else {
 				colName = "wordIDList";
 			}
 			break;
@@ -79,9 +73,6 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 		case obj_control.lineGrid_colUnitEnd:
 			colName = "unitEnd";
 			break;
-		//case obj_control.lineGrid_col:
-		//	colName = "uID";
-		//	break;
 		case obj_control.lineGrid_colVoidMax:
 			colName = "voidMax";
 			break;
@@ -92,10 +83,8 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 			break;
 	}
 }
-else if (grid == obj_control.hitGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_control.hitGrid) {
+	switch (col) {
 		case obj_control.hitGrid_colWordID:
 			colName = "wordID";
 			break;
@@ -121,10 +110,8 @@ else if (grid == obj_control.hitGrid)
 			break;
 	}
 }
-else if (grid == obj_control.wordGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_control.wordGrid) {
+	switch (col) {
 		case obj_control.wordGrid_colWordID:
 			colName = "wordID";
 			break;
@@ -144,10 +131,8 @@ else if (grid == obj_control.wordGrid)
 			break;
 	}
 }
-else if (grid == obj_control.dynamicWordGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_control.dynamicWordGrid) {
+	switch (col) {
 		case obj_control.dynamicWordGrid_colWordID:
 			colName = "wordID";
 			break;
@@ -182,10 +167,8 @@ else if (grid == obj_control.dynamicWordGrid)
 			break;
 	}
 }
-else if (grid == obj_chain.linkGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_chain.linkGrid) {
+	switch (col) {
 		case obj_chain.linkGrid_colTier:
 			colName = "tier";
 			break;
@@ -210,17 +193,18 @@ else if (grid == obj_chain.linkGrid)
 		case obj_chain.linkGrid_colTilt:
 			colName = "tilt";
 			break;
-		case obj_chain.linkGrid_colTimeStamp:
-			colName = "timeStamp";
+		case obj_chain.linkGrid_colSourceClickTime:
+			colName = "sourceClickTime";
+			break;
+		case obj_chain.linkGrid_colGoalClickTime:
+			colName = "sourceGoalTime";
 			break;
 		default:
 			break;
 	}
 }
-else if (grid == obj_chain.vizLinkGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_chain.vizLinkGrid) {
+	switch (col) {
 		case obj_chain.vizLinkGrid_colTier:
 			colName = "tier";
 			break;
@@ -255,10 +239,8 @@ else if (grid == obj_chain.vizLinkGrid)
 			break;
 	}
 }
-else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
+	switch (col) {
 		case obj_chain.chainGrid_colChainID:
 			colName = "chainID";
 			break;
@@ -266,12 +248,10 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 			colName = "chainState";
 			break;
 		case obj_chain.chainGrid_colWordIDList:
-			if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid)
-			{
+			if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
 				colName = "unitIDList";
 			}
-			else
-			{
+			else {
 				colName = "wordList";
 			}
 			break;
@@ -294,10 +274,8 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 			break;
 	}
 }
-else if (grid == obj_chain.unitInStackGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_chain.unitInStackGrid) {
+	switch (col) {
 		case obj_chain.unitInStackGrid_colUnitID:
 			colName = "unitID";
 			break;
@@ -311,10 +289,8 @@ else if (grid == obj_chain.unitInStackGrid)
 			break;
 	}
 }
-else if (grid == obj_chain.cliqueGrid)
-{
-	switch (col)
-	{
+else if (grid == obj_chain.cliqueGrid) {
+	switch (col) {
 		case obj_chain.cliqueGrid_colCliqueID:
 			colName = "cliqueID";
 			break;
