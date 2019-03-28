@@ -1,7 +1,7 @@
 {
     "id": "5256dbbf-f03d-43db-aa4b-2016c36d7a91",
     "modelName": "GMFont",
-    "mvc": "1.0",
+    "mvc": "1.1",
     "name": "ft_input_0",
     "AntiAlias": 1,
     "TTFName": "",
@@ -10,6 +10,7 @@
     "charset": 1,
     "first": 0,
     "fontName": "Myriad Pro Light",
+    "glyphOperations": 0,
     "glyphs": [
         {
             "Key": 32,
@@ -3372,13 +3373,16 @@
             }
         }
     ],
-    "image": null,
+    "hinting": 0,
     "includeTTF": false,
+    "interpreter": 0,
     "italic": false,
     "kerningPairs": [
         
     ],
     "last": 0,
+    "maintainGms1Font": false,
+    "pointRounding": 0,
     "ranges": [
         {
             "x": 32,
