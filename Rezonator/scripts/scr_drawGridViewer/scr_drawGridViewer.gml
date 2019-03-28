@@ -38,8 +38,7 @@ var mouseoverItemString = " ";
 var mouseoverRow = -1;
 var mouseoverCol = -1;
 
-for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gridLoopCol++)
-{
+for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gridLoopCol++) {
 	var colRectX1 = windowX[gridArrayIndex] + (gridLoopCol * gridColWidth);
 	var colRectY1 = windowY[gridArrayIndex];
 	var colRectX2 = colRectX1 + gridColWidth;//windowWidth[gridArrayIndex];
@@ -58,17 +57,14 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gri
 	
 	textY = colRectY1 + colNameHeight;
 	
-	for (var gridLoopRow = gridCurrentTopViewRow[gridArrayIndex]; gridLoopRow < (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex]); gridLoopRow++)
-	{
-		if (gridLoopRow < 0 or gridLoopRow >= ds_grid_height(grid[gridArrayIndex]))
-		{
+	for (var gridLoopRow = gridCurrentTopViewRow[gridArrayIndex]; gridLoopRow < (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex]); gridLoopRow++) {
+		if (gridLoopRow < 0 or gridLoopRow >= ds_grid_height(grid[gridArrayIndex])) {
 			continue;
 		}
 		
 		currentItemString = scr_drawGridViewerGetItemString(grid[gridArrayIndex], gridLoopCol, gridLoopRow);
 
-		if (currentItemString == "undefined")
-		{
+		if (currentItemString == "undefined") {
 			continue;
 		}
 		
@@ -81,14 +77,12 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid[gridArrayIndex]); gri
 		var currentCellRectX2 = colRectX2;
 		var currentCellRectY2 = currentCellRectY1 + string_height(currentItemString);
 		
-		if (gridLoopRow == mouseoverRelativeRow[gridArrayIndex])
-		{
+		if (gridLoopRow == mouseoverRelativeRow[gridArrayIndex]) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2, false);
 		}
 		
-		if (point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2))
-		{
+		if (point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2)) {
 			mouseoverRow = gridLoopRow;
 			mouseoverCol = gridLoopCol;
 			mouseoverItemString = currentItemString;
@@ -108,112 +102,84 @@ draw_rectangle(windowX1, windowY1, windowX2, windowY1 + colNameHeight, true);
 
 scrollRange[gridArrayIndex] = (windowHeight[gridArrayIndex] / string_height(currentItemString)) - 2;
 
-if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2))
-{//implemented "speed limit" for scrolling in gridView
-	if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_gridViewer.holdUp < 2 || obj_gridViewer.holdUp > 30))
-	{
-		if (gridCurrentTopViewRow[gridArrayIndex] > 0)
-		{
+if (point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2)) {
+	//implemented "speed limit" for scrolling in gridView
+	if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_gridViewer.holdUp < 2 || obj_gridViewer.holdUp > 30)) {
+		if (gridCurrentTopViewRow[gridArrayIndex] > 0) {
 			gridCurrentTopViewRow[gridArrayIndex]--;
 			
-			if (scrollTogether)
-			{
-				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
-				{
-					if (scrollTogetherLoop != gridArrayIndex)
-					{
+			if (scrollTogether) {
+				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++) {
+					if (scrollTogetherLoop != gridArrayIndex) {
 						gridCurrentTopViewRow[scrollTogetherLoop]--;
 					}
 				}
 			}
 		}
 	}
-	else if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_gridViewer.holdDown < 2 || obj_gridViewer.holdDown > 30))
-	{
-		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex]))
-		{
+	else if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_gridViewer.holdDown < 2 || obj_gridViewer.holdDown > 30)) {
+		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex])) {
 			gridCurrentTopViewRow[gridArrayIndex]++;
 		}
 		
-		if (scrollTogether)
-		{
-			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
-			{
-				if (scrollTogetherLoop != gridArrayIndex)
-				{
+		if (scrollTogether) {
+			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++) {
+				if (scrollTogetherLoop != gridArrayIndex) {
 					gridCurrentTopViewRow[scrollTogetherLoop]++;
 				}
 			}
 		}
 	}
-	if (keyboard_check_pressed(vk_pageup))
-	{//added pageUp/pageDown functionality to gridView
-		if (gridCurrentTopViewRow[gridArrayIndex] > 0)
-		{
+	if (keyboard_check_pressed(vk_pageup)) {
+		//added pageUp/pageDown functionality to gridView
+		if (gridCurrentTopViewRow[gridArrayIndex] > 0) {
 			gridCurrentTopViewRow[gridArrayIndex] -= scrollRange[gridArrayIndex];
 			
-			if (scrollTogether)
-			{
-				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
-				{
-					if (scrollTogetherLoop != gridArrayIndex)
-					{
+			if (scrollTogether) {
+				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++) {
+					if (scrollTogetherLoop != gridArrayIndex) {
 						gridCurrentTopViewRow[scrollTogetherLoop] -= scrollRange[gridArrayIndex];
 					}
 				}
 			}
 		}
 	}
-	if (keyboard_check_pressed(vk_pagedown))
-	{
-		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex]))
-		{
+	if (keyboard_check_pressed(vk_pagedown)) {
+		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex])) {
 			gridCurrentTopViewRow[gridArrayIndex] += scrollRange[gridArrayIndex];
 		}
 		
-		if (scrollTogether)
-		{
-			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
-			{
-				if (scrollTogetherLoop != gridArrayIndex)
-				{
+		if (scrollTogether) {
+			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++) {
+				if (scrollTogetherLoop != gridArrayIndex) {
 					gridCurrentTopViewRow[scrollTogetherLoop] += scrollRange[gridArrayIndex];
 				}
 			}
 		}
 	}
 	
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up))
-	{//added pageUp/pageDown functionality to gridView
-		if (gridCurrentTopViewRow[gridArrayIndex] > 0)
-		{
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
+		//added pageUp/pageDown functionality to gridView
+		if (gridCurrentTopViewRow[gridArrayIndex] > 0) {
 			gridCurrentTopViewRow[gridArrayIndex] -= ds_grid_height(grid[gridArrayIndex]);
 			
-			if (scrollTogether)
-			{
-				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
-				{
-					if (scrollTogetherLoop != gridArrayIndex)
-					{
+			if (scrollTogether) {
+				for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++) {
+					if (scrollTogetherLoop != gridArrayIndex) {
 						gridCurrentTopViewRow[scrollTogetherLoop] -= ds_grid_height(grid[gridArrayIndex]);
 					}
 				}
 			}
 		}
 	}
-	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down))
-	{
+	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
 		
-		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex]))
-		{
+		if (gridCurrentTopViewRow[gridArrayIndex] + scrollRange[gridArrayIndex] < ds_grid_height(grid[gridArrayIndex])) {
 			gridCurrentTopViewRow[gridArrayIndex] += ds_grid_height(grid[gridArrayIndex]);
 		}
-		if (scrollTogether)
-		{
-			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
-			{
-				if (scrollTogetherLoop != gridArrayIndex)
-				{
+		if (scrollTogether) {
+			for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++) {
+				if (scrollTogetherLoop != gridArrayIndex) {
 					gridCurrentTopViewRow[scrollTogetherLoop] += ds_grid_height(grid[gridArrayIndex]);
 				}
 			}
@@ -237,10 +203,8 @@ scrollBarRectY2 = min(scrollBarRectY2, windowY2);
 draw_set_color(global.colorThemeSelected1);
 draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
 
-if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2))
-{
-	if (mouse_check_button_pressed(mb_left))
-	{
+if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2)) {
+	if (mouse_check_button_pressed(mb_left)) {
 		scrollBarHolding[gridArrayIndex] = true;
 		scrollBarHoldingPlusY[gridArrayIndex] = mouse_y - scrollBarRectY1;
 	}
@@ -248,21 +212,16 @@ if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1, scrollBarRectY1, scrol
 
 scrollBarHoldingPlusY[gridArrayIndex] = 0;
 
-if (mouse_check_button_released(mb_left))
-{
+if (mouse_check_button_released(mb_left)) {
 	scrollBarHolding[gridArrayIndex] = false;
 }
 
-if (scrollBarHolding[gridArrayIndex])
-{
+if (scrollBarHolding[gridArrayIndex]) {
 	gridCurrentTopViewRow[gridArrayIndex] = floor(((mouse_y - windowY1 - scrollBarHoldingPlusY[gridArrayIndex]) * ds_grid_height(grid[gridArrayIndex])) / (windowHeight[gridArrayIndex]));
 	
-	if (scrollTogether)
-	{
-		for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++)
-		{
-			if (scrollTogetherLoop != gridArrayIndex)
-			{
+	if (scrollTogether) {
+		for (var scrollTogetherLoop = 0; scrollTogetherLoop < array_length_1d(grid); scrollTogetherLoop++) {
+			if (scrollTogetherLoop != gridArrayIndex) {
 				gridCurrentTopViewRow[scrollTogetherLoop] = floor(((mouse_y - windowY1 - scrollBarHoldingPlusY[scrollTogetherLoop]) * ds_grid_height(grid[scrollTogetherLoop])) / (windowHeight[scrollTogetherLoop]));
 			}
 		}
@@ -275,17 +234,15 @@ draw_rectangle(windowX1, windowY1, windowX2, windowY2, true);
 draw_set_font(fnt_main);
 draw_set_halign(fa_right);
 draw_set_color(global.colorThemeText);
-draw_text(windowX1 + 100 - 20, windowY2 + 70, "(" + string(mouseoverCol) + "," + string(mouseoverRow) + "):")
+draw_text(windowX1 + 100 - 20, windowY2 + 70, "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): ")
 draw_set_halign(fa_left);
 draw_text(windowX1 + 100, windowY2 + 70, mouseoverItemString);
 
-for (var j = 0; j < 5; j++)
-{
+for (var j = 0; j < 5; j++) {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(windowX1 - scrollBarWidth - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
 }
 
-if (not point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2))
-{
+if (not point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2)) {
 	mouseoverRelativeRow[gridArrayIndex] = -1;
 }

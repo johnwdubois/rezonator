@@ -130,7 +130,7 @@ if (list == false and contents == false) {
 
 	// Adjust the font size
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
-	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus and gridSpaceHorizontal > 40) {
+	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus) {
 		if (keyboard_check(vk_shift)) {
 			if (global.fontSize > 0) {
 				global.fontSize--;
@@ -144,7 +144,7 @@ if (list == false and contents == false) {
 		alarm[3] = 15;
 	}
 	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
-	or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus and gridSpaceHorizontal < 400) {
+	or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus) {
 		if (keyboard_check(vk_shift)) {
 			if (global.fontSize < 2) {
 				global.fontSize++;
@@ -230,8 +230,8 @@ if (shortcutsEnabled) {
 	}
 }
 
-gridSpaceVertical = min(gridSpaceVertical, 303.40);
-gridSpaceVertical = max(gridSpaceVertical, 23.40);
+gridSpaceHorizontal = clamp(gridSpaceHorizontal, gridSpaceHorizontalMin, gridSpaceHorizontalMax);
+gridSpaceVertical = clamp(gridSpaceVertical, gridSpaceVerticalMin, gridSpaceVerticalMax);
 
 /*
 if (keyboard_check_pressed(ord("Q"))) {

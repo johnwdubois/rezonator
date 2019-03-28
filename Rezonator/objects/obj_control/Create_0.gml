@@ -15,6 +15,11 @@
 currentCenterDisplayRow = 0;
 prevCenterDisplayRow = 0;
 
+gridSpaceHorizontalMin = 60;
+gridSpaceVerticalMin = 23.40;
+gridSpaceHorizontalMax = 400;
+gridSpaceVerticalMax = 303.40;
+
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 33.4;
 

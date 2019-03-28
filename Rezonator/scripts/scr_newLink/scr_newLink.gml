@@ -39,7 +39,7 @@ else {
 }
 
 
-if (currentFocusedChainID == -1) {
+if (currentFocusedChainID < 0) {
 	exit;
 }
 
