@@ -1,7 +1,3 @@
-if (mouse_check_button(mb_right)) {
-	instance_destroy();
-}
-
 /*
 if (instance_number(obj_input_text) < 1) {
 	var inst = input_text_create_singleline(x + 10, y + 10, windowWidth - 20, fnt_main);
@@ -17,15 +13,19 @@ else {
 	}
 }
 */
+var plusY = 20;
 
-
-draw_set_color(c_purple);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_font(fnt_main);
+draw_set_color(global.colorThemeText);
 
-var plusY = 20;
+draw_text(x + 20, y + plusY, "Select discourse");
+plusY += 30;
+
+draw_set_color(c_purple);
+
 
 var selectedDiscoID = "";
 for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
@@ -84,3 +84,9 @@ draw_set_valign(fa_middle);
 draw_text(mean(specifyLineRectX1, specifyLineRectX2), mean(specifyLineRectY1, specifyLineRectY2), "Specify Line...");
 
 windowHeight = plusY + 40;
+
+
+
+
+x = camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2) - (windowWidth / 2);
+y = camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2) - (windowHeight / 2);
