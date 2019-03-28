@@ -1,28 +1,20 @@
 ## Rezonator: Dynamics of human engagement
+Welcome to Rezonator! 
 
-Welcome to Rezonator!
+Rezonator is a project to explore the dynamics of resonance and engagement in dialogue. We strive to capture the expressive complexity and creativity unleashed when people resonate in conversational interaction. We try make the process of inquiry interesting and fun, for players and researchers alike. 
 
-Rezonator is a collaborative project to explore the dynamics of human engagement. We strive to capture the expressive complexity and creative flux of human interaction in conversation. We also try make the process interesting and even fun, for players and researchers alike. Rezonator is an open-source project, offered under the [MIT License](https://github.com/johnwdubois/rezonator_v2/blob/master/LICENSE).
+* The [**Rezonator wiki**](https://github.com/johnwdubois/rezonator/wiki) is the best place to start if you want to learn more about the Rezonator project. It's where we post the big picture of our goals, and the details about our plans for developing for Rezonator. (Or click on a topic at the bottom of this page, which will take you directly to the relevant wiki page.)
+* The [**Rezonator project board**](https://github.com/johnwdubois/rezonator/projects) provides up-to-date information on the current status of Rezonator projects and issues.
+* [**Rezonator.com**](https://rezonator.com/) is our public-facing website, where you can [**download Rezonator**](https://rezonator.com/download/).
+* Rezonator is an open-source project, offered under the [**MIT License**](https://github.com/johnwdubois/rezonator_v2/blob/master/LICENSE).  
 
-Rezonator is both a game platform and a research tool. Unifying factors that link Rezonator's gaming and research functions include:
-
-* built on the fundamental principles of dialogic resonance (DuBois 2014, [_Towards a Dialogic Syntax_](https://github.com/johnwdubois/rezonator_v2/blob/master/DuBois_2014_Towards_a_Dialogic_Syntax.pdf))
-* sensitivity to dynamic aspects of language in conversational interaction
-* attention to details of linguistic form and meaning
-* focus on intuitive visualization of language in use
-* commitment to an insightful user experience
-
-As a research tool, it is designed for:
-
-* resonance analytics
-* discourse analysis
-* anaphora/coreference
-* concordance search
-* linguistic analysis
-* data visualization
-
-As a game design platform, the focus is on creating Games With a Purpose (GWAP), with appealing game play and clear visualization. The code is written in GameMaker Language (GML) using  GameMaker Studio 2. An example of a game we are building with Rezonator is:
-
-* [RezTet](https://github.com/johnwdubois/rezonator_v2/wiki/6.1--RezTet:-A-game-of-words-in-all-the-right-places) (under development)
-
-To learn more about this project, consult the [Rezonator wiki](https://github.com/johnwdubois/rezonator_v2/wiki). Our wiki is where we post goals, plans, specifications, ideas, feedback, and so on for the development of Rezonator. For information on the status of specific tasks, consult our [project board](https://github.com/johnwdubois/rezonator_v2/projects/1), as well as the list of [issues](https://github.com/johnwdubois/rezonator/issues).
+To learn more about Rezonator, check out the following:
+* [**Roadmap:**](https://github.com/johnwdubois/rezonator/wiki/1.-Roadmap) Plans for Rezonator development
+* [**Fundamentals:**](https://github.com/johnwdubois/rezonator/wiki/2.-Fundamentals) Basic structures that underlie the design of Rezonator
+* [**Functions:**](https://github.com/johnwdubois/rezonator/wiki/3.-Functions) Features and functionality of Rezonator
+* [**Resources:**](https://github.com/johnwdubois/rezonator/wiki/4.-Resources) Links to selected resources that may be useful for building Rezonator  
+* [**Research:**](https://github.com/johnwdubois/rezonator/wiki/5.-Research) Research tools and strategies, including Rezonator Analytics
+* [**Data:**](https://github.com/johnwdubois/rezonator/wiki/6.-Data) Types of data for use with Rezonator 
+* [**Languages:**](https://github.com/johnwdubois/rezonator/wiki/6.-Data#languages) Extending Rezonator to apply to additional languages   
+* [**Games:**](https://github.com/johnwdubois/rezonator/wiki/7.-Games) Design principles and game concepts for games of resonance  
+* [**Community:**](https://github.com/johnwdubois/rezonator/wiki/8.-Community) Opportunities to contribute to the Rezonator community    
