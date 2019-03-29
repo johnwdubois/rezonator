@@ -29,25 +29,27 @@ for (var i = 0; i < ds_list_size(inRectWordIDList); i++) {
 	}	
 }
 
-var db = "";
-for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
-	var currentList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, i);
-	db += scr_getStringOfList(currentList) + "...";
+if (ds_grid_height(gridOfFutureChains) > 0) {
+	for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+		var currentList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, i);
 	
-	if (ds_list_size(currentList) > 1) {
-		for (var j = 0; j < ds_list_size(currentList); j++) {
-			var currentWordID = ds_list_find_value(currentList, j);
-			var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
-			with (obj_chain) {
-				scr_wordClicked(currentWordID, currentUnitID);
+		if (ds_list_size(currentList) > 1) {
+			for (var j = 0; j < ds_list_size(currentList); j++) {
+				var currentWordID = ds_list_find_value(currentList, j);
+				var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, currentUnitID);
+				}
 			}
 		}
-	}
-	scr_unFocusAllChains();
+		scr_unFocusAllChains();
 	
-	ds_list_destroy(currentList);
+		ds_list_destroy(currentList);
+	}
+	
+	scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
+	scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 }
-//show_message(db);
 
 
 ds_grid_destroy(gridOfFutureChains);
