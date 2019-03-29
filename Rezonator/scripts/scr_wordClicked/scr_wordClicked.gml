@@ -46,6 +46,10 @@ for (var i = 0; i < ds_list_size(inChainsList); i++) {
 		ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
 		currentFocusedChainID = currentChainID;
 		
+		with(obj_panelPane) {
+			currentTopViewRow = ((currentChainID - 2) > 2) ? (currentChainID - 2) : 0;	
+		}
+		
 		var rowInLinkGrid = -1;
 		if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 			rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, unitID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);

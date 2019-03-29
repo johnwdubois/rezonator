@@ -54,24 +54,21 @@ var scrollBarWidth = 16;
 var focusedChainExists = false;
 var alignRectSize = 8;
 var oldRow = -1;
-/*var olderRow = -1;
+//var olderRow = -1;
 
-with(obj_panelPane) {
-	if(olderFocusedRow >=0) {
-		oldRow = olderFocusedRow;
-	}
-}*/
 
-if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus) ) {
-	with(obj_chain) {
+with(obj_chain) {
+	if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus) ) { //and oldFocusedContentsRow == -1) {
+	
 			oldFocusedContentsRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	}
 }
 
 with(obj_chain) {
 	if(oldFocusedContentsRow >= 0 ) {//&& ds_grid_value_exists(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), oldFocusedContentsRow)) {
-		olderRow = oldRow;
+		//olderRow = oldRow;
 		oldRow = oldFocusedContentsRow;
+		
 	}
 }
 
@@ -86,7 +83,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 	// Get wordID list
 	with (obj_panelPane) {
 		functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
-	
+		
 		// Select top of the content list
 		if (functionChainContents_hop > -1) {
 			if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
@@ -98,6 +95,15 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 	
 	if (functionChainContents_IDList != undefined) {
 	
+		/*with(obj_chain) {
+			oldFocusedContentsRow = -1;
+		}
+		if(ds_list_size(functionChainContents_IDList) > 1) {
+			with(obj_chain) {
+				backupFocusedRow = oldRow;
+			}
+		}*/
+		
 		// Set contraints for top view
 		currentTopViewRow = max(0, currentTopViewRow);
 		currentTopViewRow = min(ds_list_size(functionChainContents_IDList) - scrollRange, currentTopViewRow);
@@ -279,6 +285,14 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			textPlusY += string_height(currentWordInfoCol[0]) * 0.75;
 		}
 	}
+	/*else {
+		with(obj_chain) {
+			oldFocusedContentsRow = backupFocusedRow;
+			backupFocusedRow = -1;
+		}
+		//show_message(string(backupFocusedRow));
+		//backupFocusedRow = -1;
+	}*/
 }
 
 draw_set_alpha(1);

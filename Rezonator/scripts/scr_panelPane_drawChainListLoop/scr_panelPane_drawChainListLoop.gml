@@ -313,8 +313,10 @@ with (obj_panelPane) {
 				currentTopViewRow--;
 			}
 			if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
+				scr_unFocusAllChains();
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, --keySwitchFocus, obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+				
 			}
 		}
 	
@@ -324,6 +326,7 @@ with (obj_panelPane) {
 				currentTopViewRow -= scrollRange;
 			}
 			if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
+				scr_unFocusAllChains();
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, (keySwitchFocus - scrollRange >= scrollRange ? keySwitchFocus - scrollRange : 0), obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
 			}
@@ -335,6 +338,7 @@ with (obj_panelPane) {
 				currentTopViewRow -= ds_grid_height(grid);
 			}
 			if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
+				scr_unFocusAllChains();
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState,  0, obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
 			}
@@ -346,9 +350,11 @@ with (obj_panelPane) {
 				currentTopViewRow++;
 			}
 			if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
+				scr_unFocusAllChains();
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus + 1, obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
+				
 			}
 		}
 	
@@ -358,6 +364,7 @@ with (obj_panelPane) {
 				currentTopViewRow += scrollRange;
 			}
 			if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
+				scr_unFocusAllChains();
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, (keySwitchFocus + scrollRange <= (ds_grid_height(grid) - 1) ? keySwitchFocus + scrollRange : (ds_grid_height(grid) - 1)), obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
@@ -370,8 +377,9 @@ with (obj_panelPane) {
 				currentTopViewRow += ds_grid_height(grid);
 			}
 			if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
+				scr_unFocusAllChains();
 				//ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);// WHy doesn't this work??
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, (ds_grid_height(grid)), obj_chain.chainStateFocus);
+				ds_grid_set(grid, obj_chain.chainGrid_colChainState, (ds_grid_height(grid) - 1), obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 			}
 		}
