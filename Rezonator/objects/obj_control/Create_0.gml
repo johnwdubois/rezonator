@@ -257,3 +257,5 @@ shortcutsEnabled = true;
 
 sessionStartTime = current_time;
 currentSessionTime = 0;
+
+alarm[9] = 10;
