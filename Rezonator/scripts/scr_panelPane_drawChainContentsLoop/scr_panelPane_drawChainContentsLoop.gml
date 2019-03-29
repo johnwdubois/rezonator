@@ -84,12 +84,14 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 	with (obj_panelPane) {
 		functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 		
-		// Select top of the content list
-		if (functionChainContents_hop > -1) {
-			if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
-				currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
+		if (functionChainContents_IDList != undefined) {
+			// Select top of the content list
+			if (functionChainContents_hop > -1) {
+				if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
+					currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
+				}
+				functionChainContents_hop = -1;
 			}
-			functionChainContents_hop = -1;
 		}
 	}
 	
