@@ -357,7 +357,7 @@ with (obj_panelPane) {
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus + 1, obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 				if (keySwitchFocus + 2 > currentTopViewRow + scrollRange) {
-					currentTopViewRow = keySwitchFocus - 4;	
+					currentTopViewRow = keySwitchFocus - 4;	//currently only works for smallest text size
 				}
 			}
 		}

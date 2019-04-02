@@ -177,21 +177,25 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
 	}
 	
-	/*Draw quickstack highlights here 
-	if(ds_list_size(quickStackList) > 0)
-	{ if(ds_list_find_index(quickStackList, unitID) != -1) {
-	draw_set_color(curretnStackColor + 1);
-		draw_set_alpha(stackAlpha);
+	/*Draw quickstack highlights here */
+	if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left)) {
+		var downRight = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2);
+		var downLeft = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX2, mouseHoldRectY1, mouseHoldRectX1, mouseHoldRectY2);
+		var upRight = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX1, mouseHoldRectY2, mouseHoldRectX2, mouseHoldRectY1);
+		var upLeft = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX2, mouseHoldRectY2, mouseHoldRectX1, mouseHoldRectY1);
+		if(downRight or downLeft or upRight or upLeft) {
+			draw_set_color(c_ltblue);
+			draw_set_alpha(0.3);
 			
-		var quickStackRectX1 = speakerRectX2;
-		var quickStackRectY1 = speakerRectY1;
-		var quickStackRectX2 = room_width;
-		var quickStackRectY2 = speakerRectY2;
+			var quickStackRectX1 = speakerRectX2;
+			var quickStackRectY1 = speakerRectY1;
+			var quickStackRectX2 = room_width;
+			var quickStackRectY2 = speakerRectY2;
 		
-		draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
+			draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
 		}
-		}
-		*/
+	}
+		
 	
 	var previousWordDisplayCol = -1;
 	

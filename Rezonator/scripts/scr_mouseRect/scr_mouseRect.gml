@@ -9,10 +9,11 @@ if(mouse_check_button_pressed(mb_left)) {
 if(mouse_check_button(mb_left)) {
 	mouseHoldRectX2 = mouse_x;
 	mouseHoldRectY2 = mouse_y;
-	draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
-	draw_set_alpha(1);
-	draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
-	
+	if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+		draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
+		draw_set_alpha(1);
+		draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
+	}
 }
 if(mouse_check_button_released(mb_left) and (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) ) {
 	
