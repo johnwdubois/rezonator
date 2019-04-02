@@ -23,8 +23,7 @@ draw_set_font(fnt_debug);
 var rectWidth = windowWidth[gridArrayIndex] / ds_list_size(gridList);
 var rectHeight = 20;
 
-for (var i = 0; i < ds_list_size(gridList); i++)
-{
+for (var i = 0; i < ds_list_size(gridList); i++) {
 	var currentGrid = ds_list_find_value(gridList, i);
 	
 	var rectX1 = windowX[gridArrayIndex] + (i * rectWidth);
@@ -32,12 +31,10 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 	var rectX2 = rectX1 + rectWidth;
 	var rectY2 = windowY[gridArrayIndex];
 	
-	if (grid[gridArrayIndex] == currentGrid)
-	{
+	if (grid[gridArrayIndex] == currentGrid) {
 		draw_set_color(obj_control.c_ltblue);
 	}
-	else
-	{
+	else {
 		draw_set_color(global.colorThemeBG);
 	}
 	
@@ -48,8 +45,7 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 	
 	var colName = "";
 	
-	switch (currentGrid)
-	{
+	switch (currentGrid) {
 		case obj_control.unitGrid:
 			colName = "unitGrid";
 			break;
@@ -70,6 +66,9 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 			break;
 		case obj_control.hitGrid:
 			colName = "hitGrid";
+			break;
+		case obj_control.wordDrawGrid:
+			colName = "wordDrawGrid";
 			break;
 		case obj_chain.linkGrid:
 			colName = "linkGrid";
@@ -101,10 +100,8 @@ for (var i = 0; i < ds_list_size(gridList); i++)
 	
 	draw_text(rectX1 + 5, mean(rectY1, rectY2), colName);
 	
-	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2))
-	{
-		if (mouse_check_button_pressed(mb_left))
-		{
+	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
+		if (mouse_check_button_pressed(mb_left)) {
 			grid[gridArrayIndex] = currentGrid;
 		}
 	}

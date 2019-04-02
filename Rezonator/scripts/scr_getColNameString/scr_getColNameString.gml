@@ -131,6 +131,33 @@ else if (grid == obj_control.wordGrid) {
 			break;
 	}
 }
+else if (grid == obj_control.wordDrawGrid) {
+	switch (col) {
+		case obj_control.wordDrawGrid_colBorder:
+			colName = "border";
+			break;
+		case obj_control.wordDrawGrid_colBorderRounded:
+			colName = "borderRounded";
+			break;
+		case obj_control.wordDrawGrid_colFillRect:
+			colName = "fillRect";
+			break;
+		case obj_control.wordDrawGrid_colTextColor:
+			colName = "textColor";
+			break;
+		case obj_control.wordDrawGrid_colEffectColor:
+			colName = "effectColor";
+			break;
+		case obj_control.wordDrawGrid_colVisible:
+			colName = "visible";
+			break;
+		case obj_control.wordDrawGrid_colFocused:
+			colName = "focused";
+			break;
+		default:
+			break;
+	}
+}
 else if (grid == obj_control.dynamicWordGrid) {
 	switch (col) {
 		case obj_control.dynamicWordGrid_colWordID:
