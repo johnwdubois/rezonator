@@ -217,8 +217,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		if (downRight or downLeft or upRight or upLeft) {
 			//show_message("in drawLineCatch");
 			with (obj_control) {
-				ds_list_add(inRectUnitIDList, unitID);
-				ds_list_add(inRectWordIDList, currentWordID);
+				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) { // Safety check for rainbow stack
+					ds_list_add(inRectUnitIDList, unitID);
+					ds_list_add(inRectWordIDList, currentWordID);
+				}
 			}
 		}
 	}

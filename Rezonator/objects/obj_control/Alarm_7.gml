@@ -36,6 +36,7 @@ for (var i = 0; i < ds_list_size(inRectUnitIDList); i++) {
 	//ds_list_add(currentUnitInTempStackList, )
 }
 
+//show_message(scr_getStringOfList(inRectUnitIDList));
 // Clear lists for next quickStack
 if (ds_list_size(inRectUnitIDList) > 0) {
 	ds_list_clear(inRectUnitIDList);
