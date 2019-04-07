@@ -1,3 +1,4 @@
+///@description GoToLine
 if (!shortcutsEnabled) {
 	exit;
 }

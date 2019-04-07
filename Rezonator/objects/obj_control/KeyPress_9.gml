@@ -1,3 +1,4 @@
+///@description Nav/Main Focuser
 /*
 	obj_control: Key Press - Tab
 	

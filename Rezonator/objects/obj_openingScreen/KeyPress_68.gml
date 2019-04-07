@@ -1,3 +1,4 @@
+///@description ParticipantList
 for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 	var currentList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colParticipantList, i);
 	

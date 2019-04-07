@@ -1,3 +1,4 @@
+///@description Transcript View
 if (!shortcutsEnabled) {
 	exit;
 }

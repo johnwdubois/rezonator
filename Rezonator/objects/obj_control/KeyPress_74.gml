@@ -1,3 +1,4 @@
+///@description "Normal" textAlign
 if (!shortcutsEnabled) {
 	exit;
 }

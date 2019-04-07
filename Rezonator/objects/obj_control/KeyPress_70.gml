@@ -1,3 +1,4 @@
+///@description Activate Search
 if (!shortcutsEnabled) {
 	exit;
 }

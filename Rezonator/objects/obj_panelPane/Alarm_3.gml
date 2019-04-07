@@ -1,3 +1,5 @@
+///@description HelpMenu
+
 // Display the help menu when activated
 if (currentFunction != functionHelp) {
 	exit;
