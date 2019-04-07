@@ -132,7 +132,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	}
 		
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, currentWordX);
-		
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordGridRow, drawWordLoop);
 		
 	// get the string of this word to draw to the main screen
@@ -144,8 +143,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var wordRectX2 = wordRectX1 + string_width(currentWordString) + (wordRectBuffer * 2);
 	var wordRectY2 = wordRectY1 + string_height(currentWordString) + (wordRectBuffer * 2);
 	
-	if (mouse_check_button(mb_left)) {
-		var inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+	
+	var inMouseHoldRect = 0;
+	if (mouse_check_button(mb_left) and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		if (inMouseHoldRect > 0) {
 			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1)) {
 				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, 2);
@@ -208,10 +209,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord)) {
 		mouseover = true;
+		hoverWordID = currentWordID;
 		
 		draw_set_color(global.colorThemeBorders);
 		draw_set_alpha(1);
-		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);	
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 		if (mouse_check_button_pressed(mb_left)) {
 			with (obj_chain) {
@@ -229,13 +231,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
 	if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade) {
-		var downRight = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2);
-		var downLeft = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX2, mouseHoldRectY1, mouseHoldRectX1, mouseHoldRectY2);
-		var upRight = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX1, mouseHoldRectY2, mouseHoldRectX2, mouseHoldRectY1);
-		var upLeft = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, mouseHoldRectX2, mouseHoldRectY2, mouseHoldRectX1, mouseHoldRectY1);
-		
-		if (downRight or downLeft or upRight or upLeft) {
-			//show_message("in drawLineCatch");
+		inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (inMouseHoldRect) {
 			with (obj_control) {
 				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) { // Safety check for rainbow stack
 					ds_list_add(inRectUnitIDList, unitID);
@@ -245,13 +242,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 	}
 	else if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
-		var downRight = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2);
-		var downLeft = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, mouseHoldRectX2, mouseHoldRectY1, mouseHoldRectX1, mouseHoldRectY2);
-		var upRight = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, mouseHoldRectX1, mouseHoldRectY2, mouseHoldRectX2, mouseHoldRectY1);
-		var upLeft = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, mouseHoldRectX2, mouseHoldRectY2, mouseHoldRectX1, mouseHoldRectY1);
-		
-		if (downRight or downLeft or upRight or upLeft) {
-			//show_message("in drawLineCatch");
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (inMouseHoldRect) {
 			with (obj_control) {
 				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
 					ds_list_add(inRectWordIDList, currentWordID);

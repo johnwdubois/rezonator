@@ -4,9 +4,10 @@ if (current_time - sessionStartTime < 2000) {
 	exit;
 }
 
-var gridOfFutureChainsWidth = 2;
+var gridOfFutureChainsWidth = 3;
 var gridOfFutureChains_colDisplayCol = 0;
 var gridOfFutureChains_colWordIDList = 1;
+var gridOfFutureChains_colFocused = 2;
 var gridOfFutureChains = ds_grid_create(gridOfFutureChainsWidth, 0);
 
 for (var i = 0; i < ds_list_size(inRectWordIDList); i++) {
@@ -22,6 +23,9 @@ for (var i = 0; i < ds_list_size(inRectWordIDList); i++) {
 		
 		ds_grid_set(gridOfFutureChains, gridOfFutureChains_colDisplayCol, ds_grid_height(gridOfFutureChains) - 1, currentDisplayCol);
 		ds_grid_set(gridOfFutureChains, gridOfFutureChains_colWordIDList, ds_grid_height(gridOfFutureChains) - 1, newWordIDList);
+		ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, ds_grid_height(gridOfFutureChains) - 1, 0);
+		
+		//if (ds_list_size())
 	}
 	else {
 		var displayColList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, rowInFutureChainGrid);
@@ -30,6 +34,8 @@ for (var i = 0; i < ds_list_size(inRectWordIDList); i++) {
 }
 
 if (ds_grid_height(gridOfFutureChains) > 0) {
+	//scr_unFocusAllChains();
+	
 	for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
 		var currentList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, i);
 	

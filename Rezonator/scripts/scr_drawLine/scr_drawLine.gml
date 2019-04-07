@@ -63,6 +63,8 @@ draw_set_color(global.colorThemeText);
 
 obj_control.leftScreenBound = room_width;
 
+hoverWordID = -1;
+
 // for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoop++) {
 	if (drawLineLoop < 0 or drawLineLoop >= ds_grid_height(currentActiveLineGrid)) {
@@ -179,11 +181,9 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	
 	/*Draw quickstack highlights here */
 	if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left)) {
-		var downRight = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2);
-		var downLeft = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX2, mouseHoldRectY1, mouseHoldRectX1, mouseHoldRectY2);
-		var upRight = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX1, mouseHoldRectY2, mouseHoldRectX2, mouseHoldRectY1);
-		var upLeft = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, mouseHoldRectX2, mouseHoldRectY2, mouseHoldRectX1, mouseHoldRectY1);
-		if(downRight or downLeft or upRight or upLeft) {
+		
+		var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (inMouseRect) {
 			draw_set_color(c_ltblue);
 			draw_set_alpha(0.3);
 			
@@ -196,7 +196,6 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		}
 	}
 		
-	
 	var previousWordDisplayCol = -1;
 	
 	// draw hits if in search view, otherwise draw words for this line

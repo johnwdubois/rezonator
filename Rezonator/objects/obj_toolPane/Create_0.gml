@@ -27,6 +27,8 @@ toolNewWord = 4;
 
 currentTool = toolRezBrush;
 
+tempReturnTool = -1;
+
 
 
 progressBarX = room_width - 100;

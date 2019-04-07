@@ -196,6 +196,8 @@ newWordHoverUnitID = -1;
 newWordHoverWordSeq = -1;
 newWordHoverWordID = -1;
 
+hoverWordID = -1;
+
 ableToCreateDropDown = true;
 ableToCreateDropDownAlarmSet = false;
 
