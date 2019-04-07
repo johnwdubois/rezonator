@@ -1,3 +1,4 @@
+///@description recentlyMovedWords
 alarm[4] = 30;
 
 if (ds_list_size(recentlyMovedWords) > 0)

@@ -110,9 +110,11 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 				draw_set_color(global.colorThemeBG);
 			}
 			else {
+				draw_set_alpha(0.4);
 				draw_set_color(global.colorThemeSelected1);
 			}
 			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
+			draw_set_alpha(1);
 			draw_set_color(global.colorThemeText);
 			draw_set_font(fnt_chainContents);
 			draw_set_halign(fa_left);
@@ -164,9 +166,11 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 				draw_set_color(global.colorThemeBG);
 			}
 			else {
+				draw_set_alpha(0.4);
 				draw_set_color(global.colorThemeSelected1);
 			}
 			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
+			draw_set_alpha(1);
 			draw_set_color(global.colorThemeText);
 			draw_set_font(fnt_chainContents);
 			draw_set_halign(fa_left);

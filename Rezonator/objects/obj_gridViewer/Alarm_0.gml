@@ -1,3 +1,4 @@
+///@description GridList
 ds_list_add(gridList,
 	obj_chain.linkGrid,
 	obj_chain.vizLinkGrid,

@@ -1,3 +1,4 @@
+///@description Remove Link
 if (instance_exists(obj_input_text)) {
 	exit;
 }

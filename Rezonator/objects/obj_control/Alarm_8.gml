@@ -1,3 +1,4 @@
+///@description QuickLink Creation
 //show_message(scr_getStringOfList(inRectWordIDList));
 
 if (current_time - sessionStartTime < 2000) {

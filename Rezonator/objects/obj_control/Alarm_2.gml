@@ -1,1 +1,2 @@
+///@description AddedWordMoved?
 mostRecentlyAddedWordMoved = false;

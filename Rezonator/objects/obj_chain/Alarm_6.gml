@@ -1,3 +1,4 @@
+///@description InfinitySafety
 //  Race to infinity safety checks
 var grid;
 var rowInChainGrid = -1;
