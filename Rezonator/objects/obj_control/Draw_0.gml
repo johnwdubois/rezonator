@@ -77,30 +77,18 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 400, "newWordHoverWordID: " + string(newWordHoverWordID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 485, "chainIDModifyList: ");
-	var modifyListStr = "{";
-	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) {
-			modifyListStr += string(ds_list_find_value(obj_chain.chainIDModifyList, i));
-			if(i < ds_list_size(obj_chain.chainIDModifyList) - 1) {
-				modifyListStr += ", ";
-			}
-	}
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, modifyListStr + "}");
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, scr_getStringOfList(obj_chain.chainIDModifyList));
 	
 	
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 550, "inRectUnitIDList: ");
-	var inRectListStr = "{";
-	for (var i = 0; i < ds_list_size(inRectUnitIDList); i++) {
-			inRectListStr += string(ds_list_find_value(inRectUnitIDList, i));
-			if(i < ds_list_size(inRectUnitIDList) - 1) {
-				inRectListStr += ", ";
-			}
-	}
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 570, inRectListStr + "}");
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 570, scr_getStringOfList(inRectUnitIDList));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 590, "inRectWordIDList: ");
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 610, scr_getStringOfList(inRectWordIDList));
 	
 	
 	
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 600, "mostRecentlyAddedWord: " + string(mostRecentlyAddedWord));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 630, "mostRecentlyAddedWord: " + string(mostRecentlyAddedWord));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 650, "mostRecentlyAddedWordMoved: " + string(mostRecentlyAddedWordMoved));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 750, "chainColorID[1]: " + string(obj_chain.chainColorID[1]));
