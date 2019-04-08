@@ -126,6 +126,16 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			draw_text(mean(cellRectX1, cellRectX2) + textBuffer, mean(cellRectY1, cellRectY2), currentStrFunc);
 			if(point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 				draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2 + cellHeight - 1, true);
+				if (i mod 2) {
+					draw_set_color(global.colorThemeBG);
+				}
+				else {
+					draw_set_alpha(0.4);
+					draw_set_color(global.colorThemeSelected1);
+				}
+				draw_rectangle(cellRectX1 + 1, cellRectY1 + cellHeight, cellRectX2 - 1, cellRectY2 + cellHeight-2, false);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeText);
 				draw_text(cellRectX1 + textBuffer, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight), currentStrDesc);
 				cellPlusY += (2 * cellHeight);
 			}
@@ -196,7 +206,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 					draw_set_alpha(0.4);
 					draw_set_color(global.colorThemeSelected1);
 				}
-				draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2 + cellHeight, false);
+				draw_rectangle(cellRectX1 + 1, cellRectY1 + cellHeight, cellRectX2 - 1, cellRectY2 + cellHeight-2, false);
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemeText);
 				draw_text(cellRectX1 + textBuffer, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight), currentStrDesc);
