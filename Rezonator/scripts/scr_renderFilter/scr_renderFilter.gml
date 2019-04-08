@@ -18,7 +18,8 @@ filterGrid = ds_grid_create(lineGridWidth, 0);
 
 var grid;
 
-for (var i = 0; i < 3; i++) {
+for (var i = 0; i < 4; i++) {
+	
 	switch (i) {
 		case 0:
 			grid = obj_chain.rezChainGrid;
@@ -28,6 +29,9 @@ for (var i = 0; i < 3; i++) {
 			break;
 		case 2:
 			grid = obj_chain.stackChainGrid;
+			break;
+		case 3:
+			grid = obj_chain.cliqueDisplayGrid;
 			break;
 		default:
 			break;
@@ -45,7 +49,7 @@ for (var i = 0; i < 3; i++) {
 		
 		// set information in filterGrid for words in this chain
 		for (var k = 0; k < ds_list_size(currentIDList); k++) {
-			if (i == 2) {
+			if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
 				var currentUnitID = ds_list_find_value(currentIDList, k);
 			}
 			else {
@@ -75,6 +79,9 @@ for (var i = 0; i < 3; i++) {
 		}
 	}
 }
+
+
+
 
 // sort filterGrid
 ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
