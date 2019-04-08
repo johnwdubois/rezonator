@@ -68,11 +68,13 @@ functionHelp_collapsed = true;
 functionHelp_windowWidth = 300;
 functionHelp_plusX = functionHelp_windowWidth;
 functionHelp_plusY = 0;
-functionHelp_helpGridWidth = 2;
+functionHelp_helpGridWidth = 3;
 functionHelp_helpGrid_colKey = 0;
-functionHelp_helpGrid_colDesc = 1;
+functionHelp_helpGrid_colFunc = 1;
+functionHelp_helpGrid_colDesc = 2;
 functionHelp_helpGridRez = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridNav = ds_grid_create(functionHelp_helpGridWidth, 0);
+//functionHelp_helpGridLink = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_rezCollapsed = false;
 functionHelp_navCollapsed = false;
 
