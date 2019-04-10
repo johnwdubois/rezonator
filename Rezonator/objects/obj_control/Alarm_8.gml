@@ -24,14 +24,35 @@ for (var i = 0; i < ds_list_size(inRectWordIDList); i++) {
 		
 		ds_grid_set(gridOfFutureChains, gridOfFutureChains_colDisplayCol, ds_grid_height(gridOfFutureChains) - 1, currentDisplayCol);
 		ds_grid_set(gridOfFutureChains, gridOfFutureChains_colWordIDList, ds_grid_height(gridOfFutureChains) - 1, newWordIDList);
-		ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, ds_grid_height(gridOfFutureChains) - 1, 0);
+		ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, ds_grid_height(gridOfFutureChains) - 1, false);
 		
 		//if (ds_list_size())
 	}
 	else {
 		var displayColList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, rowInFutureChainGrid);
 		ds_list_add(displayColList, currentWordID);
-	}	
+	}
+}
+
+if (obj_chain.currentFocusedChainID >= 0) {
+	
+	var rowInRezChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), obj_chain.currentFocusedChainID);
+	if (rowInRezChainGrid >= 0) {
+		var focusedChainWordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, rowInRezChainGrid);
+		if (ds_list_size(focusedChainWordIDList) > 0) {
+			
+			var focusedChainFirstWordID = ds_list_find_value(focusedChainWordIDList, 0);
+			var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
+			
+			for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+				var currentRowDisplayCol = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colDisplayCol, i);
+				if (currentRowDisplayCol == firstItemDisplayCol) {
+					ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, i, true);
+				}
+			}
+			ds_grid_sort(gridOfFutureChains, gridOfFutureChains_colFocused, false);
+		}
+	}
 }
 
 if (ds_grid_height(gridOfFutureChains) > 0) {

@@ -1,7 +1,7 @@
 var autosave = argument0;
 
 if (not autosave) {
-	if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
+	if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName) or os_type == os_macosx) {
 		global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
 		if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
