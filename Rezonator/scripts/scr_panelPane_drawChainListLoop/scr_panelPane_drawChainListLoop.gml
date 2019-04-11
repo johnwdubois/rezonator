@@ -87,20 +87,16 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	var chainNameRectY2 = chainNameRectY1 + string_height(currentChainName) - chainNameRectMinusY;
 	
 	//Check mouse clicks to focus a chain in the list
-	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2))
-	{
+	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)) {
 		
-		if (mouse_check_button_pressed(mb_left))
-		{
+		if (mouse_check_button_pressed(mb_left)) {
 			// Unfocus chain if previously focused
-			if (currentChainState == obj_chain.chainStateFocus)
-			{
+			if (currentChainState == obj_chain.chainStateFocus) {
 				currentChainState = obj_chain.chainStateNormal;
 			}
-			else// Focuses on selected chain
-			{
-				switch (functionChainList_currentTab)
-				{
+			else {
+			// Focuses on selected chain
+				switch (functionChainList_currentTab) {
 					case functionChainList_tabRezBrush:
 						obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 						break;
@@ -113,6 +109,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 					default:
 						break;
 				}
+				
 				
 				// Unfocus any already focused chains
 				for (var j = 0; j < ds_grid_height(grid); j++) {
@@ -133,8 +130,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 			}
 			
 			// Set scroll range in the chain list
-			with (obj_panelPane)
-			{
+			with (obj_panelPane) {
 				functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
 				functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
 			}
@@ -303,89 +299,89 @@ for (var j = 0; j < ds_grid_height(grid); j++) {
 	}
 }
 
+
+
 // Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
-with (obj_panelPane) {
-	if (currentFunction == functionChainList and clickedIn) {
+if (clickedIn) {
 	
-		// Scroll up with mouse/key
-		if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
-			if (currentTopViewRow > 0 and keySwitchFocus == -1) {
-				currentTopViewRow--;
-			}
-			if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
-				scr_unFocusAllChains();
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, --keySwitchFocus, obj_chain.chainStateFocus);
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-				if (keySwitchFocus < currentTopViewRow) {
-					currentTopViewRow = keySwitchFocus;	
-				}
+	// Scroll up with mouse/key
+	if ((mouse_wheel_up() or keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
+		if (currentTopViewRow > 0 and keySwitchFocus == -1) {
+			currentTopViewRow--;
+		}
+		if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
+			scr_unFocusAllChains();
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, --keySwitchFocus, obj_chain.chainStateFocus);
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+			if (keySwitchFocus < currentTopViewRow) {
+				currentTopViewRow = keySwitchFocus;	
 			}
 		}
+	}
 	
-		// Scroll up with pgUp/key
-		if (keyboard_check_pressed(vk_pageup)){
-			if (currentTopViewRow > 0){
-				currentTopViewRow -= scrollRange;
-			}
-			if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
-				scr_unFocusAllChains();
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, (keySwitchFocus - scrollRange >= scrollRange ? keySwitchFocus - scrollRange : 0), obj_chain.chainStateFocus);
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+	// Scroll up with pgUp/key
+	if (keyboard_check_pressed(vk_pageup)){
+		if (currentTopViewRow > 0){
+			currentTopViewRow -= scrollRange;
+		}
+		if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
+			scr_unFocusAllChains();
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, (keySwitchFocus - scrollRange >= scrollRange ? keySwitchFocus - scrollRange : 0), obj_chain.chainStateFocus);
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+		}
+	}
+	
+	// Scroll up with ctrl+key
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
+		if (currentTopViewRow > 0) {
+			currentTopViewRow -= ds_grid_height(grid);
+		}
+		if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
+			scr_unFocusAllChains();
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState,  0, obj_chain.chainStateFocus);
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+		}
+	}
+	
+	// Scroll down with mouse/key
+	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)){
+		if (currentTopViewRow + scrollRange < ds_grid_height(grid) and keySwitchFocus == -1){
+			currentTopViewRow++;
+		}
+		if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
+			scr_unFocusAllChains();
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus + 1, obj_chain.chainStateFocus);
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
+			if (keySwitchFocus + 2 > currentTopViewRow + scrollRange) {
+				currentTopViewRow = keySwitchFocus - 4;	//currently only works for smallest text size
 			}
 		}
+	}
 	
-		// Scroll up with ctrl+key
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
-			if (currentTopViewRow > 0) {
-				currentTopViewRow -= ds_grid_height(grid);
-			}
-			if (keySwitchFocus > 0) { // Allow user to scroll focus through chain list
-				scr_unFocusAllChains();
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState,  0, obj_chain.chainStateFocus);
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-			}
+	// Scroll down with pgDwn
+	if (keyboard_check_pressed(vk_pagedown)){
+		if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
+			currentTopViewRow += scrollRange;
 		}
-	
-		// Scroll down with mouse/key
-		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)){
-			if (currentTopViewRow + scrollRange < ds_grid_height(grid) and keySwitchFocus == -1){
-				currentTopViewRow++;
-			}
-			if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
-				scr_unFocusAllChains();
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus + 1, obj_chain.chainStateFocus);
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-				if (keySwitchFocus + 2 > currentTopViewRow + scrollRange) {
-					currentTopViewRow = keySwitchFocus - 4;	//currently only works for smallest text size
-				}
-			}
+		if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
+			scr_unFocusAllChains();
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, (keySwitchFocus + scrollRange <= (ds_grid_height(grid) - 1) ? keySwitchFocus + scrollRange : (ds_grid_height(grid) - 1)), obj_chain.chainStateFocus);
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 		}
+	}
 	
-		// Scroll down with pgDwn
-		if (keyboard_check_pressed(vk_pagedown)){
-			if (currentTopViewRow + scrollRange < ds_grid_height(grid)){
-				currentTopViewRow += scrollRange;
-			}
-			if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
-				scr_unFocusAllChains();
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, (keySwitchFocus + scrollRange <= (ds_grid_height(grid) - 1) ? keySwitchFocus + scrollRange : (ds_grid_height(grid) - 1)), obj_chain.chainStateFocus);
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-			}
+	// Scroll down with ctrl+key
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
+		if (currentTopViewRow + scrollRange < ds_grid_height(grid)) {
+			currentTopViewRow += ds_grid_height(grid);
 		}
-	
-		// Scroll down with ctrl+key
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
-			if (currentTopViewRow + scrollRange < ds_grid_height(grid)) {
-				currentTopViewRow += ds_grid_height(grid);
-			}
-			if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
-				scr_unFocusAllChains();
-				//ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);// WHy doesn't this work??
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, (ds_grid_height(grid) - 1), obj_chain.chainStateFocus);
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-			}
+		if (keySwitchFocus < (ds_grid_height(grid) - 1) && keySwitchFocus != -1) { // Allow user to scroll focus through chain list
+			scr_unFocusAllChains();
+			//ds_grid_set(grid, obj_chain.chainGrid_colChainState, keySwitchFocus, obj_chain.chainStateNormal);// WHy doesn't this work??
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, (ds_grid_height(grid) - 1), obj_chain.chainStateFocus);
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 		}
 	}
 }

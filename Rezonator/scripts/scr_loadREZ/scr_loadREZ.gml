@@ -41,17 +41,11 @@ if (file_exists(fileName))
 		
 		var objectIndex = ds_map_find_value(map, "objectIndex");
 		
-		//show_message("objindex: " + string(objectIndex));
-		
-		//var instCreate = instance_create_layer(0, 0, layer, asset_get_index(objectIndex));
-		
-		//ds_list_add(newInstList, instCreate);
-		
-		with (objectIndex)
+		with (asset_get_index(objectIndex))
 		{
 			if (objectIndex == "obj_control")
 			{
-				currentCenterDisplayRow = 0;
+				obj_control.currentCenterDisplayRow = 0;
 				
 				scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
 				scr_loadREZGridReset(wordGrid, map, "wordGrid");
