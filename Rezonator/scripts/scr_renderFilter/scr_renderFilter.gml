@@ -144,7 +144,7 @@ if (obj_panelPane.functionFilter_peek[0] == 1) {
 			}
 		}
 		
-		//m Mchanism for recording specific lines to keep user's focus
+		// Mchanism for recording specific lines to keep user's focus
 		if (relevantRow >= 0 and relevantRow < ds_grid_height(relevantGrid)) {
 			if (ds_grid_get(relevantGrid, obj_chain.chainGrid_colInFilter, relevantRow)) {
 				if(relevantGrid == obj_chain.stackChainGrid) {//for Stacks
