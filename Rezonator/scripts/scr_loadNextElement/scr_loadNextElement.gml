@@ -113,7 +113,7 @@ if (string_count("/>", currentElement) > 0) {
 		ds_list_add(lineGridWordIDList, wordIDCounter);
 		dbstr += string(wordIDCounter);
 		
-		scr_loadDynamicWordGridIndividual();
+		scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 	}
 		
 		

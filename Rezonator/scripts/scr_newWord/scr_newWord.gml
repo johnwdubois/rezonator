@@ -20,7 +20,7 @@ ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWor
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordToken);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
 
-scr_loadDynamicWordGridIndividual();
+scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 
 
 var wordIDListUnitGrid = ds_grid_get(unitGrid, unitGrid_colWordIDList, unitID - 1);
