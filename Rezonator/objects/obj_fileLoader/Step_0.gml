@@ -27,6 +27,11 @@ if (not inititalAutosave) {
 	}
 }
 
+if (ds_grid_height(global.importCSVGrid) > 0 and importCSVCurrentRow < ds_grid_height(global.importCSVGrid)) {
+	scr_loadNextElementCSV();
+}
+
+
 for (var i = 0; i < fileLoadRate; i++) {
 	if (discourseProcessing < 0 or discourseProcessing >= ds_grid_height(global.fileLineRipGrid)) {
 		exit;
@@ -44,8 +49,6 @@ for (var i = 0; i < fileLoadRate; i++) {
 
 	fileLineRipList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colFileLineRipList, discourseProcessing);
 	currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, discourseProcessing);
-
-
 
 
 

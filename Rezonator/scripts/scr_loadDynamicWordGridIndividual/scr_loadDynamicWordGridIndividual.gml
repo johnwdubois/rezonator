@@ -6,7 +6,7 @@ var currentRowDynamicWordGrid = ds_grid_height(obj_control.dynamicWordGrid) - 1;
 var currentWordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, i);
 var currentWordPositionCol = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, i);
 var currentWordX = currentWordPositionCol * obj_control.gridSpaceHorizontal + obj_control.wordLeftMargin;
-var currentWordY = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, i) * obj_control.gridSpaceVertical;
+//var currentWordY = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, i) * obj_control.gridSpaceVertical;
 var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
 var emptyList = ds_list_create();
 	

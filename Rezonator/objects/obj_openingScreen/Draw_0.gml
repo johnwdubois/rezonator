@@ -46,16 +46,13 @@ if (showDevVars) {
 	draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2) + 50, programDirStr);
 }
 
-if not (global.newProject or global.openProject)
-{
+if not (global.newProject or global.openProject) {
 	scr_newOrOpen();
 }
-else if (global.newProject and not global.openProject)
-{
+else if (global.newProject and not global.openProject) {
 	scr_newProjectWindow();
 }
-else if (not global.newProject and global.openProject)
-{
+else if (not global.newProject and global.openProject) {
 	room_goto(rm_mainScreen);
 }
 

@@ -631,6 +631,14 @@
             }
         },
         {
+            "Key": "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
+            "Value": {
+                "id": "79df35a7-5395-47e7-96b3-746a94ca0b07",
+                "resourcePath": "scripts\\scr_importCSV\\scr_importCSV.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3bbad330-a5c0-4383-8abb-cc681bbde374",
             "Value": {
                 "id": "5cb34de1-2947-469e-a5a4-998b94dc1634",
@@ -1331,6 +1339,14 @@
             "Value": {
                 "id": "22e0c01e-e84a-4a40-b95a-7df5a44f8caa",
                 "resourcePath": "scripts\\scr_unfocusOtherChains\\scr_unfocusOtherChains.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "8165a259-1969-4e86-bfb5-a8536d1b9139",
+            "Value": {
+                "id": "f12ddb63-005d-40d3-8ba9-4fb8f5cee0a6",
+                "resourcePath": "scripts\\scr_loadNextElementCSV\\scr_loadNextElementCSV.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2774,6 +2790,7 @@
         "65edb833-7e62-4ee1-b4ba-649645f5e40d",
         "ab958ed3-5d2b-493d-8352-352b31d9a9ef",
         "0a3a3476-96c4-4f75-8457-c43c80c33361",
+        "8165a259-1969-4e86-bfb5-a8536d1b9139",
         "fa097c53-c2a5-4e0c-9429-f13c190f7866",
         "bdeba254-b19a-4a3a-97e8-04556c55d6dd",
         "e62a5730-9b99-4ca6-bb32-c61f6678b17a",
@@ -2797,6 +2814,7 @@
         "e9887152-5da4-4b7e-9d4a-b03816f12d8b",
         "425fdc02-29ad-4d6a-a6f5-cb9a29e2c1fb",
         "d7714c6a-620c-423a-a004-56a2af4eb313",
+        "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",
         "10e45e9e-c2ac-4f14-83ca-5f75f53611af",
         "69846e25-74b9-4922-a924-f57c406a5a72",

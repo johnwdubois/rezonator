@@ -5,8 +5,7 @@ else {
 	var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");
 }
 
-if (fileName == "" or not file_exists(fileName))
-{
+if (fileName == "" or not file_exists(fileName)) {
 	game_restart();
 	exit;
 }
@@ -15,12 +14,10 @@ global.fileSaveName = fileName;
 
 var newInstList = ds_list_create();
 
-if (file_exists(fileName))
-{
+if (file_exists(fileName)) {
 	var wrapper = scr_loadJSONBuffer(fileName);
 	
-	if (not ds_exists(wrapper, ds_type_map))
-	{
+	if (not ds_exists(wrapper, ds_type_map)) {
 		show_message("Error loading " + fileName);
 		game_restart();
 		exit;
@@ -28,23 +25,19 @@ if (file_exists(fileName))
 	
 	var list = ds_map_find_value(wrapper, "ROOT");
 	
-	if (is_undefined(list))
-	{
+	if (is_undefined(list)) {
 		show_message("Error loading " + fileName);
 		game_restart();
 		exit;
 	}
 	
-	for (var i = 0; i < ds_list_size(list); i++)
-	{
+	for (var i = 0; i < ds_list_size(list); i++) {
 		var map = ds_list_find_value(list, i);
 		
 		var objectIndex = ds_map_find_value(map, "objectIndex");
 		
-		with (asset_get_index(objectIndex))
-		{
-			if (objectIndex == "obj_control")
-			{
+		with (asset_get_index(objectIndex)) {
+			if (objectIndex == "obj_control") {
 				obj_control.currentCenterDisplayRow = 0;
 				
 				scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
@@ -56,8 +49,7 @@ if (file_exists(fileName))
 				
 				global.totalUnitAmount = scr_getTotalUnitAmount();
 			}
-			else if (objectIndex == "obj_chain")
-			{
+			else if (objectIndex == "obj_chain") {
 				
 				scr_loadREZGridReset(obj_chain.linkGrid, map, "linkGrid");
 				scr_loadREZGridReset(obj_chain.rezChainGrid, map, "rezChainGrid");

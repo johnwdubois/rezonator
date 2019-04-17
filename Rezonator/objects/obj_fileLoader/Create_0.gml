@@ -42,3 +42,8 @@ ableToHotkey = true;
 
 inititalAutosave = false;
 initialAutosaveComplete = false;
+
+
+importCSVCurrentUID = 0;
+importCSVCurrentRow = 0;
+importCSVWordIDList = ds_list_create();

@@ -75,3 +75,21 @@ participantHueOffset = 0;
 showDevVars = false;
 
 scr_importPackage();
+
+
+
+
+
+
+global.importCSVGrid = ds_grid_create(0, 0);
+global.importCSVGrid_colIndex = 1;
+global.importCSVGrid_colDiscoID = 2;
+global.importCSVGrid_colPID = 3;
+global.importCSVGrid_colSpeaker = 4;
+global.importCSVGrid_colUID = 5;
+global.importCSVGrid_colWID = 6;
+global.importCSVGrid_colPlace = 7;
+global.importCSVGrid_colWord = 10;
+global.importCSVGrid_colText = 11;
+global.importCSVGrid_colUnitStart = 22;
+global.importCSVGrid_colUnitEnd = 23;

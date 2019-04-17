@@ -11,7 +11,7 @@
 */
 
 if (directory_exists_ns(global.rezonatorDirString)) {
-	xmlFile = get_open_filename_ext("XML file|*.xml", "", global.rezonatorDirString, "Import XML");
+	xmlFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv", "", global.rezonatorDirString, "Import File");
 }
 else {
 	xmlFile = get_open_filename("XML file|*.xml|REZ file|*.rez", "");
@@ -27,6 +27,11 @@ var fileExtCharAt = string_pos(fileExt, fileName);
 
 if (fileExtCharAt > 0) {
 	fileName = string_delete(fileName, fileExtCharAt, string_length(fileExt));
+}
+
+if (string_count("csv", fileExt) > 0) {
+	scr_importCSV(xmlFile);
+	exit;
 }
 
 var discoID = fileName;
