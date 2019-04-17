@@ -134,6 +134,32 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 				functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
 				functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
 			}
+			if (doubleClickTimer > -1) {	
+					var rowInLineGrid = -1;
+					var currentUnitIDList = -1;
+					var currentUnitID = -1;
+						
+					currentUnitIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID));
+				
+					if (functionChainList_currentTab == functionChainList_tabStackBrush
+					or functionChainList_currentTab == functionChainList_tabClique) {
+						currentUnitID = ds_list_find_value(currentUnitIDList, 0);
+					}
+					else {
+						currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, ds_list_find_value(currentUnitIDList, 0));
+					}
+					
+					rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+					
+					// Set first unit of the double clicked chain to center display row, if possible
+					if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.lineGrid)) {
+						var displayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, rowInLineGrid);
+						obj_control.currentCenterDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, displayRow);
+					}
+				}
+				else {
+					doubleClickTimer = 0;
+				}
 		}
 	}
 	
