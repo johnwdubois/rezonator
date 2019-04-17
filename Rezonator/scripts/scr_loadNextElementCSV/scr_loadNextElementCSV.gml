@@ -8,15 +8,15 @@ if (importCSVCurrentRow < 1) {
 		}
 	}
 	global.totalUnitAmount = totalUnitAmount;
-	show_message("total unit amount: " + string(global.totalUnitAmount));
+	//show_message("total unit amount: " + string(global.totalUnitAmount));
 	
 	
-	ds_grid_resize(obj_control.unitGrid, obj_control.unitGridWidth, global.totalUnitAmount);
-	currentRowUnitGrid = -1;
+	//ds_grid_resize(obj_control.unitGrid, obj_control.unitGridWidth, global.totalUnitAmount);
+	//currentRowUnitGrid = -1;
 	
-	show_message("resizing wordGrid...");
-	ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(global.importCSVGrid));
-	currentRowWordGrid = -1;
+	//show_message("resizing wordGrid...");
+	//ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(global.importCSVGrid));
+	//currentRowWordGrid = -1;
 }
 
 var currentUID = ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, importCSVCurrentRow);
@@ -39,9 +39,9 @@ var currentPlace = real(ds_grid_get(global.importCSVGrid, global.importCSVGrid_c
 var currentWord = ds_grid_get(global.importCSVGrid, global.importCSVGrid_colWord, importCSVCurrentRow);
 var currentText = ds_grid_get(global.importCSVGrid, global.importCSVGrid_colText, importCSVCurrentRow);
 
-//ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
-//var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
-currentRowWordGrid++;
+ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
+var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
+//currentRowWordGrid++;
 
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentRowWordGrid, wordIDCounter);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentRowWordGrid, currentUnitID);
@@ -62,9 +62,9 @@ if (currentUID != importCSVCurrentUID) {
 	
 	importCSVCurrentUID = currentUID;
 	
-	//ds_grid_resize(obj_control.unitGrid, obj_control.unitGridWidth, ds_grid_height(obj_control.unitGrid) + 1);
-	//var currentRowUnitGrid = ds_grid_height(obj_control.unitGrid) - 1;
-	currentRowUnitGrid++;
+	ds_grid_resize(obj_control.unitGrid, obj_control.unitGridWidth, ds_grid_height(obj_control.unitGrid) + 1);
+	var currentRowUnitGrid = ds_grid_height(obj_control.unitGrid) - 1;
+	//currentRowUnitGrid++;
 	
 	unitIDCounter++;
 	currentUnitID = unitIDCounter;
@@ -89,7 +89,7 @@ if (currentUID != importCSVCurrentUID) {
 	ds_list_clear(importCSVWordIDList);
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentRowUnitGrid, currentUnitWordIDList);
 	
-	
+	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, c_gray);
 	
 	
 	

@@ -213,9 +213,11 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 			}
 		}
 	}
+	/*
 	if (not inFilter and obj_control.filterGridActive) {
 		scr_unfocusChain(currentChainID);
 	}
+	*/
 	
 	// Create little boxes for alignment selection
 	if (functionChainList_currentTab == functionChainList_tabRezBrush

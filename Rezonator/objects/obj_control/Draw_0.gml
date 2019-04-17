@@ -81,7 +81,6 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, scr_getStringOfList(obj_chain.chainIDModifyList));
 	
 	
-	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 550, "inRectUnitIDList: ");
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 570, scr_getStringOfList(inRectUnitIDList));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 590, "inRectWordIDList: ");
@@ -91,6 +90,9 @@ if (showDevVars) {
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 630, "mostRecentlyAddedWord: " + string(mostRecentlyAddedWord));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 650, "mostRecentlyAddedWordMoved: " + string(mostRecentlyAddedWordMoved));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 680, "global.participantColorList: ");
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 700, scr_getStringOfList(global.participantColorList));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 750, "chainColorID[1]: " + string(obj_chain.chainColorID[1]));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 770, "chainColorID[2]: " + string(obj_chain.chainColorID[2]));

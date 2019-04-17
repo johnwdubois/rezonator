@@ -27,8 +27,20 @@ if (not inititalAutosave) {
 	}
 }
 
-if (ds_grid_height(global.importCSVGrid) > 0 and importCSVCurrentRow < ds_grid_height(global.importCSVGrid)) {
-	scr_loadNextElementCSV();
+var loadCSVRate = fileLoadRate / 8;
+if (fps < 50) {
+	loadCSVRate = 5;
+	if (fps < 40) {
+		loadCSVRate = 4;
+		if (fps < 30) {
+			loadCSVRate = 3;
+		}
+	}
+}
+for (var i = 0; i < loadCSVRate; i++) {
+	if (ds_grid_height(global.importCSVGrid) > 0 and importCSVCurrentRow < ds_grid_height(global.importCSVGrid)) {
+		scr_loadNextElementCSV();
+	}
 }
 
 
