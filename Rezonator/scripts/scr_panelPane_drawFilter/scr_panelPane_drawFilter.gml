@@ -83,7 +83,7 @@ if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButto
 or (keyboard_check(vk_control) and keyboard_check_pressed(ord("P")))) {
 	// If filter is active, deactivate it
 	if (obj_control.filterGridActive) {
-		if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid))  {
+		if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
 			obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
 				
 			// Keep the focus on previous currentCenterDisplayRow
