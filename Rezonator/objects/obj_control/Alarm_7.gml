@@ -3,12 +3,18 @@
 
 // Check for things caught in mouse drag rectangle
 if (ds_list_size(inRectUnitIDList) > 1 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+	var firstUnitID = ds_list_find_value(inRectUnitIDList, 0);
+	var firstWordID = ds_list_find_value(inRectWordIDList, 0);
 	// Loop through words found in rectangle at time of mouse release
 	for(var quickStackLoop = 0; quickStackLoop < ds_list_size(inRectUnitIDList); quickStackLoop++) {
 		var currentWordID = ds_list_find_value(inRectWordIDList, quickStackLoop);
 		var currentUnitID = ds_list_find_value(inRectUnitIDList, quickStackLoop);
 		with (obj_chain) {
 			scr_wordClicked(currentWordID, currentUnitID);
+			scr_wordClicked(firstWordID, firstUnitID);
+		/*var listToSearch = ds_grid_get(unitInStackGrid, unitInStackGrid_colStackList, firstUnitID - 1);
+		var stackToFocus = ds_list_find_value(listToSearch, 0);
+		ds_grid_set(stackChainGrid, chainGrid_colChainState, stackToFocus, chainStateFocus);*/	
 		}
 	}
 	scr_unFocusAllChains();
