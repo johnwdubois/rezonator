@@ -49,7 +49,7 @@ ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWor
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, currentWord);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, currentText);
 
-scr_loadDynamicWordGridIndividual();
+scr_loadDynamicWordGridIndividual(currentRowWordGrid);
 ds_list_add(importCSVWordIDList, wordIDCounter);
 
 

@@ -102,8 +102,7 @@ alarm[3] = 1;
 functionGoToLine_selectedDisco = 0;
 
 
-for (var i = 0; i < 3; i++)
-{
+for (var i = 0; i < 3; i++) {
 	functionFilter_peek[i] = false;
 	functionFilter_peekList[i] = ds_list_create();
 }

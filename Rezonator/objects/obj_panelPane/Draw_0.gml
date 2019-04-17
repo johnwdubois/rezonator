@@ -12,8 +12,7 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView)
-{
+if (obj_control.gridView) {
 	exit;
 }
 
@@ -21,8 +20,7 @@ draw_set_alpha(1);
 draw_set_color(global.colorThemePaneBG);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
-switch (currentFunction)
-{
+switch (currentFunction) {
 	case functionChainList:
 		scr_panelPane_drawChainTabs();
 		scr_panelPane_drawChainListLoop();
@@ -32,7 +30,7 @@ switch (currentFunction)
 		if (mouse_check_button_pressed(mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = false;
 		}
-		if(clickedIn == true) {
+		if(clickedIn) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
@@ -47,7 +45,7 @@ switch (currentFunction)
 		if (mouse_check_button_pressed(mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = false;
 		}
-		if(clickedIn == true) {
+		if (clickedIn) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
