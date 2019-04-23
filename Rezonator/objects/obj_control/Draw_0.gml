@@ -42,7 +42,7 @@ scr_mouseRect();
 //draw highlights instead here!
 
 // Create the quickStack with the mouse drag, if possible
-if (mouseRectMade and quickStackAbleToInitiate) {
+if ((mouseRectMade and quickStackAbleToInitiate)) {
 	quickStackAbleToInitiate = false;
 	alarm[7] = 5;
 }

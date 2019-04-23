@@ -59,6 +59,8 @@ if (expandingCliqueRow >= 0 and mergeCliqueRow2 >= 0 and mergeCliqueRow2 < ds_gr
 	ds_list_sort(chainIDListMergeCliqueRow2, true);
 	
 	scr_gridDeleteRow(obj_chain.cliqueGrid, mergeCliqueRow1);
+	// Added to prevent ghost Cliques
+	scr_gridDeleteRow(obj_chain.cliqueDisplayGrid, mergeCliqueRow1);
 	cliqueGridRowToRefresh = mergeCliqueRow2;
 	alarm[1] = 2;
 	exit;
