@@ -8,6 +8,9 @@ if (mouse_check_button_pressed(mb_left)) {
 	mouseHoldRectX2 = mouse_x;
 	mouseHoldRectY2 = mouse_y;
 	
+	with (obj_toolPane) {
+		alarm[2] = 5;// Is super finnicky, but kinda works??
+	}
 	
 	/*if (mouse_y > obj_toolPane.y + obj_toolPane.windowHeight) {
 		if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
