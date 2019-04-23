@@ -26,6 +26,9 @@ rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);
 stackChainGrid = ds_grid_create(chainGridWidth, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
+placeChainGrid = ds_grid_create(chainGridWidth, 0);
+
+creatingPlaceChains = false;
 
 unitInStackGridWidth = 3;
 unitInStackGrid_colUnitID = 0;

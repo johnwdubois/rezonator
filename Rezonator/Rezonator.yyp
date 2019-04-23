@@ -1471,6 +1471,14 @@
             }
         },
         {
+            "Key": "889f4b32-5b71-4c11-a5fe-d59d2acf98fa",
+            "Value": {
+                "id": "a664f594-56b1-41f8-9113-0758453595f7",
+                "resourcePath": "scripts\\scr_createPlaceChains\\scr_createPlaceChains.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "88eb7c77-5876-4ec4-bdf7-88b9278bb422",
             "Value": {
                 "id": "2f55bd40-9c16-4063-87b4-b53126052ec2",
@@ -2864,7 +2872,8 @@
         "be9962c4-a03e-48f9-ab5c-a0edec37028a",
         "2032f3f6-fdbf-4c63-8f21-cc348313fe4b",
         "0c063f09-8ea8-47c3-b8f5-0f7e60e83b39",
-        "f6a6ba25-1cc6-4ece-94f4-5196470b0214"
+        "f6a6ba25-1cc6-4ece-94f4-5196470b0214",
+        "889f4b32-5b71-4c11-a5fe-d59d2acf98fa"
     ],
     "tutorial": ""
 }

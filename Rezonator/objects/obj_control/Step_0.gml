@@ -169,6 +169,10 @@ if (list == false and contents == false) {
 	or keyboard_check_pressed(vk_end)) {
 		scr_jumpToEnd(false);
 	}
+	
+	if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)) {
+		scr_createPlaceChains();
+	}
 
 	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control)) {
 		wordLeftMarginDest += gridSpaceHorizontal;
