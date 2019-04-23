@@ -23,8 +23,7 @@ cliqueGrid_colBreak = 8;
 cliqueGrid_colName = 9;
 */
 
-for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
-{
+for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++) {
 	var currentChainID = i;
 	var currentChainState = 0;
 	var currentWordIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colUnitIDList, i);
@@ -42,4 +41,19 @@ for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
 	ds_grid_set(obj_chain.cliqueDisplayGrid, obj_chain.chainGrid_colInFilter, i, currentInFilter);
 	ds_grid_set(obj_chain.cliqueDisplayGrid, obj_chain.chainGrid_colAlign, i, currentAlign);
 	
+}
+
+var previousCliqueID = -1;
+for (var i = 0; i < ds_grid_height(obj_chain.cliqueDisplayGrid); i++) {
+	if (i >= ds_grid_height(obj_chain.cliqueDisplayGrid)) {
+		continue;
+	}
+	
+	var currentCliqueID = ds_grid_get(obj_chain.cliqueDisplayGrid, obj_chain.chainGrid_colChainID, i);
+	var currentUnitIDList = ds_grid_get(obj_chain.cliqueDisplayGrid, obj_chain.chainGrid_colWordIDList, i);
+	
+	if (currentUnitIDList == 0 or currentCliqueID == previousCliqueID) {
+		scr_gridDeleteRow(obj_chain.cliqueDisplayGrid, i);
+		i--;
+	}
 }
