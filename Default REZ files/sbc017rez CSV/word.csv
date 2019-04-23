@@ -1,0 +1,5677 @@
+wordID,unitID,wordSeq,wordToken,wordTranscript
+1,1,0, ,..
+2,1,1,Hm,Hm
+3,1,2, ,.
+4,2,0, ,..
+5,2,1,yeah,yeah
+6,2,2, ,.
+7,3,0, ,...
+8,3,1,And,And
+9,3,2,even,even
+10,3,3,if,if
+11,3,4,I,I
+12,3,5,go,go
+13,3,6,out,out
+14,3,7,and,and
+15,3,8,ask,a:sk
+16,3,9,for,for
+17,3,10,it,it
+18,3,11, ,.
+19,4,0,you,you
+20,4,1,know,know
+21,4,2, ,","
+22,5,0,I,I
+23,5,1,say,say
+24,5,2, ,","
+25,6,0,can,can
+26,6,1,I,I
+27,6,2,copy,copy
+28,6,3,that,that
+29,6,4, ,.
+30,7,0, ,..
+31,7,1,I,I
+32,7,2,won't,won't
+33,7,3,feel,feel
+34,7,4,guilty,guilty
+35,7,5, ,.
+36,8,0, ,...
+37,8,1,I,I
+38,8,2,really,really
+39,8,3,won't,won't
+40,8,4, ,%
+41,8,5, ,.
+42,9,0, ,..
+43,9,1,It's,It's
+44,9,2,just,just
+45,9,3,a,a
+46,9,4,set,set
+47,9,5,of,of
+48,9,6,instructions,instructions
+49,9,7, ,","
+50,10,0,I,I
+51,10,1,used,used
+52,10,2,to,to
+53,10,3,program,program
+54,10,4, ,.
+55,11,0,a,a
+56,11,1,little,little
+57,11,2,bit,bit
+58,11,3, ,","
+59,12,0,and,and
+60,12,1, ,","
+61,13,0,and,a:nd
+62,13,1,um,u:m
+63,13,2, ,","
+64,14,0, ,...
+65,14,1,those,those
+66,14,2,guys,guys
+67,14,3,have,have
+68,14,4,so,so
+69,14,5,much,much
+70,14,6,fun,fun
+71,14,7,writing,writing
+72,14,8,those,those
+73,14,9,programs,programs
+74,14,10, ,.
+75,15,0, ,...
+76,15,1,you,you
+77,15,2,know,know
+78,15,3, ,","
+79,16,0, ,..
+80,16,1,that's,that's
+81,16,2,the,the%
+82,16,3, ,--
+83,17,0, ,...
+84,17,1,I,I
+85,17,2,think,think
+86,17,3,that's,that's:
+87,17,4, ,--
+88,18,0, ,..
+89,18,1,that's,[that's
+90,18,2,pretty,|pretty
+91,18,3, ,--
+92,19,0, ,[
+93,19,1, ,|
+94,19,2,Yeah,|Yeah
+95,19,3,well,|well
+96,19,4, ,","
+97,20,0, ,|
+98,20,1,That's,|That's
+99,20,2,pretty,|pretty
+100,20,3,much,|much
+101,20,4,the,|the
+102,20,5,end,|end
+103,20,6,of,|of
+104,20,7,it,|it]
+105,20,8, ,.
+106,21,0,creative,|creative
+107,21,1,people,|people
+108,21,2,generally,|generally]
+109,21,3,do,do
+110,21,4,what,what
+111,21,5,they,they
+112,21,6,love,love
+113,21,7,to,[2to
+114,21,8,do,|2do]
+115,21,9, ,.
+116,22,0, ,[2]
+117,22,1,Yeah,Yeah
+118,22,2, ,","
+119,23,0,right,right
+120,23,1, ,.
+121,24,0, ,..
+122,24,1,And,And
+123,24,2,that's,that's
+124,24,3,pretty,pretty
+125,24,4,much,much
+126,24,5,the,the
+127,24,6,end,end
+128,24,7,of,of
+129,24,8,the,the
+130,24,9,truthful,truthful
+131,24,10,part,part
+132,24,11,of,of
+133,24,12,the,the
+134,24,13,process,process
+135,24,14, ,.
+136,25,0,The,The
+137,25,1,rest,rest
+138,25,2,of,of
+139,25,3,it,it
+140,25,4,is,is
+141,25,5,all,all
+142,25,6,marketing,m:arketing
+143,25,7, ,.
+144,26,0, ,..
+145,26,1,Hm,Hm
+146,26,2, ,.
+147,27,0,and,and
+148,27,1,the,the
+149,27,2,marketplace,marketplace
+150,27,3,is,is
+151,27,4,uh,uh
+152,27,5, ,","
+153,28,0, ,..
+154,28,1,you,you
+155,28,2,know,know
+156,28,3, ,","
+157,29,0, ,..
+158,29,1,maybe,maybe
+159,29,2,I,I
+160,29,3,think,think
+161,29,4,I,I
+162,29,5,live,live
+163,29,6,in,in
+164,29,7,Tangiers,Tangiers
+165,29,8, ,.
+166,30,0, ,:
+167,30,1,you,you
+168,30,2,know,know
+169,30,3, ,?
+170,31,0, ,..
+171,31,1,Maybe,Maybe
+172,31,2,I,I
+173,31,3,think,think
+174,31,4,the,the
+175,31,5,marketplace,marketplace
+176,31,6,is,is
+177,31,7,uh,[uh]
+178,31,8, ,","
+179,32,0, ,[@]
+180,33,0,you,you
+181,33,1,get,get
+182,33,2,what,what
+183,33,3,you,you
+184,33,4,can,can
+185,33,5,get,get
+186,33,6, ,.
+187,34,0, ,..
+188,34,1,yeah,yeah
+189,34,2, ,.
+190,35,0, ,...
+191,35,1, ,..
+192,35,2,Uh,Uh:
+193,35,3, ,","
+194,36,0, ,...
+195,36,1,seems,seems
+196,36,2,to,to
+197,36,3,be,be
+198,36,4,that,that
+199,36,5,way,way
+200,36,6, ,.
+201,37,0,you,you
+202,37,1,know,know
+203,37,2, ,","
+204,38,0,I,I-
+205,38,1,as,as
+206,38,2,long,long
+207,38,3,as,as
+208,38,4,I'm,I'm
+209,38,5,not,not
+210,38,6,hurting,hurting
+211,38,7,another,another
+212,38,8,person,person
+213,38,9,directly,directly
+214,38,10, ,","
+215,40,0,Right,Right
+216,40,1, ,.
+217,41,0, ,..
+218,41,1,You,You
+219,41,2,know,know
+220,41,3, ,?
+221,42,0,or,or
+222,42,1,even,even
+223,42,2,indirectly,indirectly
+224,42,3, ,.
+225,43,0, ,...
+226,43,1,but,but
+227,43,2,just,just
+228,43,3,throwing,throwing
+229,43,4,my,my
+230,43,5,money,money
+231,43,6,out,out
+232,43,7,there,there
+233,43,8, ,","
+234,44,0,he,he
+235,44,1,may,may
+236,44,2,never,never
+237,44,3,see,see
+238,44,4,a,a
+239,44,5,penny,penny
+240,44,6,of,of
+241,44,7,it,it
+242,44,8, ,.
+243,45,0,he,he
+244,45,1,may,may
+245,45,2,have,have
+246,45,3,sold,sold
+247,45,4,the,the
+248,45,5,rights,rights
+249,45,6, ,.
+250,46,0, ,@@@
+251,47,0,outright,outright
+252,47,1, ,.
+253,48,0, ,[
+254,48,1,You,|@You
+255,48,2,know,|@know
+256,48,3, ,?
+257,49,0, ,[@@@
+258,49,1, ,|
+259,50,0, ,|
+260,50,1, ,|@@@@]
+261,51,0,That,That
+262,51,1,certainly,certainly
+263,51,2,happens,happens
+264,51,3,in,in]
+265,51,4,music,music
+266,51,5, ,","
+267,52,0,Heavens,@Heavens
+268,52,1,yes,@ye:s
+269,52,2, ,.
+270,53,0,I,[%I-]
+271,53,1,yeah,%yeah
+272,53,2, ,.
+273,54,0,Yeah,|[Yeah]
+274,54,1, ,.
+275,55,0, ,..
+276,55,1,You,You
+277,55,2,know,know
+278,55,3, ,?
+279,56,0,I,I
+280,56,1,mean,mean
+281,56,2,it,it
+282,56,3, ,..
+283,56,4,happens,happens
+284,56,5,all,all
+285,56,6,over,over
+286,56,7,the,the
+287,56,8,place,[place]
+288,56,9, ,.
+289,57,0,You,You
+290,57,1,know,know
+291,57,2,I,I
+292,57,3,wish,wish]
+293,57,4,I,I
+294,57,5,was,was
+295,57,6, ,","
+296,58,0,uh,uh
+297,58,1, ,","
+298,59,0,the,the
+299,59,1,person,person:
+300,59,2, ,","
+301,60,0, ,..
+302,60,1,whose,whose
+303,60,2,voice,voice
+304,60,3,they,they
+305,60,4,used,used
+306,60,5,in,in
+307,60,6,the,the
+308,60,7, ,..
+309,60,8,telephone,telephone
+310,60,9, ,","
+311,61,0,when,when
+312,61,1,it,it
+313,61,2,tells,tells
+314,61,3,you,you
+315,61,4, ,","
+316,62,0, ,...
+317,62,1,the,the
+318,62,2,number,number
+319,62,3,has,has
+320,62,4,been,been
+321,62,5,changed,changed
+322,62,6, ,","
+323,63,0, ,..
+324,63,1,And,And
+325,63,2,that,that
+326,63,3,I,I
+327,63,4,had,had
+328,63,5,uh,uh
+329,63,6, ,","
+330,64,0,copyright,copyright
+331,64,1, ,","
+332,65,0, ,@@
+333,66,0,get,get
+334,66,1,some,some
+335,66,2,royalties,royalties
+336,66,3, ,.
+337,67,0,Like,Like
+338,67,1, ,","
+339,68,0,that,that
+340,68,1,lady,lady
+341,68,2, ,","
+342,69,0,you,you
+343,69,1,know,know
+344,69,2, ,","
+345,70,0,h,h-
+346,70,1,you,you
+347,70,2,hear,hear
+348,70,3, ,","
+349,71,0, ,...
+350,71,1,the,the
+351,71,2,number,number
+352,71,3,you,you
+353,71,4,have,have
+354,71,5,reached,reached
+355,71,6, ,","
+356,72,0,daduh,da-duh
+357,72,1,daduh,da-duh
+358,72,2,daduh,[da-duh
+359,72,3,daduh,|da-duh
+360,72,4,daduh,|da-duh
+361,72,5,daduh,|da-duh
+362,72,6, ,|]
+363,72,7, ,.
+364,73,0,they,[they
+365,73,1,got,|got
+366,73,2,a,|a
+367,73,3,different,|different
+368,73,4,woman,|woman]
+369,73,5, ,","
+370,74,0,didn't,didn't
+371,74,1,they,they
+372,74,2, ,.
+373,75,0, ,..
+374,75,1,Hunh,Hunh
+375,75,2, ,?
+376,76,0, , 
+377,77,0,didn't,didn't
+378,77,1,they,they
+379,77,2,get,get
+380,77,3,a,a
+381,77,4,different,diffe[rent
+382,77,5,woman,|woman]
+383,77,6, ,?
+384,78,0, ,..
+385,78,1,When,When
+386,78,2,she,she
+387,78,3,th,th-
+388,78,4,tried,tried
+389,78,5,to,to
+390,78,6,do,do
+391,78,7,that,that
+392,78,8, ,?
+393,79,0,I,[I
+394,79,1,don't,|don't
+395,79,2,know,|know
+396,79,3,if,|if
+397,79,4,they,|they
+398,79,5,did,|did]
+399,79,6, ,.
+400,80,0,they,[they
+401,80,1, ,","
+402,81,0,they,|they
+403,81,1, ,","
+404,82,0,they,|they
+405,82,1,hired,|hired
+406,82,2,another,|an]other
+407,82,3,voice,voice
+408,82,4, ,.
+409,83,0,I,I
+410,83,1,didn't,didn't
+411,83,2,hear,hear
+412,83,3,any,any
+413,83,4,followup,followup.
+414,83,5, ,-.
+415,84,0,but,but
+416,84,1, ,","
+417,85,0,that's,that's
+418,85,1,what,what
+419,85,2,I,I
+420,85,3,thought,thought
+421,85,4,that,that
+422,85,5,they,they
+423,85,6,did,did
+424,85,7,anyways,any[ways]
+425,85,8, ,.
+426,86,0,Yeah,[Yeah]
+427,86,1, ,?
+428,87,0, ,...
+429,87,1,hunh,hunh
+430,87,2, ,.
+431,88,0, ,...
+432,88,1,they,they
+433,88,2,certainly,certainly
+434,88,3,use,u:se
+435,88,4,her,her
+436,88,5,a,a
+437,88,6,lot,lot
+438,88,7, ,.
+439,89,0, ,...
+440,89,1,But,But
+441,89,2,I,I
+442,89,3,mean,mean
+443,89,4,it,it-
+444,89,5, ,--
+445,90,0,they,they
+446,90,1,only,only
+447,90,2,use,use
+448,90,3, ,","
+449,91,0,what,what
+450,91,1, ,.
+451,92,0,a,a
+452,92,1,s,s-
+453,92,2, ,--
+454,93,0,five,five
+455,93,1,seconds,seconds
+456,93,2,total,total
+457,93,3,or,or
+458,93,4,something,something
+459,93,5, ,?
+460,94,0,You,You
+461,94,1,know,know
+462,94,2, ,","
+463,95,0,it's,it's
+464,95,1,a,a-
+465,95,2, ,--
+466,96,0, ,..
+467,96,1, ,[:]
+468,97,0, ,[
+469,97,1,Probably,|Probably
+470,97,2,took,|took
+471,97,3,her,|her]
+472,97,4,a,a
+473,97,5,long,lo:ng
+474,97,6,time,time:
+475,97,7,to,to
+476,97,8, ,","
+477,98,0, ,..
+478,98,1,to,to
+479,98,2,say,say
+480,98,3,every,every
+481,98,4,possible,possible
+482,98,5,combination,combination
+483,98,6, ,.
+484,99,0,oh,oh
+485,99,1,but,but
+486,99,2, ,","
+487,100,0,they,%they
+488,100,1, ,--
+489,101,0,the,%the
+490,101,1,computer,computer
+491,101,2,does,does
+492,101,3,that,that
+493,101,4, ,.
+494,102,0,All,All
+495,102,1,she,she
+496,102,2,has,has
+497,102,3,to,to
+498,102,4,do,do
+499,102,5,is,is
+500,102,6,say,say:
+501,102,7,each,each
+502,102,8,digit,digit
+503,102,9, ,.
+504,103,0, ,..
+505,103,1,and,and
+506,103,2,the,the
+507,103,3,computer,[computer
+508,103,4, ,","
+509,104,0,Oh,[Oh
+510,104,1,that's,|that's
+511,104,2,all,|all
+512,104,3,it,|it
+513,104,4,is,|is
+514,104,5, ,.
+515,105,0, ,|..
+516,105,1,Yeah,|Yeah
+517,105,2, ,.
+518,106,0, ,|..
+519,106,1,it's,|it's
+520,106,2,like,|like
+521,106,3,a,|a
+522,106,4,series,|series
+523,106,5,of,|of
+524,106,6,samples,|samples]
+525,106,7, ,.
+526,107,0, ,|..
+527,107,1,And,|And
+528,107,2,it,|it
+529,107,3,automatically,|automatically
+530,107,4,sorts,|sorts]
+531,107,5,em,em
+532,107,6, ,.
+533,108,0, ,..
+534,108,1,Unhunh,"[2Unhunh],"
+535,108,2, ,".,"
+536,109,0,Yeah,[2Yeah]
+537,109,1, ,.
+538,110,0,right,right
+539,110,1, ,.
+540,111,0,yeah,yeah
+541,111,1, ,.
+542,112,0, ,..
+543,112,1,so,so
+544,112,2,it's,it's
+545,112,3, ,","
+546,113,0, ,..
+547,113,1, ,..
+548,113,2,Probably,Probably
+549,113,3,the,the
+550,113,4,total,total
+551,113,5,actual,actual
+552,113,6, ,..
+553,113,7,s,s-
+554,113,8,speaking,speaking
+555,113,9,that,that
+556,113,10,they,they
+557,113,11,use,use
+558,113,12, ,","
+559,114,0,is,is
+560,114,1,pretty,pretty
+561,114,2,short,short
+562,114,3, ,.
+563,115,0, ,...
+564,115,1,It,It
+565,115,2,would,would
+566,115,3,be,be
+567,115,4,much,much
+568,115,5,more,more
+569,115,6,pleasant,pleasant
+570,115,7,if,if
+571,115,8,they,they
+572,115,9,had,had
+573,115,10,done,done
+574,115,11,all,all
+575,115,12,the,the
+576,115,13,combinations,combinations
+577,115,14,though,though
+578,115,15, ,.
+579,116,0, ,...
+580,116,1, ,..
+581,116,2,You,You
+582,116,3,know,know
+583,116,4, ,","
+584,117,0,call,call
+585,117,1,it,it
+586,117,2,up,up
+587,117,3, ,","
+588,118,0,and,and
+589,118,1,there's,there's
+590,118,2,something,something
+591,118,3,that,that
+592,118,4,actually,actually
+593,118,5, ,..
+594,118,6,says,says
+595,118,7,your,your
+596,118,8,number,number
+597,118,9, ,","
+598,119,0, ,..
+599,119,1,in,in
+600,119,2,toto,toto
+601,119,3, ,","
+602,120,0, ,..
+603,120,1,You,[You
+604,120,2,know,|know
+605,120,3, ,|@@]
+606,120,4, ,?
+607,121,0,Yeah,[Yeah:
+608,121,1, ,.
+609,122,0,Or,|Or]
+610,122,1, ,","
+611,123,0,because,because
+612,123,1,it,it
+613,123,2,recognizes,recognizes
+614,123,3,your,your
+615,123,4,phone,phone
+616,123,5,number,number
+617,123,6, ,","
+618,124,0,it,it
+619,124,1,automatically,automatically
+620,124,2,goes,goes
+621,124,3,into,into
+622,124,4,the,the
+623,124,5,computer,computer
+624,124,6, ,","
+625,125,0,finds,finds
+626,125,1,that,that
+627,125,2, ,","
+628,126,0,Yeah,[Yeah
+629,126,1, ,","
+630,127,0,and,[and
+631,127,1, ,--
+632,128,0,a,|a
+633,128,1,and,|and
+634,128,2,names,|names
+635,128,3,the,|the]
+636,128,4,name,na:me
+637,128,5, ,","
+638,129,0,that,|that
+639,129,1,sample,|sample]
+640,129,2, ,.
+641,130,0, ,:
+642,130,1, ,...
+643,130,2,Thank,Thank
+644,130,3,you,you
+645,130,4,Mister,Mister
+646,130,5,Smith,Smith
+647,130,6, ,","
+648,131,0,for,for
+649,131,1,calling,calling
+650,131,2,Pacific,Pacific
+651,131,3,Bell,Bell
+652,131,4, ,.
+653,132,0, ,[@@@]
+654,133,0,yeah,[yeah
+655,133,1, ,","
+656,134,0,right,|right
+657,134,1, ,.
+658,135,0,You,|You
+659,135,1,know,|@know
+660,135,2, ,","
+661,136,0, ,|@@@
+662,136,1, ,|]
+663,137,0,I,I
+664,137,1,am,am
+665,137,2,your,your
+666,137,3,personal,personal
+667,137,4,computer,computer]
+668,137,5,representative,representative
+669,137,6, ,.
+670,138,0, , 
+671,139,0,That'd,[That'd
+672,139,1,be,|be
+673,139,2,great,|great
+674,139,3, ,.
+675,140,0, ,[@
+676,140,1, ,|
+677,141,0, ,|@@@@@]
+678,142,0, ,|
+679,142,1,Push,|Push
+680,142,2,one,|one
+681,142,3, ,","
+682,143,0,if,|if
+683,143,1,you,|you]
+684,143,2,wish,wish
+685,143,3,to,to
+686,143,4,know,know
+687,143,5,my,my
+688,143,6,phone,phone
+689,143,7,number,number
+690,143,8, ,","
+691,144,0, ,..
+692,144,1,push,push
+693,144,2,two,two
+694,144,3, ,","
+695,145,0,if,if
+696,145,1,you,you
+697,145,2,wish,wish
+698,145,3,to,[to
+699,145,4,h,|h-
+700,145,5, ,|@
+701,145,6, ,--
+702,146,0, ,[@
+703,146,1, ,|
+704,147,0,My,|My
+705,147,1,phone,|phone
+706,147,2,number,|number
+707,147,3,that,|#that
+708,147,4,I,|#I
+709,147,5, ,--
+710,148,0,you,|you
+711,148,1,know,|know
+712,148,2,have,|have
+713,148,3,dinner,|dinner3]
+714,148,4,with,with
+715,148,5,me,me
+716,148,6, ,","
+717,149,0,push,push
+718,149,1,three,three
+719,149,2, ,","
+720,150,0, ,|
+721,150,1, ,|@
+722,150,2, ,|]
+723,151,0,if,if
+724,151,1,you,you]
+725,151,2,want,want
+726,151,3,to,to
+727,151,4,uh,uh
+728,151,5, ,","
+729,152,0, ,[:
+730,152,1,h,|0h]
+731,152,2, ,--
+732,153,0, ,[@
+733,153,1,Artificial,|Artif]icial
+734,153,2,intelligence,intelligence
+735,153,3,personality,personality
+736,153,4, ,","
+737,154,0,that,that
+738,154,1,you,you
+739,154,2,call,[2call
+740,154,3,up,|2up]
+741,154,4, ,","
+742,155,0,Yeah,[2@Yeah
+743,155,1, ,|2@]
+744,155,2,so,@so
+745,155,3, ,","
+746,156,0,if,if
+747,156,1,you,you
+748,156,2,do,do
+749,156,3,not,not
+750,156,4,like,like
+751,156,5,this,this
+752,156,6,personality,personality
+753,156,7, ,","
+754,157,0,push,push
+755,157,1,zero,zero:
+756,157,2, ,","
+757,158,0, , 
+758,159,0,and,[and
+759,159,1,a,|a:
+760,159,2,new,|new
+761,159,3,personality,|personal]ity
+762,159,4, ,","
+763,160,0,Yeah,[@Yeah
+764,160,1, ,|@@
+765,160,2, ,.
+766,161,0, ,|]
+767,162,0,will,will
+768,162,1,be,[2be
+769,162,2,provided,|2pro]vided
+770,162,3,for,for
+771,162,4,you,you
+772,162,5, ,","
+773,163,0,Yeah,[2%Yeah]
+774,163,1, ,.
+775,164,0,at,at
+776,164,1,no,[3no
+777,164,2,extra,|3extra]
+778,164,3,charge,charge
+779,164,4, ,.
+780,165,0,Yeah,[3%Yeah]
+781,165,1, ,.
+782,166,0,Hunh,[4Hunh]
+783,166,1, ,.
+784,167,0, ,[4]
+785,167,1,You,You
+786,167,2,are,are
+787,167,3,allowed,allowed
+788,167,4,up,up
+789,167,5,to,to
+790,167,6,five,five
+791,167,7,personalities,personalities
+792,167,8,in,in
+793,167,9,one,one
+794,167,10,phone,phone
+795,167,11,call,call
+796,167,12, ,.
+797,168,0, ,@@[@]
+798,169,0, ,[@]
+799,170,0, ,..
+800,170,1, ,@
+801,170,2, ,..
+802,170,3, ,@
+803,171,0, ,..
+804,171,1,well,well
+805,171,2,the,the
+806,171,3,networking,networking
+807,171,4,of,of
+808,171,5,computers,computers
+809,171,6,is,is
+810,171,7,getting,getting
+811,171,8,uh,uh
+812,171,9,such,s:uch
+813,171,10,that,that
+814,171,11, ,","
+815,172,0, ,..
+816,172,1,you,you
+817,172,2,know,know
+818,172,3, ,","
+819,173,0, ,...
+820,173,1,almost,almost
+821,173,2,anything's,anything's
+822,173,3,possible,possible
+823,173,4, ,.
+824,174,0, ,..
+825,174,1,Any,[Any
+826,174,2, ,|##
+827,174,3, ,--
+828,175,0,Yeah,[Yeah
+829,175,1, ,","
+830,176,0,that's,|that's
+831,176,1,why,|why
+832,176,2,I,|I:
+833,176,3, ,|..
+834,176,4,like,|#like
+835,176,5,it,|#it]
+836,176,6, ,.
+837,177,0,It's,|It's
+838,177,1,just,|just
+839,177,2,matrixing,|matrix]ing
+840,177,3, ,","
+841,178,0,and,and
+842,178,1, ,","
+843,179,0,just,just
+844,179,1, ,","
+845,180,0,con,con-
+846,180,1,constantly,constantly
+847,180,2, ,","
+848,181,0,building,building
+849,181,1,and,and
+850,181,2,building,building
+851,181,3, ,","
+852,182,0,upon,u:pon
+853,182,1,building,building
+854,182,2,upon,upon
+855,182,3,building,building
+856,182,4, ,","
+857,183,0,on,on
+858,183,1,these,these
+859,183,2,complexities,complexities
+860,183,3, ,","
+861,184,0,and,and
+862,184,1,building,build[ing
+863,184,2,controllers,|controllers
+864,184,3,for,|for]
+865,184,4,them,the:m
+866,184,5, ,","
+867,185,0,That's,[That's
+868,185,1,right,|right
+869,185,2, ,","
+870,186,0,and,|#and]
+871,186,1, ,","
+872,187,0,and,and
+873,187,1,building,building
+874,187,2,on,on
+875,187,3,top,top
+876,187,4,of,of
+877,187,5,those,those
+878,187,6, ,.
+879,188,0,And,[And
+880,188,1,you're,|you're
+881,188,2,building,|building
+882,188,3,on,|on
+883,188,4,the,|the]
+884,188,5,thoughts,thoughts
+885,188,6,of,of
+886,188,7,th,th-
+887,188,8,your,your
+888,188,9,predecessors,predecessors
+889,188,10, ,","
+890,189,0, ,[]
+891,190,0,but,but
+892,190,1,your,your
+893,190,2,predecessors,predecessors
+894,190,3, ,","
+895,191,0,in,in
+896,191,1,this,this
+897,191,2,case,case
+898,191,3, ,","
+899,192,0,could,could
+900,192,1,be,be
+901,192,2,like,like
+902,192,3, ,..
+903,192,4,last,last
+904,192,5,year,year
+905,192,6, ,.
+906,193,0, ,[:]
+907,194,0,You,[You
+908,194,1,know,|know
+909,194,2,it's,|it's
+910,194,3,like,|like]
+911,194,4, ,","
+912,195,0,it's,it's
+913,195,1,moving,[2moving]
+914,195,2,so,so
+915,195,3,fast,fast
+916,195,4, ,","
+917,196,0,Oh,[2Oh]
+918,196,1, ,.
+919,197,0,So,[3So
+920,197,1,fast,|3fast]
+921,197,2, ,.
+922,198,0, ,[3]
+923,198,1,It's,It's
+924,198,2,like,like
+925,198,3,a,[4a
+926,198,4,r,|4r-]
+927,198,5, ,--
+928,199,0, ,[4]:
+929,200,0,It's,It's
+930,200,1,a,a
+931,200,2,reflection,reflection
+932,200,3,of,of
+933,200,4,the,the
+934,200,5,brain,brain
+935,200,6, ,","
+936,201,0, ,...
+937,201,1,and,and
+938,201,2,it's,it's
+939,201,3,communication,communication
+940,201,4,like,like
+941,201,5,books,books
+942,201,6, ,","
+943,202,0,but,but
+944,202,1,it's,it's
+945,202,2,much,much
+946,202,3,quicker,quicker
+947,202,4, ,.
+948,203,0, ,...
+949,203,1,And,[And
+950,203,2,it's,|it's
+951,203,3,like,|like]
+952,203,4, ,","
+953,204,0,but,[#but
+954,204,1,when,|when
+955,204,2,they,|they
+956,204,3,get,|get]
+957,204,4, ,--
+958,205,0,if,if
+959,205,1,you,you
+960,205,2,can,can
+961,205,3,think,think
+962,205,4,of,of
+963,205,5,something,something
+964,205,6,and,and
+965,205,7,define,define
+966,205,8,it,it
+967,205,9, ,","
+968,206,0,you,you
+969,206,1,can,can:
+970,206,2, ,..
+971,206,3,make,make
+972,206,4,it,it
+973,206,5,happen,happen
+974,206,6, ,.
+975,207,0, ,...
+976,207,1,If,If
+977,207,2,it,it
+978,207,3,just,just
+979,207,4,about,about
+980,207,5,information,information
+981,207,6, ,.
+982,208,0, , 
+983,209,0, ,..
+984,209,1,I,[I
+985,209,2,mean,|mean
+986,209,3,you,|you
+987,209,4,can't,|can't]
+988,209,5, ,--
+989,210,0, ,[
+990,210,1,If,|If
+991,210,2,it's,|it's
+992,210,3,just,|just]
+993,210,4,about,about
+994,210,5,information,information
+995,210,6, ,","
+996,211,0,that's,[2that's
+997,211,1,very,|2very
+998,211,2,true,|2true]
+999,211,3, ,.
+1000,212,0,Yeah,[2Yeah
+1001,212,1, ,.
+1002,213,0, ,|2..
+1003,213,1,You,|2You
+1004,213,2,can't,|2can't2]
+1005,213,3,conjure,conjure:
+1006,213,4,something,something
+1007,213,5,up,up
+1008,213,6, ,","
+1009,214,0, ,...
+1010,214,1,like,like
+1011,214,2,a,a
+1012,214,3,car,car:
+1013,214,4,out,out
+1014,214,5,of,of
+1015,214,6,nothing,nothing
+1016,214,7, ,.
+1017,215,0, ,..
+1018,215,1,But,But
+1019,215,2, ,","
+1020,216,0, ,...
+1021,217,0,well,well
+1022,217,1,with,with
+1023,217,2,the,the
+1024,217,3,superconductors,superconductors
+1025,217,4, ,","
+1026,218,0, ,...
+1027,218,1,uh,uh
+1028,218,2, ,","
+1029,219,0, ,..
+1030,219,1,that's,that's
+1031,219,2,gonna,gonna
+1032,219,3,make,make
+1033,219,4,it,it
+1034,219,5, ,","
+1035,220,0, ,..
+1036,220,1,you,you
+1037,220,2,know,know
+1038,220,3, ,","
+1039,221,0,so,s:o
+1040,221,1,economical,economical
+1041,221,2, ,","
+1042,222,0, ,..
+1043,222,1,mhm,mhm
+1044,222,2, ,.
+1045,223,0,for,for
+1046,223,1,everybody,everybody
+1047,223,2, ,","
+1048,224,0, ,..
+1049,224,1,to,to
+1050,224,2,have,have
+1051,224,3, ,","
+1052,225,0, ,..
+1053,225,1,all,all
+1054,225,2,the,the
+1055,225,3,electronic,electronic
+1056,225,4, ,","
+1057,226,0, ,..
+1058,226,1,this,this
+1059,226,2,and,and
+1060,226,3,that,that
+1061,226,4,that,that
+1062,226,5,they,they
+1063,226,6,want,want
+1064,226,7, ,","
+1065,227,0,because,because
+1066,227,1,there'll,there'll
+1067,227,2,be,be
+1068,227,3,so,so
+1069,227,4,little,little
+1070,227,5,loss,loss
+1071,227,6,of,of
+1072,227,7,electricity,electricity
+1073,227,8, ,","
+1074,228,0, ,..
+1075,228,1,Yeah,Yeah:
+1076,228,2, ,.
+1077,229,0, ,..
+1078,229,1,And,[And
+1079,229,2,it'll,|it'll
+1080,229,3,be,|be
+1081,229,4,small,|small]:
+1082,229,5, ,.
+1083,230,0,You,[You
+1084,230,1,know,|know
+1085,230,2,and,|and
+1086,230,3,it,|it]
+1087,230,4, ,--
+1088,231,0, ,..
+1089,231,1,It'll,It'll
+1090,231,2,be,be
+1091,231,3,f,f-
+1092,231,4,so,so
+1093,231,5,small,small
+1094,231,6, ,","
+1095,232,0,that,that
+1096,232,1,we'll,we'll
+1097,232,2,have,have
+1098,232,3,enormous,enormous
+1099,232,4,amount,amount-
+1100,232,5, ,--
+1101,233,0,uh,uh%
+1102,233,1, ,--
+1103,234,0,we,we
+1104,234,1,should,should
+1105,234,2,have,have
+1106,234,3,an,an
+1107,234,4,enormous,enormous
+1108,234,5, ,...
+1109,234,6,supply,supply
+1110,234,7,of,of
+1111,234,8,it,it
+1112,234,9, ,","
+1113,235,0, ,..
+1114,235,1,yeah,yeah
+1115,235,2,like,like
+1116,235,3, ,","
+1117,236,0,every,every
+1118,236,1,light,light
+1119,236,2,switch,switch
+1120,236,3,will,will
+1121,236,4,have,have
+1122,236,5,its,its
+1123,236,6,own,own
+1124,236,7,computer,computer
+1125,236,8,or,or
+1126,236,9,something,something
+1127,236,10,you,you
+1128,236,11,know,know
+1129,236,12, ,.
+1130,237,0, ,..
+1131,237,1,Basically,Basically
+1132,237,2, ,","
+1133,238,0,because,because
+1134,238,1,it'll,it'll
+1135,238,2,be,be
+1136,238,3,cheap,cheap
+1137,238,4,enough,enough
+1138,238,5,that,that
+1139,238,6, ,","
+1140,239,0, ,...
+1141,239,1,cheap,cheap
+1142,239,2,as,as
+1143,239,3,a,a
+1144,239,4,switch,switch
+1145,239,5,these,these
+1146,239,6,days,[days
+1147,239,7,or,|or
+1148,239,8,something,|something
+1149,239,9, ,","
+1150,240,0,it,[it
+1151,240,1,won't,|won't
+1152,240,2,cost,|cost
+1153,240,3,anything,|anything]
+1154,240,4, ,.
+1155,241,0,you,|you
+1156,241,1,know,|know]
+1157,241,2, ,?
+1158,242,0,ky,ky-
+1159,242,1, ,--
+1160,243,0,and,and
+1161,243,1,it,it
+1162,243,2, ,--
+1163,244,0,and,%and
+1164,244,1,when,when
+1165,244,2,they,they
+1166,244,3,go,go
+1167,244,4,into,into
+1168,244,5,outer,outer
+1169,244,6,space,space
+1170,244,7, ,","
+1171,245,0,and,and
+1172,245,1,start,start
+1173,245,2,growing,growing
+1174,245,3,this,this
+1175,245,4, ,..
+1176,245,5,thi,thi-
+1177,245,6,those,those
+1178,245,7,uh,uh
+1179,245,8, ,","
+1180,246,0,silicon,silicon
+1181,246,1,chips,chips
+1182,246,2,without,without
+1183,246,3,any,any
+1184,246,4,flaws,flaw:s
+1185,246,5, ,","
+1186,247,0,Hm,[Hm]
+1187,247,1, ,.
+1188,248,0, ,[]
+1189,248,1,they'll,they'll
+1190,248,2,be,be
+1191,248,3,able,able
+1192,248,4,to,to
+1193,248,5,uh,uh
+1194,248,6, ,","
+1195,249,0, ,..
+1196,249,1,grow,grow
+1197,249,2,circuitry,circuitry
+1198,249,3,that,that
+1199,249,4,is,is
+1200,249,5,so,so
+1201,249,6,complicated,complicated
+1202,249,7, ,","
+1203,250,0,that,that
+1204,250,1, ,","
+1205,251,0, ,..
+1206,251,1,you,you
+1207,251,2,know,know
+1208,251,3, ,","
+1209,252,0, ,...
+1210,252,1,that,that
+1211,252,2,gravity,gravity
+1212,252,3,destroys,destroy:s
+1213,252,4,it,it
+1214,252,5, ,.
+1215,253,0,so,so
+1216,253,1,they'll,they'll
+1217,253,2,be,be
+1218,253,3,able,[able]
+1219,253,4,to,to
+1220,253,5,uh,uh
+1221,253,6, ,","
+1222,254,0,Hm,[Hm]
+1223,254,1, ,.
+1224,255,0,uh,[2uh]
+1225,255,1, ,","
+1226,256,0,Yeah,[2Yeah]
+1227,256,1, ,.
+1228,257,0,to,to-
+1229,257,1, ,--
+1230,258,0,i,i-
+1231,258,1,they'll,they'll
+1232,258,2,be,be
+1233,258,3,able,able
+1234,258,4,to,to
+1235,258,5,get,get
+1236,258,6,these,these
+1237,258,7,fantastic,fanta:stic
+1238,258,8,uh,uh:
+1239,258,9,circuits,c:ircuits
+1240,258,10, ,","
+1241,259,0,f,f-
+1242,259,1,like,like
+1243,259,2,say,say
+1244,259,3,for,for
+1245,259,4,a,a
+1246,259,5,whole,whole
+1247,259,6,television,television
+1248,259,7,set,set
+1249,259,8, ,","
+1250,260,0,just,just
+1251,260,1,on,on
+1252,260,2,one,one
+1253,260,3,chip,chip
+1254,260,4, ,.
+1255,261,0, ,..
+1256,261,1,And,[A:nd
+1257,261,2,uh,|uh:]
+1258,262,0, ,[
+1259,262,1, ,|@@]
+1260,263,0, ,...
+1261,263,1,uh,uh:
+1262,263,2, ,","
+1263,264,0,and,and
+1264,264,1,then,then
+1265,264,2,it'll,it'll
+1266,264,3,harden,harden
+1267,264,4,out,out
+1268,264,5,there,there
+1269,264,6, ,","
+1270,265,0,and,and
+1271,265,1,k,k-
+1272,265,2,they'll,they'll
+1273,265,3,bring,bring
+1274,265,4,it,it
+1275,265,5,back,back
+1276,265,6, ,.
+1277,266,0, ,...
+1278,266,1,a,%a-
+1279,266,2, ,..
+1280,266,3,uh,uh
+1281,266,4, ,","
+1282,267,0,the,the
+1283,267,1,whole,whole
+1284,267,2,thing,[thing
+1285,267,3,is,|is]
+1286,267,4,s,s:
+1287,267,5, ,","
+1288,268,0, ,[]
+1289,269,0,is,is
+1290,269,1,s,s:
+1291,269,2, ,","
+1292,270,0, ,..
+1293,270,1,is,is
+1294,270,2,so,so
+1295,270,3,sensational,sensational
+1296,270,4, ,.
+1297,271,0, ,...
+1298,271,1,That'll,That'll
+1299,271,2,be,be
+1300,271,3,expensive,expensive
+1301,271,4,at,at
+1302,271,5,first,first
+1303,271,6, ,.
+1304,272,0, ,...
+1305,272,1,God,God
+1306,272,2, ,.
+1307,273,0,But,But
+1308,273,1,can,[can
+1309,273,2,you,|you]
+1310,273,3, ,--
+1311,274,0,growing,[growing
+1312,274,1,em,|em]
+1313,274,2,in,in
+1314,274,3,space,space
+1315,274,4, ,","
+1316,275,0,but,[2but
+1317,275,1,that's,|2that's]
+1318,275,2,great,great
+1319,275,3, ,.
+1320,276,0,yeah,[2yeah]
+1321,276,1, ,.
+1322,277,0,it'll,it'll
+1323,277,1, ,--
+1324,278,0,it'll,it'll
+1325,278,1,uh,uh
+1326,278,2, ,","
+1327,279,0, ,...
+1328,279,1,it'll,[it'll]
+1329,279,2,be,be
+1330,279,3,worth,worth
+1331,279,4,it,it
+1332,279,5, ,.
+1333,280,0,In,[In]
+1334,280,1, ,--
+1335,281,0, ,...
+1336,281,1,This,This
+1337,281,2,technology,technology
+1338,281,3,out,out
+1339,281,4,of,of
+1340,281,5,most,m:ost
+1341,281,6,of,of
+1342,281,7, ,","
+1343,282,0, ,..
+1344,282,1,uh,uh
+1345,282,2,m,"m,"
+1346,282,3, ,"-,"
+1347,283,0, ,..
+1348,283,1,anything,anything
+1349,283,2,in,in
+1350,283,3,the,the
+1351,283,4,past,pa:st
+1352,283,5, ,","
+1353,284,0,ha,ha-
+1354,284,1,has,has
+1355,284,2,m,m-
+1356,284,3, ,--
+1357,285,0, ,...
+1358,285,1,it's,it's
+1359,285,2,becoming,becoming
+1360,285,3,like,like
+1361,285,4,we're,we're
+1362,285,5,shaping,shaping
+1363,285,6,our,our:
+1364,285,7, ,...
+1365,285,8,our,our
+1366,285,9,destiny,destiny
+1367,285,10, ,","
+1368,286,0,or,#or
+1369,286,1,ourselves,ourselves
+1370,286,2, ,.
+1371,287,0, ,...
+1372,287,1,um,u:m
+1373,287,2, ,","
+1374,288,0, ,...
+1375,288,1,with,with
+1376,288,2,this,this
+1377,288,3,technology,technology
+1378,288,4, ,","
+1379,289,0,more,more
+1380,289,1,than,than
+1381,289,2,we,we
+1382,289,3,have,have
+1383,289,4,in,in
+1384,289,5, ,..
+1385,289,6,with,with
+1386,289,7,any,any
+1387,289,8,other,other
+1388,289,9,in,in
+1389,289,10,the,the
+1390,289,11,past,past
+1391,289,12, ,","
+1392,290,0,it,it
+1393,290,1,seems,seems
+1394,290,2, ,.
+1395,291,0, ,:
+1396,291,1, ,..
+1397,291,2,just,just
+1398,291,3,blike,b_like
+1399,291,4, ,","
+1400,292,0,whatever,whatever
+1401,292,1,we,we
+1402,292,2,think,think
+1403,292,3,it,it
+1404,292,4,b,b-
+1405,292,5, ,--
+1406,293,0, ,..
+1407,293,1,we,we
+1408,293,2,can,can
+1409,293,3, ,..
+1410,293,4,make,make
+1411,293,5,it,it
+1412,293,6, ,.
+1413,294,0, ,..
+1414,294,1,but,but
+1415,294,2,there's,there's
+1416,294,3,one,one
+1417,294,4,technology,technology
+1418,294,5,that's,that's
+1419,294,6,um,u:m
+1420,294,7, ,","
+1421,295,0, ,..
+1422,295,1,gonna,gonna
+1423,295,2,overtake,overtake
+1424,295,3,that,that
+1425,295,4, ,","
+1426,296,0,and,and
+1427,296,1,that's,that's
+1428,296,2,DNA,D:NA
+1429,296,3,research,research
+1430,296,4, ,.
+1431,297,0, ,..
+1432,297,1,which,which
+1433,297,2,is,is:
+1434,297,3, ,","
+1435,298,0,like,like
+1436,298,1, ,","
+1437,299,0,a,a
+1438,299,1,total,total
+1439,299,2,scam,scam
+1440,299,3,at,at
+1441,299,4,this,this
+1442,299,5,point,point
+1443,299,6, ,","
+1444,300,0,still,still
+1445,300,1,it's,it's
+1446,300,2, ,","
+1447,301,0,they're,they're
+1448,301,1,just,just
+1449,301,2,like,like
+1450,301,3, ,","
+1451,302,0, ,..
+1452,302,1,bombarding,bombarding
+1453,302,2, ,...
+1454,302,3,rganisms,0rganisms
+1455,302,4,with,with
+1456,302,5,radiation,radiation
+1457,302,6, ,","
+1458,303,0,to,to
+1459,303,1,see,see
+1460,303,2,what,what
+1461,303,3,comes,comes
+1462,303,4,up,up
+1463,303,5, ,.
+1464,304,0, ,...
+1465,304,1,you,you
+1466,304,2,know,know
+1467,304,3, ,.
+1468,305,0,We,We
+1469,305,1,have,have
+1470,305,2,very,very
+1471,305,3,little,little
+1472,305,4,control,control
+1473,305,5,over,over
+1474,305,6,it,it
+1475,305,7, ,.
+1476,306,0, ,..
+1477,306,1,But,But
+1478,306,2,once,once
+1479,306,3,we,we
+1480,306,4,do,do:
+1481,306,5, ,","
+1482,307,0, ,..
+1483,307,1,we'll,we'll
+1484,307,2,be,be
+1485,307,3,able,able
+1486,307,4,to,to
+1487,307,5,program,progra:m
+1488,307,6,biology,biology
+1489,307,7,as,as
+1490,307,8,well,well
+1491,307,9, ,.
+1492,308,0, ,..
+1493,308,1,Well,Well
+1494,308,2,that's,tha:t's
+1495,308,3,pretty,pretty
+1496,308,4,frightening,frightening
+1497,308,5,concept,con[cept]
+1498,308,6, ,.
+1499,309,0, ,[
+1500,309,1, ,|]
+1501,309,2,It,It
+1502,309,3,is,is
+1503,309,4,frightening,frightening
+1504,309,5,but,but
+1505,309,6, ,","
+1506,310,0, ,..
+1507,310,1,We,We
+1508,310,2,can't,[can't
+1509,310,3,even,|even]
+1510,310,4,control,control
+1511,310,5,our,our
+1512,310,6,freeways,freeways
+1513,310,7, ,.
+1514,311,0,um,[um]
+1515,311,1, ,","
+1516,312,0,I,I
+1517,312,1,know,know:
+1518,312,2, ,.
+1519,313,0,you,you
+1520,313,1,know,know[:
+1521,313,2, ,?
+1522,314,0, ,[]
+1523,315,0,I,|I
+1524,315,1,mean,|mean]
+1525,315,2, ,","
+1526,316,0,but,but
+1527,316,1, ,","
+1528,317,0,i,i-
+1529,317,1, ,--
+1530,318,0,the,the
+1531,318,1,thing,thing
+1532,318,2,is,is
+1533,318,3, ,","
+1534,319,0,any,any
+1535,319,1,s,s-
+1536,319,2,technology,technology
+1537,319,3,that,that
+1538,319,4,comes,comes
+1539,319,5,up,up
+1540,319,6, ,","
+1541,320,0,it,it
+1542,320,1,gets,gets
+1543,320,2,used,used
+1544,320,3, ,.
+1545,321,0, ,...
+1546,321,1,Once,Once
+1547,321,2,it's,it's
+1548,321,3,out,out
+1549,321,4,there,there
+1550,321,5,in,in
+1551,321,6,the,[the
+1552,321,7,open,|open]
+1553,321,8, ,","
+1554,322,0, ,[]
+1555,323,0,the,the-
+1556,323,1, ,--
+1557,324,0,Well,Well
+1558,324,1,I,[I
+1559,324,2,hope,|hope]
+1560,324,3, ,--
+1561,325,0,the,[the
+1562,325,1,society,|so]ciety
+1563,325,2,as,[2as
+1564,325,3,a,|2a-
+1565,325,4,a,|2a
+1566,325,5,whole,|2whole]
+1567,325,6, ,","
+1568,326,0,I,[2I
+1569,326,1,hope,|2hope
+1570,326,2,they,|2they
+1571,326,3,use,|2use
+1572,326,4,fractals,|2fractals]
+1573,326,5, ,.
+1574,327,0, ,..
+1575,327,1,Are,Are
+1576,327,2,you,you
+1577,327,3,familiar,familiar
+1578,327,4,with,with
+1579,327,5,fractals,fractals
+1580,327,6, ,?
+1581,328,0,Unhunh,Unhunh
+1582,328,1, ,.
+1583,329,0, ,..
+1584,329,1,Yeah,Yeah
+1585,329,2, ,","
+1586,330,0,I,I
+1587,330,1,hope,hope
+1588,330,2,they,they
+1589,330,3,use,use
+1590,330,4,a,a
+1591,330,5,lot,lot
+1592,330,6,of,of
+1593,330,7,fractals,fractals
+1594,330,8, ,.
+1595,331,0,Because,Be[cause
+1596,331,1,f,|f:-]
+1597,331,2, ,--
+1598,332,0,in,[in
+1599,332,1,biology,|biolo]gy
+1600,332,2,research,re[2search]
+1601,332,3, ,?
+1602,333,0, ,[2%]
+1603,334,0,No,No
+1604,334,1, ,.
+1605,335,0,But,But
+1606,335,1,in,in:
+1607,335,2, ,","
+1608,336,0,well,well
+1609,336,1, ,","
+1610,337,0,the,the
+1611,337,1,connection,connection
+1612,337,2,between,between
+1613,337,3,mathematics,mathematics
+1614,337,4,and,and
+1615,337,5,biology,biology
+1616,337,6, ,","
+1617,338,0,can,[can
+1618,338,1,be,|be]
+1619,338,2,found,found
+1620,338,3,k,k-
+1621,338,4, ,--
+1622,339,0,unhunh,[unhunh]
+1623,339,1, ,.
+1624,340,0,uh,uh
+1625,340,1, ,","
+1626,341,0,more,m:ore
+1627,341,1,easily,easily
+1628,341,2,with,with
+1629,341,3,fractals,fractals
+1630,341,4, ,","
+1631,342,0,than,than
+1632,342,1,it,it
+1633,342,2,can,can
+1634,342,3,with,with
+1635,342,4,uh,uh
+1636,342,5,regular,[regular]
+1637,342,6,mathematics,mathematics
+1638,342,7, ,.
+1639,343,0,Yeah,[Yeah]
+1640,343,1, ,.
+1641,344,0, ,[:]:
+1642,345,0,Yeah,[Yeah]
+1643,345,1, ,.
+1644,346,0, ,...
+1645,346,1,So,So
+1646,346,2, ,","
+1647,347,0, ,..
+1648,347,1,you,you
+1649,347,2,know,know
+1650,347,3, ,","
+1651,348,0,I'm,I'm
+1652,348,1,looking,looking
+1653,348,2,for,for
+1654,348,3,the,the
+1655,348,4,p,p-
+1656,348,5,connection,connection
+1657,348,6, ,","
+1658,349,0,between,between
+1659,349,1,science,science
+1660,349,2,and,and
+1661,349,3, ,","
+1662,350,0,and,a:nd
+1663,350,1,religion,religion
+1664,350,2,and,and
+1665,350,3, ,","
+1666,351,0, ,..
+1667,351,1,and,and
+1668,351,2,and,and
+1669,351,3,and,[and
+1670,351,4,biology,|bio]logy
+1671,351,5, ,","
+1672,352,0,mhm,[mhm]
+1673,352,1, ,.
+1674,353,0,as,as
+1675,353,1,it,it
+1676,353,2,were,were
+1677,353,3, ,","
+1678,354,0,ar,ar-
+1679,354,1, ,--
+1680,355,0,th,th-
+1681,355,1,you,you
+1682,355,2,know,know
+1683,355,3, ,","
+1684,356,0,the,the
+1685,356,1,living,living
+1686,356,2,as,as
+1687,356,3,spiritual,spiritual
+1688,356,4, ,","
+1689,357,0,and,and
+1690,357,1,the,the
+1691,357,2, ,--
+1692,358,0,and,and
+1693,358,1,the,the:
+1694,358,2, ,","
+1695,359,0, , 
+1696,360,0,Like,[Like
+1697,360,1,the,|the
+1698,360,2,ancient,|ancient
+1699,360,3,science,|science
+1700,360,4,were,|were]
+1701,360,5, ,","
+1702,361,0,and,[and
+1703,361,1,the,|the
+1704,361,2,sci,|sci-
+1705,361,3, ,--
+1706,362,0,and,|and
+1707,362,1,the,|the
+1708,362,2,scientific,|scienti]fic
+1709,362,3, ,","
+1710,363,0, ,..
+1711,363,1,Pardon,[2Pardon]
+1712,363,2, ,?
+1713,364,0,it,[2it
+1714,364,1,was,|2was]
+1715,364,2, ,","
+1716,365,0,like,like
+1717,365,1,the,the
+1718,365,2,ancient,ancient
+1719,365,3,science,science
+1720,365,4, ,","
+1721,366,0,it,it
+1722,366,1,was,was
+1723,366,2,just,just
+1724,366,3, ,...
+1725,366,4,a,a
+1726,366,5,branch,branch
+1727,366,6,of,of
+1728,366,7,knowledge,knowledge
+1729,366,8, ,","
+1730,367,0,which,which
+1731,367,1,is,is-
+1732,367,2,included,included
+1733,367,3,all,[all
+1734,367,4,knowledge,|knowledge]
+1735,367,5,basically,basi[2cally
+1736,367,6, ,.
+1737,368,0,Alchemy,[Alchemy]
+1738,368,1, ,.
+1739,369,0,alchemy,[2alchemy
+1740,369,1, ,.
+1741,370,0, ,|2..
+1742,370,1,Right,|2Right2]
+1743,370,2, ,?
+1744,371,0, ,|2
+1745,371,1,Unhunh,|2Unhunh2]
+1746,371,2, ,.
+1747,372,0,yeah,[3yeah
+1748,372,1, ,.
+1749,373,0, ,[3:
+1750,374,0,Whatever,|3Whatever
+1751,374,1,gets,|3gets3]
+1752,374,2,the,the
+1753,374,3,job,job
+1754,374,4,done,done
+1755,374,5, ,.
+1756,375,0,The,|3The-
+1757,375,1,the,|3the-3]
+1758,375,2, ,--
+1759,376,0,the,the
+1760,376,1,gestalt,ge[4stalt]
+1761,376,2, ,.
+1762,377,0, ,[4@]
+1763,378,0, ,..
+1764,378,1,the,the
+1765,378,2,totality,totality
+1766,378,3,is,i:s
+1767,378,4,taken,taken
+1768,378,5,into,into
+1769,378,6,account,account
+1770,378,7, ,","
+1771,379,0,as,as
+1772,379,1,opposed,opposed
+1773,379,2,to,to
+1774,379,3, ,","
+1775,380,0,as,[as
+1776,380,1,opposed,|opposed]
+1777,380,2,to,to
+1778,380,3,the,the
+1779,380,4,observer,observer
+1780,380,5, ,.
+1781,381,0,Right,[Right]
+1782,381,1, ,.
+1783,382,0,you,you
+1784,382,1,know,know
+1785,382,2, ,","
+1786,383,0,I,I
+1787,383,1,remember,remember
+1788,383,2, ,","
+1789,384,0,m,%m-
+1790,384,1,back,back
+1791,384,2,in,in
+1792,384,3,the,the
+1793,384,4,psychedelic,psychedelic
+1794,384,5,days,days
+1795,384,6, ,","
+1796,385,0,there,there
+1797,385,1,was,was
+1798,385,2,this,this
+1799,385,3,poster,poster
+1800,385,4,of,of
+1801,385,5,the,the
+1802,385,6,scientist,scientist
+1803,385,7, ,.
+1804,386,0,I've,I've
+1805,386,1,always,always
+1806,386,2,been,been
+1807,386,3,on,on
+1808,386,4,a,a
+1809,386,5, ,","
+1810,387,0, ,..
+1811,387,1,kind,kind
+1812,387,2,of,of
+1813,387,3,a,a
+1814,387,4,crusade,crusade
+1815,387,5, ,","
+1816,388,0, ,..
+1817,388,1,for,for
+1818,388,2,scientific,scientific
+1819,388,3,uh,uh
+1820,388,4, ,","
+1821,389,0,responsibility,responsibility
+1822,389,1, ,.
+1823,390,0,Right,Right
+1824,390,1, ,?
+1825,391,0,And,And
+1826,391,1,scientists,scientists
+1827,391,2,are,are
+1828,391,3, ,","
+1829,392,0,are,are
+1830,392,1,taking,taking
+1831,392,2,such,such
+1832,392,3,control,control
+1833,392,4,over,over
+1834,392,5,the,the
+1835,392,6,world,world
+1836,392,7,these,these
+1837,392,8,days,days
+1838,392,9, ,.
+1839,393,0,uh,uh
+1840,393,1,with,with
+1841,393,2,their,their
+1842,393,3,n,"n,"
+1843,393,4, ,"-,"
+1844,394,0, ,..
+1845,394,1,you,you
+1846,394,2,know,know
+1847,394,3, ,","
+1848,395,0,not,not
+1849,395,1,the,the
+1850,395,2,scientists,scientists
+1851,395,3, ,","
+1852,396,0,but,but
+1853,396,1,what,what
+1854,396,2,they've,they've
+1855,396,3,invented,invented
+1856,396,4, ,.
+1857,397,0,And,And
+1858,397,1,the,the
+1859,397,2,way,way
+1860,397,3,it's,it's
+1861,397,4,marketed,marketed
+1862,397,5, ,","
+1863,398,0,and,and
+1864,398,1,the,the
+1865,398,2,way,way
+1866,398,3,we're,we're
+1867,398,4,d,d-
+1868,398,5, ,--
+1869,399,0, ,..
+1870,399,1,we,we
+1871,399,2,develop,develop
+1872,399,3,needs,needs
+1873,399,4,for,for
+1874,399,5,it,it
+1875,399,6, ,.
+1876,400,0,And,And
+1877,400,1,I,I
+1878,400,2,remember,remember
+1879,400,3,this,this
+1880,400,4,pf,pf-
+1881,400,5,cartoon,cartoon
+1882,400,6,I,I
+1883,400,7,saw,saw
+1884,400,8,w,"w,"
+1885,400,9, ,"-,"
+1886,401,0, ,..
+1887,401,1,of,of
+1888,401,2, ,","
+1889,402,0, ,..
+1890,402,1,of,of
+1891,402,2, ,","
+1892,403,0, ,..
+1893,403,1,it,it
+1894,403,2,was,was
+1895,403,3,called,called
+1896,403,4,The,The
+1897,403,5,Scientist,Scientist
+1898,403,6, ,.
+1899,404,0,and,and
+1900,404,1,it,it
+1901,404,2,had,had
+1902,404,3,this,this
+1903,404,4, ,","
+1904,405,0, ,..
+1905,405,1,this,this
+1906,405,2,wonderful,wonderful
+1907,405,3,stone,stone
+1908,405,4,statue,statue
+1909,405,5, ,","
+1910,406,0,about,about
+1911,406,1,twenty,twenty
+1912,406,2,stories,stories
+1913,406,3,tall,tall
+1914,406,4, ,","
+1915,407,0,of,of
+1916,407,1,a,a
+1917,407,2,naked,naked
+1918,407,3,man,ma:n
+1919,407,4, ,","
+1920,408,0,and,and
+1921,408,1,a,a
+1922,408,2,naked,naked
+1923,408,3,woman,woman
+1924,408,4, ,","
+1925,409,0, ,..
+1926,409,1,intertwined,intertwined
+1927,409,2,with,with
+1928,409,3,each,each
+1929,409,4,other,other
+1930,409,5, ,","
+1931,410,0,hugging,hugging
+1932,410,1,each,each
+1933,410,2,other,other
+1934,410,3, ,","
+1935,411,0,full,full
+1936,411,1,frontal,frontal
+1937,411,2, ,","
+1938,412,0,and,and
+1939,412,1,their,their
+1940,412,2,arms,arms
+1941,412,3,wrapped,wrapped
+1942,412,4,around,around
+1943,412,5,each,each
+1944,412,6,other,other
+1945,412,7, ,","
+1946,413,0,and,and
+1947,413,1,then,then
+1948,413,2,they,they
+1949,413,3,s,s-
+1950,413,4, ,--
+1951,414,0, ,..
+1952,414,1,they,they-
+1953,414,2,they,they
+1954,414,3,looked,looked
+1955,414,4,like,like
+1956,414,5,they,they
+1957,414,6,were,were
+1958,414,7,so,so
+1959,414,8,intertwined,intertwined
+1960,414,9, ,","
+1961,415,0,and,and
+1962,415,1,they,they
+1963,415,2,spiraled,spiraled
+1964,415,3,down,down
+1965,415,4,and,and
+1966,415,5, ,","
+1967,416,0, ,..
+1968,416,1,and,and
+1969,416,2,they're,they're
+1970,416,3,a,a
+1971,416,4,s,s-
+1972,416,5, ,--
+1973,417,0, ,..
+1974,417,1,they're,they're
+1975,417,2,a,a
+1976,417,3,statue,statue
+1977,417,4, ,.
+1978,418,0,right,[right]
+1979,418,1, ,","
+1980,419,0,Hm,[Hm]
+1981,419,1, ,.
+1982,420,0,made,made
+1983,420,1,out,out
+1984,420,2,of,of
+1985,420,3,stone,sto:ne
+1986,420,4, ,.
+1987,421,0,and,and
+1988,421,1,they're,they're
+1989,421,2, ,","
+1990,422,0,and,and
+1991,422,1,the,the
+1992,422,2,whole,whole
+1993,422,3,base,b:ase
+1994,422,4,of,of
+1995,422,5,the,the
+1996,422,6,statue,statue
+1997,422,7,is,is
+1998,422,8,crumbling,crumbling
+1999,422,9, ,.
+2000,423,0, ,...
+2001,423,1,Right,Right
+2002,423,2, ,?
+2003,424,0,And,And
+2004,424,1,it's,it's
+2005,424,2,just,just
+2006,424,3,like,like
+2007,424,4,rubble,rubble:
+2008,424,5, ,.
+2009,425,0,f,f-
+2010,425,1,like,like
+2011,425,2,from,from
+2012,425,3, ,","
+2013,426,0, ,..
+2014,426,1,just,just
+2015,426,2,below,below
+2016,426,3,the,the
+2017,426,4,knees,knee:s
+2018,426,5, ,","
+2019,427,0,down,down
+2020,427,1, ,","
+2021,428,0,was,was
+2022,428,1,just,just
+2023,428,2,kind,kind
+2024,428,3,of,of
+2025,428,4,rubble,rubble
+2026,428,5, ,.
+2027,429,0,but,but
+2028,429,1,the,the
+2029,429,2,rest,rest
+2030,429,3,of,of
+2031,429,4,it,it
+2032,429,5,was,was
+2033,429,6,all,all
+2034,429,7,real,real
+2035,429,8,clear,clear
+2036,429,9, ,","
+2037,430,0,a,a
+2038,430,1,few,few
+2039,430,2,ttle,0ttle
+2040,430,3, ,--
+2041,431,0, ,..
+2042,431,1,some,some
+2043,431,2,of,of
+2044,431,3,it,it
+2045,431,4,was,was
+2046,431,5,chipped,chipped
+2047,431,6,off,off
+2048,431,7, ,","
+2049,432,0,you,you
+2050,432,1,know,know
+2051,432,2, ,","
+2052,433,0,it,it
+2053,433,1,was,was
+2054,433,2,old,ol:d
+2055,433,3,but,but
+2056,433,4, ,","
+2057,434,0,and,and
+2058,434,1,d,d-
+2059,434,2, ,--
+2060,435,0,and,and
+2061,435,1,down,down
+2062,435,2,at,at
+2063,435,3,the,the
+2064,435,4,bottom,bo:ttom
+2065,435,5, ,","
+2066,436,0,of,of
+2067,436,1,this,this
+2068,436,2, ,","
+2069,437,0, ,..
+2070,437,1,this,this
+2071,437,2,rubble,rubble
+2072,437,3, ,","
+2073,438,0, ,..
+2074,438,1,was,was
+2075,438,2,this,this
+2076,438,3,little,little
+2077,438,4,man,m:an
+2078,438,5, ,.
+2079,439,0,who,who
+2080,439,1,was,was
+2081,439,2,a,a
+2082,439,3,scientist,scientist
+2083,439,4, ,.
+2084,440,0,And,And
+2085,440,1,he,he
+2086,440,2,had,had
+2087,440,3,this,this
+2088,440,4,big,big
+2089,440,5,magnifying,magnifying
+2090,440,6,glass,glass
+2091,440,7, ,.
+2092,441,0,and,and
+2093,441,1,he,he
+2094,441,2,was,was
+2095,441,3,looking,looking
+2096,441,4,at,at
+2097,441,5,the,the
+2098,441,6,rubble,rubble
+2099,441,7, ,.
+2100,442,0,Looking,Looking
+2101,442,1,with,[with
+2102,442,2,his,|his]
+2103,442,3,head,head
+2104,442,4,down,down
+2105,442,5, ,","
+2106,443,0, ,[@]
+2107,444,0, ,..
+2108,444,1,Hm,Hm
+2109,444,2, ,.
+2110,445,0,not,not
+2111,445,1,looking,looking
+2112,445,2,up,up
+2113,445,3,at,at
+2114,445,4,the,the
+2115,445,5,statue,statue
+2116,445,6, ,","
+2117,446,0,and,and
+2118,446,1,seeing,seei:ng
+2119,446,2,the,the
+2120,446,3,love,lo:ve
+2121,446,4, ,","
+2122,447,0,and,and
+2123,447,1,the,the
+2124,447,2,the,the-
+2125,447,3,the,the-
+2126,447,4,symbol,symbol
+2127,447,5,there,there
+2128,447,6, ,","
+2129,448,0,but,but
+2130,448,1,looking,looking
+2131,448,2,down,down
+2132,448,3,at,at
+2133,448,4,the,the
+2134,448,5,crumbs,crumbs
+2135,448,6, ,","
+2136,449,0,you,you
+2137,449,1,know,[know]
+2138,449,2, ,","
+2139,450,0,Hm,[Hm]
+2140,450,1, ,.
+2141,451,0,at,at
+2142,451,1,the,the
+2143,451,2,rubble,rubble
+2144,451,3,at,at
+2145,451,4,the,the
+2146,451,5,bottom,bottom
+2147,451,6, ,.
+2148,452,0,With,With
+2149,452,1,his,his
+2150,452,2,magnifying,magnifying
+2151,452,3,glass,glass
+2152,452,4, ,.
+2153,453,0, ,..
+2154,453,1,and,an:d
+2155,453,2, ,","
+2156,454,0, ,...
+2157,454,1,and,an:d
+2158,454,2, ,","
+2159,455,0, ,..
+2160,455,1,to,to
+2161,455,2,me,me
+2162,455,3,that,that
+2163,455,4, ,","
+2164,456,0, ,..
+2165,456,1,that,that
+2166,456,2,always,always
+2167,456,3,symbolized,symbolized
+2168,456,4, ,","
+2169,457,0,kind,kind
+2170,457,1,of,of
+2171,457,2,rather,rather
+2172,457,3,clearly,clearly
+2173,457,4, ,","
+2174,458,0,the,the
+2175,458,1,limitations,limitations
+2176,458,2,of,of
+2177,458,3,the,the
+2178,458,4,scientific,scientific
+2179,458,5,method,method
+2180,458,6, ,.
+2181,459,0, ,..
+2182,459,1,Whi,Whi-
+2183,459,2, ,--
+2184,460,0,if,if
+2185,460,1,it,it
+2186,460,2,doesn't,doesn't
+2187,460,3,take,take
+2188,460,4,into,into
+2189,460,5,account,account
+2190,460,6, ,","
+2191,461,0, ,...
+2192,461,1,well,well
+2193,461,2, ,","
+2194,462,0, ,..
+2195,462,1,the,the
+2196,462,2, ,..
+2197,462,3,to,to-
+2198,462,4, ,--
+2199,463,0, ,..
+2200,463,1,the,the
+2201,463,2,the,the
+2202,463,3,the,the
+2203,463,4,whole,whole
+2204,463,5,human,human
+2205,463,6,experience,experience
+2206,463,7, ,","
+2207,464,0,and,and
+2208,464,1, ,","
+2209,465,0, ,..
+2210,465,1,including,including
+2211,465,2, ,","
+2212,466,0, ,..
+2213,466,1,the,the
+2214,466,2, ,..
+2215,466,3,unbelievable,unbelievable
+2216,466,4,parts,parts
+2217,466,5,of,of
+2218,466,6,it,it
+2219,466,7, ,.
+2220,467,0, ,..
+2221,467,1,the,the
+2222,467,2,parts,parts
+2223,467,3,that,that
+2224,467,4,are,are
+2225,467,5,just,just
+2226,467,6,legend,legend
+2227,467,7, ,.
+2228,468,0,and,and
+2229,468,1,myth,myth
+2230,468,2, ,.
+2231,469,0,and,and
+2232,469,1, ,","
+2233,470,0, ,..
+2234,470,1,and,a:nd
+2235,470,2,uh,uh:
+2236,470,3, ,","
+2237,471,0, ,..
+2238,471,1,alluded,[alluded
+2239,471,2,to,|to:]
+2240,471,3, ,","
+2241,472,0,you,[you
+2242,472,1,mean,|mean
+2243,472,2,the,|the
+2244,472,3,theories,|theories]
+2245,472,4, ,.
+2246,473,0,and,and]
+2247,473,1, ,","
+2248,474,0,and,and
+2249,474,1,the,the
+2250,474,2,psychedelic,psychedelic
+2251,474,3,experiences,experiences
+2252,474,4, ,","
+2253,475,0,and,and
+2254,475,1,the,the
+2255,475,2,subjective,subjec[tive]
+2256,475,3, ,","
+2257,476,0,oh,[oh
+2258,476,1, ,","
+2259,477,0,on,|on2]
+2260,477,1,that,that
+2261,477,2,side,side
+2262,477,3, ,.
+2263,478,0,you,you
+2264,478,1,know,know:
+2265,478,2, ,","
+2266,479,0,and,and
+2267,479,1,insanity,insanity:
+2268,479,2, ,","
+2269,480,0,and,[and
+2270,480,1, ,","
+2271,481,0, ,[:]
+2272,482,0,What,|What
+2273,482,1, ,","
+2274,483,0,I,|I]
+2275,483,1,mean,mean
+2276,483,2, ,","
+2277,484,0,well,[2well]
+2278,484,1, ,","
+2279,485,0,you,[2you
+2280,485,1,know,|2know
+2281,485,2,they,|2they]
+2282,485,3, ,--
+2283,486,0, ,...
+2284,486,1, ,%
+2285,487,0,They've,They've
+2286,487,1,got,got
+2287,487,2,to,to
+2288,487,3,take,take
+2289,487,4,ac,ac-
+2290,487,5,into,into
+2291,487,6,account,account
+2292,487,7, ,","
+2293,488,0, ,[%]
+2294,489,0, ,[]
+2295,489,1,uh,uh
+2296,489,2, ,","
+2297,490,0,but,but
+2298,490,1, ,","
+2299,491,0, ,..
+2300,491,1,you,[you
+2301,491,2,can't,|can't]
+2302,491,3, ,","
+2303,492,0,the,[the
+2304,492,1,East,|East]
+2305,492,2, ,","
+2306,493,0,with,with
+2307,493,1,all,all
+2308,493,2,its,its
+2309,493,3, ,","
+2310,494,0,with,with
+2311,494,1,all,all
+2312,494,2,its,its
+2313,494,3,fantastic,fantas[tic
+2314,494,4,discoveries,|discoveries]
+2315,494,5, ,.
+2316,495,0,but,[but
+2317,495,1,you,|you
+2318,495,2,can't,|can't
+2319,495,3,look,|look]
+2320,495,4,at,at
+2321,495,5,the,the
+2322,495,6,stars,stars
+2323,495,7,with,with
+2324,495,8,a,a
+2325,495,9,microscope,microscope
+2326,495,10, ,.
+2327,496,0, ,...
+2328,496,1,And,And
+2329,496,2,science,science
+2330,496,3,is,is
+2331,496,4,a,a
+2332,496,5,microscope,microscope
+2333,496,6, ,.
+2334,497,0, ,...
+2335,497,1,Each,Each
+2336,497,2, ,..
+2337,497,3,pscientist,p_scientist
+2338,497,4,has,has
+2339,497,5,their,their
+2340,497,6, ,","
+2341,498,0, ,...
+2342,498,1,their,their
+2343,498,2,field,field
+2344,498,3,of,of
+2345,498,4,um,um
+2346,498,5, ,","
+2347,499,0, ,...
+2348,499,1,expertise,experti:se
+2349,499,2, ,","
+2350,500,0, ,..
+2351,500,1,and,and
+2352,500,2,if,if
+2353,500,3,they're,they're
+2354,500,4,gonna,gonna
+2355,500,5,go,go
+2356,500,6, ,","
+2357,501,0, ,..
+2358,501,1,if,if
+2359,501,2,they're,they're
+2360,501,3,gonna,gonna
+2361,501,4,stretch,stretch
+2362,501,5,out,out
+2363,501,6,far,far
+2364,501,7,enough,enough
+2365,501,8,into,into
+2366,501,9,the,the%
+2367,501,10, ,--
+2368,502,0, ,...
+2369,502,1,the,the
+2370,502,2,unknown,unknown
+2371,502,3, ,.
+2372,503,0, ,..
+2373,503,1,where,where
+2374,503,2,they,they
+2375,503,3,can,can
+2376,503,4,find,find
+2377,503,5,something,something
+2378,503,6,new,new
+2379,503,7, ,.
+2380,504,0,They,They
+2381,504,1,have,have
+2382,504,2,to,to
+2383,504,3,do,do
+2384,504,4,it,it
+2385,504,5,in,in
+2386,504,6,a,a
+2387,504,7,straight,straight
+2388,504,8,line,line
+2389,504,9, ,.
+2390,505,0,They,They
+2391,505,1,can't,can't
+2392,505,2,do,[do
+2393,505,3,it,|it
+2394,505,4, ,","
+2395,506,0,that's,[that's
+2396,506,1,true,|true]
+2397,506,2, ,.
+2398,507,0, ,|]:
+2399,507,1,in,in
+2400,507,2,all,all
+2401,507,3,directions,directions
+2402,507,4,at,at
+2403,507,5,once,once
+2404,507,6, ,.
+2405,508,0,Because,Because
+2406,508,1,then,then
+2407,508,2,you,you
+2408,508,3,run,run
+2409,508,4,into,into
+2410,508,5,things,things
+2411,508,6,that,that
+2412,508,7,we,we
+2413,508,8,already,already
+2414,508,9,know,know
+2415,508,10, ,.
+2416,509,0, ,..
+2417,509,1,So,[So
+2418,509,2,the,|the
+2419,509,3,problem,|problem
+2420,509,4,is,|is:
+2421,509,5,communication,|communication
+2422,509,6,between,|between
+2423,509,7,s,|s-]
+2424,509,8, ,--
+2425,510,0,but,[but
+2426,510,1,they're,|they're
+2427,510,2,doing,|doing
+2428,510,3,it,|it
+2429,510,4, ,","
+2430,511,0, ,|..
+2431,511,1,they're,|they're
+2432,511,2,doing,|doing
+2433,511,3,it,|it
+2434,511,4,with,|with
+2435,511,5,mathematics,|mathematics
+2436,511,6, ,.
+2437,512,0,Right,|Right]
+2438,512,1, ,?
+2439,513,0, ,...
+2440,513,1,I,[2I
+2441,513,2,mean,|2mean2
+2442,513,3, ,","
+2443,514,0,Well,[2Well
+2444,514,1, ,","
+2445,515,0,n,|2n-
+2446,515,1, ,|2..
+2447,515,2,no,|2no2
+2448,515,3, ,.
+2449,516,0, ,|2..
+2450,516,1,but,|2but
+2451,516,2,the,|2the
+2452,516,3,comm,"|2comm2],"
+2453,516,4, ,"-,"
+2454,517,0, ,..
+2455,517,1,problem,problem
+2456,517,2,is,is
+2457,517,3, ,","
+2458,518,0, ,..
+2459,518,1,communication,communication
+2460,518,2,between,between
+2461,518,3,the,the
+2462,518,4,branches,branches
+2463,518,5,of,of
+2464,518,6,science,science
+2465,518,7, ,.
+2466,519,0, ,|2..
+2467,519,1,mhm,|2[mhm]
+2468,519,2, ,.
+2469,520,0,I,[I
+2470,520,1,think,|think]
+2471,520,2, ,.
+2472,521,0, ,|..
+2473,521,1, ,|
+2474,521,2,that's,|that's
+2475,521,3,true,|[2true]
+2476,521,4, ,.
+2477,522,0,cause,[2cause]
+2478,522,1, ,","
+2479,523,0,who's,who's
+2480,523,1,gonna,gonna
+2481,523,2, ,..
+2482,523,3,be,be
+2483,523,4,able,able
+2484,523,5,to,to
+2485,523,6,hold,hold
+2486,523,7, ,","
+2487,524,0,all,all
+2488,524,1,that,that
+2489,524,2,knowledge,knowledge
+2490,524,3, ,","
+2491,525,0,and,and
+2492,525,1,make,make
+2493,525,2,the,the
+2494,525,3,connections,connections
+2495,525,4, ,.
+2496,526,0, ,|...
+2497,526,1, ,|
+2498,526,2,Well,|Well
+2499,526,3, ,","
+2500,527,0,the,|the
+2501,527,1,philosophers,|philosopher:s
+2502,527,2, ,","
+2503,528,0,and,|and
+2504,528,1,the,|the:
+2505,528,2,spiritual,|spiritual
+2506,528,3,leaders,|leaders
+2507,528,4, ,","
+2508,529,0,and,|an:d
+2509,529,1, ,","
+2510,530,0,I,|I
+2511,530,1,mean,|mean
+2512,530,2, ,","
+2513,531,0,cause,|cause
+2514,531,1, ,","
+2515,532,0, ,|..
+2516,532,1,f,|f-
+2517,532,2,the,|the
+2518,532,3,stuff,|stuff
+2519,532,4,can,|can
+2520,532,5,be,|be
+2521,532,6,understand,|understand
+2522,532,7, ,","
+2523,533,0, ,|..
+2524,533,1,understood,|understood
+2525,533,2, ,","
+2526,534,0, ,|...
+2527,534,1,The,|The
+2528,534,2,goals,|[goa:ls
+2529,534,3, ,","
+2530,535,0, ,[
+2531,535,1, ,|..
+2532,535,2,Those,|Those
+2533,535,3,people,|people
+2534,535,4,can,|can
+2535,535,5,tell,|tell
+2536,535,6,you,|you:]
+2537,535,7, ,","
+2538,536,0,or,|or
+2539,536,1,the,|the
+2540,536,2, ,","
+2541,537,0, ,|..
+2542,537,1,or,|or
+2543,537,2,the,|the
+2544,537,3,cutting,|cutting
+2545,537,4, ,--
+2546,538,0,cutting,|cutting]
+2547,538,1,edge,edge
+2548,538,2, ,","
+2549,539,0,can,can
+2550,539,1,be,be
+2551,539,2,understand,understand
+2552,539,3, ,--
+2553,540,0, ,..
+2554,540,1,understood,understood
+2555,540,2,intellectually,intellectually
+2556,540,3, ,","
+2557,541,0, ,[:]
+2558,542,0,but,[but]
+2559,542,1,those,those
+2560,542,2,people,people
+2561,542,3,can't,can't
+2562,542,4,tell,tell
+2563,542,5,you,you
+2564,542,6,the,the
+2565,542,7,details,details
+2566,542,8, ,.
+2567,543,0, ,..
+2568,543,1,they,they
+2569,543,2,know,know
+2570,543,3,the,the
+2571,543,4,whole,whole
+2572,543,5,structure,structure
+2573,543,6, ,","
+2574,544,0,but,[but
+2575,544,1,see,|see]
+2576,544,2, ,","
+2577,545,0,well,[well
+2578,545,1,the,|the]
+2579,545,2, ,--
+2580,546,0,it's,it's
+2581,546,1,like,like
+2582,546,2,both,both
+2583,546,3,sides,sides
+2584,546,4, ,.
+2585,547,0,You,You
+2586,547,1,have,have
+2587,547,2,to,to
+2588,547,3,have,have
+2589,547,4,somebody,somebody
+2590,547,5,looking,looking
+2591,547,6,at,at
+2592,547,7,the,the
+2593,547,8,details,[details
+2594,547,9, ,","
+2595,548,0,y,[%y-
+2596,548,1,got,|got
+2597,548,2,to,|to
+2598,548,3,have,|have
+2599,548,4,a,|a
+2600,548,5,leader,|leader
+2601,548,6, ,","
+2602,549,0,and,|and
+2603,549,1,somebody,|somebody
+2604,549,2,looking,|looking
+2605,549,3,at,|at
+2606,549,4,the,|the
+2607,549,5, ,--
+2608,550,0, ,|]
+2609,551,0,and,|and
+2610,551,1,you,|you
+2611,551,2,got,|got
+2612,551,3,to,|to
+2613,551,4,have,|have]
+2614,551,5, ,","
+2615,552,0,a,a
+2616,552,1,bunch,bunch
+2617,552,2,of,of
+2618,552,3,workers,workers
+2619,552,4, ,.
+2620,553,0,You,[You
+2621,553,1,know,|know]
+2622,553,2, ,?
+2623,554,0,Yeah,[Yeah]
+2624,554,1, ,.
+2625,555,0, ,..
+2626,555,1,And,A[2:nd
+2627,555,2,you,|2you
+2628,555,3,gotta,|2gotta]
+2629,555,4,have,have
+2630,555,5,somebody,somebody
+2631,555,6, ,","
+2632,556,0,right,[2right]
+2633,556,1, ,.
+2634,557,0,who,who
+2635,557,1,disn't,d_isn't
+2636,557,2,necessarily,necessarily
+2637,557,3,inclined,inclined
+2638,557,4,to,to
+2639,557,5,deal,deal
+2640,557,6,with,with
+2641,557,7,the,the
+2642,557,8,details,details
+2643,557,9,that,that
+2644,557,10,much,mu:ch
+2645,557,11, ,","
+2646,558,0,who's,who's
+2647,558,1,guiding,guiding
+2648,558,2, ,","
+2649,559,0,those,those
+2650,559,1,who,who
+2651,559,2,are,are
+2652,559,3,willing,willing
+2653,559,4,to,[to
+2654,559,5,sit,|sit
+2655,559,6,there,|there
+2656,559,7, ,","
+2657,560,0,I,[I
+2658,560,1,guess,|guess
+2659,560,2,that's,|that's
+2660,560,3,the,|the
+2661,560,4,problem,|problem
+2662,560,5, ,","
+2663,561,0, ,|..
+2664,561,1,and,|and
+2665,561,2,make,|make
+2666,561,3,all,|all
+2667,561,4,the,|the]
+2668,561,5, ,--
+2669,562,0,we,|we
+2670,562,1,don't,|don't
+2671,562,2,have,|have
+2672,562,3,a,|a]
+2673,562,4,guider,guider
+2674,562,5, ,.
+2675,563,0, ,..
+2676,563,1,yeah,yeah
+2677,563,2, ,.
+2678,564,0,there's,there's
+2679,564,1,no,no
+2680,564,2,l,"l,"
+2681,564,3, ,"-,"
+2682,565,0,there's,there's
+2683,565,1,no,no
+2684,565,2,lead,lead
+2685,565,3, ,","
+2686,566,0,or,or
+2687,566,1,there's,[there's
+2688,566,2,no,|no]
+2689,566,3,focus,focus
+2690,566,4, ,.
+2691,567,0,yeah,[yeah]
+2692,567,1, ,.
+2693,568,0,and,[2and]
+2694,568,1, ,--
+2695,569,0,That's,[2That's
+2696,569,1,right,|2right]
+2697,569,2, ,.
+2698,570,0, ,..
+2699,570,1,and,a:nd
+2700,570,2,uh,uh
+2701,570,3, ,","
+2702,571,0, ,..
+2703,571,1,you,you
+2704,571,2,know,know
+2705,571,3, ,","
+2706,572,0, ,..
+2707,572,1,I,I
+2708,572,2,think,think
+2709,572,3, ,","
+2710,573,0, ,...
+2711,573,1,I,I
+2712,573,2,think,think
+2713,573,3,that,that
+2714,573,4, ,","
+2715,574,0, ,..
+2716,574,1,one,one
+2717,574,2,of,of
+2718,574,3,the,the
+2719,574,4,reasons,reasons
+2720,574,5,that,that
+2721,574,6,there's,there's
+2722,574,7,been,been
+2723,574,8,no,no
+2724,574,9,focus,focus
+2725,574,10,is,is
+2726,574,11,because,because
+2727,574,12, ,","
+2728,575,0, ,..
+2729,575,1,h,0h
+2730,575,2, ,","
+2731,576,0,everybody,everybody
+2732,576,1,accepted,accepted
+2733,576,2,the,the
+2734,576,3,scientific,scientific
+2735,576,4,method,method
+2736,576,5,as,as
+2737,576,6,the,the
+2738,576,7,best,best
+2739,576,8,tool,too:l
+2740,576,9,that,that
+2741,576,10,we,we
+2742,576,11,have,ha:ve
+2743,576,12, ,","
+2744,577,0, ,[
+2745,577,1,And,|And]
+2746,577,2,was,was
+2747,577,3,kinda,kinda
+2748,577,4,letting,letting
+2749,577,5,the,the
+2750,577,6,scientific,scientific
+2751,577,7,method,method
+2752,577,8,be,be
+2753,577,9,the,the
+2754,577,10, ,--
+2755,578,0,Mhm,[Mhm]
+2756,578,1, ,.
+2757,579,0, ,..
+2758,579,1,be,be
+2759,579,2,the,the
+2760,579,3,leader,leader
+2761,579,4, ,.
+2762,580,0,The,The:
+2763,580,1, ,--
+2764,581,0,the,the-
+2765,581,1,w,w-
+2766,581,2,you,you
+2767,581,3,know,know
+2768,581,4, ,","
+2769,582,0, ,..
+2770,582,1,just,[just
+2771,582,2,continue,|continue
+2772,582,3,inventorying,|inventorying
+2773,582,4,and,|and]
+2774,582,5, ,","
+2775,583,0,Well,[Well
+2776,583,1,those,|those
+2777,583,2,people,|people
+2778,583,3,who,|who
+2779,583,4,are,|are
+2780,583,5,doing,|doing
+2781,583,6,research,|re]search
+2782,583,7, ,.
+2783,584,0, ,..
+2784,584,1,continue,continue
+2785,584,2,inventorying,inventorying
+2786,584,3, ,","
+2787,585,0,cataloging,cataloging
+2788,585,1, ,","
+2789,586,0,experimenting,%_experimenting
+2790,586,1, ,","
+2791,587,0, ,...
+2792,587,1,You,You
+2793,587,2,know,know
+2794,587,3, ,.
+2795,588,0, ,...
+2796,588,1,documenting,documenting
+2797,588,2, ,.
+2798,589,0, ,...
+2799,589,1,uh,uh:
+2800,589,2, ,","
+2801,590,0, ,...
+2802,590,1,uh,uh:
+2803,590,2, ,","
+2804,591,0,whatever,whatever
+2805,591,1, ,.
+2806,592,0,and,and
+2807,592,1, ,","
+2808,593,0,instead,instead
+2809,593,1,of,of:
+2810,593,2, ,","
+2811,594,0, ,..
+2812,594,1,instead,instead
+2813,594,2,of,of
+2814,594,3,uh,uh
+2815,594,4, ,","
+2816,595,0, ,...
+2817,595,1,uh,uh
+2818,595,2,coming,coming
+2819,595,3,at,at
+2820,595,4,it,it
+2821,595,5,from,from
+2822,595,6,another,another
+2823,595,7,direction,direction
+2824,595,8, ,.
+2825,596,0,Trying,Trying
+2826,596,1,to,to
+2827,596,2,find,find
+2828,596,3, ,","
+2829,597,0, ,..
+2830,597,1,trying,trying
+2831,597,2,to,to
+2832,597,3,find,find
+2833,597,4, ,","
+2834,598,0, ,..
+2835,598,1,uh,uh
+2836,598,2, ,","
+2837,599,0, ,...
+2838,599,1,trying,trying
+2839,599,2,to,to
+2840,599,3,find,find
+2841,599,4,ways,way:s
+2842,599,5,to,to
+2843,599,6, ,","
+2844,600,0,to,to
+2845,600,1, ,","
+2846,601,0,like,like
+2847,601,1, ,..
+2848,601,2,with,with
+2849,601,3, ,..
+2850,601,4,with,with
+2851,601,5,Einstein,Einstein
+2852,601,6,for,for
+2853,601,7,example,example
+2854,601,8, ,","
+2855,602,0,you,you
+2856,602,1,know,know
+2857,602,2, ,","
+2858,603,0,uh,uh
+2859,603,1, ,","
+2860,604,0,it,it
+2861,604,1,seemed,seemed
+2862,604,2,to,to
+2863,604,3,me,me
+2864,604,4, ,","
+2865,605,0,he,he
+2866,605,1,was,was
+2867,605,2,trying,trying
+2868,605,3,to,to
+2869,605,4,f,f-
+2870,605,5, ,--
+2871,606,0,The,T_he
+2872,606,1,was,was
+2873,606,2,ex,ex-
+2874,606,3, ,..
+2875,606,4,per,per-
+2876,606,5, ,--
+2877,607,0,experimenting,experimenting
+2878,607,1,with,with
+2879,607,2, ,","
+2880,608,0,with,with
+2881,608,1,new,new
+2882,608,2,ways,ways
+2883,608,3,of,of
+2884,608,4,doing,doing
+2885,608,5,things,things
+2886,608,6, ,","
+2887,609,0,you,you
+2888,609,1,know,know
+2889,609,2, ,","
+2890,610,0,well,[#well
+2891,610,1,thinking,|thinking]
+2892,610,2,about,about
+2893,610,3,things,things
+2894,610,4, ,.
+2895,611,0, ,[
+2896,611,1,h,|0h-]
+2897,611,2, ,--
+2898,612,0,uh,uh
+2899,612,1,and,and
+2900,612,2,thinking,thinking
+2901,612,3,about,about
+2902,612,4,things,things
+2903,612,5, ,","
+2904,613,0,and,and
+2905,613,1,he,he
+2906,613,2,was,was
+2907,613,3,trying,trying
+2908,613,4,to,to
+2909,613,5, ,--
+2910,614,0,he,he
+2911,614,1,w,w-
+2912,614,2, ,--
+2913,615,0,I,I
+2914,615,1,think,think
+2915,615,2,he,he
+2916,615,3,was,was
+2917,615,4,ultimately,ultimately
+2918,615,5,trying,trying
+2919,615,6,to,to
+2920,615,7, ,","
+2921,616,0, ,...
+2922,616,1,trying,trying
+2923,616,2,to,to
+2924,616,3,discover,discover
+2925,616,4,the,the
+2926,616,5,speed,speed
+2927,616,6,of,of
+2928,616,7,his,his
+2929,616,8,own,own
+2930,616,9,thought,thought
+2931,616,10, ,.
+2932,617,0, ,..
+2933,617,1, , 
+2934,618,0,Hm,Hm
+2935,618,1, ,.
+2936,619,0,You,You
+2937,619,1,know,know
+2938,619,2, ,","
+2939,620,0,I,#I
+2940,620,1,mean,#mean
+2941,620,2, ,","
+2942,621,0, ,%:
+2943,621,1,he,he
+2944,621,2,was,was
+2945,621,3,like,like
+2946,621,4, ,","
+2947,622,0,really,really
+2948,622,1,off,off
+2949,622,2,into,into
+2950,622,3,wonderful,wonderful
+2951,622,4,abstract,abstract
+2952,622,5,notions,notions
+2953,622,6, ,","
+2954,623,0,that,that
+2955,623,1,were,[were
+2956,623,2,all,|all
+2957,623,3,based,|based]
+2958,623,4,in,in
+2959,623,5,a,a
+2960,623,6,peaceful,peaceful
+2961,623,7, ,...
+2962,623,8,world,world
+2963,623,9, ,.
+2964,624,0, ,[]
+2965,625,0,You,You
+2966,625,1,know,know
+2967,625,2, ,?
+2968,626,0,that,that
+2969,626,1,couldn't,couldn't
+2970,626,2,exist,exist
+2971,626,3,unless,unless
+2972,626,4,he,he
+2973,626,5,was,was
+2974,626,6,secure,secure
+2975,626,7, ,.
+2976,627,0,that,that
+2977,627,1,we,we
+2978,627,2,had,had
+2979,627,3,a,a
+2980,627,4,peaceful,peaceful
+2981,627,5,world,world
+2982,627,6, ,.
+2983,628,0,or,or
+2984,628,1,that,that
+2985,628,2, ,..
+2986,628,3,that,that
+2987,628,4, ,..
+2988,628,5,peace,peace
+2989,628,6, ,..
+2990,628,7,was,was
+2991,628,8,part,part
+2992,628,9,of,of
+2993,628,10,it,it
+2994,628,11, ,.
+2995,629,0,Of,Of
+2996,629,1, ,...
+2997,629,2,what,what
+2998,629,3,he,he
+2999,629,4,was,was
+3000,629,5, ,..
+3001,629,6,about,abou:t
+3002,629,7, ,.
+3003,630,0,and,and
+3004,630,1, ,","
+3005,631,0,so,so
+3006,631,1,much,much
+3007,631,2,of,of
+3008,631,3,today's,today's
+3009,631,4,technology,technology
+3010,631,5,is,is
+3011,631,6,soulless,soulless
+3012,631,7, ,.
+3013,632,0,and,and
+3014,632,1,has,has
+3015,632,2,nothing,nothing
+3016,632,3,to,to
+3017,632,4,do,do
+3018,632,5,with,with
+3019,632,6,peace,peace
+3020,632,7, ,","
+3021,633,0,it,it
+3022,633,1,has,has
+3023,633,2,to,to
+3024,633,3,do,do
+3025,633,4,with,with
+3026,633,5, ,","
+3027,634,0,just,just
+3028,634,1,generally,generally
+3029,634,2, ,","
+3030,635,0, ,..
+3031,635,1,chewing,chewing
+3032,635,2,up,up
+3033,635,3, ,","
+3034,636,0, ,..
+3035,636,1,you,you
+3036,636,2,know,know
+3037,636,3, ,","
+3038,637,0,consumerism,consumerism
+3039,637,1,basically,basical[ly
+3040,637,2,and,|and]
+3041,637,3, ,","
+3042,638,0,Mhm,[Mhm]
+3043,638,1, ,.
+3044,639,0, ,..
+3045,639,1,chewing,chewing
+3046,639,2,up,up
+3047,639,3, ,--
+3048,640,0, ,...
+3049,640,1,ch,ch-
+3050,640,2,n,n-
+3051,640,3, ,--
+3052,641,0,j,j-
+3053,641,1,chewing,chewing
+3054,641,2,up,up
+3055,641,3, ,..
+3056,641,4,new,new
+3057,641,5,w,w-
+3058,641,6, ,--
+3059,642,0,uh,uh
+3060,642,1, ,","
+3061,643,0,chewing,chewing
+3062,643,1,up,up
+3063,643,2,the,the
+3064,643,3,human,human
+3065,643,4,experience,experience
+3066,643,5, ,","
+3067,644,0,and,and
+3068,644,1,turning,turning
+3069,644,2,it,it
+3070,644,3,into,into
+3071,644,4, ,","
+3072,645,0,some,some
+3073,645,1,kind,kind
+3074,645,2,of,of
+3075,645,3,consumer,consumer
+3076,645,4,need,need
+3077,645,5, ,.
+3078,646,0, ,..
+3079,646,1,Did,Did
+3080,646,2,you,you
+3081,646,3,ever,ever
+3082,646,4,get,get
+3083,646,5,into,into
+3084,646,6,Tesla,Tesla
+3085,646,7, ,?
+3086,647,0, ,..
+3087,647,1,uh,uh:
+3088,647,2, ,","
+3089,648,0,just,just
+3090,648,1, ,","
+3091,649,0,ever,0.000000e+00ver
+3092,649,1,so,so
+3093,649,2,peripherally,peripherally
+3094,649,3, ,.
+3095,650,0, ,..
+3096,650,1,He,He
+3097,650,2,had,had
+3098,650,3,a,a
+3099,650,4,lot,lot
+3100,650,5,of,of
+3101,650,6,real,real
+3102,650,7, ,..
+3103,650,8,wacky,wacky
+3104,650,9,ideas,ideas
+3105,650,10,on,on
+3106,650,11, ,..
+3107,650,12,big,big
+3108,650,13,levels,levels
+3109,650,14, ,.
+3110,651,0,He,He
+3111,651,1,wanted,wanted
+3112,651,2,a,a
+3113,651,3,world,world
+3114,651,4,power,power
+3115,651,5,system,system
+3116,651,6, ,","
+3117,652,0,that,that
+3118,652,1,you,you
+3119,652,2,could,could
+3120,652,3,um,um
+3121,652,4, ,","
+3122,653,0, ,...
+3123,653,1,tap,tap
+3124,653,2,into,into
+3125,653,3,the,the
+3126,653,4,air,air
+3127,653,5,basically,basically
+3128,653,6, ,","
+3129,654,0,and,and
+3130,654,1,get,get
+3131,654,2,power,power
+3132,654,3,anywhere,anywhere
+3133,654,4,on,on
+3134,654,5,earth,earth
+3135,654,6, ,.
+3136,655,0, ,...
+3137,655,1,and,and
+3138,655,2,um,um
+3139,655,3, ,","
+3140,656,0, ,..
+3141,656,1, ,[:
+3142,656,2,y,|y-]
+3143,656,3, ,--
+3144,657,0,that's,[that's
+3145,657,1,what,|what
+3146,657,2,the,|the]
+3147,657,3,Tesla,Tesla
+3148,657,4,coil,coil
+3149,657,5,was,was
+3150,657,6,about,about
+3151,657,7, ,?
+3152,658,0,Yeah,Yeah
+3153,658,1, ,.
+3154,659,0, ,..
+3155,659,1,but,but
+3156,659,2, ,","
+3157,660,0,e,e-
+3158,660,1,the,the
+3159,660,2,problem,problem
+3160,660,3,was,was
+3161,660,4, ,","
+3162,661,0,that,that
+3163,661,1,it,it
+3164,661,2, ,","
+3165,662,0, ,..
+3166,662,1,it,it
+3167,662,2,uh,uh
+3168,662,3, ,","
+3169,663,0,it,it
+3170,663,1,interfered,interfered
+3171,663,2,with,with
+3172,663,3,um,um
+3173,663,4, ,","
+3174,664,0, ,...
+3175,664,1,well,well
+3176,664,2, ,","
+3177,665,0,matter,matter
+3178,665,1, ,.
+3179,666,0, ,@
+3180,666,1,I,@I
+3181,666,2,mean,mean
+3182,666,3, ,","
+3183,667,0,y,y-
+3184,667,1, ,--
+3185,668,0,it,it
+3186,668,1,was,was
+3187,668,2,not,n:ot
+3188,668,3,a,a
+3189,668,4,clean,clean
+3190,668,5,broadcast,broadcast
+3191,668,6,system,system
+3192,668,7, ,.
+3193,669,0,Like,Like
+3194,669,1,everything,everything
+3195,669,2,in,in
+3196,669,3,the,the
+3197,669,4,room,room
+3198,669,5, ,","
+3199,670,0,if,if
+3200,670,1,you,you
+3201,670,2,had,had
+3202,670,3,a,a
+3203,670,4,Tesla,Tesla
+3204,670,5,coil,coil
+3205,670,6,in,in
+3206,670,7,the,the
+3207,670,8,middle,middle
+3208,670,9,of,of
+3209,670,10,the,the
+3210,670,11,room,room
+3211,670,12, ,","
+3212,671,0,all,all
+3213,671,1,the,the
+3214,671,2,metal,metal
+3215,671,3,objects,objects
+3216,671,4,would,would
+3217,671,5,be,be
+3218,671,6,receiving,receiving
+3219,671,7,it,it
+3220,671,8,constantly,constant[ly]
+3221,671,9, ,.
+3222,672,0,Mhm,[M]hm
+3223,672,1, ,.
+3224,673,0, ,:
+3225,673,1,So,So
+3226,673,2, ,","
+3227,674,0, ,..
+3228,674,1,it,it
+3229,674,2,wasn't,wasn't
+3230,674,3,really,really
+3231,674,4,a,a
+3232,674,5,very,very
+3233,674,6,efficient,efficient
+3234,674,7,either,either
+3235,674,8, ,.
+3236,675,0, ,..
+3237,675,1,Because,Because
+3238,675,2,you'd,you'd
+3239,675,3,have,have
+3240,675,4,to,to
+3241,675,5,have,have
+3242,675,6,a,a-
+3243,675,7, ,--
+3244,676,0,an,an
+3245,676,1,immense,immense
+3246,676,2,amount,amount
+3247,676,3,of,of
+3248,676,4,power,power
+3249,676,5,being,being
+3250,676,6,broadcast,broadcast
+3251,676,7, ,","
+3252,677,0,so,so
+3253,677,1,that,that
+3254,677,2, ,","
+3255,678,0,a,a
+3256,678,1,few,few
+3257,678,2,points,points
+3258,678,3,could,could
+3259,678,4,receive,receive
+3260,678,5, ,","
+3261,679,0, ,..
+3262,679,1,you,you
+3263,679,2,know,know
+3264,679,3, ,","
+3265,680,0,their,their
+3266,680,1,share,share
+3267,680,2,of,of
+3268,680,3,it,it
+3269,680,4, ,.
+3270,681,0, ,...
+3271,681,1, ,[]
+3272,682,0,now,[now
+3273,682,1,what,|what]
+3274,682,2,about,about
+3275,682,3, ,","
+3276,683,0,if,if
+3277,683,1,they,they
+3278,683,2, ,--
+3279,684,0, ,0-
+3280,684,1,with,with
+3281,684,2,the,the
+3282,684,3,superconductor,superconductor
+3283,684,4, ,.
+3284,685,0,Will,Will
+3285,685,1,that,that
+3286,685,2,change,change
+3287,685,3,all,all
+3288,685,4,that,that
+3289,685,5, ,?
+3290,686,0, ,...
+3291,686,1,I,I
+3292,686,2,don't,don't
+3293,686,3,know,know
+3294,686,4, ,.
+3295,687,0, ,..
+3296,687,1,He,He
+3297,687,2,was,was
+3298,687,3,dealing,dealing
+3299,687,4,with,with
+3300,687,5,it,it
+3301,687,6,being,being
+3302,687,7, ,...
+3303,687,8,basically,basically
+3304,687,9,energy,energy
+3305,687,10, ,","
+3306,688,0,and,and
+3307,688,1,being,being
+3308,688,2,sent,sent
+3309,688,3,through,through
+3310,688,4,the,the
+3311,688,5,air,air
+3312,688,6, ,","
+3313,689,0,uh,uh
+3314,689,1,you,you
+3315,689,2,know,know:
+3316,689,3, ,","
+3317,690,0,like,like
+3318,690,1,light,light
+3319,690,2, ,","
+3320,691,0,like,like
+3321,691,1, ,","
+3322,692,0, ,..
+3323,692,1,yeah,yeah
+3324,692,2, ,.
+3325,693,0,Like,Like
+3326,693,1,tapping,tapping
+3327,693,2,right,right
+3328,693,3,into,into
+3329,693,4,just,just
+3330,693,5,the,the
+3331,693,6,energy,energy
+3332,693,7,of,of
+3333,693,8,the,the
+3334,693,9,earth,earth
+3335,693,10, ,","
+3336,694,0,or,or
+3337,694,1,something,something
+3338,694,2, ,.
+3339,695,0,alright,[#alright]
+3340,695,1, ,.
+3341,696,0,yeah,[yeah]
+3342,696,1, ,.
+3343,697,0,which,which
+3344,697,1,doesn't,doesn't
+3345,697,2,really,really
+3346,697,3, ,..
+3347,697,4,require,[2require]
+3348,697,5,a,a
+3349,697,6,conductor,conductor
+3350,697,7, ,.
+3351,698,0,yeah,[2yeah
+3352,698,1,may,|2may-]
+3353,698,2, ,--
+3354,699,0, ,...
+3355,699,1,you,you
+3356,699,2,know,know
+3357,699,3, ,","
+3358,700,0,I,I
+3359,700,1,mean,mean
+3360,700,2,light,light
+3361,700,3,will,will
+3362,700,4,go,go
+3363,700,5,through,through
+3364,700,6,a,a
+3365,700,7,vacuum,vacuum
+3366,700,8, ,.
+3367,701,0, ,...
+3368,701,1,So,So
+3369,701,2, ,","
+3370,702,0, ,..
+3371,702,1,I,I
+3372,702,2,think,think
+3373,702,3,he,he
+3374,702,4,was,was
+3375,702,5, ,","
+3376,703,0, ,..
+3377,703,1,I,I
+3378,703,2,mean,mean
+3379,703,3,he,he
+3380,703,4,va,va-
+3381,703,5,basically,basically
+3382,703,6,invented,invented
+3383,703,7,the,the
+3384,703,8,radio,radio
+3385,703,9, ,","
+3386,704,0, ,..
+3387,704,1,and,and
+3388,704,2,stuff,stuff
+3389,704,3,like,like
+3390,704,4,that,that
+3391,704,5, ,","
+3392,705,0,you,you
+3393,705,1,know,know
+3394,705,2, ,%
+3395,705,3, ,.
+3396,706,0, ,...
+3397,707,0,It's,It's
+3398,707,1,pretty,pretty
+3399,707,2,confusing,confusing
+3400,707,3,to,to
+3401,707,4,me,me
+3402,707,5, ,.
+3403,708,0,but,but
+3404,708,1,uh,uh
+3405,708,2, ,","
+3406,709,0, ,..
+3407,709,1,yeah,yeah
+3408,709,2, ,","
+3409,710,0,those,those
+3410,710,1, ,..
+3411,710,2,those,those
+3412,710,3,guys,guys
+3413,710,4,are,are
+3414,710,5,the,the
+3415,710,6,guys,guys
+3416,710,7,I,I
+3417,710,8,think,think
+3418,710,9,that,that
+3419,710,10,are,are
+3420,710,11,the,the
+3421,710,12,heroes,heroes
+3422,710,13, ,","
+3423,711,0,uh,uh
+3424,711,1, ,","
+3425,712,0,or,or
+3426,712,1, ,","
+3427,713,0, ,..
+3428,713,1,that,that
+3429,713,2,are,are
+3430,713,3,the,the
+3431,713,4,unsung,unsung
+3432,713,5,heroes,heroes
+3433,713,6, ,.
+3434,715,0,yeah,yeah
+3435,715,1, ,.
+3436,716,0,You,You
+3437,716,1,know,know
+3438,716,2, ,","
+3439,717,0, ,..
+3440,717,1,the,the
+3441,717,2,r,r-
+3442,717,3, ,--
+3443,718,0,the,the:
+3444,718,1,uh,uh
+3445,718,2, ,","
+3446,719,0,and,and
+3447,719,1,s,s-
+3448,719,2, ,--
+3449,720,0,and,and
+3450,720,1,and,and
+3451,720,2,business,business
+3452,720,3,and,and
+3453,720,4, ,","
+3454,721,0,I,I
+3455,721,1,mean,mean
+3456,721,2,this,this
+3457,721,3,is,is
+3458,721,4,a,a
+3459,721,5,cliche,cliche
+3460,721,6, ,","
+3461,722,0,but,but
+3462,722,1, ,","
+3463,723,0,but,but
+3464,723,1,business,business
+3465,723,2,has,has
+3466,723,3,always,always
+3467,723,4,uh,uh
+3468,723,5, ,","
+3469,724,0, ,...
+3470,724,1,taken,taken
+3471,724,2,these,these
+3472,724,3,works,works
+3473,724,4, ,","
+3474,725,0,and,and
+3475,725,1, ,","
+3476,726,0, ,..
+3477,726,1,and,and
+3478,726,2,manipulated,manipulated
+3479,726,3,em,em
+3480,726,4, ,","
+3481,727,0,either,either
+3482,727,1, ,","
+3483,728,0, ,...
+3484,728,1,to,to
+3485,728,2,their,their
+3486,728,3,benefit,benefit
+3487,728,4, ,","
+3488,729,0,or,or
+3489,729,1, ,","
+3490,730,0, ,...
+3491,730,1,to,to
+3492,730,2,our,our
+3493,730,3,benefit,benefit
+3494,730,4, ,","
+3495,731,0,or,or
+3496,731,1,to,to
+3497,731,2,our,our
+3498,731,3,detriment,detriment
+3499,731,4, ,","
+3500,732,0,or,or
+3501,732,1,something,something
+3502,732,2, ,","
+3503,733,0,f,f-
+3504,733,1,based,based
+3505,733,2,on,on
+3506,733,3,economic,economic
+3507,733,4, ,","
+3508,734,0, ,..
+3509,734,1,wh,wh-
+3510,734,2, ,..
+3511,734,3,what,what
+3512,734,4,the,the
+3513,734,5,obvious,obvious
+3514,734,6, ,","
+3515,735,0,or,or
+3516,735,1,the,the
+3517,735,2, ,+
+3518,736,0,hm,hm
+3519,736,1, ,.
+3520,737,0, ,+
+3521,737,1,more,more
+3522,737,2,immediate,immediate
+3523,737,3,economic,econo[mic]
+3524,737,4, ,--
+3525,738,0, ,[
+3526,738,1,Right,|Right]
+3527,738,2, ,.
+3528,739,0, ,..
+3529,739,1,it's,it's
+3530,739,2,like,like
+3531,739,3, ,","
+3532,740,0,well,well
+3533,740,1, ,","
+3534,741,0, ,..
+3535,741,1,gee,gee
+3536,741,2, ,","
+3537,742,0,yeah,yeah
+3538,742,1, ,","
+3539,743,0,I,I
+3540,743,1,know,know
+3541,744,0,I,I
+3542,744,1,know,know
+3543,744,2,how,how
+3544,744,3,we,we
+3545,744,4,can,can
+3546,744,5,make,make
+3547,744,6,money,money
+3548,744,7,with,with
+3549,744,8,this,this
+3550,744,9, ,.
+3551,745,0, ,...
+3552,745,1,I,I
+3553,745,2,mean,mean
+3554,745,3,you,you
+3555,745,4,just,just
+3556,745,5,do,do
+3557,745,6,it,it
+3558,745,7, ,.
+3559,746,0,yeah,yeah
+3560,746,1, ,.
+3561,747,0, ,..
+3562,747,1,Well,#Well
+3563,747,2,that's,that's
+3564,747,3,what,what
+3565,747,4,I,I
+3566,747,5,like,like
+3567,747,6,about,about
+3568,747,7,fractals,fractals
+3569,747,8, ,.
+3570,748,0,is,is
+3571,748,1,because,because
+3572,748,2,uh,uh
+3573,748,3, ,","
+3574,749,0,uh,uh
+3575,749,1, ,","
+3576,750,0, ,...
+3577,750,1,with,with:
+3578,750,2,these,these
+3579,750,3,new,new
+3580,750,4,mathematical,mathematical
+3581,750,5, ,...
+3582,750,6,formulas,formulas
+3583,750,7, ,","
+3584,751,0, ,[:
+3585,752,0,mhm,[mhm]
+3586,752,1, ,.
+3587,753,0,even,|even]
+3588,753,1,though,though
+3589,753,2, ,","
+3590,754,0, ,..
+3591,754,1,you,you
+3592,754,2,know,know
+3593,754,3, ,","
+3594,755,0, ,..
+3595,755,1,because,because
+3596,755,2,it's,it's
+3597,755,3,mathematical,mathematical
+3598,755,4, ,","
+3599,756,0,and,and
+3600,756,1,it,it
+3601,756,2, ,--
+3602,757,0, ,..
+3603,757,1,I,I-
+3604,757,2, ,..
+3605,757,3,it,it
+3606,757,4,has,has
+3607,757,5,to,to
+3608,757,6,work,work
+3609,757,7,I,I
+3610,757,8,guess,guess
+3611,757,9,with,with:
+3612,757,10,numbers,numbers
+3613,757,11,in,in
+3614,757,12,it,it
+3615,757,13, ,.
+3616,758,0, ,..
+3617,758,1,somew,somew-
+3618,758,2,some,some
+3619,758,3,way,way
+3620,758,4, ,.
+3621,759,0,uh,uh
+3622,759,1, ,","
+3623,760,0, ,..
+3624,760,1,it's,it's
+3625,760,2,opens,opens
+3626,760,3,a,a
+3627,760,4,door,door
+3628,760,5,into,into
+3629,760,6, ,","
+3630,761,0, ,..
+3631,761,1,what,what
+3632,761,2,appears,appears
+3633,761,3,to,to
+3634,761,4,be,be
+3635,761,5,all,all:
+3636,761,6,the,the
+3637,761,7,substance,substance
+3638,761,8,that's,that's
+3639,761,9,underneath,underneath
+3640,761,10,the,the
+3641,761,11,obvious,obvious
+3642,761,12, ,.
+3643,762,0, ,...
+3644,762,1,You,You
+3645,762,2,know,know
+3646,762,3, ,","
+3647,763,0,hm,[hm]
+3648,763,1, ,.
+3649,764,0,with,[with]
+3650,764,1, ,--
+3651,765,0,if,if
+3652,765,1,if,if
+3653,765,2,regular,regular
+3654,765,3,math,math
+3655,765,4,is,is
+3656,765,5,the,the
+3657,765,6,obvious,obvious
+3658,765,7, ,","
+3659,766,0,uh,uh:
+3660,766,1, ,","
+3661,767,0, ,..
+3662,767,1,these,these
+3663,767,2,fractals,fractals
+3664,767,3,seem,seem
+3665,767,4,to,to
+3666,767,5, ,","
+3667,768,0, ,...
+3668,768,1,seem,seem
+3669,768,2,to,to
+3670,768,3,represent,represent
+3671,768,4, ,","
+3672,769,0, ,..
+3673,769,1,everything,everything:
+3674,769,2,that,that
+3675,769,3,numbers,numbers
+3676,769,4,aren't,aren't
+3677,769,5, ,.
+3678,770,0,and,[a:nd
+3679,770,1,uh,|uh
+3680,770,2,that's,|that's:]
+3681,770,3, ,--
+3682,771,0, ,[
+3683,771,1,Well,|Well
+3684,771,2, ,","
+3685,772,0,something,|something
+3686,772,1,that,|that]
+3687,772,2,numbers,numbers
+3688,772,3,aren't,aren't
+3689,772,4, ,.
+3690,773,0,I,I
+3691,773,1,don't,don't
+3692,773,2,think,think
+3693,773,3,it's,it's
+3694,773,4,everything,everything
+3695,773,5, ,.
+3696,774,0,not,not
+3697,774,1,everything,everything
+3698,774,2, ,.
+3699,775,0,but,[but
+3700,775,1,s,|s-
+3701,775,2, ,--
+3702,776,0,cause,[cause
+3703,776,1,there,|there
+3704,776,2,are,|are
+3705,776,3,t,"|t],"
+3706,776,4, ,"-,"
+3707,777,0,but,|but
+3708,777,1,the,|the
+3709,777,2,first,|first]
+3710,777,3,window,window
+3711,777,4, ,","
+3712,778,0,into,into
+3713,778,1,that,that
+3714,778,2, ,.
+3715,779,0, ,..
+3716,779,1,yeah,yeah
+3717,779,2, ,.
+3718,780,0, ,...
+3719,780,1,well,well
+3720,780,2, ,","
+3721,781,0,it,it
+3722,781,1, ,--
+3723,782,0,like,like
+3724,782,1, ,--
+3725,783,0,every,every
+3726,783,1,theory,theory
+3727,783,2,is,is
+3728,783,3,just,just
+3729,783,4,like,"like,"
+3730,783,5, ,"-,"
+3731,784,0, ,..
+3732,784,1,it's,%_it's
+3733,784,2,a,a
+3734,784,3,window,window
+3735,784,4, ,","
+3736,785,0,and,and
+3737,785,1,it's,it's
+3738,785,2,also,also
+3739,785,3,like,like
+3740,785,4,a,a
+3741,785,5,model,model
+3742,785,6,of,of
+3743,785,7,um,um
+3744,785,8, ,..
+3745,785,9,reality,reality
+3746,785,10, ,","
+3747,786,0,and,and
+3748,786,1,it's,it's
+3749,786,2,really,really
+3750,786,3,not,not
+3751,786,4,reality,reality
+3752,786,5, ,.
+3753,787,0,And,And
+3754,787,1,uh,uh
+3755,787,2, ,","
+3756,788,0, ,...
+3757,788,1,like,like
+3758,788,2,a,a
+3759,788,3,fractal,fractal
+3760,788,4,can,can
+3761,788,5,get,g:et
+3762,788,6,really,really
+3763,788,7,close,close
+3764,788,8,at,at
+3765,788,9,do,do-
+3766,788,10, ,--
+3767,789,0,like,like
+3768,789,1,describing,describing
+3769,789,2,growth,growth
+3770,789,3,patterns,patterns
+3771,789,4, ,","
+3772,790,0,like,like
+3773,790,1,a,a
+3774,790,2,plant,[plant
+3775,790,3,or,|or
+3776,790,4,something,|something
+3777,790,5, ,.
+3778,791,0,Yes,[Yes
+3779,791,1, ,.
+3780,792,0, ,|..
+3781,792,1,Yes,|Yes
+3782,792,2, ,.
+3783,793,0,Right,|Right
+3784,793,1, ,.
+3785,794,0, ,|..
+3786,794,1,Right,|Right]
+3787,794,2, ,.
+3788,795,0, ,|..
+3789,795,1, ,|
+3790,795,2,Um,|Um]
+3791,795,3, ,","
+3792,796,0,but,but
+3793,796,1, ,","
+3794,797,0,it's,it's
+3795,797,1,still,still
+3796,797,2,n,n-
+3797,797,3, ,..
+3798,797,4,not,not
+3799,797,5,the,the
+3800,797,6,totality,totality
+3801,797,7,of,of
+3802,797,8,a,a
+3803,797,9,plant,plant
+3804,797,10, ,","
+3805,798,0,No,No
+3806,798,1,it,it
+3807,798,2,isn't,isn't
+3808,798,3, ,","
+3809,799,0,by,by
+3810,799,1,any,any
+3811,799,2,stretch,stretch
+3812,799,3, ,.
+3813,800,0,But,But
+3814,800,1,for,for
+3815,800,2,mathematics,mathematics
+3816,800,3,or,or
+3817,800,4,for,for
+3818,800,5,science,science
+3819,800,6, ,","
+3820,801,0,it's,it's
+3821,801,1,the,the-
+3822,801,2, ,--
+3823,802,0,it's,[it's
+3824,802,1,an,|an
+3825,802,2,opportunity,|opportunity
+3826,802,3,for,|for
+3827,802,4,them,|them
+3828,802,5,to,|to
+3829,802,6, ,--
+3830,803,0,it's,[it's
+3831,803,1,the,|the
+3832,803,2,closest,|cl:osest
+3833,803,3,thing,|th:ing
+3834,803,4,we,|we
+3835,803,5,have,|have]
+3836,803,6, ,.
+3837,804,0, ,|]
+3838,804,1,to,to
+3839,804,2, ,","
+3840,805,0,yeah,yeah
+3841,805,1, ,.
+3842,806,0,To,To
+3843,806,1,get,get
+3844,806,2,closer,closer
+3845,806,3,to,to
+3846,806,4, ,","
+3847,807,0,to,to
+3848,807,1,the,the
+3849,807,2,chaos,ch:aos
+3850,807,3, ,","
+3851,808,0,or,or
+3852,808,1,the,the
+3853,808,2, ,","
+3854,809,0,or,[or
+3855,809,1,the,|the
+3856,809,2,order,|order]
+3857,809,3,of,of
+3858,809,4,chaos,chaos
+3859,809,5, ,","
+3860,810,0,Mhm,[Mhm]
+3861,810,1, ,.
+3862,811,0,Uh,Uh
+3863,811,1, ,","
+3864,812,0,that,that
+3865,812,1,exists,exists
+3866,812,2,uh,uh
+3867,812,3, ,","
+3868,813,0,uh,uh:
+3869,813,1,a,%a-
+3870,813,2,h,0h
+3871,813,3,as,%as
+3872,813,4,subtext,subtext
+3873,813,5, ,","
+3874,814,0,to,to
+3875,814,1,our,our
+3876,814,2,life,life
+3877,814,3, ,","
+3878,815,0,to,to
+3879,815,1,our,our
+3880,815,2,experience,experience
+3881,815,3,on,on
+3882,815,4,this,this
+3883,815,5,planet,planet
+3884,815,6, ,.
+3885,816,0,And,And
+3886,816,1,when,[when
+3887,816,2,we're,|we're]
+3888,816,3, ,","
+3889,817,0,Mm,[Mm]
+3890,817,1, ,.
+3891,818,0,and,and
+3892,818,1,when,when
+3893,818,2,we're,we're
+3894,818,3,say,say-
+3895,818,4, ,--
+3896,819,0, ,...
+3897,819,1,when,when
+3898,819,2,we're,we're
+3899,819,3,going,going
+3900,819,4,to,to
+3901,819,5, ,","
+3902,820,0,uh,uh
+3903,820,1, ,","
+3904,821,0, ,..
+3905,821,1,say,say
+3906,821,2,blow,blow
+3907,821,3,up,up
+3908,821,4,the,the
+3909,821,5,first,first
+3910,821,6,atomic,atomic
+3911,821,7,bomb,bomb
+3912,821,8, ,","
+3913,822,0,and,and
+3914,822,1,and,and
+3915,822,2,and,and
+3916,822,3, ,","
+3917,823,0,we,we
+3918,823,1,don't,don't
+3919,823,2,bother,bother
+3920,823,3, ,","
+3921,824,0,to,to
+3922,824,1,ask,ask
+3923,824,2,the,the
+3924,824,3,American,American
+3925,824,4,people,people
+3926,824,5, ,","
+3927,825,0,or,or
+3928,825,1,the,the
+3929,825,2,people,people
+3930,825,3,of,of
+3931,825,4,the,the
+3932,825,5,world,world
+3933,825,6, ,","
+3934,826,0,if,if
+3935,826,1,w,w-
+3936,826,2,if,if
+3937,826,3,if,if
+3938,826,4,we,we
+3939,826,5,mind,mi:nd
+3940,826,6, ,","
+3941,827,0, ,[@]
+3942,828,0, ,[]
+3943,828,1,uh,uh
+3944,828,2, ,","
+3945,829,0,if,if
+3946,829,1,there's,there's
+3947,829,2,a,a
+3948,829,3,chance,chance
+3949,829,4,you,you
+3950,829,5,know,know
+3951,829,6, ,","
+3952,830,0, ,..
+3953,830,1,cause,cause
+3954,830,2,they,they
+3955,830,3,didn't,didn't
+3956,830,4,know,know
+3957,830,5,for,for
+3958,830,6,sure,sure
+3959,830,7, ,","
+3960,831,0,whether,whether
+3961,831,1, ,..
+3962,831,2,it,it
+3963,831,3,would,would
+3964,831,4,destroy,de[stroy
+3965,831,5,the,|the
+3966,831,6,universe,|universe
+3967,831,7,or,|or
+3968,831,8,not,|not
+3969,831,9, ,.
+3970,832,0, ,[
+3971,832,1,Yeah,|Yeah
+3972,832,2, ,.
+3973,833,0, ,|
+3974,833,1,Or,|Or
+3975,833,2,not,|not
+3976,833,3, ,|@
+3977,833,4, ,.
+3978,834,0, ,|@
+3979,835,0, ,|
+3980,835,1,And,|And]
+3981,835,2, ,","
+3982,836,0,It,It
+3983,836,1,might,might]
+3984,836,2,have,have
+3985,836,3,started,started
+3986,836,4,a,a
+3987,836,5,chain,chain
+3988,836,6,reaction,reaction
+3989,836,7,that,that
+3990,836,8,just,just
+3991,836,9,blew,blew
+3992,836,10,up,up
+3993,836,11,the,[2the
+3994,836,12,whole,|2whole
+3995,836,13,earth,|2earth]
+3996,836,14, ,.
+3997,837,0,That's,[2That's
+3998,837,1,right,|2right]
+3999,837,2, ,.
+4000,838,0,And,And
+4001,838,1,it,it
+4002,838,2,might,might
+4003,838,3,very,very
+4004,838,4,well,well
+4005,838,5,still,still
+4006,838,6,have,have
+4007,838,7,started,started
+4008,838,8,that,that
+4009,838,9,chain,chain
+4010,838,10,reaction,reaction
+4011,838,11, ,.
+4012,839,0,And,And
+4013,839,1,that,that
+4014,839,2,it's,it's
+4015,839,3,all,all
+4016,839,4,happening,happening
+4017,839,5,in,in
+4018,839,6,fractal,fractal
+4019,839,7,country,country
+4020,839,8, ,","
+4021,840,0,and,and
+4022,840,1,it,it
+4023,840,2,has,[has]
+4024,840,3, ,--
+4025,841,0,Aah,|[Aah]
+4026,841,1, ,.
+4027,842,0,and,and
+4028,842,1,it,it
+4029,842,2, ,","
+4030,843,0,and,and
+4031,843,1,it's,it's
+4032,843,2,manifesting,manifesting
+4033,843,3,itself,itself
+4034,843,4,in,in
+4035,843,5, ,","
+4036,844,0,in,in
+4037,844,1,disharmony,disharmony
+4038,844,2, ,","
+4039,845,0,uh,uh
+4040,845,1, ,","
+4041,846,0, ,..
+4042,846,1,in,in
+4043,846,2, ,","
+4044,847,0, ,..
+4045,847,1,in,in
+4046,847,2,the,the
+4047,847,3, ,..
+4048,847,4,deterioration,deterioration
+4049,847,5,of,of
+4050,847,6,the,the
+4051,847,7,planet,planet
+4052,847,8, ,.
+4053,848,0,We're,We're
+4054,848,1,all,all
+4055,848,2,worried,worried
+4056,848,3,about,about
+4057,848,4,the,the
+4058,848,5,ozone,ozone
+4059,848,6, ,","
+4060,849,0,we're,we're
+4061,849,1,all,all
+4062,849,2,worried,worried
+4063,849,3,about,about
+4064,849,4,the,the
+4065,849,5,uh,uh
+4066,849,6, ,","
+4067,850,0, ,[]
+4068,851,0,Hm,[Hm]
+4069,851,1, ,.
+4070,852,0,uh,uh:
+4071,852,1, ,","
+4072,853,0,th,th-
+4073,853,1,cancer,cancer
+4074,853,2,is,is
+4075,853,3,everywhere,everywhere
+4076,853,4, ,","
+4077,854,0,uh,[uh:]
+4078,854,1, ,","
+4079,855,0,so,[so
+4080,855,1,you're,|you're
+4081,855,2,saying,|saying
+4082,855,3,it,|it]
+4083,855,4,might,might
+4084,855,5,have,have
+4085,855,6,done,done
+4086,855,7,the,the
+4087,855,8,same,sa:me
+4088,855,9,bad,ba:d
+4089,855,10,thing,thing
+4090,855,11, ,","
+4091,856,0,but,but
+4092,856,1,in,in
+4093,856,2,a,[a
+4094,856,3,sort,|sort
+4095,856,4,of,|of
+4096,856,5,more,|more
+4097,856,6,roundabout,|roundabout
+4098,856,7,way,|way:]
+4099,856,8, ,.
+4100,857,0,it's,[it's
+4101,857,1,just,|just
+4102,857,2,that,|that
+4103,857,3,the,|the
+4104,857,4,uni,|uni-
+4105,857,5, ,--
+4106,858,0,except,|except
+4107,858,1,that,|that
+4108,858,2,the,|the]
+4109,858,3,universe,universe
+4110,858,4,is,is
+4111,858,5,such,such
+4112,858,6,a,a
+4113,858,7,complex,complex
+4114,858,8,phenomenon,phenomenon
+4115,858,9, ,","
+4116,859,0,that,that
+4117,859,1,it's,it's
+4118,859,2,so,so
+4119,859,3,deep,deep
+4120,859,4, ,","
+4121,860,0,it's,it's
+4122,860,1,for,f:or-
+4123,860,2, ,--
+4124,861,0,f,f-
+4125,861,1,the,the
+4126,861,2,fabric,fabric
+4127,861,3,that,that
+4128,861,4,we,we:
+4129,861,5,are,are
+4130,861,6,witnessing,witnessing
+4131,861,7, ,","
+4132,862,0,through,through
+4133,862,1,m,m-
+4134,862,2,science,science
+4135,862,3, ,","
+4136,863,0,and,and
+4137,863,1,through,through
+4138,863,2,any,any
+4139,863,3,known,known
+4140,863,4,ability,ability
+4141,863,5,to,to
+4142,863,6,understand,understand
+4143,863,7, ,","
+4144,864,0,Mm,[Mm]
+4145,864,1, ,.
+4146,865,0, ,[]
+4147,865,1,is,is
+4148,865,2,just,just
+4149,865,3,a,a
+4150,865,4,thin,thin
+4151,865,5,shell,shell
+4152,865,6,from,from
+4153,865,7,how,how
+4154,865,8,deep,deep
+4155,865,9, ,","
+4156,866,0,this,this
+4157,866,1,phantasmagorical,phantasmagorical
+4158,866,2,experience,experience
+4159,866,3,goes,goes
+4160,866,4, ,","
+4161,867,0,and,and
+4162,867,1,that,that
+4163,867,2,when,when
+4164,867,3,they,they
+4165,867,4,did,did
+4166,867,5,that,that
+4167,867,6, ,","
+4168,868,0,it's,it's
+4169,868,1,possible,possible
+4170,868,2,that,that
+4171,868,3,they,they
+4172,868,4,started,started
+4173,868,5,a,a
+4174,868,6,chain,chain
+4175,868,7,reaction,reaction
+4176,868,8, ,","
+4177,869,0,at,at
+4178,869,1,such,such
+4179,869,2,a,a
+4180,869,3,subatomic,subatomic
+4181,869,4,level,level
+4182,869,5, ,","
+4183,870,0,a,a
+4184,870,1,sub,sub
+4185,870,2,sub,sub
+4186,870,3,sub,sub
+4187,870,4,sub,[sub
+4188,870,5,subatomic,|subatomic
+4189,870,6,level,|level
+4190,870,7, ,","
+4191,871,0,it's,[it's
+4192,871,1,gonna,|gonna
+4193,871,2,take,|take
+4194,871,3,a,|a
+4195,871,4,while,|while
+4196,871,5,to,|to
+4197,871,6,crumble,|crumble]
+4198,871,7, ,.
+4199,872,0, ,|]
+4200,872,1,that,that
+4201,872,2,it'll,it'll
+4202,872,3,take,take
+4203,872,4,a,a
+4204,872,5,while,while
+4205,872,6,before,before
+4206,872,7,it,it
+4207,872,8, ,","
+4208,873,0, ,..
+4209,873,1,it,it
+4210,873,2, ,","
+4211,874,0,it,it
+4212,874,1,really,r:eally
+4213,874,2, ,","
+4214,875,0,you,you
+4215,875,1,know,know
+4216,875,2, ,","
+4217,876,0, ,..
+4218,876,1,vr,vr-
+4219,876,2,goes,goes
+4220,876,3, ,:
+4221,876,4, ,","
+4222,877,0,you,you
+4223,877,1,know,know
+4224,877,2, ,","
+4225,878,0,and,and
+4226,878,1,just,[just
+4227,878,2,rips,|r:]:ips
+4228,878,3,it,it
+4229,878,4,apart,apart
+4230,878,5, ,.
+4231,879,0,Yeah,[Yeah]
+4232,879,1, ,.
+4233,880,0,it,it
+4234,880,1,might,might
+4235,880,2,take,take
+4236,880,3, ,","
+4237,881,0, ,...
+4238,881,1,it,it
+4239,881,2,might,might
+4240,881,3,take,take
+4241,881,4, ,","
+4242,882,0, ,..
+4243,882,1,a,%a-
+4244,882,2,a,a
+4245,882,3,few,few
+4246,882,4,th,th-
+4247,882,5, ,--
+4248,883,0,it,it
+4249,883,1,might,might
+4250,883,2,take,take
+4251,883,3, ,..
+4252,883,4,five,five
+4253,883,5,hundred,hundred
+4254,883,6,years,years
+4255,883,7, ,.
+4256,884,0,or,or
+4257,884,1,a,a
+4258,884,2,thousand,thousand
+4259,884,3,years,years
+4260,884,4, ,.
+4261,885,0,Yeah,[Yeah]
+4262,885,1, ,.
+4263,886,0,or,[or]
+4264,886,1,a,a
+4265,886,2,hundred,hundred
+4266,886,3,years,years
+4267,886,4, ,.
+4268,887,0,or,or
+4269,887,1,maybe,maybe
+4270,887,2,it's,it's
+4271,887,3,be,be-
+4272,887,4, ,--
+4273,888,0,w,w-
+4274,888,1,maybe,maybe
+4275,888,2,in,in
+4276,888,3,v,v-
+4277,888,4,fifty,fifty
+4278,888,5,years,years
+4279,888,6, ,.
+4280,889,0,or,or
+4281,889,1,it,it
+4282,889,2,might,might
+4283,889,3,never,never
+4284,889,4,happen,happen
+4285,889,5,but,but
+4286,889,6, ,","
+4287,890,0,it's,it's
+4288,890,1, ,--
+4289,891,0,to,to
+4290,891,1,me,me:
+4291,891,2, ,","
+4292,892,0,that,tha:t
+4293,892,1,was,was
+4294,892,2,scientific,scientific
+4295,892,3,irresponsibility,irresponsibility
+4296,892,4, ,.
+4297,893,0,And,A:nd
+4298,893,1, ,","
+4299,894,0,w,w-
+4300,894,1,without,without
+4301,894,2,the,the
+4302,894,3,knowledge,knowledge
+4303,894,4,of,of
+4304,894,5, ,","
+4305,895,0, ,..
+4306,895,1,of,of
+4307,895,2,f,"f,"
+4308,895,3, ,"-,"
+4309,896,0, ,..
+4310,896,1,what,what
+4311,896,2,fractals,fractals
+4312,896,3,symbolize,symbolize
+4313,896,4, ,","
+4314,897,0,at,at
+4315,897,1,this,this
+4316,897,2,point,point
+4317,897,3, ,","
+4318,898,0,to,to
+4319,898,1,me,me
+4320,898,2, ,","
+4321,899,0, ,0-
+4322,899,1,uh,uh
+4323,899,2, ,","
+4324,900,0, ,..
+4325,900,1,they,they
+4326,900,2, ,--
+4327,901,0, ,..
+4328,901,1,w,w-
+4329,901,2, ,--
+4330,902,0,they,they
+4331,902,1,could,could
+4332,902,2,make,make
+4333,902,3,that,that
+4334,902,4,decision,decision
+4335,902,5,easier,easier
+4336,902,6, ,.
+4337,903,0, ,...
+4338,903,1,And,And
+4339,903,2, ,","
+4340,904,0,with,with
+4341,904,1,the,the
+4342,904,2,scientif,sci[entif-]
+4343,904,3, ,--
+4344,905,0,fractals,[fractals]
+4345,905,1,could,could
+4346,905,2,have,have
+4347,905,3,made,[2made
+4348,905,4,the,|2the
+4349,905,5,decision,|2de]cision
+4350,905,6,easier,[3easier]
+4351,905,7, ,?
+4352,906,0, ,[2]
+4353,907,0,No,[3No]
+4354,907,1, ,.
+4355,908,0,No,No
+4356,908,1, ,.
+4357,909,0,Without,Without
+4358,909,1,the,the
+4359,909,2,knowledge,knowledge
+4360,909,3,of,of
+4361,909,4,fractals,fractals
+4362,909,5, ,.
+4363,910,0,The,The
+4364,910,1,decision,decision
+4365,910,2,was,was
+4366,910,3,made,made
+4367,910,4,easier,easier
+4368,910,5, ,.
+4369,911,0,If,[If
+4370,911,1,fractals,|frac]tals
+4371,911,2,were,were
+4372,911,3,known,known
+4373,911,4,at,at
+4374,911,5,that,that
+4375,911,6,time,time
+4376,911,7, ,","
+4377,912,0,oh,[oh]
+4378,912,1, ,.
+4379,913,0,there,there
+4380,913,1,might,might
+4381,913,2,have,have
+4382,913,3,been,been
+4383,913,4,a,a
+4384,913,5,little,little
+4385,913,6,more,more
+4386,913,7,caution,caution
+4387,913,8, ,","
+4388,914,0,because,because
+4389,914,1,there,there
+4390,914,2,was,was
+4391,914,3, ,","
+4392,915,0,there's,[there's
+4393,915,1,this,|this
+4394,915,2,window,|window]
+4395,915,3, ,.
+4396,916,0,but,[but
+4397,916,1,fractals,|fractals]
+4398,916,2,don't,don't
+4399,916,3,uh,uh
+4400,916,4, ,","
+4401,917,0, ,..
+4402,917,1,don't,don't
+4403,917,2,imply,imply
+4404,917,3,any,any
+4405,917,4, ,..
+4406,917,5,particular,particular
+4407,917,6,morals,morals
+4408,917,7, ,.
+4409,918,0,well,well
+4410,918,1,they,they
+4411,918,2,imply,imply
+4412,918,3, ,","
+4413,919,0,no,no
+4414,919,1,they,they
+4415,919,2,don't,don't
+4416,919,3,imply,imply
+4417,919,4,morals,morals
+4418,919,5, ,","
+4419,920,0,but,but
+4420,920,1,they,they
+4421,920,2,do,do
+4422,920,3,imply,imply
+4423,920,4,that,that
+4424,920,5,there's,there's
+4425,920,6,more,more
+4426,920,7,than,than
+4427,920,8,the,the
+4428,920,9,obvious,obvious
+4429,920,10,going,going
+4430,920,11,on,on
+4431,920,12, ,.
+4432,921,0, ,..
+4433,921,1,Well,Well
+4434,921,2,all,all
+4435,921,3,math,math
+4436,921,4,does,does
+4437,921,5,that,that
+4438,921,6, ,.
+4439,922,0, ,...
+4440,922,1,Uh,Uh:
+4441,922,2, ,","
+4442,923,0,not,not
+4443,923,1,to,to
+4444,923,2,me,me:
+4445,923,3, ,.
+4446,924,0, ,...
+4447,924,1,uh,uh
+4448,924,2,it's,[#it's]
+4449,924,3, ,--
+4450,925,0,They're,[They're
+4451,925,1,just,|just]
+4452,925,2,another,another
+4453,925,3,system,system
+4454,925,4, ,","
+4455,926,0,that's,that's
+4456,926,1,all,all
+4457,926,2, ,","
+4458,927,0, ,..
+4459,927,1,just,just
+4460,927,2,another,another
+4461,927,3,model,model
+4462,927,4, ,.
+4463,928,0, ,...
+4464,928,1,it's,it's
+4465,928,2, ,","
+4466,929,0,to,to
+4467,929,1,me,me
+4468,929,2,it's,it's
+4469,929,3,a,a
+4470,929,4,model,model
+4471,929,5, ,","
+4472,930,0, ,..
+4473,930,1,it's,it's
+4474,930,2, ,..
+4475,930,3,it's,it's
+4476,930,4,a,a
+4477,930,5,model,model
+4478,930,6,into,into
+4479,930,7,the,the
+4480,930,8,fourth,fourth
+4481,930,9,dimension,dimension
+4482,930,10, ,","
+4483,931,0,as,as
+4484,931,1,opposed,opposed
+4485,931,2,to,to
+4486,931,3, ,","
+4487,932,0,you,[you
+4488,932,1,know,|know
+4489,932,2, ,","
+4490,933,0,Well,[Well
+4491,933,1, ,","
+4492,934,0, ,|..
+4493,934,1,actually,|actually
+4494,934,2, ,","
+4495,935,0,the,|the
+4496,935,1,third,|third
+4497,935,2,dimension,|dimension]
+4498,935,3, ,.
+4499,936,0,Einstein's,|Ein]stein's
+4500,936,1,theory,theory
+4501,936,2,is,is
+4502,936,3,a,a
+4503,936,4,model,model
+4504,936,5,in,in
+4505,936,6,the,the
+4506,936,7,fourth,fourth
+4507,936,8,dimension,dimension
+4508,936,9, ,","
+4509,937,0,and,and
+4510,937,1,that's,that's
+4511,937,2,time,time
+4512,937,3, ,.
+4513,938,0, ,...
+4514,938,1, ,...
+4515,938,2,Um,Um
+4516,938,3, ,","
+4517,939,0, ,..
+4518,939,1,but,but
+4519,939,2,fractal,fractal
+4520,939,3,can,can
+4521,939,4,be,be
+4522,939,5,applied,applied
+4523,939,6,to,to
+4524,939,7, ,","
+4525,940,0, ,...
+4526,940,1,many,many
+4527,940,2,dimensions,dimensions
+4528,940,3,or,or
+4529,940,4,n,n-
+4530,940,5, ,--
+4531,941,0, ,..
+4532,941,1,or,or
+4533,941,2,just,just
+4534,941,3, ,","
+4535,942,0, ,..
+4536,942,1,I,I
+4537,942,2,mean,mean
+4538,942,3, ,","
+4539,943,0,any,any
+4540,943,1,number,number
+4541,943,2,of,of
+4542,943,3,dimensions,dimensions
+4543,943,4, ,.
+4544,944,0,it's,it's
+4545,944,1,basically,basically
+4546,944,2, ,","
+4547,945,0,taking,taking
+4548,945,1,something,something
+4549,945,2,and,and
+4550,945,3,dividing,dividing
+4551,945,4,it,it
+4552,945,5,up,up
+4553,945,6,randomly,randomly
+4554,945,7, ,.
+4555,946,0, ,...
+4556,946,1,or,or
+4557,946,2, ,","
+4558,947,0, ,..
+4559,947,1,with,with
+4560,947,2,some,some
+4561,947,3,system,system
+4562,947,4, ,.
+4563,948,0, ,...
+4564,948,1,it's,it's
+4565,948,2,like,like
+4566,948,3,nested,nested
+4567,948,4, ,","
+4568,949,0, ,..
+4569,949,1,nested,nested
+4570,949,2,values,values
+4571,949,3, ,.
+4572,950,0, ,...
+4573,950,1,basically,basically
+4574,950,2, ,.
+4575,951,0, ,...
+4576,951,1,Inside,Inside
+4577,951,2,a,a
+4578,951,3,gallon,gallon
+4579,951,4,you,you
+4580,951,5,have,have
+4581,951,6,four,four
+4582,951,7,quarts,quarts
+4583,951,8, ,","
+4584,952,0,inside,inside
+4585,952,1,of,of
+4586,952,2,four,four
+4587,952,3, ,--
+4588,953,0, ,...
+4589,953,1,in,in-
+4590,953,2, ,..
+4591,953,3,inside,inside
+4592,953,4,a,a
+4593,953,5,quart,quart
+4594,953,6,you,you
+4595,953,7,have,have
+4596,953,8, ,","
+4597,954,0,the,the
+4598,954,1,certain,certain
+4599,954,2,amount,amount
+4600,954,3,of,of
+4601,954,4,cups,cups
+4602,954,5, ,","
+4603,955,0,and,and
+4604,955,1,then,then
+4605,955,2, ,","
+4606,956,0,you,you
+4607,956,1,know,know
+4608,956,2, ,.
+4609,957,0, ,...
+4610,957,1,etcetera,etcetera
+4611,957,2,etcetera,etcetera
+4612,957,3, ,.
+4613,958,0, ,..
+4614,958,1, , 
+4615,959,0, ,...
+4616,959,1,well,[well
+4617,959,2, ,","
+4618,960,0,I,[I
+4619,960,1,don't,|don't
+4620,960,2, ,|..
+4621,960,3,see,|see
+4622,960,4,how,|how
+4623,960,5,it's,|it's]
+4624,960,6, ,--
+4625,960,7, , 
+4626,961,0,yeah,|yeah
+4627,961,1, ,","
+4628,962,0,except,|except
+4629,962,1,it's,|it's]
+4630,962,2,not,not
+4631,962,3, ,","
+4632,963,0,it's,it's
+4633,963,1,not,not
+4634,963,2,uh,uh
+4635,963,3, ,","
+4636,964,0,it's,it's
+4637,964,1,not,not
+4638,964,2,so,so
+4639,964,3, ,","
+4640,965,0, ,..
+4641,965,1,it's,it's
+4642,965,2,not,not
+4643,965,3,squared,squa:red
+4644,965,4, ,","
+4645,966,0,and,and
+4646,966,1,it's,it's
+4647,966,2,not,not
+4648,966,3,as,as
+4649,966,4,predictable,predictable
+4650,966,5,as,as
+4651,966,6,that,that
+4652,966,7, ,.
+4653,967,0,I,I
+4654,967,1,mean,mean
+4655,967,2,it's,it's
+4656,967,3,uh,uh
+4657,967,4, ,","
+4658,968,0,it's,it's
+4659,968,1, ,","
+4660,969,0, ,..
+4661,969,1,it's,it's
+4662,969,2,not,not
+4663,969,3,predictable,predictable
+4664,969,4,at,at
+4665,969,5,all,all
+4666,969,6,really,really
+4667,969,7, ,.
+4668,970,0, ,..
+4669,970,1,It's,It's:
+4670,970,2, ,","
+4671,971,0, ,..
+4672,971,1,it's,it's
+4673,971,2,a,a
+4674,971,3,it's,it's
+4675,971,4,a,a
+4676,971,5,found,found
+4677,971,6,phenomenon,pheno[menon]
+4678,971,7, ,.
+4679,972,0, , 
+4680,973,0, ,[]
+4681,973,1,Well,Well
+4682,973,2,it's,it's
+4683,973,3,not,not
+4684,973,4,predictable,predictable
+4685,973,5,if,if
+4686,973,6,you,you
+4687,973,7,apply,apply
+4688,973,8,random,random
+4689,973,9, ,...
+4690,973,10,values,values
+4691,973,11,to,to
+4692,973,12,the,the
+4693,973,13, ,...
+4694,973,14,subdivisions,subdivisions
+4695,973,15, ,.
+4696,974,0, ,...
+4697,974,1,The,The
+4698,974,2,subdivisions,subdivisions
+4699,974,3,have,have
+4700,974,4,to,to
+4701,974,5,be,be
+4702,974,6,random,random
+4703,974,7, ,.
+4704,975,0, ,...
+4705,975,1,They,They
+4706,975,2,ha,ha-
+4707,975,3, ,--
+4708,976,0,it,it
+4709,976,1,has,has
+4710,976,2,to,to
+4711,976,3, ,..
+4712,976,4,have,have
+4713,976,5, ,..
+4714,976,6,randomness,randomness
+4715,976,7,to,to
+4716,976,8,it,it
+4717,976,9, ,.
+4718,977,0,the,the
+4719,977,1,order,order
+4720,977,2, ,","
+4721,978,0,I,I
+4722,978,1,don't,don't
+4723,978,2,think,think
+4724,978,3,is,is
+4725,978,4, ,","
+4726,979,0, ,...
+4727,979,1,is,is
+4728,979,2,understood,understood
+4729,979,3, ,.
+4730,980,0, ,...
+4731,980,1,yet,yet
+4732,980,2, ,.
+4733,981,0, ,..
+4734,981,1,I,I
+4735,981,2,mean,mean
+4736,981,3,I,I
+4737,981,4,might,might
+4738,981,5,be,be
+4739,981,6,wrong,wrong
+4740,981,7, ,","
+4741,982,0,but,but
+4742,982,1,that's,that's
+4743,982,2,my,my
+4744,982,3,understanding,understanding
+4745,982,4, ,.
+4746,983,0,Hm,Hm
+4747,983,1, ,.
+4748,984,0, ,...
+4749,984,1, ,...
+4750,984,2,well,well
+4751,984,3, ,","
+4752,985,0,I,I
+4753,985,1,think,th:ink
+4754,985,2, ,","
+4755,986,0,that's,that's
+4756,986,1,why,why
+4757,986,2, ,","
+4758,987,0, ,..
+4759,987,1,they're,they're
+4760,987,2,calling,calling
+4761,987,3,it,it
+4762,987,4, ,","
+4763,988,0, ,..
+4764,988,1,the,the
+4765,988,2,equ,equ-
+4766,988,3, ,--
+4767,989,0,they're,they're
+4768,989,1,calling,calling
+4769,989,2,it,it
+4770,989,3, ,","
+4771,990,0, ,..
+4772,990,1,uh,uh
+4773,990,2, ,","
+4774,991,0,the,the
+4775,991,1,mathematics,mathematics
+4776,991,2,of,of
+4777,991,3,chaos,chaos
+4778,991,4, ,.
+4779,992,0,Oh,Oh
+4780,992,1, ,","
+4781,993,0,that's,that's
+4782,993,1,a,a
+4783,993,2,different,different
+4784,993,3,thing,thing
+4785,993,4, ,.
+4786,994,0,That's,That's
+4787,994,1,not,not
+4788,994,2,fractals,fractals
+4789,994,3, ,.
+4790,995,0,Yeah,Yeah
+4791,995,1, ,","
+4792,996,0,that's,that's
+4793,996,1,fractals,fractals
+4794,996,2, ,.
+4795,997,0, ,...
+4796,997,1,It,It
+4797,997,2,includes,includes
+4798,997,3,other,[other
+4799,997,4, ,--
+4800,998,0,well,[well
+4801,998,1,fractals,|fractals
+4802,998,2,can,|can
+4803,998,3,be,|be
+4804,998,4,used,|used]
+4805,998,5,to,to
+4806,998,6,describe,describe
+4807,998,7,chaos,[2chaos]
+4808,998,8, ,.
+4809,999,0, ,|..
+4810,999,1,it,|it
+4811,999,2,includes,|includes]
+4812,999,3, ,","
+4813,1000,0,it,[2it
+4814,1000,1,includes,|2includes
+4815,1000,2, ,|2]
+4816,1000,3,other,other
+4817,1000,4, ,","
+4818,1001,0, ,..
+4819,1001,1,it,it
+4820,1001,2,i,i-
+4821,1001,3, ,--
+4822,1002,0,Yes,Yes
+4823,1002,1, ,.
+4824,1003,0,It,It
+4825,1003,1,can,can
+4826,1003,2, ,.
+4827,1004,0,And,And
+4828,1004,1,it,it
+4829,1004,2,includes,includes
+4830,1004,3,other,[other
+4831,1004,4,mathematics,|mathematics
+4832,1004,5,too,|too]
+4833,1004,6, ,.
+4834,1005,0,But,[But
+4835,1005,1,fractals,|fractals
+4836,1005,2,is,|is
+4837,1005,3,separate,|separate]
+4838,1005,4, ,.
+4839,1006,0,yeah,#yeah
+4840,1006,1, ,.
+4841,1007,0, ,...
+4842,1007,1,I,I
+4843,1007,2,mean,mean
+4844,1007,3, ,","
+4845,1008,0,and,and
+4846,1008,1,chaos,chaos
+4847,1008,2,is,is
+4848,1008,3,se,se-
+4849,1008,4, ,--
+4850,1009,0,they,they
+4851,1009,1,overlap,overlap
+4852,1009,2, ,.
+4853,1010,0, ,...
+4854,1010,1,Mhm,Mhm
+4855,1010,2, ,.
+4856,1011,0, ,...
+4857,1011,1,Chaos,Chaos
+4858,1011,2,I,#I
+4859,1011,3,guess,#guess
+4860,1011,4,is,[is
+4861,1011,5,basically,|basically
+4862,1011,6,analysis,|analysis]
+4863,1011,7,of,of
+4864,1011,8,noise,noise
+4865,1011,9, ,.
+4866,1012,0,For,[For-
+4867,1012,1,for,|for
+4868,1012,2,the,|the
+4869,1012,3,scientist,|scientist]
+4870,1012,4, ,","
+4871,1013,0, ,..
+4872,1013,1,For,For
+4873,1013,2,the,the
+4874,1013,3,scientist,scientist
+4875,1013,4, ,","
+4876,1014,0,the,the
+4877,1014,1,scientist,scientist
+4878,1014,2,has,has
+4879,1014,3,never,never
+4880,1014,4,hav,hav-
+4881,1014,5, ,--
+4882,1015,0,has,has
+4883,1015,1,never,never
+4884,1015,2,had,had
+4885,1015,3,a,a
+4886,1015,4,tool,tool
+4887,1015,5, ,","
+4888,1016,0,where,where
+4889,1016,1,he,he
+4890,1016,2,had,had
+4891,1016,3,that,that
+4892,1016,4,overlap,overlap
+4893,1016,5, ,.
+4894,1017,0, ,..
+4895,1017,1,you,you
+4896,1017,2,see,see
+4897,1017,3, ,.
+4898,1019,0,Hm,Hm
+4899,1019,1, ,.
+4900,1020,0, ,...
+4901,1020,1,see,see
+4902,1020,2,that's,that's
+4903,1020,3,w,w-
+4904,1020,4, ,--
+4905,1021,0, ,..
+4906,1021,1,that's,that's
+4907,1021,2,the,the
+4908,1021,3,point,point
+4909,1021,4,that,that
+4910,1021,5,I'm,I'm
+4911,1021,6,trying,trying
+4912,1021,7,to,to
+4913,1021,8,get,get
+4914,1021,9,at,at
+4915,1021,10, ,.
+4916,1022,0,is,is
+4917,1022,1,is,is
+4918,1022,2,that,that
+4919,1022,3, ,","
+4920,1023,0,because,because
+4921,1023,1,the,the
+4922,1023,2,scientific,scientific
+4923,1023,3,method,method
+4924,1023,4,now,now
+4925,1023,5,has,has
+4926,1023,6,that,that
+4927,1023,7,tool,tool
+4928,1023,8,of,of
+4929,1023,9,overlap,overlap
+4930,1023,10, ,","
+4931,1024,0,it's,it's
+4932,1024,1,giving,giving
+4933,1024,2,them,them
+4934,1024,3,something,something
+4935,1024,4,that,that
+4936,1024,5,they,they
+4937,1024,6,never,never
+4938,1024,7,had,had
+4939,1024,8,before,before
+4940,1024,9, ,.
+4941,1025,0, ,...
+4942,1025,1,Hm,Hm
+4943,1025,2, ,.
+4944,1026,0, ,..
+4945,1026,1,and,a:nd
+4946,1026,2, ,","
+4947,1027,0, ,...
+4948,1027,1,that,tha:t
+4949,1027,2,is,is
+4950,1027,3,an,an
+4951,1027,4,opportunity,opportunity
+4952,1027,5,for,"for,"
+4953,1027,6, ,"-,"
+4954,1028,0, ,..
+4955,1028,1,to,to
+4956,1028,2,meet,meet
+4957,1028,3,spirituality,spirituality
+4958,1028,4, ,.
+4959,1029,0, ,...
+4960,1029,1,Yeah,Yeah
+4961,1029,2,well,well
+4962,1029,3, ,","
+4963,1030,0, ,..
+4964,1030,1,there's,there's
+4965,1030,2,u,u%-
+4966,1030,3, ,--
+4967,1031,0, ,..
+4968,1031,1,in,[in
+4969,1031,2,physics,|physics]
+4970,1031,3, ,.
+4971,1032,0, ,[@
+4972,1032,1,There's,|There's
+4973,1032,2,opportunities,|oppor]tunities
+4974,1032,3,to,to
+4975,1032,4,meet,meet
+4976,1032,5,spirituality,spirituality
+4977,1032,6, ,","
+4978,1033,0, ,..
+4979,1033,1,twentyfour,twenty-four
+4980,1033,2,hours,hours
+4981,1033,3,a,a
+4982,1033,4,day,day
+4983,1033,5,wherever,wherever
+4984,1033,6,you,you
+4985,1033,7,go,go
+4986,1033,8, ,.
+4987,1034,0,just,just
+4988,1034,1,by,by
+4989,1034,2,being,being
+4990,1034,3,alive,alive
+4991,1034,4, ,.
+4992,1035,0,If,If
+4993,1035,1,they,they
+4994,1035,2,don't,don't
+4995,1035,3,wanna,wanna
+4996,1035,4,see,see
+4997,1035,5,it,it
+4998,1035,6, ,","
+4999,1036,0,they're,they're
+5000,1036,1,not,not
+5001,1036,2,gonna,gonna
+5002,1036,3,see,see
+5003,1036,4,it,it
+5004,1036,5,in,in
+5005,1036,6,fractals,fractals
+5006,1036,7, ,.
+5007,1037,0,Well,Well
+5008,1037,1,yeah,yeah
+5009,1037,2, ,","
+5010,1038,0,a,a
+5011,1038,1,lot,lot
+5012,1038,2,of,of
+5013,1038,3,people,people
+5014,1038,4,will,will
+5015,1038,5, ,.
+5016,1039,0,A,A
+5017,1039,1,lot,lot
+5018,1039,2,of,of
+5019,1039,3,people,people
+5020,1039,4,will,will
+5021,1039,5,uh,uh
+5022,1039,6, ,","
+5023,1040,0,it'll,it'll
+5024,1040,1,dawn,dawn
+5025,1040,2,on,on
+5026,1040,3,them,them
+5027,1040,4, ,","
+5028,1041,0,because,because
+5029,1041,1, ,..
+5030,1041,2,they,they
+5031,1041,3, ,..
+5032,1041,4,follow,follow
+5033,1041,5, ,..
+5034,1041,6,the,the
+5035,1041,7,scientific,scientific
+5036,1041,8,impulse,impulse
+5037,1041,9, ,","
+5038,1042,0,and,and
+5039,1042,1, ,","
+5040,1043,0, ,..
+5041,1043,1,fractals,fractals
+5042,1043,2,may,may
+5043,1043,3, ,..
+5044,1043,4,be,be
+5045,1043,5,the,the
+5046,1043,6,very,very
+5047,1043,7,thing,thing
+5048,1043,8,that,that
+5049,1043,9,boggles,boggles
+5050,1043,10,them,them
+5051,1043,11,out,out
+5052,1043,12,enough,enough
+5053,1043,13, ,","
+5054,1044,0,where,where
+5055,1044,1,they,they
+5056,1044,2,have,have
+5057,1044,3,to,to
+5058,1044,4,do,do
+5059,1044,5,some,some
+5060,1044,6,serious,serious
+5061,1044,7,questioning,questioning
+5062,1044,8,about,about
+5063,1044,9,things,things
+5064,1044,10, ,.
+5065,1045,0, ,...
+5066,1045,1,is,is
+5067,1045,2,my,my
+5068,1045,3,theory,theory
+5069,1045,4, ,.
+5070,1046,0, ,..
+5071,1046,1,Yeah,[Yeah]
+5072,1046,2, ,","
+5073,1047,0,You,[You
+5074,1047,1,know,|know]
+5075,1047,2, ,.
+5076,1048,0, ,..
+5077,1048,1,Maybe,Maybe
+5078,1048,2, ,.
+5079,1049,0, ,..
+5080,1049,1,They'll,They'll
+5081,1049,2,probably,probably
+5082,1049,3,find,find
+5083,1049,4,it,it
+5084,1049,5,in,in
+5085,1049,6,something,something
+5086,1049,7, ,","
+5087,1050,0,if,if
+5088,1050,1,there,there
+5089,1050,2,fractals,fractals
+5090,1050,3,weren't,weren't
+5091,1050,4,there,there
+5092,1050,5, ,.
+5093,1051,0,I,I
+5094,1051,1,think,think
+5095,1051,2,um,um
+5096,1051,3, ,","
+5097,1052,0, ,..
+5098,1052,1,it's,it's
+5099,1052,2,like,like
+5100,1052,3,all,all
+5101,1052,4,the,the
+5102,1052,5, ,..
+5103,1052,6,the,the
+5104,1052,7,ideas,ideas
+5105,1052,8,that,that
+5106,1052,9,we,we
+5107,1052,10,have,have
+5108,1052,11, ,","
+5109,1053,0,throughout,throughout
+5110,1053,1,the,the
+5111,1053,2,ages,ages
+5112,1053,3, ,","
+5113,1054,0,and,and
+5114,1054,1,the,the
+5115,1054,2,various,various
+5116,1054,3, ,","
+5117,1055,0, ,...
+5118,1055,1,they're,they're
+5119,1055,2,just,just
+5120,1055,3,sort,sort
+5121,1055,4,of,of
+5122,1055,5,echos,echos
+5123,1055,6,of,of
+5124,1055,7,uh,uh:
+5125,1055,8, ,","
+5126,1056,0, ,..
+5127,1056,1,the,the
+5128,1056,2,past,pa:st
+5129,1056,3, ,.
+5130,1057,0,And,And
+5131,1057,1,they,they
+5132,1057,2,come,come
+5133,1057,3, ,...
+5134,1057,4,under,under
+5135,1057,5,different,different
+5136,1057,6,names,names
+5137,1057,7,and,and
+5138,1057,8,things,things
+5139,1057,9, ,.
+5140,1058,0,Just,Just
+5141,1058,1,like,like
+5142,1058,2,um,um
+5143,1058,3, ,","
+5144,1059,0, ,..
+5145,1059,1,the,the
+5146,1059,2,latest,latest
+5147,1059,3,power,power
+5148,1059,4,now,now
+5149,1059,5,is,is
+5150,1059,6,corporations,corporations
+5151,1059,7, ,.
+5152,1060,0,Right,Right
+5153,1060,1, ,?
+5154,1061,0,And,And
+5155,1061,1,before,before
+5156,1061,2,that,that
+5157,1061,3,it,it
+5158,1061,4,was,was:
+5159,1061,5, ,","
+5160,1062,0, ,...
+5161,1062,1,like,like
+5162,1062,2,uh,uh
+5163,1062,3,governments,governments
+5164,1062,4, ,","
+5165,1063,0,before,before
+5166,1063,1,that,that
+5167,1063,2,it,it
+5168,1063,3,was,was
+5169,1063,4, ,","
+5170,1064,0, ,..
+5171,1064,1,principalities,principalities
+5172,1064,2, ,","
+5173,1065,0, ,...
+5174,1065,1,before,before
+5175,1065,2,that,that
+5176,1065,3,it,it
+5177,1065,4,was,was
+5178,1065,5,gangs,gangs
+5179,1065,6, ,","
+5180,1066,0,you,you
+5181,1066,1,know,know
+5182,1066,2, ,.
+5183,1067,0, ,[@]
+5184,1068,0, ,[@@]@@
+5185,1069,0,And,And
+5186,1069,1,tribes,tri:bes
+5187,1069,2, ,.
+5188,1070,0,And,And
+5189,1070,1,gangs,gangs
+5190,1070,2,are,are
+5191,1070,3,coming,coming
+5192,1070,4,back,back
+5193,1070,5, ,","
+5194,1071,0,now,now
+5195,1071,1, ,","
+5196,1072,0,you,you
+5197,1072,1,know,know
+5198,1072,2, ,?
+5199,1073,0,s,s-
+5200,1073,1,but,but
+5201,1073,2,uh,[uh]
+5202,1073,3, ,","
+5203,1074,0,God,[God
+5204,1074,1, ,","
+5205,1075,0,are,|are]
+5206,1075,1,they,they
+5207,1075,2,ever,ever
+5208,1075,3, ,.
+5209,1076,0,um,um
+5210,1076,1, ,","
+5211,1077,0, ,..
+5212,1077,1,it's,it's
+5213,1077,2,unbelievable,unbelievable
+5214,1077,3, ,.
+5215,1078,0,And,And
+5216,1078,1,knowledge,knowledge
+5217,1078,2, ,","
+5218,1079,0,and,and
+5219,1079,1,and,an:d
+5220,1079,2, ,..
+5221,1079,3,the,the
+5222,1079,4,pursuit,pursuit
+5223,1079,5,of,of
+5224,1079,6,um,um
+5225,1079,7, ,","
+5226,1080,0, ,..
+5227,1080,1,spirituality,spirituality
+5228,1080,2, ,","
+5229,1081,0, ,...
+5230,1081,1,has,has
+5231,1081,2,taken,taken
+5232,1081,3,on,[on]
+5233,1081,4,many,many
+5234,1081,5,forms,forms
+5235,1081,6, ,","
+5236,1082,0, ,[]
+5237,1083,0, ,...
+5238,1083,1,And,And
+5239,1083,2,if,if
+5240,1083,3,a,a
+5241,1083,4,person,person
+5242,1083,5,wants,wants
+5243,1083,6,to,to
+5244,1083,7,find,find
+5245,1083,8,it,it
+5246,1083,9,in,in
+5247,1083,10, ,","
+5248,1084,0, ,..
+5249,1084,1,in,in
+5250,1084,2,something,something
+5251,1084,3,they,they
+5252,1084,4,believe,believe
+5253,1084,5,in,in
+5254,1084,6, ,","
+5255,1085,0,and,and
+5256,1085,1,they,they
+5257,1085,2,believe,believe
+5258,1085,3,in,in
+5259,1085,4,science,science
+5260,1085,5, ,","
+5261,1086,0,they'll,they'll
+5262,1086,1,find,find
+5263,1086,2,it,it
+5264,1086,3,in,in
+5265,1086,4,science,science
+5266,1086,5, ,.
+5267,1087,0, ,...
+5268,1087,1,well,well
+5269,1087,2,that's,that's
+5270,1087,3,very,very
+5271,1087,4,true,true
+5272,1087,5, ,","
+5273,1088,0,but,but
+5274,1088,1,I,I
+5275,1088,2,mean,mean
+5276,1088,3, ,","
+5277,1089,0,uh,uh-
+5278,1089,1, ,--
+5279,1090,0,that,%that
+5280,1090,1, ,--
+5281,1091,0,I,I
+5282,1091,1,think,thi:nk
+5283,1091,2,that,that
+5284,1091,3,that,that
+5285,1091,4, ,--
+5286,1092,0, ,..
+5287,1092,1,that,that
+5288,1092,2,people,people
+5289,1092,3,who,who
+5290,1092,4,find,find
+5291,1092,5,spirituality,spirituality
+5292,1092,6,in,in
+5293,1092,7,science,science
+5294,1092,8, ,","
+5295,1093,0,as,as
+5296,1093,1,their,their
+5297,1093,2, ,..
+5298,1093,3,f,f-
+5299,1093,4,sole,sole
+5300,1093,5,spiritual,spiritual
+5301,1093,6,source,source
+5302,1093,7,are,are
+5303,1093,8, ,","
+5304,1094,0, ,..
+5305,1094,1,people,people
+5306,1094,2,that,that
+5307,1094,3,are,are
+5308,1094,4,fucking,fucking
+5309,1094,5,up,up
+5310,1094,6,the,the
+5311,1094,7,planet,@planet
+5312,1094,8, ,.
+5313,1095,0,You,You
+5314,1095,1,know,know
+5315,1095,2, ,?
+5316,1096,0, ,..
+5317,1096,1,I,I
+5318,1096,2,don't,don't
+5319,1096,3,think,think
+5320,1096,4,science,science
+5321,1096,5,is,is
+5322,1096,6,the,the
+5323,1096,7, ,--
+5324,1097,0,I,I
+5325,1097,1,don't,don't
+5326,1097,2,think,think
+5327,1097,3,science,science
+5328,1097,4,can,can
+5329,1097,5,be,be
+5330,1097,6,God,God
+5331,1097,7, ,.
+5332,1098,0,I've,I've
+5333,1098,1,been,been
+5334,1098,2,watching,watching
+5335,1098,3,Two,Two
+5336,1098,4,Thousand,Thousand
+5337,1098,5,And,And
+5338,1098,6,One,One
+5339,1098,7,lately,lately
+5340,1098,8, ,.
+5341,1099,0,You,You
+5342,1099,1,know,know
+5343,1099,2, ,?
+5344,1100,0,I,I
+5345,1100,1,mean,mean
+5346,1100,2,that's,that's
+5347,1100,3,what,what
+5348,1100,4,that's,that's
+5349,1100,5,all,all
+5350,1100,6, ,--
+5351,1101,0,i,i-
+5352,1101,1, ,--
+5353,1102,0,that's,that's
+5354,1102,1,not,not
+5355,1102,2,what,what
+5356,1102,3,it's,it's
+5357,1102,4,all,all
+5358,1102,5,about,about
+5359,1102,6, ,","
+5360,1103,0,but,but
+5361,1103,1,that's,that's
+5362,1103,2,a,a
+5363,1103,3, ,","
+5364,1104,0,a,a
+5365,1104,1,major,major
+5366,1104,2,theme,theme
+5367,1104,3,in,in
+5368,1104,4,it,it
+5369,1104,5, ,.
+5370,1105,0,you,you
+5371,1105,1,know,know
+5372,1105,2, ,","
+5373,1106,0,that,that
+5374,1106,1, ,","
+5375,1107,0, ,..
+5376,1107,1,the,the
+5377,1107,2,race,race
+5378,1107,3,between,between
+5379,1107,4,the,the
+5380,1107,5,human,human
+5381,1107,6,and,and
+5382,1107,7,the,the
+5383,1107,8, ,","
+5384,1108,0,and,and
+5385,1108,1,the,the
+5386,1108,2,techno,tech[no-]
+5387,1108,3, ,--
+5388,1109,0,mhm,[mhm]
+5389,1109,1, ,.
+5390,1110,0, ,..
+5391,1110,1,and,and
+5392,1110,2,its,its
+5393,1110,3, ,","
+5394,1111,0,and,and
+5395,1111,1,its,its
+5396,1111,2,technological,technological
+5397,1111,3,manifestation,manifestation
+5398,1111,4,of,of
+5399,1111,5, ,","
+5400,1112,0,well,well
+5401,1112,1,I,%I-
+5402,1112,2, ,--
+5403,1113,0,you,you
+5404,1113,1,know,know
+5405,1113,2, ,","
+5406,1114,0,I,I
+5407,1114,1,think,think
+5408,1114,2,that,that
+5409,1114,3, ,","
+5410,1115,0,we,[we
+5411,1115,1,built,|built
+5412,1115,2, ,|]
+5413,1115,3, ,----
+5414,1116,0,it's,[it's
+5415,1116,1,like,|like]
+5416,1116,2,are,are
+5417,1116,3,we,we
+5418,1116,4,gonna,gonna
+5419,1116,5,be,be
+5420,1116,6,part,part
+5421,1116,7,of,of
+5422,1116,8,it,it
+5423,1116,9, ,","
+5424,1117,0,or,or
+5425,1117,1,are,are
+5426,1117,2,we,we
+5427,1117,3,gonna,gonna
+5428,1117,4,make,make
+5429,1117,5,it,it
+5430,1117,6, ,.
+5431,1118,0,Is,Is
+5432,1118,1,it,it
+5433,1118,2,gonna,gonna
+5434,1118,3,m,m-
+5435,1118,4, ,..
+5436,1118,5,do,do
+5437,1118,6,us,us
+5438,1118,7, ,","
+5439,1119,0,or,or
+5440,1119,1,are,are
+5441,1119,2,we,we
+5442,1119,3,gonna,gonna
+5443,1119,4,do,do
+5444,1119,5,it,it
+5445,1119,6, ,.
+5446,1120,0,you,you
+5447,1120,1,know,know
+5448,1120,2, ,","
+5449,1121,0,is,is
+5450,1121,1,our,our
+5451,1121,2,creation,creation
+5452,1121,3, ,","
+5453,1122,0,it's,it's
+5454,1122,1,like,like
+5455,1122,2,the,the
+5456,1122,3,Frankenstein,Frankenstein
+5457,1122,4,myth,myth
+5458,1122,5, ,.
+5459,1123,0,Is,Is
+5460,1123,1,our,our
+5461,1123,2,creation,creation
+5462,1123,3,going,going
+5463,1123,4,to,to
+5464,1123,5,uh,uh
+5465,1123,6, ,","
+5466,1124,0,destroy,destroy
+5467,1124,1,us,us
+5468,1124,2, ,?
+5469,1125,0,or,or
+5470,1125,1,are,are
+5471,1125,2,we,we
+5472,1125,3,going,[going
+5473,1125,4,to,|to
+5474,1125,5,continue,|continue]
+5475,1125,6, ,.
+5476,1126,0,Yeah,[Yeah
+5477,1126,1,uh,|uh
+5478,1126,2, ,","
+5479,1127,0,look,|look
+5480,1127,1,at,|at
+5481,1127,2,what's,|what's
+5482,1127,3,on,|on
+5483,1127,4,TV,|TV]
+5484,1127,5, ,.
+5485,1128,0, ,@@
+5486,1129,0,yeah,yeah
+5487,1129,1, ,.
+5488,1130,0,I,[I
+5489,1130,1,just,|just
+5490,1130,2,put,|put
+5491,1130,3,it,|it
+5492,1130,4,on,|on]
+5493,1130,5, ,.
+5494,1131,0, ,[
+5495,1131,1,Mandelbrot,|Man]delbrot
+5496,1131,2, ,.
+5497,1132,0, ,..
+5498,1132,1,oh,[2oh
+5499,1132,2, ,","
+5500,1133,0,I,[2I
+5501,1133,1,just,|2just
+5502,1133,2,put,|2put
+5503,1133,3,it,|2it]
+5504,1133,4,on,on
+5505,1133,5, ,.
+5506,1134,0,okay,|2okay2]
+5507,1134,1, ,.
+5508,1135,0, ,..
+5509,1135,1,Yeah,[3Yeah]
+5510,1135,2, ,.
+5511,1136,0,I,[3I
+5512,1136,1,see,|3see]
+5513,1136,2, ,.
+5514,1137,0, ,...
+5515,1137,1,I,I
+5516,1137,2,thought,thought
+5517,1137,3,they,they
+5518,1137,4,were,were
+5519,1137,5,showing,showing
+5520,1137,6,that,that
+5521,1137,7,on,on
+5522,1137,8,the,the
+5523,1137,9,uh,uh
+5524,1137,10, ,..
+5525,1137,11,ads,ads
+5526,1137,12, ,","
+5527,1138,0,for,for
+5528,1138,1,some,some
+5529,1138,2,reason,reason
+5530,1138,3, ,.
+5531,1139,0, ,@@
+5532,1140,0, ,..
+5533,1141,0, ,[%:]
+5534,1142,0,A,[A
+5535,1142,1,little,|little
+5536,1142,2,too,|too
+5537,1142,3,hip,|hip]
+5538,1142,4,for,for
+5539,1142,5,TV,TV
+5540,1142,6, ,.
+5541,1143,0,Little,Little
+5542,1143,1,too,too
+5543,1143,2,hip,hip
+5544,1143,3, ,","
+5545,1144,0,yeah,yeah
+5546,1144,1, ,.
+5547,1145,0, ,...
+5548,1145,1,So,So
+5549,1145,2,they're,they're
+5550,1145,3,colorcycling,color-cycling
+5551,1145,4,right,right
+5552,1145,5,now,now
+5553,1145,6, ,.
+5554,1146,0, ,...
+5555,1146,1,Does,Does
+5556,1146,2,it,it
+5557,1146,3,zoom,zoom
+5558,1146,4,later,later
+5559,1146,5, ,?
+5560,1147,0,I,[I
+5561,1147,1,guess,|guess
+5562,1147,2,it,|it
+5563,1147,3,must,|must]
+5564,1147,4, ,.
+5565,1148,0, ,[
+5566,1148,1,Yeah,|Yeah
+5567,1148,2, ,","
+5568,1149,0,I've,|I've
+5569,1149,1,got,|got]
+5570,1149,2,zooms,zooms
+5571,1149,3,on,on
+5572,1149,4,here,here
+5573,1149,5,too,too
+5574,1149,6, ,.
+5575,1150,0, ,...
+5576,1150,1,and,[2and
+5577,1150,2,I,|2I]
+5578,1150,3, ,--
+5579,1151,0,Where'd,[2Where'd
+5580,1151,1,you,|2you
+5581,1151,2,tape,|2tape]
+5582,1151,3,it,it
+5583,1151,4,from,from
+5584,1151,5, ,.
+5585,1152,0, ,..
+5586,1152,1,M,M:_
+5587,1152,2,uh,uh
+5588,1152,3, ,","
+5589,1153,0, ,..
+5590,1153,1,This,This
+5591,1153,2,one's,one's
+5592,1153,3,Fractal,Fractal
+5593,1153,4,Fantasy,Fantasy
+5594,1153,5, ,","
+5595,1154,0,which,which
+5596,1154,1,is,is:
+5597,1154,2, ,","
+5598,1155,0,for,for
+5599,1155,1,sale,sale
+5600,1155,2, ,.
+5601,1156,0, ,...
+5602,1156,1,Hunh,Hunh
+5603,1156,2, ,.
+5604,1157,0, ,..
+5605,1157,1,and,and
+5606,1157,2,the,the
+5607,1157,3,other,other
+5608,1157,4,one,one
+5609,1157,5,is,is
+5610,1157,6,uh,uh
+5611,1157,7, ,","
+5612,1158,0, ,...
+5613,1158,1,Fractal,Fractal
+5614,1158,2,Zooms,Zooms
+5615,1158,3, ,","
+5616,1159,0,which,which
+5617,1159,1,I,I
+5618,1159,2,don't,don't
+5619,1159,3,think,think
+5620,1159,4,is,is
+5621,1159,5,available,available
+5622,1159,6, ,","
+5623,1160,0, ,...
+5624,1160,1,b,b-
+5625,1160,2,and,and
+5626,1160,3,then,then
+5627,1160,4,I've,I've
+5628,1160,5,got,got
+5629,1160,6,a,a
+5630,1160,7,uh,uh:
+5631,1160,8,test,test
+5632,1160,9,film,film
+5633,1160,10,from,from
+5634,1160,11, ,..
+5635,1160,12,IBM,IBM
+5636,1160,13,laboratories,laboratories
+5637,1160,14, ,.
+5638,1161,0,of,of
+5639,1161,1,uh,uh
+5640,1161,2, ,","
+5641,1162,0,f,f-
+5642,1162,1,uh,uh
+5643,1162,2, ,","
+5644,1163,0,uh,uh
+5645,1163,1, ,","
+5646,1164,0, ,..
+5647,1164,1,taking,taking
+5648,1164,2,a,a
+5649,1164,3,Julia,Julia
+5650,1164,4,set,set
+5651,1164,5,into,into
+5652,1164,6,the,the
+5653,1164,7,fourth,fourth
+5654,1164,8,dimension,dimension
+5655,1164,9, ,.
+5656,1165,0, ,..
+5657,1165,1,Hm,Hm
+5658,1165,2, ,.
+5659,1166,0, ,...
+5660,1166,1,which,which
+5661,1166,2,th,th-
+5662,1166,3, ,--
+5663,1167,0,and,and
+5664,1167,1,then,then
+5665,1167,2,they,they
+5666,1167,3,zoom,zoom
+5667,1167,4,through,through
+5668,1167,5,it,it
+5669,1167,6, ,","
+5670,1168,0,it's,it's
+5671,1168,1,pretty,pretty
+5672,1168,2,f,f-
+5673,1168,3, ,--
+5674,1169,0,pretty,pretty
+5675,1169,1,fantastic,fantastic
+5676,1169,2,looking,looking
