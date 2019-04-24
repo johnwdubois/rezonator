@@ -28,6 +28,42 @@ draw_text(x + textMarginLeft, y + textMarginTop, "Graph Stats");
 draw_set_font(fnt_searchPane);
 
 var textPlusY = 0;
+
+	var textX = x + textMarginLeft;
+	var textY = y + (textMarginTop * 2) + textPlusY;
+	
+	if(obj_control.hoverWordID > 0) {
+		var hoveredWordUnitID = obj_control.hoverWordID - 1;
+	var hoveredWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, hoveredWordUnitID );
+	var hoveredWordVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, hoveredWordUnitID );
+	
+	textPlusY += string_height(hoveredWord);
+	
+	var textRectX1 = textX;
+	var textRectY1 = textY - (string_height(hoveredWord) / 2);
+	var textRectX2 = textX + string_width(hoveredWord);
+	var textRectY2 = textRectY1 + string_height(hoveredWord);
+	
+	draw_set_alpha(1);
+	draw_set_color(c_black);
+	draw_text(textX, textY, "Word: " + hoveredWord);
+	
+	textX = x + textMarginLeft;
+	 textY = y + (textMarginTop * 2) + textPlusY;
+	
+	textPlusY += string_height(hoveredWord);
+	
+	 textRectX1 = textX;
+	 textRectY1 = textY - (string_height(hoveredWord) / 2);
+	 textRectX2 = textX + string_width(hoveredWord);
+	 textRectY2 = textRectY1 + string_height(hoveredWord);
+	
+	draw_set_alpha(1);
+	draw_set_color(c_black);
+	draw_text(textX, textY, "Void: " + string(hoveredWordVoid));
+	}
+	
+	
 /*for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
 {
 	var textX = x + textMarginLeft;

@@ -1,5 +1,5 @@
 {
-    "id": "49456a3f-df6f-4f1e-a796-fbe517608d6b",
+    "id": "9a6355e9-3770-46b0-8704-cb5474a9c2b5",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "scr_panelPane_drawGraphStats",

@@ -1687,6 +1687,14 @@
             }
         },
         {
+            "Key": "9a6355e9-3770-46b0-8704-cb5474a9c2b5",
+            "Value": {
+                "id": "2d51391b-b567-49a8-9ecc-cd0031dbc17c",
+                "resourcePath": "scripts\\scr_panelPane_drawGraphStats\\scr_panelPane_drawGraphStats.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9b13b5ff-b166-4d58-a673-a63cc0cbdc5f",
             "Value": {
                 "id": "22327df9-5250-4c64-9cf3-08ec0328ae94",
@@ -2790,6 +2798,7 @@
         "86d712e5-8944-4c97-a29c-925c573202c9",
         "79e73708-91c0-467f-ab87-2d0ed15beb30",
         "0435a0ad-d7af-486e-88a9-3970e1bdf048",
+        "9a6355e9-3770-46b0-8704-cb5474a9c2b5",
         "4780a6db-dc73-40e3-8286-7eb084a8b47b",
         "2c4abd01-f056-4203-accc-7a49a37cdfee",
         "8527467f-60ba-4b6d-8e16-ec6891e4a3e2",
