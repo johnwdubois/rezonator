@@ -254,6 +254,8 @@ mouseRectReleased = false;
 inRectWordIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
+quickStackAbleToSwitch = true;
+
 quickInside = false;
 quickOutside = false;
 
