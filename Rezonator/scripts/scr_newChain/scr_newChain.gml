@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+show_message("here");
+
 var wordID = argument0;
 var unitID = argument1;
 
@@ -47,6 +49,9 @@ switch (obj_toolPane.currentTool) {
 		stackChainNameCounter++;
 		chainName = currentChainName + " " + string(stackChainNameCounter);
 		break;
+	case obj_toolPane.toolPlaceChains:
+		placeChainNameCounter++;
+		chainName = currentChainName + " " + string(placeChainNameCounter);
 	default:
 		exit;
 }

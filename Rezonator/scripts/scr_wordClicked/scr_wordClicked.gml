@@ -23,7 +23,8 @@ var unitID = argument1;
 // if we are not on rez-tool, track-tool, or stack-tool, leave this script
 if not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush
 or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush
-or obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+or obj_toolPane.currentTool == obj_toolPane.toolStackBrush
+or obj_toolPane.currentTool == obj_toolPane.toolPlaceChains) {
 	exit;
 }
 
@@ -35,66 +36,68 @@ else {
 }
 
 // loop through the chains that this word is already in (if any) to refocus that chain
-for (var i = 0; i < ds_list_size(inChainsList); i++) {
-	var currentChainID = ds_list_find_value(inChainsList, i);
-	if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID)) {
-		scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-		scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-		scr_setAllValuesInCol(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-		
-		var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID);
-		ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
-		currentFocusedChainID = currentChainID;
-		
-		with(obj_panelPane) {
-			currentTopViewRow = ((currentChainID - 2) > 2) ? (currentChainID - 2) : 0;	
-		}
-		
-		var rowInLinkGrid = -1;
-		if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-			rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, unitID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
-		}
-		else {
-			rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
-		}
-		
-		if (rowInLinkGrid == -1) {
+if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains) {
+	for (var i = 0; i < ds_list_size(inChainsList); i++) {
+		var currentChainID = ds_list_find_value(inChainsList, i);
+		if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID)) {
 			scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
 			scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
 			scr_setAllValuesInCol(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-		}
-		else if (rowInLinkGrid >= 0 and rowInLinkGrid < ds_grid_height(linkGrid)) {
-			
-			ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
-			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
-			scr_refreshChainGrid();
-			
-			if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
-				ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
-				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, wordID - 1, true);
-				obj_chain.mouseLineWordID = wordID;
 		
+			var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID);
+			ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
+			currentFocusedChainID = currentChainID;
+		
+			with(obj_panelPane) {
+				currentTopViewRow = ((currentChainID - 2) > 2) ? (currentChainID - 2) : 0;	
 			}
-			with (obj_panelPane) {
-				switch (obj_chain.currentChainGrid) {
-					case obj_chain.rezChainGrid:
-						functionChainList_currentTab = functionChainList_tabRezBrush;
-						break;
-					case obj_chain.trackChainGrid:
-						functionChainList_currentTab = functionChainList_tabTrackBrush;
-						break;
-					case obj_chain.stackChainGrid:
-						functionChainList_currentTab = functionChainList_tabStackBrush;
-						break;
-					default:
-						break;
-				}
-				if (currentFunction == functionChainContents) {
-					functionChainContents_hop = wordID;
-				}
+		
+			var rowInLinkGrid = -1;
+			if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+				rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, unitID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
 			}
+			else {
+				rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChainID, linkGrid_colDead, false);
+			}
+		
+			if (rowInLinkGrid == -1) {
+				scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+				scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+				scr_setAllValuesInCol(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+			}
+			else if (rowInLinkGrid >= 0 and rowInLinkGrid < ds_grid_height(linkGrid)) {
 			
-			exit;
+				ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+				ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
+				scr_refreshChainGrid();
+			
+				if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
+					ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, wordID - 1, true);
+					obj_chain.mouseLineWordID = wordID;
+		
+				}
+				with (obj_panelPane) {
+					switch (obj_chain.currentChainGrid) {
+						case obj_chain.rezChainGrid:
+							functionChainList_currentTab = functionChainList_tabRezBrush;
+							break;
+						case obj_chain.trackChainGrid:
+							functionChainList_currentTab = functionChainList_tabTrackBrush;
+							break;
+						case obj_chain.stackChainGrid:
+							functionChainList_currentTab = functionChainList_tabStackBrush;
+							break;
+						default:
+							break;
+					}
+					if (currentFunction == functionChainContents) {
+						functionChainContents_hop = wordID;
+					}
+				}
+			
+				exit;
+			}
 		}
 	}
 }

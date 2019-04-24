@@ -91,6 +91,7 @@ linkIDCounter = 0;
 rezChainNameCounter = 0;
 trackChainNameCounter = 0;
 stackChainNameCounter = 0;
+placeChainNameCounter = 0;
 
 currentFocusedChainID = -1;
 

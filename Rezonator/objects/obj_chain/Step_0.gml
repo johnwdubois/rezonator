@@ -65,6 +65,10 @@ switch (obj_toolPane.currentTool) {
 		currentChainGrid = stackChainGrid;
 		currentChainName = "Stack";
 		break;
+	case obj_toolPane.toolPlaceChains:
+		currentChainGrid = placeChainGrid;
+		currentChainName = "Place";
+		break;
 	default:
 		break;
 }
