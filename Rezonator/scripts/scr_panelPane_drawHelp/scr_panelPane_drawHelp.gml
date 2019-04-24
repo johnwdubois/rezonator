@@ -74,9 +74,48 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	functionHelp_helpWindowRectX2 = helpWindowX2;
 	functionHelp_helpWindowRectY2 = helpWindowY2;
 	
+	// Create and control "All" button
+	var textBufferAll = 10;
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle)
+	draw_set_font(fnt_mainBold);
+	var titleTextAllX = helpWindowX1 + textBufferAll;
+	var titleTextAllY = helpWindowY1 + (textBufferAll * 2) + functionHelp_plusY; 
+	draw_set_color(global.colorThemeText);
+	var titleTextAllStr = "All";
+	draw_text(titleTextAllX, titleTextAllY, titleTextAllStr);
+	var gridCollapseButtonAllX = titleTextAllX + string_width(titleTextAllStr) + (textBufferAll * 2);
+	var gridCollapseButtonAllY = titleTextAllY;
+	
+	if (obj_panelPane.functionHelp_allCollapsed) {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 270, c_white, 1);
+	}
+	else {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 180, c_white, 1);
+	}
+	
+	// Draw the mouseover circles around arrows
+	if (point_distance(mouse_x, mouse_y, gridCollapseButtonAllX, gridCollapseButtonAllY) < 10) {
+		draw_set_color(global.colorThemeText);
+		draw_set_alpha(1);
+		draw_circle(gridCollapseButtonAllX, gridCollapseButtonAllY, 10, true);
+		if (mouse_check_button_pressed(mb_left)) {
+			for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
+				// Skip past sections already changed
+				if((obj_panelPane.functionHelp_allCollapsed and not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) or (not obj_panelPane.functionHelp_allCollapsed and ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i))) {
+					continue;	
+				}
+				// Set this section to open/close
+				if(not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colHide, i)) {
+					ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i, not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i));
+				}
+			}
+			obj_panelPane.functionHelp_allCollapsed = !obj_panelPane.functionHelp_allCollapsed;
+		}
+	}
 	
 	var cellHeight = 14;
-	var cellPlusY = 16;
+	var cellPlusY = 20;
 
 	// Loop through the separate grids to draw titles, and if selected their contents
 	for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {

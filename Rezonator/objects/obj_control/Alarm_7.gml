@@ -58,3 +58,4 @@ mouseHoldRectX2 = 0;
 mouseRectMade = false;
 mouseRectReleased = false;
 quickStackAbleToInitiate = true;
+quickStackAbleToSwitch = true;

@@ -13,47 +13,47 @@ if (os_type == os_macosx) {
 var helpMenuHeight = 9;
 ds_grid_resize(functionHelp_menuGrid, functionHelp_menuGridWidth, helpMenuHeight);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 0, "Link Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 0, "Link");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 0, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 0, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 0, functionHelp_helpGridLink);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 1, "Pick Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 1, "Pick");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 1, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 1, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 1, functionHelp_helpGridPick);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 2, "Search Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 2, "Search");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 2, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 2, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 2, functionHelp_helpGridSearch);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 3, "View Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 3, "View");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 3, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 3, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 3, functionHelp_helpGridView);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 4, "File Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 4, "File");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 4, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 4, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 4, functionHelp_helpGridFile);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 5, "Move Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 5, "Move");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 5, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 5, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 5, functionHelp_helpGridMove);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 6, "Play Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 6, "Play");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 6, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 6, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 6, functionHelp_helpGridPlay);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 7, "Advanced Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 7, "Advanced");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 7, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 7, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 7, functionHelp_helpGridAdvanced);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 8, "About Functions");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 8, "About");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 8, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 8, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHelp_helpGridAbout);
