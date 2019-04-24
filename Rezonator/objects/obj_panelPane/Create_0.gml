@@ -20,6 +20,7 @@ functionSearch = 4;
 functionClique = 5;
 functionHelp = 6;
 functionGoToLine = 7;
+functionGraphStats = 8;
 
 functionChainList_tabRezBrush = 0;
 functionChainList_tabTrackBrush = 1;
@@ -101,6 +102,9 @@ functionHelp_helpWindowRectY2 = 0;
 alarm[3] = 1;
 
 functionGoToLine_selectedDisco = 0;
+
+functionGraphStats_mainGridWidth = 3;
+functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
 
 
 for (var i = 0; i < 3; i++) {
