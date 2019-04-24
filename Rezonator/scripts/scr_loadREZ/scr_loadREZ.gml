@@ -39,13 +39,29 @@ if (file_exists(fileName)) {
 		with (asset_get_index(objectIndex)) {
 			if (objectIndex == "obj_control") {
 				obj_control.currentCenterDisplayRow = 0;
-				
+			
+			
+				/*
 				scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
-				scr_loadREZGridReset(wordGrid, map, "wordGrid");
+				scr_loadREZGridReset(tempWordGrid, map, "wordGrid");
 				scr_loadREZGridReset(dynamicWordGrid, map, "dynaWordGrid");
 				scr_loadREZGridReset(wordDrawGrid, map, "wordDrawGrid");
 				scr_loadREZGridReset(unitGrid, map, "unitGrid");
 				scr_loadREZGridReset(lineGrid, map, "lineGrid");
+				*/
+				
+				originalWordGridHeight = ds_grid_height(wordGrid);
+				originalUnitGridHeight = ds_grid_height(unitGrid);
+				originalLineGridHeight = ds_grid_height(lineGrid);
+				
+				scr_loadAnotherREZ(global.fileLineRipGrid, map, "fileLineRipGrid");
+				scr_loadAnotherREZ(wordGrid, map, "wordGrid");
+				scr_loadAnotherREZ(dynamicWordGrid, map, "dynaWordGrid");
+				scr_loadAnotherREZ(wordDrawGrid, map, "wordDrawGrid");
+				scr_loadAnotherREZ(unitGrid, map, "unitGrid");
+				scr_loadAnotherREZ(lineGrid, map, "lineGrid");
+				
+				
 				
 				global.totalUnitAmount = scr_getTotalUnitAmount();
 			}

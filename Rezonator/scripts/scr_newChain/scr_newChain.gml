@@ -12,7 +12,6 @@
 	Author: Terry DuBois
 */
 
-//show_message("here");
 
 var wordID = argument0;
 var unitID = argument1;
