@@ -70,6 +70,9 @@ switch (currentFunction) {
 	case functionGoToLine:
 		scr_panelPane_drawGoToLine();
 		break;
+	case functionGraphStats:
+		scr_panelPane_drawGraphStats();
+		break;
 	default:
 		break;
 }
