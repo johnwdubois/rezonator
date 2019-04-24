@@ -1,6 +1,5 @@
 // Draws the scroll together button in grid view and handles funtionality, calls funtion to draw both grids
-if (!obj_control.gridView)
-{
+if (!obj_control.gridView) {
 	exit;
 }
 
@@ -13,16 +12,12 @@ var scrollTogetherButtonRectY2 = scrollTogetherButtonY + sprite_get_height(spr_s
 
 draw_sprite_ext(spr_scrollTogether, scrollTogether, scrollTogetherButtonX, scrollTogetherButtonY, 1, 1, 0, c_purple, 1);
 
-if (point_in_rectangle(mouse_x, mouse_y, scrollTogetherButtonRectX1, scrollTogetherButtonRectY1, scrollTogetherButtonRectX2, scrollTogetherButtonRectY2))
-{
-	if (mouse_check_button_pressed(mb_left))
-	{
-		if (scrollTogether)
-		{
+if (point_in_rectangle(mouse_x, mouse_y, scrollTogetherButtonRectX1, scrollTogetherButtonRectY1, scrollTogetherButtonRectX2, scrollTogetherButtonRectY2)) {
+	if (mouse_check_button_pressed(mb_left)) {
+		if (scrollTogether) {
 			scrollTogether = false;
 		}
-		else
-		{
+		else {
 			scrollTogether = true;
 			
 			/*
