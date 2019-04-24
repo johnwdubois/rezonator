@@ -160,6 +160,16 @@ hitGrid = ds_grid_create(hitGridWidth, 0);
 
 
 
+originalWordGridHeight = ds_grid_height(wordGrid);
+originalUnitGridHeight = ds_grid_height(unitGrid);
+originalLineGridHeight = ds_grid_height(lineGrid);
+
+
+
+
+
+
+
 
 participantList = ds_list_create();
 participantColorList = ds_list_create();

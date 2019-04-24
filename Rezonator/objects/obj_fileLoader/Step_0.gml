@@ -37,11 +37,11 @@ if (fps < 50) {
 		}
 	}
 }
-for (var i = 0; i < loadCSVRate; i++) {
+//for (var i = 0; i < loadCSVRate; i++) {
 	if (ds_grid_height(global.importCSVGrid) > 0 and importCSVCurrentRow < ds_grid_height(global.importCSVGrid)) {
 		scr_loadNextElementCSV();
 	}
-}
+//}
 
 
 for (var i = 0; i < fileLoadRate; i++) {
