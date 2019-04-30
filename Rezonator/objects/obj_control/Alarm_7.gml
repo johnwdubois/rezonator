@@ -2,7 +2,7 @@
 // Create the quickStack
 
 // Check for things caught in mouse drag rectangle
-if (ds_list_size(inRectUnitIDList) > 1 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 	var firstUnitID = ds_list_find_value(inRectUnitIDList, 0);
 	var firstWordID = ds_list_find_value(inRectWordIDList, 0);
 	// Loop through words found in rectangle at time of mouse release
