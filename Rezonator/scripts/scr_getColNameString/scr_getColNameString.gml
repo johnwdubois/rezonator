@@ -306,11 +306,8 @@ else if (grid == obj_chain.unitInStackGrid) {
 		case obj_chain.unitInStackGrid_colUnitID:
 			colName = "unitID";
 			break;
-		case obj_chain.unitInStackGrid_colStackList:
-			colName = "stackList";
-			break;
-		case obj_chain.unitInStackGrid_colTempStackList:
-			colName = "tempStackList";
+		case obj_chain.unitInStackGrid_colStack:
+			colName = "stackID";
 			break;
 		default:
 			break;

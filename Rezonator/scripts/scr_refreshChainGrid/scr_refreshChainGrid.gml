@@ -80,17 +80,11 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 	
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 		
-		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, source - 1);
-		var stackListGoal = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, goal - 1);
-		
-		
-		if not (chainID == undefined or stackListSource == undefined or stackListGoal == undefined) {
-			if (ds_list_find_index(stackListSource, chainID) == -1) {
-				ds_list_add(stackListSource, chainID);
-			}
-			if (ds_list_find_index(stackListGoal, chainID) == -1) {
-				ds_list_add(stackListGoal, chainID);
-			}
+		if not (chainID == undefined) {
+			
+			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, source - 1, chainID);
+			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, goal - 1, chainID);
+			
 		}
 	}
 }

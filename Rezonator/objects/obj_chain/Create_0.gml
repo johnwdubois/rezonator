@@ -30,10 +30,9 @@ placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
 creatingPlaceChains = false;
 
-unitInStackGridWidth = 3;
+unitInStackGridWidth = 2;
 unitInStackGrid_colUnitID = 0;
-unitInStackGrid_colStackList = 1;
-unitInStackGrid_colTempStackList = 2;
+unitInStackGrid_colStack = 1;
 unitInStackGrid = ds_grid_create(unitInStackGridWidth, 0);
 
 currentChainID = 0;

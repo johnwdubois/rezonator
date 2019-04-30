@@ -28,8 +28,11 @@ or obj_toolPane.currentTool == obj_toolPane.toolPlaceChains) {
 	exit;
 }
 
+var fakeInChainsList = ds_list_create();
+
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-	var inChainsList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
+	ds_list_add(fakeInChainsList, ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1));
+	var inChainsList = fakeInChainsList;
 }
 else {
 	var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
@@ -121,5 +124,7 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 		ds_list_add(inChainsList, chainID);
 	}
 }
+
+ds_list_destroy(fakeInChainsList);
 
 obj_control.allSaved = false;

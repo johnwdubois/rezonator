@@ -56,8 +56,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		// if deleting a stack chain with one unit, mark that change in unitInStackGrid
 		if (grid == obj_chain.stackChainGrid and ds_list_size(idList) > 0) {
 			var unitID = ds_list_find_value(idList, 0);
-			var unitInStackGridStackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
-			ds_list_clear(unitInStackGridStackList);
+			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, -1);
 		}
 	}
 }

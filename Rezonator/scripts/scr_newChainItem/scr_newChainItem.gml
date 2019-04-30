@@ -23,8 +23,7 @@ var wordIDList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, chainGri
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(wordIDList, unitID);
 	
-	var stackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID);
-	ds_list_add(stackList, currentChainID);
+	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID, currentChainID);
 }
 else {
 	ds_list_add(wordIDList, wordID);
