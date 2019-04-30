@@ -38,14 +38,8 @@ if (showDisplayCols) {
 scr_drawLine();
 
 // Draw the mouse drag rectangle
+
 scr_mouseRect();
-/*if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5 and quickStackAbleToSwitch) {
-	with (obj_toolPane) {
-		alarm[2] = 1;// Is super finnicky, but kinda works??
-	}
-	quickStackAbleToSwitch = false;
-}*/
-//draw highlights instead here!
 
 // Create the quickStack with the mouse drag, if possible
 if ((mouseRectMade and quickStackAbleToInitiate)) {

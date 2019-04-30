@@ -9,7 +9,7 @@ if (mouse_check_button_pressed(mb_left)) {
 	mouseHoldRectY2 = mouse_y;
 	
 	with (obj_toolPane) {
-		alarm[2] = 2;// Is super finnicky, but kinda works??
+		alarm[2] = 1;// Is super finnicky, but kinda works??
 	}
 	
 	/*if (mouse_y > obj_toolPane.y + obj_toolPane.windowHeight) {

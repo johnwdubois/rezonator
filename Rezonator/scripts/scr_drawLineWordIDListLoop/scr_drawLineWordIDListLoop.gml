@@ -146,7 +146,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	var inMouseHoldRect = 0;
 	if (mouse_check_button(mb_left) and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		if (inMouseHoldRect > 0) {
 			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1)) {
 				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, 2);
@@ -221,9 +221,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	} // Allows for adding to a stack anywhere in a line
-	else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, wordRectX2 + 140, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {//not point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))
+	else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {//not point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))
 		if (mouse_check_button_pressed(mb_left)) {
 			with (obj_chain) {
+				show_message("here");
 				scr_wordClicked(currentWordID, unitID);
 			}
 		}
@@ -232,10 +233,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
 	
 	if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
-		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		if (inMouseHoldRect) {
 			with (obj_control) {
 				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
+					//show_message("ghost?");
 					ds_list_add(inRectWordIDList, currentWordID);
 				}
 			}
