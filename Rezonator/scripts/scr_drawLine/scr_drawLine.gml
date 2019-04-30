@@ -110,8 +110,6 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 			var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
 			
 			if (typeof(stackColor) == "number") {
-				
-			
 		
 				draw_set_color(stackColor);
 				draw_set_alpha(0.2);
