@@ -96,35 +96,34 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
 	var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
 	
-	var currentLineInStack = false;
-	var currentLineInStackList = -1;
+	var currentLineInStack = -1;
 	
 	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid)) {
-		currentLineInStackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
+		currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
 	}
 	
 	// draw stack rectangle if this line is in a stack
-	if (not (currentLineInStackList == -1) and ds_exists(currentLineInStackList, ds_type_list)) {
-		for (var i = 0; i < ds_list_size(currentLineInStackList); i++) {
-			var currentStackChainID = ds_list_find_value(currentLineInStackList, i);
+	if (currentLineInStack > -1) {
+		
+			var currentStackChainID = currentLineInStack;
 			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackChainID);
 			var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
 			
-			if not (typeof(stackColor) == "number") {
-				continue;
-			}
+			if (typeof(stackColor) == "number") {
+				
+			
 		
-			draw_set_color(stackColor);
-			draw_set_alpha(0.2);
+				draw_set_color(stackColor);
+				draw_set_alpha(0.2);
 			
-			var stackRectWidth = (room_width - speakerRectX2) / ds_list_size(currentLineInStackList);
-			var stackRectX1 = speakerRectX2 + (i * stackRectWidth);
-			var stackRectY1 = speakerRectY1;
-			var stackRectX2 = room_width;//stackRectX1 + stackRectWidth;
-			var stackRectY2 = speakerRectY2;
+				var stackRectWidth = (room_width - speakerRectX2);
+				var stackRectX1 = speakerRectX2;
+				var stackRectY1 = speakerRectY1;
+				var stackRectX2 = room_width;
+				var stackRectY2 = speakerRectY2;
 			
-			draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
-		}
+				draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+			}
 	}
 	else {
 		if (ds_list_size(inRectUnitIDList) > 0) {
@@ -133,10 +132,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 					var focusedStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
 					if (focusedStackRow >= 0 and focusedStackRow < ds_grid_height(obj_chain.stackChainGrid)) {
 						var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, focusedStackRow);
-						var stackRectWidth = (room_width - speakerRectX2) / ds_list_size(currentLineInStackList);
+						var stackRectWidth = (room_width - speakerRectX2);
 						var stackRectX1 = speakerRectX2 + (i * stackRectWidth);
 						var stackRectY1 = speakerRectY1;
-						var stackRectX2 = room_width;//stackRectX1 + stackRectWidth;
+						var stackRectX2 = room_width;
 						var stackRectY2 = speakerRectY2;
 						
 						draw_set_color(stackColor);

@@ -17,10 +17,10 @@ if (global.openProject and ds_grid_height(obj_control.wordGrid) < 1) {
 }
 
 if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHotkey) {
-	if (ds_grid_height(obj_control.unitGrid) < global.totalUnitAmount) {
-		show_message("Please let Rezonator finish importing files before saving.");
-	}
-	else {
+	//if (ds_grid_height(obj_control.unitGrid) < global.totalUnitAmount) {
+	//	show_message("Please let Rezonator finish importing files before saving.");
+	//}
+	//else {
 		draw_set_alpha(1);
 		draw_set_color(obj_toolPane.progressBarFrontColor);
 		draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
@@ -32,7 +32,7 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHo
 		
 		ableToHotkey = false;
 		alarm[0] = 1;
-	}
+	//}
 }
 else if (keyboard_check(vk_control) and keyboard_check_pressed(ord("O")) and ableToHotkey) {
 	ableToHotkey = false;

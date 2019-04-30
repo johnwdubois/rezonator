@@ -65,15 +65,8 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 			exit;
 		}
 		
-		var stackListSource = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, rowInUnitInStackGrid);
 		
-		if not (stackListSource == undefined)
-		{
-			if (ds_list_find_index(stackListSource, chainID) > -1)
-			{
-				ds_list_delete(stackListSource, ds_list_find_index(stackListSource, chainID));
-			}
-		}
+		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, rowInUnitInStackGrid, -1);
 
 
 		

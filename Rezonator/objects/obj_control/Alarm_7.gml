@@ -12,7 +12,7 @@ if (ds_list_size(inRectUnitIDList) > 1 and (obj_toolPane.currentTool == obj_tool
 		with (obj_chain) {
 			scr_wordClicked(currentWordID, currentUnitID);
 			scr_wordClicked(firstWordID, firstUnitID);
-		/*var listToSearch = ds_grid_get(unitInStackGrid, unitInStackGrid_colStackList, firstUnitID - 1);
+		/*var listToSearch = ds_grid_get(unitInStackGrid, unitInStackGrid_colStack, firstUnitID - 1);
 		var stackToFocus = ds_list_find_value(listToSearch, 0);
 		ds_grid_set(stackChainGrid, chainGrid_colChainState, stackToFocus, chainStateFocus);*/	
 		}
@@ -22,10 +22,6 @@ if (ds_list_size(inRectUnitIDList) > 1 and (obj_toolPane.currentTool == obj_tool
 
 for (var i = 0; i < ds_list_size(inRectUnitIDList); i++) {
 	var currentUnitID = ds_list_find_value(inRectUnitIDList, i);
-	var currentUnitInTempStackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colTempStackList, currentUnitID - 1);
-	
-	//ds_list_clear(currentUnitInTempStackList);
-	//ds_list_add(currentUnitInTempStackList, )
 	
 	/*
 	var stackID = -1;
@@ -39,8 +35,6 @@ for (var i = 0; i < ds_list_size(inRectUnitIDList); i++) {
 	
 	//show_message("stackID: " + string(stackID));
 	
-	//ds_list_clear(currentUnitInTempStackList);
-	//ds_list_add(currentUnitInTempStackList, )
 }
 
 //show_message(scr_getStringOfList(inRectUnitIDList));

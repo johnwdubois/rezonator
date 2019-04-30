@@ -63,12 +63,11 @@ currentChainID++;
 var chainIDType = ds_grid_height(chainGrid) - 1;
 var wordIDList = ds_list_create();
 
-// if we are creating a stack, add the new stack to stackList in unitGrid
+// if we are creating a stack, add the new stack to unitInStackGrid
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(wordIDList, unitID);
 	
-	var stackList = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1);
-	ds_list_add(stackList, currentChainID);
+	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, currentChainID);
 }
 else {
 	ds_list_add(wordIDList, wordID);

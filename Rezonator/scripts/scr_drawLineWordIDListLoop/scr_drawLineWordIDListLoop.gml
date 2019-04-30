@@ -257,7 +257,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		if (inMouseHoldRect) {
 			with (obj_control) {
-				if (ds_list_find_index(inRectUnitIDList, unitID) == -1 && ds_list_size(ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1)) == 0) { // Safety check for rainbow stack
+				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
 					ds_list_add(inRectUnitIDList, unitID);
 					ds_list_add(inRectWordIDList, currentWordID);
 				}
@@ -286,7 +286,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		//inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		//if (inMouseHoldRect) {
 			with (obj_control) {
-				if (ds_list_find_index(inRectUnitIDList, unitID) == -1 && ds_list_size(ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackList, unitID - 1)) == 0) { // Safety check for rainbow stack
+				if (ds_list_find_index(inRectUnitIDList, unitID) == -1 && ds_list_size(ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1)) == 0) { // Safety check for rainbow stack
 					ds_list_add(inRectUnitIDList, unitID);
 					ds_list_add(inRectWordIDList, currentWordID);
 				}

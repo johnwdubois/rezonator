@@ -7,6 +7,6 @@ for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++)
 	var unitInStackGridCurrentRow = ds_grid_height(unitInStackGrid);
 	ds_grid_resize(unitInStackGrid, unitInStackGridWidth, unitInStackGridCurrentRow + 1);
 	ds_grid_set(unitInStackGrid, unitInStackGrid_colUnitID, unitInStackGridCurrentRow, currentUnitID);
-	ds_grid_set(unitInStackGrid, unitInStackGrid_colStackList, unitInStackGridCurrentRow, emptyList);
+	ds_grid_set(unitInStackGrid, unitInStackGrid_colStack, unitInStackGridCurrentRow, emptyList);
 }
 */
