@@ -99,4 +99,5 @@ obj_chain.rezChainNameCounter = ds_grid_height(obj_chain.rezChainGrid);
 obj_chain.trackChainNameCounter = ds_grid_height(obj_chain.trackChainGrid);
 obj_chain.stackChainNameCounter = ds_grid_height(obj_chain.stackChainGrid);
 obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
+
 scr_refreshVizLinkGrid();

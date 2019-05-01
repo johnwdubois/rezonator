@@ -17,6 +17,7 @@ ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayS
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentRowDynamicWordGrid, emptyList);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentRowDynamicWordGrid, true);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentRowDynamicWordGrid, 0);
+ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, currentRowDynamicWordGrid, "");
 	
 
 	

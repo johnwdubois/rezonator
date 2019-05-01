@@ -1207,6 +1207,14 @@
             }
         },
         {
+            "Key": "73bacce9-e2de-4fdd-8c4d-6121232397bf",
+            "Value": {
+                "id": "aff4ad8a-05a7-42bc-b251-4cd610d1b2d7",
+                "resourcePath": "scripts\\scr_replaceWord\\scr_replaceWord.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "74116bf7-7090-45a1-9e1a-7ca610c6f80f",
             "Value": {
                 "id": "aed3062e-104d-47a1-a953-57ee8ac88513",
@@ -2891,7 +2899,8 @@
         "2032f3f6-fdbf-4c63-8f21-cc348313fe4b",
         "0c063f09-8ea8-47c3-b8f5-0f7e60e83b39",
         "f6a6ba25-1cc6-4ece-94f4-5196470b0214",
-        "889f4b32-5b71-4c11-a5fe-d59d2acf98fa"
+        "889f4b32-5b71-4c11-a5fe-d59d2acf98fa",
+        "73bacce9-e2de-4fdd-8c4d-6121232397bf"
     ],
     "tutorial": ""
 }

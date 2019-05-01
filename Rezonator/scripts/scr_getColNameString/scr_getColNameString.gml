@@ -190,6 +190,9 @@ else if (grid == obj_control.dynamicWordGrid) {
 		case obj_control.dynamicWordGrid_colStretch:
 			colName = "stretch";
 			break;
+		case obj_control.dynamicWordGrid_colReplaceWord:
+			colName = "replaceWord";
+			break;
 		default:
 			break;
 	}

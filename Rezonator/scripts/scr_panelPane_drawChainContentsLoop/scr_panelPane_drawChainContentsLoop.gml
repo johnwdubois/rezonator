@@ -249,7 +249,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 							}
 						}
 						else {
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1));
+							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
 						}
 						break;
 				}

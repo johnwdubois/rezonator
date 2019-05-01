@@ -190,6 +190,14 @@ if (list == false and contents == false) {
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
 		showDevVars = !showDevVars;
 	}
+	
+	
+	// replace word
+	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("X"))) {
+		if (hoverWordID > -1 and hoverWordID < ds_grid_height(wordGrid)) {
+			scr_replaceWord(hoverWordID);
+		}
+	}
 
 	
 	if (wordDrawGridFocusedAnimationInc) {

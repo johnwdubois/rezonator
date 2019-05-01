@@ -16,6 +16,7 @@ for (var i = 0; i < ds_grid_height(wordGrid); i++)
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentRowDynamicWordGrid, currentWordTranscript);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colInChainList, currentRowDynamicWordGrid, emptyList);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colAligned, currentRowDynamicWordGrid, true);
+	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colReplaceWord, currentRowDynamicWordGrid, "");
 	
 	
 	

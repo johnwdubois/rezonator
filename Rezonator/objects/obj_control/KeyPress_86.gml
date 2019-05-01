@@ -23,7 +23,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and !gridView) {
 else if(gridView) {
 	gridView = false;
 }// If we're not in grid view and there is a search, switch between the main and search screen
-else if(ds_grid_height(searchGrid) > 0 and !gridView) {
+else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main to search
 	if(currentActiveLineGrid == lineGrid) { 
 		searchGridActive = true;

@@ -69,6 +69,15 @@ if (originalGridHeight > 0) {
 	}
 }
 
+if (originalGrid == obj_control.dynamicWordGrid) {
+	for (var i = 0; i < ds_grid_height(tempGrid); i++) {
+		var currentReplaceWord = ds_grid_get(tempGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
+		if (typeof(currentReplaceWord) != "string") {
+			ds_grid_set(tempGrid, obj_control.dynamicWordGrid_colReplaceWord, i, "");
+		}
+	}
+}
+
 
 
 
