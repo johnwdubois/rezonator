@@ -31,6 +31,7 @@ if (mouse_check_button_pressed(mb_left)) {
 if (mouse_check_button(mb_left)) {
 	mouseHoldRectX2 = mouse_x;
 	mouseHoldRectY2 = mouse_y;
+	//show_message(string(mouseHoldRectX1) + " " + string(mouseHoldRectX2) + " " + string(mouseHoldRectY1) + " " + string(mouseHoldRectY2));
 	/*if (mouse_y > obj_toolPane.y + obj_toolPane.windowHeight) {
 		if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
 			if (obj_toolPane.currentTool != obj_toolPane.toolTrackBrush) {

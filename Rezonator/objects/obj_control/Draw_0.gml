@@ -38,8 +38,9 @@ if (showDisplayCols) {
 scr_drawLine();
 
 // Draw the mouse drag rectangle
-
-scr_mouseRect();
+if (current_time - sessionStartTime > 2000) { // Curfew for the volunteers
+	scr_mouseRect();
+}
 
 // Create the quickStack with the mouse drag, if possible
 if ((mouseRectMade and quickStackAbleToInitiate)) {
