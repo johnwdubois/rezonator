@@ -23,7 +23,7 @@ if (originalGridHeight > 0) {
 					currentCellValue = originalWordGridHeight + 1 + i;
 				}
 				else if (j == obj_control.wordGrid_colUnitID) {
-					currentCellValue = originalUnitGridHeight + 1 + i;
+					currentCellValue = originalUnitGridHeight + currentCellValue;
 				}
 			}
 			else if (originalGrid == obj_control.dynamicWordGrid) {
@@ -36,15 +36,15 @@ if (originalGridHeight > 0) {
 				if (j == obj_control.unitGrid_colUnitID) {
 					currentCellValue = originalUnitGridHeight + 1 + i;
 				}
-				/*
+				
 				else if (j == obj_control.unitGrid_colWordIDList) {
 					
 					for (var k = 0; k < ds_list_size(currentCellValue); k++) {
 						var currentWordID = ds_list_find_value(currentCellValue, k);
-						ds_list_replace(currentCellValue, k, currentWordID + 1 + originalWordGridHeight);
+						ds_list_replace(currentCellValue, k, currentWordID + originalWordGridHeight);
 					}
 				}
-				*/
+				
 			}
 			else if (originalGrid == obj_control.lineGrid) {
 				if (j == obj_control.lineGrid_colUnitID) {
@@ -53,15 +53,15 @@ if (originalGridHeight > 0) {
 				else if (j == obj_control.lineGrid_colDisplayRow) {
 					currentCellValue = originalLineGridHeight + 1 + i;
 				}
-				/*
+				
 				else if (j == obj_control.lineGrid_colWordIDList) {
 					
 					for (var k = 0; k < ds_list_size(currentCellValue); k++) {
 						var currentWordID = ds_list_find_value(currentCellValue, k);
-						ds_list_replace(currentCellValue, k, currentWordID + 1 + originalWordGridHeight);
+						ds_list_replace(currentCellValue, k, currentWordID + originalWordGridHeight);
 					}
 				}
-				*/
+				
 			}
 			
 			ds_grid_set(tempGrid, j, i, currentCellValue);

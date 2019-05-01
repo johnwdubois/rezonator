@@ -70,7 +70,6 @@ for (var i = 0; i < fileLoadRate; i++) {
 
 
 
-
 	currentElement = ds_list_find_value(fileLineRipList, fileLineRipListElement);
 	scr_loadNextElement();
 

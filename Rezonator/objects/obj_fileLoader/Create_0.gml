@@ -50,5 +50,5 @@ importCSVWordIDList = ds_list_create();
 
 
 
-loadingCSV = false;
+loadingCSV = true;
 //alarm[2] = 3600;

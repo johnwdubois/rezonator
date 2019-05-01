@@ -30,14 +30,42 @@ if (string_count("<u who=", currentElement) > 0) {
 	currentUnitParticipantName = scr_fileLineRipListSearch(fileLineRipListElement, "u who=\"", "\"", fileLineRipList);
 
 }
-	
+
 if (string_count("start=", currentElement) > 0) {
-	currentUnitStart = real(scr_fileLineRipListSearch(fileLineRipListElement, "start=\"", "\"", fileLineRipList));
-}
+	var gotStr = scr_fileLineRipListSearch(fileLineRipListElement, "start=\"", "\"", fileLineRipList);
 	
+	/*
+	show_message("gotStr: '" + gotStr + "'");
+	show_message(string(string_length(gotStr)) + "..." + string(string_length("1.000")));
+	
+	
+	for (var i = 1; i <= string_length(gotStr); i++) {
+		show_message(gotStr + "[" + string(i) + "]" + ": '" + string_char_at(gotStr, i) + "'");
+	}
+	
+	
+	if (string_count("1.000", gotStr) > 0) {
+		show_message("here")
+		
+		if (gotStr == "1.000") {
+			show_message("they are equal");
+		}
+		else {
+			show_message("they are NOT equal");
+		}
+		
+		gotStr = "1.00";
+	}
+	*/
+	currentUnitStart = real(gotStr);
+}
+
 if (string_count("end=", currentElement) > 0) {
 	currentUnitEnd = real(scr_fileLineRipListSearch(fileLineRipListElement, "end=\"", "\"", fileLineRipList));
 }
+
+	
+
 	
 if (string_count("</g>", currentElement) > 0) {
 	ds_list_add(linesWithWordsList, fileLineRipListElement);
