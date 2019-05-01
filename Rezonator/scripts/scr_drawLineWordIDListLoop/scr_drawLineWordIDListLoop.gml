@@ -224,7 +224,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {//not point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))
 		if (mouse_check_button_pressed(mb_left)) {
 			with (obj_chain) {
-				show_message("here");
 				scr_wordClicked(currentWordID, unitID);
 			}
 		}

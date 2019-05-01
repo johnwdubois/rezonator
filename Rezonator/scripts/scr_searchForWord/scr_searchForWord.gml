@@ -119,7 +119,7 @@ if (ds_grid_height(searchGrid) > 0) {
 }
 else {
 	show_message("Search string not found");
-	if (ds_grid_height(oldSearch) > 0) {
+	if (ds_grid_height(searchGrid) > 0) {
 		ds_grid_copy(searchGrid, oldSearch);
 		ds_grid_copy( hitGrid, oldHit);
 	}
