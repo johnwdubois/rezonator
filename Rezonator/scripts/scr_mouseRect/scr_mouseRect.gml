@@ -74,3 +74,9 @@ if (mouse_check_button_released(mb_left)) {
 		mouseRectMade = true;
 	}
 }
+
+if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+	for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++) {
+		scr_cliqueGridRefreshUnitIDList(i);
+	}
+}
