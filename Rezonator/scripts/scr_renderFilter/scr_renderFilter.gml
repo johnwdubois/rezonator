@@ -92,7 +92,20 @@ for (var i = 0; i < ds_grid_height(filterGrid); i++) {
 var firstUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, 0);
 var lastUnit = ds_grid_get(filterGrid, lineGrid_colUnitID, ds_grid_height(filterGrid) - 1);
 
-if (firstUnit == undefined or lastUnit == undefined) {
+if (firstUnit == undefined or lastUnit == undefined) { // If there's no units to be filtered, hop back to the main screen
+
+	// If filter is active, deactivate it
+	if (obj_control.filterGridActive) {
+		if(obj_control.currentCenterDisplayRow >= 0) { // Make sure the current center display row is within bounds
+			// Keep the focus on previous currentCenterDisplayRow
+			with (obj_control) {
+				alarm[5] = 3;
+			}
+		}
+	}
+	// Switch to active grid
+	obj_control.filterGridActive = false;
+	obj_control.currentActiveLineGrid = obj_control.lineGrid;
 	exit;
 }
 
