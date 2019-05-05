@@ -207,6 +207,15 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 							draw_set_color(global.colorThemeText);
 							draw_text(cellRectX1 + textBuffer, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight), currentStrDesc);
 							cellPlusY += (2 * cellHeight);
+							
+							if(mouse_check_button_pressed(mb_left)) {
+								if(currentStrFunc == "Download") {
+									url_open("https://rezonator.com/download/");
+								}
+								else if (currentStrFunc == "About Us"){
+									url_open("https://rezonator.com/");
+								}
+							}
 						}
 						else {
 						cellPlusY += cellHeight;
