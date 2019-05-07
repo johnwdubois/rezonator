@@ -202,6 +202,8 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	// Check boxes for user selection with mouse click
 	if ((point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2) and mouse_check_button_pressed(mb_left))
 	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) {
+		// Record previous display row in case Filter is empty
+		obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
 		// Set selected objects to be filtered
 		inFilter = !inFilter;
 		ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
