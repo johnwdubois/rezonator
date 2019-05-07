@@ -217,7 +217,8 @@ showDevMessages = false;
 showDisplayCols = false;
 
 mostRecentlyAddedWord = -1;
-mostRecentlyAddedWordMoved = -1;
+mostRecentlyAddedWordMoved = false;
+alarmRecentlyAddedWordMovedTriggered = false;
 
 canPressPlus = true;
 canPressMinus = true;

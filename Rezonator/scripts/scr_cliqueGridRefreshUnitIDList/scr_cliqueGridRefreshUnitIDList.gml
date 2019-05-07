@@ -38,7 +38,9 @@ ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colLength, rowInCliqueGri
 
 
 cliqueGridRowToCheckBreak = rowInCliqueGrid;
-alarm[2] = 3;
+with (obj_chain) {
+	alarm[2] = 3;
+}
 
 
 

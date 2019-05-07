@@ -54,9 +54,15 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		if (previousWordDisplayCol >= currentWordDisplayCol) {
 			if (currentWordID == obj_control.mostRecentlyAddedWord and not obj_control.mostRecentlyAddedWordMoved) {
 				obj_control.mostRecentlyAddedWordMoved = true;
-				obj_control.alarm[2] = 5;
+				if (not obj_control.alarmRecentlyAddedWordMovedTriggered) {
+					obj_control.alarmRecentlyAddedWordMovedTriggered = true;
+					with (obj_control) {
+						alarm[2] = 5;
+					}
+				}
 			}
-			else if (currentWordID == obj_control.mostRecentlyAddedWord and obj_control.mostRecentlyAddedWordMoved) {
+			
+			if (currentWordID == obj_control.mostRecentlyAddedWord and obj_control.mostRecentlyAddedWordMoved) {
 				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colAligned, currentWordGridRow, false);
 				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1, true);
 			}
