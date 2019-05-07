@@ -41,6 +41,11 @@ scr_drawLine();
 if (current_time - sessionStartTime > 2000) { // Curfew for the volunteers
 	scr_mouseRect();
 }
+/*
+else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+	scr_boxRect();
+}
+*/
 
 // Create the quickStack with the mouse drag, if possible
 if ((mouseRectMade and quickStackAbleToInitiate)) {

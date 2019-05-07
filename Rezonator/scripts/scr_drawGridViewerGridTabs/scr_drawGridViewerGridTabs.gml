@@ -88,6 +88,9 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case obj_chain.placeChainGrid:
 			colName = "placeChainGrid";
 			break;
+		case obj_chain.boxChainGrid:
+			colName = "boxChainGrid";
+			break;
 		case obj_chain.unitInStackGrid:
 			colName = "unitInStackGrid";
 			break;

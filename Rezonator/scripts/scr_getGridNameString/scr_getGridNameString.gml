@@ -37,6 +37,9 @@ switch (argument0) {
 	case obj_chain.stackChainGrid:
 		colName = "StackChain";
 		break;
+	case obj_chain.boxChainGrid:
+		colName = "Box";
+		break;
 	case obj_chain.unitInStackGrid:
 		colName = "UnitInStack";
 		break;
