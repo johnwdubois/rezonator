@@ -111,7 +111,6 @@ if (ds_list_size(wordIDList) > 0) {
 				var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 				if (currentWordID == obj_control.mostRecentlyAddedWord and furthestDisplayCol > currentDisplayCol) {
 					if (obj_control.mostRecentlyAddedWordMoved) {
-						show_message("now here!");
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, false);
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1, true);
 						

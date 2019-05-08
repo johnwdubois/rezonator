@@ -13,7 +13,7 @@
 */
 
 windowWidth = 100;
-windowHeight = 150;
+windowHeight = 170;
 
 x = room_width - windowWidth;
 y = 0;

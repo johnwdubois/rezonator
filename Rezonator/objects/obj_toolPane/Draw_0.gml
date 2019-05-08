@@ -37,9 +37,12 @@ var iconHorizontalSpacing = 20;
 
 
 for (var i = 0; i < sprite_get_number(spr_tools); i++) {
+	
+	/*
 	if (i == sprite_get_number(spr_tools) - 1) {
 		continue;
 	}
+	*/
 	
 	var iconX = x + (windowWidth / 2);
 	var iconY = y + iconMarginTop + iconPlusY;
@@ -96,7 +99,7 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 	}
 }
 
-iconPlusY += iconPlusYIncrement * 0.75;
+iconPlusY += iconPlusYIncrement * 2;
 
 for (var i = 0; i < 2; i++) {
 	var viewIconRectX1 = x + (windowWidth / 2) - iconHorizontalSpacing + (i * (iconHorizontalSpacing * 2)) - (sprite_get_width(spr_viewIcons) / 2);
