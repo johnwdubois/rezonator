@@ -25,7 +25,7 @@ if not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush
 or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush
 or obj_toolPane.currentTool == obj_toolPane.toolStackBrush
 or obj_toolPane.currentTool == obj_toolPane.toolPlaceChains
-or obj_toolPane.currentTool == obj_toolPane.toolBoxChains) {
+or obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	exit;
 }
 
@@ -40,7 +40,7 @@ else {
 }
 
 // loop through the chains that this word is already in (if any) to refocus that chain
-if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxChains) {
+if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 	for (var i = 0; i < ds_list_size(inChainsList); i++) {
 		var currentChainID = ds_list_find_value(inChainsList, i);
 		if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID)) {

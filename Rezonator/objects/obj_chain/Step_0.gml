@@ -69,6 +69,10 @@ switch (obj_toolPane.currentTool) {
 		currentChainGrid = placeChainGrid;
 		currentChainName = "Place";
 		break;
+	case obj_toolPane.toolBoxBrush:
+		currentChainGrid = boxChainGrid;
+		currentChainName = "Box";
+		break;
 	default:
 		break;
 }

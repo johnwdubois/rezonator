@@ -38,14 +38,14 @@ if (showDisplayCols) {
 scr_drawLine();
 
 // Draw the mouse drag rectangle
-if (current_time - sessionStartTime > 2000) { // Curfew for the volunteers
+if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) { // Curfew for the volunteers
 	scr_mouseRect();
 }
-/*
+
 else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	scr_boxRect();
 }
-*/
+
 
 // Create the quickStack with the mouse drag, if possible
 if ((mouseRectMade and quickStackAbleToInitiate)) {
@@ -54,6 +54,10 @@ if ((mouseRectMade and quickStackAbleToInitiate)) {
 }
 else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 	alarm[8] = 5;
+}
+if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {
+	boxRectAbleToInitiate = false;
+	alarm[10] = 5;
 }
 
 draw_set_font(fnt_debug);

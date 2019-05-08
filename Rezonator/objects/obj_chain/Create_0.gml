@@ -28,10 +28,9 @@ stackChainGrid = ds_grid_create(chainGridWidth, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
-boxChainGrid_colBoxStartWord = 8;
-boxChainGrid_colBoxEndWord = 9;
+boxChainGrid_colBoxWordIDList = 8;
 
-boxChainGrid = ds_grid_create(chainGridWidth + 2, 0);
+boxChainGrid = ds_grid_create(chainGridWidth + 1, 0);
 
 creatingPlaceChains = false;
 
@@ -96,6 +95,7 @@ rezChainNameCounter = 0;
 trackChainNameCounter = 0;
 stackChainNameCounter = 0;
 placeChainNameCounter = 0;
+BoxChainNameCounter = 0;
 
 currentFocusedChainID = -1;
 

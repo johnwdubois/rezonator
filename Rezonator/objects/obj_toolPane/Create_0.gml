@@ -25,7 +25,7 @@ toolTrackBrush = 2;
 toolStackBrush = 3;
 toolNewWord = 4;
 toolPlaceChains = 5;
-toolBoxChains = 6; // toolBoxBrush??
+toolBoxBrush = 6; // toolBoxBrush??
 
 currentTool = toolRezBrush;
 

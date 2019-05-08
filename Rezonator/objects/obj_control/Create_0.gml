@@ -268,6 +268,14 @@ inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
 
+boxHoldRectX1 = 0;
+boxHoldRectY1 = 0;
+boxHoldRectX2 = 0;
+boxHoldRectY2 = 0;
+boxRectMade = false;
+boxRectReleased = true;
+boxRectAbleToInitiate = true;
+
 quickInside = false;
 quickOutside = false;
 

@@ -18,6 +18,12 @@ if (!obj_control.gridView) {
 		}
 		currentTool = toolStackBrush;
 	}
+	else if (keyboard_check_pressed(ord("B"))) {
+		with (obj_chain) {
+			scr_chainDeselect();
+		}
+		currentTool = toolBoxBrush;
+	}
 	
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {

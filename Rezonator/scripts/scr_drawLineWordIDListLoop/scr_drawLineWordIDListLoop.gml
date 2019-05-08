@@ -247,18 +247,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	}
-	
-	/*if (rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2)) and mouseRectMade) {
-		if (ds_list_size(inRectWordIDList) == 0) {
-			
-		}
-			with (obj_control) {
-				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-	} */
-	
 	else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade) {
 		inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		if (inMouseHoldRect) {
@@ -270,36 +258,29 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	}
-	
-	/*
-	if (mouseRectMade and rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {//((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
-		//inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		//if (inMouseHoldRect) {
-		with (obj_chain) {
-			scr_chainDeselect();
+	var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
+	//show_message(inBoxHoldRect);
+	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+		//show_message("if1");
+		if(not boxRectReleased and inBoxHoldRect > 0) {
+			//show_message("if2");
+			draw_set_color(global.colorThemeSelected1);
+			draw_set_alpha(0.5);
+			draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical, false);
 		}
-		obj_toolPane.currentTool = obj_toolPane.toolRezBrush
+		else if(boxRectMade and inBoxHoldRect > 0) {
+			//show_message("if1");
 			with (obj_control) {
 				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-		//}
-	}
-	
-	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
-	else if (mouseRectMade and rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {//((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade) {
-		//inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		//if (inMouseHoldRect) {
-			with (obj_control) {
-				if (ds_list_find_index(inRectUnitIDList, unitID) == -1 && ds_list_size(ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1)) == 0) { // Safety check for rainbow stack
+					//show_message("if2");
 					ds_list_add(inRectUnitIDList, unitID);
 					ds_list_add(inRectWordIDList, currentWordID);
 				}
 			}
-		//}
+		}
 	}
-	*/
+	
+	
 	
 	
 	// If the user has the New-Word tool selected, create a new word right next to this word

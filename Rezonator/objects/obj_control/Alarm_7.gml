@@ -20,22 +20,6 @@ if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_tool
 	scr_unFocusAllChains();
 }
 
-for (var i = 0; i < ds_list_size(inRectUnitIDList); i++) {
-	var currentUnitID = ds_list_find_value(inRectUnitIDList, i);
-	
-	/*
-	var stackID = -1;
-	if (ds_grid_height(obj_chain.stackChainGrid) > 0) {
-		var stackGridRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
-		if (stackGridRow >= 0 and stackGridRow < ds_grid_height(obj_chain.stackChainGrid)) {
-			stackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackGridRow);
-		}
-	}
-	*/
-	
-	//show_message("stackID: " + string(stackID));
-	
-}
 
 //show_message(scr_getStringOfList(inRectUnitIDList));
 // Clear lists for next quickStack

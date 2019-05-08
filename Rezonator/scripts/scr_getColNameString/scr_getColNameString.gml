@@ -330,11 +330,8 @@ else if (grid == obj_chain.boxChainGrid) {
 		case obj_chain.chainGrid_colTiltSum:
 			colName = "tiltSum";
 			break;
-		case obj_chain.boxChainGrid_colBoxStartWord:
-			colName = "boxStartWord";
-			break;
-		case obj_chain.boxChainGrid_colBoxEndWord:
-			colName = "boxEndWord";
+		case obj_chain.boxChainGrid_colBoxWordIDList:
+			colName = "boxWordList";
 			break;
 		default:
 			break;

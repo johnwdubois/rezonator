@@ -25,7 +25,7 @@ else if(gridView) {
 }// If we're not in grid view and there is a search, switch between the main and search screen
 else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main to search
-	if(currentActiveLineGrid == lineGrid) { 
+	if(currentActiveLineGrid == lineGrid or currentActiveLineGrid == filterGrid) { 
 		searchGridActive = true;
 		filterGridActive = false;
 		currentActiveLineGrid = searchGrid;
