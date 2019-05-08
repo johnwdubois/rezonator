@@ -1,7 +1,6 @@
 var unitID = argument0;
 var wordSeq = argument1;
 
-show_message("wordSeq: " + string(wordSeq));
 
 if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid) {
 	exit;
@@ -35,18 +34,6 @@ if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(obj_control.lineGrid)) 
 var wordIDListLineGrid = ds_grid_get(lineGrid, lineGrid_colWordIDList, rowInLineGrid);
 
 
-
-
-/*
-for (var i = wordSeq; i < ds_list_size(wordIDListLineGrid); i++) {
-	var currentWordID = ds_list_find_value(wordIDListLineGrid, i);
-	var currentDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordID - 1);
-	var currentWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
-	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
-	ds_grid_set(wordGrid, wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);
-}
-*/
-show_message("here");
 
 ds_list_insert(wordIDListLineGrid, wordSeq + 1, wordID);
 for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
