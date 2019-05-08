@@ -119,6 +119,7 @@ if (ds_list_size(wordIDList) > 0) {
 						obj_control.mostRecentlyAddedWordMoved = true;
 						if (not obj_control.alarmRecentlyAddedWordMovedTriggered) {
 							obj_control.alarmRecentlyAddedWordMovedTriggered = true;
+							//show_message("triggering alarm: alignChain");
 							with (obj_control) {
 								alarm[2] = 5;
 							}

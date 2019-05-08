@@ -73,6 +73,9 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case obj_chain.linkGrid:
 			colName = "linkGrid";
 			break;
+		case obj_chain.rezPlayLinkGrid:
+			colName = "rezPlayLinkGrid";
+			break;
 		case obj_chain.vizLinkGrid:
 			colName = "vizLinkGrid";
 			break;

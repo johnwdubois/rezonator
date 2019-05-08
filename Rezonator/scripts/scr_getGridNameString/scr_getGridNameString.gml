@@ -46,6 +46,9 @@ switch (argument0) {
 	case obj_chain.cliqueGrid:
 		colName = "Clique";
 		break;
+	case obj_chain.rezPlayLinkGrid:
+		colName = "RezPlayLink";
+		break;
 	default:
 		break;
 }
