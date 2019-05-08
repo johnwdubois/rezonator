@@ -75,6 +75,12 @@ linkGrid_colGoalClickTime = 9;
 
 linkGrid = ds_grid_create(linkGridWidth, 0);
 
+rezPlayLinkGrid = ds_grid_create(linkGridWidth, 0);
+rezPlayLinkGridRow = -1;
+rezPlayLinkGridWait = 20;
+rezPlayLinkGridChainID = -1;
+rezPlayTime = 0;
+
 
 
 vizLinkGridWidth = 10;

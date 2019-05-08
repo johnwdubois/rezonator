@@ -38,8 +38,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		currentWordVoid = abs(currentWordDisplayCol - (previousWordDisplayCol + 1));
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, currentWordVoid);
 		
-		
+		 
 		if (currentWordDisplayCol - previousWordDisplayCol > 1) {
+			//show_message("IN HERE currentWordDisplayCol: " + string(currentWordDisplayCol) + " - " + string(previousWordDisplayCol) + " = " + string(currentWordDisplayCol - previousWordDisplayCol));
 			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow)
 			and not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow)) {
 				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
@@ -56,6 +57,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				obj_control.mostRecentlyAddedWordMoved = true;
 				if (not obj_control.alarmRecentlyAddedWordMovedTriggered) {
 					obj_control.alarmRecentlyAddedWordMovedTriggered = true;
+					//show_message("prevDisplayCol: " + string(previousWordDisplayCol) + ", currentDisplayCol: " + string(currentWordDisplayCol));
+					//show_message("triggering alarm: drawLineWordIDListLoop");
 					with (obj_control) {
 						alarm[2] = 5;
 					}
@@ -116,8 +119,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	// if the previous word is on top of the current word, push the current word out by one column
 	currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 	if (previousWordDisplayCol >= currentWordDisplayCol) {
+		//show_message("in here!");
+		//show_message("currentWordID: " + string(currentWordID) + "... pWDC: " + string(previousWordDisplayCol) + " >= cWDC: " + string(currentWordDisplayCol));
 		currentWordDisplayCol++;
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
+		//show_message("now cWDC: " + string(currentWordDisplayCol));
 	}
 	
 	// horizontally move this word to its desired x-pixel value
