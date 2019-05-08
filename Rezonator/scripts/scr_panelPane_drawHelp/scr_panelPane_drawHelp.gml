@@ -208,7 +208,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 							draw_text(cellRectX1 + textBuffer, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight), currentStrDesc);
 							cellPlusY += (2 * cellHeight);
 							
-							if(mouse_check_button_pressed(mb_left)) {
+							if(mouse_check_button_pressed(mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
 								if(currentStrFunc == "Download") {
 									url_open("https://rezonator.com/download/");
 								}

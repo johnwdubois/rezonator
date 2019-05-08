@@ -28,6 +28,11 @@ stackChainGrid = ds_grid_create(chainGridWidth, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
+boxChainGrid_colBoxStartWord = 8;
+boxChainGrid_colBoxEndWord = 9;
+
+boxChainGrid = ds_grid_create(chainGridWidth + 2, 0);
+
 creatingPlaceChains = false;
 
 unitInStackGridWidth = 2;
