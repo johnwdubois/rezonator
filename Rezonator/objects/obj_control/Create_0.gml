@@ -248,6 +248,7 @@ var backID = layer_background_get_id(layerID);
 var BGcolor = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBG, global.colorTheme);
 layer_background_blend(backID, BGcolor);
 
+preSwitchLineGrid = 0;
 preSwitchDisplayRow = 0;
 preSwitchSearchDisplayRow = 0;
 highlightedSearchRow = 0;
