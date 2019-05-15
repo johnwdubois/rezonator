@@ -17,8 +17,9 @@ def send_message_int(mess,data):
 
 
 TCP_IP = '192.168.0.101'
-TCP_PORT = 6510
+TCP_PORT = 5001
 
+print("port " + str(TCP_PORT))
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((TCP_IP, TCP_PORT))
 buffer = pytogmlnetw.Buffer();
@@ -29,6 +30,7 @@ result=0;
 
 
 while True:
+
     buffer.clear();
     if state=="logging":
         name=input("your name?");

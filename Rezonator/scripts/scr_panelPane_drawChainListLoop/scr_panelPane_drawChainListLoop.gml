@@ -374,7 +374,7 @@ if (clickedIn) {
 	}
 	
 	// Scroll down with mouse/key
-	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)){
+	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 		if (currentTopViewRow + scrollRange < ds_grid_height(grid) and keySwitchFocus == -1){
 			currentTopViewRow++;
 		}

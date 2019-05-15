@@ -23,13 +23,17 @@ var tabHeight = 16;
 
 var tabAmount = 4;
 
+var tabRectY1 = y;
+var tabRectY2 = tabRectY1 + tabHeight;
+draw_set_color(global.colorThemeBG);
+draw_rectangle(x, tabRectY1, x + windowWidth, tabRectY2, false);
+
+
 for (var i = 0; i < tabAmount; i++)// main mechanism
 {
 	// set dimensions for tabs
 	var tabRectX1 = x + (i * (windowWidth / tabAmount));
-	var tabRectY1 = y;
 	var tabRectX2 = tabRectX1 + (windowWidth / tabAmount);
-	var tabRectY2 = tabRectY1 + tabHeight;
 	
 	// highlight current tab
 	if (i == functionChainList_currentTab)

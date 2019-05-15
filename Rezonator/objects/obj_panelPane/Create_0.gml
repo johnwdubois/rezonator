@@ -12,6 +12,20 @@
 	Author: Terry DuBois
 */
 
+clipSurface = -1;
+clipWidth = 100;
+clipHeight = 100;
+clipX = 50;
+clipY = 50;
+scrollPlusY = 0;
+windowResizeXHolding = false;
+windowResizeYHolding = false;
+canResizeWindowX = true;
+canResizeWindowY = true;
+
+
+
+
 functionChainList = 0;
 functionChainContents = 1;
 functionFilter = 2;

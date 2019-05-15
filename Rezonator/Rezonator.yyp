@@ -967,6 +967,14 @@
             }
         },
         {
+            "Key": "58012b3e-a809-4755-a1e6-d8ebfeb46e82",
+            "Value": {
+                "id": "b3419876-6b80-4cb4-b678-36201009acbf",
+                "resourcePath": "scripts\\scr_suraceEnd\\scr_suraceEnd.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "59b16c54-3183-4f51-8b1c-2b030c2c268b",
             "Value": {
                 "id": "808817d8-ca04-4288-99f6-15e98955281c",
@@ -2159,6 +2167,14 @@
             }
         },
         {
+            "Key": "b4d32bfe-6fe2-4fe2-b922-7cd35d082665",
+            "Value": {
+                "id": "f3de5f0c-8ee1-4345-8f11-03dc74c73dd1",
+                "resourcePath": "scripts\\scr_panelPane_drawChainListLoopClipped\\scr_panelPane_drawChainListLoopClipped.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b66d357f-c98f-4990-aea8-08fdb7330669",
             "Value": {
                 "id": "274c78a2-be13-49cb-ab19-27f9b2289bf0",
@@ -2172,6 +2188,14 @@
                 "id": "8e24bd3c-2715-40f2-b261-1a2a7686964c",
                 "resourcePath": "sprites\\spr_background\\spr_background.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "b8e0bde0-a05e-479e-9730-71b1624f672e",
+            "Value": {
+                "id": "01146882-5991-4910-8181-8e4719f38ea8",
+                "resourcePath": "scripts\\scr_surfaceStart\\scr_surfaceStart.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2966,6 +2990,7 @@
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "165008df-c14b-4eb3-8665-d50a5f702d8f",
         "449692e4-69be-4739-84c1-b1053fe28d5f",
+        "b4d32bfe-6fe2-4fe2-b922-7cd35d082665",
         "e9ea7131-5e7f-464c-a11a-1a3c41b6ee2c",
         "19b3fdc3-7e5a-445c-81a6-6ef33702df03",
         "c5d139b8-4c6d-434c-8280-4ff3b6d3ea6e",
@@ -3079,7 +3104,9 @@
         "8438a87c-755c-4ace-a24c-de3875a1a174",
         "ae4d4f62-3d0f-4f8e-b698-865c4278e715",
         "d882257c-cfc0-428b-b362-67410f5f2e76",
-        "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8"
+        "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8",
+        "b8e0bde0-a05e-479e-9730-71b1624f672e",
+        "58012b3e-a809-4755-a1e6-d8ebfeb46e82"
     ],
     "tutorial": ""
 }
