@@ -119,10 +119,11 @@ dynamicWordGrid_colPixelX = 3; //dynamicWordGrid_colX = 3;
 dynamicWordGrid_colWordState = 4;
 dynamicWordGrid_colDisplayString = 5; //dynamicWordGrid_colStringDisplay = 5;
 dynamicWordGrid_colInChainList = 6; //dynamicWordGrid_colInChains = 6;
-dynamicWordGrid_colAligned = 7;
-dynamicWordGrid_colVoid = 8;
-dynamicWordGrid_colStretch = 9;
-dynamicWordGrid_colReplaceWord = 10;
+dynamicWordGrid_colInBoxList = 7; 
+dynamicWordGrid_colAligned = 8;
+dynamicWordGrid_colVoid = 9;
+dynamicWordGrid_colStretch = 10;
+dynamicWordGrid_colReplaceWord = 11;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
@@ -269,6 +270,7 @@ inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
 
+boxChainID = 0;
 boxHoldRectX1 = 0;
 boxHoldRectY1 = 0;
 boxHoldRectX2 = 0;

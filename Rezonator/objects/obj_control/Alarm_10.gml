@@ -5,6 +5,7 @@ if (ds_list_size(inRectUnitIDList) > 0) {
 	
 	// Expand the box grid to fit the new info
 	ds_grid_resize(obj_chain.boxChainGrid, obj_chain.chainGridWidth + 1, ds_grid_height(obj_chain.boxChainGrid) + 1);
+	ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.boxChainGrid) - 1, ++boxChainID);
 	ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList, ds_grid_height(obj_chain.boxChainGrid) - 1, ds_list_create());
 	ds_grid_set(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, ds_grid_height(obj_chain.boxChainGrid) - 1, ds_list_create());
 	
@@ -28,13 +29,15 @@ if (ds_list_size(inRectUnitIDList) > 0) {
 		// Really need a better mechanism than this
 		while(currentUnitID == ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID + 1)) {
 			if(ds_list_find_index(currentWordList, currentWordID) == -1) {
+				// Place wordID into box grid
 				ds_list_add(currentWordList, currentWordID);
+				ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), boxChainID);
 			} 
 			// Safety check to not go over the list size
 			if(innerLoop == ds_list_size(inRectWordIDList) - 1) {
 			break;	
 			}
-			// Place wordID into box grid
+			// increment the current word
 			currentWordID = ds_list_find_value(inRectWordIDList, ++innerLoop);
 		}
 	}
