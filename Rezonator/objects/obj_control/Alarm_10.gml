@@ -1,43 +1,53 @@
-/// @description Insert description here
-// You can write your code in this editor
-//show_message("in alarm");
+/// @description Box Creation
+// Place all captured unit and word info into the box grid
+
 if (ds_list_size(inRectUnitIDList) > 0) {
-	ds_grid_resize(obj_chain.boxChainGrid, obj_chain.chainGridWidth + 1, ds_grid_height(obj_chain.boxChainGrid) + 1);
 	
+	// Expand the box grid to fit the new info
+	ds_grid_resize(obj_chain.boxChainGrid, obj_chain.chainGridWidth + 1, ds_grid_height(obj_chain.boxChainGrid) + 1);
 	ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList, ds_grid_height(obj_chain.boxChainGrid) - 1, ds_list_create());
 	ds_grid_set(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, ds_grid_height(obj_chain.boxChainGrid) - 1, ds_list_create());
 	
+	// Retrieve references of the lists being added to
 	var currentUnitList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1 );
 	var currentWordList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1);
-	
 	var innerLoop = 0;
+	
 	// Loop through words found in rectangle at time of mouse release
 	for(var quickLoop = 0; quickLoop < ds_list_size(inRectUnitIDList); quickLoop++) {
 		
-		var currentWordID = ds_list_find_value(inRectWordIDList, quickLoop);
-		var currentUnitID = ds_list_find_value(inRectUnitIDList, innerLoop);
+		// Extract the unit and word ID's that were captured
+		var currentWordID = ds_list_find_value(inRectWordIDList, innerLoop);
+		var currentUnitID = ds_list_find_value(inRectUnitIDList, quickLoop);
 		
-		if(ds_list_find_index(currentUnitList, currentUnitID) < 0) {
+		// Place unitID into box grid
+		if(ds_list_find_index(currentUnitList, currentUnitID) == -1) {
 			ds_list_add(currentUnitList, currentUnitID);
 		}
-		//show_message(scr_getStringOfList(ds_grid_get(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1 )));
+		
+		// Really need a better mechanism than this
 		while(currentUnitID == ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID + 1)) {
-			if(ds_list_find_index(currentWordList, currentWordID) < 0) {
+			if(ds_list_find_index(currentWordList, currentWordID) == -1) {
 				ds_list_add(currentWordList, currentWordID);
+			} 
+			// Safety check to not go over the list size
+			if(innerLoop == ds_list_size(inRectWordIDList) - 1) {
+			break;	
 			}
-		var currentUnitID = ds_list_find_value(inRectUnitIDList, ++innerLoop);
+			// Place wordID into box grid
+			currentWordID = ds_list_find_value(inRectWordIDList, ++innerLoop);
 		}
 	}
-	//show_message(scr_getStringOfList(ds_grid_get(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1 )));
 	scr_unFocusAllChains();
 }
 
-
+// Clear the rect word list for next use
 if (ds_list_size(inRectUnitIDList) > 0) {
 	ds_list_clear(inRectUnitIDList);
 	ds_list_clear(inRectWordIDList);
 }
 
+// Reset all box grid variables
 boxHoldRectX1 = 0; 
 boxHoldRectX2 = 0; 
 boxHoldRectY1 = 0; 

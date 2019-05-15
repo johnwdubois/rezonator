@@ -71,7 +71,7 @@ if (mouse_check_button_released(mb_left)) {
 	}*/
 	//show_message("release");
 	boxRectReleased = true;
-	if (abs(boxHoldRectY1 - boxHoldRectY2) > 5) {
+	if (abs(boxHoldRectY1 - boxHoldRectY2) > 5 or abs(boxHoldRectX1 - boxHoldRectX2) > 5) {
 		boxRectMade = true;
 	}
 }
