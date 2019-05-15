@@ -12,6 +12,9 @@ if (rezPlayLinkGridRow == 0) {
 }
 
 
+var currentTier = ds_grid_get(rezPlayLinkGrid, linkGrid_colTier, rezPlayLinkGridRow);
+obj_toolPane.currentTool = currentTier;
+
 var currentSource = ds_grid_get(rezPlayLinkGrid, linkGrid_colSource, rezPlayLinkGridRow);
 if (currentSource < 0 or currentSource >= ds_grid_height(obj_control.wordGrid)) {
 	exit;
@@ -31,8 +34,14 @@ scr_wordClicked(currentSource, currentSourceUnitID);
 var currentWordClickTime = ds_grid_get(rezPlayLinkGrid, linkGrid_colSourceClickTime, rezPlayLinkGridRow);
 var nextWordClickTime = ds_grid_get(rezPlayLinkGrid, linkGrid_colGoalClickTime, rezPlayLinkGridRow);
 
-if (nextWordClickTime < 0 && rezPlayLinkGridRow < ds_grid_height(rezPlayLinkGrid) - 1) {
-	nextWordClickTime = ds_grid_get(rezPlayLinkGrid, linkGrid_colSourceClickTime, rezPlayLinkGridRow + 1);
+if (rezPlayLinkGridRow < ds_grid_height(rezPlayLinkGrid) - 1) {
+	
+	var nextTier = ds_grid_get(rezPlayLinkGrid, linkGrid_colTier, rezPlayLinkGridRow + 1);
+	obj_toolPane.currentTool = nextTier;
+	
+	if (nextWordClickTime < 0) {
+		nextWordClickTime = ds_grid_get(rezPlayLinkGrid, linkGrid_colSourceClickTime, rezPlayLinkGridRow + 1);
+	}
 }
 
 nextWordClickTime = min((nextWordClickTime - currentWordClickTime) * fps, fps * 10);
@@ -41,4 +50,7 @@ rezPlayLinkGridRow++;
 
 if (nextWordClickTime > 0) {
 	alarm[7] = nextWordClickTime;
+}
+else {
+	inRezPlay = false;
 }

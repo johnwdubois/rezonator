@@ -216,117 +216,120 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 	}
 	
-	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
-	var mouseover = false;
-	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord)) {
-		mouseover = true;
-		hoverWordID = currentWordID;
+	if (!obj_chain.inRezPlay) {
+	
+		// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
+		var mouseover = false;
+		if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and !obj_chain.inRezPlay) {
+			mouseover = true;
+			hoverWordID = currentWordID;
 		
-		draw_set_color(global.colorThemeBorders);
-		draw_set_alpha(1);
-		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
-			
-		if (mouse_check_button_pressed(mb_left)) {
-			with (obj_chain) {
-				scr_wordClicked(currentWordID, unitID);
-			}
-		}
-	} // Allows for adding to a stack anywhere in a line
-	else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {//not point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2))
-		if (mouse_check_button_pressed(mb_left)) {
-			with (obj_chain) {
-				scr_wordClicked(currentWordID, unitID);
-			}
-		}
-	}
-	
-	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
-	
-	if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
-		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		if (inMouseHoldRect) {
-			with (obj_control) {
-				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-					//show_message("ghost?");
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-		}
-	}
-	else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade) {
-		inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		if (inMouseHoldRect) {
-			with (obj_control) {
-				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
-					ds_list_add(inRectUnitIDList, unitID);
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-		}
-	}
-	
-	// Check to see if this word is within the Box brush rectangle
-	with (obj_control) {
-	var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
-	}
-	// Make sure the user has the box brush selected
-	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-		// Highlight the words if the box is still being made
-		if(not obj_control.boxRectReleased and inBoxHoldRect > 0) {
-			// Draw the highlights within the display columns
-			draw_set_color(global.colorThemeSelected1);
-			draw_set_alpha(0.5);
-			draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical, false);
-		} 
-		// If the box has been made, capture the info of the contained words
-		else if(obj_control.boxRectMade and inBoxHoldRect > 0) {
-			// Make sure this word has not already been captured
-			with (obj_control) {
-				if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
-					// Add the word info to the rectangle lists
-					ds_list_add(inRectUnitIDList, unitID);
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-		}
-	}
-	
-	for(var wordInBoxLoop = 0; wordInBoxLoop < ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1)); wordInBoxLoop++) {
-		var currentBoxID = ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), wordInBoxLoop);		
-		var currentBoxList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, currentBoxID-1);
-		
-		draw_set_color(global.colorThemeSelected1);
-		// Draw the over and above lines
-		draw_line(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1);
-		draw_line(wordRectX1, wordRectY1 + obj_control.gridSpaceVertical, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
-		// If this is the first word in the chunk, draw the left line
-		if(ds_list_find_index(currentBoxList, currentWordID) == 0) {
-			draw_line(wordRectX1, wordRectY1, wordRectX1, wordRectY1 + obj_control.gridSpaceVertical);
-		}
-		// If this is the last word in the chunk, draw the right line
-		if(ds_list_find_index(currentBoxList, currentWordID) == ds_list_size(currentBoxList)-1) {
-			draw_line(wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
-		}
-	}
-	
-	
-	// If the user has the New-Word tool selected, create a new word right next to this word
-	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
-		if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
-			draw_set_color(c_ltblue);
-			draw_line_width(wordRectX2, wordRectY1, wordRectX2, wordRectY2, 2);
-		}
-		
-		if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
-			newWordHoverUnitID = unitID;
-			newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
-			newWordHoverWordID = currentWordID;
+			draw_set_color(global.colorThemeBorders);
+			draw_set_alpha(1);
+			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 			if (mouse_check_button_pressed(mb_left)) {
-				scr_newWord(newWordHoverUnitID, newWordHoverWordSeq);
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
+				}
+			}
+		} // Allows for adding to a stack anywhere in a line
+		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+			if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
+				}
 			}
 		}
+	
+		// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
+	
+		if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
+			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			if (inMouseHoldRect) {
+				with (obj_control) {
+					if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
+						//show_message("ghost?");
+						ds_list_add(inRectWordIDList, currentWordID);
+					}
+				}
+			}
+		}
+		else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade) {
+			inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			if (inMouseHoldRect) {
+				with (obj_control) {
+					if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
+						ds_list_add(inRectUnitIDList, unitID);
+						ds_list_add(inRectWordIDList, currentWordID);
+					}
+				}
+			}
+		}
+	
+	
+		// Check to see if this word is within the Box brush rectangle
+		with (obj_control) {
+		var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
+		}
+		// Make sure the user has the box brush selected
+		if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+			// Highlight the words if the box is still being made
+			if(not obj_control.boxRectReleased and inBoxHoldRect > 0) {
+				// Draw the highlights within the display columns
+				draw_set_color(global.colorThemeSelected1);
+				draw_set_alpha(0.5);
+				draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical, false);
+			} 
+			// If the box has been made, capture the info of the contained words
+			else if(obj_control.boxRectMade and inBoxHoldRect > 0) {
+				// Make sure this word has not already been captured
+				with (obj_control) {
+					if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
+						// Add the word info to the rectangle lists
+						ds_list_add(inRectUnitIDList, unitID);
+						ds_list_add(inRectWordIDList, currentWordID);
+					}
+				}
+			}
+		}
+	
+		for (var wordInBoxLoop = 0; wordInBoxLoop < ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1)); wordInBoxLoop++) {
+			var currentBoxID = ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), wordInBoxLoop);		
+			var currentBoxList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, currentBoxID-1);
+		
+			draw_set_color(global.colorThemeSelected1);
+			// Draw the over and above lines
+			draw_line(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1);
+			draw_line(wordRectX1, wordRectY1 + obj_control.gridSpaceVertical, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
+			// If this is the first word in the chunk, draw the left line
+			if(ds_list_find_index(currentBoxList, currentWordID) == 0) {
+				draw_line(wordRectX1, wordRectY1, wordRectX1, wordRectY1 + obj_control.gridSpaceVertical);
+			}
+			// If this is the last word in the chunk, draw the right line
+			if(ds_list_find_index(currentBoxList, currentWordID) == ds_list_size(currentBoxList)-1) {
+				draw_line(wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
+			}
+		}
+	
+		// If the user has the New-Word tool selected, create a new word right next to this word
+		if (obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+			if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
+				draw_set_color(c_ltblue);
+				draw_line_width(wordRectX2, wordRectY1, wordRectX2, wordRectY2, 2);
+			}
+		
+			if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
+				newWordHoverUnitID = unitID;
+				newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+				newWordHoverWordID = currentWordID;
+			
+				if (mouse_check_button_pressed(mb_left)) {
+					scr_newWord(newWordHoverUnitID, newWordHoverWordSeq);
+				}
+			}
 
+		}
 	}
 	
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordID - 1, true);

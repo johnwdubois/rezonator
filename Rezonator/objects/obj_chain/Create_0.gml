@@ -80,6 +80,8 @@ rezPlayLinkGridWait = 20;
 rezPlayLinkGridChainID = -1;
 rezPlayTime = 0;
 
+inRezPlay = false;
+
 
 
 vizLinkGridWidth = 10;

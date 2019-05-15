@@ -38,11 +38,10 @@ if (showDisplayCols) {
 scr_drawLine();
 
 // Draw the mouse drag rectangle
-if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) { // Curfew for the volunteers
+if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
 	scr_mouseRect();
 }
-
-else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {
 	scr_boxRect();
 }
 

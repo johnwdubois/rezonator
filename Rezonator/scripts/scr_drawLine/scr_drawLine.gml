@@ -177,19 +177,21 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	}
 	
 	/*Draw quickstack highlights here */
-	if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left)) {
+	if (!obj_chain.inRezPlay) {
+		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left)) {
 		
-		var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		if (inMouseRect) {
-			draw_set_color(c_ltblue);
-			draw_set_alpha(0.3);
+			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			if (inMouseRect) {
+				draw_set_color(c_ltblue);
+				draw_set_alpha(0.3);
 			
-			var quickStackRectX1 = speakerRectX2;
-			var quickStackRectY1 = speakerRectY1;
-			var quickStackRectX2 = room_width;
-			var quickStackRectY2 = speakerRectY2;
+				var quickStackRectX1 = speakerRectX2;
+				var quickStackRectY1 = speakerRectY1;
+				var quickStackRectX2 = room_width;
+				var quickStackRectY2 = speakerRectY2;
 		
-			draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
+				draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
+			}
 		}
 	}
 		

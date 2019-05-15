@@ -41,3 +41,15 @@ else if (keyboard_check(vk_control) and keyboard_check_pressed(ord("O")) and abl
 if (not keyboard_check(vk_control) and not ableToHotkey) {
 	ableToHotkey = true;
 }
+
+
+
+if (obj_chain.inRezPlay) {
+	draw_set_color(obj_toolPane.progressBarFrontColor);
+	draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.x + obj_toolPane.windowWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
+	draw_set_font(obj_toolPane.progressBarFont);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
+	draw_set_color(c_white);
+	draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Rez-Play");
+}
