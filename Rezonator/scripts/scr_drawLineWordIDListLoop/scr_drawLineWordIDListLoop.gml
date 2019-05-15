@@ -291,9 +291,23 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 	}
 	
+	/*var prevWordBoxed = 
+	var currentWordBoxed = 
+	var nextWordBoxed = 
+	
+	if(currentWordBoxed) {
+		draw_line(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1);
+		draw_line(wordRectX1, wordRectY1 + obj_control.gridSpaceVertical, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
+	}
+	if(!prevWordBoxed) {
+		draw_line(wordRectX1, wordRectY1, wordRectX1, wordRectY1 + obj_control.gridSpaceVertical);
+	}
+	if(!nextWordBoxed) {
+		draw_line(wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
+	}
 	
 	
-	
+	*/
 	// If the user has the New-Word tool selected, create a new word right next to this word
 	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 		if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
