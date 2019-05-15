@@ -24,7 +24,11 @@ else if (grid == obj_control.dynamicWordGrid) {
 	if (col == obj_control.dynamicWordGrid_colInChainList) {
 		itemList = currentCell;
 	}
+	else if (col == obj_control.dynamicWordGrid_colInBoxList) {
+		itemList = currentCell;
+	}
 }
+
 else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid or grid == obj_chain.placeChainGrid or grid == obj_chain.boxChainGrid) {
 	if (col == obj_chain.chainGrid_colWordIDList) {
 		itemList = currentCell;

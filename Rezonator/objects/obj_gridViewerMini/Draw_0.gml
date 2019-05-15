@@ -158,6 +158,9 @@ for (var k = 0; k < ds_grid_width(grid2); k++)
 			case obj_control.dynamicWordGrid_colInChainList:
 				currentHeader2 = "inChainList";
 				break;
+			case obj_control.dynamicWordGrid_colInBoxList:
+				currentHeader2 = "inBoxList";
+				break;
 			default:
 				currentHeader2 = "n/a";
 				break;
@@ -177,6 +180,16 @@ for (var k = 0; k < ds_grid_width(grid2); k++)
 		
 		
 		if (k == obj_control.dynamicWordGrid_colInChainList)
+		{
+			currentItemString2 = "{";
+			for (var p = 0; p < ds_list_size(currentItemGet2); p++)
+			{
+				currentItemString2 += string(ds_list_find_value(currentItemGet2, p)) + ", ";
+			}
+			currentItemString2 += "}"
+		}
+		
+		if (k == obj_control.dynamicWordGrid_colInBoxList)
 		{
 			currentItemString2 = "{";
 			for (var p = 0; p < ds_list_size(currentItemGet2); p++)

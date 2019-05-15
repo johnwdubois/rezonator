@@ -264,21 +264,26 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	}
-	var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
-	//show_message(inBoxHoldRect);
+	
+	// Check to see if this word is within the Box brush rectangle
+	with (obj_control) {
+	var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
+	}
+	// Make sure the user has the box brush selected
 	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-		//show_message("if1");
-		if(not boxRectReleased and inBoxHoldRect > 0) {
-			//show_message("if2");
+		// Highlight the words if the box is still being made
+		if(not obj_control.boxRectReleased and inBoxHoldRect > 0) {
+			// Draw the highlights within the display columns
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(0.5);
 			draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical, false);
-		}
-		else if(boxRectMade and inBoxHoldRect > 0) {
-			//show_message("if1");
+		} 
+		// If the box has been made, capture the info of the contained words
+		else if(obj_control.boxRectMade and inBoxHoldRect > 0) {
+			// Make sure this word has not already been captured
 			with (obj_control) {
-				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-					//show_message("if2");
+				if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
+					// Add the word info to the rectangle lists
 					ds_list_add(inRectUnitIDList, unitID);
 					ds_list_add(inRectWordIDList, currentWordID);
 				}
@@ -286,7 +291,23 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 	}
 	
-	
+	for(var wordInBoxLoop = 0; wordInBoxLoop < ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1)); wordInBoxLoop++) {
+		var currentBoxID = ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), wordInBoxLoop);		
+		var currentBoxList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, currentBoxID-1);
+		
+		draw_set_color(global.colorThemeSelected1);
+		// Draw the over and above lines
+		draw_line(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1);
+		draw_line(wordRectX1, wordRectY1 + obj_control.gridSpaceVertical, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
+		// If this is the first word in the chunk, draw the left line
+		if(ds_list_find_index(currentBoxList, currentWordID) == 0) {
+			draw_line(wordRectX1, wordRectY1, wordRectX1, wordRectY1 + obj_control.gridSpaceVertical);
+		}
+		// If this is the last word in the chunk, draw the right line
+		if(ds_list_find_index(currentBoxList, currentWordID) == ds_list_size(currentBoxList)-1) {
+			draw_line(wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical);
+		}
+	}
 	
 	
 	// If the user has the New-Word tool selected, create a new word right next to this word

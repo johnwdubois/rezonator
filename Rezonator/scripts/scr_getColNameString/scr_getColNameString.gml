@@ -181,6 +181,9 @@ else if (grid == obj_control.dynamicWordGrid) {
 		case obj_control.dynamicWordGrid_colInChainList:
 			colName = "inChainList";
 			break;
+		case obj_control.dynamicWordGrid_colInBoxList:
+			colName = "inBoxList";
+			break;
 		case obj_control.dynamicWordGrid_colAligned:
 			colName = "aligned";
 			break;
