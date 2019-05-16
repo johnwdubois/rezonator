@@ -146,7 +146,7 @@ if (list == false and contents == false) {
 	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
 	or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus) {
 		if (keyboard_check(vk_shift)) {
-			if (global.fontSize < 2) {
+			if (global.fontSize < 5) {
 				global.fontSize++;
 				scr_setSpeakerLabelColWidth();
 			}
@@ -300,30 +300,4 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 	ableToCreateDropDownAlarmSet = true;
 }
 
-// Set and adjust the font size
-global.fontSize = min(global.fontSize, 2);
-global.fontSize = max(global.fontSize, 0);
-
-switch (global.fontSize) {
-	case 0:
-		global.fontMain = fnt_main;
-		global.fontChainContents = fnt_chainContents;
-		global.fontChainList = fnt_chainList;
-		global.fontPanelTab = fnt_panelTab;
-		global.fontSortPane = fnt_sortPane;
-		break;
-	case 1:
-		global.fontMain = fnt_mainLarge1;
-		global.fontChainContents = fnt_chainContentsLarge1;
-		global.fontChainList = fnt_chainListLarge1;
-		global.fontPanelTab = fnt_panelTabLarge1;
-		global.fontSortPane = fnt_sortPaneLarge1;
-		break;
-	case 2:
-		global.fontMain = fnt_mainLarge2;
-		global.fontChainContents = fnt_chainContentsLarge2;
-		global.fontChainList = fnt_chainListLarge2;
-		global.fontPanelTab = fnt_panelTabLarge2;
-		global.fontSortPane = fnt_sortPaneLarge2;
-		break;
-}
+scr_fontSizeControl();
