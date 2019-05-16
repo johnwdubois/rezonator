@@ -30,6 +30,7 @@ obj_chain.chainColorID[2] = 0;
 
 ds_grid_resize(obj_chain.rezPlayLinkGrid, obj_chain.linkGridWidth, ds_grid_height(obj_chain.linkGrid));
 ds_grid_copy(obj_chain.rezPlayLinkGrid, obj_chain.linkGrid);
+ds_grid_sort(obj_chain.rezPlayLinkGrid, obj_chain.linkGrid_colSourceClickTime, true);
 
 ds_grid_clear(obj_chain.linkGrid, 0);
 ds_grid_clear(obj_chain.rezChainGrid, 0);

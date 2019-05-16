@@ -36,14 +36,6 @@ for (var i = 1; i < ds_list_size(wordIDList); i++) {
 	}
 }
 
-/*
-// if the leftmost word has a void greater than 0, mark it as a stretch and unalign it
-if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, furthestBackWord - 1) > 0) {
-	//show_message("furthest back void... " + string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, furthestBackWord - 1)));
-	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, furthestBackWord - 1, false);
-	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, furthestBackWord - 1, true);
-}
-*/
 
 
 

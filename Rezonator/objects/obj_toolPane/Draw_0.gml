@@ -63,7 +63,7 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 	
 	if (not obj_control.lineGridDefaultSort) {
 		if (currentTool == toolRezBrush) {
-		currentTool = toolPointer;
+			currentTool = toolPointer;
 		}
 		
 		if (i == 1) {
@@ -94,7 +94,7 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 		}
 	}
 	
-	if (i mod 2 == 1) {
+	if (i mod 2 == 1 && i < sprite_get_number(spr_tools) - 1) {
 		iconPlusY += iconPlusYIncrement;
 	}
 }

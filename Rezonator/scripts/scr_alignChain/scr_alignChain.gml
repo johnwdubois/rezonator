@@ -113,7 +113,6 @@ if (ds_list_size(wordIDList) > 0) {
 					if (obj_control.mostRecentlyAddedWordMoved) {
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, false);
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1, true);
-						
 					}
 					else {
 						obj_control.mostRecentlyAddedWordMoved = true;

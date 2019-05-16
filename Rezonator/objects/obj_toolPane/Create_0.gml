@@ -18,14 +18,14 @@ windowHeight = 170;
 x = room_width - windowWidth;
 y = 0;
 
-toolAmount = 4;
+toolAmount = 5;
 toolPointer = 0;
 toolRezBrush = 1;
 toolTrackBrush = 2;
 toolStackBrush = 3;
 toolNewWord = 4;
-toolPlaceChains = 5;
-toolBoxBrush = 6; // toolBoxBrush??
+toolBoxBrush = 5; // toolBoxBrush??
+toolPlaceChains = 6;
 
 currentTool = toolRezBrush;
 
@@ -34,7 +34,7 @@ tempReturnTool = -1;
 
 
 progressBarX = room_width - 100;
-progressBarY = 150 - 32;
+progressBarY = windowHeight + 32;
 progressBarWidth = 100;
 progressBarHeight = 32;
 progressBarBackColor = c_gray;

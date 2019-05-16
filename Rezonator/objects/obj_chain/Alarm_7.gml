@@ -30,6 +30,14 @@ rezPlayLinkGridChainID = currentChainID;
 	
 scr_wordClicked(currentSource, currentSourceUnitID);
 
+var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentSource - 1);
+var currentRowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+var currentDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, currentRowInLineGrid);
+
+if (abs(obj_control.currentCenterDisplayRow - currentDisplayRow) > 10) {
+	obj_control.currentCenterDisplayRow = currentDisplayRow;
+}
+
 
 var currentWordClickTime = ds_grid_get(rezPlayLinkGrid, linkGrid_colSourceClickTime, rezPlayLinkGridRow);
 var nextWordClickTime = ds_grid_get(rezPlayLinkGrid, linkGrid_colGoalClickTime, rezPlayLinkGridRow);
@@ -48,9 +56,16 @@ nextWordClickTime = min((nextWordClickTime - currentWordClickTime) * fps, fps * 
 
 rezPlayLinkGridRow++;
 
+if (nextWordClickTime == 0) {
+	//show_message("here")
+	nextWordClickTime = 2;
+}
+
 if (nextWordClickTime > 0) {
 	alarm[7] = nextWordClickTime;
 }
 else {
 	inRezPlay = false;
+	scr_unFocusAllChains();
+	scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 }
