@@ -22,7 +22,7 @@ draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 switch (currentFunction) {
 	case functionChainList:
-		scr_panelPane_drawChainListLoop();
+		scr_panelPane_drawChainListLoopClipped();
 		scr_panelPane_drawChainTabs();
 		if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = true;
