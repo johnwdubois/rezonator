@@ -15,10 +15,17 @@ valueList = ds_list_create();
 for (var i = 0; i < 20; i++) {
 	ds_list_add(valueList, "blah " + string(i));
 }
+valueSelected = 0;
 
 
+scrollBarHolding = false;
+scrollBarUpButtonHeld = false;
+scrollBarDownButtonHeld = false;
 scrollBarWidth = 20;
 scrollBarHeight = 0;
 scrollPlusY = 0;
+scrollPlusYDest = 0;
 scrollBarPlusY = 0;
 windowResizeYHolding = false;
+
+font = fnt_size1;

@@ -3,10 +3,12 @@ if (!mouse_check_button(mb_left)) {
 	windowResizeYHolding = false;
 }
 if (mouse_check_button_pressed(mb_left)) {
-	if (abs(mouse_x - (x + windowWidth)) < 5) {
+	if (abs(mouse_x - (x + windowWidth)) < 5
+	&& mouse_y > y && mouse_y < y + windowHeight) {
 		windowResizeXHolding = true;
 	}
-	else if (abs(mouse_y - (y + windowHeight)) < 5) {
+	else if (abs(mouse_y - (y + windowHeight)) < 5
+	&& mouse_x > x && mouse_y < x + windowWidth) {
 		windowResizeYHolding = true;
 	}
 }
