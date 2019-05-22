@@ -4,9 +4,10 @@ if (!shortcutsEnabled) {
 }
 
 // Activates word searching using search grid
-if(currentActiveLineGrid == lineGrid) {
+//if(currentActiveLineGrid == lineGrid) {
 preSwitchDisplayRow = currentCenterDisplayRow;
-}
+//}
+preSwitchLineGrid = currentActiveLineGrid;
 preSwitchSearchDisplayRow = 0;
 //have the input be here?
 scr_searchForWord();

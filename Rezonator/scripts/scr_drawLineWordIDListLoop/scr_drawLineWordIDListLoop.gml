@@ -301,13 +301,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			draw_line_width(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1, 2);
 			draw_line_width(wordRectX1, wordRectY1 + obj_control.gridSpaceVertical - 1, wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1 + obj_control.gridSpaceVertical - 1, 2);
 			// If this is the first word in the chunk, draw the left line
-			if(ds_list_find_index(currentBoxList, currentWordID) == 0) {
+			//if(ds_list_find_index(currentBoxList, currentWordID) == 0) {
 				draw_line_width(wordRectX1, wordRectY1, wordRectX1, wordRectY1 + obj_control.gridSpaceVertical, 2);
-			}
+			//}
 			// If this is the last word in the chunk, draw the right line
-			if(ds_list_find_index(currentBoxList, currentWordID) == ds_list_size(currentBoxList)-1) {
+			//if(ds_list_find_index(currentBoxList, currentWordID) == ds_list_size(currentBoxList)-1) {
 				draw_line_width(wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1 + obj_control.gridSpaceVertical, 2);
-			}
+			//}
 		}
 	
 		// If the user has the New-Word tool selected, create a new word right next to this word

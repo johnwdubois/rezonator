@@ -31,7 +31,7 @@ if (ds_list_size(inRectUnitIDList) > 0) {
 			if(ds_list_find_index(currentWordList, currentWordID) == -1) {
 				// Place wordID into box grid
 				ds_list_add(currentWordList, currentWordID);
-				ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), boxChainID);
+				//ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), boxChainID);
 			} 
 			// Safety check to not go over the list size
 			if(innerLoop == ds_list_size(inRectWordIDList) - 1) {
@@ -42,7 +42,26 @@ if (ds_list_size(inRectUnitIDList) > 0) {
 		}
 	}
 	scr_unFocusAllChains();
+	if(ds_list_size(ds_grid_get(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1 )) == 1) {
+	var transcript = "";
+	newWordHoverUnitID = ds_list_find_value(ds_grid_get(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList, ds_grid_height(obj_chain.boxChainGrid) - 1), 0);
+	newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1) - 1);
+	for(var transcriptSize = 0; transcriptSize < ds_list_size(ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1)); transcriptSize++) {
+		transcript += ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, ds_list_find_value(ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1), transcriptSize) - 1) + " ";
+	}
+	scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, transcript);
 }
+}
+/*
+if(ds_list_size(ds_grid_get(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1 )) == 1) {
+	var transcript = "";
+	newWordHoverUnitID = ds_list_find_value(ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1), 0);
+	newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+	for(var transcriptSize = 0; transcriptSize < ds_list_size(ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1)); transcriptSize++) {
+		transcript += ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, ds_list_find_value(ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1), transcriptSize) - 1) + " ";
+	}
+	scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, transcript);
+}*/
 
 // Clear the rect word list for next use
 if (ds_list_size(inRectUnitIDList) > 0) {

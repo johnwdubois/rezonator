@@ -1,12 +1,16 @@
-var unitID = argument0;
-var wordSeq = argument1;
-
+var unitID = argument[0];
+var wordSeq = argument[1];
+if(argument_count > 2){
+	var wordTranscript = argument[2];
+}
 
 if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid) {
 	exit;
 }
 
-var wordTranscript = get_string("Type in new word", "example");
+if(argument_count == 2) {
+	var wordTranscript = get_string("Type in new word", "example");
+}
 var wordToken = wordTranscript;
 
 ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
@@ -21,6 +25,7 @@ ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowW
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
 
 scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
+
 
 
 var wordIDListUnitGrid = ds_grid_get(unitGrid, unitGrid_colWordIDList, unitID - 1);
@@ -44,3 +49,6 @@ for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
 	ds_grid_set(wordGrid, wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);	
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
 }
+//show_message(wordID);
+//show_message(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID));
+ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), obj_control.boxChainID);

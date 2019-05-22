@@ -333,3 +333,4 @@ for (var i = 0; i < ds_grid_height(filterGrid); i++) {
 searchGridActive = false;
 filterGridActive = true;
 currentActiveLineGrid = filterGrid;
+wordLeftMarginDest = 170;
