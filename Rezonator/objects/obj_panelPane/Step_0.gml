@@ -41,12 +41,13 @@ if (doubleClickTimer > -1) {
 if (keyboard_check(vk_down)) {
 	holdDown++;	
 }
-if(keyboard_check_released(vk_down)) {
+else {
 	holdDown = 0;
 }
+
 if (keyboard_check(vk_up)) {
 	holdUp++;	
 }
-if(keyboard_check_released(vk_up)) {
+else {
 	holdUp = 0;
 }

@@ -48,6 +48,8 @@ var textMarginTop = 16;
 var textPlusY = 0;
 var chainNameRectMinusY = 4;
 
+var focusedElementY = -1;
+
 // Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
 draw_set_halign(fa_left);
@@ -172,6 +174,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	if (currentChainState == obj_chain.chainStateFocus) {
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(rectX1 - clipX, y + textMarginTop + textPlusY + scrollPlusY - 9 - clipY, rectX2 - clipX, y + textMarginTop + textPlusY + scrollPlusY + 7 - clipY, true);
+		
+		focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
 	}
 	
 	// Draw text of chain names
@@ -279,35 +283,56 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 
 
 var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-if (focusedChainRow > -1 and focusedChainRow < ds_grid_height(grid)) {
+//if (focusedChainRow > -1 and focusedChainRow < ds_grid_height(grid)) {
 	
 	if (clickedIn) {
 		
-		if (keyboard_check_pressed(vk_up)) {
-			if (focusedChainRow > 0) {
+		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
+			
+			if (focusedChainRow > 0 and focusedChainRow < ds_grid_height(grid)) {
 				scr_unFocusAllChains();
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
 				focusedChainRow--;
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+				
+				if (focusedElementY <= y + textMarginTop + strHeight) {
+					scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+				}
+			}
+			else {
+				scrollPlusYDest += 4;
 			}
 		}
-		else if (keyboard_check_pressed(vk_down)) {
-			if (focusedChainRow < ds_grid_height(grid) - 1) {
+
+		
+		
+		
+		
+		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
+			
+			if (focusedChainRow < ds_grid_height(grid) - 1 and focusedChainRow >= 0) {
 				scr_unFocusAllChains();
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
 				focusedChainRow++;
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+				
+				if (focusedElementY >= y + windowHeight - strHeight) {
+					scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+				}
+			}
+			else {
+				scrollPlusYDest -= 4;
 			}
 		}
 	}
-}
+//}
 
 
 
 
-scr_scrollBar(ds_grid_height(grid), strHeight, textMarginTop,
+scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, textMarginTop,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeHighlight);
+	global.colorThemeSelected1, global.colorThemeBG, spr_ascend);
 
 
 
