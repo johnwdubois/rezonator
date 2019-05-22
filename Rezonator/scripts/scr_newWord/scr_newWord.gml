@@ -1,5 +1,6 @@
 var unitID = argument[0];
 var wordSeq = argument[1];
+// If there's more than 2 arguments, then a chunk is being made
 if(argument_count > 2){
 	var wordTranscript = argument[2];
 }
@@ -8,6 +9,7 @@ if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == search
 	exit;
 }
 
+// Ask the user for the new word, if this is not a chunk
 if(argument_count == 2) {
 	var wordTranscript = get_string("Type in new word", "example");
 }
@@ -49,6 +51,8 @@ for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
 	ds_grid_set(wordGrid, wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);	
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
 }
-//show_message(wordID);
-//show_message(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID));
-ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), obj_control.boxChainID);
+
+if(argument_count > 2){
+	// Mark the new word as being in a chunk
+	ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), obj_control.boxChainID);
+}
