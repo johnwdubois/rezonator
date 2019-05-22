@@ -78,7 +78,7 @@ for (var i = 0; i < 3; i++) {
 	draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, true);
 }
 
-// Check for mouse clicks on filter button
+// Check for mouse clicks on filter button, if we're out of the search grid
 if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 	if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius) and mouse_check_button_pressed(mb_left))
 	or (keyboard_check(vk_control) and keyboard_check_pressed(ord("P")))) {
