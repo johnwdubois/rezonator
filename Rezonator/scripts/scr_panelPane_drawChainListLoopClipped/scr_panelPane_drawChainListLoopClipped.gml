@@ -48,11 +48,6 @@ var textMarginTop = 16;
 var textPlusY = 0;
 var chainNameRectMinusY = 4;
 
-
-var scrollBarWidth = 16;
-draw_set_color(global.colorThemeBG);
-draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
-
 // Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
 draw_set_halign(fa_left);
@@ -310,53 +305,9 @@ if (focusedChainRow > -1 and focusedChainRow < ds_grid_height(grid)) {
 
 
 
-// Create scroll bars
-var scrollBarHeight = windowHeight;
-var scrollBarRectX1 = x + windowWidth - scrollBarWidth - clipX;
-var scrollBarRectY1 = y - clipY;
-var scrollBarRectX2 = scrollBarRectX1 + scrollBarWidth;
-var scrollBarRectY2 = scrollBarRectY1 + scrollBarHeight;
-
-scrollBarRectY1 = max(scrollBarRectY1, y + (textMarginTop * 2));
-scrollBarRectY2 = max(scrollBarRectY2, y + (textMarginTop * 2));
-
-//Don't draw scroll bars if there's no chains
-if (ds_grid_height(grid) == 0) {
-	scrollBarRectY1 = y + (textMarginTop * 2);
-	scrollBarRectY2 = y + windowHeight;
-	scrollBarHolding = false;
-}
-
-// Set color of scroll bars
-draw_set_color(global.colorThemeSelected1);
-draw_rectangle(scrollBarRectX1, scrollBarRectY1, scrollBarRectX2, scrollBarRectY2, false);
-
-// Check mouse clicks for scroll bar use
-if (point_in_rectangle(mouse_x, mouse_y, scrollBarRectX1 + clipX, scrollBarRectY1 + clipY, scrollBarRectX2 + clipX, scrollBarRectY2 + clipY)) {
-	if (mouse_check_button_pressed(mb_left)) {
-		scrollBarHolding = true;
-		scrollBarHoldingPlusY = mouse_y - scrollBarRectY1;
-	}
-}
-
-scrollBarHoldingPlusY = 0;
-
-//Let clicked mouse move the scroll bar, until unclicked
-if (mouse_check_button_released(mb_left)) {
-	scrollBarHolding = false;
-}
-
-if (scrollBarHolding) {
-	scrollPlusY = mouse_y - y;
-}
-
-if (ds_grid_height(grid) * strHeight < windowHeight) {
-	scrollPlusY = textMarginTop;
-}
-else {
-	scrollPlusY = clamp(scrollPlusY, -windowHeight, windowHeight);
-}
-
+scr_scrollBar(ds_grid_height(grid), strHeight, textMarginTop,
+	global.colorThemeSelected1, global.colorThemeSelected2,
+	global.colorThemeSelected1, global.colorThemeHighlight);
 
 
 

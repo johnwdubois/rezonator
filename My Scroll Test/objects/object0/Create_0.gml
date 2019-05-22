@@ -18,6 +18,8 @@ for (var i = 0; i < 20; i++) {
 valueSelected = 0;
 
 
+
+// scrollbar variables
 scrollBarHolding = false;
 scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
@@ -26,6 +28,8 @@ scrollBarHeight = 0;
 scrollPlusY = 0;
 scrollPlusYDest = 0;
 scrollBarPlusY = 0;
+
+windowResizeXHolding = false;
 windowResizeYHolding = false;
 
 font = fnt_size1;

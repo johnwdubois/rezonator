@@ -10,7 +10,7 @@ var scrollButtonColor2 = argument6;
 var windowHeightAdjusted = windowHeight - marginTop;
 
 var minScrollPlusY = windowHeightAdjusted - (listSize * strHeight);
-var maxScrollPlusY = 0;
+var maxScrollPlusY = marginTop / 2;
 
 // setup scrollbar height
 var scrollBarHeightMin = 30;
@@ -94,9 +94,17 @@ draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + 
 
 
 
+
+
 // draw scrollbar
 draw_set_color(scrollBarColor);
 draw_rectangle(scrollBarX1 - clipX, scrollBarY1 - clipY, scrollBarX2 - clipX, scrollBarY2 - clipY, false);
+
+
+// draw outlines of scrollbar buttons
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + scrollBarWidth + marginTop - clipY, true);
+draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + marginTop - clipY, scrollBarX2 - clipX, y + windowHeightAdjusted + marginTop - clipY, true);
 
 
 // move scrollbar with regular scroll

@@ -24,6 +24,22 @@ canResizeWindowX = true;
 canResizeWindowY = true;
 
 
+// scrollbar variables
+scrollBarHolding = false;
+scrollBarUpButtonHeld = false;
+scrollBarDownButtonHeld = false;
+scrollBarWidth = 20;
+scrollBarHeight = 0;
+scrollPlusY = 0;
+scrollPlusYDest = 0;
+scrollBarPlusY = 0;
+
+
+
+
+
+
+
 
 
 functionChainList = 0;
