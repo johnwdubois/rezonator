@@ -4,7 +4,7 @@ Welcome to Rezonator!
 Rezonator is a project to explore the dynamics of resonance and engagement in dialogue. We strive to capture the expressive complexity and creativity unleashed when people resonate in conversational interaction. We try make the process of inquiry interesting and fun, for players and researchers alike. 
 
 * The [**Rezonator wiki**](https://github.com/johnwdubois/rezonator/wiki) is the best place to start if you want to learn more about the Rezonator project. It's where we post the big picture of our goals, and the details about our plans for developing for Rezonator. (Or click on a topic at the bottom of this page, which will take you directly to the relevant wiki page.)
-* The [**Rezonator project board**](https://github.com/johnwdubois/rezonator/projects) provides up-to-date information on the current status of Rezonator projects and issues.
+* The [**Rezonator project board**](https://github.com/johnwdubois/rezonator/projects) provides up-to-date information on the specific features and issues we are currently working on in the Rezonator project.
 * [**Rezonator.com**](https://rezonator.com/) is our public-facing website, where you can [**download Rezonator**](https://rezonator.com/download/).
 * Rezonator is an open-source project, offered under the [**MIT License**](https://github.com/johnwdubois/rezonator_v2/blob/master/LICENSE).  
 
