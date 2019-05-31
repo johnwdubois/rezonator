@@ -44,7 +44,12 @@ if (ds_list_size(inRectUnitIDList) > 0) { // Make sure the box captured somethin
 	scr_unFocusAllChains();
 	// If this box counts as a chunk, create the newWord for it
 	if(ds_list_size(currentUnitList) == 1) {
-		var transcript = "";
+		// Mark this box as a chunk
+		ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.boxChainGrid) - 1, 1);
+		//Store coordinates of the corners of the chunk, will need to happen in a loop to because of changing coordinates
+		//Somewhere, have a loop drawing lines between all of those coordinates for each chunk within the box list
+		
+		/*var transcript = "";
 		newWordHoverUnitID = ds_list_find_value(currentUnitList, 0); // Get the UnitID
 		newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1) - 1); // Get the word sequence of the chunk's last word
 		
@@ -56,7 +61,7 @@ if (ds_list_size(inRectUnitIDList) > 0) { // Make sure the box captured somethin
 		// Create the new word
 		scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, transcript);
 		// Mark this box as a chunk
-		ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.boxChainGrid) - 1, 1); 
+		ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.boxChainGrid) - 1, 1); */
 	}
 }
 
