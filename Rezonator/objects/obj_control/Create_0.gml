@@ -74,8 +74,8 @@ wordIDCounter = 0;
 unitIDCounter = 0;
 
 // Boolean for switching transcript view on/off
-wordTranscriptView = true;
-
+wordTranscriptView = false;
+// Seems to prefer starting as false?
 
 
 // Instantiate the Line Grid
