@@ -337,4 +337,4 @@ scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, textMarginTop,
 
 
 
-scr_suraceEnd();
+scr_surfaceEnd();

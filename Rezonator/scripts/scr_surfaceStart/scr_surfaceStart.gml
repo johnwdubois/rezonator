@@ -31,7 +31,7 @@ if (mouse_check_button(mb_left)) {
 
 
 windowWidth = max(10, windowWidth);
-windowHeight = max(10, windowHeight);
+windowHeight = max(40, windowHeight);
 clipWidth = windowWidth;
 clipHeight = windowHeight;
 	

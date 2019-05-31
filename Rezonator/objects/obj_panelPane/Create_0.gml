@@ -15,8 +15,8 @@
 clipSurface = -1;
 clipWidth = 100;
 clipHeight = 100;
-clipX = 50;
-clipY = 50;
+clipX = 0;
+clipY = 0;
 scrollPlusY = 0;
 windowResizeXHolding = false;
 windowResizeYHolding = false;
