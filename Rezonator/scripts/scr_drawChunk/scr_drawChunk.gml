@@ -53,12 +53,12 @@ for (var i = 0; i < ds_grid_height(boxChainGrid); i++) {
 		
 		topLeftX = leftPixelX - 4;
 		topLeftY = displayLineY - (obj_control.gridSpaceVertical/2);
-		bottomLeftX = topLeftX + 2;
+		bottomLeftX = topLeftX;
 		bottomLeftY = topLeftY + obj_control.gridSpaceVertical;
 		
 		topRightX = rightPixelX + obj_control.gridSpaceHorizontal - 6;
 		topRightY = topLeftY;
-		bottomRightX = topRightX + 2;
+		bottomRightX = topRightX;
 		bottomRightY = bottomLeftY;
 		
 		
