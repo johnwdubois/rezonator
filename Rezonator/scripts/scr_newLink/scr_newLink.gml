@@ -26,8 +26,15 @@ var focus = true;
 if (goal > -1) {
 	focus = false;
 }
+if (wordID == undefined) {
+	exit;
+}
 
 var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
+
+if (unitID == undefined) {
+	exit;
+}
 
 
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {

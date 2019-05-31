@@ -76,6 +76,12 @@ if (originalGrid == obj_control.dynamicWordGrid) {
 			ds_grid_set(tempGrid, obj_control.dynamicWordGrid_colReplaceWord, i, "");
 		}
 	}
+	
+	// if we can't find a single aligned word in the new grid, this is a glitch and we can set them all to aligned
+	var alignedWord = ds_grid_value_y(tempGrid, obj_control.dynamicWordGrid_colAligned, 0, obj_control.dynamicWordGrid_colAligned, ds_grid_height(tempGrid), true);
+	if (alignedWord < 0) {
+		scr_setAllValuesInCol(tempGrid, obj_control.dynamicWordGrid_colAligned, true);
+	}
 }
 
 

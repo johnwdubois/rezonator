@@ -57,14 +57,14 @@ var oldRow = -1;
 //var olderRow = -1;
 
 
-with(obj_chain) {
+with (obj_chain) {
 	if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus) ) { //and oldFocusedContentsRow == -1) {
 	
 			oldFocusedContentsRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	}
 }
 
-with(obj_chain) {
+with (obj_chain) {
 	if(oldFocusedContentsRow >= 0 ) {//&& ds_grid_value_exists(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), oldFocusedContentsRow)) {
 		//olderRow = oldRow;
 		oldRow = oldFocusedContentsRow;

@@ -218,7 +218,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 		// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 		var mouseover = false;
-		if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and !obj_chain.inRezPlay) {
+		if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
+		and not mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
 			mouseover = true;
 			hoverWordID = currentWordID;
 		

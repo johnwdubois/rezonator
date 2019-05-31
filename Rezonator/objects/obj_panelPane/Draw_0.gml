@@ -38,7 +38,7 @@ switch (currentFunction) {
 		}
 		break;
 	case functionChainContents:
-		scr_panelPane_drawChainContentsLoop();
+		scr_panelPane_drawChainContentsLoopClipped();
 		if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = true;
 		}

@@ -38,16 +38,18 @@ if (showDisplayCols) {
 scr_drawLine();
 
 // Draw the mouse drag rectangle
-if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
-	scr_mouseRect();
-}
-else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {
-	scr_boxRect();
+if (not mouseoverPanelPane) {
+	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
+		scr_mouseRect();
+	}
+	else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {
+		scr_boxRect();
+	}
 }
 
 
 // Create the quickStack with the mouse drag, if possible
-if ((mouseRectMade and quickStackAbleToInitiate)) {
+if (mouseRectMade and quickStackAbleToInitiate) {
 	quickStackAbleToInitiate = false;
 	alarm[7] = 5;
 }
