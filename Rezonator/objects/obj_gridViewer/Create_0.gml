@@ -27,6 +27,8 @@ ds_list_add(gridList,
 	);
 alarm[0] = 1;
 
+gridsMax = 2;
+currentGrids = 2;
 grid[0] = obj_control.unitGrid;
 grid[1] = obj_control.lineGrid;
 
