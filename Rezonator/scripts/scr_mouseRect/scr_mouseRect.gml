@@ -3,6 +3,7 @@ draw_set_color(global.colorThemeSelected1);
 draw_set_alpha(0.5);
 
 if (mouse_check_button_pressed(mb_left)) {
+	
 	mouseHoldRectX1 = mouse_x;
 	mouseHoldRectY1 = mouse_y;
 	mouseHoldRectX2 = mouse_x;

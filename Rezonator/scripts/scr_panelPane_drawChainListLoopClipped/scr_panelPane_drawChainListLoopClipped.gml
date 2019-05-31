@@ -62,13 +62,12 @@ scr_surfaceStart();
 
 for (var i = 0; i < ds_grid_height(grid); i++) {
 	
-	/*
-	if (y + textPlusY + scrollPlusY < y - strHeight
-	or y + textPlusY + scrollPlusY > y + windowHeight + strHeight) {
+	if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
+	or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		textPlusY += strHeight;
 		continue;
 	}
-	*/
-
+	
 	
 	// Get grid info of current chain
 	var currentChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i);
