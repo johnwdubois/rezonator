@@ -1,7 +1,7 @@
 /// @description Box Creation
 // Place all captured unit and word info into the box grid
 
-if (ds_list_size(inRectUnitIDList) > 0) { // Make sure the box captured something
+if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { // Make sure the box captured something
 	
 	// Expand the box grid to fit the new info
 	ds_grid_resize(obj_chain.boxChainGrid, obj_chain.chainGridWidth + 1, ds_grid_height(obj_chain.boxChainGrid) + 1);

@@ -36,6 +36,10 @@ var lastWordID = -1;
 for (var i = 0; i < ds_grid_height(boxChainGrid); i++) {
 	if(ds_grid_get(boxChainGrid, chainGrid_colChainState, i) == 1) {
 		var currentWordList = ds_grid_get(boxChainGrid, boxChainGrid_colBoxWordIDList, i);
+		if(ds_list_size(currentWordList) < 1) {
+				//show_message(scr_getStringOfList(currentWordList));
+				continue;
+		}
 		firstWordID = ds_list_find_value(currentWordList, 0);
 		lastWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList)-1);
 		var currentUnitID = ds_list_find_value(ds_grid_get(boxChainGrid, chainGrid_colWordIDList, i), 0);
