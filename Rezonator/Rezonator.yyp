@@ -1170,7 +1170,7 @@
             "Key": "58012b3e-a809-4755-a1e6-d8ebfeb46e82",
             "Value": {
                 "id": "b3419876-6b80-4cb4-b678-36201009acbf",
-                "resourcePath": "scripts\\scr_suraceEnd\\scr_suraceEnd.yy",
+                "resourcePath": "scripts\\scr_surfaceEnd\\scr_surfaceEnd.yy",
                 "resourceType": "GMScript"
             }
         },
