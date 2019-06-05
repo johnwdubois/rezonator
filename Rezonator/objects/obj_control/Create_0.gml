@@ -95,6 +95,7 @@ lineGrid_colVoidSum = 11;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
 lineGridDefaultSort = true;
+lineGridShuffle = false;
 // set limit for word displacement by alignment
 voidLimit = 25;
 
