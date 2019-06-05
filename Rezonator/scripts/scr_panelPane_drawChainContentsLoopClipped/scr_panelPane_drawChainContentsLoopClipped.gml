@@ -282,7 +282,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 
 scr_scrollBar(scrollBarListHeight, focusedElementY, strHeight, tabHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeBG, spr_ascend);
+	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
 
 
 draw_set_alpha(1);

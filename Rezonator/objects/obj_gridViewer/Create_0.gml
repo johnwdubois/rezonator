@@ -27,34 +27,59 @@ ds_list_add(gridList,
 	);
 alarm[0] = 1;
 
-gridsMax = 2;
-currentGrids = 2;
-grid[0] = obj_control.unitGrid;
-grid[1] = obj_control.lineGrid;
 
-gridCurrentTopViewRow[0] = 0;
-gridCurrentTopViewRow[1] = 0;
+grid = obj_control.unitGrid;
 
-windowX[0] = 20;
-windowY[0] = room_height / 5;
-windowWidth[0] = room_width / 2;
-windowHeight[0] = 500;
+//gridCurrentTopViewRow[0] = 0;
+//gridCurrentTopViewRow[1] = 0;
 
-windowX[1] = room_width / 2 + 40;
-windowY[1] = room_height / 5;
-windowWidth[1] = room_width - windowX[1];
-windowHeight[1] = 500;
+windowX = 20;
+windowY = room_height / 5;
+windowWidth = room_width / 2;
+windowHeight = 500;
 
-scrollRange[0] = 40;
-scrollBarHolding[0] = false;
-scrollBarHoldingPlusY[0] = 0;
+//windowX[1] = room_width / 2 + 40;
+//windowY[1] = room_height / 5;
+//windowWidth[1] = room_width - windowX[1];
+//windowHeight[1] = 500;
 
-scrollRange[1] = 40;
-scrollBarHolding[1] = false;
-scrollBarHoldingPlusY[1] = 0;
+//scrollRange[0] = 40;
+//scrollBarHolding[0] = false;
+//scrollBarHoldingPlusY[0] = 0;
 
-mouseoverRelativeRow[0] = -1;
-mouseoverRelativeRow[1] = -1;
+//scrollRange[1] = 40;
+//scrollBarHolding[1] = false;
+//scrollBarHoldingPlusY[1] = 0;
+
+mouseoverRow = -1;
+//mouseoverRelativeRow[0] = -1;
+//mouseoverRelativeRow[1] = -1;
 
 holdUp = 0; //for controlling the speed of gridView's scrolling
 holdDown = 0;
+
+
+windowResizeXHolding = false;
+windowResizeYHolding = false;
+
+
+
+clipSurface = -1;
+clipWidth = 100;
+clipHeight = 100;
+clipX = 0;
+clipY = 0;
+	
+
+// scrollbar variables
+scrollBarHolding = false;
+scrollBarUpButtonHeld = false;
+scrollBarDownButtonHeld = false;
+scrollBarWidth = 20;
+scrollBarHeight = 0;
+scrollPlusY = 0;
+scrollPlusYDest = 0;
+scrollBarPlusY = 0;
+
+x = 32;
+y = 200;
