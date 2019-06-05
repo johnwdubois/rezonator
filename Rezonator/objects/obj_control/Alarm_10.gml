@@ -32,7 +32,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 			if(ds_list_find_index(currentWordList, currentWordID) == -1) {
 				// Place wordID into box grid
 				ds_list_add(currentWordList, currentWordID);
-				//ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), boxChainID);
+				ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), boxChainID);
 			} 
 			// Safety check to not go over the list size
 			if(innerLoop == ds_list_size(inRectWordIDList) - 1) {
