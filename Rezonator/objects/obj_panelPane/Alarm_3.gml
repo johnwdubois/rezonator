@@ -60,7 +60,7 @@ ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHel
 
 //show_message(string(ds_grid_height(functionHelp_menuGrid)));
 
-var helpGridHeightLink = 9;
+var helpGridHeightLink = 10;
 ds_grid_resize(functionHelp_helpGridLink, functionHelp_helpGridWidth, helpGridHeightLink);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 0, "[CLICK]");
@@ -105,7 +105,12 @@ ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 7, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "[drag line]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 8, "QuickStack");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag from line or space to make a QuickStack");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag from line to make a QuickStack");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 8, false);
+
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "b");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 8, "Box");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Make a Box around some words");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 8, false);
 
 var helpGridHeightPick = 3;
@@ -177,7 +182,7 @@ ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 6, "Tall")
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 6, "Larger line height (less info)");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 6, false);
 
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 7, "b");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 7, "CTRL+b");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 7, "Dark theme");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 7, "Use Dark theme");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 7, false);
@@ -290,7 +295,7 @@ ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colHide, 2, false);
 var helpGridHeightAdvanced = 3;
 ds_grid_resize(functionHelp_helpGridAdvanced, functionHelp_helpGridWidth, helpGridHeightAdvanced);
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "e");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "ALT+SHIFT+e");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, "Shuffle");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, "Sort lines in random order");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 0, false);
@@ -300,7 +305,7 @@ ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, "De
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, "Turn on developer variables and messages");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 1, false);
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "CTRL+u");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "ALT+SHIFT+u");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, "User-word");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 2, "Insert a new word");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 2, false);

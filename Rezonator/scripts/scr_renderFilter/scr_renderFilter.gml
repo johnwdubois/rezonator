@@ -40,6 +40,9 @@ for (var i = 0; i < 4; i++) {
 	// loop through current chainGrid to include chains marked with filter
 	for (var j = 0; j < ds_grid_height(grid); j++) {
 		if (not ds_grid_get(grid, obj_chain.chainGrid_colInFilter, j)) {
+			if(ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
+				scr_unfocusChain(ds_grid_get(grid, obj_chain.chainGrid_colChainID, j));
+			}
 			continue;
 		}
 		

@@ -254,9 +254,17 @@ if (keyboard_check_pressed(ord("Q"))) {
 */
 
 
-if (keyboard_check_pressed(ord("E")) && shortcutsEnabled) {
-	scr_shuffleDisplayRows();
-	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("E")) && shortcutsEnabled) {
+	lineGridShuffle = !lineGridShuffle;
+	if (lineGridShuffle) {
+		scr_shuffleDisplayRows();
+		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+	}
+	else {
+		with(obj_panelPane) {
+			functionSort_performSort = true;
+		}
+	}
 }
 
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
