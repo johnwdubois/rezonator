@@ -95,6 +95,14 @@
             }
         },
         {
+            "Key": "0619b98d-cb05-434e-a894-a14a455a2368",
+            "Value": {
+                "id": "85c12b70-e7c4-486f-a704-94e4a0b11734",
+                "resourcePath": "scripts\\scr_surfaceStartGridViewer\\scr_surfaceStartGridViewer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0954d65f-9a82-4fdf-959f-c69c4eb90baf",
             "Value": {
                 "id": "16b97b9e-ed17-47e9-a8d7-633982cf4858",
@@ -3047,6 +3055,14 @@
             }
         },
         {
+            "Key": "e3a235f8-3539-4fa1-bc0b-4d12089f966e",
+            "Value": {
+                "id": "393d95f7-a194-472c-bf8d-ba3f1dcd9333",
+                "resourcePath": "scripts\\scr_surfaceEndGridViewer\\scr_surfaceEndGridViewer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
             "Value": {
                 "id": "85666581-55e1-4a1e-9723-e73c511cba59",
@@ -3565,6 +3581,8 @@
         "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8",
         "b8e0bde0-a05e-479e-9730-71b1624f672e",
         "58012b3e-a809-4755-a1e6-d8ebfeb46e82",
+        "0619b98d-cb05-434e-a894-a14a455a2368",
+        "e3a235f8-3539-4fa1-bc0b-4d12089f966e",
         "02884272-6647-4f47-9dc6-cf6bb960b8c4",
         "69e7ecc0-ce61-4cd5-bfa8-255c686f740d",
         "155253d6-fef1-49fd-af7c-2c9a1b64e74b"

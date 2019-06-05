@@ -35,7 +35,8 @@ windowHeight = max(40, windowHeight);
 clipWidth = windowWidth;
 clipHeight = windowHeight;
 	
-	
+windowX = x;
+windowY = y;
 clipX = x;
 clipY = y;
 

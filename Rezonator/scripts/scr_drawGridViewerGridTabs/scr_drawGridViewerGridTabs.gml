@@ -13,25 +13,23 @@
 	Author: Terry DuBois
 */
 
-var gridArrayIndex = argument0;
-
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_font(fnt_debug);
 
-var rectWidth = windowWidth[gridArrayIndex] / ds_list_size(gridList);
+var rectWidth = windowWidth / ds_list_size(gridList);
 var rectHeight = 20;
 
 for (var i = 0; i < ds_list_size(gridList); i++) {
 	var currentGrid = ds_list_find_value(gridList, i);
 	
-	var rectX1 = windowX[gridArrayIndex] + (i * rectWidth);
-	var rectY1 = windowY[gridArrayIndex] - rectHeight;
+	var rectX1 = windowX + (i * rectWidth);
+	var rectY1 = windowY - rectHeight;
 	var rectX2 = rectX1 + rectWidth;
-	var rectY2 = windowY[gridArrayIndex];
+	var rectY2 = windowY;
 	
-	if (grid[gridArrayIndex] == currentGrid) {
+	if (grid == currentGrid) {
 		draw_set_color(obj_control.c_ltblue);
 	}
 	else {
@@ -111,7 +109,7 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 	
 	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
 		if (mouse_check_button_pressed(mb_left)) {
-			grid[gridArrayIndex] = currentGrid;
+			grid = currentGrid;
 		}
 	}
 }

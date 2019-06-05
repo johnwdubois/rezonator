@@ -36,9 +36,9 @@ draw_set_font(fnt_debug);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
-for (var i = 0; i < currentGrids; i++) {
-	windowX[i] = ((window_get_width() / currentGrids) * i) + 20;
-	windowWidth[i] = (window_get_width() / currentGrids) - 20;
+//for (var i = 0; i < currentGrids; i++) {
+//	windowX[i] = ((window_get_width() / currentGrids) * i) + 20;
+//	windowWidth[i] = (window_get_width() / currentGrids) - 20;
 	
-	scr_drawGridViewer(i);
-}
+scr_drawGridViewerClipped();
+//}

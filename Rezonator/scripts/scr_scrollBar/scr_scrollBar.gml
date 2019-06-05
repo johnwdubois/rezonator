@@ -7,6 +7,8 @@ var scrollBarColor = argument5;
 var scrollButtonColor1 = argument6;
 var scrollButtonColor2 = argument7;
 var scrollButtonSprite = argument8;
+var windowWidth = argument9;
+var windowHeight = argument10;
 
 
 

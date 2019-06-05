@@ -331,7 +331,7 @@ var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0
 
 scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, textMarginTop,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeBG, spr_ascend);
+	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
 
 
 
