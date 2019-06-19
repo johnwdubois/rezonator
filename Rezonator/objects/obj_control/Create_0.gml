@@ -267,6 +267,9 @@ highlightedSearchRowAlpha = 0;
 // Unused variable
 simulateRightArrow = 0;
 
+// Variable for counting moves
+moveCounter = 0;
+
 // Safety check for autosaving
 allSaved = true;
 

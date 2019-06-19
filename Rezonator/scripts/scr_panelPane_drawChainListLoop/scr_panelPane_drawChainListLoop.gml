@@ -214,6 +214,8 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 				scr_renderFilter();
 			}
 		}
+		// Add to moveCounter
+		obj_control.moveCounter ++;
 	}
 	/*
 	if (not inFilter and obj_control.filterGridActive) {

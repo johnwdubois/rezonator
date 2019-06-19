@@ -103,5 +103,7 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 				scr_renderFilter();
 			}
 		}
+		// Add to moveCounter
+		obj_control.moveCounter ++;
 	}
 }
