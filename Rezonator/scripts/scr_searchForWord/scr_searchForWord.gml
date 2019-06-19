@@ -25,12 +25,12 @@ var tempSearchGrid = ds_grid_create(ds_grid_width(lineGrid), ds_grid_height(line
 
 ds_grid_copy(tempSearchGrid, lineGrid);
 
-if (ds_grid_height(searchGrid) > 0) {
+//if (ds_grid_height(searchGrid) > 0) {
 	var oldSearch = ds_grid_create(ds_grid_width(searchGrid), ds_grid_height(searchGrid));
 	ds_grid_copy(oldSearch, searchGrid);
 	var oldHit = ds_grid_create(ds_grid_width(hitGrid), ds_grid_height(hitGrid));
 	ds_grid_copy(oldHit, hitGrid);
-}
+//}
 
 // create new searchGrid so we can populate it from scratch
 ds_grid_destroy(searchGrid);
@@ -123,12 +123,14 @@ else {
 		ds_grid_copy(searchGrid, oldSearch);
 		ds_grid_copy( hitGrid, oldHit);
 	}
-	/*searchGridActive = false;
-	filterGridActive = false;
-	currentActiveLineGrid = lineGrid;
-	preSwitchSearchDisplayRow = currentCenterDisplayRow;
-	currentCenterDisplayRow = preSwitchDisplayRow;
-	wordLeftMarginDest = 170;*/
+	else {
+		searchGridActive = false;
+		filterGridActive = false;
+		currentActiveLineGrid = lineGrid;
+		preSwitchSearchDisplayRow = currentCenterDisplayRow;
+		currentCenterDisplayRow = preSwitchDisplayRow;
+		wordLeftMarginDest = 170;
+	}
 }
 
 ds_grid_destroy(tempSearchGrid);
