@@ -58,6 +58,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	draw_set_alpha(1);
 	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
+	if (ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colHitBool, currentHitID - 1)) {
+		draw_set_color(make_color_rgb(19,69,150));
+	}
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(currentWordX, currentLineY, currentWordString);
