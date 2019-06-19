@@ -58,7 +58,7 @@ if(ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUnit
 	for(var boxListLoop = 0; boxListLoop < ds_list_size(prevInBoxList); boxListLoop++) {
 		// Insert new word into that box list, and add to the new word's inBoxList
 		var currentBox = ds_list_find_value(prevInBoxList, boxListLoop);
-		var currentBoxWordList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, currentBox - 1);
+		var currentBoxWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentBox - 1);
 		if(ds_list_find_index(currentBoxWordList, prevWordID) != (ds_list_size(currentBoxWordList) - 1)) {
 			ds_list_insert(currentBoxWordList, ds_list_find_index(currentBoxWordList, prevWordID) + 1, wordID);
 			ds_list_add(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInBoxList, wordID - 1), currentBox);

@@ -70,7 +70,7 @@ switch (obj_toolPane.currentTool) {
 		currentChainName = "Place";
 		break;
 	case obj_toolPane.toolBoxBrush:
-		currentChainGrid = boxChainGrid;
+		currentChainGrid = chunkGrid;
 		currentChainName = "Box";
 		break;
 	default:

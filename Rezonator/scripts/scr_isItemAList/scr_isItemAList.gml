@@ -29,18 +29,18 @@ else if (grid == obj_control.dynamicWordGrid) {
 	}
 }
 
-else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid or grid == obj_chain.placeChainGrid or grid == obj_chain.boxChainGrid) {
+else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid or grid == obj_chain.placeChainGrid or grid == obj_chain.chunkGrid) {
 	if (col == obj_chain.chainGrid_colWordIDList) {
 		itemList = currentCell;
 	}
-	if (grid == obj_chain.boxChainGrid) {
-		if (col == obj_chain.boxChainGrid_colBoxWordIDList) {
+	if (grid == obj_chain.chunkGrid) {
+		if (col == obj_chain.chunkGrid_colBoxWordIDList) {
 			itemList = currentCell;
 		}
 	}
 }
-/*else if (grid == obj_chain.boxChainGrid) {
-	if (col == obj_chain.boxChainGrid_colBoxWordIDList) {
+/*else if (grid == obj_chain.chunkGrid) {
+	if (col == obj_chain.chunkGrid_colBoxWordIDList) {
 		itemList = currentCell;
 	}
 }*/
