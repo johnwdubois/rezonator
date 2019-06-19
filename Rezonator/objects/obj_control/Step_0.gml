@@ -275,7 +275,13 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 mouseoverPanelPane = false;
 for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	var panelPaneInst = instance_find(obj_panelPane, i);
+	var toolPaneInst = instance_find(obj_toolPane, 0);
+	
 	if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
+		mouseoverPanelPane = true;
+	}
+
+	if (point_in_rectangle(mouse_x, mouse_y, toolPaneInst.x, toolPaneInst.y, toolPaneInst.x + toolPaneInst.windowWidth, toolPaneInst.y + toolPaneInst.windowHeight)) {
 		mouseoverPanelPane = true;
 	}
 	if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
