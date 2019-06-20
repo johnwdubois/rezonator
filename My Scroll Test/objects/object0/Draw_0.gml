@@ -1,3 +1,6 @@
+clipX = x;
+clipY = y;
+
 draw_set_color(c_white);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 draw_set_color(c_black);
@@ -7,6 +10,7 @@ draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 draw_set_font(font);
 var strHeight = string_height("0");
 
+draw_set_halign(fa_left);
 draw_set_font(fnt_size1);
 draw_text(10, 10, "windowHeight: " + string(windowHeight));
 draw_text(10, 30, "strHeight: " + string(strHeight));
@@ -19,6 +23,11 @@ draw_text(10, 150, "y: " + string(y));
 draw_text(10, 170, "mouse_y: " + string(mouse_y));
 draw_text(10, 190, "(y + scrollBarWidth - mouse_y): " + string(y + scrollBarWidth - mouse_y));
 
+draw_set_halign(fa_right);
+draw_text(room_width - 10, 20, "fps: " + string(fps));
+draw_text(room_width - 10, 40, "firstItemToDraw: " + string(firstItemToDraw));
+draw_text(room_width - 10, 60, "lastItemToDraw: " + string(lastItemToDraw));
+
 
 
 if (keyboard_check_pressed(ord("W"))) {
@@ -29,11 +38,21 @@ if (keyboard_check_pressed(ord("D"))) {
 		ds_list_add(valueList, "blah " + string(ds_list_size(valueList)));
 	}
 }
+if (keyboard_check_pressed(ord("F"))) {
+	for (var i = 0; i < 1000; i++) {
+		ds_list_add(valueList, "blah " + string(ds_list_size(valueList)));
+	}
+}
 if (keyboard_check_pressed(ord("S"))) {
 	ds_list_delete(valueList, ds_list_size(valueList) - 1);
 }
 if (keyboard_check_pressed(ord("A"))) {
 	for (var i = 0; i < 10; i++) {
+		ds_list_delete(valueList, ds_list_size(valueList) - 1);
+	}
+}
+if (keyboard_check_pressed(ord("C"))) {
+	for (var i = 0; i < ds_list_size(valueList); i++) {
 		ds_list_delete(valueList, ds_list_size(valueList) - 1);
 	}
 }

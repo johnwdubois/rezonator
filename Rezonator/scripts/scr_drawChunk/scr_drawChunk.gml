@@ -46,9 +46,9 @@ for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
 		}
 
 		
-		var wordRectBuffer = 0;
+		var wordRectBuffer = 4;
 		// Loop through the chunks word list to see if any words lie in multiple chunks
-		for(var wordListLoop = 0; wordListLoop < ds_list_size(currentWordList); wordListLoop++) {
+		/*for(var wordListLoop = 0; wordListLoop < ds_list_size(currentWordList); wordListLoop++) {
 			// Access the words in Chunk list
 			var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList,ds_list_find_value(currentWordList, wordListLoop));
 			// Loop through the in Chunk list, check if any elements are not the current chunk
@@ -65,7 +65,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
 					}
 				}
 			}
-		}
+		}*/
 		
 		displayLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentDisplayRow);
 		var leftPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1);
@@ -75,7 +75,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
 		// get the string of this word to draw to the main screen
 		var lastWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, lastWordID - 1);
 		
-		topLeftX = leftPixelX - 4;
+		topLeftX = leftPixelX - wordRectBuffer;
 		topLeftY = displayLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
 		bottomLeftX = topLeftX;
 		bottomLeftY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
@@ -85,7 +85,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
 		bottomRightX = topRightX;
 		bottomRightY = bottomLeftY;
 		
-		draw_set_color(c_gray);
+		draw_set_color(global.colorThemeSelected1);
 		draw_line_width(topLeftX, topLeftY, bottomLeftX, bottomLeftY, 2);
 		draw_line_width(topLeftX, topLeftY, topRightX, topRightY, 2);
 		draw_line_width(topRightX, topRightY, bottomRightX, bottomRightY, 2);
