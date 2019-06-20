@@ -3,9 +3,11 @@ windowHeight = 300;
 
 clipSurface = -1;
 
-clipX = 50;
-clipY = 50;
+clipX = x;
+clipY = y;
 
+firstItemToDraw = 0;
+lastItemToDraw = 10;
 
 
 

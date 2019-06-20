@@ -46,11 +46,13 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 	for (var gridLoopRow = 0; gridLoopRow < ds_grid_height(grid); gridLoopRow++) {
 		
 		
-		if (windowY1 + colNameHeight + scrollPlusY + textPlusY < windowY1 - strHeight
-		or windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight + strHeight) {
+		if (windowY1 + colNameHeight + scrollPlusY + textPlusY < windowY1 - strHeight) {
 			textPlusY += strHeight;
-			
 			continue;
+		}
+		if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight + strHeight) {
+			textPlusY += strHeight;
+			break;
 		}
 		
 		
@@ -130,3 +132,5 @@ for (var j = 0; j < 5; j++) {
 // draw the current mouseover item
 draw_set_font(global.fontMain);
 draw_text(windowX1 + 10, windowY2 + strHeight + 20, "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString);
+
+draw_text(windowX1, windowY2 + 60, "fps: " + string(fps));
