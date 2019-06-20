@@ -83,6 +83,33 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 		mouseover = true;
 	}
 	
+	if (mouseover) {
+		draw_set_colour(global.colorThemeBG);
+		draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 16, false);
+		draw_set_colour(global.colorThemeBorders);
+		draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 16, true);
+		draw_set_colour(global.colorThemeText);
+		draw_set_font(fnt_mainBold);
+		if (i == 0){
+			draw_text(mouse_x - 172, mouse_y, "M: Pointer");
+		}
+		if (i == 1){
+			draw_text(mouse_x - 180, mouse_y, "R: Rez Brush");
+		}
+		if (i == 2){
+			draw_text(mouse_x - 185, mouse_y, "T: Track Brush");
+		}
+		if (i == 3){
+			draw_text(mouse_x - 185, mouse_y, "K: Stack Brush");
+		}
+		if (i == 4){
+			draw_text(mouse_x - 180, mouse_y, "N: New Word");
+		}
+		if (i == 5){
+			draw_text(mouse_x - 180, mouse_y, "B: Box Brush");
+		}
+	}
+	
 	if (mouseover or currentTool == i) {
 		var rectBuffer = 2;
 		draw_set_color(global.colorThemeSelected2);

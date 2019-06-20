@@ -24,6 +24,18 @@ if (!obj_control.gridView) {
 		}
 		currentTool = toolBoxBrush;
 	}
+	else if (keyboard_check_pressed(ord("M"))) {
+		with (obj_chain) {
+			scr_chainDeselect();
+		}
+		currentTool = toolPointer;
+	}
+	else if (keyboard_check_pressed(ord("N"))) {
+		with (obj_chain) {
+			scr_chainDeselect();
+		}
+		currentTool = toolNewWord;
+	}
 	
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
