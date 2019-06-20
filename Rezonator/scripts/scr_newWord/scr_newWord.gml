@@ -55,16 +55,20 @@ for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
 // THIS ONLY WORKS FOR CHUNKS
 // Check the wordID right before the new word, if it is not at the end of a line we check to see if it is in a box
 if(ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUnitGrid) - 1)) {
+	//show_message("inif");
 	// Access the inBoxList from the dynWordGrid
 	var prevWordID = ds_list_find_value(wordIDListUnitGrid, ds_list_find_index(wordIDListUnitGrid,wordID) - 1);
 	if (prevWordID != undefined) {
+		//show_message("inif");
 		var prevInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, prevWordID - 1);
 		// For each box the prev word is in, check if the prev word is not the last word in the box
 		for(var boxListLoop = 0; boxListLoop < ds_list_size(prevInBoxList); boxListLoop++) {
+			//show_message("infor");
 			// Insert new word into that box list, and add to the new word's inBoxList
 			var currentBox = ds_list_find_value(prevInBoxList, boxListLoop);
 			var currentBoxWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentBox - 1);
 			if(ds_list_find_index(currentBoxWordList, prevWordID) != (ds_list_size(currentBoxWordList) - 1)) {
+				//show_message("inif");
 				ds_list_insert(currentBoxWordList, ds_list_find_index(currentBoxWordList, prevWordID) + 1, wordID);
 				ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), currentBox);
 			}

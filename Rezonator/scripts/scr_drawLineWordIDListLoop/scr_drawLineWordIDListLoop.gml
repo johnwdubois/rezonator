@@ -278,7 +278,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				// Draw the highlights within the display columns
 				draw_set_color(global.colorThemeSelected1);
 				draw_set_alpha(0.5);
-				draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY1 + obj_control.gridSpaceVertical, false);
+				draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, false);
 			} 
 			// If the box has been made, capture the info of the contained words
 			else if(obj_control.boxRectMade and inBoxHoldRect > 0) {
