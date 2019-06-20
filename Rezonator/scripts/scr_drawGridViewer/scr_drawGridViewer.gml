@@ -14,7 +14,7 @@
 
 var gridArrayIndex = argument0;
 
-scr_drawGridViewerGridTabs(gridArrayIndex);
+//scr_drawGridViewerGridTabs(gridArrayIndex);
 
 var scrollBarWidth = 20;
 var gridColWidth = windowWidth[gridArrayIndex] / ds_grid_width(grid[gridArrayIndex]);
