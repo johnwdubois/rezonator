@@ -28,9 +28,9 @@ stackChainGrid = ds_grid_create(chainGridWidth, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
-boxChainGrid_colBoxWordIDList = 8;
+chunkGrid_colBoxWordIDList = 8;
 
-boxChainGrid = ds_grid_create(chainGridWidth + 1, 0);
+chunkGrid = ds_grid_create(chainGridWidth + 1, 0);
 
 creatingPlaceChains = false;
 

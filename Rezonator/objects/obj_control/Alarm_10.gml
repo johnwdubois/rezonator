@@ -4,14 +4,14 @@
 if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { // Make sure the box captured something
 	//show_message(scr_getStringOfList(inRectWordIDList));
 	// Expand the box grid to fit the new info
-	ds_grid_resize(obj_chain.boxChainGrid, obj_chain.chainGridWidth + 1, ds_grid_height(obj_chain.boxChainGrid) + 1);
-	ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.boxChainGrid) - 1, ++boxChainID);
-	ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList, ds_grid_height(obj_chain.boxChainGrid) - 1, ds_list_create());
-	ds_grid_set(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, ds_grid_height(obj_chain.boxChainGrid) - 1, ds_list_create());
+	ds_grid_resize(obj_chain.chunkGrid, obj_chain.chainGridWidth + 1, ds_grid_height(obj_chain.chunkGrid) + 1);
+	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid) - 1, ++boxChainID);
+	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, ds_grid_height(obj_chain.chunkGrid) - 1, ds_list_create());
+	ds_grid_set(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, ds_grid_height(obj_chain.chunkGrid) - 1, ds_list_create());
 	
 	// Retrieve references of the lists being added to
-	var currentUnitList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.chainGrid_colWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1 );
-	var currentWordList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList,ds_grid_height(obj_chain.boxChainGrid) - 1);
+	var currentUnitList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList,ds_grid_height(obj_chain.chunkGrid) - 1 );
+	var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList,ds_grid_height(obj_chain.chunkGrid) - 1);
 	var innerLoop = 0;
 	
 	// Loop through words found in rectangle at time of mouse release
@@ -46,7 +46,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 	// If this box counts as a chunk, create the newWord for it
 	if(ds_list_size(currentUnitList) == 1 && ds_list_size(currentWordList) > 1) {
 		// Mark this box as a chunk
-		ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.boxChainGrid) - 1, 1);
+		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid) - 1, 1);
 		//Store coordinates of the corners of the chunk, will need to happen in a loop to because of changing coordinates
 		//Somewhere, have a loop drawing lines between all of those coordinates for each chunk within the box list
 		
@@ -62,7 +62,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 		// Create the new word
 		scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, transcript);
 		// Mark this box as a chunk
-		ds_grid_set(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.boxChainGrid) - 1, 1); */
+		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid) - 1, 1); */
 	}
 }
 

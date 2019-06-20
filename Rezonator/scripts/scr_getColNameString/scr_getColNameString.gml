@@ -307,7 +307,7 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 			break;
 	}
 }
-else if (grid == obj_chain.boxChainGrid) {
+else if (grid == obj_chain.chunkGrid) {
 	switch (col) {
 		case obj_chain.chainGrid_colChainID:
 			colName = "chainID";
@@ -333,7 +333,7 @@ else if (grid == obj_chain.boxChainGrid) {
 		case obj_chain.chainGrid_colTiltSum:
 			colName = "tiltSum";
 			break;
-		case obj_chain.boxChainGrid_colBoxWordIDList:
+		case obj_chain.chunkGrid_colBoxWordIDList:
 			colName = "boxWordList";
 			break;
 		default:
