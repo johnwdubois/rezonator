@@ -29,8 +29,10 @@ cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
 chunkGrid_colBoxWordIDList = 8;
+chunkGrid_colNest = 9;
 
-chunkGrid = ds_grid_create(chainGridWidth + 1, 0);
+
+chunkGrid = ds_grid_create(chainGridWidth + 2, 0);
 
 creatingPlaceChains = false;
 

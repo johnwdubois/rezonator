@@ -40,7 +40,7 @@ else if (grid == obj_control.dynamicWordGrid) {
 	if (col == obj_control.dynamicWordGrid_colInChainList) {
 		itemList = currentCell;
 	}
-	else if (col == obj_control.dynamicWordGrid_colInBoxList) {
+	if (col == obj_control.dynamicWordGrid_colInBoxList) {
 		itemList = currentCell;
 	}
 }
@@ -54,11 +54,6 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 		}
 	}
 }
-/*else if (grid == obj_chain.chunkGrid) {
-	if (col == obj_chain.chunkGrid_colBoxWordIDList) {
-		itemList = currentCell;
-	}
-}*/
 else if (grid == obj_control.searchGrid) {
 	if (col == obj_control.searchGrid_colHitIDList) {
 		itemList = currentCell;
