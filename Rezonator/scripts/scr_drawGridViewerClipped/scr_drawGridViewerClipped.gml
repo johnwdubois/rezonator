@@ -16,7 +16,7 @@ var windowY2 = windowY1 + windowHeight;
 
 draw_set_color(global.colorThemeBG);
 draw_rectangle(windowX1 - scrollBarWidth - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
-draw_set_font(fnt_debug);
+draw_set_font(global.fontGridView);
 var strHeight = string_height("0");
 
 var currentItemString = " ";
@@ -49,6 +49,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 		if (windowY1 + colNameHeight + scrollPlusY + textPlusY < windowY1 - strHeight
 		or windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight + strHeight) {
 			textPlusY += strHeight;
+			
 			continue;
 		}
 		
@@ -64,10 +65,12 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 		var textX = windowX + (gridLoopCol * gridColWidth);
 		//textY += strHeight;
 		
+		textY = windowY1 + colNameHeight + scrollPlusY + textPlusY;
+		
 		var currentCellRectX1 = colRectX1;
-		var currentCellRectY1 = textY - (string_height(currentItemString) / 2) + scrollPlusY;
+		var currentCellRectY1 = textY - (strHeight / 2);
 		var currentCellRectX2 = colRectX2;
-		var currentCellRectY2 = currentCellRectY1 + string_height(currentItemString);
+		var currentCellRectY2 = currentCellRectY1 + strHeight;
 		
 		if (gridLoopRow == mouseoverRow) {
 			draw_set_color(global.colorThemeSelected1);
@@ -82,12 +85,20 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 			draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, true);
 		}
 		
-		var textY = windowY1 + colNameHeight + scrollPlusY + textPlusY;
+		
 		
 		draw_set_color(global.colorThemeText);
 		draw_text(textX - clipX, textY - clipY, currentItemString);
 		
+		if (gridLoopCol == ds_grid_width(grid) - 1) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_line(windowX1 - clipX, currentCellRectY2 - clipY, windowX2 - clipX, currentCellRectY2 - clipY);
+		}
+		
+		
 		textPlusY += strHeight;
+		
+
 	}
 }
 
@@ -116,4 +127,6 @@ for (var j = 0; j < 5; j++) {
 	draw_rectangle(windowX1 - scrollBarWidth - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
 }
 
-draw_text(mouse_x, mouse_y, string(mouseoverRow));
+// draw the current mouseover item
+draw_set_font(global.fontMain);
+draw_text(windowX1 + 10, windowY2 + strHeight + 20, "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString);
