@@ -1,16 +1,16 @@
 /*
 	scr_drawChunk();
 	
-	Last Updated: 2018-07-12
+	Last Updated: 2019-06-19
 	
-	Called from: obj_chain
+	Called from: obj_control
 	
-	Purpose: draw rezChains and move words on screen according to the rezChains
+	Purpose: draw Chunk boxes around words
 	
-	Mechanism: loop through each row in rezChainGrid, get the wordIDList from each chain, and draw lines
+	Mechanism: loop through each row in chunkGrid, get the wordIDList from each chunk, and draw lines
 				from word information
 				
-	Author: Terry DuBois
+	Author: Georgio Klironomos
 */
 
 draw_set_font(fnt_main);
@@ -30,22 +30,43 @@ var bottomRightY = undefined;
 var firstWordID = -1;
 var lastWordID = -1;
 
-// loop through rezChainGrid to get chain info
-for (var i = 0; i < ds_grid_height(chunkGrid); i++) {
-	if(ds_grid_get(chunkGrid, chainGrid_colChainState, i) == 1) {
-		var currentWordList = ds_grid_get(chunkGrid, chunkGrid_colBoxWordIDList, i);
+// loop through chunkGrid to get chain info
+for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
+	if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, i) == 1) {
+		var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, i);
 		if(ds_list_size(currentWordList) < 1) {
 				continue;
 		}
 		firstWordID = ds_list_find_value(currentWordList, 0);
 		lastWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList)-1);
-		var currentUnitID = ds_list_find_value(ds_grid_get(chunkGrid, chainGrid_colWordIDList, i), 0);
+		var currentUnitID = ds_list_find_value(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, i), 0);
 		var currentDisplayRow = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID);
 		if(currentDisplayRow == -1) {
 			continue;	
 		}
 
-		var wordRectBuffer = 2;
+		
+		var wordRectBuffer = 0;
+		// Loop through the chunks word list to see if any words lie in multiple chunks
+		for(var wordListLoop = 0; wordListLoop < ds_list_size(currentWordList); wordListLoop++) {
+			// Access the words in Chunk list
+			var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList,ds_list_find_value(currentWordList, wordListLoop));
+			// Loop through the in Chunk list, check if any elements are not the current chunk
+			for(var chunkListLoop = 0; chunkListLoop < ds_list_size(currentInChunkList); chunkListLoop++) {
+				var currentChunkID = i + 1;
+				var otherChunkID = ds_list_find_value(currentInChunkList, chunkListLoop)
+				// Check if this word lies within another chunk
+				if(currentChunkID != otherChunkID) {
+					var otherChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, otherChunkID - 1);
+					// Check if this chunk contains the other chunk
+					if(scr_listContainsSublist(currentWordList, otherChunkWordList) != -1) {
+						wordRectBuffer = 4;
+						continue;
+					}
+				}
+			}
+		}
+		
 		displayLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentDisplayRow);
 		var leftPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1);
 		var rightPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1);
