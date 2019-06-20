@@ -58,7 +58,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 			
 			// Access the word's in Chunk list
 			var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_list_find_value(currentWordList, 0));
-			
+			moveCounter++;
 			// Loop through the in Chunk list, check if any elements are not the current chunk
 			for(var chunkListLoop = 0; chunkListLoop < ds_list_size(currentInChunkList); chunkListLoop++) {
 				
