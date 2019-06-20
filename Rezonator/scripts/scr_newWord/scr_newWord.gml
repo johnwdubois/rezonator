@@ -11,10 +11,14 @@ if(argument_count == 2) {
 }
 var wordToken = wordTranscript;
 
+if (string_length(wordTranscript) < 1) {
+	exit;
+}
+
 ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 
-var wordID = ds_grid_height(wordGrid);
+var wordID = ds_grid_height(obj_control.wordGrid);
 
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentRowWordGrid, wordID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentRowWordGrid, unitID);
@@ -26,7 +30,7 @@ scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 
 
 
-var wordIDListUnitGrid = ds_grid_get(unitGrid, unitGrid_colWordIDList, unitID - 1);
+var wordIDListUnitGrid = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1);
 
 
 var rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), unitID);
@@ -34,7 +38,7 @@ if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(obj_control.lineGrid)) 
 	exit;
 }
 
-var wordIDListLineGrid = ds_grid_get(lineGrid, lineGrid_colWordIDList, rowInLineGrid);
+var wordIDListLineGrid = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, rowInLineGrid);
 
 
 
@@ -44,8 +48,8 @@ for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
 	var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 	var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 	
-	ds_grid_set(wordGrid, wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);	
-	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
+	ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);	
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
 }
 
 // THIS ONLY WORKS FOR CHUNKS
@@ -53,15 +57,17 @@ for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
 if(ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUnitGrid) - 1)) {
 	// Access the inBoxList from the dynWordGrid
 	var prevWordID = ds_list_find_value(wordIDListUnitGrid, ds_list_find_index(wordIDListUnitGrid,wordID) - 1);
-	var prevInBoxList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInBoxList, prevWordID - 1);
-	// For each box the prev word is in, check if the prev word is not the last word in the box
-	for(var boxListLoop = 0; boxListLoop < ds_list_size(prevInBoxList); boxListLoop++) {
-		// Insert new word into that box list, and add to the new word's inBoxList
-		var currentBox = ds_list_find_value(prevInBoxList, boxListLoop);
-		var currentBoxWordList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, currentBox - 1);
-		if(ds_list_find_index(currentBoxWordList, prevWordID) != (ds_list_size(currentBoxWordList) - 1)) {
-			ds_list_insert(currentBoxWordList, ds_list_find_index(currentBoxWordList, prevWordID) + 1, wordID);
-			ds_list_add(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInBoxList, wordID - 1), currentBox);
+	if (prevWordID != undefined) {
+		var prevInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, prevWordID - 1);
+		// For each box the prev word is in, check if the prev word is not the last word in the box
+		for(var boxListLoop = 0; boxListLoop < ds_list_size(prevInBoxList); boxListLoop++) {
+			// Insert new word into that box list, and add to the new word's inBoxList
+			var currentBox = ds_list_find_value(prevInBoxList, boxListLoop);
+			var currentBoxWordList = ds_grid_get(obj_chain.boxChainGrid, obj_chain.boxChainGrid_colBoxWordIDList, currentBox - 1);
+			if(ds_list_find_index(currentBoxWordList, prevWordID) != (ds_list_size(currentBoxWordList) - 1)) {
+				ds_list_insert(currentBoxWordList, ds_list_find_index(currentBoxWordList, prevWordID) + 1, wordID);
+				ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), currentBox);
+			}
 		}
 	}
 }

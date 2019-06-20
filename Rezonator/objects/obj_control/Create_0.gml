@@ -242,6 +242,7 @@ global.fontMain = fnt_main;
 global.fontChainList = fnt_chainList;
 global.fontPanelTab = fnt_panelTab;
 global.fontSortPane = fnt_sortPane;
+global.fontGridView = fnt_gridView;
 
 // UNused variable
 scrollFast = 0;

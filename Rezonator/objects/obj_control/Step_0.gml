@@ -128,40 +128,6 @@ if (list == false and contents == false) {
 	}
 }
 
-	// Adjust the font size
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_subtract)
-	or (keyboard_check(vk_control) and keyboard_check_direct(189)) and canPressPlus) {
-		if (keyboard_check(vk_shift)) {
-			if (global.fontSize > 0) {
-				global.fontSize--;
-				scr_setSpeakerLabelColWidth();
-			}
-		}
-		else {
-			gridSpaceHorizontal -= 20;
-		}
-		canPressPlus = false;
-		alarm[3] = 15;
-	}
-	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_add)
-	or (keyboard_check(vk_control) and keyboard_check_direct(187)) and canPressMinus) {
-		if (keyboard_check(vk_shift)) {
-			if (global.fontSize < 5) {
-				global.fontSize++;
-				scr_setSpeakerLabelColWidth();
-			}
-		}
-		else {
-			gridSpaceHorizontal += 20;
-		}
-		canPressMinus = false;
-		alarm[4] = 15;
-	}
-	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_numpad0)
-	or keyboard_check(vk_control) and keyboard_check_pressed(ord("0"))) {
-		gridSpaceHorizontal = 100;
-	}
-
 	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control)) {
 		wordLeftMarginDest -= gridSpaceHorizontal;
 	}

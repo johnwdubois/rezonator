@@ -1,16 +1,16 @@
 /*
 	scr_drawChunk();
 	
-	Last Updated: 2018-07-12
+	Last Updated: 2019-06-19
 	
-	Called from: obj_chain
+	Called from: obj_control
 	
-	Purpose: draw rezChains and move words on screen according to the rezChains
+	Purpose: draw Chunk boxes around words
 	
-	Mechanism: loop through each row in rezChainGrid, get the wordIDList from each chain, and draw lines
+	Mechanism: loop through each row in chunkGrid, get the wordIDList from each chunk, and draw lines
 				from word information
 				
-	Author: Terry DuBois
+	Author: Georgio Klironomos
 */
 
 draw_set_font(fnt_main);
@@ -30,36 +30,62 @@ var bottomRightY = undefined;
 var firstWordID = -1;
 var lastWordID = -1;
 
-// loop through rezChainGrid to get chain info
-for (var i = 0; i < ds_grid_height(boxChainGrid); i++) {
-	if(ds_grid_get(boxChainGrid, chainGrid_colChainState, i) == 1) {
-		var currentWordList = ds_grid_get(boxChainGrid, boxChainGrid_colBoxWordIDList, i);
+// loop through chunkGrid to get chain info
+for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
+	if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, i) == 1) {
+		var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, i);
 		if(ds_list_size(currentWordList) < 1) {
 				continue;
 		}
 		firstWordID = ds_list_find_value(currentWordList, 0);
 		lastWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList)-1);
-		var currentUnitID = ds_list_find_value(ds_grid_get(boxChainGrid, chainGrid_colWordIDList, i), 0);
+		var currentUnitID = ds_list_find_value(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, i), 0);
 		var currentDisplayRow = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID);
 		if(currentDisplayRow == -1) {
 			continue;	
 		}
 
+		
+		var wordRectBuffer = 0;
+		// Loop through the chunks word list to see if any words lie in multiple chunks
+		for(var wordListLoop = 0; wordListLoop < ds_list_size(currentWordList); wordListLoop++) {
+			// Access the words in Chunk list
+			var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList,ds_list_find_value(currentWordList, wordListLoop));
+			// Loop through the in Chunk list, check if any elements are not the current chunk
+			for(var chunkListLoop = 0; chunkListLoop < ds_list_size(currentInChunkList); chunkListLoop++) {
+				var currentChunkID = i + 1;
+				var otherChunkID = ds_list_find_value(currentInChunkList, chunkListLoop)
+				// Check if this word lies within another chunk
+				if(currentChunkID != otherChunkID) {
+					var otherChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, otherChunkID - 1);
+					// Check if this chunk contains the other chunk
+					if(scr_listContainsSublist(currentWordList, otherChunkWordList) != -1) {
+						wordRectBuffer = 4;
+						continue;
+					}
+				}
+			}
+		}
+		
 		displayLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentDisplayRow);
 		var leftPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1);
 		var rightPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1);
+		// get the string of this word to draw to the main screen
+		var firstWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, firstWordID - 1);
+		// get the string of this word to draw to the main screen
+		var lastWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, lastWordID - 1);
 		
 		topLeftX = leftPixelX - 4;
-		topLeftY = displayLineY - (obj_control.gridSpaceVertical/2);
+		topLeftY = displayLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
 		bottomLeftX = topLeftX;
-		bottomLeftY = topLeftY + obj_control.gridSpaceVertical;
+		bottomLeftY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
 		
-		topRightX = rightPixelX + obj_control.gridSpaceHorizontal - 4;
+		topRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2);
 		topRightY = topLeftY;
 		bottomRightX = topRightX;
 		bottomRightY = bottomLeftY;
 		
-		draw_set_color(c_black);
+		draw_set_color(c_gray);
 		draw_line_width(topLeftX, topLeftY, bottomLeftX, bottomLeftY, 2);
 		draw_line_width(topLeftX, topLeftY, topRightX, topRightY, 2);
 		draw_line_width(topRightX, topRightY, bottomRightX, bottomRightY, 2);
