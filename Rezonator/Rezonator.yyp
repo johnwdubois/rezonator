@@ -95,6 +95,14 @@
             }
         },
         {
+            "Key": "053419d1-9849-483a-b84c-7efb0643f3ca",
+            "Value": {
+                "id": "452e1700-d228-4527-8fd4-a94591d3faa3",
+                "resourcePath": "fonts\\fnt_mainBoldLarge4\\fnt_mainBoldLarge4.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "0609aa30-8437-4031-b1af-182deb5ea29b",
             "Value": {
                 "id": "d6e7758c-3f30-44d3-91e9-12cf5d5132ed",
@@ -1007,6 +1015,14 @@
             }
         },
         {
+            "Key": "46d0709e-3faa-421b-88b9-6abc6c3442f9",
+            "Value": {
+                "id": "0073ac22-d847-444c-8e0f-34260b0840bb",
+                "resourcePath": "fonts\\fnt_mainBoldLarge2\\fnt_mainBoldLarge2.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "4751ace2-0baa-49e7-927e-43457376a98f",
             "Value": {
                 "id": "5ee295ca-0364-4840-a0c6-61201ea50118",
@@ -1687,6 +1703,14 @@
             }
         },
         {
+            "Key": "7f43d2ee-1958-47b3-919c-298b13a76105",
+            "Value": {
+                "id": "fb1533cc-4d0c-447d-bcd5-05675ecb00a0",
+                "resourcePath": "fonts\\fnt_mainBoldLarge5\\fnt_mainBoldLarge5.yy",
+                "resourceType": "GMFont"
+            }
+        },
+        {
             "Key": "7f4c8d8a-4661-4484-bfd7-3c6a8738f929",
             "Value": {
                 "id": "f5fef835-c025-4178-9971-7a3c36a7af74",
@@ -2212,6 +2236,14 @@
                 "id": "992a72b9-3d0b-47ad-9b0a-ff9cdc149dc2",
                 "resourcePath": "scripts\\scr_gridMultiColSortPart\\scr_gridMultiColSortPart.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9e808a24-dfd9-4946-8d43-d2501effbbef",
+            "Value": {
+                "id": "7f892741-9f13-4915-bc88-530bd0778460",
+                "resourcePath": "fonts\\fnt_mainBoldLarge1\\fnt_mainBoldLarge1.yy",
+                "resourceType": "GMFont"
             }
         },
         {
@@ -2812,6 +2844,14 @@
                 "id": "39e7cefc-e719-4093-b452-d7331bfdea10",
                 "resourcePath": "views\\c929217b-269b-4537-bc48-7b31f6fb145d.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "c947a5ac-167d-414b-9568-cb606776445d",
+            "Value": {
+                "id": "8c753378-c6d9-4ba6-9146-9e45d570d139",
+                "resourcePath": "fonts\\fnt_mainBoldLarge3\\fnt_mainBoldLarge3.yy",
+                "resourceType": "GMFont"
             }
         },
         {

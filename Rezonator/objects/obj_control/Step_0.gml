@@ -279,11 +279,11 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 	alarm[0] = 2;
 	ableToCreateDropDownAlarmSet = true;
 }
-
-if (mouse_check_button_pressed(mb_left) && !mouseoverPanelPane) {
+/*
+if (mouse_check_button_pressed(mb_left) && !mouseoverPanelPane ) {
 	moveCounter ++;
 }
-
+*/
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q"))){
 	moveCounter = 0;
 }

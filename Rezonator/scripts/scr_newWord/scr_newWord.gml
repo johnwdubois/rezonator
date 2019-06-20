@@ -15,6 +15,8 @@ if (string_length(wordTranscript) < 1) {
 	exit;
 }
 
+obj_control.moveCounter++;
+
 ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 
