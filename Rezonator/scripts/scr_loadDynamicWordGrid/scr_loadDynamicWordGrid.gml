@@ -9,13 +9,14 @@ for (var i = 0; i < ds_grid_height(wordGrid); i++)
 	var currentWordY = ds_grid_get(wordGrid, wordGrid_colUnitID, i) * gridSpaceVertical;
 	var currentWordTranscript = ds_grid_get(wordGrid, wordGrid_colWordTranscript, i);
 	var emptyList = ds_list_create();
+	var emptyListTwo = ds_list_create();
 	
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colWordID, currentRowDynamicWordGrid, currentWordID);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentRowDynamicWordGrid, currentWordPositionCol);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentRowDynamicWordGrid, currentWordX);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentRowDynamicWordGrid, currentWordTranscript);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colInChainList, currentRowDynamicWordGrid, emptyList);
-	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colInBoxList, currentRowDynamicWordGrid, ds_list_create());
+	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colInBoxList, currentRowDynamicWordGrid, emptyListTwo);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colAligned, currentRowDynamicWordGrid, true);
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colReplaceWord, currentRowDynamicWordGrid, "");
 	

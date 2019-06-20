@@ -287,7 +287,7 @@ quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
 
 // Set variables for box creation
-boxChainID = 0;
+chunkID = 0;
 boxHoldRectX1 = 0;
 boxHoldRectY1 = 0;
 boxHoldRectX2 = 0;

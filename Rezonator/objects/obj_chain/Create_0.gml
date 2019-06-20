@@ -103,7 +103,7 @@ rezChainNameCounter = 0;
 trackChainNameCounter = 0;
 stackChainNameCounter = 0;
 placeChainNameCounter = 0;
-BoxChainNameCounter = 0;
+chunkNameCounter = 0;
 
 currentFocusedChainID = -1;
 
