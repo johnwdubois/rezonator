@@ -46,7 +46,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
 		}
 
 		
-		var wordRectBuffer = 0;
+		var wordRectBuffer = 2;
 		// Loop through the chunks word list to see if any words lie in multiple chunks
 		/*for(var wordListLoop = 0; wordListLoop < ds_list_size(currentWordList); wordListLoop++) {
 			// Access the words in Chunk list

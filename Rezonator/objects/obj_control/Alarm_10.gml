@@ -47,22 +47,25 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 	if(ds_list_size(currentUnitList) == 1 && ds_list_size(currentWordList) > 1) {
 		// Mark this box as a chunk
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid) - 1, 1);
-		//Store coordinates of the corners of the chunk, will need to happen in a loop to because of changing coordinates
-		//Somewhere, have a loop drawing lines between all of those coordinates for each chunk within the box list
-		
-		/*var transcript = "";
-		newWordHoverUnitID = ds_list_find_value(currentUnitList, 0); // Get the UnitID
-		newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1) - 1); // Get the word sequence of the chunk's last word
-		
-		// Add the words to the newWord's transcript
-		for(var transcriptSize = 0; transcriptSize < ds_list_size(currentWordList); transcriptSize++) {
-			transcript += ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, ds_list_find_value(currentWordList, transcriptSize) - 1) + " "; 
-		}
-		
-		// Create the new word
-		scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, transcript);
-		// Mark this box as a chunk
-		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid) - 1, 1); */
+		/*for(var wordListLoop = 0; wordListLoop < ds_list_size(currentWordList); wordListLoop++) {
+			// Access the words in Chunk list
+			var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList,ds_list_find_value(currentWordList, wordListLoop));
+			// Loop through the in Chunk list, check if any elements are not the current chunk
+			for(var chunkListLoop = 0; chunkListLoop < ds_list_size(currentInChunkList); chunkListLoop++) {
+				var currentChunkID = ds_grid_height(obj_chain.chunkGrid);
+				var otherChunkID = ds_list_find_value(currentInChunkList, chunkListLoop)
+				// Check if this word lies within another chunk
+				if(currentChunkID != otherChunkID) {
+					var otherChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, otherChunkID - 1);
+					// Check if this chunk contains the other chunk
+					if(scr_listContainsSublist(otherChunkWordList, currentWordList) != -1) {
+						//wordRectBuffer = 4;
+						show_message("increase");
+						continue;
+					}
+				}
+			}
+		}*/
 	}
 }
 
