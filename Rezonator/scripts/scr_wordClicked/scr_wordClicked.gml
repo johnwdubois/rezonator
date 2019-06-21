@@ -29,6 +29,10 @@ or obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	exit;
 }
 
+if (ds_list_size(obj_control.inRectWordIDList) <= 1 && obj_toolPane.currentTool != obj_toolPane.toolStackBrush) {
+	obj_control.moveCounter++;
+}
+
 var fakeInChainsList = ds_list_create();
 
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {

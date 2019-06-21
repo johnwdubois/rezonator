@@ -10,6 +10,9 @@ var gridOfFutureChains_colDisplayCol = 0;
 var gridOfFutureChains_colWordIDList = 1;
 var gridOfFutureChains_colFocused = 2;
 var gridOfFutureChains = ds_grid_create(gridOfFutureChainsWidth, 0);
+if (ds_list_size(inRectWordIDList) > 0) {
+	moveCounter++;
+}
 
 for (var i = 0; i < ds_list_size(inRectWordIDList); i++) {
 	var currentWordID = ds_list_find_value(inRectWordIDList, i);

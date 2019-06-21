@@ -293,24 +293,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	
-		/*for (var wordInBoxLoop = 0; wordInBoxLoop < ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1)); wordInBoxLoop++) {
-			var currentBoxID = ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID-1), wordInBoxLoop);		
-			var currentBoxList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentBoxID-1);
-		
-			draw_set_color(global.colorThemeSelected1);
-			// Draw the over and above lines
-			draw_line_width(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1, 2);
-			draw_line_width(wordRectX1, wordRectY1 + obj_control.gridSpaceVertical - 1, wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1 + obj_control.gridSpaceVertical - 1, 2);
-			// If this is the first word in the chunk, draw the left line
-			//if(ds_list_find_index(currentBoxList, currentWordID) == 0) {
-				draw_line_width(wordRectX1, wordRectY1, wordRectX1, wordRectY1 + obj_control.gridSpaceVertical, 2);
-			//}
-			// If this is the last word in the chunk, draw the right line
-			//if(ds_list_find_index(currentBoxList, currentWordID) == ds_list_size(currentBoxList)-1) {
-				draw_line_width(wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 1, wordRectY1 + obj_control.gridSpaceVertical, 2);
-			//}
-		}*/
-	
 		// If the user has the New-Word tool selected, create a new word right next to this word
 		if (obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 			if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
@@ -336,6 +318,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	//var textColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colTextColor, currentWordID - 1);
 	var textColor = global.colorThemeText;
 		
+	var xScale = 1;
+	var yScale = 1;
+	
 	// finally, draw the word to the main view
 	draw_set_alpha(1);
 	draw_set_font(global.fontMain);
@@ -343,13 +328,17 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var rowInHitGrid = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), currentWordID );
 	if ( rowInHitGrid >= 0 ) {
 		if (ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colHitBool, rowInHitGrid)) {
+			draw_set_font(global.fontMainBold);
+			//xScale = 1.5;
+			yScale = xScale;
 			draw_set_color(make_color_rgb(19,69,150));		
 		}
 	}
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(currentWordX, currentLineY, currentWordString);
-		
+	draw_text_transformed(currentWordX, currentLineY, currentWordString, xScale, yScale, 0);
+	//draw_text(currentWordX, currentLineY, currentWordString);
+	
 	previousWordDisplayCol = currentWordDisplayCol;
 	
 	shapeTextX += string_width(currentWordString) + shapeTextSpace;

@@ -336,6 +336,9 @@ else if (grid == obj_chain.chunkGrid) {
 		case obj_chain.chunkGrid_colBoxWordIDList:
 			colName = "boxWordList";
 			break;
+		case obj_chain.chunkGrid_colNest:
+			colName = "Nest";
+			break;
 		default:
 			break;
 	}
