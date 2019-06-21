@@ -134,3 +134,30 @@ draw_set_font(global.fontMain);
 draw_text(windowX1 + 10, windowY2 + strHeight + 20, "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString);
 
 draw_text(windowX1, windowY2 + 60, "fps: " + string(fps));
+
+
+
+
+// keyboard input for UP and DOWN
+if (keyboard_check(vk_up)) {
+	scrollPlusYDest += 4;
+}
+if (keyboard_check(vk_down)) {
+	scrollPlusYDest -= 4;
+}
+
+// CTRL+UP and CTRL+DOWN
+if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+	scrollPlusYDest = 100;
+}
+if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+	scrollPlusYDest = -999999999999;
+}
+	
+// PAGEUP and PAGEDOWN
+if (keyboard_check_pressed(vk_pageup)) {
+	scrollPlusYDest += (windowHeight);
+}
+if (keyboard_check_pressed(vk_pagedown)) {
+	scrollPlusYDest -= (windowHeight);
+}
