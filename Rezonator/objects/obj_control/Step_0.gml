@@ -45,18 +45,20 @@ if (!gridView) {
 		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 	}
 	
-// Retrieve booleans for NavWindow.	
+// Retrieve booleans for NavWindow.
+var clickedInChainList = false;
+var clickedInChainContents = false;
 with (obj_panelPane) {
-	if(currentFunction == functionChainList){
-		var list = clickedIn;
+	if (currentFunction == functionChainList) {
+		clickedInChainList = clickedIn;
 	}
-	if(currentFunction == functionChainContents){
-		var contents = clickedIn;
+	if (currentFunction == functionChainContents) {
+		clickedInChainContents = clickedIn;
 	}
 }
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
-if (list == false and contents == false) {
+if (!clickedInChainList and !clickedInChainContents) {
 	if (keyboard_check(vk_down) or mouse_wheel_down()) {
 		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
 		{
@@ -250,6 +252,7 @@ for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	if (point_in_rectangle(mouse_x, mouse_y, toolPaneInst.x, toolPaneInst.y, toolPaneInst.x + toolPaneInst.windowWidth, toolPaneInst.y + toolPaneInst.windowHeight)) {
 		mouseoverPanelPane = true;
 	}
+	
 	if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
 		if (!panelPaneInst.functionHelp_collapsed) {
 			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.functionHelp_helpWindowRectX1, panelPaneInst.functionHelp_helpWindowRectY1, panelPaneInst.functionHelp_helpWindowRectX2, panelPaneInst.functionHelp_helpWindowRectY2)) {
