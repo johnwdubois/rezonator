@@ -18,7 +18,14 @@ var wordToFind = get_string("Type string to find", "");
 if (string_length(wordToFind) < 1) {
 	exit;
 }
+/*
+var numOfWords = string_count("$", wordToFind); 
 
+if (numOfWords > 0) {
+	for(var i = 0; numOfWords >= i; i++){
+		var placeToSplice = string_pos("$", wordToFind);	
+	}
+}*/
 //cut off the head??
 
 var tempSearchGrid = ds_grid_create(ds_grid_width(lineGrid), ds_grid_height(lineGrid));

@@ -68,10 +68,12 @@ if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(wordIDList, unitID);
 	
 	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, currentChainID);
+	obj_control.moveCounter++;
 }
 else {
 	ds_list_add(wordIDList, wordID);
 }
+
 
 // unfocus all other chains of this tier
 while (ds_grid_value_exists(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus)) {

@@ -30,6 +30,7 @@ speakerLabelMargin = 200;
 speakerLabelMarginBuffer = 20;
 wordLeftMargin = 200;
 wordLeftMarginDest = 200;
+
 var speakerLabelColWidthDivider = 3;
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	speakerLabelColWidthDivider = 2;

@@ -29,6 +29,7 @@ else {
 	ds_list_add(wordIDList, wordID);
 }
 
+	
 
 // expand scroll range
 with (obj_panelPane) {
