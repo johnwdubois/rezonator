@@ -413,7 +413,7 @@ if (functionChainContents_IDList != undefined) {
 	}
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
-	with(obj_panelPane){
+	with(obj_panelPane) {
 		if (currentFunction == functionChainContents and clickedIn) {
 	
 			// Scroll up with mouse/key

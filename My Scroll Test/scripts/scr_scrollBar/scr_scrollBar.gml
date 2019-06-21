@@ -101,11 +101,34 @@ draw_rectangle(scrollBarX1 - clipX, scrollBarY1 - clipY, scrollBarX2 - clipX, sc
 
 // move scrollbar with regular scroll
 if (point_in_rectangle(mouse_x, mouse_y, x, y + marginTop, x + windowWidth, y + windowHeight)) {
+	
+	// (UP ARROW or mousewheel up) and (DOWN ARROW or mousewheel down)
 	if (keyboard_check(vk_up) || mouse_wheel_up() || scrollBarUpButtonHeld) {
 		scrollPlusYDest += 4;
 	}
 	else if (keyboard_check(vk_down) || mouse_wheel_down() || scrollBarDownButtonHeld) {
 		scrollPlusYDest -= 4;
+	}
+	
+	
+	
+	
+	// CTRL+UP and CTRL+DOWN
+	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+		scrollPlusYDest = 0;
+	}
+	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+		scrollPlusYDest = -999999999999;
+	}
+	
+	
+	
+	// PAGEUP and PAGEDOWN
+	if (keyboard_check_pressed(vk_pageup)) {
+		scrollPlusYDest += (windowHeight);
+	}
+	if (keyboard_check_pressed(vk_pagedown)) {
+		scrollPlusYDest -= (windowHeight);
 	}
 }
 scrollPlusYDest = clamp(scrollPlusYDest, minScrollPlusY, maxScrollPlusY);

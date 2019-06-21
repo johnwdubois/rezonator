@@ -284,49 +284,59 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 
 
 var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-//if (focusedChainRow > -1 and focusedChainRow < ds_grid_height(grid)) {
 	
-	if (clickedIn) {
-		
-		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
+// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+if (clickedIn) {	
+	if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
-			if (focusedChainRow > 0 and focusedChainRow < ds_grid_height(grid)) {
-				scr_unFocusAllChains();
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-				focusedChainRow--;
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+		if (focusedChainRow > 0 and focusedChainRow < ds_grid_height(grid)) {
+			scr_unFocusAllChains();
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+			focusedChainRow--;
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 				
-				if (focusedElementY <= y + textMarginTop + strHeight) {
-					scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
-				}
-			}
-			else {
-				scrollPlusYDest += 4;
+			if (focusedElementY <= y + textMarginTop + strHeight) {
+				scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
 			}
 		}
-
-		
-		
-		
-		
-		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
-			
-			if (focusedChainRow < ds_grid_height(grid) - 1 and focusedChainRow >= 0) {
-				scr_unFocusAllChains();
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-				focusedChainRow++;
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
-				
-				if (focusedElementY >= y + windowHeight - strHeight) {
-					scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
-				}
-			}
-			else {
-				scrollPlusYDest -= 4;
-			}
+		else {
+			scrollPlusYDest += 4;
 		}
 	}
-//}
+		
+	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
+			
+		if (focusedChainRow < ds_grid_height(grid) - 1 and focusedChainRow >= 0) {
+			scr_unFocusAllChains();
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+			focusedChainRow++;
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+				
+			if (focusedElementY >= y + windowHeight - strHeight) {
+				scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+			}
+		}
+		else {
+			scrollPlusYDest -= 4;
+		}
+	}
+	
+	// CTRL+UP and CTRL+DOWN
+	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+		scrollPlusYDest = 0;
+	}
+	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+		scrollPlusYDest = -999999999999;
+	}
+	
+	// PAGEUP and PAGEDOWN
+	if (keyboard_check_pressed(vk_pageup)) {
+		scrollPlusYDest += (windowHeight);
+	}
+	if (keyboard_check_pressed(vk_pagedown)) {
+		scrollPlusYDest -= (windowHeight);
+	}
+}
 
 
 

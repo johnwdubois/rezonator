@@ -16,7 +16,7 @@ firstItemToDraw = clamp(firstItemToDraw, 0, lastItemToDraw);
 lastItemToDraw = clamp(lastItemToDraw, firstItemToDraw, ds_list_size(list));
 
 // draw items
-for (var i = firstItemToDraw; i < lastItemToDraw; i++) {
+for (var i = 0; i < ds_list_size(list); i++) {
 	
 	var currentText = ds_list_find_value(list, i);
 	var textX = x + 10 - clipX;

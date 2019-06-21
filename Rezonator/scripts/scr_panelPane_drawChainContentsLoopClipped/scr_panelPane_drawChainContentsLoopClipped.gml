@@ -347,4 +347,46 @@ for (var i = 0; i < 3; i++) {
 
 draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeight - clipY);
 
+// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
+if (clickedIn) {
+	
+	// Scroll up with mouse/key
+	if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
+		scrollPlusYDest += 4;
+	}
+	
+	// Scroll down with mouse/key
+	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
+		scrollPlusYDest -= 4;
+	}
+	
+	// Scroll up with pgUp/key
+	if (keyboard_check_pressed(vk_pageup)) {
+		if (currentTopViewRow > 0) {
+			currentTopViewRow -= scrollRange;
+		}
+	}
+	
+	// Scroll up with ctrl+key
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
+		if (currentTopViewRow > 0) {
+			currentTopViewRow -= ds_list_size(functionChainContents_IDList);
+		}
+	}
+	
+	// Scroll down with pgDwn
+	if (keyboard_check_pressed(vk_pagedown)) {
+		if (currentTopViewRow + scrollRange < ds_list_size(functionChainContents_IDList)) {
+			currentTopViewRow += scrollRange;
+		}
+	}
+	
+	// Scroll down with ctrl+key
+	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
+		if (currentTopViewRow + scrollRange < ds_list_size(functionChainContents_IDList)) {
+			currentTopViewRow += ds_list_size(functionChainContents_IDList);
+		}
+	}
+}
+
 scr_surfaceEnd();
