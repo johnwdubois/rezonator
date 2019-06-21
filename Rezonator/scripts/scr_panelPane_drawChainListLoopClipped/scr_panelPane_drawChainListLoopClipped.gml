@@ -323,7 +323,7 @@ if (clickedIn) {
 	
 	// CTRL+UP and CTRL+DOWN
 	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-		scrollPlusYDest = 0;
+		scrollPlusYDest = 100;
 	}
 	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
 		scrollPlusYDest = -999999999999;
