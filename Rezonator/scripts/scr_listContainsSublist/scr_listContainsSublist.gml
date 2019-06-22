@@ -17,15 +17,18 @@
 var mainList = argument0;
 var subList = argument1;
 
+
 // Find the subList's first element within the list
 var firstElement = ds_list_find_value(subList, 0);
 var subListIndex = ds_list_find_index(mainList, firstElement);
+
 if(subListIndex == -1) {return -1};
 
 // Loop through mainList to incrementily check each element against the subList
-for(var listLoop = 1; listLoop++ < ds_list_size(subList); listLoop++) {
+for(var listLoop = 1; listLoop < ds_list_size(subList); listLoop++) {
 	var currentSubElement = ds_list_find_value(subList, listLoop);
 	var currentMainElement = ds_list_find_value(mainList, listLoop + subListIndex);
+
 	if(currentSubElement != currentMainElement) {
 		return -1;
 	}

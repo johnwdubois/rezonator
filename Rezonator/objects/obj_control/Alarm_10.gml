@@ -52,30 +52,27 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 		
 		// Mark this box as a chunk
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid) - 1, 1);
-		
-		// Loop through the words of this chunk
-		//for(var wordListLoop = 0; wordListLoop < ds_list_size(currentWordList); wordListLoop++) {
+		moveCounter++;
 			
-			// Access the word's in Chunk list
+			// Access the first word's in Chunk list
 			var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_list_find_value(currentWordList, 0));
-			moveCounter++;
+			
 			// Loop through the in Chunk list, check if any elements are not the current chunk
 			for(var chunkListLoop = 0; chunkListLoop < ds_list_size(currentInChunkList); chunkListLoop++) {
 				
 				var currentChunkID = ds_grid_height(obj_chain.chunkGrid);
-				var otherChunkID = ds_list_find_value(currentInChunkList, chunkListLoop)
+				var otherChunkID = ds_list_find_value(currentInChunkList, chunkListLoop);
 				
 				// Check if this word lies within another chunk
 				if(currentChunkID != otherChunkID) {
 					
 					var otherChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, otherChunkID - 1);
 					
-					//show_message("checking");
 					// Check if this chunk contains the other chunk
 					if(scr_listContainsSublist(otherChunkWordList, currentWordList) != -1) {
+						
 						//wordRectBuffer = 4;
 						ds_grid_set(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, ds_grid_height(obj_chain.chunkGrid) - 1, true);
-						//show_message("increase");
 						continue;
 					}
 				}
