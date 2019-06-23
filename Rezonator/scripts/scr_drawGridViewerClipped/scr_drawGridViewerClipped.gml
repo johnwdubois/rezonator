@@ -1,3 +1,17 @@
+/*
+	scr_drawGridViewer(gridArrayIndex);
+	
+	Last Updated: 2019-02-05
+	
+	Called from: obj_gridViewer
+	
+	Purpose: display Rezonator's backend grids for debugging and research purposes
+	
+	Mechanism: loop through the selected grid and draw a string version of every cell value
+	
+	Author: Terry DuBois
+*/
+
 scr_drawGridViewerGridTabs();
 
 scr_surfaceStart();
@@ -32,7 +46,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
+	//draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
 	
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);

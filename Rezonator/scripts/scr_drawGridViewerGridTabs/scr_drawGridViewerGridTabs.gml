@@ -45,61 +45,61 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 	
 	switch (currentGrid) {
 		case obj_control.unitGrid:
-			colName = "unitGrid";
+			colName = "Unit"; // Unit Grid
 			break;
 		case obj_control.lineGrid:
-			colName = "lineGrid";
+			colName = "Line"; // Line Grid
 			break;
 		case obj_control.wordGrid:
-			colName = "wordGrid";
+			colName = "Word"; // Word Grid
 			break;
 		case obj_control.dynamicWordGrid:
-			colName = "dynamicWordGrid";
+			colName = "vizWord"; // dynamicWordGrid
 			break;
 		case obj_control.filterGrid:
-			colName = "filterGrid";
+			colName = "Pick"; // Filter Grid
 			break;
 		case obj_control.searchGrid:
-			colName = "searchGrid";
+			colName = "Search"; // searchGrid
 			break;
 		case obj_control.hitGrid:
-			colName = "hitGrid";
+			colName = "Hit"; // hitGrid
 			break;
 		case obj_control.wordDrawGrid:
 			colName = "wordDrawGrid";
 			break;
 		case obj_chain.linkGrid:
-			colName = "linkGrid";
+			colName = "Link"; // Link Grid 
 			break;
 		case obj_chain.rezPlayLinkGrid:
-			colName = "rezPlayLinkGrid";
+			colName = "playLink"; // rezPlay Link Grid
 			break;
 		case obj_chain.vizLinkGrid:
-			colName = "vizLinkGrid";
+			colName = "vizLink"; // vizLink Grid
 			break;
 		case obj_chain.rezChainGrid:
-			colName = "rezChainGrid";
+			colName = "Rez"; // Rez Chain Grid
 			break;
 		case obj_chain.trackChainGrid:
-			colName = "trackChainGrid";
+			colName = "Track"; // Track Chain Grid
 			break;
 		case obj_chain.stackChainGrid:
-			colName = "stackChainGrid";
+			colName = "Stack"; // Stack Chain Grid
 			break;
 		case obj_chain.placeChainGrid:
-			colName = "placeChainGrid";
+			colName = "Place"; // Place Chain Grid
 			break;
 		case obj_chain.chunkGrid:
-			colName = "chunkGrid";
+			colName = "Chunk"; // Chunk Grid
 			break;
 		case obj_chain.unitInStackGrid:
-			colName = "unitInStackGrid";
+			colName = "StackUnit"; // Unit In Stack
 			break;
 		case obj_chain.cliqueGrid:
-			colName = "cliqueGrid";
+			colName = "Clique"; // Clique Grid
 			break;
 		case obj_chain.cliqueDisplayGrid:
-			colName = "cliqueDisplayGrid";
+			colName = "vizClique"; // vizClique
 			break;
 		default:
 			break;
