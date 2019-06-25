@@ -232,7 +232,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					scr_wordClicked(currentWordID, unitID);
 				}
 			}
-		} // Allows for adding to a stack anywhere in a line
+		}
+		/*else if for Chunks???{
+			
+		}
+		*/
+		// Allows for adding to a stack anywhere in a line
 		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 			if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
 				with (obj_chain) {

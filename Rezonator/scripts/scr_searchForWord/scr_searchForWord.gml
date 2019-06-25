@@ -1,7 +1,7 @@
 /*
 	scr_searchForWord();
 	
-	Last Updated: 2018-09-11
+	Last Updated: 2019-06-24
 	
 	Called from: obj_chain
 	
@@ -10,14 +10,17 @@
 	Mechanism: loop through unitGrid looking at every wordIDList for searched word, if that row in unitGrid contains searched word,
 				add that row to new lineGrid
 	
-	Author: Terry DuBois
+	Author: Terry DuBois, Georgio Klironomos
 */
 
+// Get the word's string from the user
 var wordToFind = get_string("Type string to find", "");
 
+// Safety check, make sure something was inputted
 if (string_length(wordToFind) < 1) {
 	exit;
 }
+
 /*
 var numOfWords = string_count("$", wordToFind); 
 
@@ -26,18 +29,18 @@ if (numOfWords > 0) {
 		var placeToSplice = string_pos("$", wordToFind);	
 	}
 }*/
-//cut off the head??
 
+// Keep a temporary grid
 var tempSearchGrid = ds_grid_create(ds_grid_width(lineGrid), ds_grid_height(lineGrid));
 
 ds_grid_copy(tempSearchGrid, lineGrid);
 
-//if (ds_grid_height(searchGrid) > 0) {
-	var oldSearch = ds_grid_create(ds_grid_width(searchGrid), ds_grid_height(searchGrid));
-	ds_grid_copy(oldSearch, searchGrid);
-	var oldHit = ds_grid_create(ds_grid_width(hitGrid), ds_grid_height(hitGrid));
-	ds_grid_copy(oldHit, hitGrid);
-//}
+// Fill backup grids in case the new word is not found
+var oldSearch = ds_grid_create(ds_grid_width(searchGrid), ds_grid_height(searchGrid));
+ds_grid_copy(oldSearch, searchGrid);
+var oldHit = ds_grid_create(ds_grid_width(hitGrid), ds_grid_height(hitGrid));
+ds_grid_copy(oldHit, hitGrid);
+
 
 // create new searchGrid so we can populate it from scratch
 ds_grid_destroy(searchGrid);
@@ -114,6 +117,8 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 
 // check if we actually got any matches (check height of searchGrid)
 if (ds_grid_height(searchGrid) > 0) {
+	
+	// If matches were found, switch the user over to the search view 
 	filterGridActive = false;
 	searchGridActive = true;
 	scr_unFocusAllChains();
@@ -125,6 +130,7 @@ if (ds_grid_height(searchGrid) > 0) {
 	wordLeftMarginDest = window_get_width() / 2;
 }
 else {
+	// If matches weren't found, keep the user's place
 	show_message("Search string not found");
 	if (ds_grid_height(oldSearch) > 0) {
 		ds_grid_copy(searchGrid, oldSearch);

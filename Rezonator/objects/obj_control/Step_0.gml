@@ -95,12 +95,13 @@ if (!clickedInChainList and !clickedInChainContents) {
 		holdUpArrowKey = 0;
 	}
 
+// Here for sure
 	if (keyboard_check_pressed(vk_pagedown)) {
-		currentCenterDisplayRow += drawRange;
+		currentCenterDisplayRow += (drawRange - lineSpacing);
 	}
 
 	if (keyboard_check_pressed(vk_pageup)) {
-		currentCenterDisplayRow -= drawRange;
+		currentCenterDisplayRow -= (drawRange - lineSpacing);
 	}
 	// Sends user to the bottom of the main screen
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
@@ -199,12 +200,14 @@ if (shortcutsEnabled) {
 		if (keyboard_check_direct(187) and canPressPlus) {
 			canPressPlus = false;
 			gridSpaceVertical += 10;
+			lineSpacing += 4;
 			alarm[3] = 15;
 		}
 
 		if (keyboard_check_direct(189) and canPressMinus) {
 			canPressMinus = false;
 			gridSpaceVertical -= 10;
+			lineSpacing -= 40;
 			alarm[4] = 15;
 		}
 	}

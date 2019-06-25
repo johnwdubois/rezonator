@@ -187,6 +187,7 @@ cursorBoxY = 0;
 drawRange = 30
 drawRangeStart = 0;
 drawRangeEnd = 0;
+lineSpacing = 6;
 
 // Instantiate the display row ascending variable, currently unused
 displayRowAscending = true;
