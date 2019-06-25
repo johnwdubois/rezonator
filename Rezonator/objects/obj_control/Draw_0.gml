@@ -91,7 +91,6 @@ if (showDevVars) {
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 440, "moveCounter: " + string(moveCounter));
 	
-	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 485, "chainIDModifyList: ");
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, scr_getStringOfList(obj_chain.chainIDModifyList));
 	
