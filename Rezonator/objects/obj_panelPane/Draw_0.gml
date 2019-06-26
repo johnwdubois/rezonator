@@ -83,6 +83,7 @@ draw_set_color(global.colorThemeBorders);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 
 
+
 var mouseover = false;// Checks mouseover for all panelPane windows
 if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight))
 {

@@ -37,6 +37,8 @@ if (showDisplayCols) {
 
 scr_drawLine();
 scr_drawChunk();
+//scr_drawSearchBox();
+
 
 // Draw the mouse drag rectangle
 if (not mouseoverPanelPane) {
@@ -47,6 +49,7 @@ if (not mouseoverPanelPane) {
 		scr_boxRect();
 	}
 }
+
 
 
 // Create the quickStack with the mouse drag, if possible
@@ -66,6 +69,8 @@ draw_set_font(fnt_debug);
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
 draw_set_alpha(1);
+
+
 
 // Shows variables used for in game bugtesting
 if (showDevVars) {

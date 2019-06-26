@@ -310,5 +310,13 @@ shortcutsEnabled = true;
 sessionStartTime = current_time;
 currentSessionTime = 0;
 
+// Search box variables
+fPressed = false;
+inChainBool = false;
+transcriptSearch = false;
+caseSensitive = false;
+cursorPos = 1 ;
+inputText = "";
+
 // Safety check for quick volunteers
 alarm[9] = 10;
