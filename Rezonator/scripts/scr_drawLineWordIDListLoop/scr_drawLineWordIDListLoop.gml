@@ -39,6 +39,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 		draw_set_font(fnt_main);
 
+		// Set all variables needed to draw a Chunk
 		var displayLineY = undefined;
 
 		var topLeftX = undefined;
@@ -54,6 +55,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		var firstWordID = -1;
 		var lastWordID = -1;
 		
+		// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
 		if(currentChunkRow < 0) {
 			continue;	
@@ -102,30 +104,35 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		topRightY = topLeftY;
 		bottomRightX = topRightX;
 		bottomRightY = bottomLeftY;
+		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);//global.colorThemeSelected1
 		
 		// Draw the Chunks visual representation
-		draw_set_color(global.colorThemeSelected1);
+		draw_set_color(effectColor);
 		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
 				draw_rectangle(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
 		}
 		
+		// Check for mouseover of the Chunk (clicks coming soon)
 		var mouseover = false;
 		if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
-		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1)) {
+		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1) {
 			mouseover = true;
 			
 			// May need to make a hoverChunkID
 			hoverChunkID = currentWordID;
 		
+			// Draw the hover highlight
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(0.5);
 			draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
 			
-			/*if (mouse_check_button_pressed(mb_left)) {
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_control.clickedChunkID = currentChunkRow + 1; // Debug variable
+				// Add this Chunk to a chain
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
 				}
-			}*/
+			}
 		}
 		
 		continue;	

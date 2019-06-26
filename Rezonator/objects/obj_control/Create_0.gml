@@ -216,6 +216,7 @@ newWordHoverWordID = -1;
 
 hoverWordID = -1;
 hoverChunkID = -1;
+clickedChunkID = -1;
 
 // Safety check for the drop downs
 ableToCreateDropDown = true;
