@@ -36,7 +36,7 @@ if (showDisplayCols) {
 
 
 scr_drawLine();
-scr_drawChunk();
+//scr_drawChunk();
 
 // Draw the mouse drag rectangle
 if (not mouseoverPanelPane) {

@@ -82,10 +82,17 @@ for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
 		
 		// Draw the Chunks visual representation
 		draw_set_color(global.colorThemeSelected1);
-		draw_line_width(topLeftX, topLeftY, bottomLeftX, bottomLeftY, 2);
+		
+		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
+			
+				draw_rectangle(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
+		}
+		
+		//draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, true);
+		/*draw_line_width(topLeftX, topLeftY, bottomLeftX, bottomLeftY, 2);
 		draw_line_width(topLeftX, topLeftY, topRightX, topRightY, 2);
 		draw_line_width(topRightX, topRightY, bottomRightX, bottomRightY, 2);
-		draw_line_width(bottomLeftX, bottomLeftY, bottomRightX, bottomRightY, 2);
+		draw_line_width(bottomLeftX, bottomLeftY, bottomRightX, bottomRightY, 2);*/
 	}
 }
 
