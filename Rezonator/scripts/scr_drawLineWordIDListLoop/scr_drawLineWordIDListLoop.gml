@@ -29,6 +29,15 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var shake = false;
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 	var currentWordGridRow = currentWordID - 1;
+	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
+	
+	// Check if the word is a ChunkWord
+	if(currentWordState == 1) {
+		// Here will be functionality to focus on a Chunk and add it to a Chain
+		// This includes: Hovering over Chunk will visually effect the outline
+		// The big step is adding it to a chain, which will involve a major rework of most of this existing code
+		continue;	
+	}
 	
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 	
@@ -232,7 +241,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					scr_wordClicked(currentWordID, unitID);
 				}
 			}
-		} // Allows for adding to a stack anywhere in a line
+		}
+		/*else if for Chunks???{
+			
+		}
+		*/
+		// Allows for adding to a stack anywhere in a line
 		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 			if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
 				with (obj_chain) {

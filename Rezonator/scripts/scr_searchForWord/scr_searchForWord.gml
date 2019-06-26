@@ -1,7 +1,7 @@
 /*
 	scr_searchForWord();
 	
-	Last Updated: 2018-09-11
+	Last Updated: 2019-06-24
 	
 	Called from: obj_chain
 	
@@ -10,14 +10,17 @@
 	Mechanism: loop through unitGrid looking at every wordIDList for searched word, if that row in unitGrid contains searched word,
 				add that row to new lineGrid
 	
-	Author: Terry DuBois
+	Author: Terry DuBois, Georgio Klironomos
 */
 
+// Get the word's string from the user
 var wordToFind = get_string("Type string to find", "");
 
+// Safety check, make sure something was inputted
 if (string_length(wordToFind) < 1) {
 	exit;
 }
+
 /*
 var numOfWords = string_count("$", wordToFind); 
 
@@ -26,18 +29,24 @@ if (numOfWords > 0) {
 		var placeToSplice = string_pos("$", wordToFind);	
 	}
 }*/
-//cut off the head??
 
+// Keep a temporary grid
 var tempSearchGrid = ds_grid_create(ds_grid_width(lineGrid), ds_grid_height(lineGrid));
 
 ds_grid_copy(tempSearchGrid, lineGrid);
 
-//if (ds_grid_height(searchGrid) > 0) {
-	var oldSearch = ds_grid_create(ds_grid_width(searchGrid), ds_grid_height(searchGrid));
-	ds_grid_copy(oldSearch, searchGrid);
-	var oldHit = ds_grid_create(ds_grid_width(hitGrid), ds_grid_height(hitGrid));
-	ds_grid_copy(oldHit, hitGrid);
-//}
+
+// Fill backup grids in case the new word is not found
+var oldSearch = ds_grid_create(ds_grid_width(searchGrid), ds_grid_height(searchGrid));
+ds_grid_copy(oldSearch, searchGrid);
+var oldHit = ds_grid_create(ds_grid_width(hitGrid), ds_grid_height(hitGrid));
+ds_grid_copy(oldHit, hitGrid);
+
+
+//creating list of words if user inputed multiple words
+listOfWords = ds_list_create();
+ds_list_copy( listOfWords, scr_splitString(wordToFind, "&"));
+
 
 // create new searchGrid so we can populate it from scratch
 ds_grid_destroy(searchGrid);
@@ -55,65 +64,77 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 	var currentUnitStart = ds_grid_get(unitGrid, unitGrid_colUnitStart, i);
 	var currentUnitEnd = ds_grid_get(unitGrid, unitGrid_colUnitEnd, i);
 	
-	// now we loop through every word in wordID list to see if matches our search word
-	for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
-		var currentWordID = ds_list_find_value(currentWordIDList, j);
-		var currentWordToken = ds_grid_get(wordGrid, wordGrid_colWordToken, currentWordID - 1);
-		var currentWordTranscript = ds_grid_get(wordGrid, wordGrid_colWordTranscript, currentWordID - 1);
+
+			
+		// now we loop through every word in wordID list to see if matches our search word
+		for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
+			var currentWordID = ds_list_find_value(currentWordIDList, j);
+			var currentWordToken = ds_grid_get(wordGrid, wordGrid_colWordToken, currentWordID - 1);
+			var currentWordTranscript = ds_grid_get(wordGrid, wordGrid_colWordTranscript, currentWordID - 1);
 		
-		// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
-		if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript)) {
-			
-			ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
-			var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
-			
-			ds_grid_set(searchGrid, lineGrid_colDisplayRow, currentRowSearchGrid, currentRowSearchGrid);
-			ds_grid_set(searchGrid, lineGrid_colLineState, currentRowSearchGrid, 0);
-			ds_grid_set(searchGrid, lineGrid_colUnitID, currentRowSearchGrid, i + 1);
-			ds_grid_set(searchGrid, lineGrid_colPixelY, currentRowSearchGrid, room_height + gridSpaceVertical);
-			ds_grid_set(searchGrid, lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);
-			ds_grid_set(searchGrid, lineGrid_colLineNumberLabel, currentRowSearchGrid, currentUtteranceID);
-			ds_grid_set(searchGrid, lineGrid_colUnitStart, currentRowSearchGrid, currentUnitStart);
-			ds_grid_set(searchGrid, lineGrid_colUnitEnd, currentRowSearchGrid, currentUnitEnd);
-			
-			var currentHitIDList = ds_list_create();
-			
-			// add all the words in this unit to the searchGrid
-			for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
-				
-				var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
-				var hitGridCurrentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
-				var hitGridCurrentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
-				var hitGridCurrentHitBool = false;
-				
-				if (hitGridCurrentWordID == currentWordID) {
-					hitGridCurrentHitBool = true;
+			//loop through all words in list
+			for (var k = 0; k < ds_list_size(listOfWords); k++) {
+									
+				if !ds_list_empty(listOfWords) {
+					wordToFind = ds_list_find_value(listOfWords, k);
 				}
-				var hitGridCurrentDisplayCol = k - j;
 				
-				ds_grid_resize(hitGrid, hitGridWidth, ds_grid_height(hitGrid) + 1);
-				var currentRowHitGrid = ds_grid_height(hitGrid) - 1;
+			// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
+			if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript)) {
+			
+				ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
+				var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
+			
+				ds_grid_set(searchGrid, lineGrid_colDisplayRow, currentRowSearchGrid, currentRowSearchGrid);
+				ds_grid_set(searchGrid, lineGrid_colLineState, currentRowSearchGrid, 0);
+				ds_grid_set(searchGrid, lineGrid_colUnitID, currentRowSearchGrid, i + 1);
+				ds_grid_set(searchGrid, lineGrid_colPixelY, currentRowSearchGrid, room_height + gridSpaceVertical);
+				ds_grid_set(searchGrid, lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);
+				ds_grid_set(searchGrid, lineGrid_colLineNumberLabel, currentRowSearchGrid, currentUtteranceID);
+				ds_grid_set(searchGrid, lineGrid_colUnitStart, currentRowSearchGrid, currentUnitStart);
+				ds_grid_set(searchGrid, lineGrid_colUnitEnd, currentRowSearchGrid, currentUnitEnd);
+			
+				var currentHitIDList = ds_list_create();
+			
+				// add all the words in this unit to the searchGrid
+				for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
+				
+					var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
+					var hitGridCurrentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+					var hitGridCurrentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
+					var hitGridCurrentHitBool = false;
+				
+					if (hitGridCurrentWordID == currentWordID) {
+						hitGridCurrentHitBool = true;
+					}
+					var hitGridCurrentDisplayCol = k - j;
+				
+					ds_grid_resize(hitGrid, hitGridWidth, ds_grid_height(hitGrid) + 1);
+					var currentRowHitGrid = ds_grid_height(hitGrid) - 1;
 
 				
-				ds_grid_set(hitGrid, hitGrid_colWordID, currentRowHitGrid, hitGridCurrentWordID);
-				ds_grid_set(hitGrid, hitGrid_colUnitID, currentRowHitGrid, hitGridCurrentUnitID);
-				ds_grid_set(hitGrid, hitGrid_colHitID, currentRowHitGrid, hitIDCounter);
-				ds_grid_set(hitGrid, hitGrid_colWordState, currentRowHitGrid, hitGridCurrentWordState);
-				ds_grid_set(hitGrid, hitGrid_colHitBool, currentRowHitGrid, hitGridCurrentHitBool);
-				ds_grid_set(hitGrid, hitGrid_colDisplayCol, currentRowHitGrid, hitGridCurrentDisplayCol);
+					ds_grid_set(hitGrid, hitGrid_colWordID, currentRowHitGrid, hitGridCurrentWordID);
+					ds_grid_set(hitGrid, hitGrid_colUnitID, currentRowHitGrid, hitGridCurrentUnitID);
+					ds_grid_set(hitGrid, hitGrid_colHitID, currentRowHitGrid, hitIDCounter);
+					ds_grid_set(hitGrid, hitGrid_colWordState, currentRowHitGrid, hitGridCurrentWordState);
+					ds_grid_set(hitGrid, hitGrid_colHitBool, currentRowHitGrid, hitGridCurrentHitBool);
+					ds_grid_set(hitGrid, hitGrid_colDisplayCol, currentRowHitGrid, hitGridCurrentDisplayCol);
 				
 				
-				ds_list_add(currentHitIDList, hitIDCounter);
-				hitIDCounter++;
-			}
+					ds_list_add(currentHitIDList, hitIDCounter);
+					hitIDCounter++;
+				}
 			
-			ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
+				ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
+			}
 		}
 	}
 }
 
 // check if we actually got any matches (check height of searchGrid)
 if (ds_grid_height(searchGrid) > 0) {
+	
+	// If matches were found, switch the user over to the search view 
 	filterGridActive = false;
 	searchGridActive = true;
 	scr_unFocusAllChains();
@@ -125,6 +146,7 @@ if (ds_grid_height(searchGrid) > 0) {
 	wordLeftMarginDest = window_get_width() / 2;
 }
 else {
+	// If matches weren't found, keep the user's place
 	show_message("Search string not found");
 	if (ds_grid_height(oldSearch) > 0) {
 		ds_grid_copy(searchGrid, oldSearch);

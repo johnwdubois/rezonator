@@ -3327,6 +3327,14 @@
             }
         },
         {
+            "Key": "efca083d-511d-46a9-b9b8-80c06a142131",
+            "Value": {
+                "id": "ac9a4871-bafb-4c36-b412-0c1de88741c8",
+                "resourcePath": "scripts\\scr_splitString\\scr_splitString.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f0d0cfe1-4a0c-4271-8f2d-4563213fc917",
             "Value": {
                 "id": "94b6e94b-f250-41da-88c3-67cf3c13fd13",
@@ -3647,6 +3655,7 @@
         "730a5783-5fcd-4b1e-af7f-eb156d322068",
         "3f336589-fadf-4ed7-8a96-a645f60d347d",
         "149dbd0e-ade3-430d-bd80-76c59b9f2cca",
+        "889f4b32-5b71-4c11-a5fe-d59d2acf98fa",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
         "bc2f5ec3-50e1-4cc0-8fb7-e25c9ba4ad32",
@@ -3670,7 +3679,6 @@
         "2032f3f6-fdbf-4c63-8f21-cc348313fe4b",
         "0c063f09-8ea8-47c3-b8f5-0f7e60e83b39",
         "f6a6ba25-1cc6-4ece-94f4-5196470b0214",
-        "889f4b32-5b71-4c11-a5fe-d59d2acf98fa",
         "73bacce9-e2de-4fdd-8c4d-6121232397bf",
         "519ec3d2-8a5a-4c96-97b2-f5d902045213",
         "8d690597-d00c-48e8-8586-6b9e5260c957",
@@ -3698,7 +3706,8 @@
         "02884272-6647-4f47-9dc6-cf6bb960b8c4",
         "69e7ecc0-ce61-4cd5-bfa8-255c686f740d",
         "155253d6-fef1-49fd-af7c-2c9a1b64e74b",
-        "01326701-b0a6-4057-8a77-21f137c710e7"
+        "01326701-b0a6-4057-8a77-21f137c710e7",
+        "efca083d-511d-46a9-b9b8-80c06a142131"
     ],
     "tutorial": ""
 }

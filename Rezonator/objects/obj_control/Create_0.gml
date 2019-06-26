@@ -130,6 +130,9 @@ dynamicWordGrid_colReplaceWord = 11;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
+wordStateNormal = 0;
+wordStateChunk = 1;
+
 
 // Instantiate the Word Draw Grid
 wordDrawGridWidth = 7;
@@ -187,6 +190,7 @@ cursorBoxY = 0;
 drawRange = 30
 drawRangeStart = 0;
 drawRangeEnd = 0;
+lineSpacing = 6;
 
 // Instantiate the display row ascending variable, currently unused
 displayRowAscending = true;

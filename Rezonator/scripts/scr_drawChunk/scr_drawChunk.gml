@@ -32,31 +32,42 @@ var lastWordID = -1;
 
 // loop through chunkGrid to get chain info
 for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
-	if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, i) == 1) {
+	
+	// Make sure this Box is a Chunk
+	if(ds_list_size(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, i)) == 1) {
+		
+		// Grab the Chunk's list of contained words
 		var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, i);
+		
+		// Safety Check
 		if(ds_list_size(currentWordList) < 1) {
 				continue;
 		}
+		
+		// Get the first and last word within the Chunk
 		firstWordID = ds_list_find_value(currentWordList, 0);
 		lastWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList)-1);
+		
+		// Get the Chunks Unit and Row
 		var currentUnitID = ds_list_find_value(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, i), 0);
 		var currentDisplayRow = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID);
 		if(currentDisplayRow == -1) {
 			continue;	
 		}
 
-		
+		// Set the Buffer to be initially large, so as to allow for nesting
 		var wordRectBuffer = 6;
 		if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, i) == true) {
 			wordRectBuffer = 4;
 		}
 		
+		// Set up the measurements for the drawn box
 		displayLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentDisplayRow);
 		var leftPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1);
 		var rightPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1);
-		// get the string of this word to draw to the main screen
+		// Get the string of the first word
 		var firstWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, firstWordID - 1);
-		// get the string of this word to draw to the main screen
+		// Get the string of the last word
 		var lastWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, lastWordID - 1);
 		
 		topLeftX = leftPixelX - wordRectBuffer;
@@ -69,12 +80,12 @@ for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
 		bottomRightX = topRightX;
 		bottomRightY = bottomLeftY;
 		
+		// Draw the Chunks visual representation
 		draw_set_color(global.colorThemeSelected1);
 		draw_line_width(topLeftX, topLeftY, bottomLeftX, bottomLeftY, 2);
 		draw_line_width(topLeftX, topLeftY, topRightX, topRightY, 2);
 		draw_line_width(topRightX, topRightY, bottomRightX, bottomRightY, 2);
 		draw_line_width(bottomLeftX, bottomLeftY, bottomRightX, bottomRightY, 2);
-		
 	}
 }
 
