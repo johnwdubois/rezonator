@@ -31,7 +31,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var currentWordGridRow = currentWordID - 1;
 	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
 	
+	// Check if the word is a ChunkWord
 	if(currentWordState == 1) {
+		// Here will be functionality to focus on a Chunk and add it to a Chain
+		// This includes: Hovering over Chunk will visually effect the outline
+		// The big step is adding it to a chain, which will involve a major rework of most of this existing code
 		continue;	
 	}
 	

@@ -53,9 +53,12 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 		// Mark this box as a chunk
 		//ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid) - 1, 1);
 		moveCounter++;
+		
+		// Create an invisible new word to act as this Chunk's data type
 		var currentWordID = ds_list_find_value(currentWordList, 0);
 		var currentUnitID = ds_list_find_value(currentUnitList, 0);
 		scr_newWord(currentUnitID, ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 2), obj_control.chunkID);
+		// Store the new word's ID
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid) - 1, ds_grid_height(obj_control.wordGrid));
 			
 		// Access the first word's in Chunk list

@@ -113,6 +113,7 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 	}
 }
 
+// Will need to get back to this
 // loop through the chunks that this word is already in (if any) to refocus that chunk
 /*if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	for (var i = 0; i < ds_list_size(inChunkList); i++) {
