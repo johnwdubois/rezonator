@@ -42,6 +42,9 @@ if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 else {
 	var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
 }
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+	var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
+}
 
 // loop through the chains that this word is already in (if any) to refocus that chain
 if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
@@ -109,6 +112,71 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 		}
 	}
 }
+
+// loop through the chunks that this word is already in (if any) to refocus that chunk
+/*if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+	for (var i = 0; i < ds_list_size(inChunkList); i++) {
+		var currentChunkID = ds_list_find_value(inChunkList, i);
+		if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID)) {
+			scr_setAllValuesInCol(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+		
+			var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID);
+			ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
+			currentFocusedChunkID = currentChunkID;
+		
+			with(obj_panelPane) {
+				currentTopViewRow = ((currentChunkID - 2) > 2) ? (currentChunkID - 2) : 0;	
+			}
+		
+			var rowInLinkGrid = -1;
+			if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+				rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, unitID, linkGrid_colChainID, currentChunkID, linkGrid_colDead, false);
+			}
+			else {
+				rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChunkID, linkGrid_colDead, false);
+			}
+		
+			if (rowInLinkGrid == -1) {
+				scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+				scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+				scr_setAllValuesInCol(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+			}
+			else if (rowInLinkGrid >= 0 and rowInLinkGrid < ds_grid_height(linkGrid)) {
+			
+				ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+				ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
+				scr_refreshChainGrid();
+			
+				if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
+					ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, wordID - 1, true);
+					obj_chain.mouseLineWordID = wordID;
+		
+				}
+				with (obj_panelPane) {
+					switch (obj_chain.currentChainGrid) {
+						case obj_chain.rezChainGrid:
+							functionChainList_currentTab = functionChainList_tabRezBrush;
+							break;
+						case obj_chain.trackChainGrid:
+							functionChainList_currentTab = functionChainList_tabTrackBrush;
+							break;
+						case obj_chain.stackChainGrid:
+							functionChainList_currentTab = functionChainList_tabStackBrush;
+							break;
+						default:
+							break;
+					}
+					if (currentFunction == functionChainContents) {
+						functionChainContents_hop = wordID;
+					}
+				}
+			
+				exit;
+			}
+		}
+	}
+}*/
 
 // if there is not a focused chain, we create a new chain
 if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {

@@ -29,6 +29,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var shake = false;
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 	var currentWordGridRow = currentWordID - 1;
+	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
+	
+	if(currentWordState == 1) {
+		continue;	
+	}
 	
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 	

@@ -1,5 +1,8 @@
 var unitID = argument[0];
 var wordSeq = argument[1];
+if(argument_count == 3) {
+	var chunkID = argument[2]; 
+}
 
 if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid) {
 	exit;
@@ -10,6 +13,14 @@ if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == search
 // Ask the user for the new word, if this is not a chunk
 if(argument_count == 2) {
 	var wordTranscript = get_string("Type in new word", "example");
+}
+else {
+	var chunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, chunkID - 1);
+	var wordTranscript = "";
+	for(var transcriptLoop = 0; transcriptLoop < ds_list_size(chunkWordIDList); transcriptLoop++) {
+		var chunkWordID = ds_list_find_value(chunkWordIDList, transcriptLoop);
+		wordTranscript += (ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, chunkWordID - 1) + " ");
+	}
 }
 var wordToken = wordTranscript;
 
@@ -33,6 +44,12 @@ ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, curren
 
 scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 
+if(argument_count == 2) {
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateNormal);
+}
+else {
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateChunk);
+}
 
 var rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), unitID);
 if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(obj_control.lineGrid)) {
@@ -49,15 +66,17 @@ ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1
 
 
 
-
-for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
-	var currentWordID = ds_list_find_value(wordIDListLineGrid, i);
-	var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
-	var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
+//if(argument_count == 2) {
+	for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
+		var currentWordID = ds_list_find_value(wordIDListLineGrid, i);
+		var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+		var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 	
-	ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);	
-	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
-}
+		ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);	
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
+	
+	}
+//}
 
 // Aquire the newly set wordID list in the Unit Grid 
 var wordIDListUnitGrid = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1);

@@ -32,7 +32,7 @@ var lastWordID = -1;
 
 // loop through chunkGrid to get chain info
 for (var i = 0; i < ds_grid_height(obj_chain.chunkGrid); i++) {
-	if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, i) == 1) {
+	if(ds_list_size(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, i)) == 1) {
 		var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, i);
 		if(ds_list_size(currentWordList) < 1) {
 				continue;
