@@ -32,6 +32,10 @@ if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + s
 }
 
 
+if (windowResizeXHolding) {
+	scrollBarHolding = false;
+}
+
 // click to scroll
 if ((scrollBarHolding && mouse_check_button(mb_left))) {
 	var val = -(y - mouse_y + marginTop) - (scrollBarHeight / 2);	
