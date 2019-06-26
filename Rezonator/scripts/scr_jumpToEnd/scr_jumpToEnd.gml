@@ -11,7 +11,7 @@ if (obj_control.searchGridActive) {
 var rowInLineGrid = ds_grid_value_y(currentActiveLineGrid, obj_control.lineGrid_colDisplayRow, 0, obj_control.lineGrid_colDisplayRow, ds_grid_height(currentActiveLineGrid), obj_control.currentCenterDisplayRow);
 
 if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(currentActiveLineGrid)) {
-	show_debug_message("rowInLineGrid out of bounds");
+	//show_debug_message("rowInLineGrid out of bounds");
 	exit;
 }
 

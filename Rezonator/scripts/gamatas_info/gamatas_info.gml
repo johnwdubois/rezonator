@@ -7,4 +7,4 @@ var output = string(argument[0]);
 for (var i = 1; i < argument_count; i++) {
     output += " " + string(argument[i])
 }
-show_debug_message(output);
+//show_debug_message(output);

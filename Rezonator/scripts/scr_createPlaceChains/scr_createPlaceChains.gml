@@ -11,7 +11,7 @@ for (var i = 0; i < 10; i++) {
 		
 		with (obj_chain) {
 			scr_wordClicked(currentWordID, i);
-			show_debug_message("scr_wordClicked(" + string(currentWordID) + ", " + string(i) + ")");
+			//show_debug_message("scr_wordClicked(" + string(currentWordID) + ", " + string(i) + ")");
 		}
 	}
 	

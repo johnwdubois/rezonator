@@ -91,6 +91,7 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 
 // sort proper list of wordIDs/unitIDs and store them back in the chainGrid
 ds_list_sort(idList, true); // This causes some problems for new words, hmmm
+// It should instead sort by UnitID and word sequence
 ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
 
 // draw rectangle borders around these proper wordIDs
