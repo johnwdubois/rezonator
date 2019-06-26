@@ -24,7 +24,7 @@ var tiltSum = 0;
 
 while (currentRow >= 0 && currentRow < ds_grid_height(obj_chain.linkGrid) && ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentRow) == chainID)
 {
-	show_debug_message("in loop");
+	//show_debug_message("in loop");
 	
 	if (ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colDead, currentRow))
 	{
@@ -40,7 +40,7 @@ while (currentRow >= 0 && currentRow < ds_grid_height(obj_chain.linkGrid) && ds_
 		if (currentSource < 0 or currentSource >= ds_grid_height(obj_control.dynamicWordGrid))
 		{
 			currentRow++;
-			show_debug_message("invalid source");
+			//show_debug_message("invalid source");
 			if (currentRow >= ds_grid_height(obj_chain.linkGrid))
 			{
 				break;
@@ -50,7 +50,7 @@ while (currentRow >= 0 && currentRow < ds_grid_height(obj_chain.linkGrid) && ds_
 		if (currentGoal < 0 or currentGoal >= ds_grid_height(obj_control.dynamicWordGrid))
 		{
 			currentRow++;
-			show_debug_message("invalid goal");
+			//show_debug_message("invalid goal");
 			if (currentRow >= ds_grid_height(obj_chain.linkGrid))
 			{
 				break;
@@ -61,7 +61,7 @@ while (currentRow >= 0 && currentRow < ds_grid_height(obj_chain.linkGrid) && ds_
 		currentSourceDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentSource - 1);
 		currentGoalDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentGoal - 1);
 		
-		show_debug_message("row " + string(currentRow) + ", sourceDisplayCol = " + string(currentSourceDisplayCol) + ", goalDisplayCol = " + string(currentGoalDisplayCol));
+		//show_debug_message("row " + string(currentRow) + ", sourceDisplayCol = " + string(currentSourceDisplayCol) + ", goalDisplayCol = " + string(currentGoalDisplayCol));
 		
 		
 		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTilt, currentRow, abs(currentSourceDisplayCol - currentGoalDisplayCol));

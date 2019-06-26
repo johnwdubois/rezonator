@@ -60,7 +60,7 @@ for (var fileLineRipGridLoop = 0; fileLineRipGridLoop < ds_grid_height(global.fi
 		{
 			currentUtteranceID = real(scr_fileLineRipListSearch(i, "uID=\"u", "\"", currentFileLineRipList));
 
-			show_debug_message(string(currentUtteranceID) + "..... " + currentElement);
+			//show_debug_message(string(currentUtteranceID) + "..... " + currentElement);
 		}
 	
 		if (string_count("PID=", currentElement) > 0)

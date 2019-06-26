@@ -39,7 +39,7 @@ for (var i = 0; i < ds_list_size(global.fileLineRipList); i++)
 	{
 		currentUnitID = real(scr_fileLineRipListSearch(i, "uID=\"u", "\""));
 
-		show_debug_message(string(currentUnitID) + "..... " + currentElement);
+		//show_debug_message(string(currentUnitID) + "..... " + currentElement);
 	}
 	
 	if (string_count("PID=", currentElement) > 0)

@@ -64,6 +64,8 @@ draw_set_color(global.colorThemeText);
 obj_control.leftScreenBound = room_width;
 
 hoverWordID = -1;
+hoverChunkID = -1;
+//clickedChunkID = -1;
 
 // for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoop++) {

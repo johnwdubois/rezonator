@@ -1,6 +1,25 @@
+/*
+	scr_newWord();
+	
+	Last Updated: 2019-06-25
+	
+	Called from: obj_control
+	
+	Purpose: Create a new word within the discourse based on user string input
+	
+	Mechanism: Place the new word and its attributes into each word grid
+	
+	Author: Terry DuBois, Georgio Klironomos
+*/
+
+// Take in the arguments, and check if this word is a Chunk word
 var unitID = argument[0];
 var wordSeq = argument[1];
+if(argument_count == 3) {
+	var chunkID = argument[2]; 
+}
 
+// Safety check
 if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid) {
 	exit;
 }
@@ -11,6 +30,16 @@ if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == search
 if(argument_count == 2) {
 	var wordTranscript = get_string("Type in new word", "example");
 }
+else {
+	// If it is a Chunk, combine the words within the Chunk for the trnscript
+	var chunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, chunkID - 1);
+	var wordTranscript = "";
+	for(var transcriptLoop = 0; transcriptLoop < ds_list_size(chunkWordIDList); transcriptLoop++) {
+		var chunkWordID = ds_list_find_value(chunkWordIDList, transcriptLoop);
+		wordTranscript += (ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, chunkWordID - 1) + " ");
+	}
+}
+// Set the word's token
 var wordToken = wordTranscript;
 
 if (string_length(wordTranscript) < 1) {
@@ -19,20 +48,29 @@ if (string_length(wordTranscript) < 1) {
 
 obj_control.moveCounter++;
 
+// Set the WordGrid to take in the new word
 ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 
 var wordID = ds_grid_height(obj_control.wordGrid);
 
-
+// Fill in the new row of the WordGrid
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentRowWordGrid, wordID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentRowWordGrid, unitID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, wordSeq + 1);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordToken);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
 
+// Fill in the new row of the DynamicWordGrid
 scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 
+// Designate the new word as a normal word or a Chunk word
+if(argument_count == 2) {
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateNormal);
+}
+else {
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateChunk);
+}
 
 var rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), unitID);
 if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(obj_control.lineGrid)) {
@@ -57,7 +95,9 @@ for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
 	
 	ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1, currentWordSeq + 1);	
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol + 1);
+	
 }
+
 
 // Aquire the newly set wordID list in the Unit Grid 
 var wordIDListUnitGrid = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1);

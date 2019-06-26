@@ -127,7 +127,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 	
 	
 	if (ds_grid_get(rezChainGrid, chainGrid_colChainState, i) == chainStateFocus) {	
-		if (mouseLineWordID >= 0 && mouseLineWordID < ds_grid_height(obj_control.wordGrid)) {
+		if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
 			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
 			
@@ -144,10 +144,12 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 	scr_alignChain(currentWordIDList, isAligned);
 }
 
+
+
 // draw pickwhip line to mouse from chain
 if (not (mouseLineX == undefined or mouseLineY == undefined)) {
+	
 	if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)) {
-		
 		var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
 		currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
 		draw_set_color(currentChainColor);

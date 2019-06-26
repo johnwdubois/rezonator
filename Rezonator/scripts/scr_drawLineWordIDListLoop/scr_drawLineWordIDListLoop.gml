@@ -29,6 +29,114 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var shake = false;
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 	var currentWordGridRow = currentWordID - 1;
+	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
+	
+	// Check if the word is a ChunkWord
+	if(currentWordState == obj_control.wordStateChunk) {
+		// Here will be functionality to focus on a Chunk and add it to a Chain
+		// This includes: Hovering over Chunk will visually effect the outline
+		// The big step is adding it to a chain, which will involve a major rework of most of this existing code
+		
+		draw_set_font(fnt_main);
+
+		// Set all variables needed to draw a Chunk
+		var displayLineY = undefined;
+
+		var topLeftX = undefined;
+		var topLeftY = undefined;
+		var bottomLeftX = undefined;
+		var bottomLeftY = undefined;
+
+		var topRightX = undefined;
+		var topRightY = undefined;
+		var bottomRightX = undefined;
+		var bottomRightY = undefined;
+
+		var firstWordID = -1;
+		var lastWordID = -1;
+		
+		// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
+		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+		if(currentChunkRow < 0) {
+			continue;	
+		}
+		
+		// Grab the Chunk's list of contained words
+		var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
+		
+		// Safety Check
+		if(ds_list_size(currentWordList) < 1) {
+				continue;
+		}
+		
+		// Get the first and last word within the Chunk
+		firstWordID = ds_list_find_value(currentWordList, 0);
+		lastWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList)-1);
+		
+		// Get the Chunks Unit and Row
+		var currentUnitID = ds_list_find_value(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, currentChunkRow), 0);
+		var currentDisplayRow = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID);
+		if(currentDisplayRow == -1) {
+			continue;	
+		}
+
+		// Set the Buffer to be initially large, so as to allow for nesting
+		var wordRectBuffer = 6;
+		if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, currentChunkRow) == true) {
+			wordRectBuffer = 4;
+		}
+		
+		// Set up the measurements for the drawn box
+		displayLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentDisplayRow);
+		var leftPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1);
+		var rightPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1);
+		// Get the string of the first word
+		var firstWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, firstWordID - 1);
+		// Get the string of the last word
+		var lastWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, lastWordID - 1);
+		
+		topLeftX = leftPixelX - wordRectBuffer;
+		topLeftY = displayLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
+		bottomLeftX = topLeftX;
+		bottomLeftY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
+		
+		topRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2);
+		topRightY = topLeftY;
+		bottomRightX = topRightX;
+		bottomRightY = bottomLeftY;
+		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);//global.colorThemeSelected1
+		
+		// Draw the Chunks visual representation
+		draw_set_color(effectColor);
+		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
+				draw_rectangle(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
+		}
+		
+		// Check for mouseover of the Chunk (clicks coming soon)
+		var mouseover = false;
+		if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
+		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1) {
+			mouseover = true;
+			
+			// May need to make a hoverChunkID
+			hoverChunkID = currentWordID;
+		
+			// Draw the hover highlight
+			draw_set_color(global.colorThemeSelected1);
+			draw_set_alpha(0.5);
+			draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
+			
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_control.clickedChunkID = currentChunkRow + 1; // Debug variable
+				// Add this Chunk to a chain
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
+				}
+			}
+		}
+		
+		continue;	
+	}
 	
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 	

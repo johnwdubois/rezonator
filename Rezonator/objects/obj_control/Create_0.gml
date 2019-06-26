@@ -130,6 +130,9 @@ dynamicWordGrid_colReplaceWord = 11;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
+wordStateNormal = 0;
+wordStateChunk = 1;
+
 
 // Instantiate the Word Draw Grid
 wordDrawGridWidth = 7;
@@ -212,6 +215,8 @@ newWordHoverWordSeq = -1;
 newWordHoverWordID = -1;
 
 hoverWordID = -1;
+hoverChunkID = -1;
+clickedChunkID = -1;
 
 // Safety check for the drop downs
 ableToCreateDropDown = true;
