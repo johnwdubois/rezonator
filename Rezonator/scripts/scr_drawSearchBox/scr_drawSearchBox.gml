@@ -19,6 +19,8 @@
 	var buttonXOffset = 50;
 	var buttonYOffset = 25;
 
+
+
 if (obj_control.fPressed) {
 
 	
@@ -29,6 +31,7 @@ if (obj_control.fPressed) {
 		verticleBuffer = 50;
 	}
 	*/
+	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
 	draw_set_colour(global.colorThemePaneBG);
@@ -97,27 +100,8 @@ if (obj_control.fPressed) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Current Chain");
 	
 	
-}
 
 
-
-
-// ok button check
-if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset)){
-		if (mouse_check_button_pressed(mb_left)) {
-			obj_control.fPressed = false;
-
-		}
-		
-}
-
-//cancel button check
-if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset)){
-		if (mouse_check_button_pressed(mb_left)) {
-			obj_control.fPressed = false;
-		}
-		
-}
 
 // current chain boolean switch
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105)){
@@ -138,6 +122,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		if (mouse_check_button_pressed(mb_left)) {
 			obj_control.transcriptSearch = !obj_control.transcriptSearch;
 		}
+}
+
 }
 
 //keyboard inputs
@@ -182,15 +168,38 @@ if(keyboard_check_pressed(vk_right)) {
 }
 
 
-var displayText = string_insert("|", inputText, cursorPos);
-
+var displayText = inputText;
+draw_set_halign(fa_left);
 draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camera_get_view_height(view_camera[0])/2 , displayText);
+
 
 }
 
 
-if keyboard_check_pressed(vk_enter)
-   {
-   obj_control.fPressed = false;
-   }
+
+
+// ok button check
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.fPressed){
+		if (mouse_check_button_pressed(mb_left)) {
+			obj_control.fPressed = false;
+			scr_searchForWord(displayText);
+
+		}
+		
+}
+
+//cancel button check
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.fPressed){
+		if (mouse_check_button_pressed(mb_left)) {
+			obj_control.fPressed = false;
+		}
+		
+}
+
+
+
+if ( keyboard_check_pressed(vk_enter) && obj_control.fPressed) {
+	obj_control.fPressed = false;
+	scr_searchForWord(displayText);
+}
 

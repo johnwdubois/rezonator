@@ -12,7 +12,7 @@
 	
 	Author: Georgio Klironomos, Terry DuBois
 */
-if (!shortcutsEnabled) {
+if (!shortcutsEnabled || fPressed) {
 	exit;
 }
 

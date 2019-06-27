@@ -1,5 +1,5 @@
 ///@description "Normal" textAlign
-if (!shortcutsEnabled) {
+if (!shortcutsEnabled || fPressed) {
 	exit;
 }
 

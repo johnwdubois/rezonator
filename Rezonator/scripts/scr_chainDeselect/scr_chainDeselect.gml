@@ -15,4 +15,5 @@ scr_killEmptyChains(rezChainGrid);
 scr_killEmptyChains(trackChainGrid);
 scr_killEmptyChains(stackChainGrid);
 
+
 mouseLineWordID = -1;

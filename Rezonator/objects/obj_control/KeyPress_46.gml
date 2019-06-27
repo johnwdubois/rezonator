@@ -30,6 +30,8 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	if (indexOfChainIDInChainsList > -1)
 	{
 		ds_list_delete(sourceInChainsList, indexOfChainIDInChainsList);
+		
+		moveCounter ++;
 	}
 	
 	if (source >= 0 and source < ds_grid_height(obj_control.dynamicWordGrid) and tier == 1)

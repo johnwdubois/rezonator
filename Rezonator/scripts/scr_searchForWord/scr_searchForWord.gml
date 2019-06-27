@@ -13,6 +13,8 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+//var wordToFind = argument[0];
+
 // Get the word's string from the user
 var wordToFind = get_string("Type string to find", "");
 

@@ -1,5 +1,5 @@
 ///@description GoToLine
-if (!shortcutsEnabled) {
+if (!shortcutsEnabled || fPressed) {
 	exit;
 }
 
