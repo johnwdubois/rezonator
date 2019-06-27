@@ -36,7 +36,7 @@ if (showDisplayCols) {
 
 
 scr_drawLine();
-scr_drawChunk();
+//scr_drawChunk();
 //scr_drawSearchBox();
 
 

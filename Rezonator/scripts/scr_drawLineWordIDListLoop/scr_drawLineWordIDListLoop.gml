@@ -33,6 +33,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	// Check if the word is a ChunkWord
 	if(currentWordState == obj_control.wordStateChunk) {
+		if(ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow), 0) == undefined) {
+			continue;
+		}
+		
 		// Here will be functionality to focus on a Chunk and add it to a Chain
 		// This includes: Hovering over Chunk will visually effect the outline
 		// The big step is adding it to a chain, which will involve a major rework of most of this existing code
@@ -56,16 +60,16 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		var lastWordID = -1;
 		
 		// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
-		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+		var currentChunkRow = (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow), 0) - 1); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
 		if(currentChunkRow < 0) {
 			continue;	
 		}
-		
+		//show_message(string(currentChunkRow))
 		// Grab the Chunk's list of contained words
 		var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
 		
 		// Safety Check
-		if(ds_list_size(currentWordList) < 1) {
+		if(currentWordList == undefined || ds_list_size(currentWordList) < 1) {
 				continue;
 		}
 		
@@ -75,10 +79,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 		// Get the Chunks Unit and Row
 		var currentUnitID = ds_list_find_value(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, currentChunkRow), 0);
-		var currentDisplayRow = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID);
-		if(currentDisplayRow == -1) {
+		//var currentDisplayRow = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID);
+		/*if(currentDisplayRow == -1) {
 			continue;	
-		}
+		}*/
 
 		// Set the Buffer to be initially large, so as to allow for nesting
 		var wordRectBuffer = 6;
@@ -87,16 +91,20 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		
 		// Set up the measurements for the drawn box
-		displayLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentDisplayRow);
-		var leftPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1);
+		//displayLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentDisplayRow);
+		var leftPixelX = min(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1), ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID - 1));
+		//var rightPixelX = max(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1), ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID - 1));
 		var rightPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1);
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, leftPixelX);
+		
+		
 		// Get the string of the first word
 		var firstWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, firstWordID - 1);
 		// Get the string of the last word
 		var lastWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, lastWordID - 1);
 		
 		topLeftX = leftPixelX - wordRectBuffer;
-		topLeftY = displayLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
+		topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
 		bottomLeftX = topLeftX;
 		bottomLeftY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
 		
