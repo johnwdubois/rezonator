@@ -51,10 +51,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
-	//var colName = scr_getColNameString(grid, gridLoopCol);
-	//draw_text(colRectX1 - clipX, colRectY1 + (colNameHeight / 2), colName);
-	
-	//textY = colRectY1 + colNameHeight;
+
 	textPlusY = 0;
 	
 	for (var gridLoopRow = 0; gridLoopRow < ds_grid_height(grid); gridLoopRow++) {
@@ -147,10 +144,17 @@ for (var j = 0; j < 5; j++) {
 draw_set_font(global.fontMain);
 draw_text(windowX1 + 10, windowY2 + strHeight + 20, "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString);
 
-draw_text(windowX1, windowY2 + 60, "fps: " + string(fps));
+draw_text(windowX1, windowY2 + strHeight + 20 + string_height("0"), "fps: " + string(fps));
 
 
 
+// mousewheel input
+if (mouse_wheel_up()) {
+	scrollPlusYDest += 8;
+}
+if (mouse_wheel_down()) {
+	scrollPlusYDest -= 8;
+}
 
 // keyboard input for UP and DOWN
 if (keyboard_check(vk_up)) {

@@ -77,8 +77,8 @@ scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
 scrollBarWidth = 20;
 scrollBarHeight = 0;
-scrollPlusY = 0;
-scrollPlusYDest = 0;
+scrollPlusY = 100;
+scrollPlusYDest = 100;
 scrollBarPlusY = 0;
 
 x = 32;
