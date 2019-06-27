@@ -215,6 +215,8 @@ newWordHoverWordSeq = -1;
 newWordHoverWordID = -1;
 
 hoverWordID = -1;
+hoverChunkID = -1;
+clickedChunkID = -1;
 
 // Safety check for the drop downs
 ableToCreateDropDown = true;
@@ -312,6 +314,14 @@ shortcutsEnabled = true;
 // Keep track of session length
 sessionStartTime = current_time;
 currentSessionTime = 0;
+
+// Search box variables
+fPressed = false;
+inChainBool = false;
+transcriptSearch = false;
+caseSensitive = false;
+cursorPos = 1 ;
+inputText = "";
 
 // Safety check for quick volunteers
 alarm[9] = 10;

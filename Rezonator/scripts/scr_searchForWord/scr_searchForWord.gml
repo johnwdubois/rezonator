@@ -21,14 +21,6 @@ if (string_length(wordToFind) < 1) {
 	exit;
 }
 
-/*
-var numOfWords = string_count("$", wordToFind); 
-
-if (numOfWords > 0) {
-	for(var i = 0; numOfWords >= i; i++){
-		var placeToSplice = string_pos("$", wordToFind);	
-	}
-}*/
 
 // Keep a temporary grid
 var tempSearchGrid = ds_grid_create(ds_grid_width(lineGrid), ds_grid_height(lineGrid));
@@ -73,15 +65,18 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 			var currentWordTranscript = ds_grid_get(wordGrid, wordGrid_colWordTranscript, currentWordID - 1);
 		
 			//loop through all words in list
-			for (var k = 0; k < ds_list_size(listOfWords); k++) {
+			for (var l = 0; l < ds_list_size(listOfWords); l++) {
 									
 				if !ds_list_empty(listOfWords) {
-					wordToFind = ds_list_find_value(listOfWords, k);
+					wordToFind = ds_list_find_value(listOfWords, l);
 				}
 				
+				
+			
 			// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
 			if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript)) {
-			
+				
+
 				ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
 				var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
 			
@@ -126,6 +121,8 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 				}
 			
 				ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
+				
+
 			}
 		}
 	}

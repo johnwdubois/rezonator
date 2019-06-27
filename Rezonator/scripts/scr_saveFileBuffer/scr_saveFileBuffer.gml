@@ -9,4 +9,4 @@ buffer_write(buffer, buffer_string, stringToSave);
 buffer_save_ns(buffer, fileNameUser);
 buffer_delete(buffer);
 
-show_debug_message(filename_path(fileNameWD));
+//show_debug_message(filename_path(fileNameWD));

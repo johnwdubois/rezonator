@@ -1823,6 +1823,14 @@
             }
         },
         {
+            "Key": "760937d6-16c6-42b7-bd58-6f67433e06d2",
+            "Value": {
+                "id": "88bc5632-f994-454e-b900-aee9e008745d",
+                "resourcePath": "scripts\\scr_drawSearchBox\\scr_drawSearchBox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "76598001-74d9-49f0-a756-ee315516c6e3",
             "Value": {
                 "id": "b7920dd4-09aa-4b23-bb9b-cc2d749c28a2",
@@ -4195,7 +4203,8 @@
         "69e7ecc0-ce61-4cd5-bfa8-255c686f740d",
         "155253d6-fef1-49fd-af7c-2c9a1b64e74b",
         "01326701-b0a6-4057-8a77-21f137c710e7",
-        "efca083d-511d-46a9-b9b8-80c06a142131"
+        "efca083d-511d-46a9-b9b8-80c06a142131",
+        "760937d6-16c6-42b7-bd58-6f67433e06d2"
     ],
     "tutorial": ""
 }
