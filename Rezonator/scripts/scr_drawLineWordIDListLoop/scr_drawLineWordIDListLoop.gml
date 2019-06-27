@@ -115,7 +115,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);//global.colorThemeSelected1
 		
 		// Draw the Chunks visual representation
-		draw_set_color(effectColor);
+		if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0) {
+			draw_set_color(effectColor);
+		} else {
+			draw_set_color(global.colorThemeSelected1);	
+		}
 		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
 				draw_rectangle(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
 		}
