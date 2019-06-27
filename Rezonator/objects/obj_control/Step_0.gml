@@ -255,6 +255,10 @@ for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	if (point_in_rectangle(mouse_x, mouse_y, toolPaneInst.x, toolPaneInst.y, toolPaneInst.x + toolPaneInst.windowWidth, toolPaneInst.y + toolPaneInst.windowHeight)) {
 		mouseoverPanelPane = true;
 	}
+	//check for mouse over search pane
+	if (obj_control.fPressed && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 250, camera_get_view_height(view_camera[0])/2 - 125 + 30, camera_get_view_width(view_camera[0]) /2 + 250, camera_get_view_height(view_camera[0])/2 + 125)){
+		mouseoverPanelPane = true;		
+	}
 	
 	if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
 		if (!panelPaneInst.functionHelp_collapsed) {

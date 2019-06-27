@@ -66,7 +66,7 @@
         "f8f73475-af6c-45e2-9ce9-523945d68150"
     ],
     "filterType": "GMIncludedFile",
-    "folderName": "DefaultXMLs",
+    "folderName": "Default XML files",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
