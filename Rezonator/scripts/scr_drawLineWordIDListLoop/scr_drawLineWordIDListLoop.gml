@@ -44,7 +44,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_set_font(fnt_main);
 
 		// Set all variables needed to draw a Chunk
-		var displayLineY = undefined;
 
 		var topLeftX = undefined;
 		var topLeftY = undefined;
