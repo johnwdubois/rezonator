@@ -207,7 +207,7 @@ if (shortcutsEnabled) {
 		if (keyboard_check_direct(189) and canPressMinus) {
 			canPressMinus = false;
 			gridSpaceVertical -= 10;
-			lineSpacing -= 40;
+			lineSpacing -= 4;
 			alarm[4] = 15;
 		}
 	}
