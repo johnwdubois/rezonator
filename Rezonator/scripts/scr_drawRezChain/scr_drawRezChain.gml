@@ -57,9 +57,11 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
+		var chunkWord1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1);
 		
 		var currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
 		var currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
+		//show_message(string(currentWordStringHeight1));
 		
 		lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
 		lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex1);
@@ -67,6 +69,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 		var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
 		var currentUnitID2 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID2 - 1);
 		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID2);
+		var chunkWord2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1);
 		
 		if (currentUnitID1 == currentUnitID2)
 		{
@@ -96,6 +99,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 		
 		var currentWordStringWidth2 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1));
 		var currentWordStringHeight2 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1));
+		//show_message(string(currentWordStringHeight2));
 		
 		lineX2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID2 - 1);
 		lineY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex2);
@@ -113,6 +117,24 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 			currentLineGridIndex2InDrawRange = false;
 		}
 		
+		if(chunkWord1) {
+			var wordRectBuffer = 6;
+			if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID1 - 1), 0) - 1)) == true) {
+				wordRectBuffer = 4;
+			}
+			lineY1 += wordRectBuffer;
+			chunkWord1 = 0;
+		}
+		if(chunkWord2) {
+			var wordRectBuffer = 6;
+			if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID2 - 1), 0) - 1)) == true) {
+				wordRectBuffer = 4;
+			}
+			lineY2 -= (wordRectBuffer * 4) + 4;
+			chunkWord2 = 0;
+		}
+		
+		
 		// only draw line if every value is real and we are in the draw range
 		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
 		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
@@ -121,6 +143,8 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 			draw_set_color(currentChainColor);
 			draw_set_alpha(1);
 			draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+			// I need to modify this with the Chunk's wordRectBuffer
+			
 		}
 	}
 	
@@ -136,6 +160,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 			
 			mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1) + (mouseLineWordStringWidth / 2);
 			mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordGridIndex) + (mouseLineWordStringHeight / 2);
+			
 		}
 	}
 	
@@ -145,10 +170,9 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 }
 
 
-
 // draw pickwhip line to mouse from chain
 if (not (mouseLineX == undefined or mouseLineY == undefined)) {
-	
+	//obj_control.showMouseLine = true;	
 	if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)) {
 		var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
 		currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
