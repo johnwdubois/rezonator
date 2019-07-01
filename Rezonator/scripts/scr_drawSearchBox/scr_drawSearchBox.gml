@@ -126,15 +126,18 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 }
 
-//keyboard inputs
+// reset booleans
 if (!obj_control.fPressed) {
 	inputText = "";
-	cursorPos = 1;
 	keyboard_string = "";
+	cursorPos = 1;
 	obj_control.transcriptSearch = false;
 	obj_control.inChainBool = false;
 	obj_control.caseSensitive = false;
 }
+
+// keyboard inputs
+
 
 if (obj_control.fPressed) {
 // Variables
@@ -188,7 +191,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		
 }
 
-//cancel button check
+// cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.fPressed){
 		if (mouse_check_button_pressed(mb_left)) {
 			obj_control.fPressed = false;
@@ -197,7 +200,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 }
 
 
-
+// enter check
 if ( keyboard_check_pressed(vk_enter) && obj_control.fPressed) {
 	obj_control.fPressed = false;
 	scr_searchForWord(displayText);
