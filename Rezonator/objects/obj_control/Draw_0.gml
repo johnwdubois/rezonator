@@ -36,7 +36,7 @@ if (showDisplayCols) {
 
 
 scr_drawLine();
-scr_drawChunk();
+//scr_drawChunk();
 //scr_drawSearchBox();
 
 
@@ -93,6 +93,8 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 310, "displayRowAscending: " + string(displayRowAscending));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 330, "currentChainID: " + string(obj_chain.currentChainID));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 350, "clickedChunkID: " + string(clickedChunkID));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 370, "mouseLineHide: " + string(showMouseLine));
+	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 400, "newWordHoverWordID: " + string(newWordHoverWordID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 440, "moveCounter: " + string(moveCounter));

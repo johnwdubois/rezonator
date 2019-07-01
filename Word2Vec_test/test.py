@@ -24,4 +24,5 @@ for i in sent_tokenize(f):
 
 model1 = gensim.models.Word2Vec(data, min_count=1, size=100, window=5)
 
-print("cosine similarity between alice and wonderland", model1.similarity('alice', 'machine'))
+print("cosine similarity between alice and wonderland", model1.similarity('alice', 'wonderland'))
+print("cosine similarity between dog and cat", model1.similarity('dog', 'cat'))

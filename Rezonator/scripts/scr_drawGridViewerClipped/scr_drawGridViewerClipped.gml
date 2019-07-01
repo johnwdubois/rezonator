@@ -17,6 +17,7 @@ scr_drawGridViewerGridTabs();
 scr_surfaceStart();
 
 var scrollBarWidth = 20;
+// I suppose this is the variable to make dynamic
 var gridColWidth = windowWidth / ds_grid_width(grid);
 var textY = 0;
 var textPlusY = 0;
@@ -120,6 +121,7 @@ draw_rectangle(windowX1 - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + 
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(windowX1 - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + colNameHeight - clipY, true);
 
+// Draw the scroll bar for the GridView
 scr_scrollBar(ds_grid_height(grid), -1, strHeight, colNameHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
