@@ -1,2 +1,5 @@
-/// @description Insert description here
-// You can write your code in this editor
+ip = get_string("Type in IP", "");
+port = real(get_string("Type in port", ""));
+
+scr_networkInit();
+scr_networkServer(ip, port);

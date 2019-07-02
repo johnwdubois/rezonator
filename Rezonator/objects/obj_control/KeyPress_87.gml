@@ -4,7 +4,15 @@ if (!shortcutsEnabled || fPressed) {
 }
 
 if (keyboard_check(vk_control)) {
-	scr_sendGridToServer(wordGrid);
+	
+	if (showDevVars) {
+		if (!instance_exists(obj_network)) {
+			instance_create(0, 0, obj_network);
+		}
+		with (obj_network) {
+			scr_sendGridToServer(obj_control.wordGrid);
+		}
+	}
 	exit;
 }
 
