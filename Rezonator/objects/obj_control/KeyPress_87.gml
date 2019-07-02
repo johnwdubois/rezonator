@@ -3,6 +3,11 @@ if (!shortcutsEnabled || fPressed) {
 	exit;
 }
 
+if (keyboard_check(vk_control)) {
+	scr_sendGridToServer(wordGrid);
+	exit;
+}
+
 wordTranscriptView = !wordTranscriptView;
 
 for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {
