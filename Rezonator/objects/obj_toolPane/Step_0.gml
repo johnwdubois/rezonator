@@ -1,36 +1,36 @@
 // Check for user inputs to switch between chain tools
 if (!obj_control.gridView) {
-	if (keyboard_check_pressed(ord("R")) and  not obj_control.fPressed) {
+	if (keyboard_check_pressed(ord("R"))) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
 		currentTool = toolRezBrush;
 	}
-	else if (keyboard_check_pressed(ord("T"))and  not obj_control.fPressed) {
+	else if (keyboard_check_pressed(ord("T"))) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
 		currentTool = toolTrackBrush;
 	}
-	else if (keyboard_check_pressed(ord("K"))and  not obj_control.fPressed) {
+	else if (keyboard_check_pressed(ord("K"))) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
 		currentTool = toolStackBrush;
 	}
-	else if (keyboard_check_pressed(ord("B"))and  not obj_control.fPressed) {
+	else if (keyboard_check_pressed(ord("B"))) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
 		currentTool = toolBoxBrush;
 	}
-	else if (keyboard_check_pressed(ord("M"))and  not obj_control.fPressed) {
+	else if (keyboard_check_pressed(ord("M"))) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
 		currentTool = toolPointer;
 	}
-	else if (keyboard_check_pressed(ord("N"))and  not obj_control.fPressed) {
+	else if (keyboard_check_pressed(ord("N"))) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}

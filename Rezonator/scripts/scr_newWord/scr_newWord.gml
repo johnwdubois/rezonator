@@ -20,7 +20,7 @@ if(argument_count == 3) {
 }
 
 // Safety check
-if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid or obj_control.fPressed) {
+if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid) {
 	exit;
 }
 
@@ -46,9 +46,7 @@ if (string_length(wordTranscript) < 1) {
 	exit;
 }
 
-// move counter adds one for each word added
-	obj_control.moveCounter++;
-
+obj_control.moveCounter++;
 
 // Set the WordGrid to take in the new word
 ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
