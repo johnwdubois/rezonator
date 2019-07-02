@@ -4,12 +4,12 @@
 gml_pragma( "global", "__global_object_depths()");
 
 // insert the generated arrays here
-global.__objectDepths[0] = 10; // obj_example
-global.__objectDepths[1] = 0; // obj_input_text
+global.__objectDepths[0] = 10; // obj_exampleglobal.__objectDepths[1] = 0; // obj_input_text
+
+global.__objectNames[0] = "obj_example";global.__objectNames[1] = "obj_input_text";
 
 
-global.__objectNames[0] = "obj_example";
-global.__objectNames[1] = "obj_input_text";
+
 
 
 // create another array that has the correct entries

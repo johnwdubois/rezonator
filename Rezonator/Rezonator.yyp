@@ -1391,6 +1391,14 @@
             }
         },
         {
+            "Key": "55372bcd-93a9-4865-84e7-21bed3feda21",
+            "Value": {
+                "id": "ed082c61-6f0a-4d9e-b43f-a116d5da0823",
+                "resourcePath": "views\\55372bcd-93a9-4865-84e7-21bed3feda21.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "57f16c7b-2be1-4232-b8a3-e78e74f04a89",
             "Value": {
                 "id": "bd33f4e6-01ad-4440-97ad-0e83486a6592",
@@ -1791,6 +1799,14 @@
             }
         },
         {
+            "Key": "7425f101-78b2-4fe4-b0f7-e7a0802b8613",
+            "Value": {
+                "id": "a17afbe5-1f51-4bad-a32d-18ec31d81267",
+                "resourcePath": "scripts\\scr_addToSearchGrid\\scr_addToSearchGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "74a3c524-0a9c-4efb-bc44-61bfc4332f6a",
             "Value": {
                 "id": "429fd716-ce45-4a85-9496-6081cdd1c8b0",
@@ -1876,6 +1892,14 @@
                 "id": "6010f65b-d89a-476e-86de-221fbc2fbbb9",
                 "resourcePath": "sprites\\sPTextField\\sPTextField.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "77ee29aa-8bf7-4fb3-bc2f-8a4b35746285",
+            "Value": {
+                "id": "47b1418a-74c8-4c83-8e88-3480ba95eb18",
+                "resourcePath": "extensions\\GML_Regular_Expressions\\GML_Regular_Expressions.yy",
+                "resourceType": "GMExtension"
             }
         },
         {
@@ -2487,6 +2511,14 @@
             }
         },
         {
+            "Key": "9800f878-cd79-4241-9f4b-045406007bbe",
+            "Value": {
+                "id": "043a7a5b-f2f7-4cd9-8ae4-4c37074edaf6",
+                "resourcePath": "views\\9800f878-cd79-4241-9f4b-045406007bbe.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "98ae507a-19f0-4871-9076-5359c0b59670",
             "Value": {
                 "id": "3ac12ec2-5382-4a81-9806-a58b70d6613d",
@@ -2515,6 +2547,14 @@
             "Value": {
                 "id": "22327df9-5250-4c64-9cf3-08ec0328ae94",
                 "resourcePath": "scripts\\input_text_set_text\\input_text_set_text.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9bb0ae60-c3bc-40bb-b477-9e19ca2e0b9f",
+            "Value": {
+                "id": "aa9e4905-6357-4f6a-bbc2-c7844833f4dc",
+                "resourcePath": "scripts\\scr_regularExpressionDestroy\\scr_regularExpressionDestroy.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2644,6 +2684,14 @@
                 "id": "68df1055-bc5d-4249-b411-b351e0735a21",
                 "resourcePath": "fonts\\fnt_gridViewLarge5\\fnt_gridViewLarge5.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "9fc9e9bd-ef57-4211-bcbb-9e7c58c88f83",
+            "Value": {
+                "id": "3962637b-442e-45d2-bfa8-65eaf46d6e91",
+                "resourcePath": "scripts\\scr_regularExpressionCreate\\scr_regularExpressionCreate.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -3111,6 +3159,14 @@
             }
         },
         {
+            "Key": "bc64c216-d702-4b41-bf34-259c8596f638",
+            "Value": {
+                "id": "e9558135-2390-4333-b4c5-0a532b88d3cb",
+                "resourcePath": "notes\\compatibility_report_020719_110014014.yy",
+                "resourceType": "GMNotes"
+            }
+        },
+        {
             "Key": "bc8a15f4-a210-4374-b1b5-7f87b9c9c23d",
             "Value": {
                 "id": "3a008490-55bf-463c-a6b1-8edd197ebf0e",
@@ -3460,6 +3516,14 @@
                 "id": "1d88c971-2ce8-4e95-8ef4-b54101578133",
                 "resourcePath": "datafiles_yy\\Default REZ files\\sbc059.rez.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "d9290ec3-0dc0-411b-b00a-fd8506418061",
+            "Value": {
+                "id": "20c4d0f0-0405-44ed-9d8e-3e7d50304ef9",
+                "resourcePath": "scripts\\scr_regularExpressionMatch\\scr_regularExpressionMatch.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -4059,7 +4123,6 @@
         "9c146d82-4f65-4ba7-925e-de5c12c08a4d",
         "93ec584d-5334-4edd-a749-7888e632eb4c",
         "baa8251d-a6a3-4fcf-bc51-f2fb7eea630b",
-        "1fc73ccb-fa5e-4385-b7e2-4edfda6f2e58",
         "df1e32cd-3604-4cea-bd31-a9d305c01be3",
         "18d019a7-af73-4cb5-91b6-f7efec25e5ce",
         "943630f7-d610-4dfd-9cca-a13dbecb5ddd",
@@ -4204,7 +4267,12 @@
         "155253d6-fef1-49fd-af7c-2c9a1b64e74b",
         "01326701-b0a6-4057-8a77-21f137c710e7",
         "efca083d-511d-46a9-b9b8-80c06a142131",
-        "760937d6-16c6-42b7-bd58-6f67433e06d2"
+        "760937d6-16c6-42b7-bd58-6f67433e06d2",
+        "7425f101-78b2-4fe4-b0f7-e7a0802b8613",
+        "1fc73ccb-fa5e-4385-b7e2-4edfda6f2e58",
+        "9fc9e9bd-ef57-4211-bcbb-9e7c58c88f83",
+        "9bb0ae60-c3bc-40bb-b477-9e19ca2e0b9f",
+        "d9290ec3-0dc0-411b-b00a-fd8506418061"
     ],
     "tutorial": ""
 }
