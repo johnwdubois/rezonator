@@ -1,3 +1,5 @@
+// Credit to Suspendee Studios
+
 var netbuf = buffer_create(1024,buffer_grow,1);
 buffer_seek(netbuf,buffer_seek_start,0);
 var temptxt = argument1;
