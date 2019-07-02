@@ -1,5 +1,3 @@
-// Credit to Suspendee Studios
-
 if (ds_map_find_value(async_load, "type") == network_type_data)
 {
 	var tempbuf = ds_map_find_value(async_load,"buffer");
