@@ -109,3 +109,9 @@ with (obj_panelPane) {
 	functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
 	functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
 }
+
+with (obj_panelPane) {
+	if (currentFunction == functionChainList) {
+		alarm[4] = 2;
+	}
+}
