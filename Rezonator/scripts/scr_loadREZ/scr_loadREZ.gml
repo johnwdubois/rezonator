@@ -71,6 +71,7 @@ if (file_exists(fileName)) {
 				scr_loadREZGridReset(obj_chain.rezChainGrid, map, "rezChainGrid");
 				scr_loadREZGridReset(obj_chain.trackChainGrid, map, "trackChainGrid");
 				scr_loadREZGridReset(obj_chain.stackChainGrid, map, "stackChainGrid");
+				scr_loadREZGridReset(obj_chain.chunkGrid, map, "chunkChainGrid");
 				scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
 				scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
 				

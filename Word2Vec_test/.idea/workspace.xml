@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4ce434e7-0ed3-4e89-8dac-40c2b47dd43b" name="Default Changelist" comment="" />
+    <list default="true" id="4ce434e7-0ed3-4e89-8dac-40c2b47dd43b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Rezonator/objects/obj_panelPane/obj_panelPane.yy" beforeDir="false" afterPath="$PROJECT_DIR$/../Rezonator/objects/obj_panelPane/obj_panelPane.yy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Rezonator/scripts/scr_newChain/scr_newChain.gml" beforeDir="false" afterPath="$PROJECT_DIR$/../Rezonator/scripts/scr_newChain/scr_newChain.gml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="70">
+              <caret line="5" selection-start-line="5" selection-end-line="27" selection-end-column="79" />
               <folding>
                 <element signature="e#0#54#0" expanded="true" />
               </folding>
@@ -144,8 +147,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="70">
+          <caret line="5" selection-start-line="5" selection-end-line="27" selection-end-column="79" />
           <folding>
             <element signature="e#0#54#0" expanded="true" />
           </folding>

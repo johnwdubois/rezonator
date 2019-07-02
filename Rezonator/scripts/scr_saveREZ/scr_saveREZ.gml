@@ -50,6 +50,7 @@ with (obj_saveParent) {
 		var mapRezChainGrid = scr_gridToJSONLists(rezChainGrid);
 		var mapTrackChainGrid = scr_gridToJSONLists(trackChainGrid);
 		var mapStackChainGrid = scr_gridToJSONLists(stackChainGrid);
+		var mapChunkChainGrid = scr_gridToJSONLists(chunkGrid);
 		var mapUnitInStackGrid = scr_gridToJSONLists(unitInStackGrid);
 		var mapCliqueGrid = scr_gridToJSONLists(cliqueGrid);
 		
@@ -58,6 +59,7 @@ with (obj_saveParent) {
 		ds_map_add_list(map, "rezChainGrid", mapRezChainGrid);
 		ds_map_add_list(map, "trackChainGrid", mapTrackChainGrid);
 		ds_map_add_list(map, "stackChainGrid", mapStackChainGrid);
+		ds_map_add_list(map, "chunkChainGrid", mapChunkChainGrid);
 		ds_map_add_list(map, "unitInStackGrid", mapUnitInStackGrid);
 		ds_map_add_list(map, "cliqueGrid", mapCliqueGrid);
 		
