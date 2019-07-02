@@ -43,23 +43,15 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 		draw_set_font(fnt_main);
 
-		// Set all variables needed to draw a Chunk
-
-		var topLeftX = undefined;
-		var topLeftY = undefined;
-		var bottomLeftX = undefined;
-		var bottomLeftY = undefined;
-
-		var topRightX = undefined;
-		var topRightY = undefined;
-		var bottomRightX = undefined;
-		var bottomRightY = undefined;
-
-		var firstWordID = -1;
-		var lastWordID = -1;
+		
 		
 		// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
-		var currentChunkRow = (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow), 0) - 1); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+		var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow);
+		if(ds_list_size(inChunkList) < 1) {
+			continue;
+		}
+		var currentChunkID = (ds_list_find_value(inChunkList, 0)); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
 		if(currentChunkRow < 0) {
 			continue;	
 		}
@@ -72,13 +64,20 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				continue;
 		}
 		
+		// Set all variables needed to draw a Chunk
+		var topLeftX = undefined;
+		var topLeftY = undefined;
+		
+		var bottomRightX = undefined;
+		var bottomRightY = undefined;
+
+		var firstWordID = -1;
+		var lastWordID = -1;
+		
 		// Get the first and last word within the Chunk
 		firstWordID = ds_list_find_value(currentWordList, 0);
 		lastWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList)-1);
 		
-		// Get the Chunks Unit and Row
-		var currentUnitID = ds_list_find_value(ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colWordIDList, currentChunkRow), 0);
-
 		// Set the Buffer to be initially large, so as to allow for nesting
 		var wordRectBuffer = 6;
 		if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, currentChunkRow) == true) {
@@ -147,7 +146,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
 			
 			if (mouse_check_button_pressed(mb_left)) {
-				obj_control.clickedChunkID = currentChunkRow + 1; // Debug variable
+				obj_control.clickedChunkID = currentChunkID; // Debug variable
 				// Add this Chunk to a chain
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);

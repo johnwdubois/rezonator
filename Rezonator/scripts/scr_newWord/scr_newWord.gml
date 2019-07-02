@@ -31,8 +31,12 @@ if(argument_count == 2) {
 	var wordTranscript = get_string("Type in new word", "example");
 }
 else {
-	// If it is a Chunk, combine the words within the Chunk for the trnscript
-	var chunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, chunkID - 1);
+	// If it is a Chunk, combine the words within the Chunk for the transcript
+	var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), chunkID);
+	if(currentChunkRow < 0) {
+		exit;
+	}
+	var chunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
 	var wordTranscript = "";
 	for(var transcriptLoop = 0; transcriptLoop < ds_list_size(chunkWordIDList); transcriptLoop++) {
 		var chunkWordID = ds_list_find_value(chunkWordIDList, transcriptLoop);
@@ -110,21 +114,25 @@ if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUni
 	var prevWordID = ds_list_find_value(wordIDListUnitGrid, ds_list_find_index(wordIDListUnitGrid,wordID) - 1);
 	if (prevWordID != undefined) {
 		
-		// Access the inBoxList from the dynWordGrid
-		var prevInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, prevWordID - 1);
+		// Access the inchunkList from the dynWordGrid
+		var prevInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, prevWordID - 1);
 		
-		// For each box the prev word is in, check if the prev word is not the last word in the box
-		for(var boxListLoop = 0; boxListLoop < ds_list_size(prevInBoxList); boxListLoop++) {
+		// For each chunk the prev word is in, check if the prev word is not the last word in the chunk
+		for(var chunkListLoop = 0; chunkListLoop < ds_list_size(prevInChunkList); chunkListLoop++) {
 
 			
-			var currentBox = ds_list_find_value(prevInBoxList, boxListLoop);
-			var currentBoxWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentBox - 1);
+			var currentChunkID = ds_list_find_value(prevInChunkList, chunkListLoop);
+			var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
+			if(currentChunkRow < 0) {
+				exit;
+			}
+			var currentChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
 
-			if(ds_list_find_index(currentBoxWordList, prevWordID) != (ds_list_size(currentBoxWordList) - 1)) {
+			if(ds_list_find_index(currentChunkWordList, prevWordID) != (ds_list_size(currentChunkWordList) - 1)) {
 
-				// Insert new word into that box list, and add to the new word's inBoxList
-				ds_list_insert(currentBoxWordList, ds_list_find_index(currentBoxWordList, prevWordID) + 1, wordID);
-				ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), currentBox);
+				// Insert new word into that chunk list, and add to the new word's inChunkList
+				ds_list_insert(currentChunkWordList, ds_list_find_index(currentChunkWordList, prevWordID) + 1, wordID);
+				ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), currentChunkID);
 			}
 		}
 	}

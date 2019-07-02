@@ -105,9 +105,64 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	}
 }
 
+// Expirementing with deleting Chunks
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+	var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
+	if(currentChunkRow == -1) {
+		scr_refreshChainGrid();
+		scr_killEmptyChains(obj_chain.rezChainGrid);
+		scr_killEmptyChains(obj_chain.trackChainGrid);
+		scr_killEmptyChains(obj_chain.stackChainGrid);
+		obj_chain.mouseLineWordID = -1;
+
+		scr_refreshVizLinkGrid();
+		exit;	
+	}
+	var chunkWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkRow);
+	
+	var idList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
+	var chainState = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow);
+	
+	if (ds_list_size(idList) == 0) {
+		chainState = obj_chain.chainStateDead;
+		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow, chainState);
+	}
+	
+	else if (not (chainState == obj_chain.chainStateDead)) {
+		chainState = obj_chain.chainStateDead;
+		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow, chainState);
+		
+
+		var chainID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, currentChunkRow);
+		//var lastItemId = ds_list_find_value(idList, 0);
+			
+		for(var wordIDListLoop = 0; wordIDListLoop < ds_list_size(idList); wordIDListLoop++) {
+			var itemId = ds_list_find_value(idList, wordIDListLoop);
+			var itemInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, itemId - 1);
+			var indexInitemInChainsList = ds_list_find_index(itemInChainsList, chainID);
+			if (indexInitemInChainsList >= 0) {
+				ds_list_delete(itemInChainsList, indexInitemInChainsList);
+			}
+		}
+		
+		var chunkWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, chunkWordID - 1);
+		ds_list_delete(chunkWordInChainsList, 0);
+	}
+	
+	scr_gridDeleteRow(obj_chain.chunkGrid, currentChunkRow);
+	
+	/*while(ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), chunkWordID)) {
+		var currentLinkGridRow =  ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), chunkWordID);
+		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
+		keyboard_key_press(vk_delete);
+		keyboard_key_release(vk_delete);
+	}*/
+}
+else {
 // Refresh and clean
 scr_refreshChainGrid();
 scr_killEmptyChains(obj_chain.currentChainGrid);
 obj_chain.mouseLineWordID = -1;
 
 scr_refreshVizLinkGrid();
+}

@@ -115,26 +115,33 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 
 // Will need to get back to this
 // loop through the chunks that this word is already in (if any) to refocus that chunk
-/*if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	for (var i = 0; i < ds_list_size(inChunkList); i++) {
 		// Find the value of the current Chunk
 		var currentChunkID = ds_list_find_value(inChunkList, i);
+		var rowInChainGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
+		if(rowInChainGrid < 0) {
+			exit;
+		}
+		var currentChunkWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, rowInChainGrid);
 		
 		// Make sure this ChunkID is valid
-		if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID)) {
+		//if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID)) {
 			// Unfocus all Chunks
-			scr_setAllValuesInCol(obj_chain.boxChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+			scr_setAllValuesInCol(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
 			// Access the Chunk's row in the Chunk grid
-			var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID);
+			//var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID);
 			
 			// Set the Chunk to be focused
 			ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
+			//show_message(string(currentChunkWordID));
+			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
 			currentFocusedChunkID = currentChunkID;
-		
+			exit;
 			// Chunks currently aren't displayed in the panel panes
 
 			// Chunks still need to be added to the link grid
-			var rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChunkID, linkGrid_colDead, false);
+			/*var rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChunkID, linkGrid_colDead, false);
 		
 			if (rowInLinkGrid == -1) {
 				scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
@@ -168,31 +175,32 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 				}
 			
 				exit;
-			}
+			}*/
+		//}
+	}
+}
+else {
+	// if there is not a focused chain, we create a new chain
+	if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
+		scr_newChain(wordID, unitID);
+	}
+
+	// add new link and refresh chain grid
+	scr_newLink(wordID, -1);
+	scr_refreshChainGrid();
+
+
+	// update the list of chains that this word is in
+	if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
+		var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);
+		var chainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, rowInChainGrid);
+	
+		if (ds_list_find_index(inChainsList, chainID) == -1) {
+			ds_list_add(inChainsList, chainID);
 		}
 	}
-}*/
 
-// if there is not a focused chain, we create a new chain
-if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
-	scr_newChain(wordID, unitID);
+	ds_list_destroy(fakeInChainsList);
 }
-
-// add new link and refresh chain grid
-scr_newLink(wordID, -1);
-scr_refreshChainGrid();
-
-
-// update the list of chains that this word is in
-if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
-	var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);
-	var chainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, rowInChainGrid);
-	
-	if (ds_list_find_index(inChainsList, chainID) == -1) {
-		ds_list_add(inChainsList, chainID);
-	}
-}
-
-ds_list_destroy(fakeInChainsList);
 
 obj_control.allSaved = false;
