@@ -21,10 +21,7 @@ var jsonString = json_encode(wrapper);
 
 show_message("Finished JSON string");
 
-ip = get_string("Type in IP", "");
-port = real(get_string("Type in port", ""));
 
-scr_networkEmit("position", jsonString);
 
 
 ds_map_destroy(wrapper);
