@@ -1,3 +1,16 @@
+/*
+	scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight);
+	
+	Last Updated: 2018-12-18
+	
+	Called from: any object
+	
+	Purpose: Draw the scroll bar used to naviagte a UI list
+	
+	Mechanism: lotso math
+	
+	Author: Terry DuBois
+*/
 var listSize = argument0;
 var focusedElementY = argument1;
 var strHeight = argument2;
@@ -17,26 +30,29 @@ var windowHeightAdjusted = windowHeight - marginTop;
 var minScrollPlusY = windowHeightAdjusted - (listSize * strHeight);
 var maxScrollPlusY = 16;
 
-// setup scrollbar height
+// Setup scrollbar height limiters
 var scrollBarHeightMin = 30;
 var scrollBarHeightMax = windowHeightAdjusted - (scrollBarWidth * 2);
 
+// Set the scroll bar's width
 scrollBarWidth = 20;
+
+// Calculate the height based on the window height, string height, and the size of the list
 scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHeightAdjusted - (scrollBarWidth * 2));
 scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
 
-// for clicking and dragging scrollbar
+// For clicking and dragging scrollbar
 if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - scrollBarWidth)
 && mouse_check_button_pressed(mb_left)) {
 	scrollBarHolding = true;
 }
 
-
+// User can't scroll if they're changing the window size
 if (windowResizeXHolding) {
 	scrollBarHolding = false;
 }
 
-// click to scroll
+// Scroll based on clicked mouse pos
 if ((scrollBarHolding && mouse_check_button(mb_left))) {
 	var val = -(y - mouse_y + marginTop) - (scrollBarHeight / 2);	
 		
@@ -60,30 +76,32 @@ if (focusedElementY > y + windowHeight - marginTop) {
 }
 */
 
-
+// Limit the scrolling within bounds
 scrollPlusY = clamp(scrollPlusYDest, minScrollPlusY, maxScrollPlusY);
 
 
-// set new Y position for bar itself
+// Set new Y position for bar itself
 scrollBarPlusY = (scrollPlusY / minScrollPlusY) * (windowHeightAdjusted - scrollBarHeight - (scrollBarWidth * 2)) + scrollBarWidth;
 if (scrollBarHeight == windowHeightAdjusted - (scrollBarWidth * 2)) {
 	scrollBarPlusY = 0;
 }
+// Limit the scrol bar's pos within bounds
 scrollBarPlusY = clamp(scrollBarPlusY, scrollBarWidth, windowHeightAdjusted - scrollBarWidth);
 
+//Instantiate drawing variables
 var scrollBarX1 = x + windowWidth - scrollBarWidth;
 var scrollBarY1 = y + scrollBarPlusY + marginTop;
 var scrollBarX2 = x + windowWidth;
 var scrollBarY2 = scrollBarY1 + scrollBarHeight;
 
-// draw scrollbar background
+// Draw scrollbar background
 draw_set_color(scrollBackColor);
 draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + windowHeightAdjusted + marginTop - clipY, false);
 
 
 
 
-// scroll up button
+// Scroll up button
 draw_set_color(scrollButtonColor1);
 if (point_in_rectangle(mouse_x, mouse_y, scrollBarX1, y + marginTop, scrollBarX2, y + scrollBarWidth + marginTop)) {
 	draw_set_color(scrollButtonColor2);
@@ -96,7 +114,7 @@ else {
 }
 draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + scrollBarWidth + marginTop - clipY, false);
 
-// scroll down button
+// Scroll down button
 draw_set_color(scrollButtonColor1);
 if (point_in_rectangle(mouse_x, mouse_y, scrollBarX1, y + windowHeightAdjusted - scrollBarWidth + marginTop, scrollBarX2, y + windowHeightAdjusted + marginTop)) {
 	draw_set_color(scrollButtonColor2);
@@ -119,22 +137,22 @@ draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + 
 
 
 
-// draw scrollbar
+// Draw scrollbar
 draw_set_color(scrollBarColor);
 draw_rectangle(scrollBarX1 - clipX, scrollBarY1 - clipY, scrollBarX2 - clipX, scrollBarY2 - clipY, false);
 
-// draw scrollbar button sprites
+// Draw scrollbar button sprites
 draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + marginTop - clipY, y + scrollBarWidth + marginTop - clipY), 1, 1, 0, c_white, 1);
 draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + windowHeightAdjusted - scrollBarWidth + marginTop - clipY, y + windowHeightAdjusted + marginTop - clipY), 1, -1, 0, c_white, 1);
 
 
-// draw outlines of scrollbar buttons
+// Draw outlines of scrollbar buttons
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + scrollBarWidth + marginTop - clipY, true);
 draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + marginTop - clipY, scrollBarX2 - clipX, y + windowHeightAdjusted + marginTop - clipY, true);
 
 
-// move scrollbar with regular scroll
+// Move scrollbar with regular scroll
 if (point_in_rectangle(mouse_x, mouse_y, x, y + marginTop, x + windowWidth, y + windowHeight)) {
 	if (scrollBarUpButtonHeld) {
 		scrollPlusYDest += 4;

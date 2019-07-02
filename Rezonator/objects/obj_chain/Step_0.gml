@@ -16,6 +16,7 @@ if (mouseLineHide) {
 	var focusedRezChain = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
 	var focusedTrackChain = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
 	var focusedStackChain = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
+	var tempMouseLineWordID = obj_chain.mouseLineWordID;
 	scr_chainDeselect();
 	if (focusedRezChain > -1) {
 		ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, focusedRezChain, obj_chain.chainStateFocus);
@@ -26,6 +27,7 @@ if (mouseLineHide) {
 	if (focusedStackChain > -1) {
 		ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, focusedStackChain, obj_chain.chainStateFocus);
 	}
+	obj_chain.mouseLineWordID = tempMouseLineWordID;
 }
 
 ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, 0, obj_control.wordDrawGrid_colFocused, ds_grid_height(obj_control.wordDrawGrid), false);
@@ -40,8 +42,9 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 		for (var i = 0; i < ds_list_size(idList); i++) {
 			var currentID = ds_list_find_value(idList, i);
 			var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentID -1);
+			var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID -1);
 			
-			if (isVisible) {
+			if (isVisible || isChunk) {
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentID - 1, true);
 			}
 		}

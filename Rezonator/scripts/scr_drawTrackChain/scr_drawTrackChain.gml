@@ -39,6 +39,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
+		var chunkWord1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1);
 		
 		var currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 -1));
 		var currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
@@ -49,6 +50,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 		var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
 		var currentUnitID2 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID2 - 1);
 		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID2);
+		var chunkWord2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1);
 		
 		if (currentUnitID1 == currentUnitID2)
 		{
@@ -93,6 +95,23 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 			currentLineGridIndex2InDrawRange = false;
 		}
 		
+		if(chunkWord1) {
+			var wordRectBuffer = 6;
+			if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID1 - 1), 0) - 1)) == true) {
+				wordRectBuffer = 4;
+			}
+			lineY1 += (wordRectBuffer * 2) + 4;
+			chunkWord1 = 0;
+		}
+		if(chunkWord2) {
+			var wordRectBuffer = 6;
+			if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID2 - 1), 0) - 1)) == true) {
+				wordRectBuffer = 4;
+			}
+			lineY2 -= (wordRectBuffer * 3);
+			chunkWord2 = 0;
+		}
+		
 		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
 		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
 		and not (obj_control.searchGridActive) {
@@ -111,7 +130,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 	
 	// get X,Y position of where pickwhip to mouse should start
 	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, i) == chainStateFocus) {	
-		if (mouseLineWordID >= 0 && mouseLineWordID < ds_grid_height(obj_control.wordGrid)) {
+		if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
 			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
 			
