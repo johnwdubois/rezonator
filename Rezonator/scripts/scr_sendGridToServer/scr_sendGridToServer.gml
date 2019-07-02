@@ -22,6 +22,9 @@ var jsonString = json_encode(wrapper);
 show_message("Finished JSON string");
 
 
+scr_networkEmit("position", jsonString);
+
+
 
 
 ds_map_destroy(wrapper);
