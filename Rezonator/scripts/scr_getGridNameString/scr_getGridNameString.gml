@@ -1,56 +1,56 @@
-var colName = string(argument0);
+var gridName = string(argument0);
 
 switch (argument0) {
 	case obj_control.unitGrid:
-		colName = "Unit";
+		gridName = "Unit";
 		break;
 	case obj_control.lineGrid:
-		colName = "Line";
+		gridName = "Line";
 		break;
 	case obj_control.wordGrid:
-		colName = "Word";
+		gridName = "Word";
 		break;
 	case obj_control.dynamicWordGrid:
-		colName = "DynamicWord";
+		gridName = "DynamicWord";
 		break;
 	case obj_control.filterGrid:
-		colName = "Filter";
+		gridName = "Filter";
 		break;
 	case obj_control.searchGrid:
-		colName = "Search";
+		gridName = "Search";
 		break;
 	case obj_control.hitGrid:
-		colName = "Hit";
+		gridName = "Hit";
 		break;
 	case obj_chain.linkGrid:
-		colName = "Link";
+		gridName = "Link";
 		break;
 	case obj_chain.vizLinkGrid:
-		colName = "VizLink";
+		gridName = "VizLink";
 		break;
 	case obj_chain.rezChainGrid:
-		colName = "RezChain";
+		gridName = "RezChain";
 		break;
 	case obj_chain.trackChainGrid:
-		colName = "TrackChain";
+		gridName = "TrackChain";
 		break;
 	case obj_chain.stackChainGrid:
-		colName = "StackChain";
+		gridName = "StackChain";
 		break;
 	case obj_chain.chunkGrid:
-		colName = "Box";
+		gridName = "Box";
 		break;
 	case obj_chain.unitInStackGrid:
-		colName = "UnitInStack";
+		gridName = "UnitInStack";
 		break;
 	case obj_chain.cliqueGrid:
-		colName = "Clique";
+		gridName = "Clique";
 		break;
 	case obj_chain.rezPlayLinkGrid:
-		colName = "RezPlayLink";
+		gridName = "RezPlayLink";
 		break;
 	default:
 		break;
 }
 
-return colName;
+return gridName;
