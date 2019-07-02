@@ -41,6 +41,14 @@ ds_grid_copy(oldHit, hitGrid);
 listOfWords = ds_list_create();
 ds_list_copy( listOfWords, scr_splitString(wordToFind, "&"));
 
+// if user input regEx string
+var firstChar =  string_copy( wordToFind, 0,1);
+if (firstChar == "\\") {
+	var RegEx = scr_regularExpressionCreate(wordToFind);
+}
+else {
+	var RegEx = "\a-z|\A-Z";
+}
 
 // create new searchGrid so we can populate it from scratch
 ds_grid_destroy(searchGrid);
@@ -74,10 +82,9 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 				}
 				
 			// if statement for boolean logic and search selection	
-			if (obj_control.caseSensitive) {
+			if (obj_control.caseSensitive and not obj_control.transcriptSearch and not obj_control.inChainBool) {
 				if (wordToFind == currentWordToken) {
 				
-
 					ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
 					var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
 			
@@ -126,7 +133,7 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 
 				}
 			}
-			else if (obj_control.transcriptSearch and not obj_control.caseSensitive) {
+			else if (obj_control.transcriptSearch and not obj_control.caseSensitive and not obj_control.inChainBool) {
 					if (string_lower(wordToFind) == string_lower(currentWordTranscript)) {
 				
 
@@ -178,8 +185,228 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 
 				}
 			}
-			else if (obj_control.transcriptSearch and obj_control.caseSensitive) {
+			else if (obj_control.transcriptSearch and obj_control.caseSensitive and not obj_control.inChainBool) {
 					if ( wordToFind == currentWordTranscript ) {
+				
+
+					ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
+					var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
+			
+					ds_grid_set(searchGrid, lineGrid_colDisplayRow, currentRowSearchGrid, currentRowSearchGrid);
+					ds_grid_set(searchGrid, lineGrid_colLineState, currentRowSearchGrid, 0);
+					ds_grid_set(searchGrid, lineGrid_colUnitID, currentRowSearchGrid, i + 1);
+					ds_grid_set(searchGrid, lineGrid_colPixelY, currentRowSearchGrid, room_height + gridSpaceVertical);
+					ds_grid_set(searchGrid, lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);
+					ds_grid_set(searchGrid, lineGrid_colLineNumberLabel, currentRowSearchGrid, currentUtteranceID);
+					ds_grid_set(searchGrid, lineGrid_colUnitStart, currentRowSearchGrid, currentUnitStart);
+					ds_grid_set(searchGrid, lineGrid_colUnitEnd, currentRowSearchGrid, currentUnitEnd);
+			
+					var currentHitIDList = ds_list_create();
+			
+					// add all the words in this unit to the searchGrid
+					for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
+				
+						var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
+						var hitGridCurrentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+						var hitGridCurrentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
+						var hitGridCurrentHitBool = false;
+				
+						if (hitGridCurrentWordID == currentWordID) {
+							hitGridCurrentHitBool = true;
+						}
+						var hitGridCurrentDisplayCol = k - j;
+				
+						ds_grid_resize(hitGrid, hitGridWidth, ds_grid_height(hitGrid) + 1);
+						var currentRowHitGrid = ds_grid_height(hitGrid) - 1;
+
+				
+						ds_grid_set(hitGrid, hitGrid_colWordID, currentRowHitGrid, hitGridCurrentWordID);
+						ds_grid_set(hitGrid, hitGrid_colUnitID, currentRowHitGrid, hitGridCurrentUnitID);
+						ds_grid_set(hitGrid, hitGrid_colHitID, currentRowHitGrid, hitIDCounter);
+						ds_grid_set(hitGrid, hitGrid_colWordState, currentRowHitGrid, hitGridCurrentWordState);
+						ds_grid_set(hitGrid, hitGrid_colHitBool, currentRowHitGrid, hitGridCurrentHitBool);
+						ds_grid_set(hitGrid, hitGrid_colDisplayCol, currentRowHitGrid, hitGridCurrentDisplayCol);
+				
+				
+						ds_list_add(currentHitIDList, hitIDCounter);
+						hitIDCounter++;
+					}
+			
+					ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
+				
+
+				}
+			}
+			else if (obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
+				
+			var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+					
+					if ( wordToFind == currentWordTranscript and inChain == 1) {
+				
+
+					ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
+					var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
+			
+					ds_grid_set(searchGrid, lineGrid_colDisplayRow, currentRowSearchGrid, currentRowSearchGrid);
+					ds_grid_set(searchGrid, lineGrid_colLineState, currentRowSearchGrid, 0);
+					ds_grid_set(searchGrid, lineGrid_colUnitID, currentRowSearchGrid, i + 1);
+					ds_grid_set(searchGrid, lineGrid_colPixelY, currentRowSearchGrid, room_height + gridSpaceVertical);
+					ds_grid_set(searchGrid, lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);
+					ds_grid_set(searchGrid, lineGrid_colLineNumberLabel, currentRowSearchGrid, currentUtteranceID);
+					ds_grid_set(searchGrid, lineGrid_colUnitStart, currentRowSearchGrid, currentUnitStart);
+					ds_grid_set(searchGrid, lineGrid_colUnitEnd, currentRowSearchGrid, currentUnitEnd);
+			
+					var currentHitIDList = ds_list_create();
+			
+					// add all the words in this unit to the searchGrid
+					for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
+				
+						var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
+						var hitGridCurrentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+						var hitGridCurrentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
+						var hitGridCurrentHitBool = false;
+				
+						if (hitGridCurrentWordID == currentWordID) {
+							hitGridCurrentHitBool = true;
+						}
+						var hitGridCurrentDisplayCol = k - j;
+				
+						ds_grid_resize(hitGrid, hitGridWidth, ds_grid_height(hitGrid) + 1);
+						var currentRowHitGrid = ds_grid_height(hitGrid) - 1;
+
+				
+						ds_grid_set(hitGrid, hitGrid_colWordID, currentRowHitGrid, hitGridCurrentWordID);
+						ds_grid_set(hitGrid, hitGrid_colUnitID, currentRowHitGrid, hitGridCurrentUnitID);
+						ds_grid_set(hitGrid, hitGrid_colHitID, currentRowHitGrid, hitIDCounter);
+						ds_grid_set(hitGrid, hitGrid_colWordState, currentRowHitGrid, hitGridCurrentWordState);
+						ds_grid_set(hitGrid, hitGrid_colHitBool, currentRowHitGrid, hitGridCurrentHitBool);
+						ds_grid_set(hitGrid, hitGrid_colDisplayCol, currentRowHitGrid, hitGridCurrentDisplayCol);
+				
+				
+						ds_list_add(currentHitIDList, hitIDCounter);
+						hitIDCounter++;
+					}
+			
+					ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
+				
+
+				}
+			}
+			else if (not obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
+				
+				var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+				
+					if (string_lower(wordToFind) == string_lower(currentWordToken) and inChain == 1 or string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
+				
+
+					ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
+					var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
+			
+					ds_grid_set(searchGrid, lineGrid_colDisplayRow, currentRowSearchGrid, currentRowSearchGrid);
+					ds_grid_set(searchGrid, lineGrid_colLineState, currentRowSearchGrid, 0);
+					ds_grid_set(searchGrid, lineGrid_colUnitID, currentRowSearchGrid, i + 1);
+					ds_grid_set(searchGrid, lineGrid_colPixelY, currentRowSearchGrid, room_height + gridSpaceVertical);
+					ds_grid_set(searchGrid, lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);
+					ds_grid_set(searchGrid, lineGrid_colLineNumberLabel, currentRowSearchGrid, currentUtteranceID);
+					ds_grid_set(searchGrid, lineGrid_colUnitStart, currentRowSearchGrid, currentUnitStart);
+					ds_grid_set(searchGrid, lineGrid_colUnitEnd, currentRowSearchGrid, currentUnitEnd);
+			
+					var currentHitIDList = ds_list_create();
+			
+					// add all the words in this unit to the searchGrid
+					for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
+				
+						var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
+						var hitGridCurrentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+						var hitGridCurrentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
+						var hitGridCurrentHitBool = false;
+				
+						if (hitGridCurrentWordID == currentWordID) {
+							hitGridCurrentHitBool = true;
+						}
+						var hitGridCurrentDisplayCol = k - j;
+				
+						ds_grid_resize(hitGrid, hitGridWidth, ds_grid_height(hitGrid) + 1);
+						var currentRowHitGrid = ds_grid_height(hitGrid) - 1;
+
+				
+						ds_grid_set(hitGrid, hitGrid_colWordID, currentRowHitGrid, hitGridCurrentWordID);
+						ds_grid_set(hitGrid, hitGrid_colUnitID, currentRowHitGrid, hitGridCurrentUnitID);
+						ds_grid_set(hitGrid, hitGrid_colHitID, currentRowHitGrid, hitIDCounter);
+						ds_grid_set(hitGrid, hitGrid_colWordState, currentRowHitGrid, hitGridCurrentWordState);
+						ds_grid_set(hitGrid, hitGrid_colHitBool, currentRowHitGrid, hitGridCurrentHitBool);
+						ds_grid_set(hitGrid, hitGrid_colDisplayCol, currentRowHitGrid, hitGridCurrentDisplayCol);
+				
+				
+						ds_list_add(currentHitIDList, hitIDCounter);
+						hitIDCounter++;
+					}
+			
+					ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
+				
+
+				}
+			}
+			else if (obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
+				
+				var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+				
+					if (string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
+				
+
+					ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
+					var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
+			
+					ds_grid_set(searchGrid, lineGrid_colDisplayRow, currentRowSearchGrid, currentRowSearchGrid);
+					ds_grid_set(searchGrid, lineGrid_colLineState, currentRowSearchGrid, 0);
+					ds_grid_set(searchGrid, lineGrid_colUnitID, currentRowSearchGrid, i + 1);
+					ds_grid_set(searchGrid, lineGrid_colPixelY, currentRowSearchGrid, room_height + gridSpaceVertical);
+					ds_grid_set(searchGrid, lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);
+					ds_grid_set(searchGrid, lineGrid_colLineNumberLabel, currentRowSearchGrid, currentUtteranceID);
+					ds_grid_set(searchGrid, lineGrid_colUnitStart, currentRowSearchGrid, currentUnitStart);
+					ds_grid_set(searchGrid, lineGrid_colUnitEnd, currentRowSearchGrid, currentUnitEnd);
+			
+					var currentHitIDList = ds_list_create();
+			
+					// add all the words in this unit to the searchGrid
+					for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
+				
+						var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
+						var hitGridCurrentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+						var hitGridCurrentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
+						var hitGridCurrentHitBool = false;
+				
+						if (hitGridCurrentWordID == currentWordID) {
+							hitGridCurrentHitBool = true;
+						}
+						var hitGridCurrentDisplayCol = k - j;
+				
+						ds_grid_resize(hitGrid, hitGridWidth, ds_grid_height(hitGrid) + 1);
+						var currentRowHitGrid = ds_grid_height(hitGrid) - 1;
+
+				
+						ds_grid_set(hitGrid, hitGrid_colWordID, currentRowHitGrid, hitGridCurrentWordID);
+						ds_grid_set(hitGrid, hitGrid_colUnitID, currentRowHitGrid, hitGridCurrentUnitID);
+						ds_grid_set(hitGrid, hitGrid_colHitID, currentRowHitGrid, hitIDCounter);
+						ds_grid_set(hitGrid, hitGrid_colWordState, currentRowHitGrid, hitGridCurrentWordState);
+						ds_grid_set(hitGrid, hitGrid_colHitBool, currentRowHitGrid, hitGridCurrentHitBool);
+						ds_grid_set(hitGrid, hitGrid_colDisplayCol, currentRowHitGrid, hitGridCurrentDisplayCol);
+				
+				
+						ds_list_add(currentHitIDList, hitIDCounter);
+						hitIDCounter++;
+					}
+			
+					ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
+				
+
+				}
+			}
+			else if (not obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
+				
+				var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+				
+					if (wordToFind == currentWordToken and inChain == 1 or wordToFind == currentWordTranscript and inChain == 1) {
 				
 
 					ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
@@ -232,8 +459,11 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 			}
 			else{
 				// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
-				if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript)) {
-				
+				//scr_regularExpressionMatch(RegEx, currentWordToken)
+				//string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) or
+				if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
+						
+					//scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
 					ds_grid_resize(searchGrid, lineGridWidth, ds_grid_height(searchGrid) + 1);
 					var currentRowSearchGrid = ds_grid_height(searchGrid) - 1;
@@ -280,7 +510,6 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 			
 					ds_grid_set(searchGrid, searchGrid_colHitIDList, currentRowSearchGrid, currentHitIDList);
 				
-
 				}
 			}
 		}
@@ -319,3 +548,7 @@ else {
 }
 
 ds_grid_destroy(tempSearchGrid);
+
+
+
+
