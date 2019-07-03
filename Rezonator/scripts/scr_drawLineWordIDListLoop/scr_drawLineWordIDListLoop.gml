@@ -33,9 +33,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	// Check if the word is a ChunkWord
 	if(currentWordState == obj_control.wordStateChunk) {
-		if(ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow), 0) == undefined) {
-			continue;
-		}
+		
 		
 		// Here will be functionality to focus on a Chunk and add it to a Chain
 		// This includes: Hovering over Chunk will visually effect the outline
@@ -50,7 +48,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		if(ds_list_size(inChunkList) < 1) {
 			continue;
 		}
+		
 		var currentChunkID = (ds_list_find_value(inChunkList, 0)); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+		if(currentChunkID == undefined) {
+			continue;
+		}
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
 		if(currentChunkRow < 0) {
 			continue;	
@@ -99,13 +101,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 		topLeftX = leftPixelX - wordRectBuffer;
 		topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
-		//bottomLeftX = topLeftX;
-		//bottomLeftY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
 		
-		//topRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2);
-		//topRightY = topLeftY;
 		bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2);
 		bottomRightY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
+		
 		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);//global.colorThemeSelected1
 		var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
 		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
