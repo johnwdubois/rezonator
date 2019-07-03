@@ -192,7 +192,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 // If this Chunk has already been deleted, refresh the chain grids
 if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);
-	scr_refreshChainGrid();
+	scr_refreshChainGrid(grid);
 	scr_killEmptyChains(grid);
 	obj_chain.mouseLineWordID = -1;
 

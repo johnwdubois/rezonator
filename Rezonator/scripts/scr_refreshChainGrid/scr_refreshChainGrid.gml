@@ -27,6 +27,9 @@ switch (obj_toolPane.currentTool) {
 	case obj_toolPane.toolStackBrush:
 		grid = obj_chain.stackChainGrid;
 		break;
+	case obj_toolPane.toolBoxBrush:
+		grid = argument[0];
+		break;
 	default:
 		break;
 }
