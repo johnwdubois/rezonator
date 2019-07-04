@@ -99,12 +99,12 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 		var currentCellRectX2 = colRectX2;
 		var currentCellRectY2 = currentCellRectY1 + strHeight;
 		
-		if (gridLoopRow == mouseoverRow) {
+		if (gridLoopRow == mouseoverRow and gridViewColXHolding == -1) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, false);
 		}
 		
-		if (point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2)) {
+		if (point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2) and gridViewColXHolding == -1) {
 			mouseoverRow = gridLoopRow;
 			mouseoverCol = gridLoopCol;
 			mouseoverItemString = currentItemString;
