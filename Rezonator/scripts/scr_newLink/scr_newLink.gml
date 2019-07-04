@@ -23,6 +23,9 @@ var wordID = argument0;
 var goal = argument1;
 var focus = true;
 
+//show_message(string(wordID));
+//show_message(string(goal));
+
 if (goal > -1) {
 	focus = false;
 }

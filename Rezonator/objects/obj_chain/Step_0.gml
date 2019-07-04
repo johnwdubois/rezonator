@@ -49,6 +49,22 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 			}
 		}
 	}
+	// Focus specifically for Chunks
+	else if(currentChainGrid == chunkGrid) {
+		/*var idList = ds_grid_get(currentChainGrid, chunkGrid_colBoxWordIDList, index);
+	
+		for (var i = 0; i < ds_list_size(idList); i++) {
+			var currentID = ds_list_find_value(idList, i);
+			var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentID -1);
+			var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID -1);
+			
+			if (isVisible || isChunk) {
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentID - 1, true);
+			}
+		}*/
+		var chunkWordID = ds_grid_get(currentChainGrid, chainGrid_colName, index);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, chunkWordID - 1, true);
+	}
 	
 }
 else {
