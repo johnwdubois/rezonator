@@ -12,6 +12,13 @@
 	Author: Terry DuBois
 */
 
+gridViewColXListMap = ds_map_create();
+gridViewColXHolding = -1
+gridViewColXHoldingPrev = 0;
+gridViewColXHoldingDiff = 0;
+gridViewColPrevList = ds_list_create();
+
+
 scrollTogether = false;
 
 gridList = ds_list_create();
