@@ -10,8 +10,8 @@ preSwitchDisplayRow = currentCenterDisplayRow;
 preSwitchLineGrid = currentActiveLineGrid;
 preSwitchSearchDisplayRow = 0;
 
-//fPressed = true;
+fPressed = true;
 //have the input be here?
 
 
-scr_searchForWord();
+//scr_searchForWord();

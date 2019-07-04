@@ -1,10 +1,11 @@
 ///@description QuickStack Creation
 // Create the quickStack
+
 var firstUnitID = 0;
 var firstWordID = 0;
 
 // Check for things caught in mouse drag rectangle
-if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and quickLinkAllowed ) {
 	if((mouseHoldRectY1 - mouseHoldRectY2) < 0) {
 		firstUnitID = ds_list_find_value(inRectUnitIDList, 0);
 		firstWordID = ds_list_find_value(inRectWordIDList, 0);

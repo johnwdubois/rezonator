@@ -13,7 +13,7 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView or obj_control.mouseoverPanelPane) {
+if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.fPressed) {
 	exit;
 }
 
@@ -29,7 +29,7 @@ or obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	exit;
 }
 
-if (ds_list_size(obj_control.inRectWordIDList) <= 1 && obj_toolPane.currentTool != obj_toolPane.toolStackBrush) {
+if (ds_list_size(obj_control.inRectWordIDList) <= 1 && obj_toolPane.currentTool != obj_toolPane.toolStackBrush&& obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 	obj_control.moveCounter++;
 }
 

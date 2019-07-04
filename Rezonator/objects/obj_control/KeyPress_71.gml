@@ -17,6 +17,7 @@ if (shouldExit) {
 
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	scr_jumpToLine("");
+	moveCounter++;
 }
 else {
 
@@ -39,4 +40,5 @@ else {
 
 	inst.currentFunction = 7;
 	inst.scrollRange = 9;
+	
 }

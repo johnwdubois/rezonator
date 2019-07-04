@@ -318,11 +318,16 @@ currentSessionTime = 0;
 
 // Search box variables
 fPressed = false;
+quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
 caseSensitive = false;
 cursorPos = 1 ;
+cursorViz = false;
 inputText = "";
+cursorTimer = 20;
+
+hitIDCounter = 1;
 
 // Safety check for quick volunteers
 alarm[9] = 10;

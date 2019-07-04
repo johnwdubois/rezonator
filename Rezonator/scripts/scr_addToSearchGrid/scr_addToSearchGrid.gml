@@ -22,7 +22,6 @@ var currentUnitEnd = argument[4];
 var currentWordIDList = argument[5];
 var currentWordID = argument[6];
 var jCounter =  argument[7]; 
-var hitIDCounter = argument[8];
 
 
 

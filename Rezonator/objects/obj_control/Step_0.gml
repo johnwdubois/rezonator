@@ -131,7 +131,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 	}
 }
 
-	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control)) {
+	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control)and not fPressed) {
 		wordLeftMarginDest -= gridSpaceHorizontal;
 	}
 	if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
@@ -143,7 +143,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 		scr_createPlaceChains();
 	}
 
-	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control)) {
+	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not fPressed) {
 		wordLeftMarginDest += gridSpaceHorizontal;
 	}
 	if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
@@ -290,10 +290,7 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 	ableToCreateDropDownAlarmSet = true;
 }
 
-/*
-if (mouse_check_button_pressed(mb_left) && !mouseoverPanelPane ) {
-	moveCounter ++;
-*/
+
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q"))){
 	moveCounter = 0;

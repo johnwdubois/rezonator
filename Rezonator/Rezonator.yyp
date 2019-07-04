@@ -3175,6 +3175,14 @@
             }
         },
         {
+            "Key": "ba364d38-a49c-4533-9c2b-3893506905b4",
+            "Value": {
+                "id": "f127a953-d77b-4f9f-812d-29bd96c3f8f5",
+                "resourcePath": "objects\\obj_regular_expression_edge\\obj_regular_expression_edge.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "ba5f6acb-7efa-4f89-8b2e-afb398c12a39",
             "Value": {
                 "id": "1900ef41-a43e-4cb7-ab5f-789d663b0c44",
@@ -3500,6 +3508,14 @@
                 "id": "d0598135-670d-4497-8567-ef2170fcf5d8",
                 "resourcePath": "sprites\\sPCheckbox\\sPCheckbox.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "d48b4d5b-2b3a-43fa-ae22-0e76ac875116",
+            "Value": {
+                "id": "badf132f-c671-4873-b358-8fd667e9e49d",
+                "resourcePath": "views\\d48b4d5b-2b3a-43fa-ae22-0e76ac875116.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -3884,6 +3900,14 @@
                 "id": "b8553d9f-79d4-4a67-be0a-3ca494628b8a",
                 "resourcePath": "scripts\\scr_newWord\\scr_newWord.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "ec15d8e2-93ed-4fe7-867d-0450191d012d",
+            "Value": {
+                "id": "eea1ed69-01e6-48e7-8daf-828e7623453a",
+                "resourcePath": "objects\\obj_regular_expression_node\\obj_regular_expression_node.yy",
+                "resourceType": "GMObject"
             }
         },
         {

@@ -59,7 +59,7 @@ parentheses_index = 0;
 nalt = 0; natom = 0;
 
 length = string_length(infix);
-if (length == 0) return "Error. Regular expression cannot be an empty string. You can use " + "\"^\"" + " if you want the regular expression to only accept empty strings.";
+if (length == 0) return "Error. Regular expression cannot be an empty string. You can use " + "^" + " if you want the regular expression to only accept empty strings.";
 if (string_char_at(infix, length) == "|") return "Union error when converting to postfix form at character " + string(length) + ".";
 for (i = 1; i <= length; ++i) {
     char = string_char_at(infix, i);
@@ -226,14 +226,14 @@ for (i = 1; i <= length; ++i) {
             if (chars == "a-z" || chars == "A-Z") {
                 edge_0 = instance_create(0, 0, obj_regular_expression_edge);
                 edge_0.from = -1; edge_0.to = -1;
-                if (chars == "a-z") edge_0.symbol = "\\0"; else edge_0.symbol = "\\1";
+                if (chars == "a-z") edge_0.symbol = "\0"; else edge_0.symbol = "\1";
                 ++group_index;
                 group_edges_in[group_index] = ds_list_create(); group_edges_out[group_index] = ds_list_create();
                 ds_list_add(group_edges_in[group_index], edge_0); ds_list_add(group_edges_out[group_index], edge_0);
                 i += 3; break;
             }
             edge_0 = instance_create(0, 0, obj_regular_expression_edge);
-            edge_0.from = -1; edge_0.to = -1; edge_0.symbol = "\\2" + char + string_char_at(postfix, i + 3);
+            edge_0.from = -1; edge_0.to = -1; edge_0.symbol = "\2" + char + string_char_at(postfix, i + 3);
             ++group_index;
             group_edges_in[group_index] = ds_list_create(); group_edges_out[group_index] = ds_list_create();
             ds_list_add(group_edges_in[group_index], edge_0); ds_list_add(group_edges_out[group_index], edge_0);

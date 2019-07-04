@@ -4,7 +4,7 @@
 	
 	Last Updated: 2019-06-25
 	
-	Called from: obj_panelPane
+	Called from: obj_control
 	
 	Purpose: draw custom search box for multiple options
 	
@@ -24,7 +24,7 @@
 
 if (obj_control.fPressed) {
 
-	
+		quickLinkAllowed = false;
 	
 	/*
 	if( camera_get_view_height(view_camera[0]) <=1000){
@@ -47,7 +47,7 @@ if (obj_control.fPressed) {
 	draw_set_colour(global.colorThemeText);
 	
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, "Rezonator 0.8.39");
+	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, "Rezonator 0.8.40");
 	
 	draw_set_font(fnt_mainLarge1);
 	
@@ -149,33 +149,73 @@ if(keyboard_check(vk_control) && keyboard_check(ord("V")) && clipboard_has_text(
 }
 if(ctext!="" && (keyboard_check_pressed(ord("V")) || keyboard_check_pressed(vk_control))) { 
 	inputText = string_insert(ctext, inputText, cursorPos);
+	cursorPos += string_length(ctext);
 }
 
 // Backspace
 if (keyboard_check_pressed(vk_backspace)) {
-      inputText = string_delete(inputText, cursorPos-1, 1);
-      cursorPos-=1;
+	inputText = string_delete(inputText, cursorPos-1, 1);
+	if (cursorPos >=2) {
+		cursorPos-=1;
+	}
+	else {
+		cursorPos = 2;
+	}
 }
 if (keyboard_string != "") {
       var t = keyboard_string;
       inputText = string_insert(t, inputText, cursorPos);
       cursorPos += string_length(t);
       keyboard_string = "";
+	  cursorViz = true;
+	  cursorTimer = 20;
 }
 
 // Cursor
 if(keyboard_check_pressed(vk_left)) {
-	cursorPos-=1;
+	if (cursorPos >=2) {
+		cursorPos-=1;
+	}
+	else {
+		cursorPos = 1;
+	}
 }
 if(keyboard_check_pressed(vk_right)) {
-	cursorPos+=1;
+	if (cursorPos <= string_length(inputText)){
+		cursorPos+=1;
+	}
+	else{
+		if (string_length(inputText) > 0) {
+			cursorPos = string_length(inputText) +1;
+		}
+		else {
+		 cursorPos = 1;
+		}
+	}
+}
+
+var displayText = inputText;
+
+if (cursorTimer >=0){
+	cursorTimer --;
+}
+else{
+	cursorViz = !cursorViz;
+	cursorTimer =30;
 }
 
 
-var displayText = inputText;
+if(cursorViz){
+	displayText = string_insert("|", inputText, cursorPos);
+}
+else{
+	displayText = string_delete(displayText, cursorPos, 0);
+}
+
 draw_set_halign(fa_left);
 draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camera_get_view_height(view_camera[0])/2 , displayText);
 
+//draw_rectangle(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 2 + (10 * cursorPos-1), camera_get_view_height(view_camera[0])/2 - searchBarYOffset + 10, camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 4 + (10 * cursorPos-1), camera_get_view_height(view_camera[0])/2 + searchBarYOffset - 10, false);
 
 }
 
@@ -185,9 +225,9 @@ draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camer
 // ok button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.fPressed){
 		if (mouse_check_button_pressed(mb_left)) {
+			alarm[11] = 60;
 			obj_control.fPressed = false;
-			scr_searchForWord(displayText);
-
+			scr_searchForWord(inputText);
 		}
 		
 }
@@ -195,6 +235,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 // cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.fPressed){
 		if (mouse_check_button_pressed(mb_left)) {
+			alarm[11] = 60;
 			obj_control.fPressed = false;
 		}
 		
@@ -203,7 +244,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 // enter check
 if ( keyboard_check_pressed(vk_enter) && obj_control.fPressed) {
+	alarm[11] = 60;
 	obj_control.fPressed = false;
-	scr_searchForWord(displayText);
+	scr_searchForWord(inputText);
 }
 
