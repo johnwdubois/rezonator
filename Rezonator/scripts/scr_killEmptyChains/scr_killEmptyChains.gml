@@ -61,7 +61,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	}
 }
 
-// delet dead chains from chainGrid
+// Delete dead chains from chainGrid
 while (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateDead)) {
 	var deadRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateDead);
 	scr_gridDeleteRow(grid, deadRow);

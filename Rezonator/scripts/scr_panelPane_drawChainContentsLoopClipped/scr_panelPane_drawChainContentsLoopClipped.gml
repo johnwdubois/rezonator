@@ -156,7 +156,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 				draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
 			
 				// Focus in the main screen
-				if (mouse_check_button_pressed(mb_left))
+				if (mouse_check_button_pressed(mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush)
 				{	
 					ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 					ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
