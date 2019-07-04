@@ -49,7 +49,7 @@ if (firstChar == "\\" && !is_string(scr_regularExpressionCreate(wordToFind))) {
 }
 else {
 	var regExString = "(\@)*";// "(^|\[)\\+(\\0-9|\@)*\\+(^|\])";// "(\\0-9|\@|\[|\])*"; //finds laughter
-	//var regExString = "(\a-z|\A-Z)*"; //finds all words
+	//var regExString = "(\a-z|\A-Z)*"; //finds all words  "(\a-z|\A-Z|\0-9|_|.|-)*"
 	ds_list_copy(RegEx,  scr_regularExpressionCreate( regExString ) ); //"(^|\[)\\+(\0-9|\@)*\\+(^|\])"  "(\@)*"
 }
 
