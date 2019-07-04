@@ -37,7 +37,7 @@ if (showDisplayCols) {
 
 scr_drawLine();
 //scr_drawChunk();
-
+scr_drawSearchBox();
 
 
 // Draw the mouse drag rectangle
@@ -65,7 +65,7 @@ if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and box
 }
 
 
-scr_drawSearchBox();
+
 
 draw_set_font(fnt_debug);
 draw_set_halign(fa_right);
