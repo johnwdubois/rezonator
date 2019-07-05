@@ -391,6 +391,14 @@
             }
         },
         {
+            "Key": "1293b1eb-bbd5-434c-b9d9-a2e9417d0eab",
+            "Value": {
+                "id": "48c80f2b-89d9-40ad-96e1-e649a1d83bf8",
+                "resourcePath": "scripts\\scr_prevWordInSequence\\scr_prevWordInSequence.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "12abd087-b83d-40da-9ed2-bba07c59053e",
             "Value": {
                 "id": "a2318fdb-89e4-4bea-a0ca-42e7a127bfcc",
@@ -4364,6 +4372,7 @@
         "01326701-b0a6-4057-8a77-21f137c710e7",
         "efca083d-511d-46a9-b9b8-80c06a142131",
         "13d772b1-c49e-4685-b2a0-901d882a850c",
+        "1293b1eb-bbd5-434c-b9d9-a2e9417d0eab",
         "1b692423-397d-40d9-8771-6733ecac550a",
         "8b5a92bc-eab1-45df-b5fc-3f8ab7c38f51",
         "12318bc4-4260-4a79-8025-db72a59380f5",
