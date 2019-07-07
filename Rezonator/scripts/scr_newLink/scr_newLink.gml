@@ -42,6 +42,9 @@ if (unitID == undefined) {
 
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	var idSet = unitID;
+	if(obj_control.quickStackAbleToInitiate){
+	obj_control.moveCounter ++;
+	}
 }
 else {
 	var idSet = wordID;

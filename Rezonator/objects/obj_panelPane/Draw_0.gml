@@ -77,6 +77,7 @@ switch (currentFunction) {
 		break;
 }
 
+scr_panelPane_drawTracker();
 
 draw_set_alpha(1);
 draw_set_color(global.colorThemeBorders);

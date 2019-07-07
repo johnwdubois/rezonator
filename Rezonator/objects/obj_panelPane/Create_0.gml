@@ -150,6 +150,18 @@ currentTopViewRow = 0;
 
 doubleClickTimer = -1;
 
+//Rez Tracker variables
+showTracker = true;
+isTrackerOpen = false;
+currentYheight = 0;
+currentYheightCounterText = 0;
+currentYheightTimerText = 0;
+currentYheightResetText = 0;
+currentResetY1value = 0;
+currentResetY2value = 0;
+timerMins = 0;
+timerSecs = 0;
+alarm[5] = 60;
 
 alarm[0] = 1;
 

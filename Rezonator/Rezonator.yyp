@@ -2767,6 +2767,14 @@
             }
         },
         {
+            "Key": "a19f7bc3-34d7-44b8-9ef6-18e696add4dc",
+            "Value": {
+                "id": "944118db-547a-4acc-8b6e-11b0b912a6ee",
+                "resourcePath": "scripts\\scr_panelPane_drawTracker\\scr_panelPane_drawTracker.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a1e24312-c18b-48ef-b749-e7dc93588e11",
             "Value": {
                 "id": "04efc2af-52af-4d86-839c-dff844896e9d",
@@ -2924,14 +2932,6 @@
                 "id": "a2228357-2bef-46e0-91ca-7108f4e00ec3",
                 "resourcePath": "fonts\\fnt_chainContents\\fnt_chainContents.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
-            "Value": {
-                "id": "63b410c8-0cc8-47ae-9b3f-c56d953941f7",
-                "resourcePath": "options\\linux\\options_linux.yy",
-                "resourceType": "GMLinuxOptions"
             }
         },
         {
@@ -4375,7 +4375,8 @@
         "e69bac84-b4e1-421a-869c-4ae937e0f788",
         "354bde9c-fc25-41f2-89b8-e40a87157775",
         "876dfb46-e34f-4303-92d7-29b15d649f25",
-        "4ed4d8a2-a546-442b-8a3f-b7d480cf3c94"
+        "4ed4d8a2-a546-442b-8a3f-b7d480cf3c94",
+        "a19f7bc3-34d7-44b8-9ef6-18e696add4dc"
     ],
     "tutorial": ""
 }

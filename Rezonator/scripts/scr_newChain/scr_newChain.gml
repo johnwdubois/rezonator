@@ -68,7 +68,9 @@ if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(wordIDList, unitID);
 	
 	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, currentChainID);
-	obj_control.moveCounter++;
+		if(not obj_control.quickStackAbleToInitiate){
+			obj_control.moveCounter ++;
+		}
 }
 else {
 	ds_list_add(wordIDList, wordID);
