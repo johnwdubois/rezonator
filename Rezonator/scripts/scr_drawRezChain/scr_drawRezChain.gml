@@ -175,11 +175,13 @@ if (not (mouseLineX == undefined or mouseLineY == undefined)) {
 	//obj_control.showMouseLine = true;	
 	if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)) {
 		var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-		currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
-		draw_set_color(currentChainColor);
+		if(rowInChainGrid >= 0){
+			currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
+			draw_set_color(currentChainColor);
 		
-		if (not mouseLineHide) {
-			draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+			if (not mouseLineHide) {
+				draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+			}
 		}
 	}
 }

@@ -76,11 +76,13 @@ if (breakExists)
 	{
 		var currentChain = ds_list_find_value(chainIDList, i);
 		var currentRowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChain);
-		var currentTilt = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colTiltSum, currentRowInChainGrid);
-		if (currentTilt > maxTilt)
-		{
-			maxTilt = currentTilt;
-			maxTiltRowInChainGrid = currentRowInChainGrid;
+		if(rowInChainGrid >= 0){
+			var currentTilt = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colTiltSum, currentRowInChainGrid);
+			if (currentTilt > maxTilt)
+			{
+				maxTilt = currentTilt;
+				maxTiltRowInChainGrid = currentRowInChainGrid;
+			}
 		}
 	}
 	

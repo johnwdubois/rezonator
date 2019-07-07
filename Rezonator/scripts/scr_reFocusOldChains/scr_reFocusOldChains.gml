@@ -53,13 +53,19 @@ switch (functionChainList_currentTab)
 switch (functionChainList_currentTab)
 {
 	case functionChainList_tabRezBrush:
-		ds_grid_set(grid, obj_chain.chainGrid_colChainState, obj_chain.oldRezFocus, obj_chain.chainStateFocus);
+		if(obj_chain.oldRezFocus >= 0){
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, obj_chain.oldRezFocus, obj_chain.chainStateFocus);
+		}
 		break;
 	case functionChainList_tabTrackBrush:
-		ds_grid_set(grid, obj_chain.chainGrid_colChainState, obj_chain.oldTrackFocus, obj_chain.chainStateFocus);
+		if(obj_chain.oldTrackFocus >= 0){
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, obj_chain.oldTrackFocus, obj_chain.chainStateFocus);
+		}
 		break;
 	case functionChainList_tabStackBrush:
-		ds_grid_set(grid, obj_chain.chainGrid_colChainState, obj_chain.oldStackFocus, obj_chain.chainStateFocus);
+		if(obj_chain.oldStackFocus >= 0){
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, obj_chain.oldStackFocus, obj_chain.chainStateFocus);
+		}
 		break;
 	default:
 		break;
