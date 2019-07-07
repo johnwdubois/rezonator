@@ -162,8 +162,10 @@ if (isTrackerOpen) {
 	//check for reset button pressed
 	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) - resetX1val, camera_get_view_height(view_camera[0]) - resetY1val, camera_get_view_width(view_camera[0]) - resetX2val, camera_get_view_height(view_camera[0]) - resetY2val) and mouse_check_button_pressed(mb_left)) {
 		obj_control.moveCounter = 0;
+		alarm[5] = -1;
 		timerMins = 0;
 		timerSecs = 0;
+		alarm[5] = 60;
 	}
 }
 
