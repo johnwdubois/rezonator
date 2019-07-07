@@ -1,7 +1,7 @@
 /*
 	scr_alignChain(wordIDList, pushOut);
 	
-	Last Updated: 2019-01-29
+	Last Updated: 2019-07-05
 	
 	Called from: obj_chain
 	
@@ -31,11 +31,14 @@ if (ds_list_size(wordIDList) > 0) {
 		var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
+		// Access the previous word in sequence
+		var previousWordID = scr_prevWordInSequence(currentWordID, currentUnitID);
+		
 		// if we only care about the first word for each unitID (to take care of side links)
 		if (ds_list_find_index(unitIDList, currentUnitID) > -1) {
 			if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1) > 0) {
 				var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-				var previousWordID = currentWordID - 1;
+				
 				var previousUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, previousWordID - 1);
 				if (currentUnitID == previousUnitID) {
 					var previousDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, previousWordID - 1);
@@ -48,6 +51,7 @@ if (ds_list_size(wordIDList) > 0) {
 		}
 		ds_list_add(unitIDList, currentUnitID);
 		
+		// Set the word's void according to the previous word's void
 		var currentVoid = 0;
 		var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 		var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
@@ -56,7 +60,7 @@ if (ds_list_size(wordIDList) > 0) {
 			currentVoid = currentDisplayCol;
 		}
 		else {
-			previousDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 2);
+			previousDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, previousWordID - 1);
 			currentVoid = abs(currentDisplayCol - (previousDisplayCol + 1));
 		}
 		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1, currentVoid);

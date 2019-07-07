@@ -391,6 +391,14 @@
             }
         },
         {
+            "Key": "1293b1eb-bbd5-434c-b9d9-a2e9417d0eab",
+            "Value": {
+                "id": "48c80f2b-89d9-40ad-96e1-e649a1d83bf8",
+                "resourcePath": "scripts\\scr_prevWordInSequence\\scr_prevWordInSequence.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "12abd087-b83d-40da-9ed2-bba07c59053e",
             "Value": {
                 "id": "a2318fdb-89e4-4bea-a0ca-42e7a127bfcc",
@@ -2935,6 +2943,14 @@
             }
         },
         {
+            "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
+            "Value": {
+                "id": "04ae516b-d5b0-4ab8-8846-cee599db0279",
+                "resourcePath": "options\\linux\\options_linux.yy",
+                "resourceType": "GMLinuxOptions"
+            }
+        },
+        {
             "Key": "a933bae0-19c0-46b7-a90e-f0f32694b529",
             "Value": {
                 "id": "20b28ae3-6e3f-46c0-9fc9-2281ec214ab3",
@@ -2996,6 +3012,14 @@
                 "id": "c43bc8dc-3fe5-4a5d-aba8-67e183ce87cd",
                 "resourcePath": "datafiles_yy\\Default REZ files\\sbc046.rez.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "ac9f291f-7b8c-4b9e-b9d5-1d7638e47bc3",
+            "Value": {
+                "id": "4d9f4945-9019-46f8-806c-a4722fb3805d",
+                "resourcePath": "views\\ac9f291f-7b8c-4b9e-b9d5-1d7638e47bc3.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -3967,14 +3991,6 @@
             }
         },
         {
-            "Key": "f0d0cfe1-4a0c-4271-8f2d-4563213fc917",
-            "Value": {
-                "id": "94b6e94b-f250-41da-88c3-67cf3c13fd13",
-                "resourcePath": "views\\f0d0cfe1-4a0c-4271-8f2d-4563213fc917.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "f1465325-2263-485b-8b0d-58f484f99a59",
             "Value": {
                 "id": "199940e0-1f65-48d6-a90e-726ecb186bd8",
@@ -4364,6 +4380,7 @@
         "01326701-b0a6-4057-8a77-21f137c710e7",
         "efca083d-511d-46a9-b9b8-80c06a142131",
         "13d772b1-c49e-4685-b2a0-901d882a850c",
+        "1293b1eb-bbd5-434c-b9d9-a2e9417d0eab",
         "1b692423-397d-40d9-8771-6733ecac550a",
         "8b5a92bc-eab1-45df-b5fc-3f8ab7c38f51",
         "12318bc4-4260-4a79-8025-db72a59380f5",

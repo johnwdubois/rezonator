@@ -62,7 +62,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 		}
 		else
 		{
-			if (wordsInSameUnit and firstWordInUnit >= 0 and firstWordInUnit < ds_grid_height(obj_control.wordGrid))
+			if (wordsInSameUnit and firstWordInUnit >= 0 and (firstWordInUnit - 1) < ds_grid_height(obj_control.wordGrid))
 			{
 				currentWordID1 = firstWordInUnit;
 				currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
