@@ -285,9 +285,14 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 	}
 }
 
+var scrollBarListSize = 0;
+if (functionChainContents_IDList != undefined) {
+	if (ds_exists(functionChainContents_IDList, ds_type_list)) {
+		scrollBarListSize = ds_list_size(functionChainContents_IDList);
+	}
+}
 
-
-scr_scrollBar(ds_list_size(functionChainContents_IDList), focusedElementY, strHeight, tabHeight,
+scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, tabHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
 
