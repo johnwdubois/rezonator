@@ -47,5 +47,7 @@ if (!surface_exists(clipSurface)) {
     clipSurface = surface_create(clipWidth, clipHeight);
 }
 
+scr_windowCameraAdjust();
+
 surface_set_target(clipSurface);
 draw_clear_alpha(c_black, 0);
