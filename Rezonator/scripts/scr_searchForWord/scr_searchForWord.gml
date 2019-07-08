@@ -49,14 +49,15 @@ if (firstChar == "\\" && !is_string(scr_regularExpressionCreate(wordToFind))) {
 }
 else {
 	var regExString = "(\@)*";// "(^|\[)\\+(\\0-9|\@)*\\+(^|\])";// "(\\0-9|\@|\[|\])*"; //finds laughter
-	//var regExString = "(\a-z|\A-Z)*"; //finds all words  "(\a-z|\A-Z|\0-9|_|.|-)*"
+	//var regExString = "(\\a-z|\\A-Z)*"; //finds all words  "(\a-z|\A-Z|\0-9|_|.|-)*"
 	ds_list_copy(RegEx,  scr_regularExpressionCreate( regExString ) ); //"(^|\[)\\+(\0-9|\@)*\\+(^|\])"  "(\@)*"
 }
 
 // display RegEx in debug
 //		obj_control.moveCounter = scr_regularExpressionCreate( regExString) ;
-
-
+if(is_string(scr_regularExpressionCreate(wordToFind))){
+	show_message(scr_regularExpressionCreate(wordToFind));
+}
 
 // create new searchGrid so we can populate it from scratch
 ds_grid_destroy(searchGrid);
@@ -154,9 +155,9 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 			}
 			else{
 				// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
-				//if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
+				if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
 				//if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) or scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
-				if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
+				//if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
 					
 					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
