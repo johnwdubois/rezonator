@@ -129,7 +129,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 	
 	
 	// get X,Y position of where pickwhip to mouse should start
-	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, i) == chainStateFocus) {	
+	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, i) == chainStateFocus and obj_control.currentActiveLineGrid == obj_control.lineGrid) {	
 		if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
 			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
