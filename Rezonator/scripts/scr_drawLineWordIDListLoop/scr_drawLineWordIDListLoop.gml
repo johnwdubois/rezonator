@@ -31,6 +31,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var currentWordGridRow = currentWordID - 1;
 	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
 	
+	if(currentWordState == obj_control.wordStateDead) {
+		
+		continue;
+	}
+	
 	// Check if the word is a ChunkWord
 	if(currentWordState == obj_control.wordStateChunk) {
 		
