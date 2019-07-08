@@ -64,10 +64,12 @@ unitGrid = ds_grid_create(unitGridWidth, 0);
 // Instantiate the Word Grid
 wordGridWidth = global.wordGridWidth;
 wordGrid_colWordID = 0;
-wordGrid_colUnitID = 1;
-wordGrid_colWordSeq = 2;
-wordGrid_colWordToken = 3;
-wordGrid_colWordTranscript = 4;
+wordGrid_colWID = 1;
+wordGrid_colUnitID = 2;
+wordGrid_colUtteranceID = 3;
+wordGrid_colWordSeq = 4;
+wordGrid_colWordToken = 5;
+wordGrid_colWordTranscript = 6;
 
 wordGrid = ds_grid_create(wordGridWidth, 0);
 
@@ -116,17 +118,19 @@ currentActiveLineGrid = lineGrid;
 // Instantiate the Dynamic Word Grid
 dynamicWordGridWidth = global.dynamicWordGridWidth;
 dynamicWordGrid_colWordID = 0;
-dynamicWordGrid_colDisplayWordSeq = 1; //dynamicWordGrid_colLineWordSeq = 1;
-dynamicWordGrid_colDisplayCol = 2; //dynamicWordGrid_colPositionCol = 2;
-dynamicWordGrid_colPixelX = 3; //dynamicWordGrid_colX = 3; 
-dynamicWordGrid_colWordState = 4;
-dynamicWordGrid_colDisplayString = 5; //dynamicWordGrid_colStringDisplay = 5;
-dynamicWordGrid_colInChainList = 6; //dynamicWordGrid_colInChains = 6;
-dynamicWordGrid_colInBoxList = 7; 
-dynamicWordGrid_colAligned = 8;
-dynamicWordGrid_colVoid = 9;
-dynamicWordGrid_colStretch = 10;
-dynamicWordGrid_colReplaceWord = 11;
+dynamicWordGrid_colWID = 1;
+dynamicWordGrid_colUtteranceID = 2;
+dynamicWordGrid_colDisplayWordSeq = 3; //dynamicWordGrid_colLineWordSeq = 1;
+dynamicWordGrid_colDisplayCol = 4; //dynamicWordGrid_colPositionCol = 2;
+dynamicWordGrid_colPixelX = 5; //dynamicWordGrid_colX = 3; 
+dynamicWordGrid_colWordState = 6;
+dynamicWordGrid_colDisplayString = 7; //dynamicWordGrid_colStringDisplay = 5;
+dynamicWordGrid_colInChainList = 8; //dynamicWordGrid_colInChains = 6;
+dynamicWordGrid_colInBoxList = 9; 
+dynamicWordGrid_colAligned = 10;
+dynamicWordGrid_colVoid = 12;
+dynamicWordGrid_colStretch = 12;
+dynamicWordGrid_colReplaceWord = 13;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 

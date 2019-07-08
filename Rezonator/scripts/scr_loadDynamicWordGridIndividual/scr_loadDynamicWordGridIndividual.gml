@@ -4,6 +4,7 @@ ds_grid_resize(obj_control.dynamicWordGrid, obj_control.dynamicWordGridWidth, ds
 var currentRowDynamicWordGrid = ds_grid_height(obj_control.dynamicWordGrid) - 1;
 	
 var currentWordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, rowInWordGrid);
+var currentUtteranceID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, rowInWordGrid);
 var currentWordPositionCol = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, rowInWordGrid);
 var currentWordX = currentWordPositionCol * obj_control.gridSpaceHorizontal + obj_control.wordLeftMargin;
 //var currentWordY = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, rowInWordGrid) * obj_control.gridSpaceVertical;
@@ -13,6 +14,7 @@ var emptyListTwo = ds_list_create();
 
 	
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordID, currentRowDynamicWordGrid, currentWordID);
+ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colUtteranceID, currentRowDynamicWordGrid, currentUtteranceID);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentRowDynamicWordGrid, currentWordPositionCol);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentRowDynamicWordGrid, currentWordX);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentRowDynamicWordGrid, currentWordTranscript);
