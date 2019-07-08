@@ -25,6 +25,9 @@ var windowHeight = argument10;
 
 
 
+draw_set_alpha(1);
+
+
 var windowHeightAdjusted = windowHeight - marginTop;
 
 var minScrollPlusY = windowHeightAdjusted - (listSize * strHeight);
