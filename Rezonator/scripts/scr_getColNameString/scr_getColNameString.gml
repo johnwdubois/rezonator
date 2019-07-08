@@ -169,6 +169,12 @@ else if (grid == obj_control.dynamicWordGrid) {
 		case obj_control.dynamicWordGrid_colWordID:
 			colName = "wordID";
 			break;
+		case obj_control.dynamicWordGrid_colWID:
+			colName = "wID";
+			break;
+		case obj_control.dynamicWordGrid_colUtteranceID:
+			colName = "uID";
+			break;
 		case obj_control.dynamicWordGrid_colDisplayWordSeq:
 			colName = "displayWordSeq";
 			break;
