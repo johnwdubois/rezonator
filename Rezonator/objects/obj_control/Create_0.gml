@@ -64,10 +64,12 @@ unitGrid = ds_grid_create(unitGridWidth, 0);
 // Instantiate the Word Grid
 wordGridWidth = global.wordGridWidth;
 wordGrid_colWordID = 0;
-wordGrid_colUnitID = 1;
-wordGrid_colWordSeq = 2;
-wordGrid_colWordToken = 3;
-wordGrid_colWordTranscript = 4;
+wordGrid_colWID = 1;
+wordGrid_colUnitID = 2;
+wordGrid_colUtteranceID = 3;
+wordGrid_colWordSeq = 4;
+wordGrid_colWordToken = 5;
+wordGrid_colWordTranscript = 6;
 
 wordGrid = ds_grid_create(wordGridWidth, 0);
 

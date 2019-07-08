@@ -115,8 +115,14 @@ else if (grid == obj_control.wordGrid) {
 		case obj_control.wordGrid_colWordID:
 			colName = "wordID";
 			break;
+		case obj_control.wordGrid_colWID:
+			colName = "wID";
+			break;
 		case obj_control.wordGrid_colUnitID:
 			colName = "unitID";
+			break;
+		case obj_control.wordGrid_colUtteranceID:
+			colName = "uID";
 			break;
 		case obj_control.wordGrid_colWordSeq:
 			colName = "wordSeq";
