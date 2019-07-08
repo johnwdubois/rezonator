@@ -80,7 +80,7 @@ functionChainContents_scrollRangeMin[0] = 0;
 functionChainContents_scrollRangeMax[0] = functionChainContents_maxScrollRange;
 functionChainContents_hop = -1;
 
-functionChainContents_colXListMap = ds_map_create();
+functionChainContents_colXList = ds_list_create();
 functionChainContents_colXHolding = -1
 functionChainContents_colXHoldingPrev = 0;
 functionChainContents_colXHoldingDiff = 0;

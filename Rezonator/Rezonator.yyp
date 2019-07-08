@@ -655,6 +655,14 @@
             }
         },
         {
+            "Key": "1fae8169-e422-4a32-961d-f94e12fd208c",
+            "Value": {
+                "id": "4f854fb6-d84e-4b9f-8f29-706963aa6ae5",
+                "resourcePath": "scripts\\scr_refreshUnitInStackGrid\\scr_refreshUnitInStackGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1fc73ccb-fa5e-4385-b7e2-4edfda6f2e58",
             "Value": {
                 "id": "6c74b0d3-78b6-40d2-98d4-dcb89cec54af",
@@ -4393,7 +4401,8 @@
         "354bde9c-fc25-41f2-89b8-e40a87157775",
         "876dfb46-e34f-4303-92d7-29b15d649f25",
         "4ed4d8a2-a546-442b-8a3f-b7d480cf3c94",
-        "a19f7bc3-34d7-44b8-9ef6-18e696add4dc"
+        "a19f7bc3-34d7-44b8-9ef6-18e696add4dc",
+        "1fae8169-e422-4a32-961d-f94e12fd208c"
     ],
     "tutorial": ""
 }
