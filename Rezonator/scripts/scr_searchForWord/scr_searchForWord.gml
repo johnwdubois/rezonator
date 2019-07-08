@@ -155,9 +155,9 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 			}
 			else{
 				// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
-				if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
+				//if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
 				//if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) or scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
-				//if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
+				if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
 					
 					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
