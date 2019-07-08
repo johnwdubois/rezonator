@@ -16,6 +16,7 @@ if (mouse_check_button_pressed(mb_left)) {
 		windowResizeYHolding = true;
 	}
 }
+
 if (mouse_check_button(mb_left)) {
 	if (windowResizeXHolding) {
 		windowWidth = mouse_x - x;
@@ -32,8 +33,8 @@ if (mouse_check_button(mb_left)) {
 }
 
 
-windowWidth = max(10, windowWidth);
-windowHeight = max(40, windowHeight);
+windowWidth = clamp(windowWidth, 48, 2000);
+windowHeight = clamp(windowHeight, 48, 1500);
 clipWidth = windowWidth;
 clipHeight = windowHeight;
 	

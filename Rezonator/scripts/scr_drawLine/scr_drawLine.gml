@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+
+
 if (gridView || ds_grid_height(dynamicWordGrid) < 1) {
 	exit;
 }
@@ -109,6 +111,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		
 			var currentStackChainID = currentLineInStack;
 			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackChainID);
+			
 			var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
 			
 			if (typeof(stackColor) == "number") {
@@ -244,11 +247,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 		}
 		else if (i == 2 and participantName != undefined) {
 			speakerLabelCurrentColStr = string(participantName);
-			/*
-			if (string_width(speakerLabelCurrentColStr) > obj_control.speakerLabelColWidth[2]) {
-				
-			}
-			*/
+
 			while (string_width(speakerLabelCurrentColStr) > obj_control.speakerLabelColWidth[2]) {
 				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
 			}
@@ -273,9 +272,9 @@ if (showDevVars) {
 // set Y pixel value for lines outside of draw range, to get them ready to be shown
 for (var i = 1; i < drawRange; i++) {
 	if (drawRangeStart - i >= 0 and drawRangeStart - i < ds_grid_height(lineGrid)) {
-		ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeStart - i, -gridSpaceVertical);
+		//ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeStart - i, -gridSpaceVertical);
 	}
 	if (drawRangeEnd + i >= 0 and drawRangeEnd + i < ds_grid_height(lineGrid)) {
-		ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeEnd + i, room_height + gridSpaceVertical);
+		//ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeEnd + i, room_height + gridSpaceVertical);
 	}
 }

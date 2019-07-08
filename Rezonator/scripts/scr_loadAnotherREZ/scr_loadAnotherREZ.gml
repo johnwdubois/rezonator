@@ -16,6 +16,7 @@ if (originalGridHeight > 0) {
 		for (var j = 0; j < ds_grid_width(tempGrid); j++) {
 			
 			var currentCellValue = ds_grid_get(tempGrid, j, i);
+		
 			
 			if (originalGrid == obj_control.wordGrid) {
 				
@@ -63,6 +64,7 @@ if (originalGridHeight > 0) {
 				}
 				
 			}
+			
 			
 			ds_grid_set(tempGrid, j, i, currentCellValue);
 		}
