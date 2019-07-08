@@ -50,6 +50,9 @@ else if (grid == obj_control.searchGrid) {
 	}
 }
 else if (grid == obj_chain.unitInStackGrid) {
+	//if (col == obj_chain.unitInStackGrid_colStack) {
+	//	itemList = currentCell;
+	//}
 }
 else if (grid == obj_chain.cliqueGrid) {
 	if (col == obj_chain.cliqueGrid_colChainIDList or col == obj_chain.cliqueGrid_colUnitIDList) {

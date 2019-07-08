@@ -66,6 +66,7 @@ switch (currentFunction) {
 		break;
 	case functionHelp:
 		scr_panelPane_drawHelp();
+		scr_panelPane_drawTracker();
 		break;
 	case functionGoToLine:
 		scr_panelPane_drawGoToLine();
@@ -77,7 +78,9 @@ switch (currentFunction) {
 		break;
 }
 
-scr_panelPane_drawTracker();
+
+
+
 
 draw_set_alpha(1);
 draw_set_color(global.colorThemeBorders);
