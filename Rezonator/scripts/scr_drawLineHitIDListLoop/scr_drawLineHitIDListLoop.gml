@@ -43,7 +43,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 			
 		// Record user's click in the Search screen to highlight.
 		if (mouse_check_button_pressed(mb_left)) {
-			var newSwitch = ds_grid_get(hitGrid, hitGrid_colUnitID, currentHitID)
+			var newSwitch = ds_grid_get(hitGrid, hitGrid_colUnitID, currentHitID - 1)
 			with (obj_control) {
 				//preSwitchDisplayRow = newSwitch;
 				highlightedSearchRow = newSwitch;
