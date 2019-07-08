@@ -39,7 +39,9 @@ var idList = ds_list_create();
 // find the focused chain in this grid. if there are no focused chains in this grid, exit the script
 if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus)) {
 	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-	var chainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, rowInChainGrid);
+	if(rowInChainGrid >= 0){
+		var chainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, rowInChainGrid);
+	}
 }
 else {
 	exit;

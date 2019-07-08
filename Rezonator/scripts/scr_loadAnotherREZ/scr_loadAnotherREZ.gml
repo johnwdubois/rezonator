@@ -16,6 +16,7 @@ if (originalGridHeight > 0) {
 		for (var j = 0; j < ds_grid_width(tempGrid); j++) {
 			
 			var currentCellValue = ds_grid_get(tempGrid, j, i);
+		
 			
 			if (originalGrid == obj_control.wordGrid) {
 				
@@ -64,6 +65,7 @@ if (originalGridHeight > 0) {
 				
 			}
 			
+			
 			ds_grid_set(tempGrid, j, i, currentCellValue);
 		}
 	}
@@ -92,3 +94,6 @@ if (originalGrid == obj_control.dynamicWordGrid) {
 ds_grid_resize(originalGrid, ds_grid_width(originalGrid), originalGridHeight + ds_grid_height(tempGrid));
 ds_grid_set_grid_region(originalGrid, tempGrid, 0, 0, ds_grid_width(tempGrid), ds_grid_height(tempGrid), 0, originalGridHeight);
 ds_grid_destroy(tempGrid);
+
+
+scr_refreshUnitInStackGrid();

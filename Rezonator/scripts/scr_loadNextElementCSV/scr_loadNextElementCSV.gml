@@ -43,8 +43,11 @@ ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(o
 var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 //currentRowWordGrid++;
 
+currentUtteranceID = currentUID;
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentRowWordGrid, wordIDCounter);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentRowWordGrid, currentUnitID);
+ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, currentRowWordGrid, currentUtteranceID);
+//show_message(string(currentUtteranceID));
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, currentPlace);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, currentWord);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, currentText);

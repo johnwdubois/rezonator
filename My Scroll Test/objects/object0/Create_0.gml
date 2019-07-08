@@ -7,8 +7,10 @@ clipX = x;
 clipY = y;
 
 firstItemToDraw = 0;
-lastItemToDraw = 10;
+lastItemToDraw = 20;
 
+firstItemY = 0;
+lastItemY = 0;
 
 
 

@@ -153,6 +153,8 @@ for (var fileLineRipGridLoop = 0; fileLineRipGridLoop < ds_grid_height(global.fi
 			
 				ds_grid_set(wordGrid, wordGrid_colWordID, currentRowWordGrid, wordIDCounter);
 				ds_grid_set(wordGrid, wordGrid_colUnitID, currentRowWordGrid, currentUnitID);
+				ds_grid_set(wordGrid, wordGrid_colUtteranceID, currentRowWordGrid, currentUtteranceID);
+				//show_message(string(currentUtteranceID));
 				ds_grid_set(wordGrid, wordGrid_colWordSeq, currentRowWordGrid, j);
 				ds_grid_set(wordGrid, wordGrid_colWordToken, currentRowWordGrid, wordToken);
 				ds_grid_set(wordGrid, wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
@@ -186,13 +188,11 @@ for (var fileLineRipGridLoop = 0; fileLineRipGridLoop < ds_grid_height(global.fi
 			
 			
 			
-			// resize unitInStackGrid
-			var emptyList = ds_list_create();
 	
 			var unitInStackGridCurrentRow = ds_grid_height(obj_chain.unitInStackGrid);
 			ds_grid_resize(obj_chain.unitInStackGrid, obj_chain.unitInStackGridWidth, unitInStackGridCurrentRow + 1);
 			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colUnitID, unitInStackGridCurrentRow, currentUnitID);
-			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitInStackGridCurrentRow, emptyList);
+			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitInStackGridCurrentRow, -1);
 		}
 	
 	}

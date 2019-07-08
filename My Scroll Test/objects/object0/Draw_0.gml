@@ -26,7 +26,9 @@ draw_text(10, 190, "(y + scrollBarWidth - mouse_y): " + string(y + scrollBarWidt
 draw_set_halign(fa_right);
 draw_text(room_width - 10, 20, "fps: " + string(fps));
 draw_text(room_width - 10, 40, "firstItemToDraw: " + string(firstItemToDraw));
-draw_text(room_width - 10, 60, "lastItemToDraw: " + string(lastItemToDraw));
+draw_text(room_width - 10, 60, "firstItemY: " + string(firstItemY));
+draw_text(room_width - 10, 80, "lastItemToDraw: " + string(lastItemToDraw));
+draw_text(room_width - 10, 100, "lastItemY: " + string(lastItemY));
 
 
 

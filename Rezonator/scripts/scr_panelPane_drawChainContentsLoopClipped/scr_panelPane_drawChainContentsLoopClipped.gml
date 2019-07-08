@@ -25,6 +25,12 @@ var scrollBarListHeight = 0;
 
 var grid = obj_chain.rezChainGrid;
 
+// new
+if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_colXList)) {
+	exit;
+}
+// new end
+
 // Find current tab to draw correct contents
 switch (functionChainList_currentTab) {
 	case 0:
@@ -272,15 +278,16 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			}
 			draw_set_color(c_purple);
 			draw_rectangle(x + 2 - clipX, y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY - clipY, x + 2 + alignRectSize - clipX, y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - clipY, !currentWordAligned)
-		
-			textPlusY += string_height(currentWordInfoCol[0]) * 0.75;
+			
+			strHeight = string_height(currentWordInfoCol[0]) * 0.75;
+			textPlusY += strHeight;
 		}
 	}
 }
 
 
 
-scr_scrollBar(scrollBarListHeight, focusedElementY, strHeight, tabHeight,
+scr_scrollBar(ds_list_size(functionChainContents_IDList), focusedElementY, strHeight, tabHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
 
@@ -294,6 +301,7 @@ draw_set_font(global.fontPanelTab);
 
 draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
+
 
 for (var i = 0; i < 3; i++) {
 	var colRectX1 = x + (i * (windowWidth / 3)) + alignTabWidth;
@@ -344,6 +352,7 @@ for (var i = 0; i < 3; i++) {
 	draw_set_color(global.colorThemeText);
 	draw_text(colRectX1 + 4 - clipX, y + (tabHeight / 2) - clipY, colName);
 }
+
 
 draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeight - clipY);
 
