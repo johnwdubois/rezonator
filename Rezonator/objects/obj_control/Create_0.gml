@@ -322,6 +322,7 @@ currentSessionTime = 0;
 
 // Search box variables
 fPressed = false;
+regExCheck = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
