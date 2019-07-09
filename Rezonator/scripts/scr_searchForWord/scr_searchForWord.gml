@@ -44,19 +44,24 @@ ds_list_copy( listOfWords, scr_splitString(wordToFind, "&"));
 // if user input regEx string
 var firstChar =  string_copy( wordToFind, 0,1);
 RegEx = ds_list_create();
-if (firstChar == "\\" && !is_string(scr_regularExpressionCreate(wordToFind))) {
+
+var regExString = "(\@)*";// "(^|\[)\\+(\\0-9|\@)*\\+(^|\])";// "(\\0-9|\@|\[|\])*"; //finds laughter
+//var regExString = "(\\a-z|\\A-Z)*"; //finds all words  "(\a-z|\A-Z|\0-9|_|.|-)*"
+ds_list_copy(RegEx,  scr_regularExpressionCreate( regExString ) ); //"(^|\[)\\+(\0-9|\@)*\\+(^|\])"  "(\@)*"
+		
+if (!is_string(scr_regularExpressionCreate(wordToFind)) && obj_control.regExCheck) {
 	ds_list_copy(RegEx, scr_regularExpressionCreate(wordToFind));
 }
 else {
-	var regExString = "(\@)*";// "(^|\[)\\+(\\0-9|\@)*\\+(^|\])";// "(\\0-9|\@|\[|\])*"; //finds laughter
-	//var regExString = "(\\a-z|\\A-Z)*"; //finds all words  "(\a-z|\A-Z|\0-9|_|.|-)*"
-	ds_list_copy(RegEx,  scr_regularExpressionCreate( regExString ) ); //"(^|\[)\\+(\0-9|\@)*\\+(^|\])"  "(\@)*"
+	if(obj_control.regExCheck) {
+		show_message(scr_regularExpressionCreate(wordToFind));
+	}
 }
 
 // display RegEx in debug
 //		obj_control.moveCounter = scr_regularExpressionCreate( regExString) ;
 if(is_string(scr_regularExpressionCreate(wordToFind))){
-	show_message(scr_regularExpressionCreate(wordToFind));
+obj_control.regExCheck = false;
 }
 
 // create new searchGrid so we can populate it from scratch
@@ -88,79 +93,89 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 									
 				if !ds_list_empty(listOfWords) {
 					wordToFind = ds_list_find_value(listOfWords, l);
-				}
+			}
 				
-			// if statement for boolean logic and search selection	
-			if (obj_control.caseSensitive and not obj_control.transcriptSearch and not obj_control.inChainBool) {
-				if (wordToFind == currentWordToken) {
+			if (obj_control.regExCheck) {
+				if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
+					
+					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+
+				}
+			}
+			
+			else {
+				// if statement for boolean logic and search selection	
+				if (obj_control.caseSensitive and not obj_control.transcriptSearch and not obj_control.inChainBool) {
+					if (wordToFind == currentWordToken) {
+				
+							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+
+					}
+				}
+				else if (obj_control.transcriptSearch and not obj_control.caseSensitive and not obj_control.inChainBool) {
+					if (string_lower(wordToFind) == string_lower(currentWordTranscript)) {
 				
 						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
+					}
 				}
-			}
-			else if (obj_control.transcriptSearch and not obj_control.caseSensitive and not obj_control.inChainBool) {
-				if (string_lower(wordToFind) == string_lower(currentWordTranscript)) {
+				else if (obj_control.transcriptSearch and obj_control.caseSensitive and not obj_control.inChainBool) {
+					if ( wordToFind == currentWordTranscript ) {
 				
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
+					}
 				}
-			}
-			else if (obj_control.transcriptSearch and obj_control.caseSensitive and not obj_control.inChainBool) {
-				if ( wordToFind == currentWordTranscript ) {
-				
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
-
-				}
-			}
-			else if (obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
-				
-			var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
-					
-				if ( wordToFind == currentWordTranscript and inChain == 1) {
-				
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
-
-				}
-			}
-			else if (not obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
+				else if (obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
 				
 				var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+					
+					if ( wordToFind == currentWordTranscript and inChain == 1) {
 				
-				if (string_lower(wordToFind) == string_lower(currentWordToken) and inChain == 1 or string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
+						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+
+					}
+				}
+				else if (not obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
+				
+					var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+				
+					if (string_lower(wordToFind) == string_lower(currentWordToken) and inChain == 1 or string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
 				
 					
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
+					}
 				}
-			}
-			else if (obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
+				else if (obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
 				
-				var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+					var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
 				
-				if (string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
+					if (string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
 				
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
+					}
 				}
-			}
-			else if (not obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
+				else if (not obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
 				
-				var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+					var inChain = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
 				
-				if (wordToFind == currentWordToken and inChain == 1 or wordToFind == currentWordTranscript and inChain == 1) {
+					if (wordToFind == currentWordToken and inChain == 1 or wordToFind == currentWordTranscript and inChain == 1) {
 				
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);	
+						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);	
 
+					}
 				}
-			}
-			else{
-				// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
-				//if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
-				//if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) or scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
-				if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
+				else{
+					// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
+					//if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
+					//if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) or scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
+					if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
 					
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
 
+					}
 				}
 			}
 		}

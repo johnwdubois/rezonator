@@ -9,6 +9,9 @@ preSwitchDisplayRow = currentCenterDisplayRow;
 //}
 preSwitchLineGrid = currentActiveLineGrid;
 preSwitchSearchDisplayRow = 0;
+if (!obj_control.fPressed) {
+	keyboard_string = "";
+}
 
 fPressed = true;
 //have the input be here?

@@ -50,40 +50,34 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	// Remove this Chunk from the Chunk grid
 	scr_gridDeleteRow(obj_chain.chunkGrid, currentChunkRow);
 	
-	// Print the word list of the remaining Chunks
-	/*for(var listLoop = 0; listLoop < ds_grid_height(obj_chain.chunkGrid); listLoop++) {
-		show_message(scr_getStringOfList(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, listLoop)));
-	}*/
-	
 	// Mechnism for removing this Chunk from ay chains
 	//while(ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), chunkWordID)) {
-		var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), chunkWordID);
-		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
+	var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), chunkWordID);
+	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
 		
-		//show_message(string(currentLinkGridRow));
-		var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, currentLinkGridRow);
-		// Retrieve the chainID from the linkGrid
-		var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentLinkGridRow);
-		// Make sure this chain gets focused to perform the deletion
-		obj_chain.currentFocusedChainID = currentChainID;
+	//show_message(string(currentLinkGridRow));
+	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, currentLinkGridRow);
+	// Retrieve the chainID from the linkGrid
+	var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentLinkGridRow);
+	// Make sure this chain gets focused to perform the deletion
+	obj_chain.currentFocusedChainID = currentChainID;
 		
-		// access the currentChainGridRow using the chainID
-		if(tier == 1) {
-			grid = obj_chain.rezChainGrid;
-		}
-		else if(tier == 2) {
-			grid = obj_chain.trackChainGrid;
-		}
-		else if(tier == 3) {
-			grid = obj_chain.stackChainGrid;
-		}
+	// access the currentChainGridRow using the chainID
+	if(tier == 1) {
+		grid = obj_chain.rezChainGrid;
+	}
+	else if(tier == 2) {
+		grid = obj_chain.trackChainGrid;
+	}
+	else if(tier == 3) {
+		grid = obj_chain.stackChainGrid;
+	}
 		
-		if(grid == undefined) {exit;}
-		currentChainGridRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
-		//keyboard_key_press(vk_delete);
-		//keyboard_key_release(vk_delete);
-		//obj_control.key
-	//}
+	if(grid == undefined) {exit;}
+	currentChainGridRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
+	
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, chunkWordID - 1, obj_control.wordStateDead);
+
 }
 
 // Make sure there is a focused link to be deleted

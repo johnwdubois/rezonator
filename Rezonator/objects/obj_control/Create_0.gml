@@ -135,7 +135,9 @@ dynamicWordGrid_colReplaceWord = 13;
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
 wordStateNormal = 0;
-wordStateChunk = 1;
+wordStateNew = 1;
+wordStateChunk = 2;
+wordStateDead = 3;
 
 
 // Instantiate the Word Draw Grid
@@ -322,6 +324,7 @@ currentSessionTime = 0;
 
 // Search box variables
 fPressed = false;
+regExCheck = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;

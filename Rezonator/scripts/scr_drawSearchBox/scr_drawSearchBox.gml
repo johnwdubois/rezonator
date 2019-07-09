@@ -52,8 +52,12 @@ if (obj_control.fPressed) {
 	draw_set_font(fnt_mainLarge1);
 	
 	// draw background text
-	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input string to search for.");
-	
+	if(obj_control.regExCheck){
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input Regular expression.");
+	}
+	else{
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input string to search for.");
+	}
 	
 	// draw search bar
 	draw_set_colour(global.colorThemeBG);
@@ -77,32 +81,44 @@ if (obj_control.fPressed) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "OK");
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Cancel");
 	
-	// draw boolean option check boxes
-	draw_set_colour(global.colorThemeText);
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105, true);
-	if (obj_control.inChainBool) {
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105, false);	
+	if (!obj_control.regExCheck) {
+	
+		// draw boolean option check boxes
+		draw_set_colour(global.colorThemeText);
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105, true);
+		if (obj_control.inChainBool) {
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105, false);	
+		}
+	
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 65, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 75, true);
+		if (obj_control.caseSensitive) {
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 65, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 75, false);	
+		}
+	
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, true);
+		if (obj_control.transcriptSearch) {
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, false);	
+		}
+	
 	}
 	
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 65, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 75, true);
-	if (obj_control.caseSensitive) {
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 65, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 75, false);	
-	}
-	
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, true);
-	if (obj_control.transcriptSearch) {
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, false);	
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45, true);
+	if (obj_control.regExCheck) {
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45, false);	
 	}
 
 	//darw boolean options text
 	draw_set_font(fnt_main);
-	draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Transcript Search");
-	draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 70,"Case Sensistive");
-	draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Rez Chain");
+	if (!obj_control.regExCheck) {
+		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Transcript Search");
+		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 70,"Case Sensistive");
+		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Rez Chain");
+	}
+	draw_text(camera_get_view_width(view_camera[0]) /2 + 65, camera_get_view_height(view_camera[0])/2 - 48,"RegEx Search");
 	
 	
 
-
+if(!obj_control.regExCheck){
 
 // current chain boolean switch
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105)){
@@ -126,6 +142,14 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 }
 
 }
+// RegEx boolean switch
+if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45)){
+		if (mouse_check_button_pressed(mb_left)) {
+			obj_control.regExCheck = !obj_control.regExCheck;
+		}
+}
+
+}
 
 // reset booleans
 if (!obj_control.fPressed) {
@@ -135,6 +159,7 @@ if (!obj_control.fPressed) {
 	obj_control.transcriptSearch = false;
 	obj_control.inChainBool = false;
 	obj_control.caseSensitive = false;
+	obj_control.regExCheck = false;
 }
 
 // keyboard inputs

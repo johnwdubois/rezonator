@@ -57,10 +57,12 @@ ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(o
 var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 
 var wordID = ds_grid_height(obj_control.wordGrid);
+var utteranceID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1);
 
 // Fill in the new row of the WordGrid
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentRowWordGrid, wordID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentRowWordGrid, unitID);
+ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, currentRowWordGrid, utteranceID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, wordSeq + 1);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordToken);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
@@ -68,9 +70,9 @@ ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, curren
 // Fill in the new row of the DynamicWordGrid
 scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 
-// Designate the new word as a normal word or a Chunk word
+// Designate the new word as a new word or a Chunk word
 if(argument_count == 2) {
-	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateNormal);
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateNew);
 }
 else {
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateChunk);
