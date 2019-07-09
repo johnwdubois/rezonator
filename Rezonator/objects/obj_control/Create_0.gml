@@ -128,7 +128,7 @@ dynamicWordGrid_colDisplayString = 7; //dynamicWordGrid_colStringDisplay = 5;
 dynamicWordGrid_colInChainList = 8; //dynamicWordGrid_colInChains = 6;
 dynamicWordGrid_colInBoxList = 9; 
 dynamicWordGrid_colAligned = 10;
-dynamicWordGrid_colVoid = 12;
+dynamicWordGrid_colVoid = 11;
 dynamicWordGrid_colStretch = 12;
 dynamicWordGrid_colReplaceWord = 13;
 

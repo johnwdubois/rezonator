@@ -99,7 +99,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 		var currentCellRectX2 = colRectX2;
 		var currentCellRectY2 = currentCellRectY1 + strHeight;
 		
-		if (gridLoopRow == mouseoverRow and gridViewColXHolding == -1) {
+		if (gridLoopRow == mouseoverRow and gridViewColXHolding == -1 and not windowResizeXHolding) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, false);
 		}
