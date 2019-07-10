@@ -237,6 +237,12 @@ draw_text(windowX1 + 10, windowY2 + strHeight + 20, "(" + string(floor(mouseover
 draw_text(windowX1, windowY2 + strHeight + 20 + string_height("0"), "fps: " + string(fps));
 
 
+//draw_text(windowX1, windowY2 + strHeight + 60 + string_height("0"), "gridViewColXHolding: " + string(gridViewColXHolding));
+//draw_text(windowX1, windowY2 + strHeight + 80 + string_height("0"), "gridViewColPrevList: " + scr_getStringOfList(gridViewColPrevList));
+//draw_text(windowX1, windowY2 + strHeight + 100 + string_height("0"), "gridViewColXHoldingDiff: " + string(gridViewColXHoldingDiff));
+
+
+
 
 
 
