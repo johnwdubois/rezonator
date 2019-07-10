@@ -2151,6 +2151,14 @@
             }
         },
         {
+            "Key": "83309970-a9be-49b6-a4ae-c25e3186195b",
+            "Value": {
+                "id": "ba79b168-462c-4c8d-a9f5-95f6421a412c",
+                "resourcePath": "objects\\obj_fpsTracker\\obj_fpsTracker.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "838cdc83-eb1b-4dc2-bc40-c941e7ef98c9",
             "Value": {
                 "id": "35a45524-19b2-4be9-9c35-b1a1c45efcca",
@@ -3839,6 +3847,14 @@
             }
         },
         {
+            "Key": "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91",
+            "Value": {
+                "id": "b916a6cf-55d6-4235-9fe5-149b5490bb7c",
+                "resourcePath": "scripts\\scr_fpsTrackerFile\\scr_fpsTrackerFile.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e62a5730-9b99-4ca6-bb32-c61f6678b17a",
             "Value": {
                 "id": "e5a06d6f-90ca-4ec9-be78-80eb24546568",
@@ -4402,7 +4418,8 @@
         "876dfb46-e34f-4303-92d7-29b15d649f25",
         "4ed4d8a2-a546-442b-8a3f-b7d480cf3c94",
         "a19f7bc3-34d7-44b8-9ef6-18e696add4dc",
-        "1fae8169-e422-4a32-961d-f94e12fd208c"
+        "1fae8169-e422-4a32-961d-f94e12fd208c",
+        "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91"
     ],
     "tutorial": ""
 }

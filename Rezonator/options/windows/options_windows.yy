@@ -9,7 +9,7 @@
     "option_windows_copy_exe_to_dest": false,
     "option_windows_copyright_info": "(c) 2018 Rezonator Games",
     "option_windows_description_info": "Rezonator: Dynamics of Human Engagement",
-    "option_windows_disable_sandbox": false,
+    "option_windows_disable_sandbox": true,
     "option_windows_display_cursor": true,
     "option_windows_display_name": "Rezonator 0.8.41",
     "option_windows_enable_steam": false,
