@@ -19,7 +19,7 @@
 	var searchBarYOffset = 20;
 	var buttonXOffset = 50;
 	var buttonYOffset = 25;
-
+	
 
 
 if (obj_control.fPressed) {
@@ -47,7 +47,7 @@ if (obj_control.fPressed) {
 	draw_set_colour(global.colorThemeText);
 	
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, "Rezonator 0.8.40");
+	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, string(game_display_name));
 	
 	draw_set_font(fnt_mainLarge1);
 	
