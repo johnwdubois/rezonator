@@ -119,7 +119,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 			currentLineGridIndex2InDrawRange = false;
 		}
 		
-		if(chunkWord1) {
+		/*if(chunkWord1) {
 			var wordRectBuffer = 6;
 			if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID1 - 1), 0) - 1)) == true) {
 				wordRectBuffer = 4;
@@ -134,7 +134,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 			}
 			lineY2 -= (wordRectBuffer * 4) + 4;
 			chunkWord2 = 0;
-		}
+		}*/
 		
 		
 		// only draw line if every value is real and we are in the draw range
