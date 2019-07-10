@@ -17,6 +17,10 @@
 var currentWordID = argument0;
 var currentUnitID = argument1;
 var previousWordID = undefined;
+if(currentWordID - 2 < 0) {
+	return -1;
+}
+
 var lineWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
 var currentWordIDIndex = ds_list_find_index(lineWordIDList, currentWordID);
 if(currentWordIDIndex != 0) {
