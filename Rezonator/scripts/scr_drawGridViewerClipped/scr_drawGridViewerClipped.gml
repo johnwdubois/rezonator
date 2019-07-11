@@ -183,14 +183,17 @@ if ((not mouse_check_button(mb_left)) or gridViewColXHolding >= ds_grid_width(gr
 	ds_list_clear(gridViewColPrevList);
 }
 
+window_set_cursor(cr_default);
 for (var i = 1; i < ds_grid_width(grid); i++) {
 	
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(0.15);
 	var colX = ds_list_find_value(gridColXList, i);
 	
+	
 	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
 		draw_set_alpha(0.8);
+		window_set_cursor(cr_size_we);
 		
 		if (mouse_check_button_pressed(mb_left) and gridViewColXHolding == -1) {
 			gridViewColXHoldingPrev = colX;
