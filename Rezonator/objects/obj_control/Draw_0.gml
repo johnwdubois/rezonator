@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+window_set_cursor(cr_default);
+
 // color theme control
 scr_colorThemeControl();
 
@@ -48,20 +50,19 @@ if (not mouseoverPanelPane) {
 	else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {
 		scr_boxRect();
 	}
-}
 
-
-// Create the quickStack with the mouse drag, if possible
-if (mouseRectMade and quickStackAbleToInitiate) {
-	quickStackAbleToInitiate = false;
-	alarm[7] = 5;
-}
-else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-	alarm[8] = 5;
-}
-if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {
-	boxRectAbleToInitiate = false;
-	alarm[10] = 5;
+	// Create the quickStack with the mouse drag, if possible
+	if (mouseRectMade and quickStackAbleToInitiate) {
+		quickStackAbleToInitiate = false;
+		alarm[7] = 5;
+	}
+	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+		alarm[8] = 5;
+	}
+	if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {
+		boxRectAbleToInitiate = false;
+		alarm[10] = 5;
+	}
 }
 
 
@@ -98,6 +99,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 370, "mouseLineHide: " + string(showMouseLine));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 400, "newWordHoverWordID: " + string(newWordHoverWordID));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 420, "MouseOverPanelPane: " + string(mouseoverPanelPane));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 440, "moveCounter: " + string(moveCounter));
 	

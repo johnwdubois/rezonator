@@ -391,7 +391,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			if (inMouseHoldRect) {
 				with (obj_control) {
 					if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-						//show_message("ghost?");
 						ds_list_add(inRectWordIDList, currentWordID);
 					}
 				}

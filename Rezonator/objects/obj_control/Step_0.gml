@@ -243,7 +243,9 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 
 
 // Check for mouse over of the Panel Pane
-mouseoverPanelPane = false;
+if(window_get_cursor() != cr_size_ns) {
+	mouseoverPanelPane = false;
+}
 for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	var panelPaneInst = instance_find(obj_panelPane, i);
 	var toolPaneInst = instance_find(obj_toolPane, 0);

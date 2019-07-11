@@ -183,7 +183,7 @@ if ((not mouse_check_button(mb_left)) or gridViewColXHolding >= ds_grid_width(gr
 	ds_list_clear(gridViewColPrevList);
 }
 
-window_set_cursor(cr_default);
+//window_set_cursor(cr_default);
 
 for (var i = 1; i < ds_grid_width(grid); i++) {
 	
