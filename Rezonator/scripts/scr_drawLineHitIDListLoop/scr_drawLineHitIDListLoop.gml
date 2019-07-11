@@ -2,6 +2,7 @@ var currentHitIDList = argument0;
 var previousWordDisplayCol = argument1;
 var currentLineY = argument2;
 var drawLineLoop = argument3;
+var unitID = argument4;
 
 draw_set_alpha(1);
 
@@ -48,6 +49,27 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 				//preSwitchDisplayRow = newSwitch;
 				highlightedSearchRow = newSwitch;
 				
+			}
+		}
+	}
+	
+	if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+		if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
+			with (obj_chain) {
+				scr_wordClicked(currentWordID, unitID);
+			}
+		}
+	}
+	
+	// allow quick stacks on the search screen
+	if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade) {
+		inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (inMouseHoldRect) {
+			with (obj_control) {
+				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
+					ds_list_add(inRectUnitIDList, unitID);
+					ds_list_add(inRectWordIDList, currentWordID);
+				}
 			}
 		}
 	}
