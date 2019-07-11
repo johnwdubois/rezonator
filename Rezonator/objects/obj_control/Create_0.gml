@@ -338,3 +338,6 @@ hitIDCounter = 1;
 
 // Safety check for quick volunteers
 alarm[9] = 10;
+
+
+mouseoverPanelPane = false;

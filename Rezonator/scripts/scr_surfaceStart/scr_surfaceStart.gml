@@ -1,6 +1,7 @@
 if (mouse_check_button_released(mb_left)) {
 	windowResizeXHolding = false;
 	windowResizeYHolding = false;
+	obj_control.mouseoverPanelPane = false;
 }
 if (mouse_check_button_pressed(mb_left)) {
 	
@@ -30,6 +31,10 @@ if (mouse_check_button(mb_left)) {
 			surface_resize(clipSurface, clipWidth, clipHeight);
 		}
 	}
+}
+
+if (windowResizeXHolding or windowResizeYHolding) {
+	obj_control.mouseoverPanelPane = true;
 }
 
 
