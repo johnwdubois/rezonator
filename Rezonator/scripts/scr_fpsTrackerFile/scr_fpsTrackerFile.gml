@@ -3,13 +3,12 @@ if (directory_exists_ns(global.rezonatorDirString)) {
 	fpsTrackFile = file_text_open_write(filename);
 	
 	var gridStr = "";
-	for (var i = 0; i < fpsGridCurrentRow; i++) {
+	for (var i = 0; i < fpsGridCurrentRow; i++) {	
 		
 		if (i >= ds_grid_height(fpsGrid)) {
 			continue;
 		}
 		
-		show_message("here")
 		for (var j = 0; j < ds_grid_width(fpsGrid); j++) {
 			
 			gridStr += string(ds_grid_get(fpsGrid, j, i)) + ", ";

@@ -5,6 +5,6 @@ fpsGrid_colLinkGridHeight = 2;
 
 fpsGridCurrentRow = 0;
 
-fpsGrid = ds_grid_create(fpsGridWidth, 1000);
+fpsGrid = ds_grid_create(fpsGridWidth, 100000);
 
-alarm[0] = fps * 5;
+alarm[0] = fps * 2;
