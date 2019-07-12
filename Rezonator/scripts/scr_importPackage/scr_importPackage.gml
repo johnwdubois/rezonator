@@ -15,13 +15,20 @@ if (directory_exists(global.documentsDirString)) {
 	if (directory_exists(working_directory)) {
 		
 		if (!directory_exists(global.rezonatorDirString)) {
-			directory_create(global.rezonatorDirString);
+			directory_copy(working_directory, global.rezonatorDirString);
 		}
 	}
 }
 
 if (directory_exists(global.rezonatorDirString)) {
-	if (!directory_exists(global.rezonatorDirString + "\\Autosave")) {
-		directory_create(global.rezonatorDirString + "\\Autosave");
+	if	(os_type == os_macosx)	{
+		if (!directory_exists(global.rezonatorDirString + "/Autosave")) {
+			directory_create(global.rezonatorDirString + "/Autosave");
+		}
+	}
+	else{
+		if (!directory_exists(global.rezonatorDirString + "\\Autosave")) {
+			directory_create(global.rezonatorDirString + "\\Autosave");
+		}
 	}
 }

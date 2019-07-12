@@ -3543,6 +3543,14 @@
             }
         },
         {
+            "Key": "d150cb69-ac41-4fe0-9d65-b40ecc47470f",
+            "Value": {
+                "id": "3f18d97d-3c6f-44ee-af24-78d56a8d6c13",
+                "resourcePath": "extensions\/FileManager\/FileManager.yy",
+                "resourceType": "GMExtension"
+            }
+        },
+        {
             "Key": "d3aaa86e-6e83-4d4e-8ea6-cb953a332cc7",
             "Value": {
                 "id": "d0598135-670d-4497-8567-ef2170fcf5d8",
