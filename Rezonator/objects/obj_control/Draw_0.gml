@@ -99,9 +99,11 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 370, "mouseLineHide: " + string(showMouseLine));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 400, "newWordHoverWordID: " + string(newWordHoverWordID));
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 420, "MouseOverPanelPane: " + string(mouseoverPanelPane));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 420, "rectNotInPanelPane: " + string(rectNotInPanelPane));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 440, "mouseOverPanelPane: " + string(mouseoverPanelPane));
 	
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 440, "moveCounter: " + string(moveCounter));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 460, "moveCounter: " + string(moveCounter));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 485, "chainIDModifyList: ");
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, scr_getStringOfList(obj_chain.chainIDModifyList));

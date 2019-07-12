@@ -341,3 +341,4 @@ alarm[9] = 10;
 
 
 mouseoverPanelPane = false;
+rectNotInPanelPane = false;;
