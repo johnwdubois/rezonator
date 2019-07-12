@@ -1,20 +1,27 @@
 var driveStr = working_directory + "nsfs.dll";
-var userStr = environment_get_variable("USERNAME");
 
-global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
-global.rezonatorDirString = global.documentsDirString + "\\Rezonator";
+if	(os_type == os_macosx)	{
+	var userStr = environment_get_variable("USER");
+	global.documentsDirString = "/Users/" + userStr + "/Documents";
+	global.rezonatorDirString = global.documentsDirString + "/Rezonator";
+}
+else	{
+	var userStr = environment_get_variable("USERNAME");
+	global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
+	global.rezonatorDirString = global.documentsDirString + "\\Rezonator";
+}
 
-if (directory_exists_ns(global.documentsDirString)) {
-	if (directory_exists_ns(working_directory)) {
+if (directory_exists(global.documentsDirString)) {
+	if (directory_exists(working_directory)) {
 		
-		if (!directory_exists_ns(global.rezonatorDirString)) {
-			directory_copy_ns(working_directory, global.rezonatorDirString);
+		if (!directory_exists(global.rezonatorDirString)) {
+			directory_create(global.rezonatorDirString);
 		}
 	}
 }
 
-if (directory_exists_ns(global.rezonatorDirString)) {
-	if (!directory_exists_ns(global.rezonatorDirString + "\\Autosave")) {
-		directory_create_ns(global.rezonatorDirString + "\\Autosave");
+if (directory_exists(global.rezonatorDirString)) {
+	if (!directory_exists(global.rezonatorDirString + "\\Autosave")) {
+		directory_create(global.rezonatorDirString + "\\Autosave");
 	}
 }

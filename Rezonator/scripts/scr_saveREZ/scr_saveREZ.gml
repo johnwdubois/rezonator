@@ -76,7 +76,7 @@ ds_map_add_list(wrapper, "ROOT", rootList);
 var jsonString = json_encode(wrapper);
 
 if (autosave) {
-	if (directory_exists_ns(global.rezonatorDirString + "\\Autosave")) {
+	if (directory_exists(global.rezonatorDirString + "\\Autosave")) {
 		scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "\\Autosave\\autosave.rez", jsonString);
 	}
 	else {
