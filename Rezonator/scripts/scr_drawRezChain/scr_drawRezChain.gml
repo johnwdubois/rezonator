@@ -119,22 +119,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 			currentLineGridIndex2InDrawRange = false;
 		}
 		
-		if(chunkWord1) {
-			var wordRectBuffer = 6;
-			/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID1 - 1), 0) - 1)) == true) {
-				wordRectBuffer = 4;
-			}*/
-			lineY1 += wordRectBuffer;
-			chunkWord1 = 0;
-		}
-		if(chunkWord2) {
-			var wordRectBuffer = 6;
-			/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID2 - 1), 0) - 1)) == true) {
-				wordRectBuffer = 4;
-			}*/
-			lineY2 -= (wordRectBuffer * 4) + 4;
-			chunkWord2 = 0;
-		}
+		
 		
 		
 		// only draw line if every value is real and we are in the draw range
@@ -142,6 +127,23 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
 		and not (obj_control.searchGridActive)
 		{
+			if(chunkWord1) {
+			var wordRectBuffer = 6;
+			/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID1 - 1), 0) - 1)) == true) {
+				wordRectBuffer = 4;
+			}*/
+			lineY1 += wordRectBuffer;
+			chunkWord1 = 0;
+			}
+			if(chunkWord2) {
+				var wordRectBuffer = 6;
+				/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID2 - 1), 0) - 1)) == true) {
+					wordRectBuffer = 4;
+				}*/
+				lineY2 -= (wordRectBuffer * 4) + 4;
+				chunkWord2 = 0;
+			}
+			
 			draw_set_color(currentChainColor);
 			draw_set_alpha(1);
 			draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);

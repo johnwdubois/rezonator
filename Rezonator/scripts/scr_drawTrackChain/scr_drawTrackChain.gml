@@ -95,26 +95,28 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 			currentLineGridIndex2InDrawRange = false;
 		}
 		
-		if(chunkWord1) {
+		
+		
+		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
+		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
+		and not (obj_control.searchGridActive) {
+			if(chunkWord1) {
 			var wordRectBuffer = 6;
 			/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID1 - 1), 0) - 1)) == true) {
 				wordRectBuffer = 4;
 			}*/
 			lineY1 += (wordRectBuffer * 2) + 4;
 			chunkWord1 = 0;
-		}
-		if(chunkWord2) {
-			var wordRectBuffer = 6;
-			/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID2 - 1), 0) - 1)) == true) {
-				wordRectBuffer = 4;
-			}*/
-			lineY2 -= (wordRectBuffer * 3);
-			chunkWord2 = 0;
-		}
-		
-		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
-		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange)
-		and not (obj_control.searchGridActive) {
+			}
+			if(chunkWord2) {
+				var wordRectBuffer = 6;
+				/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID2 - 1), 0) - 1)) == true) {
+					wordRectBuffer = 4;
+				}*/
+				lineY2 -= (wordRectBuffer * 3);
+				chunkWord2 = 0;
+			}
+			
 			draw_set_color(currentChainColor);
 			draw_set_alpha(1);
 			
