@@ -243,7 +243,8 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 
 
 // Check for mouse over of the Panel Pane
-if(window_get_cursor() != cr_size_ns && mouse_check_button_released(mb_left)) {
+// It's gotta stop the drag but not require the user to click into the main screen first
+if(window_get_cursor() != cr_size_ns) {// && !mouse_check_button_pressed(mb_left)) {
 	mouseoverPanelPane = false;
 }
 for (var i = 0; i < instance_number(obj_panelPane); i++) {
