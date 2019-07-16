@@ -4087,14 +4087,6 @@
             }
         },
         {
-            "Key": "f4135c6d-6837-46a9-a68e-726f9f1f277b",
-            "Value": {
-                "id": "3541fde8-0523-461b-a061-1b9b19b58bf6",
-                "resourcePath": "scripts\\scr_refreshGridViewCols\\scr_refreshGridViewCols.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "f418569b-3bdd-4706-a0e4-364317f54032",
             "Value": {
                 "id": "b45f4114-e028-4462-8102-1bd99e3e746c",
@@ -4310,6 +4302,7 @@
         "17fbc186-e7bd-4438-a2d4-cc3080f6b690",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "e62a5730-9b99-4ca6-bb32-c61f6678b17a",
+        "b2cca057-9709-4529-93eb-58095ef2e600",
         "a41c9611-6ae7-40bb-951c-f8f78c402127",
         "65edb833-7e62-4ee1-b4ba-649645f5e40d",
         "ab958ed3-5d2b-493d-8352-352b31d9a9ef",
@@ -4317,7 +4310,6 @@
         "8165a259-1969-4e86-bfb5-a8536d1b9139",
         "fa097c53-c2a5-4e0c-9429-f13c190f7866",
         "bdeba254-b19a-4a3a-97e8-04556c55d6dd",
-        "b2cca057-9709-4529-93eb-58095ef2e600",
         "ea077605-a95b-433e-b274-a89767314c84",
         "f5a9dbba-b4e5-4d5a-bd18-069a0ccd2959",
         "a94b6e62-eefb-4ceb-8e50-c4ef98c2b925",
@@ -4435,8 +4427,7 @@
         "4ed4d8a2-a546-442b-8a3f-b7d480cf3c94",
         "a19f7bc3-34d7-44b8-9ef6-18e696add4dc",
         "1fae8169-e422-4a32-961d-f94e12fd208c",
-        "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91",
-        "f4135c6d-6837-46a9-a68e-726f9f1f277b"
+        "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91"
     ],
     "tutorial": ""
 }

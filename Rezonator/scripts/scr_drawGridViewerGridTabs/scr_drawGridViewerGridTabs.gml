@@ -68,9 +68,6 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case obj_control.wordDrawGrid:
 			colName = "wordDrawGrid";
 			break;
-		case obj_control.wordNewGrid:
-			colName = "wordNew";
-			break;
 		case obj_chain.linkGrid:
 			colName = "Link"; // Link Grid 
 			break;

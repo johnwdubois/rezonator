@@ -22,9 +22,6 @@ switch (argument0) {
 	case obj_control.hitGrid:
 		gridName = "Hit";
 		break;
-	case obj_control.wordNewGrid:
-		gridName = "WordNew";
-		break;
 	case obj_chain.linkGrid:
 		gridName = "Link";
 		break;
