@@ -58,7 +58,7 @@ windowHeight = 500;
 //scrollBarHolding[1] = false;
 //scrollBarHoldingPlusY[1] = 0;
 
-mouseoverRow = -1;
+//mouseoverRow = -1;
 //mouseoverRelativeRow[0] = -1;
 //mouseoverRelativeRow[1] = -1;
 

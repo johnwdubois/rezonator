@@ -48,7 +48,8 @@ importCSVCurrentUID = 0;
 importCSVCurrentRow = 0;
 importCSVWordIDList = ds_list_create();
 
-
+subLineGridBeginning = 0;
+subLineGridEnd = 0;
 
 loadingCSV = true;
 //alarm[2] = 3600;

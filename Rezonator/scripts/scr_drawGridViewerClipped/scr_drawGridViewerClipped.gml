@@ -37,6 +37,7 @@ var strHeight = string_height("0");
 var currentItemString = " ";
 var mouseoverItemString = " ";
 var mouseoverCol = -1;
+var mouseoverRow = -1;
 
 var gridColXList = ds_map_find_value(gridViewColXListMap, grid);
 if (gridColXList == -1 or is_undefined(gridColXList)) {

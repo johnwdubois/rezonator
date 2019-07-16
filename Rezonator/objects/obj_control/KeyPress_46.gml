@@ -2,60 +2,81 @@
 if (instance_exists(obj_input_text)) {
 	exit;
 }
+
+// Set variables to be used by Chunk/newWord deletion
 var currentChainGridRow = undefined;
 var grid = undefined;
 
 // Expirementing with deleting Chunks
-if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-	// Access the relevent row in the Chunk grid
-	var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 	
-	// Access the Chunk's wordID
-	var chunkWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkRow);
+	// Set variable to be used in both cases
+	var currentWordID = -1;
 	
-	// Get the list of words within this Chunk
-	var idList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
-	var chainState = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow);
+	// Deletion of Chunks
+	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+		// Access the relevent row in the Chunk grid
+		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
 	
-	// Holdover from code's source, may be useful for dynamic editing later on
-	if (ds_list_size(idList) == 0) {
-		chainState = obj_chain.chainStateDead;
-		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow, chainState);
-	}
+		// Access the Chunk's wordID
+		currentWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkRow);
 	
-	// Start the lengthy process of removing all mention of this Chunk
-	else if (not (chainState == obj_chain.chainStateDead)) {
-		chainState = obj_chain.chainStateDead;
-		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow, chainState);
-		
-		// Get the Chunk's chainID to be searched
-		var chainID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, currentChunkRow);
-		//var lastItemId = ds_list_find_value(idList, 0);
-			
-		// Remove this Chunk from each of its word's inBoxLists
-		for(var wordIDListLoop = 0; wordIDListLoop < ds_list_size(idList); wordIDListLoop++) {
-			var itemId = ds_list_find_value(idList, wordIDListLoop);
-			var itemInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, itemId - 1);
-			var indexInitemInChainsList = ds_list_find_index(itemInChainsList, chainID);
-			if (indexInitemInChainsList >= 0) {
-				ds_list_delete(itemInChainsList, indexInitemInChainsList);
-			}
+		// Get the list of words within this Chunk
+		var idList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
+		var chainState = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow);
+	
+		// Holdover from code's source, may be useful for dynamic editing later on
+		if (ds_list_size(idList) == 0) {
+			chainState = obj_chain.chainStateDead;
+			ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow, chainState);
 		}
+	
+		// Start the lengthy process of removing all mention of this Chunk
+		else if (not (chainState == obj_chain.chainStateDead)) {
+			chainState = obj_chain.chainStateDead;
+			ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow, chainState);
 		
-		// Disconnect the Chunk from its Chunkword
-		var chunkWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, chunkWordID - 1);
-		ds_list_delete(chunkWordInChainsList, 0);
+			// Get the Chunk's chainID to be searched
+			var chainID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, currentChunkRow);
+			//var lastItemId = ds_list_find_value(idList, 0);
+			
+			// Remove this Chunk from each of its word's inBoxLists
+			for(var wordIDListLoop = 0; wordIDListLoop < ds_list_size(idList); wordIDListLoop++) {
+				var itemId = ds_list_find_value(idList, wordIDListLoop);
+				var itemInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, itemId - 1);
+				var indexInitemInChainsList = ds_list_find_index(itemInChainsList, chainID);
+				if (indexInitemInChainsList >= 0) {
+					ds_list_delete(itemInChainsList, indexInitemInChainsList);
+				}
+			}
+		
+			// Disconnect the Chunk from its Chunkword
+			var chunkWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID - 1);
+			ds_list_delete(chunkWordInChainsList, 0);
+		}
+	
+		// Remove this Chunk from the Chunk grid
+		scr_gridDeleteRow(obj_chain.chunkGrid, currentChunkRow);
+	
+	}
+	// Deletion of newWords
+	else if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+		currentWordID = newWordHoverWordID;
 	}
 	
-	// Remove this Chunk from the Chunk grid
-	scr_gridDeleteRow(obj_chain.chunkGrid, currentChunkRow);
+	// Safety check, we only want to delete Chunks or newWords
+	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
+	if(currentWordState != wordStateChunk && currentWordState != wordStateNew) {exit;}
+	
+	// Set the word state to dead
+	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
 	
 	// Mechnism for removing this Chunk from ay chains
-	//while(ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), chunkWordID)) {
-	var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), chunkWordID);
+	//while(ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), currentWordID)) {
+	var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid), currentWordID);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
 		
-	//show_message(string(currentLinkGridRow));
+
 	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, currentLinkGridRow);
 	// Retrieve the chainID from the linkGrid
 	var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentLinkGridRow);
@@ -74,14 +95,13 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	}
 		
 	if(grid == undefined) {exit;}
+	// Locate the current chain within the chain grid
 	currentChainGridRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
-	
-	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, chunkWordID - 1, obj_control.wordStateDead);
-
 }
 
 // Make sure there is a focused link to be deleted
 if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true)) {	
+
 	// Find the link that is in focus
 	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
 	
@@ -181,10 +201,11 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	if not (source == undefined) {
 		ds_grid_set(wordDrawGrid, wordDrawGrid_colFillRect, source - 1, false);
 	}
+
 }
 
 // If this Chunk has already been deleted, refresh the chain grids
-if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);
 	scr_refreshChainGrid(grid);
 	scr_killEmptyChains(grid);

@@ -93,17 +93,17 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 									
 				if !ds_list_empty(listOfWords) {
 					wordToFind = ds_list_find_value(listOfWords, l);
-			}
-				
-			if (obj_control.regExCheck) {
-				if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
-					
-					scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
-
 				}
-			}
+				
+				if (obj_control.regExCheck) {
+					if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
+					
+						scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, hitIDCounter);		
+
+					}
+				}
 			
-			else {
+				else {
 				// if statement for boolean logic and search selection	
 				if (obj_control.caseSensitive and not obj_control.transcriptSearch and not obj_control.inChainBool) {
 					if (wordToFind == currentWordToken) {

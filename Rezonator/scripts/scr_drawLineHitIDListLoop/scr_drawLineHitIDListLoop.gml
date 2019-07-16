@@ -53,6 +53,25 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 	}
 	
+	
+	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
+	var mouseover = false;
+	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and not obj_chain.inRezPlay
+	and not mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
+		mouseover = true;
+		hoverWordID = currentWordID;
+		
+		draw_set_color(global.colorThemeBorders);
+		draw_set_alpha(1);
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
+			
+		if (mouse_check_button_pressed(mb_left)) {
+			with (obj_chain) {
+				scr_wordClicked(currentWordID, unitID);
+			}
+		}
+	}
+		
 	if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 		if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
 			with (obj_chain) {
@@ -72,6 +91,49 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 				}
 			}
 		}
+	}
+	
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+	
+	// figure out whether or not to draw fill/border for this word
+	var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordID - 1);
+	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
+	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
+	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);
+	
+	
+	// draw fill rectangle if needed
+	if (drawFillRect) {
+		draw_set_color(effectColor);
+		draw_set_alpha(0.25);
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+		draw_set_alpha(1);
+	}
+	
+	// draw border if needed
+	if (drawBorder) {
+		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
+		draw_set_color(effectColor);
+		
+		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
+			if (borderRounded) {
+				draw_roundrect(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
+			}
+			/*
+			else {
+				draw_rectangle(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
+			}
+			*/
+		}
+	}
+
+	if (drawFocused) {
+		draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY1 - wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
+		draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY1 - wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
+		draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
+		draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 	}
 	
 	

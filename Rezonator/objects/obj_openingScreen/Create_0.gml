@@ -37,6 +37,7 @@ global.openProject = false;
 global.newProject = false;
 
 global.fileSaveName = "undefined";
+global.stackGrabSave = false;
 
 wordAmountList = ds_list_create();
 
