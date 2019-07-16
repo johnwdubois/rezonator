@@ -111,6 +111,14 @@
             }
         },
         {
+            "Key": "04972422-4080-4126-bff6-25d348a0080f",
+            "Value": {
+                "id": "23cf8e89-3ae8-4874-a2e1-6658aec92079",
+                "resourcePath": "scripts\\scr_exportPortion\\scr_exportPortion.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "04db7f79-c8a0-438f-b312-32fb57604d7a",
             "Value": {
                 "id": "ad31a699-1446-4e8a-8946-a648bddeaca6",
@@ -899,14 +907,6 @@
             "Value": {
                 "id": "c649c6ed-20ef-4808-9611-a9712cccf0ca",
                 "resourcePath": "scripts\/scr_loadREZGridResize\/scr_loadREZGridResize.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "3032f4c2-c9bd-470e-95ab-fc06b315a747",
-            "Value": {
-                "id": "cfb1c765-b347-4f17-9552-507bd0695e89",
-                "resourcePath": "scripts\\scr_exportPortion\\scr_exportPortion.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3183,14 +3183,6 @@
             }
         },
         {
-            "Key": "b5d6507a-422a-49b5-876c-0147656081b3",
-            "Value": {
-                "id": "966b0810-bb5c-447e-9687-0a225d2f7fe6",
-                "resourcePath": "scripts\\scr_gridDeleteRange\\scr_gridDeleteRange.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "b66d357f-c98f-4990-aea8-08fdb7330669",
             "Value": {
                 "id": "274c78a2-be13-49cb-ab19-27f9b2289bf0",
@@ -4444,8 +4436,7 @@
         "a19f7bc3-34d7-44b8-9ef6-18e696add4dc",
         "1fae8169-e422-4a32-961d-f94e12fd208c",
         "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91",
-        "3032f4c2-c9bd-470e-95ab-fc06b315a747",
-        "b5d6507a-422a-49b5-876c-0147656081b3"
+        "04972422-4080-4126-bff6-25d348a0080f"
     ],
     "tutorial": ""
 }
