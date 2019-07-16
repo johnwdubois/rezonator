@@ -129,10 +129,8 @@ if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUni
 				exit;
 			}
 			var currentChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
-			var newWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, wordID - 1);
 
-			// Allow nesting chunks to be apended
-			if(newWordState == obj_control.wordStateChunk || ds_list_find_index(currentChunkWordList, prevWordID) != (ds_list_size(currentChunkWordList) - 1)) {
+			if(ds_list_find_index(currentChunkWordList, prevWordID) != (ds_list_size(currentChunkWordList) - 1)) {
 
 				// Insert new word into that chunk list, and add to the new word's inChunkList
 				ds_list_insert(currentChunkWordList, ds_list_find_index(currentChunkWordList, prevWordID) + 1, wordID);

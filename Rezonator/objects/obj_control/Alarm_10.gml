@@ -64,16 +64,13 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 		scr_newWord(currentUnitID, ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1), obj_control.chunkID);
 		
 		// Store the new word's ID
-		var currentChunkWordID = ds_grid_height(obj_control.wordGrid);
-		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid) - 1, currentChunkWordID);
-		// Add the ChunkID to the front of the chunkWord's inBoxList
-		ds_list_insert(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_grid_height(obj_control.dynamicWordGrid) - 1), 0, obj_control.chunkID);
-
+		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid) - 1, ds_grid_height(obj_control.wordGrid));
+		ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_grid_height(obj_control.dynamicWordGrid) - 1), obj_control.chunkID);
+			
 		
 		// Access the first word's in Chunk list
 		var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_list_find_value(currentWordList, 0) - 1);
 			
-				
 		// Loop through the in Chunk list, check if any elements are not the current chunk
 		for(var chunkListLoop = 0; chunkListLoop < ds_list_size(currentInChunkList); chunkListLoop++) {
 				
@@ -90,9 +87,6 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 				}
 				var otherChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
 					
-				//show_message(scr_getStringOfList(otherChunkWordList));
-				//show_message(scr_getStringOfList(currentWordList));
-				
 				// Check if this chunk contains the other chunk
 				if(scr_listContainsSublist(otherChunkWordList, currentWordList) != -1) {
 						
