@@ -1,11 +1,9 @@
 // Draw the mouse drag rectangle, and the record when the mouse is released
 draw_set_color(global.colorThemeSelected1);
 draw_set_alpha(0.5);
-//var rectIsClicked = false;
 
 if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane) {
 	obj_control.rectNotInPanelPane = true;
-	//rectIsClicked = true;
 	mouseHoldRectX1 = mouse_x;
 	mouseHoldRectY1 = mouse_y;
 	mouseHoldRectX2 = mouse_x;
@@ -15,42 +13,11 @@ if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane) {
 		alarm[2] = 1;// Is super finnicky, but kinda works??
 	}
 	
-	
-	
-	/*if (mouse_y > obj_toolPane.y + obj_toolPane.windowHeight) {
-		if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
-			if (obj_toolPane.currentTool != obj_toolPane.toolTrackBrush) {
-				if (hoverWordID < 0) {
-					obj_toolPane.tempReturnTool = obj_toolPane.currentTool;
-					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-				}
-				else {
-					obj_toolPane.tempReturnTool = obj_toolPane.currentTool;
-					obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-				}
-			}
-		}
-	}*/
-	
 }
 if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	mouseHoldRectX2 = mouse_x;
 	mouseHoldRectY2 = mouse_y;
-	//show_message(string(mouseHoldRectX1) + " " + string(mouseHoldRectX2) + " " + string(mouseHoldRectY1) + " " + string(mouseHoldRectY2));
-	/*if (mouse_y > obj_toolPane.y + obj_toolPane.windowHeight) {
-		if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
-			if (obj_toolPane.currentTool != obj_toolPane.toolTrackBrush) {
-				if (hoverWordID < 0) {
-					obj_toolPane.tempReturnTool = obj_toolPane.currentTool;
-					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-				}
-				else {
-					obj_toolPane.tempReturnTool = obj_toolPane.currentTool;
-					obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-				}
-			}
-		}
-	}*/
+	
 	if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 		draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
 		draw_set_alpha(1);
@@ -59,20 +26,7 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 }
 if (mouse_check_button_released(mb_left)) {
 	obj_control.rectNotInPanelPane = false;
-	/*if (mouse_y > obj_toolPane.y + obj_toolPane.windowHeight) {
-		if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
-			if (obj_toolPane.currentTool != obj_toolPane.toolTrackBrush) {
-				if (hoverWordID < 0) {
-					obj_toolPane.tempReturnTool = obj_toolPane.currentTool;
-					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-				}
-				else {
-					obj_toolPane.tempReturnTool = obj_toolPane.currentTool;
-					obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-				}
-			}
-		}
-	}*/
+	
 	with (obj_toolPane) {
 		alarm[1] = 10;//Maybe this could be the tool switch zone
 	}

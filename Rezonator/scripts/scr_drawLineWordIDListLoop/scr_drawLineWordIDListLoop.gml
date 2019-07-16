@@ -443,18 +443,29 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 			
 			// Functionality for focusing on a new word
-			/*if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2, wordRectY2) && obj_control.wordStateNew) {
-				//Need to prioritize this draw over adding words draw
+			if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) && currentWordState == obj_control.wordStateNew) {
+				
+				// Fill in the rectangle of the newWord being focused
+				draw_set_color(global.colorThemeSelected1);
+				draw_set_alpha(0.5);
+				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 				
 				//Set the word to be focused here, draw the focus above with the chunks, and handle the delete with wordClicked
-				if (mouse_check_button_pressed(mb_left)) {
+				/*if (mouse_check_button_pressed(mb_left)) {
 					//ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
 					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
 					
-				}
-			}*/
+				}*/
+				// Set this to be the hovered wordID
+				newWordHoverUnitID = unitID;
+				newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+				newWordHoverWordID = currentWordID;
+				
+			}
 		
-			if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
+			// CHeck for adding a newWord after this current word
+			else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
+				// Set this to be the hovered wordID
 				newWordHoverUnitID = unitID;
 				newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 				newWordHoverWordID = currentWordID;

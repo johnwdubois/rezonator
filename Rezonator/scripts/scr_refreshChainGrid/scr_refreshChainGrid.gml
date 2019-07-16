@@ -30,6 +30,9 @@ switch (obj_toolPane.currentTool) {
 	case obj_toolPane.toolBoxBrush:
 		grid = argument[0];
 		break;
+	case obj_toolPane.toolNewWord:
+		grid = argument[0];
+		break;
 	default:
 		break;
 }
