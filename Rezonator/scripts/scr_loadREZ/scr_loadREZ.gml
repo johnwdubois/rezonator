@@ -36,10 +36,13 @@ if (file_exists(fileName)) {
 		
 		var objectIndex = ds_map_find_value(map, "objectIndex");
 		
+		
 		with (asset_get_index(objectIndex)) {
 			if (objectIndex == "obj_control") {
 				obj_control.currentCenterDisplayRow = 0;
 			
+				obj_fileLoader.subLineGridBeginning = ds_map_find_value(map, "subLineGridBeginning");
+				obj_fileLoader.subLineGridEnd = ds_map_find_value(map, "subLineGridEnd");
 			
 				/*
 				scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
@@ -102,3 +105,11 @@ obj_chain.stackChainNameCounter = ds_grid_height(obj_chain.stackChainGrid);
 obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
 
 scr_refreshVizLinkGrid();
+
+if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGridEnd != undefined ){
+	if(obj_fileLoader.subLineGridBeginning > -1 and obj_fileLoader.subLineGridEnd > -1){
+		scr_gridDeleteRange(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_fileLoader.subLineGridBeginning, obj_fileLoader.subLineGridEnd);
+		
+		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+	}
+}

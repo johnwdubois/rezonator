@@ -43,5 +43,7 @@ global.stackGrabSave = true;
 show_message(obj_fileLoader.subLineGridBeginning);
 show_message(obj_fileLoader.subLineGridEnd);
 
+
+
 scr_saveREZ(false);
 show_message("done");
