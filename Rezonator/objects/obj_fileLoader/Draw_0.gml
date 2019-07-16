@@ -36,7 +36,16 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHo
 }
 else if (keyboard_check(vk_control) and keyboard_check_pressed(ord("O")) and ableToHotkey) {
 	ableToHotkey = false;
-	scr_loadREZ();
+	if (keyboard_check(vk_shift)) {
+		obj_control.wordNewGrid = load_csv(get_open_filename("csv file|*.csv", ""));
+		with (obj_gridViewer) {
+			ds_list_add(gridList, obj_control.wordNewGrid);
+			scr_refreshGridViewCols();
+		}
+	}
+	else {
+		scr_loadREZ();
+	}
 }
 if (not keyboard_check(vk_control) and not ableToHotkey) {
 	ableToHotkey = true;

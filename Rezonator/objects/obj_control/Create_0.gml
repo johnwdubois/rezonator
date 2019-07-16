@@ -171,6 +171,12 @@ hitGrid = ds_grid_create(hitGridWidth, 0);
 
 
 
+
+
+wordNewGrid = ds_grid_create(42, 0);
+
+
+
 // Create variable checks for RezPlay
 originalWordGridHeight = ds_grid_height(wordGrid);
 originalUnitGridHeight = ds_grid_height(unitGrid);
