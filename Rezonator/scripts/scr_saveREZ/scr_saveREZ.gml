@@ -37,7 +37,16 @@ with (obj_saveParent) {
 		var mapWordDrawGrid = scr_gridToJSONLists(wordDrawGrid);
 		var mapUnitGrid = scr_gridToJSONLists(unitGrid);
 		var mapLineGrid = scr_gridToJSONLists(lineGrid);
-		
+		/*
+		if (global.stackGrabSave) {
+			var subLineGrid = scr_gridDeleteRange(lineGrid,lineGrid_colLineNumberLabel,obj_fileLoader.subLineGridBeginning,obj_fileLoader.subLineGridEnd);
+			var mapLineGrid = scr_gridToJSONLists(subLineGrid);
+			ds_grid_destroy(subLineGrid);
+		}
+		else {
+			var mapLineGrid = scr_gridToJSONLists(lineGrid);
+		}
+		*/
 		ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
 		ds_map_add_list(map, "wordGrid", mapWordGrid);
 		ds_map_add_list(map, "dynaWordGrid", mapDynaWordGrid);
