@@ -72,18 +72,21 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		
 		// Set all variables needed to draw a Chunk
-		var topLeftX = undefined;
-		var topLeftY = undefined;
-		
-		var bottomRightX = undefined;
-		var bottomRightY = undefined;
-
 		var firstWordID = -1;
 		var lastWordID = -1;
 		
 		// Get the first and last word within the Chunk
 		firstWordID = ds_list_find_value(currentWordList, 0);
-		lastWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList)-1);
+		
+		// The true last word within this list is the chunkWordID
+		var nonChunkWordPos = ds_list_size(currentWordList)-2;
+		lastWordID = ds_list_find_value(currentWordList, nonChunkWordPos);
+		// Aquire the ID of the last nonChunkWord in this list
+		var lastWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, lastWordID - 1);
+		while(lastWordState == wordStateChunk || lastWordState == wordStateDead) {
+			lastWordID = ds_list_find_value(currentWordList, --nonChunkWordPos);
+			lastWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, lastWordID - 1);
+		}
 		
 		// Set the Buffer to be initially large, so as to allow for nesting
 		var wordRectBuffer = 6;
@@ -99,18 +102,22 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		//var rightPixelX = max(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1), ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID - 1));
 		var rightPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1);
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, leftPixelX);
-		//ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, firstDisplayCol);
+
+		// Setting the display column this way still causes the rapid link movement, unsure if a better way exists		
+		/*ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, firstDisplayCol);
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, leftPixelX);*/
 		
 		// Get the string of the first word
 		var firstWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, firstWordID - 1);
 		// Get the string of the last word
 		var lastWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, lastWordID - 1);
 		
-		topLeftX = leftPixelX - wordRectBuffer;
-		topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
+		var topLeftX = leftPixelX - wordRectBuffer;
+		var topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
 		
-		bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2);
-		bottomRightY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
+		var bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer);
+		var bottomRightY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
+		
 		
 		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);//global.colorThemeSelected1
 		var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);

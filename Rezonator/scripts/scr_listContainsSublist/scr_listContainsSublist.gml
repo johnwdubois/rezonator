@@ -14,9 +14,14 @@
 */
 
 // Collect lists placed as parameters
-var mainList = argument0;
-var subList = argument1;
+var mainList = ds_list_create();
+ds_list_copy(mainList, argument[0]);
+var subList = ds_list_create();
+ds_list_copy(subList, argument[1]);
 
+
+//show_message(scr_getStringOfList(mainList));
+//show_message(scr_getStringOfList(subList));
 
 // Find the subList's first element within the list
 var firstElement = ds_list_find_value(subList, 0);
