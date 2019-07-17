@@ -13,6 +13,8 @@ if (!obj_control.fPressed) {
 	keyboard_string = "";
 }
 
+
+dialougeBoxActive = true;
 fPressed = true;
 //have the input be here?
 
