@@ -39,7 +39,7 @@ if (showDisplayCols) {
 
 scr_drawLine();
 //scr_drawChunk();
-scr_drawSearchBox();
+scr_drawDialogueBox();
 
 
 // Draw the mouse drag rectangle

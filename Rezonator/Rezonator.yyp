@@ -906,7 +906,7 @@
             "Key": "3032f4c2-c9bd-470e-95ab-fc06b315a747",
             "Value": {
                 "id": "cfb1c765-b347-4f17-9552-507bd0695e89",
-                "resourcePath": "scripts\\scr_exportPortion\\scr_exportPortion.yy",
+                "resourcePath": "scripts\/scr_exportPortion\/scr_exportPortion.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1930,7 +1930,7 @@
             "Key": "760937d6-16c6-42b7-bd58-6f67433e06d2",
             "Value": {
                 "id": "88bc5632-f994-454e-b900-aee9e008745d",
-                "resourcePath": "scripts\/scr_drawSearchBox\/scr_drawSearchBox.yy",
+                "resourcePath": "scripts\/scr_drawDialogueBox\/scr_drawDialogueBox.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3186,7 +3186,7 @@
             "Key": "b5d6507a-422a-49b5-876c-0147656081b3",
             "Value": {
                 "id": "966b0810-bb5c-447e-9687-0a225d2f7fe6",
-                "resourcePath": "scripts\\scr_gridDeleteRange\\scr_gridDeleteRange.yy",
+                "resourcePath": "scripts\/scr_gridDeleteRange\/scr_gridDeleteRange.yy",
                 "resourceType": "GMScript"
             }
         },
