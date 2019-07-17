@@ -68,8 +68,6 @@ for (var i = 0; i < fileLoadRate; i++) {
 	fileLineRipList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colFileLineRipList, discourseProcessing);
 	currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, discourseProcessing);
 
-
-
 	currentElement = ds_list_find_value(fileLineRipList, fileLineRipListElement);
 	scr_loadNextElement();
 

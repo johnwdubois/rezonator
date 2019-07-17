@@ -1,4 +1,4 @@
-if (string_count("<u who=", currentElement) == 0) {
+if (string_count("<u who=", currentElement) == 0 and string_count("\"words\" [", currentElement) == 0) {
 	if (not firstValidLineReached) {
 		exit;
 	}
@@ -11,14 +11,16 @@ else {
 if (string_length(currentElement) == 0) {
 	exit;
 }
-	
+
+if (string_count("\"words\" [", currentElement) > 0) {
+	scr_loadNextElementJSON(currentElement);
+	exit;
+}
 	
 
 	
 if (string_count("uID=", currentElement) > 0) {
 	currentUtteranceID = real(scr_fileLineRipListSearch(fileLineRipListElement, "uID=\"u", "\"", fileLineRipList));
-
-	//show_debug_message("LOADED: uID " + string(currentUtteranceID) + "..... " + currentElement);
 }
 	
 if (string_count("PID=", currentElement) > 0) {
@@ -26,37 +28,11 @@ if (string_count("PID=", currentElement) > 0) {
 }
 	
 if (string_count("<u who=", currentElement) > 0) {
-		
 	currentUnitParticipantName = scr_fileLineRipListSearch(fileLineRipListElement, "u who=\"", "\"", fileLineRipList);
-
 }
 
 if (string_count("start=", currentElement) > 0) {
 	var gotStr = scr_fileLineRipListSearch(fileLineRipListElement, "start=\"", "\"", fileLineRipList);
-	
-	/*
-	show_message("gotStr: '" + gotStr + "'");
-	show_message(string(string_length(gotStr)) + "..." + string(string_length("1.000")));
-	
-	
-	for (var i = 1; i <= string_length(gotStr); i++) {
-		show_message(gotStr + "[" + string(i) + "]" + ": '" + string_char_at(gotStr, i) + "'");
-	}
-	
-	
-	if (string_count("1.000", gotStr) > 0) {
-		show_message("here")
-		
-		if (gotStr == "1.000") {
-			show_message("they are equal");
-		}
-		else {
-			show_message("they are NOT equal");
-		}
-		
-		gotStr = "1.00";
-	}
-	*/
 	currentUnitStart = real(gotStr);
 }
 
@@ -105,8 +81,7 @@ if (string_count("/>", currentElement) > 0) {
 		
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, participantColor);
 	}
-		
-		
+	
 	
 		
 		
