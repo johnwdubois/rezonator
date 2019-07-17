@@ -11,6 +11,15 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	var currentHitID = ds_list_find_value(currentHitIDList, drawWordLoop);
 	
 	var currentWordID = ds_grid_get(hitGrid, hitGrid_colWordID, currentHitID - 1);
+	
+	// Prevent dead words from being drawn
+	var currentWordGridRow = currentWordID - 1;
+	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordGridRow);
+	if(currentWordState == obj_control.wordStateDead) {
+		
+		continue;
+	}
+	
 	var currentWordDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, currentHitID - 1);
 		
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;

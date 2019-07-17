@@ -88,6 +88,14 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 			var currentWordToken = ds_grid_get(wordGrid, wordGrid_colWordToken, currentWordID - 1);
 			var currentWordTranscript = ds_grid_get(wordGrid, wordGrid_colWordTranscript, currentWordID - 1);
 		
+			// Prevent the Search from picking up dead words
+			var currentWordGridRow = currentWordID - 1;
+			var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
+			if(currentWordState == obj_control.wordStateDead) {
+		
+				continue;
+			}
+		
 			// loop through all words in list
 			for (var l = 0; l < ds_list_size(listOfWords); l++) {
 									
