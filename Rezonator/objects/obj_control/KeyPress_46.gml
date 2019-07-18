@@ -1,7 +1,4 @@
 ///@description Remove Link
-if (instance_exists(obj_input_text)) {
-	exit;
-}
 
 // Set variables to be used by Chunk/newWord deletion
 var currentChainGridRow = undefined;
