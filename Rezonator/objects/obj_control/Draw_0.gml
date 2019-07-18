@@ -59,6 +59,9 @@ if (not mouseoverPanelPane) {
 	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 		alarm[8] = 5;
 	}
+	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+		alarm[8] = 5;
+	}
 	if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {
 		boxRectAbleToInitiate = false;
 		alarm[10] = 5;

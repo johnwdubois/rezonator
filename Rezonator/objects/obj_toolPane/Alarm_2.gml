@@ -5,10 +5,15 @@ if (mouse_y > y + windowHeight) {
 					tempReturnTool = currentTool;
 					currentTool = toolStackBrush;
 				}
+				
 				else {
 					tempReturnTool = currentTool;
 					currentTool = toolRezBrush;
 				}
+			}
+			else if(obj_control.searchGridActive){
+				tempReturnTool = currentTool;
+				currentTool = toolTrackBrush;
 			}
 		//}
 	}
