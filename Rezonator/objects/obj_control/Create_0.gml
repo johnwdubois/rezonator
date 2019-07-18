@@ -324,6 +324,8 @@ currentSessionTime = 0;
 
 // Search box variables
 fPressed = false;
+ePressed = false;
+gPressed = false;
 regExCheck = false;
 quickLinkAllowed = true;
 inChainBool = false;

@@ -1,6 +1,7 @@
 var discoID = argument0;
+var lineStr = argument1;
 
-var lineStr = get_string("Type in the line you would like to jump to.", "");
+//var lineStr = get_string("Type in the line you would like to jump to.", "");
 
 if (lineStr == "") {
 	exit;
@@ -9,7 +10,7 @@ if (lineStr == "") {
 if (string_length(string_digits(lineStr)) < string_length(lineStr)
 or string_length(lineStr) < 1) {
 	show_message("Numbers only.");
-	scr_jumpToLine(discoID);
+	//scr_jumpToLine(discoID);
 	exit;
 }
 

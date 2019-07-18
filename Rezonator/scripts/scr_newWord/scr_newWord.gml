@@ -20,7 +20,7 @@ if(argument_count == 3) {
 }
 
 // Safety check
-if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid or obj_control.fPressed) {
+if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid or obj_control.dialougeBoxActive) {
 	exit;
 }
 

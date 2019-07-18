@@ -1,5 +1,5 @@
 ///@description Activate Search
-if (!shortcutsEnabled) {
+if (!shortcutsEnabled || obj_panelPane.discoSelectionActive) {
 	exit;
 }
 
@@ -9,13 +9,15 @@ preSwitchDisplayRow = currentCenterDisplayRow;
 //}
 preSwitchLineGrid = currentActiveLineGrid;
 preSwitchSearchDisplayRow = 0;
-if (!obj_control.fPressed) {
+
+if (!obj_control.dialougeBoxActive) {
 	keyboard_string = "";
+	fPressed = true;
 }
 
 
 dialougeBoxActive = true;
-fPressed = true;
+
 //have the input be here?
 
 

@@ -1,6 +1,14 @@
 /// @description Export portion
 // You can write your code in this editor
-if (!shortcutsEnabled || fPressed) {
+if (!shortcutsEnabled || dialougeBoxActive || obj_panelPane.discoSelectionActive) {
 	exit;
 }
-scr_exportPortion();
+
+if (!obj_control.dialougeBoxActive) {
+	keyboard_string = "";
+	ePressed = true;
+}
+
+dialougeBoxActive = true;
+
+//scr_exportPortion();

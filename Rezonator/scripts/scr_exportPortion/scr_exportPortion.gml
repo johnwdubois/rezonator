@@ -1,4 +1,4 @@
-var fullstring = get_string("Type in begining line number , ending line number", "");
+var fullstring = argument0;
 
 // Safety check, make sure something was inputted
 if (string_length(fullstring) < 1) {
@@ -40,10 +40,10 @@ obj_fileLoader.subLineGridEnd = string_digits(ds_list_find_value(listOfNumbers, 
 
 global.stackGrabSave = true;
 
-show_message(obj_fileLoader.subLineGridBeginning);
-show_message(obj_fileLoader.subLineGridEnd);
+//show_message(obj_fileLoader.subLineGridBeginning);
+//show_message(obj_fileLoader.subLineGridEnd);
 
 
 
 scr_saveREZ(false);
-show_message("done");
+//show_message("done");

@@ -158,6 +158,9 @@ currentTopViewRow = 0;
 
 doubleClickTimer = -1;
 
+selectedDiscoID = "";
+discoIDSelected = false;
+discoSelectionActive = false;
 //Rez Tracker variables
 showTracker = true;
 isTrackerOpen = false;

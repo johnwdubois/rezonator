@@ -1,5 +1,5 @@
 ///@description GoToLine
-if (!shortcutsEnabled || fPressed) {
+if (!shortcutsEnabled || dialougeBoxActive || obj_panelPane.discoSelectionActive) {
 	exit;
 }
 
@@ -15,8 +15,17 @@ if (shouldExit) {
 	exit;
 }
 
+
+if (!obj_control.dialougeBoxActive) {
+	keyboard_string = "";
+	gPressed = true;
+}
+
+
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
-	scr_jumpToLine("");
+	
+
+	dialougeBoxActive =true;
 	moveCounter++;
 }
 else {

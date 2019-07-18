@@ -1,5 +1,5 @@
 ///@description Transcript View
-if (!shortcutsEnabled || fPressed) {
+if (!shortcutsEnabled || dialougeBoxActive) {
 	exit;
 }
 

@@ -26,8 +26,8 @@ plusY += 30;
 
 draw_set_color(c_purple);
 
+discoSelectionActive = true;
 
-var selectedDiscoID = "";
 for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 	var currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, i);
 	var selectedRectX1 = x + 20;
@@ -67,7 +67,9 @@ if (point_in_rectangle(mouse_x, mouse_y, specifyLineRectX1, specifyLineRectY1, s
 	draw_set_color(global.colorThemeSelected1);
 	
 	if (mouse_check_button_pressed(mb_left)) {
-		scr_jumpToLine(selectedDiscoID);
+		discoIDSelected = true;
+		discoSelectionActive = false;
+		obj_control.dialougeBoxActive = true;
 		instance_destroy();
 	}
 }
