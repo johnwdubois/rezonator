@@ -49,14 +49,9 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 	}
 	
 	scr_unFocusAllChains();
-	// If this box counts as a chunk, mark it as such and nest it if possible
+	// If this box counts as a Chunk, mark it as such and nest it if possible
 	if(ds_list_size(currentUnitList) == 1 && ds_list_size(currentWordList) > 1) {
 		
-
-		// Mark this box as a chunk
-		//ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid) - 1, 1);
-
-
 		
 		// Create an invisible new word to act as this Chunk's data type
 		var currentWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList) - 1); // Use the last word so the contained words are drawn first
@@ -99,6 +94,45 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 				}
 			}
 		}
+	}
+	// If this box is not a Chunk, then retrieve scroing information and package it for sending.
+	else {
+		/* Information needed
+			-UnitID list
+			-WordID list, segmented into units
+			-inChainList for each word
+			-voidSum from lineGrid
+			-column for timeSpentOnLine
+			-column for movesOnLine
+			*/
+		var newBoxGrid = ds_grid_create(boxGridWidth, ds_list_size(currentUnitList));
+		var wordIDListLoop = 0;
+		// Fill the UnitId and WordIdList columns
+		for(var unitIDListLoop = 0; unitIDListLoop < ds_list_size(currentUnitList); unitIDListLoop++) {
+			var currentUnitID = ds_list_find_value(currentUnitList, unitIDListLoop);
+			ds_grid_set(newBoxGrid, boxGrid_colUnitID, unitIDListLoop, currentUnitID);
+			var currentWordIDList = ds_list_create();
+			var currentChainIDListList = ds_list_create();
+			// Wondering how to get the words in an organized fashion??
+			var currentWordID = ds_list_find_value(currentWordList, wordIDListLoop);
+			while(wordIDListLoop < ds_list_size(currentWordList) && currentUnitID == ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1)) {
+				ds_list_add(currentWordIDList, currentWordID);
+				// For each word, place their inChainList into the chainIDListList
+				var currentChainIDList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordID - 1);
+				ds_list_add(currentChainIDListList, currentChainIDList);
+				// Increment the WordID
+				currentWordID = ds_list_find_value(currentWordList, ++wordIDListLoop);
+			}
+			ds_grid_set(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop, currentWordIDList);
+			ds_grid_set(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop, currentChainIDList);
+			
+			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop)));
+			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop)));
+			
+			// From the lineGrid, gather the moveCount and secondsSpent for this line
+			
+		}
+		
 	}
 }
 

@@ -87,7 +87,7 @@ for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 }
 global.totalUnitAmount = totalUnitAmount;
 draw_set_halign(fa_right);
-draw_text(importWindowX2, importWindowY2 + 24, "Total unit count: " + string(totalUnitAmount));
+draw_text(importWindowX2, importWindowY2 + 24, "Total line count: " + string(totalUnitAmount));
 
 
 
@@ -157,7 +157,13 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	draw_set_halign(fa_left);
 	draw_text(importWindowX1 + textBuffer, importWindowY1 + textPlusY, discoID);
 	draw_set_halign(fa_right);
-	draw_text(importWindowX2 - scrollBarWidth - textBuffer, importWindowY1 + (textPlusY), unitAmount + " lines");
+	var lineCountStr = unitAmount + " lines";
+	if (string_length(string_digits(unitAmount)) > 0) {
+		if (real(string_digits(unitAmount)) == 1) {
+			lineCountStr = unitAmount + " line";
+		}
+	}
+	draw_text(importWindowX2 - scrollBarWidth - textBuffer, importWindowY1 + (textPlusY), lineCountStr);
 	
 	var participantRectColorList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, i);
 	for (var j = 0; j < ds_list_size(currentParticipantList); j++) {

@@ -348,3 +348,11 @@ alarm[9] = 10;
 
 mouseoverPanelPane = false;
 rectNotInPanelPane = false;;
+
+boxGridWidth = 6;
+boxGrid_colUnitID = 0;
+boxGrid_colWordIDList = 1;
+boxGrid_colChainIDLists = 2;
+boxGrid_colVoidSum = 3;
+boxGrid_colTimeSpent = 4;
+boxGrid_colMoveCount = 5;

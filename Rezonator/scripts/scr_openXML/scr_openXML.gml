@@ -10,19 +10,19 @@
 	Mechanism: Loop through entire text file and add each line to global.fileLineRipList
 */
 
-if (directory_exists_ns(global.rezonatorDirString)) {
-	xmlFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv", "", global.rezonatorDirString, "Import File");
+if (directory_exists(global.rezonatorDirString)) {
+	openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json", "", global.rezonatorDirString, "Import File");
 }
 else {
-	xmlFile = get_open_filename("XML file|*.xml|REZ file|*.rez", "");
+	openedFile = get_open_filename("XML file|*.xml|REZ file|*.rez", "");
 }
 
-if (xmlFile == "") {
+if (openedFile == "") {
 	exit;
 }
 
-var fileName = filename_name(xmlFile);
-var fileExt = filename_ext(xmlFile);
+var fileName = filename_name(openedFile);
+var fileExt = filename_ext(openedFile);
 var fileExtCharAt = string_pos(fileExt, fileName);
 
 if (fileExtCharAt > 0) {
@@ -30,9 +30,12 @@ if (fileExtCharAt > 0) {
 }
 
 if (string_count("csv", fileExt) > 0) {
-	scr_importCSV(xmlFile);
+	scr_importCSV(openedFile);
 	exit;
 }
+
+var xmlFile = (string_count("xml", fileExt) > 0);
+var jsonFile = (string_count("json", fileExt) > 0);
 
 var discoID = fileName;
 
@@ -41,8 +44,7 @@ if (ds_grid_value_exists(global.fileLineRipGrid, global.fileLineRipGrid_colDisco
 	exit;
 }
 
-var fileOpenRead = file_text_open_read(xmlFile);
-var newLine = false;
+var fileOpenRead = file_text_open_read(openedFile);
 
 var wordsInLine = 0;
 
@@ -59,33 +61,51 @@ while (not file_text_eof(fileOpenRead)) {
 	
 	ds_list_add(currentFileLineRipList, lineInFile);
 	
-	if (string_count("<u who=", lineInFile) > 0) {
-		lineTotal++;
-		linesInCurrentDisco++;
-	}
+	if (xmlFile) {
+		if (string_count("<u who=", lineInFile) > 0) {
+			lineTotal++;
+			linesInCurrentDisco++;
+		}
 	
-	if (string_count("</g>", lineInFile) > 0) {
-		wordsInLine++;
-		wordTotal++;
-	}
+		if (string_count("</g>", lineInFile) > 0) {
+			wordsInLine++;
+			wordTotal++;
+		}
 	
-	if (string_count("</u>", lineInFile) > 0) {
-		ds_list_add(wordAmountList, wordsInLine);
-		wordsInLine = 0;
-	}
+		if (string_count("</u>", lineInFile) > 0) {
+			ds_list_add(wordAmountList, wordsInLine);
+			wordsInLine = 0;
+		}
 	
-	var currentUnitParticipantName = scr_fileLineRipListSearch(ds_list_size(global.fileLineRipList) - 1, "u who=\"", "\"", global.fileLineRipList);
-	var currentUnitParticipantID = scr_fileLineRipListSearch(ds_list_size(global.fileLineRipList) - 1, "PID=\"", "\"", global.fileLineRipList);
-	if (string_count("<", lineInFile) > 0) {
-		if (ds_list_find_index(participantIDList, currentUnitParticipantID) == -1) {
-			ds_list_add(participantIDList, currentUnitParticipantID);
-			ds_list_add(participantList, currentUnitParticipantName);
+		var currentUnitParticipantName = scr_fileLineRipListSearch(ds_list_size(global.fileLineRipList) - 1, "u who=\"", "\"", global.fileLineRipList);
+		var currentUnitParticipantID = scr_fileLineRipListSearch(ds_list_size(global.fileLineRipList) - 1, "PID=\"", "\"", global.fileLineRipList);
+		if (string_count("<", lineInFile) > 0) {
+			if (ds_list_find_index(participantIDList, currentUnitParticipantID) == -1) {
+				ds_list_add(participantIDList, currentUnitParticipantID);
+				ds_list_add(participantList, currentUnitParticipantName);
+			}
+		}
+	}
+	else if (jsonFile) {
+		if (string_count("\"words\" [", lineInFile) > 0) {
+			lineTotal++;
+			linesInCurrentDisco++;
 		}
 	}
 }
 
+if (ds_list_size(participantList) < 1) {
+	ds_list_add(participantList, "Speaker");
+	ds_list_add(participantList, "Speaker");
+}
+if (ds_list_size(participantIDList) < 1) {
+	ds_list_add(participantIDList, 0);
+	ds_list_add(participantIDList, 0);
+}
+
 ds_list_delete(participantList, 0);
 ds_list_delete(participantIDList, 0);
+
 
 var colorList = ds_list_create();
 for (var i = 0; i < ds_list_size(participantIDList); i++) {
@@ -95,7 +115,7 @@ for (var i = 0; i < ds_list_size(participantIDList); i++) {
 }
 
 participantHueOffset += 20;
-
+ 
 ds_grid_resize(global.fileLineRipGrid, global.fileLineRipGripWidth, ds_grid_height(global.fileLineRipGrid) + 1);
 var currentFileLineRipGridRow = ds_grid_height(global.fileLineRipGrid) - 1;
 ds_grid_set(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, currentFileLineRipGridRow, discoID);
