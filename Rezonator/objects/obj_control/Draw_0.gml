@@ -43,7 +43,7 @@ scr_drawDialogueBox();
 
 
 // Draw the mouse drag rectangle
-if (not mouseoverPanelPane) {
+if (not mouseoverPanelPane and not scrollBarHolding) {
 	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
 		scr_mouseRect();
 	}
@@ -138,3 +138,5 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 960, "current_time: " + string(current_time));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 980, "hoverWordID: " + string(hoverWordID));
 }
+
+scr_scrollBar(ds_grid_height(lineGrid), -1, gridSpaceVertical, 200, c_ltgray, c_dkgray, c_ltgray, c_ltgray, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);

@@ -82,7 +82,7 @@ wordTranscriptView = false;
 
 
 // Instantiate the Line Grid
-lineGridWidth = 12;
+lineGridWidth = 13;
 lineGrid_colDisplayRow = 0;
 lineGrid_colDiscoID = 1;
 lineGrid_colUnitID = 2; //lineGrid_colUnit = 2;
@@ -95,6 +95,7 @@ lineGrid_colUnitStart = 8;
 lineGrid_colUnitEnd = 9;
 lineGrid_colVoidMax = 10;
 lineGrid_colVoidSum = 11;
+lineGrid_colPixelYOriginal = 12;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
 lineGridDefaultSort = true;
@@ -356,3 +357,21 @@ boxGrid_colChainIDLists = 2;
 boxGrid_colVoidSum = 3;
 boxGrid_colTimeSpent = 4;
 boxGrid_colMoveCount = 5;
+
+
+
+// scrollbar variables
+scrollBarHolding = false;
+scrollBarUpButtonHeld = false;
+scrollBarDownButtonHeld = false;
+scrollBarWidth = 20;
+scrollBarHeight = 0;
+scrollPlusY = 0;
+scrollPlusYDest = 0;
+scrollBarPlusY = 0;
+windowResizeXHolding = false;
+windowResizeYHolding = false;
+clipX = 0;
+clipY = 0;
+x = 0;
+y = 0;

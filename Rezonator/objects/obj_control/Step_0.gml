@@ -59,28 +59,19 @@ with (obj_panelPane) {
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
 if (!clickedInChainList and !clickedInChainContents) {
+	
 	if (keyboard_check(vk_down) or mouse_wheel_down()) {
-		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
-		{
-			currentCenterDisplayRow++;
+		if (holdDownArrowKey == 0 or holdDownArrowKey > 30) {
+			ds_grid_add_region(lineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(lineGrid), -50);
 		}
 		holdDownArrowKey++;
 		if (mouse_wheel_down()) {
 			holdDownArrowKey = 31;
 		}
 	}
-
-	if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {
-		holdDownArrowKey = 0;
-	}
-	if (holdDownArrowKey > 0 and !mouse_wheel_down() and !keyboard_check(vk_down)) {
-		holdDownArrowKey = 0;
-	}
-
-
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if (holdUpArrowKey == 0 or holdUpArrowKey > 30) {
-			currentCenterDisplayRow--;
+			ds_grid_add_region(lineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(lineGrid), 50);
 		}
 		holdUpArrowKey++;
 		if (mouse_wheel_up()) {
@@ -88,6 +79,13 @@ if (!clickedInChainList and !clickedInChainContents) {
 		}
 	}
 
+
+	if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {
+		holdDownArrowKey = 0;
+	}
+	if (holdDownArrowKey > 0 and !mouse_wheel_down() and !keyboard_check(vk_down)) {
+		holdDownArrowKey = 0;
+	}
 	if (keyboard_check_released(vk_up) and !mouse_wheel_up()) {
 		holdUpArrowKey = 0;
 	}
@@ -95,7 +93,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 		holdUpArrowKey = 0;
 	}
 
-// Here for sure
+
 	if (keyboard_check_pressed(vk_pagedown)) {
 		currentCenterDisplayRow += (drawRange - lineSpacing);
 	}

@@ -45,9 +45,10 @@ scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHei
 scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
 
 // For clicking and dragging scrollbar
-if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - scrollBarWidth)
-&& mouse_check_button_pressed(mb_left)) {
-	scrollBarHolding = true;
+if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - scrollBarWidth)) {
+	if (mouse_check_button_pressed(mb_left)) {
+		scrollBarHolding = true;
+	}
 }
 
 // User can't scroll if they're changing the window size

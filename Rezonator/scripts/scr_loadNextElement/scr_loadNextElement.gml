@@ -124,7 +124,7 @@ if (string_count("/>", currentElement) > 0) {
 	ds_list_clear(linesWithWordsList);
 
 
-	var currentLineY = room_height + obj_control.gridSpaceVertical;
+	var currentLineY = currentUnitID * obj_control.gridSpaceVertical;
 		
 	ds_grid_resize(obj_control.lineGrid, obj_control.lineGridWidth, ds_grid_height(obj_control.lineGrid) + 1);
 	var currentRowLineGrid = ds_grid_height(obj_control.lineGrid) - 1;
@@ -134,6 +134,7 @@ if (string_count("/>", currentElement) > 0) {
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, currentRowLineGrid, 0);
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitID, currentRowLineGrid, currentUnitID);
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelY, currentRowLineGrid, currentLineY);
+	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentRowLineGrid, currentLineY);
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colDiscoID, currentRowLineGrid, currentDiscoID);
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, currentRowLineGrid, currentUtteranceID);
 	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colAlignedWordID, currentRowLineGrid, ds_list_find_value(lineGridWordIDList, 0));

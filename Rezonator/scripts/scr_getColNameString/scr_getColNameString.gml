@@ -79,6 +79,9 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 		case obj_control.lineGrid_colVoidSum:
 			colName = "voidSum";
 			break;
+		case obj_control.lineGrid_colPixelYOriginal:
+			colName = "pixelYOriginal";
+			break;
 		default:
 			break;
 	}

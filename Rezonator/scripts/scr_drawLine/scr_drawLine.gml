@@ -27,12 +27,14 @@ draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
 draw_set_alpha(1);
 
-// set range of lines that we want to draw
-drawRangeStart = currentCenterDisplayRow - drawRange;
-drawRangeEnd = currentCenterDisplayRow + drawRange;
 
-drawRangeStart = max(drawRangeStart, 0);
-drawRangeEnd = min(drawRangeEnd, ds_grid_height(currentActiveLineGrid));
+
+scr_setDrawRange();
+ds_grid_set_grid_region(lineGrid, lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), lineGrid_colPixelY, 0);
+ds_grid_add_region(lineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(lineGrid), scrollPlusY);
+
+
+
 
 // draw out of bounds rectangles on top & bottom of discourse
 if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
@@ -81,14 +83,16 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 	var currentLineDestY = (ds_grid_get(currentActiveLineGrid, lineGrid_colDisplayRow, drawLineLoop) - currentCenterDisplayRow) * gridSpaceVertical + (room_height / 2);
 	var currentLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop);
 	
+	/*
 	if (currentLineY < currentLineDestY) {
 		currentLineY += abs(currentLineY - currentLineDestY) / 4;
 	}
 	else if (currentLineY > currentLineDestY) {
 		currentLineY -= abs(currentLineY - currentLineDestY) / 4;
 	}
+	*/
 	
-	ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop, currentLineY);
+	//ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop, currentLineY);
 	
 	// set speaker label stuff up
 	var speakerRectX1 = 0;
@@ -246,7 +250,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 			speakerLabelCurrentColStr = string(currentLineNumberLabel);
 		}
 		else if (i == 2 and participantName != undefined) {
-			speakerLabelCurrentColStr = string(participantName);
+			speakerLabelCurrentColStr = string(currentLineY);//string(participantName);
 
 			while (string_width(speakerLabelCurrentColStr) > obj_control.speakerLabelColWidth[2]) {
 				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
@@ -266,15 +270,8 @@ if (showDevVars) {
 	draw_set_alpha(1);
 	draw_set_font(fnt_debug);
 	draw_set_halign(fa_right);
-	draw_text(room_width - 100, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
-}
-
-// set Y pixel value for lines outside of draw range, to get them ready to be shown
-for (var i = 1; i < drawRange; i++) {
-	if (drawRangeStart - i >= 0 and drawRangeStart - i < ds_grid_height(lineGrid)) {
-		//ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeStart - i, -gridSpaceVertical);
-	}
-	if (drawRangeEnd + i >= 0 and drawRangeEnd + i < ds_grid_height(lineGrid)) {
-		//ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawRangeEnd + i, room_height + gridSpaceVertical);
-	}
+	draw_text(room_width - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
+	draw_text(room_width - 300, 265, "camY range: " + string(camera_get_view_y(view_camera[0]) + camera_get_view_height(view_camera[0])));
+	
+	draw_text(mouse_x, mouse_y, "(" + string(mouse_x) + ", " + string(mouse_y) + ")");
 }
