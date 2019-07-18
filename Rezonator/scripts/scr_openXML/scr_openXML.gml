@@ -87,7 +87,7 @@ while (not file_text_eof(fileOpenRead)) {
 		}
 	}
 	else if (jsonFile) {
-		if (string_count("\"words\" [", lineInFile) > 0) {
+		if (string_count("\"words\"", lineInFile) > 0) {
 			lineTotal++;
 			linesInCurrentDisco++;
 		}
