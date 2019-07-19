@@ -318,6 +318,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialougeBoxActive) {
 			scr_exportPortion(inputText);
 		}
 		if (obj_control.gPressed) {
+			
 			if (obj_panelPane.discoIDSelected) {
 				show_message(obj_panelPane.selectedDiscoID);
 				scr_jumpToLine(obj_panelPane.selectedDiscoID,inputText);
@@ -330,7 +331,9 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialougeBoxActive) {
 		
 		
 	input_text_set_text(instance, "");
-	obj_panelPane.discoIDSelected = false;
+	with (obj_panelPane) {
+		discoIDSelected = false;
+	}
 	obj_control.fPressed = false;
 	obj_control.gPressed = false;
 	obj_control.ePressed = false;

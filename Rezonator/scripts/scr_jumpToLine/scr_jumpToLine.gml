@@ -1,5 +1,6 @@
 var discoID = argument0;
 var lineStr = argument1;
+discoID = obj_panelPane.selectedDiscoID;
 
 //var lineStr = get_string("Type in the line you would like to jump to.", "");
 

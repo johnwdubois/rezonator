@@ -46,7 +46,9 @@ for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 	draw_set_color(c_purple);
 	if (i == functionGoToLine_selectedDisco) {
 		draw_rectangle(selectedRectX1, selectedRectY1, selectedRectX2, selectedRectY2, false);
-		selectedDiscoID = currentDiscoID;
+		with (obj_panelPane) {
+			selectedDiscoID = currentDiscoID;
+		}
 	}
 	else {
 		draw_rectangle(selectedRectX1, selectedRectY1, selectedRectX2, selectedRectY2, true);
