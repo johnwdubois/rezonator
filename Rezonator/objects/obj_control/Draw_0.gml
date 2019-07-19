@@ -139,4 +139,4 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 980, "hoverWordID: " + string(hoverWordID));
 }
 
-scr_scrollBar(ds_grid_height(lineGrid), -1, gridSpaceVertical, 200, c_ltgray, c_dkgray, c_ltgray, c_ltgray, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);
+scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, 200, c_ltgray, c_dkgray, c_ltgray, c_ltgray, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);
