@@ -96,6 +96,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 			with (obj_control) {
 				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
 					ds_list_add(inRectWordIDList, currentWordID);
+					ds_list_add(inRectHitIDList, currentHitID);
 				}
 			}
 		}

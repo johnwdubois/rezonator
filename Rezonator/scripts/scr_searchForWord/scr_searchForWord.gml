@@ -61,7 +61,7 @@ else {
 // display RegEx in debug
 //		obj_control.moveCounter = scr_regularExpressionCreate( regExString) ;
 if(is_string(scr_regularExpressionCreate(wordToFind))){
-obj_control.regExCheck = false;
+	obj_control.regExCheck = false;
 }
 
 // create new searchGrid so we can populate it from scratch
@@ -188,6 +188,10 @@ for (var i = 0; i < ds_grid_height(unitGrid); i++) {
 			}
 		}
 	}
+}
+
+if(obj_control.newWordDeleted) {
+	exit;
 }
 
 // check if we actually got any matches (check height of searchGrid)

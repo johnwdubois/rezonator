@@ -69,7 +69,8 @@ holdDown = 0;
 windowResizeXHolding = false;
 windowResizeYHolding = false;
 
-
+focusedCol = -1;
+focusedRow = -1;
 
 clipSurface = -1;
 clipWidth = 100;

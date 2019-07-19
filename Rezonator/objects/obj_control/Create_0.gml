@@ -297,6 +297,7 @@ mouseHoldRectY2 = 0;
 mouseRectMade = false;
 mouseRectReleased = false;
 inRectWordIDList = ds_list_create();
+inRectHitIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
@@ -348,6 +349,8 @@ alarm[9] = 10;
 
 mouseoverPanelPane = false;
 rectNotInPanelPane = false;;
+
+newWordDeleted = false;
 
 boxGridWidth = 6;
 boxGrid_colUnitID = 0;

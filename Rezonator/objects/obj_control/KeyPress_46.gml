@@ -59,6 +59,15 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	// Deletion of newWords
 	else if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 		currentWordID = newWordHoverWordID;
+		
+		// (Maybe) within this space, check if this word is a Hit in the search screen.
+		// If so, set the search to be redrawn after the deletion is done
+		
+		/*if(if newWord is a hit) {
+			newWordDeleted = true;
+			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
+			newWordDeleted = false;
+		}*/
 	}
 	
 	// Safety check, we only want to delete Chunks or newWords
