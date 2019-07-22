@@ -24,6 +24,10 @@ if (gridView) {
 	exit;
 }
 
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) - 20, 200, camera_get_view_width(view_camera[0]), max(200, camera_get_view_height(view_camera[0])))) {
+	mouseoverPanelPane = true;
+}
+
 // Turns on a grid of lines
 if (showDisplayCols) {
 	draw_set_alpha(0.25);

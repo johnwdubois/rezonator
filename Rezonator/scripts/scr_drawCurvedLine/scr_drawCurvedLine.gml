@@ -27,8 +27,7 @@ var curvex3 = curvex1;
 var curvey3 = curvey2;
 
 // if we are in draw range, draw many small lines to make the illusion of a curve
-if ((curvey1 > -100 and curvey1 < room_height + 100)
-or (curvey2 > -100 and curvey2 < room_height + 100)) {
+if (true) {
 	
     for (var pr = 0; pr <= 1; pr += 0.04) {
         var Qx1 = (curvex3 - curvex1) * pr + curvex1;
@@ -65,8 +64,8 @@ var curvex3_2 = curvex1_2;
 var curvey3_2 = curvey2_2;
                         
 // do this loop again to draw the second half of the curve
-if ((curvey1_2 > -100 and curvey1_2 < room_height + 100)
-or (curvey2_2 > -100 and curvey2_2 < room_height + 100)) {                        
+if not (curvey1_2 < (-obj_control.gridSpaceVertical * 2) and curvey1_2 < (-obj_control.gridSpaceVertical * 2))
+and not (curvey2_2 > (camera_get_view_height(view_camera[0]) + obj_control.gridSpaceVertical * 2) and curvey2_2 > (camera_get_view_height(view_camera[0]) + obj_control.gridSpaceVertical * 2)) {                       
                         
     for (var pr_2 = 0; pr_2 <= 1; pr_2 += 0.01) {
 		var Qx1_2 = (curvex3_2 - curvex1_2) * pr_2 + curvex1_2;

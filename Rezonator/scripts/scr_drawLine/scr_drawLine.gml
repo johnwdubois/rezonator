@@ -31,7 +31,7 @@ draw_set_alpha(1);
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
-ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), scrollPlusY);
+ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), scrollPlusY + 150);
 
 
 
@@ -72,7 +72,7 @@ hoverChunkID = -1;
 //clickedChunkID = -1;
 
 // for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
-for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoop++) {
+for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLoop++) {
 	if (drawLineLoop < 0 or drawLineLoop >= ds_grid_height(currentActiveLineGrid)) {
 		continue;
 	}
