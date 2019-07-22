@@ -63,7 +63,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 		// (Maybe) within this space, check if this word is a Hit in the search screen.
 		// If so, set the search to be redrawn after the deletion is done
 		
-		/*if(if newWord is a hit) {
+		/*if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
 			newWordDeleted = true;
 			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
 			newWordDeleted = false;
@@ -76,6 +76,14 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	
 	// Set the word state to dead
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
+	
+	if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+	if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
+			newWordDeleted = true;
+			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
+			newWordDeleted = false;
+		}
+	}
 	
 	// Mechanism for removing this Chunk from any chains
 	// CUrrently experiencing bugs with deleting a nested Chunk plus it's nest within the same chain

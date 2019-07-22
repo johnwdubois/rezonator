@@ -126,8 +126,8 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 			ds_grid_set(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop, currentWordIDList);
 			ds_grid_set(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop, currentChainIDListList);
 			
-			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop)));
-			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop)));
+			show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop)));
+			show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop)));
 			
 			// From the lineGrid, gather the moveCount and secondsSpent for this line
 			
