@@ -287,4 +287,6 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 	obj_panelPane.showTracker = !obj_panelPane.showTracker;
 }
 
+
+
 scr_fontSizeControl();
