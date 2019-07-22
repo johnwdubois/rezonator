@@ -22,21 +22,27 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and !gridView) {
 }
 else if(gridView) {
 	gridView = false;
-}// If we're not in grid view and there is a search, switch between the main and search screen
+}
+// If we're not in grid view and there is a search, switch between the main and search screen
 else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main/filter to search
-	if(currentActiveLineGrid == lineGrid or currentActiveLineGrid == filterGrid) { 
-		preSwitchLineGrid = currentActiveLineGrid; // Which grid are we switching from?
+	if(currentActiveLineGrid == lineGrid or currentActiveLineGrid == filterGrid) {
+		scr_unFocusAllChains();
+		// Which grid are we switching from?
+		preSwitchLineGrid = currentActiveLineGrid; 
 		searchGridActive = true;
 		currentActiveLineGrid = searchGrid;
-		preSwitchDisplayRow = currentCenterDisplayRow; // Which row are we switching from?
+		// Which row are we switching from?
+		preSwitchDisplayRow = currentCenterDisplayRow; 
 		highlightedSearchRow = 0;
 		currentCenterDisplayRow = preSwitchSearchDisplayRow;
 		
 		wordLeftMarginDest = window_get_width() / 2;
-	}// Switch back to either main or filter grids
+	}
+	// Switch back to either main or filter grids
 	else if(currentActiveLineGrid == searchGrid) { 
 		searchGridActive = false;
+		
 		// Check to see which grid we're switching back into
 		if(preSwitchLineGrid == filterGrid) {
 			scr_renderFilter(); // Thankfully this script does a lot of work for us
@@ -45,8 +51,10 @@ else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 			currentActiveLineGrid = lineGrid;
 		}
 		preSwitchSearchDisplayRow = currentCenterDisplayRow;
+		
+		// Make sure we don't try to render a line that doesn't exist
 		if(highlightedSearchRow > 0 && ds_grid_value_exists(preSwitchLineGrid, 0, 0, 0, ds_grid_height(preSwitchLineGrid), highlightedSearchRow)){
-			preSwitchDisplayRow = highlightedSearchRow; // Make sure we don't try to render a line that doesn't exist
+			preSwitchDisplayRow = highlightedSearchRow; 
 		}
 		currentCenterDisplayRow = preSwitchDisplayRow;
 		wordLeftMarginDest = 170;
