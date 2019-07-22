@@ -342,6 +342,7 @@ hitIDCounter = 1;
 instance = input_text_create_singleline_ext(camera_get_view_width(view_camera[0]) /2 - 235 + 5, camera_get_view_height(view_camera[0])/2, 235, fnt_main, global.colorThemeText, 1, -1, fa_left, fa_middle, true, 0);
 
 dialougeBoxActive = false;
+newWordCreated = false;
 
 // Safety check for quick volunteers
 alarm[9] = 10;

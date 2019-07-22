@@ -15,23 +15,23 @@
 // Take in the arguments, and check if this word is a Chunk word
 var unitID = argument[0];
 var wordSeq = argument[1];
-if(argument_count == 3) {
-	var chunkID = argument[2]; 
-}
+var wordTranscript = argument[2];
+
 
 // Safety check
-if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid or obj_control.dialougeBoxActive) {
+if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid) {
 	exit;
 }
+
+
+
 
 //var wordIDListUnitGrid = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1);
 
 // Ask the user for the new word, if this is not a chunk
-if(argument_count == 2) {
-	var wordTranscript = get_string("Type in new word", "example");
-}
-else {
+if(argument_count == 4) {
 	// If it is a Chunk, combine the words within the Chunk for the transcript
+	var chunkID = argument[3]; 
 	var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), chunkID);
 	if(currentChunkRow < 0) {
 		exit;
@@ -71,7 +71,7 @@ ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, curren
 scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 
 // Designate the new word as a new word or a Chunk word
-if(argument_count == 2) {
+if(argument_count == 3) {
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateNew);
 }
 else {
