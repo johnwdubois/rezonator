@@ -250,7 +250,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop < drawRangeEnd; drawLineLoo
 			speakerLabelCurrentColStr = string(currentLineNumberLabel);
 		}
 		else if (i == 2 and participantName != undefined) {
-			speakerLabelCurrentColStr = string(currentLineY);//string(participantName);
+			speakerLabelCurrentColStr = string(participantName);
+			if (showDevVars) {
+				speakerLabelCurrentColStr = string(currentLineY);
+			}
 
 			while (string_width(speakerLabelCurrentColStr) > obj_control.speakerLabelColWidth[2]) {
 				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
