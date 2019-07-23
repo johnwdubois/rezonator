@@ -52,6 +52,7 @@ switch (global.fontSize) {
 		global.fontPanelTab = fnt_panelTab;
 		global.fontSortPane = fnt_sortPane;
 		global.fontGridView = fnt_gridView;
+		//global.fontGridView = fnt_gridViewLarge2;
 		break;
 	case 1:
 		global.fontMain = fnt_mainLarge1;
@@ -61,6 +62,7 @@ switch (global.fontSize) {
 		global.fontPanelTab = fnt_panelTabLarge1;
 		global.fontSortPane = fnt_sortPaneLarge1;
 		global.fontGridView = fnt_gridViewLarge1;
+		//global.fontGridView = fnt_gridViewLarge2;
 		break;
 	case 2:
 		global.fontMain = fnt_mainLarge2;
@@ -96,6 +98,7 @@ switch (global.fontSize) {
 		global.fontChainList = fnt_chainListLarge5;
 		global.fontPanelTab = fnt_panelTabLarge5;
 		global.fontSortPane = fnt_sortPaneLarge5;
+		global.fontGridView = fnt_gridViewLarge5;
 		break;
 	default:
 		global.fontMain = fnt_main;

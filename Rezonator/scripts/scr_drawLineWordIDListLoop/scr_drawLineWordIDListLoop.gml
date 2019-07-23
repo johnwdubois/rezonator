@@ -470,8 +470,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 				newWordHoverWordID = currentWordID;
 			
-				if (mouse_check_button_pressed(mb_left)) {
-					scr_newWord(newWordHoverUnitID, newWordHoverWordSeq);
+				if (mouse_check_button_pressed(mb_left) and not obj_control.dialougeBoxActive) {
+					obj_control.newWordCreated =true;
+					obj_control.dialougeBoxActive = true;
 				}
 			}
 

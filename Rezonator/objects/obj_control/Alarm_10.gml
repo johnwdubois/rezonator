@@ -56,7 +56,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 		// Create an invisible new word to act as this Chunk's data type
 		var currentWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList) - 1); // Use the last word so the contained words are drawn first
 		var currentUnitID = ds_list_find_value(currentUnitList, 0);
-		scr_newWord(currentUnitID, ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1), obj_control.chunkID);
+		scr_newWord(currentUnitID, ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1), "", obj_control.chunkID);
 		
 		// Store the new word's ID
 		var currentChunkWordID = ds_grid_height(obj_control.wordGrid);
@@ -124,10 +124,10 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 				currentWordID = ds_list_find_value(currentWordList, ++wordIDListLoop);
 			}
 			ds_grid_set(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop, currentWordIDList);
-			ds_grid_set(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop, currentChainIDList);
+			ds_grid_set(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop, currentChainIDListList);
 			
-			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop)));
-			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop)));
+			show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop)));
+			show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop)));
 			
 			// From the lineGrid, gather the moveCount and secondsSpent for this line
 			

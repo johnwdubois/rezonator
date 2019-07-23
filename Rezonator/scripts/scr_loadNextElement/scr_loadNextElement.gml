@@ -1,4 +1,4 @@
-if (string_count("<u who=", currentElement) == 0 and string_count("\"words\" [", currentElement) == 0) {
+if (string_count("<u who=", currentElement) == 0 and string_count("\"words\"", currentElement) == 0) {
 	if (not firstValidLineReached) {
 		exit;
 	}
@@ -12,7 +12,7 @@ if (string_length(currentElement) == 0) {
 	exit;
 }
 
-if (string_count("\"words\" [", currentElement) > 0) {
+if (string_count("\"words\"", currentElement) > 0) {
 	scr_loadNextElementJSON(currentElement);
 	exit;
 }

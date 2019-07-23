@@ -19,10 +19,7 @@
 	var searchBarYOffset = 20;
 	var buttonXOffset = 50;
 	var buttonYOffset = 25;
-	
-	instance.x = camera_get_view_width(view_camera[0]) /2 - 235 + 5;
-	instance.y = camera_get_view_height(view_camera[0])/2;
-	
+
 
 if (obj_control.dialougeBoxActive) {
 
@@ -71,9 +68,12 @@ if (obj_control.dialougeBoxActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "OK");
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Cancel");
 	
+	if (obj_control.newWordCreated) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to add.");
+	}
 
 	if (obj_control.gPressed) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Type in the line you would like to jump to.");
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the line you would like to jump to.");
 	}
 
 	if (obj_control.ePressed) {
@@ -277,10 +277,24 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 				scr_exportPortion(inputText);
 			}
 			if (obj_control.gPressed) {
-				scr_jumpToLine("",inputText);
+							
+				if (obj_panelPane.discoIDSelected) {
+					show_message(obj_panelPane.selectedDiscoID);
+					scr_jumpToLine(obj_panelPane.selectedDiscoID,inputText);
+				}
+				else {
+					scr_jumpToLine("",inputText);
+				}
+
 			}
+			if (obj_control.newWordCreated) {
+				obj_toolPane.currentTool = obj_toolPane.toolNewWord;
+				scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, inputText);
+			}
+		
 			
 			input_text_set_text(instance, "");
+			obj_control.newWordCreated = false;
 			obj_control.fPressed = false;
 			obj_control.ePressed = false;
 			obj_control.gPressed = false;
@@ -296,6 +310,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			input_text_set_text(instance, "");
 			input_text_set_enabled(instance, false);
 			
+			obj_control.newWordCreated = false;
 			obj_control.fPressed = false;
 			obj_control.ePressed = false;
 			obj_control.gPressed = false;
@@ -318,6 +333,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialougeBoxActive) {
 			scr_exportPortion(inputText);
 		}
 		if (obj_control.gPressed) {
+			
 			if (obj_panelPane.discoIDSelected) {
 				show_message(obj_panelPane.selectedDiscoID);
 				scr_jumpToLine(obj_panelPane.selectedDiscoID,inputText);
@@ -327,10 +343,17 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialougeBoxActive) {
 			}
 
 		}
+		if (obj_control.newWordCreated) {
+			obj_toolPane.currentTool = obj_toolPane.toolNewWord;
+			scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, inputText);
+		}
 		
 		
 	input_text_set_text(instance, "");
-	obj_panelPane.discoIDSelected = false;
+	with (obj_panelPane) {
+		discoIDSelected = false;
+	}
+	obj_control.newWordCreated =false
 	obj_control.fPressed = false;
 	obj_control.gPressed = false;
 	obj_control.ePressed = false;

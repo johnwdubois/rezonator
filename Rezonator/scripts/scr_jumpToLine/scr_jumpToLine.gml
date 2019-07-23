@@ -1,5 +1,6 @@
 var discoID = argument0;
 var lineStr = argument1;
+discoID = obj_panelPane.selectedDiscoID;
 
 if (lineStr == "") {
 	exit;

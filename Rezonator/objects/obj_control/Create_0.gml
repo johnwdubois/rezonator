@@ -298,6 +298,7 @@ mouseHoldRectY2 = 0;
 mouseRectMade = false;
 mouseRectReleased = false;
 inRectWordIDList = ds_list_create();
+inRectHitIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
@@ -342,6 +343,7 @@ hitIDCounter = 1;
 instance = input_text_create_singleline_ext(camera_get_view_width(view_camera[0]) /2 - 235 + 5, camera_get_view_height(view_camera[0])/2, 235, fnt_main, global.colorThemeText, 1, -1, fa_left, fa_middle, true, 0);
 
 dialougeBoxActive = false;
+newWordCreated = false;
 
 // Safety check for quick volunteers
 alarm[9] = 10;
@@ -350,6 +352,8 @@ alarm[9] = 10;
 mouseoverPanelPane = false;
 rectNotInPanelPane = false;;
 
+newWordDeleted = false;
+
 boxGridWidth = 6;
 boxGrid_colUnitID = 0;
 boxGrid_colWordIDList = 1;
@@ -357,6 +361,7 @@ boxGrid_colChainIDLists = 2;
 boxGrid_colVoidSum = 3;
 boxGrid_colTimeSpent = 4;
 boxGrid_colMoveCount = 5;
+
 
 
 
@@ -379,3 +384,6 @@ y = 0;
 
 drawRangeCenterOffset = 0;
 drawRangeExtraSteps = 0;
+
+currentStackShowListPosition = -1;
+stackShowList = ds_list_create();

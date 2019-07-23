@@ -39,6 +39,7 @@ var mouseoverItemString = " ";
 var mouseoverCol = -1;
 var mouseoverRow = -1;
 
+
 var gridColXList = ds_map_find_value(gridViewColXListMap, grid);
 if (gridColXList == -1 or is_undefined(gridColXList)) {
 	exit;
@@ -111,6 +112,11 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 			mouseoverItemString = currentItemString;
 			draw_set_color(global.colorThemeSelected2);
 			draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, true);
+			// Here is where we can focus a specific column.
+			if (mouse_check_button_pressed(mb_left) and window_get_cursor() != cr_size_we) {
+				focusedRow = gridLoopRow;
+				focusedCol = gridLoopCol;	
+			}
 		}
 		
 		
@@ -123,6 +129,12 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 			draw_line(windowX1 - clipX, currentCellRectY2 - clipY, windowX2 - clipX, currentCellRectY2 - clipY);
 		}
 		
+		if(focusedRow == gridLoopRow && focusedCol == gridLoopCol) {
+			draw_set_color(c_yellow);
+			draw_set_alpha(0.3);
+			draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, colRectX2, currentCellRectY2 - clipY, false);
+			draw_set_alpha(1);
+		}
 		
 		textPlusY += strHeight;
 		
@@ -250,7 +262,42 @@ draw_text(windowX1, windowY2 + strHeight + 20 + string_height("0"), "fps: " + st
 
 
 
-
+/* How the Nav Window does its thing
+if (clickedIn) {	
+	if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
+			
+		if (focusedChainRow > 0 and focusedChainRow < ds_grid_height(grid)) {
+			scr_unFocusAllChains();
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+			focusedChainRow--;
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+				
+			if (focusedElementY <= y + textMarginTop + strHeight) {
+				scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+			}
+		}
+		else {
+			scrollPlusYDest += 4;
+		}
+	}
+		
+	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
+			
+		if (focusedChainRow < ds_grid_height(grid) - 1 and focusedChainRow >= 0) {
+			scr_unFocusAllChains();
+			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
+			focusedChainRow++;
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+				
+			if (focusedElementY >= y + windowHeight - strHeight) {
+				scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+			}
+		}
+		else {
+			scrollPlusYDest -= 4;
+		}
+	}
+*/
 
 
 // mousewheel input
