@@ -142,30 +142,15 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 960, "current_time: " + string(current_time));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 980, "hoverWordID: " + string(hoverWordID));
 	
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 850, "drawLine offset: " + string(drawRangeCenterOffset));
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 880, "drawLine extra steps: " + string(drawRangeExtraSteps));
 	
-	/*
-	scrollBarHolding = false;
-scrollBarUpButtonHeld = false;
-scrollBarDownButtonHeld = false;
-scrollBarWidth = 20;
-scrollBarHeight = 0;
-scrollPlusY = 0;
-scrollPlusYDest = 0;
-scrollPlusYDestDest = 0;
-scrollBarPlusY = 0;
-	*/
+	
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 680, "scrollPlusY: " + string(scrollPlusY));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 700, "scrollPlusYDest: " + string(scrollPlusYDest));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 720, "scrollBarPlusY: " + string(scrollBarPlusY));
 }
 
-scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, 200, c_ltgray, c_dkgray, c_ltgray, c_ltgray, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);
-
-if (keyboard_check_pressed(vk_numpad4)) {
-	var rando = irandom(ds_grid_height(lineGrid) - 1);
-	var pixelY = ds_grid_get(lineGrid, lineGrid_colPixelYOriginal, rando);
-
-	//show_message("rando: " + string(rando) + "... pixelY: " + string(pixelY));
-
-	scrollPlusYDest += 10;
-}
+scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, 200,
+	global.colorThemeSelected1, global.colorThemeSelected2,
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);

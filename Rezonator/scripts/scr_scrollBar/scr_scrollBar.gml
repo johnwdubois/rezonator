@@ -68,17 +68,6 @@ if ((scrollBarHolding && mouse_check_button(mb_left))) {
 	}
 }
 
-/*
-if (focusedElementY > y + windowHeight - marginTop) {
-	//var val = focusedElementY;
-	scrollPlusYDest -= strHeight;
-	
-	
-	//if (scrollBarPlusY < val) {
-	//	scrollPlusYDest -= abs(scrollBarPlusY - val);
-	//}
-}
-*/
 
 // Limit the scrolling within bounds
 scrollPlusY = clamp(scrollPlusYDest, minScrollPlusY, maxScrollPlusY);
@@ -151,9 +140,9 @@ draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - c
 
 
 // Draw outlines of scrollbar buttons
-draw_set_color(global.colorThemeBorders);
-draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + scrollBarWidth + marginTop - clipY, true);
-draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + marginTop - clipY, scrollBarX2 - clipX, y + windowHeightAdjusted + marginTop - clipY, true);
+//draw_set_color(global.colorThemeBorders);
+//draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + scrollBarWidth + marginTop - clipY, true);
+//draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + marginTop - clipY, scrollBarX2 - clipX, y + windowHeightAdjusted + marginTop - clipY, true);
 
 
 // Move scrollbar with regular scroll

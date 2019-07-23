@@ -375,3 +375,7 @@ clipX = 0;
 clipY = 0;
 x = 0;
 y = 0;
+
+
+drawRangeCenterOffset = 0;
+drawRangeExtraSteps = 0;
