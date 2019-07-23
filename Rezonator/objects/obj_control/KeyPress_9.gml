@@ -65,12 +65,12 @@ else {
 //obj_control.stackShowWindowActive = true;
 
 
-/*
+
 
 if(currentStackShowListPosition == -1) {
 	//Create the list
 	//set currentStackShowListPosition to 0
-	currentStackShowListPosition = 0;
+	/*currentStackShowListPosition = 0;
 	for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
 		var currentStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackShowListLoop);
 		ds_list_add(stackShowList, currentStackID);	
@@ -79,9 +79,17 @@ if(currentStackShowListPosition == -1) {
 	// Clear the Filter of all chains
 	ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
 	ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
-	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);*/
+	
+	if (!instance_exists(obj_dialogueBox)) {
+		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+	}
 	
 }
+else {
+	scr_stackShow();	
+}
+/*
 if(ds_list_size(stackShowList) > 0 && currentStackShowListPosition != (ds_list_size(stackShowList))) {
 	// Filter on ds_list_get_value(stackShowList, currentStackShowListPosition);
 	
@@ -111,9 +119,9 @@ else if(currentStackShowListPosition == (ds_list_size(stackShowList))) {
 	// Switch to active grid
 	obj_control.filterGridActive = false;
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
-}
-*/
+}*/
 
+/*
 if (!instance_exists(obj_dialogueBox)) {
 	instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-}
+}*/
