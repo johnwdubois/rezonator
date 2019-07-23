@@ -1,5 +1,5 @@
 ///@description "Normal" textAlign
-if (!shortcutsEnabled || dialougeBoxActive) {
+if (!shortcutsEnabled || dialogueBoxActive) {
 	exit;
 }
 

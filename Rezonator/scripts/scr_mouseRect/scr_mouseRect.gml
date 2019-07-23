@@ -2,7 +2,7 @@
 draw_set_color(global.colorThemeSelected1);
 draw_set_alpha(0.5);
 
-if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane && not obj_control.dialougeBoxActive) {
+if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane && not obj_control.dialogueBoxActive) {
 	obj_control.rectNotInPanelPane = true;
 	mouseHoldRectX1 = mouse_x;
 	mouseHoldRectY1 = mouse_y;

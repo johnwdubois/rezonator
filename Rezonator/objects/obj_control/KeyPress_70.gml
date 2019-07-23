@@ -10,13 +10,13 @@ preSwitchDisplayRow = currentCenterDisplayRow;
 preSwitchLineGrid = currentActiveLineGrid;
 preSwitchSearchDisplayRow = 0;
 
-if (!obj_control.dialougeBoxActive) {
+if (!obj_control.dialogueBoxActive) {
 	keyboard_string = "";
 	fPressed = true;
 }
 
 
-dialougeBoxActive = true;
+dialogueBoxActive = true;
 
 //have the input be here?
 

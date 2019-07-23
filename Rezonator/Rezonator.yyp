@@ -3607,6 +3607,14 @@
             }
         },
         {
+            "Key": "d442e9ff-7ed7-49d7-b832-3a783d12bfdc",
+            "Value": {
+                "id": "39cb310f-2809-4ff9-897d-8ceba58fbdb0",
+                "resourcePath": "scripts\\scr_drawStackShowWindow\\scr_drawStackShowWindow.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d48b4d5b-2b3a-43fa-ae22-0e76ac875116",
             "Value": {
                 "id": "badf132f-c671-4873-b358-8fd667e9e49d",
@@ -4215,6 +4223,14 @@
             }
         },
         {
+            "Key": "f98b416f-57f1-42ea-abee-61885e6713de",
+            "Value": {
+                "id": "336c79c0-71a2-498d-b772-0afbc5393b95",
+                "resourcePath": "objects\\obj_dialogueBox\\obj_dialogueBox.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "fa097c53-c2a5-4e0c-9429-f13c190f7866",
             "Value": {
                 "id": "05ca028e-2d0a-436f-acdc-e5e456b7d3e0",
@@ -4485,6 +4501,7 @@
         "876dfb46-e34f-4303-92d7-29b15d649f25",
         "4ed4d8a2-a546-442b-8a3f-b7d480cf3c94",
         "060dd124-78ea-40ee-96ac-3ba85347aaaa",
+        "d442e9ff-7ed7-49d7-b832-3a783d12bfdc",
         "a19f7bc3-34d7-44b8-9ef6-18e696add4dc",
         "1fae8169-e422-4a32-961d-f94e12fd208c",
         "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91",

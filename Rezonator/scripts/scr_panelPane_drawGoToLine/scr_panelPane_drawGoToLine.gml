@@ -71,7 +71,7 @@ if (point_in_rectangle(mouse_x, mouse_y, specifyLineRectX1, specifyLineRectY1, s
 	if (mouse_check_button_pressed(mb_left)) {
 		discoIDSelected = true;
 		discoSelectionActive = false;
-		obj_control.dialougeBoxActive = true;
+		obj_control.dialogueBoxActive = true;
 		instance_destroy();
 	}
 }

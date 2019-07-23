@@ -65,7 +65,7 @@ else {
 //obj_control.stackShowWindowActive = true;
 
 
-
+/*
 
 if(currentStackShowListPosition == -1) {
 	//Create the list
@@ -111,4 +111,9 @@ else if(currentStackShowListPosition == (ds_list_size(stackShowList))) {
 	// Switch to active grid
 	obj_control.filterGridActive = false;
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
+}
+*/
+
+if (!instance_exists(obj_dialogueBox)) {
+	instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 }

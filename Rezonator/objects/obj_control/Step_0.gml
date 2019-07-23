@@ -120,7 +120,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 	}
 }
 
-	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control)and not dialougeBoxActive) {
+	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control)and not dialogueBoxActive) {
 		wordLeftMarginDest -= gridSpaceHorizontal;
 	}
 	if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
@@ -132,7 +132,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 		scr_createPlaceChains();
 	}
 
-	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialougeBoxActive) {
+	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
 		wordLeftMarginDest += gridSpaceHorizontal;
 	}
 	if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
@@ -248,7 +248,7 @@ for (var i = 0; i < instance_number(obj_panelPane); i++) {
 		mouseoverPanelPane = true;
 	}
 	//check for mouse over search pane
-	if (obj_control.dialougeBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 250, camera_get_view_height(view_camera[0])/2 - 125 + 30, camera_get_view_width(view_camera[0]) /2 + 250, camera_get_view_height(view_camera[0])/2 + 125)){
+	if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 250, camera_get_view_height(view_camera[0])/2 - 125 + 30, camera_get_view_width(view_camera[0]) /2 + 250, camera_get_view_height(view_camera[0])/2 + 125)){
 		mouseoverPanelPane = true;		
 	}
 	
