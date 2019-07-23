@@ -13,7 +13,7 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialougeBoxActive) {
+if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialougeBoxActive or obj_control.stackShowWindowActive) {
 	exit;
 }
 

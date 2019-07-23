@@ -22,8 +22,8 @@
 
 
 if (obj_control.dialougeBoxActive) {
-
-		quickLinkAllowed = false;
+		obj_control.mouseoverPanelPane = true;
+		obj_control.quickLinkAllowed = false;
 	
 
 	draw_set_halign(fa_left);

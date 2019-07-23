@@ -1,4 +1,4 @@
-///@description Nav/Main Focuser
+///@description Stack Show
 /*
 	obj_control: Key Press - Tab
 	
@@ -59,13 +59,17 @@ else {
 //show_message(string(currentStackShowListPosition));
 //show_message(scr_getStringOfList(stackShowList));
 
+
+
+
+//obj_control.stackShowWindowActive = true;
+
+
+
+
 if(currentStackShowListPosition == -1) {
 	//Create the list
 	//set currentStackShowListPosition to 0
-	/*searchGridActive = false;
-	filterGridActive = true;
-	currentActiveLineGrid = filterGrid;
-	wordLeftMarginDest = 170; // Make sure the margin is placed correctly*/
 	currentStackShowListPosition = 0;
 	for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
 		var currentStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackShowListLoop);

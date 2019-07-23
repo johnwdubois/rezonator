@@ -361,5 +361,7 @@ boxGrid_colVoidSum = 3;
 boxGrid_colTimeSpent = 4;
 boxGrid_colMoveCount = 5;
 
+//stack Show variables
 currentStackShowListPosition = -1;
 stackShowList = ds_list_create();
+stackShowWindowActive = false;
