@@ -11,7 +11,7 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
-
+/*
 var panelPaneChainListID = -1;
 var panelPaneChainContentsID = -1;
 
@@ -45,4 +45,66 @@ else if (panelPaneChainContentsID.clickedIn) {
 else {
 	panelPaneChainListID.clickedIn = true;
 	panelPaneChainContentsID.clickedIn = false;
+}
+*/
+/* StackShow Prototype
+	-At some point, A list of all the current Stacks will be created
+		-When will this list be created? Maybe now...
+	-Once TAb is pressed for the frst time, The first Stack in this list will be filtered
+		-How will we keep track of which Stack we're on? obj_control.currentStackShowListPosition
+	-From there on, TAB will switch the user to the next Stack, switching the filter
+	-ONce on the last Stack, TAB will exit StackShow, turning off the filter and showing the Main Screen
+	
+*/
+//show_message(string(currentStackShowListPosition));
+//show_message(scr_getStringOfList(stackShowList));
+
+if(currentStackShowListPosition == -1) {
+	//Create the list
+	//set currentStackShowListPosition to 0
+	/*searchGridActive = false;
+	filterGridActive = true;
+	currentActiveLineGrid = filterGrid;
+	wordLeftMarginDest = 170; // Make sure the margin is placed correctly*/
+	currentStackShowListPosition = 0;
+	for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
+		var currentStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackShowListLoop);
+		ds_list_add(stackShowList, currentStackID);	
+	}
+	
+	// Clear the Filter of all chains
+	ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
+	ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
+	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+	
+}
+if(ds_list_size(stackShowList) > 0 && currentStackShowListPosition != (ds_list_size(stackShowList))) {
+	// Filter on ds_list_get_value(stackShowList, currentStackShowListPosition);
+	
+	if(currentStackShowListPosition > 0) {
+		var prevStackID = ds_list_find_value(stackShowList, currentStackShowListPosition - 1);
+		var prevStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), prevStackID);
+		ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, prevStackRow, false);
+	}
+	
+	var currentStackID = ds_list_find_value(stackShowList, currentStackShowListPosition);
+	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackID);
+	ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, currentStackRow, true);
+			
+	// Render the filter in the mainscreen
+	//if (filterGridActive) {
+		scr_renderFilter();
+	//}
+	currentStackShowListPosition++;
+}
+else if(currentStackShowListPosition == (ds_list_size(stackShowList))) {
+	//Set currentStackShowListPosition to -1
+	currentStackShowListPosition = -1;
+	//Clear stackShowList
+	ds_list_clear(stackShowList);
+	// Exit the filter
+	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+	// Switch to active grid
+	obj_control.filterGridActive = false;
+	obj_control.currentActiveLineGrid = obj_control.lineGrid;
 }

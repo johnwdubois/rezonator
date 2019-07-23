@@ -360,3 +360,6 @@ boxGrid_colChainIDLists = 2;
 boxGrid_colVoidSum = 3;
 boxGrid_colTimeSpent = 4;
 boxGrid_colMoveCount = 5;
+
+currentStackShowListPosition = -1;
+stackShowList = ds_list_create();
