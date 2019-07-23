@@ -59,16 +59,34 @@ with (obj_panelPane) {
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
 if (!clickedInChainList and !clickedInChainContents) {
+	
+	var scrollSpeed = 0;
 	if (keyboard_check(vk_down) or mouse_wheel_down()) {
-		if (holdDownArrowKey == 0 or holdDownArrowKey > 30)
-		{
-			currentCenterDisplayRow++;
+		if (holdDownArrowKey == 0 or holdDownArrowKey > 30) {
+			scrollSpeed = -8;
+			if (mouse_wheel_down()) {
+				scrollSpeed = -16;
+			}
 		}
 		holdDownArrowKey++;
 		if (mouse_wheel_down()) {
 			holdDownArrowKey = 31;
 		}
 	}
+	if (keyboard_check(vk_up) or mouse_wheel_up()) {
+		if (holdUpArrowKey == 0 or holdUpArrowKey > 30) {
+			scrollSpeed = 8;
+			if (mouse_wheel_up()) {
+				scrollSpeed = 16;
+			}
+		}
+		holdUpArrowKey++;
+		if (mouse_wheel_up()) {
+			holdUpArrowKey = 31;
+		}
+	}
+	scrollPlusYDest += scrollSpeed;
+
 
 	if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {
 		holdDownArrowKey = 0;
@@ -76,18 +94,6 @@ if (!clickedInChainList and !clickedInChainContents) {
 	if (holdDownArrowKey > 0 and !mouse_wheel_down() and !keyboard_check(vk_down)) {
 		holdDownArrowKey = 0;
 	}
-
-
-	if (keyboard_check(vk_up) or mouse_wheel_up()) {
-		if (holdUpArrowKey == 0 or holdUpArrowKey > 30) {
-			currentCenterDisplayRow--;
-		}
-		holdUpArrowKey++;
-		if (mouse_wheel_up()) {
-			holdUpArrowKey = 31;
-		}
-	}
-
 	if (keyboard_check_released(vk_up) and !mouse_wheel_up()) {
 		holdUpArrowKey = 0;
 	}
@@ -95,39 +101,22 @@ if (!clickedInChainList and !clickedInChainContents) {
 		holdUpArrowKey = 0;
 	}
 
-// Here for sure
-	if (keyboard_check_pressed(vk_pagedown)) {
-		currentCenterDisplayRow += (drawRange - lineSpacing);
-	}
 
-	if (keyboard_check_pressed(vk_pageup)) {
-		currentCenterDisplayRow -= (drawRange - lineSpacing);
+	// Scroll a full page up or down
+	if (keyboard_check_pressed(vk_pagedown)) {
+		scrollPlusYDest -= camera_get_view_height(view_camera[0]);
 	}
+	if (keyboard_check_pressed(vk_pageup)) {
+		scrollPlusYDest += camera_get_view_height(view_camera[0]);
+	}
+	
 	// Sends user to the bottom of the main screen
 	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
-		currentCenterDisplayRow = ds_grid_height(currentActiveLineGrid) - 1;
-		
-		for (var i = (currentCenterDisplayRow - drawRangeEnd); i < currentCenterDisplayRow; i++) {
-			if (i < 0 or i >= ds_grid_height(lineGrid)) {
-				break;
-			}
-			
-			var currentLineDestY = (ds_grid_get(currentActiveLineGrid, lineGrid_colDisplayRow, i) - currentCenterDisplayRow) * gridSpaceVertical + (room_height / 2);
-			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
-		}
+		scrollPlusYDest = -999999999999;
 	}
 	// Sends user to the top of the main screen
 	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
-		currentCenterDisplayRow = 0;
-		
-		for (var i = currentCenterDisplayRow; i < drawRange + 10; i++) {
-			if (i >= ds_grid_height(lineGrid)) {
-				break;
-			}
-			
-			var currentLineDestY = (ds_grid_get(currentActiveLineGrid, lineGrid_colDisplayRow, i) - currentCenterDisplayRow) * gridSpaceVertical + (room_height / 2);
-			ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, i, currentLineDestY);
-		}
+		scrollPlusYDest = 100;
 	}
 }
 
@@ -297,5 +286,7 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q"))){
 	obj_panelPane.showTracker = !obj_panelPane.showTracker;
 }
+
+
 
 scr_fontSizeControl();

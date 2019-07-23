@@ -75,7 +75,8 @@ for (var i = 0; i < 4; i++) {
 			ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
 			ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
 			ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
-			ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, room_height + gridSpaceVertical);
+			ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
+			ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
 			ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
 			ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 			ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDListUnitGrid);
@@ -136,7 +137,8 @@ if (obj_panelPane.functionFilter_peek[0] == 1) {
 		ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
 		ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
 		ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
-		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, room_height + gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
 		ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
 		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
@@ -209,7 +211,8 @@ if (obj_panelPane.functionFilter_peek[1] == 1) {
 		ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
 		ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
 		ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
-		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, room_height + gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
 		ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
 		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
@@ -261,8 +264,7 @@ if (obj_panelPane.functionFilter_peek[1] == 1) {
 
 // Set filter to Next Context
 if (obj_panelPane.functionFilter_peek[2] == 1) {	
-	for (var i = lastUnit; i < ds_grid_height(unitGrid); i++)
-	{
+	for (var i = lastUnit; i < ds_grid_height(unitGrid); i++) {
 		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
 		
 		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
@@ -279,7 +281,8 @@ if (obj_panelPane.functionFilter_peek[2] == 1) {
 		ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
 		ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
 		ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
-		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, room_height + gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
+		ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
 		ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
 		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
@@ -331,7 +334,12 @@ if (obj_panelPane.functionFilter_peek[2] == 1) {
 ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
 for (var i = 0; i < ds_grid_height(filterGrid); i++) {
 	ds_grid_set(filterGrid, lineGrid_colDisplayRow, i, i);
+	ds_grid_set(filterGrid, lineGrid_colPixelY, i, i * obj_control.gridSpaceVertical);
+	ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, i, i * obj_control.gridSpaceVertical);
 }
+
+
+
 
 searchGridActive = false;
 filterGridActive = true;

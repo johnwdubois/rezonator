@@ -292,9 +292,14 @@ if (functionChainContents_IDList != undefined) {
 	}
 }
 
+var scrollBarBackColor = global.colorThemeSelected1;
+if (scrollBarListSize > 1000) {
+	scrollBarBackColor = global.colorThemeSelected2;
+}
+
 scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, tabHeight,
-	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
+	scrollBarBackColor, global.colorThemeSelected2,
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
 
 draw_set_alpha(1);

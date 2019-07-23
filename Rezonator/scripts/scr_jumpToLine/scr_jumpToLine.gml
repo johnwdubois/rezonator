@@ -2,8 +2,6 @@ var discoID = argument0;
 var lineStr = argument1;
 discoID = obj_panelPane.selectedDiscoID;
 
-//var lineStr = get_string("Type in the line you would like to jump to.", "");
-
 if (lineStr == "") {
 	exit;
 }
@@ -11,7 +9,6 @@ if (lineStr == "") {
 if (string_length(string_digits(lineStr)) < string_length(lineStr)
 or string_length(lineStr) < 1) {
 	show_message("Numbers only.");
-	//scr_jumpToLine(discoID);
 	exit;
 }
 
@@ -31,7 +28,8 @@ else {
 }
 	
 if (rowInLineGrid >= 0) {
-	obj_control.currentCenterDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, rowInLineGrid);
+	var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
+	obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
 }
 else {
 	exit;

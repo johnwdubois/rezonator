@@ -61,18 +61,14 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 		var currentHitGridIndex2 = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid)-1, currentWordID2);
 		
 		
-		if (currentUnitID1 == currentUnitID2)
-		{
+		if (currentUnitID1 == currentUnitID2) {
 			wordsInSameUnit = true;
-			if (firstWordInUnit < 0)
-			{
+			if (firstWordInUnit < 0) {
 				firstWordInUnit = currentWordID1;
 			}
 		}
-		else
-		{
-			if (wordsInSameUnit and firstWordInUnit >= 0 and (firstWordInUnit - 1) < ds_grid_height(obj_control.wordGrid))
-			{
+		else {
+			if (wordsInSameUnit and firstWordInUnit >= 0 and (firstWordInUnit - 1) < ds_grid_height(obj_control.wordGrid)) {
 				currentWordID1 = firstWordInUnit;
 				currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 				currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
@@ -117,20 +113,17 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 		
 		
 		if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
-		and (currentLineGridIndex1InDrawRange or currentLineGridIndex2InDrawRange) {
+		and not (lineY1 < (-obj_control.gridSpaceVertical * 2) and lineY2 < (-obj_control.gridSpaceVertical * 2))
+		and not (lineY1 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2))
+		{
 			if(chunkWord1) {
+				
 			var wordRectBuffer = 6;
-			/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID1 - 1), 0) - 1)) == true) {
-				wordRectBuffer = 4;
-			}*/
 			lineY1 += (wordRectBuffer * 2) + 4;
 			chunkWord1 = 0;
 			}
 			if(chunkWord2) {
 				var wordRectBuffer = 6;
-				/*if(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, (ds_list_find_value(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID2 - 1), 0) - 1)) == true) {
-					wordRectBuffer = 4;
-				}*/
 				lineY2 -= (wordRectBuffer * 3);
 				chunkWord2 = 0;
 			}

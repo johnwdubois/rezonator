@@ -343,7 +343,7 @@ if (clickedIn) {
 
 scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, textMarginTop,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
 
 

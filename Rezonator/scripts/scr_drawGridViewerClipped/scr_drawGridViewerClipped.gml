@@ -177,7 +177,7 @@ for (var i = 0; i < ds_grid_width(grid); i++) {
 // Draw the scroll bar for the GridView
 scr_scrollBar(ds_grid_height(grid), -1, strHeight, colNameHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeBG, spr_ascend, windowWidth, windowHeight);
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
 scr_surfaceEnd();
 

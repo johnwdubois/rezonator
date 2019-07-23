@@ -95,6 +95,14 @@
             }
         },
         {
+            "Key": "03adbe98-fddd-4847-a0f5-29cffb826525",
+            "Value": {
+                "id": "8ca987a2-3ca7-468d-8427-57aa91b6df4a",
+                "resourcePath": "scripts\\scr_setDrawRange\\scr_setDrawRange.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0435a0ad-d7af-486e-88a9-3970e1bdf048",
             "Value": {
                 "id": "01f949cc-fe2a-4f54-b936-85f3524bc1dd",
@@ -4348,6 +4356,7 @@
         "2c4abd01-f056-4203-accc-7a49a37cdfee",
         "8527467f-60ba-4b6d-8e16-ec6891e4a3e2",
         "17fbc186-e7bd-4438-a2d4-cc3080f6b690",
+        "03adbe98-fddd-4847-a0f5-29cffb826525",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "e62a5730-9b99-4ca6-bb32-c61f6678b17a",
         "b2cca057-9709-4529-93eb-58095ef2e600",

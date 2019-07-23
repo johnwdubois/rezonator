@@ -24,6 +24,10 @@ if (gridView) {
 	exit;
 }
 
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) - 20, 200, camera_get_view_width(view_camera[0]), max(200, camera_get_view_height(view_camera[0])))) {
+	mouseoverPanelPane = true;
+}
+
 // Turns on a grid of lines
 if (showDisplayCols) {
 	draw_set_alpha(0.25);
@@ -44,7 +48,7 @@ scr_stackShowWindow();
 
 
 // Draw the mouse drag rectangle
-if (not mouseoverPanelPane) {
+if (not mouseoverPanelPane and not scrollBarHolding) {
 	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
 		scr_mouseRect();
 	}
@@ -141,4 +145,16 @@ if (showDevVars) {
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 960, "current_time: " + string(current_time));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 980, "hoverWordID: " + string(hoverWordID));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 850, "drawLine offset: " + string(drawRangeCenterOffset));
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 880, "drawLine extra steps: " + string(drawRangeExtraSteps));
+	
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 680, "scrollPlusY: " + string(scrollPlusY));
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 700, "scrollPlusYDest: " + string(scrollPlusYDest));
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 720, "scrollBarPlusY: " + string(scrollBarPlusY));
 }
+
+scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, 200,
+	global.colorThemeSelected1, global.colorThemeSelected2,
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);
