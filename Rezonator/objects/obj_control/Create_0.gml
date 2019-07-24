@@ -391,3 +391,4 @@ drawRangeCenterOffset = 0;
 drawRangeExtraSteps = 0;
 
 drawLineYOffset = 0;
+global.canScroll = true;

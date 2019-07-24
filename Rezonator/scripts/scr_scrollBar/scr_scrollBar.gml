@@ -45,9 +45,10 @@ scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHei
 scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
 
 // For clicking and dragging scrollbar
-if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - scrollBarWidth)) {
+if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - scrollBarWidth) and global.canScroll) {
 	if (mouse_check_button_pressed(mb_left)) {
 		scrollBarHolding = true;
+		global.canScroll = false;
 	}
 }
 
@@ -122,6 +123,7 @@ if (!mouse_check_button(mb_left)) {
 	scrollBarHolding = false;
 	scrollBarUpButtonHeld = false;
 	scrollBarDownButtonHeld = false;
+	global.canScroll = true;
 }
 draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + marginTop - clipY, scrollBarX2 - clipX, y + windowHeightAdjusted + marginTop - clipY, false);
 

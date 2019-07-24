@@ -116,6 +116,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 			if (mouse_check_button_pressed(mb_left) and window_get_cursor() != cr_size_we) {
 				focusedRow = gridLoopRow;
 				focusedCol = gridLoopCol;	
+				focusedItemString = currentItemString;
 			}
 		}
 		
@@ -251,9 +252,11 @@ draw_set_alpha(1);
 
 // draw the current mouseover item
 draw_set_font(global.fontMain);
-draw_text(windowX1 + 10, windowY2 + strHeight + 20, "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString);
+draw_text(windowX1 + 10, windowY1 - strHeight - 20, "(" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString);
 
-draw_text(windowX1, windowY2 + strHeight + 20 + string_height("0"), "fps: " + string(fps));
+draw_text(windowX1 + 10, windowY1 - strHeight - 20 - string_height("0"), "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString);
+
+draw_text(windowX1, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
 
 
 //draw_text(windowX1, windowY2 + strHeight + 60 + string_height("0"), "gridViewColXHolding: " + string(gridViewColXHolding));

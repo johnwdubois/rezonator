@@ -48,26 +48,16 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 		}
 	}
 	
+	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colTiltSum, ds_grid_height(obj_chain.chunkGrid) - 1, ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1));
+	
 	scr_unFocusAllChains();
 	// If this box counts as a Chunk, mark it as such and nest it if possible
 	if(ds_list_size(currentUnitList) == 1 && ds_list_size(currentWordList) > 1) {
 		
-		
-		// Create an invisible new word to act as this Chunk's data type
-		var currentWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList) - 1); // Use the last word so the contained words are drawn first
-		var currentUnitID = ds_list_find_value(currentUnitList, 0);
-		scr_newWord(currentUnitID, ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1), "", obj_control.chunkID);
-		
-		// Store the new word's ID
-		var currentChunkWordID = ds_grid_height(obj_control.wordGrid);
-		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid) - 1, currentChunkWordID);
-		// Add the ChunkID to the front of the chunkWord's inBoxList
-		ds_list_insert(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_grid_height(obj_control.dynamicWordGrid) - 1), 0, obj_control.chunkID);
-			
-		
 		// Access the first word's in Chunk list
 		var currentInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_list_find_value(currentWordList, 0) - 1);
 			
+		var uniqueChunk = true;	
 		// Loop through the in Chunk list, check if any elements are not the current chunk
 		for(var chunkListLoop = 0; chunkListLoop < ds_list_size(currentInChunkList); chunkListLoop++) {
 				
@@ -83,10 +73,21 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 					exit;
 				}
 				var otherChunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
+				
 					
 				// Check if this chunk contains the other chunk
 				if(scr_listContainsSublist(otherChunkWordList, currentWordList) != -1) {
-						
+					
+					// Make sure this new Chunk is unique
+					var currentListFirstWord = ds_list_find_value(currentWordList, 0);
+					var currentListLastWord = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colTiltSum, ds_grid_height(obj_chain.chunkGrid) - 1);
+					var otherListFirstWord = ds_list_find_value(otherChunkWordList, 0);
+					var otherListLastWord = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colTiltSum, currentChunkRow);
+					
+					if(currentListFirstWord == otherListFirstWord && currentListLastWord == otherListLastWord) {
+						uniqueChunk = false;
+						continue;
+					}
 					//wordRectBuffer = 4;
 					// Mark this Chunk as nested
 					ds_grid_set(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, ds_grid_height(obj_chain.chunkGrid) - 1, true);
@@ -94,6 +95,22 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 				}
 			}
 		}
+		
+		
+		if(uniqueChunk) {
+			// Create an invisible new word to act as this Chunk's data type
+			var currentWordID = ds_list_find_value(currentWordList, ds_list_size(currentWordList) - 1); // Use the last word so the contained words are drawn first
+			var currentUnitID = ds_list_find_value(currentUnitList, 0);
+			scr_newWord(currentUnitID, ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1), "", obj_control.chunkID);
+		
+			// Store the new word's ID
+			var currentChunkWordID = ds_grid_height(obj_control.wordGrid);
+			ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid) - 1, currentChunkWordID);
+			// Add the ChunkID to the front of the chunkWord's inBoxList
+			ds_list_insert(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_grid_height(obj_control.dynamicWordGrid) - 1), 0, obj_control.chunkID);
+			
+		}
+		
 	}
 	// If this box is not a Chunk, then retrieve scroing information and package it for sending.
 	else {
@@ -126,8 +143,8 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 			ds_grid_set(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop, currentWordIDList);
 			ds_grid_set(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop, currentChainIDListList);
 			
-			show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop)));
-			show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop)));
+			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colWordIDList, unitIDListLoop)));
+			//show_message(scr_getStringOfList(ds_grid_get(newBoxGrid, boxGrid_colChainIDLists, unitIDListLoop)));
 			
 			// From the lineGrid, gather the moveCount and secondsSpent for this line
 			

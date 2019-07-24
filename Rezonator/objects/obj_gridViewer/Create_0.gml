@@ -71,6 +71,7 @@ windowResizeYHolding = false;
 
 focusedCol = -1;
 focusedRow = -1;
+focusedItemString = " ";
 
 clipSurface = -1;
 clipWidth = 100;
