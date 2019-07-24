@@ -40,6 +40,12 @@ if(argument_count == 4) {
 	var wordTranscript = "";
 	for(var transcriptLoop = 0; transcriptLoop < ds_list_size(chunkWordIDList); transcriptLoop++) {
 		var chunkWordID = ds_list_find_value(chunkWordIDList, transcriptLoop);
+		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, chunkWordID - 1);
+	
+		// Check if the word is a ChunkWord
+		if(currentWordState == obj_control.wordStateChunk) {
+			continue;
+		}
 		wordTranscript += (ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, chunkWordID - 1) + " ");
 	}
 }
@@ -110,7 +116,7 @@ var wordIDListUnitGrid = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_
 
 // THIS ONLY WORKS FOR CHUNKS
 // Check the wordID right before the new word, if it is not at the end of a line we check to see if it is in a box
-if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUnitGrid) - 1)) {
+if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUnitGrid) - 1) || argument_count == 4) {
 	
 	// Find the ID of the word in front of the new word
 	var prevWordID = ds_list_find_value(wordIDListUnitGrid, ds_list_find_index(wordIDListUnitGrid,wordID) - 1);
