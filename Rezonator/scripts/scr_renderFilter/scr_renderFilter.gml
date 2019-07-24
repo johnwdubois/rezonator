@@ -75,8 +75,8 @@ for (var i = 0; i < 4; i++) {
 			ds_grid_set(filterGrid, lineGrid_colDisplayRow, currentRowFilterGrid, currentRowFilterGrid);
 			ds_grid_set(filterGrid, lineGrid_colLineState, currentRowFilterGrid, 0);
 			ds_grid_set(filterGrid, lineGrid_colUnitID, currentRowFilterGrid, currentUnitID);
-			ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
-			ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, currentRowFilterGrid, currentRowFilterGrid * obj_control.gridSpaceVertical);
+			ds_grid_set(filterGrid, lineGrid_colPixelY, currentRowFilterGrid, (currentRowFilterGrid * obj_control.gridSpaceVertical) + (camera_get_view_height(view_camera[0]) / 2));
+			ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, currentRowFilterGrid, (currentRowFilterGrid * obj_control.gridSpaceVertical) + (camera_get_view_height(view_camera[0]) / 2));
 			ds_grid_set(filterGrid, lineGrid_colDiscoID, currentRowFilterGrid, currentDiscoID);
 			ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 			ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDListUnitGrid);

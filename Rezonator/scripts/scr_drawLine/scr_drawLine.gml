@@ -28,10 +28,14 @@ draw_set_color(global.colorThemeText);
 draw_set_alpha(1);
 
 
+drawLineYOffset = 0;
+//if (filterGridActive) {
+//	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 150;	
+//}
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
-ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), scrollPlusY + 150);
+ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), scrollPlusY + 150 + drawLineYOffset);
 
 
 
@@ -80,19 +84,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	var currentWordIDList = ds_grid_get(currentActiveLineGrid, lineGrid_colWordIDList, drawLineLoop);
 	
 	// get & set the correct pixel-Y value for each line
-	var currentLineDestY = (ds_grid_get(currentActiveLineGrid, lineGrid_colDisplayRow, drawLineLoop) - currentCenterDisplayRow) * gridSpaceVertical + (room_height / 2);
 	var currentLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop);
-	
-	/*
-	if (currentLineY < currentLineDestY) {
-		currentLineY += abs(currentLineY - currentLineDestY) / 4;
-	}
-	else if (currentLineY > currentLineDestY) {
-		currentLineY -= abs(currentLineY - currentLineDestY) / 4;
-	}
-	*/
-	
-	//ds_grid_set(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop, currentLineY);
 	
 	// set speaker label stuff up
 	var speakerRectX1 = 0;
