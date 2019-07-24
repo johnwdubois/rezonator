@@ -85,6 +85,13 @@ if (!clickedInChainList and !clickedInChainContents) {
 			holdUpArrowKey = 31;
 		}
 	}
+	
+	if (instance_exists(obj_dialogueBox)) {
+		holdUpArrowKey = 0;
+		holdDownArrowKey = 0;
+		scrollSpeed = 0;
+	}
+	
 	scrollPlusYDest += scrollSpeed;
 
 
@@ -102,46 +109,51 @@ if (!clickedInChainList and !clickedInChainContents) {
 	}
 
 
-	// Scroll a full page up or down
-	if (keyboard_check_pressed(vk_pagedown)) {
-		scrollPlusYDest -= camera_get_view_height(view_camera[0]);
-	}
-	if (keyboard_check_pressed(vk_pageup)) {
-		scrollPlusYDest += camera_get_view_height(view_camera[0]);
-	}
+	if (not instance_exists(obj_dialogueBox)) {
+		// Scroll a full page up or down
+		if (keyboard_check_pressed(vk_pagedown)) {
+			scrollPlusYDest -= camera_get_view_height(view_camera[0]);
+		}
+		if (keyboard_check_pressed(vk_pageup)) {
+			scrollPlusYDest += camera_get_view_height(view_camera[0]);
+		}
 	
-	// Sends user to the bottom of the main screen
-	if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
-		scrollPlusYDest = -999999999999;
-	}
-	// Sends user to the top of the main screen
-	else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
-		scrollPlusYDest = 100;
+		// Sends user to the bottom of the main screen
+		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
+			scrollPlusYDest = -999999999999;
+		}
+		// Sends user to the top of the main screen
+		else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
+			scrollPlusYDest = 100;
+		}
 	}
 }
 
-	if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control)and not dialogueBoxActive) {
-		wordLeftMarginDest -= gridSpaceHorizontal;
-	}
-	if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
-	or keyboard_check_pressed(vk_end)) {
-		scr_jumpToEnd(false);
-	}
-	
-	if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)) {
-		scr_createPlaceChains();
-	}
 
-	if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-		wordLeftMarginDest += gridSpaceHorizontal;
-	}
-	if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
-	or keyboard_check_pressed(vk_home)) {
-		if (searchGridActive) {
-			scr_jumpToEnd(true);
+	if (not instance_exists(obj_dialogueBox)) {		
+		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
+			wordLeftMarginDest -= gridSpaceHorizontal;
 		}
-		else {
-			wordLeftMarginDest = speakerLabelMargin + speakerLabelMarginBuffer;
+		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
+		or keyboard_check_pressed(vk_end)) {
+			scr_jumpToEnd(false);
+		}
+	
+		if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)) {
+			scr_createPlaceChains();
+		}
+
+		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
+			wordLeftMarginDest += gridSpaceHorizontal;
+		}
+		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
+		or keyboard_check_pressed(vk_home)) {
+			if (searchGridActive) {
+				scr_jumpToEnd(true);
+			}
+			else {
+				wordLeftMarginDest = speakerLabelMargin + speakerLabelMarginBuffer;
+			}
 		}
 	}
 	
