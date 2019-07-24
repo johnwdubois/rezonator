@@ -14,7 +14,7 @@ scrollBarPlusY = 0;
 
 
 
-windowHeight = 335;
+windowHeight = 299;
 windowWidth = 360;
 clipSurface = -1;
 clipWidth = 100;
@@ -34,3 +34,5 @@ stackShowWindowActive = true;
 
 holdUp = 0;
 holdDown = 0;
+
+selectAll = false;

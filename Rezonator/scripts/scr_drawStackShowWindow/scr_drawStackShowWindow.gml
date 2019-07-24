@@ -208,7 +208,7 @@ if (keyboard_check_pressed(vk_pagedown)) {
 
 
 
-scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, textMarginTop,
+scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, 0,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 

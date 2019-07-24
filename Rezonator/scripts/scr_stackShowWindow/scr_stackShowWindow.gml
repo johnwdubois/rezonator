@@ -32,7 +32,7 @@ if (stackShowWindowActive) {
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
 	x = camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset;
-	y = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 35;
+	y = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 1;
 	
 	draw_set_colour(global.colorThemePaneBG);
 	if (global.colorTheme ==0) {
@@ -43,8 +43,7 @@ if (stackShowWindowActive) {
 	draw_set_colour(global.colorThemeBorders);
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
-	
-	
+
 		
 	// draw stack box
 	draw_set_colour(c_white);
@@ -52,6 +51,17 @@ if (stackShowWindowActive) {
 	draw_set_colour(global.colorThemeBorders);
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20, camera_get_view_width(view_camera[0]) /2 + stackBoxXOffset, camera_get_view_height(view_camera[0])/2 + stackBoxYOffset - 20, true);
 
+		
+	// draw inside stack box
+	draw_set_colour(c_white);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, camera_get_view_width(view_camera[0]) /2 + stackBoxXOffset, camera_get_view_height(view_camera[0])/2 + stackBoxYOffset - 20, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, camera_get_view_width(view_camera[0]) /2 + stackBoxXOffset, camera_get_view_height(view_camera[0])/2 + stackBoxYOffset - 20, true);
+
+	
+	draw_set_colour(global.colorThemeText);
+	draw_set_font(fnt_mainBold);
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 30, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 9, "Select All");
 	
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainBold);
@@ -75,8 +85,23 @@ if (stackShowWindowActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 - 155, camera_get_view_height(view_camera[0])/2 + 180, "Show Stacks");
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 + 180, "Cancel");
 	
+	
+
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 10, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 20, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
+	if (obj_dialogueBox.selectAll) {
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 10, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 20, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
+	}
+
+	// current chain boolean switch
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 10, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 20, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_dialogueBox.selectAll = !obj_dialogueBox.selectAll;	
+				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
+			}
+	}
 
 }
+
 
 
 
