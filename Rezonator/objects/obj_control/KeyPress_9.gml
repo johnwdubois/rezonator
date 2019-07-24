@@ -66,7 +66,7 @@ else {
 
 
 
-
+// If we have not started the stackShow yet
 if(currentStackShowListPosition == -1) {
 	//Create the list
 	//set currentStackShowListPosition to 0
@@ -81,12 +81,15 @@ if(currentStackShowListPosition == -1) {
 	ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
 	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);*/
 	
+	// Instantiate the screen for users to select which stacks go in the stackShow
 	if (!instance_exists(obj_dialogueBox)) {
 		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 	}
 	
 }
+// If the stackShow is in progress
 else {
+	// Let the stackShow move on to the next stack
 	scr_stackShow();	
 }
 /*
