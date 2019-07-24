@@ -98,7 +98,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
 			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 			instance_destroy();
-			
+			// Begin the show
 			scr_stackShow();
 		}
 		
@@ -117,7 +117,23 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 // enter check
 if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 
+	// In here is where the stackShow initiation code will go
+	obj_control.currentStackShowListPosition = 0;
+	for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
+		// Currently adds Stacks into the list if they are within the filter
+		if(ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, stackShowListLoop)) {
+			var currentStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackShowListLoop);
+			ds_list_add(obj_control.stackShowList, currentStackID);	
+		}
+	}
+	
+	// Clear the Filter of all chains
+	ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
+	ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
+	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 	instance_destroy();
+	// Begin the show
+	scr_stackShow();
 }
 
 scr_drawStackShowWindow();
