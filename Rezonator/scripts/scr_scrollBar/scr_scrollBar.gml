@@ -45,8 +45,9 @@ scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHei
 scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
 
 // For clicking and dragging scrollbar
-if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - scrollBarWidth) and global.canScroll) {
-	if (mouse_check_button_pressed(mb_left)) {
+if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - scrollBarWidth, y + scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - scrollBarWidth)) {
+	mouseoverScrollBar = true;
+	if (mouse_check_button_pressed(mb_left) and global.canScroll) {
 		scrollBarHolding = true;
 		global.canScroll = false;
 	}

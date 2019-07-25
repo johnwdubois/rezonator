@@ -153,6 +153,8 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 680, "scrollPlusY: " + string(scrollPlusY));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 700, "scrollPlusYDest: " + string(scrollPlusYDest));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 720, "scrollBarPlusY: " + string(scrollBarPlusY));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 750, "mouseoverScrollBar: " + string(mouseoverScrollBar));
 }
 
 scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, 200,

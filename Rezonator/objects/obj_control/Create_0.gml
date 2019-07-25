@@ -392,3 +392,4 @@ drawRangeExtraSteps = 0;
 
 drawLineYOffset = 0;
 global.canScroll = true;
+mouseoverScrollBar = false;

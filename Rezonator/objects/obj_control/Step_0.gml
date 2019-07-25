@@ -247,6 +247,7 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 // It's gotta stop the drag but not require the user to click into the main screen first
 if(window_get_cursor() != cr_size_ns) {// && !mouse_check_button_pressed(mb_left)) {
 	mouseoverPanelPane = false;
+	mouseoverScrollBar = false;
 }
 for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	var panelPaneInst = instance_find(obj_panelPane, i);
@@ -298,6 +299,7 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q"))){
 	obj_panelPane.showTracker = !obj_panelPane.showTracker;
 }
+
 
 
 
