@@ -48,7 +48,7 @@ scr_drawDialogueBox();
 
 
 // Draw the mouse drag rectangle
-if (not mouseoverPanelPane and not scrollBarHolding) {
+if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool != obj_toolPane.toolNewWord) {
 	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
 		scr_mouseRect();
 	}

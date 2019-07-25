@@ -252,9 +252,20 @@ draw_set_alpha(1);
 
 // draw the current mouseover item
 draw_set_font(global.fontMain);
-draw_text(windowX1 + 10, windowY1 - strHeight - 20, "(" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString);
+var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
+var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString;
 
-draw_text(windowX1 + 10, windowY1 - strHeight - 20 - string_height("0"), "(" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString);
+draw_set_alpha(0.3);
+draw_set_color(c_yellow);
+draw_rectangle(windowX1 + 5, windowY1 - strHeight - 20 - (string_height("0") /2), string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
+draw_set_color(global.colorThemeSelected2);
+draw_rectangle(windowX1 + 5, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
+draw_set_alpha(1);
+draw_set_color(global.colorThemeText);
+
+draw_text(windowX1 + 10, windowY1 - strHeight - 20, highlightText);
+
+draw_text(windowX1 + 10, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
 
 draw_text(windowX1, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
 

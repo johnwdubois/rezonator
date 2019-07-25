@@ -376,7 +376,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		*/
 		// Allows for adding to a stack anywhere in a line
-		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
 			if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
@@ -466,9 +466,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			// CHeck for adding a newWord after this current word
 			else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
 				// Set this to be the hovered wordID
-				newWordHoverUnitID = unitID;
-				newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
-				newWordHoverWordID = currentWordID;
+				if(not obj_control.dialogueBoxActive) {
+					newWordHoverUnitID = unitID;
+					newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+					newWordHoverWordID = currentWordID;
+				}
 			
 				if (mouse_check_button_pressed(mb_left) and not obj_control.dialogueBoxActive) {
 					obj_control.newWordCreated =true;

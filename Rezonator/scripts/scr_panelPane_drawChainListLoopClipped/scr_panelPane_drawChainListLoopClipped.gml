@@ -214,6 +214,16 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		// Add to moveCounter
 		obj_control.moveCounter ++;
 	}
+	if (point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY)) {
+		draw_set_colour(global.colorThemeBG);
+		draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 130, mouse_y + 16, false);
+		draw_set_colour(global.colorThemeBorders);
+		draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 130, mouse_y + 16, true);
+		draw_set_colour(global.colorThemeText);
+		draw_set_font(fnt_mainBold);
+		draw_text(mouse_x + 72, mouse_y, "Filter");	
+		draw_set_font(global.fontChainList);
+	}
 	
 	
 	
@@ -247,6 +257,16 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 		//Check for user selection of alignment with mouse clicks
 		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1 + clipX, chainAlignRectY1 + clipY, chainAlignRectX2 + clipX, chainAlignRectY2 + clipY)) {
+			
+			draw_set_colour(global.colorThemeBG);
+			draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 170, mouse_y + 16, false);
+			draw_set_colour(global.colorThemeBorders);
+			draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 170, mouse_y + 16, true);
+			draw_set_colour(global.colorThemeText);
+			draw_set_font(fnt_mainBold);
+			draw_text(mouse_x + 72, mouse_y, "Alignment");
+			draw_set_font(global.fontChainList);
+			
 			if (mouse_check_button_pressed(mb_left)) {
 				
 				// Unselect alignment if already selected
