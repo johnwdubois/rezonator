@@ -62,13 +62,13 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 	var iconAlpha = 1;
 	
 	if (not obj_control.lineGridDefaultSort) {
-		if (currentTool == toolRezBrush) {
-			currentTool = toolPointer;
-		}
+		//if (currentTool == toolRezBrush) {
+		//	currentTool = toolPointer;
+		//}
 		
-		if (i == 1) {
-			iconAlpha = 0.5;
-		}
+		//if (i == 1) {
+		//	iconAlpha = 0.5;
+		//}
 	}
 	
 	draw_sprite_ext(spr_tools, i, iconX, iconY, 1, 1, 0, spriteColor, iconAlpha);

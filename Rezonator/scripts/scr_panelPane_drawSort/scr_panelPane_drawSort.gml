@@ -308,7 +308,7 @@ or ds_grid_get(lineGridSortGrid, functionSort_gridSortColGrid_colCol, 2) != obj_
 or ds_grid_get(lineGridSortGrid, functionSort_gridSortColGrid_colCol, 3) != obj_control.lineGrid_colLineNumberLabel)
 {
 	obj_control.lineGridDefaultSort = false;
-	
+	/*
 	while (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), true))
 	{
 		var rowToChange = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), true);
@@ -323,11 +323,12 @@ or ds_grid_get(lineGridSortGrid, functionSort_gridSortColGrid_colCol, 3) != obj_
 			ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, rowToChange, -1);
 		}
 	}
+	*/
 }
 else
 {
 	obj_control.lineGridDefaultSort = true;
-	
+	/*
 	while (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), -1))
 	{
 		var rowToChange = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colAlign, 0, obj_chain.chainGrid_colAlign, ds_grid_height(obj_chain.rezChainGrid), -1);
@@ -342,4 +343,5 @@ else
 			ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, rowToChange, true);
 		}
 	}
+	*/
 }

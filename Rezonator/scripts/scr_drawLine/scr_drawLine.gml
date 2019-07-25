@@ -46,7 +46,7 @@ if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
 	draw_set_color(global.colorThemeOutOfBounds);
 	draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
 }
-if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) and ds_grid_height(currentActiveLineGrid) > 0) {
+if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) - 1 and ds_grid_height(currentActiveLineGrid) > 0) {
 	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
 	draw_set_color(global.colorThemeOutOfBounds);
 	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), room_width, room_height, false);

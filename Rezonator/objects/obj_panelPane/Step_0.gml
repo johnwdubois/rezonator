@@ -20,6 +20,14 @@ switch (currentFunction) {
 	case functionSort:
 		if not (functionSort_initialSort) {
 			if (ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+				
+				var minUnitStart = ds_grid_get_min(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, 0, obj_control.lineGrid_colUnitStart, ds_grid_height(obj_control.lineGrid));
+				var maxUnitStart = ds_grid_get_max(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, 0, obj_control.lineGrid_colUnitStart, ds_grid_height(obj_control.lineGrid));
+				if (minUnitStart == maxUnitStart) {
+					var sortGridLineGrid = ds_grid_get(functionSort_gridGrid, functionSort_gridGrid_colSortGrid, 0);
+					ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 1, obj_control.lineGrid_colUnitID);
+				}
+				
 				functionSort_initialSort = true;
 				functionSort_performSort = true;
 				scr_setSpeakerLabelColWidth();

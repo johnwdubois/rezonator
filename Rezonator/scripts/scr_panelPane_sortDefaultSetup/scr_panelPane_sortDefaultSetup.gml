@@ -27,6 +27,7 @@ for (var i = 0; i < 10; i++)
 
 //lineGrid
 var sortGridLineGrid = ds_grid_create(functionSort_gridSortGridWidth, 4);
+
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colCol, 0, obj_control.lineGrid_colDiscoID);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colAscend, 0, true);
 ds_grid_set(sortGridLineGrid, functionSort_gridSortColGrid_colMouseover, 0, false);
