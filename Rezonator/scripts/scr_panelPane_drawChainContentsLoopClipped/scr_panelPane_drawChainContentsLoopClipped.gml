@@ -12,6 +12,8 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+// INcrease the size of the utterance column!!!
+
 scr_surfaceStart();
 
 // Set opacity, alignment, and font of contents list

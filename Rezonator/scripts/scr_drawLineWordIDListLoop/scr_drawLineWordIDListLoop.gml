@@ -443,7 +443,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 			
 			// Functionality for focusing on a new word
-			if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) && currentWordState == obj_control.wordStateNew) {
+			if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and currentWordState == obj_control.wordStateNew and not obj_control.newWordCreated) {
 				
 				// Fill in the rectangle of the newWord being focused
 				draw_set_color(global.colorThemeSelected1);
@@ -466,7 +466,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			// CHeck for adding a newWord after this current word
 			else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
 				// Set this to be the hovered wordID
-				if(not obj_control.dialogueBoxActive) {
+				if(not obj_control.dialogueBoxActive and not obj_control.newWordCreated) {
 					newWordHoverUnitID = unitID;
 					newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 					newWordHoverWordID = currentWordID;

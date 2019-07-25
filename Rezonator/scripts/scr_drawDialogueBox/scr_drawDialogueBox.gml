@@ -294,7 +294,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		
 			
 			input_text_set_text(instance, "");
-			obj_control.newWordCreated = false;
+			//obj_control.newWordCreated = false;
 			obj_control.fPressed = false;
 			obj_control.ePressed = false;
 			obj_control.gPressed = false;
