@@ -61,6 +61,17 @@ chainColorID[3] = 0;
 ds_list_add(chainColorList, c_blue, c_red, c_green, c_purple, c_olive, c_orange, c_fuchsia, c_teal);
 
 
+
+tagLinkGridWidth = 4;
+tagLinkGrid_colTagLinkID = 0;
+tagLinkGrid_colSource = 1;
+tagLinkGrid_colGoal = 2;
+tagLinkGrid_colRole = 3;
+tagLinkGrid = ds_grid_create(tagLinkGridWidth, 0);
+
+
+
+
 linkGridWidth = 10;
 linkGrid_colTier = 0;
 linkGrid_colChainID = 1;
