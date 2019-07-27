@@ -51,4 +51,5 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	// Switch to active grid
 	obj_control.filterGridActive = false;
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
+	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
 }

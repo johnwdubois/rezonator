@@ -45,6 +45,10 @@ if (!gridView) {
 		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 	}
 	
+	
+	//var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
+	//	obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+	
 // Retrieve booleans for NavWindow.
 var clickedInChainList = false;
 var clickedInChainContents = false;

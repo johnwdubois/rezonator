@@ -5,7 +5,7 @@ if (!shortcutsEnabled || obj_panelPane.discoSelectionActive) {
 
 // Activates word searching using search grid
 //if(currentActiveLineGrid == lineGrid) {
-preSwitchDisplayRow = currentCenterDisplayRow;
+preSwitchDisplayRow = obj_control.scrollPlusYDest;
 //}
 preSwitchLineGrid = currentActiveLineGrid;
 preSwitchSearchDisplayRow = 0;

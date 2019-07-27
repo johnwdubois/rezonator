@@ -205,7 +205,7 @@ if (ds_grid_height(searchGrid) > 0) {
 		highlightedSearchRow = 0;// Reset the highlight with a new search
 	}
 	currentActiveLineGrid = searchGrid;
-	currentCenterDisplayRow = 0;
+	obj_control.scrollPlusYDest = 0;
 	wordLeftMarginDest = window_get_width() / 2;
 	moveCounter ++;
 }
@@ -220,8 +220,8 @@ else {
 		searchGridActive = false;
 		filterGridActive = false;
 		currentActiveLineGrid = lineGrid;
-		preSwitchSearchDisplayRow = currentCenterDisplayRow;
-		currentCenterDisplayRow = preSwitchDisplayRow;
+		preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
+		obj_control.scrollPlusYDest = preSwitchDisplayRow;
 		wordLeftMarginDest = 170;
 	}
 }

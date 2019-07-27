@@ -86,11 +86,12 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		if (obj_control.filterGridActive) {
 			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
 				obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-				obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+				//obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+				obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
 				// Keep the focus on previous currentCenterDisplayRow
-				with (obj_control) {
-					alarm[5] = 3;
-				}
+				//with (obj_control) {
+				//	alarm[5] = 1;
+				//}
 			}
 			
 			// Switch to active grid
@@ -99,6 +100,7 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		}
 		else {
 			
+			obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
 			// If filter is unactive. activate it
 			with (obj_control) {
 				scr_renderFilter();
