@@ -241,8 +241,8 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 								currentWordInfoCol[getInfoLoop] += currentWordString + " ";
 							}
 						
-							if (string_length(currentWordInfoCol[getInfoLoop]) > 16) {
-								currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 12, string_length(currentWordInfoCol[getInfoLoop]) - 12);
+							if (string_length(currentWordInfoCol[getInfoLoop]) > 25) {
+								currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 25, string_length(currentWordInfoCol[getInfoLoop]) - 25);
 								currentWordInfoCol[getInfoLoop] += "...";
 							}
 						}
@@ -252,7 +252,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 						break;
 				}
 			
-				var textX = x + (getInfoLoop * (windowWidth / 3)) + alignTabWidth;
+				var textX = x + (getInfoLoop * (windowWidth / 6)) + alignTabWidth;
 				var textY = y + textMarginTop + textPlusY;
 			
 				draw_set_color(global.colorThemeText);
@@ -318,9 +318,12 @@ draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - cl
 
 
 for (var i = 0; i < 3; i++) {
-	var colRectX1 = x + (i * (windowWidth / 3)) + alignTabWidth;
+	var colRectX1 = x + (i * (windowWidth / 6)) + alignTabWidth;
 	var colRectY1 = y;
-	var colRectX2 = colRectX1 + (windowWidth / 3);
+	var colRectX2 = colRectX1 + (windowWidth / 6);
+	if(i == 2){
+		var colRectX2 = colRectX1 + (windowWidth);	
+	}
 	var colRectY2 = colRectY1 + windowHeight;
 	
 	var colName = "";
