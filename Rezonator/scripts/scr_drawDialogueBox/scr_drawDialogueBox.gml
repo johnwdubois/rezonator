@@ -300,11 +300,21 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			if (obj_control.gPressed) {
 							
 				if (obj_panelPane.discoIDSelected) {
-					show_message(obj_panelPane.selectedDiscoID);
-					scr_jumpToLine(obj_panelPane.selectedDiscoID,inputText);
+					//show_message(obj_panelPane.selectedDiscoID);
+					if(obj_control.goToTime){
+						scr_jumpToTime(obj_control.inputText);
+					}
+					else{
+						scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
+					}
 				}
 				else {
-					scr_jumpToLine("",obj_control.inputText);
+					if(obj_control.goToTime){
+						scr_jumpToTime(obj_control.inputText);
+					}
+					else{
+						scr_jumpToLine("",obj_control.inputText);
+					}
 				}
 
 			}
@@ -376,13 +386,23 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 		}
 		if (obj_control.gPressed) {
 			
-			if (obj_panelPane.discoIDSelected) {
-				show_message(obj_panelPane.selectedDiscoID);
-				scr_jumpToLine(obj_panelPane.selectedDiscoID,inputText);
-			}
-			else {
-				scr_jumpToLine("",obj_control.inputText);
-			}
+				if (obj_panelPane.discoIDSelected) {
+					//show_message(obj_panelPane.selectedDiscoID);
+					if(obj_control.goToTime){
+						scr_jumpToTime(obj_control.inputText);
+					}
+					else{
+						scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
+					}
+				}
+				else {
+					if(obj_control.goToTime){
+						scr_jumpToTime(obj_control.inputText);
+					}
+					else{
+						scr_jumpToLine("",obj_control.inputText);
+					}
+				}
 
 		}
 		if (obj_control.newWordCreated) {

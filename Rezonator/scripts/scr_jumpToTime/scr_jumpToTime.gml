@@ -1,6 +1,8 @@
 var timeStr = argument0;
 discoID = obj_panelPane.selectedDiscoID;
 
+var foundRow = 0;
+
 if (timeStr == "") {
 	exit;
 }
@@ -11,7 +13,17 @@ or string_length(timeStr) < 1) {
 	exit;
 }
 
-var lineNum = real(timeStr);
+for(var i = 0 ; i< ds_grid_height(obj_control.lineGrid); i++){
+	var currentTime = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, i);
+	if(currentTime > timeStr){
+		foundRow = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, 0, obj_control.lineGrid_colUnitStart, ds_grid_height(obj_control.lineGrid) , currentTime );
+		i = ds_grid_height(obj_control.lineGrid);
+	}
+}
+
+	show_message(foundRow);
+
+var lineNum = real(foundRow);
 
 var lineNumMin = ds_grid_get_min(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid));
 var lineNumMax = ds_grid_get_max(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid));
