@@ -1,5 +1,10 @@
 ///@description Remove Link
 
+if(gridView) {
+	exit;	
+}
+
+/*
 // Set variables to be used by Chunk/newWord deletion
 var currentChainGridRow = undefined;
 var grid = undefined;
@@ -59,15 +64,6 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	// Deletion of newWords
 	else if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 		currentWordID = newWordHoverWordID;
-		
-		// (Maybe) within this space, check if this word is a Hit in the search screen.
-		// If so, set the search to be redrawn after the deletion is done
-		
-		/*if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
-			newWordDeleted = true;
-			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
-			newWordDeleted = false;
-		}*/
 	}
 	
 	// Safety check, we only want to delete Chunks or newWords
@@ -78,7 +74,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
 	
 	if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
-	if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
+		if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
 			newWordDeleted = true;
 			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
 			newWordDeleted = false;
@@ -232,10 +228,46 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	exit;	
 }
 else {
-// Refresh and clean
-scr_refreshChainGrid();
-scr_killEmptyChains(obj_chain.currentChainGrid);
-obj_chain.mouseLineWordID = -1;
+	// Refresh and clean
+	scr_refreshChainGrid();
+	scr_killEmptyChains(obj_chain.currentChainGrid);
+	obj_chain.mouseLineWordID = -1;
 
-scr_refreshVizLinkGrid();
+	scr_refreshVizLinkGrid();
 }
+
+// Check if the newly dead link is focused
+if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true)) {
+	// Find the dead, focused link
+	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, true);
+	if (rowInLinkGridSource == -1) {
+		exit;
+	}
+	// Unfocus the dead link
+	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridSource, false);
+	// Identify the relevant chain
+	var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
+	if(grid == undefined) {
+		grid = obj_chain.currentChainGrid;
+		//show_message(string(grid));
+	}
+	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid)-1, currentChainID);
+	if (rowInChainGrid == -1) {
+		//show_message(string(currentChainID));
+		exit;
+	}
+	var firstWordID = ds_list_find_value(ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid),0);
+	// Check this chain for live links
+	var rowInLinkGridToFocus = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false, obj_chain.linkGrid_colSource, firstWordID);
+	if (rowInLinkGridToFocus == -1) {
+		//show_message(string(firstWordID));
+		exit;
+	}
+	// If the chain contains a living link, focus the one it found
+	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridToFocus, true);
+}*/
+
+scr_deleteFromChain();
+
+//var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
+//scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
