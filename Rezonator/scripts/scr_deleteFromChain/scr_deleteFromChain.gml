@@ -1,10 +1,5 @@
 ///@description Remove Link
 
-if(gridView) {
-	exit;	
-}
-
-/*
 // Set variables to be used by Chunk/newWord deletion
 var currentChainGridRow = undefined;
 var grid = undefined;
@@ -64,6 +59,15 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	// Deletion of newWords
 	else if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 		currentWordID = newWordHoverWordID;
+		
+		// (Maybe) within this space, check if this word is a Hit in the search screen.
+		// If so, set the search to be redrawn after the deletion is done
+		
+		/*if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
+			newWordDeleted = true;
+			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
+			newWordDeleted = false;
+		}*/
 	}
 	
 	// Safety check, we only want to delete Chunks or newWords
@@ -74,7 +78,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
 	
 	if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
-		if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
+	if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
 			newWordDeleted = true;
 			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
 			newWordDeleted = false;
@@ -265,9 +269,4 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	}
 	// If the chain contains a living link, focus the one it found
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridToFocus, true);
-}*/
-
-scr_deleteFromChain();
-
-//var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-//scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+}

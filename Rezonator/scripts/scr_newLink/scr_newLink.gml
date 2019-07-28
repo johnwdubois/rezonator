@@ -26,9 +26,9 @@ var focus = true;
 //show_message(string(wordID));
 //show_message(string(goal));
 
-if (goal > -1) {
+/*if (goal > -1) {
 	focus = false;
-}
+}*/
 if (wordID == undefined) {
 	exit;
 }
