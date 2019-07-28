@@ -83,10 +83,11 @@ if(currentStackShowListPosition == -1) {
 	
 	obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
 	// Instantiate the screen for users to select which stacks go in the stackShow
+
 	if (!instance_exists(obj_dialogueBox)) {
 		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 	}
-	
+		obj_dialogueBox.stackShowWindowActive = true;
 }
 // If the stackShow is in progress
 else {

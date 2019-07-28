@@ -73,7 +73,28 @@ if (obj_control.dialogueBoxActive) {
 	}
 
 	if (obj_control.gPressed) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the line you would like to jump to.");
+		if(obj_control.goToTime){
+			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the Time you would like to jump to.");
+		}
+		else{
+			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the line you would like to jump to.");
+		}
+		
+			draw_set_font(fnt_main);
+			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Time Search");
+	
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, true);
+			if (obj_control.goToTime) {
+				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, false);	
+			}
+	
+			// GoToTime boolean switch
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45)){
+				if (mouse_check_button_pressed(mb_left)) {
+					obj_control.goToTime = !obj_control.goToTime;
+				}
+		}
+	
 	}
 
 	if (obj_control.ePressed) {
@@ -122,7 +143,7 @@ if (obj_control.dialogueBoxActive) {
 		if (!obj_control.regExCheck) {
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Transcript Search");
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 70,"Case Sensistive");
-			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Rez Chain");
+			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Focused Rez Chain");
 		}
 		draw_text(camera_get_view_width(view_camera[0]) /2 + 65, camera_get_view_height(view_camera[0])/2 - 48,"RegEx Search");
 	
@@ -166,9 +187,9 @@ if (obj_control.dialogueBoxActive) {
 }
 else {
 	// reset booleans
-	inputText = "";
+	obj_control.inputText = "";
 	keyboard_string = "";
-	cursorPos = 1;
+	obj_control.cursorPos = 1;
 	obj_control.transcriptSearch = false;
 	obj_control.inChainBool = false;
 	obj_control.caseSensitive = false;
@@ -189,68 +210,68 @@ if(keyboard_check(vk_control) && keyboard_check(ord("V")) && clipboard_has_text(
 	ctext = clipboard_get_text();
 }
 if(ctext!="" && (keyboard_check_pressed(ord("V")) || keyboard_check_pressed(vk_control))) { 
-	inputText = string_insert(ctext, inputText, cursorPos);
-	cursorPos += string_length(ctext);
+	obj_control.inputText = string_insert(ctext, obj_control.inputText, obj_control.cursorPos);
+	obj_control.cursorPos += string_length(ctext);
 }
 
 // Backspace
 if (keyboard_check_pressed(vk_backspace)) {
-	inputText = string_delete(inputText, cursorPos-1, 1);
-	if (cursorPos >=2) {
-		cursorPos-=1;
+	obj_control.inputText = string_delete(obj_control.inputText, obj_control.cursorPos-1, 1);
+	if (obj_control.cursorPos >=2) {
+		obj_control.cursorPos-=1;
 	}
 	else {
-		cursorPos = 2;
+		obj_control.cursorPos = 2;
 	}
 }
 if (keyboard_string != "") {
-      var t = keyboard_string;
-      inputText = string_insert(t, inputText, cursorPos);
-      cursorPos += string_length(t);
-      keyboard_string = "";
-	  cursorViz = true;
-	  cursorTimer = 20;
+	var t = keyboard_string;
+	obj_control.inputText = string_insert(t, obj_control.inputText, obj_control.cursorPos);
+	obj_control.cursorPos += string_length(t);
+	keyboard_string = "";
+	obj_control.cursorViz = true;
+	obj_control.cursorTimer = 20;
 }
 
 // Cursor
 if(keyboard_check_pressed(vk_left)) {
-	if (cursorPos >=2) {
-		cursorPos-=1;
+	if (obj_control.cursorPos >=2) {
+		obj_control.cursorPos-=1;
 	}
 	else {
-		cursorPos = 1;
+		obj_control.cursorPos = 1;
 	}
 }
 if(keyboard_check_pressed(vk_right)) {
-	if (cursorPos <= string_length(inputText)){
-		cursorPos+=1;
+	if (obj_control.cursorPos <= string_length(obj_control.inputText)){
+		obj_control.cursorPos+=1;
 	}
 	else{
-		if (string_length(inputText) > 0) {
-			cursorPos = string_length(inputText) +1;
+		if (string_length(obj_control.inputText) > 0) {
+			obj_control.cursorPos = string_length(obj_control.inputText) +1;
 		}
 		else {
-		 cursorPos = 1;
+		 obj_control.cursorPos = 1;
 		}
 	}
 }
 
-var displayText = inputText;
+var displayText = obj_control.inputText;
 
-if (cursorTimer >=0){
-	cursorTimer --;
+if (obj_control.cursorTimer >=0){
+	obj_control.cursorTimer --;
 }
 else{
-	cursorViz = !cursorViz;
-	cursorTimer =30;
+	obj_control.cursorViz = !obj_control.cursorViz;
+	obj_control.cursorTimer =30;
 }
 
 
-if(cursorViz){
-	displayText = string_insert("|", inputText, cursorPos);
+if(obj_control.cursorViz){
+	displayText = string_insert("|", obj_control.inputText, obj_control.cursorPos);
 }
 else{
-	displayText = string_delete(displayText, cursorPos, 0);
+	displayText = string_delete(displayText, obj_control.cursorPos, 0);
 }
 
 draw_set_halign(fa_left);
@@ -266,15 +287,15 @@ draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camer
 // ok button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
 		if (mouse_check_button_pressed(mb_left)) {
-			alarm[11] = 60;
-			input_text_set_enabled(instance, false);
+			obj_control.alarm[11] = 60;
+			//input_text_set_enabled(obj_control.instance, false);
 			//inputText = input_text_get_text(instance);
 			
 			if (obj_control.fPressed) {
-				scr_searchForWord(inputText);
+				scr_searchForWord(obj_control.inputText);
 			}
 			if (obj_control.ePressed) {
-				scr_exportPortion(inputText);
+				scr_exportPortion(obj_control.inputText);
 			}
 			if (obj_control.gPressed) {
 							
@@ -283,22 +304,32 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 					scr_jumpToLine(obj_panelPane.selectedDiscoID,inputText);
 				}
 				else {
-					scr_jumpToLine("",inputText);
+					scr_jumpToLine("",obj_control.inputText);
 				}
 
 			}
 			if (obj_control.newWordCreated) {
 				obj_toolPane.currentTool = obj_toolPane.toolNewWord;
-				scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, inputText);
+				scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
 			}
 		
+			with (obj_panelPane) {
+				obj_control.discoIDSelected = false;
+			}
 			
-			input_text_set_text(instance, "");
+			//input_text_set_text(obj_control.instance, "");
 			//obj_control.newWordCreated = false;
 			obj_control.fPressed = false;
 			obj_control.ePressed = false;
 			obj_control.gPressed = false;
+			obj_control.transcriptSearch = false;
+			obj_control.inChainBool = false;
+			obj_control.caseSensitive = false;
+			obj_control.regExCheck = false;
+			obj_control.goToTime =  false;
 			obj_control.dialogueBoxActive = false;
+			obj_control.inputText = "";
+			instance_destroy();
 		}
 		
 }
@@ -306,31 +337,42 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 // cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
 		if (mouse_check_button_pressed(mb_left)) {
-			alarm[11] = 60;
-			input_text_set_text(instance, "");
-			input_text_set_enabled(instance, false);
+			obj_control.alarm[11] = 60;
+			//input_text_set_text(instance, "");
+			//input_text_set_enabled(instance, false);
+			
+			with (obj_panelPane) {
+				obj_control.discoIDSelected = false;
+			}
 			
 			obj_control.newWordCreated = false;
 			obj_control.fPressed = false;
 			obj_control.ePressed = false;
 			obj_control.gPressed = false;
+			obj_control.transcriptSearch = false;
+			obj_control.inChainBool = false;
+			obj_control.caseSensitive = false;
+			obj_control.regExCheck = false;
+			obj_control.goToTime =  false;
 			obj_control.dialogueBoxActive = false;
-}
+			obj_control.inputText = "";
+			instance_destroy();
+	}
 		
 }
 
 
 // enter check
 if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
-	alarm[11] = 60;
-	input_text_set_enabled(instance, false);
+	obj_control.alarm[11] = 60;
+	//input_text_set_enabled(instance, false);
 	//inputText = input_text_get_text(instance);
 	
 		if (obj_control.fPressed) {
-			scr_searchForWord(inputText);
+			scr_searchForWord(obj_control.inputText);
 		}
 		if (obj_control.ePressed) {
-			scr_exportPortion(inputText);
+			scr_exportPortion(obj_control.inputText);
 		}
 		if (obj_control.gPressed) {
 			
@@ -339,24 +381,32 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 				scr_jumpToLine(obj_panelPane.selectedDiscoID,inputText);
 			}
 			else {
-				scr_jumpToLine("",inputText);
+				scr_jumpToLine("",obj_control.inputText);
 			}
 
 		}
 		if (obj_control.newWordCreated) {
 			obj_toolPane.currentTool = obj_toolPane.toolNewWord;
-			scr_newWord(newWordHoverUnitID, newWordHoverWordSeq, inputText);
+			scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
 		}
 		
 		
-	input_text_set_text(instance, "");
+	//input_text_set_text(instance, "");
 	with (obj_panelPane) {
-		discoIDSelected = false;
+		obj_control.discoIDSelected = false;
 	}
+	
 	obj_control.newWordCreated =false
 	obj_control.fPressed = false;
 	obj_control.gPressed = false;
 	obj_control.ePressed = false;
+	obj_control.transcriptSearch = false;
+	obj_control.inChainBool = false;
+	obj_control.caseSensitive = false;
+	obj_control.regExCheck = false;
+	obj_control.goToTime =  false;
 	obj_control.dialogueBoxActive = false;
+	obj_control.inputText = "";
+	instance_destroy();
 }
 

@@ -1,5 +1,7 @@
 ///@description End Chain Use
 // End chain adding/use
-scr_chainDeselect();
+if(!obj_control.dialogueBoxActive){
+	scr_chainDeselect();
 
-scr_refreshVizLinkGrid();
+	scr_refreshVizLinkGrid();
+}

@@ -329,6 +329,7 @@ fPressed = false;
 ePressed = false;
 gPressed = false;
 regExCheck = false;
+goToTime = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;

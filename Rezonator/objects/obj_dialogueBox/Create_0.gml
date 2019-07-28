@@ -29,7 +29,7 @@ canResizeWindowY = true;
 
 
 
-stackShowWindowActive = true;
+stackShowWindowActive = false;
 
 
 holdUp = 0;

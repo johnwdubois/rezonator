@@ -132,7 +132,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 // cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && stackShowWindowActive){
 	if (mouse_check_button_pressed(mb_left)) {
-
+		obj_dialogueBox.stackShowWindowActive = false;
 		instance_destroy();
 	}
 		
