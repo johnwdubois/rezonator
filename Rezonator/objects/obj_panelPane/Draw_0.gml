@@ -16,12 +16,16 @@ if (obj_control.gridView) {
 	exit;
 }
 
-draw_set_alpha(1);
-draw_set_color(global.colorThemePaneBG);
-draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+//draw_set_alpha(1);
+//draw_set_color(global.colorThemePaneBG);
+//draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 switch (currentFunction) {
 	case functionChainList:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawChainListLoopClipped();
 		scr_panelPane_drawChainTabs();
 		if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
@@ -38,6 +42,10 @@ switch (currentFunction) {
 		}
 		break;
 	case functionChainContents:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawChainContentsLoopClipped();
 		if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = true;
@@ -53,25 +61,57 @@ switch (currentFunction) {
 		}
 		break;
 	case functionFilter:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawFilter();
 		break;
 	case functionSort:
+	if (obj_control.showDevVars) {
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawSort();
+	}
 		break;
 	case functionSearch:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawSearch();
 		break;
 	case functionClique:
-		scr_panelPane_drawClique();
+		if (obj_control.showDevVars) {
+			draw_set_alpha(1);
+			draw_set_color(global.colorThemePaneBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
+			scr_panelPane_drawClique();
+		}
 		break;
 	case functionHelp:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawHelp();
 		scr_panelPane_drawTracker();
 		break;
 	case functionGoToLine:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawGoToLine();
 		break;
 	case functionGraphStats:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+
 		scr_panelPane_drawGraphStats();
 		break;
 	default:
