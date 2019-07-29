@@ -30,7 +30,7 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 		}
 		currentTool = toolPointer;
 	}
-	else if (keyboard_check_pressed(ord("N"))) {
+	else if (keyboard_check_pressed(ord("N")) and not keyboard_check(vk_control)) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}

@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView) {
+if (obj_control.gridView || not showNav) {
 	exit;
 }
 

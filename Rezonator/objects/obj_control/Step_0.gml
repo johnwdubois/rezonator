@@ -199,13 +199,15 @@ else if (wordLeftMargin > wordLeftMarginDest) {
 	wordLeftMargin -= abs(wordLeftMargin - wordLeftMarginDest) / 6;
 }
 
-
+// Culprit
 if (shortcutsEnabled) {
 	if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 		if (keyboard_check_direct(187) and canPressPlus) {
 			canPressPlus = false;
 			gridSpaceVertical += 10;
 			lineSpacing += 4;
+			//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4));
+			//show_message(string(ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0)));
 			alarm[3] = 15;
 		}
 
@@ -213,8 +215,10 @@ if (shortcutsEnabled) {
 			canPressMinus = false;
 			gridSpaceVertical -= 10;
 			lineSpacing -= 4;
+			
 			alarm[4] = 15;
 		}
+		//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4))
 	}
 }
 
