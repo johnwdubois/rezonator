@@ -26,8 +26,9 @@ var drawRangeCenter = (scrollBarPlusY * ds_grid_height(lineGrid)) / (camera_get_
 drawRangeCenter = round(drawRangeCenter);
 drawRangeCenter = clamp(drawRangeCenter, 0, ds_grid_height(currentActiveLineGrid) - 1);
 
-drawRangeStart = clamp(drawRangeCenter - 30, 0, ds_grid_height(currentActiveLineGrid) - 1);
-drawRangeEnd = clamp(drawRangeCenter + 30, 0, ds_grid_height(currentActiveLineGrid) - 1);
+var drawRangeOffset = 30;// * (33.4/obj_control.gridSpaceVertical);
+drawRangeStart = clamp(drawRangeCenter - drawRangeOffset, 0, ds_grid_height(currentActiveLineGrid) - 1);
+drawRangeEnd = clamp(drawRangeCenter + drawRangeOffset, 0, ds_grid_height(currentActiveLineGrid) - 1);
 
 
 drawRangeExtraSteps = 0;

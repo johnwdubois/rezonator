@@ -180,3 +180,6 @@ clickedIn = false;
 
 holdUp = 0;
 holdDown = 0;
+
+
+showNav = true;

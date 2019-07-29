@@ -35,7 +35,7 @@ drawLineYOffset = 0;
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
-ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), scrollPlusY + 150 + drawLineYOffset);
+ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + 150 + drawLineYOffset));
 
 
 
@@ -85,6 +85,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	// get & set the correct pixel-Y value for each line
 	var currentLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop);
+	// Adapt to dynamic line height
+	//currentLineY *= (obj_control.gridSpaceVertical/33.4);
 	
 	// set speaker label stuff up
 	var speakerRectX1 = 0;
