@@ -289,6 +289,28 @@ draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camer
 }
 
 
+			
+var grid = obj_chain.rezChainGrid;
+
+// Based on user selection, get the grid of the current tab
+switch (obj_panelPane.functionChainList_currentTab) {
+	case obj_panelPane.functionChainList_tabRezBrush:
+		grid = obj_chain.rezChainGrid;
+		break;
+	case obj_panelPane.functionChainList_tabTrackBrush:
+		grid = obj_chain.trackChainGrid;
+		break;
+	case obj_panelPane.functionChainList_tabStackBrush:
+		grid = obj_chain.stackChainGrid;
+		break;
+	case obj_panelPane.functionChainList_tabClique:
+		grid = obj_chain.cliqueDisplayGrid;
+		break;
+	default:
+		grid = obj_chain.rezChainGrid;
+		break;
+}
+
 
 
 // ok button check
@@ -332,11 +354,11 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 			
 		if (obj_control.rename) {
-
+			ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 		}
 	
 		if (obj_control.recolor) {
-
+			ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, obj_control.inputText);
 		}
 		
 		
@@ -433,11 +455,11 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.rename) {
-
+			ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 	}
 	
 	if (obj_control.recolor) {
-
+			ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, obj_control.inputText);
 	}
 		
 		

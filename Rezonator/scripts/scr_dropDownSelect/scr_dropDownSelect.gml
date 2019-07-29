@@ -74,6 +74,9 @@ switch (functionChainList_currentTab) {
 					case "Rename":
 						//show_message("Rename chosen");
 						
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid) , 2 )
+						
+						
 						if (!obj_control.dialogueBoxActive) {
 							keyboard_string = "";
 							obj_control.rename = true;
@@ -90,6 +93,9 @@ switch (functionChainList_currentTab) {
 					case "Recolor":
 						//show_message("Recolor chosen");
 						
+											
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid) , 2 )
+	
 						
 						if (!obj_control.dialogueBoxActive) {
 							keyboard_string = "";
@@ -106,11 +112,11 @@ switch (functionChainList_currentTab) {
 						break;
 					case "Delete":
 						show_message("Delete chosen");
-						var focusedRow = -1;
-						if(focusedRow == -1){
+
 							var focusedRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid) , 2 );
 							//var chosenGrid = ds_grid_copy(chosenGrid, obj_chain.rezChainGrid);
-						}/*
+						
+						/*
 						if(focusedRow == -1){
 							var focusedRow = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid) , 2 );
 							//var chosenGrid = ds_grid_copy(chosenGrid, obj_chain.trackChainGrid);
