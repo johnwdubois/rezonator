@@ -71,6 +71,13 @@ if (obj_control.dialogueBoxActive) {
 	if (obj_control.newWordCreated) {
 		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to add.");
 	}
+	
+	if (obj_control.rename) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the name for this chain.");
+	}
+	if (obj_control.recolor) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the color value for this chain.");
+	}
 
 	if (obj_control.gPressed) {
 		if(obj_control.goToTime){
@@ -286,61 +293,73 @@ draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camer
 
 // ok button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
-		if (mouse_check_button_pressed(mb_left)) {
-			obj_control.alarm[11] = 60;
-			//input_text_set_enabled(obj_control.instance, false);
-			//inputText = input_text_get_text(instance);
+	if (mouse_check_button_pressed(mb_left)) {
+		obj_control.alarm[11] = 60;
+		//input_text_set_enabled(obj_control.instance, false);
+		//inputText = input_text_get_text(instance);
 			
-			if (obj_control.fPressed) {
-				scr_searchForWord(obj_control.inputText);
-			}
-			if (obj_control.ePressed) {
-				scr_exportPortion(obj_control.inputText);
-			}
-			if (obj_control.gPressed) {
-							
-				if (obj_panelPane.discoIDSelected) {
-					//show_message(obj_panelPane.selectedDiscoID);
-					if(obj_control.goToTime){
-						scr_jumpToTime(obj_control.inputText);
-					}
-					else{
-						scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
-					}
-				}
-				else {
-					if(obj_control.goToTime){
-						scr_jumpToTime(obj_control.inputText);
-					}
-					else{
-						scr_jumpToLine("",obj_control.inputText);
-					}
-				}
-
-			}
-			if (obj_control.newWordCreated) {
-				obj_toolPane.currentTool = obj_toolPane.toolNewWord;
-				scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
-			}
-		
-			with (obj_panelPane) {
-				obj_control.discoIDSelected = false;
-			}
-			
-			//input_text_set_text(obj_control.instance, "");
-			//obj_control.newWordCreated = false;
-			obj_control.fPressed = false;
-			obj_control.ePressed = false;
-			obj_control.gPressed = false;
-			obj_control.transcriptSearch = false;
-			obj_control.inChainBool = false;
-			obj_control.caseSensitive = false;
-			obj_control.regExCheck = false;
-			obj_control.goToTime =  false;
-			obj_control.dialogueBoxActive = false;
-			obj_control.inputText = "";
-			instance_destroy();
+		if (obj_control.fPressed) {
+			scr_searchForWord(obj_control.inputText);
 		}
+		if (obj_control.ePressed) {
+			scr_exportPortion(obj_control.inputText);
+		}
+		if (obj_control.gPressed) {
+							
+			if (obj_panelPane.discoIDSelected) {
+				//show_message(obj_panelPane.selectedDiscoID);
+				if(obj_control.goToTime){
+					scr_jumpToTime(obj_control.inputText);
+				}
+				else{
+					scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
+				}
+			}
+			else {
+				if(obj_control.goToTime){
+					scr_jumpToTime(obj_control.inputText);
+				}
+				else{
+					scr_jumpToLine("",obj_control.inputText);
+				}
+			}
+
+		}
+		
+		if (obj_control.newWordCreated) {
+			obj_toolPane.currentTool = obj_toolPane.toolNewWord;
+			scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+		}
+			
+		if (obj_control.rename) {
+
+		}
+	
+		if (obj_control.recolor) {
+
+		}
+		
+		
+		with (obj_panelPane) {
+			obj_control.discoIDSelected = false;
+		}
+			
+		//input_text_set_text(obj_control.instance, "");
+		//obj_control.newWordCreated = false;
+		obj_control.fPressed = false;
+		obj_control.ePressed = false;
+		obj_control.gPressed = false;
+		obj_control.transcriptSearch = false;
+		obj_control.inChainBool = false;
+		obj_control.caseSensitive = false;
+		obj_control.regExCheck = false;
+		obj_control.goToTime =  false;
+		obj_control.rename = false;
+		obj_control.recolor = false;
+		obj_control.inputText = "";
+		instance_destroy();
+		obj_control.dialogueBoxActive = false;
+	}
 		
 }
 
@@ -364,9 +383,11 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.caseSensitive = false;
 			obj_control.regExCheck = false;
 			obj_control.goToTime =  false;
-			obj_control.dialogueBoxActive = false;
+			obj_control.rename = false;
+			obj_control.recolor = false;
 			obj_control.inputText = "";
 			instance_destroy();
+			obj_control.dialogueBoxActive = false;
 	}
 		
 }
@@ -378,37 +399,46 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	//input_text_set_enabled(instance, false);
 	//inputText = input_text_get_text(instance);
 	
-		if (obj_control.fPressed) {
-			scr_searchForWord(obj_control.inputText);
-		}
-		if (obj_control.ePressed) {
-			scr_exportPortion(obj_control.inputText);
-		}
-		if (obj_control.gPressed) {
+	if (obj_control.fPressed) {
+		scr_searchForWord(obj_control.inputText);
+	}
+	if (obj_control.ePressed) {
+		scr_exportPortion(obj_control.inputText);
+	}
+	if (obj_control.gPressed) {
 			
-				if (obj_panelPane.discoIDSelected) {
-					//show_message(obj_panelPane.selectedDiscoID);
-					if(obj_control.goToTime){
-						scr_jumpToTime(obj_control.inputText);
-					}
-					else{
-						scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
-					}
-				}
-				else {
-					if(obj_control.goToTime){
-						scr_jumpToTime(obj_control.inputText);
-					}
-					else{
-						scr_jumpToLine("",obj_control.inputText);
-					}
-				}
+		if (obj_panelPane.discoIDSelected) {
+			//show_message(obj_panelPane.selectedDiscoID);
+			if(obj_control.goToTime){
+				scr_jumpToTime(obj_control.inputText);
+			}
+			else{
+				scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
+			}
+		}
+		else {
+			if(obj_control.goToTime){
+				scr_jumpToTime(obj_control.inputText);
+			}
+			else{
+				scr_jumpToLine("",obj_control.inputText);
+			}
+		}
 
-		}
-		if (obj_control.newWordCreated) {
-			obj_toolPane.currentTool = obj_toolPane.toolNewWord;
-			scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
-		}
+	}
+	
+	if (obj_control.newWordCreated) {
+		obj_toolPane.currentTool = obj_toolPane.toolNewWord;
+		scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+	}
+	
+	if (obj_control.rename) {
+
+	}
+	
+	if (obj_control.recolor) {
+
+	}
 		
 		
 	//input_text_set_text(instance, "");
@@ -425,8 +455,10 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.caseSensitive = false;
 	obj_control.regExCheck = false;
 	obj_control.goToTime =  false;
-	obj_control.dialogueBoxActive = false;
+	obj_control.rename = false;
+	obj_control.recolor = false;
 	obj_control.inputText = "";
 	instance_destroy();
+	obj_control.dialogueBoxActive = false;
 }
 

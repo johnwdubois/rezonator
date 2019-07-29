@@ -19,7 +19,7 @@ var wordTranscript = argument[2];
 
 
 // Safety check
-if (unitID == -1 or wordSeq == -1 or gridView or currentActiveLineGrid == searchGrid) {
+if (unitID == -1 or wordSeq == -1 or obj_control.gridView or obj_control.currentActiveLineGrid == obj_control.searchGrid) {
 	exit;
 }
 
@@ -40,7 +40,7 @@ if(argument_count == 4) {
 	var wordTranscript = "";
 	for(var transcriptLoop = 0; transcriptLoop < ds_list_size(chunkWordIDList); transcriptLoop++) {
 		var chunkWordID = ds_list_find_value(chunkWordIDList, transcriptLoop);
-		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, chunkWordID - 1);
+		var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, chunkWordID - 1);
 	
 		// Check if the word is a ChunkWord
 		if(currentWordState == obj_control.wordStateChunk) {

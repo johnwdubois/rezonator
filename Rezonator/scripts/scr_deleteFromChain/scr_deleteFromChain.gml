@@ -58,7 +58,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	}
 	// Deletion of newWords
 	else if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
-		currentWordID = newWordHoverWordID;
+		currentWordID = obj_control.newWordHoverWordID;
 		
 		// (Maybe) within this space, check if this word is a Hit in the search screen.
 		// If so, set the search to be redrawn after the deletion is done
@@ -71,17 +71,17 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	}
 	
 	// Safety check, we only want to delete Chunks or newWords
-	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1);
-	if(currentWordState != wordStateChunk && currentWordState != wordStateNew) {exit;}
+	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
+	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) {exit;}
 	
 	// Set the word state to dead
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
 	
 	if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
-	if(scr_findInGridTwoParameters(hitGrid, hitGrid_colWordID, currentWordID, hitGrid_colHitBool, true)) {
-			newWordDeleted = true;
-			scr_searchForWord(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1));
-			newWordDeleted = false;
+	if(scr_findInGridTwoParameters(obj_control.hitGrid, obj_control.hitGrid_colWordID, currentWordID, obj_control.hitGrid_colHitBool, true)) {
+			obj_control.newWordDeleted = true;
+			scr_searchForWord(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
+			obj_control.newWordDeleted = false;
 		}
 	}
 	
@@ -185,7 +185,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 
 		// If there is a new source, find its UnitID
 		if (newSource > 0) {
-			var idListNewSource = ds_grid_get(unitGrid, unitGrid_colWordIDList, newSource - 1);
+			var idListNewSource = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, newSource - 1);
 			
 			if not (idListNewSource == undefined) {
 				if (ds_list_size(idListNewSource) > 0) {
@@ -195,7 +195,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		}
 		// If there is a new goal, find its UnitID
 		if (newGoal > 0) {
-			var idListNewGoal = ds_grid_get(unitGrid, unitGrid_colWordIDList, newGoal - 1);
+			var idListNewGoal = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, newGoal - 1);
 			
 			if not (idListNewGoal == undefined) {
 				if (ds_list_size(idListNewGoal) > 0) {
@@ -215,7 +215,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	
 	// Take away the unchained word's fillRect
 	if not (source == undefined) {
-		ds_grid_set(wordDrawGrid, wordDrawGrid_colFillRect, source - 1, false);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, source - 1, false);
 	}
 
 }

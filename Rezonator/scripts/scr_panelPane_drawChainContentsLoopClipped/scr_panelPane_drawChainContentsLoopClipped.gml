@@ -257,7 +257,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
-				draw_text(textX - clipX, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
+				draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 			}
 		
 			if (point_in_rectangle(mouse_x, mouse_y, x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY, x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY) and mouse_check_button_pressed(mb_left)

@@ -136,6 +136,7 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 			
 			if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, colNameRectX1, colNameRectY1, colNameRectX2, colNameRectY2))
 			{
+
 				var dropDownOptionList = ds_list_create();
 				
 				switch (selectedGrid)

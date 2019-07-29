@@ -472,9 +472,19 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					newWordHoverWordID = currentWordID;
 				}
 			
-				if (mouse_check_button_pressed(mb_left) and not obj_control.dialogueBoxActive) {
-					obj_control.newWordCreated =true;
-					obj_control.dialogueBoxActive = true;
+				if (mouse_check_button_pressed(mb_left) and not obj_control.dialogueBoxActive) {				
+						if (!obj_control.dialogueBoxActive) {
+							keyboard_string = "";
+							obj_control.newWordCreated =true;
+						}
+
+
+						dialogueBoxActive = true;
+
+							if (!instance_exists(obj_dialogueBox)) {
+								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							}
+
 				}
 			}
 
