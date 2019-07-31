@@ -243,6 +243,19 @@ else {
 	scr_refreshVizLinkGrid();
 }
 
+// If we're deleting within the search screen, make sure we don't focus on words outside of the hitGrid
+if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
+	//show_message(string(rowInLinkGridSource));
+	if(rowInLinkGridSource > -1) {
+		var currentSourceID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridSource);
+		if(ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), currentSourceID) < 0)	{
+			//show_message(string(currentSourceID));
+			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridSource, false);
+		}
+	}
+}
+
 // Check if the newly dead link is focused
 if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true)) {
 	// Find the dead, focused link
@@ -264,6 +277,12 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		exit;
 	}
 	var firstWordID = ds_list_find_value(ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid),0);
+	if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+		if(ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), firstWordID) < 0)	{
+			exit;	
+		}
+	}
+	
 	// Check this chain for live links
 	var rowInLinkGridToFocus = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false, obj_chain.linkGrid_colSource, firstWordID);
 	if (rowInLinkGridToFocus == -1) {
