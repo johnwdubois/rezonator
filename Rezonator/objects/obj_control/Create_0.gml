@@ -24,6 +24,7 @@ gridSpaceVerticalMax = 303.40;
 
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 33.4;
+prevGridSpaceVertical = gridSpaceVertical;
 
 // Measure the space taken up by the speaker labels, and set the left-align margin of the words
 speakerLabelMargin = 200;

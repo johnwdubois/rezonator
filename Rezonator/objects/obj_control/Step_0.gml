@@ -116,10 +116,11 @@ if (!clickedInChainList and !clickedInChainContents) {
 	if (not instance_exists(obj_dialogueBox)) {
 		// Scroll a full page up or down
 		if (keyboard_check_pressed(vk_pagedown)) {
-			scrollPlusYDest -= camera_get_view_height(view_camera[0]);
+			scrollPlusYDest -= (camera_get_view_height(view_camera[0]) * 0.8);
+			//show_message(string(camera_get_view_height(view_camera[0])));
 		}
 		if (keyboard_check_pressed(vk_pageup)) {
-			scrollPlusYDest += camera_get_view_height(view_camera[0]);
+			scrollPlusYDest += (camera_get_view_height(view_camera[0])* 0.8);
 		}
 	
 		// Sends user to the bottom of the main screen
@@ -206,7 +207,8 @@ if (shortcutsEnabled) {
 			canPressPlus = false;
 			gridSpaceVertical += 10;
 			lineSpacing += 4;
-			//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4));
+			ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/prevGridSpaceVertical));
+			prevGridSpaceVertical = gridSpaceVertical;
 			//show_message(string(ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0)));
 			alarm[3] = 15;
 		}
@@ -215,7 +217,8 @@ if (shortcutsEnabled) {
 			canPressMinus = false;
 			gridSpaceVertical -= 10;
 			lineSpacing -= 4;
-			
+			ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/prevGridSpaceVertical));
+			prevGridSpaceVertical = gridSpaceVertical;
 			alarm[4] = 15;
 		}
 		//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4))

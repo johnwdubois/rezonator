@@ -22,6 +22,8 @@ windowResizeXHolding = false;
 windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
+originalWindowHeight = 0;
+collapsedWindowHeight = 2000;
 
 
 // scrollbar variables
@@ -155,6 +157,8 @@ scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
 //oldFocusedContentsRow = -1;
 //backupFocusedRow = -1;
+
+showAdvancedNav = true;
 
 doubleClickTimer = -1;
 

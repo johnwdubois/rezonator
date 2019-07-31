@@ -12,9 +12,21 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView || not showNav) {
+if (obj_control.gridView) {
 	exit;
 }
+
+
+/*if(showNav) {
+	with(obj_panelPane) {
+		y -= collapsedWindowHeight;	
+	}
+}
+else {
+	with(obj_panelPane) {
+		y -= collapsedWindowHeight;	
+	}
+}*/
 
 //draw_set_alpha(1);
 //draw_set_color(global.colorThemePaneBG);
@@ -68,13 +80,13 @@ switch (currentFunction) {
 		scr_panelPane_drawFilter();
 		break;
 	case functionSort:
-	if (obj_control.showDevVars) {
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemePaneBG);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		if (showAdvancedNav) {
+			draw_set_alpha(1);
+			draw_set_color(global.colorThemePaneBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
-		scr_panelPane_drawSort();
-	}
+			scr_panelPane_drawSort();
+		}
 		break;
 	case functionSearch:
 		draw_set_alpha(1);
@@ -84,7 +96,7 @@ switch (currentFunction) {
 		scr_panelPane_drawSearch();
 		break;
 	case functionClique:
-		if (obj_control.showDevVars) {
+		if (showAdvancedNav) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemePaneBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
