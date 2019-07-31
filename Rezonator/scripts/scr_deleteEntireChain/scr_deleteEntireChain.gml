@@ -5,6 +5,11 @@ var currentChainWordIDList = ds_grid_get(obj_chain.currentChainGrid, obj_chain.c
 var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), currentChainID);
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
 
+if( currentChainWordIDList == undefined){
+	show_message("it didn't work");
+	exit;
+}
+
 for(var deleteLoop = 0; deleteLoop < ds_list_size(currentChainWordIDList); deleteLoop++) {
 	with(obj_control) {
 		scr_deleteFromChain();	

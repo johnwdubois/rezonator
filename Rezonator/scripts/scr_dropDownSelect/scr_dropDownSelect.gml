@@ -74,6 +74,9 @@ switch (functionChainList_currentTab) {
 					case "Rename":
 						//show_message("Rename chosen");
 						
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 )
+						
+						
 						if (!obj_control.dialogueBoxActive) {
 							keyboard_string = "";
 							obj_control.rename = true;
@@ -90,6 +93,9 @@ switch (functionChainList_currentTab) {
 					case "Recolor":
 						//show_message("Recolor chosen");
 						
+											
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 )
+	
 						
 						if (!obj_control.dialogueBoxActive) {
 							keyboard_string = "";
@@ -105,12 +111,21 @@ switch (functionChainList_currentTab) {
 						
 						break;
 					case "Delete":
-						show_message("Delete chosen");
+						//show_message("Delete chosen");
+
+							var focusedRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+							obj_control.selectedChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, focusedRow);
+							
+							//show_message("focused Row: " + string(focusedRow));
+							//show_message("chainId: " + string(obj_control.selectedChainID));
+						/*
 						var focusedRow = -1;
 						if(focusedRow == -1){
 							var focusedRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid), obj_chain.chainStateFocus);
+
 							//var chosenGrid = ds_grid_copy(chosenGrid, obj_chain.rezChainGrid);
-						}/*
+						
+						
 						if(focusedRow == -1){
 							var focusedRow = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid) , 2 );
 							//var chosenGrid = ds_grid_copy(chosenGrid, obj_chain.trackChainGrid);
@@ -120,9 +135,7 @@ switch (functionChainList_currentTab) {
 							//var chosenGrid = ds_grid_copy(chosenGrid, obj_chain.stackChainGrid);
 						}
 						*/
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, focusedRow));
-							show_message(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, focusedRow));
-							show_message(focusedRow);
+						scr_deleteEntireChain(obj_control.selectedChainID);
 							
 						break;
 					default:
