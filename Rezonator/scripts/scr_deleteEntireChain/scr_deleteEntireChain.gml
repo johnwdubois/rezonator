@@ -29,7 +29,13 @@ var currentChainWordIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList
 var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), currentChainID);
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
 
-for(var deleteLoop = 0; deleteLoop < ds_list_size(currentChainWordIDList); deleteLoop++) {
+var sizeOfLoop =  ds_list_size(currentChainWordIDList);
+if( sizeOfLoop == 0){
+	show_message("it didn't work");
+	exit;
+}
+
+for(var deleteLoop = 0; deleteLoop <  sizeOfLoop ; deleteLoop++) {
 	with(obj_control) {
 		scr_deleteFromChain();	
 	}
