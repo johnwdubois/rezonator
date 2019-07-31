@@ -311,6 +311,10 @@ switch (obj_panelPane.functionChainList_currentTab) {
 		break;
 }
 
+if(ds_grid_height(grid) > 0){
+	var listOfWordID = ds_list_create();
+	ds_list_copy(listOfWordID, ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, obj_control.selectedChainID));
+}
 
 
 // ok button check
@@ -358,7 +362,18 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 	
 		if (obj_control.recolor) {
-			ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, obj_control.inputText);
+			//show_message( string_digits(obj_control.inputText));
+			if( string_digits(obj_control.inputText) == "" ){
+				show_message( "Numbers only" );
+			}
+			else{
+				//if( grid != obj_chain.stackChainGrid){
+					for(var i = 0; i < ds_list_size(listOfWordID);i++){
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(obj_control.inputText)));
+					}
+				//}
+				ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
+			}
 		}
 		
 		
@@ -378,6 +393,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.goToTime =  false;
 		obj_control.rename = false;
 		obj_control.recolor = false;
+		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
 		instance_destroy();
 		obj_control.dialogueBoxActive = false;
@@ -408,6 +424,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.rename = false;
 			obj_control.recolor = false;
 			obj_control.inputText = "";
+			obj_control.cursorPos = 1;
 			instance_destroy();
 			obj_control.dialogueBoxActive = false;
 	}
@@ -459,7 +476,17 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.recolor) {
-			ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, obj_control.inputText);
+			if( string_digits(obj_control.inputText) == "" ){
+				show_message( "Numbers only" );
+			}
+			else{
+				//if( grid != obj_chain.stackChainGrid){
+					for(var i = 0; i < ds_list_size(listOfWordID);i++){
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(obj_control.inputText)));
+					}
+				//}
+				ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
+			}
 	}
 		
 		
@@ -480,6 +507,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.rename = false;
 	obj_control.recolor = false;
 	obj_control.inputText = "";
+	obj_control.cursorPos = 1;
 	instance_destroy();
 	obj_control.dialogueBoxActive = false;
 }

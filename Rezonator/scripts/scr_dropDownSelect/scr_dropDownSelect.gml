@@ -74,7 +74,7 @@ switch (functionChainList_currentTab) {
 					case "Rename":
 						//show_message("Rename chosen");
 						
-						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid) , 2 )
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 )
 						
 						
 						if (!obj_control.dialogueBoxActive) {
@@ -94,7 +94,7 @@ switch (functionChainList_currentTab) {
 						//show_message("Recolor chosen");
 						
 											
-						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid) , 2 )
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 )
 	
 						
 						if (!obj_control.dialogueBoxActive) {
