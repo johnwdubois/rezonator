@@ -135,10 +135,12 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 		
 			// Draw red rectangles if stretch word
 			if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
-				if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1)) {
-					draw_set_alpha(0.25);
-					draw_set_color(c_red);
-					draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+				if(sourceWordID !=  undefined) {
+					if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, sourceWordID - 1)) {
+						draw_set_alpha(0.25);
+						draw_set_color(c_red);
+						draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+					}
 				}
 			}
 			
