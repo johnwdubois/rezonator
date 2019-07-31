@@ -14,7 +14,9 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 		// Access the relevent row in the Chunk grid
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
-	
+		if(currentChunkRow < 0) {
+			exit;	
+		}
 		// Access the Chunk's wordID
 		currentWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkRow);
 	
@@ -229,6 +231,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 
 	scr_refreshVizLinkGrid();
 	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateNormal);
+	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 	exit;	
 }
 else {

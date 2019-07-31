@@ -376,7 +376,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		*/
 		// Allows for adding to a stack anywhere in a line
-		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
+		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY1 + gridSpaceVertical) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
 			if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
@@ -409,12 +409,21 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 	
 	
-		// Check to see if this word is within the Box brush rectangle
-		with (obj_control) {
-		var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
-		}
+		
+		
 		// Make sure the user has the box brush selected
 		if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+			
+			// Check if this word is within the Box brush rectangle
+			with (obj_control) {
+				if(shape = shapeBlock) {
+					var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));	
+				}
+				// If the text is left justified, we don't use the gridSpaceHorizontal
+				else {
+					var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
+				}
+			}
 			// Highlight the words if the box is still being made
 			if(not obj_control.boxRectReleased and inBoxHoldRect > 0) {
 				// Draw the highlights within the display columns
