@@ -12,6 +12,7 @@
 	Author: Terry DuBois
 */
 
+
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
@@ -93,7 +94,8 @@ var mouseoverAnyOption = false;
 for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 {
 	var ascendButtonX1 = x + (windowWidth / 3) + textMarginLeft - (sprite_get_width(spr_ascend) / 2);
-	var ascendButtonY1 = functionSort_colY[i];//y + textMarginTop + 24 + (i * 24) - (sprite_get_height(spr_ascend) / 2);
+	// I promise I'll fix this back up
+	var ascendButtonY1 = y + textMarginTop + 24 + (i * 24) - (sprite_get_height(spr_ascend) / 2); //functionSort_colY[i];
 	var ascendButtonX2 = ascendButtonX1 + sprite_get_width(spr_ascend);
 	var ascendButtonY2 = ascendButtonY1 + sprite_get_height(spr_ascend);
 	

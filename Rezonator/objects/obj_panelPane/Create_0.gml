@@ -22,6 +22,7 @@ windowResizeXHolding = false;
 windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
+// For hiding the Nav window
 originalWindowHeight = 0;
 collapsedWindowHeight = 2000;
 

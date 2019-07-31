@@ -17,16 +17,19 @@ if (obj_control.gridView) {
 }
 
 
-/*if(showNav) {
-	with(obj_panelPane) {
-		y -= collapsedWindowHeight;	
+// Set the original height as the file loads
+if(current_time - obj_control.sessionStartTime < 2000) {
+	originalWindowHeight = y;
+}
+// Allow hiding the Nav Window via setting each window's height to 2000
+else if(currentFunction != functionHelp) {
+	if(showNav) {
+		y = originalWindowHeight;	
+	} 
+	else {
+		y = collapsedWindowHeight;	
 	}
 }
-else {
-	with(obj_panelPane) {
-		y -= collapsedWindowHeight;	
-	}
-}*/
 
 //draw_set_alpha(1);
 //draw_set_color(global.colorThemePaneBG);
