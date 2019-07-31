@@ -216,8 +216,9 @@ if (shortcutsEnabled) {
 		if (keyboard_check_direct(189) and canPressMinus) {
 			canPressMinus = false;
 			gridSpaceVertical -= 10;
+			gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
 			lineSpacing -= 4;
-			ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/prevGridSpaceVertical));
+			ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), ( gridSpaceVertical/prevGridSpaceVertical));
 			prevGridSpaceVertical = gridSpaceVertical;
 			alarm[4] = 15;
 		}

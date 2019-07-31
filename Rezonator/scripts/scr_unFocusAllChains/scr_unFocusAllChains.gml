@@ -44,3 +44,6 @@ while (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colCha
 		ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, rowInChainGrid, obj_chain.chainStateNormal);
 	}
 }
+
+// Unfocus any links
+//ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
