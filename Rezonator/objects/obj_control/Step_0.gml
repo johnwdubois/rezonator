@@ -200,6 +200,10 @@ else if (wordLeftMargin > wordLeftMarginDest) {
 	wordLeftMargin -= abs(wordLeftMargin - wordLeftMarginDest) / 6;
 }
 
+var searchGridPopulated = ds_grid_height(searchGrid);
+var filterGridPopulated = ds_grid_height(filterGrid);
+
+
 // Culprit
 if (shortcutsEnabled) {
 	if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
@@ -207,8 +211,19 @@ if (shortcutsEnabled) {
 			canPressPlus = false;
 			gridSpaceVertical += 10;
 			lineSpacing += 4;
-			ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/prevGridSpaceVertical));
+			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), (gridSpaceVertical/prevGridSpaceVertical));
 			prevGridSpaceVertical = gridSpaceVertical;
+			
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), (gridSpaceVertical/searchPrevGridSpaceVertical));
+				searchPrevGridSpaceVertical = gridSpaceVertical;
+			}
+			/*if(filterGridPopulated) {
+				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), (gridSpaceVertical/filterPrevGridSpaceVertical));
+				filterPrevGridSpaceVertical = gridSpaceVertical;
+			}*/
+			
+			
 			//show_message(string(ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0)));
 			alarm[3] = 15;
 		}
@@ -217,9 +232,21 @@ if (shortcutsEnabled) {
 			canPressMinus = false;
 			gridSpaceVertical -= 10;
 			gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
+			//searchGridSpaceVertical = gridSpaceVertical;
 			lineSpacing -= 4;
-			ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), ( gridSpaceVertical/prevGridSpaceVertical));
+			
+			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), ( gridSpaceVertical/prevGridSpaceVertical));
 			prevGridSpaceVertical = gridSpaceVertical;
+			
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), (gridSpaceVertical/searchPrevGridSpaceVertical));
+				searchPrevGridSpaceVertical = gridSpaceVertical;
+			}
+			/*if(filterGridPopulated) {
+				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), (gridSpaceVertical/filterPrevGridSpaceVertical));
+				filterPrevGridSpaceVertical = gridSpaceVertical;
+			}*/
+			
 			alarm[4] = 15;
 		}
 		//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4))
