@@ -21,10 +21,11 @@ chainGrid_colColor = 4;
 chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
 chainGrid_colTiltSum = 7;
+chainGrid_colCaption = 8;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);
-stackChainGrid = ds_grid_create(chainGridWidth, 0);
+stackChainGrid = ds_grid_create(chainGridWidth + 1, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 

@@ -377,6 +377,7 @@ boxGrid_colMoveCount = 5;
 currentStackShowListPosition = -1;
 stackShowList = ds_list_create();
 stackShowWindowActive = false;
+stackShowActive = false;
 
 
 

@@ -56,7 +56,16 @@ switch (obj_toolPane.currentTool) {
 }
 
 
-ds_grid_resize(chainGrid, chainGridWidth, ds_grid_height(chainGrid) + 1);
+
+
+if(chainGrid == obj_chain.stackChainGrid){
+	ds_grid_resize(chainGrid, chainGridWidth +1, ds_grid_height(chainGrid) + 1);
+}
+else{
+	ds_grid_resize(chainGrid, chainGridWidth, ds_grid_height(chainGrid) + 1);
+}
+
+
 var currentRowChainGrid = ds_grid_height(chainGrid) - 1;
 
 currentChainID++;
@@ -100,6 +109,9 @@ ds_grid_set(chainGrid, chainGrid_colName, currentRowChainGrid, chainName);
 ds_grid_set(chainGrid, chainGrid_colColor, currentRowChainGrid, chainColor);
 ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
 ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
+if(chainGrid == obj_chain.stackChainGrid){
+	ds_grid_set(chainGrid, chainGrid_colCaption, currentRowChainGrid, "");
+}
 
 currentFocusedChainID = currentChainID;
 var newTop = currentChainID;
