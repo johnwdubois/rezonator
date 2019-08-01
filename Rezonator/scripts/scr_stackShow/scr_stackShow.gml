@@ -15,7 +15,7 @@
 
 // If we are still within the bounds of the list
 if(ds_list_size(obj_control.stackShowList) > 0 && obj_control.currentStackShowListPosition != (ds_list_size(obj_control.stackShowList))) {
-	
+	obj_control.stackShowActive = true;
 	// If we are not on the first element of the list, then unfilter the previous stack
 	if(obj_control.currentStackShowListPosition > 0) {
 		var prevStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition - 1);
@@ -38,7 +38,7 @@ if(ds_list_size(obj_control.stackShowList) > 0 && obj_control.currentStackShowLi
 }
 // If we are at the end of the list, then hop out of the filter
 else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.stackShowList))) {
-	
+	obj_control.stackShowActive = false;
 	//Set currentStackShowListPosition to -1
 	obj_control.currentStackShowListPosition = -1;
 	

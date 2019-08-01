@@ -113,7 +113,9 @@ switch (currentFunction) {
 		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 		scr_panelPane_drawHelp();
-		scr_panelPane_drawTracker();
+		if(obj_control.stackShowActive){
+			scr_panelPane_drawTracker();
+		}
 		break;
 	case functionGoToLine:
 		draw_set_alpha(1);

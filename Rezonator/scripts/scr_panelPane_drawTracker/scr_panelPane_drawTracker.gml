@@ -205,4 +205,47 @@ else {
 }
 
 
+	//draw end show button
+	draw_set_colour(global.colorThemePaneBG);
+	draw_rectangle(0, camera_get_view_height(view_camera[0]) - Ydistance, 140, camera_get_view_height(view_camera[0]), false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(0, camera_get_view_height(view_camera[0]) - Ydistance, 140, camera_get_view_height(view_camera[0]), true);
+
+	//draw end show text
+	draw_set_font(fnt_mainBold);
+	draw_set_halign(fa_left);
+	draw_set_colour(global.colorThemeText);
+	draw_text(0 + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, "End Stack Show");
+	
+	//draw stack name background
+	draw_set_colour(global.colorThemePaneBG);
+	draw_rectangle( 140, camera_get_view_height(view_camera[0]) - Ydistance, 280, camera_get_view_height(view_camera[0]), false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle( 140, camera_get_view_height(view_camera[0]) - Ydistance, 280, camera_get_view_height(view_camera[0]), true);
+
+	var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition - 1);
+	var currentRowinStack = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0 , obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentListChainID );
+	var nameOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName, currentRowinStack);
+	
+	//draw stack name text
+	draw_set_font(fnt_mainBold);
+	draw_set_halign(fa_left);
+	draw_set_colour(global.colorThemeText);
+	draw_text( 140 + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, nameOfStack);
+
+
+	//draw stack description background
+	draw_set_colour(global.colorThemePaneBG);
+	draw_rectangle( 280, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]), false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle( 280, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]), true);
+
+
+
+
+	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - Ydistance, 140, camera_get_view_height(view_camera[0]))
+		and mouse_check_button_pressed(mb_left)) {
+			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+	}
+
 }

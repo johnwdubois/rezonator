@@ -22,6 +22,7 @@ chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
 chainGrid_colTiltSum = 7;
 
+
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);
 stackChainGrid = ds_grid_create(chainGridWidth, 0);
