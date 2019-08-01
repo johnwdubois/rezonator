@@ -39,25 +39,22 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	// Check if the word is a ChunkWord
 	if(currentWordState == obj_control.wordStateChunk) {
 		
-		
 		// Here will be functionality to focus on a Chunk and add it to a Chain
 		// This includes: Hovering over Chunk will visually effect the outline
-		// The big step is adding it to a chain, which will involve a major rework of most of this existing code
-		
-		draw_set_font(fnt_main);
+		draw_set_font(global.fontMain);
 
-		
-		
 		// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
 		var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow);
 		if(ds_list_size(inChunkList) < 1) {
 			continue;
 		}
 		
+		// A chunkWord always has its own Chunk as firstin its list
 		var currentChunkID = (ds_list_find_value(inChunkList, 0)); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
 		if(currentChunkID == undefined) {
 			continue;
 		}
+		// Aquire the relevant row in the chunkGrid
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
 		if(currentChunkRow < 0) {
 			continue;	
@@ -72,7 +69,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		
 		// Set all variables needed to draw a Chunk
-
 		var firstWordID = -1;
 		var lastWordID = -1;
 		
@@ -82,6 +78,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		// The true last word within this list is the chunkWordID
 		var nonChunkWordPos = ds_list_size(currentWordList)-2;
 		lastWordID = ds_list_find_value(currentWordList, nonChunkWordPos);
+		
 		// Aquire the ID of the last nonChunkWord in this list
 		var lastWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, lastWordID - 1);
 		while(lastWordState == wordStateChunk || lastWordState == wordStateDead) {
@@ -102,16 +99,17 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, leftPixelX);
 		
 		// Get the string of the first word
-		var firstWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, firstWordID - 1);
+		var firstWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, firstWordID - 1);
 		// Get the string of the last word
-		var lastWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, lastWordID - 1);
+		var lastWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, lastWordID - 1);
 		
+		// Set the special wordRect
 		var topLeftX = leftPixelX - wordRectBuffer;
 		var topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
-		
 		var bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2);
 		var bottomRightY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
 		
+		// Aquire wordDraw specifics
 		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);//global.colorThemeSelected1
 		var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
 		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
