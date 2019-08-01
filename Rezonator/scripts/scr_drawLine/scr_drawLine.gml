@@ -29,9 +29,9 @@ draw_set_alpha(1);
 
 
 drawLineYOffset = 0;
-//if (filterGridActive) {
-//	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 150;	
-//}
+if (filterGridActive) {
+	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 200;	
+}
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);

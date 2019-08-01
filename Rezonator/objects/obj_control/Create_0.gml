@@ -390,7 +390,7 @@ clipX = 0;
 clipY = 0;
 x = 0;
 y = 0;
-
+stackShowBuffer = 10;
 
 drawRangeCenterOffset = 0;
 drawRangeExtraSteps = 0;
