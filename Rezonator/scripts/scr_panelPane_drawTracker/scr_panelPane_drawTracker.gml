@@ -246,6 +246,7 @@ else {
 	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - Ydistance, 140, camera_get_view_height(view_camera[0]))
 		and mouse_check_button_pressed(mb_left)) {
 			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+			scr_stackShow();
 	}
 
 }
