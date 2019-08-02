@@ -77,6 +77,8 @@ if (file_exists(fileName)) {
 				scr_loadREZGridReset(obj_chain.chunkGrid, map, "chunkChainGrid");
 				scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
 				scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
+				// Set the cliqueDisplayGrid to the correct height
+				ds_grid_resize(obj_chain.cliqueDisplayGrid, obj_chain.chainGridWidth, ds_grid_height(obj_chain.cliqueGrid));
 				
 				obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 				scr_refreshChainGrid();
