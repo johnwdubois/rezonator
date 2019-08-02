@@ -125,6 +125,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			instance_destroy();
 			// Begin the show
 			scr_stackShow();
+			with(obj_panelPane){
+				alarm[5] = 60;
+			}
+			obj_control.moveCounter = 0;
 		}
 		
 }
@@ -159,6 +163,10 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 	instance_destroy();
 	// Begin the show
 	scr_stackShow();
+	with(obj_panelPane){
+		alarm[5] = 60;
+	}
+	obj_control.moveCounter = 0
 }
 
 scr_drawStackShowWindow();

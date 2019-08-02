@@ -177,7 +177,7 @@ currentResetY1value = 0;
 currentResetY2value = 0;
 timerMins = 0;
 timerSecs = 0;
-alarm[5] = 60;
+
 
 alarm[0] = 1;
 

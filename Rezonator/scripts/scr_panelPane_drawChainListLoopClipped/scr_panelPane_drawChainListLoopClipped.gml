@@ -179,8 +179,12 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		
 		
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
-		
+		if(grid  == obj_chain.stackChainGrid){
+			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
+		}
+		else{
+			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
+		}
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 			var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;

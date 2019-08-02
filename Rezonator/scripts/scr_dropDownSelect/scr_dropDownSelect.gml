@@ -94,7 +94,7 @@ switch (functionChainList_currentTab) {
 						//show_message("Recolor chosen");
 						
 											
-						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 )
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
 	
 						
 						if (!obj_control.dialogueBoxActive) {
@@ -137,6 +137,24 @@ switch (functionChainList_currentTab) {
 						*/
 						scr_deleteEntireChain(obj_control.selectedChainID);
 							
+						break;
+					case "Caption":
+					//show_message("Caption clicked");
+
+						obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+	
+		
+						if (!obj_control.dialogueBoxActive) {
+							keyboard_string = "";
+							obj_control.caption = true;
+						}
+
+
+						obj_control.dialogueBoxActive = true;
+
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						}
 						break;
 					default:
 						break;

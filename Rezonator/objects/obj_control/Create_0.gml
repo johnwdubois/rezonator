@@ -338,6 +338,7 @@ regExCheck = false;
 goToTime = false;
 rename = false;
 recolor = false;
+caption = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
