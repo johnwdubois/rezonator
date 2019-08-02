@@ -38,6 +38,12 @@ draw_set_valign(fa_middle);
 // Draw either button & helpBox, or just button depending
 if (functionHelp_collapsed) {
 	draw_set_color(global.colorThemeText);
+	if(mouseover) {
+		draw_set_alpha(0.25);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+	}
+	
+	draw_set_alpha(1);
 	draw_text(x + 10, y + (windowHeight / 2), "Help");
 	
 	if (functionHelp_plusX <= camWidth) {
