@@ -91,7 +91,7 @@ for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++) {
 			// Prevent the Search from picking up dead words
 			var currentWordGridRow = currentWordID - 1;
 			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordGridRow);
-			if(currentWordState == obj_control.wordStateDead) {
+			if(currentWordState == obj_control.wordStateDead or currentWordState == obj_control.wordStateChunk) {
 		
 				continue;
 			}

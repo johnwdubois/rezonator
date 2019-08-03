@@ -106,7 +106,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		// Set the special wordRect
 		var topLeftX = leftPixelX - wordRectBuffer;
 		var topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
-		var bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2);
+		var bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer); //*2
 		var bottomRightY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
 		
 		// Aquire wordDraw specifics
@@ -427,7 +427,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				// Draw the highlights within the display columns
 				draw_set_color(global.colorThemeSelected1);
 				draw_set_alpha(0.5);
-				draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, false);
+				if(shape = shapeBlock) {
+					draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, false);
+				}
+				// If the text is left justified, we don't use the gridSpaceHorizontal
+				else {
+					draw_rectangle(wordRectX1, wordRectY1, wordRectX2 + shapeTextSpace, wordRectY2, false);
+				}
 			} 
 			// If the box has been made, capture the info of the contained words
 			else if(obj_control.boxRectMade and inBoxHoldRect > 0) {

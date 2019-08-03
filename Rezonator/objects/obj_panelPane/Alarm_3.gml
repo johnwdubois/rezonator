@@ -60,7 +60,7 @@ ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHel
 
 //show_message(string(ds_grid_height(functionHelp_menuGrid)));
 
-var helpGridHeightLink = 10;
+var helpGridHeightLink = 12;
 ds_grid_resize(functionHelp_helpGridLink, functionHelp_helpGridWidth, helpGridHeightLink);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 0, "[CLICK]");
@@ -108,10 +108,20 @@ ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 8, "QuickS
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag from line to make a QuickStack");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 8, false);
 
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "b");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 8, "Box");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Make a Box around some words");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 8, false);
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 9, "n");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 9, "New Word");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 9, "Insert a new word into the discourse");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 9, false);
+
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 10, "b");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 10, "Box");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 10, "Make a Box around selected words");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 10, false);
+
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 11, controlStr + "+ [DEL]");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "QuickZap");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 11, "Delete the entire chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 11, false);
 
 var helpGridHeightPick = 3;
 ds_grid_resize(functionHelp_helpGridPick, functionHelp_helpGridWidth, helpGridHeightPick);
@@ -144,7 +154,7 @@ ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 1, "Go")
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 1, "Go to user-specified line");
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 1, false);
 
-var helpGridHeightView = 8;
+var helpGridHeightView = 9;
 ds_grid_resize(functionHelp_helpGridView, functionHelp_helpGridWidth, helpGridHeightView);
 
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 0, "v");
@@ -187,7 +197,13 @@ ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 7, "Dark t
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 7, "Use Dark theme");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 7, false);
 
-var helpGridHeightFile = 2;
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 8, controlStr +"+n");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 8, "Hide Nav");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 8, "Hide the Navigation Window from view");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 8, false);
+
+
+var helpGridHeightFile = 3;
 ds_grid_resize(functionHelp_helpGridFile, functionHelp_helpGridWidth, helpGridHeightFile);
 
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 0, controlStr + "+o");
@@ -199,6 +215,11 @@ ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 1, controlS
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 1, "Save");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 1, "Save file");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 1, false);
+
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 2, "e");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 2, "Extract Portion");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 2, "Save a Rez file with specified start/end lines");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 2, false);
 
 var helpGridHeightMove = 14;
 ds_grid_resize(functionHelp_helpGridMove, functionHelp_helpGridWidth, helpGridHeightMove);
@@ -266,7 +287,7 @@ ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 11, false)
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 12, "[TAB]");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 12, "Next");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 12, "Move to next pane (Nav, Detail, Main)");
-ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide,12, false);
+ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide,12, true);
 
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 13, "[SHIFT + TAB]");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 13, "");
