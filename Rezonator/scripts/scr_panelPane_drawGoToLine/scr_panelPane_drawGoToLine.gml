@@ -71,7 +71,16 @@ if (point_in_rectangle(mouse_x, mouse_y, specifyLineRectX1, specifyLineRectY1, s
 	if (mouse_check_button_pressed(mb_left)) {
 		discoIDSelected = true;
 		discoSelectionActive = false;
+		if (!obj_control.dialogueBoxActive) {
+			keyboard_string = "";
+		}
+
 		obj_control.dialogueBoxActive = true;
+
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		}
+
 		instance_destroy();
 	}
 }

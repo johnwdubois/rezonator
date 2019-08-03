@@ -120,6 +120,10 @@ switch (currentFunction) {
 	case functionGoToLine:
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemePaneBG);
+		
+
+		x = camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2) - (windowWidth / 2);
+		y = camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2) - (windowHeight / 2);
 		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 		scr_panelPane_drawGoToLine();
