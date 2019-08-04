@@ -78,21 +78,16 @@ if (showTracker) {
 	var mouseOverTrackerButton = false;
 	// Check for mouse location over "RezTracker" button and check for open/close button
 	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]))) {
-		//mouseOverTrackerButton = true;
+		mouseOverTrackerButton = true;
 		if (mouse_check_button_pressed(mb_left)) {
 			isTrackerOpen = !isTrackerOpen ;
 		}
 	}
 
-	if (isTrackerOpen) {
-		draw_set_colour(global.colorThemeText);
-	}
-	else if(mouseOverTrackerButton){
-		draw_set_colour(global.colorThemeText);
-		draw_set_alpha(0.25);
-	}
-	else {
-		draw_set_colour(global.colorThemePaneBG);
+	draw_set_colour(global.colorThemePaneBG);
+	
+	if(mouseOverTrackerButton){
+		draw_set_colour(c_gray);
 	}
 	draw_rectangle(camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]), false);
 	draw_set_alpha(1);
@@ -102,12 +97,9 @@ if (showTracker) {
 
 	draw_set_font(fnt_mainBold);
 
-	if (isTrackerOpen) {
-		draw_set_colour(global.colorThemeBG);
-	}
-	else {
-		draw_set_colour(global.colorThemeText);
-	}
+
+	draw_set_colour(global.colorThemeText);
+	
 	draw_text(camera_get_view_width(view_camera[0]) - Xdistance + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, "Rez Tracker");
 	
 
@@ -225,8 +217,8 @@ if (showTracker) {
 	//draw end show button
 	if(mouseOverEndButton) {
 		// Draw the button as grey is being hovered over
-		draw_set_alpha(0.25);
-		draw_set_colour(global.colorThemeText);
+		draw_set_alpha(1);
+		draw_set_colour(c_gray);
 	}
 	else {
 		draw_set_colour(global.colorThemePaneBG);
@@ -241,16 +233,24 @@ if (showTracker) {
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeText);
 	draw_text(0 + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, "End Stack Show");
-	
-	//draw stack name background
-	draw_set_colour(global.colorThemePaneBG);
-	draw_rectangle( 140, camera_get_view_height(view_camera[0]) - Ydistance, 280, camera_get_view_height(view_camera[0]), false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle( 140, camera_get_view_height(view_camera[0]) - Ydistance, 280, camera_get_view_height(view_camera[0]), true);
+
 
 	var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition - 1);
 	var currentRowinStack = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0 , obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentListChainID );
 	var nameOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName, currentRowinStack);
+	var colorOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, currentRowinStack);
+	
+		
+	//draw stack name background
+	if(colorOfStack == undefined){
+		draw_set_colour(global.colorThemeBG);
+	}
+	else{
+	draw_set_colour(colorOfStack);
+	}
+	draw_rectangle( 140, camera_get_view_height(view_camera[0]) - Ydistance, 280, camera_get_view_height(view_camera[0]), false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle( 140, camera_get_view_height(view_camera[0]) - Ydistance, 280, camera_get_view_height(view_camera[0]), true);
 	
 	//draw stack name text
 	draw_set_font(fnt_mainBold);
@@ -273,11 +273,5 @@ if (showTracker) {
 	draw_set_colour(global.colorThemeText);
 	draw_text( 280 + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, captionOfStack);
 
-
-	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - Ydistance, 140, camera_get_view_height(view_camera[0]))
-		and mouse_check_button_pressed(mb_left)) {
-			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-			scr_stackShow();
-	}
 
 }
