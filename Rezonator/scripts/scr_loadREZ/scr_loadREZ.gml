@@ -108,6 +108,16 @@ obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
 
 scr_refreshVizLinkGrid();
 
+if(ds_grid_height(obj_control.lineGrid) > 1) {
+	var newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
+	if(newGridSpaceVertical != obj_control.gridSpaceVertical) {
+		obj_control.gridSpaceVertical = newGridSpaceVertical;
+		obj_control.prevGridSpaceVertical = newGridSpaceVertical;
+		obj_control.filterPrevGridSpaceVertical = newGridSpaceVertical;
+		obj_control.searchPrevGridSpaceVertical = newGridSpaceVertical;
+	}
+}
+
 if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGridEnd != undefined ){
 	if(obj_fileLoader.subLineGridBeginning > -1 and obj_fileLoader.subLineGridEnd > -1){
 		scr_gridDeleteRange(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_fileLoader.subLineGridBeginning, obj_fileLoader.subLineGridEnd);

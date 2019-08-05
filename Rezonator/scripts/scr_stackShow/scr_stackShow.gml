@@ -40,10 +40,12 @@ if(ds_list_size(obj_control.stackShowList) > 0 && obj_control.currentStackShowLi
 	else{
 		obj_control.currentStackShowListPosition++;
 	}
+	
 }
 // If we are at the end of the list, then hop out of the filter
 else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.stackShowList))) {
 	obj_control.stackShowActive = false;
+	obj_toolPane.tracksOnlyStackShow = false;
 	with(obj_panelPane){
 		alarm[5] = -1;
 	}
