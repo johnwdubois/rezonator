@@ -99,6 +99,22 @@ if (stackShowWindowActive) {
 				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
 			}
 	}
+	
+	
+	// Tracks Only toggle button
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
+	if (obj_toolPane.tracksOnlyStackShow) {
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
+	}
+
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 135, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Tracks Only");
+	// current chain boolean switch
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_toolPane.tracksOnlyStackShow = !obj_toolPane.tracksOnlyStackShow;	
+				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
+			}
+	}
 
 }
 
@@ -117,7 +133,9 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 					ds_list_add(obj_control.stackShowList, currentStackID);	
 				}
 			}
-	
+			
+			
+			
 			// Clear the Filter of all chains
 			ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
@@ -125,6 +143,11 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			instance_destroy();
 			// Begin the show
 			scr_stackShow();
+			
+			with(obj_toolPane) {
+				alarm[3] = 30;	
+			}
+			
 			with(obj_panelPane){
 				alarm[5] = 60;
 			}
@@ -163,6 +186,10 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 	instance_destroy();
 	// Begin the show
 	scr_stackShow();
+	
+	with(obj_toolPane) {
+		alarm[3] = 30;	
+	}
 	with(obj_panelPane){
 		alarm[5] = 60;
 	}

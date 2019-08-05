@@ -213,23 +213,19 @@ if (shortcutsEnabled) {
 			// Don't go above the max
 			gridSpaceVertical = min(gridSpaceVertical, gridSpaceVerticalMax);
 			lineSpacing += 4;
+			gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
 			// Multiply each line's pixelY by the new ratio
-			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), (gridSpaceVertical/prevGridSpaceVertical));
-			//prevGridSpaceVertical = gridSpaceVertical;
+			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
 			
-			//
+			// If the search or filter grids are populated, then set their pixelY's as well
 			if(searchGridPopulated) {
-				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), (gridSpaceVertical/prevGridSpaceVertical));
-				//searchPrevGridSpaceVertical = gridSpaceVertical;
+				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
 			}
-			
 			if(filterGridPopulated) {
-				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), (gridSpaceVertical/prevGridSpaceVertical));
-				//filterPrevGridSpaceVertical = gridSpaceVertical;
+				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 			}
+			// reset the ratio
 			prevGridSpaceVertical = gridSpaceVertical;
-			
-			//show_message(string(ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0)));
 			alarm[3] = 15;
 		}
 
@@ -238,26 +234,23 @@ if (shortcutsEnabled) {
 			gridSpaceVertical -= 10;
 			// Don't go below the min
 			gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
-			//searchGridSpaceVertical = gridSpaceVertical;
 			lineSpacing -= 4;
+			gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
 			
 			// Multiply each line's pixelY by the new ratio
-			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), ( gridSpaceVertical/prevGridSpaceVertical));
-			//prevGridSpaceVertical = gridSpaceVertical;
+			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
 			
+			// If the search or filter grids are populated, then set their pixelY's as well
 			if(searchGridPopulated) {
-				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), (gridSpaceVertical/prevGridSpaceVertical));
-				//searchPrevGridSpaceVertical = gridSpaceVertical;
+				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
 			}
-			
 			if(filterGridPopulated) {
-				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), (gridSpaceVertical/prevGridSpaceVertical));
-				//filterPrevGridSpaceVertical = gridSpaceVertical;
+				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 			}
+			// reset the ratio
 			prevGridSpaceVertical = gridSpaceVertical;
 			alarm[4] = 15;
 		}
-		//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4))
 	}
 }
 
