@@ -145,19 +145,19 @@ if (obj_control.dialogueBoxActive) {
 	
 		}
 	
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45, true);
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45, true);
 		if (obj_control.regExCheck) {
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45, false);	
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45, false);	
 		}
 
 		//darw boolean options text
 		draw_set_font(fnt_main);
 		if (!obj_control.regExCheck) {
-			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Transcript Search");
+			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Search Transcription");
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 70,"Case Sensistive");
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Focused Rez Chain");
 		}
-		draw_text(camera_get_view_width(view_camera[0]) /2 + 65, camera_get_view_height(view_camera[0])/2 - 48,"RegEx Search");
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 20, camera_get_view_height(view_camera[0])/2 - 48,"RegEx:      Regular Expression");
 	
 	
 
@@ -186,7 +186,7 @@ if (obj_control.dialogueBoxActive) {
 
 		}
 		// RegEx boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45)){
+		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45)){
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.regExCheck = !obj_control.regExCheck;
 				}

@@ -274,4 +274,59 @@ if (showTracker) {
 	draw_text( 280 + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, captionOfStack);
 
 
+	
+	var mouseOverLeftButton = false;
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) - Xdistance - 50, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]))) {
+		mouseOverLeftButton = true;
+		if (mouse_check_button_pressed(mb_left)) {
+			obj_control.stackShowBackwards = true;
+
+			if(obj_control.currentStackShowListPosition > 1){
+					scr_stackShow();
+			}
+
+
+		}
+	}
+	obj_control.stackShowBackwards = false;
+	var mouseOverRightButton = false;
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]))) {
+		mouseOverRightButton = true;
+		if (mouse_check_button_pressed(mb_left)) {
+			/*
+			if(obj_control.currentStackShowListPosition < ds_list_size(obj_control.stackShowList)){
+				obj_control.currentStackShowListPosition += 1;
+			}
+			*/
+			scr_stackShow();
+		}
+	}
+
+
+
+	//draw selection arrow background left
+	if(mouseOverLeftButton){
+			draw_set_colour(c_gray);
+	}
+	else{
+			draw_set_colour(global.colorThemePaneBG);
+	}
+	draw_rectangle( camera_get_view_width(view_camera[0]) - Xdistance - 50, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]), false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle( camera_get_view_width(view_camera[0]) - Xdistance - 50, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]), true);
+
+	//draw selection arrow background right
+	if(mouseOverRightButton){
+			draw_set_colour(c_gray);
+	}
+	else{
+			draw_set_colour(global.colorThemePaneBG);
+	}
+	draw_rectangle( camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]), false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle( camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]), true);
+
+		draw_sprite_ext(spr_ascend, 0, camera_get_view_width(view_camera[0]) - Xdistance - 40, camera_get_view_height(view_camera[0]) - Ydistance +15, 1, 1, 90, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, camera_get_view_width(view_camera[0]) - Xdistance - 10, camera_get_view_height(view_camera[0]) - Ydistance +14, 1, 1, 270, c_white, 1);
+
 }

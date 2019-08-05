@@ -34,7 +34,12 @@ if(ds_list_size(obj_control.stackShowList) > 0 && obj_control.currentStackShowLi
 	}
 	
 	// Increment our position in the list
-	obj_control.currentStackShowListPosition++;
+	if(obj_control.currentStackShowListPosition > 1 and obj_control.stackShowBackwards){
+		obj_control.currentStackShowListPosition--;
+	}
+	else{
+		obj_control.currentStackShowListPosition++;
+	}
 }
 // If we are at the end of the list, then hop out of the filter
 else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.stackShowList))) {
