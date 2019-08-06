@@ -1,5 +1,6 @@
 ///@description Remove Link
 
+obj_control.linkDeleted = true;
 // Set variables to be used by Chunk/newWord deletion
 var currentChainGridRow = undefined;
 var grid = undefined;
@@ -181,9 +182,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 			exit;
 		}
 		
-		
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, rowInUnitInStackGrid, -1);
-
 
 		// If there is a new source, find its UnitID
 		if (newSource > 0) {
@@ -195,8 +194,9 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 				}
 			}
 		}
+		// Why was the goal being set to a word ID also???
 		// If there is a new goal, find its UnitID
-		if (newGoal > 0) {
+		/*if (newGoal > 0) {
 			var idListNewGoal = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, newGoal - 1);
 			
 			if not (idListNewGoal == undefined) {
@@ -204,7 +204,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 					newGoal = ds_list_find_value(idListNewGoal, 0);
 				}
 			}
-		}
+		}*/
 	}
 	
 	
@@ -232,6 +232,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	scr_refreshVizLinkGrid();
 	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateNormal);
 	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+	obj_control.linkDeleted = false;
 	exit;	
 }
 else {
@@ -241,6 +242,7 @@ else {
 	obj_chain.mouseLineWordID = -1;
 
 	scr_refreshVizLinkGrid();
+	obj_control.linkDeleted = false;
 }
 
 // If we're deleting within the search screen, make sure we don't focus on words outside of the hitGrid

@@ -15,3 +15,13 @@ for(var deleteLoop = 0; deleteLoop < ds_list_size(currentChainWordIDList); delet
 		scr_deleteFromChain();	
 	}
 }
+
+// Rudimentary function to switch to another chain in order to keep Flow
+if(ds_grid_height(obj_chain.currentChainGrid) > 0) {
+	if(currentChainGridRow != 0) {
+		ds_grid_set(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, currentChainGridRow - 1, obj_chain.chainStateFocus);	
+	}
+	else {
+		ds_grid_set(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);	
+	}
+}

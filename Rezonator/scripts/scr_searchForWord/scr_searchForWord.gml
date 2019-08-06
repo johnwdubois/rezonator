@@ -80,7 +80,14 @@ for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++) {
 	var currentUnitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, i);
 	var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, i);
 	
-
+	if(obj_fileLoader.subLineGridBeginning != undefined) {
+		if(obj_fileLoader.subLineGridBeginning > -1) {
+			var unitInLineGrid = ds_grid_value_exists(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), i + 1);
+			if(not unitInLineGrid) {
+				continue;	
+			}
+		}
+	}
 			
 		// now we loop through every word in wordID list to see if matches our search word
 		for (var j = 0; j < ds_list_size(currentWordIDList); j++) {

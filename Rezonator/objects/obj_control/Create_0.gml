@@ -231,6 +231,7 @@ hoverWordID = -1;
 hoverChunkID = -1;
 clickedChunkID = -1;
 showMouseLine = false;
+linkDeleted = false;
 
 // Safety check for the drop downs
 ableToCreateDropDown = true;
@@ -405,3 +406,5 @@ drawRangeExtraSteps = 0;
 drawLineYOffset = 0;
 global.canScroll = true;
 mouseoverScrollBar = false;
+
+toolTipText = 0;
