@@ -13,7 +13,7 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)) {
+if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
 	exit;
 }
 
