@@ -235,7 +235,7 @@ if (showTracker) {
 	draw_text(0 + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, "End Stack Show");
 
 
-	var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition - 1);
+	var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 	var currentRowinStack = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0 , obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentListChainID );
 	var nameOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName, currentRowinStack);
 	var colorOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, currentRowinStack);
@@ -281,7 +281,7 @@ if (showTracker) {
 		if (mouse_check_button_pressed(mb_left)) {
 			obj_control.stackShowBackwards = true;
 
-			if(obj_control.currentStackShowListPosition > 1){
+			if(obj_control.currentStackShowListPosition > 0){
 					scr_stackShow();
 			}
 

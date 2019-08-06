@@ -77,8 +77,8 @@ else if (optionListType == 1)
 		
 		obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
 		
-		show_message(ds_grid_height(grid));
-		show_message(obj_control.selectedChainID);
+		//show_message(ds_grid_height(grid));
+		//show_message(obj_control.selectedChainID);
 		if(ds_grid_height(grid) > 0){
 			var listOfWordID = ds_list_create();
 			ds_list_copy(listOfWordID, ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, obj_control.selectedChainID));
@@ -232,7 +232,7 @@ else if (optionListType == 2)
 		
 		obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
 		
-		show_message(ds_grid_height(grid));
+		//show_message(ds_grid_height(grid));
 		if(ds_grid_height(grid) > 0){
 			var listOfWordID = ds_list_create();
 			ds_list_copy(listOfWordID, ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, obj_control.selectedChainID));

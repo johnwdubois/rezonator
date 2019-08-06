@@ -13,12 +13,24 @@
 	Author: Georgio Klironomos
 */
 
+	// Increment our position in the list
+	if(obj_control.currentStackShowListPosition > 0 and obj_control.stackShowBackwards){
+		obj_control.currentStackShowListPosition--;
+	}
+	else{
+		obj_control.currentStackShowListPosition++;
+	}
+
+
 // If we are still within the bounds of the list
 if(ds_list_size(obj_control.stackShowList) > 0 && obj_control.currentStackShowListPosition != (ds_list_size(obj_control.stackShowList))) {
 	obj_control.stackShowActive = true;
 	// If we are not on the first element of the list, then unfilter the previous stack
-	if(obj_control.currentStackShowListPosition > 0) {
+	if(obj_control.currentStackShowListPosition > -1) {
 		var prevStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition - 1);
+		if( obj_control.stackShowBackwards ){
+			prevStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition + 1);
+		}
 		var prevStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), prevStackID);
 		ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, prevStackRow, false);
 	}
@@ -33,13 +45,8 @@ if(ds_list_size(obj_control.stackShowList) > 0 && obj_control.currentStackShowLi
 		scr_renderFilter();
 	}
 	
-	// Increment our position in the list
-	if(obj_control.currentStackShowListPosition > 1 and obj_control.stackShowBackwards){
-		obj_control.currentStackShowListPosition--;
-	}
-	else{
-		obj_control.currentStackShowListPosition++;
-	}
+
+
 	
 }
 // If we are at the end of the list, then hop out of the filter
