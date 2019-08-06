@@ -35,6 +35,10 @@ global.unitGridWidth = 9;
 
 global.openProject = false;
 global.newProject = false;
+global.menuOpen = true;
+global.neworOpen = false;
+
+
 
 global.fileSaveName = "undefined";
 global.stackGrabSave = false;
@@ -77,9 +81,7 @@ showDevVars = false;
 
 scr_importPackage();
 
-
-
-
+rememberMe = false;
 
 
 global.importCSVGrid = ds_grid_create(0, 0);
@@ -94,3 +96,11 @@ global.importCSVGrid_colWord = 10;
 global.importCSVGrid_colText = 11;
 global.importCSVGrid_colUnitStart = 22;
 global.importCSVGrid_colUnitEnd = 23;
+
+
+//variables for keyboard
+cursorPos = 1 ;
+cursorViz = false;
+inputText = "";
+cursorTimer = 20;
+global.userName = "";
