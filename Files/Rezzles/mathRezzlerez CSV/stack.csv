@@ -1,0 +1,5 @@
+chainID,chainState,"unitIDList",name,color,inFilter,align,tiltSum,author,caption
+1,0,"{384, 385}",Rezzle 1,16711680,0,0,0, ,Use the Rez Brush to connect similar words between lines
+2,0,"{382, 383, 386, 387, 388, 389}",Rezzle 2,255,0,0,0, ,Use the Rez Brush to connect words between the speakers
+3,0,"{369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380}",Rezzle 3,32768,0,0,0, ,Use the Rez Brush to find as much Resonance as you can!
+4,0,"{390, 391, 392, 393, 394, 395, 396, 397, 398, 399}",Rezzle 4,8388736,0,0,0, ,Find all the different Chains of Resonance!
