@@ -33,6 +33,9 @@ if (string_count("<u who=", currentElement) > 0) {
 
 if (string_count("start=", currentElement) > 0) {
 	var gotStr = scr_fileLineRipListSearch(fileLineRipListElement, "start=\"", "\"", fileLineRipList);
+	if ( string_pos(".", gotStr) != 0 ){
+	string_delete(gotStr, string_pos(".", gotStr) +2 , string_length(gotStr));
+	}
 	currentUnitStart = real(gotStr);
 }
 
