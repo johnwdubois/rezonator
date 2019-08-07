@@ -209,7 +209,7 @@ if (showTracker) {
 	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - Ydistance, 140, camera_get_view_height(view_camera[0]))) {
 		mouseOverEndButton = true;
 		if (mouse_check_button_pressed(mb_left)) {
-			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
 			scr_stackShow();
 		}
 	}
