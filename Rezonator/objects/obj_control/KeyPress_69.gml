@@ -4,6 +4,8 @@ if (!shortcutsEnabled || dialogueBoxActive || obj_panelPane.discoSelectionActive
 	exit;
 }
 
+if(not keyboard_check(vk_alt) and not keyboard_check(vk_shift)){
+
 if (!obj_control.dialogueBoxActive) {
 	keyboard_string = "";
 	ePressed = true;
@@ -15,4 +17,6 @@ dialogueBoxActive = true;
 		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 	}
 	
+	
+}
 //scr_exportPortion();
