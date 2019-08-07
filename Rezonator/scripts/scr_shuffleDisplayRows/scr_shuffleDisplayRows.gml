@@ -38,5 +38,11 @@ for (var j = 0; j < ds_list_size(gridSourceRowsToCopy); j++)
 }
 
 ds_grid_copy(gridSource, gridShuffle);
+/*for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++)
+{
+	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelY, i, i * obj_control.gridSpaceVertical);
+	ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, i, i * obj_control.gridSpaceVertical);
+}*/
+scr_refreshLineGridPixelY();
 
 ds_grid_destroy(gridShuffle);

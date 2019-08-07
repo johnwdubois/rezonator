@@ -32,6 +32,7 @@ currentTool = toolRezBrush;
 tempReturnTool = -1;
 
 tracksOnlyStackShow = false;
+rezOnlyStackShow = false;
 
 
 progressBarX = room_width - 100;

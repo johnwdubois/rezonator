@@ -4135,6 +4135,14 @@
             }
         },
         {
+            "Key": "f1611a1b-3ef0-46fa-aec3-720be0dd4e9f",
+            "Value": {
+                "id": "04839ec7-dd2e-4084-9f69-bb3197b89a67",
+                "resourcePath": "scripts\\scr_refreshLineGridPixelY\\scr_refreshLineGridPixelY.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f1ca5525-64a6-4743-964d-738aa950da9c",
             "Value": {
                 "id": "f3f6d6b4-fc4d-46ff-99ad-9ec88720741f",
@@ -4552,7 +4560,8 @@
         "db39d525-7808-4183-891d-892e09f7628c",
         "6a66135d-27ce-48b9-a3b3-8d7ffc925407",
         "ca9e82d6-e6eb-425a-aaa6-b390f9571ec6",
-        "210db75c-d331-4dcd-8acd-5a495c973928"
+        "210db75c-d331-4dcd-8acd-5a495c973928",
+        "f1611a1b-3ef0-46fa-aec3-720be0dd4e9f"
     ],
     "tutorial": ""
 }

@@ -4,3 +4,7 @@ if(tracksOnlyStackShow && obj_control.stackShowActive) {
 	currentTool = toolTrackBrush;
 	alarm[3] = 2;
 }
+else if(rezOnlyStackShow && obj_control.stackShowActive) {
+	currentTool = toolRezBrush;
+	alarm[3] = 2;
+}

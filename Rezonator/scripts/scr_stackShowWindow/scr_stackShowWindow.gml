@@ -107,14 +107,36 @@ if (stackShowWindowActive) {
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
 	}
 
+	draw_set_colour(global.colorThemeText);
+	draw_set_font(fnt_mainBold);
 	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 135, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Tracks Only");
 	// current chain boolean switch
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
 			if (mouse_check_button_pressed(mb_left)) {
 				obj_toolPane.tracksOnlyStackShow = !obj_toolPane.tracksOnlyStackShow;	
+				obj_toolPane.rezOnlyStackShow = false;
 				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
 			}
 	}
+	
+	// Rez Only toggle button
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 230, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
+	if (obj_toolPane.rezOnlyStackShow) {
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 230, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
+	}
+
+	draw_set_colour(global.colorThemeText);
+	draw_set_font(fnt_mainBold);
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 245, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Rez Only");
+	// current chain boolean switch
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 230, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_toolPane.rezOnlyStackShow = !obj_toolPane.rezOnlyStackShow;	
+				obj_toolPane.tracksOnlyStackShow = false;
+				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
+			}
+	}
+	draw_set_font(fnt_mainLarge1);
 
 }
 

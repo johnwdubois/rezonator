@@ -271,9 +271,11 @@ if (functionSort_performSort)
 	{
 		case obj_control.lineGrid:
 			scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+			scr_refreshLineGridPixelY();
 			break;
 		case obj_control.searchGrid:
 			scr_refreshLineGridDisplayRow(obj_control.searchGrid);
+			scr_refreshLineGridPixelY();
 			break;
 		default:
 			break;
