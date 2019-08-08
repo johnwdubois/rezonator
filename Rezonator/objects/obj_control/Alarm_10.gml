@@ -109,6 +109,17 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 			// Add the ChunkID to the front of the chunkWord's inBoxList
 			ds_list_insert(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_grid_height(obj_control.dynamicWordGrid) - 1), 0, obj_control.chunkID);
 			
+			
+			if(trackChunkMade) { 
+				with (obj_chain) {
+					scr_wordClicked(currentChunkWordID, currentUnitID);
+				}
+				mouseHoldRectX1 = 0; 
+				mouseHoldRectX2 = 0; 
+				mouseHoldRectY1 = 0; 
+				mouseHoldRectY2 = 0; 
+				trackChunkMade = false;
+			}
 		}
 		
 	}
@@ -160,9 +171,7 @@ if (ds_list_size(inRectUnitIDList) > 0) {
 }
 
 // List print for debug purposes
-/*for(var listLoop = 0; listLoop < ds_grid_height(obj_chain.chunkGrid); listLoop++) {
-	show_message(scr_getStringOfList(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, listLoop)));
-}*/
+
 
 // Reset all box grid variables
 boxHoldRectX1 = 0; 
@@ -172,3 +181,4 @@ boxHoldRectX2 = 0;
 boxRectMade = false;
 boxRectReleased = true;
 boxRectAbleToInitiate = true;
+trackChunkMade = false;

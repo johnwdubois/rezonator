@@ -17,6 +17,12 @@ if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane &&
 if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	mouseHoldRectX2 = mouse_x;
 	mouseHoldRectY2 = mouse_y;
+	if(abs(mouseHoldRectY1 - mouseHoldRectY2) < obj_control.gridSpaceVertical) {
+		obj_control.mouseRectWithinLine = true;
+	}
+	else {
+		obj_control.mouseRectWithinLine = false;
+	}
 	
 	if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 		draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
@@ -31,9 +37,13 @@ if (mouse_check_button_released(mb_left)) {
 		alarm[1] = 10;//Maybe this could be the tool switch zone
 	}
 	
-	if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
+	/*if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush and obj_control.mouseRectWithinLine and abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
+		trackChunkMade = true;	
+	}
+	else */if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
 		mouseRectMade = true;
 	}
+	obj_control.mouseRectWithinLine = false;
 }
 
 if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {

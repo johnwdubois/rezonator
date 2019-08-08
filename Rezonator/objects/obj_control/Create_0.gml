@@ -309,6 +309,8 @@ inRectHitIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
+mouseRectWithinLine = false;
+trackChunkMade = false;
 
 // Set variables for box creation
 chunkID = 0;

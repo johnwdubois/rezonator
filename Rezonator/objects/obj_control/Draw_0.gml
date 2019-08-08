@@ -46,7 +46,7 @@ scr_drawLine();
 //scr_drawDialogueBox();
 //scr_stackShowWindow();
 
-
+//mouseRectWithinLine = false;
 // Draw the mouse drag rectangle
 if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool != obj_toolPane.toolNewWord) {
 	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
@@ -67,10 +67,17 @@ if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool
 	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 		alarm[8] = 5;
 	}
+	/*if (trackChunkMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+		show_message("made");
+		alarm[10] = 5;
+	}*/
 	if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {
 		boxRectAbleToInitiate = false;
 		alarm[10] = 5;
 	}
+	/*if(abs(mouseHoldRectY1 - mouseHoldRectY2) < gridSpaceVertical) {
+		mouseRectWithinLine = true;
+	}*/
 }
 
 

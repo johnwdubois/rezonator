@@ -405,6 +405,17 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				}
 			}
 		}
+		/*else if ((obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) and trackChunkMade and not mouseoverPanelPane) {
+			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			if (inMouseHoldRect) {
+				with (obj_control) {
+					if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
+						ds_list_add(inRectUnitIDList, unitID);
+						ds_list_add(inRectWordIDList, currentWordID);
+					}
+				}
+			}
+		}*/
 	
 	
 		
