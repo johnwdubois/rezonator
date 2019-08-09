@@ -68,6 +68,10 @@ if (obj_control.dialogueBoxActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "OK");
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Cancel");
 	
+	if (obj_control.replace) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to substitute.");
+	}
+	
 	if (obj_control.newWordCreated) {
 		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to add.");
 	}
@@ -385,6 +389,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 				ds_grid_set(grid,  obj_chain.chainGrid_colCaption, obj_control.selectedChainID, obj_control.inputText);
 		}
 		
+		if (obj_control.replace) {
+					scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+		}
+		
 		
 		with (obj_panelPane) {
 			obj_control.discoIDSelected = false;
@@ -403,6 +411,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.rename = false;
 		obj_control.recolor = false;
 		obj_control.caption = false;
+		obj_control.replace = false;
 		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
 		instance_destroy();
@@ -434,6 +443,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.rename = false;
 			obj_control.recolor = false;
 			obj_control.caption = false;
+			obj_control.replace = false;
 			obj_control.inputText = "";
 			obj_control.cursorPos = 1;
 			instance_destroy();
@@ -502,7 +512,11 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 		
 	if(obj_control.caption){
 		ds_grid_set(grid,  obj_chain.chainGrid_colCaption, obj_control.selectedChainID, obj_control.inputText);
-	}	
+	}
+	
+	if (obj_control.replace) {
+		scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+	}
 	
 	//input_text_set_text(instance, "");
 	with (obj_panelPane) {
@@ -521,6 +535,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.rename = false;
 	obj_control.recolor = false;
 	obj_control.caption = false;
+	obj_control.replace = false;
 	obj_control.inputText = "";
 	obj_control.cursorPos = 1;
 	instance_destroy();
