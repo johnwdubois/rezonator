@@ -350,6 +350,7 @@ goToTime = false;
 rename = false;
 recolor = false;
 caption = false;
+replace = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;

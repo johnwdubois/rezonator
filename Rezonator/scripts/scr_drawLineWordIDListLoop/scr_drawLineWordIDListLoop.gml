@@ -354,18 +354,21 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 		// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 		var mouseover = false;
-		if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
-		and not mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
+		if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2)) {
 			mouseover = true;
 			hoverWordID = currentWordID;
 		
-			draw_set_color(global.colorThemeBorders);
-			draw_set_alpha(1);
-			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
+			if(not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
+				and not mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)){
+		
+				draw_set_color(global.colorThemeBorders);
+				draw_set_alpha(1);
+				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-			if (mouse_check_button_pressed(mb_left)) {
-				with (obj_chain) {
-					scr_wordClicked(currentWordID, unitID);
+				if (mouse_check_button_pressed(mb_left)) {
+					with (obj_chain) {
+						scr_wordClicked(currentWordID, unitID);
+					}
 				}
 			}
 		}
@@ -464,6 +467,16 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 	
+		if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and !instance_exists(obj_dialogueBox)) {
+				
+			// Set this to be the hovered wordID
+			newWordHoverUnitID = unitID;
+			newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+			newWordHoverWordID = currentWordID;
+				
+		}
+	
+	
 		// If the user has the New-Word tool selected, create a new word right next to this word
 		if (obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
 			if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
@@ -489,35 +502,36 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				newWordHoverUnitID = unitID;
 				newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 				newWordHoverWordID = currentWordID;
+				hoverWordID = currentWordID;
 				
-			}
-		
-			// CHeck for adding a newWord after this current word
-			else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
-				// Set this to be the hovered wordID
-				if(not obj_control.dialogueBoxActive and not obj_control.newWordCreated) {
-					newWordHoverUnitID = unitID;
-					newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
-					newWordHoverWordID = currentWordID;
 				}
+		
+				// CHeck for adding a newWord after this current word
+				else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
+					// Set this to be the hovered wordID
+					if(not obj_control.dialogueBoxActive and not obj_control.newWordCreated) {
+						newWordHoverUnitID = unitID;
+						newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+						newWordHoverWordID = currentWordID;
+					}
 			
-				if (mouse_check_button_pressed(mb_left) and not obj_control.dialogueBoxActive) {				
-						if (!obj_control.dialogueBoxActive) {
-							keyboard_string = "";
-							obj_control.newWordCreated =true;
-						}
-
-
-						dialogueBoxActive = true;
-
-							if (!instance_exists(obj_dialogueBox)) {
-								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					if (mouse_check_button_pressed(mb_left) and not obj_control.dialogueBoxActive) {				
+							if (!obj_control.dialogueBoxActive) {
+								keyboard_string = "";
+								obj_control.newWordCreated =true;
 							}
 
-				}
-			}
 
-		}
+							dialogueBoxActive = true;
+
+								if (!instance_exists(obj_dialogueBox)) {
+									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+								}
+
+					}
+				}
+
+			}
 	}
 	
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordID - 1, true);
@@ -544,6 +558,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	shapeTextX += string_width(currentWordString) + shapeTextSpace;
 }
+
+
 
 // set total void values for this line, now that we have gone through every word in the line
 ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidMax, drawLineLoop, voidMax);

@@ -169,9 +169,22 @@ if (!clickedInChainList and !clickedInChainContents) {
 	
 	// replace word
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("X"))) {
-		if (hoverWordID > -1 and hoverWordID < ds_grid_height(wordGrid)) {
-			scr_replaceWord(hoverWordID);
+		if (hoverWordID > -1 and hoverWordID  < ds_grid_height(wordGrid)) {
+				
+				if (!obj_control.dialogueBoxActive) {
+					keyboard_string = "";
+					obj_control.replace = true;
+				}
+
+
+				obj_control.dialogueBoxActive = true;
+
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				}
+		
 		}
+
 	}
 
 	
@@ -321,9 +334,9 @@ if (ds_grid_height(unitGrid) == global.totalUnitAmount and ds_grid_height(obj_ch
 }
 
 if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentActiveLineGrid == lineGrid) {
-	newWordHoverUnitID = -1;
-	newWordHoverWordSeq = -1;
-	newWordHoverWordID = -1;
+	//newWordHoverUnitID = -1;
+	//newWordHoverWordSeq = -1;
+	//newWordHoverWordID = -1;
 }
 
 
