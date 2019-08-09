@@ -40,7 +40,7 @@ var jsonFile = (string_count("json", fileExt) > 0);
 var discoID = fileName;
 
 if (ds_grid_value_exists(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, 0, global.fileLineRipGrid_colDiscoID, ds_grid_height(global.fileLineRipGrid), discoID)) {
-	show_message("Duplicate file imported");
+	show_message("Cannot import the same file twice");
 	exit;
 }
 

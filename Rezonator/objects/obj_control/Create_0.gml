@@ -297,6 +297,14 @@ moveCounter = 0;
 // Safety check for autosaving
 allSaved = true;
 
+compassRoseX = 0;
+compassRoseY = 0;
+compassLineX1 = 0;
+compassLineY1 = 0;
+compassLineX2 = 0;
+compassLineY2 = 0;
+
+
 // Set variables for the mouse drag rectangle, and quick gestures
 mouseHoldRectX1 = 0;
 mouseHoldRectY1 = 0;

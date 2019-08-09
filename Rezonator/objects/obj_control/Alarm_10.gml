@@ -1,7 +1,12 @@
 /// @description Box Creation
 // Place all captured unit and word info into the box grid
-
+//show_message("in");
+if(ds_list_size(inRectWordIDList) > 0 && not ds_list_size(inRectUnitIDList) > 0) {
+	ds_list_add(inRectUnitIDList, ds_grid_get(wordGrid, wordGrid_colUnitID, ds_list_find_value(inRectWordIDList, 0) - 1));
+	trackChunkMade = true;
+}
 if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { // Make sure the box captured something
+	//show_message("doin");
 	// Expand the box grid to fit the new info
 	ds_grid_resize(obj_chain.chunkGrid, obj_chain.chainGridWidth + 2, ds_grid_height(obj_chain.chunkGrid) + 1);
 	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid) - 1, ++obj_control.chunkID);
@@ -49,8 +54,9 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 	}
 	
 	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colTiltSum, ds_grid_height(obj_chain.chunkGrid) - 1, ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1));
-	
-	scr_unFocusAllChains();
+	if(not trackChunkMade) {
+		scr_unFocusAllChains();
+	}
 	// If this box counts as a Chunk, mark it as such and nest it if possible
 	if(ds_list_size(currentUnitList) == 1 && ds_list_size(currentWordList) > 1) {
 		

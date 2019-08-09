@@ -20,6 +20,10 @@ if (ds_list_size(inRectWordIDList) > 0) {
 // Use the wordList or hitList depending on the context
 var inRectList = ds_list_create();
 if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
+	if(not searchGridActive) {
+		alarm[10] = 1;
+		exit;
+	}
 	ds_list_copy(inRectList, inRectHitIDList);
 } 
 else {

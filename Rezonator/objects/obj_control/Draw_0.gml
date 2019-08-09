@@ -64,13 +64,14 @@ if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool
 	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 		alarm[8] = 5;
 	}
+	/*else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+		//show_message("made");
+		alarm[10] = 5;
+	}*/
 	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 		alarm[8] = 5;
 	}
-	/*if (trackChunkMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-		show_message("made");
-		alarm[10] = 5;
-	}*/
+	
 	if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {
 		boxRectAbleToInitiate = false;
 		alarm[10] = 5;
@@ -92,6 +93,28 @@ draw_set_alpha(1);
 
 // Shows variables used for in game bugtesting
 if (showDevVars) {
+	
+	if(not mouse_check_button(mb_left)) {
+		compassRoseX = mouse_x;
+		compassRoseY = mouse_y;
+		compassLineX1 = mouse_x;
+		compassLineY1 = mouse_y;
+		compassLineX2 = mouse_x;
+		compassLineY2 = mouse_y;
+	}
+	else {
+		compassLineX2 = mouse_x;
+		compassLineY2 = mouse_y;
+	}
+	draw_set_color(global.colorThemeText);
+	draw_line(compassLineX1, compassLineY1, compassLineX2, compassLineY2);
+	var triOffsetX = sin(0.3926991) * 80;
+	var triOffsetY = cos(0.3926991) * 80;
+	
+	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY + triOffsetY, compassRoseX + triOffsetX, compassRoseY + triOffsetY, true);
+	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY - triOffsetY, compassRoseX + triOffsetX, compassRoseY - triOffsetY, true);
+	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetY, compassRoseY + triOffsetX, compassRoseX - triOffsetY, compassRoseY - triOffsetX, true);
+	draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetY, compassRoseY + triOffsetX, compassRoseX + triOffsetY, compassRoseY - triOffsetX, true);
 	
 	draw_set_color(c_ltgray);
 	draw_line(0, 150 + (camera_get_view_height(view_camera[0]) - 150) / 2, camera_get_view_width(view_camera[0]), 150 + (camera_get_view_height(view_camera[0]) - 150) / 2);

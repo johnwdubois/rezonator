@@ -1,8 +1,8 @@
 {
-    "id": "519ec3d2-8a5a-4c96-97b2-f5d902045213",
+    "id": "77f862ff-e867-417a-b9e8-8743e21f5728",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "test_next",
+    "name": "__GMA_BREAKPOINT__",
     "IsCompatibility": false,
     "IsDnD": false
 }
