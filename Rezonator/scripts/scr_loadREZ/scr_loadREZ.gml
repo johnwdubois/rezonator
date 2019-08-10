@@ -134,3 +134,6 @@ if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGr
 		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 	}
 }
+
+obj_control.unitGridBackup = ds_grid_copy(obj_control.unitGridBackup, obj_control.unitGrid);
+obj_control.lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);

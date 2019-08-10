@@ -66,6 +66,8 @@ unitGrid_colUnitEnd = 7;
 unitGrid_colParticipantColor = 8;
 
 unitGrid = ds_grid_create(unitGridWidth, 0);
+unitGridBackup = ds_grid_create(unitGridWidth, 0);
+
 
 // Instantiate the Word Grid
 wordGridWidth = global.wordGridWidth;
@@ -105,7 +107,7 @@ lineGrid_colPixelYOriginal = 12;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
 lineGridBackup = ds_grid_create(lineGridWidth, 0);
-lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
+//lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 lineGridDefaultSort = true;
 lineGridShuffle = false;
 // set limit for word displacement by alignment

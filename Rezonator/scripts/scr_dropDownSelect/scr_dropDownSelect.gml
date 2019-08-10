@@ -343,6 +343,14 @@ else if (optionListType == 3)
 					obj_control.showLineNumber = !obj_control.showLineNumber;
 					break;
 						
+				case "Reset Order":
+
+					//ds_grid_copy(obj_control.unitGrid, obj_control.unitGridBackup);
+					
+					//ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
+					
+					break;
+						
 				default:
 					break;
 			}
