@@ -300,4 +300,56 @@ else if (optionListType == 2)
 	}
 }
 
+else if (optionListType == 3)
+{
+	with (obj_panelPane)
+	{
+		if (currentFunction == functionChainList)
+		{
+			
+			switch (optionSelected)
+			{
+				//"Red", "Blue", "Green", "Gold", "Custom"
+				case "Swap":
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.swapLine = true;
+					}
+
+
+					obj_control.dialogueBoxActive = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					}
+				
+					break;
+						
+				case "Shuffle":	
+					obj_control.lineGridShuffle = !obj_control.lineGridShuffle;
+					if (obj_control.lineGridShuffle) {
+						scr_shuffleDisplayRows();
+						scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+					}
+					else {
+						with(obj_panelPane) {
+							functionSort_performSort = true;
+						}
+					}
+						
+					break;
+				case "Toggle line #":
+					
+					obj_control.showLineNumber = !obj_control.showLineNumber;
+					break;
+						
+				default:
+					break;
+			}
+		}
+	}
+	
+}
+
+
 instance_destroy();

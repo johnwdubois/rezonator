@@ -104,6 +104,8 @@ lineGrid_colVoidSum = 11;
 lineGrid_colPixelYOriginal = 12;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
+lineGridBackup = ds_grid_create(lineGridWidth, 0);
+lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 lineGridDefaultSort = true;
 lineGridShuffle = false;
 // set limit for word displacement by alignment
@@ -351,6 +353,7 @@ rename = false;
 recolor = false;
 caption = false;
 replace = false;
+swapLine = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
@@ -419,3 +422,8 @@ global.canScroll = true;
 mouseoverScrollBar = false;
 
 toolTipText = 0;
+
+swapLinePos1 =  0;
+swapLinePos2 =  0;
+
+showLineNumber = true;

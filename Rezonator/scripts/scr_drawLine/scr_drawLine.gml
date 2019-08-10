@@ -237,13 +237,19 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, true);
 		
 		var speakerLabelCurrentColStr = "";
-		if (i == 0 and currentDiscoID != undefined) {
-			speakerLabelCurrentColStr = string(currentDiscoID);
+		if(obj_control.showLineNumber){
+			if (i == 0 and currentDiscoID != undefined) {
+				speakerLabelCurrentColStr = string(currentDiscoID);
+			}
+			else if (i == 1 and currentLineNumberLabel != undefined) {
+				speakerLabelCurrentColStr = string(currentLineNumberLabel);
+			}
 		}
-		else if (i == 1 and currentLineNumberLabel != undefined) {
-			speakerLabelCurrentColStr = string(currentLineNumberLabel);
+		else{
+			i = 2;
+			speakerLabelCurrentColStr = "   ";
 		}
-		else if (i == 2 and participantName != undefined) {
+		if (i == 2 and participantName != undefined) {
 			speakerLabelCurrentColStr = string(participantName);
 			if (showDevVars) {
 				speakerLabelCurrentColStr = string(currentLineY);
@@ -253,11 +259,31 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
 			}
 		}
-		
+		if(point_in_rectangle(mouse_x, mouse_y,speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2)
+		and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)){
+			//show_message("clicked here" + string(drawLineLoop));
+				
+			var dropDownOptionList = ds_list_create();
+			
+			obj_control.swapLinePos1 = drawLineLoop;
+
+			ds_list_add(dropDownOptionList, "Swap", "Shuffle", "Toggle line #");
+
+			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 3;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+			
+		}
 		draw_set_color(global.colorThemeText);
 		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
-		
+		if(obj_control.showLineNumber){
 		speakerLabelPlusX += speakerLabelColWidth[i];
+		}
 	}
 	
 }
