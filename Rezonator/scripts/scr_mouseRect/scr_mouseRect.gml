@@ -12,6 +12,9 @@ if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane &&
 	with (obj_toolPane) {
 		alarm[2] = 1;// Is super finnicky, but kinda works??
 	}
+	if(obj_control.hoverWordID != -1) {
+		obj_control.mouseRectBeginInWord = true;	
+	}
 	
 }
 if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {

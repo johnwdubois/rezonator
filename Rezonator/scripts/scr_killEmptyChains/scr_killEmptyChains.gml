@@ -43,6 +43,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				}
 				else if (grid == obj_chain.trackChainGrid) {
 					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, lastItemId - 1, false);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, lastItemId - 1, false);
 				}
 			}
 			
@@ -66,5 +67,5 @@ while (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chai
 	var deadRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateDead);
 	scr_gridDeleteRow(grid, deadRow);
 }
-
-//show_message("test")
+//show_message("ehere");
+//scr_refreshChainGrid();

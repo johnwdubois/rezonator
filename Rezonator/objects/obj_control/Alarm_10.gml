@@ -3,6 +3,7 @@
 //show_message("in");
 if(ds_list_size(inRectWordIDList) > 0 && not ds_list_size(inRectUnitIDList) > 0) {
 	ds_list_add(inRectUnitIDList, ds_grid_get(wordGrid, wordGrid_colUnitID, ds_list_find_value(inRectWordIDList, 0) - 1));
+
 	trackChunkMade = true;
 }
 if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { // Make sure the box captured something
