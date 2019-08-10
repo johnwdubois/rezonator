@@ -79,7 +79,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 			wordRectBuffer = 4;
 		}
 		
-		//HERE
+		//Modify the chunk for drawing within the searchScreen
 		var firstWordHitID = ds_grid_value_y(hitGrid, hitGrid_colWordID, currentHitID - currentLineWordIDListSize - 1, hitGrid_colWordID, currentHitID - 1, firstWordID);
 		var lastWordHitID = firstWordHitID + (lastWordID - firstWordID);
 		

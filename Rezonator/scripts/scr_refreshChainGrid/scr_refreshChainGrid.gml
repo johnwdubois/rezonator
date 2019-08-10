@@ -54,12 +54,42 @@ else {
 var oldIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 for (var i = 0; i < ds_list_size(oldIDList); i++) {
 	var currentID = ds_list_find_value(oldIDList, i);
+	var currentInChainList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentID - 1);
 	if (grid == obj_chain.rezChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		
+		// Prevent this word from losing its border if it belongs to another chain
+		if(ds_list_size(currentInChainList) > 0) {
+			for(var inChainListLoop = 0; inChainListLoop < ds_list_size(currentInChainList); inChainListLoop++) {
+				var inListChainID = ds_list_find_value(currentInChainList, inChainListLoop);
+				var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, 2);
+				if(currentLinkGridPos != -1) {
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, true);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
+					var currentRowInChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), inListChainID);
+					var effectColor = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colColor, currentRowInChainGrid);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentID - 1, effectColor);
+				}
+			}
+		}
 	}
 	else if (grid == obj_chain.trackChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, false);
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		
+		// Prevent this word from losing its border if it belongs to another chain
+		if(ds_list_size(currentInChainList) > 0) {
+			for(var inChainListLoop = 0; inChainListLoop < ds_list_size(currentInChainList); inChainListLoop++) {
+				var inListChainID = ds_list_find_value(currentInChainList, inChainListLoop);
+				var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, 1);
+				if(currentLinkGridPos != -1) {
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
+					var currentRowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), inListChainID);
+					var effectColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, currentRowInChainGrid);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentID - 1, effectColor);
+				}
+			}
+		}
 	}
 }
 
