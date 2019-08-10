@@ -20,6 +20,138 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		continue;
 	}
 	
+	// Check if the word is a ChunkWord
+	if(currentWordState == obj_control.wordStateChunk) {
+		
+		// Here will be functionality to focus on a Chunk and add it to a Chain
+		// This includes: Hovering over Chunk will visually effect the outline
+		draw_set_font(global.fontMain);
+
+		// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
+		var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow);
+		if(ds_list_size(inChunkList) < 1) {
+			continue;
+		}
+		
+		// A chunkWord always has its own Chunk as firstin its list
+		var currentChunkID = (ds_list_find_value(inChunkList, 0)); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+		if(currentChunkID == undefined) {
+			continue;
+		}
+		// Aquire the relevant row in the chunkGrid
+		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
+		if(currentChunkRow < 0) {
+			continue;	
+		}
+
+		// Grab the Chunk's list of contained words
+		var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
+		
+		// Safety Check
+		if (currentWordList == undefined || ds_list_size(currentWordList) < 1) {
+			continue;
+		}
+		
+		// Set all variables needed to draw a Chunk
+		var firstWordID = -1;
+		var lastWordID = -1;
+		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+		var currentLineWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
+		var currentLineWordIDListSize = ds_list_size(currentLineWordIDList);
+		
+		// Get the first and last word within the Chunk
+		firstWordID = ds_list_find_value(currentWordList, 0);
+		
+		// The true last word within this list is the chunkWordID
+		var nonChunkWordPos = ds_list_size(currentWordList)-2;
+		lastWordID = ds_list_find_value(currentWordList, nonChunkWordPos);
+		
+		// Aquire the ID of the last nonChunkWord in this list
+		var lastWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, lastWordID - 1);
+		while(lastWordState == wordStateChunk || lastWordState == wordStateDead) {
+			lastWordID = ds_list_find_value(currentWordList, --nonChunkWordPos);
+			lastWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, lastWordID - 1);
+		}
+		
+		// Set the Buffer to be initially large, so as to allow for nesting
+		var wordRectBuffer = 6;
+		if (ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, currentChunkRow) == true) {
+			wordRectBuffer = 4;
+		}
+		
+		//HERE
+		var firstWordHitID = ds_grid_value_y(hitGrid, hitGrid_colWordID, currentHitID - currentLineWordIDListSize - 1, hitGrid_colWordID, currentHitID - 1, firstWordID);
+		var lastWordHitID = firstWordHitID + (lastWordID - firstWordID);
+		
+		// Set up the measurements for the drawn box
+		var leftPixelX = ds_grid_get(hitGrid, hitGrid_colPixelX, firstWordHitID);
+		var firstDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, firstWordHitID);
+		var rightPixelX = ds_grid_get(hitGrid, hitGrid_colPixelX, lastWordHitID);
+		ds_grid_set(hitGrid, hitGrid_colPixelX, currentWordGridRow, leftPixelX);
+		
+		// Get the string of the first word
+		var firstWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, firstWordID - 1);
+		// Get the string of the last word
+		var lastWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, lastWordID - 1);
+		
+		// Set the special wordRect
+		var topLeftX = leftPixelX - wordRectBuffer;
+		var topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
+		var bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer); //*2
+		var bottomRightY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
+		
+		// Aquire wordDraw specifics
+		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);//global.colorThemeSelected1
+		var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
+		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
+		
+		// Draw the Chunks visual representation
+		if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0) {
+			draw_set_color(effectColor);
+		} else {
+			draw_set_color(global.colorThemeSelected1);	
+		}
+		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
+			if (borderRounded) {
+				draw_roundrect(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
+			}
+			else {
+				draw_rectangle(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
+			}
+		}
+		if (drawFocused) {
+			draw_sprite_ext(spr_focusPoint, 0, topLeftX - wordDrawGridFocusedAnimation, topLeftY - wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
+			draw_sprite_ext(spr_focusPoint, 0, bottomRightX + wordDrawGridFocusedAnimation, topLeftY - wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
+			draw_sprite_ext(spr_focusPoint, 0, topLeftX - wordDrawGridFocusedAnimation, bottomRightY + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
+			draw_sprite_ext(spr_focusPoint, 0, bottomRightX + wordDrawGridFocusedAnimation, bottomRightY + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
+		}
+		
+		// Check for mouseover of the Chunk 
+		var mouseover = false;
+		if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
+		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1) {
+			mouseover = true;
+			
+			// May need to make a hoverChunkID
+			hoverChunkID = currentWordID;
+		
+			// Draw the hover highlight
+			draw_set_color(global.colorThemeSelected1);
+			draw_set_alpha(0.5);
+			draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
+			
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_control.clickedChunkID = currentChunkID; // Debug variable
+				// Add this Chunk to a chain
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
+				}
+			}
+		}
+		
+		continue;	
+	}
+	
 	var currentWordDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, currentHitID - 1);
 		
 	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;

@@ -53,10 +53,13 @@ else {
 // stop drawing the rectangle around the words in this chain
 var oldIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 for (var i = 0; i < ds_list_size(oldIDList); i++) {
-	if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
-		var currentID = ds_list_find_value(oldIDList, i);
+	var currentID = ds_list_find_value(oldIDList, i);
+	if (grid == obj_chain.rezChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+	}
+	else if (grid == obj_chain.trackChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, false);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
 	}
 }
 
