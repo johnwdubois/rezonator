@@ -345,9 +345,9 @@ else if (optionListType == 3)
 						
 				case "Reset Order":
 
-					//ds_grid_copy(obj_control.unitGrid, obj_control.unitGridBackup);
+					ds_grid_copy(obj_control.unitGrid, obj_control.unitGridBackup);
 					
-					//ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
+					ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
 					
 					break;
 						

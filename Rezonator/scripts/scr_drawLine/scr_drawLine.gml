@@ -259,8 +259,9 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
 			}
 		}
+		
 		if(point_in_rectangle(mouse_x, mouse_y,speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2)
-		and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)){
+		and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and !obj_control.mouseoverPanelPane){
 			//show_message("clicked here" + string(drawLineLoop));
 				
 			var dropDownOptionList = ds_list_create();
@@ -284,6 +285,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		if(obj_control.showLineNumber){
 		speakerLabelPlusX += speakerLabelColWidth[i];
 		}
+		
 	}
 	
 }
