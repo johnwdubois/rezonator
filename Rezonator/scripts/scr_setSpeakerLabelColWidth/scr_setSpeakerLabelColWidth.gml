@@ -50,6 +50,7 @@ else if (speakerLabelWidthFull > maxSpeakerLabelWidth) {
 
 
 speakerLabelWidthFull = obj_control.speakerLabelColWidth[0] + obj_control.speakerLabelColWidth[1] + obj_control.speakerLabelColWidth[2];
+
 obj_control.speakerLabelMargin = speakerLabelWidthFull;
 
 obj_control.wordLeftMarginDest = obj_control.speakerLabelMargin + obj_control.speakerLabelMarginBuffer;

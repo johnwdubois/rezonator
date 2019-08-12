@@ -80,3 +80,5 @@ for (var i = 0; i < fileLoadRate; i++) {
 		discourseProcessing++;
 	}
 }
+
+alarm[3] = 3;

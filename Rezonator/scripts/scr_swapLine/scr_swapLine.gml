@@ -35,7 +35,7 @@ ds_grid_copy(swappedUnitGrid, obj_control.unitGrid);
 // loop through line to be swapped and copy each value from both lines for each column
 for(var i =0 ; i < ds_grid_width(obj_control.lineGrid); i ++){
 	
-	if(i != 0 and i != 2 and i != 3){
+
 		var Line1CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , obj_control.swapLinePos1);
 		//show_message(string(Line1CurrentSwap));
 		ds_grid_set(swappedLineGrid, i, obj_control.swapLinePos2,  Line1CurrentSwap);
@@ -45,9 +45,8 @@ for(var i =0 ; i < ds_grid_width(obj_control.lineGrid); i ++){
 		var Line2CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , obj_control.swapLinePos2);
 		//show_message(string(Line2CurrentSwap));
 		ds_grid_set(swappedLineGrid, i, obj_control.swapLinePos1,  Line2CurrentSwap);
-	}
 }
-
+/*
 // loop through line to be swapped and copy each value from both lines for each column
 for(var i =0 ; i < ds_grid_width(obj_control.unitGrid); i ++){
 	
@@ -64,10 +63,10 @@ for(var i =0 ; i < ds_grid_width(obj_control.unitGrid); i ++){
 
 	
 }
-
+*/
 
 // return swapped grid back into orginal grid
-ds_grid_copy(obj_control.unitGrid, swappedUnitGrid);
+//ds_grid_copy(obj_control.unitGrid, swappedUnitGrid);
 
 // return swapped grid back into orginal grid
 ds_grid_copy(obj_control.lineGrid, swappedLineGrid);

@@ -226,6 +226,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			continue;
 		}
 		
+		if(!obj_control.showLineNumber and i != 2){
+			continue;
+		}
+		
 		var speakerLabelCurrentColX1 = speakerLabelPlusX;
 		var speakerLabelCurrentColY1 = speakerRectY1;
 		var speakerLabelCurrentColX2 = speakerLabelCurrentColX1 + speakerLabelColWidth[i];
@@ -237,18 +241,13 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, true);
 		
 		var speakerLabelCurrentColStr = "";
-		if(obj_control.showLineNumber){
-			if (i == 0 and currentDiscoID != undefined) {
-				speakerLabelCurrentColStr = string(currentDiscoID);
-			}
-			else if (i == 1 and currentLineNumberLabel != undefined) {
-				speakerLabelCurrentColStr = string(currentLineNumberLabel);
-			}
+		if (i == 0 and currentDiscoID != undefined) {
+			speakerLabelCurrentColStr = string(currentDiscoID);
 		}
-		else{
-			i = 2;
-			speakerLabelCurrentColStr = "   ";
+		else if (i == 1 and currentLineNumberLabel != undefined) {
+			speakerLabelCurrentColStr = string(currentLineNumberLabel);
 		}
+		
 		if (i == 2 and participantName != undefined) {
 			speakerLabelCurrentColStr = string(participantName);
 			if (showDevVars) {

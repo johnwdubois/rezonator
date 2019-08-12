@@ -106,7 +106,9 @@ lineGrid_colVoidSum = 11;
 lineGrid_colPixelYOriginal = 12;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
+
 lineGridBackup = ds_grid_create(lineGridWidth, 0);
+
 //lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 lineGridDefaultSort = true;
 lineGridShuffle = false;
