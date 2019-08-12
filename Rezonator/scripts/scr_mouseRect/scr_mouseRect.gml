@@ -40,13 +40,15 @@ if (mouse_check_button_released(mb_left)) {
 		alarm[1] = 10;//Maybe this could be the tool switch zone
 	}
 	
-	/*if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush and obj_control.mouseRectWithinLine and abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
-		trackChunkMade = true;	
-	}
-	else */if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
+	if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
 		mouseRectMade = true;
 	}
+	else {
+		obj_control.mouseRectBeginInWord = false;
+		obj_control.mouseRectBeginBetweenWords = false;
+	}
 	obj_control.mouseRectWithinLine = false;
+
 }
 
 if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {

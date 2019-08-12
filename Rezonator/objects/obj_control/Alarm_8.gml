@@ -146,6 +146,8 @@ if (ds_grid_height(gridOfFutureChains) > 0) {
 // Clear the data structures
 ds_grid_destroy(gridOfFutureChains);
 obj_control.mouseRectBeginInWord = false;
+obj_control.mouseRectBeginBetweenWords = false;
+
 
 ds_list_clear(inRectWordIDList);
 ds_list_clear(inRectHitIDList);
