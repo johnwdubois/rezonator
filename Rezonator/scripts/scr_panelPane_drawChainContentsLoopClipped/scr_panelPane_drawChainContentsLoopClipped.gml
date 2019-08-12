@@ -226,7 +226,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 					case 1:
 						if (functionChainList_currentTab == functionChainList_tabStackBrush
 						or functionChainList_currentTab == functionChainList_tabClique) {
-							currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID);
+							currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
 						}
 						else {
 							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));

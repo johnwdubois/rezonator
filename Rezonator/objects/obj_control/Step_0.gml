@@ -278,6 +278,19 @@ if (keyboard_check_pressed(ord("Q"))) {
 }
 */
 
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
+
+	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+		if (show_question("Would you like to save before exiting?")) {
+			with (obj_fileLoader) {
+				scr_saveREZ(false);
+			}
+		}
+	}
+	
+	room_goto(rm_openingScreen);
+
+}
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("E")) && shortcutsEnabled) {
 	lineGridShuffle = !lineGridShuffle;
@@ -349,7 +362,7 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 }
 
 
-if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q"))){
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("S"))){
 	obj_panelPane.showTracker = !obj_panelPane.showTracker;
 }
 
