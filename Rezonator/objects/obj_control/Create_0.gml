@@ -324,6 +324,8 @@ quickStackAbleToSwitch = true;
 mouseRectWithinLine = false;
 trackChunkMade = false;
 mouseRectBeginInWord = false;
+mouseRectBeginBetweenWords = false;
+
 
 // Set variables for box creation
 chunkID = 0;

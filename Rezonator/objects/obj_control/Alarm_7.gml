@@ -47,3 +47,4 @@ quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
 firstUnitID = 0;
 firstWordID = 0;
+mouseRectBeginBetweenWords = false;
