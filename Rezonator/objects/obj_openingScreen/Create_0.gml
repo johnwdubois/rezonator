@@ -113,8 +113,15 @@ global.userName = "";
 var userSettingsList = ds_list_create();
 
 if (directory_exists(global.rezonatorDirString)) {
-	var filename = global.rezonatorDirString + "\\~usersettings.ini";
+	if (os_type == os_macosx) {
+		var filename = global.rezonatorDirString + "/~usersettings.ini";
+	}
+	else {
+		var filename = global.rezonatorDirString + "\\~usersettings.ini";
+	}
+	
 	if (file_exists(filename)) {
+
 		var file = file_text_open_read(filename);
 		
 		while (!file_text_eof(file)) {
