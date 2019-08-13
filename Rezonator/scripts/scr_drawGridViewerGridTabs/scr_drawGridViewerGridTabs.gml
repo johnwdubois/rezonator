@@ -101,8 +101,8 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case obj_chain.cliqueDisplayGrid:
 			colName = "vizClique"; // vizClique
 			break;
-		case obj_chain.tagLinkGrid:
-			colName = "tagLink"; // vizClique
+		case obj_chain.DepRelLinkGrid:
+			colName = "DepRelLink"; // vizClique
 			break;
 		default:
 			break;

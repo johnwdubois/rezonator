@@ -49,8 +49,8 @@ switch (argument0) {
 	case obj_chain.rezPlayLinkGrid:
 		gridName = "RezPlayLink";
 		break;
-	case obj_chain.tagLinkGrid:
-		gridName = "tagLink";
+	case obj_chain.DepRelLinkGrid:
+		gridName = "DepRelLink";
 		break;
 	default:
 		break;

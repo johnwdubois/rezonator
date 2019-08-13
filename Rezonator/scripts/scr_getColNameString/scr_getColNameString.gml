@@ -409,18 +409,18 @@ else if (grid == obj_chain.cliqueGrid) {
 			break;
 	}
 }
-else if (grid == obj_chain.tagLinkGrid) {
+else if (grid == obj_chain.DepRelLinkGrid) {
 	switch (col) {
-		case obj_chain.tagLinkGrid_colTagLinkID:
-			colName = "tagLinkID";
+		case obj_chain.DepRelLinkGrid_colDepRelLinkID:
+			colName = "DepRelLinkID";
 			break;
-		case obj_chain.tagLinkGrid_colSource:
+		case obj_chain.DepRelLinkGrid_colSource:
 			colName = "source";
 			break;
-		case obj_chain.tagLinkGrid_colGoal:
+		case obj_chain.DepRelLinkGrid_colGoal:
 			colName = "goal";
 			break;
-		case obj_chain.tagLinkGrid_colRole:
+		case obj_chain.DepRelLinkGrid_colRole:
 			colName = "role";
 			break;
 		default:
