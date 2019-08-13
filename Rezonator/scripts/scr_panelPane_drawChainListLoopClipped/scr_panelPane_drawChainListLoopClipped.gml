@@ -84,7 +84,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 		//Check mouse clicks to focus a chain in the list
 	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-	and mouse_check_button_pressed(mb_left) and not instance_exists(obj_dialogueBox) ) {
+	and mouse_check_button_pressed(mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 		
 		// Unfocus chain if previously focused
 		if (currentChainState == obj_chain.chainStateFocus) {
@@ -162,7 +162,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	}
 	
 	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-	and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)) {
+	and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and grid != obj_chain.cliqueDisplayGrid) {
 		
 			// Unfocus any already focused chains
 			for (var j = 0; j < ds_grid_height(grid); j++) {
@@ -179,8 +179,12 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		
 		
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
-		
+		if(grid  == obj_chain.stackChainGrid){
+			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
+		}
+		else{
+			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
+		}
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 			var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;

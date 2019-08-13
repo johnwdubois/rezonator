@@ -1,4 +1,4 @@
-/// @Rez Tracker Timer
+/// @description Rez Tracker Timer
 // You can write your code in this editor
 
 if (timerSecs < 59) {

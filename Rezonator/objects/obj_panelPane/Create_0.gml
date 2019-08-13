@@ -22,6 +22,9 @@ windowResizeXHolding = false;
 windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
+// For hiding the Nav window
+originalWindowHeight = 0;
+collapsedWindowHeight = 2000;
 
 
 // scrollbar variables
@@ -156,6 +159,8 @@ currentTopViewRow = 0;
 //oldFocusedContentsRow = -1;
 //backupFocusedRow = -1;
 
+showAdvancedNav = true;
+
 doubleClickTimer = -1;
 
 selectedDiscoID = "";
@@ -172,7 +177,7 @@ currentResetY1value = 0;
 currentResetY2value = 0;
 timerMins = 0;
 timerSecs = 0;
-alarm[5] = 60;
+
 
 alarm[0] = 1;
 

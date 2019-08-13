@@ -24,6 +24,12 @@ gridSpaceVerticalMax = 303.40;
 
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 33.4;
+prevGridSpaceVertical = gridSpaceVertical;
+//searchGridSpaceVertical = gridSpaceVertical;
+searchPrevGridSpaceVertical = gridSpaceVertical;
+//filterGridSpaceVertical = gridSpaceVertical;
+filterPrevGridSpaceVertical = gridSpaceVertical;
+gridSpaceRatio = 1;
 
 // Measure the space taken up by the speaker labels, and set the left-align margin of the words
 speakerLabelMargin = 200;
@@ -60,6 +66,8 @@ unitGrid_colUnitEnd = 7;
 unitGrid_colParticipantColor = 8;
 
 unitGrid = ds_grid_create(unitGridWidth, 0);
+unitGridBackup = ds_grid_create(unitGridWidth, 0);
+
 
 // Instantiate the Word Grid
 wordGridWidth = global.wordGridWidth;
@@ -98,6 +106,10 @@ lineGrid_colVoidSum = 11;
 lineGrid_colPixelYOriginal = 12;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
+
+lineGridBackup = ds_grid_create(lineGridWidth, 0);
+
+//lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 lineGridDefaultSort = true;
 lineGridShuffle = false;
 // set limit for word displacement by alignment
@@ -225,6 +237,7 @@ hoverWordID = -1;
 hoverChunkID = -1;
 clickedChunkID = -1;
 showMouseLine = false;
+linkDeleted = false;
 
 // Safety check for the drop downs
 ableToCreateDropDown = true;
@@ -290,6 +303,14 @@ moveCounter = 0;
 // Safety check for autosaving
 allSaved = true;
 
+compassRoseX = 0;
+compassRoseY = 0;
+compassLineX1 = 0;
+compassLineY1 = 0;
+compassLineX2 = 0;
+compassLineY2 = 0;
+
+
 // Set variables for the mouse drag rectangle, and quick gestures
 mouseHoldRectX1 = 0;
 mouseHoldRectY1 = 0;
@@ -302,6 +323,11 @@ inRectHitIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
+mouseRectWithinLine = false;
+trackChunkMade = false;
+mouseRectBeginInWord = false;
+mouseRectBeginBetweenWords = false;
+
 
 // Set variables for box creation
 chunkID = 0;
@@ -332,6 +358,9 @@ regExCheck = false;
 goToTime = false;
 rename = false;
 recolor = false;
+caption = false;
+replace = false;
+swapLine = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
@@ -371,7 +400,8 @@ boxGrid_colMoveCount = 5;
 currentStackShowListPosition = -1;
 stackShowList = ds_list_create();
 stackShowWindowActive = false;
-
+stackShowActive = false;
+stackShowBackwards = false;
 
 
 // scrollbar variables
@@ -389,7 +419,7 @@ clipX = 0;
 clipY = 0;
 x = 0;
 y = 0;
-
+stackShowBuffer = 10;
 
 drawRangeCenterOffset = 0;
 drawRangeExtraSteps = 0;
@@ -397,3 +427,10 @@ drawRangeExtraSteps = 0;
 drawLineYOffset = 0;
 global.canScroll = true;
 mouseoverScrollBar = false;
+
+toolTipText = 0;
+
+swapLinePos1 =  0;
+swapLinePos2 =  0;
+
+showLineNumber = true;

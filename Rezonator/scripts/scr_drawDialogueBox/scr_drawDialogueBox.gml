@@ -68,9 +68,22 @@ if (obj_control.dialogueBoxActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "OK");
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Cancel");
 	
+	if (obj_control.swapLine) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input line Number you would line to swap with.");
+	}
+	
+	if (obj_control.replace) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to substitute.");
+	}
+	
 	if (obj_control.newWordCreated) {
 		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to add.");
 	}
+	
+	if(obj_control.caption){
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the caption you would like to add.");
+	}	
+	
 	
 	if (obj_control.rename) {
 		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the name for this chain.");
@@ -140,19 +153,19 @@ if (obj_control.dialogueBoxActive) {
 	
 		}
 	
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45, true);
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45, true);
 		if (obj_control.regExCheck) {
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45, false);	
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45, false);	
 		}
 
 		//darw boolean options text
 		draw_set_font(fnt_main);
 		if (!obj_control.regExCheck) {
-			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Transcript Search");
+			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Search Transcription");
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 70,"Case Sensistive");
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Focused Rez Chain");
 		}
-		draw_text(camera_get_view_width(view_camera[0]) /2 + 65, camera_get_view_height(view_camera[0])/2 - 48,"RegEx Search");
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 20, camera_get_view_height(view_camera[0])/2 - 48,"RegEx:      Regular Expression");
 	
 	
 
@@ -181,7 +194,7 @@ if (obj_control.dialogueBoxActive) {
 
 		}
 		// RegEx boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 50, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 45)){
+		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45)){
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.regExCheck = !obj_control.regExCheck;
 				}
@@ -311,6 +324,10 @@ switch (obj_panelPane.functionChainList_currentTab) {
 		break;
 }
 
+if(ds_grid_height(grid) > 0 && obj_control.recolor){
+	var listOfWordID = ds_list_create();
+	ds_list_copy(listOfWordID, ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, obj_control.selectedChainID));
+}
 
 
 // ok button check
@@ -358,9 +375,33 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 	
 		if (obj_control.recolor) {
-			ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, obj_control.inputText);
+			//show_message( string_digits(obj_control.inputText));
+			if( string_digits(obj_control.inputText) == "" ){
+				show_message( "Numbers only" );
+			}
+			else{
+				if( grid != obj_chain.stackChainGrid){
+					for(var i = 0; i < ds_list_size(listOfWordID);i++){
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(obj_control.inputText)));
+					}
+				}
+				ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
+			}
 		}
 		
+		if(obj_control.caption){
+				ds_grid_set(grid,  obj_chain.chainGrid_colCaption, obj_control.selectedChainID, obj_control.inputText);
+		}
+		
+		if (obj_control.replace) {
+					scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+		}
+		
+		if (obj_control.swapLine) {
+			obj_control.swapLinePos2 = real(string_digits(obj_control.inputText)); 
+
+			scr_swapLine();
+		}
 		
 		with (obj_panelPane) {
 			obj_control.discoIDSelected = false;
@@ -378,6 +419,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.goToTime =  false;
 		obj_control.rename = false;
 		obj_control.recolor = false;
+		obj_control.caption = false;
+		obj_control.replace = false;
+		obj_control.swapLine = false;
+		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
 		instance_destroy();
 		obj_control.dialogueBoxActive = false;
@@ -407,7 +452,11 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.goToTime =  false;
 			obj_control.rename = false;
 			obj_control.recolor = false;
+			obj_control.caption = false;
+			obj_control.replace = false;
+			obj_control.swapLine = false;
 			obj_control.inputText = "";
+			obj_control.cursorPos = 1;
 			instance_destroy();
 			obj_control.dialogueBoxActive = false;
 	}
@@ -459,10 +508,33 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.recolor) {
-			ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, obj_control.inputText);
+			if( string_digits(obj_control.inputText) == "" ){
+				show_message( "Numbers only" );
+			}
+			else{
+				if( grid != obj_chain.stackChainGrid){
+					for(var i = 0; i < ds_list_size(listOfWordID);i++){
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(obj_control.inputText)));
+					}
+				}
+				ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
+			}
 	}
 		
-		
+	if(obj_control.caption){
+		ds_grid_set(grid,  obj_chain.chainGrid_colCaption, obj_control.selectedChainID, obj_control.inputText);
+	}
+	
+	if (obj_control.replace) {
+		scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+	}
+	
+		if (obj_control.swapLine) {
+			obj_control.swapLinePos2 = real(string_digits(obj_control.inputText)); 
+
+			scr_swapLine();
+		}
+	
 	//input_text_set_text(instance, "");
 	with (obj_panelPane) {
 		obj_control.discoIDSelected = false;
@@ -479,7 +551,11 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.goToTime =  false;
 	obj_control.rename = false;
 	obj_control.recolor = false;
+	obj_control.caption = false;
+	obj_control.replace = false;
+	obj_control.swapLine = false;
 	obj_control.inputText = "";
+	obj_control.cursorPos = 1;
 	instance_destroy();
 	obj_control.dialogueBoxActive = false;
 }

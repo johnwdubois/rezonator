@@ -1,6 +1,7 @@
 if (keyboard_check_pressed(vk_escape)) {
 	global.newProject = false;
 	global.openProject = false;
+	global.neworOpen = true;
 }
 
 draw_set_color(global.colorThemePaneBG);

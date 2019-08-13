@@ -116,10 +116,11 @@ if (!clickedInChainList and !clickedInChainContents) {
 	if (not instance_exists(obj_dialogueBox)) {
 		// Scroll a full page up or down
 		if (keyboard_check_pressed(vk_pagedown)) {
-			scrollPlusYDest -= camera_get_view_height(view_camera[0]);
+			scrollPlusYDest -= (camera_get_view_height(view_camera[0]) * 0.8);
+			//show_message(string(camera_get_view_height(view_camera[0])));
 		}
 		if (keyboard_check_pressed(vk_pageup)) {
-			scrollPlusYDest += camera_get_view_height(view_camera[0]);
+			scrollPlusYDest += (camera_get_view_height(view_camera[0])* 0.8);
 		}
 	
 		// Sends user to the bottom of the main screen
@@ -168,9 +169,22 @@ if (!clickedInChainList and !clickedInChainContents) {
 	
 	// replace word
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("X"))) {
-		if (hoverWordID > -1 and hoverWordID < ds_grid_height(wordGrid)) {
-			scr_replaceWord(hoverWordID);
+		if (hoverWordID > -1 and hoverWordID  < ds_grid_height(wordGrid)) {
+				
+				if (!obj_control.dialogueBoxActive) {
+					keyboard_string = "";
+					obj_control.replace = true;
+				}
+
+
+				obj_control.dialogueBoxActive = true;
+
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				}
+		
 		}
+
 	}
 
 	
@@ -199,26 +213,57 @@ else if (wordLeftMargin > wordLeftMarginDest) {
 	wordLeftMargin -= abs(wordLeftMargin - wordLeftMarginDest) / 6;
 }
 
+var searchGridPopulated = ds_grid_height(searchGrid);
+var filterGridPopulated = ds_grid_height(filterGrid);
+
+
 // Culprit
 if (shortcutsEnabled) {
 	if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 		if (keyboard_check_direct(187) and canPressPlus) {
 			canPressPlus = false;
 			gridSpaceVertical += 10;
+			// Don't go above the max
+			gridSpaceVertical = min(gridSpaceVertical, gridSpaceVerticalMax);
 			lineSpacing += 4;
-			//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4));
-			//show_message(string(ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0)));
+			gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
+			// Multiply each line's pixelY by the new ratio
+			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
+			
+			// If the search or filter grids are populated, then set their pixelY's as well
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
+			}
+			if(filterGridPopulated) {
+				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
+			}
+			// reset the ratio
+			prevGridSpaceVertical = gridSpaceVertical;
 			alarm[3] = 15;
 		}
 
 		if (keyboard_check_direct(189) and canPressMinus) {
 			canPressMinus = false;
 			gridSpaceVertical -= 10;
+			// Don't go below the min
+			gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
 			lineSpacing -= 4;
+			gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
 			
+			// Multiply each line's pixelY by the new ratio
+			ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
+			
+			// If the search or filter grids are populated, then set their pixelY's as well
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
+			}
+			if(filterGridPopulated) {
+				ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
+			}
+			// reset the ratio
+			prevGridSpaceVertical = gridSpaceVertical;
 			alarm[4] = 15;
 		}
-		//ds_grid_multiply_region(currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), (gridSpaceVertical/33.4))
 	}
 }
 
@@ -233,6 +278,19 @@ if (keyboard_check_pressed(ord("Q"))) {
 }
 */
 
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
+
+	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+		if (show_question("Would you like to save before exiting?")) {
+			with (obj_fileLoader) {
+				scr_saveREZ(false);
+			}
+		}
+	}
+	
+	room_goto(rm_openingScreen);
+
+}
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("E")) && shortcutsEnabled) {
 	lineGridShuffle = !lineGridShuffle;
@@ -289,9 +347,9 @@ if (ds_grid_height(unitGrid) == global.totalUnitAmount and ds_grid_height(obj_ch
 }
 
 if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentActiveLineGrid == lineGrid) {
-	newWordHoverUnitID = -1;
-	newWordHoverWordSeq = -1;
-	newWordHoverWordID = -1;
+	//newWordHoverUnitID = -1;
+	//newWordHoverWordSeq = -1;
+	//newWordHoverWordID = -1;
 }
 
 
@@ -304,7 +362,7 @@ if (not instance_exists(obj_dropDown) and not ableToCreateDropDownAlarmSet) {
 }
 
 
-if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q"))){
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("S"))){
 	obj_panelPane.showTracker = !obj_panelPane.showTracker;
 }
 

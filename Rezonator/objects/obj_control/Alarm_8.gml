@@ -20,6 +20,11 @@ if (ds_list_size(inRectWordIDList) > 0) {
 // Use the wordList or hitList depending on the context
 var inRectList = ds_list_create();
 if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
+	// Ensure the gesture is correct for a trackChunk
+	if(not searchGridActive && not obj_control.mouseRectBeginInWord) {
+		alarm[10] = 1;
+		exit;
+	}
 	ds_list_copy(inRectList, inRectHitIDList);
 } 
 else {
@@ -140,6 +145,9 @@ if (ds_grid_height(gridOfFutureChains) > 0) {
 
 // Clear the data structures
 ds_grid_destroy(gridOfFutureChains);
+obj_control.mouseRectBeginInWord = false;
+obj_control.mouseRectBeginBetweenWords = false;
+
 
 ds_list_clear(inRectWordIDList);
 ds_list_clear(inRectHitIDList);

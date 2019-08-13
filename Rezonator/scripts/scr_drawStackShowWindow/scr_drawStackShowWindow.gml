@@ -142,7 +142,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 			}
 		}
 		// Add to moveCounter
-		obj_control.moveCounter ++;
+		//obj_control.moveCounter ++;
 	}
 	
 	

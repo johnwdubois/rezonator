@@ -1,5 +1,6 @@
 ///@description Remove Link
 
+obj_control.linkDeleted = true;
 // Set variables to be used by Chunk/newWord deletion
 var currentChainGridRow = undefined;
 var grid = undefined;
@@ -14,7 +15,9 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 		// Access the relevent row in the Chunk grid
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
-	
+		if(currentChunkRow < 0) {
+			exit;	
+		}
 		// Access the Chunk's wordID
 		currentWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkRow);
 	
@@ -179,9 +182,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 			exit;
 		}
 		
-		
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, rowInUnitInStackGrid, -1);
-
 
 		// If there is a new source, find its UnitID
 		if (newSource > 0) {
@@ -193,8 +194,9 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 				}
 			}
 		}
+		// Why was the goal being set to a word ID also???
 		// If there is a new goal, find its UnitID
-		if (newGoal > 0) {
+		/*if (newGoal > 0) {
 			var idListNewGoal = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, newGoal - 1);
 			
 			if not (idListNewGoal == undefined) {
@@ -202,7 +204,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 					newGoal = ds_list_find_value(idListNewGoal, 0);
 				}
 			}
-		}
+		}*/
 	}
 	
 	
@@ -229,6 +231,8 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 
 	scr_refreshVizLinkGrid();
 	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateNormal);
+	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+	obj_control.linkDeleted = false;
 	exit;	
 }
 else {
@@ -238,6 +242,20 @@ else {
 	obj_chain.mouseLineWordID = -1;
 
 	scr_refreshVizLinkGrid();
+	obj_control.linkDeleted = false;
+}
+
+// If we're deleting within the search screen, make sure we don't focus on words outside of the hitGrid
+if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
+	//show_message(string(rowInLinkGridSource));
+	if(rowInLinkGridSource > -1) {
+		var currentSourceID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridSource);
+		if(ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), currentSourceID) < 0)	{
+			//show_message(string(currentSourceID));
+			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridSource, false);
+		}
+	}
 }
 
 // Check if the newly dead link is focused
@@ -261,6 +279,12 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		exit;
 	}
 	var firstWordID = ds_list_find_value(ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid),0);
+	if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+		if(ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), firstWordID) < 0)	{
+			exit;	
+		}
+	}
+	
 	// Check this chain for live links
 	var rowInLinkGridToFocus = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false, obj_chain.linkGrid_colSource, firstWordID);
 	if (rowInLinkGridToFocus == -1) {

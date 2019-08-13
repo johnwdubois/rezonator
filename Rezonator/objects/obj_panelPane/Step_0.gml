@@ -59,3 +59,7 @@ if (keyboard_check(vk_up)) {
 else {
 	holdUp = 0;
 }
+
+if (keyboard_check_pressed(ord("N")) and keyboard_check(vk_control)) {
+	showNav = not showNav;	
+}

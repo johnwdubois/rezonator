@@ -29,9 +29,9 @@ draw_set_alpha(1);
 
 
 drawLineYOffset = 0;
-//if (filterGridActive) {
-//	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 150;	
-//}
+if (filterGridActive) {
+	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 200;	
+}
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
@@ -226,6 +226,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			continue;
 		}
 		
+		if(!obj_control.showLineNumber and i != 2){
+			continue;
+		}
+		
 		var speakerLabelCurrentColX1 = speakerLabelPlusX;
 		var speakerLabelCurrentColY1 = speakerRectY1;
 		var speakerLabelCurrentColX2 = speakerLabelCurrentColX1 + speakerLabelColWidth[i];
@@ -243,7 +247,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		else if (i == 1 and currentLineNumberLabel != undefined) {
 			speakerLabelCurrentColStr = string(currentLineNumberLabel);
 		}
-		else if (i == 2 and participantName != undefined) {
+		
+		if (i == 2 and participantName != undefined) {
 			speakerLabelCurrentColStr = string(participantName);
 			if (showDevVars) {
 				speakerLabelCurrentColStr = string(currentLineY);
@@ -254,10 +259,32 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			}
 		}
 		
+		if(point_in_rectangle(mouse_x, mouse_y,speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2)
+		and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and !obj_control.mouseoverPanelPane){
+			//show_message("clicked here" + string(drawLineLoop));
+				
+			var dropDownOptionList = ds_list_create();
+			
+			obj_control.swapLinePos1 = drawLineLoop;
+
+			ds_list_add(dropDownOptionList, "Swap", "Shuffle", "Toggle line #", "Reset Order");
+
+			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 3;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+			
+		}
 		draw_set_color(global.colorThemeText);
 		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
-		
+		if(obj_control.showLineNumber){
 		speakerLabelPlusX += speakerLabelColWidth[i];
+		}
+		
 	}
 	
 }

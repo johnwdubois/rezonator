@@ -99,6 +99,44 @@ if (stackShowWindowActive) {
 				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
 			}
 	}
+	
+	
+	// Tracks Only toggle button
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
+	if (obj_toolPane.tracksOnlyStackShow) {
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
+	}
+
+	draw_set_colour(global.colorThemeText);
+	draw_set_font(fnt_mainBold);
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 135, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Tracks Only");
+	// current chain boolean switch
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_toolPane.tracksOnlyStackShow = !obj_toolPane.tracksOnlyStackShow;	
+				obj_toolPane.rezOnlyStackShow = false;
+				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
+			}
+	}
+	
+	// Rez Only toggle button
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 230, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
+	if (obj_toolPane.rezOnlyStackShow) {
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 230, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
+	}
+
+	draw_set_colour(global.colorThemeText);
+	draw_set_font(fnt_mainBold);
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 245, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Rez Only");
+	// current chain boolean switch
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 230, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_toolPane.rezOnlyStackShow = !obj_toolPane.rezOnlyStackShow;	
+				obj_toolPane.tracksOnlyStackShow = false;
+				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
+			}
+	}
+	draw_set_font(fnt_mainLarge1);
 
 }
 
@@ -109,7 +147,7 @@ if (stackShowWindowActive) {
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 - 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && stackShowWindowActive){
 		if (mouse_check_button_pressed(mb_left)) {
 			// In here is where the stackShow initiation code will go
-			obj_control.currentStackShowListPosition = 0;
+			//obj_control.currentStackShowListPosition = 0;
 			for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
 				// Currently adds Stacks into the list if they are within the filter
 				if(ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, stackShowListLoop)) {
@@ -117,7 +155,9 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 					ds_list_add(obj_control.stackShowList, currentStackID);	
 				}
 			}
-	
+			
+			
+			
 			// Clear the Filter of all chains
 			ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
@@ -125,6 +165,15 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			instance_destroy();
 			// Begin the show
 			scr_stackShow();
+			
+			with(obj_toolPane) {
+				alarm[3] = 30;	
+			}
+			
+			with(obj_panelPane){
+				alarm[5] = 60;
+			}
+			obj_control.moveCounter = 0;
 		}
 		
 }
@@ -143,7 +192,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 
 	// In here is where the stackShow initiation code will go
-	obj_control.currentStackShowListPosition = 0;
+	//obj_control.currentStackShowListPosition = 0;
 	for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
 		// Currently adds Stacks into the list if they are within the filter
 		if(ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, stackShowListLoop)) {
@@ -159,6 +208,14 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 	instance_destroy();
 	// Begin the show
 	scr_stackShow();
+	
+	with(obj_toolPane) {
+		alarm[3] = 30;	
+	}
+	with(obj_panelPane){
+		alarm[5] = 60;
+	}
+	obj_control.moveCounter = 0
 }
 
 scr_drawStackShowWindow();

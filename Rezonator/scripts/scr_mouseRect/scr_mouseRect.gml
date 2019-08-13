@@ -12,11 +12,20 @@ if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane &&
 	with (obj_toolPane) {
 		alarm[2] = 1;// Is super finnicky, but kinda works??
 	}
+	if(obj_control.hoverWordID != -1) {
+		obj_control.mouseRectBeginInWord = true;	
+	}
 	
 }
 if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	mouseHoldRectX2 = mouse_x;
 	mouseHoldRectY2 = mouse_y;
+	if(abs(mouseHoldRectY1 - mouseHoldRectY2) < obj_control.gridSpaceVertical) {
+		obj_control.mouseRectWithinLine = true;
+	}
+	else {
+		obj_control.mouseRectWithinLine = false;
+	}
 	
 	if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 		draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
@@ -34,6 +43,12 @@ if (mouse_check_button_released(mb_left)) {
 	if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) {
 		mouseRectMade = true;
 	}
+	else {
+		obj_control.mouseRectBeginInWord = false;
+		obj_control.mouseRectBeginBetweenWords = false;
+	}
+	obj_control.mouseRectWithinLine = false;
+
 }
 
 if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {

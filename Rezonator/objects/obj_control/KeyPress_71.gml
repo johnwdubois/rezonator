@@ -45,6 +45,8 @@ else {
 	var paneX = camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2) - (paneWidth / 2);
 	var paneY = camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2) - (paneHeight / 2);
 	
+	//show_message(paneY);
+	
 	var inst = instance_create_layer(paneX, paneY, "InstancesDialogue", obj_panelPane);
 
 	inst.windowWidth = paneWidth;

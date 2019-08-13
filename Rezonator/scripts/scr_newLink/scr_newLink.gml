@@ -42,8 +42,9 @@ if (unitID == undefined) {
 
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	var idSet = unitID;
+	//show_message("deletStack");
 	if(obj_control.quickStackAbleToInitiate){
-	obj_control.moveCounter ++;
+		obj_control.moveCounter ++;
 	}
 }
 else {
@@ -64,8 +65,9 @@ linkIDCounter++;
 
 
 // if this new word is the goal of a previous link, we must update the linkGrid on that row
-var focusedRow = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentFocusedChainID, obj_chain.linkGrid_colGoal, -1)
-if (focusedRow > -1 and focusedRow < ds_grid_height(obj_chain.linkGrid)) {
+var focusedRow = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentFocusedChainID, obj_chain.linkGrid_colGoal, -1);
+// Does not need to happen when a link was deleted
+if (focusedRow > -1 and focusedRow < ds_grid_height(obj_chain.linkGrid) and not obj_control.linkDeleted) {
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, focusedRow, idSet);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoalClickTime, focusedRow, (current_time - obj_control.sessionStartTime) / 1000);
 }

@@ -39,6 +39,7 @@ for (var i = 0; i < ds_list_size(optionList); i++)
 	{
 		mouseoverCurrentOption = true;
 		ableToMouseover = false;
+		obj_control.mouseoverPanelPane = true;
 	}
 	
 	draw_set_color(c_white);

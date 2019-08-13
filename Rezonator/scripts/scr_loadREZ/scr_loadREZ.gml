@@ -77,6 +77,8 @@ if (file_exists(fileName)) {
 				scr_loadREZGridReset(obj_chain.chunkGrid, map, "chunkChainGrid");
 				scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
 				scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
+				// Set the cliqueDisplayGrid to the correct height
+				ds_grid_resize(obj_chain.cliqueDisplayGrid, obj_chain.chainGridWidth, ds_grid_height(obj_chain.cliqueGrid));
 				
 				obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 				scr_refreshChainGrid();
@@ -106,10 +108,32 @@ obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
 
 scr_refreshVizLinkGrid();
 
+if(ds_grid_height(obj_control.lineGrid) > 1) {
+	
+	var newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
+	if(newGridSpaceVertical < 20) {
+		scr_refreshLineGridPixelY();
+		newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
+	}
+	if(newGridSpaceVertical != obj_control.gridSpaceVertical) {
+		obj_control.gridSpaceVertical = newGridSpaceVertical;
+		obj_control.prevGridSpaceVertical = newGridSpaceVertical;
+		obj_control.filterPrevGridSpaceVertical = newGridSpaceVertical;
+		obj_control.searchPrevGridSpaceVertical = newGridSpaceVertical;
+	}
+}
+
 if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGridEnd != undefined ){
 	if(obj_fileLoader.subLineGridBeginning > -1 and obj_fileLoader.subLineGridEnd > -1){
 		scr_gridDeleteRange(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_fileLoader.subLineGridBeginning, obj_fileLoader.subLineGridEnd);
-		
+		for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++)
+		{
+			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelY, i, i * obj_control.gridSpaceVertical);
+			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, i, i * obj_control.gridSpaceVertical);
+		}
 		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 	}
 }
+
+ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
+//scr_refreshLineGridDisplayRow(obj_control.lineGridBackup);

@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-chainGridWidth = 8;
+chainGridWidth = 9;
 chainGrid_colChainID = 0;
 chainGrid_colChainState = 1;
 chainGrid_colWordIDList = 2;
@@ -21,10 +21,12 @@ chainGrid_colColor = 4;
 chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
 chainGrid_colTiltSum = 7;
+chainGrid_colAuthor = 8;
+chainGrid_colCaption = 9;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);
-stackChainGrid = ds_grid_create(chainGridWidth, 0);
+stackChainGrid = ds_grid_create(chainGridWidth + 1, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 

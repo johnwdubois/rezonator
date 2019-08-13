@@ -7,23 +7,29 @@ if (timeStr == "") {
 	exit;
 }
 
-if (string_length(string_digits(timeStr)) < string_length(timeStr)
-or string_length(timeStr) < 1) {
-	show_message("Numbers only.");
+if (string_length(timeStr) < 1) {
+	show_message("Input a number please.");
 	exit;
 }
-
-for(var i = 0 ; i< ds_grid_height(obj_control.lineGrid); i++){
+if(discoID != ""){
+	var startOfDisco = ds_grid_value_y(obj_control.lineGrid , obj_control.lineGrid_colDiscoID , 0 , obj_control.lineGrid_colDiscoID, ds_grid_height(obj_control.lineGrid), discoID );
+}
+else{
+	var startOfDisco = 0;
+}
+for(var i = startOfDisco ; i< ds_grid_height(obj_control.lineGrid); i++){
 	var currentTime = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, i);
-	if(currentTime > timeStr){
+	
+	if(real(string_digits(currentTime)) >= real(string_digits(timeStr))){
 		foundRow = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, 0, obj_control.lineGrid_colUnitStart, ds_grid_height(obj_control.lineGrid) , currentTime );
 		i = ds_grid_height(obj_control.lineGrid);
 	}
 }
 
-	show_message(foundRow);
+	//show_message(foundRow);
+	//show_message(ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, foundRow));
 
-var lineNum = real(foundRow);
+var lineNum = real(ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, foundRow));
 
 var lineNumMin = ds_grid_get_min(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid));
 var lineNumMax = ds_grid_get_max(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0, obj_control.lineGrid_colLineNumberLabel, ds_grid_height(obj_control.lineGrid));

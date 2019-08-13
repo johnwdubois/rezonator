@@ -16,6 +16,7 @@
 var camWidth = camera_get_view_width(view_camera[0]);
 x = camWidth - windowWidth;
 y = obj_toolPane.y + obj_toolPane.windowHeight;
+var scrollBarOffset = 20;
 
 // Check for mouse location over "Help" button
 var mouseover = false;
@@ -38,9 +39,15 @@ draw_set_valign(fa_middle);
 // Draw either button & helpBox, or just button depending
 if (functionHelp_collapsed) {
 	draw_set_color(global.colorThemeText);
+	if(mouseover) {
+		draw_set_alpha(0.25);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+	}
+	
+	draw_set_alpha(1);
 	draw_text(x + 10, y + (windowHeight / 2), "Help");
 	
-	if (functionHelp_plusX <= camWidth) {
+	if ((functionHelp_plusX) <= camWidth) {
 		functionHelp_plusX += abs(functionHelp_plusX - camWidth) / 4 ;
 	}
 
@@ -51,17 +58,17 @@ else {
 	draw_set_color(global.colorThemeBG);
 	draw_text(x + 10, y + (windowHeight / 2), "Help");
 
-	if (functionHelp_plusX <= camWidth - functionHelp_windowWidth) {
+	if ((functionHelp_plusX) <= (camWidth - functionHelp_windowWidth)) {
 		functionHelp_plusX += abs(functionHelp_plusX - (camWidth - functionHelp_windowWidth)) / 4;
 	}
-	if (functionHelp_plusX >= camWidth - functionHelp_windowWidth) {
+	if ((functionHelp_plusX) >= (camWidth - functionHelp_windowWidth)) {
 		functionHelp_plusX -= abs(functionHelp_plusX - (camWidth - functionHelp_windowWidth)) / 4;
 	}
 }
 
 // If helpBox is in view, draw the outline of the box and its contents
 if !(abs(functionHelp_plusX - camWidth) < 0.1) {
-	var helpWindowX1 = functionHelp_plusX;
+	var helpWindowX1 = functionHelp_plusX - scrollBarOffset;
 	var helpWindowY1 = obj_toolPane.y + obj_toolPane.windowHeight + windowHeight;
 	var helpWindowX2 = helpWindowX1 + functionHelp_windowWidth;
 	var helpWindowY2 = camera_get_view_height(view_camera[0]);

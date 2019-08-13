@@ -318,6 +318,12 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 		case obj_chain.chainGrid_colTiltSum:
 			colName = "tiltSum";
 			break;
+		case obj_chain.chainGrid_colCaption:
+			colName = "caption";
+			break;
+		case obj_chain.chainGrid_colAuthor:
+			colName = "author";
+			break;
 		default:
 			break;
 	}

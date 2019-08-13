@@ -1,7 +1,13 @@
 /// @description Box Creation
 // Place all captured unit and word info into the box grid
+//show_message("in");
+if(ds_list_size(inRectWordIDList) > 0 && not ds_list_size(inRectUnitIDList) > 0) {
+	ds_list_add(inRectUnitIDList, ds_grid_get(wordGrid, wordGrid_colUnitID, ds_list_find_value(inRectWordIDList, 0) - 1));
 
+	trackChunkMade = true;
+}
 if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { // Make sure the box captured something
+	//show_message("doin");
 	// Expand the box grid to fit the new info
 	ds_grid_resize(obj_chain.chunkGrid, obj_chain.chainGridWidth + 2, ds_grid_height(obj_chain.chunkGrid) + 1);
 	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid) - 1, ++obj_control.chunkID);
@@ -49,8 +55,9 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 	}
 	
 	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colTiltSum, ds_grid_height(obj_chain.chunkGrid) - 1, ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1));
-	
-	scr_unFocusAllChains();
+	if(not trackChunkMade) {
+		scr_unFocusAllChains();
+	}
 	// If this box counts as a Chunk, mark it as such and nest it if possible
 	if(ds_list_size(currentUnitList) == 1 && ds_list_size(currentWordList) > 1) {
 		
@@ -109,6 +116,17 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 			// Add the ChunkID to the front of the chunkWord's inBoxList
 			ds_list_insert(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, ds_grid_height(obj_control.dynamicWordGrid) - 1), 0, obj_control.chunkID);
 			
+			
+			if(trackChunkMade) { 
+				with (obj_chain) {
+					scr_wordClicked(currentChunkWordID, currentUnitID);
+				}
+				mouseHoldRectX1 = 0; 
+				mouseHoldRectX2 = 0; 
+				mouseHoldRectY1 = 0; 
+				mouseHoldRectY2 = 0; 
+				trackChunkMade = false;
+			}
 		}
 		
 	}
@@ -160,9 +178,7 @@ if (ds_list_size(inRectUnitIDList) > 0) {
 }
 
 // List print for debug purposes
-/*for(var listLoop = 0; listLoop < ds_grid_height(obj_chain.chunkGrid); listLoop++) {
-	show_message(scr_getStringOfList(ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, listLoop)));
-}*/
+
 
 // Reset all box grid variables
 boxHoldRectX1 = 0; 
@@ -172,3 +188,4 @@ boxHoldRectX2 = 0;
 boxRectMade = false;
 boxRectReleased = true;
 boxRectAbleToInitiate = true;
+trackChunkMade = false;

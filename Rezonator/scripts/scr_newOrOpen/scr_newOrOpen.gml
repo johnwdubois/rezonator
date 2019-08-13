@@ -1,3 +1,10 @@
+if (keyboard_check_pressed(vk_escape)) {
+	global.newProject = false;
+	global.openProject = false;
+	global.neworOpen = false;
+	global.menuOpen = true;
+}
+
 draw_set_font(fnt_main);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);

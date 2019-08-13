@@ -85,7 +85,7 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		// If filter is active, deactivate it
 		if (obj_control.filterGridActive) {
 			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-				obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+				//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
 				//obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
 				obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
 				// Keep the focus on previous currentCenterDisplayRow

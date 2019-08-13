@@ -33,7 +33,15 @@ if (string_count("<u who=", currentElement) > 0) {
 
 if (string_count("start=", currentElement) > 0) {
 	var gotStr = scr_fileLineRipListSearch(fileLineRipListElement, "start=\"", "\"", fileLineRipList);
-	currentUnitStart = real(gotStr);
+	// Pwevent phantom chawacters fwom cwashing load in
+	var periodPos = string_pos(".", gotStr);
+	var firstHalf = string_digits(string_copy(gotStr, 1, periodPos));
+	var secondHalf = string_digits(string_copy(gotStr, periodPos, string_length(gotStr)));
+	var newStr = string(firstHalf) + "." + string(secondHalf);
+	
+	//show_message(newStr);
+	//show_message(string_length(newStr));
+	currentUnitStart = real(newStr);
 }
 
 if (string_count("end=", currentElement) > 0) {
