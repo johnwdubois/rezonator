@@ -26,7 +26,7 @@ else if(gridView) {
 // If we're not in grid view and there is a search, switch between the main and search screen
 else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main/filter to search
-	if(currentActiveLineGrid == lineGrid or currentActiveLineGrid == filterGrid) {
+	if(currentActiveLineGrid == lineGrid) {// or currentActiveLineGrid == filterGrid) {
 		scr_unFocusAllChains();
 		// Which grid are we switching from?
 		preSwitchLineGrid = currentActiveLineGrid; 
@@ -64,5 +64,43 @@ else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 		obj_control.scrollPlusYDest = preSwitchDisplayRow;
 		
 		wordLeftMarginDest = 170;
+	}
+	// Give the user another way to leave the filter view
+	else if(currentActiveLineGrid == filterGrid) { 
+		// Exit the stackShow
+		if(stackShowActive) {
+			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
+			scr_stackShow();
+		}
+		// Exit the plain filter
+		else {
+			// Remember the user's place
+			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+				obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+			}
+			
+			// Switch to active grid
+			obj_control.filterGridActive = false;
+			obj_control.currentActiveLineGrid = obj_control.lineGrid
+		}
+	}
+}
+// Give the user another way to leave the filter view (when the searchGrid is inactive)
+else if(currentActiveLineGrid == filterGrid) { 
+	// Exit the stackShow
+	if(stackShowActive) {
+		obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
+		scr_stackShow();
+	}
+	// Exit the plain filter
+	else {
+		// Remember the user's place
+		if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+			obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+		}
+			
+		// Switch to active grid
+		obj_control.filterGridActive = false;
+		obj_control.currentActiveLineGrid = obj_control.lineGrid
 	}
 }
