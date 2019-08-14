@@ -147,3 +147,11 @@ if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUni
 		}
 	}
 }
+
+// If the filter is active, refresh the FilterGrid to contain the newWord
+if(obj_control.filterGridActive) {
+	obj_toolPane.newWordInFilter = true;
+	with (obj_control) {
+		scr_renderFilter();
+	}
+}

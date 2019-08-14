@@ -44,9 +44,18 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	// Set the gesture's current pos
 	if(abs(mouseHoldRectY1 - mouseHoldRectY2) < obj_control.gridSpaceVertical) {
 		obj_control.mouseRectWithinLine = true;
+		
+		// Check if the current gesture is a rezChunk
+		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and not obj_control.mouseRectBeginInWord) {
+			obj_toolPane.currentTool = obj_toolPane.toolRezBrush;	
+		}
 	}
 	else {
 		obj_control.mouseRectWithinLine = false;
+		// Check if the current gesture is a quickStack
+		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and not obj_control.mouseRectBeginInWord) {
+			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;	
+		}
 	}
 	
 	// Draw the rect if not making a quickStack
