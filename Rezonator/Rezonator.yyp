@@ -351,6 +351,14 @@
             }
         },
         {
+            "Key": "0fbcdd8c-978f-45d1-b59d-c1044bb4c5f3",
+            "Value": {
+                "id": "85a2d750-82de-41ce-b4ee-832e503c6842",
+                "resourcePath": "scripts\\scr_splitWord\\scr_splitWord.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0fceb048-05cb-4f3f-b28d-9d678110b073",
             "Value": {
                 "id": "06c920cc-de05-4957-b9ee-e53c89488963",
@@ -4461,7 +4469,8 @@
         "f22f6aba-e326-4a64-822f-cfa6e524f60a",
         "d882257c-cfc0-428b-b362-67410f5f2e76",
         "3f336589-fadf-4ed7-8a96-a645f60d347d",
-        "155253d6-fef1-49fd-af7c-2c9a1b64e74b"
+        "155253d6-fef1-49fd-af7c-2c9a1b64e74b",
+        "0fbcdd8c-978f-45d1-b59d-c1044bb4c5f3"
     ],
     "tutorial": ""
 }

@@ -360,6 +360,7 @@ rename = false;
 recolor = false;
 caption = false;
 replace = false;
+splitWord = false;
 swapLine = false;
 quickLinkAllowed = true;
 inChainBool = false;

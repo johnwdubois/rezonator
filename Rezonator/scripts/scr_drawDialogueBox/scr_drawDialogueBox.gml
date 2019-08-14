@@ -73,7 +73,31 @@ if (obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.replace) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to substitute.");
+		if(obj_control.splitWord){
+			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the split words in this format word1,word2");
+		}
+		else{
+			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to substitute.");
+		}
+		
+					
+		// draw boolean option check boxes
+		draw_set_colour(global.colorThemeText);
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, true);
+		if (obj_control.splitWord) {
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, false);	
+		}
+	
+		// splitWord boolean switch
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45)){
+				if (mouse_check_button_pressed(mb_left)) {
+					obj_control.splitWord = !obj_control.splitWord;
+				}
+		}
+		
+		draw_set_font(fnt_main);
+		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Split Word");
+		
 	}
 	
 	if (obj_control.newWordCreated) {
@@ -293,7 +317,7 @@ if(obj_control.cursorViz){
 else{
 	displayText = string_delete(displayText, obj_control.cursorPos, 0);
 }
-
+draw_set_colour(c_black);
 draw_set_halign(fa_left);
 draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camera_get_view_height(view_camera[0])/2 , displayText);
 
@@ -394,7 +418,12 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 		
 		if (obj_control.replace) {
-					scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+			if(obj_control.splitWord){
+				scr_splitWord(obj_control.inputText);
+			}
+			else{
+				scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+			}
 		}
 		
 		if (obj_control.swapLine) {
@@ -421,6 +450,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.recolor = false;
 		obj_control.caption = false;
 		obj_control.replace = false;
+		obj_control.splitWord = false;
 		obj_control.swapLine = false;
 		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
@@ -454,6 +484,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.recolor = false;
 			obj_control.caption = false;
 			obj_control.replace = false;
+			obj_control.splitWord = false;
 			obj_control.swapLine = false;
 			obj_control.inputText = "";
 			obj_control.cursorPos = 1;
@@ -526,7 +557,12 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.replace) {
-		scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+		if(obj_control.splitWord){
+			scr_splitWord(obj_control.inputText);
+		}
+		else{
+			scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+		}	
 	}
 	
 		if (obj_control.swapLine) {
@@ -553,6 +589,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.recolor = false;
 	obj_control.caption = false;
 	obj_control.replace = false;
+	obj_control.splitWord = false;
 	obj_control.swapLine = false;
 	obj_control.inputText = "";
 	obj_control.cursorPos = 1;

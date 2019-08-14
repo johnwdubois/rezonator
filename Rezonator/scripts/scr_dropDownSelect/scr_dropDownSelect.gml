@@ -1,10 +1,23 @@
+
+/*
+	scr_dropDownSelect();
+	
+	Last Updated: 2019-08-14
+	
+	Called from: obj_dropDown
+	
+	Purpose: draw custom drop down menu with multiple options
+	
+	Mechanism: draws multiple rectangles and text to represent options to the user.
+				
+	Author: Terry Dubois, Brady Moore
+*/
+
+
+
 var optionSelected = argument0;
 
 //optionListType == 0 --> switch sorting columns for sort pane
-
-
-
-
 
 
 if (optionListType == 0)
