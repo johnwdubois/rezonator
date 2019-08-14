@@ -33,11 +33,11 @@ if (mouseLineHide) {
 ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, 0, obj_control.wordDrawGrid_colFocused, ds_grid_height(obj_control.wordDrawGrid), false);
 
 if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
-	var index = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);
-	currentFocusedChainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, index);
+	currentFocusedChainIndex = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);
+	currentFocusedChainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, currentFocusedChainIndex);
 	
 	if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
-		var idList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, index);
+		var idList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentFocusedChainIndex);
 	
 		for (var i = 0; i < ds_list_size(idList); i++) {
 			var currentID = ds_list_find_value(idList, i);
@@ -62,13 +62,14 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentID - 1, true);
 			}
 		}*/
-		var chunkWordID = ds_grid_get(currentChainGrid, chainGrid_colName, index);
+		var chunkWordID = ds_grid_get(currentChainGrid, chainGrid_colName, currentFocusedChainIndex);
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, chunkWordID - 1, true);
 	}
 	
 }
 else {
 	currentFocusedChainID = -1;
+	currentFocusedChainIndex = -1;
 }
 
 switch (obj_toolPane.currentTool) {
@@ -125,3 +126,4 @@ if (ds_grid_height(rezChainGrid) > 0) {
 		rezChainGridRowToRefreshTilt = 0;
 	}
 }
+
