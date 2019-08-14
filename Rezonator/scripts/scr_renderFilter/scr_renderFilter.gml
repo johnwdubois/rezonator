@@ -41,7 +41,13 @@ for (var i = 0; i < 4; i++) {
 	for (var j = 0; j < ds_grid_height(grid); j++) {
 		if (not ds_grid_get(grid, obj_chain.chainGrid_colInFilter, j)) {
 			if(ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
+				// Unfocus chains only if we aren't adding a chunk to a chain within the FilterView
+				if(obj_toolPane.newWordInFilter == false) {
 				scr_unfocusChain(ds_grid_get(grid, obj_chain.chainGrid_colChainID, j));
+				}
+				else {
+					obj_toolPane.newWordInFilter = false;	
+				}
 			}
 			continue;
 		}

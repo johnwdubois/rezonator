@@ -28,6 +28,11 @@ if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 	ds_list_copy(inRectList, inRectHitIDList);
 } 
 else {
+	// Ensure the gesture is correct for a rezChunk
+	if(not searchGridActive && not obj_control.mouseRectBeginInWord) {
+		alarm[10] = 1;
+		exit;
+	}
 	ds_list_copy(inRectList, inRectWordIDList);
 }
 

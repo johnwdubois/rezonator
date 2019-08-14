@@ -33,6 +33,7 @@ tempReturnTool = -1;
 
 tracksOnlyStackShow = false;
 rezOnlyStackShow = false;
+newWordInFilter = false;
 
 
 progressBarX = room_width - 100;
