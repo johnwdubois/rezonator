@@ -132,7 +132,8 @@ if(global.menuOpen){
 			obj_openingScreen.cursorPos = 2;
 		}
 	}
-	if (keyboard_string != "" && global.menuOpen) {
+	if (keyboard_string != "" && global.menuOpen  && keyboard_string != "-" && keyboard_string != "+") {
+		//show_message(keyboard_string);
 		var t = keyboard_string;
 		obj_openingScreen.inputText = string_insert(t, obj_openingScreen.inputText, obj_openingScreen.cursorPos);
 		obj_openingScreen.cursorPos += string_length(t);

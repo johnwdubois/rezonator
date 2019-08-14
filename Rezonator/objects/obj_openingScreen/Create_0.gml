@@ -83,7 +83,6 @@ scr_importPackage();
 
 global.rememberMe = false;
 
-
 global.importCSVGrid = ds_grid_create(0, 0);
 global.importCSVGrid_colIndex = 1;
 global.importCSVGrid_colDiscoID = 2;
@@ -132,13 +131,19 @@ if (directory_exists(global.rezonatorDirString)) {
 	}
 }
 
-global.iniFileString = scr_getStringOfList(userSettingsList);
-ds_list_destroy(userSettingsList);
 
-if (string_count("rememberMe", global.iniFileString) > 0) {
-	global.rememberMe = real(scr_getValueFromString(global.iniFileString, "rememberMe:", ","));
+global.iniFileString = scr_getStringOfList(userSettingsList);
+
+if (ds_list_size(userSettingsList) > 1) {
+	
+	if (string_count("rememberMe:", global.iniFileString) > 0) {
+		global.rememberMe = real(scr_getValueFromString(global.iniFileString, "rememberMe:", ","));
+	}
+
+	if (global.rememberMe) {
+		inputText = scr_getValueFromString(global.iniFileString, "userName:", ",");
+		cursorPos = string_length(inputText) + 1;
+	}
 }
-if (global.rememberMe) {
-	inputText = scr_getValueFromString(global.iniFileString, "userName:", ",");
-	cursorPos = string_length(inputText) + 1;
-}
+
+ds_list_destroy(userSettingsList);

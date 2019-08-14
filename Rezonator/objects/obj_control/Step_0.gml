@@ -280,6 +280,8 @@ if (keyboard_check_pressed(ord("Q"))) {
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
 
+	scr_userSettingsIniFile();
+
 	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
 		if (show_question("Would you like to save before exiting?")) {
 			with (obj_fileLoader) {
@@ -288,6 +290,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 		}
 	}
 	
+	keyboard_string = "";
 	room_goto(rm_openingScreen);
 
 }

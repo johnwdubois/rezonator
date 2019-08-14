@@ -81,4 +81,3 @@ for (var i = 0; i < fileLoadRate; i++) {
 	}
 }
 
-alarm[3] = 3;
