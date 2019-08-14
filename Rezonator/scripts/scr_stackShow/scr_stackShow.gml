@@ -72,4 +72,31 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	obj_control.filterGridActive = false;
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
 	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+	
+	// If the transcriptView was active before the stackShow, switch it back
+	if(obj_control.stackShowSwitchedWordView == true) {
+		obj_control.stackShowSwitchedWordView = false;
+		if(obj_control.wordTranscriptView) {
+			
+			obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+
+			for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
+				var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
+				var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
+				var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
+	
+				if (string_length(currentReplaceWord) > 0) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
+				}
+				else {
+					if (obj_control.wordTranscriptView) {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
+					}
+					else {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
+					}
+				}
+			}
+		}
+	}
 }

@@ -81,8 +81,7 @@ showDevVars = false;
 
 scr_importPackage();
 
-rememberMe = false;
-
+global.rememberMe = false;
 
 global.importCSVGrid = ds_grid_create(0, 0);
 global.importCSVGrid_colIndex = 1;
@@ -104,3 +103,47 @@ cursorViz = false;
 inputText = "";
 cursorTimer = 20;
 global.userName = "";
+
+
+
+
+
+
+var userSettingsList = ds_list_create();
+
+if (directory_exists(global.rezonatorDirString)) {
+	if (os_type == os_macosx) {
+		var filename = global.rezonatorDirString + "/~usersettings.ini";
+	}
+	else {
+		var filename = global.rezonatorDirString + "\\~usersettings.ini";
+	}
+	
+	if (file_exists(filename)) {
+
+		var file = file_text_open_read(filename);
+		
+		while (!file_text_eof(file)) {
+			ds_list_add(userSettingsList, file_text_readln(file));
+		}
+		
+		file_text_close(file);
+	}
+}
+
+
+global.iniFileString = scr_getStringOfList(userSettingsList);
+
+if (ds_list_size(userSettingsList) > 1) {
+	
+	if (string_count("rememberMe:", global.iniFileString) > 0) {
+		global.rememberMe = real(scr_getValueFromString(global.iniFileString, "rememberMe:", ","));
+	}
+
+	if (global.rememberMe) {
+		inputText = scr_getValueFromString(global.iniFileString, "userName:", ",");
+		cursorPos = string_length(inputText) + 1;
+	}
+}
+
+ds_list_destroy(userSettingsList);

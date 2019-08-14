@@ -402,6 +402,7 @@ stackShowList = ds_list_create();
 stackShowWindowActive = false;
 stackShowActive = false;
 stackShowBackwards = false;
+stackShowSwitchedWordView = false;
 
 
 // scrollbar variables

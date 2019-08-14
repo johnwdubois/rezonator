@@ -95,51 +95,14 @@ draw_set_alpha(1);
 if (showDevVars) {
 	
 
-	if(not mouse_check_button(mb_left)) {
-		compassRoseX = mouse_x;
-		compassRoseY = mouse_y;
-		compassLineX1 = mouse_x;
-		compassLineY1 = mouse_y;
-		compassLineX2 = mouse_x;
-		compassLineY2 = mouse_y;
-	}
-	else {
-		compassLineX2 = mouse_x;
-		compassLineY2 = mouse_y;
-		
-		draw_set_color(global.colorThemeText);
-		if(mouseRectBeginInWord) {
-			draw_set_color(c_green);
-		}
-		else if(mouseRectBeginBetweenWords) {
-			draw_set_color(c_blue);
-		}
-		else {
-			draw_set_color(c_red);
-		}
-		
-		
-		draw_line(compassLineX1, compassLineY1, compassLineX2, compassLineY2);
-		var triOffsetX = sin(0.3926991) * 80;
-		var triOffsetY = cos(0.3926991) * 80;
-	
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY + triOffsetY, compassRoseX + triOffsetX, compassRoseY + triOffsetY, true);
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY - triOffsetY, compassRoseX + triOffsetX, compassRoseY - triOffsetY, true);
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetY, compassRoseY + triOffsetX, compassRoseX - triOffsetY, compassRoseY - triOffsetX, true);
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetY, compassRoseY + triOffsetX, compassRoseX + triOffsetY, compassRoseY - triOffsetX, true);
-		
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX - 1, compassRoseY + triOffsetY+ 1, compassRoseX + triOffsetX+ 1, compassRoseY + triOffsetY+ 1, true);
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX - 1, compassRoseY - triOffsetY- 1, compassRoseX + triOffsetX+ 1, compassRoseY - triOffsetY- 1, true);
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetY - 1, compassRoseY + triOffsetX+ 1, compassRoseX - triOffsetY- 1, compassRoseY - triOffsetX- 1, true);
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetY + 1, compassRoseY + triOffsetX+ 1, compassRoseX + triOffsetY+ 1, compassRoseY - triOffsetX- 1, true);
-	}
+	scr_drawCompassRose();
 	
 	draw_set_color(c_ltgray);
 	draw_line(0, 150 + (camera_get_view_height(view_camera[0]) - 150) / 2, camera_get_view_width(view_camera[0]), 150 + (camera_get_view_height(view_camera[0]) - 150) / 2);
 
 	draw_set_color(global.colorThemeText);
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 80, "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
-	draw_text(camera_get_view_width(view_camera[0]) - 300, 80, "toolTipText: " + string(toolTipText));
+	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 100, "fps: " + string(fps));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 130, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 150, "currentCenterDisplayRow: " + string(currentCenterDisplayRow));

@@ -8,3 +8,6 @@ for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
 	}
 	show_message(listStr);
 }
+
+
+

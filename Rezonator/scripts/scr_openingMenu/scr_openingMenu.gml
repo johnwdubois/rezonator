@@ -95,14 +95,14 @@ draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 16, "Reme
 
 
 	draw_rectangle(mean(userSignInBoxX1, userSignInBoxX2)-70, userSignInBoxY2 + 10, mean(userSignInBoxX1, userSignInBoxX2)-60, userSignInBoxY2 + 20, true);
-	if (obj_openingScreen.rememberMe) {
+	if (global.rememberMe) {
 		draw_rectangle(mean(userSignInBoxX1, userSignInBoxX2)-70, userSignInBoxY2 + 10, mean(userSignInBoxX1, userSignInBoxX2)-60, userSignInBoxY2 + 20, false);	
 	}
 
 	// current chain boolean switch
 	if (point_in_rectangle(mouse_x, mouse_y,mean(userSignInBoxX1, userSignInBoxX2)-70, userSignInBoxY2 + 10, mean(userSignInBoxX1, userSignInBoxX2)-60, userSignInBoxY2 + 20)){
 			if (mouse_check_button_pressed(mb_left)) {
-				obj_openingScreen.rememberMe = !obj_openingScreen.rememberMe;	
+				global.rememberMe = !global.rememberMe;	
 			}
 	}
 	
@@ -132,7 +132,8 @@ if(global.menuOpen){
 			obj_openingScreen.cursorPos = 2;
 		}
 	}
-	if (keyboard_string != "" && global.menuOpen) {
+	if (keyboard_string != "" && global.menuOpen  && keyboard_string != "-" && keyboard_string != "+") {
+		//show_message(keyboard_string);
 		var t = keyboard_string;
 		obj_openingScreen.inputText = string_insert(t, obj_openingScreen.inputText, obj_openingScreen.cursorPos);
 		obj_openingScreen.cursorPos += string_length(t);
@@ -155,7 +156,7 @@ if(global.menuOpen){
 			obj_openingScreen.cursorPos+=1;
 		}
 		else{
-			if (string_length(obj_control.inputText) > 0) {
+			if (string_length(obj_openingScreen.inputText) > 0) {
 				obj_openingScreen.cursorPos = string_length(obj_openingScreen.inputText) +1;
 			}
 			else {

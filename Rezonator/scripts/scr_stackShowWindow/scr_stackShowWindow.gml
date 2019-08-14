@@ -174,6 +174,30 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 				alarm[5] = 60;
 			}
 			obj_control.moveCounter = 0;
+			
+			// Set word's to their tokens as default for stackShow
+			if(!obj_control.wordTranscriptView) {
+				obj_control.stackShowSwitchedWordView = true;
+				obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+
+				for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
+					var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
+					var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
+					var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
+	
+					if (string_length(currentReplaceWord) > 0) {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
+					}
+					else {
+						if (obj_control.wordTranscriptView) {
+							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
+						}
+						else {
+							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
+						}
+					}
+				}
+			}
 		}
 		
 }
@@ -216,6 +240,30 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 		alarm[5] = 60;
 	}
 	obj_control.moveCounter = 0
+	
+	// Set word's to their tokens as default for stackShow
+	if(!obj_control.wordTranscriptView) {
+		obj_control.stackShowSwitchedWordView = true;
+		obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+
+		for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
+			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
+			var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
+			var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
+	
+			if (string_length(currentReplaceWord) > 0) {
+				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
+			}
+			else {
+				if (obj_control.wordTranscriptView) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
+				}
+				else {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
+				}
+			}
+		}
+	}
 }
 
 scr_drawStackShowWindow();

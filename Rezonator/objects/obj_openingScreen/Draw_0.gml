@@ -66,6 +66,8 @@ else if (global.newProject and not global.openProject) {
 	scr_newProjectWindow();
 }
 else if (not global.newProject and global.openProject) {
+	
+
 	room_goto(rm_mainScreen);
 }
 

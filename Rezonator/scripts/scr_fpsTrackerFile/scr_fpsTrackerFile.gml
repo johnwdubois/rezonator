@@ -1,4 +1,4 @@
-if (directory_exists_ns(global.rezonatorDirString)) {
+if (directory_exists(global.rezonatorDirString)) {
 	var filename = global.rezonatorDirString + "\\~fps.txt";
 	fpsTrackFile = file_text_open_write(filename);
 	
