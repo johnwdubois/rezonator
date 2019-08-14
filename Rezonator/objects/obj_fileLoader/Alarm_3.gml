@@ -36,8 +36,9 @@ var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
 
 if (string_count("lineHeight:", global.iniFileString) > 0) {
 	obj_control.gridSpaceVertical = real(scr_getValueFromString(global.iniFileString, "lineHeight:", ","));
-	
-	
+	if (string_count("columnWidth:", global.iniFileString) > 0) {
+		obj_control.gridSpaceHorizontal = real(scr_getValueFromString(global.iniFileString, "columnWidth:", ","));
+	}
 				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
 			
 			// Multiply each line's pixelY by the new ratio

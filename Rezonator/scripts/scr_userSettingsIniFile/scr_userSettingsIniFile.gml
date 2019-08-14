@@ -7,6 +7,7 @@ if (directory_exists(global.rezonatorDirString)) {
 	fileStr += "userName:" + string(global.userName) + "#";
 	fileStr += "lineHeight:" + string(obj_control.gridSpaceVertical) + "#";
 	fileStr += "fontSize:" + string(global.fontSize) + "#";
+	fileStr += "columnWidth:" + string(obj_control.gridSpaceHorizontal) + "#";
 	fileStr += "end" + "#";
 	
 	file_text_write_string(userSettingsIniFile, string_hash_to_newline(fileStr));
