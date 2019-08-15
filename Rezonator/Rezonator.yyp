@@ -351,6 +351,14 @@
             }
         },
         {
+            "Key": "0f8274ae-da68-4632-aa86-3e28bac71891",
+            "Value": {
+                "id": "819d3cf6-ce17-4d9e-b0b7-8d2d3ae6d73e",
+                "resourcePath": "datafiles_yy\\Games\\WheresElmo.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "0fb45e5a-463f-4d6f-9ef2-13763e7c3f2b",
             "Value": {
                 "id": "6a3a4498-0bd6-47c3-9bb2-22ac4c780036",
