@@ -64,12 +64,12 @@ ds_list_add(chainColorList, c_blue, c_red, c_green, c_purple, c_olive, c_orange,
 
 
 
-tagLinkGridWidth = 4;
-tagLinkGrid_colTagLinkID = 0;
-tagLinkGrid_colSource = 1;
-tagLinkGrid_colGoal = 2;
-tagLinkGrid_colRole = 3;
-tagLinkGrid = ds_grid_create(tagLinkGridWidth, 0);
+DepRelLinkGridWidth = 4;
+DepRelLinkGrid_colDepRelLinkID = 0;
+DepRelLinkGrid_colSource = 1;
+DepRelLinkGrid_colGoal = 2;
+DepRelLinkGrid_colRole = 3;
+DepRelLinkGrid = ds_grid_create(DepRelLinkGridWidth, 0);
 
 
 

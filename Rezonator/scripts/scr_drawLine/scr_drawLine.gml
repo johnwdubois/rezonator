@@ -226,7 +226,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			continue;
 		}
 		
-		if(!obj_control.showLineNumber and i != 2){
+		if (!obj_control.showLineNumber and i != 2) {
 			continue;
 		}
 		
@@ -259,7 +259,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			}
 		}
 		
-		if(point_in_rectangle(mouse_x, mouse_y,speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2)
+		if (point_in_rectangle(mouse_x, mouse_y,speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2)
 		and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and !obj_control.mouseoverPanelPane){
 			//show_message("clicked here" + string(drawLineLoop));
 				
@@ -281,10 +281,28 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		}
 		draw_set_color(global.colorThemeText);
 		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
-		if(obj_control.showLineNumber){
-		speakerLabelPlusX += speakerLabelColWidth[i];
+		if (obj_control.showLineNumber) {
+			speakerLabelPlusX += speakerLabelColWidth[i];
 		}
 		
+	}
+	
+	if (point_in_rectangle(mouse_x, mouse_y, 0, speakerRectY1, camera_get_view_width(view_camera[0]), speakerRectY2)) {
+		if (keyboard_check_pressed(vk_space)) {
+			
+			var audioFile = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colAudioFile, unitID - 1);
+			
+			audio_stop_all();
+			
+			if (file_exists(audioFile)) {
+				var unitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, unitID - 1);
+				var unitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, unitID - 1);
+				
+				obj_control.audioTrackStream = audio_create_stream(audioFile);
+				obj_control.audioTrackIndex = audio_play_sound(obj_control.audioTrackStream, 0, true);
+				audio_sound_set_track_position(obj_control.audioTrackIndex, unitStart);
+			}
+		}
 	}
 	
 }
