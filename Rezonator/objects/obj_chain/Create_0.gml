@@ -189,3 +189,16 @@ oldFocusedContentsRow = -1;
 arbitraryList = ds_list_create();
 ds_list_add(arbitraryList, 789);
 ds_list_add(arbitraryList, 809);
+
+goldStandardGridWidth = 4;
+goldStandardGridHeight = 0;
+goldStandardGrid = ds_grid_create(goldStandardGridWidth, goldStandardGridHeight);
+goldStandardGrid_colStackID = 0;
+goldStandardGrid_colWordIDList = 1;
+goldStandardGrid_colUser = 2;
+goldStandardGrid_colScore = 3;
+ds_grid_resize(goldStandardGrid, goldStandardGridWidth, ++goldStandardGridHeight);
+ds_grid_resize(goldStandardGrid, goldStandardGridWidth, ++goldStandardGridHeight);
+ds_grid_set(goldStandardGrid, goldStandardGrid_colStackID, 0, 1);
+ds_grid_set(goldStandardGrid, goldStandardGrid_colWordIDList, 0, arbitraryList);
+
