@@ -167,6 +167,14 @@
             }
         },
         {
+            "Key": "08ad5f86-734e-42f8-9c84-d049662a805c",
+            "Value": {
+                "id": "fd338188-16fd-469d-9bf6-29682b223936",
+                "resourcePath": "datafiles_yy\\Games\\sbc001.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "0954d65f-9a82-4fdf-959f-c69c4eb90baf",
             "Value": {
                 "id": "16b97b9e-ed17-47e9-a8d7-633982cf4858",
@@ -340,6 +348,14 @@
                 "id": "18570042-2d3c-4bc1-8799-4d677abc91ff",
                 "resourcePath": "fonts\/fnt_chainListLarge3\/fnt_chainListLarge3.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "0f8274ae-da68-4632-aa86-3e28bac71891",
+            "Value": {
+                "id": "819d3cf6-ce17-4d9e-b0b7-8d2d3ae6d73e",
+                "resourcePath": "datafiles_yy\\Games\\WheresElmo.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -572,14 +588,6 @@
                 "id": "35fad7cb-f33a-4a86-9765-183c1beef653",
                 "resourcePath": "datafiles_yy\/Default REZ files\/sbc049.rez.yy",
                 "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "171c9f55-7808-4e7a-8767-6091bdb2f217",
-            "Value": {
-                "id": "f4c3e5cf-f986-43ae-84c8-8ba3b5bd18bb",
-                "resourcePath": "views\\171c9f55-7808-4e7a-8767-6091bdb2f217.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -884,14 +892,6 @@
                 "id": "b49ec1dd-2ba9-44c4-8a59-153544590c5b",
                 "resourcePath": "sprites\/sMSmallPanel\/sMSmallPanel.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "2b21e99d-3c6d-47ce-b142-b61fe91e05a9",
-            "Value": {
-                "id": "7c5317be-b589-4486-bf00-9595066a975f",
-                "resourcePath": "views\/2b21e99d-3c6d-47ce-b142-b61fe91e05a9.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -2039,14 +2039,6 @@
             }
         },
         {
-            "Key": "7b178fb3-3a61-48f2-9e59-af8d4a719759",
-            "Value": {
-                "id": "fe741b3b-02e4-43c3-acb9-8ce709872c81",
-                "resourcePath": "views\/7b178fb3-3a61-48f2-9e59-af8d4a719759.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "7bf96896-31d5-4157-8f09-1b534bc78c46",
             "Value": {
                 "id": "6f813811-dc7d-4a04-a375-3ccbaa986d81",
@@ -2940,6 +2932,14 @@
                 "id": "229966c0-db81-47c5-a60f-52d91d0acfed",
                 "resourcePath": "fonts\/fnt_mainLarge3\/fnt_mainLarge3.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "a61bdd89-7f8b-4150-a1f5-47aec64a449e",
+            "Value": {
+                "id": "59598999-54d8-4b95-8803-02b3e47402de",
+                "resourcePath": "views\\a61bdd89-7f8b-4150-a1f5-47aec64a449e.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -4079,6 +4079,14 @@
             }
         },
         {
+            "Key": "f1f791cf-9207-4bec-8067-32bef3355ca8",
+            "Value": {
+                "id": "fcdb2d0b-4812-4c5c-9d9e-51cba3f74c96",
+                "resourcePath": "datafiles_yy\\Tutorials\\sbc002.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "f22f6aba-e326-4a64-822f-cfa6e524f60a",
             "Value": {
                 "id": "1e1cce54-30bb-4609-a315-67914d0043ec",
@@ -4196,14 +4204,6 @@
                 "id": "eb864be6-bc0e-444b-909f-c260b0626b04",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc059.xml.yy",
                 "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "f90e489c-02fd-44eb-b4da-5fa2917b8286",
-            "Value": {
-                "id": "b3027972-2d5b-4191-a317-08471808e17e",
-                "resourcePath": "views\/f90e489c-02fd-44eb-b4da-5fa2917b8286.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
