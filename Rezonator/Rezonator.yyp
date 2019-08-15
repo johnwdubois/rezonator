@@ -167,14 +167,6 @@
             }
         },
         {
-            "Key": "08ad5f86-734e-42f8-9c84-d049662a805c",
-            "Value": {
-                "id": "fd338188-16fd-469d-9bf6-29682b223936",
-                "resourcePath": "datafiles_yy\\Games\\sbc001.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "0954d65f-9a82-4fdf-959f-c69c4eb90baf",
             "Value": {
                 "id": "16b97b9e-ed17-47e9-a8d7-633982cf4858",
@@ -348,14 +340,6 @@
                 "id": "18570042-2d3c-4bc1-8799-4d677abc91ff",
                 "resourcePath": "fonts\/fnt_chainListLarge3\/fnt_chainListLarge3.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "0f8274ae-da68-4632-aa86-3e28bac71891",
-            "Value": {
-                "id": "819d3cf6-ce17-4d9e-b0b7-8d2d3ae6d73e",
-                "resourcePath": "datafiles_yy\\Games\\WheresElmo.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -895,6 +879,14 @@
             }
         },
         {
+            "Key": "2b21e99d-3c6d-47ce-b142-b61fe91e05a9",
+            "Value": {
+                "id": "7c5317be-b589-4486-bf00-9595066a975f",
+                "resourcePath": "views\/2b21e99d-3c6d-47ce-b142-b61fe91e05a9.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "2b54f52a-3aa7-4b88-8e99-e2273715b2f0",
             "Value": {
                 "id": "6d75a7b9-a90b-4822-9a5f-5c432a1b4bfa",
@@ -964,14 +956,6 @@
                 "id": "1257883c-321b-4a2c-8624-638855c98eca",
                 "resourcePath": "fonts\/fnt_panelTabLarge5\/fnt_panelTabLarge5.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "306e982f-08f8-4da5-a10b-28c6179c68cc",
-            "Value": {
-                "id": "d524ae6c-d1f7-462a-a6c1-e95c08ad7dc9",
-                "resourcePath": "scripts\\scr_isListInOrder\\scr_isListInOrder.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -2039,6 +2023,14 @@
             }
         },
         {
+            "Key": "7b178fb3-3a61-48f2-9e59-af8d4a719759",
+            "Value": {
+                "id": "fe741b3b-02e4-43c3-acb9-8ce709872c81",
+                "resourcePath": "views\/7b178fb3-3a61-48f2-9e59-af8d4a719759.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "7bf96896-31d5-4157-8f09-1b534bc78c46",
             "Value": {
                 "id": "6f813811-dc7d-4a04-a375-3ccbaa986d81",
@@ -2932,14 +2924,6 @@
                 "id": "229966c0-db81-47c5-a60f-52d91d0acfed",
                 "resourcePath": "fonts\/fnt_mainLarge3\/fnt_mainLarge3.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "a61bdd89-7f8b-4150-a1f5-47aec64a449e",
-            "Value": {
-                "id": "59598999-54d8-4b95-8803-02b3e47402de",
-                "resourcePath": "views\\a61bdd89-7f8b-4150-a1f5-47aec64a449e.yy",
-                "resourceType": "GMFolder"
             }
         },
         {
@@ -4079,19 +4063,20 @@
             }
         },
         {
-            "Key": "f1ca5525-64a6-4743-964d-738aa950da9c",
+            "Key": "f1797854-4d09-41fa-a3a5-c26741a87412",
             "Value": {
-                "id": "f3f6d6b4-fc4d-46ff-99ad-9ec88720741f",
-                "resourcePath": "views\/f1ca5525-64a6-4743-964d-738aa950da9c.yy",
-                "resourceType": "GMFolder"
+                "id": "0949345f-45a9-4ec2-a8c5-6cd522e50687",
+                "resourcePath": "scripts\\scr_isListInOrder\\scr_isListInOrder.yy",
+                "resourceType": "GMScript"
             }
         },
         {
-            "Key": "f1f791cf-9207-4bec-8067-32bef3355ca8",
+            "Key": "f1ca5525-64a6-4743-964d-738aa950da9c",
             "Value": {
-                "id": "fcdb2d0b-4812-4c5c-9d9e-51cba3f74c96",
-                "resourcePath": "datafiles_yy\\Tutorials\\sbc002.rez.yy",
-                "resourceType": "GMIncludedFile"
+
+                "id": "f3f6d6b4-fc4d-46ff-99ad-9ec88720741f",
+                "resourcePath": "views\/f1ca5525-64a6-4743-964d-738aa950da9c.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -4212,6 +4197,14 @@
                 "id": "eb864be6-bc0e-444b-909f-c260b0626b04",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc059.xml.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "f90e489c-02fd-44eb-b4da-5fa2917b8286",
+            "Value": {
+                "id": "b3027972-2d5b-4191-a317-08471808e17e",
+                "resourcePath": "views\/f90e489c-02fd-44eb-b4da-5fa2917b8286.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -4496,7 +4489,7 @@
         "3f336589-fadf-4ed7-8a96-a645f60d347d",
         "155253d6-fef1-49fd-af7c-2c9a1b64e74b",
         "0fbcdd8c-978f-45d1-b59d-c1044bb4c5f3",
-        "306e982f-08f8-4da5-a10b-28c6179c68cc"
+        "f1797854-4d09-41fa-a3a5-c26741a87412"
     ],
     "tutorial": ""
 }

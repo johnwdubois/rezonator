@@ -44,7 +44,6 @@ if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY
 		global.menuOpen = false;
 		global.newProject = false;
 		global.openProject = true;
-		openGames = true;
 	}
 }
 
@@ -68,7 +67,6 @@ if (point_in_rectangle(mouse_x, mouse_y, openTutorialButtonX1, openTutorialButto
 		global.menuOpen = false;
 		global.newProject = false;
 		global.openProject = true;
-		openTutorial = true;
 	}
 }
 
