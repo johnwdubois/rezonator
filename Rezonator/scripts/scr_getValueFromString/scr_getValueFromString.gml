@@ -12,7 +12,7 @@ if (string_count(subString, fullString) > 0) {
 	charAt = string_pos(subString, fullString) + string_length(subString);
 	charStart = charAt;
 	
-	while (string_char_at(fullString, charAt) != delimiter) {
+	while (string_char_at(fullString, charAt) != delimiter and charAt < string_length(fullString)) {
 		charAt++;
 	}
 	

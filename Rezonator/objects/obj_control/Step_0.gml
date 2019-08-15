@@ -75,7 +75,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 		holdDownArrowKey++;
 		if (mouse_wheel_down()) {
 			holdDownArrowKey = 31;
-		}
+		} 
 	}
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if (holdUpArrowKey == 0 or holdUpArrowKey > 30) {

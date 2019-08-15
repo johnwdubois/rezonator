@@ -121,6 +121,7 @@ placeChainNameCounter = 0;
 chunkNameCounter = 0;
 
 currentFocusedChainID = -1;
+currentFocusedChainIndex = -1;
 
 mouseLineHide = false;
 
@@ -184,3 +185,7 @@ raceGrid_colRaceRank = 2;
 chainIDRaceCheck = -1;
 
 oldFocusedContentsRow = -1;
+
+arbitraryList = ds_list_create();
+ds_list_add(arbitraryList, 789);
+ds_list_add(arbitraryList, 809);
