@@ -4098,7 +4098,7 @@
             "Key": "f1f791cf-9207-4bec-8067-32bef3355ca8",
             "Value": {
                 "id": "fcdb2d0b-4812-4c5c-9d9e-51cba3f74c96",
-                "resourcePath": "datafiles_yy\\Tutorials\\sbc002.rez.yy",
+                "resourcePath": "datafiles_yy\\Tutorials\\Default.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
