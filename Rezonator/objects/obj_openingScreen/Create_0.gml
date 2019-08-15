@@ -106,7 +106,8 @@ global.userName = "";
 
 
 
-
+openGames = false;
+openTutorial = false;
 
 
 var userSettingsList = ds_list_create();

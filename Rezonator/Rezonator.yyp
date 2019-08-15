@@ -167,6 +167,14 @@
             }
         },
         {
+            "Key": "08ad5f86-734e-42f8-9c84-d049662a805c",
+            "Value": {
+                "id": "fd338188-16fd-469d-9bf6-29682b223936",
+                "resourcePath": "datafiles_yy\\Games\\sbc001.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "0954d65f-9a82-4fdf-959f-c69c4eb90baf",
             "Value": {
                 "id": "16b97b9e-ed17-47e9-a8d7-633982cf4858",
@@ -1364,6 +1372,14 @@
                 "id": "705456ec-5f01-4f6a-9d4e-dbf5f01e474b",
                 "resourcePath": "objects\/obj_gridViewerMini\/obj_gridViewerMini.yy",
                 "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "4b48e9e9-0b6e-4278-a38d-6f264ecd3ac8",
+            "Value": {
+                "id": "75367dd6-57e5-4e9a-8b43-1ed98d4edda2",
+                "resourcePath": "views\\4b48e9e9-0b6e-4278-a38d-6f264ecd3ac8.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -3231,6 +3247,14 @@
             }
         },
         {
+            "Key": "b9cd2924-ae85-4436-82ca-435c6760d320",
+            "Value": {
+                "id": "c2a07ea2-c9e7-48e5-be14-a423f59ff19e",
+                "resourcePath": "views\\b9cd2924-ae85-4436-82ca-435c6760d320.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "ba364d38-a49c-4533-9c2b-3893506905b4",
             "Value": {
                 "id": "f127a953-d77b-4f9f-812d-29bd96c3f8f5",
@@ -4060,6 +4084,14 @@
                 "id": "f3f6d6b4-fc4d-46ff-99ad-9ec88720741f",
                 "resourcePath": "views\/f1ca5525-64a6-4743-964d-738aa950da9c.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "f1f791cf-9207-4bec-8067-32bef3355ca8",
+            "Value": {
+                "id": "fcdb2d0b-4812-4c5c-9d9e-51cba3f74c96",
+                "resourcePath": "datafiles_yy\\Tutorials\\sbc002.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {

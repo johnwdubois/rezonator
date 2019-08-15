@@ -67,6 +67,30 @@ else if (global.newProject and not global.openProject) {
 }
 else if (not global.newProject and global.openProject) {
 	
+	if(openGames){
+		if	(os_type == os_macosx)	{
+			var userStr = environment_get_variable("USER");
+			global.documentsDirString = "/Users/" + userStr + "/Documents";
+			global.rezonatorDirString = global.documentsDirString + "/Rezonator/Games";
+		}
+		else{
+			var userStr = environment_get_variable("USERNAME");
+			global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
+			global.rezonatorDirString = global.documentsDirString + "\\Rezonator\\Games";
+		}
+	}
+	if(openTutorial){
+		if	(os_type == os_macosx)	{
+			var userStr = environment_get_variable("USER");
+			global.documentsDirString = "/Users/" + userStr + "/Documents";
+			global.rezonatorDirString = global.documentsDirString + "/Rezonator/Tutorials";
+		}
+		else{
+			var userStr = environment_get_variable("USERNAME");
+			global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
+			global.rezonatorDirString = global.documentsDirString + "\\Rezonator\\Tutorials";
+		}
+	}
 
 	room_goto(rm_mainScreen);
 }
