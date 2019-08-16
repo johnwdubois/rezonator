@@ -34,4 +34,14 @@ for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, i, currentWordTranscript);
 		}
 	}
+	
+	if (string_length(currentWordToken) < 1) {
+		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, i);
+		if (currentWordState == wordStateNormal) {
+			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colWordState, i, wordStateDead);
+		}
+		else if (currentWordState == wordStateDead) {
+			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colWordState, i, wordStateNormal);
+		}
+	}
 }

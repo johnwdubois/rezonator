@@ -123,7 +123,7 @@ if (string_count("/>", currentElement) > 0) {
 		ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
 		
 						
-		if(wordToken == "" && j == ds_list_size(linesWithWordsList)-1 and j != 0  ){
+		if (wordToken == "" && j == ds_list_size(linesWithWordsList) - 1 and j != 0) {
 			//show_message("end of line");
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordTranscript);
 		}

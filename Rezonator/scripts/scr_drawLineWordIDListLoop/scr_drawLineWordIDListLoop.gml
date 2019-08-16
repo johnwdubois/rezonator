@@ -24,6 +24,8 @@ var shapeTextSpace = 12;
 var voidMax = 0;
 var voidSum = 0;
 
+var previousWordDisplayString = "0";
+
 // get each wordID from wordIDList and draw it
 for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawWordLoop++) {
 	var shake = false;
@@ -164,6 +166,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	// Draw a word normally
 	
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
+	var currentWordDisplayString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
 	
 	// using the previous word's display column, set the current word's void
 	var currentWordVoid = 0;
@@ -558,6 +561,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	draw_text(currentWordX, currentLineY, currentWordString);
 	
 	previousWordDisplayCol = currentWordDisplayCol;
+	previousWordDisplayString = currentWordDisplayString;
 	
 	shapeTextX += string_width(currentWordString) + shapeTextSpace;
 }
