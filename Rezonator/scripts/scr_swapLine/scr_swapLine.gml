@@ -16,59 +16,39 @@
 
 
 
-if(obj_control.swapLinePos2 <= 0  or  obj_control.swapLinePos2 > ds_grid_height(obj_control.lineGrid)){
+if (obj_control.swapLinePos2 <= 0 or obj_control.swapLinePos2 > ds_grid_height(obj_control.lineGrid)) {
 	show_message("Please input a number in range.");
-exit;
+	exit;
 }
-
-// get correct position of line 2 in grid
-obj_control.swapLinePos2 = obj_control.swapLinePos2 -1; 
 
 // copy original grid into new grid
 var swappedLineGrid = ds_grid_create(obj_control.lineGridWidth, 0);
 ds_grid_copy(swappedLineGrid, obj_control.lineGrid);
 
-var swappedUnitGrid = ds_grid_create(obj_control.unitGridWidth, 0);
-ds_grid_copy(swappedUnitGrid, obj_control.unitGrid);
+var rowSwapLine1 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), obj_control.swapLinePos1);
+var rowSwapLine2 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), obj_control.swapLinePos2);
 
 
 // loop through line to be swapped and copy each value from both lines for each column
-for(var i =0 ; i < ds_grid_width(obj_control.lineGrid); i ++){
+for(var i = 0; i < ds_grid_width(obj_control.lineGrid); i++) {
 	
-
-		var Line1CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , obj_control.swapLinePos1);
+	if(i != 0){
+		var Line1CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , rowSwapLine2);
 		//show_message(string(Line1CurrentSwap));
-		ds_grid_set(swappedLineGrid, i, obj_control.swapLinePos2,  Line1CurrentSwap);
+		ds_grid_set(swappedLineGrid, i, rowSwapLine1,  Line1CurrentSwap);
 	
 	
 	
-		var Line2CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , obj_control.swapLinePos2);
+		var Line2CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , rowSwapLine1);
 		//show_message(string(Line2CurrentSwap));
-		ds_grid_set(swappedLineGrid, i, obj_control.swapLinePos1,  Line2CurrentSwap);
+		ds_grid_set(swappedLineGrid, i, rowSwapLine2,  Line2CurrentSwap);
+	}
 }
-/*
-// loop through line to be swapped and copy each value from both lines for each column
-for(var i =0 ; i < ds_grid_width(obj_control.unitGrid); i ++){
-	
 
-		var Line1CurrentSwap  = ds_grid_get(obj_control.unitGrid, i , obj_control.swapLinePos1);
-		//show_message(string(Line1CurrentSwap));
-		ds_grid_set(swappedUnitGrid, i, obj_control.swapLinePos2,  Line1CurrentSwap);
-	
-	
-	
-		var Line2CurrentSwap  = ds_grid_get(obj_control.unitGrid, i , obj_control.swapLinePos2);
-		//show_message(string(Line2CurrentSwap));
-		ds_grid_set(swappedUnitGrid, i, obj_control.swapLinePos1,  Line2CurrentSwap);
-
-	
-}
-*/
-
-// return swapped grid back into orginal grid
-//ds_grid_copy(obj_control.unitGrid, swappedUnitGrid);
 
 // return swapped grid back into orginal grid
 ds_grid_copy(obj_control.lineGrid, swappedLineGrid);
+
+ds_grid_destroy(swappedLineGrid);
 
 scr_refreshLineGridPixelY();

@@ -265,7 +265,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 				
 			var dropDownOptionList = ds_list_create();
 			
-			obj_control.swapLinePos1 = drawLineLoop;
+			obj_control.swapLinePos1 = unitID;
 
 			ds_list_add(dropDownOptionList, "Swap", "Shuffle", "Toggle line #", "Reset Order", "Check Order");
 
