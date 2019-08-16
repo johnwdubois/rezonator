@@ -52,6 +52,9 @@ switch (argument0) {
 	case obj_chain.DepRelLinkGrid:
 		gridName = "DepRelLink";
 		break;
+	case obj_chain.goldStandardGrid:
+		gridName = "goldStandard";
+		break;
 	default:
 		break;
 }

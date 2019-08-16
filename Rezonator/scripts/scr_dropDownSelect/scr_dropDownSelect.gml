@@ -363,6 +363,33 @@ else if (optionListType == 3)
 					ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
 					
 					break;
+				
+				case "Check Order":
+					
+					
+					var tempLineGrid = ds_grid_create(ds_grid_width(obj_control.currentActiveLineGrid), ds_grid_height(obj_control.currentActiveLineGrid));
+					ds_grid_copy(tempLineGrid, obj_control.currentActiveLineGrid);
+					
+					scr_gridMultiColSort(tempLineGrid, obj_control.lineGrid_colDiscoID, true, obj_control.lineGrid_colUnitStart, true, obj_control.lineGrid_colUnitEnd, true, obj_control.lineGrid_colUnitID, true);
+					
+					var checkList1 = ds_list_create();
+					for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
+						ds_list_add(checkList1, ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, i));
+					}
+					var checkList2 = ds_list_create();
+					for (var i = 0; i < ds_grid_height(tempLineGrid); i++) {
+						ds_list_add(checkList2, ds_grid_get(tempLineGrid, obj_control.lineGrid_colUnitID, i));
+					}
+					
+					show_message("testing..." + string(scr_compareLists(checkList1, checkList2)));
+					
+					
+					ds_list_destroy(checkList1);
+					ds_list_destroy(checkList2);
+					ds_grid_destroy(tempLineGrid);
+					
+				
+					break;
 						
 				default:
 					break;

@@ -11,7 +11,8 @@ ds_list_add(gridList,
 	obj_chain.chunkGrid,
 	obj_chain.unitInStackGrid,
 	obj_chain.cliqueGrid,
-	obj_chain.cliqueDisplayGrid
+	obj_chain.cliqueDisplayGrid,
+	obj_chain.goldStandardGrid
 	);
 
 

@@ -104,6 +104,9 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case obj_chain.DepRelLinkGrid:
 			colName = "DepRelLink"; // vizClique
 			break;
+		case obj_chain.goldStandardGrid:
+			colName = "GoldStandard"; // vizClique
+			break;
 		default:
 			break;
 	}
