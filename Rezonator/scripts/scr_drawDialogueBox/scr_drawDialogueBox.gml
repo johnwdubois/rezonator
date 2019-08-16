@@ -597,3 +597,4 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.dialogueBoxActive = false;
 }
 
+ds_list_destroy(listOfWordID);

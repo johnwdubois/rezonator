@@ -121,6 +121,12 @@ if (string_count("/>", currentElement) > 0) {
 		ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, j);
 		ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordToken);
 		ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
+		
+						
+		if(wordToken == "" && j == ds_list_size(linesWithWordsList)){
+			//show_message("end of line");
+			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordTranscript);
+		}
 			
 		ds_list_add(lineGridWordIDList, wordIDCounter);
 		dbstr += string(wordIDCounter);

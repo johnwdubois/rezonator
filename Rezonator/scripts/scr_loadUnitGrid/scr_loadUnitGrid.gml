@@ -130,23 +130,30 @@ for (var fileLineRipGridLoop = 0; fileLineRipGridLoop < ds_grid_height(global.fi
 		
 			var lineGridWordIDList = ds_list_create();
 			var dbstr = "";
+			
+			show_message(scr_getStringOfList(linesWithWordsList));
 		
 			for (var j = 0; j < ds_list_size(linesWithWordsList); j++)
 			{
 				var lineNumber = ds_list_find_value(linesWithWordsList, j);
 			
 				wordIDCounter++;
+				
+				var wordToken = "";
 			
 				if (string_count("<g><w>", ds_list_find_value(currentFileLineRipList, lineNumber)) > 0)
 				{
-					var wordToken = scr_fileLineRipListSearch(lineNumber, "<g><w>", "<", currentFileLineRipList);
+					wordToken = scr_fileLineRipListSearch(lineNumber, "<g><w>", "<", currentFileLineRipList);
 				}
-				else
-				{
-					var wordToken = "";
-				}
+
 				var wordTranscript = scr_fileLineRipListSearch(lineNumber, "<ga type=\"dt\">", "<", currentFileLineRipList);
 			
+				
+			
+				if(wordToken == "" && j == ds_list_size(linesWithWordsList) - 1){
+					show_message("end of line");
+					wordToken = wordTranscript;
+				}
 			
 				ds_grid_resize(wordGrid, wordGridWidth, ds_grid_height(wordGrid) + 1);
 				var currentRowWordGrid = ds_grid_height(wordGrid) - 1;
