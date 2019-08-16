@@ -59,6 +59,11 @@ else if (grid == obj_chain.cliqueGrid) {
 		itemList = currentCell;
 	}
 }
+else if (grid == obj_chain.goldStandardGrid) {
+	if (col == obj_chain.goldStandardGrid_colWordIDList) {
+		itemList = currentCell;
+	}
+}
 else if (grid == global.fileLineRipGrid) {
 	if (col == global.fileLineRipGrid_colFileLineRipList
 	or col == global.fileLineRipGrid_colParticipantList

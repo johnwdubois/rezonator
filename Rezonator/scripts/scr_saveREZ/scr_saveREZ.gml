@@ -63,6 +63,7 @@ with (obj_saveParent) {
 		var mapChunkChainGrid = scr_gridToJSONLists(chunkGrid);
 		var mapUnitInStackGrid = scr_gridToJSONLists(unitInStackGrid);
 		var mapCliqueGrid = scr_gridToJSONLists(cliqueGrid);
+		var mapGoldStandardGrid = scr_gridToJSONLists(goldStandardGrid);
 		
 
 		ds_map_add_list(map, "linkGrid", mapLinkGrid);
@@ -72,6 +73,8 @@ with (obj_saveParent) {
 		ds_map_add_list(map, "chunkChainGrid", mapChunkChainGrid);
 		ds_map_add_list(map, "unitInStackGrid", mapUnitInStackGrid);
 		ds_map_add_list(map, "cliqueGrid", mapCliqueGrid);
+		ds_map_add_list(map, "goldStandardGrid", mapGoldStandardGrid);
+		
 		
 		ds_map_add(map, "chainColorID1", chainColorID[1]);
 		ds_map_add(map, "chainColorID2", chainColorID[2]);

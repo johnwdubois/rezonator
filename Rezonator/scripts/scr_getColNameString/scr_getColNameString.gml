@@ -436,5 +436,23 @@ else if (grid == obj_chain.DepRelLinkGrid) {
 			break;
 	}
 }
+else if (grid == obj_chain.goldStandardGrid) {
+	switch (col) {
+		case obj_chain.goldStandardGrid_colStackID:
+			colName = "StackID";
+			break;
+		case obj_chain.goldStandardGrid_colWordIDList:
+			colName = "WordIDList";
+			break;
+		case obj_chain.goldStandardGrid_colUser:
+			colName = "User";
+			break;
+		case obj_chain.goldStandardGrid_colScore:
+			colName = "Score";
+			break;
+		default:
+			break;
+	}
+}
 
 return colName;
