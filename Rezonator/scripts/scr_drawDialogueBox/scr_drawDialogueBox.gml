@@ -596,5 +596,3 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	instance_destroy();
 	obj_control.dialogueBoxActive = false;
 }
-
-ds_list_destroy(listOfWordID);
