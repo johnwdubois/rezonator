@@ -99,4 +99,12 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 			}
 		}
 	}
+	
+	// Show the ending screen
+	var scoreString = "Total Score: ";
+	for(var scoreLoop = 0; scoreLoop < ds_grid_height(obj_chain.goldStandardGrid); scoreLoop++) {
+		scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop)) + ",";
+	}
+	show_message(scoreString);
+	
 }
