@@ -381,7 +381,12 @@ else if (optionListType == 3)
 						ds_list_add(checkList2, ds_grid_get(tempLineGrid, obj_control.lineGrid_colUnitID, i));
 					}
 					
-					show_message("testing..." + string(scr_compareLists(checkList1, checkList2)));
+					if(scr_compareLists(checkList1, checkList2)){
+						show_message("Congratulations! The Conversation is back in order.");
+					}
+					else{
+						show_message("Sorry! Some lines are still out of order.");
+					}
 					
 					
 					ds_list_destroy(checkList1);

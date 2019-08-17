@@ -279,7 +279,9 @@ if (keyboard_check_pressed(ord("Q"))) {
 */
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
-
+	
+	audio_stop_all();
+	
 	scr_userSettingsIniFile();
 
 	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
