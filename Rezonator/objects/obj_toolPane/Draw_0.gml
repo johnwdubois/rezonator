@@ -110,15 +110,28 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 		}
 	}
 	
+	var rectBuffer = 2;
+	// Draw the outline of the focused or moused over tool
 	if (mouseover or currentTool == i) {
-		var rectBuffer = 2;
 		draw_set_color(global.colorThemeSelected2);
 		draw_rectangle(mouseoverRectX1 - rectBuffer, mouseoverRectY1 - rectBuffer, mouseoverRectX2 + rectBuffer, mouseoverRectY2 + rectBuffer, true);
 		
+		// Switch the focus to this tool if the user has clicked in its icon
 		if (mouseover and mouse_check_button_pressed(mb_left)) {
 			obj_control.gridView = false;
 			currentTool = i;
 		}
+	}
+	
+	// Shadow out tools when in the stackShow
+	if(((i == 2 && tracksOnlyStackShow) || (i == 1 && rezOnlyStackShow)) && obj_control.stackShowActive) {
+		draw_set_color(global.colorThemeText);
+		draw_set_alpha(0.2);
+		draw_rectangle(x, mouseoverRectY1 - rectBuffer, mouseoverRectX1 - rectBuffer, mouseoverRectY2 + rectBuffer, false);
+		draw_rectangle(x, y, x + windowWidth, mouseoverRectY1 - rectBuffer, false);
+		draw_rectangle(mouseoverRectX2 + rectBuffer, mouseoverRectY1 - rectBuffer, x + windowWidth, mouseoverRectY2 + rectBuffer, false);
+		draw_rectangle(x, mouseoverRectY2 + rectBuffer, x + windowWidth, windowHeight, false);
+		draw_set_alpha(1);
 	}
 	
 	if (i mod 2 == 1 && i < sprite_get_number(spr_tools) - 1) {

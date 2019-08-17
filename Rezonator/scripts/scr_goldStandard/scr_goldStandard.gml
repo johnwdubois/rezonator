@@ -6,6 +6,8 @@ if(string_lower(currentUser) == "gold") {
 	ds_grid_resize(goldStandardGrid, goldStandardGridWidth, ++goldStandardGridHeight);
 	ds_grid_set(goldStandardGrid, goldStandardGrid_colStackID, goldStandardGridHeight - 1, currentStackID);
 	ds_grid_set(goldStandardGrid, goldStandardGrid_colWordIDList, goldStandardGridHeight - 1, currentChainWordList);
+	// Clear the plate for the players
+	scr_deleteEntireChain(ds_grid_get(currentChainGrid, chainGrid_colChainID, currentFocusedChainIndex));
 	// Here, or during load in, this chain has to be removed, completely or just from view.
 	show_message("Stack: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colStackID, goldStandardGridHeight - 1)));
 	show_message("List: " + scr_getStringOfList(ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, goldStandardGridHeight - 1)));
