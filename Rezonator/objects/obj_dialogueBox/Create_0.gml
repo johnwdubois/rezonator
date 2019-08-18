@@ -31,6 +31,8 @@ canResizeWindowY = true;
 
 stackShowWindowActive = false;
 
+questionWindowActive = false;
+askingQuestion = false;
 
 holdUp = 0;
 holdDown = 0;

@@ -6,3 +6,6 @@ scr_drawDialogueBox();
 else if(stackShowWindowActive) {
 scr_stackShowWindow();
 }
+else if(questionWindowActive){
+scr_drawQuestionBox();
+}

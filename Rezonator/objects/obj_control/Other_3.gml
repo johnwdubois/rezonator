@@ -7,9 +7,23 @@ scr_userSettingsIniFile();
 
 
 if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
-	if (show_question("Would you like to save before exiting?")) {
-		with (obj_fileLoader) {
-			scr_saveREZ(false);
+
+/*
+		while(obj_dialogueBox.questionWindowActive){
+
+			obj_dialogueBox.questionWindowActive = true;
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			}
+
 		}
-	}
+*/		
+
+		if (show_question("Would you like to save before exiting?")) {
+			with (obj_fileLoader) {
+				scr_saveREZ(false);
+			}
+		}
+
+		
 }

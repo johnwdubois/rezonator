@@ -373,8 +373,8 @@ else if (optionListType == 3)
 					scr_gridMultiColSort(tempLineGrid, obj_control.lineGrid_colDiscoID, true, obj_control.lineGrid_colUnitStart, true, obj_control.lineGrid_colUnitEnd, true, obj_control.lineGrid_colUnitID, true);
 					
 					var checkList1 = ds_list_create();
-					for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
-						ds_list_add(checkList1, ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, i));
+					for (var i = 0; i < ds_grid_height(obj_control.currentActiveLineGrid); i++) {
+						ds_list_add(checkList1, ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, i));
 					}
 					var checkList2 = ds_list_create();
 					for (var i = 0; i < ds_grid_height(tempLineGrid); i++) {

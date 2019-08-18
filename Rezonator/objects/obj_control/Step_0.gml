@@ -283,6 +283,22 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 	audio_stop_all();
 	
 	scr_userSettingsIniFile();
+	
+	
+	
+/*
+	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+		
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		}
+	obj_dialogueBox.questionWindowActive = true;
+	
+	}
+
+				
+*/
+
 
 	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
 		if (show_question("Would you like to save before exiting?")) {
@@ -291,10 +307,9 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 			}
 		}
 	}
-	
-	keyboard_string = "";
-	room_goto(rm_openingScreen);
 
+		keyboard_string = "";
+		room_goto(rm_openingScreen);
 }
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("E")) && shortcutsEnabled) {
@@ -377,8 +392,6 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 		scr_setAllValuesInCol(obj_control.unitGrid, obj_control.unitGrid_colAudioFile, audioFile);
 	}
 }
-
-
 
 
 scr_fontSizeControl();
