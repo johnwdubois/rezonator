@@ -1,0 +1,133 @@
+
+/*
+	scr_drawSearchBox();
+	
+	Last Updated: 2019-06-25
+	
+	Called from: obj_control
+	
+	Purpose: draw custom search box for multiple options
+	
+	Mechanism: draws multiple rectangles and text to represent options to the user when they search,
+	this includes booleans for a case sensitive search, transcript search, and a search within a chain
+				
+	Author: Brady Moore
+*/
+var verticleBuffer = 125;
+var horizontalBuffer = 250;
+var searchBarXOffset = 235;
+var searchBarYOffset = 20;
+var buttonXOffset = 50;
+var buttonYOffset = 25;
+var openingScreen = false;
+var endingScreen = false;
+	
+	
+if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.stackShowList))) {
+	endingScreen = true;
+}
+else if(obj_control.currentStackShowListPosition == 0) {
+	openingScreen = true;
+}
+else {
+	exit;	
+}
+
+
+if (elmoActive) {
+	obj_control.mouseoverPanelPane = true;
+	obj_control.quickLinkAllowed = false;
+	
+
+	draw_set_halign(fa_left);
+	draw_set_colour(global.colorThemeBG);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+	draw_set_colour(global.colorThemePaneBG);
+	if (global.colorTheme ==0) {
+	draw_set_colour(c_ltgray);
+	}
+	// draw background UI
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
+	draw_set_colour(global.colorThemeText);
+	
+	draw_set_font(fnt_mainBold);
+	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, string(game_display_name));
+	
+	draw_set_font(fnt_mainLarge1);
+
+	// draw buttons for OK and Cancel
+	draw_set_colour(global.colorThemeBG);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, true);
+	draw_set_colour(global.colorThemeBG);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 180 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 180 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, true);
+	draw_set_colour(global.colorThemeText);
+	draw_set_font(fnt_mainLarge1);
+	
+	// draw button text
+	if(openingScreen) {
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "Play");
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Exit");
+	
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Where's Elmo?\n Click on words to add them to the Track chain!\n Press [Enter] to submit your answer!");
+	}
+	else if(endingScreen) {
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "Exit");
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Play Again");
+	
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Good Job!\n Here's your score: ");
+	}
+}
+
+
+
+
+
+
+// ok button check
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && elmoActive){
+	if (mouse_check_button_pressed(mb_left)) {
+		// Exit the opening/ending screen
+		obj_control.alarm[11] = 60;
+		elmoActive = false;
+		instance_destroy();
+
+	}
+		
+}
+
+// cancel button check
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && elmoActive){
+	if (mouse_check_button_pressed(mb_left)) {
+			
+		// Exit the stackShow before it begins
+		if(openingScreen) {
+			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
+			scr_stackShow();	
+		}
+		// Restart the stackShow
+		else if(endingScreen) {
+			obj_control.currentStackShowListPosition = -1;
+			scr_stackShow();
+		}
+			
+		obj_control.alarm[11] = 60;
+		elmoActive = false;
+		instance_destroy();
+	}	
+}
+
+
+// enter check
+if ( keyboard_check_pressed(vk_enter) && elmoActive) {
+	obj_control.alarm[11] = 60;
+	elmoActive = false;
+	instance_destroy();
+
+}

@@ -4471,6 +4471,14 @@
             }
         },
         {
+            "Key": "eae22d17-e707-4457-8614-699be4e25216",
+            "Value": {
+                "id": "d2db498b-81e6-41a3-bde9-076611781d01",
+                "resourcePath": "scripts\\scr_drawElmoScreen\\scr_drawElmoScreen.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "eb35e027-567d-4840-aebf-240d84e51b22",
             "Value": {
                 "id": "8b2ed3cf-1590-4a4a-abb2-956189abab6e",
@@ -5026,7 +5034,8 @@
         "0fbcdd8c-978f-45d1-b59d-c1044bb4c5f3",
         "f1797854-4d09-41fa-a3a5-c26741a87412",
         "18bdff53-f44f-4f83-97d2-1989516d1a73",
-        "0b5b25c9-d9ab-47a7-8e3c-9b08ba5db283"
+        "0b5b25c9-d9ab-47a7-8e3c-9b08ba5db283",
+        "eae22d17-e707-4457-8614-699be4e25216"
     ],
     "tutorial": ""
 }
