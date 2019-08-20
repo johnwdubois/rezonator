@@ -58,6 +58,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	
 		obj_dialogueBox.elmoActive = true;	
 	}
+	else {
 	// I'll need to refactor this into scr_endStackShow();
 	
 	obj_control.stackShowActive = false;
@@ -114,7 +115,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 		obj_control.shape = obj_control.shapeBlock;
 		obj_control.stackShowSwitchedTextShape = false;
 	}
-	
+	}
 	//var currentUser = ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colAuthor, obj_chain.currentFocusedChainIndex);
 	//if(string_lower(currentUser) == "player") {
 		// Show the ending screen

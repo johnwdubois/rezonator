@@ -25,6 +25,15 @@ var endingScreen = false;
 	
 if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.stackShowList))) {
 	endingScreen = true;
+	
+	//if(string_lower(currentUser) == "player") {
+		// Show the ending screen
+		var scoreString = " ";
+		for(var scoreLoop = 0; scoreLoop < ds_grid_height(obj_chain.goldStandardGrid); scoreLoop++) {
+			scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop)) + ",";
+		}
+		//show_message(scoreString);
+	//}
 }
 else if(obj_control.currentStackShowListPosition == 0) {
 	openingScreen = true;
@@ -79,9 +88,9 @@ if (elmoActive) {
 	}
 	else if(endingScreen) {
 		draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "Exit");
-		draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Play Again");
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Play");
 	
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Good Job!\n Here's your score: ");
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Good Job!\n Here's your score: " + scoreString);
 	}
 }
 
@@ -94,6 +103,70 @@ if (elmoActive) {
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && elmoActive){
 	if (mouse_check_button_pressed(mb_left)) {
 		// Exit the opening/ending screen
+		
+		if(endingScreen) {
+			// I'll need to refactor this into scr_endStackShow();
+	
+	obj_control.stackShowActive = false;
+	obj_toolPane.tracksOnlyStackShow = false;
+	obj_toolPane.rezOnlyStackShow = false;
+	
+	with(obj_panelPane){
+		alarm[5] = -1;
+	}
+	obj_panelPane.timerMins = 0;
+	obj_panelPane.timerSecs = 0;
+	//Set currentStackShowListPosition to -1
+	obj_control.currentStackShowListPosition = -1;
+	
+	//Clear stackShowList
+	ds_list_clear(obj_control.stackShowList);
+	
+	// Exit the filter
+	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+	
+	// Switch to active grid
+	//obj_dialogueBox.stackShowWindowActive = false;
+	obj_control.filterGridActive = false;
+	obj_control.currentActiveLineGrid = obj_control.lineGrid;
+	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+	
+	// If the transcriptView was active before the stackShow, switch it back
+	if(obj_control.stackShowSwitchedWordView == true) {
+		obj_control.stackShowSwitchedWordView = false;
+		if(obj_control.wordTranscriptView) {
+			
+			obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+
+			for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
+				var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
+				var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
+				var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
+	
+				if (string_length(currentReplaceWord) > 0) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
+				}
+				else {
+					if (obj_control.wordTranscriptView) {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
+					}
+					else {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
+					}
+				}
+			}
+		}
+	}
+	if(obj_control.stackShowSwitchedTextShape) {
+		obj_control.shape = obj_control.shapeBlock;
+		obj_control.stackShowSwitchedTextShape = false;
+	}
+		}
+		
+		
+		
+		
+		
 		obj_control.alarm[11] = 60;
 		elmoActive = false;
 		instance_destroy();
