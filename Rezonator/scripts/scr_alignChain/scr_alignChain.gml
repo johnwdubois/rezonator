@@ -96,7 +96,10 @@ if (ds_list_size(wordIDList) > 0) {
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
 		if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1)) {
-			
+			continue;
+		}
+		
+		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1) == obj_control.wordStateDead) {
 			continue;
 		}
 		
