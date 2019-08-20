@@ -63,14 +63,6 @@
             }
         },
         {
-            "Key": "01e59bf3-6d28-48be-b8cc-4a2763b37a45",
-            "Value": {
-                "id": "754d4449-23fb-477b-9e23-737b1545b7de",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC024.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "022a6748-068c-41c9-991f-89116c09318f",
             "Value": {
                 "id": "9765a2f2-f624-4d79-a2f3-ccc9d16a9871",
@@ -159,14 +151,6 @@
             }
         },
         {
-            "Key": "076f85b6-8cfd-4e3a-8c75-25b5135ead6d",
-            "Value": {
-                "id": "c1e3cc72-0560-4568-ae24-dbb1657042c4",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC033.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "0954d65f-9a82-4fdf-959f-c69c4eb90baf",
             "Value": {
                 "id": "16b97b9e-ed17-47e9-a8d7-633982cf4858",
@@ -236,14 +220,6 @@
                 "id": "7476ebdd-eb82-4f0d-b29a-72e473c93948",
                 "resourcePath": "scripts\/@object_get_depth\/object_get_depth.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "0c4aa6e2-3e88-47d1-b59b-1d2f6a771446",
-            "Value": {
-                "id": "7abe548c-3452-433f-90a0-8f6ab200bae8",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC005.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -551,14 +527,6 @@
             }
         },
         {
-            "Key": "186dd9ae-7cdf-4a59-9ea1-82076ceb9390",
-            "Value": {
-                "id": "334884cf-c395-40b4-8272-a0bcd6dc8f96",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC015.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "1891078d-6716-4fe5-b69c-5f63e24c10d9",
             "Value": {
                 "id": "14cfc6a5-03c1-40af-8563-e39ec50fc379",
@@ -591,14 +559,6 @@
             }
         },
         {
-            "Key": "1aee8041-1864-400e-bdca-bbd9d018d571",
-            "Value": {
-                "id": "78bc4005-788d-4f48-8fb0-677a5dfd7bad",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC001.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "1b692423-397d-40d9-8771-6733ecac550a",
             "Value": {
                 "id": "68572e6c-367a-46b6-a08c-6145778ff998",
@@ -619,14 +579,6 @@
             "Value": {
                 "id": "2d1e0675-9673-486f-bd20-c23d2b477631",
                 "resourcePath": "datafiles_yy\\Default REZ files\\sbc027.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "1c87082a-ee58-491b-ab94-ce17229bff16",
-            "Value": {
-                "id": "198e7814-c10c-495d-9601-f025cf300ff4",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC039.ogg.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -708,14 +660,6 @@
                 "id": "2fdc05d2-9921-43fe-8c77-33c9a6c29a67",
                 "resourcePath": "scripts\/@instance_create\/instance_create.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "2043f7be-bc77-4d8c-9731-da34a0f46ff0",
-            "Value": {
-                "id": "0b8f84ac-d78b-404d-a0c0-ed02581453ba",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC048.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -807,30 +751,6 @@
             }
         },
         {
-            "Key": "25389bb6-3143-4cd7-968b-4790b3df6610",
-            "Value": {
-                "id": "3cfbff40-cdd8-462a-94b8-b2411daaf8a1",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC020.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "25762aaa-5499-4151-b7fe-8bd1013d9207",
-            "Value": {
-                "id": "c8b224a0-a96e-4138-a2c4-fcdb40f7d9a7",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC029.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "265be433-de11-429d-b058-1047202c02e6",
-            "Value": {
-                "id": "2ad56c67-8c4e-4904-9eec-a7c10a9038f3",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC016.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "267a8c7b-4d89-429b-a70d-c30619372fda",
             "Value": {
                 "id": "d4df795a-ab94-43dc-9f1b-d22a8d9ecfdb",
@@ -860,14 +780,6 @@
                 "id": "9170e5ea-9db9-4707-85de-085b2e33ec16",
                 "resourcePath": "fonts\/ft_info_big\/ft_info_big.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "2725b0a3-2829-4213-afc9-3bf2397ea8d2",
-            "Value": {
-                "id": "fe28a70a-ce95-4a74-b98b-483659dad2fd",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC030.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -927,14 +839,6 @@
             }
         },
         {
-            "Key": "2bb08fa8-a592-4b21-9d81-86039e1fc8f0",
-            "Value": {
-                "id": "db1fcbee-94d3-47fa-bf43-09a4a2e6216b",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC013.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "2c4abd01-f056-4203-accc-7a49a37cdfee",
             "Value": {
                 "id": "06cad46f-7ace-484f-a980-ca0a29e00a82",
@@ -959,14 +863,6 @@
             }
         },
         {
-            "Key": "2fb10ce7-7cc5-43ca-aa20-459bf13eca1f",
-            "Value": {
-                "id": "50580737-0331-4e37-8b48-06464da1fd47",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC050.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "2fe811c4-caa2-4a8b-9162-d4bad73589a8",
             "Value": {
                 "id": "c649c6ed-20ef-4808-9611-a9712cccf0ca",
@@ -988,14 +884,6 @@
                 "id": "1257883c-321b-4a2c-8624-638855c98eca",
                 "resourcePath": "fonts\/fnt_panelTabLarge5\/fnt_panelTabLarge5.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "3063497a-42bc-4717-966d-0b27e45f416f",
-            "Value": {
-                "id": "ff9f3092-3d68-4911-82c2-45e54e6bead4",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC003.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1036,14 +924,6 @@
                 "id": "3c4615fe-1be9-4220-927c-0c0fa85e252a",
                 "resourcePath": "sprites\/Sprite_256x96\/Sprite_256x96.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "33b1a383-e6f3-4e9d-a6a5-5eb2fc3dd400",
-            "Value": {
-                "id": "f140c31f-d577-4ba7-8c0d-3c4c6b69777c",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC040.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1143,14 +1023,6 @@
             }
         },
         {
-            "Key": "3d9590a3-7c11-4353-98a6-32b21c1fb391",
-            "Value": {
-                "id": "5a77b131-3b54-425c-b59c-b891a8979d3b",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC027.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "3e54d237-06a6-4ea2-8e7f-e8c8d5787c3a",
             "Value": {
                 "id": "79027f12-f351-4985-9867-9ae722439b92",
@@ -1183,14 +1055,6 @@
             }
         },
         {
-            "Key": "3f78e49f-f71e-4885-8254-764cb545426f",
-            "Value": {
-                "id": "83b736b6-620b-4c57-9c4d-2d144fd9fb0f",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC021.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "4092a595-ef50-4633-8916-8abb489d9a12",
             "Value": {
                 "id": "8944ea2e-28e7-4431-9c02-eea7457ad015",
@@ -1220,14 +1084,6 @@
                 "id": "2864f4e7-4cc3-4845-adde-7da7d78338b2",
                 "resourcePath": "views\/42b4c520-df52-4974-b4c2-638902c415ff.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "42cb6c39-a407-42e0-8843-7851a2bec104",
-            "Value": {
-                "id": "a95a3a97-f819-4be4-b8c6-3325ce4c9044",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC006.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1391,14 +1247,6 @@
             }
         },
         {
-            "Key": "4cccff79-8eeb-40d7-8bc1-5008013796cf",
-            "Value": {
-                "id": "d37aaaf0-45d9-49c2-aafd-e8d56b81abee",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC037.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "4d043d54-1e65-4e0f-8b8f-63fe52ffef8e",
             "Value": {
                 "id": "4d184632-bf14-4297-943b-17d1437363e6",
@@ -1535,35 +1383,11 @@
             }
         },
         {
-            "Key": "5675d63f-407b-4054-80c9-a2d75bf88a3b",
-            "Value": {
-                "id": "4dd01aa0-0b8a-46cc-b5f6-f5ecd0e5b530",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC060.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "56a50f24-4939-484f-95d4-0a6961a14b79",
-            "Value": {
-                "id": "ca2bbed8-e886-43e7-b8cc-df486d0e692e",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC045.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "58012b3e-a809-4755-a1e6-d8ebfeb46e82",
             "Value": {
                 "id": "b3419876-6b80-4cb4-b678-36201009acbf",
                 "resourcePath": "scripts\/scr_surfaceEnd\/scr_surfaceEnd.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "58d1a399-1ea6-4ebe-ba22-04de0b37885f",
-            "Value": {
-                "id": "84461dc4-2a65-4883-afb2-61ed98583725",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC023.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1588,14 +1412,6 @@
                 "id": "66b87088-c442-4b7f-bee1-1e5c7bca02ed",
                 "resourcePath": "rooms\/rm_mainScreen\/rm_mainScreen.yy",
                 "resourceType": "GMRoom"
-            }
-        },
-        {
-            "Key": "5a2bde38-5a87-497b-b4b9-9538c76f373a",
-            "Value": {
-                "id": "3b1de4f5-6579-4f72-b7d5-20d4211d645d",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC002.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1663,14 +1479,6 @@
             }
         },
         {
-            "Key": "5f53ceeb-a678-4029-bad5-fd7a64300069",
-            "Value": {
-                "id": "ad795ace-58ff-40cb-b2da-a7d7fd821a96",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC053.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "604bd442-5103-496c-ad95-0e265d23f616",
             "Value": {
                 "id": "413c4b6f-29f3-41e0-914a-0c3f7af561f9",
@@ -1692,14 +1500,6 @@
                 "id": "4200ca8d-42a6-4279-9e8d-da942a3f8b9a",
                 "resourcePath": "sprites\/sHQChecktick\/sHQChecktick.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "62eca6e9-c51d-43fa-9bfc-40ae9c349ab8",
-            "Value": {
-                "id": "3966b5ce-b96b-49b9-8e0d-e1e77a502011",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC034.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1839,14 +1639,6 @@
             }
         },
         {
-            "Key": "6a756386-22ad-4c6a-874c-daad3064a491",
-            "Value": {
-                "id": "68a64756-2b53-43a3-9a41-2f651658423e",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC041.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "6ae7d8cc-b328-49e5-a9d2-3d8ac79a4f4a",
             "Value": {
                 "id": "1fe5b46a-3813-4d50-ab1e-91397a0a789e",
@@ -1895,14 +1687,6 @@
             }
         },
         {
-            "Key": "6ddd3e6f-a38f-432e-b0a3-a61a68c0bcf5",
-            "Value": {
-                "id": "e61098c9-16ae-4519-8195-1b76027aefbf",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC009.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "6f79a538-ad6b-4544-b866-61a98ad7be0a",
             "Value": {
                 "id": "97c5a405-6b8d-4095-8ea8-4110cc740973",
@@ -1932,14 +1716,6 @@
                 "id": "60175020-f5f6-40fd-848f-40f4a7094c4f",
                 "resourcePath": "scripts\/input_text_set_enabled\/input_text_set_enabled.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "7100d6c5-85a4-40ca-b0fa-ce84f4184ed7",
-            "Value": {
-                "id": "0b354265-1055-4258-b83d-e6f95a95b3c1",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC022.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2039,14 +1815,6 @@
             }
         },
         {
-            "Key": "75bbf1a9-5e46-4d34-a7cb-725c38d9b60c",
-            "Value": {
-                "id": "526076a3-e08d-41e6-a654-66ea6833a69f",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC052.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "760937d6-16c6-42b7-bd58-6f67433e06d2",
             "Value": {
                 "id": "88bc5632-f994-454e-b900-aee9e008745d",
@@ -2135,14 +1903,6 @@
             }
         },
         {
-            "Key": "794a43ee-65ed-4037-971b-aaa39809e227",
-            "Value": {
-                "id": "62b26679-ebb3-4c06-839a-98c00d75ffdf",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC019.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "79e73708-91c0-467f-ab87-2d0ed15beb30",
             "Value": {
                 "id": "82144cbb-e735-4e3d-b3a9-5312ae30ea73",
@@ -2164,14 +1924,6 @@
                 "id": "8d7e9951-6d8a-419e-89e6-5b7df0d4dff4",
                 "resourcePath": "views\/7abdcd91-22cf-4799-8471-225021a1ee98.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "7b3ae170-5d8f-4746-a611-03d9998dff69",
-            "Value": {
-                "id": "70a5c019-9b1c-489c-9b76-19e2eddda09b",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC017.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2204,14 +1956,6 @@
                 "id": "f5fef835-c025-4178-9971-7a3c36a7af74",
                 "resourcePath": "views\/7f4c8d8a-4661-4484-bfd7-3c6a8738f929.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "7f534136-af23-41f7-96da-76c146dde8d5",
-            "Value": {
-                "id": "f4505d3e-8d82-4924-b276-718af47e39fc",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC043.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2284,14 +2028,6 @@
                 "id": "ba79b168-462c-4c8d-a9f5-95f6421a412c",
                 "resourcePath": "objects\/obj_fpsTracker\/obj_fpsTracker.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "83352245-6c04-4d7e-8a1f-98d7583afa21",
-            "Value": {
-                "id": "72d71204-3327-46d3-88d6-68397f0d4ae0",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC004.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2391,14 +2127,6 @@
             }
         },
         {
-            "Key": "8742246a-1ca3-4962-95e6-3c0fc3f2aff4",
-            "Value": {
-                "id": "835fc3ad-525f-43da-8cab-ded730612d75",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC058.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "876dfb46-e34f-4303-92d7-29b15d649f25",
             "Value": {
                 "id": "93ed8fcf-10df-45be-a7f6-35c2554fe3b2",
@@ -2436,14 +2164,6 @@
                 "id": "c29b37cf-a443-41e1-b17f-6f661a715403",
                 "resourcePath": "sprites\/sUIPanel\/sUIPanel.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "8a889be5-ea7a-45db-9d4c-c78542538196",
-            "Value": {
-                "id": "83c3eb7d-1882-430d-b05c-afceaf62db2d",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC038.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2487,14 +2207,6 @@
             }
         },
         {
-            "Key": "8be0d944-cc41-4303-af19-34bce2000144",
-            "Value": {
-                "id": "dce19aaa-667e-4098-b127-58811978f117",
-                "resourcePath": "views\\8be0d944-cc41-4303-af19-34bce2000144.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "8ca0b771-75ba-4346-a714-7bd5054c90af",
             "Value": {
                 "id": "05bb247f-0ee4-4859-b4c9-c259c57436dd",
@@ -2515,14 +2227,6 @@
             "Value": {
                 "id": "844941d7-77bf-4db1-aa31-78447736ea8f",
                 "resourcePath": "datafiles_yy\\Default REZ files\\sbc057.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "8e6c30be-8ed2-4e45-afd3-0607ac40bf11",
-            "Value": {
-                "id": "fb1bf87b-bdba-46f7-a6a2-ff6917c662d4",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC044.ogg.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -2567,14 +2271,6 @@
             }
         },
         {
-            "Key": "907f1b63-4939-4e3f-b20b-b264dc146dab",
-            "Value": {
-                "id": "8f2c106f-f8e8-4bf1-bd97-619236fbf979",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC049.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "90a4a19b-7f82-4b41-999e-ecfa6096903a",
             "Value": {
                 "id": "8fd3f7e8-96a7-40fb-958e-b9c93ab561e9",
@@ -2612,14 +2308,6 @@
                 "id": "46117712-cfe0-4ce9-afa6-1c5292f1b2bc",
                 "resourcePath": "views\/91f2217c-32c1-4cd5-847e-e1c4911c305d.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "922635c9-bae5-4c90-a0a5-44b02d3e90a5",
-            "Value": {
-                "id": "b02cf5ef-f672-496e-b15f-0bed464cd6f8",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC014.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2708,14 +2396,6 @@
                 "id": "e98b3ef6-2c9b-4d3c-8167-9a92954c012c",
                 "resourcePath": "objects\/obj_openingScreen\/obj_openingScreen.yy",
                 "resourceType": "GMObject"
-            }
-        },
-        {
-            "Key": "9a480de6-13a9-4769-8b1c-03285644254a",
-            "Value": {
-                "id": "f5f09785-525d-447a-9986-62970e4afcf8",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC018.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2831,14 +2511,6 @@
             }
         },
         {
-            "Key": "9f20cf55-a1be-47b1-b696-2f685e13d3a6",
-            "Value": {
-                "id": "1ab84e3c-3159-47a5-81a9-880128524d37",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC055.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "9f8df79b-446f-4d7f-b5e8-6b305450a044",
             "Value": {
                 "id": "cb25957d-dd65-4690-a098-81676a31fba1",
@@ -2852,14 +2524,6 @@
                 "id": "68df1055-bc5d-4249-b411-b351e0735a21",
                 "resourcePath": "fonts\/fnt_gridViewLarge5\/fnt_gridViewLarge5.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "9fdd8d3a-6128-46d0-87b9-58cbbff2f3e6",
-            "Value": {
-                "id": "281fdced-0723-4315-a2cb-3389c0f53a22",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC028.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3047,14 +2711,6 @@
             }
         },
         {
-            "Key": "a91485a4-1ab8-4a5e-b12e-714c385f76a0",
-            "Value": {
-                "id": "beb20741-0e01-4fc7-b0f0-5729216c7d84",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC031.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
             "Value": {
                 "id": "04ae516b-d5b0-4ab8-8846-cee599db0279",
@@ -3199,14 +2855,6 @@
             }
         },
         {
-            "Key": "ae802b33-14e3-44e8-8716-1857e746d7d1",
-            "Value": {
-                "id": "1d6b78c2-8e23-40bf-8de8-cc1da952afc6",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC032.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "aee198f1-95db-42a9-a684-c2249df734de",
             "Value": {
                 "id": "51028d56-6183-4578-8dca-14c8ff58e5f4",
@@ -3252,14 +2900,6 @@
                 "id": "7a819e65-58b9-4edc-98eb-3a0aee613b41",
                 "resourcePath": "scripts\\scr_swapLine\\scr_swapLine.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b1893263-fbe4-466a-aad1-18147f10c96a",
-            "Value": {
-                "id": "ff15d506-bd4f-4040-b69a-e600f12f63ef",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC026.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3399,26 +3039,10 @@
             }
         },
         {
-            "Key": "b7038a4f-79df-429e-a051-8a5236b7afba",
-            "Value": {
-                "id": "1cfb9719-c2ef-42e0-a75c-98d026957919",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC035.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "b7bae409-dee5-4983-8845-6f5927076614",
             "Value": {
                 "id": "22602ac5-ec78-40d6-b240-855a307d24f0",
                 "resourcePath": "datafiles_yy\\Default XML files\\sbc040.xml.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "b808086a-72a5-4f4d-b366-8c9ce0242694",
-            "Value": {
-                "id": "48ea97e1-937f-466f-b02c-ae0a2c14ce25",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC012.ogg.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3767,14 +3391,6 @@
             }
         },
         {
-            "Key": "ce7d75b6-cd9f-48f1-9651-d6c1adb31e7d",
-            "Value": {
-                "id": "0a10e2c2-3be9-485f-8eec-181a7699151e",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC047.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "cf59dfbc-dc69-4dc4-87e7-bf9cc3059d19",
             "Value": {
                 "id": "fba56e93-28be-4d52-8050-d802b3b01073",
@@ -3803,14 +3419,6 @@
             "Value": {
                 "id": "68303529-13e7-4fe3-8d41-3e80bb138e9b",
                 "resourcePath": "datafiles_yy\\Games\\sbc060.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "d077d463-7a1e-4df5-9ee5-901324d34840",
-            "Value": {
-                "id": "86addcc6-a4f0-4d35-a8d9-cddf6177693c",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC042.ogg.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3975,14 +3583,6 @@
             }
         },
         {
-            "Key": "d8e7aa72-cc86-409f-9ee4-89a573c1dd92",
-            "Value": {
-                "id": "40403053-c8aa-46bb-8650-f99b852b972b",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC051.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "d9e831fb-6308-4362-8bbc-785930b829e9",
             "Value": {
                 "id": "5657ffa7-06b5-4eec-97ee-e9f1c76fe91f",
@@ -4076,14 +3676,6 @@
                 "id": "ab4da895-de8a-47fb-aa41-6f367b62c47c",
                 "resourcePath": "scripts\/scr_cliqueDisplayRefresh\/scr_cliqueDisplayRefresh.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "dca3f191-fcea-498d-8a9a-37cde89b78ba",
-            "Value": {
-                "id": "acc698a0-9184-41b6-a72d-5ee2d4d858b1",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC056.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4263,27 +3855,11 @@
             }
         },
         {
-            "Key": "e427ff3f-2482-4dc6-9beb-c42919c5f2b7",
-            "Value": {
-                "id": "51276418-b460-4c18-9a83-e9ca8a52abb3",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC011.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "e42bf5cc-3f46-4d67-a6d0-a4885a11ac3f",
             "Value": {
                 "id": "f9e3d97f-43f3-4a80-a76e-22347b754928",
                 "resourcePath": "options\/android\/options_android.yy",
                 "resourceType": "GMAndroidOptions"
-            }
-        },
-        {
-            "Key": "e4c4b1a7-7d62-4e7a-bce1-f01ba9f461e6",
-            "Value": {
-                "id": "ef631445-c1a9-47af-87cb-65c5674beb6c",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC059.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4375,14 +3951,6 @@
             }
         },
         {
-            "Key": "e890b7ed-a597-4677-bd80-c2dd908ee26a",
-            "Value": {
-                "id": "7cdc5f46-a199-42b7-8959-6b8f325d86b0",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC010.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "e89e7d24-cd7e-4a07-842a-378024f03309",
             "Value": {
                 "id": "38cbf7ae-de97-4fad-88bf-29c953fcf180",
@@ -4431,14 +3999,6 @@
             }
         },
         {
-            "Key": "e9c23ba1-4aca-4481-973a-28d2ec1b9808",
-            "Value": {
-                "id": "8f1abe0b-7a7b-45be-92e2-8806830c5f34",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC057.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "e9c406f3-9335-4e94-9413-3d6fb71d6651",
             "Value": {
                 "id": "64a97a4b-7541-4c92-b6aa-61d5f1dae984",
@@ -4460,14 +4020,6 @@
                 "id": "b8553d9f-79d4-4a67-be0a-3ca494628b8a",
                 "resourcePath": "scripts\/scr_newWord\/scr_newWord.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "eaa5c3d4-d13d-4d6c-bc31-fdbcc6739a40",
-            "Value": {
-                "id": "f70f7b87-f802-4e92-8b68-970f63dd673a",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC054.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4524,14 +4076,6 @@
                 "id": "12d5f1ef-3b9d-46a2-a783-a83d418cd995",
                 "resourcePath": "sprites\/sPixel\/sPixel.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "ef0fd596-fdd2-4de8-8793-d0f6a3f310ec",
-            "Value": {
-                "id": "47fa031d-5452-415c-beaa-22b4d2e5286c",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC007.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4623,14 +4167,6 @@
             }
         },
         {
-            "Key": "f34f6150-1e35-4dcc-8f2e-c327023b2c99",
-            "Value": {
-                "id": "ac0276f7-75e6-4a8b-a139-5fa622a1b4c2",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC025.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "f3f4332d-3dd7-48de-8cce-7e8957f01849",
             "Value": {
                 "id": "7fc23601-f677-4224-8bd3-6b07e025cb85",
@@ -4652,14 +4188,6 @@
                 "id": "9e3e37d3-3587-429e-9579-be3efb556755",
                 "resourcePath": "sprites\/sUIRadioButton\/sUIRadioButton.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "f464fe1e-f4d6-4568-8b83-13cfa78d9ae9",
-            "Value": {
-                "id": "fe8a14e3-de01-4921-ab44-163dcf49e1bd",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC008.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4708,14 +4236,6 @@
                 "id": "07f860e6-b009-4cdf-aedc-dac82ec7e562",
                 "resourcePath": "scripts\/@__global_object_depths\/__global_object_depths.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f8473bad-fd2e-47f7-ad6f-63e74dd79e80",
-            "Value": {
-                "id": "bb1951a0-1abb-42a2-9d23-ab0ab8ed41a1",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC046.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4796,14 +4316,6 @@
                 "id": "7352d666-ef10-4cc5-b0dc-2f9a7df324f1",
                 "resourcePath": "scripts\/README\/README.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "fdca42fa-d2e3-4b4d-91f5-d5f6b3eda991",
-            "Value": {
-                "id": "9fca6aca-2859-4b02-bdd9-499872fa5d61",
-                "resourcePath": "datafiles_yy\\Default OGG files\\SBC036.ogg.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
