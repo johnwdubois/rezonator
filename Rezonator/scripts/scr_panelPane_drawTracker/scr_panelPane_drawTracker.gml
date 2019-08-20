@@ -246,7 +246,8 @@ if (showTracker) {
 		draw_set_colour(global.colorThemeBG);
 	}
 	else{
-	draw_set_colour(colorOfStack);
+	draw_set_color(merge_color(colorOfStack, global.colorThemeBG, 0.65));
+	//draw_set_colour(colorOfStack);
 	}
 	draw_rectangle( 140, camera_get_view_height(view_camera[0]) - Ydistance, 280, camera_get_view_height(view_camera[0]), false);
 	draw_set_colour(global.colorThemeBorders);

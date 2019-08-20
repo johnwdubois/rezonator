@@ -406,6 +406,7 @@ stackShowWindowActive = false;
 stackShowActive = false;
 stackShowBackwards = false;
 stackShowSwitchedWordView = false;
+stackShowSwitchedTextShape = false;
 
 
 // scrollbar variables

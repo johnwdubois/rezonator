@@ -287,6 +287,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		
 	}
 	
+	/*
 	if (point_in_rectangle(mouse_x, mouse_y, 0, speakerRectY1, camera_get_view_width(view_camera[0]), speakerRectY2)) {
 		if (keyboard_check_pressed(vk_space)) {
 			
@@ -304,6 +305,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			}
 		}
 	}
+	*/
 	
 }
 

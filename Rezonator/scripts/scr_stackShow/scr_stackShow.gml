@@ -99,12 +99,19 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 			}
 		}
 	}
-	
-	// Show the ending screen
-	var scoreString = "Total Score: ";
-	for(var scoreLoop = 0; scoreLoop < ds_grid_height(obj_chain.goldStandardGrid); scoreLoop++) {
-		scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop)) + ",";
+	if(obj_control.stackShowSwitchedTextShape) {
+		obj_control.shape = obj_control.shapeBlock;
+		obj_control.stackShowSwitchedTextShape = false;
 	}
-	show_message(scoreString);
+	
+	//var currentUser = ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colAuthor, obj_chain.currentFocusedChainIndex);
+	//if(string_lower(currentUser) == "player") {
+		// Show the ending screen
+		var scoreString = "Good Job! Total Score: ";
+		for(var scoreLoop = 0; scoreLoop < ds_grid_height(obj_chain.goldStandardGrid); scoreLoop++) {
+			scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop)) + ",";
+		}
+		show_message(scoreString);
+	//}
 	
 }

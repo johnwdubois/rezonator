@@ -159,7 +159,7 @@ currentTopViewRow = 0;
 //oldFocusedContentsRow = -1;
 //backupFocusedRow = -1;
 
-showAdvancedNav = true;
+showAdvancedNav = false;
 
 doubleClickTimer = -1;
 
