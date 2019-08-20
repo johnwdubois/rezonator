@@ -188,8 +188,8 @@ oldFocusedContentsRow = -1;
 
 
 goldStandardGridWidth = 4;
-goldStandardGridHeight = 0;
-goldStandardGrid = ds_grid_create(goldStandardGridWidth, goldStandardGridHeight);
+//goldStandardGridHeight = 0;
+goldStandardGrid = ds_grid_create(goldStandardGridWidth, 0);
 goldStandardGrid_colStackID = 0;
 goldStandardGrid_colWordIDList = 1;
 goldStandardGrid_colUser = 2;

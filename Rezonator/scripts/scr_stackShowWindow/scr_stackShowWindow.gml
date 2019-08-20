@@ -198,6 +198,12 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 					}
 				}
 			}
+			if(obj_toolPane.tracksOnlyStackShow) {
+				if (obj_control.shape == obj_control.shapeBlock) {
+					obj_control.stackShowSwitchedTextShape = true;
+					obj_control.shape = obj_control.shapeText;	
+				}
+			}
 		}
 		
 }
@@ -263,6 +269,13 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 				}
 			}
 		}
+	}
+	if(obj_toolPane.tracksOnlyStackShow) {
+		if (obj_control.shape == obj_control.shapeBlock) {
+			obj_control.stackShowSwitchedTextShape = true;
+			obj_control.shape = obj_control.shapeText;	
+		}
+
 	}
 }
 

@@ -15,6 +15,11 @@
 if (obj_control.gridView) {
 	exit;
 }
+if(not showAdvancedNav) {
+	if(currentFunction == functionClique || currentFunction == functionGraphStats) {
+		exit;	
+	}
+}
 
 
 // Set the original height as the file loads
@@ -83,13 +88,13 @@ switch (currentFunction) {
 		scr_panelPane_drawFilter();
 		break;
 	case functionSort:
-		if (showAdvancedNav) {
+		//if (showAdvancedNav) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemePaneBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 			scr_panelPane_drawSort();
-		}
+		//}
 		break;
 	case functionSearch:
 		draw_set_alpha(1);
@@ -129,11 +134,13 @@ switch (currentFunction) {
 		scr_panelPane_drawGoToLine();
 		break;
 	case functionGraphStats:
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemePaneBG);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		if (showAdvancedNav) {
+			draw_set_alpha(1);
+			draw_set_color(global.colorThemePaneBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
-		scr_panelPane_drawGraphStats();
+			scr_panelPane_drawGraphStats();
+		}
 		break;
 	default:
 		break;
