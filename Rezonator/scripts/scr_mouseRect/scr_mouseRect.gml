@@ -26,7 +26,7 @@ if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane &&
 	
 	// Set the gesture's starting pos
 	if(obj_control.hoverWordID != -1) {
-		obj_control.mouseRectBeginInWord = true;	
+		obj_control.mouseRectBeginInWord = obj_control.hoverWordID;	
 	}
 	
 	// Set the active tool based on the gesture
@@ -46,14 +46,14 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 		obj_control.mouseRectWithinLine = true;
 		
 		// Check if the current gesture is a rezChunk
-		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and not obj_control.mouseRectBeginInWord) {
+		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and obj_control.mouseRectBeginInWord == -1) {
 			obj_toolPane.currentTool = obj_toolPane.toolRezBrush;	
 		}
 	}
 	else {
 		obj_control.mouseRectWithinLine = false;
 		// Check if the current gesture is a quickStack
-		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and not obj_control.mouseRectBeginInWord) {
+		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and obj_control.mouseRectBeginInWord == -1) {
 			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;	
 		}
 	}
@@ -80,8 +80,8 @@ if (mouse_check_button_released(mb_left)) {
 		mouseRectMade = true;
 	}
 	else {
-		obj_control.mouseRectBeginInWord = false;
-		obj_control.mouseRectBeginBetweenWords = false;
+		obj_control.mouseRectBeginInWord = -1;
+		obj_control.mouseRectBeginBetweenWords = -1;
 	}
 	obj_control.mouseRectWithinLine = false;
 	obj_control.rectNotInPanelPane = false;

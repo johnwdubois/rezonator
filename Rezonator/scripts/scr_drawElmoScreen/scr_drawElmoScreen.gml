@@ -84,7 +84,7 @@ if (elmoActive) {
 		draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "Play");
 		draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Exit");
 	
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Where's Elmo?\n Click on words to add them to the Track chain!\n Press [Enter] to submit your answer!");
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Where's Elmo?\n\n Click on words to add them to the Track chain!\n Press [Enter] to submit your answer!");
 	}
 	else if(endingScreen) {
 		draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "Exit");

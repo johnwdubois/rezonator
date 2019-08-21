@@ -311,6 +311,7 @@ compassLineX1 = 0;
 compassLineY1 = 0;
 compassLineX2 = 0;
 compassLineY2 = 0;
+compassCenterLineY = -1;
 
 
 // Set variables for the mouse drag rectangle, and quick gestures
@@ -327,8 +328,10 @@ quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
 mouseRectWithinLine = false;
 trackChunkMade = false;
-mouseRectBeginInWord = false;
-mouseRectBeginBetweenWords = false;
+mouseRectBeginInWord = -1;
+mouseRectBeginBetweenWords = -1;
+lineContainsMouse = -1;
+
 
 
 // Set variables for box creation

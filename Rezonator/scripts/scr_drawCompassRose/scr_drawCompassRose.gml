@@ -12,6 +12,7 @@
 				
 	Author: Georgio Klironomos
 */
+draw_set_font(global.fontMain);
 
 // Keep track of the initial drag point
 if(not mouse_check_button(mb_left)) {
@@ -21,17 +22,28 @@ if(not mouse_check_button(mb_left)) {
 		compassLineY1 = mouse_y;
 		compassLineX2 = mouse_x;
 		compassLineY2 = mouse_y;
+		// Check of the mouse is within a line of the discourse
+		if(lineContainsMouse > -1) { 
+			compassCenterLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, lineContainsMouse);
+		}
 }
 else {
+	var currentWordX = -1;
 	
-	// Dtermine the gesture's starting region
+	// Determine the gesture's starting region
 	draw_set_color(global.colorThemeText);
-	if(mouseRectBeginInWord) {
+	// Within a word
+	if(mouseRectBeginInWord > -1) {
 		draw_set_color(c_green);
+		currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, mouseRectBeginInWord - 1);
 	}
-	else if(mouseRectBeginBetweenWords) {
+	// Between words
+	else if(mouseRectBeginBetweenWords > -1) {
 		draw_set_color(c_blue);
+		currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, mouseRectBeginBetweenWords- 1);
+		var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, mouseRectBeginBetweenWords- 1);
 	}
+	// Outside of wordspace
 	else {
 		draw_set_color(c_red);
 	}
@@ -44,51 +56,76 @@ else {
 	// Calculate the angle of the mouseDrag
 	var compassLineAngle = point_direction(compassLineX1, compassLineY1, compassLineX2, compassLineY2);
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 80, "compassLineAngle: " + string(compassLineAngle));
-	var triOffsetX = sin(0.3926991) * 80;
-	var triOffsetY = cos(0.3926991) * 80;
+
 	
-	// Draw and highlight the 8 cardinal directions
-	
-	// South
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY + triOffsetY, compassRoseX + triOffsetX, compassRoseY + triOffsetY, true);
-	if (247.5 < compassLineAngle  and compassLineAngle < 292.5) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY + triOffsetY, compassRoseX + triOffsetX, compassRoseY + triOffsetY, false);
-	}
-	// North
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY - triOffsetY, compassRoseX + triOffsetX, compassRoseY - triOffsetY, true);
-	if (67.5 < compassLineAngle  and compassLineAngle < 112.5) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY - triOffsetY, compassRoseX + triOffsetX, compassRoseY - triOffsetY, false);
-	}
-	// West
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetY, compassRoseY + triOffsetX, compassRoseX - triOffsetY, compassRoseY - triOffsetX, true);
-	if (157.5 < compassLineAngle  and compassLineAngle < 202.5) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetY, compassRoseY + triOffsetX, compassRoseX - triOffsetY, compassRoseY - triOffsetX, false);
-	}
-	// East
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetY, compassRoseY + triOffsetX, compassRoseX + triOffsetY, compassRoseY - triOffsetX, true);
-	if ((337.5 < compassLineAngle and compassLineAngle < 360) || (0 < compassLineAngle and compassLineAngle < 22.5)) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetY, compassRoseY + triOffsetX, compassRoseX + triOffsetY, compassRoseY - triOffsetX, false);
-	}
-	// NorthEast
-	if (22.5 < compassLineAngle and compassLineAngle < 67.5) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetY, compassRoseY - triOffsetX, compassRoseX + triOffsetX, compassRoseY - triOffsetY, false);
-	}
-	// NorthWest
-	if (112.5 < compassLineAngle and compassLineAngle < 157.5) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX, compassRoseY - triOffsetY, compassRoseX - triOffsetY, compassRoseY - triOffsetX, false);
-	}
-	// SouthWest
-	if (202.5 < compassLineAngle and compassLineAngle < 247.5) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetY, compassRoseY + triOffsetX, compassRoseX - triOffsetX, compassRoseY + triOffsetY, false);
-	}
-	// SouthEast
-	if (292.5 < compassLineAngle and compassLineAngle < 337.5) {
-		draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetX, compassRoseY + triOffsetY, compassRoseX + triOffsetY, compassRoseY + triOffsetX, false);
-	}
+	// Use this to create the compass's horizontal and vertical "snapToGrid"
+	if(lineContainsMouse > -1) { 
 		
-	/*	
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX - 1, compassRoseY + triOffsetY+ 1, compassRoseX + triOffsetX+ 1, compassRoseY + triOffsetY+ 1, true);
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetX - 1, compassRoseY - triOffsetY- 1, compassRoseX + triOffsetX+ 1, compassRoseY - triOffsetY- 1, true);
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX - triOffsetY - 1, compassRoseY + triOffsetX+ 1, compassRoseX - triOffsetY- 1, compassRoseY - triOffsetX- 1, true);
-	draw_triangle(compassRoseX, compassRoseY, compassRoseX + triOffsetY + 1, compassRoseY + triOffsetX+ 1, compassRoseX + triOffsetY+ 1, compassRoseY - triOffsetX- 1, true);*/
+		var lineRectX1 = -1;
+		var lineRectX2 = -1;
+		
+		// Use the containing word's x position
+		if(mouseRectBeginInWord > -1) {
+			lineRectX1 = currentWordX - 2;
+			lineRectX2 = currentWordX + gridSpaceHorizontal;
+		}
+		// Use the first word's x position
+		else if(mouseRectBeginBetweenWords > -1) {
+			lineRectX1 = currentWordX + string_width(currentWordString) + 4;
+			lineRectX2 = lineRectX1 + gridSpaceHorizontal - string_width(currentWordString) - 4;
+		}
+		else {
+			lineRectX1 = compassRoseX;
+			lineRectX2 = compassRoseX;
+		}
+		
+		var lineRectY1 = compassCenterLineY - (gridSpaceVertical / 2);
+		var lineRectY2 = lineRectY1 + gridSpaceVertical;
+	
+		// Draw the center grid
+		draw_set_alpha(0.8);
+		draw_line_width(lineRectX1 - 30, lineRectY1, lineRectX2 + 30, lineRectY1, 3);
+		draw_line_width(lineRectX1- 30, lineRectY2, lineRectX2 + 30, lineRectY2, 3);
+		draw_line_width(lineRectX1, lineRectY1 - 30, lineRectX1, lineRectY2 + 30, 3);
+		draw_line_width(lineRectX2, lineRectY1 - 30, lineRectX2, lineRectY2 + 30, 3);
+		
+		
+		// Draw and highlight the 8 cardinal directions
+		draw_set_alpha(0.3);
+		// South
+		if (point_in_rectangle(mouse_x, mouse_y, lineRectX1, lineRectY2, lineRectX2, camera_get_view_height(view_camera[0]))) {
+			draw_rectangle(lineRectX1, lineRectY2, lineRectX2, lineRectY2 + 50, false);
+		}
+		// North
+		if (point_in_rectangle(mouse_x, mouse_y, lineRectX1, 0, lineRectX2, lineRectY1)) {
+			draw_rectangle(lineRectX1, lineRectY1 - 50, lineRectX2, lineRectY1, false);
+		}
+		
+		// West
+		if (point_in_rectangle(mouse_x, mouse_y, 0, lineRectY1, lineRectX1, lineRectY2)) {
+			draw_rectangle(lineRectX1 - 50, lineRectY1, lineRectX1, lineRectY2, false);
+		}
+		// East
+		if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, lineRectY1, camera_get_view_width(view_camera[0]), lineRectY2)) {
+			draw_rectangle(lineRectX2, lineRectY1, lineRectX2 + 50, lineRectY2, false);
+		}
+		// NorthEast
+		if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, 0, camera_get_view_width(view_camera[0]), lineRectY1)) {
+			draw_rectangle(lineRectX2, lineRectY1 - 50, lineRectX2 + 50, lineRectY1, false);
+		}
+		// NorthWest
+		if (point_in_rectangle(mouse_x, mouse_y, 0, 0, lineRectX1, lineRectY1)) {
+			draw_rectangle(lineRectX1 - 50, lineRectY1 - 50, lineRectX1, lineRectY1, false);
+		}
+		// SouthWest
+		if (point_in_rectangle(mouse_x, mouse_y, 0, lineRectY2, lineRectX1, camera_get_view_height(view_camera[0]))) {
+			draw_rectangle(lineRectX1 - 50, lineRectY2, lineRectX1, lineRectY2 + 50, false);
+		}
+		// SouthEast
+		if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, lineRectY2, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]))) {
+			draw_rectangle(lineRectX2, lineRectY2, lineRectX2 + 50, lineRectY2 + 50, false);
+		}
+		
+		draw_set_alpha(1);
+	}
 }
