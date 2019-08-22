@@ -116,6 +116,14 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 	}
 	obj_panelPane.timerMins = 0;
 	obj_panelPane.timerSecs = 0;
+	/*var currentStackID = ds_list_find_value(obj_control.stackShowList, ds_list_size(obj_control.stackShowList) - 1);
+	var currentGoldStandardRow = ds_grid_value_y(goldStandardGrid, goldStandardGrid_colStackID, 0, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid), currentStackID);
+	var currentGoldStandardWordIDList = ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, currentGoldStandardRow);
+	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+		var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+	}*/
+	
 	//Set currentStackShowListPosition to -1
 	obj_control.currentStackShowListPosition = -1;
 	

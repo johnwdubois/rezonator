@@ -13,6 +13,15 @@
 	Author: Georgio Klironomos
 */
 
+	if(obj_toolPane.tracksOnlyStackShow && (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
+		var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
+		var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
+		var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
+		for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+			var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+		}
+	}
 	// Increment our position in the list
 	if(obj_control.currentStackShowListPosition > 0 and obj_control.stackShowBackwards){
 		obj_control.currentStackShowListPosition--;

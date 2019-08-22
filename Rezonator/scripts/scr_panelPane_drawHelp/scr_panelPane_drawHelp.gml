@@ -25,7 +25,9 @@ if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight
 }
 
 // Toggle collapse if mouseClick
-if (mouseover and mouse_check_button_pressed(mb_left)) {
+//if ((mouseover and mouse_check_button_pressed(mb_left))) {
+if ((mouseover and device_mouse_check_button_released(0, mb_left))) {
+	//device_mouse_check_button_pressed(0, mb_left)
 	functionHelp_collapsed = !functionHelp_collapsed;
 }
 

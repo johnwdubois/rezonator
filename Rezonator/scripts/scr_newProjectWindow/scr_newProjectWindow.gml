@@ -22,7 +22,7 @@ var importButtonRectY2 = importButtonRectY1 + importButtonRectHeight;
 if (point_in_rectangle(mouse_x, mouse_y, importButtonRectX1, importButtonRectY1, importButtonRectX2, importButtonRectY2)) {
 	draw_set_color(global.colorThemeSelected1);
 	
-	if (mouse_check_button_pressed(mb_left)) {
+	if (device_mouse_check_button_released(0, mb_left)) {
 		scr_openXML();
 	}
 }
@@ -57,7 +57,7 @@ var continueButtonRectY2 = continueButtonRectY1 + continueButtonRectHeight;
 if (point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2) && canContinue) {
 	draw_set_color(global.colorThemeSelected1);
 	
-	if (mouse_check_button_pressed(mb_left)) {
+	if (device_mouse_check_button_released(0, mb_left)) {
 		room_goto_next();
 	}
 }
@@ -146,7 +146,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 			draw_set_color(global.colorThemeBorders);
 			draw_rectangle(xButtonRectX1, xButtonRectY1, xButtonRectX2, xButtonRectY2, true);
 			
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				scr_gridDeleteRow(global.fileLineRipGrid, i);
 				exit;
 			}

@@ -36,6 +36,11 @@ else if(string_lower(currentUser) == "player"){
 	}
 
 	ds_grid_set(goldStandardGrid, goldStandardGrid_colUser, currentGoldStandardRow, currentUser);
+	
+	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+		var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateGold);	
+	}
 		
 	//show_message("Stack: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colStackID, currentGoldStandardRow)));
 	//show_message("List: " + scr_getStringOfList(currentGoldStandardWordIDList));
