@@ -54,6 +54,7 @@ functionClique = 5;
 functionHelp = 6;
 functionGoToLine = 7;
 functionGraphStats = 8;
+functionAudio = 9;
 
 functionChainList_tabRezBrush = 0;
 functionChainList_tabTrackBrush = 1;
@@ -146,6 +147,21 @@ functionGoToLine_selectedDisco = 0;
 
 functionGraphStats_mainGridWidth = 3;
 functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
+
+
+functionAudio_filename = "";
+functionAudio_ogg = 0;
+functionAudio_samples = 0;
+functionAudio_audio = 0;
+functionAudio_tickSize = 0;
+functionAudio_buffSize = 0;
+functionAudio_bufferMap = ds_map_create();
+functionAudio_isPlaying = false;
+functionAudio_isPaused = false;
+functionAudio_lastSample = 0;
+functionAudio_seekTo = 0;
+functionAudio_seekHolding = false;
+functionAudio_showSeek = true;
 
 
 for (var i = 0; i < 3; i++) {

@@ -142,6 +142,12 @@ switch (currentFunction) {
 			scr_panelPane_drawGraphStats();
 		}
 		break;
+	case functionAudio:
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemePaneBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		scr_panelPane_drawAudio();
+		break;
 	default:
 		break;
 }
