@@ -20,6 +20,7 @@
 	else{
 		obj_control.currentStackShowListPosition++;
 	}
+	
 
 
 // If we are still within the bounds of the list
@@ -46,13 +47,24 @@ if(ds_list_size(obj_control.stackShowList) > 0 && obj_control.currentStackShowLi
 	}
 	
 
-
 	
 }
 // If we are at the end of the list, then hop out of the filter
 else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.stackShowList))) {
+	if(obj_toolPane.tracksOnlyStackShow) {
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		}
+	
+		obj_dialogueBox.elmoActive = true;	
+	}
+	else {
+	// I'll need to refactor this into scr_endStackShow();
+	
 	obj_control.stackShowActive = false;
 	obj_toolPane.tracksOnlyStackShow = false;
+	obj_toolPane.rezOnlyStackShow = false;
+	
 	with(obj_panelPane){
 		alarm[5] = -1;
 	}
@@ -103,15 +115,17 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 		obj_control.shape = obj_control.shapeBlock;
 		obj_control.stackShowSwitchedTextShape = false;
 	}
-	
+	}
 	//var currentUser = ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colAuthor, obj_chain.currentFocusedChainIndex);
 	//if(string_lower(currentUser) == "player") {
 		// Show the ending screen
-		var scoreString = "Good Job! Total Score: ";
-		for(var scoreLoop = 0; scoreLoop < ds_grid_height(obj_chain.goldStandardGrid); scoreLoop++) {
-			scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop)) + ",";
-		}
-		show_message(scoreString);
+		//var scoreString = "Good Job! Total Score: ";
+		//for(var scoreLoop = 0; scoreLoop < ds_grid_height(obj_chain.goldStandardGrid); scoreLoop++) {
+		//	scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop)) + ",";
+		//}
+		//show_message(scoreString);
 	//}
+	
+	
 	
 }

@@ -108,6 +108,7 @@ obj_chain.rezChainNameCounter = ds_grid_height(obj_chain.rezChainGrid);
 obj_chain.trackChainNameCounter = ds_grid_height(obj_chain.trackChainGrid);
 obj_chain.stackChainNameCounter = ds_grid_height(obj_chain.stackChainGrid);
 obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
+obj_control.chunkID = ds_grid_get_max(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid));
 
 scr_refreshVizLinkGrid();
 

@@ -67,6 +67,7 @@ if (point_in_rectangle(mouse_x, mouse_y, openTutorialButtonX1, openTutorialButto
 		global.menuOpen = false;
 		global.newProject = false;
 		global.openProject = true;
+		global.tutorial = true;
 	}
 }
 

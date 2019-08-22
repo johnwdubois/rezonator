@@ -99,6 +99,9 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
 	
 	var currentLineInStack = -1;
+	if(mouse_y > speakerRectY1 and mouse_y < speakerRectY2) {
+		obj_control.lineContainsMouse = drawLineLoop;	
+	}
 	
 	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid)) {
 		currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
