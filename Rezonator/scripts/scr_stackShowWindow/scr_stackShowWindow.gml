@@ -109,7 +109,7 @@ if (stackShowWindowActive) {
 
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 135, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Tracks Only");
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 135, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Where's Elmo?");
 	// current chain boolean switch
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
 			if (mouse_check_button_pressed(mb_left)) {
@@ -120,16 +120,16 @@ if (stackShowWindowActive) {
 	}
 	
 	// Rez Only toggle button
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 250, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 260, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 270, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
 	if (obj_toolPane.rezOnlyStackShow) {
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 250, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 260, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 270, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
 	}
 
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 255, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Rez Only");
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 275, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Rezzle");
 	// current chain boolean switch
-	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 240, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 250, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 260, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 270, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
 			if (mouse_check_button_pressed(mb_left)) {
 				obj_toolPane.rezOnlyStackShow = !obj_toolPane.rezOnlyStackShow;	
 				obj_toolPane.tracksOnlyStackShow = false;
@@ -165,6 +165,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			instance_destroy();
 			// Begin the show
 			scr_stackShow();
+			
 			
 			with(obj_toolPane) {
 				alarm[3] = 30;	
@@ -203,6 +204,11 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 					obj_control.stackShowSwitchedTextShape = true;
 					obj_control.shape = obj_control.shapeText;	
 				}
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				}
+	
+				obj_dialogueBox.elmoActive = true;
 			}
 		}
 		
@@ -238,6 +244,8 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 	instance_destroy();
 	// Begin the show
 	scr_stackShow();
+	
+	
 	
 	with(obj_toolPane) {
 		alarm[3] = 30;	
@@ -276,7 +284,15 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 			obj_control.shape = obj_control.shapeText;	
 		}
 
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		}
+	
+		obj_dialogueBox.elmoActive = true;
+
 	}
+	
+	
 }
 
 scr_drawStackShowWindow();

@@ -1,5 +1,6 @@
 var list = argument0;
 var offsetY = argument1;
+var topAligned = argument2;
 
 
 draw_set_color(c_black);
@@ -16,11 +17,16 @@ var strHeight = string_height("0");
 //lastItemToDraw = ceil(clamp(lastItemToDraw, firstItemToDraw, ds_list_size(list)));
 
 // draw items
-for (var i = firstItemToDraw; i < lastItemToDraw; i++) {
+for (var i = 0; i < lastItemToDraw; i++) {
 	
 	var currentText = ds_list_find_value(list, i);
 	var textX = x + 10 - clipX;
-	var textY = y + (i * strHeight) + scrollPlusY - clipY;
+	if (topAligned) {
+		var textY = y + (i * strHeight) + scrollPlusY - clipY;
+	}
+	else {
+		var textY = y + (strHeight * lastItemToDraw) - (i * strHeight) + scrollPlusY - clipY;
+	}
 	
 	if (i == firstItemToDraw) {
 		firstItemY = textY;

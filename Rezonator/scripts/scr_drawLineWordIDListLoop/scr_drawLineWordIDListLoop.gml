@@ -536,7 +536,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 
 			}
 			if(mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
-				obj_control.mouseRectBeginBetweenWords = true;
+				obj_control.mouseRectBeginBetweenWords = currentWordID;
 			}
 	}
 	

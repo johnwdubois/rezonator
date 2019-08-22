@@ -96,7 +96,9 @@ if (!clickedInChainList and !clickedInChainContents) {
 		scrollSpeed = 0;
 	}
 	
-	scrollPlusYDest += scrollSpeed;
+	if(scrollPlusYDest != undefined && scrollSpeed != undefined){
+		scrollPlusYDest += scrollSpeed;
+	}
 
 
 	if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {

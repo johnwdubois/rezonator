@@ -37,7 +37,7 @@ global.openProject = false;
 global.newProject = false;
 global.menuOpen = true;
 global.neworOpen = false;
-
+global.tutorial = false;
 
 
 global.fileSaveName = "undefined";

@@ -1,7 +1,7 @@
 if (mouse_y > y + windowHeight) {
 		//if (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5) {
 			if (currentTool != toolTrackBrush) {
-				if (not obj_control.mouseRectBeginInWord) {
+				if (obj_control.mouseRectBeginInWord == -1) {
 					tempReturnTool = currentTool;
 					currentTool = toolStackBrush;
 				}

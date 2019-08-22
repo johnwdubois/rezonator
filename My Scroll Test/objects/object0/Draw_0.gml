@@ -77,7 +77,7 @@ scr_resizeWindow();
 
 scr_surfaceStart();
 
-scr_drawItems(valueList, 32);
+scr_drawItems(valueList, 32, true);
 scr_scrollBar(ds_list_size(valueList), strHeight, 32, c_ltgray, c_dkgray, c_blue, c_red);
 
 scr_surfaceEnd();

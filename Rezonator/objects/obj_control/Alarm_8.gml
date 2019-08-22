@@ -21,7 +21,7 @@ if (ds_list_size(inRectWordIDList) > 0) {
 var inRectList = ds_list_create();
 if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 	// Ensure the gesture is correct for a trackChunk
-	if(not searchGridActive && not obj_control.mouseRectBeginInWord) {
+	if(not searchGridActive && obj_control.mouseRectBeginInWord == -1) {
 		alarm[10] = 1;
 		exit;
 	}
@@ -29,7 +29,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 } 
 else {
 	// Ensure the gesture is correct for a rezChunk
-	if(not searchGridActive && not obj_control.mouseRectBeginInWord) {
+	if(not searchGridActive && obj_control.mouseRectBeginInWord == -1) {
 		alarm[10] = 1;
 		exit;
 	}
@@ -150,8 +150,8 @@ if (ds_grid_height(gridOfFutureChains) > 0) {
 
 // Clear the data structures
 ds_grid_destroy(gridOfFutureChains);
-obj_control.mouseRectBeginInWord = false;
-obj_control.mouseRectBeginBetweenWords = false;
+obj_control.mouseRectBeginInWord = -1;
+obj_control.mouseRectBeginBetweenWords = -1;
 
 
 ds_list_clear(inRectWordIDList);
