@@ -1655,6 +1655,14 @@
             }
         },
         {
+            "Key": "6b1bfde1-ecfd-4fc2-8736-23e7cdfdf3ca",
+            "Value": {
+                "id": "590285d0-54e3-4f2e-a132-5665eab0dae7",
+                "resourcePath": "objects\\obj_popUp\\obj_popUp.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "6b38dac5-2748-4259-a171-fc434da4ecf2",
             "Value": {
                 "id": "e077991d-0e2a-4dde-911e-e3f387952cc6",

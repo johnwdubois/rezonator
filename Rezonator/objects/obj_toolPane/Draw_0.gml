@@ -84,29 +84,72 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 	}
 	
 	if (mouseover) {
+		if(global.tutorial){
+			draw_set_colour(global.colorThemeBG);
+			draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 110, false);
+			draw_set_colour(global.colorThemeBorders);
+			draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 110, true);
+		}
 		draw_set_colour(global.colorThemeBG);
 		draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 16, false);
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 16, true);
+
 		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainBold);
 		if (i == 0){
+			draw_set_font(fnt_mainBold);
 			draw_text(mouse_x - 172, mouse_y, "M: Pointer");
+				if(global.tutorial){
+					draw_set_halign(fa_center);
+					draw_set_font(fnt_chainContents);
+					draw_text(mouse_x - 132, mouse_y + 65 , toolTipTextPointer);
+				}
 		}
 		if (i == 1){
+			draw_set_font(fnt_mainBold);
 			draw_text(mouse_x - 180, mouse_y, "R: Rez Brush");
+			if(global.tutorial){
+				draw_set_halign(fa_center);
+				draw_set_font(fnt_chainContents);
+				draw_text(mouse_x - 132, mouse_y + 65 ,toolTipTextRez);
+			}
+	
 		}
 		if (i == 2){
+			draw_set_font(fnt_mainBold);
 			draw_text(mouse_x - 185, mouse_y, "T: Track Brush");
+			if(global.tutorial){
+				draw_set_halign(fa_center);
+				draw_set_font(fnt_chainContents);
+				draw_text(mouse_x - 132, mouse_y + 65 ,toolTipTextTrack);
+			}
 		}
 		if (i == 3){
+			draw_set_font(fnt_mainBold);
 			draw_text(mouse_x - 185, mouse_y, "K: Stack Brush");
+			if(global.tutorial){
+				draw_set_halign(fa_center);
+				draw_set_font(fnt_chainContents);
+				draw_text(mouse_x - 132, mouse_y + 65 ,toolTipTextStack);
+			}
 		}
 		if (i == 4){
+			draw_set_font(fnt_mainBold);
 			draw_text(mouse_x - 180, mouse_y, "N: New Word");
+			if(global.tutorial){
+				draw_set_halign(fa_center);
+				draw_set_font(fnt_chainContents);
+				draw_text(mouse_x - 132, mouse_y + 65 ,toolTipTextNewWord);
+			}
 		}
 		if (i == 5){
+			draw_set_font(fnt_mainBold);
 			draw_text(mouse_x - 180, mouse_y, "B: Box Brush");
+			if(global.tutorial){
+				draw_set_halign(fa_center);
+				draw_set_font(fnt_chainContents);
+				draw_text(mouse_x - 132, mouse_y + 65 ,toolTipTextBox);
+			}
 		}
 	}
 	
@@ -163,15 +206,52 @@ for (var i = 0; i < 2; i++) {
 		draw_set_color(global.colorThemeSelected2);
 		draw_rectangle(viewIconRectX1 - rectBuffer, viewIconRectY1 - rectBuffer, viewIconRectX2 + rectBuffer, viewIconRectY2 + rectBuffer, true);
 		
+		if (mouseover){
+			if(global.tutorial){
+				draw_set_colour(global.colorThemeBG);
+				draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 110, false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 110, true);
+			}
+			draw_set_colour(global.colorThemeBG);
+			draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 16, false);
+			draw_set_colour(global.colorThemeBorders);
+			draw_rectangle(mouse_x - 200, mouse_y - 16, mouse_x - 64, mouse_y + 16, true);
+			draw_set_colour(global.colorThemeText);
+			
+			if (i == 0) {
+				draw_set_font(fnt_mainBold);
+				draw_text(mouse_x - 190, mouse_y, "Discourse View");
+				if(global.tutorial){
+					draw_set_halign(fa_center);
+					draw_set_font(fnt_chainContents);
+					draw_text(mouse_x - 132, mouse_y + 65 ,toolTipTextDiscourse);
+				}
+			}
+			else if (i == 1) {
+
+				
+					draw_set_font(fnt_mainBold);
+					draw_text(mouse_x - 165, mouse_y, "Grid View");
+					if(global.tutorial){
+						draw_set_halign(fa_center);
+						draw_set_font(fnt_chainContents);
+						draw_text(mouse_x - 132, mouse_y + 65 ,toolTipTextGrid);
+			
+				}
+			}
+		
+
 		if (mouseover and mouse_check_button_pressed(mb_left)) {
 			if (i == 0) {
 				obj_control.gridView = false;
 			}
-			else if (i == 1) {
-				obj_control.gridView = true;
+		else if (i == 1) {
+			obj_control.gridView = true;
 			}
 		}
 	}
+}
 	
 	var imageBlend = global.colorThemeText;
 	if (selected) {
