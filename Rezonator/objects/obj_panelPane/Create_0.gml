@@ -149,6 +149,7 @@ functionGraphStats_mainGridWidth = 3;
 functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
 
 
+functionAudio_show = false;
 functionAudio_filename = "";
 functionAudio_ogg = 0;
 functionAudio_samples = 0;
@@ -204,3 +205,11 @@ holdDown = 0;
 
 
 showNav = true;
+
+
+#macro EVENT_TICK 0
+#macro EVENT_STOP 1
+#macro EVENT_PLAY 2
+#macro EVENT_PAUSE 3
+#macro EVENT_RESUME 4
+#macro EVENT_SEEK 5

@@ -143,10 +143,27 @@ switch (currentFunction) {
 		}
 		break;
 	case functionAudio:
+		instance_destroy();
+		/*
+		if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("A"))) {
+			//var audioFile = get_open_filename_ext("audio file|*.ogg", "", working_directory, "Open a discourse audio OGG file");
+			//if (file_exists(audioFile)) {
+			//	scr_setAllValuesInCol(obj_control.unitGrid, obj_control.unitGrid_colAudioFile, audioFile);
+			//}
+			functionAudio_show = !functionAudio_show;
+		}
+	
+		windowWidth = camera_get_view_width(view_camera[0]) - obj_control.scrollBarWidth;
+		windowHeight = 84;
+		x = 0;
+		y = functionAudio_show ? camera_get_view_height(view_camera[0]) - windowHeight : camera_get_view_height(view_camera[0]);
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemePaneBG);
 		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-		scr_panelPane_drawAudio();
+		if (y < camera_get_view_height(view_camera[0])) {
+			scr_panelPane_drawAudio();
+		}
+		*/
 		break;
 	default:
 		break;

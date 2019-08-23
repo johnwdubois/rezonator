@@ -37,6 +37,16 @@ switch (currentFunction) {
 				}
 			}
 		}
+	case functionAudio:
+		if (currentFunction == functionAudio and file_exists(string(functionAudio_filename))) {
+			if (functionAudio_isPlaying and not functionAudio_isPaused) {
+				event_user(EVENT_TICK);
+	
+				if (not audio_is_playing(functionAudio_audio)) {
+					audio_play_sound(functionAudio_audio, 0, 0);
+				}
+			}
+		}
 	default:
 		break;
 }
