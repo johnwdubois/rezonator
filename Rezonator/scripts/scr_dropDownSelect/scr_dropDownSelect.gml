@@ -403,6 +403,111 @@ else if (optionListType == 3)
 	}
 	
 }
+else if (optionListType == 4)
+{
+	// "Open File", "Save File", "Export Portion", "Change Author",  "Exit"
+	switch (optionSelected)
+	{
+		case "Open File":
+			//show_message("BUH 1");
+			break;
+		case "Save File":
+			//show_message("BUH 2");
+			break;
+		case "Export Portion":
+			//show_message("BUH 3");
+			break;
+		case "Change Author":
+			//show_message("BUH 4");
+			break;
+		case "Exit":
+			//show_message("BUH 5");
+			break;
+		default:
+			break;
+	}
+}
+else if (optionListType == 5)
+{
+	 //"Clear Stacks", "Clear Rez Chains", "Clear Track Chains", "Clear Discourse", "Toggle Filter"
+	switch (optionSelected)
+	{
+		case "Clear Stacks":
+			//show_message("BUH 1");
+			break;
+		case "Clear Rez Chains":
+			//show_message("BUH 2");
+			break;
+		case "Clear Track Chains":
+			//show_message("BUH 3");
+			break;
+		case "Clear All Chains":
+			//show_message("BUH 4");
+			break;
+		case "Toggle Filter Screen":
+			//show_message("BUH 5");
+			break;
+		default:
+			break;
+	}
+}
+else if (optionListType == 6)
+{
+	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
+	switch (optionSelected)
+	{
+		case "Hide Nav Window":
+			//show_message("BUH 1");
+			break;
+		case "Increase Text Size":
+			//show_message("BUH 2");
+			break;
+		case "Decrease Text Size":
+			//show_message("BUH 3");
+			break;
+		case "Increase Column Size":
+			//show_message("BUH 4");
+			break;
+		case "Decrease Column Size":
+			//show_message("BUH 5");
+			break;
+		case "Increase Row Size":
+			//show_message("BUH 4");
+			break;
+		case "Decrease Row Size":
+			//show_message("BUH 5");
+			break;
+		case "Toggle Dark Theme":
+			//show_message("BUH 5");
+			break;
+		default:
+			break;
+	}
+}
+else if (optionListType == 7)
+{
+	// "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Find Next"
+	switch (optionSelected)
+	{
+		case "Search For Words":
+			//show_message("BUH 1");
+			break;
+		case "Toggle Search Screen":
+			//show_message("BUH 2");
+			break;
+		case "Clear Search Screen":
+			//show_message("BUH 3");
+			break;
+		case "Find Next":
+			//show_message("BUH 4");
+			break;
+		case "Jump To Time":
+			//show_message("BUH 5");
+			break;
+		default:
+			break;
+	}
+}
 
 
 instance_destroy();

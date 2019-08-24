@@ -15,7 +15,7 @@
 windowWidth = 100;
 windowHeight = 170;
 
-originalWindowHeight = 25;
+originalWindowHeight = 20;
 collapsedWindowHeight = 2000;
 showTool = true;
 

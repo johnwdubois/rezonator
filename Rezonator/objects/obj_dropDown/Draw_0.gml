@@ -55,15 +55,17 @@ for (var i = 0; i < ds_list_size(optionList); i++)
 	draw_set_color(c_black);
 	draw_text(optionRectX1 + textBuffer, mean(optionRectY1, optionRectY2), optionText);
 	
-	if (mouseoverCurrentOption and ableToClick and mouse_check_button_pressed(mb_left))
+	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left))
 	{
 		var optionSelected = ds_list_find_value(optionList, i);
+		obj_menuBar.menuClickedIn = false;
 		scr_dropDownSelect(optionSelected);
 	}
 }
 
-if (ableToMouseover and ableToClick and mouse_check_button_pressed(mb_left))
+if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left))
 {
+	obj_menuBar.menuClickedIn = false;
 	instance_destroy();
 }
 
