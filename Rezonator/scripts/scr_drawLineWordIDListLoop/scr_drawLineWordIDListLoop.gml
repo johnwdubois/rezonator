@@ -151,7 +151,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			draw_set_alpha(0.5);
 			draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
 			
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_control.clickedChunkID = currentChunkID; // Debug variable
 				// Add this Chunk to a chain
 				with (obj_chain) {
@@ -322,6 +322,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
 	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
 	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);
+	var drawGoldStandard = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1) == obj_control.wordStateGold);
 	
 	// draw fill rectangle if needed
 	if (drawFillRect) {
@@ -330,6 +331,14 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 		draw_set_alpha(1);
 	}
+	
+	if (drawGoldStandard) {
+		draw_set_color(c_yellow);
+		draw_set_alpha(0.5);
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+		draw_set_alpha(1);
+	}
+	
 	
 	// draw border if needed
 	if (drawBorder) {
@@ -368,7 +377,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				draw_set_alpha(1);
 				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-				if (mouse_check_button_pressed(mb_left)) {
+				if (device_mouse_check_button_released(0, mb_left)) {
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
 					}
@@ -381,7 +390,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		*/
 		// Allows for adding to a stack anywhere in a line
 		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY1 + gridSpaceVertical) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
-			if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
+			if (device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) {
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
 				}
@@ -518,7 +527,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 						newWordHoverWordID = currentWordID;
 					}
 			
-					if (mouse_check_button_pressed(mb_left) and not obj_control.dialogueBoxActive) {				
+					if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 							if (!obj_control.dialogueBoxActive) {
 								keyboard_string = "";
 								obj_control.newWordCreated =true;

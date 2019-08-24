@@ -22,7 +22,7 @@ if (point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1,
 	draw_set_color(global.colorThemeSelected1);
 	draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
 	
-	if (mouse_check_button_pressed(mb_left))
+	if (device_mouse_check_button_released(0, mb_left))
 	{
 		global.newProject = true;
 		global.openProject = false;
@@ -47,7 +47,7 @@ if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY
 	draw_set_color(global.colorThemeSelected1);
 	draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, false);
 	
-	if (mouse_check_button_pressed(mb_left))
+	if (device_mouse_check_button_released(0, mb_left))
 	{
 		global.newProject = false;
 		global.openProject = true;

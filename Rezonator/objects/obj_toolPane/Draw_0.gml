@@ -15,7 +15,7 @@
 x = camera_get_view_width(view_camera[0]) - windowWidth;
 y = 0;
 
-if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 	if (not obj_control.gridView) {
 		with (obj_chain) {
 			scr_chainDeselect();
@@ -160,7 +160,7 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 		draw_rectangle(mouseoverRectX1 - rectBuffer, mouseoverRectY1 - rectBuffer, mouseoverRectX2 + rectBuffer, mouseoverRectY2 + rectBuffer, true);
 		
 		// Switch the focus to this tool if the user has clicked in its icon
-		if (mouseover and mouse_check_button_pressed(mb_left)) {
+		if (mouseover and device_mouse_check_button_released(0, mb_left)) {
 			obj_control.gridView = false;
 			currentTool = i;
 		}
@@ -242,7 +242,7 @@ for (var i = 0; i < 2; i++) {
 			}
 		
 
-		if (mouseover and mouse_check_button_pressed(mb_left)) {
+		if (mouseover and device_mouse_check_button_released(0, mb_left)) {
 			if (i == 0) {
 				obj_control.gridView = false;
 			}

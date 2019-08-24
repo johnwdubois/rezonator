@@ -403,12 +403,5 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 	obj_panelPane.showTracker = !obj_panelPane.showTracker;
 }
 
-if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("A"))){
-	var audioFile = get_open_filename_ext("audio file|*.ogg", "", working_directory, "Open a discourse audio OGG file");
-	if (file_exists(audioFile)) {
-		scr_setAllValuesInCol(obj_control.unitGrid, obj_control.unitGrid_colAudioFile, audioFile);
-	}
-}
-
 
 scr_fontSizeControl();
