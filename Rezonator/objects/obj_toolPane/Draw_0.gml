@@ -15,6 +15,20 @@
 x = camera_get_view_width(view_camera[0]) - windowWidth;
 y = 0;
 
+// Set the original height as the file loads
+if(current_time - obj_control.sessionStartTime < 2000) {
+	//originalWindowHeight = y;
+}
+// Allow hiding the Nav Window via setting each window's height to 2000
+else{
+	if(showTool) {
+		y = originalWindowHeight;	
+	} 
+	else {
+		y = collapsedWindowHeight;	
+	}
+}
+
 if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 	if (not obj_control.gridView) {
 		with (obj_chain) {

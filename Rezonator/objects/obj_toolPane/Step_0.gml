@@ -6,7 +6,7 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 		}
 		currentTool = toolRezBrush;
 	}
-	else if (keyboard_check_pressed(ord("T"))) {
+	else if (keyboard_check_pressed(ord("T")) and not keyboard_check(vk_control)) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
@@ -35,6 +35,9 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 			scr_chainDeselect();
 		}
 		currentTool = toolNewWord;
+	}
+	if (keyboard_check_pressed(ord("T")) and keyboard_check(vk_control)) {
+		showTool = not showTool;	
 	}
 	
 	with (obj_panelPane) {

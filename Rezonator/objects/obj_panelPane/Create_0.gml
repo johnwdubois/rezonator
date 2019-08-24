@@ -23,8 +23,9 @@ windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
 // For hiding the Nav window
-originalWindowHeight = 0;
+originalWindowHeight = 25;
 collapsedWindowHeight = 2000;
+y = originalWindowHeight;
 
 
 // scrollbar variables

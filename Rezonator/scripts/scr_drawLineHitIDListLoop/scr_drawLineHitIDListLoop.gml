@@ -140,7 +140,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 			draw_set_alpha(0.5);
 			draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
 			
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_control.clickedChunkID = currentChunkID; // Debug variable
 				// Add this Chunk to a chain
 				with (obj_chain) {
@@ -184,7 +184,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 		// Record user's click in the Search screen to highlight.
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			var newSwitch = ds_grid_get(hitGrid, hitGrid_colUnitID, currentHitID - 1)
 			with (obj_control) {
 				//preSwitchDisplayRow = newSwitch;
@@ -206,7 +206,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		draw_set_alpha(1);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
 			}
@@ -214,7 +214,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	}
 		
 	if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
-		if (mouse_check_button_pressed(mb_left) and !obj_chain.inRezPlay) {
+		if (device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
 			}

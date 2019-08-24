@@ -15,7 +15,7 @@
 // Establish location of camera
 var camWidth = camera_get_view_width(view_camera[0]);
 x = camWidth - windowWidth;
-y = obj_toolPane.y + obj_toolPane.windowHeight;
+y = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight;
 var scrollBarOffset = 20;
 
 // Check for mouse location over "Help" button

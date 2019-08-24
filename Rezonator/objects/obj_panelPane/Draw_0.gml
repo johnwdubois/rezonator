@@ -23,11 +23,11 @@ if(not showAdvancedNav) {
 
 
 // Set the original height as the file loads
-if(current_time - obj_control.sessionStartTime < 2000) {
+/*if(current_time - obj_control.sessionStartTime < 2000) {
 	originalWindowHeight = y;
-}
+}*/
 // Allow hiding the Nav Window via setting each window's height to 2000
-else if(currentFunction != functionHelp) {
+if(currentFunction != functionHelp) {
 	if(showNav) {
 		y = originalWindowHeight;	
 	} 

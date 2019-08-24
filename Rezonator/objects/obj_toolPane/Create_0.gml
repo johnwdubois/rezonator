@@ -15,8 +15,12 @@
 windowWidth = 100;
 windowHeight = 170;
 
+originalWindowHeight = 25;
+collapsedWindowHeight = 2000;
+showTool = true;
+
 x = room_width - windowWidth;
-y = 0;
+y = originalWindowHeight;
 
 toolAmount = 5;
 toolPointer = 0;
