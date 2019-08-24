@@ -181,7 +181,7 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 	}
 	
 	// Shadow out tools when in the stackShow
-	if(((i == 2 && tracksOnlyStackShow) || (i == 1 && rezOnlyStackShow)) && obj_control.stackShowActive) {
+	if(((i == 2 && tracksOnlyStackShow) || (i == 1 && rezOnlyStackShow)) && obj_control.stackShowActive && showTool) {
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(0.2);
 		draw_rectangle(x, mouseoverRectY1 - rectBuffer, mouseoverRectX1 - rectBuffer, mouseoverRectY2 + rectBuffer, false);

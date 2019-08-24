@@ -209,6 +209,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 				}
 	
 				obj_dialogueBox.elmoActive = true;
+				obj_panelPane.showNav = false;
+				obj_toolPane.showTool = false;
 			}
 		}
 		
@@ -289,7 +291,8 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 		}
 	
 		obj_dialogueBox.elmoActive = true;
-
+		obj_panelPane.showNav = false;
+		obj_toolPane.showTool = false;
 	}
 	
 	

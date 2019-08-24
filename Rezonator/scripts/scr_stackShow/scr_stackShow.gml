@@ -135,6 +135,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 		//show_message(scoreString);
 	//}
 	
-	
+	obj_panelPane.showNav = true;
+	obj_toolPane.showTool = true;
 	
 }
