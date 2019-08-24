@@ -26,6 +26,13 @@ if (instance_exists(obj_input_text)) {
 }
 */
 
+/*
+if(keyboard_check_pressed(vk_anykey)){
+	show_message(string(keyboard_lastkey));
+}
+*/
+
+
 
 // Mechanism to update center display row
 if (!gridView) {
@@ -300,12 +307,20 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 				
 */
-
-
 	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
-		if (show_question("Would you like to save before exiting?")) {
+		
+		if (os_type == os_macosx) {
+
 			with (obj_fileLoader) {
 				scr_saveREZ(false);
+			}
+		
+		}
+		else {
+			if (show_question("Would you like to save before exiting?")) {
+				with (obj_fileLoader) {
+					scr_saveREZ(false);
+				}
 			}
 		}
 	}
