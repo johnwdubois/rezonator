@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
-
+if(point_in_rectangle(mouse_x, mouse_y, 0, 0, camera_get_view_width(view_camera[0]), menuHeight)){
+	obj_control.mouseoverPanelPane = true;
+}
 
 // File menu
 if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
