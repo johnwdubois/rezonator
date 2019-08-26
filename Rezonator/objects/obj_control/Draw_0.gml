@@ -170,19 +170,19 @@ if (showDevVars) {
 }
 if(filterGridActive){
 	if(stackShowActive)	{
-	scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, 200,
+	scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, 220,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);
 	}
 	else{
-	scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, 200,
+	scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, 220,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]));
 	}
 }
 else{
 
-scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, 200,
+scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, 220,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]));
 
