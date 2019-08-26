@@ -1007,6 +1007,14 @@
             }
         },
         {
+            "Key": "3aa1e11f-9a83-4a7f-bbc4-d2f5d2224bda",
+            "Value": {
+                "id": "56b4c3e5-e522-4da0-a881-7b310fac3a1e",
+                "resourcePath": "objects\\obj_calloutBubble\\obj_calloutBubble.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "3bbad330-a5c0-4383-8abb-cc681bbde374",
             "Value": {
                 "id": "5cb34de1-2947-469e-a5a4-998b94dc1634",
@@ -2356,6 +2364,14 @@
                 "id": "43e94d85-113d-47cd-b34f-fa0ae210ec82",
                 "resourcePath": "fonts\/fnt_mainLarge5\/fnt_mainLarge5.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "92fad691-88cc-417b-816b-0dc324e34d70",
+            "Value": {
+                "id": "46bf50cf-0ac2-4529-bbc2-deaec96a426e",
+                "resourcePath": "objects\\obj_wheresElmoTutorial\\obj_wheresElmoTutorial.yy",
+                "resourceType": "GMObject"
             }
         },
         {
