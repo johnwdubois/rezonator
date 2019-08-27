@@ -79,7 +79,7 @@ if (showTracker) {
 	// Check for mouse location over "RezTracker" button and check for open/close button
 	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]))) {
 		mouseOverTrackerButton = true;
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			isTrackerOpen = !isTrackerOpen ;
 		}
 	}
@@ -161,7 +161,7 @@ if (showTracker) {
 	
 	
 		//check for reset button pressed
-		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) - resetX1val, camera_get_view_height(view_camera[0]) - resetY1val, camera_get_view_width(view_camera[0]) - resetX2val, camera_get_view_height(view_camera[0]) - resetY2val) and mouse_check_button_pressed(mb_left)) {
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) - resetX1val, camera_get_view_height(view_camera[0]) - resetY1val, camera_get_view_width(view_camera[0]) - resetX2val, camera_get_view_height(view_camera[0]) - resetY2val) and device_mouse_check_button_released(0, mb_left)) {
 			obj_control.moveCounter = 0;
 			alarm[5] = -1;
 			timerMins = 0;
@@ -208,7 +208,7 @@ if (showTracker) {
 	var mouseOverEndButton = false;
 	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - Ydistance, 140, camera_get_view_height(view_camera[0]))) {
 		mouseOverEndButton = true;
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
 			scr_stackShow();
 		}
@@ -279,7 +279,7 @@ if (showTracker) {
 	var mouseOverLeftButton = false;
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) - Xdistance - 50, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]))) {
 		mouseOverLeftButton = true;
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.stackShowBackwards = true;
 
 			if(obj_control.currentStackShowListPosition > 0){
@@ -293,7 +293,7 @@ if (showTracker) {
 	var mouseOverRightButton = false;
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) - Xdistance - 25, camera_get_view_height(view_camera[0]) - Ydistance, camera_get_view_width(view_camera[0]) - Xdistance, camera_get_view_height(view_camera[0]))) {
 		mouseOverRightButton = true;
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			/*
 			if(obj_control.currentStackShowListPosition < ds_list_size(obj_control.stackShowList)){
 				obj_control.currentStackShowListPosition += 1;

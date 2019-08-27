@@ -43,7 +43,7 @@ for (var i = 0; i < ds_grid_height(functionSort_gridGrid); i++)
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(gridNameRectX1, gridNameRectY1, gridNameRectX2, gridNameRectY2, false);
 		
-		if (mouse_check_button_pressed(mb_left))
+		if (device_mouse_check_button_released(0, mb_left))
 		{
 			functionSort_gridGridSelected = i;
 		}
@@ -117,7 +117,7 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(ascendButtonX1, ascendButtonY1, ascendButtonX2, ascendButtonY2, true);
 		
-			if (mouse_check_button_pressed(mb_left))
+			if (device_mouse_check_button_released(0, mb_left))
 			{
 				colAscend = !colAscend;
 				ds_grid_set(functionSort_sortGrid, functionSort_gridSortColGrid_colAscend, i, colAscend);
@@ -136,7 +136,7 @@ for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++)
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(colNameRectX1, colNameRectY1, colNameRectX2, colNameRectY2, false);
 			
-			if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, colNameRectX1, colNameRectY1, colNameRectX2, colNameRectY2))
+			if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, colNameRectX1, colNameRectY1, colNameRectX2, colNameRectY2))
 			{
 
 				var dropDownOptionList = ds_list_create();
@@ -242,7 +242,7 @@ if (point_in_rectangle(mouse_x, mouse_y, refreshButtonX1, refreshButtonY1, refre
 {
 	refreshButtonAlpha = 0.25;
 	
-	if (mouse_check_button_pressed(mb_left))
+	if (device_mouse_check_button_released(0, mb_left))
 	{
 		functionSort_performSort = true;
 	}
@@ -251,7 +251,7 @@ else if (point_in_rectangle(mouse_x, mouse_y, restoreDefButtonX1, restoreDefButt
 {
 	restoreDefButtonAlpha = 0.25;
 	
-	if (mouse_check_button_pressed(mb_left))
+	if (device_mouse_check_button_released(0, mb_left))
 	{
 		scr_panelPane_sortDefaultSetup();
 		

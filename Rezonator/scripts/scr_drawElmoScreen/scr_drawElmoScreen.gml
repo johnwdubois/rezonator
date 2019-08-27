@@ -101,7 +101,7 @@ if (elmoActive) {
 
 // ok button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && elmoActive){
-	if (mouse_check_button_pressed(mb_left)) {
+	if (device_mouse_check_button_released(0, mb_left)) {
 		// Exit the opening/ending screen
 		
 		if(endingScreen) {
@@ -185,7 +185,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 // cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && elmoActive){
-	if (mouse_check_button_pressed(mb_left)) {
+	if (device_mouse_check_button_released(0, mb_left)) {
 			
 		// Exit the stackShow before it begins
 		if(openingScreen) {

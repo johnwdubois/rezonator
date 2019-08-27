@@ -113,7 +113,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 			draw_set_color(global.colorThemeSelected2);
 			draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, true);
 			// Here is where we can focus a specific column.
-			if (mouse_check_button_pressed(mb_left) and window_get_cursor() != cr_size_we and not scrollBarHolding) {
+			if (device_mouse_check_button_released(0, mb_left) and window_get_cursor() != cr_size_we and not scrollBarHolding) {
 				focusedRow = gridLoopRow;
 				focusedCol = gridLoopCol;	
 				focusedItemString = currentItemString;
