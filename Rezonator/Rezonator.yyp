@@ -3175,6 +3175,14 @@
             }
         },
         {
+            "Key": "b92a031a-c814-47d5-9b06-7a216e4cfad3",
+            "Value": {
+                "id": "7d025cd4-5669-4a54-8431-b611d866d503",
+                "resourcePath": "scripts\\scr_getListOfGridCols\\scr_getListOfGridCols.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ba364d38-a49c-4533-9c2b-3893506905b4",
             "Value": {
                 "id": "f127a953-d77b-4f9f-812d-29bd96c3f8f5",
@@ -4619,6 +4627,7 @@
         "1d4eb4b6-a79a-4939-b194-42b663501c60",
         "0ee82ecb-9ecd-4bcb-923f-3eb1406d3915",
         "e9887152-5da4-4b7e-9d4a-b03816f12d8b",
+        "b92a031a-c814-47d5-9b06-7a216e4cfad3",
         "425fdc02-29ad-4d6a-a6f5-cb9a29e2c1fb",
         "d7714c6a-620c-423a-a004-56a2af4eb313",
         "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
