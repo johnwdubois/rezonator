@@ -333,8 +333,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	}
 	
 	if (drawGoldStandard) {
-		draw_set_color(c_yellow);
-		draw_set_alpha(0.5);
+		draw_set_color(c_green);
+		draw_set_alpha(0.4);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 		draw_set_alpha(1);
 	}

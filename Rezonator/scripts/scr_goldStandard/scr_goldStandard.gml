@@ -20,28 +20,26 @@ if(string_lower(currentUser) == "gold") {
 	//show_message("List: " + scr_getStringOfList(ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, ds_grid_height(goldStandardGrid) - 1)));
 }
 else if(string_lower(currentUser) == "player"){
-	var correct = false;
+	var correct = 0;
 	var currentGoldStandardRow = ds_grid_value_y(goldStandardGrid, goldStandardGrid_colStackID, 0, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid), currentStackID);
 	var currentGoldStandardWordIDList = ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, currentGoldStandardRow);
 	// Compare the focused list with the preset list
-	if(ds_list_size(currentChainWordList) == ds_list_size(currentGoldStandardWordIDList)) {
-		correct = true;
-		for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
-			var playerWord = ds_list_find_value(currentChainWordList, goldStandardListLoop);
-			var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
-			if(playerWord != goldWord) {
-				correct = false;
-				continue;
-			}
+	//if(ds_list_size(currentChainWordList) == ds_list_size(currentGoldStandardWordIDList)) {
+		//correct = true;
+	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+		//var playerWord = ds_list_find_value(currentChainWordList, goldStandardListLoop);
+		var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+		if(ds_list_find_index(currentChainWordList, goldWord) > -1) {
+			correct++;
 		}
 	}
-	if(correct) {
-		ds_grid_set(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow, 100);
+	if(ds_list_size(currentChainWordList) > ds_list_size(currentGoldStandardWordIDList)) {
+		correct -= 0.5 * (ds_list_size(currentChainWordList) - ds_list_size(currentGoldStandardWordIDList));
 	}
-	else {
-		ds_grid_set(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow, 0);
-	}
+	var percentCorrect = (correct / ds_list_size(currentGoldStandardWordIDList)) * 100;
+	//}
 
+	ds_grid_set(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow, percentCorrect);
 	ds_grid_set(goldStandardGrid, goldStandardGrid_colUser, currentGoldStandardRow, currentUser);
 	
 	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
@@ -52,5 +50,5 @@ else if(string_lower(currentUser) == "player"){
 	//show_message("Stack: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colStackID, currentGoldStandardRow)));
 	//show_message("List: " + scr_getStringOfList(currentGoldStandardWordIDList));
 	//show_message("User: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colUser, currentGoldStandardRow)));
-	show_message("Score: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow)));
+	show_message("Score: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow)) + "%");
 }

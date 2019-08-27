@@ -12,23 +12,56 @@
 	
 	Author: Georgio Klironomos
 */
+var currentUser = global.userName;
 
-	if(obj_toolPane.tracksOnlyStackShow && (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
+if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player")&& (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
+
+	var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
+	var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
+	var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
+	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+		var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+	}
+}
+// Increment our position in the list
+if(obj_control.currentStackShowListPosition > 0 and obj_control.stackShowBackwards){
+	obj_control.currentStackShowListPosition--;
+}
+else{
+	obj_control.currentStackShowListPosition++;
+	
+	if(obj_control.currentStackShowListPosition == 0 && string_lower(currentUser) == "player") {
+		var tutorialInstance = instance_create_layer(-500, -500, "Instances", obj_wheresElmoTutorial);
 		var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 		var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
-		var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
-		for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
-			var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+		if(currentGoldStandardRow > -1) {
+			var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
+			for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+				var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+				if(goldStandardListLoop < ds_grid_height(tutorialInstance.calloutBubbleGrid)) {
+					ds_grid_set(tutorialInstance.calloutBubbleGrid, tutorialInstance.calloutBubbleGrid_colWordID, goldStandardListLoop, goldWord);
+				}
+				//ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+			}
+			if(ds_list_size(currentGoldStandardWordIDList) < ds_grid_height(tutorialInstance.calloutBubbleGrid)) {
+				for(var fillGapLoop = ds_list_size(currentGoldStandardWordIDList); fillGapLoop < ds_grid_height(tutorialInstance.calloutBubbleGrid); fillGapLoop++) {
+					ds_grid_set(tutorialInstance.calloutBubbleGrid, tutorialInstance.calloutBubbleGrid_colWordID, fillGapLoop, -1);
+				}
+			}
+		
+		
+			ds_grid_set(tutorialInstance.calloutBubbleGrid, tutorialInstance.calloutBubbleGrid_colString, 0, "Click on the first reference#to the subject to begin#the Track chain!");
+			//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 0, 106);
+			ds_grid_set(tutorialInstance.calloutBubbleGrid, tutorialInstance.calloutBubbleGrid_colString, 1, "Click on the next reference#to the subject to add#a Link to the chain.");
+			//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 1, 112);
+			ds_grid_set(tutorialInstance.calloutBubbleGrid, tutorialInstance.calloutBubbleGrid_colString, 2, "Continue adding references to#the chain, and submit#your chain for grading#with the [ENTER] key!");
+			//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 2, 117);
+			ds_grid_set(tutorialInstance.calloutBubbleGrid, tutorialInstance.calloutBubbleGrid_colString, 3, "Some references may appear#in the same sentence,#watch out!");
+			//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 3, 120);
 		}
 	}
-	// Increment our position in the list
-	if(obj_control.currentStackShowListPosition > 0 and obj_control.stackShowBackwards){
-		obj_control.currentStackShowListPosition--;
-	}
-	else{
-		obj_control.currentStackShowListPosition++;
-	}
+}
 	
 
 
