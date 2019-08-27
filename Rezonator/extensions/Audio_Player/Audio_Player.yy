@@ -1,0 +1,90 @@
+{
+    "id": "0a2e809d-9a7a-4ef7-a464-5de5e357aacc",
+    "modelName": "GMExtension",
+    "mvc": "1.0",
+    "name": "Audio_Player",
+    "IncludedResources": [
+        "Sprites\\Covers\\sCover_clasic",
+        "Sprites\\Covers\\sCover_minimalist",
+        "Sprites\\Minimalist\\sBtn_Minimalist",
+        "Sprites\\Minimalist\\sBtn_Play_Minimalist",
+        "Sprites\\Minimalist\\sLoop_minimalist",
+        "Sprites\\Minimalist\\sBtn_next",
+        "Sprites\\Minimalist\\sBtn_Vol_minimalist",
+        "Sprites\\Minimalist\\sVol_Base_minimalist",
+        "Sprites\\Classic\\sBtn_Classic",
+        "Sprites\\Classic\\sBtn_Play_Classic",
+        "Sprites\\Classic\\sBtn_Loop",
+        "Sprites\\Classic\\sBtn_Vol_Classic",
+        "Sprites\\Classic\\sBtn_Vol_bar_C",
+        "Sprites\\Classic\\sEdge_Vol_Bar",
+        "Sprites\\Classic\\Backgrounds Player\\sBack_0",
+        "Sprites\\Classic\\Backgrounds Player\\sBack_1",
+        "Sprites\\Classic\\Backgrounds Player\\sBack_2",
+        "Sounds\\sound0",
+        "Sounds\\sound1",
+        "Sounds\\sound2",
+        "Sounds\\sound3",
+        "Backgrounds\\background0",
+        "Backgrounds\\background3",
+        "Scripts\\sounds_config.gml",
+        "Scripts\\mouse_mov.gml",
+        "Scripts\\INSTRUCTIONS.gml",
+        "Fonts\\font0",
+        "Fonts\\font1",
+        "Objects\\oPlayer_Classic",
+        "Objects\\oPlayer_Minimalist",
+        "Rooms\\room0",
+        "Rooms\\room1"
+    ],
+    "androidPermissions": [
+        
+    ],
+    "androidProps": false,
+    "androidactivityinject": "",
+    "androidclassname": "",
+    "androidinject": "",
+    "androidmanifestinject": "",
+    "androidsourcedir": "",
+    "author": "",
+    "classname": "",
+    "copyToTargets": -1,
+    "date": "2019-16-26 08:08:50",
+    "description": "",
+    "extensionName": "",
+    "files": [
+        
+    ],
+    "gradleinject": "",
+    "helpfile": "",
+    "installdir": "",
+    "iosProps": false,
+    "iosSystemFrameworkEntries": [
+        
+    ],
+    "iosThirdPartyFrameworkEntries": [
+        
+    ],
+    "iosdelegatename": "",
+    "iosplistinject": "",
+    "license": "Free to use, also for commercial games.",
+    "maccompilerflags": "",
+    "maclinkerflags": "",
+    "macsourcedir": "",
+    "packageID": "com.clavosstudios.audioplayer",
+    "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
+    "sourcedir": "",
+    "tvosProps": false,
+    "tvosSystemFrameworkEntries": [
+        
+    ],
+    "tvosThirdPartyFrameworkEntries": [
+        
+    ],
+    "tvosclassname": "",
+    "tvosdelegatename": "",
+    "tvosmaccompilerflags": "",
+    "tvosmaclinkerflags": "",
+    "tvosplistinject": "",
+    "version": "1.0.1"
+}

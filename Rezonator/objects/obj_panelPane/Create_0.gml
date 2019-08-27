@@ -152,18 +152,6 @@ functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0
 
 functionAudio_show = false;
 functionAudio_filename = "";
-functionAudio_ogg = 0;
-functionAudio_samples = 0;
-functionAudio_audio = 0;
-functionAudio_tickSize = 0;
-functionAudio_buffSize = 0;
-functionAudio_bufferMap = ds_map_create();
-functionAudio_isPlaying = false;
-functionAudio_isPaused = false;
-functionAudio_lastSample = 0;
-functionAudio_seekTo = 0;
-functionAudio_seekHolding = false;
-functionAudio_showSeek = true;
 
 
 for (var i = 0; i < 3; i++) {

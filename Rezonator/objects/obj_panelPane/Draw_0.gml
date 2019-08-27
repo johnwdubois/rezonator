@@ -143,8 +143,6 @@ switch (currentFunction) {
 		}
 		break;
 	case functionAudio:
-		instance_destroy();
-		/*
 		if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("A"))) {
 			//var audioFile = get_open_filename_ext("audio file|*.ogg", "", working_directory, "Open a discourse audio OGG file");
 			//if (file_exists(audioFile)) {
@@ -163,7 +161,6 @@ switch (currentFunction) {
 		if (y < camera_get_view_height(view_camera[0])) {
 			scr_panelPane_drawAudio();
 		}
-		*/
 		break;
 	default:
 		break;

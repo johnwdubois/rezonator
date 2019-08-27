@@ -14,7 +14,12 @@
 
 shortcutsEnabled = true;
 /*
-if (instance_exists(obj_input_text)) {
+if (instance_exists(obj_input_
+
+
+
+
+text)) {
 	for (var i = 0; i < instance_number(obj_input_text); i++) {
 		var currentInputTextInst = instance_find(obj_input_text, i);
 		if (instance_exists(currentInputTextInst)) {
