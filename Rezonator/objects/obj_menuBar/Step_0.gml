@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
-
+if(point_in_rectangle(mouse_x, mouse_y, 0, 0, camera_get_view_width(view_camera[0]), menuHeight)){
+	obj_control.mouseoverPanelPane = true;
+}
 
 // File menu
 if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
@@ -9,7 +11,10 @@ if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
 		mouseOverEdit = false;
 		mouseOverView = false;
 		mouseOverSearch = false;
-	if(mouse_check_button_pressed(mb_left) or menuClickedIn){
+	if(mouse_check_button_released(mb_left) and menuClickedIn){
+		menuClickedIn = false;
+	}
+	else if(mouse_check_button_released(mb_left) or menuClickedIn){
 		menuClickedIn = true;
 		
 		var dropDownOptionList = ds_list_create();
@@ -34,7 +39,10 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth, 0, menuWidth*2, menuHeig
 		mouseOverEdit = true;
 		mouseOverView = false;
 		mouseOverSearch = false;
-	if( mouse_check_button_pressed(mb_left) or menuClickedIn){
+	if(mouse_check_button_released(mb_left) and menuClickedIn){
+		menuClickedIn = false;
+	}
+	else if( mouse_check_button_released(mb_left) or menuClickedIn){
 		menuClickedIn = true;
 		
 		var dropDownOptionList = ds_list_create();
@@ -59,12 +67,15 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 		mouseOverEdit = false;
 		mouseOverView = true;
 		mouseOverSearch = false;
-	if(mouse_check_button_pressed(mb_left) or menuClickedIn){
+	if(mouse_check_button_released(mb_left) and menuClickedIn){
+		menuClickedIn = false;
+	}
+	else if(mouse_check_button_released(mb_left) or menuClickedIn){
 		menuClickedIn = true;
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size", "Toggle Dark Theme");
+		ds_list_add(dropDownOptionList, "Toggle Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size", "Toggle Dark Theme");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*2, menuHeight, -999, obj_dropDown);
@@ -84,12 +95,15 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*3, 0, menuWidth*4.5, menu
 		mouseOverEdit = false;
 		mouseOverView = false;
 		mouseOverSearch = true;
-	if(mouse_check_button_pressed(mb_left) or menuClickedIn){
+	if(mouse_check_button_released(mb_left) and menuClickedIn){
+		menuClickedIn = false;
+	}
+	else if(mouse_check_button_released(mb_left) or menuClickedIn){
 		menuClickedIn = true;
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Find Next" , "Jump To Time");
+		ds_list_add(dropDownOptionList, "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Find Next" , "Jump To Time" , "Jump To Line");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*3, menuHeight, -999, obj_dropDown);

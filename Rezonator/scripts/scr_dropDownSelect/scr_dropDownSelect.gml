@@ -409,18 +409,76 @@ else if (optionListType == 4)
 	switch (optionSelected)
 	{
 		case "Open File":
-			//show_message("BUH 1");
+		//room_instance_clear(rm_mainScreen);
+		//room_restart();
+		
+			show_message("Coming Soon");
 			break;
 		case "Save File":
+		
+			draw_set_alpha(1);
+			draw_set_color(obj_toolPane.progressBarFrontColor);
+			draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
+			draw_set_color(c_white);
+			draw_set_font(obj_toolPane.progressBarFont);
+			draw_set_halign(fa_left);
+			draw_set_valign(fa_middle);
+			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Saving...");
+			draw_set_font(fnt_dropDown);
+		
+			obj_fileLoader.ableToHotkey = false;
+			
+			with(obj_fileLoader){
+				alarm[0] = 1;
+			}
+			
 			//show_message("BUH 2");
 			break;
 		case "Export Portion":
+			if (!obj_control.dialogueBoxActive) {
+				keyboard_string = "";
+				obj_control.ePressed = true;
+			}
+
+			obj_control.dialogueBoxActive = true;
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			}
 			//show_message("BUH 3");
 			break;
 		case "Change Author":
-			//show_message("BUH 4");
+			show_message("Coming Soon");
 			break;
 		case "Exit":
+		
+		
+			audio_stop_all();
+	
+			scr_userSettingsIniFile();
+	
+	
+			if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+		
+				if (os_type == os_macosx) {
+
+					with (obj_fileLoader) {
+						scr_saveREZ(false);
+					}
+		
+				}
+				else {
+					if (show_question("Would you like to save before exiting?")) {
+						with (obj_fileLoader) {
+							scr_saveREZ(false);
+						}
+					}
+				}
+			}
+
+			keyboard_string = "";
+			room_goto(rm_openingScreen);
+		
 			//show_message("BUH 5");
 			break;
 		default:
@@ -433,18 +491,45 @@ else if (optionListType == 5)
 	switch (optionSelected)
 	{
 		case "Clear Stacks":
-			//show_message("BUH 1");
+			show_message("Coming Soon");
 			break;
 		case "Clear Rez Chains":
-			//show_message("BUH 2");
+			show_message("Coming Soon");
 			break;
 		case "Clear Track Chains":
-			//show_message("BUH 3");
+			show_message("Coming Soon");
 			break;
 		case "Clear All Chains":
-			//show_message("BUH 4");
+			show_message("Coming Soon");
 			break;
 		case "Toggle Filter Screen":
+		
+			if (obj_control.filterGridActive) {
+				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+					//obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+					obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+					// Keep the focus on previous currentCenterDisplayRow
+					//with (obj_control) {
+					//	alarm[5] = 1;
+					//}
+				}
+			
+				// Switch to active grid
+				obj_control.filterGridActive = false;
+				obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			}
+			else {
+			
+				obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
+				// If filter is unactive. activate it
+				with (obj_control) {
+					scr_renderFilter();
+				}
+			}
+			// Add to moveCounter
+			obj_control.moveCounter ++;
+		
 			//show_message("BUH 5");
 			break;
 		default:
@@ -456,28 +541,120 @@ else if (optionListType == 6)
 	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
 	switch (optionSelected)
 	{
-		case "Hide Nav Window":
+		case "Toggle Nav Window":
+			with(obj_panelPane){
+				showNav = not showNav;	
+			}
 			//show_message("BUH 1");
 			break;
 		case "Increase Text Size":
+		
+			if (global.fontSize < 5) {
+				global.fontSize++;
+				scr_setSpeakerLabelColWidth();
+			}
+			global.navTextBig = true;
+		
 			//show_message("BUH 2");
 			break;
 		case "Decrease Text Size":
+		
+			if (global.fontSize > 0) {
+				global.fontSize--;
+				scr_setSpeakerLabelColWidth();
+			}
+			global.navTextBig = false;
+			
 			//show_message("BUH 3");
 			break;
 		case "Increase Column Size":
+		
+			if (!obj_control.gridView) {
+				obj_control.gridSpaceHorizontal += 20;
+			}
+		
 			//show_message("BUH 4");
 			break;
 		case "Decrease Column Size":
+		
+			if (!obj_control.gridView) {
+				obj_control.gridSpaceHorizontal -= 20;
+			}
+		
 			//show_message("BUH 5");
 			break;
 		case "Increase Row Size":
+			
+			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
+			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
+			
+			obj_control.gridSpaceVertical += 10;
+			// Don't go above the max
+			obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
+			obj_control.lineSpacing += 4;
+			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+			// Multiply each line's pixelY by the new ratio
+			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
+			
+			// If the search or filter grids are populated, then set their pixelY's as well
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+			}
+			if(filterGridPopulated) {
+				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+			}
+			// reset the ratio
+			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+		
 			//show_message("BUH 4");
 			break;
 		case "Decrease Row Size":
+		
+			
+			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
+			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
+			
+			obj_control.gridSpaceVertical -= 10;
+			// Don't go above the max
+			obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
+			obj_control.lineSpacing -= 4;
+			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+			// Multiply each line's pixelY by the new ratio
+			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
+			
+			// If the search or filter grids are populated, then set their pixelY's as well
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+			}
+			if(filterGridPopulated) {
+				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+			}
+			// reset the ratio
+			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+		
 			//show_message("BUH 5");
 			break;
 		case "Toggle Dark Theme":
+		
+		
+			global.colorTheme++;
+			if (global.colorTheme >= ds_grid_height(global.colorThemeGrid)) {
+				global.colorTheme = 0;
+			}
+	
+			global.colorThemeBG = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBG, global.colorTheme);
+			global.colorThemeText = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colText, global.colorTheme);
+			global.colorThemeSelected1 = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colSelected1, global.colorTheme);
+			global.colorThemeSelected2 = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colSelected2, global.colorTheme);
+			global.colorThemeBorders = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBorders, global.colorTheme);
+			global.colorThemePaneBG = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, global.colorTheme);
+			global.colorThemeOutOfBounds = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, global.colorTheme);
+			global.colorThemeHighlight = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colHighlight, global.colorTheme);
+	
+			var layerID = layer_get_id("Background");
+			var backID = layer_background_get_id(layerID);
+			layer_background_blend(backID, global.colorThemeBG);
+		
 			//show_message("BUH 5");
 			break;
 		default:
@@ -490,18 +667,88 @@ else if (optionListType == 7)
 	switch (optionSelected)
 	{
 		case "Search For Words":
+		
+		
+			if (!obj_control.dialogueBoxActive) {
+				keyboard_string = "";
+				obj_control.fPressed = true;
+			}
+
+
+			obj_control.dialogueBoxActive = true;
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			}
+
+		
 			//show_message("BUH 1");
 			break;
 		case "Toggle Search Screen":
+		
+			if (ds_grid_height(obj_control.searchGrid) > 0 and !obj_control.gridView) {
+				// Main/filter to search
+				if(obj_control.currentActiveLineGrid == obj_control.lineGrid) {// or currentActiveLineGrid == filterGrid) {
+					scr_unFocusAllChains();
+					// Which grid are we switching from?
+					obj_control.preSwitchLineGrid = obj_control.currentActiveLineGrid; 
+					obj_control.searchGridActive = true;
+					obj_control.currentActiveLineGrid = obj_control.searchGrid;
+					// Which row are we switching from?
+					obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow; 
+					obj_control.highlightedSearchRow = 0;
+					//currentCenterDisplayRow = preSwitchSearchDisplayRow;
+					obj_control.scrollPlusYDest  = obj_control.preSwitchSearchDisplayRow;
+				//	var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
+					//obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+		
+					obj_control.wordLeftMarginDest = window_get_width() / 2;
+				}
+				// Switch back to either main or filter grids
+				else if(obj_control.currentActiveLineGrid == obj_control.searchGrid) { 
+					obj_control.searchGridActive = false;
+		
+					// Check to see which grid we're switching back into
+					if(obj_control.preSwitchLineGrid == obj_control.filterGrid) {
+						scr_renderFilter(); // Thankfully this script does a lot of work for us
+					}
+					else {
+						obj_control.currentActiveLineGrid = obj_control.lineGrid;
+					}
+					obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow;
+		
+					// Make sure we don't try to render a line that doesn't exist
+					if(obj_control.highlightedSearchRow > 0 && ds_grid_value_exists(obj_control.preSwitchLineGrid, 0, 0, 0, ds_grid_height(obj_control.preSwitchLineGrid), obj_control.highlightedSearchRow)){
+						var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, obj_control.highlightedSearchRow);
+						obj_control.preSwitchDisplayRow = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+					}
+					//currentCenterDisplayRow = preSwitchDisplayRow;
+					obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
+		
+					obj_control.wordLeftMarginDest = 170;
+				}
+			}
 			//show_message("BUH 2");
 			break;
 		case "Clear Search Screen":
-			//show_message("BUH 3");
+		
+			show_message("Coming Soon");
 			break;
 		case "Find Next":
-			//show_message("BUH 4");
+		
+			show_message("Coming Soon");
 			break;
 		case "Jump To Time":
+		
+			scr_jumpToLineCalled();
+			obj_control.goToTime = true;
+			
+			//show_message("BUH 5");
+			break;
+		case "Jump To Line":
+		
+			scr_jumpToLineCalled();
+			
 			//show_message("BUH 5");
 			break;
 		default:
