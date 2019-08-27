@@ -48,10 +48,10 @@ switch (currentFunction) {
 
 		scr_panelPane_drawChainListLoopClipped();
 		scr_panelPane_drawChainTabs();
-		if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = true;
 		}
-		if (mouse_check_button_pressed(mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (device_mouse_check_button_released(0, mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = false;
 		}
 		if(clickedIn) {
@@ -67,10 +67,10 @@ switch (currentFunction) {
 		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 		scr_panelPane_drawChainContentsLoopClipped();
-		if (mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = true;
 		}
-		if (mouse_check_button_pressed(mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (device_mouse_check_button_released(0, mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = false;
 		}
 		if (clickedIn) {
@@ -185,7 +185,7 @@ if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight
 
 
 
-if (mouse_check_button_pressed(mb_left) and mouseover
+if (device_mouse_check_button_released(0, mb_left) and mouseover
 and not obj_control.gridView and not currentFunction == functionChainList and not currentFunction == functionChainContents)
 {
 	with (obj_chain)

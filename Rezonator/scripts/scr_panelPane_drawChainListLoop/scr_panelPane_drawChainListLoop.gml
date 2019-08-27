@@ -89,7 +89,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	//Check mouse clicks to focus a chain in the list
 	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)) {
 		
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			// Unfocus chain if previously focused
 			if (currentChainState == obj_chain.chainStateFocus) {
 				currentChainState = obj_chain.chainStateNormal;
@@ -200,7 +200,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	}
 	
 	// Check boxes for user selection with mouse click
-	if ((point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2) and mouse_check_button_pressed(mb_left))
+	if ((point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2) and device_mouse_check_button_released(0, mb_left))
 	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) {
 		// Record previous display row in case Filter is empty
 		obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
@@ -253,7 +253,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	
 		//Check for user selection of alignment with mouse clicks
 		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				
 				// Unselect alignment if already selected
 				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {

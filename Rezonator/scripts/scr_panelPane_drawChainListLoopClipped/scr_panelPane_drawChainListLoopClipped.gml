@@ -84,7 +84,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 		//Check mouse clicks to focus a chain in the list
 	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-	and mouse_check_button_pressed(mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
+	and device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 		
 		// Unfocus chain if previously focused
 		if (currentChainState == obj_chain.chainStateFocus) {
@@ -234,7 +234,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	}
 	
 	// Check boxes for user selection with mouse click
-	if ((point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY) and mouse_check_button_pressed(mb_left))
+	if ((point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY) and device_mouse_check_button_released(0, mb_left))
 	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) {
 		// Record previous display row in case Filter is empty
 		obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
@@ -304,7 +304,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 			draw_text(mouse_x + 72, mouse_y, "Alignment");
 			draw_set_font(global.fontChainList);
 			
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				
 				// Unselect alignment if already selected
 				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {

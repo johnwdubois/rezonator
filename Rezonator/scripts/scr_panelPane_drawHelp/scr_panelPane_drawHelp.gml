@@ -108,7 +108,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_circle(gridCollapseButtonAllX, gridCollapseButtonAllY, 10, true);
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
 				// Skip past sections already changed
 				if((obj_panelPane.functionHelp_allCollapsed and not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) or (not obj_panelPane.functionHelp_allCollapsed and ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i))) {
@@ -160,7 +160,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
 				draw_circle(gridCollapseButtonX, gridCollapseButtonY, 10, true);
-				if (mouse_check_button_pressed(mb_left)) {
+				if (device_mouse_check_button_released(0, mb_left)) {
 					ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i, not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i));
 				}
 			}
@@ -217,7 +217,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 							draw_text(cellRectX1 + textBuffer, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight), currentStrDesc);
 							cellPlusY += (2 * cellHeight);
 							
-							if(mouse_check_button_pressed(mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
+							if(device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
 								if(currentStrFunc == "Download") {
 									url_open("https://rezonator.com/download/");
 								}

@@ -114,7 +114,7 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 	draw_text(rectX1 + 5, mean(rectY1, rectY2), colName);
 	
 	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			grid = currentGrid;
 		}
 	}

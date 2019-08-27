@@ -121,6 +121,7 @@ searchGrid_colHitIDList = lineGrid_colWordIDList;
 
 filterGrid = ds_grid_create(lineGridWidth, 0);
 searchGrid = ds_grid_create(lineGridWidth, 0);
+emptySearchGrid = ds_grid_create(lineGridWidth, 0);
 
 // Initialize filter and search as deactivated
 filterGridActive = false;
@@ -183,6 +184,7 @@ hitGrid_colDisplayCol = 5;
 hitGrid_colPixelX = 6;
 
 hitGrid = ds_grid_create(hitGridWidth, 0);
+emptyHitGrid = ds_grid_create(hitGridWidth, 0);
 
 
 
@@ -368,6 +370,7 @@ caption = false;
 replace = false;
 splitWord = false;
 swapLine = false;
+changeAuthor = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;

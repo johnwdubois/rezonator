@@ -166,7 +166,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 				draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
 			
 				// Focus in the main screen
-				if (mouse_check_button_pressed(mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush)
+				if (device_mouse_check_button_released(0, mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush)
 				{	
 					ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 					ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
@@ -178,7 +178,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			draw_set_alpha(1);
 	
 			// Check for double click
-			if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and mouse_check_button_pressed(mb_left)) {
+			if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and device_mouse_check_button_released(0, mb_left)) {
 				if (doubleClickTimer > -1) {
 				
 					var rowInLineGrid = -1;
@@ -262,7 +262,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 				draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 			}
 		
- 			if (point_in_rectangle(mouse_x, mouse_y, x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY, x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY) and mouse_check_button_pressed(mb_left)
+ 			if (point_in_rectangle(mouse_x, mouse_y, x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY, x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY) and device_mouse_check_button_released(0, mb_left)
 			and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
 				currentWordAligned = !currentWordAligned;
 				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);

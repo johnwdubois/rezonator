@@ -48,7 +48,7 @@ for (var i = 0; i < 3; i++) {
 	
 	// If mouse clicked in button, activate/deavtivate button's function
 	if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)){
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			
 			// Re/activate function
 			with (obj_panelPane) {
@@ -80,7 +80,7 @@ for (var i = 0; i < 3; i++) {
 
 // Check for mouse clicks on filter button, if we're out of the search grid
 if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
-	if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius) and mouse_check_button_pressed(mb_left))
+	if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius) and device_mouse_check_button_released(0, mb_left))
 	or (keyboard_check(vk_control) and keyboard_check_pressed(ord("P")))) {
 		// If filter is active, deactivate it
 		if (obj_control.filterGridActive) {

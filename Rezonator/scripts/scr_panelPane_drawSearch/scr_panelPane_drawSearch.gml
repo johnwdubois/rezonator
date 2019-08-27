@@ -52,7 +52,7 @@ if (obj_control.searchGridActive)
 	draw_text(x + textMarginLeft, y + windowHeight - textMarginTop, string(matchCount) + " matches");
 }
 
-if (mouseover and mouse_check_button_pressed(mb_left))
+if (mouseover and device_mouse_check_button_released(0, mb_left))
 {
 	with (obj_control)
 	{
