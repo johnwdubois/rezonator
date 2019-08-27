@@ -1,5 +1,3 @@
-//used for key press G
-
 if (!obj_control.shortcutsEnabled || obj_control.dialogueBoxActive || obj_panelPane.discoSelectionActive) {
 	exit;
 }
