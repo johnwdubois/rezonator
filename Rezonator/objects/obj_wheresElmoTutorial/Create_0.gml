@@ -6,14 +6,14 @@ calloutBubbleGrid = ds_grid_create(calloutBubbleGridWidth, 4);
 calloutBubbleGridCurrentRow = 0;
 
 
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 0, "yoooo  its the#first string!");
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 0, 10);
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 1, "now its string# number toooooo");
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 1, 20);
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 2, "its me string 3#CHECK IT OUT!#its really cool");
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 2, 25);
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 3, "its string 4#im at the door#lets go to Pour");
-ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 3, 37);
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 0, "Click on the first reference#to the subject to begin#the Track chain!");
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 0, 106);
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 1, "Click on the next reference#to the subject to add#a Link to the chain.");
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 1, 112);
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 2, "Continue adding references to#the chain, and submit#your chain for grading#with the [ENTER] key!");
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 2, 117);
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colString, 3, "Some references may appear#in the same sentence,#watch out!");
+//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 3, 120);
 
 
 

@@ -12,7 +12,7 @@ followWordStringWidth = 0;
 
 //bubbleString = "bla bla bla#hsdahhahda#s dij dsa#ijg bcv ijd#asdoij#jdsad#oijdjsad#oijdsa sfsa#jidsa# ijds# ioajsda#cvx s#sadsm";
 
-bubbleWidth = 150;
+bubbleWidth = 260;
 bubbleHeigth = 300;
 
 bubbleDirRight = 0;
