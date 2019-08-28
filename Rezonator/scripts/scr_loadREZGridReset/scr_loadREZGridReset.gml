@@ -9,7 +9,6 @@ if (is_undefined(mapFind)) {
 	exit;
 }
 
-
 scr_loadREZGridResize(tempGrid, mapFind);
 ds_grid_clear(tempGrid, -1);
-scr_JSONListsToGrid(tempGrid, mapFind);
+scr_JSONListsToGrid(tempGrid, mapFind, map, mapKey);

@@ -33,9 +33,14 @@ if (filterGridActive) {
 	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 200;	
 }
 
+var menuBarHeight = 0;
+if (instance_exists(obj_menuBar)) {
+	menuBarHeight = obj_menuBar.menuHeight;
+}
+
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
-ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + 150 + drawLineYOffset));
+ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + 150 + menuBarHeight + drawLineYOffset));
 
 
 

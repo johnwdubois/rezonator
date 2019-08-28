@@ -76,9 +76,10 @@ wordGrid_colWordID = 0;
 wordGrid_colWID = 1;
 wordGrid_colUnitID = 2;
 wordGrid_colUtteranceID = 3;
-wordGrid_colWordSeq = 4;
-wordGrid_colWordToken = 5;
-wordGrid_colWordTranscript = 6;
+wordGrid_colDummy = 4;
+wordGrid_colWordSeq = 5;
+wordGrid_colWordToken = 6;
+wordGrid_colWordTranscript = 7;
 
 wordGrid = ds_grid_create(wordGridWidth, 0);
 

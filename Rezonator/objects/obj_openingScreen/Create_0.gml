@@ -29,7 +29,7 @@ global.totalUnitAmount = 0;
 
 global.participantColorList = ds_list_create();
 
-global.wordGridWidth = 7;
+global.wordGridWidth = 8;
 global.dynamicWordGridWidth = 14;
 global.unitGridWidth = 10;
 

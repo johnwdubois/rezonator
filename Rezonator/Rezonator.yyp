@@ -551,6 +551,14 @@
             }
         },
         {
+            "Key": "181759d2-b882-4e95-b205-02d712e61403",
+            "Value": {
+                "id": "695a111f-5eae-419c-82d3-37b988fba83f",
+                "resourcePath": "scripts\\scr_gridSwapCols\\scr_gridSwapCols.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1891078d-6716-4fe5-b69c-5f63e24c10d9",
             "Value": {
                 "id": "14cfc6a5-03c1-40af-8563-e39ec50fc379",
@@ -4746,7 +4754,8 @@
         "b0e5a84f-2c8d-493e-9d04-0c30082778e1",
         "4d910e82-2175-47e9-bbe7-abb36f58e198",
         "6a36dd8e-b836-424a-b978-03ca2e05fa0c",
-        "03f87121-d381-498c-a661-07c2c50c780d"
+        "03f87121-d381-498c-a661-07c2c50c780d",
+        "181759d2-b882-4e95-b205-02d712e61403"
     ],
     "tutorial": ""
 }
