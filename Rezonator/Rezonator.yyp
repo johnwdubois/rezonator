@@ -3255,6 +3255,14 @@
             }
         },
         {
+            "Key": "bc33c25a-2238-43c0-be94-7b461ed3cbb8",
+            "Value": {
+                "id": "98ae16da-d8b8-476b-ac2d-2e6121f94af2",
+                "resourcePath": "sprites\\spr_align\\spr_align.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "bce1d910-e51b-4c7d-95aa-04b53e521963",
             "Value": {
                 "id": "7f568740-cfd7-454e-ad86-9a7f39a419ac",

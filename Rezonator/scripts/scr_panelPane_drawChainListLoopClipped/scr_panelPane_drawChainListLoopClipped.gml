@@ -34,9 +34,11 @@ switch (functionChainList_currentTab) {
 		break;
 }
 
+draw_set_font(global.fontChainList);
+
 // Set text margin area
 var filterRectMargin = 8;
-var filterRectSize = 8;
+var filterRectSize = string_height("0") / 2;
 if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 	var textMarginLeft = 24;
 }
@@ -55,7 +57,6 @@ draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
-draw_set_font(global.fontChainList);
 var strHeight = string_height("0");
 
 scr_surfaceStart();
