@@ -1,3 +1,6 @@
+if (not visible) {
+	exit;
+}
 //if (window_get_width() != windowWidthPrev or window_get_height() != windowHeightPrev) {
 	scr_audioUIResize();
 //}

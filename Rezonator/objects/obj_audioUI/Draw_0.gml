@@ -117,6 +117,7 @@ draw_set_color(c_black);
 /* */
 /*  */
 
-draw_text(100, 100, "p2: " + string(p2));
-draw_text(100, 120, "xx: " + string(xx));
-draw_text(100, 140, "btn: " + string(btn));
+
+//draw_text(100, 100, "p2: " + string(p2));
+//draw_text(100, 120, "xx: " + string(xx));
+//draw_text(100, 140, "btn: " + string(btn));
