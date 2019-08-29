@@ -381,7 +381,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 			}
 		}
 	}
-
+		global.tutorial = false;
 		keyboard_string = "";
 		room_goto(rm_openingScreen);
 }

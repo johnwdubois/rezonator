@@ -57,6 +57,7 @@ if (optionListType == 0)
 			}
 		}
 	}
+	instance_destroy();
 }
 else if (optionListType == 1)
 {
@@ -119,7 +120,7 @@ else if (optionListType == 1)
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						}
-
+							instance_destroy();
 						break;
 					case "Recolor":
 						//show_message("Recolor chosen");
@@ -134,7 +135,7 @@ else if (optionListType == 1)
 						ds_list_add(dropDownOptionList, "Red", "Blue", "Green", "Gold", "Custom");
 						
 						if (ds_list_size(dropDownOptionList) > 0) {
-							var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+							var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing  , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
 							dropDownInst.optionListType = 2;
 					
@@ -158,6 +159,7 @@ else if (optionListType == 1)
 						
 						
 						*/
+
 						break;
 					case "Delete":
 						//show_message("Delete chosen");
@@ -186,6 +188,7 @@ else if (optionListType == 1)
 						*/
 						scr_deleteEntireChain(obj_control.selectedChainID);
 							
+								instance_destroy();
 						break;
 					case "Caption":
 					//show_message("Caption clicked");
@@ -204,6 +207,7 @@ else if (optionListType == 1)
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						}
+							instance_destroy();
 						break;
 					default:
 						break;
@@ -211,6 +215,7 @@ else if (optionListType == 1)
 					
 		}
 	}
+
 }
 else if (optionListType == 2)
 {
@@ -311,6 +316,7 @@ else if (optionListType == 2)
 				}
 		}
 	}
+	instance_destroy();
 }
 
 else if (optionListType == 3)
@@ -401,7 +407,7 @@ else if (optionListType == 3)
 			}
 		}
 	}
-	
+	instance_destroy();
 }
 else if (optionListType == 4)
 {
@@ -495,6 +501,7 @@ else if (optionListType == 4)
 		default:
 			break;
 	}
+	instance_destroy();
 }
 else if (optionListType == 5)
 {
@@ -546,6 +553,7 @@ else if (optionListType == 5)
 		default:
 			break;
 	}
+	instance_destroy();
 }
 else if (optionListType == 6)
 {
@@ -671,6 +679,7 @@ else if (optionListType == 6)
 		default:
 			break;
 	}
+	instance_destroy();
 }
 else if (optionListType == 7)
 {
@@ -777,7 +786,200 @@ else if (optionListType == 7)
 		default:
 			break;
 	}
+	instance_destroy();
+}
+//right click on word options
+else if (optionListType == 8)
+{
+	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
+	switch (optionSelected)
+	{
+		case "Link":
+		
+			
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "Create Rez", "Create track", "Delete link");
+			
+			if (ds_list_size(dropDownOptionList) > 0) {
+				
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 9;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+
+			//show_message("BUH 1");
+			break;
+		case "Tag":
+				
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "Create tag", "Edit Tag", "Delete tag");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 10;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+
+			//show_message("BUH 2");
+			break;
+		case "Edit":
+		
+	
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "Replace Word", "Split word", "New word", "Delete new word");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				obj_control.wideDropDown = true;
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing * 2, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 11;
+
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+	
+			//show_message("BUH 3");
+			break;
+		case "Recolor":
+		
+	
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "Red", "Blue", "Green", "Gold", "Custom");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing * 3 , -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 12;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+
+			//show_message("BUH 4");
+			break;
+		default:
+			break;
+	}
+
+}
+else if (optionListType == 9)
+{
+	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
+	//"Create Rez", "Create track", "Delete rez", "Delete track"
+	switch (optionSelected)
+	{
+		case "Create Rez":
+
+
+			//show_message("BUH 1");
+			break;
+		case "Create track":
+
+
+			//show_message("BUH 2");
+			break;
+		case "Delete link":
+		
+	
+
+			//show_message("BUH 3");
+			break;
+		default:
+			break;
+	}
+	instance_destroy();
+}
+else if (optionListType == 10)
+{
+	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
+	//"Create Rez", "Create track", "Delete rez", "Delete track"
+	switch (optionSelected)
+	{
+		case "Create tag":
+
+
+			//show_message("BUH 1");
+			break;
+	
+		case "Edit tag":
+		
+	
+
+			//show_message("BUH 3");
+			break;
+		case "Delete tag":
+	
+			break;
+		default:
+			break;
+	}
+	instance_destroy();
+}
+else if (optionListType == 11)
+{
+	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
+	//"Create Rez", "Create track", "Delete rez", "Delete track"
+	switch (optionSelected)
+	{
+		case "Replace word":
+
+
+			//show_message("BUH 1");
+			break;
+		case "Split word":
+
+
+			//show_message("BUH 2");
+			break;
+		case "Add new word":
+		
+	
+
+			//show_message("BUH 3");
+			break;
+		case "Delete new word":
+	
+			break;
+		default:
+			break;
+	}
+	instance_destroy();
+}
+else if (optionListType == 12)
+{
+	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
+	//"Create Rez", "Create track", "Delete rez", "Delete track"
+	switch (optionSelected)
+	{
+		case "Create Rez":
+
+
+			//show_message("BUH 1");
+			break;
+		case "Create track":
+
+
+			//show_message("BUH 2");
+			break;
+		case "Delete rez":
+		
+	
+
+			//show_message("BUH 3");
+			break;
+		case "Delete track":
+	
+			break;
+		default:
+			break;
+	}
+	instance_destroy();
 }
 
-
-instance_destroy();
