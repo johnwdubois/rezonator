@@ -120,7 +120,7 @@ else if (optionListType == 1)
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						}
-							instance_destroy();
+							instance_destroy(obj_dropDown);
 						break;
 					case "Recolor":
 						//show_message("Recolor chosen");
@@ -188,7 +188,7 @@ else if (optionListType == 1)
 						*/
 						scr_deleteEntireChain(obj_control.selectedChainID);
 							
-								instance_destroy();
+								instance_destroy(obj_dropDown);
 						break;
 					case "Caption":
 					//show_message("Caption clicked");
@@ -207,7 +207,7 @@ else if (optionListType == 1)
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						}
-							instance_destroy();
+							instance_destroy(obj_dropDown);
 						break;
 					default:
 						break;
