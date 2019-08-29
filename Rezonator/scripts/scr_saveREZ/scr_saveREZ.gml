@@ -33,6 +33,7 @@ with (obj_saveParent) {
 	if (object_index == obj_control) {
 		var mapFileLineRipGrid = scr_gridToJSONLists(global.fileLineRipGrid);
 		var mapWordGrid = scr_gridToJSONLists(wordGrid);
+		var mapWordGridColList = scr_getListOfGridCols(wordGrid);
 		var mapDynaWordGrid = scr_gridToJSONLists(dynamicWordGrid);
 		var mapWordDrawGrid = scr_gridToJSONLists(wordDrawGrid);
 		var mapUnitGrid = scr_gridToJSONLists(unitGrid);
@@ -40,6 +41,7 @@ with (obj_saveParent) {
 		
 		ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
 		ds_map_add_list(map, "wordGrid", mapWordGrid);
+		ds_map_add_list(map, "wordGridColList", mapWordGridColList);
 		ds_map_add_list(map, "dynaWordGrid", mapDynaWordGrid);
 		ds_map_add_list(map, "wordDrawGrid", mapWordDrawGrid);
 		ds_map_add_list(map, "unitGrid", mapUnitGrid);
@@ -49,7 +51,7 @@ with (obj_saveParent) {
 			ds_map_add(map, "subLineGridBeginning", obj_fileLoader.subLineGridBeginning);
 			ds_map_add(map, "subLineGridEnd", obj_fileLoader.subLineGridEnd);
 		}
-		else{
+		else {
 			ds_map_add(map, "subLineGridBeginning", -1);
 			ds_map_add(map, "subLineGridEnd", -1);
 		}

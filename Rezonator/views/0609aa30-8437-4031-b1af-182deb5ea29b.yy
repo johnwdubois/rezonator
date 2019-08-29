@@ -18,7 +18,8 @@
         "2fe811c4-caa2-4a8b-9162-d4bad73589a8",
         "1d4eb4b6-a79a-4939-b194-42b663501c60",
         "0ee82ecb-9ecd-4bcb-923f-3eb1406d3915",
-        "e9887152-5da4-4b7e-9d4a-b03816f12d8b"
+        "e9887152-5da4-4b7e-9d4a-b03816f12d8b",
+        "b92a031a-c814-47d5-9b06-7a216e4cfad3"
     ],
     "filterType": "GMScript",
     "folderName": "import\/export",

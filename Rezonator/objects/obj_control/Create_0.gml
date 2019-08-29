@@ -273,6 +273,7 @@ global.fontSize = 0;
 global.fontMain = fnt_main;
 global.fontMainBold = fnt_mainBold;
 global.fontChainList = fnt_chainList;
+global.fontChainListFocused = fnt_chainListFocused;
 global.fontPanelTab = fnt_panelTab;
 global.fontSortPane = fnt_sortPane;
 global.fontGridView = fnt_gridView;
