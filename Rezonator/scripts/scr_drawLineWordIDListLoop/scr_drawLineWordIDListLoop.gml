@@ -382,6 +382,24 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 						scr_wordClicked(currentWordID, unitID);
 					}
 				}
+				
+				if (device_mouse_check_button_released(0, mb_right)) {
+
+	
+					var dropDownOptionList = ds_list_create();
+					ds_list_add(dropDownOptionList, "Link", "Tag", "Edit", "Recolor");
+
+					if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+						var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+						dropDownInst.optionList = dropDownOptionList;
+						dropDownInst.optionListType = 8;
+					
+						obj_control.ableToCreateDropDown = false;
+						obj_control.alarm[0] = 2;
+					}
+
+				}
+				
 			}
 		}
 		/*else if for Chunks???{

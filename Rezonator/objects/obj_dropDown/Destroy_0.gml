@@ -4,3 +4,4 @@ obj_menuBar.mouseOverFile = false;
 obj_menuBar.mouseOverEdit = false;
 obj_menuBar.mouseOverView = false;
 obj_menuBar.mouseOverSearch = false;
+obj_control.wideDropDown = false;

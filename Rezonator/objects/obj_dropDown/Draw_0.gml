@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-var optionSpacing = 20;
+
 var ableToMouseover = true;
 var windowHeight = (ds_list_size(optionList) * optionSpacing);
 var textBuffer = 10;
@@ -26,6 +26,12 @@ if (ds_list_size(optionList) <= 0)
 {
 	instance_destroy();
 }
+
+mouseOverDropDown =  false;
+if(point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)){
+	mouseOverDropDown =  true;
+}
+
 
 for (var i = 0; i < ds_list_size(optionList); i++)
 {
@@ -43,10 +49,11 @@ for (var i = 0; i < ds_list_size(optionList); i++)
 	}
 	
 	draw_set_color(c_white);
-	if (mouseoverCurrentOption)
+	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown))
 	{
 		draw_set_color(obj_control.c_ltblue);
 	}
+
 	
 	draw_rectangle(optionRectX1, optionRectY1, optionRectX2, optionRectY2, false);
 	
@@ -57,6 +64,7 @@ for (var i = 0; i < ds_list_size(optionList); i++)
 	
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left))
 	{
+		optionCurrent = i;
 		var optionSelected = ds_list_find_value(optionList, i);
 		obj_menuBar.menuClickedIn = false;
 		scr_dropDownSelect(optionSelected);
