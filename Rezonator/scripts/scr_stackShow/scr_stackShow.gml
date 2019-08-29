@@ -18,10 +18,12 @@ if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player")&&
 
 	var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 	var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
-	var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
-	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
-		var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
-		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+	if(currentGoldStandardRow > -1) {
+		var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
+		for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+			var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+		}
 	}
 }
 // Increment our position in the list
@@ -97,6 +99,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		instance_destroy(obj_submitChain);
 	
 		obj_dialogueBox.elmoActive = true;	
 	}

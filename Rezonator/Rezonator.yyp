@@ -2231,6 +2231,14 @@
             }
         },
         {
+            "Key": "86f2d01a-d19b-48e7-9948-1b92eb6d6253",
+            "Value": {
+                "id": "14008a67-1b3f-4a58-81ee-13744aa9ed06",
+                "resourcePath": "objects\\obj_submitChain\\obj_submitChain.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "876dfb46-e34f-4303-92d7-29b15d649f25",
             "Value": {
                 "id": "93ed8fcf-10df-45be-a7f6-35c2554fe3b2",
