@@ -47,7 +47,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth, 0, menuWidth*2, menuHeig
 		
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Clear Stacks", "Clear Rez Chains", "Clear Track Chains", "Clear All Chains", "Toggle Filter Screen");
+		ds_list_add(dropDownOptionList, "Clear All Stacks", "Clear All Rez Chains", "Clear All Track Chains", "Clear All Chains", "Toggle Filter Screen");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth, menuHeight, -999, obj_dropDown);
@@ -103,7 +103,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*3, 0, menuWidth*4.5, menu
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Find Next" , "Jump To Time" , "Jump To Line");
+		ds_list_add(dropDownOptionList, "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Jump To Time" , "Jump To Line");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*3, menuHeight, -999, obj_dropDown);
