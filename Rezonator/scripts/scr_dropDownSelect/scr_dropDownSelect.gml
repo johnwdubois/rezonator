@@ -90,7 +90,9 @@ else if (optionListType == 1)
 		}
 		
 		obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
-		
+		if(obj_control.selectedChainID == undefined){
+			exit;
+		}
 		//show_message(ds_grid_height(grid));
 		//show_message(obj_control.selectedChainID);
 		if(ds_grid_height(grid) > 0){
@@ -517,96 +519,47 @@ else if (optionListType == 5)
 	{
 		case "Clear All Stacks":
 			
-			obj_chain.currentChainGrid = obj_chain.stackChainGrid;
-			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-			var stackGridHeight = ds_grid_height(obj_chain.stackChainGrid);
-			for(i = 0 ; i < stackGridHeight; i++){
-				//var chainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0)
-				ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
-				var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-				//show_message(string (currentChainRow) );
-				if(currentChainRow > -1) {
-					scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
-				}
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllStacks = true;
+				obj_dialogueBox.questionWindowActive = true;
 			}
-			
+		
 			
 		//	show_message("Coming Soon");
 			break;
 		case "Clear All Rez Chains":
 		
-			obj_chain.currentChainGrid = obj_chain.rezChainGrid;
-			obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-			var rezGridHeight = ds_grid_height(obj_chain.rezChainGrid);
-			for(i = 0 ; i < rezGridHeight; i++){
-				//var chainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0)
-				ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
-				var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-				//show_message(string (currentChainRow) );
-				if(currentChainRow > -1) {
-					scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
-				}
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllRez = true;
+				obj_dialogueBox.questionWindowActive = true;
 			}
+		
 
 			break;
 		case "Clear All Track Chains":
 		
-				
-			obj_chain.currentChainGrid = obj_chain.trackChainGrid;
-			obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
-			var trackGridHeight = ds_grid_height(obj_chain.trackChainGrid);
-			for(i = 0 ; i < trackGridHeight; i++){
-				ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
-				var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-				if(currentChainRow > -1) {
-					scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
-				}
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllTracks = true;
+				obj_dialogueBox.questionWindowActive = true;
 			}
+		
 		
 			//show_message("Coming Soon");
 			break;
 		case "Clear All Chains":
 		
-		// loop through stacks
-			obj_chain.currentChainGrid = obj_chain.stackChainGrid;
-			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-			var stackGridHeight = ds_grid_height(obj_chain.stackChainGrid);
-			for(i = 0 ; i < stackGridHeight; i++){
-				//var chainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0)
-				ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
-				var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-				//show_message(string (currentChainRow) );
-				if(currentChainRow > -1) {
-					scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
-				}
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllLinks = true;
+				obj_dialogueBox.questionWindowActive = true;
 			}
-			
-		// loop through rez chains
-			obj_chain.currentChainGrid = obj_chain.rezChainGrid;
-			obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-			var rezGridHeight = ds_grid_height(obj_chain.rezChainGrid);
-			for(i = 0 ; i < rezGridHeight; i++){
-				//var chainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0)
-				ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
-				var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-				//show_message(string (currentChainRow) );
-				if(currentChainRow > -1) {
-					scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
-				}
-			}
-			
-		// loop through track chains
-			obj_chain.currentChainGrid = obj_chain.trackChainGrid;
-			obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
-			var trackGridHeight = ds_grid_height(obj_chain.trackChainGrid);
-			for(i = 0 ; i < trackGridHeight; i++){
-				ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
-				var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-				if(currentChainRow > -1) {
-					scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
-				}
-			}
-		
 		
 			
 			//show_message("Coming Soon");

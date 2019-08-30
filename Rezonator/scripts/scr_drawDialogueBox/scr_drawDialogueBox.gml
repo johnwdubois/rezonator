@@ -360,7 +360,7 @@ if(ds_grid_height(grid) > 0 && obj_control.recolor){
 
 // ok button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
-	if (mouse_check_button_pressed(mb_left)) {
+	if (mouse_check_button_released(mb_left)) {
 		obj_control.alarm[11] = 60;
 		//input_text_set_enabled(obj_control.instance, false);
 		//inputText = input_text_get_text(instance);
@@ -472,7 +472,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 // cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
-		if (mouse_check_button_pressed(mb_left)) {
+		if (mouse_check_button_released(mb_left)) {
 			obj_control.alarm[11] = 60;
 			//input_text_set_text(instance, "");
 			//input_text_set_enabled(instance, false);

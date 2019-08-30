@@ -351,6 +351,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	// draw border if needed
 	if (drawBorder) {
 		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
+		if(effectColor == undefined){
+		effectColor = 16758711;
+		}
 		draw_set_color(effectColor);
 		
 		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {

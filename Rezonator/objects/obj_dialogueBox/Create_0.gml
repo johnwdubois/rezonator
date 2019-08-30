@@ -40,3 +40,8 @@ holdUp = 0;
 holdDown = 0;
 
 selectAll = false;
+
+clearAllStacks = false;
+clearAllTracks = false;
+clearAllRez = false;
+clearAllLinks = false;
