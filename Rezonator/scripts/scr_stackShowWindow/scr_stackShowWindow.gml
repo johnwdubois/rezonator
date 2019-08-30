@@ -94,7 +94,7 @@ if (stackShowWindowActive) {
 
 	// current chain boolean switch
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 10, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 20, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_dialogueBox.selectAll = !obj_dialogueBox.selectAll;	
 				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
 			}
@@ -112,7 +112,7 @@ if (stackShowWindowActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 135, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Where's Elmo?");
 	// current chain boolean switch
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_toolPane.tracksOnlyStackShow = !obj_toolPane.tracksOnlyStackShow;	
 				obj_toolPane.rezOnlyStackShow = false;
 				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
@@ -130,7 +130,7 @@ if (stackShowWindowActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 275, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10, "Rezzle");
 	// current chain boolean switch
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 260, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 270, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
-			if (mouse_check_button_pressed(mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_toolPane.rezOnlyStackShow = !obj_toolPane.rezOnlyStackShow;	
 				obj_toolPane.tracksOnlyStackShow = false;
 				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
@@ -145,7 +145,7 @@ if (stackShowWindowActive) {
 
 // ok button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 - 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && stackShowWindowActive){
-		if (mouse_check_button_pressed(mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			// In here is where the stackShow initiation code will go
 			//obj_control.currentStackShowListPosition = 0;
 			for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
@@ -220,7 +220,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 // cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && stackShowWindowActive){
-	if (mouse_check_button_pressed(mb_left)) {
+	if (device_mouse_check_button_released(0, mb_left)) {
 		obj_dialogueBox.stackShowWindowActive = false;
 		instance_destroy();
 	}

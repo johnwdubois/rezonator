@@ -1,6 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+if (obj_control.gridView) {
+	exit;
+}
 
 draw_set_colour(global.colorThemeBG);
 draw_roundrect(submitChainRectX1, submitChainRectY1, submitChainRectX2, submitChainRectY2, false);

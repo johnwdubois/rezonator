@@ -154,6 +154,8 @@ wordStateNew = 1;
 wordStateChunk = 2;
 wordStateDead = 3;
 wordStateGold = 4;
+wordStateRed = 5;
+
 
 
 // Instantiate the Word Draw Grid

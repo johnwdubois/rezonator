@@ -57,7 +57,9 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 	var currentInChainList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentID - 1);
 	if (grid == obj_chain.rezChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
-		
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
+		}
 		// Prevent this word from losing its border if it belongs to another chain
 		if(ds_list_size(currentInChainList) > 0) {
 			for(var inChainListLoop = 0; inChainListLoop < ds_list_size(currentInChainList); inChainListLoop++) {
@@ -76,6 +78,9 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 	else if (grid == obj_chain.trackChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, false);
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
+		}
 		
 		// Prevent this word from losing its border if it belongs to another chain
 		if(ds_list_size(currentInChainList) > 0) {

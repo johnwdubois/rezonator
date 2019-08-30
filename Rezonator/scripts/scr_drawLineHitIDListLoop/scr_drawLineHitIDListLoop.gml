@@ -194,6 +194,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 	}
 	
+	//Prevent the mouse from clicking on words/lines while releasing from a drag
+	var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 	
 	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 	var mouseover = false;
@@ -206,7 +208,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		draw_set_alpha(1);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-		if (device_mouse_check_button_released(0, mb_left)) {
+		if (device_mouse_check_button_released(0, mb_left) and not mouseRectExists) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
 			}
@@ -214,7 +216,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	}
 		
 	if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
-		if (device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) {
+		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and not mouseRectExists) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
 			}

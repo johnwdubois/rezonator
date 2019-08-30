@@ -323,6 +323,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
 	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);
 	var drawGoldStandard = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1) == obj_control.wordStateGold);
+	var drawIncorrect = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1) == obj_control.wordStateRed);
 	
 	// draw fill rectangle if needed
 	if (drawFillRect) {
@@ -334,6 +335,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	if (drawGoldStandard) {
 		draw_set_color(c_green);
+		draw_set_alpha(0.4);
+		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+		draw_set_alpha(1);
+	}
+	
+	if (drawIncorrect) {
+		draw_set_color(c_red);
 		draw_set_alpha(0.4);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 		draw_set_alpha(1);
@@ -363,6 +371,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	}
 	
 	if (!obj_chain.inRezPlay) {
+		
+		//Prevent the mouse from clicking on words/lines while releasing from a drag
+		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 	
 		// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 		var mouseover = false;
@@ -377,7 +388,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				draw_set_alpha(1);
 				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-				if (device_mouse_check_button_released(0, mb_left)) {
+				if (device_mouse_check_button_released(0, mb_left) and not mouseRectExists) {
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
 					}
@@ -408,7 +419,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		*/
 		// Allows for adding to a stack anywhere in a line
 		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY1 + gridSpaceVertical) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
-			if (device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) {
+			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and not mouseRectExists) {
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
 				}
