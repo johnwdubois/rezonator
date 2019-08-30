@@ -16,6 +16,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 		// Access the relevent row in the Chunk grid
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
 		if(currentChunkRow < 0) {
+						show_message("here1");
 			exit;	
 		}
 		// Access the Chunk's wordID
@@ -75,7 +76,9 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	
 	// Safety check, we only want to delete Chunks or newWords
 	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
-	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) {exit;}
+	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) {
+					show_message("here2");
+		exit;}
 	
 	// Set the word state to dead
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
@@ -114,7 +117,9 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 		grid = obj_chain.stackChainGrid;
 	}
 		
-	if(grid == undefined) {exit;}
+	if(grid == undefined) {
+					show_message("here3");
+		exit;}
 	// Locate the current chain within the chain grid
 	currentChainGridRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
 }
@@ -124,16 +129,19 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 
 	// Find the link that is in focus
 	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
+
 	if (rowInLinkGridSource == -1) {
+					show_message("here4");
 		exit;
 	}
-	
+
 	// Access information on focused link
 	var chainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
 	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowInLinkGridSource);
 	var dead = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridSource);
 	
 	if (dead) {
+					show_message("here5");
 		exit;
 	}
 	
@@ -179,6 +187,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		var rowInUnitInStackGrid = ds_grid_value_y(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colUnitID, 0, obj_chain.unitInStackGrid_colUnitID, ds_grid_height(obj_chain.unitInStackGrid), source);
 		
 		if (rowInUnitInStackGrid < 0 or rowInUnitInStackGrid >= ds_grid_height(obj_chain.unitInStackGrid)) {
+			show_message("here6");
 			exit;
 		}
 		
@@ -233,6 +242,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateNormal);
 	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 	obj_control.linkDeleted = false;
+				show_message("here7");
 	exit;	
 }
 else {
@@ -263,6 +273,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	// Find the dead, focused link
 	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, true);
 	if (rowInLinkGridSource == -1) {
+					show_message("here8");
 		exit;
 	}
 	// Unfocus the dead link
@@ -281,6 +292,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	var firstWordID = ds_list_find_value(ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid),0);
 	if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
 		if(ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), firstWordID) < 0)	{
+						show_message("here9");
 			exit;	
 		}
 	}
@@ -289,6 +301,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	var rowInLinkGridToFocus = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false, obj_chain.linkGrid_colSource, firstWordID);
 	if (rowInLinkGridToFocus == -1) {
 		//show_message(string(firstWordID));
+					show_message("here10");
 		exit;
 	}
 	// If the chain contains a living link, focus the one it found
