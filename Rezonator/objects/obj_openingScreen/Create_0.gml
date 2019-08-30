@@ -38,6 +38,7 @@ global.newProject = false;
 global.menuOpen = true;
 global.neworOpen = false;
 global.tutorial = false;
+global.games = false;
 
 
 global.fileSaveName = "undefined";

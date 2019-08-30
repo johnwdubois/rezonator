@@ -66,7 +66,25 @@ else if (global.newProject and not global.openProject) {
 	scr_newProjectWindow();
 }
 else if (not global.newProject and global.openProject) {
-	
+
+	if(global.games){
+		if	(os_type == os_macosx)	{
+			global.rezonatorDirString = global.rezonatorDirString + "/Games";
+		}
+		else	{
+
+			global.rezonatorDirString = global.rezonatorDirString + "\\Games";
+		}
+	}
+	else if(global.tutorial){
+			if	(os_type == os_macosx)	{
+			global.rezonatorDirString = global.rezonatorDirString + "/Tutorial";
+		}
+		else	{
+
+			global.rezonatorDirString = global.rezonatorDirString + "\\Tutorial";
+		}
+	}
 
 	room_goto(rm_mainScreen);
 }
