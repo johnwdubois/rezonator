@@ -186,7 +186,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 			ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
 			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 				
-		
+
 		
 		
 		var dropDownOptionList = ds_list_create();

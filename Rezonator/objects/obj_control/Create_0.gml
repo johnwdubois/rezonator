@@ -457,4 +457,9 @@ audioTrackIndex = -1;
 if(global.tutorial){
 		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
 }
+
+rightClickUnitID = 0;
+rightClickWordID = 0;
+rightClickWordSeq = 0;
+fromDropDown = false;
 wideDropDown = false;
