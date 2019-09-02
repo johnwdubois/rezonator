@@ -394,8 +394,12 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 		
 		if (obj_control.newWordCreated) {
-			obj_toolPane.currentTool = obj_toolPane.toolNewWord;
-			scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+			if(obj_control.fromDropDown){
+				scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText);
+			}
+			else{
+				scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+			}
 		}
 			
 		if (obj_control.rename) {
@@ -426,7 +430,12 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 				scr_splitWord(obj_control.inputText);
 			}
 			else{
-				scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+				if(obj_control.fromDropDown){
+					scr_replaceWord(obj_control.rightClickWordID,obj_control.inputText);
+				}
+				else{
+					scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+				}
 			}
 		}
 		
@@ -462,6 +471,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.splitWord = false;
 		obj_control.swapLine = false;
 		obj_control.changeAuthor = false;
+		obj_control.fromDropDown = false;
 		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
 		instance_destroy();
@@ -497,6 +507,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.splitWord = false;
 			obj_control.swapLine = false;
 			obj_control.changeAuthor = false;
+			obj_control.fromDropDown = false;
 			obj_control.inputText = "";
 			obj_control.cursorPos = 1;
 			instance_destroy();
@@ -541,8 +552,13 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.newWordCreated) {
-		obj_toolPane.currentTool = obj_toolPane.toolNewWord;
-		scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+		if(obj_control.fromDropDown){
+			scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText);
+		}
+		else{
+			scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+		}
+
 	}
 	
 	if (obj_control.rename) {
@@ -572,7 +588,12 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 			scr_splitWord(obj_control.inputText);
 		}
 		else{
-			scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+			if(obj_control.fromDropDown){
+				scr_replaceWord(obj_control.rightClickWordID,obj_control.inputText);
+			}
+			else{
+				scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
+			}
 		}	
 	}
 	
@@ -607,6 +628,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.splitWord = false;
 	obj_control.swapLine = false;
 	obj_control.changeAuthor = false;
+	obj_control.fromDropDown = false;
 	obj_control.inputText = "";
 	obj_control.cursorPos = 1;
 	instance_destroy();

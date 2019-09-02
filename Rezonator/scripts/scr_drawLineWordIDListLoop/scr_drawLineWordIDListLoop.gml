@@ -399,9 +399,16 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				
 				if (device_mouse_check_button_released(0, mb_right)) {
 
-	
+					if(!instance_exists(obj_dialogueBox)){
+					obj_control.rightClickWordID = obj_control.newWordHoverWordID;
+					obj_control.rightClickUnitID = obj_control.newWordHoverUnitID;
+					obj_control.rightClickWordSeq = obj_control.newWordHoverWordSeq;
+					}
+
+
+					obj_control.wideDropDown = true;
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Link", "Tag", "Edit", "Recolor");
+					ds_list_add(dropDownOptionList,"Replace word", "Split word", "New word", "Delete new word", "Tag");
 
 					if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 						var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);

@@ -64,11 +64,14 @@ ds_list_add(chainColorList, c_blue, c_red, c_green, c_purple, c_olive, c_orange,
 
 
 
-DepRelLinkGridWidth = 4;
+DepRelLinkGridWidth = 6;
 DepRelLinkGrid_colDepRelLinkID = 0;
 DepRelLinkGrid_colSource = 1;
 DepRelLinkGrid_colGoal = 2;
 DepRelLinkGrid_colRole = 3;
+DepRelLinkGrid_colLabel = 4;
+DepRelLinkGrid_colTag = 5;
+
 DepRelLinkGrid = ds_grid_create(DepRelLinkGridWidth, 0);
 
 
@@ -86,6 +89,7 @@ linkGrid_colTilt = 7;
 //linkGrid_colTimeStamp = 8;
 linkGrid_colSourceClickTime = 8;
 linkGrid_colGoalClickTime = 9;
+
 
 linkGrid = ds_grid_create(linkGridWidth, 0);
 

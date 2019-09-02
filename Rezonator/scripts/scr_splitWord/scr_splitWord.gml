@@ -23,9 +23,22 @@ if(ds_list_size(listOfWords) < 2){
 	show_message("not enough words entered");
 	exit;
 }
+//show_message(string(obj_control.newWordHoverWordSeq));
+if(obj_control.fromDropDown){
+	scr_replaceWord(obj_control.rightClickWordID,ds_list_find_value(listOfWords, 0));
+}
+else{
+	scr_replaceWord(obj_control.newWordHoverWordID,ds_list_find_value(listOfWords, 0));
+}
 
-scr_replaceWord(obj_control.newWordHoverWordID,ds_list_find_value(listOfWords, 0));
 
 //obj_toolPane.currentTool = obj_toolPane.toolNewWord;
-scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq,ds_list_find_value(listOfWords, 1));
+
+if(obj_control.fromDropDown){
+	scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq,ds_list_find_value(listOfWords, 1));
+}
+else{
+	scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq,ds_list_find_value(listOfWords, 1));
+}
+
 
