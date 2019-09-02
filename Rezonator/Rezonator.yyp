@@ -127,6 +127,14 @@
             }
         },
         {
+            "Key": "05cdfe7b-ea32-4298-b229-5e48674709dc",
+            "Value": {
+                "id": "9d4ecb36-d6e4-448a-a8c5-96ea75887bdb",
+                "resourcePath": "datafiles_yy\\Games\\Where's Elmo\\WheresEmma.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "0609aa30-8437-4031-b1af-182deb5ea29b",
             "Value": {
                 "id": "d6e7758c-3f30-44d3-91e9-12cf5d5132ed",
@@ -823,6 +831,14 @@
             }
         },
         {
+            "Key": "2721da14-0012-472b-96e0-77bcc58594c2",
+            "Value": {
+                "id": "71c8d564-f54c-43e8-8891-c233e2bc67d8",
+                "resourcePath": "datafiles_yy\\Games\\Where's Elmo\\Saved Games\\WheresJesse - Player.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "27802a31-62b6-402a-b13d-054e590fccc0",
             "Value": {
                 "id": "b21ae1c6-768f-45b3-8bb1-bf24a5c03fba",
@@ -1124,6 +1140,14 @@
                 "id": "60212fb0-0ab5-4c56-b703-1491b32362f7",
                 "resourcePath": "sprites\\sLoop_minimalist\\sLoop_minimalist.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "41aba757-d574-47cc-bc99-c6ea72d873ae",
+            "Value": {
+                "id": "f9941c46-932b-42d5-95a9-d804afda25d9",
+                "resourcePath": "datafiles_yy\\Games\\Where's Elmo\\WheresTap.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1476,6 +1500,14 @@
                 "id": "ce6b4560-e22e-4a6b-b7fd-66994228e69e",
                 "resourcePath": "fonts\\fnt_mainBoldItalic\\fnt_mainBoldItalic.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "570c71c0-92f8-4963-afc4-4b6484b23db0",
+            "Value": {
+                "id": "740a1ec2-5fb9-456b-b613-8ea7609a1bd4",
+                "resourcePath": "datafiles_yy\\Games\\Where's Elmo\\WheresJesse.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2239,6 +2271,14 @@
             }
         },
         {
+            "Key": "8489b696-c19d-403f-bd12-0c4134e20e75",
+            "Value": {
+                "id": "de1049ef-cb6d-4436-a6b7-bd241cd1d137",
+                "resourcePath": "views\\8489b696-c19d-403f-bd12-0c4134e20e75.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "8527467f-60ba-4b6d-8e16-ec6891e4a3e2",
             "Value": {
                 "id": "88a979dc-d3ff-488c-b217-2d2366d39bdc",
@@ -2500,6 +2540,14 @@
                 "id": "8045c09c-a486-4638-8a9d-03b412191fe1",
                 "resourcePath": "rooms\/rm_spotBot\/rm_spotBot.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "91d5d215-cfaf-4f9f-af86-c2eeaf8f1011",
+            "Value": {
+                "id": "1a8942a9-30d7-40e8-8cda-8f738fd41cc1",
+                "resourcePath": "views\\91d5d215-cfaf-4f9f-af86-c2eeaf8f1011.yy",
+                "resourceType": "GMFolder"
             }
         },
         {
@@ -3684,14 +3732,6 @@
                 "id": "9a83ceda-66e6-46f1-a6ce-af6cc469ba4a",
                 "resourcePath": "views\/d0358b00-f090-4e7a-9511-65f5c5ebfae1.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "d05b529c-4330-42a7-a4a3-3068644b9a53",
-            "Value": {
-                "id": "68303529-13e7-4fe3-8d41-3e80bb138e9b",
-                "resourcePath": "datafiles_yy\/Games\/sbc060.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
