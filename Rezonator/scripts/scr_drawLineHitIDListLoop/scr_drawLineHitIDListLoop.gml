@@ -208,7 +208,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		draw_set_alpha(1);
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-		if (device_mouse_check_button_released(0, mb_left) and not mouseRectExists) {
+		if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
 			}
@@ -216,7 +216,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	}
 		
 	if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
-		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and not mouseRectExists) {
+		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists  and touchReleaseCheck)) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
 			}

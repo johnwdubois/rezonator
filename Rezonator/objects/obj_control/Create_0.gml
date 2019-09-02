@@ -391,6 +391,7 @@ instance = input_text_create_singleline_ext(camera_get_view_width(view_camera[0]
 dialogueBoxActive = false;
 newWordCreated = false;
 
+touchReleaseCheck = false;
 // Safety check for quick volunteers
 alarm[9] = 10;
 

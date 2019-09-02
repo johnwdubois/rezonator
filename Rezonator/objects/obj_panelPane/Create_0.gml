@@ -195,6 +195,12 @@ holdDown = 0;
 
 showNav = true;
 
+// Begin gameplay if user is in games mode
+if(string_lower(global.userName) != "gold" && global.games) {
+	// Begin the StackShow
+	alarm[7] = 60;
+}
+
 
 #macro EVENT_TICK 0
 #macro EVENT_STOP 1

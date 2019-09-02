@@ -14,7 +14,7 @@
 */
 var currentUser = global.userName;
 
-if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player")&& (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
+if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player") && (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
 
 	var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 	var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
@@ -22,7 +22,20 @@ if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player")&&
 		var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
 		for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
 			var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+			// Check for chunks
+			if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1) == obj_control.wordStateChunk) {
+				var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), goldWord);
+				var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
+				for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+					var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
+					if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
+					}
+				}
+			}
+			else {
+				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+			}
 		}
 	}
 }

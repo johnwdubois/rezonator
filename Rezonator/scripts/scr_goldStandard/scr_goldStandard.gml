@@ -2,7 +2,7 @@ var currentUser = ds_grid_get(currentChainGrid, chainGrid_colAuthor, currentFocu
 var originalChainWordList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentFocusedChainIndex);
 var currentChainWordList = ds_list_create();
 ds_list_copy(currentChainWordList, originalChainWordList);
-show_message(scr_getStringOfList(currentChainWordList));
+//show_message(scr_getStringOfList(currentChainWordList));
 
 var currentStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 if(string_lower(currentUser) == "gold") {
@@ -26,7 +26,7 @@ else if(string_lower(currentUser) == "player"){
 	var correct = 0;
 	var currentGoldStandardRow = ds_grid_value_y(goldStandardGrid, goldStandardGrid_colStackID, 0, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid), currentStackID);
 	var currentGoldStandardWordIDList = ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, currentGoldStandardRow);
-	show_message(scr_getStringOfList(currentGoldStandardWordIDList));
+	//show_message(scr_getStringOfList(currentGoldStandardWordIDList));
 	// Compare the focused list with the preset list
 	//if(ds_list_size(currentChainWordList) == ds_list_size(currentGoldStandardWordIDList)) {
 		//correct = true;
@@ -42,7 +42,20 @@ else if(string_lower(currentUser) == "player"){
 	for(var extraWordsLoop = 0; extraWordsLoop < ds_list_size(currentChainWordList); extraWordsLoop++) {
 		correct -= 0.5;
 		var redWord = ds_list_find_value(currentChainWordList, extraWordsLoop);
-		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, redWord - 1, obj_control.wordStateRed);
+		// If the word is a Chunk, find its wordID list an mark those instead.
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, redWord - 1) == obj_control.wordStateChunk) {
+			var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), redWord);
+			var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
+			for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+				var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
+				if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) != obj_control.wordStateChunk) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateRed);
+				}
+			}
+		}
+		else {
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, redWord - 1, obj_control.wordStateRed);
+		}
 	}
 	ds_list_clear(currentChainWordList);
 	var percentCorrect = (correct / ds_list_size(currentGoldStandardWordIDList)) * 100;
@@ -53,7 +66,20 @@ else if(string_lower(currentUser) == "player"){
 	
 	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
 		var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
-		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateGold);	
+		// If the word is a Chunk, find its wordID list an mark those instead.
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1) == obj_control.wordStateChunk) {
+			var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), goldWord);
+			var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
+			for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+				var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
+				if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) != obj_control.wordStateChunk) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateGold);
+				}
+			}
+		}
+		else {
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateGold);
+		}
 	}
 		
 	//show_message("Stack: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colStackID, currentGoldStandardRow)));
