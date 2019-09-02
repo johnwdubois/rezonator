@@ -1,5 +1,9 @@
 var autosave = argument0;
 
+if (global.inRezzles) {
+	autosave = false;
+}
+
 if (not autosave) {
 	if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
 		global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
