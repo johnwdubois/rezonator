@@ -244,7 +244,7 @@ if (showTracker) {
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeText);
-	draw_text(0 + 5, camera_get_view_height(view_camera[0]) - newYheight +15, "End Stack Show");
+	draw_text(0 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), "End Stack Show");
 
 
 	var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
@@ -301,10 +301,10 @@ if (showTracker) {
 	
 	
 	//draw stack name text
-	draw_set_font(fnt_mainBold);
+	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeText);
-	draw_text( 140 + 5, camera_get_view_height(view_camera[0]) - newYheight +15, nameOfStack);
+	draw_text( 140 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), nameOfStack);
 
 
 	//draw stack description background
@@ -316,10 +316,10 @@ if (showTracker) {
 	var captionOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption, currentRowinStack);
 	
 	//draw stack caption text
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeText);
-	draw_text( 280 + 5, camera_get_view_height(view_camera[0]) - newYheight +15, captionOfStack);
+	draw_text( 280 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), captionOfStack);
 
 
 	
@@ -374,7 +374,7 @@ if (showTracker) {
 	draw_set_colour(global.colorThemeBorders);
 	draw_rectangle( trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0]), true);
 
-		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 40, camera_get_view_height(view_camera[0]) - newYheight +15, 1, 1, 90, c_white, 1);
-		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 10, camera_get_view_height(view_camera[0]) - newYheight +14, 1, 1, 270, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 40, camera_get_view_height(view_camera[0]) - (newYheight/2), 1, 1, 90, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 10, camera_get_view_height(view_camera[0]) - (newYheight/2), 1, 1, 270, c_white, 1);
 
 }
