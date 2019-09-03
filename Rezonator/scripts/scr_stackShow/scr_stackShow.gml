@@ -14,7 +14,7 @@
 */
 var currentUser = global.userName;
 
-if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player") && (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
+if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) != "gold") && (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
 
 	var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 	var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
@@ -46,7 +46,7 @@ if(obj_control.currentStackShowListPosition > 0 and obj_control.stackShowBackwar
 else{
 	obj_control.currentStackShowListPosition++;
 	
-	if(obj_control.currentStackShowListPosition == 0 && string_lower(currentUser) == "player") {
+	if(obj_control.currentStackShowListPosition == 0 && string_lower(currentUser) != "gold") {
 		var tutorialInstance = instance_create_layer(-500, -500, "Instances", obj_wheresElmoTutorial);
 		var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 		var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);

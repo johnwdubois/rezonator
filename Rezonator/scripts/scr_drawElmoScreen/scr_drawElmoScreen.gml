@@ -107,68 +107,94 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		if(endingScreen) {
 			// I'll need to refactor this into scr_endStackShow();
 	
-	obj_control.stackShowActive = false;
-	obj_toolPane.tracksOnlyStackShow = false;
-	obj_toolPane.rezOnlyStackShow = false;
+			obj_control.stackShowActive = false;
+			obj_toolPane.tracksOnlyStackShow = false;
+			obj_toolPane.rezOnlyStackShow = false;
 	
-	with(obj_panelPane){
-		alarm[5] = -1;
-	}
-	obj_panelPane.timerMins = 0;
-	obj_panelPane.timerSecs = 0;
-	/*var currentStackID = ds_list_find_value(obj_control.stackShowList, ds_list_size(obj_control.stackShowList) - 1);
-	var currentGoldStandardRow = ds_grid_value_y(goldStandardGrid, goldStandardGrid_colStackID, 0, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid), currentStackID);
-	var currentGoldStandardWordIDList = ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, currentGoldStandardRow);
-	for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
-		var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
-		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
-	}*/
+			with(obj_panelPane){
+				alarm[5] = -1;
+			}
+			obj_panelPane.timerMins = 0;
+			obj_panelPane.timerSecs = 0;
+			/*var currentStackID = ds_list_find_value(obj_control.stackShowList, ds_list_size(obj_control.stackShowList) - 1);
+			var currentGoldStandardRow = ds_grid_value_y(goldStandardGrid, goldStandardGrid_colStackID, 0, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid), currentStackID);
+			var currentGoldStandardWordIDList = ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, currentGoldStandardRow);
+			for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
+				var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
+				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+			}*/
 	
-	//Set currentStackShowListPosition to -1
-	obj_control.currentStackShowListPosition = -1;
+			//Set currentStackShowListPosition to -1
+			obj_control.currentStackShowListPosition = -1;
 	
-	//Clear stackShowList
-	ds_list_clear(obj_control.stackShowList);
+			//Clear stackShowList
+			ds_list_clear(obj_control.stackShowList);
 	
-	// Exit the filter
-	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+			// Exit the filter
+			//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 	
-	// Switch to active grid
-	//obj_dialogueBox.stackShowWindowActive = false;
-	obj_control.filterGridActive = false;
-	obj_control.currentActiveLineGrid = obj_control.lineGrid;
-	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+			// Switch to active grid
+			//obj_dialogueBox.stackShowWindowActive = false;
+			obj_control.filterGridActive = false;
+			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
 	
-	// If the transcriptView was active before the stackShow, switch it back
-	if(obj_control.stackShowSwitchedWordView == true) {
-		obj_control.stackShowSwitchedWordView = false;
-		if(obj_control.wordTranscriptView) {
+			// If the transcriptView was active before the stackShow, switch it back
+			if(obj_control.stackShowSwitchedWordView == true) {
+				obj_control.stackShowSwitchedWordView = false;
+				if(obj_control.wordTranscriptView) {
 			
-			obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+					obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
 
-			for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
-				var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
-				var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
-				var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
+					for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
+						var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
+						var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
+						var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
 	
-				if (string_length(currentReplaceWord) > 0) {
-					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
-				}
-				else {
-					if (obj_control.wordTranscriptView) {
-						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
-					}
-					else {
-						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
+						if (string_length(currentReplaceWord) > 0) {
+							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
+						}
+						else {
+							if (obj_control.wordTranscriptView) {
+								ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
+							}
+							else {
+								ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
+							}
+						}
 					}
 				}
 			}
-		}
-	}
-	if(obj_control.stackShowSwitchedTextShape) {
-		obj_control.shape = obj_control.shapeBlock;
-		obj_control.stackShowSwitchedTextShape = false;
-	}
+			if(obj_control.stackShowSwitchedTextShape) {
+				obj_control.shape = obj_control.shapeBlock;
+				obj_control.stackShowSwitchedTextShape = false;
+			}
+			
+			audio_stop_all();
+	
+			scr_userSettingsIniFile();
+	
+	
+			if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+		
+				if (os_type == os_macosx) {
+
+					with (obj_fileLoader) {
+						scr_saveREZ(false);
+					}
+		
+				}
+				else {
+					if (show_question("Would you like to save before exiting?")) {
+						with (obj_fileLoader) {
+							scr_saveREZ(false);
+						}
+					}
+				}
+			}
+			global.tutorial = false;
+			keyboard_string = "";
+			room_goto(rm_openingScreen);
 		}
 		
 		

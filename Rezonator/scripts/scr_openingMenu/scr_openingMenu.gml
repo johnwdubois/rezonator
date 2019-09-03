@@ -45,6 +45,7 @@ if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY
 		global.newProject = false;
 		global.openProject = true;
 		global.games = true;
+		global.wheresElmo = true;
 	}
 }
 
