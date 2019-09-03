@@ -83,6 +83,8 @@ showDevVars = false;
 
 scr_importPackage();
 
+global.currentDirString = global.rezonatorDirString;
+
 global.rememberMe = false;
 
 global.importCSVGrid = ds_grid_create(0, 0);
@@ -107,6 +109,9 @@ cursorTimer = 20;
 global.userName = "";
 
 
+// variables for different games
+global.wheresElmo = false;
+global.rezzles = false;
 
 
 

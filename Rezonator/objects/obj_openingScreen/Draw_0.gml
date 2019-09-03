@@ -41,52 +41,46 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 if (showDevVars) {
 	var workingDirStr = "Working Dir: " + string(working_directory);
 	var programDirStr = "Program Dir: " + string(program_directory);
+	var currentDirStr = "Current Dir: " + string(global.currentDirString);
 	draw_set_halign(fa_left);
 	draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2) + 30, workingDirStr);
 	draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2) + 50, programDirStr);
+	draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2) + 100, currentDirStr);
 }
 
 
 
 
-if(global.menuOpen){
-	scr_openingMenu();
-}
-else{
-global.neworOpen = true;
 
-}
 
-if(global.neworOpen){
 	
 if not (global.newProject or global.openProject) {
-	scr_newOrOpen();
+	scr_openingMenu();
 }
 else if (global.newProject and not global.openProject) {
 	scr_newProjectWindow();
 }
 else if (not global.newProject and global.openProject) {
+//show_message("elmo: " + string(global.wheresElmo) + "  , rezzles: " +string(global.rezzles) + "  , tutorial: " +string(global.tutorial))
 
-	if(global.games){
-		if	(os_type == os_macosx)	{
-			global.rezonatorDirString = global.rezonatorDirString + "/Games";
-		}
-		else	{
+	if(global.wheresElmo){
 
-			global.rezonatorDirString = global.rezonatorDirString + "\\Games";
-		}
+			global.currentDirString = global.rezonatorElmoDirString;
+
 	}
-	else if(global.tutorial){
-			if	(os_type == os_macosx)	{
-			global.rezonatorDirString = global.rezonatorDirString + "/Tutorial";
-		}
-		else	{
-
-			global.rezonatorDirString = global.rezonatorDirString + "\\Tutorial";
-		}
+	if(global.rezzles){
+		
+			global.currentDirString = global.rezonatorRezzlesDirString;
+			
 	}
+	if(global.tutorial){
+		
+			global.currentDirString = global.rezonatorTutorialDirString;
+			
+	}
+	
+	//show_message(string(global.currentDirString));
 
 	room_goto(rm_mainScreen);
 }
 
-}

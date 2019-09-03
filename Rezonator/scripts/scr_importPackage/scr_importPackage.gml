@@ -4,11 +4,17 @@ if	(os_type == os_macosx)	{
 	var userStr = environment_get_variable("USER");
 	global.documentsDirString = "/Users/" + userStr + "/Documents";
 	global.rezonatorDirString = global.documentsDirString + "/Rezonator";
+	global.rezonatorTutorialDirString = global.documentsDirString + "/Tutorial";
+	global.rezonatorElmoDirString = global.documentsDirString + "/Games/Where's Elmo";
+	global.rezonatorRezzlesDirString = global.documentsDirString + "/Games/Rezzles";
 }
 else	{
 	var userStr = environment_get_variable("USERNAME");
 	global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
 	global.rezonatorDirString = global.documentsDirString + "\\Rezonator";
+	global.rezonatorTutorialDirString = global.documentsDirString + "\\Tutorial";
+	global.rezonatorElmoDirString = global.documentsDirString + "\\Games\\Where's Elmo";
+	global.rezonatorRezzlesDirString = global.documentsDirString + "\\Games\\Rezzles";
 }
 
 if (directory_exists(global.documentsDirString)) {

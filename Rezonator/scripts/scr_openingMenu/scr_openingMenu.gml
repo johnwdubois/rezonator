@@ -4,9 +4,9 @@ draw_set_valign(fa_middle);
 
 var buttonWidth = 200;
 var buttonHeight = 60;
-
-var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
-var newProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.45);
+//left side
+var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (camera_get_view_width(view_camera[0]) / 10) - (buttonWidth / 2);
+var newProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.40);
 var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
 
@@ -17,21 +17,53 @@ if (point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1,
 	
 	if (device_mouse_check_button_released(0, mb_left))
 	{
-		global.menuOpen = false;
+		global.newProject = true;
+		global.openProject = false;
 	}
 }
 
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "Research");
+draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "New Project");
 
 
 
 
-var openProjectButtonX1 = newProjectButtonX1
-var openProjectButtonY1 = newProjectButtonY2 + 30;
-var openProjectButtonX2 = newProjectButtonX2;
+var wheresElmoButtonX1 = newProjectButtonX1
+var wheresElmoButtonY1 = newProjectButtonY2 + 70;
+var wheresElmoButtonX2 = newProjectButtonX2;
+var wheresElmoButtonY2 = wheresElmoButtonY1 + buttonHeight;
+
+if (point_in_rectangle(mouse_x, mouse_y, wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2))
+{
+	draw_set_color(global.colorThemeSelected1);
+	draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, false);
+	
+	if (device_mouse_check_button_released(0, mb_left))
+	{
+		global.menuOpen = false;
+		global.newProject = false;
+		global.openProject = true;
+		global.games = true;
+		global.rezzles = false;
+		global.wheresElmo = true;
+		global.tutorial = false;
+
+	}
+}
+
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, true);
+draw_set_color(global.colorThemeText);
+draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), "Where's Elmo");
+
+
+//right side
+
+var openProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) + (camera_get_view_width(view_camera[0]) / 10) - (buttonWidth / 2);
+var openProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.40);
+var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
 
 if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2))
@@ -41,21 +73,55 @@ if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY
 	
 	if (device_mouse_check_button_released(0, mb_left))
 	{
-		global.menuOpen = false;
 		global.newProject = false;
 		global.openProject = true;
-		global.games = true;
 	}
 }
 
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Games");
+draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open Project");
 
-var openTutorialButtonX1 = openProjectButtonX1
-var openTutorialButtonY1 = openProjectButtonY2 + 30;
-var openTutorialButtonX2 = openProjectButtonX2;
+
+
+
+var rezzlesButtonX1 = openProjectButtonX1
+var rezzlesButtonY1 = openProjectButtonY2 + 70;
+var rezzlesButtonX2 = openProjectButtonX2;
+var rezzlesButtonY2 = rezzlesButtonY1 + buttonHeight;
+
+if (point_in_rectangle(mouse_x, mouse_y, rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2))
+{
+	draw_set_color(global.colorThemeSelected1);
+	draw_rectangle(rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2, false);
+	
+	if (device_mouse_check_button_released(0, mb_left))
+	{
+		global.menuOpen = false;
+		global.newProject = false;
+		global.openProject = true;
+		global.games = true;
+		global.rezzles = true;
+		global.wheresElmo = false;
+		global.tutorial = false;
+	
+	}
+}
+
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2, true);
+draw_set_color(global.colorThemeText);
+draw_text(mean(rezzlesButtonX1, rezzlesButtonX2), mean(rezzlesButtonY1, rezzlesButtonY2), "Rezzles");
+
+
+
+//tutorial button
+
+
+var openTutorialButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+var openTutorialButtonY1 = rezzlesButtonY2 + 70;
+var openTutorialButtonX2 = openTutorialButtonX1 + buttonWidth;
 var openTutorialButtonY2 = openTutorialButtonY1 + buttonHeight;
 
 if (point_in_rectangle(mouse_x, mouse_y, openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2))
@@ -69,13 +135,23 @@ if (point_in_rectangle(mouse_x, mouse_y, openTutorialButtonX1, openTutorialButto
 		global.newProject = false;
 		global.openProject = true;
 		global.tutorial = true;
+		global.rezzles = false;
+		global.wheresElmo = false;
 	}
 }
+
+
+
 
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2, true);
 draw_set_color(global.colorThemeText);
 draw_text(mean(openTutorialButtonX1, openTutorialButtonX2), mean(openTutorialButtonY1, openTutorialButtonY2), "Tutorial");
+
+
+
+
+
 
 
 
@@ -190,3 +266,8 @@ if(global.menuOpen){
 	
 	global.userName = obj_openingScreen.inputText;
 }
+
+draw_set_font(fnt_mainBoldLarge2);
+draw_text((camera_get_view_width(view_camera[0]) / 2) , rezzlesButtonY1 - 25 ,"Games");
+draw_text((camera_get_view_width(view_camera[0]) / 2) , newProjectButtonY1 - 25 ,"Research");
+draw_text((camera_get_view_width(view_camera[0]) / 2) , openTutorialButtonY1 - 25 ,"Tutorial");
