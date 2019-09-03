@@ -22,7 +22,7 @@ if(string_lower(currentUser) == "gold") {
 	//show_message("Stack: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid) - 1)));
 	//show_message("List: " + scr_getStringOfList(ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, ds_grid_height(goldStandardGrid) - 1)));
 }
-else if(string_lower(currentUser) == "player"){
+else { //if(string_lower(currentUser) == "player"){
 	var correct = 0;
 	var currentGoldStandardRow = ds_grid_value_y(goldStandardGrid, goldStandardGrid_colStackID, 0, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid), currentStackID);
 	var currentGoldStandardWordIDList = ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, currentGoldStandardRow);

@@ -102,10 +102,12 @@ if (point_in_rectangle(mouse_x, mouse_y, rezzlesButtonX1, rezzlesButtonY1, rezzl
 		global.newProject = false;
 		global.openProject = true;
 		global.games = true;
+
 		global.rezzles = true;
 		global.wheresElmo = false;
 		global.tutorial = false;
 	
+
 	}
 }
 
