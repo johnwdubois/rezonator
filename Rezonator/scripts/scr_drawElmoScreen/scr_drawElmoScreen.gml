@@ -170,36 +170,36 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 				obj_control.stackShowSwitchedTextShape = false;
 			}
 			
+			// Regular finish program procedures
 			audio_stop_all();
-	
 			scr_userSettingsIniFile();
 	
-	
-			if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
-		
-				if (os_type == os_macosx) {
-
-					with (obj_fileLoader) {
-						scr_saveREZ(false);
-					}
-		
-				}
-				else {
-					if (show_question("Would you like to save before exiting?")) {
-						with (obj_fileLoader) {
-							scr_saveREZ(false);
-						}
-					}
-				}
+			// Begin by saving the work of the current player in the playerSaves folder
+			with (obj_fileLoader) {
+				scr_saveREZ(true);
 			}
+			
+			// Then clear the tracks and save the fresh game
+			/*obj_chain.currentChainGrid = obj_chain.trackChainGrid;
+			obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
+			var trackGridHeight = ds_grid_height(obj_chain.trackChainGrid);
+			for(i = 0 ; i < trackGridHeight; i++){
+				ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
+				var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
+				if(currentChainRow > -1) {
+					scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+				}
+			}*/
+			/*with (obj_fileLoader) {
+				scr_saveREZ(false);
+			}*/
+				
+				
+			// Reset back to the opening screen
 			global.tutorial = false;
 			keyboard_string = "";
 			room_goto(rm_openingScreen);
 		}
-		
-		
-		
-		
 		
 		obj_control.alarm[11] = 60;
 		elmoActive = false;
