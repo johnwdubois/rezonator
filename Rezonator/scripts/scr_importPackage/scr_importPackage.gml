@@ -14,7 +14,9 @@ else	{
 	global.rezonatorDirString = global.documentsDirString + "\\Rezonator";
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "\\Tutorial";
 	global.rezonatorElmoDirString = global.rezonatorDirString + "\\Games\\Where's Elmo";
+	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "\\Saved Games";
 	global.rezonatorRezzlesDirString = global.rezonatorDirString + "\\Games\\Rezzles";
+	global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "\\Saved Games";
 }
 
 if (directory_exists(global.documentsDirString)) {

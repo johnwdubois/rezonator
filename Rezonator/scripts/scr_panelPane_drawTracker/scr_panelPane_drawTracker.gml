@@ -218,7 +218,7 @@ if (showTracker) {
 	}*/
 	
 	var mouseOverEndButton = false;
-	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - newYheight, 140, camera_get_view_height(view_camera[0]))) {
+	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - newYheight, 140, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
 		mouseOverEndButton = true;
 		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
@@ -304,6 +304,9 @@ if (showTracker) {
 	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeText);
+	if(nameOfStack == undefined) {
+		nameOfStack = "";	
+	}
 	draw_text( 140 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), nameOfStack);
 
 
@@ -319,12 +322,15 @@ if (showTracker) {
 	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeText);
+	if(captionOfStack == undefined) {
+		captionOfStack = "";	
+	}
 	draw_text( 280 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), captionOfStack);
 
 
 	
 	var mouseOverLeftButton = false;
-	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 50, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]))) {
+	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 50, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
 		mouseOverLeftButton = true;
 		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.stackShowBackwards = true;
@@ -338,7 +344,7 @@ if (showTracker) {
 	}
 	obj_control.stackShowBackwards = false;
 	var mouseOverRightButton = false;
-	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0]))) {
+	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
 		mouseOverRightButton = true;
 		if (device_mouse_check_button_released(0, mb_left)) {
 			/*

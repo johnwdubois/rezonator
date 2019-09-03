@@ -187,7 +187,12 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	obj_panelPane.showNav = true;
 	obj_toolPane.showTool = true;
 	
+	
+	
 	if(global.rezzles) {
+		with (obj_fileLoader) {
+			scr_saveREZ(true);
+		}
 		global.tutorial = false;
 		keyboard_string = "";
 		room_goto(rm_openingScreen);	
