@@ -235,9 +235,9 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 // enter check
 //show_message(string(global.wheresElmo));
-if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.wheresElmo) {
+if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.games) {
 
-	if(global.wheresElmo) {
+	if(global.games) {
 		ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), true);	
 	}
 	
@@ -313,6 +313,9 @@ if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.where
 			obj_panelPane.showNav = false;
 			obj_toolPane.showTool = false;
 		}
+	}
+	else if(global.rezzles) {
+		instance_create_layer(-500, -500, "Instances", obj_submitChain);
 	}
 	
 	

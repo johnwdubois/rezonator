@@ -46,7 +46,7 @@ if(obj_control.currentStackShowListPosition > 0 and obj_control.stackShowBackwar
 else{
 	obj_control.currentStackShowListPosition++;
 	
-	if(obj_control.currentStackShowListPosition == 0 && string_lower(currentUser) != "gold") {
+	if((obj_control.currentStackShowListPosition == 0 && string_lower(currentUser) != "gold") and global.wheresElmo) {
 		var tutorialInstance = instance_create_layer(-500, -500, "Instances", obj_wheresElmoTutorial);
 		var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 		var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
@@ -186,5 +186,11 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	
 	obj_panelPane.showNav = true;
 	obj_toolPane.showTool = true;
+	
+	if(global.rezzles) {
+		global.tutorial = false;
+		keyboard_string = "";
+		room_goto(rm_openingScreen);	
+	}
 	
 }
