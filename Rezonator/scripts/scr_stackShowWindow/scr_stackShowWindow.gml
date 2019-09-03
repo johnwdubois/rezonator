@@ -234,8 +234,13 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 
 // enter check
-if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
+//show_message(string(global.wheresElmo));
+if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.wheresElmo) {
 
+	if(global.wheresElmo) {
+		ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), true);	
+	}
+	
 	// In here is where the stackShow initiation code will go
 	//obj_control.currentStackShowListPosition = 0;
 	for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
@@ -300,6 +305,8 @@ if ( keyboard_check_pressed(vk_enter) && stackShowWindowActive) {
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		
+		instance_create_layer(-500, -500, "Instances", obj_submitChain);
 	
 		obj_dialogueBox.elmoActive = true;
 		if(string(global.userName) != "gold") {
