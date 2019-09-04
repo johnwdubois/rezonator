@@ -511,6 +511,14 @@
             }
         },
         {
+            "Key": "15d49241-cfc8-40d4-b7c0-42a711df3ab2",
+            "Value": {
+                "id": "d0d601e5-83d8-4454-93f1-ef1e3f033cc2",
+                "resourcePath": "datafiles_yy\\Games\\Rezzles\\Merry Christmas.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "165008df-c14b-4eb3-8665-d50a5f702d8f",
             "Value": {
                 "id": "18e942c0-16d0-448a-8157-9532224dc5c7",
@@ -3551,6 +3559,14 @@
             }
         },
         {
+            "Key": "c3b30e59-9d59-4707-9887-93e8e844871e",
+            "Value": {
+                "id": "debe0191-2bab-4254-b1e1-c3d9edc80d52",
+                "resourcePath": "datafiles_yy\\Games\\Rezzles\\OrderUp.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "c3c97928-1a34-4867-b355-10bf3258f126",
             "Value": {
                 "id": "bfa0877b-c329-441f-99c2-4bcc24eb378c",
@@ -3827,6 +3843,14 @@
             "Value": {
                 "id": "a8f7f9fe-88db-4311-85a7-38738c7c3943",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc004.xml.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "d3235037-5856-43b0-8668-dbdaaafc11f3",
+            "Value": {
+                "id": "a8f14173-92a7-4fba-9ce9-a1fdd414d9fd",
+                "resourcePath": "datafiles_yy\\Games\\Rezzles\\MickeyMouse.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
