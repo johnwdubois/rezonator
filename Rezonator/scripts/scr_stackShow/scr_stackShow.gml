@@ -76,6 +76,12 @@ else{
 			//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 3, 120);
 		}
 	}
+	else if(string_lower(currentUser) != "gold" and global.wheresElmo) {
+		if(instance_exists(obj_wheresElmoTutorial)) {
+			instance_destroy(obj_wheresElmoTutorial);
+			instance_destroy(obj_calloutBubble);
+		}
+	}
 }
 	
 
@@ -143,6 +149,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
 	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
 	
+	// Currently disabled for Demo purposes
 	// If the transcriptView was active before the stackShow, switch it back
 	if(obj_control.stackShowSwitchedWordView == true) {
 		obj_control.stackShowSwitchedWordView = false;
@@ -190,9 +197,13 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	
 	
 	if(global.rezzles) {
+		
+		// Save the player's work before closing
 		with (obj_fileLoader) {
 			scr_saveREZ(true);
 		}
+		
+		// Reset back to the opening screen
 		global.tutorial = false;
 		keyboard_string = "";
 		room_goto(rm_openingScreen);	

@@ -99,7 +99,11 @@ if (autosave) {
 		var gameSaveDirString = (global.rezzles ? global.rezonatorRezzlesSaveDirString : global.rezonatorElmoSaveDirString) ;
 		
 		if (directory_exists(gameSaveDirString)) {
-			var fileName = filename_change_ext(filename_name(global.fileSaveName), "") + " - " + global.userName + ".rez";
+			//show_message(date_time_string(date_current_datetime()));
+			var userString = (global.userName == "") ? ("player " + string_replace_all(date_time_string(date_current_datetime()), ":" , ".")) : global.userName;
+			//show_message(userString);
+			var fileName = filename_change_ext(filename_name(global.fileSaveName), "") + " - " + userString + ".rez";
+			//show_message(fileName);
 
 			scr_saveFileBuffer(0, gameSaveDirString + "\\" + fileName, jsonString);
 		}

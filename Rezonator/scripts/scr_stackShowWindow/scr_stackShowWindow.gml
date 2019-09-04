@@ -181,7 +181,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			
 			// Set word's to their tokens as default for stackShow
 			if(!obj_control.wordTranscriptView) {
-				obj_control.stackShowSwitchedWordView = true;
+				//obj_control.stackShowSwitchedWordView = true;
 				obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
 
 				for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
@@ -275,7 +275,7 @@ if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.games
 	
 	// Set word's to their tokens as default for stackShow
 	if(!obj_control.wordTranscriptView) {
-		obj_control.stackShowSwitchedWordView = true;
+		//obj_control.stackShowSwitchedWordView = true;
 		obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
 
 		for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {

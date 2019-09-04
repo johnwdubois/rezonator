@@ -20,6 +20,10 @@ else if(global.rezzles) {
 	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, "Rezzles");
 	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, "End Chain");
 }
+else {
+	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, "StackShow");
+	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, "End Chain");
+}
 
 draw_rectangle(submitChainButtonX1, submitChainButtonY1, submitChainButtonX2, submitChainButtonY2, true);
 
@@ -31,7 +35,7 @@ if(mouseOver) {
 	if(device_mouse_check_button_released(0, mb_left)) {
 		if(!obj_control.dialogueBoxActive){
 			with(obj_chain) {
-				if((obj_control.stackShowActive and (currentFocusedChainIndex > -1)) and global.wheresElmo) {
+				if((obj_control.stackShowActive and (currentFocusedChainIndex > -1)) and (global.wheresElmo or obj_toolPane.tracksOnlyStackShow)) {
 					scr_goldStandard();
 				}
 	

@@ -30,7 +30,10 @@ if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.stackSh
 		// Show the ending screen
 		var scoreString = " ";
 		for(var scoreLoop = 0; scoreLoop < ds_grid_height(obj_chain.goldStandardGrid); scoreLoop++) {
-			scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop)) + ",";
+			scoreString += " " + string(ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colScore, scoreLoop));
+			if((scoreLoop + 1) != ds_grid_height(obj_chain.goldStandardGrid)) {
+				scoreString += ",";
+			}
 		}
 		//show_message(scoreString);
 	//}
@@ -139,6 +142,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
 			obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
 	
+			// Currently disabled for Demo purposes
 			// If the transcriptView was active before the stackShow, switch it back
 			if(obj_control.stackShowSwitchedWordView == true) {
 				obj_control.stackShowSwitchedWordView = false;
@@ -215,12 +219,20 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			
 		// Exit the stackShow before it begins
 		if(openingScreen) {
+			if(global.wheresElmo) {
+				global.tutorial = false;
+				keyboard_string = "";
+				room_goto(rm_openingScreen);	
+			}
 			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
 			scr_stackShow();	
 		}
 		// Restart the stackShow
 		else if(endingScreen) {
 			obj_control.currentStackShowListPosition = -1;
+			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+			obj_panelPane.showNav = false;
+			obj_toolPane.showTool = false;
 			scr_stackShow();
 		}
 			
