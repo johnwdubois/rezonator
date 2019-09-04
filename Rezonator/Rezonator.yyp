@@ -927,19 +927,19 @@
             }
         },
         {
-            "Key": "2d43d09e-ebba-4b3b-9266-5053d5c5efb2",
-            "Value": {
-                "id": "3b04b81b-f63a-49cb-9e45-ed28bb1d2533",
-                "resourcePath": "datafiles_yy\\Games\\Rezzles\\Bonk.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "2e4b5e76-ae01-4d35-89a1-13041599adb3",
             "Value": {
                 "id": "2a187a95-9fc1-4952-a0e3-e8cbfc53f0ea",
                 "resourcePath": "fonts\/fnt_sortPaneLarge1\/fnt_sortPaneLarge1.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "2f28f8d7-16ca-4344-96a5-56b69de44c92",
+            "Value": {
+                "id": "de8fa1d7-dfe9-47ef-b7a3-52b3f0638765",
+                "resourcePath": "datafiles_yy\\Games\\Rezzles\\Bonk.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
