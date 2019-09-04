@@ -991,14 +991,6 @@
             }
         },
         {
-            "Key": "340199a1-fccd-44e4-87c4-f762529daa69",
-            "Value": {
-                "id": "6e346cb9-dd0f-457e-98dc-305dbe780928",
-                "resourcePath": "datafiles_yy\\Games\\Rezzles\\Saved Games\\Wheres_Lisabeth_Cassandra_Mike -.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "354bde9c-fc25-41f2-89b8-e40a87157775",
             "Value": {
                 "id": "812cca61-7cc3-4eec-a845-0ffb94797172",
@@ -1599,6 +1591,14 @@
             }
         },
         {
+            "Key": "5e640fc2-fb8b-4d25-be52-88c3b4ebc03b",
+            "Value": {
+                "id": "9b9d94a5-e236-41de-8fb8-75f5c3a9bbd0",
+                "resourcePath": "datafiles_yy\\Games\\Where's Elmo\\Wheres_Lisabeth.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "5eeb64fb-f2b7-40d4-a9d9-8b95ffa26402",
             "Value": {
                 "id": "037df22f-7d6f-4d53-b89a-bc32ae7531af",
@@ -1668,6 +1668,14 @@
                 "id": "34daa4c2-033c-43dc-9c9b-14c4ae99fe84",
                 "resourcePath": "fonts\/fnt_chainListLarge1\/fnt_chainListLarge1.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "653ce3d1-2593-4ee2-b833-4bafe519d114",
+            "Value": {
+                "id": "4fe1b4c2-c2f7-4880-8d3f-52329a696d0d",
+                "resourcePath": "datafiles_yy\\Games\\Rezzles\\Saved Games\\mathRezzle - .rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2396,6 +2404,14 @@
                 "id": "2f55bd40-9c16-4063-87b4-b53126052ec2",
                 "resourcePath": "scripts\/scr_gridToJSONLists\/scr_gridToJSONLists.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "88fb16d2-f42c-46ad-bb40-553a94dc1f11",
+            "Value": {
+                "id": "02da7581-2344-44cf-bbc9-b4a65cfb8491",
+                "resourcePath": "datafiles_yy\\Games\\Rezzles\\mathRezzle.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3683,14 +3699,6 @@
             "Value": {
                 "id": "3fa749e5-fb07-4aa8-b635-1b632fdac680",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc006.xml.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "cbb48f7a-afab-46be-8b76-dfea1353e601",
-            "Value": {
-                "id": "46d61f70-511a-4e7b-af57-3926f61fb6e0",
-                "resourcePath": "datafiles_yy\\Games\\Rezzles\\Wheres_Lisabeth_Cassandra_Mike.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },

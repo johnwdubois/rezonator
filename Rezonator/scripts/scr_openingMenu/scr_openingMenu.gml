@@ -4,8 +4,10 @@ draw_set_valign(fa_middle);
 
 var buttonWidth = 200;
 var buttonHeight = 60;
+var middleBuffer = 115;
 //left side
-var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (camera_get_view_width(view_camera[0]) / 10) - (buttonWidth / 2);
+
+var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - middleBuffer - (buttonWidth / 2);
 var newProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.40);
 var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
@@ -61,7 +63,7 @@ draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1,
 
 //right side
 
-var openProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) + (camera_get_view_width(view_camera[0]) / 10) - (buttonWidth / 2);
+var openProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) + middleBuffer - (buttonWidth / 2);
 var openProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.40);
 var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
