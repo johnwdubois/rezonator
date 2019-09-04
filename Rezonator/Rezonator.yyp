@@ -1511,6 +1511,14 @@
             }
         },
         {
+            "Key": "561558db-dfa8-40b6-a521-8f6f4fc6702b",
+            "Value": {
+                "id": "37901db4-e615-4947-94b2-32c49fa8fef0",
+                "resourcePath": "datafiles_yy\\Games\\Where's Elmo\\WheresHarry.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "56941672-b888-4188-a096-df9b49f88e6c",
             "Value": {
                 "id": "ce6b4560-e22e-4a6b-b7fd-66994228e69e",

@@ -8,7 +8,8 @@
         "570c71c0-92f8-4963-afc4-4b6484b23db0",
         "05cdfe7b-ea32-4298-b229-5e48674709dc",
         "8489b696-c19d-403f-bd12-0c4134e20e75",
-        "5e640fc2-fb8b-4d25-be52-88c3b4ebc03b"
+        "5e640fc2-fb8b-4d25-be52-88c3b4ebc03b",
+        "561558db-dfa8-40b6-a521-8f6f4fc6702b"
     ],
     "filterType": "GMIncludedFile",
     "folderName": "Where's Elmo",
