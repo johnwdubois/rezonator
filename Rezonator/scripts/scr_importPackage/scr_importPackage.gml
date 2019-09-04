@@ -5,8 +5,10 @@ if	(os_type == os_macosx)	{
 	global.documentsDirString = "/Users/" + userStr + "/Documents";
 	global.rezonatorDirString = global.documentsDirString + "/Rezonator";
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "/Tutorial";
-	global.rezonatorElmoDirString = global.rezonatorDirString + "/Games/Where's Elmo";
+	global.rezonatorElmoDirString = global.rezonatorDirString + "/Games/Where's_Elmo";
+	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "/Saved_Games";
 	global.rezonatorRezzlesDirString = global.rezonatorDirString + "/Games/Rezzles";
+	global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "/Saved_Games";
 }
 else	{
 	var userStr = environment_get_variable("USERNAME");
