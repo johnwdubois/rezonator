@@ -106,7 +106,7 @@ switch (global.fontSize) {
 	case 1:
 		global.fontMain = fnt_mainLarge1;
 		global.fontMainBold = fnt_mainBoldLarge1;
-//		global.fontChainContents = fnt_chainContentsLarge1;
+		global.fontChainContents = fnt_chainContentsLarge1;
 		global.fontChainList = fnt_chainListLarge1;
 		global.fontChainListFocused = fnt_chainListFocusedLarge1;
 		global.fontPanelTab = fnt_panelTabLarge1;
@@ -117,7 +117,7 @@ switch (global.fontSize) {
 	case 2:
 		global.fontMain = fnt_mainLarge2;
 		global.fontMainBold = fnt_mainBoldLarge2;
-//		global.fontChainContents = fnt_chainContentsLarge2;
+		global.fontChainContents = fnt_chainContentsLarge2;
 		global.fontChainList = fnt_chainListLarge2;
 		global.fontChainListFocused = fnt_chainListFocusedLarge2;
 		global.fontPanelTab = fnt_panelTabLarge2;
@@ -127,7 +127,7 @@ switch (global.fontSize) {
 	case 3:
 		global.fontMain = fnt_mainLarge3;
 		global.fontMainBold = fnt_mainBoldLarge3;
-//		global.fontChainContents = fnt_chainContentsLarge3;
+		global.fontChainContents = fnt_chainContentsLarge3;
 		global.fontChainList = fnt_chainListLarge3;
 		global.fontChainListFocused = fnt_chainListFocusedLarge3;
 		global.fontPanelTab = fnt_panelTabLarge3;
@@ -137,7 +137,7 @@ switch (global.fontSize) {
 	case 4:
 		global.fontMain = fnt_mainLarge4;
 		global.fontMainBold = fnt_mainBoldLarge4;
-//		global.fontChainContents = fnt_chainContentsLarge4;
+		global.fontChainContents = fnt_chainContentsLarge4;
 		global.fontChainList = fnt_chainListLarge4;
 		global.fontChainListFocused = fnt_chainListFocusedLarge4;
 		global.fontPanelTab = fnt_panelTabLarge4;
@@ -147,7 +147,7 @@ switch (global.fontSize) {
 	case 5:
 		global.fontMain = fnt_mainLarge5;
 		global.fontMainBold = fnt_mainBoldLarge5;
-//		global.fontChainContents = fnt_chainContentsLarge5;
+		global.fontChainContents = fnt_chainContentsLarge5;
 		global.fontChainList = fnt_chainListLarge5;
 		global.fontChainListFocused = fnt_chainListFocusedLarge5;
 		global.fontPanelTab = fnt_panelTabLarge5;

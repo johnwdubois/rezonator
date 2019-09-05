@@ -22,7 +22,8 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_font(global.fontChainContents);
 var strHeight = string_height("0");
-var tabHeight = 16;
+draw_set_font(global.fontPanelTab);
+var tabHeight = string_height("0");
 var scrollBarListHeight = 0;
 
 var grid = obj_chain.rezChainGrid;
@@ -259,6 +260,8 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
+				draw_set_valign(fa_middle);
+				draw_set_font(global.fontChainContents);
 				draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 			}
 		
@@ -323,7 +326,7 @@ for (var i = 0; i < 3; i++) {
 	var colRectX1 = x + (i * (windowWidth / 6)) + alignTabWidth;
 	var colRectY1 = y;
 	var colRectX2 = colRectX1 + (windowWidth / 6);
-	if(i == 2){
+	if(i == 2) {
 		var colRectX2 = colRectX1 + (windowWidth);	
 	}
 	var colRectY2 = colRectY1 + windowHeight;
@@ -366,10 +369,14 @@ for (var i = 0; i < 3; i++) {
 			break;
 	}
 	
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(colRectX1 + 4 - clipX, y + (tabHeight / 2) - clipY, colName);
+	draw_set_valign(fa_top);
+	draw_set_font(global.fontPanelTab);
+	draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 }
 
 
