@@ -41,10 +41,10 @@ var strHeight = string_height("0") * 1.5;
 var filterRectMargin = 8;
 var filterRectSize = strHeight / 2;
 if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
+	var textMarginLeft = filterRectMargin + (filterRectSize);
 }
 else {
-	var textMarginLeft = filterRectMargin + (filterRectSize * 4);
+	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 }
 
 var textMarginTop = 16;
@@ -289,41 +289,15 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		draw_set_color(c_purple);
 		
 		// Set dimensions for little boxes
-		var chainAlignRectX1 = x + (filterRectMargin * 2) + filterRectSize - clipX;
-		var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY - clipY;
+		var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - scrollBarWidth;//x + (filterRectMargin * 2) + filterRectSize - clipX;
+		var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY;
 		var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
 		var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;
 		var isAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, i);
-	
-		// Fill in selected boxes
-		if (isAligned) {
-			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
-		}
-		else if (isAligned == -1) {
-			draw_set_alpha(0.5);
-			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
-		}
-		else {
-			draw_set_alpha(1);
-			draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, true);
-		}
 		
-		draw_set_alpha(1);
-	
 		//Check for user selection of alignment with mouse clicks
-		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1 + clipX, chainAlignRectY1 + clipY, chainAlignRectX2 + clipX, chainAlignRectY2 + clipY)) {
-			
-			/*
-			draw_set_colour(global.colorThemeBG);
-			draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 170, mouse_y + 16, false);
-			draw_set_colour(global.colorThemeBorders);
-			draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 170, mouse_y + 16, true);
-			draw_set_colour(global.colorThemeText);
-			draw_set_font(fnt_mainBold);
-			draw_text(mouse_x + 72, mouse_y, "Alignment");
-			draw_set_font(global.fontChainList);
-			*/
-			
+		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
+			draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
 			if (device_mouse_check_button_released(0, mb_left)) {
 				
 				// Unselect alignment if already selected
@@ -345,6 +319,24 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
 			}
 		}
+	
+		// Fill in selected boxes
+		if (isAligned) {
+			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
+			draw_sprite(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2), mean(chainAlignRectY1, chainAlignRectY2));
+		}
+		else if (isAligned == -1) {
+			//draw_set_alpha(0.5);
+			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
+			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2), mean(chainAlignRectY1, chainAlignRectY2));
+		}
+		else {
+			//draw_set_alpha(1);
+			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, true);
+			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2), mean(chainAlignRectY1, chainAlignRectY2));
+		}
+		
+		draw_set_alpha(1);
 	}
 	
 	

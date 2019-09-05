@@ -64,7 +64,6 @@ unitGrid_colParticipantName = 5;
 unitGrid_colUnitStart = 6;
 unitGrid_colUnitEnd = 7;
 unitGrid_colParticipantColor = 8;
-unitGrid_colAudioFile = 9;
 
 unitGrid = ds_grid_create(unitGridWidth, 0);
 unitGridBackup = ds_grid_create(unitGridWidth, 0);
