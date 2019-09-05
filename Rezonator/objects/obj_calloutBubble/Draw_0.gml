@@ -8,6 +8,7 @@ followWordStringWidth = string_width(followWordString);
 
 
 draw_set_font(global.fontChainContents);
+//draw_set_font(global.fontMain);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 

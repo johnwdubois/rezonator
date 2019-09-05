@@ -73,11 +73,41 @@ with (obj_panelPane) {
 	}
 }
 
+var numOfTouches = 0;
+for(var touchLoop = 0; touchLoop < 4; touchLoop++) {
+	if(device_mouse_check_button_pressed(touchLoop, mb_left)) {
+		numOfTouches++;	
+	}
+	
+}
+
+if(numOfTouches >= 2) {
+	multiTouch = true;	
+	//show_message(string(numOfTouches));
+}
+else {
+	numOfTouches = 0;
+	for(var touchLoop = 0; touchLoop < 5; touchLoop++) {
+		if(device_mouse_check_button(touchLoop, mb_left)) {
+			numOfTouches++;	
+		}
+	}
+	if(numOfTouches >= 2) {
+		multiTouch = true;	
+		//show_message(string(numOfTouches));
+	}
+	else {
+		multiTouch = false;	
+	}
+}
+
 // Check if user is in the NavWindow. If not, allow key control on main screen.
 if (!clickedInChainList and !clickedInChainContents) {
 	
+	
+	
 	var scrollSpeed = 0;
-	if (keyboard_check(vk_down) or mouse_wheel_down()) {
+	if ((keyboard_check(vk_down) or mouse_wheel_down()) or (device_mouse_check_button(0, mb_left) and device_mouse_check_button(1, mb_left))) {
 		if (holdDownArrowKey == 0 or holdDownArrowKey > 30) {
 			scrollSpeed = -8;
 			if (mouse_wheel_down()) {
@@ -106,6 +136,20 @@ if (!clickedInChainList and !clickedInChainContents) {
 		holdUpArrowKey = 0;
 		holdDownArrowKey = 0;
 		scrollSpeed = 0;
+	}
+	
+	if(flickVelY != 0) {
+		flick_power = abs(flickVelY);
+		flick_direction = sign(flickVelY);
+	
+		if(flick_power > flick_power_reduction_each_step) {
+			 scrollPlusYDest += (( flick_power / flick_power_calibration) * flick_direction);
+			 flickVelY -= flick_power_reduction_each_step * flick_direction;
+	
+		}
+		else {
+			flickVelY = 0;	
+		}
 	}
 	
 	if(scrollPlusYDest != undefined && scrollSpeed != undefined){
