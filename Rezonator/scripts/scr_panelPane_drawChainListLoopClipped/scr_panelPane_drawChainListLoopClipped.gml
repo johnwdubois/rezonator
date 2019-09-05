@@ -47,7 +47,7 @@ else {
 	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 }
 
-var textMarginTop = 16;
+var textMarginTop = functionChainList_tabHeight;
 var textPlusY = 0;
 var chainNameRectMinusY = 4;
 
@@ -285,9 +285,6 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	// Create little boxes for alignment selection
 	if (functionChainList_currentTab == functionChainList_tabRezBrush
 	or functionChainList_currentTab == functionChainList_tabTrackBrush) {
-		draw_set_alpha(1);
-		draw_set_color(c_purple);
-		
 		// Set dimensions for little boxes
 		var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - scrollBarWidth;//x + (filterRectMargin * 2) + filterRectSize - clipX;
 		var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY;
@@ -297,6 +294,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		
 		//Check for user selection of alignment with mouse clicks
 		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
+			draw_set_alpha(0.5);
+			draw_set_color(c_purple);
 			draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
 			if (device_mouse_check_button_released(0, mb_left)) {
 				
@@ -322,18 +321,13 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 		// Fill in selected boxes
 		if (isAligned) {
-			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
-			draw_sprite(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY);
+			draw_sprite_ext(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
 		}
 		else if (isAligned == -1) {
-			//draw_set_alpha(0.5);
-			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
-			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY);
+			draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 0.5);
 		}
 		else {
-			//draw_set_alpha(1);
-			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, true);
-			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY);
+			draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
 		}
 		
 		draw_set_alpha(1);
