@@ -323,17 +323,17 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		// Fill in selected boxes
 		if (isAligned) {
 			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
-			draw_sprite(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2), mean(chainAlignRectY1, chainAlignRectY2));
+			draw_sprite(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY);
 		}
 		else if (isAligned == -1) {
 			//draw_set_alpha(0.5);
 			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, false);
-			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2), mean(chainAlignRectY1, chainAlignRectY2));
+			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY);
 		}
 		else {
 			//draw_set_alpha(1);
 			//draw_rectangle(chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2, true);
-			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2), mean(chainAlignRectY1, chainAlignRectY2));
+			draw_sprite(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY);
 		}
 		
 		draw_set_alpha(1);
