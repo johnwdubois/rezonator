@@ -90,7 +90,9 @@ else if (optionListType == 1)
 		}
 		
 		obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
-		
+		if(obj_control.selectedChainID == undefined){
+			exit;
+		}
 		//show_message(ds_grid_height(grid));
 		//show_message(obj_control.selectedChainID);
 		if(ds_grid_height(grid) > 0){
@@ -416,6 +418,13 @@ else if (optionListType == 4)
 	{
 		case "Open File":
 		//room_instance_clear(rm_mainScreen);
+		
+		// destroy grid
+		
+		// get file name + extension
+		
+		// distinguish between rez or xml
+		
 		//room_restart();
 		
 			show_message("Coming Soon");
@@ -508,17 +517,52 @@ else if (optionListType == 5)
 	 //"Clear Stacks", "Clear Rez Chains", "Clear Track Chains", "Clear Discourse", "Toggle Filter"
 	switch (optionSelected)
 	{
-		case "Clear Stacks":
-			show_message("Coming Soon");
+		case "Clear All Stacks":
+			
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllStacks = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
+		
+			
+		//	show_message("Coming Soon");
 			break;
-		case "Clear Rez Chains":
-			show_message("Coming Soon");
+		case "Clear All Rez Chains":
+		
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllRez = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
+		
+
 			break;
-		case "Clear Track Chains":
-			show_message("Coming Soon");
+		case "Clear All Track Chains":
+		
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllTracks = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
+		
+		
+			//show_message("Coming Soon");
 			break;
 		case "Clear All Chains":
-			show_message("Coming Soon");
+		
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllLinks = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
+		
+			
+			//show_message("Coming Soon");
 			break;
 		case "Toggle Filter Screen":
 		
@@ -676,6 +720,17 @@ else if (optionListType == 6)
 		
 			//show_message("BUH 5");
 			break;
+		case "StackShow":
+			if(obj_control.currentStackShowListPosition == -1) {
+				obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
+				// Instantiate the screen for users to select which stacks go in the stackShow
+
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				}
+					obj_dialogueBox.stackShowWindowActive = true;
+			}
+			break;
 		default:
 			break;
 	}
@@ -766,10 +821,6 @@ else if (optionListType == 7)
 			
 			//show_message("Coming Soon");
 			break;
-		case "Find Next":
-		
-			show_message("Coming Soon");
-			break;
 		case "Jump To Time":
 		
 			scr_jumpToLineCalled();
@@ -794,6 +845,7 @@ else if (optionListType == 8)
 	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
 	switch (optionSelected)
 	{
+		/*
 		case "Link":
 		
 			
@@ -812,15 +864,16 @@ else if (optionListType == 8)
 
 			//show_message("BUH 1");
 			break;
+			*/
 		case "Tag":
 				
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Create tag", "Edit Tag", "Delete tag");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing, -999, obj_dropDown);
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing*4, -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 10;
+				dropDownInst.optionListType = 9;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -828,25 +881,82 @@ else if (optionListType == 8)
 
 			//show_message("BUH 2");
 			break;
-		case "Edit":
+		case "Replace word":
 		
-	
-			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Replace Word", "Split word", "New word", "Delete new word");
-						
-			if (ds_list_size(dropDownOptionList) > 0) {
-				obj_control.wideDropDown = true;
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing * 2, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 11;
+			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
+				//show_message("buh");
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.replace = true;
+					}
 
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+					obj_control.fromDropDown = true;
+					obj_control.dialogueBoxActive = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					}
+		
 			}
-	
+
+			instance_destroy();
+			//show_message("BUH 1");
+			break;
+		case "Split word":
+
+			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
+				//show_message("buh");
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.replace = true;
+					}
+
+					obj_control.fromDropDown = true;
+					obj_control.dialogueBoxActive = true;
+					obj_control.splitWord = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						
+					}
+		
+			}
+			instance_destroy();
+			//show_message("BUH 2");
+			break;
+		case "New word":
+		
+		
+			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newWordCreated =true;
+					}
+
+					obj_control.fromDropDown = true;
+					obj_control.dialogueBoxActive = true;
+
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						}
+
+			}
+					
+			instance_destroy();
+
 			//show_message("BUH 3");
 			break;
+		case "Delete new word":
+			
+			show_message("Coming Soon");
+			//scr_deleteFromChain();
+			
+			instance_destroy();
+	
+			break;
+		default:
+			break;
+			/*
 		case "Recolor":
 		
 	
@@ -864,6 +974,7 @@ else if (optionListType == 8)
 
 			//show_message("BUH 4");
 			break;
+			*/
 		default:
 			break;
 	}
@@ -875,111 +986,29 @@ else if (optionListType == 9)
 	//"Create Rez", "Create track", "Delete rez", "Delete track"
 	switch (optionSelected)
 	{
-		case "Create Rez":
-
-
-			//show_message("BUH 1");
-			break;
-		case "Create track":
-
-
-			//show_message("BUH 2");
-			break;
-		case "Delete link":
-		
-	
-
-			//show_message("BUH 3");
-			break;
-		default:
-			break;
-	}
-	instance_destroy();
-}
-else if (optionListType == 10)
-{
-	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
-	//"Create Rez", "Create track", "Delete rez", "Delete track"
-	switch (optionSelected)
-	{
 		case "Create tag":
 
 
-			//show_message("BUH 1");
+			show_message("Coming Soon");
 			break;
-	
+
 		case "Edit tag":
 		
 	
-
+			show_message("Coming Soon");
 			//show_message("BUH 3");
 			break;
 		case "Delete tag":
-	
-			break;
-		default:
-			break;
-	}
-	instance_destroy();
-}
-else if (optionListType == 11)
-{
-	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
-	//"Create Rez", "Create track", "Delete rez", "Delete track"
-	switch (optionSelected)
-	{
-		case "Replace word":
-
-
-			//show_message("BUH 1");
-			break;
-		case "Split word":
-
-
-			//show_message("BUH 2");
-			break;
-		case "Add new word":
 		
-	
-
-			//show_message("BUH 3");
-			break;
-		case "Delete new word":
-	
-			break;
-		default:
-			break;
-	}
-	instance_destroy();
-}
-else if (optionListType == 12)
-{
-	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
-	//"Create Rez", "Create track", "Delete rez", "Delete track"
-	switch (optionSelected)
-	{
-		case "Create Rez":
-
-
-			//show_message("BUH 1");
-			break;
-		case "Create track":
-
-
-			//show_message("BUH 2");
-			break;
-		case "Delete rez":
 		
-	
-
-			//show_message("BUH 3");
-			break;
-		case "Delete track":
-	
+			show_message("Coming Soon");	
 			break;
 		default:
 			break;
 	}
-	instance_destroy();
+	with(obj_dropDown){
+		instance_destroy();
+	}
 }
+
 

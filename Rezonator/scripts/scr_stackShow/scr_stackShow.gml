@@ -14,7 +14,7 @@
 */
 var currentUser = global.userName;
 
-if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player")&& (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
+if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) != "gold") && (obj_control.currentStackShowListPosition != -1 && obj_control.currentStackShowListPosition != ds_list_size(obj_control.stackShowList))) {
 
 	var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 	var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
@@ -22,7 +22,20 @@ if((obj_toolPane.tracksOnlyStackShow && string_lower(currentUser) == "player")&&
 		var currentGoldStandardWordIDList = ds_grid_get(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colWordIDList, currentGoldStandardRow);
 		for(var goldStandardListLoop = 0; goldStandardListLoop < ds_list_size(currentGoldStandardWordIDList); goldStandardListLoop++) {
 			var goldWord = ds_list_find_value(currentGoldStandardWordIDList, goldStandardListLoop);
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+			// Check for chunks
+			if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1) == obj_control.wordStateChunk) {
+				var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), goldWord);
+				var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
+				for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+					var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
+					if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
+					}
+				}
+			}
+			else {
+				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, goldWord - 1, obj_control.wordStateNormal);	
+			}
 		}
 	}
 }
@@ -33,7 +46,7 @@ if(obj_control.currentStackShowListPosition > 0 and obj_control.stackShowBackwar
 else{
 	obj_control.currentStackShowListPosition++;
 	
-	if(obj_control.currentStackShowListPosition == 0 && string_lower(currentUser) == "player") {
+	if((obj_control.currentStackShowListPosition == 0 && string_lower(currentUser) != "gold") and global.wheresElmo) {
 		var tutorialInstance = instance_create_layer(-500, -500, "Instances", obj_wheresElmoTutorial);
 		var currentGoldStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
 		var currentGoldStandardRow = ds_grid_value_y(obj_chain.goldStandardGrid, obj_chain.goldStandardGrid_colStackID, 0, obj_chain.goldStandardGrid_colStackID, ds_grid_height(obj_chain.goldStandardGrid), currentGoldStackID);
@@ -61,6 +74,12 @@ else{
 			//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 2, 117);
 			ds_grid_set(tutorialInstance.calloutBubbleGrid, tutorialInstance.calloutBubbleGrid_colString, 3, "Some references may appear#in the same sentence,#watch out!");
 			//ds_grid_set(calloutBubbleGrid, calloutBubbleGrid_colWordID, 3, 120);
+		}
+	}
+	else if(string_lower(currentUser) != "gold" and global.wheresElmo) {
+		if(instance_exists(obj_wheresElmoTutorial)) {
+			instance_destroy(obj_wheresElmoTutorial);
+			instance_destroy(obj_calloutBubble);
 		}
 	}
 }
@@ -130,6 +149,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
 	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
 	
+	// Currently disabled for Demo purposes
 	// If the transcriptView was active before the stackShow, switch it back
 	if(obj_control.stackShowSwitchedWordView == true) {
 		obj_control.stackShowSwitchedWordView = false;
@@ -173,5 +193,20 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	
 	obj_panelPane.showNav = true;
 	obj_toolPane.showTool = true;
+	
+	
+	
+	if(global.rezzles) {
+		
+		// Save the player's work before closing
+		with (obj_fileLoader) {
+			scr_saveREZ(true);
+		}
+		
+		// Reset back to the opening screen
+		global.tutorial = false;
+		keyboard_string = "";
+		room_goto(rm_openingScreen);	
+	}
 	
 }

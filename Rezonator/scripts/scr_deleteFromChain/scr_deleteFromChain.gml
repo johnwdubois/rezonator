@@ -75,7 +75,8 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	
 	// Safety check, we only want to delete Chunks or newWords
 	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
-	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) {exit;}
+	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) {
+		exit;}
 	
 	// Set the word state to dead
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
@@ -114,7 +115,8 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 		grid = obj_chain.stackChainGrid;
 	}
 		
-	if(grid == undefined) {exit;}
+	if(grid == undefined) {
+		exit;}
 	// Locate the current chain within the chain grid
 	currentChainGridRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
 }
@@ -124,10 +126,11 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 
 	// Find the link that is in focus
 	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
+
 	if (rowInLinkGridSource == -1) {
 		exit;
 	}
-	
+
 	// Access information on focused link
 	var chainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
 	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowInLinkGridSource);
@@ -148,7 +151,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 		// Delete this chain from the source's inChainList
 		ds_list_delete(sourceInChainsList, indexOfChainIDInChainsList);
 		
-		moveCounter ++;
+		obj_control.moveCounter ++;
 	}
 	
 	// Reset the alignment of the unchained word

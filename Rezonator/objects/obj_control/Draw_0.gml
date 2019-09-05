@@ -123,7 +123,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 440, "mouseOverPanelPane: " + string(mouseoverPanelPane));
 	
 	
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 460, "moveCounter: " + string(moveCounter));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 460, "Right clicked word: " + string(rightClickWordID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 485, "chainIDModifyList: ");
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 500, scr_getStringOfList(obj_chain.chainIDModifyList));
@@ -172,7 +172,7 @@ if(filterGridActive){
 	if(stackShowActive)	{
 	scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, 220,
 		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]) - 30);
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]));// - 30);
 	}
 	else{
 	scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, 220,

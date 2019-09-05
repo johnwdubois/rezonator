@@ -6,6 +6,10 @@ if (followWordID < 0 or followWordID >= ds_grid_height(obj_control.dynamicWordGr
 }
 
 var followWordPixelXTemp = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, followWordID - 1);
+if(followWordPixelXTemp == undefined) {
+	instance_destroy();
+	exit;
+}
 followWordUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, followWordID - 1);
 followWordRowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), followWordUnit);
 if (followWordRowInLineGrid >= 0 and followWordRowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {

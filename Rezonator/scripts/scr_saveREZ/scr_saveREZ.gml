@@ -1,5 +1,9 @@
 var autosave = argument0;
 
+/*if (global.games) {
+	autosave = false;
+}*/
+
 if (not autosave) {
 	if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
 		global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
@@ -91,22 +95,41 @@ ds_map_add_list(wrapper, "ROOT", rootList);
 var jsonString = json_encode(wrapper);
 
 if (autosave) {
-	if(os_type == os_macosx){
-		if (directory_exists(global.rezonatorDirString + "/Autosave")) {
+	if(global.games) {
+		var gameSaveDirString = (global.rezzles ? global.rezonatorRezzlesSaveDirString : global.rezonatorElmoSaveDirString) ;
 		
-			scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "/Autosave/autosave.rez", jsonString);
+		if (directory_exists(gameSaveDirString)) {
+			//show_message(date_time_string(date_current_datetime()));
+			var userString = (global.userName == "") ? ("player " + string_replace_all(date_time_string(date_current_datetime()), ":" , ".")) : global.userName;
+			//show_message(userString);
+			var fileName = filename_change_ext(filename_name(global.fileSaveName), "") + " - " + userString + ".rez";
+			//show_message(fileName);
+
+			scr_saveFileBuffer(0, gameSaveDirString + "\\" + fileName, jsonString);
 		}
 		else {
-			scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
+			//scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
+			show_message(string(gameSaveDirString) + " does not exist");
 		}
 	}
-	else{
-		if (directory_exists(global.rezonatorDirString + "\\Autosave")) {
+	else {
+		if(os_type == os_macosx){
+			if (directory_exists(global.rezonatorDirString + "/Autosave")) {
 		
-			scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "\\Autosave\\autosave.rez", jsonString);
+				scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "/Autosave/autosave.rez", jsonString);
+			}
+			else {
+				scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
+			}
 		}
-		else {
-			scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
+		else{
+			if (directory_exists(global.rezonatorDirString + "\\Autosave")) {
+		
+				scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "\\Autosave\\autosave.rez", jsonString);
+			}
+			else {
+				scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
+			}
 		}
 	}
 }
@@ -116,8 +139,9 @@ else {
 
 ds_map_destroy(wrapper);
 
-scr_exportGrids();
-
+if(not global.games) {
+	scr_exportGrids();
+}
 if (not autosave) {
 	obj_control.allSaved = true;
 }

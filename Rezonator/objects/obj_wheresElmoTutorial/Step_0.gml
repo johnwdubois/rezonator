@@ -7,7 +7,7 @@ if (not instance_exists(obj_calloutBubble)) {
 	var currentBubbleWordID = ds_grid_get(calloutBubbleGrid, calloutBubbleGrid_colWordID, calloutBubbleGridCurrentRow);
 	if(currentBubbleWordID > -1) {
 		var calloutBubbleInst = instance_create_layer(-500, -500, "Instances", obj_calloutBubble);
-		calloutBubbleInst.currentBubbleDir = bubbleDirDown;
+		calloutBubbleInst.currentBubbleDir = bubbleDirLeft;
 		calloutBubbleInst.destroyMethod = 0;
 	
 		calloutBubbleInst.followWordID = currentBubbleWordID;

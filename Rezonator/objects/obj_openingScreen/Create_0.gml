@@ -38,6 +38,8 @@ global.newProject = false;
 global.menuOpen = true;
 global.neworOpen = false;
 global.tutorial = false;
+global.games = false;
+global.inRezzles = false;
 
 
 global.fileSaveName = "undefined";
@@ -81,6 +83,8 @@ showDevVars = false;
 
 scr_importPackage();
 
+global.currentDirString = global.rezonatorDirString;
+
 global.rememberMe = false;
 
 global.importCSVGrid = ds_grid_create(0, 0);
@@ -105,6 +109,9 @@ cursorTimer = 20;
 global.userName = "";
 
 
+// variables for different games
+global.wheresElmo = false;
+global.rezzles = false;
 
 
 

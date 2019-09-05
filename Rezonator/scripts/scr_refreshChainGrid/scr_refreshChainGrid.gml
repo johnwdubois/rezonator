@@ -57,6 +57,23 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 	var currentInChainList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentID - 1);
 	if (grid == obj_chain.rezChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
+		}
+		
+		// Will need to check for red Chunks as well
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateChunk) {
+			var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentID);
+			var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
+			// Loop through the Chunk's wordID list and make sure none are red
+			for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+				var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
+				if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
+				}
+			}
+			//ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
+		}
 		
 		// Prevent this word from losing its border if it belongs to another chain
 		if(ds_list_size(currentInChainList) > 0) {
@@ -76,6 +93,23 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 	else if (grid == obj_chain.trackChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, false);
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
+		}
+
+		// Will need to check for red Chunks as well
+		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateChunk) {
+			var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentID);
+			var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
+			// Loop through the Chunk's wordID list and make sure none are red
+			for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+				var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
+				if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
+				}
+			}
+			//ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
+		}
 		
 		// Prevent this word from losing its border if it belongs to another chain
 		if(ds_list_size(currentInChainList) > 0) {

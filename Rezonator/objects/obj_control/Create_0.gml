@@ -12,6 +12,11 @@
 	Author: Terry DuBois
 */
 
+drag_offsetY = 0;
+flickVelY = 0;
+flick_power_calibration = 4;
+flick_power_reduction_each_step = 3;
+
 // Keep track of which line the "camera" is centered on
 currentCenterDisplayRow = 0;
 prevCenterDisplayRow = 0;
@@ -153,6 +158,8 @@ wordStateNew = 1;
 wordStateChunk = 2;
 wordStateDead = 3;
 wordStateGold = 4;
+wordStateRed = 5;
+
 
 
 // Instantiate the Word Draw Grid
@@ -388,6 +395,7 @@ instance = input_text_create_singleline_ext(camera_get_view_width(view_camera[0]
 dialogueBoxActive = false;
 newWordCreated = false;
 
+touchReleaseCheck = false;
 // Safety check for quick volunteers
 alarm[9] = 10;
 
@@ -454,4 +462,9 @@ audioTrackIndex = -1;
 if(global.tutorial){
 		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
 }
+
+rightClickUnitID = 0;
+rightClickWordID = 0;
+rightClickWordSeq = 0;
+fromDropDown = false;
 wideDropDown = false;

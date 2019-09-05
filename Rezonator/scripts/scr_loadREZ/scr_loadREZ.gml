@@ -1,5 +1,7 @@
+//show_message(string(global.currentDirString));
+
 if (directory_exists(global.rezonatorDirString)) {
-	var fileName = get_open_filename_ext("REZ file|*.rez", "", global.rezonatorDirString, "Open REZ");
+	var fileName = get_open_filename_ext("REZ file|*.rez", "", global.currentDirString, "Open REZ");
 }
 else {
 	var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");

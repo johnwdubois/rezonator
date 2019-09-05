@@ -432,6 +432,12 @@ else if (grid == obj_chain.DepRelLinkGrid) {
 		case obj_chain.DepRelLinkGrid_colRole:
 			colName = "role";
 			break;
+		case obj_chain.DepRelLinkGrid_colLabel:
+			colName = "label";
+			break;
+		case obj_chain.DepRelLinkGrid_colTag:
+			colName = "tag";
+			break;
 		default:
 			break;
 	}
