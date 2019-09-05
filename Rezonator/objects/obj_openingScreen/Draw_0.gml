@@ -29,10 +29,7 @@ draw_set_font(fnt_debug);
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
-var versionString = string(game_display_name);
-versionString = string_delete(versionString, 1, string_length("Rezonator"));
-versionString = "Version" + versionString;
-draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2), (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2), versionString);
+draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2), (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2), global.versionString);
 
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {

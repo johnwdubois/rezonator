@@ -935,14 +935,6 @@
             }
         },
         {
-            "Key": "2f28f8d7-16ca-4344-96a5-56b69de44c92",
-            "Value": {
-                "id": "de8fa1d7-dfe9-47ef-b7a3-52b3f0638765",
-                "resourcePath": "datafiles_yy\\Games\\Rezzles\\Bonk.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "2fe811c4-caa2-4a8b-9162-d4bad73589a8",
             "Value": {
                 "id": "c649c6ed-20ef-4808-9611-a9712cccf0ca",

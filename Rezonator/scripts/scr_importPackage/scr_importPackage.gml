@@ -3,7 +3,7 @@ var driveStr = working_directory + "nsfs.dll";
 if	(os_type == os_macosx)	{
 	var userStr = environment_get_variable("USER");
 	global.documentsDirString = "/Users/" + userStr + "/Documents";
-	global.rezonatorDirString = global.documentsDirString + "/Rezonator";
+	global.rezonatorDirString = global.documentsDirString + "/Rezonator/" + global.versionString;
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "/Tutorial";
 	global.rezonatorElmoDirString = global.rezonatorDirString + "/Games/Where's_Elmo";
 	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "/Saved_Games";
@@ -13,7 +13,7 @@ if	(os_type == os_macosx)	{
 else	{
 	var userStr = environment_get_variable("USERNAME");
 	global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
-	global.rezonatorDirString = global.documentsDirString + "\\Rezonator";
+	global.rezonatorDirString = global.documentsDirString + "\\Rezonator\\" + global.versionString;
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "\\Tutorial";
 	global.rezonatorElmoDirString = global.rezonatorDirString + "\\Games\\Where's Elmo";
 	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "\\Saved Games";
