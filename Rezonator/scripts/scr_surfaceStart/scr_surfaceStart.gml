@@ -1,3 +1,17 @@
+if (object_index == obj_panelPane) {
+	if (currentFunction == functionChainContents) {
+		var sortPaneWidth = 0;
+		with (obj_panelPane) {
+			if (currentFunction == functionSort) {
+				sortPaneWidth = windowWidth;
+			}
+		}
+		windowWidth = camera_get_view_width(view_camera[0]) - x - global.toolPaneWidth - sortPaneWidth;
+	}
+}
+
+
+
 if (mouse_check_button_released(mb_left)) {
 	windowResizeXHolding = false;
 	windowResizeYHolding = false;
@@ -34,6 +48,18 @@ if (mouse_check_button(mb_left)) {
 	else if (windowResizeYHolding) {
 		windowHeight = mouse_y - y;
 		window_set_cursor(cr_size_ns);
+		
+		if (object_index == obj_panelPane) {
+			with (obj_panelPane) {
+				if (currentFunction == functionChainList or currentFunction == functionChainContents
+				or currentFunction == functionSort) {
+					windowHeight = mouse_y - y;
+					if (surface_exists(clipSurface)) {
+						surface_resize(clipSurface, clipWidth, clipHeight);
+					}
+				}
+			}
+		}
 	}
 	
 	if (windowResizeXHolding or windowResizeYHolding) {

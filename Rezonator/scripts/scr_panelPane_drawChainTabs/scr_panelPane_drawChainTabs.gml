@@ -16,15 +16,17 @@
 draw_set_alpha(1);
 draw_set_font(global.fontPanelTab);
 draw_set_halign(fa_left);
-draw_set_valign(fa_middle);
+draw_set_valign(fa_top);
 
 var textMarginLeft = 5;
-var tabHeight = 16;
+with (obj_panelPane) {
+	functionChainList_tabHeight = string_height("0");
+}
 
 var tabAmount = 4;
 
 var tabRectY1 = y;
-var tabRectY2 = tabRectY1 + tabHeight;
+var tabRectY2 = tabRectY1 + functionChainList_tabHeight;
 draw_set_color(global.colorThemeBG);
 draw_rectangle(x, tabRectY1, x + windowWidth, tabRectY2, false);
 
@@ -65,6 +67,6 @@ for (var i = 0; i < tabAmount; i++)// main mechanism
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(tabRectX1 + textMarginLeft, mean(tabRectY1, tabRectY2), functionChainList_tabName[i]);
+	draw_text(tabRectX1 + textMarginLeft, tabRectY1, functionChainList_tabName[i]);
 
 }
