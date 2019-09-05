@@ -56,3 +56,5 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 		}
 	}
 }
+
+global.toolPaneWidth = windowWidth;

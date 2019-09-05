@@ -1,3 +1,17 @@
+if (object_index == obj_panelPane) {
+	if (currentFunction == functionChainContents) {
+		var sortPaneWidth = 0;
+		with (obj_panelPane) {
+			if (currentFunction == functionSort) {
+				sortPaneWidth = windowWidth;
+			}
+		}
+		windowWidth = camera_get_view_width(view_camera[0]) - x - global.toolPaneWidth - sortPaneWidth;
+	}
+}
+
+
+
 if (mouse_check_button_released(mb_left)) {
 	windowResizeXHolding = false;
 	windowResizeYHolding = false;

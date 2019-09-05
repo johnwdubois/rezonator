@@ -469,3 +469,5 @@ rightClickWordID = 0;
 rightClickWordSeq = 0;
 fromDropDown = false;
 wideDropDown = false;
+
+global.toolPaneWidth = 0;

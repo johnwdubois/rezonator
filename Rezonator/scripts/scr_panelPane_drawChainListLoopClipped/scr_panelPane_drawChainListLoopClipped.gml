@@ -13,6 +13,8 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+windowWidth = camera_get_view_width(view_camera[0]) / 3.5;
+
 var grid = obj_chain.rezChainGrid;
 
 // Based on user selection, get the grid of the current tab

@@ -14,7 +14,21 @@
 
 // INcrease the size of the utterance column!!!
 
+var filterPaneWidth = 0;
+var chainListPaneWidth = 0;
+with (obj_panelPane) {
+	if (currentFunction == functionChainList) {
+		chainListPaneWidth = windowWidth;
+	}
+	else if (currentFunction == functionFilter) {
+		filterPaneWidth = windowWidth;
+	}
+}
+x = filterPaneWidth + chainListPaneWidth;
+
 scr_surfaceStart();
+
+
 
 // Set opacity, alignment, and font of contents list
 draw_set_alpha(1);
@@ -27,6 +41,9 @@ var tabHeight = string_height("0");
 var scrollBarListHeight = 0;
 
 var grid = obj_chain.rezChainGrid;
+
+
+
 
 // new
 if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_colXList)) {
