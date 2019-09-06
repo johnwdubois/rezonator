@@ -206,6 +206,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 		// Reset back to the opening screen
 		global.tutorial = false;
 		keyboard_string = "";
+		global.rezzles = false;
 		room_goto(rm_openingScreen);	
 	}
 	

@@ -13,6 +13,10 @@
 				
 	Author: Brady Moore
 */
+var yBase = obj_menuBar.menuHeight;
+if(obj_panelPane.showNav) {
+	yBase += inst_PanelPane_chainContents.windowHeight;	
+}
 
 var Xdistance = 100;
 var Ydistance = 30;
@@ -45,24 +49,24 @@ if (showTracker) {
 	// draw hidden stuff first y value will be changed if clicked on
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
-	draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(view_camera[0]) - newYheight, trackerX2, camera_get_view_height(view_camera[0]), false);
+	draw_rectangle(trackerX2 - Xdistance, yBase, trackerX2, yBase  + newYheight, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(view_camera[0]) - newYheight, trackerX2, camera_get_view_height(view_camera[0]), true);
+	draw_rectangle(trackerX2 - Xdistance, yBase, trackerX2, yBase  + newYheight, true);
 
 	// move counter text
 	draw_set_font(fnt_panelTab);
 	draw_set_color(global.colorThemeText);
-	draw_text(trackerX2 - Xdistance + 5, camera_get_view_height(view_camera[0]) - currentYheightCounterText, "Move Counter: "+ string(obj_control.moveCounter) +"");
+	draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightCounterText, "Move Counter: "+ string(obj_control.moveCounter) +"");
 	
 	// timer text
 	draw_set_font(fnt_panelTab);
 	draw_set_color(global.colorThemeText);
-	draw_text(trackerX2 - Xdistance + 5, camera_get_view_height(view_camera[0]) - currentYheightTimerText, "Time Taken: "+ displayMinutes + ":"+ displaySeconds );
+	draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightTimerText, "Time Taken: "+ displayMinutes + ":"+ displaySeconds );
 	
 
 	// reset button
 	var mouseOverResetButton = false;
-	if (point_in_rectangle(mouse_x, mouse_y, trackerX2 - resetX1val, camera_get_view_height(view_camera[0]) - currentResetY1value, trackerX2 - resetX2val, camera_get_view_height(view_camera[0]) - currentResetY2value)) {
+	if (point_in_rectangle(mouse_x, mouse_y, trackerX2 - resetX1val, yBase + currentResetY1value, trackerX2 - resetX2val, yBase + currentResetY2value)) {
 		mouseOverResetButton = true;
 		//check for reset button pressed
 		if ( device_mouse_check_button_released(0, mb_left)) {
@@ -79,14 +83,14 @@ if (showTracker) {
 	if(mouseOverResetButton) {
 		draw_set_colour(c_gray);	
 	}
-	draw_rectangle(trackerX2 - resetX1val, camera_get_view_height(view_camera[0]) - currentResetY1value, trackerX2 - resetX2val, camera_get_view_height(view_camera[0]) - currentResetY2value, false);
+	draw_rectangle(trackerX2 - resetX1val, yBase + currentResetY1value, trackerX2 - resetX2val, yBase + currentResetY2value, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(trackerX2 - resetX1val, camera_get_view_height(view_camera[0]) - currentResetY1value, trackerX2 - resetX2val, camera_get_view_height(view_camera[0]) - currentResetY2value, true);
+	draw_rectangle(trackerX2 - resetX1val, yBase + currentResetY1value, trackerX2 - resetX2val, yBase + currentResetY2value, true);
 
 	// reset text
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
-	draw_text(trackerX2 - resetX1val + 7, camera_get_view_height(view_camera[0]) - currentYheightResetText, "RESET");
+	draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, "RESET");
 	
 
 
@@ -218,7 +222,7 @@ if (showTracker) {
 	}*/
 	
 	var mouseOverEndButton = false;
-	if (point_in_rectangle(mouse_x, mouse_y,0, camera_get_view_height(view_camera[0]) - newYheight, 140, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
+	if (point_in_rectangle(mouse_x, mouse_y,0, yBase, 140, yBase + newYheight) and not instance_exists(obj_dialogueBox)) {
 		mouseOverEndButton = true;
 		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
@@ -235,16 +239,16 @@ if (showTracker) {
 	else {
 		draw_set_colour(global.colorThemePaneBG);
 	}
-	draw_rectangle(0, camera_get_view_height(view_camera[0]) - newYheight, 140, camera_get_view_height(view_camera[0]), false);
+	draw_rectangle(0, yBase, 140, yBase+ newYheight, false);
 	draw_set_alpha(1);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(0, camera_get_view_height(view_camera[0]) - newYheight, 140, camera_get_view_height(view_camera[0]), true);
+	draw_rectangle(0, yBase, 140, yBase + newYheight, true);
 
 	//draw end show text
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeText);
-	draw_text(0 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), "End Stack Show");
+	draw_text(0 + 5, yBase + (newYheight/2), "End Stack Show");
 
 
 	var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
@@ -253,9 +257,9 @@ if (showTracker) {
 	var colorOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, currentRowinStack);
 	
 	var chainNameRectX1 = 140, 
-	chainNameRectY1 = camera_get_view_height(view_camera[0]) - newYheight, 
+	chainNameRectY1 = yBase, 
 	chainNameRectX2 = 280, 
-	chainNameRectY2 = camera_get_view_height(view_camera[0]);
+	chainNameRectY2 = yBase + newYheight;
 		
 	//draw stack name background
 	if(colorOfStack == undefined){
@@ -307,14 +311,14 @@ if (showTracker) {
 	if(nameOfStack == undefined) {
 		nameOfStack = "";	
 	}
-	draw_text( 140 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), nameOfStack);
+	draw_text( 140 + 5, yBase + (newYheight/2), nameOfStack);
 
 
 	//draw stack description background
 	draw_set_colour(global.colorThemePaneBG);
-	draw_rectangle( 280, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0]), false);
+	draw_rectangle( 280, yBase, trackerX2 - Xdistance, yBase + newYheight, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle( 280, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0]), true);
+	draw_rectangle( 280, yBase, trackerX2 - Xdistance, yBase + newYheight, true);
 
 	var captionOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption, currentRowinStack);
 	
@@ -325,12 +329,12 @@ if (showTracker) {
 	if(captionOfStack == undefined) {
 		captionOfStack = "";	
 	}
-	draw_text( 280 + 5, camera_get_view_height(view_camera[0]) - (newYheight/2), captionOfStack);
+	draw_text( 280 + 5, yBase + (newYheight/2), captionOfStack);
 
 
 	
 	var mouseOverLeftButton = false;
-	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 50, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
+	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 50, yBase, trackerX2 - Xdistance - 25, yBase + newYheight) and not instance_exists(obj_dialogueBox)) {
 		mouseOverLeftButton = true;
 		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.stackShowBackwards = true;
@@ -344,7 +348,7 @@ if (showTracker) {
 	}
 	obj_control.stackShowBackwards = false;
 	var mouseOverRightButton = false;
-	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
+	if (point_in_rectangle(mouse_x, mouse_y,trackerX2 - Xdistance - 25, yBase, trackerX2 - Xdistance, yBase + newYheight) and not instance_exists(obj_dialogueBox)) {
 		mouseOverRightButton = true;
 		if (device_mouse_check_button_released(0, mb_left)) {
 			/*
@@ -365,9 +369,9 @@ if (showTracker) {
 	else{
 			draw_set_colour(global.colorThemePaneBG);
 	}
-	draw_rectangle( trackerX2 - Xdistance - 50, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]), false);
+	draw_rectangle( trackerX2 - Xdistance - 50, yBase, trackerX2 - Xdistance - 25, yBase + newYheight, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle( trackerX2 - Xdistance - 50, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]), true);
+	draw_rectangle( trackerX2 - Xdistance - 50, yBase, trackerX2 - Xdistance - 25, yBase + newYheight, true);
 
 	//draw selection arrow background right
 	if(mouseOverRightButton){
@@ -376,11 +380,11 @@ if (showTracker) {
 	else{
 			draw_set_colour(global.colorThemePaneBG);
 	}
-	draw_rectangle( trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0]), false);
+	draw_rectangle( trackerX2 - Xdistance - 25, yBase, trackerX2 - Xdistance, yBase + newYheight, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle( trackerX2 - Xdistance - 25, camera_get_view_height(view_camera[0]) - newYheight, trackerX2 - Xdistance, camera_get_view_height(view_camera[0]), true);
+	draw_rectangle( trackerX2 - Xdistance - 25, yBase, trackerX2 - Xdistance, yBase + newYheight, true);
 
-		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 40, camera_get_view_height(view_camera[0]) - (newYheight/2), 1, 1, 90, c_white, 1);
-		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 10, camera_get_view_height(view_camera[0]) - (newYheight/2), 1, 1, 270, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 40, yBase + (newYheight/2), 1, 1, 90, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, trackerX2 - Xdistance - 10, yBase + (newYheight/2), 1, 1, 270, c_white, 1);
 
 }

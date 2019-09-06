@@ -5,6 +5,16 @@ if (obj_control.gridView) {
 	exit;
 }
 
+submitChainRectX1 = camera_get_view_width(view_camera[0]) - 295;
+submitChainRectY1 = camera_get_view_height(view_camera[0]) - 100;
+submitChainRectX2 = camera_get_view_width(view_camera[0]) - 105;
+submitChainRectY2 = camera_get_view_height(view_camera[0]);
+
+submitChainButtonX1 = submitChainRectX1 + 10;
+submitChainButtonY1 = submitChainRectY1 + 50;
+submitChainButtonX2 = submitChainRectX2 - 10;
+submitChainButtonY2 = submitChainRectY2 - 10;
+
 draw_set_colour(global.colorThemeBG);
 draw_roundrect(submitChainRectX1, submitChainRectY1, submitChainRectX2, submitChainRectY2, false);
 draw_set_colour(global.colorThemeBorders);
