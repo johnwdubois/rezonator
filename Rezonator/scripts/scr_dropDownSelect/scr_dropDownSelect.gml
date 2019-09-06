@@ -1009,6 +1009,9 @@ else if (optionListType == 10)
 
 	switch (optionSelected)
 	{
+		case "Present":
+			obj_dialogueBox.currentGame = "Present";
+			break;
 		case "Where's Elmo":
 			obj_dialogueBox.currentGame = "Where's Elmo";
 			break;

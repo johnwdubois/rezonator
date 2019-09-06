@@ -262,7 +262,7 @@ if (stackShowWindowActive) {
 
 					obj_control.wideDropDown = true;
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList,"Where's Elmo", "Rezzles", "SpotBot");
+					ds_list_add(dropDownOptionList, "Present", "Where's Elmo", "Rezzles", "SpotBot");
 
 					if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 						var dropDownInst = instance_create_depth(camera_get_view_width(view_camera[0]) /2 + 134 - 52,  camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 22 + (string_height(currentGame)/2) + 5, -999, obj_dropDown);
@@ -279,8 +279,8 @@ if (stackShowWindowActive) {
 	}
 	
 	
-	
 	/*
+	
 	// Tracks Only toggle button
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
 	if (obj_toolPane.tracksOnlyStackShow) {
@@ -332,6 +332,14 @@ if (stackShowWindowActive) {
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 - 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && stackShowWindowActive){
 		if (device_mouse_check_button_released(0, mb_left)) {
 			
+			if(currentGame == "Where's Elmo"){
+				obj_toolPane.tracksOnlyStackShow = true;
+				//global.wheresElmo = true;
+			}
+			if(currentGame == "Rezzles"){
+				obj_toolPane.rezOnlyStackShow = true;
+				//global.wheresElmo = true;
+			}
 			
 			// In here is where the stackShow initiation code will go
 			//obj_control.currentStackShowListPosition = 0;
@@ -423,6 +431,15 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 // enter check
 //show_message(string(global.wheresElmo));
 if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.games) {
+	
+	if(currentGame == "Where's Elmo"){
+		obj_toolPane.tracksOnlyStackShow = true;
+		//global.wheresElmo = true;
+	}
+	if(currentGame == "Rezzles"){
+		obj_toolPane.rezOnlyStackShow = true;
+		//global.wheresElmo = true;
+	}
 
 	if(global.games) {
 		ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), true);	

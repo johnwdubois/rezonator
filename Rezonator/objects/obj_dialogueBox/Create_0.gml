@@ -27,7 +27,7 @@ windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
 
-currentGame = "Where's Elmo";
+currentGame = "Present";
 
 
 stackShowWindowActive = false;
