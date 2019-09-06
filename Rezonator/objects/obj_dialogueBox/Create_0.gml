@@ -27,6 +27,7 @@ windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
 
+currentGame = "Where's Elmo";
 
 
 stackShowWindowActive = false;
@@ -45,3 +46,10 @@ clearAllStacks = false;
 clearAllTracks = false;
 clearAllRez = false;
 clearAllLinks = false;
+
+gameHover = false;
+//stackshow options
+setTutorial = false;
+setJustified = false;
+setTranscript = false;
+setNavWindow = false;

@@ -987,21 +987,36 @@ else if (optionListType == 9)
 	switch (optionSelected)
 	{
 		case "Create tag":
-
-
 			show_message("Coming Soon");
 			break;
-
 		case "Edit tag":
-		
-	
 			show_message("Coming Soon");
 			//show_message("BUH 3");
 			break;
 		case "Delete tag":
-		
-		
 			show_message("Coming Soon");	
+			break;
+		default:
+			break;
+	}
+	with(obj_dropDown){
+		instance_destroy();
+	}
+}
+
+else if (optionListType == 10)
+{
+
+	switch (optionSelected)
+	{
+		case "Where's Elmo":
+			obj_dialogueBox.currentGame = "Where's Elmo";
+			break;
+		case "Rezzles":	
+			obj_dialogueBox.currentGame = "Rezzles";
+			break;
+		case "SpotBot":
+			obj_dialogueBox.currentGame = "SpotBot";
 			break;
 		default:
 			break;

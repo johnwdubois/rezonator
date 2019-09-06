@@ -6,7 +6,15 @@ if(obj_menuBar.menuClickedIn){
 windowWidth = 175;
 }
 if(obj_control.wideDropDown){
-windowWidth = 150;
+	if(instance_exists(obj_dialogueBox)){
+		if(obj_dialogueBox.stackShowWindowActive){
+			windowWidth = 137;
+		}
+	}
+	
+	else{
+		windowWidth = 150;
+	}
 }
 ableToClick = false;
 alarm[0] = 10;
