@@ -144,7 +144,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 	
 	// Switch to active grid
-	//obj_dialogueBox.stackShowWindowActive = false;
+	//obj_control.stackShowWindowActive = false;
 	obj_control.filterGridActive = false;
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
 	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;

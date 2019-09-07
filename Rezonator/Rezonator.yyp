@@ -3415,6 +3415,14 @@
             }
         },
         {
+            "Key": "b95b9a24-6cdb-49c3-9901-f07514bf9aa1",
+            "Value": {
+                "id": "21c35bf0-202c-4edc-a74c-e719f4394e55",
+                "resourcePath": "objects\\obj_stackShow\\obj_stackShow.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "ba364d38-a49c-4533-9c2b-3893506905b4",
             "Value": {
                 "id": "f127a953-d77b-4f9f-812d-29bd96c3f8f5",

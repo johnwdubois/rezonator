@@ -21,9 +21,11 @@
 	var stackBoxYOffset = 160;
 	var buttonXOffset = 65;
 	var buttonYOffset = 25;
+	var captionBoxWidth = 240;
+	var captionBoxHeight = 185;
+	var rightCenter = 160;
 
-
-if (stackShowWindowActive) {
+if (obj_control.stackShowWindowActive) {
 	obj_control.mouseoverPanelPane = true;
 
 	
@@ -32,7 +34,7 @@ if (stackShowWindowActive) {
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
 	x = camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset;
-	y = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 1;
+	y = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 11;
 	
 	draw_set_colour(global.colorThemePaneBG);
 	if (global.colorTheme ==0) {
@@ -54,14 +56,24 @@ if (stackShowWindowActive) {
 		
 	// draw inside stack box
 	draw_set_colour(c_white);
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, camera_get_view_width(view_camera[0]) /2 + 20, camera_get_view_height(view_camera[0])/2 + stackBoxYOffset - 20, false);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 10 , camera_get_view_width(view_camera[0]) /2 + 20, camera_get_view_height(view_camera[0])/2 + stackBoxYOffset - 20, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, camera_get_view_width(view_camera[0]) /2 + 21, camera_get_view_height(view_camera[0])/2 + stackBoxYOffset - 20, true);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 10 , camera_get_view_width(view_camera[0]) /2 + 21, camera_get_view_height(view_camera[0])/2 + stackBoxYOffset - 20, true);
+
+	// draw stack caption box
+	draw_set_colour(c_white);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 50, camera_get_view_width(view_camera[0]) /2 + 40 + captionBoxWidth, camera_get_view_height(view_camera[0])/2 - 50 + captionBoxHeight, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40 , camera_get_view_height(view_camera[0])/2  - 50, camera_get_view_width(view_camera[0]) /2 + 40 + captionBoxWidth, camera_get_view_height(view_camera[0])/2  - 50 + captionBoxHeight, true);
+	draw_set_colour(c_white);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 25, camera_get_view_width(view_camera[0]) /2 + 40 + captionBoxWidth, camera_get_view_height(view_camera[0])/2 - 25 + captionBoxHeight - 20, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2  - 25, camera_get_view_width(view_camera[0]) /2 + 40 + captionBoxWidth, camera_get_view_height(view_camera[0])/2  - 25 + captionBoxHeight - 20, true);
 
 	
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 30, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 9, "Select All");
+	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 30, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, "Select All");
 	
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainBold);
@@ -87,16 +99,16 @@ if (stackShowWindowActive) {
 	
 	
 
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 10, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
-	if (obj_dialogueBox.selectAll) {
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 10, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 5 , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5, true);
+	if (selectAll) {
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 5 , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5, false);	
 	}
 
 	// Select all boolean switch
-	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 10, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5)){
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 5 , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5)){
 			if (device_mouse_check_button_released(0, mb_left)) {
-				obj_dialogueBox.selectAll = !obj_dialogueBox.selectAll;	
-				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
+				selectAll = !selectAll;	
+				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), selectAll);
 			}
 	}
 	
@@ -117,20 +129,24 @@ if (stackShowWindowActive) {
 	draw_set_alpha(1);
 	draw_set_font(fnt_mainBoldLarge1);
 	draw_set_colour(global.colorThemeText);
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10 , "GAME");
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 150 - (string_width("GAME")/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, camera_get_view_width(view_camera[0]) /2 + 150 + (string_width("GAME")/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, true);
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10 , "MODE");
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width("GAME")/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width("GAME")/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, true);
 	
 	
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5 - 10 , "VIEW");
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 150 - (string_width("VIEW")/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5, camera_get_view_width(view_camera[0]) /2 + 150 + (string_width("VIEW")/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5, true);
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5 - 10 , "STACK");
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width("STACK")/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width("STACK")/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5, true);
 	
 	
 	//button for game selection
 	draw_set_font(fnt_mainLarge1);
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20, currentGame);
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20, currentGame);
+	
+	
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - 36, "STACK NAME HERE");
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 -10, "STACK CAPTION HERE");
 
 	if(gameHover == true){
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 150 - (string_width(currentGame)/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(view_camera[0]) /2 + 150 + (string_width(currentGame)/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5, true);
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width(currentGame)/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width(currentGame)/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5, true);
 	}
 
 	
@@ -138,33 +154,34 @@ if (stackShowWindowActive) {
 	draw_set_font(fnt_main);
 	draw_set_halign(fa_left);
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 110 , "Tutorial");
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 45, "Left Justified");
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 15, "Transcript");
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 + 15, "Show Nav Window");
+	//draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 45, "Left Justified");
+	//draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 15, "Transcript");
+	//draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 + 15, "Show Nav Window");
 	
 	// Tutorial toggle button
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 110 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 110 + 10, true);
-	if (setTutorial) {
+	if (obj_control.setTutorial) {
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 110 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 110 + 10, false);	
 	}
+	/*
 	// Justify toggle button
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 45 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 45 + 10, true);
-	if (setJustified) {
+	if (obj_control.setJustified) {
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 45 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 45 + 10, false);	
 	}
 	// Transcript toggle button
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 15 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 15 + 10, true);
-	if (setTranscript) {
+	if (obj_control.setTranscript) {
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 15 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 15 + 10, false);	
 	}
 
 	// NavWindow toggle button
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 + 15 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 + 15 + 10, true);
-	if (setNavWindow) {
+	if (obj_control.setNavWindow) {
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 + 15 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 + 15 + 10, false);	
 	}
 
-
+*/
 	//tutorial logic check
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 110 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 110 + 10)){
 
@@ -173,7 +190,7 @@ if (stackShowWindowActive) {
 			draw_set_colour(global.colorThemeBorders);
 			draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
 			
-			if(setTutorial){
+			if(obj_control.setTutorial){
 				draw_set_halign(fa_center);
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
 			}
@@ -182,11 +199,11 @@ if (stackShowWindowActive) {
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
 			}
 			if (device_mouse_check_button_released(0, mb_left)) {
-				setTutorial = !setTutorial;	
+				obj_control.setTutorial = !obj_control.setTutorial;	
 			}
 	}
 
-
+/*
 	// Justify logic check
 	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 70 - 30, camera_get_view_height(view_camera[0])/2 - 45 - 10, camera_get_view_width(view_camera[0]) /2 + 70 -10, camera_get_view_height(view_camera[0])/2 - 45 + 10)){
 
@@ -195,7 +212,7 @@ if (stackShowWindowActive) {
 			draw_set_colour(global.colorThemeBorders);
 			draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
 			
-			if(setJustified){
+			if(obj_control.setJustified){
 				draw_set_halign(fa_center);
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
 			}
@@ -204,7 +221,7 @@ if (stackShowWindowActive) {
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
 			}
 			if (device_mouse_check_button_released(0, mb_left)) {
-				setJustified = !setJustified;	
+				obj_control.setJustified = !obj_control.setJustified;	
 			}
 	}
 	
@@ -218,7 +235,7 @@ if (stackShowWindowActive) {
 			draw_set_colour(global.colorThemeBorders);
 			draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
 			
-			if(setTranscript){
+			if(obj_control.setTranscript){
 				draw_set_halign(fa_center);
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
 			}
@@ -227,7 +244,7 @@ if (stackShowWindowActive) {
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
 			}
 			if (device_mouse_check_button_released(0, mb_left)) {
-				setTranscript = !setTranscript;	
+				obj_control.setTranscript = !obj_control.setTranscript;	
 			}
 	}
 	
@@ -241,7 +258,7 @@ if (stackShowWindowActive) {
 			draw_set_colour(global.colorThemeBorders);
 			draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
 			
-			if(setNavWindow){
+			if(obj_control.setNavWindow){
 				draw_set_halign(fa_center);
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
 			}
@@ -250,13 +267,13 @@ if (stackShowWindowActive) {
 				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
 			}
 			if (device_mouse_check_button_released(0, mb_left)) {
-				setNavWindow = !setNavWindow;	
+				obj_control.setNavWindow = !obj_control.setNavWindow;	
 			}
 	}
 	
-	
+	*/
 			
-	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 150 - (string_width(currentGame)/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(view_camera[0]) /2 + 150 + (string_width(currentGame)/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5)){
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width(currentGame)/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width(currentGame)/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5)){
 			gameHover = true;
 			if (device_mouse_check_button_released(0, mb_left)) {
 
@@ -329,16 +346,26 @@ if (stackShowWindowActive) {
 
 
 // ok button check
-if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 - 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && stackShowWindowActive){
-		if (device_mouse_check_button_released(0, mb_left)) {
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 - 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && obj_control.stackShowWindowActive){
+		if (device_mouse_check_button_released(0, mb_left) && !instance_exists(obj_dialogueBox)) {
 			
 			if(currentGame == "Where's Elmo"){
 				obj_toolPane.tracksOnlyStackShow = true;
-				//global.wheresElmo = true;
 			}
 			if(currentGame == "Rezzles"){
 				obj_toolPane.rezOnlyStackShow = true;
-				//global.wheresElmo = true;
+			}
+			if(obj_control.setJustified){
+			}
+			if(obj_control.setTranscript){
+			}
+			if(obj_control.setNavWindow){
+				obj_panelPane.showNav = true;
+				obj_toolPane.showTool = true;
+			}
+			else{
+				obj_panelPane.showNav = false;
+				obj_toolPane.showTool = false;
 			}
 			
 			// In here is where the stackShow initiation code will go
@@ -419,9 +446,9 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 }
 
 // cancel button check
-if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && stackShowWindowActive){
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && obj_control.stackShowWindowActive){
 	if (device_mouse_check_button_released(0, mb_left)) {
-		obj_dialogueBox.stackShowWindowActive = false;
+		obj_control.stackShowWindowActive = false;
 		instance_destroy();
 	}
 		
@@ -430,7 +457,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 // enter check
 //show_message(string(global.wheresElmo));
-if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.games) {
+if ( (keyboard_check_pressed(vk_enter) && obj_control.stackShowWindowActive) && !instance_exists(obj_dialogueBox) or global.games) {
 	
 	if(currentGame == "Where's Elmo"){
 		obj_toolPane.tracksOnlyStackShow = true;
@@ -523,4 +550,12 @@ if ( (keyboard_check_pressed(vk_enter) && stackShowWindowActive) or global.games
 	}
 	
 	
+}
+
+
+if(point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer)){
+	obj_control.mouseoverPanelPane = true;
+}
+else{
+	obj_control.mouseoverPanelPane = false;
 }

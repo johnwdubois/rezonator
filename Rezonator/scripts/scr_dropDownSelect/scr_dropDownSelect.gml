@@ -95,7 +95,7 @@ else if (optionListType == 1)
 		}
 		//show_message(ds_grid_height(grid));
 		//show_message(obj_control.selectedChainID);
-		if(ds_grid_height(grid) > 0){
+		if(ds_grid_height(grid) > 0 && grid != obj_chain.stackChainGrid){
 			var listOfWordID = ds_list_create();
 			ds_list_copy(listOfWordID, ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, obj_control.selectedChainID));
 		}
@@ -725,10 +725,10 @@ else if (optionListType == 6)
 				obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
 				// Instantiate the screen for users to select which stacks go in the stackShow
 
-				if (!instance_exists(obj_dialogueBox)) {
-					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				if (!instance_exists(obj_stackShow)) {
+					instance_create_layer(x, y, "InstancesAudio", obj_stackShow);
 				}
-					obj_dialogueBox.stackShowWindowActive = true;
+					obj_control.stackShowWindowActive = true;
 			}
 			break;
 		default:
@@ -1010,16 +1010,16 @@ else if (optionListType == 10)
 	switch (optionSelected)
 	{
 		case "Present":
-			obj_dialogueBox.currentGame = "Present";
+			obj_stackShow.currentGame = "Present";
 			break;
 		case "Where's Elmo":
-			obj_dialogueBox.currentGame = "Where's Elmo";
+			obj_stackShow.currentGame = "Where's Elmo";
 			break;
 		case "Rezzles":	
-			obj_dialogueBox.currentGame = "Rezzles";
+			obj_stackShow.currentGame = "Rezzles";
 			break;
 		case "SpotBot":
-			obj_dialogueBox.currentGame = "SpotBot";
+			obj_stackShow.currentGame = "SpotBot";
 			break;
 		default:
 			break;

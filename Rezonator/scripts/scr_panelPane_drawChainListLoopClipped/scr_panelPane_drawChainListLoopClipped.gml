@@ -35,6 +35,10 @@ switch (functionChainList_currentTab) {
 		grid = obj_chain.rezChainGrid;
 		break;
 }
+if(instance_exists(obj_stackShow)){
+	grid = obj_chain.stackChainGrid;
+	obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+}
 
 draw_set_font(global.fontChainList);
 var strHeight = string_height("0") * 1.5;

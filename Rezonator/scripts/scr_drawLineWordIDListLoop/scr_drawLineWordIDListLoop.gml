@@ -391,13 +391,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				draw_set_alpha(1);
 				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-				if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck) {
+				if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck  and !instance_exists(obj_stackShow)) {
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
 					}
 				}
 				
-				if (device_mouse_check_button_released(0, mb_right)) {
+				if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
 
 					if(!instance_exists(obj_dialogueBox)){
 					obj_control.rightClickWordID = obj_control.newWordHoverWordID;
@@ -429,7 +429,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		*/
 		// Allows for adding to a stack anywhere in a line
 		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY1 + gridSpaceVertical) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
-			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck)) {
+			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
 				}

@@ -137,7 +137,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 	
 			// Switch to active grid
-			//obj_dialogueBox.stackShowWindowActive = false;
+			//obj_control.stackShowWindowActive = false;
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
 			obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;

@@ -425,6 +425,12 @@ stackShowBackwards = false;
 stackShowSwitchedWordView = false;
 stackShowSwitchedTextShape = false;
 
+//stackshow options
+setTutorial = false;
+setJustified = false;
+setTranscript = false;
+setNavWindow = false;
+
 
 // scrollbar variables
 scrollBarHolding = false;

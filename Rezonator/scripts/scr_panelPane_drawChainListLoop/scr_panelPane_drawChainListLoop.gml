@@ -34,6 +34,7 @@ switch (functionChainList_currentTab) {
 		break;
 }
 
+
 // Set text margin area
 var filterRectMargin = 8;
 var filterRectSize = 8;
