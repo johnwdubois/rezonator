@@ -24,12 +24,34 @@
 	var captionBoxWidth = 240;
 	var captionBoxHeight = 185;
 	var rightCenter = 160;
+	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 );
+	var currentStackName = "";
+	var currentStackCaption = "";
+	
+	if(currentStackRow == -1){
+	currentStackName = "NO STACK SELECTED";
+	currentStackCaption = "";
+	}
+	else{
+	currentStackName = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName,currentStackRow);
+	currentStackCaption = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption,currentStackRow);
+	var hashCounter = 1;
+	for(i = 0; i < string_length(currentStackCaption); i++){
+		
+		if(i == hashCounter*24){
+			currentStackCaption = string_insert("#",currentStackCaption, i);
+			hashCounter ++;
+		}
+	}
+	
+	
+	}
 
 if (obj_control.stackShowWindowActive) {
 	obj_control.mouseoverPanelPane = true;
 
-	
-
+	//obj_control.selectedChainID = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 )
+	//show_debug_message(string(currentStackRow));
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
@@ -96,7 +118,7 @@ if (obj_control.stackShowWindowActive) {
 	// draw button text
 	draw_text(camera_get_view_width(view_camera[0]) /2 - 155, camera_get_view_height(view_camera[0])/2 + 180, "Show Stacks");
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 + 180, "Cancel");
-	
+
 	
 
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 5 , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5, true);
@@ -142,8 +164,8 @@ if (obj_control.stackShowWindowActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20, currentGame);
 	
 	
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - 36, "STACK NAME HERE");
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 -10, "STACK CAPTION HERE");
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - 36, string(currentStackName));
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 +20, string_hash_to_newline(currentStackCaption));
 
 	if(gameHover == true){
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width(currentGame)/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width(currentGame)/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5, true);
