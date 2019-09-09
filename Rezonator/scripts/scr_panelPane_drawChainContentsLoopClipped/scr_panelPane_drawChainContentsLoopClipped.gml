@@ -261,8 +261,8 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 								currentWordInfoCol[getInfoLoop] += currentWordString + " ";
 							}
 						
-							if (string_length(currentWordInfoCol[getInfoLoop]) > 25) {
-								currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 25, string_length(currentWordInfoCol[getInfoLoop]) - 25);
+							if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
+								currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
 								currentWordInfoCol[getInfoLoop] += "...";
 							}
 						}
