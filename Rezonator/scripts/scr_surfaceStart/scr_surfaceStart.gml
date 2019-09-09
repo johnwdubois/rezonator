@@ -32,10 +32,12 @@ if (mouse_check_button_released(mb_left)) {
 	
 	if (abs(mouse_y - (y + windowHeight)) < 5
 	and mouse_x > x and mouse_x < x + windowWidth) {
-		obj_control.mouseoverPanelPane = true;
-		window_set_cursor(cr_size_ns);
-		if (mouse_check_button_pressed(mb_left)) {
-			windowResizeYHolding = true;
+		if (object_index != obj_stackShow) {
+			obj_control.mouseoverPanelPane = true;
+			window_set_cursor(cr_size_ns);
+			if (mouse_check_button_pressed(mb_left)) {
+				windowResizeYHolding = true;
+			}
 		}
 	}
 //}
@@ -46,14 +48,14 @@ if (mouse_check_button(mb_left)) {
 		window_set_cursor(cr_size_we);
 	}
 	else if (windowResizeYHolding) {
-		windowHeight = mouse_y - y;
+		windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.75);
 		window_set_cursor(cr_size_ns);
 		
 		if (object_index == obj_panelPane) {
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList or currentFunction == functionChainContents
-				or currentFunction == functionSort) {
-					windowHeight = mouse_y - y;
+				or currentFunction == functionSort or currentFunction == functionFilter) {
+					windowHeight = other.windowHeight;
 					if (surface_exists(clipSurface)) {
 						surface_resize(clipSurface, clipWidth, clipHeight);
 					}

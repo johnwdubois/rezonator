@@ -1,8 +1,8 @@
-x = 24;
+x = 48;
 y = 0;
 
-windowWidth = 450;
-windowHeight = 150;
+windowWidth = 428;
+windowHeight = 202;
 
 currentFunction = 0;
 scrollRange = 6;

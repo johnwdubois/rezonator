@@ -46,12 +46,7 @@ var strHeight = string_height("0") * 1.5;
 // Set text margin area
 var filterRectMargin = 8;
 var filterRectSize = strHeight / 2;
-if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-	var textMarginLeft = filterRectMargin + (filterRectSize);
-}
-else {
-	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
-}
+var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 
 var textMarginTop = functionChainList_tabHeight;
 var textPlusY = 0;

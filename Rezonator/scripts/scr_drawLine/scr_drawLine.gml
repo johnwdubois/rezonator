@@ -37,10 +37,16 @@ var menuBarHeight = 0;
 if (instance_exists(obj_menuBar)) {
 	menuBarHeight = obj_menuBar.menuHeight;
 }
+var chainListHeight = 0;
+with (obj_panelPane) {
+	if (currentFunction == functionChainList) {
+		chainListHeight = windowHeight;
+	}
+}
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
-ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + 150 + menuBarHeight + drawLineYOffset));
+ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + chainListHeight + menuBarHeight + drawLineYOffset));
 
 
 

@@ -403,7 +403,8 @@ alarm[9] = 10;
 
 
 mouseoverPanelPane = false;
-rectNotInPanelPane = false;;
+rectNotInPanelPane = false;
+mouseoverDialogueBox = false;
 
 newWordDeleted = false;
 
