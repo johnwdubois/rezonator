@@ -29,6 +29,10 @@ if (mouse_check_button_pressed(mb_left) && not obj_control.mouseoverPanelPane &&
 		obj_control.mouseRectBeginInWord = obj_control.hoverWordID;	
 	}
 	
+	if(obj_control.mouseoverSpeakerLabel) {
+		obj_control.mouseRectBeginInSpeakerLabel = true;
+	}
+	
 	// Set the active tool based on the gesture
 	with (obj_toolPane) {
 		alarm[2] = 1;// Is super finnicky, but kinda works??
@@ -53,7 +57,7 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	else {
 		obj_control.mouseRectWithinLine = false;
 		// Check if the current gesture is a quickStack
-		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and obj_control.mouseRectBeginInWord == -1) {
+		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and obj_control.mouseRectBeginInWord == -1 and obj_control.mouseRectBeginInSpeakerLabel) {
 			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;	
 		}
 	}
@@ -85,6 +89,7 @@ if (mouse_check_button_released(mb_left)) {
 	}
 	obj_control.mouseRectWithinLine = false;
 	obj_control.rectNotInPanelPane = false;
+	obj_control.mouseRectBeginInSpeakerLabel = false;
 
 }
 

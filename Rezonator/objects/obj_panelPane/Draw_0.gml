@@ -113,11 +113,14 @@ switch (currentFunction) {
 		}
 		break;
 	case functionHelp:
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemePaneBG);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		//if(obj_panelPane.showNav) {
+	
+			draw_set_alpha(1);
+			draw_set_color(global.colorThemePaneBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
-		scr_panelPane_drawHelp();
+			scr_panelPane_drawHelp();
+		//}
 		if(obj_control.stackShowActive){
 			scr_panelPane_drawTracker();
 		}

@@ -427,11 +427,20 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			
 		}
 		*/
-		// Allows for adding to a stack anywhere in a line
-		else if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY1 + gridSpaceVertical) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
+		// Allows for adding to a stack w/in the speaker labels
+		else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
+				}
+			}
+		}
+		else if((drawWordLoop + 1 == ds_list_size(currentWordIDList)) and obj_control.rectNotInPanelPane == false and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 50, wordRectY1, room_width, wordRectY1 + gridSpaceVertical)) {
+			obj_control.mouseoverNeutralSpace = true;	
+			if (device_mouse_check_button_released(0, mb_left)) {
+				with(obj_chain) {
+					scr_chainDeselect();
+					scr_refreshVizLinkGrid();	
 				}
 			}
 		}
@@ -448,7 +457,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				}
 			}
 		}
-		else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade  and not mouseoverPanelPane) {
+		else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade  and not mouseoverPanelPane and !instance_exists(obj_stackShow)) {
 			inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseHoldRect) {
 				with (obj_control) {

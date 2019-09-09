@@ -342,6 +342,8 @@ mouseRectWithinLine = false;
 trackChunkMade = false;
 mouseRectBeginInWord = -1;
 mouseRectBeginBetweenWords = -1;
+mouseRectBeginInSpeakerLabel = false;
+mouseoverNeutralSpace = false;	
 lineContainsMouse = -1;
 
 
@@ -405,6 +407,7 @@ alarm[9] = 10;
 mouseoverPanelPane = false;
 rectNotInPanelPane = false;
 mouseoverDialogueBox = false;
+mouseoverSpeakerLabel = false;
 
 newWordDeleted = false;
 

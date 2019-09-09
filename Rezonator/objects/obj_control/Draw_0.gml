@@ -40,6 +40,8 @@ if (showDisplayCols) {
 	}
 }
 
+obj_control.mouseoverSpeakerLabel = false;
+obj_control.mouseoverNeutralSpace = false;
 
 scr_drawLine();
 //scr_drawChunk();
@@ -48,9 +50,11 @@ scr_drawLine();
 
 //mouseRectWithinLine = false;
 // Draw the mouse drag rectangle
-if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool != obj_toolPane.toolNewWord) {
-	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) { // Curfew for the volunteers
-		scr_mouseRect();
+if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool != obj_toolPane.toolNewWord and not mouseoverNeutralSpace) {
+	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {// Curfew for the volunteers
+		if(obj_toolPane.currentTool != obj_toolPane.toolStackBrush or mouseoverSpeakerLabel) {
+			scr_mouseRect();
+		}
 	}
 	else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {
 		scr_boxRect();
@@ -167,6 +171,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 720, "scrollBarPlusY: " + string(scrollBarPlusY));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 750, "mouseoverScrollBar: " + string(mouseoverScrollBar));
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 780, "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
 }
 if(filterGridActive){
 	if(stackShowActive)	{

@@ -47,6 +47,7 @@ if (showTracker) {
 	draw_set_alpha(1);
 	//if(not isTrackerOpen) {draw_set_alpha(0);}
 	// draw hidden stuff first y value will be changed if clicked on
+	if(not obj_panelPane.showNav and not obj_toolPane.showTool) {
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(trackerX2 - Xdistance, yBase, trackerX2, yBase  + newYheight, false);
@@ -91,6 +92,7 @@ if (showTracker) {
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
 	draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, "RESET");
+}
 	
 
 
