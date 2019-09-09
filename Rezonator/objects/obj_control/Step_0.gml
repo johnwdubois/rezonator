@@ -73,7 +73,7 @@ with (obj_panelPane) {
 	}
 }
 
-var numOfTouches = 0;
+/*var numOfTouches = 0;
 for(var touchLoop = 0; touchLoop < 4; touchLoop++) {
 	if(device_mouse_check_button_pressed(touchLoop, mb_left)) {
 		numOfTouches++;	
@@ -99,7 +99,7 @@ else {
 	else {
 		multiTouch = false;	
 	}
-}
+}*/
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
 if (!clickedInChainList and !clickedInChainContents) {

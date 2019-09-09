@@ -11,6 +11,9 @@
 	
 	Author: Terry DuBois
 */
+if(not obj_panelPane.showNav) {
+	//exit;	
+}
 
 // Establish location of camera
 var camWidth = camera_get_view_width(view_camera[0]);
