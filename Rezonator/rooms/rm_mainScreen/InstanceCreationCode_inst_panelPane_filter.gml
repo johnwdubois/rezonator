@@ -1,7 +1,7 @@
 x = 0;
 y = 0;
 
-windowWidth = 24;
-windowHeight = 150;
+windowWidth = 48;
+windowHeight = 202;
 
 currentFunction = 2;

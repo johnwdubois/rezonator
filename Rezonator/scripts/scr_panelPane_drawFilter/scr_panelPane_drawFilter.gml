@@ -13,7 +13,7 @@
 */
 
 // Set contraints for filter button
-var filterButtonRadius = 8;
+var filterButtonRadius = 16;
 
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
@@ -109,14 +109,17 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		// Add to moveCounter
 		obj_control.moveCounter ++;
 	}
+	
 	if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius)) {
-		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(mouse_x + 110, mouse_y + 25, mouse_x + 250, mouse_y + 55, false);
-		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(mouse_x + 110, mouse_y + 25, mouse_x + 250, mouse_y + 55, true);
-		draw_set_colour(global.colorThemeText);
 		draw_set_font(fnt_mainBold);
-		draw_text(mouse_x + 182, mouse_y + 40, "Activate Filter");	
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
+		draw_set_colour(global.colorThemeBG);
+		draw_rectangle(mouse_x + 20, mouse_y + 25, mouse_x + 25 + string_width("Activate Filter "), mouse_y + 55, false);
+		draw_set_colour(global.colorThemeBorders);
+		draw_rectangle(mouse_x + 20, mouse_y + 25, mouse_x + 25 + string_width("Activate Filter "), mouse_y + 55, true);
+		draw_set_colour(global.colorThemeText);
+		draw_text(mouse_x + 25, mouse_y + 40, "Activate Filter");	
 		draw_set_font(global.fontChainList);
 	}
 }

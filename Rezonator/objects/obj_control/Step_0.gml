@@ -452,6 +452,7 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 if(window_get_cursor() != cr_size_ns) {// && !mouse_check_button_pressed(mb_left)) {
 	mouseoverPanelPane = false;
 	mouseoverScrollBar = false;
+	mouseoverDialogueBox = false;
 }
 for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	var panelPaneInst = instance_find(obj_panelPane, i);
@@ -477,6 +478,8 @@ for (var i = 0; i < instance_number(obj_panelPane); i++) {
 		}
 	}
 }
+
+
 
 if (ds_grid_height(unitGrid) == global.totalUnitAmount and ds_grid_height(obj_chain.unitInStackGrid) == 0) {
 	with (obj_chain) {

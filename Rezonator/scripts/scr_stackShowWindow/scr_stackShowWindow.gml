@@ -581,3 +581,5 @@ if(point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 
 else{
 	obj_control.mouseoverPanelPane = false;
 }
+
+//if (point_in_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer))
