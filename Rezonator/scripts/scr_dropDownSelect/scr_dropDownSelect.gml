@@ -431,18 +431,18 @@ else if (optionListType == 4)
 			break;
 		case "Import Audio":
 
-		obj_panelPane.functionAudio_show = true;
-		
-		obj_panelPane.functionAudio_filename = get_open_filename_ext("audio file|*.ogg", "", working_directory, "Open a discourse audio OGG file");		
-			if (obj_panelPane.functionAudio_filename == "") {
-				exit;
+			with( obj_audioUI ){
+			
+				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, "Open a discourse ogg OGG file");
+					if (getAudioFile != "" and file_exists(getAudioFile)) {
+						audioFile = getAudioFile;
+						audioStream = audio_create_stream(audioFile);
+						audioSound = audio_play_sound(audioStream, 100, false);
+						visible = true;
+					}
+			
 			}
-			else if (not file_exists(obj_panelPane.functionAudio_filename)) {
-				obj_panelPane.functionAudio_filename = "";
-			}
-		
-			global.audioFilename = obj_panelPane.functionAudio_filename;
-			instance_create_layer(x, y, "InstancesAudio", obj_audioUI);
+
 			//show_message("Coming Soon");
 			break;
 				
@@ -748,13 +748,6 @@ else if (optionListType == 6)
 				}
 					obj_control.stackShowWindowActive = true;
 			}
-			break;
-			
-		case "Toggle Audio Window":
-
-							obj_panelPane.functionAudio_show = !obj_panelPane.functionAudio_show;
-
-			//show_message("BUH 1");
 			break;
 		default:
 			break;
