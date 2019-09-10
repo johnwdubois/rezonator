@@ -1,4 +1,5 @@
 // draw import UI
+/*
 draw_set_font(global.fontChainList);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
@@ -41,3 +42,5 @@ draw_text(importAudioButtonX1, y + windowHeight - 20, "Audio File: " + string(fu
 
 
 
+
+*/

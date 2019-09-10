@@ -55,7 +55,6 @@ functionClique = 5;
 functionHelp = 6;
 functionGoToLine = 7;
 functionGraphStats = 8;
-functionAudio = 9;
 
 functionChainList_tabRezBrush = 0;
 functionChainList_tabTrackBrush = 1;
@@ -151,8 +150,6 @@ functionGraphStats_mainGridWidth = 3;
 functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
 
 
-functionAudio_show = false;
-functionAudio_filename = "";
 
 
 for (var i = 0; i < 3; i++) {

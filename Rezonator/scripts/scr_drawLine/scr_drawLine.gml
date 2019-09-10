@@ -309,7 +309,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	if (point_in_rectangle(mouse_x, mouse_y, 0, speakerRectY1, camera_get_view_width(view_camera[0]), speakerRectY2)) {
 		if (keyboard_check_pressed(vk_space) and !instance_exists(obj_dialogueBox)) {
 			
-
+			/*
 			var audioFile = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colAudioFile, unitID - 1);
 			
 			
@@ -327,6 +327,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 					audio_sound_set_track_position(obj_control.audioTrackIndex, unitStart);
 				}
 			}
+			*/
 			
 		}
 	}
