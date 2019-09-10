@@ -372,6 +372,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 		draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 	}
+	var panelPaneResizeHeld = false;
+
+	with(obj_panelPane) {
+		if(windowResizeYHolding) {
+			panelPaneResizeHeld = true;
+		}
+	}
 	
 	if (!obj_chain.inRezPlay) {
 		
@@ -435,7 +442,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				}
 			}
 		}
-		else if((drawWordLoop + 1 == ds_list_size(currentWordIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 50, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
+		else if((drawWordLoop + 1 == ds_list_size(currentWordIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
+		and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 50, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
 			obj_control.mouseoverNeutralSpace = true;	
 			if (device_mouse_check_button_released(0, mb_left)) {
 				with(obj_chain) {

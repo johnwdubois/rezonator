@@ -176,7 +176,7 @@ if (not (mouseLineX == undefined or mouseLineY == undefined)) {
 		draw_set_color(currentChainColor);
 		
 		if (not mouseLineHide) {
-			draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+			scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
 		}
 	}
 }
