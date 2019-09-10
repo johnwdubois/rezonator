@@ -449,7 +449,7 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 
 // Check for mouse over of the Panel Pane
 // It's gotta stop the drag but not require the user to click into the main screen first
-if(window_get_cursor() != cr_size_ns) {// && !mouse_check_button_pressed(mb_left)) {
+if ((window_get_cursor() != cr_size_ns) && !mouse_check_button(mb_left)) {
 	mouseoverPanelPane = false;
 	mouseoverScrollBar = false;
 	mouseoverDialogueBox = false;
@@ -475,6 +475,14 @@ for (var i = 0; i < instance_number(obj_panelPane); i++) {
 			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.functionHelp_helpWindowRectX1, panelPaneInst.functionHelp_helpWindowRectY1, panelPaneInst.functionHelp_helpWindowRectX2, panelPaneInst.functionHelp_helpWindowRectY2)) {
 				mouseoverPanelPane = true;
 			}
+		}
+	}
+}
+
+if (instance_exists(obj_audioUI)) {
+	if (obj_audioUI.visible) {
+		if (point_in_rectangle(mouse_x, mouse_y, obj_audioUI.x, obj_audioUI.y, obj_audioUI.x + obj_audioUI.windowWidth, obj_audioUI.y + obj_audioUI.windowHeight)) {
+			mouseoverPanelPane = true;
 		}
 	}
 }
