@@ -429,6 +429,23 @@ else if (optionListType == 4)
 		
 			show_message("Coming Soon");
 			break;
+		case "Import Audio":
+
+			with( obj_audioUI ){
+			
+				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, "Open a discourse ogg OGG file");
+					if (getAudioFile != "" and file_exists(getAudioFile)) {
+						audioFile = getAudioFile;
+						audioStream = audio_create_stream(audioFile);
+						audioSound = audio_play_sound(audioStream, 100, false);
+						visible = true;
+					}
+			
+			}
+
+			//show_message("Coming Soon");
+			break;
+				
 		case "Save File":
 		
 			draw_set_alpha(1);
@@ -604,12 +621,7 @@ else if (optionListType == 6)
 	// "Hide Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size"
 	switch (optionSelected)
 	{
-		case "Toggle Nav Window":
-			with(obj_panelPane){
-				showNav = not showNav;	
-			}
-			//show_message("BUH 1");
-			break;
+
 		case "Increase Text Size":
 		
 			if (global.fontSize < 5) {
@@ -720,7 +732,13 @@ else if (optionListType == 6)
 		
 			//show_message("BUH 5");
 			break;
-		case "StackShow":
+		case "Toggle Nav Window":
+			with(obj_panelPane){
+				showNav = not showNav;	
+			}
+			//show_message("BUH 1");
+			break;
+		case "Start StackShow":
 			if(obj_control.currentStackShowListPosition == -1) {
 				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 				// Instantiate the screen for users to select which stacks go in the stackShow

@@ -1,8 +1,8 @@
 {
-    "id": "6a36dd8e-b836-424a-b978-03ca2e05fa0c",
+    "id": "a01f8ce5-a9a2-4f70-ab92-ed92c592ca7f",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_audioUIResize",
+    "name": "scr_audioStep",
     "IsCompatibility": false,
     "IsDnD": false
 }

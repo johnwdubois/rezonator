@@ -19,7 +19,7 @@ if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
 		
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Open File", "Save File", "Export Portion", "Change Author",  "Exit");
+		ds_list_add(dropDownOptionList, "Open File", "Import Audio", "Save File", "Export Portion", "Change Author",  "Exit");
 
 		if (ds_list_size(dropDownOptionList) > 0) {
 			var dropDownInst = instance_create_depth(0, menuHeight, -999, obj_dropDown);
@@ -75,7 +75,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Toggle Nav Window", "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size", "Toggle Dark Theme", "StackShow");
+		ds_list_add(dropDownOptionList, "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size", "Toggle Dark Theme", "Toggle Nav Window", "Start StackShow");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*2, menuHeight, -999, obj_dropDown);

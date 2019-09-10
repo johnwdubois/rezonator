@@ -39,11 +39,6 @@ switch (currentFunction) {
 			}
 		}
 		break;
-	case functionAudio:
-		with (obj_audioUI) {
-			visible = other.functionAudio_show;
-		}
-		break;
 	default:
 		break;
 }
