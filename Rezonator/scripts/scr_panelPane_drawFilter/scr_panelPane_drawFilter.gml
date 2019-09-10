@@ -81,7 +81,7 @@ for (var i = 0; i < 3; i++) {
 // Check for mouse clicks on filter button, if we're out of the search grid
 if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 	if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius) and device_mouse_check_button_released(0, mb_left))
-	or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not dialogueBoxActive)) ) {
+	or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not instance_exists(obj_dialogueBox))) ) {
 		// If filter is active, deactivate it
 		if (obj_control.filterGridActive) {
 			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {

@@ -377,7 +377,6 @@ if (shortcutsEnabled) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 				}
-				c
 				// reset the ratio
 				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[4] = 15;
