@@ -76,7 +76,7 @@ else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 		else {
 			// Remember the user's place
 			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-				obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+				obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 			}
 			
 			// Switch to active grid
@@ -96,7 +96,7 @@ else if(currentActiveLineGrid == filterGrid) {
 	else {
 		// Remember the user's place
 		if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-			obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+			obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 		}
 			
 		// Switch to active grid

@@ -147,7 +147,7 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	//obj_control.stackShowWindowActive = false;
 	obj_control.filterGridActive = false;
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
-	obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+	obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 	
 	// Currently disabled for Demo purposes
 	// If the transcriptView was active before the stackShow, switch it back
