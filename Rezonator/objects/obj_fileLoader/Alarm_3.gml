@@ -60,3 +60,6 @@ if (string_count("lineHeight:", global.iniFileString) > 0) {
 if (string_count("fontSize:", global.iniFileString) > 0) {
 	global.fontSize = real(scr_getValueFromString(global.iniFileString, "fontSize:", ","));
 }
+
+scr_fontGlobalUpdate();
+scr_setSpeakerLabelColWidth();

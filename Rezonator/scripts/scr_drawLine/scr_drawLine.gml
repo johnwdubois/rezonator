@@ -18,6 +18,8 @@ if (gridView || ds_grid_height(dynamicWordGrid) < 1) {
 	exit;
 }
 
+scr_setSpeakerLabelColWidth();
+
 ds_grid_set_region(wordDrawGrid, wordDrawGrid_colVisible, 0, wordDrawGrid_colVisible, ds_grid_height(wordDrawGrid), false);
 
 // set draw variables for column text
@@ -43,6 +45,8 @@ with (obj_panelPane) {
 		chainListHeight = windowHeight;
 	}
 }
+wordTopMargin = menuBarHeight + chainListHeight;
+
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
@@ -63,12 +67,25 @@ if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) - 1 and ds_grid_height
 	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), room_width, room_height, false);
 }
 
+
+
+// get speakerLabelMargin
+speakerLabelMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1);
+if (speakerLabelColXHolding > -1) {
+	wordLeftMargin = speakerLabelMargin + 20;
+}
+
+
+if (speakerLabelColXHolding > -1) {
+	mouseoverPanelPane = true;
+}
+
 // draw out of bounds rectangle on left
-if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin + obj_control.speakerLabelMarginBuffer) {
+if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin) {
 	draw_set_color(global.colorThemeOutOfBounds);
-	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin - obj_control.speakerLabelMarginBuffer;
+	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin;
 	var leftOutOfBoundsRectY1 = 0;
-	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - obj_control.speakerLabelMarginBuffer;
+	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - 20;
 	var leftOutOfBoundsRectY2 = room_height;
 
 	if (currentActiveLineGrid == searchGrid) {
@@ -99,11 +116,13 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	// Adapt to dynamic line height
 	//currentLineY *= (obj_control.gridSpaceVertical/33.4);
 	
+	
 	// set speaker label stuff up
-	var speakerRectX1 = 0;
-	var speakerRectY1 = currentLineY - (gridSpaceVertical / 2);
-	var speakerRectX2 = speakerLabelMargin - speakerLabelMarginBuffer;
-	var speakerRectY2 = speakerRectY1 + gridSpaceVertical;
+	speakerRectX1 = 0;
+	speakerRectY1 = currentLineY - (gridSpaceVertical / 2);
+	speakerRectX2 = speakerLabelMargin;
+	speakerRectY2 = speakerRectY1 + gridSpaceVertical;
+	
 	
 	var unitID = ds_grid_get(currentActiveLineGrid, lineGrid_colUnitID, drawLineLoop);
 	var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
@@ -232,107 +251,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	draw_set_color(participantColor);
 	var speakerLabelTextBuffer = 3;
 	
-	
-	// draw speaker label parts
-	var speakerLabelPlusX = 0;
-	for (var i = 0; i < 3; i++) {
-		if (i == 0 and ds_grid_height(global.fileLineRipGrid) < 2) {
-			continue;
-		}
-		
-		if (!obj_control.showLineNumber and i != 2) {
-			continue;
-		}
-		
-		var speakerLabelCurrentColX1 = speakerLabelPlusX;
-		var speakerLabelCurrentColY1 = speakerRectY1;
-		var speakerLabelCurrentColX2 = speakerLabelCurrentColX1 + speakerLabelColWidth[i];
-		var speakerLabelCurrentColY2 = speakerRectY2;
-		
-		draw_set_color(participantColor);
-		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, false);
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, true);
-		
-		var speakerLabelCurrentColStr = "";
-		if (i == 0 and currentDiscoID != undefined) {
-			speakerLabelCurrentColStr = string(currentDiscoID);
-		}
-		else if (i == 1 and currentLineNumberLabel != undefined) {
-			speakerLabelCurrentColStr = string(currentLineNumberLabel);
-		}
-		
-		if (i == 2 and participantName != undefined) {
-			speakerLabelCurrentColStr = string(participantName);
-			if (showDevVars) {
-				speakerLabelCurrentColStr = string(currentLineY);
-			}
-
-			while (string_width(speakerLabelCurrentColStr) > obj_control.speakerLabelColWidth[2]) {
-				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
-			}
-		}
-		
-		if (point_in_rectangle(mouse_x, mouse_y,speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2)
-		and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and !obj_control.mouseoverPanelPane){
-			obj_control.mouseoverSpeakerLabel = true;
-			
-			if(mouse_check_button_pressed(mb_right)) {
-				//show_message("clicked here" + string(drawLineLoop));
-				
-				var dropDownOptionList = ds_list_create();
-			
-				obj_control.swapLinePos1 = unitID;
-
-				ds_list_add(dropDownOptionList, "Swap", "Shuffle", "Toggle line #", "Reset Order", "Check Order");
-
-				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-					var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-					dropDownInst.optionList = dropDownOptionList;
-					dropDownInst.optionListType = 3;
-					
-					obj_control.ableToCreateDropDown = false;
-					obj_control.alarm[0] = 2;
-				}
-			}
-			
-		}
-		draw_set_color(global.colorThemeText);
-		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
-		if (obj_control.showLineNumber) {
-			speakerLabelPlusX += speakerLabelColWidth[i];
-		}
-		
-	}
-	
-	
-	if (point_in_rectangle(mouse_x, mouse_y, 0, speakerRectY1, camera_get_view_width(view_camera[0]), speakerRectY2)) {
-		if (keyboard_check_pressed(vk_space) and !instance_exists(obj_dialogueBox)) {
-			
-			/*
-			var audioFile = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colAudioFile, unitID - 1);
-			
-			
-			if (audioTrackIndex != -1) {
-				audio_stop_all();
-			}
-			
-			if (typeof(audioFile) == "string") {
-				if (file_exists(audioFile)) {
-					var unitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, unitID - 1);
-					var unitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, unitID - 1);
-				
-					obj_control.audioTrackStream = audio_create_stream(audioFile);
-					obj_control.audioTrackIndex = audio_play_sound(obj_control.audioTrackStream, 0, true);
-					audio_sound_set_track_position(obj_control.audioTrackIndex, unitStart);
-				}
-			}
-			*/
-			
-		}
-	}
-	
-	
+	scr_drawSpeakerLabel(currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer);
 }
 
 // show draw range of lines if development variables are on
