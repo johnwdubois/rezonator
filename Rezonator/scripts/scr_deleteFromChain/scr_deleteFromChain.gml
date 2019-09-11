@@ -6,7 +6,7 @@ var currentChainGridRow = undefined;
 var grid = undefined;
 
 // Expirementing with deleting Chunks
-if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord) {
 	
 	// Set variable to be used in both cases
 	var currentWordID = -1;
@@ -60,7 +60,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	
 	}
 	// Deletion of newWords
-	else if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+	else if(obj_toolPane.currentTool == obj_toolPane.toolNewWord or obj_control.deleteNewWord ==true) {
 		currentWordID = obj_control.newWordHoverWordID;
 		
 		// (Maybe) within this space, check if this word is a Hit in the search screen.
@@ -81,7 +81,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	// Set the word state to dead
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
 	
-	if(obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+	if(obj_toolPane.currentTool == obj_toolPane.toolNewWord or obj_control.deleteNewWord == true) {
 	if(scr_findInGridTwoParameters(obj_control.hitGrid, obj_control.hitGrid_colWordID, currentWordID, obj_control.hitGrid_colHitBool, true)) {
 			obj_control.newWordDeleted = true;
 			scr_searchForWord(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
@@ -226,7 +226,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 }
 
 // If this Chunk has already been deleted, refresh the chain grids
-if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.deleteNewWord) {
 	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);
 	scr_refreshChainGrid(grid);
 	scr_killEmptyChains(grid);
@@ -297,3 +297,4 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	// If the chain contains a living link, focus the one it found
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridToFocus, true);
 }
+obj_control.deleteNewWord = false;

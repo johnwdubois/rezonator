@@ -154,11 +154,12 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 770, "chainColorID[2]: " + string(obj_chain.chainColorID[2]));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 790, "chainColorID[3]: " + string(obj_chain.chainColorID[3]));
 	
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 810, "leftScreenBound: " + string(leftScreenBound));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 810, "wordLeftMargin: " + string(wordLeftMargin));
 	
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 840, "speakerLabelColWidth[0]: " + string(speakerLabelColWidth[0]));
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 860, "speakerLabelColWidth[1]: " + string(speakerLabelColWidth[1]));
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 880, "speakerLabelColWidth[2]: " + string(speakerLabelColWidth[2]));
+	
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 830, "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 850, "speakerLabelColPrevList: " + scr_getStringOfList(speakerLabelColPrevList));
+	draw_text(camera_get_view_width(view_camera[0]) - 100, 870, "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 900, "speakerLabelMargin: " + string(speakerLabelMargin));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 930, "allSaved: " + string(allSaved));
@@ -166,8 +167,8 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 960, "current_time: " + string(current_time));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 980, "hoverWordID: " + string(hoverWordID));
 	
-	draw_text(camera_get_view_width(view_camera[0]) - 300, 850, "drawLine offset: " + string(drawRangeCenterOffset));
-	draw_text(camera_get_view_width(view_camera[0]) - 300, 880, "drawLine extra steps: " + string(drawRangeExtraSteps));
+	draw_text(camera_get_view_width(view_camera[0]) - 400, 850, "drawLine offset: " + string(drawRangeCenterOffset));
+	draw_text(camera_get_view_width(view_camera[0]) - 400, 880, "drawLine extra steps: " + string(drawRangeExtraSteps));
 	
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 680, "scrollPlusY: " + string(scrollPlusY));

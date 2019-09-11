@@ -264,12 +264,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 	}
 }
 
-if (wordLeftMargin < wordLeftMarginDest) {
-	wordLeftMargin += abs(wordLeftMargin - wordLeftMarginDest) / 6;
-}
-else if (wordLeftMargin > wordLeftMarginDest) {
-	wordLeftMargin -= abs(wordLeftMargin - wordLeftMarginDest) / 6;
-}
+wordLeftMargin = lerp(wordLeftMargin, wordLeftMarginDest, 0.5);
 
 var searchGridPopulated = ds_grid_height(searchGrid);
 var filterGridPopulated = ds_grid_height(filterGrid);

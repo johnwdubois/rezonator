@@ -916,7 +916,7 @@ else if (optionListType == 8)
 					}
 		
 			}
-
+			obj_control.rightClickonWord = false;
 			instance_destroy();
 			//show_message("BUH 1");
 			break;
@@ -939,6 +939,7 @@ else if (optionListType == 8)
 					}
 		
 			}
+			obj_control.rightClickonWord = false;
 			instance_destroy();
 			//show_message("BUH 2");
 			break;
@@ -959,16 +960,19 @@ else if (optionListType == 8)
 						}
 
 			}
-					
+			obj_control.rightClickonWord = false;
 			instance_destroy();
 
 			//show_message("BUH 3");
 			break;
 		case "Delete new word":
+			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
+			obj_control.deleteNewWord =true;
+			//show_message("Coming Soon");
+			scr_deleteFromChain();
 			
-			show_message("Coming Soon");
-			//scr_deleteFromChain();
 			
+			obj_control.rightClickonWord = false;
 			instance_destroy();
 	
 			break;
@@ -997,6 +1001,7 @@ else if (optionListType == 8)
 			break;
 	}
 
+
 }
 else if (optionListType == 9)
 {
@@ -1020,6 +1025,7 @@ else if (optionListType == 9)
 	with(obj_dropDown){
 		instance_destroy();
 	}
+	obj_control.rightClickonWord = false;
 }
 
 else if (optionListType == 10)
