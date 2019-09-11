@@ -308,7 +308,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		var isAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, i);
 		
 		//Check for user selection of alignment with mouse clicks
-		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
+		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)
+		and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			draw_set_alpha(0.5);
 			draw_set_color(c_purple);
 			draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
