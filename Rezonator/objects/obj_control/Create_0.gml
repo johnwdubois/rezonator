@@ -20,6 +20,7 @@ multiTouch = false;
 
 // Keep track of which line the "camera" is centered on
 currentCenterDisplayRow = 0;
+prevCenterYDest = 0;
 prevCenterDisplayRow = 0;
 
 // Bound and set the display grid of the words

@@ -81,13 +81,13 @@ for (var i = 0; i < 3; i++) {
 // Check for mouse clicks on filter button, if we're out of the search grid
 if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 	if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius) and device_mouse_check_button_released(0, mb_left))
-	or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not dialogueBoxActive)) ) {
+	or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not instance_exists(obj_dialogueBox))) ) {
 		// If filter is active, deactivate it
 		if (obj_control.filterGridActive) {
 			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
 				//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-				//obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
-				obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+				//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+				obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 				// Keep the focus on previous currentCenterDisplayRow
 				//with (obj_control) {
 				//	alarm[5] = 1;
@@ -100,7 +100,7 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		}
 		else {
 			
-			obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
+			obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 			// If filter is unactive. activate it
 			with (obj_control) {
 				scr_renderFilter();

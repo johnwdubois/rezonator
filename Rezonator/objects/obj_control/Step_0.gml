@@ -275,6 +275,7 @@ if (shortcutsEnabled) {
 	if(os_type == os_macosx){
 		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 			if (keyboard_check(24) and canPressPlus) {
+				prevCenterDisplayRow = scr_currentCenterLine();
 				canPressPlus = false;
 				gridSpaceVertical += 10;
 				// Don't go above the max
@@ -291,12 +292,15 @@ if (shortcutsEnabled) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 				}
+				scr_jumpToLine("", prevCenterDisplayRow);
 				// reset the ratio
 				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[3] = 15;
+				scr_jumpToLine("", prevCenterDisplayRow);
 			}
 
 			if (keyboard_check(109) and canPressMinus) {
+				prevCenterDisplayRow = scr_currentCenterLine();
 				canPressMinus = false;
 				gridSpaceVertical -= 10;
 				// Don't go below the min
@@ -314,15 +318,18 @@ if (shortcutsEnabled) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 				}
+				scr_jumpToLine("", prevCenterDisplayRow);
 				// reset the ratio
 				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[4] = 15;
+				scr_jumpToLine("", prevCenterDisplayRow);
 			}
 		}
 	}
 	else{
 		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 			if (keyboard_check_direct(187) and canPressPlus) {
+				prevCenterDisplayRow = scr_currentCenterLine();
 				canPressPlus = false;
 				gridSpaceVertical += 10;
 				// Don't go above the max
@@ -339,12 +346,15 @@ if (shortcutsEnabled) {
 				if(filterGridPopulated) {
 					ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 				}
+				scr_jumpToLine("", prevCenterDisplayRow);
 				// reset the ratio
 				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[3] = 15;
+				
 			}
 
 			if (keyboard_check_direct(189) and canPressMinus) {
+				prevCenterDisplayRow = scr_currentCenterLine();
 				canPressMinus = false;
 				gridSpaceVertical -= 10;
 				// Don't go below the min
@@ -365,6 +375,7 @@ if (shortcutsEnabled) {
 				// reset the ratio
 				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[4] = 15;
+				
 			}
 		}
 	}

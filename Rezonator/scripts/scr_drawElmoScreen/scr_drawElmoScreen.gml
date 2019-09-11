@@ -140,7 +140,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			//obj_control.stackShowWindowActive = false;
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
-			obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+			obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 	
 			// Currently disabled for Demo purposes
 			// If the transcriptView was active before the stackShow, switch it back

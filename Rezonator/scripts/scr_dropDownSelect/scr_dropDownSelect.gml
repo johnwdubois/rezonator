@@ -586,8 +586,8 @@ else if (optionListType == 5)
 			if (obj_control.filterGridActive) {
 				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
 					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-					//obj_control.prevCenterDisplayRow = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
-					obj_control.scrollPlusYDest = obj_control.prevCenterDisplayRow;
+					//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 					// Keep the focus on previous currentCenterDisplayRow
 					//with (obj_control) {
 					//	alarm[5] = 1;
@@ -600,7 +600,7 @@ else if (optionListType == 5)
 			}
 			else {
 			
-				obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
+				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 				// If filter is unactive. activate it
 				with (obj_control) {
 					scr_renderFilter();
@@ -740,7 +740,7 @@ else if (optionListType == 6)
 			break;
 		case "Start StackShow":
 			if(obj_control.currentStackShowListPosition == -1) {
-				obj_control.prevCenterDisplayRow = obj_control.scrollPlusYDest;
+				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 				// Instantiate the screen for users to select which stacks go in the stackShow
 
 				if (!instance_exists(obj_stackShow)) {
