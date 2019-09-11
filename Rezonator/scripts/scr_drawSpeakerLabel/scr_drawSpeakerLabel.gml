@@ -1,7 +1,9 @@
-var currentDiscoID = argument0;
-var currentLineNumberLabel = argument1;
-var participantName = argument2;
-var participantColor = argument3;
+var unitID = argument0;
+var currentDiscoID = argument1;
+var currentLineNumberLabel = argument2;
+var participantName = argument3;
+var participantColor = argument4;
+var speakerLabelTextBuffer = argument5;
 
 // draw speaker label parts
 for (var i = 0; i < 3; i++) {
@@ -61,6 +63,6 @@ for (var i = 0; i < 3; i++) {
 			
 	}
 	draw_set_color(global.colorThemeText);
-	draw_text(speakerLabelCurrentColX1 + argument4, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
+	draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
 		
 }

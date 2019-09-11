@@ -251,7 +251,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	draw_set_color(participantColor);
 	var speakerLabelTextBuffer = 3;
 	
-	scr_drawSpeakerLabel(currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer);
+	scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer);
 }
 
 // show draw range of lines if development variables are on
