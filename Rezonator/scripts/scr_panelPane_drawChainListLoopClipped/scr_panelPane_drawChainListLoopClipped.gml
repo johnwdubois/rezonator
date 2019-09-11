@@ -253,8 +253,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		draw_set_color(global.colorThemeBG);
 	}
 	else {
-		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 		draw_set_color(global.colorThemeText);
+		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 	}
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);

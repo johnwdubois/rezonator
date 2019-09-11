@@ -75,13 +75,13 @@ var textMarginTop = tabHeight;
 var textPlusY = 0;
 var ableToBeMouseOver = true;
 
-var alignTabWidth = 12;
+var xBuffer = 6;
 
 // Create scroll bars
 var scrollBarWidth = 16;
 
 var focusedChainExists = false;
-var alignRectSize = 8;
+var alignRectSize = strHeight;
 var oldRow = -1;
 //var olderRow = -1;
 
@@ -141,7 +141,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			currentWordInfoCol[0] = "";
 		
 			//Set size of rectangle around word
-			var rectX1 = x + alignTabWidth;
+			var rectX1 = x;
 			var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 			var rectX2 = x + windowWidth - scrollBarWidth;
 			var rectY2 = rectY1 + strHeight;
@@ -177,7 +177,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 					obj_chain.mouseLineWordID = sourceWordID;
 				}
 			}
-			else if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
+			else if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
 				ableToBeMouseOver = false;
 				draw_set_alpha(0.25);
 				draw_set_color(global.colorThemeText);
@@ -196,7 +196,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			draw_set_alpha(1);
 	
 			// Check for double click
-			if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and device_mouse_check_button_released(0, mb_left)) {
+			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and device_mouse_check_button_released(0, mb_left)) {
 				if (doubleClickTimer > -1) {
 				
 					var rowInLineGrid = -1;
@@ -272,7 +272,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 						break;
 				}
 			
-				var textX = x + (getInfoLoop * (windowWidth / 6)) + alignTabWidth;
+				var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
 				var textY = y + textMarginTop + textPlusY;
 			
 				draw_set_color(global.colorThemeText);
@@ -282,23 +282,31 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 				draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 			}
 			
-			var alignRectX1 = x + 2;
-			var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY;
-			var alignRectX2 = x + 2 + alignRectSize;
-			var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY;
+			var alignRectX1 = x + windowWidth - scrollBarWidth - strHeight - alignRectSize;
+			var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
+			var alignRectX2 = x + windowWidth - scrollBarWidth - strHeight;
+			var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
 		
- 			if (point_in_rectangle(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2) and device_mouse_check_button_released(0, mb_left)
-			and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
-				currentWordAligned = !currentWordAligned;
-				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
+ 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {
+				draw_set_color(c_purple);
+				draw_set_alpha(0.5);
+				draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, false);
+				
+				if (device_mouse_check_button_released(0, mb_left)
+				and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
+					currentWordAligned = !currentWordAligned;
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
 			
-				if (ds_grid_height(obj_chain.vizLinkGrid) > 0) {
-					var rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
-					while (rowInVizLinkGrid >= 0 and rowInVizLinkGrid < ds_grid_height(obj_chain.vizLinkGrid)) {
-						ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, rowInVizLinkGrid, currentWordAligned);
-						rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+					if (ds_grid_height(obj_chain.vizLinkGrid) > 0) {
+						var rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+						while (rowInVizLinkGrid >= 0 and rowInVizLinkGrid < ds_grid_height(obj_chain.vizLinkGrid)) {
+							ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, rowInVizLinkGrid, currentWordAligned);
+							rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+						}
 					}
 				}
+				
+				
 			}
 		
 			if (chainAligned) {
@@ -307,10 +315,10 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			else {
 				draw_set_alpha(0.5);
 			}
-			draw_set_color(c_purple);
-			draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, !currentWordAligned)
 			
-			strHeight = string_height(currentWordInfoCol[0]) * 0.75;
+			
+			draw_sprite_ext(spr_align, !currentWordAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
+			
 			textPlusY += strHeight;
 		}
 	}
@@ -338,14 +346,13 @@ draw_set_alpha(1);
 
 draw_set_font(global.fontPanelTab);
 
-//draw_line(x + alignTabWidth, y, x + alignTabWidth, y + tabHeight);
 
 draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 
 for (var i = 0; i < 3; i++) {
-	var colRectX1 = x + (i * (windowWidth / 6)) + alignTabWidth;
+	var colRectX1 = x + (i * (windowWidth / 6));
 	var colRectY1 = y;
 	var colRectX2 = colRectX1 + (windowWidth / 6);
 	if(i == 2) {
