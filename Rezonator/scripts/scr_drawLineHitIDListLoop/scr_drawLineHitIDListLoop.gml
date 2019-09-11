@@ -194,6 +194,14 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 	}
 	
+	var panelPaneResizeHeld = false;
+
+	with(obj_panelPane) {
+		if(windowResizeYHolding) {
+			panelPaneResizeHeld = true;
+		}
+	}
+	
 	//Prevent the mouse from clicking on words/lines while releasing from a drag
 	var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 	
@@ -215,10 +223,28 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 	}
 		
-	if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
-		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists  and touchReleaseCheck)) {
+	//if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
+	//	if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists  and touchReleaseCheck)) {
+	//		with (obj_chain) {
+	//			scr_wordClicked(currentWordID, unitID);
+	//		}
+	//	}
+	//}
+	// Allows for adding to a stack w/in the speaker labels
+	if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
+		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
+			}
+		}
+	}
+	else if((drawWordLoop + 1 == ds_list_size(currentHitIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
+	and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 50, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
+		obj_control.mouseoverNeutralSpace = true;	
+		if (device_mouse_check_button_released(0, mb_left)) {
+			with(obj_chain) {
+				scr_chainDeselect();
+				scr_refreshVizLinkGrid();	
 			}
 		}
 	}

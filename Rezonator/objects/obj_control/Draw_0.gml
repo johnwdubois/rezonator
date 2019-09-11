@@ -65,7 +65,8 @@ if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool
 		quickStackAbleToInitiate = false;
 		alarm[7] = 5;
 	}
-	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+	// SHould this be just an if??
+	if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 		alarm[8] = 5;
 	}
 	/*else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
@@ -74,6 +75,9 @@ if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool
 	}*/
 	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 		alarm[8] = 5;
+	}
+	else if(mouseRectMade) {
+		alarm[9] = 5;
 	}
 	
 	if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {

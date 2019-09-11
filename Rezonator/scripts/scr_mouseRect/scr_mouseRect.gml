@@ -64,9 +64,43 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	
 	// Draw the rect if not making a quickStack
 	if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
-		draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
-		draw_set_alpha(1);
-		draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
+		if(obj_control.mouseRectWithinLine) {
+			if(obj_chain.currentFocusedChainID >= 0) {
+				var currentChainGrid = -1;
+				if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+					currentChainGrid = obj_chain.trackChainGrid;
+				}
+				else {
+					currentChainGrid = obj_chain.rezChainGrid;
+				}
+				var currentChainGridRow = ds_grid_value_y(currentChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(currentChainGrid), obj_chain.currentFocusedChainID);
+				if(currentChainGridRow > -1) {
+					var currentChainColor = ds_grid_get(currentChainGrid, obj_chain.chainGrid_colColor, currentChainGridRow);
+					draw_set_color(currentChainColor);
+				}
+				else {
+					draw_set_color(global.colorThemeSelected1);	
+				}
+				
+			} else {
+				draw_set_color(global.colorThemeSelected1);	
+			}
+			draw_set_alpha(1);
+			draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
+			for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
+				if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+					draw_roundrect(mouseHoldRectX1 - drawBorderLoop, mouseHoldRectY1 - drawBorderLoop, mouseHoldRectX2 + drawBorderLoop, mouseHoldRectY2 + drawBorderLoop, true);
+				}
+				else {
+					draw_rectangle(mouseHoldRectX1 - drawBorderLoop, mouseHoldRectY1 - drawBorderLoop, mouseHoldRectX2 + drawBorderLoop, mouseHoldRectY2 + drawBorderLoop, true);
+				}
+			}
+		}
+		else {
+			draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
+			draw_set_alpha(1);
+			draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
+		}
 	}
 }
 
@@ -87,7 +121,7 @@ if (mouse_check_button_released(mb_left)) {
 		obj_control.mouseRectBeginInWord = -1;
 		obj_control.mouseRectBeginBetweenWords = -1;
 	}
-	obj_control.mouseRectWithinLine = false;
+	
 	obj_control.rectNotInPanelPane = false;
 	obj_control.mouseRectBeginInSpeakerLabel = false;
 

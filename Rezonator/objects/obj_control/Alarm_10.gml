@@ -1,7 +1,7 @@
 /// @description Box Creation
 // Place all captured unit and word info into the box grid
-//show_message("in");
-if(ds_list_size(inRectWordIDList) > 0 && not ds_list_size(inRectUnitIDList) > 0) {
+
+if(ds_list_size(inRectWordIDList) > 0 and not ds_list_size(inRectUnitIDList) > 0 and obj_control.mouseRectWithinLine) {
 	ds_list_add(inRectUnitIDList, ds_grid_get(wordGrid, wordGrid_colUnitID, ds_list_find_value(inRectWordIDList, 0) - 1));
 
 	trackChunkMade = true;
@@ -125,7 +125,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 				mouseHoldRectX2 = 0; 
 				mouseHoldRectY1 = 0; 
 				mouseHoldRectY2 = 0; 
-				trackChunkMade = false;
+				//trackChunkMade = false;
 			}
 		}
 		
@@ -172,10 +172,11 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 }
 
 // Clear the rect word list for next use
-if (ds_list_size(inRectUnitIDList) > 0) {
+//if (ds_list_size(inRectUnitIDList) > 0 or trackChunkMade) {
 	ds_list_clear(inRectUnitIDList);
 	ds_list_clear(inRectWordIDList);
-}
+//}
+
 
 // List print for debug purposes
 
@@ -189,3 +190,4 @@ boxRectMade = false;
 boxRectReleased = true;
 boxRectAbleToInitiate = true;
 trackChunkMade = false;
+obj_control.mouseRectWithinLine = false;
