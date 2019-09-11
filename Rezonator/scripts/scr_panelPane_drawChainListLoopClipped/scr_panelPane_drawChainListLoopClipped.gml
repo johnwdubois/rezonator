@@ -201,7 +201,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	//Color codes the chain lists for User
 	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); // Access color of new chain
-	draw_set_color(merge_color(chainColor, global.colorThemeBG, (currentChainState == obj_chain.chainStateFocus) ? 0.6: 0.75)); //soften the color
+	draw_set_color(merge_color(chainColor, global.colorThemeBG, (currentChainState == obj_chain.chainStateFocus) ? 0.65: 0.75)); //soften the color
 	draw_rectangle(chainNameRectX1 - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 	
 	// Outline the rectangle in black

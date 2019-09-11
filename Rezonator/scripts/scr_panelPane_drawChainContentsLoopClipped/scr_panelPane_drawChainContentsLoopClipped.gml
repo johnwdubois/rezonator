@@ -282,42 +282,37 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 				draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 			}
 			
-			var alignRectX1 = x + windowWidth - scrollBarWidth - strHeight - alignRectSize;
-			var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
-			var alignRectX2 = x + windowWidth - scrollBarWidth - strHeight;
-			var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
-		
- 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {
-				draw_set_color(c_purple);
-				draw_set_alpha(0.5);
-				draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, false);
-				
-				if (device_mouse_check_button_released(0, mb_left)
-				and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
-					currentWordAligned = !currentWordAligned;
-					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
+			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 			
-					if (ds_grid_height(obj_chain.vizLinkGrid) > 0) {
-						var rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
-						while (rowInVizLinkGrid >= 0 and rowInVizLinkGrid < ds_grid_height(obj_chain.vizLinkGrid)) {
-							ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, rowInVizLinkGrid, currentWordAligned);
-							rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+				var alignRectX1 = x + windowWidth - scrollBarWidth - strHeight - alignRectSize;
+				var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
+				var alignRectX2 = x + windowWidth - scrollBarWidth - strHeight;
+				var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
+		
+	 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {
+					draw_set_color(c_purple);
+					draw_set_alpha(0.5);
+					draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, false);
+				
+					if (device_mouse_check_button_released(0, mb_left)
+					and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
+						currentWordAligned = !currentWordAligned;
+						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
+			
+						if (ds_grid_height(obj_chain.vizLinkGrid) > 0) {
+							var rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+							while (rowInVizLinkGrid >= 0 and rowInVizLinkGrid < ds_grid_height(obj_chain.vizLinkGrid)) {
+								ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, rowInVizLinkGrid, currentWordAligned);
+								rowInVizLinkGrid = scr_findInGridTwoParameters(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, currentWordID, obj_chain.vizLinkGrid_colAlign, !currentWordAligned);
+							}
 						}
 					}
+				
+				
 				}
-				
-				
-			}
-		
-			if (chainAligned) {
-				draw_set_alpha(1);
-			}
-			else {
-				draw_set_alpha(0.5);
-			}
+				draw_sprite_ext(spr_align, !currentWordAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
 			
-			
-			draw_sprite_ext(spr_align, !currentWordAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
+			}
 			
 			textPlusY += strHeight;
 		}
