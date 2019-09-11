@@ -81,14 +81,13 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	
 	// Get dimensions of rectagle around chain name
-	var chainNameRectX1 = x// + textMarginLeft;
+	var chainNameRectX1 = x;
 	var chainNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
-	var chainNameRectX2 = x + windowWidth; //chainNameRectX1 + string_width(currentChainName);
-	var chainNameRectY2 = chainNameRectY1 + strHeight// - chainNameRectMinusY;
+	var chainNameRectX2 = x + windowWidth;
+	var chainNameRectY2 = chainNameRectY1 + strHeight;
 	
 	//Check mouse clicks to focus a chain in the list
-	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-	and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)) {
 		if (obj_control.showDevVars) {
 			draw_set_color(c_red);
 			draw_circle(mouse_x, mouse_y, 5, true);
@@ -97,11 +96,6 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 		
 			if (currentChainState != obj_chain.chainStateFocus) {
-				// Unfocus chain if previously focused
-				//if (currentChainState == obj_chain.chainStateFocus) {
-				//	currentChainState = obj_chain.chainStateNormal;
-				//}
-				//else {
 				// Focuses on selected chain
 					switch (functionChainList_currentTab) {
 						case functionChainList_tabRezBrush:
@@ -134,7 +128,6 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 						scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 					}
 					obj_chain.mouseLineWordID = -1;
-				//}
 			
 				// Set scroll range in the chain list
 				with (obj_panelPane) {
@@ -160,8 +153,6 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 					
 						// Set first unit of the double clicked chain to center display row, if possible
 						if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.lineGrid)) {
-							//var displayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, rowInLineGrid);
-							//obj_control.currentCenterDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, displayRow);
 							// Replacement of centerDisplayRow
 							var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
 							obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
@@ -174,7 +165,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		}
 	}
 	
-	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
+	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
 	and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and grid != obj_chain.cliqueDisplayGrid) {
 		
 			// Unfocus any already focused chains
@@ -210,16 +201,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	//Color codes the chain lists for User
 	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); // Access color of new chain
-	var rectX1 = chainNameRectX1; //x + textMarginLeft - 2; // Create the colored rectangle
-	var rectX2 = chainNameRectX2; //x + textMarginLeft + 50;
-	var rectY1 = chainNameRectY1; //y + textMarginTop + textPlusY + scrollPlusY - 9 - clipY
-	var rectY2 = chainNameRectY2; //y + textMarginTop + textPlusY + scrollPlusY + 7 - clipY
-
-	if (currentChainState == obj_chain.chainStateFocus) {
-		rectX1 = x;
-	}
 	draw_set_color(merge_color(chainColor, global.colorThemeBG, 0.75)); //soften the color
-	draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+	draw_rectangle(chainNameRectX1 - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 	
 	// Outline the rectangle in black
 	if (currentChainState == obj_chain.chainStateFocus) {
@@ -262,39 +245,24 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	
 	// Check boxes for user selection with mouse click
-	if (((point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY) and device_mouse_check_button_released(0, mb_left))
+	if (((scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY) and device_mouse_check_button_released(0, mb_left))
 	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
 		
-		if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-			// Record previous display row in case Filter is empty
-			obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
-			// Set selected objects to be filtered
-			inFilter = !inFilter;
-			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
+		// Record previous display row in case Filter is empty
+		obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
+		// Set selected objects to be filtered
+		inFilter = !inFilter;
+		ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
 			
-			// Render the filter in the mainscreen
-			if (obj_control.filterGridActive) {
-				with (obj_control) {
-					scr_renderFilter();
-				}
+		// Render the filter in the mainscreen
+		if (obj_control.filterGridActive) {
+			with (obj_control) {
+				scr_renderFilter();
 			}
-			// Add to moveCounter
-			obj_control.moveCounter ++;
 		}
+		// Add to moveCounter
+		obj_control.moveCounter++;
 	}
-	/*
-	if (point_in_rectangle(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY)) {
-		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 130, mouse_y + 16, false);
-		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(mouse_x + 64, mouse_y - 16, mouse_x + 130, mouse_y + 16, true);
-		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainBold);
-		draw_text(mouse_x + 72, mouse_y, "Filter");	
-		draw_set_font(global.fontChainList);
-	}
-	*/
-	
 	
 	
 	// Create little boxes for alignment selection
@@ -308,8 +276,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		var isAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, i);
 		
 		//Check for user selection of alignment with mouse clicks
-		if (point_in_rectangle(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)
-		and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
 			draw_set_alpha(0.5);
 			draw_set_color(c_purple);
 			draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
