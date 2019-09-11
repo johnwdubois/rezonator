@@ -17,7 +17,7 @@ var filterButtonRadius = 16;
 
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_set_font(fnt_chainContents);
+draw_set_font(fnt_chainContentsLarge1);
 
 var filterButtonX = x + (windowWidth / 2);
 var filterButtonY = y + filterButtonRadius;

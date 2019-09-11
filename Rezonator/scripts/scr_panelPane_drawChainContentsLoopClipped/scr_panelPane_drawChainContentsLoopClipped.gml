@@ -79,8 +79,6 @@ var alignTabWidth = 12;
 
 // Create scroll bars
 var scrollBarWidth = 16;
-//draw_set_color(c_red);
-//draw_rectangle(x + windowWidth - scrollBarWidth, y + (textMarginTop * 2), x + windowWidth, y + windowHeight, false);
 
 var focusedChainExists = false;
 var alignRectSize = 8;
@@ -101,6 +99,9 @@ with (obj_chain) {
 		oldRow = oldFocusedContentsRow;
 	}
 }
+
+draw_set_font(global.fontChainContents);
+var strHeight = string_height("0");
 
 
 // Check for focused chain and make sure grid is not empty, gather information from grids
@@ -140,11 +141,10 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 			currentWordInfoCol[0] = "";
 		
 			//Set size of rectangle around word
-			var stringHeight = 14;
 			var rectX1 = x + alignTabWidth;
-			var rectY1 = y + textMarginTop + textPlusY - (stringHeight / 2) + scrollPlusY;
+			var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 			var rectX2 = x + windowWidth - scrollBarWidth;
-			var rectY2 = rectY1 + stringHeight;
+			var rectY2 = rectY1 + strHeight;
 		
 			// Find link info
 			var rowInLinkGrid = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentWordID, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
@@ -281,8 +281,13 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 				draw_set_font(global.fontChainContents);
 				draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 			}
+			
+			var alignRectX1 = x + 2;
+			var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY;
+			var alignRectX2 = x + 2 + alignRectSize;
+			var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY;
 		
- 			if (point_in_rectangle(mouse_x, mouse_y, x + 2, y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY, x + 2 + alignRectSize, y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY) and device_mouse_check_button_released(0, mb_left)
+ 			if (point_in_rectangle(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2) and device_mouse_check_button_released(0, mb_left)
 			and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
 				currentWordAligned = !currentWordAligned;
 				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
@@ -303,7 +308,7 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 				draw_set_alpha(0.5);
 			}
 			draw_set_color(c_purple);
-			draw_rectangle(x + 2 - clipX, y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY - clipY, x + 2 + alignRectSize - clipX, y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - clipY, !currentWordAligned)
+			draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, !currentWordAligned)
 			
 			strHeight = string_height(currentWordInfoCol[0]) * 0.75;
 			textPlusY += strHeight;

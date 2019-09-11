@@ -285,7 +285,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	// get the string of this word to draw to the main screen
 	var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
 		
-	var wordRectBuffer = 2;
+	var wordRectBuffer = 3;
 	var wordRectX1 = currentWordX - wordRectBuffer;
 	var wordRectY1 = currentLineY - (string_height(currentWordString) / 2) - wordRectBuffer;
 	var wordRectX2 = wordRectX1 + string_width(currentWordString) + (wordRectBuffer * 2);

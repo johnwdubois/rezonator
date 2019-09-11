@@ -43,13 +43,15 @@ for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {
 	var colX = ds_list_find_value(speakerLabelColXList, i);
 	
 	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
-		window_set_cursor(cr_size_we);
+		if ((ds_grid_height(global.fileLineRipGrid) < 2 and i > 1) or (ds_grid_height(global.fileLineRipGrid) > 1)) {
 		
-		if (mouse_check_button_pressed(mb_left) and speakerLabelColXHolding == -1) {
-			speakerLabelColXHoldingPrev = colX;
-			speakerLabelColXHolding = i;
-			ds_list_clear(speakerLabelColPrevList);
-			ds_list_copy(speakerLabelColPrevList, speakerLabelColXList);
+			window_set_cursor(cr_size_we);
+			if (mouse_check_button_pressed(mb_left) and speakerLabelColXHolding == -1) {
+				speakerLabelColXHoldingPrev = colX;
+				speakerLabelColXHolding = i;
+				ds_list_clear(speakerLabelColPrevList);
+				ds_list_copy(speakerLabelColPrevList, speakerLabelColXList);
+			}
 		}
 	}
 	

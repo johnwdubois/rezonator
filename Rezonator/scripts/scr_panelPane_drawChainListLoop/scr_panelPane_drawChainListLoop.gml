@@ -191,13 +191,16 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
 	var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
 	var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
+	draw_set_font(global.fontChainContents);
 	
 	// Fill in boxes if filtered
 	if (inFilter) {
 		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, false);
+		draw_set_color(global.colorThemeText);
 	}
 	else {
 		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
+		draw_set_color(global.colorThemeBG);
 	}
 	
 	// Check boxes for user selection with mouse click
