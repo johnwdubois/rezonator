@@ -21,7 +21,7 @@ if (ds_list_size(inRectWordIDList) > 0) {
 var inRectList = ds_list_create();
 if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 	// Ensure the gesture is correct for a trackChunk
-	if(not searchGridActive && obj_control.mouseRectBeginInWord == -1) {
+	if(not searchGridActive and obj_control.mouseRectBeginInWord == -1) {// and obj_control.mouseRectWithinLine) {
 		alarm[10] = 1;
 		exit;
 	}
@@ -29,16 +29,16 @@ if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 } 
 else {
 	// Ensure the gesture is correct for a rezChunk
-	if(not searchGridActive && obj_control.mouseRectBeginInWord == -1) {
+	if(not searchGridActive and obj_control.mouseRectBeginInWord == -1) {// and obj_control.mouseRectWithinLine) {
 		alarm[10] = 1;
 		exit;
 	}
 	ds_list_copy(inRectList, inRectWordIDList);
 }
 
+
 for (var i = 0; i < ds_list_size(inRectList); i++) {
 	var currentWordID = ds_list_find_value(inRectList, i);
-	
 	// Access the display column of the relevent grid
 	if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 		// Instead hitID

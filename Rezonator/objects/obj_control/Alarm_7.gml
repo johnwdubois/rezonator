@@ -29,9 +29,9 @@ if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_tool
 }
 
 
-//show_message(scr_getStringOfList(inRectUnitIDList));
+
 // Clear lists for next quickStack
-if (ds_list_size(inRectUnitIDList) > 0) {
+if (ds_list_size(inRectUnitIDList) > 0 or (mouseRectBeginBetweenWords != -1 and not mouseRectWithinLine)) {
 	ds_list_clear(inRectUnitIDList);
 	ds_list_clear(inRectWordIDList);
 }

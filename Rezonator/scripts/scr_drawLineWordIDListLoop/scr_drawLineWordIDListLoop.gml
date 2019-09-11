@@ -458,6 +458,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseHoldRect) {
+			//	show_message("461");
 				with (obj_control) {
 					if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
 						ds_list_add(inRectWordIDList, currentWordID);
@@ -600,8 +601,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				}
 
 			}
-			if(mouse_check_button_pressed(mb_left) and point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
-				obj_control.mouseRectBeginBetweenWords = currentWordID;
+			if(point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverWordID == -1) {
+				draw_set_color(c_red);
+				draw_rectangle(wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, true);
+				if(mouse_check_button_pressed(mb_left)) {
+					
+					obj_control.mouseRectBeginBetweenWords = currentWordID;
+				}
 			}
 	}
 	
