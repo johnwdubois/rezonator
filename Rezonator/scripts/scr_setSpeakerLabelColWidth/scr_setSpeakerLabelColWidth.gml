@@ -1,56 +1,74 @@
-var minSpeakerLabelWidth = 150;
-var maxSpeakerLabelWidth = 220;
+if (object_index != obj_control) {
+	exit;
+}
 
-draw_set_font(global.fontMain);
+if ((not mouse_check_button(mb_left)) or speakerLabelColXHolding >= 4) {
+	if (speakerLabelColXHolding > -1) {
+		wordLeftMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1) + 20;
+		wordLeftMarginDest = wordLeftMargin;
+	}
+	speakerLabelColXHolding = -1;
+	speakerLabelColXHoldingPrev = 0;
+	speakerLabelColXHoldingDiff = 0;
+	ds_list_clear(speakerLabelColPrevList);
+}
 
-// get width of the widest particant name and widest discourse name
-var maxDiscoIDWidth = 0;
-var maxParticipantStrWidth = 0;
-for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
-	var currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, i);
-	var currentParticipantList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colParticipantList, i);
+if (ds_grid_height(global.fileLineRipGrid) < 2) {
+	ds_list_set(speakerLabelColXList, 0, 0);
+	ds_list_set(speakerLabelColXList, 1, 0);
+}
+else if (ds_list_find_value(speakerLabelColXList, 1) < 32) {
+	ds_list_set(speakerLabelColXList, 1, 100);
+}
+
+
+for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {
 	
-	maxDiscoIDWidth = max(maxDiscoIDWidth, string_width(currentDiscoID) + 10);
-	for (var j = 0; j < ds_list_size(currentParticipantList); j++) {
-		var currentParticipantStr = ds_list_find_value(currentParticipantList, j);
+	var colX = ds_list_find_value(speakerLabelColXList, i);
+	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
+		window_set_cursor(cr_size_we);
 		
-		maxParticipantStrWidth = max(maxParticipantStrWidth, string_width(currentParticipantStr) + 10);
+		if (mouse_check_button_pressed(mb_left) and speakerLabelColXHolding == -1) {
+			speakerLabelColXHoldingPrev = colX;
+			speakerLabelColXHolding = i;
+			ds_list_clear(speakerLabelColPrevList);
+			ds_list_copy(speakerLabelColPrevList, speakerLabelColXList);
+		}
+	}
+	
+	
+	if (speakerLabelColXHolding == i) {
+		window_set_cursor(cr_size_we);
+		
+		draw_set_alpha(0.8);
+		
+		var newColX = clamp(mouse_x, 32, 800);
+		
+		// put limit on how small a column can be
+		if (speakerLabelColXHolding > 0) {
+			var prevColX = ds_list_find_value(speakerLabelColXList, i - 1);
+			newColX = max(newColX, prevColX + 32);
+		}
+		
+		if (ds_list_find_value(speakerLabelColXList, ds_list_size(speakerLabelColXList) - 1) > 800) {
+			newColX = min(newColX, ds_list_find_value(speakerLabelColXList, i));
+		}
+		
+		ds_list_set(speakerLabelColXList, i, newColX);
+		speakerLabelColXHoldingDiff = newColX - speakerLabelColXHoldingPrev;
+		
+		// set X positions for all following columns
+		for (var j = i + 1; j < ds_list_size(speakerLabelColXList); j++) {
+
+			var currentNewColX = ds_list_find_value(speakerLabelColPrevList, j) + speakerLabelColXHoldingDiff;
+			ds_list_set(speakerLabelColXList, j, currentNewColX);
+		}
+	}
+	
+	if (colX < speakerLabelMargin) {
+		draw_line_width(colX, wordTopMargin, colX, camera_get_view_width(view_camera[0]), 3);
 	}
 }
+	
 
-// col 0 is discourse column
-// if there are less than 2 discourses loaded, there is no need to show this column
-if (ds_grid_height(global.fileLineRipGrid) < 2) {
-	obj_control.speakerLabelColWidth[0] = 0;
-}
-else {
-	obj_control.speakerLabelColWidth[0] = maxDiscoIDWidth;
-}
-
-
-
-// col 1 is line number column
-// 8888 is used because it is presumably the widest string of 4 digit numbers
-obj_control.speakerLabelColWidth[1] = string_width("8888");
-
-
-
-// col 2 is participant name column
-// we search for the longest particpant name in the discourse and set the width of the column to that
-obj_control.speakerLabelColWidth[2] = maxParticipantStrWidth;
-
-var speakerLabelWidthFull = obj_control.speakerLabelColWidth[0] + obj_control.speakerLabelColWidth[1] + obj_control.speakerLabelColWidth[2];
-if (speakerLabelWidthFull < minSpeakerLabelWidth) {
-	obj_control.speakerLabelColWidth[2] = minSpeakerLabelWidth - obj_control.speakerLabelColWidth[0] - obj_control.speakerLabelColWidth[1];
-}
-else if (speakerLabelWidthFull > maxSpeakerLabelWidth) {
-	obj_control.speakerLabelColWidth[2] = maxSpeakerLabelWidth - obj_control.speakerLabelColWidth[0] - obj_control.speakerLabelColWidth[1];
-}
-
-
-
-speakerLabelWidthFull = obj_control.speakerLabelColWidth[0] + obj_control.speakerLabelColWidth[1] + obj_control.speakerLabelColWidth[2];
-
-obj_control.speakerLabelMargin = speakerLabelWidthFull;
-
-obj_control.wordLeftMarginDest = obj_control.speakerLabelMargin + obj_control.speakerLabelMarginBuffer;
+draw_set_alpha(1);

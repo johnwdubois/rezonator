@@ -37,19 +37,36 @@ searchPrevGridSpaceVertical = gridSpaceVertical;
 filterPrevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
+
+
+
+
 // Measure the space taken up by the speaker labels, and set the left-align margin of the words
 speakerLabelMargin = 200;
-speakerLabelMarginBuffer = 20;
-wordLeftMargin = 200;
-wordLeftMarginDest = 200;
+wordLeftMargin = 220;
+wordLeftMarginDest = 220;
 
+//temp
+speakerLabelColXList = ds_list_create();
+speakerLabelColXHolding = -1
+speakerLabelColXHoldingPrev = 0;
+speakerLabelColXHoldingDiff = 0;
+speakerLabelColPrevList = ds_list_create();
 var speakerLabelColWidthDivider = 3;
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	speakerLabelColWidthDivider = 2;
 }
-for (var i = 0; i < 3; i++) {
-	speakerLabelColWidth[i] = (speakerLabelMargin - speakerLabelMarginBuffer) / speakerLabelColWidthDivider;
+for (var i = 0; i < 4; i++) {
+	//ds_list_add(speakerLabelColXList, (speakerLabelMargin) / speakerLabelColWidthDivider);
+	ds_list_add(speakerLabelColXList, i * 100);
 }
+
+
+wordTopMargin = 0;
+
+
+
+
 
 // Make light blue
 c_ltblue = make_color_rgb(183, 183, 255);
@@ -482,3 +499,4 @@ fromDropDown = false;
 wideDropDown = false;
 
 global.toolPaneWidth = 0;
+
