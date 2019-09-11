@@ -7,7 +7,9 @@ if(os_type == os_macosx){
 		if (keyboard_check(vk_shift)) {
 			if (global.fontSize > 0) {
 				global.fontSize--;
-				scr_setSpeakerLabelColWidth();
+				with (obj_alarm) {
+					alarm[0] = 5;
+				}
 			}
 			global.navTextBig = false;
 		}
@@ -24,7 +26,9 @@ if(os_type == os_macosx){
 		if (keyboard_check(vk_shift)) {
 			if (global.fontSize < 5) {
 				global.fontSize++;
-				scr_setSpeakerLabelColWidth();
+				with (obj_alarm) {
+					alarm[0] = 5;
+				}
 			}
 			global.navTextBig = true;
 		}
@@ -50,7 +54,9 @@ else{
 		if (keyboard_check(vk_shift)) {
 			if (global.fontSize > 0) {
 				global.fontSize--;
-				scr_setSpeakerLabelColWidth();
+				with (obj_alarm) {
+					alarm[0] = 5;
+				}
 			}
 			global.navTextBig = false;
 		}
@@ -67,7 +73,9 @@ else{
 		if (keyboard_check(vk_shift)) {
 			if (global.fontSize < 5) {
 				global.fontSize++;
-				scr_setSpeakerLabelColWidth();
+				with (obj_alarm) {
+					alarm[0] = 5;
+				}
 			}
 			global.navTextBig = true;
 		}

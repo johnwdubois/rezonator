@@ -13,6 +13,20 @@ if ((not mouse_check_button(mb_left)) or speakerLabelColXHolding >= 4) {
 	ds_list_clear(speakerLabelColPrevList);
 }
 
+
+
+draw_set_font(global.fontMain);
+var minColWidth = string_width("AAAAA");
+for (var i = 0; i < ds_list_size(speakerLabelColXList) - 1; i++) {
+	if (ds_grid_height(global.fileLineRipGrid) < 2 and i == 0) {
+		continue;
+	}
+	var colX1 = ds_list_find_value(speakerLabelColXList, i);
+	var colX2 = ds_list_find_value(speakerLabelColXList, i + 1);
+	colX2 = max(colX2, colX1 + minColWidth);
+	ds_list_set(speakerLabelColXList, i + 1, colX2);
+}
+
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	ds_list_set(speakerLabelColXList, 0, 0);
 	ds_list_set(speakerLabelColXList, 1, 0);
@@ -22,13 +36,7 @@ else if (ds_list_find_value(speakerLabelColXList, 1) < minColWidth) {
 }
 
 
-draw_set_font(global.fontMain);
-var minColWidth = string_width("AAAAA");
 
-var lineNumColX1 = ds_list_find_value(speakerLabelColXList, 1);
-var lineNumColX2 = ds_list_find_value(speakerLabelColXList, 2);
-lineNumColX2 = max(lineNumColX2, lineNumColX1 + minColWidth);
-ds_list_set(speakerLabelColXList, 2, lineNumColX2);
 
 
 for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {

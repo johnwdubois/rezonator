@@ -719,6 +719,14 @@
             }
         },
         {
+            "Key": "20380ee8-3c1f-4a9a-b1a7-9676308d4e92",
+            "Value": {
+                "id": "8f7d8da0-f576-4a9b-be90-0eee54221786",
+                "resourcePath": "objects\\obj_alarm\\obj_alarm.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "207f7a01-23f9-4bb8-ac22-1f696d1e08e7",
             "Value": {
                 "id": "7720bf38-a956-4352-b9aa-c3cfa8a8921a",

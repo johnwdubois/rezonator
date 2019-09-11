@@ -53,15 +53,15 @@ speakerLabelColXHolding = -1
 speakerLabelColXHoldingPrev = 0;
 speakerLabelColXHoldingDiff = 0;
 speakerLabelColPrevList = ds_list_create();
-var speakerLabelColWidthDivider = 3;
-if (ds_grid_height(global.fileLineRipGrid) < 2) {
-	speakerLabelColWidthDivider = 2;
-}
 for (var i = 0; i < 4; i++) {
-	//ds_list_add(speakerLabelColXList, (speakerLabelMargin) / speakerLabelColWidthDivider);
 	ds_list_add(speakerLabelColXList, i * 100);
 }
-
+if (ds_grid_height(global.fileLineRipGrid) < 2) {
+	ds_list_set(speakerLabelColXList, 2, 100);
+}
+with (obj_alarm) {
+	alarm[1] = 5;
+}
 
 wordTopMargin = 0;
 
