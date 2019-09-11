@@ -479,6 +479,8 @@ if(global.tutorial){
 rightClickUnitID = 0;
 rightClickWordID = 0;
 rightClickWordSeq = 0;
+rightClickonWord = false;
+deleteNewWord = false;
 fromDropDown = false;
 wideDropDown = false;
 

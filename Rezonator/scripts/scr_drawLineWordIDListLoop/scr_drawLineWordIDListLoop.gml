@@ -412,7 +412,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					obj_control.rightClickWordSeq = obj_control.newWordHoverWordSeq;
 					}
 
-
+					obj_control.rightClickonWord = true;
 					obj_control.wideDropDown = true;
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList,"Replace word", "Split word", "New word", "Delete new word", "Tag");
@@ -546,14 +546,15 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	
 		// If the user has the New-Word tool selected, create a new word right next to this word
-		if (obj_toolPane.currentTool == obj_toolPane.toolNewWord) {
+		if (obj_toolPane.currentTool == obj_toolPane.toolNewWord or (instance_exists(obj_dropDown) and rightClickonWord) ) {
 			if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
 				draw_set_color(c_ltblue);
 				draw_line_width(wordRectX2, wordRectY1, wordRectX2, wordRectY2, 2);
 			}
 			
 			// Functionality for focusing on a new word
-			if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and currentWordState == obj_control.wordStateNew and not obj_control.newWordCreated) {
+			if ( (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and currentWordState == obj_control.wordStateNew and not obj_control.newWordCreated)
+				or instance_exists(obj_dropDown) and rightClickWordID == currentWordID) {
 				
 				// Fill in the rectangle of the newWord being focused
 				draw_set_color(global.colorThemeSelected1);
@@ -575,7 +576,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				}
 		
 				// CHeck for adding a newWord after this current word
-				else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2)) {
+				else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2) and not instance_exists(obj_dropDown)) {
 					// Set this to be the hovered wordID
 					if(not obj_control.dialogueBoxActive and not obj_control.newWordCreated) {
 						newWordHoverUnitID = unitID;
