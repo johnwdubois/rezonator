@@ -20,7 +20,7 @@ draw_set_valign(fa_top);
 
 var textMarginLeft = 5;
 with (obj_panelPane) {
-	functionChainList_tabHeight = string_height("0");
+	functionChainList_tabHeight = string_height("0") + 8;
 }
 
 var tabAmount = 4;
@@ -31,24 +31,21 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x, tabRectY1, x + windowWidth, tabRectY2, false);
 
 
-for (var i = 0; i < tabAmount; i++)// main mechanism
-{
+for (var i = 0; i < tabAmount; i++) {// main mechanism
+	
 	// set dimensions for tabs
 	var tabRectX1 = x + (i * (windowWidth / tabAmount));
 	var tabRectX2 = tabRectX1 + (windowWidth / tabAmount);
 	
 	// highlight current tab
-	if (i == functionChainList_currentTab)
-	{
+	if (i == functionChainList_currentTab) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, false);
 	}
 	
 	// check for mouse clicks to change the selected tab
-	if (point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2))
-	{
-		if (device_mouse_check_button_released(0, mb_left))
-		{
+	if (point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
+		if (device_mouse_check_button_released(0, mb_left)) {
 			functionChainList_currentTab = i;
 			
 			// unfocus chains of all type
@@ -56,10 +53,9 @@ for (var i = 0; i < tabAmount; i++)// main mechanism
 			
 			//refocus chains related to currently selected tab
 			
-			if(functionChainList_currentTab >= 0) {
+			if (functionChainList_currentTab >= 0) {
 				scr_reFocusOldChains();
 			}
-			
 		}
 	}
 	

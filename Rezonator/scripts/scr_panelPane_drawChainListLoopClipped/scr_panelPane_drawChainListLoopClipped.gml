@@ -35,7 +35,7 @@ switch (functionChainList_currentTab) {
 		grid = obj_chain.rezChainGrid;
 		break;
 }
-if(instance_exists(obj_stackShow)){
+if(instance_exists(obj_stackShow)) {
 	grid = obj_chain.stackChainGrid;
 	obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 }
@@ -183,10 +183,10 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		
 		
 		var dropDownOptionList = ds_list_create();
-		if(grid  == obj_chain.stackChainGrid){
+		if (grid  == obj_chain.stackChainGrid) {
 			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
 		}
-		else{
+		else {
 			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
 		}
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
@@ -201,7 +201,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	//Color codes the chain lists for User
 	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); // Access color of new chain
-	draw_set_color(merge_color(chainColor, global.colorThemeBG, 0.75)); //soften the color
+	draw_set_color(merge_color(chainColor, global.colorThemeBG, (currentChainState == obj_chain.chainStateFocus) ? 0.6: 0.75)); //soften the color
 	draw_rectangle(chainNameRectX1 - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 	
 	// Outline the rectangle in black

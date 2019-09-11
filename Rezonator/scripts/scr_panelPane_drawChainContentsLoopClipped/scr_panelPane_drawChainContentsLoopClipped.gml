@@ -37,7 +37,7 @@ draw_set_valign(fa_middle);
 draw_set_font(global.fontChainContents);
 var strHeight = string_height("0");
 draw_set_font(global.fontPanelTab);
-var tabHeight = string_height("0");
+var tabHeight = functionChainList_tabHeight;
 var scrollBarListHeight = 0;
 
 var grid = obj_chain.rezChainGrid;
