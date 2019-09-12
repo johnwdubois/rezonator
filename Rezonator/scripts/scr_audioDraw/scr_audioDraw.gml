@@ -90,7 +90,7 @@ draw_set_alpha(1);
 // draw play/pause
 var playPauseRad = sprite_get_width(playPauseSprite) / 2;
 var playPauseX = mean(seekBarX1, seekBarX2);
-var playPauseY = mean(y, seekBarY1);
+var playPauseY = clamp(seekBarY1 - 38, y + playPauseRad + 2, y + windowHeight);
 draw_sprite(playPauseSprite, !audioPaused, playPauseX, playPauseY);
 if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
 	if (mouse_check_button_pressed(mb_left)) {
