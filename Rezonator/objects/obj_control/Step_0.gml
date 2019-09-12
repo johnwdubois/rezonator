@@ -215,7 +215,7 @@ if (!clickedInChainList and !clickedInChainContents) {
 				scr_jumpToEnd(true);
 			}
 			else {
-				wordLeftMarginDest = speakerLabelMargin + speakerLabelMarginBuffer;
+				wordLeftMarginDest = speakerLabelMargin + 20;
 			}
 		}
 	}
