@@ -3,21 +3,26 @@
 
 var firstUnitID = 0;
 var firstWordID = 0;
+var currentWordIDList;
+
+show_message(scr_getStringOfList(inRectUnitIDList));
 
 // Check for things caught in mouse drag rectangle
 if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and quickLinkAllowed  and !instance_exists(obj_stackShow)) {
-	if((mouseHoldRectY1 - mouseHoldRectY2) < 0) {
+	if ((mouseHoldRectY1 - mouseHoldRectY2) < 0) {
 		firstUnitID = ds_list_find_value(inRectUnitIDList, 0);
-		firstWordID = ds_list_find_value(inRectWordIDList, 0);
 	}
 	else {
 		firstUnitID = ds_list_find_value(inRectUnitIDList, ds_list_size(inRectUnitIDList) - 1);
-		firstWordID = ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1);
 	}
+	currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, firstUnitID - 1);
+	firstWordID = ds_list_find_value(currentWordIDList, 0);
+	
 	// Loop through words found in rectangle at time of mouse release
-	for(var quickStackLoop = 0; quickStackLoop < ds_list_size(inRectUnitIDList); quickStackLoop++) {
-		var currentWordID = ds_list_find_value(inRectWordIDList, quickStackLoop);
+	for (var quickStackLoop = 0; quickStackLoop < ds_list_size(inRectUnitIDList); quickStackLoop++) {
 		var currentUnitID = ds_list_find_value(inRectUnitIDList, quickStackLoop);
+		currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
+		var currentWordID = ds_list_find_value(currentWordIDList, 0);
 		with (obj_chain) {
 			scr_wordClicked(firstWordID, firstUnitID);
 			scr_wordClicked(currentWordID, currentUnitID);

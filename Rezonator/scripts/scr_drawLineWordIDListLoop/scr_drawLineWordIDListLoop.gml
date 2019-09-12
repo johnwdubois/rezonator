@@ -435,8 +435,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		*/
 		// Allows for adding to a stack w/in the speaker labels
-		else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
+		else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and rectangle_in_rectangle(0, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
+				show_message("here");
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
 				}
@@ -461,17 +462,6 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			//	show_message("461");
 				with (obj_control) {
 					if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-						ds_list_add(inRectWordIDList, currentWordID);
-					}
-				}
-			}
-		}
-		else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade  and not mouseoverPanelPane and !instance_exists(obj_stackShow)) {
-			inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-			if (inMouseHoldRect) {
-				with (obj_control) {
-					if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
-						ds_list_add(inRectUnitIDList, unitID);
 						ds_list_add(inRectWordIDList, currentWordID);
 					}
 				}
