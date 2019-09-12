@@ -111,7 +111,7 @@ if (showDevVars) {
 	draw_set_color(global.colorThemeText);
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 80, "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	
-	draw_text(camera_get_view_width(view_camera[0]) - 100, 100, "fps: " + string(fps));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 250, "fps: " + string(fps));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 130, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 150, "currentCenterDisplayRow: " + string(currentCenterDisplayRow));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 170, "lineGrid height: " + string(ds_grid_height(lineGrid)));
