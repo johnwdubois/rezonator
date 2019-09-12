@@ -46,8 +46,9 @@ gridSpaceRatio = 1;
 speakerLabelMargin = 200;
 wordLeftMargin = 220;
 wordLeftMarginDest = 220;
+speakerLabelHoldingDelay = false;
 
-//temp
+
 speakerLabelColXList = ds_list_create();
 speakerLabelColXHolding = -1
 speakerLabelColXHoldingPrev = 0;
