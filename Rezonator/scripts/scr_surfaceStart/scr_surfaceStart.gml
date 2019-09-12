@@ -42,9 +42,11 @@ if (mouse_check_button_released(mb_left)) {
 	}
 //}
 
-if (currentFunction == functionChainContents) {	
-	if (surface_exists(clipSurface)) {
-		surface_resize(clipSurface, clipWidth, clipHeight);
+if (object_index == obj_panelPane) {
+	if (currentFunction == functionChainContents) {	
+		if (surface_exists(clipSurface)) {
+			surface_resize(clipSurface, clipWidth, clipHeight);
+		}
 	}
 }
 
