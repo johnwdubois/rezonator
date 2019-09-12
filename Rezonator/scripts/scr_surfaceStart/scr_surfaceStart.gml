@@ -41,10 +41,10 @@ if (mouse_check_button_released(mb_left)) {
 		}
 	}
 //}
-with(obj_panelPane){
+
+if (object_index == obj_panelPane) {
 	if (currentFunction == functionChainContents) {	
 		if (surface_exists(clipSurface)) {
-			//show_message("buh");
 			surface_resize(clipSurface, clipWidth, clipHeight);
 		}
 	}
