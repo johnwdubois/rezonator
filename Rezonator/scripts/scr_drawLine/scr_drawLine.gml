@@ -128,14 +128,38 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
 	var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_stackShow) and !instance_exists(obj_dialogueBox)) {
+		inMouseHoldRect = rectangle_in_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (inMouseHoldRect) {
+			with (obj_control) {
+				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
+					ds_list_add(inRectUnitIDList, unitID);
+				}
+			}
+		}
+	}
+
+	
+	
 	var currentLineInStack = -1;
-	if(mouse_y > speakerRectY1 and mouse_y < speakerRectY2) {
+	if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2) {
 		obj_control.lineContainsMouse = drawLineLoop;	
 	}
 	
 	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid)) {
 		currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
 	}
+
 	
 	// draw stack rectangle if this line is in a stack
 	if (currentLineInStack > -1) {
