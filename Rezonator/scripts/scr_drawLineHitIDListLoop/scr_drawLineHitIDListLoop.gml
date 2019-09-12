@@ -239,7 +239,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 	}
 	else if((drawWordLoop + 1 == ds_list_size(currentHitIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
-	and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 50, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
+	and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
 		obj_control.mouseoverNeutralSpace = true;	
 		if (device_mouse_check_button_released(0, mb_left)) {
 			with(obj_chain) {
