@@ -140,7 +140,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		// Check for mouseover of the Chunk 
 		var mouseover = false;
 		if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
-		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1) {
+		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1 and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
 			mouseover = true;
 			
 			// May need to make a hoverChunkID
@@ -294,7 +294,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	var inMouseHoldRect = 0;
 	if (mouse_check_button(mb_left) and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 10, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		if (inMouseHoldRect > 0) {
 			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1)) {
 				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, 2);
@@ -435,8 +435,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		*/
 		// Allows for adding to a stack w/in the speaker labels
-		else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane ) {
+		else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and rectangle_in_rectangle(0, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
+				show_message("here");
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
 				}
@@ -456,22 +457,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
 	
 		if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
-			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 10, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseHoldRect) {
 			//	show_message("461");
 				with (obj_control) {
 					if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-						ds_list_add(inRectWordIDList, currentWordID);
-					}
-				}
-			}
-		}
-		else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade  and not mouseoverPanelPane and !instance_exists(obj_stackShow)) {
-			inMouseHoldRect = rectangle_in_rectangle(0, wordRectY1, room_width, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-			if (inMouseHoldRect) {
-				with (obj_control) {
-					if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
-						ds_list_add(inRectUnitIDList, unitID);
 						ds_list_add(inRectWordIDList, currentWordID);
 					}
 				}
@@ -603,8 +593,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 
 			}
 			if(point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverWordID == -1) {
-				draw_set_color(c_red);
-				draw_rectangle(wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, true);
+				//draw_set_color(c_red);
+				//draw_rectangle(wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, true);
 				if(mouse_check_button_pressed(mb_left)) {
 					
 					obj_control.mouseRectBeginBetweenWords = currentWordID;
