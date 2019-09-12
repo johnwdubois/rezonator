@@ -13,38 +13,41 @@
 */
 
 // Set contraints for filter button
-var filterButtonRadius = 16;
+
+windowWidth = functionChainList_tabHeight;
 
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_set_font(fnt_chainContentsLarge1);
+draw_set_font(global.fontPanelTab);
 
-var filterButtonX = x + (windowWidth / 2);
-var filterButtonY = y + filterButtonRadius;
+var filterButtonX1 = x;
+var filterButtonY1 = y;
+var filterButtonX2 = x + windowWidth;
+var filterButtonY2 = y + functionChainList_tabHeight;
 
 // Draw filter button, and check for coloring
 if (obj_control.filterGridActive) {	
 	draw_set_color(global.colorThemeText);
-	draw_circle(filterButtonX, filterButtonY, filterButtonRadius, false);
+	draw_rectangle(filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2, false);
 	draw_set_color(global.colorThemeBG);
-	draw_text(filterButtonX, filterButtonY, "F");
 }
 else {
 	draw_set_color(global.colorThemeText);
-	draw_circle(filterButtonX, filterButtonY, filterButtonRadius, true);
-	draw_text(filterButtonX, filterButtonY, "F");
 }
+draw_text(mean(filterButtonX1, filterButtonX2), mean(filterButtonY1, filterButtonY2), "F");
 
-draw_set_halign(fa_center);
+var filterButtonSize = filterButtonY2 - filterButtonY1;
+
+
 
 // Draw Next, Tween, and Previous buttons, and check for mouse clicks
 for (var i = 0; i < 3; i++) {
 	
 	// Draw rectangles
 	var peekButtonRectX1 = x;
-	var peekButtonRectY1 = y + (filterButtonRadius * 2) + (i * ((windowHeight - (filterButtonRadius * 2)) / 3));
+	var peekButtonRectY1 = filterButtonY2 + (i * ((windowHeight - (filterButtonSize)) / 3));
 	var peekButtonRectX2 = peekButtonRectX1 + windowWidth;
-	var peekButtonRectY2 = peekButtonRectY1 + ((windowHeight - (filterButtonRadius * 2)) / 3);
+	var peekButtonRectY2 = peekButtonRectY1 + ((windowHeight - (filterButtonSize)) / 3);
 	
 	// If mouse clicked in button, activate/deavtivate button's function
 	if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)){
@@ -80,8 +83,8 @@ for (var i = 0; i < 3; i++) {
 
 // Check for mouse clicks on filter button, if we're out of the search grid
 if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
-	if ((point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius) and device_mouse_check_button_released(0, mb_left))
-	or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not instance_exists(obj_dialogueBox))) ) {
+	if ((point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2) and device_mouse_check_button_released(0, mb_left))
+	or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not instance_exists(obj_dialogueBox)))) {
 		// If filter is active, deactivate it
 		if (obj_control.filterGridActive) {
 			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
@@ -89,9 +92,6 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 				//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
 				obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 				// Keep the focus on previous currentCenterDisplayRow
-				//with (obj_control) {
-				//	alarm[5] = 1;
-				//}
 			}
 			
 			// Switch to active grid
@@ -110,7 +110,7 @@ if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		obj_control.moveCounter ++;
 	}
 	
-	if (point_in_circle(mouse_x, mouse_y, filterButtonX, filterButtonY, filterButtonRadius)) {
+	if (point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2)) {
 		draw_set_font(fnt_mainBold);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);

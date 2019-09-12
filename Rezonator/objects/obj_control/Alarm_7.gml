@@ -5,8 +5,6 @@ var firstUnitID = 0;
 var firstWordID = 0;
 var currentWordIDList;
 
-show_message(scr_getStringOfList(inRectUnitIDList));
-
 // Check for things caught in mouse drag rectangle
 if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and quickLinkAllowed  and !instance_exists(obj_stackShow)) {
 	if ((mouseHoldRectY1 - mouseHoldRectY2) < 0) {

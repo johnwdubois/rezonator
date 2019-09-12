@@ -41,7 +41,7 @@ newWordInFilter = false;
 
 
 progressBarX = room_width - 100;
-progressBarY = windowHeight + 52;
+progressBarY = windowHeight + 62;
 progressBarWidth = 100;
 progressBarHeight = 32;
 progressBarBackColor = c_gray;

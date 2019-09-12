@@ -6,6 +6,10 @@ if ((not mouse_check_button(mb_left)) or speakerLabelColXHolding >= 4) {
 	if (speakerLabelColXHolding > -1) {
 		wordLeftMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1) + 20;
 		wordLeftMarginDest = wordLeftMargin;
+		obj_control.speakerLabelHoldingDelay = true;
+		with(obj_alarm) {
+			alarm[2] = 5;	
+		}
 	}
 	speakerLabelColXHolding = -1;
 	speakerLabelColXHoldingPrev = 0;
