@@ -42,6 +42,12 @@ if (mouse_check_button_released(mb_left)) {
 	}
 //}
 
+if (currentFunction == functionChainContents) {	
+	if (surface_exists(clipSurface)) {
+		surface_resize(clipSurface, clipWidth, clipHeight);
+	}
+}
+
 if (mouse_check_button(mb_left)) {
 	if (windowResizeXHolding) {
 		windowWidth = mouse_x - x;

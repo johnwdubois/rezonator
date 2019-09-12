@@ -13,7 +13,16 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+var filterPaneWidth = 0;
+with (obj_panelPane) {
+	if (currentFunction == functionFilter) {
+		filterPaneWidth = windowWidth;
+	}
+}
+x = filterPaneWidth;
 windowWidth = camera_get_view_width(view_camera[0]) / 3.5;
+
+
 
 var grid = obj_chain.rezChainGrid;
 
