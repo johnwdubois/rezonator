@@ -60,6 +60,7 @@ if (mouse_check_button(mb_left)) {
 		window_set_cursor(cr_size_ns);
 		
 		if (object_index == obj_panelPane) {
+			var helpPaneY = 0;
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList or currentFunction == functionChainContents
 				or currentFunction == functionSort or currentFunction == functionFilter) {
@@ -68,6 +69,14 @@ if (mouse_check_button(mb_left)) {
 						surface_resize(clipSurface, clipWidth, clipHeight);
 					}
 				}
+				
+				if (currentFunction == functionHelp) {
+					y = obj_control.wordTopMargin - windowHeight;
+					helpPaneY = y;
+				}
+			}
+			with (obj_toolPane) {
+				windowHeight = helpPaneY - y;
 			}
 		}
 	}

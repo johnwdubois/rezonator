@@ -45,7 +45,10 @@ with (obj_panelPane) {
 		chainListHeight = windowHeight;
 	}
 }
+
+
 wordTopMargin = menuBarHeight + chainListHeight;
+
 
 
 scr_setDrawRange();
@@ -57,9 +60,10 @@ ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPix
 
 // draw out of bounds rectangles on top & bottom of discourse
 if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
-	var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
+	//var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
 	draw_set_color(global.colorThemeOutOfBounds);
-	draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
+	//draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
+	draw_rectangle(0, 0, room_width, wordTopMargin, false);
 }
 if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) - 1 and ds_grid_height(currentActiveLineGrid) > 0) {
 	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
