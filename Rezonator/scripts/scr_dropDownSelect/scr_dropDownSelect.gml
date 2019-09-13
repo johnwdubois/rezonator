@@ -581,36 +581,6 @@ else if (optionListType == 5)
 			
 			//show_message("Coming Soon");
 			break;
-		case "Toggle Filter Screen":
-		
-			if (obj_control.filterGridActive) {
-				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-					//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
-					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-					// Keep the focus on previous currentCenterDisplayRow
-					//with (obj_control) {
-					//	alarm[5] = 1;
-					//}
-				}
-			
-				// Switch to active grid
-				obj_control.filterGridActive = false;
-				obj_control.currentActiveLineGrid = obj_control.lineGrid;
-			}
-			else {
-			
-				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
-				// If filter is unactive. activate it
-				with (obj_control) {
-					scr_renderFilter();
-				}
-			}
-			// Add to moveCounter
-			obj_control.moveCounter ++;
-		
-			//show_message("BUH 5");
-			break;
 		default:
 			break;
 	}
@@ -709,6 +679,85 @@ else if (optionListType == 6)
 		
 			//show_message("BUH 5");
 			break;
+		case "Increase All":
+		
+			//verticle
+			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
+			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
+			
+			obj_control.gridSpaceVertical += 10;
+			// Don't go above the max
+			obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
+			obj_control.lineSpacing += 4;
+			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+			// Multiply each line's pixelY by the new ratio
+			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
+			
+			// If the search or filter grids are populated, then set their pixelY's as well
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+			}
+			if(filterGridPopulated) {
+				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+			}
+			// reset the ratio
+			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+			
+			//horizontal
+			if (!obj_control.gridView) {
+				obj_control.gridSpaceHorizontal += 20;
+			}
+			
+			//Text
+			
+				
+			if (global.fontSize < 5) {
+				global.fontSize++;
+				scr_setSpeakerLabelColWidth();
+			}
+			global.navTextBig = true;
+			
+			break;
+		case "Decrease All":
+			
+			//Verticle
+						
+			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
+			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
+			
+			obj_control.gridSpaceVertical -= 10;
+			// Don't go above the max
+			obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
+			obj_control.lineSpacing -= 4;
+			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+			// Multiply each line's pixelY by the new ratio
+			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
+			
+			// If the search or filter grids are populated, then set their pixelY's as well
+			if(searchGridPopulated) {
+				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+			}
+			if(filterGridPopulated) {
+				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+			}
+			// reset the ratio
+			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+			
+			
+			//Horizontal			
+			if (!obj_control.gridView) {
+				obj_control.gridSpaceHorizontal -= 20;
+			}
+		
+			//TEXT
+					
+			if (global.fontSize > 0) {
+				global.fontSize--;
+				scr_setSpeakerLabelColWidth();
+			}
+			global.navTextBig = false;
+			
+			break;
 		case "Toggle Dark Theme":
 		
 		
@@ -748,6 +797,39 @@ else if (optionListType == 6)
 				}
 					obj_control.stackShowWindowActive = true;
 			}
+			break;
+		case "Toggle Grid View":
+		obj_control.gridView = !obj_control.gridView;
+			break;		
+		case "Toggle Filter Screen":
+		
+			if (obj_control.filterGridActive) {
+				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+					//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
+					// Keep the focus on previous currentCenterDisplayRow
+					//with (obj_control) {
+					//	alarm[5] = 1;
+					//}
+				}
+			
+				// Switch to active grid
+				obj_control.filterGridActive = false;
+				obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			}
+			else {
+			
+				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
+				// If filter is unactive. activate it
+				with (obj_control) {
+					scr_renderFilter();
+				}
+			}
+			// Add to moveCounter
+			obj_control.moveCounter ++;
+		
+			//show_message("BUH 5");
 			break;
 		default:
 			break;

@@ -11,6 +11,7 @@ if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
 		mouseOverEdit = false;
 		mouseOverView = false;
 		mouseOverSearch = false;
+		mouseOverOptions = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -39,6 +40,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth, 0, menuWidth*2, menuHeig
 		mouseOverEdit = true;
 		mouseOverView = false;
 		mouseOverSearch = false;
+		mouseOverOptions = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -47,7 +49,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth, 0, menuWidth*2, menuHeig
 		
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Clear All Stacks", "Clear All Rez Chains", "Clear All Track Chains", "Clear All Chains", "Toggle Filter Screen");
+		ds_list_add(dropDownOptionList, "Clear All Stacks", "Clear All Rez Chains", "Clear All Track Chains", "Clear All Chains");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth, menuHeight, -999, obj_dropDown);
@@ -67,6 +69,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 		mouseOverEdit = false;
 		mouseOverView = true;
 		mouseOverSearch = false;
+		mouseOverOptions = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -75,7 +78,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size", "Toggle Dark Theme", "Toggle Nav Window", "Start StackShow");
+		ds_list_add(dropDownOptionList, "Toggle Dark Theme", "Toggle Grid View",  "Toggle Nav Window", "Toggle Filter Screen", "Start StackShow");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*2, menuHeight, -999, obj_dropDown);
@@ -95,6 +98,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*3, 0, menuWidth*4.5, menu
 		mouseOverEdit = false;
 		mouseOverView = false;
 		mouseOverSearch = true;
+		mouseOverOptions = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -115,6 +119,34 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*3, 0, menuWidth*4.5, menu
 		}
 	}
 }
+// Options menu
+else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*4.5, 0, menuWidth*6, menuHeight)){
+		instance_destroy(obj_dropDown);
+		mouseOverFile = false;
+		mouseOverEdit = false;
+		mouseOverView = false;
+		mouseOverSearch = false;
+		mouseOverOptions = true;
+	if(mouse_check_button_released(mb_left) and menuClickedIn){
+		menuClickedIn = false;
+	}
+	else if(mouse_check_button_released(mb_left) or menuClickedIn){
+		menuClickedIn = true;
+
+		var dropDownOptionList = ds_list_create();
+
+		ds_list_add(dropDownOptionList,"Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size","Increase All", "Decrease All");
+
+		if (ds_list_size(dropDownOptionList) > 0 ) {
+			var dropDownInst = instance_create_depth(menuWidth*4.5, menuHeight, -999, obj_dropDown);
+			dropDownInst.optionList = dropDownOptionList;
+			dropDownInst.optionListType = 6;
+					
+			obj_control.ableToCreateDropDown = false;
+			obj_control.alarm[0] = 2;
+		}
+	}
+}
 
 
 if(!menuClickedIn){
@@ -122,4 +154,5 @@ if(!menuClickedIn){
 		mouseOverEdit = false;
 		mouseOverView = false;
 		mouseOverSearch = false;
+		mouseOverOptions = false;
 }
