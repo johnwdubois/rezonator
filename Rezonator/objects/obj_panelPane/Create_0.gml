@@ -40,7 +40,9 @@ scrollBarPlusY = 0;
 
 
 
-
+with (obj_alarm) {
+	alarm[3] = 5;
+}
 
 
 

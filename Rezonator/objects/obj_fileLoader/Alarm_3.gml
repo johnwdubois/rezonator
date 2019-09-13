@@ -62,4 +62,22 @@ if (string_count("fontSize:", global.iniFileString) > 0) {
 }
 
 scr_fontGlobalUpdate();
+
+
+/*
+show_message(string(real(scr_getValueFromString(global.iniFileString, "SpeakerLabelX3:", ","))));
+show_message(string(real(scr_getValueFromString(global.iniFileString, "SpeakerLabelX4:", ","))));
+
+show_message(scr_getStringOfList(obj_control.speakerLabelColXList));
+
+
+if (string_count("SpeakerLabelX3:", global.iniFileString) > 0) {
+	ds_list_replace( obj_control.speakerLabelColXList, 2, real(scr_getValueFromString(global.iniFileString, "SpeakerLabelX3:", ",")));
+}
+
+if (string_count("SpeakerLabelX4:", global.iniFileString) > 0) {
+	ds_list_replace( obj_control.speakerLabelColXList, 3, real(scr_getValueFromString(global.iniFileString, "SpeakerLabelX4:", ",")));
+}
+*/
 scr_setSpeakerLabelColWidth();
+//show_message(scr_getStringOfList(obj_control.speakerLabelColXList));

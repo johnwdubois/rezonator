@@ -504,3 +504,5 @@ fromDropDown = false;
 wideDropDown = false;
 
 global.toolPaneWidth = 0;
+
+

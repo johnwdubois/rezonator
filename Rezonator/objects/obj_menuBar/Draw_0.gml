@@ -58,8 +58,8 @@
 	var menuOptionY = 0;
 	var menuOptionX = 100;
 	
-	draw_text(mean(0, menuWidth), menuOptionY,"File");
-	draw_text(mean(menuWidth, menuWidth*2), menuOptionY,"Edit");
-	draw_text(mean(menuWidth*2, menuWidth*3), menuOptionY,"View");
-	draw_text(mean(menuWidth*3, menuWidth*4.5), menuOptionY,"Search");
-	draw_text(mean(menuWidth*4.5, menuWidth*6), menuOptionY,"Options");
+	draw_text(mean(0, menuWidth), menuHeight - 25,"File");
+	draw_text(mean(menuWidth, menuWidth*2), menuHeight - 25,"Edit");
+	draw_text(mean(menuWidth*2, menuWidth*3), menuHeight - 25,"View");
+	draw_text(mean(menuWidth*3, menuWidth*4.5), menuHeight - 25,"Search");
+	draw_text(mean(menuWidth*4.5, menuWidth*6), menuHeight - 25,"Options");
