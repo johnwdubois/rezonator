@@ -15,6 +15,7 @@ if(not obj_panelPane.showNav) {
 	//exit;	
 }
 
+
 // Establish location of camera
 var camWidth = camera_get_view_width(view_camera[0]);
 x = camWidth - windowWidth;
@@ -230,7 +231,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 							}
 						}
 						else {
-						cellPlusY += cellHeight;
+							cellPlusY += cellHeight;
 						}
 					}
 				}

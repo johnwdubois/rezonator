@@ -1,5 +1,5 @@
 var toolSprScale = clamp(windowHeight / 210, 0.5, 1);
-var toolButtonBuffer = 12//(windowWidth - (sprite_get_height(spr_toolsNew) * toolSprScale)) / 2;
+var toolButtonBuffer = 10;
 
 for (var i = 0; i < 2; i++) {
 	
@@ -42,4 +42,16 @@ for (var i = 0; i < 2; i++) {
 	}
 	
 	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+}
+
+
+if (keyboard_check_pressed(ord("R"))) {
+	currentMode = modeRez;
+}
+if (keyboard_check_pressed(ord("T"))) {
+	currentMode = modeTrack;
+}
+
+if (global.wheresElmo) {
+	currentMode = modeTrack;
 }

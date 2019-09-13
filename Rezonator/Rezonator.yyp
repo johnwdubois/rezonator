@@ -2007,6 +2007,14 @@
             }
         },
         {
+            "Key": "74d3e7c4-83d0-46b9-a7bb-f81f63a01062",
+            "Value": {
+                "id": "599b7d6d-4c5a-4cd4-8626-704bd473cfeb",
+                "resourcePath": "scripts\\scr_panelPaneScalable\\scr_panelPaneScalable.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8",
             "Value": {
                 "id": "d22552a3-160c-49f6-a514-4d7f0797632d",
@@ -4968,6 +4976,7 @@
         "f6a6ba25-1cc6-4ece-94f4-5196470b0214",
         "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8",
         "73bacce9-e2de-4fdd-8c4d-6121232397bf",
+        "74d3e7c4-83d0-46b9-a7bb-f81f63a01062",
         "b8e0bde0-a05e-479e-9730-71b1624f672e",
         "58012b3e-a809-4755-a1e6-d8ebfeb46e82",
         "0619b98d-cb05-434e-a894-a14a455a2368",
