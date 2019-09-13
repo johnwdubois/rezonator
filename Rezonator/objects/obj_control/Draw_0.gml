@@ -171,6 +171,10 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 400, 880, "drawLine extra steps: " + string(drawRangeExtraSteps));
 	
 	
+	draw_text(camera_get_view_width(view_camera[0]) - 400, 930, "toolPane.currentTool: " + string(obj_toolPane.currentTool));
+	draw_text(camera_get_view_width(view_camera[0]) - 400, 950, "toolPane.tempReturnTool: " + string(obj_toolPane.tempReturnTool));
+	
+	
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 680, "scrollPlusY: " + string(scrollPlusY));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 700, "scrollPlusYDest: " + string(scrollPlusYDest));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 720, "scrollBarPlusY: " + string(scrollBarPlusY));

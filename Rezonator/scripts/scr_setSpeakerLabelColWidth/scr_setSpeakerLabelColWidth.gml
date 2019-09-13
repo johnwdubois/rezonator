@@ -88,9 +88,7 @@ for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {
 		}
 	}
 	
-	if (colX < speakerLabelMargin) {
-		draw_line_width(colX, wordTopMargin, colX, camera_get_view_width(view_camera[0]), 3);
-	}
+	
 }
 	
 

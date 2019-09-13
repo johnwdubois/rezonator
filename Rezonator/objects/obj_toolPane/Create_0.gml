@@ -35,6 +35,17 @@ currentTool = toolRezBrush;
 
 tempReturnTool = -1;
 
+
+
+modePointer = 0;
+modeRez = 1;
+modeTrack = 2;
+currentMode = modeRez;
+
+
+
+
+
 tracksOnlyStackShow = false;
 rezOnlyStackShow = false;
 newWordInFilter = false;

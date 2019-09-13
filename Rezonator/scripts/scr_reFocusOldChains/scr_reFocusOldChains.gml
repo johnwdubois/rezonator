@@ -13,6 +13,8 @@
 
 var grid = obj_chain.rezChainGrid;
 
+
+
 //switch to focused grid
 switch (functionChainList_currentTab)
 {

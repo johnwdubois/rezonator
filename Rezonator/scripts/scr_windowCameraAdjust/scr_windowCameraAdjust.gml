@@ -6,6 +6,8 @@ if (windowWidth < 1 or windowHeight < 1)
 	exit;
 }
 
+
+
 view_hport[0] = windowHeight;
 view_wport[0] = windowWidth;
 

@@ -1,9 +1,25 @@
 var chainGrid = currentChainGrid;
 
-while (ds_grid_value_exists(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus))
-{
-	var index = ds_grid_value_y(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus);	
-	ds_grid_set(chainGrid, chainGrid_colChainState, index, chainStateNormal);
+
+for (var i = 0; i < 3; i++) {
+	switch (i) {
+		case 0:
+			chainGrid = obj_chain.rezChainGrid;
+			break;
+		case 1:
+			chainGrid = obj_chain.trackChainGrid;
+			break;
+		case 2:
+			chainGrid = obj_chain.stackChainGrid;
+			break;
+		default:
+			break;
+	}
+	
+	while (ds_grid_value_exists(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus)) {
+		var index = ds_grid_value_y(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus);	
+		ds_grid_set(chainGrid, chainGrid_colChainState, index, chainStateNormal);
+	}
 }
 
 

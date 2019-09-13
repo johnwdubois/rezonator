@@ -44,6 +44,9 @@ draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 
+scr_drawToolPaneNew();
+
+/*
 var iconMarginTop = 30;
 var iconPlusY = 0;
 var iconPlusYIncrement = sprite_get_height(spr_tools) * 1.5;
@@ -51,12 +54,6 @@ var iconHorizontalSpacing = 20;
 
 
 for (var i = 0; i < sprite_get_number(spr_tools); i++) {
-	
-	/*
-	if (i == sprite_get_number(spr_tools) - 1) {
-		continue;
-	}
-	*/
 	
 	var iconX = x + (windowWidth / 2);
 	var iconY = y + iconMarginTop + iconPlusY;
@@ -195,7 +192,12 @@ for (var i = 0; i < sprite_get_number(spr_tools); i++) {
 		iconPlusY += iconPlusYIncrement;
 	}
 }
+*/
 
+
+
+
+/*
 iconPlusY += iconPlusYIncrement * 2;
 
 for (var i = 0; i < 2; i++) {
@@ -277,6 +279,7 @@ for (var i = 0; i < 2; i++) {
 	
 	draw_sprite_ext(spr_viewIcons, i, x + (windowWidth / 2) - iconHorizontalSpacing + (i * (iconHorizontalSpacing * 2)), y + iconPlusY, 1, 1, 0, imageBlend, 1);
 }
+*/
 
 progressBarX = camera_get_view_width(view_camera[0]) - 100;
 scr_drawImportProgressBar();
