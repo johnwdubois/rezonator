@@ -23,8 +23,8 @@ if(not mouse_check_button(mb_left)) {
 		compassLineX2 = mouse_x;
 		compassLineY2 = mouse_y;
 		// Check of the mouse is within a line of the discourse
-		if(lineContainsMouse > -1) { 
-			compassCenterLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, lineContainsMouse);
+		if(lineContainsMouseYPos > -1) { 
+			//compassCenterLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, lineContainsMouse);
 		}
 }
 else {
@@ -59,7 +59,7 @@ else {
 
 	
 	// Use this to create the compass's horizontal and vertical "snapToGrid"
-	if(lineContainsMouse > -1) { 
+	if(lineContainsMouseYPos > -1) { 
 		
 		var lineRectX1 = -1;
 		var lineRectX2 = -1;

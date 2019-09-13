@@ -202,8 +202,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	
 	var currentLineInStack = -1;
-	if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2) {
-		obj_control.lineContainsMouse = drawLineLoop;	
+	if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2 and not obj_control.rectNotInPanelPane) {
+		obj_control.lineContainsMouseYPos = speakerRectY1;	
 	}
 	
 	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid)) {

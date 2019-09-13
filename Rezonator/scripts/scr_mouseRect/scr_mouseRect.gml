@@ -46,7 +46,9 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	mouseHoldRectY2 = mouse_y;
 	
 	// Set the gesture's current pos
-	if(abs(mouseHoldRectY1 - mouseHoldRectY2) < obj_control.gridSpaceVertical) {
+	var rectBottomY = max(mouseHoldRectY1, mouseHoldRectY2);
+	var rectTopY = min(mouseHoldRectY1, mouseHoldRectY2);
+	if(rectTopY > obj_control.lineContainsMouseYPos and rectBottomY < (obj_control.lineContainsMouseYPos + obj_control.gridSpaceVertical)) {
 		obj_control.mouseRectWithinLine = true;
 		
 		// Check if the current gesture is a rezChunk
