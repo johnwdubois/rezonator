@@ -25,7 +25,9 @@ with (obj_panelPane) {
 
 var tabAmount = 4;
 
-y = obj_menuBar.menuHeight;
+if (obj_panelPane.showNav) {
+	y = obj_menuBar.menuHeight;
+}
 
 var tabRectY1 = y;
 var tabRectY2 = tabRectY1 + functionChainList_tabHeight;

@@ -364,7 +364,7 @@ mouseRectBeginInWord = -1;
 mouseRectBeginBetweenWords = -1;
 mouseRectBeginInSpeakerLabel = false;
 mouseoverNeutralSpace = false;	
-lineContainsMouse = -1;
+lineContainsMouseYPos = -1;
 
 
 

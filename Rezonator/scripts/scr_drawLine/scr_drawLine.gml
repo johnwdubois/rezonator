@@ -32,7 +32,7 @@ draw_set_alpha(1);
 
 drawLineYOffset = 0;
 if (filterGridActive) {
-	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 200;	
+	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 200;
 }
 
 var menuBarHeight = 0;
@@ -53,7 +53,7 @@ wordTopMargin = menuBarHeight + chainListHeight;
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
-ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + chainListHeight + menuBarHeight + 10 + drawLineYOffset));
+ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + wordTopMargin + 10));
 
 
 
@@ -84,7 +84,7 @@ if (speakerLabelColXHolding > -1) {
 	mouseoverPanelPane = true;
 }
 
-if (not mouseoverPanelPane) {
+if (not mouseoverPanelPane and not global.wheresElmo) {
 	if (point_in_rectangle(mouse_x, mouse_y, 0, wordTopMargin, speakerLabelMargin, camera_get_view_height(view_camera[0]))) {
 	
 		if (mouse_check_button_pressed(mb_left)) {
@@ -202,8 +202,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	
 	var currentLineInStack = -1;
-	if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2) {
-		obj_control.lineContainsMouse = drawLineLoop;	
+	if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2 and not obj_control.rectNotInPanelPane) {
+		obj_control.lineContainsMouseYPos = speakerRectY1;	
 	}
 	
 	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid)) {
