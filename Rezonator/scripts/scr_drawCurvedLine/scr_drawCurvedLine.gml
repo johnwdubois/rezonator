@@ -19,9 +19,10 @@ draw_set_alpha(1);
 
 var curvex1 = x1;
 var curvey1 = y1;
-                        
-var curvex2 = x1 - ((x1 - x2) / 2);
-var curvey2 = y1 - ((y1 - y2) / 2);
+                   
+// Set the midpoints of the curved line
+var curvex2 = (x1 - ((x1 - x2) / 2));
+var curvey2 = (y1 - ((y1 - y2) / 2));
                         
 var curvex3 = curvex1;
 var curvey3 = curvey2;

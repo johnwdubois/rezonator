@@ -18,7 +18,7 @@ if(obj_panelPane.showNav) {
 	yBase += inst_PanelPane_chainContents.windowHeight;	
 }
 
-var Xdistance = 100;
+var Xdistance = 120;
 var Ydistance = 30;
 var newYheight = 80;
 var newYheightText1 = 65;
@@ -47,7 +47,7 @@ if (showTracker) {
 	draw_set_alpha(1);
 	//if(not isTrackerOpen) {draw_set_alpha(0);}
 	// draw hidden stuff first y value will be changed if clicked on
-	if(not obj_panelPane.showNav and not obj_toolPane.showTool) {
+	//if(not obj_panelPane.showNav and not obj_toolPane.showTool) {
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(trackerX2 - Xdistance, yBase, trackerX2, yBase  + newYheight, false);
@@ -92,7 +92,7 @@ if (showTracker) {
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
 	draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, "RESET");
-}
+//}
 	
 
 
@@ -260,7 +260,7 @@ if (showTracker) {
 	
 	var chainNameRectX1 = 140, 
 	chainNameRectY1 = yBase, 
-	chainNameRectX2 = 280, 
+	chainNameRectX2 = 300, 
 	chainNameRectY2 = yBase + newYheight;
 		
 	//draw stack name background
@@ -313,25 +313,29 @@ if (showTracker) {
 	if(nameOfStack == undefined) {
 		nameOfStack = "";	
 	}
-	draw_text( 140 + 5, yBase + (newYheight/2), nameOfStack);
+	draw_text(chainNameRectX1 + 5, yBase + (newYheight/2), nameOfStack);
 
+	var chainCaptionRectX1 = chainNameRectX2, 
+	chainCaptionRectY1 = yBase, 
+	chainCaptionRectX2 = trackerX2 - Xdistance, 
+	chainCaptionRectY2 = yBase + newYheight;
 
 	//draw stack description background
 	draw_set_colour(global.colorThemePaneBG);
-	draw_rectangle( 280, yBase, trackerX2 - Xdistance, yBase + newYheight, false);
+	draw_rectangle(chainCaptionRectX1, chainCaptionRectY1, chainCaptionRectX2, chainCaptionRectY2, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle( 280, yBase, trackerX2 - Xdistance, yBase + newYheight, true);
+	draw_rectangle(chainCaptionRectX1, chainCaptionRectY1, chainCaptionRectX2, chainCaptionRectY2, true);
 
 	var captionOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption, currentRowinStack);
 	
 	//draw stack caption text
 	draw_set_font(global.fontMain);
-	draw_set_halign(fa_left);
+	draw_set_halign(fa_center);
 	draw_set_colour(global.colorThemeText);
 	if(captionOfStack == undefined) {
 		captionOfStack = "";	
 	}
-	draw_text( 280 + 5, yBase + (newYheight/2), captionOfStack);
+	draw_text((chainCaptionRectX1 + chainCaptionRectX2)/2, yBase + (newYheight/2), captionOfStack);
 
 
 	

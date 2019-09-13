@@ -113,14 +113,14 @@ switch (currentFunction) {
 		}
 		break;
 	case functionHelp:
-		//if(obj_panelPane.showNav) {
+		if(obj_panelPane.showNav) {
 	
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemePaneBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 			scr_panelPane_drawHelp();
-		//}
+		}
 		if(obj_control.stackShowActive){
 			scr_panelPane_drawTracker();
 		}
@@ -172,11 +172,11 @@ switch (currentFunction) {
 
 
 
-
-draw_set_alpha(1);
-draw_set_color(global.colorThemeBorders);
-draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
-
+if(obj_panelPane.showNav or currentFunction != functionHelp) {
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+}
 
 
 var mouseover = false;// Checks mouseover for all panelPane windows
