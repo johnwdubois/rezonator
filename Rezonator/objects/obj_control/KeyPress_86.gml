@@ -104,3 +104,8 @@ else if(currentActiveLineGrid == filterGrid) {
 		obj_control.currentActiveLineGrid = obj_control.lineGrid
 	}
 }
+
+
+with (obj_alarm) {
+	alarm[1] = 5;
+}

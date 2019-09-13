@@ -4,6 +4,8 @@ x = 0;
 y = camera_get_view_height(view_camera[0]) - windowHeight;
 visible = false;
 
+windowResizeYHolding = false;
+
 
 
 seekBarWidth = 500;
