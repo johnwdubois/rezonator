@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+originalWindowHeight = obj_menuBar.menuHeight;
+
 switch (currentFunction) {
 	case functionChainList:
 		with (obj_panelPane) {

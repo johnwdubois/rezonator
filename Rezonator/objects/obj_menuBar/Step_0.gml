@@ -156,3 +156,12 @@ if(!menuClickedIn){
 		mouseOverSearch = false;
 		mouseOverOptions = false;
 }
+
+with(obj_panelPane){
+	if(currentFunction == functionChainList || currentFunction == functionChainContents || currentFunction == functionFilter || currentFunction == functionSort){
+	y =  obj_menuBar.y + obj_menuBar.menuHeight;
+	}
+}
+with(obj_toolPane){
+	y =  obj_menuBar.y + obj_menuBar.menuHeight;
+}

@@ -58,3 +58,5 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 }
 
 global.toolPaneWidth = windowWidth;
+
+originalWindowHeight = obj_menuBar.menuHeight;

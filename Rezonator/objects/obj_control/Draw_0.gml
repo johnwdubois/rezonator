@@ -181,6 +181,16 @@ if (showDevVars) {
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 750, "mouseoverScrollBar: " + string(mouseoverScrollBar));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 780, "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
+	
+	
+	var chainListY = 0;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
+			chainListY = y;
+		}
+	}
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 550, "chainListY: " + string(chainListY));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 580, "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
 }
 var scrollBarMarginTop = 230;
 if(!obj_panelPane.showNav) {

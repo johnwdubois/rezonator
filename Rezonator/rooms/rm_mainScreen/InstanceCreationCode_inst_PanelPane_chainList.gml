@@ -1,5 +1,5 @@
 x = 48;
-y = 0;
+y = 100;
 
 windowWidth = 428;
 windowHeight = 212;

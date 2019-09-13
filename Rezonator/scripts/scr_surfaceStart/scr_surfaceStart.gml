@@ -71,7 +71,7 @@ if (mouse_check_button(mb_left)) {
 				}
 				
 				if (currentFunction == functionHelp) {
-					y = obj_control.wordTopMargin - windowHeight;
+					y = other.y + other.windowHeight - windowHeight;//obj_control.wordTopMargin - windowHeight;
 					helpPaneY = y;
 				}
 			}
