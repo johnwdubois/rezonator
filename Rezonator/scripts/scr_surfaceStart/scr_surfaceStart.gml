@@ -11,36 +11,36 @@ if (object_index == obj_panelPane) {
 }
 
 
-
 if (mouse_check_button_released(mb_left)) {
 	windowResizeXHolding = false;
 	windowResizeYHolding = false;
 	obj_control.mouseoverPanelPane = false;
 }
-//if (mouse_check_button_pressed(mb_left)) {
+
+
 	
-	if (object_index == obj_gridViewer) {
-		if (abs(mouse_x - (x + windowWidth)) < 5
-		and mouse_y > y and mouse_y < y + windowHeight) {
-			obj_control.mouseoverPanelPane = true;
-			window_set_cursor(cr_size_we);
-			if (mouse_check_button_pressed(mb_left)) {
-				windowResizeXHolding = true;
-			}
+if (object_index == obj_gridViewer) {
+	if (abs(mouse_x - (x + windowWidth)) < 5
+	and mouse_y > y and mouse_y < y + windowHeight) {
+		obj_control.mouseoverPanelPane = true;
+		window_set_cursor(cr_size_we);
+		if (mouse_check_button_pressed(mb_left)) {
+			windowResizeXHolding = true;
 		}
 	}
+}
 	
-	if (abs(mouse_y - (y + windowHeight)) < 5
-	and mouse_x > x and mouse_x < x + windowWidth) {
-		if (object_index != obj_stackShow) {
-			obj_control.mouseoverPanelPane = true;
-			window_set_cursor(cr_size_ns);
-			if (mouse_check_button_pressed(mb_left)) {
-				windowResizeYHolding = true;
-			}
+if (abs(mouse_y - (y + windowHeight)) < 5
+and mouse_x > x and mouse_x < x + windowWidth) {
+	if (object_index != obj_stackShow) {
+		obj_control.mouseoverPanelPane = true;
+		window_set_cursor(cr_size_ns);
+		if (mouse_check_button_pressed(mb_left)) {
+			windowResizeYHolding = true;
 		}
 	}
-//}
+}
+
 
 if (object_index == obj_panelPane) {
 	if (currentFunction == functionChainContents) {	
