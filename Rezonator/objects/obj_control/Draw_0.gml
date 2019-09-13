@@ -182,7 +182,15 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 750, "mouseoverScrollBar: " + string(mouseoverScrollBar));
 	draw_text(camera_get_view_width(view_camera[0]) - 300, 780, "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
 }
+var scrollBarMarginTop = 230;
+if(!obj_panelPane.showNav) {
+	scrollBarMarginTop -= inst_panelPane_help.windowHeight;
+	if(!obj_toolPane.showTool) {
+		scrollBarMarginTop -= obj_toolPane.windowHeight;
+	}
+}
 if(filterGridActive){
+	
 	if(stackShowActive)	{
 		scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, wordTopMargin,
 		global.colorThemeSelected1, global.colorThemeSelected2,
@@ -195,7 +203,6 @@ if(filterGridActive){
 	}
 }
 else{
-
 	scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]));

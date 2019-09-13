@@ -98,8 +98,8 @@ if (ds_list_size(wordIDList) > 0) {
 		if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1)) {
 			continue;
 		}
-		
-		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1) == obj_control.wordStateDead) {
+		var wordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
+		if (wordState == obj_control.wordStateDead) {
 			continue;
 		}
 		

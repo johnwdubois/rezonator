@@ -54,13 +54,12 @@ var bubbleY1 = y - (bubbleHeigth / 2);
 var bubbleX2 = x + (bubbleWidth / 2);
 var bubbleY2 = y + (bubbleHeigth / 2);
 
-var bubblePlus = 0;
+var bubblePlus = obj_control.wordDrawGridFocusedAnimation;
 
 draw_set_color(global.colorThemeBG);
 draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePlus, bubbleY2 + bubblePlus, false);
 draw_set_color(global.colorThemeBorders);
 draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePlus, bubbleY2 + bubblePlus, true);
-
 
 
 // draw callout text

@@ -41,6 +41,11 @@
 		draw_set_colour(global.colorThemeOutOfBounds);
 		draw_rectangle(menuWidth*3, -1, menuWidth*4.5, menuHeight, false);
 	}
+	// draw selection box and outline for Search
+	if(mouseOverOptions){
+		draw_set_colour(global.colorThemeOutOfBounds);
+		draw_rectangle(menuWidth*4.5, -1, menuWidth*6, menuHeight, false);
+	}
 	//draw_set_colour(global.colorThemeBorders);
 	//draw_rectangle(menuWidth*3, -1, menuWidth*4.5, menuHeight, true);
 	
@@ -57,3 +62,4 @@
 	draw_text(mean(menuWidth, menuWidth*2), menuOptionY,"Edit");
 	draw_text(mean(menuWidth*2, menuWidth*3), menuOptionY,"View");
 	draw_text(mean(menuWidth*3, menuWidth*4.5), menuOptionY,"Search");
+	draw_text(mean(menuWidth*4.5, menuWidth*6), menuOptionY,"Options");

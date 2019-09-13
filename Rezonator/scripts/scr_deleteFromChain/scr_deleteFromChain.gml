@@ -4,6 +4,7 @@ obj_control.linkDeleted = true;
 // Set variables to be used by Chunk/newWord deletion
 var currentChainGridRow = undefined;
 var grid = undefined;
+var oldHeight = -1;
 
 // Expirementing with deleting Chunks
 if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord) {
@@ -133,6 +134,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 
 	// Access information on focused link
 	var chainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
+	currentChainGridRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.currentChainGrid), chainID);
 	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowInLinkGridSource);
 	var dead = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridSource);
 	
@@ -241,6 +243,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 else {
 	// Refresh and clean
 	scr_refreshChainGrid();
+	oldHeight = ds_grid_height(obj_chain.currentChainGrid);
 	scr_killEmptyChains(obj_chain.currentChainGrid);
 	obj_chain.mouseLineWordID = -1;
 
@@ -265,36 +268,49 @@ if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
 if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true)) {
 	// Find the dead, focused link
 	var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, true);
-	if (rowInLinkGridSource == -1) {
-		exit;
-	}
-	// Unfocus the dead link
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridSource, false);
-	// Identify the relevant chain
-	var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
-	if(grid == undefined) {
-		grid = obj_chain.currentChainGrid;
-		//show_message(string(grid));
-	}
-	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid)-1, currentChainID);
-	if (rowInChainGrid == -1) {
-		//show_message(string(currentChainID));
-		exit;
-	}
-	var firstWordID = ds_list_find_value(ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid),0);
-	if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
-		if(ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), firstWordID) < 0)	{
-			exit;	
+	if (rowInLinkGridSource != -1) {
+
+		// Unfocus the dead link
+		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridSource, false);
+		// Identify the relevant chain
+		var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
+		if(grid == undefined) {
+			grid = obj_chain.currentChainGrid;
+			//show_message(string(grid));
+		}
+		var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid)-1, currentChainID);
+		if (rowInChainGrid != -1) {
+			//show_message(string(currentChainID));
+		
+			var firstWordID = ds_list_find_value(ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid),0);
+			if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+				if(ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), firstWordID) >= 0)	{
+					var rowInLinkGridToFocus = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false, obj_chain.linkGrid_colSource, firstWordID);
+					if (rowInLinkGridToFocus != -1) {
+						// If the chain contains a living link, focus the one it found
+						ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridToFocus, true);
+					}	
+				}
+			}
+			else {
+	
+				// Check this chain for live links
+				var rowInLinkGridToFocus = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false, obj_chain.linkGrid_colSource, firstWordID);
+				if (rowInLinkGridToFocus != -1) {
+					// If the chain contains a living link, focus the one it found
+					ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridToFocus, true);
+				}
+			}
 		}
 	}
-	
-	// Check this chain for live links
-	var rowInLinkGridToFocus = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false, obj_chain.linkGrid_colSource, firstWordID);
-	if (rowInLinkGridToFocus == -1) {
-		//show_message(string(firstWordID));
-		exit;
+}
+var newHeight = ds_grid_height(obj_chain.currentChainGrid);
+if(oldHeight != newHeight and newHeight > 0 and not obj_toolPane.tracksOnlyStackShow) {
+	if(currentChainGridRow != 0) {
+		ds_grid_set(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, currentChainGridRow - 1, obj_chain.chainStateFocus);	
 	}
-	// If the chain contains a living link, focus the one it found
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGridToFocus, true);
+	else {
+		ds_grid_set(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);	
+	}
 }
 obj_control.deleteNewWord = false;

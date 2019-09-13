@@ -176,13 +176,13 @@ draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 16, "Reme
 
 
 
-	draw_rectangle(mean(userSignInBoxX1, userSignInBoxX2)-70, userSignInBoxY2 + 10, mean(userSignInBoxX1, userSignInBoxX2)-60, userSignInBoxY2 + 20, true);
+	draw_rectangle(mean(userSignInBoxX1, userSignInBoxX2)-75, userSignInBoxY2 + 5, mean(userSignInBoxX1, userSignInBoxX2)-55, userSignInBoxY2 + 25, true);
 	if (global.rememberMe) {
-		draw_rectangle(mean(userSignInBoxX1, userSignInBoxX2)-70, userSignInBoxY2 + 10, mean(userSignInBoxX1, userSignInBoxX2)-60, userSignInBoxY2 + 20, false);	
+		draw_rectangle(mean(userSignInBoxX1, userSignInBoxX2)-75, userSignInBoxY2 + 5, mean(userSignInBoxX1, userSignInBoxX2)-55, userSignInBoxY2 + 25, false);	
 	}
 
 	// current chain boolean switch
-	if (point_in_rectangle(mouse_x, mouse_y,mean(userSignInBoxX1, userSignInBoxX2)-70, userSignInBoxY2 + 10, mean(userSignInBoxX1, userSignInBoxX2)-60, userSignInBoxY2 + 20)){
+	if (point_in_rectangle(mouse_x, mouse_y,mean(userSignInBoxX1, userSignInBoxX2)-75, userSignInBoxY2 + 5, mean(userSignInBoxX1, userSignInBoxX2)-55, userSignInBoxY2 + 25)){
 			if (device_mouse_check_button_released(0, mb_left)) {
 				global.rememberMe = !global.rememberMe;	
 			}
