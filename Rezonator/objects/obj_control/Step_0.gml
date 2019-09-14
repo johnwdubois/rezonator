@@ -296,33 +296,34 @@ if (shortcutsEnabled) {
 				// reset the ratio
 				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[3] = 15;
-				scr_jumpToLine("", prevCenterDisplayRow);
 			}
 
 			if (keyboard_check(109) and canPressMinus) {
 				prevCenterDisplayRow = scr_currentCenterLine();
 				canPressMinus = false;
-				gridSpaceVertical -= 10;
-				// Don't go below the min
-				gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
-				lineSpacing -= 4;
-				gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
+				if(gridSpaceVertical > gridSpaceVerticalMin) {
+					gridSpaceVertical -= 10;
+					// Don't go below the min
+					gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
+					lineSpacing -= 4;
+					gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
 			
-				// Multiply each line's pixelY by the new ratio
-				ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
+					// Multiply each line's pixelY by the new ratio
+					ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
 			
-				// If the search or filter grids are populated, then set their pixelY's as well
-				if(searchGridPopulated) {
-					ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
+					// If the search or filter grids are populated, then set their pixelY's as well
+					if(searchGridPopulated) {
+						ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
+					}
+					if(filterGridPopulated) {
+						ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
+					}
+					scr_jumpToLine("", prevCenterDisplayRow);
+					// reset the ratio
+					prevGridSpaceVertical = gridSpaceVertical;
+					
 				}
-				if(filterGridPopulated) {
-					ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
-				}
-				scr_jumpToLine("", prevCenterDisplayRow);
-				// reset the ratio
-				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[4] = 15;
-				scr_jumpToLine("", prevCenterDisplayRow);
 			}
 		}
 	}
@@ -356,27 +357,28 @@ if (shortcutsEnabled) {
 			if (keyboard_check_direct(189) and canPressMinus) {
 				prevCenterDisplayRow = scr_currentCenterLine();
 				canPressMinus = false;
-				gridSpaceVertical -= 10;
-				// Don't go below the min
-				gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
-				lineSpacing -= 4;
-				gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
+				if(gridSpaceVertical > gridSpaceVerticalMin) {
+					gridSpaceVertical -= 10;
+					// Don't go below the min
+					gridSpaceVertical = max(gridSpaceVertical, gridSpaceVerticalMin);
+					lineSpacing -= 4;
+					gridSpaceRatio = (gridSpaceVertical/prevGridSpaceVertical);
 			
-				// Multiply each line's pixelY by the new ratio
-				ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
+					// Multiply each line's pixelY by the new ratio
+					ds_grid_multiply_region(lineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), gridSpaceRatio);
 			
-				// If the search or filter grids are populated, then set their pixelY's as well
-				if(searchGridPopulated) {
-					ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
+					// If the search or filter grids are populated, then set their pixelY's as well
+					if(searchGridPopulated) {
+						ds_grid_multiply_region(searchGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(searchGrid), gridSpaceRatio);
+					}
+					if(filterGridPopulated) {
+						ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
+					}
+					scr_jumpToLine("", prevCenterDisplayRow);
+					// reset the ratio
+					prevGridSpaceVertical = gridSpaceVertical;
 				}
-				if(filterGridPopulated) {
-					ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
-				}
-				scr_jumpToLine("", prevCenterDisplayRow);
-				// reset the ratio
-				prevGridSpaceVertical = gridSpaceVertical;
 				alarm[4] = 15;
-				
 			}
 		}
 	}

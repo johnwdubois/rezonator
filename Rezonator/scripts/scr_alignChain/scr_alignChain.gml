@@ -28,6 +28,12 @@ if (ds_list_size(wordIDList) > 0) {
 	for (var displayColLoop = 0; displayColLoop < ds_list_size(wordIDList); displayColLoop++) {
 		var currentWordID = ds_list_find_value(wordIDList, displayColLoop);
 		
+		// Prevent dead or chunk words to mess with alignment
+		var wordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
+		if (wordState == obj_control.wordStateDead or wordState == obj_control.wordStateChunk) {
+			continue;
+		}
+		
 		var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
@@ -98,8 +104,10 @@ if (ds_list_size(wordIDList) > 0) {
 		if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1)) {
 			continue;
 		}
+		
+		// Prevent dead or chunk words to mess with alignment
 		var wordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
-		if (wordState == obj_control.wordStateDead) {
+		if (wordState == obj_control.wordStateDead or wordState == obj_control.wordStateChunk) {
 			continue;
 		}
 		
