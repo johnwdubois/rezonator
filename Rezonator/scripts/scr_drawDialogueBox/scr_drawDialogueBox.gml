@@ -87,13 +87,27 @@ if (obj_control.dialogueBoxActive) {
 					
 		// draw boolean option check boxes
 		draw_set_colour(global.colorThemeText);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, true);
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
 		if (obj_control.splitWord) {
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, false);	
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
 		}
 	
 		// splitWord boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45)){
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+				
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
+			
+				if(obj_control.splitWord){
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+				}
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.splitWord = !obj_control.splitWord;
 				}
@@ -131,13 +145,27 @@ if (obj_control.dialogueBoxActive) {
 			draw_set_font(fnt_main);
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Time Search");
 	
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, true);
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
 			if (obj_control.goToTime) {
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, false);	
+				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
 			}
 	
 			// GoToTime boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45)){
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
+			
+				if(obj_control.goToTime){
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+				}
+				
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.goToTime = !obj_control.goToTime;
 				}
@@ -164,26 +192,26 @@ if (obj_control.dialogueBoxActive) {
 	
 			// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105, true);
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110, true);
 			if (obj_control.inChainBool) {
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105, false);	
+				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110, false);	
 			}
 	
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 65, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 75, true);
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80, true);
 			if (obj_control.caseSensitive) {
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 65, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 75, false);	
+				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80, false);	
 			}
 	
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, true);
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
 			if (obj_control.transcriptSearch) {
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45, false);	
+				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
 			}
 	
 		}
 	
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45, true);
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 60, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 40, true);
 		if (obj_control.regExCheck) {
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45, false);	
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 60, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 40, false);	
 		}
 
 		//darw boolean options text
@@ -193,28 +221,73 @@ if (obj_control.dialogueBoxActive) {
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 70,"Case Sensistive");
 			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Focused Rez Chain");
 		}
-		draw_text(camera_get_view_width(view_camera[0]) /2 + 20, camera_get_view_height(view_camera[0])/2 - 48,"RegEx:      Regular Expression");
+		draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 48,"Regular Expression");
 	
 	
 
 		if(!obj_control.regExCheck){
 
 		// current chain boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 95, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 105)){
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110)){
+				
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
+			
+				if(obj_control.inChainBool){
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+				}
+				
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.inChainBool = !obj_control.inChainBool;		
 				}
 		}
 
 		// case sensitive boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 65, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 75)){
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80)){
+				
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
+			
+				if(obj_control.caseSensitive){
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+				}
+				
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.caseSensitive = !obj_control.caseSensitive;			
 				}
 		}
 
 		// transcript search boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 230, camera_get_view_height(view_camera[0])/2 + 35, camera_get_view_width(view_camera[0]) /2 - 220, camera_get_view_height(view_camera[0])/2 + 45)){
+		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+				
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
+			
+				if(obj_control.transcriptSearch){
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+				}
+				
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.transcriptSearch = !obj_control.transcriptSearch;
 				}
@@ -222,8 +295,23 @@ if (obj_control.dialogueBoxActive) {
 
 		}
 		// RegEx boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 75, camera_get_view_height(view_camera[0])/2 - 55, camera_get_view_width(view_camera[0]) /2 + 85, camera_get_view_height(view_camera[0])/2 - 45)){
-				if (mouse_check_button_pressed(mb_left)) {
+		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 60, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 40)){
+	
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y-20,mouse_x+35, mouse_y - 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y-20,mouse_x+35, mouse_y - 40,true);
+			
+				if(obj_control.regExCheck){
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y-20,mouse_y - 40) , "Enabled");
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y-20,mouse_y - 40) , "Disabled");
+				}
+				
+			if (mouse_check_button_pressed(mb_left)) {
 					obj_control.regExCheck = !obj_control.regExCheck;
 				}
 		}
@@ -251,6 +339,7 @@ else {
 
 
 if (obj_control.dialogueBoxActive) {
+
 // Variables
 var ctext = "";
 // Clipboard
@@ -263,16 +352,33 @@ if(ctext!="" && (keyboard_check_pressed(ord("V")) || keyboard_check_pressed(vk_c
 }
 
 // Backspace
-if (keyboard_check_pressed(vk_backspace)) {
-	obj_control.inputText = string_delete(obj_control.inputText, obj_control.cursorPos-1, 1);
-	if (obj_control.cursorPos >=2) {
-		obj_control.cursorPos-=1;
+if (keyboard_check(vk_backspace)) {
+	obj_control.cursorViz = true;
+	if(canDelete){
+		obj_control.inputText = string_delete(obj_control.inputText, obj_control.cursorPos-1, 1);
+		if (obj_control.cursorPos >=2) {
+			obj_control.cursorPos--;
+		}
+		else {
+			obj_control.cursorPos = 2;
+		}
+		canDelete = false;
 	}
-	else {
-		obj_control.cursorPos = 2;
+	canDeleteHoldingCounter++
+	if(canDeleteHoldingCounter == holdingLimit){
+		canDelete = true;
+		loopItterations ++;
+		canDeleteHoldingCounter = 0;
 	}
 }
-if (keyboard_string != "") {
+if (keyboard_check_released(vk_backspace)) {
+loopItterations = 0;
+canDeleteHoldingCounter = 0;
+canDelete = true;
+}
+
+
+if (keyboard_string != "" && string_length(obj_control.inputText) < 100 ) {
 	var t = keyboard_string;
 	obj_control.inputText = string_insert(t, obj_control.inputText, obj_control.cursorPos);
 	obj_control.cursorPos += string_length(t);
@@ -282,29 +388,64 @@ if (keyboard_string != "") {
 }
 
 // Cursor
-if(keyboard_check_pressed(vk_left)) {
-	if (obj_control.cursorPos >=2) {
-		obj_control.cursorPos-=1;
-	}
-	else {
-		obj_control.cursorPos = 1;
-	}
-}
-if(keyboard_check_pressed(vk_right)) {
-	if (obj_control.cursorPos <= string_length(obj_control.inputText)){
-		obj_control.cursorPos+=1;
-	}
-	else{
-		if (string_length(obj_control.inputText) > 0) {
-			obj_control.cursorPos = string_length(obj_control.inputText) +1;
+if(keyboard_check(vk_left)) {
+	obj_control.cursorViz = true;
+	if(canPressLeft){
+		if (obj_control.cursorPos >=2) {
+			obj_control.cursorPos--;
 		}
 		else {
-		 obj_control.cursorPos = 1;
+			obj_control.cursorPos = 1;
 		}
+		canPressLeft = false;
+	}
+	canPressLeftHoldingCounter ++;
+	if(canPressLeftHoldingCounter == holdingLimit){
+		canPressLeft = true;
+		loopItterations ++;
+		canPressLeftHoldingCounter = 0;
 	}
 }
+if (keyboard_check_released(vk_left)) {
+loopItterations = 0;
+canPressLeftHoldingCounter = 0;
+canPressLeft = true;
+}
+if(keyboard_check(vk_right)) {
+	obj_control.cursorViz = true;
+	if(canPressRight){
+		if (obj_control.cursorPos <= string_length(obj_control.inputText) + 1 && obj_control.cursorPos >=1){
+			//show_message("buh");
+			obj_control.cursorPos++;
+		}
+		else {
+			obj_control.cursorPos = string_length(obj_control.inputText) +1;
+		}
+						
+		canPressRight = false;
+	}
+		canPressRightHoldingCounter ++;
+	if(canPressRightHoldingCounter == holdingLimit){
+		canPressRight = true;
+		loopItterations ++;
+		canPressRightHoldingCounter = 0;
+	}
+}
+if (keyboard_check_released(vk_right)) {
+loopItterations = 0;
+canPressRightHoldingCounter = 0;
+canPressRight = true;
+}
+	
+	
 
-var displayText = obj_control.inputText;
+clamp(obj_control.cursorPos, 1, string_length(obj_control.inputText));
+
+displayText = obj_control.inputText;
+if(string_width(obj_control.inputText) > maxDisplaySize){
+	displayText = string_copy(obj_control.inputText, (string_length(obj_control.inputText) - maxDisplaySize), string_length(obj_control.inputText) );
+}
+
 
 if (obj_control.cursorTimer >=0){
 	obj_control.cursorTimer --;
@@ -316,7 +457,7 @@ else{
 
 
 if(obj_control.cursorViz){
-	displayText = string_insert("|", obj_control.inputText, obj_control.cursorPos);
+	displayText = string_insert("|", displayText, obj_control.cursorPos);
 }
 else{
 	displayText = string_delete(displayText, obj_control.cursorPos, 0);

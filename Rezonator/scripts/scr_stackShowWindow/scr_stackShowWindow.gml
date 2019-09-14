@@ -165,7 +165,7 @@ if (obj_control.stackShowWindowActive) {
 	
 	
 	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - 36, string(currentStackName));
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 +20, string_hash_to_newline(currentStackCaption));
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 + 40, string_hash_to_newline(currentStackCaption));
 
 	if(gameHover == true){
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width(currentGame)/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width(currentGame)/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5, true);

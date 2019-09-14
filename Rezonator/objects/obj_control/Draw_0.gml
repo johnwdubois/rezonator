@@ -155,8 +155,10 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 790, "chainColorID[3]: " + string(obj_chain.chainColorID[3]));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 810, "wordLeftMargin: " + string(wordLeftMargin));
-	
-	
+	draw_text(camera_get_view_width(view_camera[0]) -500 , 810, "cursorPos: " + string(obj_control.cursorPos));
+	draw_text(camera_get_view_width(view_camera[0]) -500 , 830, "inputString Length: " + string(string_length(obj_control.inputText)));
+
+		
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 830, "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 850, "speakerLabelColPrevList: " + scr_getStringOfList(speakerLabelColPrevList));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 870, "speakerLabelColXHolding: " + string(speakerLabelColXHolding));

@@ -27,8 +27,8 @@ windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
 
-
-
+maxDisplaySize = 30;
+displayText = "";
 
 
 questionWindowActive = false;
@@ -46,4 +46,12 @@ clearAllTracks = false;
 clearAllRez = false;
 clearAllLinks = false;
 
+canDelete = true;
+canDeleteHoldingCounter = 0;
+canPressLeft = true;
+canPressLeftHoldingCounter = 0;
+canPressRight = true;
+canPressRightHoldingCounter = 0;
+holdingLimit = 6;
+loopItterations = 0;
 

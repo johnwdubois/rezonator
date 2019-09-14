@@ -189,8 +189,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 				
 
-		
-		
+		obj_control.selectedChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i); 
+		//show_message(string(obj_control.selectedChainID));
 		var dropDownOptionList = ds_list_create();
 		if (grid  == obj_chain.stackChainGrid) {
 			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");

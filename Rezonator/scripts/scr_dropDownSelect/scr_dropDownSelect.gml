@@ -344,6 +344,8 @@ else if (optionListType == 3)
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 					}
 				
+				
+					instance_destroy(obj_dropDown);
 					break;
 						
 				case "Shuffle":	
@@ -357,7 +359,7 @@ else if (optionListType == 3)
 							functionSort_performSort = true;
 						}
 					}
-						
+					instance_destroy(obj_dropDown);
 					break;
 				case "Toggle line #":
 					
@@ -369,7 +371,7 @@ else if (optionListType == 3)
 					//ds_grid_copy(obj_control.unitGrid, obj_control.unitGridBackup);
 					
 					ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
-					
+					instance_destroy(obj_dropDown);
 					break;
 				
 				case "Check Order":
@@ -401,15 +403,28 @@ else if (optionListType == 3)
 					ds_list_destroy(checkList2);
 					ds_grid_destroy(tempLineGrid);
 					
-				
+					instance_destroy(obj_dropDown);
 					break;
+				case "Tag":
 						
+					var dropDownOptionList = ds_list_create();
+					ds_list_add(dropDownOptionList, "Happy", "Sad", "Playful", "Serious", "Delete tag");
+						
+					if (ds_list_size(dropDownOptionList) > 0) {
+						var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing*4, -999, obj_dropDown);
+						dropDownInst.optionList = dropDownOptionList;
+						dropDownInst.optionListType = 9;
+					
+						obj_control.ableToCreateDropDown = false;
+						obj_control.alarm[0] = 2;
+					}
+					
+					break;
 				default:
 					break;
 			}
 		}
 	}
-	instance_destroy();
 }
 else if (optionListType == 4)
 {
@@ -1091,15 +1106,21 @@ else if (optionListType == 9)
 	//"Create Rez", "Create track", "Delete rez", "Delete track"
 	switch (optionSelected)
 	{
-		case "Create tag":
-			show_message("Coming Soon");
+		//"Happy", "Sad", "Playful", "Serious",
+		case "Happy":
+			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, obj_control.swapLinePos1-1, "Happy");
 			break;
-		case "Edit tag":
-			show_message("Coming Soon");
-			//show_message("BUH 3");
+		case "Sad":
+			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, obj_control.swapLinePos1-1, "Sad");
+			break;
+		case "Playful":
+			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, obj_control.swapLinePos1-1, "Playful");
+			break;
+		case "Serious":
+			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, obj_control.swapLinePos1-1, "Serious");
 			break;
 		case "Delete tag":
-			show_message("Coming Soon");	
+			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, obj_control.swapLinePos1-1, 0);
 			break;
 		default:
 			break;

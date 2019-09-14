@@ -63,8 +63,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 		//Check mouse clicks to focus a chain in the list
 	if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2 + 10)){
-		if(device_mouse_check_button_released(0, mb_left) && !instance_exists(obj_dropDown)) {
-		
+		if(device_mouse_check_button_released(0, mb_left) && (!instance_exists(obj_dropDown) || obj_control.dialogueBoxActive)) {
+
 			// Unfocus chain if previously focused
 			if (currentChainState == obj_chain.chainStateFocus) {
 				currentChainState = obj_chain.chainStateNormal;
@@ -88,6 +88,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				}
 				obj_chain.mouseLineWordID = -1;
 			}
+
 		}
 		if(device_mouse_check_button_released(0, mb_right)) {
 		
@@ -108,6 +109,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
 				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 				
+				
 				// Set chain to focus in the main screen
 				if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
 					scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
@@ -115,7 +117,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				obj_chain.mouseLineWordID = -1;
 			}
 			
-			
+			obj_control.selectedChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i); 
 		
 			var dropDownOptionList = ds_list_create();
 		
