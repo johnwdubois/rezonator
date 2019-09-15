@@ -4479,6 +4479,14 @@
             }
         },
         {
+            "Key": "ea616601-e015-4b80-88a6-d82b370726ef",
+            "Value": {
+                "id": "b15ec759-4552-405c-a1e8-33750cec407a",
+                "resourcePath": "objects\\obj_automaticLinkDraw\\obj_automaticLinkDraw.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "eaa5c3d4-d13d-4d6c-bc31-fdbcc6739a40",
             "Value": {
                 "id": "f70f7b87-f802-4e92-8b68-970f63dd673a",
