@@ -1,7 +1,7 @@
-var colX3 = scr_getValueFromString(global.iniFileString, "SpeakerLabelX3:", ",");
-var colX4 = scr_getValueFromString(global.iniFileString, "SpeakerLabelX4:", ",");
+var colX3 = string_digits(scr_getValueFromString(global.iniFileString, "SpeakerLabelX3:", ","));
+var colX4 = string_digits(scr_getValueFromString(global.iniFileString, "SpeakerLabelX4:", ","));
 
-if(colX3 != "" and colX4 != "") {
+if (colX3 != "" and colX4 != "") {
 	
 	colX3 = real(colX3);
 	colX4 = real(colX4);

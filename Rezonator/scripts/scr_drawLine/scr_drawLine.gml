@@ -128,7 +128,7 @@ if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin) {
 	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin;
 	var leftOutOfBoundsRectY1 = 0;
 	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - 20;
-	var leftOutOfBoundsRectY2 = room_height;
+	var leftOutOfBoundsRectY2 = camera_get_view_height(view_camera[0]);
 
 	if (currentActiveLineGrid == searchGrid) {
 		leftOutOfBoundsRectX2 = leftScreenBound;
@@ -139,7 +139,7 @@ if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin) {
 
 draw_set_color(global.colorThemeText);
 
-obj_control.leftScreenBound = room_width;
+obj_control.leftScreenBound = camera_get_view_width(view_camera[0]);
 
 hoverWordID = -1;
 hoverChunkID = -1;
