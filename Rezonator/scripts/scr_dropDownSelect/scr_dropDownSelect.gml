@@ -932,7 +932,6 @@ else if (optionListType == 7)
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
 			//obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
 			//obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
-			obj_control.wordLeftMarginDest = 170;
 			
 			//show_message("Coming Soon");
 			break;
