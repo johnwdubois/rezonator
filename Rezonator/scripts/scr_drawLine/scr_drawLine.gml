@@ -87,7 +87,7 @@ if (speakerLabelColXHolding > -1) {
 if (not mouseoverPanelPane and not global.wheresElmo) {
 	if (point_in_rectangle(mouse_x, mouse_y, 0, wordTopMargin, speakerLabelMargin, camera_get_view_height(view_camera[0]))) {
 	
-		if (mouse_check_button_pressed(mb_left)) {
+		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left)) {
 			if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)
 			or ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus)) {
 				with (obj_chain) {
@@ -95,8 +95,8 @@ if (not mouseoverPanelPane and not global.wheresElmo) {
 					scr_refreshVizLinkGrid();
 				}
 			}
+			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 		}
-		obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 	}
 	else {
 	
