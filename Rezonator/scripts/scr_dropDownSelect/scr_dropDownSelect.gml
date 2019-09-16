@@ -371,6 +371,8 @@ else if (optionListType == 3)
 					//ds_grid_copy(obj_control.unitGrid, obj_control.unitGridBackup);
 					
 					ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
+					scr_refreshLineGridPixelY();
+					scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 					instance_destroy(obj_dropDown);
 					break;
 				

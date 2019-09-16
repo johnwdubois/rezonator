@@ -570,6 +570,9 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 				scr_splitWord(obj_control.inputText);
 			}
 			else{
+				if (obj_control.inputText == "") {
+					obj_control.inputText = "NULL";
+				}
 				if(obj_control.fromDropDown){
 					scr_replaceWord(obj_control.rightClickWordID,obj_control.inputText);
 				}
@@ -728,6 +731,9 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 			scr_splitWord(obj_control.inputText);
 		}
 		else{
+			if (obj_control.inputText == "") {
+				obj_control.inputText = "NULL";
+			}
 			if(obj_control.fromDropDown){
 				scr_replaceWord(obj_control.rightClickWordID,obj_control.inputText);
 			}
