@@ -12,6 +12,10 @@
 	Author: Terry DuBois
 */
 
+toggleDrawRez = true;
+toggleDrawTrack = true;
+toggleDrawStack = true;
+
 chainGridWidth = 9;
 chainGrid_colChainID = 0;
 chainGrid_colChainState = 1;

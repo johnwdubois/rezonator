@@ -223,7 +223,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	// draw stack rectangle if this line is in a stack
 	if (currentLineInStack > -1) {
-		
+			
+		if (obj_chain.toggleDrawStack) {
 			var currentStackChainID = currentLineInStack;
 			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackChainID);
 			
@@ -239,9 +240,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 				var stackRectY1 = speakerRectY1;
 				var stackRectX2 = room_width;
 				var stackRectY2 = speakerRectY2;
-			
+				
 				draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
 			}
+		}
 	}
 	else {
 		if (ds_list_size(inRectUnitIDList) > 0) {

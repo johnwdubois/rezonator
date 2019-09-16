@@ -2295,6 +2295,14 @@
             }
         },
         {
+            "Key": "821d2a3f-365b-4b4d-87e0-e82336c64405",
+            "Value": {
+                "id": "2be48bbf-884e-4766-bf09-515d3134535d",
+                "resourcePath": "sprites\\spr_toggleDraw\\spr_toggleDraw.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "82e1ee6a-c195-400a-a437-99b7c44dd6e9",
             "Value": {
                 "id": "f42826b3-3b64-41c5-8d32-882ec1a1ed20",

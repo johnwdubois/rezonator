@@ -13,6 +13,10 @@
 	Author: Terry DuBois
 */
 
+if (not obj_chain.toggleDrawTrack) {
+	exit;
+}
+
 draw_set_font(fnt_main);
 
 var lineX1 = undefined;
