@@ -48,7 +48,9 @@ with (obj_panelPane) {
 
 
 wordTopMargin = menuBarHeight + chainListHeight;
-
+if (global.wheresElmo || global.rezzles) {
+	wordTopMargin += 80;
+}
 
 
 scr_setDrawRange();
@@ -63,7 +65,12 @@ if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
 	//var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
 	draw_set_color(global.colorThemeOutOfBounds);
 	//draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
-	draw_rectangle(0, 0, room_width, wordTopMargin, false);
+	var oobTopRectY2 = wordTopMargin;
+	if (ds_grid_height(currentActiveLineGrid) > 0) {
+		var lowestY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0) - (gridSpaceVertical / 2) - 10;
+		oobTopRectY2 = clamp(wordTopMargin, 0, lowestY);
+	}
+	draw_rectangle(0, 0, room_width, oobTopRectY2, false);
 }
 if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) - 1 and ds_grid_height(currentActiveLineGrid) > 0) {
 	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
