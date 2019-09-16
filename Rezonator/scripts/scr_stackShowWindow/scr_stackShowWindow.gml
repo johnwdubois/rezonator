@@ -122,10 +122,10 @@ if (obj_control.stackShowWindowActive) {
 	
 	
 	
-	var filterAllButtonX1 = camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 5;
-	var filterAllButtonY1 = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5;
-	var filterAllButtonX2 = camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5;
-	var filterAllButtonY2 = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5;
+	var filterAllButtonX1 = camera_get_view_width(view_camera[0]) / 2 - stackBoxXOffset  + 5;
+	var filterAllButtonY1 = camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset - 15;
+	var filterAllButtonX2 = camera_get_view_width(view_camera[0]) / 2 - stackBoxXOffset  + 25;
+	var filterAllButtonY2 = camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset + 5;
 	draw_sprite_ext(spr_filterIcons, selectAll, mean(filterAllButtonX1, filterAllButtonX2), mean(filterAllButtonY1, filterAllButtonY2), 1, 1, 0, c_white, 1);
 	// Select all boolean switch
 	if (point_in_rectangle(mouse_x, mouse_y, filterAllButtonX1, filterAllButtonY1, filterAllButtonX2, filterAllButtonY2)) {

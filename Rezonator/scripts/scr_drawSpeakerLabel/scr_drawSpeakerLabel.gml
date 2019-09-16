@@ -27,11 +27,11 @@ for (var i = 0; i < 3; i++) {
 		speakerLabelCurrentColStr = (ds_grid_height(global.fileLineRipGrid) < 2) ? "" : string(currentDiscoID);
 	}
 	else if (i == 1 and currentLineNumberLabel != undefined) {
-		speakerLabelCurrentColStr = string(currentLineNumberLabel);
+		speakerLabelCurrentColStr = "  " + string(currentLineNumberLabel);
 	}
 		
 	if (i == 2 and participantName != undefined) {
-		speakerLabelCurrentColStr = string(participantName);
+		speakerLabelCurrentColStr = "  " + string(participantName);
 		
 		var speakerNameColWidth = ds_list_find_value(obj_control.speakerLabelColXList, 3) - ds_list_find_value(obj_control.speakerLabelColXList, 2);
 		var cutoffs = 0;
