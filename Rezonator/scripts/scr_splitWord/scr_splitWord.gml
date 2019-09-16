@@ -25,10 +25,18 @@ if(ds_list_size(listOfWords) < 2){
 }
 //show_message(string(obj_control.newWordHoverWordSeq));
 if(obj_control.fromDropDown){
-	scr_replaceWord(obj_control.rightClickWordID,ds_list_find_value(listOfWords, 0));
+	var firstWord = ds_list_find_value(listOfWords, 0);
+	if (firstWord == "") {
+		firstWord = "NULL";
+	}
+	scr_replaceWord(obj_control.rightClickWordID,firstWord);
 }
 else{
-	scr_replaceWord(obj_control.newWordHoverWordID,ds_list_find_value(listOfWords, 0));
+	var newWord = ds_list_find_value(listOfWords, 0);
+	if (newWord == "") {
+		newWord = "NULL";
+	}
+	scr_replaceWord(obj_control.newWordHoverWordID, newWord);
 }
 
 
