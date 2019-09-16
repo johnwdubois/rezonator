@@ -130,11 +130,14 @@ if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin) {
 	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - 20;
 	var leftOutOfBoundsRectY2 = camera_get_view_height(view_camera[0]);
 
+
 	if (currentActiveLineGrid == searchGrid) {
 		leftOutOfBoundsRectX2 = leftScreenBound;
 	}
 	
-	draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
+	if (abs(leftOutOfBoundsRectX1 - leftOutOfBoundsRectX2) > 2) {
+		draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
+	}
 }
 
 draw_set_color(global.colorThemeText);

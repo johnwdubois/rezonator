@@ -151,13 +151,15 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 			var mouseLineWordStringHeight = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1));
 			var currentHitGridIndexPickWhip = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid)-1, mouseLineWordID);
 			
-				if (obj_control.searchGridActive) {
-					mouseLineX = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colPixelX, currentHitGridIndexPickWhip) + (mouseLineWordStringWidth / 2);
-				}
-				else {
-					mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1) + (mouseLineWordStringWidth / 2);
-				}			
-			mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordGridIndex) + (mouseLineWordStringHeight / 2);
+			if (mouseLineWordGridIndex > -1 and mouseLineWordGridIndex < ds_grid_height(obj_control.currentActiveLineGrid)) {
+					if (obj_control.searchGridActive) {
+						mouseLineX = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colPixelX, currentHitGridIndexPickWhip) + (mouseLineWordStringWidth / 2);
+					}
+					else {
+						mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1) + (mouseLineWordStringWidth / 2);
+					}			
+				mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordGridIndex) + (mouseLineWordStringHeight / 2);
+			}
 		}
 	}
 	
