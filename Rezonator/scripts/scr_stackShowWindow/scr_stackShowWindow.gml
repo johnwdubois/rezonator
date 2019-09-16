@@ -163,8 +163,16 @@ if (obj_control.stackShowWindowActive) {
 	draw_set_font(fnt_mainLarge1);
 	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20, currentGame);
 	
+	var maxcharLimit = 20;
+	var	stackNamedDisplayText = string(currentStackName);
+	if(string_length(currentStackName) > maxcharLimit){
+		stackNamedDisplayText  = string_copy(currentStackName, 0, maxcharLimit );
+		stackNamedDisplayText  += "...";
+	}
+
 	
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - 36, string(currentStackName));
+	
+	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - 36, string(stackNamedDisplayText ));
 	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 + 40, string_hash_to_newline(currentStackCaption));
 
 	if(gameHover == true){
