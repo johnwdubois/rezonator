@@ -2695,6 +2695,14 @@
             }
         },
         {
+            "Key": "935f9a11-3a51-4851-9b94-e353bb1a181b",
+            "Value": {
+                "id": "adad9710-a155-4535-b074-719ca22ee051",
+                "resourcePath": "sprites\\spr_filterIcons\\spr_filterIcons.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "93cfdf3f-6737-4000-b200-607f0f4879dc",
             "Value": {
                 "id": "a38f88f9-b17f-4e79-85fd-7fde84b62baa",

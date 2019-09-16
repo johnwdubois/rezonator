@@ -52,7 +52,15 @@ for (var currentRow = obj_control.drawRangeStart; currentRow < obj_control.drawR
 
 
 if (jumpToStart) {
-	obj_control.wordLeftMarginDest = -(furthestDisplayCol * obj_control.gridSpaceHorizontal) + (obj_control.gridSpaceHorizontal * 2);
+	if (obj_control.searchGridActive) {
+		//obj_control.wordLeftMarginDest = -(furthestDisplayCol * obj_control.gridSpaceHorizontal) + (obj_control.gridSpaceHorizontal * 2);
+		obj_control.wordLeftMarginDest = -(furthestDisplayCol * obj_control.gridSpaceHorizontal) + ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1);
+	}
+	else {
+		with (obj_alarm) {
+			alarm[0] = 5;
+		}
+	}
 }
 else {
 	if ((furthestDisplayCol) * obj_control.gridSpaceHorizontal + obj_control.wordLeftMarginDest > window_get_width()) {

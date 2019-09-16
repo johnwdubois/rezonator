@@ -255,6 +255,9 @@ if (oldRow >= 0 && ds_grid_height(grid) != 0) {
 						or functionChainList_currentTab == functionChainList_tabClique) {
 							currentWordInfoCol[getInfoLoop] = "";
 							var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
+							if (currentWordIDList == undefined) {
+								break;
+							}
 							for (var i = 0; i < ds_list_size(currentWordIDList); i++) {
 								var currentWordID = ds_list_find_value(currentWordIDList, i);
 								var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
