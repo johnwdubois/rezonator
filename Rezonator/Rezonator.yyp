@@ -447,6 +447,14 @@
             }
         },
         {
+            "Key": "14289895-0aa9-4335-80cd-fbc1b0892c27",
+            "Value": {
+                "id": "75ed913e-92d0-4ac5-b5b7-be930801aee0",
+                "resourcePath": "sprites\\wheres_elmo_BG\\wheres_elmo_BG.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "149dbd0e-ade3-430d-bd80-76c59b9f2cca",
             "Value": {
                 "id": "cff78724-e3cf-4f44-bea3-ab753689d73e",

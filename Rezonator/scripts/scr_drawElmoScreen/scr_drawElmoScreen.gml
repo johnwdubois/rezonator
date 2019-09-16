@@ -13,7 +13,7 @@
 				
 	Author: Brady Moore
 */
-var verticleBuffer = 125;
+var verticleBuffer = 150;
 var horizontalBuffer = 250;
 var searchBarXOffset = 235;
 var searchBarYOffset = 20;
@@ -49,15 +49,21 @@ else {
 if (elmoActive) {
 	obj_control.mouseoverPanelPane = true;
 	obj_control.quickLinkAllowed = false;
-	
+
+	draw_sprite_ext(wheres_elmo_BG, 0, camera_get_view_width(view_camera[0])/2, camera_get_view_height(view_camera[0])/2, 1, 1, 0, c_white, 1);
+
 	var elmoScreenRectX1 = camera_get_view_width(view_camera[0])/2 - horizontalBuffer,
-	elmoScreenRectY1 = camera_get_view_height(view_camera[0])/2 - verticleBuffer,
-	elmoScreenRectX2 = camera_get_view_width(view_camera[0]) /2 + horizontalBuffer,
-	elmoScreenRectY2 = camera_get_view_height(view_camera[0])/2 + verticleBuffer;
+	elmoScreenRectY1 = camera_get_view_height(view_camera[0])/2 - verticleBuffer - 40,
+	elmoScreenRectX2 = camera_get_view_width(view_camera[0])/2 + horizontalBuffer,
+	elmoScreenRectY2 = camera_get_view_height(view_camera[0])/2 + verticleBuffer - 40;
+	draw_set_colour(global.colorThemeText);
+	draw_roundrect(elmoScreenRectX1 - 2, elmoScreenRectY1 - 2, elmoScreenRectX2 + 10, elmoScreenRectY2 + 10, false);
 
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(elmoScreenRectX1, elmoScreenRectY1, elmoScreenRectX2, elmoScreenRectY2, false);
+	
+	
 	draw_set_colour(c_blue);
 	draw_set_alpha(0.3);
 	/*if (global.colorTheme ==0) {
@@ -74,12 +80,25 @@ if (elmoActive) {
 	draw_set_font(fnt_mainBold);
 	draw_text(elmoScreenRectX1 + 15, elmoScreenRectY1 + 15, string(game_display_name));
 	
+	
+	
+	var bubblePlus = obj_control.wordDrawGridFocusedAnimation,
+	bubbleX1 = elmoScreenRectX1 + 30,
+	bubbleY1 = elmoScreenRectY1 + 35,
+	bubbleX2 = elmoScreenRectX2 - 30,
+	bubbleY2 = elmoScreenRectY2 -buttonYOffset;
+	
+	draw_set_color(global.colorThemeBG);
+	draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePlus, bubbleY2 + bubblePlus, false);
+	draw_set_color(global.colorThemeBorders);
+	draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePlus, bubbleY2 + bubblePlus, true);
+	
 	draw_set_font(fnt_mainLarge1);
 
-	var firstButtonRectX1 = camera_get_view_width(view_camera[0]) /2 + 40 - buttonXOffset,
-	firstButtonRectY1 = camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset,
-	firstButtonRectX2 = camera_get_view_width(view_camera[0]) /2 + 40 + buttonXOffset,
-	firstButtonRectY2 = camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset;
+	var firstButtonRectX1 = camera_get_view_width(view_camera[0]) /2 - 80 - buttonXOffset,
+	firstButtonRectY1 = camera_get_view_height(view_camera[0])/2 + 35 - buttonYOffset,
+	firstButtonRectX2 = camera_get_view_width(view_camera[0]) /2 - 80 + buttonXOffset,
+	firstButtonRectY2 = camera_get_view_height(view_camera[0])/2 + 35 + buttonYOffset;
 	
 	// draw buttons for OK and Cancel
 	draw_set_colour(global.colorThemeBG);
@@ -90,9 +109,9 @@ if (elmoActive) {
 	draw_set_colour(global.colorThemeBorders);
 	draw_rectangle(firstButtonRectX1, firstButtonRectY1, firstButtonRectX2, firstButtonRectY2, true);
 	
-	var secondButtonRectX1 = camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset,
+	var secondButtonRectX1 = camera_get_view_width(view_camera[0]) /2 + 80 - buttonXOffset,
 	secondButtonRectY1 = firstButtonRectY1,
-	secondButtonRectX2 = camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset,
+	secondButtonRectX2 = camera_get_view_width(view_camera[0]) /2 + 80 + buttonXOffset,
 	secondButtonRectY2 = firstButtonRectY2;
 	
 	draw_set_colour(global.colorThemeBG);
@@ -102,17 +121,6 @@ if (elmoActive) {
 	draw_rectangle(secondButtonRectX1, secondButtonRectY1, secondButtonRectX2, secondButtonRectY2, false);
 	draw_set_colour(global.colorThemeBorders);
 	draw_rectangle(secondButtonRectX1, secondButtonRectY1, secondButtonRectX2, secondButtonRectY2, true);
-	
-	var bubblePlus = obj_control.wordDrawGridFocusedAnimation,
-	bubbleX1 = elmoScreenRectX1 + 30,
-	bubbleY1 = elmoScreenRectY1 + 35,
-	bubbleX2 = elmoScreenRectX2 - 30,
-	bubbleY2 = elmoScreenRectY2 - 70 - buttonYOffset;
-	
-	draw_set_color(global.colorThemeBG);
-	draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePlus, bubbleY2 + bubblePlus, false);
-	draw_set_color(global.colorThemeBorders);
-	draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePlus, bubbleY2 + bubblePlus, true);
 	
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainLarge1);
@@ -139,7 +147,7 @@ if (elmoActive) {
 
 
 // ok button check
-if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && elmoActive){
+if (point_in_rectangle(mouse_x, mouse_y, firstButtonRectX1, firstButtonRectY1, firstButtonRectX2, firstButtonRectY2) && elmoActive){
 	if (device_mouse_check_button_released(0, mb_left)) {
 		// Exit the opening/ending screen
 		
@@ -253,7 +261,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 }
 
 // cancel button check
-if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && elmoActive){
+if (point_in_rectangle(mouse_x, mouse_y, secondButtonRectX1, secondButtonRectY1, secondButtonRectX2, secondButtonRectY2) && elmoActive){
 	if (device_mouse_check_button_released(0, mb_left)) {
 			
 		// Exit the stackShow before it begins
