@@ -57,9 +57,9 @@ if (functionHelp_collapsed) {
 		functionHelp_plusX += abs(functionHelp_plusX - camWidth) / 4 ;
 	}
 	
-	if (obj_control.showDevVars) {
+	//if (obj_control.showDevVars) {
 		draw_text(x + windowWidth - string_width("000"), y + (windowHeight / 2), string(fps));
-	}
+	//}
 }
 else {
 	draw_set_color(global.colorThemeText);
