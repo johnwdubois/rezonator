@@ -420,7 +420,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					obj_control.rightClickonWord = true;
 					obj_control.wideDropDown = true;
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList,"Replace word", "Split word", "New word", "Delete new word");
+					ds_list_add(dropDownOptionList,"Replace Word", "Split Word", "New Word", "Delete New Word");
 
 					if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 						var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
