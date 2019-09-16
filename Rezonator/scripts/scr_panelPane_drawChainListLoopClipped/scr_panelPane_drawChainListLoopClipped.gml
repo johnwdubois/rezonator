@@ -241,29 +241,28 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	draw_set_color(global.colorThemeText);
 	// Fill in boxes if filtered
 	// Check boxes for user selection with mouse click
-	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY)) {
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
-		
-		if (((device_mouse_check_button_released(0, mb_left))
-		or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
-		
-			// Record previous display row in case Filter is empty
-			obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
-			// Set selected objects to be filtered
-			inFilter = !inFilter;
-			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
+	var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
+	if (mouseover) {
+			draw_set_alpha(1);
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
+	}
+	if (((mouseover and device_mouse_check_button_released(0, mb_left))
+	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
+		// Record previous display row in case Filter is empty
+		obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
+		// Set selected objects to be filtered
+		inFilter = !inFilter;
+		ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
 			
-			// Render the filter in the mainscreen
-			if (obj_control.filterGridActive) {
-				with (obj_control) {
-					scr_renderFilter();
-				}
+		// Render the filter in the mainscreen
+		if (obj_control.filterGridActive) {
+			with (obj_control) {
+				scr_renderFilter();
 			}
-			// Add to moveCounter
-			obj_control.moveCounter++;
 		}
+		// Add to moveCounter
+		obj_control.moveCounter++;
 	}
 	draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
 	
