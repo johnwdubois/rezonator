@@ -205,16 +205,32 @@ if(global.menuOpen){
 	}
 
 	// Backspace
-	if (keyboard_check_pressed(vk_backspace)) {
-		obj_openingScreen.inputText = string_delete(obj_openingScreen.inputText, obj_openingScreen.cursorPos-1, 1);
-		if (obj_openingScreen.cursorPos >=2) {
-			obj_openingScreen.cursorPos-=1;
+	if (keyboard_check(vk_backspace)) {
+		obj_openingScreen.cursorViz = true;
+		if(canDelete){
+			obj_openingScreen.inputText = string_delete(obj_openingScreen.inputText, obj_openingScreen.cursorPos-1, 1);
+			if (obj_openingScreen.cursorPos >=2) {
+				obj_openingScreen.cursorPos--;
+			}
+			else {
+				obj_openingScreen.cursorPos = 2;
+			}
+			canDelete = false;
 		}
-		else {
-			obj_openingScreen.cursorPos = 2;
+		canDeleteHoldingCounter++
+		if(canDeleteHoldingCounter == holdingLimit){
+			canDelete = true;
+			loopItterations ++;
+			canDeleteHoldingCounter = 0;
 		}
 	}
-	if (keyboard_string != "" && global.menuOpen  && keyboard_string != "-" && keyboard_string != "+") {
+	if (keyboard_check_released(vk_backspace)) {
+	loopItterations = 0;
+	canDeleteHoldingCounter = 0;
+	canDelete = true;
+	}
+	
+	if (keyboard_string != "" && global.menuOpen  && keyboard_string != "-" && keyboard_string != "+" && string_length(obj_openingScreen.inputText) < 30 ) {
 		//show_message(keyboard_string);
 		var t = keyboard_string;
 		obj_openingScreen.inputText = string_insert(t, obj_openingScreen.inputText, obj_openingScreen.cursorPos);
@@ -225,29 +241,64 @@ if(global.menuOpen){
 	}
 
 	// Cursor
-	if(keyboard_check_pressed(vk_left)) {
-		if (obj_openingScreen.cursorPos >=2) {
-			obj_openingScreen.cursorPos-=1;
-		}
-		else {
-			obj_openingScreen.cursorPos = 1;
-		}
-	}
-	if(keyboard_check_pressed(vk_right)) {
-		if (obj_openingScreen.cursorPos <= string_length(obj_openingScreen.inputText)){
-			obj_openingScreen.cursorPos+=1;
-		}
-		else{
-			if (string_length(obj_openingScreen.inputText) > 0) {
-				obj_openingScreen.cursorPos = string_length(obj_openingScreen.inputText) +1;
+	if(keyboard_check(vk_left)) {
+		obj_openingScreen.cursorViz = true;
+		if(canPressLeft){
+			if (obj_openingScreen.cursorPos >=2) {
+				obj_openingScreen.cursorPos--;
 			}
 			else {
 				obj_openingScreen.cursorPos = 1;
 			}
+			canPressLeft = false;
+		}
+		canPressLeftHoldingCounter ++;
+		if(canPressLeftHoldingCounter == holdingLimit){
+			canPressLeft = true;
+			loopItterations ++;
+			canPressLeftHoldingCounter = 0;
 		}
 	}
+	if (keyboard_check_released(vk_left)) {
+	loopItterations = 0;
+	canPressLeftHoldingCounter = 0;
+	canPressLeft = true;
+	}
+	
+	if(keyboard_check(vk_right)) {
+		obj_openingScreen.cursorViz = true;
+		if(canPressRight){
+			if (obj_openingScreen.cursorPos <= string_length(obj_openingScreen.inputText) + 1 && obj_openingScreen.cursorPos >=1){
+				//show_message("buh");
+				obj_openingScreen.cursorPos++;
+			}
+			else {
+				obj_openingScreen.cursorPos = string_length(obj_openingScreen.inputText) +1;
+			}
+						
+			canPressRight = false;
+		}
+			canPressRightHoldingCounter ++;
+		if(canPressRightHoldingCounter == holdingLimit){
+			canPressRight = true;
+			loopItterations ++;
+			canPressRightHoldingCounter = 0;
+		}
+	}
+	if (keyboard_check_released(vk_right)) {
+	loopItterations = 0;
+	canPressRightHoldingCounter = 0;
+	canPressRight = true;
+	}
+	
+	
 
-	var displayText = obj_openingScreen.inputText;
+	clamp(obj_openingScreen.cursorPos, 1, string_length(obj_openingScreen.inputText));
+
+	displayText = obj_openingScreen.inputText;
+	if(string_width(obj_openingScreen.inputText) > maxDisplaySize){
+		displayText = string_copy(obj_openingScreen.inputText, (string_length(obj_openingScreen.inputText) - maxDisplaySize), string_length(obj_openingScreen.inputText) );
+	}
 
 	if (obj_openingScreen.cursorTimer >=0){
 		obj_openingScreen.cursorTimer --;
@@ -258,8 +309,9 @@ if(global.menuOpen){
 	}
 
 
+
 	if(obj_openingScreen.cursorViz){
-		displayText = string_insert("|", obj_openingScreen.inputText, obj_openingScreen.cursorPos);
+		displayText = string_insert("|", displayText, obj_openingScreen.cursorPos);
 	}
 	else{
 		displayText = string_delete(displayText, obj_openingScreen.cursorPos, 0);
