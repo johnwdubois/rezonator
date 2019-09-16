@@ -51,10 +51,10 @@ if (obj_control.stackShowWindowActive) {
 	obj_control.mouseoverPanelPane = true;
 
 	//obj_control.selectedChainID = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 )
-	//show_debug_message(string(currentStackRow));
+	//show_debug_message(string(currentStackRow));	
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+	draw_rectangle(windowX1, windowY1, windowX2, windowY2, false);
 	x = camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset;
 	y = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 11;
 	
