@@ -32,9 +32,15 @@ for (var i = 0; i < 3; i++) {
 		
 	if (i == 2 and participantName != undefined) {
 		speakerLabelCurrentColStr = string(participantName);
-
-		while (string_width(speakerLabelCurrentColStr) > ds_list_find_value(obj_control.speakerLabelColXList, 2)) {
-			speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr) - 1, 2);
+		
+		var speakerNameColWidth = ds_list_find_value(obj_control.speakerLabelColXList, 3) - ds_list_find_value(obj_control.speakerLabelColXList, 2);
+		var cutoffs = 0;
+		while (string_width(speakerLabelCurrentColStr + "... ") > speakerNameColWidth and cutoffs < 100) {
+			speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr), 1);
+			cutoffs++;
+		}
+		if (cutoffs > 0) {
+			speakerLabelCurrentColStr += "... ";
 		}
 	}
 		

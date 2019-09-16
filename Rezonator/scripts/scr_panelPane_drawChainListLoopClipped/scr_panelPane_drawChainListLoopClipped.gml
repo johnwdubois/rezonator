@@ -54,7 +54,7 @@ var strHeight = string_height("0") * 1.5;
 
 // Set text margin area
 var filterRectMargin = 8;
-var filterRectSize = strHeight / 2;
+var filterRectSize = (strHeight / 2) + 5;
 var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 
 var textMarginTop = functionChainList_tabHeight;
@@ -240,38 +240,32 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	draw_set_color(global.colorThemeText);
 	// Fill in boxes if filtered
-	if (inFilter) {
-		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, false);
-		draw_set_color(global.colorThemeBG);
-	}
-	else {
-		draw_set_color(global.colorThemeText);
-		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
-	}
-	draw_set_halign(fa_center);
-	draw_set_valign(fa_middle);
-	draw_text(mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), "F");
-	
-	
 	// Check boxes for user selection with mouse click
-	if (((scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY) and device_mouse_check_button_released(0, mb_left))
-	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
+	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY)) {
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 		
-		// Record previous display row in case Filter is empty
-		obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
-		// Set selected objects to be filtered
-		inFilter = !inFilter;
-		ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
+		if (((device_mouse_check_button_released(0, mb_left))
+		or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
+		
+			// Record previous display row in case Filter is empty
+			obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
+			// Set selected objects to be filtered
+			inFilter = !inFilter;
+			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
 			
-		// Render the filter in the mainscreen
-		if (obj_control.filterGridActive) {
-			with (obj_control) {
-				scr_renderFilter();
+			// Render the filter in the mainscreen
+			if (obj_control.filterGridActive) {
+				with (obj_control) {
+					scr_renderFilter();
+				}
 			}
+			// Add to moveCounter
+			obj_control.moveCounter++;
 		}
-		// Add to moveCounter
-		obj_control.moveCounter++;
 	}
+	draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
 	
 	
 	// Create little boxes for alignment selection

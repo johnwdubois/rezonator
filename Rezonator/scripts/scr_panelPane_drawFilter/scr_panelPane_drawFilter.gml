@@ -26,15 +26,7 @@ var filterButtonX2 = x + windowWidth;
 var filterButtonY2 = y + functionChainList_tabHeight;
 
 // Draw filter button, and check for coloring
-if (obj_control.filterGridActive) {	
-	draw_set_color(global.colorThemeText);
-	draw_rectangle(filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2, false);
-	draw_set_color(global.colorThemeBG);
-}
-else {
-	draw_set_color(global.colorThemeText);
-}
-draw_text(mean(filterButtonX1, filterButtonX2), mean(filterButtonY1, filterButtonY2), "F");
+draw_sprite_ext(spr_filterIcons, obj_control.filterGridActive, mean(filterButtonX1, filterButtonX2), mean(filterButtonY1, filterButtonY2), 1, 1, 0, c_white, 1);
 
 var filterButtonSize = filterButtonY2 - filterButtonY1;
 
