@@ -51,10 +51,10 @@ if (obj_control.stackShowWindowActive) {
 	obj_control.mouseoverPanelPane = true;
 
 	//obj_control.selectedChainID = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 )
-	//show_debug_message(string(currentStackRow));
+	//show_debug_message(string(currentStackRow));	
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+	draw_rectangle(windowX1, windowY1, windowX2, windowY2, false);
 	x = camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset;
 	y = camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 11;
 	
@@ -120,18 +120,20 @@ if (obj_control.stackShowWindowActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 + 180, "Cancel");
 
 	
-
-	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 5 , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5, true);
-	if (selectAll) {
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 5 , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5, false);	
-	}
-
+	
+	
+	var filterAllButtonX1 = camera_get_view_width(view_camera[0]) / 2 - stackBoxXOffset  + 5;
+	var filterAllButtonY1 = camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset - 15;
+	var filterAllButtonX2 = camera_get_view_width(view_camera[0]) / 2 - stackBoxXOffset  + 25;
+	var filterAllButtonY2 = camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset + 5;
+	draw_sprite_ext(spr_filterIcons, selectAll, mean(filterAllButtonX1, filterAllButtonX2), mean(filterAllButtonY1, filterAllButtonY2), 1, 1, 0, c_white, 1);
 	// Select all boolean switch
-	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 5 , camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 20 + 5, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 20 + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 5)){
-			if (device_mouse_check_button_released(0, mb_left)) {
-				selectAll = !selectAll;	
-				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), selectAll);
-			}
+	if (point_in_rectangle(mouse_x, mouse_y, filterAllButtonX1, filterAllButtonY1, filterAllButtonX2, filterAllButtonY2)) {
+		draw_rectangle(filterAllButtonX1, filterAllButtonY1, filterAllButtonX2, filterAllButtonY2, true);
+		if (device_mouse_check_button_released(0, mb_left)) {
+			selectAll = !selectAll;	
+			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), selectAll);
+		}
 	}
 	
 	

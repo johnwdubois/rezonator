@@ -542,6 +542,11 @@ if (instance_exists(obj_audioUI)) {
 		}
 	}
 }
+if (instance_exists(obj_stackShow)) {
+	if (point_in_rectangle(mouse_x, mouse_y, obj_stackShow.windowX1, obj_stackShow.windowY1, obj_stackShow.windowX2, obj_stackShow.windowY2)) {
+		mouseoverPanelPane = true;	
+	}
+}
 
 
 
