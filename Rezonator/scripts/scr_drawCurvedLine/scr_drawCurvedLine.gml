@@ -22,7 +22,7 @@ var curvey1 = y1;
                    
 // Set the midpoints of the curved line
 var curvex2 = (x1 - ((x1 - x2) / 2));
-var curvey2 = (y1 - ((y1 - y2) / 2) + 10);
+var curvey2 = (y1 - ((y1 - y2) / 2));
                         
 var curvex3 = curvex1;
 var curvey3 = curvey2;
@@ -59,7 +59,7 @@ var curvex1_2 = x2;
 var curvey1_2 = y2;
                         
 var curvex2_2 = x2 + ((x1 - x2) / 2);
-var curvey2_2 = y2 + ((y1 - y2) / 2) + 10;
+var curvey2_2 = y2 + ((y1 - y2) / 2);
                         
 var curvex3_2 = curvex1_2;
 var curvey3_2 = curvey2_2;
