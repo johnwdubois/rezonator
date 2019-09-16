@@ -251,6 +251,9 @@ displayRowAscending = true;
 // Set the arrow key speed limit
 holdUpArrowKey = 0;
 holdDownArrowKey = 0;
+holdPgUp = 0;
+holdPgDn = 0;
+
 
 // Both of these are unused
 wordColor = c_black;

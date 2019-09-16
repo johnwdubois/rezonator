@@ -289,7 +289,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	
 	var inMouseHoldRect = 0;
-	if (mouse_check_button(mb_left) and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+	if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolRezBrush or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)) {
 		if(obj_control.mouseRectWithinLine) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		}

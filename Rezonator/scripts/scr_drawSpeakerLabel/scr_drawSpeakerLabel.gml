@@ -17,7 +17,7 @@ for (var i = 0; i < 3; i++) {
 	var speakerLabelCurrentColY2 = speakerRectY2;
 		
 		
-	draw_set_color((i == 2) ? participantColor: global.colorThemeSelected1);
+	draw_set_color((i == 2) ? participantColor: c_ltblue);
 	draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, false);
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, true);

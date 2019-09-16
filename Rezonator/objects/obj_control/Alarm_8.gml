@@ -21,7 +21,7 @@ if (ds_list_size(inRectWordIDList) > 0) {
 var inRectList = ds_list_create();
 if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 	// Ensure the gesture is correct for a trackChunk
-	if(not searchGridActive and obj_control.mouseRectBeginInWord == -1) {// and obj_control.mouseRectWithinLine) {
+	if(not searchGridActive and obj_control.mouseRectWithinLine) {// and obj_control.mouseRectWithinLine) {
 		alarm[10] = 1;
 		exit;
 	}
@@ -29,7 +29,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
 } 
 else {
 	// Ensure the gesture is correct for a rezChunk
-	if(not searchGridActive and obj_control.mouseRectBeginInWord == -1) {// and obj_control.mouseRectWithinLine) {
+	if(not searchGridActive and obj_control.mouseRectWithinLine) {// and obj_control.mouseRectWithinLine) {
 		alarm[10] = 1;
 		exit;
 	}
