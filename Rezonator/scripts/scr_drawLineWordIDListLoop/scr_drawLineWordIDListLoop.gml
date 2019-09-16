@@ -289,7 +289,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	
 	var inMouseHoldRect = 0;
-	if (mouse_check_button(mb_left) and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+	if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolRezBrush or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)) {
 		if(obj_control.mouseRectWithinLine) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		}
@@ -448,7 +448,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 		else if((drawWordLoop + 1 == ds_list_size(currentWordIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
-		and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
+		and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical) and not instance_exists(obj_dropDown)) {
 			obj_control.mouseoverNeutralSpace = true;	
 			if (device_mouse_check_button_released(0, mb_left) && !instance_exists(obj_dialogueBox)) {
 				with(obj_chain) {

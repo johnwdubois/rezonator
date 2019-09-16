@@ -58,12 +58,14 @@ if (elmoActive) {
 	draw_set_halign(fa_left);
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(elmoScreenRectX1, elmoScreenRectY1, elmoScreenRectX2, elmoScreenRectY2, false);
-	draw_set_colour(global.colorThemePaneBG);
-	if (global.colorTheme ==0) {
+	draw_set_colour(c_blue);
+	draw_set_alpha(0.3);
+	/*if (global.colorTheme ==0) {
 	draw_set_colour(c_ltgray);
-	}
+	}*/
 	// draw background UI
 	draw_rectangle(elmoScreenRectX1, elmoScreenRectY1 + 30, elmoScreenRectX2, elmoScreenRectY2, false);
+	draw_set_alpha(1);
 	draw_set_colour(global.colorThemeBorders);
 	draw_rectangle(elmoScreenRectX1, elmoScreenRectY1 + 30, elmoScreenRectX2, elmoScreenRectY2, true);
 	draw_rectangle(elmoScreenRectX1, elmoScreenRectY1, elmoScreenRectX2, elmoScreenRectY2, true);

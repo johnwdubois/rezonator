@@ -132,6 +132,22 @@ if (!clickedInChainList and !clickedInChainContents) {
 		}
 	}
 	
+	// Allow the user to hold down the pageUp or pageDown buttons
+	if (not instance_exists(obj_dialogueBox)) {
+		if (keyboard_check(vk_pagedown)) {
+			if (holdPgDn == 0 or (holdPgDn > 30 and holdPgDn % 5 == 0)) {
+				scrollSpeed -= (camera_get_view_height(view_camera[0]) * 0.8);
+			}
+			holdPgDn++;
+		}
+		if (keyboard_check(vk_pageup)) {
+			if (holdPgUp == 0 or (holdPgUp > 30 and holdPgUp % 5 == 0)) {
+				scrollSpeed += (camera_get_view_height(view_camera[0]) * 0.8);
+			}
+			holdPgUp++;
+		}
+	}
+	
 	if (instance_exists(obj_dialogueBox)) {
 		holdUpArrowKey = 0;
 		holdDownArrowKey = 0;
@@ -169,17 +185,31 @@ if (!clickedInChainList and !clickedInChainContents) {
 	if (holdUpArrowKey > 0 and !mouse_wheel_up() and !keyboard_check(vk_up)) {
 		holdUpArrowKey = 0;
 	}
+	
+	if (keyboard_check_released(vk_pagedown)) {
+		holdPgDn = 0;
+	}
+	if (holdPgDn > 0 and !keyboard_check(vk_pagedown)) {
+		holdPgDn = 0;
+	}
+	if (keyboard_check_released(vk_pageup)) {
+		holdPgUp = 0;
+	}
+	if (holdPgUp > 0 and !keyboard_check(vk_pageup)) {
+		holdPgUp = 0;
+	}
+	
 
 
 	if (not instance_exists(obj_dialogueBox)) {
 		// Scroll a full page up or down
-		if (keyboard_check_pressed(vk_pagedown)) {
-			scrollPlusYDest -= (camera_get_view_height(view_camera[0]) * 0.8);
-			//show_message(string(camera_get_view_height(view_camera[0])));
-		}
-		if (keyboard_check_pressed(vk_pageup)) {
-			scrollPlusYDest += (camera_get_view_height(view_camera[0])* 0.8);
-		}
+		//if (keyboard_check_pressed(vk_pagedown)) {
+		//	scrollPlusYDest -= (camera_get_view_height(view_camera[0]) * 0.8);
+		//	//show_message(string(camera_get_view_height(view_camera[0])));
+		//}
+		//if (keyboard_check_pressed(vk_pageup)) {
+		//	scrollPlusYDest += (camera_get_view_height(view_camera[0])* 0.8);
+		//}
 	
 		// Sends user to the bottom of the main screen
 		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
