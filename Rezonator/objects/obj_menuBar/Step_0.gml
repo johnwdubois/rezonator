@@ -20,7 +20,7 @@ if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
 		
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Open File", "Import Audio", "Save File", "Export Portion", "Change Author",  "Exit");
+		ds_list_add(dropDownOptionList, "Import Audio", "Save File", "Export Portion", "Change Author",  "Exit");
 
 		if (ds_list_size(dropDownOptionList) > 0) {
 			var dropDownInst = instance_create_depth(0, menuHeight, -999, obj_dropDown);

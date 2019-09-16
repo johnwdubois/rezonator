@@ -117,6 +117,17 @@ inputText = "";
 cursorTimer = 20;
 global.userName = "";
 
+maxDisplaySize = 12;
+canDelete = true;
+canDeleteHoldingCounter = 0;
+canPressLeft = true;
+canPressLeftHoldingCounter = 0;
+canPressRight = true;
+canPressRightHoldingCounter = 0;
+holdingLimit = 6;
+loopItterations = 0;
+
+
 
 // variables for different games
 global.wheresElmo = false;

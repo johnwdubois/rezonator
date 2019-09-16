@@ -87,6 +87,9 @@ if (obj_control.dialogueBoxActive) {
 					
 		// draw boolean option check boxes
 		draw_set_colour(global.colorThemeText);
+		draw_set_font(fnt_main);
+		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Split Word");
+		
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
 		if (obj_control.splitWord) {
 			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
@@ -112,10 +115,6 @@ if (obj_control.dialogueBoxActive) {
 					obj_control.splitWord = !obj_control.splitWord;
 				}
 		}
-		
-		draw_set_font(fnt_main);
-		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Split Word");
-		
 	}
 	
 	if (obj_control.newWordCreated) {
