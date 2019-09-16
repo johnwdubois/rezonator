@@ -338,7 +338,7 @@ if (shortcutsEnabled) {
 		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 			if (keyboard_check_direct(187) and canPressPlus) {
 				prevCenterDisplayRow = scr_currentCenterLine();
-				show_message(string(prevCenterDisplayRow));
+			//	show_message(string(prevCenterDisplayRow));
 				canPressPlus = false;
 				if(gridSpaceVertical < gridSpaceVerticalMax) {
 					gridSpaceVertical += 10;
@@ -369,7 +369,7 @@ if (shortcutsEnabled) {
 
 			if (keyboard_check_direct(189) and canPressMinus) {
 				prevCenterDisplayRow = scr_currentCenterLine();
-				show_message(string(prevCenterDisplayRow));
+				//show_message(string(prevCenterDisplayRow));
 				canPressMinus = false;
 				if(gridSpaceVertical > gridSpaceVerticalMin) {
 					gridSpaceVertical -= 10;

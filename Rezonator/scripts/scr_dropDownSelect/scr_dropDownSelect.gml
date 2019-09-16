@@ -647,25 +647,32 @@ else if (optionListType == 6)
 			
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
-			
-			obj_control.gridSpaceVertical += 10;
-			// Don't go above the max
-			obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
-			obj_control.lineSpacing += 4;
-			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-			// Multiply each line's pixelY by the new ratio
-			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-			// If the search or filter grids are populated, then set their pixelY's as well
-			if(searchGridPopulated) {
-				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
-			}
-			if(filterGridPopulated) {
-				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-			}
-			// reset the ratio
-			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+			obj_control.prevCenterDisplayRow = scr_currentCenterLine();
 		
+			if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
+			
+				obj_control.gridSpaceVertical += 10;
+				// Don't go above the max
+				obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
+				obj_control.lineSpacing += 4;
+				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+				// Multiply each line's pixelY by the new ratio
+				ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
+			
+				// If the search or filter grids are populated, then set their pixelY's as well
+				if(searchGridPopulated) {
+					ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+				}
+				if(filterGridPopulated) {
+					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+				}
+				scr_jumpToLine("", obj_control.prevCenterDisplayRow);
+				// reset the ratio
+				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+				if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
+					obj_control.arrowSpeed++;	
+				}
+			}
 			//show_message("BUH 4");
 			break;
 		case "Decrease Row Size":
@@ -673,25 +680,32 @@ else if (optionListType == 6)
 			
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
+			obj_control.prevCenterDisplayRow = scr_currentCenterLine();
+
+			if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
+				obj_control.gridSpaceVertical -= 10;
+				// Don't go above the max
+				obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
+				obj_control.lineSpacing -= 4;
+				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+				// Multiply each line's pixelY by the new ratio
+				ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
 			
-			obj_control.gridSpaceVertical -= 10;
-			// Don't go above the max
-			obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
-			obj_control.lineSpacing -= 4;
-			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-			// Multiply each line's pixelY by the new ratio
-			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
+				// If the search or filter grids are populated, then set their pixelY's as well
+				if(searchGridPopulated) {
+					ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+				}
+				if(filterGridPopulated) {
+					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+				}
+				scr_jumpToLine("", obj_control.prevCenterDisplayRow);
+				// reset the ratio
+				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+				if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
+					obj_control.arrowSpeed--;	
+				}
 			
-			// If the search or filter grids are populated, then set their pixelY's as well
-			if(searchGridPopulated) {
-				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
 			}
-			if(filterGridPopulated) {
-				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-			}
-			// reset the ratio
-			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
-		
 			//show_message("BUH 5");
 			break;
 		case "Increase All":
@@ -699,24 +713,31 @@ else if (optionListType == 6)
 			//verticle
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
+			obj_control.prevCenterDisplayRow = scr_currentCenterLine();
+		
+			if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
+				obj_control.gridSpaceVertical += 10;
+				// Don't go above the max
+				obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
+				obj_control.lineSpacing += 4;
+				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+				// Multiply each line's pixelY by the new ratio
+				ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
 			
-			obj_control.gridSpaceVertical += 10;
-			// Don't go above the max
-			obj_control.gridSpaceVertical = min(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMax);
-			obj_control.lineSpacing += 4;
-			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-			// Multiply each line's pixelY by the new ratio
-			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-			// If the search or filter grids are populated, then set their pixelY's as well
-			if(searchGridPopulated) {
-				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+				// If the search or filter grids are populated, then set their pixelY's as well
+				if(searchGridPopulated) {
+					ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+				}
+				if(filterGridPopulated) {
+					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+				}
+				scr_jumpToLine("", obj_control.prevCenterDisplayRow);
+				// reset the ratio
+				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+				if(obj_control.arrowSpeed < obj_control.arrowSpeedMax) {
+					obj_control.arrowSpeed++;	
+				}
 			}
-			if(filterGridPopulated) {
-				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-			}
-			// reset the ratio
-			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 			
 			//horizontal
 			if (!obj_control.gridView) {
@@ -739,24 +760,31 @@ else if (optionListType == 6)
 						
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
+			obj_control.prevCenterDisplayRow = scr_currentCenterLine();
+
+			if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
+				obj_control.gridSpaceVertical -= 10;
+				// Don't go above the max
+				obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
+				obj_control.lineSpacing -= 4;
+				obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
+				// Multiply each line's pixelY by the new ratio
+				ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
 			
-			obj_control.gridSpaceVertical -= 10;
-			// Don't go above the max
-			obj_control.gridSpaceVertical = max(obj_control.gridSpaceVertical, obj_control.gridSpaceVerticalMin);
-			obj_control.lineSpacing -= 4;
-			obj_control.gridSpaceRatio = (obj_control.gridSpaceVertical/obj_control.prevGridSpaceVertical);
-			// Multiply each line's pixelY by the new ratio
-			ds_grid_multiply_region(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.lineGrid), obj_control.gridSpaceRatio);
-			
-			// If the search or filter grids are populated, then set their pixelY's as well
-			if(searchGridPopulated) {
-				ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+				// If the search or filter grids are populated, then set their pixelY's as well
+				if(searchGridPopulated) {
+					ds_grid_multiply_region(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.searchGrid), obj_control.gridSpaceRatio);
+				}
+				if(filterGridPopulated) {
+					ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
+				}
+				scr_jumpToLine("", obj_control.prevCenterDisplayRow);
+				// reset the ratio
+				obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
+				if(obj_control.arrowSpeed > obj_control.arrowSpeedMin) {
+					obj_control.arrowSpeed--;	
+				}
 			}
-			if(filterGridPopulated) {
-				ds_grid_multiply_region(obj_control.filterGrid, obj_control.lineGrid_colPixelYOriginal, 0, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(obj_control.filterGrid), obj_control.gridSpaceRatio);
-			}
-			// reset the ratio
-			obj_control.prevGridSpaceVertical = obj_control.gridSpaceVertical;
 			
 			
 			//Horizontal			
