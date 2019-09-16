@@ -1048,6 +1048,23 @@ else if (optionListType == 8)
 			instance_destroy();
 			//show_message("BUH 1");
 			break;
+		case "Restore Word":
+		
+			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
+				if(!obj_control.wordTranscriptView){
+					var originalWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, obj_control.rightClickWordID - 1);
+				}
+				else{
+					var originalWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, obj_control.rightClickWordID - 1);
+				}
+		
+			scr_replaceWord( obj_control.rightClickWordID , originalWord);
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord , obj_control.rightClickWordID - 1, "");
+			}
+			obj_control.rightClickonWord = false;
+			instance_destroy();
+			//show_message("BUH 1");
+			break;
 		case "Split Word":
 
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
