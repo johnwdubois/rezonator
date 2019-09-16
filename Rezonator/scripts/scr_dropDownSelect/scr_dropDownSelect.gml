@@ -827,7 +827,9 @@ else if (optionListType == 6)
 		case "Toggle Nav Window":
 			with(obj_panelPane){
 				showNav = not showNav;	
+				
 			}
+			obj_toolPane.showTool = !obj_toolPane.showTool;
 			//show_message("BUH 1");
 			break;
 		case "Start StackShow":
