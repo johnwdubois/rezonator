@@ -170,7 +170,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 980, "hoverWordID: " + string(hoverWordID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 400, 850, "drawLine offset: " + string(drawRangeCenterOffset));
-	draw_text(camera_get_view_width(view_camera[0]) - 400, 880, "drawLine extra steps: " + string(drawRangeExtraSteps));
+	draw_text(camera_get_view_width(view_camera[0]) - 400, 880, "drawRangeExtraSteps: " + string(drawRangeExtraSteps));
 	
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 400, 930, "toolPane.currentTool: " + string(obj_toolPane.currentTool));
