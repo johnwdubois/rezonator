@@ -361,7 +361,7 @@ else if (optionListType == 3)
 					}
 					instance_destroy(obj_dropDown);
 					break;
-				case "Toggle line #":
+				case "Toggle Line #":
 					
 					obj_control.showLineNumber = !obj_control.showLineNumber;
 					break;
@@ -1025,7 +1025,7 @@ else if (optionListType == 8)
 
 			//show_message("BUH 2");
 			break;
-		case "Replace word":
+		case "Replace Word":
 		
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
 				//show_message("buh");
@@ -1046,7 +1046,7 @@ else if (optionListType == 8)
 			instance_destroy();
 			//show_message("BUH 1");
 			break;
-		case "Split word":
+		case "Split Word":
 
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
 				//show_message("buh");
@@ -1069,7 +1069,7 @@ else if (optionListType == 8)
 			instance_destroy();
 			//show_message("BUH 2");
 			break;
-		case "New word":
+		case "New Word":
 		
 		
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
@@ -1091,7 +1091,7 @@ else if (optionListType == 8)
 
 			//show_message("BUH 3");
 			break;
-		case "Delete new word":
+		case "Delete New Word":
 			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
 			obj_control.deleteNewWord =true;
 			//show_message("Coming Soon");
@@ -1102,7 +1102,8 @@ else if (optionListType == 8)
 			instance_destroy();
 	
 			break;
-		default:
+		case "Delete Link":
+			instance_destroy();
 			break;
 			/*
 		case "Recolor":
@@ -1123,6 +1124,7 @@ else if (optionListType == 8)
 			//show_message("BUH 4");
 			break;
 			*/
+			
 		default:
 			break;
 	}
