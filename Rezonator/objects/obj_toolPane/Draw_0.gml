@@ -15,6 +15,10 @@
 x = camera_get_view_width(view_camera[0]) - windowWidth;
 y = 0;
 
+if (obj_control.gridView) {
+	exit;
+}
+
 // Set the original height as the file loads
 if(current_time - obj_control.sessionStartTime < 2000) {
 	//originalWindowHeight = y;
@@ -43,6 +47,7 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+
 
 scr_drawToolPaneNew();
 
