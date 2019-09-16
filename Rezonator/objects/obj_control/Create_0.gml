@@ -38,7 +38,10 @@ searchPrevGridSpaceVertical = gridSpaceVertical;
 filterPrevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
-
+// Set the speed of scrolling
+arrowSpeedMin = 7;
+arrowSpeedMax = 35;
+arrowSpeed = 8;
 
 
 
