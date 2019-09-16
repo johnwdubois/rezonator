@@ -8,7 +8,12 @@ for(var centerLineLoop = obj_control.drawRangeStart; centerLineLoop < ds_grid_he
 	
 	if(currentYPos >= midLineYPos){
 		//show_message(string(i));
-		return centerLineLoop + 1;
+		if(obj_control.gridSpaceVertical > 40) {
+			return centerLineLoop + 1;
+		}
+		else {
+			return centerLineLoop + 3;
+		}
 	}
 }
  
