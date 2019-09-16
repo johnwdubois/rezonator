@@ -115,8 +115,8 @@ if (mouse_check_button_released(mb_left)) {
 		alarm[1] = 10;
 	}
 	
-	// Reset the gesture variables
-	if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5) { //abs(boxHoldRectX1 - boxHoldRectX2) > 5 for trackChunks?
+	// Set the word rectangle to capture word info
+	if (abs(mouseHoldRectY1 - mouseHoldRectY2) > 5 or (obj_control.mouseRectWithinLine and abs(mouseHoldRectX1 - mouseHoldRectX2) > 5)) { //abs(boxHoldRectX1 - boxHoldRectX2) > 5 for trackChunks?
 		mouseRectMade = true;
 	}
 	else {
@@ -124,6 +124,7 @@ if (mouse_check_button_released(mb_left)) {
 		obj_control.mouseRectBeginBetweenWords = -1;
 	}
 	
+	// Reset initialization variables
 	obj_control.rectNotInPanelPane = false;
 	obj_control.mouseRectBeginInSpeakerLabel = false;
 
