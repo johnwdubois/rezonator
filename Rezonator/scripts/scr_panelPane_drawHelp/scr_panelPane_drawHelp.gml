@@ -58,7 +58,7 @@ if (functionHelp_collapsed) {
 	}
 	
 	//if (obj_control.showDevVars) {
-		draw_text(x + windowWidth - string_width("000"), y + (windowHeight / 2), string(fps));
+	//	draw_text(x + windowWidth - string_width("000"), y + (windowHeight / 2), string(fps));
 	//}
 }
 else {
