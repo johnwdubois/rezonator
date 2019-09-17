@@ -29,12 +29,12 @@ if (drawRangeStart - 1 >= 0) {
 	}
 }
 
-if (drawRangeEnd + 1 < ds_grid_height(lineGrid)) {
+if (drawRangeEnd + 1 < ds_grid_height(currentActiveLineGrid)) {
 	while (ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawRangeEnd + 1) < camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 10)) {
 		drawRangeEnd++;
 		drawRangeExtraSteps++;
 		
-		if (drawRangeEnd + 1 >= ds_grid_height(lineGrid)) {
+		if (drawRangeEnd + 1 >= ds_grid_height(currentActiveLineGrid)) {
 			break;
 		}
 	}

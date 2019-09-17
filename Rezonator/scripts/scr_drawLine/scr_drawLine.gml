@@ -80,6 +80,7 @@ if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) - 1 and ds_grid_height
 
 
 
+
 // get speakerLabelMargin
 speakerLabelMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1);
 if (speakerLabelColXHolding > -1) {
@@ -160,6 +161,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	if (drawLineLoop < 0 or drawLineLoop >= ds_grid_height(currentActiveLineGrid)) {
 		continue;
 	}
+	
 	
 	var currentWordIDList = ds_grid_get(currentActiveLineGrid, lineGrid_colWordIDList, drawLineLoop);
 	
@@ -301,7 +303,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
 	}
 	
-	/*Draw quickstack highlights here */
+	//Draw quickstack highlights here
 	if (!obj_chain.inRezPlay) {
 		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
 		
@@ -341,6 +343,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	var speakerLabelTextBuffer = 3;
 	
 	scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer);
+	
 }
 
 // show draw range of lines if development variables are on
