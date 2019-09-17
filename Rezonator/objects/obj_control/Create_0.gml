@@ -30,7 +30,7 @@ gridSpaceHorizontalMax = 400;
 gridSpaceVerticalMax = 303.40;
 
 gridSpaceHorizontal = 100;
-gridSpaceVertical = 33.4;
+gridSpaceVertical = 40.40;
 prevGridSpaceVertical = gridSpaceVertical;
 //searchGridSpaceVertical = gridSpaceVertical;
 searchPrevGridSpaceVertical = gridSpaceVertical;
