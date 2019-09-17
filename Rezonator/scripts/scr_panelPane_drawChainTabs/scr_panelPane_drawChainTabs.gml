@@ -37,6 +37,20 @@ draw_rectangle(x, tabRectY1, x + windowWidth, tabRectY2, false);
 
 for (var i = 0; i < tabAmount; i++) {// main mechanism
 	
+	var grid = obj_chain.rezChainGrid;
+	if (i == 0) {
+		grid = obj_chain.rezChainGrid;
+	}
+	else if (i == 1) {
+		grid = obj_chain.trackChainGrid;
+	}
+	else if (i == 2) {
+		grid = obj_chain.stackChainGrid;
+	}
+	else if (i == 3) {
+		grid = obj_chain.cliqueDisplayGrid;
+	}
+	
 	// set dimensions for tabs
 	var tabRectX1 = x + (i * (windowWidth / tabAmount));
 	var tabRectX2 = tabRectX1 + (windowWidth / tabAmount);
@@ -47,36 +61,94 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 		draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, false);
 	}
 	
-	// set XY for toggleDraw button
-	var toggleDrawRectSize = (tabRectY2 - tabRectY1) - 8;
-	var toggleDrawRectX1 = tabRectX2 - toggleDrawRectSize - 4;
-	var toggleDrawRectY1 = tabRectY1 + 4;
-	var toggleDrawRectX2 = toggleDrawRectX1 + toggleDrawRectSize;
-	var toggleDrawRectY2 = toggleDrawRectY1 + toggleDrawRectSize;
-	if (i == 0) {
-		draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-	}
-	else if (i == 1) {
-		draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-	}
-	else if (i == 2) {
-		draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-	}
-	if (point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
-		if (mouse_check_button_released(mb_left)) {
-			if (i == 0) {
-				obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
-			}
-			else if (i == 1) {
-				obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
-			}
-			else if (i == 2) {
-				obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
+	
+	if (grid != obj_chain.cliqueDisplayGrid) {
+		// draw toggleDraw button
+		var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
+		var toggleDrawRectX1 = tabRectX2 - buttonRectSize - 4;
+		var toggleDrawRectY1 = tabRectY1 + 4;
+		var toggleDrawRectX2 = toggleDrawRectX1 + buttonRectSize;
+		var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
+		if (i == 0) {
+			draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+		}
+		else if (i == 1) {
+			draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+		}
+		else if (i == 2) {
+			draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+		}
+		if (point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
+			if (mouse_check_button_released(mb_left)) {
+				if (i == 0) {
+					obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
+				}
+				else if (i == 1) {
+					obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
+				}
+				else if (i == 2) {
+					obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
+				}
 			}
 		}
+	
+		// draw filter button
+		var filterRectX1 = toggleDrawRectX1 - 4 - buttonRectSize;
+		var filterRectY1 = toggleDrawRectY1;
+		var filterRectX2 = filterRectX1 + buttonRectSize;
+		var filterRectY2 = filterRectY1 + buttonRectSize;
+		var filterImageIndex = 0;
+		if (point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2)) {
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
+			if (mouse_check_button_released(mb_left)) {
+			
+				if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+					if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
+						ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true);
+					}
+					else {
+						ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false);
+					}
+				}
+				else {
+					ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true);
+				}
+				
+				
+				if (obj_control.filterGridActive
+				and not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
+				and not ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
+				and not ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+					
+					with (obj_control) {
+						searchGridActive = false;
+						filterGridActive = false;
+						currentActiveLineGrid = lineGrid;
+						wordLeftMarginDest = 170; // Make sure the margin is placed correctly
+
+						with (obj_alarm) {
+							alarm[1] = 5;
+						}
+					}
+				}
+			}
+		}
+		if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+			if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
+				filterImageIndex = 2;
+			}
+			else {
+				filterImageIndex = 1;
+			}
+		}
+		draw_sprite_ext(spr_filterIcons, filterImageIndex, mean(filterRectX1, filterRectX2), mean(filterRectY1, filterRectY2), 1, 1, 0, c_white, 1);
 	}
+	
+	
+	
 	
 	// check for mouse clicks to change the selected tab
 	if (point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
