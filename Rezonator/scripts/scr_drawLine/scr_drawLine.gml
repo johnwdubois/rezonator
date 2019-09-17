@@ -228,20 +228,23 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			var currentStackChainID = currentLineInStack;
 			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackChainID);
 			
-			var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
+			var showStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colShow, rowInStackChainGrid);
+			if (showStack) {
+				var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
 			
-			if (typeof(stackColor) == "number") {
+				if (typeof(stackColor) == "number") {
 		
-				draw_set_color(stackColor);
-				draw_set_alpha(0.2);
+					draw_set_color(stackColor);
+					draw_set_alpha(0.2);
 			
-				var stackRectWidth = (room_width - speakerRectX2);
-				var stackRectX1 = speakerRectX2;
-				var stackRectY1 = speakerRectY1;
-				var stackRectX2 = room_width;
-				var stackRectY2 = speakerRectY2;
+					var stackRectWidth = (room_width - speakerRectX2);
+					var stackRectX1 = speakerRectX2;
+					var stackRectY1 = speakerRectY1;
+					var stackRectX2 = room_width;
+					var stackRectY2 = speakerRectY2;
 				
-				draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+					draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+				}
 			}
 		}
 	}

@@ -38,6 +38,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 	
 	var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, i);
 	var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, i);
+	var currentChainShow = ds_grid_get(rezChainGrid, chainGrid_colShow, i);
 	
 	// find minimum word width so we know the X position of the chain
 	for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
@@ -131,9 +132,11 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 				chunkWord2 = 0;
 			}
 			
-			draw_set_color(currentChainColor);
-			draw_set_alpha(1);
-			draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+			if (currentChainShow) {
+				draw_set_color(currentChainColor);
+				draw_set_alpha(1);
+				draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+			}
 			// I need to modify this with the Chunk's wordRectBuffer
 			
 		}
@@ -173,9 +176,11 @@ if (not (mouseLineX == undefined or mouseLineY == undefined)) {
 		if (rowInChainGrid >= 0) {
 			currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
 			draw_set_color(currentChainColor);
-		
-			if (not mouseLineHide) {
-				draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+			
+			if (currentChainShow) {
+				if (not mouseLineHide) {
+					draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+				}
 			}
 		}
 	}

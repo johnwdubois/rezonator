@@ -55,7 +55,7 @@ var strHeight = string_height("0") * 1.5;
 // Set text margin area
 var filterRectMargin = 8;
 var filterRectSize = (strHeight / 2) + 5;
-var textMarginLeft = (filterRectMargin * 2) + (filterRectSize * 3);
+var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 
 var textMarginTop = functionChainList_tabHeight;
 var textPlusY = 0;
@@ -271,6 +271,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	
 		// Create little boxes for show section
+		/*
 		var show = ds_grid_get(grid, obj_chain.chainGrid_colShow, i);
 		if (show != 0 and show != 1) {
 			show = true;
@@ -288,7 +289,9 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				ds_grid_set(grid, obj_chain.chainGrid_colShow, i, show);
 			}
 		}
+		*/
 	}
+
 	
 	
 	// Create little boxes for alignment selection

@@ -33,6 +33,7 @@ var furthestDisplayCol = -1;
 for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 	var currentWordIDList = ds_grid_get(trackChainGrid, chainGrid_colWordIDList, i);
 	var currentChainColor = ds_grid_get(trackChainGrid, chainGrid_colColor, i);
+	var currentChainShow = ds_grid_get(trackChainGrid, chainGrid_colShow, i);
 	
 	
 	var wordsInSameUnit = false;
@@ -134,12 +135,14 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 			
 			draw_set_color(currentChainColor);
 			draw_set_alpha(1);
-					
-			if (lineY1 == lineY2) {
-				draw_line_width(lineX1, lineY1, lineX2, lineY2, 2);
-			}
-			else {
-				scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+			
+			if (currentChainShow) {
+				if (lineY1 == lineY2) {
+					draw_line_width(lineX1, lineY1, lineX2, lineY2, 2);
+				}
+				else {
+					scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+				}
 			}
 		}
 	}
