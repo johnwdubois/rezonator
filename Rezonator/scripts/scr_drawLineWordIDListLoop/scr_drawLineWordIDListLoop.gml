@@ -173,9 +173,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	}
 	
 	// Draw a word normally
-	
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 	var currentWordDisplayString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
+	
+
+	
+	
 	
 	// using the previous word's display column, set the current word's void
 	var currentWordVoid = 0;
@@ -401,6 +404,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			panelPaneResizeHeld = true;
 		}
 	}
+	
 	
 	if (!obj_chain.inRezPlay) {
 		

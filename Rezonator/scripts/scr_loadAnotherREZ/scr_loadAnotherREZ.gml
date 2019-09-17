@@ -77,6 +77,8 @@ if (originalGrid == obj_control.dynamicWordGrid) {
 		if (typeof(currentReplaceWord) != "string") {
 			ds_grid_set(tempGrid, obj_control.dynamicWordGrid_colReplaceWord, i, "");
 		}
+		
+		
 	}
 	
 	// if we can't find a single aligned word in the new grid, this is a glitch and we can set them all to aligned
@@ -86,6 +88,11 @@ if (originalGrid == obj_control.dynamicWordGrid) {
 	}
 }
 
+if (ds_grid_height(obj_control.wordGrid) > 0 and ds_grid_height(obj_control.unitGrid) > 0) {
+	with (obj_fileLoader) {
+		alarm[4] = 10;
+	}
+}
 
 
 
