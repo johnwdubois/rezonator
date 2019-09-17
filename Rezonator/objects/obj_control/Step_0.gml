@@ -107,8 +107,12 @@ if (!clickedInChainList and !clickedInChainContents) {
 	
 	
 	var scrollSpeed = 0;
-	if ((keyboard_check(vk_down) or mouse_wheel_down()) or (device_mouse_check_button(0, mb_left) and device_mouse_check_button(1, mb_left))) {
-		if (holdDownArrowKey == 0 or holdDownArrowKey > 30) {
+	// Single press of arrow keys now moves screen by one line
+	if ((keyboard_check(vk_down) or mouse_wheel_down())) {
+		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
+			scrollSpeed = -gridSpaceVertical;
+		}
+		if (holdDownArrowKey > 30) {
 			scrollSpeed = -min(arrowSpeed, 25);
 			if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
@@ -120,7 +124,10 @@ if (!clickedInChainList and !clickedInChainContents) {
 		} 
 	}
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
-		if (holdUpArrowKey == 0 or holdUpArrowKey > 30) {
+		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
+			scrollSpeed = gridSpaceVertical;
+		}
+		if (holdUpArrowKey > 30) {
 			scrollSpeed = min(arrowSpeed, 25);
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);

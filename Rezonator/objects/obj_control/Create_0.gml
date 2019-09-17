@@ -365,6 +365,7 @@ inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
 mouseRectWithinLine = false;
+mouseRectWithinColumn = false;
 trackChunkMade = false;
 mouseRectBeginInWord = -1;
 mouseRectBeginBetweenWords = -1;

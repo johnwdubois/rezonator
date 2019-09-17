@@ -63,6 +63,12 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;	
 		}
 	}
+	if(abs(mouseHoldRectX1 - mouseHoldRectX2) < obj_control.gridSpaceVertical) {
+		obj_control.mouseRectWithinColumn = true;
+	}
+	else {
+		obj_control.mouseRectWithinColumn = false;
+	}
 	
 	// Draw the rect if not making a quickStack
 	if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {

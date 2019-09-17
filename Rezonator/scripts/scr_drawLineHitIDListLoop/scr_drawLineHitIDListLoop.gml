@@ -278,6 +278,36 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 	}
 	
+	var inMouseHoldRect = 0;
+	if (mouse_check_button(mb_left) and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+		if (not obj_control.mouseRectWithinLine and obj_control.mouseRectWithinColumn) {
+			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		}
+		else {
+			inMouseHoldRect = 0;
+		}
+		 
+		if (inMouseHoldRect > 0) {
+			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1)) {
+				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, 2);
+				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1, 2);
+				
+			}
+		}
+		else {
+			if (ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1) == 2) {
+				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, false);
+				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1, false);
+			}
+		}
+	}
+	else {
+		if (ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1) == 2) {
+			ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, false);
+			ds_grid_set(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1, false);
+		}
+	}
+	
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
@@ -306,11 +336,11 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 			if (borderRounded) {
 				draw_roundrect(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
 			}
-			/*
-			else {
+			
+			/*else {
 				draw_rectangle(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
-			}
-			*/
+			}*/
+			
 		}
 	}
 
