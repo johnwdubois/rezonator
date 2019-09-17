@@ -39,6 +39,14 @@
             }
         },
         {
+            "Key": "0109d831-77a5-48c3-9272-0de6d6aaaecf",
+            "Value": {
+                "id": "459c3e05-cc6b-4015-bbb6-d2a48b0644cd",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0031.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "01326701-b0a6-4057-8a77-21f137c710e7",
             "Value": {
                 "id": "39790ef9-fedf-4e47-a57c-d02aed7c3cec",
@@ -108,6 +116,14 @@
                 "id": "01f949cc-fe2a-4f54-b936-85f3524bc1dd",
                 "resourcePath": "scripts\/scr_panelPane_drawGoToLine\/scr_panelPane_drawGoToLine.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "04525389-8395-4d2b-8cea-5832255510fa",
+            "Value": {
+                "id": "252b67be-3c1a-48c9-8859-7ef1c8ca1531",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc002.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -263,10 +279,10 @@
             }
         },
         {
-            "Key": "0cf49da8-b61f-457f-a0d6-115413952443",
+            "Key": "0cef3d59-a9ab-4996-a058-207077ed4b55",
             "Value": {
-                "id": "f0316de2-a468-438a-9b5d-209f306065f1",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc055.rez.yy",
+                "id": "259ceecd-27c9-44d0-8b34-01d800f6959e",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc055.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -300,14 +316,6 @@
                 "id": "fca9b9e1-d99b-439a-a404-8b483d7c88c8",
                 "resourcePath": "views\/0e3df20c-7ad1-4267-9128-34cd4f24dab7.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "0e55694f-a56e-4957-bbd8-ee21546f481d",
-            "Value": {
-                "id": "03eb87e6-cbf4-4c00-a928-f9d177c72eeb",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc031.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -359,6 +367,14 @@
             }
         },
         {
+            "Key": "1050b3ee-7e5f-4f7f-b755-57d49b706937",
+            "Value": {
+                "id": "fad8ed0e-f840-4030-814e-b32dacebf291",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc053.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "10547d74-b606-409b-98a3-2673eeb8546c",
             "Value": {
                 "id": "4b7370d1-139a-4049-b7c9-9ccbf6f3814f",
@@ -396,6 +412,14 @@
                 "id": "2d85bb14-0f7c-4504-85b1-fb378aea4979",
                 "resourcePath": "views\/12392130-27cf-485e-a18f-1b029fea9a96.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "127f1630-2ad6-470a-8774-2c704989873b",
+            "Value": {
+                "id": "2ff8211c-ac45-4cfe-8a0d-0605e4b18132",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc050.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -535,6 +559,14 @@
             }
         },
         {
+            "Key": "1698c33d-bbd4-4731-9021-197c373bf0ad",
+            "Value": {
+                "id": "c95f5ce0-dde8-4fed-b6b5-5a3346f1fd6f",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc005.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "16b626d4-3482-4d4d-9cea-a269124f557e",
             "Value": {
                 "id": "aaf9d51c-513d-4cca-8160-29cbe5bfcfc9",
@@ -548,6 +580,14 @@
                 "id": "73d9f90c-3217-4cf2-b319-d739e896848c",
                 "resourcePath": "scripts\/@draw_enable_alphablend\/draw_enable_alphablend.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "17218922-e031-4704-a704-56d8520288c4",
+            "Value": {
+                "id": "3ce6406b-a65c-4e06-b9c9-73ae84b02a70",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc060.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -639,18 +679,10 @@
             }
         },
         {
-            "Key": "1b74d519-97c0-4552-90d0-669191700e66",
+            "Key": "1bb24b38-b098-4e9a-a64a-b9da75bd9b64",
             "Value": {
-                "id": "7efc6931-2361-4626-9f46-08cab4f1a625",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc009.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "1bf065c3-0496-45e5-9c00-0ecedb09d63f",
-            "Value": {
-                "id": "2d1e0675-9673-486f-bd20-c23d2b477631",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc027.rez.yy",
+                "id": "5a2400a1-334b-4004-96e7-9777b24a9c60",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0026.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -700,6 +732,14 @@
                 "id": "2a00e3c2-5429-42f0-8ec8-a49ed84965af",
                 "resourcePath": "sprites\/Sprite_256x256\/Sprite_256x256.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "1e4eeeb7-6877-49b9-8ef1-99f2523925f8",
+            "Value": {
+                "id": "6e9b226e-d699-4aa6-9be7-fd008d924328",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc014.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -767,19 +807,19 @@
             }
         },
         {
-            "Key": "215b2222-cb32-4fe2-9e73-a278c86790ff",
-            "Value": {
-                "id": "a9ce8c27-6a02-43c7-be6e-368f6386099c",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc010.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "21ff2d76-4d94-49cd-885a-e7d9ae53900f",
             "Value": {
                 "id": "f465d1c7-f70a-469b-ae8b-40bdb13fa68d",
                 "resourcePath": "sprites\/sCheckbox\/sCheckbox.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "225e361e-a000-4af5-a6fb-911ea7f3ff90",
+            "Value": {
+                "id": "c252c746-92fb-4146-8129-07e8b8f1820d",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc049.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -804,14 +844,6 @@
                 "id": "565a64aa-a057-4c20-ab84-339c378f7c00",
                 "resourcePath": "scripts\/scr_importJSON\/scr_importJSON.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "23dbdf93-231e-453b-b6ae-b8c604001278",
-            "Value": {
-                "id": "987f7ef8-8278-4898-98cd-810592bca07e",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc025.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -887,6 +919,14 @@
             }
         },
         {
+            "Key": "2854dace-18f5-48c4-92a5-7b9f54bedc98",
+            "Value": {
+                "id": "7e304e16-a44b-4083-98b6-1bc5abbb2065",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0034.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "291dec5e-5244-4109-886d-366f9a7b8fd0",
             "Value": {
                 "id": "9719e1f6-65ba-45de-8ac7-a5870ce231ff",
@@ -919,6 +959,14 @@
             }
         },
         {
+            "Key": "2b23e43d-b309-446c-bf17-559a5a01040a",
+            "Value": {
+                "id": "5467812c-9a96-4330-a6dd-159cfda47a82",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc044.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "2b54f52a-3aa7-4b88-8e99-e2273715b2f0",
             "Value": {
                 "id": "6d75a7b9-a90b-4822-9a5f-5c432a1b4bfa",
@@ -943,6 +991,14 @@
             }
         },
         {
+            "Key": "2c1d613b-2312-41ec-b3e2-4cbb361b65bc",
+            "Value": {
+                "id": "1b0e347d-2b0e-4c17-b53d-483acd4c837f",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0033.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "2c4abd01-f056-4203-accc-7a49a37cdfee",
             "Value": {
                 "id": "06cad46f-7ace-484f-a980-ca0a29e00a82",
@@ -951,19 +1007,19 @@
             }
         },
         {
-            "Key": "2cdee99d-3ed7-490e-98c1-62d18df53f11",
-            "Value": {
-                "id": "ed7cb1b1-5d30-4066-aa5c-07b0bd5b028b",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc045.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "2e4b5e76-ae01-4d35-89a1-13041599adb3",
             "Value": {
                 "id": "2a187a95-9fc1-4952-a0e3-e8cbfc53f0ea",
                 "resourcePath": "fonts\/fnt_sortPaneLarge1\/fnt_sortPaneLarge1.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "2f12031b-888c-4661-91f9-1c81f01fa93d",
+            "Value": {
+                "id": "0d130c5f-e437-4dc4-b926-3965a5b48cbd",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc058.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -996,6 +1052,14 @@
                 "id": "544d9146-c7e9-4c4f-a2d9-2d1980be688c",
                 "resourcePath": "sprites\/sUITextField\/sUITextField.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "3188da1f-3612-44f5-9be3-82217ee11f1a",
+            "Value": {
+                "id": "d9ca5641-aaa5-47fa-aee6-8afd92cef822",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc052.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1047,10 +1111,26 @@
             }
         },
         {
+            "Key": "35eaa265-1e86-486f-b967-ea4c91fe98fb",
+            "Value": {
+                "id": "838f3685-b688-4408-a47b-443d118cf280",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0029.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "3600a202-71d2-45de-889a-58f4adc986d8",
             "Value": {
                 "id": "fabf9228-3851-4dc4-a81f-3dcb1989e8d3",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc017.xml.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "371a9fcf-9f41-44e4-86e5-3caa4589e8c0",
+            "Value": {
+                "id": "1f42b94e-cafc-4c72-91db-86e3781d689a",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0028.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -1135,19 +1215,19 @@
             }
         },
         {
+            "Key": "3dafc463-cb58-4e25-b2d1-25153f725883",
+            "Value": {
+                "id": "ab438eaa-c30c-4ef8-8e59-859f46527bec",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0035.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "3e54d237-06a6-4ea2-8e7f-e8c8d5787c3a",
             "Value": {
                 "id": "79027f12-f351-4985-9867-9ae722439b92",
                 "resourcePath": "views\/3e54d237-06a6-4ea2-8e7f-e8c8d5787c3a.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "3e9cedf3-9194-4a6d-806c-d54f83415422",
-            "Value": {
-                "id": "7f3652e5-baee-4575-b171-758c579089cc",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc028.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1164,6 +1244,14 @@
                 "id": "8ec0f05d-30ac-443d-be0e-6155f11abe48",
                 "resourcePath": "scripts\/scr_mouseRect\/scr_mouseRect.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "3f3fbcd4-c3d7-4944-a47b-49e8ebd1bca8",
+            "Value": {
+                "id": "cf696fe6-dfd6-4307-93ef-07e333e72e97",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc047.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1231,14 +1319,6 @@
             }
         },
         {
-            "Key": "448fc6ef-a4ad-46ea-9a92-19b58d0ab6e4",
-            "Value": {
-                "id": "48b28c9f-2829-4775-b509-6a3e70273e9d",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc042.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "44ad126c-0505-47a9-a70d-15ea6cf90004",
             "Value": {
                 "id": "5cc2d13f-32a5-4c21-b46f-159093e6b06f",
@@ -1303,6 +1383,14 @@
             }
         },
         {
+            "Key": "4747f2b5-40c8-407e-b89b-d8fb99f35fd3",
+            "Value": {
+                "id": "d1f57679-78c4-4e6b-8b0a-186d50bfb87f",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc012.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "4780a6db-dc73-40e3-8286-7eb084a8b47b",
             "Value": {
                 "id": "4076329b-8ce1-4f57-8e03-951fec19c5f4",
@@ -1327,10 +1415,10 @@
             }
         },
         {
-            "Key": "48c94f94-f843-491a-871f-50bd5a4a612f",
+            "Key": "48cebfb6-49ef-42a5-8464-540abae6a435",
             "Value": {
-                "id": "4c50fad7-f3c0-4ef2-9fa8-e2fdeca93064",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc013.rez.yy",
+                "id": "39a0a697-92ca-496f-b2c5-5d949abdd1c7",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc041.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -1423,14 +1511,6 @@
             }
         },
         {
-            "Key": "503f9a17-c355-46a2-8db9-069ec8c14e42",
-            "Value": {
-                "id": "4fc3951d-c30d-4d2f-b919-23579bfd54da",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc040.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "50435e77-abb9-44be-a6ee-7b0711d3e824",
             "Value": {
                 "id": "9326882d-f926-4820-be99-814a2a0e6f00",
@@ -1463,10 +1543,10 @@
             }
         },
         {
-            "Key": "51adcde8-5825-40a8-b94a-8a2da002daf6",
+            "Key": "51fc0197-84eb-46ce-9e3a-8c566ef11d2f",
             "Value": {
-                "id": "0a9438a0-6de6-4deb-ba16-3626e24cf664",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc017.rez.yy",
+                "id": "02f599b6-ac71-4cad-95ba-c3b1132a745b",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc057.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -1491,6 +1571,14 @@
             "Value": {
                 "id": "18d30ece-6726-4a9d-9817-6d68fff9484a",
                 "resourcePath": "datafiles_yy\/README.txt.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "536d2656-496e-4e9b-a6a2-1e0fa1c37881",
+            "Value": {
+                "id": "00d1d1b1-2c93-40ac-ba39-94dad9b3bad8",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc009.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -1543,11 +1631,27 @@
             }
         },
         {
+            "Key": "579a8386-fbff-47dd-9a45-bfb5e36bdeab",
+            "Value": {
+                "id": "f0d4df7a-db18-442a-aa44-9f1da39e5511",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0030.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "58012b3e-a809-4755-a1e6-d8ebfeb46e82",
             "Value": {
                 "id": "b3419876-6b80-4cb4-b678-36201009acbf",
                 "resourcePath": "scripts\/scr_surfaceEnd\/scr_surfaceEnd.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "58fa3fe5-ccd1-46d0-afcb-ebb7ab42fc9b",
+            "Value": {
+                "id": "d9a4c987-4faf-4ecc-99d9-7b1dd011a90e",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0022.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1572,14 +1676,6 @@
                 "id": "66b87088-c442-4b7f-bee1-1e5c7bca02ed",
                 "resourcePath": "rooms\/rm_mainScreen\/rm_mainScreen.yy",
                 "resourceType": "GMRoom"
-            }
-        },
-        {
-            "Key": "5a5aaa7c-134e-43e4-9cf6-02ed2900df63",
-            "Value": {
-                "id": "f83770aa-4579-4498-9f75-4c5fed625acf",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc029.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1615,14 +1711,6 @@
             }
         },
         {
-            "Key": "5e252ac5-5513-4a05-81c9-222a6e9dad3f",
-            "Value": {
-                "id": "0e57433a-3146-43cf-a8df-8aab4d499cfc",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc001.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "5e640fc2-fb8b-4d25-be52-88c3b4ebc03b",
             "Value": {
                 "id": "9b9d94a5-e236-41de-8fb8-75f5c3a9bbd0",
@@ -1636,6 +1724,14 @@
                 "id": "037df22f-7d6f-4d53-b89a-bc32ae7531af",
                 "resourcePath": "sprites\/sChecktick\/sChecktick.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "5f22e1b2-dd6b-4a70-9e43-cc6e08bc8d2f",
+            "Value": {
+                "id": "c8908472-1914-4adb-82ef-486af9d48fe3",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc019.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1743,14 +1839,6 @@
             }
         },
         {
-            "Key": "66413bbb-6dad-4335-86b9-5018eadef0ab",
-            "Value": {
-                "id": "ee08d8f6-a8a3-4ae7-bffc-033e2b00177c",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc011.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "6647f6ae-5a7c-48a6-a655-7244df715ccc",
             "Value": {
                 "id": "ac076709-4a68-46a3-8d3a-d3c5003c744d",
@@ -1772,6 +1860,14 @@
                 "id": "79fe88bd-c028-479b-92dc-ffaf9f70a14c",
                 "resourcePath": "fonts\/fnt_main\/fnt_main.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "67b23257-652d-4398-861a-102fea7c47ce",
+            "Value": {
+                "id": "c9f063f6-08fb-4c86-9dd1-916fcdbc6ad5",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc054.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1815,14 +1911,6 @@
             }
         },
         {
-            "Key": "69ed7c29-de04-40c5-b265-7d4b473f802f",
-            "Value": {
-                "id": "dd1ecd8b-556a-40fd-b117-32f194ced4b0",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc044.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "6a66135d-27ce-48b9-a3b3-8d7ffc925407",
             "Value": {
                 "id": "22fbaee7-f95f-4d5d-a30b-1aed87b4bcbf",
@@ -1836,14 +1924,6 @@
                 "id": "1fe5b46a-3813-4d50-ab1e-91397a0a789e",
                 "resourcePath": "views\/6ae7d8cc-b328-49e5-a9d2-3d8ac79a4f4a.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "6af9852a-9c84-4c78-81d7-205fe4cb6050",
-            "Value": {
-                "id": "588dbe55-81b7-4199-8533-90a5564db538",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc047.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1887,6 +1967,14 @@
             }
         },
         {
+            "Key": "6d764c9d-d68c-4128-abaa-d323a0772329",
+            "Value": {
+                "id": "6e982984-c187-4150-b430-38760a4d1615",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc048.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "6db91125-02ac-4f7f-bc39-b06c2625d9a3",
             "Value": {
                 "id": "533b3961-930b-4067-98ba-98eb3b2931d4",
@@ -1895,11 +1983,27 @@
             }
         },
         {
+            "Key": "6dccba88-dd61-41da-a4fb-7c73219fbd2b",
+            "Value": {
+                "id": "e1bdaf38-ebc0-441d-b058-afa4ce8b5b0f",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc011.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "6f79a538-ad6b-4544-b866-61a98ad7be0a",
             "Value": {
                 "id": "97c5a405-6b8d-4095-8ea8-4110cc740973",
                 "resourcePath": "rooms\/rmTest\/rmTest.yy",
                 "resourceType": "GMRoom"
+            }
+        },
+        {
+            "Key": "6fe04542-f61a-46a2-a546-936166b56956",
+            "Value": {
+                "id": "de1d436e-88c6-4d6b-8ba4-099ced797674",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc045.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1991,6 +2095,22 @@
             }
         },
         {
+            "Key": "7380cd8c-6bc2-4e7c-828b-002865779aac",
+            "Value": {
+                "id": "31655b0d-97d6-4a76-9f87-42332c07fbed",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0039.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "739c8ec8-2520-4a6f-8a02-01f645b630c4",
+            "Value": {
+                "id": "996b979c-c425-42f6-87c3-e3685cbd5978",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc059.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "73bacce9-e2de-4fdd-8c4d-6121232397bf",
             "Value": {
                 "id": "aff4ad8a-05a7-42bc-b251-4cd610d1b2d7",
@@ -2007,14 +2127,6 @@
             }
         },
         {
-            "Key": "7429b46d-eccb-4238-b2ed-453804589105",
-            "Value": {
-                "id": "3cfc5414-30ab-48bc-a622-ed25e0c4b554",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc026.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "74d3e7c4-83d0-46b9-a7bb-f81f63a01062",
             "Value": {
                 "id": "599b7d6d-4c5a-4cd4-8626-704bd473cfeb",
@@ -2028,14 +2140,6 @@
                 "id": "d22552a3-160c-49f6-a514-4d7f0797632d",
                 "resourcePath": "scripts\/scr_rezPlay\/scr_rezPlay.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "75aa5422-5bdd-4768-bb0b-67f985b9e8d0",
-            "Value": {
-                "id": "9ca7fd9c-9dea-4537-8ad5-14fc67a7095c",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc036.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2079,14 +2183,6 @@
             }
         },
         {
-            "Key": "76e860df-9549-4ab9-91e9-ebdcb2194ee6",
-            "Value": {
-                "id": "4055e632-951f-4eff-bb47-dfd374cd69c9",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc043.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "76eeb6f8-6a2b-4703-833a-db9a710eb80b",
             "Value": {
                 "id": "ee3d6bbd-ab76-4eb0-930e-b9a2567a6a3a",
@@ -2116,14 +2212,6 @@
                 "id": "cd19cf86-b3b3-4dfa-bce4-ed3c3b4a2906",
                 "resourcePath": "scripts\/scr_importLinks\/scr_importLinks.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "77bade04-4bc4-4902-a693-4607acf68746",
-            "Value": {
-                "id": "556b8c62-190b-4f6c-a5fe-a3ebd90f8836",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc003.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2167,14 +2255,6 @@
             }
         },
         {
-            "Key": "7a77c3dc-50cf-4150-8d77-672c05e3f55e",
-            "Value": {
-                "id": "84961f6f-ee91-4df3-9561-fb46ea4a8ec5",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc023.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "7abdcd91-22cf-4799-8471-225021a1ee98",
             "Value": {
                 "id": "8d7e9951-6d8a-419e-89e6-5b7df0d4dff4",
@@ -2215,10 +2295,10 @@
             }
         },
         {
-            "Key": "7e9607b4-605c-4ab8-83f7-7d0f93ebf29d",
+            "Key": "7e72c474-7643-43b7-9c4c-d10fed696dd1",
             "Value": {
-                "id": "45fe586a-220e-4602-8548-093e2ca1be96",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc002.rez.yy",
+                "id": "3e22825d-2c69-40aa-9ebb-63cbc1eb6d05",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0024.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -2236,14 +2316,6 @@
                 "id": "f5fef835-c025-4178-9971-7a3c36a7af74",
                 "resourcePath": "views\/7f4c8d8a-4661-4484-bfd7-3c6a8738f929.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "7fda952b-25bf-4195-9617-ad55e0b264ad",
-            "Value": {
-                "id": "c585f01b-6b34-474c-a36a-a9bc417586dd",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc018.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2303,6 +2375,14 @@
             }
         },
         {
+            "Key": "826d57d1-ef55-4314-86af-9111453db93a",
+            "Value": {
+                "id": "ac46a984-17f6-430a-8440-529a0edc0a65",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc001.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "82e1ee6a-c195-400a-a437-99b7c44dd6e9",
             "Value": {
                 "id": "f42826b3-3b64-41c5-8d32-882ec1a1ed20",
@@ -2356,14 +2436,6 @@
                 "id": "01c5681f-2442-4a66-b8ad-4ad37621534e",
                 "resourcePath": "views\/83ae779e-588f-4380-a893-9e5b524e2f61.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "83c6e775-1abe-428f-81ab-0476c8bfd572",
-            "Value": {
-                "id": "68bf29f9-f7a5-4a9c-a402-870432e4ea2e",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc012.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2423,22 +2495,6 @@
             }
         },
         {
-            "Key": "867c78a2-1d3e-4a1c-a145-2f07e02b9b84",
-            "Value": {
-                "id": "ee2bd0d7-bdd5-4b38-a23f-057b0e90384c",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc046.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "868bcd78-5524-422a-bd09-5b8fb8e419fc",
-            "Value": {
-                "id": "90fba61d-9f93-4f5d-911c-5dffa1e298a6",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc015.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "86d712e5-8944-4c97-a29c-925c573202c9",
             "Value": {
                 "id": "de43ba28-49b6-41ba-8896-b30449b8ba1a",
@@ -2471,11 +2527,27 @@
             }
         },
         {
+            "Key": "88810a19-a89e-4252-9bc9-d77f4d1d27ec",
+            "Value": {
+                "id": "54922300-c741-40d3-84d3-4932665ccc01",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc017.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "889f4b32-5b71-4c11-a5fe-d59d2acf98fa",
             "Value": {
                 "id": "a664f594-56b1-41f8-9113-0758453595f7",
                 "resourcePath": "scripts\/scr_createPlaceChains\/scr_createPlaceChains.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "88a90044-57a5-45b5-a959-3ee0b1f0d7e6",
+            "Value": {
+                "id": "9eb366e1-4d71-4a97-b235-55b1dbe68a04",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc013.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2500,6 +2572,14 @@
                 "id": "c29b37cf-a443-41e1-b17f-6f661a715403",
                 "resourcePath": "sprites\/sUIPanel\/sUIPanel.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "8a8b4591-3b2e-4e82-ac1a-58d1d5dcb0ea",
+            "Value": {
+                "id": "4881fe38-a2f3-43b7-a7d8-5beb0186cc32",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc051.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2559,10 +2639,10 @@
             }
         },
         {
-            "Key": "8dc396b7-8386-4b06-8159-e6e86d76fc58",
+            "Key": "8dc6746b-9980-419b-9a27-8f57527b6285",
             "Value": {
-                "id": "844941d7-77bf-4db1-aa31-78447736ea8f",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc057.rez.yy",
+                "id": "e607f55a-ae5a-4ea2-a1a6-cb56ce3adff2",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc010.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -2636,6 +2716,14 @@
                 "id": "cc528d82-48b0-4fb7-bad0-d6cc9ed27419",
                 "resourcePath": "scripts\/scr_jumpToEnd\/scr_jumpToEnd.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "917ec10c-a05a-4e7a-9369-6692b4c3d41a",
+            "Value": {
+                "id": "151c90ca-f076-4923-9807-ef51147f3747",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0025.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2855,6 +2943,14 @@
             }
         },
         {
+            "Key": "9e594290-b825-4734-be87-2d0cc6ff7b4a",
+            "Value": {
+                "id": "dc77b37c-9951-4804-8543-d4386a679e2e",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc007.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "9e808a24-dfd9-4946-8d43-d2501effbbef",
             "Value": {
                 "id": "7f892741-9f13-4915-bc88-530bd0778460",
@@ -2927,10 +3023,10 @@
             }
         },
         {
-            "Key": "a05f77cd-80bb-4af7-a929-8312dc26bbad",
+            "Key": "a025f84f-398d-4f27-b256-955e2cd2033d",
             "Value": {
-                "id": "099d65dc-81d8-4e63-b1b6-449133360dfb",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc041.rez.yy",
+                "id": "4f32fd33-7a33-4d3c-b87f-1eb511528fdd",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0037.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -2940,6 +3036,14 @@
                 "id": "d903e0dd-e969-47f6-b88f-e7bb87ba223b",
                 "resourcePath": "scripts\/scr_openingMenu\/scr_openingMenu.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "a1225de8-08ea-4cf9-920a-45df6711fb55",
+            "Value": {
+                "id": "ec2e64c1-5879-4fc9-99d4-684b4edc169b",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc006.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3087,10 +3191,10 @@
             }
         },
         {
-            "Key": "a8ba6ef4-ddcb-41f8-ba96-7beefcb2156f",
+            "Key": "a740de63-fa39-4997-a467-c33308a447ee",
             "Value": {
-                "id": "4772212a-3bf9-4010-816d-bb42038e0270",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc004.rez.yy",
+                "id": "1434eaba-1789-4382-be50-64982178414e",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0032.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3151,14 +3255,6 @@
             }
         },
         {
-            "Key": "a9e87d02-30ac-4766-a89a-1c59e8c7885a",
-            "Value": {
-                "id": "b11c3eb3-cee5-4de0-816e-24f405d36979",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc032.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "a9ea114a-3377-4102-bf6a-99cb87ca0a63",
             "Value": {
                 "id": "c630a2dd-6f17-4246-b887-96e7537df43c",
@@ -3183,6 +3279,14 @@
             }
         },
         {
+            "Key": "ab6ea73a-789e-4e16-8e99-c1df266568b0",
+            "Value": {
+                "id": "0e5c57b9-8b36-4f6a-abdf-f37eb0f08c77",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0021.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "ab958ed3-5d2b-493d-8352-352b31d9a9ef",
             "Value": {
                 "id": "b9ba291f-f776-4e35-8687-53ff75003b92",
@@ -3191,35 +3295,11 @@
             }
         },
         {
-            "Key": "abff9e6f-a6b6-4806-bf55-7eeaa43bc555",
-            "Value": {
-                "id": "bd471063-d960-4a3c-996b-fa75f32338ca",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc024.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "ac2dc6dd-da64-4a21-944f-73034818ba27",
-            "Value": {
-                "id": "805b4419-a9f6-4755-b10e-85510a6a11b5",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc049.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "ac8f0209-4437-4401-9bbb-0c3732f7eb14",
             "Value": {
                 "id": "be4ad02b-08c5-4029-aa90-bdf8780761f9",
                 "resourcePath": "scripts\\scr_drawToolPaneNew\\scr_drawToolPaneNew.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "ad0c333a-9da6-42f8-99db-44329db0d4d9",
-            "Value": {
-                "id": "8febc5b5-e668-41ed-8c09-ea03f71f8757",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc019.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3236,14 +3316,6 @@
                 "id": "75010891-8804-4349-8879-f19ec956e9ed",
                 "resourcePath": "sprites\/Sprite_128x96\/Sprite_128x96.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "ad6e1a5a-e4ce-410b-9f24-b2e25fc2de76",
-            "Value": {
-                "id": "67794c8a-dcbc-4575-a8b0-7aa9a6cb3c69",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc058.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3268,14 +3340,6 @@
                 "id": "f358fe36-e708-430a-800c-43e1edd1b94e",
                 "resourcePath": "fonts\\fnt_chainListFocusedLarge1\\fnt_chainListFocusedLarge1.yy",
                 "resourceType": "GMFont"
-            }
-        },
-        {
-            "Key": "aee198f1-95db-42a9-a684-c2249df734de",
-            "Value": {
-                "id": "51028d56-6183-4578-8dca-14c8ff58e5f4",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc051.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3316,14 +3380,6 @@
                 "id": "7a819e65-58b9-4edc-98eb-3a0aee613b41",
                 "resourcePath": "scripts\/scr_swapLine\/scr_swapLine.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "b1ebf9f1-e0cd-4fb3-8b5c-3f276852fee8",
-            "Value": {
-                "id": "d22f10d6-0275-4950-a35e-f151371fd6a6",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc048.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3391,14 +3447,6 @@
             }
         },
         {
-            "Key": "b4d144f9-0f85-4603-beed-f2371dce2b0f",
-            "Value": {
-                "id": "6b0acced-5a5f-4de4-ba2b-034e1303a20d",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc056.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "b4d32bfe-6fe2-4fe2-b922-7cd35d082665",
             "Value": {
                 "id": "f3de5f0c-8ee1-4345-8f11-03dc74c73dd1",
@@ -3411,22 +3459,6 @@
             "Value": {
                 "id": "fe047e12-93ef-4903-bb50-4e926418e075",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc055.xml.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "b5750101-cefc-4c75-8420-6d10f2f9f40e",
-            "Value": {
-                "id": "796cf9a1-1e3f-40fc-aedb-96b3b2eac43b",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc038.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "b5cf3538-4b00-446c-aaa5-0b10e14119ea",
-            "Value": {
-                "id": "8dd2e2ea-0cb9-4f49-9332-8d3c185a43ea",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc016.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3459,6 +3491,14 @@
             "Value": {
                 "id": "22602ac5-ec78-40d6-b240-855a307d24f0",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc040.xml.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "b894d941-58f4-44d0-b706-b89a306f0954",
+            "Value": {
+                "id": "06df7b68-29a1-4369-9a1a-675e92560acd",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc004.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3527,10 +3567,10 @@
             }
         },
         {
-            "Key": "bbd1c377-fd87-4b27-a832-4d56d975d7c4",
+            "Key": "bb12749d-8735-4fc3-ae29-6ccfffc5f31a",
             "Value": {
-                "id": "17a8bea2-a6ab-42c9-9719-2477f885f511",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc008.rez.yy",
+                "id": "438c821f-8dad-48a2-9f64-130b5163d2e9",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0040.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3599,14 +3639,6 @@
             }
         },
         {
-            "Key": "c0a79b0b-3aed-43c4-8107-53d3aed71acf",
-            "Value": {
-                "id": "8efdb283-3695-47a8-b181-9a14b89b9810",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc014.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "c1500051-d8bb-4819-bb21-ec737908731c",
             "Value": {
                 "id": "a9d759ca-6ae1-4b1b-8703-fddd945b43f0",
@@ -3639,6 +3671,14 @@
             }
         },
         {
+            "Key": "c381f37c-6c0f-478c-b813-ede8640f550d",
+            "Value": {
+                "id": "d2390a9a-2843-49bb-b085-3e30dde01ccd",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0027.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "c396dcfe-83b1-4c8a-940a-943ac04f8efb",
             "Value": {
                 "id": "6a265393-f64f-439c-bc45-a3513dc4483e",
@@ -3660,6 +3700,14 @@
                 "id": "bfa0877b-c329-441f-99c2-4bcc24eb378c",
                 "resourcePath": "views\/c3c97928-1a34-4867-b355-10bf3258f126.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "c4cc4ede-2202-4124-a5c4-1d12481ad175",
+            "Value": {
+                "id": "0f3e5081-2efc-49af-9243-6ad06297f279",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc043.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3703,6 +3751,14 @@
             }
         },
         {
+            "Key": "c5e74cd2-b621-4b47-94ea-42c300726ac8",
+            "Value": {
+                "id": "8de3ed6c-ea83-4b15-bd5c-44e56e1feeae",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc015.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "c5f23ff1-8f9f-4cce-bc98-ecb946637d9f",
             "Value": {
                 "id": "cd4c979f-3821-4bf2-94eb-397da3874283",
@@ -3727,27 +3783,19 @@
             }
         },
         {
-            "Key": "c785f7d4-bad4-4499-9c96-43e509cf6f49",
-            "Value": {
-                "id": "f9058aa4-9398-40e2-976f-a3659b7bf359",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc007.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "c7b4d264-8619-4ef3-96aa-fee135fafb4f",
-            "Value": {
-                "id": "c8e0ac35-e723-4e88-b9bb-c915cf2fa271",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc021.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "c82c75c4-63fb-4984-958b-09228502eb9a",
             "Value": {
                 "id": "a25c93e1-7ce2-45ff-827a-06b135b3b6e7",
                 "resourcePath": "sprites\/spr_input_1\/spr_input_1.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "c8fcf400-67aa-46a2-bc44-54ca47c4e920",
+            "Value": {
+                "id": "d80922c2-302b-49f8-aded-8b5171dac7bf",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc020.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -3775,14 +3823,6 @@
             }
         },
         {
-            "Key": "c9720f89-4d5a-479d-86d9-ce95c7e80ad2",
-            "Value": {
-                "id": "71281936-f347-4bce-83c4-d3308043c471",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc054.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "ca9e82d6-e6eb-425a-aaa6-b390f9571ec6",
             "Value": {
                 "id": "14a018d7-7ba8-4857-a514-1c4cee078707",
@@ -3803,6 +3843,14 @@
             "Value": {
                 "id": "3fa749e5-fb07-4aa8-b635-1b632fdac680",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc006.xml.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "cc01d94f-b7c5-481a-809f-f51e9a949a5e",
+            "Value": {
+                "id": "0aaa06c9-7e17-40c4-9750-eeb50d2b1c02",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0036.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3911,14 +3959,6 @@
             }
         },
         {
-            "Key": "d0f2ffb6-a267-4fa3-bfbf-43f0bac1225e",
-            "Value": {
-                "id": "da178d72-a287-4c5c-a0db-bdc5b2d5e2d3",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc022.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "d1244fca-ca55-4888-adc7-2175d18e5004",
             "Value": {
                 "id": "616e3dd4-6989-46b7-a044-10a91b5dd1f3",
@@ -3959,14 +3999,6 @@
             }
         },
         {
-            "Key": "d40f6e6e-89ec-4730-b8d6-5b004a2b35f6",
-            "Value": {
-                "id": "b0488035-ba6e-4de6-ba10-a2e599e261fb",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc060.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "d442e9ff-7ed7-49d7-b832-3a783d12bfdc",
             "Value": {
                 "id": "39cb310f-2809-4ff9-897d-8ceba58fbdb0",
@@ -4004,22 +4036,6 @@
                 "id": "5de8b89b-42e7-492e-afdb-e4fd472da956",
                 "resourcePath": "sprites\/sUITextArea\/sUITextArea.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "d56cb753-f7f9-4908-958b-cf52ded79eb2",
-            "Value": {
-                "id": "0417d8f6-31eb-4f5b-8edb-791654e711d5",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc030.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "d6538f75-e5d7-4154-b634-9cbe9fbec420",
-            "Value": {
-                "id": "bae907bf-cc50-4975-9aa5-5fa0c7cbc33f",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc059.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4087,22 +4103,6 @@
             }
         },
         {
-            "Key": "dade9882-ddbd-432b-afc0-681aec358206",
-            "Value": {
-                "id": "9aa30266-a3f4-4a02-9400-31bc70704d32",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc033.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "dafd4db4-79cb-4e38-a0ba-caabbe08744a",
-            "Value": {
-                "id": "b2570316-49c4-41f8-b3c8-efa3410908bd",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc035.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "db1ec036-e265-4fad-aa0f-7b5e95c4d275",
             "Value": {
                 "id": "6138dd25-3dbc-46ea-94e2-2bc863353848",
@@ -4148,6 +4148,14 @@
                 "id": "bdc436ff-6600-4778-aa32-b9549d080b0a",
                 "resourcePath": "fonts\/fnt_gridView\/fnt_gridView.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "dc9a5d7d-7d23-4d7a-a8b9-e745ae5cbc33",
+            "Value": {
+                "id": "f4f9ed00-1609-4d42-a743-4c6537ecb743",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc056.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4295,27 +4303,11 @@
             }
         },
         {
-            "Key": "e1cff763-7d12-410f-90dc-ea1407e9ccb0",
-            "Value": {
-                "id": "48e0e456-2039-4ab1-a5c6-2de0b060f841",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc050.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "e27471aa-9088-49d8-8712-f11c5cfc82ed",
             "Value": {
                 "id": "f04fc748-ff0f-4af9-824c-e35168df5f42",
                 "resourcePath": "views\\e27471aa-9088-49d8-8712-f11c5cfc82ed.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "e2f2591d-55e2-4c4c-aba0-01caaab00ab8",
-            "Value": {
-                "id": "6a2142fe-7540-432d-9204-83733c2d4be3",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc053.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4375,6 +4367,14 @@
             }
         },
         {
+            "Key": "e5d5ce82-496e-4289-8392-71a239054a50",
+            "Value": {
+                "id": "32b7252f-3a0b-48a8-8e79-eace180c397e",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0023.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91",
             "Value": {
                 "id": "b916a6cf-55d6-4235-9fe5-149b5490bb7c",
@@ -4399,19 +4399,19 @@
             }
         },
         {
-            "Key": "e63bfc05-f81b-4d82-972f-740513aad364",
-            "Value": {
-                "id": "76c760e0-ce79-4d1c-9699-dbf85eae129f",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc005.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "e69bac84-b4e1-421a-869c-4ae937e0f788",
             "Value": {
                 "id": "76e7fb8b-4f83-4741-b7a1-54b50007d4fa",
                 "resourcePath": "scripts\/scr_addToSearchGrid\/scr_addToSearchGrid.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "e7019bef-7117-411a-ab55-76b6f90f61fe",
+            "Value": {
+                "id": "ae5dd327-cff2-4527-bcfa-1a2246b17da3",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc008.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4447,6 +4447,14 @@
             }
         },
         {
+            "Key": "e8a2c69f-9b2a-409b-8517-5ddc0fc6daa7",
+            "Value": {
+                "id": "06c55384-4b66-4825-9362-da951b635cb5",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc003.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "e9158e2e-a262-41ad-844f-9b0027d7a859",
             "Value": {
                 "id": "25e3ad7a-e2bb-47fd-8d4a-55ffc0d94ae9",
@@ -4475,14 +4483,6 @@
             "Value": {
                 "id": "584b3aad-7c05-4a35-b474-66a50b553a47",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc036.xml.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "e9a4a8d0-eb24-47db-ac00-2d4d00509d7d",
-            "Value": {
-                "id": "ca6108c9-cce6-4091-b2fd-684bdee43fcc",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc037.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -4527,10 +4527,10 @@
             }
         },
         {
-            "Key": "eb35e027-567d-4840-aebf-240d84e51b22",
+            "Key": "eb2ced87-2b61-4f83-b483-194b322c906b",
             "Value": {
-                "id": "8b2ed3cf-1590-4a4a-abb2-956189abab6e",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc052.rez.yy",
+                "id": "b6c7f528-66d5-48a6-99b4-ebed9a005975",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc042.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -4567,6 +4567,14 @@
             }
         },
         {
+            "Key": "ed497b60-0226-459d-8f4e-859dee34d1f7",
+            "Value": {
+                "id": "17405c3b-f0f2-49c0-9426-35f8e21deecc",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc016.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "ed4c4fd5-bcff-435c-b50c-065c5a9be3a4",
             "Value": {
                 "id": "24d0503b-8a6a-462f-9a86-47bdb623a7f3",
@@ -4580,6 +4588,14 @@
                 "id": "96e3b4fb-052e-4820-912a-cc075c4979f0",
                 "resourcePath": "scripts\/scr_drawTrackChain\/scr_drawTrackChain.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "eeb63cce-4481-4a08-9ae8-255923239eea",
+            "Value": {
+                "id": "99d84f9b-1336-49a9-b175-4199c8bfce8e",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc018.rez.yy",
+                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4599,6 +4615,14 @@
             }
         },
         {
+            "Key": "f1227315-846f-4ce5-85d9-0bd0cac1406f",
+            "Value": {
+                "id": "d461aa08-1f71-4cec-b18c-d3a41dfed56c",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc046.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "f1465325-2263-485b-8b0d-58f484f99a59",
             "Value": {
                 "id": "199940e0-1f65-48d6-a90e-726ecb186bd8",
@@ -4612,14 +4636,6 @@
                 "id": "04839ec7-dd2e-4084-9f69-bb3197b89a67",
                 "resourcePath": "scripts\/scr_refreshLineGridPixelY\/scr_refreshLineGridPixelY.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f1672a7e-bff0-45fe-ab29-194bfa025780",
-            "Value": {
-                "id": "3c39df01-918d-418a-afd5-3b0c33b9106d",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc039.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4711,14 +4727,6 @@
             }
         },
         {
-            "Key": "f540066c-2b76-4342-ac52-c683a32e4e7f",
-            "Value": {
-                "id": "a5a08a4a-37c4-4e44-8abe-5082a58e33b0",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc006.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "f54a9c90-f1b2-479a-b633-7f089399b826",
             "Value": {
                 "id": "4220c528-d1a9-486a-a176-64c6b74b9401",
@@ -4732,14 +4740,6 @@
                 "id": "4e26fab7-3597-4491-b17e-a2ead18ee781",
                 "resourcePath": "scripts\/scr_dropDownSelect\/scr_dropDownSelect.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "f67c058b-0bc8-4836-b90b-34e5008ae06e",
-            "Value": {
-                "id": "cfcec846-b704-4f1c-a4e7-d79567ebaaac",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc034.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4839,19 +4839,19 @@
             }
         },
         {
+            "Key": "fdac3486-cf27-43ef-a95b-390c5a2734bc",
+            "Value": {
+                "id": "be6660db-8fa7-45c6-ac3e-0772a092e37f",
+                "resourcePath": "datafiles_yy\\Default REZ files\\sbc0038.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "fde1aba0-0d81-4151-afdd-49c970c4e2ad",
             "Value": {
                 "id": "6783b7a0-a455-448a-97a3-8aeb194a170a",
                 "resourcePath": "views\/fde1aba0-0d81-4151-afdd-49c970c4e2ad.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "fdeb9699-a6bf-48f1-b634-a4783db8352a",
-            "Value": {
-                "id": "426950b3-54ac-413e-81ac-00c5691dbe9b",
-                "resourcePath": "datafiles_yy\/Default REZ files\/sbc020.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
