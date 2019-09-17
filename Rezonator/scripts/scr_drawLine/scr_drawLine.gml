@@ -91,7 +91,7 @@ if (speakerLabelColXHolding > -1) {
 	mouseoverPanelPane = true;
 }
 
-if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown)) {
+if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
 	if (point_in_rectangle(mouse_x, mouse_y, 0, wordTopMargin, speakerLabelMargin, camera_get_view_height(view_camera[0]))) {
 	
 		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left)) {

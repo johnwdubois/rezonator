@@ -45,6 +45,7 @@ clearAllStacks = false;
 clearAllTracks = false;
 clearAllRez = false;
 clearAllLinks = false;
+clearChain = false;
 
 canDelete = true;
 canDeleteHoldingCounter = 0;
