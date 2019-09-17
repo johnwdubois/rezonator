@@ -191,3 +191,4 @@ boxRectReleased = true;
 boxRectAbleToInitiate = true;
 trackChunkMade = false;
 obj_control.mouseRectWithinLine = false;
+obj_control.mouseRectWithinColumn = false;

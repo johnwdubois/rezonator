@@ -293,13 +293,13 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		if(obj_control.mouseRectWithinLine) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		}
-		else if (obj_control.mouseRectBeginBetweenWords == -1 and not obj_control.mouseRectWithinLine) {
+		else if (obj_control.mouseRectBeginBetweenWords == -1 and not obj_control.mouseRectWithinLine and not (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush and not searchGridActive)) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		}
 		else {
 			inMouseHoldRect = 0;
 		}
-		
+		 
 		if (inMouseHoldRect > 0) {
 			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1)) {
 				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, 2);
