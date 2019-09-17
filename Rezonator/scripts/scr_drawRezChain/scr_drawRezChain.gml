@@ -38,7 +38,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 	
 	var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, i);
 	var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, i);
-	var currentChainShow = ds_grid_get(rezChainGrid, chainGrid_colShow, i);
+	var currentChainShow = true;//ds_grid_get(rezChainGrid, chainGrid_colShow, i);
 	
 	// find minimum word width so we know the X position of the chain
 	for (var j = 0; j < ds_list_size(currentWordIDList); j++) {

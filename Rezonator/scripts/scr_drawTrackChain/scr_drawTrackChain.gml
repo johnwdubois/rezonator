@@ -33,7 +33,7 @@ var furthestDisplayCol = -1;
 for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 	var currentWordIDList = ds_grid_get(trackChainGrid, chainGrid_colWordIDList, i);
 	var currentChainColor = ds_grid_get(trackChainGrid, chainGrid_colColor, i);
-	var currentChainShow = ds_grid_get(trackChainGrid, chainGrid_colShow, i);
+	var currentChainShow = true;//ds_grid_get(trackChainGrid, chainGrid_colShow, i);
 	
 	
 	var wordsInSameUnit = false;
