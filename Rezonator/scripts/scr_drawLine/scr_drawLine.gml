@@ -64,18 +64,18 @@ ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPix
 if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
 	//var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
 	draw_set_color(global.colorThemeOutOfBounds);
-	//draw_rectangle(0, 0, room_width, firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
+	//draw_rectangle(0, 0, camera_get_view_width(view_camera[0]), firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
 	var oobTopRectY2 = wordTopMargin;
 	if (ds_grid_height(currentActiveLineGrid) > 0) {
 		var lowestY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0) - (gridSpaceVertical / 2) - 10;
 		oobTopRectY2 = clamp(wordTopMargin, 0, lowestY);
 	}
-	draw_rectangle(0, 0, room_width, oobTopRectY2, false);
+	draw_rectangle(0, 0, camera_get_view_width(view_camera[0]), oobTopRectY2, false);
 }
 if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) - 1 and ds_grid_height(currentActiveLineGrid) > 0) {
 	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
 	draw_set_color(global.colorThemeOutOfBounds);
-	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), room_width, room_height, false);
+	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]), false);
 }
 
 
@@ -237,10 +237,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 					draw_set_color(stackColor);
 					draw_set_alpha(0.2);
 			
-					var stackRectWidth = (room_width - speakerRectX2);
+					var stackRectWidth = (camera_get_view_width(view_camera[0]) - speakerRectX2);
 					var stackRectX1 = speakerRectX2;
 					var stackRectY1 = speakerRectY1;
-					var stackRectX2 = room_width;
+					var stackRectX2 = camera_get_view_width(view_camera[0]);
 					var stackRectY2 = speakerRectY2;
 				
 					draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
@@ -255,10 +255,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 					var focusedStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
 					if (focusedStackRow >= 0 and focusedStackRow < ds_grid_height(obj_chain.stackChainGrid)) {
 						var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, focusedStackRow);
-						var stackRectWidth = (room_width - speakerRectX2);
+						var stackRectWidth = (camera_get_view_width(view_camera[0]) - speakerRectX2);
 						var stackRectX1 = speakerRectX2 + (stackRectWidth);
 						var stackRectY1 = speakerRectY1;
-						var stackRectX2 = room_width;
+						var stackRectX2 = camera_get_view_width(view_camera[0]);
 						var stackRectY2 = speakerRectY2;
 						
 						draw_set_color(stackColor);
@@ -295,7 +295,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			
 		var highlightRectX1 = speakerRectX2;
 		var highlightRectY1 = speakerRectY1;
-		var highlightRectX2 = room_width;
+		var highlightRectX2 = camera_get_view_width(view_camera[0]);
 		var highlightRectY2 = speakerRectY2;
 		
 		draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
@@ -305,14 +305,14 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	if (!obj_chain.inRezPlay) {
 		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
 		
-			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, room_width, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, camera_get_view_width(view_camera[0]), speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseRect and speakerLabelColXHolding == -1) {
 				draw_set_color(c_ltblue);
 				draw_set_alpha(0.3);
 			
 				var quickStackRectX1 = speakerRectX2;
 				var quickStackRectY1 = speakerRectY1;
-				var quickStackRectX2 = room_width;
+				var quickStackRectX2 = camera_get_view_width(view_camera[0]);
 				var quickStackRectY2 = speakerRectY2;
 		
 				draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
@@ -348,8 +348,8 @@ if (showDevVars) {
 	draw_set_alpha(1);
 	draw_set_font(fnt_debug);
 	draw_set_halign(fa_right);
-	draw_text(room_width - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
-	draw_text(room_width - 300, 265, "camY range: " + string(camera_get_view_y(view_camera[0]) + camera_get_view_height(view_camera[0])));
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
+	draw_text(camera_get_view_width(view_camera[0]) - 300, 265, "camY range: " + string(camera_get_view_y(view_camera[0]) + camera_get_view_height(view_camera[0])));
 	
 	draw_text(mouse_x, mouse_y, "(" + string(mouse_x) + ", " + string(mouse_y) + ")");
 }
