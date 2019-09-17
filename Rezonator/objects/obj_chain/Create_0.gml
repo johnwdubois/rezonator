@@ -16,7 +16,7 @@ toggleDrawRez = true;
 toggleDrawTrack = true;
 toggleDrawStack = true;
 
-chainGridWidth = 10;
+chainGridWidth = 9;
 chainGrid_colChainID = 0;
 chainGrid_colChainState = 1;
 chainGrid_colWordIDList = 2;
@@ -26,8 +26,9 @@ chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
 chainGrid_colTiltSum = 7;
 chainGrid_colAuthor = 8;
+chainGrid_colCaption = 9;
+
 chainGrid_colShow = 9;
-chainGrid_colCaption = 10;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);

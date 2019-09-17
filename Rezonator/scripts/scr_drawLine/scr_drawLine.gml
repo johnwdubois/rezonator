@@ -228,8 +228,8 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			var currentStackChainID = currentLineInStack;
 			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackChainID);
 			
-			var showStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colShow, rowInStackChainGrid);
-			if (showStack) {
+			//var showStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colShow, rowInStackChainGrid);
+			//if (showStack) {
 				var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
 			
 				if (typeof(stackColor) == "number") {
@@ -245,7 +245,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 				
 					draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
 				}
-			}
+			//}
 		}
 	}
 	else {
