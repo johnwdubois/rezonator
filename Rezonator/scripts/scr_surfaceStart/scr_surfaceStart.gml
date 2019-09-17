@@ -56,7 +56,7 @@ if (mouse_check_button(mb_left)) {
 		window_set_cursor(cr_size_we);
 	}
 	else if (windowResizeYHolding) {
-		windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.75);
+		windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.5);
 		window_set_cursor(cr_size_ns);
 		
 		if (object_index == obj_panelPane) {
