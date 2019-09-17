@@ -106,7 +106,6 @@ if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj
 		}
 	}
 	else {
-	
 		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left)) {
 			if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus)) {
 				with (obj_chain) {
