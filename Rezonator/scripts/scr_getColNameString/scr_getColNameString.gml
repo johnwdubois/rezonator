@@ -327,6 +327,9 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 		case obj_chain.chainGrid_colAuthor:
 			colName = "author";
 			break;
+		case obj_chain.chainGrid_colShow:
+			colName = "show";
+			break;
 		default:
 			break;
 	}

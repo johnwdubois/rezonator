@@ -110,6 +110,7 @@ ds_grid_set(chainGrid, chainGrid_colColor, currentRowChainGrid, chainColor);
 ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
 ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
 ds_grid_set(chainGrid, chainGrid_colAuthor, currentRowChainGrid, global.userName);
+ds_grid_set(chainGrid, chainGrid_colShow, currentRowChainGrid, true);
 if(chainGrid == obj_chain.stackChainGrid){
 	ds_grid_set(chainGrid, chainGrid_colCaption, currentRowChainGrid, "");
 }
