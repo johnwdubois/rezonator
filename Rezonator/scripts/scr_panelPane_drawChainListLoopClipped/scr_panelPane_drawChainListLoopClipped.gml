@@ -55,7 +55,7 @@ var strHeight = string_height("0") * 1.5;
 // Set text margin area
 var filterRectMargin = 8;
 var filterRectSize = (strHeight / 2) + 5;
-var textMarginLeft = filterRectMargin + (filterRectSize * 2);
+var textMarginLeft = (filterRectMargin * 2) + (filterRectSize * 3);
 
 var textMarginTop = functionChainList_tabHeight;
 var textPlusY = 0;
@@ -230,41 +230,65 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	draw_set_valign(fa_middle);
 	draw_text(x + textMarginLeft - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, currentChainName);
 	
-	// Draw little boxes for filter selection
-	var chainFilterRectX1 = x + filterRectMargin - clipX;
-	var chainFilterRectY1 = y + textMarginTop + scrollPlusY + textPlusY - (filterRectSize / 2) - clipY;
-	var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
-	var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
-	var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
-	draw_set_font(global.fontPanelTab);
+	if (grid != obj_chain.cliqueDisplayGrid) {
 	
-	draw_set_color(global.colorThemeText);
-	// Fill in boxes if filtered
-	// Check boxes for user selection with mouse click
-	var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
-	if (mouseover) {
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemeBorders);
-			draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
-	}
-	if (((mouseover and device_mouse_check_button_released(0, mb_left))
-	or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
-		// Record previous display row in case Filter is empty
-		obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
-		// Set selected objects to be filtered
-		inFilter = !inFilter;
-		ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
+		// Draw little boxes for filter selection
+		var chainFilterRectX1 = x + filterRectMargin - clipX;
+		var chainFilterRectY1 = y + textMarginTop + scrollPlusY + textPlusY - (filterRectSize / 2) - clipY;
+		var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
+		var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
+		var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
+		draw_set_font(global.fontPanelTab);
+	
+		draw_set_color(global.colorThemeText);
+		// Fill in boxes if filtered
+		// Check boxes for user selection with mouse click
+		var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
+		if (mouseover) {
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
+		}
+		if (((mouseover and device_mouse_check_button_released(0, mb_left))
+		or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
+			// Record previous display row in case Filter is empty
+			obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
+			// Set selected objects to be filtered
+			inFilter = !inFilter;
+			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
 			
-		// Render the filter in the mainscreen
-		if (obj_control.filterGridActive) {
-			with (obj_control) {
-				scr_renderFilter();
+			// Render the filter in the mainscreen
+			if (obj_control.filterGridActive) {
+				with (obj_control) {
+					scr_renderFilter();
+				}
+			}
+			// Add to moveCounter
+			obj_control.moveCounter++;
+		}
+		draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
+	
+	
+	
+		// Create little boxes for show section
+		var show = ds_grid_get(grid, obj_chain.chainGrid_colShow, i);
+		if (show != 0 and show != 1) {
+			show = true;
+			ds_grid_set(grid, obj_chain.chainGrid_colShow, i, show);
+		}
+		var showRectX1 = chainFilterRectX2 + filterRectMargin;
+		var showRectY1 = chainFilterRectY1;
+		var showRectX2 = showRectX1 + filterRectSize;
+		var showRectY2 = showRectY1 + filterRectSize;
+		draw_sprite_ext(spr_toggleDraw, show, mean(showRectX1, showRectX2), mean(showRectY1, showRectY2), 1, 1, 0, c_white, 1);
+		if (point_in_rectangle(mouse_x, mouse_y, showRectX1 + clipX, showRectY1 + clipY, showRectX2 + clipX, showRectY2 + clipY)) {
+			draw_rectangle(showRectX1, showRectY1, showRectX2, showRectY2, true);
+			if (mouse_check_button_released(mb_left)) {
+				show = !show;
+				ds_grid_set(grid, obj_chain.chainGrid_colShow, i, show);
 			}
 		}
-		// Add to moveCounter
-		obj_control.moveCounter++;
 	}
-	draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
 	
 	
 	// Create little boxes for alignment selection
