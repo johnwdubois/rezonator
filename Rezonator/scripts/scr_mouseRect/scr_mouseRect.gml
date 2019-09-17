@@ -59,7 +59,7 @@ if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
 	else {
 		obj_control.mouseRectWithinLine = false;
 		// Check if the current gesture is a quickStack
-		if(obj_toolPane.tempReturnTool == obj_toolPane.toolRezBrush and obj_control.mouseRectBeginInWord == -1 and obj_control.mouseRectBeginInSpeakerLabel) {
+		if(obj_control.mouseoverSpeakerLabel) {
 			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;	
 		}
 	}

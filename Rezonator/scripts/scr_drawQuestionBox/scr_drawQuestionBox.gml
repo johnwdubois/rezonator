@@ -58,8 +58,8 @@ if (questionWindowActive) {
 	draw_set_font(fnt_mainLarge1);
 	
 	// draw button text
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "OK");
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Cancel");
+	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "Yes");
+	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "No");
 	
 
 	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Are You Sure?");
@@ -176,11 +176,15 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		
 		
 		}
+		if (clearChain) {
+			scr_deleteEntireChain(obj_control.selectedChainID);
+		}
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
+		clearChain = false;
 
 		instance_destroy();
 
@@ -189,8 +193,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 }
 
 // cancel button check
-if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && questionWindowActive){
-		if (mouse_check_button_released(mb_left)) {
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
+		|| keyboard_check_pressed(vk_escape)) {
 			obj_control.alarm[11] = 60;
 			
 		questionWindowActive = false;
@@ -198,9 +202,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		clearAllTracks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
+		clearChain = false;
 		instance_destroy();
 
-	}
+	
 		
 }
 
@@ -304,11 +309,17 @@ if ( keyboard_check_pressed(vk_enter) && questionWindowActive) {
 		
 		
 		}
+		
+		if (clearChain) {		
+			scr_deleteEntireChain(obj_control.selectedChainID);
+		}
+
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
+		clearChain = false;
 
 	
 

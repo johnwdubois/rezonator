@@ -188,7 +188,13 @@ else if (optionListType == 1)
 							//var chosenGrid = ds_grid_copy(chosenGrid, obj_chain.stackChainGrid);
 						}
 						*/
-						scr_deleteEntireChain(obj_control.selectedChainID);
+						
+							if (!instance_exists(obj_dialogueBox)) {
+								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+								obj_dialogueBox.clearChain = true;
+								obj_dialogueBox.questionWindowActive = true;
+							}
+		
 							
 								instance_destroy(obj_dropDown);
 						break;
