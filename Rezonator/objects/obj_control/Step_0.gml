@@ -101,8 +101,18 @@ else {
 	}
 }*/
 
+var canScrollWithStackShow = true;
+if (instance_exists(obj_stackShow)) {
+	if (ds_grid_height(obj_chain.stackChainGrid) > 0) {
+		if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0,  obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus)) {
+			canScrollWithStackShow = false;
+		}
+	}
+}
+
+
 // Check if user is in the NavWindow. If not, allow key control on main screen.
-if (!clickedInChainList and !clickedInChainContents) {
+if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow) {
 	
 	
 	
