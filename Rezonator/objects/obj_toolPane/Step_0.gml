@@ -36,9 +36,7 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 		}
 		currentTool = toolNewWord;
 	}
-	if (keyboard_check_pressed(ord("T")) and keyboard_check(vk_control)) {
-		showTool = not showTool;	
-	}
+	
 	
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
