@@ -76,8 +76,10 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	
 	// Safety check, we only want to delete Chunks or newWords
 	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
-	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) {
-		exit;}
+	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) 
+	{
+		exit;
+	}
 	
 	// Set the word state to dead
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
@@ -116,10 +118,11 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 		grid = obj_chain.stackChainGrid;
 	}
 		
-	if(grid == undefined) {
-		exit;}
+	if(grid != undefined) {
+		currentChainGridRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
+	}
 	// Locate the current chain within the chain grid
-	currentChainGridRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
+	
 }
 
 // Make sure there is a focused link to be deleted
@@ -229,13 +232,14 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 
 // If this Chunk has already been deleted, refresh the chain grids
 if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.deleteNewWord) {
-	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);
-	scr_refreshChainGrid(grid);
-	scr_killEmptyChains(grid);
+	if(grid != undefined) {
+		ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);
+		scr_refreshChainGrid(grid);
+		scr_killEmptyChains(grid);
+		scr_refreshVizLinkGrid();
+		ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateNormal);
+	}
 	obj_chain.mouseLineWordID = -1;
-
-	scr_refreshVizLinkGrid();
-	ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateNormal);
 	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 	obj_control.linkDeleted = false;
 	exit;	

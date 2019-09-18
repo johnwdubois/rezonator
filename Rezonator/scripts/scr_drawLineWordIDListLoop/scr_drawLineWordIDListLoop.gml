@@ -105,9 +105,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		
 		// Set the Buffer to be initially large, so as to allow for nesting
-		var wordRectBuffer = 6;
+		var wordRectBuffer = 10;
 		if (ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, currentChunkRow) == true) {
-			wordRectBuffer = 4;
+			wordRectBuffer = 6;
 		}
 		
 		// Set up the measurements for the drawn box
@@ -122,9 +122,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		var lastWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, lastWordID - 1);
 		
 		// Set the special wordRect
-		var topLeftX = leftPixelX - wordRectBuffer;
+		var topLeftX = leftPixelX - wordRectBuffer * 2;
 		var topLeftY = currentLineY - (string_height(firstWordString) / 2) - wordRectBuffer;
-		var bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer); //*2
+		var bottomRightX = rightPixelX + string_width(lastWordString) + (wordRectBuffer * 2); //*2
 		var bottomRightY = topLeftY + string_height(firstWordString) + (wordRectBuffer * 2);
 		
 		// Aquire wordDraw specifics
@@ -136,7 +136,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0) {
 			draw_set_color(effectColor);
 		} else {
-			draw_set_color(global.colorThemeSelected1);	
+			draw_set_color(global.colorThemeText);	
 		}
 		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
 			if (borderRounded) {
