@@ -63,64 +63,64 @@ ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHel
 var helpGridHeightLink = 12;
 ds_grid_resize(functionHelp_helpGridLink, functionHelp_helpGridWidth, helpGridHeightLink);
 
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 0, "[CLICK]");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 0, "Focus");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 0, "Focus a word (and add to chain)");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 0, "[CLICK ON WORD]");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 0, "Create/Focus Link");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 0, "Focus a link or add to chain)");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 1, "[ESC], q");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 1, "Quit");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 1, "Unfocus Chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 1, "Quit adding words to the current chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 1, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 2, "[DEL]");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 2, "Zap");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 2, "Delete link");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 2, "Remove a word from a chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 2, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 3, "r");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 3, "Rez");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 3, "Start a new Rez chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 3, "Rez Mode");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 3, "Switch to making Rez chains");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 3, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 4, "t");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 4, "Track");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 4, "Start a new Track chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 4, "Track Mode");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 4, "Switch to making Track chains");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 4, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 5, "k");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 5, "Stack");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 5, "Start a new Stack chain");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 5, false);
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 5, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 6, "c");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 6, "Clique");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 6, "Move to Nav window Clique Tab");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 6, false);
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 6, true);
 
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 7, "[drag word]");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 7, "[DRAG FROM WORD]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 7, "QuickLink");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 7, "Drag from word to make multiple links");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 7, false);
 
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "[drag line]");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "[DRAG FROM LINE]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 8, "QuickStack");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag from line to make a QuickStack");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag along Speaker Labels to make a QuickStack");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 8, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 9, "n");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 9, "New Word");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 9, "Insert a new word into the discourse");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 9, false);
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 9, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 10, "b");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 10, "Box");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 10, "Make a Box around selected words");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 10, false);
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 10, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 11, controlStr + "+ [DEL]");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "QuickZap");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 11, "Delete the entire chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "Delete Entire Chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 11, "Delete all the links from the chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 11, false);
 
 var helpGridHeightPick = 3;

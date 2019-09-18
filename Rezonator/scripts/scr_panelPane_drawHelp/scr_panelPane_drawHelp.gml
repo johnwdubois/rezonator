@@ -94,27 +94,22 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	var textBufferAll = 10;
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle)
-	draw_set_font(fnt_mainBold);
+	draw_set_font(global.fontChainContents);
 	var titleTextAllX = helpWindowX1 + textBufferAll;
 	var titleTextAllY = helpWindowY1 + (textBufferAll * 2) + functionHelp_plusY; 
 	draw_set_color(global.colorThemeText);
 	var titleTextAllStr = "All";
 	draw_text(titleTextAllX, titleTextAllY, titleTextAllStr);
-	var gridCollapseButtonAllX = titleTextAllX + string_width(titleTextAllStr) + (textBufferAll * 2);
+	var gridCollapseButtonAllX = titleTextAllX + string_width(titleTextAllStr) + (textBufferAll * 3);
 	var gridCollapseButtonAllY = titleTextAllY;
 	
-	if (obj_panelPane.functionHelp_allCollapsed) {
-		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 270, c_white, 1);
-	}
-	else {
-		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 180, c_white, 1);
-	}
+	
 	
 	// Draw the mouseover circles around arrows
-	if (point_distance(mouse_x, mouse_y, gridCollapseButtonAllX, gridCollapseButtonAllY) < 10) {
-		draw_set_color(global.colorThemeText);
+	if (point_distance(mouse_x, mouse_y, gridCollapseButtonAllX, gridCollapseButtonAllY) < 20) {
+		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(1);
-		draw_circle(gridCollapseButtonAllX, gridCollapseButtonAllY, 10, true);
+		draw_circle(gridCollapseButtonAllX, gridCollapseButtonAllY, 20, false);
 		if (device_mouse_check_button_released(0, mb_left)) {
 			for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
 				// Skip past sections already changed
@@ -129,9 +124,17 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			obj_panelPane.functionHelp_allCollapsed = !obj_panelPane.functionHelp_allCollapsed;
 		}
 	}
+	draw_set_color(global.colorThemeText);
+	if (obj_panelPane.functionHelp_allCollapsed) {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 270, c_white, 1);
+	}
+	else {
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 180, c_white, 1);
+	}
+	draw_circle(gridCollapseButtonAllX, gridCollapseButtonAllY, 20, true);
 	
-	var cellHeight = 14;
-	var cellPlusY = 20;
+	var cellHeight = string_height("M") + 10;
+	var cellPlusY = string_height("M") + 10;
 
 	// Loop through the separate grids to draw titles, and if selected their contents
 	for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
@@ -139,19 +142,19 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 		if(not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colHide, i)) {
 			// Space the sections evenly
 			if(i != 0) {
-				cellPlusY += 16;
+				cellPlusY += string_height("M");
 			}
 			// Draw the function title text
 			var textBuffer = 10;
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle)
-			draw_set_font(fnt_mainBold);
+			draw_set_font(global.fontChainContents);
 			var titleTextX = helpWindowX1 + textBuffer;
 			var titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY; 
 			draw_set_color(global.colorThemeText);
 			var titleTextStr = ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colName, i);
 			draw_text(titleTextX, titleTextY, titleTextStr);
-			var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 2);
+			var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 3);
 			var gridCollapseButtonY = titleTextY;
 	
 			// draw the toggle arrows
@@ -161,18 +164,32 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			else {
 				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 180, c_white, 1);
 			}
-	
+			draw_set_alpha(1);
+			draw_circle(gridCollapseButtonX, gridCollapseButtonY, 20, true);
+			
 			// Draw the mouseover circles around arrows
-			if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 10) {
-				draw_set_color(global.colorThemeText);
-				draw_set_alpha(1);
-				draw_circle(gridCollapseButtonX, gridCollapseButtonY, 10, true);
+			if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 20) {
+				//draw_set_color(global.colorThemeText);
+				//draw_set_alpha(0.5);
+				draw_set_color(global.colorThemeSelected1);
+				draw_circle(gridCollapseButtonX, gridCollapseButtonY, 20, false);
 				if (device_mouse_check_button_released(0, mb_left)) {
 					ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i, not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i));
 				}
 			}
+			draw_set_color(global.colorThemeText);
+			
+			// draw the toggle arrows
+			if (ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) {
+				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 270, c_white, 1);
+			}
+			else {
+				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 180, c_white, 1);
+			}
+			draw_set_alpha(1);
+			draw_circle(gridCollapseButtonX, gridCollapseButtonY, 20, true);
 	
-			cellPlusY += 16;	
+			cellPlusY += string_height("M");	
 			
 			// If section is not collapsed, loop through and draw the contents
 			if (not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) {
@@ -197,7 +214,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 						draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
 						draw_set_alpha(1);
 						draw_set_color(global.colorThemeText);
-						draw_set_font(fnt_chainContents);
+						draw_set_font(global.fontChainContents);
 						draw_set_halign(fa_left);
 						draw_set_valign(fa_middle);
 						
