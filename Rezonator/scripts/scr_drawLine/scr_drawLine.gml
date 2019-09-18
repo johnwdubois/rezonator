@@ -117,11 +117,14 @@ if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj
 		}
 	
 		if ((mouse_check_button(mb_left) or mouse_check_button_released(mb_left)) and not mouseoverNeutralSpace) {
-			if (obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modePointer) {
+			if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
 				obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 			}
-			else {
+			else if(obj_toolPane.currentMode == obj_toolPane.modeTrack) {
 				obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
+			}
+			else {
+				obj_toolPane.currentTool = obj_toolPane.toolBoxBrush;
 			}
 		}
 	}

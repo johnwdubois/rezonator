@@ -75,7 +75,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 			if(currentChunkID != otherChunkID) {
 					
 				// Retrieve the word list of the Chunk to be compared
-				var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), otherChunkID);
+				var currentChunkRow = otherChunkID - 1;
 				if(currentChunkRow < 0) {
 					exit;
 				}

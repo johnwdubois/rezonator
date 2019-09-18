@@ -127,56 +127,25 @@ if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 		
 		// Make sure this ChunkID is valid
 		//if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID)) {
-			// Unfocus all Chunks
-			scr_setAllValuesInCol(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-			// Access the Chunk's row in the Chunk grid
-			//var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID);
-			
-			// Set the Chunk to be focused
-			ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
-			//show_message(string(currentChunkWordID));
-			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
-			currentFocusedChunkID = currentChunkID;
-			exit;
-			// Chunks currently aren't displayed in the panel panes
-
-			// Chunks still need to be added to the link grid
-			/*var rowInLinkGrid = scr_findInGridThreeParameters(linkGrid, linkGrid_colSource, wordID, linkGrid_colChainID, currentChunkID, linkGrid_colDead, false);
-		
-			if (rowInLinkGrid == -1) {
-				scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-				scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-				scr_setAllValuesInCol(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+		// Unfocus all Chunks
+		//scr_setAllValuesInCol(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
+		for(var chunkListLoop = 0; chunkListLoop < ds_grid_height(obj_chain.chunkGrid); chunkListLoop++) {
+			if(ds_grid_get(currentChainGrid, chainGrid_colChainState, chunkListLoop) == chainStateFocus) {
+				ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateNormal);
 			}
-			else if (rowInLinkGrid >= 0 and rowInLinkGrid < ds_grid_height(linkGrid)) {
+		}
 			
-				ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
-				ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid, true);
-				scr_refreshChainGrid();
+		// Access the Chunk's row in the Chunk grid
+		//var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID);
 			
-				
-				with (obj_panelPane) {
-					switch (obj_chain.currentChainGrid) {
-						case obj_chain.rezChainGrid:
-							functionChainList_currentTab = functionChainList_tabRezBrush;
-							break;
-						case obj_chain.trackChainGrid:
-							functionChainList_currentTab = functionChainList_tabTrackBrush;
-							break;
-						case obj_chain.stackChainGrid:
-							functionChainList_currentTab = functionChainList_tabStackBrush;
-							break;
-						default:
-							break;
-					}
-					if (currentFunction == functionChainContents) {
-						functionChainContents_hop = wordID;
-					}
-				}
+		// Set the Chunk to be focused
+		ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
+		//show_message(string(currentChunkWordID));
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
+		currentFocusedChunkID = currentChunkID;
+		exit;
+
 			
-				exit;
-			}*/
-		//}
 	}
 }
 else {

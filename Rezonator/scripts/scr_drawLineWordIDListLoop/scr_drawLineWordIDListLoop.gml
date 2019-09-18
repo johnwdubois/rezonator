@@ -73,7 +73,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			continue;
 		}
 		// Aquire the relevant row in the chunkGrid
-		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
+		var currentChunkRow = currentChunkID - 1;
 		if(currentChunkRow < 0) {
 			continue;	
 		}
@@ -448,8 +448,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					obj_control.rightClickonWord = true;
 					obj_control.wideDropDown = true;
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word");
-
+					if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
+						ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word", "Delete Link");
+					}
+					else{
+						ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word");
+					}
 					if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 						var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
@@ -468,7 +472,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		}
 		*/
 		// Allows for adding to a stack w/in the speaker labels
-		else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and rectangle_in_rectangle(0, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
+		else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane 
+		and rectangle_in_rectangle(0, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
@@ -476,7 +481,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			}
 		}
 		else if((drawWordLoop + 1 == ds_list_size(currentWordIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
-		and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical) and not instance_exists(obj_dropDown)) {
+		and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical) and not instance_exists(obj_dropDown) and obj_control.boxRectReleased) {
 			obj_control.mouseoverNeutralSpace = true;	
 			if (device_mouse_check_button_released(0, mb_left) && !instance_exists(obj_dialogueBox)) {
 				with(obj_chain) {
@@ -628,7 +633,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				}
 
 			}
-			if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverWordID == -1) {
+			if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverWordID == -1 and not obj_control.mouseRectMade) {
 				//draw_set_color(c_red);
 				//draw_rectangle(wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, true);
 				if(mouse_check_button_pressed(mb_left)) {

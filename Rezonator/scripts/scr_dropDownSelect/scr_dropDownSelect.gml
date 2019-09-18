@@ -1128,6 +1128,10 @@ else if (optionListType == 8)
 	
 			break;
 		case "Delete Link":
+			var rowToSet = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid),  obj_control.rightClickWordID);
+			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowToSet, 1);
+				
+			scr_deleteFromChain();
 			instance_destroy();
 			break;
 			/*

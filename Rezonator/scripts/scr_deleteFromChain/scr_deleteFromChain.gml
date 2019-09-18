@@ -57,7 +57,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 		}
 	
 		// Remove this Chunk from the Chunk grid
-		scr_gridDeleteRow(obj_chain.chunkGrid, currentChunkRow);
+		//scr_gridDeleteRow(obj_chain.chunkGrid, currentChunkRow);
 	
 	}
 	// Deletion of newWords
