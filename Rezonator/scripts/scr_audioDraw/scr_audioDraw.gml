@@ -98,7 +98,7 @@ if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
 	}
 	playPauseRad += 3;
 }
-if (keyboard_check_pressed(vk_space)) {
+if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
 	audioPaused = !audioPaused;
 }
 draw_set_color(global.colorThemeBorders);
