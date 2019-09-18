@@ -204,3 +204,11 @@ goldStandardGrid_colStackID = 0;
 goldStandardGrid_colWordIDList = 1;
 goldStandardGrid_colUser = 2;
 goldStandardGrid_colScore = 3;
+
+
+
+
+
+
+
+chainShowList = ds_list_create();

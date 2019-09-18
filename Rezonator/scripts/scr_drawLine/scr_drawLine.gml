@@ -155,6 +155,10 @@ hoverWordID = -1;
 hoverChunkID = -1;
 //clickedChunkID = -1;
 
+
+ds_list_clear(obj_chain.chainShowList);
+
+
 // for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLoop++) {
 	if (drawLineLoop < 0 or drawLineLoop >= ds_grid_height(currentActiveLineGrid)) {
