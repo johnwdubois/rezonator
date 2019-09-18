@@ -33,12 +33,21 @@ var minWordWidth = 9999999;
 var linePlusX = 0;
 
 // loop through rezChainGrid to get chain info
-for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
+for (var i = 0; i < ds_list_size(chainShowList); i++) {
 	minWordWidth = 9999999;
 	
-	var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, i);
-	var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, i);
-	var currentChainShow = true;//ds_grid_get(rezChainGrid, chainGrid_colShow, i);
+	var currentChainID = ds_list_find_value(chainShowList, i);
+	if (ds_list_find_value(chainShowList, currentChainID) == -1) {
+		continue;
+	}
+	var rowInChainGrid = ds_grid_value_y(rezChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(rezChainGrid), currentChainID);
+	if (rowInChainGrid < 0 or rowInChainGrid >= ds_grid_height(rezChainGrid)) {
+		continue;
+	}
+	
+	var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, rowInChainGrid);
+	var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, rowInChainGrid);
+	var currentChainShow = true;//ds_grid_get(rezChainGrid, chainGrid_colShow, rowInChainGrid);
 	
 	// find minimum word width so we know the X position of the chain
 	for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
@@ -144,7 +153,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 	
 	
 	
-	if (ds_grid_get(rezChainGrid, chainGrid_colChainState, i) == chainStateFocus) {	
+	if (ds_grid_get(rezChainGrid, chainGrid_colChainState, rowInChainGrid) == chainStateFocus) {	
 		if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
 			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
@@ -163,7 +172,7 @@ for (var i = 0; i < ds_grid_height(rezChainGrid); i++) {
 	}
 	
 	
-	var isAligned = ds_grid_get(rezChainGrid, chainGrid_colAlign, i);
+	var isAligned = ds_grid_get(rezChainGrid, chainGrid_colAlign, rowInChainGrid);
 	scr_alignChain(currentWordIDList, isAligned);
 }
 

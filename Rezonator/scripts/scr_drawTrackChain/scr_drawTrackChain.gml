@@ -30,10 +30,20 @@ var furthestWordID = -1;
 var furthestDisplayCol = -1;
 
 // loop through rezChainGrid to get chain info
-for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
-	var currentWordIDList = ds_grid_get(trackChainGrid, chainGrid_colWordIDList, i);
-	var currentChainColor = ds_grid_get(trackChainGrid, chainGrid_colColor, i);
-	var currentChainShow = true;//ds_grid_get(trackChainGrid, chainGrid_colShow, i);
+for (var i = 0; i < ds_list_size(chainShowList); i++) {
+	
+	var currentChainID = ds_list_find_value(chainShowList, i);
+	if (ds_list_find_value(chainShowList, currentChainID) == -1) {
+		continue;
+	}
+	var rowInChainGrid = ds_grid_value_y(trackChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(trackChainGrid), currentChainID);
+	if (rowInChainGrid < 0 or rowInChainGrid >= ds_grid_height(trackChainGrid)) {
+		continue;
+	}
+	
+	var currentWordIDList = ds_grid_get(trackChainGrid, chainGrid_colWordIDList, rowInChainGrid);
+	var currentChainColor = ds_grid_get(trackChainGrid, chainGrid_colColor, rowInChainGrid);
+	var currentChainShow = true;//ds_grid_get(trackChainGrid, chainGrid_colShow, rowInChainGrid);
 	
 	
 	var wordsInSameUnit = false;
@@ -149,7 +159,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 	
 	
 	// get X,Y position of where pickwhip to mouse should start
-	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, i) == chainStateFocus and not obj_control.gridView) {	
+	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, rowInChainGrid) == chainStateFocus and not obj_control.gridView) {	
 		if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
 			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
@@ -172,7 +182,7 @@ for (var i = 0; i < ds_grid_height(trackChainGrid); i++) {
 	
 	
 	
-	var isAligned = ds_grid_get(trackChainGrid, chainGrid_colAlign, i);
+	var isAligned = ds_grid_get(trackChainGrid, chainGrid_colAlign, rowInChainGrid);
 	scr_alignChain(currentWordIDList, isAligned);
 	
 }
