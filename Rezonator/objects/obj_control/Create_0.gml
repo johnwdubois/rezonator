@@ -472,6 +472,7 @@ scrollBarHeight = 0;
 scrollPlusY = 0;
 scrollPlusYDest = 0;
 scrollBarPlusY = 0;
+scrollBarCenter = 0;
 windowResizeXHolding = false;
 windowResizeYHolding = false;
 clipX = 0;
@@ -481,7 +482,10 @@ y = 0;
 stackShowBuffer = 10;
 
 drawRangeCenterOffset = 0;
-drawRangeExtraSteps = 0;
+drawRangeExtraStepsForward = 0;
+drawRangeExtraStepsBack = 0;
+drawRangeCenter = 0;
+
 
 drawLineYOffset = 0;
 global.canScroll = true;

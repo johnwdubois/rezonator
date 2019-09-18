@@ -48,6 +48,27 @@ if (object_index == obj_panelPane) {
 			surface_resize(clipSurface, clipWidth, clipHeight);
 		}
 	}
+
+
+			var helpPaneY = 0;
+			with (obj_panelPane) {
+				if (currentFunction == functionChainList or currentFunction == functionChainContents
+				or currentFunction == functionSort or currentFunction == functionFilter) {
+					windowHeight = clamp(windowHeight, 150, camera_get_view_height(view_camera[0]) * 0.33);
+					if (surface_exists(clipSurface)) {
+						surface_resize(clipSurface, clipWidth, clipHeight);
+					}
+				}
+				
+				if (currentFunction == functionHelp) {
+					y = other.y + other.windowHeight - windowHeight;//obj_control.wordTopMargin - windowHeight;
+					helpPaneY = y;
+				}
+			}
+			with (obj_toolPane) {
+				windowHeight = helpPaneY - y;
+			}
+
 }
 
 if (mouse_check_button(mb_left)) {
@@ -56,7 +77,7 @@ if (mouse_check_button(mb_left)) {
 		window_set_cursor(cr_size_we);
 	}
 	else if (windowResizeYHolding) {
-		windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.5);
+		windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.33);
 		window_set_cursor(cr_size_ns);
 		
 		if (object_index == obj_panelPane) {

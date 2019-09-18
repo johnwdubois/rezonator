@@ -136,6 +136,8 @@ draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - scrollBarWidth + 
 // Draw scrollbar
 draw_set_color(scrollBarColor);
 draw_rectangle(scrollBarX1 - clipX, scrollBarY1 - clipY, scrollBarX2 - clipX, scrollBarY2 - clipY, false);
+scrollBarCenter = mean(scrollBarY1, scrollBarY2);
+
 
 // Draw scrollbar button sprites
 draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + marginTop - clipY, y + scrollBarWidth + marginTop - clipY), 1, 1, 0, c_white, 1);
