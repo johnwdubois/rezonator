@@ -51,13 +51,15 @@ scr_drawLine();
 //mouseRectWithinLine = false;
 // Draw the mouse drag rectangle
 if (not mouseoverPanelPane and not scrollBarHolding and obj_toolPane.currentTool != obj_toolPane.toolNewWord and not mouseoverNeutralSpace) {
-	if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {// Curfew for the volunteers
-		if(obj_toolPane.currentTool != obj_toolPane.toolStackBrush or mouseoverSpeakerLabel) {
-			scr_mouseRect();
+	if(not mouseRectMade) {
+		if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {// Curfew for the volunteers
+			if(obj_toolPane.currentTool != obj_toolPane.toolStackBrush or mouseoverSpeakerLabel) {
+				scr_mouseRect();
+			}
 		}
-	}
-	else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {
-		scr_boxRect();
+		else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and !obj_chain.inRezPlay) {
+			scr_boxRect();
+		}
 	}
 
 	// Create the quickStack with the mouse drag, if possible

@@ -39,7 +39,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 			continue;
 		}
 		// Aquire the relevant row in the chunkGrid
-		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
+		var currentChunkRow = currentChunkID - 1;
 		if(currentChunkRow < 0) {
 			continue;	
 		}

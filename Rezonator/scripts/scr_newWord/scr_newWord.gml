@@ -32,7 +32,7 @@ if (unitID == -1 or wordSeq == -1 or obj_control.gridView or obj_control.current
 if(argument_count == 4) {
 	// If it is a Chunk, combine the words within the Chunk for the transcript
 	var chunkID = argument[3]; 
-	var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), chunkID);
+	var currentChunkRow = chunkID - 1;
 	if(currentChunkRow < 0) {
 		exit;
 	}
@@ -130,7 +130,7 @@ if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUni
 
 			
 			var currentChunkID = ds_list_find_value(prevInChunkList, chunkListLoop);
-			var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
+			var currentChunkRow = currentChunkID - 1;
 			if(currentChunkRow < 0) {
 				exit;
 			}
