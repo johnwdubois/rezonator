@@ -74,9 +74,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 		
 		// Set the Buffer to be initially large, so as to allow for nesting
-		var wordRectBuffer = 6;
+		var wordRectBuffer = 10;
 		if (ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, currentChunkRow) == true) {
-			wordRectBuffer = 4;
+			wordRectBuffer = 6;
 		}
 		
 		//Modify the chunk for drawing within the searchScreen
@@ -109,7 +109,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0) {
 			draw_set_color(effectColor);
 		} else {
-			draw_set_color(global.colorThemeSelected1);	
+			draw_set_color(global.colorThemeText);	
 		}
 		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
 			if (borderRounded) {

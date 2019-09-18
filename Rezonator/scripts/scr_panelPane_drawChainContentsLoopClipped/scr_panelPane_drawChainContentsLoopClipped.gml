@@ -414,12 +414,12 @@ if (clickedIn) {
 	
 	// Scroll up with mouse/key
 	if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
-		scrollPlusYDest += 4;
+		scrollPlusYDest += strHeight;
 	}
 	
 	// Scroll down with mouse/key
 	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
-		scrollPlusYDest -= 4;
+		scrollPlusYDest -= strHeight;
 	}
 	
 	// CTRL+UP and CTRL+DOWN
