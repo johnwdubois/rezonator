@@ -118,19 +118,25 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 				}
 				
 				
-				if (obj_control.filterGridActive
-				and not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
-				and not ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
-				and not ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+				if (obj_control.filterGridActive) {
 					
 					with (obj_control) {
-						searchGridActive = false;
-						filterGridActive = false;
-						currentActiveLineGrid = lineGrid;
-						wordLeftMarginDest = 170; // Make sure the margin is placed correctly
+						scr_renderFilter();
+					}
+					
+					if (not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
+					and not ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
+					and not ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+					
+						with (obj_control) {
+							searchGridActive = false;
+							filterGridActive = false;
+							currentActiveLineGrid = lineGrid;
+							wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 
-						with (obj_alarm) {
-							alarm[1] = 5;
+							with (obj_alarm) {
+								alarm[1] = 5;
+							}
 						}
 					}
 				}
