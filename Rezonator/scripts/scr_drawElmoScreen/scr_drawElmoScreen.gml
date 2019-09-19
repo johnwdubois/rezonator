@@ -252,7 +252,7 @@ if (point_in_rectangle(mouse_x, mouse_y, firstButtonRectX1, firstButtonRectY1, f
 			}
 		}
 		
-		obj_alarm.drawBackground = true;
+		//obj_alarm.drawBackground = true;
 		obj_control.alarm[11] = 60;
 		elmoActive = false;
 		instance_destroy();

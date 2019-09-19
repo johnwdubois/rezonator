@@ -385,6 +385,7 @@ boxHoldRectY2 = 0;
 boxRectMade = false;
 boxRectReleased = true;
 boxRectAbleToInitiate = true;
+boxRectWithinLine = false;
 
 // Unused variables
 quickInside = false;
