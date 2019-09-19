@@ -67,3 +67,15 @@
 	draw_text(mean(menuWidth*3, menuWidth*4.5), menuHeight - 25,"Search");
 	draw_text(mean(menuWidth*4.5, menuWidth*6), menuHeight - 25,"Options");
 	draw_text(mean(menuWidth*6, menuWidth*8), menuHeight - 25,"StackShow");
+	
+	
+	
+	
+	
+	if (obj_control.showFPS) {
+		var fpsTextX = camera_get_view_width(view_camera[0]) - string_width("000");
+		var fpsTextY = menuHeight / 2;
+		draw_set_halign(fa_right);
+		draw_set_valign(fa_middle);
+		draw_text(fpsTextX, fpsTextY, "FPS: " + string(fps));
+	}

@@ -266,6 +266,9 @@ alignment = 0;
 gridView = false;
 // Initialize the developer variables as not showing
 showDevVars = false;
+showFPS = false;
+
+
 // Initialize the values to hold the hover word info
 newWordHoverUnitID = -1;
 newWordHoverWordSeq = -1;

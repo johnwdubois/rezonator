@@ -267,7 +267,8 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	}
 	
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
-		showDevVars = !showDevVars;
+	//	showDevVars = !showDevVars;
+		showFPS = !showFPS;
 	}
 	
 	
