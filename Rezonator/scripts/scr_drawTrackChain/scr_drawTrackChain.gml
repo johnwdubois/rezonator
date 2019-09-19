@@ -17,7 +17,7 @@ if (not obj_chain.toggleDrawTrack) {
 	exit;
 }
 
-draw_set_font(fnt_main);
+draw_set_font(global.fontMain);
 
 var lineX1 = undefined;
 var lineY1 = undefined;
@@ -133,13 +133,13 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		{
 			if(chunkWord1) {
 				
-			var wordRectBuffer = 6;
-			lineY1 += (wordRectBuffer * 2) + 4;
+			var wordRectBuffer = 10;
+			lineY1 += (wordRectBuffer + (currentWordStringHeight1 / 2));
 			chunkWord1 = 0;
 			}
 			if(chunkWord2) {
-				var wordRectBuffer = 6;
-				lineY2 -= (wordRectBuffer * 3);
+				var wordRectBuffer = 10;
+				lineY2 -= (wordRectBuffer + (currentWordStringHeight2 / 2));
 				chunkWord2 = 0;
 			}
 			

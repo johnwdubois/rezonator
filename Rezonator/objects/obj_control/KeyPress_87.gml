@@ -2,6 +2,7 @@
 if (!shortcutsEnabled || dialogueBoxActive) {
 	exit;
 }
+
 /*
 if (keyboard_check(vk_control)) {
 	
@@ -16,6 +17,7 @@ if (keyboard_check(vk_control)) {
 	exit;
 }
 */
+
 wordTranscriptView = !wordTranscriptView;
 
 for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {
@@ -26,7 +28,7 @@ for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {
 	if (string_length(currentReplaceWord) > 0) {
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, i, currentReplaceWord);
 	}
-	else {
+	else {s
 		if (wordTranscriptView) {
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, i, currentWordToken);
 		}

@@ -111,7 +111,7 @@ functionSort_gridSortColGrid_colAscend = 1;
 functionSort_gridSortColGrid_colMouseover = 2;
 
 functionHelp_collapsed = true;
-functionHelp_windowWidth = 500;
+functionHelp_windowWidth = 600;
 functionHelp_plusX = functionHelp_windowWidth;
 functionHelp_plusY = 0;
 functionHelp_helpGridWidth = 4;
