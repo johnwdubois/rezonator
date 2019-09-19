@@ -315,7 +315,7 @@ if (obj_control.stackShowWindowActive) {
 
 					obj_control.wideDropDown = true;
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Present", "Where's Elmo", "Rezzles", "SpotBot");
+					ds_list_add(dropDownOptionList, "Present", "Where's Elmo", "Rezzles");
 
 					if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 						var dropDownInst = instance_create_depth(camera_get_view_width(view_camera[0]) /2 + 134 - 52,  camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 22 + (string_height(currentGame)/2) + 5, -999, obj_dropDown);
