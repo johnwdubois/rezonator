@@ -434,7 +434,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.moveCounter = 0;
 			
 			// Set word's to their tokens as default for stackShow
-			if(!obj_control.wordTranscriptView) {
+			if(!obj_control.wordTranscriptView and obj_toolPane.tracksOnlyStackShow) {
 				//obj_control.stackShowSwitchedWordView = true;
 				obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
 
