@@ -557,7 +557,7 @@ else if (optionListType == 5)
 	 //"Clear Stacks", "Clear Rez Chains", "Clear Track Chains", "Clear Discourse", "Toggle Filter"
 	switch (optionSelected)
 	{
-		case "Clear All Stacks":
+		case "Delete All Stacks":
 			
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -569,7 +569,7 @@ else if (optionListType == 5)
 			
 		//	show_message("Coming Soon");
 			break;
-		case "Clear All Rez Chains":
+		case "Delete All Rez Chains":
 		
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -580,7 +580,7 @@ else if (optionListType == 5)
 		
 
 			break;
-		case "Clear All Track Chains":
+		case "Delete All Track Chains":
 		
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -592,7 +592,7 @@ else if (optionListType == 5)
 		
 			//show_message("Coming Soon");
 			break;
-		case "Clear All Chains":
+		case "Delete All Chains":
 		
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -635,7 +635,7 @@ else if (optionListType == 6)
 			
 			//show_message("BUH 3");
 			break;
-		case "Increase Column Size":
+		case "Increase Column Width":
 		
 			if (!obj_control.gridView) {
 				obj_control.gridSpaceHorizontal += 20;
@@ -643,7 +643,7 @@ else if (optionListType == 6)
 		
 			//show_message("BUH 4");
 			break;
-		case "Decrease Column Size":
+		case "Decrease Column Width":
 		
 			if (!obj_control.gridView) {
 				obj_control.gridSpaceHorizontal -= 20;
@@ -651,7 +651,7 @@ else if (optionListType == 6)
 		
 			//show_message("BUH 5");
 			break;
-		case "Increase Row Size":
+		case "Increase Row Height":
 			
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
@@ -683,7 +683,7 @@ else if (optionListType == 6)
 			}
 			//show_message("BUH 4");
 			break;
-		case "Decrease Row Size":
+		case "Decrease Row Height":
 		
 			
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
@@ -886,34 +886,6 @@ else if (optionListType == 6)
 		
 			//show_message("BUH 5");
 			break;
-		default:
-			break;
-	}
-	instance_destroy();
-}
-else if (optionListType == 7)
-{
-	// "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Find Next"
-	switch (optionSelected)
-	{
-		case "Search For Words":
-		
-		
-			if (!obj_control.dialogueBoxActive) {
-				keyboard_string = "";
-				obj_control.fPressed = true;
-			}
-
-
-			obj_control.dialogueBoxActive = true;
-
-			if (!instance_exists(obj_dialogueBox)) {
-				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			}
-
-		
-			//show_message("BUH 1");
-			break;
 		case "Toggle Search Screen":
 		
 			if (ds_grid_height(obj_control.searchGrid) > 0 and !obj_control.gridView) {
@@ -960,6 +932,65 @@ else if (optionListType == 7)
 			}
 			//show_message("BUH 2");
 			break;
+		case "Toggle Transcript View":
+			obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+			
+		for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
+			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
+			var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
+			var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
+	
+			if (string_length(currentReplaceWord) > 0) {
+				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
+			}
+			else {
+				if (obj_control.wordTranscriptView) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
+				}
+				else {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
+				}
+			}
+	
+			if (string_length(currentWordToken) < 1) {
+				var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, i);
+				if (currentWordState == obj_control.wordStateNormal) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, i, obj_control.wordStateDead);
+				}
+				else if (currentWordState == obj_control.wordStateDead) {
+					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, i, obj_control.wordStateNormal);
+				}
+			}
+		}
+		default:
+			break;
+	}
+	instance_destroy();
+}
+else if (optionListType == 7)
+{
+	// "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Find Next"
+	switch (optionSelected)
+	{
+		case "Search For Words":
+		
+		
+			if (!obj_control.dialogueBoxActive) {
+				keyboard_string = "";
+				obj_control.fPressed = true;
+			}
+
+
+			obj_control.dialogueBoxActive = true;
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			}
+
+		
+			//show_message("BUH 1");
+			break;
+
 		case "Clear Search Screen":
 					
 					
@@ -975,14 +1006,14 @@ else if (optionListType == 7)
 			
 			//show_message("Coming Soon");
 			break;
-		case "Jump To Time":
+		case "Go To Time":
 		
 			scr_jumpToLineCalled();
 			obj_control.goToTime = true;
 			
 			//show_message("BUH 5");
 			break;
-		case "Jump To Line":
+		case "Go To Line":
 		
 			scr_jumpToLineCalled();
 			
