@@ -341,7 +341,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	}
 	
 	
-
+	var discoColor = ds_grid_get(unitGrid, unitGrid_colDiscoColor, unitID - 1);
+	if (discoColor == -1 or discoColor == 0) {
+		discoColor = c_ltblue;
+	}
 	
 	var participantColor = ds_grid_get(unitGrid, unitGrid_colParticipantColor, unitID - 1);
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);
@@ -350,7 +353,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	draw_set_color(participantColor);
 	var speakerLabelTextBuffer = 3;
 	
-	scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer);
+	scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor);
 	
 }
 

@@ -74,6 +74,7 @@ if (string_count("/>", currentElement) > 0) {
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentRowUnitGrid, currentUnitParticipantName);
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentRowUnitGrid, currentUnitStart);
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentRowUnitGrid, currentUnitEnd);
+	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentRowUnitGrid, currentDiscoColor);
 
 	if (ds_list_find_index(obj_control.participantList, currentUnitpID) == -1) {
 		ds_list_add(participantsInCurrentDiscoList, currentUnitpID);
@@ -168,4 +169,10 @@ if (string_count("/>", currentElement) > 0) {
 
 if (string_count("<Link>", currentElement) > 0) {
 	scr_importLinks(fileLineRipListElement);
+}
+
+if (not obj_control.initialValidFileCheck) {
+	with (obj_alarm) {
+		alarm[4] = 10;
+	}
 }

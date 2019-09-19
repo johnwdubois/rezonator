@@ -67,6 +67,7 @@ for (var i = 0; i < fileLoadRate; i++) {
 
 	fileLineRipList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colFileLineRipList, discourseProcessing);
 	currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, discourseProcessing);
+	currentDiscoColor = ds_list_find_value(global.discoColorList, clamp(0, ds_list_size(global.discoColorList) - 1, indexInDiscoColorList));
 
 	currentElement = ds_list_find_value(fileLineRipList, fileLineRipListElement);
 	scr_loadNextElement();
@@ -78,6 +79,13 @@ for (var i = 0; i < fileLoadRate; i++) {
 	else {
 		fileLineRipListElement = 0;
 		discourseProcessing++;
+		
+		if (indexInDiscoColorList < ds_list_size(global.discoColorList) - 1) {
+			indexInDiscoColorList++;
+		}
+		else {
+			indexInDiscoColorList = 0;
+		}
 	}
 }
 
