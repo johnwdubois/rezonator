@@ -28,7 +28,7 @@ for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {
 	if (string_length(currentReplaceWord) > 0) {
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, i, currentReplaceWord);
 	}
-	else {s
+	else {
 		if (wordTranscriptView) {
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, i, currentWordToken);
 		}
