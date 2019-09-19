@@ -1,7 +1,13 @@
 var currentUser = ds_grid_get(currentChainGrid, chainGrid_colAuthor, currentFocusedChainIndex);
 var originalChainWordList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentFocusedChainIndex);
 var currentChainWordList = ds_list_create();
-ds_list_copy(currentChainWordList, originalChainWordList);
+if(originalChainWordList > -1 and originalChainWordList != undefined) {
+	ds_list_copy(currentChainWordList, originalChainWordList);
+} 
+else {
+	exit;
+}
+	
 //show_message(scr_getStringOfList(currentChainWordList));
 
 var currentStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
@@ -25,6 +31,9 @@ if(string_lower(currentUser) == "gold") {
 else { //if(string_lower(currentUser) == "player"){
 	var correct = 0;
 	var currentGoldStandardRow = ds_grid_value_y(goldStandardGrid, goldStandardGrid_colStackID, 0, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid), currentStackID);
+	if(currentGoldStandardRow < 0 or currentGoldStandardRow == undefined) {
+		exit;
+	}
 	var currentGoldStandardWordIDList = ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, currentGoldStandardRow);
 	//show_message(scr_getStringOfList(currentGoldStandardWordIDList));
 	// Compare the focused list with the preset list

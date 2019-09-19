@@ -124,10 +124,13 @@ else if(obj_control.currentStackShowListPosition == (ds_list_size(obj_control.st
 	}
 	else {
 	// I'll need to refactor this into scr_endStackShow();
-	
 	obj_control.stackShowActive = false;
 	obj_toolPane.tracksOnlyStackShow = false;
 	obj_toolPane.rezOnlyStackShow = false;
+	
+	if (instance_exists(obj_submitChain)) {
+		instance_destroy(obj_submitChain);
+	}
 	
 	with(obj_panelPane){
 		alarm[5] = -1;
