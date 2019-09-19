@@ -70,7 +70,7 @@ ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 1, "[ESC], q");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 1, "Unfocus Chain");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 1, "Quit adding words to the current chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 1, "Quit adding words to the chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 1, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 2, "[DEL]");
@@ -98,14 +98,14 @@ ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 6, "Clique
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 6, "Move to Nav window Clique Tab");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 6, true);
 
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 7, "[DRAG FROM WORD]");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 7, "[DRAG WORD]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 7, "QuickLink");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 7, "Drag from word to make multiple links");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 7, "Drag from word for multiple links");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 7, false);
 
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "[DRAG FROM LINE]");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "[DRAG LINE]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 8, "QuickStack");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag along Speaker Labels to make a QuickStack");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag from line labels for a QuickStack");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 8, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 9, "n");
@@ -118,8 +118,8 @@ ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 10, "Box")
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 10, "Make a Box around selected words");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 10, true);
 
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 11, controlStr + "+ [DEL]");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "Delete Entire Chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 11, controlStr + " [DEL]");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "Delete Whole Chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 11, "Delete all the links from the chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 11, false);
 
@@ -131,26 +131,26 @@ ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colFunc, 0, "Pick")
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 0, "Add focused element to pickList");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 0, false);
 
-ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colKey, 1, controlStr + "+p");
+ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colKey, 1, controlStr + " p");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colFunc, 1, "Filter");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 1, "Show just the current picks");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 1, false);
 
-ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colKey, 2, controlStr + "+t");
+ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colKey, 2, controlStr + " t");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colFunc, 2, "Align");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 2, "Align current Track");
-ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 2, false);
+ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 2, true);
 
 var helpGridHeightSearch = 2;
 ds_grid_resize(functionHelp_helpGridSearch, functionHelp_helpGridWidth, helpGridHeightSearch);
 
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colKey, 0, "f");
-ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 0, "Find");
-ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 0, "Find all instances of a word");
+ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 0, "Search for Word");
+ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 0, "Search for all instances of a word");
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colKey, 1, "g");
-ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 1, "Go");
+ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 1, "Go to Line");
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 1, "Go to user-specified line");
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 1, false);
 
@@ -158,67 +158,67 @@ var helpGridHeightView = 9;
 ds_grid_resize(functionHelp_helpGridView, functionHelp_helpGridWidth, helpGridHeightView);
 
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 0, "v");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 0, "View");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 0, "View main screen vs. search screen");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 0, "Toggle Search");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 0, "View main screen or search screen");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 1, "j");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 1, "Justify");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 1, "Justify Words");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 1, "Justification/spacing of words [toggle]");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 1, false);
 
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 2, "w");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 2, "Word-form");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 2, "Toggle Transcript");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 2, "Display words vs. transcriptions");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 2, false);
 
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 3, controlStr + "+- [minus]");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 3, "Zoom-out");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 3, controlStr + " [minus]");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 3, "Decrease Width");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 3, "Smaller columns (more info)");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 3, false);
 
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 4, controlStr + "++ [plus]");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 4, "Zoom-in");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 4, controlStr + " [plus]");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 4, "Increase Width");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 4, "Larger columns (less info)");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 4, false);
 
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 5, "SHIFT+- [minus]");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 5, "Short");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 5, "SHIFT [minus]");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 5, "Decrease Height");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 5, "Smaller line height (more info)");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 5, false);
 
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 6, "SHIFT++ [plus]");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 6, "Tall");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 6, "SHIFT [plus]");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 6, "Increase Height");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 6, "Larger line height (less info)");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 6, false);
 
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 7, "CTRL+b");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 7, "CTRL b");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 7, "Dark theme");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 7, "Use Dark theme");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 7, false);
 
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 8, controlStr +"+n");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colKey, 8, controlStr +" n");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colFunc, 8, "Hide Nav");
-ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 8, "Hide the Navigation Window from view");
+ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colDesc, 8, "Hide the Navigation Window");
 ds_grid_set(functionHelp_helpGridView, functionHelp_helpGrid_colHide, 8, false);
 
 
 var helpGridHeightFile = 3;
 ds_grid_resize(functionHelp_helpGridFile, functionHelp_helpGridWidth, helpGridHeightFile);
 
-ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 0, controlStr + "+o");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 0, controlStr + " o");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 0, "Open");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 0, "Open file or project");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 0, false);
 
-ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 1, controlStr + "+s");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 1, controlStr + " s");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 1, "Save");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 1, "Save file");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 1, false);
 
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 2, "e");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 2, "Extract Portion");
-ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 2, "Save a Rez file with specified start/end lines");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 2, "Specify start/end lines of Save");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 2, false);
 
 var helpGridHeightMove = 14;
@@ -249,7 +249,7 @@ ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 4, "Home")
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 4, "Jump to beginning of current line");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 4, false);
 
-ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 5, controlStr + "+LEFT ARROW");
+ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 5, controlStr + " LEFT ARROW");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 5, "Home");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 5, "Jump to beginning of current line");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 5, false);
@@ -259,7 +259,7 @@ ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 6, "End");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 6, "Jump to end of current line");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 6, false);
 
-ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 7, controlStr + "+RIGHT ARROW");
+ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 7, controlStr + " RIGHT ARROW");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 7, "End");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 7, "Jump to end of current line");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 7, false);
@@ -274,12 +274,12 @@ ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 9, "PageDo
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 9, "scroll down one screen at a time");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 9, false);
 
-ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 10, controlStr + "+UP ARROW");
+ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 10, controlStr + " UP ARROW");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc,10, "First");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 10, "Jump to first line of conversation");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 10, false);
 
-ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 11, controlStr + "+DOWN ARROW");
+ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 11, controlStr + " DOWN ARROW");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 11, "Last");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 11, "Jump to last line of conversation");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 11, false);
@@ -289,7 +289,7 @@ ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 12, "Next"
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 12, "Move to next pane (Nav, Detail, Main)");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide,12, true);
 
-ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 13, "[SHIFT + TAB]");
+ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colKey, 13, "[SHIFT] [TAB]");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colFunc, 13, "");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colDesc, 13, "Move to next word/line in current chain");
 ds_grid_set(functionHelp_helpGridMove, functionHelp_helpGrid_colHide, 13, true);
@@ -303,7 +303,7 @@ ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colFunc, 0, "Play")
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colDesc, 0, "Play/Pause audio [toggle]");
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colHide, 0, false);
 
-ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colKey, 1, "CTRL+[SPACEBAR]");
+ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colKey, 1, "CTRL [SPACEBAR]");
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colFunc, 1, "Rez-Play");
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colDesc, 1, "Play/Pause Rez-chains and audio [toggle]");
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colHide, 1, false);
@@ -316,17 +316,17 @@ ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colHide, 2, false);
 var helpGridHeightAdvanced = 3;
 ds_grid_resize(functionHelp_helpGridAdvanced, functionHelp_helpGridWidth, helpGridHeightAdvanced);
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "ALT+SHIFT+e");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "[ALT] [SHIFT] e");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, "Shuffle");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, "Sort lines in random order");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 0, false);
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "ALT+SHIFT+d");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "[ALT] [SHIFT] d");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, "Developer");
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, "Turn on developer variables and messages");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, "Turn on Developer view");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 1, false);
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "ALT+SHIFT+u");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "[ALT] [SHIFT] u");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, "User-word");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 2, "Insert a new word");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 2, false);
@@ -341,7 +341,7 @@ ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colHide, 0, false)
 
 ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colKey, 1, "xxx");
 ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colFunc, 1, "About Us");
-ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colDesc, 1, "For more information, go to Rezonator.com");
+ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colDesc, 1, "Go to Rezonator.com for Info");
 ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colHide, 1, false);
 
 
