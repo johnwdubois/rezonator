@@ -70,18 +70,6 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 		var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
 		
-		if (currentWordID1 < 0 or currentWordID1 >= ds_grid_height(obj_control.dynamicWordGrid)
-		or currentWordID2 < 0 or currentWordID2 >= ds_grid_height(obj_control.dynamicWordGrid)) {
-			continue;
-		}
-		
-		/*
-		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateDead
-		or ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateDead) {
-			continue;
-		}
-		*/
-		
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
 		var chunkWord1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk ? true : false;
