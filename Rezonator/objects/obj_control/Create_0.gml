@@ -437,6 +437,7 @@ mouseoverPanelPane = false;
 rectNotInPanelPane = false;
 mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
+mouseoverHelpPane = false;
 
 newWordDeleted = false;
 

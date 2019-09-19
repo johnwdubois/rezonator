@@ -75,8 +75,11 @@ else {
 	}
 }
 
+obj_control.mouseoverHelpPane = false;
+
 // If helpBox is in view, draw the outline of the box and its contents
 if !(abs(functionHelp_plusX - camWidth) < 0.1) {
+	
 	var helpWindowX1 = functionHelp_plusX - scrollBarOffset;
 	var helpWindowY1 = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight + windowHeight;
 	var helpWindowX2 = helpWindowX1 + functionHelp_windowWidth;
@@ -90,18 +93,33 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	functionHelp_helpWindowRectX2 = helpWindowX2;
 	functionHelp_helpWindowRectY2 = helpWindowY2;
 	
+	if (point_in_rectangle(mouse_x, mouse_y, helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2)) {
+		obj_control.mouseoverHelpPane = true;
+		if (mouse_wheel_up() or keyboard_check(vk_up)) {
+			scrollPlusYDest += 12;
+		}
+		else if (mouse_wheel_down() or keyboard_check(vk_down)) {
+			scrollPlusYDest -= 12;
+		}
+	}
+	
+	var itemSize = 0;
+	scr_surfaceStartHelp(helpWindowX1, helpWindowY1, helpWindowX2 - helpWindowX1, helpWindowY2 - helpWindowY1);
+	
 	// Create and control "All" button
 	var textBufferAll = 10;
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle)
 	draw_set_font(global.fontChainContents);
 	var titleTextAllX = helpWindowX1 + textBufferAll;
-	var titleTextAllY = helpWindowY1 + (textBufferAll * 2) + functionHelp_plusY; 
+	var titleTextAllY = helpWindowY1 + (textBufferAll * 2) + functionHelp_plusY + scrollPlusY;
 	draw_set_color(global.colorThemeText);
 	var titleTextAllStr = "All";
-	draw_text(titleTextAllX, titleTextAllY, titleTextAllStr);
+	draw_text(titleTextAllX - clipX, titleTextAllY - clipY, titleTextAllStr);
 	var gridCollapseButtonAllX = titleTextAllX + string_width(titleTextAllStr) + (textBufferAll * 3);
 	var gridCollapseButtonAllY = titleTextAllY;
+	
+
 	
 	
 	
@@ -109,7 +127,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	if (point_distance(mouse_x, mouse_y, gridCollapseButtonAllX, gridCollapseButtonAllY) < 20) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(1);
-		draw_circle(gridCollapseButtonAllX, gridCollapseButtonAllY, 20, false);
+		draw_circle(gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 20, false);
 		if (device_mouse_check_button_released(0, mb_left)) {
 			for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
 				// Skip past sections already changed
@@ -126,20 +144,26 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	}
 	draw_set_color(global.colorThemeText);
 	if (obj_panelPane.functionHelp_allCollapsed) {
-		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 270, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 1, 1, 270, c_white, 1);
 	}
 	else {
-		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX, gridCollapseButtonAllY, 1, 1, 180, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 1, 1, 180, c_white, 1);
 	}
-	draw_circle(gridCollapseButtonAllX, gridCollapseButtonAllY, 20, true);
+	draw_circle(gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 20, true);
 	
 	var cellHeight = string_height("M") + 10;
 	var cellPlusY = string_height("M") + 10;
+	
+	
 
+
+		
 	// Loop through the separate grids to draw titles, and if selected their contents
-	for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
+	for (var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
+		
+		itemSize++;
 		// Check to see if section should be hidden or not
-		if(not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colHide, i)) {
+		if (not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colHide, i)) {
 			// Space the sections evenly
 			if(i != 0) {
 				cellPlusY += string_height("M");
@@ -150,29 +174,23 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			draw_set_valign(fa_middle)
 			draw_set_font(global.fontChainContents);
 			var titleTextX = helpWindowX1 + textBuffer;
-			var titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY; 
+			var titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY + scrollPlusY;
 			draw_set_color(global.colorThemeText);
 			var titleTextStr = ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colName, i);
-			draw_text(titleTextX, titleTextY, titleTextStr);
+			draw_text(titleTextX - clipX, titleTextY - clipY, titleTextStr);
 			var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 3);
 			var gridCollapseButtonY = titleTextY;
 	
 			// draw the toggle arrows
-			if (ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) {
-				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 270, c_white, 1);
-			}
-			else {
-				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 180, c_white, 1);
-			}
 			draw_set_alpha(1);
-			draw_circle(gridCollapseButtonX, gridCollapseButtonY, 20, true);
+			draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 20, true);
 			
 			// Draw the mouseover circles around arrows
 			if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 20) {
 				//draw_set_color(global.colorThemeText);
 				//draw_set_alpha(0.5);
 				draw_set_color(global.colorThemeSelected1);
-				draw_circle(gridCollapseButtonX, gridCollapseButtonY, 20, false);
+				draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 20, false);
 				if (device_mouse_check_button_released(0, mb_left)) {
 					ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i, not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i));
 				}
@@ -181,13 +199,13 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			
 			// draw the toggle arrows
 			if (ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) {
-				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 270, c_white, 1);
+				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 1, 1, 270, c_white, 1);
 			}
 			else {
-				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX, gridCollapseButtonY, 1, 1, 180, c_white, 1);
+				draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 1, 1, 180, c_white, 1);
 			}
 			draw_set_alpha(1);
-			draw_circle(gridCollapseButtonX, gridCollapseButtonY, 20, true);
+			draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 20, true);
 	
 			cellPlusY += string_height("M");	
 			
@@ -195,11 +213,14 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			if (not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) {
 				var currentHelpGrid  = ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, i)
 				for (var j = 0; j < ds_grid_height(currentHelpGrid); j++) {
+					
+					itemSize++;
+					
 					// Do not draw hidden contents
 					if(not ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colHide, j)) {
 				
 						var cellRectX1 = helpWindowX1 + textBuffer;
-						var cellRectY1 = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY;
+						var cellRectY1 = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY + scrollPlusY;
 						var cellRectX2 = helpWindowX2 - textBuffer;
 						var cellRectY2 = cellRectY1 + cellHeight;
 		
@@ -211,7 +232,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 							draw_set_alpha(0.4);
 							draw_set_color(global.colorThemeSelected1);
 						}
-						draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, false);
+						draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 						draw_set_alpha(1);
 						draw_set_color(global.colorThemeText);
 						draw_set_font(global.fontChainContents);
@@ -222,12 +243,12 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 						var currentStrKey = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colKey, j);
 						var currentStrFunc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colFunc, j);
 						var currentStrDesc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colDesc, j);
-						draw_text(cellRectX1 + textBuffer, mean(cellRectY1, cellRectY2), currentStrKey);
-						draw_text(mean(cellRectX1, cellRectX2) + textBuffer, mean(cellRectY1, cellRectY2), currentStrFunc);
+						draw_text(cellRectX1 + textBuffer - clipX, mean(cellRectY1, cellRectY2) - clipY, currentStrKey);
+						draw_text(mean(cellRectX1, cellRectX2) + textBuffer - clipX, mean(cellRectY1, cellRectY2) - clipY, currentStrFunc);
 						
 						// Check for mouseover over content, if so, then show extra content
 						if(point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
-							draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2 + cellHeight - 1, true);
+							draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 + cellHeight - 1 - clipY, true);
 							if (j mod 2) {
 								draw_set_color(global.colorThemeBG);
 							}
@@ -235,10 +256,10 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 								draw_set_alpha(0.4);
 								draw_set_color(global.colorThemeSelected1);
 							}
-							draw_rectangle(cellRectX1 + 1, cellRectY1 + cellHeight, cellRectX2 - 1, cellRectY2 + cellHeight-2, false);
+							draw_rectangle(cellRectX1 + 1 - clipX, cellRectY1 + cellHeight - clipY, cellRectX2 - 1 - clipX, cellRectY2 + cellHeight - 2 - clipY, false);
 							draw_set_alpha(1);
 							draw_set_color(global.colorThemeText);
-							draw_text(cellRectX1 + textBuffer, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight), currentStrDesc);
+							draw_text(cellRectX1 + textBuffer - clipX, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight) - clipY, currentStrDesc);
 							cellPlusY += (2 * cellHeight);
 							
 							if(device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
@@ -258,4 +279,11 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			}
 		}
 	}
+	
+	scr_scrollBarHelp(itemSize, -1, cellHeight, 0, 
+	global.colorThemeSelected1, global.colorThemeSelected2,
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, helpWindowX2 - helpWindowX1, helpWindowY2 - helpWindowY1,
+	helpWindowX1, helpWindowY1);
+	
+	scr_surfaceEnd();
 }
