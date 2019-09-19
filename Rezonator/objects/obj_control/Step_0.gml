@@ -121,7 +121,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow) 
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
 			scrollSpeed = -gridSpaceVertical;
 		}
-		if (holdDownArrowKey > 30) {
+		if (holdDownArrowKey > 20) {
 			scrollSpeed = -min(arrowSpeed, 25);
 			if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
@@ -136,7 +136,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow) 
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
 			scrollSpeed = gridSpaceVertical;
 		}
-		if (holdUpArrowKey > 30) {
+		if (holdUpArrowKey > 20) {
 			scrollSpeed = min(arrowSpeed, 25);
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);
