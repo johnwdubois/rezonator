@@ -48,7 +48,10 @@
 	}
 	//draw_set_colour(global.colorThemeBorders);
 	//draw_rectangle(menuWidth*3, -1, menuWidth*4.5, menuHeight, true);
-	
+	if(mouseOverStackShow){
+		draw_set_colour(global.colorThemeOutOfBounds);
+		draw_rectangle(menuWidth*6, -1, menuWidth*8, menuHeight, false);
+	}	
 	
 	
 	//draw text fore boxes
@@ -63,3 +66,4 @@
 	draw_text(mean(menuWidth*2, menuWidth*3), menuHeight - 25,"View");
 	draw_text(mean(menuWidth*3, menuWidth*4.5), menuHeight - 25,"Search");
 	draw_text(mean(menuWidth*4.5, menuWidth*6), menuHeight - 25,"Options");
+	draw_text(mean(menuWidth*6, menuWidth*8), menuHeight - 25,"StackShow");
