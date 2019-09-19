@@ -91,8 +91,6 @@ else { //if(string_lower(currentUser) == "player"){
 		}
 	}
 		
-	//show_message("Stack: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colStackID, currentGoldStandardRow)));
-	//show_message("List: " + scr_getStringOfList(currentGoldStandardWordIDList));
-	//show_message("User: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colUser, currentGoldStandardRow)));
+	// My shame
 	show_message("Score: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow)) + "%");
 }

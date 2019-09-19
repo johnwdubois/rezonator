@@ -527,22 +527,24 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	
 	
 		
-		
+		var inBoxHoldRect = false;
 		// Make sure the user has the box brush selected
 		if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 			
 			// Check if this word is within the Box brush rectangle
-			with (obj_control) {
-				if(shape = shapeBlock) {
-					var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));	
-				}
-				// If the text is left justified, we don't use the gridSpaceHorizontal
-				else {
-					var inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
+			with (obj_control) { 
+				if(boxRectWithinLine) {
+					if(shape = shapeBlock) {
+						inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));	
+					}
+					// If the text is left justified, we don't use the gridSpaceHorizontal
+					else {
+						inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
+					}
 				}
 			}
 			// Highlight the words if the box is still being made
-			if(not obj_control.boxRectReleased and inBoxHoldRect > 0) {
+			/*if(not obj_control.boxRectReleased and inBoxHoldRect > 0) {
 				// Draw the highlights within the display columns
 				draw_set_color(global.colorThemeSelected1);
 				draw_set_alpha(0.5);
@@ -553,9 +555,10 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				else {
 					draw_rectangle(wordRectX1, wordRectY1, wordRectX2 + shapeTextSpace, wordRectY2, false);
 				}
-			} 
+			} */
 			// If the box has been made, capture the info of the contained words
-			else if(obj_control.boxRectMade and inBoxHoldRect > 0) {
+			if(obj_control.boxRectMade and inBoxHoldRect > 0) {
+				//show_message("here");
 				// Make sure this word has not already been captured
 				with (obj_control) {
 					if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
