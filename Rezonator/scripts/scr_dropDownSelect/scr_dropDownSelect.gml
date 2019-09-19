@@ -840,6 +840,7 @@ else if (optionListType == 6)
 			obj_toolPane.showTool = !obj_toolPane.showTool;
 			//show_message("BUH 1");
 			break;
+/*
 		case "Start StackShow":
 			if(obj_control.currentStackShowListPosition == -1) {
 				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
@@ -851,6 +852,7 @@ else if (optionListType == 6)
 					obj_control.stackShowWindowActive = true;
 			}
 			break;
+*/
 		case "Toggle Grid View":
 		obj_control.gridView = !obj_control.gridView;
 			break;		
@@ -1128,6 +1130,21 @@ else if (optionListType == 8)
 	
 			break;
 		case "Delete Link":
+			/*
+			var currentInChainList = ds_list_create();
+			ds_list_copy(currentInChainList, ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList,obj_control.rightClickWordID - 1) );
+			if(obj_toolPane.currentMode == obj_toolPane.modeRez){
+				var chainGridRowToSet = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID,0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), ds_list_find_value(currentInChainList,0));
+				ds_grid_set(obj_chain.rezChainGrid,obj_chain.chainGrid_colChainState, chainGridRowToSet, 2);
+			}
+			else if(obj_toolPane.currentMode == obj_toolPane.modeTrack){
+				var chainGridRowToSet = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID,0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), ds_list_find_value(currentInChainList,0));
+				ds_grid_set(obj_chain.trackChainGrid,obj_chain.chainGrid_colChainState, chainGridRowToSet, 2);
+			}
+			else{
+				break;
+			}
+			*/
 			var rowToSet = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid),  obj_control.rightClickWordID);
 			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowToSet, 1);
 				

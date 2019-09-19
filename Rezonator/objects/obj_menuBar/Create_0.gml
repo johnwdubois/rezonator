@@ -9,4 +9,5 @@ mouseOverEdit = false;
 mouseOverView = false;
 mouseOverSearch = false;
 mouseOverOptions = false;
+mouseOverStackShow = false;
 y= 0;

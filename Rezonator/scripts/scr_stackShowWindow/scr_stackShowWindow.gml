@@ -473,13 +473,14 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 					obj_toolPane.showTool = false;
 				}
 			}
+			obj_menuBar.menuClickedIn = false;
 		}
 		
 }
 // cancel button check
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 100 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 100 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 180 + buttonYOffset) && obj_control.stackShowWindowActive && mouse_check_button_released(mb_left) 
 		|| keyboard_check_pressed(vk_escape)) {
-		
+		obj_menuBar.menuClickedIn = false;
 		obj_control.stackShowWindowActive = false;
 		instance_destroy();
 	
@@ -581,7 +582,7 @@ if ( (keyboard_check_pressed(vk_enter) && obj_control.stackShowWindowActive) && 
 		instance_create_layer(-500, -500, "Instances", obj_submitChain);
 	}
 	
-	
+	obj_menuBar.menuClickedIn = false;
 }
 
 

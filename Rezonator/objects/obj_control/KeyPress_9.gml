@@ -11,7 +11,7 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
-/*
+
 var panelPaneChainListID = -1;
 var panelPaneChainContentsID = -1;
 
@@ -46,7 +46,7 @@ else {
 	panelPaneChainListID.clickedIn = true;
 	panelPaneChainContentsID.clickedIn = false;
 }
-*/
+
 /* StackShow Prototype
 	-At some point, A list of all the current Stacks will be created
 		-When will this list be created? Maybe now...
@@ -64,22 +64,13 @@ else {
 
 //obj_control.stackShowWindowActive = true;
 
-
+/*
 
 // If we have not started the stackShow yet
 if(currentStackShowListPosition == -1) {
 	//Create the list
 	//set currentStackShowListPosition to 0
-	/*currentStackShowListPosition = 0;
-	for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
-		var currentStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackShowListLoop);
-		ds_list_add(stackShowList, currentStackID);	
-	}
-	
-	// Clear the Filter of all chains
-	ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
-	ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
-	ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);*/
+
 	
 	obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 	// Instantiate the screen for users to select which stacks go in the stackShow
