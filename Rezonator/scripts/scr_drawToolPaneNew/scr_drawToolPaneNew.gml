@@ -1,3 +1,7 @@
+if (not obj_panelPane.showNav) {
+	y = -(windowHeight * 2);
+	exit;
+}
 y = obj_menuBar.menuHeight;
 
 var toolSprScale = clamp(windowHeight / 210, 0.5, 1);
