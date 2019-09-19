@@ -119,7 +119,7 @@ ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 10, "Make 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 10, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 11, controlStr + " [DEL]");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "Delete Whole Chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "Delete Entire Chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 11, "Delete all the links from the chain");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 11, false);
 
@@ -209,7 +209,7 @@ ds_grid_resize(functionHelp_helpGridFile, functionHelp_helpGridWidth, helpGridHe
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 0, controlStr + " o");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 0, "Open");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 0, "Open file or project");
-ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 0, false);
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 0, true);
 
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 1, controlStr + " s");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 1, "Save");
