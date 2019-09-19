@@ -77,10 +77,10 @@ if (mouse_check_button(mb_left)) {
 		window_set_cursor(cr_size_we);
 	}
 	else if (windowResizeYHolding) {
-		windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.33);
 		window_set_cursor(cr_size_ns);
 		
 		if (object_index == obj_panelPane) {
+			windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.33);
 			var helpPaneY = 0;
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList or currentFunction == functionChainContents
@@ -99,6 +99,9 @@ if (mouse_check_button(mb_left)) {
 			with (obj_toolPane) {
 				windowHeight = helpPaneY - y;
 			}
+		}
+		else {
+			windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.75);
 		}
 	}
 	

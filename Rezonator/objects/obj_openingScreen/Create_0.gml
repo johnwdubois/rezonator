@@ -25,7 +25,7 @@ global.versionString = "Version" + global.versionString;
 
 global.fileLineRipList = ds_list_create();
 
-global.fileLineRipGripWidth = 6;
+global.fileLineRipGripWidth = 7;
 global.fileLineRipGrid_colDiscoID = 0;
 global.fileLineRipGrid_colFileLineRipList = 1;
 global.fileLineRipGrid_colUnitAmount = 2;
@@ -53,6 +53,11 @@ global.inRezzles = false;
 
 global.fileSaveName = "undefined";
 global.stackGrabSave = false;
+
+
+
+global.discoColorList = ds_list_create();
+
 
 wordAmountList = ds_list_create();
 
