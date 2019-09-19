@@ -36,7 +36,7 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHo
 }
 else if (keyboard_check(vk_control) and keyboard_check_pressed(ord("O")) and ableToHotkey) {
 	ableToHotkey = false;
-	scr_loadREZ();
+	//scr_loadREZ();
 }
 if (not keyboard_check(vk_control) and not ableToHotkey) {
 	ableToHotkey = true;
