@@ -121,7 +121,6 @@ if (displayColGridFirst_displayCol < displayColGridLast_displayCol) {
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, displayColGridFirst_wordID - 1, true);
 }
 else {
-	//show_message("done");
 	ds_grid_destroy(displayColGrid);
 	ds_list_destroy(firstDisplayColWordIDList);
 	exit;

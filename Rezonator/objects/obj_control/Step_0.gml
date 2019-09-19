@@ -113,8 +113,7 @@ if (instance_exists(obj_stackShow)) {
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
 if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow) {
-	
-	
+
 	
 	var scrollSpeed = 0;
 	// Single press of arrow keys now moves screen by one line

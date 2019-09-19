@@ -46,4 +46,3 @@ global.stackGrabSave = true;
 
 
 scr_saveREZ(false);
-//show_message("done");

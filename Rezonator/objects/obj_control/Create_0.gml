@@ -517,3 +517,6 @@ wideDropDown = false;
 global.toolPaneWidth = 0;
 
 
+with (obj_alarm) {
+	alarm[4] = 10;
+}

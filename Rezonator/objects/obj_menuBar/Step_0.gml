@@ -12,6 +12,7 @@ if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
 		mouseOverView = false;
 		mouseOverSearch = false;
 		mouseOverOptions = false;
+		mouseOverStackShow = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -41,6 +42,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth, 0, menuWidth*2, menuHeig
 		mouseOverView = false;
 		mouseOverSearch = false;
 		mouseOverOptions = false;
+		mouseOverStackShow = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -70,6 +72,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 		mouseOverView = true;
 		mouseOverSearch = false;
 		mouseOverOptions = false;
+		mouseOverStackShow = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -78,7 +81,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Toggle Dark Theme", "Toggle Grid View",  "Toggle Nav Window", "Toggle Filter Screen", "Start StackShow");
+		ds_list_add(dropDownOptionList, "Toggle Dark Theme", "Toggle Grid View",  "Toggle Nav Window", "Toggle Filter Screen");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*2, menuHeight, -999, obj_dropDown);
@@ -99,6 +102,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*3, 0, menuWidth*4.5, menu
 		mouseOverView = false;
 		mouseOverSearch = true;
 		mouseOverOptions = false;
+		mouseOverStackShow = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -127,6 +131,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*4.5, 0, menuWidth*6, menu
 		mouseOverView = false;
 		mouseOverSearch = false;
 		mouseOverOptions = true;
+		mouseOverStackShow = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -147,14 +152,49 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*4.5, 0, menuWidth*6, menu
 		}
 	}
 }
-
-
-if(!menuClickedIn){
+// Stack Show menu
+else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*6, 0, menuWidth*8, menuHeight)){
+		instance_destroy(obj_dropDown);
 		mouseOverFile = false;
 		mouseOverEdit = false;
 		mouseOverView = false;
 		mouseOverSearch = false;
 		mouseOverOptions = false;
+		mouseOverStackShow = true;
+	 if(mouse_check_button_released(mb_left)){
+		if(!menuClickedIn){
+			menuClickedIn = true;
+		}
+		else{
+			mouseOverStackShow = false;
+			menuClickedIn = false;
+		}
+			if(obj_control.currentStackShowListPosition == -1) {
+				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
+				// Instantiate the screen for users to select which stacks go in the stackShow
+
+				if (!instance_exists(obj_stackShow)) {
+					instance_create_layer(x, y, "InstancesAudio", obj_stackShow);
+				}
+					obj_control.stackShowWindowActive = true;
+			}
+	}
+}
+
+
+
+			
+
+
+if(!menuClickedIn){
+	
+		mouseOverFile = false;
+		mouseOverEdit = false;
+		mouseOverView = false;
+		mouseOverSearch = false;
+		mouseOverOptions = false;
+		mouseOverStackShow = false;
+		
 }
 
 with(obj_panelPane){
