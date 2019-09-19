@@ -1,3 +1,5 @@
+y = obj_menuBar.menuHeight;
+
 var toolSprScale = clamp(windowHeight / 210, 0.5, 1);
 var toolButtonBuffer = 10;
 
