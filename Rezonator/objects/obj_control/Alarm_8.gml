@@ -133,9 +133,11 @@ if (ds_grid_height(gridOfFutureChains) > 0) {
 		if (ds_list_size(currentList) > 1) {
 			for (var j = 0; j < ds_list_size(currentList); j++) {
 				var currentWordID = ds_list_find_value(currentList, j);
-				var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
-				with (obj_chain) {
-					scr_wordClicked(currentWordID, currentUnitID);
+				if (currentWordID >= 1 and currentWordID <= ds_grid_height(obj_control.wordGrid)) {
+					var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+					with (obj_chain) {
+						scr_wordClicked(currentWordID, currentUnitID);
+					}
 				}
 			}
 		}
