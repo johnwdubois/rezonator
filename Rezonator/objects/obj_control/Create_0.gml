@@ -93,6 +93,7 @@ unitGrid_colUnitStart = 6;
 unitGrid_colUnitEnd = 7;
 unitGrid_colParticipantColor = 8;
 unitGrid_colTag = 9;
+unitGrid_colDiscoColor = 10;
 
 unitGrid = ds_grid_create(unitGridWidth, 0);
 unitGridBackup = ds_grid_create(unitGridWidth, 0);
@@ -518,6 +519,4 @@ wideDropDown = false;
 global.toolPaneWidth = 0;
 
 
-with (obj_alarm) {
-	alarm[4] = 10;
-}
+initialValidFileCheck = false;

@@ -40,7 +40,7 @@ global.participantColorList = ds_list_create();
 
 global.wordGridWidth = 7;
 global.dynamicWordGridWidth = 14;
-global.unitGridWidth = 10;
+global.unitGridWidth = 11;
 
 global.openProject = false;
 global.newProject = false;
@@ -57,6 +57,11 @@ global.stackGrabSave = false;
 
 
 global.discoColorList = ds_list_create();
+ds_list_add(global.discoColorList, make_color_rgb(183, 183, 255)); // blue
+ds_list_add(global.discoColorList, make_color_rgb(255, 184, 255)); // purple
+ds_list_add(global.discoColorList, make_color_rgb(255, 209, 184)); // orange
+ds_list_add(global.discoColorList, make_color_rgb(255, 250, 184)); // yellow
+ds_list_add(global.discoColorList, make_color_rgb(195, 255, 184)); // green
 
 
 wordAmountList = ds_list_create();

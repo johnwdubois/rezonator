@@ -4,6 +4,7 @@ var currentLineNumberLabel = argument2;
 var participantName = argument3;
 var participantColor = argument4;
 var speakerLabelTextBuffer = argument5;
+var discoColor = argument6;
 
 // draw speaker label parts
 for (var i = 0; i < 3; i++) {
@@ -17,7 +18,7 @@ for (var i = 0; i < 3; i++) {
 	var speakerLabelCurrentColY2 = speakerRectY2;
 		
 		
-	draw_set_color((i == 2) ? participantColor: c_ltblue);
+	draw_set_color((i == 2) ? participantColor: discoColor);
 	draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, false);
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, true);

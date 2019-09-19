@@ -30,6 +30,8 @@ currentUnitpID = -1;
 currentUnitParticipantName = "null";
 currentUnitStart = -1;
 currentUnitEnd = -1;
+currentDiscoColor = ds_list_find_value(global.discoColorList, 0);
+indexInDiscoColorList = 0;
 
 linesWithWordsList = ds_list_create();
 
