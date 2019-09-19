@@ -252,6 +252,7 @@ if (point_in_rectangle(mouse_x, mouse_y, firstButtonRectX1, firstButtonRectY1, f
 			}
 		}
 		
+		obj_alarm.drawBackground = true;
 		obj_control.alarm[11] = 60;
 		elmoActive = false;
 		instance_destroy();
@@ -271,7 +272,8 @@ if (point_in_rectangle(mouse_x, mouse_y, secondButtonRectX1, secondButtonRectY1,
 				keyboard_string = "";
 				room_goto(rm_openingScreen);	
 			}
-			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
+			obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList) - 1;
+			obj_toolPane.tracksOnlyStackShow = false;
 			scr_stackShow();	
 		}
 		// Restart the stackShow
