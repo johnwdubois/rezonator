@@ -63,7 +63,10 @@ else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 		//currentCenterDisplayRow = preSwitchDisplayRow;
 		obj_control.scrollPlusYDest = preSwitchDisplayRow;
 		
-		wordLeftMarginDest = 170;
+		//wordLeftMarginDest = 170;
+		with (obj_alarm) {
+			alarm[0] = 5;
+		}
 	}
 	// Give the user another way to leave the filter view
 	else if(currentActiveLineGrid == filterGrid) { 
@@ -82,6 +85,10 @@ else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 			// Switch to active grid
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid
+		}
+		
+		with (obj_alarm) {
+			alarm[1] = 5;
 		}
 	}
 }
@@ -103,9 +110,10 @@ else if(currentActiveLineGrid == filterGrid) {
 		obj_control.filterGridActive = false;
 		obj_control.currentActiveLineGrid = obj_control.lineGrid
 	}
+	
+	with (obj_alarm) {
+		alarm[1] = 5;
+	}
 }
 
 
-with (obj_alarm) {
-	alarm[1] = 5;
-}

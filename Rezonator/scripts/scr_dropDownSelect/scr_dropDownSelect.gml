@@ -927,8 +927,12 @@ else if (optionListType == 6)
 					//currentCenterDisplayRow = preSwitchDisplayRow;
 					obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
 		
-					obj_control.wordLeftMarginDest = 170;
+					//obj_control.wordLeftMarginDest = 170;
+					with (obj_alarm) {
+						alarm[0] = 5;
+					}
 				}
+				
 			}
 			//show_message("BUH 2");
 			break;
