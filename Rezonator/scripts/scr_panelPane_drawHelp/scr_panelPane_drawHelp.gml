@@ -244,7 +244,11 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 						var currentStrFunc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colFunc, j);
 						var currentStrDesc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colDesc, j);
 						draw_text(cellRectX1 + textBuffer - clipX, mean(cellRectY1, cellRectY2) - clipY, currentStrKey);
+						if(currentStrFunc == "Download" || currentStrFunc == "About Us") {
+							draw_set_color(c_blue);
+						}
 						draw_text(mean(cellRectX1, cellRectX2) + textBuffer - clipX, mean(cellRectY1, cellRectY2) - clipY, currentStrFunc);
+						draw_set_color(global.colorThemeText);
 						
 						// Check for mouseover over content, if so, then show extra content
 						if(point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
