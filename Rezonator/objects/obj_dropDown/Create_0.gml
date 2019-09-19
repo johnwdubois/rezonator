@@ -1,9 +1,9 @@
 // Instatiates drop down object
-optionSpacing = 20;
+optionSpacing = 30;
 
-windowWidth = 100;
+windowWidth = 110;
 if(obj_menuBar.menuClickedIn){
-windowWidth = 175;
+windowWidth = 200;
 }
 if(obj_control.wideDropDown){
 	if(instance_exists(obj_dialogueBox)){

@@ -51,7 +51,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth, 0, menuWidth*2, menuHeig
 		
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Clear All Stacks", "Clear All Rez Chains", "Clear All Track Chains", "Clear All Chains");
+		ds_list_add(dropDownOptionList, "Delete All Stacks", "Delete All Rez Chains", "Delete All Track Chains", "Delete All Chains");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth, menuHeight, -999, obj_dropDown);
@@ -81,7 +81,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Toggle Dark Theme", "Toggle Grid View",  "Toggle Nav Window", "Toggle Filter Screen");
+		ds_list_add(dropDownOptionList, "Toggle Dark Theme", "Toggle Grid View",  "Toggle Nav Window", "Toggle Filter Screen",  "Toggle Search Screen", "Toggle Transcript View");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*2, menuHeight, -999, obj_dropDown);
@@ -111,7 +111,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*3, 0, menuWidth*4.5, menu
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList, "Search For Words",  "Toggle Search Screen", "Clear Search Screen", "Jump To Time" , "Jump To Line");
+		ds_list_add(dropDownOptionList, "Search For Words", "Clear Search Screen", "Go To Time" , "Go To Line");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*3, menuHeight, -999, obj_dropDown);
@@ -140,7 +140,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*4.5, 0, menuWidth*6, menu
 
 		var dropDownOptionList = ds_list_create();
 
-		ds_list_add(dropDownOptionList,"Increase Text Size", "Decrease Text Size", "Increase Column Size",  "Decrease Column Size","Increase Row Size", "Decrease Row Size","Increase All", "Decrease All");
+		ds_list_add(dropDownOptionList,"Increase Text Size", "Decrease Text Size", "Increase Column Width",  "Decrease Column Width","Increase Row Height", "Decrease Row Height","Increase All", "Decrease All");
 
 		if (ds_list_size(dropDownOptionList) > 0 ) {
 			var dropDownInst = instance_create_depth(menuWidth*4.5, menuHeight, -999, obj_dropDown);
