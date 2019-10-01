@@ -152,13 +152,14 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	if (not instance_exists(obj_dialogueBox)) {
 		if (keyboard_check(vk_pagedown)) {
 			if (holdPgDn == 0 or (holdPgDn > 30 and holdPgDn % 5 == 0)) {
-				scrollSpeed -= (camera_get_view_height(view_camera[0]) * 0.8);
+				// will need to make this the difference with windowHeight to scale with PanelPanes
+				scrollSpeed -= (camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight) * 0.8; 
 			}
 			holdPgDn++;
 		}
 		if (keyboard_check(vk_pageup)) {
 			if (holdPgUp == 0 or (holdPgUp > 30 and holdPgUp % 5 == 0)) {
-				scrollSpeed += (camera_get_view_height(view_camera[0]) * 0.8);
+				scrollSpeed += (camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight) * 0.8;
 			}
 			holdPgUp++;
 		}
