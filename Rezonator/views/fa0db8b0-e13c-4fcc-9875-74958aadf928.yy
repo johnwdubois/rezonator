@@ -15,7 +15,9 @@
         "9a6355e9-3770-46b0-8704-cb5474a9c2b5",
         "a5f9ac41-9a02-4abb-bf10-b1ae7ae6abba",
         "c5d139b8-4c6d-434c-8280-4ff3b6d3ea6e",
-        "da94df93-7dd0-4772-a9d1-9ae81d929e6c"
+        "da94df93-7dd0-4772-a9d1-9ae81d929e6c",
+        "ac8f0209-4437-4401-9bbb-0c3732f7eb14",
+        "23331ffd-1c86-4e24-927e-779acea65b2b"
     ],
     "filterType": "GMScript",
     "folderName": "panelPane",

@@ -249,9 +249,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			scr_jumpToEnd(false);
 		}
 	
-		if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)) {
+		/*if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)) {
 			scr_createPlaceChains();
-		}
+		}*/
 
 		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
 			wordLeftMarginDest += gridSpaceHorizontal;
@@ -576,11 +576,6 @@ if (instance_exists(obj_stackShow)) {
 
 
 
-if (ds_grid_height(unitGrid) == global.totalUnitAmount and ds_grid_height(obj_chain.unitInStackGrid) == 0) {
-	with (obj_chain) {
-		scr_loadUnitInStackGrid();
-	}
-}
 
 if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentActiveLineGrid == lineGrid) {
 	//newWordHoverUnitID = -1;
