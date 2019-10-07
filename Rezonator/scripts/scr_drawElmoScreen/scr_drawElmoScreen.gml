@@ -50,7 +50,7 @@ if (elmoActive) {
 	obj_control.mouseoverPanelPane = true;
 	obj_control.quickLinkAllowed = false;
 
-	draw_sprite_ext(wheres_elmo_BG, 0, camera_get_view_width(view_camera[0])/2, camera_get_view_height(view_camera[0])/2, 1, 1, 0, c_white, 1);
+	draw_sprite_ext(spr_wheresElmoBG, 0, camera_get_view_width(view_camera[0])/2, camera_get_view_height(view_camera[0])/2, 1, 1, 0, c_white, 1);
 
 	var elmoScreenRectX1 = camera_get_view_width(view_camera[0])/2 - horizontalBuffer,
 	elmoScreenRectY1 = camera_get_view_height(view_camera[0])/2 - verticleBuffer - 40,

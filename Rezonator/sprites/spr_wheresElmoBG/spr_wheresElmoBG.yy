@@ -2,7 +2,7 @@
     "id": "14289895-0aa9-4335-80cd-fbc1b0892c27",
     "modelName": "GMSprite",
     "mvc": "1.12",
-    "name": "wheres_elmo_BG",
+    "name": "spr_wheresElmoBG",
     "For3D": false,
     "HTile": false,
     "VTile": false,
