@@ -2479,14 +2479,6 @@
             }
         },
         {
-            "Key": "854b8ec4-c959-40d4-ae68-9bf720d4af2d",
-            "Value": {
-                "id": "466d35fd-1924-4479-a516-eb60df42ac08",
-                "resourcePath": "scripts\/scr_drawGridViewer\/scr_drawGridViewer.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "865aa917-8b38-45ec-a553-aa8064d73d78",
             "Value": {
                 "id": "add9c703-5ab5-47cf-8acc-db874b22e553",
@@ -2916,14 +2908,6 @@
                 "id": "7a6c260d-1b5d-4985-9f7b-9b302c541bac",
                 "resourcePath": "datafiles_yy\/Default XML files\/sbc019.xml.yy",
                 "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "9c146d82-4f65-4ba7-925e-de5c12c08a4d",
-            "Value": {
-                "id": "3d8e9a83-e544-4965-99c3-f603d2cddd40",
-                "resourcePath": "scripts\/scr_newChainItem\/scr_newChainItem.yy",
-                "resourceType": "GMScript"
             }
         },
         {
@@ -4912,7 +4896,6 @@
         "f34cf581-9625-4cf3-938c-c8f2cd26edbe",
         "9c3b5811-ff13-464f-b5ba-48ff7243810f",
         "e06f679e-e9e9-4e88-aed0-3d00c31ee624",
-        "9c146d82-4f65-4ba7-925e-de5c12c08a4d",
         "93ec584d-5334-4edd-a749-7888e632eb4c",
         "baa8251d-a6a3-4fcf-bc51-f2fb7eea630b",
         "df1e32cd-3604-4cea-bd31-a9d305c01be3",
@@ -4927,7 +4910,6 @@
         "12ff6432-8b22-45cf-9519-8e7022a49a92",
         "1368d80b-130f-4727-870d-be51304da740",
         "930c0249-a71d-4b6f-8664-4528f953532d",
-        "854b8ec4-c959-40d4-ae68-9bf720d4af2d",
         "4d1110e1-242b-4485-8969-ca05c1e27cb2",
         "4819348f-9a90-4870-b130-8ac5271b932c",
         "378c69b4-37f8-44ed-ade5-cd140f704de9",
