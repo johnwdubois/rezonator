@@ -359,6 +359,13 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 
 
 var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
+if (focusedChainRow >= 0 and focusedChainRow < ds_grid_height(grid)) {
+	var focusedChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, focusedChainRow);
+	with (obj_panelPane) {
+		functionChainContents_BGColor = focusedChainColor;
+	}
+}
+
 	
 // Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 if (clickedIn) {	

@@ -63,8 +63,18 @@ switch (currentFunction) {
 		break;
 	case functionChainContents:
 		draw_set_alpha(1);
-		draw_set_color(global.colorThemePaneBG);
+		draw_set_color(global.colorThemeBG);
 		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		if (typeof(functionChainContents_BGColor) == "number") {
+			if (functionChainContents_BGColor != global.colorThemeBG) {
+				draw_set_alpha(0.1);
+				draw_set_color(functionChainContents_BGColor);
+				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+			}
+		}
+		else {
+			functionChainContents_BGColor = global.colorThemeBG;
+		}
 
 		scr_panelPane_drawChainContentsLoopClipped();
 		if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
