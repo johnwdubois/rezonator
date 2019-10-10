@@ -19,7 +19,16 @@
         "1d4eb4b6-a79a-4939-b194-42b663501c60",
         "0ee82ecb-9ecd-4bcb-923f-3eb1406d3915",
         "e9887152-5da4-4b7e-9d4a-b03816f12d8b",
-        "b92a031a-c814-47d5-9b06-7a216e4cfad3"
+        "b92a031a-c814-47d5-9b06-7a216e4cfad3",
+        "fbc689fc-efdf-49d2-a69c-75a0de497661",
+        "9bf8a465-d045-4287-92ab-cc25d14c9539",
+        "730a5783-5fcd-4b1e-af7f-eb156d322068",
+        "dcaf3b20-bfb5-40a2-ab0c-f2798346744d",
+        "3032f4c2-c9bd-470e-95ab-fc06b315a747",
+        "e0d24607-bb63-4281-8450-aa0c3fd9ff2d",
+        "e5e5b382-a28a-4b7c-a4d2-4c0b1be74a91",
+        "f1611a1b-3ef0-46fa-aec3-720be0dd4e9f",
+        "425fdc02-29ad-4d6a-a6f5-cb9a29e2c1fb"
     ],
     "filterType": "GMScript",
     "folderName": "import\/export",

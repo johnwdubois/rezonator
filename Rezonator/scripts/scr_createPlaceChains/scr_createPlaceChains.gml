@@ -1,5 +1,3 @@
-show_message("here!");
-
 var currentTool = obj_toolPane.currentTool;
 obj_toolPane.currentTool = obj_toolPane.toolPlaceChains;
 
