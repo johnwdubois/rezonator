@@ -30,8 +30,6 @@ if (instance_exists(obj_audioUI)) {
 }
 
 
-
-
 // if we are not on rez-tool, track-tool, or stack-tool, leave this script
 if not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush
 or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush

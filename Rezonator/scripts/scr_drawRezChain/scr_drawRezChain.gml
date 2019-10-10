@@ -32,6 +32,12 @@ var furthestDisplayCol = -1;
 var minWordWidth = 9999999;
 var linePlusX = 0;
 
+var currentWordStringHeight1 = string_height("0");
+var currentWordStringHeight2 = currentWordStringHeight1;
+
+
+
+
 // loop through rezChainGrid to get chain info
 for (var i = 0; i < ds_list_size(chainShowList); i++) {
 	minWordWidth = 9999999;
@@ -75,7 +81,6 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		var chunkWord1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk ? true : false;
 		
 		var currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
-		var currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
 		
 		lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
 		lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex1);
@@ -98,7 +103,6 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 				currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
 		
 				currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
-				currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
 		
 				lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
 				lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex1);
@@ -108,7 +112,6 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		}
 		
 		var currentWordStringWidth2 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1));
-		var currentWordStringHeight2 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1));
 		
 		lineX2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID2 - 1);
 		lineY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex2);
@@ -133,23 +136,27 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		and not (lineY1 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2))
 		and not (obj_control.searchGridActive) {
 			if (chunkWord1) {
-			var wordRectBuffer = 10;
-			lineY1 += wordRectBuffer;
-			chunkWord1 = 0;
+				var wordRectBuffer = 10;
+				lineY1 += wordRectBuffer;
+				chunkWord1 = 0;
 			}
 			if(chunkWord2) {
 				var wordRectBuffer = 10;
 				lineY2 -= (wordRectBuffer);
-				chunkWord2 = 0;
 			}
 			
 			if (currentChainShow) {
 				draw_set_color(currentChainColor);
 				draw_set_alpha(1);
-				draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
+				if(chunkWord2) {
+					draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
+				}
+				else {
+					draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+				}
 			}
 			// I need to modify this with the Chunk's wordRectBuffer
-			
+			chunkWord2 = 0;
 		}
 	}
 	

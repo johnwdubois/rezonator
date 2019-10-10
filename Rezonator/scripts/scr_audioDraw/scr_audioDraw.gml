@@ -142,6 +142,31 @@ draw_text(seekBarX1 - timeXBuffer, mean(seekBarY1, seekBarY2), string_hash_to_ne
 
 
 
+// draw jumpToUnit toggle
+draw_set_font(global.fontChainContents);
+draw_set_halign(fa_right);
+var jumpUnitStartTextX = x + windowWidth - string_width("AA");
+var jumpUnitStartTextY = floor(playPauseY) - floor((string_height("0") / 2));
+draw_text(jumpUnitStartTextX, jumpUnitStartTextY, "Click word to jump audio");
+
+var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width("Click word to jump audio  ");
+var jumpUnitStartRectY1 = jumpUnitStartTextY - 10;
+var jumpUnitStartRectX2 = jumpUnitStartRectX1 - 20;
+var jumpUnitStartRectY2 = jumpUnitStartTextY + 10;
+
+if (point_in_rectangle(mouse_x, mouse_y, jumpUnitStartRectX2, jumpUnitStartRectY1, jumpUnitStartRectX1, jumpUnitStartRectY2)
+and mouse_check_button_released(mb_left)) {
+	audioJumpOnWordClick = !audioJumpOnWordClick;
+}
+
+if (audioJumpOnWordClick) {
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, false);
+}
+else {
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, true);
+}
 
 
 

@@ -31,3 +31,5 @@ audioPos = 0;
 audioPosTemp = 0;
 
 audioPaused = true;
+
+audioJumpOnWordClick = true;
