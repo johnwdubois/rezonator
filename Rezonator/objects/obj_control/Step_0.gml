@@ -150,15 +150,15 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	
 	// Allow the user to hold down the pageUp or pageDown buttons
 	if (not instance_exists(obj_dialogueBox)) {
-		if (keyboard_check(vk_pagedown)) {
-			if (holdPgDn == 0 or (holdPgDn > 30 and holdPgDn % 5 == 0)) {
+		if (keyboard_check(vk_pagedown) and not keyboard_check(vk_pageup)) {
+			if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % 4 == 0)) {
 				// will need to make this the difference with windowHeight to scale with PanelPanes
 				scrollSpeed -= (camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight) * 0.8; 
 			}
 			holdPgDn++;
 		}
-		if (keyboard_check(vk_pageup)) {
-			if (holdPgUp == 0 or (holdPgUp > 30 and holdPgUp % 5 == 0)) {
+		if (keyboard_check(vk_pageup) and not keyboard_check(vk_pagedown)) {
+			if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % 4 == 0)) {
 				scrollSpeed += (camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight) * 0.8;
 			}
 			holdPgUp++;
@@ -575,13 +575,13 @@ if (instance_exists(obj_stackShow)) {
 }
 
 
-
+/*
 if (ds_grid_height(unitGrid) == global.totalUnitAmount and ds_grid_height(obj_chain.unitInStackGrid) == 0) {
 	with (obj_chain) {
 		scr_loadUnitInStackGrid();
 	}
 }
-
+*/
 if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentActiveLineGrid == lineGrid) {
 	//newWordHoverUnitID = -1;
 	//newWordHoverWordSeq = -1;
