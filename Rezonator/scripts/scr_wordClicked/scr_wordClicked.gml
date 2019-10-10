@@ -20,6 +20,18 @@ if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialog
 var wordID = argument0;
 var unitID = argument1;
 
+
+
+// jump audio position to unitStart time (if audioUI is visible)
+if (instance_exists(obj_audioUI)) {
+	if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
+		scr_audioJumpToUnit(unitID);
+	}
+}
+
+
+
+
 // if we are not on rez-tool, track-tool, or stack-tool, leave this script
 if not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush
 or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush

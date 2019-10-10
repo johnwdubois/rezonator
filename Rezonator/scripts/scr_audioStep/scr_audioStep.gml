@@ -30,6 +30,8 @@ if (!audioPaused and audio_is_paused(audioSound)) {
 audioLength = audio_sound_length(audioSound);
 audioPos = audio_sound_get_track_position(audioSound);
 
+
+
 if (audioPos >= audioLength - 1) {
 	audio_sound_set_track_position(audioSound, 0);
 	audioPaused = true;
