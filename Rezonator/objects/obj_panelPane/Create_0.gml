@@ -77,6 +77,10 @@ functionChainList_scrollRangeMax[2] = functionChainList_maxScrollRange;
 functionChainList_scrollRangeMin[3] = 0;
 functionChainList_scrollRangeMax[3] = functionChainList_maxScrollRange;
 functionChainList_tabHeight = 16;
+functionChainList_sortAsc[0] = true;
+functionChainList_sortAsc[1] = true;
+functionChainList_sortAsc[2] = true;
+functionChainList_sortAsc[3] = true;
 
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;
