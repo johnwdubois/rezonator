@@ -40,7 +40,7 @@ draw_set_font(global.fontPanelTab);
 var tabHeight = functionChainList_tabHeight;
 var scrollBarListHeight = 0;
 
-var grid = obj_chain.rezChainGrid;
+var grid = obj_control.lineGrid;
 
 
 
@@ -51,28 +51,7 @@ if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_c
 }
 // new end
 
-// Find current tab to draw correct contents
-switch (functionChainList_currentTab) {
-	case 0:
-		grid = obj_chain.rezChainGrid;
-		break;
-	case 1:
-		grid = obj_chain.trackChainGrid;
-		break;
-	case 2:
-		grid = obj_chain.stackChainGrid;
-		break;
-	case 3:
-		grid = obj_chain.cliqueDisplayGrid;
-		break;
-	/*case 4:
-		scr_panelPane_drawLineContentsLoopClipped();
-		exit;
-		break;*/
-	default:
-		grid = obj_chain.rezChainGrid;
-		break;
-}
+
 
 // Set text margins
 var textMarginTop = tabHeight;
@@ -92,17 +71,7 @@ var oldRow = -1;
 var focusedElementY = -1;
 
 
-with (obj_chain) {
-	if (ds_grid_value_exists(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus) ) {
-		oldFocusedContentsRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-	}
-}
 
-with (obj_chain) {
-	if (oldFocusedContentsRow >= 0) {
-		oldRow = oldFocusedContentsRow;
-	}
-}
 
 draw_set_font(global.fontChainContents);
 var strHeight = string_height("0");

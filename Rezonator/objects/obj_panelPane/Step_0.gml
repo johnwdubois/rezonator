@@ -1,5 +1,5 @@
 /*
-	obj_control: Step
+	obj_panelPane: Step
 	
 	Last Updated: 2019-02-14
 	
