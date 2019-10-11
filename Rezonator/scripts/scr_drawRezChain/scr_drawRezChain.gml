@@ -136,12 +136,12 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		and not (lineY1 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2))
 		and not (obj_control.searchGridActive) {
 			if (chunkWord1) {
-				var wordRectBuffer = 10;
+				var wordRectBuffer = 12;
 				lineY1 += wordRectBuffer;
 				chunkWord1 = 0;
 			}
 			if(chunkWord2) {
-				var wordRectBuffer = 10;
+				var wordRectBuffer = 12;
 				lineY2 -= (wordRectBuffer);
 			}
 			

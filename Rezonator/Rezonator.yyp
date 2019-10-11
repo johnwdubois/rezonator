@@ -535,14 +535,6 @@
             }
         },
         {
-            "Key": "155253d6-fef1-49fd-af7c-2c9a1b64e74b",
-            "Value": {
-                "id": "372b9e90-23a5-4e4d-8ebc-8c605df283de",
-                "resourcePath": "scripts\/scr_drawChunk\/scr_drawChunk.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "155e4781-6646-4f38-8cb3-1643b6723f06",
             "Value": {
                 "id": "f4e580ea-a66c-42eb-aaf3-1d31294e1bbf",
@@ -5151,7 +5143,6 @@
         "f22f6aba-e326-4a64-822f-cfa6e524f60a",
         "d882257c-cfc0-428b-b362-67410f5f2e76",
         "3f336589-fadf-4ed7-8a96-a645f60d347d",
-        "155253d6-fef1-49fd-af7c-2c9a1b64e74b",
         "060dd124-78ea-40ee-96ac-3ba85347aaaa",
         "d442e9ff-7ed7-49d7-b832-3a783d12bfdc",
         "1cbfdbf2-7b4b-4619-8178-97687910e552",
@@ -5206,8 +5197,6 @@
         "207f7a01-23f9-4bb8-ac22-1f696d1e08e7",
         "32d0c594-59c8-41b1-a88f-611c40062e4f",
         "b4d32bfe-6fe2-4fe2-b922-7cd35d082665",
-        "3806c787-4816-4e73-9779-40fb9af23745",
-        "f5cb5add-fb15-4d59-ab58-77238b10c15b",
         "79e73708-91c0-467f-ab87-2d0ed15beb30",
         "86d712e5-8944-4c97-a29c-925c573202c9",
         "9a6355e9-3770-46b0-8704-cb5474a9c2b5",
@@ -5219,7 +5208,9 @@
         "760937d6-16c6-42b7-bd58-6f67433e06d2",
         "f5a9dbba-b4e5-4d5a-bd18-069a0ccd2959",
         "0b5b25c9-d9ab-47a7-8e3c-9b08ba5db283",
-        "7bf96896-31d5-4157-8f09-1b534bc78c46"
+        "7bf96896-31d5-4157-8f09-1b534bc78c46",
+        "3806c787-4816-4e73-9779-40fb9af23745",
+        "f5cb5add-fb15-4d59-ab58-77238b10c15b"
     ],
     "tutorial": ""
 }

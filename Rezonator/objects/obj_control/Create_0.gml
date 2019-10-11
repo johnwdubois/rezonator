@@ -254,6 +254,7 @@ holdUpArrowKey = 0;
 holdDownArrowKey = 0;
 holdPgUp = 0;
 holdPgDn = 0;
+holdPgMod = 4;
 
 
 // Both of these are unused

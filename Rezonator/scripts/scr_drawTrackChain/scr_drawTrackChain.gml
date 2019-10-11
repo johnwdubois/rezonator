@@ -133,12 +133,12 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		{
 			if(chunkWord1) {
 				
-			var wordRectBuffer = 10;
+			var wordRectBuffer = 12;
 			lineY1 += (wordRectBuffer + (currentWordStringHeight1 / 2));
 			chunkWord1 = 0;
 			}
 			if(chunkWord2) {
-				var wordRectBuffer = 10;
+				var wordRectBuffer = 12;
 				lineY2 -= (wordRectBuffer + (currentWordStringHeight2 / 2));
 				chunkWord2 = 0;
 			}

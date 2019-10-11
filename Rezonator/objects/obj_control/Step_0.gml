@@ -147,19 +147,31 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			holdUpArrowKey = 31;
 		}
 	}
-	
+
 	// Allow the user to hold down the pageUp or pageDown buttons
 	if (not instance_exists(obj_dialogueBox)) {
 		if (keyboard_check(vk_pagedown) and not keyboard_check(vk_pageup)) {
-			if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % 4 == 0)) {
+			if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % holdPgMod == 0)) {
 				// will need to make this the difference with windowHeight to scale with PanelPanes
-				scrollSpeed -= (camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight) * 0.8; 
+				scrollSpeed -= (((camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+			}
+			if(holdPgDn > 45) {
+				holdPgMod = 3;
+			}
+			if(holdPgDn > 75) {
+				holdPgMod = 2;
 			}
 			holdPgDn++;
 		}
 		if (keyboard_check(vk_pageup) and not keyboard_check(vk_pagedown)) {
-			if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % 4 == 0)) {
-				scrollSpeed += (camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight) * 0.8;
+			if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % holdPgMod == 0)) {
+				scrollSpeed += (((camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+			}
+			if(holdPgUp > 45) {
+				holdPgMod = 3;
+			}
+			if(holdPgUp > 75) {
+				holdPgMod = 2;
 			}
 			holdPgUp++;
 		}
@@ -168,6 +180,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	if (instance_exists(obj_dialogueBox)) {
 		holdUpArrowKey = 0;
 		holdDownArrowKey = 0;
+		holdPgDn = 0;
+		holdPgUp = 0;
+		holdPgMod = 4;
 		scrollSpeed = 0;
 	}
 	
@@ -205,15 +220,19 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	
 	if (keyboard_check_released(vk_pagedown)) {
 		holdPgDn = 0;
+		holdPgMod = 4;
 	}
 	if (holdPgDn > 0 and !keyboard_check(vk_pagedown)) {
 		holdPgDn = 0;
+		holdPgMod = 4;
 	}
 	if (keyboard_check_released(vk_pageup)) {
 		holdPgUp = 0;
+		holdPgMod = 4;
 	}
 	if (holdPgUp > 0 and !keyboard_check(vk_pageup)) {
 		holdPgUp = 0;
+		holdPgMod = 4;
 	}
 	
 
