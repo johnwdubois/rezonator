@@ -13,6 +13,7 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+
 var filterPaneWidth = 0;
 with (obj_panelPane) {
 	if (currentFunction == functionFilter) {
@@ -20,7 +21,7 @@ with (obj_panelPane) {
 	}
 }
 x = filterPaneWidth;
-windowWidth = camera_get_view_width(view_camera[0]) / 3.5;
+windowWidth = camera_get_view_width(view_camera[0]) / 2.8;
 
 
 

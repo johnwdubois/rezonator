@@ -52,8 +52,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	// Get grid info of current chain
 	var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, i);
 	var currentLineState = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineState, i);
-	/*var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
-	var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);*/
+	var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
 	
 	
 	// Get dimensions of rectangle around line name
@@ -73,7 +72,10 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 			//show_message("line");
 			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
-			functionChainContents_lineGridRowFocused = i;
+			with (obj_panelPane) {
+				functionChainContents_lineGridRowFocused = i;
+				functionChainContents_BGColor = lineColor;
+			}
 		}
 		/*
 			if (currentChainState != obj_chain.chainStateFocus) {
@@ -182,9 +184,8 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	}*/
 	
 	//Color codes the line lists for User
-	var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of new chain
-	//draw_set_color(merge_color(chainColor, global.colorThemeBG, (currentChainState == obj_chain.chainStateFocus) ? 0.65: 0.75)); //soften the color
-	draw_set_color(lineColor);
+	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.7)); //soften the color
+	//draw_set_color(lineColor);
 	draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
 	
 	// Outline the rectangle in black
@@ -381,6 +382,7 @@ if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
 scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+
 
 
 
