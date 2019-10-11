@@ -23,7 +23,7 @@ with (obj_panelPane) {
 	functionChainList_tabHeight = string_height("0") + 8;
 }
 
-var tabAmount = 4;
+var tabAmount = 5;
 
 if (obj_panelPane.showNav) {
 	y = obj_menuBar.menuHeight;
@@ -50,6 +50,9 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 	else if (i == 3) {
 		grid = obj_chain.cliqueDisplayGrid;
 	}
+	else if (i == 4) {
+		grid = obj_control.lineGrid;
+	}
 	
 	// set dimensions for tabs
 	var tabRectX1 = x + (i * (windowWidth / tabAmount));
@@ -62,7 +65,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 	}
 	
 	
-	if (grid != obj_chain.cliqueDisplayGrid) {
+	if (grid != obj_chain.cliqueDisplayGrid and grid != obj_control.lineGrid) {
 		// draw toggleDraw button
 		var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
 		var toggleDrawRectX1 = tabRectX2 - buttonRectSize - 4;
@@ -159,6 +162,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 	// check for mouse clicks to change the selected tab
 	if (point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
 		if (device_mouse_check_button_released(0, mb_left)) {
+			//show_message(string(i));
 			functionChainList_currentTab = i;
 			
 			// unfocus chains of all type
@@ -166,7 +170,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			
 			//refocus chains related to currently selected tab
 			
-			if (functionChainList_currentTab >= 0) {
+			if (functionChainList_currentTab >= 0 and grid != obj_control.lineGrid) {
 				scr_reFocusOldChains();
 			}
 		}
