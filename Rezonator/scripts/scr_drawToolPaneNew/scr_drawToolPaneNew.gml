@@ -50,12 +50,14 @@ for (var i = 0; i < 2; i++) {
 	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 }
 
-
-if (keyboard_check_pressed(ord("R"))) {
-	currentMode = modeRez;
-}
-if (keyboard_check_pressed(ord("T"))) {
-	currentMode = modeTrack;
+// Prevent typing in text from changing the tool mode
+if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
+	if (keyboard_check_pressed(ord("R"))) {
+		currentMode = modeRez;
+	}
+	if (keyboard_check_pressed(ord("T"))) {
+		currentMode = modeTrack;
+	}
 }
 
 if (global.wheresElmo) {
