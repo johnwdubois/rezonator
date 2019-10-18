@@ -121,11 +121,17 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
 			scrollSpeed = -gridSpaceVertical;
 		}
-		if (holdDownArrowKey > 20) {
-			scrollSpeed = -min(arrowSpeed, 25);
+		if (holdDownArrowKey > 15) {
+			scrollSpeed = (-min(arrowSpeed, 25)) * holdArrowMod;
 			if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
 			}
+		}
+		if(holdDownArrowKey > 45) {
+				holdArrowMod = 2;
+		}
+		if(holdDownArrowKey > 75) {
+			holdArrowMod = 3;
 		}
 		holdDownArrowKey++;
 		if (mouse_wheel_down()) {
@@ -136,11 +142,17 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
 			scrollSpeed = gridSpaceVertical;
 		}
-		if (holdUpArrowKey > 20) {
-			scrollSpeed = min(arrowSpeed, 25);
+		if (holdUpArrowKey > 15) {
+			scrollSpeed = min(arrowSpeed, 25) * holdArrowMod;
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);
 			}
+		}
+		if(holdUpArrowKey > 45) {
+				holdArrowMod = 2;
+		}
+		if(holdUpArrowKey > 75) {
+			holdArrowMod = 3;
 		}
 		holdUpArrowKey++;
 		if (mouse_wheel_up()) {
@@ -180,6 +192,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	if (instance_exists(obj_dialogueBox)) {
 		holdUpArrowKey = 0;
 		holdDownArrowKey = 0;
+		holdArrowMod = 1;
 		holdPgDn = 0;
 		holdPgUp = 0;
 		holdPgMod = 4;
@@ -207,15 +220,19 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 
 	if (keyboard_check_released(vk_down) and !mouse_wheel_down()) {
 		holdDownArrowKey = 0;
+		holdArrowMod = 1;
 	}
 	if (holdDownArrowKey > 0 and !mouse_wheel_down() and !keyboard_check(vk_down)) {
 		holdDownArrowKey = 0;
+		holdArrowMod = 1;
 	}
 	if (keyboard_check_released(vk_up) and !mouse_wheel_up()) {
 		holdUpArrowKey = 0;
+		holdArrowMod = 1;
 	}
 	if (holdUpArrowKey > 0 and !mouse_wheel_up() and !keyboard_check(vk_up)) {
 		holdUpArrowKey = 0;
+		holdArrowMod = 1;
 	}
 	
 	if (keyboard_check_released(vk_pagedown)) {
@@ -287,7 +304,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	}
 	
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
-	//	showDevVars = !showDevVars;
+		showDevVars = !showDevVars;
 		showFPS = !showFPS;
 	}
 	
@@ -433,7 +450,7 @@ if (shortcutsEnabled) {
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
 					if(arrowSpeed < arrowSpeedMax) {
-						arrowSpeed++;	
+						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
 				alarm[3] = 15;
@@ -467,7 +484,7 @@ if (shortcutsEnabled) {
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
 					if(arrowSpeed > arrowSpeedMin) {
-						arrowSpeed--;	
+						arrowSpeed *= gridSpaceRatio;	
 					}
 				}
 				alarm[4] = 15;

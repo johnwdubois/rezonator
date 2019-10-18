@@ -30,6 +30,10 @@ switch (obj_toolPane.currentTool) {
 		aligned = true;
 		rezChainNameCounter++;
 		chainName = currentChainName + " " + string(rezChainNameCounter);
+		if(obj_control.shapeStartText == true) {
+			obj_control.shapeStartText = false;
+			obj_control.shape = obj_control.shapeBlock;
+		}
 		break;
 	case obj_toolPane.toolTrackBrush:
 		with (obj_panelPane) {

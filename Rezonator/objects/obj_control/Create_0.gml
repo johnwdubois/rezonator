@@ -25,12 +25,12 @@ prevCenterDisplayRow = 0;
 
 // Bound and set the display grid of the words
 gridSpaceHorizontalMin = 60;
-gridSpaceVerticalMin = 40.40;
+gridSpaceVerticalMin = 60;
 gridSpaceHorizontalMax = 400;
-gridSpaceVerticalMax = 303.40;
+gridSpaceVerticalMax = 300;
 
 gridSpaceHorizontal = 100;
-gridSpaceVertical = 40.40;
+gridSpaceVertical = 60;
 prevGridSpaceVertical = gridSpaceVertical;
 //searchGridSpaceVertical = gridSpaceVertical;
 searchPrevGridSpaceVertical = gridSpaceVertical;
@@ -39,9 +39,9 @@ filterPrevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
 // Set the speed of scrolling
-arrowSpeedMin = 7;
-arrowSpeedMax = 35;
-arrowSpeed = 8;
+arrowSpeedMin = 17;
+arrowSpeedMax = 90;
+arrowSpeed = 18;
 
 
 
@@ -79,7 +79,8 @@ c_ltblue = make_color_rgb(183, 183, 255);
 // Set variables of normal/grid alignment of words
 shapeText = 0;
 shapeBlock = 1;
-shape = shapeBlock;
+shape = shapeText;
+shapeStartText = true;
 
 // Instantiate the Unit Grid
 unitGridWidth = global.unitGridWidth;
@@ -252,6 +253,7 @@ displayRowAscending = true;
 // Set the arrow key speed limit
 holdUpArrowKey = 0;
 holdDownArrowKey = 0;
+holdArrowMod = 1;
 holdPgUp = 0;
 holdPgDn = 0;
 holdPgMod = 4;
