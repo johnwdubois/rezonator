@@ -411,6 +411,7 @@ gPressed = false;
 regExCheck = false;
 goToTime = false;
 rename = false;
+before = false;
 recolor = false;
 caption = false;
 replace = false;

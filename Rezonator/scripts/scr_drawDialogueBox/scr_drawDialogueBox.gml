@@ -119,6 +119,39 @@ if (obj_control.dialogueBoxActive) {
 	
 	if (obj_control.newWordCreated) {
 		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to add.");
+	
+	
+			// draw boolean option check boxes
+		draw_set_colour(global.colorThemeText);
+		draw_set_font(fnt_main);
+		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Insert Before");
+		
+		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
+		if (obj_control.before) {
+			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
+		}
+		
+			// splitWord boolean switch
+		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+				
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
+			
+				if(obj_control.before){
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+				}
+				if (mouse_check_button_pressed(mb_left)) {
+					obj_control.before = !obj_control.before;
+				}
+		}
+	
 	}
 	
 	if(obj_control.caption){
@@ -534,11 +567,24 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 		
 		if (obj_control.newWordCreated) {
+			//show_message(string("BUH"));
 			if(obj_control.fromDropDown){
-				scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText);
+				if (obj_control.before) {
+					scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq - 1, obj_control.inputText);
+					//show_message(string(obj_control.rightClickWordSeq));
+				}
+				else {
+					scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText);
+				}
 			}
 			else{
-				scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+				if (obj_control.before) {
+					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+										show_message(string(obj_control.rightClickWordSeq));
+				}
+				else {
+					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+				}
 			}
 		}
 			
