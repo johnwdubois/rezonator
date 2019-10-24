@@ -55,6 +55,7 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
 		var chunkWord1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk ? true : false;
+		//Add a nesting check
 		
 		var currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 -1));
 		var currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
@@ -74,7 +75,7 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID2);
 		var chunkWord2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk ? true : false;
 		var currentHitGridIndex2 = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid)-1, currentWordID2);
-		
+		//Add a nesting check
 		
 		if (currentUnitID1 == currentUnitID2) {
 			wordsInSameUnit = true;
@@ -133,12 +134,12 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		{
 			if(chunkWord1) {
 				
-			var wordRectBuffer = 12;
+			var wordRectBuffer = 15;
 			lineY1 += (wordRectBuffer + (currentWordStringHeight1 / 2));
 			chunkWord1 = 0;
 			}
 			if(chunkWord2) {
-				var wordRectBuffer = 12;
+				var wordRectBuffer = 15;
 				lineY2 -= (wordRectBuffer + (currentWordStringHeight2 / 2));
 				chunkWord2 = 0;
 			}

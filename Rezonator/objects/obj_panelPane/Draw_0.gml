@@ -98,13 +98,13 @@ switch (currentFunction) {
 		scr_panelPane_drawFilter();
 		break;
 	case functionSort:
-		//if (showAdvancedNav) {
+		if (showAdvancedNav) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemePaneBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 			scr_panelPane_drawSort();
-		//}
+		}
 		break;
 	case functionSearch:
 		draw_set_alpha(1);

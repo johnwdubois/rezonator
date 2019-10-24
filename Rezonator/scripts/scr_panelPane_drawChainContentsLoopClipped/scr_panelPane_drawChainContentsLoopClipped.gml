@@ -61,19 +61,19 @@ scr_surfaceStart();
 
 // Find current tab to draw correct contents
 switch (functionChainList_currentTab) {
-	case 0:
+	case functionChainList_tabRezBrush:
 		grid = obj_chain.rezChainGrid;
 		break;
-	case 1:
+	case functionChainList_tabTrackBrush:
 		grid = obj_chain.trackChainGrid;
 		break;
-	case 2:
+	case functionChainList_tabStackBrush:
 		grid = obj_chain.stackChainGrid;
 		break;
-	case 3:
+	case functionChainList_tabClique:
 		grid = obj_chain.cliqueDisplayGrid;
 		break;
-	case 4:
+	case functionChainList_tabLine:
 		grid = -1;
 		scr_panelPane_drawLineContentsLoopClipped();
 		break;

@@ -79,6 +79,7 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
 		var chunkWord1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk ? true : false;
+		//Add a nesting check
 		
 		var currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
 		
@@ -89,6 +90,7 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		var currentUnitID2 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID2 - 1);
 		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID2);
 		var chunkWord2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk ? true : false;
+		//Add a nesting check
 		
 		if (currentUnitID1 == currentUnitID2) {
 			wordsInSameUnit = true;
@@ -136,12 +138,12 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 		and not (lineY1 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2))
 		and not (obj_control.searchGridActive) {
 			if (chunkWord1) {
-				var wordRectBuffer = 12;
+				var wordRectBuffer = 15;
 				lineY1 += wordRectBuffer;
 				chunkWord1 = 0;
 			}
 			if(chunkWord2) {
-				var wordRectBuffer = 12;
+				var wordRectBuffer = 15;
 				lineY2 -= (wordRectBuffer);
 			}
 			

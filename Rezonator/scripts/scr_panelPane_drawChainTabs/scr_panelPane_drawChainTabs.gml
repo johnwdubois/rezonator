@@ -39,20 +39,21 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 	
 	var grid = obj_chain.rezChainGrid;
 	if (i == 0) {
-		grid = obj_chain.rezChainGrid;
-	}
-	else if (i == 1) {
-		grid = obj_chain.trackChainGrid;
-	}
-	else if (i == 2) {
-		grid = obj_chain.stackChainGrid;
-	}
-	else if (i == 3) {
-		grid = obj_chain.cliqueDisplayGrid;
-	}
-	else if (i == 4) {
 		grid = obj_control.lineGrid;
 	}
+	else if (i == 1) {
+		grid = obj_chain.rezChainGrid;
+	}
+	else if (i == 2) {
+		grid = obj_chain.trackChainGrid;
+	}
+	else if (i == 3) {
+		grid = obj_chain.stackChainGrid;
+	}
+	else if (i == 4) {
+		grid = obj_chain.cliqueDisplayGrid;
+	}
+
 	
 	// set dimensions for tabs
 	var tabRectX1 = x + (i * (windowWidth / tabAmount));
@@ -73,26 +74,26 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			var toggleDrawRectY1 = tabRectY1 + 4;
 			var toggleDrawRectX2 = toggleDrawRectX1 + buttonRectSize;
 			var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
-			if (i == 0) {
+			if (i == functionChainList_tabRezBrush) {
 				draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
 			}
-			else if (i == 1) {
+			else if (i == functionChainList_tabTrackBrush) {
 				draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
 			}
-			else if (i == 2) {
+			else if (i == functionChainList_tabStackBrush) {
 				draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
 			}
 			if (point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
 				if (mouse_check_button_released(mb_left)) {
-					if (i == 0) {
+					if (i == functionChainList_tabRezBrush) {
 						obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
 					}
-					else if (i == 1) {
+					else if (i == functionChainList_tabTrackBrush) {
 						obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
 					}
-					else if (i == 2) {
+					else if (i == functionChainList_tabStackBrush) {
 						obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
 					}
 				}
@@ -173,17 +174,17 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 						functionChainList_sortAsc[i] = !functionChainList_sortAsc[i];
 					}
 					switch (i) {
-						case 0:
+						case functionChainList_tabRezBrush:
 							with (obj_chain) {
 								ds_grid_sort(rezChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
 							}
 							break;
-						case 1:
+						case functionChainList_tabTrackBrush:
 							with (obj_chain) {
 								ds_grid_sort(trackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
 							}
 							break;
-						case 2:
+						case functionChainList_tabStackBrush:
 							with (obj_chain) {
 								ds_grid_sort(stackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
 							}
