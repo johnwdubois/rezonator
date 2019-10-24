@@ -489,7 +489,7 @@ else if (optionListType == 4)
 			
 			//show_message("BUH 2");
 			break;
-		case "Export Portion":
+		case "Save Portion":
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";
 				obj_control.ePressed = true;
@@ -1134,22 +1134,21 @@ else if (optionListType == 8)
 		case "New Word":
 		
 		
-			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
-					if (!obj_control.dialogueBoxActive) {
-						keyboard_string = "";
-						obj_control.newWordCreated =true;
-					}
-
-					obj_control.fromDropDown = true;
-					obj_control.dialogueBoxActive = true;
-
-						if (!instance_exists(obj_dialogueBox)) {
-							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		
+						var dropDownOptionList = ds_list_create();
+						ds_list_add(dropDownOptionList, "<0>", "<ZERO>", "<PRO>", "Custom");
+						
+						if (ds_list_size(dropDownOptionList) > 0) {
+							var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing*3  , -999, obj_dropDown);
+							dropDownInst.optionList = dropDownOptionList;
+							dropDownInst.optionListType = 11;
+					
+							obj_control.ableToCreateDropDown = false;
+							obj_control.alarm[0] = 2;
 						}
-
-			}
-			obj_control.rightClickonWord = false;
-			instance_destroy();
+	
+		
+		
 
 			//show_message("BUH 3");
 			break;
@@ -1159,7 +1158,7 @@ else if (optionListType == 8)
 			//show_message("Coming Soon");
 			scr_deleteFromChain();
 			
-			
+			obj_control.deleteNewWord = false;
 			obj_control.rightClickonWord = false;
 			instance_destroy();
 	
@@ -1267,5 +1266,95 @@ else if (optionListType == 10)
 		instance_destroy();
 	}
 }
+
+else if (optionListType == 11)
+{
+
+	switch (optionSelected)
+	{
+		case "<0>":
+			obj_control.newWordPre1 = true;
+			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newWordCreated =true;
+					}
+
+					obj_control.fromDropDown = true;
+					obj_control.dialogueBoxActive = true;
+
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						}
+
+			}
+			obj_control.rightClickonWord = false;
+			instance_destroy();
+			break;
+		case "<ZERO>":
+			obj_control.newWordPre2 = true;
+			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newWordCreated =true;
+					}
+
+					obj_control.fromDropDown = true;
+					obj_control.dialogueBoxActive = true;
+
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						}
+
+			}
+			obj_control.rightClickonWord = false;
+
+			break;
+		case "<PRO>":	
+			obj_control.newWordPre3 = true;
+			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newWordCreated =true;
+					}
+
+					obj_control.fromDropDown = true;
+					obj_control.dialogueBoxActive = true;
+
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						}
+
+			}
+			obj_control.rightClickonWord = false;
+
+			break;
+		case "Custom":
+			
+			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newWordCreated =true;
+					}
+
+					obj_control.fromDropDown = true;
+					obj_control.dialogueBoxActive = true;
+
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						}
+
+			}
+			obj_control.rightClickonWord = false;
+
+			break;
+		default:
+			break;
+	}
+	with(obj_dropDown){
+		instance_destroy();
+	}
+}
+
 
 

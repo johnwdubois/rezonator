@@ -427,6 +427,11 @@ cursorViz = false;
 inputText = "";
 cursorTimer = 20;
 
+newWordPre1 = false
+newWordPre2 = false
+newWordPre3 = false
+
+
 hitIDCounter = 1;
 
 selectedChainID = 0;

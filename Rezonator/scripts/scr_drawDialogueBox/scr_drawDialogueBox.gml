@@ -118,6 +118,23 @@ if (obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.newWordCreated) {
+		
+		if (obj_control.newWordPre1 == true) {
+			obj_control.inputText = "<0>";
+			obj_control.cursorPos += string_length(obj_control.inputText);
+			obj_control.newWordPre1 = false;
+		}
+		if (obj_control.newWordPre2 == true) {
+			obj_control.inputText = "<ZERO>";
+			obj_control.cursorPos += string_length(obj_control.inputText);
+			obj_control.newWordPre2 = false;
+		}
+		if (obj_control.newWordPre3 == true) {
+			obj_control.inputText = "<PRO>";
+			obj_control.cursorPos += string_length(obj_control.inputText);
+			obj_control.newWordPre3 = false;
+		}
+		
 		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to add.");
 	
 	
