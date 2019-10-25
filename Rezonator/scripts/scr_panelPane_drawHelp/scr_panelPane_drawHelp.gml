@@ -17,21 +17,63 @@ if(not obj_panelPane.showNav) {
 
 
 // Establish location of camera
+windowWidth = global.toolPaneWidth;
 var camWidth = camera_get_view_width(view_camera[0]);
 x = camWidth - windowWidth;
 y = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight;
 var scrollBarOffset = 20;
 
 // Check for mouse location over "Help" button
-var mouseover = false;
-if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-	mouseover = true;
+var mouseoverHelp = false;
+var mouseoverGridViewToggle = false;
+var mouseoverJustifyToggle = false;
+//if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+//	mouseoverHelp = true;
+//}
+for(var i = 0; i < 3; i++) {
+	
+	var rectX1 = x + (i * (windowWidth / 3));
+	var rectY1 = y;
+	var rectX2 = rectX1 + (windowWidth / 3);
+	var rectY2 = y + windowHeight;
+	
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
+	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
+		draw_set_color(global.colorThemeSelected1);
+		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+		
+		if (i == 0) {
+			if (device_mouse_check_button_released(0, mb_left)) {
+				obj_control.gridView = !obj_control.gridView;
+			}
+		}
+		else if (i == 1) {
+			if (device_mouse_check_button_released(0, mb_left)) {
+				scr_justifyWords();
+			}
+		}
+		else {
+			mouseoverHelp = true;
+		}
+	}
+	
+	if (i == 0) {
+		draw_sprite_ext(spr_gridViewToggle, obj_control.gridView, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
+	}
+	else if (i == 1) {
+		draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
+	}
+	else {
+		draw_sprite_ext(spr_helpToggle, !functionHelp_collapsed, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
+	}
 }
 
+
+
+
 // Toggle collapse if mouseClick
-//if ((mouseover and mouse_check_button_pressed(mb_left))) {
-if ((mouseover and device_mouse_check_button_released(0, mb_left))) {
-	//device_mouse_check_button_pressed(0, mb_left)
+if ((mouseoverHelp and device_mouse_check_button_released(0, mb_left))) {
 	functionHelp_collapsed = !functionHelp_collapsed;
 }
 
@@ -44,14 +86,14 @@ draw_set_valign(fa_middle);
 
 // Draw either button & helpBox, or just button depending
 if (functionHelp_collapsed) {
-	draw_set_color(global.colorThemeText);
-	if(mouseover) {
-		draw_set_alpha(0.25);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-	}
+	//draw_set_color(global.colorThemeText);
+	//if(mouseoverHelp) {
+	//	draw_set_alpha(0.25);
+	//	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+	//}
 	
 	draw_set_alpha(1);
-	draw_text(x + 10, y + (windowHeight / 2), "Help");
+	//draw_text(x + 10, y + (windowHeight / 2), "Help");
 	
 	if ((functionHelp_plusX) <= camWidth) {
 		functionHelp_plusX += abs(functionHelp_plusX - camWidth) / 4 ;
@@ -62,10 +104,10 @@ if (functionHelp_collapsed) {
 	//}
 }
 else {
-	draw_set_color(global.colorThemeText);
-	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-	draw_set_color(global.colorThemeBG);
-	draw_text(x + 10, y + (windowHeight / 2), "Help");
+	//draw_set_color(global.colorThemeText);
+	//draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+	//draw_set_color(global.colorThemeBG);
+	//draw_text(x + 10, y + (windowHeight / 2), "Help");
 
 	if ((functionHelp_plusX) <= (camWidth - functionHelp_windowWidth)) {
 		functionHelp_plusX += abs(functionHelp_plusX - (camWidth - functionHelp_windowWidth)) / 4;
@@ -75,7 +117,7 @@ else {
 	}
 }
 
-obj_control.mouseoverHelpPane = false;
+obj_control.mouseoverHelpHelpPane = false;
 
 // If helpBox is in view, draw the outline of the box and its contents
 if !(abs(functionHelp_plusX - camWidth) < 0.1) {
@@ -94,7 +136,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	functionHelp_helpWindowRectY2 = helpWindowY2;
 	
 	if (point_in_rectangle(mouse_x, mouse_y, helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2)) {
-		obj_control.mouseoverHelpPane = true;
+		obj_control.mouseoverHelpHelpPane = true;
 		if (mouse_wheel_up() or keyboard_check(vk_up)) {
 			scrollPlusYDest += 12;
 		}
@@ -123,7 +165,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	
 	
 	
-	// Draw the mouseover circles around arrows
+	// Draw the mouseoverHelp circles around arrows
 	if (point_distance(mouse_x, mouse_y, gridCollapseButtonAllX, gridCollapseButtonAllY) < 20) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(1);
@@ -185,7 +227,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			draw_set_alpha(1);
 			draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 20, true);
 			
-			// Draw the mouseover circles around arrows
+			// Draw the mouseoverHelp circles around arrows
 			if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 20) {
 				//draw_set_color(global.colorThemeText);
 				//draw_set_alpha(0.5);
@@ -250,7 +292,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 						draw_text(mean(cellRectX1, cellRectX2) + textBuffer - clipX, mean(cellRectY1, cellRectY2) - clipY, currentStrFunc);
 						draw_set_color(global.colorThemeText);
 						
-						// Check for mouseover over content, if so, then show extra content
+						// Check for mouseoverHelp over content, if so, then show extra content
 						if(point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 							draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 + cellHeight - 1 - clipY, true);
 							if (j mod 2) {

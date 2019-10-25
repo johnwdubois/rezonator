@@ -14,7 +14,7 @@
 
 
 
-if (obj_control.gridView) {
+if (obj_control.gridView and currentFunction != functionHelp) {
 	exit;
 }
 if(not showAdvancedNav) {
