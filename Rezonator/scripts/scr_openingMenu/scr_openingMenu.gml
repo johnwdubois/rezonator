@@ -27,7 +27,7 @@ if (point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1,
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "New Project");
+draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "Open XML");
 
 
 
@@ -83,7 +83,7 @@ if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open Project");
+draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open REZ");
 
 
 

@@ -100,9 +100,12 @@ switch (currentFunction) {
 		scr_panelPane_drawFilter();
 		break;
 	case functionSort:
-		if (showAdvancedNav) {
+			x = camera_get_view_width(view_camera[0])/2 - 100;
+			y = camera_get_view_height(view_camera[0])/2 - 91;
+		if (obj_menuBar.sortPaneOpen) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemePaneBG);
+
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 			scr_panelPane_drawSort();
@@ -182,12 +185,15 @@ switch (currentFunction) {
 }
 
 
-
-
-if(obj_panelPane.showNav or currentFunction != functionHelp) {
+if(obj_panelPane.showNav or currentFunction != functionHelp ){
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+	if(currentFunction == functionSort && !obj_menuBar.sortPaneOpen){
+	
+	}
+	else {
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+	}
 }
 
 

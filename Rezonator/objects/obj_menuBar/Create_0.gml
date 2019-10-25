@@ -10,4 +10,7 @@ mouseOverView = false;
 mouseOverSearch = false;
 mouseOverOptions = false;
 mouseOverStackShow = false;
+mouseOverSortPane = false;
 y= 0;
+
+sortPaneOpen = false;

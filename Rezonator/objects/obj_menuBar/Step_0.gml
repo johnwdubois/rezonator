@@ -13,6 +13,7 @@ if(point_in_rectangle(mouse_x, mouse_y, 0, 0, menuWidth, menuHeight)){
 		mouseOverSearch = false;
 		mouseOverOptions = false;
 		mouseOverStackShow = false;
+		mouseOverSortPane = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -43,6 +44,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth, 0, menuWidth*2, menuHeig
 		mouseOverSearch = false;
 		mouseOverOptions = false;
 		mouseOverStackShow = false;
+		mouseOverSortPane = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -73,6 +75,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*2, 0, menuWidth*3, menuHe
 		mouseOverSearch = false;
 		mouseOverOptions = false;
 		mouseOverStackShow = false;
+		mouseOverSortPane = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -103,6 +106,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*3, 0, menuWidth*4.5, menu
 		mouseOverSearch = true;
 		mouseOverOptions = false;
 		mouseOverStackShow = false;
+		mouseOverSortPane = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -132,6 +136,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*4.5, 0, menuWidth*6, menu
 		mouseOverSearch = false;
 		mouseOverOptions = true;
 		mouseOverStackShow = false;
+		mouseOverSortPane = false;
 	if(mouse_check_button_released(mb_left) and menuClickedIn){
 		menuClickedIn = false;
 	}
@@ -161,6 +166,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*6, 0, menuWidth*8, menuHe
 		mouseOverSearch = false;
 		mouseOverOptions = false;
 		mouseOverStackShow = true;
+		mouseOverSortPane = false;
 	 if(mouse_check_button_released(mb_left)){
 		if(!menuClickedIn){
 			menuClickedIn = true;
@@ -182,6 +188,41 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*6, 0, menuWidth*8, menuHe
 }
 
 
+// Sort Pane menu
+else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*8, 0, menuWidth*10, menuHeight)){
+		instance_destroy(obj_dropDown);
+		mouseOverFile = false;
+		mouseOverEdit = false;
+		mouseOverView = false;
+		mouseOverSearch = false;
+		mouseOverOptions = false;
+		mouseOverStackShow = false;
+		mouseOverSortPane = true;
+	 if(mouse_check_button_released(mb_left)){
+		if(!menuClickedIn){
+			menuClickedIn = true;
+		}
+		else{
+			mouseOverStackShow = false;
+			menuClickedIn = false;
+		}
+/*			
+			instance_create_layer(x, y, "InstancesAudio", obj_panelPane);
+			obj_panelPane.windowWidth = 200;
+			obj_panelPane.windowHeight = 212;
+
+			obj_panelPane.currentFunction = 3;
+			obj_panelPane.scrollRange = 9;
+*/			
+			sortPaneOpen = true;
+			//obj_panelPane.currentFunction = obj_panelPane.functionSort;
+				
+			
+	}
+}
+
+
+
 
 			
 
@@ -194,6 +235,7 @@ if(!menuClickedIn){
 		mouseOverSearch = false;
 		mouseOverOptions = false;
 		mouseOverStackShow = false;
+		mouseOverSortPane = false;
 		
 }
 

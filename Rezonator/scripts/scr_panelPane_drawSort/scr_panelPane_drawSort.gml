@@ -12,7 +12,67 @@
 	Author: Terry DuBois
 */
 
-x = camera_get_view_width(view_camera[0]) - global.toolPaneWidth - windowWidth;
+x = camera_get_view_width(view_camera[0])/2 - 100;
+y = camera_get_view_height(view_camera[0])/2 - 91;
+
+	var verticleBuffer = 128;
+	var horizontalBuffer = 110;
+
+
+	draw_set_halign(fa_left);
+	draw_set_colour(global.colorThemeBG);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+	draw_set_colour(global.colorThemePaneBG);
+	if (global.colorTheme ==0) {
+	draw_set_colour(c_ltgray);
+	}
+	// draw background UI
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
+	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
+	draw_set_colour(global.colorThemeText);
+	
+	draw_set_font(fnt_mainBold);
+	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, string(game_display_name));
+	
+	draw_text(camera_get_view_width(view_camera[0])/2 + horizontalBuffer - 20, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, "X");
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemePaneBG);
+
+	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+	
+	var closeBoxX1 = camera_get_view_width(view_camera[0])/2 + horizontalBuffer - 25;
+	var closeBoxX2 = closeBoxX1 + 20;
+	var closeBoxY1 = camera_get_view_height(view_camera[0])/2 - verticleBuffer + 5;
+	var closeBoxY2 = closeBoxY1 + 20;
+	var mouseOverExit = false;
+	
+	draw_set_colour(global.colorThemeText);
+	
+
+	
+
+	if (point_in_rectangle(mouse_x, mouse_y, closeBoxX1, closeBoxY1, closeBoxX2, closeBoxY2) ) {
+		mouseOverExit = true;
+		if(device_mouse_check_button_released(0, mb_left)){
+			obj_menuBar.sortPaneOpen = false;
+			obj_menuBar.menuClickedIn = false;
+		}
+	}
+	
+	if(keyboard_check_pressed(vk_escape)){
+		obj_menuBar.sortPaneOpen = false;
+		obj_menuBar.menuClickedIn = false;
+	}
+	
+		//check for closing window
+	if(mouseOverExit == true){
+	draw_rectangle(closeBoxX1, closeBoxY1, closeBoxX2, closeBoxY2, true);
+	
+	}
+	
+	
 
 draw_set_alpha(1);
 draw_set_halign(fa_left);
