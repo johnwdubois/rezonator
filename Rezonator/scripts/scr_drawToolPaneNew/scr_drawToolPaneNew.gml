@@ -4,30 +4,40 @@ if (not obj_panelPane.showNav) {
 }
 y = obj_menuBar.menuHeight;
 
-var toolSprScale = clamp(windowHeight / 210, 0.5, 1);
+var toolSprScale = 1;//clamp(windowHeight / 210, 0.5, 1);
 var toolButtonBuffer = 10;
 
-for (var i = 0; i < 2; i++) {
+for (var i = 0; i < 3; i++) {
 	
+	var toolButtonX = x + ((i + 1) * (global.toolPaneWidth / 4));
+	if (i == 0) {
+		toolButtonX -= 15;
+	}
+	else if (i == 2) {
+		toolButtonX += 15;
+	}
+	var toolButtonY = y + (windowHeight / 2);
+	//y + toolButtonBuffer + ((sprite_get_height(spr_toolsNew) * toolSprScale) * 0.5);
 	
-	var toolButtonX = x + (windowWidth / 2);
+	/*
 	if (i == 0) {
 		var toolButtonY = y + toolButtonBuffer + ((sprite_get_height(spr_toolsNew) * toolSprScale) * 0.5);
 	}
 	else {
 		var toolButtonY = y + (toolButtonBuffer * 2) + ((sprite_get_height(spr_toolsNew) * toolSprScale) * 1.5);
 	}
+	*/
 	
 	var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, toolButtonX - (sprite_get_width(spr_toolsNew) / 2), toolButtonY - (sprite_get_height(spr_toolsNew) / 2), toolButtonX + (sprite_get_width(spr_toolsNew) / 2), toolButtonY + (sprite_get_height(spr_toolsNew) / 2));
 	if (mouseover) {
 		if (mouse_check_button_released(mb_left)) {
-			if ((i == 0 and currentMode == modeRez) or (i == 1 and currentMode == modeTrack)) {
+			if (i == 0) {
 				currentMode = modeRead;
 			}
-			else if (i == 0) {
+			else if (i == 1) {
 				currentMode = modeRez;
 			}
-			else if (i == 1) {
+			else if (i == 2) {
 				currentMode = modeTrack;
 			}
 		}
@@ -35,15 +45,21 @@ for (var i = 0; i < 2; i++) {
 	
 	var toolImageIndex = 0;
 	if (i == 0) {
-		toolImageIndex = (currentMode == modeRez) ? 2 : 0;
-		if (currentMode != modeRez and mouseover) {
+		toolImageIndex = (currentMode == modeRead) ? 2 : 0;
+		if (currentMode != modeRead and mouseover) {
 			toolImageIndex = 1;
 		}
 	}
-	else {
-		toolImageIndex = (currentMode == modeTrack) ? 5 : 3;
-		if (currentMode != modeTrack and mouseover) {
+	else if (i == 1) {
+		toolImageIndex = (currentMode == modeRez) ? 5 : 3;
+		if (currentMode != modeRez and mouseover) {
 			toolImageIndex = 4;
+		}
+	}
+	else {
+		toolImageIndex = (currentMode == modeTrack) ? 8 : 6;
+		if (currentMode != modeTrack and mouseover) {
+			toolImageIndex = 7;
 		}
 	}
 	
