@@ -1185,6 +1185,17 @@ else if (optionListType == 8)
 			scr_deleteFromChain();
 			instance_destroy();
 			break;
+		case "Delete Chunk":
+
+			//obj_control.newWordHoverWordID = obj_control.rightClickWordID;
+			obj_control.deleteChunkWord = true;
+			//show_message("Coming Soon");
+			scr_deleteFromChain();
+			
+			obj_control.deleteChunkWord = false;
+			obj_control.rightClickonWord = false;
+			instance_destroy();
+			break;
 			/*
 		case "Recolor":
 		

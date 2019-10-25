@@ -117,7 +117,7 @@ scr_refreshVizLinkGrid();
 if(ds_grid_height(obj_control.lineGrid) > 1) {
 	
 	var newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
-	if(newGridSpaceVertical < 20) {
+	if(newGridSpaceVertical < 60) {
 		scr_refreshLineGridPixelY();
 		newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
 	}

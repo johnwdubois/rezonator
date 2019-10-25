@@ -174,6 +174,43 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					scr_wordClicked(currentWordID, unitID);
 				}
 			}
+			
+			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
+
+				//newWordHoverUnitID = unitID;
+				//newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+				//newWordHoverWordID = currentWordID;
+
+				if(!instance_exists(obj_dialogueBox)){
+					//obj_control.rightClickWordID = obj_control.newWordHoverWordID;
+					//obj_control.rightClickUnitID = obj_control.newWordHoverUnitID;
+					//obj_control.rightClickWordSeq = obj_control.newWordHoverWordSeq;
+				
+					ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkID - 1, obj_chain.chainStateFocus);
+					//show_message(string(currentChunkWordID));
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentWordID - 1, true);
+					currentFocusedChunkID = currentChunkID;
+				}
+
+				obj_control.rightClickonWord = true;
+				obj_control.wideDropDown = true;
+				var dropDownOptionList = ds_list_create();
+				if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
+					ds_list_add(dropDownOptionList,"Delete Chunk", "Delete Link");
+				}
+				else{
+					ds_list_add(dropDownOptionList,"Delete Chunk");
+				}
+				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+					var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+					dropDownInst.optionList = dropDownOptionList;
+					dropDownInst.optionListType = 8;
+					
+					obj_control.ableToCreateDropDown = false;
+					obj_control.alarm[0] = 2;
+				}
+
+			}
 		}
 		
 		continue;	
