@@ -72,6 +72,10 @@ y = camera_get_view_height(view_camera[0])/2 - 91;
 	
 	}
 	
+	if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer) ) {
+		obj_control.mouseoverPanelPane = true;
+
+	}
 	
 
 draw_set_alpha(1);
