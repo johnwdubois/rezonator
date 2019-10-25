@@ -9,7 +9,7 @@ var oldHeight = -1;
 // Expirementing with deleting Chunks
 if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
 	
-	//show_message(string(obj_control.deleteChunkWord));
+
 	// Set variable to be used in both cases
 	var currentWordID = -1;
 	
@@ -18,7 +18,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 		
 		// Access the relevent row in the Chunk grid
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
-		//show_message(string(currentChunkRow));
+
 		if(currentChunkRow < 0) {
 			exit;	
 		}
