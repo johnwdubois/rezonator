@@ -529,7 +529,5 @@ deleteNewWord = false;
 fromDropDown = false;
 wideDropDown = false;
 
-global.toolPaneWidth = 0;
-
 
 initialValidFileCheck = false;

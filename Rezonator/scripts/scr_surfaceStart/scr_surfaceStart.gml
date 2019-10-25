@@ -1,12 +1,15 @@
 if (object_index == obj_panelPane) {
-	if (currentFunction == functionChainContents) {
-		var sortPaneWidth = 0;
-		with (obj_panelPane) {
-			if (currentFunction == functionSort) {
-				sortPaneWidth = windowWidth;
-			}
+	
+	var chainContentsX = 0;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
+			chainContentsX = x + windowWidth;
 		}
-		windowWidth = camera_get_view_width(view_camera[0]) - x - global.toolPaneWidth - sortPaneWidth;
+	}
+	
+	if (currentFunction == functionChainContents) {
+		x = chainContentsX;
+		windowWidth = camera_get_view_width(view_camera[0]) - x - global.toolPaneWidth;
 	}
 }
 

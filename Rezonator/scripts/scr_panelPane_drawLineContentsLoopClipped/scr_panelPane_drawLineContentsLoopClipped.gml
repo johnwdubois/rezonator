@@ -241,7 +241,7 @@ for (var i = 0; i < 3; i++) {
 	var colRectX1 = x + (i * (windowWidth / 6));
 	var colRectY1 = y;
 	var colRectX2 = colRectX1 + (windowWidth / 6);
-	if(i == 2) {
+	if (i == 2) {
 		var colRectX2 = colRectX1 + (windowWidth);	
 	}
 	var colRectY2 = colRectY1 + windowHeight;

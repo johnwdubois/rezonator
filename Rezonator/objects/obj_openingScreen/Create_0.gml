@@ -17,6 +17,8 @@ window_set_cursor(cr_default);
 scr_colorThemeGridInit();
 
 
+global.toolPaneWidth = 100;
+
 global.versionString = string(game_display_name);
 global.versionString = string_delete(global.versionString, 1, string_length("Rezonator"));
 global.versionString = "Version" + global.versionString;

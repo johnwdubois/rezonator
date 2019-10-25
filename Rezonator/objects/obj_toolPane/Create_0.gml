@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-windowWidth = 100;
+windowWidth = global.toolPaneWidth;
 windowHeight = 170;
 
 originalWindowHeight = 20;
@@ -37,7 +37,7 @@ tempReturnTool = -1;
 
 
 
-modePointer = 0;
+modeRead = 0;
 modeRez = 1;
 modeTrack = 2;
 currentMode = modeRez;

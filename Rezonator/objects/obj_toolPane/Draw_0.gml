@@ -12,7 +12,8 @@
 	Author: Terry DuBois
 */
 
-x = camera_get_view_width(view_camera[0]) - windowWidth;
+windowWidth = global.toolPaneWidth;
+x = camera_get_view_width(view_camera[0]) - global.toolPaneWidth;
 y = 0;
 
 if (obj_control.gridView) {

@@ -22,7 +22,7 @@ for (var i = 0; i < 2; i++) {
 	if (mouseover) {
 		if (mouse_check_button_released(mb_left)) {
 			if ((i == 0 and currentMode == modeRez) or (i == 1 and currentMode == modeTrack)) {
-				currentMode = modePointer;
+				currentMode = modeRead;
 			}
 			else if (i == 0) {
 				currentMode = modeRez;
