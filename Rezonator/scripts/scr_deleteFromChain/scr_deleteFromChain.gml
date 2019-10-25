@@ -7,21 +7,24 @@ var grid = undefined;
 var oldHeight = -1;
 
 // Expirementing with deleting Chunks
-if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord) {
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
 	
+
 	// Set variable to be used in both cases
 	var currentWordID = -1;
 	
 	// Deletion of Chunks
-	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_control.deleteChunkWord) {
+		
 		// Access the relevent row in the Chunk grid
 		var currentChunkRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateFocus);
+
 		if(currentChunkRow < 0) {
 			exit;	
 		}
 		// Access the Chunk's wordID
 		currentWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkRow);
-	
+
 		// Get the list of words within this Chunk
 		var idList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
 		var chainState = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkRow);
@@ -231,7 +234,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 }
 
 // If this Chunk has already been deleted, refresh the chain grids
-if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.deleteNewWord) {
+if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
 	if(grid != undefined) {
 		ds_grid_set(grid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);
 		scr_refreshChainGrid(grid);
@@ -318,3 +321,4 @@ if(oldHeight != newHeight and newHeight > 0 and not obj_toolPane.tracksOnlyStack
 	}
 }
 obj_control.deleteNewWord = false;
+obj_control.deleteChunkWord = false;

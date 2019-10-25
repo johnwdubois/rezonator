@@ -74,9 +74,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 		}
 		
 		// Set the Buffer to be initially large, so as to allow for nesting
-		var wordRectBuffer = 12;
+		var wordRectBuffer = 15;
 		if (ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, currentChunkRow) == true) {
-			wordRectBuffer = 7;
+			wordRectBuffer = 9;
 		}
 		
 		//Modify the chunk for drawing within the searchScreen

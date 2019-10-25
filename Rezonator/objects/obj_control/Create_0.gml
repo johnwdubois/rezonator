@@ -526,6 +526,7 @@ rightClickWordID = 0;
 rightClickWordSeq = 0;
 rightClickonWord = false;
 deleteNewWord = false;
+deleteChunkWord = false;
 fromDropDown = false;
 wideDropDown = false;
 
