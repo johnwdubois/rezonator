@@ -206,14 +206,15 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*8, 0, menuWidth*10, menuH
 			mouseOverStackShow = false;
 			menuClickedIn = false;
 		}
-/*			
-			instance_create_layer(x, y, "InstancesAudio", obj_panelPane);
-			obj_panelPane.windowWidth = 200;
-			obj_panelPane.windowHeight = 212;
+			
+			sortPane = instance_create_layer(x, y, "InstancesAudio", obj_panelPane);
+			sortPane.windowWidth = 200;
+			sortPane.windowHeight = 212;
 
-			obj_panelPane.currentFunction = 3;
-			obj_panelPane.scrollRange = 9;
-*/			
+			sortPane.currentFunction = 3;
+			sortPane.scrollRange = 9;
+			
+
 			sortPaneOpen = true;
 			//obj_panelPane.currentFunction = obj_panelPane.functionSort;
 				
@@ -222,6 +223,16 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*8, 0, menuWidth*10, menuH
 }
 
 
+if(sortClosing == true){
+	if(instance_exists(sortPane)){
+		with (sortPane) {
+			instance_destroy();
+			show_message("BUH");
+				
+		}
+		sortClosing = false;
+	}
+}
 
 
 			
