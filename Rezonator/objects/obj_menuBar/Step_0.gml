@@ -226,9 +226,7 @@ else if(point_in_rectangle(mouse_x, mouse_y, menuWidth*8, 0, menuWidth*10, menuH
 if(sortClosing == true){
 	if(instance_exists(sortPane)){
 		with (sortPane) {
-			instance_destroy();
-			show_message("BUH");
-				
+			instance_destroy();			
 		}
 		sortClosing = false;
 	}
