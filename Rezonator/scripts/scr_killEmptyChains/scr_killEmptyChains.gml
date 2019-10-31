@@ -29,7 +29,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, chainState);
 	}
 	
-	if (ds_list_size(idList) <= 1 and not (chainState == obj_chain.chainStateFocus) and not (chainState == obj_chain.chainStateDead) and not(grid == obj_chain.stackChainGrid)) {
+	if (ds_list_size(idList) <= 0 and not (chainState == obj_chain.chainStateFocus) and not (chainState == obj_chain.chainStateDead) and not(grid == obj_chain.stackChainGrid)) {
 		chainState = obj_chain.chainStateDead;
 		ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, chainState);
 		

@@ -58,12 +58,14 @@ y = camera_get_view_height(view_camera[0])/2 - 91;
 		if(device_mouse_check_button_released(0, mb_left)){
 			obj_menuBar.sortPaneOpen = false;
 			obj_menuBar.menuClickedIn = false;
+			obj_menuBar.sortClosing = true;
 		}
 	}
 	
 	if(keyboard_check_pressed(vk_escape)){
 		obj_menuBar.sortPaneOpen = false;
 		obj_menuBar.menuClickedIn = false;
+		obj_menuBar.sortClosing = true;
 	}
 	
 		//check for closing window

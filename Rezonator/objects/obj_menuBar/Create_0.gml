@@ -14,3 +14,5 @@ mouseOverSortPane = false;
 y= 0;
 
 sortPaneOpen = false;
+sortClosing = false;
+sortPane = -1;
