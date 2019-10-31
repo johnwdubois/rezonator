@@ -1,7 +1,13 @@
 //show_message(string(global.currentDirString));
 
+var discourseDirString = global.currentDirString + "\\Discourse";
+if (os_type == os_macosx) {
+	discourseDirString = global.currentDirString + "/Discourse";
+}
+
+
 if (directory_exists(global.rezonatorDirString)) {
-	var fileName = get_open_filename_ext("REZ file|*.rez", "", global.currentDirString, "Open REZ");
+	var fileName = get_open_filename_ext("REZ file|*.rez", "", discourseDirString, "Open REZ");
 }
 else {
 	var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");

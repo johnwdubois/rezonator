@@ -12,15 +12,15 @@
 //	show_message(string(global.currentDirString));
 
 
-
-if (directory_exists(global.rezonatorDirString)) {
-	openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json", "", global.currentDirString, "Import File");
-}
-else {
-	openedFile = get_open_filename_ext("XML file|*.xml|REZ file|*.rez", "", global.currentDirString, "Import File");
+var discourseDirString = global.currentDirString + "\\Discourse\\XML Files";
+if (os_type == os_macosx) {
+	discourseDirString = global.currentDirString + "/Discourse/XML Files";
 }
 
-if (openedFile == "") {
+
+openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json", "", discourseDirString, "Import File");
+
+if (openedFile == "" or not file_exists(openedFile)) {
 	exit;
 }
 

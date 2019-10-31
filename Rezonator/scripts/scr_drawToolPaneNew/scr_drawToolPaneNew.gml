@@ -16,7 +16,7 @@ for (var i = 0; i < 3; i++) {
 	else if (i == 2) {
 		toolButtonX += 15;
 	}
-	var toolButtonY = y + (windowHeight / 2);
+	var toolButtonY = floor(y + (windowHeight / 2));
 	//y + toolButtonBuffer + ((sprite_get_height(spr_toolsNew) * toolSprScale) * 0.5);
 	
 	/*

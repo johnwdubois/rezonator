@@ -19,7 +19,7 @@ var wordTranscript = argument[2];
 
 
 // Safety check
-if (unitID == -1 or wordSeq == -1 or obj_control.gridView or obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+if (unitID == -1 or obj_control.gridView or obj_control.currentActiveLineGrid == obj_control.searchGrid) {
 	exit;
 }
 

@@ -63,10 +63,11 @@
         "6d764c9d-d68c-4128-abaa-d323a0772329",
         "dc9a5d7d-7d23-4d7a-a8b9-e745ae5cbc33",
         "127f1630-2ad6-470a-8774-2c704989873b",
-        "225e361e-a000-4af5-a6fb-911ea7f3ff90"
+        "225e361e-a000-4af5-a6fb-911ea7f3ff90",
+        "d464ea8e-4c0c-414d-99ba-3794e29b45ef"
     ],
     "filterType": "GMIncludedFile",
-    "folderName": "Default REZ files",
+    "folderName": "Discourse",
     "isDefaultView": false,
     "localisedFolderName": ""
 }
