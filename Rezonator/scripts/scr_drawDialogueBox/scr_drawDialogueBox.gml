@@ -587,7 +587,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			//show_message(string("BUH"));
 			if(obj_control.fromDropDown){
 				if (obj_control.before) {
-					scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq - 1, obj_control.inputText);
+					scr_newWord(obj_control.rightClickUnitID, max(-1,obj_control.rightClickWordSeq - 1), obj_control.inputText);
 					//show_message(string(obj_control.rightClickWordSeq));
 				}
 				else {
@@ -596,8 +596,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			}
 			else{
 				if (obj_control.before) {
-					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
-										show_message(string(obj_control.rightClickWordSeq));
+					scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), obj_control.inputText);
+										//show_message(string(obj_control.rightClickWordSeq));
 				}
 				else {
 					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
@@ -758,12 +758,24 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.newWordCreated) {
-		if(obj_control.fromDropDown){
-			scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText);
-		}
-		else{
-			scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
-		}
+			if(obj_control.fromDropDown){
+				if (obj_control.before) {
+					scr_newWord(obj_control.rightClickUnitID, max(-1,obj_control.rightClickWordSeq - 1), obj_control.inputText);
+					//show_message(string(obj_control.rightClickWordSeq));
+				}
+				else {
+					scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText);
+				}
+			}
+			else{
+				if (obj_control.before) {
+					scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), obj_control.inputText);
+										//show_message(string(obj_control.rightClickWordSeq));
+				}
+				else {
+					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
+				}
+			}
 
 	}
 	
