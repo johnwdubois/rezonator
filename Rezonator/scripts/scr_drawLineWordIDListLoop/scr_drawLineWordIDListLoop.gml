@@ -468,9 +468,19 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				draw_set_alpha(1);
 				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
-				if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck  and !instance_exists(obj_stackShow)) {
+				// Word clicked with a Chain tool selected
+				if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
+					}
+				}
+				// If in Read Mode, focus line in Nav window
+				else if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode == obj_toolPane.modeRead) {
+					ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+					ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
+					with (obj_panelPane) {
+						functionChainContents_lineGridRowFocused = drawLineLoop;
+						functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 					}
 				}
 				

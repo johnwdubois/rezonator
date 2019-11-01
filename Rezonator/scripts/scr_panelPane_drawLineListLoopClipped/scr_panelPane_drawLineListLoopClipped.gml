@@ -185,9 +185,9 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	}*/
 	
 	//Color codes the line lists for User
-	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.7)); //soften the color
+	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	//draw_set_color(lineColor);
-	draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
+	draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	
 	// Outline the rectangle in black
 	if (currentLineState == 1) {
