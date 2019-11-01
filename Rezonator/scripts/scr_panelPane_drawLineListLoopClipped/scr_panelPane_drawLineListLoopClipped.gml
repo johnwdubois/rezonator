@@ -53,6 +53,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, i);
 	var currentLineState = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineState, i);
 	var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
+	var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
 	
 	
 	// Get dimensions of rectangle around line name
@@ -184,9 +185,9 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	}*/
 	
 	//Color codes the line lists for User
-	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.7)); //soften the color
+	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	//draw_set_color(lineColor);
-	draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
+	draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	
 	// Outline the rectangle in black
 	if (currentLineState == 1) {
@@ -203,7 +204,9 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(x + textMarginLeft - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, currentLineUnitID);
+	draw_text(x + textMarginLeft - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
+	draw_text(x + (textMarginLeft * 2) - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
+	
 	
 	/*if (grid != obj_chain.cliqueDisplayGrid) {
 	
@@ -315,21 +318,29 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 
 
 //var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-	
+
+// will create a focusedLine vriable in panelPane create, update it when changed, no gridValueY
+
 // Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 if (clickedIn) {	
 	if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
-		/*if (focusedChainRow > 0 and focusedChainRow < ds_grid_height(grid)) {
-			scr_unFocusAllChains();
-			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-			focusedChainRow--;
-			ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
-				*/
+		if (functionChainContents_lineGridRowFocused > 0 and functionChainContents_lineGridRowFocused < ds_grid_height(obj_control.lineGrid)) {
+
+			//Allow for arrow keys to shift focus down the list of lines
+			obj_panelPane.functionChainContents_lineGridRowFocused--;
+			var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainContents_lineGridRowFocused);
+			var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+			obj_panelPane.functionChainContents_BGColor = lineColor;
+			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainContents_lineGridRowFocused, 1);
+			
+			
+		//	ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 			if (focusedElementY <= y + textMarginTop + strHeight) {
 				scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
 			}
-		//}
+		}
 		else {
 			scrollPlusYDest += 4;
 		}
@@ -337,16 +348,21 @@ if (clickedIn) {
 		
 	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 			
-		/*if (focusedChainRow < ds_grid_height(grid) - 1 and focusedChainRow >= 0) {
-			scr_unFocusAllChains();
-			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-			focusedChainRow++;
-			ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
-			*/	
+		if (functionChainContents_lineGridRowFocused < ds_grid_height(obj_control.lineGrid) - 1 and functionChainContents_lineGridRowFocused >= 0) {
+
+			//Allow for arrow keys to shift focus down the list of lines
+			obj_panelPane.functionChainContents_lineGridRowFocused++;
+			var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainContents_lineGridRowFocused);
+			var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+			obj_panelPane.functionChainContents_BGColor = lineColor;
+			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainContents_lineGridRowFocused, 1);
+			
+			//ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 			if (focusedElementY >= y + windowHeight - strHeight) {
 				scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
 			}
-		//}
+		}
 		else {
 			scrollPlusYDest -= 4;
 		}
