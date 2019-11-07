@@ -417,6 +417,12 @@ if (grid != -1) {
 		draw_set_valign(fa_top);
 		draw_set_font(global.fontPanelTab);
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
+		
+		// sort arrow
+		var sortArrowAngle = 0;
+		var sortArrowX = colRectX2 - sprite_get_width(spr_ascend);
+		var sortArrowY = y + (tabHeight / 2);
+		draw_sprite_ext(spr_ascend, 0, sortArrowX - clipX, sortArrowY - clipY, 1, 1, sortArrowAngle, c_white, 1);
 	}
 
 

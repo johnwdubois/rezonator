@@ -3311,14 +3311,6 @@
             }
         },
         {
-            "Key": "a8971682-ef20-4813-97c4-458c6c938135",
-            "Value": {
-                "id": "c27a671b-b2ee-4060-9ecd-94014524c966",
-                "resourcePath": "scripts\\scr_panelPane_drawChainContentsLoopClippedNew\\scr_panelPane_drawChainContentsLoopClippedNew.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "a8cbed46-84ef-46aa-809d-dbf107fb74c9",
             "Value": {
                 "id": "ad28447d-7bc2-41a2-a507-ae7c7fc545c9",
@@ -5254,7 +5246,6 @@
         "19b3fdc3-7e5a-445c-81a6-6ef33702df03",
         "207f7a01-23f9-4bb8-ac22-1f696d1e08e7",
         "32d0c594-59c8-41b1-a88f-611c40062e4f",
-        "a8971682-ef20-4813-97c4-458c6c938135",
         "b4d32bfe-6fe2-4fe2-b922-7cd35d082665",
         "3806c787-4816-4e73-9779-40fb9af23745",
         "f5cb5add-fb15-4d59-ab58-77238b10c15b",

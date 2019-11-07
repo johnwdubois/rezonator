@@ -42,15 +42,23 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				default:
 					break;
 			}
+			
+			ds_grid_set(tempGrid, tempGrid_colSortVal, j, sortVal);
 		}
 		ds_grid_sort(tempGrid, tempGrid_colSortVal, true);
+		
+		var sortedList = ds_list_create();
 		
 		for (var j = 0; j < ds_grid_height(tempGrid); j++) {
 			
 			var currentWordID = ds_grid_get(tempGrid, tempGrid_colWordID, j);
-			ds_list_set(currentWordIDList, j, currentWordID);
+			ds_list_add(sortedList, currentWordID);
 		}
 		
+		ds_list_clear(currentWordIDList);
+		ds_list_copy(currentWordIDList, sortedList);
+		
 		ds_grid_destroy(tempGrid);
+		ds_list_destroy(sortedList);
 	}
 }
