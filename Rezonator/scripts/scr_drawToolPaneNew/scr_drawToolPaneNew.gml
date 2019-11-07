@@ -35,10 +35,10 @@ for (var i = 0; i < 3; i++) {
 				currentMode = modeRead;
 			}
 			else if (i == 1) {
-				currentMode = modeRez;
+				currentMode = modeTrack;
 			}
 			else if (i == 2) {
-				currentMode = modeTrack;
+				currentMode = modeRez;
 			}
 		}
 	}
@@ -51,15 +51,15 @@ for (var i = 0; i < 3; i++) {
 		}
 	}
 	else if (i == 1) {
-		toolImageIndex = (currentMode == modeRez) ? 5 : 3;
-		if (currentMode != modeRez and mouseover) {
-			toolImageIndex = 4;
-		}
-	}
-	else {
 		toolImageIndex = (currentMode == modeTrack) ? 8 : 6;
 		if (currentMode != modeTrack and mouseover) {
 			toolImageIndex = 7;
+		}
+	}
+	else {
+		toolImageIndex = (currentMode == modeRez) ? 5 : 3;
+		if (currentMode != modeRez and mouseover) {
+			toolImageIndex = 4;
 		}
 	}
 	

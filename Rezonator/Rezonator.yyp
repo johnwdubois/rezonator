@@ -2615,6 +2615,14 @@
             }
         },
         {
+            "Key": "87ca1d1a-a2f1-4f9c-ac30-01a8b32e389f",
+            "Value": {
+                "id": "ede4f759-b893-4e2b-b560-c43c61a0c771",
+                "resourcePath": "objects\\obj_chainContentsData\\obj_chainContentsData.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "87cca19c-0cf7-4b86-920a-66fe3f14768e",
             "Value": {
                 "id": "dcc1411c-787d-431a-a249-acb1f1058d36",
@@ -3300,6 +3308,14 @@
                 "id": "1434eaba-1789-4382-be50-64982178414e",
                 "resourcePath": "datafiles_yy\\Discourse\\sbc0032.rez.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "a8971682-ef20-4813-97c4-458c6c938135",
+            "Value": {
+                "id": "c27a671b-b2ee-4060-9ecd-94014524c966",
+                "resourcePath": "scripts\\scr_panelPane_drawChainContentsLoopClippedNew\\scr_panelPane_drawChainContentsLoopClippedNew.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -4847,6 +4863,14 @@
             }
         },
         {
+            "Key": "f3a11cd9-ffbd-4fd0-8e5f-b308fc0bde8b",
+            "Value": {
+                "id": "1e95b71b-8edf-4199-8e48-69553dffc6e4",
+                "resourcePath": "scripts\\scr_sortChainGrid\\scr_sortChainGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f3f4332d-3dd7-48de-8cce-7e8957f01849",
             "Value": {
                 "id": "7fc23601-f677-4224-8bd3-6b07e025cb85",
@@ -5072,6 +5096,7 @@
         "13d772b1-c49e-4685-b2a0-901d882a850c",
         "181759d2-b882-4e95-b205-02d712e61403",
         "b5d6507a-422a-49b5-876c-0147656081b3",
+        "f3a11cd9-ffbd-4fd0-8e5f-b308fc0bde8b",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "fc1067ad-8999-4c32-b44e-52ec42f636c0",
         "01326701-b0a6-4057-8a77-21f137c710e7",
@@ -5229,6 +5254,7 @@
         "19b3fdc3-7e5a-445c-81a6-6ef33702df03",
         "207f7a01-23f9-4bb8-ac22-1f696d1e08e7",
         "32d0c594-59c8-41b1-a88f-611c40062e4f",
+        "a8971682-ef20-4813-97c4-458c6c938135",
         "b4d32bfe-6fe2-4fe2-b922-7cd35d082665",
         "3806c787-4816-4e73-9779-40fb9af23745",
         "f5cb5add-fb15-4d59-ab58-77238b10c15b",

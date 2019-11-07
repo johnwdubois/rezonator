@@ -1,0 +1,1 @@
+scr_sortChainGrid(obj_chain.rezChainGrid, 2);

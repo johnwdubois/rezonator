@@ -54,7 +54,13 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	var currentLineState = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineState, i);
 	var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
 	var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
-	
+	var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
+	var currentLineWordString = "";
+	for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {
+		var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
+		var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+		currentLineWordString += currentWordToken + " ";
+	}
 	
 	// Get dimensions of rectangle around line name
 	var lineNameRectX1 = x;
@@ -204,8 +210,9 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(x + textMarginLeft - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
-	draw_text(x + (textMarginLeft * 2) - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
+	draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
+	draw_text(x + (textMarginLeft) - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
+	draw_text(x + (textMarginLeft * 1.5) - clipX + string_width(lineSpeaker), y + textMarginTop + scrollPlusY + textPlusY - clipY, currentLineWordString);
 	
 	
 	/*if (grid != obj_chain.cliqueDisplayGrid) {
