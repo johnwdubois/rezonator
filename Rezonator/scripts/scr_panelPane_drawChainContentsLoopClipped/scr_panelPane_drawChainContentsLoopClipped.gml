@@ -419,10 +419,41 @@ if (grid != -1) {
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
 		// sort arrow
-		var sortArrowAngle = 0;
-		var sortArrowX = colRectX2 - sprite_get_width(spr_ascend);
-		var sortArrowY = y + (tabHeight / 2);
+		var sortArrowAngle = (functionChainContents_sortedCol == i) ? 0 : 270;
+		if (functionChainContents_sortedCol == i and not functionChainContents_sortedColAsc) {
+			sortArrowAngle = 180;
+		}
+		var sortArrowX = colRectX1 + string_width(colName + "AA");
+		var sortArrowY = y + (sprite_get_height(spr_ascend) * 0.4);
+		var sortArrowRectX1 = sortArrowX - 10;
+		var sortArrowRectY1 = sortArrowY - 10;
+		var sortArrowRectX2 = sortArrowX + 10;
+		var sortArrowRectY2 = sortArrowY + 10;
 		draw_sprite_ext(spr_ascend, 0, sortArrowX - clipX, sortArrowY - clipY, 1, 1, sortArrowAngle, c_white, 1);
+		if (point_in_rectangle(mouse_x, mouse_y, sortArrowRectX1, sortArrowRectY1, sortArrowRectX2, sortArrowRectY2)) {
+			draw_set_color(global.colorThemeBorders);
+			draw_set_alpha(1);
+			draw_rectangle(sortArrowRectX1 - clipX, sortArrowRectY1 - clipY, sortArrowRectX2 - clipX, sortArrowRectY2 - clipY, true);
+			
+			if (device_mouse_check_button_released(0, mb_left)) {
+				if (functionChainContents_sortedCol == i) {
+					if (functionChainContents_sortedColAsc) {
+						functionChainContents_sortedColAsc = false;
+					}
+					else {
+						functionChainContents_sortedCol = -1;
+						functionChainContents_sortedColAsc = true;
+					}
+				}
+				else {
+					functionChainContents_sortedCol = i;
+					functionChainContents_sortedColAsc = true;
+				}
+				scr_sortChainGrid(obj_chain.rezChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
+				scr_sortChainGrid(obj_chain.trackChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
+				scr_sortChainGrid(obj_chain.stackChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
+			}
+		}
 	}
 
 

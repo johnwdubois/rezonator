@@ -1,5 +1,6 @@
 var grid = argument0;
 var sortCol = argument1;
+var ascending = argument2;
 // -1...wordID
 // 0...uID
 // 1...place
@@ -25,7 +26,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
 		
 			var currentWordID = ds_list_find_value(currentWordIDList, j);
-			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+			var currentUnitID = (grid == obj_chain.stackChainGrid) ? currentWordID : ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 			ds_grid_set(tempGrid, tempGrid_colWordID, j, currentWordID);
 		
 			var sortVal = 0;
@@ -34,10 +35,25 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 					sortVal = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, currentUnitID - 1);
 					break;
 				case 1:
-					sortVal = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+					if (grid == obj_chain.stackChainGrid) {
+						sortVal = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentUnitID - 1);
+					}
+					else {
+						sortVal = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+					}
 					break;
 				case 2:
-					sortVal = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
+					if (grid == obj_chain.stackChainGrid) {
+						var unitWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
+						sortVal = "";
+						for (var k = 0; k < ds_list_size(unitWordIDList); k++) {
+							var currentUnitWordIDListWordID = ds_list_find_value(unitWordIDList, k);
+							sortVal += string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentUnitWordIDListWordID - 1));
+						}
+					}
+					else {
+						sortVal = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
+					}
 					break;
 				default:
 					break;
@@ -45,7 +61,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 			
 			ds_grid_set(tempGrid, tempGrid_colSortVal, j, sortVal);
 		}
-		ds_grid_sort(tempGrid, tempGrid_colSortVal, true);
+		ds_grid_sort(tempGrid, tempGrid_colSortVal, ascending);
 		
 		var sortedList = ds_list_create();
 		
