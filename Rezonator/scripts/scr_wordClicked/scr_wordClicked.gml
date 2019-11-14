@@ -120,6 +120,16 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 				exit;
 			}
 		}
+		else {
+			// Make sure the user wants to layer links of different types
+			if (show_question("This word is already contained in a another chain. Would you still like to link it?")) {
+				// Allow the link to be made
+			}
+			else {
+				// Stop the layered link from being made
+				exit;	
+			}
+		}
 	}
 }
 
