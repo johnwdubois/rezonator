@@ -93,7 +93,7 @@ if (speakerLabelColXHolding > -1) {
 }
 
 if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
-	if (point_in_rectangle(mouse_x, mouse_y, 0, wordTopMargin, speakerLabelMargin, camera_get_view_height(view_camera[0]))) {
+	if (point_in_rectangle(mouse_x, mouse_y, 0, wordTopMargin, speakerLabelMargin, camera_get_view_height(view_camera[0])) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 	
 		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left) and not obj_control.rectNotInPanelPane) {
 			if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)
@@ -125,7 +125,7 @@ if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj
 				obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
 			}
 			else {
-				obj_toolPane.currentTool = obj_toolPane.toolBoxBrush;
+				obj_toolPane.currentTool = obj_toolPane.toolPointer;
 			}
 		}
 	}
@@ -198,8 +198,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	
 	if(ds_list_size(currentWordIDList) > 0 and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+		
 		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_stackShow) and !instance_exists(obj_dialogueBox)) {
+			//show_message("here");
 			inMouseHoldRect = rectangle_in_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseHoldRect) {
 				with (obj_control) {
@@ -211,6 +213,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		}
 		else if((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2)) {
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+				//show_message("here");
 				var currentWordID = ds_list_find_value(currentWordIDList, 0);
 				with (obj_chain) {
 					scr_wordClicked(currentWordID, unitID);
@@ -228,6 +231,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 				with (obj_panelPane) {
 					functionChainContents_lineGridRowFocused = drawLineLoop;
 					functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
+					functionChainList_currentTab = functionChainList_tabLine;
+					// Y value not in a grid for read tab, have to store somewhere
+					//var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
+					//obj_panelPane.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
 				}
 			}
 		}

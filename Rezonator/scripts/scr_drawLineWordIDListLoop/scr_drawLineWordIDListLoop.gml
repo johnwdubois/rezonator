@@ -481,6 +481,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					with (obj_panelPane) {
 						functionChainContents_lineGridRowFocused = drawLineLoop;
 						functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
+						functionChainList_currentTab = functionChainList_tabLine;
 					}
 				}
 				
