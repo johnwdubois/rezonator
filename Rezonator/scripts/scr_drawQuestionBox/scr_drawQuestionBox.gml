@@ -179,12 +179,21 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		if (clearChain) {
 			scr_deleteEntireChain(obj_control.selectedChainID);
 		}
+		if(layerLink) {
+			
+			// Take the saved wordID & click on it
+			obj_control.layerLinkAllow = true;
+			with(obj_chain) {
+				alarm[8] = 2;	
+			}
+		}
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		layerLink = false;
 
 		instance_destroy();
 
@@ -203,6 +212,7 @@ if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		layerLink = false;
 		instance_destroy();
 
 	
@@ -313,13 +323,21 @@ if ( keyboard_check_pressed(vk_enter) && questionWindowActive) {
 		if (clearChain) {		
 			scr_deleteEntireChain(obj_control.selectedChainID);
 		}
-
+		if(layerLink) {
+			
+			// Take the saved wordID & click on it
+			obj_control.layerLinkAllow = true;
+			with(obj_chain) {
+				scr_wordClicked(obj_control.layerLinkWordID, obj_control.layerLinkUnitID);	
+			}
+		}
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		layerLink = false;
 
 	
 

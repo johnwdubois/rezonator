@@ -530,5 +530,9 @@ deleteChunkWord = false;
 fromDropDown = false;
 wideDropDown = false;
 
+layerLinkAllow = false;
+layerLinkWordID = -1;
+layerLinkUnitID = -1;
+
 
 initialValidFileCheck = false;

@@ -139,9 +139,10 @@ else {
 
 ds_map_destroy(wrapper);
 
-if(not global.games) {
-	scr_exportGrids();
-}
+// Export the grids to CSV format
+//if(not global.games) {
+//	scr_exportGrids();
+//}
 if (not autosave) {
 	obj_control.allSaved = true;
 }

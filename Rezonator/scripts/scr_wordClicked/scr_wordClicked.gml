@@ -20,7 +20,7 @@ if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialog
 var wordID = argument0;
 var unitID = argument1;
 
-
+//show_message("okay");
 
 // jump audio position to unitStart time (if audioUI is visible)
 if (instance_exists(obj_audioUI)) {
@@ -121,13 +121,24 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 			}
 		}
 		else {
-			// Make sure the user wants to layer links of different types
-			if (show_question("This word is already contained in a another chain. Would you still like to link it?")) {
-				// Allow the link to be made
+			if(!obj_control.layerLinkAllow) {
+				// Make sure the user wants to layer links of different types
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					obj_dialogueBox.layerLink = true;
+					obj_dialogueBox.questionWindowActive = true;
+				}
+				// gonna have to exit this program and come back to it if they say yes
+				obj_control.layerLinkWordID = wordID;
+				obj_control.layerLinkUnitID = unitID;
+				
+				exit;
 			}
 			else {
-				// Stop the layered link from being made
-				exit;	
+				//show_message("yep");
+				obj_control.layerLinkAllow = false;
+				obj_control.layerLinkWordID = -1;
+				obj_control.layerLinkUnitID = -1;
 			}
 		}
 	}

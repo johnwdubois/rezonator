@@ -46,6 +46,7 @@ clearAllTracks = false;
 clearAllRez = false;
 clearAllLinks = false;
 clearChain = false;
+layerLink = false;
 
 canDelete = true;
 canDeleteHoldingCounter = 0;

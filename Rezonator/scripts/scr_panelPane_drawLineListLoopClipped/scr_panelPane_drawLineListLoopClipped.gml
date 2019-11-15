@@ -54,6 +54,11 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	var currentLineState = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineState, i);
 	var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
 	var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
+	// Prevent those pesky comments from showing up in the line list
+	if (lineSpeaker == "COMMENT") {
+		continue;
+	}
+
 	var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
 	var currentLineWordString = "";
 	for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {
