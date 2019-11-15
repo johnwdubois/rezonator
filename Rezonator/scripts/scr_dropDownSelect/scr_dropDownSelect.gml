@@ -1304,6 +1304,7 @@ else if (optionListType == 11)
 	{
 		case "<0>":
 			obj_control.newWordPre1 = true;
+			obj_control.currentNewWordPre = 1;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -1323,6 +1324,7 @@ else if (optionListType == 11)
 			break;
 		case "<ZERO>":
 			obj_control.newWordPre2 = true;
+			obj_control.currentNewWordPre = 2;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -1341,6 +1343,7 @@ else if (optionListType == 11)
 
 			break;
 		case "<PRO>":	
+			obj_control.currentNewWordPre = 3;
 			obj_control.newWordPre3 = true;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
@@ -1360,7 +1363,7 @@ else if (optionListType == 11)
 
 			break;
 		case "Custom":
-			
+			obj_control.currentNewWordPre = 4;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
