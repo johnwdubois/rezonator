@@ -430,6 +430,8 @@ cursorTimer = 20;
 newWordPre1 = false
 newWordPre2 = false
 newWordPre3 = false
+currentNewWordPre = 1;
+lastAddedWord = "";
 
 
 hitIDCounter = 1;
