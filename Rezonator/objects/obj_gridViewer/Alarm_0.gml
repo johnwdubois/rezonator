@@ -12,7 +12,9 @@ ds_list_add(gridList,
 	obj_chain.unitInStackGrid,
 	obj_chain.cliqueGrid,
 	obj_chain.cliqueDisplayGrid,
-	obj_chain.goldStandardGrid
+	obj_chain.goldStandardGrid,
+	global.importToolboxGrid,
+	obj_control.morphemeGrid
 	);
 
 

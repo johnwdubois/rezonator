@@ -18,7 +18,7 @@ if (os_type == os_macosx) {
 }
 
 
-openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json", "", discourseDirString, "Import File");
+openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json|Toolbox TXT file|*.txt", "", discourseDirString, "Import File");
 
 if (openedFile == "" or not file_exists(openedFile)) {
 	exit;
@@ -34,6 +34,11 @@ if (fileExtCharAt > 0) {
 
 if (string_count("csv", fileExt) > 0) {
 	scr_importCSV(openedFile);
+	exit;
+}
+
+if (string_count("txt", fileExt) > 0) {
+	scr_importToolboxTXT(openedFile);
 	exit;
 }
 

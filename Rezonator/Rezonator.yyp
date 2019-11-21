@@ -615,6 +615,14 @@
             }
         },
         {
+            "Key": "16e6aa65-5f00-41a1-9538-3b899a7d7253",
+            "Value": {
+                "id": "9f53c429-e7a1-4405-851a-c65812bcaff6",
+                "resourcePath": "scripts\\scr_splitStringToolbox\\scr_splitStringToolbox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "17218922-e031-4704-a704-56d8520288c4",
             "Value": {
                 "id": "3ce6406b-a65c-4e06-b9c9-73ae84b02a70",
@@ -2235,6 +2243,14 @@
             "Value": {
                 "id": "88bc5632-f994-454e-b900-aee9e008745d",
                 "resourcePath": "scripts\/scr_drawDialogueBox\/scr_drawDialogueBox.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "762ec5a5-92eb-41fe-8cb9-d38ffbde302f",
+            "Value": {
+                "id": "c1dee088-a1a3-4d67-acff-35e5d2383446",
+                "resourcePath": "scripts\\scr_toolboxGridToMorphemeGrid\\scr_toolboxGridToMorphemeGrid.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4959,6 +4975,14 @@
             }
         },
         {
+            "Key": "fa6c61d8-9bf4-4cdd-a9d8-7dc661aa82bf",
+            "Value": {
+                "id": "1e018e0f-c48c-4c75-a5f8-d41ed2c42471",
+                "resourcePath": "scripts\\scr_importToolboxTXT\\scr_importToolboxTXT.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "fb09620a-f475-47d6-b76e-dc114ba099bd",
             "Value": {
                 "id": "a9782555-378c-4d9c-b0b4-a2556c0fce7a",
@@ -5089,6 +5113,7 @@
         "181759d2-b882-4e95-b205-02d712e61403",
         "b5d6507a-422a-49b5-876c-0147656081b3",
         "f3a11cd9-ffbd-4fd0-8e5f-b308fc0bde8b",
+        "762ec5a5-92eb-41fe-8cb9-d38ffbde302f",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "fc1067ad-8999-4c32-b44e-52ec42f636c0",
         "01326701-b0a6-4057-8a77-21f137c710e7",
@@ -5096,6 +5121,7 @@
         "18bdff53-f44f-4f83-97d2-1989516d1a73",
         "e07f80ad-685c-4427-93be-249893509b87",
         "efca083d-511d-46a9-b9b8-80c06a142131",
+        "16e6aa65-5f00-41a1-9538-3b899a7d7253",
         "1fc73ccb-fa5e-4385-b7e2-4edfda6f2e58",
         "e69bac84-b4e1-421a-869c-4ae937e0f788",
         "354bde9c-fc25-41f2-89b8-e40a87157775",
@@ -5157,6 +5183,7 @@
         "d7714c6a-620c-423a-a004-56a2af4eb313",
         "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
         "238d1e31-cb57-443c-b022-eb85151f4647",
+        "fa6c61d8-9bf4-4cdd-a9d8-7dc661aa82bf",
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",
         "a0eb63cb-ff4b-4a7c-99d9-7237af062ce3",
         "10e45e9e-c2ac-4f14-83ca-5f75f53611af",

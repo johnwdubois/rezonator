@@ -466,5 +466,83 @@ else if (grid == obj_chain.goldStandardGrid) {
 			break;
 	}
 }
+else if (grid == global.importToolboxGrid) {
+	switch (col) {
+		case global.importToolboxGrid_colRef:
+			colName = "Ref";
+			break;
+		case global.importToolboxGrid_colELANBegin:
+			colName = "ELAN Begin";
+			break;
+		case global.importToolboxGrid_colELANEnd:
+			colName = "ELAN End";
+			break;
+		case global.importToolboxGrid_colELANParticipant:
+			colName = "ELAN Participant";
+			break;
+		case global.importToolboxGrid_colTx:
+			colName = "Tx";
+			break;
+		case global.importToolboxGrid_colGw:
+			colName = "Gw";
+			break;
+		case global.importToolboxGrid_colMph:
+			colName = "Mph";
+			break;
+		case global.importToolboxGrid_colMgl:
+			colName = "Mgl";
+			break;
+		case global.importToolboxGrid_colLg:
+			colName = "Lg";
+			break;
+		case global.importToolboxGrid_colId:
+			colName = "Id";
+			break;
+		case global.importToolboxGrid_colPs:
+			colName = "Ps";
+			break;
+		case global.importToolboxGrid_colEng:
+			colName = "Eng";
+			break;
+		case global.importToolboxGrid_colNep:
+			colName = "Nep";
+			break;
+		case global.importToolboxGrid_colDt:
+			colName = "Dt";
+			break;
+		default:
+			break;
+	}
+}
+else if (grid == obj_control.morphemeGrid) {
+	switch (col) {
+		case obj_control.morphemeGrid_colUnitID:
+			colName = "unitID";
+			break;
+		case obj_control.morphemeGrid_colWordID:
+			colName = "wordID";
+			break;
+		case obj_control.morphemeGrid_colMorphemeID:
+			colName = "morphemeID";
+			break;
+		case obj_control.morphemeGrid_colMorphemeStr:
+			colName = "morphemeStr";
+			break;
+		case obj_control.morphemeGrid_colMgl:
+			colName = "mgl";
+			break;
+		case obj_control.morphemeGrid_colLg:
+			colName = "lg";
+			break;
+		case obj_control.morphemeGrid_colId:
+			colName = "id";
+			break;
+		case obj_control.morphemeGrid_colPs:
+			colName = "ps";
+			break;
+		default:
+			break;
+	}
+}
 
 return colName;
