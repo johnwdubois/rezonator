@@ -1,3 +1,10 @@
+if (not obj_control.initialValidFileCheck) {
+	//show_message("here");
+	with (obj_alarm) {
+		alarm[4] = 10;
+	}
+}
+
 if (string_count("<u who=", currentElement) == 0 and string_count("\"words\"", currentElement) == 0) {
 	if (not firstValidLineReached) {
 		exit;

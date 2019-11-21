@@ -489,6 +489,25 @@ else if (optionListType == 4)
 			
 			//show_message("BUH 2");
 			break;
+		case "Export CSV":
+			
+			draw_set_alpha(1);
+			draw_set_color(obj_toolPane.progressBarFrontColor);
+			draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
+			draw_set_color(c_white);
+			draw_set_font(obj_toolPane.progressBarFont);
+			draw_set_halign(fa_left);
+			draw_set_valign(fa_middle);
+			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Exporting...");
+			draw_set_font(fnt_dropDown);
+		
+			obj_fileLoader.ableToHotkey = false;
+			
+			with(obj_fileLoader){
+				alarm[5] = 1;
+			}
+			
+			break;
 		case "Save Portion":
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";
@@ -1285,6 +1304,7 @@ else if (optionListType == 11)
 	{
 		case "<0>":
 			obj_control.newWordPre1 = true;
+			obj_control.currentNewWordPre = 1;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -1304,6 +1324,7 @@ else if (optionListType == 11)
 			break;
 		case "<ZERO>":
 			obj_control.newWordPre2 = true;
+			obj_control.currentNewWordPre = 2;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -1322,6 +1343,7 @@ else if (optionListType == 11)
 
 			break;
 		case "<PRO>":	
+			obj_control.currentNewWordPre = 3;
 			obj_control.newWordPre3 = true;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
@@ -1341,7 +1363,7 @@ else if (optionListType == 11)
 
 			break;
 		case "Custom":
-			
+			obj_control.currentNewWordPre = 4;
 			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";

@@ -603,6 +603,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
 				}
 			}
+			obj_control.lastAddedWord = obj_control.inputText;
 		}
 			
 		if (obj_control.rename) {
@@ -680,6 +681,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.fromDropDown = false;
 		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
+		obj_control.before = true;
 		instance_destroy();
 		obj_control.dialogueBoxActive = false;
 	}
@@ -716,6 +718,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.fromDropDown = false;
 			obj_control.inputText = "";
 			obj_control.cursorPos = 1;
+			obj_control.before = true;
 			instance_destroy();
 			obj_control.dialogueBoxActive = false;
 	
@@ -776,7 +779,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
 				}
 			}
-
+		obj_control.lastAddedWord = obj_control.inputText;
 	}
 	
 	if (obj_control.rename) {
@@ -852,6 +855,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.fromDropDown = false;
 	obj_control.inputText = "";
 	obj_control.cursorPos = 1;
+	obj_control.before = true;
 	instance_destroy();
 	obj_control.dialogueBoxActive = false;
 }

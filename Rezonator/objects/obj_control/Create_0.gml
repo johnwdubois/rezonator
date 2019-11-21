@@ -452,6 +452,8 @@ cursorTimer = 20;
 newWordPre1 = false
 newWordPre2 = false
 newWordPre3 = false
+currentNewWordPre = 1;
+lastAddedWord = "";
 
 
 hitIDCounter = 1;
@@ -551,6 +553,10 @@ deleteNewWord = false;
 deleteChunkWord = false;
 fromDropDown = false;
 wideDropDown = false;
+
+layerLinkAllow = false;
+layerLinkWordID = -1;
+layerLinkUnitID = -1;
 
 
 initialValidFileCheck = false;

@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+
+
 window_set_cursor(cr_default);
 
 scr_colorThemeGridInit();

@@ -1,8 +1,18 @@
-var driveStr = working_directory + "nsfs.dll";
+/*
+if (directory_exists(program_directory)) {
+	show_message("BUH" + program_directory)
+}
+else {
+	show_message("GUH" + program_directory)
+}
+*/
 
-if	(os_type == os_macosx)	{
-	var userStr = environment_get_variable("USER");
-	global.documentsDirString = "/Users/" + userStr + "/Documents";
+if	(os_type == os_macosx)	{	
+	var userStr = environment_get_variable("HOME");
+	//show_message(string(userStr));
+	
+	
+	global.documentsDirString = string(userStr) + "/Documents";
 	global.rezonatorDirString = global.documentsDirString + "/Rezonator/" + global.versionString;
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "/Tutorial";
 	global.rezonatorElmoDirString = global.rezonatorDirString + "/Games/Where's_Elmo";
@@ -21,11 +31,20 @@ else	{
 	global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "\\Saved Games";
 }
 
+
 if (directory_exists(global.documentsDirString)) {
-	if (directory_exists(working_directory)) {
+	if	(os_type == os_macosx)	{
+		//show_message("in here!!")
+		directory_create(global.rezonatorDirString);
+		directory_copy(working_directory, global.documentsDirString);
+		//show_message(global.documentsDirString);
+	}
+	else {
+		if (directory_exists(working_directory)) {
 		
-		if (!directory_exists(global.rezonatorDirString)) {
-			directory_copy(working_directory, global.rezonatorDirString);
+			if (!directory_exists(global.rezonatorDirString)) {
+				directory_copy(working_directory, global.rezonatorDirString);
+			}
 		}
 	}
 }

@@ -61,13 +61,28 @@ if (questionWindowActive) {
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "Yes");
 	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "No");
 	
+	
+	
+	if(clearAllStacks) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "You are about to clear all Stacks.");
+	}
+	if(clearAllRez) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "You are about to clear all Rez chains.");
+	}
+	if(clearAllTracks) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "You are about to clear all Track chains.");
+	}
+	if(clearAllLinks) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "You are about to clear all of your chains.");
+	}
+	if (clearChain) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "You are about to clear this chain.");
+	}
+	if(layerLink) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "You are about to layer one link atop another.");
+	}
 
-	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Are You Sure?");
-
-
-
-
-
+	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 105, "Are You Sure?");
 }
 
 
@@ -179,12 +194,21 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		if (clearChain) {
 			scr_deleteEntireChain(obj_control.selectedChainID);
 		}
+		if(layerLink) {
+			
+			// Take the saved wordID & click on it
+			obj_control.layerLinkAllow = true;
+			with(obj_chain) {
+				alarm[8] = 2;	
+			}
+		}
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		layerLink = false;
 
 		instance_destroy();
 
@@ -203,6 +227,7 @@ if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		layerLink = false;
 		instance_destroy();
 
 	
@@ -313,13 +338,21 @@ if ( keyboard_check_pressed(vk_enter) && questionWindowActive) {
 		if (clearChain) {		
 			scr_deleteEntireChain(obj_control.selectedChainID);
 		}
-
+		if(layerLink) {
+			
+			// Take the saved wordID & click on it
+			obj_control.layerLinkAllow = true;
+			with(obj_chain) {
+				scr_wordClicked(obj_control.layerLinkWordID, obj_control.layerLinkUnitID);	
+			}
+		}
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
 		clearAllRez = false;
 		clearAllLinks = false;
 		clearChain = false;
+		layerLink = false;
 
 	
 

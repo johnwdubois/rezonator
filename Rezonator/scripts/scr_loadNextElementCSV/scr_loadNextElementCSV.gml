@@ -1,3 +1,9 @@
+if (not obj_control.initialValidFileCheck) {
+	//show_message("here");
+	with (obj_alarm) {
+		alarm[4] = 10;
+	}
+}
 if (importCSVCurrentRow < 1) {
 	var totalUnitAmount = 0;
 	var currentUID = "";
@@ -20,7 +26,12 @@ if (importCSVCurrentRow < 1) {
 }
 
 var currentUID = ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, importCSVCurrentRow);
-if (string_length(string_letters(currentUID)) > 0 and importCSVCurrentRow < 1) {
+if(string_digits(currentUID) == "") {
+	with (obj_alarm) {
+		alarm[4] = 0;
+	}
+}
+if ((string_length(string_letters(currentUID)) > 0 and importCSVCurrentRow < 1 )) {
 	importCSVCurrentRow++;
 	exit;
 }
