@@ -1,3 +1,5 @@
+exit;
+
 if (ds_grid_height(global.importToolboxGrid) < 1) {
 	exit;
 }

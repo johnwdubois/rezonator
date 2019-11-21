@@ -125,9 +125,11 @@ global.importCSVGrid_colUnitEnd = 23;
 
 
 
-global.importToolboxGridWidth = 14;
-global.importToolboxGrid = ds_grid_create(14, 0);
+global.importToolboxGridWidth = 1;
+global.importToolboxGrid = ds_grid_create(global.importToolboxGridWidth, 0);
 global.importToolboxGrid_colRef = 0;
+global.importToolboxGridColMap = ds_map_create();
+/*
 global.importToolboxGrid_colELANBegin = 1;
 global.importToolboxGrid_colELANEnd = 2;
 global.importToolboxGrid_colELANParticipant = 3;
@@ -141,6 +143,8 @@ global.importToolboxGrid_colPs = 10;
 global.importToolboxGrid_colEng = 11;
 global.importToolboxGrid_colNep = 12;
 global.importToolboxGrid_colDt = 13;
+*/
+
 
 
 //variables for keyboard

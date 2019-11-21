@@ -467,6 +467,7 @@ else if (grid == obj_chain.goldStandardGrid) {
 	}
 }
 else if (grid == global.importToolboxGrid) {
+	/*
 	switch (col) {
 		case global.importToolboxGrid_colRef:
 			colName = "Ref";
@@ -513,6 +514,7 @@ else if (grid == global.importToolboxGrid) {
 		default:
 			break;
 	}
+	*/
 }
 else if (grid == obj_control.morphemeGrid) {
 	switch (col) {
