@@ -213,11 +213,11 @@ ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 0, true);
 
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 1, controlStr + " s");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 1, "Save");
-ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 1, "Save file");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 1, "Save Rez file");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 1, false);
 
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colKey, 2, "e");
-ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 2, "Extract Portion");
+ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colFunc, 2, "Export Clip");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colDesc, 2, "Specify start/end lines of Save");
 ds_grid_set(functionHelp_helpGridFile, functionHelp_helpGrid_colHide, 2, false);
 
