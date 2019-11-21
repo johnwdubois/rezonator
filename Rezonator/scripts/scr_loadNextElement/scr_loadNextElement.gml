@@ -1,5 +1,5 @@
 if (not obj_control.initialValidFileCheck) {
-	show_message("here");
+	//show_message("here");
 	with (obj_alarm) {
 		alarm[4] = 10;
 	}

@@ -58,6 +58,11 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	if (lineSpeaker == "COMMENT") {
 		continue;
 	}
+	
+	var discoColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentLineUnitID - 1);
+	if (discoColor == -1 or discoColor == 0) {
+		discoColor = obj_control.c_ltblue;
+	}
 
 	var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
 	var currentLineWordString = "";
@@ -89,114 +94,11 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 				functionChainContents_BGColor = lineColor;
 			}
 		}
-		/*
-			if (currentChainState != obj_chain.chainStateFocus) {
-				// Focuses on selected chain
-					switch (functionChainList_currentTab) {
-						case functionChainList_tabRezBrush:
-							obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-							break;
-						case functionChainList_tabTrackBrush:
-							obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
-							break;
-						case functionChainList_tabStackBrush:
-							obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-							break;
-						default:
-							break;
-					}
-				
-				
-					// Unfocus any already focused chains
-					for (var j = 0; j < ds_grid_height(grid); j++) {
-						if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
-							ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
-						}
-					}
-				
-					// Set chain to focus in the grid
-					ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
-					scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-				
-					// Set chain to focus in the main screen
-					if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
-						scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
-					}
-					obj_chain.mouseLineWordID = -1;
-			
-				// Set scroll range in the chain list
-				with (obj_panelPane) {
-					functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
-					functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
-				}
-				if (doubleClickTimer > -1) {	
-						var rowInobj_control.lineGrid = -1;
-						var currentUnitIDList = -1;
-						var currentUnitID = -1;
-						
-						currentUnitIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID));
-				
-						if (functionChainList_currentTab == functionChainList_tabStackBrush
-						or functionChainList_currentTab == functionChainList_tabClique) {
-							currentUnitID = ds_list_find_value(currentUnitIDList, 0);
-						}
-						else {
-							currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, ds_list_find_value(currentUnitIDList, 0));
-						}
-					
-						rowInobj_control.lineGrid = ds_grid_value_y(obj_control.obj_control.lineGrid, obj_control.obj_control.lineGrid_colUnitID, 0, obj_control.obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.obj_control.lineGrid), currentUnitID);
-					
-						// Set first unit of the double clicked chain to center display row, if possible
-						if (rowInobj_control.lineGrid >= 0 and rowInobj_control.lineGrid < ds_grid_height(obj_control.obj_control.lineGrid)) {
-							// Replacement of centerDisplayRow
-							var linePixelY = ds_grid_get(obj_control.obj_control.lineGrid, obj_control.obj_control.lineGrid_colPixelYOriginal, rowInobj_control.lineGrid);
-							obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
-						}
-				}
-				else {
-					doubleClickTimer = 0;
-				}
-			}
-		}*/
 	}
 	
-	//Rightclick options
-	/*if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-	and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and grid != obj_chain.cliqueDisplayGrid) {
-		
-			// Unfocus any already focused chains
-			for (var j = 0; j < ds_grid_height(grid); j++) {
-				if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
-					ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
-				}
-			}
-				
-			// Set chain to focus in the grid
-			ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
-			scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-				
-
-		obj_control.selectedChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i); 
-		//show_message(string(obj_control.selectedChainID));
-		var dropDownOptionList = ds_list_create();
-		if (grid  == obj_chain.stackChainGrid) {
-			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
-		}
-		else {
-			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
-		}
-		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-			var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-			dropDownInst.optionList = dropDownOptionList;
-			dropDownInst.optionListType = 1;
-					
-			obj_control.ableToCreateDropDown = false;
-			obj_control.alarm[0] = 2;
-		}
-	}*/
 	
 	//Color codes the line lists for User
-	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
+	draw_set_color(discoColor); //soften the color
 	//draw_set_color(lineColor);
 	draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	
@@ -208,7 +110,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 		draw_set_font(global.fontChainListFocused);
 	}
 	else {
-		draw_set_font(global.fontChainList);
+		draw_set_font(global.fontMain);
 	}
 	
 	// Draw text of chain names
@@ -216,12 +118,16 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
-	draw_text(x + (textMarginLeft) - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
-	//draw_text(x + (textMarginLeft * 1.5) - clipX + string_width(lineSpeaker), y + textMarginTop + scrollPlusY + textPlusY - clipY, currentLineWordString);
-	//draw_set_color(global.colorThemeBG);
-	//draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 2);
 	
+	//Color codes the line lists for User
 	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
+	//draw_set_color(lineColor);
+	draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+	draw_set_color(global.colorThemeText);
+	draw_text(x + (textMarginLeft) - clipX + 10, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
+	
+	//draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
+	draw_set_color(global.colorThemeBG);
 	draw_rectangle(windowWidth/3 - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	draw_set_color(global.colorThemeBG);
 	draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
@@ -229,108 +135,6 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	draw_text(windowWidth/3, y + textMarginTop + scrollPlusY + textPlusY - clipY, currentLineWordString);
 	
 	
-	/*if (grid != obj_chain.cliqueDisplayGrid) {
-	
-		// Draw little boxes for filter selection
-		var chainFilterRectX1 = x + filterRectMargin - clipX;
-		var chainFilterRectY1 = y + textMarginTop + scrollPlusY + textPlusY - (filterRectSize / 2) - clipY;
-		var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
-		var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
-		var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
-		draw_set_font(global.fontPanelTab);
-	
-		draw_set_color(global.colorThemeText);
-		// Fill in boxes if filtered
-		// Check boxes for user selection with mouse click
-		var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
-		if (mouseover) {
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
-		}
-		if (((mouseover and device_mouse_check_button_released(0, mb_left))
-		or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
-			// Record previous display row in case Filter is empty
-			obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
-			// Set selected objects to be filtered
-			inFilter = !inFilter;
-			ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);
-			
-			// Render the filter in the mainscreen
-			if (obj_control.filterGridActive) {
-				with (obj_control) {
-					scr_renderFilter();
-				}
-			}
-			// Add to moveCounter
-			obj_control.moveCounter++;
-		}
-		draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
-	
-	
-	
-		
-	}*/
-
-	
-	
-	// Create little boxes for alignment selection
-	/*if (functionChainList_currentTab == functionChainList_tabRezBrush
-	or functionChainList_currentTab == functionChainList_tabTrackBrush) {
-		// Set dimensions for little boxes
-		var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - scrollBarWidth;//x + (filterRectMargin * 2) + filterRectSize - clipX;
-		var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY;
-		var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
-		var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;
-		var isAligned = ds_grid_get(grid, obj_chain.chainGrid_colAlign, i);
-		
-		//Check for user selection of alignment with mouse clicks
-		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
-			draw_set_alpha(0.5);
-			draw_set_color(c_purple);
-			draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
-			if (device_mouse_check_button_released(0, mb_left)) {
-				
-				// Unselect alignment if already selected
-				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {
-					scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
-				}
-				
-				// Show alignments in main screen
-				isAligned = !isAligned;
-				if (isAligned) {
-					with (obj_chain) {
-						alarm[6] = 5;
-						// Protect against RaceToInfinity
-						chainIDRaceCheck = currentChainID;
-					}
-				}
-				
-				// Set alignment in grid
-				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
-			}
-		}
-	
-		// Fill in selected boxes
-		if (isAligned) {
-			draw_sprite_ext(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
-		}
-		else if (isAligned == -1) {
-			draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 0.5);
-		}
-		else {
-			draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
-		}
-		
-		draw_set_alpha(1);
-	}*/
-	
-	
-	
-	
-	
-	
-
 	
 	// Get height of chain name
 	textPlusY += strHeight;
