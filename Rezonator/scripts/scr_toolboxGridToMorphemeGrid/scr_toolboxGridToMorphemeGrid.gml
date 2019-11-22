@@ -1,21 +1,44 @@
-exit;
-
 if (ds_grid_height(global.importToolboxGrid) < 1) {
 	exit;
 }
 
+
+// check to make sure we at least have a "gw" column and a "mph" column
+var gwCol = false;
+var mphCol = false;
+for (var i = 0; i < global.importToolboxGridWidth; i++) {
+	if (string_lower(global.importToolboxGridColName[i]) == "gw") {
+		gwCol = true;
+	}
+	else if (string_lower(global.importToolboxGridColName[i]) == "mph") {
+		gwCol = true;
+	}
+}
+if (!gwCol or !mphCol) {
+	exit;
+}
+
+
 for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
+	
+}
+
+/*
+for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
+	
 	var currentToolboxMph = ds_grid_get(global.importToolboxGrid, global.importToolboxGrid_colMph, i);
 	var currentToolboxMgl = ds_grid_get(global.importToolboxGrid, global.importToolboxGrid_colMgl, i);
 	var currentToolboxLg = ds_grid_get(global.importToolboxGrid, global.importToolboxGrid_colLg, i);
 	var currentToolboxId = ds_grid_get(global.importToolboxGrid, global.importToolboxGrid_colId, i);
 	var currentToolboxPs = ds_grid_get(global.importToolboxGrid, global.importToolboxGrid_colPs, i);
 	
+	
 	var currentMphList = scr_splitStringToolbox(currentToolboxMph);
 	var currentMglList = scr_splitStringToolbox(currentToolboxMgl);
 	var currentLgList = scr_splitStringToolbox(currentToolboxLg);
 	var currentIdList = scr_splitStringToolbox(currentToolboxId);
 	var currentPsList = scr_splitStringToolbox(currentToolboxPs);
+
 	
 	for (var j = 0; j < ds_list_size(currentMphList); j++) {
 		var currentMph = ds_list_find_value(currentMphList, j);
@@ -49,3 +72,4 @@ for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
 	
 	ds_list_destroy(currentMphList);
 }
+*/
