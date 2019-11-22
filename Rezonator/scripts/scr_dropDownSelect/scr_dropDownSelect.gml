@@ -508,7 +508,7 @@ else if (optionListType == 4)
 			}
 			
 			break;
-		case "Save Portion":
+		case "Export Clip":
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";
 				obj_control.ePressed = true;
