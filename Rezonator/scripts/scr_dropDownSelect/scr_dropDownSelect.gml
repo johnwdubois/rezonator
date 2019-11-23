@@ -469,7 +469,7 @@ else if (optionListType == 4)
 			//show_message("Coming Soon");
 			break;
 				
-		case "Save File":
+		case "Save Rez File":
 		
 			draw_set_alpha(1);
 			draw_set_color(obj_toolPane.progressBarFrontColor);
