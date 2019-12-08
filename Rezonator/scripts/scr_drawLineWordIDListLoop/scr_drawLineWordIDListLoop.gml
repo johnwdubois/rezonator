@@ -402,7 +402,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 		// Draw the double bond if the next token is a word
 		var nextWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow + 1);
-		if(string_length(string_letters(nextWordString)) > 0) {
+
+		if(string_length(string_letters(nextWordString)) > 0 or undefined) {
 			// Based off of the prev word's x-pos, draw 2 lines
 			if (shape != shapeText) {
 				// Allow the PlaceChain lines to adapt to shifting display columns
