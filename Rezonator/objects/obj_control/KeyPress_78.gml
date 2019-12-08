@@ -2,7 +2,11 @@
 // You can write your code in this editor
 
 if(keyboard_check(vk_control)){
-exit;
+with(obj_panelPane){
+				showNav = not showNav;	
+				
+			}
+			obj_toolPane.showTool = !obj_toolPane.showTool;
 }
 else{
 	if(obj_control.hoverWordID != -1){
