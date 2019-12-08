@@ -3,6 +3,7 @@ var filename = argument0;
 var fileOpenRead = file_text_open_read(filename);
 
 var firstRef = false;
+global.importToolboxGridColName[0] = "ref";
 
 while (not file_text_eof(fileOpenRead)) {
 	
@@ -20,7 +21,7 @@ while (not file_text_eof(fileOpenRead)) {
 	
 	var colNameLength = string_pos(" ", lineInFile);
 	var colName = string_copy(lineInFile, 2, colNameLength - 2);
-	var colVal = string_copy(lineInFile, colNameLength, string_length(lineInFile) - colNameLength);
+	var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
 	
 	var lineInFileTrim = "";
 	if (string_count("\\ref ", lineInFile)) {
@@ -33,72 +34,14 @@ while (not file_text_eof(fileOpenRead)) {
 		var col = ds_map_find_value(global.importToolboxGridColMap, colName);
 		if (is_undefined(col)) {
 			global.importToolboxGridWidth++;
+			global.importToolboxGridColName[global.importToolboxGridWidth - 1] = colName;
 			ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid));
 			col = global.importToolboxGridWidth - 1;
 			ds_map_add(global.importToolboxGridColMap, colName, col);
 		}
 		ds_grid_set(global.importToolboxGrid, col, ds_grid_height(global.importToolboxGrid) - 1, colVal);
 	}
-	
-	
-	
-	
-	/*
-	else if (string_count("\\ELANBegin ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\ELANBegin "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colELANBegin, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\ELANEnd ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\ELANEnd "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colELANEnd, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\ELANParticipant ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\ELANParticipant "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colELANParticipant, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\tx ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\tx "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colTx, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\gw ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\gw "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colGw, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\mph ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\mph "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colMph, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\mgl ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\mgl "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colMgl, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\lg ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\lg "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colLg, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\id ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\id "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colId, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\ps ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\ps "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colPs, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\eng ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\eng "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colEng, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\nep ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\nep "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colNep, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	else if (string_count("\\dt ", lineInFile)) {
-		lineInFileTrim = string_delete(lineInFile, 1, string_length("\\dt "));
-		ds_grid_set(global.importToolboxGrid, global.importToolboxGrid_colDt, ds_grid_height(global.importToolboxGrid) - 1, lineInFileTrim);
-	}
-	*/
 
 }
-
 
 room_goto(rm_mainScreen);

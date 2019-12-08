@@ -41,10 +41,10 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 	if (i == 0) {
 		grid = obj_control.lineGrid;
 	}
-	else if (i == 1) {
+	else if (i == 2) {
 		grid = obj_chain.rezChainGrid;
 	}
-	else if (i == 2) {
+	else if (i == 1) {
 		grid = obj_chain.trackChainGrid;
 	}
 	else if (i == 3) {

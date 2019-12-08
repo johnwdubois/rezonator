@@ -469,7 +469,7 @@ else if (optionListType == 4)
 			//show_message("Coming Soon");
 			break;
 				
-		case "Save File":
+		case "Save Rez File":
 		
 			draw_set_alpha(1);
 			draw_set_color(obj_toolPane.progressBarFrontColor);
@@ -508,7 +508,7 @@ else if (optionListType == 4)
 			}
 			
 			break;
-		case "Save Portion":
+		case "Export Clip":
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";
 				obj_control.ePressed = true;

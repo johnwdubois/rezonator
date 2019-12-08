@@ -1279,6 +1279,14 @@
             }
         },
         {
+            "Key": "3db8604a-b183-47f4-b85a-9efb91e6453b",
+            "Value": {
+                "id": "faf6e352-f522-40cf-8f2c-1af3333749f2",
+                "resourcePath": "datafiles_yy\\~usersettings.ini.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "3e54d237-06a6-4ea2-8e7f-e8c8d5787c3a",
             "Value": {
                 "id": "79027f12-f351-4985-9867-9ae722439b92",

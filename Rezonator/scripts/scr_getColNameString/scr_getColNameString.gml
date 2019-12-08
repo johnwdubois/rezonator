@@ -467,6 +467,9 @@ else if (grid == obj_chain.goldStandardGrid) {
 	}
 }
 else if (grid == global.importToolboxGrid) {
+	
+	colName = global.importToolboxGridColName[col];
+	
 	/*
 	switch (col) {
 		case global.importToolboxGrid_colRef:

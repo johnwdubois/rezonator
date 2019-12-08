@@ -122,17 +122,32 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 		}
 		else {
 			if(!obj_control.layerLinkAllow) {
-				// Make sure the user wants to layer links of different types
-				if (!instance_exists(obj_dialogueBox)) {
-					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					obj_dialogueBox.layerLink = true;
-					obj_dialogueBox.questionWindowActive = true;
-				}
-				// gonna have to exit this program and come back to it if they say yes
-				obj_control.layerLinkWordID = wordID;
-				obj_control.layerLinkUnitID = unitID;
 				
-				exit;
+				// Before we do the safety check for layered links, we make sure it's not a stub.
+				// Get the opposite chan grid
+				var oppositeChainGrid = (currentChainGrid == rezChainGrid) ? trackChainGrid : rezChainGrid;
+				
+				// Check if this chain is in the opposite grid
+				var oppositeChainRow = ds_grid_value_y(oppositeChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(oppositeChainGrid), currentChainID);
+				if(oppositeChainRow >= 0 and oppositeChainRow < ds_grid_height(oppositeChainGrid)) {
+					var oppositeChainList = ds_grid_get(oppositeChainGrid, chainGrid_colWordIDList, oppositeChainRow);
+					
+					// If then chain is in the opposite list, and it's not a stub, issue the warning
+					if (ds_list_size(oppositeChainList) > 1 ) {
+						
+						// Make sure the user wants to layer links of different types
+						if (!instance_exists(obj_dialogueBox)) {
+							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+							obj_dialogueBox.layerLink = true;
+							obj_dialogueBox.questionWindowActive = true;
+						}
+						// gonna have to exit this program and come back to it if they say yes
+						obj_control.layerLinkWordID = wordID;
+						obj_control.layerLinkUnitID = unitID;
+				
+						exit; 
+					}
+				}
 			}
 			else {
 				//show_message("yep");
