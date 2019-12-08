@@ -1,3 +1,4 @@
+//Work in here to set the new menu buttons
 draw_set_font(fnt_main);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
@@ -7,7 +8,7 @@ var buttonHeight = 60;
 var middleBuffer = 115;
 //left side
 
-var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - middleBuffer - (buttonWidth / 2);
+var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) + middleBuffer - (buttonWidth / 2);
 var newProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.40);
 var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
@@ -27,7 +28,7 @@ if (point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1,
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "Open XML");
+draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "Import Data");
 
 
 
@@ -63,7 +64,7 @@ draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1,
 
 //right side
 
-var openProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) + middleBuffer - (buttonWidth / 2);
+var openProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - middleBuffer - (buttonWidth / 2); 
 var openProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.40);
 var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
@@ -83,7 +84,7 @@ if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open REZ");
+draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open File");
 
 
 

@@ -33,9 +33,9 @@ draw_rectangle(importButtonRectX1, importButtonRectY1, importButtonRectX2, impor
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(importButtonRectX1, importButtonRectY1, importButtonRectX2, importButtonRectY2, true);
 
-var importButtonString = "Open file";
+var importButtonString = "Open Data File";
 if (ds_grid_height(global.fileLineRipGrid) >= 1) {
-	importButtonString = "Open another file";
+	importButtonString = "Open Another Data File";
 }
 
 draw_set_color(global.colorThemeText);
