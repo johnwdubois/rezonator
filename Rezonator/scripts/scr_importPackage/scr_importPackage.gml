@@ -7,12 +7,14 @@ else {
 }
 */
 
+
+
 if	(os_type == os_macosx)	{	
-	var userStr = environment_get_variable("HOME");
+	var userStr = environment_get_variable("USER");
 	//show_message(string(userStr));
 	
 	
-	global.documentsDirString = string(userStr) + "/Documents";
+	global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
 	global.rezonatorDirString = global.documentsDirString + "/Rezonator/" + global.versionString;
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "/Tutorial";
 	global.rezonatorElmoDirString = global.rezonatorDirString + "/Games/Where's_Elmo";
@@ -35,8 +37,24 @@ else	{
 if (directory_exists(global.documentsDirString)) {
 	if	(os_type == os_macosx)	{
 		//show_message("in here!!")
+		var userStr = environment_get_variable("USER");
+		var testDir = "/Users/" + string(userStr) + "/Documents";
+
+
+
+		//show_message(userStr);
+		//show_message(directory_exists(testDir))
+
+		if(directory_exists(testDir)){
+			if(!directory_exists(testDir + "/Rezonator")){
+				directory_create(testDir + "/Rezonator");
+			}
+		}
+		
+		//show_message(string(working_directory));
+		
 		directory_create(global.rezonatorDirString);
-		directory_copy(working_directory, global.documentsDirString);
+		directory_copy(working_directory + "Resources", global.rezonatorDirString);
 		//show_message(global.documentsDirString);
 	}
 	else {
