@@ -18,6 +18,7 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 		}
 		currentTool = toolStackBrush;
 	}
+	/*
 	else if (keyboard_check_pressed(ord("B"))) {
 		with (obj_chain) {
 			scr_chainDeselect();
@@ -37,7 +38,7 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 		currentTool = toolNewWord;
 	}
 	
-	
+	*/
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			if (functionChainList_currentTab != functionChainList_tabClique and functionChainList_currentTab != functionChainList_tabLine) {
