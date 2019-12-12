@@ -527,23 +527,14 @@ else if (grid == obj_control.morphemeGrid) {
 		case obj_control.morphemeGrid_colWordID:
 			colName = "wordID";
 			break;
-		case obj_control.morphemeGrid_colMorphemeID:
-			colName = "morphemeID";
+		case obj_control.morphemeGrid_colMph:
+			colName = "mph";
 			break;
-		case obj_control.morphemeGrid_colMorphemeStr:
-			colName = "morphemeStr";
+		case obj_control.morphemeGrid_colAffix:
+			colName = "affix";
 			break;
-		case obj_control.morphemeGrid_colMgl:
-			colName = "mgl";
-			break;
-		case obj_control.morphemeGrid_colLg:
-			colName = "lg";
-			break;
-		case obj_control.morphemeGrid_colId:
-			colName = "id";
-			break;
-		case obj_control.morphemeGrid_colPs:
-			colName = "ps";
+		case obj_control.morphemeGrid_colGw:
+			colName = "gw";
 			break;
 		default:
 			break;
