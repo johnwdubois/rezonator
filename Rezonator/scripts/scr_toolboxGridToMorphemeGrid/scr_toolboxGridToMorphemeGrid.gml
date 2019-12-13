@@ -1,5 +1,4 @@
 if (ds_grid_height(global.importToolboxGrid) < 1) {
-	show_message("No importGrid to get morphemes from");
 	exit;
 }
 

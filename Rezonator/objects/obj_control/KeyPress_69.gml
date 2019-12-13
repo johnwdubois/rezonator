@@ -4,7 +4,7 @@ if (!shortcutsEnabled || dialogueBoxActive || obj_panelPane.discoSelectionActive
 	exit;
 }
 
-if(not keyboard_check(vk_alt) and not keyboard_check(vk_shift)){
+if(not keyboard_check(vk_alt) and not keyboard_check(vk_shift) and keyboard_check(vk_control)){
 
 if (!obj_control.dialogueBoxActive) {
 	keyboard_string = "";

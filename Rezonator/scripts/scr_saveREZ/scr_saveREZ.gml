@@ -4,6 +4,8 @@ var autosave = argument0;
 	autosave = false;
 }*/
 
+
+
 if (not autosave) {
 	if (global.fileSaveName == "undefined" or not file_exists(global.fileSaveName)) {
 		global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
@@ -20,6 +22,14 @@ if (not autosave) {
 			exit;
 		}
 	}
+}
+
+if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {
+	show_message("Save file outside of Default Discourse folder");
+	global.fileSaveName = "";
+	scr_saveREZ(false);
+	exit;
+	//autosave = false;
 }
 
 

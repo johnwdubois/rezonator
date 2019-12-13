@@ -265,11 +265,11 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		//}
 	
 		// Sends user to the bottom of the main screen
-		if (keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) {
+		if ((keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_down))) {
 			scrollPlusYDest = -999999999999;
 		}
 		// Sends user to the top of the main screen
-		else if (keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) {
+		else if ((keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_up))) {
 			scrollPlusYDest = 100;
 		}
 	}
@@ -281,7 +281,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			wordLeftMarginDest -= gridSpaceHorizontal;
 		}
 		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_end)) {
+		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
 			scr_jumpToEnd(false);
 		}
 	
@@ -293,7 +293,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			wordLeftMarginDest += gridSpaceHorizontal;
 		}
 		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_home)) {
+		or keyboard_check_pressed(vk_home) or keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) {
 			if (searchGridActive) {
 				scr_jumpToEnd(true);
 			}

@@ -279,7 +279,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	voidMax = max(voidMax, currentWordVoid);
 	
 	// if showing developer variables, draw rectangle to visualize voids
-	if ((obj_control.showDevVars and currentWordVoid > 0) or currentWordVoid > 17) {
+	if ((obj_control.showDevVars and currentWordVoid > 0)) {// or currentWordVoid > 17) { // Do we want to always be showing this?
 		if (drawWordLoop > 0) {
 			var voidRectX1 = ((previousWordDisplayCol + 1) * obj_control.gridSpaceHorizontal) + wordLeftMargin;
 		}
@@ -397,20 +397,24 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	if(obj_chain.showPlaceChains && drawWordLoop != ds_list_size(currentWordIDList) - 1 && wordHasLetters) {
 		// Draw the Place chain box
 		draw_set_alpha(1);
-		draw_set_color(currentPlaceChainColor);
-		draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
+		draw_set_color(c_gray);
+		//draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
 		
 		// Draw the double bond if the next token is a word
 		var nextWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow + 1);
-		if(string_length(string_letters(nextWordString)) > 0) {
+
+		if(string_length(string_letters(nextWordString)) > 0 or undefined) {
 			// Based off of the prev word's x-pos, draw 2 lines
 			if (shape != shapeText) {
-				draw_line_width(wordRectX2, wordRectY1 + 10, wordRectX1 + gridSpaceHorizontal, wordRectY1 + 10, 2);
-				draw_line_width(wordRectX2, wordRectY2 - 10, wordRectX1 + gridSpaceHorizontal, wordRectY2 - 10, 2); 
+				// Allow the PlaceChain lines to adapt to shifting display columns
+				var nextWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow + 1);
+				var variance = abs(nextWordDisplayCol - currentWordDisplayCol) * gridSpaceHorizontal;
+				draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX1 + variance, wordRectY1 + 12, 2);
+				draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX1 + variance, wordRectY2 - 12, 2); 
 			}
 			else {
-				draw_line_width(wordRectX2, wordRectY1 + 10, wordRectX2 + 8, wordRectY1 + 10, 2);
-				draw_line_width(wordRectX2, wordRectY2 - 10, wordRectX2 + 8, wordRectY2 - 10, 2); 
+				draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX2 + 8, wordRectY1 + 12, 2);
+				draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX2 + 8, wordRectY2 - 12, 2); 
 			}
 		}
 	}

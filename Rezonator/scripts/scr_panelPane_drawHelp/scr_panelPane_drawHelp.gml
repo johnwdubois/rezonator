@@ -30,11 +30,13 @@ var mouseoverJustifyToggle = false;
 //if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 //	mouseoverHelp = true;
 //}
-for(var i = 0; i < 3; i++) {
+var toggleButtonAmount = 4;
+
+for(var i = 0; i < toggleButtonAmount; i++) {
 	
-	var rectX1 = x + (i * (windowWidth / 3));
+	var rectX1 = x + (i * (windowWidth / toggleButtonAmount));
 	var rectY1 = y;
-	var rectX2 = rectX1 + (windowWidth / 3);
+	var rectX2 = rectX1 + (windowWidth / toggleButtonAmount);
 	var rectY2 = y + windowHeight;
 	
 	draw_set_color(global.colorThemeBorders);
@@ -43,7 +45,7 @@ for(var i = 0; i < 3; i++) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		
-		if (i == 0) {
+		if (i == 2) {
 			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_control.gridView = !obj_control.gridView;
 			}
@@ -53,16 +55,26 @@ for(var i = 0; i < 3; i++) {
 				scr_justifyWords();
 			}
 		}
+		else if (i == 0) {
+			if (device_mouse_check_button_released(0, mb_left)) {
+				with (obj_control) {
+					scr_toggleTranscription();
+				}
+			}
+		}
 		else {
 			mouseoverHelp = true;
 		}
 	}
 	
-	if (i == 0) {
+	if (i == 2) {
 		draw_sprite_ext(spr_gridViewToggle, obj_control.gridView, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
 	else if (i == 1) {
 		draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
+	}
+	else if (i == 0) {
+		draw_sprite_ext(spr_transcriptionToggle, (obj_control.wordTranscriptView) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
 	else {
 		draw_sprite_ext(spr_helpToggle, !functionHelp_collapsed, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
