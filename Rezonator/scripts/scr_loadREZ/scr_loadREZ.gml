@@ -19,6 +19,9 @@ if (fileName == "" or not file_exists(fileName)) {
 }
 
 global.fileSaveName = fileName;
+if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {
+	global.fileSaveName = "";
+}
 
 var newInstList = ds_list_create();
 
