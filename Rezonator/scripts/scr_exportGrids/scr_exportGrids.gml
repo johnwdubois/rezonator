@@ -1,9 +1,21 @@
-var dirName = filename_path(global.fileSaveName) + string_lettersdigits(filename_name(global.fileSaveName)) + " CSV";
+// User will specify a name and a location for the CSV folder
 
+global.fileSaveName = get_save_filename_ext("CSV file|*.csv", string_lettersdigits(filename_name(global.fileSaveName)), program_directory, "Choose a Location for the CSV Folder");
+// Check if the name is valid, or if the user exited the window
+if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
+	global.fileSaveName = "undefined";
+	show_message("Error in saving");
+	exit;
+}
+
+var dirName = filename_path(global.fileSaveName) + string_lettersdigits(filename_name(global.fileSaveName));
+
+// Create the folder with the user created name
 if (not directory_exists_ns(dirName)) {
 	directory_create_ns(dirName);
 }
 
+// Save the CSVs to the folder
 scr_gridToCSV(obj_control.wordGrid, dirName + "\\word.csv");
 scr_gridToCSV(obj_control.unitGrid, dirName + "\\unit.csv");
 scr_gridToCSV(obj_control.dynamicWordGrid, dirName + "\\dynaWord.csv");

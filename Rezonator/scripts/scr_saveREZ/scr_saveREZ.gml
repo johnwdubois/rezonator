@@ -25,12 +25,23 @@ if (not autosave) {
 }
 
 // Prevent users from overwriting default discourse files
-if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
-	show_message("Save file outside of Default Discourse folder");
-	global.fileSaveName = "";
-	scr_saveREZ(false);
-	exit;
-	//autosave = false;
+if(os_type == os_macosx){
+	if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "/" and not autosave) {
+		show_message("Save file outside of Default Discourse folder");
+		global.fileSaveName = "";
+		scr_saveREZ(false);
+		exit;
+		//autosave = false;
+	}
+}
+else {
+	if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
+		show_message("Save file outside of Default Discourse folder");
+		global.fileSaveName = "";
+		scr_saveREZ(false);
+		exit;
+		//autosave = false;
+	}
 }
 
 
