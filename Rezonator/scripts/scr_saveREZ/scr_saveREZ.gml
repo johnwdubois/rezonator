@@ -24,7 +24,8 @@ if (not autosave) {
 	}
 }
 
-if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {
+// Prevent users from overwriting default discourse files
+if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
 	show_message("Save file outside of Default Discourse folder");
 	global.fileSaveName = "";
 	scr_saveREZ(false);
