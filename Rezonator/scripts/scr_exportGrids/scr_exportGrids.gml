@@ -18,7 +18,7 @@ if (not directory_exists_ns(dirName)) {
 // Save the CSVs to the folder
 scr_gridToCSV(obj_control.wordGrid, dirName + "\\word.csv");
 scr_gridToCSV(obj_control.unitGrid, dirName + "\\unit.csv");
-scr_gridToCSV(obj_control.dynamicWordGrid, dirName + "\\dynaWord.csv");
+scr_gridToCSV(obj_control.dynamicWordGrid, dirName + "\\vizWord.csv");
 scr_gridToCSV(obj_control.lineGrid, dirName + "\\line.csv");
 scr_gridToCSV(obj_control.filterGrid, dirName + "\\filter.csv");
 scr_gridToCSV(obj_control.searchGrid, dirName + "\\search.csv");
