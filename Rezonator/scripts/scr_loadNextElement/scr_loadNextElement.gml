@@ -167,7 +167,6 @@ if (string_count("/>", currentElement) > 0) {
 	
 	
 	// add row to unitInStackGrid
-	
 	var unitInStackGridCurrentRow = ds_grid_height(obj_chain.unitInStackGrid);
 	ds_grid_resize(obj_chain.unitInStackGrid, obj_chain.unitInStackGridWidth, unitInStackGridCurrentRow + 1);
 	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colUnitID, unitInStackGridCurrentRow, currentUnitID);

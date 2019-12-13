@@ -524,6 +524,15 @@ else if (grid == obj_control.morphemeGrid) {
 		case obj_control.morphemeGrid_colUnitID:
 			colName = "unitID";
 			break;
+		case obj_control.morphemeGrid_colParticipant:
+			colName = "participant";
+			break;
+		case obj_control.morphemeGrid_colUnitStart:
+			colName = "unitStart";
+			break;
+		case obj_control.morphemeGrid_colUnitEnd:
+			colName = "unitEnd";
+			break;
 		case obj_control.morphemeGrid_colWordID:
 			colName = "wordID";
 			break;
