@@ -400,21 +400,27 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_set_color(c_gray);
 		//draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
 		
-		// Draw the double bond if the next token is a word
-		var nextWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow + 1);
-
-		if(string_length(string_letters(nextWordString)) > 0 or undefined) {
-			// Based off of the prev word's x-pos, draw 2 lines
-			if (shape != shapeText) {
-				// Allow the PlaceChain lines to adapt to shifting display columns
-				var nextWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow + 1);
-				var variance = abs(nextWordDisplayCol - currentWordDisplayCol) * gridSpaceHorizontal;
-				draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX1 + variance, wordRectY1 + 12, 2);
-				draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX1 + variance, wordRectY2 - 12, 2); 
-			}
-			else {
-				draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX2 + 8, wordRectY1 + 12, 2);
-				draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX2 + 8, wordRectY2 - 12, 2); 
+		// Go through the rest of the line to find a word this one can link to
+		for(var loopRow = drawWordLoop + 1; loopRow < ds_list_size(currentWordIDList) - 1; loopRow++) {
+		
+			// Draw the double bond if the next token is a word
+			var nextWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow + (loopRow - drawWordLoop));
+			//draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
+	
+			if(string_length(string_letters(nextWordString)) > 0 or undefined) {
+				// Based off of the prev word's x-pos, draw 2 lines
+				if (shape != shapeText) {
+					// Allow the PlaceChain lines to adapt to shifting display columns
+					var nextWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow + (loopRow - drawWordLoop));
+					var variance = (abs(nextWordDisplayCol - currentWordDisplayCol) * gridSpaceHorizontal);
+					draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX1 + variance, wordRectY1 + 12, 2);
+					draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX1 + variance, wordRectY2 - 12, 2); 
+				}
+				else {
+					draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX2 + 8, wordRectY1 + 12, 2);
+					draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX2 + 8, wordRectY2 - 12, 2); 
+				}
+				break;
 			}
 		}
 	}
