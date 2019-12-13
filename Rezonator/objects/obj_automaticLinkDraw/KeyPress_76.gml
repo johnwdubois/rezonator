@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Sequential Link Generation
 // You can write your code in this editor
 //show_message("here");
 if(obj_control.showDevVars) {

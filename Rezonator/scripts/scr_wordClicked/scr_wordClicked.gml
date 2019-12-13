@@ -29,6 +29,9 @@ if (instance_exists(obj_audioUI)) {
 	}
 }
 
+if(wordID < 0 or wordID > ds_grid_height(obj_control.dynamicWordGrid) - 1) {
+	exit;	
+}
 
 // if we are not on rez-tool, track-tool, or stack-tool, leave this script
 if not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush
