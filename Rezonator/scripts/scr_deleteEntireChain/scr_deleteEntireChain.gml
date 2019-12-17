@@ -6,7 +6,7 @@ var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_
 ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
 
 if( currentChainWordIDList == undefined){
-	show_message("it didn't work");
+	//show_message("it didn't work");
 	exit;
 }
 

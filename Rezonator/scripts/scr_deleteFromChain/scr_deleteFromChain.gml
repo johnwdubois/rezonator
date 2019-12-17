@@ -312,13 +312,14 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	}
 }
 var newHeight = ds_grid_height(obj_chain.currentChainGrid);
-if(oldHeight != newHeight and newHeight > 0 and not obj_toolPane.tracksOnlyStackShow) {
+// Out of comission until Jack says otherwise
+/*if(oldHeight != newHeight and newHeight > 0 and not obj_toolPane.tracksOnlyStackShow) {
 	if(currentChainGridRow != 0) {
 		ds_grid_set(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, currentChainGridRow - 1, obj_chain.chainStateFocus);	
 	}
 	else {
 		ds_grid_set(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);	
 	}
-}
+}*/
 obj_control.deleteNewWord = false;
 obj_control.deleteChunkWord = false;

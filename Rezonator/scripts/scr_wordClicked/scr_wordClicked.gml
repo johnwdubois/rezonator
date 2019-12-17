@@ -123,7 +123,8 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 				exit;
 			}
 		}
-		else {
+		// Out of comission until Jack says otherwise
+		/*else {
 			if(!obj_control.layerLinkAllow) {
 				
 				// Before we do the safety check for layered links, we make sure it's not a stub.
@@ -158,7 +159,7 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 				obj_control.layerLinkWordID = -1;
 				obj_control.layerLinkUnitID = -1;
 			}
-		}
+		}*/
 	}
 }
 
