@@ -1,6 +1,26 @@
 var currentWordIDList = ds_list_create();
-var previousParticipant = "";
-var participantCount = -1;
+var participantList = ds_list_create();
+
+
+
+for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
+	
+	var currentParticipant = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colParticipant, i);
+	var currentParticipantID = ds_list_find_index(participantList, currentParticipant);
+	if (currentParticipantID == -1) {
+		ds_list_add(participantList, currentParticipant)
+		currentParticipantID = ds_list_size(participantList) - 1;
+	}
+}
+
+var participantColorList = ds_list_create();
+for (var i = 0; i < ds_list_size(participantList); i++) {
+	var hue = (255 / ds_list_size(participantList) * i);
+	var color = make_color_hsv(hue, random_range(100, 200),  random_range(100, 200));
+	ds_list_add(participantColorList, color);
+}
+
+
 
 for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
 	var currentUnitID = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitID, i);
@@ -13,10 +33,8 @@ for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
 	ds_list_add(currentWordIDList, currentWordID);
 	
 	var currentParticipant = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colParticipant, i);
-	if (currentParticipant != previousParticipant) {
-		previousParticipant = currentParticipant;
-		participantCount++;
-	}
+	var currentParticipantID = ds_list_find_index(participantList, currentParticipant);
+	var currentParticipantColor = ds_list_find_value(participantColorList, clamp(currentParticipantID, 0, ds_list_size(participantColorList) - 1));
 	
 	var currentUnitStart = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitStart, i);
 	var currentUnitEnd = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitEnd, i);
@@ -32,11 +50,11 @@ for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, currentRowUnitGrid, currentUnitID);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentRowUnitGrid, currentWordIDListNewUnit);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colDiscoID, currentRowUnitGrid, 0);
-		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colpID, currentRowUnitGrid, participantCount);
+		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colpID, currentRowUnitGrid, currentParticipantID);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentRowUnitGrid, currentParticipant);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentRowUnitGrid, currentUnitStart);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentRowUnitGrid, currentUnitEnd);
-		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid,  make_color_rgb(58, 191, 240));
+		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, currentParticipantColor);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, currentRowUnitGrid, 0);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentRowUnitGrid, c_ltgray);
 		
@@ -85,4 +103,8 @@ for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
 	}	
 }
 
+
+
+ds_list_copy(obj_control.participantList, participantList);
+ds_list_destroy(participantList);
 ds_list_destroy(currentWordIDList);
