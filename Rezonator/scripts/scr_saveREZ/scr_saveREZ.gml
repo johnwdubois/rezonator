@@ -27,7 +27,7 @@ if (not autosave) {
 // Prevent users from overwriting default discourse files
 if(os_type == os_macosx){
 	if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "/" and not autosave) {
-		show_message("Save file outside of Default Discourse folder");
+		show_message("Error in saving. Please save file outside of Default Discourse folder");
 		global.fileSaveName = "";
 		scr_saveREZ(false);
 		exit;
@@ -36,7 +36,7 @@ if(os_type == os_macosx){
 }
 else {
 	if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
-		show_message("Save file outside of Default Discourse folder");
+		show_message("Error in saving. Please save file outside of Default Discourse folder");
 		global.fileSaveName = "";
 		scr_saveREZ(false);
 		exit;
@@ -44,7 +44,7 @@ else {
 	}
 }
 
-
+//show_message(program_directory);
 var rootList = ds_list_create();
 
 with (obj_saveParent) {

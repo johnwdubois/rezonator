@@ -397,7 +397,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	if(obj_chain.showPlaceChains && drawWordLoop != ds_list_size(currentWordIDList) - 1 && wordHasLetters) {
 		// Draw the Place chain box
 		draw_set_alpha(1);
-		draw_set_color(c_gray);
+		draw_set_color(c_ltgray);
 		//draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
 		
 		// Go through the rest of the line to find a word this one can link to
