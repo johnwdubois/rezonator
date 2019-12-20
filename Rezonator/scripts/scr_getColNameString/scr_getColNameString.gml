@@ -545,6 +545,18 @@ else if (grid == obj_control.morphemeGrid) {
 		case obj_control.morphemeGrid_colGw:
 			colName = "gw";
 			break;
+		case obj_control.morphemeGrid_colMgl:
+			colName = "mgl";
+			break;
+		case obj_control.morphemeGrid_colLg:
+			colName = "lg";
+			break;
+		case obj_control.morphemeGrid_colId:
+			colName = "id";
+			break;
+		case obj_control.morphemeGrid_colPs:
+			colName = "ps";
+			break;
 		default:
 			break;
 	}
