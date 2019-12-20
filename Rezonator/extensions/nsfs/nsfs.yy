@@ -1,7 +1,7 @@
 {
     "id": "0d280dcd-4202-4253-bc2c-2ea02bac4020",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "nsfs",
     "IncludedResources": [
         "Sprites\\spr_nsfs_demo_white32",
@@ -30,6 +30,7 @@
     "copyToTargets": 105554163798254,
     "date": "2019-32-01 08:01:57",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -872,9 +873,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "cc.yal.nsfs",
     "productID": "F79C97955FD1AF4686EB4EF4EF90F0DB",
     "sourcedir": "",
+    "supportedTargets": 105554163798254,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

@@ -1,14 +1,14 @@
-/// @description Quick NewWord
+/// @description quick zero
 // You can write your code in this editor
-
 if(keyboard_check(vk_control)){
-with(obj_panelPane){
-				showNav = not showNav;	
+	with(obj_panelPane){
+		showNav = not showNav;	
 				
-			}
-			obj_toolPane.showTool = !obj_toolPane.showTool;
+	}
+	obj_toolPane.showTool = !obj_toolPane.showTool;
+exit;
 }
-else{
+else if(!obj_control.dialogueBoxActive){
 	if(obj_control.hoverWordID != -1){
 		var fillWord = "";
 		if(obj_control.currentNewWordPre == 1){
@@ -28,5 +28,4 @@ else{
 		}
 	scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), fillWord);
 	}
-
 }
