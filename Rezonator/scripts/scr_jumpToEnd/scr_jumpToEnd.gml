@@ -1,5 +1,20 @@
+/*
+	scr_jumpToEnd(jumpToStart);
+	
+	Last Updated: 2019-12-27
+	
+	Called from: obj_control
+	
+	Purpose: Send the user to the last or first word of the currentCenterDisplayRow line (obsolete?)
+	
+	Mechanism: gather the wordIDList of the center line, and jump to the display column of the first/last word
+	
+	Author: ?
+*/
+
 var jumpToStart = argument0;
 
+// Find the currentCenterDisplayRow
 var rowInLineGrid = ds_grid_value_y(currentActiveLineGrid, obj_control.lineGrid_colDisplayRow, 0, obj_control.lineGrid_colDisplayRow, ds_grid_height(currentActiveLineGrid), obj_control.currentCenterDisplayRow);
 
 if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(currentActiveLineGrid)) {
@@ -10,7 +25,7 @@ var furthestDisplayCol = 0;
 	
 for (var currentRow = obj_control.drawRangeStart; currentRow < obj_control.drawRangeEnd; currentRow++) {
 	if (currentRow < 0 or currentRow >= ds_grid_height(obj_control.currentActiveLineGrid)) {
-		show_debug_message("OOB");
+		exit;
 	}
 	
 	var wordIDList = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colWordIDList, currentRow);
@@ -47,7 +62,6 @@ for (var currentRow = obj_control.drawRangeStart; currentRow < obj_control.drawR
 		}
 	}
 }
-
 
 
 

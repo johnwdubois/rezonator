@@ -1,7 +1,7 @@
 /*
 	scr_gridMultiColSortPart(grid, args[,], 0)
 	
-	Last Updated:
+	Last Updated: 2019-12-27
 	
 	Called from: scr_gridMultiColSort
 	

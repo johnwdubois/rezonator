@@ -1,3 +1,5 @@
+// Extract a single value from the specified string
+
 var fullString = argument0;
 var subString = argument1;
 var delimiter = argument2;

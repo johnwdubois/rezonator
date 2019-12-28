@@ -1,3 +1,5 @@
+// Store and return the strings of Grid Column names
+
 var grid = argument0;
 var col = argument1;
 

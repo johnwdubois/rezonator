@@ -1,3 +1,5 @@
+// Shorthand of set_region specifically for columns
+
 var grid = argument0;
 var col = argument1;
 var val = argument2;

@@ -1,3 +1,5 @@
+// Store and return the strings of Grid names
+
 var gridName = string(argument0);
 
 switch (argument0) {

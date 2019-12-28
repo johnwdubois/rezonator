@@ -1,3 +1,5 @@
+//Change the diplay text of each word to either their Token or their Transcript, based on the previous view
+
 wordTranscriptView = !wordTranscriptView;
 
 for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {

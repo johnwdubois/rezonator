@@ -1,4 +1,5 @@
-// swaps all the cells for 2 columns in a grid
+// Swaps all the cells for 2 columns in a grid
+
 var grid = argument0;
 var col1 = argument1;
 var col2 = argument2;

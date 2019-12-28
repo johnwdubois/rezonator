@@ -19,7 +19,6 @@ if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialog
 
 var wordID = argument0;
 var unitID = argument1;
-
 //show_message("okay");
 
 // jump audio position to unitStart time (if audioUI is visible)
@@ -29,7 +28,8 @@ if (instance_exists(obj_audioUI)) {
 	}
 }
 
-if(wordID < 0 or wordID > ds_grid_height(obj_control.dynamicWordGrid) - 1) {
+// Safety check, but allows for Chunks/newWords
+if(wordID < 0 or wordID > ds_grid_height(obj_control.dynamicWordGrid)) {
 	exit;	
 }
 

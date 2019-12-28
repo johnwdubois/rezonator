@@ -1,7 +1,7 @@
 /*
 	scr_gridMultiColSort(grid, col1, col2, col3, col4);
 	
-	Last Updated: 
+	Last Updated: 2019-12-27
 	
 	Called from: any instance
 	

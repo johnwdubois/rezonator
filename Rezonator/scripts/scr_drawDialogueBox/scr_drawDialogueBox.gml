@@ -1,10 +1,10 @@
 
 /*
-	scr_drawSearchBox();
+	scr_drawDialogueBox();
 	
 	Last Updated: 2019-06-25
 	
-	Called from: obj_control
+	Called from: obj_dialogueBox
 	
 	Purpose: draw custom search box for multiple options
 	

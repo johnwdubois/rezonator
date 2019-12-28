@@ -1,3 +1,5 @@
+// Check if the grid location contains a list data type
+
 var grid = argument0;
 var col = argument1;
 var row = argument2;

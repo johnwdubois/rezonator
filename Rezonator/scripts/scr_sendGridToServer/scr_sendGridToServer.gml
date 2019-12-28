@@ -1,3 +1,5 @@
+// Experimental function for sending a grid to an online server
+
 var grid = argument0;
 
 var rootList = ds_list_create();

@@ -1,3 +1,5 @@
+// Convert a string from a JSON into a List data type
+
 var str = argument0;
 var list = ds_list_create();
 

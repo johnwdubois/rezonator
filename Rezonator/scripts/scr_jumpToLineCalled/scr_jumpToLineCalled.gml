@@ -1,3 +1,17 @@
+/*
+	scr_jumpToLineCalled();
+	
+	Last Updated: 2019-12-27
+	
+	Called from: obj_control
+	
+	Purpose: Activate the jumpToLine dialog box
+	
+	Mechanism: open the keyboard string to user input and create ann instance of the dialog box
+	
+	Author: Brady Moore
+*/
+
 if (!obj_control.shortcutsEnabled || obj_control.dialogueBoxActive || obj_panelPane.discoSelectionActive) {
 	exit;
 }

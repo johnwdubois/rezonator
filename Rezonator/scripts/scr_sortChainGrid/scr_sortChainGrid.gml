@@ -1,3 +1,17 @@
+/*
+	scr_sortChainGrid(grid, sortCol, ascending);
+	
+	Last Updated: 2019-27-12
+	
+	Called from: obj_panelPane
+	
+	Purpose: Sort a specified column of a chain grid
+	
+	Mechanism: ???
+	
+	Author: Terry DuBois
+*/
+
 var grid = argument0;
 var sortCol = argument1;
 var ascending = argument2;

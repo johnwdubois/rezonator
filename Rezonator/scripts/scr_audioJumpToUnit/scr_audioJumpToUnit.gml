@@ -1,3 +1,5 @@
+// Set the position of the audio track based on the specified line's unit start time
+
 if (instance_exists(obj_audioUI)) {
 	if (obj_audioUI.audioJumpOnWordClick) {
 		

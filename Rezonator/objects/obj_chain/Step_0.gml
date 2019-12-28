@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-if(keyboard_check_pressed(ord("A")) and keyboard_check(vk_control) and not (!shortcutsEnabled || dialogueBoxActive || obj_panelPane.discoSelectionActive)) {
+if(keyboard_check_pressed(ord("A")) and keyboard_check(vk_control) and not (!obj_control.shortcutsEnabled || obj_control.dialogueBoxActive || obj_panelPane.discoSelectionActive)) {
 	showPlaceChains = !showPlaceChains;	
 }
 

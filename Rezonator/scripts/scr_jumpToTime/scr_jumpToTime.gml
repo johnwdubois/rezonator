@@ -1,3 +1,18 @@
+/*
+	scr_jumpToTime(timeStr);
+	
+	Last Updated: 2019-12-27
+	
+	Called from: obj_dialogueBox
+	
+	Purpose: Find and go to the line with the UnitStartTime closest to the user specified time
+	
+	Mechanism: Iterate through the Line grid column lineGrid_colUnitStart until landing on a relative match with the
+		specified time, then jump to that line using the JumpToLine mechanism
+	
+	Author: ?
+*/
+
 var timeStr = argument0;
 discoID = obj_panelPane.selectedDiscoID;
 
@@ -21,7 +36,8 @@ for(var i = startOfDisco ; i< ds_grid_height(obj_control.lineGrid); i++){
 	var currentTime = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, i);
 	
 	if(real(string_digits(currentTime)) >= real(string_digits(timeStr))){
-		foundRow = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, 0, obj_control.lineGrid_colUnitStart, ds_grid_height(obj_control.lineGrid) , currentTime );
+		//Is this search necessary? - Geo
+		foundRow = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, 0, obj_control.lineGrid_colUnitStart, ds_grid_height(obj_control.lineGrid) , currentTime);
 		i = ds_grid_height(obj_control.lineGrid);
 	}
 }
