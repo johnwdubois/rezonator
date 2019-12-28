@@ -518,7 +518,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 				// Word clicked with a Chain tool selected
-				if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+				if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and touchReleaseCheck and !instance_exists(obj_stackShow)) {// and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
 					}
