@@ -7,6 +7,10 @@ var participantCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colI
 var morphCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 1);
 
 
+
+var unitCounter = 0;
+
+
 // build morphGrid!
 for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
 	
@@ -14,13 +18,19 @@ for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
 	var currentMorphFullStr = string(ds_grid_get(global.importToolboxGrid, morphCol, i));
 	var currentMorphList = scr_splitStringToolbox(currentMorphFullStr);
 	
+	if (currentParticipant == 0) {
+		continue;
+	}
+	
+	unitCounter++;
+	
 	for (var j = 0; j < ds_list_size(currentMorphList); j++) {
 		
 		ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
 		
 		var currentMorph = ds_list_find_value(currentMorphList, j);
 		
-		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, i + 1);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
 		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colMorph, ds_grid_height(obj_control.morphGrid) - 1, currentMorph);
 		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colParticipant, ds_grid_height(obj_control.morphGrid) - 1, currentParticipant);
@@ -28,7 +38,7 @@ for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
 }
 
 
-
+scr_morphToUnitGrid();
 
 
 
