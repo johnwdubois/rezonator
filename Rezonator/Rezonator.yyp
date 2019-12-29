@@ -1575,6 +1575,14 @@
             }
         },
         {
+            "Key": "4dbab12f-e709-4c07-aaf2-46be91040bfb",
+            "Value": {
+                "id": "c7f06dae-5515-43c9-b163-1ff825ba34d6",
+                "resourcePath": "objects\\obj_morphMapping\\obj_morphMapping.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "4ed4d8a2-a546-442b-8a3f-b7d480cf3c94",
             "Value": {
                 "id": "9240819f-b4f3-45a1-9b6e-990ef6e12283",
@@ -3343,6 +3351,14 @@
             }
         },
         {
+            "Key": "a7759b32-647e-4dbd-8258-021b1b3bc4bb",
+            "Value": {
+                "id": "1a4b7858-ded7-4c34-9eaf-da83691a7937",
+                "resourcePath": "rooms\\rm_importScreen\\rm_importScreen.yy",
+                "resourceType": "GMRoom"
+            }
+        },
+        {
             "Key": "a8cbed46-84ef-46aa-809d-dbf107fb74c9",
             "Value": {
                 "id": "ad28447d-7bc2-41a2-a507-ae7c7fc545c9",
@@ -4951,6 +4967,14 @@
             }
         },
         {
+            "Key": "f4e0e05b-364c-4c33-8a41-986c726ecd55",
+            "Value": {
+                "id": "e437ef4c-225c-427c-b256-63a3e8b9a717",
+                "resourcePath": "scripts\\scr_importMapGridInit\\scr_importMapGridInit.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "f54a9c90-f1b2-479a-b633-7f089399b826",
             "Value": {
                 "id": "4220c528-d1a9-486a-a176-64c6b74b9401",
@@ -5147,6 +5171,7 @@
         "f3a11cd9-ffbd-4fd0-8e5f-b308fc0bde8b",
         "762ec5a5-92eb-41fe-8cb9-d38ffbde302f",
         "a2255ce4-9d60-40b0-b1b1-ccf37f459571",
+        "f4e0e05b-364c-4c33-8a41-986c726ecd55",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "fc1067ad-8999-4c32-b44e-52ec42f636c0",
         "01326701-b0a6-4057-8a77-21f137c710e7",

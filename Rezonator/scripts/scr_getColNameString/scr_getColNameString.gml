@@ -472,54 +472,6 @@ else if (grid == global.importToolboxGrid) {
 	
 	colName = global.importToolboxGridColName[col];
 	
-	/*
-	switch (col) {
-		case global.importToolboxGrid_colRef:
-			colName = "Ref";
-			break;
-		case global.importToolboxGrid_colELANBegin:
-			colName = "ELAN Begin";
-			break;
-		case global.importToolboxGrid_colELANEnd:
-			colName = "ELAN End";
-			break;
-		case global.importToolboxGrid_colELANParticipant:
-			colName = "ELAN Participant";
-			break;
-		case global.importToolboxGrid_colTx:
-			colName = "Tx";
-			break;
-		case global.importToolboxGrid_colGw:
-			colName = "Gw";
-			break;
-		case global.importToolboxGrid_colMph:
-			colName = "Mph";
-			break;
-		case global.importToolboxGrid_colMgl:
-			colName = "Mgl";
-			break;
-		case global.importToolboxGrid_colLg:
-			colName = "Lg";
-			break;
-		case global.importToolboxGrid_colId:
-			colName = "Id";
-			break;
-		case global.importToolboxGrid_colPs:
-			colName = "Ps";
-			break;
-		case global.importToolboxGrid_colEng:
-			colName = "Eng";
-			break;
-		case global.importToolboxGrid_colNep:
-			colName = "Nep";
-			break;
-		case global.importToolboxGrid_colDt:
-			colName = "Dt";
-			break;
-		default:
-			break;
-	}
-	*/
 }
 else if (grid == obj_control.morphemeGrid) {
 	switch (col) {
