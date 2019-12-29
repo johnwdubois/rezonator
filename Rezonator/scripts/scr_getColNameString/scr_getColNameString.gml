@@ -473,43 +473,28 @@ else if (grid == global.importToolboxGrid) {
 	colName = global.importToolboxGridColName[col];
 	
 }
-else if (grid == obj_control.morphemeGrid) {
+else if (grid == obj_control.morphGrid) {
 	switch (col) {
-		case obj_control.morphemeGrid_colUnitID:
+		case obj_control.morphGrid_colUnitID:
 			colName = "unitID";
 			break;
-		case obj_control.morphemeGrid_colParticipant:
-			colName = "participant";
-			break;
-		case obj_control.morphemeGrid_colUnitStart:
-			colName = "unitStart";
-			break;
-		case obj_control.morphemeGrid_colUnitEnd:
-			colName = "unitEnd";
-			break;
-		case obj_control.morphemeGrid_colWordID:
+		case obj_control.morphGrid_colWordID:
 			colName = "wordID";
 			break;
-		case obj_control.morphemeGrid_colMph:
-			colName = "mph";
+		case obj_control.morphGrid_colParticipant:
+			colName = "participant";
 			break;
-		case obj_control.morphemeGrid_colAffix:
+		case obj_control.morphGrid_colMorph:
+			colName = "morph";
+			break;
+		case obj_control.morphGrid_colAffix:
 			colName = "affix";
 			break;
-		case obj_control.morphemeGrid_colGw:
-			colName = "gw";
+		case obj_control.morphGrid_colUnitStart:
+			colName = "unitStart";
 			break;
-		case obj_control.morphemeGrid_colMgl:
-			colName = "mgl";
-			break;
-		case obj_control.morphemeGrid_colLg:
-			colName = "lg";
-			break;
-		case obj_control.morphemeGrid_colId:
-			colName = "id";
-			break;
-		case obj_control.morphemeGrid_colPs:
-			colName = "ps";
+		case obj_control.morphGrid_colUnitEnd:
+			colName = "unitEnd";
 			break;
 		default:
 			break;

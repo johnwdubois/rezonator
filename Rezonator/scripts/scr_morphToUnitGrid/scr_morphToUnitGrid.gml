@@ -3,9 +3,9 @@ var participantList = ds_list_create();
 
 
 
-for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
+for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
 	
-	var currentParticipant = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colParticipant, i);
+	var currentParticipant = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colParticipant, i);
 	var currentParticipantID = ds_list_find_index(participantList, currentParticipant);
 	if (currentParticipantID == -1) {
 		ds_list_add(participantList, currentParticipant)
@@ -22,22 +22,22 @@ for (var i = 0; i < ds_list_size(participantList); i++) {
 
 
 
-for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
-	var currentUnitID = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitID, i);
+for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
+	var currentUnitID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i);
 	var newUnit = false;
-	if (i == ds_grid_height(obj_control.morphemeGrid) - 1
-	or currentUnitID != ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitID, i + 1)) {
+	if (i == ds_grid_height(obj_control.morphGrid) - 1
+	or currentUnitID != ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i + 1)) {
 		newUnit = true;
 	}
-	var currentWordID = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colWordID, i);
+	var currentWordID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colWordID, i);
 	ds_list_add(currentWordIDList, currentWordID);
 	
-	var currentParticipant = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colParticipant, i);
+	var currentParticipant = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colParticipant, i);
 	var currentParticipantID = ds_list_find_index(participantList, currentParticipant);
 	var currentParticipantColor = ds_list_find_value(participantColorList, clamp(currentParticipantID, 0, ds_list_size(participantColorList) - 1));
 	
-	var currentUnitStart = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitStart, i);
-	var currentUnitEnd = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitEnd, i);
+	var currentUnitStart = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitStart, i);
+	var currentUnitEnd = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitEnd, i);
 	
 	if (newUnit) {
 		var currentWordIDListNewUnit = ds_list_create();
@@ -61,7 +61,7 @@ for (var i = 0; i < ds_grid_height(obj_control.morphemeGrid); i++) {
 		// add new rows to wordGrid and dynamicWordGrid
 		for (var j = 0; j < ds_list_size(currentWordIDListNewUnit); j++) {
 			var currentWordIDNewWord = ds_list_find_value(currentWordIDListNewUnit, j);
-			var currentMph = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid_colMph, currentWordIDNewWord - 1);
+			var currentMph = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colMph, currentWordIDNewWord - 1);
 			
 			ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 			var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;

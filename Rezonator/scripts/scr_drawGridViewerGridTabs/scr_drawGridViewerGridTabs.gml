@@ -110,8 +110,8 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case global.importToolboxGrid:
 			colName = "Toolbox"; // Import Toolbox Grid
 			break;
-		case obj_control.morphemeGrid:
-			colName = "Morpheme"; // Morpheme Grid
+		case obj_control.morphGrid:
+			colName = "Morph"; // Morph Grid
 			break;
 		default:
 			break;

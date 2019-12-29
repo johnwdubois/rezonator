@@ -224,19 +224,21 @@ emptyHitGrid = ds_grid_create(hitGridWidth, 0);
 
 
 
-// Instantiate the Morpheme Grid
-morphemeGridWidth = 5;
-morphemeGrid_colUnitID = 0;
-morphemeGrid_colWordID = 1;
-morphemeGrid_colParticipant = 2;
-morphemeGrid_colUnitStart = 3;
-morphemeGrid_colUnitEnd = 4;
-morphemeGridColMap = ds_map_create();
+// Instantiate the Morph Grid
+morphGridWidth = 7;
+morphGrid_colUnitID = 0;
+morphGrid_colWordID = 1;
+morphGrid_colParticipant = 2;
+morphGrid_colMorph = 3;
+morphGrid_colAffix = 4;
+morphGrid_colUnitStart = 5;
+morphGrid_colUnitEnd = 6;
+morphGridColMap = ds_map_create();
 
 
 
 
-morphemeGrid = ds_grid_create(morphemeGridWidth, 0);
+morphGrid = ds_grid_create(morphGridWidth, 0);
 with (obj_alarm) {
 	alarm[5] = 1;
 }

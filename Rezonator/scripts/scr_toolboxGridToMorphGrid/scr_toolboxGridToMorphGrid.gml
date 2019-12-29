@@ -2,8 +2,37 @@ if (ds_grid_height(global.importToolboxGrid) < 1) {
 	exit;
 }
 
-/*
+// get importGrid columns
+var participantCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 0);
+var morphCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 1);
 
+
+// build morphGrid!
+for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
+	
+	var currentParticipant = string(ds_grid_get(global.importToolboxGrid, participantCol, i));
+	var currentMorphFullStr = string(ds_grid_get(global.importToolboxGrid, morphCol, i));
+	var currentMorphList = scr_splitStringToolbox(currentMorphFullStr);
+	
+	for (var j = 0; j < ds_list_size(currentMorphList); j++) {
+		
+		ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
+		
+		var currentMorph = ds_list_find_value(currentMorphList, j);
+		
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, i + 1);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colMorph, ds_grid_height(obj_control.morphGrid) - 1, currentMorph);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colParticipant, ds_grid_height(obj_control.morphGrid) - 1, currentParticipant);
+	}
+}
+
+
+
+
+
+
+/*
 
 // check to make sure we at least have a "gw" column and a "mph" column
 var gwCol = -1;
@@ -111,33 +140,33 @@ for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
 			affix = -1;
 		}
 		
-		ds_grid_resize(obj_control.morphemeGrid, obj_control.morphemeGridWidth, ds_grid_height(obj_control.morphemeGrid) + 1);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitID, ds_grid_height(obj_control.morphemeGrid) - 1, i + 1);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colWordID, ds_grid_height(obj_control.morphemeGrid) - 1, ds_grid_height(obj_control.morphemeGrid));
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colMph, ds_grid_height(obj_control.morphemeGrid) - 1, currentMph);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colAffix, ds_grid_height(obj_control.morphemeGrid) - 1, affix);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colParticipant, ds_grid_height(obj_control.morphemeGrid) - 1, participantName);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitStart, ds_grid_height(obj_control.morphemeGrid) - 1, currentUnitStart);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colUnitEnd, ds_grid_height(obj_control.morphemeGrid) - 1, currentUnitEnd);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colMgl, ds_grid_height(obj_control.morphemeGrid) - 1, currentMgl);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colLg, ds_grid_height(obj_control.morphemeGrid) - 1, currentLg);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colId, ds_grid_height(obj_control.morphemeGrid) - 1, currentId);
-		ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colPs, ds_grid_height(obj_control.morphemeGrid) - 1, currentPs);
+		ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, i + 1);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colMph, ds_grid_height(obj_control.morphGrid) - 1, currentMph);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colAffix, ds_grid_height(obj_control.morphGrid) - 1, affix);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colParticipant, ds_grid_height(obj_control.morphGrid) - 1, participantName);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitStart, ds_grid_height(obj_control.morphGrid) - 1, currentUnitStart);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitEnd, ds_grid_height(obj_control.morphGrid) - 1, currentUnitEnd);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colMgl, ds_grid_height(obj_control.morphGrid) - 1, currentMgl);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colLg, ds_grid_height(obj_control.morphGrid) - 1, currentLg);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colId, ds_grid_height(obj_control.morphGrid) - 1, currentId);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colPs, ds_grid_height(obj_control.morphGrid) - 1, currentPs);
 	}
 	
 	var currentGwIndex = 0;
 	for (var j = 0; j < ds_list_size(currentMphList); j++) {
 		
-		var currentRow = ds_grid_height(obj_control.morphemeGrid) - ds_list_size(currentMphList) + j;
+		var currentRow = ds_grid_height(obj_control.morphGrid) - ds_list_size(currentMphList) + j;
 		var currentGw = ds_list_find_value(currentGwList, currentGwIndex);
 		
-		var currentAffix = ds_grid_get(obj_control.morphemeGrid, obj_control.morphemeGrid, currentRow);
+		var currentAffix = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid, currentRow);
 		if (currentAffix < 0) {
-			ds_grid_set(obj_control.morphemeGrid, obj_control.morphemeGrid_colGw, currentRow, currentGw);
+			ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colGw, currentRow, currentGw);
 			currentGw++;
 		}
 		
 	}
 }
 
-scr_morphemeToUnitGrid();
+scr_morphToUnitGrid();

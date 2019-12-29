@@ -1,8 +1,8 @@
 {
-    "id": "a2255ce4-9d60-40b0-b1b1-ccf37f459571",
+    "id": "762ec5a5-92eb-41fe-8cb9-d38ffbde302f",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_morphemeToUnitGrid",
+    "name": "scr_toolboxGridToMorphGrid",
     "IsCompatibility": false,
     "IsDnD": false
 }

@@ -2274,7 +2274,7 @@
             "Key": "762ec5a5-92eb-41fe-8cb9-d38ffbde302f",
             "Value": {
                 "id": "c1dee088-a1a3-4d67-acff-35e5d2383446",
-                "resourcePath": "scripts\/scr_toolboxGridToMorphemeGrid\/scr_toolboxGridToMorphemeGrid.yy",
+                "resourcePath": "scripts\\scr_toolboxGridToMorphGrid\\scr_toolboxGridToMorphGrid.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3234,7 +3234,7 @@
             "Key": "a2255ce4-9d60-40b0-b1b1-ccf37f459571",
             "Value": {
                 "id": "caaa3d20-fd4f-4fc1-9e2c-145cb2e0de0b",
-                "resourcePath": "scripts\\scr_morphemeToUnitGrid\\scr_morphemeToUnitGrid.yy",
+                "resourcePath": "scripts\\scr_morphToUnitGrid\\scr_morphToUnitGrid.yy",
                 "resourceType": "GMScript"
             }
         },

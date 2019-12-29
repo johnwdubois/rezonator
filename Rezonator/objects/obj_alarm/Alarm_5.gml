@@ -1,1 +1,1 @@
-scr_toolboxGridToMorphemeGrid();
+scr_toolboxGridToMorphGrid();
