@@ -4007,6 +4007,14 @@
             }
         },
         {
+            "Key": "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
+            "Value": {
+                "id": "044f898a-c8d3-49ee-9ee8-3836db951399",
+                "resourcePath": "scripts\\scr_panelPane_drawLineTranslationLoopClipped\\scr_panelPane_drawLineTranslationLoopClipped.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ca9e82d6-e6eb-425a-aaa6-b390f9571ec6",
             "Value": {
                 "id": "14a018d7-7ba8-4857-a514-1c4cee078707",
@@ -5343,6 +5351,7 @@
         "da94df93-7dd0-4772-a9d1-9ae81d929e6c",
         "ac8f0209-4437-4401-9bbb-0c3732f7eb14",
         "23331ffd-1c86-4e24-927e-779acea65b2b",
+        "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
         "760937d6-16c6-42b7-bd58-6f67433e06d2",
         "f5a9dbba-b4e5-4d5a-bd18-069a0ccd2959",
         "0b5b25c9-d9ab-47a7-8e3c-9b08ba5db283",

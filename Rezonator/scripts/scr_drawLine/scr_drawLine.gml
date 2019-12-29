@@ -13,7 +13,6 @@
 */
 
 
-
 if (gridView || ds_grid_height(dynamicWordGrid) < 1) {
 	exit;
 }

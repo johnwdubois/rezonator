@@ -1,3 +1,17 @@
+/*
+	scr_setSpeakerLabelColWidth();
+	
+	Last Updated: 2019-12-27
+	
+	Called from: obj_control
+	
+	Purpose: Adapt the Speaker Label width based on the font size of the Speaker Name
+	
+	Mechanism: Based off of a sample text, dynamically change the width of the each Speaker Label
+	
+	Author: Terry DuBois
+*/
+
 if (object_index != obj_control) {
 	exit;
 }

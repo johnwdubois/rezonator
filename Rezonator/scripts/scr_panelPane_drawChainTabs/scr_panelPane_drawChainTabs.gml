@@ -198,6 +198,25 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			var ascendYScale = (functionChainList_sortAsc[i]) ? 1 : -1;
 			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
 		}
+		else if (obj_control.showDevVars){
+			if (functionChainList_currentTab == functionChainList_tabLine) {
+				// Button to switch between translation or not
+				var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
+				var translateRectX1 = tabRectX2 - buttonRectSize - 4;
+				var translateRectY1 = tabRectY1 + 4;
+				var translateRectX2 = translateRectX1 + buttonRectSize;
+				var translateRectY2 = translateRectY1 + buttonRectSize;
+				draw_set_color(global.colorThemeText);
+				if (point_in_rectangle(mouse_x, mouse_y, translateRectX1, translateRectY1, translateRectX2, translateRectY2)) {
+					//draw_set_color(global.colorThemeBorders);
+					draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, false);
+					if (mouse_check_button_released(mb_left)) {
+						obj_control.showTranslation = !obj_control.showTranslation;
+					}
+				}
+				draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, true);
+			}	
+		}
 	}
 	
 	

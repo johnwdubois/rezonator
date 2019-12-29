@@ -1,19 +1,16 @@
 /*
-	scr_panelPane_drawchainContentsLoop();
+	scr_panelPane_drawLineContentsLoop();
 	
-	Last Updated: 2018-07-12
+	Last Updated: 2019-012-28
 	
 	Called from: obj_panelPane
 	
-	Purpose: whatever chain is focused on in the chainList panelPane, draw information on the individual contents of that chain
+	Purpose: whatever Line is focused on in the lineList panelPane, draw information on the individual words of that Line
 	
-	Mechanism: loop through the IDList of the focused chain and gather information from corresponding grids
+	Mechanism: loop through the IDList of the focused Line and gather information from corresponding grids
 	
 	Author: Terry DuBois, Georgio Klironomos
 */
-
-
-
 
 
 // Set opacity, alignment, and font of contents list
@@ -305,4 +302,6 @@ if (clickedIn) {
 		scrollPlusYDest -= (windowHeight);
 	}
 }
+
+
 

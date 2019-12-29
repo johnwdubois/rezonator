@@ -24,6 +24,8 @@ with (obj_panelPane) {
 		filterPaneWidth = windowWidth;
 	}
 }
+
+//Set this pane to the right of the chainListPane
 x = filterPaneWidth + chainListPaneWidth;
 
 
@@ -75,7 +77,14 @@ switch (functionChainList_currentTab) {
 		break;
 	case functionChainList_tabLine:
 		grid = -1;
-		scr_panelPane_drawLineContentsLoopClipped();
+		if (obj_control.showTranslation) {
+			scr_panelPane_drawLineTranslationLoopClipped();
+		}
+		else {
+			scr_panelPane_drawLineContentsLoopClipped();
+		}
+		
+		//scr_panelPane_drawLineTranslationLoopClipped();
 		break;
 	default:
 		grid = obj_chain.rezChainGrid;
@@ -489,5 +498,6 @@ if (grid != -1) {
 		}
 	}
 }
+
 
 scr_surfaceEnd();

@@ -1,3 +1,18 @@
+/*
+	scr_currentCenterLine();
+	
+	Last Updated: 2019-12-27
+	
+	Called from: obj_control
+	
+	Purpose: Return the Line in the Discourse estimated to be in the middle of the screen
+	
+	Mechanism: Get the midline of the current screen, then loop through the Lines within 
+	the drawRange to find the Line with the closest Y position to the midline
+	
+	Author: Terry DuBois, Georgio Klironomos
+*/
+
 var navWindowHeight = (obj_panelPane.showNav) ? inst_PanelPane_chainContents.windowHeight : 0;	
 var lineGridOffset = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, 0) - 1;
 var negativeOffset = false;
