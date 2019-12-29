@@ -225,7 +225,7 @@ emptyHitGrid = ds_grid_create(hitGridWidth, 0);
 
 
 // Instantiate the Morph Grid
-morphGridWidth = 7;
+morphGridWidth = 8;
 morphGrid_colUnitID = 0;
 morphGrid_colWordID = 1;
 morphGrid_colParticipant = 2;
@@ -233,6 +233,7 @@ morphGrid_colMorph = 3;
 morphGrid_colAffix = 4;
 morphGrid_colUnitStart = 5;
 morphGrid_colUnitEnd = 6;
+morphGrid_colGloss = 7;
 morphGridColMap = ds_map_create();
 
 

@@ -8,6 +8,9 @@ global.importMapGrid_colRequired = 3;
 global.importMapRezDataList = ds_list_create();
 ds_list_add(global.importMapRezDataList, "ParticipantName");
 ds_list_add(global.importMapRezDataList, "Morph");
+ds_list_add(global.importMapRezDataList, "StartTime");
+ds_list_add(global.importMapRezDataList, "EndTime");
+ds_list_add(global.importMapRezDataList, "Gloss");
 
 global.importMapGrid = ds_grid_create(global.importMapGridWidth, ds_grid_width(global.importToolboxGrid));
 

@@ -496,6 +496,9 @@ else if (grid == obj_control.morphGrid) {
 		case obj_control.morphGrid_colUnitEnd:
 			colName = "unitEnd";
 			break;
+		case obj_control.morphGrid_colGloss:
+			colName = "gloss";
+			break;
 		default:
 			break;
 	}

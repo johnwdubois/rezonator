@@ -4,6 +4,13 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift)
 and keyboard_check_pressed(ord("Q"))) {
 	room_goto(rm_openingScreen);
 }
+if (keyboard_check(vk_alt) and keyboard_check(vk_shift)
+and keyboard_check_pressed(ord("D"))) {
+	showDevVars = !showDevVars;
+}
+
+
+
 
 draw_set_color(global.colorThemeText);
 draw_set_alpha(1);
@@ -19,8 +26,7 @@ draw_set_halign(fa_left);
 
 
 
-var pickwhipColorNormal = c_blue;
-var pickwhipColorRequired = c_red;
+
 
 var cellRectBuffer = 5;
 
@@ -31,6 +37,8 @@ draw_set_font(fnt_main);
 draw_set_valign(fa_middle);
 for (var i = 0; i < ds_grid_width(global.importMapGrid); i++) {
 	for (var j = 0; j < ds_grid_height(global.importMapGrid); j++) {
+		
+		draw_set_alpha((i == global.importMapGrid_colRezData or i == global.importMapGrid_colSourceData or showDevVars) ? 1 : 0);
 		
 		draw_set_halign(fa_left);
 		
@@ -67,13 +75,15 @@ for (var i = 0; i < ds_grid_width(global.importMapGrid); i++) {
 		}
 		
 		if (i == global.importMapGrid_colRezData and pickwhippedRow == j) {
-			draw_set_color(pickwhipColorNormal);
+			
+			draw_set_color((ds_grid_get(global.importMapGrid, global.importMapGrid_colRequired, j)) ? pickwhipColorRequired : pickwhipColorNormal);
 			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, true);
 			draw_line_width(cellRectX2, mean(cellRectY1, cellRectY2), mouse_x, mouse_y, 2);	
 		}
 		
 		if (i == global.importMapGrid_colRezData and currentImportGridCol >= 0) {
-			draw_set_color(pickwhipColorNormal);
+			
+			draw_set_color((ds_grid_get(global.importMapGrid, global.importMapGrid_colRequired, j)) ? pickwhipColorRequired : pickwhipColorNormal);
 			draw_rectangle(cellRectX1, cellRectY1, cellRectX2, cellRectY2, true);
 			
 			var otherCell = ds_grid_get(global.importMapGrid, global.importMapGrid_colSourceData, currentImportGridCol);
@@ -123,12 +133,18 @@ if (requiredColsFinished) {
 		}
 	}
 	draw_set_color(global.colorThemeBorders);
+	draw_set_alpha(1);
 	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
 
 	draw_set_font(fnt_main);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
 	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+	
+	pickwhipColorRequired = c_green;
+}
+else {
+	pickwhipColorRequired = c_red;
 }
 
 
@@ -141,6 +157,9 @@ if (keyboard_check_pressed(vk_escape)) {
 
 
 // debug
-draw_set_font(fnt_debug);
-draw_set_color(global.colorThemeText);
-draw_text(10, 10, "pickwhippedRow: " + string(pickwhippedRow));
+if (showDevVars) {
+	draw_set_alpha(1);
+	draw_set_font(fnt_debug);
+	draw_set_color(global.colorThemeText);
+	draw_text(10, 10, "pickwhippedRow: " + string(pickwhippedRow));
+}
