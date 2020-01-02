@@ -13,6 +13,8 @@
 */
 
 
+// Access the lineList panelPane object to get it's scrollPlusY
+var lineListPanelPaneInst = inst_PanelPane_chainList;
 
 
 draw_set_font(global.fontChainList);
@@ -41,8 +43,8 @@ draw_set_color(global.colorThemeText);
 
 for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	
-	if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
-	or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+	if (y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY < y - strHeight
+	or y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 		textPlusY += strHeight;
 		continue;
 	}
@@ -63,17 +65,22 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 		discoColor = obj_control.c_ltblue;
 	}
 
-	var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
 	var currentLineWordString = "";
-	for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {
-		var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
-		var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
-		currentLineWordString += currentWordToken + " ";
+	if(ds_grid_height(global.importToolboxGrid) > 0) {
+		currentLineWordString = ds_grid_get(global.importToolboxGrid, 12, i + 1);
+	}
+	else {
+		var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
+		for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {
+			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
+			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
+			currentLineWordString += currentWordTranscript + " ";
+		}
 	}
 	
 	// Get dimensions of rectangle around line name
 	var lineNameRectX1 = x;
-	var lineNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
+	var lineNameRectY1 = y + textMarginTop + textPlusY + inst_PanelPane_chainList.scrollPlusY - (strHeight / 2);
 	var lineNameRectX2 = x + windowWidth;
 	var lineNameRectY2 = lineNameRectY1 + strHeight;
 	
@@ -105,7 +112,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	if (currentLineState == 1) {
 		focusedLineNameRectY1 = lineNameRectY1;
 		focusedLineNameRectY2 = lineNameRectY2;
-		focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
+		focusedElementY = y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY;
 		draw_set_font(global.fontChainListFocused);
 	}
 	else {
@@ -113,25 +120,25 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	}
 	
 	// Draw text of chain names
-	/*draw_set_color(global.colorThemeText);
+	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
+	draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
 	
 	//Color codes the line lists for User
 	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	//draw_set_color(lineColor);
 	draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	draw_set_color(global.colorThemeText);
-	draw_text(x + (textMarginLeft) - clipX + 10, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
-	*/
+	draw_text(x + (textMarginLeft) - clipX + 10, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, lineSpeaker);
+	
 	//draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	draw_set_color(global.colorThemeBG);
-	draw_rectangle(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+	draw_rectangle(windowWidth/3 - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	draw_set_color(global.colorThemeBG);
-	draw_line_width(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
+	draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 	draw_set_color(global.colorThemeText);
-	draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + scrollPlusY + textPlusY - clipY, currentLineWordString);
+	draw_text(windowWidth/3, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, currentLineWordString);
 	
 	
 	
@@ -162,11 +169,11 @@ if (clickedIn) {
 			
 		//	ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 			if (focusedElementY <= y + textMarginTop + strHeight) {
-				scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+				inst_PanelPane_chainList.scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
 			}
 		}
 		else {
-			scrollPlusYDest += 4;
+			inst_PanelPane_chainList.scrollPlusYDest += 4;
 		}
 	}
 		
@@ -184,28 +191,28 @@ if (clickedIn) {
 			
 			//ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 			if (focusedElementY >= y + windowHeight - strHeight) {
-				scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+				inst_PanelPane_chainList.scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
 			}
 		}
 		else {
-			scrollPlusYDest -= 4;
+			inst_PanelPane_chainList.scrollPlusYDest -= 4;
 		}
 	}
 	
 	// CTRL+UP and CTRL+DOWN
 	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-		scrollPlusYDest = 100;
+		inst_PanelPane_chainList.scrollPlusYDest = 100;
 	}
 	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-		scrollPlusYDest = -999999999999;
+		inst_PanelPane_chainList.scrollPlusYDest = -999999999999;
 	}
 	
 	// PAGEUP and PAGEDOWN
 	if (keyboard_check_pressed(vk_pageup)) {
-		scrollPlusYDest += (windowHeight);
+		inst_PanelPane_chainList.scrollPlusYDest += (windowHeight);
 	}
 	if (keyboard_check_pressed(vk_pagedown)) {
-		scrollPlusYDest -= (windowHeight);
+		inst_PanelPane_chainList.scrollPlusYDest -= (windowHeight);
 	}
 }
 
@@ -219,13 +226,7 @@ if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
 
 
 
-scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
+/*scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);*/
 
-
-
-
-
-
-//scr_surfaceEnd();

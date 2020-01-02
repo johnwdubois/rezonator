@@ -1,5 +1,5 @@
-
 // returns a list of the column names (as strings) for a specified grid
+
 var grid = argument0;
 var listOfGridCols = ds_list_create();
 

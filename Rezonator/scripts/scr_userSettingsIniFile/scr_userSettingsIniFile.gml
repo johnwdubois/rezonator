@@ -1,3 +1,5 @@
+// Create and write to a file containing user settings, attached to the username
+
 if (directory_exists(global.rezonatorDirString)) {
 	var filename = global.rezonatorDirString + "\\~usersettings.ini";
 	userSettingsIniFile = file_text_open_write(filename);

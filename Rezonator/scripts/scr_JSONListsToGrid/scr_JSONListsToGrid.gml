@@ -1,3 +1,5 @@
+// Convert JSON strings to grid data in lists
+
 var tempGrid = argument0;
 var gridLists = argument1;
 var map = argument2;

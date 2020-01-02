@@ -1,3 +1,17 @@
+/*
+	scr_saveRez(autosave);
+	
+	Last Updated: 2020-01-01
+	
+	Called from: obj_fileLoader
+	
+	Purpose: Save all user created data into a special type of JSON file, a Rez file
+	
+	Mechanism: Organize the data into maps, then transfer those maps as JSON strings into the user specified file location
+	
+	Author: Terry DuBois
+*/
+
 var autosave = argument0;
 
 /*if (global.games) {

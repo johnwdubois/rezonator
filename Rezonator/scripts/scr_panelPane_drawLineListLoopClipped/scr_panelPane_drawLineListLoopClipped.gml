@@ -27,6 +27,7 @@ var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 var textMarginTop = functionChainList_tabHeight;
 var textPlusY = 0;
 var chainNameRectMinusY = 4;
+var textAdjustY = 0;
 
 var focusedElementY = -1;
 var focusedLineNameRectY1 = -1;
@@ -72,6 +73,11 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 		currentLineWordString += currentWordToken + " ";
 	}
 	
+	if(string_height(currentLineWordString) > 20) {
+		//strHeight = 20;
+		textAdjustY = string_height(currentLineWordString) - 20;
+	}
+	
 	// Get dimensions of rectangle around line name
 	var lineNameRectX1 = x;
 	var lineNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
@@ -108,6 +114,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 		focusedLineNameRectY2 = lineNameRectY2;
 		focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
 		draw_set_font(global.fontChainListFocused);
+		//draw_set_font(global.fontMain);
 	}
 	else {
 		draw_set_font(global.fontMain);
@@ -132,7 +139,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	draw_set_color(global.colorThemeBG);
 	draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 	draw_set_color(global.colorThemeText);
-	draw_text(windowWidth/3, y + textMarginTop + scrollPlusY + textPlusY - clipY, currentLineWordString);
+	draw_text(windowWidth/3, y + textMarginTop + scrollPlusY + textPlusY - clipY + textAdjustY/2, currentLineWordString);
 	
 	
 	

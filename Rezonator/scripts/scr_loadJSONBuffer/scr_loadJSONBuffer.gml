@@ -1,4 +1,5 @@
 //Credit goes to Juju Adams
+// Extract the JSON string from the buffer
 
 var fileName = argument0;
 

@@ -1,3 +1,6 @@
+// Copy word data from the wordGrid to the dynamicWordGrid ("vizWordGrid"), line by line
+
+
 var rowInWordGrid = argument0;
 
 ds_grid_resize(obj_control.dynamicWordGrid, obj_control.dynamicWordGridWidth, ds_grid_height(obj_control.dynamicWordGrid) + 1);

@@ -1,4 +1,5 @@
 //Credit goes to Juju Adams
+// Specify the name and location of the saved file
 
 var fileNameWD = argument0;
 var fileNameUser = argument1;

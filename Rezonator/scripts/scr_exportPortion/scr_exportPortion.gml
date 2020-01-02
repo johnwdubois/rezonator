@@ -1,3 +1,5 @@
+// Save a Rez file containing a user specified collection of lines
+
 var fullstring = argument0;
 
 // Safety check, make sure something was inputted

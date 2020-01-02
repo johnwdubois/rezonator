@@ -1,3 +1,5 @@
+// Draw to the screen a loading progress bar for the user
+
 if (ds_grid_height(obj_control.unitGrid) < global.totalUnitAmount) {
 	var progressBarValue = (ds_grid_height(obj_control.unitGrid) / global.totalUnitAmount) * 100;
 

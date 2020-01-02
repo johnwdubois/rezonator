@@ -1,3 +1,5 @@
+// Begin the import process of a single user specified CSV file
+
 var filename = argument0;
 
 global.importCSVGrid = load_csv(filename);
