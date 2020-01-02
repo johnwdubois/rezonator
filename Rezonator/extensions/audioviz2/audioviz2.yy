@@ -1,7 +1,7 @@
 {
     "id": "6b96859d-3823-476b-8983-1f6d20c1dd2d",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "audioviz2",
     "IncludedResources": [
         
@@ -20,6 +20,7 @@
     "copyToTargets": 64,
     "date": "2019-05-20 08:04:14",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -282,9 +283,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "",
     "sourcedir": "",
+    "supportedTargets": 64,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

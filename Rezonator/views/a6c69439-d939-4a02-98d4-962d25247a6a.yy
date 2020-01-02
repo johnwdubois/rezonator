@@ -10,7 +10,8 @@
         "fa6c61d8-9bf4-4cdd-a9d8-7dc661aa82bf",
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",
         "a0eb63cb-ff4b-4a7c-99d9-7237af062ce3",
-        "10e45e9e-c2ac-4f14-83ca-5f75f53611af"
+        "10e45e9e-c2ac-4f14-83ca-5f75f53611af",
+        "202ae9d9-c7af-466b-9fb5-8458e10001d5"
     ],
     "filterType": "GMScript",
     "folderName": "openingScreen",

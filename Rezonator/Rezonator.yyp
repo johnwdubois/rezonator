@@ -799,6 +799,14 @@
             }
         },
         {
+            "Key": "202ae9d9-c7af-466b-9fb5-8458e10001d5",
+            "Value": {
+                "id": "a0d72792-0ef0-4233-8ffd-324de519e14b",
+                "resourcePath": "scripts\\scr_importFileMapping\\scr_importFileMapping.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2032f3f6-fdbf-4c63-8f21-cc348313fe4b",
             "Value": {
                 "id": "2fdc05d2-9921-43fe-8c77-33c9a6c29a67",
@@ -5254,6 +5262,7 @@
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",
         "a0eb63cb-ff4b-4a7c-99d9-7237af062ce3",
         "10e45e9e-c2ac-4f14-83ca-5f75f53611af",
+        "202ae9d9-c7af-466b-9fb5-8458e10001d5",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
         "bc2f5ec3-50e1-4cc0-8fb7-e25c9ba4ad32",
@@ -5351,11 +5360,11 @@
         "da94df93-7dd0-4772-a9d1-9ae81d929e6c",
         "ac8f0209-4437-4401-9bbb-0c3732f7eb14",
         "23331ffd-1c86-4e24-927e-779acea65b2b",
-        "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
         "760937d6-16c6-42b7-bd58-6f67433e06d2",
         "f5a9dbba-b4e5-4d5a-bd18-069a0ccd2959",
         "0b5b25c9-d9ab-47a7-8e3c-9b08ba5db283",
-        "7bf96896-31d5-4157-8f09-1b534bc78c46"
+        "7bf96896-31d5-4157-8f09-1b534bc78c46",
+        "c97a6f64-a6e6-4898-acc6-7cb40783b1f2"
     ],
     "tutorial": ""
 }
