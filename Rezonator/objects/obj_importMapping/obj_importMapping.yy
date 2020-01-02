@@ -2,7 +2,7 @@
     "id": "4dbab12f-e709-4c07-aaf2-46be91040bfb",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "obj_morphMapping",
+    "name": "obj_importMapping",
     "eventList": [
         {
             "id": "e9b98200-c558-431b-a2b3-736b01bf9704",

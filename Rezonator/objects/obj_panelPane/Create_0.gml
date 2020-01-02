@@ -17,7 +17,6 @@ clipWidth = 100;
 clipHeight = 100;
 clipX = 0;
 clipY = 0;
-scrollPlusY = 0;
 windowResizeXHolding = false;
 windowResizeYHolding = false;
 canResizeWindowX = true;

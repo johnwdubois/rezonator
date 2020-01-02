@@ -10,7 +10,90 @@ and keyboard_check_pressed(ord("D"))) {
 	showDevVars = !showDevVars;
 }
 
-scr_importFileMapping();
+var camWidth = camera_get_view_width(view_camera[0]);
+var camHeight = camera_get_view_height(view_camera[0]);
+
+
+// Import Screen Title
+draw_set_color(global.colorThemeText);
+draw_set_font(fnt_mainBold);
+draw_set_alpha(1);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_text(20, 20, "Import File Mapping");
+
+
+
+// File window
+var fileInfoWindowRectX1 = 40;
+var fileInfoWindowRectY1 = 80 + string_height("0");
+var fileInfoWindowRectX2 = (camWidth / 3) - 20;
+var fileInfoWindowRectY2 = (camHeight / 2) - 180;
+
+draw_set_color(global.colorThemeBorders);
+draw_set_alpha(1);
+draw_rectangle(fileInfoWindowRectX1, fileInfoWindowRectY1, fileInfoWindowRectX2, fileInfoWindowRectY2, true);
+draw_set_color(global.colorThemeText);
+draw_set_font(fnt_mainBold);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), "File");
+
+
+
+// Summary window
+var summaryInfoWindowRectX1 = (camWidth / 3) + 20;
+var summaryInfoWindowRectY1 = 80 + string_height("0");
+var summaryInfoWindowRectX2 = camWidth - 40;
+var summaryInfoWindowRectY2 = (camHeight / 2) - 180;
+
+draw_set_color(global.colorThemeBorders);
+draw_set_alpha(1);
+draw_rectangle(summaryInfoWindowRectX1, summaryInfoWindowRectY1, summaryInfoWindowRectX2, summaryInfoWindowRectY2, true);
+draw_set_color(global.colorThemeText);
+draw_set_font(fnt_mainBold);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), "Summary");
+
+
+
+
+
+
+continueButtonActive = (ds_grid_get(rezInfoGrid, rezInfoGrid_colAssignedTag, 4) != 0);
+
+
+// Continue button
+if (continueButtonActive) {
+	var continueButtonWidth = 150;
+	var continueButtonHeight = 40;
+	var continueButtonRectX1 = (camWidth / 2) - (continueButtonWidth / 2);
+	var continueButtonRectY1 = (camHeight - continueButtonHeight - 20) - (continueButtonHeight / 2);
+	var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
+	var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
+	if (point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2)) {
+		draw_set_color(global.colorThemeSelected1);
+		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
+	
+		if (mouse_check_button_pressed(mb_left)) {
+			room_goto(rm_mainScreen);
+		}
+	}
+	draw_set_color(global.colorThemeBorders);
+	draw_set_alpha(1);
+	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
+
+	draw_set_font(fnt_main);
+	draw_set_halign(fa_center);
+	draw_set_color(global.colorThemeText);
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+}
+
+
+
+
+
 
 
 /*

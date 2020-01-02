@@ -802,7 +802,7 @@
             "Key": "202ae9d9-c7af-466b-9fb5-8458e10001d5",
             "Value": {
                 "id": "a0d72792-0ef0-4233-8ffd-324de519e14b",
-                "resourcePath": "scripts\\scr_importFileMapping\\scr_importFileMapping.yy",
+                "resourcePath": "scripts\\scr_importMappingRezInfo\\scr_importMappingRezInfo.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -1586,7 +1586,7 @@
             "Key": "4dbab12f-e709-4c07-aaf2-46be91040bfb",
             "Value": {
                 "id": "c7f06dae-5515-43c9-b163-1ff825ba34d6",
-                "resourcePath": "objects\\obj_morphMapping\\obj_morphMapping.yy",
+                "resourcePath": "objects\\obj_importMapping\\obj_importMapping.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -4023,6 +4023,14 @@
             }
         },
         {
+            "Key": "ca3011c1-46b1-4dca-9e69-3fda325bd606",
+            "Value": {
+                "id": "c24fd078-a5df-4cd6-93ec-769e6659df3c",
+                "resourcePath": "objects\\obj_importMappingTagInfo\\obj_importMappingTagInfo.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "ca9e82d6-e6eb-425a-aaa6-b390f9571ec6",
             "Value": {
                 "id": "14a018d7-7ba8-4857-a514-1c4cee078707",
@@ -4231,6 +4239,14 @@
             }
         },
         {
+            "Key": "d4bcb05a-6ed5-4b81-9566-f6796a875315",
+            "Value": {
+                "id": "653a01bc-14ab-43f5-88ec-6f01566a6cbe",
+                "resourcePath": "scripts\\scr_importMappingTagInfo\\scr_importMappingTagInfo.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d4bd7df2-6251-4cbb-9d38-00bc2065c566",
             "Value": {
                 "id": "5de8b89b-42e7-492e-afdb-e4fd472da956",
@@ -4252,6 +4268,14 @@
                 "id": "93d36138-8edb-495f-b35a-955bb7e0dcff",
                 "resourcePath": "fonts\\fnt_gridViewLarge2\\fnt_gridViewLarge2.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "d76d66eb-e980-4786-8c61-bde4c3006d03",
+            "Value": {
+                "id": "dbff20db-4370-4b7b-8a0f-aa1d01e86026",
+                "resourcePath": "objects\\obj_importMappingRezInfo\\obj_importMappingRezInfo.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -5263,6 +5287,7 @@
         "a0eb63cb-ff4b-4a7c-99d9-7237af062ce3",
         "10e45e9e-c2ac-4f14-83ca-5f75f53611af",
         "202ae9d9-c7af-466b-9fb5-8458e10001d5",
+        "d4bcb05a-6ed5-4b81-9566-f6796a875315",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
         "bc2f5ec3-50e1-4cc0-8fb7-e25c9ba4ad32",
