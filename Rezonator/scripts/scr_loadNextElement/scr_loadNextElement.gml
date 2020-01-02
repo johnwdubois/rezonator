@@ -1,3 +1,18 @@
+/*
+	scr_loadNextElement();
+	
+	Last Updated: 2020-01-01
+	
+	Called from: obj_fileLoader
+	
+	Purpose: Load elements of data from the SBCorpus CSV's into the Unit/Word/Line grid
+	
+	Mechanism: Retrieve elements of data depending on the element's header string. Once all elements of a line
+	are retieved, load them into a new line of the grids.
+	
+	Author: Terry DuBois
+*/
+
 if (not obj_control.initialValidFileCheck) {
 	//show_message("here");
 	with (obj_alarm) {
@@ -24,7 +39,6 @@ if (string_count("\"words\"", currentElement) > 0) {
 	exit;
 }
 	
-
 	
 if (string_count("uID=", currentElement) > 0) {
 	currentUtteranceID = real(scr_fileLineRipListSearch(fileLineRipListElement, "uID=\"u", "\"", fileLineRipList));

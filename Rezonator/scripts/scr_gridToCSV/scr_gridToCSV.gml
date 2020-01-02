@@ -1,3 +1,5 @@
+// Write grid info into a CSV table format
+
 var grid = argument0
 var fileName = argument1;
 

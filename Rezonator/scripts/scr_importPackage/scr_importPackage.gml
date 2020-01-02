@@ -1,3 +1,5 @@
+// Create the colelction of folders and files the user will receive on downloading Rezonator
+
 /*
 if (directory_exists(program_directory)) {
 	show_message("BUH" + program_directory)

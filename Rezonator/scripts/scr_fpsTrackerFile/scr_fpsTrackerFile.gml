@@ -1,3 +1,5 @@
+// Create a write to a file tracking Rezonator's FPS over time
+
 if (directory_exists(global.rezonatorDirString)) {
 	var filename = global.rezonatorDirString + "\\~fps.txt";
 	fpsTrackFile = file_text_open_write(filename);

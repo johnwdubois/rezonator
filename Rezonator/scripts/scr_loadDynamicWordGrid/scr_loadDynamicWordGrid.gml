@@ -1,3 +1,6 @@
+// DECOMMISSIONED
+// Copy word data from the wordGrid to the4 dynamicWordGrid ("vizWordGrid")
+
 for (var i = 0; i < ds_grid_height(wordGrid); i++)
 {
 	ds_grid_resize(dynamicWordGrid, dynamicWordGridWidth, ds_grid_height(dynamicWordGrid) + 1);

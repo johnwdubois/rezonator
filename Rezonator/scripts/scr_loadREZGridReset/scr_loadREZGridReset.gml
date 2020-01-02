@@ -1,3 +1,5 @@
+// Reset the tempGrid to load in the next Map into its respective grid
+
 var tempGrid = argument0;
 var map = argument1;
 var mapKey = argument2;

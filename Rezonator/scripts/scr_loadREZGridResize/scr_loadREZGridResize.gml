@@ -1,3 +1,5 @@
+// Resize a loaded grid
+
 var grid = argument0;
 var gridLists = argument1;
 

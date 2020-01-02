@@ -1,3 +1,5 @@
+// Begin the import of a single user specified JSON file, usually a REZ file
+
 var filename = argument0;
 
 global.importCSVGrid = load_csv(filename);

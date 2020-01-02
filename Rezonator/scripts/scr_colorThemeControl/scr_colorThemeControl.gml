@@ -1,3 +1,5 @@
+// Change the Rezonator color theme to lightmode/darkmode
+
 if (keyboard_check(vk_control) and keyboard_check_pressed(ord("B"))) {
 
 	global.colorTheme++;

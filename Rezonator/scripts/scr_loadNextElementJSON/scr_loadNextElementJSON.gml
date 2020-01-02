@@ -1,3 +1,18 @@
+/*
+	scr_loadNextElementJSON(currentElement);
+	
+	Last Updated: 2020-01-01
+	
+	Called from: obj_fileLoader
+	
+	Purpose: Load elements of data from a JSON file, presumably a REZ file, into the Unit/Word/Line grid
+	
+	Mechanism: Retrieve elements of data depending on the element's header string. Once all elements of a line
+	are retieved, load them into a new line of the grids.
+	
+	Author: Terry DuBois
+*/
+
 var currentElement = argument0;
 var wordList = scr_getJSONWordsList(currentElement);
 

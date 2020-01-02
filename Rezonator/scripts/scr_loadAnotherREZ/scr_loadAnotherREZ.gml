@@ -1,3 +1,17 @@
+/*
+	scr_loadAnotherRez(originalGrid, map, gridStr);
+	
+	Last Updated: 2020-01-01
+	
+	Called from: obj_fileLoader
+	
+	Purpose: Extract data from an individual map
+	
+	Mechanism: Reconstruct Rezonator's critical grids line by line by changing the structure of the tempGrid 
+	
+	Author: Terry DuBois
+*/
+
 var originalGrid = argument0;
 var map = argument1;
 var gridStr = argument2;
