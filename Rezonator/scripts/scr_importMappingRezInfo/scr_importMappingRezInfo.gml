@@ -71,6 +71,7 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.rezInfoGrid); i++) {
 		var cellRectY1 = plusY + scrollPlusY;
 		var cellRectX2 = (rezInfoWindowRectX1 + 30) + (((rezInfoWindowRectX2 - (rezInfoWindowRectX1 + 30)) / 3) * (i));
 		var cellRectY2 = plusY + rowHeight;
+		cellRectX2 = clamp(cellRectX2, 0, rezInfoWindowRectX2 - scrollBarWidth)
 		
 		// draw BG stripes
 		draw_set_color((j mod 2) ? global.colorThemeBG : make_color_rgb(219, 219, 219));
