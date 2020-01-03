@@ -1,7 +1,7 @@
 {
     "id": "d150cb69-ac41-4fe0-9d65-b40ecc47470f",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "FileManager",
     "IncludedResources": [
         
@@ -20,6 +20,7 @@
     "copyToTargets": 202375362,
     "date": "2019-07-11 11:06:29",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         {
@@ -915,9 +916,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
+    "supportedTargets": 202375362,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

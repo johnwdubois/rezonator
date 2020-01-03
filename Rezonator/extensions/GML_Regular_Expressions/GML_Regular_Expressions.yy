@@ -1,7 +1,7 @@
 {
     "id": "2b54f52a-3aa7-4b88-8e99-e2273715b2f0",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "GML_Regular_Expressions",
     "IncludedResources": [
         "Scripts\\Regular Expressions\\regular_expression_create.gml",
@@ -27,6 +27,7 @@
     "copyToTargets": 105554172285166,
     "date": "2019-19-02 01:07:19",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         
@@ -47,9 +48,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "com.mytino.gmlregularexpressions",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
+    "supportedTargets": 105554172285166,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         
