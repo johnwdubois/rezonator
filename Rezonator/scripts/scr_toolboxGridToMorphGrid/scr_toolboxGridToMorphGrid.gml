@@ -2,17 +2,21 @@ if (ds_grid_height(global.importToolboxGrid) < 1) {
 	exit;
 }
 
+
 // get importGrid columns
-var participantCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 0);
-var morphCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 1);
-var unitStartCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 2);
-var unitEndCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 3);
-var glossCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 4);
-
-
+//var participantCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 0);
+//var morphCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 1);
+//var unitStartCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 2);
+//var unitEndCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 3);
+//var glossCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportGridCol, 4);
 
 
 var unitCounter = 0;
+var participantCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 3);
+var morphCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 4);
+var unitStartCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 1);
+var unitEndCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 2);
+var glossCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 7);
 
 
 // build morphGrid!

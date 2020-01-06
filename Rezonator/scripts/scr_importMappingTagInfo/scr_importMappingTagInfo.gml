@@ -69,7 +69,7 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid) - 1; i++) {
 		var cellRectY2 = plusY + rowHeight;
 		
 		// draw BG stripes
-		draw_set_color((j mod 2) ? global.colorThemeBG : make_color_rgb(219, 219, 219));
+		draw_set_color(global.colorThemeBG);
 		if (obj_importMapping.tagInfoGridSelectedRow == j
 		or ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, j)) {
 			draw_set_color(make_color_rgb(183, 183, 255));
@@ -94,13 +94,13 @@ if (mouseoverRow >= 0) {
 	if (mouse_check_button_pressed(mb_left)) {
 		if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
 			
-			var oldTag = ds_grid_get(obj_importMapping.rezInfoGrid, obj_importMapping.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
+			var oldTag = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
 			if (oldTag != 0) {
 				var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, 0, obj_importMapping.tagInfoGrid_colTag, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
 				
 				var occurences = 0;
 				for (var i = 0; i < ds_grid_height(obj_importMapping.tagInfoGrid); i++) {
-					occurences += (ds_grid_get(obj_importMapping.rezInfoGrid, obj_importMapping.rezInfoGrid_colAssignedTag, i) == oldTag) ? 1 : 0;
+					occurences += (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, i) == oldTag) ? 1 : 0;
 				}
 				
 				if (occurences < 2) {
@@ -110,7 +110,8 @@ if (mouseoverRow >= 0) {
 			
 			obj_importMapping.tagInfoGridSelectedRow = mouseoverRow;
 			var tag = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, mouseoverRow);
-			ds_grid_set(obj_importMapping.rezInfoGrid, obj_importMapping.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, tag);
+			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, tag);
+			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, mouseoverRow);
 			ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, mouseoverRow, true);
 		}
 	}
@@ -128,25 +129,6 @@ if (mouse_check_button_pressed(mb_left)) {
 }
 
 
-
-
-
-if (mouseoverRow >= 0) {
-	draw_set_color(global.colorThemeBorders);
-	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (mouseoverRow + 1)) + scrollPlusY;
-	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
-	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, true);
-}
-
-if (obj_importMapping.tagInfoGridSelectedRow > -1) {
-	if (keyboard_check_pressed(vk_escape)) {
-		obj_importMapping.tagInfoGridSelectedRow = -1;
-	}
-	draw_set_color(global.colorThemeBorders);
-	var selectedRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.tagInfoGridSelectedRow + 1)) + scrollPlusY;
-	var selectedRowY2 = selectedRowY1 + rowHeight;
-	draw_rectangle(tagInfoWindowRectX1 - clipX, selectedRowY1 - clipY, tagInfoWindowRectX2 - clipX, selectedRowY2 - clipY, true);
-}
 
 
 // draw header for column
@@ -179,6 +161,30 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 	draw_set_color(global.colorThemeBorders);
 	draw_line(colX - clipX, tagInfoWindowRectY1 - clipY, colX - clipX, tagInfoWindowRectY2 - clipY);
 }
+
+
+
+// draw mouseover/selected rectangles
+if (mouseoverRow >= 0) {
+	draw_set_color(global.colorThemeBorders);
+	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (mouseoverRow + 1)) + scrollPlusY;
+	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
+	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, true);
+}
+if (obj_importMapping.tagInfoGridSelectedRow > -1) {
+	if (keyboard_check_pressed(vk_escape)) {
+		obj_importMapping.tagInfoGridSelectedRow = -1;
+	}
+	draw_set_color(global.colorThemeBorders);
+	var selectedRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.tagInfoGridSelectedRow + 1)) + scrollPlusY;
+	var selectedRowY2 = selectedRowY1 + rowHeight;
+	draw_rectangle(tagInfoWindowRectX1 - clipX, selectedRowY1 - clipY, tagInfoWindowRectX2 - clipX, selectedRowY2 - clipY, true);
+}
+
+
+
+
+
 
 
 
