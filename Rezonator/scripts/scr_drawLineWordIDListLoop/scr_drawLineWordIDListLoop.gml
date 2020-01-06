@@ -528,7 +528,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 					ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
 					with (obj_panelPane) {
-						functionChainContents_lineGridRowFocused = drawLineLoop;
+						functionChainList_lineGridRowFocused = drawLineLoop;
 						functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 						functionChainList_currentTab = functionChainList_tabLine;
 					}

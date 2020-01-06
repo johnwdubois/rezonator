@@ -176,8 +176,15 @@ dynamicWordGrid_colAligned = 10;
 dynamicWordGrid_colVoid = 11;
 dynamicWordGrid_colStretch = 12;
 dynamicWordGrid_colReplaceWord = 13;
+dynamicWordGrid_colTag1 = 14;
+dynamicWordGrid_colTag2 = 15;
+dynamicWordGrid_colTag3 = 16;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
+
+dynamicWordGrid_colTag1Label = "Tag1";
+dynamicWordGrid_colTag2Label = "Tag2";
+dynamicWordGrid_colTag3Label = "Tag3";
 
 wordStateNormal = 0;
 wordStateNew = 1;
