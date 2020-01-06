@@ -1,7 +1,7 @@
 {
     "id": "0a2e809d-9a7a-4ef7-a464-5de5e357aacc",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "Audio_Player",
     "IncludedResources": [
         "Sprites\\Covers\\sCover_clasic",
@@ -51,6 +51,7 @@
     "copyToTargets": -1,
     "date": "2019-16-26 08:08:50",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         
@@ -71,9 +72,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "com.clavosstudios.audioplayer",
     "productID": "ACBD3CFF4E539AD869A0E8E3B4B022DD",
     "sourcedir": "",
+    "supportedTargets": -1,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         

@@ -11,6 +11,7 @@ var glossCol = ds_grid_get(global.importMapGrid, global.importMapGrid_colImportG
 
 
 
+
 var unitCounter = 0;
 
 
@@ -20,7 +21,12 @@ for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
 	var currentParticipant = string(ds_grid_get(global.importToolboxGrid, participantCol, i));
 	var currentMorphFullStr = string(ds_grid_get(global.importToolboxGrid, morphCol, i));
 	var currentMorphList = scr_splitStringToolbox(currentMorphFullStr);
-	var currentGlossFullStr = string(ds_grid_get(global.importToolboxGrid, glossCol, i));
+	if (typeof(glossCol) == ty_real) {
+		var currentGlossFullStr = string(ds_grid_get(global.importToolboxGrid, glossCol, i));
+	}
+	else {
+		var currentGlossFullStr = "";
+	}
 	var currentGlossList = scr_splitStringToolbox(currentGlossFullStr);
 	
 	if (currentParticipant == 0) {

@@ -32,11 +32,17 @@ draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1,
 
 
 
+var wheresElmoButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+var wheresElmoButtonY1 = newProjectButtonY2 + 70;
+var wheresElmoButtonX2 = (camera_get_view_width(view_camera[0]) / 2) + (buttonWidth / 2);
+var wheresElmoButtonY2 = wheresElmoButtonY1 + buttonHeight;
 
+/*
 var wheresElmoButtonX1 = newProjectButtonX1
 var wheresElmoButtonY1 = newProjectButtonY2 + 70;
 var wheresElmoButtonX2 = newProjectButtonX2;
 var wheresElmoButtonY2 = wheresElmoButtonY1 + buttonHeight;
+*/
 
 if (point_in_rectangle(mouse_x, mouse_y, wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2))
 {
@@ -88,7 +94,7 @@ draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButton
 
 
 
-
+/*
 var rezzlesButtonX1 = openProjectButtonX1
 var rezzlesButtonY1 = openProjectButtonY2 + 70;
 var rezzlesButtonX2 = openProjectButtonX2;
@@ -128,7 +134,7 @@ var openTutorialButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (button
 var openTutorialButtonY1 = rezzlesButtonY2 + 70;
 var openTutorialButtonX2 = openTutorialButtonX1 + buttonWidth;
 var openTutorialButtonY2 = openTutorialButtonY1 + buttonHeight;
-
+/*
 if (point_in_rectangle(mouse_x, mouse_y, openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2))
 {
 	draw_set_color(global.colorThemeSelected1);
@@ -153,18 +159,21 @@ draw_rectangle(openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2,
 draw_set_color(global.colorThemeText);
 draw_text(mean(openTutorialButtonX1, openTutorialButtonX2), mean(openTutorialButtonY1, openTutorialButtonY2), "Tutorial");
 
+*/
 
 
 
 
-
-
-
+var userSignInBoxX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+var userSignInBoxY1 = wheresElmoButtonY2 + 70;
+var userSignInBoxX2 = userSignInBoxX1 + buttonWidth;
+var userSignInBoxY2 = userSignInBoxY1 + 30;
+/*
 var userSignInBoxX1 = openTutorialButtonX1
 var userSignInBoxY1 = openTutorialButtonY2 + 50;
 var userSignInBoxX2 = openTutorialButtonX2;
 var userSignInBoxY2 = userSignInBoxY1 + 30;
-
+*/
 
 
 draw_set_color(global.colorThemeBorders);
@@ -325,6 +334,6 @@ if(global.menuOpen){
 }
 
 draw_set_font(fnt_mainBoldLarge2);
-draw_text((camera_get_view_width(view_camera[0]) / 2) , rezzlesButtonY1 - 25 ,"Games");
+draw_text((camera_get_view_width(view_camera[0]) / 2) , wheresElmoButtonY1 - 25 ,"Games");
 draw_text((camera_get_view_width(view_camera[0]) / 2) , newProjectButtonY1 - 25 ,"Research");
-draw_text((camera_get_view_width(view_camera[0]) / 2) , openTutorialButtonY1 - 25 ,"Tutorial");
+//draw_text((camera_get_view_width(view_camera[0]) / 2) , openTutorialButtonY1 - 25 ,"Tutorial");

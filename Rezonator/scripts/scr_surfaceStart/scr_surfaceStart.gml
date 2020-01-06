@@ -21,7 +21,7 @@ if (mouse_check_button_released(mb_left)) {
 }
 
 
-	
+
 if (object_index == obj_gridViewer) {
 	if (abs(mouse_x - (x + windowWidth)) < 5
 	and mouse_y > y and mouse_y < y + windowHeight) {
@@ -32,6 +32,7 @@ if (object_index == obj_gridViewer) {
 		}
 	}
 }
+
 	
 if (abs(mouse_y - (y + windowHeight)) < 5
 and mouse_x > x and mouse_x < x + windowWidth) {
