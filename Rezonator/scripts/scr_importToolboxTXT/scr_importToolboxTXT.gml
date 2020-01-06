@@ -1,4 +1,5 @@
 var filename = argument0;
+global.importFilename = filename;
 
 var fileOpenRead = file_text_open_read(filename);
 

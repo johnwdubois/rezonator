@@ -1,8 +1,8 @@
 {
-    "id": "f4e0e05b-364c-4c33-8a41-986c726ecd55",
+    "id": "d469bbbb-5024-4874-a5c6-89cf0f98bb0e",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_importMapGridInit",
+    "name": "scr_importMappingGridsInit",
     "IsCompatibility": false,
     "IsDnD": false
 }

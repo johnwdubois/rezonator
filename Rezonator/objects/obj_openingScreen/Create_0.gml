@@ -132,6 +132,11 @@ global.importToolboxGridColMap = ds_map_create();
 
 
 
+global.importFilename = "";
+scr_importMappingGridsInit();
+
+
+
 
 
 
