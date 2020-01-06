@@ -11,7 +11,7 @@
 	
 	Author: Terry DuBois
 */
-
+inDrag = false;
 drag_offsetY = 0;
 flickVelY = 0;
 flick_power_calibration = 4;

@@ -1,6 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 if (mouseoverNeutralSpace) {
+	inDrag = false;
 	flickVelY = event_data[?"diffY"];
 	mouseHoldRectX1 = 0; 
 	mouseHoldRectX2 = 0; 
