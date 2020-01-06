@@ -33,7 +33,7 @@ if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_c
 }
 
 
-var rowInLineGrid = functionChainContents_lineGridRowFocused;
+var rowInLineGrid = functionChainList_lineGridRowFocused;
 
 
 
@@ -62,8 +62,8 @@ var strHeight = string_height("0");
 
 
 // Check for focused chain and make sure grid is not empty, gather information from grids
-if (ds_grid_height(grid) != 0 and functionChainContents_lineGridRowFocused >= 0
-and functionChainContents_lineGridRowFocused < ds_grid_height(grid)) {
+if (ds_grid_height(grid) != 0 and functionChainList_lineGridRowFocused >= 0
+and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 	// Collect beginning of chain info
 	focusedChainExists = true;
 	var unitID = ds_grid_get(grid, obj_control.lineGrid_colUnitID, rowInLineGrid);
@@ -111,6 +111,11 @@ and functionChainContents_lineGridRowFocused < ds_grid_height(grid)) {
 			
 
 			}
+			if(functionChainContents_lineGridRowFocused == j) {
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeText);
+				draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, true);
+			}
 			draw_set_alpha(1);
 	
 			// Check for double click
@@ -136,13 +141,26 @@ and functionChainContents_lineGridRowFocused < ds_grid_height(grid)) {
 					}
 				}
 				else {
+			
+					//ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+					//ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
+					with (obj_panelPane) {
+						functionChainContents_lineGridRowFocused = j;
+						//functionChainContents_BGColor = lineColor;
+					}
+					
 					doubleClickTimer = 0;
 				}
 		
 			}
-		
-			// Set collected info into correct places
-			for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
+			
+			var infoListSize = 3;
+			if(obj_control.showDevVars && functionChainList_currentTab == functionChainList_tabLine) {
+				infoListSize = 6;
+			}
+			
+			// Set collected info into respective columns
+			for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
 				currentWordInfoCol[getInfoLoop] = "";
 			
 				switch (functionChainContents_infoCol[getInfoLoop]) {
@@ -189,6 +207,15 @@ and functionChainContents_lineGridRowFocused < ds_grid_height(grid)) {
 							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
 						}
 						break;
+					case 3:
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colTag1, currentWordID - 1));
+						break;
+					case 4:
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colTag2, currentWordID - 1));
+						break;
+					case 5:
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colTag3, currentWordID - 1));
+						break;	
 				}
 			
 				var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
@@ -233,12 +260,16 @@ draw_set_font(global.fontPanelTab);
 draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
-
-for (var i = 0; i < 3; i++) {
+var headerListSize = 3;
+if(obj_control.showDevVars) {
+	headerListSize = 6;
+}
+// Create the column headers
+for (var i = 0; i < headerListSize; i++) {
 	var colRectX1 = x + (i * (windowWidth / 6));
 	var colRectY1 = y;
 	var colRectX2 = colRectX1 + (windowWidth / 6);
-	if (i == 2) {
+	if (i == 5) {
 		var colRectX2 = colRectX1 + (windowWidth);	
 	}
 	var colRectY2 = colRectY1 + windowHeight;
@@ -255,6 +286,15 @@ for (var i = 0; i < 3; i++) {
 		case 2:
 			colName = "text";
 			break;
+		case 3:
+			colName = obj_control.dynamicWordGrid_colTag1Label; // Will use an object variable to hold the user's custom names
+			break;
+		case 4:
+			colName = obj_control.dynamicWordGrid_colTag2Label;
+			break;
+		case 5:
+			colName = obj_control.dynamicWordGrid_colTag3Label;
+			break;
 		default:
 			colName = "N/A";
 			break;
@@ -268,8 +308,21 @@ for (var i = 0; i < 3; i++) {
 	draw_set_valign(fa_top);
 	draw_set_font(global.fontPanelTab);
 	draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
+	
+	/*if (functionChainContents_infoCol[i] == 3 && obj_control.showDevVars) {
+		draw_set_color(global.colorThemeText);
+		if (point_in_rectangle(mouse_x, mouse_y, colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY)) {
+			show_message("YO");
+			draw_set_color(global.colorThemeBorders);
+			draw_set_alpha(0.5);
+			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
+			if (mouse_check_button_released(mb_left)) {
+				show_message("YO");
+			}
+		}			
+	}*/
 }
-
+draw_set_alpha(1);
 
 draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeight - clipY);
 

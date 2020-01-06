@@ -53,7 +53,7 @@ if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_c
 
 if (clickedIn and keyboard_check_pressed(vk_escape)) {
 	with (obj_panelPane) {
-		functionChainContents_lineGridRowFocused = -1;
+		functionChainList_lineGridRowFocused = -1;
 		functionChainContents_BGColor = global.colorThemeBG;
 	}
 }

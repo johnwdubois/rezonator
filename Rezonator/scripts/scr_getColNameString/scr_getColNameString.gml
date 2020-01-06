@@ -219,6 +219,15 @@ else if (grid == obj_control.dynamicWordGrid) {
 		case obj_control.dynamicWordGrid_colReplaceWord:
 			colName = "replaceWord";
 			break;
+		case obj_control.dynamicWordGrid_colTag1:
+			colName = obj_control.dynamicWordGrid_colTag1Label;
+			break;
+		case obj_control.dynamicWordGrid_colTag2:
+			colName = obj_control.dynamicWordGrid_colTag2Label;
+			break;
+		case obj_control.dynamicWordGrid_colTag3:
+			colName = obj_control.dynamicWordGrid_colTag3Label;
+			break;
 		default:
 			break;
 	}
