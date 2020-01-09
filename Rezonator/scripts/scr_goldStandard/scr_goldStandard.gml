@@ -1,5 +1,14 @@
-var currentUser = ds_grid_get(currentChainGrid, chainGrid_colAuthor, currentFocusedChainIndex);
-var originalChainWordList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentFocusedChainIndex);
+
+var currentChainIndex = -1;
+if (currentFocusedChainIndex > -1) {
+	currentChainIndex = currentFocusedChainIndex;	
+}
+if(currentFocusedChainIndex < 0 && ds_grid_height(trackChainGrid) > 0) {
+	currentChainIndex = ds_grid_height(trackChainGrid) - 1;					
+}
+
+var currentUser = ds_grid_get(currentChainGrid, chainGrid_colAuthor, currentChainIndex);
+var originalChainWordList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentChainIndex);
 var currentChainWordList = ds_list_create();
 if(originalChainWordList > -1 and originalChainWordList != undefined) {
 	ds_list_copy(currentChainWordList, originalChainWordList);
@@ -23,7 +32,7 @@ if(string_lower(currentUser) == "gold") {
 		ds_grid_set(goldStandardGrid, goldStandardGrid_colWordIDList, prevGoldStandardRow, currentChainWordList);
 	}
 	// Clear the plate for the players
-	scr_deleteEntireChain(ds_grid_get(currentChainGrid, chainGrid_colChainID, currentFocusedChainIndex));
+	scr_deleteEntireChain(ds_grid_get(currentChainGrid, chainGrid_colChainID, currentChainIndex));
 	// Here, or during load in, this chain has to be removed, completely or just from view.
 	//show_message("Stack: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colStackID, ds_grid_height(goldStandardGrid) - 1)));
 	//show_message("List: " + scr_getStringOfList(ds_grid_get(goldStandardGrid, goldStandardGrid_colWordIDList, ds_grid_height(goldStandardGrid) - 1)));

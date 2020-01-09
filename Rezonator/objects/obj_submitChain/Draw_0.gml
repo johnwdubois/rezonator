@@ -45,7 +45,8 @@ if(mouseOver) {
 	if(device_mouse_check_button_released(0, mb_left)) {
 		if(!obj_control.dialogueBoxActive){
 			with(obj_chain) {
-				if((obj_control.stackShowActive and (currentFocusedChainIndex > -1)) and (global.wheresElmo or obj_toolPane.tracksOnlyStackShow)) {
+				
+				if(obj_control.stackShowActive and (global.wheresElmo or obj_toolPane.tracksOnlyStackShow)) {
 					scr_goldStandard();
 				}
 	
