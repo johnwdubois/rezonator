@@ -89,8 +89,10 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 		
 		
 		var currentCell = ds_grid_get(global.rezInfoGrid, i, j);
-		if (currentCell == -1) {
-			currentCell = "...";
+		if (i == global.rezInfoGrid_colAssignedTag) {
+			if (currentCell == -1) {
+				currentCell = "...";
+			}
 		}
 		
 		draw_set_color(global.colorThemeText);
@@ -147,6 +149,8 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid) - 1; i++) {
 	draw_set_color(global.colorThemeBorders);
 	draw_line(colX - clipX, rezInfoWindowRectY1 - clipY, colX - clipX, rezInfoWindowRectY2 - clipY);
 }
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(rezInfoWindowRectX1 - clipX, rezInfoWindowRectY1 - clipY, rezInfoWindowRectX2 - clipX, rezInfoWindowRectY1 + rowHeight - clipY, true);
 
 
 // draw mouseover/selected rectangles
@@ -156,11 +160,32 @@ if (mouseoverRow >= 0) {
 	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
 	draw_rectangle(rezInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, rezInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, true);
 }
-
+// deleting tag and cancelling tag
 if (obj_importMapping.rezInfoGridSelectedRow > -1) {
+	
+	if (keyboard_check_pressed(vk_delete)) {
+		var oldTag = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
+		if (oldTag != 0) {
+			var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, 0, obj_importMapping.tagInfoGrid_colTag, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
+				
+			var occurences = 0;
+			for (var i = 0; i < ds_grid_height(obj_importMapping.tagInfoGrid); i++) {
+				occurences += (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, i) == oldTag) ? 1 : 0;
+			}
+				
+			if (occurences < 2) {
+				ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, oldTagRow, false);
+			}
+		}
+		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, -1);
+		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, -1);
+		obj_importMapping.rezInfoGridSelectedRow = -1;
+	}
+	
 	if (keyboard_check_pressed(vk_escape)) {
 		obj_importMapping.rezInfoGridSelectedRow = -1;
 	}
+	
 	draw_set_color(global.colorThemeBorders);
 	var selectedRowY1 = rezInfoWindowRectY1 + (rowHeight * (obj_importMapping.rezInfoGridSelectedRow + 1)) + scrollPlusY;
 	var selectedRowY2 = selectedRowY1 + rowHeight;

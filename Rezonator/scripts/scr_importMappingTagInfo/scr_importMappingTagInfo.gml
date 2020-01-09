@@ -131,6 +131,29 @@ if (mouse_check_button_pressed(mb_left)) {
 
 
 
+
+
+
+// draw mouseover/selected rectangles
+if (mouseoverRow >= 0) {
+	draw_set_color(global.colorThemeBorders);
+	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (mouseoverRow + 1)) + scrollPlusY;
+	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
+	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, true);
+}
+if (obj_importMapping.tagInfoGridSelectedRow > -1) {
+	if (keyboard_check_pressed(vk_escape)) {
+		obj_importMapping.tagInfoGridSelectedRow = -1;
+	}
+	draw_set_color(global.colorThemeBorders);
+	var selectedRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.tagInfoGridSelectedRow + 1)) + scrollPlusY;
+	var selectedRowY2 = selectedRowY1 + rowHeight;
+	draw_rectangle(tagInfoWindowRectX1 - clipX, selectedRowY1 - clipY, tagInfoWindowRectX2 - clipX, selectedRowY2 - clipY, true);
+}
+
+
+
+
 // draw header for column
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
@@ -161,25 +184,12 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 	draw_set_color(global.colorThemeBorders);
 	draw_line(colX - clipX, tagInfoWindowRectY1 - clipY, colX - clipX, tagInfoWindowRectY2 - clipY);
 }
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, true);
 
 
 
-// draw mouseover/selected rectangles
-if (mouseoverRow >= 0) {
-	draw_set_color(global.colorThemeBorders);
-	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (mouseoverRow + 1)) + scrollPlusY;
-	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
-	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, true);
-}
-if (obj_importMapping.tagInfoGridSelectedRow > -1) {
-	if (keyboard_check_pressed(vk_escape)) {
-		obj_importMapping.tagInfoGridSelectedRow = -1;
-	}
-	draw_set_color(global.colorThemeBorders);
-	var selectedRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.tagInfoGridSelectedRow + 1)) + scrollPlusY;
-	var selectedRowY2 = selectedRowY1 + rowHeight;
-	draw_rectangle(tagInfoWindowRectX1 - clipX, selectedRowY1 - clipY, tagInfoWindowRectX2 - clipX, selectedRowY2 - clipY, true);
-}
+
 
 
 
