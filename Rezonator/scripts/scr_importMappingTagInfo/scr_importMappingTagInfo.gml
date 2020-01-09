@@ -49,8 +49,9 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid) - 1; i++) {
+for (var i = 0; i < obj_importMapping.tagInfoGrid_colConsistency + 1; i++) {
 	
+	/*
 	var colX = 0;
 	if (i == 0) {
 		colX = tagInfoWindowRectX1;
@@ -58,6 +59,8 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid) - 1; i++) {
 	else {
 		colX = tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3);
 	}
+	*/
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
@@ -65,14 +68,15 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid) - 1; i++) {
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
-		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
+		//var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
+		var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colConsistency);
 		var cellRectY2 = plusY + rowHeight;
 		
 		// draw BG stripes
 		draw_set_color(global.colorThemeBG);
 		if (obj_importMapping.tagInfoGridSelectedRow == j
 		or ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, j)) {
-			draw_set_color(make_color_rgb(183, 183, 255));
+			draw_set_color(ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colColor, j));
 		}
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		
@@ -82,6 +86,7 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid) - 1; i++) {
 		
 		
 		var currentCell = ds_grid_get(obj_importMapping.tagInfoGrid, i, j);
+		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
 		draw_text(colX + 5 - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
@@ -158,6 +163,7 @@ if (obj_importMapping.tagInfoGridSelectedRow > -1) {
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
 for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
+	/*
 	var colX = 0;
 	if (i == 0) {
 		colX = tagInfoWindowRectX1;
@@ -165,6 +171,9 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 	else {
 		colX = tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3);
 	}
+	*/
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
+	
 	var headerStr = "";
 	switch (i) {
 		case 0:
@@ -172,6 +181,9 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 			break;
 		case 1:
 			headerStr = "Example";
+			break;
+		case 2:
+			headerStr = "Consistency";
 			break;
 		default:
 			break;
@@ -196,8 +208,15 @@ draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfo
 
 
 
-
-
+// mousewheel input
+if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+	if (mouse_wheel_up()) {
+		scrollPlusYDest += 8;
+	}
+	if (mouse_wheel_down()) {
+		scrollPlusYDest -= 8;
+	}
+}
 
 scr_scrollBar(ds_grid_height(obj_importMapping.tagInfoGrid), -1, rowHeight, rowHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
@@ -226,3 +245,4 @@ if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
 		draw_rectangle(tagInfoWindowRectX1 - i, tagInfoWindowRectY1 - i, tagInfoWindowRectX2 + i, tagInfoWindowRectY2 + i, true);
 	}
 }
+

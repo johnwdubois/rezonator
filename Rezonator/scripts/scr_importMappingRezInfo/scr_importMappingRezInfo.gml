@@ -75,8 +75,14 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 		
 		// draw BG stripes
 		draw_set_color(global.colorThemeBG);
-		if (obj_importMapping.rezInfoGridSelectedRow == j) {
-			draw_set_color(make_color_rgb(183, 183, 255));
+		var tagInfoGridRow = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, j);
+		if (obj_importMapping.rezInfoGridSelectedRow == j or tagInfoGridRow >= 0) {
+			if (tagInfoGridRow >= 0 and tagInfoGridRow < ds_grid_height(obj_importMapping.tagInfoGrid)) {
+				draw_set_color(ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colColor, tagInfoGridRow));
+			}
+			else {
+				draw_set_color(make_color_rgb(183, 183, 255));
+			}
 		}
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		
@@ -196,6 +202,15 @@ if (obj_importMapping.rezInfoGridSelectedRow > -1) {
 
 
 
+// mousewheel input
+if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+	if (mouse_wheel_up()) {
+		scrollPlusYDest += 8;
+	}
+	if (mouse_wheel_down()) {
+		scrollPlusYDest -= 8;
+	}
+}
 
 scr_scrollBar(ds_grid_height(global.rezInfoGrid), -1, rowHeight, rowHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
