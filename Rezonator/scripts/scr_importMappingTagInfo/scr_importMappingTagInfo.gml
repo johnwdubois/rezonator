@@ -49,18 +49,8 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i < obj_importMapping.tagInfoGrid_colConsistency + 1; i++) {
-	
-	/*
-	var colX = 0;
-	if (i == 0) {
-		colX = tagInfoWindowRectX1;
-	}
-	else {
-		colX = tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3);
-	}
-	*/
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
+for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConstPerCluster; i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
@@ -69,7 +59,7 @@ for (var i = 0; i < obj_importMapping.tagInfoGrid_colConsistency + 1; i++) {
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
 		//var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
-		var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colConsistency);
+		var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colConstPerCluster);
 		var cellRectY2 = plusY + rowHeight;
 		
 		// draw BG stripes
@@ -84,8 +74,14 @@ for (var i = 0; i < obj_importMapping.tagInfoGrid_colConsistency + 1; i++) {
 			mouseoverRow = j;
 		}
 		
-		
 		var currentCell = ds_grid_get(obj_importMapping.tagInfoGrid, i, j);
+		
+		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
+			currentCell = string(currentCell) + "%";
+		}
+		else if (i == obj_importMapping.tagInfoGrid_colConstPerCluster) {
+			currentCell = (currentCell) ? "X" : "";
+		}
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
@@ -163,16 +159,7 @@ if (obj_importMapping.tagInfoGridSelectedRow > -1) {
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
 for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
-	/*
-	var colX = 0;
-	if (i == 0) {
-		colX = tagInfoWindowRectX1;
-	}
-	else {
-		colX = tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3);
-	}
-	*/
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
 	
 	var headerStr = "";
 	switch (i) {
@@ -184,6 +171,12 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 			break;
 		case 2:
 			headerStr = "Consistency";
+			break;
+		case 3:
+			headerStr = "Group";
+			break;
+		case 4:
+			headerStr = "Const Per Cluster";
 			break;
 		default:
 			break;

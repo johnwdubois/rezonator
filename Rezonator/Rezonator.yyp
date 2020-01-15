@@ -2663,6 +2663,14 @@
             }
         },
         {
+            "Key": "87c3ad35-6fb5-4322-b8f7-a2d91741a820",
+            "Value": {
+                "id": "d632dfd0-b7cd-4557-b7d4-d8ef0c3db044",
+                "resourcePath": "scripts\\scr_importMappingGroups\\scr_importMappingGroups.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "87ca1d1a-a2f1-4f9c-ac30-01a8b32e389f",
             "Value": {
                 "id": "ede4f759-b893-4e2b-b560-c43c61a0c771",
@@ -5296,6 +5304,7 @@
         "d469bbbb-5024-4874-a5c6-89cf0f98bb0e",
         "202ae9d9-c7af-466b-9fb5-8458e10001d5",
         "d4bcb05a-6ed5-4b81-9566-f6796a875315",
+        "87c3ad35-6fb5-4322-b8f7-a2d91741a820",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
         "bc2f5ec3-50e1-4cc0-8fb7-e25c9ba4ad32",
