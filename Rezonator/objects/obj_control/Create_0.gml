@@ -317,6 +317,8 @@ hoverChunkID = -1;
 clickedChunkID = -1;
 showMouseLine = false;
 linkDeleted = false;
+chunkDeleted = false;
+normalDelete = false;
 
 // Safety check for the drop downs
 ableToCreateDropDown = true;

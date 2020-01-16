@@ -167,6 +167,22 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			draw_set_alpha(0.5);
 			draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
 			
+			if (keyboard_check_pressed(vk_delete)) {
+				obj_control.deleteChunkWord = true;
+				
+				var chunkVal = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkID-1);
+				//show_message("HOVER CHUNK ID "+string(hoverChunkID) + "   CurrentChunkID: " + string(chunkVal));
+				
+				if(hoverChunkID == chunkVal){
+				ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkID - 1, obj_chain.chainStateFocus);
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentWordID - 1, true);
+				currentFocusedChunkID = currentChunkID;
+				scr_deleteFromChain();
+				}
+
+
+			}
+			
 			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_control.clickedChunkID = currentChunkID; // Debug variable
 				// Add this Chunk to a chain
