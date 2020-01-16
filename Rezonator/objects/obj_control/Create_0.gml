@@ -455,6 +455,7 @@ replace = false;
 splitWord = false;
 swapLine = false;
 changeAuthor = false;
+newTagCategory = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;

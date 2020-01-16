@@ -623,6 +623,18 @@ else if (optionListType == 5)
 			
 			//show_message("Coming Soon");
 			break;
+		case "Add Tag Category":
+		
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+				obj_dialogueBox.clearAllLinks = true;
+				obj_dialogueBox.questionWindowActive = true;
+			}
+		
+			
+			//show_message("Coming Soon");
+			break;
 		default:
 			break;
 	}
@@ -997,7 +1009,7 @@ else if (optionListType == 7)
 	{
 		case "Search For Words":
 		
-		
+			obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";
 				obj_control.fPressed = true;
@@ -1199,7 +1211,39 @@ else if (optionListType == 8)
 			}
 			*/
 			var rowToSet = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid),  obj_control.rightClickWordID);
+			
+			var grid = obj_chain.rezChainGrid;
+
+			// find which grid we are dealing with (depending on current tool)
+			switch (obj_toolPane.currentMode) {
+				case obj_toolPane.modeRez:
+					grid = obj_chain.rezChainGrid;
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
+						instance_destroy();
+						exit;	
+					}
+					break;
+				case obj_toolPane.modeTrack:
+					grid = obj_chain.trackChainGrid;
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
+						instance_destroy();
+						exit;	
+					}
+					break;
+				default:
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
+						instance_destroy();
+						exit;	
+					}
+					break;
+			}
+			
 			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowToSet, 1);
+			var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowToSet);
+			obj_chain.currentFocusedChainID = currentChainID;
+			
+			var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, rowInChainGrid, obj_chain.chainStateFocus);
 				
 			scr_deleteFromChain();
 			instance_destroy();
