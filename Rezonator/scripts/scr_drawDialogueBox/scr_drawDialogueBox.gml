@@ -365,6 +365,9 @@ if (obj_control.dialogueBoxActive) {
 				}
 		}
 	}
+	if (obj_control.newTagCategory) {
+		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Name the new category of Tags");
+	}
 
    // input_text_set_enabled(instance, true);
 
@@ -655,7 +658,18 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		if (obj_control.changeAuthor) {
 			global.userName = obj_control.inputText;
 		}
-		
+		if (obj_control.newTagCategory) {
+			// Will instead input this string into a column in the Tag grid
+			if(obj_panelPane.lineContentsHeaderListSize == 4) {
+			obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
+			}
+			else if(obj_panelPane.lineContentsHeaderListSize == 5) {
+				obj_control.dynamicWordGrid_colTag2Label = obj_control.inputText;
+			}
+			else{
+				obj_control.dynamicWordGrid_colTag3Label = obj_control.inputText;
+			}
+		}
 		
 		with (obj_panelPane) {
 			obj_control.discoIDSelected = false;
@@ -678,6 +692,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.splitWord = false;
 		obj_control.swapLine = false;
 		obj_control.changeAuthor = false;
+		obj_control.newTagCategory = false;
 		obj_control.fromDropDown = false;
 		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
@@ -715,6 +730,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.splitWord = false;
 			obj_control.swapLine = false;
 			obj_control.changeAuthor = false;
+			obj_control.newTagCategory = false;
 			obj_control.fromDropDown = false;
 			obj_control.inputText = "";
 			obj_control.cursorPos = 1;
@@ -830,6 +846,18 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	if (obj_control.changeAuthor) {
 		global.userName = obj_control.inputText;
 	}
+	if (obj_control.newTagCategory) {
+		// Will instead input this string into a column in the Tag grid
+		if(obj_panelPane.lineContentsHeaderListSize == 4) {
+			obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
+		}
+		else if(obj_panelPane.lineContentsHeaderListSize == 5) {
+			obj_control.dynamicWordGrid_colTag2Label = obj_control.inputText;
+		}
+		else{
+			obj_control.dynamicWordGrid_colTag3Label = obj_control.inputText;
+		}
+	}
 	
 	//input_text_set_text(instance, "");
 	with (obj_panelPane) {
@@ -852,6 +880,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.splitWord = false;
 	obj_control.swapLine = false;
 	obj_control.changeAuthor = false;
+	obj_control.newTagCategory = false;
 	obj_control.fromDropDown = false;
 	obj_control.inputText = "";
 	obj_control.cursorPos = 1;

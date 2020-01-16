@@ -201,6 +201,7 @@ holdDown = 0;
 
 
 showNav = true;
+lineContentsHeaderListSize = 3;
 
 // Begin gameplay if user is in games mode
 if(string_lower(global.userName) != "gold" && global.games) {

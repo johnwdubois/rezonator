@@ -155,8 +155,8 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 			}
 			
 			var infoListSize = 3;
-			if(obj_control.showDevVars && functionChainList_currentTab == functionChainList_tabLine) {
-				infoListSize = 6;
+			if(functionChainList_currentTab == functionChainList_tabLine && obj_control.showDevVars) {
+				infoListSize = lineContentsHeaderListSize;
 			}
 			
 			// Set collected info into respective columns
@@ -261,9 +261,12 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 var headerListSize = 3;
-if(obj_control.showDevVars) {
-	headerListSize = 6;
+if(functionChainList_currentTab == functionChainList_tabLine && obj_control.showDevVars) {
+	headerListSize = lineContentsHeaderListSize;
 }
+/*if(obj_control.showDevVars) {
+	headerListSize = 6;
+}*/
 // Create the column headers
 for (var i = 0; i < headerListSize; i++) {
 	var colRectX1 = x + (i * (windowWidth / 6));
@@ -308,19 +311,128 @@ for (var i = 0; i < headerListSize; i++) {
 	draw_set_valign(fa_top);
 	draw_set_font(global.fontPanelTab);
 	draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
+	if(obj_control.showDevVars) {
+		if(i == headerListSize - 1) {
+			var buttonRectSize = (tabHeight) - 8;
+			var newCategoryRectX1 = colRectX2 + buttonRectSize + 2;
+			var newCategoryRectY1 = colRectY1 + 4;
+			var newCategoryRectX2 = newCategoryRectX1 + buttonRectSize;
+			var newCategoryRectY2 = newCategoryRectY1 + buttonRectSize;
+		
+			draw_set_color(global.colorThemeText);
+			draw_sprite_ext(spr_filterIcons, 1, mean(newCategoryRectX1 - clipX, newCategoryRectX2 - clipX), mean(newCategoryRectY1 - clipY, newCategoryRectY2 - clipY), 1, 1, 0, c_white, 1);
+			
+			if (point_in_rectangle(mouse_x, mouse_y, newCategoryRectX1, newCategoryRectY1, newCategoryRectX2, newCategoryRectY2)) {
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
+				if (mouse_check_button_released(mb_left)) {
+					//show_message("YO");
+					obj_panelPane.lineContentsHeaderListSize++;
+					//show_message(obj_panelPane.lineContentsHeaderListSize);
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newTagCategory = true;
+					}
+
+					obj_control.dialogueBoxActive = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					}
+				}
+			}
+		}
+	
+		if(i > 2) {
+			var buttonRectSize = (tabHeight) - 8;
+			var newCategoryRectX1 = colRectX2 - buttonRectSize*2 - 2;
+			var newCategoryRectY1 = colRectY1 + 4;
+			var newCategoryRectX2 = newCategoryRectX1 + buttonRectSize;
+			var newCategoryRectY2 = newCategoryRectY1 + buttonRectSize;
+		
+			draw_set_color(global.colorThemeText);
+			draw_sprite_ext(spr_filterIcons, 1, mean(newCategoryRectX1 - clipX, newCategoryRectX2 - clipX), mean(newCategoryRectY1 - clipY, newCategoryRectY2 - clipY), 1, 1, 0, c_white, 1);
+			
+			if (point_in_rectangle(mouse_x, mouse_y, newCategoryRectX1, newCategoryRectY1, newCategoryRectX2, newCategoryRectY2)) {
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
+				if (mouse_check_button_released(mb_left)) {
+					show_message("Add Tag");
+					/*lineContentsHeaderListSize++;
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newTag = true;
+					}
+
+					obj_control.dialogueBoxActive = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					}*/
+				}
+			}
+		
+			var buttonRectSize = (tabHeight) - 8;
+			var newCategoryRectX1 = colRectX2 - buttonRectSize - 2;
+			var newCategoryRectY1 = colRectY1 + 4;
+			var newCategoryRectX2 = newCategoryRectX1 + buttonRectSize;
+			var newCategoryRectY2 = newCategoryRectY1 + buttonRectSize;
+		
+			draw_set_color(global.colorThemeText);
+			draw_sprite_ext(spr_filterIcons, 1, mean(newCategoryRectX1 - clipX, newCategoryRectX2 - clipX), mean(newCategoryRectY1 - clipY, newCategoryRectY2 - clipY), 1, 1, 0, c_white, 1);
+			
+			if (point_in_rectangle(mouse_x, mouse_y, newCategoryRectX1, newCategoryRectY1, newCategoryRectX2, newCategoryRectY2)) {
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
+				if (mouse_check_button_released(mb_left)) {
+					show_message("Remove Tag");
+					/*lineContentsHeaderListSize++;
+					if (!obj_control.dialogueBoxActive) {
+						keyboard_string = "";
+						obj_control.newTag = true;
+					}
+
+					obj_control.dialogueBoxActive = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					}*/
+				}
+			}
+		}
+	}
 	
 	/*if (functionChainContents_infoCol[i] == 3 && obj_control.showDevVars) {
 		draw_set_color(global.colorThemeText);
-		if (point_in_rectangle(mouse_x, mouse_y, colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY)) {
-			show_message("YO");
+		if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight)) {
+			//show_message("YO");
 			draw_set_color(global.colorThemeBorders);
 			draw_set_alpha(0.5);
 			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 			if (mouse_check_button_released(mb_left)) {
 				show_message("YO");
 			}
-		}			
-	}*/
+		}
+		draw_set_color(global.colorThemeText);
+	}
+	
+	// draw toggleDraw button
+			var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
+			var toggleDrawRectX1 = tabRectX2 - buttonRectSize - 4;
+			var toggleDrawRectY1 = tabRectY1 + 4;
+			var toggleDrawRectX2 = toggleDrawRectX1 + buttonRectSize;
+			var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
+		
+			draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+			
+			if (point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
+				if (mouse_check_button_released(mb_left)) {
+					show_message("YO");
+				}
+			}
+	*/
 }
 draw_set_alpha(1);
 
