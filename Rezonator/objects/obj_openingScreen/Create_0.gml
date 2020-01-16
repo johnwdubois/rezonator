@@ -53,7 +53,7 @@ global.neworOpen = false;
 global.tutorial = false;
 global.games = false;
 global.inRezzles = false;
-
+global.plainText = false;
 
 global.fileSaveName = "undefined";
 global.stackGrabSave = false;

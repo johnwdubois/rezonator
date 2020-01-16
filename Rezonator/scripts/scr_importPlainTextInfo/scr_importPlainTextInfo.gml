@@ -6,7 +6,7 @@ var rowHeight = string_height("A") * 1.3;
 
 
 // Tag Info window
-var tagInfoWindowRectX1 = (camWidth / 2) + 50;
+var tagInfoWindowRectX1 = 40;
 var tagInfoWindowRectY1 = (camHeight / 2) - 100;
 var tagInfoWindowRectX2 = camWidth - 40;
 var tagInfoWindowRectY2 = camHeight - 150;
@@ -49,7 +49,7 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i <= 1; i++) {
+for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConstPerCluster; i++) {
 	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
