@@ -3,8 +3,30 @@ var colorIndex = 0;
 math_set_epsilon(0.000001);
 
 if(global.plainText){
+	for (var i = 0; i < ds_grid_width(global.importToolboxGrid); i++) {
+	
+		//put toolbox grid stuff into plain Info Grid
+	
+		var currentExample = "";
+	
+		for(var j = 0; j < ds_grid_height(global.importToolboxGrid); j++){
+			
 
-show_message("buh");
+			currentExample = ds_grid_get(global.importToolboxGrid, i, j);
+			
+	
+	
+			if(i==0){
+				ds_grid_resize(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGridWidth, ds_grid_height(obj_importMapping.plainTextInfoGrid) + 1);
+				ds_grid_set(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGrid_colText, j, currentExample);
+			}
+			else{
+				ds_grid_set(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGrid_colGroup, j, currentExample);
+			}
+		}
+
+	}
+//show_message("buh");
 }
 else{
 	

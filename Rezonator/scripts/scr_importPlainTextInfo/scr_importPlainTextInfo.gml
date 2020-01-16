@@ -34,12 +34,8 @@ surface_set_target(clipSurface);
 draw_clear_alpha(c_black, 0);
 
 
-
-
-
 x = tagInfoWindowRectX1;
 y = tagInfoWindowRectY1;
-
 
 
 
@@ -49,12 +45,12 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConstPerCluster; i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
+for (var i = 0; i <= obj_importMapping.plainTextInfoGrid_colGroup; i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.plainTextInfoGrid_colGroup + 1)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
-	for (var j = 0; j < ds_grid_height(obj_importMapping.tagInfoGrid); j++) {
+	for (var j = 0; j < ds_grid_height(obj_importMapping.plainTextInfoGrid); j++) {
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
@@ -64,24 +60,22 @@ for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConstPerCluster; i++) {
 		
 		// draw BG stripes
 		draw_set_color(global.colorThemeBG);
-		if (obj_importMapping.tagInfoGridSelectedRow == j
-		or ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, j)) {
-			draw_set_color(ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colColor, j));
-		}
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		
 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 			mouseoverRow = j;
 		}
 		
-		var currentCell = ds_grid_get(obj_importMapping.tagInfoGrid, i, j);
+		var currentCell = ds_grid_get(obj_importMapping.plainTextInfoGrid, i, j);
 		
+		/*
 		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
 			currentCell = string(currentCell) + "%";
 		}
 		else if (i == obj_importMapping.tagInfoGrid_colConstPerCluster) {
 			currentCell = (currentCell) ? "X" : "";
 		}
+		*/
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
@@ -91,6 +85,8 @@ for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConstPerCluster; i++) {
 	}
 }
 
+
+/*
 if (mouseoverRow >= 0) {
 	if (mouse_check_button_pressed(mb_left)) {
 		if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
@@ -119,9 +115,12 @@ if (mouseoverRow >= 0) {
 }
 
 
+
 if (obj_importMapping.rezInfoGridSelectedRow < 0) {
 	obj_importMapping.tagInfoGridSelectedRow = -1;
 }
+
+
 
 if (mouse_check_button_pressed(mb_left)) {
 	if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2)) {
@@ -152,31 +151,22 @@ if (obj_importMapping.tagInfoGridSelectedRow > -1) {
 	draw_rectangle(tagInfoWindowRectX1 - clipX, selectedRowY1 - clipY, tagInfoWindowRectX2 - clipX, selectedRowY2 - clipY, true);
 }
 
-
+*/
 
 
 // draw header for column
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
-for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
+for (var i = 0; i < ds_grid_width(obj_importMapping.plainTextInfoGrid); i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.plainTextInfoGrid_colGroup + 1)) * i);
 	
 	var headerStr = "";
 	switch (i) {
 		case 0:
-			headerStr = "Tag";
+			headerStr = "Text";
 			break;
 		case 1:
-			headerStr = "Example";
-			break;
-		case 2:
-			headerStr = "Consistency";
-			break;
-		case 3:
 			headerStr = "Group";
-			break;
-		case 4:
-			headerStr = "Const Per Cluster";
 			break;
 		default:
 			break;
@@ -211,7 +201,7 @@ if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight
 	}
 }
 
-scr_scrollBar(ds_grid_height(obj_importMapping.tagInfoGrid), -1, rowHeight, rowHeight,
+scr_scrollBar(ds_grid_height(obj_importMapping.plainTextInfoGrid), -1, rowHeight, rowHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (tagInfoWindowRectX2 - tagInfoWindowRectX1), (tagInfoWindowRectY2 - tagInfoWindowRectY1));
 	
@@ -226,7 +216,7 @@ draw_set_color(global.colorThemeText);
 draw_set_font(fnt_mainBold);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(tagInfoWindowRectX1, floor(tagInfoWindowRectY1 - string_height("0")), "Tag Info");
+draw_text(tagInfoWindowRectX1, floor(tagInfoWindowRectY1 - string_height("0")), "Lines Found");
 
 
 // draw Tag Info window border

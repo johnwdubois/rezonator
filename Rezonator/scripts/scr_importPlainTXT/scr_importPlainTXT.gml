@@ -65,6 +65,6 @@ while (not file_text_eof(fileOpenRead)) {
 
 global.plainText = true;
 
-show_message(ds_grid_height(global.importToolboxGrid));
+//show_message(ds_grid_height(global.importToolboxGrid));
 
 room_goto(rm_importScreen);

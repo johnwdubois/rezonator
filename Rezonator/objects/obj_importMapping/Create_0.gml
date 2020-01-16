@@ -2,28 +2,22 @@ pickwhippedRow = -1;
 
 showDevVars = false;
 
-
 pickwhipColorNormal = c_blue;
 pickwhipColorRequired = c_red;
 
 continueButtonActive = false;
 
-
-
-
-
-
-
 rezInfoGridSelectedRow = -1;
 tagInfoGridSelectedRow = -1;
-
-
 
 tagColorList = ds_list_create();
 ds_list_add(tagColorList, c_red, c_blue, c_green, c_yellow, c_purple, c_olive, c_orange);
 ds_list_add(tagColorList, c_teal, c_fuchsia, c_lime);
 
-
+plainTextInfoGridWidth = 2;
+plainTextInfoGrid_colText = 0;
+plainTextInfoGrid_colGroup = 1;
+plainTextInfoGrid = ds_grid_create(plainTextInfoGridWidth, 0);
 
 
 tagInfoGridWidth = 7;
