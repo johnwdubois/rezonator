@@ -695,6 +695,14 @@
             }
         },
         {
+            "Key": "1957767d-9427-4b10-962a-7ef22447b67e",
+            "Value": {
+                "id": "0b75e641-21c7-4a9d-acee-5e83b5ddb9fc",
+                "resourcePath": "scripts\\scr_importPlainTextInfo\\scr_importPlainTextInfo.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "19b3fdc3-7e5a-445c-81a6-6ef33702df03",
             "Value": {
                 "id": "7fb35d77-3c60-41ae-ac1d-2d260fb20186",
@@ -1756,6 +1764,14 @@
                 "id": "d9a4c987-4faf-4ecc-99d9-7b1dd011a90e",
                 "resourcePath": "datafiles_yy\/Discourse\/sbc0022.rez.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "59a29aad-3343-48a6-ab52-4ad6bab716e6",
+            "Value": {
+                "id": "f595449b-42fa-4681-b85b-522c25302b97",
+                "resourcePath": "scripts\\scr_importMappingTagDraw\\scr_importMappingTagDraw.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -3495,6 +3511,14 @@
             }
         },
         {
+            "Key": "ac8f0b08-15f8-4ca8-9ce1-360c9f60783e",
+            "Value": {
+                "id": "a28cfdd1-9c46-4481-a8d8-78e1ac812793",
+                "resourcePath": "scripts\\scr_importInfoGrid\\scr_importInfoGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "acbf4ebe-b18e-48d4-b2a0-606ff9391315",
             "Value": {
                 "id": "96d26239-afb1-4055-80e3-789e72cebecf",
@@ -3839,11 +3863,27 @@
             }
         },
         {
+            "Key": "bf2346e5-608d-4efa-b1b5-ce22396ea88c",
+            "Value": {
+                "id": "1f3780a7-34f3-4397-964c-82a70da77a84",
+                "resourcePath": "scripts\\scr_importPlainTextDraw\\scr_importPlainTextDraw.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "bf49f5ae-0aa0-4bfc-a84f-d3b756891e7d",
             "Value": {
                 "id": "bae7b9c6-76b9-4add-a37f-12ef2e9e9a0c",
                 "resourcePath": "views\/bf49f5ae-0aa0-4bfc-a84f-d3b756891e7d.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "bf91ff7a-65ac-4b37-87c4-fcabd2ed83da",
+            "Value": {
+                "id": "e5780d96-ea4e-47f5-9b62-c2f57bacea5c",
+                "resourcePath": "scripts\\scr_importPlainTXT\\scr_importPlainTXT.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -4148,6 +4188,14 @@
                 "id": "1b84dfb3-4787-4fc9-8014-109849e0546d",
                 "resourcePath": "views\/ce1e4776-7ed2-4b4b-be33-54e8e417546b.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "cef2adef-ba2f-4176-999b-237cfb850cc6",
+            "Value": {
+                "id": "9f05ebfc-948a-42b0-b06b-7ccf809663aa",
+                "resourcePath": "objects\\obj_importPlainTextInfo\\obj_importPlainTextInfo.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -5322,13 +5370,18 @@
         "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
         "238d1e31-cb57-443c-b022-eb85151f4647",
         "fa6c61d8-9bf4-4cdd-a9d8-7dc661aa82bf",
+        "bf91ff7a-65ac-4b37-87c4-fcabd2ed83da",
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",
         "a0eb63cb-ff4b-4a7c-99d9-7237af062ce3",
         "10e45e9e-c2ac-4f14-83ca-5f75f53611af",
         "d469bbbb-5024-4874-a5c6-89cf0f98bb0e",
         "202ae9d9-c7af-466b-9fb5-8458e10001d5",
         "d4bcb05a-6ed5-4b81-9566-f6796a875315",
+        "1957767d-9427-4b10-962a-7ef22447b67e",
         "87c3ad35-6fb5-4322-b8f7-a2d91741a820",
+        "59a29aad-3343-48a6-ab52-4ad6bab716e6",
+        "bf2346e5-608d-4efa-b1b5-ce22396ea88c",
+        "ac8f0b08-15f8-4ca8-9ce1-360c9f60783e",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
         "bc2f5ec3-50e1-4cc0-8fb7-e25c9ba4ad32",
