@@ -161,7 +161,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 			
 			// May need to make a hoverChunkID
 			hoverChunkID = currentWordID;
-		
+			hoverChunkIDRow = currentChunkID - 1; 
 			// Draw the hover highlight
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(0.5);
@@ -399,6 +399,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		draw_set_alpha(1);
 		draw_set_color(c_ltgray);
 		//draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
+		var wordMidY = (wordRectY2 - wordRectY1)/2 + wordRectY1;
+		var placeChainYSpacing = 2;
 		
 		// Go through the rest of the line to find a word this one can link to
 		for(var loopRow = drawWordLoop + 1; loopRow < ds_list_size(currentWordIDList) - 1; loopRow++) {
@@ -413,12 +415,12 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 					// Allow the PlaceChain lines to adapt to shifting display columns
 					var nextWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow + (loopRow - drawWordLoop));
 					var variance = (abs(nextWordDisplayCol - currentWordDisplayCol) * gridSpaceHorizontal);
-					draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX1 + variance, wordRectY1 + 12, 2);
-					draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX1 + variance, wordRectY2 - 12, 2); 
-				}
-				else {
-					draw_line_width(wordRectX2, wordRectY1 + 12, wordRectX2 + 8, wordRectY1 + 12, 2);
-					draw_line_width(wordRectX2, wordRectY2 - 12, wordRectX2 + 8, wordRectY2 - 12, 2); 
+					draw_line_width(wordRectX2, wordMidY + placeChainYSpacing, wordRectX1 + variance, wordMidY + placeChainYSpacing, 2);
+					draw_line_width(wordRectX2, wordMidY - placeChainYSpacing, wordRectX1 + variance, wordMidY - placeChainYSpacing, 2); 
+				}										   
+				else {									   
+					draw_line_width(wordRectX2, wordMidY + placeChainYSpacing, wordRectX2 + 8, wordMidY + placeChainYSpacing, 2);
+					draw_line_width(wordRectX2, wordMidY - placeChainYSpacing, wordRectX2 + 8, wordMidY - placeChainYSpacing, 2); 
 				}
 				break;
 			}

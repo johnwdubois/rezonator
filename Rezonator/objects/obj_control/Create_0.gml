@@ -314,7 +314,7 @@ newWordHoverWordID = -1;
 
 hoverWordID = -1;
 hoverChunkID = -1;
-clickedChunkID = -1;
+hoverChunkIDRow = -1;
 showMouseLine = false;
 linkDeleted = false;
 
@@ -488,6 +488,9 @@ rectNotInPanelPane = false;
 mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
 mouseoverHelpPane = false;
+
+currentChainGridRowInDelete = undefined;
+gridInDelete = undefined;
 
 newWordDeleted = false;
 

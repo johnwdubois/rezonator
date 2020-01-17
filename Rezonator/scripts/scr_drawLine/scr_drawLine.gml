@@ -156,7 +156,7 @@ obj_control.leftScreenBound = camera_get_view_width(view_camera[0]);
 
 hoverWordID = -1;
 hoverChunkID = -1;
-//clickedChunkID = -1;
+hoverChunkIDRow = -1;
 
 
 ds_list_clear(obj_chain.chainShowList);

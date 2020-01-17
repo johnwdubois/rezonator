@@ -1216,16 +1216,20 @@ else if (optionListType == 8)
 
 			// find which grid we are dealing with (depending on current tool)
 			switch (obj_toolPane.currentMode) {
+				// Using the rez tool
 				case obj_toolPane.modeRez:
 					grid = obj_chain.rezChainGrid;
 					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
+						show_message("Please select the Track tool to delete a Track chain link");
 						instance_destroy();
 						exit;	
 					}
 					break;
 				case obj_toolPane.modeTrack:
+				// Using the track tool
 					grid = obj_chain.trackChainGrid;
 					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
+						show_message("Please select the Rez tool to delete a Rez chain link");
 						instance_destroy();
 						exit;	
 					}

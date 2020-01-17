@@ -148,7 +148,8 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 			
 			// May need to make a hoverChunkID
 			hoverChunkID = currentWordID;
-		
+			hoverChunkIDRow = currentChunkID - 1;
+			
 			// Draw the hover highlight
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(0.5);
