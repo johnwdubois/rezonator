@@ -14,10 +14,10 @@ tagColorList = ds_list_create();
 ds_list_add(tagColorList, c_red, c_blue, c_green, c_yellow, c_purple, c_olive, c_orange);
 ds_list_add(tagColorList, c_teal, c_fuchsia, c_lime);
 
-plainTextInfoGridWidth = 2;
-plainTextInfoGrid_colText = 0;
-plainTextInfoGrid_colGroup = 1;
-plainTextInfoGrid = ds_grid_create(plainTextInfoGridWidth, 0);
+global.plainTextInfoGridWidth = 2;
+global.plainTextInfoGrid_colText = 0;
+global.plainTextInfoGrid_colGroup = 1;
+global.plainTextInfoGrid = ds_grid_create(global.plainTextInfoGridWidth, 0);
 
 
 tagInfoGridWidth = 7;
@@ -39,6 +39,26 @@ else{
 	instance_create(0,0,obj_importMappingRezInfo);
 	instance_create(0,0,obj_importMappingTagInfo);
 }
+
+
+
+
+//variables for keyboard
+cursorPos = 1 ;
+cursorViz = false;
+inputText = "";
+cursorTimer = 20;
+global.givenSpeaker = "";
+
+maxDisplaySize = 12;
+canDelete = true;
+canDeleteHoldingCounter = 0;
+canPressLeft = true;
+canPressLeftHoldingCounter = 0;
+canPressRight = true;
+canPressRightHoldingCounter = 0;
+holdingLimit = 6;
+loopItterations = 0;
 
 
 //scr_importMappingGroups();

@@ -17,11 +17,11 @@ if(global.plainText){
 	
 	
 			if(i==0){
-				ds_grid_resize(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGridWidth, ds_grid_height(obj_importMapping.plainTextInfoGrid) + 1);
-				ds_grid_set(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGrid_colText, j, currentExample);
+				ds_grid_resize(global.plainTextInfoGrid, global.plainTextInfoGridWidth, ds_grid_height(global.plainTextInfoGrid) + 1);
+				ds_grid_set(global.plainTextInfoGrid, global.plainTextInfoGrid_colText, j, currentExample);
 			}
 			else{
-				ds_grid_set(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGrid_colGroup, j, currentExample);
+				ds_grid_set(global.plainTextInfoGrid, global.plainTextInfoGrid_colGroup, j, currentExample);
 			}
 		}
 

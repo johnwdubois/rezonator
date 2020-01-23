@@ -45,12 +45,12 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i <= obj_importMapping.plainTextInfoGrid_colGroup; i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.plainTextInfoGrid_colGroup + 1)) * i);
+for (var i = 0; i <= global.plainTextInfoGrid_colGroup; i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (global.plainTextInfoGrid_colGroup + 1)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
-	for (var j = 0; j < ds_grid_height(obj_importMapping.plainTextInfoGrid); j++) {
+	for (var j = 0; j < ds_grid_height(global.plainTextInfoGrid); j++) {
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
@@ -66,7 +66,7 @@ for (var i = 0; i <= obj_importMapping.plainTextInfoGrid_colGroup; i++) {
 			mouseoverRow = j;
 		}
 		
-		var currentCell = ds_grid_get(obj_importMapping.plainTextInfoGrid, i, j);
+		var currentCell = ds_grid_get(global.plainTextInfoGrid, i, j);
 		
 		/*
 		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
@@ -157,8 +157,8 @@ if (obj_importMapping.tagInfoGridSelectedRow > -1) {
 // draw header for column
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
-for (var i = 0; i < ds_grid_width(obj_importMapping.plainTextInfoGrid); i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.plainTextInfoGrid_colGroup + 1)) * i);
+for (var i = 0; i < ds_grid_width(global.plainTextInfoGrid); i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (global.plainTextInfoGrid_colGroup + 1)) * i);
 	
 	var headerStr = "";
 	switch (i) {
@@ -201,7 +201,7 @@ if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight
 	}
 }
 
-scr_scrollBar(ds_grid_height(obj_importMapping.plainTextInfoGrid), -1, rowHeight, rowHeight,
+scr_scrollBar(ds_grid_height(global.plainTextInfoGrid), -1, rowHeight, rowHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (tagInfoWindowRectX2 - tagInfoWindowRectX1), (tagInfoWindowRectY2 - tagInfoWindowRectY1));
 	
