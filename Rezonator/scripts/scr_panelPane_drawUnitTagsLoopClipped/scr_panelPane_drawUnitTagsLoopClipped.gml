@@ -1,5 +1,5 @@
 /*
-    scr_panelPane_drawLineTranslationLoop();
+    scr_panelPane_drawUnitTagsLoopClipped();
     
     Last Updated: 2019-12-28
     
@@ -40,6 +40,7 @@ draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
 
 //scr_surfaceStart();
+// Not doing a surface here so it can scroll along with the left Navwindow
 
 for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
     
@@ -166,6 +167,7 @@ for (var i = 0; i < headerListSize; i++) {
     
     var colName = "";
     
+	// Some hard coded fun!
     switch (functionChainContents_infoCol[i]) {
         case 0:
             colName = "Tag1";

@@ -198,6 +198,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			var ascendYScale = (functionChainList_sortAsc[i]) ? 1 : -1;
 			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
 		}
+		// experimental stuff!
 		else if (obj_control.showDevVars){
 			if (functionChainList_currentTab == functionChainList_tabLine) {
 				// Button to switch between translation or not
@@ -223,7 +224,8 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 				}
 				draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, true);
 				
-				// Button to switch between translation or not
+				
+				// Unit Tag toggle button
 				var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
 				var tagButtonRectX1 = tabRectX2 - buttonRectSize - buttonRectSize - 4;
 				var tagButtonRectY1 = tabRectY1 + 4;

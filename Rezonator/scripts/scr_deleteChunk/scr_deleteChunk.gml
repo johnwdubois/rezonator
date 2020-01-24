@@ -1,6 +1,6 @@
 // Set variable to be used in both cases
 var currentWordID = -1;
-	//show_message("ctrl del chunk1");
+
 // Deletion of Chunks
 if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_control.deleteChunkWord) {
 	//obj_control.deleteChunkWord = false;	
@@ -14,7 +14,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_control.deleteCh
 		ds_grid_set_region(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.chunkGrid), obj_chain.chainStateNormal);
 		exit;	
 	}
-	//show_message(currentChunkRow);
+
 	// Access the Chunk's wordID
 	currentWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, currentChunkRow);
 	
@@ -70,9 +70,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_control.deleteCh
 		var chunkWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordID - 1);
 		ds_list_delete(chunkWordInChainsList, 0);
 	}
-	
-	// Remove this Chunk from the Chunk grid
-	//scr_gridDeleteRow(obj_chain.chunkGrid, currentChunkRow);
+
 	
 }
 // Deletion of newWords
