@@ -1,3 +1,17 @@
+/*
+	scr_goldStandard();
+	
+	Last Updated: 2020-01-23
+	
+	Called from: obj_dialogueBox
+	
+	Purpose: Prototypical grading system for the Stackshow games
+	
+	Mechanism: Compare user's specified chain to the "correct" chain saved in the goldStandardGrid
+	
+	Author: Georgio Klironomos
+*/
+
 
 var currentChainIndex = -1;
 if (currentFocusedChainIndex > -1) {

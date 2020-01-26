@@ -415,6 +415,14 @@
             }
         },
         {
+            "Key": "108d9bb9-fdd5-4af2-8c9d-bd3736150788",
+            "Value": {
+                "id": "ab5cd8b1-4e8c-4046-ac81-ad79e369fa84",
+                "resourcePath": "scripts\\scr_panelPane_drawUnitTagsLoopClipped\\scr_panelPane_drawUnitTagsLoopClipped.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "1095c1d5-485f-4ab9-9765-76b698547ad6",
             "Value": {
                 "id": "2e393150-6100-4efb-9543-b794437fb362",
@@ -5512,7 +5520,8 @@
         "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
         "81e42799-4462-4bb4-9cc5-0b50129aaa22",
         "a0b42376-3fda-4f56-a0bd-312e223154d5",
-        "ca33ba48-05e2-40d8-9437-439a73dc39e5"
+        "ca33ba48-05e2-40d8-9437-439a73dc39e5",
+        "108d9bb9-fdd5-4af2-8c9d-bd3736150788"
     ],
     "tutorial": ""
 }

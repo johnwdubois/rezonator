@@ -198,6 +198,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			var ascendYScale = (functionChainList_sortAsc[i]) ? 1 : -1;
 			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
 		}
+		// experimental stuff!
 		else if (obj_control.showDevVars){
 			if (functionChainList_currentTab == functionChainList_tabLine) {
 				// Button to switch between translation or not
@@ -208,13 +209,44 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 				var translateRectY2 = translateRectY1 + buttonRectSize;
 				draw_set_color(global.colorThemeText);
 				if (point_in_rectangle(mouse_x, mouse_y, translateRectX1, translateRectY1, translateRectX2, translateRectY2)) {
-					//draw_set_color(global.colorThemeBorders);
+					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, false);
 					if (mouse_check_button_released(mb_left)) {
 						obj_control.showTranslation = !obj_control.showTranslation;
+						if(obj_control.showUnitTags) {
+							obj_control.showUnitTags = false;
+						}
 					}
 				}
+				if(obj_control.showTranslation) {
+					draw_set_color(global.colorThemeText);
+					draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, false);
+				}
 				draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, true);
+				
+				
+				// Unit Tag toggle button
+				var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
+				var tagButtonRectX1 = tabRectX2 - buttonRectSize - buttonRectSize - 4;
+				var tagButtonRectY1 = tabRectY1 + 4;
+				var tagButtonRectX2 = tagButtonRectX1 + buttonRectSize;
+				var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
+				draw_set_color(global.colorThemeText);
+				if (point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
+					draw_set_color(global.colorThemeBorders);
+					draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+					if (mouse_check_button_released(mb_left)) {
+						obj_control.showUnitTags = !obj_control.showUnitTags;
+						if(obj_control.showTranslation) {
+							obj_control.showTranslation = false;
+						}
+					}
+				}
+				if(obj_control.showUnitTags) {
+					draw_set_color(global.colorThemeText);
+					draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+				}
+				draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
 			}	
 		}
 	}

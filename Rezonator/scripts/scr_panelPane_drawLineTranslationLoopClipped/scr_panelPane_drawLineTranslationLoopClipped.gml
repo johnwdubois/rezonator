@@ -40,6 +40,7 @@ draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
 
 //scr_surfaceStart();
+// Not doing a surface here so it can scroll along with the left Navwindow
 
 for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	
@@ -66,9 +67,12 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	}
 
 	var currentLineWordString = "";
+	// Hardcoded translation column
 	if(ds_grid_height(global.importToolboxGrid) > 0) {
+		// THIS IS BAD, GEORGIO IS NAUGHTY
 		currentLineWordString = ds_grid_get(global.importToolboxGrid, 12, i + 1);
 	}
+	// If there is no translation, merely show the transcripts instead
 	else {
 		var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
 		for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {

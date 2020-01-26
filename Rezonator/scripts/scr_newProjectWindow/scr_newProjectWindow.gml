@@ -1,3 +1,15 @@
+/*
+	scr_newProjectWindow();
+	
+	Last Updated: 2020-01-23
+	
+	Called from: obj_openingScreen
+	
+	Purpose: Show menu screen for importing a non-rez data file
+	
+	Mechanism: Show the user a list of files they've selected to import
+*/
+
 if (keyboard_check_pressed(vk_escape)) {
 	global.newProject = false;
 	global.openProject = false;

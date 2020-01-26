@@ -39,6 +39,7 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 	obj_control.deleteChunkWord = false;
 	exit;	
 }
+// Most cases uses this boy
 else {
 	// Refresh and clean
 	scr_refreshChainGrid();

@@ -1,3 +1,5 @@
+// Draw Rezonator's audio player
+
 var progressColor = c_orange;
 var playPauseSprite = spr_playPause;
 

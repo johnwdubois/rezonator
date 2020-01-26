@@ -77,8 +77,11 @@ switch (functionChainList_currentTab) {
 		break;
 	case functionChainList_tabLine:
 		grid = -1;
-		if (obj_control.showTranslation) {
+		if (obj_control.showTranslation and not obj_control.showUnitTags) {
 			scr_panelPane_drawLineTranslationLoopClipped();
+		}
+		else if (obj_control.showUnitTags and not obj_control.showTranslation) {
+			scr_panelPane_drawUnitTagsLoopClipped();	
 		}
 		else {
 			scr_panelPane_drawLineContentsLoopClipped();

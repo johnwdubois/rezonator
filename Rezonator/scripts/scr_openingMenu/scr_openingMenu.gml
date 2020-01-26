@@ -1,3 +1,15 @@
+/*
+	scr_openingMenu();
+	
+	Last Updated: 2020-01-23
+	
+	Called from: obj_openingScreen
+	
+	Purpose: Display the opening menu UI to the user
+	
+	Mechanism: Display a multitude of buttons and track the user's clicks
+*/
+
 //Work in here to set the new menu buttons
 draw_set_font(fnt_main);
 draw_set_halign(fa_center);
