@@ -2,7 +2,7 @@ var colorIndex = 0;
 
 math_set_epsilon(0.000001);
 
-if(global.plainText){
+if (global.plainText) {
 	for (var i = 0; i < ds_grid_width(global.importToolboxGrid); i++) {
 	
 		//put toolbox grid stuff into plain Info Grid
@@ -28,7 +28,7 @@ if(global.plainText){
 	}
 //show_message("buh");
 }
-else{
+else {
 	
 	for (var i = 0; i < ds_grid_width(global.importToolboxGrid); i++) {
 	

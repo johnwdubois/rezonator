@@ -1,6 +1,8 @@
 var filename = argument0;
 global.importFilename = filename;
 
+scr_getImportFileRipList(filename);
+
 var fileOpenRead = file_text_open_read(filename);
 
 
@@ -53,9 +55,11 @@ while (not file_text_eof(fileOpenRead)) {
 	ds_grid_set(global.importToolboxGrid, col, row, colVal);
 }
 
-if(ds_grid_width(global.importToolboxGrid) == 0 ){
-scr_importPlainTXT(filename)
+if (ds_grid_width(global.importToolboxGrid) == 0) {
+	scr_importPlainTXT(filename)
 }
+
+file_text_close(fileOpenRead);
 
 
 room_goto(rm_importScreen);

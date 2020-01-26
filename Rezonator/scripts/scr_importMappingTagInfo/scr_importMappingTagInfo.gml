@@ -49,7 +49,7 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i <= 1; i++) {
+for (var i = 0; i <= ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;

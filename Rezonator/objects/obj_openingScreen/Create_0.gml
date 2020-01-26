@@ -136,6 +136,9 @@ global.importFilename = "";
 scr_importMappingGridsInit();
 
 
+global.importFileRipList = ds_list_create();
+
+
 
 
 

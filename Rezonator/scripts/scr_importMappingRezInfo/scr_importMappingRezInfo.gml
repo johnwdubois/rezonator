@@ -103,7 +103,7 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
-		draw_text(colX + 5 - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
+		draw_text(floor(colX + 5) - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
 		
 		plusY += rowHeight;
 	}

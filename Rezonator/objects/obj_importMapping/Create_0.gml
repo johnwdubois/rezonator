@@ -32,12 +32,13 @@ tagInfoGrid = ds_grid_create(tagInfoGridWidth, 0);
 
 scr_importInfoGrid();
 
-if(global.plainText){	
-	instance_create(0,0,obj_importPlainTextInfo);
+if (global.plainText) {	
+	instance_create(0, 0, obj_importPlainTextInfo);
 }
 else{
-	instance_create(0,0,obj_importMappingRezInfo);
-	instance_create(0,0,obj_importMappingTagInfo);
+	//instance_create(0, 0, obj_importMappingRezInfo);
+	//instance_create(0, 0, obj_importMappingTagInfo);
+	instance_create(0, 0, obj_importIgnore);
 }
 
 
