@@ -1,7 +1,19 @@
 // Draws the scroll together button in grid view and handles funtionality, calls funtion to draw both grids
+
+if (notRefreshed){
+	alarm[1] = 1;
+	notRefreshed = false;
+}
+
+
 if (!obj_control.gridView) {
 	exit;
+	notRefreshed = true
 }
+else{
+	notRefreshed = false;
+}
+
 
 //var scrollTogetherButtonX = 100;
 //var scrollTogetherButtonY = 100;

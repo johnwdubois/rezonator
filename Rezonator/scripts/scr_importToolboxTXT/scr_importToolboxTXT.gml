@@ -45,7 +45,8 @@ while (not file_text_eof(fileOpenRead)) {
 	if (is_undefined(col)) {
 		global.importToolboxGridWidth++;
 		ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid));
-		global.importToolboxGridColName[global.importToolboxGridWidth - 1] = colName;
+		//global.importToolboxGridColName[global.importToolboxGridWidth - 1] = colName;
+		ds_list_add(global.importToolboxGridColNameList, colName);
 		col = global.importToolboxGridWidth - 1;
 		ds_map_add(global.importToolboxGridColMap, colName, col);
 	}

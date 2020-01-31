@@ -32,7 +32,7 @@ else{
 	
 	for (var i = 0; i < ds_grid_width(global.importToolboxGrid); i++) {
 	
-		var currentTag = global.importToolboxGridColName[i];
+		var currentTag = ds_list_find_value(global.importToolboxGridColNameList, i);
 		var currentExample = "";
 	
 		var toolboxGridRow = 0;

@@ -68,6 +68,9 @@ if (file_exists(fileName)) {
 			
 				obj_fileLoader.subLineGridBeginning = ds_map_find_value(map, "subLineGridBeginning");
 				obj_fileLoader.subLineGridEnd = ds_map_find_value(map, "subLineGridEnd");
+				global.importToolboxGridWidth = ds_map_find_value(map, "importToolboxGridWidth");
+				
+				global.importToolboxGridColNameList = ds_map_find_value(map, "importToolboxGridColNameList");
 			
 				/*
 				scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
@@ -88,6 +91,8 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(wordDrawGrid, map, "wordDrawGrid");
 				scr_loadAnotherREZ(unitGrid, map, "unitGrid");
 				scr_loadAnotherREZ(lineGrid, map, "lineGrid");
+				scr_loadAnotherREZ(global.importToolboxGrid, map, "toolboxGrid");
+				scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
 				
 				
 				

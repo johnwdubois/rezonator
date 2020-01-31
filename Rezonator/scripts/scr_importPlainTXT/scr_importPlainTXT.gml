@@ -6,9 +6,11 @@ var fileOpenRead = file_text_open_read(filename);
 global.importToolboxGridWidth = 2
 ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid));
 
-global.importToolboxGridColName[0] = "Text";
+//global.importToolboxGridColName[0] = "Text";
+ds_list_add(global.importToolboxGridColNameList, "Text");
 ds_map_add(global.importToolboxGridColMap, "Text", 0);
-global.importToolboxGridColName[1] = "Group";
+//global.importToolboxGridColName[1] = "Group";
+ds_list_add(global.importToolboxGridColNameList, "Group");
 ds_map_add(global.importToolboxGridColMap, "Group", 1);
 
 
