@@ -92,3 +92,7 @@ scrollBarPlusY = 0;
 
 x = 32;
 y = 200;
+
+
+
+notRefreshed = true;

@@ -15,10 +15,16 @@
 var originalGrid = argument0;
 var map = argument1;
 var gridStr = argument2;
+var tempGrid = ds_grid_create(0, 0);
 
-var tempGrid = ds_grid_create(ds_grid_width(originalGrid), 0);
-				
+if (originalGrid != global.importToolboxGrid) {
+	ds_grid_resize(tempGrid, ds_grid_width(originalGrid), 0);
+}
+else if (global.importToolboxGridWidth >= 0){
+	ds_grid_resize(tempGrid, global.importToolboxGridWidth, 0);
+}
 scr_loadREZGridReset(tempGrid, map, gridStr);
+
 
 
 // now we've gotten the new grid, but we may need to change its values
@@ -85,6 +91,8 @@ if (originalGridHeight > 0) {
 	}
 }
 
+
+
 if (originalGrid == obj_control.dynamicWordGrid) {
 	for (var i = 0; i < ds_grid_height(tempGrid); i++) {
 		var currentReplaceWord = ds_grid_get(tempGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
@@ -109,12 +117,17 @@ if (ds_grid_height(obj_control.wordGrid) > 0 and ds_grid_height(obj_control.unit
 }
 
 
+if (originalGrid != global.importToolboxGrid) {
+	ds_grid_resize(originalGrid, ds_grid_width(originalGrid), originalGridHeight + ds_grid_height(tempGrid));
+}
+else if (global.importToolboxGridWidth >= 0){
+	ds_grid_resize(originalGrid, global.importToolboxGridWidth, originalGridHeight + ds_grid_height(tempGrid));
+}
 
-				
-
-ds_grid_resize(originalGrid, ds_grid_width(originalGrid), originalGridHeight + ds_grid_height(tempGrid));
 ds_grid_set_grid_region(originalGrid, tempGrid, 0, 0, ds_grid_width(tempGrid), ds_grid_height(tempGrid), 0, originalGridHeight);
 ds_grid_destroy(tempGrid);
+
+
 
 
 
