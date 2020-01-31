@@ -92,7 +92,9 @@ with (obj_saveParent) {
 		ds_map_add(map, "importToolboxGridWidth", global.importToolboxGridWidth);
 		ds_map_add_list(map, "morphGrid", mapMorphGrid);
 		var tempList = ds_list_create();
-		ds_list_copy(tempList, global.importToolboxGridColNameList);
+		if (global.importToolboxGridColNameList != undefined) {
+			ds_list_copy(tempList, global.importToolboxGridColNameList);
+		}
 		ds_map_add_list(map, "importToolboxGridColNameList", tempList);
 		
 		
