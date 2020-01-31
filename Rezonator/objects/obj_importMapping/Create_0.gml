@@ -36,9 +36,9 @@ if (global.plainText) {
 	instance_create(0, 0, obj_importPlainTextInfo);
 }
 else{
-	//instance_create(0, 0, obj_importMappingRezInfo);
-	//instance_create(0, 0, obj_importMappingTagInfo);
-	instance_create(0, 0, obj_importIgnore);
+	instance_create(0, 0, obj_importMappingRezInfo);
+	instance_create(0, 0, obj_importMappingTagInfo);
+	//instance_create(0, 0, obj_importIgnore);
 }
 
 

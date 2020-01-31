@@ -11,6 +11,12 @@ var newRow = false;
 var currentLine = 0;
 var blankRow = true;
 
+
+var firstClusterTagList = ds_list_create();
+var firstCluster = true;
+var lineInCluster = 0;
+
+
 while (not file_text_eof(fileOpenRead)) {
 	
 	currentLine++;
@@ -18,6 +24,10 @@ while (not file_text_eof(fileOpenRead)) {
 	var lineInFile = file_text_readln(fileOpenRead);
 	if (string_length(string_lettersdigits(lineInFile)) < 1) {
 		blankRow = true;
+		lineInCluster = 0;
+		if (firstCluster) {
+			firstCluster = false;
+		}
 		continue;
 	}
 	else {
@@ -25,10 +35,17 @@ while (not file_text_eof(fileOpenRead)) {
 			newRow = true;
 			blankRow = false;
 		}
+		lineInCluster++;
 	}
 	
 	if (string_char_at(lineInFile, 1) != "\\") {
-		continue;
+		
+		if (!firstCluster and lineInCluster - 1 < ds_list_size(firstClusterTagList)) {
+			lineInFile = ds_list_find_value(firstClusterTagList, lineInCluster - 1) + " " + lineInFile;
+		}
+		else {
+			continue;
+		}
 	}
 	if (string_count(" ", lineInFile) < 1) {
 		continue;
@@ -39,15 +56,18 @@ while (not file_text_eof(fileOpenRead)) {
 	}
 	
 	var colNameLength = string_pos(" ", lineInFile);
-	var colName = string_copy(lineInFile, 2, colNameLength - 2);
+	var colName = string_copy(lineInFile, 1, colNameLength - 1);
 	var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
+	
+	if (firstCluster) {
+		ds_list_add(firstClusterTagList, colName);
+	}
 	
 
 	var col = ds_map_find_value(global.importToolboxGridColMap, colName);
 	if (is_undefined(col)) {
 		global.importToolboxGridWidth++;
 		ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid));
-		//global.importToolboxGridColName[global.importToolboxGridWidth - 1] = colName;
 		ds_list_add(global.importToolboxGridColNameList, colName);
 		col = global.importToolboxGridWidth - 1;
 		ds_map_add(global.importToolboxGridColMap, colName, col);
@@ -55,6 +75,10 @@ while (not file_text_eof(fileOpenRead)) {
 	var row = ds_grid_height(global.importToolboxGrid) - 1;
 	ds_grid_set(global.importToolboxGrid, col, row, colVal);
 }
+
+
+
+
 
 if (ds_grid_width(global.importToolboxGrid) == 0) {
 	scr_importPlainTXT(filename)
