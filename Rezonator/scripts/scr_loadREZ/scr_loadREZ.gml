@@ -11,17 +11,24 @@
 	
 	Author: Terry DuBois
 */
-
+var RezDirString = global.currentDirString;
 //show_message(string(global.currentDirString));
-
-var discourseDirString = global.currentDirString + "\\Discourse";
-if (os_type == os_macosx) {
-	discourseDirString = global.currentDirString + "/Discourse";
+if(!global.wheresElmo){
+	RezDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Rez";
+	if (os_type == os_macosx) {
+		RezDirString = global.rezonatorDirString + "/Data/SBCorpus/Rez";
+	}
+	//show_message(string(RezDirString) + "   Does exist : " + string(directory_exists(RezDirString)));
 }
+/*
+if(!global.wheresElmo and global.previousRezDirectory != ""){
+	RezDirString = global.previousRezDirectory;
 
-
+}
+*/
 if (directory_exists(global.rezonatorDirString)) {
-	var fileName = get_open_filename_ext("REZ file|*.rez", "", discourseDirString, "Open REZ");
+	//show_message(string(RezDirString) + "   Does exist : " + string(directory_exists(RezDirString)));
+	var fileName = get_open_filename_ext("REZ file|*.rez", "", RezDirString, "Open REZ");
 }
 else {
 	var fileName = get_open_filename_ext("REZ file|*.rez", "", program_directory, "Open REZ");
@@ -31,6 +38,12 @@ if (fileName == "" or not file_exists(fileName)) {
 	game_restart();
 	exit;
 }
+else{
+	global.previousRezDirectory = filename_path(fileName);
+}
+
+
+
 
 global.fileSaveName = fileName;
 if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {

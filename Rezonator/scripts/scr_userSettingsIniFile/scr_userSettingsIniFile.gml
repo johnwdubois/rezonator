@@ -13,7 +13,18 @@ if (directory_exists(global.rezonatorDirString)) {
 	fileStr += "columnWidth:" + string(obj_control.gridSpaceHorizontal) + "#";
 	fileStr += "SpeakerLabelX3:" + string(ds_list_find_value(obj_control.speakerLabelColXList,2)) + "#";
 	fileStr += "SpeakerLabelX4:" + string(ds_list_find_value(obj_control.speakerLabelColXList,3)) + "#";
-	
+	/*
+	if(os_type == os_windows){
+		if (!directory_exists(global.previousRezDirectory)){
+			global.previousRezDirectory = scr_addBackSlashes(global.previousRezDirectory);
+		}
+	//show_message(global.previousRezDirectory);
+	}
+	*/
+	fileStr += "previousRezDirectory:" + string(global.previousRezDirectory);
+	fileStr += " " + "#";
+	fileStr += "previousImportDirectory:" + string(global.previousImportDirectory);
+	fileStr += " " + "#";
 	fileStr += "end" + "#";
 	
 	file_text_write_string(userSettingsIniFile, string_hash_to_newline(fileStr));

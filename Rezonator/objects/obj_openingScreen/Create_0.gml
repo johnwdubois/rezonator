@@ -166,8 +166,8 @@ loopItterations = 0;
 // variables for different games
 global.wheresElmo = false;
 global.rezzles = false;
-
-
+global.previousRezDirectory = "";
+global.previousImportDirectory = "";
 
 
 var userSettingsList = ds_list_create();
@@ -205,6 +205,19 @@ if (ds_list_size(userSettingsList) > 1) {
 		inputText = scr_getValueFromString(global.iniFileString, "userName:", ",");
 		cursorPos = string_length(inputText) + 1;
 	}
+	
+	if (string_count("previousRezDirectory:", global.iniFileString) > 0) {
+		global.previousRezDirectory = string(scr_getValueFromString(global.iniFileString, "previousRezDirectory:", ","));
+		//show_message("rez dir exists : " + string(directory_exists(global.previousRezDirectory)));
+		//show_message(global.previousRezDirectory);
+	}
+	
+	if (string_count("previousImportDirectory:", global.iniFileString) > 0) {
+		global.previousImportDirectory = string(scr_getValueFromString(global.iniFileString, "previousImportDirectory:", ","));
+		//show_message("import dir exists : " + string(directory_exists(global.previousImportDirectory)));
+		//show_message(global.previousImportDirectory);
+	}
+	
 }
 
 ds_list_destroy(userSettingsList);

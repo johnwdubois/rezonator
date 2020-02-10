@@ -59,25 +59,25 @@ else if (global.newProject and not global.openProject) {
 }
 else if (not global.newProject and global.openProject) {
 //show_message("elmo: " + string(global.wheresElmo) + "  , rezzles: " +string(global.rezzles) + "  , tutorial: " +string(global.tutorial))
-
+	//global.currentDirString = global.previousRezDirectory;
 	if(global.wheresElmo){
 
-			global.currentDirString = global.rezonatorElmoDirString;
+		global.currentDirString = global.rezonatorElmoDirString;
+
 
 	}
 	if(global.rezzles){
 		
-			global.currentDirString = global.rezonatorRezzlesDirString;
+		global.currentDirString = global.rezonatorRezzlesDirString;
 			
 	}
 	if(global.tutorial){
 		
-			global.currentDirString = global.rezonatorTutorialDirString;
+		global.currentDirString = global.rezonatorTutorialDirString;
 			
 	}
 	
 	//show_message(string(global.currentDirString));
-
 	room_goto(rm_mainScreen);
 }
 

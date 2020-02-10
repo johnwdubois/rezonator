@@ -23,7 +23,7 @@ if	(os_type == os_macosx)	{
 	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "/Saved_Games";
 	global.rezonatorRezzlesDirString = global.rezonatorDirString + "/Games/Rezzles";
 	global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "/Saved_Games";
-	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "/Discourse";
+	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "/Data";
 }
 else	{
 	var userStr = environment_get_variable("USERNAME");
@@ -34,7 +34,7 @@ else	{
 	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "\\Saved Games";
 	global.rezonatorRezzlesDirString = global.rezonatorDirString + "\\Games\\Rezzles";
 	global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "\\Saved Games";
-	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "\\Discourse";
+	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "\\Data";
 }
 
 
