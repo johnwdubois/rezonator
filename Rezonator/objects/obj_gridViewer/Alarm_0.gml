@@ -14,7 +14,8 @@ ds_list_add(gridList,
 	obj_chain.cliqueDisplayGrid,
 	obj_chain.goldStandardGrid,
 	global.importToolboxGrid,
-	obj_control.morphGrid
+	obj_control.morphGrid,
+	global.importCSVGrid
 	);
 
 

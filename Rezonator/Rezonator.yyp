@@ -87,6 +87,14 @@
             }
         },
         {
+            "Key": "029d7ff5-34a6-4fcc-9096-bd7cd50a1e23",
+            "Value": {
+                "id": "ad46ff33-aea9-42ad-82ca-0ef91ba2f82f",
+                "resourcePath": "scripts\\scr_loadDynamicWordGridIndividualCSV\\scr_loadDynamicWordGridIndividualCSV.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0311e50e-e491-412f-8a4d-01b998585391",
             "Value": {
                 "id": "2a4fb644-8b37-4d29-80c1-ba39c56f703f",
@@ -4975,6 +4983,14 @@
             }
         },
         {
+            "Key": "edc8617f-4973-4773-9238-3c4826e2f0b3",
+            "Value": {
+                "id": "de695f6a-863b-4d98-9a0a-38691f610605",
+                "resourcePath": "scripts\\scr_loadLineGridSection\\scr_loadLineGridSection.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ede68f46-236b-441e-9b29-3fd1810cdfd6",
             "Value": {
                 "id": "96e3b4fb-052e-4820-912a-cc075c4979f0",
@@ -5373,6 +5389,8 @@
         "8165a259-1969-4e86-bfb5-a8536d1b9139",
         "fa097c53-c2a5-4e0c-9429-f13c190f7866",
         "bdeba254-b19a-4a3a-97e8-04556c55d6dd",
+        "029d7ff5-34a6-4fcc-9096-bd7cd50a1e23",
+        "edc8617f-4973-4773-9238-3c4826e2f0b3",
         "c57094d8-44a7-4723-bd91-6667ee079077",
         "26f1fa2e-34e4-496b-ad6d-19f45e31327b",
         "7786c951-e5ff-4899-91d6-e76236cd0f8d",

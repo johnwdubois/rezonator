@@ -124,6 +124,8 @@ global.importCSVGrid_colText = 11;
 global.importCSVGrid_colUnitStart = 22;
 global.importCSVGrid_colUnitEnd = 23;
 
+global.importCSVUnitGridHeight = 0;
+
 
 
 global.importToolboxGridWidth = 0;

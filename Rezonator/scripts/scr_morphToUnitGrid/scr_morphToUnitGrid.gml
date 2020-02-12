@@ -77,7 +77,7 @@ for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
 		}
 		
 		// add row to lineGrid
-		var currentLineY = currentUnitID * obj_control.gridSpaceVertical;
+		var currentLineY = (currentUnitID - 1) * obj_control.gridSpaceVertical;
 		
 		ds_grid_resize(obj_control.lineGrid, obj_control.lineGridWidth, ds_grid_height(obj_control.lineGrid) + 1);
 		var currentRowLineGrid = ds_grid_height(obj_control.lineGrid) - 1;

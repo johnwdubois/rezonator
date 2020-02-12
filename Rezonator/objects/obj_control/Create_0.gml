@@ -137,8 +137,20 @@ lineGrid_colVoidSum = 11;
 lineGrid_colPixelYOriginal = 12;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
-
 lineGridBackup = ds_grid_create(lineGridWidth, 0);
+
+// if we are importing a corpus CSV file, we should resize the unit & line grids to be filled in
+if (global.importCSVUnitGridHeight > 0) {
+	//ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight);
+	//ds_grid_resize(lineGrid, lineGridWidth, global.importCSVUnitGridHeight);
+	
+	//ds_grid_clear(unitGrid, -1);
+	//ds_grid_clear(lineGrid, -1);
+	global.totalUnitAmount = global.importCSVUnitGridHeight;
+	ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight - 1);
+	ds_grid_clear(unitGrid, -1);
+}
+
 
 //lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 lineGridDefaultSort = true;
