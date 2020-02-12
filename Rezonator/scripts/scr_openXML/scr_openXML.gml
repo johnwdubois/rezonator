@@ -9,19 +9,29 @@
 	
 	Mechanism: Loop through entire text file and add each line to global.fileLineRipList
 */
-//	show_message(string(global.currentDirString));
+//show_message(string(global.previousImportDirectory));
 
-
-var discourseDirString = global.currentDirString + "\\Discourse\\XML Files";
+//if(global.previousImportDirectory == ""){
+	
+var discourseDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Transcript";
 if (os_type == os_macosx) {
-	discourseDirString = global.currentDirString + "/Discourse/XML Files";
+	discourseDirString = global.currentDirString + "/Data/SBCorpus/Transcript";
 }
 
+//}
+//else{
+//	var discourseDirString = global.previousImportDirectory;
 
+//}
+
+//show_message(string(discourseDirString) + "   Does exist : " + string(directory_exists(discourseDirString)));
 openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json|Toolbox TXT file|*.txt", "", discourseDirString, "Import File");
 
 if (openedFile == "" or not file_exists(openedFile)) {
 	exit;
+}
+else{
+	global.previousImportDirectory = filename_path(openedFile);
 }
 
 var fileName = filename_name(openedFile);
@@ -41,6 +51,8 @@ if (string_count("txt", fileExt) > 0) {
 	scr_importToolboxTXT(openedFile);
 	exit;
 }
+
+
 
 var xmlFile = (string_count("xml", fileExt) > 0);
 var jsonFile = (string_count("json", fileExt) > 0);

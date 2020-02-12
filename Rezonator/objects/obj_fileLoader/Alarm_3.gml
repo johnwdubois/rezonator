@@ -64,6 +64,7 @@ if (string_count("fontSize:", global.iniFileString) > 0) {
 scr_fontGlobalUpdate();
 
 
+
 /*
 show_message(string(real(scr_getValueFromString(global.iniFileString, "SpeakerLabelX3:", ","))));
 show_message(string(real(scr_getValueFromString(global.iniFileString, "SpeakerLabelX4:", ","))));
