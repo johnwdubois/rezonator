@@ -17,6 +17,7 @@ x = camera_get_view_width(view_camera[0]) - global.toolPaneWidth;
 y = 0;
 
 if (obj_control.gridView) {
+windowHeight = 100;
 //	exit;
 }
 
