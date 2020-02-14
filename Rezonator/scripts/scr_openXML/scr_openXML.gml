@@ -11,18 +11,24 @@
 */
 //show_message(string(global.previousImportDirectory));
 
-//if(global.previousImportDirectory == ""){
+if(global.previousImportDirectory == ""){
 	
 var discourseDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Transcript";
-if (os_type == os_macosx) {
-	discourseDirString = global.currentDirString + "/Data/SBCorpus/Transcript";
+	if (os_type == os_macosx) {
+		discourseDirString = global.currentDirString + "/Data/SBCorpus/Transcript";
+	}
+
 }
+else{
+	var discourseDirString = global.previousImportDirectory;
+	
+	var charAt = string_length(discourseDirString);
+	while (string_char_at(discourseDirString, charAt) == " " and charAt > 0) {
+		charAt--;
+	}
+	discourseDirString = string_delete(discourseDirString, charAt, string_length(discourseDirString) - charAt);
 
-//}
-//else{
-//	var discourseDirString = global.previousImportDirectory;
-
-//}
+}
 
 //show_message(string(discourseDirString) + "   Does exist : " + string(directory_exists(discourseDirString)));
 openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json|Toolbox TXT file|*.txt", "", discourseDirString, "Import File");

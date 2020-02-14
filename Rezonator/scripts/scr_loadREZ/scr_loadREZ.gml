@@ -20,14 +20,26 @@ if(!global.wheresElmo){
 	}
 	//show_message(string(RezDirString) + "   Does exist : " + string(directory_exists(RezDirString)));
 }
-/*
-if(!global.wheresElmo and global.previousRezDirectory != ""){
-	RezDirString = global.previousRezDirectory;
 
+if (!global.wheresElmo and global.previousRezDirectory != "") {
+	RezDirString = global.previousRezDirectory;
+	
+	// trimming the spaces off of RezDirString
+	var charAt = string_length(RezDirString);
+	while (string_char_at(RezDirString, charAt) == " " and charAt > 0) {
+		charAt--;
+	}
+	RezDirString = string_delete(RezDirString, charAt, string_length(RezDirString) - charAt);
 }
-*/
+
+
+
+
+
+
+
 if (directory_exists(global.rezonatorDirString)) {
-	//show_message(string(RezDirString) + "   Does exist : " + string(directory_exists(RezDirString)));
+	//show_message("." + string(RezDirString) + ".   Does exist : " + string(directory_exists(RezDirString)));
 	var fileName = get_open_filename_ext("REZ file|*.rez", "", RezDirString, "Open REZ");
 }
 else {
