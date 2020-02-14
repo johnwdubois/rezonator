@@ -152,13 +152,15 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	draw_set_color(global.colorThemeText);
 	draw_text(x + (textMarginLeft) - clipX + 10, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
 	
+	var textMarginLeftReal = (obj_control.showParticipantName) ? (windowWidth / 3) : textMarginLeft;
+	
 	//draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	draw_set_color(global.colorThemeBG);
-	draw_rectangle(windowWidth/3 - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+	draw_rectangle(textMarginLeftReal - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	draw_set_color(global.colorThemeBG);
-	draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
+	draw_line_width(textMarginLeftReal - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 	draw_set_color(global.colorThemeText);
-	draw_text(windowWidth/3, y + textMarginTop + scrollPlusY + textPlusY - clipY + textAdjustY/2, currentLineWordString);
+	draw_text(textMarginLeftReal, y + textMarginTop + scrollPlusY + textPlusY - clipY + textAdjustY/2, currentLineWordString);
 	
 	
 	

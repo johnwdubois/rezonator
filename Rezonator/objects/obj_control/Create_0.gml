@@ -58,7 +58,12 @@ speakerLabelColXHoldingPrev = 0;
 speakerLabelColXHoldingDiff = 0;
 speakerLabelColPrevList = ds_list_create();
 for (var i = 0; i < 4; i++) {
-	ds_list_add(speakerLabelColXList, i * 100);
+	//if (i == 3) {
+	//	ds_list_add(speakerLabelColXList, (i - 1) * 100);
+	//}
+	//else {
+		ds_list_add(speakerLabelColXList, i * 100);
+	//}
 }
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	ds_list_set(speakerLabelColXList, 2, 100);
@@ -568,6 +573,7 @@ swapLinePos1 =  0;
 swapLinePos2 =  0;
 
 showLineNumber = true;
+showParticipantName = true;
 
 audioTrackStream = -1;
 audioTrackIndex = -1;

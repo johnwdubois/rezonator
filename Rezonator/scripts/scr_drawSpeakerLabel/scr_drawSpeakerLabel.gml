@@ -31,6 +31,9 @@ for (var i = 0; i < 3; i++) {
 	if (!obj_control.showLineNumber and i != 2) {
 		continue;
 	}
+	if (!obj_control.showParticipantName and i == 2) {
+		continue;
+	}
 		
 	var speakerLabelCurrentColX1 = ds_list_find_value(obj_control.speakerLabelColXList, i);
 	var speakerLabelCurrentColY1 = speakerRectY1;
