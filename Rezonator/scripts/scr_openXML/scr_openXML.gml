@@ -31,7 +31,7 @@ else{
 }
 
 //show_message(string(discourseDirString) + "   Does exist : " + string(directory_exists(discourseDirString)));
-openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json|Toolbox TXT file|*.txt", "", discourseDirString, "Import File");
+openedFile = get_open_filename_ext("XML file|*.xml|CSV file|*.csv|JSON file|*.json|TXT file|*.txt", "", discourseDirString, "Import File");
 
 if (openedFile == "" or not file_exists(openedFile)) {
 	exit;

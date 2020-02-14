@@ -36,4 +36,4 @@ ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, curren
 ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentRowWordDrawGrid, false);
 ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentRowWordDrawGrid, false);
 ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colTextColor, currentRowWordDrawGrid, c_black);
-ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentRowWordDrawGrid, obj_control.c_ltblue);
+ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentRowWordDrawGrid, 0);

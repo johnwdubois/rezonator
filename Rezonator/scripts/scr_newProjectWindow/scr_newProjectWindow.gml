@@ -16,6 +16,8 @@ if (keyboard_check_pressed(vk_escape)) {
 	global.neworOpen = true;
 }
 
+scr_drawBackArrow();
+
 draw_set_color(global.colorThemePaneBG);
 draw_rectangle(importWindowX1, importWindowY1, importWindowX2, importWindowY2, false);
 

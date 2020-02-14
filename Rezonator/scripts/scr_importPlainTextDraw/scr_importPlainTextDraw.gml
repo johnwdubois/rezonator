@@ -9,7 +9,7 @@ draw_set_font(fnt_mainBold);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(20, 20, "Plain Text Import");
+draw_text(20 + sprite_get_width(spr_backArrow), 20, "Plain Text Import");
 
 
 
