@@ -34,6 +34,7 @@ scr_importInfoGrid();
 
 if (global.plainText) {	
 	instance_create(0, 0, obj_importPlainTextInfo);
+	room_goto(rm_mainScreen);
 }
 else{
 	instance_create(0, 0, obj_importMappingRezInfo);
