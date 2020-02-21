@@ -1,4 +1,4 @@
-if (ds_grid_height(global.importToolboxGrid) < 1) {
+if (ds_grid_height(global.importGrid) < 1) {
 	exit;
 }
 
@@ -24,10 +24,10 @@ if (global.plainText) {
 	
 		var currentParticipant = string(global.givenSpeaker);
 		var currentMorphFullStr = string(ds_grid_get(global.plainTextInfoGrid, morphCol, i));
-		var currentMorphList = scr_splitStringToolbox(currentMorphFullStr);
+		var currentMorphList = scr_splitStringImport(currentMorphFullStr);
 		var currentGlossFullStr = "";
 		
-		currentGlossFullStr = string(ds_grid_get(global.importToolboxGrid, global.plainTextInfoGrid_colText, i));
+		currentGlossFullStr = string(ds_grid_get(global.importGrid, global.plainTextInfoGrid_colText, i));
 		
 		
 	
@@ -73,16 +73,16 @@ else {
 
 
 	// build morphGrid!
-	for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
+	for (var i = 0; i < ds_grid_height(global.importGrid); i++) {
 	
-		var currentParticipant = string(ds_grid_get(global.importToolboxGrid, participantCol, i));
-		var currentMorphFullStr = string(ds_grid_get(global.importToolboxGrid, morphCol, i));
-		var currentMorphList = scr_splitStringToolbox(currentMorphFullStr);
+		var currentParticipant = string(ds_grid_get(global.importGrid, participantCol, i));
+		var currentMorphFullStr = string(ds_grid_get(global.importGrid, morphCol, i));
+		var currentMorphList = scr_splitStringImport(currentMorphFullStr);
 		var currentGlossFullStr = "";
 		if (glossCol >= 0) {
-			currentGlossFullStr = string(ds_grid_get(global.importToolboxGrid, glossCol, i));
+			currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));
 		}
-		var currentGlossList = scr_splitStringToolbox(currentGlossFullStr);
+		var currentGlossList = scr_splitStringImport(currentGlossFullStr);
 	
 		if (currentParticipant == 0) {
 			continue;
@@ -91,10 +91,10 @@ else {
 		var currentUnitStart = 0;
 		var currentUnitEnd = 0;
 		if (unitStartCol >= 0) {
-			currentUnitStart = ds_grid_get(global.importToolboxGrid, unitStartCol, i);
+			currentUnitStart = ds_grid_get(global.importGrid, unitStartCol, i);
 		}
 		if (unitEndCol >= 0) {
-			currentUnitEnd = ds_grid_get(global.importToolboxGrid, unitEndCol, i);
+			currentUnitEnd = ds_grid_get(global.importGrid, unitEndCol, i);
 		}
 	
 		unitCounter++;

@@ -54,7 +54,7 @@ if (string_count("csv", fileExt) > 0) {
 }
 
 if (string_count("txt", fileExt) > 0) {
-	scr_importToolboxTXT(openedFile);
+	scr_importTXT(openedFile);
 	exit;
 }
 

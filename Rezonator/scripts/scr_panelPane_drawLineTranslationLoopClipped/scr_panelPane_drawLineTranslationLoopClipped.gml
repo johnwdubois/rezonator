@@ -68,9 +68,9 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 
 	var currentLineWordString = "";
 	// Hardcoded translation column
-	if(ds_grid_height(global.importToolboxGrid) > 0) {
+	if(ds_grid_height(global.importGrid) > 0) {
 		// THIS IS BAD, GEORGIO IS NAUGHTY
-		currentLineWordString = ds_grid_get(global.importToolboxGrid, 12, i + 1);
+		currentLineWordString = ds_grid_get(global.importGrid, 12, i + 1);
 	}
 	// If there is no translation, merely show the transcripts instead
 	else {

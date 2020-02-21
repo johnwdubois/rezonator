@@ -658,7 +658,7 @@
             "Key": "16e6aa65-5f00-41a1-9538-3b899a7d7253",
             "Value": {
                 "id": "9f53c429-e7a1-4405-851a-c65812bcaff6",
-                "resourcePath": "scripts\/scr_splitStringToolbox\/scr_splitStringToolbox.yy",
+                "resourcePath": "scripts\\scr_splitStringImport\\scr_splitStringImport.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -2370,7 +2370,7 @@
             "Key": "762ec5a5-92eb-41fe-8cb9-d38ffbde302f",
             "Value": {
                 "id": "c1dee088-a1a3-4d67-acff-35e5d2383446",
-                "resourcePath": "scripts\\scr_toolboxGridToMorphGrid\\scr_toolboxGridToMorphGrid.yy",
+                "resourcePath": "scripts\\scr_importGridToMorphGrid\\scr_importGridToMorphGrid.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5266,7 +5266,7 @@
             "Key": "fa6c61d8-9bf4-4cdd-a9d8-7dc661aa82bf",
             "Value": {
                 "id": "1e018e0f-c48c-4c75-a5f8-d41ed2c42471",
-                "resourcePath": "scripts\/scr_importToolboxTXT\/scr_importToolboxTXT.yy",
+                "resourcePath": "scripts\\scr_importTXT\\scr_importTXT.yy",
                 "resourceType": "GMScript"
             }
         },

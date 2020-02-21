@@ -107,8 +107,8 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case obj_chain.goldStandardGrid:
 			colName = "GoldStandard"; // vizClique
 			break;
-		case global.importToolboxGrid:
-			colName = "Toolbox"; // Import Toolbox Grid
+		case global.importGrid:
+			colName = "Import"; // Import Grid
 			break;
 		case obj_control.morphGrid:
 			colName = "Morph"; // Morph Grid

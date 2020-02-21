@@ -54,7 +54,7 @@ draw_set_valign(fa_middle);
 draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), "Summary");
 
 draw_set_font(fnt_main);
-draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), "Clusters found: " + string(ds_grid_height(global.importToolboxGrid)));
+draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), "Clusters found: " + string(ds_grid_height(global.importGrid)));
 draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + (string_height("0") * 2.5), "Tags found: " + string(ds_grid_height(tagInfoGrid)));
 
 
