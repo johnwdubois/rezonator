@@ -74,7 +74,7 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 		draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
 	else if (i == 0) {
-		draw_sprite_ext(spr_transcriptionToggle, (obj_control.wordTranscriptView) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_transcriptionToggle, (obj_control.wordTokenView) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
 	else {
 		draw_sprite_ext(spr_helpToggle, !functionHelp_collapsed, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
