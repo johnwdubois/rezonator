@@ -565,6 +565,16 @@ currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 
 
+
+// hide participant names
+if (!gridView) {
+	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("L"))) {
+		scr_hideSpeakerName();
+	}
+}
+
+
+
 // Check for mouse over of the Panel Pane
 // It's gotta stop the drag but not require the user to click into the main screen first
 if ((window_get_cursor() != cr_size_ns) && !mouse_check_button(mb_left)) {
