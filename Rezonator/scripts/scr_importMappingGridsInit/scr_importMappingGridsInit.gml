@@ -19,4 +19,4 @@ for (var j = 0; j < ds_grid_height(global.rezInfoGrid); j++) {
 	ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colTier, j, ds_list_find_value(tierList, j));
 	ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, j, -1);
 	ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, j, -1);
-}
+} 

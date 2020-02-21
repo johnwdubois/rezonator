@@ -39,7 +39,7 @@ if (global.plainText) {
 else{
 	instance_create(0, 0, obj_importMappingRezInfo);
 	instance_create(0, 0, obj_importMappingTagInfo);
-	//instance_create(0, 0, obj_importIgnore);
+	//instance_create(0, 0, obj_importexception);
 }
 
 

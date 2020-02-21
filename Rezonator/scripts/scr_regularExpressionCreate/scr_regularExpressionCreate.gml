@@ -18,7 +18,7 @@
 //                     mathematical expressions. "(a|b)c" will only accept "ac" or "bc", you can read this as "a or b, followed by c". E.g. "(a|b)|c" or "(((a)|b|c))" is the same as "a|b|c".
 //                     The regular expression "e|d(a|b)c|f" will only accept "e", "dac", "dbc", or "f". Notice that the d and c prioritizes the combination with (a|b). Adding parentheses to make it "(e|d)(a|b)(c|f)" makes d and c
 //                     prioritize the |-operation. Remember how I said that you can read "a|b" as "a or b"? You can read "ab" as "a and b" (note that b has to be after a). There's an invisible and-operation there.
-//                     Same with (a|b)c. There's an invisible and-operation between (a|b) and c. It's kind of like when we ignore the multiplication symbol in mathematics. And the and-operation has a higher priority than the
+//                     Same with (a|b)c. There's an invisible and-operation between (a|b) and c. It's kind of like when we exception the multiplication symbol in mathematics. And the and-operation has a higher priority than the
 //                     or-operation, which is why d and c in "e|d(a|b)c|f" prioritizes the combination with (a|b), it's the same as "e|(d(a|b)c)|f".
 //                     Let's move on to our next special symbol, "^". This is the symbol for the empty string, like "" for strings in programming. "^" is a regular expression that will only accept an empty string ("").
 //                     If any character is in the string, it will not be accepted by the regular expression. "^|a" will only accept an empty string ("") or "a". For a more practical example, "colo(^|u)r" will accept "color" or

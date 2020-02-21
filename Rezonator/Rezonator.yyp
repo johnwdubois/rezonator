@@ -1986,7 +1986,7 @@
             "Key": "647dc090-a050-4750-a66b-5d074bccb40b",
             "Value": {
                 "id": "73709f1a-0c8c-442b-9cc3-e485cc5c409b",
-                "resourcePath": "scripts\\scr_importIgnore\\scr_importIgnore.yy",
+                "resourcePath": "scripts\\scr_importException\\scr_importException.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3770,7 +3770,7 @@
             "Key": "b45cf853-1d7d-420a-8379-54d6ff6270b6",
             "Value": {
                 "id": "27a1a908-969a-4119-86a2-4af7c893d56f",
-                "resourcePath": "objects\\obj_importIgnore\\obj_importIgnore.yy",
+                "resourcePath": "objects\\obj_importExcecption\\obj_importExcecption.yy",
                 "resourceType": "GMObject"
             }
         },
