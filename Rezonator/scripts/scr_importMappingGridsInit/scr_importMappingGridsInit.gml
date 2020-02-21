@@ -1,9 +1,8 @@
 // initiate rezInfoGrid
 var levelList = ds_list_create();
-ds_list_add(levelList, "unit", "unit", "unit", "unit", "word", "word");
-ds_list_add(levelList, "morph", "morph", "unit");
+ds_list_add(levelList, "unit", "unit", "unit", "token", "token", "unit");
 var tierList = ds_list_create();
-ds_list_add(tierList, "_UnitID", "_UnitStartTime", "_UnitEndTime", "_Participant", "text", "word");
+ds_list_add(tierList, "~UnitStartTime", "~UnitEndTime", "~Participant");
 ds_list_add(tierList, "morph", "gloss", "translation");
 
 global.rezInfoGridWidth = 5;
