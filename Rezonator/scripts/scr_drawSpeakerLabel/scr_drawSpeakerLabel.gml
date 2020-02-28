@@ -21,9 +21,17 @@ var participantColor = argument4;
 var speakerLabelTextBuffer = argument5;
 var discoColor = argument6;
 
+
+participantColor = (is_undefined(participantColor)) ? c_gray : participantColor;
+discoColor = (is_undefined(discoColor)) ? c_gray : discoColor;
+
+
 // draw speaker label parts
 for (var i = 0; i < 3; i++) {
 	if (!obj_control.showLineNumber and i != 2) {
+		continue;
+	}
+	if (!obj_control.showParticipantName and i == 2) {
 		continue;
 	}
 		

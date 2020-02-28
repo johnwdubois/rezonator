@@ -6,11 +6,10 @@ var rowHeight = string_height("A") * 1.3;
 
 
 // Rez Info window
-var rezInfoWindowRectX1 = 40;
+var rezInfoWindowRectX1 = (camWidth / 2) + 50;
 var rezInfoWindowRectY1 = (camHeight / 2) - 100;
-var rezInfoWindowRectX2 = (camWidth / 2) - 50;
+var rezInfoWindowRectX2 = camWidth - 40;
 var rezInfoWindowRectY2 = camHeight - 150;
-
 
 
 

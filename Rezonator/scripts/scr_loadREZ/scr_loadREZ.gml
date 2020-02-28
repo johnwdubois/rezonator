@@ -20,14 +20,26 @@ if(!global.wheresElmo){
 	}
 	//show_message(string(RezDirString) + "   Does exist : " + string(directory_exists(RezDirString)));
 }
-/*
-if(!global.wheresElmo and global.previousRezDirectory != ""){
-	RezDirString = global.previousRezDirectory;
 
+if (!global.wheresElmo and global.previousRezDirectory != "") {
+	RezDirString = global.previousRezDirectory;
+	
+	// trimming the spaces off of RezDirString
+	var charAt = string_length(RezDirString);
+	while (string_char_at(RezDirString, charAt) == " " and charAt > 0) {
+		charAt--;
+	}
+	RezDirString = string_delete(RezDirString, charAt, string_length(RezDirString) - charAt);
 }
-*/
+
+
+
+
+
+
+
 if (directory_exists(global.rezonatorDirString)) {
-	//show_message(string(RezDirString) + "   Does exist : " + string(directory_exists(RezDirString)));
+	//show_message("." + string(RezDirString) + ".   Does exist : " + string(directory_exists(RezDirString)));
 	var fileName = get_open_filename_ext("REZ file|*.rez", "", RezDirString, "Open REZ");
 }
 else {
@@ -81,9 +93,9 @@ if (file_exists(fileName)) {
 			
 				obj_fileLoader.subLineGridBeginning = ds_map_find_value(map, "subLineGridBeginning");
 				obj_fileLoader.subLineGridEnd = ds_map_find_value(map, "subLineGridEnd");
-				global.importToolboxGridWidth = ds_map_find_value(map, "importToolboxGridWidth");
+				global.importGridWidth = ds_map_find_value(map, "importGridWidth");
 				
-				global.importToolboxGridColNameList = ds_map_find_value(map, "importToolboxGridColNameList");
+				global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 			
 				/*
 				scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
@@ -104,7 +116,7 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(wordDrawGrid, map, "wordDrawGrid");
 				scr_loadAnotherREZ(unitGrid, map, "unitGrid");
 				scr_loadAnotherREZ(lineGrid, map, "lineGrid");
-				scr_loadAnotherREZ(global.importToolboxGrid, map, "toolboxGrid");
+				scr_loadAnotherREZ(global.importGrid, map, "importGrid");
 				scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
 				
 				

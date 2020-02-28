@@ -58,7 +58,7 @@ global.plainText = false;
 global.fileSaveName = "undefined";
 global.stackGrabSave = false;
 
-global.importToolboxGridColNameList = ds_list_create();
+global.importGridColNameList = ds_list_create();
 
 global.discoColorList = ds_list_create();
 ds_list_add(global.discoColorList, make_color_rgb(183, 183, 255)); // blue
@@ -124,11 +124,13 @@ global.importCSVGrid_colText = 11;
 global.importCSVGrid_colUnitStart = 22;
 global.importCSVGrid_colUnitEnd = 23;
 
+global.importCSVUnitGridHeight = 0;
 
 
-global.importToolboxGridWidth = 0;
-global.importToolboxGrid = ds_grid_create(global.importToolboxGridWidth, 0);
-global.importToolboxGridColMap = ds_map_create();
+
+global.importGridWidth = 0;
+global.importGrid = ds_grid_create(global.importGridWidth, 0);
+global.importGridColMap = ds_map_create();
 
 
 

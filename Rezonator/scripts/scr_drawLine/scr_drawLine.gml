@@ -169,7 +169,16 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	}
 	
 	
+	var unitID = ds_grid_get(currentActiveLineGrid, lineGrid_colUnitID, drawLineLoop);
+	
+	if (unitID < 0) {
+		continue;
+	}
+	
 	var currentWordIDList = ds_grid_get(currentActiveLineGrid, lineGrid_colWordIDList, drawLineLoop);
+	var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
+	var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
+	
 	
 	// get & set the correct pixel-Y value for each line
 	var currentLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop);
@@ -184,9 +193,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	speakerRectY2 = speakerRectY1 + gridSpaceVertical;
 	
 	
-	var unitID = ds_grid_get(currentActiveLineGrid, lineGrid_colUnitID, drawLineLoop);
-	var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
-	var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
+
 	
 	
 	
@@ -370,7 +377,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	var participantName = ds_grid_get(unitGrid, unitGrid_colParticipantName, unitID - 1);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
-	draw_set_color(participantColor);
+	draw_set_color(is_undefined(participantColor) ? c_gray : participantColor);
 	var speakerLabelTextBuffer = 3;
 	
 	scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor);

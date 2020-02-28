@@ -190,9 +190,9 @@ if (point_in_rectangle(mouse_x, mouse_y, firstButtonRectX1, firstButtonRectY1, f
 			// If the transcriptView was active before the stackShow, switch it back
 			if(obj_control.stackShowSwitchedWordView == true) {
 				obj_control.stackShowSwitchedWordView = false;
-				if(obj_control.wordTranscriptView) {
+				if(obj_control.wordTokenView) {
 			
-					obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+					obj_control.wordTokenView = !obj_control.wordTokenView;
 
 					for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
 						var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
@@ -203,7 +203,7 @@ if (point_in_rectangle(mouse_x, mouse_y, firstButtonRectX1, firstButtonRectY1, f
 							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
 						}
 						else {
-							if (obj_control.wordTranscriptView) {
+							if (obj_control.wordTokenView) {
 								ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
 							}
 							else {

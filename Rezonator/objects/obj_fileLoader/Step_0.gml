@@ -41,11 +41,20 @@ if (fps < 50) {
 
 if (loadingCSV) {
 	
-	for (var i = 0; i < loadCSVRate; i++) {
+	
+	//for (var i = 0; i < loadCSVRate; i++) {
+	if (importCSVCurrentRow < ds_grid_height(obj_control.wordGrid)) {
 		if (ds_grid_height(global.importCSVGrid) > 0 and importCSVCurrentRow < ds_grid_height(global.importCSVGrid)) {
 			scr_loadNextElementCSV();
 		}
-	}	
+	}
+	//}
+	
+	if (loadLineGridSectionCounter >= 100) {
+		scr_loadLineGridSection();
+		loadLineGridSectionCounter = 0;
+	}
+	
 }
 
 

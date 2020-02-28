@@ -1,17 +1,17 @@
 //Change the diplay text of each word to either their Token or their Transcript, based on the previous view
-
-wordTranscriptView = !wordTranscriptView;
+wordTokenView = !wordTokenView;
 
 for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {
 	var currentWordTranscript = ds_grid_get(wordGrid, wordGrid_colWordTranscript, i);
 	var currentWordToken = ds_grid_get(wordGrid, wordGrid_colWordToken, i);
 	var currentReplaceWord = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colReplaceWord, i);
-	
+		
+		
 	if (string_length(currentReplaceWord) > 0) {
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, i, currentReplaceWord);
 	}
 	else {
-		if (wordTranscriptView) {
+		if (wordTokenView) {
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayString, i, currentWordToken);
 		}
 		else {
@@ -19,13 +19,20 @@ for (var i = 0; i < ds_grid_height(dynamicWordGrid); i++) {
 		}
 	}
 	
-	if (string_length(currentWordToken) < 1) {
-		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, i);
-		if (currentWordState == wordStateNormal) {
-			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colWordState, i, wordStateDead);
+	if (wordTokenView) {
+		if (string_length(currentWordToken) < 1) {
+			var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, i);
+			if (currentWordState == wordStateNormal) {
+				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colWordState, i, wordStateDead);
+			}
 		}
-		else if (currentWordState == wordStateDead) {
-			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colWordState, i, wordStateNormal);
+	}
+	else {
+		if (string_length(currentWordToken) < 1) {
+			var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, i);
+			if (currentWordState == wordStateDead) {
+				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colWordState, i, wordStateNormal);
+			}
 		}
 	}
 }

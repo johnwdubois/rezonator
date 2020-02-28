@@ -45,6 +45,8 @@ currentMode = modeRead;
 
 
 
+checkedForParticipantNames = false;
+
 
 
 tracksOnlyStackShow = false;

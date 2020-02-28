@@ -78,7 +78,7 @@ with (obj_saveParent) {
 		var mapWordDrawGrid = scr_gridToJSONLists(wordDrawGrid);
 		var mapUnitGrid = scr_gridToJSONLists(unitGrid);
 		var mapLineGrid = scr_gridToJSONLists(lineGrid);
-		var mapToolboxGrid = scr_gridToJSONLists(global.importToolboxGrid);
+		var mapimportGrid = scr_gridToJSONLists(global.importGrid);
 		var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
 		
 		ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
@@ -88,14 +88,14 @@ with (obj_saveParent) {
 		ds_map_add_list(map, "wordDrawGrid", mapWordDrawGrid);
 		ds_map_add_list(map, "unitGrid", mapUnitGrid);
 		ds_map_add_list(map, "lineGrid", mapLineGrid);
-		ds_map_add_list(map, "toolboxGrid", mapToolboxGrid);
-		ds_map_add(map, "importToolboxGridWidth", global.importToolboxGridWidth);
+		ds_map_add_list(map, "importGrid", mapimportGrid);
+		ds_map_add(map, "importGridWidth", global.importGridWidth);
 		ds_map_add_list(map, "morphGrid", mapMorphGrid);
 		var tempList = ds_list_create();
-		if (global.importToolboxGridColNameList != undefined) {
-			ds_list_copy(tempList, global.importToolboxGridColNameList);
+		if (global.importGridColNameList != undefined) {
+			ds_list_copy(tempList, global.importGridColNameList);
 		}
-		ds_map_add_list(map, "importToolboxGridColNameList", tempList);
+		ds_map_add_list(map, "importGridColNameList", tempList);
 		
 		
 		if (global.stackGrabSave) {

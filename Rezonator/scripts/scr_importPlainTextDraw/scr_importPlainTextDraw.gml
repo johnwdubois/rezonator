@@ -9,7 +9,7 @@ draw_set_font(fnt_mainBold);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(20, 20, "Plain Text Import");
+draw_text(20 + sprite_get_width(spr_backArrow), 20, "Plain Text Import");
 
 
 
@@ -62,7 +62,7 @@ draw_set_valign(fa_middle);
 draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), "Summary");
 
 draw_set_font(fnt_main);
-draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), "Total Lines found: " + string(ds_grid_height(global.importToolboxGrid)));
+draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), "Total Lines found: " + string(ds_grid_height(global.importGrid)));
 draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0")*3, "Input Speaker: ");
 //draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + (string_height("0") * 2.5), "Tags found: " + string(ds_grid_height(tagInfoGrid)));
 

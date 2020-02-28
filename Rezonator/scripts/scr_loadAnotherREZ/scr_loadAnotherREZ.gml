@@ -17,11 +17,11 @@ var map = argument1;
 var gridStr = argument2;
 var tempGrid = ds_grid_create(0, 0);
 
-if (originalGrid != global.importToolboxGrid) {
+if (originalGrid != global.importGrid) {
 	ds_grid_resize(tempGrid, ds_grid_width(originalGrid), 0);
 }
-else if (global.importToolboxGridWidth >= 0){
-	ds_grid_resize(tempGrid, global.importToolboxGridWidth, 0);
+else if (global.importGridWidth >= 0){
+	ds_grid_resize(tempGrid, global.importGridWidth, 0);
 }
 scr_loadREZGridReset(tempGrid, map, gridStr);
 
@@ -117,11 +117,11 @@ if (ds_grid_height(obj_control.wordGrid) > 0 and ds_grid_height(obj_control.unit
 }
 
 
-if (originalGrid != global.importToolboxGrid) {
+if (originalGrid != global.importGrid) {
 	ds_grid_resize(originalGrid, ds_grid_width(originalGrid), originalGridHeight + ds_grid_height(tempGrid));
 }
-else if (global.importToolboxGridWidth >= 0){
-	ds_grid_resize(originalGrid, global.importToolboxGridWidth, originalGridHeight + ds_grid_height(tempGrid));
+else if (global.importGridWidth >= 0){
+	ds_grid_resize(originalGrid, global.importGridWidth, originalGridHeight + ds_grid_height(tempGrid));
 }
 
 ds_grid_set_grid_region(originalGrid, tempGrid, 0, 0, ds_grid_width(tempGrid), ds_grid_height(tempGrid), 0, originalGridHeight);

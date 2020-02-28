@@ -45,6 +45,8 @@ for (var i = 0; i < ds_list_size(speakerLabelColXList) - 1; i++) {
 	ds_list_set(speakerLabelColXList, i + 1, colX2);
 }
 
+
+// set discorse column to be on/off
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	ds_list_set(speakerLabelColXList, 0, 0);
 	ds_list_set(speakerLabelColXList, 1, 0);
@@ -58,7 +60,9 @@ else if (ds_list_find_value(speakerLabelColXList, 1) < minColWidth) {
 
 
 for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {
+	
 	var colX = ds_list_find_value(speakerLabelColXList, i);
+
 	
 	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
 		if ((ds_grid_height(global.fileLineRipGrid) < 2 and i > 1) or (ds_grid_height(global.fileLineRipGrid) > 1)) {
@@ -74,7 +78,7 @@ for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {
 	}
 	
 	
-	if (speakerLabelColXHolding == i) {
+	if (speakerLabelColXHolding == i)  {
 		window_set_cursor(cr_size_we);
 		
 		draw_set_alpha(0.8);

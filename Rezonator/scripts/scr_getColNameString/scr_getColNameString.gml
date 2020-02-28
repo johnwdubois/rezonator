@@ -477,9 +477,9 @@ else if (grid == obj_chain.goldStandardGrid) {
 			break;
 	}
 }
-else if (grid == global.importToolboxGrid) {
+else if (grid == global.importGrid) {
 	
-	colName = ds_list_find_value(global.importToolboxGridColNameList, col);
+	colName = ds_list_find_value(global.importGridColNameList, col);
 	
 }
 else if (grid == obj_control.morphGrid) {

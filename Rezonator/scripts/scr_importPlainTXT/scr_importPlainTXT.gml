@@ -3,15 +3,15 @@ global.importFilename = filename;
 
 var fileOpenRead = file_text_open_read(filename);
 
-global.importToolboxGridWidth = 2
-ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid));
+global.importGridWidth = 2
+ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid));
 
-//global.importToolboxGridColName[0] = "Text";
-ds_list_add(global.importToolboxGridColNameList, "Text");
-ds_map_add(global.importToolboxGridColMap, "Text", 0);
-//global.importToolboxGridColName[1] = "Group";
-ds_list_add(global.importToolboxGridColNameList, "Group");
-ds_map_add(global.importToolboxGridColMap, "Group", 1);
+//global.importGridColName[0] = "Text";
+ds_list_add(global.importGridColNameList, "Text");
+ds_map_add(global.importGridColMap, "Text", 0);
+//global.importGridColName[1] = "Group";
+ds_list_add(global.importGridColNameList, "Group");
+ds_map_add(global.importGridColMap, "Group", 1);
 
 
 var newRow = false;
@@ -28,19 +28,19 @@ while (not file_text_eof(fileOpenRead)) {
 	
 	if (string_length(string_lettersdigits(lineInFile)) < 1) {
 		
-		ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid) + 1);
-		var row = ds_grid_height(global.importToolboxGrid) - 1;
+		ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
+		var row = ds_grid_height(global.importGrid) - 1;
 		var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));
-		ds_grid_set(global.importToolboxGrid, col, row, colVal);
+		ds_grid_set(global.importGrid, col, row, colVal);
 		group++;
 	}
 	else {
-		ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid) + 1);
-		var row = ds_grid_height(global.importToolboxGrid) - 1;
+		ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
+		var row = ds_grid_height(global.importGrid) - 1;
 		var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));
-		ds_grid_set(global.importToolboxGrid, col, row, colVal);
+		ds_grid_set(global.importGrid, col, row, colVal);
 		col++;
-		ds_grid_set(global.importToolboxGrid, col, row, group);
+		ds_grid_set(global.importGrid, col, row, group);
 		
 	}
 	
@@ -51,13 +51,13 @@ while (not file_text_eof(fileOpenRead)) {
 
 	
 /*
-	var col = ds_map_find_value(global.importToolboxGridColMap, colName);
+	var col = ds_map_find_value(global.importGridColMap, colName);
 	if (is_undefined(col)) {
-		global.importToolboxGridWidth++;
-		ds_grid_resize(global.importToolboxGrid, global.importToolboxGridWidth, ds_grid_height(global.importToolboxGrid));
-		global.importToolboxGridColName[global.importToolboxGridWidth - 1] = colName;
-		col = global.importToolboxGridWidth - 1;
-		ds_map_add(global.importToolboxGridColMap, colName, col);
+		global.importGridWidth++;
+		ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid));
+		global.importGridColName[global.importGridWidth - 1] = colName;
+		col = global.importGridWidth - 1;
+		ds_map_add(global.importGridColMap, colName, col);
 	}
 */
 
@@ -67,6 +67,6 @@ while (not file_text_eof(fileOpenRead)) {
 
 global.plainText = true;
 
-//show_message(ds_grid_height(global.importToolboxGrid));
+//show_message(ds_grid_height(global.importGrid));
 
 room_goto(rm_importScreen);

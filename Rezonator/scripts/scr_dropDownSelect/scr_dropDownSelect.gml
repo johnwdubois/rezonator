@@ -968,7 +968,7 @@ else if (optionListType == 6)
 			//show_message("BUH 2");
 			break;
 		case "Toggle Transcript View":
-			obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+			obj_control.wordTokenView = !obj_control.wordTokenView;
 			
 		for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
 			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
@@ -979,7 +979,7 @@ else if (optionListType == 6)
 				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
 			}
 			else {
-				if (obj_control.wordTranscriptView) {
+				if (obj_control.wordTokenView) {
 					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
 				}
 				else {
@@ -1125,7 +1125,7 @@ else if (optionListType == 8)
 		case "Restore Word":
 		
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
-				if(!obj_control.wordTranscriptView){
+				if(!obj_control.wordTokenView){
 					var originalWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, obj_control.rightClickWordID - 1);
 				}
 				else{

@@ -438,9 +438,9 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.moveCounter = 0;
 			
 			// Set word's to their tokens as default for stackShow
-			if(!obj_control.wordTranscriptView and obj_toolPane.tracksOnlyStackShow) {
+			if(!obj_control.wordTokenView and obj_toolPane.tracksOnlyStackShow) {
 				//obj_control.stackShowSwitchedWordView = true;
-				obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+				obj_control.wordTokenView = !obj_control.wordTokenView;
 
 				for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
 					var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
@@ -451,7 +451,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
 					}
 					else {
-						if (obj_control.wordTranscriptView) {
+						if (obj_control.wordTokenView) {
 							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
 						}
 						else {
@@ -542,9 +542,9 @@ if ( (keyboard_check_pressed(vk_enter) && obj_control.stackShowWindowActive) && 
 	obj_control.moveCounter = 0
 	
 	// Set word's to their tokens as default for stackShow
-	if(!obj_control.wordTranscriptView) {
+	if(!obj_control.wordTokenView) {
 		//obj_control.stackShowSwitchedWordView = true;
-		obj_control.wordTranscriptView = !obj_control.wordTranscriptView;
+		obj_control.wordTokenView = !obj_control.wordTokenView;
 
 		for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
 			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
@@ -555,7 +555,7 @@ if ( (keyboard_check_pressed(vk_enter) && obj_control.stackShowWindowActive) && 
 				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
 			}
 			else {
-				if (obj_control.wordTranscriptView) {
+				if (obj_control.wordTokenView) {
 					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
 				}
 				else {

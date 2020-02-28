@@ -67,8 +67,8 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
     }
 
     var currentLineWordString = "";
-    if(ds_grid_height(global.importToolboxGrid) > 0) {
-        currentLineWordString = ds_grid_get(global.importToolboxGrid, 12, i + 1);
+    if(ds_grid_height(global.importGrid) > 0) {
+        currentLineWordString = ds_grid_get(global.importGrid, 12, i + 1);
     }
     else {
         var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);

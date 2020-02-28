@@ -58,7 +58,12 @@ speakerLabelColXHoldingPrev = 0;
 speakerLabelColXHoldingDiff = 0;
 speakerLabelColPrevList = ds_list_create();
 for (var i = 0; i < 4; i++) {
-	ds_list_add(speakerLabelColXList, i * 100);
+	//if (i == 3) {
+	//	ds_list_add(speakerLabelColXList, (i - 1) * 100);
+	//}
+	//else {
+		ds_list_add(speakerLabelColXList, i * 100);
+	//}
 }
 if (ds_grid_height(global.fileLineRipGrid) < 2) {
 	ds_list_set(speakerLabelColXList, 2, 100);
@@ -116,7 +121,7 @@ wordIDCounter = 0;
 unitIDCounter = 0;
 
 // Boolean for switching transcript view on/off
-wordTranscriptView = false;
+wordTokenView = true;
 // Seems to prefer starting as false?
 
 
@@ -137,8 +142,20 @@ lineGrid_colVoidSum = 11;
 lineGrid_colPixelYOriginal = 12;
 
 lineGrid = ds_grid_create(lineGridWidth, 0);
-
 lineGridBackup = ds_grid_create(lineGridWidth, 0);
+
+// if we are importing a corpus CSV file, we should resize the unit & line grids to be filled in
+if (global.importCSVUnitGridHeight > 0) {
+	//ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight);
+	//ds_grid_resize(lineGrid, lineGridWidth, global.importCSVUnitGridHeight);
+	
+	//ds_grid_clear(unitGrid, -1);
+	//ds_grid_clear(lineGrid, -1);
+	global.totalUnitAmount = global.importCSVUnitGridHeight;
+	ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight - 1);
+	ds_grid_clear(unitGrid, -1);
+}
+
 
 //lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 lineGridDefaultSort = true;
@@ -556,6 +573,7 @@ swapLinePos1 =  0;
 swapLinePos2 =  0;
 
 showLineNumber = true;
+showParticipantName = true;
 
 audioTrackStream = -1;
 audioTrackIndex = -1;

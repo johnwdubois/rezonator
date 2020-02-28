@@ -2,30 +2,30 @@ var groupNumber = 0;
 var alreadyCheckedList = ds_list_create();
 
 
-for (var currentTagCol = 0; currentTagCol < ds_grid_width(global.importToolboxGrid); currentTagCol++) {
+for (var currentTagCol = 0; currentTagCol < ds_grid_width(global.importGrid); currentTagCol++) {
 	
 	var matchingTagsList = -1;
 	if (ds_list_find_index(alreadyCheckedList, currentTagCol) > -1) {
 		continue;
 	}
 
-	for (var i = 0; i < ds_grid_height(global.importToolboxGrid); i++) {
+	for (var i = 0; i < ds_grid_height(global.importGrid); i++) {
 	
-		var currentTagCell = ds_grid_get(global.importToolboxGrid, currentTagCol, i);
-		var currentTagCellList = scr_splitStringToolbox(currentTagCell);
+		var currentTagCell = ds_grid_get(global.importGrid, currentTagCol, i);
+		var currentTagCellList = scr_splitStringImport(currentTagCell);
 	
 		var currentMatchingTagsList = ds_list_create();
 	
-		for (var j = 0; j < ds_grid_width(global.importToolboxGrid); j++) {
+		for (var j = 0; j < ds_grid_width(global.importGrid); j++) {
 		
 			if (j == currentTagCol) {
 				continue;
 			}
-			var currentCell = ds_grid_get(global.importToolboxGrid, j, i);
+			var currentCell = ds_grid_get(global.importGrid, j, i);
 			if (currentCell == "0") {
 				continue;
 			}
-			var currentCellList = scr_splitStringToolbox(currentCell);
+			var currentCellList = scr_splitStringImport(currentCell);
 		
 			if (ds_list_size(currentCellList) == ds_list_size(currentTagCellList)) {
 				ds_list_add(currentMatchingTagsList, j);

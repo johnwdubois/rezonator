@@ -1,7 +1,7 @@
 // Draw to the screen a loading progress bar for the user
 
 if (ds_grid_height(obj_control.unitGrid) < global.totalUnitAmount) {
-	var progressBarValue = (ds_grid_height(obj_control.unitGrid) / global.totalUnitAmount) * 100;
+	var progressBarValue = (ds_grid_height(obj_control.lineGrid) / global.totalUnitAmount) * 100;
 
 	draw_healthbar(progressBarX, progressBarY, progressBarX + progressBarWidth, progressBarY + progressBarHeight, progressBarValue, progressBarBackColor, progressBarFrontColor, progressBarFrontColor, 0, true, false);
 	
@@ -10,4 +10,20 @@ if (ds_grid_height(obj_control.unitGrid) < global.totalUnitAmount) {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(progressBarX + 12, mean(progressBarY, progressBarY + progressBarHeight) + 1, string(progressBarValue) + "%");
+}
+else if (!checkedForParticipantNames) {
+	checkedForParticipantNames = true;
+	
+	var anyNames = false;
+	for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++) {
+		if (string_length(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, i)) > 0) {
+			anyNames = true;
+			break;
+		}
+	}
+	if (!anyNames) {
+		with (obj_alarm) {
+			alarm[6] = 5;
+		}
+	}
 }

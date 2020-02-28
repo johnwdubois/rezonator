@@ -6,11 +6,10 @@ var rowHeight = string_height("A") * 1.3;
 
 
 // Tag Info window
-var tagInfoWindowRectX1 = (camWidth / 2) + 50;
+var tagInfoWindowRectX1 = 40;
 var tagInfoWindowRectY1 = (camHeight / 2) - 100;
-var tagInfoWindowRectX2 = camWidth - 40;
+var tagInfoWindowRectX2 = (camWidth / 2) - 50;
 var tagInfoWindowRectY2 = camHeight - 150;
-
 
 
 

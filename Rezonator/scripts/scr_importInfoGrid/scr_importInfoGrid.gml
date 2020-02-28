@@ -3,16 +3,16 @@ var colorIndex = 0;
 math_set_epsilon(0.000001);
 
 if (global.plainText) {
-	for (var i = 0; i < ds_grid_width(global.importToolboxGrid); i++) {
+	for (var i = 0; i < ds_grid_width(global.importGrid); i++) {
 	
 		//put toolbox grid stuff into plain Info Grid
 	
 		var currentExample = "";
 	
-		for(var j = 0; j < ds_grid_height(global.importToolboxGrid); j++){
+		for(var j = 0; j < ds_grid_height(global.importGrid); j++){
 			
 
-			currentExample = ds_grid_get(global.importToolboxGrid, i, j);
+			currentExample = ds_grid_get(global.importGrid, i, j);
 			
 	
 	
@@ -30,21 +30,21 @@ if (global.plainText) {
 }
 else {
 	
-	for (var i = 0; i < ds_grid_width(global.importToolboxGrid); i++) {
+	for (var i = 0; i < ds_grid_width(global.importGrid); i++) {
 	
-		var currentTag = ds_list_find_value(global.importToolboxGridColNameList, i);
+		var currentTag = ds_list_find_value(global.importGridColNameList, i);
 		var currentExample = "";
 	
-		var toolboxGridRow = 0;
-		while (string(ds_grid_get(global.importToolboxGrid, i, toolboxGridRow)) == "0" and toolboxGridRow < ds_grid_height(global.importToolboxGrid)) {
-			toolboxGridRow++;
+		var importGridRow = 0;
+		while (string(ds_grid_get(global.importGrid, i, importGridRow)) == "0" and importGridRow < ds_grid_height(global.importGrid)) {
+			importGridRow++;
 		}
-		toolboxGridRow = clamp(toolboxGridRow, 0, ds_grid_height(global.importToolboxGrid) - 1);
-		if (string(ds_grid_get(global.importToolboxGrid, i, toolboxGridRow)) != "0") {
-			currentExample = ds_grid_get(global.importToolboxGrid, i, toolboxGridRow);
+		importGridRow = clamp(importGridRow, 0, ds_grid_height(global.importGrid) - 1);
+		if (string(ds_grid_get(global.importGrid, i, importGridRow)) != "0") {
+			currentExample = ds_grid_get(global.importGrid, i, importGridRow);
 		}
 		else {
-			show_message(string(ds_grid_get(global.importToolboxGrid, i, toolboxGridRow)))
+			show_message(string(ds_grid_get(global.importGrid, i, importGridRow)))
 		}
 	
 		colorIndex++;
@@ -54,19 +54,19 @@ else {
 		var currentColor = merge_color(ds_list_find_value(obj_importMapping.tagColorList, colorIndex), c_white, 0.6);
 	
 		var nonzeroCellCount = 0;
-		for (var j = 0; j < ds_grid_height(global.importToolboxGrid); j++) {
-			nonzeroCellCount += (ds_grid_get(global.importToolboxGrid, i, j) == "0") ? 0 : 1
+		for (var j = 0; j < ds_grid_height(global.importGrid); j++) {
+			nonzeroCellCount += (ds_grid_get(global.importGrid, i, j) == "0") ? 0 : 1
 		}
-		var currentConsistency = (nonzeroCellCount / ds_grid_height(global.importToolboxGrid)) * 100;
+		var currentConsistency = (nonzeroCellCount / ds_grid_height(global.importGrid)) * 100;
 	
 	
 	
 	
 		var constPerCluster = true;
 		var tokenCount = -1;
-		for (var j = 0; j < ds_grid_height(global.importToolboxGrid); j++) {
-			if (ds_grid_get(global.importToolboxGrid, i, j) != "0") {
-				var currentList = scr_splitStringToolbox(ds_grid_get(global.importToolboxGrid, i, j));
+		for (var j = 0; j < ds_grid_height(global.importGrid); j++) {
+			if (ds_grid_get(global.importGrid, i, j) != "0") {
+				var currentList = scr_splitStringImport(ds_grid_get(global.importGrid, i, j));
 				if (tokenCount < 0) {
 					tokenCount = ds_list_size(currentList);
 				}
