@@ -167,11 +167,27 @@
             }
         },
         {
+            "Key": "0540fa24-b289-480e-becd-78e8b7afa2eb",
+            "Value": {
+                "id": "5bd25cb4-7133-44a6-b1ad-515351520152",
+                "resourcePath": "objects\\obj_importException\\obj_importException.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "05cdfe7b-ea32-4298-b229-5e48674709dc",
             "Value": {
                 "id": "9d4ecb36-d6e4-448a-a8c5-96ea75887bdb",
                 "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/WheresEmma.rez.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "05dc3de3-daaa-4e1d-9597-c217ebf54f22",
+            "Value": {
+                "id": "e3f4a86b-19fe-4f21-b60f-1809007bda76",
+                "resourcePath": "scripts\\scr_importTXTExceptions\\scr_importTXTExceptions.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -3775,14 +3791,6 @@
             }
         },
         {
-            "Key": "b45cf853-1d7d-420a-8379-54d6ff6270b6",
-            "Value": {
-                "id": "27a1a908-969a-4119-86a2-4af7c893d56f",
-                "resourcePath": "objects\\obj_importExcecption\\obj_importExcecption.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "b4d32bfe-6fe2-4fe2-b922-7cd35d082665",
             "Value": {
                 "id": "f3de5f0c-8ee1-4345-8f11-03dc74c73dd1",
@@ -5479,6 +5487,7 @@
         "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
         "238d1e31-cb57-443c-b022-eb85151f4647",
         "fa6c61d8-9bf4-4cdd-a9d8-7dc661aa82bf",
+        "05dc3de3-daaa-4e1d-9597-c217ebf54f22",
         "bf91ff7a-65ac-4b37-87c4-fcabd2ed83da",
         "a2b9890f-820d-44d2-8ac3-46337bd1cece",
         "a0eb63cb-ff4b-4a7c-99d9-7237af062ce3",

@@ -11,10 +11,10 @@ and keyboard_check_pressed(ord("D"))) {
 	showDevVars = !showDevVars;
 }
 
-if(global.plainText){	
+if (global.plainText) {	
 	scr_importPlainTextDraw();
 
 }
-else{
+else if (!instance_exists(obj_importException)) {
 	scr_importMappingTagDraw();
 }

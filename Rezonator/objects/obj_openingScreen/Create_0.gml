@@ -133,12 +133,19 @@ global.importGrid = ds_grid_create(global.importGridWidth, 0);
 global.importGridColMap = ds_map_create();
 
 
+global.importTXTLineGridWidth = 2;
+global.importTXTLineGrid_colLine = 0;
+global.importTXTLineGrid_colException = 1;
+global.importTXTLineGrid = ds_grid_create(global.importTXTLineGridWidth, 0);
+
+
 
 global.importFilename = "";
 scr_importMappingGridsInit();
 
 
 global.importFileRipList = ds_list_create();
+
 
 
 

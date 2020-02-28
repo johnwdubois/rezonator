@@ -64,7 +64,7 @@ draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + (string_height
 
 
 
-obj_importMapping.continueButtonActive = (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 6) != -1);
+obj_importMapping.continueButtonActive = (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1);
 
 
 var continueButtonWidth = 150;

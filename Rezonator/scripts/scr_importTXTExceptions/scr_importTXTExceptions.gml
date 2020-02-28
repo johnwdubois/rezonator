@@ -1,15 +1,3 @@
-var filename = argument0;
-global.importFilename = filename;
-
-scr_getImportFileRipList(filename);
-
-var fileOpenRead = file_text_open_read(filename);
-
-ds_grid_clear(global.importTXTLineGrid, 0);
-ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, 0);
-
-
-
 var newRow = false;
 var currentLine = 0;
 var blankRow = true;
@@ -22,15 +10,23 @@ var lineInCluster = 0;
 var tokenList = ds_list_create();
 
 
-while (not file_text_eof(fileOpenRead)) {
+ds_grid_clear(global.importGrid, 0);
+global.importGridWidth = 0;
+ds_grid_resize(global.importGrid, global.importGridWidth, 0);
+ds_map_clear(global.importGridColMap);
+ds_list_clear(global.importGridColNameList);
+
+
+
+for (var i = 0; i < ds_grid_height(global.importTXTLineGrid); i++) {
 	
 	currentLine++;
-	var lineInFile = file_text_readln(fileOpenRead);
 	
-	ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, ds_grid_height(global.importTXTLineGrid) + 1);
-	ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colLine, ds_grid_height(global.importTXTLineGrid) - 1, lineInFile);
-	ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, ds_grid_height(global.importTXTLineGrid) - 1, false);
+	if (ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colException, i)) {
+		continue;
+	}
 	
+	var lineInFile = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i);
 	if (string_length(string_lettersdigits(lineInFile)) < 1) {
 		blankRow = true;
 		lineInCluster = 0;
@@ -54,9 +50,6 @@ while (not file_text_eof(fileOpenRead)) {
 	}
 	var firstToken = ds_list_find_value(tokenList, 0);
 	
-
-	
-	//show_message(lineInFile);
 	
 	
 	if (string_char_at(lineInFile, 1) != "\\" && string_char_at(firstToken, string_length(firstToken)) != "\\") {
@@ -76,7 +69,7 @@ while (not file_text_eof(fileOpenRead)) {
 		newRow = false;
 	}
 	
-	var colNameLength = string_length(firstToken);
+	var colNameLength = string_length(firstToken) + 1;
 	var colName = string_copy(lineInFile, 1, colNameLength - 1);
 	var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
 	
@@ -103,10 +96,6 @@ ds_list_destroy(tokenList);
 
 
 if (ds_grid_width(global.importGrid) == 0) {
-	scr_importPlainTXT(filename)
+	show_message("No tags found.");
+	room_goto(rm_openingScreen);
 }
-
-file_text_close(fileOpenRead);
-
-
-room_goto(rm_importScreen);

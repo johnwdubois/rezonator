@@ -30,16 +30,16 @@ tagInfoGrid_colMapped = 5;
 tagInfoGrid_colColor = 6;
 tagInfoGrid = ds_grid_create(tagInfoGridWidth, 0);
 
-scr_importInfoGrid();
 
 if (global.plainText) {	
+	scr_importInfoGrid();
 	instance_create(0, 0, obj_importPlainTextInfo);
 	room_goto(rm_mainScreen);
 }
 else{
-	instance_create(0, 0, obj_importMappingRezInfo);
-	instance_create(0, 0, obj_importMappingTagInfo);
-	//instance_create(0, 0, obj_importexception);
+	//instance_create(0, 0, obj_importMappingRezInfo);
+	//instance_create(0, 0, obj_importMappingTagInfo);
+	instance_create(0, 0, obj_importException);
 }
 
 
