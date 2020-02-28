@@ -16,6 +16,8 @@ var firstClusterTagList = ds_list_create();
 var firstCluster = true;
 var lineInCluster = 0;
 
+var tokenList = ds_list_create();
+
 
 while (not file_text_eof(fileOpenRead)) {
 	
@@ -38,7 +40,17 @@ while (not file_text_eof(fileOpenRead)) {
 		lineInCluster++;
 	}
 	
-	if (string_char_at(lineInFile, 1) != "\\") {
+	ds_list_clear(tokenList);
+	tokenList = scr_splitString(lineInFile, " ");
+	if (ds_list_size(tokenList) < 1) {
+		continue;
+	}
+	var firstToken = ds_list_find_value(tokenList, 0);
+	
+	//show_message(lineInFile);
+	
+	
+	if (string_char_at(lineInFile, 1) != "\\" && string_char_at(firstToken, string_length(firstToken)) != "\\") {
 		
 		if (!firstCluster and lineInCluster - 1 < ds_list_size(firstClusterTagList)) {
 			lineInFile = ds_list_find_value(firstClusterTagList, lineInCluster - 1) + " " + lineInFile;
@@ -55,7 +67,7 @@ while (not file_text_eof(fileOpenRead)) {
 		newRow = false;
 	}
 	
-	var colNameLength = string_pos(" ", lineInFile);
+	var colNameLength = string_length(firstToken);
 	var colName = string_copy(lineInFile, 1, colNameLength - 1);
 	var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
 	
@@ -76,6 +88,7 @@ while (not file_text_eof(fileOpenRead)) {
 	ds_grid_set(global.importToolboxGrid, col, row, colVal);
 }
 
+ds_list_destroy(tokenList);
 
 
 
