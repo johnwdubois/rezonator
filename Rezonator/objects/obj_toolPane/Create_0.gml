@@ -64,6 +64,13 @@ progressBarFont = fnt_mainBold;
 
 alarm[0] = 2;
 
+hoverTime[0] = 0;
+hoverTime[1] = 0;
+hoverTime[2] = 0;
+hoverTime[3] = 0;
+ToolTipPosX = 0;
+ToolTipPosY = 0;
+hoverTimeLimit = 60;
 
 toolTipTextPointer = string_hash_to_newline("The pointer tool #allows you to click #and drag your mouse #to create mulitple #links in a chain");
 toolTipTextRez = string_hash_to_newline("The Rez Brush tool #allows you to click #on words to add #them to the #current Rez chain");

@@ -203,6 +203,13 @@ holdDown = 0;
 showNav = true;
 lineContentsHeaderListSize = 3;
 
+hoverTime[0] = 0;
+hoverTime[1] = 0;
+hoverTime[2] = 0;
+hoverTime[3] = 0;
+
+
+
 // Begin gameplay if user is in games mode
 if(string_lower(global.userName) != "gold" && global.games) {
 	// Begin the StackShow

@@ -45,6 +45,8 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		
+		obj_panelPane.hoverTime[i]++;
+		
 		if (i == 2) {
 			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_control.gridView = !obj_control.gridView;
@@ -66,6 +68,9 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 			mouseoverHelp = true;
 		}
 	}
+	else {
+		obj_panelPane.hoverTime[i] = 0;
+	}
 	
 	if (i == 2) {
 		draw_sprite_ext(spr_gridViewToggle, obj_control.gridView, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
@@ -80,7 +85,6 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 		draw_sprite_ext(spr_helpToggle, !functionHelp_collapsed, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
 }
-
 
 
 
@@ -345,3 +349,47 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	
 	scr_surfaceEnd();
 }
+
+var displayString = "";
+
+for (var i = 0; i < toggleButtonAmount; i++) {
+	//draw tooltips
+	if(obj_panelPane.hoverTime[i] == obj_toolPane.hoverTimeLimit){
+		obj_toolPane.ToolTipPosX = mouse_x;
+		obj_toolPane.ToolTipPosY = mouse_y;
+	}
+	else if(obj_panelPane.hoverTime[i] > obj_toolPane.hoverTimeLimit){
+		if (i == 0) {
+			if(obj_control.wordTokenView){
+				displayString = "Token View"
+			}
+			else{
+				displayString = "Transcript View"
+			}
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString );
+		}
+		else if (i == 1) {
+			if (obj_control.shape == obj_control.shapeBlock) {
+				displayString = "Column View"
+			}
+			else{
+				displayString = "Justified View"
+
+			}
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString );
+		}
+		else if (i == 2) {
+			if (obj_control.gridView) {
+				displayString = "Grid View"
+			}
+			else{
+				displayString = "Text View"
+			}
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString );
+		}
+		else if (i == 3) {
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Help");
+		}
+	}
+}
+

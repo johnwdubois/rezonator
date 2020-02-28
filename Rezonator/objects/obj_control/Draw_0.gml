@@ -116,6 +116,8 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 250, "fps: " + string(fps));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 330, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 350, "arrowSpeed: " + string(arrowSpeed));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 400, "Tooltip Hover time: " + string(obj_toolPane.hoverTime[0]) +", "+ string(obj_toolPane.hoverTime[1]) +", "+ string(obj_toolPane.hoverTime[2]));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 400, "Tooltip Hover time Helpbar: " + string(obj_panelPane.hoverTime[0]) +", "+ string(obj_panelPane.hoverTime[1]) +", "+ string(obj_panelPane.hoverTime[2]) +", "+ string(obj_panelPane.hoverTime[3]));	
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 150, "currentCenterDisplayRow: " + string(currentCenterDisplayRow));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 170, "lineGrid height: " + string(ds_grid_height(lineGrid)));
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 190, "unitGrid height: " + string(ds_grid_height(unitGrid)));

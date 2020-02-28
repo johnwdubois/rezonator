@@ -1407,6 +1407,14 @@
             }
         },
         {
+            "Key": "41869541-90bb-4d08-9f3a-9bd4d52d518d",
+            "Value": {
+                "id": "1e5a9701-04cb-4324-8a8c-b2da70e1e574",
+                "resourcePath": "scripts\\scr_drawToolTip\\scr_drawToolTip.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "41aba757-d574-47cc-bc99-c6ea72d873ae",
             "Value": {
                 "id": "f9941c46-932b-42d5-95a9-d804afda25d9",
@@ -5590,7 +5598,8 @@
         "81e42799-4462-4bb4-9cc5-0b50129aaa22",
         "a0b42376-3fda-4f56-a0bd-312e223154d5",
         "ca33ba48-05e2-40d8-9437-439a73dc39e5",
-        "108d9bb9-fdd5-4af2-8c9d-bd3736150788"
+        "108d9bb9-fdd5-4af2-8c9d-bd3736150788",
+        "41869541-90bb-4d08-9f3a-9bd4d52d518d"
     ],
     "tutorial": ""
 }

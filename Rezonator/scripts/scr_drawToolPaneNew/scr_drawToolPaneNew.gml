@@ -27,22 +27,8 @@ for (var i = 0; i < 3; i++) {
 		var toolButtonY = y + (toolButtonBuffer * 2) + ((sprite_get_height(spr_toolsNew) * toolSprScale) * 1.5);
 	}
 	*/
-	
 	var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, toolButtonX - (sprite_get_width(spr_toolsNew) / 2), toolButtonY - (sprite_get_height(spr_toolsNew) / 2), toolButtonX + (sprite_get_width(spr_toolsNew) / 2), toolButtonY + (sprite_get_height(spr_toolsNew) / 2));
-	if (mouseover) {
-		if (mouse_check_button_released(mb_left)) {
-			if (i == 0) {
-				currentMode = modeRead;
-			}
-			else if (i == 1) {
-				currentMode = modeTrack;
-			}
-			else if (i == 2) {
-				currentMode = modeRez;
-			}
-		}
-	}
-	
+		
 	var toolImageIndex = 0;
 	if (i == 0) {
 		toolImageIndex = (currentMode == modeRead) ? 2 : 0;
@@ -64,7 +50,55 @@ for (var i = 0; i < 3; i++) {
 	}
 	
 	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+
+	
+	if (mouseover) {
+		hoverTime[i]++;
+
+		//show_message("BUH: " + string(hoverTime) );
+		if (mouse_check_button_released(mb_left)) {
+			if (i == 0) {
+				currentMode = modeRead;
+			}
+			else if (i == 1) {
+				currentMode = modeTrack;
+			}
+			else if (i == 2) {
+				currentMode = modeRez;
+			}
+		}
+	
+	}
+	
+	else {
+		hoverTime[i] = 0;		
+	}
+	
+	
+
+	
+
 }
+for (var i = 0; i < 3; i++) {
+	//draw tooltips
+	if(hoverTime[i] == hoverTimeLimit){
+		ToolTipPosX = mouse_x;
+		ToolTipPosY = mouse_y;
+	}
+	else if(hoverTime[i] > hoverTimeLimit){
+		if (i == 0) {
+			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Read Mode");
+		}
+		else if (i == 1) {
+			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Track Mode");
+		}
+		else if (i == 2) {
+			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Rez Mode");
+
+		}
+	}
+}
+
 
 // Prevent typing in text from changing the tool mode
 if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
