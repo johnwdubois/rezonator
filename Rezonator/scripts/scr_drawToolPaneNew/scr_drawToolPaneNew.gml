@@ -87,13 +87,13 @@ for (var i = 0; i < 3; i++) {
 	}
 	else if(hoverTime[i] > hoverTimeLimit){
 		if (i == 0) {
-			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Read Mode");
+			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Read Mode", "top");
 		}
 		else if (i == 1) {
-			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Track Mode");
+			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Track Mode", "top");
 		}
 		else if (i == 2) {
-			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Rez Mode");
+			scr_drawToolTip(ToolTipPosX, ToolTipPosY, "Rez Mode", "top");
 
 		}
 	}
