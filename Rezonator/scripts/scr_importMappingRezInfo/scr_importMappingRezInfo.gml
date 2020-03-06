@@ -141,14 +141,14 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid) - 1; i++) {
 			headerStr = "Tier";
 			break;
 		case 3:
-			headerStr = "Assigned Tag";
+			headerStr = "Line Label";
 			break;
 		default:
 			break;
 	}
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
-	draw_text(colX + 5 - clipX, floor(rezInfoWindowRectY1 + (rowHeight / 2)) - clipY, headerStr);
+	draw_text(floor(colX + 5) - clipX, floor(rezInfoWindowRectY1 + (rowHeight / 2)) - clipY, headerStr);
 	
 	// draw column lines
 	draw_set_color(global.colorThemeBorders);
@@ -226,7 +226,7 @@ draw_set_color(global.colorThemeText);
 draw_set_font(fnt_mainBold);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(rezInfoWindowRectX1, floor(rezInfoWindowRectY1 - string_height("0")), "Rez Info");
+draw_text(floor(rezInfoWindowRectX1), floor(rezInfoWindowRectY1 - string_height("0")), "Rezonator Fields");
 
 
 // draw Rez Info window border

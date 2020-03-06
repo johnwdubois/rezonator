@@ -62,6 +62,7 @@ for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
 		for (var j = 0; j < ds_list_size(currentWordIDListNewUnit); j++) {
 			var currentWordIDNewWord = ds_list_find_value(currentWordIDListNewUnit, j);
 			var currentMorph = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colMorph, currentWordIDNewWord - 1);
+			var currentGloss = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colGloss, currentWordIDNewWord - 1);
 			
 			ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 			var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
@@ -71,7 +72,7 @@ for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, currentRowWordGrid, currentUnitID);
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, j);
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, currentMorph);
-			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, currentMorph);
+			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, currentGloss);
 			
 			scr_loadDynamicWordGridIndividual(currentRowWordGrid);
 		}

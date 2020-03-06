@@ -15,3 +15,5 @@ scrollBarHeight = 0;
 scrollPlusY = 0;
 scrollPlusYDest = 0;
 scrollBarPlusY = 0;
+
+alarm[0] = 1;

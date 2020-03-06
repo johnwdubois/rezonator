@@ -260,5 +260,5 @@ else {
 	draw_set_font(fnt_mainItalic);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Select tiers from the Rez Info window and assign them in the Tag Info window");
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Select tiers from the Rez Info window and assign them in the Import Fields window");
 }

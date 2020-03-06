@@ -1,4 +1,3 @@
-
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
@@ -9,7 +8,7 @@ draw_set_font(fnt_mainBold);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(20, 20, "Import File Mapping");
+draw_text(20 + sprite_get_width(spr_backArrow), 20, "Import File Mapping");
 
 
 
@@ -41,7 +40,7 @@ draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + string_height("0"), 
 // Summary window
 var summaryInfoWindowRectX1 = (camWidth / 3) + 20;
 var summaryInfoWindowRectY1 = 80 + string_height("0");
-var summaryInfoWindowRectX2 = camWidth - 40;
+var summaryInfoWindowRectX2 = (camWidth * 0.666) - 20;
 var summaryInfoWindowRectY2 = (camHeight / 2) - 180;
 
 draw_set_color(global.colorThemeBorders);
@@ -54,8 +53,13 @@ draw_set_valign(fa_middle);
 draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), "Summary");
 
 draw_set_font(fnt_main);
-draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), "Clusters found: " + string(ds_grid_height(global.importGrid)));
-draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + (string_height("0") * 2.5), "Tags found: " + string(ds_grid_height(tagInfoGrid)));
+draw_text(floor(summaryInfoWindowRectX1 + 20), floor(summaryInfoWindowRectY1 + string_height("0")), "Line label types: " + string(ds_grid_height(global.importGrid)));
+draw_text(floor(summaryInfoWindowRectX1 + 20), floor(summaryInfoWindowRectY1 + (string_height("0") * 2.5)), "Line groups: " + string(ds_grid_height(tagInfoGrid)));
+
+
+
+
+
 
 
 
@@ -98,5 +102,5 @@ else {
 	draw_set_font(fnt_mainItalic);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Select tiers from the Rez Info window and assign them in the Tag Info window");
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Select tiers from the Rezonator Fields window and assign them in the Import Fields window");
 }

@@ -76,15 +76,15 @@ for (var i = 0; i <= ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 		var currentCell = ds_grid_get(obj_importMapping.tagInfoGrid, i, j);
 		
 		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
-			currentCell = string(currentCell) + "%";
+			currentCell = string(max(round(currentCell), 1)) + "%";
 		}
 		else if (i == obj_importMapping.tagInfoGrid_colConstPerCluster) {
-			currentCell = (currentCell) ? "X" : "";
+			currentCell = (currentCell) ? "Yes" : "";
 		}
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
-		draw_text(colX + 5 - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
+		draw_text(floor(colX + 5) - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
 		
 		plusY += rowHeight;
 	}
@@ -175,14 +175,14 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 			headerStr = "Group";
 			break;
 		case 4:
-			headerStr = "Const Per Cluster";
+			headerStr = "1 Token Per Group";
 			break;
 		default:
 			break;
 	}
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
-	draw_text(colX + 5 - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2)) - clipY, headerStr);
+	draw_text(floor(colX + 5) - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2)) - clipY, headerStr);
 	
 	// draw column lines
 	draw_set_color(global.colorThemeBorders);
@@ -225,7 +225,7 @@ draw_set_color(global.colorThemeText);
 draw_set_font(fnt_mainBold);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(tagInfoWindowRectX1, floor(tagInfoWindowRectY1 - string_height("0")), "Tag Info");
+draw_text(floor(tagInfoWindowRectX1), floor(tagInfoWindowRectY1 - string_height("0")), "Import Fields");
 
 
 // draw Tag Info window border

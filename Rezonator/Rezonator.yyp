@@ -1895,6 +1895,14 @@
             }
         },
         {
+            "Key": "5c292214-f40d-4036-85e6-490c171a0317",
+            "Value": {
+                "id": "687dfb16-2021-4dbf-bb88-64fc7da03d85",
+                "resourcePath": "objects\\obj_exceptionsWindow\\obj_exceptionsWindow.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "5c29f381-fb90-42f6-ae44-22c464e075da",
             "Value": {
                 "id": "5eee16a6-a4a4-44b6-98e0-659ad7243b93",
@@ -1916,6 +1924,14 @@
                 "id": "9b9d94a5-e236-41de-8fb8-75f5c3a9bbd0",
                 "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/Wheres_Lisabeth.rez.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "5eb08b69-3c2e-4873-8aca-a848e1db96b8",
+            "Value": {
+                "id": "c9997b1a-e7f2-4bac-a558-ec50182811eb",
+                "resourcePath": "scripts\\scr_markAutoExceptions\\scr_markAutoExceptions.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2010,7 +2026,7 @@
             "Key": "647dc090-a050-4750-a66b-5d074bccb40b",
             "Value": {
                 "id": "73709f1a-0c8c-442b-9cc3-e485cc5c409b",
-                "resourcePath": "scripts\\scr_importException\\scr_importException.yy",
+                "resourcePath": "scripts\\scr_importExceptionWindowDev\\scr_importExceptionWindowDev.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4263,6 +4279,14 @@
             }
         },
         {
+            "Key": "ccf9bd3a-d1d6-4306-ad05-143ab9fe299b",
+            "Value": {
+                "id": "dd88747f-73b3-4a6d-ac57-cb566fd08f2f",
+                "resourcePath": "scripts\\scr_exceptionsWindow\\scr_exceptionsWindow.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cd432504-6d85-4dc5-a7e4-7163ea455219",
             "Value": {
                 "id": "ff06ad9c-d1a4-4848-a15f-735c485f54cd",
@@ -5498,9 +5522,11 @@
         "1957767d-9427-4b10-962a-7ef22447b67e",
         "87c3ad35-6fb5-4322-b8f7-a2d91741a820",
         "59a29aad-3343-48a6-ab52-4ad6bab716e6",
+        "ccf9bd3a-d1d6-4306-ad05-143ab9fe299b",
         "bf2346e5-608d-4efa-b1b5-ce22396ea88c",
         "ac8f0b08-15f8-4ca8-9ce1-360c9f60783e",
         "647dc090-a050-4750-a66b-5d074bccb40b",
+        "5eb08b69-3c2e-4873-8aca-a848e1db96b8",
         "9156545b-4273-443f-8d1d-906f9e3a8e94",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
