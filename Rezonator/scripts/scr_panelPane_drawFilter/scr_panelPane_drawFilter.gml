@@ -43,6 +43,7 @@ for (var i = 0; i < 3; i++) {
 	
 	// If mouse clicked in button, activate/deavtivate button's function
 	if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)){
+		obj_control.hoverTime[i]++;
 		if (device_mouse_check_button_released(0, mb_left)) {
 			
 			// Re/activate function
@@ -58,6 +59,9 @@ for (var i = 0; i < 3; i++) {
 			}
 		}
 	}
+	else{
+	obj_control.hoverTime[i] = 0;
+	}
 	
 	// Recolor slected buttons
 	if (functionFilter_peek[i]) {
@@ -72,6 +76,27 @@ for (var i = 0; i < 3; i++) {
 	
 	draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, true);
 }
+
+for (var i = 0; i < 3; i++) {
+	//draw tooltips
+	if(obj_control.hoverTime[i] == obj_toolPane.hoverTimeLimit){
+		obj_toolPane.ToolTipPosX = mouse_x;
+		obj_toolPane.ToolTipPosY = mouse_y;
+	}
+	else if(obj_control.hoverTime[i] > obj_toolPane.hoverTimeLimit){
+		if (i == 0) {
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Context Above", "left");
+		}
+		else if (i == 1) {
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Context Between", "left");
+		}
+		else if (i == 2) {
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Context below", "left");
+
+		}
+	}
+}
+
 
 // Check for mouse clicks on filter button, if we're out of the search grid
 if(obj_control.currentActiveLineGrid != obj_control.searchGrid){

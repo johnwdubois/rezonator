@@ -366,7 +366,7 @@ for (var i = 0; i < toggleButtonAmount; i++) {
 			else{
 				displayString = "Transcript View"
 			}
-			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString );
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");
 		}
 		else if (i == 1) {
 			if (obj_control.shape == obj_control.shapeBlock) {
@@ -376,7 +376,7 @@ for (var i = 0; i < toggleButtonAmount; i++) {
 				displayString = "Justified View"
 
 			}
-			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString );
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString, "top" );
 		}
 		else if (i == 2) {
 			if (obj_control.gridView) {
@@ -385,10 +385,10 @@ for (var i = 0; i < toggleButtonAmount; i++) {
 			else{
 				displayString = "Text View"
 			}
-			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString );
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");
 		}
 		else if (i == 3) {
-			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Help");
+			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Help", "top");
 		}
 	}
 }

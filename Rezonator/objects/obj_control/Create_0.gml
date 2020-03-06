@@ -596,5 +596,10 @@ layerLinkAllow = false;
 layerLinkWordID = -1;
 layerLinkUnitID = -1;
 
+hoverTime[0] = 0;
+hoverTime[1] = 0;
+hoverTime[2] = 0;
+
+
 
 initialValidFileCheck = false;
