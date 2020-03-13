@@ -10,6 +10,11 @@ var tagInfoWindowRectX1 = 40;
 var tagInfoWindowRectY1 = (camHeight / 2) - 100;
 var tagInfoWindowRectX2 = (camWidth / 2) - 50;
 var tagInfoWindowRectY2 = camHeight - 150;
+// Rez Info window
+var rezInfoWindowRectX1 = (camWidth / 2) + 50;
+var rezInfoWindowRectY1 = (camHeight / 2) - 100;
+var rezInfoWindowRectX2 = camWidth - 40;
+var rezInfoWindowRectY2 = camHeight - 150;
 
 
 
@@ -48,8 +53,8 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i <= ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
+for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConsistency; i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
@@ -58,7 +63,7 @@ for (var i = 0; i <= ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
 		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
-		//var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colConstPerCluster);
+		//var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colOneTokenPerGroup);
 		var cellRectY2 = plusY + rowHeight;
 		
 		// draw BG stripes
@@ -78,13 +83,13 @@ for (var i = 0; i <= ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
 			currentCell = string(max(round(currentCell), 1)) + "%";
 		}
-		else if (i == obj_importMapping.tagInfoGrid_colConstPerCluster) {
+		else if (i == obj_importMapping.tagInfoGrid_colOneTokenPerGroup) {
 			currentCell = (currentCell) ? "Yes" : "";
 		}
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
-		draw_text(floor(colX + 5) - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
+		draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
 		
 		plusY += rowHeight;
 	}
@@ -92,11 +97,12 @@ for (var i = 0; i <= ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 
 if (mouseoverRow >= 0) {
 	if (mouse_check_button_pressed(mb_left)) {
+		/*
 		if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
 			
 			var oldTag = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
 			if (oldTag != 0) {
-				var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, 0, obj_importMapping.tagInfoGrid_colTag, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
+				var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, 0, obj_importMapping.tagInfoGrid_colLabel, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
 				
 				var occurences = 0;
 				for (var i = 0; i < ds_grid_height(obj_importMapping.tagInfoGrid); i++) {
@@ -109,24 +115,21 @@ if (mouseoverRow >= 0) {
 			}
 			
 			obj_importMapping.tagInfoGridSelectedRow = mouseoverRow;
-			var tag = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, mouseoverRow);
+			var tag = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, mouseoverRow);
 			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, tag);
 			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, mouseoverRow);
 			ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, mouseoverRow, true);
 		}
+		*/
+		obj_importMapping.tagInfoGridSelectedRow = mouseoverRow;
 	}
 }
 
 
-if (obj_importMapping.rezInfoGridSelectedRow < 0) {
-	obj_importMapping.tagInfoGridSelectedRow = -1;
+if (obj_importMapping.tagInfoGridSelectedRow < 0) {
+	obj_importMapping.rezInfoGridSelectedRow = -1;
 }
 
-if (mouse_check_button_pressed(mb_left)) {
-	if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2)) {
-		obj_importMapping.tagInfoGridSelectedRow = -1;
-	}
-}
 
 
 
@@ -158,23 +161,25 @@ if (obj_importMapping.tagInfoGridSelectedRow > -1) {
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
 for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConstPerCluster + 1)) * i);
-	
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
 	var headerStr = "";
 	switch (i) {
-		case 0:
-			headerStr = "Tag";
+		case obj_importMapping.tagInfoGrid_colLabel:
+			headerStr = "Line Label";
 			break;
-		case 1:
+		case obj_importMapping.tagInfoGrid_colExample:
 			headerStr = "Example";
 			break;
-		case 2:
-			headerStr = "Consistency";
+		case obj_importMapping.tagInfoGrid_colLevelEstimation:
+			headerStr = "Level Estimate";
 			break;
-		case 3:
+		case obj_importMapping.tagInfoGrid_colConsistency:
+			headerStr = "% of Groups Labeled";
+			break;
+		case obj_importMapping.tagInfoGrid_colGroup:
 			headerStr = "Group";
 			break;
-		case 4:
+		case obj_importMapping.tagInfoGrid_colOneTokenPerGroup:
 			headerStr = "1 Token Per Group";
 			break;
 		default:
@@ -182,7 +187,7 @@ for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
 	}
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(colX + 5) - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2)) - clipY, headerStr);
+	draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
 	
 	// draw column lines
 	draw_set_color(global.colorThemeBorders);
@@ -228,13 +233,9 @@ draw_set_valign(fa_middle);
 draw_text(floor(tagInfoWindowRectX1), floor(tagInfoWindowRectY1 - string_height("0")), "Import Fields");
 
 
+
+
 // draw Tag Info window border
 draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2, true);
-if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
-	for (var i = 0; i < 5; i++) {
-		draw_rectangle(tagInfoWindowRectX1 - i, tagInfoWindowRectY1 - i, tagInfoWindowRectX2 + i, tagInfoWindowRectY2 + i, true);
-	}
-}
-

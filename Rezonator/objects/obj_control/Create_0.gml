@@ -120,6 +120,13 @@ wordGrid = ds_grid_create(wordGridWidth, 0);
 wordIDCounter = 0;
 unitIDCounter = 0;
 
+
+
+
+
+
+
+
 // Boolean for switching transcript view on/off
 wordTokenView = true;
 // Seems to prefer starting as false?

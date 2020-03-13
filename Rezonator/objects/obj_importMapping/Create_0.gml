@@ -20,14 +20,15 @@ global.plainTextInfoGrid_colGroup = 1;
 global.plainTextInfoGrid = ds_grid_create(global.plainTextInfoGridWidth, 0);
 
 
-tagInfoGridWidth = 7;
-tagInfoGrid_colTag = 0;
+tagInfoGridWidth = 8;
+tagInfoGrid_colLabel = 0;
 tagInfoGrid_colExample = 1;
-tagInfoGrid_colConsistency = 2;
-tagInfoGrid_colGroup = 3;
-tagInfoGrid_colConstPerCluster = 4;
-tagInfoGrid_colMapped = 5;
-tagInfoGrid_colColor = 6;
+tagInfoGrid_colLevelEstimation = 2;
+tagInfoGrid_colConsistency = 3;
+tagInfoGrid_colGroup = 4;
+tagInfoGrid_colOneTokenPerGroup = 5;
+tagInfoGrid_colMapped = 6;
+tagInfoGrid_colColor = 7;
 tagInfoGrid = ds_grid_create(tagInfoGridWidth, 0);
 
 

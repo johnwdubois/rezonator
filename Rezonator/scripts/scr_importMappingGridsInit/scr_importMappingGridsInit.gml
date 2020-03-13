@@ -20,3 +20,13 @@ for (var j = 0; j < ds_grid_height(global.rezInfoGrid); j++) {
 	ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, j, -1);
 	ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, j, -1);
 } 
+
+
+// initiate labelWordGrid
+global.labelWordGridWidth = 0;
+global.labelWordGrid = ds_grid_create(global.labelWordGridWidth, 0);
+
+
+// initiate customLabelGrid
+global.customLabelGridWidth = 0;
+global.customLabelGrid = ds_grid_create(global.customLabelGridWidth, 2);

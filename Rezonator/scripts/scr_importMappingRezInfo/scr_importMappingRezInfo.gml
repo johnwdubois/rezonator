@@ -88,7 +88,30 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 			mouseoverRow = j;
 			if (mouse_check_button_pressed(mb_left)) {
-				obj_importMapping.rezInfoGridSelectedRow = j;
+				if (obj_importMapping.tagInfoGridSelectedRow >= 0) {
+					obj_importMapping.rezInfoGridSelectedRow = j;
+					
+					// assign label
+					var selectedLabel = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, obj_importMapping.tagInfoGridSelectedRow);
+					ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, selectedLabel);
+					
+					// if this is a custom tag, let's get the level estimate and tier name
+					if (obj_importMapping.rezInfoGridSelectedRow >= 6) {
+						var level = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLevelEstimation, obj_importMapping.tagInfoGridSelectedRow);
+						var tier = string_copy(selectedLabel, 2, string_length(selectedLabel) - 1);
+						ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colLevel, obj_importMapping.rezInfoGridSelectedRow, level);
+						ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colTier, obj_importMapping.rezInfoGridSelectedRow, tier);
+						
+						// set information for rows 0 and 1 in customLabelGrid
+						var customLabelGridCol = obj_importMapping.rezInfoGridSelectedRow - 6;
+						ds_grid_set(global.customLabelGrid, customLabelGridCol, 0, tier);
+						ds_grid_set(global.customLabelGrid, customLabelGridCol, 1, level);
+					}
+					
+					// deselect
+					obj_importMapping.tagInfoGridSelectedRow = -1;
+					obj_importMapping.rezInfoGridSelectedRow = -1;
+				}
 			}
 		}
 		
@@ -102,7 +125,7 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
-		draw_text(floor(colX + 5) - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
+		draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
 		
 		plusY += rowHeight;
 	}
@@ -141,14 +164,14 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid) - 1; i++) {
 			headerStr = "Tier";
 			break;
 		case 3:
-			headerStr = "Line Label";
+			headerStr = "Assigned Line Label";
 			break;
 		default:
 			break;
 	}
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(colX + 5) - clipX, floor(rezInfoWindowRectY1 + (rowHeight / 2)) - clipY, headerStr);
+	draw_text(floor(colX + 5 - clipX), floor(rezInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
 	
 	// draw column lines
 	draw_set_color(global.colorThemeBorders);
@@ -171,7 +194,7 @@ if (obj_importMapping.rezInfoGridSelectedRow > -1) {
 	if (keyboard_check_pressed(vk_delete)) {
 		var oldTag = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
 		if (oldTag != 0) {
-			var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, 0, obj_importMapping.tagInfoGrid_colTag, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
+			var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, 0, obj_importMapping.tagInfoGrid_colLabel, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
 				
 			var occurences = 0;
 			for (var i = 0; i < ds_grid_height(obj_importMapping.tagInfoGrid); i++) {
@@ -229,7 +252,49 @@ draw_set_valign(fa_middle);
 draw_text(floor(rezInfoWindowRectX1), floor(rezInfoWindowRectY1 - string_height("0")), "Rezonator Fields");
 
 
+// custom label button
+draw_set_color(global.colorThemeText);
+draw_set_font(fnt_main);
+draw_set_halign(fa_center);
+
+var customTagButtonRectX1 = rezInfoWindowRectX2 - string_width(" Add custom label ");
+var customTagButtonRectY1 = rezInfoWindowRectY1 - string_height("0") - 10;
+var customTagButtonRectX2 = rezInfoWindowRectX2;
+var customTagButtonRectY2 = rezInfoWindowRectY1 - 5;
+
+draw_text(floor(mean(customTagButtonRectX1, customTagButtonRectX2)), floor(mean(customTagButtonRectY1, customTagButtonRectY2)), "Add custom label");
+
+// click on custom label button
+if (point_in_rectangle(mouse_x, mouse_y, customTagButtonRectX1, customTagButtonRectY1, customTagButtonRectX2, customTagButtonRectY2)) {
+	draw_rectangle(customTagButtonRectX1, customTagButtonRectY1, customTagButtonRectX2, customTagButtonRectY2, true);
+	if (mouse_check_button_released(mb_left)) {
+		
+		// add column to customLabelGrid
+		global.customLabelGridWidth++;
+		ds_grid_resize(global.customLabelGrid, global.customLabelGridWidth, ds_grid_height(global.customLabelGrid));
+		
+		// add column to labelWordGrid
+		global.labelWordGridWidth++;
+		ds_grid_resize(global.labelWordGrid, global.labelWordGridWidth, ds_grid_height(global.labelWordGrid));
+		
+		// add row to rezInfoGrid
+		ds_grid_resize(global.rezInfoGrid, global.rezInfoGridWidth, ds_grid_height(global.rezInfoGrid) + 1);
+		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colNumber, ds_grid_height(global.rezInfoGrid) - 1, ds_grid_height(global.rezInfoGrid));
+		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colLevel, ds_grid_height(global.rezInfoGrid) - 1, "...");
+		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colTier, ds_grid_height(global.rezInfoGrid) - 1, "...");
+		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, ds_grid_height(global.rezInfoGrid) - 1, -1);
+		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, ds_grid_height(global.rezInfoGrid) - 1, -1);
+	}
+}
+
+
+
 // draw Rez Info window border
 draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(rezInfoWindowRectX1, rezInfoWindowRectY1, rezInfoWindowRectX2, rezInfoWindowRectY2, true);
+if (obj_importMapping.tagInfoGridSelectedRow >= 0) {
+	for (var i = 0; i < 5; i++) {
+		draw_rectangle(rezInfoWindowRectX1 - i, rezInfoWindowRectY1 - i, rezInfoWindowRectX2 + i, rezInfoWindowRectY2 + i, true);
+	}
+}

@@ -26,7 +26,6 @@ if (global.plainText) {
 		}
 
 	}
-//show_message("buh");
 }
 else {
 	
@@ -62,7 +61,7 @@ else {
 	
 	
 	
-		var constPerCluster = true;
+		var OneTokenPerGroup = true;
 		var tokenCount = -1;
 		for (var j = 0; j < ds_grid_height(global.importGrid); j++) {
 			if (ds_grid_get(global.importGrid, i, j) != "0") {
@@ -72,7 +71,7 @@ else {
 				}
 				else {
 					if (tokenCount != ds_list_size(currentList)) {
-						constPerCluster = false;
+						OneTokenPerGroup = false;
 					}
 				}
 				ds_list_destroy(currentList);
@@ -80,11 +79,27 @@ else {
 		}
 	
 		ds_grid_resize(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGridWidth, ds_grid_height(obj_importMapping.tagInfoGrid) + 1);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, i, currentTag);
+		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, i, currentTag);
 		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colExample, i, currentExample);
 		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, i, false);
 		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colColor, i, currentColor);
 		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colConsistency, i, currentConsistency);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colConstPerCluster, i, constPerCluster);
+		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colOneTokenPerGroup, i, OneTokenPerGroup);
+		
+		
+		// if this label is < 5% consistency and 1 token per group, it is probably discourse level
+		// if this label is >= 90% consistency and 1 token per group, it is probably unit level
+		// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
+		var levelEstimate = "";
+		if (currentConsistency < 5 && OneTokenPerGroup) {
+			levelEstimate = "discourse";
+		}
+		else if (currentConsistency >= 90 && OneTokenPerGroup) {
+			levelEstimate = "unit";
+		}
+		else if (currentConsistency >= 90 && !OneTokenPerGroup) {
+			levelEstimate = "token";
+		}
+		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLevelEstimation, i, levelEstimate);
 	}
 }

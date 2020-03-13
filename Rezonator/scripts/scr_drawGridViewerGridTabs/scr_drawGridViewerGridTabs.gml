@@ -116,6 +116,12 @@ for (var i = 0; i < ds_list_size(gridList); i++) {
 		case global.importCSVGrid:
 			colName = "ImportCSV"; // Import CSV Grid
 			break;
+		case global.labelWordGrid:
+			colName = "LabelWord"; // Label Word Grid
+			break;			
+		case global.customLabelGrid:
+			colName = "CustomLabel"; // Custom Label Grid
+			break;
 		default:
 			break;
 	}

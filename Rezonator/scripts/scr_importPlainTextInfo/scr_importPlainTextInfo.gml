@@ -55,7 +55,7 @@ for (var i = 0; i <= global.plainTextInfoGrid_colGroup; i++) {
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
 		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
-		//var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colConstPerCluster);
+		//var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colOneTokenPerGroup);
 		var cellRectY2 = plusY + rowHeight;
 		
 		// draw BG stripes
@@ -72,7 +72,7 @@ for (var i = 0; i <= global.plainTextInfoGrid_colGroup; i++) {
 		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
 			currentCell = string(currentCell) + "%";
 		}
-		else if (i == obj_importMapping.tagInfoGrid_colConstPerCluster) {
+		else if (i == obj_importMapping.tagInfoGrid_colOneTokenPerGroup) {
 			currentCell = (currentCell) ? "X" : "";
 		}
 		*/
@@ -93,7 +93,7 @@ if (mouseoverRow >= 0) {
 			
 			var oldTag = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
 			if (oldTag != 0) {
-				var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, 0, obj_importMapping.tagInfoGrid_colTag, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
+				var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, 0, obj_importMapping.tagInfoGrid_colLabel, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
 				
 				var occurences = 0;
 				for (var i = 0; i < ds_grid_height(obj_importMapping.tagInfoGrid); i++) {
@@ -106,7 +106,7 @@ if (mouseoverRow >= 0) {
 			}
 			
 			obj_importMapping.tagInfoGridSelectedRow = mouseoverRow;
-			var tag = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colTag, mouseoverRow);
+			var tag = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, mouseoverRow);
 			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, tag);
 			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, mouseoverRow);
 			ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, mouseoverRow, true);
