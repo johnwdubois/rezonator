@@ -89,11 +89,12 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 			mouseoverRow = j;
 			if (mouse_check_button_pressed(mb_left)) {
 				if (obj_importMapping.tagInfoGridSelectedRow >= 0) {
-					obj_importMapping.rezInfoGridSelectedRow = j;
+					obj_importMapping.rezInfoGridSelectedRow = mouseoverRow;
 					
 					// assign label
 					var selectedLabel = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, obj_importMapping.tagInfoGridSelectedRow);
 					ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, selectedLabel);
+					ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, obj_importMapping.tagInfoGridSelectedRow);
 					
 					// if this is a custom tag, let's get the level estimate and tier name
 					if (obj_importMapping.rezInfoGridSelectedRow >= 6) {
@@ -144,7 +145,7 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 // draw header for column
 draw_set_color(global.colorThemeBG);
 draw_rectangle(rezInfoWindowRectX1 - clipX, rezInfoWindowRectY1 - clipY, rezInfoWindowRectX2 - clipX, rezInfoWindowRectY1 + rowHeight - clipY, false);
-for (var i = 0; i < ds_grid_width(global.rezInfoGrid) - 1; i++) {
+for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 	var colX = 0;
 	if (i == 0) {
 		colX = rezInfoWindowRectX1;

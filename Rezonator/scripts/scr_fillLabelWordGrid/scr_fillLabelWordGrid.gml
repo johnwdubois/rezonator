@@ -1,5 +1,3 @@
-show_message("starting....")
-
 for (var i = 0; i < ds_grid_width(global.customLabelGrid); i++) {
 	
 	var currentLabel = ds_grid_get(global.customLabelGrid, i, 0);
@@ -25,5 +23,6 @@ for (var i = 0; i < ds_grid_width(global.customLabelGrid); i++) {
 			var currentToken = ds_list_find_value(tokenList, j);
 			ds_grid_set(global.labelWordGrid, i, j, currentToken);
 		}
+		ds_grid_set(global.labelWordGrid, i, 0, currentLabel);
 	}
 }

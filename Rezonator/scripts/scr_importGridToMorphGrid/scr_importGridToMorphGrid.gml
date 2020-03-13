@@ -71,7 +71,6 @@ else {
 		glossCol = -1;
 	}
 
-
 	// build morphGrid!
 	for (var i = 0; i < ds_grid_height(global.importGrid); i++) {
 	
@@ -116,6 +115,7 @@ else {
 			ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitStart, ds_grid_height(obj_control.morphGrid) - 1, currentUnitStart);
 			ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitEnd, ds_grid_height(obj_control.morphGrid) - 1, currentUnitEnd);
 			ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colGloss, ds_grid_height(obj_control.morphGrid) - 1, currentGloss);
+			
 		}
 	}
 }

@@ -160,7 +160,7 @@ if (obj_importMapping.tagInfoGridSelectedRow > -1) {
 // draw header for column
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
-for (var i = 0; i < ds_grid_width(obj_importMapping.tagInfoGrid); i++) {
+for (var i = 0; i < obj_importMapping.tagInfoGrid_colConsistency + 1; i++) {
 	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
 	var headerStr = "";
 	switch (i) {
