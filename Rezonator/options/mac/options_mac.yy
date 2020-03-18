@@ -8,12 +8,11 @@
     "option_mac_allow_outgoing_network": false,
     "option_mac_app_category": "Education",
     "option_mac_app_id": "com.company.game",
-    "option_mac_apple_sign_in": false,
     "option_mac_build_app_store": false,
     "option_mac_copyright": "(c) 2018 CompanyName",
     "option_mac_disable_sandbox": true,
     "option_mac_display_cursor": true,
-    "option_mac_display_name": "Rezonator 0.8.68",
+    "option_mac_display_name": "Rezonator 0.8.69",
     "option_mac_enable_retina": true,
     "option_mac_enable_steam": false,
     "option_mac_icon_png": "${options_dir}\/mac\/icons\/1024.png",
@@ -28,7 +27,7 @@
     "option_mac_team_id": "54V84M3MDV",
     "option_mac_texture_page": "2048x2048",
     "option_mac_version": {
-        "build": 68,
+        "build": 69,
         "major": 0,
         "minor": 8,
         "revision": 0
