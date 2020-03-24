@@ -197,7 +197,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 								for (var i = 0; i < ds_list_size(currentWordIDList); i++) {
 									var currentWordID = ds_list_find_value(currentWordIDList, i);
 									var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
-									currentWordInfoCol[getInfoLoop] += currentWordString + " ";
+									currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
 								}
 						
 								if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {

@@ -12,7 +12,7 @@ var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGr
 var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, rowInWordGrid);
 var emptyList = ds_list_create();
 var emptyListTwo = ds_list_create();
-var currentWordState = (string_length(currentWordToken) < 1) ? obj_control.wordStateDead : obj_control.wordStateNormal;
+var currentWordState = (string_length(string(currentWordToken)) < 1) ? obj_control.wordStateDead : obj_control.wordStateNormal;
 
 	
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordID, rowInWordGrid, currentWordID);
