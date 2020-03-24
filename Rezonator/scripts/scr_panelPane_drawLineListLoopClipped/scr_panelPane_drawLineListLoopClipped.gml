@@ -75,7 +75,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {
 		var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 		var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
-		currentLineWordString += currentWordToken + " ";
+		currentLineWordString += string(currentWordToken) + " ";
 	}
 	
 	if(string_height(currentLineWordString) > 20) {
