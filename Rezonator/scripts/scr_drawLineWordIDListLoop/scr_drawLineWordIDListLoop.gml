@@ -339,9 +339,9 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 		
 	var wordRectBuffer = 3;
 	var wordRectX1 = currentWordX - wordRectBuffer;
-	var wordRectY1 = currentLineY - (string_height(currentWordString) / 2) - wordRectBuffer;
-	var wordRectX2 = wordRectX1 + string_width(currentWordString) + (wordRectBuffer * 2);
-	var wordRectY2 = wordRectY1 + string_height(currentWordString) + (wordRectBuffer * 2);
+	var wordRectY1 = currentLineY - (string_height(string(currentWordString)) / 2) - wordRectBuffer;
+	var wordRectX2 = wordRectX1 + string_width(string(currentWordString)) + (wordRectBuffer * 2);
+	var wordRectY2 = wordRectY1 + string_height(string(currentWordString)) + (wordRectBuffer * 2);
 	
 	
 	var inMouseHoldRect = 0;
@@ -392,7 +392,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 	
 	// Place Chains Prototype
-	var wordHasLetters = string_length(string_letters(currentWordString)) > 0;
+	var wordHasLetters = string_length(string_letters(string(currentWordString))) > 0;
 	// Draw Place chains when needed
 	if(obj_chain.showPlaceChains && drawWordLoop != ds_list_size(currentWordIDList) - 1 && wordHasLetters) {
 		// Draw the Place chain box
@@ -768,7 +768,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentWordIDList); drawW
 	previousWordDisplayCol = currentWordDisplayCol;
 	previousWordDisplayString = currentWordDisplayString;
 	
-	shapeTextX += string_width(currentWordString) + shapeTextSpace;
+	shapeTextX += string_width(string(currentWordString)) + shapeTextSpace;
 }
 
 
