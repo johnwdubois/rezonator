@@ -1,7 +1,7 @@
 {
     "id": "4a74aced-d35f-460d-bb05-5904a7fbae0b",
     "modelName": "GMExtension",
-    "mvc": "1.0",
+    "mvc": "1.2",
     "name": "Text_Inputs",
     "IncludedResources": [
         "Sprites\\Text Inputs\\spr_input_text_cursor_default",
@@ -50,6 +50,7 @@
     "copyToTargets": -1,
     "date": "2017-30-08 06:07:25",
     "description": "",
+    "exportToGame": true,
     "extensionName": "",
     "files": [
         
@@ -70,9 +71,12 @@
     "maccompilerflags": "",
     "maclinkerflags": "",
     "macsourcedir": "",
+    "options": null,
+    "optionsFile": "options.json",
     "packageID": "com.mytino.textinputs",
     "productID": "F3D00DAD3DDB83EFFDD568E8093FC7AA",
     "sourcedir": "",
+    "supportedTargets": -1,
     "tvosProps": false,
     "tvosSystemFrameworkEntries": [
         
