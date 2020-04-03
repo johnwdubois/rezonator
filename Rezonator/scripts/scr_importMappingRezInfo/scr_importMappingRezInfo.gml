@@ -104,7 +104,7 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 						ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colTier, obj_importMapping.rezInfoGridSelectedRow, tier);
 						
 						// set information for new row in customLabelGrid
-						var customLabelGridRow = ds_grid_height(global.customLabelGrid) - 1;
+						var customLabelGridRow = obj_importMapping.rezInfoGridSelectedRow - 6;
 						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, customLabelGridRow, level);
 						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLabel, customLabelGridRow, tier);
 						var emptyList = ds_list_create();

@@ -1127,6 +1127,14 @@
             }
         },
         {
+            "Key": "2db24bab-b7dd-41dc-938f-30e292207f70",
+            "Value": {
+                "id": "17558cc1-f138-4ebb-abe9-08e9645fe06e",
+                "resourcePath": "objects\\obj_customTag_tagListPane\\obj_customTag_tagListPane.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "2e4b5e76-ae01-4d35-89a1-13041599adb3",
             "Value": {
                 "id": "2a187a95-9fc1-4952-a0e3-e8cbfc53f0ea",
@@ -2983,6 +2991,14 @@
             }
         },
         {
+            "Key": "90dc58cc-25ab-44d3-9d63-38fbb6f9dc37",
+            "Value": {
+                "id": "723b82e2-1fdb-4911-829b-36ab8454d18d",
+                "resourcePath": "views\\90dc58cc-25ab-44d3-9d63-38fbb6f9dc37.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "9146ba34-4533-4847-bd78-62a3180074ca",
             "Value": {
                 "id": "cc528d82-48b0-4fb7-bad0-d6cc9ed27419",
@@ -4399,6 +4415,14 @@
             }
         },
         {
+            "Key": "d0e7cb1f-5f7b-478c-aaf2-23aec21b98e1",
+            "Value": {
+                "id": "bca7c4de-b190-4ffa-ac84-5a8634464e1a",
+                "resourcePath": "objects\\obj_customTagPane\\obj_customTagPane.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "d1244fca-ca55-4888-adc7-2175d18e5004",
             "Value": {
                 "id": "616e3dd4-6989-46b7-a044-10a91b5dd1f3",
@@ -5404,6 +5428,14 @@
                 "id": "6783b7a0-a455-448a-97a3-8aeb194a170a",
                 "resourcePath": "views\/fde1aba0-0d81-4151-afdd-49c970c4e2ad.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "ff200d17-c0b8-4b84-b8b1-55a0773d798b",
+            "Value": {
+                "id": "09dc0427-743c-4a73-8790-34ddd8c56897",
+                "resourcePath": "objects\\obj_customTag_labelPane\\obj_customTag_labelPane.yy",
+                "resourceType": "GMObject"
             }
         },
         {

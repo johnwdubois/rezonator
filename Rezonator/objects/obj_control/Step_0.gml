@@ -619,6 +619,11 @@ if (instance_exists(obj_stackShow)) {
 		mouseoverPanelPane = true;	
 	}
 }
+if (instance_exists(obj_customTagPane)) {
+	if (point_in_rectangle(mouse_x, mouse_y, obj_customTagPane.x, obj_customTagPane.y, obj_customTagPane.x + obj_customTagPane.windowWidth, obj_customTagPane.y + obj_customTagPane.windowHeight)) {
+		mouseoverPanelPane = true;	
+	}
+}
 
 
 
