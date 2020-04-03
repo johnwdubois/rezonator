@@ -103,10 +103,12 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 						ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colLevel, obj_importMapping.rezInfoGridSelectedRow, level);
 						ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colTier, obj_importMapping.rezInfoGridSelectedRow, tier);
 						
-						// set information for rows 0 and 1 in customLabelGrid
-						var customLabelGridCol = obj_importMapping.rezInfoGridSelectedRow - 6;
-						ds_grid_set(global.customLabelGrid, customLabelGridCol, 0, tier);
-						ds_grid_set(global.customLabelGrid, customLabelGridCol, 1, level);
+						// set information for new row in customLabelGrid
+						var customLabelGridRow = ds_grid_height(global.customLabelGrid) - 1;
+						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, customLabelGridRow, level);
+						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLabel, customLabelGridRow, tier);
+						var emptyList = ds_list_create();
+						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, customLabelGridRow, emptyList);
 					}
 					
 					// deselect
@@ -270,9 +272,8 @@ if (point_in_rectangle(mouse_x, mouse_y, customTagButtonRectX1, customTagButtonR
 	draw_rectangle(customTagButtonRectX1, customTagButtonRectY1, customTagButtonRectX2, customTagButtonRectY2, true);
 	if (mouse_check_button_released(mb_left)) {
 		
-		// add column to customLabelGrid
-		global.customLabelGridWidth++;
-		ds_grid_resize(global.customLabelGrid, global.customLabelGridWidth, ds_grid_height(global.customLabelGrid));
+		// add row to customLabelGrid
+		ds_grid_resize(global.customLabelGrid, global.customLabelGridWidth, ds_grid_height(global.customLabelGrid) + 1);
 		
 		// add column to labelWordGrid
 		global.labelWordGridWidth++;

@@ -512,5 +512,24 @@ else if (grid == obj_control.morphGrid) {
 			break;
 	}
 }
+else if (grid == global.customLabelGrid) {
+	switch (col) {
+		case global.customLabelGrid_colLevel:
+			colName = "level";
+			break;
+		case global.customLabelGrid_colLabel:
+			colName = "label";
+			break;
+		case global.customLabelGrid_colTagList:
+			colName = "tagList";
+			break;
+		default:
+			break;
+	}
+}
+else if (grid == global.labelWordGrid) {
+
+	colName = ds_list_find_value(global.labelWordGridColNameList, col);
+}
 
 return colName;

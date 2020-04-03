@@ -73,6 +73,11 @@ else if (grid == global.fileLineRipGrid) {
 		itemList = currentCell;
 	}
 }
+else if (grid == global.customLabelGrid) {
+	if (col == global.customLabelGrid_colTagList) {
+		itemList = currentCell;
+	}
+}
 
 
 

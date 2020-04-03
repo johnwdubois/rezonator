@@ -60,6 +60,7 @@ global.fileSaveName = "undefined";
 global.stackGrabSave = false;
 
 global.importGridColNameList = ds_list_create();
+global.labelWordGridColNameList = ds_list_create();
 
 global.discoColorList = ds_list_create();
 ds_list_add(global.discoColorList, make_color_rgb(183, 183, 255)); // blue

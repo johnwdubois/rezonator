@@ -23,10 +23,15 @@ for (var j = 0; j < ds_grid_height(global.rezInfoGrid); j++) {
 
 
 // initiate labelWordGrid
-global.labelWordGridWidth = 0;
+global.labelWordGridWidth = 2;
+global.labelWordGrid_colUnitID = 0;
+global.labelWordGrid_colWordID = 1;
 global.labelWordGrid = ds_grid_create(global.labelWordGridWidth, 0);
 
 
 // initiate customLabelGrid
-global.customLabelGridWidth = 0;
-global.customLabelGrid = ds_grid_create(global.customLabelGridWidth, 2);
+global.customLabelGridWidth = 3;
+global.customLabelGrid_colLevel = 0;
+global.customLabelGrid_colLabel = 1;
+global.customLabelGrid_colTagList = 2;
+global.customLabelGrid = ds_grid_create(global.customLabelGridWidth, 0);
