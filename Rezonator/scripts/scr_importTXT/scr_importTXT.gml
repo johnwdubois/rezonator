@@ -102,11 +102,16 @@ while (not file_text_eof(fileOpenRead)) {
 }
 
 
-
-
-
 if (ds_grid_width(global.importGrid) == 0) {
-	scr_importPlainTXT(filename)
+	
+	//check for tab delienated collumns
+	//scr_importTabbedTXT(filename);
+
+}
+
+if (ds_grid_width(global.importGrid) == 0) {	
+	//default to plain text import
+	scr_importPlainTXT(filename);
 }
 
 file_text_close(fileOpenRead);

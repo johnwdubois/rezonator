@@ -5,7 +5,7 @@ var orientation = argument3;
 var triangleOffset = 20;
 var toolTipBoxX  = string_width(tipString)/2 +15;
 var toolTipBoxY  = string_height(tipString)+15;
-var innerBuffer = 5;
+var innerBuffer = 3;
 
 //show_message("X: " + string(posX) +", Y: " + string(posY) +", String: " + string(tipString));
 
