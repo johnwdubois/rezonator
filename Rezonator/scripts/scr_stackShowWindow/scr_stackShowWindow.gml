@@ -95,11 +95,11 @@ if (obj_control.stackShowWindowActive) {
 	
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset  + 30, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, "Select All");
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - stackBoxXOffset  + 30), floor(camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset - 5), "Select All");
 	
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, string(game_display_name));
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 15), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 15), string(game_display_name));
 	
 	draw_set_font(fnt_mainLarge1);
 
@@ -116,8 +116,8 @@ if (obj_control.stackShowWindowActive) {
 	draw_set_font(fnt_mainLarge1);
 	
 	// draw button text
-	draw_text(camera_get_view_width(view_camera[0]) /2 - 155, camera_get_view_height(view_camera[0])/2 + 180, "Show Stacks");
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 + 180, "Cancel");
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 155), floor(camera_get_view_height(view_camera[0]) / 2 + 180), "Show Stacks");
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 70), floor(camera_get_view_height(view_camera[0])/2 + 180), "Cancel");
 
 	
 	
@@ -153,17 +153,17 @@ if (obj_control.stackShowWindowActive) {
 	draw_set_alpha(1);
 	draw_set_font(fnt_mainBoldLarge1);
 	draw_set_colour(global.colorThemeText);
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 10 , "MODE");
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + rightCenter), floor(camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset - 10), "MODE");
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width("GAME")/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width("GAME")/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset, true);
 	
 	
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5 - 10 , "STACK");
+	draw_text(floor(camera_get_view_width(view_camera[0]) /2 + rightCenter), floor(camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset / 2.5 - 10), "STACK");
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width("STACK")/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width("STACK")/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset/2.5, true);
 	
 	
 	//button for game selection
 	draw_set_font(fnt_mainLarge1);
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20, currentGame);
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + rightCenter), floor(camera_get_view_height(view_camera[0]) / 2 - stackBoxYOffset + 20), currentGame);
 	
 	var maxcharLimit = 20;
 	var	stackNamedDisplayText = string(currentStackName);
@@ -172,14 +172,14 @@ if (obj_control.stackShowWindowActive) {
 		stackNamedDisplayText  += "...";
 	}
 
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 - 36, string(stackNamedDisplayText ));
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + rightCenter), floor(camera_get_view_height(view_camera[0]) / 2 - 36), string(stackNamedDisplayText));
 	
 	if (string_length(currentStackCaption) == 0) {
 		currentStackCaption = "[No Caption]";
 		
 	}
 	
-	draw_text(camera_get_view_width(view_camera[0]) /2 + rightCenter, camera_get_view_height(view_camera[0])/2 + 40, string_hash_to_newline(currentStackCaption));
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + rightCenter), floor(camera_get_view_height(view_camera[0]) / 2 + 40), string_hash_to_newline(currentStackCaption));
 
 	if(gameHover == true){
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + rightCenter - (string_width(currentGame)/2) - 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(view_camera[0]) /2 + rightCenter + (string_width(currentGame)/2) + 5, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5, true);
@@ -189,7 +189,7 @@ if (obj_control.stackShowWindowActive) {
 	//options text draw
 	draw_set_font(fnt_main);
 	draw_set_halign(fa_left);
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 110 , "Tutorial");
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 70), floor(camera_get_view_height(view_camera[0]) / 2 - 110), "Tutorial");
 	//draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 45, "Left Justified");
 	//draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 15, "Transcript");
 	//draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 + 15, "Show Nav Window");
@@ -228,11 +228,11 @@ if (obj_control.stackShowWindowActive) {
 			
 			if(obj_control.setTutorial){
 				draw_set_halign(fa_center);
-				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+				draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Enabled");
 			}
 			else{
 				draw_set_halign(fa_center);
-				draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+				draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Disabled");
 			}
 			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_control.setTutorial = !obj_control.setTutorial;	
@@ -590,10 +590,10 @@ if ( (keyboard_check_pressed(vk_enter) && obj_control.stackShowWindowActive) && 
 }
 
 
-if(point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer)){
+if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer, camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0]) / 2 + verticleBuffer)){
 	obj_control.mouseoverPanelPane = true;
 }
-else{
+else {
 	obj_control.mouseoverPanelPane = false;
 }
 
