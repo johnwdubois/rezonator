@@ -71,8 +71,10 @@ else{
 
 
 var currentRowChainGrid = ds_grid_height(chainGrid) - 1;
-
-currentChainID++;
+if (obj_chain.currentChainID == undefined){
+	obj_chain.currentChainID = 0;
+}
+obj_chain.currentChainID++;
 var chainIDType = ds_grid_height(chainGrid) - 1;
 var wordIDList = ds_list_create();
 

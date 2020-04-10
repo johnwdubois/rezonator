@@ -114,7 +114,10 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 		
 		if (newUnitID == currentUnitID and newWordID != currentWordID and chainID != currentChainID)
 		{	
-			obj_chain.cliqueIDCounter++;
+			if(obj_chain.cliqueIDCounter == undefined){
+				obj_chain.cliqueIDCounter = 0;
+			}
+			obj_chain.cliqueIDCounter ++;
 			
 			ds_grid_resize(obj_chain.cliqueGrid, obj_chain.cliqueGridWidth, ds_grid_height(obj_chain.cliqueGrid) + 1);
 			ds_grid_resize(obj_chain.cliqueDisplayGrid, obj_chain.chainGridWidth, ds_grid_height(obj_chain.cliqueDisplayGrid) + 1);
