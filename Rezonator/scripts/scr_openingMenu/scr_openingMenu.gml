@@ -10,6 +10,8 @@
 	Mechanism: Display a multitude of buttons and track the user's clicks
 */
 
+if (live_call()) return live_result;
+
 //Work in here to set the new menu buttons
 draw_set_font(fnt_main);
 draw_set_halign(fa_center);

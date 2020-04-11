@@ -12,6 +12,8 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+if (live_call()) return live_result;
+
 
 // Set opacity, alignment, and font of contents list
 draw_set_alpha(1);
@@ -103,7 +105,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				var rectX2 = x + windowWidth - scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
 
-			
+
 
 				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
 					ableToBeMouseOver = false;
@@ -157,68 +159,62 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				}
 			
 				var infoListSize = 3;
-				if(functionChainList_currentTab == functionChainList_tabLine && obj_control.showDevVars) {
+				if(functionChainList_currentTab == functionChainList_tabLine) {
 					infoListSize = lineContentsHeaderListSize;
 				}
 			
 				// Set collected info into respective columns
 				for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
 					currentWordInfoCol[getInfoLoop] = "";
-			
-					switch (functionChainContents_infoCol[getInfoLoop]) {
-						case 0:
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								var unitID = currentWordID;
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-							}
-							else {
-								var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-							}
-							break;
-						case 1:
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
-							}
-							else {
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
-							}
-							break;
-						case 2:
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								currentWordInfoCol[getInfoLoop] = "";
-								var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
-								if (currentWordIDList == undefined) {
-									break;
-								}
-								for (var i = 0; i < ds_list_size(currentWordIDList); i++) {
-									var currentWordID = ds_list_find_value(currentWordIDList, i);
-									var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
-									currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
-								}
-						
-								if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
-									currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
-									currentWordInfoCol[getInfoLoop] += "...";
-								}
-							}
-							else {
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
-							}
-							break;
-						case 3:
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colTag1, currentWordID - 1));
-							break;
-						case 4:
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colTag2, currentWordID - 1));
-							break;
-						case 5:
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colTag3, currentWordID - 1));
-							break;	
+					
+					if (functionChainContents_infoCol[getInfoLoop] == 0) {
+						if (functionChainList_currentTab == functionChainList_tabStackBrush
+						or functionChainList_currentTab == functionChainList_tabClique) {
+							var unitID = currentWordID;
+							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
+						}
+						else {
+							var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
+						}
 					}
+					else if (functionChainContents_infoCol[getInfoLoop] == 1) {
+						if (functionChainList_currentTab == functionChainList_tabStackBrush
+						or functionChainList_currentTab == functionChainList_tabClique) {
+							currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
+						}
+						else {
+							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
+						}
+					}
+					else if (functionChainContents_infoCol[getInfoLoop] == 2) {
+						if (functionChainList_currentTab == functionChainList_tabStackBrush
+						or functionChainList_currentTab == functionChainList_tabClique) {
+							currentWordInfoCol[getInfoLoop] = "";
+							var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
+							if (currentWordIDList == undefined) {
+								break;
+							}
+							for (var i = 0; i < ds_list_size(currentWordIDList); i++) {
+								var currentWordID = ds_list_find_value(currentWordIDList, i);
+								var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+								currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
+							}
+						
+							if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
+								currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
+								currentWordInfoCol[getInfoLoop] += "...";
+							}
+						}
+						else {
+							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
+						}
+					}
+					else if (functionChainContents_infoCol[getInfoLoop] > 2) {
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.labelWordGrid, functionChainContents_infoCol[getInfoLoop] - 1, currentWordID - 1));
+					}
+					
+			
 			
 					var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
 					var textY = y + textMarginTop + textPlusY;
@@ -264,9 +260,12 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 var headerListSize = 3;
-if(functionChainList_currentTab == functionChainList_tabLine && obj_control.showDevVars) {
+lineContentsHeaderListSize = 3 + (ds_grid_width(global.labelWordGrid) - 2);
+if (functionChainList_currentTab == functionChainList_tabLine) {
 	headerListSize = lineContentsHeaderListSize;
 }
+
+
 /*if(obj_control.showDevVars) {
 	headerListSize = 6;
 }*/
@@ -282,29 +281,21 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	var colName = "";
 	
-	switch (functionChainContents_infoCol[i]) {
-		case 0:
-			colName = "uID";
-			break;
-		case 1:
-			colName = "place";
-			break;
-		case 2:
-			colName = "text";
-			break;
-		case 3:
-			colName = obj_control.dynamicWordGrid_colTag1Label; // Will use an object variable to hold the user's custom names
-			break;
-		case 4:
-			colName = obj_control.dynamicWordGrid_colTag2Label;
-			break;
-		case 5:
-			colName = obj_control.dynamicWordGrid_colTag3Label;
-			break;
-		default:
-			colName = "N/A";
-			break;
+	
+	
+	if (functionChainContents_infoCol[i] == 0) {
+		colName = "uID";
 	}
+	else if (functionChainContents_infoCol[i] == 1) {
+		colName = "place";
+	}
+	else if (functionChainContents_infoCol[i] == 2) {
+		colName = "text";
+	}
+	else if (functionChainContents_infoCol[i] > 2) {
+		colName = ds_list_find_value(global.labelWordGridColNameList, i - 1);
+	}
+	
 	
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);

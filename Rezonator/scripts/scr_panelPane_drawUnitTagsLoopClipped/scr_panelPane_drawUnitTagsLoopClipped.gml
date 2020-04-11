@@ -33,6 +33,7 @@ var focusedElementY = -1;
 var focusedLineNameRectY1 = -1;
 var focusedLineNameRectY2 = -1;
 
+
 // Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
 draw_set_halign(fa_left);
