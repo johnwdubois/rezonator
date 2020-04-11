@@ -60,8 +60,10 @@ if (currentFocusedChainID < 0) {
 // add new row to linkGrid
 ds_grid_resize(obj_chain.linkGrid, obj_chain.linkGridWidth, ds_grid_height(obj_chain.linkGrid) + 1);
 var currentLinkGridRow = ds_grid_height(obj_chain.linkGrid) - 1;
-
-linkIDCounter++;
+if(obj_chain.linkIDCounter == undefined){
+	obj_chain.linkIDCounter = 0;
+}
+obj_chain.linkIDCounter++;
 
 
 // if this new word is the goal of a previous link, we must update the linkGrid on that row

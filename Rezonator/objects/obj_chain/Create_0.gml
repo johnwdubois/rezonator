@@ -49,6 +49,7 @@ unitInStackGrid_colUnitID = 0;
 unitInStackGrid_colStack = 1;
 unitInStackGrid = ds_grid_create(unitInStackGridWidth, 0);
 
+currentChain = 0;
 currentChainID = 0;
 
 chainStateTotal = 5;
