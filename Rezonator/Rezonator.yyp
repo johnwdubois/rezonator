@@ -2351,6 +2351,14 @@
             }
         },
         {
+            "Key": "73378c83-bbba-44c9-b52d-348e59a0199f",
+            "Value": {
+                "id": "ed815b7f-3ee3-4d35-a5d3-d939cbe30e66",
+                "resourcePath": "scripts\\scr_drawPlaceChains\\scr_drawPlaceChains.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "73414c81-e7af-4d3a-b7fc-2c6613095d4d",
             "Value": {
                 "id": "fe2342bf-49b6-47ef-baa7-7e25ea17dba0",
@@ -5552,9 +5560,7 @@
         "b0fd8f75-4f23-4c33-90e2-137a47b6f6b0",
         "155e4781-6646-4f38-8cb3-1643b6723f06",
         "df1e32cd-3604-4cea-bd31-a9d305c01be3",
-        "704ff390-cc52-4318-a224-b8391b784403",
-        "93c9e121-d30a-4a34-835c-f88278167a24",
-        "20897d73-f76b-4c56-9daf-1930368b86ee",
+        "73378c83-bbba-44c9-b52d-348e59a0199f",
         "4d1110e1-242b-4485-8969-ca05c1e27cb2",
         "4819348f-9a90-4870-b130-8ac5271b932c",
         "378c69b4-37f8-44ed-ade5-cd140f704de9",
@@ -5720,7 +5726,10 @@
         "a0b42376-3fda-4f56-a0bd-312e223154d5",
         "ca33ba48-05e2-40d8-9437-439a73dc39e5",
         "108d9bb9-fdd5-4af2-8c9d-bd3736150788",
-        "41869541-90bb-4d08-9f3a-9bd4d52d518d"
+        "41869541-90bb-4d08-9f3a-9bd4d52d518d",
+        "20897d73-f76b-4c56-9daf-1930368b86ee",
+        "704ff390-cc52-4318-a224-b8391b784403",
+        "93c9e121-d30a-4a34-835c-f88278167a24"
     ],
     "tutorial": ""
 }
