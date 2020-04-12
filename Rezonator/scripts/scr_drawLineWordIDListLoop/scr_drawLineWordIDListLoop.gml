@@ -303,7 +303,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	}
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(currentWordX, currentLineY, currentWordString);
+	draw_text(floor(currentWordX), floor(currentLineY), currentWordString);
 	
 	previousWordDisplayCol = currentWordDisplayCol;
 	previousWordDisplayString = currentWordString;

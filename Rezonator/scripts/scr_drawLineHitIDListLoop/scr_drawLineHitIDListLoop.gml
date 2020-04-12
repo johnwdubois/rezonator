@@ -378,7 +378,7 @@ for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWo
 	}
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(currentWordX, currentLineY, currentWordString);
+	draw_text(floor(currentWordX), floor(currentLineY), currentWordString);
 		
 	previousWordDisplayCol = currentWordDisplayCol;
 }

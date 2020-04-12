@@ -19,6 +19,7 @@ if (not inititalAutosave) {
 		if (!file_exists_ns(global.fileSaveName)) {
 			alarm[1] = 1;
 			inititalAutosave = true;
+			ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 		}
 		else {
 			alarm[1] = 36000;
