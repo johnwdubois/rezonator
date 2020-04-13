@@ -15,7 +15,10 @@
         "f34cf581-9625-4cf3-938c-c8f2cd26edbe",
         "b0fd8f75-4f23-4c33-90e2-137a47b6f6b0",
         "155e4781-6646-4f38-8cb3-1643b6723f06",
-        "df1e32cd-3604-4cea-bd31-a9d305c01be3"
+        "df1e32cd-3604-4cea-bd31-a9d305c01be3",
+        "95c59a9c-d9ef-416c-bf1f-666047fe5b2a",
+        "2808e873-de6f-46dd-be6e-dbcbbd66127e",
+        "2d7ddf99-bc5b-4298-a7f6-c976d6e9de77"
     ],
     "filterType": "GMScript",
     "folderName": "drawLine",

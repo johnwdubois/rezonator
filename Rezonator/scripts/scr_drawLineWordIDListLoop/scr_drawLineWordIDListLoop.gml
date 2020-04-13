@@ -79,9 +79,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 		// if the current word is the first word of the line, and it is floating out in space for no reason, bring it back to the left
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol));
 		
-		if (not drawBorder
-		and not borderRounded
-		and abs(currentWordDisplayCol) > 0) {
+		if (not drawBorder and not borderRounded and abs(currentWordDisplayCol) > 0) {
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
 		}
 	}

@@ -1,5 +1,5 @@
 {
-    "id": "2fb8116d-3918-4721-87e1-0c24a1b325cd",
+    "id": "2808e873-de6f-46dd-be6e-dbcbbd66127e",
     "modelName": "GMScript",
     "mvc": "1.0",
     "name": "scr_drawWordBorder",

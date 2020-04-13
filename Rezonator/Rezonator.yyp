@@ -1047,6 +1047,14 @@
             }
         },
         {
+            "Key": "2808e873-de6f-46dd-be6e-dbcbbd66127e",
+            "Value": {
+                "id": "43164f10-78f7-45ca-8fec-10f1d124b2b6",
+                "resourcePath": "scripts\\scr_drawWordBorder\\scr_drawWordBorder.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2854dace-18f5-48c4-92a5-7b9f54bedc98",
             "Value": {
                 "id": "7e304e16-a44b-4083-98b6-1bc5abbb2065",
@@ -1147,6 +1155,14 @@
             "Value": {
                 "id": "06cad46f-7ace-484f-a980-ca0a29e00a82",
                 "resourcePath": "scripts\/scr_drawLineWordIDListLoop\/scr_drawLineWordIDListLoop.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "2d7ddf99-bc5b-4298-a7f6-c976d6e9de77",
+            "Value": {
+                "id": "dd75cb88-9648-4f8e-b177-e6f1b4f9b6c6",
+                "resourcePath": "scripts\\scr_drawWord\\scr_drawWord.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -3227,6 +3243,14 @@
             "Value": {
                 "id": "df967ef1-0db2-410b-96f1-6e17be3cf6a9",
                 "resourcePath": "scripts\/scr_unFocusAllChains\/scr_unFocusAllChains.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "95c59a9c-d9ef-416c-bf1f-666047fe5b2a",
+            "Value": {
+                "id": "b871e444-fcb8-4f54-b767-e3b67b698a46",
+                "resourcePath": "scripts\\scr_drawPlaceChains\\scr_drawPlaceChains.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5648,6 +5672,9 @@
         "b0fd8f75-4f23-4c33-90e2-137a47b6f6b0",
         "155e4781-6646-4f38-8cb3-1643b6723f06",
         "df1e32cd-3604-4cea-bd31-a9d305c01be3",
+        "95c59a9c-d9ef-416c-bf1f-666047fe5b2a",
+        "2808e873-de6f-46dd-be6e-dbcbbd66127e",
+        "2d7ddf99-bc5b-4298-a7f6-c976d6e9de77",
         "4d1110e1-242b-4485-8969-ca05c1e27cb2",
         "4819348f-9a90-4870-b130-8ac5271b932c",
         "378c69b4-37f8-44ed-ade5-cd140f704de9",
