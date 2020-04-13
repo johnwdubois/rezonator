@@ -320,7 +320,7 @@ if(global.menuOpen){
 	clamp(obj_openingScreen.cursorPos, 1, string_length(obj_openingScreen.inputText));
 
 	displayText = obj_openingScreen.inputText;
-	if(string_width(obj_openingScreen.inputText) > maxDisplaySize){
+	if(string_width(obj_openingScreen.inputText) > obj_openingScreen.maxDisplaySize){
 		displayText = string_copy(obj_openingScreen.inputText, (string_length(obj_openingScreen.inputText) - maxDisplaySize), string_length(obj_openingScreen.inputText) );
 	}
 

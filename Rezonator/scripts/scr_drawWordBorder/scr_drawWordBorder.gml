@@ -1,3 +1,5 @@
+// Draw the border and/or fill on a word depending on the word's state
+
 var drawBorder = argument0;
 var drawFillRect = argument1;
 var drawFocused = argument2;

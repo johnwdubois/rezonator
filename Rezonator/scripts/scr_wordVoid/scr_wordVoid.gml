@@ -1,3 +1,5 @@
+// Check and set the void of the current word
+
 var currentWordDisplayCol = argument0;
 var previousWordDisplayCol = argument1;
 var currentWordGridRow = argument2;

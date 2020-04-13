@@ -1,3 +1,5 @@
+// Draw a singular word to the screen
+
 var currentWordGridRow = argument0;
 var currentWordID = argument1;
 var currentWordX = argument2;

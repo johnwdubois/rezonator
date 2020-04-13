@@ -1,3 +1,5 @@
+// Draw static chains between word in every sentence
+
 var wordRectX1 = argument0;
 var wordRectY1 = argument1;
 var wordRectX2 = argument2;

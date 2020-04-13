@@ -238,7 +238,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	
 	
 	if (!obj_chain.inRezPlay and (mouse_y > wordRectY1 and mouse_y < wordRectY2)) {
-		scr_mouseTime(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
+		scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
 	}
 	
 	scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString);

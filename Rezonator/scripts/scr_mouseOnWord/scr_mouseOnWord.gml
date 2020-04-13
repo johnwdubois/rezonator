@@ -1,3 +1,4 @@
+// Check for the mouse pointer on top of the current word
 
 var currentWordID = argument0;
 var wordRectX1 = argument1;
