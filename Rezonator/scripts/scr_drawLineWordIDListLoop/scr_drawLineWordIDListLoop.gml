@@ -27,8 +27,6 @@ var voidSum = 0;
 
 var previousWordDisplayString = "0";
 
-
-
 draw_set_font(fnt_main);
 var strHeightRegular = string_height("A");
 draw_set_font(global.fontMain);
@@ -36,13 +34,13 @@ var strHeightScaled = string_height("A");
 var fontScale = strHeightScaled / strHeightRegular;
 var currentPlaceChainColor = global.colorThemeText;
 
-//var mouseInLine = (mouse_y > currentLineY and mouse_y < currentLineY + gridSpaceVertical);
 
 // get each wordID from wordIDList and draw it
 for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
 	var shake = false;
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 	var currentWordGridRow = currentWordID - 1;
+
 	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
 	var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
 	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
@@ -174,19 +172,19 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 		}
 		 
 		if (inMouseHoldRect > 0) {
-			if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1)) {
+			if (not drawBorder) {
 				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, 2);
 				
 			}
 		}
 		else {
-			if (ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1) == 2) {
+			if (drawBorder == 2) {
 				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, false);
 			}
 		}
 	}
 	else {
-		if (ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1) == 2) {
+		if (drawBorder == 2) {
 			ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, false);
 		}
 	}
@@ -204,6 +202,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 		scr_drawPlaceChains(wordRectX1, wordRectY1, wordRectX2, wordRectY2, drawWordLoop, currentWordIDListSize, currentWordGridRow,currentWordDisplayCol);
 	}
 	
+	
 	// figure out whether or not to draw fill/border for this word
 	var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordGridRow);
 	//var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
@@ -212,17 +211,6 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	if(obj_control.stackShowActive) {
 		var drawGoldStandard = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateGold);
 		var drawIncorrect = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateRed);
-	}
-	
-	// draw fill rectangle if needed
-	if (drawFillRect) {
-		draw_set_color(effectColor);
-		draw_set_alpha(0.25);
-		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
-		draw_set_alpha(1);
-	}
-	
-	if(obj_control.stackShowActive) {
 		if (drawGoldStandard) {
 			draw_set_color(c_green);
 			draw_set_alpha(0.4);
@@ -238,38 +226,8 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 		}
 	}
 	
-	// draw border if needed
-	//var borderRounded = false;
-	if (drawBorder) {
-		//borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
-		if (effectColor == undefined){
-		effectColor = 16758711;
-		}
-		draw_set_color(effectColor);
-		
-		for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
-			if (borderRounded) {
-				if (obj_chain.toggleDrawTrack) {
-					draw_roundrect(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
-				}
-			}
-			else {
-				if (obj_chain.toggleDrawRez) {
-					draw_rectangle(wordRectX1 - drawBorderLoop, wordRectY1 - drawBorderLoop, wordRectX2 + drawBorderLoop, wordRectY2 + drawBorderLoop, true);
-				}
-			}
-		}
-	}
+	scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 	
-	if (drawFocused) {
-		if ((not borderRounded and obj_chain.toggleDrawRez) or (borderRounded and obj_chain.toggleDrawTrack)) {
-			draw_set_font(global.fontMain);
-			draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY1 - wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
-			draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY1 - wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
-			draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
-			draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
-		}
-	}
 	var panelPaneResizeHeld = false;
 
 	with(obj_panelPane) {
@@ -285,26 +243,8 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 		scr_mouseTime(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
 	}
 	
-	ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordID - 1, true);
-	
-	//var textColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colTextColor, currentWordID - 1);
-	var textColor = global.colorThemeText;
-		
-	// finally, draw the word to the main view
-	draw_set_alpha(1);
-	draw_set_font(global.fontMain);
-	draw_set_color(textColor);
-	var rowInHitGrid = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), currentWordID );
-	if ( rowInHitGrid >= 0 ) {
-		if (ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colHitBool, rowInHitGrid)) {
-			draw_set_font(global.fontMainBold);
-			draw_set_color(make_color_rgb(19,69,150));		
-		}
-	}
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_middle);
-	draw_text(floor(currentWordX), floor(currentLineY), currentWordString);
-	
+	scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString);
+
 	previousWordDisplayCol = currentWordDisplayCol;
 	previousWordDisplayString = currentWordString;
 	

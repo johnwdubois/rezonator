@@ -35,7 +35,7 @@ draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_lo
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
 	showDevVars = !showDevVars;
 }
-if (showDevVars) {
+if (obj_openingScreen.showDevVars) {
 	var workingDirStr = "Working Dir: " + string(working_directory);
 	var programDirStr = "Program Dir: " + string(program_directory);
 	var currentDirStr = "Current Dir: " + string(global.currentDirString);

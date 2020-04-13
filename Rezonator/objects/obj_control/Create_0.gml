@@ -302,7 +302,7 @@ cursorBoxX = 0;
 cursorBoxY = 0;
 
 // Initialize the camera's draw range
-drawRange = 30
+drawRange = 10;
 drawRangeStart = 0;
 drawRangeEnd = 0;
 lineSpacing = 6;
