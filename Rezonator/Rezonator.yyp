@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "0019a201-7754-4505-981b-e98291e0cc1d",
+            "Value": {
+                "id": "b02d1d7b-03ee-49d8-8f25-aa78dfee8980",
+                "resourcePath": "scripts\\scr_jsonBeautify\\scr_jsonBeautify.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0024b299-84da-43b4-82c5-d611dd5f25e3",
             "Value": {
                 "id": "6b621ccb-4cc5-45c2-8eab-169a0937984c",
@@ -1196,6 +1204,14 @@
                 "id": "1257883c-321b-4a2c-8624-638855c98eca",
                 "resourcePath": "fonts\/fnt_panelTabLarge5\/fnt_panelTabLarge5.yy",
                 "resourceType": "GMFont"
+            }
+        },
+        {
+            "Key": "3141b34d-5f69-492e-86b9-0a3ddc657580",
+            "Value": {
+                "id": "d6b12448-12f7-4eb4-8726-16d35d057072",
+                "resourcePath": "scripts\\scr_bufferWriteSlice\\scr_bufferWriteSlice.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -2395,14 +2411,6 @@
             "Value": {
                 "id": "11b178de-09a4-46b4-af14-5172ffa99694",
                 "resourcePath": "scripts\/scr_colorThemeGridInit\/scr_colorThemeGridInit.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "73378c83-bbba-44c9-b52d-348e59a0199f",
-            "Value": {
-                "id": "ed815b7f-3ee3-4d35-a5d3-d939cbe30e66",
-                "resourcePath": "scripts\\scr_drawPlaceChains\\scr_drawPlaceChains.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5640,7 +5648,6 @@
         "b0fd8f75-4f23-4c33-90e2-137a47b6f6b0",
         "155e4781-6646-4f38-8cb3-1643b6723f06",
         "df1e32cd-3604-4cea-bd31-a9d305c01be3",
-        "73378c83-bbba-44c9-b52d-348e59a0199f",
         "4d1110e1-242b-4485-8969-ca05c1e27cb2",
         "4819348f-9a90-4870-b130-8ac5271b932c",
         "378c69b4-37f8-44ed-ade5-cd140f704de9",
@@ -5809,7 +5816,9 @@
         "41869541-90bb-4d08-9f3a-9bd4d52d518d",
         "20897d73-f76b-4c56-9daf-1930368b86ee",
         "704ff390-cc52-4318-a224-b8391b784403",
-        "93c9e121-d30a-4a34-835c-f88278167a24"
+        "93c9e121-d30a-4a34-835c-f88278167a24",
+        "3141b34d-5f69-492e-86b9-0a3ddc657580",
+        "0019a201-7754-4505-981b-e98291e0cc1d"
     ],
     "tutorial": ""
 }
