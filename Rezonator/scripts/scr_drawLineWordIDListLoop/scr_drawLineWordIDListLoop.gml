@@ -36,6 +36,8 @@ var strHeightScaled = string_height("A");
 var fontScale = strHeightScaled / strHeightRegular;
 var currentPlaceChainColor = global.colorThemeText;
 
+//var mouseInLine = (mouse_y > currentLineY and mouse_y < currentLineY + gridSpaceVertical);
+
 // get each wordID from wordIDList and draw it
 for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
 	var shake = false;
@@ -43,6 +45,8 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	var currentWordGridRow = currentWordID - 1;
 	var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
 	var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
+	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
+	var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
 	
 	for (var i = 0; i < ds_list_size(currentWordInChainsList); i++) {
 		if (ds_list_find_index(obj_chain.chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
@@ -77,8 +81,8 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 		// if the current word is the first word of the line, and it is floating out in space for no reason, bring it back to the left
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol));
 		
-		if (not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow)
-		and not ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow)
+		if (not drawBorder
+		and not borderRounded
 		and abs(currentWordDisplayCol) > 0) {
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
 		}
@@ -197,45 +201,18 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	var wordHasLetters = string_length(string_letters(currentWordStringType)) > 0;
 	// Draw Place chains when needed
 	if(obj_chain.showPlaceChains && drawWordLoop != currentWordIDListSize - 1 && wordHasLetters) {
-		// Draw the Place chain box
-		draw_set_alpha(1);
-		draw_set_color(c_ltgray);
-		//draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
-		var wordMidY = (wordRectY2 - wordRectY1)/2 + wordRectY1;
-		var placeChainYSpacing = 2;
-		
-		// Go through the rest of the line to find a word this one can link to
-		for(var loopRow = drawWordLoop + 1; loopRow < currentWordIDListSize - 1; loopRow++) {
-		
-			// Draw the double bond if the next token is a word
-			var nextWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow + (loopRow - drawWordLoop));
-			//draw_rectangle(wordRectX1 - 1, wordRectY1 - 1, wordRectX2 + 1, wordRectY2 + 1, true);
-	
-			if(string_length(string_letters(nextWordString)) > 0 or undefined) {
-				// Based off of the prev word's x-pos, draw 2 lines
-				if (shape != shapeText) {
-					// Allow the PlaceChain lines to adapt to shifting display columns
-					var nextWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow + (loopRow - drawWordLoop));
-					var variance = (abs(nextWordDisplayCol - currentWordDisplayCol) * gridSpaceHorizontal);
-					draw_line_width(wordRectX2, wordMidY + placeChainYSpacing, wordRectX1 + variance, wordMidY + placeChainYSpacing, 2);
-					draw_line_width(wordRectX2, wordMidY - placeChainYSpacing, wordRectX1 + variance, wordMidY - placeChainYSpacing, 2); 
-				}										   
-				else {									   
-					draw_line_width(wordRectX2, wordMidY + placeChainYSpacing, wordRectX2 + 8, wordMidY + placeChainYSpacing, 2);
-					draw_line_width(wordRectX2, wordMidY - placeChainYSpacing, wordRectX2 + 8, wordMidY - placeChainYSpacing, 2); 
-				}
-				break;
-			}
-		}
+		scr_drawPlaceChains(wordRectX1, wordRectY1, wordRectX2, wordRectY2, drawWordLoop, currentWordIDListSize, currentWordGridRow,currentWordDisplayCol);
 	}
 	
 	// figure out whether or not to draw fill/border for this word
-	var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordID - 1);
-	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1);
-	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
-	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordID - 1);
-	var drawGoldStandard = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1) == obj_control.wordStateGold);
-	var drawIncorrect = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordID - 1) == obj_control.wordStateRed);
+	var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordGridRow);
+	//var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
+	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordGridRow);
+	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);
+	if(obj_control.stackShowActive) {
+		var drawGoldStandard = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateGold);
+		var drawIncorrect = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateRed);
+	}
 	
 	// draw fill rectangle if needed
 	if (drawFillRect) {
@@ -245,25 +222,26 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 		draw_set_alpha(1);
 	}
 	
-	if (drawGoldStandard) {
-		draw_set_color(c_green);
-		draw_set_alpha(0.4);
-		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
-		draw_set_alpha(1);
-	}
+	if(obj_control.stackShowActive) {
+		if (drawGoldStandard) {
+			draw_set_color(c_green);
+			draw_set_alpha(0.4);
+			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+			draw_set_alpha(1);
+		}
 	
-	if (drawIncorrect) {
-		draw_set_color(c_red);
-		draw_set_alpha(0.4);
-		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
-		draw_set_alpha(1);
+		if (drawIncorrect) {
+			draw_set_color(c_red);
+			draw_set_alpha(0.4);
+			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+			draw_set_alpha(1);
+		}
 	}
-	
 	
 	// draw border if needed
-	var borderRounded = false;
+	//var borderRounded = false;
 	if (drawBorder) {
-		borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
+		//borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
 		if (effectColor == undefined){
 		effectColor = 16758711;
 		}
@@ -303,7 +281,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	
 	
 	
-	if (!obj_chain.inRezPlay) {
+	if (!obj_chain.inRezPlay and (mouse_y > wordRectY1 and mouse_y < wordRectY2)) {
 		scr_mouseTime(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
 	}
 	
