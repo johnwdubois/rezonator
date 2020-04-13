@@ -140,6 +140,7 @@ var wrapper = ds_map_create();
 ds_map_add_list(wrapper, "ROOT", rootList);
 
 var jsonString = json_encode(wrapper);
+jsonString = scr_jsonBeautify(jsonString);
 
 if (autosave) {
 	if(global.games) {
