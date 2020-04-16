@@ -61,7 +61,8 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 
 // loop through the chains that this word is already in (if any) to refocus that chain
 if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
-	for (var i = 0; i < ds_list_size(inChainsList); i++) {
+	var inChainsListSize = ds_list_size(inChainsList);
+	for (var i = 0; i < inChainsListSize; i++) {
 		var currentChainID = ds_list_find_value(inChainsList, i);
 		if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID)) {
 			scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
@@ -166,7 +167,8 @@ if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.cu
 // Will need to get back to this
 // loop through the chunks that this word is already in (if any) to refocus that chunk
 if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-	for (var i = 0; i < ds_list_size(inChunkList); i++) {
+	var inChunkListSize = ds_list_size(inChunkList);
+	for (var i = 0; i < inChunkListSize; i++) {
 		// Find the value of the current Chunk
 		var currentChunkID = ds_list_find_value(inChunkList, i);
 		var rowInChainGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
@@ -179,7 +181,8 @@ if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 		//if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChunkID)) {
 		// Unfocus all Chunks
 		//scr_setAllValuesInCol(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
-		for(var chunkListLoop = 0; chunkListLoop < ds_grid_height(obj_chain.chunkGrid); chunkListLoop++) {
+		var chunkGridHeight = ds_grid_height(obj_chain.chunkGrid);
+		for(var chunkListLoop = 0; chunkListLoop < chunkGridHeight; chunkListLoop++) {
 			if(ds_grid_get(currentChainGrid, chainGrid_colChainState, chunkListLoop) == chainStateFocus) {
 				ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateNormal);
 			}

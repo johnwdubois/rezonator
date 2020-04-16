@@ -58,7 +58,8 @@ for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConsistency; i++) {
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
-	for (var j = 0; j < ds_grid_height(obj_importMapping.tagInfoGrid); j++) {
+	var tagInfoGridHeight = ds_grid_height(obj_importMapping.tagInfoGrid);
+	for (var j = 0; j < tagInfoGridHeight; j++) {
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;

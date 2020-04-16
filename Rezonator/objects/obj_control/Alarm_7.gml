@@ -17,7 +17,8 @@ if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_tool
 	firstWordID = ds_list_find_value(currentWordIDList, 0);
 	
 	// Loop through words found in rectangle at time of mouse release
-	for (var quickStackLoop = 0; quickStackLoop < ds_list_size(inRectUnitIDList); quickStackLoop++) {
+	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
+	for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 		var currentUnitID = ds_list_find_value(inRectUnitIDList, quickStackLoop);
 		currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
 		var currentWordID = ds_list_find_value(currentWordIDList, 0);

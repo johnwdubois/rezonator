@@ -41,7 +41,8 @@ ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colUnitEnd, currentRowS
 var currentHitIDList = ds_list_create();
 			
 // add all the words in this unit to the searchGrid
-for (var k = 0; k < ds_list_size(currentWordIDList); k++) {
+var currentWordIDListSize = ds_list_size(currentWordIDList);
+for (var k = 0; k < currentWordIDListSize; k++) {
 				
 	var hitGridCurrentWordID = ds_list_find_value(currentWordIDList, k);
 	var hitGridCurrentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);

@@ -2,8 +2,8 @@ var currentWordIDList = ds_list_create();
 var participantList = ds_list_create();
 
 
-
-for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
+var morphGridHeight = ds_grid_height(obj_control.morphGrid);
+for (var i = 0; i < morphGridHeight; i++) {
 	
 	var currentParticipant = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colParticipant, i);
 	var currentParticipantID = ds_list_find_index(participantList, currentParticipant);
@@ -14,7 +14,8 @@ for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
 }
 
 var participantColorList = ds_list_create();
-for (var i = 0; i < ds_list_size(participantList); i++) {
+var participantListSize = ds_list_size(participantList);
+for (var i = 0; i < participantListSize; i++) {
 	var hue = (255 / ds_list_size(participantList) * i);
 	var color = make_color_hsv(hue, random_range(100, 200),  random_range(100, 200));
 	ds_list_add(participantColorList, color);
@@ -22,10 +23,10 @@ for (var i = 0; i < ds_list_size(participantList); i++) {
 
 
 
-for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
+for (var i = 0; i < morphGridHeight; i++) {
 	var currentUnitID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i);
 	var newUnit = false;
-	if (i == ds_grid_height(obj_control.morphGrid) - 1
+	if (i == morphGridHeight - 1
 	or currentUnitID != ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i + 1)) {
 		newUnit = true;
 	}
@@ -59,7 +60,8 @@ for (var i = 0; i < ds_grid_height(obj_control.morphGrid); i++) {
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentRowUnitGrid, c_ltgray);
 		
 		// add new rows to wordGrid and dynamicWordGrid
-		for (var j = 0; j < ds_list_size(currentWordIDListNewUnit); j++) {
+		var currentWordIDListNewUnitSize = ds_list_size(currentWordIDListNewUnit);
+		for (var j = 0; j < currentWordIDListNewUnitSize; j++) {
 			var currentWordIDNewWord = ds_list_find_value(currentWordIDListNewUnit, j);
 			var currentMorph = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colMorph, currentWordIDNewWord - 1);
 			var currentGloss = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colGloss, currentWordIDNewWord - 1);

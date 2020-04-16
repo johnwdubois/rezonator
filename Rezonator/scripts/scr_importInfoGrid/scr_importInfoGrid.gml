@@ -1,15 +1,18 @@
 var colorIndex = 0;
 
 math_set_epsilon(0.000001);
+var importGridWidth = ds_grid_width(global.importGrid);
+var importGridHeight = ds_grid_height(global.importGrid);
 
 if (global.plainText) {
-	for (var i = 0; i < ds_grid_width(global.importGrid); i++) {
+	
+	for (var i = 0; i < importGridWidth; i++) {
 	
 		//put toolbox grid stuff into plain Info Grid
 	
 		var currentExample = "";
-	
-		for(var j = 0; j < ds_grid_height(global.importGrid); j++){
+		
+		for(var j = 0; j < importGridHeight; j++){
 			
 
 			currentExample = ds_grid_get(global.importGrid, i, j);
@@ -29,7 +32,7 @@ if (global.plainText) {
 }
 else {
 	
-	for (var i = 0; i < ds_grid_width(global.importGrid); i++) {
+	for (var i = 0; i < importGridWidth; i++) {
 	
 		var currentTag = ds_list_find_value(global.importGridColNameList, i);
 		var currentExample = "";
@@ -53,7 +56,7 @@ else {
 		var currentColor = merge_color(ds_list_find_value(obj_importMapping.tagColorList, colorIndex), c_white, 0.6);
 	
 		var nonzeroCellCount = 0;
-		for (var j = 0; j < ds_grid_height(global.importGrid); j++) {
+		for (var j = 0; j < importGridHeight; j++) {
 			nonzeroCellCount += (ds_grid_get(global.importGrid, i, j) == "0") ? 0 : 1
 		}
 		var currentConsistency = (nonzeroCellCount / ds_grid_height(global.importGrid)) * 100;
@@ -63,7 +66,7 @@ else {
 	
 		var OneTokenPerGroup = true;
 		var tokenCount = -1;
-		for (var j = 0; j < ds_grid_height(global.importGrid); j++) {
+		for (var j = 0; j < importGridHeight; j++) {
 			if (ds_grid_get(global.importGrid, i, j) != "0") {
 				var currentList = scr_splitStringImport(ds_grid_get(global.importGrid, i, j));
 				if (tokenCount < 0) {

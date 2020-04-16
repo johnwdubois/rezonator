@@ -269,7 +269,8 @@ else if (optionListType == 2)
 					//"Red", "Blue", "Green", "Gold", "Custom"
 					case "Red":
 						if( grid != obj_chain.stackChainGrid){
-							for(var i = 0; i < ds_list_size(listOfWordID);i++){
+							var listOfWordIDSize = ds_list_size(listOfWordID);
+							for(var i = 0; i < listOfWordIDSize;i++){
 								ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(255)));
 							}
 						}
@@ -278,7 +279,8 @@ else if (optionListType == 2)
 						
 					case "Blue":	
 						if( grid != obj_chain.stackChainGrid){
-							for(var i = 0; i < ds_list_size(listOfWordID);i++){
+							var listOfWordIDSize = ds_list_size(listOfWordID);
+							for(var i = 0; i < listOfWordIDSize;i++){
 								ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(16711680)));
 							}
 						}
@@ -287,7 +289,8 @@ else if (optionListType == 2)
 						
 					case "Green":
 						if( grid != obj_chain.stackChainGrid){
-							for(var i = 0; i < ds_list_size(listOfWordID);i++){
+							var listOfWordIDSize = ds_list_size(listOfWordID);
+							for(var i = 0; i < listOfWordIDSize;i++){
 								ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(65280)));
 							}
 						}
@@ -297,7 +300,8 @@ else if (optionListType == 2)
 					case "Gold":
 					
 						if( grid != obj_chain.stackChainGrid){
-							for(var i = 0; i < ds_list_size(listOfWordID);i++){
+							var listOfWordIDSize = ds_list_size(listOfWordID);
+							for(var i = 0; i < listOfWordIDSize;i++){
 								ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(4235000)));
 							}
 						}
@@ -391,11 +395,13 @@ else if (optionListType == 3)
 					scr_gridMultiColSort(tempLineGrid, obj_control.lineGrid_colDiscoID, true, obj_control.lineGrid_colUnitStart, true, obj_control.lineGrid_colUnitEnd, true, obj_control.lineGrid_colUnitID, true);
 					
 					var checkList1 = ds_list_create();
-					for (var i = 0; i < ds_grid_height(obj_control.currentActiveLineGrid); i++) {
+					var currentActiveLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
+					for (var i = 0; i < currentActiveLineGridHeight; i++) {
 						ds_list_add(checkList1, ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, i));
 					}
 					var checkList2 = ds_list_create();
-					for (var i = 0; i < ds_grid_height(tempLineGrid); i++) {
+					var tempLineGridHeight = ds_grid_height(tempLineGrid)
+					for (var i = 0; i < tempLineGridHeight; i++) {
 						ds_list_add(checkList2, ds_grid_get(tempLineGrid, obj_control.lineGrid_colUnitID, i));
 					}
 					
@@ -970,7 +976,8 @@ else if (optionListType == 6)
 		case "Toggle Transcript View":
 			obj_control.wordTokenView = !obj_control.wordTokenView;
 			
-		for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
+		var dynamicWordGridHeight = ds_grid_height(obj_control.dynamicWordGrid);	
+		for (var i = 0; i < dynamicWordGridHeight; i++) {
 			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
 			var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
 			var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);

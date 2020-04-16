@@ -36,8 +36,8 @@ else {
 	ds_list_copy(inRectList, inRectWordIDList);
 }
 
-
-for (var i = 0; i < ds_list_size(inRectList); i++) {
+var inRectListSize = ds_list_size(inRectList);
+for (var i = 0; i < inRectListSize; i++) {
 	var currentWordID = ds_list_find_value(inRectList, i);
 	// Access the display column of the relevent grid
 	if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
@@ -89,8 +89,9 @@ if (obj_chain.currentFocusedChainID >= 0) {
 					var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
 				}
 				// Change this to hitGrid
-			
-				for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+				
+				var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
+				for (var i = 0; i < gridOfFutureChains; i++) {
 					var currentRowDisplayCol = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colDisplayCol, i);
 					if (currentRowDisplayCol == firstItemDisplayCol) {
 						ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, i, true);
@@ -110,8 +111,9 @@ if (obj_chain.currentFocusedChainID >= 0) {
 			
 				var focusedChainFirstWordID = ds_list_find_value(focusedChainWordIDList, 0);
 				var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
-			
-				for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+
+				var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
+				for (var i = 0; i < gridOfFutureChainsHeight; i++) {
 					var currentRowDisplayCol = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colDisplayCol, i);
 					if (currentRowDisplayCol == firstItemDisplayCol) {
 						ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, i, true);
@@ -128,10 +130,12 @@ if (obj_chain.currentFocusedChainID >= 0) {
 if (ds_grid_height(gridOfFutureChains) > 0) {
 	//scr_unFocusAllChains();
 	
-	for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+	var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
+	for (var i = 0; i < gridOfFutureChainsHeight; i++) {
 		var currentList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, i);
-		if (ds_list_size(currentList) > 1) {
-			for (var j = 0; j < ds_list_size(currentList); j++) {
+		var currentListSize = ds_list_size(currentList);
+		if (currentListSize > 1) {
+			for (var j = 0; j < currentListSize; j++) {
 				var currentWordID = ds_list_find_value(currentList, j);
 				if (currentWordID >= 1 and currentWordID <= ds_grid_height(obj_control.wordGrid)) {
 					var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);

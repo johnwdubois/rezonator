@@ -57,7 +57,8 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_control.deleteCh
 		//var lastItemId = ds_list_find_value(idList, 0);
 			
 		// Remove this Chunk from each of its word's inBoxLists
-		for(var wordIDListLoop = 0; wordIDListLoop < ds_list_size(idList); wordIDListLoop++) {
+		var idListSize = ds_list_size(idList);
+		for(var wordIDListLoop = 0; wordIDListLoop < idListSize; wordIDListLoop++) {
 			var itemId = ds_list_find_value(idList, wordIDListLoop);
 			var itemInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, itemId - 1);
 			var indexInitemInChainsList = ds_list_find_index(itemInChainsList, chainID);

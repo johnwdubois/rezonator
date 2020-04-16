@@ -134,8 +134,9 @@ ds_list_delete(participantIDList, 0);
 
 
 var colorList = ds_list_create();
-for (var i = 0; i < ds_list_size(participantIDList); i++) {
-	var hue = (255 / ds_list_size(participantIDList) * i) + participantHueOffset;
+var participantIDListSize = ds_list_size(participantIDList);
+for (var i = 0; i < participantIDListSize; i++) {
+	var hue = (255 / participantIDListSize * i) + participantHueOffset;
 	var color = make_color_hsv(hue, random_range(100, 200),  random_range(100, 200));
 	ds_list_add(colorList, color);
 }

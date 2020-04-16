@@ -19,7 +19,8 @@ if (ds_list_size(wordIDList) < 1) {
 
 // find the leftmost word in the word list for this chain
 var furthestBackWord = ds_list_find_value(wordIDList, 0);
-for (var i = 1; i < ds_list_size(wordIDList); i++) {
+var wordIDListSize = ds_list_size(wordIDList);
+for (var i = 1; i < wordIDListSize; i++) {
 	var currentWordID = ds_list_find_value(wordIDList, i);
 	var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 	if (not currentWordAligned) {
@@ -46,7 +47,7 @@ for (var i = 1; i < ds_list_size(wordIDList); i++) {
 
 var unitIDList = ds_list_create();
 
-for (var i = 0; i < ds_list_size(wordIDList); i++) {
+for (var i = 0; i < wordIDListSize; i++) {
 	var currentWordID = ds_list_find_value(wordIDList, i);
 	var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 	var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
@@ -99,7 +100,8 @@ while (ds_grid_get(displayColGrid, displayColGrid_colDisplayCol, rowInDisplayCol
 
 ds_list_sort(firstDisplayColWordIDList, true);
 var str = "";
-for (var i = 0; i < ds_list_size(firstDisplayColWordIDList); i++) {
+var firstDisplayColWordIDListSize = ds_list_size(firstDisplayColWordIDList);
+for (var i = 0; i < firstDisplayColWordIDListSize; i++) {
 	var currentWordID = ds_list_find_value(firstDisplayColWordIDList, i);
 	str += string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1)) + ", ";
 }

@@ -22,7 +22,8 @@ var ascending = argument2;
 var tempGrid_colWordID = 0;
 var tempGrid_colSortVal = 1;
 
-for (var i = 0; i < ds_grid_height(grid); i++) {
+var gridHeight = ds_grid_height(grid);
+for (var i = 0; i < gridHeight; i++) {
 	
 	// get wordIDList and write info to a temp grid
 	var currentWordIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
@@ -37,7 +38,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		
 		// make tempGrid with the height of the list size, fill in 2 columns for wordID and sortVal
 		var tempGrid = ds_grid_create(2, ds_list_size(currentWordIDList));
-		for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
+		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		for (var j = 0; j < currentWordIDListSize; j++) {
 		
 			var currentWordID = ds_list_find_value(currentWordIDList, j);
 			var currentUnitID = (grid == obj_chain.stackChainGrid) ? currentWordID : ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
@@ -60,7 +62,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 					if (grid == obj_chain.stackChainGrid) {
 						var unitWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
 						sortVal = "";
-						for (var k = 0; k < ds_list_size(unitWordIDList); k++) {
+						var unitWordIDListSize = ds_list_size(unitWordIDList);
+						for (var k = 0; k < unitWordIDListSize; k++) {
 							var currentUnitWordIDListWordID = ds_list_find_value(unitWordIDList, k);
 							sortVal += string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentUnitWordIDListWordID - 1));
 						}
@@ -78,8 +81,8 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 		ds_grid_sort(tempGrid, tempGrid_colSortVal, ascending);
 		
 		var sortedList = ds_list_create();
-		
-		for (var j = 0; j < ds_grid_height(tempGrid); j++) {
+		var tempGridHeight = ds_grid_height(tempGrid);
+		for (var j = 0; j < tempGridHeight; j++) {
 			
 			var currentWordID = ds_grid_get(tempGrid, tempGrid_colWordID, j);
 			ds_list_add(sortedList, currentWordID);

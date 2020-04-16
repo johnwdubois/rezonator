@@ -38,7 +38,8 @@ if(argument_count == 4) {
 	}
 	var chunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
 	var wordTranscript = "";
-	for(var transcriptLoop = 0; transcriptLoop < ds_list_size(chunkWordIDList); transcriptLoop++) {
+	var chunkWordIDListSize = ds_list_size(chunkWordIDList);
+	for(var transcriptLoop = 0; transcriptLoop < chunkWordIDListSize; transcriptLoop++) {
 		var chunkWordID = ds_list_find_value(chunkWordIDList, transcriptLoop);
 		var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, chunkWordID - 1);
 	
@@ -99,8 +100,8 @@ ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1
 
 
 
-
-for (var i = wordSeq + 2; i < ds_list_size(wordIDListLineGrid); i++) {
+var wordIDListLineGridSize = ds_list_size(wordIDListLineGrid);
+for (var i = wordSeq + 2; i < wordIDListLineGridSize; i++) {
 	var currentWordID = ds_list_find_value(wordIDListLineGrid, i);
 	var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 	var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
@@ -126,7 +127,8 @@ if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUni
 		var prevInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, prevWordID - 1);
 		
 		// For each chunk the prev word is in, check if the prev word is not the last word in the chunk
-		for(var chunkListLoop = 0; chunkListLoop < ds_list_size(prevInChunkList); chunkListLoop++) {
+		var prevInChunkListSize = ds_list_size(prevInChunkList);
+		for(var chunkListLoop = 0; chunkListLoop < prevInChunkListSize; chunkListLoop++) {
 
 			
 			var currentChunkID = ds_list_find_value(prevInChunkList, chunkListLoop);

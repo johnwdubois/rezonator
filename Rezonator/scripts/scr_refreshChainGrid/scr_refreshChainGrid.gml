@@ -52,7 +52,8 @@ else {
 
 // stop drawing the rectangle around the words in this chain
 var oldIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
-for (var i = 0; i < ds_list_size(oldIDList); i++) {
+var oldIDListSize = ds_list_size(oldIDList);
+for (var i = 0; i < oldIDListSize; i++) {
 	var currentID = ds_list_find_value(oldIDList, i);
 	var currentInChainList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentID - 1);
 	if (grid == obj_chain.rezChainGrid) {
@@ -66,7 +67,8 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 			var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentID);
 			var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
 			// Loop through the Chunk's wordID list and make sure none are red
-			for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+			var currentChunkWordIDListSize = ds_list_size(currentChunkWordIDList);
+			for(var chunkWordsLoop = 0; chunkWordsLoop < currentChunkWordIDListSize; chunkWordsLoop++) {
 				var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
 				if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
 					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
@@ -77,7 +79,8 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 		
 		// Prevent this word from losing its border if it belongs to another chain
 		if(ds_list_size(currentInChainList) > 0) {
-			for(var inChainListLoop = 0; inChainListLoop < ds_list_size(currentInChainList); inChainListLoop++) {
+			var currentInChainListSize = ds_list_size(currentInChainList);
+			for(var inChainListLoop = 0; inChainListLoop < currentInChainListSize; inChainListLoop++) {
 				var inListChainID = ds_list_find_value(currentInChainList, inChainListLoop);
 				var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, 2);
 				if(currentLinkGridPos != -1) {
@@ -102,7 +105,8 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 			var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentID);
 			var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
 			// Loop through the Chunk's wordID list and make sure none are red
-			for(var chunkWordsLoop = 0; chunkWordsLoop < ds_list_size(currentChunkWordIDList); chunkWordsLoop++) {
+			var currentChunkWordIDListSize = ds_list_size(currentChunkWordIDList);
+			for(var chunkWordsLoop = 0; chunkWordsLoop < currentChunkWordIDListSize; chunkWordsLoop++) {
 				var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
 				if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
 					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
@@ -113,7 +117,8 @@ for (var i = 0; i < ds_list_size(oldIDList); i++) {
 		
 		// Prevent this word from losing its border if it belongs to another chain
 		if(ds_list_size(currentInChainList) > 0) {
-			for(var inChainListLoop = 0; inChainListLoop < ds_list_size(currentInChainList); inChainListLoop++) {
+			var currentInChainListSize = ds_list_size(currentInChainList);
+			for(var inChainListLoop = 0; inChainListLoop < currentInChainListSize; inChainListLoop++) {
 				var inListChainID = ds_list_find_value(currentInChainList, inChainListLoop);
 				var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, 1);
 				if(currentLinkGridPos != -1) {
@@ -170,7 +175,8 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 var tempListGrid = ds_grid_create(3, ds_list_size(idList));
 
 // Populate Grid with wordID's from list
-for(var idListLoop = 0; idListLoop < ds_list_size(idList); idListLoop++) {
+var idListSize = ds_list_size(idList);
+for(var idListLoop = 0; idListLoop < idListSize; idListLoop++) {
 	var currentWordID = ds_list_find_value(idList, idListLoop);
 	
 	// Pull UnitID and wordSeq info from wordGrid
@@ -186,7 +192,8 @@ scr_gridMultiColSort(tempListGrid, 1, true, 2, true);
 ds_list_clear(idList);
 
 // Copy first column into idList
-for(var idListLoop = 0; idListLoop < ds_grid_height(tempListGrid); idListLoop++) {
+var tempListGridHeight = ds_grid_height(tempListGrid);
+for(var idListLoop = 0; idListLoop < tempListGridHeight; idListLoop++) {
 	var currentWordID = ds_grid_get(tempListGrid, 0, idListLoop);
 	ds_list_add(idList, currentWordID);
 }
@@ -196,7 +203,8 @@ for(var idListLoop = 0; idListLoop < ds_grid_height(tempListGrid); idListLoop++)
 ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
 
 // draw rectangle borders around these proper wordIDs
-for (var i = 0; i < ds_list_size(idList); i++) {
+var idListSize = ds_list_size(idList);
+for (var i = 0; i < idListSize; i++) {
 	if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
 		var currentID = ds_list_find_value(idList, i);
 		var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, rowInChainGrid);

@@ -3,7 +3,8 @@
 var grid = argument0;
 var listOfGridCols = ds_list_create();
 
-for (var i = 0; i < ds_grid_width(grid); i++) {
+var gridWidth = ds_grid_width(grid);
+for (var i = 0; i < gridWidth; i++) {
 	var currentColName = scr_getColNameString(grid, i);
 	ds_list_add(listOfGridCols, currentColName);
 }

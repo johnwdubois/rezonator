@@ -23,7 +23,8 @@ scrollBarPlusY = 0;
 
 // make list of line strings that have been marked as exceptions
 exceptionStringList = ds_list_create();
-for (var i = 0; i < ds_grid_height(global.importTXTLineGrid); i++) {
+var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
+for (var i = 0; i < importTXTLineGridHeight; i++) {
 	if (ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colException, i)) {
 		ds_list_add(exceptionStringList, string(ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i)));
 	}

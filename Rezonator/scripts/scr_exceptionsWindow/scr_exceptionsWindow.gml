@@ -49,7 +49,8 @@ draw_clear_alpha(c_black, 0);
 // draw all exception lines
 var plusY = string_height("0");
 draw_set_font(fnt_chainContents);;
-for (var i = 0; i < ds_list_size(exceptionStringList); i++) {
+var exceptionStringListSize = ds_list_size(exceptionStringList);
+for (var i = 0; i < exceptionStringListSize; i++) {
 	var currentExceptionString = ds_list_find_value(exceptionStringList, i);
 	draw_text(floor(exceptionsInfoWindowRectX1 + 20) - clipX, floor(exceptionsInfoWindowRectY1 + plusY + scrollPlusY) - clipY, string(currentExceptionString));
 	plusY += string_height("0");

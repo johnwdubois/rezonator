@@ -146,7 +146,8 @@ if (inRectUnitIDListSize > 0 && inRectWordIDListSize > 0) { // Make sure the box
 		var newBoxGrid = ds_grid_create(boxGridWidth, ds_list_size(currentUnitList));
 		var wordIDListLoop = 0;
 		// Fill the UnitId and WordIdList columns
-		for(var unitIDListLoop = 0; unitIDListLoop < ds_list_size(currentUnitList); unitIDListLoop++) {
+		var currentUnitListSize = ds_list_size(currentUnitList);
+		for(var unitIDListLoop = 0; unitIDListLoop < currentUnitListSize ; unitIDListLoop++) {
 			var currentUnitID = ds_list_find_value(currentUnitList, unitIDListLoop);
 			ds_grid_set(newBoxGrid, boxGrid_colUnitID, unitIDListLoop, currentUnitID);
 			var currentWordIDList = ds_list_create();

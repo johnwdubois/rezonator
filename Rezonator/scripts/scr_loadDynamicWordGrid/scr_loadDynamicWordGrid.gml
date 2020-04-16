@@ -1,7 +1,8 @@
 // DECOMMISSIONED
 // Copy word data from the wordGrid to the4 dynamicWordGrid ("vizWordGrid")
 
-for (var i = 0; i < ds_grid_height(wordGrid); i++)
+var wordGridHeight = ds_grid_height(wordGrid);
+for (var i = 0; i < wordGridHeight; i++)
 {
 	ds_grid_resize(dynamicWordGrid, dynamicWordGridWidth, ds_grid_height(dynamicWordGrid) + 1);
 	var currentRowDynamicWordGrid = ds_grid_height(dynamicWordGrid) - 1;

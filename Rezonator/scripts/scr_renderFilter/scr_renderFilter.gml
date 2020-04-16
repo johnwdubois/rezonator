@@ -38,7 +38,8 @@ for (var i = 0; i < 4; i++) {
 	}
 	
 	// loop through current chainGrid to include chains marked with filter
-	for (var j = 0; j < ds_grid_height(grid); j++) {
+	var gridHeight = ds_grid_height(grid);
+	for (var j = 0; j < gridHeight; j++) {
 		if (not ds_grid_get(grid, obj_chain.chainGrid_colInFilter, j)) {
 			if(ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
 				// Unfocus chains only if we aren't adding a chunk to a chain within the FilterView
@@ -57,7 +58,8 @@ for (var i = 0; i < 4; i++) {
 		ds_list_sort(currentIDList, true);
 		
 		// set information in filterGrid for words in this chain
-		for (var k = 0; k < ds_list_size(currentIDList); k++) {
+		var currentIDListSize = ds_list_size(currentIDList);
+		for (var k = 0; k < currentIDListSize; k++) {
 			if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
 				var currentUnitID = ds_list_find_value(currentIDList, k);
 			}
@@ -95,7 +97,8 @@ for (var i = 0; i < 4; i++) {
 
 // sort filterGrid
 ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
-for (var i = 0; i < ds_grid_height(filterGrid); i++) {
+var filterGridHeight = ds_grid_height(filterGrid);
+for (var i = 0; i < filterGridHeight; i++) {
 	ds_grid_set(filterGrid, lineGrid_colDisplayRow, i, i);
 }
 
@@ -150,7 +153,8 @@ if (obj_panelPane.functionFilter_peek[0] == 1) {
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 	}
 	
-	for(var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) {
+	var chainIDModifyListSize = ds_list_size(obj_chain.chainIDModifyList);
+	for(var i = 0; i < chainIDModifyListSize; i++) {
 		var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
 		var relevantGrid = obj_chain.rezChainGrid;
 		var relevantRow = -1;
@@ -224,7 +228,8 @@ if (obj_panelPane.functionFilter_peek[1] == 1) {
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 	}
 	
-	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++)  {
+	var chainIDModifyListSize = ds_list_size(obj_chain.chainIDModifyList);
+	for(var i = 0; i < chainIDModifyListSize; i++) {
 		var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
 		var relevantGrid = obj_chain.rezChainGrid;
 		var relevantRow = -1;
@@ -269,8 +274,9 @@ if (obj_panelPane.functionFilter_peek[1] == 1) {
 }
 
 // Set filter to Next Context
-if (obj_panelPane.functionFilter_peek[2] == 1) {	
-	for (var i = lastUnit; i < ds_grid_height(unitGrid); i++) {
+if (obj_panelPane.functionFilter_peek[2] == 1) {
+	var unitGridHeight = ds_grid_height(unitGrid);
+	for (var i = lastUnit; i < unitGridHeight; i++) {
 		var currentUnitID = ds_grid_get(unitGrid, unitGrid_colUnitID, i);
 		
 		if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
@@ -293,7 +299,8 @@ if (obj_panelPane.functionFilter_peek[2] == 1) {
 		ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 		ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 	}
-	for (var i = 0; i < ds_list_size(obj_chain.chainIDModifyList); i++) {
+	var chainIDModifyListSize = ds_list_size(obj_chain.chainIDModifyList);
+	for (var i = 0; i < chainIDModifyListSize; i++) {
 		var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
 		var relevantGrid = obj_chain.rezChainGrid;
 		var relevantRow = -1;
@@ -338,7 +345,8 @@ if (obj_panelPane.functionFilter_peek[2] == 1) {
 
 // Sort filterGrid again
 ds_grid_sort(filterGrid, lineGrid_colUnitID, true);
-for (var i = 0; i < ds_grid_height(filterGrid); i++) {
+var filterGridHeight = ds_grid_height(filterGrid);
+for (var i = 0; i < filterGridHeight; i++) {
 	ds_grid_set(filterGrid, lineGrid_colDisplayRow, i, i);
 	ds_grid_set(filterGrid, lineGrid_colPixelY, i, i * obj_control.gridSpaceVertical);
 	ds_grid_set(filterGrid, lineGrid_colPixelYOriginal, i, i * obj_control.gridSpaceVertical);

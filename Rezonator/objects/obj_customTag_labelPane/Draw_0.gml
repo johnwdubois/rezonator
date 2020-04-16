@@ -19,7 +19,8 @@ draw_set_alpha(1);
 draw_set_font(global.fontMain);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-for (var i = 0; i < ds_grid_height(global.customLabelGrid); i++) {
+var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
+for (var i = 0; i < customLabelGridHeight; i++) {
 	
 	var currentLabel = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colLabel, i);
 	draw_set_alpha(1);

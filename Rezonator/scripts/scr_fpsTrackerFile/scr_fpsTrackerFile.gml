@@ -11,7 +11,8 @@ if (directory_exists(global.rezonatorDirString)) {
 			continue;
 		}
 		
-		for (var j = 0; j < ds_grid_width(fpsGrid); j++) {
+		var fpsGridWidth = ds_grid_width(fpsGrid);
+		for (var j = 0; j < fpsGridWidth; j++) {
 			
 			gridStr += string(ds_grid_get(fpsGrid, j, i)) + ", ";
 			

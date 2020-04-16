@@ -10,7 +10,8 @@ while (not file_text_eof(fileOpenRead)) {
 	var lineInFile = file_text_readln(fileOpenRead);
 	var listOfColumns = ds_list_create();
 	listOfColumns = scr_splitString(lineInFile,chr(9));
-	for(var i = 0; i <= ds_list_size(listOfColumns); i++){
+	var listOfColumnsSize = ds_list_size(listOfColumns);
+	for(var i = 0; i <= listOfColumnsSize; i++){
 		if(ds_list_find_value(listOfColumns,i) == "" or ds_list_find_value(listOfColumns,i) == " "){
 			ds_list_delete(listOfColumns,i);
 			i -= 1;
@@ -23,7 +24,8 @@ while (not file_text_eof(fileOpenRead)) {
 	}
 	ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
 	
-	for(var i = 0; i <= ds_list_size(listOfColumns); i++){
+	var listOfColumnsSize = ds_list_size(listOfColumns);
+	for(var i = 0; i <= listOfColumnsSize; i++){
 		
 		var fullColString = string(ds_list_find_value(listOfColumns,i));
 		var colStringList = ds_list_create();

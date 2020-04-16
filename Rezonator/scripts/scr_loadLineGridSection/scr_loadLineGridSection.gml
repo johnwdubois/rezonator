@@ -16,8 +16,8 @@ ds_grid_resize(obj_control.wordDrawGrid, obj_control.wordDrawGridWidth, wordGrid
 //ds_grid_clear(obj_control.wordDrawGrid, 0);
 
 
-
-for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
+var lineGridHeight = ds_grid_height(obj_control.lineGrid);
+for (var i = 0; i < lineGridHeight; i++) {
 	
 	var currentRowLineGrid = i;
 	var currentUnitID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitID, i);

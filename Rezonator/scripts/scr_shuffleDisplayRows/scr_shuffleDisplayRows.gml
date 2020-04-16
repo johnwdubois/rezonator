@@ -15,8 +15,9 @@ var gridSource = obj_control.lineGrid;
 var gridShuffle = ds_grid_create(ds_grid_width(gridSource), ds_grid_height(gridSource));
 
 var gridSourceRowsToCopy = ds_list_create();
+var gridSourceHeight = ds_grid_height(gridSource);
 
-for (var i = 0; i < ds_grid_height(gridSource); i++)
+for (var i = 0; i < gridSourceHeight; i++)
 {
 	ds_list_add(gridSourceRowsToCopy, i);
 }
@@ -25,12 +26,13 @@ ds_list_shuffle(gridSourceRowsToCopy);
 
 
 
-
-for (var j = 0; j < ds_list_size(gridSourceRowsToCopy); j++)
+var gridSourceRowsToCopySize = ds_list_size(gridSourceRowsToCopy);
+for (var j = 0; j < gridSourceRowsToCopySize; j++)
 {
 	var rowToCopy = ds_list_find_value(gridSourceRowsToCopy, j);
 	
-	for (var k = 0; k < ds_grid_width(gridSource); k++)
+	var gridSourceWidth ds_grid_width(gridSource);
+	for (var k = 0; k < gridSourceWidth; k++)
 	{
 		var value = ds_grid_get(gridSource, k, rowToCopy);
 		ds_grid_set(gridShuffle, k, j, value);

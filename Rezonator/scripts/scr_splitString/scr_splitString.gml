@@ -39,11 +39,13 @@ ds_list_add(newList, oldString);
 
 if(global.plainText){
 	
-	for (var i = 0; i < ds_list_size(newList); i++ ){
+	var newListSize = ds_list_size(newList);
+	for (var i = 0; i < newListSize; i++ ){
 		var tempList = ds_list_create();
 		var token = ds_list_find_value(newList, i);
 		tempList = scr_splitStringTabs(token, chr(9));
-		for(var j = 0; j < ds_list_size(tempList); j++ ){
+		var tempListSize = ds_list_size(tempList);
+		for(var j = 0; j < tempListSize; j++ ){
 			ds_list_add(finalList, ds_list_find_value(tempList, j));
 		}
 	

@@ -28,7 +28,8 @@ var rowSwapLine2 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_co
 
 
 // loop through line to be swapped and copy each value from both lines for each column
-for(var i = 0; i < ds_grid_width(obj_control.lineGrid); i++) {
+var lineGridWidth = ds_grid_width(obj_control.lineGrid);
+for(var i = 0; i < lineGridWidth; i++) {
 	
 	if(i != 0){
 		var Line1CurrentSwap  = ds_grid_get(obj_control.lineGrid, i , rowSwapLine2);

@@ -7,7 +7,8 @@ while (ds_grid_value_exists(linkGridCopy, obj_chain.linkGrid_colDead, 0, obj_cha
 	scr_gridDeleteRow(linkGridCopy, rowToDelete);
 }
 
-for (var i = 0; i < ds_grid_height(linkGridCopy); i++)
+var linkGridCopyHeight = ds_grid_height(linkGridCopy);
+for (var i = 0; i < linkGridCopyHeight; i++)
 {
 	var currentChainID = ds_grid_get(linkGridCopy, obj_chain.linkGrid_colChainID, i);
 	if (not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID))
@@ -22,8 +23,8 @@ ds_grid_resize(obj_chain.vizLinkGrid, obj_chain.vizLinkGridWidth, ds_grid_height
 ds_grid_copy(obj_chain.vizLinkGrid, linkGridCopy);
 ds_grid_resize(obj_chain.vizLinkGrid, obj_chain.vizLinkGridWidth, ds_grid_height(linkGridCopy));
 
-
-for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
+var rezChainGridHeight = ds_grid_height(obj_chain.rezChainGrid);
+for (var i = 0; i < rezChainGridHeight; i++)
 {
 	var currentChainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, i);
 	var currentWordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, i);
@@ -67,7 +68,8 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 	//}
 }
 
-for (var i = 0; i < ds_grid_height(obj_chain.vizLinkGrid); i++)
+var vizLinkGridHeight = ds_grid_height(obj_chain.vizLinkGrid);
+for (var i = 0; i < vizLinkGridHeight; i++)
 {
 	var currentSource = ds_grid_get(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colSource, i);
 	

@@ -78,7 +78,8 @@ draw_set_color(global.colorThemeText);
 
 scr_surfaceStart();
 
-for (var i = 0; i < ds_grid_height(grid); i++) {
+var gridHeight = ds_grid_height(grid);
+for (var i = 0; i < gridHeight; i++) {
 	
 	if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
 	or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
@@ -127,7 +128,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 				
 				
 					// Unfocus any already focused chains
-					for (var j = 0; j < ds_grid_height(grid); j++) {
+					for (var j = 0; j < gridHeight; j++) {
 						if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
 							ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
 						}
@@ -183,7 +184,7 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and grid != obj_chain.cliqueDisplayGrid) {
 		
 			// Unfocus any already focused chains
-			for (var j = 0; j < ds_grid_height(grid); j++) {
+			for (var j = 0; j < gridHeight; j++) {
 				if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
 					ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
 				}

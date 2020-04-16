@@ -30,7 +30,8 @@ var furthestWordID = -1;
 var furthestDisplayCol = -1;
 
 // loop through rezChainGrid to get chain info
-for (var i = 0; i < ds_list_size(chainShowList); i++) {
+var chainShowListSize = ds_list_size(chainShowList);
+for (var i = 0; i < chainShowListSize; i++) {
 	
 	var currentChainID = ds_list_find_value(chainShowList, i);
 	if (ds_list_find_value(chainShowList, currentChainID) == -1) {
@@ -50,7 +51,8 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 	var firstWordInUnit = -1;
 	
 	// loop through wordIDList in current track chain to draw lines
-	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++) {
+	var currentWordIDListSize = ds_list_size(currentWordIDList);
+	for (var j = 0; j < currentWordIDListSize - 1; j++) {
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
 		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);

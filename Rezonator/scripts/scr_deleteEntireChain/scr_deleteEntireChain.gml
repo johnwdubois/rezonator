@@ -10,7 +10,8 @@ if( currentChainWordIDList == undefined){
 	exit;
 }
 
-for(var deleteLoop = 0; deleteLoop < ds_list_size(currentChainWordIDList); deleteLoop++) {
+var currentChainWordIDListSize = ds_list_size(currentChainWordIDList);
+for(var deleteLoop = 0; deleteLoop < currentChainWordIDListSize; deleteLoop++) {
 	with(obj_control) {
 		scr_deleteFromChain();	
 	}

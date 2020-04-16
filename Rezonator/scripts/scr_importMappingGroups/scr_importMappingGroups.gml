@@ -1,22 +1,23 @@
 var groupNumber = 0;
 var alreadyCheckedList = ds_list_create();
 
-
-for (var currentTagCol = 0; currentTagCol < ds_grid_width(global.importGrid); currentTagCol++) {
+var importGridWidth = ds_grid_width(global.importGrid);
+for (var currentTagCol = 0; currentTagCol < importGridWidth; currentTagCol++) {
 	
 	var matchingTagsList = -1;
 	if (ds_list_find_index(alreadyCheckedList, currentTagCol) > -1) {
 		continue;
 	}
 
-	for (var i = 0; i < ds_grid_height(global.importGrid); i++) {
+	var importGridHeight = ds_grid_height(global.importGrid);
+	for (var i = 0; i < importGridHeight; i++) {
 	
 		var currentTagCell = ds_grid_get(global.importGrid, currentTagCol, i);
 		var currentTagCellList = scr_splitStringImport(currentTagCell);
 	
 		var currentMatchingTagsList = ds_list_create();
 	
-		for (var j = 0; j < ds_grid_width(global.importGrid); j++) {
+		for (var j = 0; j < importGridWidth; j++) {
 		
 			if (j == currentTagCol) {
 				continue;
@@ -46,7 +47,8 @@ for (var currentTagCol = 0; currentTagCol < ds_grid_width(global.importGrid); cu
 		if (ds_list_size(matchingTagsList) > 0) {
 			groupNumber++;
 			ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colGroup, currentTagCol, groupNumber);
-			for (var i = 0; i < ds_list_size(matchingTagsList); i++) {
+			var matchingTagsListSize = ds_list_size(matchingTagsList);
+			for (var i = 0; i < matchingTagsListSize; i++) {
 		
 				var currentTagColSet = ds_list_find_value(matchingTagsList, i);
 				ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colGroup, currentTagColSet, groupNumber);

@@ -20,12 +20,13 @@ var furthestDisplayCol = 0;
 
 var unitIDList = ds_list_create();
 var nonVoidWordExists = false;
+var wordIDListSize = ds_list_size(wordIDList);
 
 if (ds_list_size(wordIDList) > 0) {
 	
 	// find which word in this chain is the furthest to the right (largest display column)
 	var furthestWordID = ds_list_find_value(wordIDList, 0);
-	for (var displayColLoop = 0; displayColLoop < ds_list_size(wordIDList); displayColLoop++) {
+	for (var displayColLoop = 0; displayColLoop < wordIDListSize; displayColLoop++) {
 		var currentWordID = ds_list_find_value(wordIDList, displayColLoop);
 		
 		// Prevent dead or chunk words to mess with alignment
@@ -97,7 +98,8 @@ if (ds_list_size(wordIDList) > 0) {
 		
 	//furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
 	var unitIDList2 = ds_list_create();
-	for (var setDisplayColLoop = 0; setDisplayColLoop < ds_list_size(wordIDList); setDisplayColLoop++) {
+	
+	for (var setDisplayColLoop = 0; setDisplayColLoop < wordIDListSize; setDisplayColLoop++) {
 		var currentWordID = ds_list_find_value(wordIDList, setDisplayColLoop);
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		
@@ -153,7 +155,7 @@ if (ds_list_size(wordIDList) > 0) {
 
 // if every word in this chain has a void, we need to bring every word in the chain back
 if (not nonVoidWordExists) {
-	for (var i = 0; i < ds_list_size(wordIDList); i++) {
+	for (var i = 0; i < wordIDListSize; i++) {
 		var currentWordID = ds_list_find_value(wordIDList, i);
 		var currentVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1);
 		if (currentVoid <= 0) {

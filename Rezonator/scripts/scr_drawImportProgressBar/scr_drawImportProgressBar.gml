@@ -15,7 +15,8 @@ else if (!checkedForParticipantNames) {
 	checkedForParticipantNames = true;
 	
 	var anyNames = false;
-	for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++) {
+	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
+	for (var i = 0; i < unitGridHeight; i++) {
 		if (string_length(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, i)) > 0) {
 			anyNames = true;
 			break;

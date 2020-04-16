@@ -39,7 +39,8 @@ var currentWordStringHeight2 = currentWordStringHeight1;
 
 
 // loop through rezChainGrid to get chain info
-for (var i = 0; i < ds_list_size(chainShowList); i++) {
+var chainShowListSize = ds_list_size(chainShowList);
+for (var i = 0; i < chainShowListSize; i++) {
 	minWordWidth = 9999999;
 	
 	var currentChainID = ds_list_find_value(chainShowList, i);
@@ -56,7 +57,8 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 	var currentChainShow = true;//ds_grid_get(rezChainGrid, chainGrid_colShow, rowInChainGrid);
 	
 	// find minimum word width so we know the X position of the chain
-	for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
+	var currentWordIDListSize = ds_list_size(currentWordIDList);
+	for (var j = 0; j < currentWordIDListSize; j++) {
 		var currentWordID = ds_list_find_value(currentWordIDList, j);
 		var currentWordWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1))) / 2;
 		currentWordWidth = max(currentWordWidth, 0);
@@ -72,7 +74,7 @@ for (var i = 0; i < ds_list_size(chainShowList); i++) {
 	var firstWordInUnit = -1;
 	
 	// loop through current chain's wordIDList to draw the lines of the chain
-	for (var j = 0; j < ds_list_size(currentWordIDList) - 1; j++) {
+	for (var j = 0; j < currentWordIDListSize - 1; j++) {
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 		var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
 		

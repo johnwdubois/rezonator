@@ -19,8 +19,9 @@ var drawLineLoop = argument3;
 var unitID = argument4;
 
 draw_set_alpha(1);
+var currentHitIDListSize = ds_list_size(currentHitIDList);
 
-for (var drawWordLoop = 0; drawWordLoop < ds_list_size(currentHitIDList); drawWordLoop++)
+for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 {
 	var currentHitID = ds_list_find_value(currentHitIDList, drawWordLoop);
 	
