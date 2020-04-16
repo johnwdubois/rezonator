@@ -1,5 +1,6 @@
 // Encode colors of speaker labels
-for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
+var fileLineRipGridHeight = ds_grid_height(global.fileLineRipGrid);
+for (var i = 0; i < fileLineRipGridHeight; i++) {
 	var participantColorList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, i);
 	
 	for (var j = 0; j < ds_list_size(participantColorList); j++) {

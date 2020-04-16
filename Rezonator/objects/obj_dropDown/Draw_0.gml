@@ -32,8 +32,8 @@ if(point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)
 	mouseOverDropDown =  true;
 }
 
-
-for (var i = 0; i < ds_list_size(optionList); i++)
+var optionListSize = ds_list_size(optionList);
+for (var i = 0; i < optionListSize; i++)
 {
 	var optionRectX1 = x;
 	var optionRectY1 = y + (optionSpacing * i);

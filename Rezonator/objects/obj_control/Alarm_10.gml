@@ -1,12 +1,15 @@
 /// @description Box Creation
 // Place all captured unit and word info into the box grid
 
-if(ds_list_size(inRectWordIDList) > 0 and not ds_list_size(inRectUnitIDList) > 0 and obj_control.mouseRectWithinLine) {
+var inRectWordIDListSize = ds_list_size(inRectWordIDList);
+var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
+
+if(inRectWordIDListSize > 0 and not inRectUnitIDListSize > 0 and obj_control.mouseRectWithinLine) {
 	ds_list_add(inRectUnitIDList, ds_grid_get(wordGrid, wordGrid_colUnitID, ds_list_find_value(inRectWordIDList, 0) - 1));
 
 	trackChunkMade = true;
 }
-if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { // Make sure the box captured something
+if (inRectUnitIDListSize > 0 && inRectWordIDListSize > 0) { // Make sure the box captured something
 	//show_message("doin");
 	// Expand the box grid to fit the new info
 	ds_grid_resize(obj_chain.chunkGrid, obj_chain.chainGridWidth + 2, ds_grid_height(obj_chain.chunkGrid) + 1);
@@ -22,7 +25,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 	var innerLoop = 0;
 	
 	// Loop through words found in rectangle at time of mouse release
-	for(var quickLoop = 0; quickLoop < ds_list_size(inRectUnitIDList); quickLoop++) {
+	for(var quickLoop = 0; quickLoop < inRectUnitIDListSize; quickLoop++) {
 		
 		// Extract the unit and word ID's that were captured
 		var currentWordID = ds_list_find_value(inRectWordIDList, innerLoop);
@@ -46,7 +49,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 				ds_list_add(currentInBoxList, obj_control.chunkID);
 			} 
 			// Safety check to not go over the list size
-			if(innerLoop == ds_list_size(inRectWordIDList) - 1) {
+			if(innerLoop == inRectWordIDListSize - 1) {
 			break;	
 			}
 			// increment the current word
@@ -54,7 +57,7 @@ if (ds_list_size(inRectUnitIDList) > 0 && ds_list_size(inRectWordIDList) > 0) { 
 		}
 	}
 	
-	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colTiltSum, ds_grid_height(obj_chain.chunkGrid) - 1, ds_list_find_value(inRectWordIDList, ds_list_size(inRectWordIDList) - 1));
+	ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colTiltSum, ds_grid_height(obj_chain.chunkGrid) - 1, ds_list_find_value(inRectWordIDList, inRectWordIDListSize - 1));
 	if(not trackChunkMade) {
 		scr_unFocusAllChains();
 	}

@@ -21,15 +21,16 @@ ds_list_add(gridList,
 	);
 
 
-
-for (var i = 0; i < ds_list_size(gridList); i++) {
+var gridListSize = ds_list_size(gridList);
+for (var i = 0; i < gridListSize; i++) {
 	
 	var currentGridViewColXList = ds_list_create();
 	var currentGrid = ds_list_find_value(gridList, i);
 	var defaultGridColWidth = windowWidth / ds_grid_width(currentGrid);
 	
 	var currentColX = windowX;
-	for (var j = 0; j < ds_grid_width(currentGrid); j++) {
+	var currentGridWidth = ds_grid_width(currentGrid);
+	for (var j = 0; j < currentGridWidth; j++) {
 		ds_list_add(currentGridViewColXList, currentColX + scrollBarWidth);
 		currentColX += defaultGridColWidth;
 	}

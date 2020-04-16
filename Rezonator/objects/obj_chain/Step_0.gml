@@ -42,8 +42,8 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 	
 	if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
 		var idList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentFocusedChainIndex);
-	
-		for (var i = 0; i < ds_list_size(idList); i++) {
+		var idListSize = ds_list_size(idList);
+		for (var i = 0; i < idListSize; i++) {
 			var currentID = ds_list_find_value(idList, i);
 			var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentID -1);
 			var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID -1);

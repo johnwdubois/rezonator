@@ -21,7 +21,9 @@
         "2d7ddf99-bc5b-4298-a7f6-c976d6e9de77",
         "20897d73-f76b-4c56-9daf-1930368b86ee",
         "704ff390-cc52-4318-a224-b8391b784403",
-        "93c9e121-d30a-4a34-835c-f88278167a24"
+        "93c9e121-d30a-4a34-835c-f88278167a24",
+        "cbb3d3cd-87be-4e02-90be-21f6c9124e49",
+        "e172be69-9a6c-4563-9012-467247de8127"
     ],
     "filterType": "GMScript",
     "folderName": "drawLine",

@@ -255,6 +255,9 @@ else {
 		obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
 		obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
 		obj_control.wordLeftMarginDest = 170;
+		with (obj_alarm) {
+			alarm[0] = 5;
+		}
 	}
 }
 

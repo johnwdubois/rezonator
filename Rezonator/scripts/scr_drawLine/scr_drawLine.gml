@@ -31,7 +31,7 @@ draw_set_alpha(1);
 
 drawLineYOffset = 0;
 if (filterGridActive) {
-	drawLineYOffset = (camera_get_view_height(view_camera[0]) / 2) - 200;
+	drawLineYOffset = (camViewHeight / 2) - 200;
 }
 
 var menuBarHeight = 0;
@@ -51,30 +51,33 @@ if (global.wheresElmo || global.rezzles) {
 	wordTopMargin += 80;
 }
 
+var activeLineGridHeight = ds_grid_height(currentActiveLineGrid);
+var camViewWidth = camera_get_view_width(view_camera[0]);
+var camViewHeight = camera_get_view_height(view_camera[0]);
 
 scr_setDrawRange();
-ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(currentActiveLineGrid), lineGrid_colPixelY, 0);
-ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid), (scrollPlusY + wordTopMargin + 10));
+ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, activeLineGridHeight, lineGrid_colPixelY, 0);
+ds_grid_add_region(currentActiveLineGrid, lineGrid_colPixelY, 0, lineGrid_colPixelY, activeLineGridHeight, (scrollPlusY + wordTopMargin + 10));
 
 
 
 
 // draw out of bounds rectangles on top & bottom of discourse
-if (drawRangeStart == 0 and ds_grid_height(currentActiveLineGrid) > 0) {
+if (drawRangeStart == 0 and activeLineGridHeight > 0) {
 	//var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
 	draw_set_color(global.colorThemeOutOfBounds);
 	//draw_rectangle(0, 0, camera_get_view_width(view_camera[0]), firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
 	var oobTopRectY2 = wordTopMargin;
-	if (ds_grid_height(currentActiveLineGrid) > 0) {
+	if (activeLineGridHeight > 0) {
 		var lowestY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0) - (gridSpaceVertical / 2) - 10;
 		oobTopRectY2 = clamp(wordTopMargin, 0, lowestY);
 	}
-	draw_rectangle(0, 0, camera_get_view_width(view_camera[0]), oobTopRectY2, false);
+	draw_rectangle(0, 0, camViewWidth, oobTopRectY2, false);
 }
-if (drawRangeEnd == ds_grid_height(currentActiveLineGrid) - 1 and ds_grid_height(currentActiveLineGrid) > 0) {
-	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, ds_grid_height(currentActiveLineGrid) - 1);
+if (drawRangeEnd == activeLineGridHeight - 1 and activeLineGridHeight > 0) {
+	var lastLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, activeLineGridHeight - 1);
 	draw_set_color(global.colorThemeOutOfBounds);
-	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]), false);
+	draw_rectangle(0, lastLinePixelY + (obj_control.gridSpaceVertical / 2), camViewWidth, camViewHeight, false);
 }
 
 
@@ -91,68 +94,22 @@ if (speakerLabelColXHolding > -1) {
 	mouseoverPanelPane = true;
 }
 
-if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
-	if (point_in_rectangle(mouse_x, mouse_y, 0, wordTopMargin, speakerLabelMargin, camera_get_view_height(view_camera[0])) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
-	
-		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left) and not obj_control.rectNotInPanelPane) {
-			if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)
-			or ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus)) {
-				with (obj_chain) {
-					scr_chainDeselect();
-					scr_refreshVizLinkGrid();
-				}
-			}
+var stackChainGridHeight = ds_grid_height(obj_chain.stackChainGrid);
 
-			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-		}
-	}
-	else {
-		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left)) {
-			if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus)) {
-				with (obj_chain) {
-					scr_chainDeselect();
-					scr_refreshVizLinkGrid();
-				}
-			}
-		}
-	
-		if ((mouse_check_button(mb_left) or mouse_check_button_released(mb_left)) and not mouseoverNeutralSpace) {
-			if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
-				obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-			}
-			else if(obj_toolPane.currentMode == obj_toolPane.modeTrack) {
-				obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
-			}
-			else {
-				obj_toolPane.currentTool = obj_toolPane.toolPointer;
-			}
-		}
-	}
+if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
+	scr_mouseToolCheck(stackChainGridHeight);
 }
 
 
 
 // draw out of bounds rectangle on left
 if (obj_control.wordLeftMargin > obj_control.speakerLabelMargin) {
-	draw_set_color(global.colorThemeOutOfBounds);
-	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin;
-	var leftOutOfBoundsRectY1 = 0;
-	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - 20;
-	var leftOutOfBoundsRectY2 = camera_get_view_height(view_camera[0]);
-
-
-	if (currentActiveLineGrid == searchGrid) {
-		leftOutOfBoundsRectX2 = leftScreenBound;
-	}
-	
-	if (abs(leftOutOfBoundsRectX1 - leftOutOfBoundsRectX2) > 2) {
-		draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
-	}
+	scr_drawLeftBounds(camViewHeight);
 }
 
 draw_set_color(global.colorThemeText);
 
-obj_control.leftScreenBound = camera_get_view_width(view_camera[0]);
+obj_control.leftScreenBound = camViewWidth;
 
 hoverWordID = -1;
 hoverChunkID = -1;
@@ -164,7 +121,7 @@ ds_list_clear(obj_chain.chainShowList);
 
 // for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLoop++) {
-	if (drawLineLoop < 0 or drawLineLoop >= ds_grid_height(currentActiveLineGrid)) {
+	if (drawLineLoop < 0 or drawLineLoop >= activeLineGridHeight) {
 		continue;
 	}
 	
@@ -191,15 +148,6 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	speakerRectY1 = currentLineY - (gridSpaceVertical / 2);
 	speakerRectX2 = speakerLabelMargin;
 	speakerRectY2 = speakerRectY1 + gridSpaceVertical;
-	
-	
-
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -260,10 +208,11 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	// draw stack rectangle if this line is in a stack
 	if (currentLineInStack > -1) {
-			
+		//scr_drawStackRect();
+		
 		if (obj_chain.toggleDrawStack) {
 			var currentStackChainID = currentLineInStack;
-			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackChainID);
+			var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, stackChainGridHeight, currentStackChainID);
 			
 			//var showStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colShow, rowInStackChainGrid);
 			//if (showStack) {
@@ -274,10 +223,10 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 					draw_set_color(stackColor);
 					draw_set_alpha(0.2);
 			
-					var stackRectWidth = (camera_get_view_width(view_camera[0]) - speakerRectX2);
+					var stackRectWidth = (camViewWidth - speakerRectX2);
 					var stackRectX1 = speakerRectX2;
 					var stackRectY1 = speakerRectY1;
-					var stackRectX2 = camera_get_view_width(view_camera[0]);
+					var stackRectX2 = camViewWidth;
 					var stackRectY2 = speakerRectY2;
 				
 					draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
@@ -288,14 +237,14 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	else {
 		if (ds_list_size(inRectUnitIDList) > 0) {
 			if (ds_list_find_index(inRectUnitIDList, unitID) > -1) {
-				if (ds_grid_height(obj_chain.stackChainGrid) > 0) {
-					var focusedStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
-					if (focusedStackRow >= 0 and focusedStackRow < ds_grid_height(obj_chain.stackChainGrid)) {
+				if (stackChainGridHeight > 0) {
+					var focusedStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, stackChainGridHeight, obj_chain.chainStateFocus);
+					if (focusedStackRow >= 0 and focusedStackRow < stackChainGridHeight) {
 						var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, focusedStackRow);
-						var stackRectWidth = (camera_get_view_width(view_camera[0]) - speakerRectX2);
+						var stackRectWidth = (camViewWidth - speakerRectX2);
 						var stackRectX1 = speakerRectX2 + (stackRectWidth);
 						var stackRectY1 = speakerRectY1;
-						var stackRectX2 = camera_get_view_width(view_camera[0]);
+						var stackRectX2 = camViewWidth;
 						var stackRectY2 = speakerRectY2;
 						
 						draw_set_color(stackColor);
@@ -307,12 +256,6 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -332,7 +275,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			
 		var highlightRectX1 = speakerRectX2;
 		var highlightRectY1 = speakerRectY1;
-		var highlightRectX2 = camera_get_view_width(view_camera[0]);
+		var highlightRectX2 = camViewWidth;
 		var highlightRectY2 = speakerRectY2;
 		
 		draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
@@ -342,14 +285,14 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	if (!obj_chain.inRezPlay) {
 		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
 		
-			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, camera_get_view_width(view_camera[0]), speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, camViewWidth, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseRect and speakerLabelColXHolding == -1) {
 				draw_set_color(c_ltblue);
 				draw_set_alpha(0.3);
 			
 				var quickStackRectX1 = speakerRectX2;
 				var quickStackRectY1 = speakerRectY1;
-				var quickStackRectX2 = camera_get_view_width(view_camera[0]);
+				var quickStackRectX2 = camViewWidth;
 				var quickStackRectY2 = speakerRectY2;
 		
 				draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
@@ -389,8 +332,8 @@ if (showDevVars) {
 	draw_set_alpha(1);
 	draw_set_font(fnt_debug);
 	draw_set_halign(fa_right);
-	draw_text(camera_get_view_width(view_camera[0]) - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
-	draw_text(camera_get_view_width(view_camera[0]) - 300, 265, "camY range: " + string(camera_get_view_y(view_camera[0]) + camera_get_view_height(view_camera[0])));
+	draw_text(camViewWidth - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
+	draw_text(camViewWidth - 300, 265, "camY range: " + string(camera_get_view_y(view_camera[0]) + camViewHeight));
 	
 	draw_text(mouse_x, mouse_y, "(" + string(mouse_x) + ", " + string(mouse_y) + ")");
 }

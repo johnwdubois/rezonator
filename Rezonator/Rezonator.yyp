@@ -4415,6 +4415,14 @@
             }
         },
         {
+            "Key": "cbb3d3cd-87be-4e02-90be-21f6c9124e49",
+            "Value": {
+                "id": "b7ca9dbd-fc78-4f55-a50d-4bb29edc17d7",
+                "resourcePath": "scripts\\scr_mouseToolCheck\\scr_mouseToolCheck.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cc01d94f-b7c5-481a-809f-f51e9a949a5e",
             "Value": {
                 "id": "0aaa06c9-7e17-40c4-9750-eeb50d2b1c02",
@@ -4932,6 +4940,14 @@
                 "id": "0127c7f0-892a-47e5-b770-fee68da7ed73",
                 "resourcePath": "views\\e14eab15-0795-4864-b875-8d37c75236c9.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "e172be69-9a6c-4563-9012-467247de8127",
+            "Value": {
+                "id": "9079b49f-ee03-49ae-99d1-dfe7cd9b0f76",
+                "resourcePath": "scripts\\scr_drawLeftBounds\\scr_drawLeftBounds.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -5678,6 +5694,8 @@
         "20897d73-f76b-4c56-9daf-1930368b86ee",
         "704ff390-cc52-4318-a224-b8391b784403",
         "93c9e121-d30a-4a34-835c-f88278167a24",
+        "cbb3d3cd-87be-4e02-90be-21f6c9124e49",
+        "e172be69-9a6c-4563-9012-467247de8127",
         "4d1110e1-242b-4485-8969-ca05c1e27cb2",
         "4819348f-9a90-4870-b130-8ac5271b932c",
         "378c69b4-37f8-44ed-ade5-cd140f704de9",

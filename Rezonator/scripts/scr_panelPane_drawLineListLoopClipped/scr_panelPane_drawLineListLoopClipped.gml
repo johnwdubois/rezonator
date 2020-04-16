@@ -33,6 +33,8 @@ var focusedElementY = -1;
 var focusedLineNameRectY1 = -1;
 var focusedLineNameRectY2 = -1;
 
+var lineGridHeight = ds_grid_height(obj_control.lineGrid);
+
 // Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
 draw_set_halign(fa_left);
@@ -41,7 +43,7 @@ draw_set_color(global.colorThemeText);
 
 scr_surfaceStart();
 
-for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
+for (var i = 0; i < lineGridHeight; i++) {
 	
 	if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
 	or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
@@ -72,7 +74,8 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 
 	var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
 	var currentLineWordString = "";
-	for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {
+	var currentLineWordListSize = ds_list_size(currentLineWordList);
+	for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
 		var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 		var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
 		currentLineWordString += string(currentWordToken) + " ";
@@ -98,7 +101,7 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 		
 		if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 			//show_message("line");
-			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
 			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
 			with (obj_panelPane) {
 				if(functionChainList_lineGridRowFocused != i) {
@@ -178,14 +181,14 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 if (clickedIn) {	
 	if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
-		if (functionChainList_lineGridRowFocused > 0 and functionChainList_lineGridRowFocused < ds_grid_height(obj_control.lineGrid)) {
+		if (functionChainList_lineGridRowFocused > 0 and functionChainList_lineGridRowFocused < lineGridHeight) {
 
 			//Allow for arrow keys to shift focus down the list of lines
 			obj_panelPane.functionChainList_lineGridRowFocused--;
 			var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
 			var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
 			obj_panelPane.functionChainContents_BGColor = lineColor;
-			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
 			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 			obj_panelPane.functionChainContents_lineGridRowFocused = -1;
 			
@@ -201,14 +204,14 @@ if (clickedIn) {
 		
 	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 			
-		if (functionChainList_lineGridRowFocused < ds_grid_height(obj_control.lineGrid) - 1 and functionChainList_lineGridRowFocused >= 0) {
+		if (functionChainList_lineGridRowFocused < lineGridHeight - 1 and functionChainList_lineGridRowFocused >= 0) {
 
 			//Allow for arrow keys to shift focus down the list of lines
 			obj_panelPane.functionChainList_lineGridRowFocused++;
 			var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
 			var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
 			obj_panelPane.functionChainContents_BGColor = lineColor;
-			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
 			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 			obj_panelPane.functionChainContents_lineGridRowFocused = -1;
 			
@@ -249,7 +252,7 @@ if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
 
 
 
-scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
+scr_scrollBar(lineGridHeight, focusedElementY, strHeight, textMarginTop,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 

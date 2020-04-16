@@ -46,7 +46,8 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
 	var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
 	
-	for (var i = 0; i < ds_list_size(currentWordInChainsList); i++) {
+	var currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
+	for (var i = 0; i < currentWordInChainsListSize; i++) {
 		if (ds_list_find_index(obj_chain.chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
 			ds_list_add(obj_chain.chainShowList, ds_list_find_value(currentWordInChainsList, i));
 		}

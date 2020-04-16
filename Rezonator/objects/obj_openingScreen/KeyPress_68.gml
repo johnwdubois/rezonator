@@ -1,9 +1,11 @@
 ///@description ParticipantList
-for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
+var fileLineRipGridHeight = ds_grid_height(global.fileLineRipGrid);
+for (var i = 0; i < fileLineRipGridHeight; i++) {
 	var currentList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colParticipantList, i);
 	
 	var listStr = "";
-	for (var j = 0; j < ds_list_size(currentList); j++) {
+	var currentListSize = ds_list_size(currentList);
+	for (var j = 0; j < currentListSize; j++) {
 		listStr += string(ds_list_find_value(currentList, j)) + ",";
 	}
 	show_message(listStr);
