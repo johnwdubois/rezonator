@@ -35,7 +35,8 @@ if ((not mouse_check_button(mb_left)) or speakerLabelColXHolding >= 4) {
 
 draw_set_font(global.fontMain);
 var minColWidth = string_width("AAAAA");
-for (var i = 0; i < ds_list_size(speakerLabelColXList) - 1; i++) {
+var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
+for (var i = 0; i < speakerLabelColXListSize - 1; i++) {
 	if (ds_grid_height(global.fileLineRipGrid) < 2 and i == 0) {
 		continue;
 	}
@@ -59,7 +60,7 @@ else if (ds_list_find_value(speakerLabelColXList, 1) < minColWidth) {
 
 
 
-for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {
+for (var i = 1; i < speakerLabelColXListSize; i++) {
 	
 	var colX = ds_list_find_value(speakerLabelColXList, i);
 
@@ -99,7 +100,7 @@ for (var i = 1; i < ds_list_size(speakerLabelColXList); i++) {
 		speakerLabelColXHoldingDiff = newColX - speakerLabelColXHoldingPrev;
 		
 		// set X positions for all following columns
-		for (var j = i + 1; j < ds_list_size(speakerLabelColXList); j++) {
+		for (var j = i + 1; j < speakerLabelColXListSize; j++) {
 
 			var currentNewColX = ds_list_find_value(speakerLabelColPrevList, j) + speakerLabelColXHoldingDiff;
 			ds_list_set(speakerLabelColXList, j, currentNewColX);

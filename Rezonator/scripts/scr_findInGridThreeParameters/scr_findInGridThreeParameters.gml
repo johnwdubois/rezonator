@@ -38,7 +38,8 @@ while (ds_grid_value_exists(tempGrid, col1, 0, col1, ds_grid_height(tempGrid), v
 }
 
 // find rows in grid that contain correct value in second column, store those in possibleRowsList2
-for (var i = 0; i < ds_list_size(possibleRowsList1); i++) {
+var possibleRowsList1Size = ds_list_size(possibleRowsList1);
+for (var i = 0; i < possibleRowsList1Size; i++) {
 	var rowInGrid = ds_list_find_value(possibleRowsList1, i);
 	var col2Element = ds_grid_get(tempGrid, col2, rowInGrid);
 	
@@ -49,7 +50,8 @@ for (var i = 0; i < ds_list_size(possibleRowsList1); i++) {
 
 var rowReturn = -1;
 
-for (var i = 0; i < ds_list_size(possibleRowsList2); i++) {
+var possibleRowsList2Size = ds_list_size(possibleRowsList2);
+for (var i = 0; i < possibleRowsList2Size; i++) {
 	var rowInGrid = ds_list_find_value(possibleRowsList2, i);
 	var col3Element = ds_grid_get(tempGrid, col3, rowInGrid);
 	

@@ -7,7 +7,8 @@ ds_grid_copy(gridClone, grid);
 
 var colList = ds_list_create();
 
-for (var i = 0; i < ds_grid_width(gridClone); i++)
+var gridCloneWidth = ds_grid_width(gridClone);
+for (var i = 0; i < gridCloneWidth; i++)
 {
 	var cellContainsList = false;
 	//if (string_count("}", scr_drawGridViewerGetItemString(grid, i, 0)) > 0)
@@ -20,7 +21,8 @@ for (var i = 0; i < ds_grid_width(gridClone); i++)
 	
 	ds_list_add(rowList, ds_grid_height(gridClone));
 	
-	for (var j = 0; j < ds_grid_height(gridClone); j++)
+	var gridCloneHeight = ds_grid_height(gridClone);
+	for (var j = 0; j < gridCloneHeight; j++)
 	{		
 		var value = ds_grid_get(gridClone, i, j);
 		

@@ -81,7 +81,8 @@ if (file_exists(fileName)) {
 		exit;
 	}
 	
-	for (var i = 0; i < ds_list_size(list); i++) {
+	var listSize = ds_list_size(list);
+	for (var i = 0; i < listSize; i++) {
 		var map = ds_list_find_value(list, i);
 		
 		var objectIndex = ds_map_find_value(map, "objectIndex");
@@ -185,7 +186,8 @@ if(ds_grid_height(obj_control.lineGrid) > 1) {
 if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGridEnd != undefined ){
 	if(obj_fileLoader.subLineGridBeginning > -1 and obj_fileLoader.subLineGridEnd > -1){
 		scr_gridDeleteRange(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_fileLoader.subLineGridBeginning, obj_fileLoader.subLineGridEnd);
-		for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++)
+		var lineGridHeight = ds_grid_height(obj_control.lineGrid);
+		for (var i = 0; i < lineGridHeight; i++)
 		{
 			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelY, i, i * obj_control.gridSpaceVertical);
 			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, i, i * obj_control.gridSpaceVertical);

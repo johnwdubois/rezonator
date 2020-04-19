@@ -27,7 +27,8 @@ var subListIndex = ds_list_find_index(mainList, firstElement);
 if(subListIndex == -1) {return -1};
 
 // Loop through mainList to incrementily check each element against the subList
-for(var listLoop = 1; listLoop < ds_list_size(subList); listLoop++) {
+var subListSize = ds_list_size(subList);
+for(var listLoop = 1; listLoop < subListSize; listLoop++) {
 	var currentSubElement = ds_list_find_value(subList, listLoop);
 	var currentMainElement = ds_list_find_value(mainList, listLoop + subListIndex);
 

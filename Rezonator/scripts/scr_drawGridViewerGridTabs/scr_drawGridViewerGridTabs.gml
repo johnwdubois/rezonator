@@ -21,7 +21,8 @@ draw_set_font(fnt_debug);
 var rectWidth = windowWidth / ds_list_size(gridList);
 var rectHeight = 20;
 
-for (var i = 0; i < ds_list_size(gridList); i++) {
+var gridListSize = ds_list_size(gridList);
+for (var i = 0; i < gridListSize; i++) {
 	var currentGrid = ds_list_find_value(gridList, i);
 	
 	var rectX1 = windowX + (i * rectWidth);

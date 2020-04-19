@@ -27,7 +27,8 @@ var windowX1 = windowX;
 var windowY1 = windowY;
 var windowX2 = windowX1 + windowWidth;
 var windowY2 = windowY1 + windowHeight;
-
+var gridWidth = ds_grid_width(grid);
+var gridHeight = ds_grid_height(grid);
 
 draw_set_color(global.colorThemeBG);
 draw_rectangle(windowX1 - scrollBarWidth - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
@@ -45,7 +46,8 @@ if (gridColXList == -1 or is_undefined(gridColXList)) {
 	exit;
 }
 
-for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
+
+for (var gridLoopCol = 0; gridLoopCol < gridWidth; gridLoopCol++) {
 	
 	var colRectX1 = scrollBarWidth;
 	if (gridLoopCol < ds_list_size(gridColXList)) {
@@ -72,7 +74,7 @@ for (var gridLoopCol = 0; gridLoopCol < ds_grid_width(grid); gridLoopCol++) {
 
 	textPlusY = 0;
 	
-	for (var gridLoopRow = 0; gridLoopRow < ds_grid_height(grid); gridLoopRow++) {
+	for (var gridLoopRow = 0; gridLoopRow < gridHeight; gridLoopRow++) {
 		
 		
 		if (windowY1 + colNameHeight + scrollPlusY + textPlusY < windowY1 - strHeight) {
@@ -156,7 +158,7 @@ draw_rectangle(windowX1 - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + 
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
-for (var i = 0; i < ds_grid_width(grid); i++) {
+for (var i = 0; i < gridWidth; i++) {
 	var colName = scr_getColNameString(grid, i);
 	var colNameX = ds_list_find_value(gridColXList, i);
 	
@@ -199,7 +201,7 @@ if ((not mouse_check_button(mb_left)) or gridViewColXHolding >= ds_grid_width(gr
 
 //window_set_cursor(cr_default);
 
-for (var i = 1; i < ds_grid_width(grid); i++) {
+for (var i = 1; i < gridWidth; i++) {
 	
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(0.15);
@@ -235,7 +237,8 @@ for (var i = 1; i < ds_grid_width(grid); i++) {
 		gridViewColXHoldingDiff = newColX - gridViewColXHoldingPrev;
 		
 		// set X positions for all following columns
-		for (var j = i + 1; j < ds_list_size(gridColXList); j++) {
+		var gridColXListSize = ds_list_size(gridColXList);
+		for (var j = i + 1; j < gridColXListSize; j++) {
 
 			var currentNewColX = ds_list_find_value(gridViewColPrevList, j) + gridViewColXHoldingDiff;
 			ds_list_set(gridColXList, j, currentNewColX);

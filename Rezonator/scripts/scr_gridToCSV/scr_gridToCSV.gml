@@ -4,11 +4,13 @@ var grid = argument0
 var fileName = argument1;
 
 var file = file_text_open_write_ns(fileName, -1);
+var gridHeight = ds_grid_height(grid);
+var gridWidth = ds_grid_width(grid);
 
-for (var i = -1; i < ds_grid_height(grid); i++) {	
+for (var i = -1; i < gridHeight; i++) {	
 	
 	var lineStr = "";
-	for (var j = 0; j < ds_grid_width(grid); j++) {
+	for (var j = 0; j < gridWidth; j++) {
 		
 		var itemStr = "";
 		if (i == -1) {

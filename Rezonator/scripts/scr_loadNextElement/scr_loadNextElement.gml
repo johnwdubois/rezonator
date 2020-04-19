@@ -119,8 +119,9 @@ if (string_count("/>", currentElement) > 0) {
 		
 	var lineGridWordIDList = ds_list_create();
 	var dbstr = "";
-		
-	for (var j = 0; j < ds_list_size(linesWithWordsList); j++) {
+	
+	var linesWithWordsListSize = ds_list_size(linesWithWordsList);
+	for (var j = 0; j < linesWithWordsListSize ; j++) {
 		var lineNumber = ds_list_find_value(linesWithWordsList, j);
 			
 		wordIDCounter++;

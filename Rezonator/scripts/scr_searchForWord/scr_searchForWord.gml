@@ -73,7 +73,8 @@ obj_control.hitGrid = ds_grid_create(obj_control.hitGridWidth, 0);
 obj_control.hitIDCounter = 1;
 
 // loop through unitGrid, so we can get the wordID list of every unit
-for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++) {
+var unitGridHeight = ds_grid_height(obj_control.unitGrid);
+for (var i = 0; i < unitGridHeight; i++) {
 	var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, i);
 	var currentDiscoID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoID, i);
 	var currentUtteranceID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, i);
@@ -90,6 +91,7 @@ for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++) {
 	}
 			
 		// now we loop through every word in wordID list to see if matches our search word
+		var currentWordIDListSize = ds_list_size(currentWordIDList);
 		for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
 			var currentWordID = ds_list_find_value(currentWordIDList, j);
 			var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
@@ -104,7 +106,8 @@ for (var i = 0; i < ds_grid_height(obj_control.unitGrid); i++) {
 			}
 		
 			// loop through all words in list
-			for (var l = 0; l < ds_list_size(obj_control.listOfWords); l++) {
+			var listOfWordsSize = ds_list_size(obj_control.listOfWords);
+			for (var l = 0; l < listOfWordsSize; l++) {
 									
 				if !ds_list_empty(obj_control.listOfWords) {
 					wordToFind = ds_list_find_value(obj_control.listOfWords, l);

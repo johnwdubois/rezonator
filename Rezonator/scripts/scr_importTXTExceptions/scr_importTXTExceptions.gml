@@ -14,8 +14,8 @@ ds_map_clear(global.importGridColMap);
 ds_list_clear(global.importGridColNameList);
 
 
-
-for (var i = 0; i < ds_grid_height(global.importTXTLineGrid); i++) {
+var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
+for (var i = 0; i < importTXTLineGridHeight; i++) {
 	
 	if (ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colException, i)) {
 		continue;

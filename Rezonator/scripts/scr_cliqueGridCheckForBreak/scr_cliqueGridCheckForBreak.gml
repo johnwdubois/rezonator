@@ -53,8 +53,8 @@ for (var displayColCheck = flankLeft; displayColCheck <= flankRight; displayColC
 		}
 		
 		var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, i - 1);
-	
-		for (var j = 0; j < ds_list_size(currentWordIDList); j++)
+		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		for (var j = 0; j < currentWordIDListSize; j++)
 		{
 			if (wordInDisplayCol)
 			{

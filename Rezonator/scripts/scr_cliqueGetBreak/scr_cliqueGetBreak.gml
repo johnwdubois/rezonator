@@ -8,7 +8,8 @@ var chainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChai
 var unitIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colUnitIDList, rowInCliqueGrid);
 var fullWordIDList = ds_list_create();
 
-for (var i = 0; i < ds_list_size(chainIDList); i++)
+var chainIDListSize = ds_list_size(chainIDList);
+for (var i = 0; i < chainIDListSize; i++)
 {
 	var chainID = ds_list_find_value(chainIDList, i);
 	var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), chainID);
@@ -17,7 +18,8 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 		continue;
 	}
 	var wordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
-	for (var j = 0; j < ds_list_size(wordIDList); j++)
+	var wordIDListSize = ds_list_size(wordIDList)
+	for (var j = 0; j < wordIDListSize; j++)
 	{
 		var currentWordID = ds_list_find_value(wordIDList, j);
 		ds_list_add(fullWordIDList, currentWordID);
@@ -25,7 +27,8 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 }
 
 var firstWordList = ds_list_create();
-for (var i = 0; i < ds_list_size(unitIDList); i++)
+var unitIDListSize = ds_list_size(unitIDList);
+for (var i = 0; i < unitIDListSize; i++)
 {
 	var currentUnitID = ds_list_find_value(unitIDList, i);
 	var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
@@ -43,7 +46,8 @@ for (var i = 0; i < ds_list_size(unitIDList); i++)
 }
 
 var breakExists = true;
-for (var i = 0; i < ds_list_size(firstWordList); i++)
+var firstWordListSize = ds_list_size(firstWordList);
+for (var i = 0; i < firstWordListSize; i++)
 {
 	var currentWordID = ds_list_find_value(firstWordList, i);
 	if (currentWordID == undefined)
@@ -72,7 +76,7 @@ if (breakExists)
 {
 	var maxTiltRowInChainGrid = -1;
 	var maxTilt = -1;
-	for (var i = 0; i < ds_list_size(chainIDList); i++)
+	for (var i = 0; i < chainIDListSize; i++)
 	{
 		var currentChain = ds_list_find_value(chainIDList, i);
 		var currentRowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChain);

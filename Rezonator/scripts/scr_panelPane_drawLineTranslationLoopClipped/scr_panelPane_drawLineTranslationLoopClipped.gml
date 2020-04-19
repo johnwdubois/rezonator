@@ -41,8 +41,8 @@ draw_set_color(global.colorThemeText);
 
 //scr_surfaceStart();
 // Not doing a surface here so it can scroll along with the left Navwindow
-
-for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
+var lineGridHeight = ds_grid_height(obj_control.lineGrid);
+for (var i = 0; i < lineGridHeight; i++) {
 	
 	if (y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY < y - strHeight
 	or y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
@@ -75,7 +75,8 @@ for (var i = 0; i < ds_grid_height(obj_control.lineGrid); i++) {
 	// If there is no translation, merely show the transcripts instead
 	else {
 		var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
-		for(var wordListLoop = 0; wordListLoop < ds_list_size(currentLineWordList); wordListLoop++) {
+		var currentLineWordListSize = ds_list_size(currentLineWordList)
+		for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
 			currentLineWordString += currentWordTranscript + " ";

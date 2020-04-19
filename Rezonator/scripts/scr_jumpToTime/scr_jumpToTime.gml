@@ -32,7 +32,8 @@ if(discoID != ""){
 else{
 	var startOfDisco = 0;
 }
-for(var i = startOfDisco ; i< ds_grid_height(obj_control.lineGrid); i++){
+var lineGridHeight = ds_grid_height(obj_control.lineGrid);
+for(var i = startOfDisco ; i< lineGridHeight; i++){
 	var currentTime = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, i);
 	
 	if(real(string_digits(currentTime)) >= real(string_digits(timeStr))){

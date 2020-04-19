@@ -28,7 +28,8 @@ draw_set_color(c_purple);
 
 discoSelectionActive = true;
 
-for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
+var fileLineRipGridHeight = ds_grid_height(global.fileLineRipGrid);
+for (var i = 0; i < fileLineRipGridHeight; i++) {
 	var currentDiscoID = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, i);
 	var selectedRectX1 = x + 20;
 	var selectedRectY1 = y + plusY;

@@ -35,7 +35,8 @@ while (ds_grid_value_exists(tempGrid, col1, 0, col1, ds_grid_height(tempGrid), v
 var rowReturn = -1;
 
 // loop through those possible rows to see which contains correct value in second column
-for (var i = 0; i < ds_list_size(possibleRowsList); i++) {
+var possibleRowsListSize = ds_list_size(possibleRowsList);
+for (var i = 0; i < possibleRowsListSize; i++) {
 	var rowInGrid = ds_list_find_value(possibleRowsList, i);
 	var col2Element = ds_grid_get(tempGrid, col2, rowInGrid);
 	

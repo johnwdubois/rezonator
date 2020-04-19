@@ -37,8 +37,8 @@ var newGridLists = ds_list_create();
 if (needToReorderColList and ds_exists(updatedColList, ds_type_list) and ds_exists(oldColList, ds_type_list)) {
 	
 //	show_message("needToReorderColList!!");
-	
-	for (var i = 0; i < ds_list_size(updatedColList); i++) {
+	var updatedColListSize = ds_list_size(updatedColList);
+	for (var i = 0; i < updatedColListSize; i++) {
 		var currentColString = ds_list_find_value(updatedColList, i);
 		//show_message("in forloop... " + currentColString);
 		
@@ -69,9 +69,11 @@ if (ds_list_size(newGridLists) > 0) {
 
 
 // fill the tempGrid with all the info from the gridLists
-for (var i = 0; i < ds_list_size(currentGridLists); i++) {	
+var currentGridListsSize = ds_list_size(currentGridLists);
+for (var i = 0; i < currentGridListsSize; i++) {	
 	var rowList = ds_list_find_value(currentGridLists, i);
-	for (var j = 1; j < ds_list_size(rowList); j++) {
+	var rowListSize = ds_list_size(rowList);
+	for (var j = 1; j < rowListSize; j++) {
 		var currentCellValue = ds_list_find_value(rowList, j);
 		
 		ds_grid_set(tempGrid, i, j - 1, currentCellValue);

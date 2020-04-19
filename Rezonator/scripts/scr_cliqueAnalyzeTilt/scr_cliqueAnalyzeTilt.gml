@@ -20,7 +20,8 @@ if (chainMaxTiltRowInChainGrid < 0 or chainMaxTiltRowInChainGrid >= ds_grid_heig
 }
 var maxTilt = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colTiltSum, chainMaxTiltRowInChainGrid);
 
-for (var i = 0; i < ds_list_size(chainIDList); i++)
+var chainIDListSize = ds_list_size(chainIDList);
+for (var i = 0; i < chainIDListSize; i++)
 {
 	var currentChainID = ds_list_find_value(chainIDList, i);
 	var currentRowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID);

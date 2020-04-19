@@ -138,7 +138,8 @@ if (mouse_check_button_released(mb_left)) {
 
 // Refresh the cliques if we've made Rez chains
 if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-	for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++) {
+	var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
+	for (var i = 0; i < cliqueGridHeight; i++) {
 		scr_cliqueGridRefreshUnitIDList(i);
 	}
 }

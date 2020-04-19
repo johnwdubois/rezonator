@@ -5,7 +5,8 @@ var chainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChai
 var flankLeft = 99999999;
 var flankRight = 0;
 
-for (var i = 0; i < ds_list_size(chainIDList); i++)
+var chainIDListSize = ds_list_size(chainIDList);
+for (var i = 0; i < chainIDListSize; i++)
 {
 	var currentChainID = ds_list_find_value(chainIDList, i);
 
@@ -22,7 +23,8 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 	
 	var currentWordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 	
-	for (var j = 0; j < ds_list_size(currentWordIDList); j++)
+	var currentWordIDListSize = ds_list_size(currentWordIDList); 
+	for (var j = 0; j < currentWordIDListSize; j++)
 	{
 		var currentWordID = ds_list_find_value(currentWordIDList, j);
 		
@@ -61,7 +63,8 @@ ds_grid_set(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colFlankRight, rowInCliqu
 // Get clique tilt
 var cliqueTilt = 0;
 var chainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, rowInCliqueGrid);
-for (var j = 0; j < ds_list_size(chainIDList); j++)
+var chainIDListSize = ds_list_size(chainIDList);
+for (var j = 0; j < chainIDListSize; j++)
 {
 	var currentChainID = ds_list_find_value(chainIDList, j);
 	var currentRowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID);

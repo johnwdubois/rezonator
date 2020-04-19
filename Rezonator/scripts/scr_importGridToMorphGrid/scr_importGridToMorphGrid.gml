@@ -20,7 +20,8 @@ if (global.plainText) {
 	*/
 
 	// build morphGrid!
-	for (var i = 0; i < ds_grid_height(global.plainTextInfoGrid); i++) {
+	var plainTextInfoGridHeight = ds_grid_height(global.plainTextInfoGrid);
+	for (var i = 0; i < plainTextInfoGridHeight; i++) {
 	
 		var currentParticipant = string(global.givenSpeaker);
 		var currentMorphFullStr = string(ds_grid_get(global.plainTextInfoGrid, morphCol, i));
@@ -36,8 +37,9 @@ if (global.plainText) {
 
 
 		unitCounter++;
-	
-		for (var j = 0; j < ds_list_size(currentMorphList); j++) {
+		
+		var currentMorphListSize = ds_list_size(currentMorphList);
+		for (var j = 0; j < currentMorphListSize; j++) {
 		
 			ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
 		
@@ -72,7 +74,8 @@ else {
 	}
 
 	// build morphGrid!
-	for (var i = 0; i < ds_grid_height(global.importGrid); i++) {
+	var importGridHeight = ds_grid_height(global.importGrid);
+	for (var i = 0; i < importGridHeight; i++) {
 	
 		var currentParticipant = string(ds_grid_get(global.importGrid, participantCol, i));
 		var currentMorphFullStr = string(ds_grid_get(global.importGrid, morphCol, i));
@@ -97,8 +100,9 @@ else {
 		}
 	
 		unitCounter++;
-	
-		for (var j = 0; j < ds_list_size(currentMorphList); j++) {
+		
+		var currentMorphListSize = ds_list_size(currentMorphList);
+		for (var j = 0; j < currentMorphListSize; j++) {
 		
 			ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
 		

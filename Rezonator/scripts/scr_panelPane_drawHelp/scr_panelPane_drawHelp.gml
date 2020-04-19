@@ -31,6 +31,7 @@ var mouseoverJustifyToggle = false;
 //	mouseoverHelp = true;
 //}
 var toggleButtonAmount = 4;
+var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
 
 for(var i = 0; i < toggleButtonAmount; i++) {
 	
@@ -187,7 +188,8 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 		draw_set_alpha(1);
 		draw_circle(gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 20, false);
 		if (device_mouse_check_button_released(0, mb_left)) {
-			for(var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
+			
+			for(var i = 0; i < helpMenuGridHeight; i++) {
 				// Skip past sections already changed
 				if((obj_panelPane.functionHelp_allCollapsed and not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) or (not obj_panelPane.functionHelp_allCollapsed and ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i))) {
 					continue;	
@@ -217,7 +219,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 
 		
 	// Loop through the separate grids to draw titles, and if selected their contents
-	for (var i = 0; i < ds_grid_height(functionHelp_menuGrid); i++) {
+	for (var i = 0; i < helpMenuGridHeight; i++) {
 		
 		itemSize++;
 		// Check to see if section should be hidden or not
@@ -270,7 +272,8 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 			// If section is not collapsed, loop through and draw the contents
 			if (not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) {
 				var currentHelpGrid  = ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, i)
-				for (var j = 0; j < ds_grid_height(currentHelpGrid); j++) {
+				var currentHelpGridHeight = ds_grid_height(currentHelpGrid);
+				for (var j = 0; j < currentHelpGridHeight; j++) {
 					
 					itemSize++;
 					

@@ -52,7 +52,9 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var mouseoverRow = -1;
 
-for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
+var rezInfoGridWidth = ds_grid_width(global.rezInfoGrid);
+var rezInfoGridHeight = ds_grid_height(global.rezInfoGrid);;
+for (var i = 0; i < rezInfoGridWidth; i++) {
 	
 	var colX = 0;
 	if (i == 0) {
@@ -64,7 +66,7 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 	
 	var plusY = rezInfoWindowRectY1 + rowHeight;
 	
-	for (var j = 0; j < ds_grid_height(global.rezInfoGrid); j++) {
+	for (var j = 0; j < rezInfoGridHeight; j++) {
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
@@ -147,7 +149,7 @@ for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
 // draw header for column
 draw_set_color(global.colorThemeBG);
 draw_rectangle(rezInfoWindowRectX1 - clipX, rezInfoWindowRectY1 - clipY, rezInfoWindowRectX2 - clipX, rezInfoWindowRectY1 + rowHeight - clipY, false);
-for (var i = 0; i < ds_grid_width(global.rezInfoGrid); i++) {
+for (var i = 0; i < rezInfoGridWidth; i++) {
 	var colX = 0;
 	if (i == 0) {
 		colX = rezInfoWindowRectX1;
@@ -200,7 +202,8 @@ if (obj_importMapping.rezInfoGridSelectedRow > -1) {
 			var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, 0, obj_importMapping.tagInfoGrid_colLabel, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
 				
 			var occurences = 0;
-			for (var i = 0; i < ds_grid_height(obj_importMapping.tagInfoGrid); i++) {
+			var tagInfoGridHeight = ds_grid_height(obj_importMapping.tagInfoGrid);
+			for (var i = 0; i < tagInfoGridHeight; i++) {
 				occurences += (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, i) == oldTag) ? 1 : 0;
 			}
 				
