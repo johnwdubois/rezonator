@@ -146,14 +146,14 @@ for (var i = 0; i < lineGridHeight; i++) {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
+	draw_text(floor(x + (textMarginLeft/2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
 	
 	//Color codes the line lists for User
 	draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	//draw_set_color(lineColor);
 	draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	draw_set_color(global.colorThemeText);
-	draw_text(x + (textMarginLeft) - clipX + 10, y + textMarginTop + scrollPlusY + textPlusY - clipY, lineSpeaker);
+	draw_text(floor(x + (textMarginLeft) + 10) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, lineSpeaker);
 	
 	var textMarginLeftReal = (obj_control.showParticipantName) ? (windowWidth / 3) : textMarginLeft;
 	
@@ -163,7 +163,7 @@ for (var i = 0; i < lineGridHeight; i++) {
 	draw_set_color(global.colorThemeBG);
 	draw_line_width(textMarginLeftReal - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 	draw_set_color(global.colorThemeText);
-	draw_text(textMarginLeftReal, y + textMarginTop + scrollPlusY + textPlusY - clipY + textAdjustY/2, currentLineWordString);
+	draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, currentLineWordString);
 	
 	
 	

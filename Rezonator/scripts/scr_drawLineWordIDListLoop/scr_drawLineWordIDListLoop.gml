@@ -129,7 +129,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	}
 	
 	var currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow);
-	if (typeof(currentWordX) == "string") {
+	if (is_string(currentWordX)) {
 		currentWordX = 0;
 	}
 	obj_control.leftScreenBound = min(currentWordX, obj_control.leftScreenBound);
