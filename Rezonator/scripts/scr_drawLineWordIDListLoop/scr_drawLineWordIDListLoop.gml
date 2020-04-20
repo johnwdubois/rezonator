@@ -61,7 +61,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	// Check if the word is a ChunkWord
 	if(currentWordState == obj_control.wordStateChunk) {
 		
-		scr_drawChunk(currentWordID);
+		scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
 		
 		continue;	
 	}
@@ -237,8 +237,8 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	
 	
 	
-	
-	if (!obj_chain.inRezPlay and (mouse_y > wordRectY1 and mouse_y < wordRectY2)) {
+	// Until I can get a check that sees if the mouseRect is in the line, this can't happen
+	if (!obj_chain.inRezPlay) {// and ((mouse_y > wordRectY1 and mouse_y < wordRectY2) or (mouse_y > wordRectY1 and mouse_y < wordRectY2))) {
 		scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
 	}
 	

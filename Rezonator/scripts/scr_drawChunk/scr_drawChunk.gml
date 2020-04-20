@@ -1,6 +1,9 @@
 // Draw a chunkWord to the screen
 
 var currentWordID = argument0;
+var currentLineY = argument1;
+var fontScale = argument2;
+var unitID = argument3;
 var currentWordGridRow = currentWordID - 1;
 
 // Here will be functionality to focus on a Chunk and add it to a Chain

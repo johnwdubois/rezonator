@@ -9,6 +9,8 @@ if(inRectWordIDListSize > 0 and not inRectUnitIDListSize > 0 and obj_control.mou
 
 	trackChunkMade = true;
 }
+inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
+
 if (inRectUnitIDListSize > 0 && inRectWordIDListSize > 0) { // Make sure the box captured something
 	//show_message("doin");
 	// Expand the box grid to fit the new info

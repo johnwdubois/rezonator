@@ -12,7 +12,7 @@ var panelPaneResizeHeld = argument8;
 
 //Prevent the mouse from clicking on words/lines while releasing from a drag
 var mouseRectExists = ((abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5) or (abs(obj_control.mouseHoldRectX1 - obj_control.mouseHoldRectX2) > 5));
-var hoverWordID = -1;	
+//var hoverWordID = -1;	
 	
 // figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 var mouseover = false;
@@ -99,7 +99,7 @@ and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_widt
 }
 	
 // If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
-	
+var inMouseHoldRect = 0;	
 if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
 	if(obj_control.mouseRectWithinLine) {
 		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
