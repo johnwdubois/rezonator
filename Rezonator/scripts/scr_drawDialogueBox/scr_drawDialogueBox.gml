@@ -41,7 +41,7 @@ if (obj_control.dialogueBoxActive) {
 	draw_set_colour(global.colorThemeText);
 	
 	draw_set_font(fnt_mainBold);
-	draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15, string(game_display_name));
+	draw_text(floor(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15), floor(camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15), string(game_display_name));
 	
 	draw_set_font(fnt_mainLarge1);
 
@@ -65,30 +65,30 @@ if (obj_control.dialogueBoxActive) {
 	draw_set_font(fnt_mainLarge1);
 	
 	// draw button text
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 30, camera_get_view_height(view_camera[0])/2 + 75, "OK");
-	draw_text(camera_get_view_width(view_camera[0]) /2 + 150, camera_get_view_height(view_camera[0])/2 + 75, "Cancel");
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 30), floor(camera_get_view_height(view_camera[0]) / 2 + 75), "OK");
+	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 150), floor(camera_get_view_height(view_camera[0]) / 2 + 75), "Cancel");
 	
 	if (obj_control.changeAuthor) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the name of the new chain creator.");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the name of the new chain creator.");
 	}
 	
 	if (obj_control.swapLine) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input line Number you would line to swap with.");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input line Number you would line to swap with.");
 	}
 	
 	if (obj_control.replace) {
 		if(obj_control.splitWord){
-			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the split words in this format word1,word2");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the split words in this format word1,word2");
 		}
 		else{
-			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to substitute.");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the new word you would like to substitute.");
 		}
 		
 					
 		// draw boolean option check boxes
 		draw_set_colour(global.colorThemeText);
 		draw_set_font(fnt_main);
-		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Split Word");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Split Word");
 		
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
 		if (obj_control.splitWord) {
@@ -105,11 +105,11 @@ if (obj_control.dialogueBoxActive) {
 			
 				if(obj_control.splitWord){
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Enabled");
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Disabled");
 				}
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.splitWord = !obj_control.splitWord;
@@ -135,13 +135,13 @@ if (obj_control.dialogueBoxActive) {
 			obj_control.newWordPre3 = false;
 		}
 		
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the new word you would like to add.");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the new word you would like to add.");
 	
 	
 			// draw boolean option check boxes
 		draw_set_colour(global.colorThemeText);
 		draw_set_font(fnt_main);
-		draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Insert Before");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Insert Before");
 		
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
 		if (obj_control.before) {
@@ -158,11 +158,11 @@ if (obj_control.dialogueBoxActive) {
 			
 				if(obj_control.before){
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Enabled");
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Disabled");
 				}
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.before = !obj_control.before;
@@ -172,27 +172,27 @@ if (obj_control.dialogueBoxActive) {
 	}
 	
 	if(obj_control.caption){
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the caption you would like to add.");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the caption you would like to add.");
 	}	
 	
 	
 	if (obj_control.rename) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the name for this chain.");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the name for this chain.");
 	}
 	if (obj_control.recolor) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the color value for this chain.");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the color value for this chain.");
 	}
 
 	if (obj_control.gPressed) {
 		if(obj_control.goToTime){
-			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the Time you would like to jump to.");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the Time you would like to jump to.");
 		}
 		else{
-			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input the line you would like to jump to.");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the line you would like to jump to.");
 		}
 		
 			draw_set_font(fnt_main);
-			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Time Search");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Time Search");
 	
 			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
 			if (obj_control.goToTime) {
@@ -208,11 +208,11 @@ if (obj_control.dialogueBoxActive) {
 			
 				if(obj_control.goToTime){
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Enabled");
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Disabled");
 				}
 				
 				if (mouse_check_button_pressed(mb_left)) {
@@ -223,16 +223,16 @@ if (obj_control.dialogueBoxActive) {
 	}
 
 	if (obj_control.ePressed) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input begining line number , ending line number");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input begining line number , ending line number");
 	}
 
 	if(obj_control.fPressed) {
 		// draw background text
 		if(obj_control.regExCheck){
-			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input Regular expression.");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input Regular expression.");
 		}
 		else{
-			draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Input string to search for.");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input string to search for.");
 		}
 	
 
@@ -266,11 +266,11 @@ if (obj_control.dialogueBoxActive) {
 		//darw boolean options text
 		draw_set_font(fnt_main);
 		if (!obj_control.regExCheck) {
-			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 40,"Search Transcription");
-			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 70,"Case Sensistive");
-			draw_text(camera_get_view_width(view_camera[0]) /2 - 210, camera_get_view_height(view_camera[0])/2 + 100,"In Focused Rez Chain");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Search Transcription");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 70), "Case Sensistive");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 100), "In Focused Rez Chain");
 		}
-		draw_text(camera_get_view_width(view_camera[0]) /2 + 70, camera_get_view_height(view_camera[0])/2 - 48,"Regular Expression");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 70), floor(camera_get_view_height(view_camera[0]) / 2 - 48), "Regular Expression");
 	
 	
 
@@ -286,11 +286,11 @@ if (obj_control.dialogueBoxActive) {
 			
 				if(obj_control.inChainBool){
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+					draw_text(floor(mean(mouse_x - 25,mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Enabled");
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+					draw_text(floor(mean(mouse_x - 25,mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Disabled");
 				}
 				
 				if (mouse_check_button_pressed(mb_left)) {
@@ -308,11 +308,11 @@ if (obj_control.dialogueBoxActive) {
 			
 				if(obj_control.caseSensitive){
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Enabled");
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Disabled");
 				}
 				
 				if (mouse_check_button_pressed(mb_left)) {
@@ -330,11 +330,11 @@ if (obj_control.dialogueBoxActive) {
 			
 				if(obj_control.transcriptSearch){
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Enabled");
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Disabled");
 				}
 				
 				if (mouse_check_button_pressed(mb_left)) {
@@ -353,11 +353,11 @@ if (obj_control.dialogueBoxActive) {
 			
 				if(obj_control.regExCheck){
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y-20,mouse_y - 40) , "Enabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y - 20, mouse_y - 40)), "Enabled");
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y-20,mouse_y - 40) , "Disabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y - 20, mouse_y - 40)), "Disabled");
 				}
 				
 			if (mouse_check_button_pressed(mb_left)) {
@@ -366,7 +366,7 @@ if (obj_control.dialogueBoxActive) {
 		}
 	}
 	if (obj_control.newTagCategory) {
-		draw_text(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 25, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 75, "Name the new category of Tags");
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Name the new category of Tags");
 	}
 
    // input_text_set_enabled(instance, true);
@@ -516,7 +516,7 @@ else{
 }
 draw_set_colour(c_black);
 draw_set_halign(fa_left);
-draw_text(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 5, camera_get_view_height(view_camera[0])/2 , displayText);
+draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - searchBarXOffset + 5), floor(camera_get_view_height(view_camera[0]) / 2), displayText);
 
 //draw_rectangle(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 2 + (10 * cursorPos-1), camera_get_view_height(view_camera[0])/2 - searchBarYOffset + 10, camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 4 + (10 * cursorPos-1), camera_get_view_height(view_camera[0])/2 + searchBarYOffset - 10, false);
 
