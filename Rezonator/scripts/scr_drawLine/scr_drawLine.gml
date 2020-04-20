@@ -52,6 +52,7 @@ if (global.wheresElmo || global.rezzles) {
 }
 
 var activeLineGridHeight = ds_grid_height(currentActiveLineGrid);
+
 var camViewWidth = camera_get_view_width(view_camera[0]);
 var camViewHeight = camera_get_view_height(view_camera[0]);
 
@@ -95,6 +96,9 @@ if (speakerLabelColXHolding > -1) {
 }
 
 var stackChainGridHeight = ds_grid_height(obj_chain.stackChainGrid);
+var lineGridHeight = ds_grid_height(obj_control.lineGrid);
+var unitInStackGridHeight = ds_grid_height(obj_chain.unitInStackGrid);
+var unitGridHeight = ds_grid_height(obj_control.unitGrid);
 
 if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
 	scr_mouseToolCheck(stackChainGridHeight);
@@ -135,7 +139,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	var currentWordIDList = ds_grid_get(currentActiveLineGrid, lineGrid_colWordIDList, drawLineLoop);
 	var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
 	var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
-	
+	var currentWordIDListSize = ds_list_size(currentWordIDList);
 	
 	// get & set the correct pixel-Y value for each line
 	var currentLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop);
@@ -151,7 +155,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	
 	
-	if(ds_list_size(currentWordIDList) > 0 and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+	if(currentWordIDListSize > 0 and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 		
 		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_stackShow) and !instance_exists(obj_dialogueBox)) {
@@ -175,12 +179,12 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			}
 		}
 	}
-	else if(ds_list_size(currentWordIDList) > 0 and obj_toolPane.currentMode == obj_toolPane.modeRead) {
+	else if(currentWordIDListSize > 0 and obj_toolPane.currentMode == obj_toolPane.modeRead) {
 		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 		if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2))) {
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 				//show_message("here");
-				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
 				with (obj_panelPane) {
 					functionChainList_lineGridRowFocused = drawLineLoop;
@@ -201,7 +205,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		obj_control.lineContainsMouseYPos = speakerRectY1;	
 	}
 	
-	if (ds_grid_height(obj_chain.unitInStackGrid) == ds_grid_height(obj_control.unitGrid)) {
+	if (unitInStackGridHeight == unitGridHeight) {
 		currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
 	}
 
