@@ -7,8 +7,8 @@ while (ds_grid_value_exists(linkGridCopy, obj_chain.linkGrid_colDead, 0, obj_cha
 	scr_gridDeleteRow(linkGridCopy, rowToDelete);
 }
 
-var linkGridCopyHeight = ds_grid_height(linkGridCopy);
-for (var i = 0; i < linkGridCopyHeight; i++)
+//var linkGridCopyHeight = ;
+for (var i = 0; i < ds_grid_height(linkGridCopy); i++)
 {
 	var currentChainID = ds_grid_get(linkGridCopy, obj_chain.linkGrid_colChainID, i);
 	if (not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID))
