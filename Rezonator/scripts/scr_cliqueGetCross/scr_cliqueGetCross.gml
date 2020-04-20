@@ -7,7 +7,8 @@ var vizLinkLookupGrid_colChainID = 0;
 var vizLinkLookupGrid_colStart = 1;
 var vizLinkLookupGrid_colEnd = 2;
 
-for (var i = 0; i < ds_list_size(chainIDList); i++)
+var chainIDListSize = ds_list_size(chainIDList);
+for (var i = 0; i < chainIDListSize; i++)
 {
 	var currentChainID = ds_list_find_value(chainIDList, i);
 	var rowInVizLinkGrid = ds_grid_value_y(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, 0, obj_chain.vizLinkGrid_colChainID, ds_grid_height(obj_chain.vizLinkGrid), currentChainID);
@@ -38,7 +39,7 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 
 
 
-for (var i = 0; i < ds_list_size(chainIDList); i++)
+for (var i = 0; i < chainIDListSize; i++)
 {
 	
 	var currentChainID = ds_list_find_value(chainIDList, i);
@@ -94,8 +95,9 @@ for (var i = 0; i < ds_list_size(chainIDList); i++)
 		var source1PixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, rowInLineGridcurrentSource1);
 		var goal1PixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentGoal1 - 1);
 		var goal1PixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, rowInLineGridcurrentGoal1);
-	
-		for (var k = 0; k < ds_grid_height(vizLinkLookupGrid); k++)
+		
+		var vizLinkLookupGridHeight = ds_grid_height(vizLinkLookupGrid);
+		for (var k = 0; k < vizLinkLookupGridHeight; k++)
 		{
 			var lookupGridChainID = ds_grid_get(vizLinkLookupGrid, vizLinkLookupGrid_colChainID, k);
 			if (currentChainID == lookupGridChainID)

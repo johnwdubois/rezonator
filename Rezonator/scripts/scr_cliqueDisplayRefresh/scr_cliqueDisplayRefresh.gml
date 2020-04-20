@@ -22,8 +22,8 @@ cliqueGrid_colLength = 7;
 cliqueGrid_colBreak = 8;
 cliqueGrid_colName = 9;
 */
-
-for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++) {
+var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
+for (var i = 0; i < cliqueGridHeight; i++) {
 	var currentChainID = i;
 	var currentChainState = 0;
 	var currentWordIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colUnitIDList, i);
@@ -44,7 +44,8 @@ for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++) {
 }
 
 var previousCliqueID = -1;
-for (var i = 0; i < ds_grid_height(obj_chain.cliqueDisplayGrid); i++) {
+var cliqueDisplayGridHeight = ds_grid_height(obj_chain.cliqueDisplayGrid);
+for (var i = 0; i < cliqueDisplayGridHeight; i++) {
 	if (i >= ds_grid_height(obj_chain.cliqueDisplayGrid)) {
 		continue;
 	}

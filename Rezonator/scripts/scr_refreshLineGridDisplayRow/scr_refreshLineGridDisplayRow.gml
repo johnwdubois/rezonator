@@ -16,7 +16,8 @@ var grid = argument0;
 var col = obj_control.lineGrid_colDisplayRow;
 
 // set every row in grid column to i
-for (var i = 0; i < ds_grid_height(grid); i++)
+var gridHeight = ds_grid_height(grid);
+for (var i = 0; i < gridHeight; i++)
 {
 	ds_grid_set(grid, col, i, i);
 }

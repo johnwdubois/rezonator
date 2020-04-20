@@ -33,11 +33,13 @@ scr_loadREZGridReset(tempGrid, map, gridStr);
 
 // now we've gotten the new grid, but we may need to change its values
 var originalGridHeight = ds_grid_height(originalGrid);
+var tempGridHeight = ds_grid_height(tempGrid);
+var tempGridWidth = ds_grid_width(tempGrid);
 
 if (originalGridHeight > 0) {
 	
-	for (var i = 0; i < ds_grid_height(tempGrid); i++) {
-		for (var j = 0; j < ds_grid_width(tempGrid); j++) {
+	for (var i = 0; i < tempGridHeight; i++) {
+		for (var j = 0; j < tempGridWidth; j++) {
 			
 			var currentCellValue = ds_grid_get(tempGrid, j, i);
 		
@@ -64,7 +66,8 @@ if (originalGridHeight > 0) {
 				
 				else if (j == obj_control.unitGrid_colWordIDList) {
 					
-					for (var k = 0; k < ds_list_size(currentCellValue); k++) {
+					var currentCellValueSize = ds_list_size(currentCellValue);
+					for (var k = 0; k < currentCellValueSize; k++) {
 						var currentWordID = ds_list_find_value(currentCellValue, k);
 						ds_list_replace(currentCellValue, k, currentWordID + originalWordGridHeight);
 					}
@@ -81,7 +84,8 @@ if (originalGridHeight > 0) {
 				
 				else if (j == obj_control.lineGrid_colWordIDList) {
 					
-					for (var k = 0; k < ds_list_size(currentCellValue); k++) {
+					var currentCellValueSize = ds_list_size(currentCellValue);
+					for (var k = 0; k < currentCellValueSize; k++) {
 						var currentWordID = ds_list_find_value(currentCellValue, k);
 						ds_list_replace(currentCellValue, k, currentWordID + originalWordGridHeight);
 					}
@@ -98,7 +102,7 @@ if (originalGridHeight > 0) {
 
 
 if (originalGrid == obj_control.dynamicWordGrid) {
-	for (var i = 0; i < ds_grid_height(tempGrid); i++) {
+	for (var i = 0; i < tempGridHeight; i++) {
 		var currentReplaceWord = ds_grid_get(tempGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
 		if (typeof(currentReplaceWord) != "string") {
 			ds_grid_set(tempGrid, obj_control.dynamicWordGrid_colReplaceWord, i, "");
@@ -134,8 +138,8 @@ ds_grid_destroy(tempGrid);
 
 
 
-
-for (var i = 0; i < ds_grid_height(obj_chain.unitInStackGrid); i++) {
+var unitInStackGridHeight = ds_grid_height(obj_chain.unitInStackGrid);
+for (var i = 0; i < unitInStackGridHeight; i++) {
 	
 	var currentCellString = scr_drawGridViewerGetItemString(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, i);
 	

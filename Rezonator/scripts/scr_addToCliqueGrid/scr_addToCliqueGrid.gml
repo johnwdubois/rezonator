@@ -11,7 +11,8 @@ var mergeCliqueRow2 = -1;
 
 
 // check to see if the chain is expanding an already existing clique
-for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
+var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
+for (var i = 0; i < cliqueGridHeight; i++)
 {
 	var currentChainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, i);
 	
@@ -24,7 +25,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
 
 if (mergeCliqueRow1 > -1)
 {
-	for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
+	for (var i = 0; i < cliqueGridHeight; i++)
 	{
 		var currentUnitIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colUnitIDList, i);
 		
@@ -47,7 +48,8 @@ if (expandingCliqueRow >= 0 and mergeCliqueRow2 >= 0 and mergeCliqueRow2 < ds_gr
 	var chainIDListMergeCliqueRow1 = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, mergeCliqueRow1);
 	var chainIDListMergeCliqueRow2 = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, mergeCliqueRow2);
 	
-	for (var i = 0; i < ds_list_size(chainIDListMergeCliqueRow1); i++)
+	var chainIDListMergeCliqueRow1Size = ds_list_size(chainIDListMergeCliqueRow1);
+	for (var i = 0; i < chainIDListMergeCliqueRow1Size; i++)
 	{
 		var currentChainID = ds_list_find_value(chainIDListMergeCliqueRow1, i);
 		if (ds_list_find_index(chainIDListMergeCliqueRow2, currentChainID) == -1)
@@ -76,7 +78,7 @@ else if (mergeCliqueRow2 >= 0 and mergeCliqueRow2 < ds_grid_height(obj_chain.cli
 
 // if newUnitID falls into the range of an already existing clique, we add chainID
 // to that clique and refresh
-for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
+for (var i = 0; i < cliqueGridHeight; i++)
 {
 	var currentRangeStart = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colRangeStart, i);
 	var currentRangeEnd = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colRangeEnd, i);
@@ -102,12 +104,14 @@ for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
 
 
 // if newUnitID is not in range of other cliques, we test if it can start a new clique
-for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
+var rezChainGridHeight = ds_grid_height(obj_chain.rezChainGrid);
+for (var i = 0; i < rezChainGridHeight; i++)
 {
 	var currentChainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, i);
 	var currentWordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, i);
 	
-	for (var j = 0; j < ds_list_size(currentWordIDList); j++)
+	var currentWordIDListSize = ds_list_size(currentWordIDList);
+	for (var j = 0; j < currentWordIDListSize; j++)
 	{
 		var currentWordID = ds_list_find_value(currentWordIDList, j);
 		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
@@ -157,7 +161,7 @@ for (var i = 0; i < ds_grid_height(obj_chain.rezChainGrid); i++)
 	}
 }
 
-for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
+for (var i = 0; i < cliqueGridHeight; i++)
 {
 	var currentChainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, i++);
 	if (ds_list_size(currentChainIDList) < 2)

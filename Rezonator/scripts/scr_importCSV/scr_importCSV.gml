@@ -8,7 +8,8 @@ global.importCSVGrid = load_csv(filename);
 var unitCounter = 0;
 var previousUID = -1;
 
-for (var i = 0; i < ds_grid_height(global.importCSVGrid); i++) {
+var importCSVGridHeight = ds_grid_height(global.importCSVGrid);
+for (var i = 0; i < importCSVGridHeight; i++) {
 	
 	var currentUID = real(ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, i));
 	if (previousUID != currentUID) {

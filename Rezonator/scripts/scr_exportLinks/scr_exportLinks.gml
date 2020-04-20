@@ -7,16 +7,18 @@ file_text_writeln(file);
 file_text_write_string(file, "<" + gridName + ">");
 file_text_writeln(file);
 
+var gridHeight = ds_grid_height(grid);
+var gridWidth = ds_grid_width(grid);
 
-for (var i = 0; i < ds_grid_height(grid); i++)
+for (var i = 0; i < gridHeight; i++)
 {
 	var linkFileLine = "";
 	
-	for (var j = 0; j < ds_grid_width(grid); j++)
+	for (var j = 0; j < gridWidth; j++)
 	{
 		linkFileLine += string(ds_grid_get(grid, j, i));
 		
-		if (j < ds_grid_width(grid) - 1)
+		if (j < gridWidth - 1)
 		{
 			linkFileLine += ",";
 		}

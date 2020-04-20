@@ -27,7 +27,8 @@ draw_text(x + textMarginLeft, y + textMarginTop, "Clique");
 draw_set_font(fnt_searchPane);
 
 var textPlusY = 0;
-for (var i = 0; i < ds_grid_height(obj_chain.cliqueGrid); i++)
+var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
+for (var i = 0; i < cliqueGridHeight; i++)
 {
 	var textX = x + textMarginLeft;
 	var textY = y + (textMarginTop * 2) + textPlusY;

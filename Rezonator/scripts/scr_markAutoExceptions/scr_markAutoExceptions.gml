@@ -4,7 +4,8 @@ var firstTagReached = false;
 var exceptionDelimiter = "---";
 var inExceptionCluster = false;
 
-for (var i = 0; i < ds_grid_height(global.importTXTLineGrid); i++) {
+var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
+for (var i = 0; i < importTXTLineGridHeight; i++) {
 	
 	var currentLine = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i);
 	

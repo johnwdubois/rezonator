@@ -27,7 +27,8 @@ lineGridOffset = negativeOffset ? -lineGridOffset : lineGridOffset;
 var lineRangeHeight = camera_get_view_height(view_camera[0]) - navWindowHeight;
 var midLineYPos = (lineRangeHeight / 2) + navWindowHeight;
 
-for(var centerLineLoop = obj_control.drawRangeStart; centerLineLoop < ds_grid_height(obj_control.currentActiveLineGrid); centerLineLoop++){
+var currentActiveLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
+for(var centerLineLoop = obj_control.drawRangeStart; centerLineLoop < currentActiveLineGridHeight; centerLineLoop++){
 	var currentYPos = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, centerLineLoop);
 	
 	if(currentYPos >= midLineYPos){

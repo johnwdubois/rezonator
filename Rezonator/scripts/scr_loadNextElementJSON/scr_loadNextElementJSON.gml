@@ -55,7 +55,8 @@ else {
 
 var lineGridWordIDList = ds_list_create();
 
-for (var i = 0; i < ds_list_size(wordList); i++) {
+var wordListSize = ds_list_size(wordList);
+for (var i = 0; i < wordListSize; i++) {
 	
 	wordIDCounter++;
 	var wordToken = ds_list_find_value(wordList, i);

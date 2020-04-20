@@ -102,7 +102,8 @@ draw_set_alpha(1);
 
 
 var totalUnitAmount = 0;
-for (var i = 0; i < ds_grid_height(global.fileLineRipGrid); i++) {
+var fileLineRipGrid = ds_grid_height(global.fileLineRipGrid);
+for (var i = 0; i < fileLineRipGrid; i++) {
 	totalUnitAmount += ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colUnitAmount, i);
 }
 global.totalUnitAmount = totalUnitAmount;
@@ -186,7 +187,8 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 	draw_text(importWindowX2 - scrollBarWidth - textBuffer, importWindowY1 + (textPlusY), lineCountStr);
 	
 	var participantRectColorList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, i);
-	for (var j = 0; j < ds_list_size(currentParticipantList); j++) {
+	var currentParticipantListSize = ds_list_size(currentParticipantList);
+	for (var j = 0; j < currentParticipantListSize; j++) {
 		var participantRectX1 = importWindowX1 + 100 + (j * 20);
 		var participantRectY1 = importWindowY1 + textPlusY - 5;
 		var participantRectX2 = participantRectX1 + 10;

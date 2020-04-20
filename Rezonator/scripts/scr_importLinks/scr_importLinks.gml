@@ -34,7 +34,8 @@ if (currentLinkSectionStartIndex > -1)
 ds_list_delete(linkSectionLineList, 0);
 
 var db = "";
-for (var i = 0; i < ds_list_size(linkSectionLineList); i++)
+var linkSectionLineListSize = ds_list_size(linkSectionLineList);
+for (var i = 0; i < linkSectionLineListSize; i++)
 {
 	db += string(ds_list_find_value(linkSectionLineList, i)) + ", ";
 }
@@ -49,7 +50,7 @@ if (ds_list_size(linkSectionLineList) < 1)
 var tempGridWidth = string_count(",", ds_list_find_value(linkSectionLineList, 0)) + 1;
 var tempGrid = ds_grid_create(tempGridWidth, 0);
 
-for (var i = 0; i < ds_list_size(linkSectionLineList); i++)
+for (var i = 0; i < linkSectionLineListSize; i++)
 {
 	var linkSectionLine = ds_list_find_value(linkSectionLineList, i);
 	var copyStringStart = 0;
@@ -104,10 +105,10 @@ var currentChainID = ds_grid_get(tempGrid, obj_chain.linkGrid_colChainID, 0);
 var currentTier = ds_grid_get(tempGrid, obj_chain.linkGrid_colTier, 0);
 var currentSource = ds_grid_get(tempGrid, obj_chain.linkGrid_colSource, 0);
 var currentUnitID = ds_grid_get(tempGrid, obj_control.wordGrid_colWordID, currentSource - 1);
+var tempGridHeight = ds_grid_height(tempGrid);
 
 
-
-for (var i = 0; i < ds_grid_height(tempGrid); i++)
+for (var i = 0; i < tempGridHeight; i++)
 {	
 	currentTier = ds_grid_get(tempGrid, obj_chain.linkGrid_colTier, i);
 	currentSource = ds_grid_get(tempGrid, obj_chain.linkGrid_colSource, i);

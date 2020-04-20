@@ -16,7 +16,8 @@
 var grid = argument0;
 
 // loop through chainGrid 
-for (var i = 0; i < ds_grid_height(grid); i++) {
+var gridHeight = ds_grid_height(grid);
+for (var i = 0; i < gridHeight; i++) {
 	if (i >= ds_grid_height(grid)) {
 		continue;
 	}

@@ -92,7 +92,8 @@ draw_set_font(global.fontSortPane);
 
 var selectedGridName = "";
 
-for (var i = 0; i < ds_grid_height(functionSort_gridGrid); i++) {
+var sortGridHeight = ds_grid_height(functionSort_gridGrid);
+for (var i = 0; i < sortGridHeight; i++) {
 	var currentGrid = ds_grid_get(functionSort_gridGrid, functionSort_gridGrid_colGrid, i);
 	
 	var gridName = "";
@@ -152,7 +153,7 @@ for (var i = 0; i < 4; i++) {
 
 var mouseoverAnyOption = false;
 
-for (var i = 0; i < ds_grid_height(functionSort_sortGrid); i++) {
+for (var i = 0; i < sortGridHeight; i++) {
 	var ascendButtonX1 = x + (windowWidth / 3) + textMarginLeft - (sprite_get_width(spr_ascend) / 2);
 	// I promise I'll fix this back up
 	var ascendButtonY1 = y + textMarginTop + 24 + (i * 24) - (sprite_get_height(spr_ascend) / 2); //functionSort_colY[i];

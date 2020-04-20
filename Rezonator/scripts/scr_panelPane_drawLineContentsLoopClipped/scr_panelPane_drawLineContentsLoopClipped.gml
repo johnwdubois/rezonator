@@ -92,7 +92,8 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 			scrollBarListHeight = ds_list_size(functionChainContents_IDList);
 	
 			// Gather specfic information on words
-			for (var j = 0; j < ds_list_size(functionChainContents_IDList); j++) {
+			var IDListSize = ds_list_size(functionChainContents_IDList);
+			for (var j = 0; j < IDListSize; j++) {
 		
 				//Get info on current word
 				var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
@@ -195,7 +196,8 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 							if (currentWordIDList == undefined) {
 								break;
 							}
-							for (var i = 0; i < ds_list_size(currentWordIDList); i++) {
+							var currentWordIDListSize = ds_list_size(currentWordIDList);
+							for (var i = 0; i < currentWordIDListSize; i++) {
 								var currentWordID = ds_list_find_value(currentWordIDList, i);
 								var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
 								currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
