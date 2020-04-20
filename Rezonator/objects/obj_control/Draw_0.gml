@@ -202,6 +202,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 580, "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 600, "wordTopMargin: " + string(wordTopMargin));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 620, "wordTokenView: " + string(wordTokenView));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 640, "wordView: " + string(wordView));
 	
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 400, "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));

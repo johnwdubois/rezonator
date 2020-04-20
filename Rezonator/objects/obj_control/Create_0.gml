@@ -129,6 +129,8 @@ unitIDCounter = 0;
 
 // Boolean for switching transcript view on/off
 wordTokenView = true;
+wordView = 0;
+
 // Seems to prefer starting as false?
 
 

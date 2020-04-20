@@ -225,6 +225,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					draw_set_font(global.fontChainContents);
 					draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 				}
+				
 			
 			
 				textPlusY += strHeight;
@@ -296,16 +297,66 @@ for (var i = 0; i < headerListSize; i++) {
 		colName = ds_list_find_value(global.labelWordGridColNameList, i - 1);
 	}
 	
-	
+	// draw lines to separate columns
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
+	
+	// draw column header names
 	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
 	draw_set_font(global.fontPanelTab);
 	draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
-	if(obj_control.showDevVars) {
+	
+	// draw wordView button
+	var wordViewButtonSize = (tabHeight) - 8;
+	var wordViewRectX1 = colRectX2 - wordViewButtonSize - 4;
+	var wordViewRectY1 = colRectY1 + 4;
+	var wordViewRectX2 = wordViewRectX1 + wordViewButtonSize;
+	var wordViewRectY2 = wordViewRectY1 + wordViewButtonSize;
+	if (obj_control.wordView == i) {
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(wordViewRectX1 - clipX, wordViewRectY1 - clipY, wordViewRectX2 - clipX, wordViewRectY2 - clipY, false);
+		draw_set_color(global.colorThemeBG);
+	}
+	else {
+		draw_set_color(global.colorThemeText);
+	}
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(mean(wordViewRectX1, wordViewRectX2) - clipX, mean(wordViewRectY1, wordViewRectY2) - clipY, "w");
+	if (point_in_rectangle(mouse_x, mouse_y, wordViewRectX1, wordViewRectY1, wordViewRectX2, wordViewRectY2)) {
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(wordViewRectX1 - clipX, wordViewRectY1 - clipY, wordViewRectX2 - clipX, wordViewRectY2 - clipY, true);
+		if (mouse_check_button_released(mb_left)) {
+			obj_control.wordView = i;
+			
+			var toggleTranscriptionGrid = -1;
+			var toggleTranscriptionCol = -1;
+			if (i == 0) {
+				toggleTranscriptionGrid = obj_control.wordGrid;
+				toggleTranscriptionCol = obj_control.wordGrid_colUtteranceID;
+			}
+			else if (i == 1) {
+				toggleTranscriptionGrid = obj_control.wordGrid;
+				toggleTranscriptionCol = obj_control.wordGrid_colWordSeq;
+			}
+			else if (i == 2) {
+				toggleTranscriptionGrid = obj_control.wordGrid;
+				toggleTranscriptionCol = obj_control.wordGrid_colWordTranscript;
+			}
+			else if (i > 2) {
+				toggleTranscriptionGrid = global.labelWordGrid;
+				toggleTranscriptionCol = i - 1;
+			}
+			scr_toggleTranscriptionMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
+		}
+	}
+	
+	
+	if (obj_control.showDevVars) {
 		if(i == headerListSize - 1) {
 			var buttonRectSize = (tabHeight) - 8;
 			var newCategoryRectX1 = colRectX2 + buttonRectSize + 2;
@@ -430,6 +481,8 @@ for (var i = 0; i < headerListSize; i++) {
 }
 draw_set_alpha(1);
 
+// draw line to separate column headers from data
+draw_set_color(global.colorThemeBorders);
 draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeight - clipY);
 
 // Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
