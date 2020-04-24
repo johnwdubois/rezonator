@@ -34,9 +34,28 @@ var strHeightScaled = string_height("A");
 var fontScale = strHeightScaled / strHeightRegular;
 var currentPlaceChainColor = global.colorThemeText;
 
+var chainShowList = obj_chain.chainShowList;
+var wordStateDead = obj_control.wordStateDead;
+var wordStateChunk = obj_control.wordStateChunk;
+var wordStateNormal = obj_control.wordStateNormal;
+var gridSpaceHorizontal = obj_control.gridSpaceHorizontal;
+var showPlaceChains = obj_chain.showPlaceChains;
+var stackShowActive = obj_control.stackShowActive;
+var showDevVars = obj_control.showDevVars;
+var leftScreenBound = obj_control.leftScreenBound;
+var currentTool = obj_toolPane.currentTool;
+var toolRezBrush = obj_toolPane.toolRezBrush;
+var toolTrackBrush = obj_toolPane.toolTrackBrush;
+var mouseRectWithinLine = obj_control.mouseRectWithinLine;
+var mouseRectBeginBetweenWords = obj_control.mouseRectBeginBetweenWords;
+var colorThemeBG = global.colorThemeBG;
+var inRezPlay = obj_chain.inRezPlay;
+
 
 // get each wordID from wordIDList and draw it
-for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
+var drawWordLoop = 0;
+repeat (currentWordIDListSize) {
+//for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
 	var shake = false;
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 	var currentWordGridRow = currentWordID - 1;
@@ -48,22 +67,24 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	
 	var currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
 	for (var i = 0; i < currentWordInChainsListSize; i++) {
-		if (ds_list_find_index(obj_chain.chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
-			ds_list_add(obj_chain.chainShowList, ds_list_find_value(currentWordInChainsList, i));
+		if (ds_list_find_index(chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
+			ds_list_add(chainShowList, ds_list_find_value(currentWordInChainsList, i));
 		}
 	}
 	
-	if(currentWordState == obj_control.wordStateDead) {
+	if(currentWordState != wordStateNormal) {
+		if(currentWordState == wordStateDead) {
 		
-		continue;
-	}
+			continue;
+		}
 	
-	// Check if the word is a ChunkWord
-	if(currentWordState == obj_control.wordStateChunk) {
+		// Check if the word is a ChunkWord
+		if(currentWordState == wordStateChunk) {
 		
-		scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
+			scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
 		
-		continue;	
+			continue;	
+		}
 	}
 	
 	// Draw a word normally
@@ -89,30 +110,8 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	voidMax = max(voidMax, currentWordVoid);
 	
 	// if showing developer variables, draw rectangle to visualize voids
-	if ((obj_control.showDevVars and currentWordVoid > 0)) {// or currentWordVoid > 17) { // Do we want to always be showing this?
-		if (drawWordLoop > 0) {
-			var voidRectX1 = ((previousWordDisplayCol + 1) * obj_control.gridSpaceHorizontal) + wordLeftMargin;
-		}
-		else {
-			var voidRectX1 = 0;
-		}
-		var voidRectY1 = currentLineY - 10;
-		var voidRectX2 = (currentWordDisplayCol * obj_control.gridSpaceHorizontal) + wordLeftMargin;
-		var voidRectY2 = currentLineY + 15;
-			
-		draw_set_alpha(0.5);
-		draw_set_color(c_green);
-		if (currentWordVoid > 6) {
-			draw_set_color(c_yellow);
-			if (currentWordVoid > 10) {
-				draw_set_color(c_orange);
-				if (currentWordVoid > 17) {
-					draw_set_color(c_red);
-				}
-			}
-		}
-		
-		draw_rectangle(voidRectX1, voidRectY1, voidRectX2, voidRectY2, false);
+	if ((showDevVars and currentWordVoid > 0)) {// or currentWordVoid > 17) { // Do we want to always be showing this?
+		scr_drawVoids(drawWordLoop, previousWordDisplayCol, gridSpaceHorizontal, wordLeftMargin, currentLineY, currentWordVoid, currentWordDisplayCol);
 	}
 	
 	// if the previous word is on top of the current word, push the current word out by one column
@@ -132,7 +131,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	if (is_string(currentWordX)) {
 		currentWordX = 0;
 	}
-	obj_control.leftScreenBound = min(currentWordX, obj_control.leftScreenBound);
+	leftScreenBound = min(currentWordX, leftScreenBound);
 		
 	if (currentWordX < currentWordDestX) {
 		currentWordX += abs(currentWordX - currentWordDestX) / 4;
@@ -159,12 +158,12 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	
 	
 	var inMouseHoldRect = 0;
-	if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolRezBrush or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)) {
-		if(obj_control.mouseRectWithinLine) {
+	if (mouse_check_button(mb_left) and (currentTool == toolRezBrush or currentTool == toolTrackBrush)) {
+		if(mouseRectWithinLine) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		}
-		else if (obj_control.mouseRectBeginBetweenWords == -1 and not obj_control.mouseRectWithinLine and not (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush and not searchGridActive)) {
-			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		else if (mouseRectBeginBetweenWords == -1 and not mouseRectWithinLine and not (currentTool == toolTrackBrush and not searchGridActive)) {
+			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 		}
 		else {
 			inMouseHoldRect = 0;
@@ -191,13 +190,13 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 
 	
 	draw_set_alpha(1);
-	draw_set_color(global.colorThemeBG);
+	draw_set_color(colorThemeBG);
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 	
 	// Place Chains Prototype
 	var wordHasLetters = string_length(string_letters(currentWordStringType)) > 0;
 	// Draw Place chains when needed
-	if(obj_chain.showPlaceChains && drawWordLoop != currentWordIDListSize - 1 && wordHasLetters) {
+	if(showPlaceChains && drawWordLoop != currentWordIDListSize - 1 && wordHasLetters) {
 		scr_drawPlaceChains(wordRectX1, wordRectY1, wordRectX2, wordRectY2, drawWordLoop, currentWordIDListSize, currentWordGridRow,currentWordDisplayCol);
 	}
 	
@@ -207,7 +206,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	//var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
 	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordGridRow);
 	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);
-	if(obj_control.stackShowActive) {
+	if(stackShowActive) {
 		var drawGoldStandard = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateGold);
 		var drawIncorrect = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateRed);
 		if (drawGoldStandard) {
@@ -238,7 +237,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	
 	
 	// Until I can get a check that sees if the mouseRect is in the line, this can't happen
-	if (!obj_chain.inRezPlay) {// and ((mouse_y > wordRectY1 and mouse_y < wordRectY2) or (mouse_y > wordRectY1 and mouse_y < wordRectY2))) {
+	if (!inRezPlay) {// and ((mouse_y > wordRectY1 and mouse_y < wordRectY2) or (mouse_y > wordRectY1 and mouse_y < wordRectY2))) {
 		scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
 	}
 	
@@ -248,6 +247,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++)
 	previousWordDisplayString = currentWordString;
 	
 	shapeTextX += currentWordStringWidth + shapeTextSpace;
+	drawWordLoop++;
 }
 
 
