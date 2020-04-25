@@ -347,7 +347,7 @@ for (var i = 0; i < headerListSize; i++) {
 			}
 			else if (i == 2) {
 				toggleTranscriptionGrid = obj_control.wordGrid;
-				toggleTranscriptionCol = obj_control.wordGrid_colWordTranscript;
+				toggleTranscriptionCol = (obj_control.transcriptAvailable) ? obj_control.wordGrid_colWordTranscript : obj_control.wordGrid_colWordToken;
 			}
 			else if (i > 2) {
 				toggleTranscriptionGrid = global.labelWordGrid;
