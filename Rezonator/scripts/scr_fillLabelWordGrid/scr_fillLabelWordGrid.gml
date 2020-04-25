@@ -7,6 +7,19 @@ for (var i = 0; i < labelWordGridHeight; i++) {
 	ds_grid_set(global.labelWordGrid, global.labelWordGrid_colWordID, i, currentWordID);
 }
 
+// check if transcript info is available in wordGrid
+with (obj_control) {
+	transcriptAvailable = false;
+	var wordGridHeight = ds_grid_height(obj_control.wordGrid);
+	for (var i = 0; i < wordGridHeight; i++) {
+		if (ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i) != 0) {
+			transcriptAvailable = true;
+			break;
+		}
+	}
+}
+
+
 ds_list_clear(global.labelWordGridColNameList);
 ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID");
 

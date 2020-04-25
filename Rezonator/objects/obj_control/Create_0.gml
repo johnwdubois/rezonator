@@ -609,6 +609,7 @@ hoverTime[0] = 0;
 hoverTime[1] = 0;
 hoverTime[2] = 0;
 
+transcriptAvailable = false;
 
 
 initialValidFileCheck = false;

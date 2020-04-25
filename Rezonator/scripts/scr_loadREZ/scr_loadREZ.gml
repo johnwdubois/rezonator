@@ -198,3 +198,10 @@ if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGr
 
 ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 //scr_refreshLineGridDisplayRow(obj_control.lineGridBackup);
+
+
+// update labelWordGrid
+if (ds_grid_height(global.labelWordGrid) < ds_grid_height(obj_control.wordGrid)) {
+	ds_grid_resize(global.labelWordGrid, global.labelWordGridWidth, ds_grid_height(obj_control.wordGrid));
+	scr_fillLabelWordGrid();
+}

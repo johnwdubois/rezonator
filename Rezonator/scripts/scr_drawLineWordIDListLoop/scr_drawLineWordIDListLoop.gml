@@ -72,9 +72,11 @@ repeat (currentWordIDListSize) {
 		}
 	}
 	
+	
 	if(currentWordState != wordStateNormal) {
 		if(currentWordState == wordStateDead) {
-		
+			
+			drawWordLoop++;
 			continue;
 		}
 	
@@ -82,10 +84,12 @@ repeat (currentWordIDListSize) {
 		if(currentWordState == wordStateChunk) {
 		
 			scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
-		
-			continue;	
+			
+			drawWordLoop++;
+			continue;
 		}
 	}
+	
 	
 	// Draw a word normally
 	var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);

@@ -13,10 +13,10 @@
 	Author: Terry DuBois
 */
 
+// if this is the first autosave, we will update the labelWordGrid
 if (ds_grid_height(global.labelWordGrid) < ds_grid_height(obj_control.wordGrid)) {
 	ds_grid_resize(global.labelWordGrid, global.labelWordGridWidth, ds_grid_height(obj_control.wordGrid));
 	scr_fillLabelWordGrid();
-	
 }
 
 alarm[1] = 36000;
