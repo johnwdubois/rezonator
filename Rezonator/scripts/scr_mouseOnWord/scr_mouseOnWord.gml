@@ -9,6 +9,7 @@ var unitID = argument5;
 var drawWordLoop = argument6;
 var currentWordIDListSize = argument7;
 var panelPaneResizeHeld = argument8;
+//var inMouseHoldRect = argument9;
 
 //Prevent the mouse from clicking on words/lines while releasing from a drag
 var mouseRectExists = ((abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5) or (abs(obj_control.mouseHoldRectX1 - obj_control.mouseHoldRectX2) > 5));
@@ -124,10 +125,6 @@ else if ((obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) and mouseRect
 				//ds_list_add(inRectUnitIDList, unitID);
 				ds_list_add(inRectWordIDList, currentWordID);
 			}
-			/*if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
-				ds_list_add(inRectUnitIDList, unitID);
-				//ds_list_add(inRectWordIDList, currentWordID);
-			}*/
 		}
 	}
 }
@@ -150,19 +147,6 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 			}
 		}
 	}
-	// Highlight the words if the box is still being made
-	/*if(not obj_control.boxRectReleased and inBoxHoldRect > 0) {
-		// Draw the highlights within the display columns
-		draw_set_color(global.colorThemeSelected1);
-		draw_set_alpha(0.5);
-		if(shape = shapeBlock) {
-			draw_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal, wordRectY2, false);
-		}
-		// If the text is left justified, we don't use the gridSpaceHorizontal
-		else {
-			draw_rectangle(wordRectX1, wordRectY1, wordRectX2 + shapeTextSpace, wordRectY2, false);
-		}
-	} */
 	// If the box has been made, capture the info of the contained words
 	if(obj_control.boxRectMade and inBoxHoldRect > 0) {
 		//show_message("here");

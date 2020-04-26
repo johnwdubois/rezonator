@@ -173,10 +173,9 @@ repeat (currentWordIDListSize) {
 			inMouseHoldRect = 0;
 		}
 		 
-		if (inMouseHoldRect > 0) {
+		if (inMouseHoldRect) {
 			if (not drawBorder) {
 				ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, 2);
-				
 			}
 		}
 		else {
@@ -190,6 +189,7 @@ repeat (currentWordIDListSize) {
 			ds_grid_set(wordDrawGrid, wordDrawGrid_colBorder, currentWordID - 1, false);
 		}
 	}
+	
 	
 
 	
@@ -241,9 +241,39 @@ repeat (currentWordIDListSize) {
 	
 	
 	// Until I can get a check that sees if the mouseRect is in the line, this can't happen
-	if (!inRezPlay) {// and ((mouse_y > wordRectY1 and mouse_y < wordRectY2) or (mouse_y > wordRectY1 and mouse_y < wordRectY2))) {
+	if (((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) && !inRezPlay) {
 		scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
 	}
+	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
+/*var inMouseHoldRect = 0;	
+if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
+	if(obj_control.mouseRectWithinLine) {
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+	}
+	else {
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+	}
+	if (inMouseHoldRect) {
+		with (obj_control) {
+			if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
+				ds_list_add(inRectWordIDList, currentWordID);
+			}
+		}
+	}
+}
+else if ((obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) and mouseRectMade and not mouseoverPanelPane) {
+	inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+	if (inMouseHoldRect) {
+		with (obj_control) {
+			if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
+				// Add the word info to the rectangle lists
+				//ds_list_add(inRectUnitIDList, unitID);
+				ds_list_add(inRectWordIDList, currentWordID);
+			}
+		}
+	}
+}*/
+	
 	
 	scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString);
 
