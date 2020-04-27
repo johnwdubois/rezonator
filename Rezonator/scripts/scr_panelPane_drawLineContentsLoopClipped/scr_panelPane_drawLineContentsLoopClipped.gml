@@ -163,9 +163,16 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				if (functionChainList_currentTab == functionChainList_tabLine) {
 					infoListSize = lineContentsHeaderListSize;
 				}
-			
+				
+				var activeCols = 0;
 				// Set collected info into respective columns
 				for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
+					
+					// if this is the transcript column, and there's no transcript, skip it!
+					if (getInfoLoop == 3 and !obj_control.transcriptAvailable) {
+						continue;
+					}
+					
 					currentWordInfoCol[getInfoLoop] = "";
 					
 					if (getInfoLoop == 0) {
@@ -220,7 +227,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					
 			
 			
-					var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
+					var textX = x + (activeCols * (windowWidth / 6)) + xBuffer;
 					var textY = y + textMarginTop + textPlusY;
 			
 					draw_set_color(global.colorThemeText);
@@ -228,6 +235,8 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					draw_set_valign(fa_middle);
 					draw_set_font(global.fontChainContents);
 					draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
+					
+					activeCols++;
 				}
 				
 			
@@ -275,8 +284,15 @@ if (functionChainList_currentTab == functionChainList_tabLine) {
 	headerListSize = 6;
 }*/
 // Create the column headers
+var activeCols = 0;
 for (var i = 0; i < headerListSize; i++) {
-	var colRectX1 = x + (i * (windowWidth / 6));
+	
+	// if this is the transcript column, and there's no transcript, skip it!
+	if (i == 3 and !obj_control.transcriptAvailable) {
+		continue;
+	}
+	
+	var colRectX1 = x + (activeCols * (windowWidth / 6));
 	var colRectY1 = y;
 	var colRectX2 = colRectX1 + (windowWidth / 6);
 	var colRectY2 = colRectY1 + windowHeight;
@@ -291,9 +307,6 @@ for (var i = 0; i < headerListSize; i++) {
 	else if (i == 1) {
 		colName = "place";
 	}
-	//else if (i == 2) {
-	//	colName = "text";
-	//}
 	else if (i >= 2) {
 		colName = ds_list_find_value(global.labelWordGridColNameList, i);
 	}
@@ -358,7 +371,7 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	
 	if (obj_control.showDevVars) {
-		if(i == headerListSize - 1) {
+		if (i == headerListSize - 1) {
 			var buttonRectSize = (tabHeight) - 8;
 			var newCategoryRectX1 = colRectX2 + buttonRectSize + 2;
 			var newCategoryRectY1 = colRectY1 + 4;
@@ -389,7 +402,7 @@ for (var i = 0; i < headerListSize; i++) {
 			}
 		}
 	
-		if(i > 2) {
+		if (i > 2) {
 			var buttonRectSize = (tabHeight) - 8;
 			var newCategoryRectX1 = colRectX2 - buttonRectSize*2 - 2;
 			var newCategoryRectY1 = colRectY1 + 4;
@@ -404,17 +417,6 @@ for (var i = 0; i < headerListSize; i++) {
 				draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
 				if (mouse_check_button_released(mb_left)) {
 					show_message("Add Tag");
-					/*lineContentsHeaderListSize++;
-					if (!obj_control.dialogueBoxActive) {
-						keyboard_string = "";
-						obj_control.newTag = true;
-					}
-
-					obj_control.dialogueBoxActive = true;
-
-					if (!instance_exists(obj_dialogueBox)) {
-						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					}*/
 				}
 			}
 		
@@ -432,53 +434,12 @@ for (var i = 0; i < headerListSize; i++) {
 				draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
 				if (mouse_check_button_released(mb_left)) {
 					show_message("Remove Tag");
-					/*lineContentsHeaderListSize++;
-					if (!obj_control.dialogueBoxActive) {
-						keyboard_string = "";
-						obj_control.newTag = true;
-					}
-
-					obj_control.dialogueBoxActive = true;
-
-					if (!instance_exists(obj_dialogueBox)) {
-						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					}*/
 				}
 			}
 		}
 	}
 	
-	/*if (functionChainContents_infoCol[i] == 3 && obj_control.showDevVars) {
-		draw_set_color(global.colorThemeText);
-		if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight)) {
-			//show_message("YO");
-			draw_set_color(global.colorThemeBorders);
-			draw_set_alpha(0.5);
-			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
-			if (mouse_check_button_released(mb_left)) {
-				show_message("YO");
-			}
-		}
-		draw_set_color(global.colorThemeText);
-	}
-	
-	// draw toggleDraw button
-			var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
-			var toggleDrawRectX1 = tabRectX2 - buttonRectSize - 4;
-			var toggleDrawRectY1 = tabRectY1 + 4;
-			var toggleDrawRectX2 = toggleDrawRectX1 + buttonRectSize;
-			var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
-		
-			draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-			
-			if (point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
-				if (mouse_check_button_released(mb_left)) {
-					show_message("YO");
-				}
-			}
-	*/
+	activeCols++;
 }
 draw_set_alpha(1);
 
