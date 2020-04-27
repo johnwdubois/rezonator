@@ -12,6 +12,8 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+if (live_call()) return live_result;
+
 // INcrease the size of the utterance column!!!
 
 var filterPaneWidth = 0;
@@ -255,7 +257,7 @@ if (grid != -1) {
 				for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
 					currentWordInfoCol[getInfoLoop] = "";
 			
-					switch (functionChainContents_infoCol) {
+					switch (getInfoLoop) {
 						case 0:
 							if (functionChainList_currentTab == functionChainList_tabStackBrush
 							or functionChainList_currentTab == functionChainList_tabClique) {
@@ -387,7 +389,7 @@ if (grid != -1) {
 	
 		var colName = "";
 	
-		switch (functionChainContents_infoCol) {
+		switch (i) {
 			// 0 --> wordID
 			// 1 --> unitID
 			// 2 --> wordTranscript

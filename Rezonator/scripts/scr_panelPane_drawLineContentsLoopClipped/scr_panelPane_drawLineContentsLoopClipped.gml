@@ -160,7 +160,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				}
 			
 				var infoListSize = 3;
-				if(functionChainList_currentTab == functionChainList_tabLine) {
+				if (functionChainList_currentTab == functionChainList_tabLine) {
 					infoListSize = lineContentsHeaderListSize;
 				}
 			
@@ -188,6 +188,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
 						}
 					}
+					/*
 					else if (getInfoLoop == 2) {
 						if (functionChainList_currentTab == functionChainList_tabStackBrush
 						or functionChainList_currentTab == functionChainList_tabClique) {
@@ -212,8 +213,9 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
 						}
 					}
-					else if (getInfoLoop > 2) {
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.labelWordGrid, getInfoLoop - 1, currentWordID - 1));
+					*/
+					else if (getInfoLoop >= 2) {
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.labelWordGrid, getInfoLoop, currentWordID - 1));
 					}
 					
 			
@@ -263,7 +265,7 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 var headerListSize = 3;
-lineContentsHeaderListSize = 3 + (ds_grid_width(global.labelWordGrid) - 2);
+lineContentsHeaderListSize = ds_grid_width(global.labelWordGrid);
 if (functionChainList_currentTab == functionChainList_tabLine) {
 	headerListSize = lineContentsHeaderListSize;
 }
@@ -289,11 +291,11 @@ for (var i = 0; i < headerListSize; i++) {
 	else if (i == 1) {
 		colName = "place";
 	}
-	else if (i == 2) {
-		colName = "text";
-	}
-	else if (i > 2) {
-		colName = ds_list_find_value(global.labelWordGridColNameList, i - 1);
+	//else if (i == 2) {
+	//	colName = "text";
+	//}
+	else if (i >= 2) {
+		colName = ds_list_find_value(global.labelWordGridColNameList, i);
 	}
 	
 	// draw lines to separate columns
@@ -310,25 +312,25 @@ for (var i = 0; i < headerListSize; i++) {
 	draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 	
 	// draw wordView button
-	var wordViewButtonSize = (tabHeight) - 8;
-	var wordViewRectX1 = colRectX2 - wordViewButtonSize - 4;
-	var wordViewRectY1 = colRectY1 + 4;
-	var wordViewRectX2 = wordViewRectX1 + wordViewButtonSize;
-	var wordViewRectY2 = wordViewRectY1 + wordViewButtonSize;
+	var wordViewButtonSize = (tabHeight / 3);
+	var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
+	var wordViewButtonY = colRectY1 + (tabHeight / 2);
+	
+	draw_set_color(global.colorThemeBorders);
+	draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
+	
 	if (obj_control.wordView == i) {
 		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(wordViewRectX1 - clipX, wordViewRectY1 - clipY, wordViewRectX2 - clipX, wordViewRectY2 - clipY, false);
+		draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 		draw_set_color(global.colorThemeBG);
 	}
 	else {
 		draw_set_color(global.colorThemeText);
 	}
-	draw_set_halign(fa_center);
-	draw_set_valign(fa_middle);
-	draw_text(mean(wordViewRectX1, wordViewRectX2) - clipX, mean(wordViewRectY1, wordViewRectY2) - clipY, "w");
-	if (point_in_rectangle(mouse_x, mouse_y, wordViewRectX1, wordViewRectY1, wordViewRectX2, wordViewRectY2)) {
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(wordViewRectX1 - clipX, wordViewRectY1 - clipY, wordViewRectX2 - clipX, wordViewRectY2 - clipY, true);
+
+	if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
+		draw_set_color(global.colorThemeSelected2);
+		draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 		if (mouse_check_button_released(mb_left)) {
 			obj_control.wordView = i;
 			
@@ -342,13 +344,13 @@ for (var i = 0; i < headerListSize; i++) {
 				toggleTranscriptionGrid = obj_control.wordGrid;
 				toggleTranscriptionCol = obj_control.wordGrid_colWordSeq;
 			}
-			else if (i == 2) {
-				toggleTranscriptionGrid = obj_control.wordGrid;
-				toggleTranscriptionCol = (obj_control.transcriptAvailable) ? obj_control.wordGrid_colWordTranscript : obj_control.wordGrid_colWordToken;
-			}
-			else if (i > 2) {
+			//else if (i == 2) {
+			//	toggleTranscriptionGrid = obj_control.wordGrid;
+			//	toggleTranscriptionCol = (obj_control.transcriptAvailable) ? obj_control.wordGrid_colWordTranscript : obj_control.wordGrid_colWordToken;
+			//}
+			else if (i >= 2) {
 				toggleTranscriptionGrid = global.labelWordGrid;
-				toggleTranscriptionCol = i - 1;
+				toggleTranscriptionCol = i;
 			}
 			scr_toggleTranscriptionMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
 		}

@@ -1,10 +1,15 @@
-// fill labelWordGrid with UnitID and WordID information
+// fill labelWordGrid with UnitID, WordID, token, and transcript information
 var labelWordGridHeight = ds_grid_height(global.labelWordGrid);
 for (var i = 0; i < labelWordGridHeight; i++) {
 	var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, i);
 	var currentWordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, i);
+	var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
+	var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
+	
 	ds_grid_set(global.labelWordGrid, global.labelWordGrid_colUnitID, i, currentUnitID);
 	ds_grid_set(global.labelWordGrid, global.labelWordGrid_colWordID, i, currentWordID);
+	ds_grid_set(global.labelWordGrid, global.labelWordGrid_colWordToken, i, currentWordToken);
+	ds_grid_set(global.labelWordGrid, global.labelWordGrid_colWordTranscript, i, currentWordTranscript);
 }
 
 // check if transcript info is available in wordGrid
@@ -21,7 +26,8 @@ with (obj_control) {
 
 
 ds_list_clear(global.labelWordGridColNameList);
-ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID");
+ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID", "token", "transcript");
+
 
 var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
 for (var i = 0; i < customLabelGridHeight; i++) {
@@ -50,7 +56,7 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		var labelWordGridHeight = ds_grid_height(global.labelWordGrid);
 		for (var j = 0; j < labelWordGridHeight; j++) {
 			var currentToken = ds_list_find_value(tokenList, j);
-			ds_grid_set(global.labelWordGrid, i + 2, j, currentToken);
+			ds_grid_set(global.labelWordGrid, i + 4, j, currentToken);
 		}
 	}
 }

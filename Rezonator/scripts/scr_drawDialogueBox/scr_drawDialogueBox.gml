@@ -660,8 +660,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 		if (obj_control.newTagCategory) {
 			// Will instead input this string into a column in the Tag grid
-			if(obj_panelPane.lineContentsHeaderListSize == 4) {
-			obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
+			if (obj_panelPane.lineContentsHeaderListSize == 4) {
+				obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
 			}
 			else if(obj_panelPane.lineContentsHeaderListSize == 5) {
 				obj_control.dynamicWordGrid_colTag2Label = obj_control.inputText;

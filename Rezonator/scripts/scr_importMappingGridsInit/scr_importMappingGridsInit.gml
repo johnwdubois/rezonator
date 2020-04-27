@@ -24,9 +24,11 @@ for (var j = 0; j < rezInfoGridHeight; j++) {
 
 
 // initiate labelWordGrid
-global.labelWordGridWidth = 2;
+global.labelWordGridWidth = 4;
 global.labelWordGrid_colUnitID = 0;
 global.labelWordGrid_colWordID = 1;
+global.labelWordGrid_colWordToken = 2;
+global.labelWordGrid_colWordTranscript = 3;
 global.labelWordGrid = ds_grid_create(global.labelWordGridWidth, 0);
 
 
