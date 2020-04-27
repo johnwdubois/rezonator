@@ -121,6 +121,7 @@ hoverChunkIDRow = -1;
 
 ds_list_clear(obj_chain.chainShowList);
 
+var previousWordDisplayCol = -1;
 
 // for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLoop++) {
@@ -303,7 +304,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 		}
 	}
 		
-	var previousWordDisplayCol = -1;
+	//var previousWordDisplayCol = -1;
 	
 	// draw hits if in search view, otherwise draw words for this line
 	if (searchGridActive) {

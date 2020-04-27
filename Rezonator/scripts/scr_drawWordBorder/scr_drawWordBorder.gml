@@ -1,15 +1,21 @@
 // Draw the border and/or fill on a word depending on the word's state
 
 var drawBorder = argument0;
-var drawFillRect = argument1;
-var drawFocused = argument2;
-var effectColor = argument3;
-var wordRectX1 = argument4;
-var wordRectY1 = argument5;
-var wordRectX2 = argument6;
-var wordRectY2 = argument7;
-var borderRounded = argument8;
-var fontScale = argument9;
+//var drawFillRect = argument1;
+//var drawFocused = argument2;
+//var effectColor = argument3;
+var currentWordGridRow = argument1;
+var wordRectX1 = argument2;
+var wordRectY1 = argument3;
+var wordRectX2 = argument4;
+var wordRectY2 = argument5
+var borderRounded = argument6;
+var fontScale = argument7;
+
+var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordGridRow);
+	//var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
+var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordGridRow);
+var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);
 
 
 // draw fill rectangle if needed

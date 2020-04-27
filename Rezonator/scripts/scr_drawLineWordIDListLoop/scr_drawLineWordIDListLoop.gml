@@ -34,6 +34,14 @@ var strHeightScaled = string_height("A");
 var fontScale = strHeightScaled / strHeightRegular;
 //var currentPlaceChainColor = global.colorThemeText;
 
+var panelPaneResizeHeld = false;
+
+with(obj_panelPane) {
+	if(windowResizeYHolding) {
+		panelPaneResizeHeld = true;
+	}
+}
+
 var chainShowList = obj_chain.chainShowList;
 var wordStateDead = obj_control.wordStateDead;
 var wordStateChunk = obj_control.wordStateChunk;
@@ -151,14 +159,14 @@ repeat (currentWordIDListSize) {
 	var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
 	var currentWordStringType = string(currentWordString);
 	var currentWordStringWidth = string_width(currentWordStringType);
-	var currentWordStringHeight = string_height(currentWordStringType);
+	//var currentWordStringHeight = string_height(currentWordStringType);
 	
 		
 	var wordRectBuffer = 3;
 	var wordRectX1 = currentWordX - wordRectBuffer;
-	var wordRectY1 = currentLineY - (currentWordStringHeight / 2) - wordRectBuffer;
+	var wordRectY1 = currentLineY - (strHeightScaled / 2) - wordRectBuffer;
 	var wordRectX2 = wordRectX1 + currentWordStringWidth + (wordRectBuffer * 2);
-	var wordRectY2 = wordRectY1 + currentWordStringHeight + (wordRectBuffer * 2);
+	var wordRectY2 = wordRectY1 + strHeightScaled + (wordRectBuffer * 2);
 	
 	
 	var inMouseHoldRect = 0;
@@ -197,19 +205,22 @@ repeat (currentWordIDListSize) {
 	draw_set_color(colorThemeBG);
 	draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 	
-	// Place Chains Prototype
-	var wordHasLetters = string_length(string_letters(currentWordStringType)) > 0;
+	
 	// Draw Place chains when needed
-	if(showPlaceChains && drawWordLoop != currentWordIDListSize - 1 && wordHasLetters) {
-		scr_drawPlaceChains(wordRectX1, wordRectY1, wordRectX2, wordRectY2, drawWordLoop, currentWordIDListSize, currentWordGridRow,currentWordDisplayCol);
+	if(showPlaceChains) {
+		// Place Chains Prototype
+		var wordHasLetters = string_length(string_letters(currentWordStringType)) > 0;
+		if(drawWordLoop != currentWordIDListSize - 1 && wordHasLetters) {
+			scr_drawPlaceChains(wordRectX1, wordRectY1, wordRectX2, wordRectY2, drawWordLoop, currentWordIDListSize, currentWordGridRow,currentWordDisplayCol);
+		}
 	}
 	
 	
 	// figure out whether or not to draw fill/border for this word
-	var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordGridRow);
+	/*var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordGridRow);
 	//var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
 	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordGridRow);
-	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);
+	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);*/
 	if(stackShowActive) {
 		var drawGoldStandard = (currentWordState == obj_control.wordStateGold);
 		var drawIncorrect = (currentWordState == obj_control.wordStateRed);
@@ -228,17 +239,8 @@ repeat (currentWordIDListSize) {
 		}
 	}
 	
-	scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
-	
-	var panelPaneResizeHeld = false;
-
-	with(obj_panelPane) {
-		if(windowResizeYHolding) {
-			panelPaneResizeHeld = true;
-		}
-	}
-	
-	
+	//scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
+	scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 	
 	// Until I can get a check that sees if the mouseRect is in the line, this can't happen
 	if (((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) && !inRezPlay) {

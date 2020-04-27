@@ -47,10 +47,14 @@ scr_surfaceStart();
 var mouseInPane = obj_control.mouseoverPanelPane;
 for (var i = 0; i < lineGridHeight; i++) {
 	
-	if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
-	or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+	if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight) {
+	//or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 		textPlusY += strHeight;
 		continue;
+	}
+	if (y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+			textPlusY += strHeight;
+			break;
 	}
 	
 	
