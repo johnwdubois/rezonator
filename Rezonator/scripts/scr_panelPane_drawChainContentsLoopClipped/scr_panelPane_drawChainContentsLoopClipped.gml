@@ -255,7 +255,7 @@ if (grid != -1) {
 				for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
 					currentWordInfoCol[getInfoLoop] = "";
 			
-					switch (functionChainContents_infoCol[getInfoLoop]) {
+					switch (functionChainContents_infoCol) {
 						case 0:
 							if (functionChainList_currentTab == functionChainList_tabStackBrush
 							or functionChainList_currentTab == functionChainList_tabClique) {
@@ -387,7 +387,7 @@ if (grid != -1) {
 	
 		var colName = "";
 	
-		switch (functionChainContents_infoCol[i]) {
+		switch (functionChainContents_infoCol) {
 			// 0 --> wordID
 			// 1 --> unitID
 			// 2 --> wordTranscript

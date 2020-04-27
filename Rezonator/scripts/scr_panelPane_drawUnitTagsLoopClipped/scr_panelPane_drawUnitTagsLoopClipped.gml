@@ -170,7 +170,7 @@ for (var i = 0; i < headerListSize; i++) {
     var colName = "";
     
 	// Some hard coded fun!
-    switch (functionChainContents_infoCol[i]) {
+    switch (functionChainContents_infoCol) {
         case 0:
             colName = "Tag1";
             break;

@@ -79,12 +79,7 @@ functionChainList_lineGridRowFocused = 0;
 
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;
-functionChainContents_infoCol[0] = 0;
-functionChainContents_infoCol[1] = 1;
-functionChainContents_infoCol[2] = 2;
-functionChainContents_infoCol[3] = 3;
-functionChainContents_infoCol[4] = 4;
-functionChainContents_infoCol[5] = 5;
+functionChainContents_infoCol = 0;
 functionChainContents_maxScrollRange = 8;
 functionChainContents_scrollRangeMin[0] = 0;
 functionChainContents_scrollRangeMax[0] = functionChainContents_maxScrollRange;
