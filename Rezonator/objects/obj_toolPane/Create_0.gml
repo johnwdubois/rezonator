@@ -72,7 +72,7 @@ ToolTipPosX = 0;
 ToolTipPosY = 0;
 hoverTimeLimit = 60;
 
-toolTipTextPointer = string_hash_to_newline("The pointer tool #allows you to click #and drag your mouse #to create mulitple #links in a chain");
+/*toolTipTextPointer = string_hash_to_newline("The pointer tool #allows you to click #and drag your mouse #to create mulitple #links in a chain");
 toolTipTextRez = string_hash_to_newline("The Rez Brush tool #allows you to click #on words to add #them to the #current Rez chain");
 toolTipTextTrack = string_hash_to_newline("The Track Brush tool #allows you to identify #subjects and add #them to the #current Track chain");
 toolTipTextStack = string_hash_to_newline("The Stack Brush tool #allows you to click #on the line and add #it to the current stack");
@@ -80,3 +80,4 @@ toolTipTextNewWord = string_hash_to_newline("The New Word tool #allows you to cl
 toolTipTextBox = string_hash_to_newline("The Box Brush tool #allows you to click #and drag to create #a chunk which can #be added to chains");
 toolTipTextDiscourse = string_hash_to_newline("This button switches #the view to the #discourse of dialogue");
 toolTipTextGrid = string_hash_to_newline("This button switches #the view to the #grids containing all #the data required");
+*/

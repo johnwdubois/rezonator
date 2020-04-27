@@ -63,7 +63,7 @@ functionChainList_tabTrackBrush = 1;
 functionChainList_tabStackBrush = 3;
 functionChainList_tabClique = 4;
 functionChainList_currentTab = functionChainList_tabLine;
-functionChainList_maxScrollRange = 5;
+//functionChainList_maxScrollRange = 5;
 functionChainList_tabName[0] = "Read";
 functionChainList_tabName[2] = "Rez";
 functionChainList_tabName[1] = "Track";
@@ -95,10 +95,10 @@ functionChainContents_sortedColAsc = true;
 alarm[8] = 5;
 
 functionChainContents_colXList = ds_list_create();
-functionChainContents_colXHolding = -1
-functionChainContents_colXHoldingPrev = 0;
-functionChainContents_colXHoldingDiff = 0;
-functionChainContents_colPrevList = ds_list_create();
+//functionChainContents_colXHolding = -1
+//functionChainContents_colXHoldingPrev = 0;
+//functionChainContents_colXHoldingDiff = 0;
+//functionChainContents_colPrevList = ds_list_create();
 
 
 
@@ -106,7 +106,7 @@ functionSort_initialSort = false;
 functionSort_performSort = false;
 functionSort_animationSeq = -1;
 functionSort_animationAlpha = 0;
-functionSort_grid = -1;
+//functionSort_grid = -1;
 functionSort_gridGridSelected = 0;
 functionSort_gridGrid_colGrid = 0;
 functionSort_gridGrid_colHard = 1;
@@ -144,8 +144,8 @@ functionHelp_helpGridPlay = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridAdvanced = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridAbout = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_allCollapsed = true;
-functionHelp_rezCollapsed = false;
-functionHelp_navCollapsed = false;
+//functionHelp_rezCollapsed = false;
+//functionHelp_navCollapsed = false;
 
 functionHelp_helpWindowRectX1 = 0;
 functionHelp_helpWindowRectY1 = 0;
@@ -155,8 +155,8 @@ alarm[3] = 1;
 
 functionGoToLine_selectedDisco = 0;
 
-functionGraphStats_mainGridWidth = 3;
-functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
+//functionGraphStats_mainGridWidth = 3;
+//functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
 
 
 functionAudio = 0;
@@ -172,7 +172,7 @@ functionAudio_seekTo = 0;
 
 for (var i = 0; i < 3; i++) {
 	functionFilter_peek[i] = false;
-	functionFilter_peekList[i] = ds_list_create();
+	//functionFilter_peekList[i] = ds_list_create();
 }
 
 scrollBarHolding = false;
@@ -190,7 +190,7 @@ discoIDSelected = false;
 discoSelectionActive = false;
 //Rez Tracker variables
 showTracker = true;
-isTrackerOpen = false;
+//isTrackerOpen = false;
 currentYheight = 0;
 currentYheightCounterText = 0;
 currentYheightTimerText = 0;

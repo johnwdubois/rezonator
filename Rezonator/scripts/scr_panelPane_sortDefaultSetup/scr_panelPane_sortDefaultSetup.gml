@@ -17,11 +17,11 @@ if not (currentFunction == functionSort)
 	exit;
 }
 
-for (var i = 0; i < 10; i++)
+/*for (var i = 0; i < 10; i++)
 {
 	var textMarginTop = 20;
 	functionSort_colY[i] = y + textMarginTop + 24 + (i * 24) - (sprite_get_height(spr_ascend) / 2);
-}
+}*/
 
 
 

@@ -64,7 +64,7 @@ var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 
 var textMarginTop = functionChainList_tabHeight;
 var textPlusY = 0;
-var chainNameRectMinusY = 4;
+//var chainNameRectMinusY = 4;
 
 var focusedElementY = -1;
 var focusedChainNameRectY1 = -1;
@@ -215,8 +215,8 @@ for (var i = 0; i < gridHeight; i++) {
 	}
 	
 	//Color codes the chain lists for User
-	var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); // Access color of new chain
-	draw_set_color(merge_color(chainColor, global.colorThemeBG, (currentChainState == obj_chain.chainStateFocus) ? 0.65: 0.75)); //soften the color
+	//var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i); // Access color of new chain
+	draw_set_color(merge_color(currentChainColor, global.colorThemeBG, (currentChainState == obj_chain.chainStateFocus) ? 0.65: 0.75)); //soften the color
 	draw_rectangle(chainNameRectX1 - clipX, chainNameRectY1 - clipY, chainNameRectX2 - clipX, chainNameRectY2 - clipY, false);
 	
 	// Outline the rectangle in black

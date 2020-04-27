@@ -16,7 +16,7 @@ drag_offsetY = 0;
 flickVelY = 0;
 flick_power_calibration = 4;
 flick_power_reduction_each_step = 3;
-multiTouch = false;
+//multiTouch = false;
 
 // Keep track of which line the "camera" is centered on
 currentCenterDisplayRow = 0;
@@ -269,7 +269,7 @@ morphGrid_colAffix = 4;
 morphGrid_colUnitStart = 5;
 morphGrid_colUnitEnd = 6;
 morphGrid_colGloss = 7;
-morphGridColMap = ds_map_create();
+//morphGridColMap = ds_map_create();
 
 
 
@@ -299,12 +299,12 @@ randomise();
 
 
 // Initialize the cursor box, which is currently unused
-cursorBox = 0;
-cursorBoxX = 0;
-cursorBoxY = 0;
+//cursorBox = 0;
+//cursorBoxX = 0;
+//cursorBoxY = 0;
 
 // Initialize the camera's draw range
-drawRange = 10;
+drawRange = 8;
 drawRangeStart = 0;
 drawRangeEnd = 0;
 lineSpacing = 6;
@@ -322,9 +322,9 @@ holdPgMod = 4;
 
 
 // Both of these are unused
-wordColor = c_black;
+//wordColor = c_black;
 
-alignment = 0;
+//alignment = 0;
 //0 = left, 1 = center, 2 = right
 
 // Initialize the grid view as inactive
@@ -366,11 +366,11 @@ canPressPlus = true;
 canPressMinus = true;
 
 // Unused variables for dark mode
-darkTheme = false;
-darkThemeBackColor = c_dkgray;
-darkThemeTextColor = c_white;
-lightThemeBackColor = c_white;
-lightThemeTextColor = c_black;
+//darkTheme = false;
+//darkThemeBackColor = c_dkgray;
+//darkThemeTextColor = c_white;
+//lightThemeBackColor = c_white;
+//lightThemeTextColor = c_black;
 
 // Set global font info
 global.fontSize = 0;
@@ -385,7 +385,7 @@ global.fontGridView = fnt_gridView;
 global.navTextBig = false;
 
 // UNused variable
-scrollFast = 0;
+//scrollFast = 0;
 
 // Set boundry for drawing on the left side of the screen
 leftScreenBound = 0;
@@ -406,7 +406,7 @@ highlightedSearchRow = 0;
 highlightedSearchRowAlpha = 0;
 
 // Unused variable
-simulateRightArrow = 0;
+//simulateRightArrow = 0;
 
 // Variable for counting moves
 moveCounter = 0;
@@ -458,15 +458,15 @@ boxRectAbleToInitiate = true;
 boxRectWithinLine = false;
 
 // Unused variables
-quickInside = false;
-quickOutside = false;
+//quickInside = false;
+//quickOutside = false;
 
 // Allow use of shortcuts
 shortcutsEnabled = true;
 
 // Keep track of session length
 sessionStartTime = current_time;
-currentSessionTime = 0;
+//currentSessionTime = 0;
 
 // Search box variables
 fPressed = false;
@@ -527,9 +527,9 @@ boxGridWidth = 6;
 boxGrid_colUnitID = 0;
 boxGrid_colWordIDList = 1;
 boxGrid_colChainIDLists = 2;
-boxGrid_colVoidSum = 3;
-boxGrid_colTimeSpent = 4;
-boxGrid_colMoveCount = 5;
+//boxGrid_colVoidSum = 3;
+//boxGrid_colTimeSpent = 4;
+//boxGrid_colMoveCount = 5;
 
 
 //stack Show variables
@@ -564,7 +564,7 @@ clipX = 0;
 clipY = 0;
 x = 0;
 y = 0;
-stackShowBuffer = 10;
+//stackShowBuffer = 10;
 
 drawRangeCenterOffset = 0;
 drawRangeExtraStepsForward = 0;
@@ -576,7 +576,7 @@ drawLineYOffset = 0;
 global.canScroll = true;
 mouseoverScrollBar = false;
 
-toolTipText = 0;
+//toolTipText = 0;
 
 swapLinePos1 =  0;
 swapLinePos2 =  0;
@@ -584,8 +584,8 @@ swapLinePos2 =  0;
 showLineNumber = true;
 showParticipantName = true;
 
-audioTrackStream = -1;
-audioTrackIndex = -1;
+//audioTrackStream = -1;
+//audioTrackIndex = -1;
 
 
 if(global.tutorial){

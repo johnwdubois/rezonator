@@ -42,7 +42,7 @@ obj_control.listOfWords = ds_list_create();
 ds_list_copy( obj_control.listOfWords, scr_splitString(wordToFind, "&"));
 
 // if user input regEx string
-var firstChar =  string_copy( wordToFind, 0,1);
+//var firstChar =  string_copy( wordToFind, 0,1);
 obj_control.RegEx = ds_list_create();
 
 var regExString = "(\@)*";// "(^|\[)\\+(\\0-9|\@)*\\+(^|\])";// "(\\0-9|\@|\[|\])*"; //finds laughter
@@ -91,7 +91,7 @@ for (var i = 0; i < unitGridHeight; i++) {
 	}
 			
 		// now we loop through every word in wordID list to see if matches our search word
-		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		//var currentWordIDListSize = ds_list_size(currentWordIDList);
 		for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
 			var currentWordID = ds_list_find_value(currentWordIDList, j);
 			var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);

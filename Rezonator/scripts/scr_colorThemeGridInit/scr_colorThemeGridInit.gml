@@ -35,7 +35,7 @@ ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, 0, c_lt
 ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colHighlight, 0, c_green);
 
 // dark theme
-ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colBG, 1, make_color_hsv(0, 0, 20));
+ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colBG, 1, make_color_hsv(0, 0, 40));
 ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colText, 1, c_white);
 ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colSelected1, 1, c_gray);
 ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colSelected2, 1, c_ltgray);

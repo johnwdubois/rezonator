@@ -19,7 +19,7 @@ gridViewColXHoldingDiff = 0;
 gridViewColPrevList = ds_list_create();
 
 
-scrollTogether = false;
+//scrollTogether = false;
 
 gridList = ds_list_create();
 ds_list_add(gridList,

@@ -26,8 +26,8 @@ var lineY2 = undefined;
 var mouseLineX = undefined;
 var mouseLineY = undefined;
 
-var furthestWordID = -1;
-var furthestDisplayCol = -1;
+//var furthestWordID = -1;
+//var furthestDisplayCol = -1;
 
 var minWordWidth = 9999999;
 var linePlusX = 0;
@@ -115,7 +115,7 @@ for (var i = 0; i < chainShowListSize; i++) {
 			firstWordInUnit = -1;
 		}
 		
-		var currentWordStringWidth2 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1)));
+		//var currentWordStringWidth2 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1)));
 		
 		lineX2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID2 - 1);
 		lineY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineGridIndex2);

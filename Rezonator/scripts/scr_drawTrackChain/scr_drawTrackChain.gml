@@ -26,8 +26,8 @@ var lineY2 = undefined;
 var mouseLineX = undefined;
 var mouseLineY = undefined;
 
-var furthestWordID = -1;
-var furthestDisplayCol = -1;
+//var furthestWordID = -1;
+//var furthestDisplayCol = -1;
 
 // loop through rezChainGrid to get chain info
 var chainShowListSize = ds_list_size(chainShowList);

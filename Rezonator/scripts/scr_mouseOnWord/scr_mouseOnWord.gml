@@ -9,6 +9,8 @@ var unitID = argument5;
 var drawWordLoop = argument6;
 var currentWordIDListSize = argument7;
 var panelPaneResizeHeld = argument8;
+var currentWordState = argument9;
+var drawLineLoop = argument10;
 //var inMouseHoldRect = argument9;
 
 //Prevent the mouse from clicking on words/lines while releasing from a drag

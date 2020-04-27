@@ -43,7 +43,7 @@ for (var i = 0; i < chainIDListSize; i++)
 {
 	
 	var currentChainID = ds_list_find_value(chainIDList, i);
-	var rowInviLinkGrid = ds_grid_value_y(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, 0, obj_chain.vizLinkGrid_colChainID, ds_grid_height(obj_chain.vizLinkGrid), currentChainID);
+	//var rowInviLinkGrid = ds_grid_value_y(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colChainID, 0, obj_chain.vizLinkGrid_colChainID, ds_grid_height(obj_chain.vizLinkGrid), currentChainID);
 	
 	if (rowInVizLinkGrid < 0 or rowInVizLinkGrid >= ds_grid_height(obj_chain.vizLinkGrid))
 	{

@@ -15,8 +15,8 @@
 */
 var verticleBuffer = 150;
 var horizontalBuffer = 250;
-var searchBarXOffset = 235;
-var searchBarYOffset = 20;
+//var searchBarXOffset = 235;
+//var searchBarYOffset = 20;
 var buttonXOffset = 50;
 var buttonYOffset = 25;
 var openingScreen = false;

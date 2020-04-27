@@ -38,14 +38,14 @@ indexInDiscoColorList = 0;
 linesWithWordsList = ds_list_create();
 
 participantsInCurrentDiscoList = ds_list_create();
-hueOffset = 0;
+//hueOffset = 0;
 
 fileLoadRate = 50;
 
 ableToHotkey = true;
 
 inititalAutosave = false;
-initialAutosaveComplete = false;
+//initialAutosaveComplete = false;
 
 
 importCSVCurrentUID = 0;

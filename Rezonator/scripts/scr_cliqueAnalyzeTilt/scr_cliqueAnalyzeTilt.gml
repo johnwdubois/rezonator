@@ -37,7 +37,7 @@ for (var i = 0; i < chainIDListSize; i++)
 		maxTilt = currentTilt;
 	}
 	
-	var wordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, currentRowInChainGrid);
+	//var wordIDList = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, currentRowInChainGrid);
 		
 	
 }

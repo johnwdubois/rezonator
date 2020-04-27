@@ -52,7 +52,7 @@ global.menuOpen = true;
 global.neworOpen = false;
 global.tutorial = false;
 global.games = false;
-global.inRezzles = false;
+//global.inRezzles = false;
 global.plainText = false;
 global.tabDeliniatedText = false;
 
@@ -74,7 +74,7 @@ wordAmountList = ds_list_create();
 
 lineTotal = 0;
 wordTotal = 0;
-wordsToLoad = 0;
+//wordsToLoad = 0;
 
 windowWidth = (room_width * 0.6);
 windowHeight = (room_height * 0.6);

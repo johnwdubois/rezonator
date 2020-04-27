@@ -19,7 +19,7 @@ if(obj_panelPane.showNav) {
 }
 
 var Xdistance = 120;
-var Ydistance = 30;
+//var Ydistance = 30;
 var newYheight = 80;
 var newYheightText1 = 65;
 var newYheightText2 = 45;
@@ -33,7 +33,7 @@ var scrollBarWidth = 20;
 var trackerX2 = camera_get_view_width(view_camera[0]) - scrollBarWidth;
 
 var Yheightbuffer = 10;
-var oldYheight = 0;
+//var oldYheight = 0;
 
 //convert seconds into displayable seconds
 var displaySeconds = string(timerSecs); 

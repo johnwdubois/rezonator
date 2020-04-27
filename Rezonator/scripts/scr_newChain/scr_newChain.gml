@@ -75,7 +75,7 @@ if (obj_chain.currentChainID == undefined){
 	obj_chain.currentChainID = 0;
 }
 obj_chain.currentChainID++;
-var chainIDType = ds_grid_height(chainGrid) - 1;
+//var chainIDType = ds_grid_height(chainGrid) - 1;
 var wordIDList = ds_list_create();
 
 // if we are creating a stack, add the new stack to unitInStackGrid

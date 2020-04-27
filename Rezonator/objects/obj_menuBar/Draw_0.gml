@@ -62,8 +62,8 @@
 	draw_set_colour(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_top);
-	var menuOptionY = 0;
-	var menuOptionX = 100;
+	//var menuOptionY = 0;
+	//var menuOptionX = 100;
 	
 	draw_text(mean(0, menuWidth), menuHeight - 25,"File");
 	draw_text(mean(menuWidth, menuWidth*2), menuHeight - 25,"Edit");

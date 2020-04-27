@@ -25,7 +25,7 @@ bubbleDirUp = 3;
 
 arrowHeight = 20;
 arrowLength = 100;
-arrowX = 0;
+//arrowX = 0;
 arrowY = 0;
 
 

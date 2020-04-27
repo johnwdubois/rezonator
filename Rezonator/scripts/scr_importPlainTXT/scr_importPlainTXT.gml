@@ -14,9 +14,9 @@ ds_list_add(global.importGridColNameList, "Group");
 ds_map_add(global.importGridColMap, "Group", 1);
 
 
-var newRow = false;
+//var newRow = false;
 var currentLine = 0;
-var blankRow = true;
+//var blankRow = true;
 var group = 1;
 while (not file_text_eof(fileOpenRead)) {
 	

@@ -25,8 +25,8 @@ var scrollBarOffset = 20;
 
 // Check for mouse location over "Help" button
 var mouseoverHelp = false;
-var mouseoverGridViewToggle = false;
-var mouseoverJustifyToggle = false;
+//var mouseoverGridViewToggle = false;
+//var mouseoverJustifyToggle = false;
 //if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 //	mouseoverHelp = true;
 //}

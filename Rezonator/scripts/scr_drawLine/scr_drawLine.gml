@@ -28,6 +28,8 @@ draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);
 draw_set_alpha(1);
 
+var camViewWidth = camera_get_view_width(view_camera[0]);
+var camViewHeight = camera_get_view_height(view_camera[0]);
 
 drawLineYOffset = 0;
 if (filterGridActive) {
@@ -52,9 +54,6 @@ if (global.wheresElmo || global.rezzles) {
 }
 
 var activeLineGridHeight = ds_grid_height(currentActiveLineGrid);
-
-var camViewWidth = camera_get_view_width(view_camera[0]);
-var camViewHeight = camera_get_view_height(view_camera[0]);
 
 scr_setDrawRange();
 ds_grid_set_grid_region(currentActiveLineGrid, currentActiveLineGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, activeLineGridHeight, lineGrid_colPixelY, 0);
@@ -155,7 +154,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	
 	
-	if(currentWordIDListSize > 0 and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+	if(obj_toolPane.currentMode != obj_toolPane.modeRead and currentWordIDListSize > 0) {
 		
 		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_stackShow) and !instance_exists(obj_dialogueBox)) {
@@ -287,7 +286,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	
 	//Draw quickstack highlights here
 	if (!obj_chain.inRezPlay) {
-		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouse_check_button(mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
+		if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
 		
 			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, camViewWidth, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseRect and speakerLabelColXHolding == -1) {

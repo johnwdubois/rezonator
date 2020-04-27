@@ -14,7 +14,7 @@ if (rowStart < 0)
 }
 
 
-var keepLooping = true;
+//var keepLooping = true;
 var currentRow = rowStart;
 var currentSource = 0;
 var currentSourceDisplayCol = 0;

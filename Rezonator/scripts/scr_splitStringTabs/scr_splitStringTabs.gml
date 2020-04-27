@@ -18,7 +18,7 @@
 var oldString = argument[0];
 var delimiter = argument[1];
 var newList;
-var finalList = ds_list_create();
+//var finalList = ds_list_create();
 if (argument_count >= 3) {
     newList = argument[2];
     ds_list_clear(newList);

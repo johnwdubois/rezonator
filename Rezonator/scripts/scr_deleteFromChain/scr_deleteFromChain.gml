@@ -70,7 +70,7 @@ if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj
 	scr_deadLinkFocusCheck();
 	
 }
-var newHeight = ds_grid_height(obj_chain.currentChainGrid);
+//var newHeight = ds_grid_height(obj_chain.currentChainGrid);
 // Out of comission until Jack says otherwise
 /*if(oldHeight != newHeight and newHeight > 0 and not obj_toolPane.tracksOnlyStackShow) {
 	if(obj_control.currentChainGridRowInDelete != 0) {

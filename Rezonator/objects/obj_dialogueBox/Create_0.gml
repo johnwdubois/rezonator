@@ -32,7 +32,7 @@ displayText = "";
 
 
 questionWindowActive = false;
-askingQuestion = false;
+//askingQuestion = false;
 
 elmoActive = false;
 

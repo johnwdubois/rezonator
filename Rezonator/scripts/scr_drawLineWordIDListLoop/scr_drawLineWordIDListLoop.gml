@@ -32,7 +32,7 @@ var strHeightRegular = string_height("A");
 draw_set_font(global.fontMain);
 var strHeightScaled = string_height("A");
 var fontScale = strHeightScaled / strHeightRegular;
-var currentPlaceChainColor = global.colorThemeText;
+//var currentPlaceChainColor = global.colorThemeText;
 
 var chainShowList = obj_chain.chainShowList;
 var wordStateDead = obj_control.wordStateDead;
@@ -50,13 +50,13 @@ var mouseRectWithinLine = obj_control.mouseRectWithinLine;
 var mouseRectBeginBetweenWords = obj_control.mouseRectBeginBetweenWords;
 var colorThemeBG = global.colorThemeBG;
 var inRezPlay = obj_chain.inRezPlay;
-
+var hitGridHeight = ds_grid_height(obj_control.hitGrid);
 
 // get each wordID from wordIDList and draw it
 var drawWordLoop = 0;
 repeat (currentWordIDListSize) {
 //for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
-	var shake = false;
+	//var shake = false;
 	var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 	var currentWordGridRow = currentWordID - 1;
 
@@ -211,8 +211,8 @@ repeat (currentWordIDListSize) {
 	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordGridRow);
 	var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);
 	if(stackShowActive) {
-		var drawGoldStandard = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateGold);
-		var drawIncorrect = (ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow) == obj_control.wordStateRed);
+		var drawGoldStandard = (currentWordState == obj_control.wordStateGold);
+		var drawIncorrect = (currentWordState == obj_control.wordStateRed);
 		if (drawGoldStandard) {
 			draw_set_color(c_green);
 			draw_set_alpha(0.4);
@@ -242,40 +242,10 @@ repeat (currentWordIDListSize) {
 	
 	// Until I can get a check that sees if the mouseRect is in the line, this can't happen
 	if (((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) && !inRezPlay) {
-		scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld);
+		scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop);
 	}
-	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
-/*var inMouseHoldRect = 0;	
-if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
-	if(obj_control.mouseRectWithinLine) {
-		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-	}
-	else {
-		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-	}
-	if (inMouseHoldRect) {
-		with (obj_control) {
-			if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-				ds_list_add(inRectWordIDList, currentWordID);
-			}
-		}
-	}
-}
-else if ((obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) and mouseRectMade and not mouseoverPanelPane) {
-	inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-	if (inMouseHoldRect) {
-		with (obj_control) {
-			if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
-				// Add the word info to the rectangle lists
-				//ds_list_add(inRectUnitIDList, unitID);
-				ds_list_add(inRectWordIDList, currentWordID);
-			}
-		}
-	}
-}*/
 	
-	
-	scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString);
+	scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString, hitGridHeight);
 
 	previousWordDisplayCol = currentWordDisplayCol;
 	previousWordDisplayString = currentWordString;

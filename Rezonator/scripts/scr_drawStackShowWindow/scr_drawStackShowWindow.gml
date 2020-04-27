@@ -49,10 +49,10 @@ for (var i = 0; i < ds_grid_height(grid); i++) {
 	
 	
 	// Get grid info of current chain
-	var currentChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i);
+	//var currentChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i);
 	var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 	var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
-	var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
+	//var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
 	
 	
 	// Get dimensions of rectagle around chain name

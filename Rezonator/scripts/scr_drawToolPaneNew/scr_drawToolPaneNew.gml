@@ -5,7 +5,7 @@ if (not obj_panelPane.showNav) {
 y = obj_menuBar.menuHeight;
 
 var toolSprScale = 1;//clamp(windowHeight / 210, 0.5, 1);
-var toolButtonBuffer = 10;
+//var toolButtonBuffer = 10;
 
 for (var i = 0; i < 3; i++) {
 	

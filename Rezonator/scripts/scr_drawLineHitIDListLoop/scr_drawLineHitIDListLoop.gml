@@ -100,7 +100,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 		
 		// Set up the measurements for the drawn box
 		var leftPixelX = ds_grid_get(hitGrid, hitGrid_colPixelX, firstWordHitID);
-		var firstDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, firstWordHitID);
+		//var firstDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, firstWordHitID);
 		var rightPixelX = ds_grid_get(hitGrid, hitGrid_colPixelX, lastWordHitID);
 		ds_grid_set(hitGrid, hitGrid_colPixelX, currentWordGridRow, leftPixelX);
 		

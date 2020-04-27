@@ -14,7 +14,7 @@
 
 
 // Access the lineList panelPane object to get it's scrollPlusY
-var lineListPanelPaneInst = inst_PanelPane_chainList;
+//var lineListPanelPaneInst = inst_PanelPane_chainList;
 
 
 draw_set_font(global.fontChainList);
@@ -27,7 +27,7 @@ var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 
 var textMarginTop = functionChainList_tabHeight;
 var textPlusY = 0;
-var chainNameRectMinusY = 4;
+//var chainNameRectMinusY = 4;
 
 var focusedElementY = -1;
 var focusedLineNameRectY1 = -1;

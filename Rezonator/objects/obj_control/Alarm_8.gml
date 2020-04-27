@@ -37,7 +37,7 @@ else {
 	ds_list_copy(inRectList, inRectWordIDList);
 }
 
-var inRectListSize = ds_list_size(inRectList);
+//var inRectListSize = ds_list_size(inRectList);
 //show_message(inRectListSize);
 for (var i = 0; i < ds_list_size(inRectList); i++) {
 	var currentWordID = ds_list_find_value(inRectList, i);
@@ -136,7 +136,7 @@ if (ds_grid_height(gridOfFutureChains) > 0) {
 	var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
 	for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
 		var currentList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, i);
-		var currentListSize = ds_list_size(currentList);
+		//var currentListSize = ds_list_size(currentList);
 		//show_message(currentListSize);
 		if (ds_list_size(currentList) > 1) {
 			

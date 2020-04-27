@@ -42,7 +42,7 @@ chunkGrid_colNest = 9;
 
 chunkGrid = ds_grid_create(chainGridWidth + 2, 0);
 
-creatingPlaceChains = false;
+//creatingPlaceChains = false;
 
 unitInStackGridWidth = 2;
 unitInStackGrid_colUnitID = 0;
@@ -52,12 +52,12 @@ unitInStackGrid = ds_grid_create(unitInStackGridWidth, 0);
 currentChain = 0;
 currentChainID = 0;
 
-chainStateTotal = 5;
+//chainStateTotal = 5;
 chainStateNormal = 0;
-chainStateActive = 1;
+//chainStateActive = 1;
 chainStateFocus = 2;
-chainStateInactive = 3;
-chainStateHidden = 4;
+//chainStateInactive = 3;
+//chainStateHidden = 4;
 chainStateDead = 5;
 
 currentChainGrid = rezChainGrid;
@@ -103,7 +103,7 @@ linkGrid = ds_grid_create(linkGridWidth, 0);
 
 rezPlayLinkGrid = ds_grid_create(linkGridWidth, 0);
 rezPlayLinkGridRow = -1;
-rezPlayLinkGridWait = 20;
+//rezPlayLinkGridWait = 20;
 rezPlayLinkGridChainID = -1;
 rezPlayTime = 0;
 
@@ -130,7 +130,7 @@ rezChainNameCounter = 0;
 trackChainNameCounter = 0;
 stackChainNameCounter = 0;
 placeChainNameCounter = 0;
-chunkNameCounter = 0;
+//chunkNameCounter = 0;
 
 currentFocusedChainID = -1;
 currentFocusedChainIndex = -1;
@@ -159,8 +159,8 @@ cliqueIDCounter = 0;
 cliqueGridRowToRefresh = -1;
 cliqueGridRowToCheckBreak = -1;
 
-cliqueGridChainIDTakenOut = -1;
-cliqueGridChainIndexToTakeOut = -1;
+//cliqueGridChainIDTakenOut = -1;
+//cliqueGridChainIndexToTakeOut = -1;
 
 cliqueGridRowToRefreshFlanks = -1;
 
@@ -168,7 +168,7 @@ cliqueGridRowToRefreshFlanks = -1;
 rezChainGridRowToRefreshTilt = -1;
 
 
-recentlyMovedLinks = ds_list_create();
+//recentlyMovedLinks = ds_list_create();
 recentlyMovedWords = ds_list_create();
 alarm[4] = 30;
 
