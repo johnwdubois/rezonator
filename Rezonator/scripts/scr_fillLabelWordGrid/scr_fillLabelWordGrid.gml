@@ -28,6 +28,16 @@ with (obj_control) {
 ds_list_clear(global.labelWordGridColNameList);
 ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID", "token", "transcript");
 
+// set custom label names for token and transcript columns
+if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1) {
+	var labelName = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colTier, 3);
+	ds_list_set(global.labelWordGridColNameList, 2, labelName);
+}
+if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 4) != -1) {
+	var labelName = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colTier, 4);
+	ds_list_set(global.labelWordGridColNameList, 3, labelName);
+}
+
 
 var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
 for (var i = 0; i < customLabelGridHeight; i++) {

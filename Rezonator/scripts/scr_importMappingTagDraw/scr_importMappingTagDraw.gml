@@ -84,10 +84,11 @@ if (obj_importMapping.continueButtonActive) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
 	
-		if (mouse_check_button_pressed(mb_left)) {
+		if (mouse_check_button_pressed(mb_left)) {	
 			room_goto(rm_mainScreen);
 		}
 	}
+	
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(1);
 	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
