@@ -168,7 +168,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
 					currentWordInfoCol[getInfoLoop] = "";
 					
-					if (functionChainContents_infoCol[getInfoLoop] == 0) {
+					if (getInfoLoop == 0) {
 						if (functionChainList_currentTab == functionChainList_tabStackBrush
 						or functionChainList_currentTab == functionChainList_tabClique) {
 							var unitID = currentWordID;
@@ -179,7 +179,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
 						}
 					}
-					else if (functionChainContents_infoCol[getInfoLoop] == 1) {
+					else if (getInfoLoop == 1) {
 						if (functionChainList_currentTab == functionChainList_tabStackBrush
 						or functionChainList_currentTab == functionChainList_tabClique) {
 							currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
@@ -188,7 +188,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
 						}
 					}
-					else if (functionChainContents_infoCol[getInfoLoop] == 2) {
+					else if (getInfoLoop == 2) {
 						if (functionChainList_currentTab == functionChainList_tabStackBrush
 						or functionChainList_currentTab == functionChainList_tabClique) {
 							currentWordInfoCol[getInfoLoop] = "";
@@ -212,8 +212,8 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
 						}
 					}
-					else if (functionChainContents_infoCol[getInfoLoop] > 2) {
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.labelWordGrid, functionChainContents_infoCol[getInfoLoop] - 1, currentWordID - 1));
+					else if (getInfoLoop > 2) {
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.labelWordGrid, getInfoLoop - 1, currentWordID - 1));
 					}
 					
 			
@@ -277,25 +277,22 @@ for (var i = 0; i < headerListSize; i++) {
 	var colRectX1 = x + (i * (windowWidth / 6));
 	var colRectY1 = y;
 	var colRectX2 = colRectX1 + (windowWidth / 6);
-	if (i == 5) {
-		var colRectX2 = colRectX1 + (windowWidth);	
-	}
 	var colRectY2 = colRectY1 + windowHeight;
 	
 	var colName = "";
 	
 	
 	
-	if (functionChainContents_infoCol[i] == 0) {
+	if (i == 0) {
 		colName = "uID";
 	}
-	else if (functionChainContents_infoCol[i] == 1) {
+	else if (i == 1) {
 		colName = "place";
 	}
-	else if (functionChainContents_infoCol[i] == 2) {
+	else if (i == 2) {
 		colName = "text";
 	}
-	else if (functionChainContents_infoCol[i] > 2) {
+	else if (i > 2) {
 		colName = ds_list_find_value(global.labelWordGridColNameList, i - 1);
 	}
 	
