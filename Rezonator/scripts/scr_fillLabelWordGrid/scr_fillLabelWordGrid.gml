@@ -44,10 +44,18 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	
 	var importGridCol = -1;
 	var currentLabel = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colLabel, i);
-	if(currentLabel != 0){
-		var importGridCol = ds_list_find_index(global.importGridColNameList, "\\" + currentLabel);
-		ds_list_add(global.labelWordGridColNameList, currentLabel);
+
+
+	if (string(currentLabel) == "0" or is_undefined(currentLabel)) {
+		continue;
 	}
+
+
+	var importGridCol = ds_list_find_index(global.importGridColNameList, "\\" + currentLabel);
+	
+	ds_list_add(global.labelWordGridColNameList, currentLabel);
+	
+
 	if (importGridCol >= 0) {
 		
 		var tokenList = ds_list_create();
