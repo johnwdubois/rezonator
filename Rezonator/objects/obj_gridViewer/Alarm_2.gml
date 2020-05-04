@@ -5,8 +5,11 @@ var importGridXColList = ds_map_find_value(gridViewColXListMap, global.labelWord
 
 
 var currentColX = windowX;
-var defaultGridColWidth = windowWidth / ds_grid_width(global.labelWordGrid);
 var importGridWidth = ds_grid_width(global.labelWordGrid);
+var defaultGridColWidth = windowWidth / importGridWidth;
+
+ds_list_clear(importGridXColList);
+
 for (var j = 0; j < importGridWidth; j++) {
 	ds_list_add(importGridXColList, currentColX + scrollBarWidth);
 	currentColX += defaultGridColWidth;

@@ -26,7 +26,7 @@ with (obj_control) {
 
 
 ds_list_clear(global.labelWordGridColNameList);
-ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID", "token", "transcript");
+ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID", "text", "transcript");
 
 // set custom label names for token and transcript columns
 if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1) {

@@ -102,7 +102,7 @@ if (file_exists(fileName)) {
 				var tempList = ds_list_create();
 				if(global.labelWordGridColNameList == undefined){
 					global.labelWordGridColNameList = tempList;
-					ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID", "token", "transcript");
+					ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID", "text", "transcript");
 				}
 				
 
@@ -210,7 +210,7 @@ ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 //scr_refreshLineGridDisplayRow(obj_control.lineGridBackup);
 
 //show_message(string(ds_grid_height(global.labelWordGrid)) + "  " + string(ds_grid_height(obj_control.wordGrid)))
-show_message(scr_getStringOfList(global.labelWordGridColNameList));
+
 // update labelWordGrid
 if (ds_list_size(global.labelWordGridColNameList) > 4) {
 	global.labelWordGridWidth = ds_list_size(global.labelWordGridColNameList);
