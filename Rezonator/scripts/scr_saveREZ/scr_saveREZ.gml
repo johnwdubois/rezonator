@@ -80,6 +80,8 @@ with (obj_saveParent) {
 		var mapLineGrid = scr_gridToJSONLists(lineGrid);
 		var mapimportGrid = scr_gridToJSONLists(global.importGrid);
 		var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
+		var mapLabelWordGrid = scr_gridToJSONLists(global.labelWordGrid);
+		var mapCustomLabelGrid = scr_gridToJSONLists(global.customLabelGrid);
 		
 		ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
 		ds_map_add_list(map, "wordGrid", mapWordGrid);
@@ -96,6 +98,19 @@ with (obj_saveParent) {
 			ds_list_copy(tempList, global.importGridColNameList);
 		}
 		ds_map_add_list(map, "importGridColNameList", tempList);
+		
+		//custom label saves
+		ds_map_add_list(map, "LabelWordGrid", mapLabelWordGrid);
+		ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
+		var tempList2 = ds_list_create();
+		if (global.labelWordGridColNameList  != undefined) {
+			ds_list_copy(tempList2, global.labelWordGridColNameList);
+		}
+		ds_map_add_list(map, "labelWordGridColNameList", tempList2);
+		
+		
+		
+	
 		
 		
 		if (global.stackGrabSave) {
