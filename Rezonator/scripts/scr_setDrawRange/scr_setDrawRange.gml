@@ -1,21 +1,26 @@
 // set range of lines that we want to draw
+var lineGridHeight = ds_grid_height(currentActiveLineGrid);
+var relativeScrollBarHeight = camera_get_view_height(view_camera[0]) - wordTopMargin - (scrollBarWidth * 2) - 25;
+var relativeScrollBarPlusY = scrollBarPlusY - 15;
+//draw_text(camera_get_view_width(view_camera[0]) - 1200, 880, "lineGridHeight: " + string(lineGridHeight));
+//draw_text(camera_get_view_width(view_camera[0]) - 1200, 900, "ScrollBarHeight: " + string(relativeScrollBarHeight));
+//draw_text(camera_get_view_width(view_camera[0]) - 1200, 920, "scrollBarPlusY: " + string(relativeScrollBarPlusY));
+	
 
-var relativeScrollBarHeight = camera_get_view_height(view_camera[0]) - wordTopMargin - (scrollBarWidth * 2);
-var relativeScrollBarPlusY = scrollBarPlusY;
-
-drawRangeCenter = (relativeScrollBarPlusY * ds_grid_height(currentActiveLineGrid)) / relativeScrollBarHeight;
-drawRangeCenter = round(drawRangeCenter);
-drawRangeCenter = clamp(drawRangeCenter, 0, ds_grid_height(currentActiveLineGrid) - 1);
+//still broke, gotta fix
+drawRangeCenter = ((relativeScrollBarPlusY) * lineGridHeight) / relativeScrollBarHeight;
+drawRangeCenter = round(drawRangeCenter) - 5;
+drawRangeCenter = clamp(drawRangeCenter, 0, lineGridHeight - 1);
 
 //var drawRangeOffset = 30;
-drawRangeStart = clamp(drawRangeCenter - obj_control.drawRange, 0, ds_grid_height(currentActiveLineGrid) - 1);
-drawRangeEnd = clamp(drawRangeCenter + obj_control.drawRange, 0, ds_grid_height(currentActiveLineGrid) - 1);
+drawRangeStart = clamp(drawRangeCenter - drawRange, 0, lineGridHeight - 1);
+drawRangeEnd = clamp(drawRangeCenter + drawRange, 0, lineGridHeight - 1);
 
 
 
 
-var topY = wordTopMargin -(obj_control.gridSpaceVertical * 10);
-var bottomY = camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 10);
+var topY = wordTopMargin -(gridSpaceVertical * 5);
+var bottomY = camera_get_view_height(view_camera[0]) + (gridSpaceVertical * 5);
 
 
 
@@ -39,7 +44,7 @@ if (drawRangeEnd + 1 < ds_grid_height(currentActiveLineGrid)) {
 		drawRangeEnd++;
 		drawRangeExtraStepsForward++;
 		
-		if (drawRangeEnd + 1 >= ds_grid_height(currentActiveLineGrid)) {
+		if (drawRangeEnd + 1 >= lineGridHeight) {
 			break;
 		}
 	}
