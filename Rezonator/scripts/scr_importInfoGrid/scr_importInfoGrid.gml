@@ -93,16 +93,21 @@ else {
 		// if this label is < 5% consistency and 1 token per group, it is probably discourse level
 		// if this label is >= 90% consistency and 1 token per group, it is probably unit level
 		// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
-		var levelEstimate = "";
+		var levelEstimate = -1;
 		if (currentConsistency < 5 && OneTokenPerGroup) {
-			levelEstimate = "discourse";
+			levelEstimate = 2; // discourse level estimate
 		}
 		else if (currentConsistency >= 90 && OneTokenPerGroup) {
-			levelEstimate = "unit";
+			levelEstimate = 1; // unit level estimate
 		}
 		else if (currentConsistency >= 90 && !OneTokenPerGroup) {
-			levelEstimate = "token";
+			levelEstimate = 0; // token level estimate
+		}
+		else {
+			levelEstimate = 3;
 		}
 		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLevelEstimation, i, levelEstimate);
 	}
+	
+	ds_grid_sort(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLevelEstimation, true);
 }

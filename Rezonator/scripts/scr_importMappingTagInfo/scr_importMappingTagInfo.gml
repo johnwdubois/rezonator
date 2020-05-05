@@ -82,10 +82,27 @@ for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConsistency; i++) {
 		var currentCell = ds_grid_get(obj_importMapping.tagInfoGrid, i, j);
 		
 		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
+			if (currentCell >= 99 && currentCell < 100) {
+				currentCell = 99;
+			}
 			currentCell = string(max(round(currentCell), 1)) + "%";
 		}
 		else if (i == obj_importMapping.tagInfoGrid_colOneTokenPerGroup) {
 			currentCell = (currentCell) ? "Yes" : "";
+		}
+		else if (i == obj_importMapping.tagInfoGrid_colLevelEstimation) {
+			if (currentCell == 0) {
+				currentCell = "token";
+			}
+			else if (currentCell == 1) {
+				currentCell = "unit";
+			}
+			else if (currentCell == 2) {
+				currentCell = "discourse";
+			}
+			else {
+				currentCell = "";
+			}
 		}
 		
 		draw_set_color(global.colorThemeText);
