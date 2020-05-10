@@ -49,4 +49,5 @@ if (maxTilt < 1)
 	exit;
 }
 
-scr_cliqueGetCross(rowInCliqueGrid);
+//WHY DO WE NEED CROSS??
+//scr_cliqueGetCross(rowInCliqueGrid);
