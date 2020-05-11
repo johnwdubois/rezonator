@@ -78,8 +78,8 @@ for (var i = 0; i < rezInfoGridWidth; i++) {
 		draw_set_color(global.colorThemeBG);
 		var tagInfoGridRow = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, j);
 		if (obj_importMapping.rezInfoGridSelectedRow == j or tagInfoGridRow >= 0) {
-			if (tagInfoGridRow >= 0 and tagInfoGridRow < ds_grid_height(obj_importMapping.tagInfoGrid)) {
-				draw_set_color(ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colColor, tagInfoGridRow));
+			if (tagInfoGridRow >= 0 and tagInfoGridRow < ds_grid_height(global.tagInfoGrid)) {
+				draw_set_color(ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colColor, tagInfoGridRow));
 			}
 			else {
 				draw_set_color(make_color_rgb(183, 183, 255));
@@ -90,17 +90,17 @@ for (var i = 0; i < rezInfoGridWidth; i++) {
 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 			mouseoverRow = j;
 			if (mouse_check_button_pressed(mb_left)) {
-				if (obj_importMapping.tagInfoGridSelectedRow >= 0) {
+				if (global.tagInfoGridSelectedRow >= 0) {
 					obj_importMapping.rezInfoGridSelectedRow = mouseoverRow;
 					
 					// assign label
-					var selectedLabel = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, obj_importMapping.tagInfoGridSelectedRow);
+					var selectedLabel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, global.tagInfoGridSelectedRow);
 					ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, selectedLabel);
-					ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, obj_importMapping.tagInfoGridSelectedRow);
+					ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, global.tagInfoGridSelectedRow);
 					
 					// if this is a custom tag, let's get the level estimate and tier name
 					if (obj_importMapping.rezInfoGridSelectedRow >= 6) {
-						var level = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLevelEstimation, obj_importMapping.tagInfoGridSelectedRow);
+						var level = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, global.tagInfoGridSelectedRow);
 						var tier = string_copy(selectedLabel, 2, string_length(selectedLabel) - 1);
 						ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colLevel, obj_importMapping.rezInfoGridSelectedRow, level);
 						ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colTier, obj_importMapping.rezInfoGridSelectedRow, tier);
@@ -114,7 +114,7 @@ for (var i = 0; i < rezInfoGridWidth; i++) {
 					}
 					
 					// deselect
-					obj_importMapping.tagInfoGridSelectedRow = -1;
+					global.tagInfoGridSelectedRow = -1;
 					obj_importMapping.rezInfoGridSelectedRow = -1;
 				}
 			}
@@ -199,16 +199,16 @@ if (obj_importMapping.rezInfoGridSelectedRow > -1) {
 	if (keyboard_check_pressed(vk_delete)) {
 		var oldTag = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
 		if (oldTag != 0) {
-			var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, 0, obj_importMapping.tagInfoGrid_colLabel, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
+			var oldTagRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colMarker, 0, global.tagInfoGrid_colMarker, ds_grid_height(global.tagInfoGrid), oldTag);
 				
 			var occurences = 0;
-			var tagInfoGridHeight = ds_grid_height(obj_importMapping.tagInfoGrid);
+			var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				occurences += (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, i) == oldTag) ? 1 : 0;
 			}
 				
 			if (occurences < 2) {
-				ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, oldTagRow, false);
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMapped, oldTagRow, false);
 			}
 		}
 		ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, -1);
@@ -298,7 +298,7 @@ if (point_in_rectangle(mouse_x, mouse_y, customTagButtonRectX1, customTagButtonR
 draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(rezInfoWindowRectX1, rezInfoWindowRectY1, rezInfoWindowRectX2, rezInfoWindowRectY2, true);
-if (obj_importMapping.tagInfoGridSelectedRow >= 0) {
+if (global.tagInfoGridSelectedRow >= 0) {
 	for (var i = 0; i < 5; i++) {
 		draw_rectangle(rezInfoWindowRectX1 - i, rezInfoWindowRectY1 - i, rezInfoWindowRectX2 + i, rezInfoWindowRectY2 + i, true);
 	}

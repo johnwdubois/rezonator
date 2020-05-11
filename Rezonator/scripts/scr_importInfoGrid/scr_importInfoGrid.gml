@@ -81,13 +81,13 @@ else {
 			}
 		}
 	
-		ds_grid_resize(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGridWidth, ds_grid_height(obj_importMapping.tagInfoGrid) + 1);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, i, currentTag);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colExample, i, currentExample);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, i, false);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colColor, i, currentColor);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colConsistency, i, currentConsistency);
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colOneTokenPerGroup, i, OneTokenPerGroup);
+		ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, currentExample);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, currentConsistency);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, OneTokenPerGroup);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, false);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, false);
 		
 		
 		// if this label is < 5% consistency and 1 token per group, it is probably discourse level
@@ -95,19 +95,43 @@ else {
 		// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
 		var levelEstimate = -1;
 		if (currentConsistency < 5 && OneTokenPerGroup) {
-			levelEstimate = 2; // discourse level estimate
+			levelEstimate = obj_importMapping.levelDiscourse; // discourse level estimate
 		}
 		else if (currentConsistency >= 90 && OneTokenPerGroup) {
-			levelEstimate = 1; // unit level estimate
+			levelEstimate = obj_importMapping.levelUnit; // unit level estimate
 		}
 		else if (currentConsistency >= 90 && !OneTokenPerGroup) {
-			levelEstimate = 0; // token level estimate
+			levelEstimate = obj_importMapping.levelToken; // token level estimate
 		}
 		else {
-			levelEstimate = 3;
+			levelEstimate = obj_importMapping.levelUnknown;
 		}
-		ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLevelEstimation, i, levelEstimate);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, levelEstimate);
 	}
 	
-	ds_grid_sort(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLevelEstimation, true);
+	ds_grid_sort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true);
+	
+	// after we have sorted, we will set displayToken to be the first token level marker
+	// and set displayUnit to be the first unit level marker
+	var setDisplayToken = false;
+	var setDisplayUnit = false;
+	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
+	for (var i = 0; i < tagInfoGridHeight; i++) {
+		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+		
+		// we have found the first token level marker, let's set it to displayToken
+		if (!setDisplayToken) {
+			if (currentLevel == obj_importMapping.levelToken) {
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, true);
+				setDisplayToken = true;
+			}
+		}
+		// we have found the first unit level marker, let's set it to displayUnit
+		if (!setDisplayUnit) {
+			if (currentLevel == obj_importMapping.levelUnit) {
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, true);
+				setDisplayUnit = true;
+			}
+		}
+	}
 }

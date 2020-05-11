@@ -1,11 +1,11 @@
 //pickwhippedRow = -1;
 
+mouseoverRow = -1;
+
 showDevVars = false;
 
 //pickwhipColorNormal = c_blue;
 //pickwhipColorRequired = c_red;
-
-continueButtonActive = false;
 
 rezInfoGridSelectedRow = -1;
 tagInfoGridSelectedRow = -1;
@@ -20,16 +20,22 @@ global.plainTextInfoGrid_colGroup = 1;
 global.plainTextInfoGrid = ds_grid_create(global.plainTextInfoGridWidth, 0);
 
 
-tagInfoGridWidth = 8;
-tagInfoGrid_colLabel = 0;
-tagInfoGrid_colExample = 1;
-tagInfoGrid_colLevelEstimation = 2;
-tagInfoGrid_colConsistency = 3;
-tagInfoGrid_colGroup = 4;
-tagInfoGrid_colOneTokenPerGroup = 5;
-tagInfoGrid_colMapped = 6;
-tagInfoGrid_colColor = 7;
-tagInfoGrid = ds_grid_create(tagInfoGridWidth, 0);
+
+levelToken = 0;
+levelUnit = 1;
+levelDiscourse = 2;
+levelUnknown = 3;
+
+global.tagInfoGridWidth = 7;
+global.tagInfoGrid_colMarker = 0;
+global.tagInfoGrid_colExample = 1;
+global.tagInfoGrid_colLevel = 2;
+global.tagInfoGrid_colMarkerPercent = 3;
+global.tagInfoGrid_colSingleTokenMarker = 4;
+global.tagInfoGrid_colDisplayToken = 5;
+global.tagInfoGrid_colDisplayUnit = 6;
+
+global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 
 
 if (global.plainText) {	

@@ -46,12 +46,12 @@ for (var currentTagCol = 0; currentTagCol < importGridWidth; currentTagCol++) {
 	if (ds_exists(matchingTagsList, ds_type_list)) {
 		if (ds_list_size(matchingTagsList) > 0) {
 			groupNumber++;
-			ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colGroup, currentTagCol, groupNumber);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colGroup, currentTagCol, groupNumber);
 			var matchingTagsListSize = ds_list_size(matchingTagsList);
 			for (var i = 0; i < matchingTagsListSize; i++) {
 		
 				var currentTagColSet = ds_list_find_value(matchingTagsList, i);
-				ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colGroup, currentTagColSet, groupNumber);
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colGroup, currentTagColSet, groupNumber);
 				ds_list_add(alreadyCheckedList, currentTagColSet);
 			}
 		}

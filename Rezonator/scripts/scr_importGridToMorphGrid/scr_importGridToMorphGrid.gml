@@ -68,6 +68,24 @@ else {
 	var participantCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 2);
 	var morphCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 3);
 	var glossCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 4);
+	
+	
+	
+	
+	
+	var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, 0, global.tagInfoGrid_colDisplayToken, ds_grid_height(global.tagInfoGrid), true);
+	var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
+	
+	var displayUnitRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, 0, global.tagInfoGrid_colDisplayUnit, ds_grid_height(global.tagInfoGrid), true);
+	var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
+	var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
+	
+	
+	
+	
+	
+	
 
 	if (typeof(glossCol) != "number") {
 		glossCol = -1;
@@ -77,8 +95,8 @@ else {
 	var importGridHeight = ds_grid_height(global.importGrid);
 	for (var i = 0; i < importGridHeight; i++) {
 	
-		var currentParticipant = string(ds_grid_get(global.importGrid, participantCol, i));
-		var currentMorphFullStr = string(ds_grid_get(global.importGrid, morphCol, i));
+		var currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
+		var currentMorphFullStr = string(ds_grid_get(global.importGrid, importGrid_colDisplayToken, i));
 		var currentMorphList = scr_splitStringImport(currentMorphFullStr);
 		var currentGlossFullStr = "";
 		if (glossCol >= 0) {

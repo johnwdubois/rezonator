@@ -1,22 +1,18 @@
+if (live_call()) return live_result;
+
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
 var rowHeight = string_height("A") * 1.3;
 
+var colAmount = global.tagInfoGridWidth;
 
 
 // Tag Info window
 var tagInfoWindowRectX1 = 40;
 var tagInfoWindowRectY1 = (camHeight / 2) - 100;
-var tagInfoWindowRectX2 = (camWidth / 2) - 50;
+var tagInfoWindowRectX2 = (camWidth) - 50;
 var tagInfoWindowRectY2 = camHeight - 150;
-// Rez Info window
-var rezInfoWindowRectX1 = (camWidth / 2) + 50;
-var rezInfoWindowRectY1 = (camHeight / 2) - 100;
-var rezInfoWindowRectX2 = camWidth - 40;
-var rezInfoWindowRectY2 = camHeight - 150;
-
-
 
 windowWidth = clamp(tagInfoWindowRectX2 - tagInfoWindowRectX1, 48, 2000);
 windowHeight = clamp(tagInfoWindowRectY2 - tagInfoWindowRectY1, 48, 1500);
@@ -45,63 +41,80 @@ x = tagInfoWindowRectX1;
 y = tagInfoWindowRectY1;
 
 
+if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2)) {
+	obj_importMapping.mouseoverRow = -1;
+}
+
+
+// draw mouseover rectangles
+if (obj_importMapping.mouseoverRow >= 0) {
+	draw_set_color(global.colorThemeSelected1);
+	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.mouseoverRow + 1)) + scrollPlusY;
+	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
+	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, false);
+}
 
 
 // Draw Tag Info window contents
 draw_set_font(fnt_main);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-var mouseoverRow = -1;
 
-for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConsistency; i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
+for (var i = 0; i < colAmount; i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
 	
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
-	var tagInfoGridHeight = ds_grid_height(obj_importMapping.tagInfoGrid);
+	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 	for (var j = 0; j < tagInfoGridHeight; j++) {
+		
+		draw_set_halign(fa_left);
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
 		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
-		//var cellRectX2 = cellRectX1 + (windowWidth / obj_importMapping.tagInfoGrid_colOneTokenPerGroup);
+		//var cellRectX2 = cellRectX1 + (windowWidth / global.tagInfoGrid_colSingleTokenMarker);
 		var cellRectY2 = plusY + rowHeight;
 		
 		// draw BG stripes
-		draw_set_color(global.colorThemeBG);
-		if (obj_importMapping.tagInfoGridSelectedRow == j
-		or ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, j)) {
-			draw_set_color(ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colColor, j));
-		}
-		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		//draw_set_color(global.colorThemeBG);
+		//draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		
 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
-			mouseoverRow = j;
+			obj_importMapping.mouseoverRow = j;
 		}
 		
-		var currentCell = ds_grid_get(obj_importMapping.tagInfoGrid, i, j);
+		var currentCell = ds_grid_get(global.tagInfoGrid, i, j);
 		
-		if (i == obj_importMapping.tagInfoGrid_colConsistency) {
+		if (i == global.tagInfoGrid_colMarkerPercent) {
 			if (currentCell >= 99 && currentCell < 100) {
 				currentCell = 99;
 			}
 			currentCell = string(max(round(currentCell), 1)) + "%";
 		}
-		else if (i == obj_importMapping.tagInfoGrid_colOneTokenPerGroup) {
+		else if (i == global.tagInfoGrid_colSingleTokenMarker) {
 			currentCell = (currentCell) ? "Yes" : "";
 		}
-		else if (i == obj_importMapping.tagInfoGrid_colLevelEstimation) {
-			if (currentCell == 0) {
+		else if (i == global.tagInfoGrid_colLevel) {
+			if (currentCell == obj_importMapping.levelToken) {
 				currentCell = "token";
 			}
-			else if (currentCell == 1) {
+			else if (currentCell == obj_importMapping.levelUnit) {
 				currentCell = "unit";
 			}
-			else if (currentCell == 2) {
+			else if (currentCell == obj_importMapping.levelDiscourse) {
 				currentCell = "discourse";
 			}
 			else {
 				currentCell = "";
+			}
+		}
+		else if (i == global.tagInfoGrid_colDisplayToken || i == global.tagInfoGrid_colDisplayUnit) {
+			if (currentCell == "0") {
+				currentCell = "";
+			}
+			else if (currentCell == "1") {
+				currentCell = "X";
 			}
 		}
 		
@@ -113,38 +126,43 @@ for (var i = 0; i <= obj_importMapping.tagInfoGrid_colConsistency; i++) {
 	}
 }
 
-if (mouseoverRow >= 0) {
+draw_set_halign(fa_left);
+
+if (obj_importMapping.mouseoverRow >= 0) {
 	if (mouse_check_button_pressed(mb_left)) {
-		/*
-		if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
-			
-			var oldTag = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow);
-			if (oldTag != 0) {
-				var oldTagRow = ds_grid_value_y(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, 0, obj_importMapping.tagInfoGrid_colLabel, ds_grid_height(obj_importMapping.tagInfoGrid), oldTag);
-				
-				var occurences = 0;
-				for (var i = 0; i < ds_grid_height(obj_importMapping.tagInfoGrid); i++) {
-					occurences += (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, i) == oldTag) ? 1 : 0;
+		obj_importMapping.rezInfoGridSelectedRow = obj_importMapping.mouseoverRow;
+		
+		
+		// set every marker that has the same level as the one clicked to display false,
+		// and then set the clicked marker's display to true
+		var selectedRowLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, obj_importMapping.rezInfoGridSelectedRow);
+		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
+		for (var i = 0; i < tagInfoGridHeight; i++) {
+			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+		
+			if (currentLevel == selectedRowLevel) {
+				if (selectedRowLevel == obj_importMapping.levelToken) {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, false);
 				}
-				
-				if (occurences < 2) {
-					ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, oldTagRow, false);
+				else if (selectedRowLevel == obj_importMapping.levelUnit) {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, false);
 				}
 			}
-			
-			obj_importMapping.tagInfoGridSelectedRow = mouseoverRow;
-			var tag = ds_grid_get(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colLabel, mouseoverRow);
-			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, obj_importMapping.rezInfoGridSelectedRow, tag);
-			ds_grid_set(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, obj_importMapping.rezInfoGridSelectedRow, mouseoverRow);
-			ds_grid_set(obj_importMapping.tagInfoGrid, obj_importMapping.tagInfoGrid_colMapped, mouseoverRow, true);
 		}
-		*/
-		obj_importMapping.tagInfoGridSelectedRow = mouseoverRow;
+		if (selectedRowLevel == obj_importMapping.levelToken) {
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, obj_importMapping.rezInfoGridSelectedRow, true);
+		}
+		else if (selectedRowLevel == obj_importMapping.levelUnit) {
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, obj_importMapping.rezInfoGridSelectedRow, true);
+		}
+		
+		
+		
 	}
 }
 
 
-if (obj_importMapping.tagInfoGridSelectedRow < 0) {
+if (obj_importMapping.rezInfoGridSelectedRow < 0) {
 	obj_importMapping.rezInfoGridSelectedRow = -1;
 }
 
@@ -155,22 +173,8 @@ if (obj_importMapping.tagInfoGridSelectedRow < 0) {
 
 
 
-// draw mouseover/selected rectangles
-if (mouseoverRow >= 0) {
-	draw_set_color(global.colorThemeBorders);
-	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (mouseoverRow + 1)) + scrollPlusY;
-	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
-	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, true);
-}
-if (obj_importMapping.tagInfoGridSelectedRow > -1) {
-	if (keyboard_check_pressed(vk_escape)) {
-		obj_importMapping.tagInfoGridSelectedRow = -1;
-	}
-	draw_set_color(global.colorThemeBorders);
-	var selectedRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.tagInfoGridSelectedRow + 1)) + scrollPlusY;
-	var selectedRowY2 = selectedRowY1 + rowHeight;
-	draw_rectangle(tagInfoWindowRectX1 - clipX, selectedRowY1 - clipY, tagInfoWindowRectX2 - clipX, selectedRowY2 - clipY, true);
-}
+
+
 
 
 
@@ -178,31 +182,31 @@ if (obj_importMapping.tagInfoGridSelectedRow > -1) {
 // draw header for column
 draw_set_color(global.colorThemeBG);
 draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
-for (var i = 0; i < obj_importMapping.tagInfoGrid_colConsistency + 1; i++) {
-	var colX = tagInfoWindowRectX1 + ((windowWidth / (obj_importMapping.tagInfoGrid_colConsistency + 1)) * i);
+for (var i = 0; i < colAmount; i++) {
+	var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
 	var headerStr = "";
-	switch (i) {
-		case obj_importMapping.tagInfoGrid_colLabel:
-			headerStr = "Line Label";
-			break;
-		case obj_importMapping.tagInfoGrid_colExample:
-			headerStr = "Example";
-			break;
-		case obj_importMapping.tagInfoGrid_colLevelEstimation:
-			headerStr = "Level Estimate";
-			break;
-		case obj_importMapping.tagInfoGrid_colConsistency:
-			headerStr = "% of Groups Labeled";
-			break;
-		case obj_importMapping.tagInfoGrid_colGroup:
-			headerStr = "Group";
-			break;
-		case obj_importMapping.tagInfoGrid_colOneTokenPerGroup:
-			headerStr = "1 Token Per Group";
-			break;
-		default:
-			break;
+	if (i == global.tagInfoGrid_colMarker) {
+		headerStr = "Marker";
 	}
+	else if (i == global.tagInfoGrid_colExample) {
+		headerStr = "Example";
+	}
+	else if (i == global.tagInfoGrid_colLevel) {
+		headerStr = "Level Estimate";
+	}
+	else if (i == global.tagInfoGrid_colMarkerPercent) {
+		headerStr = "Marker %";
+	}
+	else if (i == global.tagInfoGrid_colSingleTokenMarker) {
+		headerStr = "Single Token";
+	}
+	else if (i == global.tagInfoGrid_colDisplayToken) {
+		headerStr = "Display Token";
+	}
+	else if (i == global.tagInfoGrid_colDisplayUnit) {
+		headerStr = "Display Unit";
+	}
+
 	draw_set_font(fnt_mainBold);
 	draw_set_color(global.colorThemeText);
 	draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
@@ -233,7 +237,7 @@ if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight
 	}
 }
 
-scr_scrollBar(ds_grid_height(obj_importMapping.tagInfoGrid), -1, rowHeight, rowHeight,
+scr_scrollBar(ds_grid_height(global.tagInfoGrid), -1, rowHeight, rowHeight,
 	global.colorThemeSelected1, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (tagInfoWindowRectX2 - tagInfoWindowRectX1), (tagInfoWindowRectY2 - tagInfoWindowRectY1));
 	
