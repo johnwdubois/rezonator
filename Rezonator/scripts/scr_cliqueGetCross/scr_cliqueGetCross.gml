@@ -83,10 +83,10 @@ for (var i = 0; i < chainIDListSize; i++)
 		
 		var currentSource1UnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentSource1 - 1);
 		var currentGoal1UnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentGoal1 - 1);
-		//var rowInLineGridcurrentSource1 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentSource1UnitID);
-		//var rowInLineGridcurrentGoal1 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentGoal1UnitID);
-		var rowInLineGridcurrentSource1 =  currentSource1UnitID - 1;
-		var rowInLineGridcurrentGoal1 = currentGoal1UnitID - 1;
+		var rowInLineGridcurrentSource1 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentSource1UnitID);
+		var rowInLineGridcurrentGoal1 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentGoal1UnitID);
+		//var rowInLineGridcurrentSource1 =  currentSource1UnitID - 1;
+		//var rowInLineGridcurrentGoal1 = currentGoal1UnitID - 1;
 		
 		
 		if (rowInLineGridcurrentSource1 < 0 or rowInLineGridcurrentSource1 >= lineGridHeight)
@@ -149,10 +149,10 @@ for (var i = 0; i < chainIDListSize; i++)
 				
 				var currentSource2UnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentSource2 - 1);
 				var currentGoal2UnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentGoal2 - 1);
-				//var rowInLineGridcurrentSource2 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentSource2UnitID);
-				//var rowInLineGridcurrentGoal2 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentGoal2UnitID);
-				var rowInLineGridcurrentSource2 = currentSource2UnitID - 1;
-				var rowInLineGridcurrentGoal2 = currentGoal2UnitID - 1;
+				var rowInLineGridcurrentSource2 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentSource2UnitID);
+				var rowInLineGridcurrentGoal2 = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, currentGoal2UnitID);
+				//var rowInLineGridcurrentSource2 = currentSource2UnitID - 1;
+				//var rowInLineGridcurrentGoal2 = currentGoal2UnitID - 1;
 				
 				
 				if (rowInLineGridcurrentSource2 < 0 or rowInLineGridcurrentSource2 >= lineGridHeight)
