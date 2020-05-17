@@ -26,17 +26,6 @@ global.levelUnit = 1;
 global.levelDiscourse = 2;
 global.levelUnknown = 3;
 
-global.tagInfoGridWidth = 7;
-global.tagInfoGrid_colMarker = 0;
-global.tagInfoGrid_colExample = 1;
-global.tagInfoGrid_colLevel = 2;
-global.tagInfoGrid_colMarkerPercent = 3;
-global.tagInfoGrid_colSingleTokenMarker = 4;
-global.tagInfoGrid_colDisplayToken = 5;
-global.tagInfoGrid_colDisplayUnit = 6;
-
-global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
-
 
 if (global.plainText) {	
 	scr_importInfoGrid();
