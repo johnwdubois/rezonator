@@ -36,7 +36,6 @@ draw_clear_alpha(c_black, 0);
 
 
 
-
 x = tagInfoWindowRectX1;
 y = tagInfoWindowRectY1;
 
@@ -47,12 +46,13 @@ if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRect
 
 
 // draw mouseover rectangles
-if (obj_importMapping.mouseoverRow >= 0) {
+if (obj_importMapping.mouseoverRow >= 0  and !mouseOverLevel) {
 	draw_set_color(global.colorThemeSelected1);
 	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.mouseoverRow + 1)) + scrollPlusY;
 	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
 	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, false);
 }
+
 
 
 // Draw Tag Info window contents
@@ -62,7 +62,7 @@ draw_set_valign(fa_middle);
 
 for (var i = 0; i < colAmount; i++) {
 	var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
-	
+	var nextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i+1);
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
@@ -73,12 +73,8 @@ for (var i = 0; i < colAmount; i++) {
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
 		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
-		//var cellRectX2 = cellRectX1 + (windowWidth / global.tagInfoGrid_colSingleTokenMarker);
 		var cellRectY2 = plusY + rowHeight;
-		
-		// draw BG stripes
-		//draw_set_color(global.colorThemeBG);
-		//draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+
 		
 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 			obj_importMapping.mouseoverRow = j;
@@ -118,10 +114,62 @@ for (var i = 0; i < colAmount; i++) {
 			}
 		}
 		
+		//draw_set_color(global.colorThemeBorders);
+		//draw_rectangle(colX - clipX, tagInfoWindowRectY1+ scrollPlusY - clipY, cellRectX2, cellRectY2, false)
+		//draw_rectangle(colX - clipX, tagInfoWindowRectY1 - clipY, nextColX -clipX, tagInfoWindowRectY2 - clipY, false)
+
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
 		draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
 		
+		if (i == global.tagInfoGrid_colLevel+1) {
+			
+			var buttonRectSize = rowHeight - 10;
+			var ascendRectX1 = floor(colX   - clipX) - 4 - buttonRectSize;
+			var ascendRectY1 = floor(plusY + 5 + scrollPlusY - clipY);
+			var ascendRectX2 = ascendRectX1 + buttonRectSize;
+			var ascendRectY2 = ascendRectY1 + buttonRectSize;
+						//draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
+			if (point_in_rectangle(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
+				draw_set_color(global.colorThemeBG);
+				draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, false)
+				
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
+				mouseOverLevel = true;
+									//
+				if (mouse_check_button_released(mb_left)) {
+					colToChange = i-1;
+					rowToChange = j;
+					
+					var dropDownOptionList = ds_list_create();
+
+					ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
+/*
+					if (ds_list_size(dropDownOptionList) > 0 ) {
+						var dropDownInst = instance_create_depth(0,0 , -999, obj_dropDown);
+						dropDownInst.optionList = dropDownOptionList;
+						dropDownInst.optionListType = 12;
+					
+						obj_control.ableToCreateDropDown = false;
+						obj_control.alarm[0] = 2;
+					}
+*/
+					//show_message("mouseOverLevel: " + string(mouseOverLevel));
+				}
+			}
+			else {
+				mouseOverLevel = false;
+			}
+		
+
+		
+			var ascendYScale = -1; //(functionChainList_sortAsc[i]) ? 1 : -1;
+			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
+		
+		}
+		//show_message(string(ascendRectX1) + " "  + string(ascendRectX2));
+
 		plusY += rowHeight;
 	}
 }
@@ -129,7 +177,7 @@ for (var i = 0; i < colAmount; i++) {
 draw_set_halign(fa_left);
 
 if (obj_importMapping.mouseoverRow >= 0) {
-	if (mouse_check_button_pressed(mb_left)) {
+	if (mouse_check_button_released(mb_left) and !mouseOverLevel) {
 		obj_importMapping.rezInfoGridSelectedRow = obj_importMapping.mouseoverRow;
 		
 		

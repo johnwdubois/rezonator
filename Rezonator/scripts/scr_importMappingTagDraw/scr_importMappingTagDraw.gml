@@ -1,6 +1,9 @@
+if (live_call()) return live_result;
+
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
+var stringHeight = string_height("0");
 
 // Import Screen Title
 draw_set_color(global.colorThemeText);
@@ -15,7 +18,7 @@ draw_text(20 + sprite_get_width(spr_backArrow), 20, "Import File Mapping");
 // File window
 var fileInfoWindowRectX1 = 40;
 var fileInfoWindowRectY1 = 80 + string_height("0");
-var fileInfoWindowRectX2 = (camWidth / 3) - 20;
+var fileInfoWindowRectX2 = (camWidth * 0.5) - 20;
 var fileInfoWindowRectY2 = (camHeight / 2) - 180;
 
 draw_set_color(global.colorThemeBorders);
@@ -25,15 +28,17 @@ draw_set_color(global.colorThemeText);
 draw_set_font(fnt_mainBold);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), "File");
+draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), "Summary");
 
 draw_set_font(fnt_main);
-draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + string_height("0"), "File name: " + filename_name(global.importFilename));
+draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, "File name: " + filename_name(global.importFilename));
+draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + stringHeight*2), "Total Line Count: " + string(ds_grid_height(global.importGrid)));
+draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + (stringHeight)*3), "Markers Found: " + string(ds_grid_height(global.tagInfoGrid)));
 
 
 
 
-
+/*
 
 
 
@@ -52,10 +57,8 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), "Summary");
 
-draw_set_font(fnt_main);
-draw_text(floor(summaryInfoWindowRectX1 + 20), floor(summaryInfoWindowRectY1 + string_height("0")), "Line label types: " + string(ds_grid_height(global.importGrid)));
-draw_text(floor(summaryInfoWindowRectX1 + 20), floor(summaryInfoWindowRectY1 + (string_height("0") * 2.5)), "Line groups: " + string(ds_grid_height(global.tagInfoGrid)));
 
+*/
 
 
 

@@ -1,9 +1,11 @@
+if (live_call()) return live_result;
+
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
 
 // Exceptions window
-var exceptionsInfoWindowRectX1 = (camWidth * 0.666) + 20;
+var exceptionsInfoWindowRectX1 = (camWidth * 0.5) + 20;
 var exceptionsInfoWindowRectY1 = 80 + string_height("0");
 var exceptionsInfoWindowRectX2 = camWidth - 40;
 var exceptionsInfoWindowRectY2 = (camHeight / 2) - 180;

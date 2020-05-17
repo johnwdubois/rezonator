@@ -26,6 +26,10 @@ global.levelUnit = 1;
 global.levelDiscourse = 2;
 global.levelUnknown = 3;
 
+mouseOverLevel = false;
+rowToChange = -1;
+colToChange = -1;
+
 
 if (global.plainText) {	
 	scr_importInfoGrid();

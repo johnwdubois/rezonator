@@ -1352,8 +1352,7 @@ else if (optionListType == 10)
 	}
 }
 
-else if (optionListType == 11)
-{
+else if (optionListType == 11){
 
 	switch (optionSelected)
 	{
@@ -1444,5 +1443,29 @@ else if (optionListType == 11)
 	}
 }
 
+
+else if (optionListType == 12){
+
+	switch (optionSelected)
+	{
+		case "Token":
+			ds_grid_set(global.tagInfoGrid, colToChange, rowToChange , global.levelToken);
+			break;
+		case "Unit":
+			ds_grid_set(global.tagInfoGrid, colToChange, rowToChange , global.levelUnit);
+			break;
+		case "Discourse":	
+			ds_grid_set(global.tagInfoGrid, colToChange, rowToChange , global.levelDiscourse);
+			break;
+		case "Exception":
+			ds_grid_set(global.tagInfoGrid, colToChange, rowToChange , global.levelUnknown);
+			break;
+		default:
+			break;
+	}
+	with(obj_dropDown){
+		instance_destroy();
+	}
+}
 
 
