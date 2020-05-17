@@ -5231,6 +5231,14 @@
             }
         },
         {
+            "Key": "eaf030e8-3273-4314-9683-fa38f09b98a5",
+            "Value": {
+                "id": "b12eac55-2d5d-48e9-b7d5-dd3e92e680fc",
+                "resourcePath": "sprites\\spr_linkArrow\\spr_linkArrow.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "eb2ced87-2b61-4f83-b483-194b322c906b",
             "Value": {
                 "id": "b6c7f528-66d5-48a6-99b4-ebed9a005975",
