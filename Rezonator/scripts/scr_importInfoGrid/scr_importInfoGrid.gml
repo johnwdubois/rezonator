@@ -95,16 +95,16 @@ else {
 		// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
 		var levelEstimate = -1;
 		if (currentConsistency < 5 && OneTokenPerGroup) {
-			levelEstimate = obj_importMapping.levelDiscourse; // discourse level estimate
+			levelEstimate = global.levelDiscourse; // discourse level estimate
 		}
 		else if (currentConsistency >= 90 && OneTokenPerGroup) {
-			levelEstimate = obj_importMapping.levelUnit; // unit level estimate
+			levelEstimate = global.levelUnit; // unit level estimate
 		}
 		else if (currentConsistency >= 90 && !OneTokenPerGroup) {
-			levelEstimate = obj_importMapping.levelToken; // token level estimate
+			levelEstimate = global.levelToken; // token level estimate
 		}
 		else {
-			levelEstimate = obj_importMapping.levelUnknown;
+			levelEstimate = global.levelUnknown;
 		}
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, levelEstimate);
 	}
@@ -121,14 +121,14 @@ else {
 		
 		// we have found the first token level marker, let's set it to displayToken
 		if (!setDisplayToken) {
-			if (currentLevel == obj_importMapping.levelToken) {
+			if (currentLevel == global.levelToken) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, true);
 				setDisplayToken = true;
 			}
 		}
 		// we have found the first unit level marker, let's set it to displayUnit
 		if (!setDisplayUnit) {
-			if (currentLevel == obj_importMapping.levelUnit) {
+			if (currentLevel == global.levelUnit) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, true);
 				setDisplayUnit = true;
 			}

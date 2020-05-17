@@ -39,7 +39,16 @@ if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 4) != -1)
 }
 
 
+scr_fillCustomLabelGrid();
+
+
 var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
+global.labelWordGridWidth = 4 + customLabelGridHeight;
+ds_grid_resize(global.labelWordGrid, global.labelWordGridWidth, ds_grid_height(global.labelWordGrid));
+with (obj_gridViewer) {
+	alarm[2] = 1;
+}
+
 for (var i = 0; i < customLabelGridHeight; i++) {
 	
 	var importGridCol = -1;
@@ -51,9 +60,8 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	}
 
 
-	var importGridCol = ds_list_find_index(global.importGridColNameList, "\\" + currentLabel);
-	
-	ds_list_add(global.labelWordGridColNameList, currentLabel);
+	var importGridCol = ds_list_find_index(global.importGridColNameList, currentLabel);
+	ds_list_add(global.labelWordGridColNameList, string_copy(currentLabel, 2, string_length(currentLabel) - 1));
 	
 
 	if (importGridCol >= 0) {

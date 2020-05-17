@@ -96,13 +96,13 @@ for (var i = 0; i < colAmount; i++) {
 			currentCell = (currentCell) ? "Yes" : "";
 		}
 		else if (i == global.tagInfoGrid_colLevel) {
-			if (currentCell == obj_importMapping.levelToken) {
+			if (currentCell == global.levelToken) {
 				currentCell = "token";
 			}
-			else if (currentCell == obj_importMapping.levelUnit) {
+			else if (currentCell == global.levelUnit) {
 				currentCell = "unit";
 			}
-			else if (currentCell == obj_importMapping.levelDiscourse) {
+			else if (currentCell == global.levelDiscourse) {
 				currentCell = "discourse";
 			}
 			else {
@@ -141,18 +141,18 @@ if (obj_importMapping.mouseoverRow >= 0) {
 			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
 		
 			if (currentLevel == selectedRowLevel) {
-				if (selectedRowLevel == obj_importMapping.levelToken) {
+				if (selectedRowLevel == global.levelToken) {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, false);
 				}
-				else if (selectedRowLevel == obj_importMapping.levelUnit) {
+				else if (selectedRowLevel == global.levelUnit) {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, false);
 				}
 			}
 		}
-		if (selectedRowLevel == obj_importMapping.levelToken) {
+		if (selectedRowLevel == global.levelToken) {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, obj_importMapping.rezInfoGridSelectedRow, true);
 		}
-		else if (selectedRowLevel == obj_importMapping.levelUnit) {
+		else if (selectedRowLevel == global.levelUnit) {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, obj_importMapping.rezInfoGridSelectedRow, true);
 		}
 		

@@ -21,10 +21,10 @@ global.plainTextInfoGrid = ds_grid_create(global.plainTextInfoGridWidth, 0);
 
 
 
-levelToken = 0;
-levelUnit = 1;
-levelDiscourse = 2;
-levelUnknown = 3;
+global.levelToken = 0;
+global.levelUnit = 1;
+global.levelDiscourse = 2;
+global.levelUnknown = 3;
 
 global.tagInfoGridWidth = 7;
 global.tagInfoGrid_colMarker = 0;

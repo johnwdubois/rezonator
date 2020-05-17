@@ -5119,6 +5119,14 @@
             }
         },
         {
+            "Key": "e835345d-9f44-4801-92a9-a979efa86018",
+            "Value": {
+                "id": "c8c87a9b-ac81-4655-b94a-7712fcdcb347",
+                "resourcePath": "scripts\\scr_fillCustomLabelGrid\\scr_fillCustomLabelGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e85b60a6-8a03-4776-8d15-a5e4d360889a",
             "Value": {
                 "id": "747f3b93-559d-4eb1-96f5-7ba9ea141595",
@@ -5676,6 +5684,7 @@
         "762ec5a5-92eb-41fe-8cb9-d38ffbde302f",
         "a2255ce4-9d60-40b0-b1b1-ccf37f459571",
         "bbff640f-7b88-43f0-8d8b-79272ea1c729",
+        "e835345d-9f44-4801-92a9-a979efa86018",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "fc1067ad-8999-4c32-b44e-52ec42f636c0",
         "01326701-b0a6-4057-8a77-21f137c710e7",
