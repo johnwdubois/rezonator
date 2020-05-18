@@ -98,11 +98,11 @@ if (file_exists(fileName)) {
 				
 				global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
-				global.labelWordGridColNameList = ds_map_find_value(map, "labelWordGridColNameList")
+				global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList")
 				var tempList = ds_list_create();
-				if(global.labelWordGridColNameList == undefined){
-					global.labelWordGridColNameList = tempList;
-					ds_list_add(global.labelWordGridColNameList, "UnitID", "WordID", "text", "transcript");
+				if(global.tokenImportColNameList == undefined){
+					global.tokenImportColNameList = tempList;
+					ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
 				}
 				
 
@@ -128,7 +128,7 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(lineGrid, map, "lineGrid");
 				scr_loadAnotherREZ(global.importGrid, map, "importGrid");
 				scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
-				scr_loadAnotherREZ(global.labelWordGrid, map, "LabelWordGrid");
+				scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
 				scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
 				
 				
@@ -209,18 +209,18 @@ if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGr
 ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 //scr_refreshLineGridDisplayRow(obj_control.lineGridBackup);
 
-//show_message(string(ds_grid_height(global.labelWordGrid)) + "  " + string(ds_grid_height(obj_control.wordGrid)))
+//show_message(string(ds_grid_height(global.tokenImportGrid)) + "  " + string(ds_grid_height(obj_control.wordGrid)))
 
-// update labelWordGrid
-if (ds_list_size(global.labelWordGridColNameList) > 4) {
-	global.labelWordGridWidth = ds_list_size(global.labelWordGridColNameList);
+// update tokenImport
+if (ds_list_size(global.tokenImportColNameList) > 4) {
+	global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
 	with (obj_gridViewer) {
 		alarm[2] = 1;
 	}
 }
 
-if (ds_grid_height(global.labelWordGrid) <= ds_grid_height(obj_control.wordGrid)) {
-	ds_grid_resize(global.labelWordGrid, global.labelWordGridWidth, ds_grid_height(obj_control.wordGrid));
+if (ds_grid_height(global.tokenImportGrid) <= ds_grid_height(obj_control.wordGrid)) {
+	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
 }
 
-scr_fillLabelWordGrid();
+scr_fillTokenImportGrid();

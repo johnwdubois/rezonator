@@ -207,6 +207,10 @@ if (showDevVars) {
 	
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 400, "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 460, "global.tokenImportColNameList:");
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 480, scr_getStringOfList(global.tokenImportColNameList));
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 520, "global.unitImportColNameList:");
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 540, scr_getStringOfList(global.unitImportColNameList));
 }
 var scrollBarMarginTop = 230;
 if(!obj_panelPane.showNav) {

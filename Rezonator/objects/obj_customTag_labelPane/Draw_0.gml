@@ -22,7 +22,7 @@ draw_set_valign(fa_middle);
 var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
 for (var i = 0; i < customLabelGridHeight; i++) {
 	
-	var currentLabel = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colLabel, i);
+	var currentLabel = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colMarker, i);
 	draw_set_alpha(1);
 	if (instance_exists(obj_customTagPane)) {
 		if (obj_customTagPane.selectedLabel == i) {

@@ -18,7 +18,8 @@
         "2f3a0823-7810-4e4d-87e5-06b5c8e2ba99",
         "ab3520a0-8486-4873-b858-89d27079abab",
         "a94b6e62-eefb-4ceb-8e50-c4ef98c2b925",
-        "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8"
+        "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8",
+        "81e42799-4462-4bb4-9cc5-0b50129aaa22"
     ],
     "filterType": "GMScript",
     "folderName": "chains",

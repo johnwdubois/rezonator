@@ -117,9 +117,12 @@ for (var i = 0; i < gridListSize; i++) {
 		case global.importCSVGrid:
 			colName = "ImportCSV"; // Import CSV Grid
 			break;
-		case global.labelWordGrid:
-			colName = "LabelWord"; // Label Word Grid
+		case global.tokenImportGrid:
+			colName = "TokenImport"; // Token Import Grid
 			break;			
+		case global.unitImportGrid:
+			colName = "UnitImport"; // Unit Import Grid
+			break;		
 		case global.customLabelGrid:
 			colName = "CustomLabel"; // Custom Label Grid
 			break;

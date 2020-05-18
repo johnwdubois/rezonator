@@ -23,18 +23,24 @@ for (var j = 0; j < rezInfoGridHeight; j++) {
 } 
 
 
-// initiate labelWordGrid
-global.labelWordGridWidth = 4;
-global.labelWordGrid_colUnitID = 0;
-global.labelWordGrid_colWordID = 1;
-global.labelWordGrid_colWordToken = 2;
-global.labelWordGrid_colWordTranscript = 3;
-global.labelWordGrid = ds_grid_create(global.labelWordGridWidth, 0);
+// initiate tokenImport
+global.tokenImportGridWidth = 4;
+global.tokenImport_colUnitID = 0;
+global.tokenImport_colWordID = 1;
+global.tokenImport_colWordToken = 2;
+global.tokenImport_colWordTranscript = 3;
+global.tokenImportGrid = ds_grid_create(global.tokenImportGridWidth, 0);
+
+// initiate unitImport
+global.unitImportGridWidth = 1;
+global.unitImport_colUnitID = 0;
+global.unitImportGrid = ds_grid_create(global.unitImportGridWidth, 0);
+
 
 
 // initiate customLabelGrid
 global.customLabelGridWidth = 3;
 global.customLabelGrid_colLevel = 0;
-global.customLabelGrid_colLabel = 1;
+global.customLabelGrid_colMarker = 1;
 global.customLabelGrid_colTagList = 2;
 global.customLabelGrid = ds_grid_create(global.customLabelGridWidth, 0);

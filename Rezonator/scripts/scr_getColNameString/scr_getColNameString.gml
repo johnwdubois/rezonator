@@ -517,7 +517,7 @@ else if (grid == global.customLabelGrid) {
 		case global.customLabelGrid_colLevel:
 			colName = "level";
 			break;
-		case global.customLabelGrid_colLabel:
+		case global.customLabelGrid_colMarker:
 			colName = "label";
 			break;
 		case global.customLabelGrid_colTagList:
@@ -527,9 +527,13 @@ else if (grid == global.customLabelGrid) {
 			break;
 	}
 }
-else if (grid == global.labelWordGrid) {
+else if (grid == global.tokenImportGrid) {
 
-	colName = ds_list_find_value(global.labelWordGridColNameList, col);
+	colName = ds_list_find_value(global.tokenImportColNameList, col);
+}
+else if (grid == global.unitImportGrid) {
+
+	colName = ds_list_find_value(global.unitImportColNameList, col);
 }
 
 return colName;

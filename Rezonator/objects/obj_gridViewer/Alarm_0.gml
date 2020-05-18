@@ -16,7 +16,8 @@ ds_list_add(gridList,
 	global.importGrid,
 	obj_control.morphGrid,
 	global.importCSVGrid,
-	global.labelWordGrid,
+	global.tokenImportGrid,
+	global.unitImportGrid,
 	global.customLabelGrid
 	);
 

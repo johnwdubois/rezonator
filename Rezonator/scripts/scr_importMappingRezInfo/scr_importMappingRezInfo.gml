@@ -108,7 +108,7 @@ for (var i = 0; i < rezInfoGridWidth; i++) {
 						// set information for new row in customLabelGrid
 						var customLabelGridRow = obj_importMapping.rezInfoGridSelectedRow - 6;
 						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, customLabelGridRow, level);
-						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLabel, customLabelGridRow, tier);
+						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colMarker, customLabelGridRow, tier);
 						var emptyList = ds_list_create();
 						ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, customLabelGridRow, emptyList);
 					}
@@ -278,9 +278,9 @@ if (point_in_rectangle(mouse_x, mouse_y, customTagButtonRectX1, customTagButtonR
 		// add row to customLabelGrid
 		ds_grid_resize(global.customLabelGrid, global.customLabelGridWidth, ds_grid_height(global.customLabelGrid) + 1);
 		
-		// add column to labelWordGrid
-		global.labelWordGridWidth++;
-		ds_grid_resize(global.labelWordGrid, global.labelWordGridWidth, ds_grid_height(global.labelWordGrid));
+		// add column to tokenImport
+		global.tokenImportGridWidth++;
+		ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
 		
 		// add row to rezInfoGrid
 		ds_grid_resize(global.rezInfoGrid, global.rezInfoGridWidth, ds_grid_height(global.rezInfoGrid) + 1);

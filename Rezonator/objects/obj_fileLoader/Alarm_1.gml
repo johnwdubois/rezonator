@@ -13,10 +13,11 @@
 	Author: Terry DuBois
 */
 
-// if this is the first autosave, we will update the labelWordGrid
-if (ds_grid_height(global.labelWordGrid) < ds_grid_height(obj_control.wordGrid)) {
-	ds_grid_resize(global.labelWordGrid, global.labelWordGridWidth, ds_grid_height(obj_control.wordGrid));
-	scr_fillLabelWordGrid();
+// if this is the first autosave, we will update the tokenImport and unitImport
+if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid)) {
+	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
+	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
+	scr_fillTokenImportGrid();
 }
 
 alarm[1] = 36000;

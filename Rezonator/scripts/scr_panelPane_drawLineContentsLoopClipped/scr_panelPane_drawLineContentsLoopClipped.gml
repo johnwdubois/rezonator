@@ -222,7 +222,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					}
 					*/
 					else if (getInfoLoop >= 2) {
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.labelWordGrid, getInfoLoop, currentWordID - 1));
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.tokenImportGrid, getInfoLoop, currentWordID - 1));
 					}
 					
 			
@@ -274,7 +274,7 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 var headerListSize = 3;
-lineContentsHeaderListSize = ds_grid_width(global.labelWordGrid);
+lineContentsHeaderListSize = ds_grid_width(global.tokenImportGrid);
 if (functionChainList_currentTab == functionChainList_tabLine) {
 	headerListSize = lineContentsHeaderListSize;
 }
@@ -308,7 +308,7 @@ for (var i = 0; i < headerListSize; i++) {
 		colName = "place";
 	}
 	else if (i >= 2) {
-		colName = ds_list_find_value(global.labelWordGridColNameList, i);
+		colName = ds_list_find_value(global.tokenImportColNameList, i);
 	}
 	
 	// draw lines to separate columns
@@ -362,7 +362,7 @@ for (var i = 0; i < headerListSize; i++) {
 			//	toggleTranscriptionCol = (obj_control.transcriptAvailable) ? obj_control.wordGrid_colWordTranscript : obj_control.wordGrid_colWordToken;
 			//}
 			else if (i >= 2) {
-				toggleTranscriptionGrid = global.labelWordGrid;
+				toggleTranscriptionGrid = global.tokenImportGrid;
 				toggleTranscriptionCol = i;
 			}
 			scr_toggleTranscriptionMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
