@@ -45,13 +45,15 @@ for (var i = 0; i < optionListSize; i++)
 	{
 		mouseoverCurrentOption = true;
 		ableToMouseover = false;
-		obj_control.mouseoverPanelPane = true;
+		if (room == rm_mainScreen) {
+			obj_control.mouseoverPanelPane = true;
+		}
 	}
 	
 	draw_set_color(c_white);
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown))
 	{
-		draw_set_color(obj_control.c_ltblue);
+		draw_set_color(c_ltblue);
 	}
 
 	
@@ -66,14 +68,18 @@ for (var i = 0; i < optionListSize; i++)
 	{
 		optionCurrent = i;
 		var optionSelected = ds_list_find_value(optionList, i);
-		obj_menuBar.menuClickedIn = false;
+		if (room == rm_mainScreen) {
+			obj_menuBar.menuClickedIn = false;
+		}
 		scr_dropDownSelect(optionSelected);
 	}
 }
 
 if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left))
 {
-	obj_menuBar.menuClickedIn = false;
+	if (room == rm_mainScreen) {
+		obj_menuBar.menuClickedIn = false;
+	}
 	instance_destroy();
 }
 

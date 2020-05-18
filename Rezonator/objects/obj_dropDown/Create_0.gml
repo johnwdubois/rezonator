@@ -3,6 +3,9 @@ optionSpacing = 30;
 
 windowWidth = 110;
 
+c_ltblue = make_color_rgb(183, 183, 255);
+
+
 if (room == rm_mainScreen) {
 	if (obj_menuBar.menuClickedIn) {
 		windowWidth = 200;

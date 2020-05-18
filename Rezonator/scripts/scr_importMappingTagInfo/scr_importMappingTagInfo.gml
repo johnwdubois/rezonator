@@ -61,8 +61,9 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
 for (var i = 0; i < colAmount; i++) {
+	var prevColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * 2);
 	var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
-	var nextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i+1);
+	var nextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * 3);
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
@@ -137,17 +138,19 @@ for (var i = 0; i < colAmount; i++) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
 				mouseOverLevel = true;
-									//
+				if (mouse_check_button_pressed(mb_left)) {
+					obj_importMapping.inDropDown = true;
+				}
 				if (mouse_check_button_released(mb_left)) {
-					colToChange = i-1;
-					rowToChange = j;
+					obj_importMapping.colToChange = i-1;
+					obj_importMapping.rowToChange = j;
 					
 					var dropDownOptionList = ds_list_create();
 
 					ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
 
 					if (ds_list_size(dropDownOptionList) > 0 ) {
-						var dropDownInst = instance_create_depth(0,0 , -999, obj_dropDown);
+						var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
 						dropDownInst.optionListType = 12;
 					
@@ -177,7 +180,7 @@ for (var i = 0; i < colAmount; i++) {
 draw_set_halign(fa_left);
 
 if (obj_importMapping.mouseoverRow >= 0) {
-	if (mouse_check_button_released(mb_left) and !mouseOverLevel) {
+	if (mouse_check_button_released(mb_left) and !mouseOverLevel and !obj_importMapping.inDropDown) {
 		obj_importMapping.rezInfoGridSelectedRow = obj_importMapping.mouseoverRow;
 		
 		
@@ -286,8 +289,8 @@ if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight
 }
 
 scr_scrollBar(ds_grid_height(global.tagInfoGrid), -1, rowHeight, rowHeight,
-	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (tagInfoWindowRectX2 - tagInfoWindowRectX1), (tagInfoWindowRectY2 - tagInfoWindowRectY1));
+global.colorThemeSelected1, global.colorThemeSelected2,
+global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (tagInfoWindowRectX2 - tagInfoWindowRectX1), (tagInfoWindowRectY2 - tagInfoWindowRectY1));
 	
 scrollPlusY = min(scrollPlusY, 0);
 
