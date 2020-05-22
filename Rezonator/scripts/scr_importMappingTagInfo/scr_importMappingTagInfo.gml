@@ -44,7 +44,7 @@ if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRect
 	obj_importMapping.mouseoverRow = -1;
 }
 
-
+/*
 // draw mouseover rectangles
 if (obj_importMapping.mouseoverRow >= 0  and !mouseOverLevel) {
 	draw_set_color(global.colorThemeSelected1);
@@ -52,6 +52,9 @@ if (obj_importMapping.mouseoverRow >= 0  and !mouseOverLevel) {
 	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
 	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, false);
 }
+*/
+
+var timesHit = 0;
 
 
 
@@ -66,20 +69,33 @@ for (var i = 0; i < colAmount; i++) {
 	var nextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * 3);
 	var plusY = tagInfoWindowRectY1 + rowHeight;
 	
+	
+	var realNextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * (i + 1));
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(colX - clipX, tagInfoWindowRectY1 - clipY, realNextColX - clipX, tagInfoWindowRectY2 - clipY, false);
+	
+	
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
+	
 	for (var j = 0; j < tagInfoGridHeight; j++) {
 		
 		draw_set_halign(fa_left);
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
-		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
-		var cellRectY2 = plusY + rowHeight;
+		var cellRectX2 = cellRectX1 + (windowWidth / colAmount);
+		var cellRectY2 = cellRectY1 + rowHeight;
 
 		
 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 			obj_importMapping.mouseoverRow = j;
+			timesHit++;
 		}
+		if (obj_importMapping.mouseoverRow == j) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		}
+		
 		
 		var currentCell = ds_grid_get(global.tagInfoGrid, i, j);
 		
@@ -118,7 +134,7 @@ for (var i = 0; i < colAmount; i++) {
 		//draw_set_color(global.colorThemeBorders);
 		//draw_rectangle(colX - clipX, tagInfoWindowRectY1+ scrollPlusY - clipY, cellRectX2, cellRectY2, false)
 		//draw_rectangle(colX - clipX, tagInfoWindowRectY1 - clipY, nextColX -clipX, tagInfoWindowRectY2 - clipY, false)
-
+		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
 		draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
@@ -250,6 +266,9 @@ for (var i = 0; i < colAmount; i++) {
 	}
 	else if (i == global.tagInfoGrid_colSingleTokenMarker) {
 		headerStr = "Single Token";
+	}
+	else if (i == global.tagInfoGrid_colTokenCount) {
+		headerStr = "Token Count";
 	}
 	else if (i == global.tagInfoGrid_colDisplayToken) {
 		headerStr = "Display Token";

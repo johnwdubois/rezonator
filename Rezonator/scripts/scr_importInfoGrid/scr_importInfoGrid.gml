@@ -90,6 +90,10 @@ else {
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, false);
 		
 		
+		var currentTokenCount = ds_list_find_value(global.importGridTokenCountList, i);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, currentTokenCount);
+		
+		
 		// if this label is < 5% consistency and 1 token per group, it is probably discourse level
 		// if this label is >= 90% consistency and 1 token per group, it is probably unit level
 		// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level

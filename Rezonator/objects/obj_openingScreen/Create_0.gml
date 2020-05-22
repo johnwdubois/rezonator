@@ -135,6 +135,8 @@ global.importGridWidth = 0;
 global.importGrid = ds_grid_create(global.importGridWidth, 0);
 global.importGridColMap = ds_map_create();
 
+global.importGridTokenCountList = ds_list_create();
+
 
 global.importTXTLineGridWidth = 2;
 global.importTXTLineGrid_colLine = 0;
@@ -151,14 +153,15 @@ global.importFileRipList = ds_list_create();
 
 
 
-global.tagInfoGridWidth = 7;
+global.tagInfoGridWidth = 8;
 global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colExample = 1;
 global.tagInfoGrid_colLevel = 2;
 global.tagInfoGrid_colMarkerPercent = 3;
 global.tagInfoGrid_colSingleTokenMarker = 4;
-global.tagInfoGrid_colDisplayToken = 5;
-global.tagInfoGrid_colDisplayUnit = 6;
+global.tagInfoGrid_colTokenCount = 5;
+global.tagInfoGrid_colDisplayToken = 6;
+global.tagInfoGrid_colDisplayUnit = 7;
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 

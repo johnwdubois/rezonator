@@ -65,4 +65,4 @@ loopItterations = 0;
 
 
 
-//scr_importMappingGroups();
+scr_checkTokenCount();

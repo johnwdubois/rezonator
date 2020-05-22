@@ -5023,6 +5023,14 @@
             }
         },
         {
+            "Key": "e46b1641-a550-446c-99fd-8a5ad345b05f",
+            "Value": {
+                "id": "8a32336d-6f1b-4c59-8178-6156a6453f41",
+                "resourcePath": "scripts\\scr_checkTokenCount\\scr_checkTokenCount.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e4e4ea7a-ae86-4b2f-a108-b83b509488c1",
             "Value": {
                 "id": "4223837b-d0a5-4df1-ab74-2faaa467d82a",
@@ -5693,6 +5701,7 @@
         "a2255ce4-9d60-40b0-b1b1-ccf37f459571",
         "bbff640f-7b88-43f0-8d8b-79272ea1c729",
         "e835345d-9f44-4801-92a9-a979efa86018",
+        "e46b1641-a550-446c-99fd-8a5ad345b05f",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "fc1067ad-8999-4c32-b44e-52ec42f636c0",
         "01326701-b0a6-4057-8a77-21f137c710e7",
