@@ -12,7 +12,7 @@
 				
 	Author: Terry DuBois
 */
-
+//if(live_call()) return live_result;
 if (not obj_chain.toggleDrawTrack) {
 	exit;
 }
@@ -29,6 +29,11 @@ var mouseLineY = undefined;
 //var furthestWordID = -1;
 //var furthestDisplayCol = -1;
 
+var trackChainGridHeight = ds_grid_height(trackChainGrid);
+var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
+var linkGridHeight = ds_grid_height(linkGrid);
+var arrowSize = 0.3 + (0.1 * global.fontSize/5);
+
 // loop through rezChainGrid to get chain info
 var chainShowListSize = ds_list_size(chainShowList);
 for (var i = 0; i < chainShowListSize; i++) {
@@ -37,8 +42,8 @@ for (var i = 0; i < chainShowListSize; i++) {
 	if (ds_list_find_value(chainShowList, currentChainID) == -1) {
 		continue;
 	}
-	var rowInChainGrid = ds_grid_value_y(trackChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(trackChainGrid), currentChainID);
-	if (rowInChainGrid < 0 or rowInChainGrid >= ds_grid_height(trackChainGrid)) {
+	var rowInChainGrid = ds_grid_value_y(trackChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, trackChainGridHeight, currentChainID);
+	if (rowInChainGrid < 0 or rowInChainGrid >= trackChainGridHeight) {
 		continue;
 	}
 	
@@ -55,7 +60,7 @@ for (var i = 0; i < chainShowListSize; i++) {
 	for (var j = 0; j < currentWordIDListSize - 1; j++) {
 		var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 		var currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
-		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
+		var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID1);
 		var chunkWord1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk ? true : false;
 		//Add a nesting check
 		
@@ -74,7 +79,7 @@ for (var i = 0; i < chainShowListSize; i++) {
 		
 		var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
 		var currentUnitID2 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID2 - 1);
-		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID2);
+		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID2);
 		var chunkWord2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk ? true : false;
 		var currentHitGridIndex2 = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid)-1, currentWordID2);
 		//Add a nesting check
@@ -89,7 +94,7 @@ for (var i = 0; i < chainShowListSize; i++) {
 			if (wordsInSameUnit and firstWordInUnit >= 0 and (firstWordInUnit - 1) < ds_grid_height(obj_control.wordGrid)) {
 				currentWordID1 = firstWordInUnit;
 				currentUnitID1 = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID1 - 1);
-				currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), currentUnitID1);
+				currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID1);
 		
 				currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
 				currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
@@ -135,10 +140,9 @@ for (var i = 0; i < chainShowListSize; i++) {
 		and not (lineY1 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(view_camera[0]) + (obj_control.gridSpaceVertical * 2))
 		{
 			if(chunkWord1) {
-				
-			var wordRectBuffer = 15;
-			lineY1 += (wordRectBuffer + (currentWordStringHeight1 / 2));
-			chunkWord1 = 0;
+				var wordRectBuffer = 15;
+				lineY1 += (wordRectBuffer + (currentWordStringHeight1 / 2));
+				chunkWord1 = 0;
 			}
 			if(chunkWord2) {
 				var wordRectBuffer = 15;
@@ -152,9 +156,40 @@ for (var i = 0; i < chainShowListSize; i++) {
 			if (currentChainShow) {
 				if (lineY1 == lineY2) {
 					draw_line_width(lineX1, lineY1, lineX2, lineY2, 2);
+					var lineDist = point_distance(lineX1, lineY1, lineX2, lineY2);
+					var arrowAngle = point_direction(lineX1, lineY1, lineX2, lineY2);
+					if(lineDist > 30) {
+						//calculate the direciton of the arrow
+						var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
+						var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
+						var arrowX = lineX2 - (currentWordStringWidth2/5);
+						var arrowY = lineY2;
+						if(reverseLink) {
+							arrowAngle += 180;	
+							arrowX = lineX1 + currentWordStringWidth1 + 10;
+							arrowY = lineY1;
+						}
+						draw_sprite_ext(spr_linkArrow, 1, arrowX, arrowY, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
+					}
 				}
 				else {
 					scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+					var lineDist = point_distance(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2);
+					var arrowAngle = 270;
+					if(lineDist > 30) {
+						//calculate the direciton of the arrow
+						var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
+						var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
+						var arrowX = lineX2 + (currentWordStringWidth2 / 2);
+						var arrowY = lineY2 - (currentWordStringHeight1/2) - 10;
+						if(reverseLink) {
+							arrowAngle += 180;	
+							arrowX = lineX1 + (currentWordStringWidth1 / 2);
+							arrowY = lineY1 + (currentWordStringHeight1/2) + 10;
+						}
+						draw_sprite_ext(spr_linkArrow, 1, arrowX, arrowY, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
+					}
+					
 				}
 			}
 		}
@@ -165,13 +200,13 @@ for (var i = 0; i < chainShowListSize; i++) {
 	if (ds_grid_get(trackChainGrid, chainGrid_colChainState, rowInChainGrid) == chainStateFocus and not obj_control.gridView) {	
 		if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 			var mouseLineWordUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseLineWordID - 1);
-			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.currentActiveLineGrid), mouseLineWordUnitID);
+			var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, mouseLineWordUnitID);
 			
 			var mouseLineWordStringWidth = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1));
 			var mouseLineWordStringHeight = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1));
 			var currentHitGridIndexPickWhip = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid)-1, mouseLineWordID);
 			
-			if (mouseLineWordGridIndex > -1 and mouseLineWordGridIndex < ds_grid_height(obj_control.currentActiveLineGrid)) {
+			if (mouseLineWordGridIndex > -1 and mouseLineWordGridIndex < activeLineGridHeight) {
 					if (obj_control.searchGridActive) {
 						mouseLineX = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colPixelX, currentHitGridIndexPickWhip) + (mouseLineWordStringWidth / 2);
 					}

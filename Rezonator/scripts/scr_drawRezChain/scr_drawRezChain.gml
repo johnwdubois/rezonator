@@ -39,6 +39,7 @@ var wordTopMargin = obj_control.wordTopMargin;
 var rezChainGridHeight = ds_grid_height(rezChainGrid);
 var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 var linkGridHeight = ds_grid_height(linkGrid);
+var arrowSize = 0.3 + (0.1 * global.fontSize/5);
 
 // loop through rezChainGrid to get chain info
 var chainShowListSize = ds_list_size(chainShowList);
@@ -95,12 +96,14 @@ for (var i = 0; i < chainShowListSize; i++) {
 		var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID2);
 		var chunkWord2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk ? true : false;
 		//Add a nesting check
+		var sideLink = false;
 		
 		if (currentUnitID1 == currentUnitID2) {
 			wordsInSameUnit = true;
 			if (firstWordInUnit < 0) {
 				firstWordInUnit = currentWordID1;
 			}
+			sideLink = true;
 		}
 		else {
 			if (wordsInSameUnit and firstWordInUnit >= 0 and (firstWordInUnit - 1) < ds_grid_height(obj_control.wordGrid)) {
@@ -156,36 +159,67 @@ for (var i = 0; i < chainShowListSize; i++) {
 				draw_set_alpha(1);
 				if(chunkWord2) {
 					draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
+					if(obj_control.shape == obj_control.shapeBlock) {
+						var lineDist = point_distance(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2));
+						var arrowAngle = point_direction(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2));
+						if(lineDist > 30) {
+							//calculate the direciton of the arrow
+							var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
+							var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
+							var arrowX = lineX2 + linePlusX;
+							var arrowY = lineY2 - (currentWordStringHeight2 / 2) - 8;
+							if(reverseLink) {
+								arrowAngle += 180;	
+								arrowX = lineX1 + linePlusX;
+								arrowY = lineY1 + (currentWordStringHeight1/2) + 10;
+								if(sideLink) {
+									//arrowAngle += 270;	
+									arrowX = lineX1 +10+ string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
+									arrowY = lineY1 + (currentWordStringHeight2 / 2);
+								}
+							}
+							else if(sideLink) {
+								//arrowAngle += 180;	
+								arrowX = lineX2 - 10;
+								arrowY = lineY2 + (currentWordStringHeight2 / 2);	
+							}
+							draw_sprite_ext(spr_linkArrow, 1, arrowX, arrowY, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
+						}
+					}
 				}
 				else {
 					// Draw the link line
 					draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
 					// Calculate and draw the link arrows
-					var midX = (lineX1 + linePlusX + lineX2 + linePlusX) / 2;
-					var midY = (lineY1 + (currentWordStringHeight1 / 2) + lineY2 + (currentWordStringHeight2 / 2)) /2;
-					var lineDist = point_distance(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
-					var arrowAngle = point_direction(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
-					if(lineDist > 30) {
-						//calculate the direciton of the arrow
-						var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
-						var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
-						if(reverseLink) {
-							arrowAngle += 180;	
-						}
-						var quartX = (lineX1 + linePlusX + midX) / 2;
-						var quartY = (lineY1 + (currentWordStringHeight1 / 2) + midY) /2;
-						draw_sprite_ext(spr_linkArrow, 1, quartX, quartY, 0.5, 0.5, arrowAngle, currentChainColor, 1);
-						if(lineDist > 150) {
-							draw_sprite_ext(spr_linkArrow, 1, midX, midY, 0.5, 0.5, arrowAngle, currentChainColor, 1);
-							if(lineDist > 300) {
-								var threeQuartX = (lineX2 + linePlusX + midX) / 2;
-								var threeQuartY = (lineY2 + (currentWordStringHeight2 / 2) + midY) /2;
-								draw_sprite_ext(spr_linkArrow, 1, threeQuartX, threeQuartY, 0.5, 0.5, arrowAngle, currentChainColor, 1);
+					if(obj_control.shape == obj_control.shapeBlock) {
+						var lineDist = point_distance(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
+						var arrowAngle = point_direction(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
+						if(lineDist > 30) {
+							//calculate the direciton of the arrow
+							var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
+							var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
+							var arrowX = lineX2 + linePlusX;
+							var arrowY = lineY2 - (currentWordStringHeight2 / 2) - 8;
+							if(reverseLink) {
+								arrowAngle += 180;	
+								arrowX = lineX1 + linePlusX;
+								arrowY = lineY1 + (currentWordStringHeight1/2) + 10;
+								if(sideLink) {
+									//arrowAngle += 270;	
+									arrowX = lineX1 +10+ string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
+									arrowY = lineY1 + (currentWordStringHeight2 / 2);
+								}
 							}
+							else if(sideLink) {
+								//arrowAngle += 180;	
+								arrowX = lineX2 - 10;
+								arrowY = lineY2 + (currentWordStringHeight2 / 2);	
+							}
+							draw_sprite_ext(spr_linkArrow, 1, arrowX, arrowY, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
 						}
+					
+					
 					}
-					
-					
 				}
 			}
 			// I need to modify this with the Chunk's wordRectBuffer
