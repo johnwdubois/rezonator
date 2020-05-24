@@ -138,4 +138,5 @@ else {
 			}
 		}
 	}
+	scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false, global.tagInfoGrid_colDisplayToken, false, global.tagInfoGrid_colDisplayUnit, false);
 }

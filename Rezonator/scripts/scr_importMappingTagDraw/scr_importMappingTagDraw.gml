@@ -59,41 +59,73 @@ draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"),
 
 
 */
+var tagGridHeight = ds_grid_height(global.tagInfoGrid);
+for (var j = 0 ; j < 2; j++){
 
-
-
-
-
-
-
-
-
-
-
-
-
-var continueButtonWidth = 150;
-var continueButtonHeight = 40;
-var continueButtonRectX1 = (camWidth / 2) - (continueButtonWidth / 2);
-var continueButtonRectY1 = (camHeight - continueButtonHeight - 20) - (continueButtonHeight / 2);
-var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
-var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
-	
-// Continue button
-if (point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2)) {
-	draw_set_color(global.colorThemeSelected1);
-	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
-	
-	if (mouse_check_button_pressed(mb_left)) {	
-		room_goto(rm_mainScreen);
+	for (var i = 0 ; i < tagGridHeight; i++ ){
+		if( j == 0 ){	
+			var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i);
+			if(cutTest){
+				obj_importMapping.canContinueToken = true;
+				i = tagGridHeight;
+			}
+			else{
+				obj_importMapping.canContinueToken = false;
+			}
+		}
+		else{
+			var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i);
+			if(cutTest){
+				obj_importMapping.canContinueUnit = true;
+				i = tagGridHeight;
+			}
+			else{
+				obj_importMapping.canContinueUnit = false;
+			}
+		}
 	}
-}
-	
-draw_set_color(global.colorThemeBorders);
-draw_set_alpha(1);
-draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
 
-draw_set_font(fnt_main);
-draw_set_halign(fa_center);
-draw_set_color(global.colorThemeText);
-draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+}
+
+if(obj_importMapping.canContinueToken and obj_importMapping.canContinueUnit){
+
+	var continueButtonWidth = 150;
+	var continueButtonHeight = 40;
+	var continueButtonRectX1 = (camWidth / 2) - (continueButtonWidth / 2);
+	var continueButtonRectY1 = (camHeight - continueButtonHeight - 20) - (continueButtonHeight / 2);
+	var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
+	var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
+	
+	// Continue button
+	if (point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2)) {
+		draw_set_color(global.colorThemeSelected1);
+		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
+	
+		if (mouse_check_button_pressed(mb_left)) {	
+			room_goto(rm_mainScreen);
+		}
+	}
+	
+	draw_set_color(global.colorThemeBorders);
+	draw_set_alpha(1);
+	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
+
+	draw_set_font(fnt_main);
+	draw_set_halign(fa_center);
+	draw_set_color(global.colorThemeText);
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+
+}
+else {
+	var continueButtonWidth = 150;
+	var continueButtonHeight = 40;
+	var continueButtonRectX1 = (camWidth / 2) - (continueButtonWidth / 2);
+	var continueButtonRectY1 = (camHeight - continueButtonHeight - 20) - (continueButtonHeight / 2);
+	var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
+	var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
+	
+	draw_set_font(fnt_main);
+	draw_set_halign(fa_center);
+	draw_set_color(global.colorThemeText);
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Please Select a Default Display Token and Display Unit.");
+}

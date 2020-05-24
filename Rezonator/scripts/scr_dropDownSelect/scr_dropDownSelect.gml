@@ -1487,6 +1487,9 @@ else if (optionListType == 12){
 		default:
 			break;
 	}
+	
+	scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false, global.tagInfoGrid_colDisplayToken, false, global.tagInfoGrid_colDisplayUnit, false);
+	
 	with(obj_dropDown){
 		instance_destroy();
 	}

@@ -63,6 +63,7 @@ canPressRightHoldingCounter = 0;
 holdingLimit = 6;
 loopItterations = 0;
 
-
+canContinueToken = true;
+canContinueUnit = true;
 
 scr_checkTokenCount();
