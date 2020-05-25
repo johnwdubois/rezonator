@@ -369,7 +369,7 @@ for (var i = 0; i < headerListSize; i++) {
 		}
 	}
 	
-	
+	/*
 	if (obj_control.showDevVars) {
 		if (i == headerListSize - 1) {
 			var buttonRectSize = (tabHeight) - 8;
@@ -438,6 +438,7 @@ for (var i = 0; i < headerListSize; i++) {
 			}
 		}
 	}
+	*/
 	
 	activeCols++;
 }

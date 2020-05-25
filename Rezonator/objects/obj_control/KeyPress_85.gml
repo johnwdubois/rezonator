@@ -1,1 +1,1 @@
-instance_create(x, y, obj_customTagPane);
+//instance_create(x, y, obj_customTagPane);

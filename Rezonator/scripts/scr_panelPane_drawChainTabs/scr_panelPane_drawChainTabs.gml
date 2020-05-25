@@ -13,6 +13,9 @@
 */
 
 // Set opacity, font, and alignment of text in chain tabs
+if (live_call()) return live_result;
+
+
 draw_set_alpha(1);
 draw_set_font(global.fontPanelTab);
 draw_set_halign(fa_left);
@@ -200,7 +203,9 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 		}
 		// experimental stuff!
 		else if (obj_control.showDevVars){
+			
 			if (functionChainList_currentTab == functionChainList_tabLine) {
+				/*
 				// Button to switch between translation or not
 				var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
 				var translateRectX1 = tabRectX2 - buttonRectSize - 4;
@@ -218,23 +223,27 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 						}
 					}
 				}
+				
 				if(obj_control.showTranslation) {
 					draw_set_color(global.colorThemeText);
 					draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, false);
 				}
 				draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, true);
+				*/
 				
-				
+				var mouseOverUnitTab = false;
 				// Unit Tag toggle button
 				var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
-				var tagButtonRectX1 = tabRectX2 - buttonRectSize - buttonRectSize - 4;
+				var tagButtonRectX1 = tabRectX2 - buttonRectSize - 4;
 				var tagButtonRectY1 = tabRectY1 + 4;
 				var tagButtonRectX2 = tagButtonRectX1 + buttonRectSize;
 				var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
 				draw_set_color(global.colorThemeText);
 				if (point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+
+					mouseOverUnitTab = true;
+					//draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+
 					if (mouse_check_button_released(mb_left)) {
 						obj_control.showUnitTags = !obj_control.showUnitTags;
 						if(obj_control.showTranslation) {
@@ -242,17 +251,43 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 						}
 					}
 				}
-				if(obj_control.showUnitTags) {
-					draw_set_color(global.colorThemeText);
-					draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+				draw_set_font(global.fontMainBold);
+				if(!obj_control.showUnitTags) {
+					draw_set_halign(fa_center);
+					draw_set_valign(fa_center);
+					if(!mouseOverUnitTab){
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
+						draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "T");
+					}
+					else{
+						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+						draw_set_color(global.colorThemeBG);
+						draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "T");
+					}
 				}
-				draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
+				else{
+					draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
+					draw_set_halign(fa_center);
+					draw_set_valign(fa_center);
+					if(!mouseOverUnitTab){
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
+						draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "U");
+					}
+					else{
+						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+						draw_set_color(global.colorThemeBG);
+						draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "U");
+					}
+				}
 			}	
 		}
 	}
 	
-	
-	
+	draw_set_font(global.fontPanelTab);
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_top);
 	
 	// check for mouse clicks to change the selected tab
 	if (point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
