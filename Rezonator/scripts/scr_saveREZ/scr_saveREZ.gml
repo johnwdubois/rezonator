@@ -81,6 +81,7 @@ with (obj_saveParent) {
 		var mapimportGrid = scr_gridToJSONLists(global.importGrid);
 		var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
 		var maptokenImport = scr_gridToJSONLists(global.tokenImportGrid);
+		var mapunitImport = scr_gridToJSONLists(global.unitImportGrid);
 		var mapCustomLabelGrid = scr_gridToJSONLists(global.customLabelGrid);
 		
 		ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
@@ -101,6 +102,7 @@ with (obj_saveParent) {
 		
 		//custom label saves
 		ds_map_add_list(map, "tokenImport", maptokenImport);
+		ds_map_add_list(map, "unitImport", mapunitImport);
 		ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
 		var tempList2 = ds_list_create();
 		if (global.tokenImportColNameList  != undefined) {

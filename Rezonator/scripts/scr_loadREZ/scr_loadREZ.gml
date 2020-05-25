@@ -129,6 +129,7 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(global.importGrid, map, "importGrid");
 				scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
 				scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
+				scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
 				scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
 				
 				

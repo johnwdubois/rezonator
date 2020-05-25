@@ -14,6 +14,7 @@
 
 
 // Access the lineList panelPane object to get it's scrollPlusY
+
 var lineListPanelPaneInst = inst_PanelPane_chainList;
 
 
@@ -32,7 +33,7 @@ var chainNameRectMinusY = 4;
 var focusedElementY = -1;
 var focusedLineNameRectY1 = -1;
 var focusedLineNameRectY2 = -1;
-
+var xbuffer = (windowWidth/6);
 
 // Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
@@ -48,8 +49,23 @@ var widthOfUnitGrid = 1;
 if(ds_exists(global.unitImportColNameList, ds_type_list)){
 widthOfUnitGrid = ds_list_size(global.unitImportColNameList);
 }
-
 for(var j = 0 ; j < widthOfUnitGrid or j < 6 ; j++) {
+	
+	textPlusY = 0;
+	
+
+
+    var colRectX1 = x + (j * (windowWidth / 6));
+    var colRectY1 = y;
+    var colRectX2 = colRectX1 + (windowWidth / 6);
+    var colRectY2 = colRectY1 + windowHeight;
+    
+    draw_set_color(global.colorThemeBG);
+    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
+    draw_set_color(global.colorThemeBorders);
+    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
+	
+	
 
 	for (var i = 0; i < lineGridHeight; i++) {
     
@@ -97,10 +113,7 @@ for(var j = 0 ; j < widthOfUnitGrid or j < 6 ; j++) {
     
 	    //Check mouse clicks to focus a line in the list
 	    if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2)) {
-	        //if (obj_control.showDevVars) {
-	            draw_set_color(c_red);
-	            draw_circle(mouse_x, mouse_y, 5, true);
-	        //}
+
         
 	        if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 	            //show_message("line");
@@ -142,8 +155,10 @@ for(var j = 0 ; j < widthOfUnitGrid or j < 6 ; j++) {
 	    //draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	    draw_set_color(global.colorThemeText);
 		var tagToDraw = ds_grid_get(global.unitImportGrid,j,i);
-		var xbuffer = (windowWidth/6);
-	    draw_text(x + (textMarginLeft) + xbuffer*j - clipX, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, string(tagToDraw));
+		if(tagToDraw == undefined){
+			tagToDraw = "";
+		}
+	    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, string(tagToDraw));
     
 	    //draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	    draw_set_color(global.colorThemeBG);
@@ -182,13 +197,16 @@ for (var i = 0; i < headerListSize; i++) {
     
     var colName = "";
     
-	
-	colName = ds_list_find_value(global.unitImportColNameList, i);
+	var nameFromList =  ds_list_find_value(global.unitImportColNameList, i);
+	if(nameFromList == undefined){
+			nameFromList = "";
+	}
+	colName = nameFromList
     
     draw_set_color(global.colorThemeBG);
     draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
     draw_set_color(global.colorThemeBorders);
-    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
+    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + tabHeight - clipY, true);
     draw_set_color(global.colorThemeText);
     draw_set_valign(fa_top);
     draw_set_font(global.fontPanelTab);

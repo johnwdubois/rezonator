@@ -202,9 +202,9 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
 		}
 		// experimental stuff!
-		else if (obj_control.showDevVars){
+
 			
-			if (functionChainList_currentTab == functionChainList_tabLine) {
+		else if (functionChainList_currentTab == functionChainList_tabLine) {
 				/*
 				// Button to switch between translation or not
 				var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
@@ -282,7 +282,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 					}
 				}
 			}	
-		}
+		
 	}
 	
 	draw_set_font(global.fontPanelTab);
