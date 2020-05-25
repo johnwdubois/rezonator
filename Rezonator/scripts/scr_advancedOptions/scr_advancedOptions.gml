@@ -2,53 +2,7 @@ var optionSelected = argument0;
 
 switch (optionSelected)
 {
-	case "Delete All Stacks":
-			
-
-		if (!instance_exists(obj_dialogueBox)) {
-			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			obj_dialogueBox.clearAllStacks = true;
-			obj_dialogueBox.questionWindowActive = true;
-		}
-		
-			
-	//	show_message("Coming Soon");
-		break;
-	case "Delete All Rez Chains":
-		
-
-		if (!instance_exists(obj_dialogueBox)) {
-			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			obj_dialogueBox.clearAllRez = true;
-			obj_dialogueBox.questionWindowActive = true;
-		}
-		
-
-		break;
-	case "Delete All Track Chains":
-		
-
-		if (!instance_exists(obj_dialogueBox)) {
-			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			obj_dialogueBox.clearAllTracks = true;
-			obj_dialogueBox.questionWindowActive = true;
-		}
-		
-		
-		//show_message("Coming Soon");
-		break;
-	case "Delete All":
-		
-
-		if (!instance_exists(obj_dialogueBox)) {
-			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			obj_dialogueBox.clearAllLinks = true;
-			obj_dialogueBox.questionWindowActive = true;
-		}
-		
-			
-		//show_message("Coming Soon");
-		break;
+	
 	case "Add Tag Category":
 		
 
@@ -66,6 +20,19 @@ switch (optionSelected)
 	break;
 	case "Shuffle":
 		show_message("Coming Soon");
+	break;
+	case "Delete All":
+		var dropDownOptionList = ds_list_create();
+		ds_list_add(dropDownOptionList, "Track Chains", "Rez Chains", "Stacks", "Chains");
+						
+		if (ds_list_size(dropDownOptionList) > 0) {
+			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
+			dropDownInst.optionList = dropDownOptionList;
+			dropDownInst.optionListType = 26;
+					
+			obj_control.ableToCreateDropDown = false;
+			obj_control.alarm[0] = 2;
+		}
 	break;
 	default:
 		break;

@@ -51,7 +51,7 @@ else if (optionListType == 4)
 else if (optionListType == 5)
 {
     scr_advancedOptions(optionSelected);
-    instance_destroy();
+  //  instance_destroy();
 }
 
 //viewOptions
@@ -178,13 +178,33 @@ else if (optionListType == 21)
 else if (optionListType == 22)
 {
     scr_toolsOptions(optionSelected);
-    instance_destroy();
 }
 
 //helpOptions
 else if (optionListType == 23)
 {
     scr_helpOptions(optionSelected);
+    instance_destroy();
+}
+
+//toolSortOptions
+else if (optionListType == 24)
+{
+    scr_sortOptions(optionSelected);
+    instance_destroy();
+}
+
+//stackshowOptions
+else if (optionListType == 25)
+{
+    scr_stackshowOptions(optionSelected);
+    instance_destroy();
+}
+
+//deleteOptions
+else if (optionListType == 26)
+{
+    scr_deleteOptions(optionSelected);
     instance_destroy();
 }
 

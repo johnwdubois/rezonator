@@ -234,6 +234,8 @@ if (not (mouseLineX == undefined or mouseLineY == undefined)) {
 		
 		if (not mouseLineHide) {
 			scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
+			var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
+			draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
 		}
 	}
 }

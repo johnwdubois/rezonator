@@ -3759,6 +3759,14 @@
             }
         },
         {
+            "Key": "a4078897-b9f4-49d2-bd0e-05e30642d397",
+            "Value": {
+                "id": "825874a9-8d21-416a-b672-fc725fdfb54e",
+                "resourcePath": "scripts\\scr_stackshowOptions\\scr_stackshowOptions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "a468632b-efa9-4d3f-af42-705a4d33f42f",
             "Value": {
                 "id": "cb8905b0-54c3-42d2-82f5-882370376413",
@@ -3772,6 +3780,14 @@
                 "id": "6ff303b4-70be-40cf-8a68-73f60d3e0b0f",
                 "resourcePath": "sprites\/Sprite_1024x512\/Sprite_1024x512.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "a53ebb4d-c219-4610-a2c8-441dab4f3b32",
+            "Value": {
+                "id": "97368df3-800f-4928-a890-7906b25db62b",
+                "resourcePath": "scripts\\scr_deleteOptions\\scr_deleteOptions.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -5311,6 +5327,14 @@
             }
         },
         {
+            "Key": "e7f20fb3-f8c2-4dda-99af-55e4dacd9b79",
+            "Value": {
+                "id": "6489e6ec-9f18-4dc6-85c2-543c4bf8384e",
+                "resourcePath": "scripts\\scr_toolsSortOptions\\scr_toolsSortOptions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e835345d-9f44-4801-92a9-a979efa86018",
             "Value": {
                 "id": "c8c87a9b-ac81-4655-b94a-7712fcdcb347",
@@ -6123,6 +6147,9 @@
         "6c3228dd-46c5-4fe6-8f16-c4073e65dace",
         "4b638b7e-0c72-49d1-b139-57c35ea03f48",
         "27c45b4d-d4c3-4f8a-a3be-55014c453053",
+        "a4078897-b9f4-49d2-bd0e-05e30642d397",
+        "e7f20fb3-f8c2-4dda-99af-55e4dacd9b79",
+        "a53ebb4d-c219-4610-a2c8-441dab4f3b32",
         "7bf96896-31d5-4157-8f09-1b534bc78c46",
         "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
         "a0b42376-3fda-4f56-a0bd-312e223154d5",
