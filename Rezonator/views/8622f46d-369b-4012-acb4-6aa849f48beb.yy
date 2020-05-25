@@ -6,7 +6,8 @@
     "children": [
         "760937d6-16c6-42b7-bd58-6f67433e06d2",
         "f5a9dbba-b4e5-4d5a-bd18-069a0ccd2959",
-        "0b5b25c9-d9ab-47a7-8e3c-9b08ba5db283"
+        "0b5b25c9-d9ab-47a7-8e3c-9b08ba5db283",
+        "675a9f23-a869-4709-9e58-dd42638785ea"
     ],
     "filterType": "GMScript",
     "folderName": "dialogueBox",

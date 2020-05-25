@@ -11,7 +11,7 @@
 	draw_rectangle(-1, -1, camera_get_view_width(view_camera[0])+1, menuHeight, true);
 	
 	// draw selection box and outline for file
-	if(mouseOverFile){
+	/*if(mouseOverFile){
 		draw_set_colour(global.colorThemeOutOfBounds);
 		draw_rectangle(-1, -1, menuWidth, menuHeight, false);
 	}
@@ -55,7 +55,7 @@
 	if(mouseOverSortPane){
 		draw_set_colour(global.colorThemeOutOfBounds);
 		draw_rectangle(menuWidth*8, -1, menuWidth*10, menuHeight, false);
-	}	
+	}	*/
 	
 	
 	//draw text fore boxes
@@ -65,13 +65,27 @@
 	//var menuOptionY = 0;
 	//var menuOptionX = 100;
 	
-	draw_text(mean(0, menuWidth), menuHeight - 25,"File");
+	/*for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++){
+		var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
+		draw_text(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1)), menuHeight - 25, headerString);		
+	}*/
+	for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++){
+		if(ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)){
+			draw_set_colour(global.colorThemeOutOfBounds);
+			draw_rectangle((menuWidth * menuHeaderLoop) - 1, -1, menuWidth * (menuHeaderLoop + 1), menuHeight, false);
+			draw_set_colour(global.colorThemeText);
+		}
+		var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
+		draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(menuHeight - 25), headerString);		
+	}
+
+	/*draw_text(mean(0, menuWidth), menuHeight - 25,"File");
 	draw_text(mean(menuWidth, menuWidth*2), menuHeight - 25,"Edit");
 	draw_text(mean(menuWidth*2, menuWidth*3), menuHeight - 25,"View");
 	draw_text(mean(menuWidth*3, menuWidth*4.5), menuHeight - 25,"Search");
 	draw_text(mean(menuWidth*4.5, menuWidth*6), menuHeight - 25,"Options");
 	draw_text(mean(menuWidth*6, menuWidth*8), menuHeight - 25,"StackShow");
-	draw_text(mean(menuWidth*8, menuWidth*10), menuHeight - 25,"Sort Pane");
+	draw_text(mean(menuWidth*8, menuWidth*10), menuHeight - 25,"Sort Pane");*/
 	
 	
 	

@@ -31,7 +31,7 @@ for (var j = 0; j < gridSourceRowsToCopySize; j++)
 {
 	var rowToCopy = ds_list_find_value(gridSourceRowsToCopy, j);
 	
-	var gridSourceWidth ds_grid_width(gridSource);
+	var gridSourceWidth = ds_grid_width(gridSource);
 	for (var k = 0; k < gridSourceWidth; k++)
 	{
 		var value = ds_grid_get(gridSource, k, rowToCopy);
