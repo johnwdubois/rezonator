@@ -12,6 +12,7 @@
 	Author: Terry DuBois
 */
 
+
 var currentWordIDList = argument0;
 var previousWordDisplayCol = argument1;
 var currentLineY = argument2;
@@ -59,9 +60,26 @@ var mouseRectBeginBetweenWords = obj_control.mouseRectBeginBetweenWords;
 var colorThemeBG = global.colorThemeBG;
 var inRezPlay = obj_chain.inRezPlay;
 var hitGridHeight = ds_grid_height(obj_control.hitGrid);
+var camWidth = camera_get_view_width(view_camera[0]);
+
+
+// if we are justifying right with shapeText, we need to calculate the entire unit width
+var unitWidth = 0;
+var drawWordLoop = 0;
+if (shape == shapeText) {
+	if (justify == justifyCenter || justify == justifyRight) {
+		shapeTextX = 0;
+		repeat (currentWordIDListSize) {
+			var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
+			unitWidth += string_width(string(ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordID - 1))) + shapeTextSpace;
+			drawWordLoop++;
+		}
+	}
+}
+
 
 // get each wordID from wordIDList and draw it
-var drawWordLoop = 0;
+drawWordLoop = 0;
 repeat (currentWordIDListSize) {
 //for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
 	//var shake = false;
@@ -134,9 +152,30 @@ repeat (currentWordIDListSize) {
 	}
 	
 	// horizontally move this word to its desired x-pixel value
-	var currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
-	if (shape == shapeText) {
-		currentWordDestX = shapeTextX;
+	var currentWordDestX = 0;
+	if (justify == justifyLeft) {
+		if (shape == shapeText) {
+			currentWordDestX = shapeTextX;
+		}
+		else {
+			currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
+		}
+	}
+	else if (justify == justifyCenter) {
+		if (shape == shapeText) {
+			currentWordDestX = (camWidth / 2) - (unitWidth / 2) + shapeTextX;
+		}
+		else {
+			currentWordDestX = (camWidth / 2) - (ceil((currentWordIDListSize / 2)) * gridSpaceHorizontal) + (currentWordDisplayCol * gridSpaceHorizontal);
+		}
+	}
+	else if (justify == justifyRight) {
+		if (shape == shapeText) {
+			currentWordDestX = camWidth - scrollBarWidth - unitWidth + shapeTextX;
+		}
+		else {
+			currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (currentWordDisplayCol * gridSpaceHorizontal);
+		}
 	}
 	
 	var currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow);
