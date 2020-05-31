@@ -16,10 +16,22 @@ switch (optionSelected)
 		//show_message("Coming Soon");
 		break;
 	case "Developer":
-		show_message("Coming Soon");
+		obj_control.showDevVars = !obj_control.showDevVars;
+		obj_control.showFPS = !obj_control.showFPS;
+		instance_destroy(obj_dropDown);
 	break;
 	case "Shuffle":
-		show_message("Coming Soon");
+		obj_control.lineGridShuffle = !obj_control.lineGridShuffle;
+		if (obj_control.lineGridShuffle) {
+			scr_shuffleDisplayRows();
+			scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+		}
+		else {
+			with(obj_panelPane) {
+				functionSort_performSort = true;
+			}
+		}
+		instance_destroy(obj_dropDown);
 	break;
 	case "Delete All":
 		var dropDownOptionList = ds_list_create();
