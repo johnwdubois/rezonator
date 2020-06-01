@@ -77,7 +77,6 @@ wordTopMargin = 0;
 
 
 
-
 // Make light blue
 c_ltblue = make_color_rgb(183, 183, 255);
 
@@ -620,4 +619,7 @@ justifyCenter = 1;
 justifyRight = 2;
 justify = justifyLeft;
 
+
 hideAll = false;
+
+updatedSpeakerLabel = false;

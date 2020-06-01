@@ -1,3 +1,4 @@
+if (live_call()) return live_result;
 /// @description Insert description here
 // You can write your code in this editor
 //fuck it, gonna make a grid 
@@ -36,7 +37,7 @@ helpDropDownOptionListType = 23;
 
 
 fileOptionList = ds_list_create();
-ds_list_add(fileOptionList, "Open", "Save", "Import", "Export", "Clip", "Media",  "Exit");
+ds_list_add(fileOptionList, "Open          CTRL+O", "Save            CTRL+S", "Import", "Export", "Clip", "Media",  "Exit");
 
 /*linkOptionList = ds_list_create();
 ds_list_add(linkOptionList, "Track", "Rez", "Stack", "Quick", "Clique", "Focus", "Zap", "Quit");
@@ -45,16 +46,16 @@ editOptionList = ds_list_create();
 ds_list_add(editOptionList, "Insert", "Paste", "Delete", "Edit", "Split", "Restore", "Chunk", "Tag");*/
 
 viewOptionList = ds_list_create();
-ds_list_add(viewOptionList, "Pane", "Word", "Justify", "Prose", "Hide", "Filter", "Context", "Clear");
+ds_list_add(viewOptionList, "Pane                   V", "Word                 W", "Justify", "Prose", "Hide", "Filter              CTRL+P", "Context", "Clear");
 
 searchOptionList = ds_list_create();
-ds_list_add(searchOptionList, "Word", "Line", "Time");
+ds_list_add(searchOptionList, "Word                    F", "Line                        G", "Time");
 
 toolsOptionList = ds_list_create();
 ds_list_add(toolsOptionList, "Sort", "StackShow", "Play", "Rez-Play");
 
 advancedOptionList = ds_list_create();
-ds_list_add(advancedOptionList, "Developer", "Shuffle", "Delete All");
+ds_list_add(advancedOptionList, "Developer   ALT+SHIFT+D", "Shuffle         ALT+SHIFT+E", "Delete All");
 
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "Zoom", "Dark Theme", "Mute", "Author");

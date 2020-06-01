@@ -105,7 +105,7 @@ while (not file_text_eof(fileOpenRead)) {
 if (ds_grid_width(global.importGrid) == 0) {
 	
 	//check for tab delienated collumns
-	//scr_importTabbedTXT(filename);
+	scr_importTabbedTXT(filename);
 
 }
 

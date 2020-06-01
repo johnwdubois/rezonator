@@ -40,7 +40,7 @@ switch (optionSelected)
 	
 	break;
 	case "Mute":
-		show_message("Coming Soon");
+		audio_stop_all();
 	break;
 	case "Author":
 		show_message("Coming Soon");
