@@ -17,10 +17,13 @@
 if (obj_control.gridView and currentFunction != functionHelp) {
 	exit;
 }
-if(not showAdvancedNav) {
+if (not showAdvancedNav) {
 	if(currentFunction == functionClique || currentFunction == functionGraphStats) {
 		exit;	
 	}
+}
+if (obj_control.hideAll) {
+	exit;
 }
 
 

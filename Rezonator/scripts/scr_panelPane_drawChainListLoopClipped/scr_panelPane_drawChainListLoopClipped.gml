@@ -317,23 +317,25 @@ for (var i = 0; i < gridHeight; i++) {
 			draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
 			if (device_mouse_check_button_released(0, mb_left)) {
 				
-				// Unselect alignment if already selected
-				if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {
-					scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
-				}
-				
-				// Show alignments in main screen
-				isAligned = !isAligned;
-				if (isAligned) {
-					with (obj_chain) {
-						alarm[6] = 5;
-						// Protect against RaceToInfinity
-						chainIDRaceCheck = currentChainID;
+				if (obj_control.justify == obj_control.justifyLeft) {
+					// Unselect alignment if already selected
+					if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {
+						scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
 					}
-				}
 				
-				// Set alignment in grid
-				ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
+					// Show alignments in main screen
+					isAligned = !isAligned;
+					if (isAligned) {
+						with (obj_chain) {
+							alarm[6] = 5;
+							// Protect against RaceToInfinity
+							chainIDRaceCheck = currentChainID;
+						}
+					}
+				
+					// Set alignment in grid
+					ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
+				}
 			}
 		}
 	

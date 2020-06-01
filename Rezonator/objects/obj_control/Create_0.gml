@@ -619,3 +619,5 @@ justifyLeft = 0;
 justifyCenter = 1;
 justifyRight = 2;
 justify = justifyLeft;
+
+hideAll = false;

@@ -20,6 +20,9 @@ if (obj_control.gridView) {
 windowHeight = 100;
 //	exit;
 }
+if (obj_control.hideAll) {
+	exit;
+}
 
 // Set the original height as the file loads
 if(current_time - obj_control.sessionStartTime < 2000) {

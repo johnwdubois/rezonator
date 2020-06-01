@@ -1,1 +1,3 @@
-//instance_create(x, y, obj_customTagPane);
+if (keyboard_check(vk_control)) {
+	hideAll = !hideAll;
+}
