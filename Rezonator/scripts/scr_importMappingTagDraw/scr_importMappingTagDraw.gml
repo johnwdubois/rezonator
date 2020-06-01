@@ -87,7 +87,7 @@ for (var j = 0 ; j < 2; j++){
 
 }
 
-if(obj_importMapping.canContinueToken and obj_importMapping.canContinueUnit){
+if((obj_importMapping.canContinueToken and obj_importMapping.canContinueUnit) or global.tabDeliniatedText){
 
 	var continueButtonWidth = 150;
 	var continueButtonHeight = 40;

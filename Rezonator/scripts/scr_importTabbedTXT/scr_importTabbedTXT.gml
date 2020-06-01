@@ -2,7 +2,7 @@ var filename = argument0;
 global.importFilename = filename;
 
 var fileOpenRead = file_text_open_read(filename);
-
+var colListCreated = false;
 
 var widthOfImportGrid = 0;
 while (not file_text_eof(fileOpenRead)) {
@@ -20,6 +20,15 @@ while (not file_text_eof(fileOpenRead)) {
 	if(widthOfImportGrid <= ds_list_size(listOfColumns)){
 		widthOfImportGrid = ds_list_size(listOfColumns);
 		global.importGridWidth = widthOfImportGrid
+		if(!colListCreated){
+			for(i = 0; i < global.importGridWidth; i++){
+				var colName = " col";
+				ds_list_add(global.importGridColNameList, colName + " " + string(i));
+				ds_map_add(global.importGridColMap, colName, i);
+			}
+			colListCreated = true;
+		}
+
 		ds_grid_resize(global.importGrid, widthOfImportGrid, ds_grid_height(global.importGrid));
 	}
 	ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
@@ -41,5 +50,7 @@ while (not file_text_eof(fileOpenRead)) {
 	//show_message(scr_getStringOfList(listOfColumns));
 	
 }
-global.plainText = true;
+//global.plainText = true;
 global.tabDeliniatedText = true;
+
+//show_message(scr_getStringOfList(global.importGridColNameList));
