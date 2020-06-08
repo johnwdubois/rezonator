@@ -1391,6 +1391,14 @@
             }
         },
         {
+            "Key": "3653fcf1-e5e7-44d9-bbcd-8e62872557f0",
+            "Value": {
+                "id": "dddf4efb-94ec-4c9c-b558-146e1db727c5",
+                "resourcePath": "scripts\\scr_drawExportGridViewer\\scr_drawExportGridViewer.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "371a9fcf-9f41-44e4-86e5-3caa4589e8c0",
             "Value": {
                 "id": "1f42b94e-cafc-4c72-91db-86e3781d689a",
@@ -1764,6 +1772,14 @@
                 "id": "7ab9525e-1eec-490c-9505-3e5217216571",
                 "resourcePath": "views\/4c4092de-fd4e-49ca-97e5-0ac92f5b12cd.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "4cb59fd2-d8f1-4cf3-bf88-3796697cfe33",
+            "Value": {
+                "id": "fac0c74c-45ab-4ffe-b7c6-958ef419bd80",
+                "resourcePath": "objects\\obj_exportWindowGridList\\obj_exportWindowGridList.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -3879,6 +3895,14 @@
             }
         },
         {
+            "Key": "a96ae529-78d9-41fa-961a-43892c6c17a3",
+            "Value": {
+                "id": "6050eba2-99a7-4081-ae3e-f2c99cda0f73",
+                "resourcePath": "objects\\obj_exportWindowGridContents\\obj_exportWindowGridContents.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "a9bad904-f6bf-4344-a12d-84a823a18da7",
             "Value": {
                 "id": "92493fcf-32b1-40c9-b2d2-c12f238e2930",
@@ -5966,6 +5990,7 @@
         "4d1110e1-242b-4485-8969-ca05c1e27cb2",
         "4819348f-9a90-4870-b130-8ac5271b932c",
         "378c69b4-37f8-44ed-ade5-cd140f704de9",
+        "3653fcf1-e5e7-44d9-bbcd-8e62872557f0",
         "ab958ed3-5d2b-493d-8352-352b31d9a9ef",
         "0a3a3476-96c4-4f75-8457-c43c80c33361",
         "8674a5c0-2e97-4751-b28c-c34b0f405ec8",

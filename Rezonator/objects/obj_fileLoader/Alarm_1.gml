@@ -14,7 +14,7 @@
 */
 
 // if this is the first autosave, we will update the tokenImport and unitImport
-if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid)) {
+if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid)) {	
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
 	scr_fillTokenImportGrid();

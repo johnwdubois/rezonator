@@ -13,7 +13,7 @@ switch (argument0) {
 		gridName = "Word";
 		break;
 	case obj_control.dynamicWordGrid:
-		gridName = "DynamicWord";
+		gridName = "VizWord";
 		break;
 	case obj_control.filterGrid:
 		gridName = "Filter";

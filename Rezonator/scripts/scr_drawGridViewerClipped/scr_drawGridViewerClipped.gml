@@ -21,7 +21,8 @@ var scrollBarWidth = 20;
 //var gridColWidthDefault = windowWidth / ds_grid_width(grid);
 var textY = 0;
 var textPlusY = 0;
-var colNameHeight = 16;
+var strHeight = string_height("0");
+var colNameHeight = strHeight;
 
 var windowX1 = windowX;
 var windowY1 = windowY;
@@ -33,12 +34,11 @@ var gridHeight = ds_grid_height(grid);
 draw_set_color(global.colorThemeBG);
 draw_rectangle(windowX1 - scrollBarWidth - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
 draw_set_font(global.fontGridView);
-var strHeight = string_height("0");
+
 
 var currentItemString = " ";
 var mouseoverItemString = " ";
 var mouseoverCol = -1;
-var mouseoverRow = -1;
 
 
 var gridColXList = ds_map_find_value(gridViewColXListMap, grid);
@@ -188,6 +188,8 @@ for (var j = 0; j < 5; j++) {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(windowX1 - scrollBarWidth - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
 }
+draw_set_color(global.colorThemeBorders);
+draw_line(windowX1, windowY1 + colNameHeight, windowX2, windowY1 + colNameHeight);
 
 
 
