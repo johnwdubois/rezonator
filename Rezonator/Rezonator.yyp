@@ -3527,6 +3527,14 @@
             }
         },
         {
+            "Key": "9c695512-0655-4d7b-9d8c-609ade87d77d",
+            "Value": {
+                "id": "1322a7bf-cc57-4ea2-a21c-dcdf3104b679",
+                "resourcePath": "scripts\\scr_importConlluTXT\\scr_importConlluTXT.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "9da07010-2c1b-4f0a-a42b-fce287773ff8",
             "Value": {
                 "id": "992a72b9-3d0b-47ad-9b0a-ff9cdc149dc2",
@@ -6022,6 +6030,7 @@
         "647dc090-a050-4750-a66b-5d074bccb40b",
         "5eb08b69-3c2e-4873-8aca-a848e1db96b8",
         "9156545b-4273-443f-8d1d-906f9e3a8e94",
+        "9c695512-0655-4d7b-9d8c-609ade87d77d",
         "fd4da425-373c-4e8b-ae2d-21b090446fc6",
         "fc6b8058-c8a6-4947-93af-84e60aeeee9a",
         "bc2f5ec3-50e1-4cc0-8fb7-e25c9ba4ad32",
