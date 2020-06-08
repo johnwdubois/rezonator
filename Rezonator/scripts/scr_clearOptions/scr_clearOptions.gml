@@ -15,13 +15,16 @@ switch (optionSelected)
 		obj_control.currentActiveLineGrid = obj_control.lineGrid;
 		//obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
 		//obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
-			
-		//show_message("Coming Soon");
+		with (obj_alarm) {
+			alarm[0] = 5;
+		}	
+		//instance_destroy(obj_dropDown);
 	break;
 	case "Filter":// clear current picks
 		ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
 		ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 		ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
+		//instance_destroy(obj_dropDown);
 	break;
 	default:
 	break;
