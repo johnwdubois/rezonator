@@ -18,6 +18,13 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
 	scr_fillTokenImportGrid();
+	if(!obj_control.updatedSpeakerLabel){
+
+	with(obj_alarm){
+			alarm[7] = 2;
+	}
+	obj_control.updatedSpeakerLabel = true;
+}
 }
 
 alarm[1] = 36000;

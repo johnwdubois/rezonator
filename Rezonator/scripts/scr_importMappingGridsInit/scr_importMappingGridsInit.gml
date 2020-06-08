@@ -32,8 +32,9 @@ global.tokenImport_colWordTranscript = 3;
 global.tokenImportGrid = ds_grid_create(global.tokenImportGridWidth, 0);
 
 // initiate unitImport
-global.unitImportGridWidth = 1;
+global.unitImportGridWidth = 2;
 global.unitImport_colUnitID = 0;
+global.unitImport_colParticipant = 1;
 global.unitImportGrid = ds_grid_create(global.unitImportGridWidth, 0);
 
 
