@@ -101,6 +101,12 @@ while (not file_text_eof(fileOpenRead)) {
 	}
 }
 
+if (ds_grid_width(global.importGrid) == 0) {
+	
+	//CoNLL-U
+	//scr_importConlluTXT(filename);
+
+}
 
 if (ds_grid_width(global.importGrid) == 0) {
 	
