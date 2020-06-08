@@ -1,6 +1,8 @@
 windowWidth = 0;
 windowHeight = 0;
 
+mouseoverRow = -1;
+
 
 // scrollbar variables
 scrollBarHolding = false;

@@ -37,6 +37,10 @@ if(keyboard_check_pressed(vk_anykey)){
 }
 */
 
+if (hideAll) {
+	gridView = false;
+}
+	
 
 
 // Mechanism to update center display row
