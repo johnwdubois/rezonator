@@ -31,9 +31,11 @@ switch (optionSelected)
 	break;
 	case "Play":
 		show_message("Coming Soon");
+		instance_destroy(obj_dropDown);
 	break;
 	case "Rez-Play":
 		show_message("Coming Soon");
+		instance_destroy(obj_dropDown);
 	break;
 	default:
 	break;

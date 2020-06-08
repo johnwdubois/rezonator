@@ -654,9 +654,4 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 scr_fontSizeControl();
 
-if(!updatedSpeakerLabel){
-	with(obj_alarm){
-			alarm[7] = 5;
-	}
-	updatedSpeakerLabel = true;
-}
+

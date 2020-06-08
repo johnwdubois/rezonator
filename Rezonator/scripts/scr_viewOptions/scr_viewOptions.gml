@@ -110,7 +110,7 @@ switch (optionSelected)
 		if (ds_list_size(dropDownOptionList) > 0) {
 			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*5)  , -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;
-			dropDownInst.optionListType = 20;
+			dropDownInst.optionListType = 19;
 					
 			obj_control.ableToCreateDropDown = false;
 			obj_control.alarm[0] = 2;
@@ -123,7 +123,7 @@ switch (optionSelected)
 		if (ds_list_size(dropDownOptionList) > 0) {
 			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*6), -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;
-			dropDownInst.optionListType = 21;
+			dropDownInst.optionListType = 20;
 					
 			obj_control.ableToCreateDropDown = false;
 			obj_control.alarm[0] = 2;

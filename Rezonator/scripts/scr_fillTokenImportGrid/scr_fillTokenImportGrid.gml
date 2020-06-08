@@ -14,10 +14,20 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 
 // fill unitImport with UnitID information
 var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
-for (var i = 0; i < unitImportGridHeight; i++) {
+var unitGridHeight = ds_grid_height(obj_control.unitGrid);
+ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, unitGridHeight);
+
+
+for (var i = 0; i < unitGridHeight; i++) {
+	//set unit ID
 	var currentUnitID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitID, i);
 
 	ds_grid_set(global.unitImportGrid, global.unitImport_colUnitID, i, currentUnitID);
+	
+
+	var currentParticipant = ds_grid_get(obj_control.unitGrid,obj_control.unitGrid_colParticipantName,i);
+
+	ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, i, currentParticipant);
 }
 
 
@@ -41,7 +51,7 @@ with (obj_control) {
 ds_list_clear(global.tokenImportColNameList);
 ds_list_clear(global.unitImportColNameList);
 ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
-ds_list_add(global.unitImportColNameList, "UnitID");
+ds_list_add(global.unitImportColNameList, "UnitID", "Participant");
 
 // set custom label names for token and transcript columns
 if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1) {
@@ -74,7 +84,7 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 
 // grow tokenImportGrid and unitImportGrid to have the correct amount of columns
 global.tokenImportGridWidth = 4 + tokenMarkers;
-global.unitImportGridWidth = 1 + unitMarkers;
+global.unitImportGridWidth = 2 + unitMarkers;
 ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
 ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.unitImportGrid));
 with (obj_gridViewer) {
@@ -82,7 +92,7 @@ with (obj_gridViewer) {
 }
 
 var currentTokenImportCol = 4;
-var currentUnitImportCol = 1;
+var currentUnitImportCol = 2;
 
 // actually fill in all the cells of tokenImportGrid and unitImportGrid
 for (var i = 0; i < customLabelGridHeight; i++) {
