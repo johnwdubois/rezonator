@@ -1,9 +1,11 @@
 var filename = argument0;
 global.importFilename = filename;
-var firstClusterTagList = argument1;
-var firstCluster = argument2; 
-var firstClusterEncountered = argument3;
-var lineInCluster = argument4;
+
+
+var firstClusterTagList = ds_list_create();
+var firstCluster = true;
+var firstClusterEncountered = false;
+var lineInCluster = 0;
 
 var newRow = false;
 var blankRow = true;
@@ -15,6 +17,7 @@ var lineInFile = file_text_readln(fileOpenRead);
 	if (string_char_at(lineInFile, 1) != "#") {
 		exit;
 	}
+
 var widthOfImportGrid = 0;
 while (not file_text_eof(fileOpenRead)) {
 	
@@ -51,6 +54,8 @@ while (not file_text_eof(fileOpenRead)) {
 		}
 		lineInCluster++;
 	}
+	
+	
 	
 	// Check for Token level data
 	if (string_char_at(lineInFile, 1) != "#") {
@@ -107,9 +112,14 @@ while (not file_text_eof(fileOpenRead)) {
 		newRow = false;
 	}
 	
+	
+	
+	
+	
+	
 	// Check for Unit Level Data
 	if (string_char_at(lineInFile, 1) == "#") {
-		var colNameLength = string_pos(" ", lineInFile);
+		var colNameLength = string_pos("=", lineInFile);
 		var colName = string_copy(lineInFile, 1, colNameLength - 1);
 		var colVal = string_copy(lineInFile, colNameLength + 1, string_length(lineInFile) - colNameLength);
 		
@@ -117,7 +127,7 @@ while (not file_text_eof(fileOpenRead)) {
 		if (firstCluster) {
 			ds_list_add(firstClusterTagList, colName);
 		}
-	
+
 
 		var col = ds_map_find_value(global.importGridColMap, colName);
 		if (is_undefined(col)) {
@@ -132,6 +142,7 @@ while (not file_text_eof(fileOpenRead)) {
 	}
 	
 }
+			
 //global.plainText = true;
 global.tabDeliniatedText = true;
 
