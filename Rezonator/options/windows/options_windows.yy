@@ -11,7 +11,7 @@
     "option_windows_description_info": "Rezonator: Dynamics of Human Engagement",
     "option_windows_disable_sandbox": true,
     "option_windows_display_cursor": true,
-    "option_windows_display_name": "Rezonator 0.8.76",
+    "option_windows_display_name": "Rezonator 0.8.77",
     "option_windows_enable_steam": false,
     "option_windows_executable_name": "${project_name}",
     "option_windows_icon": "${options_dir}\\windows\\icons\\icon.ico",
@@ -19,7 +19,7 @@
     "option_windows_installer_header": "${options_dir}\\windows\\installer\\header.bmp",
     "option_windows_interpolate_pixels": false,
     "option_windows_license": "${base_options_dir}\\windows\\installer\\license.txt",
-    "option_windows_nsis_file": "${base_options_dir}\\windows\\installer\\nsis_script.nsi",
+    "option_windows_nsis_file": "C:\\ProgramData\\GameMakerStudio2\\Cache\\runtimes\\runtime-2.2.5.378\\BaseProject\\options\\windows\\installer\\nsis_script.nsi",
     "option_windows_product_info": "Rezonator",
     "option_windows_resize_window": true,
     "option_windows_save_location": 0,
@@ -31,7 +31,7 @@
     "option_windows_texture_page": "2048x2048",
     "option_windows_use_splash": false,
     "option_windows_version": {
-        "build": 76,
+        "build": 77,
         "major": 0,
         "minor": 8,
         "revision": 0
