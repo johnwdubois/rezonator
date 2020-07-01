@@ -1487,6 +1487,14 @@
             }
         },
         {
+            "Key": "3cad0d31-242d-405f-8407-2a33274c9ad6",
+            "Value": {
+                "id": "1b8af102-4cb0-4d04-b42a-978f946dcb40",
+                "resourcePath": "objects\\obj_stacker\\obj_stacker.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "3d87ed78-6c71-4f8d-8328-c4908449b2ab",
             "Value": {
                 "id": "c872f728-9423-44cf-b425-bf499c194281",
