@@ -162,7 +162,7 @@ for (var i = 0; i < chainShowListSize; i++) {
 					if(obj_control.shape == obj_control.shapeBlock) {
 						var lineDist = point_distance(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2));
 						var arrowAngle = point_direction(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2));
-						if(lineDist > 30) {
+						if(lineDist > 30 and obj_chain.showChainArrows) {
 							//calculate the direciton of the arrow
 							var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
 							var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
@@ -194,7 +194,7 @@ for (var i = 0; i < chainShowListSize; i++) {
 					if(obj_control.shape == obj_control.shapeBlock) {
 						var lineDist = point_distance(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
 						var arrowAngle = point_direction(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
-						if(lineDist > 30) {
+						if(lineDist > 30 and obj_chain.showChainArrows) {
 							//calculate the direciton of the arrow
 							var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
 							var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
@@ -265,8 +265,10 @@ if (not (mouseLineX == undefined or mouseLineY == undefined)) {
 			if (currentChainShow) {
 				if (not mouseLineHide) {
 					draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
-					var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
-					draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
+					if(obj_chain.showChainArrows) {
+						var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
+						draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
+					}
 				}
 			}
 		}

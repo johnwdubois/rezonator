@@ -1,5 +1,9 @@
 ///@description End Chain Use
 // End chain adding/use
-scr_chainDeselect();
-
-scr_refreshVizLinkGrid();
+if(keyboard_check(vk_control)) {
+	obj_chain.showChainArrows = !obj_chain.showChainArrows;
+}
+else {
+	scr_chainDeselect();
+	scr_refreshVizLinkGrid();
+}
