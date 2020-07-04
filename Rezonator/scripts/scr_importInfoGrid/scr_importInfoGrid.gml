@@ -46,7 +46,7 @@ else {
 			currentExample = ds_grid_get(global.importGrid, i, importGridRow);
 		}
 		else {
-			show_message(string(ds_grid_get(global.importGrid, i, importGridRow)))
+			//show_message(string(ds_grid_get(global.importGrid, i, importGridRow)))
 		}
 	
 		colorIndex++;

@@ -17,7 +17,14 @@
 if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid)) {	
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
-	scr_fillTokenImportGrid();
+	
+	if(global.importType == global.importType_Default){
+		scr_fillTokenImportGrid();
+	}
+	else if(global.importType == global.importType_CSV){
+		scr_fillTokenImportGridCSV();
+	}
+	
 	if(!obj_control.updatedSpeakerLabel){
 
 	with(obj_alarm){

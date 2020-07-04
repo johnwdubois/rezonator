@@ -19,6 +19,7 @@ var currentWordState = (string_length(string(currentWordToken)) < 1) ? obj_contr
 
 	
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordID, currentRowDynamicWordGrid, currentWordID);
+ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWID, currentRowDynamicWordGrid, currentWordID);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colUtteranceID, currentRowDynamicWordGrid, currentUtteranceID);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentRowDynamicWordGrid, currentWordPositionCol);
 ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentRowDynamicWordGrid, currentWordX);

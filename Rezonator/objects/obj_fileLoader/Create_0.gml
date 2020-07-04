@@ -52,7 +52,7 @@ importCSVCurrentUID = 0;
 importCSVCurrentRow = 0;
 importCSVWordIDList = ds_list_create();
 if (ds_grid_height(global.importCSVGrid) > 0) {
-	importCSVCurrentUID = real(ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, 0));
+	//importCSVCurrentUID = real(ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, 0));
 }
 
 subLineGridBeginning = 0;

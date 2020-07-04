@@ -274,6 +274,7 @@ morphGrid_colGloss = 7;
 
 
 morphGrid = ds_grid_create(morphGridWidth, 0);
+
 with (obj_alarm) {
 	alarm[5] = 1;
 }

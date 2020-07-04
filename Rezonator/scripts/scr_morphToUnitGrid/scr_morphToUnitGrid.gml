@@ -21,7 +21,8 @@ for (var i = 0; i < participantListSize; i++) {
 	ds_list_add(participantColorList, color);
 }
 
-
+ds_grid_resize(obj_control.wordGrid, ds_grid_width(obj_control.wordGrid), 0);
+ds_grid_resize(obj_control.dynamicWordGrid, ds_grid_width(obj_control.dynamicWordGrid), 0);
 
 for (var i = 0; i < morphGridHeight; i++) {
 	var currentUnitID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i);
@@ -32,6 +33,7 @@ for (var i = 0; i < morphGridHeight; i++) {
 	}
 	var currentWordID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colWordID, i);
 	ds_list_add(currentWordIDList, currentWordID);
+
 	
 	var currentParticipant = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colParticipant, i);
 	var currentParticipantID = ds_list_find_index(participantList, currentParticipant);
@@ -44,6 +46,8 @@ for (var i = 0; i < morphGridHeight; i++) {
 		var currentWordIDListNewUnit = ds_list_create();
 		ds_list_copy(currentWordIDListNewUnit, currentWordIDList);
 		ds_list_clear(currentWordIDList);
+		//show_message(scr_getStringOfList(currentWordIDListNewUnit));
+		
 		
 		ds_grid_resize(obj_control.unitGrid, global.unitGridWidth, ds_grid_height(obj_control.unitGrid) + 1);
 		var currentRowUnitGrid = ds_grid_height(obj_control.unitGrid) - 1;
@@ -63,13 +67,16 @@ for (var i = 0; i < morphGridHeight; i++) {
 		var currentWordIDListNewUnitSize = ds_list_size(currentWordIDListNewUnit);
 		for (var j = 0; j < currentWordIDListNewUnitSize; j++) {
 			var currentWordIDNewWord = ds_list_find_value(currentWordIDListNewUnit, j);
+			//show_message(string(currentWordIDNewWord ))
 			var currentMorph = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colMorph, currentWordIDNewWord - 1);
 			var currentGloss = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colGloss, currentWordIDNewWord - 1);
 			
+			//show_message(string(currentMorph));
 			ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 			var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 			
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentRowWordGrid, currentWordIDNewWord);
+			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWID, currentRowWordGrid, currentWordIDNewWord);
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentRowWordGrid, currentUnitID);
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, currentRowWordGrid, currentUnitID);
 			ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, j);

@@ -53,6 +53,13 @@ global.neworOpen = false;
 global.tutorial = false;
 global.games = false;
 //global.inRezzles = false;
+
+
+global.importType_CSV = 1;
+global.importType_Default = 0;
+global.importType = global.importType_Default;
+
+
 global.plainText = false;
 global.tabDeliniatedText = false;
 
@@ -132,6 +139,7 @@ global.importCSVUnitGridHeight = 0;
 
 
 global.importGridWidth = 0;
+global.importCSVGridWidth = 0;
 global.importGrid = ds_grid_create(global.importGridWidth, 0);
 global.importGridColMap = ds_map_create();
 

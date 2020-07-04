@@ -17,16 +17,36 @@ var map = argument1;
 var gridStr = argument2;
 var tempGrid = ds_grid_create(0, 0);
 
-if (originalGrid != global.importGrid) {
+
+if (originalGrid != global.importGrid || originalGrid != global.importCSVGrid ) {
 	ds_grid_resize(tempGrid, ds_grid_width(originalGrid), 0);
 }
-else if (global.importGridWidth >= 0){
-	if(global.importGridWidth == undefined){
-		global.importGridWidth = 0;
+
+if (originalGrid == global.importGrid) {
+	if (global.importGridWidth >= 0){
+		if(global.importGridWidth == undefined){
+			global.importGridWidth = 0;
+		}
+		ds_grid_resize(tempGrid, global.importGridWidth, 0);
 	}
-	//show_message("global.importGridWidth: " + string(global.importGridWidth));
-	ds_grid_resize(tempGrid, global.importGridWidth, 0);
 }
+	
+if (originalGrid == global.importCSVGrid) {
+
+	if (global.importCSVGridWidth >= 0){
+		
+		if(global.importCSVGridWidth == undefined){
+			global.importCSVGridWidth = 0;
+		}
+		ds_grid_resize(tempGrid, global.importCSVGridWidth, 0);
+	
+	}
+
+}
+
+
+
+
 scr_loadREZGridReset(tempGrid, map, gridStr);
 
 
@@ -124,12 +144,19 @@ if (ds_grid_height(obj_control.wordGrid) > 0 and ds_grid_height(obj_control.unit
 	}
 }
 
-
-if (originalGrid != global.importGrid) {
+if (originalGrid != global.importGrid || originalGrid != global.importCSVGrid ) {
 	ds_grid_resize(originalGrid, ds_grid_width(originalGrid), originalGridHeight + ds_grid_height(tempGrid));
 }
-else if (global.importGridWidth >= 0){
-	ds_grid_resize(originalGrid, global.importGridWidth, originalGridHeight + ds_grid_height(tempGrid));
+if (originalGrid == global.importGrid) {
+	if (global.importGridWidth >= 0){
+		ds_grid_resize(originalGrid, global.importGridWidth, originalGridHeight + ds_grid_height(tempGrid));
+	}
+}
+
+if (originalGrid == global.importCSVGrid) {
+	if (global.importCSVGridWidth >= 0){
+		ds_grid_resize(originalGrid, global.importCSVGridWidth, originalGridHeight + ds_grid_height(tempGrid));
+	}
 }
 
 ds_grid_set_grid_region(originalGrid, tempGrid, 0, 0, ds_grid_width(tempGrid), ds_grid_height(tempGrid), 0, originalGridHeight);

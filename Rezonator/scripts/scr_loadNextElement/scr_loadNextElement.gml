@@ -125,7 +125,7 @@ if (string_count("/>", currentElement) > 0) {
 		var lineNumber = ds_list_find_value(linesWithWordsList, j);
 			
 		wordIDCounter++;
-			
+
 		if (string_count("<g><w>", ds_list_find_value(fileLineRipList, lineNumber)) > 0) {
 			var wordToken = scr_fileLineRipListSearch(lineNumber, "<g><w>", "<", fileLineRipList);
 		}

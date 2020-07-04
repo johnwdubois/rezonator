@@ -1735,6 +1735,14 @@
             }
         },
         {
+            "Key": "49befd75-b1ee-4363-b601-26116c585683",
+            "Value": {
+                "id": "72a727f5-566a-4441-a863-a4b3c219df0c",
+                "resourcePath": "scripts\\scr_fillTokenImportGridCSV\\scr_fillTokenImportGridCSV.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "4a74aced-d35f-460d-bb05-5904a7fbae0b",
             "Value": {
                 "id": "75a97dac-c73d-4cb7-891f-87d4b9ad2264",
@@ -1852,6 +1860,14 @@
                 "id": "83dadc76-c013-43c2-9588-782638e52e29",
                 "resourcePath": "datafiles_yy\\GMLive\\gcmt-dll.dll.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "4e81df18-804c-447c-809b-82589d55507d",
+            "Value": {
+                "id": "eb20d9cf-ea86-407d-9708-674cd32ea890",
+                "resourcePath": "scripts\\scr_gridViewerDynamicWidth\\scr_gridViewerDynamicWidth.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -1995,6 +2011,14 @@
             "Value": {
                 "id": "eeb076ec-1f44-48ac-b451-076ad77031ce",
                 "resourcePath": "scripts\\scr_paneOptions\\scr_paneOptions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "5608aae7-5ed1-46b0-a5c0-bbc2f5512a7f",
+            "Value": {
+                "id": "158fc003-63c8-4a67-afdf-7f0fee281ee7",
+                "resourcePath": "scripts\\scr_loadDynamicGrids\\scr_loadDynamicGrids.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -5431,6 +5455,14 @@
             }
         },
         {
+            "Key": "e9870ffc-9cec-4c22-8db2-cd7baeb3cea1",
+            "Value": {
+                "id": "27f8be7a-6d34-469a-a69b-16260790c1f4",
+                "resourcePath": "scripts\\scr_CSVtoGrid\\scr_CSVtoGrid.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e9887152-5da4-4b7e-9d4a-b03816f12d8b",
             "Value": {
                 "id": "3f60a8cf-00e2-43dc-a43e-8b091382de44",
@@ -5958,6 +5990,9 @@
         "bbff640f-7b88-43f0-8d8b-79272ea1c729",
         "e835345d-9f44-4801-92a9-a979efa86018",
         "e46b1641-a550-446c-99fd-8a5ad345b05f",
+        "49befd75-b1ee-4363-b601-26116c585683",
+        "e9870ffc-9cec-4c22-8db2-cd7baeb3cea1",
+        "5608aae7-5ed1-46b0-a5c0-bbc2f5512a7f",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "fc1067ad-8999-4c32-b44e-52ec42f636c0",
         "01326701-b0a6-4057-8a77-21f137c710e7",
@@ -6007,6 +6042,7 @@
         "4819348f-9a90-4870-b130-8ac5271b932c",
         "378c69b4-37f8-44ed-ade5-cd140f704de9",
         "3653fcf1-e5e7-44d9-bbcd-8e62872557f0",
+        "4e81df18-804c-447c-809b-82589d55507d",
         "ab958ed3-5d2b-493d-8352-352b31d9a9ef",
         "0a3a3476-96c4-4f75-8457-c43c80c33361",
         "8674a5c0-2e97-4751-b28c-c34b0f405ec8",

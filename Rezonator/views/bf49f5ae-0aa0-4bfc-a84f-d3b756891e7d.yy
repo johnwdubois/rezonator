@@ -20,7 +20,10 @@
         "a2255ce4-9d60-40b0-b1b1-ccf37f459571",
         "bbff640f-7b88-43f0-8d8b-79272ea1c729",
         "e835345d-9f44-4801-92a9-a979efa86018",
-        "e46b1641-a550-446c-99fd-8a5ad345b05f"
+        "e46b1641-a550-446c-99fd-8a5ad345b05f",
+        "49befd75-b1ee-4363-b601-26116c585683",
+        "e9870ffc-9cec-4c22-8db2-cd7baeb3cea1",
+        "5608aae7-5ed1-46b0-a5c0-bbc2f5512a7f"
     ],
     "filterType": "GMScript",
     "folderName": "grid functions",

@@ -26,6 +26,8 @@ global.levelUnit = 1;
 global.levelDiscourse = 2;
 global.levelUnknown = 3;
 
+
+
 mouseOverLevel = false;
 inDropDown = false;
 rowToChange = -1;

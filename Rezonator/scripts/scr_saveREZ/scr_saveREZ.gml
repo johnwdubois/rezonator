@@ -79,6 +79,7 @@ with (obj_saveParent) {
 		var mapUnitGrid = scr_gridToJSONLists(unitGrid);
 		var mapLineGrid = scr_gridToJSONLists(lineGrid);
 		var mapimportGrid = scr_gridToJSONLists(global.importGrid);
+		var mapimportCSVGrid = scr_gridToJSONLists(global.importCSVGrid);
 		var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
 		var maptokenImport = scr_gridToJSONLists(global.tokenImportGrid);
 		var mapunitImport = scr_gridToJSONLists(global.unitImportGrid);
@@ -92,13 +93,17 @@ with (obj_saveParent) {
 		ds_map_add_list(map, "unitGrid", mapUnitGrid);
 		ds_map_add_list(map, "lineGrid", mapLineGrid);
 		ds_map_add_list(map, "importGrid", mapimportGrid);
+		ds_map_add_list(map, "importCSVGrid", mapimportCSVGrid);
 		ds_map_add(map, "importGridWidth", global.importGridWidth);
+		ds_map_add(map, "importCSVGridWidth", global.importCSVGridWidth);
 		ds_map_add_list(map, "morphGrid", mapMorphGrid);
 		var tempList = ds_list_create();
 		if (global.importGridColNameList != undefined) {
 			ds_list_copy(tempList, global.importGridColNameList);
 		}
 		ds_map_add_list(map, "importGridColNameList", tempList);
+		
+
 		
 		//custom label saves
 		ds_map_add_list(map, "tokenImport", maptokenImport);

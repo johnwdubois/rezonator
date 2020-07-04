@@ -81,6 +81,17 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	}
 }
 	
+	
+var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, 0, global.tagInfoGrid_colDisplayToken, ds_grid_height(global.tagInfoGrid), true);
+var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
+	
+var displayUnitRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, 0, global.tagInfoGrid_colDisplayUnit, ds_grid_height(global.tagInfoGrid), true);
+var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
+var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
+	
+	
+	
 
 // grow tokenImportGrid and unitImportGrid to have the correct amount of columns
 global.tokenImportGridWidth = 4 + tokenMarkers;
@@ -90,6 +101,29 @@ ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height
 with (obj_gridViewer) {
 	alarm[2] = 1;
 }
+
+
+var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, 0, global.tagInfoGrid_colDisplayToken, ds_grid_height(global.tagInfoGrid), true);
+var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+
+// fill tokenImport with UnitID, WordID, token, and transcript information
+var tokenImportGridHeight = ds_grid_height(global.importGrid);
+for (var i = 0; i < tokenImportGridHeight; i++) {
+	//hardcoded till ui is built
+	var currentUnitID = ds_grid_get(global.importGrid, 3, i);
+	var currentWordID = i
+
+	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
+	var currentWordToken = ds_grid_get(global.importGrid, importGrid_colDisplayToken, i);
+	var currentWordTranscript = "";
+	
+	ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
+	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, i, currentWordID);
+	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
+	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
+}
+
+
 
 var currentTokenImportCol = 4;
 var currentUnitImportCol = 2;
@@ -107,10 +141,10 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	
 	// add the name of this marker to one of our lists
 	if (currentLevel == global.levelToken) {
-		ds_list_add(global.tokenImportColNameList, string_copy(currentMarker, 2, string_length(currentMarker) - 1));
+		ds_list_add(global.tokenImportColNameList, string(currentMarker));
 	}
 	else if (currentLevel == global.levelUnit) {
-		ds_list_add(global.unitImportColNameList, string_copy(currentMarker, 2, string_length(currentMarker) - 1));
+		ds_list_add(global.unitImportColNameList, string(currentMarker));
 	}
 	
 	// find this marker's column in the importGrid
@@ -120,7 +154,7 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		// if this marker is token level, fill in tokenImportGrid
 		// if this marker is unit level, fill in unitImportGrid
 		if (currentLevel == global.levelToken) {
-			
+
 			var tokenList = ds_list_create();
 		
 			var importGridHeight = ds_grid_height(global.importGrid);
@@ -129,8 +163,6 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 				var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
 				var currentLineTokenList = scr_splitStringImport(currentLine);
 				var currentLineTokenListSize = ds_list_size(currentLineTokenList);
-
-				
 				for (var k = 0; k < currentLineTokenListSize; k++) {
 					ds_list_add(tokenList, ds_list_find_value(currentLineTokenList, k));
 				}
@@ -139,22 +171,21 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		
 			var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
 			for (var j = 0; j < tokenImportGridHeight; j++) {
-				
 				var currentToken = ds_list_find_value(tokenList, j);
 				ds_grid_set(global.tokenImportGrid, currentTokenImportCol, j, currentToken);
 			}
 			currentTokenImportCol++;
-			
+
 		}
 		else if (currentLevel == global.levelUnit) {
-			
+
 			var importGridHeight = ds_grid_height(global.importGrid);
 			for (var j = 0; j < importGridHeight; j++) {
 				var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
 				ds_grid_set(global.unitImportGrid, currentUnitImportCol, j, currentLine);
 			}
 			currentUnitImportCol++;
-			
+
 		}
 	}
 }

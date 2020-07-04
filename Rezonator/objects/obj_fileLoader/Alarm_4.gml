@@ -7,7 +7,13 @@ with (obj_control) {
 		var currentWordID = ds_grid_get(wordGrid, wordGrid_colWordID, i);
 		var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, i);
 		var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
-		var lastWordOfLine = ds_list_find_value(currentWordIDList, ds_list_size(currentWordIDList) - 1);
+		if(currentWordIDList == ds_type_list){
+			var lastWordOfLine = ds_list_find_value(currentWordIDList, (ds_list_size(currentWordIDList) - 1));
+		}
+		else {
+			var lastWordOfLine = -1;
+		}
+		//var lastWordOfLine = ds_list_find_value(currentWordIDList, ds_list_size(currentWordIDList) - 1);
 	
 		if (lastWordOfLine == currentWordID) {
 			if (ds_grid_get(wordGrid, wordGrid_colWordToken, i) != ds_grid_get(wordGrid, wordGrid_colWordTranscript, i)) {

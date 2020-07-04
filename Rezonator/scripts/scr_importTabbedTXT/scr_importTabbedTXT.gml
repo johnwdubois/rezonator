@@ -20,17 +20,12 @@ while (not file_text_eof(fileOpenRead)) {
 	if(widthOfImportGrid <= ds_list_size(listOfColumns)){
 		widthOfImportGrid = ds_list_size(listOfColumns);
 		global.importGridWidth = widthOfImportGrid
-		if(!colListCreated){
-			for(i = 0; i < global.importGridWidth; i++){
-				var colName = " col";
-				ds_list_add(global.importGridColNameList, colName + " " + string(i));
-				ds_map_add(global.importGridColMap, colName, i);
-			}
-			colListCreated = true;
-		}
+
+
 
 		ds_grid_resize(global.importGrid, widthOfImportGrid, ds_grid_height(global.importGrid));
 	}
+
 	ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
 	
 	var listOfColumnsSize = ds_list_size(listOfColumns);
@@ -50,6 +45,14 @@ while (not file_text_eof(fileOpenRead)) {
 	//show_message(scr_getStringOfList(listOfColumns));
 	
 }
+		if(!colListCreated){
+			for(i = 0; i < global.importGridWidth; i++){
+				var colName = " col";
+				ds_list_add(global.importGridColNameList, colName + " " + string(i));
+				ds_map_add(global.importGridColMap, colName, i);
+			}
+			colListCreated = true;
+		}
 //global.plainText = true;
 global.tabDeliniatedText = true;
 

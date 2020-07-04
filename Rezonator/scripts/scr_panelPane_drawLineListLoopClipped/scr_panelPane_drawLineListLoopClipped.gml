@@ -80,6 +80,13 @@ for (var i = 0; i < lineGridHeight; i++) {
 
 	var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
 	var currentLineWordString = "";
+	if(currentLineWordList == ds_type_list){
+		var currentLineWordListSize = ds_list_size(currentLineWordList);
+	}
+	else {
+		var currentLineWordListSize = 0;
+	}
+	//show_message(scr_getStringOfList(currentLineWordList));
 	var currentLineWordListSize = ds_list_size(currentLineWordList);
 	for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
 		var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);

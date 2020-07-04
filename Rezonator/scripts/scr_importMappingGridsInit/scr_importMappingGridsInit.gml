@@ -45,3 +45,10 @@ global.customLabelGrid_colLevel = 0;
 global.customLabelGrid_colMarker = 1;
 global.customLabelGrid_colTagList = 2;
 global.customLabelGrid = ds_grid_create(global.customLabelGridWidth, 0);
+
+// initiate global variables for levels (needed for loading rez)
+global.levelToken = 0;
+global.levelUnit = 1;
+global.levelDiscourse = 2;
+global.levelUnknown = 3;
+

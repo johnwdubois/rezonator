@@ -12,13 +12,11 @@
 	Author: Terry DuBois
 */
 var RezDirString = global.currentDirString;
-//show_message(string(global.currentDirString));
 if(!global.wheresElmo){
 	RezDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Rez";
 	if (os_type == os_macosx) {
 		RezDirString = global.rezonatorDirString + "/Data/SBCorpus/Rez";
 	}
-	//show_message(string(RezDirString) + "   Does exist : " + string(directory_exists(RezDirString)));
 }
 
 if (!global.wheresElmo and global.previousRezDirectory != "") {
@@ -39,7 +37,6 @@ if (!global.wheresElmo and global.previousRezDirectory != "") {
 
 
 if (directory_exists(global.rezonatorDirString)) {
-	//show_message("." + string(RezDirString) + ".   Does exist : " + string(directory_exists(RezDirString)));
 	var fileName = get_open_filename_ext("REZ file|*.rez", "", RezDirString, "Open REZ");
 }
 else {
@@ -95,6 +92,9 @@ if (file_exists(fileName)) {
 				obj_fileLoader.subLineGridBeginning = ds_map_find_value(map, "subLineGridBeginning");
 				obj_fileLoader.subLineGridEnd = ds_map_find_value(map, "subLineGridEnd");
 				global.importGridWidth = ds_map_find_value(map, "importGridWidth");
+				global.importCSVGridWidth = ds_map_find_value(map, "importCSVGridWidth");
+				
+
 				
 				global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
@@ -127,10 +127,12 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(unitGrid, map, "unitGrid");
 				scr_loadAnotherREZ(lineGrid, map, "lineGrid");
 				scr_loadAnotherREZ(global.importGrid, map, "importGrid");
+				scr_loadAnotherREZ(global.importCSVGrid, map, "importCSVGrid");
 				scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
 				scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
 				scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
 				scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
+			
 				
 				
 				global.totalUnitAmount = scr_getTotalUnitAmount();
@@ -210,7 +212,6 @@ if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGr
 ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 //scr_refreshLineGridDisplayRow(obj_control.lineGridBackup);
 
-//show_message(string(ds_grid_height(global.tokenImportGrid)) + "  " + string(ds_grid_height(obj_control.wordGrid)))
 
 // update tokenImport
 if (ds_list_size(global.tokenImportColNameList) > 4) {
@@ -224,4 +225,10 @@ if (ds_grid_height(global.tokenImportGrid) <= ds_grid_height(obj_control.wordGri
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
 }
 
-scr_fillTokenImportGrid();
+
+if(ds_grid_width(global.importCSVGrid) > 0){
+	scr_fillTokenImportGridCSV();
+}
+else{
+	scr_fillTokenImportGrid();
+}
