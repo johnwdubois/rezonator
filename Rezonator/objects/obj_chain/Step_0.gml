@@ -13,7 +13,8 @@
 */
 
 if(keyboard_check_pressed(ord("A")) and keyboard_check(vk_control) and not (!obj_control.shortcutsEnabled || obj_control.dialogueBoxActive || obj_panelPane.discoSelectionActive)) {
-	showPlaceChains = !showPlaceChains;	
+	//kinda broken rn
+	//showPlaceChains = !showPlaceChains;	
 }
 
 if (mouseLineHide) {
