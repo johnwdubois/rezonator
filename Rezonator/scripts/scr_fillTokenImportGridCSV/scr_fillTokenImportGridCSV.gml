@@ -111,16 +111,20 @@ var tokenImportGridHeight = ds_grid_height(global.importGrid);
 for (var i = 0; i < tokenImportGridHeight; i++) {
 	//hardcoded till ui is built
 	var currentUnitID = ds_grid_get(global.importGrid, 3, i);
-	var currentWordID = i
+	var currentWordID = i+1
 
 	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 	var currentWordToken = ds_grid_get(global.importGrid, importGrid_colDisplayToken, i);
 	var currentWordTranscript = "";
+
+	if(currentWordToken != undefined){
 	
-	ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
-	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, i, currentWordID);
-	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
-	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
+		ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
+		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, i, currentWordID);
+		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
+		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
+	
+	}
 }
 
 
