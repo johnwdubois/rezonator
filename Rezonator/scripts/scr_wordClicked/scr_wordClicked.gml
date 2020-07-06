@@ -41,6 +41,7 @@ or obj_toolPane.currentTool == obj_toolPane.toolPlaceChains
 or obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	exit;
 }
+//show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
 
 if (ds_list_size(obj_control.inRectWordIDList) <= 1 && obj_toolPane.currentTool != obj_toolPane.toolStackBrush&& obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 	obj_control.moveCounter++;
@@ -51,6 +52,7 @@ var fakeInChainsList = ds_list_create();
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(fakeInChainsList, ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1));
 	var inChainsList = fakeInChainsList;
+	//show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
 }
 else {
 	var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
@@ -202,6 +204,7 @@ if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 	}
 }
 else {
+	//show_message("okay");
 	// if there is not a focused chain, we create a new chain
 	if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
 		scr_newChain(wordID, unitID);
