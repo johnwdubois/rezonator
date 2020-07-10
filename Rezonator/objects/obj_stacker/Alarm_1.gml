@@ -1,11 +1,11 @@
-/// @description Insert description here
+/// @description Create Random Stacks
 // You can write your code in this editor
 var endLine = ds_grid_height(obj_control.lineGrid) - 1;
 var randUnit = -1;
 var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
-for (var stackLoop = 0; stackLoop < 4; stackLoop++) {
-//while (randLine2 <= endLine && randLine1 < endLine){ 
+//for (var stackLoop = 0; stackLoop < 4; stackLoop++) {
+while (randLine2 <= endLine && randLine1 < endLine){ 
 	for(var randUnitLoop = randLine1; randUnitLoop < randLine2; randUnitLoop++){
 		randUnit = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, randUnitLoop-1);
 		ds_list_add(currentUnitList, randUnit);

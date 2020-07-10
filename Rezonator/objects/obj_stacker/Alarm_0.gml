@@ -1,3 +1,4 @@
+/// @description Save Random Portions
 var endLine = ds_grid_height(obj_control.lineGrid) - 1;
 var fileNameNumber = 1;
 

@@ -206,11 +206,18 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	}
 	
 	if (unitInStackGridHeight == unitGridHeight) {
-		currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
+		// want this to be quicker, but it works for now
+		if (obj_chain.unitInStackGrid_focusedCol > 0 and obj_chain.unitInStackGrid_focusedCol < ds_grid_width(obj_chain.unitInStackGrid)) {
+			currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_focusedCol, unitID - 1);
+		}
+		else {
+			currentLineInStack = -1;
+		}
 	}
 
 	
 	// draw stack rectangle if this line is in a stack
+	
 	if (currentLineInStack > -1) {
 		//scr_drawStackRect();
 		

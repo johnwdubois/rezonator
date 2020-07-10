@@ -48,6 +48,7 @@ unitInStackGridWidth = 2;
 unitInStackGrid_colUnitID = 0;
 unitInStackGrid_colStack = 1;
 unitInStackGrid = ds_grid_create(unitInStackGridWidth, 0);
+unitInStackGrid_focusedCol = unitInStackGrid_colStack;
 
 currentChain = 0;
 currentChainID = 0;
@@ -209,7 +210,7 @@ goldStandardGrid_colScore = 3;
 
 // For toggling Place chains
 showPlaceChains = false;
-showChainArrows = true;
+showChainArrows = false;
 
 
 
