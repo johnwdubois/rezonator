@@ -208,4 +208,10 @@ else if (optionListType == 26)
     instance_destroy();
 }
 
+//token selection
+else if (optionListType == 27)
+{
+    scr_tokenSelection(optionSelected);
+    instance_destroy();
+}
 

@@ -207,6 +207,12 @@ holdDown = 0;
 showNav = true;
 lineContentsHeaderListSize = 3;
 
+chosenCol = 0;
+ascendYScale = 1;
+ascendActivated = false;
+
+
+
 hoverTime[0] = 0;
 hoverTime[1] = 0;
 hoverTime[2] = 0;

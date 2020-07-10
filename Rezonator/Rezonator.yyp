@@ -3199,6 +3199,14 @@
             }
         },
         {
+            "Key": "8b992b96-6001-40e9-ba2a-e819b85a9792",
+            "Value": {
+                "id": "f6b2d990-7a5d-48ae-889b-aced331a2b47",
+                "resourcePath": "scripts\\scr_tokenSelection\\scr_tokenSelection.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8c523796-b031-440f-88da-6a704ba43ea3",
             "Value": {
                 "id": "34e6eaf7-4981-4ef9-9248-d91921efdbe2",
@@ -6228,6 +6236,7 @@
         "a4078897-b9f4-49d2-bd0e-05e30642d397",
         "e7f20fb3-f8c2-4dda-99af-55e4dacd9b79",
         "a53ebb4d-c219-4610-a2c8-441dab4f3b32",
+        "8b992b96-6001-40e9-ba2a-e819b85a9792",
         "7bf96896-31d5-4157-8f09-1b534bc78c46",
         "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
         "a0b42376-3fda-4f56-a0bd-312e223154d5",

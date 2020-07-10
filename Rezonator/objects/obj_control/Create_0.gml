@@ -624,3 +624,7 @@ justify = justifyLeft;
 hideAll = false;
 
 updatedSpeakerLabel = false;
+
+currentDisplayTokenColsList = ds_list_create();
+currentDisplayUnitColsList = ds_list_create();
+ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
