@@ -255,6 +255,14 @@
             }
         },
         {
+            "Key": "09903712-7644-4928-bac5-670fa15a0e42",
+            "Value": {
+                "id": "c6ad0ab3-fe56-4d10-adae-73ffa5f61fd1",
+                "resourcePath": "scripts\\scr_createStackOptions\\scr_createStackOptions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0a096476-9da3-4b07-aad7-f0ea2681ca98",
             "Value": {
                 "id": "da4ce666-6e37-4274-b86c-b1eb042fc105",
@@ -4247,6 +4255,14 @@
             }
         },
         {
+            "Key": "b71d7a9f-5d36-45f6-91e8-e9e2d6b83f92",
+            "Value": {
+                "id": "acb8953f-7fc0-4b1b-a52c-bd7e5aadc569",
+                "resourcePath": "scripts\\scr_showStackOptions\\scr_showStackOptions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "b7bae409-dee5-4983-8845-6f5927076614",
             "Value": {
                 "id": "22602ac5-ec78-40d6-b240-855a307d24f0",
@@ -4372,6 +4388,14 @@
                 "id": "98ae16da-d8b8-476b-ac2d-2e6121f94af2",
                 "resourcePath": "sprites\/spr_align\/spr_align.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "bc6708ed-3169-4e46-9fd2-8ffd44f409c1",
+            "Value": {
+                "id": "2cb356b5-9d11-430a-bd9a-eee0d377095d",
+                "resourcePath": "scripts\\scr_stackOptions\\scr_stackOptions.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -6237,6 +6261,9 @@
         "e7f20fb3-f8c2-4dda-99af-55e4dacd9b79",
         "a53ebb4d-c219-4610-a2c8-441dab4f3b32",
         "8b992b96-6001-40e9-ba2a-e819b85a9792",
+        "bc6708ed-3169-4e46-9fd2-8ffd44f409c1",
+        "09903712-7644-4928-bac5-670fa15a0e42",
+        "b71d7a9f-5d36-45f6-91e8-e9e2d6b83f92",
         "7bf96896-31d5-4157-8f09-1b534bc78c46",
         "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
         "a0b42376-3fda-4f56-a0bd-312e223154d5",

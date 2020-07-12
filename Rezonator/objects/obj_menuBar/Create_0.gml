@@ -2,7 +2,7 @@ if (live_call()) return live_result;
 /// @description Insert description here
 // You can write your code in this editor
 //fuck it, gonna make a grid 
-menuBarGridHeight = 7;
+menuBarGridHeight = 8;
 menuBarGridWidth = 4;
 menuBarGrid = ds_grid_create(menuBarGridWidth, menuBarGridHeight);
 
@@ -22,6 +22,8 @@ menuBarGrid_rowTools = 3;
 menuBarGrid_rowAdvanced = 4;
 menuBarGrid_rowSettings = 5;
 menuBarGrid_rowHelp = 6;
+menuBarGrid_rowStack = 7;
+
 
 
 fileDropDownOptionListType = 4;
@@ -34,6 +36,8 @@ advancedDropDownOptionListType = 5;
 // formally options
 settingsDropDownOptionListType = 21;
 helpDropDownOptionListType = 23;
+stackDropDownOptionListType = 28;
+
 
 
 fileOptionList = ds_list_create();
@@ -63,6 +67,8 @@ ds_list_add(settingsOptionList, "Zoom", "Dark Theme", "Mute", "Author");
 helpOptionList = ds_list_create();
 ds_list_add(helpOptionList, "Help", "Download", "About");
 
+stackOptionList = ds_list_create();
+ds_list_add(stackOptionList, "Create Stacks", "Show Stack", "StackShow");
 
 
 //"File", "Link", "Edit", "View", "Search", "Tools", "Advanced", "Setting", "Help"
@@ -111,11 +117,15 @@ ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowHelp, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowHelp, helpOptionList);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowHelp, helpDropDownOptionListType);
 
+ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowStack, "Stack");
+ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowStack, false);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowStack, stackOptionList);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowStack, stackDropDownOptionListType);
 
 
  
 menuHeight = 30;
-menuWidth = 75;
+menuWidth = 90;
 menuClickedIn = false;
 /*mouseOverFile = false;
 mouseOverEdit = false;

@@ -190,7 +190,7 @@ else if (optionListType == 23)
 //toolSortOptions
 else if (optionListType == 24)
 {
-    scr_sortOptions(optionSelected);
+    scr_toolsSortOptions(optionSelected);
     instance_destroy();
 }
 
@@ -214,4 +214,23 @@ else if (optionListType == 27)
     scr_tokenSelection(optionSelected);
     instance_destroy();
 }
+//stack selection
+else if (optionListType == 28)
+{
+    scr_stackOptions(optionSelected);
+    //instance_destroy();
+}
+//createStack selection
+else if (optionListType == 29)
+{
+    scr_createStackOptions(optionSelected);
+    instance_destroy();
+}
+//showStack selection
+else if (optionListType == 30)
+{
+    scr_showStackOptions(optionSelected);
+    instance_destroy();
+}
+
 
