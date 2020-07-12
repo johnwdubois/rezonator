@@ -62,6 +62,7 @@ if (tier == 3) {
 	}
 		
 	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, rowInUnitInStackGrid, -1);
+	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, rowInUnitInStackGrid, -1);
 
 	// If there is a new source, find its UnitID
 	if (newSource > 0) {

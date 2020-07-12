@@ -59,6 +59,7 @@ for (var i = 0; i < gridHeight; i++) {
 		if (grid == obj_chain.stackChainGrid and ds_list_size(idList) > 0) {
 			var unitID = ds_list_find_value(idList, 0);
 			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, -1);
+			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, unitID - 1, -1);
 		}
 	}
 }

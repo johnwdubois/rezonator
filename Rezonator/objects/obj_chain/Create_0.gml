@@ -27,12 +27,13 @@ chainGrid_colAlign = 6;
 chainGrid_colTiltSum = 7;
 chainGrid_colAuthor = 8;
 chainGrid_colCaption = 9;
+chainGrid_colStackType = 10;
 
 chainGrid_colShow = 9;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);
-stackChainGrid = ds_grid_create(chainGridWidth + 1, 0);
+stackChainGrid = ds_grid_create(chainGridWidth + 2, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
@@ -44,9 +45,10 @@ chunkGrid = ds_grid_create(chainGridWidth + 2, 0);
 
 //creatingPlaceChains = false;
 
-unitInStackGridWidth = 2;
+unitInStackGridWidth = 3;
 unitInStackGrid_colUnitID = 0;
 unitInStackGrid_colStack = 1;
+unitInStackGrid_colStackType = 2;
 unitInStackGrid = ds_grid_create(unitInStackGridWidth, 0);
 unitInStackGrid_focusedCol = unitInStackGrid_colStack;
 

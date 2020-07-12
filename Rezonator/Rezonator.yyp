@@ -5823,14 +5823,6 @@
             }
         },
         {
-            "Key": "fa097c53-c2a5-4e0c-9429-f13c190f7866",
-            "Value": {
-                "id": "05ca028e-2d0a-436f-acdc-e5e456b7d3e0",
-                "resourcePath": "scripts\/scr_loadUnitInStackGrid\/scr_loadUnitInStackGrid.yy",
-                "resourceType": "GMScript"
-            }
-        },
-        {
             "Key": "fa0db8b0-e13c-4fcc-9875-74958aadf928",
             "Value": {
                 "id": "bbcd6d35-cadf-4b69-8e5a-8acc0fc3a113",
@@ -6055,7 +6047,6 @@
         "0a3a3476-96c4-4f75-8457-c43c80c33361",
         "8674a5c0-2e97-4751-b28c-c34b0f405ec8",
         "8165a259-1969-4e86-bfb5-a8536d1b9139",
-        "fa097c53-c2a5-4e0c-9429-f13c190f7866",
         "bdeba254-b19a-4a3a-97e8-04556c55d6dd",
         "029d7ff5-34a6-4fcc-9096-bd7cd50a1e23",
         "edc8617f-4973-4773-9238-3c4826e2f0b3",

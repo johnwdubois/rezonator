@@ -13,6 +13,7 @@
 */
 
 
+
 var wordID = argument0;
 var unitID = argument1;
 
@@ -60,14 +61,9 @@ switch (obj_toolPane.currentTool) {
 }
 
 
-
-
-if(chainGrid == obj_chain.stackChainGrid){
-	ds_grid_resize(chainGrid, chainGridWidth +1, ds_grid_height(chainGrid) + 1);
-}
-else{
-	ds_grid_resize(chainGrid, chainGridWidth, ds_grid_height(chainGrid) + 1);
-}
+// resize the chainGrid properly (the stackChainGrid gets +2 width because of Caption and StackType)
+var currentChainGridWidth = (chainGrid == obj_chain.stackChainGrid) ? chainGridWidth + 2 : chainGridWidth;
+ds_grid_resize(chainGrid, currentChainGridWidth, ds_grid_height(chainGrid) + 1);
 
 
 var currentRowChainGrid = ds_grid_height(chainGrid) - 1;
@@ -83,9 +79,9 @@ if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(wordIDList, unitID);
 	
 	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, currentChainID);
-		if(not obj_control.quickStackAbleToInitiate){
-			obj_control.moveCounter ++;
-		}
+	if(not obj_control.quickStackAbleToInitiate){
+		obj_control.moveCounter ++;
+	}
 }
 else {
 	ds_list_add(wordIDList, wordID);
@@ -117,8 +113,9 @@ ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
 ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
 ds_grid_set(chainGrid, chainGrid_colAuthor, currentRowChainGrid, global.userName);
 ds_grid_set(chainGrid, chainGrid_colShow, currentRowChainGrid, true);
-if(chainGrid == obj_chain.stackChainGrid){
+if (chainGrid == obj_chain.stackChainGrid) {
 	ds_grid_set(chainGrid, chainGrid_colCaption, currentRowChainGrid, "");
+	ds_grid_set(chainGrid, chainGrid_colStackType, currentRowChainGrid, obj_control.activeStackType);
 }
 
 currentFocusedChainID = currentChainID;

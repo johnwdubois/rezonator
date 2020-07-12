@@ -344,6 +344,9 @@ else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or g
 		case obj_chain.chainGrid_colShow:
 			colName = "show";
 			break;
+		case obj_chain.chainGrid_colStackType:
+			colName = "stackType";
+			break;
 		default:
 			break;
 	}
@@ -391,6 +394,9 @@ else if (grid == obj_chain.unitInStackGrid) {
 			break;
 		case obj_chain.unitInStackGrid_colStack:
 			colName = "stackID";
+			break;
+		case obj_chain.unitInStackGrid_colStackType:
+			colName = "stackType";
 			break;
 		default:
 			break;
