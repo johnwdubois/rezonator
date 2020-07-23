@@ -10,7 +10,8 @@
         "ea077605-a95b-433e-b274-a89767314c84",
         "980e4a68-cbfc-42fd-9451-a78762ec3d36",
         "e6a60359-0dd1-4581-ab50-4a203394a0e7",
-        "fb883da0-9cc9-4b09-afcf-0a0505244148"
+        "fb883da0-9cc9-4b09-afcf-0a0505244148",
+        "ce52c22d-a0e4-4471-b4e7-4393b46a6849"
     ],
     "filterType": "GMScript",
     "folderName": "word functions",

@@ -660,10 +660,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 		if (obj_control.newTagCategory) {
 			// Will instead input this string into a column in the Tag grid
-			if (obj_panelPane.lineContentsHeaderListSize == 4) {
+			if (obj_panelPane.tokenContentsHeaderListSize == 4) {
 				obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
 			}
-			else if(obj_panelPane.lineContentsHeaderListSize == 5) {
+			else if(obj_panelPane.tokenContentsHeaderListSize == 5) {
 				obj_control.dynamicWordGrid_colTag2Label = obj_control.inputText;
 			}
 			else{
@@ -848,10 +848,10 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	if (obj_control.newTagCategory) {
 		// Will instead input this string into a column in the Tag grid
-		if(obj_panelPane.lineContentsHeaderListSize == 4) {
+		if(obj_panelPane.tokenContentsHeaderListSize == 4) {
 			obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
 		}
-		else if(obj_panelPane.lineContentsHeaderListSize == 5) {
+		else if(obj_panelPane.tokenContentsHeaderListSize == 5) {
 			obj_control.dynamicWordGrid_colTag2Label = obj_control.inputText;
 		}
 		else{

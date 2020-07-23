@@ -232,5 +232,11 @@ else if (optionListType == 30)
     scr_showStackOptions(optionSelected);
     instance_destroy();
 }
+//token selection
+else if (optionListType == 31)
+{
+    scr_unitSelection(optionSelected);
+    instance_destroy();
+}
 
 

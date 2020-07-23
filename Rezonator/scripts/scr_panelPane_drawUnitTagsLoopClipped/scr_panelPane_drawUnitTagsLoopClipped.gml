@@ -12,7 +12,7 @@
     Author: Georgio Klironomos
 */
 
-
+//if (live_call()) return live_result;
 // Access the lineList panelPane object to get it's scrollPlusY
 
 var lineListPanelPaneInst = inst_PanelPane_chainList;
@@ -35,6 +35,13 @@ var focusedLineNameRectY1 = -1;
 var focusedLineNameRectY2 = -1;
 var xbuffer = (windowWidth/6);
 
+
+
+var headerListSize = unitContentsHeaderListSize;
+unitContentsHeaderListSize = min(6,max(1,ds_grid_width(global.unitImportGrid)));
+headerListSize = unitContentsHeaderListSize;
+
+
 // Set opacity, font, and alignment of text chain lists
 draw_set_alpha(1);
 draw_set_halign(fa_left);
@@ -49,7 +56,8 @@ var widthOfUnitGrid = 1;
 if(ds_exists(global.unitImportColNameList, ds_type_list)){
 widthOfUnitGrid = ds_list_size(global.unitImportColNameList);
 }
-for(var j = 0 ; j < widthOfUnitGrid or j < 6 ; j++) {
+//show_message(string(headerListSize));
+for(var j = 0 ; j < headerListSize ; j++) {
 	
 	textPlusY = 0;
 	
@@ -154,7 +162,20 @@ for(var j = 0 ; j < widthOfUnitGrid or j < 6 ; j++) {
 	    //draw_set_color(lineColor);
 	    //draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	    draw_set_color(global.colorThemeText);
+		
 		var tagToDraw = ds_grid_get(global.unitImportGrid,j,i);
+		
+		var importCol = ds_list_find_value(obj_control.currentDisplayUnitColsList, j-1);
+		//show_message(string(importcol));
+		if( importCol != undefined ){
+			tagToDraw =string(ds_grid_get(global.unitImportGrid, importCol, i));
+		}
+		else{
+			tagToDraw = ds_grid_get(global.unitImportGrid,j,i);
+		}
+		
+		
+		
 		if(tagToDraw == undefined){
 			tagToDraw = "";
 		}
@@ -178,9 +199,25 @@ for(var j = 0 ; j < widthOfUnitGrid or j < 6 ; j++) {
 
 
 
-var tabHeight = functionChainList_tabHeight;
+//draw hover selection
+if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
+    draw_set_color(global.colorThemeBorders);
+    for (var j = 0; j < 3; j++) {
+        draw_rectangle(x + j - clipX, focusedLineNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedLineNameRectY2 - j - clipY, true);
+    }
+}
 
-var headerListSize = lineContentsHeaderListSize;
+
+
+
+
+//draw unit Tabs
+
+
+var tabHeight = functionChainList_tabHeight;
+draw_set_color(global.colorThemeBG);
+draw_rectangle(x - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
+
 
 /*if(obj_control.showDevVars) {
     headerListSize = 6;
@@ -190,108 +227,160 @@ for (var i = 0; i < headerListSize; i++) {
     var colRectX1 = x + (i * (windowWidth / 6));
     var colRectY1 = y;
     var colRectX2 = colRectX1 + (windowWidth / 6);
+	var colWidth = colRectX2 - colRectX1;
     if (i == 5) {
-        var colRectX2 = colRectX1 + (windowWidth);    
+        //var colRectX2 = colRectX1 + (windowWidth);    
     }
     var colRectY2 = colRectY1 + windowHeight;
     
     var colName = "";
     
 	var nameFromList =  ds_list_find_value(global.unitImportColNameList, i);
+	if(i != 0){
+		var unitColValue = ds_list_find_value(obj_control.currentDisplayUnitColsList, i-1);
+		//show_message(unitColValue);
+		nameFromList = ds_list_find_value(global.unitImportColNameList, unitColValue);
+	}	
 	if(nameFromList == undefined){
 			nameFromList = "";
 	}
 	colName = nameFromList
     
     draw_set_color(global.colorThemeBG);
-    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
+    //draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
     draw_set_color(global.colorThemeBorders);
-    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + tabHeight - clipY, true);
+    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
     draw_set_color(global.colorThemeText);
     draw_set_valign(fa_top);
     draw_set_font(global.fontPanelTab);
     draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
-    
-	/*
-	if(obj_control.showDevVars) {
+
+
+
+
+
+
+	
+	// draw wordView button
+	var wordViewButtonSize = (tabHeight / 3);
+	var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
+	var wordViewButtonY = colRectY1 + (tabHeight / 2);
+	
+	
+	//draw token selection button
+	var ascendButtonSize = (tabHeight / 2);
+	var ascendRectX1 = wordViewButtonX - 16 - ascendButtonSize;
+	var ascendRectY1 = wordViewButtonY - (tabHeight / 5);
+	var ascendRectX2 = ascendRectX1 + ascendButtonSize;
+	var ascendRectY2 = ascendRectY1 + ascendButtonSize;
+
+
+	
+	if(i == 0 ){
+	}
+	else{
+		//user interaction for token selection
+		if (point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(ascendRectX1- clipX, ascendRectY1 - clipY, ascendRectX2 - clipX, ascendRectY2 - clipY, true);
+
+			//ascendYScale = (ascendActivated) ? 1 : -1;
+			if (mouse_check_button_released(mb_left)) {
+				with(obj_panelPane){
+					chosenCol = i;
+				}
+				if(ascendActivated == false){
+					ascendActivated = true;
+				}
+				else{
+					ascendActivated = false;
+				}
+				if(ascendActivated){
+					ascendYScale = -1;
+				}
+				else{
+					ascendYScale = 1;
+				}
+
+				var dropDownOptionList = ds_list_create();
+
+				ds_list_copy(dropDownOptionList, global.unitImportColNameList);
+
+				if (ds_list_size(dropDownOptionList) > 0 ) {
+					var dropDownInst = instance_create_depth(colRectX1,colRectY1+tabHeight , -999, obj_dropDown);
+					dropDownInst.optionList = dropDownOptionList;
+					dropDownInst.optionListType = 31;
+					
+					//obj_control.ableToCreateDropDown = false;
+					//obj_control.alarm[0] = 2;
+				}
+			}
+			if(ascendActivated == false) {
+				with(obj_dropDown) {
+					instance_destroy();
+					ascendYScale = 1;
+					ascendActivated = false;
+				}
+			}
+		}
 		
-		
-        if(i == headerListSize - 1) {
-            var buttonRectSize = (tabHeight) - 8;
-            var newCategoryRectX1 = colRectX2 + buttonRectSize + 2;
-            var newCategoryRectY1 = colRectY1 + 4;
-            var newCategoryRectX2 = newCategoryRectX1 + buttonRectSize;
-            var newCategoryRectY2 = newCategoryRectY1 + buttonRectSize;
-        
-            draw_set_color(global.colorThemeText);
-            draw_sprite_ext(spr_filterIcons, 1, mean(newCategoryRectX1 - clipX, newCategoryRectX2 - clipX), mean(newCategoryRectY1 - clipY, newCategoryRectY2 - clipY), 1, 1, 0, c_white, 1);
-            
-            if (point_in_rectangle(mouse_x, mouse_y, newCategoryRectX1, newCategoryRectY1, newCategoryRectX2, newCategoryRectY2)) {
-                draw_set_color(global.colorThemeBorders);
-                draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
-                if (mouse_check_button_released(mb_left)) {
-                    //show_message("YO");
-                    obj_panelPane.lineContentsHeaderListSize++;
-                    //show_message(obj_panelPane.lineContentsHeaderListSize);
-                    if (!obj_control.dialogueBoxActive) {
-                        keyboard_string = "";
-                        obj_control.newTagCategory = true;
-                    }
 
-                    obj_control.dialogueBoxActive = true;
+	
+	
+		//user interaction for display view change
+		if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
+			draw_set_color(global.colorThemeSelected2);
+			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
+			if (mouse_check_button_released(mb_left)) {
+				obj_control.unitView = i;
+			
+				var toggleTranscriptionGrid = -1;
+				var toggleTranscriptionCol = -1;
 
-                    if (!instance_exists(obj_dialogueBox)) {
-                        instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-                    }
-                }
-            }
-        }
-    
-        if(i > 2) {
-            var buttonRectSize = (tabHeight) - 8;
-            var newCategoryRectX1 = colRectX2 - buttonRectSize*2 - 2;
-            var newCategoryRectY1 = colRectY1 + 4;
-            var newCategoryRectX2 = newCategoryRectX1 + buttonRectSize;
-            var newCategoryRectY2 = newCategoryRectY1 + buttonRectSize;
-        
-            draw_set_color(global.colorThemeText);
-            draw_sprite_ext(spr_filterIcons, 1, mean(newCategoryRectX1 - clipX, newCategoryRectX2 - clipX), mean(newCategoryRectY1 - clipY, newCategoryRectY2 - clipY), 1, 1, 0, c_white, 1);
-            
-            if (point_in_rectangle(mouse_x, mouse_y, newCategoryRectX1, newCategoryRectY1, newCategoryRectX2, newCategoryRectY2)) {
-                draw_set_color(global.colorThemeBorders);
-                draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
-                if (mouse_check_button_released(mb_left)) {
-                    show_message("Add Tag");
+				toggleTranscriptionGrid = global.unitImportGrid;
 
-                }
-            }
-        
-            var buttonRectSize = (tabHeight) - 8;
-            var newCategoryRectX1 = colRectX2 - buttonRectSize - 2;
-            var newCategoryRectY1 = colRectY1 + 4;
-            var newCategoryRectX2 = newCategoryRectX1 + buttonRectSize;
-            var newCategoryRectY2 = newCategoryRectY1 + buttonRectSize;
-        
-            draw_set_color(global.colorThemeText);
-            draw_sprite_ext(spr_filterIcons, 1, mean(newCategoryRectX1 - clipX, newCategoryRectX2 - clipX), mean(newCategoryRectY1 - clipY, newCategoryRectY2 - clipY), 1, 1, 0, c_white, 1);
-            
-            if (point_in_rectangle(mouse_x, mouse_y, newCategoryRectX1, newCategoryRectY1, newCategoryRectX2, newCategoryRectY2)) {
-                draw_set_color(global.colorThemeBorders);
-                draw_rectangle(newCategoryRectX1 - clipX, newCategoryRectY1 - clipY, newCategoryRectX2 - clipX, newCategoryRectY2 - clipY, true);
-                if (mouse_check_button_released(mb_left)) {
-                    show_message("Remove Tag");
+				var colIndex =  ds_list_find_value(obj_control.currentDisplayUnitColsList,obj_control.unitView-1);
+				toggleTranscriptionCol = colIndex;
 
-                }
-            }
-        }
+				
+				scr_toggleUnitMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
+			}
+		}
+	
 
-    }
-*/
-    
+		draw_set_color(global.colorThemeBorders);
+		draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
+		if(i == chosenCol){
+			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2)- clipX, mean(ascendRectY1, ascendRectY2)- clipY, 1, ascendYScale, 0, c_white, 1);
+		}
+		else{
+			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2)- clipX, mean(ascendRectY1, ascendRectY2)- clipY, 1, 1, 0, c_white, 1);
+		}
+	
+	
+
+
+		if (obj_control.unitView == i) {
+			draw_set_color(global.colorThemeBorders);
+			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
+			draw_set_color(global.colorThemeBG);
+		}
+		else {
+			draw_set_color(global.colorThemeText);
+		}
+
+	
+	}
+	
 
 }
 
-//var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
+
+
+
+
+
+
 
 // will create a focusedLine vriable in panelPane create, update it when changed, no gridValueY
 
@@ -358,14 +447,6 @@ if (clickedIn) {
         inst_PanelPane_chainList.scrollPlusYDest -= (windowHeight);
     }
 }
-
-if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
-    draw_set_color(global.colorThemeBorders);
-    for (var j = 0; j < 3; j++) {
-        draw_rectangle(x + j - clipX, focusedLineNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedLineNameRectY2 - j - clipY, true);
-    }
-}
-
 
 
 

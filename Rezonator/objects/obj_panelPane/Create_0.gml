@@ -205,7 +205,8 @@ holdDown = 0;
 
 
 showNav = true;
-lineContentsHeaderListSize = 3;
+tokenContentsHeaderListSize = 3;
+unitContentsHeaderListSize = 2;
 
 chosenCol = 0;
 ascendYScale = 1;

@@ -157,7 +157,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 			
 				var infoListSize = 3;
 				if (functionChainList_currentTab == functionChainList_tabLine) {
-					infoListSize = lineContentsHeaderListSize;
+					infoListSize = tokenContentsHeaderListSize;
 				}
 				
 				var activeCols = 0;
@@ -217,11 +217,13 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 						}
 					}
 					*/
-					else if (getInfoLoop == 2) {
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.tokenImportGrid, getInfoLoop, currentWordID - 1));
-					}
-					else if (getInfoLoop >= 3) {
-						var importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop-3);
+					else if (getInfoLoop >= 2) {
+						if(getInfoLoop == 2) {
+							var importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop-2);
+						}
+						else{
+							var importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop-3);
+						}
 						//show_message(string(importcol));
 						if( importCol != undefined ){
 						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.tokenImportGrid, importCol, currentWordID - 1));
@@ -291,9 +293,9 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 var headerListSize = 3;
-lineContentsHeaderListSize = ds_grid_width(global.tokenImportGrid);
+tokenContentsHeaderListSize = min(8,max(3,ds_grid_width(global.tokenImportGrid)));
 if (functionChainList_currentTab == functionChainList_tabLine) {
-	headerListSize = lineContentsHeaderListSize;
+	headerListSize = tokenContentsHeaderListSize;
 }
 
 
@@ -333,12 +335,13 @@ for (var i = 0; i < headerListSize; i++) {
 	else if (i == 1) {
 		colName = "place";
 	}
-	else if (i == 2) {
-		var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList,i-2)
-		colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
-	}
-	else if(i >= 3 and i < 8) {
-		var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList,i-3)
+	else if(i >= 2 and i < 8) {
+		if(i == 2){
+			var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList,i-2)
+		}
+		else{
+			var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList,i-3)
+		}
 		colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 	}
 	

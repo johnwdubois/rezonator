@@ -129,6 +129,7 @@ unitIDCounter = 0;
 // Boolean for switching transcript view on/off
 wordTokenView = true;
 wordView = 2;
+unitView = 1;
 
 // Seems to prefer starting as false?
 
@@ -628,6 +629,6 @@ updatedSpeakerLabel = false;
 currentDisplayTokenColsList = ds_list_create();
 currentDisplayUnitColsList = ds_list_create();
 ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
-
+ds_list_add(currentDisplayUnitColsList,1,2,3,4,5);
 
 activeStackType = 0;

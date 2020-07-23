@@ -207,7 +207,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 600, "wordTopMargin: " + string(wordTopMargin));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 620, "wordTokenView: " + string(wordTokenView));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 640, "wordView: " + string(wordView));
-	draw_text(camera_get_view_width(view_camera[0]) - 500, 660, "lineContentsHeaderListSize: " + string(obj_panelPane.lineContentsHeaderListSize));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 660, "tokenContentsHeaderListSize: " + string(obj_panelPane.tokenContentsHeaderListSize));
 	
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 400, "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
