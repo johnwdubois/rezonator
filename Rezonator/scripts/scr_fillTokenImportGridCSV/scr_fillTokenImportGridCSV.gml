@@ -102,6 +102,8 @@ with (obj_gridViewer) {
 	alarm[2] = 1;
 }
 
+var deliminaterCol = 3;
+
 
 var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, 0, global.tagInfoGrid_colDisplayToken, ds_grid_height(global.tagInfoGrid), true);
 var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
@@ -110,7 +112,7 @@ var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_c
 var tokenImportGridHeight = ds_grid_height(global.importGrid);
 for (var i = 0; i < tokenImportGridHeight; i++) {
 	//hardcoded till ui is built
-	var currentUnitID = ds_grid_get(global.importGrid, 3, i);
+	var currentUnitID = ds_grid_get(global.importGrid, deliminaterCol , i);
 	var currentWordID = i+1
 
 	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
@@ -191,10 +193,22 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		}
 		else if (currentLevel == global.levelUnit) {
 
+			var unitCounter = 0;
 			var importGridHeight = ds_grid_height(global.importGrid);
 			for (var j = 0; j < importGridHeight; j++) {
-				var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
-				ds_grid_set(global.unitImportGrid, currentUnitImportCol, j, currentLine);
+				
+				if(j > 0){
+					var prevUID = ds_grid_get(global.importGrid, deliminaterCol, j-1);
+					var curUID = ds_grid_get(global.importGrid, deliminaterCol, j);	
+				}
+	
+				if( j == 0 || prevUID != curUID){
+					var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
+					ds_grid_set(global.unitImportGrid, currentUnitImportCol, unitCounter, currentLine);
+					unitCounter ++;
+				}
+				
+
 			}
 			currentUnitImportCol++;
 
