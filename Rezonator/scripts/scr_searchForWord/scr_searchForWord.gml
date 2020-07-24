@@ -94,8 +94,16 @@ for (var i = 0; i < unitGridHeight; i++) {
 		//var currentWordIDListSize = ds_list_size(currentWordIDList);
 		for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
 			var currentWordID = ds_list_find_value(currentWordIDList, j);
-			var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
-			var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
+			if(obj_control.wordView == 2){
+				var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-2);
+			}
+			else{				
+				var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-3);
+			}
+
+			
+			var currentWordToken = ds_grid_get(global.tokenImportGrid, colIndex, currentWordID - 1);
+			var currentWordTranscript = ds_grid_get(global.tokenImportGrid, colIndex, currentWordID - 1);
 		
 			// Prevent the Search from picking up dead words
 			var currentWordGridRow = currentWordID - 1;
