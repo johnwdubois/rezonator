@@ -1,0 +1,68 @@
+/// @description Create Turn Stacks
+
+// So I gotta loop through the tokenImport grid, checking for units to collect into the list, and checking for new turns to swap lists
+// It works!! But that stack bug is getting in the way...
+
+var currentUnitList = ds_list_create();
+ds_list_clear(currentUnitList);
+var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
+var unitCol = -1;
+var turnCol = -1;
+
+//hmmm, here's the problem, these strings ain't hittin, bummer!
+for (var unitColLoop = 0; unitColLoop < ds_list_size(global.tokenImportColNameList); unitColLoop++) {
+	//show_message(ds_list_find_value(global.tokenImportColNameList, unitColLoop));
+	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == "UnitID") {
+		unitCol = unitColLoop;
+		//show_message(unitCol);
+	}
+	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == "turnOrder") {
+		turnCol = unitColLoop;
+		//show_message(turnCol);
+	}
+}
+
+//var turnOrderCol = //how do i get??
+var currentTurnOrder = ds_grid_get(global.tokenImportGrid, turnCol, 0);
+
+for (var tokenImportLoop = 0; tokenImportLoop < tokenImportGridHeight; tokenImportLoop++){
+	currentTurnOrder = ds_grid_get(global.tokenImportGrid, turnCol, tokenImportLoop);
+	while( (currentTurnOrder != 1) and (tokenImportLoop < tokenImportGridHeight)) { 	
+		var randUnit = ds_grid_get(global.tokenImportGrid, unitCol, tokenImportLoop);
+		ds_list_add(currentUnitList, randUnit);
+		tokenImportLoop++
+		currentTurnOrder = ds_grid_get(global.tokenImportGrid, turnCol, tokenImportLoop);
+		//show_message(currentTurnOrder);
+	}
+	
+	if(ds_list_size(currentUnitList) > 0) {
+		//show_message(scr_getStringOfList(currentUnitList));
+		var firstUnitID = ds_list_find_value(currentUnitList, 0);
+		var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
+		var firstWordID = ds_list_find_value(currentWordIDList, 0);
+	
+		// Loop through words found in rectangle at time of mouse release
+		var inRectUnitIDListSize = ds_list_size(currentUnitList);
+		for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
+			var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
+			currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
+			var currentWordID = ds_list_find_value(currentWordIDList, 0);
+			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+			with (obj_chain) {
+				scr_wordClicked(firstWordID, firstUnitID);
+				scr_wordClicked(currentWordID, currentUnitID);
+			}
+		}
+		// Unfocus all links and chains
+		scr_unFocusAllChains();
+		ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+
+	}
+	
+	ds_list_clear(currentUnitList);
+	// switch randLines to next set of units
+
+	//global.fileSaveName = global.fileSaveName + string(fileNameNumber++);
+}
+splitSave = false;
+

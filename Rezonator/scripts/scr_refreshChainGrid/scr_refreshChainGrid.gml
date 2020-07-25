@@ -154,9 +154,10 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 	if (ds_list_find_index(idList, source) == -1) {
 		ds_list_add(idList, source);
 	}
-	if (goal == -1) {
+	// seems to only hinder stacks, am confused...
+	/*if (goal == -1) {
 		continue;
-	}
+	}*/
 	
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 		

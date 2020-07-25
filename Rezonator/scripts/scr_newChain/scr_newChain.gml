@@ -78,7 +78,10 @@ var wordIDList = ds_list_create();
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(wordIDList, unitID);
 	
-	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, currentChainID);
+	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, obj_chain.currentChainID);
+	//show_message(unitID);
+	//show_message(obj_chain.currentChainID);
+	ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, unitID - 1, obj_control.activeStackType);
 	if(not obj_control.quickStackAbleToInitiate){
 		obj_control.moveCounter ++;
 	}
