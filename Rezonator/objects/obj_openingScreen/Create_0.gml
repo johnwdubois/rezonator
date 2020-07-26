@@ -204,6 +204,8 @@ global.wheresElmo = false;
 global.rezzles = false;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
+global.previousLevelEstimates = ds_list_create();
+ds_list_clear(global.previousLevelEstimates);
 
 
 var userSettingsList = ds_list_create();
@@ -244,14 +246,22 @@ if (ds_list_size(userSettingsList) > 1) {
 	
 	if (string_count("previousRezDirectory:", global.iniFileString) > 0) {
 		global.previousRezDirectory = string(scr_getValueFromString(global.iniFileString, "previousRezDirectory:", ","));
-		//show_message("rez dir exists : " + string(directory_exists(global.previousRezDirectory)));
-		//show_message(global.previousRezDirectory);
 	}
 	
 	if (string_count("previousImportDirectory:", global.iniFileString) > 0) {
 		global.previousImportDirectory = string(scr_getValueFromString(global.iniFileString, "previousImportDirectory:", ","));
-		//show_message("import dir exists : " + string(directory_exists(global.previousImportDirectory)));
-		//show_message(global.previousImportDirectory);
+	}
+	if (string_count("previousLevelEstimates:", global.iniFileString) > 0) {
+		ds_list_clear(global.previousLevelEstimates)
+		var tempListString = string(scr_getListFromString(global.iniFileString, "previousLevelEstimates:" , "%"));
+		//show_message("string: " + tempListString);
+		for(var i = 0;  i <= string_length(tempListString); i++){
+			if(string_char_at(tempListString, i) != "," and string_char_at(tempListString, i) != " " and string_char_at(tempListString, i) != "{" and string_char_at(tempListString, i) != "}"){
+				
+				ds_list_add(global.previousLevelEstimates, string_char_at(tempListString, i));
+			}
+		}
+		//show_message(scr_getStringOfList(global.previousLevelEstimates) +  "            and its this BIIIIG:" +string(ds_list_size(global.previousLevelEstimates)));
 	}
 	
 }
