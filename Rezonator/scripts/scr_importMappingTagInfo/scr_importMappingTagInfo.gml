@@ -3,8 +3,6 @@ if (live_call()) return live_result;
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
-var rowHeight = string_height("A") * 1.3;
-
 var colAmount = global.tagInfoGridWidth;
 
 
@@ -18,6 +16,9 @@ windowWidth = clamp(tagInfoWindowRectX2 - tagInfoWindowRectX1, 48, 2000);
 windowHeight = clamp(tagInfoWindowRectY2 - tagInfoWindowRectY1, 48, 1500);
 clipWidth = windowWidth;
 clipHeight = windowHeight;
+
+var rowHeight = string_height("A") * 1.3;
+var colWidth = windowWidth / colAmount;
 	
 windowX = x;
 windowY = y;
@@ -44,17 +45,9 @@ if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRect
 	obj_importMapping.mouseoverRow = -1;
 }
 
-/*
-// draw mouseover rectangles
-if (obj_importMapping.mouseoverRow >= 0  and !mouseOverLevel) {
-	draw_set_color(global.colorThemeSelected1);
-	var mouseoverRowY1 = tagInfoWindowRectY1 + (rowHeight * (obj_importMapping.mouseoverRow + 1)) + scrollPlusY;
-	var mouseoverRowY2 = mouseoverRowY1 + rowHeight;
-	draw_rectangle(tagInfoWindowRectX1 - clipX, mouseoverRowY1 - clipY, tagInfoWindowRectX2 - clipX, mouseoverRowY2 - clipY, false);
-}
-*/
 
 var timesHit = 0;
+var buttonRectSize = rowHeight - 10;
 
 
 
@@ -91,7 +84,7 @@ for (var i = 0; i < colAmount; i++) {
 			obj_importMapping.mouseoverRow = j;
 			timesHit++;
 		}
-		if (obj_importMapping.mouseoverRow == j) {
+		if (obj_importMapping.mouseoverRow == j && !instance_exists(obj_dropDown)) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		}
@@ -130,6 +123,26 @@ for (var i = 0; i < colAmount; i++) {
 				currentCell = "X";
 			}
 		}
+		else if (i == global.tagInfoGrid_colSpecialFields) {
+			if (currentCell == "0")  {
+				currentCell = "";
+			}
+			
+			var dropDownButtonX1 = floor(colX + colWidth - 4 - scrollBarWidth - buttonRectSize);
+			var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
+			var dropDownButtonX2 = floor(dropDownButtonX1 + buttonRectSize);
+			var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
+			
+			if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+				draw_set_color(global.colorThemeBG);
+				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+			}
+			
+			draw_sprite_ext(spr_ascend, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
+			
+		}
 		
 		//draw_set_color(global.colorThemeBorders);
 		//draw_rectangle(colX - clipX, tagInfoWindowRectY1+ scrollPlusY - clipY, cellRectX2, cellRectY2, false)
@@ -141,13 +154,13 @@ for (var i = 0; i < colAmount; i++) {
 		
 		if (i == global.tagInfoGrid_colLevel+1) {
 			
-			var buttonRectSize = rowHeight - 10;
 			var ascendRectX1 = floor(colX   - clipX) - 4 - buttonRectSize;
 			var ascendRectY1 = floor(plusY + 5 + scrollPlusY - clipY);
 			var ascendRectX2 = ascendRectX1 + buttonRectSize;
 			var ascendRectY2 = ascendRectY1 + buttonRectSize;
 						//draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
-			if (point_in_rectangle(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
+			//if (point_in_rectangle(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
+			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
 				draw_set_color(global.colorThemeBG);
 				draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, false)
 				
@@ -187,6 +200,7 @@ for (var i = 0; i < colAmount; i++) {
 			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
 		
 		}
+		
 		//show_message(string(ascendRectX1) + " "  + string(ascendRectX2));
 
 		plusY += rowHeight;
@@ -275,6 +289,9 @@ for (var i = 0; i < colAmount; i++) {
 	}
 	else if (i == global.tagInfoGrid_colDisplayUnit) {
 		headerStr = "Display Unit";
+	}
+	else if (i == global.tagInfoGrid_colSpecialFields) {
+		headerStr = "Special Fields";
 	}
 
 	draw_set_font(fnt_mainBold);
