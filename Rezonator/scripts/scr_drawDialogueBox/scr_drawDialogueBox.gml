@@ -241,18 +241,19 @@ if (obj_control.dialogueBoxActive) {
 	
 			// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
+			/*
 			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110, true);
-			if (obj_control.inChainBool) {
+			if (obj_control.transcriptSearch) {
 				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110, false);	
 			}
-	
+			*/
 			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80, true);
 			if (obj_control.caseSensitive) {
 				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80, false);	
 			}
 	
 			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
-			if (obj_control.transcriptSearch) {
+			if (obj_control.inChainBool) {
 				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
 			}
 	
@@ -266,17 +267,17 @@ if (obj_control.dialogueBoxActive) {
 		//darw boolean options text
 		draw_set_font(fnt_main);
 		if (!obj_control.regExCheck) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Search Transcription");
+			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "In Focused Rez Chain");
 			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 70), "Case Sensistive");
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 100), "In Focused Rez Chain");
+			//draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 100), "Search Transcription");
 		}
 		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 70), floor(camera_get_view_height(view_camera[0]) / 2 - 48), "Regular Expression");
 	
 	
 
 		if(!obj_control.regExCheck){
-
-		// current chain boolean switch
+		/*
+		// transcript search boolean switch		
 		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110)){
 				
 				draw_set_color(c_white);
@@ -284,7 +285,7 @@ if (obj_control.dialogueBoxActive) {
 				draw_set_colour(global.colorThemeBorders);
 				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
 			
-				if(obj_control.inChainBool){
+				if(obj_control.transcriptSearch){
 					draw_set_halign(fa_center);
 					draw_text(floor(mean(mouse_x - 25,mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Enabled");
 				}
@@ -294,10 +295,10 @@ if (obj_control.dialogueBoxActive) {
 				}
 				
 				if (mouse_check_button_pressed(mb_left)) {
-					obj_control.inChainBool = !obj_control.inChainBool;		
+					obj_control.transcriptSearch = !obj_control.transcriptSearch;		
 				}
 		}
-
+		*/
 		// case sensitive boolean switch
 		if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80)){
 				
@@ -320,7 +321,8 @@ if (obj_control.dialogueBoxActive) {
 				}
 		}
 
-		// transcript search boolean switch
+
+		// current chain boolean switch
 		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
 				
 				draw_set_color(c_white);
@@ -328,7 +330,7 @@ if (obj_control.dialogueBoxActive) {
 				draw_set_colour(global.colorThemeBorders);
 				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
 			
-				if(obj_control.transcriptSearch){
+				if(obj_control.inChainBool){
 					draw_set_halign(fa_center);
 					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Enabled");
 				}
@@ -338,7 +340,7 @@ if (obj_control.dialogueBoxActive) {
 				}
 				
 				if (mouse_check_button_pressed(mb_left)) {
-					obj_control.transcriptSearch = !obj_control.transcriptSearch;
+					obj_control.inChainBool = !obj_control.inChainBool;
 				}
 		}
 

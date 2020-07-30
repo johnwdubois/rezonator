@@ -1,4 +1,4 @@
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
@@ -101,7 +101,17 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
 	
-		if (mouse_check_button_pressed(mb_left)) {	
+		if (mouse_check_button_pressed(mb_left)) {
+			
+			var tempList = ds_list_create();
+			
+			for(var i = 0 ; i < ds_grid_height(global.tagInfoGrid); i++){
+				ds_list_add(tempList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i));
+			}
+			ds_list_copy(global.previousLevelEstimates,tempList);
+			ds_list_destroy(tempList);
+			//show_message(scr_getStringOfList(global.previousLevelEstimates));
+			
 			room_goto(rm_mainScreen);
 		}
 	}
@@ -129,3 +139,47 @@ else {
 	draw_set_color(global.colorThemeText);
 	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Please Select a Default Display Token and Display Unit.");
 }
+
+//fileInfoWindowRectX1, fileInfoWindowRectY1
+
+var loadPreviousButtonWidth = 125;
+var loadPreviousButtonHeight = 30;
+var loadPreviousButtonRectX1 = fileInfoWindowRectX1 + 190 - (loadPreviousButtonWidth / 2);
+var loadPreviousButtonRectY1 = fileInfoWindowRectY2 +50- (loadPreviousButtonHeight / 2);
+var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
+var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
+	
+// Continue button
+if (point_in_rectangle(mouse_x, mouse_y, loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousButtonRectX2, loadPreviousButtonRectY2)) {
+	draw_set_color(global.colorThemeSelected1);
+	draw_rectangle(loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousButtonRectX2, loadPreviousButtonRectY2, false);
+	
+	if (mouse_check_button_pressed(mb_left)) {
+			
+			
+		for(var i = 0 ; i < ds_list_size(global.previousLevelEstimates); i++){
+			
+			if(i < ds_grid_height(global.tagInfoGrid)){
+				var checkIfDisplayT = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken,i);
+				var checkIfDisplayU = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit,i);
+				if(checkIfDisplayT || checkIfDisplayU){
+					//ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken , i, false);
+					//ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit , i, false);
+				}
+				
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i,ds_list_find_value(global.previousLevelEstimates,i));
+			}
+
+		}
+
+	}
+}
+	
+draw_set_color(global.colorThemeBorders);
+draw_set_alpha(1);
+draw_rectangle(loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousButtonRectX2, loadPreviousButtonRectY2, true);
+
+draw_set_font(fnt_main);
+draw_set_halign(fa_center);
+draw_set_color(global.colorThemeText);
+draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), "Load Previous");
