@@ -3,15 +3,19 @@
 // So I gotta loop through the tokenImport grid, checking for units to collect into the list, and checking for new turns to swap lists
 // It works!! But that stack bug is getting in the way...
 
+	/*if(obj_toolPane.currentMode == obj_toolPane.modeRead) {
+		obj_toolPane.currentMode = obj_toolPane.modeTrack;	
+	}*/
+
 var currentUnitList = ds_list_create();
 ds_list_clear(currentUnitList);
 var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
 var unitCol = -1;
 var turnCol = -1;
 
-//hmmm, here's the problem, these strings ain't hittin, bummer!
+
 for (var unitColLoop = 0; unitColLoop < ds_list_size(global.tokenImportColNameList); unitColLoop++) {
-	//show_message(ds_list_find_value(global.tokenImportColNameList, unitColLoop));
+
 	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == "UnitID") {
 		unitCol = unitColLoop;
 		//show_message(unitCol);
