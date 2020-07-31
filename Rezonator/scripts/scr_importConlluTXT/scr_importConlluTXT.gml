@@ -6,9 +6,12 @@ var firstClusterTagList = ds_list_create();
 var firstCluster = true;
 var firstClusterEncountered = false;
 var lineInCluster = 0;
+var currentCluster = 0;
 
 var newRow = false;
 var blankRow = true;
+var row = 0;
+
 
 var fileOpenRead = file_text_open_read(filename);
 var colListCreated = false;
@@ -17,6 +20,8 @@ var lineInFile = file_text_readln(fileOpenRead);
 	if (string_char_at(lineInFile, 1) != "#") {
 		exit;
 	}
+
+global.importType = global.importType_CoNLLU
 
 var widthOfImportGrid = 0;
 while (not file_text_eof(fileOpenRead)) {
@@ -38,10 +43,12 @@ while (not file_text_eof(fileOpenRead)) {
 		}
 	}
 	
+	
 	// Check for blank rows to iterate clusters
 	if (string_length(string_lettersdigits(lineInFile)) < 1) {
 		blankRow = true;
 		lineInCluster = 0;
+		currentCluster++;
 		if (firstCluster) {
 			firstCluster = false;
 		}
@@ -55,7 +62,7 @@ while (not file_text_eof(fileOpenRead)) {
 		lineInCluster++;
 	}
 	
-	
+
 	
 	// Check for Token level data
 	if (string_char_at(lineInFile, 1) != "#") {
@@ -64,21 +71,25 @@ while (not file_text_eof(fileOpenRead)) {
 			lineInFile = ds_list_find_value(firstClusterTagList, lineInCluster - 1) + " " + lineInFile;
 		}
 		else {
-			// Beginning of Brady's section
+			// Split the tokens into their individual columns
 			var listOfColumns = ds_list_create();
 			listOfColumns = scr_splitString(lineInFile,chr(9));
 			var listOfColumnsSize = ds_list_size(listOfColumns);
+			
+			// Take out any spaces or blank tokens
 			for(var i = 0; i <= listOfColumnsSize; i++){
 				if(ds_list_find_value(listOfColumns,i) == "" or ds_list_find_value(listOfColumns,i) == " "){
 					ds_list_delete(listOfColumns,i);
 					i -= 1;
 				}
 			}
-			if(widthOfImportGrid <= ds_list_size(listOfColumns)){
-				widthOfImportGrid = ds_list_size(listOfColumns);
+			
+			// Increase the width of the import grid to accomodate new columns
+			if(widthOfImportGrid <= ds_list_size(listOfColumns) + 3){
+				widthOfImportGrid = ds_list_size(listOfColumns) + 3;
 				global.importGridWidth = widthOfImportGrid
 				if(!colListCreated){
-					for(i = 0; i < global.importGridWidth; i++){
+					for(i = 3; i < global.importGridWidth; i++){
 						var colName = " col";
 						ds_list_add(global.importGridColNameList, colName + " " + string(i));
 						ds_map_add(global.importGridColMap, colName, i);
@@ -89,19 +100,23 @@ while (not file_text_eof(fileOpenRead)) {
 				ds_grid_resize(global.importGrid, widthOfImportGrid, ds_grid_height(global.importGrid));
 			}
 			ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
-	
+			
+			// place tokens into the import grid
 			var listOfColumnsSize = ds_list_size(listOfColumns);
-			for(var i = 0; i <= listOfColumnsSize; i++){
+			for(var i = 3; i <= listOfColumnsSize + 3; i++){
 		
-				var fullColString = string(ds_list_find_value(listOfColumns,i));
+				var fullColString = string(ds_list_find_value(listOfColumns,i-3));
+				// if the piece has more then one token, make it into a list
 				var colStringList = ds_list_create();
 				colStringList = scr_splitString(fullColString, " ");
-		
+			
 				if(ds_list_size(colStringList) > 1){
 					ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, colStringList);
 				}
-				ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, fullColString);
+				ds_grid_set(global.importGrid, i , row, fullColString);
+				
 			}
+			row++;
 		}
 	}
 	if (string_count(" ", lineInFile) < 1) {
@@ -137,7 +152,7 @@ while (not file_text_eof(fileOpenRead)) {
 			col = global.importGridWidth - 1;
 			ds_map_add(global.importGridColMap, colName, col);
 		}
-		var row = ds_grid_height(global.importGrid) - 1;
+
 		ds_grid_set(global.importGrid, col, row, colVal);
 	}
 	

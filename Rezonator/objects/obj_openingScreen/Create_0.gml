@@ -55,6 +55,7 @@ global.games = false;
 //global.inRezzles = false;
 
 
+global.importType_CoNLLU = 2;
 global.importType_CSV = 1;
 global.importType_Default = 0;
 global.importType = global.importType_Default;
