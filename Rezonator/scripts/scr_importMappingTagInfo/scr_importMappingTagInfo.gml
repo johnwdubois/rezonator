@@ -41,7 +41,7 @@ x = tagInfoWindowRectX1;
 y = tagInfoWindowRectY1;
 
 
-if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2)) {
+if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2) && !instance_exists(obj_dropDown)) {
 	obj_importMapping.mouseoverRow = -1;
 }
 
@@ -80,11 +80,11 @@ for (var i = 0; i < colAmount; i++) {
 		var cellRectY2 = cellRectY1 + rowHeight;
 
 		
-		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
+		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !instance_exists(obj_dropDown)) {
 			obj_importMapping.mouseoverRow = j;
 			timesHit++;
 		}
-		if (obj_importMapping.mouseoverRow == j && !instance_exists(obj_dropDown)) {
+		if (obj_importMapping.mouseoverRow == j) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		}
@@ -124,29 +124,46 @@ for (var i = 0; i < colAmount; i++) {
 			}
 		}
 		else if (i == global.tagInfoGrid_colSpecialFields) {
-			if (currentCell == "0")  {
+			
+			if (currentCell == "0") {
 				currentCell = "";
 			}
 			
-			var dropDownButtonX1 = floor(colX + colWidth - 4 - scrollBarWidth - buttonRectSize);
-			var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
-			var dropDownButtonX2 = floor(dropDownButtonX1 + buttonRectSize);
-			var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
+			if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
 			
-			if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
-				draw_set_color(global.colorThemeBG);
-				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				var dropDownButtonX1 = floor(colX + colWidth - 4 - scrollBarWidth - buttonRectSize);
+				var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
+				var dropDownButtonX2 = floor(dropDownButtonX1 + buttonRectSize);
+				var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
+			
+				if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+					draw_set_color(global.colorThemeBG);
+					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
+					draw_set_color(global.colorThemeBorders);
+					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+					if (mouse_check_button_pressed(mb_left)) {
+						obj_importMapping.inDropDown = true;
+					}
+					if (mouse_check_button_released(mb_left)) {
+						obj_importMapping.colToChange = i;
+						obj_importMapping.rowToChange = j;
+					
+						var dropDownOptionList = ds_list_create();
+						ds_list_add(dropDownOptionList, "UnitStart", "UnitEnd");
+						if (ds_list_size(dropDownOptionList) > 0) {
+							var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
+							dropDownInst.optionList = dropDownOptionList;
+							dropDownInst.optionListType = 32;
+						}
+					}
+				}
+			
+				draw_sprite_ext(spr_ascend, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
 			}
-			
-			draw_sprite_ext(spr_ascend, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
 			
 		}
 		
-		//draw_set_color(global.colorThemeBorders);
-		//draw_rectangle(colX - clipX, tagInfoWindowRectY1+ scrollPlusY - clipY, cellRectX2, cellRectY2, false)
-		//draw_rectangle(colX - clipX, tagInfoWindowRectY1 - clipY, nextColX -clipX, tagInfoWindowRectY2 - clipY, false)
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_font(fnt_main);
@@ -182,12 +199,7 @@ for (var i = 0; i < colAmount; i++) {
 						var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
 						dropDownInst.optionListType = 12;
-					
-						//obj_control.ableToCreateDropDown = false;
-						//obj_control.alarm[0] = 2;
 					}
-
-					//show_message("mouseOverLevel: " + string(mouseOverLevel));
 				}
 			}
 			else {
@@ -236,8 +248,6 @@ if (obj_importMapping.mouseoverRow >= 0) {
 		else if (selectedRowLevel == global.levelUnit) {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, obj_importMapping.rezInfoGridSelectedRow, true);
 		}
-		
-		
 		
 	}
 }

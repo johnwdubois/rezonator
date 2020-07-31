@@ -37,6 +37,10 @@ global.unitImport_colUnitID = 0;
 global.unitImport_colParticipant = 1;
 global.unitImportGrid = ds_grid_create(global.unitImportGridWidth, 0);
 
+// special fields for unitImport
+global.unitImport_colUnitStart = -1;
+global.unitImport_colUnitEnd = -1;
+
 
 
 // initiate customLabelGrid

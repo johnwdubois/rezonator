@@ -73,4 +73,6 @@ currentRowWordGrid = 0;
 currentRowUnitGrid = 0;
 loadLineGridSectionCounter = 0;
 
+global.importedSpecialFields = false;
+
 //alarm[2] = 3600;

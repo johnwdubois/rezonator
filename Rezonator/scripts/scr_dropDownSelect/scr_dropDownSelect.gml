@@ -238,5 +238,9 @@ else if (optionListType == 31)
     scr_unitSelection(optionSelected);
     instance_destroy();
 }
-
-
+//import special fields selection
+else if (optionListType == 32)
+{
+	scr_specialFieldsOptions(optionSelected);
+	instance_destroy();
+}

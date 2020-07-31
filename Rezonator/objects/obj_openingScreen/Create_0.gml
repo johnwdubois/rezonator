@@ -268,3 +268,6 @@ if (ds_list_size(userSettingsList) > 1) {
 }
 
 ds_list_destroy(userSettingsList);
+
+global.unitImportUnitStartColName = "";
+global.unitImportUnitEndColName = "";

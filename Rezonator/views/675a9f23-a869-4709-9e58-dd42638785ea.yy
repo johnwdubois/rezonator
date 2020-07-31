@@ -34,7 +34,8 @@
         "dffee0ae-d0a3-4044-ac53-13127522a461",
         "bc6708ed-3169-4e46-9fd2-8ffd44f409c1",
         "09903712-7644-4928-bac5-670fa15a0e42",
-        "b71d7a9f-5d36-45f6-91e8-e9e2d6b83f92"
+        "b71d7a9f-5d36-45f6-91e8-e9e2d6b83f92",
+        "58a66d8f-2938-4a38-83bf-71ec3c393d8d"
     ],
     "filterType": "GMScript",
     "folderName": "dropDownLists",
