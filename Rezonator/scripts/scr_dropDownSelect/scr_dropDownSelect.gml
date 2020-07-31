@@ -244,3 +244,13 @@ else if (optionListType == 32)
 	scr_specialFieldsOptions(optionSelected);
 	instance_destroy();
 }
+else if (optionListType == 33)
+{
+    scr_filterOptions(optionSelected);
+}
+//adding to filter options
+else if (optionListType == 34)
+{
+    scr_addToFilterOptions(optionSelected);
+    instance_destroy();
+}

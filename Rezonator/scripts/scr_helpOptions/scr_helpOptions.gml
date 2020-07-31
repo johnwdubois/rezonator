@@ -6,8 +6,8 @@ switch (optionSelected)
 	case "Help":// hide/show track chains
 		obj_panelPane.functionHelp_collapsed = !obj_panelPane.functionHelp_collapsed;
 	break;
-	case "Download":// hide/show rez chains
-		url_open("https://rezonator.com/download/");
+	case "Documentation":// hide/show rez chains
+		url_open("https://rezonator.com/documentation/");
 	break;
 	case "About":// hide/show stack chains
 		url_open("https://rezonator.com/");

@@ -59,12 +59,12 @@ else {
 //show_message(string(currentStackShowListPosition));
 //show_message(scr_getStringOfList(stackShowList));
 
-
-
-
-//obj_control.stackShowWindowActive = true;
-
 /*
+
+
+obj_control.stackShowWindowActive = true;
+
+
 
 // If we have not started the stackShow yet
 if(currentStackShowListPosition == -1) {
@@ -85,7 +85,7 @@ else {
 	// Let the stackShow move on to the next stack
 	scr_stackShow();	
 }
-/*
+
 if(ds_list_size(stackShowList) > 0 && currentStackShowListPosition != (ds_list_size(stackShowList))) {
 	// Filter on ds_list_get_value(stackShowList, currentStackShowListPosition);
 	
@@ -115,9 +115,10 @@ else if(currentStackShowListPosition == (ds_list_size(stackShowList))) {
 	// Switch to active grid
 	obj_control.filterGridActive = false;
 	obj_control.currentActiveLineGrid = obj_control.lineGrid;
-}*/
+}
 
-/*
+
 if (!instance_exists(obj_dialogueBox)) {
 	instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-}*/
+}
+*/

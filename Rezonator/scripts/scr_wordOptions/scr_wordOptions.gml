@@ -4,7 +4,7 @@ var optionSelected = argument0;
 switch (optionSelected)
 {
 	case "Text":
-		if(obj_control.wordTokenView) {
+		if(!obj_control.wordTokenView) {
 			obj_control.wordTokenView = !obj_control.wordTokenView;
 			
 			var dynamicWordGridHeight = ds_grid_height(obj_control.dynamicWordGrid);	
@@ -38,7 +38,7 @@ switch (optionSelected)
 		}
 	break;
 	case "Transcript":// show word transcript
-		if(!obj_control.wordTokenView) {
+		if(obj_control.wordTokenView) {
 			obj_control.wordTokenView = !obj_control.wordTokenView;
 			
 			var dynamicWordGridHeight = ds_grid_height(obj_control.dynamicWordGrid);	

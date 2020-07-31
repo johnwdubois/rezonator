@@ -336,7 +336,7 @@ if (obj_control.stackShowWindowActive) {
 	
 	// Tracks Only toggle button
 	draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, true);
-	if (obj_toolPane.tracksOnlyStackShow) {
+	if (obj_toolPane.tracksOnlyStackSho) {
 		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 120, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 15, camera_get_view_width(view_camera[0]) /2 - stackBoxXOffset + 130, camera_get_view_height(view_camera[0])/2 - stackBoxYOffset - 5, false);	
 	}
 
@@ -378,7 +378,7 @@ if (obj_control.stackShowWindowActive) {
 
 }
 
-
+//show_message(string(obj_control.stackShowActive));
 
 
 // ok button check

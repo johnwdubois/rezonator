@@ -94,7 +94,11 @@ switch (optionSelected)
 		//show_message("BUH 1");
 		break;
 	break;
-	case "Dev": // show grid view
+	case "Grid": // show grid view
 		obj_control.gridView = !obj_control.gridView;
+	break;
+	case "Dev": // show grid view
+		obj_control.showDevVars = !obj_control.showDevVars;
+		obj_control.showFPS = !obj_control.showFPS;
 	break;
 }
