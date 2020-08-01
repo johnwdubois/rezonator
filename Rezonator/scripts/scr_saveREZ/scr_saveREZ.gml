@@ -115,6 +115,10 @@ with (obj_saveParent) {
 		}
 		ds_map_add_list(map, "tokenImportColNameList", tempList2);
 		
+		//save special feild colnames
+		ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
+		ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
+		
 		
 		
 	

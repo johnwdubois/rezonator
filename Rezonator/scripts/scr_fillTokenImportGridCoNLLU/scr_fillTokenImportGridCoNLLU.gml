@@ -102,7 +102,7 @@ with (obj_gridViewer) {
 	alarm[2] = 1;
 }
 
-var deliminaterCol = 1;
+var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
 var curUID = 0;
 var prevUID = 0;
 var unitCounter = 1;

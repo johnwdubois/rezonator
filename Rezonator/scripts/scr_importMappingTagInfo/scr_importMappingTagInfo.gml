@@ -150,7 +150,7 @@ for (var i = 0; i < colAmount; i++) {
 						obj_importMapping.rowToChange = j;
 					
 						var dropDownOptionList = ds_list_create();
-						ds_list_add(dropDownOptionList, "UnitStart", "UnitEnd");
+						ds_list_add(dropDownOptionList, "UnitStart", "UnitEnd", "UnitDelim","TurnDelim");
 						if (ds_list_size(dropDownOptionList) > 0) {
 							var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;

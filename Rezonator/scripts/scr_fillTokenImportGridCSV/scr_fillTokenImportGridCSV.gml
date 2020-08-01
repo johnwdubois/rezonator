@@ -102,11 +102,15 @@ with (obj_gridViewer) {
 	alarm[2] = 1;
 }
 
-var deliminaterCol = 3;
+var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
+
+
 
 
 var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, 0, global.tagInfoGrid_colDisplayToken, ds_grid_height(global.tagInfoGrid), true);
 var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+
+
 
 // fill tokenImport with UnitID, WordID, token, and transcript information
 var tokenImportGridHeight = ds_grid_height(global.importGrid);

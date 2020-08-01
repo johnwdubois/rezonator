@@ -86,7 +86,9 @@ else if (global.importType == global.importType_CoNLLU){
 	
 	
 	//hardcoded for now
-	var deliminaterCol = 1;
+	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
+
+
 	
 	
 
@@ -184,7 +186,7 @@ else if (global.importType == global.importType_CSV){
 	
 	
 	//hardcoded for now
-	var deliminaterCol = 3;
+	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
 	
 	
 

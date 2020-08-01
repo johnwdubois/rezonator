@@ -272,3 +272,5 @@ ds_list_destroy(userSettingsList);
 
 global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
+global.unitImportUnitDelimColName = "";
+global.unitImportTurnDelimColName = "";

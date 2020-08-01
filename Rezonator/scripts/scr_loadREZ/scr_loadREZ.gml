@@ -94,6 +94,8 @@ if (file_exists(fileName)) {
 				global.importGridWidth = ds_map_find_value(map, "importGridWidth");
 				global.importCSVGridWidth = ds_map_find_value(map, "importCSVGridWidth");
 				
+				global.unitImportUnitDelimColName = ds_map_find_value(map, "unitImportUnitDelimColName");
+				global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
 
 				
 				global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
