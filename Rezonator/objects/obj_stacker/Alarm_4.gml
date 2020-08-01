@@ -26,6 +26,13 @@ for (var unitColLoop = 0; unitColLoop < ds_list_size(global.tokenImportColNameLi
 	}
 }
 
+if (turnCol == -1) {
+	show_message("No turn order found");
+	splitSave = false;
+
+	exit;	
+}
+
 //var turnOrderCol = //how do i get??
 var currentTurnOrder = ds_grid_get(global.tokenImportGrid, turnCol, 0);
 

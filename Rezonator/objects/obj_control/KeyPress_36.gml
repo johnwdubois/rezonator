@@ -3,5 +3,5 @@
 //show_message("home");
 if(keyboard_check(vk_control)) {
 	obj_stacker.splitSave = true;
-	obj_stacker.alarm[4] = 1;
+	obj_stacker.alarm[1] = 1;
 }

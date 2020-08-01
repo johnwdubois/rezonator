@@ -13,7 +13,7 @@
 	Author: Terry DuBois
 */
 
-if (obj_control.gridView or obj_control.mouseoverPanelPane or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
+if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
 	exit;
 }
 
@@ -52,7 +52,7 @@ var fakeInChainsList = ds_list_create();
 if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 	ds_list_add(fakeInChainsList, ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1));
 	var inChainsList = fakeInChainsList;
-	//show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
+//	show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
 }
 else {
 	var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
