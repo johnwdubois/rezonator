@@ -31,9 +31,10 @@ while (randLine2 <= endLine && randLine1 < endLine){
 	scr_unFocusAllChains();
 	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 
-	ds_list_clear(currentUnitList);
+	
 	randLine1 = randLine2 + 1;
 	randLine2 = randLine1 + floor(random(7)) + 1;
+	ds_list_clear(currentUnitList);
 	//global.fileSaveName = global.fileSaveName + string(fileNameNumber++);
 }
 splitSave = false;

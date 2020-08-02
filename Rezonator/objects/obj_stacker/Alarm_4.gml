@@ -3,9 +3,19 @@
 // So I gotta loop through the tokenImport grid, checking for units to collect into the list, and checking for new turns to swap lists
 // It works!! But that stack bug is getting in the way...
 
-	/*if(obj_toolPane.currentMode == obj_toolPane.modeRead) {
-		obj_toolPane.currentMode = obj_toolPane.modeTrack;	
-	}*/
+if(obj_toolPane.currentMode == obj_toolPane.modeRead) {
+	obj_toolPane.currentMode = obj_toolPane.modeTrack;	
+}
+
+obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabStackBrush;
+			
+// unfocus chains of all type
+scr_unFocusAllChains();
+			
+//refocus chains related to currently selected tab
+with(obj_panelPane) {
+	scr_reFocusOldChains();
+}
 
 var currentUnitList = ds_list_create();
 ds_list_clear(currentUnitList);
@@ -51,18 +61,22 @@ for (var tokenImportLoop = 0; tokenImportLoop < tokenImportGridHeight; tokenImpo
 		var firstUnitID = ds_list_find_value(currentUnitList, 0);
 		var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
 		var firstWordID = ds_list_find_value(currentWordIDList, 0);
+		var prevUnitID = -1;
 	
 		// Loop through words found in rectangle at time of mouse release
 		var inRectUnitIDListSize = ds_list_size(currentUnitList);
 		for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 			var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
-			currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
-			var currentWordID = ds_list_find_value(currentWordIDList, 0);
-			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-			with (obj_chain) {
-				scr_wordClicked(firstWordID, firstUnitID);
-				scr_wordClicked(currentWordID, currentUnitID);
+				if(currentUnitID != prevUnitID) {
+				currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
+				var currentWordID = ds_list_find_value(currentWordIDList, 0);
+				obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+				with (obj_chain) {
+					scr_wordClicked(firstWordID, firstUnitID);
+					scr_wordClicked(currentWordID, currentUnitID);
+				}
 			}
+			prevUnitID = currentUnitID;
 		}
 		// Unfocus all links and chains
 		scr_unFocusAllChains();
@@ -70,6 +84,9 @@ for (var tokenImportLoop = 0; tokenImportLoop < tokenImportGridHeight; tokenImpo
 
 	}
 	
+	if(tokenImportLoop >= tokenImportGridHeight) {
+	//	show_message(scr_getStringOfList(currentUnitList));	
+	}
 	ds_list_clear(currentUnitList);
 	// switch randLines to next set of units
 

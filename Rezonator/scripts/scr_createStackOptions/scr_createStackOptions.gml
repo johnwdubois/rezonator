@@ -5,7 +5,7 @@ switch (optionSelected)
 	
 	case "Default":
 
-		show_message("Create Default");
+		show_message("Click or Drag on Speaker Labels to create default stacks.");
 		break;
 	case "Random":
 		//show_message("Create Random");

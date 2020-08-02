@@ -45,7 +45,7 @@ switch (optionSelected)
 	
 	case "Track Chains":
 	
-		var grid = obj_chain.trackChainGrid;
+	var grid = obj_chain.trackChainGrid;
 	if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
 			if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
 				ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true);
@@ -85,6 +85,7 @@ switch (optionSelected)
 
 	break;
 
+	case "Stacks": // add all of a certain chain type to filter
 	var grid = obj_chain.stackChainGrid;
 	if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
 			if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
@@ -123,7 +124,7 @@ switch (optionSelected)
 		}
 		
 
-	case "Stacks": // add all of a certain chain type to filter
+	
 	
 	break;
 	
