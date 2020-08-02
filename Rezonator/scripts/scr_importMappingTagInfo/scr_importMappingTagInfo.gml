@@ -115,21 +115,13 @@ for (var i = 0; i < colAmount; i++) {
 				currentCell = "";
 			}
 		}
-		else if (i == global.tagInfoGrid_colDisplayToken || i == global.tagInfoGrid_colDisplayUnit) {
-			if (currentCell == "0") {
-				currentCell = "";
-			}
-			else if (currentCell == "1") {
-				currentCell = "X";
-			}
-		}
 		else if (i == global.tagInfoGrid_colSpecialFields) {
 			
 			if (currentCell == "0") {
 				currentCell = "";
 			}
 			
-			if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
+			
 			
 				var dropDownButtonX1 = floor(colX + colWidth - 4 - scrollBarWidth - buttonRectSize);
 				var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
@@ -150,7 +142,13 @@ for (var i = 0; i < colAmount; i++) {
 						obj_importMapping.rowToChange = j;
 					
 						var dropDownOptionList = ds_list_create();
-						ds_list_add(dropDownOptionList, "UnitStart", "UnitEnd", "UnitDelim","TurnDelim");
+						
+						if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
+							ds_list_add(dropDownOptionList, "Speaker", "UnitStart", "UnitEnd", "UnitDelim", "TurnDelim");
+						}
+						if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
+							ds_list_add(dropDownOptionList, "Display Token");
+						}
 						if (ds_list_size(dropDownOptionList) > 0) {
 							var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
@@ -160,7 +158,7 @@ for (var i = 0; i < colAmount; i++) {
 				}
 			
 				draw_sprite_ext(spr_ascend, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
-			}
+			
 			
 		}
 		
@@ -232,21 +230,22 @@ if (obj_importMapping.mouseoverRow >= 0) {
 		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 		for (var i = 0; i < tagInfoGridHeight; i++) {
 			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+			var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
 		
-			if (currentLevel == selectedRowLevel) {
-				if (selectedRowLevel == global.levelToken) {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, false);
+			if (currentLevel == selectedRowLevel ) {
+				if (selectedRowLevel == global.levelToken && currentField == "Display Token") {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
 				}
-				else if (selectedRowLevel == global.levelUnit) {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, false);
+				else if (selectedRowLevel == global.levelUnit && currentField == "Speaker") {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
 				}
 			}
 		}
 		if (selectedRowLevel == global.levelToken) {
-			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, obj_importMapping.rezInfoGridSelectedRow, true);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, obj_importMapping.rezInfoGridSelectedRow, "Display Token");
 		}
 		else if (selectedRowLevel == global.levelUnit) {
-			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, obj_importMapping.rezInfoGridSelectedRow, true);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, obj_importMapping.rezInfoGridSelectedRow, "Speaker");
 		}
 		
 	}
@@ -293,12 +292,6 @@ for (var i = 0; i < colAmount; i++) {
 	}
 	else if (i == global.tagInfoGrid_colTokenCount) {
 		headerStr = "Token Count";
-	}
-	else if (i == global.tagInfoGrid_colDisplayToken) {
-		headerStr = "Display Token";
-	}
-	else if (i == global.tagInfoGrid_colDisplayUnit) {
-		headerStr = "Display Unit";
 	}
 	else if (i == global.tagInfoGrid_colSpecialFields) {
 		headerStr = "Special Fields";

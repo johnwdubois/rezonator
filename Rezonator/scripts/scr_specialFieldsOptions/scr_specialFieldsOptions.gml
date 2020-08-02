@@ -13,6 +13,16 @@ switch (optionSelected)
 		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "UnitStart");
 		global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
+	case "Speaker":
+		global.unitImportUnitStartColName = "";
+		for (var i = 0; i < tagInfoGridHeight; i++) {
+			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Speaker") {
+				ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
+			}
+		}
+		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Speaker");
+		global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+	break;
 	case "UnitEnd":
 	global.unitImportUnitEndColName = "";
 		for (var i = 0; i < tagInfoGridHeight; i++) {
@@ -44,6 +54,16 @@ switch (optionSelected)
 		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "TurnDelim");
 		global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
+	case "Display Token":
+		global.unitImportUnitStartColName = "";
+		for (var i = 0; i < tagInfoGridHeight; i++) {
+			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Display Token") {
+				ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
+			}
+		}
+		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Display Token");
+		global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+	break;
 	default:
 		break;
 }

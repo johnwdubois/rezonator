@@ -86,8 +86,6 @@ else {
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, currentExample);
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, currentConsistency);
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, OneTokenPerGroup);
-		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, false);
-		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, false);
 		
 		
 		var currentTokenCount = ds_list_find_value(global.importGridTokenCountList, i);
@@ -126,17 +124,17 @@ else {
 		// we have found the first token level marker, let's set it to displayToken
 		if (!setDisplayToken) {
 			if (currentLevel == global.levelToken) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i, true);
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Display Token");
 				setDisplayToken = true;
 			}
 		}
 		// we have found the first unit level marker, let's set it to displayUnit
 		if (!setDisplayUnit) {
 			if (currentLevel == global.levelUnit) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i, true);
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Speaker");
 				setDisplayUnit = true;
 			}
 		}
 	}
-	scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false, global.tagInfoGrid_colDisplayToken, false, global.tagInfoGrid_colDisplayUnit, false);
+	scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
 }

@@ -64,8 +64,8 @@ for (var j = 0 ; j < 2; j++){
 
 	for (var i = 0 ; i < tagGridHeight; i++ ){
 		if( j == 0 ){	
-			var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, i);
-			if(cutTest){
+			var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
+			if(cutTest == "Display Token"){
 				obj_importMapping.canContinueToken = true;
 				i = tagGridHeight;
 			}
@@ -74,8 +74,8 @@ for (var j = 0 ; j < 2; j++){
 			}
 		}
 		else{
-			var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, i);
-			if(cutTest){
+			var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
+			if(cutTest == "Speaker"){
 				obj_importMapping.canContinueUnit = true;
 				i = tagGridHeight;
 			}
@@ -149,7 +149,7 @@ var loadPreviousButtonRectY1 = fileInfoWindowRectY2 +50- (loadPreviousButtonHeig
 var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
 var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
 	
-// Continue button
+// load preivous
 if (point_in_rectangle(mouse_x, mouse_y, loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousButtonRectX2, loadPreviousButtonRectY2)) {
 	draw_set_color(global.colorThemeSelected1);
 	draw_rectangle(loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousButtonRectX2, loadPreviousButtonRectY2, false);
@@ -159,14 +159,7 @@ if (point_in_rectangle(mouse_x, mouse_y, loadPreviousButtonRectX1, loadPreviousB
 			
 		for(var i = 0 ; i < ds_list_size(global.previousLevelEstimates); i++){
 			
-			if(i < ds_grid_height(global.tagInfoGrid)){
-				var checkIfDisplayT = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken,i);
-				var checkIfDisplayU = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit,i);
-				if(checkIfDisplayT || checkIfDisplayU){
-					//ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken , i, false);
-					//ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit , i, false);
-				}
-				
+			if(i < ds_grid_height(global.tagInfoGrid)){		
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i,ds_list_find_value(global.previousLevelEstimates,i));
 			}
 

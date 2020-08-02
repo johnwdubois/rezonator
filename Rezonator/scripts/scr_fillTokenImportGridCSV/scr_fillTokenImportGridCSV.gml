@@ -82,13 +82,14 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 }
 	
 	
-var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, 0, global.tagInfoGrid_colDisplayToken, ds_grid_height(global.tagInfoGrid), true);
-var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
-var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
+	var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+	var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 	
-var displayUnitRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayUnit, 0, global.tagInfoGrid_colDisplayUnit, ds_grid_height(global.tagInfoGrid), true);
-var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
-var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
+	var displayUnitRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
+	var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
+	var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
+	
 	
 	
 	
@@ -107,7 +108,7 @@ var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.uni
 
 
 
-var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colDisplayToken, 0, global.tagInfoGrid_colDisplayToken, ds_grid_height(global.tagInfoGrid), true);
+var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
 var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
 
 
