@@ -86,7 +86,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			else if (i == functionChainList_tabStackBrush) {
 				draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
 			}
-			if (point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
+			if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
 				if (mouse_check_button_released(mb_left)) {
@@ -108,7 +108,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			var filterRectX2 = filterRectX1 + buttonRectSize;
 			var filterRectY2 = filterRectY1 + buttonRectSize;
 			var filterImageIndex = 0;
-			if (point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2)) {
+			if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2)) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
 				if (mouse_check_button_released(mb_left)) {
@@ -168,7 +168,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			var ascendRectX2 = ascendRectX1 + buttonRectSize;
 			var ascendRectY2 = ascendRectY1 + buttonRectSize;
 			
-			if (point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
+			if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
 				
@@ -239,7 +239,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 				var tagButtonRectX2 = tagButtonRectX1 + buttonRectSize;
 				var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
 				draw_set_color(global.colorThemeText);
-				if (point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
+				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
 
 					mouseOverUnitTab = true;
 					//draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
@@ -290,7 +290,7 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 	draw_set_valign(fa_top);
 	
 	// check for mouse clicks to change the selected tab
-	if (point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
+	if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			//show_message(string(i));
 			functionChainList_currentTab = i;
