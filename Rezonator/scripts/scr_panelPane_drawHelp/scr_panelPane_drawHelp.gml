@@ -304,11 +304,11 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 						var currentStrKey = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colKey, j);
 						var currentStrFunc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colFunc, j);
 						var currentStrDesc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colDesc, j);
-						draw_text(cellRectX1 + textBuffer - clipX, mean(cellRectY1, cellRectY2) - clipY, currentStrKey);
+						draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), currentStrKey);
 						if(currentStrFunc == "Download" || currentStrFunc == "About Us") {
 							draw_set_color(c_blue);
 						}
-						draw_text(mean(cellRectX1, cellRectX2) + textBuffer - clipX, mean(cellRectY1, cellRectY2) - clipY, currentStrFunc);
+						draw_text(floor(mean(cellRectX1, cellRectX2) + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), currentStrFunc);
 						draw_set_color(global.colorThemeText);
 						
 						// Check for mouseoverHelp over content, if so, then show extra content
@@ -324,7 +324,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 							draw_rectangle(cellRectX1 + 1 - clipX, cellRectY1 + cellHeight - clipY, cellRectX2 - 1 - clipX, cellRectY2 + cellHeight - 2 - clipY, false);
 							draw_set_alpha(1);
 							draw_set_color(global.colorThemeText);
-							draw_text(cellRectX1 + textBuffer - clipX, mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight) - clipY, currentStrDesc);
+							draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight) - clipY), currentStrDesc);
 							cellPlusY += (2 * cellHeight);
 							
 							if(device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
@@ -354,6 +354,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 }
 
 var displayString = "";
+draw_set_font(fnt_mainBold);
 
 for (var i = 0; i < toggleButtonAmount; i++) {
 	//draw tooltips

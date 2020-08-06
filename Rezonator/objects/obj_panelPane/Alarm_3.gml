@@ -10,7 +10,7 @@ if (os_type == os_macosx) {
 	controlStr = "CMD";
 }
 
-var helpMenuHeight = 9;
+var helpMenuHeight = 10;
 ds_grid_resize(functionHelp_menuGrid, functionHelp_menuGridWidth, helpMenuHeight);
 
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 0, "Link");
@@ -48,15 +48,23 @@ ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 6, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 6, true);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 6, functionHelp_helpGridPlay);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 7, "Advanced");
+
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 7, "Right Click");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 7, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 7, true);
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 7, functionHelp_helpGridAdvanced);
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 7, functionHelp_helpGridRightClick);
 
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 8, "About");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 8, "Advanced");
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 8, false);
 ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 8, true);
-ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHelp_helpGridAbout);
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 8, functionHelp_helpGridAdvanced);
+
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colName, 9, "About");
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colHide, 9, false);
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, 9, true);
+ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colGrid, 9, functionHelp_helpGridAbout);
+
+
 
 //show_message(string(ds_grid_height(functionHelp_menuGrid)));
 
@@ -358,6 +366,82 @@ ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colKey, 1, "xxx");
 ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colFunc, 1, "About Us");
 ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colDesc, 1, "Go to Rezonator.com for Info");
 ds_grid_set(functionHelp_helpGridAbout, functionHelp_helpGrid_colHide, 1, false);
+
+
+
+var helpGridHeightRightClick = 14;
+ds_grid_resize(functionHelp_helpGridRightClick, functionHelp_helpGridWidth, helpGridHeightRightClick);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 0, "[Right Click] on word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 0, "Replace Word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 0, "Change the display string of a word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 0, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 1, "[Right Click] on word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 1, "Restore Word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 1, "Revert word back to its original string");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 1, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 2, "[Right Click] on word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 2, "Split Word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 2, "Split selected word into two seperate words");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 2, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 3, "[Right Click] on word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 3, "New Word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 3, "Adds a new word before or after the selected word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 3, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 4, "[Right Click] on word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 4, "Delete New Word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 4, "Delete a new word that has been added");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 4, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 5, "[Right Click] on word");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 5, "Delete Link");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 5, "remove the selected word from it's chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 5, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 6, "[Right Click] on speaker");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 6, "Swap");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 6, "Move to Nav window Clique Tab");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 6, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 7, "[Right Click] on speaker");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 7, "Shuffle");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 7, "Drag from word for multiple links");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 7, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 8, "[Right Click] on speaker");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 8, "Reset Order");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 8, "Drag from line labels for a QuickStack");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 8, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 9, "[Right Click] on speaker");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 9, "Tag");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 9, "Add a tag of emotion to the unit");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 9, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 10, "[Right Click] on chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 10, "Rename");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 10, "Change the name of the selected chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 10, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 11, "[Right Click] on chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 11, "recolor");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 11, "Change the color of the selected chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 11, false);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 12, "[Right Click] on chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 12, "Delete");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 12, "Delete the selected chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 12, true);
+
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 13, "[Right Click] on chain");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 13, "Caption");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 13, "Add a caption for stack shows");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 13, true);
+
 
 
 var helpGridHeightRez = 21;

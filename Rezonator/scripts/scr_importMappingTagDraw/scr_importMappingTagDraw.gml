@@ -142,9 +142,9 @@ else {
 
 //fileInfoWindowRectX1, fileInfoWindowRectY1
 
-var loadPreviousButtonWidth = 125;
+var loadPreviousButtonWidth = 200;
 var loadPreviousButtonHeight = 30;
-var loadPreviousButtonRectX1 = fileInfoWindowRectX1 + 190 - (loadPreviousButtonWidth / 2);
+var loadPreviousButtonRectX1 = fileInfoWindowRectX1 + 240 - (loadPreviousButtonWidth / 2);
 var loadPreviousButtonRectY1 = fileInfoWindowRectY2 +50- (loadPreviousButtonHeight / 2);
 var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
 var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
@@ -175,4 +175,4 @@ draw_rectangle(loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousB
 draw_set_font(fnt_main);
 draw_set_halign(fa_center);
 draw_set_color(global.colorThemeText);
-draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), "Load Previous");
+draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), "Use Last Import Schema");

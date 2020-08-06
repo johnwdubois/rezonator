@@ -138,6 +138,7 @@ functionHelp_helpGridMove = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridPlay = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridAdvanced = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridAbout = ds_grid_create(functionHelp_helpGridWidth, 0);
+functionHelp_helpGridRightClick = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_allCollapsed = true;
 //functionHelp_rezCollapsed = false;
 //functionHelp_navCollapsed = false;
