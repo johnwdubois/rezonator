@@ -248,6 +248,57 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					draw_set_font(global.fontChainContents);
 					draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 					
+
+					
+					
+					if(getInfoLoop >= 2){
+					//draw tag selection
+					var scrollBarBuffer = 0;
+					if(getInfoLoop >= 7){
+						scrollBarBuffer = scrollBarWidth;
+					}
+					var ascendButtonSize = (tabHeight / 2);
+					var ascendRectX1 = textX + (windowWidth / 6) - 16 - scrollBarBuffer - ascendButtonSize;
+					var ascendRectY1 = textY - (strHeight / 2) + 5 + scrollPlusY;
+					var ascendRectX2 = ascendRectX1 + ascendButtonSize;
+					var ascendRectY2 = ascendRectY1 + ascendButtonSize;
+					
+
+
+					if (point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(ascendRectX1- clipX, ascendRectY1 - clipY , ascendRectX2 - clipX, ascendRectY2 - clipY, true);
+
+						//ascendYScale = (ascendActivated) ? 1 : -1;
+						if (mouse_check_button_released(mb_left)) {
+
+							if(ascendActivated == false){
+								ascendActivated = true;
+							}
+							else{
+								ascendActivated = false;
+							}
+							if(ascendActivated){
+								ascendYScale = -1;
+							}
+							else{
+								ascendYScale = 1;
+							}
+
+						}
+					
+						if(ascendActivated == false) {
+							with(obj_dropDown) {
+								instance_destroy();
+								ascendYScale = 1;
+								ascendActivated = false;
+							}
+						}
+					}
+					
+					draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2)- clipX, mean(ascendRectY1, ascendRectY2)- clipY, 1, 1, 0, c_white, 1);
+					}
+					
 					activeCols++;
 				}
 				

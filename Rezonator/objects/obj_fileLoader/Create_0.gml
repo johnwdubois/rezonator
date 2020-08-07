@@ -74,5 +74,7 @@ currentRowUnitGrid = 0;
 loadLineGridSectionCounter = 0;
 
 global.importedSpecialFields = false;
+global.unitTagMapFilled = false;
+global.tokenTagMapFilled = false;
 
 //alarm[2] = 3600;
