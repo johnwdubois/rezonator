@@ -4,8 +4,12 @@ switch (optionSelected)
 {	
 	
 	case "Default":
-
 		show_message("Click or Drag on Speaker Labels to create default stacks.");
+		if(obj_toolPane.currentMode == obj_toolPane.modeRead ) {
+			obj_toolPane.currentMode = obj_toolPane.modeTrack;	
+		}
+		obj_control.mouseoverPanelPane = false;
+		instance_destroy(obj_dropDown);
 		break;
 	case "Random":
 		//show_message("Create Random");
