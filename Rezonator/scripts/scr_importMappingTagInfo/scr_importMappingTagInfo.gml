@@ -41,7 +41,7 @@ x = tagInfoWindowRectX1;
 y = tagInfoWindowRectY1;
 
 
-if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2) && !instance_exists(obj_dropDown)) {
+if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown)) {
 	obj_importMapping.mouseoverRow = -1;
 }
 
@@ -80,7 +80,8 @@ for (var i = 0; i < colAmount; i++) {
 		var cellRectY2 = cellRectY1 + rowHeight;
 
 		
-		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !instance_exists(obj_dropDown)) {
+		if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - scrollBarWidth, y + windowHeight)
+		&& !instance_exists(obj_dropDown)) {
 			obj_importMapping.mouseoverRow = j;
 			timesHit++;
 		}
