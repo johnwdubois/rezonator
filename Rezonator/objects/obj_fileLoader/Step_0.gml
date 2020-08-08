@@ -97,9 +97,9 @@ if (!global.tokenTagMapFilled && ds_grid_height(global.tokenImportGrid) > 0) {
 	global.tokenTagMapFilled = true;
 
 	var gridWidth = ds_grid_width(global.tokenImportGrid);
-	var tempList = ds_list_create();
-	ds_list_add(tempList, "Add new Tag");
-	for(var i = 0 ; i < gridWidth; i++){
+	for (var i = 0 ; i < gridWidth; i++) {
+		var tempList = ds_list_create();
+		ds_list_add(tempList, "Add new Tag");
 		ds_map_add(global.tokenImportTagMap, i, tempList);
 	}
 

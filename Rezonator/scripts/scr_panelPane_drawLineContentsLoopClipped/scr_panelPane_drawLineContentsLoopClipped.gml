@@ -287,17 +287,21 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 
 							//ascendYScale = (ascendActivated) ? 1 : -1;
 							if (mouse_check_button_released(mb_left)) {
+								with (obj_panelPane) {
+									selectedCol = getInfoLoop;
+								}
+								
 								var dropDownOptionList = ds_list_create();
 								
 								if (getInfoLoop >= 3) {
-									show_message("col from list :   " + string(ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3))  + " wordID :   " +  string(currentWordID-1));
+									//show_message("col from list :   " + string(ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3))  + " wordID :   " +  string(currentWordID-1));
 									ds_list_copy(dropDownOptionList, ds_map_find_value(global.tokenImportTagMap, ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3)));
 									
 									obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3);
 									obj_control.tokenImportRowToChange =currentWordID-1;
 								}
 								else{
-									show_message("col from list :   " + string(ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2)) + " wordID :   " +  string(currentWordID-1));
+									//show_message("col from list :   " + string(ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2)) + " wordID :   " +  string(currentWordID-1));
 									ds_list_copy(dropDownOptionList, ds_map_find_value(global.tokenImportTagMap, ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2)));
 								
 									obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2);
@@ -305,35 +309,22 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 								}
 								
 								var dropDownX = textX - xBuffer;
-								var dropDownY = textY// + textMarginTop + (strHeight/2) -tabHeight ;
+								var dropDownY = textY + scrollPlusY + (strHeight / 2);
 
 								
 
 								if (ds_list_size(dropDownOptionList) > 0 ) {
-									show_message("creating dropdown...");
 									var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
 									dropDownInst.optionList = dropDownOptionList;
 									dropDownInst.optionListType = 35;
 
 								}
 								
-								
-								if(!dropDownActivated){
-									dropDownActivated = true;
-								}
-								else{
-									dropDownActivated = false;
-								}
+						
 
 
 							}
-					
-							if(!dropDownActivated) {
-								with(obj_dropDown) {
-									instance_destroy();
-									dropDownActivated = false;
-								}
-							}
+				
 						}
 					
 					
@@ -345,7 +336,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 			
 			
 				textPlusY += strHeight;
-			}
+			} 
 		}
 	}
 }

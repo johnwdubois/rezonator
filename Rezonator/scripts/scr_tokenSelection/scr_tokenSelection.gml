@@ -7,7 +7,7 @@ else{
 	var colListIndex = obj_panelPane.chosenCol - 3; 
 }
 
-ds_list_set(obj_control.currentDisplayTokenColsList,colListIndex,colValToSet);
+ds_list_set(obj_control.currentDisplayTokenColsList, colListIndex, colValToSet);
 
 
 

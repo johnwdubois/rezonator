@@ -212,7 +212,7 @@ unitContentsHeaderListSize = 2;
 chosenCol = 0;
 ascendYScale = 1;
 ascendActivated = false;
-dropDownActivated = false;
+selectedCol = 0;
 
 
 hoverTime[0] = 0;

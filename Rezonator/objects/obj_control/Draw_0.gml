@@ -216,6 +216,11 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 480, scr_getStringOfList(global.tokenImportColNameList));
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 520, "global.unitImportColNameList:");
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 540, scr_getStringOfList(global.unitImportColNameList));
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 580, "obj_control.currentDisplayTokenColsList:");
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 600, scr_getStringOfList(obj_control.currentDisplayTokenColsList));
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 620, "obj_control.currentDisplayUnitColsList:");
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 640, scr_getStringOfList(obj_control.currentDisplayUnitColsList));
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 660, "obj_panelPane.selectedCol: " + string(obj_panelPane.selectedCol));
 }
 var scrollBarMarginTop = 230;
 if (!obj_panelPane.showNav) {
