@@ -635,3 +635,4 @@ tokenImportColToChange = 0;
 tokenImportRowToChange = 0;
 
 activeStackType = 0;
+readModeHints = 0;

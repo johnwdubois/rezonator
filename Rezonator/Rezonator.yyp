@@ -2815,6 +2815,14 @@
             }
         },
         {
+            "Key": "793c97c4-9df1-41a6-b8c4-1b2f51114a13",
+            "Value": {
+                "id": "e614408a-e35a-40a9-bfd5-c74e383a5ce2",
+                "resourcePath": "objects\\obj_readModePopUp\\obj_readModePopUp.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "79e73708-91c0-467f-ab87-2d0ed15beb30",
             "Value": {
                 "id": "82144cbb-e735-4e3d-b3a9-5312ae30ea73",

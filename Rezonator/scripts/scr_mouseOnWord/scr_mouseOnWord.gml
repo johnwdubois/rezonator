@@ -31,19 +31,24 @@ if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wor
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 		// Word clicked with a Chain tool selected
-		if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow)) {// and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+		if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, unitID);
 			}
 		}
 		// If in Read Mode, focus line in Nav window
 		else if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode == obj_toolPane.modeRead) {
-			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
+			//forgot why this was taken out
+			/*ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
 			with (obj_panelPane) {
 				functionChainList_lineGridRowFocused = drawLineLoop;
 				functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 				functionChainList_currentTab = functionChainList_tabLine;
+			}*/
+			if(obj_control.readModeHints < 2){
+				var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
+				obj_control.readModeHints++;
 			}
 		}
 				
