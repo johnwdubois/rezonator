@@ -86,11 +86,12 @@ for (var i = 0; i < lineGridHeight; i++) {
 	else {
 		var currentLineWordListSize = 0;
 	}
-	//show_message(scr_getStringOfList(currentLineWordList));
+	
+	//will want to use the dyanmic word grid instead
 	var currentLineWordListSize = ds_list_size(currentLineWordList);
 	for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
 		var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
-		var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+		var currentWordToken = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
 		currentLineWordString += string(currentWordToken) + " ";
 	}
 	
