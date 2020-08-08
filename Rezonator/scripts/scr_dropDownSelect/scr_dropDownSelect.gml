@@ -254,3 +254,12 @@ else if (optionListType == 34)
     scr_addToFilterOptions(optionSelected);
     instance_destroy();
 }
+
+//adding to Token Tag Map options
+else if (optionListType == 35)
+{
+    scr_tokenTagMapOptions(optionSelected);
+    instance_destroy();
+}
+
+

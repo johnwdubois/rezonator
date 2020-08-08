@@ -975,6 +975,14 @@
             }
         },
         {
+            "Key": "21c41e00-4bb1-43e5-8d51-eebc570aa56c",
+            "Value": {
+                "id": "38e49f96-314f-485c-afb7-3c3ad5c614e3",
+                "resourcePath": "sprites\\spr_dropDown\\spr_dropDown.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "21ff2d76-4d94-49cd-885a-e7d9ae53900f",
             "Value": {
                 "id": "f465d1c7-f70a-469b-ae8b-40bdb13fa68d",
@@ -4095,6 +4103,14 @@
             }
         },
         {
+            "Key": "ad38527b-67a3-48fe-814f-c31e4ad21a92",
+            "Value": {
+                "id": "4974c1e5-39a0-4cae-aa64-65489b913754",
+                "resourcePath": "scripts\\scr_tokenTagMapOptions\\scr_tokenTagMapOptions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "ad90a20a-381d-402c-a768-ad96842f2c13",
             "Value": {
                 "id": "00f841af-d8e3-4451-b2e9-34359068b9ee",
@@ -6311,6 +6327,7 @@
         "e7f20fb3-f8c2-4dda-99af-55e4dacd9b79",
         "a53ebb4d-c219-4610-a2c8-441dab4f3b32",
         "8b992b96-6001-40e9-ba2a-e819b85a9792",
+        "ad38527b-67a3-48fe-814f-c31e4ad21a92",
         "dffee0ae-d0a3-4044-ac53-13127522a461",
         "bc6708ed-3169-4e46-9fd2-8ffd44f409c1",
         "09903712-7644-4928-bac5-670fa15a0e42",

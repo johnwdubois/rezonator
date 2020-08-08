@@ -631,4 +631,7 @@ currentDisplayUnitColsList = ds_list_create();
 ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
 ds_list_add(currentDisplayUnitColsList,1,2,3,4,5);
 
+tokenImportColToChange = 0;
+tokenImportRowToChange = 0;
+
 activeStackType = 0;
