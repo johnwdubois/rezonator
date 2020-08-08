@@ -289,7 +289,7 @@ if (grid != -1) {
 								var currentWordIDListSize = ds_list_size(currentWordIDList);
 								for (var i = 0; i < currentWordIDListSize; i++) {
 									var currentWordID = ds_list_find_value(currentWordIDList, i);
-									var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+									var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
 									currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
 								}
 						
