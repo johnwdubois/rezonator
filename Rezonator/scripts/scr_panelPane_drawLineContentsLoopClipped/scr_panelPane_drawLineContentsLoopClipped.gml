@@ -289,7 +289,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 							if (mouse_check_button_released(mb_left)) {
 								var dropDownOptionList = ds_list_create();
 								
-								if(getInfoLoop >= 3){
+								if (getInfoLoop >= 3) {
 									show_message("col from list :   " + string(ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3))  + " wordID :   " +  string(currentWordID-1));
 									ds_list_copy(dropDownOptionList, ds_map_find_value(global.tokenImportTagMap, ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3)));
 									
@@ -305,12 +305,13 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 								}
 								
 								var dropDownX = textX - xBuffer;
-								var dropDownY = textY + textMarginTop + (strHeight/2) -tabHeight ;
+								var dropDownY = textY// + textMarginTop + (strHeight/2) -tabHeight ;
 
 								
 
 								if (ds_list_size(dropDownOptionList) > 0 ) {
-									var dropDownInst = instance_create_depth(dropDownX,dropDownY , -999, obj_dropDown);
+									show_message("creating dropdown...");
+									var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
 									dropDownInst.optionList = dropDownOptionList;
 									dropDownInst.optionListType = 35;
 

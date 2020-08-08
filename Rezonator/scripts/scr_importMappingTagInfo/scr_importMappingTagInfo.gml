@@ -158,7 +158,7 @@ for (var i = 0; i < colAmount; i++) {
 					}
 				}
 			
-				draw_sprite_ext(spr_ascend, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
+				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
 			
 			
 		}
@@ -208,7 +208,7 @@ for (var i = 0; i < colAmount; i++) {
 
 		
 			var ascendYScale = -1; //(functionChainList_sortAsc[i]) ? 1 : -1;
-			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
+			draw_sprite_ext(spr_dropDown, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
 		
 		}
 		

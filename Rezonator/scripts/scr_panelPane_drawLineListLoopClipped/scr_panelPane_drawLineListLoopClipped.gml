@@ -102,7 +102,7 @@ for (var i = 0; i < lineGridHeight; i++) {
 	// Get dimensions of rectangle around line name
 	var lineNameRectX1 = x;
 	var lineNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
-	var lineNameRectX2 = x + windowWidth;
+	var lineNameRectX2 = x + windowWidth - scrollBarWidth;
 	var lineNameRectY2 = lineNameRectY1 + strHeight;
 	
 	scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor);
