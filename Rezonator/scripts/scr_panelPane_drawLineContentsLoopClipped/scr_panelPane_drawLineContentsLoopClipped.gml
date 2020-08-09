@@ -462,7 +462,7 @@ for (var i = 0; i < headerListSize; i++) {
 					instance_destroy();
 				}
 				var dropDownOptionList = ds_list_create();		
-				ds_list_add(dropDownOptionList, "Add new Marker");
+				ds_list_add(dropDownOptionList, "Add new Token Marker");
 				if (ds_list_size(dropDownOptionList) > 0) {
 					var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;

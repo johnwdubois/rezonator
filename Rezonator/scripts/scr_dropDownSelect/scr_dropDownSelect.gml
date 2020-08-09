@@ -263,7 +263,7 @@ else if (optionListType == 35)
 //add Marker options
 else if (optionListType == 36)
 {
-    show_message("hereoeoeoeoo");
+    scr_tokenMarkerOptions(optionSelected);
     instance_destroy();
 }
 
