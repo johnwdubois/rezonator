@@ -12,7 +12,7 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 
 
 // Set opacity, alignment, and font of contents list
@@ -427,6 +427,7 @@ for (var i = 0; i < headerListSize; i++) {
 		colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 	}
 	
+	
 	// draw lines to separate columns
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
@@ -452,6 +453,25 @@ for (var i = 0; i < headerListSize; i++) {
 	var ascendRectY1 = wordViewButtonY - (tabHeight / 5);
 	var ascendRectX2 = ascendRectX1 + ascendButtonSize;
 	var ascendRectY2 = ascendRectY1 + ascendButtonSize;
+	
+	if (i >= 2) {
+		var tempColRectX2 = x + ((activeCols + 1) * (windowWidth / 6)) - (windowWidth / 6);
+		if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, tempColRectX2, colRectY1 + tabHeight)) {
+			if (mouse_check_button_released(mb_right)) {
+				with (obj_dropDown) {
+					instance_destroy();
+				}
+				var dropDownOptionList = ds_list_create();		
+				ds_list_add(dropDownOptionList, "Add new Marker");
+				if (ds_list_size(dropDownOptionList) > 0) {
+					var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
+					dropDownInst.optionList = dropDownOptionList;
+					dropDownInst.optionListType = 36;
+				}
+				
+			}
+		}
+	}
 
 
 	

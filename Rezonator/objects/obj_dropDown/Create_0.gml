@@ -11,14 +11,17 @@ if (room == rm_mainScreen) {
 		windowWidth = 200;
 	}
 	if (obj_control.wideDropDown) {
-		if(instance_exists(obj_dialogueBox)){
-			if(obj_control.stackShowWindowActive){
+		if (instance_exists(obj_dialogueBox)) {
+			if (obj_control.stackShowWindowActive) {
 				windowWidth = 137;
 			}
 		}
-		else{
+		else {
 			windowWidth = 150;
 		}
+	}
+	if (!obj_menuBar.menuClickedIn && !obj_control.wideDropDown) {
+		alarm[1] = 1;
 	}
 }
 ableToClick = false;
@@ -29,3 +32,4 @@ if (room == rm_mainScreen) {
 optionCurrent = -1;
 
 mouseOverDropDown =  false;
+textBuffer = 10;

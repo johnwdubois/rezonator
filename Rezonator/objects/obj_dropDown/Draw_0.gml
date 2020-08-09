@@ -15,7 +15,7 @@
 
 var ableToMouseover = true;
 var windowHeight = (ds_list_size(optionList) * optionSpacing);
-var textBuffer = 10;
+textBuffer = 10;
 
 draw_set_font(fnt_dropDown);
 draw_set_alpha(1);
