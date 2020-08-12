@@ -214,6 +214,8 @@ ascendYScale = 1;
 ascendActivated = false;
 selectedCol = 0;
 
+lineContentsHighlightRow = -1;
+
 
 hoverTime[0] = 0;
 hoverTime[1] = 0;
