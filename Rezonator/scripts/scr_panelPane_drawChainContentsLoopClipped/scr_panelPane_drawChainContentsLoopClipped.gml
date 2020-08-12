@@ -105,7 +105,7 @@ if (grid != -1) {
 	var xBuffer = 6;
 
 	// Create scroll bars
-	var scrollBarWidth = 16;
+	var global.scrollBarWidth = 16;
 
 	var focusedChainExists = false;
 	var alignRectSize = strHeight;
@@ -171,7 +171,7 @@ if (grid != -1) {
 				//Set size of rectangle around word
 				var rectX1 = x;
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
-				var rectX2 = x + windowWidth - scrollBarWidth;
+				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
 		
 				// Find link info
@@ -316,9 +316,9 @@ if (grid != -1) {
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 			
-					var alignRectX1 = x + windowWidth - scrollBarWidth - strHeight - alignRectSize;
+					var alignRectX1 = x + windowWidth - global.scrollBarWidth - strHeight - alignRectSize;
 					var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
-					var alignRectX2 = x + windowWidth - scrollBarWidth - strHeight;
+					var alignRectX2 = x + windowWidth - global.scrollBarWidth - strHeight;
 					var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
 		
 		 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {

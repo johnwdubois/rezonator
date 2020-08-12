@@ -16,7 +16,7 @@ scr_drawGridViewerGridTabs();
 
 scr_surfaceStart();
 
-var scrollBarWidth = 20;
+var global.scrollBarWidth = 20;
 // I suppose this is the variable to make dynamic
 //var gridColWidthDefault = windowWidth / ds_grid_width(grid);
 var textY = 0;
@@ -32,7 +32,7 @@ var gridWidth = ds_grid_width(grid);
 var gridHeight = ds_grid_height(grid);
 
 draw_set_color(global.colorThemeBG);
-draw_rectangle(windowX1 - scrollBarWidth - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
+draw_rectangle(windowX1 - global.scrollBarWidth - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
 draw_set_font(global.fontGridView);
 
 
@@ -49,7 +49,7 @@ if (gridColXList == -1 or is_undefined(gridColXList)) {
 
 for (var gridLoopCol = 0; gridLoopCol < gridWidth; gridLoopCol++) {
 	
-	var colRectX1 = scrollBarWidth;
+	var colRectX1 = global.scrollBarWidth;
 	if (gridLoopCol < ds_list_size(gridColXList)) {
 		colRectX1 = ds_list_find_value(gridColXList, gridLoopCol);
 	}
@@ -186,7 +186,7 @@ scr_surfaceEnd();
 
 for (var j = 0; j < 5; j++) {
 	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(windowX1 - scrollBarWidth - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
+	draw_rectangle(windowX1 - global.scrollBarWidth - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
 }
 draw_set_color(global.colorThemeBorders);
 draw_line(windowX1, windowY1 + colNameHeight, windowX2, windowY1 + colNameHeight);
@@ -247,7 +247,7 @@ for (var i = 1; i < gridWidth; i++) {
 		}
 	}
 	
-	if (colX < windowX2 - scrollBarWidth) {
+	if (colX < windowX2 - global.scrollBarWidth) {
 		draw_line_width(colX, windowY1 + colNameHeight, colX, windowY2, 3);
 	}
 }

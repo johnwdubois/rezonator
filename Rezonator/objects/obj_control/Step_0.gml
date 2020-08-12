@@ -13,6 +13,7 @@
 */
 
 shortcutsEnabled = true;
+
 /*
 if (instance_exists(obj_input_
 

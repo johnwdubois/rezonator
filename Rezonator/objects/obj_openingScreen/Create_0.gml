@@ -279,3 +279,8 @@ global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
 global.unitImportUnitDelimColName = "";
 global.unitImportTurnDelimColName = "";
+
+
+global.scrollBarWidth = 20;
+global.fontSize = 0;
+scr_fontGlobalUpdate();

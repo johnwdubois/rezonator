@@ -4,7 +4,7 @@ var gridHeight = ds_grid_height(grid);
 
 scr_surfaceStart();
 
-var scrollBarWidth = 20;
+var global.scrollBarWidth = 20;
 var textY = 0;
 var textPlusY = 0;
 draw_set_font(global.fontGridView);

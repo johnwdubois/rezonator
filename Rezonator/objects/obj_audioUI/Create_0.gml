@@ -1,4 +1,4 @@
-windowWidth = camera_get_view_width(view_camera[0]) - obj_control.scrollBarWidth;
+windowWidth = camera_get_view_width(view_camera[0]) - global.scrollBarWidth;
 windowHeight = 100;
 x = 0;
 y = camera_get_view_height(view_camera[0]) - windowHeight;

@@ -61,7 +61,7 @@ for (var i = 0; i < rezInfoGridWidth; i++) {
 		colX = rezInfoWindowRectX1;
 	}
 	else {
-		colX = (rezInfoWindowRectX1 + 30) + (((rezInfoWindowRectX2 - scrollBarWidth - (rezInfoWindowRectX1 + 30)) / 3) * (i - 1));
+		colX = (rezInfoWindowRectX1 + 30) + (((rezInfoWindowRectX2 - global.scrollBarWidth - (rezInfoWindowRectX1 + 30)) / 3) * (i - 1));
 	}
 	
 	var plusY = rezInfoWindowRectY1 + rowHeight;
@@ -72,7 +72,7 @@ for (var i = 0; i < rezInfoGridWidth; i++) {
 		var cellRectY1 = plusY + scrollPlusY;
 		var cellRectX2 = (rezInfoWindowRectX1 + 30) + (((rezInfoWindowRectX2 - (rezInfoWindowRectX1 + 30)) / 3) * (i));
 		var cellRectY2 = plusY + rowHeight;
-		cellRectX2 = clamp(cellRectX2, 0, rezInfoWindowRectX2 - scrollBarWidth)
+		cellRectX2 = clamp(cellRectX2, 0, rezInfoWindowRectX2 - global.scrollBarWidth)
 		
 		// draw BG stripes
 		draw_set_color(global.colorThemeBG);
@@ -155,7 +155,7 @@ for (var i = 0; i < rezInfoGridWidth; i++) {
 		colX = rezInfoWindowRectX1;
 	}
 	else {
-		colX = (rezInfoWindowRectX1 + 30) + (((rezInfoWindowRectX2 - scrollBarWidth - (rezInfoWindowRectX1 + 30)) / 3) * (i - 1));
+		colX = (rezInfoWindowRectX1 + 30) + (((rezInfoWindowRectX2 - global.scrollBarWidth - (rezInfoWindowRectX1 + 30)) / 3) * (i - 1));
 	}
 	var headerStr = "";
 	switch (i) {

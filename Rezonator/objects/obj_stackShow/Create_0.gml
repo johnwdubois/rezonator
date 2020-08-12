@@ -5,7 +5,7 @@
 scrollBarHolding = false;
 scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
-scrollBarWidth = 20;
+global.scrollBarWidth = 20;
 scrollBarHeight = 0;
 scrollPlusY = 0;
 scrollPlusYDest = 0;

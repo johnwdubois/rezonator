@@ -32,7 +32,7 @@ for (var i = 0; i < gridListSize; i++) {
 	var currentColX = windowX;
 	var currentGridWidth = ds_grid_width(currentGrid);
 	for (var j = 0; j < currentGridWidth; j++) {
-		ds_list_add(currentGridViewColXList, currentColX + scrollBarWidth);
+		ds_list_add(currentGridViewColXList, currentColX + global.scrollBarWidth);
 		currentColX += defaultGridColWidth;
 	}
 	

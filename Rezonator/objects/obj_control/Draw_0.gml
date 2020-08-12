@@ -221,6 +221,8 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 620, "obj_control.currentDisplayUnitColsList:");
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 640, scr_getStringOfList(obj_control.currentDisplayUnitColsList));
 	draw_text(camera_get_view_width(view_camera[0]) - 1000, 660, "obj_panelPane.selectedCol: " + string(obj_panelPane.selectedCol));
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 700, "global.windowWidth: " + string(window_get_width()));
+	draw_text(camera_get_view_width(view_camera[0]) - 1000, 720, "global.scrollBarWidth: " + string(global.scrollBarWidth));
 }
 var scrollBarMarginTop = 230;
 if (!obj_panelPane.showNav) {

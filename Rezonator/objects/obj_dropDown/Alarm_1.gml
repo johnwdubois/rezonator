@@ -1,4 +1,4 @@
-draw_set_font(fnt_dropDown);
+draw_set_font(global.fontMain);
 var optionListSize = ds_list_size(optionList);
 var maxStrWidth = windowWidth;
 for (var i = 0; i < optionListSize; i++) {
