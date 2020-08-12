@@ -48,7 +48,7 @@ var ableToBeMouseOver = true;
 var xBuffer = 6;
 
 // Create scroll bars
-var scrollBarWidth = 16;
+var global.scrollBarWidth = 16;
 
 var focusedChainExists = false;
 var alignRectSize = strHeight;
@@ -100,7 +100,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				//Set size of rectangle around word
 				var rectX1 = x;
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
-				var rectX2 = x + windowWidth - scrollBarWidth;
+				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
 				
 
@@ -257,7 +257,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					
 					var scrollBarBuffer = 0;				
 					if(getInfoLoop >= 7){
-						scrollBarBuffer = scrollBarWidth;
+						scrollBarBuffer = global.scrollBarWidth;
 					}
 
 					var ascendButtonSize = (tabHeight / 2);

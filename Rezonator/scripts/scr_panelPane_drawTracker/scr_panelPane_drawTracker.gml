@@ -29,8 +29,8 @@ var resetX2val = 20;
 var resetY1val = 30;
 var resetY2val = 10;
 
-var scrollBarWidth = 20;
-var trackerX2 = camera_get_view_width(view_camera[0]) - scrollBarWidth;
+var global.scrollBarWidth = 20;
+var trackerX2 = camera_get_view_width(view_camera[0]) - global.scrollBarWidth;
 
 var Yheightbuffer = 10;
 //var oldYheight = 0;

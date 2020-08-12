@@ -178,7 +178,7 @@ repeat (currentWordIDListSize) {
 	}
 	else if (justify == justifyRight) {
 		if (shape == shapeText) {
-			currentWordDestX = camWidth - scrollBarWidth - unitWidth + shapeTextX;
+			currentWordDestX = camWidth - global.scrollBarWidth - unitWidth + shapeTextX;
 		}
 		else {
 			currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (currentWordDisplayCol * gridSpaceHorizontal);

@@ -12,37 +12,38 @@
 	Author: Terry DuBois
 */
 
+if (live_call()) return live_result;
+
 
 var ableToMouseover = true;
 var windowHeight = (ds_list_size(optionList) * optionSpacing);
 textBuffer = 10;
 
-draw_set_font(fnt_dropDown);
+draw_set_font(global.fontMain);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
-if (ds_list_size(optionList) <= 0)
-{
+if (ds_list_size(optionList) <= 0) {
 	instance_destroy();
 }
 
 mouseOverDropDown =  false;
-if(point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)){
+if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 	mouseOverDropDown =  true;
 }
 
+optionSpacing = string_height("A") * 1.25;
 var optionListSize = ds_list_size(optionList);
-for (var i = 0; i < optionListSize; i++)
-{
+var maxStrWidth = windowWidth;
+for (var i = 0; i < optionListSize; i++) {
 	var optionRectX1 = x;
 	var optionRectY1 = y + (optionSpacing * i);
 	var optionRectX2 = x + windowWidth;
 	var optionRectY2 = optionRectY1 + optionSpacing;
 	
 	var mouseoverCurrentOption = false;
-	if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, optionRectX2, optionRectY2) and ableToMouseover)
-	{
+	if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, optionRectX2, optionRectY2) and ableToMouseover) {
 		mouseoverCurrentOption = true;
 		ableToMouseover = false;
 		if (room == rm_mainScreen) {
@@ -51,8 +52,7 @@ for (var i = 0; i < optionListSize; i++)
 	}
 	
 	draw_set_color(c_white);
-	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown))
-	{
+	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
 		draw_set_color(c_ltblue);
 	}
 
@@ -60,12 +60,15 @@ for (var i = 0; i < optionListSize; i++)
 	draw_rectangle(optionRectX1, optionRectY1, optionRectX2, optionRectY2, false);
 	
 	var optionText = ds_list_find_value(optionList, i);
+	var optionStrWidth = string_width(optionText) + (textBuffer * 2);
+	if (optionStrWidth > maxStrWidth) {
+		maxStrWidth = optionStrWidth;
+	}
 	
 	draw_set_color(c_black);
 	draw_text(optionRectX1 + textBuffer, mean(optionRectY1, optionRectY2), optionText);
 	
-	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left))
-	{
+	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {
 		optionCurrent = i;
 		var optionSelected = ds_list_find_value(optionList, i);
 		if (room == rm_mainScreen) {
@@ -74,9 +77,9 @@ for (var i = 0; i < optionListSize; i++)
 		scr_dropDownSelect(optionSelected);
 	}
 }
+windowWidth = maxStrWidth;
 
-if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left))
-{
+if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left)) {
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
 	}

@@ -55,7 +55,7 @@ for (var i = 0; i <= global.plainTextInfoGrid_colGroup; i++) {
 		
 		var cellRectX1 = colX;
 		var cellRectY1 = plusY + scrollPlusY;
-		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - scrollBarWidth;
+		var cellRectX2 = (i == 0) ? tagInfoWindowRectX1 + ((tagInfoWindowRectX2 - tagInfoWindowRectX1) / 3) : tagInfoWindowRectX2 - global.scrollBarWidth;
 		//var cellRectX2 = cellRectX1 + (windowWidth / global.tagInfoGrid_colSingleTokenMarker);
 		var cellRectY2 = plusY + rowHeight;
 		

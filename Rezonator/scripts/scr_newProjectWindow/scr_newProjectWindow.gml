@@ -112,7 +112,7 @@ draw_text(importWindowX2, importWindowY2 + 24, "Total line count: " + string(tot
 
 
 
-var scrollBarWidth = 16;
+var global.scrollBarWidth = 16;
 currentTopViewRow = max(0, currentTopViewRow);
 currentTopViewRow = min(ds_grid_height(global.fileLineRipGrid) - scrollRange, currentTopViewRow);
 
@@ -184,7 +184,7 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 			lineCountStr = unitAmount + " line";
 		}
 	}
-	draw_text(importWindowX2 - scrollBarWidth - textBuffer, importWindowY1 + (textPlusY), lineCountStr);
+	draw_text(importWindowX2 - global.scrollBarWidth - textBuffer, importWindowY1 + (textPlusY), lineCountStr);
 	
 	var participantRectColorList = ds_grid_get(global.fileLineRipGrid, global.fileLineRipGrid_colColorList, i);
 	var currentParticipantListSize = ds_list_size(currentParticipantList);
@@ -214,9 +214,9 @@ for (var i = currentTopViewRow; i < currentTopViewRow + scrollRange; i++) {
 
 
 var scrollBarHeight = ((scrollRange * importWindowHeight) / ds_grid_height(global.fileLineRipGrid));
-var scrollBarRectX1 = importWindowX1 + importWindowWidth - scrollBarWidth;
+var scrollBarRectX1 = importWindowX1 + importWindowWidth - global.scrollBarWidth;
 var scrollBarRectY1 = importWindowY1 + ((currentTopViewRow * importWindowHeight) / ds_grid_height(global.fileLineRipGrid));
-var scrollBarRectX2 = scrollBarRectX1 + scrollBarWidth;
+var scrollBarRectX2 = scrollBarRectX1 + global.scrollBarWidth;
 var scrollBarRectY2 = scrollBarRectY1 + scrollBarHeight;
 
 scrollBarRectY1 = max(scrollBarRectY1, importWindowY1 + 1);

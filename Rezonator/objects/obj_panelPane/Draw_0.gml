@@ -172,7 +172,7 @@ switch (currentFunction) {
 			functionAudio_show = !functionAudio_show;
 		}
 	
-		windowWidth = camera_get_view_width(view_camera[0]) - obj_control.scrollBarWidth;
+		windowWidth = camera_get_view_width(view_camera[0]) - global.scrollBarWidth;
 		windowHeight = 84;
 		x = 0;
 		y = functionAudio_show ? camera_get_view_height(view_camera[0]) - windowHeight : camera_get_view_height(view_camera[0]);

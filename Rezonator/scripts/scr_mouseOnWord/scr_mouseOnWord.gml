@@ -88,7 +88,7 @@ if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wor
 */
 // Allows for adding to a stack w/in the speaker labels
 else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not obj_control.mouseoverPanelPane 
-and rectangle_in_rectangle(0, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
+and rectangle_in_rectangle(0, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
 	if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
 		with (obj_chain) {
 			scr_wordClicked(currentWordID, unitID);
@@ -96,7 +96,7 @@ and rectangle_in_rectangle(0, wordRectY1, room_width - obj_control.scrollBarWidt
 	}
 }
 else if((drawWordLoop + 1 == currentWordIDListSize) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
-and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - obj_control.scrollBarWidth, wordRectY1 + gridSpaceVertical) and not instance_exists(obj_dropDown) and obj_control.boxRectReleased) {
+and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical) and not instance_exists(obj_dropDown) and obj_control.boxRectReleased) {
 	obj_control.mouseoverNeutralSpace = true;	
 	if (device_mouse_check_button_released(0, mb_left) && !instance_exists(obj_dialogueBox)) {
 		with(obj_chain) {

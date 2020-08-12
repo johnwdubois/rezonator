@@ -41,7 +41,7 @@ x = tagInfoWindowRectX1;
 y = tagInfoWindowRectY1;
 
 
-if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown)) {
+if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown)) {
 	obj_importMapping.mouseoverRow = -1;
 }
 
@@ -80,7 +80,7 @@ for (var i = 0; i < colAmount; i++) {
 		var cellRectY2 = cellRectY1 + rowHeight;
 
 		
-		if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - scrollBarWidth, y + windowHeight)
+		if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight)
 		&& !instance_exists(obj_dropDown)) {
 			obj_importMapping.mouseoverRow = j;
 			timesHit++;
@@ -124,7 +124,7 @@ for (var i = 0; i < colAmount; i++) {
 			
 			
 			
-				var dropDownButtonX1 = floor(colX + colWidth - 4 - scrollBarWidth - buttonRectSize);
+				var dropDownButtonX1 = floor(colX + colWidth - 4 - global.scrollBarWidth - buttonRectSize);
 				var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
 				var dropDownButtonX2 = floor(dropDownButtonX1 + buttonRectSize);
 				var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);

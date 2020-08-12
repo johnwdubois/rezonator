@@ -51,7 +51,7 @@ for (var i = 0; i < ds_grid_height(global.importTXTLineGrid); i++) {
 		
 	var cellRectX1 = exceptionInfoWindowRectX1;
 	var cellRectY1 = plusY + scrollPlusY;
-	var cellRectX2 = exceptionInfoWindowRectX2 - scrollBarWidth;
+	var cellRectX2 = exceptionInfoWindowRectX2 - global.scrollBarWidth;
 	var cellRectY2 = plusY + rowHeight;
 	
 	var textY = floor(plusY + (rowHeight / 2) + scrollPlusY);

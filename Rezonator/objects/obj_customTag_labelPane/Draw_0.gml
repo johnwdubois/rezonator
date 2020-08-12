@@ -27,10 +27,10 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	if (instance_exists(obj_customTagPane)) {
 		if (obj_customTagPane.selectedLabel == i) {
 			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(x - clipX, y + plusY - (strHeight / 2) + scrollPlusY - clipY, x + windowWidth - scrollBarWidth - clipX, y + plusY + (strHeight / 2) + scrollPlusY - clipY, false);
+			draw_rectangle(x - clipX, y + plusY - (strHeight / 2) + scrollPlusY - clipY, x + windowWidth - global.scrollBarWidth - clipX, y + plusY + (strHeight / 2) + scrollPlusY - clipY, false);
 		}
 	}
-	if (point_in_rectangle(mouse_x, mouse_y, x, y + plusY - (strHeight / 2) + scrollPlusY, x + windowWidth - scrollBarWidth, y + plusY + (strHeight / 2) + scrollPlusY)
+	if (point_in_rectangle(mouse_x, mouse_y, x, y + plusY - (strHeight / 2) + scrollPlusY, x + windowWidth - global.scrollBarWidth, y + plusY + (strHeight / 2) + scrollPlusY)
 	&& mouse_check_button_released(mb_left)) {
 		obj_customTagPane.selectedLabel = i;
 	}

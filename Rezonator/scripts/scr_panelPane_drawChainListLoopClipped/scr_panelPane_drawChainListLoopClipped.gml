@@ -304,7 +304,7 @@ for (var i = 0; i < gridHeight; i++) {
 	if (functionChainList_currentTab == functionChainList_tabRezBrush
 	or functionChainList_currentTab == functionChainList_tabTrackBrush) {
 		// Set dimensions for little boxes
-		var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - scrollBarWidth;//x + (filterRectMargin * 2) + filterRectSize - clipX;
+		var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - global.scrollBarWidth;//x + (filterRectMargin * 2) + filterRectSize - clipX;
 		var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY;
 		var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
 		var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;

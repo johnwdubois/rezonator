@@ -1,6 +1,6 @@
 // set range of lines that we want to draw
 var lineGridHeight = ds_grid_height(currentActiveLineGrid);
-var relativeScrollBarHeight = camera_get_view_height(view_camera[0]) - wordTopMargin - (scrollBarWidth * 2) - 25;
+var relativeScrollBarHeight = camera_get_view_height(view_camera[0]) - wordTopMargin - (global.scrollBarWidth * 2) - 25;
 var relativeScrollBarPlusY = scrollBarPlusY - 15;
 //draw_text(camera_get_view_width(view_camera[0]) - 1200, 880, "lineGridHeight: " + string(lineGridHeight));
 //draw_text(camera_get_view_width(view_camera[0]) - 1200, 900, "ScrollBarHeight: " + string(relativeScrollBarHeight));

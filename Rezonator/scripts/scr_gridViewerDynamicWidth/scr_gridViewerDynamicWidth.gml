@@ -8,6 +8,6 @@ var defaultGridColWidth = windowWidth / importGridWidth;
 ds_list_clear(importGridXColList);
 
 for (var j = 0; j < importGridWidth; j++) {
-	ds_list_add(importGridXColList, currentColX + scrollBarWidth);
+	ds_list_add(importGridXColList, currentColX + global.scrollBarWidth);
 	currentColX += defaultGridColWidth;
 }
