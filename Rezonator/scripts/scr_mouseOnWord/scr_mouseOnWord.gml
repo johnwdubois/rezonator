@@ -46,10 +46,10 @@ if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wor
 				functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 				functionChainList_currentTab = functionChainList_tabLine;
 			}*/
-			if(obj_control.readModeHints < 2){
+			//if(obj_control.readModeHints < 2){
 				var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
-				obj_control.readModeHints++;
-			}
+				//obj_control.readModeHints++;
+			//}
 		}
 				
 		if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {

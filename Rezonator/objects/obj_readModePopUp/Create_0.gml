@@ -11,9 +11,13 @@ mouseOverExitButton = false;
 
 allowedToChange = true;
 
+draw_set_font(global.fontMain);
+popUpText1 = "You are in Read Mode.";
+popUpText2 = string_hash_to_newline("To mark up your text, select one:#Track mode (to mark coreference between mentions)#Rez mode (to mark resonance between words)");
+rectX1 = mouse_x + 75;
+rectY1 = mouse_y;
+rectX2 = rectX1 + 40 + string_width("Track mode (to mark coreference between mentions)");
+rectY2 = 20 + rectY1 + string_height(popUpText2) + string_height(popUpText1);
 
-popUpText1 = string_hash_to_newline("You are in Read Mode.# To mark up the #discourse data, choose #either Track Mode or #Rez mode.");
-rectX1 = camera_get_view_width(view_camera[0]) - 245;
-rectY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 50;
-rectX2 = camera_get_view_width(view_camera[0]) - 45;
-rectY2 = 180 + rectY1;
+arrowX1 = camera_get_view_width(view_camera[0]) - 200;
+arrowY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 75;

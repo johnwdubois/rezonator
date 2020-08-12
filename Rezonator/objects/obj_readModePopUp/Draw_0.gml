@@ -5,21 +5,27 @@
 //rectX1 = camera_get_view_width(view_camera[0]) - 245;
 //rectY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 50;
 //rectX2 = camera_get_view_width(view_camera[0]) - 45;
-//rectY2 = 180 + rectY1;
-
+//rectY2 = 180 + rectY1;//
+//if (live_call()) return live_result;
+draw_set_font(global.fontMainBold);
+rectX2 = rectX1 + 40 + string_width("Track mode (to mark coreference between mentions)");
+rectY2 = 40 + rectY1 + string_height(popUpText2) + string_height(popUpText1);
+var bubblePlus = obj_control.wordDrawGridFocusedAnimation;
 draw_set_colour(global.colorThemeBG);
-draw_roundrect(rectX1, rectY1, rectX2, rectY2, false);
+draw_roundrect(rectX1 - bubblePlus, rectY1 - bubblePlus, rectX2 + bubblePlus, rectY2 + bubblePlus, false);
 
 draw_set_colour(global.colorThemeBorders);
-draw_roundrect(rectX1, rectY1, rectX2, rectY2, true);
+draw_roundrect(rectX1 - bubblePlus, rectY1 - bubblePlus, rectX2 + bubblePlus, rectY2 + bubblePlus, true);
 
 	
-draw_set_font(fnt_mainBold);
+
 draw_set_halign(fa_center);
-draw_text(mean(rectX1,  rectX2), 20 + rectY1, "Here's a hint!");
+draw_text(mean(rectX1,  rectX2), 20 + rectY1, popUpText1);
 draw_line_width(rectX1 + 30, 35 + rectY1,  rectX2 - 50, 35 + rectY1, 3);
 	
 	
-draw_set_font(fnt_main);
-draw_text( mean(rectX1, rectX2), mean(rectY1 + 20, rectY2), popUpText1);
+draw_set_font(global.fontMain);
+draw_text( mean(rectX1, rectX2), mean(rectY1 + 20, rectY2), popUpText2);
 
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight -21 + bubblePlus, 1, 1, 270, global.colorThemeBorders, 1); 
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight -21 + bubblePlus, 1, 1, 270, global.colorThemeBorders, 1); 
