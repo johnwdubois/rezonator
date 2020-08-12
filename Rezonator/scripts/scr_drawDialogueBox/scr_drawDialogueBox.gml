@@ -221,6 +221,14 @@ if (obj_control.dialogueBoxActive) {
 		}
 	
 	}
+	
+	if (obj_control.newCustomField) {
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom field");
+	}
+	if (obj_control.newCustomTag) {
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom tag");
+	}
+	
 
 	if (obj_control.ePressed) {
 		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input begining line number , ending line number");
@@ -614,6 +622,37 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		if (obj_control.rename) {
 			ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 		}
+		if (obj_control.newCustomField) {
+			// add new marker to tokenImportGrid
+			global.tokenImportGridWidth++;
+			ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
+			ds_grid_set_region(global.tokenImportGrid, global.tokenImportGridWidth - 1, 0, global.tokenImportGridWidth - 1, ds_grid_height(global.tokenImportGrid), "");
+	
+			// add new marker to tokenImportColNameList
+			ds_list_add(global.tokenImportColNameList, obj_control.inputText);
+			with (obj_gridViewer) {
+				alarm[2] = 1;
+			}
+	
+			// add new marker to tokenImportTagMap
+			var tagList = ds_list_create();
+			ds_list_add(tagList, "Add new Tag");
+			ds_map_add_list(global.tokenImportTagMap, obj_control.inputText, tagList);
+	
+			// add new marker to customLabelGrid
+			ds_grid_resize(global.customLabelGrid, ds_grid_width(global.customLabelGrid), ds_grid_height(global.customLabelGrid) + 1);
+			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, ds_grid_height(global.customLabelGrid) - 1, global.levelToken);
+			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colMarker, ds_grid_height(global.customLabelGrid) - 1, obj_control.inputText);
+			var emptyList = ds_list_create();
+			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
+			ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
+		}
+		if (obj_control.newCustomTag) {
+			var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
+			var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
+			ds_list_add(tempList, obj_control.inputText);
+			
+		}
 	
 		if (obj_control.recolor) {
 			//show_message( string_digits(obj_control.inputText));
@@ -695,6 +734,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.swapLine = false;
 		obj_control.changeAuthor = false;
 		obj_control.newTagCategory = false;
+		obj_control.newCustomTag = false;
+		obj_control.newCustomField = false;
 		obj_control.fromDropDown = false;
 		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
@@ -733,6 +774,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.swapLine = false;
 			obj_control.changeAuthor = false;
 			obj_control.newTagCategory = false;
+			obj_control.newCustomTag = false;
+			obj_control.newCustomField = false;
 			obj_control.fromDropDown = false;
 			obj_control.inputText = "";
 			obj_control.cursorPos = 1;
@@ -799,7 +842,37 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 			}
 		obj_control.lastAddedWord = obj_control.inputText;
 	}
+	if (obj_control.newCustomField) {
+			// add new marker to tokenImportGrid
+			global.tokenImportGridWidth++;
+			ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
+			ds_grid_set_region(global.tokenImportGrid, global.tokenImportGridWidth - 1, 0, global.tokenImportGridWidth - 1, ds_grid_height(global.tokenImportGrid), "");
 	
+			// add new marker to tokenImportColNameList
+			ds_list_add(global.tokenImportColNameList, obj_control.inputText);
+			with (obj_gridViewer) {
+				alarm[2] = 1;
+			}
+	
+			// add new marker to tokenImportTagMap
+			var tagList = ds_list_create();
+			ds_list_add(tagList, "Add new Tag");
+			ds_map_add_list(global.tokenImportTagMap, obj_control.inputText, tagList);
+	
+			// add new marker to customLabelGrid
+			ds_grid_resize(global.customLabelGrid, ds_grid_width(global.customLabelGrid), ds_grid_height(global.customLabelGrid) + 1);
+			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, ds_grid_height(global.customLabelGrid) - 1, global.levelToken);
+			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colMarker, ds_grid_height(global.customLabelGrid) - 1, obj_control.inputText);
+			var emptyList = ds_list_create();
+			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
+			ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
+		}
+		if (obj_control.newCustomTag) {
+			var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
+			var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
+			ds_list_add(tempList, obj_control.inputText);
+			
+		}
 	if (obj_control.rename) {
 			ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 	}
@@ -883,6 +956,8 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.swapLine = false;
 	obj_control.changeAuthor = false;
 	obj_control.newTagCategory = false;
+	obj_control.newCustomTag = false;
+	obj_control.newCustomField = false;
 	obj_control.fromDropDown = false;
 	obj_control.inputText = "";
 	obj_control.cursorPos = 1;

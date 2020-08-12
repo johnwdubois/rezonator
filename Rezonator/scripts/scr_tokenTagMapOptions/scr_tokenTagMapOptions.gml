@@ -6,14 +6,18 @@ var optionSelected = argument[0];
 
 
 if(optionSelected == "Add new Tag"){
-	var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
 
-	var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 
 	//user would be prompted for input hereererer
 	// say the chose Emotion
+	obj_control.newCustomTag = true;
+	obj_control.dialogueBoxActive = true;
+
+	if (!instance_exists(obj_dialogueBox)) {
+		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+	}
 	
-	ds_list_add(tempList, get_string("",""));
+	//ds_list_add(tempList, get_string("",""));
 	//show_message(scr_getStringOfList(tempList));
 	
 	//show_message(scr_getStringOfList(ds_map_find_value(global.tokenImportTagMap, obj_control.tokenImportColToChange)))
