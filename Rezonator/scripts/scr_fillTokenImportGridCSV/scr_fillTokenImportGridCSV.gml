@@ -47,11 +47,12 @@ with (obj_control) {
 	}
 }
 
-
-ds_list_clear(global.tokenImportColNameList);
-ds_list_clear(global.unitImportColNameList);
-ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
-ds_list_add(global.unitImportColNameList, "UnitID", "Participant");
+if (ds_list_size(global.tokenImportColNameList) < 4) {
+	ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
+}
+if (ds_list_size(global.unitImportColNameList) < 2) {
+	ds_list_add(global.unitImportColNameList, "UnitID", "Participant");
+}
 
 // set custom label names for token and transcript columns
 if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1) {
@@ -95,13 +96,22 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	
 
 // grow tokenImportGrid and unitImportGrid to have the correct amount of columns
-global.tokenImportGridWidth = 4 + tokenMarkers;
+//show_message("ds_list_size(global.tokenImportColNameList): " + string(ds_list_size(global.tokenImportColNameList)) +
+//"global.tokenImportColNameList: " + scr_getStringOfList(global.tokenImportColNameList) + ", 4 + tokenMarkers = " + string(4 + tokenMarkers));
+if (ds_list_size(global.tokenImportColNameList) == 4 + tokenMarkers) {
+	global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
+}
+else {
+	global.tokenImportGridWidth = 4 + tokenMarkers;
+}
 global.unitImportGridWidth = 2 + unitMarkers;
 ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
 ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.unitImportGrid));
 with (obj_gridViewer) {
 	alarm[2] = 1;
 }
+
+//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)));
 
 var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
 

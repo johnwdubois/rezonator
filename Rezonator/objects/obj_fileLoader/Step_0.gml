@@ -96,12 +96,17 @@ if (!global.unitTagMapFilled && ds_grid_height(global.unitImportGrid) > 0) {
 if (!global.tokenTagMapFilled && ds_grid_height(global.tokenImportGrid) > 0) {
 	global.tokenTagMapFilled = true;
 
+
+	//show_message("mapSize: " + string(ds_map_size(global.tokenImportTagMap)));
 	var gridWidth = ds_grid_width(global.tokenImportGrid);
 	for (var i = 0 ; i < gridWidth; i++) {
 		var tempList = ds_list_create();
 		ds_list_add(tempList, "Add new Tag");
-		ds_map_add(global.tokenImportTagMap, i, tempList);
+		var mapKey = ds_list_find_value(global.tokenImportColNameList, i);
+		ds_map_add_list(global.tokenImportTagMap, mapKey, tempList);
+		//show_message(string(mapKey) + ": " + scr_getStringOfList(ds_map_find_value(global.tokenImportTagMap, mapKey)));
 	}
+	//show_message("mapSize: " + string(ds_map_size(global.tokenImportTagMap)));
 
 }
 

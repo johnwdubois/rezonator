@@ -12,6 +12,7 @@
 	Author: Terry DuBois
 */
 
+
 var autosave = argument0;
 
 /*if (global.games) {
@@ -71,6 +72,9 @@ with (obj_saveParent) {
 	
 	
 	if (object_index == obj_control) {
+
+		
+		
 		var mapFileLineRipGrid = scr_gridToJSONLists(global.fileLineRipGrid);
 		var mapWordGrid = scr_gridToJSONLists(wordGrid);
 		var mapWordGridColList = scr_getListOfGridCols(wordGrid);
@@ -159,7 +163,9 @@ with (obj_saveParent) {
 		ds_map_add(map, "chainColorID2", chainColorID[2]);
 		ds_map_add(map, "chainColorID3", chainColorID[3]);
 	}
-	
+	var tempMap = ds_map_create();
+	ds_map_copy(tempMap, global.tokenImportTagMap);
+	ds_map_add_map(map, "tokenImportTagMap", tempMap);
 }
 
 var wrapper = ds_map_create();

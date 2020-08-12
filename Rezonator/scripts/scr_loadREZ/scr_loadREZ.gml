@@ -78,6 +78,8 @@ if (file_exists(fileName)) {
 		exit;
 	}
 	
+	//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)) + ", global.tokenImportGridHeight: " + string(ds_grid_height(global.tokenImportGrid)));
+	
 	var listSize = ds_list_size(list);
 	for (var i = 0; i < listSize; i++) {
 		var map = ds_list_find_value(list, i);
@@ -100,7 +102,12 @@ if (file_exists(fileName)) {
 				
 				global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
-				global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList")
+				global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList");
+				global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
+				
+				global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
+				global.tokenTagMapFilled = true
+				
 				var tempList = ds_list_create();
 				if(global.tokenImportColNameList == undefined){
 					global.tokenImportColNameList = tempList;
@@ -131,6 +138,8 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(global.importGrid, map, "importGrid");
 				scr_loadAnotherREZ(global.importCSVGrid, map, "importCSVGrid");
 				scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
+				ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, 0);
+				
 				scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
 				scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
 				scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
@@ -228,8 +237,10 @@ if (ds_grid_height(global.tokenImportGrid) <= ds_grid_height(obj_control.wordGri
 }
 
 
+//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)) + ", global.tokenImportGridHeight: " + string(ds_grid_height(global.tokenImportGrid)));
+
 if(ds_grid_width(global.importCSVGrid) > 0){
-	scr_fillTokenImportGridCSV();
+	//scr_fillTokenImportGridCSV();
 }
 else{
 	scr_fillTokenImportGrid();

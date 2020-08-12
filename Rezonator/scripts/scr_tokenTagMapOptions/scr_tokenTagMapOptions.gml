@@ -6,7 +6,9 @@ var optionSelected = argument[0];
 
 
 if(optionSelected == "Add new Tag"){
-	var tempList = ds_map_find_value(global.tokenImportTagMap, obj_control.tokenImportColToChange);
+	var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
+
+	var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 
 	//user would be prompted for input hereererer
 	// say the chose Emotion
