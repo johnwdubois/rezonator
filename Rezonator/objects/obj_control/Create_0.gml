@@ -127,7 +127,8 @@ unitIDCounter = 0;
 
 
 // Boolean for switching transcript view on/off
-wordTokenView = true;
+wordTokenView = false;
+obj_alarm.alarm[8] = 5;
 wordView = 2;
 unitView = 1;
 
