@@ -30,7 +30,6 @@ if (directory_exists(global.rezonatorDirString)) {
 	fileStr += " " + "#";
 	fileStr += "end" + "#";
 	
-	show_message(string(fileStr));
 	
 	file_text_write_string(userSettingsIniFile, string_hash_to_newline(fileStr));
 	file_text_close(userSettingsIniFile);
