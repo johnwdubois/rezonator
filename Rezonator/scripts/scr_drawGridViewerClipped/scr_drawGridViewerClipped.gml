@@ -16,7 +16,6 @@ scr_drawGridViewerGridTabs();
 
 scr_surfaceStart();
 
-var global.scrollBarWidth = 20;
 // I suppose this is the variable to make dynamic
 //var gridColWidthDefault = windowWidth / ds_grid_width(grid);
 var textY = 0;

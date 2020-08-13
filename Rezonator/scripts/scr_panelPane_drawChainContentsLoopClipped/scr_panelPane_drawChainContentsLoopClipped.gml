@@ -104,8 +104,6 @@ if (grid != -1) {
 
 	var xBuffer = 6;
 
-	// Create scroll bars
-	var global.scrollBarWidth = 16;
 
 	var focusedChainExists = false;
 	var alignRectSize = strHeight;

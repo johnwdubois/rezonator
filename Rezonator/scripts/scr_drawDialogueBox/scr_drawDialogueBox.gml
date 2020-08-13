@@ -222,10 +222,16 @@ if (obj_control.dialogueBoxActive) {
 	
 	}
 	
-	if (obj_control.newCustomField) {
+	if (obj_control.newCustomFieldToken) {
 		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom field");
 	}
-	if (obj_control.newCustomTag) {
+	if (obj_control.newCustomTagToken) {
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom tag");
+	}
+	if (obj_control.newCustomFieldUnit) {
+		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom field");
+	}
+	if (obj_control.newCustomTagUnit) {
 		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom tag");
 	}
 	
@@ -622,7 +628,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		if (obj_control.rename) {
 			ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 		}
-		if (obj_control.newCustomField) {
+		if (obj_control.newCustomFieldToken) {
 			// add new marker to tokenImportGrid
 			global.tokenImportGridWidth++;
 			ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
@@ -647,7 +653,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
 			ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
 		}
-		if (obj_control.newCustomTag) {
+		if (obj_control.newCustomTagToken) {
 			var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
 			var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 			ds_list_add(tempList, obj_control.inputText);
@@ -734,8 +740,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		obj_control.swapLine = false;
 		obj_control.changeAuthor = false;
 		obj_control.newTagCategory = false;
-		obj_control.newCustomTag = false;
-		obj_control.newCustomField = false;
+		obj_control.newCustomTagToken = false;
+		obj_control.newCustomFieldToken = false;
+		obj_control.newCustomTagUnit = false;
+		obj_control.newCustomFieldUnit = false;
 		obj_control.fromDropDown = false;
 		obj_control.cursorPos = 1;
 		obj_control.inputText = "";
@@ -774,8 +782,8 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.swapLine = false;
 			obj_control.changeAuthor = false;
 			obj_control.newTagCategory = false;
-			obj_control.newCustomTag = false;
-			obj_control.newCustomField = false;
+			obj_control.newCustomTagToken = false;
+			obj_control.newCustomFieldToken = false;
 			obj_control.fromDropDown = false;
 			obj_control.inputText = "";
 			obj_control.cursorPos = 1;
@@ -842,7 +850,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 			}
 		obj_control.lastAddedWord = obj_control.inputText;
 	}
-	if (obj_control.newCustomField) {
+	if (obj_control.newCustomFieldToken) {
 			// add new marker to tokenImportGrid
 			global.tokenImportGridWidth++;
 			ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
@@ -867,7 +875,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
 			ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
 		}
-		if (obj_control.newCustomTag) {
+		if (obj_control.newCustomTagToken) {
 			var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
 			var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 			ds_list_add(tempList, obj_control.inputText);
@@ -956,8 +964,8 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.swapLine = false;
 	obj_control.changeAuthor = false;
 	obj_control.newTagCategory = false;
-	obj_control.newCustomTag = false;
-	obj_control.newCustomField = false;
+	obj_control.newCustomTagToken = false;
+	obj_control.newCustomFieldToken = false;
 	obj_control.fromDropDown = false;
 	obj_control.inputText = "";
 	obj_control.cursorPos = 1;

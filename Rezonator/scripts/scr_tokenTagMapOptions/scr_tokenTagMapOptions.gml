@@ -10,7 +10,7 @@ if(optionSelected == "Add new Tag"){
 
 	//user would be prompted for input hereererer
 	// say the chose Emotion
-	obj_control.newCustomTag = true;
+	obj_control.newCustomTagToken = true;
 	obj_control.dialogueBoxActive = true;
 
 	if (!instance_exists(obj_dialogueBox)) {

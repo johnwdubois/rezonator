@@ -1703,6 +1703,14 @@
             }
         },
         {
+            "Key": "45c5ba88-14db-40c8-8a84-763413a334a9",
+            "Value": {
+                "id": "17a7b3e4-6913-4425-84ac-1303bf9995ba",
+                "resourcePath": "scripts\\scr_unitMarkerOptions\\scr_unitMarkerOptions.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "463a561c-c2a5-4f71-a1d7-730ccd21e940",
             "Value": {
                 "id": "5fed543e-f098-46ba-8c74-cda2fdc21479",
@@ -6345,6 +6353,7 @@
         "8b992b96-6001-40e9-ba2a-e819b85a9792",
         "ad38527b-67a3-48fe-814f-c31e4ad21a92",
         "1fa1eb86-396c-43f0-a57e-ca48ed3b2c7e",
+        "45c5ba88-14db-40c8-8a84-763413a334a9",
         "dffee0ae-d0a3-4044-ac53-13127522a461",
         "bc6708ed-3169-4e46-9fd2-8ffd44f409c1",
         "09903712-7644-4928-bac5-670fa15a0e42",

@@ -12,6 +12,7 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+
 if (live_call()) return live_result;
 
 
@@ -480,7 +481,6 @@ for (var i = 0; i < headerListSize; i++) {
 					dropDownInst.optionList = dropDownOptionList;
 					dropDownInst.optionListType = 36;
 				}
-				
 			}
 		}
 	}

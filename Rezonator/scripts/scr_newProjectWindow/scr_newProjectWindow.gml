@@ -112,7 +112,6 @@ draw_text(importWindowX2, importWindowY2 + 24, "Total line count: " + string(tot
 
 
 
-var global.scrollBarWidth = 16;
 currentTopViewRow = max(0, currentTopViewRow);
 currentTopViewRow = min(ds_grid_height(global.fileLineRipGrid) - scrollRange, currentTopViewRow);
 

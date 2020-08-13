@@ -260,10 +260,15 @@ else if (optionListType == 35)
     scr_tokenTagMapOptions(optionSelected);
     instance_destroy();
 }
-//add Marker options
+//Token Marker options
 else if (optionListType == 36)
 {
     scr_tokenMarkerOptions(optionSelected);
     instance_destroy();
 }
-
+//Unit Marker options
+else if (optionListType == 37)
+{
+    scr_unitMarkerOptions(optionSelected);
+    instance_destroy();
+}

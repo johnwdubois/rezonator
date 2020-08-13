@@ -2,7 +2,7 @@ var optionSelected = argument[0];
 
 if (optionSelected == "Create Field") {
 
-	// prompt user for name of new token field/marker
+	// prompt user for name of new unit field/marker
 
 	obj_control.newCustomFieldToken = true;
 	obj_control.dialogueBoxActive = true;
@@ -12,3 +12,5 @@ if (optionSelected == "Create Field") {
 	}
 	
 }
+
+show_message("here!");

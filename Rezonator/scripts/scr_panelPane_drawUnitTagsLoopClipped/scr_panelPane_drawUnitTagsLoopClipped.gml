@@ -223,6 +223,7 @@ draw_rectangle(x - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabH
     headerListSize = 6;
 }*/
 // Create the column headers
+var activeCols = 0;
 for (var i = 0; i < headerListSize; i++) {
     var colRectX1 = x + (i * (windowWidth / 6));
     var colRectY1 = y;
@@ -273,12 +274,30 @@ for (var i = 0; i < headerListSize; i++) {
 	var ascendRectY1 = wordViewButtonY - (tabHeight / 5);
 	var ascendRectX2 = ascendRectX1 + ascendButtonSize;
 	var ascendRectY2 = ascendRectY1 + ascendButtonSize;
+	
 
 
 	
 	if(i == 0 ){
 	}
 	else{
+		var tempColRectX2 = x + ((activeCols + 1) * (windowWidth / 6)) - (windowWidth / 6);
+		if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight)) {
+			if (mouse_check_button_released(mb_right)) {
+				with (obj_dropDown) {
+					instance_destroy();
+				}
+				var dropDownOptionList = ds_list_create();		
+				ds_list_add(dropDownOptionList, "Create Field");
+				if (ds_list_size(dropDownOptionList) > 0) {
+					var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
+					dropDownInst.optionList = dropDownOptionList;
+					dropDownInst.optionListType = 37;
+				}
+			}
+		}
+		
+		
 		//user interaction for token selection
 		if (point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
 			draw_set_color(global.colorThemeBorders);
@@ -372,7 +391,7 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	}
 	
-
+	activeCols++;
 }
 
 
