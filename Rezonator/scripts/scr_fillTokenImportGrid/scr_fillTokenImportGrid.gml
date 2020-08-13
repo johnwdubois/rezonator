@@ -107,10 +107,10 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	
 	// add the name of this marker to one of our lists
 	if (currentLevel == global.levelToken) {
-		ds_list_add(global.tokenImportColNameList, string_copy(currentMarker, 2, string_length(currentMarker) - 1));
+		ds_list_add(global.tokenImportColNameList, string_copy(currentMarker, 1, string_length(currentMarker)));
 	}
 	else if (currentLevel == global.levelUnit) {
-		ds_list_add(global.unitImportColNameList, string_copy(currentMarker, 2, string_length(currentMarker) - 1));
+		ds_list_add(global.unitImportColNameList, string_copy(currentMarker, 1, string_length(currentMarker)));
 	}
 	
 	// find this marker's column in the importGrid

@@ -103,13 +103,37 @@ if (file_exists(fileName)) {
 				global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
 				global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList");
-				global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
 				global.unitImportColNameList = ds_map_find_value(map, "unitImportColNameList");
-				global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
+				if (global.tokenImportColNameList == undefined) {
+					global.tokenImportColNameList = ds_list_create();
+				}
+				else {
+					global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
+				}
+				if (global.unitImportColNameList == undefined) {
+					global.unitImportColNameList = ds_list_create();
+				}
+				else {
+					global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
+				}
 				
 				global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
 				global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
-				global.tokenTagMapFilled = true
+				
+				if (global.tokenImportTagMap == undefined) {
+					global.tokenImportTagMap = ds_map_create();
+				}
+				else {
+					global.tokenTagMapFilled = true;
+				}
+				if (global.unitImportTagMap == undefined) {
+					global.unitImportTagMap = ds_map_create();
+				}
+				else {
+					global.unitTagMapFilled = true;
+				}
+				
+				
 				
 				if (global.tokenImportColNameList == undefined) {
 					var tempList = ds_list_create();
@@ -254,11 +278,6 @@ if (ds_grid_height(global.unitImportGrid) <= ds_grid_height(obj_control.unitGrid
 }
 
 
-//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)) + ", global.tokenImportGridHeight: " + string(ds_grid_height(global.tokenImportGrid)));
-
-if(ds_grid_width(global.importCSVGrid) > 0){
-	//scr_fillTokenImportGridCSV();
-}
-else{
+if (ds_grid_width(global.importCSVGrid) <= 0) {
 	scr_fillTokenImportGrid();
 }
