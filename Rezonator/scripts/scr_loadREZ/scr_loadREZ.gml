@@ -104,14 +104,22 @@ if (file_exists(fileName)) {
 				
 				global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList");
 				global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
+				global.unitImportColNameList = ds_map_find_value(map, "unitImportColNameList");
+				global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
 				
 				global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
+				global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
 				global.tokenTagMapFilled = true
 				
-				var tempList = ds_list_create();
-				if(global.tokenImportColNameList == undefined){
+				if (global.tokenImportColNameList == undefined) {
+					var tempList = ds_list_create();
 					global.tokenImportColNameList = tempList;
 					ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
+				}
+				if (global.unitImportColNameList == undefined) {
+					var tempList2 = ds_list_create();
+					global.unitImportColNameList = tempList2;
+					//ds_list_add(global.unitImportColNameList, "UnitID", "WordID", "text", "transcript");
 				}
 				
 
@@ -139,6 +147,7 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(global.importCSVGrid, map, "importCSVGrid");
 				scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
 				ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, 0);
+				ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, 0);
 				
 				scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
 				scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
@@ -225,8 +234,13 @@ ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
 
 
 // update tokenImport
-if (ds_list_size(global.tokenImportColNameList) > 4) {
-	global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
+if (ds_list_size(global.tokenImportColNameList) > 4 || ds_list_size(global.unitImportColNameList) > 0) {
+	if (ds_list_size(global.tokenImportColNameList) > 4) {
+		global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
+	}
+	if (ds_list_size(global.unitImportColNameList) > 0) {
+		global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
+	}
 	with (obj_gridViewer) {
 		alarm[2] = 1;
 	}
@@ -234,6 +248,9 @@ if (ds_list_size(global.tokenImportColNameList) > 4) {
 
 if (ds_grid_height(global.tokenImportGrid) <= ds_grid_height(obj_control.wordGrid)) {
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
+}
+if (ds_grid_height(global.unitImportGrid) <= ds_grid_height(obj_control.unitGrid)) {
+	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
 }
 
 

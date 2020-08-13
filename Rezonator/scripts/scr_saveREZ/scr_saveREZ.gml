@@ -119,6 +119,12 @@ with (obj_saveParent) {
 		}
 		ds_map_add_list(map, "tokenImportColNameList", tempList2);
 		
+		var tempList3 = ds_list_create();
+		if (global.unitImportColNameList  != undefined) {
+			ds_list_copy(tempList3, global.unitImportColNameList);
+		}
+		ds_map_add_list(map, "unitImportColNameList", tempList3);
+		
 		//save special feild colnames
 		ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
 		ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
