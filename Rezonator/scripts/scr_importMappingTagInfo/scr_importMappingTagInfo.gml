@@ -235,10 +235,10 @@ if (obj_importMapping.mouseoverRow >= 0) {
 		
 			if (currentLevel == selectedRowLevel ) {
 				if (selectedRowLevel == global.levelToken && currentField == "Display Token") {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, 0);
 				}
 				else if (selectedRowLevel == global.levelUnit && currentField == "Speaker") {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, 0);
 				}
 			}
 		}

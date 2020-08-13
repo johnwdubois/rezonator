@@ -215,7 +215,9 @@ global.rezzles = false;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
 global.previousLevelEstimates = ds_list_create();
+global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);
+ds_list_clear(global.previousSpecialFields);
 
 
 var userSettingsList = ds_list_create();
@@ -264,14 +266,40 @@ if (ds_list_size(userSettingsList) > 1) {
 	if (string_count("previousLevelEstimates:", global.iniFileString) > 0) {
 		ds_list_clear(global.previousLevelEstimates)
 		var tempListString = string(scr_getListFromString(global.iniFileString, "previousLevelEstimates:" , "%"));
-		//show_message("string: " + tempListString);
 		for(var i = 0;  i <= string_length(tempListString); i++){
 			if(string_char_at(tempListString, i) != "," and string_char_at(tempListString, i) != " " and string_char_at(tempListString, i) != "{" and string_char_at(tempListString, i) != "}"){
 				
 				ds_list_add(global.previousLevelEstimates, string_char_at(tempListString, i));
 			}
 		}
-		//show_message(scr_getStringOfList(global.previousLevelEstimates) +  "            and its this BIIIIG:" +string(ds_list_size(global.previousLevelEstimates)));
+	}
+	if (string_count("previousSpecialFields:", global.iniFileString) > 0) {
+		ds_list_clear(global.previousSpecialFields)
+		var tempListString = string(scr_getListFromString(global.iniFileString, "previousSpecialFields:" , "%"));
+		var wordStart = 1;
+		var currentPos = 0;
+		var stringLength = 0;
+		var tempField = "";
+		for(var i = 0;  i <= string_length(tempListString); i++){
+			if(string_char_at(tempListString, i) != "{" and string_char_at(tempListString, i) != "}"){
+				stringLength++;
+
+			}
+			
+			if(string_char_at(tempListString, i) == ","){
+				
+				tempField = string_copy(tempListString, wordStart, stringLength-2);
+				//show_message("currentPos: " + string(wordStart) + ",  stringLength: " + string(stringLength-1) + ",   TempField: " + string(tempField));
+				if(tempField == "0"){
+				tempField = "";
+				}
+				ds_list_add(global.previousSpecialFields, tempField);
+				tempField = "";
+				stringLength = 0;
+				wordStart = currentPos+2;
+			}
+			currentPos++;
+		}
 	}
 	
 }
