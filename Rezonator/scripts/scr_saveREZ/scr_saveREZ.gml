@@ -166,6 +166,9 @@ with (obj_saveParent) {
 	var tempMap = ds_map_create();
 	ds_map_copy(tempMap, global.tokenImportTagMap);
 	ds_map_add_map(map, "tokenImportTagMap", tempMap);
+	var tempMap2 = ds_map_create();
+	ds_map_copy(tempMap2, global.unitImportTagMap);
+	ds_map_add_map(map, "unitImportTagMap", tempMap2);
 }
 
 var wrapper = ds_map_create();

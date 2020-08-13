@@ -212,9 +212,11 @@ unitContentsHeaderListSize = 2;
 chosenCol = 0;
 ascendYScale = 1;
 ascendActivated = false;
-selectedCol = 0;
+selectedColToken = 0;
+selectedColUnit = 0;
 
 lineContentsHighlightRow = -1;
+unitTagsHighlightRow = -1;
 
 
 hoverTime[0] = 0;

@@ -638,6 +638,8 @@ ds_list_add(currentDisplayUnitColsList,1,2,3,4,5);
 
 tokenImportColToChange = 0;
 tokenImportRowToChange = 0;
+unitImportColToChange = 0;
+unitImportRowToChange = 0;
 
 activeStackType = 0;
 readModeHints = 0;

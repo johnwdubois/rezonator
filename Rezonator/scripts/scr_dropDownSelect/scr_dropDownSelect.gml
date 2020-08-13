@@ -272,3 +272,9 @@ else if (optionListType == 37)
     scr_unitMarkerOptions(optionSelected);
     instance_destroy();
 }
+//adding to Unit Tag Map options
+else if (optionListType == 38)
+{
+    scr_unitTagMapOptions(optionSelected);
+    instance_destroy();
+}

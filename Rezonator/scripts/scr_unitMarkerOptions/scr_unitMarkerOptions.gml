@@ -4,7 +4,7 @@ if (optionSelected == "Create Field") {
 
 	// prompt user for name of new unit field/marker
 
-	obj_control.newCustomFieldToken = true;
+	obj_control.newCustomFieldUnit = true;
 	obj_control.dialogueBoxActive = true;
 
 	if (!instance_exists(obj_dialogueBox)) {
@@ -12,5 +12,3 @@ if (optionSelected == "Create Field") {
 	}
 	
 }
-
-show_message("here!");

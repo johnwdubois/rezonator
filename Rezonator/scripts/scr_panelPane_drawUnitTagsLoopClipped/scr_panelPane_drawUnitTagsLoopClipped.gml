@@ -12,10 +12,16 @@
     Author: Georgio Klironomos
 */
 
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 // Access the lineList panelPane object to get it's scrollPlusY
 
-var lineListPanelPaneInst = inst_PanelPane_chainList;
+var lineListPanelPaneInst = 0;//lineListPanelPaneInst;
+
+with (obj_panelPane) {
+	if (currentFunction == functionChainList) {
+		lineListPanelPaneInst = self.id;
+	}
+}
 
 
 draw_set_font(global.fontChainList);
@@ -33,7 +39,12 @@ var chainNameRectMinusY = 4;
 var focusedElementY = -1;
 var focusedLineNameRectY1 = -1;
 var focusedLineNameRectY2 = -1;
-var xbuffer = (windowWidth/6);
+var xbuffer = (windowWidth / 6);
+
+var drawDropDowns = false;
+if (!instance_exists(obj_dropDown)) {
+	unitTagsHighlightRow = -1;
+}
 
 
 
@@ -57,10 +68,10 @@ if(ds_exists(global.unitImportColNameList, ds_type_list)){
 widthOfUnitGrid = ds_list_size(global.unitImportColNameList);
 }
 //show_message(string(headerListSize));
-for(var j = 0 ; j < headerListSize ; j++) {
+for(var j = 0 ; j < headerListSize; j++) {
 	
 	textPlusY = 0;
-	
+	drawDropDowns = false;
 
 
     var colRectX1 = x + (j * (windowWidth / 6));
@@ -77,8 +88,8 @@ for(var j = 0 ; j < headerListSize ; j++) {
 
 	for (var i = 0; i < lineGridHeight; i++) {
     
-	    if (y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY < y - strHeight
-	    or y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+	    if (y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY < y - strHeight
+	    or y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 	        textPlusY += strHeight;
 	        continue;
 	    }
@@ -115,15 +126,17 @@ for(var j = 0 ; j < headerListSize ; j++) {
     
 	    // Get dimensions of rectangle around line name
 	    var lineNameRectX1 = x;
-	    var lineNameRectY1 = y + textMarginTop + textPlusY + inst_PanelPane_chainList.scrollPlusY - (strHeight / 2);
+	    var lineNameRectY1 = y + textMarginTop + textPlusY + lineListPanelPaneInst.scrollPlusY - (strHeight / 2);
 	    var lineNameRectX2 = x + windowWidth;
 	    var lineNameRectY2 = lineNameRectY1 + strHeight;
     
 	    //Check mouse clicks to focus a line in the list
-	    if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2)) {
-
+	    if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, max(lineNameRectY1, y + textMarginTop), lineNameRectX2, lineNameRectY2)
+		&& !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+			drawDropDowns = true;
+			unitTagsHighlightRow = i;
         
-	        if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
+	        if (device_mouse_check_button_released(0, mb_left)) {
 	            //show_message("line");
 	            ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 	            ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
@@ -133,6 +146,56 @@ for(var j = 0 ; j < headerListSize ; j++) {
 	            }
 	        }
 	    }
+		if (unitTagsHighlightRow == i && j > 0) {
+			
+			// dropdown buttons
+			var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
+			var dropDownButtonY1 = lineNameRectY1;
+			var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
+			var dropDownButtonY2 = lineNameRectY2;
+			draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+			if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+				if (mouse_check_button_released(mb_left)) {
+					
+					with (obj_panelPane) {
+						selectedColUnit = j;
+					}
+								
+					var dropDownOptionList = ds_list_create();
+					var colIndex = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
+					var mapKey = ds_list_find_value(global.unitImportColNameList, colIndex);
+					var tagMapList = ds_map_find_value(global.unitImportTagMap, mapKey);
+					//show_message("tagMapList: " + scr_getStringOfList(tagMapList));
+					ds_list_copy(dropDownOptionList, tagMapList);
+					obj_control.unitImportColToChange = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
+					obj_control.unitImportRowToChange = currentLineUnitID - 1;
+								
+					var dropDownX = colRectX1;
+					var dropDownY = lineNameRectY2;
+
+					if (ds_list_size(dropDownOptionList) > 0 ) {
+						var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
+						dropDownInst.optionList = dropDownOptionList;
+						dropDownInst.optionListType = 38;
+
+					}
+		
+					
+				}
+			}
+			
+			// highlight rectangle
+			if (j == headerListSize - 1) {
+				draw_set_alpha(0.25);
+				draw_set_color(global.colorThemeText);
+				draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
+			}
+		}
+		draw_set_alpha(1);
     
     
 	    //Color codes the line lists for User
@@ -144,7 +207,7 @@ for(var j = 0 ; j < headerListSize ; j++) {
 	    if (currentLineState == 1) {
 	        focusedLineNameRectY1 = lineNameRectY1;
 	        focusedLineNameRectY2 = lineNameRectY2;
-	        focusedElementY = y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY;
+	        focusedElementY = y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY;
 	        draw_set_font(global.fontChainListFocused);
 	    }
 	    else {
@@ -155,7 +218,7 @@ for(var j = 0 ; j < headerListSize ; j++) {
 	    draw_set_color(global.colorThemeText);
 	    draw_set_halign(fa_left);
 	    draw_set_valign(fa_middle);
-	    //draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
+	    //draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
     
 	    //Color codes the line lists for User
 	    draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
@@ -179,7 +242,7 @@ for(var j = 0 ; j < headerListSize ; j++) {
 		if(tagToDraw == undefined){
 			tagToDraw = "";
 		}
-	    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, string(tagToDraw));
+	    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
     
 	    //draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 	    draw_set_color(global.colorThemeBG);
@@ -187,7 +250,7 @@ for(var j = 0 ; j < headerListSize ; j++) {
 	    draw_set_color(global.colorThemeBG);
 	    //draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 	    draw_set_color(global.colorThemeText);
-	    //draw_text(windowWidth/3, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, currentLineWordString);
+	    //draw_text(windowWidth/3, y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, currentLineWordString);
     
     
     
@@ -420,11 +483,11 @@ if (clickedIn) {
             
         //    ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
             if (focusedElementY <= y + textMarginTop + strHeight) {
-                inst_PanelPane_chainList.scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+                lineListPanelPaneInst.scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
             }
         }
         else {
-            inst_PanelPane_chainList.scrollPlusYDest += 4;
+            lineListPanelPaneInst.scrollPlusYDest += 4;
         }
     }
         
@@ -442,28 +505,28 @@ if (clickedIn) {
             
             //ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
             if (focusedElementY >= y + windowHeight - strHeight) {
-                inst_PanelPane_chainList.scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+                lineListPanelPaneInst.scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
             }
         }
         else {
-            inst_PanelPane_chainList.scrollPlusYDest -= 4;
+            lineListPanelPaneInst.scrollPlusYDest -= 4;
         }
     }
     
     // CTRL+UP and CTRL+DOWN
     if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-        inst_PanelPane_chainList.scrollPlusYDest = 100;
+        lineListPanelPaneInst.scrollPlusYDest = 100;
     }
     if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-        inst_PanelPane_chainList.scrollPlusYDest = -999999999999;
+        lineListPanelPaneInst.scrollPlusYDest = -999999999999;
     }
     
     // PAGEUP and PAGEDOWN
     if (keyboard_check_pressed(vk_pageup)) {
-        inst_PanelPane_chainList.scrollPlusYDest += (windowHeight);
+        lineListPanelPaneInst.scrollPlusYDest += (windowHeight);
     }
     if (keyboard_check_pressed(vk_pagedown)) {
-        inst_PanelPane_chainList.scrollPlusYDest -= (windowHeight);
+        lineListPanelPaneInst.scrollPlusYDest -= (windowHeight);
     }
 }
 
