@@ -1,5 +1,18 @@
 /// @description Create Random Stacks
 // You can write your code in this editor
+if(obj_toolPane.currentMode == obj_toolPane.modeRead) {
+	obj_toolPane.currentMode = obj_toolPane.modeTrack;	
+}
+
+obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabStackBrush;
+			
+scr_unFocusAllChains();
+			
+//refocus chains related to currently selected tab
+with(obj_panelPane) {
+	scr_reFocusOldChains();
+}
+
 var endLine = ds_grid_height(obj_control.lineGrid) - 1;
 var randUnit = -1;
 var currentUnitList = ds_list_create();

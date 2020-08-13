@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-if (live_call()) return live_result;
+
 
 
 var ableToMouseover = true;

@@ -62,9 +62,11 @@ for (var i = 0; i < 3; i++) {
 			}
 			else if (i == 1) {
 				currentMode = modeTrack;
+				obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
 			}
 			else if (i == 2) {
 				currentMode = modeRez;
+				obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 			}
 		}
 	

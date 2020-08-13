@@ -103,13 +103,17 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 	
 		if (mouse_check_button_pressed(mb_left)) {
 			
-			var tempList = ds_list_create();
+			var tempLevelList = ds_list_create();
+			var tempFieldsList = ds_list_create();
 			
 			for(var i = 0 ; i < ds_grid_height(global.tagInfoGrid); i++){
-				ds_list_add(tempList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i));
+				ds_list_add(tempLevelList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i));
+				ds_list_add(tempFieldsList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i));
 			}
-			ds_list_copy(global.previousLevelEstimates,tempList);
-			ds_list_destroy(tempList);
+			ds_list_copy(global.previousLevelEstimates,tempLevelList);
+			ds_list_copy(global.previousSpecialFields,tempFieldsList);
+			ds_list_destroy(tempLevelList);
+			ds_list_destroy(tempFieldsList);
 			//show_message(scr_getStringOfList(global.previousLevelEstimates));
 			
 			room_goto(rm_mainScreen);
@@ -161,6 +165,18 @@ if (point_in_rectangle(mouse_x, mouse_y, loadPreviousButtonRectX1, loadPreviousB
 			
 			if(i < ds_grid_height(global.tagInfoGrid)){		
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i,ds_list_find_value(global.previousLevelEstimates,i));
+			}
+
+		}
+		//show_message(scr_getStringOfList(global.previousSpecialFields))
+		for(var i = 0 ; i < ds_list_size(global.previousSpecialFields); i++){
+			
+			if(i < ds_grid_height(global.tagInfoGrid)){		
+				var setString = string(ds_list_find_value(global.previousSpecialFields,i));
+				if(setString == "UnitDelim"){
+					global.unitImportUnitDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);	
+				}
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, setString);
 			}
 
 		}

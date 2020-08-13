@@ -9,7 +9,6 @@ var charStart = 1;
 
 var strCopy = "";
 
-
 if (string_count(subString, fullString) > 0) {
 	
 	charAt = string_pos(subString, fullString) + string_length(subString);
@@ -20,6 +19,8 @@ if (string_count(subString, fullString) > 0) {
 	}
 	
 	strCopy = string_copy(fullString, charStart, charAt - charStart);
+
+	
 }
 
 return strCopy;

@@ -14,6 +14,7 @@ if (directory_exists(global.rezonatorDirString)) {
 	fileStr += "SpeakerLabelX3:" + string(ds_list_find_value(obj_control.speakerLabelColXList,2)) + "#";
 	fileStr += "SpeakerLabelX4:" + string(ds_list_find_value(obj_control.speakerLabelColXList,3)) + "#";
 	fileStr += "previousLevelEstimates:" + scr_getStringOfList(global.previousLevelEstimates) + "%" + "#";
+	fileStr += "previousSpecialFields:" + scr_getStringOfList(global.previousSpecialFields) + "%" + "#";
 	//fileStr += "tokenView:" + string(wordTokenView) + "#";
 	/*
 	if(os_type == os_windows){
