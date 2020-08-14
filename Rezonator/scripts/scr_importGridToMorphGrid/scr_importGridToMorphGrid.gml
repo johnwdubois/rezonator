@@ -98,9 +98,16 @@ else if (global.importType == global.importType_CoNLLU){
 
 	// build morphGrid!
 	var importGridHeight = ds_grid_height(global.importGrid);
+	var currentParticipant = "";
 	for (var i = 0; i < importGridHeight; i++) {
 	
-		var currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
+
+		if(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i) == undefined or ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i) == 0
+		or string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i)) == "undefined" or string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i)) == "0"){
+		}
+		else{
+			currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
+		}
 		var currentMorphFullStr = string(ds_grid_get(global.importGrid, importGrid_colDisplayToken, i));
 		var currentMorphList = scr_splitStringImport(currentMorphFullStr);
 		var currentGlossFullStr = "";

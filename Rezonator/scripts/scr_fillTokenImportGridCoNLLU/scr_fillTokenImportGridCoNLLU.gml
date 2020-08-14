@@ -108,8 +108,7 @@ var curUID = 0;
 var prevUID = 0;
 var unitCounter = 1;
 
-var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
-var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+
 
 // fill tokenImport with UnitID, WordID, token, and transcript information
 var tokenImportGridHeight = ds_grid_height(global.importGrid);
@@ -145,14 +144,17 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 	}
 }
 
-curUID = 0;
-prevUID = 0;
+
 
 var currentTokenImportCol = 4;
 var currentUnitImportCol = 2;
 
 // actually fill in all the cells of tokenImportGrid and unitImportGrid
 for (var i = 0; i < customLabelGridHeight; i++) {
+	curUID = 0;
+	prevUID = 0;
+	unitCounter = 1;
+
 
 	var importGridCol = -1;
 	var currentMarker = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colMarker, i);
@@ -172,6 +174,7 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	
 	// find this marker's column in the importGrid
 	var importGridCol = ds_list_find_index(global.importGridColNameList, currentMarker);
+
 	if (importGridCol >= 0) {
 		
 		// if this marker is token level, fill in tokenImportGrid
@@ -209,22 +212,26 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 
 		}
 		else if (currentLevel == global.levelUnit) {
+			
 
-			unitCounter = 0;
 			var importGridHeight = ds_grid_height(global.importGrid);
 			for (var j = 0; j < importGridHeight; j++) {
+				
 				
 				// Iterate on unit counter when a new cluster is found
 				if(j > 0){
 					curUID = ds_grid_get(global.importGrid, deliminaterCol, j);	
 				}
 				else if (j == 0) {
-					prevUID = ds_grid_get(global.importGrid, deliminaterCol, j);	
+					prevUID = ds_grid_get(global.importGrid, deliminaterCol, j);
+					var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
+					ds_grid_set(global.unitImportGrid, currentUnitImportCol, unitCounter-1, currentLine);
+					unitCounter++;
 				}
 	
 				if(curUID != 0 && string(prevUID) != string(curUID)){
-					var currentLine = ds_grid_get(global.importGrid, deliminaterCol, j);
-					ds_grid_set(global.unitImportGrid, currentUnitImportCol, unitCounter + 1, currentLine);
+					var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
+					ds_grid_set(global.unitImportGrid, currentUnitImportCol, unitCounter-1, currentLine);
 					unitCounter++;
 					prevUID = curUID;
 				}			
