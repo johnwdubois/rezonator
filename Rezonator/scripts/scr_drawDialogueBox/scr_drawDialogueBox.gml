@@ -627,54 +627,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 		}
 		if (obj_control.newCustomFieldToken) {
-			// add new marker to tokenImportGrid
-			global.tokenImportGridWidth++;
-			ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
-			ds_grid_set_region(global.tokenImportGrid, global.tokenImportGridWidth - 1, 0, global.tokenImportGridWidth - 1, ds_grid_height(global.tokenImportGrid), "");
-	
-			// add new marker to tokenImportColNameList
-			ds_list_add(global.tokenImportColNameList, obj_control.inputText);
-			with (obj_gridViewer) {
-				alarm[2] = 1;
-			}
-	
-			// add new marker to tokenImportTagMap
-			var tagList = ds_list_create();
-			ds_list_add(tagList, "Add new Tag");
-			ds_map_add_list(global.tokenImportTagMap, obj_control.inputText, tagList);
-	
-			// add new marker to customLabelGrid
-			ds_grid_resize(global.customLabelGrid, ds_grid_width(global.customLabelGrid), ds_grid_height(global.customLabelGrid) + 1);
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, ds_grid_height(global.customLabelGrid) - 1, global.levelToken);
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colMarker, ds_grid_height(global.customLabelGrid) - 1, obj_control.inputText);
-			var emptyList = ds_list_create();
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
-			ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
+			scr_dialogueBoxNewCustomFieldToken();
 		}
 		if (obj_control.newCustomFieldUnit) {
-			// add new marker to unitImportGrid
-			global.unitImportGridWidth++;
-			ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.unitImportGrid));
-			ds_grid_set_region(global.unitImportGrid, global.unitImportGridWidth - 1, 0, global.unitImportGridWidth - 1, ds_grid_height(global.unitImportGrid), "");
-	
-			// add new marker to unitImportColNameList
-			ds_list_add(global.unitImportColNameList, obj_control.inputText);
-			with (obj_gridViewer) {
-				alarm[2] = 1;
-			}
-	
-			// add new marker to unitImportTagMap
-			var tagList = ds_list_create();
-			ds_list_add(tagList, "Add new Tag");
-			ds_map_add_list(global.unitImportTagMap, obj_control.inputText, tagList);
-	
-			// add new marker to customLabelGrid
-			ds_grid_resize(global.customLabelGrid, ds_grid_width(global.customLabelGrid), ds_grid_height(global.customLabelGrid) + 1);
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, ds_grid_height(global.customLabelGrid) - 1, global.levelUnit);
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colMarker, ds_grid_height(global.customLabelGrid) - 1, obj_control.inputText);
-			var emptyList = ds_list_create();
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
-			ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
+			scr_dialogueBoxNewCustomFieldUnit();
 		}
 		if (obj_control.newCustomTagToken) {
 			var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
@@ -880,54 +836,10 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 		obj_control.lastAddedWord = obj_control.inputText;
 	}
 	if (obj_control.newCustomFieldToken) {
-			// add new marker to tokenImportGrid
-			global.tokenImportGridWidth++;
-			ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
-			ds_grid_set_region(global.tokenImportGrid, global.tokenImportGridWidth - 1, 0, global.tokenImportGridWidth - 1, ds_grid_height(global.tokenImportGrid), "");
-	
-			// add new marker to tokenImportColNameList
-			ds_list_add(global.tokenImportColNameList, obj_control.inputText);
-			with (obj_gridViewer) {
-				alarm[2] = 1;
-			}
-	
-			// add new marker to tokenImportTagMap
-			var tagList = ds_list_create();
-			ds_list_add(tagList, "Add new Tag");
-			ds_map_add_list(global.tokenImportTagMap, obj_control.inputText, tagList);
-	
-			// add new marker to customLabelGrid
-			ds_grid_resize(global.customLabelGrid, ds_grid_width(global.customLabelGrid), ds_grid_height(global.customLabelGrid) + 1);
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, ds_grid_height(global.customLabelGrid) - 1, global.levelToken);
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colMarker, ds_grid_height(global.customLabelGrid) - 1, obj_control.inputText);
-			var emptyList = ds_list_create();
-			ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
-			ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
+		scr_dialogueBoxNewCustomFieldToken();
 	}
 	if (obj_control.newCustomFieldUnit) {
-		// add new marker to unitImportGrid
-		global.unitImportGridWidth++;
-		ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.unitImportGrid));
-		ds_grid_set_region(global.unitImportGrid, global.unitImportGridWidth - 1, 0, global.unitImportGridWidth - 1, ds_grid_height(global.unitImportGrid), "");
-	
-		// add new marker to unitImportColNameList
-		ds_list_add(global.unitImportColNameList, obj_control.inputText);
-		with (obj_gridViewer) {
-			alarm[2] = 1;
-		}
-	
-		// add new marker to unitImportTagMap
-		var tagList = ds_list_create();
-		ds_list_add(tagList, "Add new Tag");
-		ds_map_add_list(global.unitImportTagMap, obj_control.inputText, tagList);
-	
-		// add new marker to customLabelGrid
-		ds_grid_resize(global.customLabelGrid, ds_grid_width(global.customLabelGrid), ds_grid_height(global.customLabelGrid) + 1);
-		ds_grid_set(global.customLabelGrid, global.customLabelGrid_colLevel, ds_grid_height(global.customLabelGrid) - 1, global.levelUnit);
-		ds_grid_set(global.customLabelGrid, global.customLabelGrid_colMarker, ds_grid_height(global.customLabelGrid) - 1, obj_control.inputText);
-		var emptyList = ds_list_create();
-		ds_grid_set(global.customLabelGrid, global.customLabelGrid_colTagList, ds_grid_height(global.customLabelGrid) - 1, emptyList);
-		ds_grid_sort(global.customLabelGrid, global.customLabelGrid_colLevel, true);
+		scr_dialogueBoxNewCustomFieldUnit();
 	}
 	if (obj_control.newCustomTagToken) {
 		var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);

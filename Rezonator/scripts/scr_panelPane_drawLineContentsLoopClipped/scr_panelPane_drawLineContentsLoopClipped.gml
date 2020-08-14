@@ -111,7 +111,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				
 
 
-				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver and !instance_exists(obj_dropDown)
+				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + tabHeight), rectX2, rectY2) and ableToBeMouseOver and !instance_exists(obj_dropDown)
 				and !instance_exists(obj_dialogueBox)) {
 					drawDropDowns = true;
 					ableToBeMouseOver = false;

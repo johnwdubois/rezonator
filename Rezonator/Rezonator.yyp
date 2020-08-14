@@ -2295,6 +2295,14 @@
             }
         },
         {
+            "Key": "61e6087b-c8f8-46b5-9905-30107c20c33b",
+            "Value": {
+                "id": "2d097a11-abdd-4287-a5c6-f33c8bab23e2",
+                "resourcePath": "scripts\\scr_dialogueBoxNewCustomFieldUnit\\scr_dialogueBoxNewCustomFieldUnit.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "630c7f40-d468-45c8-ad4a-41d6cf9aa7a5",
             "Value": {
                 "id": "8de2cd97-38a2-4cd0-a499-f2c79d14c125",
@@ -5295,6 +5303,14 @@
             }
         },
         {
+            "Key": "e02802bb-b070-49c2-a04b-007219e99d18",
+            "Value": {
+                "id": "30fbcae1-0964-4bbe-9b79-674a69292a9a",
+                "resourcePath": "scripts\\scr_dialogueBoxNewCustomFieldToken\\scr_dialogueBoxNewCustomFieldToken.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "e06f679e-e9e9-4e88-aed0-3d00c31ee624",
             "Value": {
                 "id": "2eebbf51-2dee-496a-8e0e-03b5d68ee0da",
@@ -6370,6 +6386,8 @@
         "58a66d8f-2938-4a38-83bf-71ec3c393d8d",
         "e1b19e14-fcd7-414a-89ae-f129f9db5073",
         "5d7f3cd9-0ecc-4db2-b307-9b0ad8d0ad60",
+        "e02802bb-b070-49c2-a04b-007219e99d18",
+        "61e6087b-c8f8-46b5-9905-30107c20c33b",
         "7bf96896-31d5-4157-8f09-1b534bc78c46",
         "c97a6f64-a6e6-4898-acc6-7cb40783b1f2",
         "a0b42376-3fda-4f56-a0bd-312e223154d5",

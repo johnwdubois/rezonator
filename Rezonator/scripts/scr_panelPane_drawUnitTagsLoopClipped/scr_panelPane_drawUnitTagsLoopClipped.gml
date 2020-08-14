@@ -190,7 +190,7 @@ for(var j = 0 ; j < headerListSize; j++) {
 			
 			// highlight rectangle
 			if (j == headerListSize - 1) {
-				draw_set_alpha(0.25);
+				draw_set_alpha(0.2);
 				draw_set_color(global.colorThemeText);
 				draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
 			}
