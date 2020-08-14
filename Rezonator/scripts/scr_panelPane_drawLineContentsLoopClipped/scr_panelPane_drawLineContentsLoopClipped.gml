@@ -305,7 +305,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 										var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 										//show_message("tagMapList: " + scr_getStringOfList(tagMapList));
 										ds_list_copy(dropDownOptionList, tagMapList);
-										obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3);
+										obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
 										obj_control.tokenImportRowToChange =currentWordID-1;
 									}
 									else{
@@ -478,8 +478,9 @@ for (var i = 0; i < headerListSize; i++) {
 				with(obj_panelPane) {
 					chosenCol = i;
 				}
+				obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 				var dropDownOptionList = ds_list_create();		
-				ds_list_add(dropDownOptionList, "Create Field");
+				ds_list_add(dropDownOptionList, "Create Field", "Add new Tag");
 				if (ds_list_size(dropDownOptionList) > 0) {
 					var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;
