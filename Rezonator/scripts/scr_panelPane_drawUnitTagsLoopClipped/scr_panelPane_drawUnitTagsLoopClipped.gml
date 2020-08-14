@@ -350,6 +350,9 @@ for (var i = 0; i < headerListSize; i++) {
 				with (obj_dropDown) {
 					instance_destroy();
 				}
+				with(obj_panelPane){
+					chosenCol = i;
+				}
 				var dropDownOptionList = ds_list_create();		
 				ds_list_add(dropDownOptionList, "Create Field");
 				if (ds_list_size(dropDownOptionList) > 0) {

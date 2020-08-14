@@ -1,6 +1,6 @@
 var optionSelected = argument[0];
 var colValToSet = ds_list_find_index(global.unitImportColNameList, optionSelected);
-var colListIndex = obj_panelPane.chosenCol-1; 
+var colListIndex = obj_panelPane.chosenCol - 1; 
 
 ds_list_set(obj_control.currentDisplayUnitColsList, colListIndex, colValToSet);
 

@@ -744,7 +744,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 
 
 // enter check
-if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
+if (keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.alarm[11] = 60;
 	//input_text_set_enabled(instance, false);
 	//inputText = input_text_get_text(instance);
