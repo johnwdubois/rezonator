@@ -291,6 +291,24 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 	
 	// check for mouse clicks to change the selected tab
 	if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
+		
+		obj_control.hoverTime[i]++;
+		
+		if(obj_control.hoverTime[i] == obj_toolPane.hoverTimeLimit){
+			obj_toolPane.ToolTipPosX = mouse_x;
+			obj_toolPane.ToolTipPosY = mouse_y;
+		}
+		else if(obj_control.hoverTime[i] > obj_toolPane.hoverTimeLimit){
+			if (i == 0) {
+				scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Show Line Contents", "top");
+			}
+			if (i == 1) {
+				scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Show Track Chain Contents", "top");
+			}
+			if (i == 2) {
+				scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Show Rez Chain Contents", "top");
+			}
+		}
 		if (device_mouse_check_button_released(0, mb_left)) {
 			//show_message(string(i));
 			functionChainList_currentTab = i;
@@ -304,6 +322,9 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 				scr_reFocusOldChains();
 			}
 		}
+	}
+	else {
+		obj_control.hoverTime[i] = 0;
 	}
 	
 	// keeps drawing the name of the tabs
