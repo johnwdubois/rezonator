@@ -350,11 +350,12 @@ for (var i = 0; i < headerListSize; i++) {
 				with (obj_dropDown) {
 					instance_destroy();
 				}
-				with(obj_panelPane){
+				with (obj_panelPane) {
 					chosenCol = i;
 				}
+				obj_control.unitImportColToChange = ds_list_find_index(global.unitImportColNameList, colName);
 				var dropDownOptionList = ds_list_create();		
-				ds_list_add(dropDownOptionList, "Create Field");
+				ds_list_add(dropDownOptionList, "Create Field", "Add new Tag");
 				if (ds_list_size(dropDownOptionList) > 0) {
 					var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;

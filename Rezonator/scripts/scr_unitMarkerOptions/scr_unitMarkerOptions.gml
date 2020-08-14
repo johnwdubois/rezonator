@@ -12,3 +12,6 @@ if (optionSelected == "Create Field") {
 	}
 	
 }
+else if (optionSelected == "Add new Tag") {
+	scr_unitTagMapOptions("Add new Tag");
+}
