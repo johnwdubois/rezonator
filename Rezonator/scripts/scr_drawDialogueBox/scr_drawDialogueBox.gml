@@ -539,7 +539,7 @@ draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - searchBarXOffset + 5
 
 
 			
-var grid = obj_chain.rezChainGrid;
+grid = obj_chain.rezChainGrid;
 
 // Based on user selection, get the grid of the current tab
 switch (obj_panelPane.functionChainList_currentTab) {
@@ -633,29 +633,14 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			scr_dialogueBoxNewCustomFieldUnit();
 		}
 		if (obj_control.newCustomTagToken) {
-			var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
-			var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-			ds_list_add(tempList, obj_control.inputText);
+			scr_dialogueBoxNewCustomTagToken();
 		}
 		if (obj_control.newCustomTagUnit) {
-			var mapKey = ds_list_find_value(global.unitImportColNameList, obj_control.unitImportColToChange);
-			var tempList = ds_map_find_value(global.unitImportTagMap, mapKey);
-			ds_list_add(tempList, obj_control.inputText);
+			scr_dialogueBoxNewCustomTagUnit();
 		}
 	
 		if (obj_control.recolor) {
-			//show_message( string_digits(obj_control.inputText));
-			if( string_digits(obj_control.inputText) == "" ){
-				show_message( "Numbers only" );
-			}
-			else{
-				if( grid != obj_chain.stackChainGrid){
-					for(var i = 0; i < ds_list_size(listOfWordID);i++){
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(obj_control.inputText)));
-					}
-				}
-				ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
-			}
+			scr_dialogueBoxRecolor();
 		}
 		
 		if(obj_control.caption){
@@ -663,20 +648,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 		}
 		
 		if (obj_control.replace) {
-			if(obj_control.splitWord){
-				scr_splitWord(obj_control.inputText);
-			}
-			else{
-				if (obj_control.inputText == "") {
-					obj_control.inputText = "NULL";
-				}
-				if(obj_control.fromDropDown){
-					scr_replaceWord(obj_control.rightClickWordID,obj_control.inputText);
-				}
-				else{
-					scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
-				}
-			}
+			scr_dialogueBoxReplace();
 		}
 		
 		if (obj_control.swapLine) {
@@ -689,16 +661,7 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			global.userName = obj_control.inputText;
 		}
 		if (obj_control.newTagCategory) {
-			// Will instead input this string into a column in the Tag grid
-			if (obj_panelPane.tokenContentsHeaderListSize == 4) {
-				obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
-			}
-			else if(obj_panelPane.tokenContentsHeaderListSize == 5) {
-				obj_control.dynamicWordGrid_colTag2Label = obj_control.inputText;
-			}
-			else{
-				obj_control.dynamicWordGrid_colTag3Label = obj_control.inputText;
-			}
+			scr_dialogueBoxNewTagCategory();
 		}
 		
 		with (obj_panelPane) {
@@ -842,32 +805,17 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 		scr_dialogueBoxNewCustomFieldUnit();
 	}
 	if (obj_control.newCustomTagToken) {
-		var mapKey = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
-		var tempList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-		ds_list_add(tempList, obj_control.inputText);
-			
+		scr_dialogueBoxNewCustomTagToken();
 	}
 	if (obj_control.newCustomTagUnit) {
-		var mapKey = ds_list_find_value(global.unitImportColNameList, obj_control.unitImportColToChange);
-		var tempList = ds_map_find_value(global.unitImportTagMap, mapKey);
-		ds_list_add(tempList, obj_control.inputText);
+		scr_dialogueBoxNewCustomTagUnit();
 	}
 	if (obj_control.rename) {
 			ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 	}
 	
 	if (obj_control.recolor) {
-			if( string_digits(obj_control.inputText) == "" ){
-				show_message( "Numbers only" );
-			}
-			else{
-				if( grid != obj_chain.stackChainGrid){
-					for(var i = 0; i < ds_list_size(listOfWordID);i++){
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(obj_control.inputText)));
-					}
-				}
-				ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
-			}
+		scr_dialogueBoxRecolor();
 	}
 		
 	if(obj_control.caption){
@@ -875,20 +823,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	}
 	
 	if (obj_control.replace) {
-		if(obj_control.splitWord){
-			scr_splitWord(obj_control.inputText);
-		}
-		else{
-			if (obj_control.inputText == "") {
-				obj_control.inputText = "NULL";
-			}
-			if(obj_control.fromDropDown){
-				scr_replaceWord(obj_control.rightClickWordID,obj_control.inputText);
-			}
-			else{
-				scr_replaceWord(obj_control.newWordHoverWordID,obj_control.inputText);
-			}
-		}	
+		scr_dialogueBoxReplace();
 	}
 	
 	if (obj_control.swapLine) {
@@ -901,16 +836,7 @@ if ( keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 		global.userName = obj_control.inputText;
 	}
 	if (obj_control.newTagCategory) {
-		// Will instead input this string into a column in the Tag grid
-		if(obj_panelPane.tokenContentsHeaderListSize == 4) {
-			obj_control.dynamicWordGrid_colTag1Label = obj_control.inputText;
-		}
-		else if(obj_panelPane.tokenContentsHeaderListSize == 5) {
-			obj_control.dynamicWordGrid_colTag2Label = obj_control.inputText;
-		}
-		else{
-			obj_control.dynamicWordGrid_colTag3Label = obj_control.inputText;
-		}
+		scr_dialogueBoxNewTagCategory();
 	}
 	
 	//input_text_set_text(instance, "");
