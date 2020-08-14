@@ -332,11 +332,11 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	
 	//draw token selection button
-	var ascendButtonSize = (tabHeight / 2);
-	var ascendRectX1 = wordViewButtonX - 16 - ascendButtonSize;
-	var ascendRectY1 = wordViewButtonY - (tabHeight / 5);
-	var ascendRectX2 = ascendRectX1 + ascendButtonSize;
-	var ascendRectY2 = ascendRectY1 + ascendButtonSize;
+	var dropDownButtonSize = sprite_get_width(spr_dropDown);
+	var dropDownRectX1 = wordViewButtonX - 16 - dropDownButtonSize;
+	var dropDownRectY1 = y + (dropDownButtonSize * 0.2);
+	var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;
+	var dropDownRectY2 = y + tabHeight - (dropDownButtonSize * 0.2);
 	
 
 
@@ -362,9 +362,9 @@ for (var i = 0; i < headerListSize; i++) {
 		
 		
 		//user interaction for token selection
-		if (point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
+		if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
 			draw_set_color(global.colorThemeBorders);
-			draw_rectangle(ascendRectX1- clipX, ascendRectY1 - clipY, ascendRectX2 - clipX, ascendRectY2 - clipY, true);
+			draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY, dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
 
 			//ascendYScale = (ascendActivated) ? 1 : -1;
 			if (mouse_check_button_released(mb_left)) {
@@ -432,12 +432,7 @@ for (var i = 0; i < headerListSize; i++) {
 
 		draw_set_color(global.colorThemeBorders);
 		draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
-		if(i == chosenCol){
-			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2)- clipX, mean(ascendRectY1, ascendRectY2)- clipY, 1, ascendYScale, 0, c_white, 1);
-		}
-		else{
-			draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2)- clipX, mean(ascendRectY1, ascendRectY2)- clipY, 1, 1, 0, c_white, 1);
-		}
+		draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
 	
 	
 
