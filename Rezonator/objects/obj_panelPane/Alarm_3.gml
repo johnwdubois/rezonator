@@ -329,7 +329,7 @@ ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colFunc, 2, "Mute")
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colDesc, 2, "Mute audio [toggle]");
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colHide, 2, false);
 
-var helpGridHeightAdvanced = 2;
+var helpGridHeightAdvanced = 4;
 ds_grid_resize(functionHelp_helpGridAdvanced, functionHelp_helpGridWidth, helpGridHeightAdvanced);
 var altOption = "";
 if( os_type = os_macosx){
@@ -344,10 +344,20 @@ ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, "Sh
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, "Sort lines in random order");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 0, false);
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "["+ altOption + "] [SHIFT] d");
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, "Developer");
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, "Turn on Developer view");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "[Right Click] on speaker");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, "Shuffle");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, "Sort lines in random order");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 1, false);
+
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "[Right Click] on speaker");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, "Reset Order");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 2, "Resets the lines into their original order");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 2, false);
+
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 3, "["+ altOption + "] [SHIFT] d");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 3, "Developer");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 3, "Turn on Developer view");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 3, false);
 /*
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "["+ altOption + "] [SHIFT] u");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, "User-word");
@@ -404,17 +414,17 @@ ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 5, f
 
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 6, "[Right Click] on speaker");
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 6, "Swap");
-ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 6, "Move to Nav window Clique Tab");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 6, "Swap this line with another line");
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 6, false);
 
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 7, "[Right Click] on speaker");
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 7, "Shuffle");
-ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 7, "Drag from word for multiple links");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 7, "Sort lines in random order");
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 7, false);
 
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 8, "[Right Click] on speaker");
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colFunc, 8, "Reset Order");
-ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 8, "Drag from line labels for a QuickStack");
+ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colDesc, 8, "Resets the lines into their original order");
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colHide, 8, false);
 
 ds_grid_set(functionHelp_helpGridRightClick, functionHelp_helpGrid_colKey, 9, "[Right Click] on speaker");
