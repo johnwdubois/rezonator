@@ -1,14 +1,18 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+if (live_call()) return live_result;
+
 draw_set_alpha(1);
-draw_set_font(fnt_mainBold);
+draw_set_font(global.fontMainBold);
+menuHeight = string_height("A") * 1.35;
+menuWidth = string_width("Advanced");
 
 // draw menu bar
 draw_set_colour(global.colorThemeBG);
 draw_rectangle(0, 0, camera_get_view_width(view_camera[0]), menuHeight, false);
 draw_set_colour(global.colorThemeBorders);
-draw_rectangle(-1, -1, camera_get_view_width(view_camera[0])+1, menuHeight, true);
+draw_rectangle(-1, -1, camera_get_view_width(view_camera[0]) + 1, menuHeight, true);
 	
 // draw selection box and outline for file
 /*if(mouseOverFile){
@@ -61,7 +65,7 @@ if(mouseOverSortPane){
 //draw text fore boxes
 draw_set_colour(global.colorThemeText);
 draw_set_halign(fa_center);
-draw_set_valign(fa_top);
+draw_set_valign(fa_middle);
 //var menuOptionY = 0;
 //var menuOptionX = 100;
 	
@@ -70,13 +74,13 @@ draw_set_valign(fa_top);
 	draw_text(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1)), menuHeight - 25, headerString);		
 }*/
 for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++){
-	if(ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)){
+	if (ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)) {
 		draw_set_colour(global.colorThemeOutOfBounds);
 		draw_rectangle((menuWidth * menuHeaderLoop) - 1, -1, menuWidth * (menuHeaderLoop + 1), menuHeight, false);
 		draw_set_colour(global.colorThemeText);
 	}
 	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
-	draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(menuHeight - 25), headerString);		
+	draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(mean(y, y + menuHeight)), headerString);		
 }
 
 /*draw_text(mean(0, menuWidth), menuHeight - 25,"File");

@@ -12,17 +12,31 @@
 	Author: Terry DuBois
 */
 
-
-
-
-var ableToMouseover = true;
-var windowHeight = (ds_list_size(optionList) * optionSpacing);
-textBuffer = 10;
-
 draw_set_font(global.fontMain);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
+
+var ableToMouseover = true;
+optionSpacing = string_height("A") * 1.25;
+var windowHeight = (ds_list_size(optionList) * optionSpacing);
+textBuffer = 10;
+
+
+// loop through list to get windowWidth
+var optionListSize = ds_list_size(optionList);
+var maxStrWidth = originalWindowWidth;
+for (var i = 0; i < optionListSize; i++) {
+	var currentOptionStr = string(ds_list_find_value(optionList, i));
+	var currentOptionStrWidth = string_width(currentOptionStr) + (textBuffer * 2);
+	if (currentOptionStrWidth > maxStrWidth) {
+		maxStrWidth = currentOptionStrWidth;
+	}
+}
+windowWidth = maxStrWidth;
+
+
+
 
 if (ds_list_size(optionList) <= 0) {
 	instance_destroy();
@@ -33,9 +47,7 @@ if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight
 	mouseOverDropDown =  true;
 }
 
-optionSpacing = string_height("A") * 1.25;
 var optionListSize = ds_list_size(optionList);
-var maxStrWidth = windowWidth;
 for (var i = 0; i < optionListSize; i++) {
 	var optionRectX1 = x;
 	var optionRectY1 = y + (optionSpacing * i);
@@ -60,10 +72,6 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_rectangle(optionRectX1, optionRectY1, optionRectX2, optionRectY2, false);
 	
 	var optionText = ds_list_find_value(optionList, i);
-	var optionStrWidth = string_width(optionText) + (textBuffer * 2);
-	if (optionStrWidth > maxStrWidth) {
-		maxStrWidth = optionStrWidth;
-	}
 	
 	draw_set_color(c_black);
 	draw_text(optionRectX1 + textBuffer, mean(optionRectY1, optionRectY2), optionText);
@@ -77,7 +85,6 @@ for (var i = 0; i < optionListSize; i++) {
 		scr_dropDownSelect(optionSelected);
 	}
 }
-windowWidth = maxStrWidth;
 
 if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left)) {
 	if (room == rm_mainScreen) {
