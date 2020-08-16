@@ -120,44 +120,47 @@ for (var i = 0; i < colAmount; i++) {
 				currentCell = "";
 			}
 			
-			
+			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
+			if (currentLevel == global.levelToken || currentLevel == global.levelUnit) {
 			
 				var dropDownButtonX1 = floor(colX + colWidth - 4 - global.scrollBarWidth - buttonRectSize);
 				var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
 				var dropDownButtonX2 = floor(dropDownButtonX1 + buttonRectSize);
 				var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
-			
-				if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
-					draw_set_color(global.colorThemeBG);
-					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 				
-					if (mouse_check_button_pressed(mb_left)) {
-						obj_importMapping.inDropDown = true;
-					}
-					if (mouse_check_button_released(mb_left)) {
-						obj_importMapping.colToChange = i;
-						obj_importMapping.rowToChange = j;
+				if (!instance_exists(obj_dropDown)) {
+					if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+						draw_set_color(global.colorThemeBG);
+						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+						if (mouse_check_button_pressed(mb_left)) {
+							obj_importMapping.inDropDown = true;
+						}
+						if (mouse_check_button_released(mb_left)) {
+							obj_importMapping.colToChange = i;
+							obj_importMapping.rowToChange = j;
 					
-						var dropDownOptionList = ds_list_create();
+							var dropDownOptionList = ds_list_create();
 						
-						if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
-							ds_list_add(dropDownOptionList, "Speaker", "UnitStart", "UnitEnd", "UnitDelim", "TurnDelim");
-						}
-						if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
-							ds_list_add(dropDownOptionList, "Display Token");
-						}
-						if (ds_list_size(dropDownOptionList) > 0) {
-							var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
-							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = 32;
+							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
+								ds_list_add(dropDownOptionList, "Speaker", "UnitStart", "UnitEnd", "UnitDelim", "TurnDelim");
+							}
+							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
+								ds_list_add(dropDownOptionList, "Display Token");
+							}
+							if (ds_list_size(dropDownOptionList) > 0) {
+								var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
+								dropDownInst.optionList = dropDownOptionList;
+								dropDownInst.optionListType = 32;
+							}
 						}
 					}
 				}
 			
 				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
-			
+			}
 			
 		}
 		
@@ -175,27 +178,30 @@ for (var i = 0; i < colAmount; i++) {
 						//draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
 			//if (point_in_rectangle(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
-				draw_set_color(global.colorThemeBG);
-				draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, false)
 				
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
-				mouseOverLevel = true;
-				if (mouse_check_button_pressed(mb_left)) {
-					obj_importMapping.inDropDown = true;
-				}
-				if (mouse_check_button_released(mb_left)) {
-					obj_importMapping.colToChange = i-1;
-					obj_importMapping.rowToChange = j;
+				if (!instance_exists(obj_dropDown)) {
+					draw_set_color(global.colorThemeBG);
+					draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, false)
+				
+					draw_set_color(global.colorThemeBorders);
+					draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
+					mouseOverLevel = true;
+					if (mouse_check_button_pressed(mb_left)) {
+						obj_importMapping.inDropDown = true;
+					}
+					if (mouse_check_button_released(mb_left)) {
+						obj_importMapping.colToChange = i-1;
+						obj_importMapping.rowToChange = j;
 					
-					var dropDownOptionList = ds_list_create();
+						var dropDownOptionList = ds_list_create();
 
-					ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
+						ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
 
-					if (ds_list_size(dropDownOptionList) > 0 ) {
-						var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
-						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = 12;
+						if (ds_list_size(dropDownOptionList) > 0 ) {
+							var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
+							dropDownInst.optionList = dropDownOptionList;
+							dropDownInst.optionListType = 12;
+						}
 					}
 				}
 			}
