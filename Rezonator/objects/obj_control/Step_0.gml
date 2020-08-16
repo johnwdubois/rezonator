@@ -13,7 +13,7 @@
 */
 
 shortcutsEnabled = true;
-
+//if (live_call()) return live_result;
 /*
 if (instance_exists(obj_input_
 
@@ -132,6 +132,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
 			}
 		}
+		else if(mouse_wheel_down()) {
+			scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
+		}
 		if(holdDownArrowKey > 45) {
 				holdArrowMod = 2;
 		}
@@ -152,6 +155,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);
 			}
+		}
+		else if(mouse_wheel_up()) {
+			scrollSpeed = (min(arrowSpeed, 25) *1.5);
 		}
 		if(holdUpArrowKey > 45) {
 				holdArrowMod = 2;
@@ -560,9 +566,35 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 	}
 	else {
-		with(obj_panelPane) {
+		ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
+		scr_refreshLineGridPixelY();
+		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+		/*with(obj_panelPane) {
 			functionSort_performSort = true;
-		}
+			show_message("performTrue");
+			if (functionSort_performSort) {
+				functionSort_performSort = false;
+	
+				scr_gridMultiColSort(selectedGrid, colSort[0, 0], colSort[0, 1], colSort[1, 0], colSort[1, 1], colSort[2, 0], colSort[2, 1], colSort[3, 0], colSort[3, 1]);
+	
+				switch (selectedGrid) {
+					case obj_control.lineGrid:
+						show_message("selectedLine");
+						scr_refreshLineGridDisplayRow(obj_control.lineGrid);
+						scr_refreshLineGridPixelY();
+						break;
+					case obj_control.searchGrid:
+						scr_refreshLineGridDisplayRow(obj_control.searchGrid);
+						scr_refreshLineGridPixelY();
+						break;
+					default:
+						break;
+				}
+	
+				functionSort_animationSeq = 0;
+				functionSort_animationAlpha = 1;
+			}
+		}*/
 	}
 }
 

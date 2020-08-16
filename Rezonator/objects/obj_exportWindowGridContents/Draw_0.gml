@@ -1,4 +1,4 @@
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 // this window should only exist if hideAll is true and exportWindowGridList exists
 if (!obj_control.hideAll or !instance_exists(obj_exportWindowGridList)) {

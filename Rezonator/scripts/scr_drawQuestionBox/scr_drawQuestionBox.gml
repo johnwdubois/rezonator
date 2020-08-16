@@ -1,6 +1,6 @@
 
 /*
-	scr_drawSearchBox();
+	scr_drawQuestionBox();
 	
 	Last Updated: 2019-06-25
 	

@@ -4,6 +4,7 @@ switch (optionSelected)
 {	
 	
 	case "Default":
+	// need to make this into custopm message
 		show_message("Click or Drag on Speaker Labels to create default stacks.");
 		if(obj_toolPane.currentMode == obj_toolPane.modeRead ) {
 			obj_toolPane.currentMode = obj_toolPane.modeTrack;	

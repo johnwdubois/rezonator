@@ -340,8 +340,8 @@ else{
 }
 
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "["+ altOption + "] [SHIFT] e");
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, "Shuffle");
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, "Sort lines in random order");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, "Shuffle/Reset Order");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, "Toggle between shuffling lines and resetting order");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "[Right Click] on speaker");
