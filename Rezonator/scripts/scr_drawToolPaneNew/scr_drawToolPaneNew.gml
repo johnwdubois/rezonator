@@ -59,6 +59,7 @@ for (var i = 0; i < 3; i++) {
 		if (mouse_check_button_released(mb_left)) {
 			if (i == 0) {
 				currentMode = modeRead;
+				obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 			}
 			else if (i == 1) {
 				currentMode = modeTrack;
