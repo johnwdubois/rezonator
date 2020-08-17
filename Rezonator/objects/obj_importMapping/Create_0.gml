@@ -69,3 +69,6 @@ canContinueToken = true;
 canContinueUnit = true;
 
 scr_checkTokenCount();
+
+canPressMinus = true;
+canPressPlus = true;

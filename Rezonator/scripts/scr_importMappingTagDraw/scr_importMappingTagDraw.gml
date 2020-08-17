@@ -1,4 +1,6 @@
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
+
+scr_fontSizeControlOpeningScreen();
 
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
@@ -7,7 +9,7 @@ var stringHeight = string_height("0");
 
 // Import Screen Title
 draw_set_color(global.colorThemeText);
-draw_set_font(fnt_mainBold);
+draw_set_font(global.fontMainBold);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
@@ -25,15 +27,15 @@ draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(fileInfoWindowRectX1, fileInfoWindowRectY1, fileInfoWindowRectX2, fileInfoWindowRectY2, true);
 draw_set_color(global.colorThemeText);
-draw_set_font(fnt_mainBold);
+draw_set_font(global.fontMainBold);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), "Summary");
 
-draw_set_font(fnt_main);
+draw_set_font(global.fontMain);
 draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, "File name: " + filename_name(global.importFilename));
-draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + stringHeight*2), "Total Line Count: " + string(ds_grid_height(global.importGrid)));
-draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + (stringHeight)*3), "Markers Found: " + string(ds_grid_height(global.tagInfoGrid)));
+draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + stringHeight * 2.5), "Total Line Count: " + string(ds_grid_height(global.importGrid)));
+draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + (stringHeight) * 4), "Markers Found: " + string(ds_grid_height(global.tagInfoGrid)));
 
 
 
@@ -124,7 +126,7 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 	draw_set_alpha(1);
 	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
 
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
 	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
@@ -138,7 +140,7 @@ else {
 	var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
 	var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
 	
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
 	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Please Select a Default Display Token and Display Unit.");
@@ -146,10 +148,20 @@ else {
 
 //fileInfoWindowRectX1, fileInfoWindowRectY1
 
-var loadPreviousButtonWidth = 200;
+
+draw_set_color(global.colorThemeText);
+draw_set_font(global.fontMainBold);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_text(floor(fileInfoWindowRectX1), floor(fileInfoWindowRectY2 + 50), "Import Fields");
+
+
+
+
+var loadPreviousButtonWidth = max(200, string_width(" Use Last Import Schema "));
 var loadPreviousButtonHeight = 30;
-var loadPreviousButtonRectX1 = fileInfoWindowRectX1 + 240 - (loadPreviousButtonWidth / 2);
-var loadPreviousButtonRectY1 = fileInfoWindowRectY2 +50- (loadPreviousButtonHeight / 2);
+var loadPreviousButtonRectX1 = fileInfoWindowRectX1 + string_width("ImportFields    ");
+var loadPreviousButtonRectY1 = fileInfoWindowRectY2 + 50 - (loadPreviousButtonHeight / 2);
 var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
 var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
 	
@@ -188,7 +200,20 @@ draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousButtonRectX2, loadPreviousButtonRectY2, true);
 
-draw_set_font(fnt_main);
+draw_set_font(global.fontMain);
 draw_set_halign(fa_center);
 draw_set_color(global.colorThemeText);
 draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), "Use Last Import Schema");
+
+/*
+var saveScehmaBuffer = 20;
+var saveSchemaButtonRectX1 = loadPreviousButtonRectX2 + saveScehmaBuffer;
+var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
+var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + string_width("  Save Schema  ");
+var saveSchemaButtonRectY2 = loadPreviousButtonRectY2;
+
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
+draw_set_halign(fa_center);
+draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Schema");
+

@@ -1,7 +1,11 @@
+if (live_call()) return live_result;
+
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 
 var colAmount = global.tagInfoGridWidth;
+
+scr_windowCameraAdjust();
 
 
 // Tag Info window
@@ -10,8 +14,8 @@ var tagInfoWindowRectY1 = (camHeight / 2) - 100;
 var tagInfoWindowRectX2 = (camWidth) - 50;
 var tagInfoWindowRectY2 = camHeight - 150;
 
-windowWidth = clamp(tagInfoWindowRectX2 - tagInfoWindowRectX1, 48, 2000);
-windowHeight = clamp(tagInfoWindowRectY2 - tagInfoWindowRectY1, 48, 1500);
+windowWidth = max(tagInfoWindowRectX2 - tagInfoWindowRectX1, 48);
+windowHeight = max(tagInfoWindowRectY2 - tagInfoWindowRectY1, 48);
 clipWidth = windowWidth;
 clipHeight = windowHeight;
 
@@ -50,7 +54,7 @@ var buttonRectSize = rowHeight - 10;
 
 
 // Draw Tag Info window contents
-draw_set_font(fnt_main);
+draw_set_font(global.fontMain);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
@@ -166,25 +170,24 @@ for (var i = 0; i < colAmount; i++) {
 		
 		
 		draw_set_color(global.colorThemeText);
-		draw_set_font(fnt_main);
+		draw_set_font(global.fontMain);
 		draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
 		
-		if (i == global.tagInfoGrid_colLevel+1) {
+		if (i == global.tagInfoGrid_colLevel) {
 			
-			var ascendRectX1 = floor(colX   - clipX) - 4 - buttonRectSize;
-			var ascendRectY1 = floor(plusY + 5 + scrollPlusY - clipY);
-			var ascendRectX2 = ascendRectX1 + buttonRectSize;
-			var ascendRectY2 = ascendRectY1 + buttonRectSize;
-						//draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
-			//if (point_in_rectangle(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
-			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, floor(colX ) - 4 - buttonRectSize, floor(plusY + 5  + scrollPlusY), floor(colX) - 4 + buttonRectSize, floor(plusY + 5  + scrollPlusY ) + buttonRectSize)) {
+			var dropDownButtonX1 = floor(colX + colWidth - 4 - buttonRectSize);
+			var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
+			var dropDownButtonX2 = dropDownButtonX1 + buttonRectSize;
+			var dropDownButtonY2 = dropDownButtonY1 + buttonRectSize;
+
+			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
 				
 				if (!instance_exists(obj_dropDown)) {
 					draw_set_color(global.colorThemeBG);
-					draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, false)
+					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
 				
 					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
+					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 					mouseOverLevel = true;
 					if (mouse_check_button_pressed(mb_left)) {
 						obj_importMapping.inDropDown = true;
@@ -209,14 +212,9 @@ for (var i = 0; i < colAmount; i++) {
 				mouseOverLevel = false;
 			}
 		
-
-		
-			var ascendYScale = -1; //(functionChainList_sortAsc[i]) ? 1 : -1;
-			draw_sprite_ext(spr_dropDown, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
+			draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
 		
 		}
-		
-		//show_message(string(ascendRectX1) + " "  + string(ascendRectX2));
 
 		plusY += rowHeight;
 	}
@@ -302,7 +300,7 @@ for (var i = 0; i < colAmount; i++) {
 		headerStr = "Special Fields";
 	}
 
-	draw_set_font(fnt_mainBold);
+	draw_set_font(global.fontMainBold);
 	draw_set_color(global.colorThemeText);
 	draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
 	
@@ -343,11 +341,6 @@ scrollPlusY = min(scrollPlusY, 0);
 scr_surfaceEnd();
 
 
-draw_set_color(global.colorThemeText);
-draw_set_font(fnt_mainBold);
-draw_set_halign(fa_left);
-draw_set_valign(fa_middle);
-draw_text(floor(tagInfoWindowRectX1), floor(tagInfoWindowRectY1 - string_height("0")), "Import Fields");
 
 
 

@@ -12,12 +12,14 @@
 
 if (live_call()) return live_result;
 
+scr_fontSizeControlOpeningScreen();
+
 //Work in here to set the new menu buttons
-draw_set_font(fnt_mainLarge2);
+draw_set_font(global.fontMain);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
-var buttonWidth = 250;
+var buttonWidth = max(camera_get_view_width(view_camera[0]) * 0.15, string_width("Play and Learn  "));
 var buttonHeight = 65;
 var middleBuffer = 115;
 var verticalYSpacing = 50;
@@ -178,9 +180,9 @@ draw_text(mean(openTutorialButtonX1, openTutorialButtonX2), mean(openTutorialBut
 var signInXBuffer = 12;
 var signInYBuffer = 50;
 
-var userSignInBoxX1 = camera_get_view_width(view_camera[0]) - (buttonWidth) - signInXBuffer;
+var userSignInBoxX1 = camera_get_view_width(view_camera[0]) - 250 - signInXBuffer;
 var userSignInBoxY1 = signInYBuffer;
-var userSignInBoxX2 = userSignInBoxX1 + buttonWidth;
+var userSignInBoxX2 = userSignInBoxX1 + 250;
 var userSignInBoxY2 = userSignInBoxY1 + 30;
 /*
 var userSignInBoxX1 = openTutorialButtonX1
@@ -195,7 +197,7 @@ draw_rectangle(userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY
 draw_set_color(global.colorThemeText);
 
 
-
+draw_set_font(fnt_main);
 draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, "Remember Me");
 
 draw_set_font(fnt_main);

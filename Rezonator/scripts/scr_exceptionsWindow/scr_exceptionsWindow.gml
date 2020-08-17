@@ -1,4 +1,4 @@
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
@@ -14,8 +14,9 @@ draw_set_color(global.colorThemeBorders);
 draw_set_alpha(1);
 draw_rectangle(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1, exceptionsInfoWindowRectX2, exceptionsInfoWindowRectY2, true);
 draw_set_color(global.colorThemeText);
-draw_set_font(fnt_mainBold);
+draw_set_font(global.fontMainBold);
 draw_set_halign(fa_left);
+
 draw_set_valign(fa_middle);
 draw_text(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1 - string_height("0"), "Exceptions");
 
@@ -50,7 +51,7 @@ draw_clear_alpha(c_black, 0);
 
 // draw all exception lines
 var plusY = string_height("0");
-draw_set_font(fnt_chainContents);;
+draw_set_font(global.fontChainContents);;
 var exceptionStringListSize = ds_list_size(exceptionStringList);
 for (var i = 0; i < exceptionStringListSize; i++) {
 	var currentExceptionString = ds_list_find_value(exceptionStringList, i);

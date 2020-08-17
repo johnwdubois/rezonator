@@ -315,3 +315,6 @@ global.unitImportTurnDelimColName = "";
 global.scrollBarWidth = 20;
 global.fontSize = 0;
 scr_fontGlobalUpdate();
+
+canPressMinus = true;
+canPressPlus = true;

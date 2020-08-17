@@ -4991,6 +4991,14 @@
             }
         },
         {
+            "Key": "d26cf60c-2629-4500-a718-b41abe253428",
+            "Value": {
+                "id": "25df674d-63cb-4aa2-b617-cb26e0bd3729",
+                "resourcePath": "scripts\\scr_fontSizeControlOpeningScreen\\scr_fontSizeControlOpeningScreen.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "d2807bd7-2879-4f2b-8f6f-ff56a621d954",
             "Value": {
                 "id": "a8f7f9fe-88db-4311-85a7-38738c7c3943",
@@ -6203,6 +6211,7 @@
         "fb883da0-9cc9-4b09-afcf-0a0505244148",
         "ce52c22d-a0e4-4471-b4e7-4393b46a6849",
         "69e7ecc0-ce61-4cd5-bfa8-255c686f740d",
+        "d26cf60c-2629-4500-a718-b41abe253428",
         "7e20d940-7985-454a-8044-06de16a5ed54",
         "69f178fd-8d41-4a3d-b079-887d43bd5281",
         "4780a6db-dc73-40e3-8286-7eb084a8b47b",
