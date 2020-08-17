@@ -33,9 +33,9 @@ with (obj_panelPane)
 					scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 				}
 				else {
-					with(obj_panelPane) {
-						functionSort_performSort = true;
-					}
+					ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
+					scr_refreshLineGridPixelY();
+					scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 				}
 				instance_destroy(obj_dropDown);
 				//return true;
