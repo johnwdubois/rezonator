@@ -56,12 +56,18 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 		else if (i == 1) {
 			if (device_mouse_check_button_released(0, mb_left)) {
 				scr_justifyWords();
+				if (obj_control.gridView) {
+					obj_control.gridView = false;
+				}
 			}
 		}
 		else if (i == 0) {
 			if (device_mouse_check_button_released(0, mb_left)) {
 				with (obj_control) {
 					scr_toggleTranscription();
+				}
+				if (obj_control.gridView) {
+					obj_control.gridView = false;
 				}
 			}
 		}

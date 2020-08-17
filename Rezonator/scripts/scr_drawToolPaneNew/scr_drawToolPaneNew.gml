@@ -69,6 +69,9 @@ for (var i = 0; i < 3; i++) {
 				currentMode = modeRez;
 				obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 			}
+			if (obj_control.gridView) {
+				obj_control.gridView = false;
+			}
 		}
 	
 	}
