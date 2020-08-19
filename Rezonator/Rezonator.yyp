@@ -5687,14 +5687,6 @@
             }
         },
         {
-            "Key": "eaa5c3d4-d13d-4d6c-bc31-fdbcc6739a40",
-            "Value": {
-                "id": "f70f7b87-f802-4e92-8b68-970f63dd673a",
-                "resourcePath": "datafiles_yy\/Default OGG files\/SBC054.ogg.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "eae22d17-e707-4457-8614-699be4e25216",
             "Value": {
                 "id": "d2db498b-81e6-41a3-bde9-076611781d01",
