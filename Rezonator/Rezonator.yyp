@@ -1311,6 +1311,14 @@
             }
         },
         {
+            "Key": "306eb43b-93d8-4365-b072-7b5cdbd42eb3",
+            "Value": {
+                "id": "cef62365-e0a4-416e-be16-261e627e6268",
+                "resourcePath": "views\\306eb43b-93d8-4365-b072-7b5cdbd42eb3.yy",
+                "resourceType": "GMFolder"
+            }
+        },
+        {
             "Key": "3141b34d-5f69-492e-86b9-0a3ddc657580",
             "Value": {
                 "id": "d6b12448-12f7-4eb4-8726-16d35d057072",
@@ -1951,6 +1959,14 @@
             }
         },
         {
+            "Key": "519c355e-5b13-42ad-b985-03514a4f6249",
+            "Value": {
+                "id": "7940e19b-006f-4160-bcf7-d55eeea159f5",
+                "resourcePath": "scripts\\scr_saveSCH\\scr_saveSCH.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "51fc0197-84eb-46ce-9e3a-8c566ef11d2f",
             "Value": {
                 "id": "02f599b6-ac71-4cad-95ba-c3b1132a745b",
@@ -2364,6 +2380,14 @@
                 "id": "4fe1b4c2-c2f7-4880-8d3f-52329a696d0d",
                 "resourcePath": "datafiles_yy\/Games\/Rezzles\/Saved Games\/mathRezzle - .rez.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "66472d20-826f-4196-b5d2-ce352d3605c9",
+            "Value": {
+                "id": "685cf1c3-53bd-42b8-9f08-13c5b4ad94d7",
+                "resourcePath": "scripts\\scr_loadSCH\\scr_loadSCH.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -3111,6 +3135,14 @@
             }
         },
         {
+            "Key": "86484964-a715-4f2b-ad2e-454bb5dc5430",
+            "Value": {
+                "id": "82571e95-cebd-417b-9ca8-322f34571e56",
+                "resourcePath": "datafiles_yy\\Schemas\\CoNLLU-Schema.sch.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "865aa917-8b38-45ec-a553-aa8064d73d78",
             "Value": {
                 "id": "add9c703-5ab5-47cf-8acc-db874b22e553",
@@ -3572,6 +3604,14 @@
                 "id": "e6804814-7ccb-418f-b8f4-cf7687d38760",
                 "resourcePath": "sprites\/Background_Kaguva\/Background_Kaguva.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "97984d31-2c6c-44f4-ae91-fd4d8866f3a2",
+            "Value": {
+                "id": "ba5c3719-093a-4d11-a6e7-8e23341d505c",
+                "resourcePath": "scripts\\scr_updateSchLists\\scr_updateSchLists.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -5255,6 +5295,14 @@
             }
         },
         {
+            "Key": "dd4482f2-d3c8-43a4-80ac-11cc65dbe684",
+            "Value": {
+                "id": "97b46c51-e810-4731-9cde-28c52a55c90f",
+                "resourcePath": "scripts\\scr_storeSchLists\\scr_storeSchLists.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "dd4c9bfc-8ea7-468f-9797-7a2618cd2061",
             "Value": {
                 "id": "87d01218-a0c1-4287-915d-e1f7a31e9fb8",
@@ -6242,7 +6290,9 @@
         "26f1fa2e-34e4-496b-ad6d-19f45e31327b",
         "7786c951-e5ff-4899-91d6-e76236cd0f8d",
         "24a4f03c-31b0-4a4c-b724-913a80e28037",
+        "519c355e-5b13-42ad-b985-03514a4f6249",
         "022a6748-068c-41c9-991f-89116c09318f",
+        "66472d20-826f-4196-b5d2-ce352d3605c9",
         "298bce0a-be3e-4932-90c5-e1df605faf68",
         "2b5fbeda-bf83-4451-964d-2f53d5f251a8",
         "ffa3ad1e-ce90-429c-96a5-5072e8af2a2b",
@@ -6264,6 +6314,8 @@
         "f1611a1b-3ef0-46fa-aec3-720be0dd4e9f",
         "425fdc02-29ad-4d6a-a6f5-cb9a29e2c1fb",
         "196b4bce-396a-488e-9fc6-67e5c9941630",
+        "dd4482f2-d3c8-43a4-80ac-11cc65dbe684",
+        "97984d31-2c6c-44f4-ae91-fd4d8866f3a2",
         "d7714c6a-620c-423a-a004-56a2af4eb313",
         "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
         "238d1e31-cb57-443c-b022-eb85151f4647",

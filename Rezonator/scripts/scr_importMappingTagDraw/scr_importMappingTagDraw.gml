@@ -105,17 +105,7 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 	
 		if (mouse_check_button_pressed(mb_left)) {
 			
-			var tempLevelList = ds_list_create();
-			var tempFieldsList = ds_list_create();
-			
-			for(var i = 0 ; i < ds_grid_height(global.tagInfoGrid); i++){
-				ds_list_add(tempLevelList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i));
-				ds_list_add(tempFieldsList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i));
-			}
-			ds_list_copy(global.previousLevelEstimates,tempLevelList);
-			ds_list_copy(global.previousSpecialFields,tempFieldsList);
-			ds_list_destroy(tempLevelList);
-			ds_list_destroy(tempFieldsList);
+			scr_storeSchLists();
 			//show_message(scr_getStringOfList(global.previousLevelEstimates));
 			
 			room_goto(rm_mainScreen);
@@ -155,7 +145,7 @@ draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_text(floor(fileInfoWindowRectX1), floor(fileInfoWindowRectY2 + 50), "Import Fields");
 
-
+var buttonBuffer = 20;
 
 
 var loadPreviousButtonWidth = max(200, string_width(" Use Last Import Schema "));
@@ -172,26 +162,7 @@ if (point_in_rectangle(mouse_x, mouse_y, loadPreviousButtonRectX1, loadPreviousB
 	
 	if (mouse_check_button_pressed(mb_left)) {
 			
-			
-		for(var i = 0 ; i < ds_list_size(global.previousLevelEstimates); i++){
-			
-			if(i < ds_grid_height(global.tagInfoGrid)){		
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i,ds_list_find_value(global.previousLevelEstimates,i));
-			}
-
-		}
-		//show_message(scr_getStringOfList(global.previousSpecialFields))
-		for(var i = 0 ; i < ds_list_size(global.previousSpecialFields); i++){
-			
-			if(i < ds_grid_height(global.tagInfoGrid)){		
-				var setString = string(ds_list_find_value(global.previousSpecialFields,i));
-				if(setString == "UnitDelim"){
-					global.unitImportUnitDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);	
-				}
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, setString);
-			}
-
-		}
+		scr_updateSchLists();
 
 	}
 }
@@ -204,6 +175,76 @@ draw_set_font(global.fontMain);
 draw_set_halign(fa_center);
 draw_set_color(global.colorThemeText);
 draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), "Use Last Import Schema");
+
+
+
+
+var loadSchemaButtonWidth = max(200, string_width(" Load Import Schema "));
+var loadSchemaButtonHeight = 30;
+var loadSchemaButtonRectX1 = loadPreviousButtonRectX2 + buttonBuffer;
+var loadSchemaButtonRectY1 = loadPreviousButtonRectY1;
+var loadSchemaButtonRectX2 = loadSchemaButtonRectX1 + loadSchemaButtonWidth;
+var loadSchemaButtonRectY2 = loadSchemaButtonRectY1 + loadSchemaButtonHeight;
+
+
+// Load from File
+if (point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButtonRectY1, loadSchemaButtonRectX2, loadSchemaButtonRectY2)) {
+	draw_set_color(global.colorThemeSelected1);
+	draw_rectangle(loadSchemaButtonRectX1, loadSchemaButtonRectY1, loadSchemaButtonRectX2, loadSchemaButtonRectY2, false);
+	
+	if (mouse_check_button_pressed(mb_left)) {
+			
+		scr_loadSCH();
+	
+	}
+}
+	
+draw_set_color(global.colorThemeBorders);
+draw_set_alpha(1);
+draw_rectangle(loadSchemaButtonRectX1, loadSchemaButtonRectY1, loadSchemaButtonRectX2, loadSchemaButtonRectY2, true);
+
+draw_set_font(global.fontMain);
+draw_set_halign(fa_center);
+draw_set_color(global.colorThemeText);
+draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), "Load Import Schema");
+
+
+
+var saveSchemaButtonWidth = max(200, string_width(" Save Import Schema "));
+var saveSchemaButtonHeight = 30;
+var saveSchemaButtonRectX1 = loadSchemaButtonRectX2 + buttonBuffer;
+var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
+var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + saveSchemaButtonWidth;
+var saveSchemaButtonRectY2 = saveSchemaButtonRectY1 + saveSchemaButtonHeight;
+
+
+// Save to File
+if (point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2)) {
+	draw_set_color(global.colorThemeSelected1);
+	draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, false);
+	
+	if (mouse_check_button_pressed(mb_left)) {
+		
+		//populates lists with current display
+		scr_storeSchLists();
+		
+		// User will specify a name and a location for the sch file 
+		scr_saveSCH();
+
+	}
+}
+	
+draw_set_color(global.colorThemeBorders);
+draw_set_alpha(1);
+draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
+
+draw_set_font(global.fontMain);
+draw_set_halign(fa_center);
+draw_set_color(global.colorThemeText);
+draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Import Schema");
+
+
+
 
 /*
 var saveScehmaBuffer = 20;
