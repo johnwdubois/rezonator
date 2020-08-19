@@ -14,9 +14,7 @@ for(var i = 0 ; i < ds_list_size(global.previousSpecialFields); i++){
 		var setString = string(ds_list_find_value(global.previousSpecialFields,i));
 		if(setString == "UnitDelim"){
 			global.unitImportUnitDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
-			var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
-			show_message("delim col index: "+ string(deliminaterCol));
-			show_message(string(global.unitImportUnitDelimColName) + "      name from list: "+ string(global.unitImportUnitDelimColName));
+
 		}
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, setString);
 	}
