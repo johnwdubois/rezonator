@@ -193,7 +193,7 @@ for (var i = 0; i < colAmount; i++) {
 						obj_importMapping.inDropDown = true;
 					}
 					if (mouse_check_button_released(mb_left)) {
-						obj_importMapping.colToChange = i-1;
+						obj_importMapping.colToChange = i;
 						obj_importMapping.rowToChange = j;
 					
 						var dropDownOptionList = ds_list_create();
