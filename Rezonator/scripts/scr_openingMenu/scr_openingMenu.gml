@@ -10,7 +10,7 @@
 	Mechanism: Display a multitude of buttons and track the user's clicks
 */
 
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 
 scr_fontSizeControlOpeningScreen();
 
@@ -25,36 +25,11 @@ var middleBuffer = 115;
 var verticalYSpacing = 50;
 
 
-// import new file selection
-var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
-var newProjectButtonY1 = (camera_get_view_height(view_camera[0]) * 0.40);
-var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
-var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
-
-if (point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2))
-{
-	draw_set_color(global.colorThemeSelected1);
-	draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
-	
-	if (device_mouse_check_button_released(0, mb_left))
-	{
-		global.newProject = true;
-		global.openProject = false;
-	}
-}
-
-draw_set_color(global.colorThemeBorders);
-draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
-draw_set_color(global.colorThemeText);
-draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "Import Data");
-
-
-
 
 
 // open rez selection
 var openProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2); 
-var openProjectButtonY1 = newProjectButtonY2 + verticalYSpacing;
+var openProjectButtonY1 = camera_get_view_height(view_camera[0]) * 0.40;
 var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
 
@@ -73,13 +48,41 @@ if (point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open File");
+draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open");
+
+
+
+// import new file selection
+var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+var newProjectButtonY1 = openProjectButtonY2 + verticalYSpacing;
+var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
+var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
+
+if (point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2))
+{
+	draw_set_color(global.colorThemeSelected1);
+	draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
+	
+	if (device_mouse_check_button_released(0, mb_left))
+	{
+		global.newProject = true;
+		global.openProject = false;
+	}
+}
+
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
+draw_set_color(global.colorThemeText);
+draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "Import");
+
+
+
 
 
 
 //play and learn selection
 var wheresElmoButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
-var wheresElmoButtonY1 = openProjectButtonY2 + verticalYSpacing;
+var wheresElmoButtonY1 = newProjectButtonY2 + verticalYSpacing;
 var wheresElmoButtonX2 = (camera_get_view_width(view_camera[0]) / 2) + (buttonWidth / 2);
 var wheresElmoButtonY2 = wheresElmoButtonY1 + buttonHeight;
 
@@ -104,7 +107,7 @@ if (point_in_rectangle(mouse_x, mouse_y, wheresElmoButtonX1, wheresElmoButtonY1,
 draw_set_color(global.colorThemeBorders);
 draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, true);
 draw_set_color(global.colorThemeText);
-draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), "Play and Learn");
+draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), "Play & Learn");
 
 
 
