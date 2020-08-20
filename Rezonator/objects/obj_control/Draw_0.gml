@@ -255,6 +255,10 @@ if (filterGridActive) {
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]));
 	}
+	scr_gridViewDrawBackArrow();
+}
+else if (searchGridActive) {
+	scr_gridViewDrawBackArrow();	
 }
 else {
 	

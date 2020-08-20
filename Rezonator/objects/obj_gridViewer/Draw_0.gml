@@ -53,4 +53,5 @@ draw_set_valign(fa_middle);
 //	windowWidth[i] = (window_get_width() / currentGrids) - 20;
 	
 scr_drawGridViewerClipped();
+scr_gridViewDrawBackArrow();
 //}

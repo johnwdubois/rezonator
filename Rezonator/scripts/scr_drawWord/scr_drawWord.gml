@@ -21,8 +21,8 @@ if (hitGridHeight > 0) {
 	var rowInHitGrid = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, hitGridHeight, currentWordID );
 	if ( rowInHitGrid >= 0 ) {
 	    if (ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colHitBool, rowInHitGrid)) {
-	        draw_set_font(global.fontMainBold);
-	        draw_set_color(make_color_rgb(19,69,150));        
+	        //draw_set_font(global.fontMainBold);
+	        draw_set_color(make_color_rgb(0, 97, 255));        
 	    }
 	}
 }

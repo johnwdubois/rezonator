@@ -363,7 +363,7 @@ if(global.menuOpen){
 	global.userName = obj_openingScreen.inputText;
 }
 
-draw_set_font(fnt_mainBoldLarge2);
+//draw_set_font(fnt_mainBoldLarge2);
 //draw_text((camera_get_view_width(view_camera[0]) / 2) , wheresElmoButtonY1 - 25 ,"Games");
 //draw_text((camera_get_view_width(view_camera[0]) / 2) , newProjectButtonY1 - 25 ,"Research");
 //draw_text((camera_get_view_width(view_camera[0]) / 2) , openTutorialButtonY1 - 25 ,"Tutorial");

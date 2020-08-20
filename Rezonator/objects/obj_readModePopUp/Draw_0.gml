@@ -36,5 +36,8 @@ var spriteSize = 0.25 * spriteRatio;
 draw_sprite_ext(spr_toolsNew, 8, rectX1 + 35, mean(rectY1 + 20, rectY2), spriteSize, spriteSize, 0, c_white, 1); 
 draw_sprite_ext(spr_toolsNew, 5, rectX1 + 60, mean(rectY1 + 20, rectY2) + largeHeight, spriteSize, spriteSize, 0, c_white, 1); 
 
-draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight -21 + bubblePlus, 1, 1, 270, global.colorThemeBorders, 1); 
-draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight -21 + bubblePlus, 1, 1, 270, global.colorThemeBorders, 1); 
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (bubblePlus * 3), 1.8, 1.8, 270, global.colorThemeBorders, 1); 
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (3* bubblePlus), 1.8, 1.8, 270, global.colorThemeBorders, 1); 
+var c_rez = make_color_rgb(193, 130, 93);
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (bubblePlus * 3), 1.5, 1.5, 270, c_rez, 1); 
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (3* bubblePlus), 1.5, 1.5, 270, c_rez, 1); 
