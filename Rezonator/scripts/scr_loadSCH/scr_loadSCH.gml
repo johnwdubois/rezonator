@@ -14,7 +14,7 @@
 
 
 
-var fileName = get_open_filename_ext("SCHEMA file|*.sch", "", global.rezonatorSchemaDirString, "Open Schema");
+var fileName = get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema");
 
 
 if (fileName == "" or not file_exists(fileName)) {

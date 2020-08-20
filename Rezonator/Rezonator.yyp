@@ -3138,7 +3138,7 @@
             "Key": "86484964-a715-4f2b-ad2e-454bb5dc5430",
             "Value": {
                 "id": "82571e95-cebd-417b-9ca8-322f34571e56",
-                "resourcePath": "datafiles_yy\\Schemas\\CoNLLU-Schema.sch.yy",
+                "resourcePath": "datafiles_yy\\Schemas\\CoNLLU-Schema.rzs.yy",
                 "resourceType": "GMIncludedFile"
             }
         },

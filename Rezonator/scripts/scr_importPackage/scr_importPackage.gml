@@ -80,9 +80,13 @@ if (directory_exists(global.rezonatorDirString)) {
 			directory_create(global.rezonatorDirString + "/Autosave");
 		}
 	}
-	else{
+	else {
 		if (!directory_exists(global.rezonatorDirString + "\\Autosave")) {
 			directory_create(global.rezonatorDirString + "\\Autosave");
 		}
+	}
+	
+	if (!directory_exists(global.rezonatorSchemaDirString)) {
+		directory_create(global.rezonatorSchemaDirString);
 	}
 }
