@@ -1,4 +1,4 @@
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
@@ -231,10 +231,10 @@ if (obj_importMapping.mouseoverRow >= 0) {
 		// and then set the clicked marker's display to true
 		var selectedRowLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, obj_importMapping.rezInfoGridSelectedRow);
 		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
+		/*
 		for (var i = 0; i < tagInfoGridHeight; i++) {
 			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
 			var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-		
 			if (currentLevel == selectedRowLevel ) {
 				if (selectedRowLevel == global.levelToken && currentField == "Display Token") {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, 0);
@@ -250,7 +250,7 @@ if (obj_importMapping.mouseoverRow >= 0) {
 		else if (selectedRowLevel == global.levelUnit) {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, obj_importMapping.rezInfoGridSelectedRow, "Speaker");
 		}
-		
+		*/
 	}
 }
 
