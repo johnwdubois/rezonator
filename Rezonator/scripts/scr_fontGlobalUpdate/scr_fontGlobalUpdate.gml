@@ -4,7 +4,7 @@ global.fontSize = clamp(global.fontSize, 0, 5);
 switch (global.fontSize) {
 	case 0:
 		global.fontMain = fnt_main;
-		global.fontMainBold = fnt_mainBold;
+		global.fontMainBold = fnt_main;
 		global.fontChainContents = fnt_chainContents;
 		global.fontChainList = fnt_chainList;
 		global.fontChainListFocused = fnt_chainListFocused;
@@ -15,7 +15,7 @@ switch (global.fontSize) {
 		break;
 	case 1:
 		global.fontMain = fnt_mainLarge1;
-		global.fontMainBold = fnt_mainBoldLarge1;
+		global.fontMainBold = fnt_mainLarge1;
 		global.fontChainContents = fnt_chainContentsLarge1;
 		global.fontChainList = fnt_chainListLarge1;
 		global.fontChainListFocused = fnt_chainListFocusedLarge1;
@@ -26,7 +26,7 @@ switch (global.fontSize) {
 		break;
 	case 2:
 		global.fontMain = fnt_mainLarge2;
-		global.fontMainBold = fnt_mainBoldLarge2;
+		global.fontMainBold = fnt_mainLarge2;
 		global.fontChainContents = fnt_chainContentsLarge2;
 		global.fontChainList = fnt_chainListLarge2;
 		global.fontChainListFocused = fnt_chainListFocusedLarge2;
@@ -36,7 +36,7 @@ switch (global.fontSize) {
 		break;
 	case 3:
 		global.fontMain = fnt_mainLarge3;
-		global.fontMainBold = fnt_mainBoldLarge3;
+		global.fontMainBold = fnt_mainLarge3;
 		global.fontChainContents = fnt_chainContentsLarge3;
 		global.fontChainList = fnt_chainListLarge3;
 		global.fontChainListFocused = fnt_chainListFocusedLarge3;
@@ -46,7 +46,7 @@ switch (global.fontSize) {
 		break;
 	case 4:
 		global.fontMain = fnt_mainLarge4;
-		global.fontMainBold = fnt_mainBoldLarge4;
+		global.fontMainBold = fnt_mainLarge4;
 		global.fontChainContents = fnt_chainContentsLarge4;
 		global.fontChainList = fnt_chainListLarge4;
 		global.fontChainListFocused = fnt_chainListFocusedLarge4;
@@ -56,7 +56,7 @@ switch (global.fontSize) {
 		break;
 	case 5:
 		global.fontMain = fnt_mainLarge5;
-		global.fontMainBold = fnt_mainBoldLarge5;
+		global.fontMainBold = fnt_mainLarge5;
 		global.fontChainContents = fnt_chainContentsLarge5;
 		global.fontChainList = fnt_chainListLarge5;
 		global.fontChainListFocused = fnt_chainListFocusedLarge5;
@@ -66,7 +66,7 @@ switch (global.fontSize) {
 		break;
 	default:
 		global.fontMain = fnt_main;
-		global.fontMainBold = fnt_mainBold;
+		global.fontMainBold = fnt_main;
 		global.fontChainContents = fnt_chainContents;
 		global.fontChainList = fnt_chainList;
 		global.fontChainListFocused = fnt_chainListFocused;
