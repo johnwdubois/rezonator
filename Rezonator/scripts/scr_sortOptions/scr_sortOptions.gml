@@ -9,16 +9,16 @@ with (obj_panelPane)
 		if (rowInSortGrid > -1)
 		{
 			var newSortCol = ds_grid_get(functionSort_sortGrid, functionSort_gridSortColGrid_colCol, rowInSortGrid);
-			//"discoID", "unitStart", "unitEnd", "uID", "unitID"
+			//"discoID", "Unit Start", "Unit End", "uID", "unitID"
 			switch (optionSelected)
 			{
 				case "discoID":
 					newSortCol = obj_control.lineGrid_colDiscoID;
 					break;
-				case "unitStart":
+				case "Unit Start":
 					newSortCol = obj_control.lineGrid_colUnitStart;
 					break;
-				case "unitEnd":
+				case "Unit End":
 					newSortCol = obj_control.lineGrid_colUnitEnd;
 					break;
 				case "uID":

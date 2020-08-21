@@ -12,7 +12,7 @@ for(var i = 0 ; i < ds_list_size(global.previousSpecialFields); i++){
 			
 	if(i < ds_grid_height(global.tagInfoGrid)){		
 		var setString = string(ds_list_find_value(global.previousSpecialFields,i));
-		if(setString == "UnitDelim"){
+		if(setString == "Unit Delimiter"){
 			global.unitImportUnitDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 
 		}

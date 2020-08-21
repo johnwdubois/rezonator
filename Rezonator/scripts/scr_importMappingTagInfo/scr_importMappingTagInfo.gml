@@ -149,7 +149,7 @@ for (var i = 0; i < colAmount; i++) {
 							var dropDownOptionList = ds_list_create();
 						
 							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
-								ds_list_add(dropDownOptionList, "Speaker", "UnitStart", "UnitEnd", "UnitDelim", "TurnDelim");
+								ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter");
 							}
 							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
 								ds_list_add(dropDownOptionList, "Display Token");

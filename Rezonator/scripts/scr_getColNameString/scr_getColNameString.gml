@@ -26,10 +26,10 @@ if (grid == obj_control.unitGrid) {
 			colName = "participantName";
 			break;
 		case obj_control.unitGrid_colUnitStart:
-			colName = "unitStart";
+			colName = "Unit Start";
 			break;
 		case obj_control.unitGrid_colUnitEnd:
-			colName = "unitEnd";
+			colName = "Unit End";
 			break;
 		case obj_control.unitGrid_colParticipantColor:
 			colName = "participantColor";
@@ -76,10 +76,10 @@ else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid 
 			colName = "alignedWordID";
 			break;
 		case obj_control.lineGrid_colUnitStart:
-			colName = "unitStart";
+			colName = "Unit Start";
 			break;
 		case obj_control.lineGrid_colUnitEnd:
-			colName = "unitEnd";
+			colName = "Unit End";
 			break;
 		case obj_control.lineGrid_colVoidMax:
 			colName = "voidMax";
@@ -506,10 +506,10 @@ else if (grid == obj_control.morphGrid) {
 			colName = "affix";
 			break;
 		case obj_control.morphGrid_colUnitStart:
-			colName = "unitStart";
+			colName = "Unit Start";
 			break;
 		case obj_control.morphGrid_colUnitEnd:
-			colName = "unitEnd";
+			colName = "Unit End";
 			break;
 		case obj_control.morphGrid_colGloss:
 			colName = "gloss";
