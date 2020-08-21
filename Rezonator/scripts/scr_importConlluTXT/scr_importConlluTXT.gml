@@ -13,7 +13,7 @@ var blankRow = true;
 var row = 0;
 
 var CoNLLUColNameList = ds_list_create();
-ds_list_add(CoNLLUColNameList, " ID", " FORM", " LEMMA", " UPOS", " XPOS", "FEATS", " HEAD", " DEPREL", " DEPS", " MISC");
+ds_list_add(CoNLLUColNameList, " ID", " FORM", " LEMMA", " UPOS", " XPOS", " FEATS", " HEAD", " DEPREL", " DEPS", " MISC");
 
 
 var fileOpenRead = file_text_open_read(filename);
@@ -25,7 +25,9 @@ var first3Char = string_char_at(lineInFile, 1) + string_char_at(lineInFile, 2) +
 		exit;
 	}
 
-global.importType = global.importType_CoNLLU
+global.importType = global.importType_CoNLLU;
+
+var rowCounter = 0;
 
 var widthOfImportGrid = 0;
 while (not file_text_eof(fileOpenRead)) {
@@ -126,6 +128,7 @@ while (not file_text_eof(fileOpenRead)) {
 			}
 			
 			ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
+			rowCounter++;
 			
 			// place tokens into the import grid
 			var listOfColumnsSize = ds_list_size(listOfColumns);
@@ -190,6 +193,8 @@ while (not file_text_eof(fileOpenRead)) {
 	}
 	
 }
+
+ds_grid_resize(global.importGrid, global.importGridWidth, rowCounter);
 			
 //global.plainText = true;
 global.tabDeliniatedText = true;
