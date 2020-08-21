@@ -41,8 +41,7 @@ if (showDisplayCols) {
 }
 
 obj_control.mouseoverSpeakerLabel = false;
-obj_control.mouseoverNeutralSpace = false;
-
+obj_control.mouseoverNeutralSpace = true;
 if (!hideAll) {
 	scr_drawLine();
 }
@@ -116,6 +115,8 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 80, "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 250, "fps: " + string(fps));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 270, "mouseOverNeutralSpace: " + string(mouseoverNeutralSpace));
+	
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 330, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 350, "arrowSpeed: " + string(arrowSpeed));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 370, "activeStackType: " + string(activeStackType));
