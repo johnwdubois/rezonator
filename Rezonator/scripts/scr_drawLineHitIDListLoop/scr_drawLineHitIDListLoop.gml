@@ -226,6 +226,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and not obj_chain.inRezPlay
 	and not mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
+		obj_control.mouseoverNeutralSpace = false;	
 		mouseover = true;
 		hoverWordID = currentWordID;
 		
