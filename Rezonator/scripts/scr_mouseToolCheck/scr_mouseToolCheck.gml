@@ -26,7 +26,9 @@ else {
 		}
 	}
 	
-	if ((mouse_check_button(mb_left) or mouse_check_button_released(mb_left)) and not mouseoverNeutralSpace) {
+	if ((mouse_check_button(mb_left) or mouse_check_button_released(mb_left))) {// and not mouseoverNeutralSpace) {
+		//show_message("switch");
+		
 		if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
 			obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
 		}
@@ -35,6 +37,11 @@ else {
 		}
 		else {
 			obj_toolPane.currentTool = obj_toolPane.toolPointer;
+		}
+		if (mouseoverNeutralSpace) {
+			with(obj_chain) {
+				alarm[9] = 1;
+			}
 		}
 	}
 }

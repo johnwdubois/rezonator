@@ -146,6 +146,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 		if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
 		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1) {
 			mouseover = true;
+			obj_control.mouseoverNeutralSpace = false;	
 			
 			// May need to make a hoverChunkID
 			hoverChunkID = currentWordID;

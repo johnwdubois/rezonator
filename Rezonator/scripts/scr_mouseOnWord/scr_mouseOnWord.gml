@@ -20,6 +20,7 @@ var mouseRectExists = ((abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldR
 // figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 var mouseover = false;
 if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2)) {
+	obj_control.mouseoverNeutralSpace = false;	
 	mouseover = true;
 	hoverWordID = currentWordID;
 		
@@ -95,16 +96,7 @@ and rectangle_in_rectangle(0, wordRectY1, room_width - global.scrollBarWidth, wo
 		}
 	}
 }
-else if((drawWordLoop + 1 == currentWordIDListSize) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
-and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical) and not instance_exists(obj_dropDown) and obj_control.boxRectReleased) {
-	obj_control.mouseoverNeutralSpace = true;	
-	if (device_mouse_check_button_released(0, mb_left) && !instance_exists(obj_dialogueBox)) {
-		with(obj_chain) {
-			scr_chainDeselect();
-			scr_refreshVizLinkGrid();	
-		}
-	}
-}
+
 	
 // If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
 var inMouseHoldRect = 0;	
