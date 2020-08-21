@@ -1,12 +1,12 @@
 ///@description End Chain Use
 // End chain adding/use
-if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine and (obj_panelPane.functionChainList_lineGridRowFocused > 0 and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.lineGrid))) {
+//if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine and (obj_panelPane.functionChainList_lineGridRowFocused > 0 and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.lineGrid))) {
 	scr_chainDeselect();
 
 	scr_refreshVizLinkGrid();
-}
+//}
 
-else if (obj_control.gridView) {
+if (obj_control.gridView) {
 	obj_control.gridView = false;
 }
 // If we're not in grid view and there is a search, switch between the main and search screen
