@@ -12,6 +12,9 @@ var newRow = false;
 var blankRow = true;
 var row = 0;
 
+var CoNLLUColNameList = ds_list_create();
+ds_list_add(CoNLLUColNameList, " ID", " FORM", " LEMMA", " UPOS", " XPOS", "FEATS", " HEAD", " DEPREL", " DEPS", " MISC");
+
 
 var fileOpenRead = file_text_open_read(filename);
 var tokenColListCreated = false;
@@ -89,6 +92,8 @@ while (not file_text_eof(fileOpenRead)) {
 			// Increase the width of the import grid to accomodate new columns
 			if(widthOfImportGrid <= ds_list_size(listOfColumns)){
 				var i = widthOfImportGrid;
+				var indexOfColNameList = 0;
+				
 				if(!tokensAdded){
 					var nextItterator = widthOfImportGrid;
 					widthOfImportGrid += ds_list_size(listOfColumns);
@@ -97,7 +102,13 @@ while (not file_text_eof(fileOpenRead)) {
 				}
 
 				while( i < global.importGridWidth){
-					var colName = " col" + " " + string(i);
+
+					if (indexOfColNameList >= ds_list_size(CoNLLUColNameList)) {
+						var colName = " Col " + string(i);
+					}
+					else {
+						var colName = string(ds_list_find_value(CoNLLUColNameList, indexOfColNameList));
+					}
 					
 					var col = ds_map_find_value(global.importGridColMap, colName);
 					//show_message("col: " +string(col));
@@ -107,6 +118,7 @@ while (not file_text_eof(fileOpenRead)) {
 						ds_map_add(global.importGridColMap, colName, i);
 					}
 					i++;
+					indexOfColNameList++;
 				}	
 					
 
