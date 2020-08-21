@@ -257,4 +257,8 @@ draw_set_color(global.colorThemeBorders);
 draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
 draw_set_halign(fa_center);
 draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Schema");
+*/
 
+if (tagGridHeight == 1) {
+	room_goto(rm_mainScreen)
+}

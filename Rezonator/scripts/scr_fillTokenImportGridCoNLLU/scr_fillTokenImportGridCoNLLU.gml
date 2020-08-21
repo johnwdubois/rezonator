@@ -1,4 +1,5 @@
 // fill tokenImport with UnitID, WordID, token, and transcript information
+/*
 var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
 for (var i = 0; i < tokenImportGridHeight; i++) {
 	var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, i);
@@ -11,6 +12,7 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
 }
+
 
 // fill unitImport with UnitID information
 var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
@@ -46,12 +48,14 @@ with (obj_control) {
 		}
 	}
 }
-
+*/
 
 ds_list_clear(global.tokenImportColNameList);
 ds_list_clear(global.unitImportColNameList);
 ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
 ds_list_add(global.unitImportColNameList, "UnitID", "Participant");
+
+
 
 // set custom label names for token and transcript columns
 if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1) {
@@ -106,7 +110,7 @@ with (obj_gridViewer) {
 var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
 var curUID = 0;
 var prevUID = 0;
-var unitCounter = 1;
+var unitCounter = 0;
 
 
 
@@ -118,15 +122,19 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 		curUID = ds_grid_get(global.importGrid, deliminaterCol, i);	
 	}
 	else if (i == 0) {
-		prevUID = ds_grid_get(global.importGrid, deliminaterCol, i);	
+		prevUID = ds_grid_get(global.importGrid, deliminaterCol, i);
 	}
 	
-	if(curUID != 0 && string(prevUID) != string(curUID)){
+	var delimTag = ds_grid_get(global.importGrid, deliminaterCol, i);
+	if (delimTag != 0 && string(prevUID) != string(curUID)) {
+		
+		var participantName = ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i);
+		ds_grid_set(global.unitImportGrid, global.unitImport_colUnitID, unitCounter, unitCounter+1);
+		ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, unitCounter, participantName);
 		unitCounter++;
 		prevUID = curUID;
 	}			
 	
-	//hardcoded till ui is built
 	var currentUnitID = unitCounter;
 	var currentWordID = i+1
 
@@ -143,6 +151,10 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 	
 	}
 }
+
+
+
+
 
 
 
