@@ -2,6 +2,8 @@ math_set_epsilon(0.000001);
 var importGridWidth = ds_grid_width(global.importGrid);
 var importGridHeight = ds_grid_height(global.importGrid);
 
+show_debug_message("scr_importInfoGrid, STARTING... " + scr_printTime());
+
 if (global.plainText) {
 	
 	for (var i = 0; i < importGridWidth; i++) {
@@ -27,6 +29,21 @@ if (global.plainText) {
 		}
 
 	}
+}
+else if (global.importType == global.importType_CSV) {
+	
+	// fill in CSV tagInfoGrid with basically empty rows
+	for (var i = 0; i < importGridWidth; i++) {
+	
+		var currentTag = ds_list_find_value(global.importGridColNameList, i);
+		ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, "");
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, 100);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, false);
+		
+	}
+	
 }
 else {
 	
@@ -139,3 +156,5 @@ else {
 	}
 	scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
 }
+
+show_debug_message("scr_importInfoGrid, END... " + scr_printTime());

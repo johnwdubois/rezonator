@@ -47,7 +47,7 @@ scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax)
 // For clicking and dragging scrollbar
 if (point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + global.scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - global.scrollBarWidth)) {
 	mouseoverScrollBar = true;
-	if (mouse_check_button_pressed(mb_left) and global.canScroll) {
+	if (mouse_check_button_pressed(mb_left) and global.canScroll and room == rm_mainScreen) {
 		scrollBarHolding = true;
 		global.canScroll = false;
 		obj_control.mouseoverNeutralSpace = false;

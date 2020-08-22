@@ -106,7 +106,7 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 		if (mouse_check_button_pressed(mb_left)) {
 			
 			scr_storeSchLists();
-			//show_message(scr_getStringOfList(global.previousLevelEstimates));
+			show_debug_message("Continue button clicked... " + scr_printTime());
 			
 			room_goto(rm_mainScreen);
 		}

@@ -1,0 +1,1 @@
+return "The time is " + string(current_hour) + ":" + string(current_minute) + "." + string(current_second);

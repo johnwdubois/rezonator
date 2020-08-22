@@ -2,12 +2,10 @@
 
 var filename = argument0;
 
-show_message("STARTING!");
 //load csv into grid
 //global.importCSVGrid = scr_CSVtoGrid(filename);
 //global.importCSVGrid = load_csv(filename);
 global.importCSVGrid = scr_CSVtoGrid2(filename, true);
-show_message("END!");
 
 
 //copy headers into list
@@ -41,6 +39,8 @@ global.importCSVGridWidth = ds_grid_width(global.importCSVGrid);
 global.importType = global.importType_CSV;
 
 global.tabDeliniatedText = true;
+
+show_debug_message("scr_importCSV() Going to import screen...");
 
 
 room_goto(rm_importScreen);

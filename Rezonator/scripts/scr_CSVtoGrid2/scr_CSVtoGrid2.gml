@@ -23,6 +23,8 @@ if ( argument_count < 1 ) or ( argument_count > 5 ) {
 	return undefined;
 }
 
+show_debug_message("scr_CSVtoGrid2, STARTING... " + scr_printTime());
+
 var _filename         = argument[0];
 var _force_strings    = false;
 var _cell_delimiter   = chr(44); //comma
@@ -74,7 +76,6 @@ if !( ( _bom_a == 239 ) and ( _bom_b == 187 ) and ( _bom_c == 191 ) ) {
 //Iterate over the buffer
 for( var _i = 0; _i < _size; _i++ ) {
 	
-	show_debug_message("_i: " + string(_i) +  ", _size: " + string(_size));
 
 	_prev_val = _val;
 	var _val = buffer_read( _buffer, buffer_u8 );
@@ -119,7 +120,7 @@ for( var _i = 0; _i < _size; _i++ ) {
 			if ( _prev_val == _string_delimiter_ord ) {
 			    _str += _string_delimiter;
 			    continue;
-			}
+			};
 
 		}
 
@@ -218,4 +219,6 @@ if ( _str != "" ) {
 if ( _newline ) ds_grid_resize( _grid, _max_width, _sheet_height-1 );
 
 buffer_delete( _buffer );
+
+show_debug_message("scr_CSVtoGrid2, END... " + scr_printTime());
 return _grid;
