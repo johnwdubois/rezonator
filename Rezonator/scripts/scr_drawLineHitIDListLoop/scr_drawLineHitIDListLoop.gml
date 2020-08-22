@@ -221,6 +221,9 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 	
 	//Prevent the mouse from clicking on words/lines while releasing from a drag
 	var mouseRectExists = ((abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5) or (abs(obj_control.mouseHoldRectX1 - obj_control.mouseHoldRectX2) > 5));
+	if(mouseRectExists) {
+		obj_control.mouseoverNeutralSpace = false;		
+	}
 	
 	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 	var mouseover = false;
