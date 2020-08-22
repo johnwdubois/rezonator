@@ -1,5 +1,7 @@
 //pickwhippedRow = -1;
 
+show_debug_message("obj_importMapping Create STARTING... " + scr_printTime());
+
 mouseoverRow = -1;
 
 showDevVars = false;
@@ -68,7 +70,11 @@ loopItterations = 0;
 canContinueToken = true;
 canContinueUnit = true;
 
-scr_checkTokenCount();
+if (global.importType != global.importType_CSV) {
+	scr_checkTokenCount();
+}
 
 canPressMinus = true;
 canPressPlus = true;
+
+show_debug_message("obj_importMapping Create END... " + scr_printTime());

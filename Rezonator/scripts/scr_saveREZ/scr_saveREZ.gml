@@ -19,6 +19,7 @@ var autosave = argument0;
 	autosave = false;
 }*/
 
+show_debug_message("scr_saveREZ(), STARTING... " + scr_printTime());
 
 
 if (not autosave) {
@@ -235,3 +236,5 @@ ds_map_destroy(wrapper);
 if (not autosave) {
 	obj_control.allSaved = true;
 }
+
+show_debug_message("scr_saveREZ(), END... " + scr_printTime());
