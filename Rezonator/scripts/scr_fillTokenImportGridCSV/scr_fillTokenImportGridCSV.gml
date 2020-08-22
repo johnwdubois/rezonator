@@ -124,11 +124,30 @@ var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_c
 
 
 // fill tokenImport with UnitID, WordID, token, and transcript information
+var prevUnitID = -1;
+var unitCounter = 0;
 var tokenImportGridHeight = ds_grid_height(global.importGrid);
 for (var i = 0; i < tokenImportGridHeight; i++) {
+	
+	if (i > 0) {
+		currentUnitID = ds_grid_get(global.importGrid, deliminaterCol, i);	
+	}
+	else if (i == 0) {
+		prevUnitID = ds_grid_get(global.importGrid, deliminaterCol, i);
+	}
+	
 	//hardcoded till ui is built
 	var currentUnitID = ds_grid_get(global.importGrid, deliminaterCol , i);
 	var currentWordID = i+1
+	
+	if (prevUnitID != currentUnitID) {
+		ds_grid_set(global.unitImportGrid, global.unitImport_colUnitID, unitCounter, unitCounter + 1);
+		var particiantName = ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i);
+		ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, unitCounter, particiantName);
+		
+		unitCounter++;
+		prevUnitID = unitCounter;
+	}
 
 	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 	var currentWordToken = ds_grid_get(global.importGrid, importGrid_colDisplayToken, i);
