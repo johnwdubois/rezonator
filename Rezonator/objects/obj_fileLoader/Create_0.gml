@@ -77,4 +77,7 @@ global.importedSpecialFields = false;
 global.unitTagMapFilled = false;
 global.tokenTagMapFilled = false;
 
-//alarm[2] = 3600;
+
+
+// Used for auto-saving REZ's from CSVs
+alarm[6] = 10;
