@@ -42,7 +42,7 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 	
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
-	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
+	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and not obj_control.scrollBarHolding) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		
