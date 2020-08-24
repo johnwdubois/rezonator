@@ -1,8 +1,8 @@
 {
-    "id": "519c355e-5b13-42ad-b985-03514a4f6249",
+    "id": "66472d20-826f-4196-b5d2-ce352d3605c9",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "scr_saveSCH",
+    "name": "scr_loadRZS",
     "IsCompatibility": false,
     "IsDnD": false
 }

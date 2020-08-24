@@ -1,5 +1,5 @@
-var colX3 = string_digits(scr_getValueFromString(global.iniFileString, "SpeakerLabelX3:", ","));
-var colX4 = string_digits(scr_getValueFromString(global.iniFileString, "SpeakerLabelX4:", ","));
+var colX3 = ds_list_find_value(obj_control.speakerLabelColXList,2);
+var colX4 = ds_list_find_value(obj_control.speakerLabelColXList,2)
 
 if (colX3 != "" and colX4 != "") {
 	
