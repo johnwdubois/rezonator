@@ -13,7 +13,7 @@ allowedToChange = true;
 
 draw_set_font(global.fontMain);
 popUpText1 = "You are in Read Mode.";
-popUpText2 = string_hash_to_newline("To mark up your text, select one:#Track mode (to mark coreference between mentions)#Rez mode (to mark resonance between words)");
+popUpText2 = string_hash_to_newline("To mark up your text,#select one of the modes in the top right window:#Track mode (to mark coreference between mentions)#Rez mode (to mark resonance between words)");
 rectX1 = mouse_x + 75;
 rectY1 = mouse_y;
 rectX2 = rectX1 + 40 + string_width("Track mode (to mark coreference between mentions)");

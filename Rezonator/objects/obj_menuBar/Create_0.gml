@@ -53,7 +53,7 @@ editOptionList = ds_list_create();
 ds_list_add(editOptionList, "Insert", "Paste", "Delete", "Edit", "Split", "Restore", "Chunk", "Tag");*/
 
 viewOptionList = ds_list_create();
-ds_list_add(viewOptionList, "Pane", "Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");
+ds_list_add(viewOptionList, "Pane", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");//"Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");
 
 searchOptionList = ds_list_create();
 ds_list_add(searchOptionList, "Word", "Line", "Time");
