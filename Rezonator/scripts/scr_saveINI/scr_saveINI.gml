@@ -71,7 +71,7 @@ ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 
 	ds_map_add(map,"previousImportDirectory", global.previousImportDirectory);
 
-	
+	ds_map_add(map,"fileExtentionOrder", global.fileExtentionOrder);
 
 
 var wrapper = ds_map_create();

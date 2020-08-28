@@ -81,8 +81,9 @@ if (file_exists(fileName)) {
 
 			global.previousImportDirectory = ds_map_find_value(map, "previousImportDirectory"); 
 		
-		
-		
+			if(ds_map_find_value(map, "fileExtentionOrder") != undefined){
+				global.fileExtentionOrder = ds_map_find_value(map, "fileExtentionOrder"); 
+			}
 
 			global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");
 			global.previousLevelEstimates = ds_map_find_value(map, "previousLevelEstimates");

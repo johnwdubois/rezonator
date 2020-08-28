@@ -31,12 +31,15 @@ else{
 }
 
 //show_message(string(discourseDirString) + "   Does exist : " + string(directory_exists(discourseDirString)));
-openedFile = get_open_filename_ext("TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json", "", discourseDirString, "Import File");
+openedFile = get_open_filename_ext(global.fileExtentionOrder, "", discourseDirString, "Import File");
+
+
 
 if (openedFile == "" or not file_exists(openedFile)) {
 	exit;
 }
 else{
+	scr_updateFileExtOrder(openedFile);
 	global.previousImportDirectory = filename_path(openedFile);
 }
 

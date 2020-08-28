@@ -1231,6 +1231,14 @@
             }
         },
         {
+            "Key": "2a523ac8-0a65-4e95-adc9-7f414ba7c8b3",
+            "Value": {
+                "id": "cd850c89-7462-48cd-aca0-5801ef16e1fd",
+                "resourcePath": "scripts\\scr_updateFileExtOrder\\scr_updateFileExtOrder.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "2aee7e22-88ab-41c0-a666-16ae2d679962",
             "Value": {
                 "id": "b49ec1dd-2ba9-44c4-8a59-153544590c5b",
@@ -6856,6 +6864,7 @@
         "196b4bce-396a-488e-9fc6-67e5c9941630",
         "dd4482f2-d3c8-43a4-80ac-11cc65dbe684",
         "97984d31-2c6c-44f4-ae91-fd4d8866f3a2",
+        "2a523ac8-0a65-4e95-adc9-7f414ba7c8b3",
         "d7714c6a-620c-423a-a004-56a2af4eb313",
         "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
         "238d1e31-cb57-443c-b022-eb85151f4647",
