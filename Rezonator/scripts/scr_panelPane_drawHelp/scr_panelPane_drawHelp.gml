@@ -140,7 +140,7 @@ else {
 	}
 }
 
-obj_control.mouseoverHelpHelpPane = false;
+obj_control.mouseoverHelpPane = false;
 
 // If helpBox is in view, draw the outline of the box and its contents
 if !(abs(functionHelp_plusX - camWidth) < 0.1) {
@@ -159,7 +159,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	functionHelp_helpWindowRectY2 = helpWindowY2;
 	
 	if (point_in_rectangle(mouse_x, mouse_y, helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2)) {
-		obj_control.mouseoverHelpHelpPane = true;
+		obj_control.mouseoverHelpPane = true;
 		if (mouse_wheel_up() or keyboard_check(vk_up)) {
 			scrollPlusYDest += 12;
 		}
