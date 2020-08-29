@@ -201,7 +201,7 @@ if (point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButto
 
 // if this is an importGroup, load the schema file automatically and then goto main screen
 if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
-	scr_loadSCH();
+	scr_loadRZS();
 	importGroupSchemaLoaded = true;
 	alarm[2] = 3;
 }
