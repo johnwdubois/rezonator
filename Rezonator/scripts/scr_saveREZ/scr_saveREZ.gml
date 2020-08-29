@@ -67,7 +67,7 @@ with (obj_saveParent) {
 	var map = ds_map_create();
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
-	
+
 	var mapObjectIndex = object_get_name(object_index);
 	ds_map_add(map, "objectIndex", mapObjectIndex);
 	
@@ -109,6 +109,7 @@ with (obj_saveParent) {
 		ds_map_add_list(map, "importGridColNameList", tempList);
 		
 
+
 		
 		//custom label saves
 		ds_map_add_list(map, "tokenImport", maptokenImport);
@@ -129,11 +130,7 @@ with (obj_saveParent) {
 		//save special feild colnames
 		ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
 		ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
-		
-		
-		
-	
-		
+			
 		
 		if (global.stackGrabSave) {
 			ds_map_add(map, "subLineGridBeginning", obj_fileLoader.subLineGridBeginning);
@@ -170,20 +167,30 @@ with (obj_saveParent) {
 		ds_map_add(map, "chainColorID2", chainColorID[2]);
 		ds_map_add(map, "chainColorID3", chainColorID[3]);
 	}
-	var tempMap = ds_map_create();
-	ds_map_copy(tempMap, global.tokenImportTagMap);
-	ds_map_add_map(map, "tokenImportTagMap", tempMap);
-	var tempMap2 = ds_map_create();
-	ds_map_copy(tempMap2, global.unitImportTagMap);
-	ds_map_add_map(map, "unitImportTagMap", tempMap2);
+	
+		var tempMap = ds_map_create();
+		ds_map_copy(tempMap, global.tokenImportTagMap);
+		ds_map_add_map(map, "tokenImportTagMap", tempMap);
+
+		var tempMap2 = ds_map_create();
+		ds_map_copy(tempMap2, global.unitImportTagMap);
+		ds_map_add_map(map, "unitImportTagMap", tempMap2);
+	
+
 }
 
 var wrapper = ds_map_create();
+show_debug_message(scr_getStringOfList(rootList));
 ds_map_add_list(wrapper, "ROOT", rootList);
 
+show_debug_message("AFter map created");
+
+
 var jsonString = json_encode(wrapper);
+show_debug_message("AFter json encoded");
 jsonString = scr_jsonBeautify(jsonString);
 
+show_debug_message("AFter json beautified");
 if (autosave) {
 	if(global.games) {
 		var gameSaveDirString = (global.rezzles ? global.rezonatorRezzlesSaveDirString : global.rezonatorElmoSaveDirString) ;
@@ -234,6 +241,16 @@ if (autosave) {
 }
 else {
 	scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
+}
+
+for(var i = 0; i < ds_list_size(rootList); i++)
+{
+    var map = rootList[| i];
+    map[? "importGridColNameList"] = undefined;
+    map[? "tokenImportColNameList"] = undefined;
+    map[? "unitImportColNameList"] = undefined;
+    map[? "tokenImportTagMap"] = undefined;
+    map[? "unitImportTagMap"] = undefined;
 }
 
 ds_map_destroy(wrapper);

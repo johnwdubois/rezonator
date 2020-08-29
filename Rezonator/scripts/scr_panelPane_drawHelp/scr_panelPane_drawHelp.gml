@@ -30,7 +30,7 @@ var mouseoverHelp = false;
 //if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 //	mouseoverHelp = true;
 //}
-var toggleButtonAmount = 4;
+var toggleButtonAmount = 3;
 var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
 
 for(var i = 0; i < toggleButtonAmount; i++) {
@@ -42,18 +42,18 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 	
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
-	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
+	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and not obj_control.scrollBarHolding) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		
 		obj_panelPane.hoverTime[i]++;
 		
-		if (i == 2) {
+		if (i == 1) {
 			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_control.gridView = !obj_control.gridView;
 			}
 		}
-		else if (i == 1) {
+		else if (i == 0) {
 			if (device_mouse_check_button_released(0, mb_left)) {
 				scr_justifyWords();
 				if (obj_control.gridView) {
@@ -61,7 +61,7 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 				}
 			}
 		}
-		else if (i == 0) {
+		/*else if (i == 0) {
 			if (device_mouse_check_button_released(0, mb_left)) {
 				with (obj_control) {
 					scr_toggleTranscription();
@@ -70,7 +70,7 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 					obj_control.gridView = false;
 				}
 			}
-		}
+		}*/
 		else {
 			mouseoverHelp = true;
 		}
@@ -79,15 +79,15 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 		obj_panelPane.hoverTime[i] = 0;
 	}
 	
-	if (i == 2) {
+	if (i == 1) {
 		draw_sprite_ext(spr_gridViewToggle, obj_control.gridView, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
-	else if (i == 1) {
+	else if (i == 0) {
 		draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
-	else if (i == 0) {
+	/*else if (i == 0) {
 		draw_sprite_ext(spr_transcriptionToggle, (obj_control.wordTokenView) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
-	}
+	}*/
 	else {
 		draw_sprite_ext(spr_helpToggle, !functionHelp_collapsed, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 	}
@@ -140,7 +140,7 @@ else {
 	}
 }
 
-obj_control.mouseoverHelpHelpPane = false;
+obj_control.mouseoverHelpPane = false;
 
 // If helpBox is in view, draw the outline of the box and its contents
 if !(abs(functionHelp_plusX - camWidth) < 0.1) {
@@ -159,7 +159,7 @@ if !(abs(functionHelp_plusX - camWidth) < 0.1) {
 	functionHelp_helpWindowRectY2 = helpWindowY2;
 	
 	if (point_in_rectangle(mouse_x, mouse_y, helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2)) {
-		obj_control.mouseoverHelpHelpPane = true;
+		obj_control.mouseoverHelpPane = true;
 		if (mouse_wheel_up() or keyboard_check(vk_up)) {
 			scrollPlusYDest += 12;
 		}
@@ -369,7 +369,7 @@ for (var i = 0; i < toggleButtonAmount; i++) {
 		obj_toolPane.ToolTipPosY = mouse_y;
 	}
 	else if(obj_panelPane.hoverTime[i] > obj_toolPane.hoverTimeLimit){
-		if (i == 0) {
+		/*if (i == 0) {
 			if(obj_control.wordTokenView){
 				displayString = "Token View"
 			}
@@ -377,8 +377,8 @@ for (var i = 0; i < toggleButtonAmount; i++) {
 				displayString = "Transcript View"
 			}
 			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");
-		}
-		else if (i == 1) {
+		}*/
+		if (i == 0) {
 			if (obj_control.shape == obj_control.shapeBlock) {
 				displayString = "Column View"
 			}
@@ -388,7 +388,7 @@ for (var i = 0; i < toggleButtonAmount; i++) {
 			}
 			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString, "top" );
 		}
-		else if (i == 2) {
+		else if (i == 1) {
 			if (obj_control.gridView) {
 				displayString = "Grid View"
 			}
@@ -397,7 +397,7 @@ for (var i = 0; i < toggleButtonAmount; i++) {
 			}
 			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");
 		}
-		else if (i == 3) {
+		else if (i == 2) {
 			scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Help", "top");
 		}
 	}

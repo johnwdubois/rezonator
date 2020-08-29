@@ -92,6 +92,7 @@ for (var i = 0; i < 4; i++) {
 			ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 			ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDListUnitGrid);
 		}
+		scr_refreshChainGrid();
 	}
 }
 

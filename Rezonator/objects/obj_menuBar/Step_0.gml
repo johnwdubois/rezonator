@@ -2,11 +2,21 @@
 // You can write your code in this editor
 if(point_in_rectangle(mouse_x, mouse_y, 0, 0, camera_get_view_width(view_camera[0]), menuHeight)){
 	obj_control.mouseoverPanelPane = true;
+	with(obj_chain) {
+		scr_chainDeselect();
+		scr_refreshVizLinkGrid();		
+	}
+	
 }
 
 for (var menuSelectionLoop = 0; menuSelectionLoop < menuBarGridHeight; menuSelectionLoop++){
 	
 	if(point_in_rectangle(mouse_x, mouse_y, menuWidth * menuSelectionLoop, 0, menuWidth * (menuSelectionLoop + 1), menuHeight)){
+		obj_control.mouseoverPanelPane = true;
+		with(obj_chain) {
+			scr_chainDeselect();
+			scr_refreshVizLinkGrid();		
+		}
 		instance_destroy(obj_dropDown);
 		ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
 		ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuSelectionLoop, true);

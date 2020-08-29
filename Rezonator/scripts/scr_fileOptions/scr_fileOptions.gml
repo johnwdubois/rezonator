@@ -102,7 +102,7 @@ switch (optionSelected)
 		
 		audio_stop_all();
 	
-		scr_userSettingsIniFile();
+		scr_saveINI();
 	
 	
 		if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {

@@ -194,7 +194,7 @@ if (point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButto
 	
 	if (mouse_check_button_pressed(mb_left)) {
 			
-		scr_loadSCH();
+		scr_loadRZS();
 	
 	}
 }
@@ -236,7 +236,7 @@ if (point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButto
 		scr_storeSchLists();
 		
 		// User will specify a name and a location for the sch file 
-		scr_saveSCH();
+		scr_saveRZS();
 
 	}
 }

@@ -222,31 +222,60 @@ if (grid != -1) {
 				draw_set_alpha(1);
 	
 				// Check for double click
-				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and device_mouse_check_button_released(0, mb_left)) {
-					if (doubleClickTimer > -1) {
+				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
+					if( device_mouse_check_button_released(0, mb_left)) {
+						if (doubleClickTimer > -1) {
 				
-						var rowInLineGrid = -1;
+							var rowInLineGrid = -1;
 				
-						// Set double clicked word to center display row, if possible
-						if (functionChainList_currentTab == functionChainList_tabStackBrush
-						or functionChainList_currentTab == functionChainList_tabClique) {
-							var currentUnitID = currentWordID;
-							rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+							// Set double clicked word to center display row, if possible
+							if (functionChainList_currentTab == functionChainList_tabStackBrush
+							or functionChainList_currentTab == functionChainList_tabClique) {
+								var currentUnitID = currentWordID;
+								rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+							}
+							else {
+								var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+								rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+							}
+					
+							if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {
+								//var displayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, rowInLineGrid);
+								//obj_control.currentCenterDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, displayRow);
+								var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
+								obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+							}
 						}
 						else {
-							var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-							rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-						}
-					
-						if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {
-							//var displayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, rowInLineGrid);
-							//obj_control.currentCenterDisplayRow = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, displayRow);
-							var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-							obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+							doubleClickTimer = 0;
 						}
 					}
-					else {
-						doubleClickTimer = 0;
+					if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
+
+						if(!instance_exists(obj_dialogueBox)){
+							obj_control.rightClickWordID = currentWordID;
+							obj_control.rightClickUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+							obj_control.rightClickWordSeq =  ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);;
+						}
+
+						obj_control.rightClickonWord = true;
+						obj_control.wideDropDown = true;
+						var dropDownOptionList = ds_list_create();
+						if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
+							ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word", "Delete Link");
+						}
+						else{
+							ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word");
+						}
+						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+							var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+							dropDownInst.optionList = dropDownOptionList;
+							dropDownInst.optionListType = 8;
+					
+							obj_control.ableToCreateDropDown = false;
+							obj_control.alarm[0] = 2;
+						}
+
 					}
 		
 				}

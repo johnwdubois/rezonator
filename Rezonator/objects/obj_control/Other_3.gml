@@ -2,7 +2,8 @@ with (obj_fpsTracker) {
 	scr_fpsTrackerFile();
 }
 
-scr_userSettingsIniFile();
+
+scr_saveINI();
 
 
 

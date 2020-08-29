@@ -103,12 +103,15 @@ switch (obj_toolPane.currentTool) {
 }
 
 mouseLineHide = false;
-for (var i = 0; i < instance_number(obj_panelPane); i++) {
+/*for (var i = 0; i < instance_number(obj_panelPane); i++) {
 	var currentPanelPaneInst = instance_find(obj_panelPane, i);
 	
 	if (point_in_rectangle(mouse_x, mouse_y, currentPanelPaneInst.x, currentPanelPaneInst.y, currentPanelPaneInst.x + currentPanelPaneInst.windowWidth, currentPanelPaneInst.y + currentPanelPaneInst.windowHeight)) {
 		mouseLineHide = true;
 	}
+}*/
+if(obj_control.mouseoverPanelPane) {
+	mouseLineHide = true;
 }
 
 

@@ -16,7 +16,7 @@ switch (optionSelected)
 		}
 	break;
 	
-	case "Word":
+	/*case "Word":
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, "Text", "Transcript");
 						
@@ -28,7 +28,7 @@ switch (optionSelected)
 			obj_control.ableToCreateDropDown = false;
 			obj_control.alarm[0] = 2;
 		}
-	break;
+	break;*/
 	
 	case "Justify":
 		var dropDownOptionList = ds_list_create();

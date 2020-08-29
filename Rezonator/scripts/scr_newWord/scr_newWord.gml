@@ -63,6 +63,9 @@ obj_control.moveCounter++;
 ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 
+ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid) + 1);
+var currentRowTokenImportGrid = ds_grid_height(global.tokenImportGrid) - 1;
+
 var wordID = ds_grid_height(obj_control.wordGrid);
 var utteranceID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1);
 
@@ -73,6 +76,10 @@ ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, currentRo
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, wordSeq + 1);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordToken);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
+ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, currentRowTokenImportGrid, wordID);
+ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, currentRowTokenImportGrid, unitID);
+ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, currentRowTokenImportGrid, wordToken);
+ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentRowTokenImportGrid, wordTranscript);
 
 // Fill in the new row of the DynamicWordGrid
 scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);

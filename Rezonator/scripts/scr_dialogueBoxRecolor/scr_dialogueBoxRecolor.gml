@@ -1,4 +1,4 @@
-if( string_digits(obj_control.inputText) == "" ){
+/*if( string_digits(obj_control.inputText) == "" ){
 	show_message( "Numbers only" );
 }
 else{
@@ -8,4 +8,4 @@ else{
 		}
 	}
 	ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
-}
+}*/

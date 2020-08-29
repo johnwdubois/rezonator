@@ -1,5 +1,5 @@
 /*
-	scr_saveSch(autosave);
+	scr_saveRzs();
 	
 	Last Updated: 2020-08-19
 	

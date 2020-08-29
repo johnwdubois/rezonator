@@ -52,7 +52,7 @@ for (var i = 0; i < 3; i++) {
 	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 
 	
-	if (mouseover) {
+	if (mouseover and not obj_control.scrollBarHolding) {
 		hoverTime[i]++;
 
 		//show_message("BUH: " + string(hoverTime) );

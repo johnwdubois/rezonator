@@ -4,14 +4,14 @@ var standardHeight = string_height("A");
 draw_set_font(global.fontMain);
 var largeHeight = string_height("A");
 var spriteRatio = largeHeight/standardHeight;
-var spriteSize = 1.75 * spriteRatio;
+var spriteSize = 2 * spriteRatio;
 
 var spriteWidth = sprite_get_width(spr_backArrow) * spriteSize;
 var spriteHeight = sprite_get_height(spr_backArrow) * spriteSize;
 
 
 var backArrowX = spriteWidth / 2;
-var backArrowY = (obj_menuBar.menuHeight) + spriteHeight / 3;
+var backArrowY = camera_get_view_height(view_camera[0]) - spriteHeight / 3;
 //show_message("arrow");
 draw_sprite_ext(spr_backArrow, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
 
