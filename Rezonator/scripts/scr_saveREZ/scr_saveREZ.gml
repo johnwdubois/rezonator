@@ -203,6 +203,15 @@ if (autosave) {
 		}
 	}
 	else {
+		
+		if (directory_exists(global.importGroupOutputDir)) {
+			var importGroupFileName = ds_list_find_value(global.importGroupFileList, global.importGroupFileIndex);
+			var importGroupFilePath = global.importGroupOutputDir + "\\" + filename_change_ext(filename_name(importGroupFileName), "") + ".rez";
+			show_debug_message("importGroupFileIndex: " + string(global.importGroupFileIndex) + ", Saving to: " + string(importGroupFilePath));
+			scr_saveFileBuffer(importGroupFilePath, importGroupFilePath, jsonString);
+			global.importGroupFileIndex++;
+		}
+		
 		if(os_type == os_macosx){
 			if (directory_exists(global.rezonatorDirString + "/Autosave")) {
 		
@@ -238,3 +247,7 @@ if (not autosave) {
 }
 
 show_debug_message("scr_saveREZ(), END... " + scr_printTime());
+
+if (autosave && directory_exists(global.importGroupOutputDir)) {
+	room_goto(rm_openingScreen);
+}

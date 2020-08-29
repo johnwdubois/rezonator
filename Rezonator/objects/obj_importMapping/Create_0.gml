@@ -77,4 +77,6 @@ if (global.importType != global.importType_CSV) {
 canPressMinus = true;
 canPressPlus = true;
 
+importGroupSchemaLoaded = false;
+
 show_debug_message("obj_importMapping Create END... " + scr_printTime());

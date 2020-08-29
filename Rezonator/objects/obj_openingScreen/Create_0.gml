@@ -318,3 +318,5 @@ scr_fontGlobalUpdate();
 
 canPressMinus = true;
 canPressPlus = true;
+
+alarm[2] = 1;

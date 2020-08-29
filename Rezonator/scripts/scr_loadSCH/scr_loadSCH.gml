@@ -12,9 +12,8 @@
 	Author: Terry DuBois
 */
 
-
-
-var fileName = get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema");
+var fileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+show_debug_message("scr_loadSCH, schema fileName: " + string(fileName));
 
 
 if (fileName == "" or not file_exists(fileName)) {
