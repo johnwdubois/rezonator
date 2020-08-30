@@ -1,5 +1,9 @@
 // CSV group import
 if (keyboard_check(vk_shift) && keyboard_check(vk_control) && keyboard_check_released(ord("I"))) {
+	
+	global.importGroupOutputDir = get_string("Type in output directory for REZ files", "");
+	show_message("Directory exists: " + string(directory_exists(global.importGroupOutputDir)));
+	
 	var filename = "";
 	filename = get_open_filename("CSV file|*.csv", "");
 	global.importGroupDir = filename_dir(filename);
