@@ -1,3 +1,5 @@
+show_debug_message("scr_fillTokenImportGrid(), STARTING..." + scr_printTime());
+
 // fill tokenImport with UnitID, WordID, token, and transcript information
 var tokenImportGridHeight = ds_grid_height(obj_control.wordGrid);
 
@@ -161,3 +163,5 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		}
 	}
 }
+
+show_debug_message("scr_fillTokenImportGrid(), ENDING..." + scr_printTime());

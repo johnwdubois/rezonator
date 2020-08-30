@@ -13,6 +13,8 @@
 	Author: Terry DuBois
 */
 
+show_debug_message("obj_fileLoader Alarm 1, STARTING... " + scr_printTime());
+
 // if this is the first autosave, we will update the tokenImport and unitImport
 if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid)) {	
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
@@ -38,5 +40,8 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 }
 
 alarm[1] = 36000;
+
+show_debug_message("obj_fileLoader Alarm 1, ENDING... " + scr_printTime());
+
 
 scr_saveREZ(true);

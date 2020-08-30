@@ -18,7 +18,7 @@ window_set_cursor(cr_default);
 
 scr_colorThemeGridInit();
 
-
+ 
 global.toolPaneWidth = 100;
 
 global.versionString = string(game_display_name);
