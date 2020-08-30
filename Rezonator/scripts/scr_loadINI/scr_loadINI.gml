@@ -52,8 +52,8 @@ if (file_exists(fileName)) {
 	var list = ds_map_find_value(wrapper, "ROOT");
 	
 	if (is_undefined(list)) {
-		show_message("Error loading " + fileName);
-		game_restart();
+		show_debug_message("Error loading " + fileName);
+		//game_restart();
 		exit;
 	}
 	
