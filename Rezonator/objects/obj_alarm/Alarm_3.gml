@@ -1,5 +1,5 @@
 var colX3 = ds_list_find_value(obj_control.speakerLabelColXList,2);
-var colX4 = ds_list_find_value(obj_control.speakerLabelColXList,2)
+var colX4 = ds_list_find_value(obj_control.speakerLabelColXList,3)
 
 if (colX3 != "" and colX4 != "") {
 	

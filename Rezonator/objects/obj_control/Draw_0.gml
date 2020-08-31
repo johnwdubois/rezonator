@@ -117,7 +117,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 80, "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 250, "fps: " + string(fps));
-	draw_text(camera_get_view_width(view_camera[0]) - 500, 270, "mouseOverHelpPane: " + string(mouseoverHelpHelpPane));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 270, "mouseOverHelpPane: " + string(mouseoverHelpPane));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 330, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 350, "arrowSpeed: " + string(arrowSpeed));
