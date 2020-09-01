@@ -11,7 +11,8 @@
         "c5730232-5434-4ad2-a9f1-d9403309ef67",
         "53702831-cfea-4a2b-abc4-1974162ec3bf",
         "0ca14705-3253-40a9-be2d-e59549dd3247",
-        "365247b8-c26f-4d72-a32b-17bfc4c7a686"
+        "365247b8-c26f-4d72-a32b-17bfc4c7a686",
+        "d4845042-3932-4ef2-b50e-b1b8916580fd"
     ],
     "filterType": "GMScript",
     "folderName": "functions",

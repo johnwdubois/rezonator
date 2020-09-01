@@ -1,3 +1,5 @@
+show_debug_message("scr_fillTokenImportGridCSV(), STARTING..." + scr_printTime());
+
 // fill tokenImport with UnitID, WordID, token, and transcript information
 var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
 for (var i = 0; i < tokenImportGridHeight; i++) {
@@ -11,6 +13,8 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
 }
+
+show_debug_message("scr_fillTokenImportGridCSV(), FINISHED LOOP 1" + scr_printTime());
 
 // fill unitImport with UnitID information
 var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
@@ -29,6 +33,8 @@ for (var i = 0; i < unitGridHeight; i++) {
 
 	ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, i, currentParticipant);
 }
+
+show_debug_message("scr_fillTokenImportGridCSV(), FINISHED LOOP 2" + scr_printTime());
 
 
 
@@ -64,8 +70,9 @@ if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 4) != -1)
 	ds_list_set(global.tokenImportColNameList, 3, labelName);
 }
 
-
+show_debug_message("scr_fillCustomLabelGrid(), STARTING... " + scr_printTime());
 scr_fillCustomLabelGrid();
+show_debug_message("scr_fillCustomLabelGrid(), ENDING... " + scr_printTime());
 
 
 // check how many token level markers and unit level markers there are
@@ -81,6 +88,8 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		unitMarkers++;
 	}
 }
+
+show_debug_message("scr_fillTokenImportGridCSV(), FINISHED LOOP 3" + scr_printTime());
 	
 	
 	var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
@@ -124,11 +133,30 @@ var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_c
 
 
 // fill tokenImport with UnitID, WordID, token, and transcript information
+var prevUnitID = -1;
+var unitCounter = 0;
 var tokenImportGridHeight = ds_grid_height(global.importGrid);
 for (var i = 0; i < tokenImportGridHeight; i++) {
+	
+	if (i > 0) {
+		currentUnitID = ds_grid_get(global.importGrid, deliminaterCol, i);	
+	}
+	else if (i == 0) {
+		prevUnitID = ds_grid_get(global.importGrid, deliminaterCol, i);
+	}
+	
 	//hardcoded till ui is built
 	var currentUnitID = ds_grid_get(global.importGrid, deliminaterCol , i);
 	var currentWordID = i+1
+	
+	if (prevUnitID != currentUnitID) {
+		ds_grid_set(global.unitImportGrid, global.unitImport_colUnitID, unitCounter, unitCounter + 1);
+		var particiantName = ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i);
+		ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, unitCounter, particiantName);
+		
+		unitCounter++;
+		prevUnitID = unitCounter;
+	}
 
 	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 	var currentWordToken = ds_grid_get(global.importGrid, importGrid_colDisplayToken, i);
@@ -144,6 +172,8 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 	}
 }
 
+show_debug_message("scr_fillTokenImportGridCSV(), FINISHED LOOP 4" + scr_printTime());
+
 
 
 var currentTokenImportCol = 4;
@@ -151,6 +181,8 @@ var currentUnitImportCol = 2;
 
 // actually fill in all the cells of tokenImportGrid and unitImportGrid
 for (var i = 0; i < customLabelGridHeight; i++) {
+	
+	show_debug_message("scr_fillTokenImportGridCSV(), LOOP 5, i: " + string(i) + ", customLabelGridHeight: " + string(customLabelGridHeight) + "..." + scr_printTime());
 
 	var importGridCol = -1;
 	var currentMarker = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colMarker, i);
@@ -230,3 +262,6 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		}
 	}
 }
+
+show_debug_message("scr_fillTokenImportGridCSV(), FINISHED LOOP 5" + scr_printTime());
+show_debug_message("scr_fillTokenImportGridCSV(), ENDING..." + scr_printTime());

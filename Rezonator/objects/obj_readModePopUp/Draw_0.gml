@@ -33,8 +33,11 @@ var standardHeight = string_height(popUpText1);
 var spriteRatio = largeHeight/standardHeight;
 var spriteSize = 0.25 * spriteRatio;
 
-draw_sprite_ext(spr_toolsNew, 8, rectX1 + 35, mean(rectY1 + 20, rectY2), spriteSize, spriteSize, 0, c_white, 1); 
-draw_sprite_ext(spr_toolsNew, 5, rectX1 + 60, mean(rectY1 + 20, rectY2) + largeHeight, spriteSize, spriteSize, 0, c_white, 1); 
+draw_sprite_ext(spr_toolsNew, 8, rectX1 + 35, mean(rectY1 + 45, rectY2), spriteSize, spriteSize, 0, c_white, 1); 
+draw_sprite_ext(spr_toolsNew, 5, rectX1 + 60, mean(rectY1 + 45, rectY2) + largeHeight, spriteSize, spriteSize, 0, c_white, 1); 
 
-draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight -21 + bubblePlus, 1, 1, 270, global.colorThemeBorders, 1); 
-draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight -21 + bubblePlus, 1, 1, 270, global.colorThemeBorders, 1); 
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (bubblePlus * 3), 2.5, 2.5, 270, global.colorThemeBorders, 1); 
+draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (3* bubblePlus), 2.5, 2.5, 270, global.colorThemeBorders, 1); 
+var c_rez = c_maroon;//make_color_rgb(193, 130, 93);
+draw_sprite_ext(spr_linkArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 41 + (bubblePlus * 3), 1, 1, 90, c_rez, 0.85); 
+draw_sprite_ext(spr_linkArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 41 + (3* bubblePlus), 1, 1, 90, c_rez, 0.85); 

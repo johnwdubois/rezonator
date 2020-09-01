@@ -279,5 +279,5 @@ if (ds_grid_height(global.unitImportGrid) <= ds_grid_height(obj_control.unitGrid
 
 
 if (ds_grid_width(global.importCSVGrid) <= 0) {
-	scr_fillTokenImportGrid();
+	//scr_fillTokenImportGrid();
 }

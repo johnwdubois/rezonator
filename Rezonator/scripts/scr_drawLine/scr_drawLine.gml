@@ -88,7 +88,7 @@ if (!obj_control.showParticipantName) {
 	ds_list_set(obj_control.speakerLabelColXList, 3, ds_list_find_value(obj_control.speakerLabelColXList, 2));
 }
 speakerLabelMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1);
-if (speakerLabelColXHolding > -1 || !obj_control.showParticipantName) {
+if (speakerLabelColXHolding > -1) {// || !obj_control.showParticipantName) {
 	wordLeftMargin = speakerLabelMargin + 20;
 }
 
@@ -161,6 +161,9 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	if(obj_toolPane.currentMode != obj_toolPane.modeRead and currentWordIDListSize > 0) {
 		
 		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
+		if(mouseRectExists) {
+			obj_control.mouseoverNeutralSpace = false;		
+		}
 		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_stackShow) and !instance_exists(obj_dialogueBox)) {
 			//show_message("here");
 			inMouseHoldRect = rectangle_in_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
@@ -173,6 +176,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 			}
 		}
 		else if((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2)) {
+			obj_control.mouseoverNeutralSpace = false;
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 				//show_message("here");
 				var currentWordID = ds_list_find_value(currentWordIDList, 0);
@@ -184,7 +188,11 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 	}
 	else if(currentWordIDListSize > 0 and obj_toolPane.currentMode == obj_toolPane.modeRead) {
 		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
+		if(mouseRectExists) {
+			obj_control.mouseoverNeutralSpace = false;		
+		}
 		if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2))) {
+			obj_control.mouseoverNeutralSpace = false;
 			if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 				//show_message("here");
 				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);

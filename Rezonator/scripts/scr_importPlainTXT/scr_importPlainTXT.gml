@@ -2,7 +2,7 @@ var filename = argument0;
 global.importFilename = filename;
 
 var fileOpenRead = file_text_open_read(filename);
-
+ds_grid_clear(global.importGrid, 0);
 global.importGridWidth = 2
 ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid));
 

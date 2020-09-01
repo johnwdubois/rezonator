@@ -119,8 +119,8 @@ for (var i = 0; i < lineGridHeight; i++) {
 		focusedLineNameRectY1 = lineNameRectY1;
 		focusedLineNameRectY2 = lineNameRectY2;
 		focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
-		draw_set_font(global.fontChainListFocused);
-		//draw_set_font(global.fontMain);
+		//draw_set_font(global.fontChainListFocused);
+		draw_set_font(global.fontMain);
 	}
 	else {
 		draw_set_font(global.fontMain);
@@ -228,7 +228,7 @@ if (clickedIn) {
 
 if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
 	draw_set_color(global.colorThemeBorders);
-	for (var j = 0; j < 3; j++) {
+	for (var j = 0; j < 4; j++) {
 		draw_rectangle(x + j - clipX, focusedLineNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedLineNameRectY2 - j - clipY, true);
 	}
 }

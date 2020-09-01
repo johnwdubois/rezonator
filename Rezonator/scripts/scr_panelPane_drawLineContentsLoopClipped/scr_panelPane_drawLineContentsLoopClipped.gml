@@ -236,10 +236,10 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 						}
 						//show_message(string(importcol));
 						if( importCol != undefined ){
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.tokenImportGrid, importCol, currentWordID - 1));
+							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.tokenImportGrid, importCol, currentWordID - 1));
 						}
 						else{
-						currentWordInfoCol[getInfoLoop] = "";
+							currentWordInfoCol[getInfoLoop] = "";
 						}
 					}
 					

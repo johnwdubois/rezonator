@@ -283,12 +283,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		else if ((keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_up))) {
 			scrollPlusYDest = 100;
 		}
-	}
-}
-
-
-	if (not instance_exists(obj_dialogueBox)) {		
+		
 		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
+			//show_message("right");
 			wordLeftMarginDest -= gridSpaceHorizontal;
 		}
 		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
@@ -302,6 +299,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 
 		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
 			wordLeftMarginDest += gridSpaceHorizontal;
+			//show_message("left");
 		}
 		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
 		or keyboard_check_pressed(vk_home) or keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) {
@@ -313,6 +311,32 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			}
 		}
 	}
+}
+
+
+	/*if (not instance_exists(obj_dialogueBox)) {		
+		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
+			wordLeftMarginDest -= gridSpaceHorizontal;
+		}
+		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
+		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
+			scr_jumpToEnd(false);
+		}
+	
+
+		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
+			wordLeftMarginDest += gridSpaceHorizontal;
+		}
+		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
+		or keyboard_check_pressed(vk_home) or keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) {
+			if (searchGridActive) {
+				scr_jumpToEnd(true);
+			}
+			else {
+				wordLeftMarginDest = speakerLabelMargin + 20;
+			}
+		}
+	}*/
 	
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
 		showDevVars = !showDevVars;
@@ -534,8 +558,8 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 	audio_stop_all();
 	
-	scr_userSettingsIniFile();
-	
+
+	scr_saveINI();
 	
 	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
 		
@@ -569,32 +593,6 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 		ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
 		scr_refreshLineGridPixelY();
 		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-		/*with(obj_panelPane) {
-			functionSort_performSort = true;
-			show_message("performTrue");
-			if (functionSort_performSort) {
-				functionSort_performSort = false;
-	
-				scr_gridMultiColSort(selectedGrid, colSort[0, 0], colSort[0, 1], colSort[1, 0], colSort[1, 1], colSort[2, 0], colSort[2, 1], colSort[3, 0], colSort[3, 1]);
-	
-				switch (selectedGrid) {
-					case obj_control.lineGrid:
-						show_message("selectedLine");
-						scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-						scr_refreshLineGridPixelY();
-						break;
-					case obj_control.searchGrid:
-						scr_refreshLineGridDisplayRow(obj_control.searchGrid);
-						scr_refreshLineGridPixelY();
-						break;
-					default:
-						break;
-				}
-	
-				functionSort_animationSeq = 0;
-				functionSort_animationAlpha = 1;
-			}
-		}*/
 	}
 }
 

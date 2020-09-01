@@ -219,9 +219,11 @@ repeat (currentWordIDListSize) {
 	if (mouse_check_button(mb_left) and (currentTool == toolRezBrush or currentTool == toolTrackBrush)) {
 		if(mouseRectWithinLine) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			obj_control.mouseoverNeutralSpace = false;	
 		}
 		else if (mouseRectBeginBetweenWords == -1 and not mouseRectWithinLine and not (currentTool == toolTrackBrush and not searchGridActive)) {
 			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			obj_control.mouseoverNeutralSpace = false;	
 		}
 		else {
 			inMouseHoldRect = 0;

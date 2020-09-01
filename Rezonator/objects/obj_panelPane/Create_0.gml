@@ -172,6 +172,7 @@ for (var i = 0; i < 3; i++) {
 }
 
 scrollBarHolding = false;
+scrollBarClickLock = false;
 scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
 //oldFocusedContentsRow = -1;

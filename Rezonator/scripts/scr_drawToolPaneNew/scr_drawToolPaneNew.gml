@@ -52,13 +52,14 @@ for (var i = 0; i < 3; i++) {
 	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 
 	
-	if (mouseover) {
+	if (mouseover and not obj_control.scrollBarHolding) {
 		hoverTime[i]++;
 
 		//show_message("BUH: " + string(hoverTime) );
 		if (mouse_check_button_released(mb_left)) {
 			if (i == 0) {
 				currentMode = modeRead;
+				obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 			}
 			else if (i == 1) {
 				currentMode = modeTrack;
@@ -67,6 +68,9 @@ for (var i = 0; i < 3; i++) {
 			else if (i == 2) {
 				currentMode = modeRez;
 				obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
+			}
+			if (obj_control.gridView) {
+				obj_control.gridView = false;
 			}
 		}
 	

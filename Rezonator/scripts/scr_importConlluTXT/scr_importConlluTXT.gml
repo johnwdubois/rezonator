@@ -12,6 +12,9 @@ var newRow = false;
 var blankRow = true;
 var row = 0;
 
+var CoNLLUColNameList = ds_list_create();
+ds_list_add(CoNLLUColNameList, " ID", " FORM", " LEMMA", " UPOS", " XPOS", " FEATS", " HEAD", " DEPREL", " DEPS", " MISC");
+
 
 var fileOpenRead = file_text_open_read(filename);
 var tokenColListCreated = false;
@@ -22,7 +25,9 @@ var first3Char = string_char_at(lineInFile, 1) + string_char_at(lineInFile, 2) +
 		exit;
 	}
 
-global.importType = global.importType_CoNLLU
+global.importType = global.importType_CoNLLU;
+
+var rowCounter = 0;
 
 var widthOfImportGrid = 0;
 while (not file_text_eof(fileOpenRead)) {
@@ -89,6 +94,8 @@ while (not file_text_eof(fileOpenRead)) {
 			// Increase the width of the import grid to accomodate new columns
 			if(widthOfImportGrid <= ds_list_size(listOfColumns)){
 				var i = widthOfImportGrid;
+				var indexOfColNameList = 0;
+				
 				if(!tokensAdded){
 					var nextItterator = widthOfImportGrid;
 					widthOfImportGrid += ds_list_size(listOfColumns);
@@ -97,7 +104,13 @@ while (not file_text_eof(fileOpenRead)) {
 				}
 
 				while( i < global.importGridWidth){
-					var colName = " col" + " " + string(i);
+
+					if (indexOfColNameList >= ds_list_size(CoNLLUColNameList)) {
+						var colName = " Col " + string(i);
+					}
+					else {
+						var colName = string(ds_list_find_value(CoNLLUColNameList, indexOfColNameList));
+					}
 					
 					var col = ds_map_find_value(global.importGridColMap, colName);
 					//show_message("col: " +string(col));
@@ -107,6 +120,7 @@ while (not file_text_eof(fileOpenRead)) {
 						ds_map_add(global.importGridColMap, colName, i);
 					}
 					i++;
+					indexOfColNameList++;
 				}	
 					
 
@@ -114,6 +128,7 @@ while (not file_text_eof(fileOpenRead)) {
 			}
 			
 			ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid)+1);
+			rowCounter++;
 			
 			// place tokens into the import grid
 			var listOfColumnsSize = ds_list_size(listOfColumns);
@@ -178,6 +193,8 @@ while (not file_text_eof(fileOpenRead)) {
 	}
 	
 }
+
+ds_grid_resize(global.importGrid, global.importGridWidth, rowCounter);
 			
 //global.plainText = true;
 global.tabDeliniatedText = true;

@@ -146,6 +146,7 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 		if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
 		and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1) {
 			mouseover = true;
+			obj_control.mouseoverNeutralSpace = false;	
 			
 			// May need to make a hoverChunkID
 			hoverChunkID = currentWordID;
@@ -220,11 +221,15 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 	
 	//Prevent the mouse from clicking on words/lines while releasing from a drag
 	var mouseRectExists = ((abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5) or (abs(obj_control.mouseHoldRectX1 - obj_control.mouseHoldRectX2) > 5));
+	if(mouseRectExists) {
+		obj_control.mouseoverNeutralSpace = false;		
+	}
 	
 	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and not obj_chain.inRezPlay
 	and not mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
+		obj_control.mouseoverNeutralSpace = false;	
 		mouseover = true;
 		hoverWordID = currentWordID;
 		
@@ -237,15 +242,36 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 				scr_wordClicked(currentWordID, unitID);
 			}
 		}
+		
+		if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
+
+			if(!instance_exists(obj_dialogueBox)){
+			obj_control.rightClickWordID = obj_control.newWordHoverWordID;
+			obj_control.rightClickUnitID = obj_control.newWordHoverUnitID;
+			obj_control.rightClickWordSeq = obj_control.newWordHoverWordSeq;
+			}
+
+			obj_control.rightClickonWord = true;
+			obj_control.wideDropDown = true;
+			var dropDownOptionList = ds_list_create();
+			if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
+				ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word", "Delete Link");
+			}
+			else{
+				ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word");
+			}
+			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 8;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+
+		}
 	}
 		
-	//if(point_in_rectangle(mouse_x, mouse_y, 0, wordRectY1, room_width, wordRectY2) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
-	//	if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists  and touchReleaseCheck)) {
-	//		with (obj_chain) {
-	//			scr_wordClicked(currentWordID, unitID);
-	//		}
-	//	}
-	//}
 	// Allows for adding to a stack w/in the speaker labels
 	if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and rectangle_in_rectangle(0, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
 		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
@@ -256,13 +282,24 @@ for (var drawWordLoop = 0; drawWordLoop < currentHitIDListSize; drawWordLoop++)
 	}
 	else if((drawWordLoop + 1 == ds_list_size(currentHitIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
 	and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
-		obj_control.mouseoverNeutralSpace = true;	
+		if(global.canScroll) {
+			obj_control.mouseoverNeutralSpace = true;
+		}
 		if (device_mouse_check_button_released(0, mb_left)) {
 			with(obj_chain) {
 				scr_chainDeselect();
 				scr_refreshVizLinkGrid();	
 			}
 		}
+	}
+	
+	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and !instance_exists(obj_dialogueBox)) {
+				
+		// Set this to be the hovered wordID
+		newWordHoverUnitID = currentHitID;
+		newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+		newWordHoverWordID = currentWordID;
+				
 	}
 	
 	// quicklinks in search screen	

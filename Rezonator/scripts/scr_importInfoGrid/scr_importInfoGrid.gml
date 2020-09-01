@@ -1,8 +1,8 @@
-var colorIndex = 0;
-
 math_set_epsilon(0.000001);
 var importGridWidth = ds_grid_width(global.importGrid);
 var importGridHeight = ds_grid_height(global.importGrid);
+
+show_debug_message("scr_importInfoGrid, STARTING... " + scr_printTime());
 
 if (global.plainText) {
 	
@@ -30,6 +30,21 @@ if (global.plainText) {
 
 	}
 }
+else if (global.importType == global.importType_CSV) {
+	
+	// fill in CSV tagInfoGrid with basically empty rows
+	for (var i = 0; i < importGridWidth; i++) {
+	
+		var currentTag = ds_list_find_value(global.importGridColNameList, i);
+		ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, "");
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, 100);
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, false);
+		
+	}
+	
+}
 else {
 	
 	for (var i = 0; i < importGridWidth; i++) {
@@ -45,15 +60,7 @@ else {
 		if (string(ds_grid_get(global.importGrid, i, importGridRow)) != "0") {
 			currentExample = ds_grid_get(global.importGrid, i, importGridRow);
 		}
-		else {
-			//show_message(string(ds_grid_get(global.importGrid, i, importGridRow)))
-		}
 	
-		colorIndex++;
-		if (colorIndex >= ds_list_size(obj_importMapping.tagColorList)) {
-			colorIndex = 0;
-		}
-		var currentColor = merge_color(ds_list_find_value(obj_importMapping.tagColorList, colorIndex), c_white, 0.6);
 	
 		var nonzeroCellCount = 0;
 		for (var j = 0; j < importGridHeight; j++) {
@@ -92,21 +99,32 @@ else {
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, currentTokenCount);
 		
 		
-		// if this label is < 5% consistency and 1 token per group, it is probably discourse level
-		// if this label is >= 90% consistency and 1 token per group, it is probably unit level
-		// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
-		var levelEstimate = -1;
-		if (currentConsistency < 5 && OneTokenPerGroup) {
-			levelEstimate = global.levelDiscourse; // discourse level estimate
-		}
-		else if (currentConsistency >= 90 && OneTokenPerGroup) {
-			levelEstimate = global.levelUnit; // unit level estimate
-		}
-		else if (currentConsistency >= 90 && !OneTokenPerGroup) {
-			levelEstimate = global.levelToken; // token level estimate
+		if (global.importType == global.importType_CoNLLU) {
+			var levelEstimate = -1;
+			if (string_char_at(currentTag, 1) == "#") {
+				levelEstimate = global.levelUnit;
+			}
+			else {
+				levelEstimate = global.levelToken;
+			}
 		}
 		else {
-			levelEstimate = global.levelUnknown;
+			// if this label is < 5% consistency and 1 token per group, it is probably discourse level
+			// if this label is >= 90% consistency and 1 token per group, it is probably unit level
+			// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
+			var levelEstimate = -1;
+			if (currentConsistency < 5 && OneTokenPerGroup) {
+				levelEstimate = global.levelDiscourse; // discourse level estimate
+			}
+			else if (currentConsistency >= 90 && OneTokenPerGroup) {
+				levelEstimate = global.levelUnit; // unit level estimate
+			}
+			else if (currentConsistency >= 90 && !OneTokenPerGroup) {
+				levelEstimate = global.levelToken; // token level estimate
+			}
+			else {
+				levelEstimate = global.levelUnknown;
+			}
 		}
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, levelEstimate);
 	}
@@ -138,3 +156,5 @@ else {
 	}
 	scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
 }
+
+show_debug_message("scr_importInfoGrid, END... " + scr_printTime());

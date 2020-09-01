@@ -15,15 +15,7 @@ if (directory_exists(global.rezonatorDirString)) {
 	fileStr += "SpeakerLabelX4:" + string(ds_list_find_value(obj_control.speakerLabelColXList,3)) + "#";
 	fileStr += "previousLevelEstimates:" + scr_getStringOfList(global.previousLevelEstimates) + "%" + "#";
 	fileStr += "previousSpecialFields:" + scr_getStringOfList(global.previousSpecialFields) + "%" + "#";
-	//fileStr += "tokenView:" + string(wordTokenView) + "#";
-	/*
-	if(os_type == os_windows){
-		if (!directory_exists(global.previousRezDirectory)){
-			global.previousRezDirectory = scr_addBackSlashes(global.previousRezDirectory);
-		}
-	//show_message(global.previousRezDirectory);
-	}
-	*/
+
 	fileStr += "previousRezDirectory:" + string(global.previousRezDirectory);
 	fileStr += " " + "#";
 	fileStr += "previousImportDirectory:" + string(global.previousImportDirectory);

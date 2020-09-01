@@ -18,7 +18,7 @@ window_set_cursor(cr_default);
 
 scr_colorThemeGridInit();
 
-
+ 
 global.toolPaneWidth = 100;
 
 global.versionString = string(game_display_name);
@@ -214,97 +214,15 @@ global.wheresElmo = false;
 global.rezzles = false;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
+global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";
 global.previousLevelEstimates = ds_list_create();
 global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
-
-var userSettingsList = ds_list_create();
-
-if (directory_exists(global.rezonatorDirString)) {
-	if (os_type == os_macosx) {
-		var filename = global.rezonatorDirString + "/~usersettings.ini";
-	}
-	else {
-		var filename = global.rezonatorDirString + "\\~usersettings.ini";
-	}
-	
-	if (file_exists(filename)) {
-
-		var file = file_text_open_read(filename);
-		
-		while (!file_text_eof(file)) {
-			ds_list_add(userSettingsList, file_text_readln(file));
-		}
-		
-		file_text_close(file);
-	}
-}
+scr_loadINI();
 
 
-global.iniFileString = scr_getStringOfList(userSettingsList);
-
-if (ds_list_size(userSettingsList) > 1) {
-	
-	if (string_count("rememberMe:", global.iniFileString) > 0) {
-		global.rememberMe = real(scr_getValueFromString(global.iniFileString, "rememberMe:", ","));
-	}
-
-	if (global.rememberMe) {
-		inputText = scr_getValueFromString(global.iniFileString, "userName:", ",");
-		cursorPos = string_length(inputText) + 1;
-	}
-	
-	if (string_count("previousRezDirectory:", global.iniFileString) > 0) {
-		global.previousRezDirectory = string(scr_getValueFromString(global.iniFileString, "previousRezDirectory:", ","));
-	}
-	
-	if (string_count("previousImportDirectory:", global.iniFileString) > 0) {
-		global.previousImportDirectory = string(scr_getValueFromString(global.iniFileString, "previousImportDirectory:", ","));
-	}
-	if (string_count("previousLevelEstimates:", global.iniFileString) > 0) {
-		ds_list_clear(global.previousLevelEstimates)
-		var tempListString = string(scr_getListFromString(global.iniFileString, "previousLevelEstimates:" , "%"));
-		for(var i = 0;  i <= string_length(tempListString); i++){
-			if(string_char_at(tempListString, i) != "," and string_char_at(tempListString, i) != " " and string_char_at(tempListString, i) != "{" and string_char_at(tempListString, i) != "}"){
-				
-				ds_list_add(global.previousLevelEstimates, string_char_at(tempListString, i));
-			}
-		}
-	}
-	if (string_count("previousSpecialFields:", global.iniFileString) > 0) {
-		ds_list_clear(global.previousSpecialFields)
-		var tempListString = string(scr_getListFromString(global.iniFileString, "previousSpecialFields:" , "%"));
-		var wordStart = 1;
-		var currentPos = 0;
-		var stringLength = 0;
-		var tempField = "";
-		for(var i = 0;  i <= string_length(tempListString); i++){
-			if(string_char_at(tempListString, i) != "{" and string_char_at(tempListString, i) != "}"){
-				stringLength++;
-
-			}
-			
-			if(string_char_at(tempListString, i) == ","){
-				
-				tempField = string_copy(tempListString, wordStart, stringLength-2);
-				//show_message("currentPos: " + string(wordStart) + ",  stringLength: " + string(stringLength-1) + ",   TempField: " + string(tempField));
-				if(tempField == "0"){
-				tempField = "";
-				}
-				ds_list_add(global.previousSpecialFields, tempField);
-				tempField = "";
-				stringLength = 0;
-				wordStart = currentPos+2;
-			}
-			currentPos++;
-		}
-	}
-	
-}
-
-ds_list_destroy(userSettingsList);
 
 global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
@@ -315,3 +233,8 @@ global.unitImportTurnDelimColName = "";
 global.scrollBarWidth = 20;
 global.fontSize = 0;
 scr_fontGlobalUpdate();
+
+canPressMinus = true;
+canPressPlus = true;
+
+alarm[2] = 1;

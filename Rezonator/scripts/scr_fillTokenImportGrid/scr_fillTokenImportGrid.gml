@@ -1,19 +1,24 @@
+show_debug_message("scr_fillTokenImportGrid(), STARTING..." + scr_printTime());
+
 // fill tokenImport with UnitID, WordID, token, and transcript information
-var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
+var tokenImportGridHeight = ds_grid_height(obj_control.wordGrid);
+
+ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenImportGridHeight);
+
 for (var i = 0; i < tokenImportGridHeight; i++) {
 	var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, i);
 	var currentWordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, i);
 	var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
 	var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
-	
+
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, i, currentWordID);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
+	
 }
 
 // fill unitImport with UnitID information
-var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
 var unitGridHeight = ds_grid_height(obj_control.unitGrid);
 ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, unitGridHeight);
 
@@ -158,3 +163,5 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 		}
 	}
 }
+
+show_debug_message("scr_fillTokenImportGrid(), ENDING..." + scr_printTime());

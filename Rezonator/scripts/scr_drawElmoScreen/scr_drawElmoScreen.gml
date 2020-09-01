@@ -221,7 +221,6 @@ if (point_in_rectangle(mouse_x, mouse_y, firstButtonRectX1, firstButtonRectY1, f
 			if(global.wheresElmo) {
 				// Regular finish program procedures
 				audio_stop_all();
-				scr_userSettingsIniFile();
 	
 				// Begin by saving the work of the current player in the playerSaves folder
 				with (obj_fileLoader) {

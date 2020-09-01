@@ -41,8 +41,9 @@ if (showDisplayCols) {
 }
 
 obj_control.mouseoverSpeakerLabel = false;
-obj_control.mouseoverNeutralSpace = false;
-
+if(global.canScroll) {
+	obj_control.mouseoverNeutralSpace = true;
+}
 if (!hideAll) {
 	scr_drawLine();
 }
@@ -116,6 +117,8 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(view_camera[0]) - 100, 80, "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 250, "fps: " + string(fps));
+	draw_text(camera_get_view_width(view_camera[0]) - 500, 270, "mouseOverHelpPane: " + string(mouseoverHelpPane));
+	
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 330, "gridSpaceVertical: " + string(gridSpaceVertical));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 350, "arrowSpeed: " + string(arrowSpeed));
 	draw_text(camera_get_view_width(view_camera[0]) - 500, 370, "activeStackType: " + string(activeStackType));
@@ -255,6 +258,13 @@ if (filterGridActive) {
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]));
 	}
+	scr_gridViewDrawBackArrow();
+}
+else if (searchGridActive) {
+	scr_gridViewDrawBackArrow();	
+	scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
+	global.colorThemeSelected1, global.colorThemeSelected2,
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]));
 }
 else {
 	

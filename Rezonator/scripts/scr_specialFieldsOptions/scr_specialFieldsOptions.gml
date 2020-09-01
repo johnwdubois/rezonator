@@ -3,14 +3,14 @@ var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
 switch (optionSelected)
 {
-	case "UnitStart":
+	case "Unit Start":
 		global.unitImportUnitStartColName = "";
 		for (var i = 0; i < tagInfoGridHeight; i++) {
-			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "UnitStart") {
+			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit Start") {
 				ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 			}
 		}
-		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "UnitStart");
+		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit Start");
 		global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
 	case "Speaker":
@@ -23,35 +23,35 @@ switch (optionSelected)
 		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Speaker");
 		global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 	break;
-	case "UnitEnd":
+	case "Unit End":
 	global.unitImportUnitEndColName = "";
 		for (var i = 0; i < tagInfoGridHeight; i++) {
-			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "UnitEnd") {
+			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit End") {
 				ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 			}
 		}
-		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "UnitEnd");
+		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit End");
 		global.unitImportUnitEndColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
 		
-	case "UnitDelim":
+	case "Unit Delimiter":
 	global.unitImportUnitDelimColName = "";
 		for (var i = 0; i < tagInfoGridHeight; i++) {
-			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "UnitDelim") {
+			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit Delimiter") {
 				ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 			}
 		}
-		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "UnitDelim");
+		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit Delimiter");
 		global.unitImportUnitDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
-	case "TurnDelim":
+	case "Turn Delimiter":
 	global.unitImportTurnDelimColName = "";
 		for (var i = 0; i < tagInfoGridHeight; i++) {
-			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "TurnDelim") {
+			if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Turn Delimiter") {
 				ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 			}
 		}
-		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "TurnDelim");
+		ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Turn Delimiter");
 		global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
 	case "Display Token":

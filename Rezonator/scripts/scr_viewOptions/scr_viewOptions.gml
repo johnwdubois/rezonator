@@ -16,7 +16,7 @@ switch (optionSelected)
 		}
 	break;
 	
-	case "Word":
+	/*case "Word":
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, "Text", "Transcript");
 						
@@ -28,14 +28,14 @@ switch (optionSelected)
 			obj_control.ableToCreateDropDown = false;
 			obj_control.alarm[0] = 2;
 		}
-	break;
+	break;*/
 	
 	case "Justify":
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, "Left", "Right", "Center");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
-			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
+			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing)  , -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;
 			dropDownInst.optionListType = 16;
 					
@@ -49,7 +49,7 @@ switch (optionSelected)
 		ds_list_add(dropDownOptionList, "Prose", "Grid");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
-			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*3)  , -999, obj_dropDown);
+			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;
 			dropDownInst.optionListType = 17;
 					
@@ -63,7 +63,7 @@ switch (optionSelected)
 		ds_list_add(dropDownOptionList, "Track", "Rez", "Stack", "Place");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
-			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*4)  , -999, obj_dropDown);
+			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*3)  , -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;
 			dropDownInst.optionListType = 18;
 					
@@ -145,7 +145,7 @@ switch (optionSelected)
 		ds_list_add(dropDownOptionList, "In", "Out", "Wide", "Narrow", "Tall", "Short");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
-			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ (obj_dropDown.optionSpacing*5), -999, obj_dropDown);
+			var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), -999, obj_dropDown);
 			dropDownInst.optionList = dropDownOptionList;
 			dropDownInst.optionListType = 13;
 					

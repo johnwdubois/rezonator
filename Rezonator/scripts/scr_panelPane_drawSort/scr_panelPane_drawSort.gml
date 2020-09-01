@@ -198,10 +198,10 @@ for (var i = 0; i < sortGridHeight; i++) {
 				
 				switch (selectedGrid) {
 					case obj_control.lineGrid:
-						ds_list_add(dropDownOptionList, "discoID", "unitStart", "unitEnd", "uID", "unitID");
+						ds_list_add(dropDownOptionList, "discoID", "Unit Start", "Unit End", "uID", "unitID");
 						break;
 					case obj_control.searchGrid:
-						ds_list_add(dropDownOptionList, "discoID", "unitStart", "unitEnd", "uID", "unitID");
+						ds_list_add(dropDownOptionList, "discoID", "Unit Start", "Unit End", "uID", "unitID");
 						break;
 					default:
 						break;

@@ -18,4 +18,5 @@ if (keyboard_check(vk_control)) {
 }
 */
 
-scr_toggleTranscription();
+//On time out until we know what to do with it
+//scr_toggleTranscription();

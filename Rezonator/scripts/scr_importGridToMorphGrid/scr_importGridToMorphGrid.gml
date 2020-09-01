@@ -109,7 +109,8 @@ else if (global.importType == global.importType_CoNLLU){
 			currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
 		}
 		var currentMorphFullStr = string(ds_grid_get(global.importGrid, importGrid_colDisplayToken, i));
-		var currentMorphList = scr_splitStringImport(currentMorphFullStr);
+		var currentMorphList = ds_list_create();
+		ds_list_add(currentMorphList, currentMorphFullStr);
 		var currentGlossFullStr = "";
 		if (glossCol >= 0) {
 			currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));

@@ -251,6 +251,9 @@ if (ds_grid_height(obj_control.searchGrid) > 0) {
 	obj_control.scrollPlusYDest = 0;
 	obj_control.wordLeftMarginDest = window_get_width() / 2;
 	obj_control.moveCounter ++;
+	if (obj_control.gridView) {
+		obj_control.gridView = false;
+	}
 }
 else {
 	// If matches weren't found, keep the user's place
@@ -258,6 +261,9 @@ else {
 	if (ds_grid_height(oldSearch) > 0) {
 		ds_grid_copy(obj_control.searchGrid, oldSearch);
 		ds_grid_copy( obj_control.hitGrid, oldHit);
+		if (obj_control.gridView) {
+			obj_control.gridView = false;
+		}
 	}
 	else {
 		obj_control.searchGridActive = false;
