@@ -139,6 +139,12 @@ switch (currentFunction) {
 
 			scr_panelPane_drawHelp();
 		}
+		if(not obj_control.scrollBarHolding) {
+			alarm[6] = 1;	
+		}
+		else {
+			scrollBarClickLock = true;	
+		}
 		if(obj_control.stackShowActive){
 			scr_panelPane_drawTracker();
 		}

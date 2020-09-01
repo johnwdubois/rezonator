@@ -42,19 +42,19 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 	
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
-	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and not obj_control.scrollBarHolding) {
+	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
 		
 		obj_panelPane.hoverTime[i]++;
 		
 		if (i == 1) {
-			if (device_mouse_check_button_released(0, mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left) and not scrollBarClickLock) {
 				obj_control.gridView = !obj_control.gridView;
 			}
 		}
 		else if (i == 0) {
-			if (device_mouse_check_button_released(0, mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left) and not scrollBarClickLock) {
 				scr_justifyWords();
 				if (obj_control.gridView) {
 					obj_control.gridView = false;
@@ -96,7 +96,7 @@ for(var i = 0; i < toggleButtonAmount; i++) {
 
 
 // Toggle collapse if mouseClick
-if ((mouseoverHelp and device_mouse_check_button_released(0, mb_left))) {
+if ((mouseoverHelp and device_mouse_check_button_released(0, mb_left)) and not scrollBarClickLock) {
 	functionHelp_collapsed = !functionHelp_collapsed;
 }
 
