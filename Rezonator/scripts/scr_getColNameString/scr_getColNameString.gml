@@ -34,9 +34,9 @@ if (grid == obj_control.unitGrid) {
 		case obj_control.unitGrid_colParticipantColor:
 			colName = "participantColor";
 			break;
-		case obj_control.unitGrid_colTag:
-			colName = "Tag";
-			break;
+		//case obj_control.unitGrid_colTag:
+		//	colName = "Tag";
+		//	break;
 		case obj_control.unitGrid_colDiscoColor:
 			colName = "DiscoColor";
 			break;
