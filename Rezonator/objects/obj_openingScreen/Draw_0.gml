@@ -27,7 +27,7 @@ scr_windowCameraAdjust();
 draw_set_alpha(1);
 var logoScale = clamp(camera_get_view_height(view_camera[0]) / 2160, 0.25, 1);
 draw_sprite_ext(spr_logo, global.fontSize, camera_get_view_width(view_camera[0]) / 2, camera_get_view_height(view_camera[0]) / 4, 1, 1, 0, c_white, 1);
-draw_set_font(fnt_debug);
+draw_set_font(global.fontMain);
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
 draw_set_color(global.colorThemeText);

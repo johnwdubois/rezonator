@@ -20,12 +20,12 @@ draw_roundrect(rectX1 - bubblePlus, rectY1 - bubblePlus, rectX2 + bubblePlus, re
 	
 
 draw_set_halign(fa_center);
-draw_text(mean(rectX1,  rectX2), 20 + rectY1, popUpText1);
+draw_text(floor(mean(rectX1,  rectX2)), floor(20 + rectY1), popUpText1);
 draw_line_width(rectX1 + 30, 35 + rectY1,  rectX2 - 50, 35 + rectY1, 3);
 	
 	
 draw_set_font(global.fontMain);
-draw_text( mean(rectX1, rectX2) + 20, mean(rectY1 + 20, rectY2), popUpText2);
+draw_text( floor(mean(rectX1, rectX2) + 20), floor(mean(rectY1 + 20, rectY2)), popUpText2);
 
 var largeHeight = string_height(popUpText1);
 draw_set_font(fnt_main);
