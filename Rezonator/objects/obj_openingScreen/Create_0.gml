@@ -70,9 +70,11 @@ global.stackGrabSave = false;
 global.importGridColNameList = ds_list_create();
 global.tokenImportColNameList = ds_list_create();
 global.unitImportColNameList = ds_list_create();
+global.discoImportColNameList = ds_list_create();
 
 ds_list_clear(global.tokenImportColNameList);
 ds_list_clear(global.unitImportColNameList);
+ds_list_clear(global.discoImportColNameList);
 
 global.tokenImportTagMap = ds_map_create();
 global.unitImportTagMap  = ds_map_create();

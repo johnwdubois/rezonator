@@ -79,6 +79,7 @@ show_debug_message("scr_fillCustomLabelGrid(), ENDING... " + scr_printTime());
 var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
 var tokenMarkers = 0;
 var unitMarkers = 0;
+var discoMarkers = 0;
 for (var i = 0; i < customLabelGridHeight; i++) {
 	var currentLevel = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colLevel, i);
 	if (currentLevel == global.levelToken) {
@@ -86,6 +87,9 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	}
 	else if (currentLevel == global.levelUnit) {
 		unitMarkers++;
+	}
+	else if (currentLevel == global.levelDiscourse) {
+		discoMarkers++;
 	}
 }
 
@@ -114,8 +118,10 @@ else {
 	global.tokenImportGridWidth = 4 + tokenMarkers;
 }
 global.unitImportGridWidth = 2 + unitMarkers;
+global.discoImportGridWidth = discoMarkers;
 ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
 ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.unitImportGrid));
+ds_grid_resize(global.discoImportGrid, global.discoImportGridWidth, 1);
 with (obj_gridViewer) {
 	alarm[2] = 1;
 }
@@ -178,6 +184,7 @@ show_debug_message("scr_fillTokenImportGridCSV(), FINISHED LOOP 4" + scr_printTi
 
 var currentTokenImportCol = 4;
 var currentUnitImportCol = 2;
+var currentDiscoImportCol = 0;
 
 // actually fill in all the cells of tokenImportGrid and unitImportGrid
 for (var i = 0; i < customLabelGridHeight; i++) {
@@ -198,6 +205,9 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	}
 	else if (currentLevel == global.levelUnit) {
 		ds_list_add(global.unitImportColNameList, string(currentMarker));
+	}
+	else if (currentLevel == global.levelDiscourse) {
+		ds_list_add(global.discoImportColNameList, string(currentMarker));
 	}
 	
 	// find this marker's column in the importGrid
@@ -260,6 +270,23 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 			currentUnitImportCol++;
 
 		}
+		else if(currentLevel == global.levelDiscourse){
+			
+			var unitCounter = 0;
+			//hardcoded till multiple discourses
+			var importGridHeight = 1;
+			for (var j = 0; j < importGridHeight; j++) {
+
+				var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
+				ds_grid_set(global.discoImportGrid, currentDiscoImportCol, unitCounter, currentLine);
+
+			}
+			currentDiscoImportCol++;
+			
+		
+		}
+
+		
 	}
 }
 

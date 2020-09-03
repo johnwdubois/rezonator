@@ -77,7 +77,7 @@ global.importedSpecialFields = false;
 global.unitTagMapFilled = false;
 global.tokenTagMapFilled = false;
 global.unitGridCopied = false;
-
+global.discoGridCopied = false;
 
 
 // Used for auto-saving REZ's from CSVs

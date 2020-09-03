@@ -452,7 +452,7 @@ for (var i = 0; i < headerListSize; i++) {
 		colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 	}
 	
-	var isUnitTag = (ds_list_find_index(global.unitImportColNameList, colName) != -1);
+	var notUnitOrDiscoTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1));
 	
 	
 	// draw lines to separate columns
@@ -494,7 +494,7 @@ for (var i = 0; i < headerListSize; i++) {
 				obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "Create Field");
-				if (!isUnitTag) {
+				if (notUnitOrDiscoTag) {
 					ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 				}
 				if (ds_list_size(dropDownOptionList) > 0) {
