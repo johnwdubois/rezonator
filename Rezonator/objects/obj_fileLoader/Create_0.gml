@@ -76,6 +76,7 @@ loadLineGridSectionCounter = 0;
 global.importedSpecialFields = false;
 global.unitTagMapFilled = false;
 global.tokenTagMapFilled = false;
+global.unitGridCopied = false;
 
 
 

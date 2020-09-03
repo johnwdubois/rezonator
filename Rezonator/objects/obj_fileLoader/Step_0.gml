@@ -112,6 +112,31 @@ if (!global.tokenTagMapFilled && ds_grid_height(global.tokenImportGrid) > 0) {
 }
 
 
+if (!global.unitGridCopied && ds_grid_height(global.unitImportGrid) > 0) {
+	global.unitGridCopied = true;
+	
+	var unitGridWidth = ds_grid_width(global.unitImportGrid);
+	var tokenGridHeight = ds_grid_height(global.tokenImportGrid);
+	var oldTokenGridWidth = global.tokenImportGridWidth;
+	global.tokenImportGridWidth = global.tokenImportGridWidth + unitGridWidth-2;
+	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenGridHeight);
+	
+	for(var i = 2; i < unitGridWidth; i++){
+		var colName = ds_list_find_value(global.unitImportColNameList, i);
+		ds_list_add(global.tokenImportColNameList, colName);
+		for(var j = 0; j < tokenGridHeight; j++){
+			var currentUID = ds_grid_get(global.tokenImportGrid, global.tokenImport_colUnitID, j);
+			var currentCellValue = ds_grid_get(global.unitImportGrid, i, currentUID-1);
+			ds_grid_set(global.tokenImportGrid,oldTokenGridWidth,j,currentCellValue);
+			
+		}
+		oldTokenGridWidth++
+	}
+	with(obj_gridViewer){
+		scr_gridViewerDynamicWidth(global.tokenImportGrid);
+	}
+}
+
 
 
 for (var i = 0; i < fileLoadRate; i++) {
