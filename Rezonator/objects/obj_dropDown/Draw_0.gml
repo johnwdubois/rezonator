@@ -122,7 +122,7 @@ for (var i = 0; i < optionListSize; i++) {
 }
 
 if (showScrollBar) {
-	scr_scrollBar(optionListSize+10, -1, strHeight, 0,
+	scr_scrollBar(optionListSize, -1, optionSpacing, 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 		
@@ -136,8 +136,6 @@ if (showScrollBar) {
 }
 
 scr_surfaceEnd();
-
-show_debug_message("optionListSize: " + string(optionListSize));
 
 if (scrollBarHolding) {
 	scrollBarHoldingDelay = true;
@@ -155,4 +153,4 @@ scrollBarHoldingDelay = scrollBarHolding;
 
 
 draw_set_color(c_ltgray);
-draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+draw_rectangle(x, y, x + windowWidth - 1, y + windowHeight, true);
