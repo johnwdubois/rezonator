@@ -13,7 +13,7 @@
 */
 
 
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 
 
 // Set opacity, alignment, and font of contents list
@@ -26,6 +26,7 @@ draw_set_font(global.fontPanelTab);
 var tabHeight = functionChainList_tabHeight;
 var scrollBarListHeight = 0;
 var drawDropDowns = false;
+
 
 var grid = obj_control.lineGrid;
 
@@ -177,6 +178,8 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 						continue;
 					}
 					
+					var unitTagTokenView = false;
+					
 					currentWordInfoCol[getInfoLoop] = "";
 					
 					if (getInfoLoop == 0) {
@@ -241,6 +244,13 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 						else{
 							currentWordInfoCol[getInfoLoop] = "";
 						}
+	
+						var colName = ds_list_find_value(global.tokenImportColNameList, importCol);
+						if (ds_list_find_index(global.unitImportColNameList, colName) != -1) {
+							unitTagTokenView = true;
+						}
+							
+						
 					}
 					
 			
@@ -278,7 +288,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					//draw tag selection
 
 
-						if (drawDropDowns) {
+						if (drawDropDowns && !unitTagTokenView) {
 							draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
 				
 				
@@ -395,6 +405,7 @@ if (functionChainList_currentTab == functionChainList_tabLine) {
 }
 
 
+
 /*if(obj_control.showDevVars) {
 	headerListSize = 6;
 }*/
@@ -441,6 +452,8 @@ for (var i = 0; i < headerListSize; i++) {
 		colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 	}
 	
+	var isUnitTag = (ds_list_find_index(global.unitImportColNameList, colName) != -1);
+	
 	
 	// draw lines to separate columns
 	draw_set_color(global.colorThemeBG);
@@ -479,8 +492,11 @@ for (var i = 0; i < headerListSize; i++) {
 					chosenCol = i;
 				}
 				obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
-				var dropDownOptionList = ds_list_create();		
-				ds_list_add(dropDownOptionList, "Create Field", "Add new Tag");
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "Create Field");
+				if (!isUnitTag) {
+					ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
+				}
 				if (ds_list_size(dropDownOptionList) > 0) {
 					var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;
