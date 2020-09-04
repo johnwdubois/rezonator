@@ -125,8 +125,10 @@ if (!global.discoGridCopied && ds_grid_height(global.discoImportGrid) > 0) {
 		var colName = ds_list_find_value(global.discoImportColNameList, i);
 		ds_list_add(global.unitImportColNameList, colName);
 		for(var j = 0; j < unitGridHeight; j++){
+
 			var currentDiscoHeight = 0;
 			var currentCellValue = ds_grid_get(global.discoImportGrid, i, currentDiscoHeight);
+			show_debug_message(string(currentCellValue));
 			ds_grid_set(global.unitImportGrid, oldUnitGridWidth, j, currentCellValue);
 			
 		}
