@@ -43,7 +43,8 @@ x = tagInfoWindowRectX1;
 y = tagInfoWindowRectY1;
 
 
-if (!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown)) {
+if ((!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown))
+|| scrollBarHolding) {
 	obj_importMapping.mouseoverRow = -1;
 }
 
@@ -84,8 +85,10 @@ for (var i = 0; i < colAmount; i++) {
 		
 		if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth - global.scrollBarWidth, y + windowHeight)
 		&& !instance_exists(obj_dropDown)) {
-			obj_importMapping.mouseoverRow = j;
-			timesHit++;
+			if (!scrollBarHolding) {
+				obj_importMapping.mouseoverRow = j;
+				timesHit++;
+			}
 		}
 		if (obj_importMapping.mouseoverRow == j) {
 			draw_set_color(global.colorThemeSelected1);
