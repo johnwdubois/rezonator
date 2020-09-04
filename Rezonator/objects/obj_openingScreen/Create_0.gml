@@ -231,6 +231,8 @@ global.unitImportUnitEndColName = "";
 global.unitImportUnitDelimColName = "";
 global.unitImportTurnDelimColName = "";
 
+global.openedREZFile = false;
+
 
 global.scrollBarWidth = 20;
 global.fontSize = 0;

@@ -78,6 +78,8 @@ if (file_exists(fileName)) {
 		exit;
 	}
 	
+	global.openedREZFile = true;
+	
 	//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)) + ", global.tokenImportGridHeight: " + string(ds_grid_height(global.tokenImportGrid)));
 	
 	var listSize = ds_list_size(list);
@@ -142,12 +144,12 @@ if (file_exists(fileName)) {
 				if (global.tokenImportColNameList == undefined) {
 					var tempList = ds_list_create();
 					global.tokenImportColNameList = tempList;
-					ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
+					ds_list_add(global.tokenImportColNameList, "~UnitID", "~WordID", "~text", "~transcript");
 				}
 				if (global.unitImportColNameList == undefined) {
 					var tempList2 = ds_list_create();
 					global.unitImportColNameList = tempList2;
-					ds_list_add(global.tokenImportColNameList, "UnitID", "Participant");
+					ds_list_add(global.tokenImportColNameList, "~UnitID", "~Participant");
 				}
 				if (global.importGridColNameList == undefined) {
 					var tempList3 = ds_list_create();
@@ -195,6 +197,7 @@ if (file_exists(fileName)) {
 				
 				scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
 				scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
+				scr_loadAnotherREZ(global.discoImportGrid, map, "discoImport");
 				scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
 			
 				
