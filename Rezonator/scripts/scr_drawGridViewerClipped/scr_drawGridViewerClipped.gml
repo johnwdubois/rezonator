@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-scr_drawGridViewerGridTabs();
+var currentGridName = scr_drawGridViewerGridTabs();
 
 scr_surfaceStart();
 
@@ -251,28 +251,71 @@ for (var i = 1; i < gridWidth; i++) {
 	}
 }
 draw_set_alpha(1);
+var currentGridNameWidth = string_width(currentGridName);
+var currentGridNameHeight = string_height(currentGridName);
 
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_set_font(global.fontMain);
+var rectHeight = string_height("0");
+var rectBuffer = 3;
+var rectX1 = windowY1 - strHeight - 20 - (string_height("0") /2);
+var rectY1 = windowY1 - rectHeight;
+var rectX2 = rectX1 + currentGridNameWidth + rectBuffer;
+var rectY2 = windowY1 + rectBuffer;
+draw_set_color(global.colorThemeBG);
+draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+    
+    
+if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
+	draw_set_alpha(0.3);
+	draw_set_color(global.colorThemeSelected2);
+	draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+    if (device_mouse_check_button_released(0, mb_left)) {
+        //show_message("clicked here" + string(drawLineLoop));
+                
+    var dropDownOptionList = ds_list_create();
 
+    ds_list_add(dropDownOptionList, "Unit", "Line", "Word", "vizWord");
+
+    if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+        var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+        dropDownInst.optionList = dropDownOptionList;
+        dropDownInst.optionListType = 39;
+                    
+        obj_control.ableToCreateDropDown = false;
+        obj_control.alarm[0] = 2;
+    }
+    }
+}
+
+draw_set_alpha(1);
+draw_set_color(global.colorThemeText);
+draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
+    
+draw_text(rectX1 + 5, mean(rectY1, rectY2), currentGridName);
 
 // draw the current mouseover item
 draw_set_font(global.fontMain);
 var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
 var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString;
+//currentGridName = "Current Grid: " + currentGridName;
 
 draw_set_alpha(0.3);
 draw_set_color(c_yellow);
-draw_rectangle(windowX1 + 5, windowY1 - strHeight - 20 - (string_height("0") /2), string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
+draw_rectangle(rectX2 + 5, windowY1 - strHeight - 20 - (string_height("0") /2), rectX2 + string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
 draw_set_color(global.colorThemeSelected2);
-draw_rectangle(windowX1 + 5, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
+draw_rectangle(rectX2 + 5, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), rectX2 + string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
 draw_set_alpha(1);
 draw_set_color(global.colorThemeText);
 
-draw_text(windowX1 + 10, windowY1 - strHeight - 20, highlightText);
+//draw_text(windowX1 + 10, windowY1 - strHeight - 20, currentGridName);
 
-draw_text(windowX1 + 10, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
+draw_text(rectX2 + 10, windowY1 - strHeight - 20, highlightText);
 
-draw_text(windowX1, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
+draw_text(rectX2 + 10, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
 
+draw_text(rectX2, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
 
 //draw_text(windowX1, windowY2 + strHeight + 60 + string_height("0"), "gridViewColXHolding: " + string(gridViewColXHolding));
 //draw_text(windowX1, windowY2 + strHeight + 80 + string_height("0"), "gridViewColPrevList: " + scr_getStringOfList(gridViewColPrevList));

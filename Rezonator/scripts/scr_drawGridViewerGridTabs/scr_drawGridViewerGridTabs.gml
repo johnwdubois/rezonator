@@ -20,27 +20,11 @@ draw_set_font(fnt_debug);
 
 var rectWidth = windowWidth / ds_list_size(gridList);
 var rectHeight = 20;
+var currentGridName = "";
 
 var gridListSize = ds_list_size(gridList);
 for (var i = 0; i < gridListSize; i++) {
 	var currentGrid = ds_list_find_value(gridList, i);
-	
-	var rectX1 = windowX + (i * rectWidth);
-	var rectY1 = windowY - rectHeight;
-	var rectX2 = rectX1 + rectWidth;
-	var rectY2 = windowY;
-	
-	if (grid == currentGrid) {
-		draw_set_color(obj_control.c_ltblue);
-	}
-	else {
-		draw_set_color(global.colorThemeBG);
-	}
-	
-	draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
-	
-	draw_set_color(global.colorThemeText);
-	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
 	
 	var colName = "";
 	
@@ -130,6 +114,26 @@ for (var i = 0; i < gridListSize; i++) {
 			break;
 	}
 	
+	var rectX1 = windowX + (i * rectWidth);
+	var rectY1 = windowY - rectHeight;
+	var rectX2 = rectX1 + rectWidth;
+	var rectY2 = windowY;
+	
+	if (grid == currentGrid) {
+		draw_set_color(obj_control.c_ltblue);
+		currentGridName = colName;
+	}
+	else {
+		draw_set_color(global.colorThemeBG);
+	}
+	
+	draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
+	
+	draw_set_color(global.colorThemeText);
+	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
+	
+	
+	
 	draw_text(rectX1 + 5, mean(rectY1, rectY2), colName);
 	
 	if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
@@ -138,3 +142,4 @@ for (var i = 0; i < gridListSize; i++) {
 		}
 	}
 }
+return currentGridName;
