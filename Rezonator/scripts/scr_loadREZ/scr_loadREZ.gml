@@ -104,6 +104,10 @@ if (file_exists(fileName)) {
 				
 				global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList");
 				global.unitImportColNameList = ds_map_find_value(map, "unitImportColNameList");
+				obj_control.currentDisplayTokenColsList = ds_map_find_value(map, "currentDisplayTokenColsList");
+				obj_control.currentDisplayUnitColsList = ds_map_find_value(map, "currentDisplayUnitColsList");
+				
+				
 				if (global.tokenImportColNameList == undefined) {
 					global.tokenImportColNameList = ds_list_create();
 				}
@@ -143,8 +147,24 @@ if (file_exists(fileName)) {
 				if (global.unitImportColNameList == undefined) {
 					var tempList2 = ds_list_create();
 					global.unitImportColNameList = tempList2;
-					//ds_list_add(global.unitImportColNameList, "UnitID", "WordID", "text", "transcript");
+					ds_list_add(global.tokenImportColNameList, "UnitID", "Participant");
 				}
+				if (global.importGridColNameList == undefined) {
+					var tempList3 = ds_list_create();
+					global.importGridColNameList = tempList3;
+				}
+				if (obj_control.currentDisplayTokenColsList == undefined) {
+					var tempList4 = ds_list_create();
+					obj_control.currentDisplayTokenColsList = tempList4;
+					ds_list_add(obj_control.currentDisplayTokenColsList,2,4,5,6,7);
+
+				}
+				if (obj_control.currentDisplayUnitColsList == undefined) {
+					var tempList5 = ds_list_create();
+					obj_control.currentDisplayUnitColsList = tempList5;
+					ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
+				}
+				
 				
 
 			

@@ -111,6 +111,9 @@ with (obj_saveParent) {
 
 
 		
+
+
+		
 		//custom label saves
 		ds_map_add_list(map, "tokenImport", maptokenImport);
 		ds_map_add_list(map, "unitImport", mapunitImport);
@@ -126,6 +129,19 @@ with (obj_saveParent) {
 			ds_list_copy(tempList3, global.unitImportColNameList);
 		}
 		ds_map_add_list(map, "unitImportColNameList", tempList3);
+		
+		var tempList4 = ds_list_create();
+		if (obj_control.currentDisplayTokenColsList != undefined) {
+			ds_list_copy(tempList4, obj_control.currentDisplayTokenColsList);
+		}
+		ds_map_add_list(map, "currentDisplayTokenColsList", tempList4);
+		
+		var tempList5 = ds_list_create();
+		if (obj_control.currentDisplayTokenColsList != undefined) {
+			ds_list_copy(tempList5, obj_control.currentDisplayUnitColsList);
+		}
+		ds_map_add_list(map, "currentDisplayUnitColsList", tempList5);
+		
 		
 		//save special feild colnames
 		ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
