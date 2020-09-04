@@ -103,12 +103,15 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
 	
-		if (mouse_check_button_pressed(mb_left)) {
+		if (mouse_check_button_released(mb_left) && !continueButtonClicked) {
+			
+			continueButtonClicked = true;
+			instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 			
 			scr_storeSchLists();
 			show_debug_message("Continue button clicked... " + scr_printTime());
 			
-			room_goto(rm_mainScreen);
+			alarm[3] = 1;
 		}
 	}
 	
