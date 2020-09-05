@@ -1,6 +1,6 @@
 var grid = argument0;
 
-var importGridXColList = ds_map_find_value(gridViewColXListMap, grid);
+var importGridXColList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
 var currentColX = windowX;
 var importGridWidth = ds_grid_width(grid);
 var defaultGridColWidth = windowWidth / importGridWidth;

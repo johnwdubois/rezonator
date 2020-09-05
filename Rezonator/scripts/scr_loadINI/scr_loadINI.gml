@@ -120,7 +120,26 @@ if (file_exists(fileName)) {
 			global.fontSize = ds_map_find_value(map, "fontSize"); 
 			
 			ds_list_replace(obj_control.speakerLabelColXList, 2, ds_map_find_value(map, "SpeakerLabelX3") );
-			ds_list_replace(obj_control.speakerLabelColXList, 3, ds_map_find_value(map, "SpeakerLabelX4") ); 
+			ds_list_replace(obj_control.speakerLabelColXList, 3, ds_map_find_value(map, "SpeakerLabelX4") );
+			
+			
+			if (instance_exists(obj_gridViewer)) {
+				/*
+				if (ds_exists(obj_gridViewer.gridViewColXListMap, ds_type_map)) {
+					show_message("the map exists!");
+					var tempNewMap = ds_map_find_value(map, "gridViewColXListMap");
+				}
+				*/
+				/*
+				with (obj_gridViewer) {
+					var gridViewerListSize = ds_list_size(gridList);
+					for (var j = 0; j < gridViewerListSize; j++) {
+						var currentGrid = ds_list_find_value(gridList, j);
+						scr_gridViewerDynamicWidth(currentGrid);
+					}
+				}
+				*/
+			}
 
 		
 

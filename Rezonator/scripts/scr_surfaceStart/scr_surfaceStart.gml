@@ -121,8 +121,8 @@ if (windowResizeXHolding or windowResizeYHolding) {
 }
 
 
-windowWidth = clamp(windowWidth, 48, 2000);
-windowHeight = clamp(windowHeight, 48, 1500);
+windowWidth = clamp(windowWidth, 48, camera_get_view_width(view_camera[0]) - 48);
+windowHeight = clamp(windowHeight, 48, camera_get_view_height(view_camera[0]) - 48);
 clipWidth = windowWidth;
 clipHeight = windowHeight;
 	

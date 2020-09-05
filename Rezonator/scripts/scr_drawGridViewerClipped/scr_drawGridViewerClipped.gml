@@ -40,7 +40,7 @@ var mouseoverItemString = " ";
 var mouseoverCol = -1;
 
 
-var gridColXList = ds_map_find_value(gridViewColXListMap, grid);
+var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
 if (gridColXList == -1 or is_undefined(gridColXList)) {
 	exit;
 }
