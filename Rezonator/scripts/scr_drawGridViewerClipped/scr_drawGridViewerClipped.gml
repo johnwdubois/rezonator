@@ -253,7 +253,7 @@ for (var i = 1; i < gridWidth; i++) {
 draw_set_alpha(1);
 var currentGridNameWidth = string_width(currentGridName);
 var currentGridNameHeight = string_height(currentGridName);
-
+/*
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_set_font(global.fontMain);
@@ -294,7 +294,7 @@ draw_set_color(global.colorThemeText);
 draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
     
 draw_text(rectX1 + 5, mean(rectY1, rectY2), currentGridName);
-
+*/
 // draw the current mouseover item
 draw_set_font(global.fontMain);
 var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
