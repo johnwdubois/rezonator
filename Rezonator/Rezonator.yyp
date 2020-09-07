@@ -167,6 +167,14 @@
             }
         },
         {
+            "Key": "04aa4987-eb55-4782-906d-f4499cc70437",
+            "Value": {
+                "id": "1acd6449-03ef-4c6a-9c9c-efac0650d6fe",
+                "resourcePath": "scripts\\scr_copyLevelMapping\\scr_copyLevelMapping.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "053419d1-9849-483a-b84c-7efb0643f3ca",
             "Value": {
                 "id": "452e1700-d228-4527-8fd4-a94591d3faa3",
@@ -6803,6 +6811,7 @@
         "e9870ffc-9cec-4c22-8db2-cd7baeb3cea1",
         "5608aae7-5ed1-46b0-a5c0-bbc2f5512a7f",
         "03165856-2247-4ba0-b0b2-64daa8eb5989",
+        "04aa4987-eb55-4782-906d-f4499cc70437",
         "e3a909c4-ba86-4235-a928-f8e30e05f3c1",
         "fc1067ad-8999-4c32-b44e-52ec42f636c0",
         "01326701-b0a6-4057-8a77-21f137c710e7",
