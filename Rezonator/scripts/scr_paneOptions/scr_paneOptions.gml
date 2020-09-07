@@ -6,6 +6,24 @@ switch (optionSelected)
 	case "Main":
 		if (obj_control.gridView) {
 			obj_control.gridView = false;
+			if (ds_grid_height(obj_control.searchGrid) > 0 ) {
+
+			// Switch back to either main or filter grids
+				if(obj_control.currentActiveLineGrid == obj_control.searchGrid) { 
+					obj_control.searchGridActive = false;
+		
+					obj_control.currentActiveLineGrid = obj_control.lineGrid;
+					obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow;
+		
+					//currentCenterDisplayRow = preSwitchDisplayRow;
+					obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
+		
+					//wordLeftMarginDest = 170;
+					with (obj_alarm) {
+						alarm[0] = 5;
+					}
+				}
+			}
 		}
 		// If we're not in grid view and there is a search, switch between the main and search screen
 		else if (ds_grid_height(obj_control.searchGrid) > 0 and !obj_control.gridView) {
