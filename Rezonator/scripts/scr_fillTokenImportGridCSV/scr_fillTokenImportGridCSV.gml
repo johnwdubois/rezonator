@@ -141,18 +141,18 @@ var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_c
 // fill tokenImport with UnitID, WordID, token, and transcript information
 var prevUnitID = -1;
 var unitCounter = 0;
-var tokenImportGridHeight = ds_grid_height(global.importGrid);
+var tokenImportGridHeight = ds_grid_height(obj_control.morphGrid);
 for (var i = 0; i < tokenImportGridHeight; i++) {
 	
 	if (i > 0) {
-		currentUnitID = ds_grid_get(global.importGrid, deliminaterCol, i);	
+		currentUnitID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i);	
 	}
 	else if (i == 0) {
-		prevUnitID = ds_grid_get(global.importGrid, deliminaterCol, i);
+		prevUnitID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i);
 	}
 	
 	//hardcoded till ui is built
-	var currentUnitID = ds_grid_get(global.importGrid, deliminaterCol , i);
+	var currentUnitID = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colUnitID , i);
 	var currentWordID = i+1
 	
 	if (prevUnitID != currentUnitID) {
