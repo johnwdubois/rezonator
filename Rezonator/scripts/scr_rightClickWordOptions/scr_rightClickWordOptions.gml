@@ -148,7 +148,7 @@ switch (optionSelected)
 		}
 		*/
 		var rowToSet = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid),  obj_control.rightClickWordID);
-			
+			show_message(rowToSet)
 		var grid = obj_chain.rezChainGrid;
 
 		// find which grid we are dealing with (depending on current tool)
