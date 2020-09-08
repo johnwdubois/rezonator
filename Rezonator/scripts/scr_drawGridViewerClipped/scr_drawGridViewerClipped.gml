@@ -44,6 +44,9 @@ var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(
 if (gridColXList == -1 or is_undefined(gridColXList)) {
 	exit;
 }
+if (ds_list_size(gridColXList) < gridWidth) {
+	scr_gridViewerDynamicWidth(grid);
+}
 
 
 for (var gridLoopCol = 0; gridLoopCol < gridWidth; gridLoopCol++) {
@@ -161,11 +164,13 @@ for (var i = 0; i < gridWidth; i++) {
 	var colName = scr_getColNameString(grid, i);
 	var colNameX = ds_list_find_value(gridColXList, i);
 	
-	draw_set_color(global.colorThemeBG);
-	draw_rectangle(colNameX - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + colNameHeight - clipY, false);
+	if (!is_undefined(colNameX)) {
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(colNameX - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + colNameHeight - clipY, false);
 	
-	draw_set_color(global.colorThemeText);
-	draw_text(colNameX - clipX, windowY1 + (colNameHeight / 2) - clipY, colName);
+		draw_set_color(global.colorThemeText);
+		draw_text(colNameX - clipX, windowY1 + (colNameHeight / 2) - clipY, colName);
+	}
 }
 
 
@@ -191,6 +196,12 @@ draw_set_color(global.colorThemeBorders);
 draw_line(windowX1, windowY1 + colNameHeight, windowX2, windowY1 + colNameHeight);
 
 
+// debug
+if (obj_control.showDevVars) {
+	draw_text(windowX1, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
+}
+
+
 
 // Draw vertical column lines and make columns draggable
 if ((not mouse_check_button(mb_left)) or gridViewColXHolding >= ds_grid_width(grid)) {
@@ -207,6 +218,9 @@ for (var i = 1; i < gridWidth; i++) {
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(0.15);
 	var colX = ds_list_find_value(gridColXList, i);
+	if (is_undefined(colX)) {
+		continue;
+	}
 	
 	
 	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
