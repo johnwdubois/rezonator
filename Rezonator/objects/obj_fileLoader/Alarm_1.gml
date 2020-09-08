@@ -37,6 +37,10 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 		}
 		obj_control.updatedSpeakerLabel = true;
 	}
+	
+	
+	scr_importTagMaps();
+	scr_importSpecialFieldsUnitImport();
 	scr_copyLevelMapping();
 }
 

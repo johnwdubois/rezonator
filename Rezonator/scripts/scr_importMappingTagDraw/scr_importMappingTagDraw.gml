@@ -107,7 +107,7 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 			
 			continueButtonClicked = true;
 			instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
-			
+			scr_setSpecialFieldsVariables();
 			scr_storeSchLists();
 			show_debug_message("Continue button clicked... " + scr_printTime());
 			
@@ -206,6 +206,11 @@ if (point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButto
 if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
 	scr_loadRZS();
 	importGroupSchemaLoaded = true;
+
+	instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	scr_setSpecialFieldsVariables();
+	scr_storeSchLists();
+	
 	alarm[2] = 3;
 }
 	

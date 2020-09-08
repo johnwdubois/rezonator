@@ -3607,6 +3607,14 @@
             }
         },
         {
+            "Key": "8a529e93-8fff-4084-81f7-224489ade2f1",
+            "Value": {
+                "id": "9e339ee7-2c68-4b3e-b395-800b9eb0c348",
+                "resourcePath": "scripts\\scr_importSpecialFieldsUnitImport\\scr_importSpecialFieldsUnitImport.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "8aca8ac5-c937-4a0b-9832-4643c98b9cdf",
             "Value": {
                 "id": "f445ed13-b9b1-476c-ae84-0bffc735b2e0",
@@ -3899,6 +3907,14 @@
             "Value": {
                 "id": "df967ef1-0db2-410b-96f1-6e17be3cf6a9",
                 "resourcePath": "scripts\/scr_unFocusAllChains\/scr_unFocusAllChains.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "95a1746c-9934-4524-93d0-ab8182a2412d",
+            "Value": {
+                "id": "9d2b3b48-aba0-4456-97ed-edb531469b68",
+                "resourcePath": "scripts\\scr_importTagMaps\\scr_importTagMaps.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -4948,6 +4964,14 @@
                 "id": "7f568740-cfd7-454e-ad86-9a7f39a419ac",
                 "resourcePath": "datafiles_yy\/Data\/SBCorpus\/Transcript\/sbc058.xml.yy",
                 "resourceType": "GMIncludedFile"
+            }
+        },
+        {
+            "Key": "bd5f4f90-6902-4589-8946-91bbbf6b3ac4",
+            "Value": {
+                "id": "4f1fdd53-6927-49aa-9c9b-96d3b560ce82",
+                "resourcePath": "scripts\\scr_setSpecialFieldsVariables\\scr_setSpecialFieldsVariables.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -6906,6 +6930,9 @@
         "dd4482f2-d3c8-43a4-80ac-11cc65dbe684",
         "97984d31-2c6c-44f4-ae91-fd4d8866f3a2",
         "2a523ac8-0a65-4e95-adc9-7f414ba7c8b3",
+        "95a1746c-9934-4524-93d0-ab8182a2412d",
+        "8a529e93-8fff-4084-81f7-224489ade2f1",
+        "bd5f4f90-6902-4589-8946-91bbbf6b3ac4",
         "d7714c6a-620c-423a-a004-56a2af4eb313",
         "38f2b23f-ba06-4c19-b7f8-8d7d90115d4c",
         "238d1e31-cb57-443c-b022-eb85151f4647",
