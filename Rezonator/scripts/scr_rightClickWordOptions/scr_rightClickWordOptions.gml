@@ -161,9 +161,7 @@ switch (optionSelected)
 		show_debug_message("scr_rightClickWordOptions()... rowInChainGrid: " + string(rowInChainGrid));
 		show_debug_message("scr_rightClickWordOptions()... currentChainID: " + string(currentChainID));
 		
-		var rowToSet = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid),  obj_control.rightClickWordID);
-
-		rowToSet = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, obj_control.rightClickWordID, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false);
+		var rowToSet = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, obj_control.rightClickWordID, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false);
 		
 		show_debug_message("scr_rightClickWordOptions()... rowToSet: " + string(rowToSet));
 		
