@@ -261,21 +261,20 @@ if (grid != -1) {
 						obj_control.rightClickonWord = true;
 						obj_control.wideDropDown = true;
 						var dropDownOptionList = ds_list_create();
-						show_message(string(obj_control.searchGridActive));
 						if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
-							if(obj_control.searchGridActive){
-								ds_list_add(dropDownOptionList, "Delete Link");
-							}
-							else{
-								ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word", "Delete Link");
-							}
-						}
-						else{
-							if(obj_control.searchGridActive){
+							if(obj_control.searchGridActive or obj_control.filterGridActive){
 								obj_control.ableToCreateDropDown = false;
 							}
 							else{
-								ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word");
+								ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word");
+							}
+						}
+						else{
+							if(obj_control.searchGridActive or obj_control.filterGridActive){
+								obj_control.ableToCreateDropDown = false;
+							}
+							else{
+								ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word");
 							}
 						}
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
