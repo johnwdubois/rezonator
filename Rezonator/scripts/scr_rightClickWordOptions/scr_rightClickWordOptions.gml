@@ -149,11 +149,11 @@ switch (optionSelected)
 		*/
 		var rowInChainGrid = -1;
 		var currentChainID = -1;
-		if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+		if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
 			rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
 			currentChainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, rowInChainGrid);
 		}
-		else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
 			rowInChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
 			currentChainID = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, rowInChainGrid);
 		}
@@ -162,9 +162,12 @@ switch (optionSelected)
 		show_debug_message("scr_rightClickWordOptions()... currentChainID: " + string(currentChainID));
 		
 		var rowToSet = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid),  obj_control.rightClickWordID);
+
 		rowToSet = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, obj_control.rightClickWordID, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false);
 		
 		show_debug_message("scr_rightClickWordOptions()... rowToSet: " + string(rowToSet));
+		
+		
 		
 		var grid = obj_chain.rezChainGrid;
 
@@ -185,19 +188,21 @@ switch (optionSelected)
 				if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
 					show_message("Please select the Rez tool to delete a Rez chain link");
 					instance_destroy();
-					exit;	
+					exit;
 				}
 				break;
 			default:
 				if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
 					instance_destroy();
-					exit;	
+					exit;
 				}
 				break;
 		}
 			
 		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowToSet, true);
-		//var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowToSet);
+		
+		
+
 		obj_chain.currentFocusedChainID = currentChainID;
 			
 		//var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);

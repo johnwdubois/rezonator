@@ -146,7 +146,7 @@ and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID ==
 		obj_control.wideDropDown = true;
 		var dropDownOptionList = ds_list_create();
 		if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
-			ds_list_add(dropDownOptionList,"Delete Chunk", "Delete Link");
+			ds_list_add(dropDownOptionList,"Delete Chunk");
 		}
 		else{
 			ds_list_add(dropDownOptionList,"Delete Chunk");

@@ -78,7 +78,7 @@ for (var i = 0; i < 3; i++) {
 			var dropDownOptionList = ds_list_create();
 			
 			obj_control.swapLinePos1 = unitID;
-			if(obj_control.searchGridActive){
+			if(obj_control.searchGridActive or obj_control.filterGridActive or obj_toolPane.currentMode == obj_toolPane.modeRead){
 				obj_control.ableToCreateDropDown = false;
 			}
 			else{
