@@ -47,4 +47,7 @@ global.stackGrabSave = true;
 
 
 
-scr_saveREZ(false);
+instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);	
+with(obj_fileLoader){
+	alarm[0] = 2;
+}

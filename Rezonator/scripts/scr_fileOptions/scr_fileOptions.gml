@@ -29,9 +29,9 @@ switch (optionSelected)
 		draw_set_font(fnt_dropDown);
 		
 		obj_fileLoader.ableToHotkey = false;
-			
+		instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);	
 		with(obj_fileLoader){
-			alarm[0] = 1;
+			alarm[0] = 2;
 		}
 			
 		//show_message("BUH 2");
@@ -109,14 +109,15 @@ switch (optionSelected)
 		
 			if (os_type == os_macosx) {
 
-				with (obj_fileLoader) {
+				
+				with(obj_fileLoader){
 					scr_saveREZ(false);
 				}
 		
 			}
 			else {
 				if (show_question("Would you like to save before exiting?")) {
-					with (obj_fileLoader) {
+					with(obj_fileLoader){
 						scr_saveREZ(false);
 					}
 				}

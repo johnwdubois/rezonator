@@ -26,11 +26,11 @@ var turnCol = -1;
 
 for (var unitColLoop = 0; unitColLoop < ds_list_size(global.tokenImportColNameList); unitColLoop++) {
 
-	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == "UnitID") {
+	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == "~UnitID") {
 		unitCol = unitColLoop;
 		//show_message(unitCol);
 	}
-	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == "turnOrder") {
+	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == string(global.unitImportTurnDelimColName)) {
 		turnCol = unitColLoop;
 		//show_message(turnCol);
 	}
