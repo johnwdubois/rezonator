@@ -106,7 +106,8 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 		if (mouse_check_button_released(mb_left) && !continueButtonClicked) {
 			
 			continueButtonClicked = true;
-			instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+			instLoading.loadSprite = spr_loading;
 			scr_setSpecialFieldsVariables();
 			scr_storeSchLists();
 			show_debug_message("Continue button clicked... " + scr_printTime());
@@ -207,7 +208,8 @@ if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
 	scr_loadRZS();
 	importGroupSchemaLoaded = true;
 
-	instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	instLoading.loadSprite = spr_loading;
 	scr_setSpecialFieldsVariables();
 	scr_storeSchLists();
 	

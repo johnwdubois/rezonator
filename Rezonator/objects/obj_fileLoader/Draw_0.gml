@@ -31,7 +31,8 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHo
 		draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Saving...");
 		
 		ableToHotkey = false;
-		instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);	
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+		instLoading.loadSprite = spr_saving;
 		with(obj_fileLoader){
 			alarm[0] = 1;
 		}

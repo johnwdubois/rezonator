@@ -29,7 +29,8 @@ switch (optionSelected)
 		draw_set_font(fnt_dropDown);
 		
 		obj_fileLoader.ableToHotkey = false;
-		instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);	
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+		instLoading.loadSprite = spr_saving;
 		with(obj_fileLoader){
 			alarm[0] = 2;
 		}
