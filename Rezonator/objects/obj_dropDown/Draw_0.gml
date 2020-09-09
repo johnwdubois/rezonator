@@ -83,6 +83,7 @@ scrollPlusY = min(scrollPlusY, 0);
 
 var optionListSize = ds_list_size(optionList);
 for (var i = 0; i < optionListSize; i++) {
+	draw_set_alpha(1);
 	var optionRectX1 = x;
 	var optionRectY1 = y + (optionSpacing * i) + scrollPlusY;
 	var optionRectX2 = x + windowWidth;
@@ -109,7 +110,13 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionText = ds_list_find_value(optionList, i);
 	
 	draw_set_color(c_black);
+	if (room == rm_mainScreen) {
+		if (string_char_at(optionText, 1) == "~") {
+			draw_set_alpha(0.5);
+		}
+	}
 	draw_text(optionRectX1 + textBuffer - clipX, mean(optionRectY1, optionRectY2) - clipY, optionText);
+	draw_set_alpha(1);
 	
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {
 		optionCurrent = i;
@@ -153,4 +160,5 @@ scrollBarHoldingDelay = scrollBarHolding;
 
 
 draw_set_color(c_ltgray);
+draw_set_alpha(1);
 draw_rectangle(x, y, x + windowWidth - 1, y + windowHeight, true);
