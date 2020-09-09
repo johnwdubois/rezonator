@@ -183,15 +183,10 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					currentWordInfoCol[getInfoLoop] = "";
 					
 					if (getInfoLoop == 0) {
-						if (functionChainList_currentTab == functionChainList_tabStackBrush
-						or functionChainList_currentTab == functionChainList_tabClique) {
-							var unitID = currentWordID;
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-						}
-						else {
-							var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-						}
+
+							//var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+							currentWordInfoCol[getInfoLoop] = currentWordID //string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
+
 					}
 					else if (getInfoLoop == 1) {
 						if (functionChainList_currentTab == functionChainList_tabStackBrush
@@ -437,7 +432,7 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	
 	if (i == 0) {
-		colName = "uID";
+		colName = "tokenID";
 	}
 	else if (i == 1) {
 		colName = "place";
