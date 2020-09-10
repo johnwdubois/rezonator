@@ -222,6 +222,8 @@ global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
+global.readHintHide = false;
+
 scr_loadINI();
 
 
@@ -232,6 +234,7 @@ global.unitImportUnitDelimColName = "";
 global.unitImportTurnDelimColName = "";
 
 global.openedREZFile = false;
+
 
 
 global.scrollBarWidth = 20;
