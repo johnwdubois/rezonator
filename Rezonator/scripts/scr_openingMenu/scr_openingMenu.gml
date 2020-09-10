@@ -10,7 +10,7 @@
 	Mechanism: Display a multitude of buttons and track the user's clicks
 */
 
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 scr_fontSizeControlOpeningScreen();
 

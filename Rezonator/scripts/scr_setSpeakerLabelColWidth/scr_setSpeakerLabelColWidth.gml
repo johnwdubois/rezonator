@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 if (object_index != obj_control) {
 	exit;
