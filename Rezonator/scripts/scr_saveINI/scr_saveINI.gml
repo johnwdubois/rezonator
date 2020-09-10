@@ -39,6 +39,7 @@ ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 
 
 	ds_map_add(map,"rememberMe",global.rememberMe);
+	ds_map_add(map,"readHintHide",global.readHintHide)
 	//fileStr += "rememberMe:" + string(global.rememberMe) + "#";
 	ds_map_add(map,"userName", global.userName);
 	//fileStr += "userName:" + string(global.userName) + "#";

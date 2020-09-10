@@ -69,6 +69,10 @@ if (file_exists(fileName)) {
 		if(room == rm_openingScreen){
 
 			global.rememberMe = ds_map_find_value(map, "rememberMe");
+			
+			if(ds_map_find_value(map, "readHintHide") != undefined){
+				global.readHintHide = ds_map_find_value(map, "readHintHide");
+			}
 
 
 			if (global.rememberMe) {

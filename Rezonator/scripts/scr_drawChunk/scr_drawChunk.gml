@@ -82,7 +82,7 @@ var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWord
 var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
 		
 // Draw the Chunks visual representation
-if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0) {
+if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0 and effectColor != undefined) {
 	draw_set_color(effectColor);
 } else {
 	draw_set_color(global.colorThemeText);	

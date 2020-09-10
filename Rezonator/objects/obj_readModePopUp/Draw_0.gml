@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 //popUpText1 = string_hash_to_newline("You are in Read Mode.# To mark up the #discourse data, choose #either Track Mode or #Rez mode.");
 //rectX1 = camera_get_view_width(view_camera[0]) - 245;
 //rectY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 50;
@@ -21,11 +21,11 @@ draw_roundrect(rectX1 - bubblePlus, rectY1 - bubblePlus, rectX2 + bubblePlus, re
 
 draw_set_halign(fa_center);
 draw_text(floor(mean(rectX1,  rectX2)), floor(20 + rectY1), popUpText1);
-draw_line_width(rectX1 + 30, 35 + rectY1,  rectX2 - 50, 35 + rectY1, 3);
+draw_line_width(rectX1 + 30, 35 + rectY1,  rectX2 - 30, 35 + rectY1, 3);
 	
 	
 draw_set_font(global.fontMain);
-draw_text( floor(mean(rectX1, rectX2) + 20), floor(mean(rectY1 + 20, rectY2)), popUpText2);
+draw_text( floor(mean(rectX1, rectX2)), floor(mean(rectY1 + 20, rectY2)), popUpText2);
 
 var largeHeight = string_height(popUpText1);
 draw_set_font(fnt_main);
@@ -33,8 +33,8 @@ var standardHeight = string_height(popUpText1);
 var spriteRatio = largeHeight/standardHeight;
 var spriteSize = 0.25 * spriteRatio;
 
-draw_sprite_ext(spr_toolsNew, 8, rectX1 + 35, mean(rectY1 + 45, rectY2), spriteSize, spriteSize, 0, c_white, 1); 
-draw_sprite_ext(spr_toolsNew, 5, rectX1 + 60, mean(rectY1 + 45, rectY2) + largeHeight, spriteSize, spriteSize, 0, c_white, 1); 
+draw_sprite_ext(spr_toolsNew, 8, rectX1 + 15, mean(rectY1 + 45, rectY2), spriteSize, spriteSize, 0, c_white, 1); 
+draw_sprite_ext(spr_toolsNew, 5, rectX1 + 40, mean(rectY1 + 45, rectY2) + largeHeight, spriteSize, spriteSize, 0, c_white, 1); 
 
 //draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (bubblePlus * 3), 2.5, 2.5, 270, global.colorThemeBorders, 1); 
 //draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(view_camera[0]) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (3* bubblePlus), 2.5, 2.5, 270, global.colorThemeBorders, 1); 
@@ -48,10 +48,11 @@ draw_sprite_ext(spr_alertArrow, 0, camera_get_view_width(view_camera[0]) - 60, o
 
 draw_set_colour(global.colorThemeText);
 draw_set_font(fnt_main);
-draw_text(floor(mean(rectX1, rectX2) + 20), floor(rectY2 - largeHeight + 20), "Don't show again");
+draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), "Don't show again");
 
-var buttonX1 = floor(mean(rectX1, rectX2) + 50 + (string_width("Don't show again")/2));
-var buttonY1 = floor(rectY2 - largeHeight - 10);
+
+var buttonX1 = floor(mean(rectX1, rectX2) - (string_width("Don't show again")/2 + 25));
+var buttonY1 = floor(rectY2 - largeHeight);
 var buttonX2 = buttonX1 + 20;
 var buttonY2 = buttonY1 + 20;
 		
