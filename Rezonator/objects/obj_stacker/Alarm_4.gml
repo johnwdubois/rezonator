@@ -30,8 +30,15 @@ for (var unitColLoop = 0; unitColLoop < ds_list_size(global.tokenImportColNameLi
 		unitCol = unitColLoop;
 		//show_message(unitCol);
 	}
-	if (ds_list_find_value(global.tokenImportColNameList, unitColLoop) == string(global.unitImportTurnDelimColName)) {
-		turnCol = unitColLoop;
+
+}
+
+for (var importColLoop = 0; importColLoop < ds_list_size(global.importGridColNameList); importColLoop++) {
+
+	if (string(ds_list_find_value(global.importGridColNameList, importColLoop)) == "turnId") {
+		
+
+		turnCol = importColLoop;
 		//show_message(turnCol);
 	}
 }
@@ -44,15 +51,19 @@ if (turnCol == -1) {
 }
 
 //var turnOrderCol = //how do i get??
-var currentTurnOrder = ds_grid_get(global.tokenImportGrid, turnCol, 0);
+var currentTurnOrder = ds_grid_get(global.importGrid, turnCol, 0);
+var previousTurnOrder = ds_grid_get(global.importGrid, turnCol, 0);
 
 for (var tokenImportLoop = 0; tokenImportLoop < tokenImportGridHeight; tokenImportLoop++){
-	currentTurnOrder = ds_grid_get(global.tokenImportGrid, turnCol, tokenImportLoop);
-	while( (currentTurnOrder != 1) and (tokenImportLoop < tokenImportGridHeight)) { 	
+	currentTurnOrder = ds_grid_get(global.importGrid, turnCol, tokenImportLoop);
+	if(tokenImportLoop >= 1){
+	previousTurnOrder = ds_grid_get(global.importGrid, turnCol, tokenImportLoop);
+	}
+	while( (currentTurnOrder == previousTurnOrder) and (tokenImportLoop < tokenImportGridHeight)) { 	
 		var randUnit = ds_grid_get(global.tokenImportGrid, unitCol, tokenImportLoop);
 		ds_list_add(currentUnitList, randUnit);
 		tokenImportLoop++
-		currentTurnOrder = ds_grid_get(global.tokenImportGrid, turnCol, tokenImportLoop);
+		currentTurnOrder = ds_grid_get(global.importGrid, turnCol, tokenImportLoop);
 		//show_message(currentTurnOrder);
 	}
 	
