@@ -550,7 +550,7 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	
 		//user interaction for display view change
-		if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
+		if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize) && !instance_exists(obj_dropDown)) {
 			draw_set_color(global.colorThemeSelected2);
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 			if (mouse_check_button_released(mb_left)) {
