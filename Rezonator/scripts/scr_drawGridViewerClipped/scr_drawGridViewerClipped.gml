@@ -12,6 +12,11 @@
 	Author: Terry DuBois
 */
 
+if (live_call()) return live_result;
+
+x = 120;
+windowX = 120;
+
 var currentGridName = scr_drawGridViewerGridTabs();
 
 scr_surfaceStart();
@@ -22,6 +27,7 @@ var textY = 0;
 var textPlusY = 0;
 var strHeight = string_height("0");
 var colNameHeight = strHeight;
+
 
 var windowX1 = windowX;
 var windowY1 = windowY;
@@ -267,48 +273,51 @@ for (var i = 1; i < gridWidth; i++) {
 draw_set_alpha(1);
 var currentGridNameWidth = string_width(currentGridName);
 var currentGridNameHeight = string_height(currentGridName);
-/*
-draw_set_halign(fa_left);
-draw_set_valign(fa_middle);
+
+
+
+// Grid change dropDown button
 draw_set_font(global.fontMain);
-var rectHeight = string_height("0");
-var rectBuffer = 3;
-var rectX1 = windowY1 - strHeight - 20 - (string_height("0") /2);
-var rectY1 = windowY1 - rectHeight;
-var rectX2 = rectX1 + currentGridNameWidth + rectBuffer;
-var rectY2 = windowY1 + rectBuffer;
-draw_set_color(global.colorThemeBG);
-draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
-    
-    
-if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
-	draw_set_alpha(0.3);
-	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
-    if (device_mouse_check_button_released(0, mb_left)) {
-        //show_message("clicked here" + string(drawLineLoop));
-                
+var dropDownButtonStr = "Grid: " + scr_getGridNameString(grid) + "      ";
+var dropDownButtonX1 = 20;
+var dropDownButtonY1 = obj_menuBar.menuHeight + 30;
+var dropDownButtonX2 = dropDownButtonX1 + string_width(dropDownButtonStr) + sprite_get_width(spr_dropDown);
+var dropDownButtonY2 = windowY1 - 60;
+var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+
+draw_set_color(mouseoverDropDownButton ? global.colorThemeSelected1 : global.colorThemeBG);
+draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2, false);
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2, true);
+
+draw_set_halign(fa_left);
+draw_text(dropDownButtonX1 + 20, floor(mean(dropDownButtonY1, dropDownButtonY2)), dropDownButtonStr);
+
+draw_sprite(spr_dropDown, 0, dropDownButtonX2 - sprite_get_width(spr_dropDown), floor(mean(dropDownButtonY1, dropDownButtonY2)));
+if (mouseoverDropDownButton && mouse_check_button_released(mb_left)) {
+	
     var dropDownOptionList = ds_list_create();
 
-    ds_list_add(dropDownOptionList, "Unit", "Line", "Word", "vizWord");
+    // copy all grid names from gridList to dropDownOptionList
+	var gridListSize = ds_list_size(gridList);
+	for (var i = 0; i < gridListSize; i++) {
+		var currentGrid = ds_list_find_value(gridList, i);
+		ds_list_add(dropDownOptionList, scr_getGridNameString(currentGrid));
+	}
 
     if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-        var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+        var dropDownInst = instance_create_depth(dropDownButtonX1, dropDownButtonY2, -999, obj_dropDown);
         dropDownInst.optionList = dropDownOptionList;
         dropDownInst.optionListType = 39;
                     
         obj_control.ableToCreateDropDown = false;
         obj_control.alarm[0] = 2;
     }
-    }
+	
 }
 
-draw_set_alpha(1);
-draw_set_color(global.colorThemeText);
-draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
-    
-draw_text(rectX1 + 5, mean(rectY1, rectY2), currentGridName);
-*/
+
+
 // draw the current mouseover item
 draw_set_font(global.fontMain);
 var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
@@ -317,19 +326,19 @@ var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + s
 
 draw_set_alpha(0.3);
 draw_set_color(c_yellow);
-draw_rectangle(rectX2 + 5, windowY1 - strHeight - 20 - (string_height("0") /2), rectX2 + string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
+draw_rectangle(dropDownButtonX2 + 10, windowY1 - strHeight - 20 - (string_height("0") /2), dropDownButtonX2 + string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
 draw_set_color(global.colorThemeSelected2);
-draw_rectangle(rectX2 + 5, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), rectX2 + string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
+draw_rectangle(dropDownButtonX2 + 10, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), dropDownButtonX2 + string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
 draw_set_alpha(1);
 draw_set_color(global.colorThemeText);
 
 //draw_text(windowX1 + 10, windowY1 - strHeight - 20, currentGridName);
 
-draw_text(rectX2 + 10, windowY1 - strHeight - 20, highlightText);
+draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20, highlightText);
 
-draw_text(rectX2 + 10, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
+draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
 
-draw_text(rectX2, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
+draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
 
 //draw_text(windowX1, windowY2 + strHeight + 60 + string_height("0"), "gridViewColXHolding: " + string(gridViewColXHolding));
 //draw_text(windowX1, windowY2 + strHeight + 80 + string_height("0"), "gridViewColPrevList: " + scr_getStringOfList(gridViewColPrevList));
