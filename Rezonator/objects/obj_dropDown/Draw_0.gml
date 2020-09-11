@@ -88,9 +88,10 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionRectY1 = y + (optionSpacing * i) + scrollPlusY;
 	var optionRectX2 = x + windowWidth;
 	var optionRectY2 = optionRectY1 + optionSpacing;
+	var mouseoverRectX2 = (showScrollBar) ? optionRectX2 - global.scrollBarWidth : optionRectX2;
 	
 	var mouseoverCurrentOption = false;
-	if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, optionRectX2 - global.scrollBarWidth, optionRectY2) and ableToMouseover
+	if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, mouseoverRectX2, optionRectY2) and ableToMouseover
 	and !scrollBarHolding) {
 		mouseoverCurrentOption = true;
 		ableToMouseover = false;
