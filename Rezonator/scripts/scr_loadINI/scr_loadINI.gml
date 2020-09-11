@@ -91,6 +91,8 @@ if (file_exists(fileName)) {
 
 			global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");
 			global.previousLevelEstimates = ds_map_find_value(map, "previousLevelEstimates");
+			
+			global.fontSize = ds_map_find_value(map, "fontSize");
 
 				
 		}		

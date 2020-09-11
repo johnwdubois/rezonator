@@ -223,6 +223,7 @@ ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
 global.readHintHide = false;
+global.fontSize = 0;
 
 scr_loadINI();
 
@@ -238,7 +239,6 @@ global.openedREZFile = false;
 
 
 global.scrollBarWidth = 20;
-global.fontSize = 0;
 scr_fontGlobalUpdate();
 
 canPressMinus = true;
