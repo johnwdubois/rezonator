@@ -175,7 +175,7 @@ switch (optionSelected)
 			case obj_toolPane.modeRez:
 				grid = obj_chain.rezChainGrid;
 				if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
-					show_message("Please select the Track tool to delete a Track chain link");
+					show_message("Please focus on a link before deleting it");
 					instance_destroy();
 					exit;	
 				}
@@ -184,7 +184,7 @@ switch (optionSelected)
 			// Using the track tool
 				grid = obj_chain.trackChainGrid;
 				if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
-					show_message("Please select the Rez tool to delete a Rez chain link");
+					show_message("Please focus on a link before deleting it");
 					instance_destroy();
 					exit;
 				}
