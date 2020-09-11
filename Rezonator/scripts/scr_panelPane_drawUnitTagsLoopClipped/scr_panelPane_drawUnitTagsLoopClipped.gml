@@ -182,19 +182,21 @@ for(var j = 0 ; j < headerListSize; j++) {
 						var colIndex = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
 						var mapKey = ds_list_find_value(global.unitImportColNameList, colIndex);
 						var tagMapList = ds_map_find_value(global.unitImportTagMap, mapKey);
-						//show_message("tagMapList: " + scr_getStringOfList(tagMapList));
-						ds_list_copy(dropDownOptionList, tagMapList);
-						obj_control.unitImportColToChange = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-						obj_control.unitImportRowToChange = currentLineUnitID - 1;
+						
+						if (!is_undefined(tagMapList)) {
+							ds_list_copy(dropDownOptionList, tagMapList);
+							obj_control.unitImportColToChange = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
+							obj_control.unitImportRowToChange = currentLineUnitID - 1;
 								
-						var dropDownX = colRectX1;
-						var dropDownY = lineNameRectY2;
+							var dropDownX = colRectX1;
+							var dropDownY = lineNameRectY2;
 
-						if (ds_list_size(dropDownOptionList) > 0 ) {
-							var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
-							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = 38;
+							if (ds_list_size(dropDownOptionList) > 0 ) {
+								var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
+								dropDownInst.optionList = dropDownOptionList;
+								dropDownInst.optionListType = 38;
 
+							}
 						}
 		
 					
@@ -214,8 +216,6 @@ for(var j = 0 ; j < headerListSize; j++) {
     
 	    //Color codes the line lists for User
 	    draw_set_color(discoColor); //soften the color
-	    //draw_set_color(lineColor);
-	    //draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
     
 	    // Outline the rectangle in black
 	    if (currentLineState == 1) {
@@ -242,7 +242,6 @@ for(var j = 0 ; j < headerListSize; j++) {
 		
 		var tagToDraw = ds_grid_get(global.unitImportGrid,j,i);
 		
-		//show_message(string(importcol));
 		var importCol = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
 		if( importCol != undefined ){
 			tagToDraw = string(ds_grid_get(global.unitImportGrid, importCol, i));
@@ -296,9 +295,6 @@ draw_set_color(global.colorThemeBG);
 draw_rectangle(x - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 
 
-/*if(obj_control.showDevVars) {
-    headerListSize = 6;
-}*/
 // Create the column headers
 var activeCols = 0;
 for (var i = 0; i < headerListSize; i++) {
@@ -315,8 +311,7 @@ for (var i = 0; i < headerListSize; i++) {
     
 	var nameFromList =  ds_list_find_value(global.unitImportColNameList, i);
 	if(i != 0){
-		var unitColValue = ds_list_find_value(obj_control.currentDisplayUnitColsList, i-1);
-		//show_message(unitColValue);
+		var unitColValue = ds_list_find_value(obj_control.currentDisplayUnitColsList, i - 1);
 		nameFromList = ds_list_find_value(global.unitImportColNameList, unitColValue);
 	}	
 	if(nameFromList == undefined){
