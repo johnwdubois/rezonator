@@ -47,7 +47,7 @@ if(argument_count == 4) {
 		if(currentWordState == obj_control.wordStateChunk) {
 			continue;
 		}
-		wordTranscript += (string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, chunkWordID - 1)) + " ");
+		wordTranscript += (string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, chunkWordID - 1)) + " ");
 	}
 }
 // Set the word's token

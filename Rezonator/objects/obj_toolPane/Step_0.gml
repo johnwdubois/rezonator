@@ -39,7 +39,7 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 	}
 	
 	*/
-	with (obj_panelPane) {
+	/*with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			if (functionChainList_currentTab != functionChainList_tabClique and functionChainList_currentTab != functionChainList_tabLine) {
 				if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
@@ -53,7 +53,7 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 				}
 			}
 		}
-	}
+	}*/
 }
 
 global.toolPaneWidth = windowWidth;
