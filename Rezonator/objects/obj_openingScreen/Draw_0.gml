@@ -11,7 +11,7 @@
 	
 	Author: Terry DuBois
 */
-//if (live_call()) return live_result;
+if (live_call()) return live_result;
 
 scr_colorThemeControl();
 
@@ -47,6 +47,28 @@ if (obj_openingScreen.showDevVars) {
 	draw_text((camera_get_view_width(view_camera[0]) / 2) + (sprite_get_width(spr_logo) / 2) - 500, (camera_get_view_height(view_camera[0]) / 4) + (sprite_get_height(spr_logo) / 2) + 100, currentDirStr);
 	
 	draw_text(20, 20, "global.fontSize: " + string(global.fontSize));
+}
+
+
+draw_set_alpha(1);
+draw_set_font(global.fontMain);
+var documentationStr = " Check out our documentation! ";
+var documentationButtonX1 = 10;
+var documentationButtonY1 = 10;
+var documentationButtonX2 = documentationButtonX1 + string_width(documentationStr);
+var documentationButtonY2 = documentationButtonY1 + string_height(documentationStr) + 5;
+var mouseoverDocumenation = point_in_rectangle(mouse_x, mouse_y, documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2);
+draw_set_color(mouseoverDocumenation ? global.colorThemeSelected1 : global.colorThemeBG);
+draw_rectangle(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, false);
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, true);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_set_color(global.colorThemeText);
+draw_text(documentationButtonX1, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
+
+if (mouseoverDocumenation && mouse_check_button_released(mb_left)) {
+	url_open("https://rezonator.com/documentation/");
 }
 
 
