@@ -25,7 +25,8 @@ prevCenterDisplayRow = 0;
 
 // Bound and set the display grid of the words
 gridSpaceHorizontalMin = 60;
-gridSpaceVerticalMin = 30;
+gridSpaceVerticalMin = 35;
+gridSpaceVerticalMinOriginal = 35;
 gridSpaceHorizontalMax = 400;
 gridSpaceVerticalMax = 300;
 

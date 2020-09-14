@@ -105,7 +105,7 @@ switch (optionSelected)
 		break;
 	case "In":
 		
-		//verticle
+		//vertical
 		var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 		var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
 		obj_control.prevCenterDisplayRow = scr_currentCenterLine();
@@ -139,9 +139,7 @@ switch (optionSelected)
 			obj_control.gridSpaceHorizontal += 20;
 		}
 			
-		//Text
-			
-				
+		//Text		
 		if (global.fontSize < 5) {
 			global.fontSize++;
 			scr_setSpeakerLabelColWidth();
@@ -151,8 +149,7 @@ switch (optionSelected)
 		break;
 	case "Out":
 			
-		//Verticle
-						
+		//Vertical				
 		var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 		var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
 		obj_control.prevCenterDisplayRow = scr_currentCenterLine();
@@ -187,8 +184,7 @@ switch (optionSelected)
 			obj_control.gridSpaceHorizontal -= 20;
 		}
 		
-		//TEXT
-					
+		//TEXT		
 		if (global.fontSize > 0) {
 			global.fontSize--;
 			scr_setSpeakerLabelColWidth();
