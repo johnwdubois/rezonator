@@ -206,7 +206,7 @@ for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLo
 					//obj_panelPane.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
 				}
 				if(!global.readHintHide) {
-					var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
+					//var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
 				}
 			}
 		}
