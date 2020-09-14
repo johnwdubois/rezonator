@@ -7,5 +7,9 @@
 //	}
 //}
 
+if (!shortcutsEnabled || dialogueBoxActive) {
+	exit;
+}
+
 
 obj_control.showUnitTags = !obj_control.showUnitTags;
