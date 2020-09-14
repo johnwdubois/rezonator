@@ -287,16 +287,19 @@ repeat (currentWordIDListSize) {
 		}
 	}
 	
+	if(wordRectX2 > speakerRectX2) {
+	
 	//scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 	scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 	
 	// Until I can get a check that sees if the mouseRect is in the line, this can't happen
-	if (((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) && !inRezPlay) {
+	if ((hoverWordID == -1 or hoverWordID == currentWordID) and ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) and !inRezPlay) {
 		scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop);
 	}
 	
 	scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString, hitGridHeight);
-
+	}
+	
 	previousWordDisplayCol = currentWordDisplayCol;
 	previousWordDisplayString = currentWordString;
 	
