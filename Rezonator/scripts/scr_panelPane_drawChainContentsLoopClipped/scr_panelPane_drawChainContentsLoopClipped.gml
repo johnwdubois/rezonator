@@ -162,6 +162,7 @@ if (grid != -1) {
 		
 				//Get info on current word
 				var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+
 				var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";
@@ -326,9 +327,14 @@ if (grid != -1) {
 								if (currentWordIDList == undefined) {
 									break;
 								}
+
 								var currentWordIDListSize = ds_list_size(currentWordIDList);
 								for (var i = 0; i < currentWordIDListSize; i++) {
 									var currentWordID = ds_list_find_value(currentWordIDList, i);
+									var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
+									if(currentWordState == 3){
+										continue;
+									}
 									var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
 									currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
 								}

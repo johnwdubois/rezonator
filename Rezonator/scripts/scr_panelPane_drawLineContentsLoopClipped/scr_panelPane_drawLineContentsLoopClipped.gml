@@ -101,6 +101,11 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				drawDropDowns = false;
 				//Get info on current word
 				var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+				var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
+				if(currentWordState == 3){
+					continue;
+				}
+				
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";
 		
