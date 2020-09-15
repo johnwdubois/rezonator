@@ -12,10 +12,29 @@
 	Author: Terry DuBois
 */
 
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 x = 120;
 windowX = 120;
+
+
+// press TAB or ALT+TAB to switch grids
+if (keyboard_check_pressed(vk_tab)) {
+	var gridIndex = ds_list_find_index(gridList, grid);
+	
+	if (gridIndex > -1) {
+		gridIndex += (keyboard_check(vk_control)) ? -1 : 1;
+		if (gridIndex < 0) {
+			gridIndex = ds_list_size(gridList) - 1;
+		}
+		else if (gridIndex >= ds_list_size(gridList)) {
+			gridIndex = 0;
+		}
+		grid = ds_list_find_value(gridList, gridIndex);
+	}
+}
+
+
 
 var currentGridName = scr_drawGridViewerGridTabs();
 
