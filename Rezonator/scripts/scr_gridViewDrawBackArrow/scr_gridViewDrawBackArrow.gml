@@ -1,4 +1,6 @@
-
+if(instance_exists(obj_dropDown)) {
+	exit;
+}
 draw_set_font(fnt_main);
 var standardHeight = string_height("A");
 draw_set_font(global.fontMain);
