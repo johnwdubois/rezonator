@@ -205,7 +205,12 @@ draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, "Reme
 
 draw_set_font(fnt_main);
 draw_set_alpha(0.5);
-if(string_length(obj_openingScreen.inputText) == 0){
+
+if(string_length(obj_openingScreen.inputText) > 0 ){
+	obj_openingScreen.clickedIn = true;
+}
+
+if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
 	draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), "User Sign In");
 }
 draw_set_alpha(1);
@@ -221,11 +226,22 @@ var remeberMeBoxY2 = userSignInBoxY2 + 25;
 		draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2, false);	
 	}
 
+	if (point_in_rectangle(mouse_x, mouse_y,userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)){
+			if (device_mouse_check_button_released(0, mb_left)) {
+				obj_openingScreen.clickedIn = true;
+			}
+	}
+
 	// current chain boolean switch
-	if (point_in_rectangle(mouse_x, mouse_y,remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2)){
+	else if (point_in_rectangle(mouse_x, mouse_y,remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2)){
 			if (device_mouse_check_button_released(0, mb_left)) {
 				global.rememberMe = !global.rememberMe;	
 			}
+	}
+	else {
+		if (device_mouse_check_button_released(0, mb_left)) {
+			obj_openingScreen.clickedIn = false;
+		}
 	}
 	
 
@@ -263,6 +279,9 @@ if(global.menuOpen){
 			loopItterations ++;
 			canDeleteHoldingCounter = 0;
 		}
+		if(string_length(obj_openingScreen.inputText) == 0 ){
+			obj_openingScreen.clickedIn = false;
+		}
 	}
 	if (keyboard_check_released(vk_backspace)) {
 	loopItterations = 0;
@@ -270,7 +289,7 @@ if(global.menuOpen){
 	canDelete = true;
 	}
 	
-	if (keyboard_string != "" && global.menuOpen  && keyboard_string != "-" && keyboard_string != "+" && string_length(obj_openingScreen.inputText) < 30 ) {
+	if (global.menuOpen  && keyboard_string != "-" && keyboard_string != "+" && string_length(obj_openingScreen.inputText) < 30 ) {
 		//show_message(keyboard_string);
 		var t = keyboard_string;
 		obj_openingScreen.inputText = string_insert(t, obj_openingScreen.inputText, obj_openingScreen.cursorPos);
@@ -350,7 +369,7 @@ if(global.menuOpen){
 
 
 
-	if(obj_openingScreen.cursorViz and string_length(obj_openingScreen.inputText) != 0){
+	if(obj_openingScreen.cursorViz and obj_openingScreen.clickedIn == true){
 		displayText = string_insert("|", displayText, obj_openingScreen.cursorPos);
 	}
 	else{

@@ -115,6 +115,8 @@ scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
 scrollRange = 6;
 
+clickedIn = false;
+
 //scr_openXML();
 
 //room_goto_next();
