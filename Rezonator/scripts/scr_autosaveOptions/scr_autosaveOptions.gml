@@ -2,8 +2,6 @@ var optionSelected = argument0;
 
 var wasOff = (global.autosaveTimer == -1);
 
-show_debug_message("FUCK TERRY HES A BIG POOPOO AUTOSAVETIMER: "+string(global.autosaveTimer));
-
 
 switch (optionSelected)
 {
@@ -31,5 +29,3 @@ if (wasOff) {
 		alarm[1] = global.autosaveTimer;
 	}
 }	
-
-show_debug_message("FUCK TERRY HES A BIG POOPOO AUTOSAVETIMER: "+string(global.autosaveTimer));
