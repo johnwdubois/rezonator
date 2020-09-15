@@ -73,6 +73,10 @@ if (file_exists(fileName)) {
 			if(ds_map_find_value(map, "readHintHide") != undefined){
 				global.readHintHide = ds_map_find_value(map, "readHintHide");
 			}
+			
+			if(ds_map_find_value(map, "autosaveTimer") != undefined){
+				global.autosaveTimer = ds_map_find_value(map, "autosaveTimer");
+			}
 
 
 			if (global.rememberMe) {

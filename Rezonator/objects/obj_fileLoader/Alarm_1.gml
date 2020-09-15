@@ -44,13 +44,15 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	scr_copyLevelMapping();
 }
 
-alarm[1] = 36000;
+alarm[1] = global.autosaveTimer;
 
 show_debug_message("obj_fileLoader Alarm 1, ENDING... " + scr_printTime());
 
 
 var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 instLoading.loadSprite = spr_saving;
-with(obj_fileLoader){
-	alarm[6] = 2;
+if(global.autosaveTimer != -1){
+	with(obj_fileLoader){
+		alarm[6] = 2;
+	}
 }

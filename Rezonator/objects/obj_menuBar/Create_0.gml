@@ -65,7 +65,7 @@ ds_list_add(filterOptionList, "Toggle", "Context", "Add");
 //ds_list_add(toolsOptionList, "Sort", "StackShow", "Play", "Rez-Play");
 
 advancedOptionList = ds_list_create();
-ds_list_add(advancedOptionList, "Author", "Clear", "Delete All");
+ds_list_add(advancedOptionList, "Author", "Clear", "Delete All","Autosave");
 
 //settingsOptionList = ds_list_create();
 //ds_list_add(settingsOptionList, "Zoom", "Dark Theme", "Mute", "Author");

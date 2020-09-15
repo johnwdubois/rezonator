@@ -206,9 +206,12 @@ show_debug_message("AFter map created");
 
 var jsonString = json_encode(wrapper);
 show_debug_message("AFter json encoded");
-jsonString = scr_jsonBeautify(jsonString);
 
+if (not autosave) {
+jsonString = scr_jsonBeautify(jsonString);
 show_debug_message("AFter json beautified");
+}
+
 if (autosave) {
 	if(global.games) {
 		var gameSaveDirString = (global.rezzles ? global.rezonatorRezzlesSaveDirString : global.rezonatorElmoSaveDirString) ;
