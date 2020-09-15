@@ -148,6 +148,8 @@ with (obj_saveParent) {
 		//save special feild colnames
 		ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
 		ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
+		
+		ds_map_add(map, "showParticipantName", obj_control.showParticipantName);
 			
 		
 		if (global.stackGrabSave) {
@@ -184,6 +186,7 @@ with (obj_saveParent) {
 		ds_map_add(map, "chainColorID1", chainColorID[1]);
 		ds_map_add(map, "chainColorID2", chainColorID[2]);
 		ds_map_add(map, "chainColorID3", chainColorID[3]);
+		
 	}
 	
 		var tempMap = ds_map_create();
