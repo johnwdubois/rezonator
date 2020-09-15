@@ -1,7 +1,7 @@
 /// @description GridList Dynamic
 // You can write your code in this editor
 
-var importGridXColList = ds_map_find_value(gridViewColXListMap, global.importGrid);
+var importGridXColList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(global.importGrid));
 
 
 var currentColX = windowX;

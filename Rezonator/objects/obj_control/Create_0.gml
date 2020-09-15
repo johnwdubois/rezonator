@@ -25,7 +25,8 @@ prevCenterDisplayRow = 0;
 
 // Bound and set the display grid of the words
 gridSpaceHorizontalMin = 60;
-gridSpaceVerticalMin = 30;
+gridSpaceVerticalMin = 35;
+gridSpaceVerticalMinOriginal = 35;
 gridSpaceHorizontalMax = 400;
 gridSpaceVerticalMax = 300;
 
@@ -97,8 +98,8 @@ unitGrid_colParticipantName = 5;
 unitGrid_colUnitStart = 6;
 unitGrid_colUnitEnd = 7;
 unitGrid_colParticipantColor = 8;
-unitGrid_colTag = 9;
-unitGrid_colDiscoColor = 10;
+//unitGrid_colTag = 9;
+unitGrid_colDiscoColor = 9;
 
 unitGrid = ds_grid_create(unitGridWidth, 0);
 unitGridBackup = ds_grid_create(unitGridWidth, 0);

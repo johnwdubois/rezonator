@@ -278,3 +278,16 @@ else if (optionListType == 38)
     scr_unitTagMapOptions(optionSelected);
     instance_destroy();
 }
+
+else if (optionListType == 39)
+{
+    scr_gridViewerSelectGridOptions(optionSelected);
+    instance_destroy();
+}
+
+else if (optionListType == 40)
+{
+    scr_autosaveOptions(optionSelected);
+    instance_destroy();
+}
+

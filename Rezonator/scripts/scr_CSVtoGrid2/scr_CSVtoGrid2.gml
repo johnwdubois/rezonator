@@ -132,7 +132,8 @@ for( var _i = 0; _i < _size; _i++ ) {
     
 	if ( _newline_alt ) {
 		var _newline = ( _val == 10 );
-	} else {
+	} 
+	else {
 		var _newline = ( _prev_val == 13 ) and ( _val == 10 );
         
 		//If we've found a newline and we're in a string, skip over the chr(10) character
@@ -154,7 +155,7 @@ for( var _i = 0; _i < _size; _i++ ) {
 			if ( _sheet_height >= 2 ) ds_grid_set_region( _grid, _max_width-1, 0, _max_width-1, _sheet_height-2, "" );
 
 		}
-
+		
 		//Write the working string to a grid cell
 		if ( _is_decimal )
                 {
@@ -169,7 +170,7 @@ for( var _i = 0; _i < _size; _i++ ) {
 
 		//A newline outside of a string triggers a new line... unsurprisingly
 		if ( _newline ) {
-
+			show_debug_message(string(_sheet_height));
 			//Clear cells horizontally to overwrite the default 0-value
 			if ( _sheet_width < _max_width ) ds_grid_set_region( _grid, _sheet_width, _sheet_height-1, _max_width-1, _sheet_height-1, "" );
 

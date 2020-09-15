@@ -1,0 +1,1 @@
+loadSprite = spr_loading;

@@ -12,6 +12,8 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
+//if (live_call()) return live_result;
+
 // Set contraints for filter button
 
 windowWidth = functionChainList_tabHeight;
@@ -102,6 +104,7 @@ for (var i = 0; i < 3; i++) {
 if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 	if ((point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2) and device_mouse_check_button_released(0, mb_left))
 	or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not instance_exists(obj_dialogueBox)))) {
+		
 		// If filter is active, deactivate it
 		if (obj_control.filterGridActive) {
 			if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {

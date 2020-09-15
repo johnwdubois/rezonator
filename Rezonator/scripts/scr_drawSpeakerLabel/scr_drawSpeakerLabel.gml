@@ -78,8 +78,12 @@ for (var i = 0; i < 3; i++) {
 			var dropDownOptionList = ds_list_create();
 			
 			obj_control.swapLinePos1 = unitID;
-
-			ds_list_add(dropDownOptionList, "Swap", "Shuffle", "Reset Order", "Tag");
+			if(obj_control.searchGridActive or obj_control.filterGridActive or obj_toolPane.currentMode == obj_toolPane.modeRead){
+				obj_control.ableToCreateDropDown = false;
+			}
+			else{
+				ds_list_add(dropDownOptionList, "Swap", "Shuffle", "Reset Order");
+			}
 
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);

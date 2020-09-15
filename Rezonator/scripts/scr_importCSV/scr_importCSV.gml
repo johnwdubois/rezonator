@@ -4,8 +4,8 @@ var filename = argument0;
 
 //load csv into grid
 //global.importCSVGrid = scr_CSVtoGrid(filename);
-//global.importCSVGrid = load_csv(filename);
-global.importCSVGrid = scr_CSVtoGrid2(filename, true);
+global.importCSVGrid = load_csv(filename);
+//global.importCSVGrid = scr_CSVtoGrid2(filename, true);
 show_debug_message("scr_importCSV()... global.importCSVGridWidth: " + string(ds_grid_width(global.importCSVGrid)) + " global.importCSVGridHeight: " + string(ds_grid_height(global.importCSVGrid)));
 
 

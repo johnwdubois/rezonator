@@ -88,6 +88,7 @@ with (obj_saveParent) {
 		var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
 		var maptokenImport = scr_gridToJSONLists(global.tokenImportGrid);
 		var mapunitImport = scr_gridToJSONLists(global.unitImportGrid);
+		var mapDiscoImport = scr_gridToJSONLists(global.discoImportGrid);
 		var mapCustomLabelGrid = scr_gridToJSONLists(global.customLabelGrid);
 		
 		ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
@@ -111,9 +112,13 @@ with (obj_saveParent) {
 
 
 		
+
+
+		
 		//custom label saves
 		ds_map_add_list(map, "tokenImport", maptokenImport);
 		ds_map_add_list(map, "unitImport", mapunitImport);
+		ds_map_add_list(map, "discoImport", mapDiscoImport);
 		ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
 		var tempList2 = ds_list_create();
 		if (global.tokenImportColNameList  != undefined) {
@@ -127,9 +132,24 @@ with (obj_saveParent) {
 		}
 		ds_map_add_list(map, "unitImportColNameList", tempList3);
 		
+		var tempList4 = ds_list_create();
+		if (obj_control.currentDisplayTokenColsList != undefined) {
+			ds_list_copy(tempList4, obj_control.currentDisplayTokenColsList);
+		}
+		ds_map_add_list(map, "currentDisplayTokenColsList", tempList4);
+		
+		var tempList5 = ds_list_create();
+		if (obj_control.currentDisplayTokenColsList != undefined) {
+			ds_list_copy(tempList5, obj_control.currentDisplayUnitColsList);
+		}
+		ds_map_add_list(map, "currentDisplayUnitColsList", tempList5);
+		
+		
 		//save special feild colnames
 		ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
 		ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
+		
+		ds_map_add(map, "showParticipantName", obj_control.showParticipantName);
 			
 		
 		if (global.stackGrabSave) {
@@ -166,6 +186,7 @@ with (obj_saveParent) {
 		ds_map_add(map, "chainColorID1", chainColorID[1]);
 		ds_map_add(map, "chainColorID2", chainColorID[2]);
 		ds_map_add(map, "chainColorID3", chainColorID[3]);
+		
 	}
 	
 		var tempMap = ds_map_create();
@@ -188,9 +209,12 @@ show_debug_message("AFter map created");
 
 var jsonString = json_encode(wrapper);
 show_debug_message("AFter json encoded");
-jsonString = scr_jsonBeautify(jsonString);
 
+if (not autosave) {
+jsonString = scr_jsonBeautify(jsonString);
 show_debug_message("AFter json beautified");
+}
+
 if (autosave) {
 	if(global.games) {
 		var gameSaveDirString = (global.rezzles ? global.rezonatorRezzlesSaveDirString : global.rezonatorElmoSaveDirString) ;

@@ -27,6 +27,7 @@ var tabHeight = functionChainList_tabHeight;
 var scrollBarListHeight = 0;
 var drawDropDowns = false;
 
+
 var grid = obj_control.lineGrid;
 
 
@@ -100,6 +101,11 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 				drawDropDowns = false;
 				//Get info on current word
 				var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+				var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
+				if(currentWordState == 3){
+					continue;
+				}
+				
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";
 		
@@ -177,18 +183,15 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 						continue;
 					}
 					
+					var unitTagTokenView = false;
+					
 					currentWordInfoCol[getInfoLoop] = "";
 					
 					if (getInfoLoop == 0) {
-						if (functionChainList_currentTab == functionChainList_tabStackBrush
-						or functionChainList_currentTab == functionChainList_tabClique) {
-							var unitID = currentWordID;
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-						}
-						else {
-							var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-							currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-						}
+
+							//var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+							currentWordInfoCol[getInfoLoop] = currentWordID //string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
+
 					}
 					else if (getInfoLoop == 1) {
 						if (functionChainList_currentTab == functionChainList_tabStackBrush
@@ -241,6 +244,13 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 						else{
 							currentWordInfoCol[getInfoLoop] = "";
 						}
+	
+						var colName = ds_list_find_value(global.tokenImportColNameList, importCol);
+						if (ds_list_find_index(global.unitImportColNameList, colName) != -1) {
+							unitTagTokenView = true;
+						}
+							
+						
 					}
 					
 			
@@ -278,7 +288,7 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 					//draw tag selection
 
 
-						if (drawDropDowns) {
+						if (drawDropDowns && !unitTagTokenView) {
 							draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
 				
 				
@@ -287,38 +297,31 @@ and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
 						
 								draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY , dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
 
-								//ascendYScale = (ascendActivated) ? 1 : -1;
 								if (mouse_check_button_released(mb_left)) {
 									with (obj_panelPane) {
 										selectedColToken = getInfoLoop;
 									}
 								
 									var dropDownOptionList = ds_list_create();
-									//show_message("mapSize: " + string(ds_map_size(global.tokenImportTagMap)));
 									if (getInfoLoop >= 3) {
-										//show_message("col from list :   " + string(ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3))  + " wordID :   " +  string(currentWordID-1));
-										//ds_list_copy(dropDownOptionList, ds_map_find_value(global.tokenImportTagMap, ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -3)));
 										var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
 										var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-										//show_message("mapKey: " + string(mapKey));	
-										//show_message("global.tokenImportColNameList: " + scr_getStringOfList(global.tokenImportColNameList));
 										var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-										//show_message("tagMapList: " + scr_getStringOfList(tagMapList));
-										ds_list_copy(dropDownOptionList, tagMapList);
-										obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-										obj_control.tokenImportRowToChange =currentWordID-1;
+										if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
+											ds_list_copy(dropDownOptionList, tagMapList);
+											obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
+											obj_control.tokenImportRowToChange =currentWordID-1;
+										}
 									}
-									else{
-										//show_message("col from list :   " + string(ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2)) + " wordID :   " +  string(currentWordID-1));
+									else {
 										var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
 										var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-										//show_message("mapKey: " + string(mapKey));							
 										var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-										//show_message("tagMapList: " + scr_getStringOfList(tagMapList));
-										ds_list_copy(dropDownOptionList, tagMapList);
-									
-										obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2);
-										obj_control.tokenImportRowToChange =currentWordID-1;
+										if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
+											ds_list_copy(dropDownOptionList, tagMapList);
+											obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2);
+											obj_control.tokenImportRowToChange = currentWordID - 1;
+										}
 									}
 								
 									var dropDownX = textX - xBuffer;
@@ -395,6 +398,7 @@ if (functionChainList_currentTab == functionChainList_tabLine) {
 }
 
 
+
 /*if(obj_control.showDevVars) {
 	headerListSize = 6;
 }*/
@@ -426,7 +430,7 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	
 	if (i == 0) {
-		colName = "uID";
+		colName = "tokenID";
 	}
 	else if (i == 1) {
 		colName = "place";
@@ -440,6 +444,8 @@ for (var i = 0; i < headerListSize; i++) {
 		}
 		colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 	}
+	
+	var notUnitOrDiscoTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1));
 	
 	
 	// draw lines to separate columns
@@ -479,8 +485,11 @@ for (var i = 0; i < headerListSize; i++) {
 					chosenCol = i;
 				}
 				obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
-				var dropDownOptionList = ds_list_create();		
-				ds_list_add(dropDownOptionList, "Create Field", "Add new Tag");
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "Create Field");
+				if (notUnitOrDiscoTag) {
+					ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
+				}
 				if (ds_list_size(dropDownOptionList) > 0) {
 					var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;
@@ -521,16 +530,16 @@ for (var i = 0; i < headerListSize; i++) {
 				}
 
 				var dropDownOptionList = ds_list_create();
-
-				ds_list_copy(dropDownOptionList, global.tokenImportColNameList);
-
-				if (ds_list_size(dropDownOptionList) > 0 ) {
-					var dropDownInst = instance_create_depth(colRectX2,colRectY1+tabHeight , -999, obj_dropDown);
-					dropDownInst.optionList = dropDownOptionList;
-					dropDownInst.optionListType = 27;
-					
-					//obj_control.ableToCreateDropDown = false;
-					//obj_control.alarm[0] = 2;
+				
+				if (!is_undefined(dropDownOptionList) && !is_undefined(global.tokenImportColNameList)) {
+					ds_list_copy(dropDownOptionList, global.tokenImportColNameList);
+					if (ds_list_size(dropDownOptionList) > 0 ) {
+						var dropDownInst = instance_create_depth(colRectX2,colRectY1+tabHeight , -999, obj_dropDown);
+						dropDownInst.optionList = dropDownOptionList;
+						dropDownInst.optionListType = 27;
+						//obj_control.ableToCreateDropDown = false;
+						//obj_control.alarm[0] = 2;
+					}
 				}
 			}
 			if(ascendActivated == false) {
@@ -546,7 +555,7 @@ for (var i = 0; i < headerListSize; i++) {
 	
 	
 		//user interaction for display view change
-		if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
+		if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize) && !instance_exists(obj_dropDown)) {
 			draw_set_color(global.colorThemeSelected2);
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 			if (mouse_check_button_released(mb_left)) {
@@ -618,12 +627,12 @@ draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeig
 if (clickedIn) {
 	
 	// Scroll up with mouse/key
-	if ((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) {
+	if (((mouse_wheel_up() || keyboard_check(vk_up)) and (obj_panelPane.holdUp < 2 || obj_panelPane.holdUp > 30)) and !instance_exists(obj_dropDown)) {
 		scrollPlusYDest += strHeight;
 	}
 	
 	// Scroll down with mouse/key
-	if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
+	if (((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30))  and !instance_exists(obj_dropDown)) {
 		scrollPlusYDest -= strHeight;
 	}
 	

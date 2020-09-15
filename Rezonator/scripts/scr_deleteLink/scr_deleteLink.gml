@@ -1,8 +1,10 @@
 
 // Find the link that is in focus
 var rowInLinkGridSource = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, true, obj_chain.linkGrid_colDead, false);
+show_debug_message("scr_deleteLink(), rowInLinkGridSource: " + string(rowInLinkGridSource));
 
 if (rowInLinkGridSource == -1) {
+	show_debug_message("scr_deleteLink(), rowInLinkGridSource == -1, exiting... ");
 	exit;
 }
 

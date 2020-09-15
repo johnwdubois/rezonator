@@ -12,7 +12,31 @@
 	Author: Terry DuBois
 */
 
-scr_drawGridViewerGridTabs();
+//if (live_call()) return live_result;
+
+x = 120;
+windowX = 120;
+
+
+// press TAB or ALT+TAB to switch grids
+if (keyboard_check_pressed(vk_tab)) {
+	var gridIndex = ds_list_find_index(gridList, grid);
+	
+	if (gridIndex > -1) {
+		gridIndex += (keyboard_check(vk_control)) ? -1 : 1;
+		if (gridIndex < 0) {
+			gridIndex = ds_list_size(gridList) - 1;
+		}
+		else if (gridIndex >= ds_list_size(gridList)) {
+			gridIndex = 0;
+		}
+		grid = ds_list_find_value(gridList, gridIndex);
+	}
+}
+
+
+
+var currentGridName = scr_drawGridViewerGridTabs();
 
 scr_surfaceStart();
 
@@ -22,6 +46,7 @@ var textY = 0;
 var textPlusY = 0;
 var strHeight = string_height("0");
 var colNameHeight = strHeight;
+
 
 var windowX1 = windowX;
 var windowY1 = windowY;
@@ -40,9 +65,12 @@ var mouseoverItemString = " ";
 var mouseoverCol = -1;
 
 
-var gridColXList = ds_map_find_value(gridViewColXListMap, grid);
+var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
 if (gridColXList == -1 or is_undefined(gridColXList)) {
 	exit;
+}
+if (ds_list_size(gridColXList) < gridWidth) {
+	scr_gridViewerDynamicWidth(grid);
 }
 
 
@@ -161,11 +189,13 @@ for (var i = 0; i < gridWidth; i++) {
 	var colName = scr_getColNameString(grid, i);
 	var colNameX = ds_list_find_value(gridColXList, i);
 	
-	draw_set_color(global.colorThemeBG);
-	draw_rectangle(colNameX - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + colNameHeight - clipY, false);
+	if (!is_undefined(colNameX)) {
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(colNameX - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + colNameHeight - clipY, false);
 	
-	draw_set_color(global.colorThemeText);
-	draw_text(colNameX - clipX, windowY1 + (colNameHeight / 2) - clipY, colName);
+		draw_set_color(global.colorThemeText);
+		draw_text(colNameX - clipX, windowY1 + (colNameHeight / 2) - clipY, colName);
+	}
 }
 
 
@@ -191,6 +221,12 @@ draw_set_color(global.colorThemeBorders);
 draw_line(windowX1, windowY1 + colNameHeight, windowX2, windowY1 + colNameHeight);
 
 
+// debug
+if (obj_control.showDevVars) {
+	draw_text(windowX1, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
+}
+
+
 
 // Draw vertical column lines and make columns draggable
 if ((not mouse_check_button(mb_left)) or gridViewColXHolding >= ds_grid_width(grid)) {
@@ -207,6 +243,9 @@ for (var i = 1; i < gridWidth; i++) {
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(0.15);
 	var colX = ds_list_find_value(gridColXList, i);
+	if (is_undefined(colX)) {
+		continue;
+	}
 	
 	
 	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
@@ -251,6 +290,50 @@ for (var i = 1; i < gridWidth; i++) {
 	}
 }
 draw_set_alpha(1);
+var currentGridNameWidth = string_width(currentGridName);
+var currentGridNameHeight = string_height(currentGridName);
+
+
+
+// Grid change dropDown button
+draw_set_font(global.fontMain);
+var dropDownButtonStr = "Grid: " + scr_getGridNameString(grid) + "      ";
+var dropDownButtonX1 = 20;
+var dropDownButtonY1 = obj_menuBar.menuHeight + 30;
+var dropDownButtonX2 = dropDownButtonX1 + string_width(dropDownButtonStr) + sprite_get_width(spr_dropDown);
+var dropDownButtonY2 = windowY1 - 60;
+var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+
+draw_set_color(mouseoverDropDownButton ? global.colorThemeSelected1 : global.colorThemeBG);
+draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2, false);
+draw_set_color(global.colorThemeBorders);
+draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2, true);
+
+draw_set_halign(fa_left);
+draw_text(dropDownButtonX1 + 20, floor(mean(dropDownButtonY1, dropDownButtonY2)), dropDownButtonStr);
+
+draw_sprite(spr_dropDown, 0, dropDownButtonX2 - sprite_get_width(spr_dropDown), floor(mean(dropDownButtonY1, dropDownButtonY2)));
+if (mouseoverDropDownButton && mouse_check_button_released(mb_left)) {
+	
+    var dropDownOptionList = ds_list_create();
+
+    // copy all grid names from gridList to dropDownOptionList
+	var gridListSize = ds_list_size(gridList);
+	for (var i = 0; i < gridListSize; i++) {
+		var currentGrid = ds_list_find_value(gridList, i);
+		ds_list_add(dropDownOptionList, scr_getGridNameString(currentGrid));
+	}
+
+    if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+        var dropDownInst = instance_create_depth(dropDownButtonX1, dropDownButtonY2, -999, obj_dropDown);
+        dropDownInst.optionList = dropDownOptionList;
+        dropDownInst.optionListType = 39;
+                    
+        obj_control.ableToCreateDropDown = false;
+        obj_control.alarm[0] = 2;
+    }
+	
+}
 
 
 
@@ -258,21 +341,23 @@ draw_set_alpha(1);
 draw_set_font(global.fontMain);
 var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
 var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString;
+//currentGridName = "Current Grid: " + currentGridName;
 
 draw_set_alpha(0.3);
 draw_set_color(c_yellow);
-draw_rectangle(windowX1 + 5, windowY1 - strHeight - 20 - (string_height("0") /2), string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
+draw_rectangle(dropDownButtonX2 + 10, windowY1 - strHeight - 20 - (string_height("0") /2), dropDownButtonX2 + string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
 draw_set_color(global.colorThemeSelected2);
-draw_rectangle(windowX1 + 5, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
+draw_rectangle(dropDownButtonX2 + 10, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), dropDownButtonX2 + string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
 draw_set_alpha(1);
 draw_set_color(global.colorThemeText);
 
-draw_text(windowX1 + 10, windowY1 - strHeight - 20, highlightText);
+//draw_text(windowX1 + 10, windowY1 - strHeight - 20, currentGridName);
 
-draw_text(windowX1 + 10, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
+draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20, highlightText);
 
-draw_text(windowX1, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
+draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
 
+draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
 
 //draw_text(windowX1, windowY2 + strHeight + 60 + string_height("0"), "gridViewColXHolding: " + string(gridViewColXHolding));
 //draw_text(windowX1, windowY2 + strHeight + 80 + string_height("0"), "gridViewColPrevList: " + scr_getStringOfList(gridViewColPrevList));

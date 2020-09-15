@@ -39,8 +39,10 @@ ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 
 
 	ds_map_add(map,"rememberMe",global.rememberMe);
+	ds_map_add(map,"readHintHide",global.readHintHide)
 	//fileStr += "rememberMe:" + string(global.rememberMe) + "#";
 	ds_map_add(map,"userName", global.userName);
+	ds_map_add(map,"autosaveTimer", global.autosaveTimer);
 	//fileStr += "userName:" + string(global.userName) + "#";
 	ds_map_add(map,"lineHeight", obj_control.gridSpaceVertical);
 	//fileStr += "lineHeight:" + string(obj_control.gridSpaceVertical) + "#";
@@ -72,6 +74,13 @@ ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 	ds_map_add(map,"previousImportDirectory", global.previousImportDirectory);
 
 	ds_map_add(map,"fileExtentionOrder", global.fileExtentionOrder);
+	
+if (instance_exists(obj_gridViewer)) {
+	var tempGridViewColXListMap = ds_map_create();
+	ds_map_clear(tempGridViewColXListMap);
+	ds_map_copy(tempGridViewColXListMap, obj_gridViewer.gridViewColXListMap);
+	ds_map_add_map(map, "gridViewColXListMap", tempGridViewColXListMap);
+}
 
 
 var wrapper = ds_map_create();

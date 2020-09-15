@@ -44,7 +44,7 @@ global.participantColorList = ds_list_create();
 
 global.wordGridWidth = 7;
 global.dynamicWordGridWidth = 17;
-global.unitGridWidth = 11;
+global.unitGridWidth = 10;
 
 global.openProject = false;
 global.newProject = false;
@@ -70,9 +70,11 @@ global.stackGrabSave = false;
 global.importGridColNameList = ds_list_create();
 global.tokenImportColNameList = ds_list_create();
 global.unitImportColNameList = ds_list_create();
+global.discoImportColNameList = ds_list_create();
 
 ds_list_clear(global.tokenImportColNameList);
 ds_list_clear(global.unitImportColNameList);
+ds_list_clear(global.discoImportColNameList);
 
 global.tokenImportTagMap = ds_map_create();
 global.unitImportTagMap  = ds_map_create();
@@ -112,6 +114,8 @@ scrollBarHolding = false;
 scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
 scrollRange = 6;
+
+clickedIn = false;
 
 //scr_openXML();
 
@@ -212,6 +216,10 @@ loopItterations = 0;
 // variables for different games
 global.wheresElmo = false;
 global.rezzles = false;
+
+//ini variables
+
+global.autosaveTimer = 36000;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
 global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";
@@ -219,6 +227,9 @@ global.previousLevelEstimates = ds_list_create();
 global.previousSpecialFields = ds_list_create();
 ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
+
+global.readHintHide = false;
+global.fontSize = 0;
 
 scr_loadINI();
 
@@ -229,9 +240,11 @@ global.unitImportUnitEndColName = "";
 global.unitImportUnitDelimColName = "";
 global.unitImportTurnDelimColName = "";
 
+global.openedREZFile = false;
+
+
 
 global.scrollBarWidth = 20;
-global.fontSize = 0;
 scr_fontGlobalUpdate();
 
 canPressMinus = true;

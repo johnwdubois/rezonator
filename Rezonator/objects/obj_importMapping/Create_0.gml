@@ -79,4 +79,6 @@ canPressPlus = true;
 
 importGroupSchemaLoaded = false;
 
+continueButtonClicked = false;
+
 show_debug_message("obj_importMapping Create END... " + scr_printTime());

@@ -82,7 +82,7 @@ var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWord
 var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
 		
 // Draw the Chunks visual representation
-if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0) {
+if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0 and effectColor != undefined) {
 	draw_set_color(effectColor);
 } else {
 	draw_set_color(global.colorThemeText);	
@@ -107,6 +107,7 @@ var mouseover = false;
 if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
 and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1 and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
 	mouseover = true;
+	obj_control.mouseoverNeutralSpace = false;	
 			
 	// May need to make a hoverChunkID
 	hoverChunkID = currentWordID;
@@ -145,7 +146,7 @@ and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID ==
 		obj_control.wideDropDown = true;
 		var dropDownOptionList = ds_list_create();
 		if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
-			ds_list_add(dropDownOptionList,"Delete Chunk", "Delete Link");
+			ds_list_add(dropDownOptionList,"Delete Chunk");
 		}
 		else{
 			ds_list_add(dropDownOptionList,"Delete Chunk");

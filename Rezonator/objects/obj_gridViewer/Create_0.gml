@@ -40,7 +40,7 @@ grid = obj_control.unitGrid;
 //gridCurrentTopViewRow[0] = 0;
 //gridCurrentTopViewRow[1] = 0;
 
-windowX = 20;
+windowX = 120;
 windowY = room_height / 5;
 windowWidth = room_width / 2;
 windowHeight = 500;
@@ -95,6 +95,7 @@ scrollBarPlusY = 0;
 x = 32;
 y = 200;
 
+rectX2 = 0;
 
 
 notRefreshed = true;

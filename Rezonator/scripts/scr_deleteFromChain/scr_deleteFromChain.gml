@@ -15,9 +15,12 @@ if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.current
 
 // Make sure there is a focused link to be deleted
 if (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), true)) {	
-
+	show_debug_message("scr_deleteFromChain value exists");
 	scr_deleteLink();
 
+}
+else {
+	show_debug_message("scr_deleteFromChain value does not exist");
 }
 
 // If this Chunk has already been deleted, refresh the chain grids

@@ -47,7 +47,7 @@ if(argument_count == 4) {
 		if(currentWordState == obj_control.wordStateChunk) {
 			continue;
 		}
-		wordTranscript += (string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, chunkWordID - 1)) + " ");
+		wordTranscript += (string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, chunkWordID - 1)) + " ");
 	}
 }
 // Set the word's token
@@ -58,6 +58,19 @@ if (string_length(wordTranscript) < 1) {
 }
 
 obj_control.moveCounter++;
+
+
+
+if(obj_control.wordView == 2){
+	var tokenColIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-2);
+}
+else{				
+	var tokenColIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-3);
+}
+
+
+
+
 
 // Set the WordGrid to take in the new word
 ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
@@ -71,6 +84,7 @@ var utteranceID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtte
 
 // Fill in the new row of the WordGrid
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordID, currentRowWordGrid, wordID);
+ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWID, currentRowWordGrid, wordID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentRowWordGrid, unitID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, currentRowWordGrid, utteranceID);
 ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, wordSeq + 1);
@@ -80,6 +94,15 @@ ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, currentRowToke
 ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, currentRowTokenImportGrid, unitID);
 ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, currentRowTokenImportGrid, wordToken);
 ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentRowTokenImportGrid, wordTranscript);
+
+for(var i = 4; i < global.tokenImportGridWidth; i++ ){
+	//if(ds_grid_get(global.tokenImportGrid, i, currentRowTokenImportGrid) == undefined){
+	//	ds_grid_set(global.tokenImportGrid, i, currentRowTokenImportGrid,"");
+	//}
+	//if(i == tokenColIndex){
+		ds_grid_set(global.tokenImportGrid, i, currentRowTokenImportGrid,wordToken);
+	//}
+}
 
 // Fill in the new row of the DynamicWordGrid
 scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);

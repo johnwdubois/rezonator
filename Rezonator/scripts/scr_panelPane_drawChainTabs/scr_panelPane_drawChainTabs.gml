@@ -317,8 +317,14 @@ for (var i = 0; i < tabAmount; i++) {// main mechanism
 			// unfocus chains of all type
 			scr_unFocusAllChains();
 			
-			//refocus chains related to currently selected tab
+			if (i == 1) {
+				obj_toolPane.currentMode = obj_toolPane.modeTrack;
+			}
+			if (i == 2) {
+				obj_toolPane.currentMode = obj_toolPane.modeRez;
+			}
 			
+			//refocus chains related to currently selected tab
 			if (functionChainList_currentTab >= 0 and grid != obj_control.lineGrid) {
 				scr_reFocusOldChains();
 			}

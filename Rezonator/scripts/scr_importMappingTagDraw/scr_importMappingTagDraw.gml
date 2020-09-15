@@ -1,4 +1,4 @@
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 scr_fontSizeControlOpeningScreen();
 
@@ -103,12 +103,16 @@ if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
 	
-		if (mouse_check_button_pressed(mb_left)) {
+		if (mouse_check_button_released(mb_left) && !continueButtonClicked) {
 			
+			continueButtonClicked = true;
+			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+			instLoading.loadSprite = spr_loading;
+			scr_setSpecialFieldsVariables();
 			scr_storeSchLists();
 			show_debug_message("Continue button clicked... " + scr_printTime());
 			
-			room_goto(rm_mainScreen);
+			alarm[3] = 1;
 		}
 	}
 	
@@ -203,6 +207,12 @@ if (point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButto
 if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
 	scr_loadRZS();
 	importGroupSchemaLoaded = true;
+
+	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	instLoading.loadSprite = spr_loading;
+	scr_setSpecialFieldsVariables();
+	scr_storeSchLists();
+	
 	alarm[2] = 3;
 }
 	

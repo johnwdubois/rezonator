@@ -69,6 +69,14 @@ if (file_exists(fileName)) {
 		if(room == rm_openingScreen){
 
 			global.rememberMe = ds_map_find_value(map, "rememberMe");
+			
+			if(ds_map_find_value(map, "readHintHide") != undefined){
+				global.readHintHide = ds_map_find_value(map, "readHintHide");
+			}
+			
+			if(ds_map_find_value(map, "autosaveTimer") != undefined){
+				global.autosaveTimer = ds_map_find_value(map, "autosaveTimer");
+			}
 
 
 			if (global.rememberMe) {
@@ -87,6 +95,8 @@ if (file_exists(fileName)) {
 
 			global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");
 			global.previousLevelEstimates = ds_map_find_value(map, "previousLevelEstimates");
+			
+			global.fontSize = ds_map_find_value(map, "fontSize");
 
 				
 		}		
@@ -120,7 +130,23 @@ if (file_exists(fileName)) {
 			global.fontSize = ds_map_find_value(map, "fontSize"); 
 			
 			ds_list_replace(obj_control.speakerLabelColXList, 2, ds_map_find_value(map, "SpeakerLabelX3") );
-			ds_list_replace(obj_control.speakerLabelColXList, 3, ds_map_find_value(map, "SpeakerLabelX4") ); 
+			ds_list_replace(obj_control.speakerLabelColXList, 3, ds_map_find_value(map, "SpeakerLabelX4") );
+			
+			
+			if (instance_exists(obj_gridViewer)) {
+				
+				if (ds_exists(obj_gridViewer.gridViewColXListMap, ds_type_map)) {
+					var tempMap = ds_map_find_value(map, "gridViewColXListMap");
+					//show_message("tempMapSize: " + string(ds_map_size(tempMap)));
+					if (ds_map_size(tempMap) == ds_map_size(obj_gridViewer.gridViewColXListMap)) {
+						//show_message("map sizes equal");
+						ds_map_clear(obj_gridViewer.gridViewColXListMap);
+						ds_map_copy(obj_gridViewer.gridViewColXListMap, tempMap);
+					}
+					//show_message("scr_loadINI()... Unit: " + scr_getStringOfList(ds_map_find_value(obj_gridViewer.gridViewColXListMap, "Unit")));
+				}
+				
+			}
 
 		
 

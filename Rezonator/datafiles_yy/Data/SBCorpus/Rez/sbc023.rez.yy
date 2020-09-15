@@ -1,5 +1,5 @@
 {
-    "id": "5737e56e-09ae-4d7a-909c-e4cc654585f3",
+    "id": "966f4e14-3fb6-40bf-b7b2-12d7b4f28853",
     "modelName": "GMIncludedFile",
     "mvc": "1.0",
     "name": "sbc023.rez",

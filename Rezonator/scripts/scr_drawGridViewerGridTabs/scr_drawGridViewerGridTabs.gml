@@ -20,10 +20,13 @@ draw_set_font(fnt_debug);
 
 var rectWidth = windowWidth / ds_list_size(gridList);
 var rectHeight = 20;
+var currentGridName = "";
 
 var gridListSize = ds_list_size(gridList);
 for (var i = 0; i < gridListSize; i++) {
 	var currentGrid = ds_list_find_value(gridList, i);
+	
+	var colName = scr_getGridNameString(currentGrid);
 	
 	var rectX1 = windowX + (i * rectWidth);
 	var rectY1 = windowY - rectHeight;
@@ -32,6 +35,7 @@ for (var i = 0; i < gridListSize; i++) {
 	
 	if (grid == currentGrid) {
 		draw_set_color(obj_control.c_ltblue);
+		currentGridName = colName;
 	}
 	else {
 		draw_set_color(global.colorThemeBG);
@@ -42,93 +46,7 @@ for (var i = 0; i < gridListSize; i++) {
 	draw_set_color(global.colorThemeText);
 	draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
 	
-	var colName = "";
 	
-	switch (currentGrid) {
-		case obj_control.unitGrid:
-			colName = "Unit"; // Unit Grid
-			break;
-		case obj_control.lineGrid:
-			colName = "Line"; // Line Grid
-			break;
-		case obj_control.wordGrid:
-			colName = "Word"; // Word Grid
-			break;
-		case obj_control.dynamicWordGrid:
-			colName = "vizWord"; // dynamicWordGrid
-			break;
-		case obj_control.filterGrid:
-			colName = "Pick"; // Filter Grid
-			break;
-		case obj_control.searchGrid:
-			colName = "Search"; // searchGrid
-			break;
-		case obj_control.hitGrid:
-			colName = "Hit"; // hitGrid
-			break;
-		case obj_control.wordDrawGrid:
-			colName = "wordDrawGrid";
-			break;
-		case obj_chain.linkGrid:
-			colName = "Link"; // Link Grid 
-			break;
-		case obj_chain.rezPlayLinkGrid:
-			colName = "playLink"; // rezPlay Link Grid
-			break;
-		case obj_chain.vizLinkGrid:
-			colName = "vizLink"; // vizLink Grid
-			break;
-		case obj_chain.rezChainGrid:
-			colName = "Rez"; // Rez Chain Grid
-			break;
-		case obj_chain.trackChainGrid:
-			colName = "Track"; // Track Chain Grid
-			break;
-		case obj_chain.stackChainGrid:
-			colName = "Stack"; // Stack Chain Grid
-			break;
-		case obj_chain.placeChainGrid:
-			colName = "Place"; // Place Chain Grid
-			break;
-		case obj_chain.chunkGrid:
-			colName = "Chunk"; // Chunk Grid
-			break;
-		case obj_chain.unitInStackGrid:
-			colName = "StackUnit"; // Unit In Stack
-			break;
-		case obj_chain.cliqueGrid:
-			colName = "Clique"; // Clique Grid
-			break;
-		case obj_chain.cliqueDisplayGrid:
-			colName = "vizClique"; // vizClique
-			break;
-		case obj_chain.DepRelLinkGrid:
-			colName = "DepRelLink"; // vizClique
-			break;
-		case obj_chain.goldStandardGrid:
-			colName = "GoldStandard"; // vizClique
-			break;
-		case global.importGrid:
-			colName = "Import"; // Import Grid
-			break;
-		case obj_control.morphGrid:
-			colName = "Morph"; // Morph Grid
-			break;
-		case global.importCSVGrid:
-			colName = "ImportCSV"; // Import CSV Grid
-			break;
-		case global.tokenImportGrid:
-			colName = "TokenImport"; // Token Import Grid
-			break;			
-		case global.unitImportGrid:
-			colName = "UnitImport"; // Unit Import Grid
-			break;		
-		case global.customLabelGrid:
-			colName = "CustomLabel"; // Custom Label Grid
-			break;
-		default:
-			break;
-	}
 	
 	draw_text(rectX1 + 5, mean(rectY1, rectY2), colName);
 	
@@ -138,3 +56,4 @@ for (var i = 0; i < gridListSize; i++) {
 		}
 	}
 }
+return currentGridName;

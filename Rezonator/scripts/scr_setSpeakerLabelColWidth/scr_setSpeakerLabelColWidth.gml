@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+//if (live_call()) return live_result;
+
 if (object_index != obj_control) {
 	exit;
 }
@@ -35,6 +37,7 @@ if ((not mouse_check_button(mb_left)) or speakerLabelColXHolding >= 4) {
 
 draw_set_font(global.fontMain);
 var minColWidth = string_width("AAAAA");
+var maxColWidth = camera_get_view_width(view_camera[0]) / 6;
 var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 for (var i = 0; i < speakerLabelColXListSize - 1; i++) {
 	if (ds_grid_height(global.fileLineRipGrid) < 2 and i == 0) {
@@ -63,9 +66,15 @@ else if (ds_list_find_value(speakerLabelColXList, 1) < minColWidth) {
 for (var i = 1; i < speakerLabelColXListSize; i++) {
 	
 	var colX = ds_list_find_value(speakerLabelColXList, i);
+	
+	// if this is the speaker column and there's no speaker, set width to 0
+	if (i == speakerLabelColXListSize - 1 && !obj_control.showParticipantName) {
+		//ds_list_set(speakerLabelColXList, i, );
+	}
 
 	
-	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(view_camera[0])) and not instance_exists(obj_dialogueBox)) {
+	// clicking to drag size of speakerLabelCol with mouse
+	if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(view_camera[0])) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 		if ((ds_grid_height(global.fileLineRipGrid) < 2 and i > 1) or (ds_grid_height(global.fileLineRipGrid) > 1)) {
 		
 			window_set_cursor(cr_size_we);
@@ -79,22 +88,28 @@ for (var i = 1; i < speakerLabelColXListSize; i++) {
 	}
 	
 	
+	// dragging size of speakerLabelCol with mouse
 	if (speakerLabelColXHolding == i)  {
 		window_set_cursor(cr_size_we);
-		
 		draw_set_alpha(0.8);
 		
-		var newColX = clamp(mouse_x, minColWidth, 800);
+		var newColX = max(mouse_x, minColWidth);
 		
 		// put limit on how small a column can be
 		if (speakerLabelColXHolding > 0) {
 			var prevColX = ds_list_find_value(speakerLabelColXList, i - 1);
-			newColX = max(newColX, prevColX + minColWidth);
+			//newColX = max(newColX, prevColX + minColWidth);
+			var minColX = prevColX + minColWidth;
+			var maxColX = prevColX + maxColWidth;
+			
+			newColX = clamp(newColX, minColX, maxColX);
 		}
 		
+		/*
 		if (ds_list_find_value(speakerLabelColXList, ds_list_size(speakerLabelColXList) - 1) > 800) {
 			newColX = min(newColX, ds_list_find_value(speakerLabelColXList, i));
 		}
+		*/
 		
 		ds_list_set(speakerLabelColXList, i, newColX);
 		speakerLabelColXHoldingDiff = newColX - speakerLabelColXHoldingPrev;

@@ -117,7 +117,7 @@ if (instance_exists(obj_stackShow)) {
 
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
-if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow and not mouseoverHelpPane) {
+if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 
 	
 	var scrollSpeed = 0;

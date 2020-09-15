@@ -2,7 +2,8 @@ show_debug_message("scr_fillTokenImportGrid(), STARTING..." + scr_printTime());
 
 // fill tokenImport with UnitID, WordID, token, and transcript information
 var tokenImportGridHeight = ds_grid_height(obj_control.wordGrid);
-
+global.tokenImportGridWidth = 4;
+global.unitImportGridWidth = 2;
 ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenImportGridHeight);
 
 for (var i = 0; i < tokenImportGridHeight; i++) {
@@ -10,7 +11,7 @@ for (var i = 0; i < tokenImportGridHeight; i++) {
 	var currentWordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, i);
 	var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
 	var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
-
+	
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, i, currentWordID);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
@@ -53,10 +54,12 @@ with (obj_control) {
 }
 
 
-ds_list_clear(global.tokenImportColNameList);
-ds_list_clear(global.unitImportColNameList);
-ds_list_add(global.tokenImportColNameList, "UnitID", "WordID", "text", "transcript");
-ds_list_add(global.unitImportColNameList, "UnitID", "Participant");
+if (ds_list_size(global.tokenImportColNameList) < 4) {
+	ds_list_add(global.tokenImportColNameList, "~UnitID", "~WordID", "~text", "~transcript");
+}
+if (ds_list_size(global.unitImportColNameList) < 2) {
+	ds_list_add(global.unitImportColNameList, "~UnitID", "~Participant");
+}
 
 // set custom label names for token and transcript columns
 if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1) {
@@ -76,6 +79,7 @@ scr_fillCustomLabelGrid();
 var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
 var tokenMarkers = 0;
 var unitMarkers = 0;
+var discoMarkers = 0;
 for (var i = 0; i < customLabelGridHeight; i++) {
 	var currentLevel = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colLevel, i);
 	if (currentLevel == global.levelToken) {
@@ -84,20 +88,26 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	else if (currentLevel == global.levelUnit) {
 		unitMarkers++;
 	}
+	else if (currentLevel == global.levelDiscourse) {
+		discoMarkers++;
+	}
 }
 	
 
 // grow tokenImportGrid and unitImportGrid to have the correct amount of columns
 global.tokenImportGridWidth = 4 + tokenMarkers;
 global.unitImportGridWidth = 2 + unitMarkers;
+global.discoImportGridWidth = discoMarkers;
 ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
 ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.unitImportGrid));
+ds_grid_resize(global.discoImportGrid, global.discoImportGridWidth, 1);
 with (obj_gridViewer) {
 	alarm[2] = 1;
 }
 
 var currentTokenImportCol = 4;
 var currentUnitImportCol = 2;
+var currentDiscoImportCol = 0;
 
 // actually fill in all the cells of tokenImportGrid and unitImportGrid
 for (var i = 0; i < customLabelGridHeight; i++) {
@@ -116,6 +126,9 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	}
 	else if (currentLevel == global.levelUnit) {
 		ds_list_add(global.unitImportColNameList, string_copy(currentMarker, 1, string_length(currentMarker)));
+	}
+	else if (currentLevel == global.levelDiscourse) {
+		ds_list_add(global.discoImportColNameList, string_copy(currentMarker, 1, string_length(currentMarker)));
 	}
 	
 	// find this marker's column in the importGrid
@@ -160,6 +173,21 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 			}
 			currentUnitImportCol++;
 			
+		}
+		else if(currentLevel == global.levelDiscourse){
+			
+			var unitCounter = 0;
+			//hardcoded till multiple discourses
+			var importGridHeight = 1;
+			for (var j = 0; j < importGridHeight; j++) {
+
+				var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
+				ds_grid_set(global.discoImportGrid, currentDiscoImportCol, unitCounter, currentLine);
+
+			}
+			currentDiscoImportCol++;
+			
+		
 		}
 	}
 }

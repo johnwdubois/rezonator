@@ -167,7 +167,7 @@ while (ds_grid_value_exists(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chai
 			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, source - 1, obj_control.activeStackType);
 			if (goal != -1) {
 				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, goal - 1, chainID);
-				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, goal - 1, obj_control.activeStackType);
+				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, goal - 1, obj_control.activeStackType);
 			}
 		}
 	}

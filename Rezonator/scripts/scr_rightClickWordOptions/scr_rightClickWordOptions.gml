@@ -147,8 +147,26 @@ switch (optionSelected)
 			break;
 		}
 		*/
-		var rowToSet = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colSource, 0, obj_chain.linkGrid_colSource, ds_grid_height(obj_chain.linkGrid),  obj_control.rightClickWordID);
-			
+		var rowInChainGrid = -1;
+		var currentChainID = -1;
+		if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
+			rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
+			currentChainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, rowInChainGrid);
+		}
+		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
+			rowInChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
+			currentChainID = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, rowInChainGrid);
+		}
+		
+		show_debug_message("scr_rightClickWordOptions()... rowInChainGrid: " + string(rowInChainGrid));
+		show_debug_message("scr_rightClickWordOptions()... currentChainID: " + string(currentChainID));
+		
+		var rowToSet = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, obj_control.rightClickWordID, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false);
+		
+		show_debug_message("scr_rightClickWordOptions()... rowToSet: " + string(rowToSet));
+		
+		
+		
 		var grid = obj_chain.rezChainGrid;
 
 		// find which grid we are dealing with (depending on current tool)
@@ -157,7 +175,7 @@ switch (optionSelected)
 			case obj_toolPane.modeRez:
 				grid = obj_chain.rezChainGrid;
 				if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
-					show_message("Please select the Track tool to delete a Track chain link");
+					show_message("Please focus on a link before deleting it");
 					instance_destroy();
 					exit;	
 				}
@@ -166,24 +184,26 @@ switch (optionSelected)
 			// Using the track tool
 				grid = obj_chain.trackChainGrid;
 				if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
-					show_message("Please select the Rez tool to delete a Rez chain link");
+					show_message("Please focus on a link before deleting it");
 					instance_destroy();
-					exit;	
+					exit;
 				}
 				break;
 			default:
 				if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
 					instance_destroy();
-					exit;	
+					exit;
 				}
 				break;
 		}
 			
-		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowToSet, 1);
-		var currentChainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowToSet);
+		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowToSet, true);
+		
+		
+
 		obj_chain.currentFocusedChainID = currentChainID;
 			
-		var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
+		//var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
 		ds_grid_set(grid, obj_chain.chainGrid_colChainState, rowInChainGrid, obj_chain.chainStateFocus);
 				
 		scr_deleteFromChain();

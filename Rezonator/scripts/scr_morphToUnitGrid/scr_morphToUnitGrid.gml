@@ -60,7 +60,7 @@ for (var i = 0; i < morphGridHeight; i++) {
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentRowUnitGrid, currentUnitStart);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentRowUnitGrid, currentUnitEnd);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, currentParticipantColor);
-		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, currentRowUnitGrid, 0);
+		//ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, currentRowUnitGrid, 0);
 		ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentRowUnitGrid, c_ltgray);
 		
 		// add new rows to wordGrid and dynamicWordGrid

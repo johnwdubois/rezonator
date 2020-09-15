@@ -162,6 +162,7 @@ if (grid != -1) {
 		
 				//Get info on current word
 				var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+
 				var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";
@@ -257,15 +258,28 @@ if (grid != -1) {
 							obj_control.rightClickUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 							obj_control.rightClickWordSeq =  ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);;
 						}
-
+						
 						obj_control.rightClickonWord = true;
 						obj_control.wideDropDown = true;
 						var dropDownOptionList = ds_list_create();
-						if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
-							ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word", "Delete Link");
+						if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+							obj_control.ableToCreateDropDown = false;
+						}
+						else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
+							if(obj_control.searchGridActive){
+								ds_list_add(dropDownOptionList, "Delete Link");
+							}
+							else{
+								ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word", "Delete Link");
+							}
 						}
 						else{
-							ds_list_add(dropDownOptionList,"Replace Word", "Restore Word", "Split Word", "New Word", "Delete New Word");
+							if(obj_control.searchGridActive){
+								obj_control.ableToCreateDropDown = false;
+							}
+							else{
+								ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word");
+							}
 						}
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 							var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
@@ -313,9 +327,14 @@ if (grid != -1) {
 								if (currentWordIDList == undefined) {
 									break;
 								}
+
 								var currentWordIDListSize = ds_list_size(currentWordIDList);
 								for (var i = 0; i < currentWordIDListSize; i++) {
 									var currentWordID = ds_list_find_value(currentWordIDList, i);
+									var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
+									if(currentWordState == 3){
+										continue;
+									}
 									var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
 									currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
 								}

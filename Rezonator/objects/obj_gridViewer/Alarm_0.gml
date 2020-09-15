@@ -36,5 +36,6 @@ for (var i = 0; i < gridListSize; i++) {
 		currentColX += defaultGridColWidth;
 	}
 	
-	ds_map_add_list(gridViewColXListMap, currentGrid, currentGridViewColXList);
+	var currentGridName = scr_getGridNameString(currentGrid);
+	ds_map_add_list(gridViewColXListMap, currentGridName, currentGridViewColXList);
 }

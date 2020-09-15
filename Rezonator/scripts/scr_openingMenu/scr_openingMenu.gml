@@ -10,7 +10,7 @@
 	Mechanism: Display a multitude of buttons and track the user's clicks
 */
 
-if (live_call()) return live_result;
+//if (live_call()) return live_result;
 
 scr_fontSizeControlOpeningScreen();
 
@@ -180,8 +180,8 @@ draw_text(mean(openTutorialButtonX1, openTutorialButtonX2), mean(openTutorialBut
 */
 
 
-var signInXBuffer = 12;
-var signInYBuffer = 50;
+var signInXBuffer = 20;
+var signInYBuffer = 25;
 
 var userSignInBoxX1 = camera_get_view_width(view_camera[0]) - 250 - signInXBuffer;
 var userSignInBoxY1 = signInYBuffer;
@@ -205,7 +205,12 @@ draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, "Reme
 
 draw_set_font(fnt_main);
 draw_set_alpha(0.5);
-if(string_length(obj_openingScreen.inputText) == 0){
+
+if(string_length(obj_openingScreen.inputText) > 0 ){
+	obj_openingScreen.clickedIn = true;
+}
+
+if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
 	draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), "User Sign In");
 }
 draw_set_alpha(1);
@@ -221,13 +226,52 @@ var remeberMeBoxY2 = userSignInBoxY2 + 25;
 		draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2, false);	
 	}
 
+	if (point_in_rectangle(mouse_x, mouse_y,userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)){
+			if (device_mouse_check_button_released(0, mb_left)) {
+				obj_openingScreen.clickedIn = true;
+			}
+	}
+
 	// current chain boolean switch
-	if (point_in_rectangle(mouse_x, mouse_y,remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2)){
+	else if (point_in_rectangle(mouse_x, mouse_y,remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2)){
 			if (device_mouse_check_button_released(0, mb_left)) {
 				global.rememberMe = !global.rememberMe;	
 			}
 	}
+	else {
+		if (device_mouse_check_button_released(0, mb_left)) {
+			obj_openingScreen.clickedIn = false;
+		}
+	}
 	
+
+
+draw_set_alpha(1);
+draw_set_font(global.fontMain);
+var documentationStr = " Open Rezonator Documentation ";
+var documentationButtonX1 = 20;
+var documentationButtonY1 = 20;
+var documentationButtonX2 = documentationButtonX1 + 50;
+var documentationButtonY2 = documentationButtonY1 + 50;
+var mouseoverDocumenation = point_in_rectangle(mouse_x, mouse_y, documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2);
+
+draw_sprite_ext(spr_helpToggle, mouseoverDocumenation, mean(documentationButtonX1, documentationButtonX2), mean(documentationButtonY1, documentationButtonY2), 1, 1, 0, c_white, 1);
+draw_set_color(mouseoverDocumenation ? global.colorThemeSelected1 : global.colorThemeBG);
+//draw_rectangle(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, false);
+draw_set_color(global.colorThemeBorders);
+//draw_rectangle(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, true);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_set_color(global.colorThemeText);
+//draw_text(documentationButtonX1, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
+
+if (mouseoverDocumenation ) {
+	draw_text(documentationButtonX2 + 5, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
+	if(mouse_check_button_released(mb_left)){
+		url_open("https://rezonator.com/documentation/");
+	}
+}
+
 
 
 
@@ -263,6 +307,9 @@ if(global.menuOpen){
 			loopItterations ++;
 			canDeleteHoldingCounter = 0;
 		}
+		if(string_length(obj_openingScreen.inputText) == 0 ){
+			obj_openingScreen.clickedIn = false;
+		}
 	}
 	if (keyboard_check_released(vk_backspace)) {
 	loopItterations = 0;
@@ -270,7 +317,7 @@ if(global.menuOpen){
 	canDelete = true;
 	}
 	
-	if (keyboard_string != "" && global.menuOpen  && keyboard_string != "-" && keyboard_string != "+" && string_length(obj_openingScreen.inputText) < 30 ) {
+	if (global.menuOpen  && keyboard_string != "-" && keyboard_string != "+" && string_length(obj_openingScreen.inputText) < 30 ) {
 		//show_message(keyboard_string);
 		var t = keyboard_string;
 		obj_openingScreen.inputText = string_insert(t, obj_openingScreen.inputText, obj_openingScreen.cursorPos);
@@ -350,7 +397,7 @@ if(global.menuOpen){
 
 
 
-	if(obj_openingScreen.cursorViz and string_length(obj_openingScreen.inputText) != 0){
+	if(obj_openingScreen.cursorViz and obj_openingScreen.clickedIn == true){
 		displayText = string_insert("|", displayText, obj_openingScreen.cursorPos);
 	}
 	else{

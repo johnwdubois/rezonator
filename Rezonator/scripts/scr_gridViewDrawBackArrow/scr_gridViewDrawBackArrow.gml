@@ -1,4 +1,6 @@
-
+if(instance_exists(obj_dropDown)) {
+	exit;
+}
 draw_set_font(fnt_main);
 var standardHeight = string_height("A");
 draw_set_font(global.fontMain);
@@ -30,6 +32,7 @@ if (point_in_rectangle(mouse_x, mouse_y, backArrowRectX1, backArrowRectY1, backA
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(1);
 	draw_rectangle(backArrowRectX1, backArrowRectY1, backArrowRectX2, backArrowRectY2, true);
+	obj_control.mouseoverPanelPane = true;
 	
 	if (mouse_check_button_released(mb_left)) {
 		if (obj_control.gridView) {
