@@ -50,6 +50,8 @@ if (obj_openingScreen.showDevVars) {
 }
 
 
+// Commenting out this documentation button until further notice
+/*
 draw_set_alpha(1);
 draw_set_font(global.fontMain);
 var documentationStr = " Check out our documentation! ";
@@ -70,7 +72,7 @@ draw_text(documentationButtonX1, floor(mean(documentationButtonY1, documentation
 if (mouseoverDocumenation && mouse_check_button_released(mb_left)) {
 	url_open("https://rezonator.com/documentation/");
 }
-
+*/
 
 
 
