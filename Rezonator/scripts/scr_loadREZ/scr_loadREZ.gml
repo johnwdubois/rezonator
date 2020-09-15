@@ -109,6 +109,9 @@ if (file_exists(fileName)) {
 				obj_control.currentDisplayTokenColsList = ds_map_find_value(map, "currentDisplayTokenColsList");
 				obj_control.currentDisplayUnitColsList = ds_map_find_value(map, "currentDisplayUnitColsList");
 				
+				if (ds_map_find_value(map, "showParticipantName") != undefined) {
+					obj_control.showParticipantName = ds_map_find_value(map, "showParticipantName");
+				}
 				
 				if (global.tokenImportColNameList == undefined) {
 					global.tokenImportColNameList = ds_list_create();
@@ -199,6 +202,8 @@ if (file_exists(fileName)) {
 				scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
 				scr_loadAnotherREZ(global.discoImportGrid, map, "discoImport");
 				scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
+				
+				
 			
 				
 				
@@ -229,6 +234,7 @@ if (file_exists(fileName)) {
 				obj_chain.chainColorID[1] = ds_map_find_value(map, "chainColorID1");
 				obj_chain.chainColorID[2] = ds_map_find_value(map, "chainColorID2");
 				obj_chain.chainColorID[3] = ds_map_find_value(map, "chainColorID3");
+				
 				
 			}
 		}		
