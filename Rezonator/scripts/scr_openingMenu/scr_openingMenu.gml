@@ -180,8 +180,8 @@ draw_text(mean(openTutorialButtonX1, openTutorialButtonX2), mean(openTutorialBut
 */
 
 
-var signInXBuffer = 12;
-var signInYBuffer = 50;
+var signInXBuffer = 20;
+var signInYBuffer = 25;
 
 var userSignInBoxX1 = camera_get_view_width(view_camera[0]) - 250 - signInXBuffer;
 var userSignInBoxY1 = signInYBuffer;
@@ -244,6 +244,34 @@ var remeberMeBoxY2 = userSignInBoxY2 + 25;
 		}
 	}
 	
+
+
+draw_set_alpha(1);
+draw_set_font(global.fontMain);
+var documentationStr = " Open Rezonator Documentation ";
+var documentationButtonX1 = 20;
+var documentationButtonY1 = 20;
+var documentationButtonX2 = documentationButtonX1 + 50;
+var documentationButtonY2 = documentationButtonY1 + 50;
+var mouseoverDocumenation = point_in_rectangle(mouse_x, mouse_y, documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2);
+
+draw_sprite_ext(spr_helpToggle, mouseoverDocumenation, mean(documentationButtonX1, documentationButtonX2), mean(documentationButtonY1, documentationButtonY2), 1, 1, 0, c_white, 1);
+draw_set_color(mouseoverDocumenation ? global.colorThemeSelected1 : global.colorThemeBG);
+//draw_rectangle(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, false);
+draw_set_color(global.colorThemeBorders);
+//draw_rectangle(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, true);
+draw_set_halign(fa_left);
+draw_set_valign(fa_middle);
+draw_set_color(global.colorThemeText);
+//draw_text(documentationButtonX1, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
+
+if (mouseoverDocumenation ) {
+	draw_text(documentationButtonX2 + 5, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
+	if(mouse_check_button_released(mb_left)){
+		url_open("https://rezonator.com/documentation/");
+	}
+}
+
 
 
 
