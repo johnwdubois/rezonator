@@ -216,6 +216,10 @@ loopItterations = 0;
 // variables for different games
 global.wheresElmo = false;
 global.rezzles = false;
+
+//ini variables
+
+global.autosaveTimer = 36000;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
 global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";
