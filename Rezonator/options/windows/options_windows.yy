@@ -11,7 +11,7 @@
     "option_windows_description_info": "Rezonator: Dynamics of Human Engagement",
     "option_windows_disable_sandbox": true,
     "option_windows_display_cursor": true,
-    "option_windows_display_name": "Rezonator 0.9.0",
+    "option_windows_display_name": "Rezonator 0.9.0.0",
     "option_windows_enable_steam": false,
     "option_windows_executable_name": "${project_name}",
     "option_windows_icon": "${options_dir}\\windows\\icons\\icon.ico",
