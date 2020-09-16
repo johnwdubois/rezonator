@@ -58,6 +58,7 @@ for (var i = 0; i < oldIDListSize; i++) {
 	var currentInChainList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentID - 1);
 	if (grid == obj_chain.rezChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentID - 1, -1);
 		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
 		}
@@ -96,6 +97,7 @@ for (var i = 0; i < oldIDListSize; i++) {
 	else if (grid == obj_chain.trackChainGrid) {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, false);
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentID - 1, -1);
 		if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
 		}

@@ -31,8 +31,8 @@ if (drawFillRect) {
 //var borderRounded = false;
 if (drawBorder) {
     //borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
-    if (effectColor == undefined){
-    effectColor = 16758711;
+    if (effectColor == -1){
+		effectColor = 16758711;
     }
     draw_set_color(effectColor);
         
