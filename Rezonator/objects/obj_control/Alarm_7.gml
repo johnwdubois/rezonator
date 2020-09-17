@@ -1,6 +1,5 @@
 ///@description QuickStack Creation
 // Create the quickStack
-//show_message("stack");
 var firstUnitID = 0;
 var firstWordID = 0;
 var currentWordIDList;

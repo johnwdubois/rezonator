@@ -17,7 +17,7 @@ if	(os_type == os_macosx)	{
 	
 	
 	global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
-	global.rezonatorDirString = global.documentsDirString + "/Rezonator/" + global.versionString;
+	global.rezonatorDirString = global.documentsDirString + "/Rezonator/" + global.rezonatorElmoDirString;
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "/Tutorial";
 	global.rezonatorElmoDirString = global.rezonatorDirString + "/Play_&_Learn/Where's_Elmo";
 	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "/Saved_Games";

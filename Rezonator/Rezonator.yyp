@@ -399,6 +399,14 @@
             }
         },
         {
+            "Key": "0d7a4445-3a4f-4062-9fb9-469a4c6e9500",
+            "Value": {
+                "id": "01ddbc0a-2ba7-4415-861a-05972a9336c3",
+                "resourcePath": "scripts\\scr_randomStackerLoop\\scr_randomStackerLoop.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "0dbad598-124c-4727-a96e-e1aad5bfc727",
             "Value": {
                 "id": "073c2c5a-10fc-4555-9b1e-d0632f731ee6",
@@ -6599,6 +6607,7 @@
         "a94b6e62-eefb-4ceb-8e50-c4ef98c2b925",
         "7585c6ba-de0a-42b9-8e1a-cb133e22a9a8",
         "81e42799-4462-4bb4-9cc5-0b50129aaa22",
+        "0d7a4445-3a4f-4062-9fb9-469a4c6e9500",
         "0435a0ad-d7af-486e-88a9-3970e1bdf048",
         "165008df-c14b-4eb3-8665-d50a5f702d8f",
         "19b3fdc3-7e5a-445c-81a6-6ef33702df03",
