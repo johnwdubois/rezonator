@@ -13,30 +13,6 @@
 */
 
 shortcutsEnabled = true;
-//if (live_call()) return live_result;
-/*
-if (instance_exists(obj_input_
-
-
-
-
-text)) {
-	for (var i = 0; i < instance_number(obj_input_text); i++) {
-		var currentInputTextInst = instance_find(obj_input_text, i);
-		if (instance_exists(currentInputTextInst)) {
-			if (currentInputTextInst.enabled) {
-				shortcutsEnabled = false;
-			}
-		}
-	}
-}
-*/
-
-/*
-if(keyboard_check_pressed(vk_anykey)){
-	show_message(string(keyboard_lastkey));
-}
-*/
 
 if (hideAll) {
 	gridView = false;

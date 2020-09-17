@@ -385,8 +385,6 @@ if (obj_control.dialogueBoxActive) {
 		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Name the new category of Tags");
 	}
 
-   // input_text_set_enabled(instance, true);
-
 
 }
 else {
@@ -570,8 +568,6 @@ if(ds_grid_height(grid) > 0 && obj_control.recolor){
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
 	if (mouse_check_button_released(mb_left)) {
 		obj_control.alarm[11] = 60;
-		//input_text_set_enabled(obj_control.instance, false);
-		//inputText = input_text_get_text(instance);
 			
 		if (obj_control.fPressed) {
 			scr_searchForWord(obj_control.inputText);
@@ -679,8 +675,6 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 			obj_control.discoIDSelected = false;
 		}
 			
-		//input_text_set_text(obj_control.instance, "");
-		//obj_control.newWordCreated = false;
 		obj_control.fPressed = false;
 		obj_control.ePressed = false;
 		obj_control.gPressed = false;
@@ -715,8 +709,6 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
 		|| keyboard_check_pressed(vk_escape)) {
 			obj_control.alarm[11] = 60;
-			//input_text_set_text(instance, "");
-			//input_text_set_enabled(instance, false);
 			
 			with (obj_panelPane) {
 				obj_control.discoIDSelected = false;
@@ -757,8 +749,6 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /
 // enter check
 if (keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 	obj_control.alarm[11] = 60;
-	//input_text_set_enabled(instance, false);
-	//inputText = input_text_get_text(instance);
 	
 	if (obj_control.fPressed) {
 		scr_searchForWord(obj_control.inputText);
@@ -861,7 +851,6 @@ if (keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
 		scr_dialogueBoxNewTagCategory();
 	}
 	
-	//input_text_set_text(instance, "");
 	with (obj_panelPane) {
 		obj_control.discoIDSelected = false;
 	}
