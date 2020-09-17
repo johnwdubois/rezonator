@@ -19,9 +19,9 @@ if	(os_type == os_macosx)	{
 	global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
 	global.rezonatorDirString = global.documentsDirString + "/Rezonator/" + global.versionString;
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "/Tutorial";
-	global.rezonatorElmoDirString = global.rezonatorDirString + "/Games/Where's_Elmo";
+	global.rezonatorElmoDirString = global.rezonatorDirString + "/Play_&_Learn/Where's_Elmo";
 	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "/Saved_Games";
-	global.rezonatorRezzlesDirString = global.rezonatorDirString + "/Games/Rezzles";
+	global.rezonatorRezzlesDirString = global.rezonatorElmoDirString; //global.rezonatorRezzlesDirString = global.rezonatorDirString + "/Play_&_Learn/Where's_Elmo";
 	global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "/Saved_Games";
 	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "/Data";
 	global.rezonatorSchemaDirString = global.rezonatorDirString + "/Schemas";
@@ -32,9 +32,9 @@ else	{
 	global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
 	global.rezonatorDirString = global.documentsDirString + "\\Rezonator\\" + global.versionString;
 	global.rezonatorTutorialDirString = global.rezonatorDirString + "\\Tutorial";
-	global.rezonatorElmoDirString = global.rezonatorDirString + "\\Games\\Where's Elmo";
+	global.rezonatorElmoDirString = global.rezonatorDirString + "\\Play & Learn\\Where's Elmo";
 	global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "\\Saved Games";
-	global.rezonatorRezzlesDirString = global.rezonatorDirString + "\\Games\\Rezzles";
+	global.rezonatorRezzlesDirString = global.rezonatorElmoDirString; //global.rezonatorRezzlesDirString = global.rezonatorDirString + "\\Games\\Rezzles";
 	global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "\\Saved Games";
 	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "\\Data";
 	global.rezonatorSchemaDirString = global.rezonatorDirString + "\\Schemas";
