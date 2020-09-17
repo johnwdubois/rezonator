@@ -186,7 +186,7 @@
             "Key": "05cdfe7b-ea32-4298-b229-5e48674709dc",
             "Value": {
                 "id": "9d4ecb36-d6e4-448a-a8c5-96ea75887bdb",
-                "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/WheresEmma.rez.yy",
+                "resourcePath": "datafiles_yy\\Play & Learn\\Where's Elmo\\WheresEmma.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -679,14 +679,6 @@
             }
         },
         {
-            "Key": "153028df-532f-4fad-8e3f-5a27ade6d96b",
-            "Value": {
-                "id": "b602027e-bcaa-4f35-afc5-6a04637cdbc3",
-                "resourcePath": "views\/153028df-532f-4fad-8e3f-5a27ade6d96b.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "155e4781-6646-4f38-8cb3-1643b6723f06",
             "Value": {
                 "id": "f4e580ea-a66c-42eb-aaf3-1d31294e1bbf",
@@ -708,14 +700,6 @@
                 "id": "99de43d5-1f53-4463-813f-45086c94a2ee",
                 "resourcePath": "views\/15832afa-8090-4f96-b7ae-8c87bfdd8a28.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "15d49241-cfc8-40d4-b7c0-42a711df3ab2",
-            "Value": {
-                "id": "d0d601e5-83d8-4454-93f1-ef1e3f033cc2",
-                "resourcePath": "datafiles_yy\/Games\/Rezzles\/Merry Christmas.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -1138,7 +1122,7 @@
             "Key": "2721da14-0012-472b-96e0-77bcc58594c2",
             "Value": {
                 "id": "71c8d564-f54c-43e8-8891-c233e2bc67d8",
-                "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/Saved Games\/WheresJesse - Player.rez.yy",
+                "resourcePath": "datafiles_yy\\Play & Learn\\Where's Elmo\\Saved Games\\WheresJesse - Player.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -1399,27 +1383,11 @@
             }
         },
         {
-            "Key": "33634c94-b392-4387-9e8a-14a6330a1256",
-            "Value": {
-                "id": "b634adc3-5de7-4c0c-8580-4eb32d73d81d",
-                "resourcePath": "objects\/obj_gmlive\/obj_gmlive.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "336d5007-c44e-4181-8e5a-dc1603edd961",
             "Value": {
                 "id": "213e169b-4711-443f-801c-dd78f5538e50",
                 "resourcePath": "datafiles_yy\\Data\\SBCorpus\\Rez\\sbc003.rez.yy",
                 "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "34ebc914-3fea-42f7-a6b9-db18b75cd055",
-            "Value": {
-                "id": "eab4dbe3-e4da-41ee-902c-fe834f4699bd",
-                "resourcePath": "extensions\/GMLive\/GMLive.yy",
-                "resourceType": "GMExtension"
             }
         },
         {
@@ -1642,7 +1610,7 @@
             "Key": "41aba757-d574-47cc-bc99-c6ea72d873ae",
             "Value": {
                 "id": "f9941c46-932b-42d5-95a9-d804afda25d9",
-                "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/WheresTap.rez.yy",
+                "resourcePath": "datafiles_yy\\Play & Learn\\Where's Elmo\\WheresTap.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -1855,14 +1823,6 @@
             }
         },
         {
-            "Key": "4a74aced-d35f-460d-bb05-5904a7fbae0b",
-            "Value": {
-                "id": "75a97dac-c73d-4cb7-891f-87d4b9ad2264",
-                "resourcePath": "extensions\/Text_Inputs\/Text_Inputs.yy",
-                "resourceType": "GMExtension"
-            }
-        },
-        {
             "Key": "4a9b7453-651f-454e-a3ba-e1b802379f1d",
             "Value": {
                 "id": "3b96c529-0dfa-4477-aac7-9f49c095104f",
@@ -1916,14 +1876,6 @@
                 "id": "4d184632-bf14-4297-943b-17d1437363e6",
                 "resourcePath": "sprites\/spr_viewIcons\/spr_viewIcons.yy",
                 "resourceType": "GMSprite"
-            }
-        },
-        {
-            "Key": "4d1008af-5bbb-4f87-adfb-ac085fe1c5f2",
-            "Value": {
-                "id": "18185e34-1a00-43d8-9d67-56144b166ce6",
-                "resourcePath": "datafiles_yy\/Tutorial\/Default.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -2170,7 +2122,7 @@
             "Key": "561558db-dfa8-40b6-a521-8f6f4fc6702b",
             "Value": {
                 "id": "37901db4-e615-4947-94b2-32c49fa8fef0",
-                "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/WheresHarry.rez.yy",
+                "resourcePath": "datafiles_yy\\Play & Learn\\Where's Elmo\\WheresHarry.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -2186,7 +2138,7 @@
             "Key": "570c71c0-92f8-4963-afc4-4b6484b23db0",
             "Value": {
                 "id": "740a1ec2-5fb9-456b-b613-8ea7609a1bd4",
-                "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/WheresJesse.rez.yy",
+                "resourcePath": "datafiles_yy\\Play & Learn\\Where's Elmo\\WheresJesse.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -2362,7 +2314,7 @@
             "Key": "5e640fc2-fb8b-4d25-be52-88c3b4ebc03b",
             "Value": {
                 "id": "9b9d94a5-e236-41de-8fb8-75f5c3a9bbd0",
-                "resourcePath": "datafiles_yy\/Games\/Where's Elmo\/Wheres_Lisabeth.rez.yy",
+                "resourcePath": "datafiles_yy\\Play & Learn\\Where's Elmo\\Wheres_Lisabeth.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -2487,14 +2439,6 @@
             }
         },
         {
-            "Key": "653ce3d1-2593-4ee2-b833-4bafe519d114",
-            "Value": {
-                "id": "4fe1b4c2-c2f7-4880-8d3f-52329a696d0d",
-                "resourcePath": "datafiles_yy\/Games\/Rezzles\/Saved Games\/mathRezzle - .rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "654552f4-479b-40c4-bf4f-4f10ec6cbcc0",
             "Value": {
                 "id": "1a0e83e8-7d91-4459-8007-468cee6648c4",
@@ -2516,14 +2460,6 @@
                 "id": "685cf1c3-53bd-42b8-9f08-13c5b4ad94d7",
                 "resourcePath": "scripts\/scr_loadRZS\/scr_loadRZS.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "6647f6ae-5a7c-48a6-a655-7244df715ccc",
-            "Value": {
-                "id": "ac076709-4a68-46a3-8d3a-d3c5003c744d",
-                "resourcePath": "objects\/obj_example\/obj_example.yy",
-                "resourceType": "GMObject"
             }
         },
         {
@@ -2799,14 +2735,6 @@
             }
         },
         {
-            "Key": "71e301e6-b5af-4edc-a64d-35bbdefb433e",
-            "Value": {
-                "id": "c16bbf14-7c0a-411e-966b-daf175ecd96d",
-                "resourcePath": "views\/71e301e6-b5af-4edc-a64d-35bbdefb433e.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "71e6b95a-d944-4d61-a02d-15b3b6aae71a",
             "Value": {
                 "id": "89222609-4aa4-4238-a7b6-ad8252046b3f",
@@ -2919,14 +2847,6 @@
             }
         },
         {
-            "Key": "764e6f77-b6c6-4648-84a9-66368cd08c84",
-            "Value": {
-                "id": "de7937dc-5283-4e4a-94cb-e6796be55901",
-                "resourcePath": "views\/764e6f77-b6c6-4648-84a9-66368cd08c84.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "76598001-74d9-49f0-a756-ee315516c6e3",
             "Value": {
                 "id": "b7920dd4-09aa-4b23-bb9b-cc2d749c28a2",
@@ -2955,14 +2875,6 @@
             "Value": {
                 "id": "e6700faa-ea3f-4574-bfe2-9e7d49405f4c",
                 "resourcePath": "datafiles_yy\/Data\/SBCorpus\/Transcript\/sbc021.xml.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "77733590-20c1-450d-b615-bb62462d08d2",
-            "Value": {
-                "id": "cd908e0f-53a6-41d7-aba9-14ac0523a714",
-                "resourcePath": "datafiles_yy\/Games\/Rezzles\/Bonk.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -3444,14 +3356,6 @@
                 "id": "2f55bd40-9c16-4063-87b4-b53126052ec2",
                 "resourcePath": "scripts\/scr_gridToJSONLists\/scr_gridToJSONLists.yy",
                 "resourceType": "GMScript"
-            }
-        },
-        {
-            "Key": "88fb16d2-f42c-46ad-bb40-553a94dc1f11",
-            "Value": {
-                "id": "02da7581-2344-44cf-bbc9-b4a65cfb8491",
-                "resourcePath": "datafiles_yy\/Games\/Rezzles\/mathRezzle.rez.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -4575,14 +4479,6 @@
             }
         },
         {
-            "Key": "b2d15866-1442-4ccf-94ad-e4384e8e6d95",
-            "Value": {
-                "id": "508b0fa8-f015-4e51-92b2-49daf4672c59",
-                "resourcePath": "objects\/obj_input_text\/obj_input_text.yy",
-                "resourceType": "GMObject"
-            }
-        },
-        {
             "Key": "b401bbf9-a3e7-4e55-945e-120debd958e3",
             "Value": {
                 "id": "1cbc5d1d-5857-4b3e-ae59-ac31e8fbc343",
@@ -4943,14 +4839,6 @@
             }
         },
         {
-            "Key": "c3b30e59-9d59-4707-9887-93e8e844871e",
-            "Value": {
-                "id": "debe0191-2bab-4254-b1e1-c3d9edc80d52",
-                "resourcePath": "datafiles_yy\/Games\/Rezzles\/OrderUp.rez.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "c3c97928-1a34-4867-b355-10bf3258f126",
             "Value": {
                 "id": "bfa0877b-c329-441f-99c2-4bcc24eb378c",
@@ -5239,14 +5127,6 @@
             }
         },
         {
-            "Key": "d0358b00-f090-4e7a-9511-65f5c5ebfae1",
-            "Value": {
-                "id": "9a83ceda-66e6-46f1-a6ce-af6cc469ba4a",
-                "resourcePath": "views\/d0358b00-f090-4e7a-9511-65f5c5ebfae1.yy",
-                "resourceType": "GMFolder"
-            }
-        },
-        {
             "Key": "d09345d7-17df-4f21-95c2-a30df24596ae",
             "Value": {
                 "id": "d5912e28-cb88-4e63-9cbc-d0bbaa5bbf7b",
@@ -5299,14 +5179,6 @@
             "Value": {
                 "id": "a8f7f9fe-88db-4311-85a7-38738c7c3943",
                 "resourcePath": "datafiles_yy\/Data\/SBCorpus\/Transcript\/sbc004.xml.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "d3235037-5856-43b0-8668-dbdaaafc11f3",
-            "Value": {
-                "id": "a8f14173-92a7-4fba-9ce9-a1fdd414d9fd",
-                "resourcePath": "datafiles_yy\/Games\/Rezzles\/MickeyMouse.rez.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -6084,14 +5956,6 @@
                 "id": "5230e4eb-c627-44ac-81c1-3234d70b56fb",
                 "resourcePath": "datafiles_yy\/Data\/SBCorpus\/Transcript\/sbc013.xml.yy",
                 "resourceType": "GMIncludedFile"
-            }
-        },
-        {
-            "Key": "ed242565-9ec0-4b47-81d3-54ce93a37bd0",
-            "Value": {
-                "id": "0fc5f713-d4b4-47f3-ad0d-6bd277c28885",
-                "resourcePath": "views\/ed242565-9ec0-4b47-81d3-54ce93a37bd0.yy",
-                "resourceType": "GMFolder"
             }
         },
         {

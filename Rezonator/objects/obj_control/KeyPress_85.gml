@@ -2,8 +2,8 @@
 //	hideAll = !hideAll;
 	
 //	if (hideAll) {
-//		instance_create(0, 0, obj_exportWindowGridList);
-//		instance_create(0, 0, obj_exportWindowGridContents);
+//		instance_create_layer(0, 0, "InstancesDialogue", obj_exportWindowGridList);
+//		instance_create_layer(0, 0, "InstancesDialogue", obj_exportWindowGridContents);
 //	}
 //}
 

@@ -38,13 +38,13 @@ colToChange = -1;
 
 if (global.plainText) {	
 	scr_importInfoGrid();
-	instance_create(0, 0, obj_importPlainTextInfo);
+	instance_create_layer(0, 0, "InstancesDialogue", obj_importPlainTextInfo);
 	room_goto(rm_mainScreen);
 }
 else{
-	//instance_create(0, 0, obj_importMappingRezInfo);
-	//instance_create(0, 0, obj_importMappingTagInfo);
-	instance_create(0, 0, obj_importException);
+	//instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingRezInfo);
+	//instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingTagInfo);
+	instance_create_layer(0, 0, "InstancesDialogue", obj_importException);
 }
 
 

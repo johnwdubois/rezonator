@@ -134,7 +134,7 @@ for (i = 1; i <= length; ++i) {
     switch (char) {
         case "(":
             group_1 = group_index--; group_0 = group_index;
-            node = instance_create(0, 0, obj_regular_expression_node); ds_list_add(list_nodes, node);
+            node = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_node); ds_list_add(list_nodes, node);
             size = ds_list_size(group_edges_out[group_0]);
             for (j = 0; j < size; ++j) (ds_list_find_value(group_edges_out[group_0], j)).to = node;
             size = ds_list_size(group_edges_in[group_1]);
@@ -153,9 +153,9 @@ for (i = 1; i <= length; ++i) {
             break;
             
         case "*":
-            node = instance_create(0, 0, obj_regular_expression_node); ds_list_add(list_nodes, node);
-            edge_0 = instance_create(0, 0, obj_regular_expression_edge);
-            edge_1 = instance_create(0, 0, obj_regular_expression_edge);
+            node = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_node); ds_list_add(list_nodes, node);
+            edge_0 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
+            edge_1 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
             size = ds_list_size(group_edges_in[group_index]);
             for (j = 0; j < size; ++j) {t = ds_list_find_value(group_edges_in[group_index], j); t.from = node; ds_list_add(node.edges_out, t);}
             size = ds_list_size(group_edges_out[group_index]);
@@ -171,7 +171,7 @@ for (i = 1; i <= length; ++i) {
             char = string_char_at(postfix, i + 1);
             switch (char) {
                 case "?":
-                    edge_0 = instance_create(0, 0, obj_regular_expression_edge);
+                    edge_0 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
                     edge_0.from = -1; edge_0.to = -1; edge_0.symbol = "";
                     ++group_index;
                     group_edges_in[group_index] = ds_list_create(); group_edges_out[group_index] = ds_list_create();
@@ -190,9 +190,9 @@ for (i = 1; i <= length; ++i) {
                     group_edges_in[group_index] = ds_list_create(); ds_list_copy(group_edges_in[group_index], group_edges_in[group_index - 1]);
                     group_edges_out[group_index] = ds_list_create(); ds_list_copy(group_edges_out[group_index], group_edges_out[group_index - 1]);
                 
-                    node = instance_create(0, 0, obj_regular_expression_node); ds_list_add(list_nodes, node);
-                    edge_0 = instance_create(0, 0, obj_regular_expression_edge);
-                    edge_1 = instance_create(0, 0, obj_regular_expression_edge);
+                    node = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_node); ds_list_add(list_nodes, node);
+                    edge_0 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
+                    edge_1 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
                     size = ds_list_size(group_edges_in[group_index]);
                     for (j = 0; j < size; ++j) {t = ds_list_find_value(group_edges_in[group_index], j); t.from = node; ds_list_add(node.edges_out, t);}
                     size = ds_list_size(group_edges_out[group_index]);
@@ -204,7 +204,7 @@ for (i = 1; i <= length; ++i) {
                     ds_list_add(group_edges_in[group_index], edge_0); ds_list_add(group_edges_out[group_index], edge_1);
 
                     group_1 = group_index--; group_0 = group_index;
-                    node = instance_create(0, 0, obj_regular_expression_node); ds_list_add(list_nodes, node);
+                    node = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_node); ds_list_add(list_nodes, node);
                     size = ds_list_size(group_edges_out[group_0]);
                     for (j = 0; j < size; ++j) (ds_list_find_value(group_edges_out[group_0], j)).to = node;
                     size = ds_list_size(group_edges_in[group_1]);
@@ -214,7 +214,7 @@ for (i = 1; i <= length; ++i) {
                     break;
                     
                 case "n":
-                    edge_0 = instance_create(0, 0, obj_regular_expression_edge);
+                    edge_0 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
                     edge_0.from = -1; edge_0.to = -1; edge_0.symbol = chr(10);
                     ++group_index;
                     group_edges_in[group_index] = ds_list_create(); group_edges_out[group_index] = ds_list_create();
@@ -224,7 +224,7 @@ for (i = 1; i <= length; ++i) {
             if (char == "?" || char == "+" || char == "n") {++i; break;}
             chars = string_copy(postfix, i + 1, 3);
             if (chars == "a-z" || chars == "A-Z") {
-                edge_0 = instance_create(0, 0, obj_regular_expression_edge);
+                edge_0 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
                 edge_0.from = -1; edge_0.to = -1;
                 if (chars == "a-z") edge_0.symbol = "\\0"; else edge_0.symbol = "\\1";
                 ++group_index;
@@ -232,7 +232,7 @@ for (i = 1; i <= length; ++i) {
                 ds_list_add(group_edges_in[group_index], edge_0); ds_list_add(group_edges_out[group_index], edge_0);
                 i += 3; break;
             }
-            edge_0 = instance_create(0, 0, obj_regular_expression_edge);
+            edge_0 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
             edge_0.from = -1; edge_0.to = -1; edge_0.symbol = "\\2" + char + string_char_at(postfix, i + 3);
             ++group_index;
             group_edges_in[group_index] = ds_list_create(); group_edges_out[group_index] = ds_list_create();
@@ -240,7 +240,7 @@ for (i = 1; i <= length; ++i) {
             i += 3; break;
             
         default:
-            edge_0 = instance_create(0, 0, obj_regular_expression_edge);
+            edge_0 = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_edge);
             edge_0.from = -1; edge_0.to = -1;
             if (char == "^") edge_0.symbol = ""; else edge_0.symbol = char;
             ++group_index;
@@ -249,8 +249,8 @@ for (i = 1; i <= length; ++i) {
     }
 }
 
-node_final = instance_create(0, 0, obj_regular_expression_node); ds_list_add(list_nodes, node_final);
-node_start = instance_create(0, 0, obj_regular_expression_node); ds_list_insert(list_nodes, 0, node_start);
+node_final = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_node); ds_list_add(list_nodes, node_final);
+node_start = instance_create_layer(0, 0, "InstancesDialogue", obj_regular_expression_node); ds_list_insert(list_nodes, 0, node_start);
 size = ds_list_size(group_edges_in[group_index]);
 for (j = 0; j < size; ++j) {t = ds_list_find_value(group_edges_in[group_index], j); t.from = node_start; ds_list_add(node_start.edges_out, t);}
 size = ds_list_size(group_edges_out[group_index]);

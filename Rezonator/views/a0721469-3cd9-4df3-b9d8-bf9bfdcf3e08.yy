@@ -4,10 +4,8 @@
     "mvc": "1.1",
     "name": "a0721469-3cd9-4df3-b9d8-bf9bfdcf3e08",
     "children": [
-        "ed242565-9ec0-4b47-81d3-54ce93a37bd0",
         "5bee4f6d-1dad-4642-9e24-fb9267e9518a",
-        "d48b4d5b-2b3a-43fa-ae22-0e76ac875116",
-        "33634c94-b392-4387-9e8a-14a6330a1256"
+        "d48b4d5b-2b3a-43fa-ae22-0e76ac875116"
     ],
     "filterType": "GMObject",
     "folderName": "Extensions",

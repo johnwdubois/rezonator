@@ -178,8 +178,8 @@ if (point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRec
 		scr_importTXTExceptions();
 		scr_importInfoGrid();
 		
-		instance_create(0, 0, obj_importMappingRezInfo);
-		instance_create(0, 0, obj_importMappingTagInfo);
+		instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingRezInfo);
+		instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingTagInfo);
 		
 		with (obj_importException) {
 			instance_destroy();

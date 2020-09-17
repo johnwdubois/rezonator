@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-if (live_call()) return live_result;
+
 //popUpText1 = string_hash_to_newline("You are in Read Mode.# To mark up the #discourse data, choose #either Track Mode or #Rez mode.");
 //rectX1 = camera_get_view_width(view_camera[0]) - 245;
 //rectY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 50;
