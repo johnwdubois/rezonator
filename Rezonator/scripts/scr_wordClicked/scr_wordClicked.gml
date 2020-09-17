@@ -21,6 +21,11 @@ var wordID = argument0;
 var unitID = argument1;
 //show_message("okay");
 
+if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_toolPane.currentTool == obj_toolPane.toolStackBrush) { 
+	wordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, wordID - 1);
+	//show_message(wordID);
+}
+
 // jump audio position to unitStart time (if audioUI is visible)
 if (instance_exists(obj_audioUI)) {
 	if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
