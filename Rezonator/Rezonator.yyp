@@ -4935,6 +4935,14 @@
             }
         },
         {
+            "Key": "c7ed3610-25df-4713-adc8-9dca68842b45",
+            "Value": {
+                "id": "c3c29936-e45f-4250-9acd-bbd329962c20",
+                "resourcePath": "datafiles_yy\\Data\\SBCorpus\\Rez\\sbc050.rez.yy",
+                "resourceType": "GMIncludedFile"
+            }
+        },
+        {
             "Key": "c82c75c4-63fb-4984-958b-09228502eb9a",
             "Value": {
                 "id": "a25c93e1-7ce2-45ff-827a-06b135b3b6e7",

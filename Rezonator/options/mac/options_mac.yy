@@ -13,7 +13,7 @@
     "option_mac_copyright": "(c) 2018 CompanyName",
     "option_mac_disable_sandbox": true,
     "option_mac_display_cursor": true,
-    "option_mac_display_name": "Rezonator 0.9.0.0",
+    "option_mac_display_name": "Rezonator 0.9.0.1",
     "option_mac_enable_retina": true,
     "option_mac_enable_steam": false,
     "option_mac_icon_png": "${options_dir}\\mac\\icons\\1024.png",

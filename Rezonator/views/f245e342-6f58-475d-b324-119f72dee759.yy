@@ -62,7 +62,8 @@
         "966f4e14-3fb6-40bf-b7b2-12d7b4f28853",
         "90543e4e-d828-4bbd-8e06-de2e9ed189e1",
         "58da4bae-18f5-4626-8577-3659fca8d38a",
-        "ab0e561e-d1bb-4294-b2a1-c72465114f1a"
+        "ab0e561e-d1bb-4294-b2a1-c72465114f1a",
+        "c7ed3610-25df-4713-adc8-9dca68842b45"
     ],
     "filterType": "GMIncludedFile",
     "folderName": "Rez",
