@@ -1,8 +1,12 @@
 {
-    "id": "c57094d8-44a7-4723-bd91-6667ee079077",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_exportREZ",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "import_export",
+    "path": "folders/Scripts/import_export.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_exportREZ",
+  "tags": [],
+  "resourceType": "GMScript",
 }

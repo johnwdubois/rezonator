@@ -1,8 +1,12 @@
 {
-    "id": "0fbcdd8c-978f-45d1-b59d-c1044bb4c5f3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_splitWord",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "word functions",
+    "path": "folders/Scripts/functions/word functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_splitWord",
+  "tags": [],
+  "resourceType": "GMScript",
 }

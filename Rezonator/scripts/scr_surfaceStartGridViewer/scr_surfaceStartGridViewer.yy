@@ -1,8 +1,12 @@
 {
-    "id": "0619b98d-cb05-434e-a894-a14a455a2368",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_surfaceStartGridViewer",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "scrollBar",
+    "path": "folders/Scripts/scrollBar.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_surfaceStartGridViewer",
+  "tags": [],
+  "resourceType": "GMScript",
 }

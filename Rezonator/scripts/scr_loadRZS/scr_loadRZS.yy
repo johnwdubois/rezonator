@@ -1,8 +1,12 @@
 {
-    "id": "66472d20-826f-4196-b5d2-ce352d3605c9",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_loadRZS",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "import_export",
+    "path": "folders/Scripts/import_export.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_loadRZS",
+  "tags": [],
+  "resourceType": "GMScript",
 }

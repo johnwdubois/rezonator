@@ -1,11 +1,15 @@
-var filename = argument0;
-var fileOpenRead = file_text_open_read(filename);
+function scr_getImportFileRipList(argument0) {
+	var filename = argument0;
+	var fileOpenRead = file_text_open_read(filename);
 
-while (not file_text_eof(fileOpenRead)) {
+	while (not file_text_eof(fileOpenRead)) {
 	
-	var lineInFile = file_text_readln(fileOpenRead);
-	ds_list_add(global.importFileRipList, lineInFile);
+		var lineInFile = file_text_readln(fileOpenRead);
+		ds_list_add(global.importFileRipList, lineInFile);
 	
+	}
+
+	file_text_close(fileOpenRead);
+
+
 }
-
-file_text_close(fileOpenRead);

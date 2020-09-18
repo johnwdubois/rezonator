@@ -1,8 +1,12 @@
 {
-    "id": "181759d2-b882-4e95-b205-02d712e61403",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_gridSwapCols",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grid functions",
+    "path": "folders/Scripts/functions/grid functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_gridSwapCols",
+  "tags": [],
+  "resourceType": "GMScript",
 }

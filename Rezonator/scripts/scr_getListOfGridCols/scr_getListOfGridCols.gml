@@ -1,12 +1,16 @@
-// returns a list of the column names (as strings) for a specified grid
+function scr_getListOfGridCols(argument0) {
+	// returns a list of the column names (as strings) for a specified grid
 
-var grid = argument0;
-var listOfGridCols = ds_list_create();
+	var grid = argument0;
+	var listOfGridCols = ds_list_create();
 
-var gridWidth = ds_grid_width(grid);
-for (var i = 0; i < gridWidth; i++) {
-	var currentColName = scr_getColNameString(grid, i);
-	ds_list_add(listOfGridCols, currentColName);
+	var gridWidth = ds_grid_width(grid);
+	for (var i = 0; i < gridWidth; i++) {
+		var currentColName = scr_getColNameString(grid, i);
+		ds_list_add(listOfGridCols, currentColName);
+	}
+
+	return listOfGridCols;
+
+
 }
-
-return listOfGridCols;

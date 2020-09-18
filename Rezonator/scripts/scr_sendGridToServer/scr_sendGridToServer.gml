@@ -1,32 +1,36 @@
-// Experimental function for sending a grid to an online server
+function scr_sendGridToServer(argument0) {
+	// Experimental function for sending a grid to an online server
 
-var grid = argument0;
+	var grid = argument0;
 
-var rootList = ds_list_create();
+	var rootList = ds_list_create();
 
-var map = ds_map_create();
-ds_list_add(rootList, map);
-ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
-
-
-
-
-
-var mapGrid = scr_gridToJSONLists(grid);
-ds_map_add_list(map, scr_getGridNameString(grid), mapGrid);
-
-
-var wrapper = ds_map_create();
-ds_map_add_list(wrapper, "ROOT", rootList);
-
-var jsonString = json_encode(wrapper);
-
-show_message("Finished JSON string");
-
-
-scr_networkEmit("position", jsonString);
+	var map = ds_map_create();
+	ds_list_add(rootList, map);
+	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 
 
 
 
-ds_map_destroy(wrapper);
+
+	var mapGrid = scr_gridToJSONLists(grid);
+	ds_map_add_list(map, scr_getGridNameString(grid), mapGrid);
+
+
+	var wrapper = ds_map_create();
+	ds_map_add_list(wrapper, "ROOT", rootList);
+
+	var jsonString = json_encode(wrapper);
+
+	show_message("Finished JSON string");
+
+
+	scr_networkEmit("position", jsonString);
+
+
+
+
+	ds_map_destroy(wrapper);
+
+
+}

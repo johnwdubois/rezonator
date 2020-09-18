@@ -1,8 +1,12 @@
 {
-    "id": "b2cca057-9709-4529-93eb-58095ef2e600",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_getColNameString",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grid functions",
+    "path": "folders/Scripts/functions/grid functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_getColNameString",
+  "tags": [],
+  "resourceType": "GMScript",
 }

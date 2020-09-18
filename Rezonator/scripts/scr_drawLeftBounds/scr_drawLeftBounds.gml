@@ -1,18 +1,22 @@
-// draw out of bounds rectangle on left
+function scr_drawLeftBounds(argument0) {
+	// draw out of bounds rectangle on left
 
-var camViewHeight = argument0;
+	var camViewHeight = argument0;
 
-draw_set_color(global.colorThemeOutOfBounds);
-var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin;
-var leftOutOfBoundsRectY1 = 0;
-var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - 20;
-var leftOutOfBoundsRectY2 = camViewHeight;
+	draw_set_color(global.colorThemeOutOfBounds);
+	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin;
+	var leftOutOfBoundsRectY1 = 0;
+	var leftOutOfBoundsRectX2 = obj_control.wordLeftMargin - 20;
+	var leftOutOfBoundsRectY2 = camViewHeight;
 
 
-if (currentActiveLineGrid == searchGrid) {
-	leftOutOfBoundsRectX2 = leftScreenBound;
-}
+	if (currentActiveLineGrid == searchGrid) {
+		leftOutOfBoundsRectX2 = leftScreenBound;
+	}
 	
-if (abs(leftOutOfBoundsRectX1 - leftOutOfBoundsRectX2) > 2) {
-	draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
+	if (abs(leftOutOfBoundsRectX1 - leftOutOfBoundsRectX2) > 2) {
+		draw_rectangle(leftOutOfBoundsRectX1, leftOutOfBoundsRectY1, leftOutOfBoundsRectX2, leftOutOfBoundsRectY2, false);
+	}
+
+
 }

@@ -1,8 +1,12 @@
 {
-    "id": "58012b3e-a809-4755-a1e6-d8ebfeb46e82",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_surfaceEnd",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "scrollBar",
+    "path": "folders/Scripts/scrollBar.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_surfaceEnd",
+  "tags": [],
+  "resourceType": "GMScript",
 }

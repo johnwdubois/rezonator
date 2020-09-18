@@ -1,8 +1,12 @@
 {
-    "id": "88eb7c77-5876-4ec4-bdf7-88b9278bb422",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_gridToJSONLists",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "import_export",
+    "path": "folders/Scripts/import_export.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_gridToJSONLists",
+  "tags": [],
+  "resourceType": "GMScript",
 }

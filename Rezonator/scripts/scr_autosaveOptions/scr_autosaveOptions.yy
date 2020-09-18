@@ -1,8 +1,12 @@
 {
-    "id": "4e9071a1-8fa1-4286-8a39-00ecf9c18247",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_autosaveOptions",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dropDownLists",
+    "path": "folders/Scripts/UI/dialogueBox/dropDownLists.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_autosaveOptions",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "a3bae08a-4fd7-4590-a09b-e26a8883797e",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_dialogueBoxRecolor",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dialogueBox",
+    "path": "folders/Scripts/UI/dialogueBox.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_dialogueBoxRecolor",
+  "tags": [],
+  "resourceType": "GMScript",
 }

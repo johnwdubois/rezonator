@@ -1,8 +1,12 @@
 {
-    "id": "69846e25-74b9-4922-a924-f57c406a5a72",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_setAllValuesInCol",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grid functions",
+    "path": "folders/Scripts/functions/grid functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_setAllValuesInCol",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "647dc090-a050-4750-a66b-5d074bccb40b",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_importExceptionWindowDev",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "openingScreen",
+    "path": "folders/Scripts/openingScreen.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_importExceptionWindowDev",
+  "tags": [],
+  "resourceType": "GMScript",
 }

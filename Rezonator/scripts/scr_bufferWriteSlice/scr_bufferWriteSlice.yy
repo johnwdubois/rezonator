@@ -1,8 +1,12 @@
 {
-    "id": "3141b34d-5f69-492e-86b9-0a3ddc657580",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_bufferWriteSlice",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_bufferWriteSlice",
+  "tags": [],
+  "resourceType": "GMScript",
 }

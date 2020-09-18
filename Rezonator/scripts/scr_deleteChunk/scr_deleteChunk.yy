@@ -1,8 +1,12 @@
 {
-    "id": "a0b42376-3fda-4f56-a0bd-312e223154d5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_deleteChunk",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_deleteChunk",
+  "tags": [],
+  "resourceType": "GMScript",
 }

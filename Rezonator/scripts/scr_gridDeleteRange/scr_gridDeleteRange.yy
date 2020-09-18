@@ -1,8 +1,12 @@
 {
-    "id": "b5d6507a-422a-49b5-876c-0147656081b3",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_gridDeleteRange",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grid functions",
+    "path": "folders/Scripts/functions/grid functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_gridDeleteRange",
+  "tags": [],
+  "resourceType": "GMScript",
 }

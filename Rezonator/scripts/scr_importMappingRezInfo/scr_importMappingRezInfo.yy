@@ -1,8 +1,12 @@
 {
-    "id": "202ae9d9-c7af-466b-9fb5-8458e10001d5",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_importMappingRezInfo",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "openingScreen",
+    "path": "folders/Scripts/openingScreen.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_importMappingRezInfo",
+  "tags": [],
+  "resourceType": "GMScript",
 }

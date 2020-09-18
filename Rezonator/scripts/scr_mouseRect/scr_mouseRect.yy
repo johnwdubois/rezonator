@@ -1,8 +1,12 @@
 {
-    "id": "3f336589-fadf-4ed7-8a96-a645f60d347d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_mouseRect",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "mouseRect",
+    "path": "folders/Scripts/mouseRect.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_mouseRect",
+  "tags": [],
+  "resourceType": "GMScript",
 }

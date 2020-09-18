@@ -1,8 +1,12 @@
 {
-    "id": "fb883da0-9cc9-4b09-afcf-0a0505244148",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_toggleTranscriptionMulti",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "word functions",
+    "path": "folders/Scripts/functions/word functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_toggleTranscriptionMulti",
+  "tags": [],
+  "resourceType": "GMScript",
 }

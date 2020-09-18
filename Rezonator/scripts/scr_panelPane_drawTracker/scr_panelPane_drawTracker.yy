@@ -1,8 +1,12 @@
 {
-    "id": "a19f7bc3-34d7-44b8-9ef6-18e696add4dc",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_panelPane_drawTracker",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "stackShow",
+    "path": "folders/Scripts/stackShow.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_panelPane_drawTracker",
+  "tags": [],
+  "resourceType": "GMScript",
 }

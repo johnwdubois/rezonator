@@ -1,7 +1,11 @@
 {
-    "id": "45247e41-7cb2-42d6-93de-dfa326053d24",
-    "modelName": "GMShader",
-    "mvc": "1.0",
-    "name": "sh_input_text_selection",
-    "type": 1
+  "type": 1,
+  "parent": {
+    "name": "Text Inputs",
+    "path": "folders/Shaders/Text Inputs.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "sh_input_text_selection",
+  "tags": [],
+  "resourceType": "GMShader",
 }

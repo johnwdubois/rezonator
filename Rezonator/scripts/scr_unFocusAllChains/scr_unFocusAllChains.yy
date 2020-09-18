@@ -1,8 +1,12 @@
 {
-    "id": "943630f7-d610-4dfd-9cca-a13dbecb5ddd",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_unFocusAllChains",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "chains",
+    "path": "folders/Scripts/chains.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_unFocusAllChains",
+  "tags": [],
+  "resourceType": "GMScript",
 }

@@ -1,8 +1,12 @@
 {
-    "id": "ede68f46-236b-441e-9b29-3fd1810cdfd6",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_drawTrackChain",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "drawChains",
+    "path": "folders/Scripts/chains/drawChains.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_drawTrackChain",
+  "tags": [],
+  "resourceType": "GMScript",
 }

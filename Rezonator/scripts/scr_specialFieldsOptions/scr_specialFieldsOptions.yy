@@ -1,8 +1,12 @@
 {
-    "id": "58a66d8f-2938-4a38-83bf-71ec3c393d8d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_specialFieldsOptions",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dropDownLists",
+    "path": "folders/Scripts/UI/dialogueBox/dropDownLists.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_specialFieldsOptions",
+  "tags": [],
+  "resourceType": "GMScript",
 }

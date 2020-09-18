@@ -1,8 +1,12 @@
 {
-    "id": "850ec7c6-81da-4b79-82a9-915837e70d8d",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_saveINI",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "import_export",
+    "path": "folders/Scripts/import_export.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_saveINI",
+  "tags": [],
+  "resourceType": "GMScript",
 }

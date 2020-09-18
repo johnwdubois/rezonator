@@ -1,8 +1,12 @@
 {
-    "id": "2558de79-c128-4990-bc76-cf198d3a5295",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_chainRecolorOptions",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dropDownLists",
+    "path": "folders/Scripts/UI/dialogueBox/dropDownLists.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_chainRecolorOptions",
+  "tags": [],
+  "resourceType": "GMScript",
 }

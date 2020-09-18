@@ -1,8 +1,12 @@
 {
-    "id": "55d1d8de-e839-4f69-af8a-f6ecb77a8739",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_paneOptions",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "dropDownLists",
+    "path": "folders/Scripts/UI/dialogueBox/dropDownLists.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_paneOptions",
+  "tags": [],
+  "resourceType": "GMScript",
 }

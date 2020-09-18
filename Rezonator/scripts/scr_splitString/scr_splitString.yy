@@ -1,8 +1,12 @@
 {
-    "id": "efca083d-511d-46a9-b9b8-80c06a142131",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_splitString",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "string functions",
+    "path": "folders/Scripts/functions/string functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_splitString",
+  "tags": [],
+  "resourceType": "GMScript",
 }

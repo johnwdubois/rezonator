@@ -1,8 +1,12 @@
 {
-    "id": "16e6aa65-5f00-41a1-9538-3b899a7d7253",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_splitStringImport",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "string functions",
+    "path": "folders/Scripts/functions/string functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_splitStringImport",
+  "tags": [],
+  "resourceType": "GMScript",
 }

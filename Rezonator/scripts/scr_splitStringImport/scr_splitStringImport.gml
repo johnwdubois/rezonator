@@ -1,18 +1,22 @@
-var listUntrimmed = scr_splitString(argument0, " ");
-var listTrimmed = ds_list_create();
+function scr_splitStringImport(argument0) {
+	var listUntrimmed = scr_splitString(argument0, " ");
+	var listTrimmed = ds_list_create();
 	
-var listUntrimmedSize = ds_list_size(listUntrimmed);
-for (var j = 0; j < listUntrimmedSize; j++) {
-	if (global.importType != global.importType_CSV) {
-		if (string_length(string(ds_list_find_value(listUntrimmed, j))) > 0) {
+	var listUntrimmedSize = ds_list_size(listUntrimmed);
+	for (var j = 0; j < listUntrimmedSize; j++) {
+		if (global.importType != global.importType_CSV) {
+			if (string_length(string(ds_list_find_value(listUntrimmed, j))) > 0) {
+				ds_list_add(listTrimmed, string(ds_list_find_value(listUntrimmed, j)));
+			}
+		}
+		else {
 			ds_list_add(listTrimmed, string(ds_list_find_value(listUntrimmed, j)));
 		}
 	}
-	else {
-		ds_list_add(listTrimmed, string(ds_list_find_value(listUntrimmed, j)));
-	}
-}
 	
-ds_list_destroy(listUntrimmed);
+	ds_list_destroy(listUntrimmed);
 
-return listTrimmed;
+	return listTrimmed;
+
+
+}

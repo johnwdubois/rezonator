@@ -1,8 +1,12 @@
 {
-    "id": "dd27fb3f-af17-4978-9f94-4cbe3790a700",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_networkEmit",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "suspendee_network",
+    "path": "folders/Scripts/suspendee_network.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_networkEmit",
+  "tags": [],
+  "resourceType": "GMScript",
 }

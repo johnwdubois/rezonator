@@ -1,8 +1,12 @@
 {
-    "id": "49befd75-b1ee-4363-b601-26116c585683",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_fillTokenImportGridCSV",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "grid functions",
+    "path": "folders/Scripts/functions/grid functions.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_fillTokenImportGridCSV",
+  "tags": [],
+  "resourceType": "GMScript",
 }

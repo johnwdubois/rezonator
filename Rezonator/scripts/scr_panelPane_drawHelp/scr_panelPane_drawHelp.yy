@@ -1,8 +1,12 @@
 {
-    "id": "79e73708-91c0-467f-ab87-2d0ed15beb30",
-    "modelName": "GMScript",
-    "mvc": "1.0",
-    "name": "scr_panelPane_drawHelp",
-    "IsCompatibility": false,
-    "IsDnD": false
+  "isDnD": false,
+  "isCompatibility": false,
+  "parent": {
+    "name": "panelPane",
+    "path": "folders/Scripts/UI/panelPane.yy",
+  },
+  "resourceVersion": "1.0",
+  "name": "scr_panelPane_drawHelp",
+  "tags": [],
+  "resourceType": "GMScript",
 }
