@@ -60,7 +60,26 @@ function scr_jumpToLine(argument0, argument1) {
 	// Set the screen to the y-value of the line
 	if (rowInLineGrid >= 0) {
 		var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-		obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+		var adjustedLinePixelY = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+		var chainListHeight = 0;
+		show_message(adjustedLinePixelY);
+		var menuBarHeight = 0;
+		if (instance_exists(obj_menuBar)) {
+			menuBarHeight = obj_menuBar.menuHeight;
+		}
+	
+		with (obj_panelPane) {
+			if (currentFunction == functionChainList) {
+				chainListHeight = windowHeight;
+			}
+		}
+
+		show_message(adjustedLinePixelY - ((obj_panelPane.showNav) ? chainListHeight + menuBarHeight: 0));
+		show_message(-adjustedLinePixelY + (adjustedLinePixelY - ((obj_panelPane.showNav) ? chainListHeight + menuBarHeight: 0)));
+	
+		obj_control.scrollPlusYDest = (adjustedLinePixelY - ((obj_panelPane.showNav) ? chainListHeight + menuBarHeight: 0));
+		
+		//obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
 	}
 	else {
 		exit;
