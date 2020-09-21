@@ -320,8 +320,6 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		}
 		colName = nameFromList
     
-	    draw_set_color(global.colorThemeBG);
-	    //draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 	    draw_set_color(global.colorThemeBorders);
 	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
 	    draw_set_color(global.colorThemeText);

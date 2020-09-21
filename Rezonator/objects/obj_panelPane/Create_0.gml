@@ -218,6 +218,7 @@ selectedColUnit = 0;
 
 lineContentsHighlightRow = -1;
 unitTagsHighlightRow = -1;
+chainTagsHighlightRow = -1;
 
 chainViewOneToMany = true;
 

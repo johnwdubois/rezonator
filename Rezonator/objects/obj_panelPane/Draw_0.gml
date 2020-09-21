@@ -80,8 +80,47 @@ switch (currentFunction) {
 		else {
 			functionChainContents_BGColor = global.colorThemeBG;
 		}
-
-		scr_panelPane_drawChainContentsLoopClipped();
+		
+		if (chainViewOneToMany) {
+			scr_panelPane_drawChainContentsLoopClipped();
+		}
+		else {
+			scr_panelPane_drawChainsOneToOne();
+		}
+		
+		
+		// one-to-one or one-to-many
+		if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+				
+			draw_set_font(global.fontMain);
+			draw_set_color(global.colorThemeText);
+			draw_set_alpha(1);
+			draw_set_halign(fa_right);
+			draw_set_valign(fa_middle);
+				
+			var oneToManyStr = (chainViewOneToMany) ? "One to many" : "One to one";
+			var oneToManyRectX1 = x + windowWidth - 10 - string_width(oneToManyStr);
+			var oneToManyRectY1 = y + 4;
+			var oneToManyRectX2 = x + windowWidth - 10;
+			var oneToManyRectY2 = y + functionChainList_tabHeight - 4;
+			var mouseoverOneToManyRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2);
+				
+			draw_text(oneToManyRectX2, floor(mean(oneToManyRectY1, oneToManyRectY2)), oneToManyStr);
+				
+			if (mouseoverOneToManyRect) {
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2, true);
+				if (mouse_check_button_released(mb_left)) {
+					with (obj_panelPane) {
+						chainViewOneToMany = !chainViewOneToMany;
+					}
+				}
+			}
+		}
+		
+		
+		
+		
 		if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 			clickedIn = true;
 		}
