@@ -28,12 +28,15 @@ chainGrid_colTiltSum = 7;
 chainGrid_colAuthor = 8;
 chainGrid_colCaption = 9;
 chainGrid_colStackType = 10;
+chainGrid_colAct = 11; // stack tag
+chainGrid_colRepair = 12; // stack tag
+chainGrid_colActSequence = 13; // stack tag
 
 chainGrid_colShow = 9;
 
 rezChainGrid = ds_grid_create(chainGridWidth, 0);
 trackChainGrid = ds_grid_create(chainGridWidth, 0);
-stackChainGrid = ds_grid_create(chainGridWidth + 2, 0);
+stackChainGrid = ds_grid_create(chainGridWidth + 5, 0);
 cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 

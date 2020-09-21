@@ -348,6 +348,15 @@ function scr_getColNameString(argument0, argument1) {
 			case obj_chain.chainGrid_colStackType:
 				colName = "stackType";
 				break;
+			case obj_chain.chainGrid_colAct:
+				colName = "act";
+				break;
+			case obj_chain.chainGrid_colRepair:
+				colName = "repair";
+				break;
+			case obj_chain.chainGrid_colActSequence:
+				colName = "repair";
+				break;
 			default:
 				break;
 		}

@@ -63,7 +63,7 @@ function scr_newChain(argument0, argument1) {
 
 
 	// resize the chainGrid properly (the stackChainGrid gets +2 width because of Caption and StackType)
-	var currentChainGridWidth = (chainGrid == obj_chain.stackChainGrid) ? chainGridWidth + 2 : chainGridWidth;
+	var currentChainGridWidth = (chainGrid == obj_chain.stackChainGrid) ? chainGridWidth + 5 : chainGridWidth;
 	ds_grid_resize(chainGrid, currentChainGridWidth, ds_grid_height(chainGrid) + 1);
 
 
