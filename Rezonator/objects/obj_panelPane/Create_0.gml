@@ -219,6 +219,8 @@ selectedColUnit = 0;
 lineContentsHighlightRow = -1;
 unitTagsHighlightRow = -1;
 
+chainViewOneToMany = true;
+
 
 hoverTime[0] = 0;
 hoverTime[1] = 0;

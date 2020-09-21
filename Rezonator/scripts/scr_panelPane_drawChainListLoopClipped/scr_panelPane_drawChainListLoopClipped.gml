@@ -101,9 +101,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 		var chainNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
 		var chainNameRectX2 = x + windowWidth;
 		var chainNameRectY2 = chainNameRectY1 + strHeight;
+		var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2);
 	
 		//Check mouse clicks to focus a chain in the list
-		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)) {
+		if (mouseoverChainNameRect) {
 			if (obj_control.showDevVars) {
 				draw_set_color(c_red);
 				draw_circle(mouse_x, mouse_y, 5, true);
@@ -277,26 +278,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 	
 	
-			// Create little boxes for show section
-			/*
-			var show = ds_grid_get(grid, obj_chain.chainGrid_colShow, i);
-			if (show != 0 and show != 1) {
-				show = true;
-				ds_grid_set(grid, obj_chain.chainGrid_colShow, i, show);
-			}
-			var showRectX1 = chainFilterRectX2 + filterRectMargin;
-			var showRectY1 = chainFilterRectY1;
-			var showRectX2 = showRectX1 + filterRectSize;
-			var showRectY2 = showRectY1 + filterRectSize;
-			draw_sprite_ext(spr_toggleDraw, show, mean(showRectX1, showRectX2), mean(showRectY1, showRectY2), 1, 1, 0, c_white, 1);
-			if (point_in_rectangle(mouse_x, mouse_y, showRectX1 + clipX, showRectY1 + clipY, showRectX2 + clipX, showRectY2 + clipY)) {
-				draw_rectangle(showRectX1, showRectY1, showRectX2, showRectY2, true);
-				if (mouse_check_button_released(mb_left)) {
-					show = !show;
-					ds_grid_set(grid, obj_chain.chainGrid_colShow, i, show);
-				}
-			}
-			*/
+	
+	
 		}
 
 	
@@ -353,9 +336,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 			draw_set_alpha(1);
 		}
-	
-	
-	
+		
 	
 	
 	
@@ -448,6 +429,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 
 
 	scr_surfaceEnd();
+
+
 
 
 }
