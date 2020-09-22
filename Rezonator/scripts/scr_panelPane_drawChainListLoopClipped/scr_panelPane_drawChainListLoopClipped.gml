@@ -100,7 +100,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		// Get dimensions of rectagle around chain name
 		var chainNameRectX1 = x;
 		var chainNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
-		var chainNameRectX2 = x + windowWidth;
+		var chainNameRectX2 = x + windowWidth - global.scrollBarWidth;
 		var chainNameRectY2 = chainNameRectY1 + strHeight;
 		var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2);
 	

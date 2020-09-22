@@ -12,6 +12,8 @@
 	Author: Terry DuBois
 */
 
+if (live_call()) return live_result;
+
 
 
 if (obj_control.gridView and currentFunction != functionHelp) {
@@ -97,15 +99,16 @@ switch (currentFunction) {
 			draw_set_alpha(1);
 			draw_set_halign(fa_right);
 			draw_set_valign(fa_middle);
-				
-			var oneToManyStr = (chainViewOneToMany) ? "One to many" : "One to one";
-			var oneToManyRectX1 = x + windowWidth - 10 - string_width(oneToManyStr);
+			
+			//var oneToManyStr = (chainViewOneToMany) ? "One to many" : "One to one";
+			var oneToManyRectX1 = x + windowWidth - 10 - sprite_get_width(spr_oneToOne);
 			var oneToManyRectY1 = y + 4;
 			var oneToManyRectX2 = x + windowWidth - 10;
 			var oneToManyRectY2 = y + functionChainList_tabHeight - 4;
 			var mouseoverOneToManyRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2);
 				
-			draw_text(oneToManyRectX2, floor(mean(oneToManyRectY1, oneToManyRectY2)), oneToManyStr);
+			//draw_text(oneToManyRectX2, floor(mean(oneToManyRectY1, oneToManyRectY2)), oneToManyStr);
+			draw_sprite_ext(spr_oneToOne, (chainViewOneToMany) ? 0 : 1, floor(mean(oneToManyRectX1, oneToManyRectX2)), floor(mean(oneToManyRectY1, oneToManyRectY2)), 5, 5, 0, c_white, 1);
 				
 			if (mouseoverOneToManyRect) {
 				draw_set_color(global.colorThemeBorders);
