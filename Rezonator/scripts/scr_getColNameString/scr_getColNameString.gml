@@ -355,7 +355,7 @@ function scr_getColNameString(argument0, argument1) {
 				colName = "repair";
 				break;
 			case obj_chain.chainGrid_colActSequence:
-				colName = "repair";
+				colName = "act sequence";
 				break;
 			default:
 				break;

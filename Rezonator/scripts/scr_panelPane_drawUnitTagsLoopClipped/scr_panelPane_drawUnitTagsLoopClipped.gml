@@ -16,8 +16,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	//if (live_call()) return live_result;
 	// Access the lineList panelPane object to get it's scrollPlusY
 
-	var lineListPanelPaneInst = 0;//lineListPanelPaneInst;
-
+	var lineListPanelPaneInst = 0;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			lineListPanelPaneInst = self.id;
@@ -150,7 +149,6 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 				unitTagsHighlightRow = i;
         
 		        if (device_mouse_check_button_released(0, mb_left)) {
-		            //show_message("line");
 		            ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 		            ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
 		            with (obj_panelPane) {
@@ -229,19 +227,12 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		        draw_set_font(global.fontMain);
 		    }
     
-		    // Draw text of chain names
-		    draw_set_color(global.colorThemeText);
+		    // Draw text of unit tags
 		    draw_set_halign(fa_left);
 		    draw_set_valign(fa_middle);
-		    //draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
-    
-		    //Color codes the line lists for User
-		    draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
-		    //draw_set_color(lineColor);
-		    //draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 		    draw_set_color(global.colorThemeText);
 		
-			var tagToDraw = ds_grid_get(global.unitImportGrid,j,i);
+			var tagToDraw = ds_grid_get(global.unitImportGrid, j, i);
 		
 			var importCol = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
 			if( importCol != undefined ){
@@ -252,21 +243,8 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 			}
 		
 		
-		
-			if(tagToDraw == undefined){
-				tagToDraw = "";
-			}
+			tagToDraw = (tagToDraw == undefined) ? "" : tagToDraw;
 		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
-    
-		    //draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
-		    draw_set_color(global.colorThemeBG);
-		    //draw_rectangle(windowWidth/3 - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
-		    draw_set_color(global.colorThemeBG);
-		    //draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
-		    draw_set_color(global.colorThemeText);
-		    //draw_text(windowWidth/3, y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, currentLineWordString);
-    
-    
     
 		    // Get height of chain name
 		    textPlusY += strHeight;

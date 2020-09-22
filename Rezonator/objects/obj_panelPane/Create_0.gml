@@ -85,6 +85,7 @@ functionChainContents_scrollRangeMin[0] = 0;
 functionChainContents_scrollRangeMax[0] = functionChainContents_maxScrollRange;
 functionChainContents_hop = -1;
 functionChainContents_lineGridRowFocused = -1;
+functionChainContents_chainGridRowFocused = -1;
 functionChainContents_sortedCol = -1;
 functionChainContents_sortedColAsc = true;
 alarm[8] = 5;
@@ -215,6 +216,7 @@ ascendYScale = 1;
 ascendActivated = false;
 selectedColToken = 0;
 selectedColUnit = 0;
+selectedColChain = 0;
 
 lineContentsHighlightRow = -1;
 unitTagsHighlightRow = -1;

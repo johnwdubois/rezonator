@@ -81,11 +81,11 @@ switch (currentFunction) {
 			functionChainContents_BGColor = global.colorThemeBG;
 		}
 		
-		if (chainViewOneToMany) {
-			scr_panelPane_drawChainContentsLoopClipped();
+		if (!chainViewOneToMany && functionChainList_currentTab == functionChainList_tabStackBrush) {
+			scr_panelPane_drawChainsOneToOne();
 		}
 		else {
-			scr_panelPane_drawChainsOneToOne();
+			scr_panelPane_drawChainContentsLoopClipped();
 		}
 		
 		
