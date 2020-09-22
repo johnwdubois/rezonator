@@ -4,7 +4,7 @@ function scr_advancedOptions(argument0) {
 	switch (optionSelected)
 	{
 	
-		case "Add Tag Category":
+		/*case "Add Tag Category":
 		
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -15,7 +15,7 @@ function scr_advancedOptions(argument0) {
 		
 			
 			//show_message("Coming Soon");
-			break;
+			break;*/
 		case "Developer":
 			obj_control.showDevVars = !obj_control.showDevVars;
 			obj_control.showFPS = !obj_control.showFPS;
