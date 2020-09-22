@@ -30,7 +30,7 @@ textBuffer = 10;
 
 // clamp windowHeight so dropDown is not hanging off the screen
 var showScrollBar = false;
-var camHeight = camera_get_view_height(view_camera[0]);
+var camHeight = camera_get_view_height(camera_get_active());
 if (y + windowHeight > camHeight) {
 	windowHeight = camHeight - y - 50;
 	showScrollBar = true;

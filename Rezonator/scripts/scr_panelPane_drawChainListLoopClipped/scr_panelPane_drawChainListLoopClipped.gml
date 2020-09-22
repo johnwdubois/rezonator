@@ -22,7 +22,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		}
 	}
 	x = filterPaneWidth;
-	windowWidth = camera_get_view_width(view_camera[0]) / 2.8;
+	windowWidth = camera_get_view_width(camera_get_active()) / 2.8;
 
 
 
@@ -173,7 +173,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 							if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.lineGrid)) {
 								// Replacement of centerDisplayRow
 								var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-								obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+								obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 							}
 					}
 					else {

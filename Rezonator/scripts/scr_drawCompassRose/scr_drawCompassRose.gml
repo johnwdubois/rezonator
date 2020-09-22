@@ -56,7 +56,7 @@ function scr_drawCompassRose() {
 	
 		// Calculate the angle of the mouseDrag
 		var compassLineAngle = point_direction(compassLineX1, compassLineY1, compassLineX2, compassLineY2);
-		draw_text(camera_get_view_width(view_camera[0]) - 300, 80, "compassLineAngle: " + string(compassLineAngle));
+		draw_text(camera_get_view_width(camera_get_active()) - 300, 80, "compassLineAngle: " + string(compassLineAngle));
 
 	
 		// Use this to create the compass's horizontal and vertical "snapToGrid"
@@ -94,7 +94,7 @@ function scr_drawCompassRose() {
 			// Draw and highlight the 8 cardinal directions
 			draw_set_alpha(0.3);
 			// South
-			if (point_in_rectangle(mouse_x, mouse_y, lineRectX1, lineRectY2, lineRectX2, camera_get_view_height(view_camera[0]))) {
+			if (point_in_rectangle(mouse_x, mouse_y, lineRectX1, lineRectY2, lineRectX2, camera_get_view_height(camera_get_active()))) {
 				draw_rectangle(lineRectX1, lineRectY2, lineRectX2, lineRectY2 + 50, false);
 			}
 			// North
@@ -107,11 +107,11 @@ function scr_drawCompassRose() {
 				draw_rectangle(lineRectX1 - 50, lineRectY1, lineRectX1, lineRectY2, false);
 			}
 			// East
-			if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, lineRectY1, camera_get_view_width(view_camera[0]), lineRectY2)) {
+			if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, lineRectY1, camera_get_view_width(camera_get_active()), lineRectY2)) {
 				draw_rectangle(lineRectX2, lineRectY1, lineRectX2 + 50, lineRectY2, false);
 			}
 			// NorthEast
-			if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, 0, camera_get_view_width(view_camera[0]), lineRectY1)) {
+			if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, 0, camera_get_view_width(camera_get_active()), lineRectY1)) {
 				draw_rectangle(lineRectX2, lineRectY1 - 50, lineRectX2 + 50, lineRectY1, false);
 			}
 			// NorthWest
@@ -119,11 +119,11 @@ function scr_drawCompassRose() {
 				draw_rectangle(lineRectX1 - 50, lineRectY1 - 50, lineRectX1, lineRectY1, false);
 			}
 			// SouthWest
-			if (point_in_rectangle(mouse_x, mouse_y, 0, lineRectY2, lineRectX1, camera_get_view_height(view_camera[0]))) {
+			if (point_in_rectangle(mouse_x, mouse_y, 0, lineRectY2, lineRectX1, camera_get_view_height(camera_get_active()))) {
 				draw_rectangle(lineRectX1 - 50, lineRectY2, lineRectX1, lineRectY2 + 50, false);
 			}
 			// SouthEast
-			if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, lineRectY2, camera_get_view_width(view_camera[0]), camera_get_view_height(view_camera[0]))) {
+			if (point_in_rectangle(mouse_x, mouse_y, lineRectX2, lineRectY2, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()))) {
 				draw_rectangle(lineRectX2, lineRectY2, lineRectX2 + 50, lineRectY2 + 50, false);
 			}
 		

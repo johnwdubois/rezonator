@@ -61,7 +61,7 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 	var colorThemeBG = global.colorThemeBG;
 	var inRezPlay = obj_chain.inRezPlay;
 	var hitGridHeight = ds_grid_height(obj_control.hitGrid);
-	var camWidth = camera_get_view_width(view_camera[0]);
+	var camWidth = camera_get_view_width(camera_get_active());
 
 
 	// if we are justifying right with shapeText, we need to calculate the entire unit width

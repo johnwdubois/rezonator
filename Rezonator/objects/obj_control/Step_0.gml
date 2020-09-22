@@ -30,7 +30,7 @@ if (!gridView) {
 		
 		
 		var lastLinePixelY = (room_height / 2) + ((ds_grid_height(currentActiveLineGrid) - currentCenterDisplayRow) * gridSpaceVertical);
-		if (lastLinePixelY < camera_get_view_height(view_camera[0]) - 30
+		if (lastLinePixelY < camera_get_view_height(camera_get_active()) - 30
 		and currentCenterDisplayRow + drawRange >= ds_grid_height(currentActiveLineGrid)) {
 			currentCenterDisplayRow--;
 		}
@@ -40,7 +40,7 @@ if (!gridView) {
 	
 	
 	//var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
-	//	obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+	//	obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 	
 // Retrieve booleans for NavWindow.
 var clickedInChainList = false;
@@ -152,7 +152,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		if (keyboard_check(vk_pagedown) and not keyboard_check(vk_pageup)) {
 			if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % holdPgMod == 0)) {
 				// will need to make this the difference with windowHeight to scale with PanelPanes
-				scrollSpeed -= (((camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+				scrollSpeed -= (((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
 			}
 			if(holdPgDn > 45) {
 				holdPgMod = 3;
@@ -164,7 +164,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		}
 		if (keyboard_check(vk_pageup) and not keyboard_check(vk_pagedown)) {
 			if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % holdPgMod == 0)) {
-				scrollSpeed += (((camera_get_view_height(view_camera[0]) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+				scrollSpeed += (((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
 			}
 			if(holdPgUp > 45) {
 				holdPgMod = 3;
@@ -244,11 +244,11 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	if (not instance_exists(obj_dialogueBox)) {
 		// Scroll a full page up or down
 		//if (keyboard_check_pressed(vk_pagedown)) {
-		//	scrollPlusYDest -= (camera_get_view_height(view_camera[0]) * 0.8);
-		//	//show_message(string(camera_get_view_height(view_camera[0])));
+		//	scrollPlusYDest -= (camera_get_view_height(camera_get_active()) * 0.8);
+		//	//show_message(string(camera_get_view_height(camera_get_active())));
 		//}
 		//if (keyboard_check_pressed(vk_pageup)) {
-		//	scrollPlusYDest += (camera_get_view_height(view_camera[0])* 0.8);
+		//	scrollPlusYDest += (camera_get_view_height(camera_get_active())* 0.8);
 		//}
 	
 		// Sends user to the bottom of the main screen
@@ -605,7 +605,7 @@ for (var i = 0; i < instance_number(obj_panelPane); i++) {
 		mouseoverPanelPane = true;
 	}
 	//check for mouse over search pane
-	if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 250, camera_get_view_height(view_camera[0])/2 - 125 + 30, camera_get_view_width(view_camera[0]) /2 + 250, camera_get_view_height(view_camera[0])/2 + 125)){
+	if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 250, camera_get_view_height(camera_get_active())/2 - 125 + 30, camera_get_view_width(camera_get_active()) /2 + 250, camera_get_view_height(camera_get_active())/2 + 125)){
 		mouseoverPanelPane = true;		
 	}
 	

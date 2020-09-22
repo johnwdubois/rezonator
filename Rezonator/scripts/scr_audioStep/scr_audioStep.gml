@@ -11,12 +11,12 @@ function scr_audioStep() {
 		windowResizeYHolding = false;
 	}
 	if (windowResizeYHolding) {
-		y = clamp(mouse_y, obj_control.wordTopMargin + 200, camera_get_view_height(view_camera[0]) - 75);
-		windowHeight = camera_get_view_height(view_camera[0]) - y;
+		y = clamp(mouse_y, obj_control.wordTopMargin + 200, camera_get_view_height(camera_get_active()) - 75);
+		windowHeight = camera_get_view_height(camera_get_active()) - y;
 	}
 	else {
-		y = clamp(y, obj_control.wordTopMargin + 200, camera_get_view_height(view_camera[0]) - 75);
-		windowHeight = camera_get_view_height(view_camera[0]) - y;
+		y = clamp(y, obj_control.wordTopMargin + 200, camera_get_view_height(camera_get_active()) - 75);
+		windowHeight = camera_get_view_height(camera_get_active()) - y;
 	}
 
 

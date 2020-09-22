@@ -5,10 +5,10 @@ if (obj_control.gridView) {
 	exit;
 }
 
-submitChainRectX1 = (camera_get_view_width(view_camera[0])/2) - 95;
-submitChainRectY1 = camera_get_view_height(view_camera[0]) - 100;
-submitChainRectX2 = (camera_get_view_width(view_camera[0])/2) + 95;
-submitChainRectY2 = camera_get_view_height(view_camera[0]);
+submitChainRectX1 = (camera_get_view_width(camera_get_active())/2) - 95;
+submitChainRectY1 = camera_get_view_height(camera_get_active()) - 100;
+submitChainRectX2 = (camera_get_view_width(camera_get_active())/2) + 95;
+submitChainRectY2 = camera_get_view_height(camera_get_active());
 
 submitChainButtonX1 = submitChainRectX1 + 10;
 submitChainButtonY1 = submitChainRectY1 + 50;

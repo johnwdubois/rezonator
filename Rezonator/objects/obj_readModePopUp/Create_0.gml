@@ -19,5 +19,5 @@ rectY1 = mouse_y;
 rectX2 = rectX1 + 50 + string_width("Track mode (to mark coreference between mentions)");
 rectY2 = 40 + rectY1 + string_height(popUpText2) + (string_height(popUpText1)*2);
 
-arrowX1 = camera_get_view_width(view_camera[0]) - 200;
+arrowX1 = camera_get_view_width(camera_get_active()) - 200;
 arrowY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 75;

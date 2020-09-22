@@ -45,7 +45,7 @@ function scr_paneOptions(argument0) {
 					// Make sure we don't try to render a line that doesn't exist
 					if(obj_control.highlightedSearchRow > 0 && ds_grid_value_exists(obj_control.preSwitchLineGrid, 0, 0, 0, ds_grid_height(obj_control.preSwitchLineGrid), obj_control.highlightedSearchRow)){
 						var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, obj_control.highlightedSearchRow);
-						obj_control.preSwitchDisplayRow = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+						obj_control.preSwitchDisplayRow = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 					}
 					//currentCenterDisplayRow = preSwitchDisplayRow;
 					obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
@@ -96,7 +96,7 @@ function scr_paneOptions(argument0) {
 					//currentCenterDisplayRow = preSwitchSearchDisplayRow;
 					obj_control.scrollPlusYDest  = obj_control.preSwitchSearchDisplayRow;
 				//	var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
-					//obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+					//obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 		
 					obj_control.wordLeftMarginDest = window_get_width() / 2;
 				}

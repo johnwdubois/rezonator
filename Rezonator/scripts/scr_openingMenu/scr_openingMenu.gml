@@ -20,7 +20,7 @@ function scr_openingMenu() {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 
-	var buttonWidth = max(camera_get_view_width(view_camera[0]) * 0.15, string_width("Play and Learn  "));
+	var buttonWidth = max(camera_get_view_width(camera_get_active()) * 0.15, string_width("Play and Learn  "));
 	var buttonHeight = 65;
 	var middleBuffer = 115;
 	var verticalYSpacing = 50;
@@ -29,8 +29,8 @@ function scr_openingMenu() {
 
 
 	// open rez selection
-	var openProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2); 
-	var openProjectButtonY1 = camera_get_view_height(view_camera[0]) * 0.40;
+	var openProjectButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2); 
+	var openProjectButtonY1 = camera_get_view_height(camera_get_active()) * 0.40;
 	var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 	var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
 
@@ -54,7 +54,7 @@ function scr_openingMenu() {
 
 
 	// import new file selection
-	var newProjectButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+	var newProjectButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2);
 	var newProjectButtonY1 = openProjectButtonY2 + verticalYSpacing;
 	var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 	var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
@@ -82,9 +82,9 @@ function scr_openingMenu() {
 
 
 	//play and learn selection
-	var wheresElmoButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+	var wheresElmoButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2);
 	var wheresElmoButtonY1 = newProjectButtonY2 + verticalYSpacing;
-	var wheresElmoButtonX2 = (camera_get_view_width(view_camera[0]) / 2) + (buttonWidth / 2);
+	var wheresElmoButtonX2 = (camera_get_view_width(camera_get_active()) / 2) + (buttonWidth / 2);
 	var wheresElmoButtonY2 = wheresElmoButtonY1 + buttonHeight;
 
 	if (point_in_rectangle(mouse_x, mouse_y, wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2))
@@ -149,7 +149,7 @@ function scr_openingMenu() {
 	//tutorial button
 
 
-	var openTutorialButtonX1 = (camera_get_view_width(view_camera[0]) / 2) - (buttonWidth / 2);
+	var openTutorialButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2);
 	var openTutorialButtonY1 = rezzlesButtonY2 + 70;
 	var openTutorialButtonX2 = openTutorialButtonX1 + buttonWidth;
 	var openTutorialButtonY2 = openTutorialButtonY1 + buttonHeight;
@@ -184,7 +184,7 @@ function scr_openingMenu() {
 	var signInXBuffer = 20;
 	var signInYBuffer = 25;
 
-	var userSignInBoxX1 = camera_get_view_width(view_camera[0]) - 250 - signInXBuffer;
+	var userSignInBoxX1 = camera_get_view_width(camera_get_active()) - 250 - signInXBuffer;
 	var userSignInBoxY1 = signInYBuffer;
 	var userSignInBoxX2 = userSignInBoxX1 + 250;
 	var userSignInBoxY2 = userSignInBoxY1 + 30;
@@ -412,9 +412,9 @@ function scr_openingMenu() {
 	}
 
 	//draw_set_font(fnt_mainBoldLarge2);
-	//draw_text((camera_get_view_width(view_camera[0]) / 2) , wheresElmoButtonY1 - 25 ,"Games");
-	//draw_text((camera_get_view_width(view_camera[0]) / 2) , newProjectButtonY1 - 25 ,"Research");
-	//draw_text((camera_get_view_width(view_camera[0]) / 2) , openTutorialButtonY1 - 25 ,"Tutorial");
+	//draw_text((camera_get_view_width(camera_get_active()) / 2) , wheresElmoButtonY1 - 25 ,"Games");
+	//draw_text((camera_get_view_width(camera_get_active()) / 2) , newProjectButtonY1 - 25 ,"Research");
+	//draw_text((camera_get_view_width(camera_get_active()) / 2) , openTutorialButtonY1 - 25 ,"Tutorial");
 
 
 

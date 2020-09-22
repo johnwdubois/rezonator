@@ -29,7 +29,7 @@ function scr_audioDraw() {
 	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y + 10, seekBarX2 + string_width("AAAAAAA"), y + windowHeight, false);
 
 	// draw seekbar
-	seekBarWidth = camera_get_view_width(view_camera[0]) / 2;
+	seekBarWidth = camera_get_view_width(camera_get_active()) / 2;
 	seekBarX1 = mean(x, x + windowWidth) - (seekBarWidth / 2);
 	seekBarY1 = y + (windowHeight * 0.75) - (seekBarHeight / 2);
 	seekBarX2 = seekBarX1 + seekBarWidth;

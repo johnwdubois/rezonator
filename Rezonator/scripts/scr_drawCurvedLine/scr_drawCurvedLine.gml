@@ -67,7 +67,7 @@ function scr_drawCurvedLine(argument0, argument1, argument2, argument3, argument
                         
 	// do this loop again to draw the second half of the curve
 	if not (curvey1_2 < (-obj_control.gridSpaceVertical * 2) and curvey1_2 < (-obj_control.gridSpaceVertical * 2))
-	and not (curvey2_2 > (camera_get_view_height(view_camera[0]) + obj_control.gridSpaceVertical * 2) and curvey2_2 > (camera_get_view_height(view_camera[0]) + obj_control.gridSpaceVertical * 2)) {                       
+	and not (curvey2_2 > (camera_get_view_height(camera_get_active()) + obj_control.gridSpaceVertical * 2) and curvey2_2 > (camera_get_view_height(camera_get_active()) + obj_control.gridSpaceVertical * 2)) {                       
                         
 	    for (var pr_2 = 0; pr_2 <= 1; pr_2 += 0.01) {
 			var Qx1_2 = (curvex3_2 - curvex1_2) * pr_2 + curvex1_2;

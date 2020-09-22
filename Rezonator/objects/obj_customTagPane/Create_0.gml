@@ -1,5 +1,5 @@
-windowWidth = camera_get_view_width(view_camera[0]) / 2;
-windowHeight = camera_get_view_height(view_camera[0]) / 2;
+windowWidth = camera_get_view_width(camera_get_active()) / 2;
+windowHeight = camera_get_view_height(camera_get_active()) / 2;
 
 subPaneBufferX = 20;
 subPaneBufferY = 60;

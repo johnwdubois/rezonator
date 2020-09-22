@@ -88,8 +88,8 @@ function scr_panelPane_drawGoToLine() {
 
 
 
-	x = camera_get_view_x(view_camera[0]) + (camera_get_view_width(view_camera[0]) / 2) - (windowWidth / 2);
-	y = camera_get_view_y(view_camera[0]) + (camera_get_view_height(view_camera[0]) / 2) - (windowHeight / 2);
+	x = camera_get_view_x(camera_get_active()) + (camera_get_view_width(camera_get_active()) / 2) - (windowWidth / 2);
+	y = camera_get_view_y(camera_get_active()) + (camera_get_view_height(camera_get_active()) / 2) - (windowHeight / 2);
 
 
 }

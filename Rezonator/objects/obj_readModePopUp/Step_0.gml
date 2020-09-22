@@ -6,7 +6,7 @@ if (mouse_check_button_released(mb_left)) {
 	instance_destroy();
 }
 
-if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,200 + obj_menuBar.menuHeight)) {
+if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,200 + obj_menuBar.menuHeight)) {
 	obj_control.mouseoverPanelPane = true;
 }
 else{

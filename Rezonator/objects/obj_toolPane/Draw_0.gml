@@ -13,7 +13,7 @@
 */
 
 windowWidth = global.toolPaneWidth;
-x = camera_get_view_width(view_camera[0]) - global.toolPaneWidth;
+x = camera_get_view_width(camera_get_active()) - global.toolPaneWidth;
 y = 0;
 
 if (obj_control.gridView) {
@@ -58,5 +58,5 @@ scr_drawToolPaneNew();
 
 
 
-progressBarX = camera_get_view_width(view_camera[0]) - 100;
+progressBarX = camera_get_view_width(camera_get_active()) - 100;
 scr_drawImportProgressBar();

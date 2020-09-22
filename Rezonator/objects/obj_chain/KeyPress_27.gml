@@ -28,7 +28,7 @@ else if (ds_grid_height(obj_control.searchGrid) > 0 and !obj_control.gridView) {
 			// Make sure we don't try to render a line that doesn't exist
 			if(highlightedSearchRow > 0 && ds_grid_value_exists(preSwitchLineGrid, 0, 0, 0, ds_grid_height(preSwitchLineGrid), highlightedSearchRow)){
 				var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, highlightedSearchRow);
-				preSwitchDisplayRow = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+				preSwitchDisplayRow = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 			}
 			//currentCenterDisplayRow = preSwitchDisplayRow;
 			obj_control.scrollPlusYDest = preSwitchDisplayRow;

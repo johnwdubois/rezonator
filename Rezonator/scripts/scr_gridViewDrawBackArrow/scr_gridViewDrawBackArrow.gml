@@ -14,7 +14,7 @@ function scr_gridViewDrawBackArrow() {
 
 
 	var backArrowX = spriteWidth / 2;
-	var backArrowY = camera_get_view_height(view_camera[0]) - spriteHeight / 3;
+	var backArrowY = camera_get_view_height(camera_get_active()) - spriteHeight / 3;
 	//show_message("arrow");
 	draw_sprite_ext(spr_backArrow, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
 
@@ -58,7 +58,7 @@ function scr_gridViewDrawBackArrow() {
 						// Make sure we don't try to render a line that doesn't exist
 						if(highlightedSearchRow > 0 && ds_grid_value_exists(preSwitchLineGrid, 0, 0, 0, ds_grid_height(preSwitchLineGrid), highlightedSearchRow)){
 							var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, highlightedSearchRow);
-							preSwitchDisplayRow = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+							preSwitchDisplayRow = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 						}
 						//currentCenterDisplayRow = preSwitchDisplayRow;
 						obj_control.scrollPlusYDest = preSwitchDisplayRow;

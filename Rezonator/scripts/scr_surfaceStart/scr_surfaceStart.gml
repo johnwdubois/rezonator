@@ -10,7 +10,7 @@ function scr_surfaceStart() {
 	
 		if (currentFunction == functionChainContents) {
 			x = chainContentsX;
-			windowWidth = camera_get_view_width(view_camera[0]) - x - global.toolPaneWidth;
+			windowWidth = camera_get_view_width(camera_get_active()) - x - global.toolPaneWidth;
 		}
 	}
 
@@ -59,7 +59,7 @@ function scr_surfaceStart() {
 				with (obj_panelPane) {
 					if (currentFunction == functionChainList or currentFunction == functionChainContents
 					or currentFunction == functionSort or currentFunction == functionFilter) {
-						windowHeight = clamp(windowHeight, 150, camera_get_view_height(view_camera[0]) * 0.33);
+						windowHeight = clamp(windowHeight, 150, camera_get_view_height(camera_get_active()) * 0.33);
 						if (surface_exists(clipSurface)) {
 							surface_resize(clipSurface, clipWidth, clipHeight);
 						}
@@ -85,7 +85,7 @@ function scr_surfaceStart() {
 			window_set_cursor(cr_size_ns);
 		
 			if (object_index == obj_panelPane) {
-				windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.33);
+				windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(camera_get_active()) * 0.33);
 				var helpPaneY = 0;
 				with (obj_panelPane) {
 					if (currentFunction == functionChainList or currentFunction == functionChainContents
@@ -106,7 +106,7 @@ function scr_surfaceStart() {
 				}
 			}
 			else {
-				windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(view_camera[0]) * 0.75);
+				windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(camera_get_active()) * 0.75);
 			}
 		}
 	
@@ -122,8 +122,8 @@ function scr_surfaceStart() {
 	}
 
 
-	windowWidth = clamp(windowWidth, 48, camera_get_view_width(view_camera[0]) - 48);
-	windowHeight = clamp(windowHeight, 48, camera_get_view_height(view_camera[0]) - 48);
+	windowWidth = clamp(windowWidth, 48, camera_get_view_width(camera_get_active()) - 48);
+	windowHeight = clamp(windowHeight, 48, camera_get_view_height(camera_get_active()) - 48);
 	clipWidth = windowWidth;
 	clipHeight = windowHeight;
 	

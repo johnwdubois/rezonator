@@ -6,8 +6,8 @@ if (!obj_control.hideAll) {
 }
 
 // set width & height for this window
-var camWidth = camera_get_view_width(view_camera[0]);
-var camHeight = camera_get_view_height(view_camera[0]);
+var camWidth = camera_get_view_width(camera_get_active());
+var camHeight = camera_get_view_height(camera_get_active());
 exportWindowWidth = camWidth * 0.75;
 windowWidth = camWidth / 5;
 windowHeight = camHeight * 0.75;

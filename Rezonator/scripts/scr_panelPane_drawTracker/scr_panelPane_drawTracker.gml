@@ -30,7 +30,7 @@ function scr_panelPane_drawTracker() {
 	var resetY1val = 30;
 	var resetY2val = 10;
 
-	var trackerX2 = camera_get_view_width(view_camera[0]) - global.scrollBarWidth;
+	var trackerX2 = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
 
 	var Yheightbuffer = 10;
 	//var oldYheight = 0;
@@ -276,7 +276,7 @@ function scr_panelPane_drawTracker() {
 	
 		/*var mouseOverTrackerButton = false;
 		// Check for mouse location over "RezTracker" button and check for open/close button
-		if (point_in_rectangle(mouse_x, mouse_y, trackerX2 - Xdistance, camera_get_view_height(view_camera[0]) - Ydistance, trackerX2, camera_get_view_height(view_camera[0]))) {
+		if (point_in_rectangle(mouse_x, mouse_y, trackerX2 - Xdistance, camera_get_view_height(camera_get_active()) - Ydistance, trackerX2, camera_get_view_height(camera_get_active()))) {
 			mouseOverTrackerButton = true;
 			if (device_mouse_check_button_released(0, mb_left)) {
 				isTrackerOpen = !isTrackerOpen ;
@@ -288,10 +288,10 @@ function scr_panelPane_drawTracker() {
 		/*if(mouseOverTrackerButton){
 			draw_set_colour(c_gray);
 		}
-		draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(view_camera[0]) - Ydistance, trackerX2, camera_get_view_height(view_camera[0]), false);
+		draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(camera_get_active()) - Ydistance, trackerX2, camera_get_view_height(camera_get_active()), false);
 		draw_set_alpha(1);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(view_camera[0]) - Ydistance, trackerX2, camera_get_view_height(view_camera[0]), true);
+		draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(camera_get_active()) - Ydistance, trackerX2, camera_get_view_height(camera_get_active()), true);
 
 
 		draw_set_font(fnt_mainBold);
@@ -299,7 +299,7 @@ function scr_panelPane_drawTracker() {
 
 		draw_set_colour(global.colorThemeText);
 	
-		draw_text(trackerX2 - Xdistance + 5, camera_get_view_height(view_camera[0]) - Ydistance +15, "Rez Tracker");*/
+		draw_text(trackerX2 - Xdistance + 5, camera_get_view_height(camera_get_active()) - Ydistance +15, "Rez Tracker");*/
 	
 
 

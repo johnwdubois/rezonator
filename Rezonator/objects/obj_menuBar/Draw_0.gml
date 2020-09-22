@@ -10,9 +10,9 @@ menuWidth = string_width("Advanced");
 
 // draw menu bar
 draw_set_colour(global.colorThemeBG);
-draw_rectangle(0, 0, camera_get_view_width(view_camera[0]), menuHeight, false);
+draw_rectangle(0, 0, camera_get_view_width(camera_get_active()), menuHeight, false);
 draw_set_colour(global.colorThemeBorders);
-draw_rectangle(-1, -1, camera_get_view_width(view_camera[0]) + 1, menuHeight, true);
+draw_rectangle(-1, -1, camera_get_view_width(camera_get_active()) + 1, menuHeight, true);
 	
 // draw selection box and outline for file
 /*if(mouseOverFile){
@@ -96,7 +96,7 @@ draw_text(mean(menuWidth*8, menuWidth*10), menuHeight - 25,"Sort Pane");*/
 	
 	
 if (obj_control.showFPS) {
-	var fpsTextX = camera_get_view_width(view_camera[0]) - string_width("000");
+	var fpsTextX = camera_get_view_width(camera_get_active()) - string_width("000");
 	var fpsTextY = menuHeight / 2;
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_middle);

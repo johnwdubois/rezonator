@@ -38,7 +38,7 @@ function scr_setSpeakerLabelColWidth() {
 
 	draw_set_font(global.fontMain);
 	var minColWidth = string_width("AAAAA");
-	var maxColWidth = camera_get_view_width(view_camera[0]) / 6;
+	var maxColWidth = camera_get_view_width(camera_get_active()) / 6;
 	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 	for (var i = 0; i < speakerLabelColXListSize - 1; i++) {
 		if (ds_grid_height(global.fileLineRipGrid) < 2 and i == 0) {
@@ -75,7 +75,7 @@ function scr_setSpeakerLabelColWidth() {
 
 	
 		// clicking to drag size of speakerLabelCol with mouse
-		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(view_camera[0])) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(camera_get_active())) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 			if ((ds_grid_height(global.fileLineRipGrid) < 2 and i > 1) or (ds_grid_height(global.fileLineRipGrid) > 1)) {
 		
 				window_set_cursor(cr_size_we);

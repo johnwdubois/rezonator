@@ -29,8 +29,8 @@ function scr_newProjectWindow() {
 	var importButtonRectWidth = 200;
 	var importButtonRectHeight = 60;
 
-	var importButtonRectX1 = camera_get_view_width(view_camera[0]) / 2 - (importButtonRectWidth / 2);
-	var importButtonRectY1 = (camera_get_view_height(view_camera[0]) / 4) * 3 - (importButtonRectHeight / 2);
+	var importButtonRectX1 = camera_get_view_width(camera_get_active()) / 2 - (importButtonRectWidth / 2);
+	var importButtonRectY1 = (camera_get_view_height(camera_get_active()) / 4) * 3 - (importButtonRectHeight / 2);
 	var importButtonRectX2 = importButtonRectX1 + importButtonRectWidth;
 	var importButtonRectY2 = importButtonRectY1 + importButtonRectHeight;
 
@@ -69,8 +69,8 @@ function scr_newProjectWindow() {
 	var continueButtonRectWidth = 200;
 	var continueButtonRectHeight = 60;
 
-	var continueButtonRectX1 = camera_get_view_width(view_camera[0]) / 2 - (continueButtonRectWidth / 2);
-	var continueButtonRectY1 = (camera_get_view_height(view_camera[0]) / 8) * 7 - (continueButtonRectHeight / 2);
+	var continueButtonRectX1 = camera_get_view_width(camera_get_active()) / 2 - (continueButtonRectWidth / 2);
+	var continueButtonRectY1 = (camera_get_view_height(camera_get_active()) / 8) * 7 - (continueButtonRectHeight / 2);
 	var continueButtonRectX2 = continueButtonRectX1 + continueButtonRectWidth;
 	var continueButtonRectY2 = continueButtonRectY1 + continueButtonRectHeight;
 

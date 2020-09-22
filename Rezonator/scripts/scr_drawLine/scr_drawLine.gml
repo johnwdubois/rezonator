@@ -29,8 +29,8 @@ function scr_drawLine() {
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 
-	var camViewWidth = camera_get_view_width(view_camera[0]);
-	var camViewHeight = camera_get_view_height(view_camera[0]);
+	var camViewWidth = camera_get_view_width(camera_get_active());
+	var camViewHeight = camera_get_view_height(camera_get_active());
 
 	drawLineYOffset = 0;
 	if (filterGridActive) {
@@ -67,7 +67,7 @@ function scr_drawLine() {
 	if (drawRangeStart == 0 and activeLineGridHeight > 0) {
 		//var firstLinePixelY = ds_grid_get(currentActiveLineGrid, obj_control.lineGrid_colPixelY, 0);
 		draw_set_color(global.colorThemeOutOfBounds);
-		//draw_rectangle(0, 0, camera_get_view_width(view_camera[0]), firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
+		//draw_rectangle(0, 0, camera_get_view_width(camera_get_active()), firstLinePixelY - (obj_control.gridSpaceVertical / 2), false);
 		var oobTopRectY2 = wordTopMargin;
 		if (activeLineGridHeight > 0) {
 			var lowestY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, 0) - (gridSpaceVertical / 2) - 10;
@@ -204,7 +204,7 @@ function scr_drawLine() {
 						functionChainList_currentTab = functionChainList_tabLine;
 						// Y value not in a grid for read tab, have to store somewhere
 						//var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-						//obj_panelPane.scrollPlusYDest = -linePixelY + (camera_get_view_height(view_camera[0]) / 2) - 100;
+						//obj_panelPane.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 					}
 					if(!global.readHintHide) {
 						//var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
@@ -361,7 +361,7 @@ function scr_drawLine() {
 		draw_set_font(fnt_debug);
 		draw_set_halign(fa_right);
 		draw_text(camViewWidth - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
-		draw_text(camViewWidth - 300, 265, "camY range: " + string(camera_get_view_y(view_camera[0]) + camViewHeight));
+		draw_text(camViewWidth - 300, 265, "camY range: " + string(camera_get_view_y(camera_get_active()) + camViewHeight));
 	
 		draw_text(mouse_x, mouse_y, "(" + string(mouse_x) + ", " + string(mouse_y) + ")");
 	}

@@ -10,4 +10,4 @@ else if(questionWindowActive) {
 else if(elmoActive) {
 	scr_drawElmoScreen();	
 }
-		//draw_text(camera_get_view_width(view_camera[0]) -700 , 810, "can press right: " + string(canPressRight));
+		//draw_text(camera_get_view_width(camera_get_active()) -700 , 810, "can press right: " + string(canPressRight));

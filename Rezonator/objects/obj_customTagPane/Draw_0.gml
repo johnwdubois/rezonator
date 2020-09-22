@@ -1,7 +1,7 @@
-windowWidth = camera_get_view_width(view_camera[0]) / 2;
-windowHeight = camera_get_view_height(view_camera[0]) / 2;
-x = (camera_get_view_width(view_camera[0]) / 2) - (windowWidth / 2);
-y = (camera_get_view_height(view_camera[0]) / 2) - (windowHeight / 2);
+windowWidth = camera_get_view_width(camera_get_active()) / 2;
+windowHeight = camera_get_view_height(camera_get_active()) / 2;
+x = (camera_get_view_width(camera_get_active()) / 2) - (windowWidth / 2);
+y = (camera_get_view_height(camera_get_active()) / 2) - (windowHeight / 2);
 
 draw_set_alpha(1);
 draw_set_color(global.colorThemeSelected1);

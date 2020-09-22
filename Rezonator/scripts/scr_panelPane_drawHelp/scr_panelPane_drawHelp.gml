@@ -19,7 +19,7 @@ function scr_panelPane_drawHelp() {
 
 	// Establish location of camera
 	windowWidth = global.toolPaneWidth;
-	var camWidth = camera_get_view_width(view_camera[0]);
+	var camWidth = camera_get_view_width(camera_get_active());
 	x = camWidth - windowWidth;
 	y = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight;
 	var scrollBarOffset = 20;
@@ -149,7 +149,7 @@ function scr_panelPane_drawHelp() {
 		var helpWindowX1 = functionHelp_plusX - scrollBarOffset;
 		var helpWindowY1 = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight + windowHeight;
 		var helpWindowX2 = helpWindowX1 + functionHelp_windowWidth;
-		var helpWindowY2 = camera_get_view_height(view_camera[0]);
+		var helpWindowY2 = camera_get_view_height(camera_get_active());
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2, false);
 		draw_set_color(global.colorThemeBorders);

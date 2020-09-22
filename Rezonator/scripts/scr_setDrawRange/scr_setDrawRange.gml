@@ -1,11 +1,11 @@
 function scr_setDrawRange() {
 	// set range of lines that we want to draw
 	var lineGridHeight = ds_grid_height(currentActiveLineGrid);
-	var relativeScrollBarHeight = camera_get_view_height(view_camera[0]) - wordTopMargin - (global.scrollBarWidth * 2) - 25;
+	var relativeScrollBarHeight = camera_get_view_height(camera_get_active()) - wordTopMargin - (global.scrollBarWidth * 2) - 25;
 	var relativeScrollBarPlusY = scrollBarPlusY - 15;
-	//draw_text(camera_get_view_width(view_camera[0]) - 1200, 880, "lineGridHeight: " + string(lineGridHeight));
-	//draw_text(camera_get_view_width(view_camera[0]) - 1200, 900, "ScrollBarHeight: " + string(relativeScrollBarHeight));
-	//draw_text(camera_get_view_width(view_camera[0]) - 1200, 920, "scrollBarPlusY: " + string(relativeScrollBarPlusY));
+	//draw_text(camera_get_view_width(camera_get_active()) - 1200, 880, "lineGridHeight: " + string(lineGridHeight));
+	//draw_text(camera_get_view_width(camera_get_active()) - 1200, 900, "ScrollBarHeight: " + string(relativeScrollBarHeight));
+	//draw_text(camera_get_view_width(camera_get_active()) - 1200, 920, "scrollBarPlusY: " + string(relativeScrollBarPlusY));
 	
 
 	//still broke, gotta fix
@@ -21,7 +21,7 @@ function scr_setDrawRange() {
 
 
 	var topY = wordTopMargin -(gridSpaceVertical * 5);
-	var bottomY = camera_get_view_height(view_camera[0]) + (gridSpaceVertical * 5);
+	var bottomY = camera_get_view_height(camera_get_active()) + (gridSpaceVertical * 5);
 
 
 

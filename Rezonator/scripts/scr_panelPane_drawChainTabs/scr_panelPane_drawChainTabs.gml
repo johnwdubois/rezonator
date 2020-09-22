@@ -14,7 +14,7 @@ function scr_panelPane_drawChainTabs() {
 	*/
 
 	// Set opacity, font, and alignment of text in chain tabs
-	//if (live_call()) return live_result;
+	if (live_call()) return live_result;
 
 
 	draw_set_alpha(1);
@@ -241,6 +241,11 @@ function scr_panelPane_drawChainTabs() {
 					var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
 					draw_set_color(global.colorThemeText);
 					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
+						
+						draw_set_color(global.colorThemeSelected2);
+						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
 
 						mouseOverUnitTab = true;
 						//draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
@@ -253,6 +258,8 @@ function scr_panelPane_drawChainTabs() {
 						}
 					}
 					draw_set_font(global.fontMainBold);
+					draw_sprite_ext(spr_oneToOne, (obj_control.showUnitTags) ? 1 : 0, floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), 1, 1, 0, c_white, 1);
+					/*
 					if(!obj_control.showUnitTags) {
 						draw_set_halign(fa_center);
 						draw_set_valign(fa_center);
@@ -282,6 +289,7 @@ function scr_panelPane_drawChainTabs() {
 							draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "U");
 						}
 					}
+					*/
 				}	
 		
 		}

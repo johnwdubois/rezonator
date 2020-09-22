@@ -2,9 +2,9 @@ if (obj_control.gridView) {
 	audioPaused = true;
 }
 
-windowWidth = camera_get_view_width(view_camera[0]) - global.scrollBarWidth;
+windowWidth = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
 x = 0;
-y = camera_get_view_height(view_camera[0]) - windowHeight;
+y = camera_get_view_height(camera_get_active()) - windowHeight;
 
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("A"))) {

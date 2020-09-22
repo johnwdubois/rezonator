@@ -4,66 +4,66 @@
 if(currentPopUp == 0){
 
 	draw_set_colour(global.colorThemeBG);
-	draw_roundrect(camera_get_view_width(view_camera[0]) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,200 + obj_menuBar.menuHeight, false);
+	draw_roundrect(camera_get_view_width(camera_get_active()) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,200 + obj_menuBar.menuHeight, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_roundrect(camera_get_view_width(view_camera[0]) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,200 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,175 + obj_menuBar.menuHeight, true);
-	draw_rectangle(mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105),200 + obj_menuBar.menuHeight, true);
+	draw_roundrect(camera_get_view_width(camera_get_active()) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,200 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,175 + obj_menuBar.menuHeight, true);
+	draw_rectangle(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),200 + obj_menuBar.menuHeight, true);
 	
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_center);
-	draw_text(mean(camera_get_view_width(view_camera[0]) - 295,  camera_get_view_width(view_camera[0]) - 105)-10, 20 + obj_menuBar.menuHeight, "TOOL PANE");
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 36 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 36 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 37 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 37 + obj_menuBar.menuHeight, true);
+	draw_text(mean(camera_get_view_width(camera_get_active()) - 295,  camera_get_view_width(camera_get_active()) - 105)-10, 20 + obj_menuBar.menuHeight, "TOOL PANE");
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 36 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 36 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 37 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 37 + obj_menuBar.menuHeight, true);
 	
 	
 	
-	draw_sprite_ext(spr_xButton, 0,camera_get_view_width(view_camera[0]) - 125, 20 + obj_menuBar.menuHeight, 1, 1, 90, c_black, 1);
+	draw_sprite_ext(spr_xButton, 0,camera_get_view_width(camera_get_active()) - 125, 20 + obj_menuBar.menuHeight, 1, 1, 90, c_black, 1);
 	
 	
 	if(mouseOverExitButton){
-			draw_rectangle(camera_get_view_width(view_camera[0]) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
+			draw_rectangle(camera_get_view_width(camera_get_active()) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
 	}
 	
 	draw_set_font(fnt_main);
-	draw_text( mean(camera_get_view_width(view_camera[0]) - 285, camera_get_view_width(view_camera[0]) - 105 ), 110 + obj_menuBar.menuHeight , popUpText1);
+	draw_text( mean(camera_get_view_width(camera_get_active()) - 285, camera_get_view_width(camera_get_active()) - 105 ), 110 + obj_menuBar.menuHeight , popUpText1);
 	
-	draw_sprite_ext(spr_ascend, 0, mean(mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105),camera_get_view_width(view_camera[0]) -  105), mean(175 + obj_menuBar.menuHeight,200 + obj_menuBar.menuHeight), 1, 1, 270, c_white, 1);
+	draw_sprite_ext(spr_ascend, 0, mean(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),camera_get_view_width(camera_get_active()) -  105), mean(175 + obj_menuBar.menuHeight,200 + obj_menuBar.menuHeight), 1, 1, 270, c_white, 1);
 }
 else if(currentPopUp == 1){
 	
 	
 	
 	draw_set_colour(global.colorThemeBG);
-	draw_roundrect(camera_get_view_width(view_camera[0]) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,200 + obj_menuBar.menuHeight, false);
+	draw_roundrect(camera_get_view_width(camera_get_active()) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,200 + obj_menuBar.menuHeight, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_roundrect(camera_get_view_width(view_camera[0]) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,200 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,175 + obj_menuBar.menuHeight, true);
-	draw_rectangle(mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105),200 + obj_menuBar.menuHeight, true);
+	draw_roundrect(camera_get_view_width(camera_get_active()) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,200 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,175 + obj_menuBar.menuHeight, true);
+	draw_rectangle(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),200 + obj_menuBar.menuHeight, true);
 	
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_center);
-	draw_text(mean(camera_get_view_width(view_camera[0]) - 295,  camera_get_view_width(view_camera[0]) - 105)-10, 20 + obj_menuBar.menuHeight, "NAV WINDOW");
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 36 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 36 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 37 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 37 + obj_menuBar.menuHeight, true);
+	draw_text(mean(camera_get_view_width(camera_get_active()) - 295,  camera_get_view_width(camera_get_active()) - 105)-10, 20 + obj_menuBar.menuHeight, "NAV WINDOW");
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 36 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 36 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 37 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 37 + obj_menuBar.menuHeight, true);
 	
 	
 	
-	draw_sprite_ext(spr_xButton, 0,camera_get_view_width(view_camera[0]) - 125, 20 + obj_menuBar.menuHeight, 1, 1, 90, c_black, 1);
+	draw_sprite_ext(spr_xButton, 0,camera_get_view_width(camera_get_active()) - 125, 20 + obj_menuBar.menuHeight, 1, 1, 90, c_black, 1);
 	
 	
 	if(mouseOverExitButton){
-			draw_rectangle(camera_get_view_width(view_camera[0]) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
+			draw_rectangle(camera_get_view_width(camera_get_active()) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
 	}
 	
 	draw_set_font(fnt_main);
-	draw_text( mean(camera_get_view_width(view_camera[0]) - 285, camera_get_view_width(view_camera[0]) - 105 ), 110 + obj_menuBar.menuHeight , popUpText2);
+	draw_text( mean(camera_get_view_width(camera_get_active()) - 285, camera_get_view_width(camera_get_active()) - 105 ), 110 + obj_menuBar.menuHeight , popUpText2);
 	
 	
-	draw_sprite_ext(spr_ascend, 0, mean(mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105), camera_get_view_width(view_camera[0]) - 295), mean(175 + obj_menuBar.menuHeight ,200 + obj_menuBar.menuHeight ), 1, 1, 90, c_white, 1);
-	draw_sprite_ext(spr_ascend, 0,  mean(mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105),camera_get_view_width(view_camera[0]) -  105), mean(175 + obj_menuBar.menuHeight,200 + obj_menuBar.menuHeight), 1, 1, 270, c_white, 1);
+	draw_sprite_ext(spr_ascend, 0, mean(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), camera_get_view_width(camera_get_active()) - 295), mean(175 + obj_menuBar.menuHeight ,200 + obj_menuBar.menuHeight ), 1, 1, 90, c_white, 1);
+	draw_sprite_ext(spr_ascend, 0,  mean(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),camera_get_view_width(camera_get_active()) -  105), mean(175 + obj_menuBar.menuHeight,200 + obj_menuBar.menuHeight), 1, 1, 270, c_white, 1);
 	/*
 	draw_set_colour(global.colorThemeBG);
 	draw_roundrect(secondPopUpX1 , 0 + obj_menuBar.menuHeight, secondPopUpX2 ,200 + obj_menuBar.menuHeight, false);
@@ -97,30 +97,30 @@ else if(currentPopUp == 1){
 else if(currentPopUp == 2){
 
 	draw_set_colour(global.colorThemeBG);
-	draw_roundrect(camera_get_view_width(view_camera[0]) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,200 + obj_menuBar.menuHeight, false);
+	draw_roundrect(camera_get_view_width(camera_get_active()) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,200 + obj_menuBar.menuHeight, false);
 	draw_set_colour(global.colorThemeBorders);
-	draw_roundrect(camera_get_view_width(view_camera[0]) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,200 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105,175 + obj_menuBar.menuHeight, true);
-	draw_rectangle(mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105),200 + obj_menuBar.menuHeight, true);
+	draw_roundrect(camera_get_view_width(camera_get_active()) - 295, 0 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,200 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,175 + obj_menuBar.menuHeight, true);
+	draw_rectangle(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),200 + obj_menuBar.menuHeight, true);
 	
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_center);
-	draw_text(mean(camera_get_view_width(view_camera[0]) - 295,  camera_get_view_width(view_camera[0]) - 105)-10, 20 + obj_menuBar.menuHeight, "TOOL PANE");
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 36 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 36 + obj_menuBar.menuHeight, true);
-	draw_rectangle(camera_get_view_width(view_camera[0]) - 295 + 30, 37 + obj_menuBar.menuHeight,  camera_get_view_width(view_camera[0]) - 105 - 50, 37 + obj_menuBar.menuHeight, true);
+	draw_text(mean(camera_get_view_width(camera_get_active()) - 295,  camera_get_view_width(camera_get_active()) - 105)-10, 20 + obj_menuBar.menuHeight, "TOOL PANE");
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 36 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 36 + obj_menuBar.menuHeight, true);
+	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 37 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 37 + obj_menuBar.menuHeight, true);
 	
 	
 	
-	draw_sprite_ext(spr_xButton, 0,camera_get_view_width(view_camera[0]) - 125, 20 + obj_menuBar.menuHeight, 1, 1, 90, c_black, 1);
+	draw_sprite_ext(spr_xButton, 0,camera_get_view_width(camera_get_active()) - 125, 20 + obj_menuBar.menuHeight, 1, 1, 90, c_black, 1);
 	
 	
 	if(mouseOverExitButton){
-			draw_rectangle(camera_get_view_width(view_camera[0]) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(view_camera[0]) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
+			draw_rectangle(camera_get_view_width(camera_get_active()) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
 	}
 	
 	draw_set_font(fnt_main);
-	draw_text( mean(camera_get_view_width(view_camera[0]) - 285, camera_get_view_width(view_camera[0]) - 105 ), 110 + obj_menuBar.menuHeight , popUpText3);
+	draw_text( mean(camera_get_view_width(camera_get_active()) - 285, camera_get_view_width(camera_get_active()) - 105 ), 110 + obj_menuBar.menuHeight , popUpText3);
 	
-	draw_sprite_ext(spr_ascend, 0,mean(mean(camera_get_view_width(view_camera[0]) - 295,camera_get_view_width(view_camera[0]) - 105), camera_get_view_width(view_camera[0]) - 295), mean(175 + obj_menuBar.menuHeight ,200 + obj_menuBar.menuHeight ), 1, 1, 90, c_white, 1);
+	draw_sprite_ext(spr_ascend, 0,mean(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), camera_get_view_width(camera_get_active()) - 295), mean(175 + obj_menuBar.menuHeight ,200 + obj_menuBar.menuHeight ), 1, 1, 90, c_white, 1);
 }

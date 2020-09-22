@@ -37,7 +37,7 @@ selectAll = false;
 
 var verticleBuffer = 230;
 var horizontalBuffer = 300;
-windowX1 = camera_get_view_width(view_camera[0]) /2 - horizontalBuffer;
-windowY1 = camera_get_view_height(view_camera[0])/2 - verticleBuffer;
-windowX2 = camera_get_view_width(view_camera[0]) /2 + horizontalBuffer;
-windowY2 = camera_get_view_height(view_camera[0])/2 + verticleBuffer;
+windowX1 = camera_get_view_width(camera_get_active()) /2 - horizontalBuffer;
+windowY1 = camera_get_view_height(camera_get_active())/2 - verticleBuffer;
+windowX2 = camera_get_view_width(camera_get_active()) /2 + horizontalBuffer;
+windowY2 = camera_get_view_height(camera_get_active())/2 + verticleBuffer;

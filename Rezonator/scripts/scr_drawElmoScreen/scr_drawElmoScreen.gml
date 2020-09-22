@@ -51,12 +51,12 @@ function scr_drawElmoScreen() {
 		obj_control.mouseoverPanelPane = true;
 		obj_control.quickLinkAllowed = false;
 
-		draw_sprite_ext(spr_wheresElmoBG, 0, camera_get_view_width(view_camera[0])/2, camera_get_view_height(view_camera[0])/2, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_wheresElmoBG, 0, camera_get_view_width(camera_get_active())/2, camera_get_view_height(camera_get_active())/2, 1, 1, 0, c_white, 1);
 
-		var elmoScreenRectX1 = camera_get_view_width(view_camera[0])/2 - horizontalBuffer,
-		elmoScreenRectY1 = camera_get_view_height(view_camera[0])/2 - verticleBuffer - 40,
-		elmoScreenRectX2 = camera_get_view_width(view_camera[0])/2 + horizontalBuffer,
-		elmoScreenRectY2 = camera_get_view_height(view_camera[0])/2 + verticleBuffer - 40;
+		var elmoScreenRectX1 = camera_get_view_width(camera_get_active())/2 - horizontalBuffer,
+		elmoScreenRectY1 = camera_get_view_height(camera_get_active())/2 - verticleBuffer - 40,
+		elmoScreenRectX2 = camera_get_view_width(camera_get_active())/2 + horizontalBuffer,
+		elmoScreenRectY2 = camera_get_view_height(camera_get_active())/2 + verticleBuffer - 40;
 		draw_set_colour(global.colorThemeText);
 		draw_roundrect(elmoScreenRectX1 - 2, elmoScreenRectY1 - 2, elmoScreenRectX2 + 10, elmoScreenRectY2 + 10, false);
 
@@ -96,10 +96,10 @@ function scr_drawElmoScreen() {
 	
 		draw_set_font(fnt_mainLarge1);
 
-		var firstButtonRectX1 = camera_get_view_width(view_camera[0]) /2 - 80 - buttonXOffset,
-		firstButtonRectY1 = camera_get_view_height(view_camera[0])/2 + 35 - buttonYOffset,
-		firstButtonRectX2 = camera_get_view_width(view_camera[0]) /2 - 80 + buttonXOffset,
-		firstButtonRectY2 = camera_get_view_height(view_camera[0])/2 + 35 + buttonYOffset;
+		var firstButtonRectX1 = camera_get_view_width(camera_get_active()) /2 - 80 - buttonXOffset,
+		firstButtonRectY1 = camera_get_view_height(camera_get_active())/2 + 35 - buttonYOffset,
+		firstButtonRectX2 = camera_get_view_width(camera_get_active()) /2 - 80 + buttonXOffset,
+		firstButtonRectY2 = camera_get_view_height(camera_get_active())/2 + 35 + buttonYOffset;
 	
 		// draw buttons for OK and Cancel
 		draw_set_colour(global.colorThemeBG);
@@ -110,9 +110,9 @@ function scr_drawElmoScreen() {
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle(firstButtonRectX1, firstButtonRectY1, firstButtonRectX2, firstButtonRectY2, true);
 	
-		var secondButtonRectX1 = camera_get_view_width(view_camera[0]) /2 + 80 - buttonXOffset,
+		var secondButtonRectX1 = camera_get_view_width(camera_get_active()) /2 + 80 - buttonXOffset,
 		secondButtonRectY1 = firstButtonRectY1,
-		secondButtonRectX2 = camera_get_view_width(view_camera[0]) /2 + 80 + buttonXOffset,
+		secondButtonRectX2 = camera_get_view_width(camera_get_active()) /2 + 80 + buttonXOffset,
 		secondButtonRectY2 = firstButtonRectY2;
 	
 		draw_set_colour(global.colorThemeBG);

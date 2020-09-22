@@ -1,6 +1,6 @@
 function scr_importMappingRezInfo() {
-	var camWidth = camera_get_view_width(view_camera[0]);
-	var camHeight = camera_get_view_height(view_camera[0]);
+	var camWidth = camera_get_view_width(camera_get_active());
+	var camHeight = camera_get_view_height(camera_get_active());
 
 	var rowHeight = string_height("A") * 1.3;
 

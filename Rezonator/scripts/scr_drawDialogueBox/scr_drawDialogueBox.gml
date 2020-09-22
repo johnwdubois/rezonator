@@ -29,75 +29,75 @@ function scr_drawDialogueBox() {
 
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
 		draw_set_colour(global.colorThemePaneBG);
 		if (global.colorTheme ==0) {
 		draw_set_colour(c_ltgray);
 		}
 		// draw background UI
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, false);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer + 30, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - horizontalBuffer, camera_get_view_height(view_camera[0])/2 - verticleBuffer, camera_get_view_width(view_camera[0]) /2 + horizontalBuffer, camera_get_view_height(view_camera[0])/2 + verticleBuffer, true);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
 		draw_set_colour(global.colorThemeText);
 	
 		draw_set_font(fnt_mainBold);
-		draw_text(floor(camera_get_view_width(view_camera[0])/2 - horizontalBuffer + 15), floor(camera_get_view_height(view_camera[0])/2 - verticleBuffer + 15), string(game_display_name));
+		draw_text(floor(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 15), floor(camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15), string(game_display_name));
 	
 		draw_set_font(fnt_mainLarge1);
 
 	
 		// draw search bar
 		draw_set_colour(c_white);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset, camera_get_view_height(view_camera[0])/2 - searchBarYOffset, camera_get_view_width(view_camera[0]) /2 + searchBarXOffset, camera_get_view_height(view_camera[0])/2 + searchBarYOffset, false);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - searchBarXOffset, camera_get_view_height(camera_get_active())/2 - searchBarYOffset, camera_get_view_width(camera_get_active()) /2 + searchBarXOffset, camera_get_view_height(camera_get_active())/2 + searchBarYOffset, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset, camera_get_view_height(view_camera[0])/2 - searchBarYOffset, camera_get_view_width(view_camera[0]) /2 + searchBarXOffset, camera_get_view_height(view_camera[0])/2 + searchBarYOffset, true);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - searchBarXOffset, camera_get_view_height(camera_get_active())/2 - searchBarYOffset, camera_get_view_width(camera_get_active()) /2 + searchBarXOffset, camera_get_view_height(camera_get_active())/2 + searchBarYOffset, true);
 
 		// draw buttons for OK and Cancel
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, false);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 50 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, true);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 50 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, true);
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 180 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, false);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 180 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 175 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 180 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset,camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset, true);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 180 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 175 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, true);
 		draw_set_colour(global.colorThemeText);
 		draw_set_font(fnt_mainLarge1);
 	
 		// draw button text
-		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 30), floor(camera_get_view_height(view_camera[0]) / 2 + 75), "OK");
-		draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 150), floor(camera_get_view_height(view_camera[0]) / 2 + 75), "Cancel");
+		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 30), floor(camera_get_view_height(camera_get_active()) / 2 + 75), "OK");
+		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 150), floor(camera_get_view_height(camera_get_active()) / 2 + 75), "Cancel");
 	
 		if (obj_control.changeAuthor) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the name of the new chain creator.");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the name of the new chain creator.");
 		}
 	
 		if (obj_control.swapLine) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input line Number you would line to swap with.");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input line Number you would line to swap with.");
 		}
 	
 		if (obj_control.replace) {
 			if(obj_control.splitWord){
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the split words in this format word1,word2");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the split words in this format word1,word2");
 			}
 			else{
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the new word you would like to substitute.");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the new word you would like to substitute.");
 			}
 		
 					
 			// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
 			draw_set_font(fnt_main);
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Split Word");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), "Split Word");
 		
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
+			draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
 			if (obj_control.splitWord) {
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
+				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
 			}
 	
 			// splitWord boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -136,21 +136,21 @@ function scr_drawDialogueBox() {
 				obj_control.newWordPre3 = false;
 			}
 		
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the new word you would like to add.");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the new word you would like to add.");
 	
 	
 				// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
 			draw_set_font(fnt_main);
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Insert Before");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), "Insert Before");
 		
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
+			draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
 			if (obj_control.before) {
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
+				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
 			}
 		
 				// splitWord boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -173,35 +173,35 @@ function scr_drawDialogueBox() {
 		}
 	
 		if(obj_control.caption){
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the caption you would like to add.");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the caption you would like to add.");
 		}	
 	
 	
 		if (obj_control.rename) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the name for this chain.");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the name for this chain.");
 		}
 		if (obj_control.recolor) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the color value for this chain.");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the color value for this chain.");
 		}
 
 		if (obj_control.gPressed) {
 			if(obj_control.goToTime){
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the Time you would like to jump to.");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the Time you would like to jump to.");
 			}
 			else{
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input the line you would like to jump to.");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the line you would like to jump to.");
 			}
 		
 				draw_set_font(fnt_main);
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "Time Search");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), "Time Search");
 	
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
+				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
 				if (obj_control.goToTime) {
-					draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
+					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
 				}
 	
 				// GoToTime boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
 					draw_set_colour(global.colorThemeBorders);
@@ -224,30 +224,30 @@ function scr_drawDialogueBox() {
 		}
 	
 		if (obj_control.newCustomFieldToken) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom field");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input name for custom field");
 		}
 		if (obj_control.newCustomTagToken) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom tag");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input name for custom tag");
 		}
 		if (obj_control.newCustomFieldUnit) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom field");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input name for custom field");
 		}
 		if (obj_control.newCustomTagUnit) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input name for custom tag");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input name for custom tag");
 		}
 	
 
 		if (obj_control.ePressed) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input begining line number , ending line number");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input begining line number , ending line number");
 		}
 
 		if(obj_control.fPressed) {
 			// draw background text
 			if(obj_control.regExCheck){
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input Regular expression.");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input Regular expression.");
 			}
 			else{
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Input string to search for.");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input string to search for.");
 			}
 	
 
@@ -257,43 +257,43 @@ function scr_drawDialogueBox() {
 				// draw boolean option check boxes
 				draw_set_colour(global.colorThemeText);
 				/*
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110, true);
+				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 90, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 110, true);
 				if (obj_control.transcriptSearch) {
-					draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110, false);	
+					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 90, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 110, false);	
 				}
 				*/
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80, true);
+				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 60, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 80, true);
 				if (obj_control.caseSensitive) {
-					draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80, false);	
+					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 60, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 80, false);	
 				}
 	
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, true);
+				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
 				if (obj_control.inChainBool) {
-					draw_rectangle(camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50, false);	
+					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
 				}
 	
 			}
 	
-			draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 60, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 40, true);
+			draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 60, camera_get_view_width(camera_get_active()) /2 + 60, camera_get_view_height(camera_get_active())/2 - 40, true);
 			if (obj_control.regExCheck) {
-				draw_rectangle(camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 60, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 40, false);	
+				draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 60, camera_get_view_width(camera_get_active()) /2 + 60, camera_get_view_height(camera_get_active())/2 - 40, false);	
 			}
 
 			//darw boolean options text
 			draw_set_font(fnt_main);
 			if (!obj_control.regExCheck) {
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 40), "In Focused Rez Chain");
-				draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 70), "Case Sensistive");
-				//draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - 210), floor(camera_get_view_height(view_camera[0]) / 2 + 100), "Search Transcription");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), "In Focused Rez Chain");
+				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 70), "Case Sensistive");
+				//draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 100), "Search Transcription");
 			}
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 + 70), floor(camera_get_view_height(view_camera[0]) / 2 - 48), "Regular Expression");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active()) / 2 - 48), "Regular Expression");
 	
 	
 
 			if(!obj_control.regExCheck){
 			/*
 			// transcript search boolean switch		
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 90, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 110)){
+			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 90, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 110)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -315,7 +315,7 @@ function scr_drawDialogueBox() {
 			}
 			*/
 			// case sensitive boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 60, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 80)){
+			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 60, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 80)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -338,7 +338,7 @@ function scr_drawDialogueBox() {
 
 
 			// current chain boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 - 235, camera_get_view_height(view_camera[0])/2 + 30, camera_get_view_width(view_camera[0]) /2 - 215, camera_get_view_height(view_camera[0])/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -361,7 +361,7 @@ function scr_drawDialogueBox() {
 
 			}
 			// RegEx boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(view_camera[0]) /2 + 40, camera_get_view_height(view_camera[0])/2 - 60, camera_get_view_width(view_camera[0]) /2 + 60, camera_get_view_height(view_camera[0])/2 - 40)){
+			if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 60, camera_get_view_width(camera_get_active()) /2 + 60, camera_get_view_height(camera_get_active())/2 - 40)){
 	
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y-20,mouse_x+35, mouse_y - 40,false);
@@ -383,7 +383,7 @@ function scr_drawDialogueBox() {
 			}
 		}
 		if (obj_control.newTagCategory) {
-			draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(view_camera[0]) / 2 - verticleBuffer + 75), "Name the new category of Tags");
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Name the new category of Tags");
 		}
 
 
@@ -530,9 +530,9 @@ function scr_drawDialogueBox() {
 	}
 	draw_set_colour(c_black);
 	draw_set_halign(fa_left);
-	draw_text(floor(camera_get_view_width(view_camera[0]) / 2 - searchBarXOffset + 5), floor(camera_get_view_height(view_camera[0]) / 2), displayText);
+	draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - searchBarXOffset + 5), floor(camera_get_view_height(camera_get_active()) / 2), displayText);
 
-	//draw_rectangle(camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 2 + (10 * cursorPos-1), camera_get_view_height(view_camera[0])/2 - searchBarYOffset + 10, camera_get_view_width(view_camera[0]) /2 - searchBarXOffset + 4 + (10 * cursorPos-1), camera_get_view_height(view_camera[0])/2 + searchBarYOffset - 10, false);
+	//draw_rectangle(camera_get_view_width(camera_get_active()) /2 - searchBarXOffset + 2 + (10 * cursorPos-1), camera_get_view_height(camera_get_active())/2 - searchBarYOffset + 10, camera_get_view_width(camera_get_active()) /2 - searchBarXOffset + 4 + (10 * cursorPos-1), camera_get_view_height(camera_get_active())/2 + searchBarYOffset - 10, false);
 
 	}
 
@@ -566,7 +566,7 @@ function scr_drawDialogueBox() {
 
 
 	// ok button check
-	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 50 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 50 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
+	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 + 50 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 50 + buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
 		if (mouse_check_button_released(mb_left)) {
 			obj_control.alarm[11] = 60;
 			
@@ -707,7 +707,7 @@ function scr_drawDialogueBox() {
 	}
 
 	// cancel button check
-	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(view_camera[0]) /2 + 175 - buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 - buttonYOffset, camera_get_view_width(view_camera[0]) /2 + 175 + buttonXOffset, camera_get_view_height(view_camera[0])/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
+	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 + 175 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 175 + buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
 			|| keyboard_check_pressed(vk_escape)) {
 				obj_control.alarm[11] = 60;
 			
