@@ -120,6 +120,8 @@ function scr_newChain(argument0, argument1) {
 	if (chainGrid == obj_chain.stackChainGrid) {
 		ds_grid_set(chainGrid, chainGrid_colCaption, currentRowChainGrid, "");
 		ds_grid_set(chainGrid, chainGrid_colStackType, currentRowChainGrid, obj_control.activeStackType);
+		stackChainGridRowToCaption = currentRowChainGrid;
+		alarm[10] = 2;
 	}
 
 	currentFocusedChainID = currentChainID;

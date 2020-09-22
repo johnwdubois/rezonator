@@ -218,6 +218,7 @@ showPlaceChains = false;
 showChainArrows = false;
 
 
+stackChainGridRowToCaption = -1;
 
 
 chainShowList = ds_list_create();

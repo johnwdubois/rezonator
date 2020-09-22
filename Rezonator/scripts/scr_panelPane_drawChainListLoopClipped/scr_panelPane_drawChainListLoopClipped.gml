@@ -94,6 +94,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 		var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
 		var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
+		var currentChainCaption = ds_grid_get(grid, obj_chain.chainGrid_colCaption, i);
 	
 	
 		// Get dimensions of rectagle around chain name
@@ -234,9 +235,15 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 		// Draw text of chain names
 		draw_set_color(global.colorThemeText);
+		draw_set_alpha(1);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		draw_text(x + textMarginLeft - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, currentChainName);
+		if (currentChainCaption != "" && functionChainList_currentTab == functionChainList_tabStackBrush) {
+			draw_set_alpha(0.7);
+			draw_text(x + textMarginLeft + string_width(currentChainName + "  ") - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentChainCaption));
+		}
+		draw_set_alpha(1);
 	
 		if (grid != obj_chain.cliqueDisplayGrid) {
 	
