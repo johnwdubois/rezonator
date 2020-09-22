@@ -640,6 +640,9 @@ tokenImportColToChange = 0;
 tokenImportRowToChange = 0;
 unitImportColToChange = 0;
 unitImportRowToChange = 0;
+stackColToChange = 0;
+stackRowToChange = 0;
+
 
 activeStackType = 0;
 readModeHints = 0;

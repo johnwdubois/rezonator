@@ -292,7 +292,11 @@ function scr_dropDownSelect(argument0) {
 	    instance_destroy();
 	}
 
-
+	else if (optionListType == 41)
+	{
+	    scr_stackTagOptions(optionSelected);
+	    instance_destroy();
+	}
 
 
 }

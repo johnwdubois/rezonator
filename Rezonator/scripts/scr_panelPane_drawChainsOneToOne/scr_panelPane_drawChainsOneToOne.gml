@@ -66,15 +66,19 @@ function scr_panelPane_drawChainsOneToOne(){
 		
 		
 		var tagCol = -1;
+		var mapKey = "";
 		switch (j) {
 			case 0:
 				tagCol = obj_chain.chainGrid_colAct;
+				mapKey = "act";
 				break;
 			case 1:
 				tagCol = obj_chain.chainGrid_colRepair;
+				mapKey = "repair";
 				break;
 			case 2:
 				tagCol = obj_chain.chainGrid_colActSequence;
+				mapKey = "act sequence";
 				break;
 			default:
 				break;
@@ -124,7 +128,7 @@ function scr_panelPane_drawChainsOneToOne(){
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 				
-				/*
+				
 					if (mouse_check_button_released(mb_left)) {
 					
 						with (obj_panelPane) {
@@ -132,27 +136,26 @@ function scr_panelPane_drawChainsOneToOne(){
 						}
 								
 						var dropDownOptionList = ds_list_create();
-						var colIndex = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-						var mapKey = ds_list_find_value(global.unitImportColNameList, colIndex);
-						var tagMapList = ds_map_find_value(global.unitImportTagMap, mapKey);
+						var tagMapList = ds_map_find_value(global.stackTagMap, mapKey);
 						
 						if (!is_undefined(tagMapList)) {
 							ds_list_copy(dropDownOptionList, tagMapList);
-							obj_control.unitImportColToChange = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-							obj_control.unitImportRowToChange = currentLineUnitID - 1;
+							ds_list_add(dropDownOptionList, "Remove tag");
+							
+							obj_control.stackColToChange = tagCol;
+							obj_control.stackRowToChange = i;
 								
 							var dropDownX = colRectX1;
-							var dropDownY = lineNameRectY2;
+							var dropDownY = chainRowRectY2;
 
 							if (ds_list_size(dropDownOptionList) > 0 ) {
-								var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
+								var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
 								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = 38;
+								dropDownInst.optionListType = 41;
 
 							}
 						}
-					*/
-					
+					}
 				}
 				
 				// highlight rectangle

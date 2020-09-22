@@ -78,6 +78,22 @@ ds_list_clear(global.discoImportColNameList);
 
 global.tokenImportTagMap = ds_map_create();
 global.unitImportTagMap  = ds_map_create();
+global.stackTagMap = ds_map_create();
+
+// stack tags hard-coded in map for now...
+var actTagList = ds_list_create();
+var repairTagList = ds_list_create();
+var actSequenceTagList = ds_list_create();
+ds_list_add(actTagList, "Question", "Answer");
+ds_list_add(repairTagList, "Break", "Edit", "Fix");
+ds_list_add(actSequenceTagList, "Q&A", "Repair");
+ds_map_add_list(global.stackTagMap, "act", actTagList);
+ds_map_add_list(global.stackTagMap, "repair", repairTagList);
+ds_map_add_list(global.stackTagMap, "act sequence", actSequenceTagList);
+
+
+
+
 
 
 
