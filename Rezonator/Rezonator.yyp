@@ -17,6 +17,7 @@
     {"id":{"name":"spr_viewIcons","path":"sprites/spr_viewIcons/spr_viewIcons.yy",},"order":8,},
     {"id":{"name":"spr_playPause","path":"sprites/spr_playPause/spr_playPause.yy",},"order":9,},
     {"id":{"name":"spr_toolsNew","path":"sprites/spr_toolsNew/spr_toolsNew.yy",},"order":10,},
+    {"id":{"name":"scr_stackTagOptions","path":"scripts/scr_stackTagOptions/scr_stackTagOptions.yy",},"order":39,},
     {"id":{"name":"spr_gridViewToggle","path":"sprites/spr_gridViewToggle/spr_gridViewToggle.yy",},"order":11,},
     {"id":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"order":12,},
     {"id":{"name":"spr_helpToggle","path":"sprites/spr_helpToggle/spr_helpToggle.yy",},"order":13,},
