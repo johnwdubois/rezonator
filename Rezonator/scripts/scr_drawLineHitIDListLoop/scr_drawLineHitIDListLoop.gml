@@ -202,14 +202,14 @@ function scr_drawLineHitIDListLoop(argument0, argument1, argument2, argument3, a
 			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 			// Record user's click in the Search screen to highlight.
-			if (device_mouse_check_button_released(0, mb_left)) {
+			/*if (device_mouse_check_button_released(0, mb_left)) {
 				var newSwitch = ds_grid_get(hitGrid, hitGrid_colUnitID, currentHitID - 1)
 				with (obj_control) {
 					//preSwitchDisplayRow = newSwitch;
 					highlightedSearchRow = newSwitch;
 				
 				}
-			}
+			}*/
 		}
 	
 		var panelPaneResizeHeld = false;
