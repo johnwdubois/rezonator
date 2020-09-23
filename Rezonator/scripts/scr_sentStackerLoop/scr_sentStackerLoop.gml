@@ -1,28 +1,6 @@
-/// @description Call Stacker Loops
-show_debug_message("obj_stacker Alarm 5");
-
-// Determine which Stacks to genreate
-switch (currentStackerFuntion) {
-	case stackerFunctionRandom:
-		scr_randomStackerLoop();
-		break;
-		
-	case stackerFunctionTurn:
-		scr_turnStackerLoop();
-		break;
-		
-	case stackerFunctionSent:
-		scr_sentStackerLoop();
-		break;
-		
-	default:
-		break;
-}
-currentStackerFuntion = stackerFunctionDefault;
-
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-/*function scr_sentStackerLoop(){
+function scr_sentStackerLoop(){
 	
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
@@ -95,12 +73,26 @@ currentStackerFuntion = stackerFunctionDefault;
 			
 			// For checking End Note Tags
 			var randWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, randUnit - 1);
-			var lastWordID = ds_list_find_value(randWordIDList, ds_list_size(randWordIDList) - 1);
-			var currentEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, lastWordID - 1);
-			for(var endTagsLoop = 0; endTagsLoop < endTagsListSize; endTagsLoop++) {
-				if(currentEndNoteTag == ds_list_find_value(endTagsList, endTagsLoop)) {
-					endNoteTagMatch = true;
-					//break;
+			var randWordIDListSize = ds_list_size(randWordIDList);
+			var loopBreak = false;
+			
+			for (var wordListLoop = 0; wordListLoop < randWordIDListSize; wordListLoop++) {
+				var currentWordID = ds_list_find_value(randWordIDList, wordListLoop);
+				var currentEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, currentWordID - 1);
+				show_debug_message(currentEndNoteTag);
+				
+				for(var endTagsLoop = 0; endTagsLoop < endTagsListSize; endTagsLoop++) {
+					if(currentEndNoteTag == ds_list_find_value(endTagsList, endTagsLoop)) {
+						endNoteTagMatch = true;
+						loopBreak = true;
+						break;
+						show_debug_message("true");
+						//break;
+					}
+				}
+				
+				if(loopBreak) {
+					break;
 				}
 			}
 			
@@ -111,7 +103,7 @@ currentStackerFuntion = stackerFunctionDefault;
 		}
 		tokenImportLoop--;
 	
-		show_debug_message("obj_stacker Alarm 4 ... currentUnitList: " + scr_getStringOfList(currentUnitList));
+		show_debug_message("obj_stacker Alarm 6 ... currentUnitList: " + scr_getStringOfList(currentUnitList));
 	
 		if (ds_list_size(currentUnitList) > 0) {
 			//show_message(scr_getStringOfList(currentUnitList));
@@ -150,4 +142,4 @@ currentStackerFuntion = stackerFunctionDefault;
 	splitSave = false;
 
 
-}*/
+}
