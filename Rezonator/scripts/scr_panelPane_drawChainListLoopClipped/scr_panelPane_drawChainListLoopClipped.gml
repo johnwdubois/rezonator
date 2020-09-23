@@ -241,6 +241,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 		draw_text(x + textMarginLeft - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, currentChainName);
 		if (currentChainCaption != "" && functionChainList_currentTab == functionChainList_tabStackBrush) {
 			draw_set_alpha(0.7);
+			// remove any newlines or carriage returns from caption
+			currentChainCaption = string_replace_all(currentChainCaption, "\r", "");
+			currentChainCaption = string_replace_all(currentChainCaption, "\n", "");
 			draw_text(x + textMarginLeft + string_width(currentChainName + "  ") - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentChainCaption));
 		}
 		draw_set_alpha(1);
