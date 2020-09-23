@@ -197,6 +197,10 @@ function scr_saveREZ(argument0) {
 			var tempMap2 = ds_map_create();
 			ds_map_copy(tempMap2, global.unitImportTagMap);
 			ds_map_add_map(map, "unitImportTagMap", tempMap2);
+			
+			var tempMap3 = ds_map_create();
+			ds_map_copy(tempMap3, global.stackTagMap);
+			ds_map_add_map(map, "stackTagMap", tempMap3);
 	
 
 	}
@@ -276,6 +280,7 @@ function scr_saveREZ(argument0) {
 	    map[? "unitImportColNameList"] = undefined;
 	    map[? "tokenImportTagMap"] = undefined;
 	    map[? "unitImportTagMap"] = undefined;
+		map[? "stackTagMap"] = undefined;
 	}
 
 	ds_map_destroy(wrapper);

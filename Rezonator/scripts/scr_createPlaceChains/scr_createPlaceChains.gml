@@ -11,7 +11,6 @@ function scr_createPlaceChains() {
 		
 			with (obj_chain) {
 				scr_wordClicked(currentWordID, i);
-				//show_debug_message("scr_wordClicked(" + string(currentWordID) + ", " + string(i) + ")");
 			}
 		}
 	

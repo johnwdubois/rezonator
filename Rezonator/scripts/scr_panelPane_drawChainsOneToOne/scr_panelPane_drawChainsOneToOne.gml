@@ -36,8 +36,10 @@ function scr_panelPane_drawChainsOneToOne(){
 	var xbuffer = (windowWidth / 3);
 
 	var drawDropDowns = false;
-	if (!instance_exists(obj_dropDown)) {
-		chainTagsHighlightRow = -1;
+	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+		with (obj_panelPane) {
+			chainTagsHighlightRow = -1;
+		}
 	}
 	
 	var headerListSize = 3;
@@ -105,7 +107,9 @@ function scr_panelPane_drawChainsOneToOne(){
 			//Check mouse clicks to focus a line in the list
 			if (mouseoverChainRow && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 				drawDropDowns = true;
-				chainTagsHighlightRow = i;
+				with (obj_panelPane) {
+					chainTagsHighlightRow = i;
+				}
         
 			    if (device_mouse_check_button_released(0, mb_left)) {
 			        ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), false);
@@ -134,7 +138,8 @@ function scr_panelPane_drawChainsOneToOne(){
 					if (mouse_check_button_released(mb_left)) {
 					
 						with (obj_panelPane) {
-							selectedColChain = j;
+							selectedColChain = tagCol;
+							stackTagMapKey = mapKey;
 						}
 								
 						var dropDownOptionList = ds_list_create();
@@ -142,6 +147,7 @@ function scr_panelPane_drawChainsOneToOne(){
 						
 						if (!is_undefined(tagMapList)) {
 							ds_list_copy(dropDownOptionList, tagMapList);
+							ds_list_add(dropDownOptionList, "Add tag option");
 							if (ds_grid_get(obj_chain.stackChainGrid, tagCol, i) != 0) {
 								ds_list_add(dropDownOptionList, "Delete tag");
 							}

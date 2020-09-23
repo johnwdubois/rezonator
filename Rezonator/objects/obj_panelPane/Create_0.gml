@@ -217,6 +217,7 @@ ascendActivated = false;
 selectedColToken = 0;
 selectedColUnit = 0;
 selectedColChain = 0;
+stackTagMapKey = "";
 
 lineContentsHighlightRow = -1;
 unitTagsHighlightRow = -1;
