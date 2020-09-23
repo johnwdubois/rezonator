@@ -13,7 +13,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 
-	if (live_call()) return live_result;
+	//if (live_call()) return live_result;
 
 	// INcrease the size of the utterance column!!!
 
