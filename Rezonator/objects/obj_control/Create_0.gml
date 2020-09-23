@@ -490,6 +490,7 @@ newCustomTagToken = false;
 newCustomFieldToken = false;
 newCustomTagUnit = false;
 newCustomFieldUnit = false;
+newCustomTagStack = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;

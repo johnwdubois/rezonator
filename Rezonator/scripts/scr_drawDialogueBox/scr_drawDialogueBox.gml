@@ -235,6 +235,9 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomTagUnit) {
 			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input name for custom tag");
 		}
+		if (obj_control.newCustomTagStack) {
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input name for custom tag");
+		}
 	
 
 		if (obj_control.ePressed) {
@@ -632,8 +635,8 @@ function scr_drawDialogueBox() {
 			if (obj_control.newCustomTagToken) {
 				scr_dialogueBoxNewCustomTagToken();
 			}
-			if (obj_control.newCustomTagUnit) {
-				scr_dialogueBoxNewCustomTagUnit();
+			if (obj_control.newCustomTagStack) {
+				scr_dialogueBoxNewCustomTagStack();
 			}
 	
 			if (obj_control.recolor) {
@@ -696,6 +699,7 @@ function scr_drawDialogueBox() {
 			obj_control.newCustomFieldToken = false;
 			obj_control.newCustomTagUnit = false;
 			obj_control.newCustomFieldUnit = false;
+			obj_control.newCustomTagStack = false;
 			obj_control.fromDropDown = false;
 			obj_control.cursorPos = 1;
 			obj_control.inputText = "";
@@ -736,6 +740,7 @@ function scr_drawDialogueBox() {
 				obj_control.newCustomFieldToken = false;
 				obj_control.newCustomTagUnit = false;
 				obj_control.newCustomFieldUnit = false;
+				obj_control.newCustomTagStack = false;
 				obj_control.fromDropDown = false;
 				obj_control.inputText = "";
 				obj_control.cursorPos = 1;
@@ -812,6 +817,9 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomTagUnit) {
 			scr_dialogueBoxNewCustomTagUnit();
 		}
+		if (obj_control.newCustomTagStack) {
+			scr_dialogueBoxNewCustomTagStack();
+		}
 		if (obj_control.rename) {
 				ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
 		}
@@ -877,6 +885,7 @@ function scr_drawDialogueBox() {
 		obj_control.newCustomFieldToken = false;
 		obj_control.newCustomTagUnit = false;
 		obj_control.newCustomFieldUnit = false;
+		obj_control.newCustomTagStack = false;
 		obj_control.fromDropDown = false;
 		obj_control.inputText = "";
 		obj_control.cursorPos = 1;
