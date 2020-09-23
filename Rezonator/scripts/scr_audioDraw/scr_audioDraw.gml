@@ -1,6 +1,9 @@
 function scr_audioDraw() {
 	// Draw Rezonator's audio player
-
+	windowWidth = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
+	x = 0;
+	y = (camera_get_view_height(camera_get_active())) - windowHeight;
+	
 	var progressColor = c_orange;
 	var playPauseSprite = spr_playPause;
 
@@ -175,17 +178,17 @@ function scr_audioDraw() {
 
 
 
-	/*
-	draw debug variables 
+	
 
+/*
 	draw_set_halign(fa_left);
-	draw_text(10, 10, "audioPos: " + string(audioPos));
-	draw_text(10, 30, "audioPosTemp: " + string(audioPosTemp));
-	draw_text(10, 50, "audioLength: " + string(audioLength));
-	draw_text(10, 70, "audioPaused: " + string(audioPaused));
+	draw_text((camera_get_view_width(camera_get_active()) / 2) + 10, (camera_get_view_height(camera_get_active()) / 2) + 10, "x: " + string(x));
+	draw_text((camera_get_view_width(camera_get_active()) / 2) +10, (camera_get_view_height(camera_get_active()) / 2) + 30, "y: " + string(y));
+	draw_text((camera_get_view_width(camera_get_active()) / 2) +10, (camera_get_view_height(camera_get_active()) / 2) + 50, "x + windowWidth: " + string(x + windowWidth));
+	draw_text((camera_get_view_width(camera_get_active()) / 2) +10, (camera_get_view_height(camera_get_active()) / 2) + 70, "y + windowHeight: " + string(y + windowHeight));
 	draw_text(10, 90, "playheadX: " + string(playheadX));
 	draw_text(10, 110, "playheadHolding: " + string(playheadHolding));
-	*/
-
+	
+*/
 
 }
