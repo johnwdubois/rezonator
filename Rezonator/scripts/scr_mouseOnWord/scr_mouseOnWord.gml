@@ -42,7 +42,13 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 				}
 			}
 			// If in Read Mode, focus line in Nav window
-			else if (!global.readHintHide and ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode == obj_toolPane.modeRead)) {
+			else if (obj_toolPane.currentMode == obj_toolPane.modeRead and ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow))) {
+				
+				if (instance_exists(obj_audioUI)) {
+					if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
+						scr_audioJumpToUnit(unitID);
+					}
+				}
 				//forgot why this was taken out
 				/*ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -51,10 +57,10 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 					functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 					functionChainList_currentTab = functionChainList_tabLine;
 				}*/
-				//if(obj_control.readModeHints < 2){
+				if(!global.readHintHide){
 					var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
 					//obj_control.readModeHints++;
-				//}
+				}
 			}
 				
 			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
