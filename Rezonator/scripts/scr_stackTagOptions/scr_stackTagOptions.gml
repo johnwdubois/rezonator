@@ -4,7 +4,7 @@ function scr_stackTagOptions(){
 	var optionSelected = argument[0];
 	
 	
-	if (optionSelected == "Remove tag") {
+	if (optionSelected == "Delete tag") {
 		ds_grid_set(obj_chain.stackChainGrid, obj_control.stackColToChange, obj_control.stackRowToChange, 0);
 	}
 	else {

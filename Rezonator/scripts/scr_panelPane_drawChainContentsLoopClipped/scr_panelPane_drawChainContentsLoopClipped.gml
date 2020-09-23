@@ -13,7 +13,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 
-	//if (live_call()) return live_result;
+	if (live_call()) return live_result;
 
 	// INcrease the size of the utterance column!!!
 
@@ -336,9 +336,12 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 										if(currentWordState == 3){
 											continue;
 										}
-										var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+										var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
 										currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
 									}
+									// remove any newlines or carriage returns from the utterance display
+									currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
+									currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\n", "");
 						
 									if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
 										currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);

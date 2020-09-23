@@ -1,6 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChainsOneToOne(){
+	
+	if (live_call()) return live_result;
 
 	
 	
@@ -140,7 +142,9 @@ function scr_panelPane_drawChainsOneToOne(){
 						
 						if (!is_undefined(tagMapList)) {
 							ds_list_copy(dropDownOptionList, tagMapList);
-							ds_list_add(dropDownOptionList, "Remove tag");
+							if (ds_grid_get(obj_chain.stackChainGrid, tagCol, i) != 0) {
+								ds_list_add(dropDownOptionList, "Delete tag");
+							}
 							
 							obj_control.stackColToChange = tagCol;
 							obj_control.stackRowToChange = i;
@@ -160,8 +164,9 @@ function scr_panelPane_drawChainsOneToOne(){
 				
 				// highlight rectangle
 				if (j == headerListSize - 1) {
+					var chainColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, chainTagsHighlightRow);
 					draw_set_alpha(0.2);
-					draw_set_color(global.colorThemeText);
+					draw_set_color(chainColor);
 					draw_rectangle(chainRowRectX1 - clipX, chainRowRectY1 - clipY, chainRowRectX2 - clipX, chainRowRectY2 - clipY, false);
 				}
 				draw_set_alpha(1);
@@ -170,7 +175,8 @@ function scr_panelPane_drawChainsOneToOne(){
 			
 			
 			
-			// Draw text of chain tags		    
+			// Draw text of chain tags
+			draw_set_font(global.fontMain);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
 			draw_set_color(global.colorThemeText);
@@ -178,6 +184,13 @@ function scr_panelPane_drawChainsOneToOne(){
 			var tagToDraw = ds_grid_get(obj_chain.stackChainGrid, tagCol, i);
 			tagToDraw = (tagToDraw == undefined or tagToDraw == 0) ? "" : tagToDraw;
 			draw_text(x + (textMarginLeft) + (xbuffer * j) - clipX, y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
+			
+			
+			// draw lines dividing rows
+			draw_set_color(global.colorThemeBorders);
+			draw_set_alpha(0.3);
+			draw_line(chainRowRectX1 - clipX, chainRowRectY2 - clipY, chainRowRectX2 - clipX, chainRowRectY2 - clipY);
+			draw_set_alpha(1);
 			
 			textPlusY += strHeight;
 		}
