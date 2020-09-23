@@ -21,4 +21,5 @@ ds_list_clear(stackerRandomCurrentUnitList);
 
 show_debug_message("obj_stacker Alarm1 ... randLine1: " + string(randLine1) + ", randLine2: " + string(randLine2) + ", endLine: " + string(endLine));
 
+currentStackerFuntion = stackerFunctionRandom;
 alarm[5] = 2;

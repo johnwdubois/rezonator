@@ -17,4 +17,6 @@ with(obj_panelPane) {
 	scr_reFocusOldChains();
 }
 
-alarm[6] = 2;
+currentStackerFuntion = stackerFunctionTurn;
+
+alarm[5] = 2;
