@@ -6,7 +6,7 @@ function scr_stackOptions(argument0) {
 		case "Create Stacks":
 
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Default", "Random", "Turn");
+			ds_list_add(dropDownOptionList, "Default", "Random", "Turn", "Sentence");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y , -999, obj_dropDown);

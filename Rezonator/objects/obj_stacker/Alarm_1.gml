@@ -14,6 +14,9 @@ with (obj_panelPane) {
 	scr_reFocusOldChains();
 }
 
+// Got to fix this somehow...
+//obj_fileLoader.subLineGridBeginning = string_digits(ds_list_find_value(obj_control.listOfNumbers, 0));
+//obj_fileLoader.subLineGridEnd 
 endLine = ds_grid_height(obj_control.lineGrid) - 1;
 randUnit = -1;
 stackerRandomCurrentUnitList = ds_list_create();

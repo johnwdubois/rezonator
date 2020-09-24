@@ -11,3 +11,8 @@ stackerFunctionRandom = 1;
 stackerFunctionTurn = 2;
 stackerFunctionSent = 3;
 currentStackerFuntion = stackerFunctionDefault;
+
+endNoteTagsList = ds_list_create();
+
+
+

@@ -7,13 +7,42 @@ function scr_sentStackerLoop(){
 	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
 	var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
 	var tokenImportColNameListSize = ds_list_size(global.tokenImportColNameList);
+	var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
 	var unitCol = -1;
 	var turnCol = -1;
 	
 	var endCol = -1;
-	var endTagsList = ds_list_create();
-	ds_list_add(endTagsList, "final", "appeal");
-	var endTagsListSize = ds_list_size(endTagsList);
+	for (var tokenColLoop = 0; tokenColLoop < tokenImportColNameListSize; tokenColLoop++) {
+
+		if (ds_list_find_value(global.tokenImportColNameList, tokenColLoop) == "endNote") {
+			endCol = tokenColLoop;
+			show_debug_message("obj_stacker Alarm 5 ... endCol: " + string(endCol));
+			break;
+		}
+
+	}
+	
+	for(var endNoteLoop = 0; endNoteLoop < tokenImportGridHeight; endNoteLoop++) {
+		var possibleEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, endNoteLoop);
+		if(possibleEndNoteTag != "") {
+			if(ds_list_size(endNoteTagsList) > 0) {
+				for(var possibleEndTagsLoop = 0; possibleEndTagsLoop < ds_list_size(endNoteTagsList); possibleEndTagsLoop++) {
+					if(possibleEndNoteTag == ds_list_find_value(endNoteTagsList, possibleEndTagsLoop)) {
+						break;
+					}
+					if (possibleEndTagsLoop == ds_list_size(endNoteTagsList) - 1) {
+						ds_list_add(endNoteTagsList, possibleEndNoteTag);	
+					}
+				}
+			}
+			else {
+				ds_list_add(endNoteTagsList, possibleEndNoteTag);
+			}
+		}
+	}
+	
+	//ds_list_add(endNoteTagsList, "final", "appeal");
+	var endNoteTagsListSize = ds_list_size(endNoteTagsList);
 	var endNoteTagMatch = false;
 
 	// will make this all one loop
@@ -34,15 +63,6 @@ function scr_sentStackerLoop(){
 
 	}
 
-	for (var tokenColLoop = 0; tokenColLoop < tokenImportColNameListSize; tokenColLoop++) {
-
-		if (ds_list_find_value(global.tokenImportColNameList, tokenColLoop) == "endNote") {
-			endCol = tokenColLoop;
-			show_debug_message("obj_stacker Alarm 5 ... endCol: " + string(endCol));
-			break;
-		}
-
-	}
 
 	if (turnCol == -1) {
 		show_message("No turn order found");
@@ -81,8 +101,8 @@ function scr_sentStackerLoop(){
 				var currentEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, currentWordID - 1);
 				show_debug_message(currentEndNoteTag);
 				
-				for(var endTagsLoop = 0; endTagsLoop < endTagsListSize; endTagsLoop++) {
-					if(currentEndNoteTag == ds_list_find_value(endTagsList, endTagsLoop)) {
+				for(var endTagsLoop = 0; endTagsLoop < endNoteTagsListSize; endTagsLoop++) {
+					if(currentEndNoteTag == ds_list_find_value(endNoteTagsList, endTagsLoop)) {
 						endNoteTagMatch = true;
 						loopBreak = true;
 						break;

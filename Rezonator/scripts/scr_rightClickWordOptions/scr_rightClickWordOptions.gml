@@ -176,7 +176,7 @@ function scr_rightClickWordOptions(argument0) {
 				case obj_toolPane.modeRez:
 					grid = obj_chain.rezChainGrid;
 					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
-						show_message("Please Click on a link before deleting it");
+						show_message("Please Click on a word before deleting it's link");
 						instance_destroy();
 						exit;	
 					}
@@ -185,7 +185,7 @@ function scr_rightClickWordOptions(argument0) {
 				// Using the track tool
 					grid = obj_chain.trackChainGrid;
 					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
-						show_message("Please Click on a link before deleting it");
+						show_message("Please Click on a word before deleting it's link");
 						instance_destroy();
 						exit;
 					}

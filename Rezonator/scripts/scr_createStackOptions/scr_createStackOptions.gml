@@ -23,6 +23,11 @@ function scr_createStackOptions(argument0) {
 			obj_stacker.splitSave = true;
 			obj_stacker.alarm[4] = 1;
 			break;
+		case "Sentence":
+			//show_message("Create Turn");
+			obj_stacker.splitSave = true;
+			obj_stacker.alarm[6] = 1;
+			break;
 		default:
 			break;
 	}
