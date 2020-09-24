@@ -18,7 +18,6 @@ function scr_deleteLink() {
 	if (dead) {
 		exit;
 	}
-	
 	// This kills the link
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridSource, true);
 	

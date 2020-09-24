@@ -350,6 +350,9 @@ hoverChunkIDRow = -1;
 showMouseLine = false;
 linkDeleted = false;
 
+//check to see if combining chains
+combineChains = false;
+
 // Safety check for the drop downs
 ableToCreateDropDown = true;
 ableToCreateDropDownAlarmSet = false;

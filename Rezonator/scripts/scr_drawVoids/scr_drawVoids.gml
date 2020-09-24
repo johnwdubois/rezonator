@@ -5,7 +5,7 @@ function scr_drawVoids(argument0, argument1, argument2, argument3, argument4, ar
 	var wordLeftMargin = argument3;
 	var currentLineY = argument4;
 	var currentWordVoid = argument5;
-	var currentWordDisplayCol = argument6;
+	var currentWordDisplayCol = (argument6==undefined) ? 1 : argument6;
 
 	if (drawWordLoop > 0) {
 		var voidRectX1 = ((previousWordDisplayCol + 1) * gridSpaceHorizontal) + wordLeftMargin;

@@ -181,6 +181,9 @@ function scr_drawLine() {
 				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 					//show_message("here");
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
+					if(keyboard_check(vk_control)){
+						//obj_control.combineChains = true;
+					}
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
 					}
