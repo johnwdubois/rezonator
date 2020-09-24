@@ -133,7 +133,7 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 		var currentWordVoid = 0;
 		if (drawWordLoop > 0) {
 			currentWordDisplayCol = scr_wordVoid(currentWordDisplayCol, previousWordDisplayCol, currentWordGridRow, currentWordID);
-		
+			
 		}
 		else {
 			// if the current word is the first word of the line, and it is floating out in space for no reason, bring it back to the left
@@ -149,6 +149,7 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 	
 		// if showing developer variables, draw rectangle to visualize voids
 		if ((showDevVars and currentWordVoid > 0)) {// or currentWordVoid > 17) { // Do we want to always be showing this?
+			show_debug_message(string(currentWordDisplayCol))
 			scr_drawVoids(drawWordLoop, previousWordDisplayCol, gridSpaceHorizontal, wordLeftMargin, currentLineY, currentWordVoid, currentWordDisplayCol);
 		}
 	
