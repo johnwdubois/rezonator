@@ -102,7 +102,8 @@ function scr_sentStackerLoop(){
 				show_debug_message(currentEndNoteTag);
 				
 				for(var endTagsLoop = 0; endTagsLoop < endNoteTagsListSize; endTagsLoop++) {
-					if(currentEndNoteTag == ds_list_find_value(endNoteTagsList, endTagsLoop)) {
+					//if(currentEndNoteTag == ds_list_find_value(endNoteTagsList, endTagsLoop)) {
+					if(string_lower(currentEndNoteTag) == "final" or string_lower(currentEndNoteTag) == "appeal") {
 						endNoteTagMatch = true;
 						loopBreak = true;
 						break;

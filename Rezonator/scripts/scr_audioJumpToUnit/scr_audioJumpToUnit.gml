@@ -9,9 +9,9 @@ function scr_audioJumpToUnit(argument0) {
 	
 				var unitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, unitID - 1);
 				unitStart = real(unitStart);
-				show_message("maybe");
+				//show_message("maybe");
 				if (unitStart != undefined and unitStart > 0) {
-					show_message("its a number");
+					//show_message("its a number");
 					with (obj_audioUI) {
 						audioPos = unitStart;
 						if (audioPos >= 0 and audioPos <= audioLength) {
