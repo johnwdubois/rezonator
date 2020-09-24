@@ -87,6 +87,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 			textPlusY += strHeight;
 			continue;
 		}
+		if (y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+				textPlusY += strHeight;
+				break;
+		}
 	
 	
 		// Get grid info of current chain
@@ -94,7 +98,22 @@ function scr_panelPane_drawChainListLoopClipped() {
 		var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 		var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
 		var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
-		var currentChainCaption = ds_grid_get(grid, obj_chain.chainGrid_colCaption, i);
+		var currentChainCaption = "";
+		
+		if (functionChainList_currentTab == functionChainList_tabStackBrush && grid == obj_chain.stackChainGrid) {
+			
+			var currentUnitIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
+			var currentUnitIDListSize = ds_list_size(currentUnitIDList);
+			for (var j = 0; j < currentUnitIDListSize; j++) {
+				var currentUnitID = ds_list_find_value(currentUnitIDList, j);
+				var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
+				var currentWordIDListSize = ds_list_size(currentWordIDList);
+				for (var k = 0; k < currentWordIDListSize; k++) {
+					var currentWordID = ds_list_find_value(currentWordIDList, k);
+					currentChainCaption += ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1) + " ";
+				}
+			}
+		}
 	
 	
 		// Get dimensions of rectagle around chain name
@@ -238,13 +257,13 @@ function scr_panelPane_drawChainListLoopClipped() {
 		draw_set_alpha(1);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(x + textMarginLeft - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, currentChainName);
+		draw_text(floor(x + textMarginLeft) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, currentChainName);
 		if (currentChainCaption != "" && functionChainList_currentTab == functionChainList_tabStackBrush) {
 			draw_set_alpha(0.7);
 			// remove any newlines or carriage returns from caption
 			currentChainCaption = string_replace_all(currentChainCaption, "\r", "");
 			currentChainCaption = string_replace_all(currentChainCaption, "\n", "");
-			draw_text(x + textMarginLeft + string_width(currentChainName + "  ") - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(currentChainCaption));
+			draw_text(floor(x + textMarginLeft + string_width(currentChainName + "  ")) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentChainCaption));
 		}
 		draw_set_alpha(1);
 	
