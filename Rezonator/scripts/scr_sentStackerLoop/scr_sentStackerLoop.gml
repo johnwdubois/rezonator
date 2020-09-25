@@ -13,10 +13,8 @@ function scr_sentStackerLoop(){
 	
 
 	
-	
-	
-	//ds_list_add(endNoteTagsList, "final", "appeal");
-	var endNoteTagsListSize = ds_list_size(endNoteTagsList);
+
+	var endNoteTagsGridHeight = ds_grid_height(endNoteTagsGrid);
 	var endNoteTagMatch = false;
 
 	// will make this all one loop
@@ -75,8 +73,7 @@ function scr_sentStackerLoop(){
 				var currentEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, currentWordID - 1);
 				show_debug_message(currentEndNoteTag);
 				
-				for(var endTagsLoop = 0; endTagsLoop < endNoteTagsListSize; endTagsLoop++) {
-					//if(currentEndNoteTag == ds_list_find_value(endNoteTagsList, endTagsLoop)) {
+				for (var endTagsLoop = 0; endTagsLoop < endNoteTagsGridHeight; endTagsLoop++) {
 					if(string_lower(currentEndNoteTag) == "final" or string_lower(currentEndNoteTag) == "appeal") {
 						endNoteTagMatch = true;
 						loopBreak = true;

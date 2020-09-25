@@ -2,6 +2,7 @@
   "resources": [
     {"id":{"name":"spr_toggleDraw","path":"sprites/spr_toggleDraw/spr_toggleDraw.yy",},"order":0,},
     {"id":{"name":"spr_filterArrows","path":"sprites/spr_filterArrows/spr_filterArrows.yy",},"order":1,},
+    {"id":{"name":"scr_drawEndNoteWindow","path":"scripts/scr_drawEndNoteWindow/scr_drawEndNoteWindow.yy",},"order":24,},
     {"id":{"name":"spr_refresh","path":"sprites/spr_refresh/spr_refresh.yy",},"order":2,},
     {"id":{"name":"spr_ascend","path":"sprites/spr_ascend/spr_ascend.yy",},"order":3,},
     {"id":{"name":"spr_dropDown","path":"sprites/spr_dropDown/spr_dropDown.yy",},"order":4,},

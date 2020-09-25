@@ -16,22 +16,28 @@ var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
 for(var endNoteLoop = 0; endNoteLoop < tokenImportGridHeight; endNoteLoop++) {
 	var possibleEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, endNoteLoop);
 	if(possibleEndNoteTag != "") {
-		if(ds_list_size(endNoteTagsList) > 0) {
-			for(var possibleEndTagsLoop = 0; possibleEndTagsLoop < ds_list_size(endNoteTagsList); possibleEndTagsLoop++) {
-				if(possibleEndNoteTag == ds_list_find_value(endNoteTagsList, possibleEndTagsLoop)) {
+		if (ds_grid_height(endNoteTagsGrid) > 0) {
+			for (var possibleEndTagsLoop = 0; possibleEndTagsLoop < ds_grid_height(endNoteTagsGrid); possibleEndTagsLoop++) {
+				if (possibleEndNoteTag == ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colTag, possibleEndTagsLoop)) {
 					break;
 				}
-				if (possibleEndTagsLoop == ds_list_size(endNoteTagsList) - 1) {
-					ds_list_add(endNoteTagsList, possibleEndNoteTag);
+				if (possibleEndTagsLoop == ds_grid_height(endNoteTagsGrid) - 1) {
+					// add tag to endNoteTagsGrid
+					ds_grid_resize(endNoteTagsGrid, ds_grid_width(endNoteTagsGrid), ds_grid_height(endNoteTagsGrid) + 1);
+					ds_grid_set(endNoteTagsGrid, endNoteTagsGrid_colTag, ds_grid_height(endNoteTagsGrid) - 1, possibleEndNoteTag);
+					ds_grid_set(endNoteTagsGrid, endNoteTagsGrid_colChecked, ds_grid_height(endNoteTagsGrid) - 1, false);
 				}
 			}
 		}
 		else {
-			ds_list_add(endNoteTagsList, possibleEndNoteTag);
+			// add tag to endNoteTagsGrid
+			ds_grid_resize(endNoteTagsGrid, ds_grid_width(endNoteTagsGrid), ds_grid_height(endNoteTagsGrid) + 1);
+			ds_grid_set(endNoteTagsGrid, endNoteTagsGrid_colTag, ds_grid_height(endNoteTagsGrid) - 1, possibleEndNoteTag);
+			ds_grid_set(endNoteTagsGrid, endNoteTagsGrid_colChecked, ds_grid_height(endNoteTagsGrid) - 1, false);
 		}
 	}
 }
 
 show_debug_message("obj_stacker Alarm[7] ... tokenImportColNameList: " + scr_getStringOfList(global.tokenImportColNameList));
 show_debug_message("obj_stacker Alarm[7] ... tokenImportGridHeight: " + string(tokenImportGridHeight));
-show_debug_message("obj_stacker Alarm[7] ... endNoteTagsList: " + scr_getStringOfList(endNoteTagsList));
+show_debug_message("obj_stacker Alarm[7] ... endNoteTagsGridHeight: " + string(ds_grid_height(endNoteTagsGrid)));

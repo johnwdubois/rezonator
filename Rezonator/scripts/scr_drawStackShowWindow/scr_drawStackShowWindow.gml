@@ -276,6 +276,7 @@ function scr_drawStackShowWindow() {
 
 
 
+
 	scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth - 60, windowHeight);
