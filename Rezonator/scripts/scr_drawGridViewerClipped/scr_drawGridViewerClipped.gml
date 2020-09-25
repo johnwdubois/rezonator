@@ -136,7 +136,7 @@ function scr_drawGridViewerClipped() {
 				draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, false);
 			}
 		
-			if (point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2) and gridViewColXHolding == -1) {
+			if (not obj_control.mouseOverUI and point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2) and gridViewColXHolding == -1) {
 				mouseoverRow = gridLoopRow;
 				mouseoverCol = gridLoopCol;
 				mouseoverItemString = currentItemString;
@@ -249,7 +249,7 @@ function scr_drawGridViewerClipped() {
 		}
 	
 	
-		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
+		if (not obj_control.mouseOverUI and point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
 			window_set_cursor(cr_size_we);
 			draw_set_alpha(0.8);
 		

@@ -670,3 +670,5 @@ stackRowToChange = 0;
 
 activeStackType = 0;
 readModeHints = 0;
+
+mouseOverUI = false;
