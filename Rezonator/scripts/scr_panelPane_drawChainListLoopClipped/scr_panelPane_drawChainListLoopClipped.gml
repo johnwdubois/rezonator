@@ -98,9 +98,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 		var currentChainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
 		var currentChainName = ds_grid_get(grid, obj_chain.chainGrid_colName, i);
 		var currentChainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, i);
-		var currentChainCaption = "";
+		var currentChainCaption = ds_grid_get(grid, obj_chain.chainGrid_colCaption, i);
 		
-		if (functionChainList_currentTab == functionChainList_tabStackBrush && grid == obj_chain.stackChainGrid) {
+		if (functionChainList_currentTab == functionChainList_tabStackBrush && grid == obj_chain.stackChainGrid
+		&& currentChainCaption == "") {
 			
 			var currentUnitIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
 			var currentUnitIDListSize = ds_list_size(currentUnitIDList);

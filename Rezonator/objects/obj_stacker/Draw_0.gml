@@ -15,3 +15,7 @@ if (splitSave) {
 if (keyboard_check(vk_control) && keyboard_check_pressed(vk_backspace)) {
 	obj_control.activeStackType++;
 }
+
+if (showEndNoteWindow) {
+	//scr_drawEndNoteWindow();
+}

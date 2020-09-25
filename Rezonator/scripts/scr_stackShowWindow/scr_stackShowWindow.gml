@@ -18,43 +18,41 @@ function scr_stackShowWindow() {
 	//if (live_call()) return live_result;
 
 
-		var verticleBuffer = 230;
-		var horizontalBuffer = 300;
-		var stackBoxXOffset = 280;
-		var stackBoxYOffset = 160;
-		var buttonXOffset = 65;
-		var buttonYOffset = 25;
-		var captionBoxWidth = 240;
-		var captionBoxHeight = 185;
-		var rightCenter = 160;
-		var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 );
-		var currentStackName = "";
-		var currentStackCaption = "";
+	var verticleBuffer = 230;
+	var horizontalBuffer = 300;
+	var stackBoxXOffset = 280;
+	var stackBoxYOffset = 160;
+	var buttonXOffset = 65;
+	var buttonYOffset = 25;
+	var captionBoxWidth = 240;
+	var captionBoxHeight = 185;
+	var rightCenter = 160;
+	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 );
+	var currentStackName = "";
+	var currentStackCaption = "";
 	
-		if(currentStackRow == -1){
-		currentStackName = "NO STACK SELECTED";
-		currentStackCaption = "";
-		}
-		else{
-		currentStackName = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName,currentStackRow);
-		currentStackCaption = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption,currentStackRow);
-		var hashCounter = 1;
-		for(i = 0; i < string_length(currentStackCaption); i++){
+	if(currentStackRow == -1){
+	currentStackName = "NO STACK SELECTED";
+	currentStackCaption = "";
+	}
+	else{
+	currentStackName = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName,currentStackRow);
+	currentStackCaption = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption,currentStackRow);
+	var hashCounter = 1;
+	for(i = 0; i < string_length(currentStackCaption); i++){
 		
-			if(i == hashCounter*24){
-				currentStackCaption = string_insert("#",currentStackCaption, i);
-				hashCounter ++;
-			}
+		if(i == hashCounter*24){
+			currentStackCaption = string_insert("#",currentStackCaption, i);
+			hashCounter ++;
 		}
+	}
 	
 	
-		}
+	}
 
 	if (obj_control.stackShowWindowActive) {
 		obj_control.mouseoverPanelPane = true;
 
-		//obj_control.selectedChainID = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 )
-		//show_debug_message(string(currentStackRow));	
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeBG);
 		draw_rectangle(windowX1, windowY1, windowX2, windowY2, false);
@@ -65,6 +63,7 @@ function scr_stackShowWindow() {
 		if (global.colorTheme ==0) {
 		draw_set_colour(c_ltgray);
 		}
+		
 		// draw background UI
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
 		draw_set_colour(global.colorThemeBorders);
