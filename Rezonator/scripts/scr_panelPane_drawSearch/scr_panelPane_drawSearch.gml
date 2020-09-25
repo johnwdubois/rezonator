@@ -63,6 +63,8 @@ function scr_panelPane_drawSearch() {
 				filterGridActive = false;
 				currentActiveLineGrid = lineGrid;
 				wordLeftMarginDest = 170;
+				obj_control.justifyLoop = -1;
+				scr_justifyWords();
 			}
 			else
 			{
