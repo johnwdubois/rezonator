@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-if (mouseoverNeutralSpace and not mouseoverHelpPane) {
+if (mouseoverNeutralSpace and not mouseOverUI) {
 	inDrag = false;
 	flickVelY = event_data[?"diffY"];
 	mouseHoldRectX1 = 0; 

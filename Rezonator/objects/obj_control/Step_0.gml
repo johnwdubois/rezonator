@@ -636,7 +636,10 @@ if (instance_exists(obj_customTagPane)) {
 	}
 }
 
-
+mouseOverUI = true;
+if(not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
+	mouseOverUI = false;
+}
 
 if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentActiveLineGrid == lineGrid) {
 	//newWordHoverUnitID = -1;

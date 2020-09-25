@@ -13,7 +13,9 @@ function scr_audioDraw() {
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
-
+	if(point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		mouseOverAudioUI = true;
+	}
 
 	// draw track title
 	draw_set_color(global.colorThemeText);

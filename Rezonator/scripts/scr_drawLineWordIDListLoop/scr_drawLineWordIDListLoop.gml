@@ -295,7 +295,7 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 		scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 	
 		// Until I can get a check that sees if the mouseRect is in the line, this can't happen
-		if ((hoverWordID == -1 or hoverWordID == currentWordID) and ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) and !inRezPlay) {
+		if (not obj_control.mouseOverUI and (hoverWordID == -1 or hoverWordID == currentWordID) and ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) and not inRezPlay) {
 			scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop);
 		}
 	

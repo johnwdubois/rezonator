@@ -33,3 +33,4 @@ audioPosTemp = 0;
 audioPaused = true;
 
 audioJumpOnWordClick = true;
+mouseOverAudioUI = false;
