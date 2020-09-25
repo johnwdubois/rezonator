@@ -14,6 +14,8 @@ function scr_stackShowWindow() {
 				
 		Author: Brady Moore
 	*/
+	
+	//if (live_call()) return live_result;
 
 
 		var verticleBuffer = 230;
@@ -599,6 +601,5 @@ function scr_stackShowWindow() {
 	}
 
 	//if (point_in_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer))
-
 
 }

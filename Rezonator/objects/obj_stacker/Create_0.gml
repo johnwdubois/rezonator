@@ -15,4 +15,7 @@ currentStackerFuntion = stackerFunctionDefault;
 endNoteTagsList = ds_list_create();
 
 
+alarm[7] = 2;
+
+
 

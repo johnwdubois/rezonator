@@ -15,6 +15,9 @@ function scr_drawStackShowWindow() {
 	*/
 
 	var grid = obj_chain.stackChainGrid;
+	
+	//if (live_call()) return live_result;
+	
 
 
 	// Set text margin area
@@ -282,6 +285,5 @@ function scr_drawStackShowWindow() {
 
 
 	scr_surfaceEnd();
-
 
 }

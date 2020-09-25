@@ -11,35 +11,9 @@ function scr_sentStackerLoop(){
 	var unitCol = -1;
 	var turnCol = -1;
 	
-	var endCol = -1;
-	for (var tokenColLoop = 0; tokenColLoop < tokenImportColNameListSize; tokenColLoop++) {
 
-		if (ds_list_find_value(global.tokenImportColNameList, tokenColLoop) == "endNote") {
-			endCol = tokenColLoop;
-			show_debug_message("obj_stacker Alarm 5 ... endCol: " + string(endCol));
-			break;
-		}
-
-	}
 	
-	for(var endNoteLoop = 0; endNoteLoop < tokenImportGridHeight; endNoteLoop++) {
-		var possibleEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, endNoteLoop);
-		if(possibleEndNoteTag != "") {
-			if(ds_list_size(endNoteTagsList) > 0) {
-				for(var possibleEndTagsLoop = 0; possibleEndTagsLoop < ds_list_size(endNoteTagsList); possibleEndTagsLoop++) {
-					if(possibleEndNoteTag == ds_list_find_value(endNoteTagsList, possibleEndTagsLoop)) {
-						break;
-					}
-					if (possibleEndTagsLoop == ds_list_size(endNoteTagsList) - 1) {
-						ds_list_add(endNoteTagsList, possibleEndNoteTag);	
-					}
-				}
-			}
-			else {
-				ds_list_add(endNoteTagsList, possibleEndNoteTag);
-			}
-		}
-	}
+	
 	
 	//ds_list_add(endNoteTagsList, "final", "appeal");
 	var endNoteTagsListSize = ds_list_size(endNoteTagsList);
