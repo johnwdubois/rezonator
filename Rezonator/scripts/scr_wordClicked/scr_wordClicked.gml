@@ -131,7 +131,11 @@ function scr_wordClicked(argument0, argument1) {
 		scr_deleteEntireChain(selectedChainID);
 		
 		scr_unFocusAllChains();
-
+		//refocus the orginal chain
+		var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), currentChainID);
+		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
+		ds_grid_set(grid, obj_chain.chainGrid_colChainState , currentChainfocusedChainRow, obj_chain.chainStateFocus);
+		
 		
 		obj_control.combineChains = false;
 		
@@ -149,15 +153,6 @@ function scr_wordClicked(argument0, argument1) {
 				var currentWordID = ds_list_find_value(IDList, i);
 				var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID,  currentWordID - 1);
 			}
-			
-			
-			//refocus the orginal chain
-			var currentLinkGridRow = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), currentChainID);
-			var currentChainGridRow = ds_grid_value_y(grid , obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
-			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, true);
-			ds_grid_set(grid, obj_chain.chainGrid_colChainState , currentChainGridRow, obj_chain.chainStateFocus);
-		
-			
 			scr_wordClicked(currentWordID, currentUnitID);
 			show_debug_message("current WID:   " + string(currentWordID) + "  \ncurrentUnitID:    " + string(currentUnitID));
 			//scr_newLink(currentWordID, -1);
