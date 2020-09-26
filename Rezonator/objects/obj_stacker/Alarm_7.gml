@@ -1,7 +1,6 @@
 /// @description Create endNoteTagList
 // You can write your code in this editor
 var tokenImportColNameListSize = ds_list_size(global.tokenImportColNameList);
-var endCol = -1;
 for (var tokenColLoop = 0; tokenColLoop < tokenImportColNameListSize; tokenColLoop++) {
 
 	if (ds_list_find_value(global.tokenImportColNameList, tokenColLoop) == "endNote") {

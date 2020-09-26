@@ -332,6 +332,11 @@ function scr_panelPane_drawChainTabs() {
 				if (i == 2) {
 					obj_toolPane.currentMode = obj_toolPane.modeRez;
 				}
+				if (i == 3) {
+					if(obj_toolPane.currentMode = obj_toolPane.modeRead) {
+						obj_toolPane.currentMode = obj_toolPane.modeTrack;
+					}
+				}
 			
 				//refocus chains related to currently selected tab
 				if (functionChainList_currentTab >= 0 and grid != obj_control.lineGrid) {

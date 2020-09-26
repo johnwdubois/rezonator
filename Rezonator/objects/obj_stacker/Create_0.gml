@@ -15,6 +15,7 @@ currentStackerFuntion = stackerFunctionDefault;
 endNoteTagsGrid = ds_grid_create(2, 0);
 endNoteTagsGrid_colTag = 0;
 endNoteTagsGrid_colChecked = 1;
+endCol = -1;
 
 
 alarm[7] = 2;

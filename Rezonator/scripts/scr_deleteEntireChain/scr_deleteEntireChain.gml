@@ -14,7 +14,7 @@ function scr_deleteEntireChain() {
 
 	var currentChainWordIDListSize = ds_list_size(currentChainWordIDList);
 	for(var deleteLoop = 0; deleteLoop < currentChainWordIDListSize; deleteLoop++) {
-		//show_message(string(ds_list_find_value(currentChainWordIDList, deleteLoop)));
+		ds_grid_set(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, currentChainGridRow, obj_chain.chainStateFocus);
 		with(obj_control) {
 			scr_deleteFromChain();	
 		}
