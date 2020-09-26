@@ -38,10 +38,12 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 			// Word clicked with a Chain tool selected
 			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 				if(keyboard_check(vk_control)){
-					obj_control.combineChains = true;
+					//scr_combineChains(currentWordID);
 				}
-				with (obj_chain) {
-					scr_wordClicked(currentWordID, unitID);
+				else {
+					with (obj_chain) {
+						scr_wordClicked(currentWordID, unitID);
+					}
 				}
 				
 			}

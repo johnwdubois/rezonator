@@ -182,7 +182,8 @@ function scr_drawLine() {
 					//show_message("here");
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
 					if(keyboard_check(vk_control)){
-						obj_control.combineChains = true;
+						//obj_control.combineChains = true;
+						//scr_combineChains(currentWordID);
 					}
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
