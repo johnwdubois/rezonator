@@ -60,10 +60,11 @@ function scr_deleteChainExperimental(chainID){
 		}
 	}
 	
-	// second, we delete every link from this chain in the link grid
-	while (ds_grid_value_exists(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), chainID)) {
-		var rowToDelete = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), chainID);
-		scr_gridDeleteRow(obj_chain.linkGrid, rowToDelete);
+	// second, we kill every living link from this chain in the link grid
+	var rowToKill = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
+	while (rowToKill > -1) {
+		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowToKill, true);
+		rowToKill = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
 	}
 	
 	// third, we delete the row from the chainGrid
