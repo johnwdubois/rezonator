@@ -61,10 +61,10 @@ function scr_combineChains(mouseoverWordID){
 		selectedChainfocusedChainRow = chainIDRow;
 	}
 	
-		
-	if (selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1){
-		obj_control.combineChains = false;
-		show_debug_message("scr_combineChains()... selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1, exiting...");
+	
+	if (selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1
+	or selectedChainfocusedChainRow == currentChainfocusedChainRow) {
+		show_debug_message("scr_combineChains()... selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1, or they are equal,  exiting...");
 		exit;
 	}
 	
