@@ -17,5 +17,5 @@ if (keyboard_check(vk_control) && keyboard_check_pressed(vk_backspace)) {
 }
 
 if (showEndNoteWindow) {
-	//scr_drawEndNoteWindow();
+	scr_drawEndNoteWindow();
 }

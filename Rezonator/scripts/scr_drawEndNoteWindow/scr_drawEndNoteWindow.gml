@@ -19,6 +19,10 @@ function scr_drawEndNoteWindow(){
 	draw_set_colour(global.colorThemeBorders);
 	draw_rectangle(fullWindowX, fullWindowY, fullWindowX + fullWindowWidth, fullWindowY + fullWindowHeight, true);
 	
+	if(point_in_rectangle(mouse_x, mouse_y, fullWindowX, fullWindowY, fullWindowX + fullWindowWidth, fullWindowY + fullWindowHeight)) {
+		obj_control.mouseOverUI = true;	
+	}
+	
 	// draw caption
 	draw_set_font(global.fontMainBold);
 	var captionHeight = string_height("A") * 1.25;
@@ -30,6 +34,54 @@ function scr_drawEndNoteWindow(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(floor(fullWindowX + 10), floor(mean(fullWindowY, fullWindowY + captionHeight)), string(game_display_name));
+	
+	draw_set_font(fnt_mainLarge1);
+	var buttonXOffset = 65;
+	var buttonYOffset = 25;
+	var windowMidPointx = (fullWindowWidth/2) + fullWindowX;
+	
+	var okButtonX1 = windowMidPointx - 100 - buttonXOffset;
+	var okButtonY1 = fullWindowY + fullWindowHeight - captionHeight - buttonYOffset;
+	var okButtonX2 = windowMidPointx - 100 + buttonXOffset;
+	var okButtonY2 = fullWindowY + fullWindowHeight - captionHeight + buttonYOffset;
+	
+	var cancelButtonX1 = windowMidPointx + 100 - buttonXOffset;
+	var cancelButtonY1 = fullWindowY + fullWindowHeight - captionHeight - buttonYOffset;
+	var cancelButtonX2 = windowMidPointx + 100 + buttonXOffset;
+	var cancelButtonY2 = fullWindowY + fullWindowHeight - captionHeight + buttonYOffset;
+	
+	// draw buttons for OK and Cancel
+	draw_set_colour(global.colorThemeBG);
+	if(point_in_rectangle(mouse_x, mouse_y, okButtonX1, okButtonY1, okButtonX2, okButtonY2)) {
+		draw_set_color(obj_control.c_ltblue);
+		if (mouse_check_button_released(mb_left)) {
+			obj_stacker.alarm[6] = 1;
+			splitSave = true;
+			showEndNoteWindow = false;
+		}
+	}
+	draw_rectangle(okButtonX1, okButtonY1, okButtonX2, okButtonY2, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(okButtonX1, okButtonY1, okButtonX2, okButtonY2, true);
+	
+	draw_set_colour(global.colorThemeBG);
+	if(point_in_rectangle(mouse_x, mouse_y, cancelButtonX1, cancelButtonY1, cancelButtonX2, cancelButtonY2)) {
+		draw_set_color(obj_control.c_ltblue);
+		if (mouse_check_button_released(mb_left)) {
+			showEndNoteWindow = false;
+		}
+	}
+	draw_rectangle(cancelButtonX1, cancelButtonY1, cancelButtonX2, cancelButtonY2, false);
+	draw_set_colour(global.colorThemeBorders);
+	draw_rectangle(cancelButtonX1, cancelButtonY1, cancelButtonX2, cancelButtonY2, true);
+	
+	draw_set_colour(global.colorThemeText);
+	draw_set_font(fnt_mainLarge1);
+	
+	// draw button text
+	draw_text(floor(okButtonX1), floor((okButtonY2 - okButtonY1)/2 + okButtonY1), "Create Stacks");
+	draw_text(floor(cancelButtonX1), floor((cancelButtonY2 - cancelButtonY1)/2 + okButtonY1), "Cancel");
+	
 	
 	
 	// draw list window

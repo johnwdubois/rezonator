@@ -74,12 +74,14 @@ function scr_sentStackerLoop(){
 				show_debug_message(currentEndNoteTag);
 				
 				for (var endTagsLoop = 0; endTagsLoop < endNoteTagsGridHeight; endTagsLoop++) {
-					if(string_lower(currentEndNoteTag) == "final" or string_lower(currentEndNoteTag) == "appeal") {
-						endNoteTagMatch = true;
-						loopBreak = true;
-						break;
-						show_debug_message("true");
-						//break;
+					if(ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colChecked, endTagsLoop)) {
+						if(string_lower(currentEndNoteTag) == ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colTag, endTagsLoop)) {
+							endNoteTagMatch = true;
+							loopBreak = true;
+							break;
+							show_debug_message("true");
+							//break;
+						}
 					}
 				}
 				

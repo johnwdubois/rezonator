@@ -25,8 +25,9 @@ function scr_createStackOptions(argument0) {
 			break;
 		case "Sentence":
 			//show_message("Create Turn");
-			obj_stacker.splitSave = true;
-			obj_stacker.alarm[6] = 1;
+			//obj_stacker.splitSave = true;
+			//obj_stacker.alarm[6] = 1;
+			obj_stacker.showEndNoteWindow = true
 			break;
 		default:
 			break;
