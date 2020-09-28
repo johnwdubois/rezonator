@@ -106,7 +106,6 @@ function scr_combineChains(mouseoverWordID){
 			var currentWordID = ds_list_find_value(selectedIDList, i);
 			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 		}
-		
 		with (obj_chain) {
 			scr_wordClicked(currentWordID, currentUnitID);
 		}
