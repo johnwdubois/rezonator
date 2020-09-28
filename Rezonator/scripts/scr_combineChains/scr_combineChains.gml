@@ -41,11 +41,8 @@ function scr_combineChains(mouseoverWordID){
 			break;
 		}
 	}
-	
-	//show_message("row of current chain: " + string(currentChainfocusedChainRow) + "row of next chain: " + string(selectedChainfocusedChainRow));
 		
 	if (selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1){
-		//show_message("selected chain row is -1 exiting merge")
 		obj_control.combineChains = false;
 		exit;
 	}
@@ -57,29 +54,14 @@ function scr_combineChains(mouseoverWordID){
 	
 	
 		
-	////store WID list for future
+	// store WID list for future
 	var selectedIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, selectedChainfocusedChainRow);
 	var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, currentChainfocusedChainRow);
 	var selectedIDListSize = ds_list_size(selectedIDList);
 	var sizeOfCurrentIDList = ds_list_size(currentIDList);
-	
-	// combine the two ID lists!
-	/*
-	var combinedIDList = ds_list_create();
-	ds_list_copy(combinedIDList, selectedIDList);
-	for (var i = 0; i < sizeOfCurrentIDList; i++) {
-		var currentID = ds_list_find_value(currentIDList, i);
-		if (ds_list_find_index(combinedIDList, currentID) == -1) {
-			ds_list_add(combinedIDList, currentID);
-		}
-	}
-	*/
-	
-	//show_message("selectedIDList: " + scr_getStringOfList(selectedIDList) + " ... " + "currentIDList: " + scr_getStringOfList(currentIDList));
 		
-	////show_message(scr_getStringOfList(wIDList) + "      also here is the selected chain ID:   " + string(selectedChainID))
+
 	scr_unFocusAllChains();
-	
 	
 	scr_deleteChainExperimental(selectedChainID);
 	

@@ -179,11 +179,9 @@ function scr_drawLine() {
 			else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2)) {
 				obj_control.mouseoverNeutralSpace = false;
 				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
-					//show_message("here");
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
 					if(keyboard_check(vk_control)){
-						//obj_control.combineChains = true;
-						//scr_combineChains(currentWordID);
+						scr_combineChains(currentWordID);
 					}
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
