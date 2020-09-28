@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_combineChains(mouseoverWordID){
+	if (live_call(argument0)) return live_result;
 	
 	var grid = obj_chain.rezChainGrid;
 	with(obj_panelPane){
@@ -9,18 +10,23 @@ function scr_combineChains(mouseoverWordID){
 			switch (functionChainList_currentTab) {
 				case functionChainList_tabRezBrush:
 					grid = obj_chain.rezChainGrid;
+					show_debug_message("scr_combineChains()... grid: rezChainGrid");
 					break;
 				case functionChainList_tabTrackBrush:
 					grid = obj_chain.trackChainGrid;
+					show_debug_message("scr_combineChains()... grid: trackChainGrid");
 					break;
 				case functionChainList_tabStackBrush:
 					grid = obj_chain.stackChainGrid;
+					show_debug_message("scr_combineChains()... grid: stackChainGrid");
 					break;
 				case functionChainList_tabClique:
 					grid = obj_chain.cliqueDisplayGrid;
+					show_debug_message("scr_combineChains()... grid: cliqueDisplayGrid");
 					break;
 				default:
 					grid = obj_chain.rezChainGrid;
+					show_debug_message("scr_combineChains()... could not find grid, defaulting to rezChainGrid");
 					break;
 			}
 		}
@@ -29,21 +35,36 @@ function scr_combineChains(mouseoverWordID){
 	//find current selected chain, ie starting chain that will be added to				
 	var currentChainfocusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	
-	//find next selected chain, ie the chain that will be delted and merged into the other chain
+	
+	// find next selected chain, ie the chain that will be deleted and merged into the other chain
+	// if this is a rezChain or trackChain, we'll get the chainID from the inChainsList from the dynamicWordGrid
+	// if this is a stackChain, we'll get the chainID from the unitInStackGrid
 	var selectedChainfocusedChainRow = -1;
-	var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, mouseoverWordID - 1);
-	var inChainsListSize = ds_list_size(inChainsList);
-	for (var i = 0; i < inChainsListSize; i++) {
-		var currentChainID = ds_list_find_value(inChainsList, i);
-		var chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
-		if(chainIDRow != -1){
-			selectedChainfocusedChainRow = chainIDRow;
-			break;
+	var chainIDRow = -1;
+	if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
+		var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, mouseoverWordID - 1);
+		var inChainsListSize = ds_list_size(inChainsList);
+		for (var i = 0; i < inChainsListSize; i++) {
+			var currentChainID = ds_list_find_value(inChainsList, i);
+			chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
+			if (chainIDRow != -1) {
+				break;
+			}
 		}
 	}
+	else if (grid == obj_chain.stackChainGrid) {
+		var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, mouseoverWordID);
+		var currentChainID = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
+		chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
+	}
+	if (chainIDRow != -1){
+		selectedChainfocusedChainRow = chainIDRow;
+	}
+	
 		
 	if (selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1){
 		obj_control.combineChains = false;
+		show_debug_message("scr_combineChains()... selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1, exiting...");
 		exit;
 	}
 	
