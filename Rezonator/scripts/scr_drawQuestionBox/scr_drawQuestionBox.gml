@@ -82,6 +82,9 @@ function scr_drawQuestionBox() {
 		if(layerLink) {
 			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to layer one link atop another.");
 		}
+		if(combineChains) {
+			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to merge these two chains together.");
+		}
 
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 105, "Are You Sure?");
 	}
@@ -203,6 +206,9 @@ function scr_drawQuestionBox() {
 					alarm[8] = 2;	
 				}
 			}
+			if(combineChains){
+				scr_combineChains(obj_control.clickedWordID);
+			}
 			questionWindowActive = false;
 			clearAllStacks = false;
 			clearAllTracks = false;
@@ -210,7 +216,8 @@ function scr_drawQuestionBox() {
 			clearAllLinks = false;
 			clearChain = false;
 			layerLink = false;
-
+			combineChains = false;
+			
 			instance_destroy();
 
 		}
@@ -229,6 +236,7 @@ function scr_drawQuestionBox() {
 			clearAllLinks = false;
 			clearChain = false;
 			layerLink = false;
+			combineChains = false;
 			instance_destroy();
 
 	
@@ -239,7 +247,7 @@ function scr_drawQuestionBox() {
 	// enter check
 	if ( keyboard_check_pressed(vk_enter) && questionWindowActive) {
 		obj_control.alarm[11] = 60;
-	
+		
 	
 			if(clearAllStacks){
 			
@@ -347,6 +355,11 @@ function scr_drawQuestionBox() {
 					scr_wordClicked(obj_control.layerLinkWordID, obj_control.layerLinkUnitID);	
 				}
 			}
+			if(combineChains){
+				
+				scr_combineChains(obj_control.clickedWordID);
+			}
+			
 			questionWindowActive = false;
 			clearAllStacks = false;
 			clearAllTracks = false;
@@ -354,7 +367,7 @@ function scr_drawQuestionBox() {
 			clearAllLinks = false;
 			clearChain = false;
 			layerLink = false;
-
+			combineChains = false;
 	
 
 		questionWindowActive = false;
