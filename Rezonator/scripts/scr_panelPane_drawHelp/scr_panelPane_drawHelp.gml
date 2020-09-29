@@ -12,6 +12,9 @@ function scr_panelPane_drawHelp() {
 	
 		Author: Terry DuBois
 	*/
+	
+	if (live_call()) return live_result;
+	
 	if(not obj_panelPane.showNav) {
 		//exit;	
 	}
@@ -84,7 +87,8 @@ function scr_panelPane_drawHelp() {
 			draw_sprite_ext(spr_gridViewToggle, obj_control.gridView, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 		}
 		else if (i == 0) {
-			draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
+			var xScale = (obj_control.justify == obj_control.justifyRight) ? -1 : 1;
+			draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 0 : 1, mean(rectX1, rectX2), mean(rectY1, rectY2), xScale, 1, 0, c_white, 1);
 		}
 		/*else if (i == 0) {
 			draw_sprite_ext(spr_transcriptionToggle, (obj_control.wordTokenView) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
