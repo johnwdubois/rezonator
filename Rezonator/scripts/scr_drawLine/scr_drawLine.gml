@@ -251,6 +251,7 @@ function scr_drawLine() {
 						
 						
 						obj_control.clickedWordID = currentWordID;
+						obj_control.stackMerged = true;
 						with(obj_alarm){
 							alarm[9] = 3;
 						}

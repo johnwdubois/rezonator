@@ -61,6 +61,8 @@ function scr_drawQuestionBox() {
 		// draw button text
 		draw_text(camera_get_view_width(camera_get_active()) /2 + 30, camera_get_view_height(camera_get_active())/2 + 75, "Yes");
 		draw_text(camera_get_view_width(camera_get_active()) /2 + 150, camera_get_view_height(camera_get_active())/2 + 75, "No");
+		
+
 	
 	
 	
@@ -83,7 +85,12 @@ function scr_drawQuestionBox() {
 			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to layer one link atop another.");
 		}
 		if(combineChains) {
-			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to merge these two chains together.");
+			if(obj_control.stackMerged){
+				draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to merge these two stacks together.");
+			}
+			else{
+				draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to merge these two chains together.");
+			}
 		}
 
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 105, "Are You Sure?");
@@ -217,6 +224,7 @@ function scr_drawQuestionBox() {
 			clearChain = false;
 			layerLink = false;
 			combineChains = false;
+			obj_control.stackMerged = false;
 			
 			instance_destroy();
 
@@ -237,6 +245,8 @@ function scr_drawQuestionBox() {
 			clearChain = false;
 			layerLink = false;
 			combineChains = false;
+			obj_control.stackMerged = false;
+			
 			instance_destroy();
 
 	
@@ -368,6 +378,7 @@ function scr_drawQuestionBox() {
 			clearChain = false;
 			layerLink = false;
 			combineChains = false;
+			obj_control.stackMerged = false;
 	
 
 		questionWindowActive = false;

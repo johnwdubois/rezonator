@@ -33,7 +33,7 @@ function scr_fileOptions(argument0) {
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 			instLoading.loadSprite = spr_saving;
 			with(obj_fileLoader){
-				alarm[0] = 2;
+				alarm[0] = 1;
 			}
 			
 			//show_message("BUH 2");
@@ -53,20 +53,20 @@ function scr_fileOptions(argument0) {
 			break;
 		case "Export":
 			
-			draw_set_alpha(1);
-			draw_set_color(obj_toolPane.progressBarFrontColor);
-			draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
-			draw_set_color(c_white);
-			draw_set_font(obj_toolPane.progressBarFont);
-			draw_set_halign(fa_left);
-			draw_set_valign(fa_middle);
-			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Exporting...");
-			draw_set_font(fnt_dropDown);
+			//draw_set_alpha(1);
+			//draw_set_color(obj_toolPane.progressBarFrontColor);
+			//draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
+			//draw_set_color(c_white);
+			//draw_set_font(obj_toolPane.progressBarFont);
+			//draw_set_halign(fa_left);
+			//draw_set_valign(fa_middle);
+			//draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Exporting...");
+			//draw_set_font(fnt_dropDown);
 		
 			obj_fileLoader.ableToHotkey = false;
 			
 			with(obj_fileLoader){
-				alarm[5] = 1;
+				alarm[5] = 2;
 			}
 			
 			break;
