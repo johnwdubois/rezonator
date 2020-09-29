@@ -18,7 +18,7 @@ function scr_drawWord(argument0, argument1, argument2, argument3, argument4, arg
 	draw_set_font(global.fontMain);
 	draw_set_color(textColor);
 
-	if (hitGridHeight > 0) {
+	if (hitGridHeight > 0 and not obj_control.clearSearch) {
 		var rowInHitGrid = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, hitGridHeight, currentWordID );
 		if ( rowInHitGrid >= 0 ) {
 		    if (scr_findInGridTwoParameters(obj_control.hitGrid, obj_control.hitGrid_colWordID, currentWordID, obj_control.hitGrid_colHitBool, 1) > -1) {

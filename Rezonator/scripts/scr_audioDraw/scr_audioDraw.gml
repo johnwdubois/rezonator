@@ -107,7 +107,19 @@ function scr_audioDraw() {
 		playPauseRad += 3;
 	}
 	if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
-		audioPaused = !audioPaused;
+		//var stackSelected = 
+		if(selectedStack > -1) {
+			if(audioPaused) {
+				scr_audioJumpToUnit(stackStartUnit);
+				audioPaused = !audioPaused;
+			}
+			else{
+				audioPaused = !audioPaused;
+			}
+		}
+		else {
+			audioPaused = !audioPaused;
+		}
 	}
 	draw_set_color(global.colorThemeBorders);
 	draw_set_circle_precision(64);

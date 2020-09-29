@@ -186,6 +186,7 @@ filterGridActive = false;
 searchGridActive = false;
 // Initialize line grid as active
 currentActiveLineGrid = lineGrid;
+clearSearch = true;
 
 
 // Instantiate the Dynamic Word Grid

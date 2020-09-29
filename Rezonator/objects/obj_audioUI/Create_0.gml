@@ -34,3 +34,9 @@ audioPaused = true;
 
 audioJumpOnWordClick = true;
 mouseOverAudioUI = false;
+
+selectedStack = -1;
+stackStartTime = -1;
+stackEndTime = -1;
+stackStartUnit = -1;
+stackEndUnit = -1;

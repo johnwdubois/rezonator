@@ -7,7 +7,7 @@ function scr_clearOptions(argument0) {
 		case "Search":// clear current search
 					
 					
-			ds_grid_copy(obj_control.searchGrid, obj_control.emptySearchGrid);
+			/*ds_grid_copy(obj_control.searchGrid, obj_control.emptySearchGrid);
 			ds_grid_copy( obj_control.hitGrid,obj_control.emptyHitGrid);
 			
 			
@@ -15,10 +15,11 @@ function scr_clearOptions(argument0) {
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
 			//obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
-			//obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
+			obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
 			with (obj_alarm) {
 				alarm[0] = 5;
-			}	
+			}	*/
+			obj_control.clearSearch = true;
 			//instance_destroy(obj_dropDown);
 		break;
 		case "Filter":// clear current picks

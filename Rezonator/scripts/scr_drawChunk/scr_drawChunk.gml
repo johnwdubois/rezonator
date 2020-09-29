@@ -121,9 +121,14 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.clickedChunkID = currentChunkID; // Debug variable
 			// Add this Chunk to a chain
-			with (obj_chain) {
-				scr_wordClicked(currentWordID, unitID);
-			}
+			if(keyboard_check(vk_control)){
+					scr_combineChains(currentWordID);
+				}
+				else {
+					with (obj_chain) {
+						scr_wordClicked(currentWordID, unitID);
+					}
+				}
 		}
 			
 		if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {

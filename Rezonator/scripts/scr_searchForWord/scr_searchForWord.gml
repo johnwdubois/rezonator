@@ -244,6 +244,7 @@ function scr_searchForWord() {
 		// If matches were found, switch the user over to the search view 
 		obj_control.filterGridActive = false;
 		obj_control.searchGridActive = true;
+		obj_control.clearSearch = false;
 		scr_unFocusAllChains();
 		with(obj_control) {
 			obj_control.highlightedSearchRow = 0;// Reset the highlight with a new search
@@ -267,6 +268,7 @@ function scr_searchForWord() {
 			}
 		}
 		else {
+			obj_control.clearSearch = true;
 			obj_control.searchGridActive = false;
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
