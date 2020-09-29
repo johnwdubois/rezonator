@@ -15,7 +15,15 @@ function scr_wordClicked(argument0, argument1) {
 	*/
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
-		exit;
+		var shouldExit = true;
+		if(obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)){
+			if(obj_dialogueBox.combineChains){
+				shouldExit = false;	
+			}
+		}
+		if(shouldExit){
+			exit;
+		}
 	}
 
 	var wordID = argument0;

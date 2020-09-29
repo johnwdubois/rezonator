@@ -21,6 +21,10 @@ endCol = -1;
 alarm[7] = 2;
 
 showEndNoteWindow = false;
+confirmStackCreate = false;
+createStacksRandom = false;
+createStacksTurn = false;
+createStacksSentence = false;
 
 
 

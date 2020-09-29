@@ -181,10 +181,84 @@ function scr_drawLine() {
 				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
 					if(keyboard_check(vk_control)){
-						scr_combineChains(currentWordID);
+						
+						//check if we need to merge
+						var grid = obj_chain.rezChainGrid;
+						with(obj_panelPane){
+							if (currentFunction == functionChainList) {
+								// Based on user selection, get the grid of the current tab
+								switch (functionChainList_currentTab) {
+									case functionChainList_tabRezBrush:
+										grid = obj_chain.rezChainGrid;
+										show_debug_message("scr_combineChains()... grid: rezChainGrid");
+										break;
+									case functionChainList_tabTrackBrush:
+										grid = obj_chain.trackChainGrid;
+										show_debug_message("scr_combineChains()... grid: trackChainGrid");
+										break;
+									case functionChainList_tabStackBrush:
+										grid = obj_chain.stackChainGrid;
+										show_debug_message("scr_combineChains()... grid: stackChainGrid");
+										break;
+									case functionChainList_tabClique:
+										grid = obj_chain.cliqueDisplayGrid;
+										show_debug_message("scr_combineChains()... grid: cliqueDisplayGrid");
+										break;
+									default:
+										grid = obj_chain.rezChainGrid;
+										show_debug_message("scr_combineChains()... could not find grid, defaulting to rezChainGrid");
+										break;
+								}
+							}
+						}
+	
+						//find current selected chain, ie starting chain that will be added to				
+						var currentChainfocusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
+	
+	
+						// find next selected chain, ie the chain that will be deleted and merged into the other chain
+						// if this is a rezChain or trackChain, we'll get the chainID from the inChainsList from the dynamicWordGrid
+						// if this is a stackChain, we'll get the chainID from the unitInStackGrid
+						var selectedChainfocusedChainRow = -1;
+						var chainIDRow = -1;
+						if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
+							var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordID - 1);
+							var inChainsListSize = ds_list_size(inChainsList);
+							for (var i = 0; i < inChainsListSize; i++) {
+								var currentChainID = ds_list_find_value(inChainsList, i);
+								chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
+								if (chainIDRow != -1) {
+									break;
+								}
+							}
+						}
+						else if (grid == obj_chain.stackChainGrid) {
+							var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID);
+							var currentChainID = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
+							chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
+						}
+						if (chainIDRow != -1){
+							selectedChainfocusedChainRow = chainIDRow;
+						}
+	
+	
+						if (selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1
+						or selectedChainfocusedChainRow == currentChainfocusedChainRow) {
+							show_debug_message("scr_combineChains()... selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1, or they are equal,  exiting...");
+							exit;
+						}
+						
+						
+						
+						obj_control.clickedWordID = currentWordID;
+						with(obj_alarm){
+							alarm[9] = 3;
+						}
 					}
-					with (obj_chain) {
-						scr_wordClicked(currentWordID, unitID);
+					else {
+						with (obj_chain) {
+							scr_wordClicked(currentWordID, unitID);
+						}
 					}
 				}
 			}

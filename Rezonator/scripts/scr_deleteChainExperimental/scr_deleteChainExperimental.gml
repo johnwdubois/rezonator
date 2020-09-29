@@ -26,7 +26,7 @@ function scr_deleteChainExperimental(chainID){
 		}
 	}
 	if (rowInGrid == -1) {
-		show_debug_message("rowInGrid == -1, exiting...");
+		show_debug_message("scr_deleteChainExperimental()... rowInGrid == -1, exiting...");
 		exit;
 	}
 	show_debug_message("scr_deleteChainExperimental()... rowInGrid: " + string(rowInGrid));

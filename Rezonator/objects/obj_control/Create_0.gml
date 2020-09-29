@@ -600,6 +600,7 @@ if(global.tutorial){
 		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
 }
 
+clickedWordID = -1;
 rightClickUnitID = 0;
 rightClickWordID = 0;
 rightClickWordSeq = 0;

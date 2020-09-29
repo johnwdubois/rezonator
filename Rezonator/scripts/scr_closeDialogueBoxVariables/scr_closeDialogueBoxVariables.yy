@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "dropDownLists",
-    "path": "folders/Scripts/UI/dropDownLists.yy",
+    "name": "dialogueBox",
+    "path": "folders/Scripts/UI/dialogueBox.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_searchOptions",
+  "name": "scr_closeDialogueBoxVariables",
   "tags": [],
   "resourceType": "GMScript",
 }

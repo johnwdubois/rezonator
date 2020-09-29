@@ -47,6 +47,7 @@ clearAllRez = false;
 clearAllLinks = false;
 clearChain = false;
 layerLink = false;
+combineChains = false;
 
 canDelete = true;
 canDeleteHoldingCounter = 0;

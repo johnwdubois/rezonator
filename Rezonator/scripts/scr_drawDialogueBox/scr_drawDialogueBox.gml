@@ -679,33 +679,8 @@ function scr_drawDialogueBox() {
 				obj_control.discoIDSelected = false;
 			}
 			
-			obj_control.fPressed = false;
-			obj_control.ePressed = false;
-			obj_control.gPressed = false;
-			obj_control.transcriptSearch = false;
-			obj_control.inChainBool = false;
-			obj_control.caseSensitive = false;
-			obj_control.regExCheck = false;
-			obj_control.goToTime =  false;
-			obj_control.rename = false;
-			obj_control.recolor = false;
-			obj_control.caption = false;
-			obj_control.replace = false;
-			obj_control.splitWord = false;
-			obj_control.swapLine = false;
-			obj_control.changeAuthor = false;
-			obj_control.newTagCategory = false;
-			obj_control.newCustomTagToken = false;
-			obj_control.newCustomFieldToken = false;
-			obj_control.newCustomTagUnit = false;
-			obj_control.newCustomFieldUnit = false;
-			obj_control.newCustomTagStack = false;
-			obj_control.fromDropDown = false;
-			obj_control.cursorPos = 1;
-			obj_control.inputText = "";
-			obj_control.before = true;
+			scr_closeDialogueBoxVariables();
 			instance_destroy();
-			obj_control.dialogueBoxActive = false;
 		}
 		
 	}
@@ -719,34 +694,8 @@ function scr_drawDialogueBox() {
 					obj_control.discoIDSelected = false;
 				}
 			
-				obj_control.newWordCreated = false;
-				obj_control.fPressed = false;
-				obj_control.ePressed = false;
-				obj_control.gPressed = false;
-				obj_control.transcriptSearch = false;
-				obj_control.inChainBool = false;
-				obj_control.caseSensitive = false;
-				obj_control.regExCheck = false;
-				obj_control.goToTime =  false;
-				obj_control.rename = false;
-				obj_control.recolor = false;
-				obj_control.caption = false;
-				obj_control.replace = false;
-				obj_control.splitWord = false;
-				obj_control.swapLine = false;
-				obj_control.changeAuthor = false;
-				obj_control.newTagCategory = false;
-				obj_control.newCustomTagToken = false;
-				obj_control.newCustomFieldToken = false;
-				obj_control.newCustomTagUnit = false;
-				obj_control.newCustomFieldUnit = false;
-				obj_control.newCustomTagStack = false;
-				obj_control.fromDropDown = false;
-				obj_control.inputText = "";
-				obj_control.cursorPos = 1;
-				obj_control.before = true;
+				scr_closeDialogueBoxVariables();
 				instance_destroy();
-				obj_control.dialogueBoxActive = false;
 	
 		
 	}
@@ -863,35 +812,9 @@ function scr_drawDialogueBox() {
 		with (obj_panelPane) {
 			obj_control.discoIDSelected = false;
 		}
-	
-		obj_control.newWordCreated =false
-		obj_control.fPressed = false;
-		obj_control.gPressed = false;
-		obj_control.ePressed = false;
-		obj_control.transcriptSearch = false;
-		obj_control.inChainBool = false;
-		obj_control.caseSensitive = false;
-		obj_control.regExCheck = false;
-		obj_control.goToTime =  false;
-		obj_control.rename = false;
-		obj_control.recolor = false;
-		obj_control.caption = false;
-		obj_control.replace = false;
-		obj_control.splitWord = false;
-		obj_control.swapLine = false;
-		obj_control.changeAuthor = false;
-		obj_control.newTagCategory = false;
-		obj_control.newCustomTagToken = false;
-		obj_control.newCustomFieldToken = false;
-		obj_control.newCustomTagUnit = false;
-		obj_control.newCustomFieldUnit = false;
-		obj_control.newCustomTagStack = false;
-		obj_control.fromDropDown = false;
-		obj_control.inputText = "";
-		obj_control.cursorPos = 1;
-		obj_control.before = true;
+		
+		scr_closeDialogueBoxVariables();
 		instance_destroy();
-		obj_control.dialogueBoxActive = false;
 	}
 
 
