@@ -248,13 +248,27 @@ function scr_drawLine() {
 							exit;
 						}
 						
+	
+	
+		
+						// store WID list for future
+						var selectedIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, selectedChainfocusedChainRow);
+						//var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, currentChainfocusedChainRow);
+						var selectedIDListSize = ds_list_size(selectedIDList);
+						//var sizeOfCurrentIDList = ds_list_size(currentIDList);
 						
-						
-						obj_control.clickedWordID = currentWordID;
-						obj_control.stackMerged = true;
-						with(obj_alarm){
-							alarm[9] = 3;
+						if ( selectedIDListSize == 1 ){
+							obj_control.clickedWordID = currentWordID;
+							scr_combineChains(currentWordID);
 						}
+						else{
+							obj_control.clickedWordID = currentWordID;
+							obj_control.stackMerged = true;
+							with(obj_alarm){
+								alarm[9] = 3;
+							}
+						}
+						
 					}
 					else {
 						with (obj_chain) {
