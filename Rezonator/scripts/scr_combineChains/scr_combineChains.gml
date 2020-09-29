@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_combineChains(mouseoverWordID){
-	if (live_call(argument0)) return live_result;
+	//if (live_call(argument0)) return live_result;
 	
 	var grid = obj_chain.rezChainGrid;
 	with(obj_panelPane){

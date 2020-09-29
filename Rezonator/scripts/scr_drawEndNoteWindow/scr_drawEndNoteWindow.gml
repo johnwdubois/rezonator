@@ -79,8 +79,9 @@ function scr_drawEndNoteWindow(){
 	draw_set_font(fnt_mainLarge1);
 	
 	// draw button text
-	draw_text(floor(okButtonX1), floor((okButtonY2 - okButtonY1)/2 + okButtonY1), "Create Stacks");
-	draw_text(floor(cancelButtonX1), floor((cancelButtonY2 - cancelButtonY1)/2 + okButtonY1), "Cancel");
+	draw_set_halign(fa_center);
+	draw_text(floor(mean(okButtonX1, okButtonX2)), floor((okButtonY2 - okButtonY1)/2 + okButtonY1), "Create Stacks");
+	draw_text(floor(mean(cancelButtonX1, cancelButtonX2)), floor((cancelButtonY2 - cancelButtonY1)/2 + okButtonY1), "Cancel");
 	
 	
 	
@@ -137,85 +138,6 @@ function scr_drawEndNoteWindow(){
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	scr_surfaceEnd();
-	
-	
-	
-	
-
-
-/*
-	
-	var verticleBuffer = 230;
-	var horizontalBuffer = 300;
-	var stackBoxXOffset = 280;
-	var stackBoxYOffset = 160;
-	var buttonXOffset = 65;
-	var buttonYOffset = 25;
-	var captionBoxWidth = 240;
-	var captionBoxHeight = 185;
-	var rightCenter = 160;
-	
-	draw_set_colour(global.colorThemePaneBG);
-	if (global.colorTheme ==0) {
-	draw_set_colour(c_ltgray);
-	}
-		
-	// draw background UI
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
-
-		
-	// draw stack box
-	draw_set_colour(c_white);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset , camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 20, camera_get_view_width(camera_get_active()) /2 + 20, camera_get_view_height(camera_get_active())/2 + stackBoxYOffset - 20, false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset , camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 20, camera_get_view_width(camera_get_active()) /2 + 21, camera_get_view_height(camera_get_active())/2 + stackBoxYOffset - 20, true);
-
-		
-	// draw inside stack box
-	draw_set_colour(c_white);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset , camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 10 , camera_get_view_width(camera_get_active()) /2 + 20, camera_get_view_height(camera_get_active())/2 + stackBoxYOffset - 20, false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset , camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 10 , camera_get_view_width(camera_get_active()) /2 + 21, camera_get_view_height(camera_get_active())/2 + stackBoxYOffset - 20, true);
-
-	// draw stack caption box
-	draw_set_colour(c_white);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 50, camera_get_view_width(camera_get_active()) /2 + 40 + captionBoxWidth, camera_get_view_height(camera_get_active())/2 - 50 + captionBoxHeight, false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40 , camera_get_view_height(camera_get_active())/2  - 50, camera_get_view_width(camera_get_active()) /2 + 40 + captionBoxWidth, camera_get_view_height(camera_get_active())/2  - 50 + captionBoxHeight, true);
-	draw_set_colour(c_white);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 25, camera_get_view_width(camera_get_active()) /2 + 40 + captionBoxWidth, camera_get_view_height(camera_get_active())/2 - 25 + captionBoxHeight - 20, false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2  - 25, camera_get_view_width(camera_get_active()) /2 + 40 + captionBoxWidth, camera_get_view_height(camera_get_active())/2  - 25 + captionBoxHeight - 20, true);
 
 	
-	draw_set_colour(global.colorThemeText);
-	draw_set_font(fnt_mainBold);
-	draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - stackBoxXOffset  + 30), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 5), "Select All");
-	
-	draw_set_colour(global.colorThemeText);
-	draw_set_font(fnt_mainBold);
-	draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 15), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 15), string(game_display_name));
-	
-	draw_set_font(fnt_mainLarge1);
-
-	// draw buttons for OK and Cancel
-	draw_set_colour(global.colorThemeBG);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 - 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 - 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, true);
-	draw_set_colour(global.colorThemeBG);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, false);
-	draw_set_colour(global.colorThemeBorders);
-	draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, true);
-	draw_set_colour(global.colorThemeText);
-	draw_set_font(fnt_mainLarge1);
-	
-	// draw button text
-	draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 155), floor(camera_get_view_height(camera_get_active()) / 2 + 180), "Show Stacks");
-	draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active())/2 + 180), "Cancel");
-	
-	*/
 }
