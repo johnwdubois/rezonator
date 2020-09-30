@@ -40,7 +40,7 @@ function scr_filterOptions(argument0) {
 			ds_list_add(dropDownOptionList, "Prior", "Tween", "Next");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing)  , -999, obj_dropDown);
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
 				dropDownInst.optionListType = 19;
 					
@@ -49,18 +49,24 @@ function scr_filterOptions(argument0) {
 			}
 		break;
 	
-		case "Add": // add all of a certain chain type to filter
+		case "Pick All": // add all of a certain chain type to filter
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Rez Chains", "Track Chains", "Stacks");
+			ds_list_add(dropDownOptionList, "Rez", "Track", "Stack");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
 				dropDownInst.optionListType = 34;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
 			}
+			break;
+		case "Clear": // add all of a certain chain type to filter	
+			ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
+			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
+			instance_destroy(obj_dropDown);
 			break;
 		default:
 			break;

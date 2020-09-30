@@ -151,10 +151,11 @@ if (scrollBarHolding) {
 
 if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left) 
 and !point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight)
-and !scrollBarHoldingDelay) {
+and !scrollBarHoldingDelay and !obj_control.nestedDropdownActive) {
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
 	}
+
 	instance_destroy();
 }
 scrollBarHoldingDelay = scrollBarHolding;
