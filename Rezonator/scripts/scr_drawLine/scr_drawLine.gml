@@ -379,7 +379,7 @@ function scr_drawLine() {
 	
 	
 		// Set the opacity of the Highlight
-		if(currentActiveLineGrid == obj_control.searchGrid) {
+		/*if(currentActiveLineGrid == obj_control.searchGrid) {
 			highlightedSearchRowAlpha = 0.3;
 		}
 		else {
@@ -398,7 +398,7 @@ function scr_drawLine() {
 			var highlightRectY2 = speakerRectY2;
 		
 			draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
-		}
+		}*/
 	
 		//Draw quickstack highlights here
 		if (!obj_chain.inRezPlay) {

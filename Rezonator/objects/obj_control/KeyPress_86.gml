@@ -45,11 +45,12 @@ else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Switch back to either main or filter grids
 	else if(currentActiveLineGrid == searchGrid) { 
 		searchGridActive = false;
-		var currentFocusLineSearch = scr_currentCenterLine();
+		var currentFocusLineSearch = scr_currentCenterLine() - 2;
 		//show_message(currentFocusLineSearch);
 		var currentFocusUnitID = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, currentFocusLineSearch);
-		var currentFocusLine = ds_grid_value_y(lineGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(lineGrid), currentFocusUnitID) - 1;
+		var currentFocusLine = ds_grid_value_y(lineGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(lineGrid), currentFocusUnitID) - 3;
 		//show_message(currentFocusLine);
+		
 		// Check to see which grid we're switching back into
 		if(preSwitchLineGrid == filterGrid) {
 			scr_renderFilter(); // Thankfully this script does a lot of work for us
@@ -60,12 +61,18 @@ else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 		preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow;
 		
 		// Make sure we don't try to render a line that doesn't exist
-		//if(highlightedSearchRow > 0 && ds_grid_value_exists(preSwitchLineGrid, 0, 0, 0, ds_grid_height(preSwitchLineGrid), highlightedSearchRow)){
+		if(highlightedSearchRow > 0 && ds_grid_value_exists(preSwitchLineGrid, 0, 0, 0, ds_grid_height(preSwitchLineGrid), highlightedSearchRow)){
+			var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, highlightedSearchRow);
+			show_debug_message(linePixelY);
+			preSwitchDisplayRow = -linePixelY + (obj_control.gridSpaceVertical / 2);
+			show_debug_message(preSwitchDisplayRow);
+		}
+		else {
 			var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentFocusLine - 1);
 			//show_message(linePixelY);
 			preSwitchDisplayRow = -linePixelY + (obj_control.gridSpaceVertical / 2);
-			//show_message(preSwitchDisplayRow);
-		//}
+		}
+		
 		//currentCenterDisplayRow = preSwitchDisplayRow;
 		obj_control.scrollPlusYDest = preSwitchDisplayRow;
 		
