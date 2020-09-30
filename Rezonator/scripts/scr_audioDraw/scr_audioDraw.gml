@@ -6,12 +6,11 @@ function scr_audioDraw() {
 	windowWidth = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
 	x = 0;
 	y = (camera_get_view_height(camera_get_active())) - windowHeight;
-	
+	  
 	var progressColor = c_orange;
 	var playPauseSprite = spr_playPause;
 
 	// draw background
-	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 	draw_set_color(global.colorThemeBorders);
@@ -33,8 +32,11 @@ function scr_audioDraw() {
 
 
 	// draw seekbar BG
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, x + (windowWidth / 2), y + windowHeight, true);
 	draw_set_color(global.colorThemeBG);
-	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y + 10, seekBarX2 + string_width("AAAAAAA"), y + windowHeight, false);
+	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, seekBarX2 + string_width("AAAAAAA"), y + windowHeight, false);
+
 
 	// draw seekbar
 	seekBarWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -168,8 +170,9 @@ function scr_audioDraw() {
 	// draw jumpToUnit toggle
 	draw_set_font(global.fontChainContents);
 	draw_set_halign(fa_right);
-	var jumpUnitStartTextX = x + windowWidth - string_width("AA");
-	var jumpUnitStartTextY = floor(playPauseY) - floor((string_height("0") / 2));
+	draw_set_valign(fa_middle);
+	var jumpUnitStartTextX = x + windowWidth - string_width("A");
+	var jumpUnitStartTextY = y + (windowHeight / 2);
 	draw_text(jumpUnitStartTextX, jumpUnitStartTextY, "Click word to jump audio");
 
 	var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width("Click word to jump audio  ");
