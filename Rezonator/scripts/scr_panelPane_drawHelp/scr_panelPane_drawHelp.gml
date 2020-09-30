@@ -13,7 +13,7 @@ function scr_panelPane_drawHelp() {
 		Author: Terry DuBois
 	*/
 	
-	if (live_call()) return live_result;
+	//if (live_call()) return live_result;
 	
 	if(not obj_panelPane.showNav) {
 		//exit;	

@@ -1,5 +1,5 @@
 function scr_audioDraw() {
-	if (live_call()) return live_result;
+	//if (live_call()) return live_result;
 	
 	// Draw Rezonator's audio player
 	windowHeight = (camera_get_view_height(camera_get_active())) * 0.08;
