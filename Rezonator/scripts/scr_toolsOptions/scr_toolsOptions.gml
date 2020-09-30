@@ -5,6 +5,7 @@ function scr_toolsOptions(argument0) {
 	switch (optionSelected)
 	{
 		case "Search":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Keyword", "Clear");
 						
@@ -18,6 +19,7 @@ function scr_toolsOptions(argument0) {
 			}
 		break;
 		case "Stack":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "StackShow", "Stacker");
 						

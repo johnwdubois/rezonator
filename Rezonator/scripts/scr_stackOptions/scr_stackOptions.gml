@@ -4,7 +4,6 @@ function scr_stackOptions(argument0) {
 	switch (optionSelected)
 	{
 		case "Stacker":
-			obj_control.nestedDropdownActive = true;
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList,  "Turn", "Sentence", "Random");
 			if (ds_list_size(dropDownOptionList) > 0) {
