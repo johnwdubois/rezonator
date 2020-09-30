@@ -48,7 +48,7 @@ editOptionList = ds_list_create();
 ds_list_add(editOptionList, "Insert", "Paste", "Delete", "Edit", "Split", "Restore", "Chunk", "Tag");*/
 
 editOptionList = ds_list_create();
-ds_list_add(editOptionList, "Go to Line", "Go to Time");
+ds_list_add(editOptionList, "Delete All","Go to Line", "Go to Time");
 
 viewOptionList = ds_list_create();
 ds_list_add(viewOptionList, "Window", "Justify", "Prose", "Hide");//"Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");

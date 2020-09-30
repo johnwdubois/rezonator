@@ -18,6 +18,7 @@ function scr_closeDialogueBoxVariables(){
 		splitWord = false;
 		swapLine = false;
 		changeAuthor = false;
+		changeZero = false;
 		newTagCategory = false;
 		newCustomTagToken = false;
 		newCustomFieldToken = false;
@@ -29,5 +30,6 @@ function scr_closeDialogueBoxVariables(){
 		cursorPos = 1;
 		before = true;
 		dialogueBoxActive = false;
+		
 	}
 }
