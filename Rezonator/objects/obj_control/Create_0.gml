@@ -486,6 +486,7 @@ replace = false;
 splitWord = false;
 swapLine = false;
 changeAuthor = false;
+changeZero = false;
 newTagCategory = false;
 newCustomTagToken = false;
 newCustomFieldToken = false;

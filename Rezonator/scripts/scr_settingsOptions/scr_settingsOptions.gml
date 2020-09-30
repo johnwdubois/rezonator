@@ -56,6 +56,22 @@ function scr_settingsOptions(argument0) {
 			}
 			instance_destroy(obj_dropDown);
 		break;
+		case "Zero":
+			obj_control.currentNewWordPre = 4;
+			if (!obj_control.dialogueBoxActive) {
+				keyboard_string = "";
+				obj_control.changeZero = true;
+			}
+
+
+			obj_control.dialogueBoxActive = true;
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			}
+			instance_destroy(obj_dropDown);
+		break;
+		
 		
 		case "Autosave":
 			var dropDownOptionList = ds_list_create();

@@ -36,7 +36,40 @@ function scr_audioDraw() {
 	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, x + (windowWidth / 2), y + windowHeight, true);
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, seekBarX2 + string_width("AAAAAAA"), y + windowHeight, false);
-
+	
+	// draw play/pause
+	var playPauseMouseOver = false;
+	var playPauseRad = sprite_get_width(playPauseSprite) / 2;
+	var playPauseX = mean(seekBarX1, seekBarX2);
+	var playPauseY = clamp(seekBarY1 - 38, y + playPauseRad + 2, y + windowHeight);
+	draw_sprite(playPauseSprite, !audioPaused, playPauseX, playPauseY);
+	if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
+		if (mouse_check_button_pressed(mb_left)) {
+			audioPaused = !audioPaused;
+		}
+		playPauseMouseOver = true;
+		playPauseRad += 3;
+	}
+	if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
+		//var stackSelected = 
+		if(selectedStack > -1) {
+			if(audioPaused) {
+				scr_audioJumpToUnit(stackStartUnit);
+				audioPaused = !audioPaused;
+			}
+			else{
+				audioPaused = !audioPaused;
+			}
+		}
+		else {
+			audioPaused = !audioPaused;
+		}
+	}
+	draw_set_color(global.colorThemeBorders);
+	draw_set_circle_precision(64);
+	for (var i = 0; i < 1.5; i += 0.25) {
+		draw_circle(playPauseX, playPauseY, playPauseRad - i, true);
+	}
 
 	// draw seekbar
 	seekBarWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -61,7 +94,7 @@ function scr_audioDraw() {
 	or playheadHolding) {
 		playheadHoldable = true;
 	}
-	if (playheadHoldable) {
+	if (playheadHoldable and not playPauseMouseOver) {
 		playheadRadDest = playheadRadBig;
 		if (mouse_check_button_pressed(mb_left)) {
 			playheadHolding = true;
@@ -100,37 +133,7 @@ function scr_audioDraw() {
 
 
 
-	// draw play/pause
-	var playPauseRad = sprite_get_width(playPauseSprite) / 2;
-	var playPauseX = mean(seekBarX1, seekBarX2);
-	var playPauseY = clamp(seekBarY1 - 38, y + playPauseRad + 2, y + windowHeight);
-	draw_sprite(playPauseSprite, !audioPaused, playPauseX, playPauseY);
-	if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
-		if (mouse_check_button_pressed(mb_left)) {
-			audioPaused = !audioPaused;
-		}
-		playPauseRad += 3;
-	}
-	if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
-		//var stackSelected = 
-		if(selectedStack > -1) {
-			if(audioPaused) {
-				scr_audioJumpToUnit(stackStartUnit);
-				audioPaused = !audioPaused;
-			}
-			else{
-				audioPaused = !audioPaused;
-			}
-		}
-		else {
-			audioPaused = !audioPaused;
-		}
-	}
-	draw_set_color(global.colorThemeBorders);
-	draw_set_circle_precision(64);
-	for (var i = 0; i < 1.5; i += 0.25) {
-		draw_circle(playPauseX, playPauseY, playPauseRad - i, true);
-	}
+	
 
 
 
