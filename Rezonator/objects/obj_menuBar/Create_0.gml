@@ -18,33 +18,28 @@ menuBarGrid_rowFile = 0;
 //menuBarGrid_rowEdit = 2;
 //menuBarGrid_rowTools = 3;
 //menuBarGrid_rowSettings = 5;
-menuBarGrid_rowView = 1;
-menuBarGrid_rowSearch = 2;
+menuBarGrid_rowEdit = 1;
+menuBarGrid_rowView = 2;
 menuBarGrid_rowFilter = 3;
-menuBarGrid_rowStack = 4;
-menuBarGrid_rowAdvanced = 5;
+menuBarGrid_rowTools = 4;
+menuBarGrid_rowSettings = 5;
 menuBarGrid_rowHelp = 6;
 
 
 
 
 fileDropDownOptionListType = 4;
-//linkDropDownOptionListType = -1;
-//editDropDownOptionListType = 5;
+editDropDownOptionListType = 42;
 viewDropDownOptionListType = 6;
-searchDropDownOptionListType = 7;
 toolsDropDownOptionListType = 22;
-advancedDropDownOptionListType = 5;
-filterDropDownOptionListType = 33;
-// formally options
 settingsDropDownOptionListType = 21;
+filterDropDownOptionListType = 33;
 helpDropDownOptionListType = 23;
-stackDropDownOptionListType = 28;
 
 
 
 fileOptionList = ds_list_create();
-ds_list_add(fileOptionList, "Save", "Export", "Clip", "Media",  "Exit");
+ds_list_add(fileOptionList, "Save", "Media", "Clip", "Export",  "Exit");
 
 /*linkOptionList = ds_list_create();
 ds_list_add(linkOptionList, "Track", "Rez", "Stack", "Quick", "Clique", "Focus", "Zap", "Quit");
@@ -52,20 +47,23 @@ ds_list_add(linkOptionList, "Track", "Rez", "Stack", "Quick", "Clique", "Focus",
 editOptionList = ds_list_create();
 ds_list_add(editOptionList, "Insert", "Paste", "Delete", "Edit", "Split", "Restore", "Chunk", "Tag");*/
 
-viewOptionList = ds_list_create();
-ds_list_add(viewOptionList, "Pane", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");//"Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");
+editOptionList = ds_list_create();
+ds_list_add(editOptionList, "Go to Line", "Go to Time");
 
-searchOptionList = ds_list_create();
-ds_list_add(searchOptionList, "Word", "Line", "Time");
+viewOptionList = ds_list_create();
+ds_list_add(viewOptionList, "Window", "Justify", "Prose", "Hide");//"Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");
 
 filterOptionList = ds_list_create();
-ds_list_add(filterOptionList, "Toggle", "Context", "Add");
+ds_list_add(filterOptionList, "Toggle",  "Pick All", "Context", "Clear");
 
 //toolsOptionList = ds_list_create();
 //ds_list_add(toolsOptionList, "Sort", "StackShow", "Play", "Rez-Play");
 
-advancedOptionList = ds_list_create();
-ds_list_add(advancedOptionList, "Author", "Clear", "Autosave"); // "Delete All","Autosave");
+toolsOptionList = ds_list_create();
+ds_list_add(toolsOptionList, "Search", "Stack");
+
+settingsOptionList = ds_list_create();
+ds_list_add(settingsOptionList, "User", "Zoom", "Theme", "Autosave", "Advanced"); // "Delete All","Autosave");
 
 //settingsOptionList = ds_list_create();
 //ds_list_add(settingsOptionList, "Zoom", "Dark Theme", "Mute", "Author");
@@ -73,8 +71,7 @@ ds_list_add(advancedOptionList, "Author", "Clear", "Autosave"); // "Delete All",
 helpOptionList = ds_list_create();
 ds_list_add(helpOptionList, "Help", "Documentation", "About");
 
-stackOptionList = ds_list_create();
-ds_list_add(stackOptionList, "Create Stacks", "StackShow");
+
 
 
 //"File", "Link", "Edit", "View", "Search", "Tools", "Advanced", "Setting", "Help"
@@ -93,30 +90,30 @@ ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowEdit, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowEdit, editOptionList);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowEdit, editDropDownOptionListType);*/
 
+ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowEdit, "Edit");
+ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowEdit, false);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowEdit, editOptionList);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowEdit, editDropDownOptionListType);
+
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowView, "View");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowView, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowView, viewOptionList);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowView, viewDropDownOptionListType);
-
-ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowSearch, "Search");
-ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowSearch, false);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowSearch, searchOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowSearch, searchDropDownOptionListType);
 
 ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowFilter, "Filter");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowFilter, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowFilter, filterOptionList);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowFilter, filterDropDownOptionListType);
 
-//ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowTools, "Tools");
-//ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowTools, false);
-//ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowTools, toolsOptionList);
-//ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowTools, toolsDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowTools, "Tools");
+ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowTools, false);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowTools, toolsOptionList);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowTools, toolsDropDownOptionListType);
 
-ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowAdvanced, "Advanced");
-ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowAdvanced, false);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowAdvanced, advancedOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowAdvanced, advancedDropDownOptionListType);
+ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowSettings, "Settings");
+ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowSettings, false);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowSettings, settingsOptionList);
+ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowSettings, settingsDropDownOptionListType);
 
 //ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowSettings, "Settings");
 //ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowSettings, false);
@@ -128,10 +125,6 @@ ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowHelp, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowHelp, helpOptionList);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowHelp, helpDropDownOptionListType);
 
-ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowStack, "Stack");
-ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowStack, false);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowStack, stackOptionList);
-ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowStack, stackDropDownOptionListType);
 
 
  

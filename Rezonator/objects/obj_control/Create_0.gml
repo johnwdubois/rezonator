@@ -600,6 +600,7 @@ if(global.tutorial){
 		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
 }
 
+nestedDropdownActive = false;
 stackMerged = false;
 clickedWordID = -1;
 rightClickUnitID = 0;

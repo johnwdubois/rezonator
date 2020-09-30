@@ -3,7 +3,7 @@ function scr_settingsOptions(argument0) {
 
 	switch (optionSelected)
 	{
-		case "Dark Theme":
+		case "Theme":
 		
 			global.colorTheme++;
 			if (global.colorTheme >= ds_grid_height(global.colorThemeGrid)) {
@@ -31,7 +31,7 @@ function scr_settingsOptions(argument0) {
 			ds_list_add(dropDownOptionList, "In", "Out", "Wide", "Narrow", "Tall", "Short");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y, -999, obj_dropDown);
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + optionSpacing , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
 				dropDownInst.optionListType = 13;
 					
@@ -40,12 +40,49 @@ function scr_settingsOptions(argument0) {
 			}
 	
 		break;
-		case "Mute":
-			audio_stop_all();
+
+		case "User":
+			obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;
+			if (!obj_control.dialogueBoxActive) {
+				keyboard_string = "";
+				obj_control.changeAuthor = true;
+			}
+
+
+			obj_control.dialogueBoxActive = true;
+
+			if (!instance_exists(obj_dialogueBox)) {
+				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+			}
+			instance_destroy(obj_dropDown);
 		break;
-		case "Author":
-			show_message("Coming Soon");
+		
+		case "Autosave":
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "5 minutes", "10 minutes", "20 minutes", "30 minutes", "Off");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*3)  , -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 40;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
 		break;
+		case "Advanced":
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "Developer");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*4)  , -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 5;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+		break
 		default:
 		break;
 	
