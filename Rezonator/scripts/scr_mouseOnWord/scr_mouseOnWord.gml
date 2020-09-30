@@ -148,7 +148,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 					functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 					functionChainList_currentTab = functionChainList_tabLine;
 				}*/
-				if(!global.readHintHide){
+				if(not global.readHintHide and not obj_audioUI.audioJumpOnWordClick){
 					var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
 					//obj_control.readModeHints++;
 				}
