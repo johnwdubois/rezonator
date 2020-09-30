@@ -152,7 +152,8 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		if (keyboard_check(vk_pagedown) and not keyboard_check(vk_pageup)) {
 			if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % holdPgMod == 0)) {
 				// will need to make this the difference with windowHeight to scale with PanelPanes
-				scrollSpeed -= (((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+				scrollSpeed -= camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+				show_debug_message(camera_get_view_height(view_get_camera(0)));
 			}
 			if(holdPgDn > 45) {
 				holdPgMod = 3;
@@ -164,7 +165,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		}
 		if (keyboard_check(vk_pageup) and not keyboard_check(vk_pagedown)) {
 			if (holdPgUp == 0 or (holdPgUp > 15 and holdPgUp % holdPgMod == 0)) {
-				scrollSpeed += (((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
+				scrollSpeed += camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
 			}
 			if(holdPgUp > 45) {
 				holdPgMod = 3;
