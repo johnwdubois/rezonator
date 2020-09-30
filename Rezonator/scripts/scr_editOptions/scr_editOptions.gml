@@ -17,6 +17,8 @@ function scr_editOptions(optionSelected){
 			break;
 			
 		case "Delete All":
+		
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Track Chains", "Rez Chains", "Stacks", "Chains");
 						

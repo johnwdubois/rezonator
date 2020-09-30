@@ -71,6 +71,7 @@ draw_clear_alpha(c_black, 0);
 
 
 if (ds_list_size(optionList) <= 0) {
+	show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0");
 	instance_destroy();
 }
 
@@ -165,6 +166,7 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
 	}
+	show_debug_message("obj_dropDown Draw ... destroying dropdowns");
 	with (obj_dropDown) {
 		instance_destroy();
 	}
