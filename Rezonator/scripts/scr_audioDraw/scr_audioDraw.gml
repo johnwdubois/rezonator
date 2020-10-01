@@ -45,6 +45,14 @@ function scr_audioDraw() {
 	draw_sprite(playPauseSprite, !audioPaused, playPauseX, playPauseY);
 	if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
 		if (mouse_check_button_pressed(mb_left)) {
+			if(selectedStack > -1) {
+				if(audioPaused) {
+					if(audioPos >= bookmarkEndTime) {
+						scr_audioJumpToUnit(stackStartUnit);
+						audioPaused = !audioPaused;
+					}
+				}
+			}
 			audioPaused = !audioPaused;
 		}
 		playPauseMouseOver = true;
@@ -54,7 +62,17 @@ function scr_audioDraw() {
 		//var stackSelected = 
 		if(selectedStack > -1) {
 			if(audioPaused) {
+				//show_message(stackStartUnit);
 				scr_audioJumpToUnit(stackStartUnit);
+				audioPaused = !audioPaused;
+			}
+			else{
+				audioPaused = !audioPaused;
+			}
+		}
+		else if(bookmarkStartTime > -1) {
+			if(audioPaused) {
+				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				audioPaused = !audioPaused;
 			}
 			else{
@@ -65,6 +83,22 @@ function scr_audioDraw() {
 			audioPaused = !audioPaused;
 		}
 	}
+	if (keyboard_check_pressed(vk_enter) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
+		if(selectedStack == -1) {
+			if(audioPaused) {
+				var currentFocusUnit = scr_currentCenterLine();
+				var currentFocusUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentFocusUnit - 1);
+				bookmarkStartTime = currentFocusUnitStartTime;
+				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+			}
+			else{
+				bookmarkStartTime = audioPos;
+				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+				audioPaused = !audioPaused;
+			}
+		}
+	}
+	
 	draw_set_color(global.colorThemeBorders);
 	draw_set_circle_precision(64);
 	for (var i = 0; i < 1.5; i += 0.25) {
@@ -124,14 +158,42 @@ function scr_audioDraw() {
 	draw_set_color(progressColor);
 	draw_set_circle_precision(64);
 	if (abs(audioPos - audioPosTemp) > 5 and not playheadHolding) {
-		show_message("here")
+		//show_message("here")
 		draw_set_alpha(0);
 	}
 	draw_circle(playheadX, playheadY, playheadRad, false);
 	draw_set_alpha(1);
 
-
-
+	if(bookmarkStartTime > -1) {
+		show_debug_message("bookmarkStartTime: " + string(bookmarkStartTime));
+		show_debug_message("seekBarWidth: " + string(seekBarWidth));
+		
+		//Draw bookmarks
+		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
+		bookmarkY = mean(seekBarY1, seekBarY2);
+	
+		//draw_set_color(c_green);
+		//draw_line_width(bookmarkX, bookmarkY - playheadRad * 2, bookmarkX, bookmarkY + playheadRad * 2, 1);
+		draw_set_halign(fa_right);
+		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.2, 0.2, -360, c_green, 1);
+		
+		if(bookmarkEndTime > -1) {
+			show_debug_message("bookmarkEndTime: " + string(bookmarkEndTime));
+			show_debug_message("seekBarWidth: " + string(seekBarWidth));
+		
+			//Draw bookmarks
+			endmarkX = ((real(bookmarkEndTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
+			endmarkY = mean(seekBarY1, seekBarY2);
+			
+			draw_set_halign(fa_left);
+			draw_sprite_ext(spr_linkArrow, 0, endmarkX, endmarkY, 0.2, 0.2, -180, c_red, 1);
+		
+		
+		}
+	}
+	else if(bookmarkX != -1) {
+		
+	}
 
 	
 

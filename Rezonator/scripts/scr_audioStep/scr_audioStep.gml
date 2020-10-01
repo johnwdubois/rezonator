@@ -37,8 +37,8 @@ function scr_audioStep() {
 		audio_sound_set_track_position(audioSound, 0);
 		audioPaused = true;
 	}
-	if(selectedStack > -1) { 
-		if(audioPos >= stackEndTime) {
+	if(bookmarkEndTime > -1) { 
+		if(audioPos >= bookmarkEndTime) {
 			audioPaused = true;
 		}
 	}
@@ -48,18 +48,20 @@ function scr_audioStep() {
 		if(currentStackRow > -1) {
 			if(currentStackRow != selectedStack) {
 				selectedStack = currentStackRow;
+				bookmarkStartTime = -1;
+				bookmarkEndTime = -1;
 				var currentUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, currentStackRow);
 				var currentUnitListSize = ds_list_size(currentUnitList);
 				for(var unitTimeLoop = 0; unitTimeLoop < currentUnitListSize; unitTimeLoop++) {
 					var currentUnit = ds_list_find_value(currentUnitList, unitTimeLoop);
 					var currentUnitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentUnit - 1);
 					var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentUnit - 1);
-					if(stackStartTime == -1 or currentUnitStart < stackStartTime) {
-						stackStartTime = currentUnitStart;
+					if(bookmarkStartTime == -1 or currentUnitStart < bookmarkStartTime) {
+						bookmarkStartTime = currentUnitStart;
 						stackStartUnit = currentUnit;
 					}
-					if(stackEndTime == -1 or currentUnitEnd > stackEndTime) {
-						stackEndTime = currentUnitEnd;
+					if(bookmarkEndTime == -1 or currentUnitEnd > bookmarkEndTime) {
+						bookmarkEndTime = currentUnitEnd;
 						stackEndUnit = currentUnit;
 					}
 				}
@@ -67,14 +69,14 @@ function scr_audioStep() {
 		}
 		else {
 			selectedStack = -1;	
-			stackStartTime = -1;
-			stackEndTime = -1;
+			//bookmarkStartTime = -1;
+			//bookmarkEndTime = -1;
 		}
 	}
 	else {
 		selectedStack = -1;	
-		stackStartTime = -1;
-		stackEndTime = -1;
+		//bookmarkStartTime = -1;
+		//bookmarkEndTime = -1;
 	}
 	
 }
