@@ -1,4 +1,4 @@
-function scr_jumpToTime(argument0) {
+function scr_jumpToTime(timeStr) {
 	/*
 		scr_jumpToTime(timeStr);
 	
@@ -13,8 +13,9 @@ function scr_jumpToTime(argument0) {
 	
 		Author: ?
 	*/
+	
+	if (live_call(timeStr)) return live_result;
 
-	var timeStr = argument0;
 	discoID = obj_panelPane.selectedDiscoID;
 
 	var foundRow = 0;
@@ -22,29 +23,40 @@ function scr_jumpToTime(argument0) {
 	if (timeStr == "") {
 		exit;
 	}
+	
+	
+	var strLenDigits = string_length(string_digits(timeStr));
+	var strLenTotal = string_length(timeStr);
+	show_debug_message("scr_jumpToTime() ... strLenDigits: " + string(strLenDigits) + ", strLenTotal: " + string(strLenTotal));
 
-	if (string_length(timeStr) < 1) {
+	if (strLenDigits < strLenTotal) {
 		show_message("Input a number please.");
 		exit;
 	}
+	
+	var timeStrReal = real(timeStr);
+	
+	
 	if(discoID != ""){
 		var startOfDisco = ds_grid_value_y(obj_control.lineGrid , obj_control.lineGrid_colDiscoID , 0 , obj_control.lineGrid_colDiscoID, ds_grid_height(obj_control.lineGrid), discoID );
 	}
 	else{
 		var startOfDisco = 0;
 	}
-	var lineGridHeight = ds_grid_height(obj_control.lineGrid);
-	for(var i = startOfDisco ; i< lineGridHeight; i++){
-		var currentTime = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, i);
 	
-		if(real(string_digits(currentTime)) >= real(string_digits(timeStr))){
-			//Is this search necessary? - Geo
-			foundRow = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, 0, obj_control.lineGrid_colUnitStart, ds_grid_height(obj_control.lineGrid) , currentTime);
-			i = ds_grid_height(obj_control.lineGrid);
+	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
+	for (var i = 0; i < unitGridHeight; i++){
+		var currentTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, i);
+		var currentTimeReal = real(currentTime);
+		show_debug_message("scr_jumpToTime() ... currentTimeReal: " + string(currentTimeReal));
+		
+		if (currentTimeReal >= timeStrReal) {
+			foundRow = i;
+			i = unitGridHeight;
 		}
 	}
 
-		//show_message(foundRow);
+	show_debug_message("scr_jumpToTime() ... foundRow: " + string(foundRow));
 		//show_message(ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, foundRow));
 
 	var lineNum = real(ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, foundRow));
