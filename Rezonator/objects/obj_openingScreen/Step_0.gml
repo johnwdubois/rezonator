@@ -42,3 +42,20 @@ if (global.skipToImportScreen) {
 	global.currentDirString = global.previousImportDirectory;
 	scr_openXML();
 }
+
+// skipping to import screen by clicking "Import" in file menu
+if (global.skipToPlayandLearn) {
+	global.skipToPlayandLearn = false;
+	
+	global.newProject = false;
+	global.openProject = true;
+	global.games = true;
+	global.wheresElmo =true;
+	if(global.wheresElmo){
+
+		global.currentDirString = global.rezonatorElmoDirString;
+
+
+	}
+	room_goto(rm_mainScreen);
+}

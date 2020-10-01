@@ -301,6 +301,9 @@ function scr_dropDownSelect(argument0) {
 	{
 	    scr_editOptions(optionSelected);
 	}
-
+	else if (optionListType == 43)
+	{
+	    scr_playandLearnOptions(optionSelected);
+	}
 
 }

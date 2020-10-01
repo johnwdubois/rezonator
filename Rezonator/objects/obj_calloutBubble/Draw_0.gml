@@ -14,7 +14,7 @@ draw_set_valign(fa_middle);
 
 
 bubbleHeigth = string_height(string_hash_to_newline(bubbleString));
-show_debug_message("bh:" + string(bubbleHeigth))
+//show_debug_message("bh:" + string(bubbleHeigth))
 
 
 

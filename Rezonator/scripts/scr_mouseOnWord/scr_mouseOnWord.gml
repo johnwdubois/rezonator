@@ -14,6 +14,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 	var drawLineLoop = argument10;
 	//var inMouseHoldRect = argument9;
 
+
 	//Prevent the mouse from clicking on words/lines while releasing from a drag
 	var mouseRectExists = ((abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5) or (abs(obj_control.mouseHoldRectX1 - obj_control.mouseHoldRectX2) > 5));
 	if(mouseRectExists) {
@@ -280,6 +281,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 		newWordHoverUnitID = unitID;
 		newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 		newWordHoverWordID = currentWordID;
+		
 				
 	}
 	

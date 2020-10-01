@@ -4,3 +4,4 @@ global.importGroupFileIndex = 0;
 global.importGroupOutputDir = "";
 global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
+global.skipToPlayandLearn = false;
