@@ -202,7 +202,7 @@ function scr_openingMenu() {
 
 
 	draw_set_font(fnt_main);
-	draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, "Remember Me");
+	draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, scr_get_translation("Remember Me"));
 
 	draw_set_font(fnt_main);
 	draw_set_alpha(0.5);

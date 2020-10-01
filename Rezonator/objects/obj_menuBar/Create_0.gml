@@ -60,7 +60,7 @@ ds_list_add(filterOptionList, "Toggle",  "Pick All", "Context", "Clear");
 //ds_list_add(toolsOptionList, "Sort", "StackShow", "Play", "Rez-Play");
 
 toolsOptionList = ds_list_create();
-ds_list_add(toolsOptionList, "Search", "Track", "Rez", "Stack");
+ds_list_add(toolsOptionList, "Search", "Track", "Rez", "Stack", "Play and Learn");
 
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "User", "Zoom", "Zero", "Theme", "Restore Hints", "Autosave", "Advanced"); // "Delete All","Autosave");

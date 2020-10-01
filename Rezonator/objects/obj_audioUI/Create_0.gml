@@ -45,3 +45,6 @@ bookmarkStartTime = -1;
 bookmarkEndTime = -1;
 stackStartUnit = -1;
 stackEndUnit = -1;
+stackUnitList = -1;
+stackUnitListSize = -1;
+stackUnitListPosition = -1;

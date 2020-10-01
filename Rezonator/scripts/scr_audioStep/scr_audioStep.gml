@@ -37,6 +37,30 @@ function scr_audioStep() {
 		audio_sound_set_track_position(audioSound, 0);
 		audioPaused = true;
 	}
+	if(selectedStack > -1) { 
+		if(stackUnitListSize > -1) {
+			show_debug_message("stackUnitListPosition: " + string(stackUnitListPosition));
+			if(stackUnitListPosition <= stackUnitListSize - 1) {
+				var currentUnit = ds_list_find_value(stackUnitList, stackUnitListPosition);
+				var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentUnit - 1);
+				var currentUnitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentUnit - 1);
+				
+				
+				if(audioPos >= currentUnitEnd) {
+					if (stackUnitListPosition != stackUnitListSize - 1) {
+						var nextUnit = ds_list_find_value(stackUnitList, stackUnitListPosition + 1);
+						if(currentUnit != nextUnit - 1) {
+							scr_audioJumpToUnit(nextUnit);
+						}
+					}
+					stackUnitListPosition++;
+				}
+			}
+			else if(stackUnitListPosition == stackUnitListSize) {
+				stackUnitListPosition = 0;	
+			}
+		}
+	}
 	if(bookmarkEndTime > -1) { 
 		if(audioPos >= bookmarkEndTime) {
 			audioPaused = true;
@@ -50,10 +74,10 @@ function scr_audioStep() {
 				selectedStack = currentStackRow;
 				bookmarkStartTime = -1;
 				bookmarkEndTime = -1;
-				var currentUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, currentStackRow);
-				var currentUnitListSize = ds_list_size(currentUnitList);
-				for(var unitTimeLoop = 0; unitTimeLoop < currentUnitListSize; unitTimeLoop++) {
-					var currentUnit = ds_list_find_value(currentUnitList, unitTimeLoop);
+				stackUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, currentStackRow);
+				stackUnitListSize = ds_list_size(stackUnitList);
+				for(var unitTimeLoop = 0; unitTimeLoop < stackUnitListSize; unitTimeLoop++) {
+					var currentUnit = ds_list_find_value(stackUnitList, unitTimeLoop);
 					var currentUnitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentUnit - 1);
 					var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentUnit - 1);
 					if(bookmarkStartTime == -1 or currentUnitStart < bookmarkStartTime) {
@@ -65,16 +89,23 @@ function scr_audioStep() {
 						stackEndUnit = currentUnit;
 					}
 				}
+				stackUnitListPosition = 0;
 			}
 		}
 		else {
 			selectedStack = -1;	
+			stackUnitList = -1;
+			stackUnitListSize = -1;
+			stackUnitListPosition = -1;
 			//bookmarkStartTime = -1;
 			//bookmarkEndTime = -1;
 		}
 	}
 	else {
 		selectedStack = -1;	
+		stackUnitList = -1;
+		stackUnitListSize = -1;
+		stackUnitListPosition = -1;
 		//bookmarkStartTime = -1;
 		//bookmarkEndTime = -1;
 	}
