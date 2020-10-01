@@ -14,7 +14,7 @@ function scr_panelPane_drawChainTabs() {
 	*/
 
 	// Set opacity, font, and alignment of text in chain tabs
-	//if (live_call()) return live_result;
+	if (live_call()) return live_result;
 
 
 	draw_set_alpha(1);
@@ -241,6 +241,8 @@ function scr_panelPane_drawChainTabs() {
 					var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
 					draw_set_color(global.colorThemeText);
 					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
+						
+						scr_createTooltip(mean(tagButtonRectX1, tagButtonRectX2), tagButtonRectY2, (obj_control.showUnitTags) ? "1 to 1" : "1 to many", obj_tooltip.arrowFaceUp);
 						
 						draw_set_color(global.colorThemeSelected2);
 						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);

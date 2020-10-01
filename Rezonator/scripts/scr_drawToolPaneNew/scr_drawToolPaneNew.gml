@@ -31,23 +31,27 @@ function scr_drawToolPaneNew() {
 		var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, toolButtonX - (sprite_get_width(spr_toolsNew) / 2), toolButtonY - (sprite_get_height(spr_toolsNew) / 2), toolButtonX + (sprite_get_width(spr_toolsNew) / 2), toolButtonY + (sprite_get_height(spr_toolsNew) / 2));
 		
 		var toolImageIndex = 0;
+		var toolTipText = "";
 		if (i == 0) {
 			toolImageIndex = (currentMode == modeRead) ? 2 : 0;
 			if (currentMode != modeRead and mouseover) {
 				toolImageIndex = 1;
 			}
+			toolTipText = "Read Mode";
 		}
 		else if (i == 1) {
 			toolImageIndex = (currentMode == modeTrack) ? 8 : 6;
 			if (currentMode != modeTrack and mouseover) {
 				toolImageIndex = 7;
 			}
+			toolTipText = "Track Mode";
 		}
 		else {
 			toolImageIndex = (currentMode == modeRez) ? 5 : 3;
 			if (currentMode != modeRez and mouseover) {
 				toolImageIndex = 4;
 			}
+			toolTipText = "Rez Mode";
 		}
 	
 		draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
@@ -74,6 +78,8 @@ function scr_drawToolPaneNew() {
 					obj_control.gridView = false;
 				}
 			}
+		
+			scr_createTooltip(toolButtonX, toolButtonY + (sprite_get_height(spr_toolsNew) * 0.5), toolTipText, obj_tooltip.arrowFaceUp);
 	
 		}
 	
@@ -86,6 +92,7 @@ function scr_drawToolPaneNew() {
 	
 
 	}
+	/*
 	for (var i = 0; i < 3; i++) {
 		//draw tooltips
 		if(hoverTime[i] == hoverTimeLimit){
@@ -105,6 +112,7 @@ function scr_drawToolPaneNew() {
 			}
 		}
 	}
+	*/
 
 
 	// Prevent typing in text from changing the tool mode

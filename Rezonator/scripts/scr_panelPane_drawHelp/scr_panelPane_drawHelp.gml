@@ -13,7 +13,7 @@ function scr_panelPane_drawHelp() {
 		Author: Terry DuBois
 	*/
 	
-	//if (live_call()) return live_result;
+	if (live_call()) return live_result;
 	
 	if(not obj_panelPane.showNav) {
 		//exit;	
@@ -57,9 +57,11 @@ function scr_panelPane_drawHelp() {
 						obj_control.gridView = false;
 					}
 				}
+				scr_createTooltip(mean(rectX1, rectX2), rectY2, "Justify", obj_tooltip.arrowFaceUp);
 			}
 			else {
 				mouseoverHelp = true;
+				scr_createTooltip(mean(rectX1, rectX2), rectY2, "Help", obj_tooltip.arrowFaceUp);
 			}
 		}
 		else {
@@ -368,7 +370,7 @@ function scr_panelPane_drawHelp() {
 					displayString = "Justified View"
 
 				}
-				scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString, "top" );
+				//scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString, "top" );
 			}
 			else if (i == 1) {
 				if (obj_control.gridView) {
@@ -377,10 +379,10 @@ function scr_panelPane_drawHelp() {
 				else{
 					displayString = "Text View"
 				}
-				scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");
+				//scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, displayString , "top");
 			}
 			else if (i == 2) {
-				scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Help", "top");
+				//scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Help", "top");
 			}
 		}
 	}

@@ -132,16 +132,7 @@ function scr_panelPane_drawFilter() {
 		}
 	
 		if (point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2)) {
-			draw_set_font(fnt_mainBold);
-			draw_set_halign(fa_left);
-			draw_set_valign(fa_middle);
-			draw_set_colour(global.colorThemeBG);
-			draw_rectangle(mouse_x + 20, mouse_y + 25, mouse_x + 25 + string_width("Activate Filter "), mouse_y + 55, false);
-			draw_set_colour(global.colorThemeBorders);
-			draw_rectangle(mouse_x + 20, mouse_y + 25, mouse_x + 25 + string_width("Activate Filter "), mouse_y + 55, true);
-			draw_set_colour(global.colorThemeText);
-			draw_text(mouse_x + 25, mouse_y + 40, "Activate Filter");	
-			draw_set_font(global.fontChainList);
+			scr_createTooltip(filterButtonX2, mean(filterButtonY1, filterButtonY2), (obj_control.filterGridActive) ? "Deactivate filter" : "Activate filter", obj_tooltip.arrowFaceLeft);
 		}
 	}
 
