@@ -63,7 +63,7 @@ toolsOptionList = ds_list_create();
 ds_list_add(toolsOptionList, "Search", "Track", "Rez", "Stack");
 
 settingsOptionList = ds_list_create();
-ds_list_add(settingsOptionList, "User", "Zoom", "Zero", "Theme", "Autosave", "Advanced"); // "Delete All","Autosave");
+ds_list_add(settingsOptionList, "User", "Zoom", "Zero", "Theme", "Restore Hints", "Autosave", "Advanced"); // "Delete All","Autosave");
 
 //settingsOptionList = ds_list_create();
 //ds_list_add(settingsOptionList, "Zoom", "Dark Theme", "Mute", "Author");
