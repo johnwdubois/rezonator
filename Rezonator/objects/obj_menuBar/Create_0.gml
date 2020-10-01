@@ -39,7 +39,7 @@ helpDropDownOptionListType = 23;
 
 
 fileOptionList = ds_list_create();
-ds_list_add(fileOptionList, "Save", "Media", "Clip", "Export", "Import", "Exit");
+ds_list_add(fileOptionList, "Save", "Save as", "Media", "Clip", "Export", "Import", "Exit");
 
 /*linkOptionList = ds_list_create();
 ds_list_add(linkOptionList, "Track", "Rez", "Stack", "Quick", "Clique", "Focus", "Zap", "Quit");
