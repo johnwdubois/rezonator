@@ -72,6 +72,10 @@ function scr_drawDialogueBox() {
 		if (obj_control.changeAuthor) {
 			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the name of the new chain creator.");
 		}
+		if (obj_control.changeZero) {
+			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input the new string for adding quick words");
+		}
+		
 	
 		if (obj_control.swapLine) {
 			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), "Input line Number you would line to swap with.");
@@ -622,6 +626,10 @@ function scr_drawDialogueBox() {
 				}
 				obj_control.lastAddedWord = obj_control.inputText;
 			}
+			if (obj_control.changeZero) {
+				obj_control.lastAddedWord = obj_control.inputText;
+			}
+			
 			
 			if (obj_control.rename) {
 				ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
@@ -671,6 +679,7 @@ function scr_drawDialogueBox() {
 			if (obj_control.changeAuthor) {
 				global.userName = obj_control.inputText;
 			}
+			
 			if (obj_control.newTagCategory) {
 				scr_dialogueBoxNewTagCategory();
 			}
@@ -754,6 +763,10 @@ function scr_drawDialogueBox() {
 				}
 			obj_control.lastAddedWord = obj_control.inputText;
 		}
+		if (obj_control.changeZero) {
+			obj_control.lastAddedWord = obj_control.inputText;
+		}
+		
 		if (obj_control.newCustomFieldToken) {
 			scr_dialogueBoxNewCustomFieldToken();
 		}

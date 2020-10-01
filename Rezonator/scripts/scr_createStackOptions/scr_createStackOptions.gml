@@ -58,6 +58,5 @@ function scr_createStackOptions(argument0) {
 	if (confirmStack) {
 		obj_stacker.confirmStackCreate = true;
 	}
-	obj_control.nestedDropdownActive = false;
 
 }

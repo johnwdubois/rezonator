@@ -300,7 +300,6 @@ function scr_dropDownSelect(argument0) {
 	else if (optionListType == 42)
 	{
 	    scr_editOptions(optionSelected);
-	    instance_destroy();
 	}
 
 

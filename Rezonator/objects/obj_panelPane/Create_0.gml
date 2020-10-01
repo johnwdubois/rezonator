@@ -213,7 +213,6 @@ unitContentsHeaderListSize = 2;
 
 chosenCol = 0;
 ascendYScale = 1;
-ascendActivated = false;
 selectedColToken = 0;
 selectedColUnit = 0;
 selectedColChain = 0;

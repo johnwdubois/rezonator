@@ -511,23 +511,9 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 			if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY, dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
-
-				//ascendYScale = (ascendActivated) ? 1 : -1;
 				if (mouse_check_button_released(mb_left)) {
 					with(obj_panelPane){
 						chosenCol = i;
-					}
-					if(ascendActivated == false){
-						ascendActivated = true;
-					}
-					else{
-						ascendActivated = false;
-					}
-					if(ascendActivated){
-						ascendYScale = -1;
-					}
-					else{
-						ascendYScale = 1;
 					}
 
 					var dropDownOptionList = ds_list_create();
@@ -542,13 +528,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 							//obj_control.alarm[0] = 2;
 						}
 					}
-				}
-				if(ascendActivated == false) {
-					with(obj_dropDown) {
-						instance_destroy();
-						ascendYScale = 1;
-						ascendActivated = false;
-				    }
 				}
 			}
 		

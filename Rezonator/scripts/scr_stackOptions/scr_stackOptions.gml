@@ -3,12 +3,24 @@ function scr_stackOptions(argument0) {
 
 	switch (optionSelected)
 	{
+		case "Stack tab":
+			with (obj_panelPane) {
+				if (currentFunction == functionChainList) {
+					functionChainList_currentTab = functionChainList_tabStackBrush;
+				}
+			}
+			with (obj_toolPane) {
+				if (currentMode == modeRead) {
+					currentMode = modeTrack;
+				}
+			}
+			instance_destroy();
+			break;
 		case "Stacker":
-			obj_control.nestedDropdownActive = true;
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList,  "Turn", "Sentence", "Random");
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(x + windowWidth  , y + optionSpacing  , -999, obj_dropDown);
+				var dropDownInst = instance_create_depth(x + windowWidth  , y + (optionSpacing * 2), -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
 				dropDownInst.optionListType = 29;
 

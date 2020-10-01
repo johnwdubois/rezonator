@@ -39,17 +39,10 @@ function scr_fileOptions(argument0) {
 			//show_message("BUH 2");
 			break;
 		case "Import":
-		//room_instance_clear(rm_mainScreen);
-		
-		// destroy grid
-		
-		// get file name + extension
-		
-		// distinguish between rez or xml
-		
-		//room_restart();
-		
-			show_message("Coming Soon");
+			
+			global.skipToImportScreen = true;
+			room_goto(rm_openingScreen);
+			
 			break;
 		case "Export":
 			

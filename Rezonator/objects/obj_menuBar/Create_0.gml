@@ -39,7 +39,7 @@ helpDropDownOptionListType = 23;
 
 
 fileOptionList = ds_list_create();
-ds_list_add(fileOptionList, "Save", "Media", "Clip", "Export",  "Exit");
+ds_list_add(fileOptionList, "Save", "Media", "Clip", "Export", "Import", "Exit");
 
 /*linkOptionList = ds_list_create();
 ds_list_add(linkOptionList, "Track", "Rez", "Stack", "Quick", "Clique", "Focus", "Zap", "Quit");
@@ -48,7 +48,7 @@ editOptionList = ds_list_create();
 ds_list_add(editOptionList, "Insert", "Paste", "Delete", "Edit", "Split", "Restore", "Chunk", "Tag");*/
 
 editOptionList = ds_list_create();
-ds_list_add(editOptionList, "Go to Line", "Go to Time");
+ds_list_add(editOptionList, "Delete All","Go to Line", "Go to Time");
 
 viewOptionList = ds_list_create();
 ds_list_add(viewOptionList, "Window", "Justify", "Prose", "Hide");//"Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");
@@ -60,10 +60,10 @@ ds_list_add(filterOptionList, "Toggle",  "Pick All", "Context", "Clear");
 //ds_list_add(toolsOptionList, "Sort", "StackShow", "Play", "Rez-Play");
 
 toolsOptionList = ds_list_create();
-ds_list_add(toolsOptionList, "Search", "Stack");
+ds_list_add(toolsOptionList, "Search", "Track", "Rez", "Stack");
 
 settingsOptionList = ds_list_create();
-ds_list_add(settingsOptionList, "User", "Zoom", "Theme", "Autosave", "Advanced"); // "Delete All","Autosave");
+ds_list_add(settingsOptionList, "User", "Zoom", "Zero", "Theme", "Autosave", "Advanced"); // "Delete All","Autosave");
 
 //settingsOptionList = ds_list_create();
 //ds_list_add(settingsOptionList, "Zoom", "Dark Theme", "Mute", "Author");

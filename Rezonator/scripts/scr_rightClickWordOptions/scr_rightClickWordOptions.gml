@@ -78,7 +78,8 @@ function scr_rightClickWordOptions(argument0) {
 			//show_message("BUH 1");
 			break;
 		case "Split Word":
-
+		
+			scr_destroyAllDropDownsOtherThanSelf();
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
 				//show_message("buh");
 					if (!obj_control.dialogueBoxActive) {
@@ -103,18 +104,19 @@ function scr_rightClickWordOptions(argument0) {
 		case "New Word":
 		
 		
-		
-						var dropDownOptionList = ds_list_create();
-						ds_list_add(dropDownOptionList, "<0>", "<ZERO>", "<PRO>", "Custom");
+			scr_destroyAllDropDownsOtherThanSelf();
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "<0>", "<ZERO>", "<PRO>", "Custom");
 						
-						if (ds_list_size(dropDownOptionList) > 0) {
-							var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing*3  , -999, obj_dropDown);
-							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = 11;
+
+			if (ds_list_size(dropDownOptionList) > 0) {
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing  , -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 11;
 					
-							obj_control.ableToCreateDropDown = false;
-							obj_control.alarm[0] = 2;
-						}
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
 	
 		
 		
@@ -122,6 +124,7 @@ function scr_rightClickWordOptions(argument0) {
 			//show_message("BUH 3");
 			break;
 		case "Delete New Word":
+			scr_destroyAllDropDownsOtherThanSelf();
 			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
 			obj_control.deleteNewWord =true;
 			//show_message("Coming Soon");

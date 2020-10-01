@@ -71,6 +71,7 @@ draw_clear_alpha(c_black, 0);
 
 
 if (ds_list_size(optionList) <= 0) {
+	show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0");
 	instance_destroy();
 }
 
@@ -149,14 +150,26 @@ if (scrollBarHolding) {
 	scrollBarHoldingDelay = true;
 }
 
+
+
+var mouseInDropDown = false;
+var dropDownInstanceNumber = instance_number(obj_dropDown);
+for (var i = 0; i < dropDownInstanceNumber; i++) {
+	var currentDropDown = instance_find(obj_dropDown, i);
+	if (point_in_rectangle(mouse_x, mouse_y, currentDropDown.x, currentDropDown.y, currentDropDown.x + currentDropDown.windowWidth, currentDropDown.y + currentDropDown.windowHeight)) {
+		mouseInDropDown = true;
+	}
+}
+
 if (ableToMouseover and ableToClick and mouse_check_button_released(mb_left) 
-and !point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight)
-and !scrollBarHoldingDelay and !obj_control.nestedDropdownActive) {
+and !mouseInDropDown and !scrollBarHoldingDelay) {
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
 	}
-
-	instance_destroy();
+	show_debug_message("obj_dropDown Draw ... destroying dropdowns");
+	with (obj_dropDown) {
+		instance_destroy();
+	}
 }
 scrollBarHoldingDelay = scrollBarHolding;
 

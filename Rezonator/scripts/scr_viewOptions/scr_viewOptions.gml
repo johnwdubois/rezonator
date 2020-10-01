@@ -4,6 +4,7 @@ function scr_viewOptions(argument0) {
 	switch (optionSelected)
 	{
 		case "Window":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Main", "Nav", "Search", "Grid");
 						
@@ -32,6 +33,7 @@ function scr_viewOptions(argument0) {
 		break;*/
 	
 		case "Justify":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Left", "Right", "Center");
 						
@@ -46,6 +48,7 @@ function scr_viewOptions(argument0) {
 		break;
 	
 		case "Prose":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Prose", "Grid");
 						
@@ -60,6 +63,7 @@ function scr_viewOptions(argument0) {
 		break;
 	
 		case "Hide":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Track", "Rez", "Stack", "Place");
 						

@@ -31,3 +31,14 @@ if (ds_list_size(global.importGroupFileList) > 0 && global.importGroupFileIndex 
 		scr_importCSV(importFileName);
 	}
 }
+
+
+// skipping to import screen by clicking "Import" in file menu
+if (global.skipToImportScreen) {
+	global.skipToImportScreen = false;
+	
+	global.newProject = false;
+	global.openProject = false;
+	global.currentDirString = global.previousImportDirectory;
+	scr_openXML();
+}

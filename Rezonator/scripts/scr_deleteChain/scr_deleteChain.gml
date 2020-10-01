@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_deleteChainExperimental(chainID){
+function scr_deleteChain(chainID){
 	//if (live_call(argument0)) return live_result;
 	
 	// first, we find the grid that this chain is
@@ -10,15 +10,15 @@ function scr_deleteChainExperimental(chainID){
 		var testGrid = -1;
 		if (i == 0) {
 			testGrid = obj_chain.rezChainGrid;
-			show_debug_message("scr_deleteChainExperimental()... testGrid: rezChainGrid");
+			show_debug_message("scr_deleteChain()... testGrid: rezChainGrid");
 		}
 		else if (i == 1) {
 			testGrid = obj_chain.trackChainGrid;
-			show_debug_message("scr_deleteChainExperimental()... testGrid: trackChainGrid");
+			show_debug_message("scr_deleteChain()... testGrid: trackChainGrid");
 		}
 		else {
 			testGrid = obj_chain.stackChainGrid;
-			show_debug_message("scr_deleteChainExperimental()... testGrid: stackChainGrid");
+			show_debug_message("scr_deleteChain()... testGrid: stackChainGrid");
 		}
 		rowInGrid = ds_grid_value_y(testGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(testGrid), chainID);
 		if (rowInGrid > -1) {
@@ -26,10 +26,10 @@ function scr_deleteChainExperimental(chainID){
 		}
 	}
 	if (rowInGrid == -1) {
-		show_debug_message("scr_deleteChainExperimental()... rowInGrid == -1, exiting...");
+		show_debug_message("scr_deleteChain()... rowInGrid == -1, exiting...");
 		exit;
 	}
-	show_debug_message("scr_deleteChainExperimental()... rowInGrid: " + string(rowInGrid));
+	show_debug_message("scr_deleteChain()... rowInGrid: " + string(rowInGrid));
 	grid = testGrid;
 	
 	
