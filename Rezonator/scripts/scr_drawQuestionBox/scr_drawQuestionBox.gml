@@ -61,6 +61,8 @@ function scr_drawQuestionBox() {
 		// draw button text
 		draw_text(camera_get_view_width(camera_get_active()) /2 + 30, camera_get_view_height(camera_get_active())/2 + 75, "Yes");
 		draw_text(camera_get_view_width(camera_get_active()) /2 + 150, camera_get_view_height(camera_get_active())/2 + 75, "No");
+		
+
 	
 	
 	
@@ -83,7 +85,12 @@ function scr_drawQuestionBox() {
 			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to layer one link atop another.");
 		}
 		if(combineChains) {
-			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to merge these two chains together.");
+			if(obj_control.stackMerged){
+				draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to merge these two stacks together.");
+			}
+			else{
+				draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "You are about to merge these two chains together.");
+			}
 		}
 
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 105, "Are You Sure?");
@@ -113,7 +120,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -130,7 +137,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -145,7 +152,7 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -163,7 +170,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -177,7 +184,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -189,14 +196,14 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
 		
 			}
 			if (clearChain) {
-				scr_deleteEntireChain(obj_control.selectedChainID);
+				scr_deleteChain(obj_control.selectedChainID);
 			}
 			if(layerLink) {
 			
@@ -217,6 +224,7 @@ function scr_drawQuestionBox() {
 			clearChain = false;
 			layerLink = false;
 			combineChains = false;
+			obj_control.stackMerged = false;
 			
 			instance_destroy();
 
@@ -237,6 +245,8 @@ function scr_drawQuestionBox() {
 			clearChain = false;
 			layerLink = false;
 			combineChains = false;
+			obj_control.stackMerged = false;
+			
 			instance_destroy();
 
 	
@@ -261,7 +271,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -278,7 +288,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -293,7 +303,7 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -311,7 +321,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -325,7 +335,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -337,7 +347,7 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -345,7 +355,7 @@ function scr_drawQuestionBox() {
 			}
 		
 			if (clearChain) {		
-				scr_deleteEntireChain(obj_control.selectedChainID);
+				scr_deleteChain(obj_control.selectedChainID);
 			}
 			if(layerLink) {
 			
@@ -368,6 +378,7 @@ function scr_drawQuestionBox() {
 			clearChain = false;
 			layerLink = false;
 			combineChains = false;
+			obj_control.stackMerged = false;
 	
 
 		questionWindowActive = false;

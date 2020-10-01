@@ -84,7 +84,7 @@ function scr_combineChains(mouseoverWordID){
 
 	scr_unFocusAllChains();
 	
-	scr_deleteChainExperimental(selectedChainID);
+	scr_deleteChain(selectedChainID);
 	
 
 	

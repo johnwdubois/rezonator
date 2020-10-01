@@ -3,7 +3,7 @@ function scr_searchOptions(argument0) {
 
 	switch (optionSelected)
 	{
-		case "Word": // search for words
+		case "Keyword": // search for words
 		
 			obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;
 			if (!obj_control.dialogueBoxActive) {
@@ -18,23 +18,27 @@ function scr_searchOptions(argument0) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			}
 
-		
-			//show_message("BUH 1");
 			break;
 
-		case "Time":// go to time
+		case "Clear":// clear search
 		
-			scr_jumpToLineCalled();
-			obj_control.goToTime = true;
+			ds_grid_copy(obj_control.searchGrid, obj_control.emptySearchGrid);
+			ds_grid_copy( obj_control.hitGrid,obj_control.emptyHitGrid);
 			
-			//show_message("BUH 5");
-			break;
-		case "Line": // got to line
+			
+			obj_control.searchGridActive = false;
+			obj_control.filterGridActive = false;
+			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			//obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
+			obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
+			with (obj_alarm) {
+				alarm[0] = 5;
+			}
 		
-			scr_jumpToLineCalled();
-			
-			//show_message("BUH 5");
+			obj_control.clearSearch = true;
+
 			break;
+
 		default:
 			break;
 	}

@@ -252,7 +252,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 								doubleClickTimer = 0;
 							}
 						}
-						if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
+						/*if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
 
 							if(!instance_exists(obj_dialogueBox)){
 								obj_control.rightClickWordID = currentWordID;
@@ -264,7 +264,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 							obj_control.wideDropDown = true;
 							var dropDownOptionList = ds_list_create();
 							if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
-								obj_control.ableToCreateDropDown = false;
+			 					obj_control.ableToCreateDropDown = false;
 							}
 							else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
 								if(obj_control.searchGridActive){
@@ -291,7 +291,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 								obj_control.alarm[0] = 2;
 							}
 
-						}
+						}*/
 		
 					}
 		

@@ -12,6 +12,9 @@ function scr_panelPane_drawHelp() {
 	
 		Author: Terry DuBois
 	*/
+	
+	//if (live_call()) return live_result;
+	
 	if(not obj_panelPane.showNav) {
 		//exit;	
 	}
@@ -26,15 +29,13 @@ function scr_panelPane_drawHelp() {
 
 	// Check for mouse location over "Help" button
 	var mouseoverHelp = false;
-	//var mouseoverGridViewToggle = false;
-	//var mouseoverJustifyToggle = false;
-	//if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-	//	mouseoverHelp = true;
-	//}
-	var toggleButtonAmount = 3;
+	var toggleButtonAmount = 2;
 	var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
 
 	for(var i = 0; i < toggleButtonAmount; i++) {
+		
+		// (i == 0) --> justify
+		// (i == 1) --> help
 	
 		var rectX1 = x + (i * (windowWidth / toggleButtonAmount));
 		var rectY1 = y;
@@ -49,12 +50,7 @@ function scr_panelPane_drawHelp() {
 		
 			obj_panelPane.hoverTime[i]++;
 		
-			if (i == 1) {
-				if (device_mouse_check_button_released(0, mb_left) and not scrollBarClickLock) {
-					obj_control.gridView = !obj_control.gridView;
-				}
-			}
-			else if (i == 0) {
+			if (i == 0) {
 				if (device_mouse_check_button_released(0, mb_left) and not scrollBarClickLock) {
 					scr_justifyWords();
 					if (obj_control.gridView) {
@@ -62,16 +58,6 @@ function scr_panelPane_drawHelp() {
 					}
 				}
 			}
-			/*else if (i == 0) {
-				if (device_mouse_check_button_released(0, mb_left)) {
-					with (obj_control) {
-						scr_toggleTranscription();
-					}
-					if (obj_control.gridView) {
-						obj_control.gridView = false;
-					}
-				}
-			}*/
 			else {
 				mouseoverHelp = true;
 			}
@@ -80,15 +66,10 @@ function scr_panelPane_drawHelp() {
 			obj_panelPane.hoverTime[i] = 0;
 		}
 	
-		if (i == 1) {
-			draw_sprite_ext(spr_gridViewToggle, obj_control.gridView, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
+		if (i == 0) {
+			var xScale = (obj_control.justify == obj_control.justifyRight) ? -1 : 1;
+			draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 0 : 1, mean(rectX1, rectX2), mean(rectY1, rectY2), xScale, 1, 0, c_white, 1);
 		}
-		else if (i == 0) {
-			draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
-		}
-		/*else if (i == 0) {
-			draw_sprite_ext(spr_transcriptionToggle, (obj_control.wordTokenView) ? 1 : 0, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
-		}*/
 		else {
 			draw_sprite_ext(spr_helpToggle, !functionHelp_collapsed, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
 		}

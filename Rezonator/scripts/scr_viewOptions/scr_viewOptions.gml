@@ -3,9 +3,10 @@ function scr_viewOptions(argument0) {
 
 	switch (optionSelected)
 	{
-		case "Pane":
+		case "Window":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Main", "Search", "Nav", "Grid", "Dev");
+			ds_list_add(dropDownOptionList, "Main", "Nav", "Search", "Grid");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y, -999, obj_dropDown);
@@ -32,6 +33,7 @@ function scr_viewOptions(argument0) {
 		break;*/
 	
 		case "Justify":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Left", "Right", "Center");
 						
@@ -46,6 +48,7 @@ function scr_viewOptions(argument0) {
 		break;
 	
 		case "Prose":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Prose", "Grid");
 						
@@ -60,6 +63,7 @@ function scr_viewOptions(argument0) {
 		break;
 	
 		case "Hide":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Track", "Rez", "Stack", "Place");
 						

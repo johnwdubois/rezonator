@@ -3,7 +3,7 @@
 function scr_drawConfirmStackCreate(){
 	
 	
-	//if (live_call()) return live_result;
+	if (live_call()) return live_result;
 
 
 	var fullWindowWidth = camera_get_view_width(camera_get_active()) / 3;
@@ -75,7 +75,7 @@ function scr_drawConfirmStackCreate(){
 			var deleteChainsListSize = ds_list_size(deleteChainsList);
 			for (var i = 0; i < deleteChainsListSize; i++) {
 				var currentChainID = ds_list_find_value(deleteChainsList, i);
-				scr_deleteChainExperimental(currentChainID);
+				scr_deleteChain(currentChainID);
 			}
 			ds_list_destroy(deleteChainsList);
 			
@@ -162,5 +162,7 @@ function scr_drawConfirmStackCreate(){
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
-	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + string_height("A")), "Do you want to overwrite your existing stacks?");
+	draw_set_valign(fa_top);
+	var stackAmount = ds_grid_height(obj_chain.stackChainGrid);
+	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + (string_height("A") / 2)), "You have created " + string(stackAmount) + " Stacks.\nDo you want to overwrite them with new automatic Stacks?");
 }

@@ -14,6 +14,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 	var drawLineLoop = argument10;
 	//var inMouseHoldRect = argument9;
 
+
 	//Prevent the mouse from clicking on words/lines while releasing from a drag
 	var mouseRectExists = ((abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5) or (abs(obj_control.mouseHoldRectX1 - obj_control.mouseHoldRectX2) > 5));
 	if(mouseRectExists) {
@@ -105,12 +106,25 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 						exit;
 					}
 					
+	
+	
+		
+					// store WID list for future
+					var selectedIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, selectedChainfocusedChainRow);
+					//var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, currentChainfocusedChainRow);
+					var selectedIDListSize = ds_list_size(selectedIDList);
+					//var sizeOfCurrentIDList = ds_list_size(currentIDList);
 					
-					
-					obj_control.clickedWordID = currentWordID;
+					if ( selectedIDListSize == 1 ){
+						obj_control.clickedWordID = currentWordID;
+						scr_combineChains(currentWordID);
+					}
+					else{
+						obj_control.clickedWordID = currentWordID;
 						with(obj_alarm){
 							alarm[9] = 3;
 						}
+					}
 				}
 				else {
 					with (obj_chain) {
@@ -135,7 +149,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 					functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 					functionChainList_currentTab = functionChainList_tabLine;
 				}*/
-				if(!global.readHintHide){
+				if(not global.readHintHide and not obj_audioUI.audioJumpOnWordClick){
 					var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
 					//obj_control.readModeHints++;
 				}
@@ -267,6 +281,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 		newWordHoverUnitID = unitID;
 		newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 		newWordHoverWordID = currentWordID;
+		
 				
 	}
 	

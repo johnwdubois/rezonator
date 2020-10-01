@@ -24,12 +24,12 @@
   "gridX": 0,
   "gridY": 0,
   "frames": [
-    {"compositeImage":{"FrameId":{"name":"52534cf0-6dad-43bd-9a9f-1db90d3f3706","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"52534cf0-6dad-43bd-9a9f-1db90d3f3706","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":{"name":"b0d09204-fea0-4006-93e2-40b19b0140f4","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"52534cf0-6dad-43bd-9a9f-1db90d3f3706","tags":[],"resourceType":"GMSpriteFrame",},
-    {"compositeImage":{"FrameId":{"name":"6454ccdc-c818-4e93-bb0e-f2fe8b7e011b","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"composite","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
-        {"FrameId":{"name":"6454ccdc-c818-4e93-bb0e-f2fe8b7e011b","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":{"name":"b0d09204-fea0-4006-93e2-40b19b0140f4","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
-      ],"parent":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"6454ccdc-c818-4e93-bb0e-f2fe8b7e011b","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"e23c016e-8381-48fb-a49d-e39595ae83ef","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"e23c016e-8381-48fb-a49d-e39595ae83ef","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":{"name":"ace86975-487c-4c52-963a-4b3a042d08a7","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"e23c016e-8381-48fb-a49d-e39595ae83ef","tags":[],"resourceType":"GMSpriteFrame",},
+    {"compositeImage":{"FrameId":{"name":"95641c6b-d258-4cd6-9296-e6b03149e5fc","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},"images":[
+        {"FrameId":{"name":"95641c6b-d258-4cd6-9296-e6b03149e5fc","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"LayerId":{"name":"ace86975-487c-4c52-963a-4b3a042d08a7","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMSpriteBitmap",},
+      ],"parent":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","name":"95641c6b-d258-4cd6-9296-e6b03149e5fc","tags":[],"resourceType":"GMSpriteFrame",},
   ],
   "sequence": {
     "spriteId": {"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},
@@ -44,11 +44,11 @@
     "moments": {"Keyframes":[],"resourceVersion":"1.0","resourceType":"KeyframeStore<MomentsEventKeyframe>",},
     "tracks": [
       {"name":"frames","spriteId":null,"keyframes":{"Keyframes":[
-            {"id":"d732adea-ca6c-4100-a5e9-5125b50e70fa","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"52534cf0-6dad-43bd-9a9f-1db90d3f3706","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
-            {"id":"0a46ebd6-cd92-49a6-8e24-d03f33b97da6","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"6454ccdc-c818-4e93-bb0e-f2fe8b7e011b","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"173fbe2a-243c-412a-9c9f-5b5e72404105","Key":0.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"e23c016e-8381-48fb-a49d-e39595ae83ef","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
+            {"id":"a5d67c3f-d250-4475-b16f-64fd372c1fae","Key":1.0,"Length":1.0,"Stretch":false,"Disabled":false,"IsCreationKey":false,"Channels":{"0":{"Id":{"name":"95641c6b-d258-4cd6-9296-e6b03149e5fc","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"resourceVersion":"1.0","resourceType":"SpriteFrameKeyframe",},},"resourceVersion":"1.0","resourceType":"Keyframe<SpriteFrameKeyframe>",},
           ],"resourceVersion":"1.0","resourceType":"KeyframeStore<SpriteFrameKeyframe>",},"trackColour":0,"inheritsTrackColour":true,"builtinName":0,"traits":0,"interpolation":1,"tracks":[],"events":[],"modifiers":[],"isCreationTrack":false,"resourceVersion":"1.0","tags":[],"resourceType":"GMSpriteFramesTrack",},
     ],
-    "visibleRange": {"x":0.0,"y":0.0,},
+    "visibleRange": null,
     "lockOrigin": false,
     "showBackdrop": true,
     "showBackdropImage": false,
@@ -69,7 +69,7 @@
     "resourceType": "GMSequence",
   },
   "layers": [
-    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b0d09204-fea0-4006-93e2-40b19b0140f4","tags":[],"resourceType":"GMImageLayer",},
+    {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"ace86975-487c-4c52-963a-4b3a042d08a7","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
     "name": "UI",

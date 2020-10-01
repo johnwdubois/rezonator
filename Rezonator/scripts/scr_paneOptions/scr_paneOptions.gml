@@ -31,29 +31,8 @@ function scr_paneOptions(argument0) {
 
 				// Switch back to either main or filter grids
 				if(obj_control.currentActiveLineGrid == obj_control.searchGrid) { 
-					obj_control.searchGridActive = false;
-		
-					// Check to see which grid we're switching back into
-					if(obj_control.preSwitchLineGrid == obj_control.filterGrid) {
-						scr_renderFilter(); // Thankfully this script does a lot of work for us
-					}
-					else {
-						obj_control.currentActiveLineGrid = obj_control.lineGrid;
-					}
-					obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow;
-		
-					// Make sure we don't try to render a line that doesn't exist
-					if(obj_control.highlightedSearchRow > 0 && ds_grid_value_exists(obj_control.preSwitchLineGrid, 0, 0, 0, ds_grid_height(obj_control.preSwitchLineGrid), obj_control.highlightedSearchRow)){
-						var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, obj_control.highlightedSearchRow);
-						obj_control.preSwitchDisplayRow = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-					}
-					//currentCenterDisplayRow = preSwitchDisplayRow;
-					obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
-		
-					//wordLeftMarginDest = 170;
-					with (obj_alarm) {
-						alarm[0] = 5;
-					}
+					// Switch back to the main screen from the Search Screen
+					scr_searchToMain();
 				}
 				// Give the user another way to leave the filter view
 				else if(obj_control.currentActiveLineGrid == obj_control.filterGrid) { 

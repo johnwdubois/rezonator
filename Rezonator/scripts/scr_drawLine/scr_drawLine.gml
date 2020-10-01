@@ -248,12 +248,27 @@ function scr_drawLine() {
 							exit;
 						}
 						
+	
+	
+		
+						// store WID list for future
+						var selectedIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, selectedChainfocusedChainRow);
+						//var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, currentChainfocusedChainRow);
+						var selectedIDListSize = ds_list_size(selectedIDList);
+						//var sizeOfCurrentIDList = ds_list_size(currentIDList);
 						
-						
-						obj_control.clickedWordID = currentWordID;
-						with(obj_alarm){
-							alarm[9] = 3;
+						if ( selectedIDListSize == 1 ){
+							obj_control.clickedWordID = currentWordID;
+							scr_combineChains(currentWordID);
 						}
+						else{
+							obj_control.clickedWordID = currentWordID;
+							obj_control.stackMerged = true;
+							with(obj_alarm){
+								alarm[9] = 3;
+							}
+						}
+						
 					}
 					else {
 						with (obj_chain) {
@@ -364,7 +379,7 @@ function scr_drawLine() {
 	
 	
 		// Set the opacity of the Highlight
-		if(currentActiveLineGrid == obj_control.searchGrid) {
+		/*if(currentActiveLineGrid == obj_control.searchGrid) {
 			highlightedSearchRowAlpha = 0.3;
 		}
 		else {
@@ -383,7 +398,7 @@ function scr_drawLine() {
 			var highlightRectY2 = speakerRectY2;
 		
 			draw_rectangle(highlightRectX1, highlightRectY1, highlightRectX2, highlightRectY2, false);
-		}
+		}*/
 	
 		//Draw quickstack highlights here
 		if (!obj_chain.inRezPlay) {

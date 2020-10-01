@@ -30,13 +30,21 @@ audioLength = 0;
 audioPos = 0;
 audioPosTemp = 0;
 
+bookmarkX = 0;
+bookmarkY = 0;
+endmarkX = 0;
+endmarkY = 0;
+
 audioPaused = true;
 
-audioJumpOnWordClick = true;
+audioJumpOnWordClick = false;
 mouseOverAudioUI = false;
 
 selectedStack = -1;
-stackStartTime = -1;
-stackEndTime = -1;
+bookmarkStartTime = -1;
+bookmarkEndTime = -1;
 stackStartUnit = -1;
 stackEndUnit = -1;
+stackUnitList = -1;
+stackUnitListSize = -1;
+stackUnitListPosition = -1;

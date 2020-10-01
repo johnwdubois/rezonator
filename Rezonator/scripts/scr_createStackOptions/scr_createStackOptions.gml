@@ -59,5 +59,4 @@ function scr_createStackOptions(argument0) {
 		obj_stacker.confirmStackCreate = true;
 	}
 
-
 }

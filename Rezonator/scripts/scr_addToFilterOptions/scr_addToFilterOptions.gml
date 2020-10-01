@@ -3,7 +3,7 @@ function scr_addToFilterOptions(argument0) {
 
 	switch (optionSelected)
 	{
-		case "Rez Chains": // toggles the filter view on and off
+		case "Rez": // toggles the filter view on and off
 		var grid = obj_chain.rezChainGrid;
 		if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
 				if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
@@ -44,7 +44,7 @@ function scr_addToFilterOptions(argument0) {
 		
 		break;
 	
-		case "Track Chains":
+		case "Track":
 	
 		var grid = obj_chain.trackChainGrid;
 		if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
@@ -86,7 +86,7 @@ function scr_addToFilterOptions(argument0) {
 
 		break;
 
-		case "Stacks": // add all of a certain chain type to filter
+		case "Stack": // add all of a certain chain type to filter
 		var grid = obj_chain.stackChainGrid;
 		if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
 				if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {

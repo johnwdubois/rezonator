@@ -486,6 +486,7 @@ replace = false;
 splitWord = false;
 swapLine = false;
 changeAuthor = false;
+changeZero = false;
 newTagCategory = false;
 newCustomTagToken = false;
 newCustomFieldToken = false;
@@ -600,6 +601,7 @@ if(global.tutorial){
 		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
 }
 
+stackMerged = false;
 clickedWordID = -1;
 rightClickUnitID = 0;
 rightClickWordID = 0;
