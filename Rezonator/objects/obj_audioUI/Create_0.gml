@@ -37,7 +37,7 @@ endmarkY = 0;
 
 audioPaused = true;
 
-audioJumpOnWordClick = true;
+audioJumpOnWordClick = false;
 mouseOverAudioUI = false;
 
 selectedStack = -1;

@@ -71,7 +71,10 @@ function scr_settingsOptions(argument0) {
 			}
 			instance_destroy(obj_dropDown);
 		break;
-		
+		case "Restore Hints":
+			global.readHintHide = false;
+			instance_destroy(obj_dropDown);
+		break;
 		
 		case "Autosave":
 			scr_destroyAllDropDownsOtherThanSelf();
