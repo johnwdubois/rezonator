@@ -14,8 +14,9 @@ function scr_currentCenterLine() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 	
-	var focusLineYPos = obj_control.wordTopMargin - (obj_control.gridSpaceVertical / 2);
-
+	var focusLineYPos = obj_control.wordTopMargin;// - (obj_control.gridSpaceVertical / 2);
+	var lineloopOffset = (obj_control.currentActiveLineGrid == obj_control.lineGrid) ? 1 : 2;
+	
 	var currentActiveLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	for(var centerLineLoop = obj_control.drawRangeStart; centerLineLoop < currentActiveLineGridHeight; centerLineLoop++){
 		var currentYPos = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, centerLineLoop);
@@ -23,14 +24,14 @@ function scr_currentCenterLine() {
 		if(currentYPos >= focusLineYPos){
 			//show_message(string(i));
 			if(obj_control.gridSpaceVertical > 40) {
-				return centerLineLoop + 2;// + 1;// + lineGridOffset;
+				return centerLineLoop + lineloopOffset;// + 1;// + lineGridOffset;
 			}
 			else {
-				return centerLineLoop + 2;// + 3;// + lineGridOffset;
+				return centerLineLoop + lineloopOffset;// + 3;// + lineGridOffset;
 			}
 		}
 		else if(centerLineLoop + 1 == ds_grid_height(obj_control.currentActiveLineGrid) and currentYPos + obj_control.gridSpaceVertical >= focusLineYPos) {
-			return centerLineLoop + 2;// + 1;// + lineGridOffset;
+			return centerLineLoop + lineloopOffset;// + 1;// + lineGridOffset;
 		}
 	}
  
