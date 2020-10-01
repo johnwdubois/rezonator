@@ -30,12 +30,14 @@ function scr_filterOptions(argument0) {
 				}
 			}
 			// Add to moveCounter
-			obj_control.moveCounter ++;
-		
-			instance_destroy(obj_dropDown);
-		break;
+			obj_control.moveCounter++;
+			with (obj_dropDown) {
+				instance_destroy();
+			}
+			break;
 	
 		case "Context":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Prior", "Tween", "Next");
 						
@@ -47,9 +49,11 @@ function scr_filterOptions(argument0) {
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
 			}
-		break;
+			break;
 	
 		case "Pick All": // add all of a certain chain type to filter
+		
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Rez", "Track", "Stack");
 						
@@ -66,7 +70,9 @@ function scr_filterOptions(argument0) {
 			ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
 			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
-			instance_destroy(obj_dropDown);
+			with (obj_dropDown) {
+				instance_destroy();
+			}
 			break;
 		default:
 			break;

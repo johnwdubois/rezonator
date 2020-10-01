@@ -26,7 +26,7 @@ function scr_settingsOptions(argument0) {
 			instance_destroy(obj_dropDown);
 		break;
 		case "Zoom":
-	
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "In", "Out", "Wide", "Narrow", "Tall", "Short");
 						
@@ -74,6 +74,7 @@ function scr_settingsOptions(argument0) {
 		
 		
 		case "Autosave":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "5 minutes", "10 minutes", "20 minutes", "30 minutes", "Off");
 						
@@ -87,11 +88,12 @@ function scr_settingsOptions(argument0) {
 			}
 		break;
 		case "Advanced":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Developer");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*4)  , -999, obj_dropDown);
+				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing * 5)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
 				dropDownInst.optionListType = 5;
 					

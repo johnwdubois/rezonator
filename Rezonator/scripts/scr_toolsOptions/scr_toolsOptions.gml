@@ -27,7 +27,9 @@ function scr_toolsOptions(argument0) {
 			with (obj_toolPane) {
 				currentMode = modeRez;
 			}
-			instance_destroy();
+			with (obj_dropDown) {
+				instance_destroy();
+			}
 			break;
 		case "Track":
 			with (obj_panelPane) {
@@ -38,7 +40,9 @@ function scr_toolsOptions(argument0) {
 			with (obj_toolPane) {
 				currentMode = modeTrack;
 			}
-			instance_destroy();
+			with (obj_dropDown) {
+				instance_destroy();
+			}
 			break;
 		case "Stack":
 			scr_destroyAllDropDownsOtherThanSelf();
