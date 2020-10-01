@@ -120,7 +120,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -137,7 +137,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -152,7 +152,7 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -170,7 +170,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -184,7 +184,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -196,14 +196,14 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
 		
 			}
 			if (clearChain) {
-				scr_deleteEntireChain(obj_control.selectedChainID);
+				scr_deleteChain(obj_control.selectedChainID);
 			}
 			if(layerLink) {
 			
@@ -271,7 +271,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -288,7 +288,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -303,7 +303,7 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -321,7 +321,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -335,7 +335,7 @@ function scr_drawQuestionBox() {
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					//show_message(string (currentChainRow) );
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 			
@@ -347,7 +347,7 @@ function scr_drawQuestionBox() {
 					ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState , 0, obj_chain.chainStateFocus);
 					var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
 					if(currentChainRow > -1) {
-						scr_deleteEntireChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+						scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
 					}
 				}
 		
@@ -355,7 +355,7 @@ function scr_drawQuestionBox() {
 			}
 		
 			if (clearChain) {		
-				scr_deleteEntireChain(obj_control.selectedChainID);
+				scr_deleteChain(obj_control.selectedChainID);
 			}
 			if(layerLink) {
 			

@@ -75,7 +75,7 @@ function scr_drawConfirmStackCreate(){
 			var deleteChainsListSize = ds_list_size(deleteChainsList);
 			for (var i = 0; i < deleteChainsListSize; i++) {
 				var currentChainID = ds_list_find_value(deleteChainsList, i);
-				scr_deleteChainExperimental(currentChainID);
+				scr_deleteChain(currentChainID);
 			}
 			ds_list_destroy(deleteChainsList);
 			
