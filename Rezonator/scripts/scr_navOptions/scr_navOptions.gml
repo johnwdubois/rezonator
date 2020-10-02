@@ -52,9 +52,7 @@ function scr_navOptions(optionSelected){
 		case "All" :
 		
 			with(obj_panelPane){
-
-
-					showNav = not showNav;		
+				showNav = not showNav;
 
 				if(showNav){
 					showNavRight = true;	

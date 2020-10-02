@@ -81,8 +81,18 @@ else {
 
 if (keyboard_check_pressed(ord("N")) and keyboard_check(vk_control)) {
 	with(obj_panelPane){
-				showNav = not showNav;	
-				
-			}
-			obj_toolPane.showTool = !obj_toolPane.showTool;
+		showNav = not showNav;
+
+		if(showNav){
+			showNavRight = true;	
+			showNavLeft = true;
+			obj_toolPane.showTool = true;
+			
+		}
+		else{
+			showNavRight = false;	
+			showNavLeft = false;
+			obj_toolPane.showTool = false;
+		}
+	}
 }

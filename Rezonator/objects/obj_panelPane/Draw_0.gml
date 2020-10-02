@@ -36,9 +36,6 @@ if(currentFunction != functionHelp) {
 	if(showNav) {
 		y = originalWindowHeight;	
 	} 
-	else {
-		y = collapsedWindowHeight;	
-	}
 }
 
 //draw_set_alpha(1);
