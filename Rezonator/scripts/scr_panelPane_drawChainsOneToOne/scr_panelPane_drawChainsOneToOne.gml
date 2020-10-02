@@ -129,6 +129,7 @@ function scr_panelPane_drawChainsOneToOne(){
 				var dropDownButtonY2 = chainRowRectY2;
 				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
 				if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
 					
 					draw_set_alpha(1);
 					draw_set_color(global.colorThemeBorders);
