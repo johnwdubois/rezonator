@@ -70,6 +70,11 @@ function scr_filterOptions(argument0) {
 			ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
 			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
+			
+			if(obj_control.filterGridActive){
+				obj_control.filterGridActive = false;
+				obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			}
 			with (obj_dropDown) {
 				instance_destroy();
 			}
