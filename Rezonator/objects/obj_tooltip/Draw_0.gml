@@ -75,6 +75,42 @@ else if (arrowFacing == arrowFaceLeft) {
 	rectX2 = rectX1 + strWidth;
 	rectY2 = rectY1 + strHeight;
 }
+else if (arrowFacing == arrowFaceDown) {
+	
+	arrowWidth = 20;
+	arrowHeight = 15;
+	
+	arrowX1 = x;
+	arrowY1 = y;
+	arrowX2 = arrowX1 - (arrowWidth / 2);
+	arrowY2 = arrowY1 - arrowHeight;
+	arrowX3 = arrowX1 + (arrowWidth / 2);
+	arrowY3 = arrowY1 - arrowHeight;
+	
+	rectX1 = x - (strWidth / 2);
+	rectY1 = y - arrowHeight;
+	rectX2 = rectX1 + strWidth;
+	rectY2 = rectY1 - strHeight;
+}
+else if (arrowFacing == arrowFaceRight) {
+	
+	arrowWidth = 15;
+	arrowHeight = 20;
+
+	arrowX1 = x;
+	arrowY1 = y;
+	arrowX2 = arrowX1 - arrowWidth;
+	arrowY2 = arrowY1 - (arrowHeight / 2);
+	arrowX3 = arrowX1 - arrowWidth;
+	arrowY3 = arrowY1 + (arrowHeight / 2);
+	
+	rectX1 = x - arrowWidth;
+	rectY1 = y - (strHeight / 2)
+	rectX2 = rectX1 - strWidth;
+	rectY2 = rectY1 + strHeight;
+}
+
+
 
 
 

@@ -1,5 +1,5 @@
 function scr_audioDraw() {
-	//if (live_call()) return live_result;
+	if (live_call()) return live_result;
 	
 	// Draw Rezonator's audio player
 	windowHeight = (camera_get_view_height(camera_get_active())) * 0.08;
@@ -171,12 +171,12 @@ function scr_audioDraw() {
 		
 		//Draw bookmarks
 		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
-		bookmarkY = mean(seekBarY1, seekBarY2);
+		bookmarkY = seekBarY1 - (playheadRad * 2);
 	
 		//draw_set_color(c_green);
 		//draw_line_width(bookmarkX, bookmarkY - playheadRad * 2, bookmarkX, bookmarkY + playheadRad * 2, 1);
 		draw_set_halign(fa_right);
-		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.2, 0.2, -360, c_green, 1);
+		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.5, 0.5, 30, c_green, 1);
 		
 		if(bookmarkEndTime > -1) {
 		//	show_debug_message("bookmarkEndTime: " + string(bookmarkEndTime));
