@@ -119,8 +119,8 @@ switch (currentFunction) {
 						}
 					}
 			
-					draw_sprite_ext(spr_oneToOne, (chainViewOneToMany) ? 0 : 1, floor(mean(oneToManyRectX1, oneToManyRectX2)), floor(mean(oneToManyRectY1, oneToManyRectY2)), 1, 1, 0, c_white, 1);
 				}
+				draw_sprite_ext(spr_oneToOne, (chainViewOneToMany) ? 0 : 1, floor(mean(oneToManyRectX1, oneToManyRectX2)), floor(mean(oneToManyRectY1, oneToManyRectY2)), 1, 1, 0, c_white, 1);
 		
 		
 		
