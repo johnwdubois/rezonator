@@ -107,6 +107,7 @@ switch (currentFunction) {
 			var mouseoverOneToManyRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2);
 				
 			if (mouseoverOneToManyRect) {
+				scr_createTooltip(mean(oneToManyRectX1, oneToManyRectX2), oneToManyRectY2, (chainViewOneToMany) ? "1 to many" : "1 to 1", obj_tooltip.arrowFaceUp);
 				draw_set_color(global.colorThemeSelected1);
 				draw_rectangle(oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2, false);
 				draw_set_color(global.colorThemeBorders);

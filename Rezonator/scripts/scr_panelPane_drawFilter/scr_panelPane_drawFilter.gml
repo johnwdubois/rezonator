@@ -45,7 +45,19 @@ function scr_panelPane_drawFilter() {
 		var peekButtonRectY2 = peekButtonRectY1 + ((windowHeight - (filterButtonSize)) / 3);
 	
 		// If mouse clicked in button, activate/deavtivate button's function
-		if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)){
+		if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)) {
+			var tooltipText = "";
+			if (i == 0) {
+				tooltipText = "Context above";
+			}
+			else if (i == 1) {
+				tooltipText = "Context between";
+			}
+			else if (i == 2) {
+				tooltipText = "Context below";
+			}
+			scr_createTooltip(peekButtonRectX2, mean(peekButtonRectY1, peekButtonRectY2), tooltipText, obj_tooltip.arrowFaceLeft);
+			
 			obj_control.hoverTime[i]++;
 			if (device_mouse_check_button_released(0, mb_left)) {
 			
@@ -63,7 +75,7 @@ function scr_panelPane_drawFilter() {
 			}
 		}
 		else{
-		obj_control.hoverTime[i] = 0;
+			obj_control.hoverTime[i] = 0;
 		}
 	
 		// Recolor slected buttons
@@ -79,7 +91,7 @@ function scr_panelPane_drawFilter() {
 	
 		draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, true);
 	}
-
+	/*
 	for (var i = 0; i < 3; i++) {
 		//draw tooltips
 		if(obj_control.hoverTime[i] == obj_toolPane.hoverTimeLimit){
@@ -99,6 +111,7 @@ function scr_panelPane_drawFilter() {
 			}
 		}
 	}
+	*/
 
 
 	// Check for mouse clicks on filter button, if we're out of the search grid
