@@ -167,6 +167,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					var dropDownButtonY2 = lineNameRectY2;
 					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
 					if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
 						draw_set_alpha(1);
 						draw_set_color(global.colorThemeBorders);
 						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
@@ -356,6 +357,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		
 			//user interaction for token selection
 			if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
+				scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change field", obj_tooltip.arrowFaceUp);
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY, dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
 
@@ -384,6 +386,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	
 			//user interaction for display view change
 			if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
+				scr_createTooltip(wordViewButtonX, wordViewButtonY + wordViewButtonSize, "Speaker", obj_tooltip.arrowFaceUp);
 				draw_set_color(global.colorThemeSelected2);
 				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 				if (mouse_check_button_released(mb_left)) {
