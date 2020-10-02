@@ -44,7 +44,7 @@ function scr_audioDraw() {
 	draw_sprite(playPauseSprite, !audioPaused, playPauseX, playPauseY);
 	if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
 		if (mouse_check_button_pressed(mb_left)) {
-			if(selectedStack > -1) {
+			if(selectedStackGridRow > -1) {
 				if(audioPaused) {
 					if(audioPos >= bookmarkEndTime) {
 						scr_audioJumpToUnit(stackStartUnit);
@@ -59,7 +59,7 @@ function scr_audioDraw() {
 	}
 	if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
 		//var stackSelected = 
-		if(selectedStack > -1) {
+		if(selectedStackGridRow > -1) {
 			if(audioPaused) {
 				//show_message(stackStartUnit);
 				scr_audioJumpToUnit(stackStartUnit);
@@ -84,7 +84,7 @@ function scr_audioDraw() {
 		}
 	}
 	if (keyboard_check_pressed(vk_enter) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
-		if(selectedStack == -1) {
+		if(selectedStackGridRow == -1) {
 			if(audioPaused) {
 				var currentFocusUnit = scr_currentCenterLine();
 				var currentFocusUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentFocusUnit - 1);
