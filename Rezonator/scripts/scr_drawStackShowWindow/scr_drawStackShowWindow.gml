@@ -16,7 +16,7 @@ function scr_drawStackShowWindow() {
 
 	var grid = obj_chain.stackChainGrid;
 	
-	//if (live_call()) return live_result;
+	
 	
 
 

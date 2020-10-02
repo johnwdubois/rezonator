@@ -208,6 +208,8 @@ holdDown = 0;
 
 
 showNav = true;
+showNavLeft = true;
+showNavRight = true;
 tokenContentsHeaderListSize = 3;
 unitContentsHeaderListSize = 2;
 

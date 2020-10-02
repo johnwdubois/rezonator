@@ -1,5 +1,5 @@
 function scr_importMappingTagDraw() {
-	//if (live_call()) return live_result;
+	
 
 	scr_fontSizeControlOpeningScreen();
 

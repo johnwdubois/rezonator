@@ -1,5 +1,5 @@
 function scr_drawToolPaneNew() {
-	if (not obj_panelPane.showNav) {
+	if (not obj_panelPane.showNav or not obj_toolPane.showTool) {
 		y = -(windowHeight * 2);
 		exit;
 	}

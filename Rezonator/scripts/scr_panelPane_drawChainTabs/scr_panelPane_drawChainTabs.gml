@@ -14,7 +14,6 @@ function scr_panelPane_drawChainTabs() {
 	*/
 
 	// Set opacity, font, and alignment of text in chain tabs
-	if (live_call()) return live_result;
 
 
 	draw_set_alpha(1);
@@ -88,6 +87,7 @@ function scr_panelPane_drawChainTabs() {
 					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
 				}
 				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
+					scr_createTooltip(mean(toggleDrawRectX1, toggleDrawRectX2), toggleDrawRectY2, "Toggle visible", obj_tooltip.arrowFaceUp);
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
 					if (mouse_check_button_released(mb_left)) {
@@ -110,6 +110,7 @@ function scr_panelPane_drawChainTabs() {
 				var filterRectY2 = filterRectY1 + buttonRectSize;
 				var filterImageIndex = 0;
 				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2)) {
+					scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
 					if (mouse_check_button_released(mb_left)) {
@@ -170,6 +171,7 @@ function scr_panelPane_drawChainTabs() {
 				var ascendRectY2 = ascendRectY1 + buttonRectSize;
 			
 				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
+					scr_createTooltip(mean(ascendRectX1, ascendRectX2), ascendRectY2, (functionChainList_sortAsc[i]) ? "Sort ascending" : "Sort descending", obj_tooltip.arrowFaceUp);
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
 				

@@ -13,8 +13,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 
-	//if (live_call()) return live_result;
-
 	// INcrease the size of the utterance column!!!
 
 	var filterPaneWidth = 0;
@@ -372,6 +370,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 						var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
 		
 			 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {
+							scr_createTooltip(alignRectX1, mean(alignRectY1, alignRectY2), "Align link", obj_tooltip.arrowFaceRight);
 							draw_set_color(c_purple);
 							draw_set_alpha(0.5);
 							draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, false);
@@ -485,9 +484,11 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
 			// sort arrow
+			var sortArrowTipText = (functionChainContents_sortedCol == i) ? "Sort ascending" : "Sort default";
 			var sortArrowAngle = (functionChainContents_sortedCol == i) ? 0 : 270;
 			if (functionChainContents_sortedCol == i and not functionChainContents_sortedColAsc) {
 				sortArrowAngle = 180;
+				sortArrowTipText = "Sort descending";
 			}
 			var sortArrowX = colRectX1 + string_width(colName + "AA");
 			var sortArrowY = y + (sprite_get_height(spr_ascend) * 0.4);
@@ -497,6 +498,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			var sortArrowRectY2 = sortArrowY + 10;
 			draw_sprite_ext(spr_ascend, 0, sortArrowX - clipX, sortArrowY - clipY, 1, 1, sortArrowAngle, c_white, 1);
 			if (point_in_rectangle(mouse_x, mouse_y, sortArrowRectX1, sortArrowRectY1, sortArrowRectX2, sortArrowRectY2)) {
+				scr_createTooltip(mean(sortArrowRectX1, sortArrowRectX2), sortArrowRectY2, sortArrowTipText, obj_tooltip.arrowFaceUp);
 				draw_set_color(global.colorThemeBorders);
 				draw_set_alpha(1);
 				draw_rectangle(sortArrowRectX1 - clipX, sortArrowRectY1 - clipY, sortArrowRectX2 - clipX, sortArrowRectY2 - clipY, true);

@@ -1,5 +1,3 @@
-if (live_call()) return live_result;
-
 showDelay = clamp(showDelay, 0, showDelayFull);
 if (!show) {
 	alpha = 0;
