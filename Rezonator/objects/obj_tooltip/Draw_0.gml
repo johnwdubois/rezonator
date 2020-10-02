@@ -78,6 +78,19 @@ else if (arrowFacing == arrowFaceLeft) {
 
 
 
+// make sure tooltip isn't writing off-screen
+var camWidth = camera_get_view_width(camera_get_active());
+if (rectX1 < 0) {
+	rectX1 = 0;
+	rectX2 = rectX1 + strWidth;
+}
+if (rectX2 > camWidth) {
+	rectX2 = camWidth;
+	rectX1 = rectX2 - strWidth;
+}
+
+
+
 // draw arrow and rounded rectangle
 draw_set_color(global.colorThemeBorders);
 draw_triangle(arrowX1, arrowY1, arrowX2, arrowY2, arrowX3, arrowY3, false);
