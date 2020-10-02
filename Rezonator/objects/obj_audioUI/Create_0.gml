@@ -40,7 +40,7 @@ audioPaused = true;
 audioJumpOnWordClick = false;
 mouseOverAudioUI = false;
 
-selectedStackGridRowGridRow = -1;
+selectedStackGridRow = -1;
 selectedStackID = -1;
 bookmarkStartTime = -1;
 bookmarkEndTime = -1;

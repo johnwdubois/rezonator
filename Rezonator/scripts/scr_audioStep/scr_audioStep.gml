@@ -37,9 +37,9 @@ function scr_audioStep() {
 		audio_sound_set_track_position(audioSound, 0);
 		audioPaused = true;
 	}
-	if(selectedStack > -1) { 
+	if(selectedStackGridRow > -1) { 
 		if(stackUnitListSize > -1) {
-			show_debug_message("stackUnitListPosition: " + string(stackUnitListPosition));
+			//show_debug_message("stackUnitListPosition: " + string(stackUnitListPosition));
 			if(stackUnitListPosition <= stackUnitListSize - 1) {
 				var currentUnit = ds_list_find_value(stackUnitList, stackUnitListPosition);
 				var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentUnit - 1);
@@ -47,10 +47,11 @@ function scr_audioStep() {
 				
 				
 				if(audioPos >= currentUnitEnd) {
-					if (stackUnitListPosition != stackUnitListSize - 1) {
+					if (stackUnitListPosition < stackUnitListSize - 1) {
 						var nextUnit = ds_list_find_value(stackUnitList, stackUnitListPosition + 1);
 						if(currentUnit != nextUnit - 1) {
-							scr_audioJumpToUnit(nextUnit);
+							var nextUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, nextUnit - 1);
+							audio_sound_set_track_position(audioSound, nextUnitStartTime);
 						}
 					}
 					stackUnitListPosition++;
@@ -70,10 +71,11 @@ function scr_audioStep() {
 	if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) {
 		var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0,  obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
 		if(currentStackRow > -1) {
-			if(currentStackRow != selectedStack) {
-				selectedStack = currentStackRow;
+			if(currentStackRow != selectedStackGridRow) {
+				/*selectedStackGridRow = currentStackRow;
 				bookmarkStartTime = -1;
 				bookmarkEndTime = -1;
+				selectedStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, currentStackRow);
 				stackUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, currentStackRow);
 				stackUnitListSize = ds_list_size(stackUnitList);
 				for(var unitTimeLoop = 0; unitTimeLoop < stackUnitListSize; unitTimeLoop++) {
@@ -89,25 +91,63 @@ function scr_audioStep() {
 						stackEndUnit = currentUnit;
 					}
 				}
-				stackUnitListPosition = 0;
+				stackUnitListPosition = 0;*/
+				scr_audioStackUpdate(currentStackRow);
+			}
+			else {
+				stackUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, selectedStackGridRow);
+				if(stackStartUnit != ds_list_find_value(stackUnitList, 0)) {
+					scr_audioStackUpdate(selectedStackGridRow);	
+				}
+				else if (stackEndUnit != ds_list_find_value(stackUnitList, ds_list_size(stackUnitList) - 1)) {
+					scr_audioStackUpdate(selectedStackGridRow);
+				}
 			}
 		}
 		else {
-			selectedStack = -1;	
+			selectedStackGridRow = -1;	
 			stackUnitList = -1;
 			stackUnitListSize = -1;
 			stackUnitListPosition = -1;
+			selectedStackID = -1;
 			//bookmarkStartTime = -1;
 			//bookmarkEndTime = -1;
 		}
 	}
 	else {
-		selectedStack = -1;	
+		selectedStackGridRow = -1;	
 		stackUnitList = -1;
 		stackUnitListSize = -1;
 		stackUnitListPosition = -1;
+		selectedStackID = -1;
 		//bookmarkStartTime = -1;
 		//bookmarkEndTime = -1;
 	}
+	/*if (selectedStackID != -1) {
+		if(selectedStackID == ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, selectedStackGridRow)) {
+			stackUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, selectedStackGridRow);
+			if(stackStartUnit != ds_list_find_value(stackUnitList, 0)) {
+				scr_audioStackUpdate(selectedStackGridRow);	
+			}
+			else if (stackEndUnit != ds_list_find_value(stackUnitList, ds_list_size(stackUnitList) - 1)) {
+				scr_audioStackUpdate(selectedStackGridRow);
+			}
+		}
+		else {
+			var possibleNewStackGridRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0,  obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), selectedChainID);
+			if(possibleNewStackGridRow > -1) {
+				selectedStackGridRow = possibleNewStackGridRow;
+			}
+			else {
+				selectedStackGridRow = -1;	
+				stackUnitList = -1;
+				stackUnitListSize = -1;
+				stackUnitListPosition = -1;
+				selectedStackID = -1;
+				bookmarkStartTime = -1;
+				bookmarkEndTime = -1;
+			}
+		}
+	}*/
 	
 }

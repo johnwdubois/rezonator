@@ -62,7 +62,7 @@ function scr_audioDraw() {
 		if(selectedStackGridRow > -1) {
 			if(audioPaused) {
 				//show_message(stackStartUnit);
-				scr_audioJumpToUnit(stackStartUnit);
+				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
 			}
@@ -90,10 +90,12 @@ function scr_audioDraw() {
 				var currentFocusUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentFocusUnit - 1);
 				bookmarkStartTime = currentFocusUnitStartTime;
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+				bookmarkEndTime = -1;
 			}
 			else{
 				bookmarkStartTime = audioPos;
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+				bookmarkEndTime = -1;
 				audioPaused = !audioPaused;
 			}
 		}
@@ -183,10 +185,10 @@ function scr_audioDraw() {
 		
 			//Draw bookmarks
 			endmarkX = ((real(bookmarkEndTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
-			endmarkY = mean(seekBarY1, seekBarY2);
+			endmarkY = seekBarY2 + (playheadRad * 2);
 			
 			draw_set_halign(fa_left);
-			draw_sprite_ext(spr_linkArrow, 0, endmarkX, endmarkY, 0.2, 0.2, -180, c_red, 1);
+			draw_sprite_ext(spr_linkArrow, 0, endmarkX, endmarkY, 0.5, 0.5, 210, c_red, 1);
 		
 		
 		}
