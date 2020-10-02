@@ -669,3 +669,32 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 scr_fontSizeControl();
 
 
+// hide panel panes and toolpanes if doing Play & Learn
+if (global.wheresElmo) {
+	with (obj_panelPane) {
+		showNav = false;
+		showNavLeft = false;
+		showNavRight = false;
+	}
+	with (obj_toolPane) {
+		showTool = false;
+	}
+	
+	/*
+				with(obj_panelPane){
+				showNav = not showNav;
+
+				if(showNav){
+					showNavRight = true;	
+					showNavLeft = true;
+					obj_toolPane.showTool = true;
+			
+				}
+				else{
+					showNavRight = false;	
+					showNavLeft = false;
+					obj_toolPane.showTool = false;
+				}
+			}
+	*/
+}

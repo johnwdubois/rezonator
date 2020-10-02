@@ -17,7 +17,6 @@ windowWidth = global.toolPaneWidth;
 windowHeight = 170;
 
 originalWindowHeight = 20;
-collapsedWindowHeight = 2000;
 showTool = true;
 
 x = room_width - windowWidth;

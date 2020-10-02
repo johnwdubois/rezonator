@@ -1,7 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteChain(chainID){
-	//if (live_call(argument0)) return live_result;
 	
 	// first, we find the grid that this chain is
 	var grid = -1;
@@ -48,9 +47,39 @@ function scr_deleteChain(chainID){
 			// if this is a wordID (not a unitID) then we must update the wordDrawGrid
 			if (grid == obj_chain.rezChainGrid) {
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentWordID - 1, false);
+				
+				// if there is another chain still left in this inChainsList, it must be a Track chain,
+				// so we will draw the Track border again
+				if (ds_list_size(currentInChainsList) > 0) {
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentWordID - 1, true);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentWordID - 1, true);
+					var trackChainID = ds_list_find_value(currentInChainsList, 0);
+					var trackChainRow = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), trackChainID);
+					show_debug_message("scr_deleteChain() ... trackChainID: " + string(trackChainID) + "... trackChainRow: " + string(trackChainRow) + " trackChainGridHeight: " + string(ds_grid_height(obj_chain.trackChainGrid)));
+					if (trackChainRow >= 0 && trackChainRow < ds_grid_height(obj_chain.trackChainGrid)) {
+						var trackChainColor = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colColor, trackChainRow);
+						show_debug_message("scr_deleteChain() ... trackChainColor: " + string(trackChainColor));
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentWordID - 1, trackChainColor);
+					}
+				}
 			}
 			else if (grid == obj_chain.trackChainGrid) {
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentWordID - 1, false);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentWordID - 1, false);
+				
+				// if there is another chain still left in this inChainsList, it must be a Rez chain,
+				// so we will draw the Rez border again
+				if (ds_list_size(currentInChainsList) > 0) {
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentWordID - 1, true);
+					var rezChainID = ds_list_find_value(currentInChainsList, 0);
+					var rezChainRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), rezChainID);
+					show_debug_message("scr_deleteChain() ... rezChainID: " + string(rezChainID) + "... rezChainRow: " + string(rezChainRow) + " rezChainGridHeight: " + string(ds_grid_height(obj_chain.rezChainGrid)));
+					if (rezChainRow >= 0 && rezChainRow < ds_grid_height(obj_chain.rezChainGrid)) {
+						var rezChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rezChainRow);
+						show_debug_message("scr_deleteChain() ... rezChainColor: " + string(rezChainColor));
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentWordID - 1, rezChainColor);
+					}
+				}
 			}
 			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, false);
 		}
