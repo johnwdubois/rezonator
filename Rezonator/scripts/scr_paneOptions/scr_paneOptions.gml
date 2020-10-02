@@ -58,6 +58,7 @@ function scr_paneOptions(argument0) {
 					}
 				}
 			}
+			instance_destroy();
 		break;
 		case "Search":
 		
@@ -80,24 +81,35 @@ function scr_paneOptions(argument0) {
 					obj_control.wordLeftMarginDest = window_get_width() / 2;
 				}
 			}
+			instance_destroy();
 			//show_message("BUH 2");
 		break;
 		case "Nav": // Show/hide Nav Window
-			case "Toggle Nav Window":
-			with(obj_panelPane){
-				showNav = not showNav;	
-				
+		
+			
+			var dropDownOptionList = ds_list_create();
+			ds_list_add(dropDownOptionList, "Left", "Right", "Tools", "All");
+						
+			if (ds_list_size(dropDownOptionList) > 0) {
+				var dropDownInst = instance_create_depth(x + windowWidth , y+ optionSpacing, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = 44;
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
 			}
-			obj_toolPane.showTool = !obj_toolPane.showTool;
-			//show_message("BUH 1");
+
 			break;
+		
 		break;
 		case "Grid": // show grid view
 			obj_control.gridView = !obj_control.gridView;
+			instance_destroy();
 		break;
 		case "Dev": // show grid view
 			obj_control.showDevVars = !obj_control.showDevVars;
 			obj_control.showFPS = !obj_control.showFPS;
+			instance_destroy();
 		break;
 	}
 

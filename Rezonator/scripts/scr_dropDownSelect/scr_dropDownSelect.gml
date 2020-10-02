@@ -124,7 +124,6 @@ function scr_dropDownSelect(argument0) {
 	else if (optionListType == 14)
 	{
 	    scr_paneOptions(optionSelected);
-	    instance_destroy();
 	}
 
 	//wordOptions
@@ -304,6 +303,11 @@ function scr_dropDownSelect(argument0) {
 	else if (optionListType == 43)
 	{
 	    scr_playandLearnOptions(optionSelected);
+	}
+	else if (optionListType == 44)
+	{
+	    scr_navOptions(optionSelected);
+		instance_destroy();
 	}
 
 }
