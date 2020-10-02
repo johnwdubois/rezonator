@@ -242,7 +242,7 @@ function scr_panelPane_drawChainTabs() {
 					draw_set_color(global.colorThemeText);
 					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
 						
-						scr_createTooltip(mean(tagButtonRectX1, tagButtonRectX2), tagButtonRectY2, (obj_control.showUnitTags) ? "1 to 1" : "1 to many", obj_tooltip.arrowFaceUp);
+						scr_createTooltip(mean(tagButtonRectX1, tagButtonRectX2), tagButtonRectY2, (obj_control.showUnitTags) ? "1-to-1" : "1-to-many", obj_tooltip.arrowFaceUp);
 						
 						draw_set_color(global.colorThemeSelected2);
 						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
