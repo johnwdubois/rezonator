@@ -13,8 +13,6 @@ function scr_panelPane_drawFilter() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 
-	//if (live_call()) return live_result;
-
 	// Set contraints for filter button
 
 	windowWidth = functionChainList_tabHeight;

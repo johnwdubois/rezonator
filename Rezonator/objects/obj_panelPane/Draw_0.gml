@@ -12,8 +12,6 @@
 	Author: Terry DuBois
 */
 
-//if (live_call()) return live_result;
-
 
 
 if (obj_control.gridView and currentFunction != functionHelp) {

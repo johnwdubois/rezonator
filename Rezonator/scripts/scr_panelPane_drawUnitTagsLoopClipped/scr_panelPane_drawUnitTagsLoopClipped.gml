@@ -13,7 +13,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	    Author: Georgio Klironomos
 	*/
 
-	//if (live_call()) return live_result;
+	
 	// Access the lineList panelPane object to get it's scrollPlusY
 
 	var lineListPanelPaneInst = 0;

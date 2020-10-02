@@ -1,5 +1,4 @@
 function scr_exceptionsWindow() {
-	//if (live_call()) return live_result;
 
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
