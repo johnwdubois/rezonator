@@ -283,9 +283,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 			// Check boxes for user selection with mouse click
 			var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
 			if (mouseover) {
-					draw_set_alpha(1);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
+				scr_createTooltip(chainFilterRectX2 + clipX, mean(chainFilterRectY1 + clipY, chainFilterRectY2 + clipY), "Filter", obj_tooltip.arrowFaceLeft);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 			}
 			if (((mouseover and device_mouse_check_button_released(0, mb_left))
 			or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
@@ -326,6 +327,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 			//Check for user selection of alignment with mouse clicks
 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
+				scr_createTooltip(chainAlignRectX1, mean(chainAlignRectY1, chainAlignRectY2), "Align chain", obj_tooltip.arrowFaceRight);
 				draw_set_alpha(0.5);
 				draw_set_color(c_purple);
 				draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);

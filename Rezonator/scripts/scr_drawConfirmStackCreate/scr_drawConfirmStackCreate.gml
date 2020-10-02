@@ -3,7 +3,6 @@
 function scr_drawConfirmStackCreate(){
 	
 	
-	if (live_call()) return live_result;
 
 
 	var fullWindowWidth = camera_get_view_width(camera_get_active()) / 3;

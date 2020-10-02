@@ -15,7 +15,7 @@ function scr_stackShowWindow() {
 		Author: Brady Moore
 	*/
 	
-	//if (live_call()) return live_result;
+	
 
 
 	var verticleBuffer = 230;

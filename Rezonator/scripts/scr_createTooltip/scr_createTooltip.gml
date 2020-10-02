@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createTooltip(tipX, tipY, tipText, arrowFaceDirection){
 	
-	if (live_call(tipX, tipY, tipText, arrowFaceDirection)) return live_result;
-	
 	with (obj_tooltip) {	
 		text = tipText;
 		arrowFacing = arrowFaceDirection;

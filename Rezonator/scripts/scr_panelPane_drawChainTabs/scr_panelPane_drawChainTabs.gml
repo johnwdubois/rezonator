@@ -14,7 +14,6 @@ function scr_panelPane_drawChainTabs() {
 	*/
 
 	// Set opacity, font, and alignment of text in chain tabs
-	if (live_call()) return live_result;
 
 
 	draw_set_alpha(1);
