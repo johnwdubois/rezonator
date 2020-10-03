@@ -115,7 +115,7 @@ if(obj_control.mouseoverPanelPane) {
 }
 
 
-
+/*
 if (not obj_control.gridView and ds_grid_height(cliqueGrid) > 0) {
 	cliqueGridRowToRefreshFlanks = min(cliqueGridRowToRefreshFlanks + 1, ds_grid_height(cliqueGrid) - 1);
 	scr_cliqueGridRefreshFlanks(cliqueGridRowToRefreshFlanks);
@@ -134,4 +134,4 @@ if (ds_grid_height(rezChainGrid) > 0) {
 		rezChainGridRowToRefreshTilt = 0;
 	}
 }
-
+*/

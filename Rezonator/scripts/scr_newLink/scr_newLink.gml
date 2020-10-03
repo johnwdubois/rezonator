@@ -117,6 +117,9 @@ function scr_newLink(argument0, argument1) {
 	}
 
 	alarm[3] = 1;
+	with(obj_panelPane) {
+		ds_list_clear(rowInLinkGridList);	
+	}
 
 
 }

@@ -225,6 +225,9 @@ chainTagsHighlightRow = -1;
 
 chainViewOneToMany = true;
 
+previousChainContentsRow = -1;
+rowInLinkGridList = ds_list_create();
+
 
 hoverTime[0] = 0;
 hoverTime[1] = 0;
