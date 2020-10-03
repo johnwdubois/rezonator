@@ -126,10 +126,15 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 		draw_set_font(global.fontChainContents);
 		var strHeight = string_height("0");
-
+		
 
 		// Check for focused chain and make sure grid is not empty, gather information from grids
 		if (oldRow >= 0 && ds_grid_height(grid) != 0) {
+			
+			if(oldRow != previousChainContentsRow) {
+				previousChainContentsRow = oldRow;	
+				ds_list_clear(rowInLinkGridList);
+			}
 			// Collect beginning of chain info
 			focusedChainExists = true;
 			var rowInChainGrid = oldRow;
@@ -157,8 +162,9 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	
 				// Gather specfic information on words
 				var IDListSize = ds_list_size(functionChainContents_IDList);
+				var rowInLinkGridListSize = ds_list_size(rowInLinkGridList);
 				for (var j = 0; j < IDListSize; j++) {
-		
+					var rowInLinkGridListSize = ds_list_size(rowInLinkGridList);
 					//Get info on current word
 					var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
 
@@ -173,7 +179,15 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					var rectY2 = rectY1 + strHeight;
 		
 					// Find link info
-					var rowInLinkGrid = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentWordID, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
+					// What if we didn't have to though!!!!!!!!!!!!!!
+					if(rowInLinkGridListSize == IDListSize) {
+						var rowInLinkGrid = ds_list_find_value(rowInLinkGridList, j);
+					}
+					else {
+						var rowInLinkGrid = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentWordID, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
+						ds_list_add(rowInLinkGridList, rowInLinkGrid);
+					}
+					
 					var focusedLink = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowInLinkGrid);
 					var sourceWordID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGrid);
 		
