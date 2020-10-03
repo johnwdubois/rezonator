@@ -13,6 +13,7 @@ menuBarGrid_colOptionList = 2;
 menuBarGrid_colOptionListType = 3;
 
 
+
 menuBarGrid_rowFile = 0;
 //menuBarGrid_rowLink = 1;
 //menuBarGrid_rowEdit = 2;
@@ -143,6 +144,7 @@ y= 0;
 sortPaneOpen = false;
 sortClosing = false;
 sortPane = -1;
+chainDeselected = false;
 /*menuList = ds_list_create();
 ds_list_add(menuList, "File", "Link", "Edit", "View", "Search", "Tools", "Advanced", "Setting", "Help");
 menuListSize = ds_list_size(menuList);*/
