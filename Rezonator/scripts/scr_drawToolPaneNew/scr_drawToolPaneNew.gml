@@ -57,11 +57,11 @@ function scr_drawToolPaneNew() {
 		draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 
 	
-		if (mouseover and not obj_control.scrollBarHolding) {
+		if (mouseover and not obj_panelPane.scrollBarClickLock) {
 			hoverTime[i]++;
 
 			//show_message("BUH: " + string(hoverTime) );
-			if (mouse_check_button_released(mb_left)) {
+			if (mouse_check_button_released(mb_left) and not obj_panelPane.scrollBarClickLock) {
 				if (i == 0) {
 					currentMode = modeRead;
 					obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;

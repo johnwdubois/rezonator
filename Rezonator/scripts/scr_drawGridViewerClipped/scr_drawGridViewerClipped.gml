@@ -143,7 +143,7 @@ function scr_drawGridViewerClipped() {
 				draw_set_color(global.colorThemeSelected2);
 				draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, true);
 				// Here is where we can focus a specific column.
-				if (device_mouse_check_button_released(0, mb_left) and window_get_cursor() != cr_size_we and not scrollBarHolding) {
+				if (device_mouse_check_button_released(0, mb_left) and window_get_cursor() != cr_size_we and not obj_panelPane.scrollBarClickLock) {
 					focusedRow = gridLoopRow;
 					focusedCol = gridLoopCol;	
 					focusedItemString = currentItemString;
@@ -403,37 +403,38 @@ function scr_drawGridViewerClipped() {
 		}
 	*/
 
+	if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {
+		// mousewheel input
+		if (mouse_wheel_up()) {
+			scrollPlusYDest += 8;
+		}
+		if (mouse_wheel_down()) {
+			scrollPlusYDest -= 8;
+		}
 
-	// mousewheel input
-	if (mouse_wheel_up()) {
-		scrollPlusYDest += 8;
-	}
-	if (mouse_wheel_down()) {
-		scrollPlusYDest -= 8;
-	}
+		// keyboard input for UP and DOWN
+		if (keyboard_check(vk_up)) {
+			scrollPlusYDest += 4;
+		}
+		if (keyboard_check(vk_down)) {
+			scrollPlusYDest -= 4;
+		}
 
-	// keyboard input for UP and DOWN
-	if (keyboard_check(vk_up)) {
-		scrollPlusYDest += 4;
-	}
-	if (keyboard_check(vk_down)) {
-		scrollPlusYDest -= 4;
-	}
-
-	// CTRL+UP and CTRL+DOWN
-	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-		scrollPlusYDest = 100;
-	}
-	if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-		scrollPlusYDest = -999999999999;
-	}
+		// CTRL+UP and CTRL+DOWN
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+			scrollPlusYDest = 100;
+		}
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+			scrollPlusYDest = -999999999999;
+		}
 	
-	// PAGEUP and PAGEDOWN
-	if (keyboard_check_pressed(vk_pageup)) {
-		scrollPlusYDest += (windowHeight);
-	}
-	if (keyboard_check_pressed(vk_pagedown)) {
-		scrollPlusYDest -= (windowHeight);
+		// PAGEUP and PAGEDOWN
+		if (keyboard_check_pressed(vk_pageup)) {
+			scrollPlusYDest += (windowHeight);
+		}
+		if (keyboard_check_pressed(vk_pagedown)) {
+			scrollPlusYDest -= (windowHeight);
+		}
 	}
 
 

@@ -303,7 +303,7 @@ function scr_panelPane_drawChainTabs() {
 		draw_set_valign(fa_top);
 	
 		// check for mouse clicks to change the selected tab
-		if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
+		if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) and not obj_panelPane.scrollBarClickLock) {
 		
 			/*obj_panelPane.hoverTime[i]++;
 		

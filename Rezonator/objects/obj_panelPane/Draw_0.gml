@@ -64,6 +64,12 @@ switch (currentFunction) {
 				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
 			}
 		}
+		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
+			alarm[6] = 1;	
+		}
+		else {
+			scrollBarClickLock = true;	
+		}
 		break;
 	case functionChainContents:
 		if(showNavRight){
@@ -136,6 +142,12 @@ switch (currentFunction) {
 				}
 			}
 		}
+		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
+			alarm[6] = 1;	
+		}
+		else {
+			scrollBarClickLock = true;	
+		}
 		break;
 	case functionFilter:
 		if(showNavLeft){
@@ -185,7 +197,7 @@ switch (currentFunction) {
 			scr_panelPane_drawHelp();
 			}
 		}
-		if(not obj_control.scrollBarHolding) {
+		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
 			alarm[6] = 1;	
 		}
 		else {

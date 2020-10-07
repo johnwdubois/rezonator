@@ -93,7 +93,7 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	var mouseoverCurrentOption = false;
 	if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, mouseoverRectX2, optionRectY2) and ableToMouseover
-	and !scrollBarHolding) {
+	and not obj_panelPane.scrollBarClickLock) {
 		mouseoverCurrentOption = true;
 		ableToMouseover = false;
 		if (room == rm_mainScreen) {
