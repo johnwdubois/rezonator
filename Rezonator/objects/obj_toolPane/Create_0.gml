@@ -42,6 +42,8 @@ modeRez = 1;
 modeTrack = 2;
 currentMode = modeRead;
 
+setModeMain = modeRead;
+setModeSearch = modeRead;
 
 
 checkedForParticipantNames = false;
