@@ -12,18 +12,32 @@
 	Author: Terry DuBois
 */
 
+#macro vk_rcommand 91
+#macro vk_lcommand 92
+
 shortcutsEnabled = true;
 
 if (hideAll) {
 	gridView = false;
 }
-	
+
+ctrlHold = false;
+if(os_type == os_macosx){
+	if ( keyboard_check(vk_rcommand) or keyboard_check(vk_lcommand)) {
+		ctrlHold = true;
+	}
+}
+else {
+	if (keyboard_check(vk_control)) {
+		ctrlHold = true;
+	}
+}
 
 
 // Mechanism to update center display row
 if (!gridView) {
 	if (ds_grid_height(currentActiveLineGrid) > 0) {
-		var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
+		/*var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
 		if (firstLinePixelY > 150 + gridSpaceVertical) {
 			currentCenterDisplayRow++;
 		}
@@ -35,7 +49,8 @@ if (!gridView) {
 			currentCenterDisplayRow--;
 		}
 		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
-		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
+		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);*/
+		currentCenterDisplayRow = scr_currentCenterLine();
 	}
 	
 	

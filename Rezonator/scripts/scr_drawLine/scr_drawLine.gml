@@ -180,7 +180,7 @@ function scr_drawLine() {
 				obj_control.mouseoverNeutralSpace = false;
 				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
-					if(keyboard_check(vk_control)){
+					if(obj_control.ctrlHold){
 						
 						//check if we need to merge
 						var grid = obj_chain.rezChainGrid;
