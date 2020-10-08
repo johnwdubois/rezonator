@@ -142,6 +142,7 @@ function scr_panelPane_drawChainTabs() {
 									searchGridActive = false;
 									filterGridActive = false;
 									currentActiveLineGrid = lineGrid;
+									obj_toolPane.currentMode = obj_toolPane.setModeMain;
 									wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 
 									with (obj_alarm) {
@@ -332,13 +333,31 @@ function scr_panelPane_drawChainTabs() {
 			
 				if (i == 1) {
 					obj_toolPane.currentMode = obj_toolPane.modeTrack;
+					if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+					}
 				}
 				if (i == 2) {
 					obj_toolPane.currentMode = obj_toolPane.modeRez;
+					if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeRez;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeRez;
+					}
 				}
 				if (i == 3) {
 					if(obj_toolPane.currentMode = obj_toolPane.modeRead) {
 						obj_toolPane.currentMode = obj_toolPane.modeTrack;
+						if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+					}
 					}
 				}
 			

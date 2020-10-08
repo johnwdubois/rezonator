@@ -29,7 +29,7 @@ function scr_searchOptions(argument0) {
 			obj_control.searchGridActive = false;
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
-			//obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
+			obj_toolPane.currentMode = obj_toolPane.setModeMain;
 			obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
 			with (obj_alarm) {
 				alarm[0] = 5;

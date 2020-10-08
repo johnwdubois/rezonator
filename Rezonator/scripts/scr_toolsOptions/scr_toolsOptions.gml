@@ -26,6 +26,12 @@ function scr_toolsOptions(argument0) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeRez;
+				if(obj_control.searchGridActive) {
+					obj_toolPane.setModeSearch = obj_toolPane.modeRez;
+				}
+				else {
+					obj_toolPane.setModeMain = obj_toolPane.modeRez;
+				}
 			}
 			with (obj_dropDown) {
 				instance_destroy();
@@ -39,6 +45,12 @@ function scr_toolsOptions(argument0) {
 			}
 			with (obj_toolPane) {
 				currentMode = modeTrack;
+				if(obj_control.searchGridActive) {
+					obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+				}
+				else {
+					obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+				}
 			}
 			with (obj_dropDown) {
 				instance_destroy();

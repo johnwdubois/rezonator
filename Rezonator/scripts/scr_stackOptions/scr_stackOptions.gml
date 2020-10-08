@@ -12,6 +12,12 @@ function scr_stackOptions(argument0) {
 			with (obj_toolPane) {
 				if (currentMode == modeRead) {
 					currentMode = modeTrack;
+					if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+					}
 				}
 			}
 			instance_destroy();

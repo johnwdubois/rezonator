@@ -66,30 +66,30 @@ function scr_drawToolPaneNew() {
 					currentMode = modeRead;
 					obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 					if(obj_control.searchGridActive) {
-						obj_control.setModeSearch = modeRead;
+						obj_toolPane.setModeSearch = obj_toolPane.modeRead;
 					}
 					else {
-						obj_control.setModeMain = modeRead;
+						obj_toolPane.setModeMain = obj_toolPane.modeRead;
 					}
 				}
 				else if (i == 1) {
 					currentMode = modeTrack;
 					obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
 					if(obj_control.searchGridActive) {
-						obj_control.setModeSearch = modeTrack;
+						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 					}
 					else {
-						obj_control.setModeMain = modeTrack;
+						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
 					}
 				}
 				else if (i == 2) {
 					currentMode = modeRez;
 					obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 					if(obj_control.searchGridActive) {
-						obj_control.setModeSearch = modeRez;
+						obj_toolPane.setModeSearch = obj_toolPane.modeRez;
 					}
 					else {
-						obj_control.setModeMain = modeRez;
+						obj_toolPane.setModeMain = obj_toolPane.modeRez;
 					}
 				}
 				if (obj_control.gridView) {

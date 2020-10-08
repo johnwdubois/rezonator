@@ -103,6 +103,7 @@ function scr_audioStep() {
 					scr_audioStackUpdate(selectedStackGridRow);
 				}
 			}
+			stackUnfocus = false;
 		}
 		else {
 			selectedStackGridRow = -1;	
@@ -110,6 +111,11 @@ function scr_audioStep() {
 			stackUnitListSize = -1;
 			stackUnitListPosition = -1;
 			selectedStackID = -1;
+			if(stackUnfocus = false) {
+				bookmarkStartTime = -1;
+				bookmarkEndTime = -1;
+				stackUnfocus = true;
+			}
 			//bookmarkStartTime = -1;
 			//bookmarkEndTime = -1;
 		}
@@ -120,6 +126,11 @@ function scr_audioStep() {
 		stackUnitListSize = -1;
 		stackUnitListPosition = -1;
 		selectedStackID = -1;
+		if(stackUnfocus = false) {
+			bookmarkStartTime = -1;
+			bookmarkEndTime = -1;
+			stackUnfocus = true;
+		}
 		//bookmarkStartTime = -1;
 		//bookmarkEndTime = -1;
 	}

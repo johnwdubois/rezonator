@@ -14,6 +14,7 @@ function scr_paneOptions(argument0) {
 						obj_control.searchGridActive = false;
 		
 						obj_control.currentActiveLineGrid = obj_control.lineGrid;
+						obj_toolPane.currentMode = obj_toolPane.setModeMain;
 						obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow;
 		
 						//currentCenterDisplayRow = preSwitchDisplayRow;
@@ -66,17 +67,17 @@ function scr_paneOptions(argument0) {
 				// Main/filter to search
 				if(obj_control.currentActiveLineGrid == obj_control.lineGrid) {// or currentActiveLineGrid == filterGrid) {
 					scr_unFocusAllChains();
+					
 					// Which grid are we switching from?
 					obj_control.preSwitchLineGrid = obj_control.currentActiveLineGrid; 
 					obj_control.searchGridActive = true;
 					obj_control.currentActiveLineGrid = obj_control.searchGrid;
+					obj_toolPane.currentMode = obj_toolPane.setModeSearch;
+					
 					// Which row are we switching from?
-					obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow; 
+					obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;
 					obj_control.highlightedSearchRow = 0;
-					//currentCenterDisplayRow = preSwitchSearchDisplayRow;
 					obj_control.scrollPlusYDest  = obj_control.preSwitchSearchDisplayRow;
-				//	var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
-					//obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 		
 					obj_control.wordLeftMarginDest = window_get_width() / 2;
 				}

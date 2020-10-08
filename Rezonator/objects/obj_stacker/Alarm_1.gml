@@ -2,6 +2,12 @@
 // You can write your code in this editor
 with (obj_toolPane) {
 	currentMode = modeRez;
+	if(obj_control.searchGridActive) {
+		obj_toolPane.setModeSearch = obj_toolPane.modeRez;
+	}
+	else {
+		obj_toolPane.setModeMain = obj_toolPane.modeRez;
+	}
 }
 with (obj_panelPane) {
 	functionChainList_currentTab = functionChainList_tabStackBrush;

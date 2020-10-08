@@ -49,3 +49,4 @@ stackEndUnit = -1;
 stackUnitList = -1;
 stackUnitListSize = -1;
 stackUnitListPosition = -1;
+stackUnfocus = false;

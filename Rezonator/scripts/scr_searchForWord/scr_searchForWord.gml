@@ -246,10 +246,12 @@ function scr_searchForWord() {
 		obj_control.searchGridActive = true;
 		obj_control.clearSearch = false;
 		scr_unFocusAllChains();
+		obj_control.currentActiveLineGrid = obj_control.searchGrid;
+		obj_toolPane.currentMode = obj_toolPane.setModeSearch;
+		
 		with(obj_control) {
 			obj_control.highlightedSearchRow = 0;// Reset the highlight with a new search
 		}
-		obj_control.currentActiveLineGrid = obj_control.searchGrid;
 		obj_control.scrollPlusYDest = 0;
 		obj_control.wordLeftMarginDest = window_get_width() / 2;
 		obj_control.moveCounter ++;
@@ -272,6 +274,7 @@ function scr_searchForWord() {
 			obj_control.searchGridActive = false;
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			obj_toolPane.currentMode = obj_toolPane.setModeMain;
 			obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
 			obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
 			obj_control.wordLeftMarginDest = 170;
