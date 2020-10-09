@@ -294,8 +294,15 @@ function scr_drawLine() {
 						functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 						functionChainList_currentTab = functionChainList_tabLine;
 						// Y value not in a grid for read tab, have to store somewhere
-						//var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-						//obj_panelPane.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
+						/*for (var i = 0; i < instance_number(obj_panelPane); i++) {
+							var currentPane = instance_find(obj_panelPane, i);
+							if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+								draw_set_font(global.fontChainList);
+								var strHeight = string_height("0") * 1.5;
+								currentPane.scrollPlusYDest = y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop);
+							}
+						}*/
+						
 					}
 					if(!global.readHintHide) {
 						//var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);

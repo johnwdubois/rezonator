@@ -200,6 +200,7 @@ timerSecs = 0;
 
 
 alarm[0] = 1;
+chainListPane = -1;
 
 clickedIn = false;
 
