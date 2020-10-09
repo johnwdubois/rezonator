@@ -21,63 +21,63 @@ function scr_dropDownSelect(argument0) {
 	//optionListType == 0 --> switch sorting columns for sort pane
 
 	// Sort
-	if (optionListType == 0)
+	if (optionListType == optionListTypeSort)
 	{
 	    scr_sortOptions(optionSelected);
 	    instance_destroy();
 	}
 	//chainListEdit
-	else if (optionListType == 1)
+	else if (optionListType == optionListTypeChainList)
 	{
 	    scr_chainListOptions(optionSelected);
 	}
 	//chainRecolor
-	else if (optionListType == 2)
+	else if (optionListType == optionListTypeChainRecolor)
 	{
 	    scr_chainRecolorOptions(optionSelected);
 	    instance_destroy();
 	}
 	//speakerLabelEdit
-	else if (optionListType == 3)
+	else if (optionListType == optionListTypeSpeakerLabel)
 	{
 	    scr_speakerLabelOptions(optionSelected);
 	}
 	//fileOptions
-	else if (optionListType == 4)
+	else if (optionListType == optionListTypeFile)
 	{
 	    scr_fileOptions(optionSelected);
 	    instance_destroy();
 	}
 	// advancedOptions
-	else if (optionListType == 5)
+	else if (optionListType == optionListTypeAdvanced)
 	{
 	    scr_advancedOptions(optionSelected);
 	  //  instance_destroy();
 	}
 
 	//viewOptions
-	else if (optionListType == 6)
+	else if (optionListType == optionListTypeView)
 	{
 	    scr_viewOptions(optionSelected);
 	}
 	//searchOptions
-	else if (optionListType == 7)
+	else if (optionListType == optionListTypeSearch)
 	{
 	    scr_searchOptions(optionSelected);
 	    instance_destroy();
 	}
 	//right click on word options
-	else if (optionListType == 8)
+	else if (optionListType == optionListTypeRightClickWord)
 	{
 	    scr_rightClickWordOptions(optionSelected);
 	}
 	//wordTags
-	else if (optionListType == 9)
+	else if (optionListType == optionListTypeWordTags)
 	{
 	    scr_wordTagsOptions(optionSelected);
 	}
 	//gameSelection
-	else if (optionListType == 10)
+	else if (optionListType == optionListTypeGame)
 	{
 
 	    switch (optionSelected)
@@ -102,209 +102,209 @@ function scr_dropDownSelect(argument0) {
 	    }
 	}
 	//newWordOptions
-	else if (optionListType == 11)
+	else if (optionListType == optionListTypeNewWord)
 	{
 	    scr_newWordOptions(optionSelected);
 	}
 
 	//mappingTagOptions
-	else if (optionListType == 12)
+	else if (optionListType == optionListTypeMappingTag)
 	{
 	    scr_mappingTagOptions(optionSelected);
 	}
 
 	//zoomOptions
-	else if (optionListType == 13)
+	else if (optionListType == optionListTypeZoom)
 	{
 	    scr_zoomOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//paneOptions
-	else if (optionListType == 14)
+	else if (optionListType == optionListTypePane)
 	{
 	    scr_paneOptions(optionSelected);
 	}
 
 	//wordOptions
-	else if (optionListType == 15)
+	else if (optionListType == optionListTypeWord)
 	{
 	    scr_wordOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//justifyOptions
-	else if (optionListType == 16)
+	else if (optionListType == optionListTypeJustify)
 	{
 	    scr_justifyOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//proseOptions
-	else if (optionListType == 17)
+	else if (optionListType == optionListTypeProse)
 	{
 	    scr_proseOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//hideOptions
-	else if (optionListType == 18)
+	else if (optionListType == optionListTypeHide)
 	{
 	    scr_hideOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//contextOptions
-	else if (optionListType == 19)
+	else if (optionListType == optionListTypeContext)
 	{
 	    scr_contextOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//clearOptions
-	else if (optionListType == 20)
+	else if (optionListType == optionListTypeClear)
 	{
 	    scr_clearOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//settingsOptions
-	else if (optionListType == 21)
+	else if (optionListType == optionListTypeSettings)
 	{
 	    scr_settingsOptions(optionSelected);
 	}
 
 	//toolsOptions
-	else if (optionListType == 22)
+	else if (optionListType == optionListTypeTools)
 	{
 	    scr_toolsOptions(optionSelected);
 	}
 
 	//helpOptions
-	else if (optionListType == 23)
+	else if (optionListType == optionListTypeHelp)
 	{
 	    scr_helpOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//toolSortOptions
-	else if (optionListType == 24)
+	else if (optionListType == optionListTypeToolsSort)
 	{
 	    scr_toolsSortOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//stackshowOptions
-	else if (optionListType == 25)
+	else if (optionListType == optionListTypeStackShow)
 	{
 	    scr_stackshowOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//deleteOptions
-	else if (optionListType == 26)
+	else if (optionListType == optionListTypeDelete)
 	{
 	    scr_deleteOptions(optionSelected);
 	    instance_destroy();
 	}
 
 	//token selection
-	else if (optionListType == 27)
+	else if (optionListType == optionListTokenSelection)
 	{
 	    scr_tokenSelection(optionSelected);
 	    instance_destroy();
 	}
 	//stack selection
-	else if (optionListType == 28)
+	else if (optionListType == optionListStack)
 	{
 	    scr_stackOptions(optionSelected);
 	    //instance_destroy();
 	}
 	//createStack selection
-	else if (optionListType == 29)
+	else if (optionListType == optionListCreateStack)
 	{
 	    scr_createStackOptions(optionSelected);
 	    instance_destroy();
 	}
 	//showStack selection
-	else if (optionListType == 30)
+	else if (optionListType == optionListTypeShowStack)
 	{
 	    scr_showStackOptions(optionSelected);
 	    instance_destroy();
 	}
 	//token selection
-	else if (optionListType == 31)
+	else if (optionListType == optionListTypeUnitSelection)
 	{
 	    scr_unitSelection(optionSelected);
 	    instance_destroy();
 	}
 	//import special fields selection
-	else if (optionListType == 32)
+	else if (optionListType == optionListTypeSpecialFields)
 	{
 		scr_specialFieldsOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == 33)
+	else if (optionListType == optionListTypeFilter)
 	{
 	    scr_filterOptions(optionSelected);
 	}
 	//adding to filter options
-	else if (optionListType == 34)
+	else if (optionListType == optionListTypeAddToFilter)
 	{
 	    scr_addToFilterOptions(optionSelected);
 	    instance_destroy();
 	}
 	//adding to Token Tag Map options
-	else if (optionListType == 35)
+	else if (optionListType == optionListTypeTokenTagMap)
 	{
 	    scr_tokenTagMapOptions(optionSelected);
 	    instance_destroy();
 	}
 	//Token Marker options
-	else if (optionListType == 36)
+	else if (optionListType == optionListTypeTokenMarker)
 	{
 	    scr_tokenMarkerOptions(optionSelected);
 	    instance_destroy();
 	}
 	//Unit Marker options
-	else if (optionListType == 37)
+	else if (optionListType == optionListTypeUnitMarker)
 	{
 	    scr_unitMarkerOptions(optionSelected);
 	    instance_destroy();
 	}
 	//adding to Unit Tag Map options
-	else if (optionListType == 38)
+	else if (optionListType == optionListTypeUnitTagMap)
 	{
 	    scr_unitTagMapOptions(optionSelected);
 	    instance_destroy();
 	}
 
-	else if (optionListType == 39)
+	else if (optionListType == optionListTypeGridViewerSelectGrid)
 	{
 	    scr_gridViewerSelectGridOptions(optionSelected);
 	    instance_destroy();
 	}
 
-	else if (optionListType == 40)
+	else if (optionListType == optionListTypeAutosave)
 	{
 	    scr_autosaveOptions(optionSelected);
 	    instance_destroy();
 	}
 
-	else if (optionListType == 41)
+	else if (optionListType == optionListTypeStackTag)
 	{
 	    scr_stackTagOptions(optionSelected);
 	    instance_destroy();
 	}
-	else if (optionListType == 42)
+	else if (optionListType == optionListTypeEdit)
 	{
 	    scr_editOptions(optionSelected);
 	}
-	else if (optionListType == 43)
+	else if (optionListType == optionListTypePlayAndLearn)
 	{
 	    scr_playandLearnOptions(optionSelected);
 	}
-	else if (optionListType == 44)
+	else if (optionListType == optionListTypeNav)
 	{
 	    scr_navOptions(optionSelected);
 		instance_destroy();
