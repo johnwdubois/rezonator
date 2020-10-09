@@ -444,7 +444,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 
 	if (focusedChainNameRectY1 > -1 and focusedChainNameRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
-		for (var j = 0; j < 3; j++) {
+		for (var j = 0; j < 4; j++) {
 			draw_rectangle(x + j - clipX, focusedChainNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedChainNameRectY2 - j - clipY, true);
 		}
 	}

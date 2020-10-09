@@ -21,8 +21,9 @@ function scr_searchOptions(argument0) {
 			break;
 
 		case "Clear":// clear search
-		
-			ds_grid_copy(obj_control.searchGrid, obj_control.emptySearchGrid);
+			
+			// Commented out so that Clear search only removes highlights
+			/*ds_grid_copy(obj_control.searchGrid, obj_control.emptySearchGrid);
 			ds_grid_copy( obj_control.hitGrid,obj_control.emptyHitGrid);
 			
 			
@@ -33,7 +34,7 @@ function scr_searchOptions(argument0) {
 			obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
 			with (obj_alarm) {
 				alarm[0] = 5;
-			}
+			}*/
 		
 			obj_control.clearSearch = true;
 
