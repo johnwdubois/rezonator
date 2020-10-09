@@ -31,7 +31,7 @@ function scr_rightClickWordOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing*4, -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 9;
+				dropDownInst.optionListType = optionListTypeWordTags;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -112,7 +112,7 @@ function scr_rightClickWordOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 11;
+				dropDownInst.optionListType = optionListTypeNewWord;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;

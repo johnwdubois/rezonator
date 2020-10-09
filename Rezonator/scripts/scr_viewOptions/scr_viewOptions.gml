@@ -11,7 +11,7 @@ function scr_viewOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y, -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 14;
+				dropDownInst.optionListType = optionListTypePane;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -40,7 +40,7 @@ function scr_viewOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 16;
+				dropDownInst.optionListType = optionListTypeJustify;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -55,7 +55,7 @@ function scr_viewOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 17;
+				dropDownInst.optionListType = optionListTypeProse;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -70,7 +70,7 @@ function scr_viewOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*3)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 18;
+				dropDownInst.optionListType = optionListTypeHide;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -115,7 +115,7 @@ function scr_viewOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*6)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 19;
+				dropDownInst.optionListType = optionListTypeContext;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -152,7 +152,7 @@ function scr_viewOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 13;
+				dropDownInst.optionListType = optionListTypeZoom;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;

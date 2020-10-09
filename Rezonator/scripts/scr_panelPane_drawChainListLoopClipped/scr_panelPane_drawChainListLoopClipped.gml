@@ -230,7 +230,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 1;
+				dropDownInst.optionListType = optionListTypeChainList;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;

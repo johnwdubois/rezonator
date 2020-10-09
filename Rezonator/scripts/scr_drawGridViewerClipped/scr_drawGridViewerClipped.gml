@@ -328,7 +328,7 @@ function scr_drawGridViewerClipped() {
 	    if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 	        var dropDownInst = instance_create_depth(dropDownButtonX1, dropDownButtonY2, -999, obj_dropDown);
 	        dropDownInst.optionList = dropDownOptionList;
-	        dropDownInst.optionListType = 39;
+	        dropDownInst.optionListType = optionListTypeGridViewerSelectGrid;
                     
 	        obj_control.ableToCreateDropDown = false;
 	        obj_control.alarm[0] = 2;

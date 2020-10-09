@@ -12,7 +12,7 @@ function scr_toolsOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 7;
+				dropDownInst.optionListType = optionListTypeSearch;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -64,7 +64,7 @@ function scr_toolsOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing * 3), -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 28;
+				dropDownInst.optionListType = optionListStack;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -79,7 +79,7 @@ function scr_toolsOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing * 4), -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 43;
+				dropDownInst.optionListType = optionListTypePlayAndLearn;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
