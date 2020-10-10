@@ -207,6 +207,44 @@ global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 
 
 
+// Block Type Grid
+global.blockTypeGridWidth = 6;
+global.blockTypeGrid_colDefault = 0;
+global.blockTypeGrid_colBlockCategory = 1;
+global.blockTypeGrid_colBlockType = 2;
+global.blockTypeGrid_colBlockCount = 3;
+global.blockTypeGrid_colLinesPerBlock = 4;
+global.blockTypeGrid_colFieldList = 5;
+global.blockTypeGrid = ds_grid_create(global.blockTypeGridWidth, 0);
+global.blockCategoryUnit = 0;
+global.blockCategoryHeader = 1;
+
+
+// Block Grid
+global.blockGridWidth = 3;
+global.blockGrid_colBlockID = 0;
+global.blockGrid_colBlockType = 1;
+global.blockGrid_colLineList = 2;
+global.blockGrid = ds_grid_create(global.blockGridWidth, 0);
+global.blockIDList = ds_list_create();
+
+
+// Unit Block Grid
+global.unitBlockGrid = ds_grid_create(global.blockGridWidth, 0);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

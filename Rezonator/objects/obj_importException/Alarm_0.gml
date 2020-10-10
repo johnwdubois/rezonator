@@ -1,6 +1,3 @@
-scr_markAutoExceptions();
-
-
 scr_importTXTExceptions();
 scr_importInfoGrid();
 		

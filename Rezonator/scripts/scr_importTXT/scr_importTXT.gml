@@ -101,6 +101,23 @@ function scr_importTXT(argument0) {
 			ds_grid_set(global.importGrid, col, row, colVal);
 		}
 	}
+	
+	
+	
+	// automatically mark lines as exceptions in importTXTGrid
+	scr_markAutoExceptions();
+	
+	
+	if (ds_grid_width(global.importGrid) > 0) {
+		// IGT/Scription import
+		scr_identifyBlocks();
+	}
+	
+	
+	
+	
+	
+	
 
 	if (ds_grid_width(global.importGrid) == 0) {
 	

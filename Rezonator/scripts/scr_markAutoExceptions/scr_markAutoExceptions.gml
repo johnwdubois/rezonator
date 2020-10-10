@@ -1,33 +1,24 @@
 function scr_markAutoExceptions() {
-	// mark lines as exceptions until we reach first tag
-
-	var firstTagReached = false;
+	
 	var exceptionDelimiter = "---";
-	var inExceptionCluster = false;
+	var inExceptionBlock = false;
 
 	var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
 	for (var i = 0; i < importTXTLineGridHeight; i++) {
-	
+		
+		// get the first n characters of the line, where n = the length of the exceptionDelimiter
 		var currentLine = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i);
-	
 		var delimiterLineCopy = string_copy(currentLine, 1, string_length(exceptionDelimiter));
 	
-		if (inExceptionCluster) {
+		if (inExceptionBlock) {
 			ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, true);
 		}
-		if (string_char_at(currentLine, 1) == "\\" && !firstTagReached) {
-			firstTagReached = true;
-		}
-		else if (!firstTagReached) {
-			ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, true);
-		}
-		else if (exceptionDelimiter == delimiterLineCopy) {
-			inExceptionCluster = !inExceptionCluster;
-			if (inExceptionCluster) {
+		
+		if (exceptionDelimiter == delimiterLineCopy) {
+			inExceptionBlock = !inExceptionBlock;
+			if (inExceptionBlock) {
 				ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, true);
 			}
 		}
 	}
-
-
 }
