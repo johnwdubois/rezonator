@@ -33,7 +33,7 @@ function scr_settingsOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + optionSpacing , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = optionListTypeZoom;
+				dropDownInst.optionListType = dropDownInst.optionListTypeZoom;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -84,7 +84,7 @@ function scr_settingsOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing * 5)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = optionListTypeAutosave;
+				dropDownInst.optionListType = dropDownInst.optionListTypeAutosave;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -98,7 +98,7 @@ function scr_settingsOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing * 6)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = optionListTypeAdvanced;
+				dropDownInst.optionListType = dropDownInst.optionListTypeAdvanced;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;

@@ -72,7 +72,7 @@ function scr_chainListOptions(argument0) {
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing  , -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = optionListTypeChainRecolor;
+						dropDownInst.optionListType = dropDownInst.optionListTypeChainRecolor;
 					
 						obj_control.ableToCreateDropDown = false;
 						obj_control.alarm[0] = 2;
@@ -118,6 +118,16 @@ function scr_chainListOptions(argument0) {
 					}
 						instance_destroy(obj_dropDown);
 						//return true;
+					break;
+				case "Clip":
+					// Get the ID of the currently selected Stack
+					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+					
+					// Create a clip file based on that Stack
+					scr_clipFromStack(obj_control.selectedChainID);
+					
+					// Destory the Dropdown
+					instance_destroy(obj_dropDown);
 					break;
 				default:
 					break;

@@ -162,7 +162,7 @@ function scr_panelPane_drawChainsOneToOne(){
 							if (ds_list_size(dropDownOptionList) > 0 ) {
 								var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
 								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = optionListTypeStackTag;
+								dropDownInst.optionListType = dropDownInst.optionListTypeStackTag;
 
 							}
 						}

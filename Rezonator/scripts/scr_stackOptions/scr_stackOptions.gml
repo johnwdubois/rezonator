@@ -28,7 +28,7 @@ function scr_stackOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(x + windowWidth  , y + (optionSpacing * 2), -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = optionListCreateStack;
+				dropDownInst.optionListType = dropDownInst.optionListCreateStack;
 
 					
 				obj_control.ableToCreateDropDown = false;

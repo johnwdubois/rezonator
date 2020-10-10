@@ -222,7 +222,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			//show_message(string(obj_control.selectedChainID));
 			var dropDownOptionList = ds_list_create();
 			if (grid  == obj_chain.stackChainGrid) {
-				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
+				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip");
 			}
 			else {
 				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
@@ -230,7 +230,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = optionListTypeChainList;
+				dropDownInst.optionListType = dropDownInst.optionListTypeChainList;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
