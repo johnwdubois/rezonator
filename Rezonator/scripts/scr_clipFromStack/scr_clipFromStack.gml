@@ -38,11 +38,14 @@ function scr_clipFromStack(selectedStackID) {
 	*/
 	var unitIDList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, selectedStackID);
 	var firstUnitInStack = ds_list_find_value(unitIDList, 0);
-	var lastUnitInStack = ds_list_find_value(unitIDList, ds_list_size(unitIDList));
+	var lastUnitInStack = ds_list_find_value(unitIDList, ds_list_size(unitIDList) - 1);
+	
+	//show_message(firstUnitInStack);
+	//show_message(lastUnitInStack);
 	
 
-	obj_fileLoader.subLineGridBeginning = string_digits(ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), firstUnitInStack));
-	obj_fileLoader.subLineGridEnd = string_digits(ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), lastUnitInStack));
+	obj_fileLoader.subLineGridBeginning = string_digits(firstUnitInStack);//ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), firstUnitInStack));
+	obj_fileLoader.subLineGridEnd = string_digits(lastUnitInStack);//ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), lastUnitInStack));
 
 	global.stackGrabSave = true;
 
