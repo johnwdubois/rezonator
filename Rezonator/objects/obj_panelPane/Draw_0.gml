@@ -51,10 +51,22 @@ switch (currentFunction) {
 			
 			scr_panelPane_drawChainListLoopClipped();
 			scr_panelPane_drawChainTabs();
-			if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+			/*if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 				clickedIn = true;
 			}
 			if (device_mouse_check_button_released(0, mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+				clickedIn = false;
+			}
+			if(clickedIn) {
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
+				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
+			}*/
+			if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+				clickedIn = true;
+			}
+			else {
 				clickedIn = false;
 			}
 			if(clickedIn) {
@@ -128,10 +140,10 @@ switch (currentFunction) {
 		
 		
 		
-				if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+				if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 					clickedIn = true;
 				}
-				if (device_mouse_check_button_released(0, mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+				else {
 					clickedIn = false;
 				}
 				if (clickedIn) {
