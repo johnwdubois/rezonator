@@ -523,7 +523,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 						if (ds_list_size(dropDownOptionList) > 0 ) {
 							var dropDownInst = instance_create_depth(colRectX2,colRectY1+tabHeight , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = dropDownInst.optionListTokenSelection;
+							dropDownInst.optionListType = dropDownInst.optionListTypeTokenSelection;
 							//obj_control.ableToCreateDropDown = false;
 							//obj_control.alarm[0] = 2;
 						}

@@ -1,4 +1,4 @@
-function scr_dropDownSelect(argument0) {
+   function scr_dropDownSelect(argument0) {
 
 	/*
 	    scr_dropDownSelect();
@@ -209,19 +209,19 @@ function scr_dropDownSelect(argument0) {
 	}
 
 	//token selection
-	else if (optionListType == optionListTokenSelection) //27
+	else if (optionListType == optionListTypeTokenSelection) //27
 	{
 	    scr_tokenSelection(optionSelected);
 	    instance_destroy();
 	}
 	//stack selection
-	else if (optionListType == optionListStack) //28
+	else if (optionListType == optionListTypeStack) //28
 	{
 	    scr_stackOptions(optionSelected);
 	    //instance_destroy();
 	}
 	//createStack selection
-	else if (optionListType == optionListCreateStack) //29
+	else if (optionListType == optionListTypeCreateStack) //29
 	{
 	    scr_createStackOptions(optionSelected);
 	    instance_destroy();

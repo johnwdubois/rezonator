@@ -64,7 +64,7 @@ function scr_toolsOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing * 3), -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListStack;
+				dropDownInst.optionListType = dropDownInst.optionListTypeStack;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
