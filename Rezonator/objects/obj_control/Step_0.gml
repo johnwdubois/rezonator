@@ -50,7 +50,7 @@ if (!gridView) {
 		}
 		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
 		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);*/
-		currentCenterDisplayRow = scr_currentCenterLine();
+		currentCenterDisplayRow = scr_currentTopLine();
 	}
 	
 	
@@ -284,10 +284,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
 			scr_jumpToEnd(false);
 		}
-	
-		/*if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)) {
-			scr_createPlaceChains();
-		}*/
+
 
 		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
 			wordLeftMarginDest += gridSpaceHorizontal;
@@ -386,7 +383,7 @@ if (shortcutsEnabled) {
 	if(os_type == os_macosx){
 		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 			if (keyboard_check(24) and canPressPlus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 				canPressPlus = false;
 				if(gridSpaceVertical < gridSpaceVerticalMax) {
 					gridSpaceVertical += 10;
@@ -417,7 +414,7 @@ if (shortcutsEnabled) {
 			}
 
 			if (keyboard_check(109) and canPressMinus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 				canPressMinus = false;
 				if(gridSpaceVertical > gridSpaceVerticalMin) {
 					gridSpaceVertical -= 10;
@@ -452,7 +449,7 @@ if (shortcutsEnabled) {
 	else{
 		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 			if (keyboard_check_direct(187) and canPressPlus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 			//	show_message(string(prevCenterDisplayRow));
 				canPressPlus = false;
 				if(gridSpaceVertical < gridSpaceVerticalMax) {
@@ -485,7 +482,7 @@ if (shortcutsEnabled) {
 			}
 
 			if (keyboard_check_direct(189) and canPressMinus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 				//show_message(string(prevCenterDisplayRow));
 				canPressMinus = false;
 				if(gridSpaceVertical > gridSpaceVerticalMin) {

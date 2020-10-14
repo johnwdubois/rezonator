@@ -1,6 +1,6 @@
-function scr_currentCenterLine() {
+function scr_currentTopLine() {
 	/*
-		scr_currentCenterLine();
+		scr_currentTopLine();
 	
 		Last Updated: 2019-12-27
 	

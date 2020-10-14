@@ -6,7 +6,7 @@
     "path": "folders/Scripts/drawLine.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_currentCenterLine",
+  "name": "scr_currentTopLine",
   "tags": [],
   "resourceType": "GMScript",
 }
