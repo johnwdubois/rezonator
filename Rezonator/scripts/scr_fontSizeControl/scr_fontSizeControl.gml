@@ -16,7 +16,7 @@ function scr_fontSizeControl() {
 				//Vertical				
 				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
-				obj_control.prevCenterDisplayRow = scr_currentCenterLine();
+				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
 				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 					obj_control.gridSpaceVertical -= 10;
@@ -70,7 +70,7 @@ function scr_fontSizeControl() {
 				//vertical
 				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
-				obj_control.prevCenterDisplayRow = scr_currentCenterLine();
+				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
 				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
 					obj_control.gridSpaceVertical += 10;
@@ -132,7 +132,7 @@ function scr_fontSizeControl() {
 				//Vertical				
 				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
-				obj_control.prevCenterDisplayRow = scr_currentCenterLine();
+				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 
 				if(obj_control.gridSpaceVertical > obj_control.gridSpaceVerticalMin) {
 					obj_control.gridSpaceVertical -= 10;
@@ -186,7 +186,7 @@ function scr_fontSizeControl() {
 				//vertical
 				var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 				var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
-				obj_control.prevCenterDisplayRow = scr_currentCenterLine();
+				obj_control.prevCenterDisplayRow = scr_currentTopLine();
 		
 				if(obj_control.gridSpaceVertical < obj_control.gridSpaceVerticalMax) {
 					obj_control.gridSpaceVertical += 10;

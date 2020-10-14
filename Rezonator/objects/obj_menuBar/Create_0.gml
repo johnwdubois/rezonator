@@ -29,18 +29,18 @@ menuBarGrid_rowHelp = 6;
 
 
 
-fileDropDownOptionListType = 4;
-editDropDownOptionListType = 42;
-viewDropDownOptionListType = 6;
-toolsDropDownOptionListType = 22;
-settingsDropDownOptionListType = 21;
-filterDropDownOptionListType = 33;
-helpDropDownOptionListType = 23;
+fileDropDownOptionListType = 4; // optionListTypeFile = 4;
+editDropDownOptionListType = 42; // optionListTypeEdit = 42;
+viewDropDownOptionListType = 6; // optionListTypeView = 6;
+toolsDropDownOptionListType = 22; //optionListTypeTools = 22;
+settingsDropDownOptionListType = 21; // optionListTypeSettings = 21;
+filterDropDownOptionListType = 33; // optionListTypeFilter = 33;
+helpDropDownOptionListType = 23; // optionListTypeHelp = 23;
 
 
 
 fileOptionList = ds_list_create();
-ds_list_add(fileOptionList, "Save", "Save as", "Media", "Clip", "Export", "Import", "Exit");
+ds_list_add(fileOptionList, "Save", "Save as", "Media", "Export", "Import", "Exit");
 
 /*linkOptionList = ds_list_create();
 ds_list_add(linkOptionList, "Track", "Rez", "Stack", "Quick", "Clique", "Focus", "Zap", "Quit");

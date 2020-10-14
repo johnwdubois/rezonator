@@ -24,12 +24,13 @@ function scr_saveREZ(argument0) {
 
 
 	if (not autosave) {
-		if (global.fileSaveName == "undefined" or (not file_exists(global.fileSaveName) and not obj_stacker.splitSave)) {
+		if (global.fileSaveName == "undefined" or (not file_exists(global.fileSaveName) and not obj_stacker.splitSave) or global.stackGrabSave ) {
 			global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 				global.fileSaveName = "undefined";
 				show_message("Error in saving");
+				global.stackGrabSave = false;
 				exit;
 			}
 	
@@ -299,5 +300,5 @@ function scr_saveREZ(argument0) {
 		room_goto(rm_openingScreen);
 	}
 
-
+	global.stackGrabSave = false;
 }

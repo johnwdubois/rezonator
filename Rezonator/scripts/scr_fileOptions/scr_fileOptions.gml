@@ -58,6 +58,29 @@ function scr_fileOptions(argument0) {
 			break;
 		case "Import":
 			
+			audio_stop_all();
+	
+
+			scr_saveINI();
+	
+			if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+		
+				if (os_type == os_macosx) {
+
+					with (obj_fileLoader) {
+						scr_saveREZ(false);
+					}
+		
+				}
+				else {
+					if (show_question("Would you like to save before importing new data?")) {
+						with (obj_fileLoader) {
+							scr_saveREZ(false);
+						}
+					}
+				}
+			}
+			
 			global.skipToImportScreen = true;
 			room_goto(rm_openingScreen);
 			

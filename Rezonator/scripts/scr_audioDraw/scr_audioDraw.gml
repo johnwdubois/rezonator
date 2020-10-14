@@ -86,7 +86,7 @@ function scr_audioDraw() {
 	if (keyboard_check_pressed(vk_enter) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
 		if(selectedStackGridRow == -1) {
 			if(audioPaused) {
-				var currentFocusUnit = scr_currentCenterLine();
+				var currentFocusUnit = scr_currentTopLine();
 				var currentFocusUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentFocusUnit - 1);
 				bookmarkStartTime = currentFocusUnitStartTime;
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);

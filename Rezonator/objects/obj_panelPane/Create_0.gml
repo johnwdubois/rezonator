@@ -75,6 +75,7 @@ functionChainList_sortAsc[2] = true;
 functionChainList_sortAsc[3] = true;
 functionChainList_sortAsc[4] = true;
 functionChainList_lineGridRowFocused = 0;
+functionChainList_lineGridDisplayYList = ds_list_create();
 
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;
@@ -199,6 +200,7 @@ timerSecs = 0;
 
 
 alarm[0] = 1;
+chainListPane = -1;
 
 clickedIn = false;
 
