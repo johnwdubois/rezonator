@@ -66,4 +66,6 @@ function scr_importIGT(){
 			}
 		}
 	}
+	
+	scr_setTokenCountPerLine();
 }

@@ -145,7 +145,7 @@ function scr_fillImportGrids_IGT(){
 				}
 				
 				// split the string from the importGrid, so we can tokenize!
-				var currentTokenList = scr_splitStringImport(currentStr);
+				var currentTokenList = scr_splitStringWhitespace(currentStr);
 				var currentTokenListSize = ds_list_size(currentTokenList);
 				show_debug_message("scr_fillImportGrids_IGT() ... currentTokenList: " + scr_getStringOfList(currentTokenList));
 				

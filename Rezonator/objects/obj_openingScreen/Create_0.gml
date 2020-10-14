@@ -220,16 +220,13 @@ global.blockCategoryHeader = 1;
 
 
 // Block Grid
-global.blockGridWidth = 3;
+global.blockGridWidth = 4;
 global.blockGrid_colBlockID = 0;
 global.blockGrid_colBlockType = 1;
 global.blockGrid_colLineList = 2;
+global.blockGrid_colTokenCountList = 3;
 global.blockGrid = ds_grid_create(global.blockGridWidth, 0);
 global.blockIDList = ds_list_create();
-
-
-// Unit Block Grid
-global.unitBlockGrid = ds_grid_create(global.blockGridWidth, 0);
 
 
 global.fieldLevelMap = ds_map_create();

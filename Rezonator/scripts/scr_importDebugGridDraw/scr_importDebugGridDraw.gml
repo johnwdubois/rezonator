@@ -109,6 +109,9 @@ function scr_importDebugGridDraw() {
 			else if (grid == global.blockGrid && i == global.blockGrid_colLineList) {
 				currentCellStr = scr_getStringOfList(currentCell);
 			}
+			else if (grid == global.blockGrid && i == global.blockGrid_colTokenCountList) {
+				currentCellStr = scr_getStringOfList(currentCell);
+			}
 		
 		
 			draw_set_color(global.colorThemeText);
@@ -166,6 +169,9 @@ function scr_importDebugGridDraw() {
 			}
 			else if (i == global.blockGrid_colLineList) {
 				headerStr ="line list";
+			}
+			else if (i == global.blockGrid_colTokenCountList) {
+				headerStr ="token count list";
 			}
 		}
 

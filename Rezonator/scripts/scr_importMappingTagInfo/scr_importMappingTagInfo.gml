@@ -148,7 +148,10 @@ function scr_importMappingTagInfo() {
 					var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
 				
 					if (!instance_exists(obj_dropDown)) {
-						if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+						if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+							
+							scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Special Field", obj_tooltip.arrowFaceUp);
+							
 							draw_set_color(global.colorThemeBG);
 							draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
 							draw_set_color(global.colorThemeBorders);
@@ -196,6 +199,8 @@ function scr_importMappingTagInfo() {
 				var dropDownButtonY2 = dropDownButtonY1 + buttonRectSize;
 
 				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+					
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Level", obj_tooltip.arrowFaceUp);
 				
 					if (!instance_exists(obj_dropDown)) {
 						draw_set_color(global.colorThemeBG);
