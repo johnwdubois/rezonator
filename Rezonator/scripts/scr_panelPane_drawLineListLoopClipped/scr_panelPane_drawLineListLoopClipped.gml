@@ -34,7 +34,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var focusedLineNameRectY1 = -1;
 	var focusedLineNameRectY2 = -1;
 
-	var lineGridHeight = ds_grid_height(obj_control.lineGrid);
+	var currentLineGrid = obj_control.currentActiveLineGrid;
+	var lineGridHeight = ds_grid_height(currentLineGrid);
 
 	// Set opacity, font, and alignment of text chain lists
 	draw_set_alpha(1);
@@ -60,13 +61,13 @@ function scr_panelPane_drawLineListLoopClipped() {
 	
 	
 		// Get grid info of current chain
-		var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, i);
+		var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, i);
 	
 		if (currentLineUnitID < 0) {
 			continue;
 		}
 	
-		var currentLineState = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineState, i);
+		var currentLineState = ds_grid_get(currentLineGrid, obj_control.lineGrid_colLineState, i);
 		var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
 		var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
 		// Prevent those pesky comments from showing up in the line list
@@ -113,7 +114,14 @@ function scr_panelPane_drawLineListLoopClipped() {
 		var lineNameRectY2 = lineNameRectY1 + strHeight;
 	
 		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor);
-	
+		
+		// Store the lineNameRectY1 so it may be scrolled to automatically
+		/*if(ds_list_size(obj_panelPane.functionChainList_lineGridDisplayYList) < i + 1) {
+			ds_list_add(obj_panelPane.functionChainList_lineGridDisplayYList, lineNameRectY1);	
+		}
+		else if(ds_list_find_value(obj_panelPane.functionChainList_lineGridDisplayYList, i) != lineNameRectY1) {
+			ds_list_replace(obj_panelPane.functionChainList_lineGridDisplayYList, i, lineNameRectY1);
+		}*/
 	
 		//Color codes the line lists for User
 		draw_set_color(discoColor); //soften the color
@@ -154,6 +162,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_line_width(textMarginLeftReal - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 		draw_set_color(global.colorThemeText);
 		draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, currentLineWordString);
+		//draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, ds_list_find_value(functionChainList_lineGridDisplayYList, i));
+		
 	
 	
 	
@@ -175,11 +185,11 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 				//Allow for arrow keys to shift focus down the list of lines
 				obj_panelPane.functionChainList_lineGridRowFocused--;
-				var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
 				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
 				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
-				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				ds_grid_set_region(currentLineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
+				ds_grid_set(currentLineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;
 			
 			//	ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
@@ -198,11 +208,11 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 				//Allow for arrow keys to shift focus down the list of lines
 				obj_panelPane.functionChainList_lineGridRowFocused++;
-				var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
 				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
 				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
-				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				ds_grid_set_region(currentLineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
+				ds_grid_set(currentLineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;
 			
 				//ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);

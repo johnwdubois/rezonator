@@ -16,8 +16,8 @@ function scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX
 		
 		if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 			//show_message("line");
-			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
+			ds_grid_set_region(obj_control.currentActiveLineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
+			ds_grid_set(obj_control.currentActiveLineGrid, obj_control.lineGrid_colLineState, i, 1);
 			with (obj_panelPane) {
 				if(functionChainList_lineGridRowFocused != i) {
 					functionChainList_lineGridRowFocused = i;
