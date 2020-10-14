@@ -18,7 +18,7 @@ function scr_splitString() {
 	// scr_splitString(:string, delimiter:string, ?list<string>):list<string>
 	var oldString = argument[0];
 	if(oldString == undefined){
-	exit;
+		exit;
 	}
 	var delimiter = argument[1];
 	var newList;

@@ -4,8 +4,6 @@ function scr_stringGetField(str){
 	
 	if (live_call(str)) return live_result;
 	
-	show_debug_message("scr_stringGetField() ... str: " + string(str));
-	
 	var field = "";
 	
 	// if this string has no characters at all, return ""
@@ -19,35 +17,40 @@ function scr_stringGetField(str){
 		return "";
 	}
 	
-	// find the first character in the string that is not whitespace
-	var firstNonwhitespaceCharAt = 1;
-	while (string_char_at(str, firstNonwhitespaceCharAt) == " " && string_char_at(str, firstNonwhitespaceCharAt) == "	" && firstNonwhitespaceCharAt <= strLen) {
-		firstNonwhitespaceCharAt++;
-	}
-	
-	// if there is any whitespace at the beginning of the line, clip that out for this test
-	if (firstNonwhitespaceCharAt > 1) {
-		str = string_copy(str, firstNonwhitespaceCharAt, strLen - firstNonwhitespaceCharAt);
-		show_debug_message("scr_stringGetField() ... newStr: " + string(str));
-	}
-	
-	// if the first non-whitespace character is not a "\" then return ""
-	var firstNonwhitespaceChar = string_char_at(str, firstNonwhitespaceCharAt);
-	if (firstNonwhitespaceChar != "\\") {
-		show_debug_message("scr_stringGetField() ... firstNonwhitespaceCharAt: " + string(firstNonwhitespaceCharAt) + " ... firstNonwhitespaceChar: " + string(firstNonwhitespaceChar));
+	// if the first character is not a "\" then return ""
+	if (string_char_at(str, 1) != "\\") {
 		return "";
 	}
 	
+	
 	var firstSpace = string_pos(" ", str);
 	var firstTab = string_pos("	", str);
-	if (firstSpace > 0 && firstSpace < firstTab) {
+		
+	// if there is a space but no tab, copy from the first character to the space
+	if (firstSpace > 0 && firstTab == 0) {
 		field = string_copy(str, 1, firstSpace);
 	}
-	else if (firstTab > 0 && firstTab < firstSpace) {
+	// if there is a tab but no space, copy from the first character to the tab
+	else if (firstTab > 0 && firstSpace == 0) {
 		field = string_copy(str, 1, firstTab);
 	}
-	else if (firstSpace == 0 && firstTab == 0) {
-		return str;
+	// if there is a space and a tab...
+	else if (firstSpace > 0 && firstTab > 0) {
+		
+		// if the space comes before the tab, copy to the first space
+		if (firstSpace <= firstTab) {
+			field = string_copy(str, 1, firstSpace);
+		}
+		// if the tab comes before the space, copy to the first tab
+		else {
+			field = string_copy(str, 1, firstTab);
+		}
+		
+	}
+	// the only other possibility is that there is no space and no tab,
+	// then the field is the entire string
+	else {
+		field = str;
 	}
 	
 	return field;

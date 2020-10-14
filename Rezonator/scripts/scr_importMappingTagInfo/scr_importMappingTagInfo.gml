@@ -75,6 +75,17 @@ function scr_importMappingTagInfo() {
 		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 	
 		for (var j = 0; j < tagInfoGridHeight; j++) {
+			
+			// check if this is the blockSeq or blockID, if so
+			// don't show the row for this field
+			/*
+			var currentMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, j);
+			if (currentMarker == "~blockID" || currentMarker == "~blockSeq") {
+				continue;
+			}
+			*/
+			
+			
 		
 			draw_set_halign(fa_left);
 		

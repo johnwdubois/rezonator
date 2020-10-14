@@ -55,6 +55,7 @@ global.games = false;
 //global.inRezzles = false;
 
 
+global.importType_IGT = 3;
 global.importType_CoNLLU = 2;
 global.importType_CSV = 1;
 global.importType_Default = 0;
@@ -197,8 +198,6 @@ global.tagInfoGrid_colLevel = 2;
 global.tagInfoGrid_colMarkerPercent = 3;
 global.tagInfoGrid_colSingleTokenMarker = 4;
 global.tagInfoGrid_colTokenCount = 5;
-//global.tagInfoGrid_colDisplayToken = 6;
-//global.tagInfoGrid_colDisplayUnit = 7;
 global.tagInfoGrid_colSpecialFields = 6;
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
@@ -233,6 +232,7 @@ global.blockIDList = ds_list_create();
 global.unitBlockGrid = ds_grid_create(global.blockGridWidth, 0);
 
 
+global.fieldLevelMap = ds_map_create();
 
 
 
@@ -305,3 +305,5 @@ canPressMinus = true;
 canPressPlus = true;
 
 alarm[2] = 1;
+
+global.exitOut = false;

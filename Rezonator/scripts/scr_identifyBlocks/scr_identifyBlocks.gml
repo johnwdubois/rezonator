@@ -4,11 +4,19 @@ function scr_identifyBlocks(){
 	
 	if (live_call()) return live_result;
 	
+	show_debug_message("starting scr_identifyBlocks... time is: " + scr_printTime());
+	
+	global.exitOut = false;
+	
 	var prevException = false;
 	var nextException = false;
 	var blockLineList = ds_list_create();
 	var importTXTGridHeight = ds_grid_height(global.importTXTLineGrid);
 	for (var i = 0; i < importTXTGridHeight; i++) {
+		
+		if (global.exitOut) {
+			continue;
+		}
 		
 		var exception = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colException, i);
 		nextException = false;
@@ -21,10 +29,6 @@ function scr_identifyBlocks(){
 			// Continue the exception block
 			ds_list_add(blockLineList, i);
 			var line = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i);
-			var lineNoNewline = string_replace(line, "\n", "");
-			lineNoNewline = string_replace(lineNoNewline, "\r", "");
-			line = lineNoNewline;
-			show_debug_message("scr_identifyBlocks() ... line: " + string(line) +  " ... whitespace: " + string(isLineOnlyWhitespace));	
 			
 			// Create a new exception block
 			if (!nextException || i == importTXTGridHeight - 1) {
@@ -32,7 +36,6 @@ function scr_identifyBlocks(){
 				
 				// Check if there is an existing header Block Type
 				var headerBlockTypeRow = ds_grid_value_y(global.blockTypeGrid, global.blockTypeGrid_colBlockCategory, 0, global.blockTypeGrid_colBlockCategory, ds_grid_height(global.blockTypeGrid), global.blockCategoryHeader);
-				show_debug_message("headerBlockTypeRow: " + string(headerBlockTypeRow));
 				if (headerBlockTypeRow >= 0) {
 					// Get Block Type of existing header Block Type
 					blockType = ds_grid_get(global.blockTypeGrid, global.blockTypeGrid_colBlockType, headerBlockTypeRow);
@@ -54,7 +57,6 @@ function scr_identifyBlocks(){
 				// Increment Block Count for this Block Type
 				var blockCount = ds_grid_get(global.blockTypeGrid, global.blockTypeGrid_colBlockCount, headerBlockTypeRow);
 				ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colBlockCount, headerBlockTypeRow, blockCount + 1);
-				show_debug_message("BLOCK COUNT: " + string(blockCount + 1));
 								
 				// Add row to the Block Grid of this Block Type
 				ds_grid_resize(global.blockGrid, global.blockGridWidth, ds_grid_height(global.blockGrid) + 1);
@@ -78,17 +80,12 @@ function scr_identifyBlocks(){
 			
 			// Remove \n and \r from the line
 			var line = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i);
-			var lineNoNewline = string_replace(line, "\n", "");
-			lineNoNewline = string_replace(lineNoNewline, "\r", "");
-			line = lineNoNewline;
 			
 			// Check if this line consists of only whitespace
 			var isLineOnlyWhitespace = scr_isStrOnlyWhitespace(line);
 			
-			show_debug_message("scr_identifyBlocks() ... line: " + string(line) +  " ... whitespace: " + string(isLineOnlyWhitespace));	
-			
 			// If this line consists only of whitespace, or this is the final line in the file,
-			// OR if the next line is an exception, this could be the end of a block
+			// or if the next line is an exception, this could be the end of a block
 			if (isLineOnlyWhitespace || i == importTXTGridHeight - 1 || nextException) {
 				
 				// If this is the last line in the file, and it is not only whitespace,
@@ -104,17 +101,17 @@ function scr_identifyBlocks(){
 					
 					 var blockType = -1;
 					// Check if either all lines have field markers or
-					// if no lines have field markers
+					// if no lines have field markers. We will store all of the field
+					// markers in fieldList
 					var fieldList = ds_list_create();
 					for (var j = 0; j < blockLineListSize; j++) {
 						var currentLine = ds_list_find_value(blockLineList, j);
-						var currentLineStr = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, currentLine - 1);
+						var currentLineStr = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, currentLine);
 						var currentField = scr_stringGetField(currentLineStr);
 						if (string_length(currentField) > 0) {
 							ds_list_add(fieldList, currentField);
 						}
 					}
-					show_debug_message("scr_identifyBlocks() ... fieldList: " + scr_getStringOfList(fieldList));
 					var fieldMarkerAll = (ds_list_size(fieldList) == blockLineListSize);
 					var fieldMarkerNone = (ds_list_size(fieldList) == 0);
 						 
@@ -123,28 +120,26 @@ function scr_identifyBlocks(){
 						// Check if there is a Block Type of category Unit with
 						// this amount of lines per block and marked as Default
 						var unitBlockTypeRow = scr_findInGridThreeParameters(global.blockTypeGrid, global.blockTypeGrid_colBlockCategory, global.blockCategoryUnit, global.blockTypeGrid_colLinesPerBlock, blockLineListSize, global.blockTypeGrid_colDefault, true);
-						show_debug_message("scr_identifyBlocks() ... blockCategory: " + string(global.blockCategoryUnit) + ", LPB: " + string(blockLineListSize) + ", unitBlockTypeRow: " + string(unitBlockTypeRow));
 						if (unitBlockTypeRow >= 0) {
 								 
 							// Check if there are any field markers that differ from the field list of the found Block Type
 							if (fieldMarkerAll) {
 								var unitBlockFieldList = ds_grid_get(global.blockTypeGrid, global.blockTypeGrid_colFieldList, unitBlockTypeRow);
 								if (scr_compareLists(fieldList, unitBlockFieldList)) {
-										blockType = ds_grid_get(global.blockTypeGrid, global.blockTypeGrid_colBlockType, unitBlockTypeRow);
+									blockType = ds_grid_get(global.blockTypeGrid, global.blockTypeGrid_colBlockType, unitBlockTypeRow);
 								}
 								else {
-										show_debug_message("scr_identifyBlocks() ... new Block Type " + string(blockType));
-										// Create a new Block Type of category Unit
-										blockType = ds_grid_height(global.blockTypeGrid) + 1;
-										var fieldListCopy = ds_list_create();
-										ds_list_copy(fieldListCopy, fieldList);
-										ds_grid_resize(global.blockTypeGrid, global.blockTypeGridWidth, ds_grid_height(global.blockTypeGrid) + 1);
-										ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colDefault, ds_grid_height(global.blockTypeGrid) - 1, false);
-										ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colBlockCategory, ds_grid_height(global.blockTypeGrid) - 1, global.blockCategoryUnit);
-										ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colBlockType, ds_grid_height(global.blockTypeGrid) - 1, blockType);
-										ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colBlockCount, ds_grid_height(global.blockTypeGrid) - 1, 0);
-										ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colLinesPerBlock, ds_grid_height(global.blockTypeGrid) - 1, blockLineListSize);
-										ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colFieldList, ds_grid_height(global.blockTypeGrid) - 1, fieldListCopy);
+									// Create a new Block Type of category Unit
+									blockType = ds_grid_height(global.blockTypeGrid) + 1;
+									var fieldListCopy = ds_list_create();
+									ds_list_copy(fieldListCopy, fieldList);
+									ds_grid_resize(global.blockTypeGrid, global.blockTypeGridWidth, ds_grid_height(global.blockTypeGrid) + 1);
+									ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colDefault, ds_grid_height(global.blockTypeGrid) - 1, false);
+									ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colBlockCategory, ds_grid_height(global.blockTypeGrid) - 1, global.blockCategoryUnit);
+									ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colBlockType, ds_grid_height(global.blockTypeGrid) - 1, blockType);
+									ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colBlockCount, ds_grid_height(global.blockTypeGrid) - 1, 0);
+									ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colLinesPerBlock, ds_grid_height(global.blockTypeGrid) - 1, blockLineListSize);
+									ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colFieldList, ds_grid_height(global.blockTypeGrid) - 1, fieldListCopy);
 								}
 							}
 							else {
@@ -152,8 +147,6 @@ function scr_identifyBlocks(){
 							}
 						}
 						else {
-							
-							show_debug_message("HEHRUERUIHDFIHAIUSDFUASDHF....." + string(fieldMarkerAll));
 								
 							if (fieldMarkerAll) {
 									  
@@ -173,7 +166,7 @@ function scr_identifyBlocks(){
 							else if (fieldMarkerNone) {
 								// if this is a new Block Type without any field markers,
 								// check if the block has exactly 2, 3, or 4 lines (to match Scription format)
-								if (blockLineListSize == 2 || blockLineListSize == 3 || blockLineList == 4) {
+								if (blockLineListSize == 2 || blockLineListSize == 3 || blockLineListSize == 4) {
 									if (blockLineListSize == 2) {
 										ds_list_add(fieldList, "\\txn", "\\tln");
 									}
@@ -196,13 +189,11 @@ function scr_identifyBlocks(){
 									ds_grid_set(global.blockTypeGrid, global.blockTypeGrid_colFieldList, ds_grid_height(global.blockTypeGrid) - 1, fieldListCopy);
 								}
 								else {
+									global.exitOut = true;
 									show_message("Invalid IGT file. Unmarked block found that does not match default Scription block format.");
-									exit;
 								}
 							}
 						}
-							
-						show_debug_message("scr_identifyBlocks() ... Block Type: " + string(blockType));
 							
 						var rowInBlockTypeGrid = ds_grid_value_y(global.blockTypeGrid, global.blockTypeGrid_colBlockType, 0, global.blockTypeGrid_colBlockType, ds_grid_height(global.blockTypeGrid), blockType);
 						if (rowInBlockTypeGrid >= 0) {
@@ -226,15 +217,15 @@ function scr_identifyBlocks(){
 							ds_list_clear(blockLineList);
 						}
 						else {
+							global.exitOut = true;
 							show_message("Error, unable to find Block Type " + string(blockType));
 						}
 							
 
 					}
 					else {
-							 
-						show_message("Invalid IGT file. Block found with inconsistent field marking");
-						exit;
+						global.exitOut = true;	 
+						show_message("Invalid IGT file. Block found with inconsistent field marking"); // future dev: change to custom dialogue box, show incorrect Block to user
 					}
 						  
 					 
@@ -248,5 +239,11 @@ function scr_identifyBlocks(){
 		}
 		
 		prevException = exception;
+	}
+	
+	show_debug_message("end of scr_identifyBlocks... time is: " + scr_printTime());
+	
+	if (global.exitOut) {
+		show_debug_message("scr_identifyBlocks() ... INVALID FILE, exiting...");
 	}
 }

@@ -3,4 +3,5 @@
 
 scr_gridViewerDynamicWidth(global.tokenImportGrid);
 scr_gridViewerDynamicWidth(global.unitImportGrid);
+scr_gridViewerDynamicWidth(global.discoImportGrid);
 scr_gridViewerDynamicWidth(global.importCSVGrid);

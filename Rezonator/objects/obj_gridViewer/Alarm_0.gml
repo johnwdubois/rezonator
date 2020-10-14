@@ -18,6 +18,7 @@ ds_list_add(gridList,
 	global.importCSVGrid,
 	global.tokenImportGrid,
 	global.unitImportGrid,
+	global.discoImportGrid,
 	global.customLabelGrid
 	);
 

@@ -82,6 +82,9 @@ function scr_getGridNameString(argument0) {
 		case global.unitImportGrid:
 			gridName = "UnitImport"; // Unit Import Grid
 			break;		
+		case global.discoImportGrid:
+			gridName = "DiscoImport"; // Discourse Import Grid
+			break;		
 		case global.customLabelGrid:
 			gridName = "CustomLabel"; // Custom Label Grid
 			break;

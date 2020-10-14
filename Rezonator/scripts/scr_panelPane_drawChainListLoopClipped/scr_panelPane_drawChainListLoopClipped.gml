@@ -111,7 +111,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				var currentWordIDListSize = ds_list_size(currentWordIDList);
 				for (var k = 0; k < currentWordIDListSize; k++) {
 					var currentWordID = ds_list_find_value(currentWordIDList, k);
-					currentChainCaption += ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1) + " ";
+					currentChainCaption += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1)) + " ";
 				}
 			}
 		}

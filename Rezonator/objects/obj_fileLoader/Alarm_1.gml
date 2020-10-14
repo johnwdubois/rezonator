@@ -29,6 +29,9 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	else if (global.importType == global.importType_CoNLLU) {
 		scr_fillTokenImportGridCoNLLU();
 	}
+	else if (global.importType == global.importType_IGT) {
+		scr_fillImportGrids_IGT();
+	}
 	
 	if (!obj_control.updatedSpeakerLabel) {
 

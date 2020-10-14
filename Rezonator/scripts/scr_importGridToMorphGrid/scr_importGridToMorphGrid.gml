@@ -1,4 +1,6 @@
 function scr_importGridToMorphGrid() {
+	show_debug_message("scr_importGridToMorphGrid()");
+	
 	if (ds_grid_height(global.importGrid) < 1) {
 		exit;
 	}

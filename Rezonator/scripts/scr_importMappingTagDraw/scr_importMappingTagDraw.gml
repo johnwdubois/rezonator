@@ -111,6 +111,7 @@ function scr_importMappingTagDraw() {
 				instLoading.loadSprite = spr_loading;
 				scr_setSpecialFieldsVariables();
 				scr_storeSchLists();
+				scr_fillFieldLevelMap();
 				show_debug_message("Continue button clicked... " + scr_printTime());
 			
 				alarm[3] = 1;
