@@ -180,6 +180,7 @@
     {"id":{"name":"scr_importPlainTextInfo","path":"scripts/scr_importPlainTextInfo/scr_importPlainTextInfo.yy",},"order":13,},
     {"id":{"name":"scr_importMappingGroups","path":"scripts/scr_importMappingGroups/scr_importMappingGroups.yy",},"order":14,},
     {"id":{"name":"scr_importMappingTagDraw","path":"scripts/scr_importMappingTagDraw/scr_importMappingTagDraw.yy",},"order":15,},
+    {"id":{"name":"scr_setFieldRelations","path":"scripts/scr_setFieldRelations/scr_setFieldRelations.yy",},"order":26,},
     {"id":{"name":"scr_exceptionsWindow","path":"scripts/scr_exceptionsWindow/scr_exceptionsWindow.yy",},"order":16,},
     {"id":{"name":"scr_fillFieldLevelMap","path":"scripts/scr_fillFieldLevelMap/scr_fillFieldLevelMap.yy",},"order":38,},
     {"id":{"name":"scr_importPlainTextDraw","path":"scripts/scr_importPlainTextDraw/scr_importPlainTextDraw.yy",},"order":17,},

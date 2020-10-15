@@ -232,6 +232,14 @@ global.blockIDList = ds_list_create();
 global.fieldLevelMap = ds_map_create();
 
 
+// Field Relation Grid
+global.fieldRelationGridWidth = 3;
+global.fieldRelationGrid_colField = 0;
+global.fieldRelationGrid_colEncounteredFields = 1;
+global.fieldRelationGrid_colOneToOneFieldList = 2;
+global.fieldRelationGrid = ds_grid_create(global.fieldRelationGridWidth, 0);
+
+
 
 
 

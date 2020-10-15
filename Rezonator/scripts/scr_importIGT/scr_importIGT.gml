@@ -68,4 +68,5 @@ function scr_importIGT(){
 	}
 	
 	scr_setTokenCountPerLine();
+	scr_setFieldRelations();
 }
