@@ -6,7 +6,7 @@ function scr_currentTopLine() {
 	
 		Called from: obj_control
 	
-		Purpose: Return the Line in the Discourse estimated to be in the middle of the screen
+		Purpose: Return the Line in the Discourse estimated to be in the Top of the screen
 	
 		Mechanism: Get the midline of the current screen, then loop through the Lines within 
 		the drawRange to find the Line with the closest Y position to the midline
