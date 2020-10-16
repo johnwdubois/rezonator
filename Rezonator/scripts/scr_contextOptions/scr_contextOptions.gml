@@ -4,7 +4,7 @@ function scr_contextOptions(argument0) {
 
 	switch (optionSelected)
 	{
-		case "Prior":// show/hide prior context
+		case "Above":// show/hide prior context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[0] = !functionFilter_peek[0];
@@ -19,7 +19,7 @@ function scr_contextOptions(argument0) {
 			}
 		
 		break;
-		case "Tween":// show/hide tween context
+		case "Between":// show/hide tween context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[1] = !functionFilter_peek[1];
@@ -36,7 +36,7 @@ function scr_contextOptions(argument0) {
 		
 		break;
 	
-		case "Next":// hide/show next context
+		case "Below":// hide/show next context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[2] = !functionFilter_peek[2];

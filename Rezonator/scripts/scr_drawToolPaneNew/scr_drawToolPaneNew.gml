@@ -137,9 +137,11 @@ function scr_drawToolPaneNew() {
 	if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
 		if (keyboard_check_pressed(ord("R"))) {
 			currentMode = modeRez;
+			obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 		}
 		if (keyboard_check_pressed(ord("T"))) {
 			currentMode = modeTrack;
+			obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
 		}
 	}
 

@@ -110,7 +110,7 @@ function scr_viewOptions(argument0) {
 	
 		case "Context":
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Prior", "Tween", "Next");
+			ds_list_add(dropDownOptionList, "Above", "Between", "Below");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*6)  , -999, obj_dropDown);
