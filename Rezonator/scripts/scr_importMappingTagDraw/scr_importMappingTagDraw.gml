@@ -288,21 +288,24 @@ function scr_importMappingTagDraw() {
 		room_goto(rm_mainScreen)
 	}
 	
-	if(obj_importMapping.updatedErrorCol == false) {
-		var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
-		for(var i  = 0; i <= tagGridHeight; i++){
-			var TargetMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
-			var indexOfTargetMarker = ds_list_find_index(global.importGridColNameList, TargetMarker)-2;
-			var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid,indexOfTargetMarker, indexOfDisplayMarker)
-			if(targetThreshold < obj_importMapping.currentTokenThreshold){
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,true);
-			}
-			else{
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,false);
-			}
+	if (global.importType == global.importType_IGT) {
+		if(obj_importMapping.updatedErrorCol == false) {
+			var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
+		
+			for(var i  = 0; i <= tagGridHeight; i++){
+				var TargetMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
+				var indexOfTargetMarker = ds_list_find_index(global.importGridColNameList, TargetMarker)-2;
+				var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid,indexOfTargetMarker, indexOfDisplayMarker);
+				if(targetThreshold < obj_importMapping.currentTokenThreshold){
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,true);
+				}
+				else{
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,false);
+				}
 			
+			}
+			obj_importMapping.updatedErrorCol = true;
 		}
-		obj_importMapping.updatedErrorCol = true;
 	}
 
 

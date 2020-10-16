@@ -55,11 +55,19 @@ global.games = false;
 //global.inRezzles = false;
 
 
-global.importType_IGT = 3;
-global.importType_CoNLLU = 2;
-global.importType_CSV = 1;
+
 global.importType_Default = 0;
-global.importType = global.importType_IGT;
+global.importType_CSV = 1;
+global.importType_CoNLLU = 2;
+global.importType_IGT = 3;
+global.importType_PlainText = 4;
+global.importType_TabDelimited = 5;
+global.importType = global.importType_PlainText;
+
+// create list to hold all the import types (so we can loop over them easily)
+importTypeList = ds_list_create();
+ds_list_add(importTypeList, "Plain text", "Tab delimited", "Interlinear Glossed Text", "CSV", "CoNLL-U");
+
 
 
 global.plainText = false;

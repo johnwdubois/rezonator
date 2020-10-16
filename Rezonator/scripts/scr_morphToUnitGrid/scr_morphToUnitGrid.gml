@@ -1,4 +1,7 @@
 function scr_morphToUnitGrid() {
+	
+	show_debug_message("scr_morphToUnitGrid() START ... " + scr_printTime());
+	
 	var currentWordIDList = ds_list_create();
 	var participantList = ds_list_create();
 
@@ -120,6 +123,8 @@ function scr_morphToUnitGrid() {
 	ds_list_copy(obj_control.participantList, participantList);
 	ds_list_destroy(participantList);
 	ds_list_destroy(currentWordIDList);
+	
+	show_debug_message("scr_morphToUnitGrid() END ... " + scr_printTime());
 
 
 }

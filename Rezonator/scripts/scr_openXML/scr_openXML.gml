@@ -11,6 +11,9 @@ function scr_openXML() {
 		Mechanism: Loop through entire text file and add each line to global.fileLineRipList
 	*/
 	//show_message(string(global.previousImportDirectory));
+	
+	if (live_call()) return live_result;
+	show_debug_message("global.importType: " + string(global.importType));
 
 	if(global.previousImportDirectory == ""){
 	
@@ -31,8 +34,24 @@ function scr_openXML() {
 
 	}
 
-	//show_message(string(discourseDirString) + "   Does exist : " + string(directory_exists(discourseDirString)));
-	openedFile = get_open_filename_ext(global.fileExtentionOrder, "", discourseDirString, "Import File");
+	
+	var fileExtension = "";
+	if (global.importType == global.importType_CSV) {
+		fileExtension = "CSV (*.csv)|*.csv";
+	}
+	else if (global.importType == global.importType_CoNLLU) {
+		fileExtension = "CoNLL-U (*.txt)|*.txt";
+	}
+	else if (global.importType == global.importType_PlainText) {
+		fileExtension = "Plain text (*.txt)|*.txt";
+	}
+	else if (global.importType == global.importType_TabDelimited) {
+		fileExtension = "Tab delimited (*.txt)|*.txt";
+	}
+	else if (global.importType == global.importType_IGT) {
+		fileExtension = "Interlinear glossed text (*.txt)|*.txt";
+	}
+	openedFile = get_open_filename_ext(fileExtension, "", discourseDirString, "Import File");
 
 
 
