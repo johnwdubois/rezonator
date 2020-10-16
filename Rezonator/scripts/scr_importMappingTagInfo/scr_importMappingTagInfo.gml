@@ -7,7 +7,7 @@ function scr_importMappingTagInfo() {
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
-	var colAmount = global.tagInfoGridWidth;
+	var colAmount = global.tagInfoGridWidth - 1; // we subtract 1 so we don't show the error column
 
 	scr_windowCameraAdjust();
 
@@ -347,12 +347,7 @@ function scr_importMappingTagInfo() {
 
 
 	
-	if(canContinueError){
-		obj_importMapping.canContinue = true;
-	}
-	else {
-		obj_importMapping.canContinue = false;
-	}
+	obj_importMapping.canContinueError = canContinueError;
 
 
 

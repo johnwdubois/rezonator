@@ -70,6 +70,7 @@ loopItterations = 0;
 canContinue = false;
 canContinueToken = true;
 canContinueUnit = true;
+canContinueError = false;
 
 if (global.importType != global.importType_CSV) {
 	scr_checkTokenCount();

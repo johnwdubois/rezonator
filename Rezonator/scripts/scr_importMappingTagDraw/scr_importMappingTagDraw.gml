@@ -90,7 +90,7 @@ function scr_importMappingTagDraw() {
 
 	}
 
-	if((obj_importMapping.canContinueToken) and (obj_importMapping.canContinue) or global.tabDeliniatedText){
+	if ((obj_importMapping.canContinueToken and obj_importMapping.canContinueError) or global.tabDeliniatedText) {
 
 		var continueButtonWidth = 150;
 		var continueButtonHeight = 40;
@@ -135,14 +135,20 @@ function scr_importMappingTagDraw() {
 		var continueButtonRectY1 = (camHeight - continueButtonHeight - 20) - (continueButtonHeight / 2);
 		var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
 		var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
+		
+		var errorMessage = "";
+		if (!obj_importMapping.canContinueToken) {
+			errorMessage = "Please select a field to be the Display Token.";
+		}
+		else if (!obj_importMapping.canContinueError) {
+			errorMessage = "Token fields do not align 1-to-1 with Display Token.";
+		}
 	
 		draw_set_font(global.fontMain);
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
-		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Please Select a Default Display Token and Display Unit.");
+		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), errorMessage);
 	}
-
-	//fileInfoWindowRectX1, fileInfoWindowRectY1
 
 
 	draw_set_color(global.colorThemeText);
