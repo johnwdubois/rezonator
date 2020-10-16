@@ -62,7 +62,7 @@ global.importType_CoNLLU = 2;
 global.importType_IGT = 3;
 global.importType_PlainText = 4;
 global.importType_TabDelimited = 5;
-global.importType = global.importType_IGT;
+global.importType = global.importType_PlainText;
 
 // create list to hold all the import types (so we can loop over them easily)
 importTypeList = ds_list_create();

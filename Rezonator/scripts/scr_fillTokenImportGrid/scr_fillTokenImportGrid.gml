@@ -1,4 +1,4 @@
-function scr_fillTokenImportGrid() {
+ function scr_fillTokenImportGrid() {
 	show_debug_message("scr_fillTokenImportGrid(), STARTING..." + scr_printTime());
 
 	// fill tokenImport with UnitID, WordID, token, and transcript information

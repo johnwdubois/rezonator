@@ -124,8 +124,8 @@ function scr_importTXT(argument0) {
 	else if (global.importType == global.importType_PlainText) {	
 		// plain text import
 		// temporarily making this use tab-delimited import
-		//scr_importPlainTXT(filename);
-		scr_importTabbedTXT(filename);
+		scr_importPlainTXT(filename);
+		//scr_importTabbedTXT(filename);
 	}
 
 	file_text_close(fileOpenRead);

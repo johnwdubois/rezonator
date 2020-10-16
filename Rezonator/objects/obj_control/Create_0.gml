@@ -675,3 +675,7 @@ readModeHints = 0;
 mouseOverUI = false;
 
 ctrlHold = false;
+
+with (obj_alarm) {
+	alarm[10] = 8;
+}

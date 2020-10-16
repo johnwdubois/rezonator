@@ -4,6 +4,8 @@ function scr_preImportScreen(){
 	
 	if (live_call()) return live_result;
 	
+	scr_drawBackArrow();
+	
 	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);

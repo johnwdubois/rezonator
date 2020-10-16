@@ -1,4 +1,5 @@
 function scr_hideSpeakerName() {
+	
 	obj_control.showParticipantName = !obj_control.showParticipantName;
 
 	if (!obj_control.showParticipantName) {
@@ -8,6 +9,7 @@ function scr_hideSpeakerName() {
 
 	obj_control.wordLeftMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1) + 20;
 	obj_control.wordLeftMarginDest = obj_control.wordLeftMargin;
-
+	
+	show_debug_message("scr_hideSpeakerName() ... obj_control.showParticipantName: " + string(obj_control.showParticipantName));
 
 }
