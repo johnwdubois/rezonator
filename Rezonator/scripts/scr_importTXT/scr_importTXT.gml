@@ -33,8 +33,8 @@ function scr_importTXT(argument0) {
 		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colLine, ds_grid_height(global.importTXTLineGrid) - 1, lineInFile);
 		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, ds_grid_height(global.importTXTLineGrid) - 1, false);
 		
+		// if this is not an IGT import, we will run our old import method
 		if (global.importType != global.importType_IGT) {
-	
 	
 			if (!firstClusterEncountered) {
 				if (string_char_at(lineInFile, 1) == "\\") {
@@ -44,7 +44,6 @@ function scr_importTXT(argument0) {
 					continue;
 				}
 			}
-	
 	
 			if (string_length(string_lettersdigits(lineInFile)) < 1) {
 				blankRow = true;
@@ -62,9 +61,6 @@ function scr_importTXT(argument0) {
 				lineInCluster++;
 			}
 	
-
-	
-	
 			if (string_char_at(lineInFile, 1) != "\\") {
 		
 				if (!firstCluster and lineInCluster - 1 < ds_list_size(firstClusterTagList)) {
@@ -81,8 +77,6 @@ function scr_importTXT(argument0) {
 				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
 				newRow = false;
 			}
-	
-	
 	
 			if (string_char_at(lineInFile, 1) == "\\") {
 				var colNameLength = string_pos(" ", lineInFile);
@@ -116,36 +110,28 @@ function scr_importTXT(argument0) {
 	
 	
 	if (global.importType == global.importType_IGT) {
+		// IGT import
 		scr_importIGT();
 	}
-	
-	
-	
-	
-	
-	
-
-	if (ds_grid_width(global.importGrid) == 0) {
-		
-		//CoNLL-U
+	else if (global.importType == global.importType_CoNLLU) {
+		// CoNLL-U import
 		scr_importConlluTXT(filename);
-
 	}
-
-	if (ds_grid_width(global.importGrid) == 0) {
-	
-		//check for tab delienated collumns
+	else if (global.importType == global.importType_TabDelimited) {
+		// tab delimited import
 		scr_importTabbedTXT(filename);
-		
 	}
-
-	if (ds_grid_width(global.importGrid) == 0) {	
-		//default to plain text import
-		scr_importPlainTXT(filename);
+	else if (global.importType == global.importType_PlainText) {	
+		// plain text import
+		// temporarily making this use tab-delimited import
+		//scr_importPlainTXT(filename);
+		scr_importTabbedTXT(filename);
 	}
 
 	file_text_close(fileOpenRead);
 
+	// if something went wrong in the import process, we exit back to the openingScreen
+	// otherwise we continue to the importScreen
 	if (global.exitOut) {
 		room_goto(rm_openingScreen);
 	}

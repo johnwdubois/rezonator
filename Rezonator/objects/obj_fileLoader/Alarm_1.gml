@@ -20,7 +20,8 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
 
-	if (global.importType == global.importType_Default) {
+	if (global.importType == global.importType_Default || global.importType == global.importType_PlainText
+	|| global.importType == global.importType_TabDelimited) {
 		scr_fillTokenImportGrid();
 	}
 	else if (global.importType == global.importType_CSV) {
