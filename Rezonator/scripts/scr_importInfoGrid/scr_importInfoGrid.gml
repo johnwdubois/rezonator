@@ -51,6 +51,7 @@ function scr_importInfoGrid() {
 		for (var i = 0; i < importGridWidth; i++) {
 	
 			var currentTag = ds_list_find_value(global.importGridColNameList, i);
+
 			var currentExample = "";
 	
 			var importGridRow = 0;
@@ -88,18 +89,18 @@ function scr_importInfoGrid() {
 					ds_list_destroy(currentList);
 				}
 			}
-	
+			
+		
+
 			ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, currentExample);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, currentConsistency);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, OneTokenPerGroup);
-		
-		
 			var currentTokenCount = ds_list_find_value(global.importGridTokenCountList, i);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, currentTokenCount);
-		
-		
+			
+
 			if (global.importType == global.importType_CoNLLU) {
 				var levelEstimate = -1;
 				if (string_char_at(currentTag, 1) == "#") {
@@ -144,6 +145,7 @@ function scr_importInfoGrid() {
 			if (!setDisplayToken) {
 				if (currentLevel == global.levelToken) {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Display Token");
+					obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 					setDisplayToken = true;
 				}
 			}

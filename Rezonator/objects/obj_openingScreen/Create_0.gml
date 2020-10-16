@@ -59,7 +59,7 @@ global.importType_IGT = 3;
 global.importType_CoNLLU = 2;
 global.importType_CSV = 1;
 global.importType_Default = 0;
-global.importType = global.importType_Default;
+global.importType = global.importType_IGT;
 
 
 global.plainText = false;
@@ -191,7 +191,7 @@ global.importFileRipList = ds_list_create();
 
 
 
-global.tagInfoGridWidth = 7;
+global.tagInfoGridWidth = 8;
 global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colExample = 1;
 global.tagInfoGrid_colLevel = 2;
@@ -199,6 +199,7 @@ global.tagInfoGrid_colMarkerPercent = 3;
 global.tagInfoGrid_colSingleTokenMarker = 4;
 global.tagInfoGrid_colTokenCount = 5;
 global.tagInfoGrid_colSpecialFields = 6;
+global.tagInfoGrid_colError = 7;
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 
@@ -239,8 +240,9 @@ global.fieldRelationGrid_colEncounteredFields = 1;
 global.fieldRelationGrid_colOneToOneFieldList = 2;
 global.fieldRelationGrid = ds_grid_create(global.fieldRelationGridWidth, 0);
 
-
-
+// Field Relation Helper Grid
+global.fieldRelationHelperGridWidth = 0;
+global.fieldRelationHelperGrid = ds_grid_create(global.fieldRelationHelperGridWidth, 0);
 
 
 

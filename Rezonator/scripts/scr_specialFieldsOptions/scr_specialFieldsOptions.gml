@@ -62,7 +62,13 @@ function scr_specialFieldsOptions(argument0) {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
+			
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Display Token");
+			obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
+			var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+			obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+			obj_importMapping.updatedErrorCol = false;
 			global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
 		default:

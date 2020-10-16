@@ -5,9 +5,6 @@ function scr_fillImportGrids_IGT(){
 	if (live_call()) return live_result;
 	
 	show_debug_message("scr_fillImportGrids_IGT() ... START. Time is: " + scr_printTime());
-	show_debug_message("discoImportGridSize: " + string(ds_grid_width(global.discoImportGrid)) + ", " + string(ds_grid_height(global.discoImportGrid)));
-	show_debug_message("unitImportGridSize: " + string(ds_grid_width(global.unitImportGrid)) + ", " + string(ds_grid_height(global.unitImportGrid)));
-	show_debug_message("tokenImportGridSize: " + string(ds_grid_width(global.tokenImportGrid)) + ", " + string(ds_grid_height(global.tokenImportGrid)));
 
 	
 	// resize & reset disco/unit/token importGrids to how they should be
@@ -97,7 +94,6 @@ function scr_fillImportGrids_IGT(){
 				
 					// set the data in the discoImportGrid
 					ds_grid_set(global.discoImportGrid, discoImportGridCol, 0, currentStr);
-					show_debug_message("scr_fillImportGrids_IGT() ...  discoImportGridCol: " + string(discoImportGridCol) + ", currentStr: " + string(currentStr));
 				
 					discoImportGridCol++;
 				}
@@ -147,7 +143,6 @@ function scr_fillImportGrids_IGT(){
 				// split the string from the importGrid, so we can tokenize!
 				var currentTokenList = scr_splitStringWhitespace(currentStr);
 				var currentTokenListSize = ds_list_size(currentTokenList);
-				show_debug_message("scr_fillImportGrids_IGT() ... currentTokenList: " + scr_getStringOfList(currentTokenList));
 				
 				// make sure that we got tokens from the split
 				if (currentTokenListSize > 0) {

@@ -53,5 +53,8 @@ function scr_stringGetField(str){
 		field = str;
 	}
 	
+	field = string_replace_all(field," ","");
+	field = string_replace_all(field,"	","");
+	
 	return field;
 }

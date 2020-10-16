@@ -1,6 +1,9 @@
 function scr_importMappingTagInfo() {
 	
+	if(live_call()) return live_result;
+	
 
+	var canContinueError = true;
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
@@ -78,13 +81,14 @@ function scr_importMappingTagInfo() {
 			
 			// check if this is the blockSeq or blockID, if so
 			// don't show the row for this field
-			/*
 			var currentMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, j);
 			if (currentMarker == "~blockID" || currentMarker == "~blockSeq") {
 				continue;
 			}
-			*/
-			
+			var level = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
+
+			var currentError = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colError, j) and level == global.levelToken;
+
 			
 		
 			draw_set_halign(fa_left);
@@ -105,6 +109,14 @@ function scr_importMappingTagInfo() {
 			if (obj_importMapping.mouseoverRow == j) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+			}
+			
+			if (currentError) {
+				draw_set_color(c_red);
+				draw_set_alpha(.5);
+				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+				draw_set_alpha(1);
+				canContinueError = false;
 			}
 		
 		
@@ -185,6 +197,7 @@ function scr_importMappingTagInfo() {
 				}
 			
 			}
+
 		
 		
 			draw_set_color(global.colorThemeText);
@@ -333,8 +346,13 @@ function scr_importMappingTagInfo() {
 
 
 
-
-
+	
+	if(canContinueError){
+		obj_importMapping.canContinue = true;
+	}
+	else {
+		obj_importMapping.canContinue = false;
+	}
 
 
 

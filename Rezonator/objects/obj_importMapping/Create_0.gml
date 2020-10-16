@@ -67,6 +67,7 @@ canPressRightHoldingCounter = 0;
 holdingLimit = 6;
 loopItterations = 0;
 
+canContinue = false;
 canContinueToken = true;
 canContinueUnit = true;
 
@@ -80,5 +81,12 @@ canPressPlus = true;
 importGroupSchemaLoaded = false;
 
 continueButtonClicked = false;
+
+tokenRatio = 0.8;
+currentTokenThreshold = 0;
+updatedErrorCol = false;
+displayMarker = "";
+
+
 
 show_debug_message("obj_importMapping Create END... " + scr_printTime());

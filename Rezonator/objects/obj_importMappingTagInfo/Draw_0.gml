@@ -19,6 +19,9 @@ if (keyboard_check(vk_control) and keyboard_check_released(ord("G"))) {
 		gridViewing = global.fieldRelationGrid;
 	}
 	else if (gridViewing == global.fieldRelationGrid) {
+		gridViewing = global.fieldRelationHelperGrid;
+	}
+	else if (gridViewing == global.fieldRelationHelperGrid) {
 		gridViewing = global.tagInfoGrid;
 	}
 }

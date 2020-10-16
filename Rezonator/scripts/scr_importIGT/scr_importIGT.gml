@@ -52,7 +52,9 @@ function scr_importIGT(){
 				// Now we will put this line in the importGrid. If we can find the currentField string in the importGridColMap map,
 				// then we get the importGrid column from that key in the map. If we cannot find the currentField string in importGridColMap,
 				// we add it to the map and make a new column in the importGrid.
+				
 				currentField = ds_list_find_value(currentFieldList, j);
+				
 				var importGridCol = ds_map_find_value(global.importGridColMap, currentField);
 				if (is_undefined(importGridCol)) {
 					global.importGridWidth++;

@@ -191,6 +191,9 @@ function scr_importDebugGridDraw() {
 				headerStr ="1-to-1 field list";
 			}
 		}
+		else if (grid == global.fieldRelationHelperGrid) {
+			headerStr = ds_list_find_value(global.importGridColNameList, i+2);
+		}
 
 		draw_set_font(global.fontMainBold);
 		draw_set_color(global.colorThemeText);
