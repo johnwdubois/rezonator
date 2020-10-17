@@ -1,7 +1,7 @@
 {
-  "option_windows_display_name": "Rezonator 0.9.0.4",
+  "option_windows_display_name": "Rezonator 0.9.0.5",
   "option_windows_executable_name": "${project_name}",
-  "option_windows_version": "0.9.0.4",
+  "option_windows_version": "0.9.0.5",
   "option_windows_company_info": "Rezonator Games",
   "option_windows_product_info": "Rezonator",
   "option_windows_copyright_info": "(c) 2018 Rezonator Games",
