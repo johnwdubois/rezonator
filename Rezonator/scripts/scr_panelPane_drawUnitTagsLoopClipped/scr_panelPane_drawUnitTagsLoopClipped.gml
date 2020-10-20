@@ -346,6 +346,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					if (notDiscoTag && !isUnitIDCol) {
 						ds_list_add(dropDownOptionList, "Add new Tag");
 					}
+					//ds_list_add(dropDownOptionList, "Set as Translation");
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;

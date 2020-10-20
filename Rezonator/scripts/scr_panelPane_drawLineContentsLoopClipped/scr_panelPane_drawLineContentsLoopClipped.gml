@@ -490,6 +490,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					if (notUnitOrDiscoTag) {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
+					//ds_list_add(dropDownOptionList, "Set as Transcript");
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;

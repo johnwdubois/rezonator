@@ -101,6 +101,13 @@ function scr_loadREZ() {
 				
 					global.unitImportUnitDelimColName = ds_map_find_value(map, "unitImportUnitDelimColName");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
+					global.unitImportTranslationColName = ds_map_find_value(map, "unitImportTranslationColName");
+					global.unitImportSpeakerColName = ds_map_find_value(map, "unitImportSpeakerColName");
+					global.unitImportUnitEndColName = ds_map_find_value(map, "unitImportUnitEndColName");
+					global.unitImportUnitStartColName = ds_map_find_value(map, "unitImportUnitStartColName");
+					global.tokenImportTranscriptColName = ds_map_find_value(map, "tokenImportTranscriptColName");
+					global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
+					
 
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");

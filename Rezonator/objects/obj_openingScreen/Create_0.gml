@@ -308,6 +308,10 @@ global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
 global.unitImportUnitDelimColName = "";
 global.unitImportTurnDelimColName = "";
+global.unitImportTranslationColName = "";
+global.unitImportSpeakerColName = "";
+global.tokenImportTranscriptColName = "";
+global.tokenImportDisplayTokenColName = "";
 
 global.openedREZFile = false;
 

@@ -3,7 +3,7 @@
 function scr_identifyBlocks(){
 	
 	if (live_call()) return live_result;
-	
+	var lineExitedOn = 0;
 	show_debug_message("starting scr_identifyBlocks... time is: " + scr_printTime());
 	
 	global.exitOut = false;
@@ -190,7 +190,8 @@ function scr_identifyBlocks(){
 								}
 								else {
 									global.exitOut = true;
-									show_message("Invalid IGT file. Unmarked block found that does not match default Scription block format.");
+									lineExitedOn = i;
+									show_message("Invalid IGT file. Unmarked block found that does not match default Scription block format. Error found on line: " + string(lineExitedOn));
 								}
 							}
 						}
@@ -218,14 +219,16 @@ function scr_identifyBlocks(){
 						}
 						else {
 							global.exitOut = true;
-							show_message("Error, unable to find Block Type " + string(blockType));
+							lineExitedOn = i;
+							show_message("Error, unable to find Block Type " + string(blockType)+  "  Error found on line: " + string(lineExitedOn));
 						}
 							
 
 					}
 					else {
-						global.exitOut = true;	 
-						show_message("Invalid IGT file. Block found with inconsistent field marking"); // future dev: change to custom dialogue box, show incorrect Block to user
+						global.exitOut = true;	
+						lineExitedOn = i;
+						show_message("Invalid IGT file. Block found with inconsistent field marking" +  "  Error found on line: " + string(lineExitedOn)); // future dev: change to custom dialogue box, show incorrect Block to user
 					}
 						  
 					 

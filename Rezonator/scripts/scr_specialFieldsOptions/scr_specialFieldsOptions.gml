@@ -15,14 +15,14 @@ function scr_specialFieldsOptions(argument0) {
 			global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Speaker":
-			global.unitImportUnitStartColName = "";
+			global.unitImportSpeakerColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Speaker") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Speaker");
-			global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			global.unitImportSpeakerColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 		break;
 		case "Unit End":
 		global.unitImportUnitEndColName = "";
@@ -34,6 +34,27 @@ function scr_specialFieldsOptions(argument0) {
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit End");
 			global.unitImportUnitEndColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
+		case "Translation":
+		global.unitImportTranslationColName = "";
+			for (var i = 0; i < tagInfoGridHeight; i++) {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Translation") {
+					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
+				}
+			}
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Translation");
+			global.unitImportTranslationColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			break;
+		case "Transcript":
+		global.tokenImportTranscriptColName = "";
+			for (var i = 0; i < tagInfoGridHeight; i++) {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Transcript") {
+					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
+				}
+			}
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Transcript");
+			global.tokenImportTranscriptColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			break;
+
 		
 		case "Unit Delimiter":
 		global.unitImportUnitDelimColName = "";
@@ -56,7 +77,7 @@ function scr_specialFieldsOptions(argument0) {
 			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Display Token":
-			global.unitImportUnitStartColName = "";
+			global.tokenImportDisplayTokenColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Display Token") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
@@ -64,7 +85,7 @@ function scr_specialFieldsOptions(argument0) {
 			}
 			
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Display Token");
-			global.unitImportUnitStartColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			global.tokenImportDisplayTokenColName  = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			
 			if (global.importType == global.importType_IGT) {
 				obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);

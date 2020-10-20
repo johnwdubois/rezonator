@@ -179,10 +179,10 @@ function scr_importMappingTagInfo() {
 								var dropDownOptionList = ds_list_create();
 						
 								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
-									ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter");
+									ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter", "Translation");
 								}
 								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
-									ds_list_add(dropDownOptionList, "Display Token");
+									ds_list_add(dropDownOptionList, "Display Token", "Transcript");
 								}
 								if (ds_list_size(dropDownOptionList) > 0) {
 									var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);

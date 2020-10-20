@@ -150,6 +150,13 @@ function scr_saveREZ(argument0) {
 			//save special feild colnames
 			ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
 			ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
+			ds_map_add(map, "unitImportTranslationColName", global.unitImportTranslationColName);
+			ds_map_add(map, "unitImportUnitEndColName", global.unitImportUnitEndColName);
+			ds_map_add(map, "unitImportUnitStartColName", global.unitImportUnitStartColName);
+			ds_map_add(map, "unitImportSpeakerColName", global.unitImportSpeakerColName);
+			ds_map_add(map, "tokenImportTranscriptColName", global.tokenImportTranscriptColName);
+			ds_map_add(map, "tokenImportDisplayTokenColName", global.tokenImportDisplayTokenColName);
+		
 		
 			ds_map_add(map, "showParticipantName", obj_control.showParticipantName);
 			
