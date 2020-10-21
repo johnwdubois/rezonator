@@ -12,7 +12,7 @@ function scr_openXML() {
 	*/
 	//show_message(string(global.previousImportDirectory));
 	
-	if (live_call()) return live_result;
+	//if (live_call()) return live_result;
 	show_debug_message("global.importType: " + string(global.importType));
 
 	if(global.previousImportDirectory == ""){

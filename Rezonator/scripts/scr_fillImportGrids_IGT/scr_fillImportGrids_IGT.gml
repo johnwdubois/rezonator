@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fillImportGrids_IGT(){
 	
-	if (live_call()) return live_result;
+	//if (live_call()) return live_result;
 	
 	show_debug_message("scr_fillImportGrids_IGT() ... START. Time is: " + scr_printTime());
 
@@ -141,7 +141,7 @@ function scr_fillImportGrids_IGT(){
 				}
 				
 				// split the string from the importGrid, so we can tokenize!
-				var currentTokenList = scr_splitStringWhitespace(currentStr);
+				var currentTokenList = scr_splitStringWhitespaceAndHyphen(currentStr);
 				var currentTokenListSize = ds_list_size(currentTokenList);
 				
 				// make sure that we got tokens from the split

@@ -17,7 +17,7 @@ function scr_setTokenCountPerLine(){
 			// tokenize this line
 			var currentLine = ds_list_find_value(currentLineList, j);
 			var currentStr = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, currentLine);
-			var currentTokenList = scr_splitStringWhitespace(currentStr);
+			var currentTokenList = scr_splitStringWhitespaceAndHyphen(currentStr);
 			var currentTokenListSize = ds_list_size(currentTokenList);
 			
 			// store the amount of tokens in currentTokenCountList

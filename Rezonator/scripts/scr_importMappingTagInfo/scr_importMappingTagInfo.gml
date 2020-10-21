@@ -1,6 +1,6 @@
 function scr_importMappingTagInfo() {
 	
-	if(live_call()) return live_result;
+	//if(live_call()) return live_result;
 	
 
 	var canContinueError = true;
