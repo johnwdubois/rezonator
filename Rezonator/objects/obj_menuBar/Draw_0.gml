@@ -87,8 +87,8 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 draw_text(mean(menuWidth, menuWidth*2), menuHeight - 25,"Edit");
 draw_text(mean(menuWidth*2, menuWidth*3), menuHeight - 25,"View");
 draw_text(mean(menuWidth*3, menuWidth*4.5), menuHeight - 25,"Search");
-draw_text(mean(menuWidth*4.5, menuWidth*6), menuHeight - 25,"Options");
-draw_text(mean(menuWidth*6, menuWidth*8), menuHeight - 25,"StackShow");
+draw_text(mean(menuWidth*4.5, menuWidth*6), menuHeight - 25,scr_get_translation(menu_options));
+draw_text(mean(menuWidth*6, menuWidth*8), menuHeight - 25,scr_get_translation(menu_stackShow));
 draw_text(mean(menuWidth*8, menuWidth*10), menuHeight - 25,"Sort Pane");*/
 	
 	

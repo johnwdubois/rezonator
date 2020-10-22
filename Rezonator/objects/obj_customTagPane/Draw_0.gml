@@ -18,7 +18,7 @@ if (instance_exists(obj_customTag_labelPane)) {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
-	draw_text(textX, textY, "Labels");
+	draw_text(textX, textY, scr_get_translation(msg_labels));
 }
 
 if (instance_exists(obj_customTag_tagListPane)) {
@@ -28,5 +28,5 @@ if (instance_exists(obj_customTag_tagListPane)) {
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
-	draw_text(textX, textY, "Custom Tags");
+	draw_text(textX, textY, scr_get_translation(msg_create_tag));
 }

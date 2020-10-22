@@ -23,16 +23,16 @@ draw_roundrect(submitChainRectX1, submitChainRectY1, submitChainRectX2, submitCh
 draw_set_font(fnt_mainBold);
 draw_set_halign(fa_center);
 if(global.wheresElmo) {
-	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, "Where's Elmo");
-	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, "Submit Chain");
+	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, scr_get_translation(msg_elmo_title));
+	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, scr_get_translation(msg_elmo_okay));
 }
 else if(global.rezzles) {
-	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, "Rezzles");
-	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, "End Chain");
+	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, scr_get_translation(msg_game-description));
+	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, scr_get_translation(msg_game-quitChain));
 }
 else {
-	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, "StackShow");
-	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, "End Chain");
+	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, scr_get_translation(msg_game-stackShow));
+	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, scr_get_translation(msg_game-quitChain));
 }
 
 draw_rectangle(submitChainButtonX1, submitChainButtonY1, submitChainButtonX2, submitChainButtonY2, true);

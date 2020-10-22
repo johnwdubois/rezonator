@@ -72,63 +72,63 @@ var helpGridHeightLink = 12;
 ds_grid_resize(functionHelp_helpGridLink, functionHelp_helpGridWidth, helpGridHeightLink);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 0, "[CLICK ON WORD]");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 0, "Create/Focus Link");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 0, "Focus a link or add to chain)");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 0, scr_get_translation(help_label_link));
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 0, scr_get_translation(help_description_link-word));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 1, "[ESC], q");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 1, "Unfocus Chain");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 1, "Quit adding words to the chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 1, scr_get_translation(help_label_quit-chain));
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 1, scr_get_translation(help_description_quit-chain2));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 1, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 2, "[DEL]");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 2, "Delete link");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 2, "Remove a word from a chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 2, scr_get_translation(help_label_delete-link));
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 2, scr_get_translation(help_description_delete-link));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 2, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 3, "r");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 3, "Rez Mode");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 3, "Switch to making Rez chains");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 3, scr_get_translation(help_label_rez));
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 3, scr_get_translation(help_description_rez));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 3, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 4, "t");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 4, "Track Mode");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 4, "Switch to making Track chains");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 4, scr_get_translation(help_label_track));
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 4, scr_get_translation(help_description_track));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 4, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 5, "k");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 5, "Stack");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 5, "Start a new Stack chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 5, scr_get_translation(help_description_stack));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 5, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 6, "c");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 6, "Clique");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 6, "Move to Nav window Clique Tab");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 6, scr_get_translation(help_description_clique-tab));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 6, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 7, "[DRAG WORD]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 7, "QuickLink");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 7, "Drag from word for multiple links");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 7, scr_get_translation(help_description_quicklink));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 7, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 8, "[DRAG LINE]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 8, "QuickStack");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, "Drag from line labels for a QuickStack");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 8, scr_get_translation(help_description_quickstack));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 8, false);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 9, "n");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 9, "New Word");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 9, "Insert a new word into the discourse");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 9, scr_get_translation(help_description_insert-word));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 9, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 10, "b");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 10, "Box");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 10, "Make a Box around selected words");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 10, scr_get_translation(help_description_box));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 10, true);
 
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colKey, 11, "CTRL [DEL]");
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colFunc, 11, "Delete Entire Chain");
-ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 11, "Delete all the links from the chain");
+ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colDesc, 11, scr_get_translation(help_description_delete-chain));
 ds_grid_set(functionHelp_helpGridLink, functionHelp_helpGrid_colHide, 11, false);
 
 var helpGridHeightPick = 3;
@@ -136,17 +136,17 @@ ds_grid_resize(functionHelp_helpGridPick, functionHelp_helpGridWidth, helpGridHe
 
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colKey, 0, "p");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colFunc, 0, "Pick");
-ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 0, "Add focused element to pickList");
+ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 0, scr_get_translation(help_description_pick-chain));
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colKey, 1, "CTRL p");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colFunc, 1, "Filter");
-ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 1, "Show just the current picks");
+ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 1, scr_get_translation(help_description_filter));
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 1, false);
 
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colKey, 2, controlStr + " t");
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colFunc, 2, "Align");
-ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 2, "Align current Track");
+ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colDesc, 2, scr_get_translation(help_description_align));
 ds_grid_set(functionHelp_helpGridPick, functionHelp_helpGrid_colHide, 2, true);
 
 var helpGridHeightSearch = 2;
@@ -154,12 +154,12 @@ ds_grid_resize(functionHelp_helpGridSearch, functionHelp_helpGridWidth, helpGrid
 
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colKey, 0, "f");
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 0, "Search for Word");
-ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 0, "Search for all instances of a word");
+ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 0, scr_get_translation(help_description_search-word));
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 0, false);
 
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colKey, 1, "g");
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colFunc, 1, "Go to Line");
-ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 1, "Go to user-specified line");
+ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colDesc, 1, scr_get_translation(help_description_go-to-line));
 ds_grid_set(functionHelp_helpGridSearch, functionHelp_helpGrid_colHide, 1, false);
 
 var helpGridHeightView = 9;

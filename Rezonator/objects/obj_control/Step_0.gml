@@ -548,7 +548,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 		
 		}
 		else {
-			if (show_question("Would you like to save before exiting?")) {
+			if (show_question(scr_get_translation(msg_warning_save-prompt))) {
 				with (obj_fileLoader) {
 					scr_saveREZ(false);
 				}
