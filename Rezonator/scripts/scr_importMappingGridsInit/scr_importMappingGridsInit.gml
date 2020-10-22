@@ -27,10 +27,16 @@ function scr_importMappingGridsInit() {
 	// initiate tokenImport
 	global.tokenImportGridWidth = 4;
 	global.tokenImport_colUnitID = 0;
-	global.tokenImport_colWordID = 1;
+	global.tokenImport_colTokenID = 1;
 	global.tokenImport_colWordToken = 2;
 	global.tokenImport_colWordTranscript = 3;
 	global.tokenImportGrid = ds_grid_create(global.tokenImportGridWidth, 0);
+	
+	// initiate wordImport
+	global.wordImportGridWidth = 2;
+	global.wordImport_colUnitID = 0;
+	global.wordImport_colWordID = 1;
+	global.wordImportGrid = ds_grid_create(global.wordImportGridWidth, 0);
 
 	// initiate unitImport
 	global.unitImportGridWidth = 2;

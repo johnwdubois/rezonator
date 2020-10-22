@@ -78,6 +78,7 @@ global.stackGrabSave = false;
 
 global.importGridColNameList = ds_list_create();
 global.tokenImportColNameList = ds_list_create();
+global.wordImportColNameList = ds_list_create();
 global.unitImportColNameList = ds_list_create();
 global.discoImportColNameList = ds_list_create();
 

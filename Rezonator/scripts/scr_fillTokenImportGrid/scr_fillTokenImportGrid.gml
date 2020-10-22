@@ -14,7 +14,7 @@
 		var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
 	
 		ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
-		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, i, currentWordID);
+		ds_grid_set(global.tokenImportGrid, global.tokenImport_colTokenID, i, currentWordID);
 		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
 		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
 	

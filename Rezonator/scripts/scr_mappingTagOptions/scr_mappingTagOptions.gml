@@ -11,6 +11,14 @@ function scr_mappingTagOptions(argument0) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields , obj_importMapping.rowToChange , "");
 			}
 			break;
+		case "Word":
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelWord);
+			var checkIfDisplayT = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields,obj_importMapping.rowToChange);
+			var checkIfDisplayU = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields,obj_importMapping.rowToChange);
+			if(checkIfDisplayT == "Display Token" || checkIfDisplayU == "Speaker"){
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields , obj_importMapping.rowToChange , "");
+			}
+			break;
 		case "Unit":
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelUnit);
 			var checkIfDisplayT = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields,obj_importMapping.rowToChange);

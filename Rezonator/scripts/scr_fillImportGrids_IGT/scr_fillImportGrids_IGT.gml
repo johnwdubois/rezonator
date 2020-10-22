@@ -12,8 +12,11 @@ function scr_fillImportGrids_IGT(){
 	ds_grid_resize(global.discoImportGrid, global.discoImportGridWidth, 1);
 	global.unitImportGridWidth = 2;
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.importGrid));
+	global.wordImportGridWidth = 2;
+	ds_grid_resize(global.wordImportGrid, global.wordImportGridWidth, 0);
 	global.tokenImportGridWidth = 4;
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, 0);
+
 	
 	// clear discoImportColNameList
 	ds_list_clear(global.discoImportColNameList);
@@ -22,9 +25,16 @@ function scr_fillImportGrids_IGT(){
 	ds_list_clear(global.unitImportColNameList);
 	ds_list_add(global.unitImportColNameList, "~UnitID", "~Participant");
 	
+	// clear wordImportColNameList and add default columns to wordImportColNameList
+	ds_list_clear(global.wordImportColNameList);
+	ds_list_add(global.wordImportColNameList, "~UnitID", "~WordID");
+	
 	// clear tokenImportColNameList and add default columns to tokenImportColNameList
 	ds_list_clear(global.tokenImportColNameList);
-	ds_list_add(global.tokenImportColNameList, "~UnitID", "~WordID", "~text", "~transcript");
+	ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
+	
+
+	
 	
 	
 	
@@ -33,8 +43,11 @@ function scr_fillImportGrids_IGT(){
 	var importGridHeight = ds_grid_height(global.importGrid);
 	
 	var tokenCounter = 0;
+	var wordCounter = 0;
 	var tokenImportGridRow = 0;
 	var tokenImportGridCol = 0;
+	var wordImportGridRow = 0;
+	var wordImportGridCol = 0;
 	var unitImportGridCol = 0;
 	var discoImportGridCol = 0;
 	
@@ -66,8 +79,11 @@ function scr_fillImportGrids_IGT(){
 	for (var i = 0; i < importGridHeight; i++) {
 		
 		tokenCounter = 0;
+		wordCounter = 0;
 		tokenImportGridRow = ds_grid_height(global.tokenImportGrid);
+		wordImportGridRow = ds_grid_height(global.wordImportGrid);
 		tokenImportGridCol = 4;
+		wordImportGridCol = 2;
 		unitImportGridCol = 2;
 		discoImportGridCol = 0;
 		
@@ -124,6 +140,57 @@ function scr_fillImportGrids_IGT(){
 				unitImportGridCol++;
 				
 			}
+			else if (currentLevel == global.levelWord) {
+
+				currentWordID = wordImportGridRow + 1
+				
+				
+				// check if we need to grow the width of the wordImportGrid
+				if (i == 0) {
+					global.wordImportGridWidth++;
+					ds_grid_resize(global.wordImportGrid, global.wordImportGridWidth, ds_grid_height(global.wordImportGrid));
+					
+					// add field to the tokenImportColNameList
+					if (ds_list_find_index(global.wordImportColNameList, currentField) == -1) {
+						ds_list_add(global.wordImportColNameList, currentField);
+					}
+				}
+				
+				// split the string from the importGrid, so we can tokenize!
+				var currentWordList = scr_splitStringWhitespace(currentStr);
+				var currentWordListSize = ds_list_size(currentWordList);
+				
+				// make sure that we got tokens from the split
+				if (currentWordListSize > 0) {
+					 
+					 // grow the height of the tokenImportGrid (if we need to)
+					 if (currentWordListSize > wordCounter) {
+						  var wordImportGridNewHeight = ds_grid_height(global.wordImportGrid) + (currentWordListSize - wordCounter);
+						  ds_grid_resize(global.wordImportGrid, global.wordImportGridWidth, wordImportGridNewHeight);
+						  wordCounter = currentWordListSize;
+					 }
+					 
+					 // loop over the token list and add tokens to the tokenImportGrid
+					 for (var k = 0; k < currentWordListSize; k++) {
+
+						 var currentWord = ds_list_find_value(currentWordList, k);
+						 var currentWordImportGridRow = wordImportGridRow + k;
+						 ds_grid_set(global.wordImportGrid, wordImportGridCol, currentWordImportGridRow, currentWord);
+	
+						 
+						 // set default Token columns (~UnitID, ~WordID, ~text, ~transcript)
+						 ds_grid_set(global.wordImportGrid, global.wordImport_colUnitID, currentWordImportGridRow, currentUnitID);
+						 ds_grid_set(global.wordImportGrid, global.wordImport_colWordID, currentWordImportGridRow, currentWordID);
+
+						 currentWordID++;
+					 }
+					 
+				}
+				
+				
+				wordImportGridCol++;
+				
+			}
 			else if (currentLevel == global.levelToken) {
 				
 				currentWordID = tokenImportGridRow + 1
@@ -164,7 +231,7 @@ function scr_fillImportGrids_IGT(){
 						 
 						 // set default Token columns (~UnitID, ~WordID, ~text, ~transcript)
 						 ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, currentTokenImportGridRow, currentUnitID);
-						 ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, currentTokenImportGridRow, currentWordID);
+						 ds_grid_set(global.tokenImportGrid, global.tokenImport_colTokenID, currentTokenImportGridRow, currentWordID);
 						 ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentTokenImportGridRow, "");
 						 if (currentField == displayTokenField) {
 							ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, currentTokenImportGridRow, currentToken);
@@ -208,7 +275,7 @@ function fillMorphGrid_IGT() {
 	// set values in morphGrid from tokenImportGrid
 	for (var i = 0; i < tokenImportGridHeight; i++) {
 		var currentUnitID = ds_grid_get(global.tokenImportGrid, global.tokenImport_colUnitID, i);
-		var currentWordID = ds_grid_get(global.tokenImportGrid, global.tokenImport_colWordID, i);
+		var currentWordID = ds_grid_get(global.tokenImportGrid, global.tokenImport_colTokenID, i);
 		var currentParticipant = ds_grid_get(global.unitImportGrid, global.unitImport_colParticipant, currentUnitID - 1);
 		var currentMorph = ds_grid_get(global.tokenImportGrid, global.tokenImport_colWordToken, i);
 		

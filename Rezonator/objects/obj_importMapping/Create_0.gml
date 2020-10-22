@@ -24,9 +24,10 @@ global.plainTextInfoGrid = ds_grid_create(global.plainTextInfoGridWidth, 0);
 
 
 global.levelToken = 0;
-global.levelUnit = 1;
-global.levelDiscourse = 2;
-global.levelUnknown = 3;
+global.levelWord = 1;
+global.levelUnit = 2;
+global.levelDiscourse = 3;
+global.levelUnknown = 4;
 
 
 

@@ -138,6 +138,9 @@ function scr_importMappingTagInfo() {
 				else if (currentCell == global.levelUnit) {
 					currentCell = "unit";
 				}
+				else if (currentCell == global.levelWord) {
+					currentCell = "word";
+				}
 				else if (currentCell == global.levelDiscourse) {
 					currentCell = "discourse";
 				}
@@ -231,7 +234,7 @@ function scr_importMappingTagInfo() {
 					
 							var dropDownOptionList = ds_list_create();
 
-							ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
+							ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse" , "Exception");
 
 							if (ds_list_size(dropDownOptionList) > 0 ) {
 								var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);

@@ -547,6 +547,10 @@ function scr_getColNameString(argument0, argument1) {
 
 		colName = ds_list_find_value(global.tokenImportColNameList, col);
 	}
+	else if (grid == global.wordImportGrid) {
+
+		colName = ds_list_find_value(global.wordImportColNameList, col);
+	}
 	else if (grid == global.unitImportGrid) {
 
 		colName = ds_list_find_value(global.unitImportColNameList, col);
