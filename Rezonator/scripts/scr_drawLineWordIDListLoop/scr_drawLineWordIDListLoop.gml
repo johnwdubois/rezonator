@@ -91,15 +91,16 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
 		var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
 		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
-		/*
-		if(currentWordInChainsList == ds_type_list){
+		var currentWordInChainsListSize = 0;
+		
+		if(currentWordInChainsList != undefined){
+			if(ds_exists(currentWordInChainsList, ds_type_list)){
+				currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
+			}
+		}
 
-		}
-		else {
-			var currentWordInChainsListSize = 0;
-		}
-		*/
-		var currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
+		
+		
 		for (var i = 0; i < currentWordInChainsListSize; i++) {
 			if (ds_list_find_index(chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
 				ds_list_add(chainShowList, ds_list_find_value(currentWordInChainsList, i));

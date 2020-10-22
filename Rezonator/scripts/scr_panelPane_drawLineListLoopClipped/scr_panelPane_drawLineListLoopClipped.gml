@@ -69,6 +69,9 @@ function scr_panelPane_drawLineListLoopClipped() {
 	
 		var currentLineState = ds_grid_get(currentLineGrid, obj_control.lineGrid_colLineState, i);
 		var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
+		if(lineColor == undefined){
+			lineColor = 1;
+		}
 		var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
 		// Prevent those pesky comments from showing up in the line list
 		if (lineSpeaker == "COMMENT") {
@@ -76,21 +79,23 @@ function scr_panelPane_drawLineListLoopClipped() {
 		}
 	
 		var discoColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentLineUnitID - 1);
-		if (discoColor == -1 or discoColor == 0) {
+		if (discoColor == -1 or discoColor == 0 or discoColor == undefined) {
 			discoColor = obj_control.c_ltblue;
 		}
 
 		var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
 		var currentLineWordString = "";
-		if(currentLineWordList == ds_type_list){
-			var currentLineWordListSize = ds_list_size(currentLineWordList);
+		var currentLineWordListSize = 0;
+		
+		if(currentLineWordList != undefined){
+			if(ds_exists(currentLineWordList , ds_type_list)){
+				currentLineWordListSize = ds_list_size(currentLineWordList);
+			}
 		}
-		else {
-			var currentLineWordListSize = 0;
-		}
+
 	
 		//will want to use the dyanmic word grid instead
-		var currentLineWordListSize = ds_list_size(currentLineWordList);
+		//var currentLineWordListSize = ds_list_size(currentLineWordList);
 		for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 		

@@ -14,7 +14,7 @@ function scr_fillImportGrids_IGT(){
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(global.importGrid));
 	global.wordImportGridWidth = 2;
 	ds_grid_resize(global.wordImportGrid, global.wordImportGridWidth, 0);
-	global.tokenImportGridWidth = 4;
+	global.tokenImportGridWidth = 5;
 	ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, 0);
 
 	
@@ -31,7 +31,7 @@ function scr_fillImportGrids_IGT(){
 	
 	// clear tokenImportColNameList and add default columns to tokenImportColNameList
 	ds_list_clear(global.tokenImportColNameList);
-	ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
+	ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript", "~WordID");
 	
 
 	
@@ -53,6 +53,7 @@ function scr_fillImportGrids_IGT(){
 	
 	var currentUnitID = -1;
 	var currentWordID = -1;
+	var currentTokenID = -1;
 	
 	
 	// get the display token field
@@ -78,11 +79,8 @@ function scr_fillImportGrids_IGT(){
 	// loop over every row in the importGrid, create a Unit for every row in the importGrid
 	for (var i = 0; i < importGridHeight; i++) {
 		
-		tokenCounter = 0;
 		wordCounter = 0;
-		tokenImportGridRow = ds_grid_height(global.tokenImportGrid);
 		wordImportGridRow = ds_grid_height(global.wordImportGrid);
-		tokenImportGridCol = 4;
 		wordImportGridCol = 2;
 		unitImportGridCol = 2;
 		discoImportGridCol = 0;
@@ -140,9 +138,9 @@ function scr_fillImportGrids_IGT(){
 				unitImportGridCol++;
 				
 			}
-			else if (currentLevel == global.levelWord) {
+			else if (currentLevel == global.levelWord or currentLevel == global.levelToken) {
 
-				currentWordID = wordImportGridRow + 1
+				currentWordID = wordImportGridRow + 1;
 				
 				
 				// check if we need to grow the width of the wordImportGrid
@@ -163,14 +161,14 @@ function scr_fillImportGrids_IGT(){
 				// make sure that we got tokens from the split
 				if (currentWordListSize > 0) {
 					 
-					 // grow the height of the tokenImportGrid (if we need to)
+					 // grow the height of the wordImportGrid (if we need to)
 					 if (currentWordListSize > wordCounter) {
 						  var wordImportGridNewHeight = ds_grid_height(global.wordImportGrid) + (currentWordListSize - wordCounter);
 						  ds_grid_resize(global.wordImportGrid, global.wordImportGridWidth, wordImportGridNewHeight);
 						  wordCounter = currentWordListSize;
 					 }
 					 
-					 // loop over the token list and add tokens to the tokenImportGrid
+					 // loop over the word list and add tokens to the wordImportGrid
 					 for (var k = 0; k < currentWordListSize; k++) {
 
 						 var currentWord = ds_list_find_value(currentWordList, k);
@@ -178,7 +176,7 @@ function scr_fillImportGrids_IGT(){
 						 ds_grid_set(global.wordImportGrid, wordImportGridCol, currentWordImportGridRow, currentWord);
 	
 						 
-						 // set default Token columns (~UnitID, ~WordID, ~text, ~transcript)
+						 // set default word columns (~UnitID, ~WordID, ~text, ~transcript)
 						 ds_grid_set(global.wordImportGrid, global.wordImport_colUnitID, currentWordImportGridRow, currentUnitID);
 						 ds_grid_set(global.wordImportGrid, global.wordImport_colWordID, currentWordImportGridRow, currentWordID);
 
@@ -191,64 +189,97 @@ function scr_fillImportGrids_IGT(){
 				wordImportGridCol++;
 				
 			}
-			else if (currentLevel == global.levelToken) {
-				
-				currentWordID = tokenImportGridRow + 1
-				
-				
-				// check if we need to grow the width of the tokenImportGrid
-				if (i == 0) {
-					global.tokenImportGridWidth++;
-					ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
-					
-					// add field to the tokenImportColNameList
-					if (ds_list_find_index(global.tokenImportColNameList, currentField) == -1) {
-						ds_list_add(global.tokenImportColNameList, currentField);
-					}
-				}
-				
-				// split the string from the importGrid, so we can tokenize!
-				var currentTokenList = scr_splitStringWhitespaceAndHyphen(currentStr);
-				var currentTokenListSize = ds_list_size(currentTokenList);
-				
-				// make sure that we got tokens from the split
-				if (currentTokenListSize > 0) {
-					 
-					 // grow the height of the tokenImportGrid (if we need to)
-					 if (currentTokenListSize > tokenCounter) {
-						  var tokenImportGridNewHeight = ds_grid_height(global.tokenImportGrid) + (currentTokenListSize - tokenCounter);
-						  ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenImportGridNewHeight);
-						  tokenCounter = currentTokenListSize;
-					 }
-					 
-					 // loop over the token list and add tokens to the tokenImportGrid
-					 for (var k = 0; k < currentTokenListSize; k++) {
 
-						 var currentToken = ds_list_find_value(currentTokenList, k);
-						 var currentTokenImportGridRow = tokenImportGridRow + k;
-						 ds_grid_set(global.tokenImportGrid, tokenImportGridCol, currentTokenImportGridRow, currentToken);
-	
-						 
-						 // set default Token columns (~UnitID, ~WordID, ~text, ~transcript)
-						 ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, currentTokenImportGridRow, currentUnitID);
-						 ds_grid_set(global.tokenImportGrid, global.tokenImport_colTokenID, currentTokenImportGridRow, currentWordID);
-						 ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentTokenImportGridRow, "");
-						 if (currentField == displayTokenField) {
-							ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, currentTokenImportGridRow, currentToken);
-						 }
-						 currentWordID++;
-					 }
-					 
-				}
-				
-				
-				tokenImportGridCol++;
-				
-			}
 		}
 	}
-	
-	
+	currentUnitID = 0
+	var wordGridHeight = ds_grid_height(global.wordImportGrid);
+	var wordGridWidth = ds_grid_width(global.wordImportGrid);
+	show_debug_message("height: " + string(ds_grid_height(global.wordImportGrid)) +",   Width: "+ string(ds_grid_width(global.wordImportGrid)));
+	show_debug_message("height: " + string(ds_grid_height(global.tokenImportGrid)) +",   Width: "+ string(ds_grid_width(global.tokenImportGrid)));
+	for(var i = 0; i < wordGridHeight; i++){
+		
+		currentTokenID = tokenImportGridRow + 1;
+		tokenImportGridRow = ds_grid_height(global.tokenImportGrid);
+		tokenCounter = 0;
+		currentUnitID = ds_grid_get(global.wordImportGrid, global.wordImport_colUnitID, i);
+		tokenImportGridCol = 4;
+		
+		show_debug_message("Vertical word loop i is at: " +string(i)+ ",  TIGRow is: "+string(tokenImportGridRow)+ ",   Current token ID is: " +string(currentTokenID)+ ",  tokenCounter: " + string(tokenCounter));
+		
+		for(var j = 2; j < wordGridWidth; j++){
+			
+			
+			
+			var currentField = ds_list_find_value(global.wordImportColNameList, j);
+			var currentLevel = ds_map_find_value(global.fieldLevelMap, currentField);
+			var currentStr = ds_grid_get(global.wordImportGrid, j, i);
+			
+			currentTokenID = tokenImportGridRow + 1;
+			
+			if(currentLevel == global.levelWord){
+				continue;
+			}
+		
+			show_debug_message("Horizontal WordGrid loop i is at: " +string(j)+ ",  currentField is: "+string(currentField)+ ",   currentStr is: " +string(currentStr));
+			
+			// check if we need to grow the width of the tokenImportGrid
+			if (i == 0) {
+				global.tokenImportGridWidth++;
+				ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(global.tokenImportGrid));
+					
+				// add field to the tokenImportColNameList
+				if (ds_list_find_index(global.tokenImportColNameList, currentField) == -1) {
+					ds_list_add(global.tokenImportColNameList, currentField);
+				}
+			}
+			
+			// split the string from the importGrid, so we can tokenize!
+			var currentTokenList = scr_splitStringWhitespaceAndHyphen(currentStr);
+			var currentTokenListSize = ds_list_size(currentTokenList);
+			
+			
+			
+			
+			// make sure that we got tokens from the split
+			if (currentTokenListSize > 0) {
+					 
+					// grow the height of the tokenImportGrid (if we need to)
+					if (currentTokenListSize > tokenCounter) {
+						var tokenImportGridNewHeight = ds_grid_height(global.tokenImportGrid) + (currentTokenListSize - tokenCounter);
+						ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenImportGridNewHeight);
+						tokenCounter = currentTokenListSize;
+					}
+					 
+					// loop over the token list and add tokens to the tokenImportGrid
+					for (var k = 0; k < currentTokenListSize; k++) {
+
+						var currentToken = ds_list_find_value(currentTokenList, k);
+						var currentTokenImportGridRow = tokenImportGridRow + k;
+						show_debug_message("token list loop k:"+string(k)+", setting token: "+string(currentToken) + "   set at col: " +string(tokenImportGridCol)+", and row: " +string(tokenImportGridRow));
+						ds_grid_set(global.tokenImportGrid, tokenImportGridCol+1, currentTokenImportGridRow, currentToken);
+						
+						
+						var currentWordID = ds_grid_get(global.wordImportGrid,global.wordImport_colWordID,i);
+						 
+						// set default Token columns (~UnitID, ~WordID, ~text, ~transcript)
+						ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, currentTokenImportGridRow, currentUnitID);
+						ds_grid_set(global.tokenImportGrid, global.tokenImport_colTokenID, currentTokenImportGridRow, currentTokenID);
+						ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentTokenImportGridRow, "");
+						ds_grid_set(global.tokenImportGrid, 4, currentTokenImportGridRow, currentWordID);
+						
+						if (currentField == displayTokenField) {
+						ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, currentTokenImportGridRow, currentToken);
+						}
+						currentTokenID++;
+					}
+					 
+			}		
+			tokenImportGridCol++;	
+		
+		}
+				
+	}
 
 
 	scr_fillCustomLabelGrid();

@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_splitStringWhitespaceAndHyphen(str) {
 	
-	show_debug_message("scr_splitStringWhitespaceAndHyphen() ... str : " + string(str));
+	//show_debug_message("scr_splitStringWhitespaceAndHyphen() ... str : " + string(str));
 	
 	var splitList = ds_list_create();
 	
@@ -47,7 +47,7 @@ function scr_splitStringWhitespaceAndHyphen(str) {
 		}
 	}
 	
-	show_debug_message("scr_splitStringWhitespaceAndHyphen() ... splitList : " + scr_getStringOfList(splitList));
+	//show_debug_message("scr_splitStringWhitespaceAndHyphen() ... splitList : " + scr_getStringOfList(splitList));
 	
 	ds_list_destroy(whitespaceSplitList);
 	return splitList;
