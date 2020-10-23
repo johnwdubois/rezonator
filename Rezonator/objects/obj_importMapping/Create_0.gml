@@ -84,7 +84,7 @@ importGroupSchemaLoaded = false;
 
 continueButtonClicked = false;
 
-tokenRatio = 0.75;
+tokenRatio = 0.70;
 currentTokenThreshold = 0;
 currentWordThreshold = 0;
 updatedErrorCol = false;
