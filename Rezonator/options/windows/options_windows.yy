@@ -1,5 +1,5 @@
 {
-  "option_windows_display_name": "Rezonator 0.9.0.5",
+  "option_windows_display_name": "Rezonator 0.9.0.6",
   "option_windows_executable_name": "${project_name}",
   "option_windows_version": "0.9.0.5",
   "option_windows_company_info": "Rezonator Games",
@@ -18,7 +18,7 @@
   "option_windows_resize_window": true,
   "option_windows_borderless": false,
   "option_windows_scale": 1,
-  "option_windows_copy_exe_to_dest": false,
+  "option_windows_copy_exe_to_dest": true,
   "option_windows_sleep_margin": 10,
   "option_windows_texture_page": "2048x2048",
   "option_windows_installer_finished": "${options_dir}\\windows\\installer\\finished.bmp",

@@ -26,7 +26,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	var drawDropDowns = false;
 
 
-	var grid = obj_control.lineGrid;
+	var grid = obj_control.currentActiveLineGrid;
 
 
 
