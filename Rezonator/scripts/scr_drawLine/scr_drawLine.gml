@@ -298,14 +298,14 @@ function scr_drawLine() {
 						functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 						functionChainList_currentTab = functionChainList_tabLine;
 						// Y value not in a grid for read tab, have to store somewhere
-						/*for (var i = 0; i < instance_number(obj_panelPane); i++) {
+						for (var i = 0; i < instance_number(obj_panelPane); i++) {
 							var currentPane = instance_find(obj_panelPane, i);
 							if (currentPane.currentFunction == obj_panelPane.functionChainList) {
 								draw_set_font(global.fontChainList);
 								var strHeight = string_height("0") * 1.5;
-								currentPane.scrollPlusYDest = y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop);
+								scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
 							}
-						}*/
+						}
 						
 					}
 				}
@@ -325,14 +325,17 @@ function scr_drawLine() {
 							functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 							functionChainList_currentTab = functionChainList_tabLine;
 							// Y value not in a grid for read tab, have to store somewhere
-							/*for (var i = 0; i < instance_number(obj_panelPane); i++) {
+							for (var i = 0; i < instance_number(obj_panelPane); i++) {
 								var currentPane = instance_find(obj_panelPane, i);
 								if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+									//show_message(i);
 									draw_set_font(global.fontChainList);
 									var strHeight = string_height("0") * 1.5;
-									currentPane.scrollPlusYDest = y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop);
+									//we can affect the scrollPlusY, now we need the correct placement
+									scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
+									//show_message(y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop));
 								}
-							}*/
+							}
 						
 						}
 					}

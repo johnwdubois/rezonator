@@ -143,6 +143,15 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		}
 		else if(mouse_wheel_down()) {
 			scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
+			/*if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
+				obj_panelPane.functionChainList_lineGridRowFocused++;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}*/
 		}
 		if(holdDownArrowKey > 45) {
 				holdArrowMod = 2;
@@ -185,6 +194,15 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		}
 		else if(mouse_wheel_up()) {
 			scrollSpeed = (min(arrowSpeed, 25) *1.5);
+			/*if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
+				obj_panelPane.functionChainList_lineGridRowFocused--;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}*/
 		}
 		if(holdUpArrowKey > 45) {
 				holdArrowMod = 2;
