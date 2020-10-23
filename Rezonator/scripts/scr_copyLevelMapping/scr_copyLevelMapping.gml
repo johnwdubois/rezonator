@@ -37,11 +37,17 @@ function scr_copyLevelMapping() {
 			var unitGridWidth = ds_grid_width(global.unitImportGrid);
 			var tokenGridHeight = ds_grid_height(global.tokenImportGrid);
 			var oldTokenGridWidth = global.tokenImportGridWidth;
-			global.tokenImportGridWidth = global.tokenImportGridWidth + unitGridWidth-2;
-			ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenGridHeight);
+			
 	
 			for(var i = 2; i < unitGridWidth; i++){
 				var colName = ds_list_find_value(global.unitImportColNameList, i);
+				if(colName == "~blockID" or colName == "~blockSeq"){
+					continue;
+				}
+				
+				global.tokenImportGridWidth = global.tokenImportGridWidth + 1;
+				ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenGridHeight);
+				
 				ds_list_add(global.tokenImportColNameList, colName);
 				for(var j = 0; j < tokenGridHeight; j++){
 					var currentUID = ds_grid_get(global.tokenImportGrid, global.tokenImport_colUnitID, j);
@@ -55,6 +61,50 @@ function scr_copyLevelMapping() {
 				scr_gridViewerDynamicWidth(global.tokenImportGrid);
 			}
 		}
+		
+		if (!global.wordGridCopied && ds_grid_height(global.wordImportGrid) > 0) {
+			show_debug_message("scr_copyLevelMapping() ... copying wordImportGrid");
+			global.wordGridCopied = true;
+	
+			var wordGridWidth = ds_grid_width(global.wordImportGrid);
+			var tokenGridHeight = ds_grid_height(global.tokenImportGrid);
+			var oldTokenGridWidth = global.tokenImportGridWidth;
+			var indexOfWordID = ds_list_find_index(global.tokenImportColNameList, "~WordID");
+
+	
+			for(var i = 0; i < wordGridWidth; i++){
+				var colName = ds_list_find_value(global.wordImportColNameList, i);
+				var isTokenField = ds_map_find_value(global.fieldLevelMap,colName) == global.levelToken;
+				if(isTokenField or colName == "~UnitID" or colName == "~WordID"){
+					continue;
+				}
+				
+
+				global.tokenImportGridWidth = global.tokenImportGridWidth + 1;
+				ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, tokenGridHeight);
+
+				
+				ds_list_add(global.tokenImportColNameList, colName);
+				
+				
+				for(var j = 0; j < tokenGridHeight; j++){
+					if(indexOfWordID == -1 ){
+						continue;
+					}
+					var currentWordID = ds_grid_get(global.tokenImportGrid, indexOfWordID, j);
+					
+					var currentCellValue = ds_grid_get(global.wordImportGrid, i, currentWordID-1);
+					ds_grid_set(global.tokenImportGrid, oldTokenGridWidth, j, currentCellValue);
+			
+				}
+				oldTokenGridWidth++
+			}
+			with(obj_gridViewer){
+				scr_gridViewerDynamicWidth(global.tokenImportGrid);
+			}	
+		}
+		
+		
 	}
 
 

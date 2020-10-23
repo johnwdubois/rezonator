@@ -8,6 +8,7 @@ function scr_importMappingTagDraw() {
 
 	var stringHeight = string_height("0");
 
+
 	// Import Screen Title
 	draw_set_color(global.colorThemeText);
 	draw_set_font(global.fontMainBold);
@@ -177,6 +178,26 @@ function scr_importMappingTagDraw() {
 			scr_updateSchLists();
 
 		}
+		
+		if (global.importType == global.importType_IGT) {
+			var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+			var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+			
+			if(wordDelimRow != -1){
+				obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
+				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+				obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+			}
+			if(displayTokenRow != -1){
+				
+				obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
+				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+				obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+				obj_importMapping.updatedErrorCol = false;
+			}
+		}
 	}
 	
 	draw_set_color(global.colorThemeBorders);
@@ -208,6 +229,26 @@ function scr_importMappingTagDraw() {
 			
 			scr_loadRZS();
 	
+		}
+		
+		if (global.importType == global.importType_IGT) {
+			var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+			var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+			
+			if(wordDelimRow != -1){
+				obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
+				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+				obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+			}
+			if(displayTokenRow != -1){	
+			
+				obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
+				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+				obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+				obj_importMapping.updatedErrorCol = false;
+			}
 		}
 	}
 
@@ -291,18 +332,30 @@ function scr_importMappingTagDraw() {
 	if (global.importType == global.importType_IGT) {
 		if(obj_importMapping.updatedErrorCol == false) {
 			var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
+			var indexOfWordDelim = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
 		
 			for(var i  = 0; i <= tagGridHeight; i++){
 				var TargetMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 				var indexOfTargetMarker = ds_list_find_index(global.importGridColNameList, TargetMarker)-2;
+				var levelOfField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+				if(levelOfField == global.levelToken){
 				var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid,indexOfTargetMarker, indexOfDisplayMarker);
-				if(targetThreshold < obj_importMapping.currentTokenThreshold){
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,true);
+					if(targetThreshold < obj_importMapping.currentTokenThreshold){
+						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,true);
+					}
+					else{
+						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,false);
+					}
 				}
-				else{
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,false);
+				else if (levelOfField == global.levelWord){
+				var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid,indexOfTargetMarker, indexOfWordDelim);
+					if(targetThreshold < obj_importMapping.currentWordThreshold){
+						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,true);
+					}
+					else{
+						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i ,false);
+					}
 				}
-			
 			}
 			obj_importMapping.updatedErrorCol = true;
 		}

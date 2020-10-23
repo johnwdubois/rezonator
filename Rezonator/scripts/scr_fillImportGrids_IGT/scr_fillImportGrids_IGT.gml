@@ -195,8 +195,6 @@ function scr_fillImportGrids_IGT(){
 	currentUnitID = 0
 	var wordGridHeight = ds_grid_height(global.wordImportGrid);
 	var wordGridWidth = ds_grid_width(global.wordImportGrid);
-	show_debug_message("height: " + string(ds_grid_height(global.wordImportGrid)) +",   Width: "+ string(ds_grid_width(global.wordImportGrid)));
-	show_debug_message("height: " + string(ds_grid_height(global.tokenImportGrid)) +",   Width: "+ string(ds_grid_width(global.tokenImportGrid)));
 	for(var i = 0; i < wordGridHeight; i++){
 		
 		currentTokenID = tokenImportGridRow + 1;
@@ -205,7 +203,7 @@ function scr_fillImportGrids_IGT(){
 		currentUnitID = ds_grid_get(global.wordImportGrid, global.wordImport_colUnitID, i);
 		tokenImportGridCol = 4;
 		
-		show_debug_message("Vertical word loop i is at: " +string(i)+ ",  TIGRow is: "+string(tokenImportGridRow)+ ",   Current token ID is: " +string(currentTokenID)+ ",  tokenCounter: " + string(tokenCounter));
+	
 		
 		for(var j = 2; j < wordGridWidth; j++){
 			
@@ -220,9 +218,7 @@ function scr_fillImportGrids_IGT(){
 			if(currentLevel == global.levelWord){
 				continue;
 			}
-		
-			show_debug_message("Horizontal WordGrid loop i is at: " +string(j)+ ",  currentField is: "+string(currentField)+ ",   currentStr is: " +string(currentStr));
-			
+	
 			// check if we need to grow the width of the tokenImportGrid
 			if (i == 0) {
 				global.tokenImportGridWidth++;
@@ -256,7 +252,6 @@ function scr_fillImportGrids_IGT(){
 
 						var currentToken = ds_list_find_value(currentTokenList, k);
 						var currentTokenImportGridRow = tokenImportGridRow + k;
-						show_debug_message("token list loop k:"+string(k)+", setting token: "+string(currentToken) + "   set at col: " +string(tokenImportGridCol)+", and row: " +string(tokenImportGridRow));
 						ds_grid_set(global.tokenImportGrid, tokenImportGridCol+1, currentTokenImportGridRow, currentToken);
 						
 						

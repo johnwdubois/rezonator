@@ -76,6 +76,24 @@ function scr_specialFieldsOptions(argument0) {
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Turn Delimiter");
 			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
+		case "Word Delimiter":
+		global.wordImportWordDelimColName = "";
+			for (var i = 0; i < tagInfoGridHeight; i++) {
+				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Word Delimiter") {
+					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
+				}
+			}
+			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Word Delimiter");
+			if (global.importType == global.importType_IGT) {
+				obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+				var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
+				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+				obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+				obj_importMapping.updatedErrorCol = false;
+			}
+			global.wordImportWordDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			break;
+			
 		case "Display Token":
 			global.tokenImportDisplayTokenColName = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {

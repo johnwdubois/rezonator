@@ -12,6 +12,9 @@ function scr_setSpecialFieldsVariables() {
 
 	var turnDelimiterRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Turn Delimiter");
 	global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, turnDelimiterRow);
+	
+	var wordDelimiterRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+	global.wordImportWordDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, wordDelimiterRow);
 
 	var translationRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Translation");
 	global.unitImportTranslationColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, translationRow);

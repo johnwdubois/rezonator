@@ -181,7 +181,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 							continue;
 						}
 					
-						var unitTagTokenView = false;
+						var unitOrWordTagTokenView = false;
 					
 						currentWordInfoCol[getInfoLoop] = "";
 					
@@ -244,8 +244,8 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 							}
 	
 							var colName = ds_list_find_value(global.tokenImportColNameList, importCol);
-							if (ds_list_find_index(global.unitImportColNameList, colName) != -1) {
-								unitTagTokenView = true;
+							if (ds_list_find_index(global.unitImportColNameList, colName) != -1 && ds_list_find_index(global.wordImportColNameList, colName) != -1) {
+								unitOrWordTagTokenView = true;
 							}
 							
 						
@@ -286,7 +286,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 						//draw tag selection
 
 
-							if (drawDropDowns && !unitTagTokenView) {
+							if (drawDropDowns && !unitOrWordTagTokenView) {
 								draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
 				
 				
@@ -445,7 +445,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 			colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 		}
 	
-		var notUnitOrDiscoTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1));
+		var notUnitOrDiscoOrWordTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1) && (ds_list_find_index(global.wordImportColNameList, colName) == -1));
 	
 	
 		// draw lines to separate columns
@@ -487,7 +487,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList, "Create Field");
-					if (notUnitOrDiscoTag) {
+					if (notUnitOrDiscoOrWordTag) {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
 					//ds_list_add(dropDownOptionList, "Set as Transcript");

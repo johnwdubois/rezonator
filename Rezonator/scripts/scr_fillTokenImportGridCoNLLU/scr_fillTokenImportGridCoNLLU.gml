@@ -52,7 +52,7 @@ function scr_fillTokenImportGridCoNLLU() {
 	*/
 
 	if (ds_list_size(global.tokenImportColNameList) < 4) {
-		ds_list_add(global.tokenImportColNameList, "~UnitID", "~WordID", "~text", "~transcript");
+		ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
 	}
 	if (ds_list_size(global.unitImportColNameList) < 2) {
 		ds_list_add(global.unitImportColNameList, "~UnitID", "~Participant");

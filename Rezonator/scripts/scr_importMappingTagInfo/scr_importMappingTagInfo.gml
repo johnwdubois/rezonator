@@ -87,7 +87,7 @@ function scr_importMappingTagInfo() {
 			}
 			var level = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
 
-			var currentError = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colError, j) and level == global.levelToken;
+			var currentError = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colError, j) and (level == global.levelToken or level == global.levelWord);
 
 			
 		
@@ -155,7 +155,7 @@ function scr_importMappingTagInfo() {
 				}
 			
 				var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
-				if (currentLevel == global.levelToken || currentLevel == global.levelUnit) {
+				if (currentLevel == global.levelToken || currentLevel == global.levelUnit || currentLevel == global.levelWord) {
 			
 					var dropDownButtonX1 = floor(colX + colWidth - 4 - global.scrollBarWidth - buttonRectSize);
 					var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
@@ -186,6 +186,9 @@ function scr_importMappingTagInfo() {
 								}
 								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
 									ds_list_add(dropDownOptionList, "Display Token", "Transcript");
+								}
+								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelWord) {
+									ds_list_add(dropDownOptionList, "Word Delimiter");
 								}
 								if (ds_list_size(dropDownOptionList) > 0) {
 									var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
@@ -233,9 +236,13 @@ function scr_importMappingTagInfo() {
 							obj_importMapping.rowToChange = j;
 					
 							var dropDownOptionList = ds_list_create();
-
-							ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse" , "Exception");
-
+							if(global.importType == global.importType_IGT){	
+								ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse" , "Exception");
+							}
+							else {
+								ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
+								
+							}
 							if (ds_list_size(dropDownOptionList) > 0 ) {
 								var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 								dropDownInst.optionList = dropDownOptionList;

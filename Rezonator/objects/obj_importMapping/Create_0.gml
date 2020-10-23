@@ -86,8 +86,10 @@ continueButtonClicked = false;
 
 tokenRatio = 0.75;
 currentTokenThreshold = 0;
+currentWordThreshold = 0;
 updatedErrorCol = false;
 displayMarker = "";
+wordDelimMarker = "";
 
 
 
