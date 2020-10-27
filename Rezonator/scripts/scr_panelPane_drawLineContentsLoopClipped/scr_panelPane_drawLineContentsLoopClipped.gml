@@ -313,9 +313,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 								
 										var dropDownOptionList = ds_list_create();
 										if (getInfoLoop >= 3) {
-											//var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-											//var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-											//var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
 												ds_list_copy(dropDownOptionList, tagMapList);
 												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
@@ -323,9 +320,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 											}
 										}
 										else {
-											//var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-											//var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-											//var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
 												ds_list_copy(dropDownOptionList, tagMapList);
 												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);

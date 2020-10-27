@@ -5,7 +5,7 @@ function scr_importMappingTagInfo() {
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
-	var colAmount = global.tagInfoGridWidth - 1; // we subtract 1 so we don't show the error column
+	var colAmount = global.tagInfoGridWidth; // we subtract 1 so we don't show the error column
 
 	scr_windowCameraAdjust();
 	

@@ -32,7 +32,8 @@ function scr_saveRZS() {
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 	
-
+	
+	
 	var tempList = ds_list_create();
 	if (global.previousLevelEstimates != undefined) {
 		ds_list_copy(tempList, global.previousLevelEstimates);
