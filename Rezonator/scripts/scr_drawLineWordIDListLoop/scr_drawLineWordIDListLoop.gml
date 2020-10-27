@@ -1,18 +1,18 @@
-function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, argument4) {
-	/*
-		scr_drawLineWordIDListLoop(wordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
+/*
+	scr_drawLineWordIDListLoop(wordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
 	
-		Last Updated: 2019-02-11
+	Last Updated: 2019-02-11
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: draws words to main screen, using wordIDs from the given wordIDList
+	Purpose: draws words to main screen, using wordIDs from the given wordIDList
 	
-		Mechanism: loop through wordIDList to get wordIDs, look up their display info in wordGrid & dynaWordGrid
+	Mechanism: loop through wordIDList to get wordIDs, look up their display info in wordGrid & dynaWordGrid
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois, Georgio Klironomos
+*/
 
+function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, argument4) {
 
 	var currentWordIDList = argument0;
 	var previousWordDisplayCol = argument1;

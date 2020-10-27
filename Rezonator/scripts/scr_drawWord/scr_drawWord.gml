@@ -1,23 +1,16 @@
-function scr_drawWord(argument0, argument1, argument2, argument3, argument4, argument5) {
-	// Draw a singular word to the screen
+// Draw a singular word to the screen
 
-	var currentWordGridRow = argument0;
-	var currentWordID = argument1;
-	var currentWordX = argument2;
-	var currentLineY = argument3;
-	var currentWordString = argument4;
-	var hitGridHeight = argument5;
+function scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString, hitGridHeight) {
 
 	ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordGridRow, true);
-    
-	//var textColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colTextColor, currentWordID - 1);
 	var textColor = global.colorThemeText;
         
-	// finally, draw the word to the main view
+	// Set the font, color, and alpha
 	draw_set_alpha(1);
 	draw_set_font(global.fontMain);
 	draw_set_color(textColor);
 
+	// Highlight this word if it has been Searched
 	if (hitGridHeight > 0 and not obj_control.clearSearch) {
 		var rowInHitGrid = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, hitGridHeight, currentWordID );
 		if ( rowInHitGrid >= 0 ) {
@@ -27,11 +20,9 @@ function scr_drawWord(argument0, argument1, argument2, argument3, argument4, arg
 		    }
 		}
 	}
-
+	
+	// finally, draw the word to the main view
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(floor(currentWordX), floor(currentLineY), string(currentWordString));
-
-
-
 }

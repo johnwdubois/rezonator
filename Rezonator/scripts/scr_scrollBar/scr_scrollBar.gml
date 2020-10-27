@@ -146,8 +146,14 @@ function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, ar
 	// Draw scrollbar button sprites
 	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + marginTop - clipY, y + global.scrollBarWidth + marginTop - clipY), 1, 1, 0, c_white, 1);
 	draw_sprite_ext(scrollButtonSprite, 0, mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + windowHeightAdjusted - global.scrollBarWidth + marginTop - clipY, y + windowHeightAdjusted + marginTop - clipY), 1, -1, 0, c_white, 1);
-
-
+	
+	if(obj_control.showDevVars) {
+		draw_set_color(global.colorThemeText);
+		draw_set_halign(fa_middle);
+		draw_set_valign(fa_middle);
+		draw_text(mean(scrollBarX1 - clipX, scrollBarX2 - clipX), mean(y + marginTop - clipY, y + global.scrollBarWidth + marginTop - clipY), string(scrollPlusYDest));
+	}
+	
 	// Draw outlines of scrollbar buttons
 	//draw_set_color(global.colorThemeBorders);
 	//draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + global.scrollBarWidth + marginTop - clipY, true);
