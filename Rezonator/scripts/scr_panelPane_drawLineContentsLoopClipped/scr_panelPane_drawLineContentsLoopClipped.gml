@@ -284,11 +284,20 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					
 						if(getInfoLoop >= 2) {
 						//draw tag selection
+						
+							if (getInfoLoop >= 3) {
+								var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
+							}
+							else {
+								var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
+							}
+							var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
+							var isTildaField = (string_char_at(string(mapKey), 1) == "~");
 
-
-							if (drawDropDowns && !unitOrWordTagTokenView) {
+							if (drawDropDowns && !unitOrWordTagTokenView && ds_map_exists(global.tokenImportTagMap, mapKey) && !isTildaField) {
+								
+								var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 								draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
-				
 				
 								if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
 									
@@ -304,9 +313,9 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 								
 										var dropDownOptionList = ds_list_create();
 										if (getInfoLoop >= 3) {
-											var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-											var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-											var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
+											//var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
+											//var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
+											//var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
 												ds_list_copy(dropDownOptionList, tagMapList);
 												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
@@ -314,12 +323,12 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 											}
 										}
 										else {
-											var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-											var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-											var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
+											//var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
+											//var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
+											//var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
 												ds_list_copy(dropDownOptionList, tagMapList);
-												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2);
+												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
 												obj_control.tokenImportRowToChange = currentWordID - 1;
 											}
 										}
