@@ -119,7 +119,12 @@ function scr_importInfoGrid() {
 					levelEstimate = global.levelDiscourse; // discourse level estimate
 				}
 				else if (currentConsistency >= 90 && OneTokenPerGroup) {
-					levelEstimate = global.levelUnit; // unit level estimate
+					if (currentTag == "~blockSeq" || currentTag == "~blockSeq") {
+						levelEstimate = global.levelUnknown;
+					}
+					else {
+						levelEstimate = global.levelUnit; // unit level estimate
+					}
 				}
 				else if (currentConsistency >= 90 && !OneTokenPerGroup) {
 					levelEstimate = global.levelToken; // token level estimate
