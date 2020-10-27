@@ -4,6 +4,7 @@ function scr_preImportScreen(){
 	
 	//if (live_call()) return live_result;
 	
+	scr_fontSizeControlOpeningScreen();
 	scr_drawBackArrow();
 	
 	draw_set_font(global.fontMain);

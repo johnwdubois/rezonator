@@ -349,8 +349,6 @@ function scr_importMappingTagDraw() {
 				var indexOfTargetMarker = ds_list_find_index(global.importGridColNameList, TargetMarker)-2;
 				var levelOfField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
 				
-				show_debug_message("scr_importMappingTagDraw() ... targetMarker: " + string(TargetMarker));
-				
 				if (levelOfField == global.levelToken) {
 					
 					var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, indexOfTargetMarker, indexOfDisplayMarker);
@@ -359,7 +357,6 @@ function scr_importMappingTagDraw() {
 					
 					if (targetThresholdError) {
 						obj_importMapping.canContinueToken1to1 = false;
-						show_debug_message("scr_importMappingTagDraw() ... TOKEN ERROR, targetMarker: " + string(TargetMarker) + " ...targetThreshold: " + string(targetThreshold) + "...currentTokenThreshold: " + string(obj_importMapping.currentTokenThreshold));
 					}
 				}
 				else if (levelOfField == global.levelWord && indexOfWordDelim > -1) {
@@ -370,7 +367,6 @@ function scr_importMappingTagDraw() {
 					
 					if (targetThresholdError) {
 						obj_importMapping.canContinueWord1to1 = false;
-						show_debug_message("scr_importMappingTagDraw() ... WORD ERROR, targetMarker: " + string(TargetMarker) + " ...targetThreshold: " + string(targetThreshold) + "...currentWordThreshold: " + string(obj_importMapping.currentWordThreshold));
 					}
 				}
 			}
