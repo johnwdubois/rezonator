@@ -112,7 +112,7 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 	}
 	
-	draw_set_color(c_white);
+	draw_set_color(global.colorThemeBG);
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
 		draw_set_color(c_ltblue);
 	}
@@ -122,10 +122,10 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	var optionText = ds_list_find_value(optionList, i);
 	
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {
 		if (string_char_at(optionText, 1) == "~") {
-			draw_set_alpha(0.5);
+			draw_set_color(global.colorThemeSelected2);
 		}
 	}
 	draw_text(optionRectX1 + textBuffer - clipX, mean(optionRectY1, optionRectY2) - clipY, optionText);

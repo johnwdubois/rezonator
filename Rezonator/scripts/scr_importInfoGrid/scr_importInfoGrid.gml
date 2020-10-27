@@ -145,6 +145,7 @@ function scr_importInfoGrid() {
 		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 		for (var i = 0; i < tagInfoGridHeight; i++) {
 			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+			var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 		
 			// we have found the first token level marker, let's set it to displayToken
 			if (!setDisplayToken) {
@@ -154,9 +155,9 @@ function scr_importInfoGrid() {
 					setDisplayToken = true;
 				}
 			}
-			// we have found the first unit level marker, let's set it to displayUnit
+			// we have found the first unit level marker (that isn't a ~field), let's set it to displayUnit
 			if (!setDisplayUnit) {
-				if (currentLevel == global.levelUnit) {
+				if (currentLevel == global.levelUnit && string_char_at(currentField, 1) != "~") {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Speaker");
 					setDisplayUnit = true;
 				}
