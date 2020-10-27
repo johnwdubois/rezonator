@@ -18,3 +18,13 @@ if (global.plainText) {
 else if (!instance_exists(obj_importException)) {
 	scr_importMappingTagDraw();
 }
+
+
+if (showDevVars) {
+	draw_set_font(fnt_main);
+	draw_set_halign(fa_left);
+	draw_text(500, 300, "canContinueDisplayToken: " + string(canContinueDisplayToken));
+	draw_text(500, 320, "canContinueToken1to1: " + string(canContinueToken1to1));
+	draw_text(500, 340, "canContinueWordDelimiter: " + string(canContinueWordDelimiter));
+	draw_text(500, 360, "canContinueWord1to1: " + string(canContinueWord1to1));
+}

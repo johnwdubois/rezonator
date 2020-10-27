@@ -69,9 +69,11 @@ holdingLimit = 6;
 loopItterations = 0;
 
 canContinue = false;
-canContinueToken = true;
+canContinueDisplayToken = true;
 canContinueUnit = true;
-canContinueError = false;
+canContinueToken1to1 = false;
+canContinueWordDelimiter = true;
+canContinueWord1to1 = false;
 
 if (global.importType != global.importType_CSV) {
 	scr_checkTokenCount();

@@ -2,14 +2,15 @@ function scr_importMappingTagInfo() {
 	
 	//if(live_call()) return live_result;
 	
-
-	var canContinueError = true;
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
 	var colAmount = global.tagInfoGridWidth - 1; // we subtract 1 so we don't show the error column
 
 	scr_windowCameraAdjust();
+	
+	var wordFieldCount = 0;
+	var wordDelimiterEncountered = false;
 
 
 	// Tag Info window
@@ -86,8 +87,17 @@ function scr_importMappingTagInfo() {
 				continue;
 			}
 			var level = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
-
 			var currentError = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colError, j) and (level == global.levelToken or level == global.levelWord);
+			var currentSpecialField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, j);
+			
+			if (i == 0 && level == global.levelWord) {
+				wordFieldCount++;
+			}
+			if (currentSpecialField == "Word Delimiter") {
+				wordDelimiterEncountered = true;
+			}
+			
+			
 
 			
 		
@@ -116,7 +126,6 @@ function scr_importMappingTagInfo() {
 				draw_set_alpha(.5);
 				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 				draw_set_alpha(1);
-				canContinueError = false;
 			}
 		
 		
@@ -356,10 +365,6 @@ function scr_importMappingTagInfo() {
 
 
 
-	
-	obj_importMapping.canContinueError = canContinueError;
-
-
 
 
 
@@ -382,6 +387,14 @@ function scr_importMappingTagInfo() {
 
 
 	scr_surfaceEnd();
+	
+	
+	// throw an error if there are >1 word level fields, but user has not selected Word Delimiter
+	obj_importMapping.canContinueWordDelimiter = (wordFieldCount <= 1 || wordDelimiterEncountered);
+	if (wordFieldCount <= 1) {
+		obj_importMapping.canContinueWord1to1 = true;
+	}
+
 
 
 
