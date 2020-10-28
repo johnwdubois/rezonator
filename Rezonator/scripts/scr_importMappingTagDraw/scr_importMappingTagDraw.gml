@@ -91,7 +91,7 @@ function scr_importMappingTagDraw() {
 
 	}
 	
-	var canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
+	canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
 
 	if (canContinueAll or global.tabDeliniatedText) {
 
@@ -279,57 +279,45 @@ function scr_importMappingTagDraw() {
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
 	draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), "Load Import Schema");
-
-
-
-	var saveSchemaButtonWidth = max(200, string_width(" Save Import Schema "));
-	var saveSchemaButtonHeight = 30;
-	var saveSchemaButtonRectX1 = loadSchemaButtonRectX2 + buttonBuffer;
-	var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
-	var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + saveSchemaButtonWidth;
-	var saveSchemaButtonRectY2 = saveSchemaButtonRectY1 + saveSchemaButtonHeight;
-
-
-	// Save to File
-	if (point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2)) {
-		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, false);
 	
-		if (mouse_check_button_pressed(mb_left)) {
-		
-			//populates lists with current display
-			scr_storeSchLists();
-		
-			// User will specify a name and a location for the sch file 
-			scr_saveRZS();
+	
+	// only draw the Save Schema button if there are no errors in the user's level mapping
+	if (obj_importMapping.canContinueAll) {
 
+		var saveSchemaButtonWidth = max(200, string_width(" Save Import Schema "));
+		var saveSchemaButtonHeight = 30;
+		var saveSchemaButtonRectX1 = loadSchemaButtonRectX2 + buttonBuffer;
+		var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
+		var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + saveSchemaButtonWidth;
+		var saveSchemaButtonRectY2 = saveSchemaButtonRectY1 + saveSchemaButtonHeight;
+
+
+		// Save to File
+		if (point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2)) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, false);
+	
+			if (mouse_check_button_pressed(mb_left)) {
+		
+				//populates lists with current display
+				scr_storeSchLists();
+		
+				// User will specify a name and a location for the sch file 
+				scr_saveRZS();
+			}
 		}
-	}
 	
-	draw_set_color(global.colorThemeBorders);
-	draw_set_alpha(1);
-	draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
+		draw_set_color(global.colorThemeBorders);
+		draw_set_alpha(1);
+		draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
 
-	draw_set_font(global.fontMain);
-	draw_set_halign(fa_center);
-	draw_set_color(global.colorThemeText);
-	draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Import Schema");
+		draw_set_font(global.fontMain);
+		draw_set_halign(fa_center);
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Import Schema");
+	}
 
 
-
-
-	/*
-	var saveScehmaBuffer = 20;
-	var saveSchemaButtonRectX1 = loadPreviousButtonRectX2 + saveScehmaBuffer;
-	var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
-	var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + string_width("  Save Schema  ");
-	var saveSchemaButtonRectY2 = loadPreviousButtonRectY2;
-
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
-	draw_set_halign(fa_center);
-	draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Schema");
-	*/
 
 	if (tagGridHeight == 1) {
 		room_goto(rm_mainScreen)

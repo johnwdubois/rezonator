@@ -68,7 +68,7 @@ canPressRightHoldingCounter = 0;
 holdingLimit = 6;
 loopItterations = 0;
 
-canContinue = false;
+canContinueAll = false;
 canContinueDisplayToken = true;
 canContinueUnit = true;
 canContinueToken1to1 = false;
