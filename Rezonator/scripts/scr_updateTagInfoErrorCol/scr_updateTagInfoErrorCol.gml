@@ -4,7 +4,6 @@ function scr_updateTagInfoErrorCol(){
 	
 	show_debug_message("scr_updateTagInfoErrorCol() ... START");
 	
-	if (global.importType == global.importType_IGT) {
 		var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
 		var indexOfWordDelim = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
 			
@@ -23,13 +22,15 @@ function scr_updateTagInfoErrorCol(){
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, false);
 				
 			if (levelOfField == global.levelToken) {
+				
+				if (global.importType == global.importType_IGT) {
+					var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, indexOfTargetMarker, indexOfDisplayMarker);
+					var targetThresholdError = (targetThreshold < obj_importMapping.currentTokenThreshold);
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, targetThresholdError);
 					
-				var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, indexOfTargetMarker, indexOfDisplayMarker);
-				var targetThresholdError = (targetThreshold < obj_importMapping.currentTokenThreshold);
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, targetThresholdError);
-					
-				if (targetThresholdError) {
-					obj_importMapping.canContinueToken1to1 = false;
+					if (targetThresholdError) {
+						obj_importMapping.canContinueToken1to1 = false;
+					}
 				}
 					
 				// if there is no Display Token, set error to true
@@ -39,22 +40,23 @@ function scr_updateTagInfoErrorCol(){
 			}
 			else if (levelOfField == global.levelWord) {
 					
-				if (indexOfWordDelim > -1) {
-					var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, indexOfTargetMarker, indexOfWordDelim);
-					var targetThresholdError = (targetThreshold < obj_importMapping.currentWordThreshold);
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, targetThresholdError);
+				if (global.importType == global.importType_IGT) {
+					if (indexOfWordDelim > -1) {
+						var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, indexOfTargetMarker, indexOfWordDelim);
+						var targetThresholdError = (targetThreshold < obj_importMapping.currentWordThreshold);
+						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, targetThresholdError);
 					
-					if (targetThresholdError) {
-						obj_importMapping.canContinueWord1to1 = false;
+						if (targetThresholdError) {
+							obj_importMapping.canContinueWord1to1 = false;
+						}
 					}
-				}
 					
-				// if there is no Word Delimiter, set error to true
-				if (!obj_importMapping.canContinueWordDelimiter) {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, true);
+					// if there is no Word Delimiter, set error to true
+					if (!obj_importMapping.canContinueWordDelimiter) {
+						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, true);
+					}
 				}
 			}
 		}
 		show_debug_message("scr_updateTagInfoErrorCol() ... post-loop, canContinueToken1to1: " + string(obj_importMapping.canContinueToken1to1) + " ... canContinueWord1to1: " + string(obj_importMapping.canContinueWord1to1));
-	}
 }

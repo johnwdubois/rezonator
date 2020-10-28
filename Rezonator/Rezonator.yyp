@@ -938,11 +938,11 @@
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo/Saved Games","resourceVersion":"1.0","name":"WheresJesse - Player.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo","resourceVersion":"1.0","name":"WheresEmma.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo","resourceVersion":"1.0","name":"Wheres_Lisabeth.rez","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"CoNLLU-Schema.rzs","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo","resourceVersion":"1.0","name":"WheresHarry.rez","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"CSV-Schema.rzs","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo","resourceVersion":"1.0","name":"WheresJesse.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo","resourceVersion":"1.0","name":"WheresTap.rez","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"CoNLL-U Schema.rzs","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"CSV Schema.rzs","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.0.529",

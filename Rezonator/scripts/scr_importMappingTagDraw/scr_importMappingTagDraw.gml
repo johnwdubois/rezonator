@@ -98,7 +98,8 @@ function scr_importMappingTagDraw() {
 		canContinueAll = canContinueDisplayToken;
 	}
 
-	if (canContinueAll or global.tabDeliniatedText) {
+	//if (canContinueAll or global.tabDeliniatedText) {
+	if (canContinueAll) {
 
 		var continueButtonWidth = 150;
 		var continueButtonHeight = 40;
@@ -146,13 +147,13 @@ function scr_importMappingTagDraw() {
 		
 		var errorMessage = "";
 		if (!obj_importMapping.canContinueDisplayToken) {
-			errorMessage = "Please select a field to be the Display Token.";
+			errorMessage = "Please select a field to be the Display Token using the Special Fields section.";
 		}
 		else if (!obj_importMapping.canContinueToken1to1) {
 			errorMessage = "Token fields do not align 1-to-1 with Display Token.";
 		}
 		else if (!obj_importMapping.canContinueWordDelimiter) {
-			errorMessage = "Please select a field to be the Word Delimiter.";
+			errorMessage = "Please select a field to be the Word Delimiter using the Special Fields section.";
 		}
 		else if (!obj_importMapping.canContinueWord1to1) {
 			errorMessage = "Word fields do not align 1-to-1 with Word Delimiter.";
