@@ -91,7 +91,12 @@ function scr_importMappingTagDraw() {
 
 	}
 	
-	canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
+	if (global.importType == global.importType_IGT) {
+		canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
+	}
+	else {
+		canContinueAll = canContinueDisplayToken;
+	}
 
 	if (canContinueAll or global.tabDeliniatedText) {
 
