@@ -15,7 +15,7 @@ function scr_mappingTagOptions(argument0) {
 		case "Discourse":	
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelDiscourse);
 			break;
-		case "Exception":
+		case "EXCEPTION":
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelUnknown);
 			break;
 		default:

@@ -143,7 +143,7 @@ function scr_importDebugGridDraw() {
 				headerStr = "line";
 			}
 			else if (i == global.importTXTLineGrid_colException) {
-				headerStr = "exception";
+				headerStr = "EXCEPTION";
 			}
 		}
 		else if (grid == global.blockTypeGrid) {

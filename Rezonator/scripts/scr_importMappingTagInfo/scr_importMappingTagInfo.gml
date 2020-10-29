@@ -246,10 +246,10 @@ function scr_importMappingTagInfo() {
 					
 							var dropDownOptionList = ds_list_create();
 							if(global.importType == global.importType_IGT){	
-								ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse" , "Exception");
+								ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse" , "EXCEPTION");
 							}
 							else {
-								ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
+								ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "EXCEPTION");
 								
 							}
 							if (ds_list_size(dropDownOptionList) > 0 ) {

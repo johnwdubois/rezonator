@@ -67,7 +67,7 @@ function scr_importMappingGridsInit() {
 	global.levelWord = "word";
 	global.levelUnit = "unit";
 	global.levelDiscourse = "discourse";
-	global.levelUnknown = "exception";
+	global.levelUnknown = "EXCEPTION";
 
 
 
