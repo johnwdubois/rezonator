@@ -1,24 +1,30 @@
-function scr_mouseRect() {
-	/*
-		scr_mouseRect();
+/*
+	scr_mouseRect();
 	
-		Last Updated: 2019-08-13
+	Last Updated: 2020-10-28
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: draw a rectangle for creating quickLinks/quickStacks
+	Purpose: draw a rectangle for creating quickLinks/quickStacks
 	
-		Mechanism: Create and draw a rectangle based on the positions of a mouse drag
+	Mechanism: Create and draw a rectangle based on the positions of a mouse drag
 				
-		Author: Georgio Klironomos
-	*/
+	Author: Georgio Klironomos
+*/
 
-	// Draw the mouse drag rectangle, and the record when the mouse is released
+function scr_mouseRect() {
+
+	//Set the color and alpha of the rectangle
 	draw_set_color(global.colorThemeSelected1);
 	draw_set_alpha(0.5);
 
-	// Initialize the rectangles top left position
-	if (mouse_check_button_pressed(mb_left) and not obj_control.mouseoverPanelPane and not obj_control.dialogueBoxActive and not obj_control.mouseRectMade and not obj_toolPane.currentMode == obj_toolPane.modeRead) {
+	// Initialize the rectangle's top left position based on mouse position
+	if (mouse_check_button_pressed(mb_left) 
+	and not obj_control.mouseoverPanelPane 
+	and not obj_control.dialogueBoxActive 
+	and not obj_control.mouseRectMade 
+	and not obj_toolPane.currentMode == obj_toolPane.modeRead) {
+		
 		obj_control.rectNotInPanelPane = true;
 		mouseHoldRectX1 = mouse_x;
 		mouseHoldRectY1 = mouse_y;
@@ -38,18 +44,21 @@ function scr_mouseRect() {
 		with (obj_toolPane) {
 			alarm[2] = 1;// Is super finnicky, but kinda works??
 		}
-	
 	}
 
 	// Dynamically set the bottom right corner of the rect
-	if (mouse_check_button(mb_left) && obj_control.rectNotInPanelPane) {
+	if (mouse_check_button(mb_left) and obj_control.rectNotInPanelPane) {
 		mouseHoldRectX2 = mouse_x;
 		mouseHoldRectY2 = mouse_y;
 	
 		// Set the gesture's current pos
 		var rectBottomY = max(mouseHoldRectY1, mouseHoldRectY2);
 		var rectTopY = min(mouseHoldRectY1, mouseHoldRectY2);
-		if(rectTopY > obj_control.lineContainsMouseYPos and rectBottomY < (obj_control.lineContainsMouseYPos + obj_control.gridSpaceVertical)) {
+		
+		//Check if the mouseRect is within a discourse line
+		if(rectTopY > obj_control.lineContainsMouseYPos 
+		and rectBottomY < (obj_control.lineContainsMouseYPos + obj_control.gridSpaceVertical)) {
+			
 			obj_control.mouseRectWithinLine = true;
 		
 			// Check if the current gesture is a rezChunk
@@ -64,6 +73,8 @@ function scr_mouseRect() {
 				obj_toolPane.currentTool = obj_toolPane.toolStackBrush;	
 			}
 		}
+		
+		// Check if the mouseRect is contained within a single column of words
 		if(abs(mouseHoldRectX1 - mouseHoldRectX2) < obj_control.gridSpaceVertical) {
 			obj_control.mouseRectWithinColumn = true;
 		}
@@ -83,6 +94,8 @@ function scr_mouseRect() {
 						currentChainGrid = obj_chain.rezChainGrid;
 					}
 					var currentChainGridRow = ds_grid_value_y(currentChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(currentChainGrid), obj_chain.currentFocusedChainID);
+					
+					// Set the highlight to be the focused chains's color
 					if(currentChainGridRow > -1) {
 						var currentChainColor = ds_grid_get(currentChainGrid, obj_chain.chainGrid_colColor, currentChainGridRow);
 						draw_set_color(currentChainColor);
@@ -96,6 +109,8 @@ function scr_mouseRect() {
 				}
 				draw_set_alpha(1);
 				draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
+				
+				// Draw the mouseRect as a possible Chunk
 				for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
 					if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 						draw_roundrect(mouseHoldRectX1 - drawBorderLoop, mouseHoldRectY1 - drawBorderLoop, mouseHoldRectX2 + drawBorderLoop, mouseHoldRectY2 + drawBorderLoop, true);
@@ -115,7 +130,6 @@ function scr_mouseRect() {
 
 	// On release, signify that a mouseRect has been made
 	if (mouse_check_button_released(mb_left)) {
-	
 	
 		// Switch back to the previous tool
 		with (obj_toolPane) {
@@ -144,6 +158,4 @@ function scr_mouseRect() {
 			scr_cliqueGridRefreshUnitIDList(i);
 		}
 	}
-
-
 }

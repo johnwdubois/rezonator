@@ -1,18 +1,19 @@
-function scr_listContainsSublist() {
-	/*
-		scr_listContainsSublist();
+/*
+	scr_listContainsSublist();
 	
-		Last Updated: 2019-06-19
+	Last Updated: 2020-10-28
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: return location of sublist within list. If sublist isn't present, return -1
+	Purpose: return location of sublist within list. If sublist isn't present, return -1
 	
-		Mechanism: find sublist's first element in list, then check each subsequent element in the 
-				sublist against what follows the element in the list. 
+	Mechanism: find sublist's first element in list, then check each subsequent element in the 
+			sublist against what follows the element in the list. 
 				
-		Author: Georgio Klironomos
-	*/
+	Author: Georgio Klironomos
+*/
+
+function scr_listContainsSublist() {
 
 	// Collect lists placed as parameters
 	var mainList = ds_list_create();
@@ -32,13 +33,13 @@ function scr_listContainsSublist() {
 	for(var listLoop = 1; listLoop < subListSize; listLoop++) {
 		var currentSubElement = ds_list_find_value(subList, listLoop);
 		var currentMainElement = ds_list_find_value(mainList, listLoop + subListIndex);
-
+		
+		// If we've found a difference in the lists, exit
 		if(currentSubElement != currentMainElement) {
 			return -1;
 		}
 	}
-
+	
+	// Return the position of the sublist within the Mainlist
 	return subListIndex;
-
-
 }

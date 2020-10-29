@@ -1,18 +1,18 @@
-function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10) {
-	// Check for the mouse pointer on top of the current word
-
-	var currentWordID = argument0;
-	var wordRectX1 = argument1;
-	var wordRectY1 = argument2;
-	var wordRectX2 = argument3;
-	var wordRectY2 = argument4;
-	var unitID = argument5;
-	var drawWordLoop = argument6;
-	var currentWordIDListSize = argument7;
-	var panelPaneResizeHeld = argument8;
-	var currentWordState = argument9;
-	var drawLineLoop = argument10;
-	//var inMouseHoldRect = argument9;
+/*
+	scr_mouseOnWord();
+	
+	Last Updated: 2020-10-28
+	
+	Called from: obj_control
+	
+	Purpose: Check for the mouse cursor over this word, and check for left and right mouse click
+	
+	Mechanism: Using the word's rectangle, check for mouseover. On leftMouseClick, select word and possibly add to chain.
+				On rightMouseClick, activate dropdowns. During mouseDrag, put word into mouseHoldRect
+	
+	Author: Terry DuBois, Georgio Klironomos, Brady Moore
+*/
+function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop) {
 
 
 	//Prevent the mouse from clicking on words/lines while releasing from a drag
@@ -20,7 +20,6 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 	if(mouseRectExists) {
 		obj_control.mouseoverNeutralSpace = false;		
 	}
-	//var hoverWordID = -1;	
 	
 	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
 	var mouseover = false;
@@ -29,6 +28,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 		mouseover = true;
 		hoverWordID = currentWordID;
 		
+		// Check to see if this word should be hovered over and allowed to be clicked
 		if(not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
 			and not obj_control.mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)){
 		
@@ -38,10 +38,11 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 			
 			// Word clicked with a Chain tool selected
 			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
-				if(obj_control.ctrlHold){
-					//checking if we can even merge
-						
+				// Check for Merge Chains click
+				if(obj_control.ctrlHold){						
 					var grid = obj_chain.rezChainGrid;
+					
+					// Select the right chain grid
 					with(obj_panelPane){
 						if (currentFunction == functionChainList) {
 							// Based on user selection, get the grid of the current tab
@@ -99,15 +100,13 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 						selectedChainfocusedChainRow = chainIDRow;
 					}
 	
-	
+					// Ensure this is a valid merge
 					if (selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1
 					or selectedChainfocusedChainRow == currentChainfocusedChainRow) {
 						show_debug_message("scr_combineChains()... selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1, or they are equal,  exiting...");
 						exit;
 					}
 					
-	
-	
 		
 					// store WID list for future
 					var selectedIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, selectedChainfocusedChainRow);
@@ -121,6 +120,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 					}
 					else{
 						obj_control.clickedWordID = currentWordID;
+						//Confirm Merge Chains
 						with(obj_alarm){
 							alarm[9] = 3;
 						}
@@ -136,11 +136,13 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 			// If in Read Mode, focus line in Nav window
 			else if (obj_toolPane.currentMode == obj_toolPane.modeRead and ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow))) {
 				
+				// With Audio, jump to this line's start time in the Audio File
 				if (instance_exists(obj_audioUI)) {
 					if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
 						scr_audioJumpToUnit(unitID);
 					}
 				}
+				
 				//forgot why this was taken out
 				/*ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -149,12 +151,16 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 					functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 					functionChainList_currentTab = functionChainList_tabLine;
 				}*/
+				
+				// Show the ReadModeHint if applicable
 				if(not global.readHintHide and not obj_audioUI.audioJumpOnWordClick and not obj_control.searchGridActive){
 					var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
 					//obj_control.readModeHints++;
 				}
 			}
-				
+			
+			
+			// Check for rightMouseClick
 			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
 
 				if(!instance_exists(obj_dialogueBox)){
@@ -166,9 +172,11 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 				obj_control.rightClickonWord = true;
 				obj_control.wideDropDown = true;
 				var dropDownOptionList = ds_list_create();
+				// No dropdown if in Read Mode
 				if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 					obj_control.ableToCreateDropDown = false;
 				}
+				// Options for a word in a Chain
 				else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
 					if(obj_control.searchGridActive){
 						ds_list_add(dropDownOptionList, "Delete Link");
@@ -177,6 +185,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 						ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word", "Delete Link");
 					}
 				}
+				// Options for a chainless word
 				else{
 					if(obj_control.searchGridActive){
 						obj_control.ableToCreateDropDown = false;
@@ -185,6 +194,8 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 						ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word");
 					}
 				}
+				
+				// Create the dropdown
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 					var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;
@@ -198,10 +209,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 				
 		}
 	}
-	/*else if for Chunks???{
-			
-	}
-	*/
+
 	// Allows for adding to a stack w/in the speaker labels
 	else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not obj_control.mouseoverPanelPane 
 	and rectangle_in_rectangle(0, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
@@ -263,7 +271,7 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 		}
 		// If the box has been made, capture the info of the contained words
 		if(obj_control.boxRectMade and inBoxHoldRect > 0) {
-			//show_message("here");
+
 			// Make sure this word has not already been captured
 			with (obj_control) {
 				if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
@@ -275,14 +283,11 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 		}
 	}
 	
+	// Set this to be the hovered wordID
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and !instance_exists(obj_dialogueBox)) {
-				
-		// Set this to be the hovered wordID
 		newWordHoverUnitID = unitID;
 		newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
-		newWordHoverWordID = currentWordID;
-		
-				
+		newWordHoverWordID = currentWordID;		
 	}
 	
 	
@@ -294,62 +299,54 @@ function scr_mouseOnWord(argument0, argument1, argument2, argument3, argument4, 
 		}
 			
 		// Functionality for focusing on a new word
-		if ( (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and currentWordState == obj_control.wordStateNew and not obj_control.newWordCreated)
-			or instance_exists(obj_dropDown) and rightClickWordID == currentWordID) {
+		if ( (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) 
+		and currentWordState == obj_control.wordStateNew and not obj_control.newWordCreated)
+		or instance_exists(obj_dropDown) and rightClickWordID == currentWordID) {
 				
 			// Fill in the rectangle of the newWord being focused
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(0.5);
 			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 				
-			//Set the word to be focused here, draw the focus above with the chunks, and handle the delete with wordClicked
-			/*if (mouse_check_button_pressed(mb_left)) {
-				//ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
-				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
-					
-			}*/
 			// Set this to be the hovered wordID
 			newWordHoverUnitID = unitID;
 			newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 			newWordHoverWordID = currentWordID;
 			hoverWordID = currentWordID;
 				
-			}
+		}
 		
-			// CHeck for adding a newWord after this current word
-			else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2) and not instance_exists(obj_dropDown)) {
-				// Set this to be the hovered wordID
-				if(not obj_control.dialogueBoxActive and not obj_control.newWordCreated) {
-					newWordHoverUnitID = unitID;
-					newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
-					newWordHoverWordID = currentWordID;
-				}
+			// Check for adding a newWord after this current word
+		else if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY2) 
+		and not instance_exists(obj_dropDown)) {
+			// Set this to be the hovered wordID
+			if(not obj_control.dialogueBoxActive and not obj_control.newWordCreated) {
+				newWordHoverUnitID = unitID;
+				newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
+				newWordHoverWordID = currentWordID;
+			}
 			
-				if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
-						if (!obj_control.dialogueBoxActive) {
-							keyboard_string = "";
-							obj_control.newWordCreated =true;
-						}
+			if (device_mouse_check_button_released(0, mb_left) and not obj_control.dialogueBoxActive) {				
+				if (!obj_control.dialogueBoxActive) {
+					keyboard_string = "";
+					obj_control.newWordCreated = true;
+				}
 
 
-						dialogueBoxActive = true;
+				dialogueBoxActive = true;
 
-							if (!instance_exists(obj_dialogueBox)) {
-								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							}
-
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				}
 			}
-
-		}
-		if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverWordID == -1 and not obj_control.mouseRectMade) {
-			//draw_set_color(c_red);
-			//draw_rectangle(wordRectX2, wordRectY1, wordRectX2 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical, true);
-			if(mouse_check_button_pressed(mb_left)) {
-					
-				obj_control.mouseRectBeginBetweenWords = currentWordID;
-			}
 		}
 
-
+	}
+	
+	// Check if the mouseRect is starting between words
+	if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverWordID == -1 and not obj_control.mouseRectMade) {
+		if(mouse_check_button_pressed(mb_left)) {	
+			obj_control.mouseRectBeginBetweenWords = currentWordID;
+		}
+	}
 }
