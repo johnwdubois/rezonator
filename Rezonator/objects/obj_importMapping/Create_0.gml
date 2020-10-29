@@ -23,13 +23,6 @@ global.plainTextInfoGrid = ds_grid_create(global.plainTextInfoGridWidth, 0);
 
 
 
-global.levelToken = 0;
-global.levelWord = 1;
-global.levelUnit = 2;
-global.levelDiscourse = 3;
-global.levelUnknown = 4;
-
-
 
 mouseOverLevel = false;
 inDropDown = false;

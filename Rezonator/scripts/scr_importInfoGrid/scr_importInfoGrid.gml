@@ -42,6 +42,7 @@ function scr_importInfoGrid() {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, "");
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, 100);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, false);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
 		
 		}
 	
@@ -97,6 +98,7 @@ function scr_importInfoGrid() {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, currentExample);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, currentConsistency);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, OneTokenPerGroup);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
 			var currentTokenCount = ds_list_find_value(global.importGridTokenCountList, i);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, currentTokenCount);
 			
@@ -165,7 +167,10 @@ function scr_importInfoGrid() {
 		}
 		scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
 	}
-
+	
+	
+	scr_loadRZS(true);
+	
 	show_debug_message("scr_importInfoGrid, END... " + scr_printTime());
 
 

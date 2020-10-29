@@ -1,4 +1,4 @@
-function scr_loadRZS() {
+function scr_loadRZS(autoload) {
 	/*
 		scr_loadRez();
 	
@@ -13,17 +13,39 @@ function scr_loadRZS() {
 		Author: Terry DuBois
 	*/
 
-	var fileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
-	show_debug_message("scr_loadSCH, schema fileName: " + string(fileName));
+	var fileName = "";
+	
+	// if this is an autoload, Rezonator will try to get the RZS file from the program directory, otherwise prompt the user to select a file
+	if (autoload) {
+		
+		show_debug_message("scr_loadRZS, AUTOLOAD");
+		if (global.importType == global.importType_IGT) {
+			fileName = global.rezonatorDirString + "\\Schemas\\IGT Schema.rzs";
+		}
+		else if (global.importType == global.importType_CSV) {
+			fileName = global.rezonatorDirString + "\\Schemas\\CSV Schema.rzs";
+		}
+		else if (global.importType == global.importType_CoNLLU) {
+			fileName = global.rezonatorDirString + "\\Schemas\\CoNLL-U Schema.rzs";
+		}
+		else {
+			exit;
+		}
+		
+	}
+	else {
+		fileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+	}
+	
+	
+	show_debug_message("scr_loadRZS, schema fileName: " + string(fileName));
 
 	// make sure the file exists
 	if (fileName == "" or not file_exists(fileName)) {
+		show_debug_message("scr_loadRZS, ERROR: file does not exist");
 		exit;
 	}
 
-
-
-	var newInstList = ds_list_create();
 	var wrapper = scr_loadJSONBuffer(fileName);
 	
 	if (not ds_exists(wrapper, ds_type_map)) {
@@ -40,6 +62,8 @@ function scr_loadRZS() {
 		exit;
 	}
 	
+	// clear all Special Fields
+	ds_grid_set_region(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "");
 	
 	// the map will be the one and only item in the rootList
 	var map = ds_list_find_value(list, 0);
@@ -71,23 +95,19 @@ function scr_loadRZS() {
 	}
 	
 	
+	var rowOfDisplayToken = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+	var rowOfWordDelimiter = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+	if (rowOfDisplayToken > -1) {
+		obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, rowOfDisplayToken);
+	}
+	if (rowOfWordDelimiter > -1) {
+		obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, rowOfWordDelimiter);
+	}
+	show_debug_message("scr_loadRZS, displayMarker: " + string(obj_importMapping.displayMarker) + ", wordDelimMarker: " + string(obj_importMapping.wordDelimMarker));
 	
-		
-	/*
-	global.previousSpecialFields = ds_map_find_value(map, "previousSpecialFields");
-	global.previousLevelEstimates = ds_map_find_value(map, "previousLevelEstimates");
-	if (global.tokenImportColNameList != undefined) {
-		global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
+	
+	with (obj_importMapping) {
+		alarm[4] = 2;
 	}
-	if (global.unitImportColNameList != undefined) {
-		global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
-	}
-	*/
-
-	ds_list_destroy(newInstList);
-
-	//scr_updateSchLists();
-
-
 }
  
