@@ -202,7 +202,7 @@ function scr_openingMenu() {
 
 
 	draw_set_font(fnt_main);
-	draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, scr_get_translation("Remember Me"));
+	draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, scr_get_translation("menu_remember"));
 
 	draw_set_font(fnt_main);
 	draw_set_alpha(0.5);
@@ -212,7 +212,7 @@ function scr_openingMenu() {
 	}
 
 	if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
-		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), "User Sign In");
+		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("menu_signin"));
 	}
 	draw_set_alpha(1);
 
@@ -412,9 +412,9 @@ function scr_openingMenu() {
 	}
 
 	//draw_set_font(fnt_mainBoldLarge2);
-	//draw_text((camera_get_view_width(camera_get_active()) / 2) , wheresElmoButtonY1 - 25 ,"Games");
-	//draw_text((camera_get_view_width(camera_get_active()) / 2) , newProjectButtonY1 - 25 ,"Research");
-	//draw_text((camera_get_view_width(camera_get_active()) / 2) , openTutorialButtonY1 - 25 ,"Tutorial");
+	//draw_text((camera_get_view_width(camera_get_active()) / 2) , wheresElmoButtonY1 - 25 ,scr_get_translation("msg_games"));
+	//draw_text((camera_get_view_width(camera_get_active()) / 2) , newProjectButtonY1 - 25 ,scr_get_translation("msg_research"));
+	//draw_text((camera_get_view_width(camera_get_active()) / 2) , openTutorialButtonY1 - 25 ,scr_get_translation("msg_tutorial"));
 
 
 

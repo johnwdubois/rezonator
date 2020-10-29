@@ -18,7 +18,7 @@ if (global.openProject and ds_grid_height(obj_control.wordGrid) < 1) {
 
 if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHotkey) {
 	//if (ds_grid_height(obj_control.unitGrid) < global.totalUnitAmount) {
-	//	show_message(scr_get_translation(msg_warning_audio_loading));
+	//	show_message(scr_get_translation("msg_warning_audio_loading));
 	//}
 	//else {
 		draw_set_alpha(1);
@@ -28,7 +28,7 @@ if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHo
 		draw_set_font(obj_toolPane.progressBarFont);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation(msg_warning_autosave));
+		draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("msg_warning_autosave"));
 		
 		ableToHotkey = false;
 		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
@@ -55,5 +55,5 @@ if (obj_chain.inRezPlay) {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(c_white);
-	draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation(msg_syncplay));
+	draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("msg_syncplay"));
 }
