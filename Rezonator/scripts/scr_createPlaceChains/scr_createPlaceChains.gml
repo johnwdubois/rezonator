@@ -1,3 +1,5 @@
+// DECOMMISSIONED
+/*
 function scr_createPlaceChains() {
 	var currentTool = obj_toolPane.currentTool;
 	obj_toolPane.currentTool = obj_toolPane.toolPlaceChains;
@@ -21,3 +23,4 @@ function scr_createPlaceChains() {
 
 
 }
+*/

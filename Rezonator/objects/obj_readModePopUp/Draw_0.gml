@@ -6,7 +6,6 @@
 //rectY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 50;
 //rectX2 = camera_get_view_width(camera_get_active()) - 45;
 //rectY2 = 180 + rectY1;//
-//if (live_call()) return live_result;
 draw_set_font(global.fontMainBold);
 rectX2 = rectX1 + 60 + string_width("Track mode (to mark coreference between mentions)");
 rectY2 = 40 + rectY1 + string_height(popUpText2) + (string_height(popUpText1) * 2);

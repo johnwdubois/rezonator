@@ -38,11 +38,11 @@ function scr_newProjectWindow() {
 		draw_set_color(global.colorThemeSelected1);
 	
 		if (device_mouse_check_button_released(0, mb_left)) {
+			show_debug_message("instance_number(obj_fileLoader): " + string(instance_number(obj_fileLoader)));
 			with(obj_fileLoader){
 				alarm[3] = 0;
 			}
 			global.currentDirString = global.previousImportDirectory;
-			//show_message(string(global.currentDirString));
 			scr_openXML();
 		}
 	}

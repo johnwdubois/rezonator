@@ -62,6 +62,7 @@ function scr_panelPane_drawSearch() {
 				searchGridActive = false;
 				filterGridActive = false;
 				currentActiveLineGrid = lineGrid;
+				obj_toolPane.currentMode = obj_toolPane.setModeMain;
 				wordLeftMarginDest = 170;
 				obj_control.justifyLoop = -1;
 				scr_justifyWords();

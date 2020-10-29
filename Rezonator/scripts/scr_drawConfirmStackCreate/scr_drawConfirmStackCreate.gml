@@ -3,7 +3,12 @@
 function scr_drawConfirmStackCreate(){
 	
 	
-	if (live_call()) return live_result;
+	var verticleBuffer = 125;
+	var horizontalBuffer = 250;
+	var searchBarXOffset = 235;
+	var searchBarYOffset = 20;
+	var buttonXOffset = 50;
+	var buttonYOffset = 25;
 
 
 	var fullWindowWidth = camera_get_view_width(camera_get_active()) / 3;

@@ -91,7 +91,7 @@ function scr_newWord() {
 	ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentRowWordGrid, wordSeq + 1);
 	ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, wordToken);
 	ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, wordTranscript);
-	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordID, currentRowTokenImportGrid, wordID);
+	ds_grid_set(global.tokenImportGrid, global.tokenImport_colTokenID, currentRowTokenImportGrid, wordID);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, currentRowTokenImportGrid, unitID);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, currentRowTokenImportGrid, wordToken);
 	ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentRowTokenImportGrid, wordTranscript);

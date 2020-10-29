@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChainsOneToOne(){
 	
-	//if (live_call()) return live_result;
+	
 
 	
 	
@@ -129,6 +129,7 @@ function scr_panelPane_drawChainsOneToOne(){
 				var dropDownButtonY2 = chainRowRectY2;
 				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
 				if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
 					
 					draw_set_alpha(1);
 					draw_set_color(global.colorThemeBorders);
@@ -161,7 +162,7 @@ function scr_panelPane_drawChainsOneToOne(){
 							if (ds_list_size(dropDownOptionList) > 0 ) {
 								var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
 								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = 41;
+								dropDownInst.optionListType = dropDownInst.optionListTypeStackTag;
 
 							}
 						}

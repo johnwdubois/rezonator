@@ -12,7 +12,7 @@
 	Author: Terry DuBois
 */
 
-//if (live_call()) return live_result;
+
 
 
 
@@ -92,16 +92,27 @@ for (var i = 0; i < optionListSize; i++) {
 	var mouseoverRectX2 = (showScrollBar) ? optionRectX2 - global.scrollBarWidth : optionRectX2;
 	
 	var mouseoverCurrentOption = false;
-	if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, mouseoverRectX2, optionRectY2) and ableToMouseover
-	and !scrollBarHolding) {
-		mouseoverCurrentOption = true;
-		ableToMouseover = false;
-		if (room == rm_mainScreen) {
-			obj_control.mouseoverPanelPane = true;
+	if (instance_exists(obj_panelPane)) {
+		if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, mouseoverRectX2, optionRectY2) and ableToMouseover
+		and not obj_panelPane.scrollBarClickLock) {
+			mouseoverCurrentOption = true;
+			ableToMouseover = false;
+			if (room == rm_mainScreen) {
+				obj_control.mouseoverPanelPane = true;
+			}
+		}
+	}
+	else {
+		if (point_in_rectangle(mouse_x, mouse_y, optionRectX1, optionRectY1, mouseoverRectX2, optionRectY2) and ableToMouseover) {
+			mouseoverCurrentOption = true;
+			ableToMouseover = false;
+			if (room == rm_mainScreen) {
+				obj_control.mouseoverPanelPane = true;
+			}
 		}
 	}
 	
-	draw_set_color(c_white);
+	draw_set_color(global.colorThemeBG);
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
 		draw_set_color(c_ltblue);
 	}
@@ -111,10 +122,10 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	var optionText = ds_list_find_value(optionList, i);
 	
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {
 		if (string_char_at(optionText, 1) == "~") {
-			draw_set_alpha(0.5);
+			draw_set_color(global.colorThemeSelected2);
 		}
 	}
 	draw_text(optionRectX1 + textBuffer - clipX, mean(optionRectY1, optionRectY2) - clipY, optionText);

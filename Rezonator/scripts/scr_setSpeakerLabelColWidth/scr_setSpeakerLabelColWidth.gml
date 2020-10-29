@@ -13,7 +13,7 @@ function scr_setSpeakerLabelColWidth() {
 		Author: Terry DuBois
 	*/
 
-	//if (live_call()) return live_result;
+	
 
 	if (object_index != obj_control) {
 		exit;

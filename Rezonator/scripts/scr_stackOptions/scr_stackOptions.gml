@@ -12,6 +12,12 @@ function scr_stackOptions(argument0) {
 			with (obj_toolPane) {
 				if (currentMode == modeRead) {
 					currentMode = modeTrack;
+					if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+					}
 				}
 			}
 			instance_destroy();
@@ -22,7 +28,7 @@ function scr_stackOptions(argument0) {
 			if (ds_list_size(dropDownOptionList) > 0) {
 				var dropDownInst = instance_create_depth(x + windowWidth  , y + (optionSpacing * 2), -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 29;
+				dropDownInst.optionListType = dropDownInst.optionListTypeCreateStack;
 
 					
 				obj_control.ableToCreateDropDown = false;

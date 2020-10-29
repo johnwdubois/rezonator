@@ -101,11 +101,20 @@ function scr_loadREZ() {
 				
 					global.unitImportUnitDelimColName = ds_map_find_value(map, "unitImportUnitDelimColName");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
+					global.wordImportWordDelimColName = ds_map_find_value(map, "wordImportWordDelimColName");
+					global.unitImportTranslationColName = ds_map_find_value(map, "unitImportTranslationColName");
+					global.unitImportSpeakerColName = ds_map_find_value(map, "unitImportSpeakerColName");
+					global.unitImportUnitEndColName = ds_map_find_value(map, "unitImportUnitEndColName");
+					global.unitImportUnitStartColName = ds_map_find_value(map, "unitImportUnitStartColName");
+					global.tokenImportTranscriptColName = ds_map_find_value(map, "tokenImportTranscriptColName");
+					global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
+					
 
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
 					global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList");
+					global.wordImportColNameList = ds_map_find_value(map, "wordImportColNameList");
 					global.unitImportColNameList = ds_map_find_value(map, "unitImportColNameList");
 					obj_control.currentDisplayTokenColsList = ds_map_find_value(map, "currentDisplayTokenColsList");
 					obj_control.currentDisplayUnitColsList = ds_map_find_value(map, "currentDisplayUnitColsList");
@@ -120,12 +129,21 @@ function scr_loadREZ() {
 					else {
 						global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
 					}
+					
+					if (global.wordImportColNameList == undefined) {
+						global.wordImportColNameList = ds_list_create();
+					}
+					else {
+						global.wordImportGridWidth = ds_list_size(global.wordImportColNameList);
+					}
+					
 					if (global.unitImportColNameList == undefined) {
 						global.unitImportColNameList = ds_list_create();
 					}
 					else {
 						global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
 					}
+					
 				
 					global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
 					global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
@@ -156,7 +174,12 @@ function scr_loadREZ() {
 					if (global.tokenImportColNameList == undefined) {
 						var tempList = ds_list_create();
 						global.tokenImportColNameList = tempList;
-						ds_list_add(global.tokenImportColNameList, "~UnitID", "~WordID", "~text", "~transcript");
+						ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
+					}
+					if (global.wordImportColNameList == undefined) {
+						var tempList = ds_list_create();
+						global.wordImportColNameList = tempList;
+						ds_list_add(global.wordImportColNameList, "~UnitID", "~WordID");
 					}
 					if (global.unitImportColNameList == undefined) {
 						var tempList2 = ds_list_create();
@@ -205,9 +228,11 @@ function scr_loadREZ() {
 					scr_loadAnotherREZ(global.importCSVGrid, map, "importCSVGrid");
 					scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
 					ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, 0);
+					ds_grid_resize(global.wordImportGrid, global.wordImportGridWidth, 0);
 					ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, 0);
 				
 					scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
+					scr_loadAnotherREZ(global.wordImportGrid, map, "wordImport");
 					scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
 					scr_loadAnotherREZ(global.discoImportGrid, map, "discoImport");
 					scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");

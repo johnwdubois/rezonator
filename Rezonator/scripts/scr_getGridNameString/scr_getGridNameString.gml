@@ -79,8 +79,14 @@ function scr_getGridNameString(argument0) {
 		case global.tokenImportGrid:
 			gridName = "TokenImport"; // Token Import Grid
 			break;			
+		case global.wordImportGrid:
+			gridName = "WordImport"; // Word Import Grid
+			break;		
 		case global.unitImportGrid:
 			gridName = "UnitImport"; // Unit Import Grid
+			break;		
+		case global.discoImportGrid:
+			gridName = "DiscoImport"; // Discourse Import Grid
 			break;		
 		case global.customLabelGrid:
 			gridName = "CustomLabel"; // Custom Label Grid

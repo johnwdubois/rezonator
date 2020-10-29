@@ -27,10 +27,16 @@ function scr_importMappingGridsInit() {
 	// initiate tokenImport
 	global.tokenImportGridWidth = 4;
 	global.tokenImport_colUnitID = 0;
-	global.tokenImport_colWordID = 1;
+	global.tokenImport_colTokenID = 1;
 	global.tokenImport_colWordToken = 2;
 	global.tokenImport_colWordTranscript = 3;
 	global.tokenImportGrid = ds_grid_create(global.tokenImportGridWidth, 0);
+	
+	// initiate wordImport
+	global.wordImportGridWidth = 2;
+	global.wordImport_colUnitID = 0;
+	global.wordImport_colWordID = 1;
+	global.wordImportGrid = ds_grid_create(global.wordImportGridWidth, 0);
 
 	// initiate unitImport
 	global.unitImportGridWidth = 2;
@@ -56,11 +62,12 @@ function scr_importMappingGridsInit() {
 	global.customLabelGrid_colTagList = 2;
 	global.customLabelGrid = ds_grid_create(global.customLabelGridWidth, 0);
 
-	// initiate global variables for levels (needed for loading rez)
-	global.levelToken = 0;
-	global.levelUnit = 1;
-	global.levelDiscourse = 2;
-	global.levelUnknown = 3;
+	// initiate global variables for levels
+	global.levelToken = "token";
+	global.levelWord = "word";
+	global.levelUnit = "unit";
+	global.levelDiscourse = "discourse";
+	global.levelUnknown = "EXCEPTION";
 
 
 

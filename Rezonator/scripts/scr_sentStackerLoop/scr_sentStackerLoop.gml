@@ -1,7 +1,20 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+/*
+	scr_sentStackerLoop();
+	
+	Last Updated: 2020-10-26
+
+	
+	Called from: obj_stacker
+	
+	Purpose: Create stacks throughout the whole discourse, from sets of lines delimited by Turn Order and End Notes selected by the user
+	
+	Mechanism: Loop through all lines in the discourse, create sets of lines delimited by turn order and end notes, then once line sets are created generate stacks from those line sets.
+	
+	Author: Terry DuBois, Georgio Klironomos
+*/
 function scr_sentStackerLoop(){
 	
+	// Set oft used variables
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
 	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
@@ -10,15 +23,10 @@ function scr_sentStackerLoop(){
 	var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
 	var unitCol = -1;
 	var turnCol = -1;
-	
-
-	
-
 	var endNoteTagsGridHeight = ds_grid_height(endNoteTagsGrid);
 	var endNoteTagMatch = false;
 
-	// will make this all one loop
-	
+	// Find the UnitID column and TurnID column within the UnitImportGrid
 	for (var unitColLoop = 0; unitColLoop < unitImportColNameListSize; unitColLoop++) {
 
 		if (ds_list_find_value(global.unitImportColNameList, unitColLoop) == "~UnitID") {
@@ -35,7 +43,7 @@ function scr_sentStackerLoop(){
 
 	}
 
-
+	// Exit script if no turnOrder column was found
 	if (turnCol == -1) {
 		show_message("No turn order found");
 		splitSave = false;
@@ -44,13 +52,14 @@ function scr_sentStackerLoop(){
 	}
 	
 	if (endCol == -1) {
-		show_message("No end Note Column found");
+		show_message("No endNote column found");
 		splitSave = false;
 
 		exit;	
 	}
+	
 
-	//var turnOrderCol = //how do i get??
+	// Set variables for loop
 	var currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, 0);
 	var previousTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, 0);
 
@@ -60,19 +69,22 @@ function scr_sentStackerLoop(){
 		currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, tokenImportLoop);
 		previousTurnOrder = currentTurnOrder;
 	
+		// Loop through lines until we hit a new turn order, or until we hit a designated endNote
 		while ((currentTurnOrder == previousTurnOrder) and (tokenImportLoop < unitImportGridHeight) and not endNoteTagMatch) { 	
 			var randUnit = ds_grid_get(global.unitImportGrid, unitCol, tokenImportLoop);
 			
-			// For checking End Note Tags
+			// Get the WordIDList
 			var randWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, randUnit - 1);
 			var randWordIDListSize = ds_list_size(randWordIDList);
 			var loopBreak = false;
 			
+			//Loop through the wordID list to check for designated endNotes
 			for (var wordListLoop = 0; wordListLoop < randWordIDListSize; wordListLoop++) {
 				var currentWordID = ds_list_find_value(randWordIDList, wordListLoop);
 				var currentEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, currentWordID - 1);
 				show_debug_message(currentEndNoteTag);
 				
+				// Check if the word's endNote tag is one of the user designated end notes
 				for (var endTagsLoop = 0; endTagsLoop < endNoteTagsGridHeight; endTagsLoop++) {
 					if(ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colChecked, endTagsLoop)) {
 						if(string_lower(currentEndNoteTag) == ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colTag, endTagsLoop)) {
@@ -90,23 +102,23 @@ function scr_sentStackerLoop(){
 				}
 			}
 			
+			// Add this unit to the Line set
 			ds_list_add(currentUnitList, randUnit);
 			tokenImportLoop++;
 			currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, tokenImportLoop);
 			//show_message(currentTurnOrder);
 		}
 		tokenImportLoop--;
-	
-		show_debug_message("obj_stacker Alarm 6 ... currentUnitList: " + scr_getStringOfList(currentUnitList));
-	
+
+		// Create a Stack based on the current Set of Lines
 		if (ds_list_size(currentUnitList) > 0) {
-			//show_message(scr_getStringOfList(currentUnitList));
+			
 			var firstUnitID = ds_list_find_value(currentUnitList, 0);
 			var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
 			var firstWordID = ds_list_find_value(currentWordIDList, 0);
 			var prevUnitID = -1;
 	
-			// Loop through words found in rectangle at time of mouse release
+			// Loop through lines and click on them with the Stack Tool
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
@@ -127,13 +139,8 @@ function scr_sentStackerLoop(){
 
 		}
 	
-		if(tokenImportLoop >= unitImportGridHeight) {
-		//	show_message(scr_getStringOfList(currentUnitList));	
-		}
 		ds_list_clear(currentUnitList);
 		endNoteTagMatch = false;
 	}
 	splitSave = false;
-
-
 }

@@ -359,8 +359,10 @@ function scr_renderFilter() {
 
 
 
-
-	searchGridActive = false;
+	if(searchGridActive) {
+		searchGridActive = false;
+		obj_toolPane.currentMode = obj_toolPane.setModeMain;	
+	}
 	filterGridActive = true;
 	currentActiveLineGrid = filterGrid;
 	wordLeftMarginDest = 170; // Make sure the margin is placed correctly

@@ -25,14 +25,36 @@ function scr_saveRZS() {
 
 
 
-	//show_message(program_directory);
 	var rootList = ds_list_create();
 
 	var map = ds_map_create();
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
 	
-
+	
+	
+	
+	// loop through the tagInfoGrid, and make every field have a node in a map
+	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
+	for (var i = 0; i < tagInfoGridHeight; i++) {
+		
+		var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
+		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+		var currentSpecialField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
+		
+		// for every field, make a map that contains the level and special field
+		var currentFieldMap = ds_map_create();
+		ds_map_add(currentFieldMap, "level", currentLevel);
+		ds_map_add(currentFieldMap, "specialField", currentSpecialField);
+		
+		// add currentFieldMap to the overall Map (with the key being the name of the field)
+		ds_map_add_map(map, currentField, currentFieldMap);
+	}
+	
+	
+	
+	
+	/*
 	var tempList = ds_list_create();
 	if (global.previousLevelEstimates != undefined) {
 		ds_list_copy(tempList, global.previousLevelEstimates);
@@ -46,6 +68,17 @@ function scr_saveRZS() {
 		ds_list_copy(tempList2, global.previousSpecialFields);
 	}
 	ds_map_add_list(map, "previousSpecialFields", tempList2);
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 
 	var wrapper = ds_map_create();

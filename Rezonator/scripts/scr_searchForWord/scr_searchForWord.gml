@@ -246,10 +246,30 @@ function scr_searchForWord() {
 		obj_control.searchGridActive = true;
 		obj_control.clearSearch = false;
 		scr_unFocusAllChains();
+		obj_control.currentActiveLineGrid = obj_control.searchGrid;
+		obj_toolPane.currentMode = obj_toolPane.setModeSearch;
+		ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+		ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, 1);
+		var currentUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, 0);
+		with (obj_panelPane) {
+			functionChainList_lineGridRowFocused = 0;
+			functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentUnitID - 1);
+			functionChainList_currentTab = functionChainList_tabLine;
+			// Y value not in a grid for read tab, have to store somewhere
+			/*for (var i = 0; i < instance_number(obj_panelPane); i++) {
+				var currentPane = instance_find(obj_panelPane, i);
+				if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+					draw_set_font(global.fontChainList);
+					var strHeight = string_height("0") * 1.5;
+					currentPane.scrollPlusYDest = y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop);
+				}
+			}*/
+						
+		}
+		
 		with(obj_control) {
 			obj_control.highlightedSearchRow = 0;// Reset the highlight with a new search
 		}
-		obj_control.currentActiveLineGrid = obj_control.searchGrid;
 		obj_control.scrollPlusYDest = 0;
 		obj_control.wordLeftMarginDest = window_get_width() / 2;
 		obj_control.moveCounter ++;
@@ -272,6 +292,7 @@ function scr_searchForWord() {
 			obj_control.searchGridActive = false;
 			obj_control.filterGridActive = false;
 			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			obj_toolPane.currentMode = obj_toolPane.setModeMain;
 			obj_control.preSwitchSearchDisplayRow = obj_control.scrollPlusYDest;
 			obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;
 			obj_control.wordLeftMarginDest = 170;

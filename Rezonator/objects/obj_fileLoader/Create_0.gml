@@ -51,9 +51,6 @@ inititalAutosave = false;
 importCSVCurrentUID = 0;
 importCSVCurrentRow = 0;
 importCSVWordIDList = ds_list_create();
-if (ds_grid_height(global.importCSVGrid) > 0) {
-	//importCSVCurrentUID = real(ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, 0));
-}
 
 subLineGridBeginning = 0;
 subLineGridEnd = 0;
@@ -76,8 +73,10 @@ loadLineGridSectionCounter = 0;
 global.importedSpecialFields = false;
 global.unitTagMapFilled = false;
 global.tokenTagMapFilled = false;
+global.wordGridCopied = false;
 global.unitGridCopied = false;
 global.discoGridCopied = false;
+
 
 
 // Used for auto-saving REZ's from CSVs

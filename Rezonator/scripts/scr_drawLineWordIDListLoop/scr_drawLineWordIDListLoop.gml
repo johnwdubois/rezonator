@@ -1,18 +1,18 @@
-function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, argument4) {
-	/*
-		scr_drawLineWordIDListLoop(wordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
+/*
+	scr_drawLineWordIDListLoop(wordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
 	
-		Last Updated: 2019-02-11
+	Last Updated: 2019-02-11
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: draws words to main screen, using wordIDs from the given wordIDList
+	Purpose: draws words to main screen, using wordIDs from the given wordIDList
 	
-		Mechanism: loop through wordIDList to get wordIDs, look up their display info in wordGrid & dynaWordGrid
+	Mechanism: loop through wordIDList to get wordIDs, look up their display info in wordGrid & dynaWordGrid
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois, Georgio Klironomos
+*/
 
+function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, argument4) {
 
 	var currentWordIDList = argument0;
 	var previousWordDisplayCol = argument1;
@@ -91,15 +91,16 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
 		var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
 		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
-		/*
-		if(currentWordInChainsList == ds_type_list){
+		var currentWordInChainsListSize = 0;
+		
+		if(currentWordInChainsList != undefined){
+			if(ds_exists(currentWordInChainsList, ds_type_list)){
+				currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
+			}
+		}
 
-		}
-		else {
-			var currentWordInChainsListSize = 0;
-		}
-		*/
-		var currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
+		
+		
 		for (var i = 0; i < currentWordInChainsListSize; i++) {
 			if (ds_list_find_index(chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
 				ds_list_add(chainShowList, ds_list_find_value(currentWordInChainsList, i));
@@ -223,7 +224,7 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 				inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 				obj_control.mouseoverNeutralSpace = false;	
 			}
-			else if (mouseRectBeginBetweenWords == -1 and not mouseRectWithinLine and not (currentTool == toolTrackBrush and not searchGridActive)) {
+			else if (mouseRectBeginBetweenWords == -1 and not mouseRectWithinLine) {//not (currentTool == toolTrackBrush and not searchGridActive)) {
 				inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 				obj_control.mouseoverNeutralSpace = false;	
 			}
@@ -289,8 +290,9 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 			}
 		}
 	
-		if(wordRectX2 > speakerRectX2) {
+		if (wordRectX2 > speakerRectX2) {
 	
+
 		//scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 		scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 		// Until I can get a check that sees if the mouseRect is in the line, this can't happen
@@ -298,7 +300,7 @@ function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, 
 			scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop);
 		}
 	
-		scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString, hitGridHeight);
+			scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString, hitGridHeight);
 		}
 	
 		previousWordDisplayCol = currentWordDisplayCol;

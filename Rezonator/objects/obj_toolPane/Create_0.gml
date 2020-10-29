@@ -17,7 +17,6 @@ windowWidth = global.toolPaneWidth;
 windowHeight = 170;
 
 originalWindowHeight = 20;
-collapsedWindowHeight = 2000;
 showTool = true;
 
 x = room_width - windowWidth;
@@ -43,6 +42,8 @@ modeRez = 1;
 modeTrack = 2;
 currentMode = modeRead;
 
+setModeMain = modeRead;
+setModeSearch = modeRead;
 
 
 checkedForParticipantNames = false;

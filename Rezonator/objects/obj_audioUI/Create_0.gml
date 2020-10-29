@@ -40,7 +40,8 @@ audioPaused = true;
 audioJumpOnWordClick = false;
 mouseOverAudioUI = false;
 
-selectedStack = -1;
+selectedStackGridRow = -1;
+selectedStackID = -1;
 bookmarkStartTime = -1;
 bookmarkEndTime = -1;
 stackStartUnit = -1;
@@ -48,3 +49,4 @@ stackEndUnit = -1;
 stackUnitList = -1;
 stackUnitListSize = -1;
 stackUnitListPosition = -1;
+stackUnfocus = false;

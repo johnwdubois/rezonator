@@ -1,12 +1,16 @@
 function scr_importMappingTagInfo() {
-	//if (live_call()) return live_result;
-
+	
+	//if(live_call()) return live_result;
+	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
-	var colAmount = global.tagInfoGridWidth;
+	var colAmount = global.tagInfoGridWidth - 1; // we subtract 1 so we don't show the error column
 
 	scr_windowCameraAdjust();
+	
+	var wordFieldCount = 0;
+	var wordDelimiterEncountered = false;
 
 
 	// Tag Info window
@@ -75,6 +79,27 @@ function scr_importMappingTagInfo() {
 		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 	
 		for (var j = 0; j < tagInfoGridHeight; j++) {
+			
+			// check if this is the blockSeq or blockID, if so
+			// don't show the row for this field
+			var currentMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, j);
+			if (currentMarker == "~blockID" || currentMarker == "~blockSeq") {
+				continue;
+			}
+			var level = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
+			var currentError = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colError, j) and (level == global.levelToken or level == global.levelWord);
+			var currentSpecialField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, j);
+			
+			if (i == 0 && level == global.levelWord) {
+				wordFieldCount++;
+			}
+			if (currentSpecialField == "Word Delimiter") {
+				wordDelimiterEncountered = true;
+			}
+			
+			
+
+			
 		
 			draw_set_halign(fa_left);
 		
@@ -94,6 +119,13 @@ function scr_importMappingTagInfo() {
 			if (obj_importMapping.mouseoverRow == j) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+			}
+			
+			if (currentError) {
+				draw_set_color(c_red);
+				draw_set_alpha(.5);
+				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+				draw_set_alpha(1);
 			}
 		
 		
@@ -115,6 +147,9 @@ function scr_importMappingTagInfo() {
 				else if (currentCell == global.levelUnit) {
 					currentCell = "unit";
 				}
+				else if (currentCell == global.levelWord) {
+					currentCell = "word";
+				}
 				else if (currentCell == global.levelDiscourse) {
 					currentCell = "discourse";
 				}
@@ -129,7 +164,7 @@ function scr_importMappingTagInfo() {
 				}
 			
 				var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
-				if (currentLevel == global.levelToken || currentLevel == global.levelUnit) {
+				if (currentLevel == global.levelToken || currentLevel == global.levelUnit || currentLevel == global.levelWord) {
 			
 					var dropDownButtonX1 = floor(colX + colWidth - 4 - global.scrollBarWidth - buttonRectSize);
 					var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
@@ -137,7 +172,10 @@ function scr_importMappingTagInfo() {
 					var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
 				
 					if (!instance_exists(obj_dropDown)) {
-						if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+						if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+							
+							scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Special Field", obj_tooltip.arrowFaceUp);
+							
 							draw_set_color(global.colorThemeBG);
 							draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
 							draw_set_color(global.colorThemeBorders);
@@ -153,15 +191,18 @@ function scr_importMappingTagInfo() {
 								var dropDownOptionList = ds_list_create();
 						
 								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
-									ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter");
+									ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter", "Translation");
 								}
 								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
-									ds_list_add(dropDownOptionList, "Display Token");
+									ds_list_add(dropDownOptionList, "Display Token", "Transcript");
+								}
+								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelWord) {
+									ds_list_add(dropDownOptionList, "Word Delimiter");
 								}
 								if (ds_list_size(dropDownOptionList) > 0) {
 									var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 									dropDownInst.optionList = dropDownOptionList;
-									dropDownInst.optionListType = 32;
+									dropDownInst.optionListType = dropDownInst.optionListTypeSpecialFields;
 								}
 							}
 						}
@@ -171,6 +212,7 @@ function scr_importMappingTagInfo() {
 				}
 			
 			}
+
 		
 		
 			draw_set_color(global.colorThemeText);
@@ -185,6 +227,8 @@ function scr_importMappingTagInfo() {
 				var dropDownButtonY2 = dropDownButtonY1 + buttonRectSize;
 
 				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
+					
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Level", obj_tooltip.arrowFaceUp);
 				
 					if (!instance_exists(obj_dropDown)) {
 						draw_set_color(global.colorThemeBG);
@@ -201,13 +245,17 @@ function scr_importMappingTagInfo() {
 							obj_importMapping.rowToChange = j;
 					
 							var dropDownOptionList = ds_list_create();
-
-							ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "Exception");
-
+							if(global.importType == global.importType_IGT){	
+								ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse" , "EXCEPTION");
+							}
+							else {
+								ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "EXCEPTION");
+								
+							}
 							if (ds_list_size(dropDownOptionList) > 0 ) {
 								var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = 12;
+								dropDownInst.optionListType = dropDownInst.optionListTypeMappingTag;
 							}
 						}
 					}
@@ -320,10 +368,6 @@ function scr_importMappingTagInfo() {
 
 
 
-
-
-
-
 	// mousewheel input
 	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 		if (mouse_wheel_up()) {
@@ -343,6 +387,14 @@ function scr_importMappingTagInfo() {
 
 
 	scr_surfaceEnd();
+	
+	
+	// throw an error if there are >1 word level fields, but user has not selected Word Delimiter
+	obj_importMapping.canContinueWordDelimiter = (wordFieldCount <= 1 || wordDelimiterEncountered);
+	if (wordFieldCount <= 1) {
+		obj_importMapping.canContinueWord1to1 = true;
+	}
+
 
 
 

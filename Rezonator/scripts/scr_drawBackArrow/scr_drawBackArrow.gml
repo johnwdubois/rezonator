@@ -24,6 +24,15 @@ function scr_drawBackArrow() {
 			}
 		}
 	}
+	
+	if (keyboard_check_released(vk_escape)) {
+		global.newProject = false;
+		global.openProject = false;
+		global.neworOpen = true;		
+		if (room == rm_importScreen) {
+			room_goto(rm_openingScreen)
+		}
+	}
 
 
 }

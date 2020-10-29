@@ -180,7 +180,7 @@ function scr_drawLine() {
 				obj_control.mouseoverNeutralSpace = false;
 				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
-					if(keyboard_check(vk_control)){
+					if(obj_control.ctrlHold){
 						
 						//check if we need to merge
 						var grid = obj_chain.rezChainGrid;
@@ -283,25 +283,65 @@ function scr_drawLine() {
 			if(mouseRectExists) {
 				obj_control.mouseoverNeutralSpace = false;		
 			}
-			if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2))) {
+			 
+			if(obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+				var mouseOverLine = point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, camera_get_view_width(camera_get_active()), speakerRectY2);
+				if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and mouseOverLine)) {
 				obj_control.mouseoverNeutralSpace = false;
 				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
-					//show_message("here");
-					ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
-					ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
+					
+					ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+					ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
+					//var currentLineInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, lineGridHeight, unitID);
 					with (obj_panelPane) {
 						functionChainList_lineGridRowFocused = drawLineLoop;
 						functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
 						functionChainList_currentTab = functionChainList_tabLine;
 						// Y value not in a grid for read tab, have to store somewhere
-						//var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-						//obj_panelPane.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-					}
-					if(!global.readHintHide) {
-						//var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
+						for (var i = 0; i < instance_number(obj_panelPane); i++) {
+							var currentPane = instance_find(obj_panelPane, i);
+							if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+								draw_set_font(global.fontChainList);
+								var strHeight = string_height("0") * 1.5;
+								scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
+							}
+						}
+						
 					}
 				}
 			}
+			}
+			else {
+				var mouseOverLine = point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2);
+			
+				if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and mouseOverLine)) {
+					obj_control.mouseoverNeutralSpace = false;
+					if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+						//show_message("here");
+						ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
+						ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
+						with (obj_panelPane) {
+							functionChainList_lineGridRowFocused = drawLineLoop;
+							functionChainContents_BGColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, unitID - 1);
+							functionChainList_currentTab = functionChainList_tabLine;
+							// Y value not in a grid for read tab, have to store somewhere
+							for (var i = 0; i < instance_number(obj_panelPane); i++) {
+								var currentPane = instance_find(obj_panelPane, i);
+								if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+									//show_message(i);
+									draw_set_font(global.fontChainList);
+									var strHeight = string_height("0") * 1.5;
+									//we can affect the scrollPlusY, now we need the correct placement
+									scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
+									//show_message(y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop));
+								}
+							}
+						
+						}
+					}
+				}
+			}
+			
 		}
 
 	
@@ -443,8 +483,15 @@ function scr_drawLine() {
 		var speakerLabelTextBuffer = 3;
 	
 		scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor);
-	
-	}
+		
+		
+		if ((obj_control.currentActiveLineGrid == obj_control.searchGrid) and (ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colLineState, drawLineLoop) == 1)) {
+			draw_set_color(global.colorThemeBorders);
+			for (var j = 0; j < 4; j++) {
+				draw_rectangle(speakerRectX1 + j, speakerRectY1 + j, speakerRectX1 + camViewWidth - j, speakerRectY2 - j - 4, true);
+			}
+		}
+	}	 
 
 	// show draw range of lines if development variables are on
 	if (showDevVars) {

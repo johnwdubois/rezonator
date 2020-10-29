@@ -111,7 +111,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				var currentWordIDListSize = ds_list_size(currentWordIDList);
 				for (var k = 0; k < currentWordIDListSize; k++) {
 					var currentWordID = ds_list_find_value(currentWordIDList, k);
-					currentChainCaption += ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1) + " ";
+					currentChainCaption += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1)) + " ";
 				}
 			}
 		}
@@ -222,7 +222,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			//show_message(string(obj_control.selectedChainID));
 			var dropDownOptionList = ds_list_create();
 			if (grid  == obj_chain.stackChainGrid) {
-				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
+				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip");
 			}
 			else {
 				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
@@ -230,7 +230,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 1;
+				dropDownInst.optionListType = dropDownInst.optionListTypeChainList;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -283,9 +283,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 			// Check boxes for user selection with mouse click
 			var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
 			if (mouseover) {
-					draw_set_alpha(1);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
+				scr_createTooltip(chainFilterRectX2 + clipX, mean(chainFilterRectY1 + clipY, chainFilterRectY2 + clipY), "Filter", obj_tooltip.arrowFaceLeft);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 			}
 			if (((mouseover and device_mouse_check_button_released(0, mb_left))
 			or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
@@ -326,42 +327,50 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 			//Check for user selection of alignment with mouse clicks
 			if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
-				draw_set_alpha(0.5);
-				draw_set_color(c_purple);
-				draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
-				if (device_mouse_check_button_released(0, mb_left)) {
+				scr_createTooltip(chainAlignRectX1, mean(chainAlignRectY1, chainAlignRectY2), "Align chain", obj_tooltip.arrowFaceRight);
+				if (obj_control.shape == obj_control.shapeBlock) {
+					draw_set_alpha(0.5);
+					draw_set_color(c_purple);
+					draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
+					if (device_mouse_check_button_released(0, mb_left)) {
 				
-					if (obj_control.justify == obj_control.justifyLeft) {
-						// Unselect alignment if already selected
-						if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {
-							scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
-						}
-				
-						// Show alignments in main screen
-						isAligned = !isAligned;
-						if (isAligned) {
-							with (obj_chain) {
-								alarm[6] = 5;
-								// Protect against RaceToInfinity
-								chainIDRaceCheck = currentChainID;
+						if (obj_control.justify == obj_control.justifyLeft) {
+							// Unselect alignment if already selected
+							if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {
+								scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colAlign, false);
 							}
-						}
 				
-						// Set alignment in grid
-						ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
+							// Show alignments in main screen
+							isAligned = !isAligned;
+							if (isAligned) {
+								with (obj_chain) {
+									alarm[6] = 5;
+									// Protect against RaceToInfinity
+									chainIDRaceCheck = currentChainID;
+								}
+							}
+				
+							// Set alignment in grid
+							ds_grid_set(grid, obj_chain.chainGrid_colAlign, i, isAligned);
+						}
 					}
 				}
+				
 			}
-	
-			// Fill in selected boxes
-			if (isAligned) {
-				draw_sprite_ext(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
-			}
-			else if (isAligned == -1) {
+			if (obj_control.shape == obj_control.shapeText){
 				draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 0.5);
 			}
 			else {
-				draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
+				// Fill in selected boxes
+				if (isAligned) {
+					draw_sprite_ext(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
+				}
+				else if (isAligned == -1) {
+					draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 0.5);
+				}
+				else {
+					draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
+				}
 			}
 		
 			draw_set_alpha(1);
@@ -442,7 +451,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 
 	if (focusedChainNameRectY1 > -1 and focusedChainNameRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
-		for (var j = 0; j < 3; j++) {
+		for (var j = 0; j < 4; j++) {
 			draw_rectangle(x + j - clipX, focusedChainNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedChainNameRectY2 - j - clipY, true);
 		}
 	}

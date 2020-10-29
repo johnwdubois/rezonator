@@ -1,14 +1,26 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+/*
+	scr_turnStackerLoop();
+	
+	Last Updated: 2020-10-26
+	
+	Called from: obj_stacker
+	
+	Purpose: Create stacks throughout the whole discourse, from sets of lines delimited by Turn Order
+	
+	Mechanism: Loop through all lines in the discourse, create sets of lines delimited by turn order, then once line sets are created generate stacks from those line sets.
+	
+	Author: Terry DuBois, Georgio Klironomos
+*/
 function scr_turnStackerLoop(){
 	
+	// Set script variables
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
 	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
 	var unitCol = -1;
 	var turnCol = -1;
 
-
+    // Find the UnitID column and TurnID column within the UnitImportGrid
 	for (var unitColLoop = 0; unitColLoop < ds_list_size(global.unitImportColNameList); unitColLoop++) {
 
 		if (ds_list_find_value(global.unitImportColNameList, unitColLoop) == "~UnitID") {
@@ -28,6 +40,7 @@ function scr_turnStackerLoop(){
 		}
 	}
 
+	// Exit script if no turnOrder column was found
 	if (turnCol == -1) {
 		show_message("No turn order found");
 		splitSave = false;
@@ -35,7 +48,7 @@ function scr_turnStackerLoop(){
 		exit;	
 	}
 
-	//var turnOrderCol = //how do i get??
+	//Set variables for loop
 	var currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, 0);
 	var previousTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, 0);
 
@@ -44,7 +57,8 @@ function scr_turnStackerLoop(){
 	
 		currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, tokenImportLoop);
 		previousTurnOrder = currentTurnOrder;
-	
+		
+		// Loop through lines until we hit a new turn order
 		while ((currentTurnOrder == previousTurnOrder) and (tokenImportLoop < unitImportGridHeight)) { 	
 			var randUnit = ds_grid_get(global.unitImportGrid, unitCol, tokenImportLoop);
 			ds_list_add(currentUnitList, randUnit);
@@ -54,16 +68,15 @@ function scr_turnStackerLoop(){
 		}
 		tokenImportLoop--;
 	
-		show_debug_message("obj_stacker Alarm 4 ... currentUnitList: " + scr_getStringOfList(currentUnitList));
-	
+		// Create a Stack based on the current Set of Lines
 		if (ds_list_size(currentUnitList) > 0) {
-			//show_message(scr_getStringOfList(currentUnitList));
+			
 			var firstUnitID = ds_list_find_value(currentUnitList, 0);
 			var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
 			var firstWordID = ds_list_find_value(currentWordIDList, 0);
 			var prevUnitID = -1;
 	
-			// Loop through words found in rectangle at time of mouse release
+			// Loop through lines and click on them with the Stack Tool
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
@@ -84,15 +97,7 @@ function scr_turnStackerLoop(){
 
 		}
 	
-		if(tokenImportLoop >= unitImportGridHeight) {
-		//	show_message(scr_getStringOfList(currentUnitList));	
-		}
 		ds_list_clear(currentUnitList);
-		// switch randLines to next set of units
-
-		//global.fileSaveName = global.fileSaveName + string(fileNameNumber++);
 	}
 	splitSave = false;
-
-
 }

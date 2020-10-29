@@ -16,7 +16,7 @@ function scr_jumpToEnd(argument0) {
 	var jumpToStart = argument0;
 
 	// Find the currentCenterDisplayRow
-	var rowInLineGrid = ds_grid_value_y(currentActiveLineGrid, obj_control.lineGrid_colDisplayRow, 0, obj_control.lineGrid_colDisplayRow, ds_grid_height(currentActiveLineGrid), obj_control.currentCenterDisplayRow);
+	var rowInLineGrid = scr_currentTopLine();//ds_grid_value_y(currentActiveLineGrid, obj_control.lineGrid_colDisplayRow, 0, obj_control.lineGrid_colDisplayRow, ds_grid_height(currentActiveLineGrid), obj_control.currentCenterDisplayRow);
 
 	if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(currentActiveLineGrid)) {
 		exit;

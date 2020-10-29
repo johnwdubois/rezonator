@@ -278,7 +278,7 @@ function scr_drawLineHitIDListLoop(argument0, argument1, argument2, argument3, a
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 					var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;
-					dropDownInst.optionListType = 8;
+					dropDownInst.optionListType = dropDownInst.optionListTypeRightClickWord;
 					
 					obj_control.ableToCreateDropDown = false;
 					obj_control.alarm[0] = 2;
@@ -295,7 +295,7 @@ function scr_drawLineHitIDListLoop(argument0, argument1, argument2, argument3, a
 				}
 			}
 		}
-		else if((drawWordLoop + 1 == ds_list_size(currentHitIDList)) and not obj_control.rectNotInPanelPane and not obj_control.scrollBarHolding and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
+		else if((drawWordLoop + 1 == ds_list_size(currentHitIDList)) and not obj_control.rectNotInPanelPane and not obj_panelPane.scrollBarClickLock and not panelPaneResizeHeld and not obj_control.mouseoverPanelPane
 		and point_in_rectangle(mouse_x, mouse_y, wordRectX2 + 100, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical)) {
 			if(global.canScroll) {
 				obj_control.mouseoverNeutralSpace = true;

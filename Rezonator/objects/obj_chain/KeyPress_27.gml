@@ -1,11 +1,13 @@
 ///@description End Chain Use
 // End chain adding/use
 //if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine and (obj_panelPane.functionChainList_lineGridRowFocused > 0 and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.lineGrid))) {
-	scr_chainDeselect();
+scr_chainDeselect();
 
-	scr_refreshVizLinkGrid();
+scr_refreshVizLinkGrid();
 //}
 
+// Well we can't have both of these at the same time
+/*
 if (obj_control.gridView) {
 	obj_control.gridView = false;
 }
@@ -66,3 +68,4 @@ else if(obj_control.currentActiveLineGrid == obj_control.filterGrid) {
 		}
 	}
 }
+*/

@@ -1,7 +1,19 @@
-function scr_audioDraw() {
-	//if (live_call()) return live_result;
+/*
+	scr_audioDraw();
 	
-	// Draw Rezonator's audio player
+	Last Updated: 2020-10-26
+	
+	Called from: obj_audioUI
+	
+	Purpose: Draw the Audio GUI when an Audio File has been uploaded, including plauhead, bookmarks, and toggles
+	
+	Mechanism: Track playhead position using audioPos
+	
+	Author: Terry DuBois, Georgio Klironomos
+*/
+function scr_audioDraw() {
+	
+	// Get dimensions of whole GUI window
 	windowHeight = (camera_get_view_height(camera_get_active())) * 0.08;
 	windowWidth = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
 	x = 0;
@@ -10,7 +22,7 @@ function scr_audioDraw() {
 	var progressColor = c_orange;
 	var playPauseSprite = spr_playPause;
 
-	// draw background
+	// draw GUI background
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 	draw_set_color(global.colorThemeBorders);
@@ -37,15 +49,24 @@ function scr_audioDraw() {
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, seekBarX2 + string_width("AAAAAAA"), y + windowHeight, false);
 	
-	// draw play/pause
+	// draw play/pause button
 	var playPauseMouseOver = false;
 	var playPauseRad = sprite_get_width(playPauseSprite) / 2;
 	var playPauseX = mean(seekBarX1, seekBarX2);
 	var playPauseY = clamp(seekBarY1 - 38, y + playPauseRad + 2, y + windowHeight);
 	draw_sprite(playPauseSprite, !audioPaused, playPauseX, playPauseY);
+	
+	// draw hover circle around play/pause button
+	draw_set_color(global.colorThemeBorders);
+	draw_set_circle_precision(64);
+	for (var i = 0; i < 1.5; i += 0.25) {
+		draw_circle(playPauseX, playPauseY, playPauseRad - i, true);
+	}
+	
+	// Check for mouseClick on play/pause button
 	if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
 		if (mouse_check_button_pressed(mb_left)) {
-			if(selectedStack > -1) {
+			if(selectedStackGridRow > -1) {
 				if(audioPaused) {
 					if(audioPos >= bookmarkEndTime) {
 						scr_audioJumpToUnit(stackStartUnit);
@@ -58,12 +79,14 @@ function scr_audioDraw() {
 		playPauseMouseOver = true;
 		playPauseRad += 3;
 	}
+	
+	// Check for Spacebar to toggle play/pause and set Bookmark
 	if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
 		//var stackSelected = 
-		if(selectedStack > -1) {
+		if(selectedStackGridRow > -1) {
 			if(audioPaused) {
 				//show_message(stackStartUnit);
-				scr_audioJumpToUnit(stackStartUnit);
+				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
 			}
@@ -84,27 +107,26 @@ function scr_audioDraw() {
 			audioPaused = !audioPaused;
 		}
 	}
+	
+	// Check for Enter to set bookmark
 	if (keyboard_check_pressed(vk_enter) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
-		if(selectedStack == -1) {
+		if(selectedStackGridRow == -1) {
 			if(audioPaused) {
-				var currentFocusUnit = scr_currentCenterLine();
+				var currentFocusUnit = scr_currentTopLine();
 				var currentFocusUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentFocusUnit - 1);
 				bookmarkStartTime = currentFocusUnitStartTime;
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+				bookmarkEndTime = -1;
 			}
 			else{
 				bookmarkStartTime = audioPos;
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+				bookmarkEndTime = -1;
 				audioPaused = !audioPaused;
 			}
 		}
 	}
 	
-	draw_set_color(global.colorThemeBorders);
-	draw_set_circle_precision(64);
-	for (var i = 0; i < 1.5; i += 0.25) {
-		draw_circle(playPauseX, playPauseY, playPauseRad - i, true);
-	}
 
 	// draw seekbar
 	seekBarWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -112,7 +134,6 @@ function scr_audioDraw() {
 	seekBarY1 = y + (windowHeight * 0.75) - (seekBarHeight / 2);
 	seekBarX2 = seekBarX1 + seekBarWidth;
 	seekBarY2 = seekBarY1 + seekBarHeight;
-
 	draw_set_color(global.colorThemeText);
 	draw_rectangle(seekBarX1, seekBarY1, seekBarX2, seekBarY2, false);
 	draw_set_color(progressColor);
@@ -122,7 +143,16 @@ function scr_audioDraw() {
 	// draw playhead circle
 	playheadX = ((audioPos * seekBarWidth) / audioLength) + seekBarX1;
 	playheadY = mean(seekBarY1, seekBarY2);
-
+	draw_set_color(progressColor);
+	draw_set_circle_precision(64);
+	if (abs(audioPos - audioPosTemp) > 5 and not playheadHolding) {
+		//show_message("here")
+		draw_set_alpha(0);
+	}
+	draw_circle(playheadX, playheadY, playheadRad, false);
+	draw_set_alpha(1);
+	
+	//Check for mousehover/click on Playhead
 	var playheadHoldable = false;
 
 	if (point_in_rectangle(mouse_x, mouse_y, seekBarX1 - (playheadRad * 2), seekBarY1 - (playheadRad * 2), seekBarX2 + (playheadRad * 2), seekBarY2 + (playheadRad * 2))
@@ -156,27 +186,20 @@ function scr_audioDraw() {
 	else {
 		audioPosTemp = audioPos;
 	}
-	draw_set_color(progressColor);
-	draw_set_circle_precision(64);
-	if (abs(audioPos - audioPosTemp) > 5 and not playheadHolding) {
-		//show_message("here")
-		draw_set_alpha(0);
-	}
-	draw_circle(playheadX, playheadY, playheadRad, false);
-	draw_set_alpha(1);
-
+	
+	// Draw audio Bookmark
 	if(bookmarkStartTime > -1) {
 		//show_debug_message("bookmarkStartTime: " + string(bookmarkStartTime));
 		//show_debug_message("seekBarWidth: " + string(seekBarWidth));
 		
 		//Draw bookmarks
 		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
-		bookmarkY = mean(seekBarY1, seekBarY2);
+		bookmarkY = seekBarY1 - (playheadRad * 2);
 	
 		//draw_set_color(c_green);
 		//draw_line_width(bookmarkX, bookmarkY - playheadRad * 2, bookmarkX, bookmarkY + playheadRad * 2, 1);
 		draw_set_halign(fa_right);
-		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.2, 0.2, -360, c_green, 1);
+		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.5, 0.5, 30, c_green, 1);
 		
 		if(bookmarkEndTime > -1) {
 		//	show_debug_message("bookmarkEndTime: " + string(bookmarkEndTime));
@@ -184,17 +207,17 @@ function scr_audioDraw() {
 		
 			//Draw bookmarks
 			endmarkX = ((real(bookmarkEndTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
-			endmarkY = mean(seekBarY1, seekBarY2);
+			endmarkY = seekBarY2 + (playheadRad * 2);
 			
 			draw_set_halign(fa_left);
-			draw_sprite_ext(spr_linkArrow, 0, endmarkX, endmarkY, 0.2, 0.2, -180, c_red, 1);
+			draw_sprite_ext(spr_linkArrow, 0, endmarkX, endmarkY, 0.5, 0.5, 210, c_red, 1);
 		
 		
 		}
 	}
-	else if(bookmarkX != -1) {
+	//else if(bookmarkX != -1) {
 		
-	}
+	//}
 
 	
 
@@ -230,9 +253,6 @@ function scr_audioDraw() {
 	draw_text(seekBarX1 - timeXBuffer, mean(seekBarY1, seekBarY2), string_hash_to_newline(strCurrentMinutes + ":" + strCurrentSeconds));
 
 
-
-
-
 	// draw jumpToUnit toggle
 	draw_set_font(global.fontChainContents);
 	draw_set_halign(fa_right);
@@ -259,22 +279,5 @@ function scr_audioDraw() {
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, true);
 	}
-
-
-
-
-
-	
-
-/*
-	draw_set_halign(fa_left);
-	draw_text((camera_get_view_width(camera_get_active()) / 2) + 10, (camera_get_view_height(camera_get_active()) / 2) + 10, "x: " + string(x));
-	draw_text((camera_get_view_width(camera_get_active()) / 2) +10, (camera_get_view_height(camera_get_active()) / 2) + 30, "y: " + string(y));
-	draw_text((camera_get_view_width(camera_get_active()) / 2) +10, (camera_get_view_height(camera_get_active()) / 2) + 50, "x + windowWidth: " + string(x + windowWidth));
-	draw_text((camera_get_view_width(camera_get_active()) / 2) +10, (camera_get_view_height(camera_get_active()) / 2) + 70, "y + windowHeight: " + string(y + windowHeight));
-	draw_text(10, 90, "playheadX: " + string(playheadX));
-	draw_text(10, 110, "playheadHolding: " + string(playheadHolding));
-	
-*/
 
 }

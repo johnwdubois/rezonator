@@ -1,18 +1,18 @@
-function scr_drawCompassRose() {
-	/*
-		scr_drawCompassRose();
+/*
+	scr_drawCompassRose();
 	
-		Last Updated: 2019-08-13
+	Last Updated: 2020-10-29
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: draw a compass rose within devVars to keep track of flow
+	Purpose: draw a compass rose within devVars to keep track of flow
 	
-		Mechanism: While the mouse is bein dragged, draw a circle of triangles around the initial drag point, 
-					and highlight the cardinal direction 0f the dragged mouse.
+	Mechanism: While the mouse is bein dragged, draw a circle of triangles around the initial drag point, 
+				and highlight the cardinal direction of the dragged mouse.
 				
-		Author: Georgio Klironomos
-	*/
+	Author: Georgio Klironomos
+*/
+function scr_drawCompassRose() {
 	draw_set_font(global.fontMain);
 
 	// Keep track of the initial drag point
@@ -28,22 +28,26 @@ function scr_drawCompassRose() {
 				//compassCenterLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, lineContainsMouse);
 			}
 	}
+	// Once there is a LeftMouseClick, begin checking for direction and gesture
 	else {
 		var currentWordX = -1;
 	
 		// Determine the gesture's starting region
 		draw_set_color(global.colorThemeText);
+		
 		// Within a word
 		if(mouseRectBeginInWord > -1) {
 			draw_set_color(c_green);
 			currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, mouseRectBeginInWord - 1);
 		}
+		
 		// Between words
 		else if(mouseRectBeginBetweenWords > -1) {
 			draw_set_color(c_blue);
 			currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, mouseRectBeginBetweenWords- 1);
 			var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, mouseRectBeginBetweenWords- 1);
 		}
+		
 		// Outside of wordspace
 		else {
 			draw_set_color(c_red);
@@ -130,6 +134,4 @@ function scr_drawCompassRose() {
 			draw_set_alpha(1);
 		}
 	}
-
-
 }

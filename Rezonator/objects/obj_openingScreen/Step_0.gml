@@ -37,10 +37,9 @@ if (ds_list_size(global.importGroupFileList) > 0 && global.importGroupFileIndex 
 if (global.skipToImportScreen) {
 	global.skipToImportScreen = false;
 	
-	global.newProject = false;
+	global.newProject = true;
 	global.openProject = false;
 	global.currentDirString = global.previousImportDirectory;
-	scr_openXML();
 }
 
 // skipping to import screen by clicking "Import" in file menu
@@ -58,4 +57,9 @@ if (global.skipToPlayandLearn) {
 
 	}
 	room_goto(rm_mainScreen);
+}
+
+if (keyboard_check(vk_control) && keyboard_check_pressed(ord("U"))) {
+	global.importType = global.importType_IGT;
+	show_debug_message("global.importType = global.importType_IGT");
 }

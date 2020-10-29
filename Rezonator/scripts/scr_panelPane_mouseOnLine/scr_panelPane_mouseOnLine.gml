@@ -1,14 +1,14 @@
-function scr_panelPane_mouseOnLine(argument0, argument1, argument2, argument3, argument4, argument5, argument6) {
-	var lineNameRectX1 = argument0;
+function scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor) {
+	/*var lineNameRectX1 = argument0;
 	var lineNameRectY1 = argument1;
 	var lineNameRectX2 = argument2;
 	var lineNameRectY2 = argument3;
 	var lineGridHeight = argument4;
 	var i = argument5;
-	var lineColor = argument6;
+	var lineColor = argument6;*/
 
 
-	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2)) {
+	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2) and not chainListPane.scrollBarClickLock) {
 		//if (obj_control.showDevVars) {
 			//draw_set_color(c_red);
 			//draw_circle(mouse_x, mouse_y, 5, true);
@@ -16,8 +16,8 @@ function scr_panelPane_mouseOnLine(argument0, argument1, argument2, argument3, a
 		
 		if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 			//show_message("line");
-			ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
+			ds_grid_set_region(obj_control.currentActiveLineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
+			ds_grid_set(obj_control.currentActiveLineGrid, obj_control.lineGrid_colLineState, i, 1);
 			with (obj_panelPane) {
 				if(functionChainList_lineGridRowFocused != i) {
 					functionChainList_lineGridRowFocused = i;

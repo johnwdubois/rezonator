@@ -1,5 +1,5 @@
 function scr_importMappingTagDraw() {
-	//if (live_call()) return live_result;
+	
 
 	scr_fontSizeControlOpeningScreen();
 
@@ -7,6 +7,7 @@ function scr_importMappingTagDraw() {
 	var camHeight = camera_get_view_height(camera_get_active());
 
 	var stringHeight = string_height("0");
+
 
 	// Import Screen Title
 	draw_set_color(global.colorThemeText);
@@ -69,11 +70,11 @@ function scr_importMappingTagDraw() {
 			if( j == 0 ){	
 				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
 				if(cutTest == "Display Token"){
-					obj_importMapping.canContinueToken = true;
+					obj_importMapping.canContinueDisplayToken = true;
 					i = tagGridHeight;
 				}
 				else{
-					obj_importMapping.canContinueToken = false;
+					obj_importMapping.canContinueDisplayToken = false;
 				}
 			}
 			else{
@@ -89,8 +90,16 @@ function scr_importMappingTagDraw() {
 		}
 
 	}
+	
+	if (global.importType == global.importType_IGT) {
+		canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
+	}
+	else {
+		canContinueAll = canContinueDisplayToken;
+	}
 
-	if((obj_importMapping.canContinueToken) or global.tabDeliniatedText){
+	//if (canContinueAll or global.tabDeliniatedText) {
+	if (canContinueAll) {
 
 		var continueButtonWidth = 150;
 		var continueButtonHeight = 40;
@@ -111,6 +120,7 @@ function scr_importMappingTagDraw() {
 				instLoading.loadSprite = spr_loading;
 				scr_setSpecialFieldsVariables();
 				scr_storeSchLists();
+				scr_fillFieldLevelMap();
 				show_debug_message("Continue button clicked... " + scr_printTime());
 			
 				alarm[3] = 1;
@@ -134,14 +144,26 @@ function scr_importMappingTagDraw() {
 		var continueButtonRectY1 = (camHeight - continueButtonHeight - 20) - (continueButtonHeight / 2);
 		var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
 		var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
+		
+		var errorMessage = "";
+		if (!obj_importMapping.canContinueDisplayToken) {
+			errorMessage = "Please select a field to be the Display Token using the Special Fields section.";
+		}
+		else if (!obj_importMapping.canContinueToken1to1) {
+			errorMessage = "Token fields do not align 1-to-1 with Display Token.";
+		}
+		else if (!obj_importMapping.canContinueWordDelimiter) {
+			errorMessage = "Please select a field to be the Word Delimiter using the Special Fields section.";
+		}
+		else if (!obj_importMapping.canContinueWord1to1) {
+			errorMessage = "Word fields do not align 1-to-1 with Word Delimiter.";
+		}
 	
 		draw_set_font(global.fontMain);
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
-		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Please Select a Default Display Token and Display Unit.");
+		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), errorMessage);
 	}
-
-	//fileInfoWindowRectX1, fileInfoWindowRectY1
 
 
 	draw_set_color(global.colorThemeText);
@@ -169,6 +191,25 @@ function scr_importMappingTagDraw() {
 			
 			scr_updateSchLists();
 
+			if (global.importType == global.importType_IGT) {
+				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+				var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+			
+				if(wordDelimRow != -1){
+					obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, wordDelimRow);
+					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
+					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+					obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+				}
+				if(displayTokenRow != -1){
+				
+					obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
+					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+					obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+				}
+				obj_importMapping.updatedErrorCol = false;
+			}
 		}
 	}
 	
@@ -199,14 +240,33 @@ function scr_importMappingTagDraw() {
 	
 		if (mouse_check_button_pressed(mb_left)) {
 			
-			scr_loadRZS();
+			scr_loadRZS(false);
 	
+			if (global.importType == global.importType_IGT) {
+				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+				var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+			
+				if (wordDelimRow != -1) {
+					obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, wordDelimRow);
+					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
+					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+					obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+				}
+				if (displayTokenRow != -1) {	
+			
+					obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
+					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
+					obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
+				}
+			}
+			obj_importMapping.updatedErrorCol = false;
 		}
 	}
 
 	// if this is an importGroup, load the schema file automatically and then goto main screen
 	if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
-		scr_loadRZS();
+		scr_loadRZS(false);
 		importGroupSchemaLoaded = true;
 
 		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
@@ -225,61 +285,55 @@ function scr_importMappingTagDraw() {
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
 	draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), "Load Import Schema");
-
-
-
-	var saveSchemaButtonWidth = max(200, string_width(" Save Import Schema "));
-	var saveSchemaButtonHeight = 30;
-	var saveSchemaButtonRectX1 = loadSchemaButtonRectX2 + buttonBuffer;
-	var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
-	var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + saveSchemaButtonWidth;
-	var saveSchemaButtonRectY2 = saveSchemaButtonRectY1 + saveSchemaButtonHeight;
-
-
-	// Save to File
-	if (point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2)) {
-		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, false);
 	
-		if (mouse_check_button_pressed(mb_left)) {
-		
-			//populates lists with current display
-			scr_storeSchLists();
-		
-			// User will specify a name and a location for the sch file 
-			scr_saveRZS();
+	
+	// only draw the Save Schema button if there are no errors in the user's level mapping
+	if (obj_importMapping.canContinueAll) {
 
+		var saveSchemaButtonWidth = max(200, string_width(" Save Import Schema "));
+		var saveSchemaButtonHeight = 30;
+		var saveSchemaButtonRectX1 = loadSchemaButtonRectX2 + buttonBuffer;
+		var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
+		var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + saveSchemaButtonWidth;
+		var saveSchemaButtonRectY2 = saveSchemaButtonRectY1 + saveSchemaButtonHeight;
+
+
+		// Save to File
+		if (point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2)) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, false);
+	
+			if (mouse_check_button_pressed(mb_left)) {
+		
+				//populates lists with current display
+				scr_storeSchLists();
+		
+				// User will specify a name and a location for the sch file 
+				scr_saveRZS();
+			}
 		}
-	}
 	
-	draw_set_color(global.colorThemeBorders);
-	draw_set_alpha(1);
-	draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
+		draw_set_color(global.colorThemeBorders);
+		draw_set_alpha(1);
+		draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
 
-	draw_set_font(global.fontMain);
-	draw_set_halign(fa_center);
-	draw_set_color(global.colorThemeText);
-	draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Import Schema");
+		draw_set_font(global.fontMain);
+		draw_set_halign(fa_center);
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Import Schema");
+	}
 
 
-
-
-	/*
-	var saveScehmaBuffer = 20;
-	var saveSchemaButtonRectX1 = loadPreviousButtonRectX2 + saveScehmaBuffer;
-	var saveSchemaButtonRectY1 = loadPreviousButtonRectY1;
-	var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + string_width("  Save Schema  ");
-	var saveSchemaButtonRectY2 = loadPreviousButtonRectY2;
-
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
-	draw_set_halign(fa_center);
-	draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Schema");
-	*/
 
 	if (tagGridHeight == 1) {
 		room_goto(rm_mainScreen)
 	}
-
+	
+	if (!obj_importMapping.updatedErrorCol) {
+		with (obj_importMapping) {
+			alarm[4] = 2;
+			updatedErrorCol = true;
+		}
+	}
 
 }

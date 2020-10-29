@@ -16,6 +16,9 @@ function scr_unitMarkerOptions() {
 	else if (optionSelected == "Add new Tag") {
 		scr_unitTagMapOptions("Add new Tag");
 	}
+	else if(optionSelected == "Set as Translation"){
+		global.unitImportTranslationColName = ds_list_find_value(global.tokenImportColNameList, obj_control.unitImportColToChange);
+	}
 
 
 }

@@ -24,12 +24,13 @@ function scr_saveREZ(argument0) {
 
 
 	if (not autosave) {
-		if (global.fileSaveName == "undefined" or (not file_exists(global.fileSaveName) and not obj_stacker.splitSave)) {
+		if (global.fileSaveName == "undefined" or (not file_exists(global.fileSaveName) and not obj_stacker.splitSave) or global.stackGrabSave ) {
 			global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 				global.fileSaveName = "undefined";
 				show_message("Error in saving");
+				global.stackGrabSave = false;
 				exit;
 			}
 	
@@ -88,6 +89,7 @@ function scr_saveREZ(argument0) {
 			var mapimportCSVGrid = scr_gridToJSONLists(global.importCSVGrid);
 			var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
 			var maptokenImport = scr_gridToJSONLists(global.tokenImportGrid);
+			var mapwordImport = scr_gridToJSONLists(global.wordImportGrid);
 			var mapunitImport = scr_gridToJSONLists(global.unitImportGrid);
 			var mapDiscoImport = scr_gridToJSONLists(global.discoImportGrid);
 			var mapCustomLabelGrid = scr_gridToJSONLists(global.customLabelGrid);
@@ -118,6 +120,7 @@ function scr_saveREZ(argument0) {
 		
 			//custom label saves
 			ds_map_add_list(map, "tokenImport", maptokenImport);
+			ds_map_add_list(map, "wordImport", mapwordImport);
 			ds_map_add_list(map, "unitImport", mapunitImport);
 			ds_map_add_list(map, "discoImport", mapDiscoImport);
 			ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
@@ -126,6 +129,12 @@ function scr_saveREZ(argument0) {
 				ds_list_copy(tempList2, global.tokenImportColNameList);
 			}
 			ds_map_add_list(map, "tokenImportColNameList", tempList2);
+			
+			var tempList6 = ds_list_create();
+			if (global.wordImportColNameList  != undefined) {
+				ds_list_copy(tempList6, global.wordImportColNameList);
+			}
+			ds_map_add_list(map, "wordImportColNameList", tempList6);
 		
 			var tempList3 = ds_list_create();
 			if (global.unitImportColNameList  != undefined) {
@@ -149,6 +158,14 @@ function scr_saveREZ(argument0) {
 			//save special feild colnames
 			ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
 			ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
+			ds_map_add(map, "wordImportWordDelimColName", global.wordImportWordDelimColName);
+			ds_map_add(map, "unitImportTranslationColName", global.unitImportTranslationColName);
+			ds_map_add(map, "unitImportUnitEndColName", global.unitImportUnitEndColName);
+			ds_map_add(map, "unitImportUnitStartColName", global.unitImportUnitStartColName);
+			ds_map_add(map, "unitImportSpeakerColName", global.unitImportSpeakerColName);
+			ds_map_add(map, "tokenImportTranscriptColName", global.tokenImportTranscriptColName);
+			ds_map_add(map, "tokenImportDisplayTokenColName", global.tokenImportDisplayTokenColName);
+		
 		
 			ds_map_add(map, "showParticipantName", obj_control.showParticipantName);
 			
@@ -299,5 +316,5 @@ function scr_saveREZ(argument0) {
 		room_goto(rm_openingScreen);
 	}
 
-
+	global.stackGrabSave = false;
 }

@@ -12,18 +12,32 @@
 	Author: Terry DuBois
 */
 
+#macro vk_rcommand 91
+#macro vk_lcommand 92
+
 shortcutsEnabled = true;
 
 if (hideAll) {
 	gridView = false;
 }
-	
+
+ctrlHold = false;
+if(os_type == os_macosx){
+	if ( keyboard_check(vk_rcommand) or keyboard_check(vk_lcommand)) {
+		ctrlHold = true;
+	}
+}
+else {
+	if (keyboard_check(vk_control)) {
+		ctrlHold = true;
+	}
+}
 
 
 // Mechanism to update center display row
 if (!gridView) {
 	if (ds_grid_height(currentActiveLineGrid) > 0) {
-		var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
+		/*var firstLinePixelY = (room_height / 2) - (currentCenterDisplayRow * gridSpaceVertical);
 		if (firstLinePixelY > 150 + gridSpaceVertical) {
 			currentCenterDisplayRow++;
 		}
@@ -35,7 +49,8 @@ if (!gridView) {
 			currentCenterDisplayRow--;
 		}
 		currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);
-		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
+		currentCenterDisplayRow = max(currentCenterDisplayRow, 0);*/
+		currentCenterDisplayRow = scr_currentTopLine();
 	}
 	
 	
@@ -101,15 +116,42 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	if ((keyboard_check(vk_down) or mouse_wheel_down())) {
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
 			scrollSpeed = -gridSpaceVertical;
+			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
+				obj_panelPane.functionChainList_lineGridRowFocused++;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}
 		}
 		if (holdDownArrowKey > 15) {
 			scrollSpeed = (-min(arrowSpeed, 25)) * holdArrowMod;
 			if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
 			}
+			if((holdDownArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
+				obj_panelPane.functionChainList_lineGridRowFocused++;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}
 		}
 		else if(mouse_wheel_down()) {
 			scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
+			/*if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
+				obj_panelPane.functionChainList_lineGridRowFocused++;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}*/
 		}
 		if(holdDownArrowKey > 45) {
 				holdArrowMod = 2;
@@ -125,15 +167,42 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
 			scrollSpeed = gridSpaceVertical;
+			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
+				obj_panelPane.functionChainList_lineGridRowFocused--;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}
 		}
 		if (holdUpArrowKey > 15) {
 			scrollSpeed = min(arrowSpeed, 25) * holdArrowMod;
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);
 			}
+			if((holdUpArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
+				obj_panelPane.functionChainList_lineGridRowFocused--;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}
 		}
 		else if(mouse_wheel_up()) {
 			scrollSpeed = (min(arrowSpeed, 25) *1.5);
+			/*if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
+				obj_panelPane.functionChainList_lineGridRowFocused--;
+				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
+				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
+				obj_panelPane.functionChainContents_BGColor = lineColor;
+				ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
+				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
+				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
+			}*/
 		}
 		if(holdUpArrowKey > 45) {
 				holdArrowMod = 2;
@@ -269,10 +338,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
 			scr_jumpToEnd(false);
 		}
-	
-		/*if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)) {
-			scr_createPlaceChains();
-		}*/
+
 
 		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
 			wordLeftMarginDest += gridSpaceHorizontal;
@@ -371,7 +437,7 @@ if (shortcutsEnabled) {
 	if(os_type == os_macosx){
 		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 			if (keyboard_check(24) and canPressPlus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 				canPressPlus = false;
 				if(gridSpaceVertical < gridSpaceVerticalMax) {
 					gridSpaceVertical += 10;
@@ -402,7 +468,7 @@ if (shortcutsEnabled) {
 			}
 
 			if (keyboard_check(109) and canPressMinus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 				canPressMinus = false;
 				if(gridSpaceVertical > gridSpaceVerticalMin) {
 					gridSpaceVertical -= 10;
@@ -437,7 +503,7 @@ if (shortcutsEnabled) {
 	else{
 		if (keyboard_check(vk_shift) and !keyboard_check(vk_control)) {
 			if (keyboard_check_direct(187) and canPressPlus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 			//	show_message(string(prevCenterDisplayRow));
 				canPressPlus = false;
 				if(gridSpaceVertical < gridSpaceVerticalMax) {
@@ -470,7 +536,7 @@ if (shortcutsEnabled) {
 			}
 
 			if (keyboard_check_direct(189) and canPressMinus) {
-				prevCenterDisplayRow = scr_currentCenterLine();
+				prevCenterDisplayRow = scr_currentTopLine();
 				//show_message(string(prevCenterDisplayRow));
 				canPressMinus = false;
 				if(gridSpaceVertical > gridSpaceVerticalMin) {
@@ -669,3 +735,32 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 scr_fontSizeControl();
 
 
+// hide panel panes and toolpanes if doing Play & Learn
+if (global.wheresElmo) {
+	with (obj_panelPane) {
+		showNav = false;
+		showNavLeft = false;
+		showNavRight = false;
+	}
+	with (obj_toolPane) {
+		showTool = false;
+	}
+	
+	/*
+				with(obj_panelPane){
+				showNav = not showNav;
+
+				if(showNav){
+					showNavRight = true;	
+					showNavLeft = true;
+					obj_toolPane.showTool = true;
+			
+				}
+				else{
+					showNavRight = false;	
+					showNavLeft = false;
+					obj_toolPane.showTool = false;
+				}
+			}
+	*/
+}

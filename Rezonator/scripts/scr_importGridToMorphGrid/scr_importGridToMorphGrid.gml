@@ -1,4 +1,6 @@
 function scr_importGridToMorphGrid() {
+	show_debug_message("scr_importGridToMorphGrid() START ... " + scr_printTime());
+	
 	if (ds_grid_height(global.importGrid) < 1) {
 		exit;
 	}
@@ -343,7 +345,8 @@ function scr_importGridToMorphGrid() {
 			}
 		}
 	}
+	
 	scr_morphToUnitGrid();
-
-
+	
+	show_debug_message("scr_importGridToMorphGrid() END ... " + scr_printTime());
 }

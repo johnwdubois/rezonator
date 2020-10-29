@@ -13,8 +13,6 @@ function scr_panelPane_drawFilter() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 
-	//if (live_call()) return live_result;
-
 	// Set contraints for filter button
 
 	windowWidth = functionChainList_tabHeight;
@@ -45,7 +43,19 @@ function scr_panelPane_drawFilter() {
 		var peekButtonRectY2 = peekButtonRectY1 + ((windowHeight - (filterButtonSize)) / 3);
 	
 		// If mouse clicked in button, activate/deavtivate button's function
-		if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)){
+		if (point_in_rectangle(mouse_x, mouse_y, peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2)) {
+			var tooltipText = "";
+			if (i == 0) {
+				tooltipText = "Context above";
+			}
+			else if (i == 1) {
+				tooltipText = "Context between";
+			}
+			else if (i == 2) {
+				tooltipText = "Context below";
+			}
+			scr_createTooltip(peekButtonRectX2, mean(peekButtonRectY1, peekButtonRectY2), tooltipText, obj_tooltip.arrowFaceLeft);
+			
 			obj_control.hoverTime[i]++;
 			if (device_mouse_check_button_released(0, mb_left)) {
 			
@@ -63,7 +73,7 @@ function scr_panelPane_drawFilter() {
 			}
 		}
 		else{
-		obj_control.hoverTime[i] = 0;
+			obj_control.hoverTime[i] = 0;
 		}
 	
 		// Recolor slected buttons
@@ -79,7 +89,7 @@ function scr_panelPane_drawFilter() {
 	
 		draw_rectangle(peekButtonRectX1, peekButtonRectY1, peekButtonRectX2, peekButtonRectY2, true);
 	}
-
+	/*
 	for (var i = 0; i < 3; i++) {
 		//draw tooltips
 		if(obj_control.hoverTime[i] == obj_toolPane.hoverTimeLimit){
@@ -99,6 +109,7 @@ function scr_panelPane_drawFilter() {
 			}
 		}
 	}
+	*/
 
 
 	// Check for mouse clicks on filter button, if we're out of the search grid
@@ -132,16 +143,7 @@ function scr_panelPane_drawFilter() {
 		}
 	
 		if (point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2)) {
-			draw_set_font(fnt_mainBold);
-			draw_set_halign(fa_left);
-			draw_set_valign(fa_middle);
-			draw_set_colour(global.colorThemeBG);
-			draw_rectangle(mouse_x + 20, mouse_y + 25, mouse_x + 25 + string_width("Activate Filter "), mouse_y + 55, false);
-			draw_set_colour(global.colorThemeBorders);
-			draw_rectangle(mouse_x + 20, mouse_y + 25, mouse_x + 25 + string_width("Activate Filter "), mouse_y + 55, true);
-			draw_set_colour(global.colorThemeText);
-			draw_text(mouse_x + 25, mouse_y + 40, "Activate Filter");	
-			draw_set_font(global.fontChainList);
+			scr_createTooltip(filterButtonX2, mean(filterButtonY1, filterButtonY2), (obj_control.filterGridActive) ? "Deactivate filter" : "Activate filter", obj_tooltip.arrowFaceLeft);
 		}
 	}
 

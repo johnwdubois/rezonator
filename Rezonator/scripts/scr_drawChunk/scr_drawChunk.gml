@@ -1,14 +1,20 @@
-function scr_drawChunk(argument0, argument1, argument2, argument3) {
-	// Draw a chunkWord to the screen
+/*
+	scr_drawChunk();
+	
+	Last Updated: 2020-10-26
+	
+	Called from: obj_control -> drawLine()
+	
+	Purpose: Draw the visual representation of a Chunk around the words within the Chunk
+	
+	Mechanism: Using the position of the words, draw a rectangle around the words. And check for mouseclicks within that Rectangle
+	
+	Author: Georgio Klironomos
+*/
+function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 
-	var currentWordID = argument0;
-	var currentLineY = argument1;
-	var fontScale = argument2;
-	var unitID = argument3;
+
 	var currentWordGridRow = currentWordID - 1;
-
-	// Here will be functionality to focus on a Chunk and add it to a Chain
-	// This includes: Hovering over Chunk will visually effect the outline
 	draw_set_font(global.fontMain);
 
 	// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
@@ -62,8 +68,9 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 		
 	// Set up the measurements for the drawn box
 	var leftPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, firstWordID - 1);
-	//var firstDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, firstWordID - 1);
 	var rightPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, lastWordID - 1);
+	
+	// Set the Chunks X position to that of it's first word
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, leftPixelX);
 		
 	// Get the string of the first word
@@ -82,12 +89,14 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 	var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordID - 1);
 	var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordID - 1);
 		
-	// Draw the Chunks visual representation
-	if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0 and effectColor != undefined) {
+	// Set the color of the Chunk
+	if(ds_list_size(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordGridRow)) > 0 
+	and effectColor != undefined) {
 		draw_set_color(effectColor);
 	} else {
 		draw_set_color(global.colorThemeText);	
 	}
+	// Draw the Chunks visual representation
 	for (var drawBorderLoop = 0; drawBorderLoop < 2; drawBorderLoop++) {
 		if (borderRounded) {
 			draw_roundrect(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
@@ -96,6 +105,7 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 			draw_rectangle(topLeftX - drawBorderLoop, topLeftY - drawBorderLoop, bottomRightX + drawBorderLoop, bottomRightY + drawBorderLoop, true);
 		}
 	}
+	// Animate the rectangle if the Chunk is focused
 	if (drawFocused) {
 		draw_sprite_ext(spr_focusPoint, 0, topLeftX - wordDrawGridFocusedAnimation, topLeftY - wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
 		draw_sprite_ext(spr_focusPoint, 0, bottomRightX + wordDrawGridFocusedAnimation, topLeftY - wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
@@ -105,23 +115,30 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 		
 	// Check for mouseover of the Chunk 
 	var mouseover = false;
-	if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) and not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
-	and not mouseoverPanelPane and (hoverChunkID == currentWordID || hoverChunkID == -1) and hoverWordID == -1 and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
+	if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) 
+	and not obj_chain.inRezPlay
+	and not mouseoverPanelPane 
+	and (hoverChunkID == currentWordID || hoverChunkID == -1) 
+	and hoverWordID == -1 
+	and !instance_exists(obj_dialogueBox) 
+	and !instance_exists(obj_stackShow)) {
 		mouseover = true;
 		obj_control.mouseoverNeutralSpace = false;	
 			
-		// May need to make a hoverChunkID
+		// Set the current HoverChunkID
 		hoverChunkID = currentWordID;
 		hoverChunkIDRow = currentChunkID - 1; 
 		// Draw the hover highlight
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(0.5);
 		draw_rectangle(topLeftX, topLeftY, bottomRightX, bottomRightY, false);
-			
+		
+		// Check for Left Mouse CLick on Chunk
 		if (device_mouse_check_button_released(0, mb_left)) {
 			obj_control.clickedChunkID = currentChunkID; // Debug variable
+			
 			// Add this Chunk to a chain
-			if(keyboard_check(vk_control)){
+			if(obj_control.ctrlHold){
 					scr_combineChains(currentWordID);
 				}
 				else {
@@ -130,12 +147,10 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 					}
 				}
 		}
-			
-		if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
+		
+		// Check for Left Mouse CLick on Chunk
+		if (device_mouse_check_button_released(0, mb_right)) {
 
-			//newWordHoverUnitID = unitID;
-			//newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
-			//newWordHoverWordID = currentWordID;
 
 			if(!instance_exists(obj_dialogueBox)){
 				//obj_control.rightClickWordID = obj_control.newWordHoverWordID;
@@ -148,6 +163,7 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 				currentFocusedChunkID = currentChunkID;
 			}
 
+			// Activate Chunk's right click options
 			obj_control.rightClickonWord = true;
 			obj_control.wideDropDown = true;
 			var dropDownOptionList = ds_list_create();
@@ -160,7 +176,7 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 8;
+				dropDownInst.optionListType = dropDownInst.optionListTypeRightClickWord;
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;
@@ -168,6 +184,4 @@ function scr_drawChunk(argument0, argument1, argument2, argument3) {
 
 		}
 	}
-
-
 }

@@ -1,8 +1,7 @@
-function scr_mouseToolCheck(argument0) {
-	// Check mouse position and change the user's tool based on results
+// Check mouse position and change the user's tool based on results
+function scr_mouseToolCheck(stackChainGridHeight) {
 
-	var stackChainGridHeight = argument0;
-
+	// If the user is within the Line number or speaker label column, switch to the stack tool
 	if (point_in_rectangle(mouse_x, mouse_y, 0, wordTopMargin, speakerLabelMargin, camera_get_view_height(camera_get_active())) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 	
 		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left) and not obj_control.rectNotInPanelPane) {
@@ -18,6 +17,7 @@ function scr_mouseToolCheck(argument0) {
 		}
 	}
 	else {
+		// If we are not in the line numbers or speaker labels, then unfocus any stacks
 		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left)) {
 			if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, stackChainGridHeight, obj_chain.chainStateFocus)) {
 				with (obj_chain) {
@@ -26,9 +26,9 @@ function scr_mouseToolCheck(argument0) {
 				}
 			}
 		}
-	
+		
+		// Ensure we're using the right tool based on the current mode
 		if ((mouse_check_button(mb_left) or mouse_check_button_released(mb_left))) {// and not mouseoverNeutralSpace) {
-			//show_message("switch");
 		
 			if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
 				obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
@@ -39,6 +39,8 @@ function scr_mouseToolCheck(argument0) {
 			else {
 				obj_toolPane.currentTool = obj_toolPane.toolPointer;
 			}
+			
+			// If we are in empty space, deselect the current chain on mouseLeftClick
 			if (mouseoverNeutralSpace) {
 				with(obj_chain) {
 					alarm[9] = 1;

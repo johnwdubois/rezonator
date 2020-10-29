@@ -26,19 +26,19 @@ else if (gridView) {
 // If we're not in grid view and there is a search, switch between the main and search screen
 else if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main/filter to search
-	if(currentActiveLineGrid == lineGrid) {// or currentActiveLineGrid == filterGrid) {
+	if(currentActiveLineGrid == lineGrid) {
 		scr_unFocusAllChains();
+		
 		// Which grid are we switching from?
 		preSwitchLineGrid = currentActiveLineGrid; 
 		searchGridActive = true;
 		currentActiveLineGrid = searchGrid;
+		obj_toolPane.currentMode = obj_toolPane.setModeSearch;
+		
 		// Which row are we switching from?
-		preSwitchDisplayRow = obj_control.scrollPlusYDest;//currentCenterDisplayRow; 
+		preSwitchDisplayRow = obj_control.scrollPlusYDest;
 		highlightedSearchRow = 0;
-		//currentCenterDisplayRow = preSwitchSearchDisplayRow;
 		obj_control.scrollPlusYDest  = preSwitchSearchDisplayRow;
-	//	var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
-		//obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 		
 		wordLeftMarginDest = window_get_width() / 2;
 	}

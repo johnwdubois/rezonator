@@ -42,6 +42,7 @@ function scr_importInfoGrid() {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, "");
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, 100);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, false);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
 		
 		}
 	
@@ -51,6 +52,7 @@ function scr_importInfoGrid() {
 		for (var i = 0; i < importGridWidth; i++) {
 	
 			var currentTag = ds_list_find_value(global.importGridColNameList, i);
+
 			var currentExample = "";
 	
 			var importGridRow = 0;
@@ -88,18 +90,19 @@ function scr_importInfoGrid() {
 					ds_list_destroy(currentList);
 				}
 			}
-	
+			
+		
+
 			ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, currentExample);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, currentConsistency);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, OneTokenPerGroup);
-		
-		
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
 			var currentTokenCount = ds_list_find_value(global.importGridTokenCountList, i);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, currentTokenCount);
-		
-		
+			
+
 			if (global.importType == global.importType_CoNLLU) {
 				var levelEstimate = -1;
 				if (string_char_at(currentTag, 1) == "#") {
@@ -118,7 +121,12 @@ function scr_importInfoGrid() {
 					levelEstimate = global.levelDiscourse; // discourse level estimate
 				}
 				else if (currentConsistency >= 90 && OneTokenPerGroup) {
-					levelEstimate = global.levelUnit; // unit level estimate
+					if (currentTag == "~blockSeq" || currentTag == "~blockSeq") {
+						levelEstimate = global.levelUnknown;
+					}
+					else {
+						levelEstimate = global.levelUnit; // unit level estimate
+					}
 				}
 				else if (currentConsistency >= 90 && !OneTokenPerGroup) {
 					levelEstimate = global.levelToken; // token level estimate
@@ -139,17 +147,19 @@ function scr_importInfoGrid() {
 		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 		for (var i = 0; i < tagInfoGridHeight; i++) {
 			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+			var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 		
 			// we have found the first token level marker, let's set it to displayToken
 			if (!setDisplayToken) {
 				if (currentLevel == global.levelToken) {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Display Token");
+					obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 					setDisplayToken = true;
 				}
 			}
-			// we have found the first unit level marker, let's set it to displayUnit
+			// we have found the first unit level marker (that isn't a ~field), let's set it to displayUnit
 			if (!setDisplayUnit) {
-				if (currentLevel == global.levelUnit) {
+				if (currentLevel == global.levelUnit && string_char_at(currentField, 1) != "~") {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Speaker");
 					setDisplayUnit = true;
 				}
@@ -157,7 +167,10 @@ function scr_importInfoGrid() {
 		}
 		scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
 	}
-
+	
+	
+	scr_loadRZS(true);
+	
 	show_debug_message("scr_importInfoGrid, END... " + scr_printTime());
 
 

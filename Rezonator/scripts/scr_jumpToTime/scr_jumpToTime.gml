@@ -13,8 +13,6 @@ function scr_jumpToTime(timeStr) {
 	
 		Author: ?
 	*/
-	
-	if (live_call(timeStr)) return live_result;
 
 	discoID = obj_panelPane.selectedDiscoID;
 

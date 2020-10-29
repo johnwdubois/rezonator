@@ -23,7 +23,6 @@ canResizeWindowX = true;
 canResizeWindowY = true;
 // For hiding the Nav window
 originalWindowHeight = 20;
-collapsedWindowHeight = 2000;
 y = originalWindowHeight;
 
 
@@ -76,6 +75,7 @@ functionChainList_sortAsc[2] = true;
 functionChainList_sortAsc[3] = true;
 functionChainList_sortAsc[4] = true;
 functionChainList_lineGridRowFocused = 0;
+functionChainList_lineGridDisplayYList = ds_list_create();
 
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;
@@ -200,6 +200,7 @@ timerSecs = 0;
 
 
 alarm[0] = 1;
+chainListPane = -1;
 
 clickedIn = false;
 
@@ -208,6 +209,8 @@ holdDown = 0;
 
 
 showNav = true;
+showNavLeft = true;
+showNavRight = true;
 tokenContentsHeaderListSize = 3;
 unitContentsHeaderListSize = 2;
 
@@ -223,6 +226,9 @@ unitTagsHighlightRow = -1;
 chainTagsHighlightRow = -1;
 
 chainViewOneToMany = true;
+
+previousChainContentsRow = -1;
+rowInLinkGridList = ds_list_create();
 
 
 hoverTime[0] = 0;

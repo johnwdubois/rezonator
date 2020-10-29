@@ -14,9 +14,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	*/
 
 
-	//if (live_call()) return live_result;
-
-
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
@@ -29,7 +26,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	var drawDropDowns = false;
 
 
-	var grid = obj_control.lineGrid;
+	var grid = obj_control.currentActiveLineGrid;
 
 
 
@@ -184,7 +181,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 							continue;
 						}
 					
-						var unitTagTokenView = false;
+						var unitOrWordTagTokenView = false;
 					
 						currentWordInfoCol[getInfoLoop] = "";
 					
@@ -247,8 +244,8 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 							}
 	
 							var colName = ds_list_find_value(global.tokenImportColNameList, importCol);
-							if (ds_list_find_index(global.unitImportColNameList, colName) != -1) {
-								unitTagTokenView = true;
+							if (ds_list_find_index(global.unitImportColNameList, colName) != -1 && ds_list_find_index(global.wordImportColNameList, colName) != -1) {
+								unitOrWordTagTokenView = true;
 							}
 							
 						
@@ -287,13 +284,24 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					
 						if(getInfoLoop >= 2) {
 						//draw tag selection
+						
+							if (getInfoLoop >= 3) {
+								var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
+							}
+							else {
+								var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
+							}
+							var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
+							var isTildaField = (string_char_at(string(mapKey), 1) == "~");
 
-
-							if (drawDropDowns && !unitTagTokenView) {
+							if (drawDropDowns && !unitOrWordTagTokenView && ds_map_exists(global.tokenImportTagMap, mapKey) && !isTildaField) {
+								
+								var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 								draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
 				
-				
 								if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
+									
+									scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change tag", obj_tooltip.arrowFaceUp);
 									draw_set_color(global.colorThemeBorders);
 						
 									draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY , dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
@@ -305,9 +313,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 								
 										var dropDownOptionList = ds_list_create();
 										if (getInfoLoop >= 3) {
-											var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-											var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-											var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
 												ds_list_copy(dropDownOptionList, tagMapList);
 												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
@@ -315,12 +320,9 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 											}
 										}
 										else {
-											var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-											var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-											var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
 											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
 												ds_list_copy(dropDownOptionList, tagMapList);
-												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList,getInfoLoop -2);
+												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
 												obj_control.tokenImportRowToChange = currentWordID - 1;
 											}
 										}
@@ -333,7 +335,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 										if (ds_list_size(dropDownOptionList) > 0 ) {
 											var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
 											dropDownInst.optionList = dropDownOptionList;
-											dropDownInst.optionListType = 35;
+											dropDownInst.optionListType = dropDownInst.optionListTypeTokenTagMap;
 
 										}
 								
@@ -446,7 +448,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 			colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 		}
 	
-		var notUnitOrDiscoTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1));
+		var notUnitOrDiscoOrWordTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1) && (ds_list_find_index(global.wordImportColNameList, colName) == -1));
 	
 	
 		// draw lines to separate columns
@@ -488,13 +490,14 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList, "Create Field");
-					if (notUnitOrDiscoTag) {
+					if (notUnitOrDiscoOrWordTag) {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
+					//ds_list_add(dropDownOptionList, "Set as Transcript");
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = 36;
+						dropDownInst.optionListType = dropDownInst.optionListTypeTokenMarker;
 					}
 				}
 			}
@@ -509,6 +512,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 		
 			//user interaction for token selection
 			if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
+				scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change field", obj_tooltip.arrowFaceUp);
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY, dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
 				if (mouse_check_button_released(mb_left)) {
@@ -523,7 +527,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 						if (ds_list_size(dropDownOptionList) > 0 ) {
 							var dropDownInst = instance_create_depth(colRectX2,colRectY1+tabHeight , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = 27;
+							dropDownInst.optionListType = dropDownInst.optionListTypeTokenSelection;
 							//obj_control.ableToCreateDropDown = false;
 							//obj_control.alarm[0] = 2;
 						}
@@ -536,6 +540,8 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	
 			//user interaction for display view change
 			if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize) && !instance_exists(obj_dropDown)) {
+				
+				scr_createTooltip(wordViewButtonX, wordViewButtonY + wordViewButtonSize, "Display token", obj_tooltip.arrowFaceUp);
 				draw_set_color(global.colorThemeSelected2);
 				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 				if (mouse_check_button_released(mb_left)) {

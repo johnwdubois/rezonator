@@ -14,7 +14,6 @@ function scr_panelPane_drawChainTabs() {
 	*/
 
 	// Set opacity, font, and alignment of text in chain tabs
-	//if (live_call()) return live_result;
 
 
 	draw_set_alpha(1);
@@ -87,7 +86,8 @@ function scr_panelPane_drawChainTabs() {
 				else if (i == functionChainList_tabStackBrush) {
 					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
 				}
-				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2)) {
+				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2) and not chainListPane.scrollBarClickLock) {
+					scr_createTooltip(mean(toggleDrawRectX1, toggleDrawRectX2), toggleDrawRectY2, "Toggle visible", obj_tooltip.arrowFaceUp);
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
 					if (mouse_check_button_released(mb_left)) {
@@ -109,7 +109,8 @@ function scr_panelPane_drawChainTabs() {
 				var filterRectX2 = filterRectX1 + buttonRectSize;
 				var filterRectY2 = filterRectY1 + buttonRectSize;
 				var filterImageIndex = 0;
-				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2)) {
+				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2) and not chainListPane.scrollBarClickLock) {
+					scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
 					if (mouse_check_button_released(mb_left)) {
@@ -141,6 +142,7 @@ function scr_panelPane_drawChainTabs() {
 									searchGridActive = false;
 									filterGridActive = false;
 									currentActiveLineGrid = lineGrid;
+									obj_toolPane.currentMode = obj_toolPane.setModeMain;
 									wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 
 									with (obj_alarm) {
@@ -169,7 +171,8 @@ function scr_panelPane_drawChainTabs() {
 				var ascendRectX2 = ascendRectX1 + buttonRectSize;
 				var ascendRectY2 = ascendRectY1 + buttonRectSize;
 			
-				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2)) {
+				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2) and not chainListPane.scrollBarClickLock) {
+					scr_createTooltip(mean(ascendRectX1, ascendRectX2), ascendRectY2, (functionChainList_sortAsc[i]) ? "Sort ascending" : "Sort descending", obj_tooltip.arrowFaceUp);
 					draw_set_color(global.colorThemeBorders);
 					draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
 				
@@ -240,7 +243,9 @@ function scr_panelPane_drawChainTabs() {
 					var tagButtonRectX2 = tagButtonRectX1 + buttonRectSize;
 					var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
 					draw_set_color(global.colorThemeText);
-					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2)) {
+					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2) and not chainListPane.scrollBarClickLock) {
+						
+						scr_createTooltip(mean(tagButtonRectX1, tagButtonRectX2), tagButtonRectY2, (obj_control.showUnitTags) ? "1-to-1" : "1-to-many", obj_tooltip.arrowFaceUp);
 						
 						draw_set_color(global.colorThemeSelected2);
 						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
@@ -299,7 +304,7 @@ function scr_panelPane_drawChainTabs() {
 		draw_set_valign(fa_top);
 	
 		// check for mouse clicks to change the selected tab
-		if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2)) {
+		if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) and not chainListPane.scrollBarClickLock) {
 		
 			/*obj_panelPane.hoverTime[i]++;
 		
@@ -328,13 +333,31 @@ function scr_panelPane_drawChainTabs() {
 			
 				if (i == 1) {
 					obj_toolPane.currentMode = obj_toolPane.modeTrack;
+					if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+					}
 				}
 				if (i == 2) {
 					obj_toolPane.currentMode = obj_toolPane.modeRez;
+					if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeRez;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeRez;
+					}
 				}
 				if (i == 3) {
 					if(obj_toolPane.currentMode = obj_toolPane.modeRead) {
 						obj_toolPane.currentMode = obj_toolPane.modeTrack;
+						if(obj_control.searchGridActive) {
+						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+					}
+					else {
+						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+					}
 					}
 				}
 			

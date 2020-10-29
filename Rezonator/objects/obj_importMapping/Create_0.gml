@@ -23,12 +23,6 @@ global.plainTextInfoGrid = ds_grid_create(global.plainTextInfoGridWidth, 0);
 
 
 
-global.levelToken = 0;
-global.levelUnit = 1;
-global.levelDiscourse = 2;
-global.levelUnknown = 3;
-
-
 
 mouseOverLevel = false;
 inDropDown = false;
@@ -67,8 +61,12 @@ canPressRightHoldingCounter = 0;
 holdingLimit = 6;
 loopItterations = 0;
 
-canContinueToken = true;
+canContinueAll = false;
+canContinueDisplayToken = true;
 canContinueUnit = true;
+canContinueToken1to1 = false;
+canContinueWordDelimiter = true;
+canContinueWord1to1 = false;
 
 if (global.importType != global.importType_CSV) {
 	scr_checkTokenCount();
@@ -80,5 +78,15 @@ canPressPlus = true;
 importGroupSchemaLoaded = false;
 
 continueButtonClicked = false;
+
+tokenRatio = 0.70;
+currentTokenThreshold = 0;
+currentWordThreshold = 0;
+updatedErrorCol = false;
+displayMarker = "";
+wordDelimMarker = "";
+
+
+
 
 show_debug_message("obj_importMapping Create END... " + scr_printTime());

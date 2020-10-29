@@ -1,4 +1,4 @@
-//if (live_call()) return live_result;
+
 /// @description Insert description here
 // You can write your code in this editor
 //fuck it, gonna make a grid 
@@ -11,6 +11,7 @@ menuBarGrid_colString = 0
 menuBarGrid_colMouseOver = 1;
 menuBarGrid_colOptionList = 2;
 menuBarGrid_colOptionListType = 3;
+
 
 
 menuBarGrid_rowFile = 0;
@@ -28,13 +29,13 @@ menuBarGrid_rowHelp = 6;
 
 
 
-fileDropDownOptionListType = 4;
-editDropDownOptionListType = 42;
-viewDropDownOptionListType = 6;
-toolsDropDownOptionListType = 22;
-settingsDropDownOptionListType = 21;
-filterDropDownOptionListType = 33;
-helpDropDownOptionListType = 23;
+fileDropDownOptionListType = 4; // optionListTypeFile = 4;
+editDropDownOptionListType = 42; // optionListTypeEdit = 42;
+viewDropDownOptionListType = 6; // optionListTypeView = 6;
+toolsDropDownOptionListType = 22; //optionListTypeTools = 22;
+settingsDropDownOptionListType = 21; // optionListTypeSettings = 21;
+filterDropDownOptionListType = 33; // optionListTypeFilter = 33;
+helpDropDownOptionListType = 23; // optionListTypeHelp = 23;
 
 
 
@@ -172,6 +173,7 @@ y= 0;
 sortPaneOpen = false;
 sortClosing = false;
 sortPane = -1;
+chainDeselected = false;
 /*menuList = ds_list_create();
 ds_list_add(menuList, "File", "Link", "Edit", "View", "Search", "Tools", "Advanced", "Setting", "Help");
 menuListSize = ds_list_size(menuList);*/
