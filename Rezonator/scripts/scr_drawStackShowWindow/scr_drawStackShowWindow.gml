@@ -1,24 +1,21 @@
+/*
+	scr_drawStackShowWindow();
+	
+	Last Updated: 2020-10-29
+	
+	Called from: obj_dialogueBox
+	
+	Purpose: draw the inner window showing the list of Stacks that can be put into the Stackshow
+	
+	Mechanism: loop through Stackgrid and check for mouseclicks on the Stacks
+	
+	Author: Terry DuBois, Georgio Klironomos
+*/
 function scr_drawStackShowWindow() {
-	/*
-		scr_panelPane_drawChainListLoop();
 	
-		Last Updated: 2019-01-29
-	
-		Called from: obj_panelPane
-	
-		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
-				set chainContents panelPane to look at that chain
-	
-		Mechanism: loop through chainGrid of whatever tab you are on and draw chainName
-	
-		Author: Terry DuBois, Georgio Klironomos
-	*/
 
 	var grid = obj_chain.stackChainGrid;
 	
-	
-	
-
 
 	// Set text margin area
 	var filterRectMargin = 10;
@@ -39,12 +36,14 @@ function scr_drawStackShowWindow() {
 	draw_set_font(global.fontChainList);
 	var strHeight = string_height("0") + 5;
 
+	// Begin the scrollable surface
 	scr_surfaceStart();
 
 
-
+	// Loop through the Stack Grid
 	for (var i = 0; i < ds_grid_height(grid); i++) {
-	
+		
+		// Only draw elements of the list that should be visible
 		if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
 		or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
@@ -65,7 +64,7 @@ function scr_drawStackShowWindow() {
 		var chainNameRectX2 = x + windowWidth - 75;//chainNameRectX1 + string_width(currentChainName);
 		var chainNameRectY2 = chainNameRectY1 + string_height(currentChainName) - chainNameRectMinusY;
 	
-			//Check mouse clicks to focus a chain in the list
+		//Check mouse clicks to focus a chain in the list
 		if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2 + 10)){
 			if(device_mouse_check_button_released(0, mb_left) && (!instance_exists(obj_dropDown) || obj_control.dialogueBoxActive)) {
 
@@ -94,6 +93,7 @@ function scr_drawStackShowWindow() {
 				}
 
 			}
+			// Check for Right mouse Click on the Stack
 			if(device_mouse_check_button_released(0, mb_right)) {
 		
 				// Unfocus chain if previously focused
@@ -158,7 +158,7 @@ function scr_drawStackShowWindow() {
 			focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
 		}
 	
-	
+		// Allow for text to not stretch past its barrier
 		var cutoffs = 0;
 		while (x + textMarginLeft + string_width(currentChainName + "...") > x + windowWidth - 95 and cutoffs < 500) {
 			currentChainName = string_delete(currentChainName, string_length(currentChainName), 1);
@@ -180,14 +180,6 @@ function scr_drawStackShowWindow() {
 		var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
 		var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
 	
-		// Fill in boxes if filtered
-		/*
-		if (inFilter) {
-			draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, false);
-		}
-		else {
-			draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
-		}*/
 		draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), mean(chainFilterRectY1, chainFilterRectY2), 1, 1, 0, c_white, 1);
 	
 		// Check boxes for user selection with mouse click
@@ -208,16 +200,11 @@ function scr_drawStackShowWindow() {
 						scr_renderFilter();
 					}
 				}
-				// Add to moveCounter
-				//obj_control.moveCounter ++;
 			}
 		}
-	
-	
-		// Get height of chain name
+		// Get height of chain name to increment the height of the list
 		textPlusY += strHeight;
 	}
-
 
 
 	var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
@@ -273,18 +260,9 @@ function scr_drawStackShowWindow() {
 		scrollPlusYDest -= (windowHeight);
 	}
 
-
-
-
-
 	scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth - 60, windowHeight);
 
-
-
-
-
 	scr_surfaceEnd();
-
 }

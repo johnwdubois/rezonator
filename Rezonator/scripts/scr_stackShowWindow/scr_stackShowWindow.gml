@@ -1,23 +1,20 @@
-function scr_stackShowWindow() {
-
-	/*
-		scr_stackShowWindow();
+/*
+	scr_stackShowWindow();
 	
-		Last Updated: 2019-06-25
+	Last Updated: 2020-10-29
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: draw custom search box for multiple options
+	Purpose: draw the window containing the Stack List and buttons for setting up the Stackshow
 	
-		Mechanism: draws multiple rectangles and text to represent options to the user when they search,
-		this includes booleans for a case sensitive search, transcript search, and a search within a chain
+	Mechanism: draws multiple rectangles and text to represent options to the user when they search,
+	this includes booleans for a case sensitive search, transcript search, and a search within a chain
 				
-		Author: Brady Moore
-	*/
+	Author: Brady Moore
+*/
+function scr_stackShowWindow() {
 	
-	
-
-
+	// Set drawing variables
 	var verticleBuffer = 230;
 	var horizontalBuffer = 300;
 	var stackBoxXOffset = 280;
@@ -32,22 +29,20 @@ function scr_stackShowWindow() {
 	var currentStackCaption = "";
 	
 	if(currentStackRow == -1){
-	currentStackName = "NO STACK SELECTED";
-	currentStackCaption = "";
+		currentStackName = "NO STACK SELECTED";
+		currentStackCaption = "";
 	}
 	else{
-	currentStackName = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName,currentStackRow);
-	currentStackCaption = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption,currentStackRow);
-	var hashCounter = 1;
-	for(i = 0; i < string_length(currentStackCaption); i++){
+		currentStackName = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName,currentStackRow);
+		currentStackCaption = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption,currentStackRow);
+		var hashCounter = 1;
+		for(i = 0; i < string_length(currentStackCaption); i++){
 		
-		if(i == hashCounter*24){
-			currentStackCaption = string_insert("#",currentStackCaption, i);
-			hashCounter ++;
+			if(i == hashCounter*24){
+				currentStackCaption = string_insert("#",currentStackCaption, i);
+				hashCounter ++;
+			}
 		}
-	}
-	
-	
 	}
 
 	if (obj_control.stackShowWindowActive) {
@@ -60,8 +55,8 @@ function scr_stackShowWindow() {
 		y = camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 11;
 	
 		draw_set_colour(global.colorThemePaneBG);
-		if (global.colorTheme ==0) {
-		draw_set_colour(c_ltgray);
+		if (global.colorTheme == 0) {
+			draw_set_colour(c_ltgray);
 		}
 		
 		// draw background UI
@@ -106,10 +101,14 @@ function scr_stackShowWindow() {
 		draw_set_font(fnt_mainLarge1);
 
 		// draw buttons for OK and Cancel
+		var okButtonX1 = camera_get_view_width(camera_get_active()) /2 - 100 - buttonXOffset;
+		var okButtonY1 = camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset;
+		var okButtonX2 = camera_get_view_width(camera_get_active()) /2 - 100 + buttonXOffset;
+		var okButtonY2 = camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset;
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 - 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, false);
+		draw_rectangle(okButtonX1, okButtonY1, okButtonX2, okButtonY2, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 - 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, true);
+		draw_rectangle(okButtonX1, okButtonY1, okButtonX2, okButtonY2, true);
 		draw_set_colour(global.colorThemeBG);
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, false);
 		draw_set_colour(global.colorThemeBorders);
@@ -123,7 +122,7 @@ function scr_stackShowWindow() {
 
 	
 	
-	
+		// Draw the Filter All button
 		var filterAllButtonX1 = camera_get_view_width(camera_get_active()) / 2 - stackBoxXOffset  + 5;
 		var filterAllButtonY1 = camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 15;
 		var filterAllButtonX2 = camera_get_view_width(camera_get_active()) / 2 - stackBoxXOffset  + 25;
@@ -138,16 +137,9 @@ function scr_stackShowWindow() {
 			}
 		}
 	
-	
-	
-	
-		//draw stacks for selection
-	
-	
+		//draw list of stacks for selection
 		scr_drawStackShowWindow();
 
-	
-	
 		//right side of window options
 	
 		//option headers
@@ -166,7 +158,8 @@ function scr_stackShowWindow() {
 		//button for game selection
 		draw_set_font(fnt_mainLarge1);
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + rightCenter), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset + 20), currentGame);
-	
+		
+		// Prevent drawing of names that are too long
 		var maxcharLimit = 20;
 		var	stackNamedDisplayText = string(currentStackName);
 		if(string_length(currentStackName) > maxcharLimit){
@@ -192,34 +185,14 @@ function scr_stackShowWindow() {
 		draw_set_font(fnt_main);
 		draw_set_halign(fa_left);
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active()) / 2 - 110), "Tutorial");
-		//draw_text(camera_get_view_width(camera_get_active()) /2 + 70, camera_get_view_height(camera_get_active())/2 - 45, "Left Justified");
-		//draw_text(camera_get_view_width(camera_get_active()) /2 + 70, camera_get_view_height(camera_get_active())/2 - 15, "Transcript");
-		//draw_text(camera_get_view_width(camera_get_active()) /2 + 70, camera_get_view_height(camera_get_active())/2 + 15, "Show Nav Window");
+
 	
 		// Tutorial toggle button
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 110 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 110 + 10, true);
 		if (obj_control.setTutorial) {
 			draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 110 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 110 + 10, false);	
 		}
-		/*
-		// Justify toggle button
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 45 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 45 + 10, true);
-		if (obj_control.setJustified) {
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 45 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 45 + 10, false);	
-		}
-		// Transcript toggle button
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 15 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 15 + 10, true);
-		if (obj_control.setTranscript) {
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 15 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 15 + 10, false);	
-		}
 
-		// NavWindow toggle button
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 + 15 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 + 15 + 10, true);
-		if (obj_control.setNavWindow) {
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 + 15 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 + 15 + 10, false);	
-		}
-
-	*/
 		//tutorial logic check
 		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 110 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 110 + 10)){
 
@@ -241,76 +214,7 @@ function scr_stackShowWindow() {
 				}
 		}
 
-	/*
-		// Justify logic check
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 45 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 45 + 10)){
-
-				draw_set_color(c_white);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-				draw_set_colour(global.colorThemeBorders);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-				if(obj_control.setJustified){
-					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
-				}
-				else{
-					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
-				}
-				if (device_mouse_check_button_released(0, mb_left)) {
-					obj_control.setJustified = !obj_control.setJustified;	
-				}
-		}
-	
-
-
-		// Transcript logic check
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 - 15 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 - 15 + 10)){
-
-				draw_set_color(c_white);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-				draw_set_colour(global.colorThemeBorders);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-				if(obj_control.setTranscript){
-					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
-				}
-				else{
-					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
-				}
-				if (device_mouse_check_button_released(0, mb_left)) {
-					obj_control.setTranscript = !obj_control.setTranscript;	
-				}
-		}
-	
-
-	
-		// NavWindow logic check
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 + 70 - 30, camera_get_view_height(camera_get_active())/2 + 15 - 10, camera_get_view_width(camera_get_active()) /2 + 70 -10, camera_get_view_height(camera_get_active())/2 + 15 + 10)){
-
-				draw_set_color(c_white);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-				draw_set_colour(global.colorThemeBorders);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-				if(obj_control.setNavWindow){
-					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Enabled");
-				}
-				else{
-					draw_set_halign(fa_center);
-					draw_text(mean(mouse_x-25,mouse_x+25), mean(mouse_y+20,mouse_y + 40) , "Disabled");
-				}
-				if (device_mouse_check_button_released(0, mb_left)) {
-					obj_control.setNavWindow = !obj_control.setNavWindow;	
-				}
-		}
-	
-		*/
-			
+		// Check for leftMouseClick on the Games Options
 		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 + rightCenter - (string_width(currentGame)/2) - 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 20 - (string_height(currentGame)/2) - 5, camera_get_view_width(camera_get_active()) /2 + rightCenter + (string_width(currentGame)/2) + 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 20 + (string_height(currentGame)/2) + 5)){
 				gameHover = true;
 				if (device_mouse_check_button_released(0, mb_left)) {
@@ -332,59 +236,12 @@ function scr_stackShowWindow() {
 		else{
 			gameHover = false;
 		}
-	
-	
-		/*
-	
-		// Tracks Only toggle button
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 120, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 15, camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 130, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 5, true);
-		if (obj_toolPane.tracksOnlyStackSho) {
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 120, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 15, camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 130, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 5, false);	
-		}
-
-		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainBold);
-		draw_text(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 135, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 10, "Where's Elmo?");
-		// current chain boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 120, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 15, camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 130, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 5)){
-				if (device_mouse_check_button_released(0, mb_left)) {
-					obj_toolPane.tracksOnlyStackShow = !obj_toolPane.tracksOnlyStackShow;	
-					obj_toolPane.rezOnlyStackShow = false;
-					//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
-				}
-		}
-	
-		// Rez Only toggle button
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 260, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 15, camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 270, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 5, true);
-		if (obj_toolPane.rezOnlyStackShow) {
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 260, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 15, camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 270, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 5, false);	
-		}
-
-		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainBold);
-		draw_text(camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 275, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 10, "Rezzle");
-		// current chain boolean switch
-		if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 260, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 15, camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset + 270, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset - 5)){
-				if (device_mouse_check_button_released(0, mb_left)) {
-					obj_toolPane.rezOnlyStackShow = !obj_toolPane.rezOnlyStackShow;	
-					obj_toolPane.tracksOnlyStackShow = false;
-					//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), obj_dialogueBox.selectAll);
-				}
-		}
-		//draw_set_font(fnt_mainLarge1);
-	*/
-
-
-
-
-
 	}
 
-	//show_message(string(obj_control.stackShowActive));
 
-
-	// ok button check
-	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 - 100 + buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset) && obj_control.stackShowWindowActive){
+	// ok button & enter check
+	if ((point_in_rectangle(mouse_x, mouse_y, okButtonX1, okButtonY1, okButtonX2, okButtonY2) and obj_control.stackShowWindowActive)
+	or ((keyboard_check_pressed(vk_enter) and obj_control.stackShowWindowActive) and !instance_exists(obj_dialogueBox) or global.games)){
 			if (device_mouse_check_button_released(0, mb_left) && !instance_exists(obj_dialogueBox)) {
 			
 				if(currentGame == "Where's Elmo"){
@@ -393,10 +250,7 @@ function scr_stackShowWindow() {
 				if(currentGame == "Rezzles"){
 					obj_toolPane.rezOnlyStackShow = true;
 				}
-				if(obj_control.setJustified){
-				}
-				if(obj_control.setTranscript){
-				}
+
 				if(obj_control.setNavWindow){
 					obj_panelPane.showNav = true;
 					obj_toolPane.showTool = true;
@@ -493,112 +347,12 @@ function scr_stackShowWindow() {
 		
 	}
 
-
-	// enter check
-	//show_message(string(global.wheresElmo));
-	if ( (keyboard_check_pressed(vk_enter) && obj_control.stackShowWindowActive) && !instance_exists(obj_dialogueBox) or global.games) {
-	
-		if(currentGame == "Where's Elmo"){
-			obj_toolPane.tracksOnlyStackShow = true;
-			//global.wheresElmo = true;
-		}
-		if(currentGame == "Rezzles"){
-			obj_toolPane.rezOnlyStackShow = true;
-			//global.wheresElmo = true;
-		}
-
-		if(global.games) {
-			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), true);	
-		}
-	
-		// In here is where the stackShow initiation code will go
-		//obj_control.currentStackShowListPosition = 0;
-		for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
-			// Currently adds Stacks into the list if they are within the filter
-			if(ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, stackShowListLoop)) {
-				var currentStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackShowListLoop);
-				ds_list_add(obj_control.stackShowList, currentStackID);	
-			}
-		}
-	
-		// Clear the Filter of all chains
-		ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
-		ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
-		ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
-		instance_destroy();
-		// Begin the show
-		scr_stackShow();
-	
-	
-	
-		// Restrict tool selection for players
-		if(string(global.userName) != "gold"){
-			with(obj_toolPane) {
-				alarm[3] = 30;	
-			}
-		}
-	
-		with(obj_panelPane){
-			alarm[5] = 60;
-		}
-		obj_control.moveCounter = 0
-	
-		// Set word's to their tokens as default for stackShow
-		if(!obj_control.wordTokenView) {
-			//obj_control.stackShowSwitchedWordView = true;
-			obj_control.wordTokenView = !obj_control.wordTokenView;
-
-			for (var i = 0; i < ds_grid_height(obj_control.dynamicWordGrid); i++) {
-				var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
-				var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
-				var currentReplaceWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord, i);
-	
-				if (string_length(currentReplaceWord) > 0) {
-					ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentReplaceWord);
-				}
-				else {
-					if (obj_control.wordTokenView) {
-						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordToken);
-					}
-					else {
-						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, i, currentWordTranscript);
-					}
-				}
-			}
-		}
-		if(obj_toolPane.tracksOnlyStackShow) {
-			if (obj_control.shape == obj_control.shapeBlock) {
-				obj_control.stackShowSwitchedTextShape = true;
-				obj_control.shape = obj_control.shapeText;	
-			}
-
-			if (!instance_exists(obj_dialogueBox)) {
-				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-			}
-		
-			instance_create_layer(-500, -500, "Instances", obj_submitChain);
-	
-			obj_dialogueBox.elmoActive = true;
-			if(string(global.userName) != "gold") {
-				obj_panelPane.showNav = false;
-				obj_toolPane.showTool = false;
-			}
-		}
-		else if(global.rezzles) {
-			instance_create_layer(-500, -500, "Instances", obj_submitChain);
-		}
-	
-		obj_menuBar.menuClickedIn = false;
-	}
-
-
+	// Check for mouseover of StackShow window
 	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer, camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active()) / 2 + verticleBuffer)){
 		obj_control.mouseoverPanelPane = true;
 	}
 	else {
 		obj_control.mouseoverPanelPane = false;
 	}
-
-	//if (point_in_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer))
 
 }
