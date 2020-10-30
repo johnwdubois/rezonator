@@ -317,6 +317,10 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	
 		var notDiscoTag = (ds_list_find_index(global.discoImportColNameList, colName) == -1);
 		var isUnitIDCol = (colName == "UnitID");
+		var isTildaField = false;
+		if (typeof(colName) == "string") {
+			isTildaField = (string_char_at(colName, 1) == "~");
+		}
 
 
 
@@ -352,7 +356,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					obj_control.unitImportColToChange = ds_list_find_index(global.unitImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();		
 					ds_list_add(dropDownOptionList, "Create Field");
-					if (notDiscoTag && !isUnitIDCol) {
+					if (notDiscoTag && !isUnitIDCol && !isTildaField) {
 						ds_list_add(dropDownOptionList, "Add new Tag");
 					}
 					//ds_list_add(dropDownOptionList, "Set as Translation");

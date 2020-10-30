@@ -133,6 +133,7 @@ function scr_importTXT(argument0) {
 	// if something went wrong in the import process, we exit back to the openingScreen
 	// otherwise we continue to the importScreen
 	if (global.exitOut) {
+		global.skipToImportScreen = true;
 		room_goto(rm_openingScreen);
 	}
 	else {
