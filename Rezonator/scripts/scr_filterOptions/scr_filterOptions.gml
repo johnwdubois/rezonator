@@ -3,7 +3,7 @@ function scr_filterOptions(argument0) {
 
 	switch (optionSelected)
 	{
-		case "Toggle": // toggles the filter view on and off
+		case "Filter": // toggles the filter view on and off
 		
 	
 			if (obj_control.filterGridActive) {
@@ -51,7 +51,7 @@ function scr_filterOptions(argument0) {
 			}
 			break;
 	
-		case "Pick All": // add all of a certain chain type to filter
+		case "Pick": // add all of a certain chain type to filter
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();

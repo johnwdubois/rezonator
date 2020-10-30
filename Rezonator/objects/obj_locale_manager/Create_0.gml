@@ -18,7 +18,7 @@ global.locale_gloss		= ds_map_create();		// create a dictionary that stores the 
 var default_locale_code		= "en";
 var default_locale_index	= 0;
 
-var native_locale_code		= os_get_language();	// return language of user's system
+var native_locale_code		= "en"; // os_get_language();	// return language of user's system
 var native_locale_index		= 0;
 show_debug_message("OS locale: " + native_locale_code);
 
