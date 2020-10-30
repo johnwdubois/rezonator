@@ -122,6 +122,19 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	var optionText = ds_list_find_value(optionList, i);
 	
+	// check whether this option is expandable
+	var isExpandable = ds_map_exists(global.expandableDropDownMap, optionText);
+	if (optionText == "Stack" && (ds_list_size(optionList) == 4 || ds_list_size(optionList) == 3)) {
+		isExpandable = false;
+	}
+	else if (optionText == "Search" && ds_list_size(optionList) == 4) {
+		isExpandable = false;
+	}
+	else if (optionText == "Prose" && ds_list_size(optionList) == 2) {
+		isExpandable = false;
+	}
+	
+	
 	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {
 		if (string_char_at(optionText, 1) == "~") {
@@ -138,6 +151,13 @@ for (var i = 0; i < optionListSize; i++) {
 			obj_menuBar.menuClickedIn = false;
 		}
 		scr_dropDownSelect(optionSelected);
+	}
+	
+	// draw arrow if expandable
+	if (isExpandable) {
+		var expandArrowX = floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
+		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
+		draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, c_white, 1);
 	}
 }
 

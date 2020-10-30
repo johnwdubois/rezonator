@@ -328,3 +328,23 @@ canPressPlus = true;
 alarm[2] = 1;
 
 global.exitOut = false;
+
+
+// this map tells Rezonator what dropdowns expand to further dropdowns
+// so we can look up the strings in this map to know whether or not to draw the expand arrow
+global.expandableDropDownMap = ds_map_create();
+ds_map_add(global.expandableDropDownMap, "Delete All", true);
+ds_map_add(global.expandableDropDownMap, "Window", true);
+ds_map_add(global.expandableDropDownMap, "Nav", true);
+ds_map_add(global.expandableDropDownMap, "Justify", true);
+ds_map_add(global.expandableDropDownMap, "Prose", true);
+ds_map_add(global.expandableDropDownMap, "Hide", true);
+ds_map_add(global.expandableDropDownMap, "Pick", true);
+ds_map_add(global.expandableDropDownMap, "Context", true);
+ds_map_add(global.expandableDropDownMap, "Search", true);
+ds_map_add(global.expandableDropDownMap, "Stack", true);
+ds_map_add(global.expandableDropDownMap, "Stacker", true);
+ds_map_add(global.expandableDropDownMap, "Play and Learn", true);
+ds_map_add(global.expandableDropDownMap, "Zoom", true);
+ds_map_add(global.expandableDropDownMap, "Autosave", true);
+ds_map_add(global.expandableDropDownMap, "Advanced", true);

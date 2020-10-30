@@ -18,6 +18,7 @@ else{
 
 }
 
+/*
 for (var menuSelectionLoop = 0; menuSelectionLoop < menuBarGridHeight; menuSelectionLoop++){
 	
 	if(point_in_rectangle(mouse_x, mouse_y, menuWidth * menuSelectionLoop, 0, menuWidth * (menuSelectionLoop + 1), menuHeight)){
@@ -45,9 +46,8 @@ for (var menuSelectionLoop = 0; menuSelectionLoop < menuBarGridHeight; menuSelec
 			}
 		}
 	}
-
 }
-
+*/
 
 if(!menuClickedIn || !obj_control.mouseoverPanelPane){
 	
@@ -63,7 +63,7 @@ if(!menuClickedIn || !obj_control.mouseoverPanelPane){
 
 with(obj_panelPane){
 	if(currentFunction == functionChainList || currentFunction == functionChainContents || currentFunction == functionFilter || currentFunction == functionSort){
-	y =  obj_menuBar.y + obj_menuBar.menuHeight;
+		y =  obj_menuBar.y + obj_menuBar.menuHeight;
 	}
 }
 with(obj_toolPane){
