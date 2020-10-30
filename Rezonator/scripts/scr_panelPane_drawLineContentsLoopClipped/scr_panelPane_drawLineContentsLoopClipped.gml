@@ -395,7 +395,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 	var headerListSize = 3;
-	tokenContentsHeaderListSize = min(8,max(3,ds_grid_width(global.tokenImportGrid)));
+	tokenContentsHeaderListSize = min(8, max(3, ds_grid_width(global.tokenImportGrid)));
 	if (functionChainList_currentTab == functionChainList_tabLine) {
 		headerListSize = tokenContentsHeaderListSize;
 	}
@@ -449,6 +449,10 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 		}
 	
 		var notUnitOrDiscoOrWordTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1) && (ds_list_find_index(global.wordImportColNameList, colName) == -1));
+		var isTildaField = false;
+		if (typeof(colName) == "string") {
+			isTildaField = (string_char_at(colName, 1) == "~");
+		}
 	
 	
 		// draw lines to separate columns
@@ -490,7 +494,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList, "Create Field");
-					if (notUnitOrDiscoOrWordTag) {
+					if (notUnitOrDiscoOrWordTag && !isTildaField) {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
 					//ds_list_add(dropDownOptionList, "Set as Transcript");

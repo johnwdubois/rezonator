@@ -68,7 +68,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		widthOfUnitGrid = ds_list_size(global.unitImportColNameList);
 	}
 	//show_message(string(headerListSize));
-	for(var j = 0 ; j < headerListSize; j++) {
+	for (var j = 0 ; j < headerListSize; j++) {
 	
 		textPlusY = 0;
 		drawDropDowns = false;
@@ -78,6 +78,10 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + (windowWidth / 6);
 	    var colRectY2 = colRectY1 + windowHeight;
+		// if this is the last column, extend it to the end of the window
+		if (j == headerListSize - 1) {
+			colRectX2 = x + windowWidth;
+		}
     
 	    draw_set_color(global.colorThemeBG);
 	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
@@ -286,6 +290,11 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	        //var colRectX2 = colRectX1 + (windowWidth);    
 	    }
 	    var colRectY2 = colRectY1 + windowHeight;
+		
+		// if this is the last column, extend it to the end of the window
+		if (i == headerListSize - 1) {
+			colRectX2 = x + windowWidth;
+		}
     
 	    var colName = "";
     
