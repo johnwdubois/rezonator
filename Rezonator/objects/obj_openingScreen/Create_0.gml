@@ -348,3 +348,7 @@ ds_map_add(global.expandableDropDownMap, "Play and Learn", true);
 ds_map_add(global.expandableDropDownMap, "Zoom", true);
 ds_map_add(global.expandableDropDownMap, "Autosave", true);
 ds_map_add(global.expandableDropDownMap, "Advanced", true);
+
+
+
+scr_preImportInitiate();
