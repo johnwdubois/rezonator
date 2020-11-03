@@ -61,7 +61,7 @@ scrollBarPlusY = 0;
 
 scrollBarHoldingDelay = false;
 
-optionListTypeSort = 0;
+/*optionListTypeSort = 0;
 optionListTypeChainList = 1;
 optionListTypeChainRecolor = 2;
 optionListTypeSpeakerLabel = 3;
@@ -105,4 +105,4 @@ optionListTypeAutosave = 40;
 optionListTypeStackTag = 41;
 optionListTypeEdit = 42;
 optionListTypePlayAndLearn = 43;
-optionListTypeNav = 44;
+optionListTypeNav = 44;*/

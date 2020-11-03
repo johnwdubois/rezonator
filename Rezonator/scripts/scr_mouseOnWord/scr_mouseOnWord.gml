@@ -197,12 +197,18 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				
 				// Create the dropdown
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-					var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
+					/*var dropDownY = mouse_y;
+					var dropDownHeight = ds_list_size(dropDownOptionList) * string_height("A")
+					if((dropDownY + (dropDownHeight*3)) > camera_get_view_height(camera_get_active())) {
+						dropDownY -= dropDownHeight;	
+					}
+					var dropDownInst = instance_create_depth(mouse_x, dropDownY, -999, obj_dropDown);
 					dropDownInst.optionList = dropDownOptionList;
 					dropDownInst.optionListType = dropDownInst.optionListTypeRightClickWord;
 					
 					obj_control.ableToCreateDropDown = false;
-					obj_control.alarm[0] = 2;
+					obj_control.alarm[0] = 2;*/
+					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, obj_control.optionListTypeRightClickWord);
 				}
 
 			}

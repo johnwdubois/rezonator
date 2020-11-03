@@ -326,12 +326,13 @@ function scr_drawGridViewerClipped() {
 		}
 
 	    if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-	        var dropDownInst = instance_create_depth(dropDownButtonX1, dropDownButtonY2, -999, obj_dropDown);
+	        /*var dropDownInst = instance_create_depth(dropDownButtonX1, dropDownButtonY2, -999, obj_dropDown);
 	        dropDownInst.optionList = dropDownOptionList;
 	        dropDownInst.optionListType = dropDownInst.optionListTypeGridViewerSelectGrid;
                     
 	        obj_control.ableToCreateDropDown = false;
-	        obj_control.alarm[0] = 2;
+	        obj_control.alarm[0] = 2;*/
+			scr_createDropDown(dropDownButtonX1, dropDownButtonY2, dropDownOptionList, obj_control.optionListTypeGridViewerSelectGrid);
 	    }
 	
 	}

@@ -16,6 +16,8 @@
 #macro vk_lcommand 92
 
 shortcutsEnabled = true;
+cameraBottomLine = camera_get_view_height(view_get_camera(0));
+
 
 if (hideAll) {
 	gridView = false;

@@ -198,7 +198,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 								if (ds_list_size(dropDownOptionList) > 0 ) {
 									var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
 									dropDownInst.optionList = dropDownOptionList;
-									dropDownInst.optionListType = dropDownInst.optionListTypeUnitTagMap;
+									dropDownInst.optionListType = obj_control.optionListTypeUnitTagMap;
 
 								}
 							}
@@ -363,7 +363,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeUnitMarker;
+						dropDownInst.optionListType = obj_control.optionListTypeUnitMarker;
 					}
 				}
 			}
@@ -387,7 +387,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					if (ds_list_size(dropDownOptionList) > 0 ) {
 						var dropDownInst = instance_create_depth(colRectX1,colRectY1+tabHeight , -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeUnitSelection;
+						dropDownInst.optionListType = obj_control.optionListTypeUnitSelection;
 					
 						//obj_control.ableToCreateDropDown = false;
 						//obj_control.alarm[0] = 2;

@@ -42,12 +42,13 @@ function scr_filterOptions(argument0) {
 			ds_list_add(dropDownOptionList, "Above", "Between", "Below");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
+				/*var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
 				dropDownInst.optionListType = dropDownInst.optionListTypeContext;
 					
 				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				obj_control.alarm[0] = 2;*/
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing*2), dropDownOptionList, obj_control.optionListTypeContext);
 			}
 			break;
 	
@@ -58,12 +59,13 @@ function scr_filterOptions(argument0) {
 			ds_list_add(dropDownOptionList, "Rez", "Track", "Stack");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing)  , -999, obj_dropDown);
+				/*var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing)  , -999, obj_dropDown);
 				dropDownInst.optionList = dropDownOptionList;
 				dropDownInst.optionListType = dropDownInst.optionListTypeAddToFilter;
 					
 				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				obj_control.alarm[0] = 2;*/
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, obj_control.optionListTypeAddToFilter);
 			}
 			break;
 		case "Clear": // add all of a certain chain type to filter	
