@@ -115,10 +115,10 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
 		
 		// draw hover rectangle
-		var roundedRectBuffer = 5;
+		var roundedRectBuffer = 4;
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(1);
-		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
+		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
 		
 		obj_control.mouseoverPanelPane = true;		
 		instance_destroy(obj_dropDown);

@@ -326,17 +326,17 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 
 	
 		// draw wordView button
-		var wordViewButtonSize = (tabHeight / 3);
+		var wordViewButtonSize = (tabHeight / 4);
 		var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
-		var wordViewButtonY = colRectY1 + (tabHeight / 2);
+		var wordViewButtonY = colRectY1 + (tabHeight) - (tabHeight / 4)/2 - 10;
 	
 	
 		//draw token selection button
 		var dropDownButtonSize = sprite_get_width(spr_dropDown);
 		var dropDownRectX1 = wordViewButtonX - 16 - dropDownButtonSize;
-		var dropDownRectY1 = y + (dropDownButtonSize * 0.2);
+		var dropDownRectY1 = colRectY1 + (dropDownButtonSize * 0.6);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;
-		var dropDownRectY2 = y + tabHeight - (dropDownButtonSize * 0.2);
+		var dropDownRectY2 = colRectY1 + tabHeight - (dropDownButtonSize * 0.2);
 	
 
 
