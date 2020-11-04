@@ -355,7 +355,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					}
 					obj_control.unitImportColToChange = ds_list_find_index(global.unitImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();		
-					ds_list_add(dropDownOptionList, "Create Field");
+					ds_list_add(dropDownOptionList, "Set as Translation", "Create Field");
 					if (notDiscoTag && !isUnitIDCol && !isTildaField) {
 						ds_list_add(dropDownOptionList, "Add new Tag");
 					}

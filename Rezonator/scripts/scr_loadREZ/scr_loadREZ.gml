@@ -109,6 +109,10 @@ function scr_loadREZ() {
 					global.tokenImportTranscriptColName = ds_map_find_value(map, "tokenImportTranscriptColName");
 					global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
 					
+					if(global.tokenImportDisplayTokenColName == undefined ){
+						global.tokenImportDisplayTokenColName = "~text";
+					}
+					
 
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");

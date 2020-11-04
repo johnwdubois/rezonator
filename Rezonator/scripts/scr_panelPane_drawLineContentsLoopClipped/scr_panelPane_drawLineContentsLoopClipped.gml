@@ -493,7 +493,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					}
 					obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Create Field");
+					ds_list_add(dropDownOptionList, "Set as Transcription" , "Create Field");
 					if (notUnitOrDiscoOrWordTag && !isTildaField) {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
