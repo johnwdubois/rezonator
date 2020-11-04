@@ -15,7 +15,7 @@ function scr_importMappingTagDraw() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(20 + sprite_get_width(spr_backArrow), 20, "Import File Mapping");
+	draw_text(20 + sprite_get_width(spr_backArrow), 20, scr_get_translation("msg_import_file_map"));
 
 
 
@@ -32,12 +32,12 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), "Summary");
+	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), scr_get_translation("menu_summary"));
 
 	draw_set_font(global.fontMain);
-	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, "File name: " + filename_name(global.importFilename));
-	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + stringHeight * 2.5), "Total Line Count: " + string(ds_grid_height(global.importGrid)));
-	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + (stringHeight) * 4), "Markers Found: " + string(ds_grid_height(global.tagInfoGrid)));
+	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, scr_get_translation("label_user_file_name") + filename_name(global.importFilename));
+	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + stringHeight * 2.5), scr_get_translation("label_total_line") + string(ds_grid_height(global.importGrid)));
+	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + (stringHeight) * 4), scr_get_translation("label_markers_found") + string(ds_grid_height(global.tagInfoGrid)));
 
 
 
@@ -134,7 +134,7 @@ function scr_importMappingTagDraw() {
 		draw_set_font(global.fontMain);
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
-		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 
 	}
 	else {
@@ -170,7 +170,7 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(floor(fileInfoWindowRectX1), floor(fileInfoWindowRectY2 + 50), "Import Fields");
+	draw_text(floor(fileInfoWindowRectX1), floor(fileInfoWindowRectY2 + 50), scr_get_translation("menu_import_fields"));
 
 	var buttonBuffer = 20;
 
@@ -220,7 +220,7 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), "Use Last Import Schema");
+	draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), scr_get_translation("msg_last-schema"));
 
 
 
@@ -284,7 +284,7 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), "Load Import Schema");
+	draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), scr_get_translation("msg_load-schema"));
 	
 	
 	// only draw the Save Schema button if there are no errors in the user's level mapping
@@ -320,7 +320,7 @@ function scr_importMappingTagDraw() {
 		draw_set_font(global.fontMain);
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
-		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Import Schema");
+		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), scr_get_translation("msg_save-schema"));
 	}
 
 

@@ -59,8 +59,8 @@ function scr_drawQuestionBox() {
 		draw_set_font(fnt_mainLarge1);
 	
 		// draw button text
-		draw_text(camera_get_view_width(camera_get_active()) /2 + 30, camera_get_view_height(camera_get_active())/2 + 75, "Yes");
-		draw_text(camera_get_view_width(camera_get_active()) /2 + 150, camera_get_view_height(camera_get_active())/2 + 75, "No");
+		draw_text(camera_get_view_width(camera_get_active()) /2 + 30, camera_get_view_height(camera_get_active())/2 + 75, scr_get_translation("msg_yes"));
+		draw_text(camera_get_view_width(camera_get_active()) /2 + 150, camera_get_view_height(camera_get_active())/2 + 75, scr_get_translation("msg_no"));
 		
 
 	

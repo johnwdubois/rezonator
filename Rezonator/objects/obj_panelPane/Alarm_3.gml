@@ -461,43 +461,43 @@ ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 0, scr_get_t
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 0, scr_get_translation("help_label_focus"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 0, scr_get_translation("help_description_focus"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 1, "[ESC], q");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 1, scr_get_translation("key_quit-chain"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 1, scr_get_translation("help_label_quit"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 1, scr_get_translation("help_description_quit-chain"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 2, "[DEL]");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 2, scr_get_translation("key_delete_link"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 2, scr_get_translation("help_label_zap"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 2, scr_get_translation("help_description_zap"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 3, "r");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 3, scr_get_translation("key_rez"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 3, scr_get_translation("help_label_rez"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 3, scr_get_translation("help_description_rez"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 4, "t");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 4, scr_get_translation("key_track"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 4, scr_get_translation("help_label_track-chain"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 4, scr_get_translation("help_description_track2"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 5, "k");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 5, scr_get_translation("key_stack"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 5, scr_get_translation("help_label_stack_2"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 5, scr_get_translation("help_description_stack_2"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 6, "c");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 6, scr_get_translation("key_clique"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 6, scr_get_translation("help_label_clique-tab"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 6, scr_get_translation("help_description_clique-tab2"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 7, "p");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 7, scr_get_translation("key_pick"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 7, scr_get_translation("help_label_pick_2"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 7, scr_get_translation("help_description_pick-chain_2"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 8, "v");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 8, scr_get_translation("key_change-view"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 8, scr_get_translation("help_label_view-select"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 8, scr_get_translation("help_description_view-select"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 9, "j");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 9, scr_get_translation("key_justify"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 9, scr_get_translation("help_label_justify_2"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 9, scr_get_translation("help_description_justify2"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 10, "w");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 10, scr_get_translation("key_word-format"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 10, scr_get_translation("help_label_word-format2"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 10, scr_get_translation("help_description_word-format2"));
 
@@ -525,11 +525,11 @@ ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 16, "SHIFT++
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 16, scr_get_translation("help_label_tall-rows"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 16, scr_get_translation("help_description_tall"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 17, "f");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 17, scr_get_translation("key_search"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 17, scr_get_translation("help_label_find"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 17, scr_get_translation("help_description_find-all"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 18, "g");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 18, scr_get_translation("key_go-to-line"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 18, scr_get_translation("help_label_goToLine"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 18, scr_get_translation("help_description_go-to-line"));
 
@@ -537,7 +537,7 @@ ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 19, controlS
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 19, scr_get_translation("help_label_open_alt"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 19, scr_get_translation("help_description_open-file_alt"));
 
-ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 20, "CTRL s");
+ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colKey, 20, scr_get_translation("key_save"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colFunc, 20, scr_get_translation("help_label_save_alt"));
 ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 20, scr_get_translation("help_description_save2"));
 
@@ -548,54 +548,54 @@ ds_grid_set(functionHelp_helpGridRez, functionHelp_helpGrid_colDesc, 20, scr_get
 var helpGridHeightNav = 13;
 ds_grid_resize(functionHelp_helpGridNav, functionHelp_helpGridWidth, helpGridHeightNav);
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 0, "UP ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 0, "Up");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 0, "move up to previous line");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 0,scr_get_translation("key_move-up"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 0, scr_get_translation("help_label_move-up"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 0, scr_get_translation("help_description_move-up"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 1, "DOWN ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 1, "Down");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 1, "move down to next line");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 1, scr_get_translation("key_move-down"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 1, scr_get_translation("help_label_down"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 1, scr_get_translation("help_description_move-down"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 2, "LEFT ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 2, "Left");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 2, "move left");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 2, scr_get_translation("key_move-left"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 2, scr_get_translation("help_label_move-left"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 2, scr_get_translation("help_description_move-left"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 3, "RIGHT ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 3, "Right");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 3, "move right");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 3, scr_get_translation("key_move-right"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 3, scr_get_translation("help_label_move-right"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 3, scr_get_translation("help_description_move-right"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 4, "[HOME]");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 4, "Home");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 4, "Jump to beginning of current line");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 4, scr_get_translation("key_home"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 4, scr_get_translation("help_label_home"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 4, scr_get_translation("help_description_home"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 5, controlStr + "+LEFT ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 5, "Home");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 5, "Jump to beginning of current line");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 5, controlStr + scr_get_translation("key_home_alt"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 5, scr_get_translation("help_label_home"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 5, scr_get_translation("help_description_home"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 6, "[END]");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 6, "End");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 6, "Jump to end of current line");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 6, scr_get_translation("key_end-of-line"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 6, scr_get_translation("help_label_end"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 6, scr_get_translation("help_description_end-of-line"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 7, controlStr + "+RIGHT ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 7, "End");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 7, "Jump to end of current line");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 7, controlStr + scr_get_translation("key_end-of-line_alt"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 7, scr_get_translation("help_label_end"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 7, scr_get_translation("help_description_end-of-line"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 8, "[PAGEUP]");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 8, "PageUp");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 8, "scroll up one screen at a time");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 8, scr_get_translation("key_pageup"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 8, scr_get_translation("help_label_pageup"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 8, scr_get_translation("help_description_pageup"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 9, "[PAGEDOWN]");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 9, "PageDown");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 9, "scroll down one screen at a time");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 9, scr_get_translation("key_pagedown"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 9, scr_get_translation("help_label_pagedown"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 9, scr_get_translation("help_description_pagedown"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 10, controlStr + "+UP ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc,10, "First");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 10, "Jump to first line of conversation");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 10, controlStr + scr_get_translation("key_start-of-file"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc,10, scr_get_translation("help_label_first-line"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 10, scr_get_translation("help_description_go-first-line"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 11, controlStr + "+DOWN ARROW");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 11, "Last");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 11, "Jump to last line of conversation");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 11, controlStr + scr_get_translation("key_end-of-file"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 11, scr_get_translation("help_label_end-of-file"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 11, scr_get_translation("help_description_end-of-file"));
 
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 12, "[TAB]");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 12, "Next");
-ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 12, "Move to next pane (Nav, Detail, Main)");
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colKey, 12, scr_get_translation("key_next-pane"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colFunc, 12, scr_get_translation("help_label_next"));
+ds_grid_set(functionHelp_helpGridNav, functionHelp_helpGrid_colDesc, 12, scr_get_translation("help_description_next-pane"));

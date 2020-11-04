@@ -49,7 +49,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open");
+	draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), scr_get_translation("help_label_open"));
 
 
 
@@ -74,7 +74,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "Import");
+	draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), scr_get_translation("menu_import"));
 
 
 
@@ -108,7 +108,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), "Play & Learn");
+	draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), scr_get_translation("menu_play-learn"));
 
 
 

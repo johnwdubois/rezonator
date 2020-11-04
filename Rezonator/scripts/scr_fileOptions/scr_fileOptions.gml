@@ -28,7 +28,7 @@ function scr_fileOptions(argument0) {
 			draw_set_font(obj_toolPane.progressBarFont);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
-			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Saving...");
+			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
 			draw_set_font(fnt_dropDown);
 		
 			obj_fileLoader.ableToHotkey = false;
@@ -47,7 +47,7 @@ function scr_fileOptions(argument0) {
 			draw_set_font(obj_toolPane.progressBarFont);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
-			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Saving...");
+			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
 			draw_set_font(fnt_dropDown);
 			
 			obj_fileLoader.ableToHotkey = false;
