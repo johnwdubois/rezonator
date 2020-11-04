@@ -70,13 +70,7 @@ function scr_chainListOptions(argument0) {
 					ds_list_add(dropDownOptionList, "Red", "Blue", "Green", "Gold", "Custom");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
-						/*var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing  , -999, obj_dropDown);
-						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeChainRecolor;
-					
-						obj_control.ableToCreateDropDown = false;
-						obj_control.alarm[0] = 2;*/
-						scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + obj_dropDown.optionSpacing, dropDownOptionList, obj_control.optionListTypeChainRecolor);
+						scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + obj_dropDown.optionSpacing, dropDownOptionList, global.optionListTypeChainRecolor);
 					}
 	
 					break;

@@ -202,7 +202,7 @@ function scr_importMappingTagInfo() {
 								if (ds_list_size(dropDownOptionList) > 0) {
 									var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 									dropDownInst.optionList = dropDownOptionList;
-									dropDownInst.optionListType = obj_control.optionListTypeSpecialFields;
+									dropDownInst.optionListType = global.optionListTypeSpecialFields;
 								}
 							}
 						}
@@ -255,7 +255,7 @@ function scr_importMappingTagInfo() {
 							if (ds_list_size(dropDownOptionList) > 0 ) {
 								var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
 								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = obj_control.optionListTypeMappingTag;
+								dropDownInst.optionListType = global.optionListTypeMappingTag;
 							}
 						}
 					}

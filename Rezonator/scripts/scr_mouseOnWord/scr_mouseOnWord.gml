@@ -197,7 +197,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				
 				// Create the dropdown
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, obj_control.optionListTypeRightClickWord);
+					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeRightClickWord);
 				}
 
 			}

@@ -87,13 +87,7 @@ function scr_drawSpeakerLabel(argument0, argument1, argument2, argument3, argume
 				}
 
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-					/*var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-					dropDownInst.optionList = dropDownOptionList;
-					dropDownInst.optionListType = dropDownInst.optionListTypeSpeakerLabel;
-					
-					obj_control.ableToCreateDropDown = false;
-					obj_control.alarm[0] = 2;*/
-					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, obj_control.optionListTypeSpeakerLabel);
+					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeSpeakerLabel);
 				}
 			}
 			

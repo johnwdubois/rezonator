@@ -171,7 +171,7 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 				ds_list_add(dropDownOptionList,"Delete Chunk");
 			}
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, obj_control.optionListTypeRightClickWord);
+				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeRightClickWord);
 			}
 
 		}

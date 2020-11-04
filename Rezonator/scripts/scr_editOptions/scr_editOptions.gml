@@ -23,13 +23,7 @@ function scr_editOptions(optionSelected){
 			ds_list_add(dropDownOptionList, "Track Chains", "Rez Chains", "Stacks", "Chains");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				/*var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeDelete;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;*/
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, obj_control.optionListTypeDelete);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypeDelete);
 			}
 		break;
 		default:
