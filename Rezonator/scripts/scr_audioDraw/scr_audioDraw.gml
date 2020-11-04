@@ -85,12 +85,12 @@ function scr_audioDraw() {
 		//var stackSelected = 
 		if(selectedStackGridRow > -1) {
 			if(audioPaused) {
-				//show_message(stackStartUnit);
-				audio_sound_set_track_position(audioSound, bookmarkStartTime);
-				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
 			}
 			else{
+				//show_message(stackStartUnit);
+				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
 			}
 		}
@@ -189,21 +189,15 @@ function scr_audioDraw() {
 	
 	// Draw audio Bookmark
 	if(bookmarkStartTime > -1) {
-		//show_debug_message("bookmarkStartTime: " + string(bookmarkStartTime));
-		//show_debug_message("seekBarWidth: " + string(seekBarWidth));
 		
 		//Draw bookmarks
 		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
 		bookmarkY = seekBarY1 - (playheadRad * 2);
 	
-		//draw_set_color(c_green);
-		//draw_line_width(bookmarkX, bookmarkY - playheadRad * 2, bookmarkX, bookmarkY + playheadRad * 2, 1);
 		draw_set_halign(fa_right);
 		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.5, 0.5, 30, c_green, 1);
 		
 		if(bookmarkEndTime > -1) {
-		//	show_debug_message("bookmarkEndTime: " + string(bookmarkEndTime));
-			//show_debug_message("seekBarWidth: " + string(seekBarWidth));
 		
 			//Draw bookmarks
 			endmarkX = ((real(bookmarkEndTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
@@ -215,15 +209,6 @@ function scr_audioDraw() {
 		
 		}
 	}
-	//else if(bookmarkX != -1) {
-		
-	//}
-
-	
-
-
-
-
 
 	// draw time lengths
 	var audioPosCurrent = (playheadHolding) ? audioPosTemp : audioPos;

@@ -153,10 +153,7 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 
 
 			if(!instance_exists(obj_dialogueBox)){
-				//obj_control.rightClickWordID = obj_control.newWordHoverWordID;
-				//obj_control.rightClickUnitID = obj_control.newWordHoverUnitID;
-				//obj_control.rightClickWordSeq = obj_control.newWordHoverWordSeq;
-				
+
 				ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, currentChunkID - 1, obj_chain.chainStateFocus);
 				//show_message(string(currentChunkWordID));
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentWordID - 1, true);
@@ -174,12 +171,6 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 				ds_list_add(dropDownOptionList,"Delete Chunk");
 			}
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-				/*var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeRightClickWord;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;*/
 				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, obj_control.optionListTypeRightClickWord);
 			}
 
