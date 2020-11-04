@@ -37,7 +37,7 @@ function scr_panelPane_drawSort() {
 		draw_set_font(fnt_mainBold);
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 15, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15, string(game_display_name));
 	
-		draw_text(camera_get_view_width(camera_get_active())/2 + horizontalBuffer - 20, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15, "X");
+		draw_text(camera_get_view_width(camera_get_active())/2 + horizontalBuffer - 20, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15, scr_get_translation("label_panelpane_x"));
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemePaneBG);
 
@@ -140,7 +140,7 @@ function scr_panelPane_drawSort() {
 
 	draw_set_color(global.colorThemeText);
 	draw_set_font(fnt_sortPaneBold);
-	draw_text(x + (windowWidth / 3) + textMarginLeft, y + textMarginTop, selectedGridName + " sort order");
+	draw_text(x + (windowWidth / 3) + textMarginLeft, y + textMarginTop, selectedGridName + scr_get_translation("msg_panel_sort_order"));
 
 
 	draw_set_font(global.fontSortPane);
@@ -278,7 +278,7 @@ function scr_panelPane_drawSort() {
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
-	draw_text(restoreDefButtonX1 + 10, mean(restoreDefButtonY1, restoreDefButtonY2), "Restore default");
+	draw_text(restoreDefButtonX1 + 10, mean(restoreDefButtonY1, restoreDefButtonY2), scr_get_translation("msg_restore_default"));
 
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(refreshButtonX1, refreshButtonY1, refreshButtonX2, refreshButtonY2, false);

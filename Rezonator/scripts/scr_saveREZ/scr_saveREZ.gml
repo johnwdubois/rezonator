@@ -29,13 +29,13 @@ function scr_saveREZ(argument0) {
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 				global.fileSaveName = "undefined";
-				show_message("Error in saving");
+				show_message(scr_get_translation("msg_saving-error"));
 				global.stackGrabSave = false;
 				exit;
 			}
 	
 			if (string_count(program_directory, global.fileSaveName) > 0) {
-				show_message("Error in saving. Please save outside of Rezonator program directory.");
+				show_message(scr_get_translation("msg_saving-rez-directory"));
 				scr_saveREZ(false);
 				exit;
 			}
@@ -45,7 +45,7 @@ function scr_saveREZ(argument0) {
 	// Prevent users from overwriting default discourse files
 	if(os_type == os_macosx){
 		if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "/" and not autosave) {
-			show_message("Error in saving. Please save file outside of Default Discourse folder");
+			show_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;
@@ -54,7 +54,7 @@ function scr_saveREZ(argument0) {
 	}
 	else {
 		if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
-			show_message("Error in saving. Please save file outside of Default Discourse folder");
+			show_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;

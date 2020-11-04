@@ -42,7 +42,7 @@ function scr_turnStackerLoop(){
 
 	// Exit script if no turnOrder column was found
 	if (turnCol == -1) {
-		show_message("No turn order found");
+		show_message(scr_get_translation("msg_order-notfound"));
 		splitSave = false;
 
 		exit;	

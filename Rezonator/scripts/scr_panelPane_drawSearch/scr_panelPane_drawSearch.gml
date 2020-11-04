@@ -39,7 +39,7 @@ function scr_panelPane_drawSearch() {
 	draw_set_font(fnt_searchPaneBold);
 
 	draw_line(x, y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
-	draw_text(x + textMarginLeft, y + textMarginTop, "Search");
+	draw_text(x + textMarginLeft, y + textMarginTop, scr_get_translation("label_search_function"));
 
 	if (obj_control.searchGridActive)
 	{
@@ -50,7 +50,7 @@ function scr_panelPane_drawSearch() {
 	
 		var matchCount = ds_grid_height(obj_control.searchGrid);
 	
-		draw_text(x + textMarginLeft, y + windowHeight - textMarginTop, string(matchCount) + " matches");
+		draw_text(x + textMarginLeft, y + windowHeight - textMarginTop, string(matchCount) + scr_get_translation("msg_panelpane_match"));
 	}
 
 	if (mouseover and device_mouse_check_button_released(0, mb_left))

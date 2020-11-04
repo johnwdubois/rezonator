@@ -129,16 +129,16 @@ function scr_drawElmoScreen() {
 	
 		// draw button text
 		if(openingScreen) {
-			draw_text((firstButtonRectX1 + firstButtonRectX2)/2, (firstButtonRectY1 + firstButtonRectY2)/2, "Play");
-			draw_text((secondButtonRectX1 + secondButtonRectX2)/2, (secondButtonRectY1 + secondButtonRectY2)/2, "Exit");
+			draw_text((firstButtonRectX1 + firstButtonRectX2)/2, (firstButtonRectY1 + firstButtonRectY2)/2, scr_get_translation("msg_play"));
+			draw_text((secondButtonRectX1 + secondButtonRectX2)/2, (secondButtonRectY1 + secondButtonRectY2)/2, scr_get_translation("msg_exit"));
 		
-			draw_text((elmoScreenRectX1 + elmoScreenRectX2)/2, elmoScreenRectY1 + 90, "Where's Elmo?\n\n Click on words to add them to the Track chain!\n Press [Enter] to submit your answer!");
+			draw_text((elmoScreenRectX1 + elmoScreenRectX2)/2, elmoScreenRectY1 + 90, scr_get_translation("msg_where-is-elmo_instructions"));
 		}
 		else if(endingScreen) {
-			draw_text((firstButtonRectX1 + firstButtonRectX2)/2, (firstButtonRectY1 + firstButtonRectY2)/2, "Exit");
-			draw_text((secondButtonRectX1 + secondButtonRectX2)/2, (secondButtonRectY1 + secondButtonRectY2)/2, "Play");
+			draw_text((firstButtonRectX1 + firstButtonRectX2)/2, (firstButtonRectY1 + firstButtonRectY2)/2, scr_get_translation("msg_exit"));
+			draw_text((secondButtonRectX1 + secondButtonRectX2)/2, (secondButtonRectY1 + secondButtonRectY2)/2, scr_get_translation("msg_play"));
 	
-			draw_text((elmoScreenRectX1 + elmoScreenRectX2)/2, elmoScreenRectY1 + 90, "Good Job!\n\n Here's your score: \n" + scoreString);
+			draw_text((elmoScreenRectX1 + elmoScreenRectX2)/2, elmoScreenRectY1 + 90, scr_get_translation("msg_elmo_score")+ scoreString);
 		}
 	}
 

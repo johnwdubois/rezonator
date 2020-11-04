@@ -16,7 +16,7 @@ function scr_swapLine() {
 
 
 	if (obj_control.swapLinePos2 <= 0 or obj_control.swapLinePos2 > ds_grid_height(obj_control.lineGrid)) {
-		show_message("Please input a number in range.");
+		show_message(scr_get_translation("msg_number-range"));
 		exit;
 	}
 

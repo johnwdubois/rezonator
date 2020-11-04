@@ -31,7 +31,7 @@ function scr_gridToJSONLists(argument0) {
 			{
 				var valueList = ds_list_create();
 				if (typeof(value) == "string") {
-					show_message("Error:" + value);
+					show_message(scr_get_translation("msg_error_type") + value);
 				}
 			
 				ds_list_copy(valueList, value);

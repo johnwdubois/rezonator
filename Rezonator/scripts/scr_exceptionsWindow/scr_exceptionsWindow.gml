@@ -18,7 +18,7 @@ function scr_exceptionsWindow() {
 	draw_set_halign(fa_left);
 
 	draw_set_valign(fa_middle);
-	draw_text(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1 - string_height("0"), "Exceptions");
+	draw_text(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1 - string_height("0"), scr_get_translation("label_exceptions"));
 
 
 

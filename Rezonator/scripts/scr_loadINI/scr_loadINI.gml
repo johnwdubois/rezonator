@@ -28,7 +28,7 @@ function scr_loadINI() {
 
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
-		show_message("Error in Loading USERSETTINGS.INI");
+		show_message(scr_get_translation("error_ini-loading"));
 		exit;
 	}
 
@@ -46,7 +46,7 @@ function scr_loadINI() {
 		var wrapper = scr_loadJSONBuffer(fileName);
 	
 		if (not ds_exists(wrapper, ds_type_map)) {
-			show_message("Error loading " + fileName + "\n" + "UserSettings file out of date.");
+			show_message(scr_get_translation("msg_error_loading") + fileName + "\n" + scr_get_translation("error_user-outdated"));
 			exit;
 		}
 	

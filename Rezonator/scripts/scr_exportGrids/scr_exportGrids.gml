@@ -1,11 +1,11 @@
 function scr_exportGrids() {
 	// User will specify a name and a location for the CSV folder
 
-	global.fileSaveName = get_save_filename_ext("CSV file|*.csv", string_lettersdigits(filename_name(global.fileSaveName)), program_directory, "Choose a Location for the CSV Folder");
+	global.fileSaveName = get_save_filename_ext("CSV file|*.csv", string_lettersdigits(filename_name(global.fileSaveName)), program_directory, scr_get_translation("msg_save_csv"));
 	// Check if the name is valid, or if the user exited the window
 	if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 		global.fileSaveName = "undefined";
-		show_message("Error in saving");
+		show_message(scr_get_translation("save_error"));
 		exit;
 	}
 

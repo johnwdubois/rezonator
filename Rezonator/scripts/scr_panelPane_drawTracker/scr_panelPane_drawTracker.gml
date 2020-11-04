@@ -72,7 +72,7 @@ function scr_panelPane_drawTracker() {
 		draw_set_font(fnt_mainBold);
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeText);
-		draw_text(0 + 5, yBase + (newYheight/2), "End StackShow");
+		draw_text(0 + 5, yBase + (newYheight/2), scr_get_translation("msg_end_stackshow"));
 
 
 		var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
@@ -231,12 +231,12 @@ function scr_panelPane_drawTracker() {
 		// move counter text
 		draw_set_font(fnt_panelTab);
 		draw_set_color(global.colorThemeText);
-		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightCounterText, "Move Counter: "+ string(obj_control.moveCounter) +"");
+		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightCounterText, scr_get_translation("msg_move_counter")+ string(obj_control.moveCounter) +"");
 	
 		// timer text
 		draw_set_font(fnt_panelTab);
 		draw_set_color(global.colorThemeText);
-		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightTimerText, "Time Taken: "+ displayMinutes + ":"+ displaySeconds );
+		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightTimerText, scr_get_translation("msg_time_taken")+ displayMinutes + ":"+ displaySeconds );
 	
 
 		// reset button
@@ -265,7 +265,7 @@ function scr_panelPane_drawTracker() {
 		// reset text
 		draw_set_font(fnt_mainBold);
 		draw_set_color(global.colorThemeText);
-		draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, "RESET");
+		draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, scr_get_translation("label_reset"));
 	//}
 	
 

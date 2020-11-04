@@ -26,7 +26,7 @@ function scr_jumpToLine(argument0, argument1) {
 
 	if (string_length(string_digits(lineStr)) < string_length(lineStr)
 	or string_length(lineStr) < 1) {
-		show_message("Numbers only.");
+		show_message(scr_get_translation("msg_numbers_only"));
 		exit;
 	}
 

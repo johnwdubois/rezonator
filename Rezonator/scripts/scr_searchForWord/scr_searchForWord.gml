@@ -279,7 +279,7 @@ function scr_searchForWord() {
 	}
 	else {
 		// If matches weren't found, keep the user's place
-		show_message("Search string not found");
+		show_message(scr_get_translation("msg_string-notfound"));
 		if (ds_grid_height(oldSearch) > 0) {
 			ds_grid_copy(obj_control.searchGrid, oldSearch);
 			ds_grid_copy( obj_control.hitGrid, oldHit);

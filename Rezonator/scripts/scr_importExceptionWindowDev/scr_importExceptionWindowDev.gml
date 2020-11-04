@@ -142,7 +142,7 @@ function scr_importExceptionWindowDev() {
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(exceptionInfoWindowRectX1, floor(exceptionInfoWindowRectY1 - string_height("0")), "Mark Exceptions");
+	draw_text(exceptionInfoWindowRectX1, floor(exceptionInfoWindowRectY1 - string_height("0")), scr_get_translation("label_mark_exceptions"));
 
 
 	// draw exception Info window border
@@ -194,7 +194,7 @@ function scr_importExceptionWindowDev() {
 	draw_set_font(fnt_main);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 
 
 }

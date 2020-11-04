@@ -78,10 +78,10 @@ function scr_speakerLabelOptions(argument0) {
 					}
 					
 					if(scr_compareLists(checkList1, checkList2)){
-						show_message("Congratulations! The Conversation is back in order.");
+						show_message(scr_get_translation("msg_congrats"));
 					}
 					else{
-						show_message("Sorry! Some lines are still out of order.");
+						show_message(scr_get_translation("msg_lines-notordered"));
 					}
 					
 					

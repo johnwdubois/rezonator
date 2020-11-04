@@ -10,7 +10,7 @@ function scr_importPlainTextDraw() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(20 + sprite_get_width(spr_backArrow), 20, "Plain Text Import");
+	draw_text(20 + sprite_get_width(spr_backArrow), 20, scr_get_translation("msg_plain-import"));
 
 
 
@@ -27,10 +27,10 @@ function scr_importPlainTextDraw() {
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), "File");
+	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), scr_get_translation("msg_file"));
 
 	draw_set_font(fnt_main);
-	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + string_height("0"), "File name: " + filename_name(global.importFilename));
+	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + string_height("0"), scr_get_translation("msg_file-name") + filename_name(global.importFilename));
 
 
 
@@ -60,11 +60,11 @@ function scr_importPlainTextDraw() {
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), "Summary");
+	draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), scr_get_translation("menu_summary"));
 
 	draw_set_font(fnt_main);
-	draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), "Total Lines found: " + string(ds_grid_height(global.importGrid)));
-	draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0")*3, "Input Speaker: ");
+	draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), scr_get_translation("label_total_lines_found") + string(ds_grid_height(global.importGrid)));
+	draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0")*3, scr_get_translation("msg_input_speaker"));
 	//draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + (string_height("0") * 2.5), "Tags found: " + string(ds_grid_height(tagInfoGrid)));
 
 
@@ -252,7 +252,7 @@ function scr_importPlainTextDraw() {
 	draw_set_font(fnt_main);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 
 
 

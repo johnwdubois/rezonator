@@ -5,11 +5,11 @@ function scr_rezPlay() {
 	var newWordsAdded = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1) == obj_control.wordStateNormal ? false : true;
 
 	if (stackRowInLinkGrid >= 0 or newWordsAdded) {
-		show_message("Cannot Rez-Play for tracks or stacks yet");
+		show_message(scr_get_translation("msg_cannot_play_rez"));
 		exit;
 	}
 	if (ds_grid_height(obj_chain.linkGrid) < 1) {
-		show_message("No links to play back");
+		show_message(scr_get_translation("msg_no_playback"));
 		exit;
 	}
 

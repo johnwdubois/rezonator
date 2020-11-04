@@ -35,7 +35,7 @@ function scr_newOrOpen() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), "New Project");
+	draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), scr_get_translation("msg_new-project"));
 
 
 
@@ -60,7 +60,7 @@ function scr_newOrOpen() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), "Open Project");
+	draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), scr_get_translation("msg_open-project"));
 
 
 

@@ -88,7 +88,7 @@ function scr_cliqueGridCheckForBreak(argument0) {
 		{
 			if (obj_control.showDevMessages)
 			{
-				show_message("Break detected in display column " + string(displayColCheck));
+				show_message(scr_get_translation("msg_break-detected") + string(displayColCheck));
 			}
 		
 			/*
@@ -102,7 +102,7 @@ function scr_cliqueGridCheckForBreak(argument0) {
 			
 				if (obj_control.showDevMessages)
 				{
-					show_message("Re-inserting chain " + string(cliqueGridChainIDTakenOut));
+					show_message(scr_get_translation("msg_insert-chain") + string(cliqueGridChainIDTakenOut));
 				}
 			}
 		
@@ -142,7 +142,7 @@ function scr_cliqueGridCheckForBreak(argument0) {
 			
 				if (obj_control.showDevMessages)
 				{
-					show_message("Taking out chain " + string(cliqueGridChainIDTakenOut));
+					show_message(scr_get_translation("msg_take-chain") + string(cliqueGridChainIDTakenOut));
 				}
 			}
 		

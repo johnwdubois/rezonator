@@ -73,7 +73,7 @@ function scr_fileOptions(argument0) {
 		
 				}
 				else {
-					if (show_question("Would you like to save before importing new data?")) {
+					if (show_question(scr_get_translation("question_save_before_import"))) {
 						with (obj_fileLoader) {
 							scr_saveREZ(false);
 						}
@@ -94,7 +94,7 @@ function scr_fileOptions(argument0) {
 			//draw_set_font(obj_toolPane.progressBarFont);
 			//draw_set_halign(fa_left);
 			//draw_set_valign(fa_middle);
-			//draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Exporting...");
+			//draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_exporting"));
 			//draw_set_font(fnt_dropDown);
 		
 			obj_fileLoader.ableToHotkey = false;
@@ -152,7 +152,7 @@ function scr_fileOptions(argument0) {
 		
 				}
 				else {
-					if (show_question("Would you like to save before exiting?")) {
+					if (show_question(scr_get_translation("question_save_before_exit"))) {
 						with(obj_fileLoader){
 							scr_saveREZ(false);
 						}

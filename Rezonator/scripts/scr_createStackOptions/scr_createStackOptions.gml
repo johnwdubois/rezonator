@@ -15,7 +15,7 @@ function scr_createStackOptions(argument0) {
 	
 		case "Default":
 			// need to make this into custom message
-			show_message("Click or Drag on Speaker Labels to create default stacks.");
+			show_message(scr_get_translation("msg_drag-speaker"));
 			if(obj_toolPane.currentMode == obj_toolPane.modeRead ) {
 				obj_toolPane.currentMode = obj_toolPane.modeTrack;	
 			}

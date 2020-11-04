@@ -6,11 +6,11 @@ function scr_showStackOptions(argument0) {
 	
 		case "Default":
 
-			show_message("Show Default Stacks");
+			show_message(scr_get_translation("msg_default-stack"));
 			break;
 		case "Random":
 
-			show_message("Show Random Stacks");
+			show_message(scr_get_translation("msg_random-stack"));
 			break;
 		default:
 			break;
