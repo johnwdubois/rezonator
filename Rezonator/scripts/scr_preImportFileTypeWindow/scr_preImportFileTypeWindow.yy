@@ -6,7 +6,7 @@
     "path": "folders/Scripts/import_export.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_preImportScreen",
+  "name": "scr_preImportFileTypeWindow",
   "tags": [],
   "resourceType": "GMScript",
 }

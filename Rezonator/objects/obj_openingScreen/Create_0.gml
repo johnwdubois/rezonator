@@ -57,16 +57,20 @@ global.games = false;
 
 
 global.importType_Default = 0;
-global.importType_CSV = 1;
-global.importType_CoNLLU = 2;
-global.importType_IGT = 3;
-global.importType_PlainText = 4;
-global.importType_TabDelimited = 5;
+global.importType_CSV = "CSV";
+global.importType_CoNLLU = "CoNLL-U";
+global.importType_IGT = "Interlinear Glossed Text";
+global.importType_PlainText = "Plain text";
+global.importType_TabDelimited = "Tab delimited";
 global.importType = global.importType_PlainText;
 
 // create list to hold all the import types (so we can loop over them easily)
-importTypeList = ds_list_create();
-ds_list_add(importTypeList, "Plain text", "Tab delimited", "Interlinear Glossed Text", "CSV", "CoNLL-U");
+global.importTypeList = ds_list_create();
+ds_list_add(global.importTypeList, global.importType_PlainText,
+	global.importType_TabDelimited,
+	global.importType_IGT,
+	global.importType_CSV,
+	global.importType_CoNLLU);
 
 
 
@@ -397,3 +401,4 @@ global.optionListTypePlayAndLearn = 43;
 global.optionListTypeNav = 44;
 
 scr_preImportInitiate();
+showPreImportScreen = false;

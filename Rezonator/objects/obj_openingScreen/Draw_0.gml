@@ -60,15 +60,14 @@ if (obj_openingScreen.showDevVars) {
 
 
 
-
+showPreImportScreen = (global.newProject and not global.openProject);
+if (showPreImportScreen) {
+	scr_preImportScreen();
+}
 
 	
 if not (global.newProject or global.openProject) {
 	scr_openingMenu();
-}
-else if (global.newProject and not global.openProject) {
-	//scr_newProjectWindow();
-	scr_preImportScreen();
 }
 else if (not global.newProject and global.openProject) {
 //show_message("elmo: " + string(global.wheresElmo) + "  , rezzles: " +string(global.rezzles) + "  , tutorial: " +string(global.tutorial))
