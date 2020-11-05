@@ -270,7 +270,7 @@ function scr_openingMenu() {
 	if (mouseoverDocumenation ) {
 		draw_text(documentationButtonX2 + 5, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
 		if(mouse_check_button_released(mb_left)){
-			url_open("https://rezonator.com/documentation/");
+			scr_openURL("https://rezonator.com");
 		}
 	}
 

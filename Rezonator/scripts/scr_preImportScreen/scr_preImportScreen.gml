@@ -4,9 +4,7 @@ function scr_preImportScreen(){
 	
 	scr_fontSizeControlOpeningScreen();
 	scr_drawBackArrow();
-	
-	// draw logo higher than usual
-	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 7, false);
+
 	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
@@ -246,7 +244,14 @@ function scr_preImportScreen(){
 	
 	
 	
-	
+	// cover-up rectangle
+	var coverupRectX1 = linksWindowX2 + 2;
+	var coverupRectY1 = 0;
+	var coverupRectX2 = camWidth;
+	var coverupRectY2 = camHeight;
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_rectangle(coverupRectX1, coverupRectY1, coverupRectX2, coverupRectY2, false);
 	
 	
 	
@@ -284,6 +289,14 @@ function scr_preImportScreen(){
 		scr_openXML();
 		
 	}
+	
+	
+
+	
+	
+	// draw logo higher than usual
+	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 7, false);
+
 	
 	
 	

@@ -8,10 +8,10 @@ function scr_helpOptions(argument0) {
 			obj_panelPane.functionHelp_collapsed = !obj_panelPane.functionHelp_collapsed;
 			break;
 		case "Docs":// hide/show rez chains
-			url_open("http://rezonator.com/documentation/");
+			scr_openURL("http://rezonator.com/documentation/");
 			break;
 		case "About":// hide/show stack chains
-			url_open("http://rezonator.com/");
+			scr_openURL("http://rezonator.com/");
 			break;
 		default:
 			break;
