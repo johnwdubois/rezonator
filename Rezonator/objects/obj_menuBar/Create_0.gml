@@ -63,8 +63,8 @@ ds_list_add(editOptionList, "Insert", "Paste", "Delete", "Edit", "Split", "Resto
 
 editOptionList = ds_list_create();
 ds_list_add(editOptionList, "Delete All",
-							scr_get_translation("menu_goToLine"),
-							scr_get_translation("menu_goToTime"));
+							scr_get_translation("menu_go-to-line"),
+							scr_get_translation("menu_go-to-time"));
 
 viewOptionList = ds_list_create();
 ds_list_add(viewOptionList, "Window", 

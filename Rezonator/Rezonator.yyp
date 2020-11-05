@@ -751,7 +751,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"CSV-Schema.rzs","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"README.txt","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_it.json","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc003.csv","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc004.csv","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc001.csv","resourceType":"GMIncludedFile",},
@@ -2823,6 +2822,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc012.csv","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc016.csv","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc015.csv","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.0.529",

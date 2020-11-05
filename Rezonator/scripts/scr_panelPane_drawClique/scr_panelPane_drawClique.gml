@@ -23,7 +23,7 @@ function scr_panelPane_drawClique() {
 	draw_set_font(fnt_searchPaneBold);
 
 	draw_line(x, y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
-	draw_text(x + textMarginLeft, y + textMarginTop, scr_get_translation("label_clique"));
+	draw_text(x + textMarginLeft, y + textMarginTop, scr_get_translation("menu_clique"));
 
 	draw_set_font(fnt_searchPane);
 

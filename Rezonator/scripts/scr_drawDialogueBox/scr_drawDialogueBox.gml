@@ -650,7 +650,7 @@ function scr_drawDialogueBox() {
 			if (obj_control.recolor) {
 				//scr_dialogueBoxRecolor();
 				if( string_digits(obj_control.inputText) == "" ){
-					show_message( scr_get_translation("msg_numbers-only") );
+					show_message( scr_get_translation("msg_numbers_only") );
 				}
 				else{
 					if (grid != obj_chain.stackChainGrid){
@@ -789,7 +789,7 @@ function scr_drawDialogueBox() {
 		if (obj_control.recolor) {
 			//scr_dialogueBoxRecolor();
 			if( string_digits(obj_control.inputText) == "" ){
-				show_message( scr_get_translation("msg_numbers-only") );
+				show_message( scr_get_translation("msg_numbers_only") );
 			}
 			else{
 				if (grid != obj_chain.stackChainGrid){
