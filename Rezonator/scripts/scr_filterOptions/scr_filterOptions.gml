@@ -62,6 +62,12 @@ function scr_filterOptions(argument0) {
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
 			
 			if(obj_control.filterGridActive){
+				if(obj_control.currentCenterDisplayRow >= 0) { // Make sure the current center display row is within bounds
+					// Keep the focus on previous currentCenterDisplayRow
+					with (obj_control) {
+						alarm[5] = 3;
+					}
+				}
 				obj_control.filterGridActive = false;
 				obj_control.currentActiveLineGrid = obj_control.lineGrid;
 			}
