@@ -30,7 +30,7 @@ function scr_preImportInitiate(){
 			// example
 			ds_list_add(exampleList, "LENORE;        0.0     9.21    … So you don't need to go … borrow equipment from anybody,","LENORE;        9.21    9.52    to —","LENORE;        9.52    14.1    … to do the feet?","LENORE;        14.1    15.78    … [Do the hooves]?","LENORE;        56.94    57.79    [Did they train you-] —","LENORE;        58.34    59.29    [2Did] they train you that — ","LENORE;        59.29    60.06    #[3#]*","LENORE;        60.73    61.8    ‥ [So you have your] own equipment,","LENORE;        61.8      62.05    but,","LENORE;        131.39    131.59    yeah,","LENORE;        131.59    131.93    [I bet].","LENORE;        166.65    167.05    [mhm].","LENORE;        178.23    178.44    [really].","LENORE;        252.54    252.74    [(AHEM)]","LENORE;        254.12    254.64    [2(AHEM)]","LENORE;        265.43    265.73    [farrier]?","LENORE;        297.67    299.69    You sai[d you never] made the horseshoes,","LENORE;        299.69    299.9    but,","LENORE;        352.07    352.57    [So every] —","LENORE;        352.57    353.42    [2every] uh:,","LENORE;        353.42    354.53    horseshoe is made —","LENORE;        354.53    355.62    custom-made for the horse then?","LENORE;        400.94    401.15    [Right].","LENORE;        411.19    411.54    [(AHEM)]","LENORE;        421.78    422.69    [How many have you got].","LENORE;        424.04    424.29    twen[ty].","LENORE;        497.85    498.29    [#What].","LENORE;        516.71    519.309    [I thought] they used the (AHEM) the horsehooves in ‥ for gelatin,","LENORE;        519.309    520.059    That's not so?","LENORE;        636.97    637.34    [Right].","LENORE;        725.31    726.08    … [Yeah].","LENORE;        726.69    726.89    [2#]","LENORE;        737.16    737.44    [Yeah].","LENORE;        873.35    873.76    M[hm],","LENORE;        908.36    909.06    (TSK) Why:.");
 			// description
-			ds_list_add(descriptionList, "s");
+			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by tabs");			
 			// links
 			ds_list_add(linksList, "https://rezonator.com");
 		}
@@ -38,9 +38,9 @@ function scr_preImportInitiate(){
 		// IGT
 		else if (importTypeStr == "Interlinear Glossed Text") {
 			// example
-			ds_list_add(exampleList, "W");
+			ds_list_add(exampleList, "\\ref","\\m","\\gl","\\tln","","1","(...) (H) Ee x-Ø-inw-il-anh ,","(...) (H) FOC CP-3.ABS-1.ERG-see-TV ,","(...) (H) What I saw was","","2","(.) x-Ø-aq'hn jun achenh ,","(.) CP-3.ABS-ascend one man ,","(.) a man climbed up, ","","3","(.) ch-u' chee' ,","(.) at-top tree ,","(.) in a tree,","","4","(...) (H) x-Ø-a-r: (...) ch'up-o' niky'aj péera-s .","(...) (H) CP-3.ABS-LAT-3.ERG (...) pick-DEP some pear-PL .","(...) (H) he went and (...) picked some pears.","","5","(...) Tik'ara' Ø-Ø-qaaj-uu:l ,","(...) then CP-3.ABS-descend-hither ,","(...) Then he came dow:n,","","6","(...) Ø-Ø-r-su' r-iij juu:n ,","(...) CP-3.ABS-3.ERG-wipe 3.ERG-back one ,","(...) he wiped one off,","","7","(...) (H) ii despwee:s ,","(...) (H) and then ,","(...) (H) and the:n,","","8","(...) (H) x-Ø-r-ya' qaj p l chikech ,","(...) (H) CP-3.ABS-3.ERG-put down at the basket ,","(...) (H) he put it in the basket,","","9","Ø-Ø-r-alsa-aj p l r:- (...) komo ber gabaacha .","CP-3.ABS-3.ERG-remove-TV at the 3.ERG (...) like see apron .","he removed it from his: (...) um like apron.","","10","(...) Despwees tik'ara' ,","(...) then then ,","(...) Then,","","11","(...) Ø-Ø-pee jun aj-laab' ,","(...) CP-3.ABS-come one DIM-boy ,","(...) a little boy came,","","12","(.) ch-ij bisikleeta ,","(.) at-back bicycle ,","(.) on a bicycle,","","13","(...) (H) xaq x-Ø-a-r-k'am-a' jun chkech peera .","(...) (H) just CP-3.ABS-LAT-3.ERG-take-DEP one basket pear .","(...) (H) he just came and took a basket of pears.");
 			// description
-			ds_list_add(descriptionList, "s");
+			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by lines", "• blocks of lines denote units");
 			// links
 			ds_list_add(linksList, "https://scription.digitallinguistics.io/");
 		}
