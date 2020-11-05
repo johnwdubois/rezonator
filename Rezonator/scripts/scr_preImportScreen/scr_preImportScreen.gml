@@ -153,12 +153,36 @@ function scr_preImportScreen(){
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(infoAlpha);
 	for (var i = 0; i < exampleWindowListSize; i++) {
-		var currentText = ds_list_find_value(exampleWindowList, i);
-		var currentTextX = floor(exampleWindowX1 + textBufferLeft);
-		var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
-		if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
-			draw_text(currentTextX, currentTextY, currentText);
+		
+		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT) {
+			var currentText = ds_list_find_value(exampleWindowList, i);
+			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
+			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
+			if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
+				draw_text(currentTextX, currentTextY, currentText);
+			}
 		}
+		else if (global.importType == global.importType_TabDelimited) {
+			
+			
+			
+			var currentList = ds_list_find_value(exampleWindowList, i);
+			if (typeof(currentList) == "number") {
+				var currentListSize = ds_list_size(currentList);
+				var colWidth = (exampleWindowX2 - exampleWindowX1) / exampleWindowListSize;
+			
+				for (var j = 0; j < currentListSize; j++) {
+					var currentText = ds_list_find_value(currentList, j);
+					var currentTextX = floor(exampleWindowX1 + textBufferLeft + (colWidth * i));
+					var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * j));
+					if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
+						draw_text(currentTextX, currentTextY, currentText);
+					}
+				}
+			}
+			
+		}
+		
 	}
 	
 	
