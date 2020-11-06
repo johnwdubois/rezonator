@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportFileTypeWindow(){
 	
-	if (live_call()) return live_result;
-	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	
@@ -47,31 +45,36 @@ function scr_preImportFileTypeWindow(){
 	
 
 	
-	// loop through import types and draw radio buttons for each  
-	var importTypeListSize = ds_list_size(global.importTypeList);
+	// loop through import types and draw radio buttons for each
+	var importTypeList = displayImportTypeList;
+	var importTypeListSize = ds_list_size(importTypeList);
 	for (var i = 0; i < importTypeListSize; i++) {
 		
-		var currentImportType = ds_list_find_value(global.importTypeList, i);
+		var currentImportType = ds_list_find_value(importTypeList, i);
 		
 		// determine whether currentImportType is selected
 		var currentImportTypeSelected = false;
-		if (currentImportType == global.importType_PlainText && global.importType == global.importType_PlainText) {
+		if (currentImportType == global.importType_PlainText && importTypeSelected == global.importType_PlainText) {
 			currentImportTypeSelected = true;
 			currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType_PlainText);
 		}
-		else if (currentImportType == global.importType_TabDelimited && global.importType == global.importType_TabDelimited) {
+		else if (currentImportType == global.importType_TabDelimited && importTypeSelected == global.importType_TabDelimited) {
 			currentImportTypeSelected = true;
 			currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType_TabDelimited);
 		}
-		else if (currentImportType == global.importType_IGT && global.importType == global.importType_IGT) {
+		else if (currentImportType == global.importType_IGT && importTypeSelected == global.importType_IGT) {
 			currentImportTypeSelected = true;
 			currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType_IGT);
 		}
-		else if (currentImportType == global.importType_CSV && global.importType == global.importType_CSV) {
+		else if (currentImportType == "Interlinear Glossed Text (Scription)" && importTypeSelected == "Interlinear Glossed Text (Scription)") {
+			currentImportTypeSelected = true;
+			currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType_IGT);
+		}
+		else if (currentImportType == global.importType_CSV && importTypeSelected == global.importType_CSV) {
 			currentImportTypeSelected = true;
 			currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType_CSV );
 		}
-		else if (currentImportType == global.importType_CoNLLU && global.importType == global.importType_CoNLLU) {
+		else if (currentImportType == global.importType_CoNLLU && importTypeSelected == global.importType_CoNLLU) {
 			currentImportTypeSelected = true;
 			currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType_CoNLLU);
 		}
@@ -80,7 +83,6 @@ function scr_preImportFileTypeWindow(){
 		var buttonLeftBuffer = radioButtonRad + 30;
 		var buttonTopBuffer = radioButtonRad + 10;
 		var buttonX = fileTypeWindowX1 + buttonLeftBuffer;
-		//var buttonY = fileTypeWindowY1 + (strHeight * 1.5 * i) + scrollPlusY;
 		var buttonY = fileTypeWindowY1 + buttonTopBuffer + (strHeight * 1.5 * i) + scrollPlusY;
 		draw_set_color(global.colorThemeBorders);
 		draw_circle(buttonX - clipX, buttonY - clipY, radioButtonRad, true);
@@ -99,20 +101,12 @@ function scr_preImportFileTypeWindow(){
 		
 		// click on radio button
 		if (mouseoverButton && mouse_check_button_released(mb_left)) {
-			if (currentImportType == global.importType_PlainText) {
-				global.importType = global.importType_PlainText;
-			}
-			else if (currentImportType == global.importType_TabDelimited) {
-				global.importType = global.importType_TabDelimited;
-			}
-			else if (currentImportType == global.importType_IGT) {
+			importTypeSelected = currentImportType;
+			if (currentImportType == "Interlinear Glossed Text (Scription)") {
 				global.importType = global.importType_IGT;
 			}
-			else if (currentImportType == global.importType_CSV) {
-				global.importType = global.importType_CSV;
-			}
-			else if (currentImportType == global.importType_CoNLLU) {
-				global.importType = global.importType_CoNLLU;
+			else {
+				global.importType = importTypeSelected;
 			}
 		}
 		
@@ -120,9 +114,10 @@ function scr_preImportFileTypeWindow(){
 		draw_set_valign(fa_middle);
 		var textX = fileTypeWindowX1 + (buttonLeftBuffer * 1.5) + radioButtonRad;
 		var textY = floor(buttonY);
+		var textStr = (currentImportType == global.importType_IGT) ? string(global.importType_IGT + " (General)") : string(currentImportType);
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
-		draw_text(textX - clipX, textY - clipY, string(currentImportType));
+		draw_text(textX - clipX, textY - clipY, textStr);
 		
 	}
 	draw_set_valign(fa_top);
