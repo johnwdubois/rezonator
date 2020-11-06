@@ -267,7 +267,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeText);
 	//draw_text(documentationButtonX1, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
 
-	if (mouseoverDocumenation ) {
+	if (mouseoverDocumenation && documentationButtonActive) {
 		draw_text(documentationButtonX2 + 5, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
 		if(mouse_check_button_released(mb_left)){
 			scr_openURL("https://rezonator.com");

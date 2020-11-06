@@ -28,6 +28,8 @@ function scr_importTXT(argument0) {
 		// remove line breaks from line
 		lineInFile = string_replace_all(lineInFile, "\n", "");
 		lineInFile = string_replace_all(lineInFile, "\r", "");
+		
+		show_debug_message("lineInFile: " + string(lineInFile));
 	
 		ds_grid_resize(global.importTXTLineGrid, global.importTXTLineGridWidth, ds_grid_height(global.importTXTLineGrid) + 1);
 		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colLine, ds_grid_height(global.importTXTLineGrid) - 1, lineInFile);

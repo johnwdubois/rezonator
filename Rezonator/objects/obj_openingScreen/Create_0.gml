@@ -329,6 +329,12 @@ scr_fontGlobalUpdate();
 canPressMinus = true;
 canPressPlus = true;
 
+// put a small delay on activating the documentation button, so that users won't accidentally
+// click on it when hopping back to OpeningScreen
+documentationButtonActive = false;
+alarm[3] = 3;
+
+
 alarm[2] = 1;
 
 global.exitOut = false;
