@@ -74,7 +74,7 @@ function scr_preImportInitiate(){
 			ds_list_add(exampleList, csvCol1, csvCol2, csvCol3, csvCol4, csvCol5, csvCol6, csvCol7);
 			
 			// description
-			ds_list_add(descriptionList, "• file extension: *.csv", "• One word per line");
+			ds_list_add(descriptionList, "• file extension: *.csv", "• one word per line", "• unit delimiting field is required");
 			// links
 			ds_list_add(linksList, "https://rezonator.com");
 		}
@@ -82,9 +82,9 @@ function scr_preImportInitiate(){
 		// CoNLL-U
 		else if (importTypeStr == global.importType_CoNLLU) {
 			// example
-			ds_list_add(exampleList, "# newdoc id = GUM_interview_cyclone","# sent_id = GUM_interview_cyclone-1","# text = Wikinews interviews meteorological experts on Cyclone Phalin","# s_type=decl","1	Wikinews	Wikinews	PROPN	NNP	Number=Sing	2	subj	_	Entity=(organization-1)","2	interviews	interview	VERB	VBZ	Mood=IndNumber=SingPerson=3Tense=PresVerbForm=Fin	0	root	_	_","3	meteorological	meteorological	ADJ	JJ	Degree=Pos	4	mod	_	Entity=(person-2","4	experts	expert	NOUN	NNS	Number=Plur	2	compobj	_	Entity=person-2)","5	on	on	ADP	IN	_	2	udep	_	_","6	Cyclone	Cyclone	PROPN	NNP	Number=Sing	5	compobj	_	Entity=(event-3","7	Phalin	Phalin	PROPN	NNP	Number=Sing	6	flat	_	Entity=event-3)","","# sent_id = GUM_interview_cyclone-2","# text = File photo of interviewee David Titley.","# s_type=frag","1	File	File	NOUN	NN	Number=Sing	2	compound	_	Entity=(object-4","2	photo	photo	NOUN	NN	Number=Sing	0	root	_	_","3	of	of	ADP	IN	_	2	udep	_	_","4	interviewee	interviewee	NOUN	NN	Number=Sing	3	compobj	_	Entity=(person-5","5	David	David	PROPN	NNP	Number=Sing	4	flat	_	_","6	Titley	Titley	PROPN	NNP	Number=Sing	4	flat	_	Entity=object-4)person-5)SpaceAfter=No","7	.	.	PUNCT	.	_	2	punct	_	_","","# sent_id = GUM_interview_cyclone-3","# text = Image David Titley.","# s_type=frag","1	Image	image	NOUN	NN	Number=Sing	0	root	_	Entity=(object-4)SpaceAfter=No","2			PUNCT		_	3	punct	_	_","3	David	David	PROPN	NNP	Number=Sing	1	unk	_	Entity=(person-5","4	Titley	Titley	PROPN	NNP	Number=Sing	3	flat	_	Entity=person-5)SpaceAfter=No","5	.	.	PUNCT	.	_	1	punct	_	_");
+			ds_list_add(exampleList, "# newdoc id = GUM_interview_cyclone","# sent_id = GUM_interview_cyclone-1","# text = Wikinews interviews meteorological experts on Cyclone Phalin","# s_type=decl","1    Wikinews    Wikinews    PROPN    NNP    Number=Sing    2    subj    _    Entity=(organization-1)","2    interviews    interview    VERB    VBZ    Mood=IndNumber=SingPerson=3Tense=PresVerbForm=Fin    0    root    _    _","3    meteorological    meteorological    ADJ    JJ    Degree=Pos    4    mod    _    Entity=(person-2","4    experts    expert    NOUN    NNS    Number=Plur    2    compobj    _    Entity=person-2)","5    on    on    ADP    IN    _    2    udep    _    _","6    Cyclone    Cyclone    PROPN    NNP    Number=Sing    5    compobj    _    Entity=(event-3","7    Phalin    Phalin    PROPN    NNP    Number=Sing    6    flat    _    Entity=event-3)","","# sent_id = GUM_interview_cyclone-2","# text = File photo of interviewee David Titley.","# s_type=frag","1    File    File    NOUN    NN    Number=Sing    2    compound    _    Entity=(object-4","2    photo    photo    NOUN    NN    Number=Sing    0    root    _    _","3    of    of    ADP    IN    _    2    udep    _    _","4    interviewee    interviewee    NOUN    NN    Number=Sing    3    compobj    _    Entity=(person-5","5    David    David    PROPN    NNP    Number=Sing    4    flat    _    _","6    Titley    Titley    PROPN    NNP    Number=Sing    4    flat    _    Entity=object-4)person-5)SpaceAfter=No","7    .    .    PUNCT    .    _    2    punct    _    _");
 			// description
-			ds_list_add(descriptionList, "• file extension: *.txt");
+			ds_list_add(descriptionList, "• file extension: *.txt", "• unit fields denoted with # character", "• token fields delimited by tabs");
 			// links
 			ds_list_add(linksList, "https://universaldependencies.org/format.html");
 		}

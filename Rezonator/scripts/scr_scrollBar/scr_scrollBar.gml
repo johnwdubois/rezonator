@@ -1,4 +1,4 @@
-function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10) {
+function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight) {
 	/*
 		scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight);
 	
@@ -12,17 +12,6 @@ function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, ar
 	
 		Author: Terry DuBois
 	*/
-	var listSize = argument0;
-	var focusedElementY = argument1;
-	var strHeight = argument2;
-	var marginTop = argument3;
-	var scrollBackColor = argument4;
-	var scrollBarColor = argument5;
-	var scrollButtonColor1 = argument6;
-	var scrollButtonColor2 = argument7;
-	var scrollButtonSprite = argument8;
-	var windowWidth = argument9;
-	var windowHeight = argument10;
 
 
 

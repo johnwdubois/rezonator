@@ -57,7 +57,8 @@ function scr_preImportScreen(){
 	draw_set_alpha(infoAlpha);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
-		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT) {
+		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT ||
+			global.importType == global.importType_CoNLLU) {
 			var currentText = ds_list_find_value(exampleWindowList, i);
 			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
@@ -167,7 +168,7 @@ function scr_preImportScreen(){
 		var textRectX1 = currentTextX;
 		var textRectY1 = currentTextY;
 		var textRectX2 = textRectX1 + string_width(currentText);
-		var textRectY2 = textRectY1 + strHeight;
+		var textRectY2 = textRectY1 + (strHeight * 0.9);
 		if (point_in_rectangle(mouse_x, mouse_y, textRectX1, textRectY1, textRectX2, textRectY2)) {
 			draw_line_width(textRectX1, textRectY2, textRectX2, textRectY2, 2);
 			if (mouse_check_button_released(mb_left)) {
