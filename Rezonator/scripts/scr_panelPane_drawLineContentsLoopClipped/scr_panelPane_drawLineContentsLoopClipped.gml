@@ -335,7 +335,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 										if (ds_list_size(dropDownOptionList) > 0 ) {
 											var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
 											dropDownInst.optionList = dropDownOptionList;
-											dropDownInst.optionListType = dropDownInst.optionListTypeTokenTagMap;
+											dropDownInst.optionListType = global.optionListTypeTokenTagMap;
 
 										}
 								
@@ -395,7 +395,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 	var headerListSize = 3;
-	tokenContentsHeaderListSize = min(8,max(3,ds_grid_width(global.tokenImportGrid)));
+	tokenContentsHeaderListSize = min(8, max(3, ds_grid_width(global.tokenImportGrid)));
 	if (functionChainList_currentTab == functionChainList_tabLine) {
 		headerListSize = tokenContentsHeaderListSize;
 	}
@@ -449,6 +449,10 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 		}
 	
 		var notUnitOrDiscoOrWordTag = ((ds_list_find_index(global.unitImportColNameList, colName) == -1) && (ds_list_find_index(global.discoImportColNameList, colName) == -1) && (ds_list_find_index(global.wordImportColNameList, colName) == -1));
+		var isTildaField = false;
+		if (typeof(colName) == "string") {
+			isTildaField = (string_char_at(colName, 1) == "~");
+		}
 	
 	
 		// draw lines to separate columns
@@ -465,17 +469,17 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 	
 		// draw wordView button
-		var wordViewButtonSize = (tabHeight / 3);
+		var wordViewButtonSize = (tabHeight / 4);
 		var wordViewButtonX = colRectX2 - wordViewButtonSize - 4 + (windowWidth / 6);
-		var wordViewButtonY = colRectY1 + (tabHeight / 2);
+		var wordViewButtonY = colRectY1 + (tabHeight) - (tabHeight / 4)/2 - 10;
 	
 	
 		//draw token selection button
 		var dropDownButtonSize = sprite_get_width(spr_dropDown);
 		var dropDownRectX1 = wordViewButtonX - 16 - dropDownButtonSize;
-		var dropDownRectY1 = y + (dropDownButtonSize * 0.2);
+		var dropDownRectY1 = colRectY1 + (dropDownButtonSize * 0.6);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;
-		var dropDownRectY2 = y + tabHeight - (dropDownButtonSize * 0.2);
+		var dropDownRectY2 = colRectY1 + tabHeight - (dropDownButtonSize * 0.2);
 	
 		if (i >= 2) {
 			var tempColRectX2 = x + ((activeCols + 1) * (windowWidth / 6)) - (windowWidth / 6);
@@ -489,15 +493,15 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					}
 					obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Create Field");
-					if (notUnitOrDiscoOrWordTag) {
+					ds_list_add(dropDownOptionList, "Set as Transcription" , "Create Field");
+					if (notUnitOrDiscoOrWordTag && !isTildaField) {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
 					//ds_list_add(dropDownOptionList, "Set as Transcript");
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeTokenMarker;
+						dropDownInst.optionListType = global.optionListTypeTokenMarker;
 					}
 				}
 			}
@@ -527,7 +531,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 						if (ds_list_size(dropDownOptionList) > 0 ) {
 							var dropDownInst = instance_create_depth(colRectX2,colRectY1+tabHeight , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = dropDownInst.optionListTypeTokenSelection;
+							dropDownInst.optionListType = global.optionListTypeTokenSelection;
 							//obj_control.ableToCreateDropDown = false;
 							//obj_control.alarm[0] = 2;
 						}

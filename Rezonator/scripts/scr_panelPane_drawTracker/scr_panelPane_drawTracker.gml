@@ -97,35 +97,6 @@ function scr_panelPane_drawTracker() {
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle( chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, true);
 	
-		/*if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-		and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)) {
-		
-		// Unfocus any already focused chains
-		for (var j = 0; j < ds_grid_height(grid); j++) {
-			if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
-			}
-		}
-				
-		// Set chain to focus in the grid
-		ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
-		scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-				
-		
-		
-		
-			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Caption");
-		
-			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 1;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
-			}
-		}*/
 	
 	
 		//draw stack name text

@@ -1,4 +1,4 @@
-function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10) {
+function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight) {
 	/*
 		scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight);
 	
@@ -12,17 +12,6 @@ function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, ar
 	
 		Author: Terry DuBois
 	*/
-	var listSize = argument0;
-	var focusedElementY = argument1;
-	var strHeight = argument2;
-	var marginTop = argument3;
-	var scrollBackColor = argument4;
-	var scrollBarColor = argument5;
-	var scrollButtonColor1 = argument6;
-	var scrollButtonColor2 = argument7;
-	var scrollButtonSprite = argument8;
-	var windowWidth = argument9;
-	var windowHeight = argument10;
 
 
 
@@ -91,7 +80,7 @@ function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, ar
 	var scrollBarX1 = x + windowWidth - global.scrollBarWidth;
 	var scrollBarY1 = y + scrollBarPlusY + marginTop;
 	var scrollBarX2 = x + windowWidth;
-	var scrollBarY2 = scrollBarY1 + scrollBarHeight;
+	var scrollBarY2 = min(scrollBarY1 + scrollBarHeight, y + windowHeightAdjusted - global.scrollBarWidth + marginTop);
 
 	// Draw scrollbar background
 	draw_set_color(scrollBackColor);
@@ -101,8 +90,12 @@ function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, ar
 
 
 	// Scroll up button
+	var scrollUpButtonX1 = scrollBarX1;
+	var scrollUpButtonY1 = y + marginTop;
+	var scrollUpButtonX2 = scrollBarX2;
+	var scrollUpButtonY2 = y + global.scrollBarWidth + marginTop;
 	draw_set_color(scrollButtonColor1);
-	if (point_in_rectangle(mouse_x, mouse_y, scrollBarX1, y + marginTop, scrollBarX2, y + global.scrollBarWidth + marginTop)) {
+	if (point_in_rectangle(mouse_x, mouse_y, scrollUpButtonX1, scrollUpButtonY1, scrollUpButtonX2, scrollUpButtonY2)) {
 		draw_set_color(scrollButtonColor2);
 		if (mouse_check_button_pressed(mb_left)) {
 			scrollBarUpButtonHeld = true;
@@ -114,8 +107,12 @@ function scr_scrollBar(argument0, argument1, argument2, argument3, argument4, ar
 	draw_rectangle(scrollBarX1 - clipX, y + marginTop - clipY, scrollBarX2 - clipX, y + global.scrollBarWidth + marginTop - clipY, false);
 
 	// Scroll down button
+	var scrollDownButtonX1 = scrollBarX1;
+	var scrollDownButtonY1 = y + windowHeightAdjusted - global.scrollBarWidth + marginTop;
+	var scrollDownButtonX2 = scrollBarX2;
+	var scrollDownButtonY2 = y + windowHeightAdjusted + marginTop;
 	draw_set_color(scrollButtonColor1);
-	if (point_in_rectangle(mouse_x, mouse_y, scrollBarX1, y + windowHeightAdjusted - global.scrollBarWidth + marginTop, scrollBarX2, y + windowHeightAdjusted + marginTop)) {
+	if (point_in_rectangle(mouse_x, mouse_y, scrollDownButtonX1, scrollDownButtonY1, scrollDownButtonX2, scrollDownButtonY2)) {
 		draw_set_color(scrollButtonColor2);
 		if (mouse_check_button_pressed(mb_left)) {
 			scrollBarDownButtonHeld = true;

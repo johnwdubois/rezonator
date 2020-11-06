@@ -212,7 +212,8 @@ function scr_openingMenu() {
 	}
 
 	if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
-		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("menu_signin"));
+		//draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("menu_signin"));
+		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), "User Sign In");
 	}
 	draw_set_alpha(1);
 
@@ -269,7 +270,7 @@ function scr_openingMenu() {
 	if (mouseoverDocumenation ) {
 		draw_text(documentationButtonX2 + 5, floor(mean(documentationButtonY1, documentationButtonY2)), documentationStr);
 		if(mouse_check_button_released(mb_left)){
-			url_open("https://rezonator.com/documentation/");
+			scr_openURL("https://rezonator.com");
 		}
 	}
 

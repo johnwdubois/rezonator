@@ -92,8 +92,8 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 						}
 					}
 					else if (grid == obj_chain.stackChainGrid) {
-						var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID);
-						var currentChainID = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
+						var _unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID);
+						var currentChainID = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, _unitID - 1);
 						chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
 					}
 					if (chainIDRow != -1){
@@ -197,12 +197,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				
 				// Create the dropdown
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-					var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-					dropDownInst.optionList = dropDownOptionList;
-					dropDownInst.optionListType = dropDownInst.optionListTypeRightClickWord;
-					
-					obj_control.ableToCreateDropDown = false;
-					obj_control.alarm[0] = 2;
+					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeRightClickWord);
 				}
 
 			}

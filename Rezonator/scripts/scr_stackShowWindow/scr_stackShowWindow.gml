@@ -224,12 +224,7 @@ function scr_stackShowWindow() {
 						ds_list_add(dropDownOptionList, scr_get_translation("label_option_present"), scr_get_translation("label_option_where_elmo"), scr_get_translation("label_option_rezzles"));
 
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-							var dropDownInst = instance_create_depth(camera_get_view_width(camera_get_active()) /2 + 134 - 52,  camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 22 + (string_height(currentGame)/2) + 5, -999, obj_dropDown);
-							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = dropDownInst.optionListTypeGame;
-					
-							obj_control.ableToCreateDropDown = false;
-							obj_control.alarm[0] = 2;
+							scr_createDropDown(camera_get_view_width(camera_get_active()) /2 + 134 - 52, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 22 + (string_height(currentGame)/2) + 5, dropDownOptionList, global.optionListTypeGame);
 						}
 				}
 		}

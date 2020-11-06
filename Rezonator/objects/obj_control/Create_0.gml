@@ -22,6 +22,7 @@ flick_power_reduction_each_step = 3;
 currentCenterDisplayRow = 0;
 prevCenterYDest = 0;
 prevCenterDisplayRow = 0;
+cameraBottomLine = camera_get_view_height(camera_get_active());
 
 // Bound and set the display grid of the words
 gridSpaceHorizontalMin = 60;
@@ -675,6 +676,7 @@ readModeHints = 0;
 mouseOverUI = false;
 
 ctrlHold = false;
+
 
 with (obj_alarm) {
 	alarm[10] = 8;

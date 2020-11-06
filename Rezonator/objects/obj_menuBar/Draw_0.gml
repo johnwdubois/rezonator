@@ -66,30 +66,98 @@ if(mouseOverSortPane){
 draw_set_colour(global.colorThemeText);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-//var menuOptionY = 0;
-//var menuOptionX = 100;
+
+
+
+
+
+
+/*
+
+for (var menuSelectionLoop = 0; menuSelectionLoop < menuBarGridHeight; menuSelectionLoop++){
 	
-/*for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++){
-	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
-	draw_text(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1)), menuHeight - 25, headerString);		
-}*/
-for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++){
+	if(point_in_rectangle(mouse_x, mouse_y, menuWidth * menuSelectionLoop, 0, menuWidth * (menuSelectionLoop + 1), menuHeight)){
+		obj_control.mouseoverPanelPane = true;		
+		instance_destroy(obj_dropDown);
+		ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
+		ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuSelectionLoop, true);
+		if(mouse_check_button_released(mb_left) and menuClickedIn){
+			menuClickedIn = false;
+		}
+		else if(mouse_check_button_released(mb_left) or menuClickedIn){
+			menuClickedIn = true;
+			
+			var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuSelectionLoop);
+			//show_message(scr_getStringOfList(dropDownOptionList));
+			//show_message(menuSelectionLoop);
+			//show_message(scr_getStringOfList(ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuSelectionLoop)));
+			if (ds_list_size(dropDownOptionList) > 0) {
+				var dropDownInst = instance_create_depth(menuWidth * menuSelectionLoop, menuHeight, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuSelectionLoop);
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;
+			}
+		}
+	}
+}
+*/
+
+
+for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++) {
+	
+	var menuHeaderRectX1 = menuWidth * menuHeaderLoop;
+	var menuHeaderRectY1 = 0;
+	var menuHeaderRectX2 = menuWidth * (menuHeaderLoop + 1);
+	var menuHeaderRectY2 = menuHeight;
+	
+	if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
+		
+		// draw hover rectangle
+		var roundedRectBuffer = 4;
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(1);
+		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
+		
+		obj_control.mouseoverPanelPane = true;		
+		instance_destroy(obj_dropDown);
+		
+		if(mouse_check_button_released(mb_left) and menuClickedIn){
+			menuClickedIn = false;
+		}
+		else if(mouse_check_button_released(mb_left) or menuClickedIn){
+			menuClickedIn = true;
+			
+			ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
+			ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, true);
+			
+			var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
+			if (ds_list_size(dropDownOptionList) > 0) {
+				/*var dropDownInst = instance_create_depth(menuWidth * menuHeaderLoop, menuHeight, -999, obj_dropDown);
+				dropDownInst.optionList = dropDownOptionList;
+				dropDownInst.optionListType = ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop);
+					
+				obj_control.ableToCreateDropDown = false;
+				obj_control.alarm[0] = 2;*/
+				scr_createDropDown(menuWidth * menuHeaderLoop, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop));
+			}
+		}
+	}
+	
+	
 	if (ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)) {
 		draw_set_colour(global.colorThemeOutOfBounds);
-		draw_rectangle((menuWidth * menuHeaderLoop) - 1, -1, menuWidth * (menuHeaderLoop + 1), menuHeight, false);
+		//draw_rectangle((menuWidth * menuHeaderLoop) - 1, -1, menuWidth * (menuHeaderLoop + 1), menuHeight, false);
+		draw_rectangle(menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2, false);
 		draw_set_colour(global.colorThemeText);
 	}
 	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
-	draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(mean(y, y + menuHeight)), headerString);		
+	//draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(mean(y, y + menuHeight)), headerString);
+	draw_set_colour(global.colorThemeText);
+	draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), headerString);
 }
 
-/*draw_text(mean(0, menuWidth), menuHeight - 25,"File");
-draw_text(mean(menuWidth, menuWidth*2), menuHeight - 25,"Edit");
-draw_text(mean(menuWidth*2, menuWidth*3), menuHeight - 25,"View");
-draw_text(mean(menuWidth*3, menuWidth*4.5), menuHeight - 25,"Search");
-draw_text(mean(menuWidth*4.5, menuWidth*6), menuHeight - 25,scr_get_translation("menu_options));
-draw_text(mean(menuWidth*6, menuWidth*8), menuHeight - 25,scr_get_translation("menu_stackShow));
-draw_text(mean(menuWidth*8, menuWidth*10), menuHeight - 25,"Sort Pane");*/
 	
 	
 	

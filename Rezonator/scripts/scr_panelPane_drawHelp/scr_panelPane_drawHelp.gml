@@ -317,10 +317,10 @@ function scr_panelPane_drawHelp() {
 							
 								if(device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
 									if(currentStrFunc == "Download") {
-										url_open("https://rezonator.com/download/");
+										scr_openURL("https://rezonator.com/download/");
 									}
 									else if (currentStrFunc == "About Us"){
-										url_open("https://rezonator.com/");
+										scr_openURL("https://rezonator.com/");
 									}
 								}
 							}

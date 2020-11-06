@@ -68,7 +68,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		widthOfUnitGrid = ds_list_size(global.unitImportColNameList);
 	}
 	//show_message(string(headerListSize));
-	for(var j = 0 ; j < headerListSize; j++) {
+	for (var j = 0 ; j < headerListSize; j++) {
 	
 		textPlusY = 0;
 		drawDropDowns = false;
@@ -78,6 +78,10 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + (windowWidth / 6);
 	    var colRectY2 = colRectY1 + windowHeight;
+		// if this is the last column, extend it to the end of the window
+		if (j == headerListSize - 1) {
+			colRectX2 = x + windowWidth;
+		}
     
 	    draw_set_color(global.colorThemeBG);
 	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
@@ -194,7 +198,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 								if (ds_list_size(dropDownOptionList) > 0 ) {
 									var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
 									dropDownInst.optionList = dropDownOptionList;
-									dropDownInst.optionListType = dropDownInst.optionListTypeUnitTagMap;
+									dropDownInst.optionListType = global.optionListTypeUnitTagMap;
 
 								}
 							}
@@ -286,6 +290,11 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	        //var colRectX2 = colRectX1 + (windowWidth);    
 	    }
 	    var colRectY2 = colRectY1 + windowHeight;
+		
+		// if this is the last column, extend it to the end of the window
+		if (i == headerListSize - 1) {
+			colRectX2 = x + windowWidth;
+		}
     
 	    var colName = "";
     
@@ -308,22 +317,26 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	
 		var notDiscoTag = (ds_list_find_index(global.discoImportColNameList, colName) == -1);
 		var isUnitIDCol = (colName == "UnitID");
+		var isTildaField = false;
+		if (typeof(colName) == "string") {
+			isTildaField = (string_char_at(colName, 1) == "~");
+		}
 
 
 
 	
 		// draw wordView button
-		var wordViewButtonSize = (tabHeight / 3);
+		var wordViewButtonSize = (tabHeight / 4);
 		var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
-		var wordViewButtonY = colRectY1 + (tabHeight / 2);
+		var wordViewButtonY = colRectY1 + (tabHeight) - (tabHeight / 4)/2 - 10;
 	
 	
 		//draw token selection button
 		var dropDownButtonSize = sprite_get_width(spr_dropDown);
 		var dropDownRectX1 = wordViewButtonX - 16 - dropDownButtonSize;
-		var dropDownRectY1 = y + (dropDownButtonSize * 0.2);
+		var dropDownRectY1 = colRectY1 + (dropDownButtonSize * 0.6);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;
-		var dropDownRectY2 = y + tabHeight - (dropDownButtonSize * 0.2);
+		var dropDownRectY2 = colRectY1 + tabHeight - (dropDownButtonSize * 0.2);
 	
 
 
@@ -342,15 +355,15 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					}
 					obj_control.unitImportColToChange = ds_list_find_index(global.unitImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();		
-					ds_list_add(dropDownOptionList, "Create Field");
-					if (notDiscoTag && !isUnitIDCol) {
+					ds_list_add(dropDownOptionList, "Set as Translation", "Create Field");
+					if (notDiscoTag && !isUnitIDCol && !isTildaField) {
 						ds_list_add(dropDownOptionList, "Add new Tag");
 					}
 					//ds_list_add(dropDownOptionList, "Set as Translation");
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeUnitMarker;
+						dropDownInst.optionListType = global.optionListTypeUnitMarker;
 					}
 				}
 			}
@@ -374,7 +387,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 					if (ds_list_size(dropDownOptionList) > 0 ) {
 						var dropDownInst = instance_create_depth(colRectX1,colRectY1+tabHeight , -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeUnitSelection;
+						dropDownInst.optionListType = global.optionListTypeUnitSelection;
 					
 						//obj_control.ableToCreateDropDown = false;
 						//obj_control.alarm[0] = 2;

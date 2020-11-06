@@ -91,7 +91,7 @@ function scr_sentStackerLoop(){
 							endNoteTagMatch = true;
 							loopBreak = true;
 							break;
-							show_debug_message("true");
+						//	show_debug_message("true");
 							//break;
 						}
 					}

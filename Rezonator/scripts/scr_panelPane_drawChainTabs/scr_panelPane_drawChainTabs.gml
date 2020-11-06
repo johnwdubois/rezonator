@@ -23,7 +23,7 @@ function scr_panelPane_drawChainTabs() {
 
 	var textMarginLeft = 5;
 	with (obj_panelPane) {
-		functionChainList_tabHeight = string_height("0") + 8;
+		functionChainList_tabHeight = string_height("0") + 20;
 	}
 
 	var tabAmount = 5;
@@ -71,139 +71,141 @@ function scr_panelPane_drawChainTabs() {
 	
 		if (grid != obj_chain.cliqueDisplayGrid) {
 			if (grid != obj_control.lineGrid) {
-				// draw toggleDraw button
-				var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
-				var toggleDrawRectX1 = tabRectX2 - buttonRectSize - 4;
-				var toggleDrawRectY1 = tabRectY1 + 4;
-				var toggleDrawRectX2 = toggleDrawRectX1 + buttonRectSize;
-				var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
-				if (i == functionChainList_tabRezBrush) {
-					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-				}
-				else if (i == functionChainList_tabTrackBrush) {
-					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-				}
-				else if (i == functionChainList_tabStackBrush) {
-					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-				}
-				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2) and not chainListPane.scrollBarClickLock) {
-					scr_createTooltip(mean(toggleDrawRectX1, toggleDrawRectX2), toggleDrawRectY2, "Toggle visible", obj_tooltip.arrowFaceUp);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
-					if (mouse_check_button_released(mb_left)) {
-						if (i == functionChainList_tabRezBrush) {
-							obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
-						}
-						else if (i == functionChainList_tabTrackBrush) {
-							obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
-						}
-						else if (i == functionChainList_tabStackBrush) {
-							obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
+				if(i == functionChainList_currentTab){
+					// draw toggleDraw button
+					var buttonRectSize = (tabRectY2 - tabRectY1) - 20;
+					var toggleDrawRectX1 = tabRectX2 - buttonRectSize - 4;
+					var toggleDrawRectY1 = tabRectY2 - string_height("0") - 4;
+					var toggleDrawRectX2 = toggleDrawRectX1 + buttonRectSize;
+					var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
+					if (i == functionChainList_tabRezBrush) {
+						draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+					}
+					else if (i == functionChainList_tabTrackBrush) {
+						draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+					}
+					else if (i == functionChainList_tabStackBrush) {
+						draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+					}
+					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2) and not chainListPane.scrollBarClickLock) {
+						scr_createTooltip(mean(toggleDrawRectX1, toggleDrawRectX2), toggleDrawRectY2, "Toggle visible", obj_tooltip.arrowFaceUp);
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
+						if (mouse_check_button_released(mb_left)) {
+							if (i == functionChainList_tabRezBrush) {
+								obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
+							}
+							else if (i == functionChainList_tabTrackBrush) {
+								obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
+							}
+							else if (i == functionChainList_tabStackBrush) {
+								obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
+							}
 						}
 					}
-				}
 	
-				// draw filter button
-				var filterRectX1 = toggleDrawRectX1 - 4 - buttonRectSize;
-				var filterRectY1 = toggleDrawRectY1;
-				var filterRectX2 = filterRectX1 + buttonRectSize;
-				var filterRectY2 = filterRectY1 + buttonRectSize;
-				var filterImageIndex = 0;
-				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2) and not chainListPane.scrollBarClickLock) {
-					scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
-					if (mouse_check_button_released(mb_left)) {
+					// draw filter button
+					var filterRectX1 = toggleDrawRectX1 - 4 - buttonRectSize;
+					var filterRectY1 = toggleDrawRectY1;
+					var filterRectX2 = filterRectX1 + buttonRectSize;
+					var filterRectY2 = filterRectY1 + buttonRectSize;
+					var filterImageIndex = 0;
+					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2) and not chainListPane.scrollBarClickLock) {
+						scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
+						if (mouse_check_button_released(mb_left)) {
 			
-						if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
-							if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
-								ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true);
+							if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+								if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
+									ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true);
+								}
+								else {
+									ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false);
+								}
 							}
 							else {
-								ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false);
+								ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true);
 							}
-						}
-						else {
-							ds_grid_set_region(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true);
-						}
 				
 				
-						if (obj_control.filterGridActive) {
-					
-							with (obj_control) {
-								scr_renderFilter();
-							}
-					
-							if (not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
-							and not ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
-							and not ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+							if (obj_control.filterGridActive) {
 					
 								with (obj_control) {
-									searchGridActive = false;
-									filterGridActive = false;
-									currentActiveLineGrid = lineGrid;
-									obj_toolPane.currentMode = obj_toolPane.setModeMain;
-									wordLeftMarginDest = 170; // Make sure the margin is placed correctly
+									scr_renderFilter();
+								}
+					
+								if (not ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
+								and not ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)
+								and not ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+					
+									with (obj_control) {
+										searchGridActive = false;
+										filterGridActive = false;
+										currentActiveLineGrid = lineGrid;
+										obj_toolPane.currentMode = obj_toolPane.setModeMain;
+										wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 
-									with (obj_alarm) {
-										alarm[1] = 5;
+										with (obj_alarm) {
+											alarm[1] = 5;
+										}
 									}
 								}
 							}
 						}
 					}
-				}
-				if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
-					if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
-						filterImageIndex = 2;
+					if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
+						if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
+							filterImageIndex = 2;
+						}
+						else {
+							filterImageIndex = 1;
+						}
 					}
-					else {
-						filterImageIndex = 1;
-					}
-				}
-				draw_sprite_ext(spr_filterIcons, filterImageIndex, mean(filterRectX1, filterRectX2), mean(filterRectY1, filterRectY2), 1, 1, 0, c_white, 1);
+					draw_sprite_ext(spr_filterIcons, filterImageIndex, mean(filterRectX1, filterRectX2), mean(filterRectY1, filterRectY2), 1, 1, 0, c_white, 1);
 		
 			
 			
 			
-				var ascendRectX1 = filterRectX1 - 4 - buttonRectSize;
-				var ascendRectY1 = filterRectY1;
-				var ascendRectX2 = ascendRectX1 + buttonRectSize;
-				var ascendRectY2 = ascendRectY1 + buttonRectSize;
+					var ascendRectX1 = filterRectX1 - 4 - buttonRectSize;
+					var ascendRectY1 = filterRectY1;
+					var ascendRectX2 = ascendRectX1 + buttonRectSize;
+					var ascendRectY2 = ascendRectY1 + buttonRectSize;
 			
-				if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2) and not chainListPane.scrollBarClickLock) {
-					scr_createTooltip(mean(ascendRectX1, ascendRectX2), ascendRectY2, (functionChainList_sortAsc[i]) ? "Sort ascending" : "Sort descending", obj_tooltip.arrowFaceUp);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
+					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2) and not chainListPane.scrollBarClickLock) {
+						scr_createTooltip(mean(ascendRectX1, ascendRectX2), ascendRectY2, (functionChainList_sortAsc[i]) ? "Sort ascending" : "Sort descending", obj_tooltip.arrowFaceUp);
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
 				
-					if (mouse_check_button_released(mb_left)) {
-						with (obj_panelPane) {
-							functionChainList_sortAsc[i] = !functionChainList_sortAsc[i];
-						}
-						switch (i) {
-							case functionChainList_tabRezBrush:
-								with (obj_chain) {
-									ds_grid_sort(rezChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
-								}
-								break;
-							case functionChainList_tabTrackBrush:
-								with (obj_chain) {
-									ds_grid_sort(trackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
-								}
-								break;
-							case functionChainList_tabStackBrush:
-								with (obj_chain) {
-									ds_grid_sort(stackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
-								}
-								break;
-							default:
-								break;
+						if (mouse_check_button_released(mb_left)) {
+							with (obj_panelPane) {
+								functionChainList_sortAsc[i] = !functionChainList_sortAsc[i];
+							}
+							switch (i) {
+								case functionChainList_tabRezBrush:
+									with (obj_chain) {
+										ds_grid_sort(rezChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
+									}
+									break;
+								case functionChainList_tabTrackBrush:
+									with (obj_chain) {
+										ds_grid_sort(trackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
+									}
+									break;
+								case functionChainList_tabStackBrush:
+									with (obj_chain) {
+										ds_grid_sort(stackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
+									}
+									break;
+								default:
+									break;
+							}
 						}
 					}
-				}
 			
-				var ascendYScale = (functionChainList_sortAsc[i]) ? 1 : -1;
-				draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
+					var ascendYScale = (functionChainList_sortAsc[i]) ? 1 : -1;
+					draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
+				}
 			}
 			// experimental stuff!
 

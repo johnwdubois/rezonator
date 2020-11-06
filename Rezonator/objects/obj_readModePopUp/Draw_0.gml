@@ -47,7 +47,8 @@ draw_sprite_ext(spr_alertArrow, 0, camera_get_view_width(camera_get_active()) - 
 
 draw_set_colour(global.colorThemeText);
 draw_set_font(fnt_main);
-draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), scr_get_translation("msg_no-show"));
+//draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), scr_get_translation("msg_no-show"));
+draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), "Don't show again");
 
 
 var buttonX1 = floor(mean(rectX1, rectX2) - (string_width("Don't show again")/2 + 25));
@@ -69,11 +70,13 @@ if (point_in_rectangle(mouse_x, mouse_y, buttonX1, buttonY1, buttonX2, buttonY2)
 			
 		if(global.readHintHide){
 			draw_set_halign(fa_center);
-			draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), scr_get_translation("msg_enabled"));
+			//draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), scr_get_translation("msg_enabled"));
+			draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Enabled");
 		}
 		else{
 			draw_set_halign(fa_center);
-			draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), scr_get_translation("msg_disabled"));
+			//draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), scr_get_translation("msg_disabled"));
+			draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "disabled");
 		}
 		if (mouse_check_button_pressed(mb_left)) {
 			global.readHintHide = !global.readHintHide;

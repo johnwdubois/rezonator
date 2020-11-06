@@ -43,7 +43,7 @@ fileOptionList = ds_list_create();
 ds_list_add(fileOptionList, scr_get_translation("menu_save"), 
 							"Save As",
 							scr_get_translation("menu_media"), 
-							scr_get_translation("menu_clip"), 
+							//scr_get_translation("menu_clip"), 
 							scr_get_translation("menu_export"),
 							scr_get_translation("menu_import"), 
 							scr_get_translation("menu_exit"));

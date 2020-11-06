@@ -24,7 +24,7 @@ function scr_panelPane_drawFilter() {
 	var filterButtonX1 = x;
 	var filterButtonY1 = y;
 	var filterButtonX2 = x + windowWidth;
-	var filterButtonY2 = y + functionChainList_tabHeight;
+	var filterButtonY2 = y + functionChainList_tabHeight +1;
 
 	// Draw filter button, and check for coloring
 	draw_sprite_ext(spr_filterIcons, obj_control.filterGridActive, mean(filterButtonX1, filterButtonX2), mean(filterButtonY1, filterButtonY2), 1, 1, 0, c_white, 1);
