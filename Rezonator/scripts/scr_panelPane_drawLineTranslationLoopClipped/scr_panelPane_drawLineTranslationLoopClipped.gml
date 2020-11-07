@@ -39,6 +39,8 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
+	
+	var translationCol =  ds_list_find_index(global.unitImportColNameList, global.unitImportTranslationColName);
 
 	//scr_surfaceStart();
 	// Not doing a surface here so it can scroll along with the left Navwindow
@@ -68,10 +70,9 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		}
 
 		var currentLineWordString = "";
-		// Hardcoded translation column
-		if(ds_grid_height(global.importGrid) > 0) {
-			// THIS IS BAD, GEORGIO IS NAUGHTY
-			currentLineWordString = ds_grid_get(global.importGrid, 12, i + 1);
+
+		if(ds_grid_height(global.importGrid) > 0 && translationCol != undefined) {
+			currentLineWordString = ds_grid_get(global.unitImportGrid, translationCol, i);
 		}
 		// If there is no translation, merely show the transcripts instead
 		else {
@@ -151,6 +152,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		// Get height of chain name
 		textPlusY += strHeight;
 	}
+
 
 
 
@@ -236,6 +238,19 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);*/
 
+	//draw topbar
+	var topBarX1 = 0;
+	var topBarX2 = topBarX1 + windowWidth;
+	var topBarY1 = 0;
+	var topBarY2 = topBarY1 + functionChainList_tabHeight-1;
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(topBarX1,topBarY1,topBarX2,topBarY2, false);
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(topBarX1,topBarY1,topBarX2,topBarY2, true);
+	
+	draw_set_color(global.colorThemeText);
+	draw_text( 10 , mean(topBarY1,topBarY2) , "Translation: " + string(global.unitImportTranslationColName));
+	
 
 
 

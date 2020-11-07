@@ -78,7 +78,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			break;
 		case functionChainList_tabLine:
 			grid = -1;
-			if (obj_control.showTranslation and not obj_control.showUnitTags) {
+			if (obj_control.showTranslation) {
 				scr_panelPane_drawLineTranslationLoopClipped();
 			}
 			else if (obj_control.showUnitTags and not obj_control.showTranslation) {
