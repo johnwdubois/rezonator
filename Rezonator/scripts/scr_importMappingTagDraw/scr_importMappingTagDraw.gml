@@ -35,9 +35,55 @@ function scr_importMappingTagDraw() {
 	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), scr_get_translation("menu_summary"));
 
 	draw_set_font(global.fontMain);
-	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, scr_get_translation("label_user_file_name") + filename_name(global.importFilename));
-	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + stringHeight * 2.5), scr_get_translation("label_total_line") + string(ds_grid_height(global.importGrid)));
-	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + (stringHeight) * 4), scr_get_translation("label_markers_found") + string(ds_grid_height(global.tagInfoGrid)));
+	
+	var filename = filename_name(global.importFilename);
+	var lineCount = ds_grid_height(global.importTXTLineGrid);
+	var blockCount = ds_grid_height(global.blockGrid);
+	var blockTypes = ds_grid_height(global.blockTypeGrid);
+	var tokenCount = global.tokenCountTotal;
+	var fieldCount = ds_grid_height(global.tagInfoGrid);
+	
+	if (global.importType == global.importType_CSV) {
+		lineCount = ds_grid_height(global.importCSVGrid);
+		global.tokenCountTotal = lineCount;
+		tokenCount = global.tokenCountTotal;
+	}
+	else if (global.importType == global.importType_IGT) {
+		fieldCount -= 2;
+	}
+	
+	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, scr_get_translation("label_user_file_name") + string(filename));
+	var actualIterations = 0;
+	for (var i = 0; i < 5; i++) {
+		
+		var currentStr = "";
+		if (i == 0) {
+			if (tokenCount < 1) continue;
+			currentStr = "Token count: " + string(tokenCount);
+		}
+		else if (i == 1) {
+			if (lineCount < 1) continue;
+			currentStr = scr_get_translation("label_total_line") + string(lineCount);
+		}
+		else if (i == 2) {
+			if (blockCount < 1) continue;
+			currentStr = "Block count: " + string(blockCount);
+		}
+		else if (i == 3) {
+			if (fieldCount < 1) continue;
+			currentStr = scr_get_translation("label_markers_found") + string(fieldCount);
+		}
+		else if (i == 4) {
+			if (blockTypes < 1) continue;
+			currentStr = "Block types: " + string(blockTypes);
+		}
+		
+		var textX = floor(fileInfoWindowRectX1 + 20);
+		var textY = floor(fileInfoWindowRectY1 + (stringHeight * (actualIterations + 2)));
+		
+		draw_text(textX, textY, currentStr);
+		actualIterations++;
+	}
 
 
 

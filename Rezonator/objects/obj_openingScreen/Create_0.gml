@@ -408,3 +408,5 @@ global.optionListTypeNav = 44;
 
 scr_preImportInitiate();
 showPreImportScreen = false;
+
+global.tokenCountTotal = 0;
