@@ -1,9 +1,5 @@
-function scr_isItemAList(argument0, argument1, argument2) {
+function scr_isItemAList(grid, col, row) {
 	// Check if the grid location contains a list data type
-
-	var grid = argument0;
-	var col = argument1;
-	var row = argument2;
 
 	var currentCell = ds_grid_get(grid, col, row);
 	var itemList = -1;

@@ -1,8 +1,7 @@
-function scr_loadJSONBuffer(argument0) {
+function scr_loadJSONBuffer(fileName) {
 	//Credit goes to Juju Adams
 	// Extract the JSON string from the buffer
 
-	var fileName = argument0;
 
 	var buffer = buffer_load(fileName);
 	var bufferString = buffer_read(buffer, buffer_string);

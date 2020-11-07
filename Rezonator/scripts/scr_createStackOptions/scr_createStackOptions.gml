@@ -1,7 +1,6 @@
-function scr_createStackOptions(argument0) {
+function scr_createStackOptions(optionSelected) {
 	//if (live_call(argument0)) return live_result;
 	
-	var optionSelected = argument0;
 	var confirmStack = false;
 	var doStacksExist = (ds_grid_height(obj_chain.stackChainGrid) > 0);
 	

@@ -1,28 +1,20 @@
-function scr_findInGridThreeParameters(argument0, argument1, argument2, argument3, argument4, argument5, argument6) {
-	/*
-		scr_findInGridTwoParameters(grid, col1, valueInCol1, col2, valueInCol2, col3, valueInCol3);
+/*
+	scr_findInGridTwoParameters(grid, col1, valueInCol1, col2, valueInCol2, col3, valueInCol3);
 	
-		Last Updated: 2018-09-11
+	Last Updated: 2018-09-11
 	
-		Called from: any object
+	Called from: any object
 	
-		Purpose: get the row of a grid that has three specific values of three specific columns
+	Purpose: get the row of a grid that has three specific values of three specific columns
 	
-		Mechanism: create a temporary clone grid and loop through that once to find rows with the
-					first parameter, and then loop again to find the rows with the second parameter,
-					and once more to find the rows with the third parameter
+	Mechanism: create a temporary clone grid and loop through that once to find rows with the
+				first parameter, and then loop again to find the rows with the second parameter,
+				and once more to find the rows with the third parameter
 	
-		Author: Terry DuBois
-	*/
-
-
-	var grid = argument0;
-	var col1 = argument1;
-	var valueInCol1 = argument2;
-	var col2 = argument3;
-	var valueInCol2 = argument4;
-	var col3 = argument5;
-	var valueInCol3 = argument6;
+	Author: Terry DuBois
+*/
+function scr_findInGridThreeParameters(grid, col1, valueInCol1, col2, valueInCol2, col3, valueInCol3) {
+	
 
 	var tempGrid = ds_grid_create(ds_grid_width(grid), ds_grid_height(grid));
 

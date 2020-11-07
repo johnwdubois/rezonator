@@ -1,10 +1,4 @@
-function scr_gridDeleteRange(argument0, argument1, argument2, argument3) {
-	// 
-
-	var grid = argument0;
-	var col = argument1;
-	var gridRangeBegining = argument2;
-	var gridRangeEnd = argument3;
+function scr_gridDeleteRange(grid, col, gridRangeBegining, gridRangeEnd) {
 
 	var gridCopy = ds_grid_create(ds_grid_width(grid), ds_grid_height(grid));
 	ds_grid_copy(gridCopy, grid);

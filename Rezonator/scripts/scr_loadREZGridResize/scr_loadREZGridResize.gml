@@ -1,8 +1,5 @@
-function scr_loadREZGridResize(argument0, argument1) {
+function scr_loadREZGridResize(grid, gridLists) {
 	// Resize a loaded grid
-
-	var grid = argument0;
-	var gridLists = argument1;
 
 	var firstColList = ds_list_find_value(gridLists, 0);
 	if (firstColList != undefined) {

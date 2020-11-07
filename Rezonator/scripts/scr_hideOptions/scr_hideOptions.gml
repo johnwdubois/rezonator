@@ -1,6 +1,5 @@
-function scr_hideOptions(argument0) {
+function scr_hideOptions(optionSelected) {
 	//hideOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

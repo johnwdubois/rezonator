@@ -1,5 +1,4 @@
-function scr_zoomOptions(argument0) {
-	var optionSelected = argument0;
+function scr_zoomOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

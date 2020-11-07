@@ -1,5 +1,4 @@
-function scr_specialFieldsOptions(argument0) {
-	var optionSelected = argument0;
+function scr_specialFieldsOptions(optionSelected) {
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
 	switch (optionSelected)

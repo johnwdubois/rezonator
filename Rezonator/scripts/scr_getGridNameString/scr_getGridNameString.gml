@@ -1,9 +1,8 @@
-function scr_getGridNameString(argument0) {
+function scr_getGridNameString(gridName) {
 	// Store and return the strings of Grid names
-
-	var gridName = string(argument0);
-
-	switch (argument0) {
+	
+	
+	switch (gridName) {
 		case obj_control.unitGrid:
 			gridName = "Unit"; // Unit Grid
 			break;
@@ -92,6 +91,7 @@ function scr_getGridNameString(argument0) {
 			gridName = "CustomLabel"; // Custom Label Grid
 			break;
 		default:
+			gridName = string(gridName);
 			break;
 	}
 

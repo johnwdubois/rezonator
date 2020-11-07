@@ -1,20 +1,18 @@
-function scr_importLinks(argument0) {
-	/*
-		scr_importLinks(fileLineRipListElement);
+/*
+	scr_importLinks(fileLineRipListElement);
 	
-		Last Updated: 2020-01-01
+	Last Updated: 2020-01-01
 	
-		Called from: obj_fileLoader
+	Called from: obj_fileLoader
 	
-		Purpose: Recreate user's links using loaded in data
+	Purpose: Recreate user's links using loaded in data
 	
-		Mechanism: Separate te string infor to retrieve the type of chain and WordID, then remake the link
+	Mechanism: Separate te string infor to retrieve the type of chain and WordID, then remake the link
 	
-		Author: Terry DuBois
-	*/
-
-	var fileLineRipListElement = argument0;
-
+	Author: Terry DuBois
+*/
+function scr_importLinks(fileLineRipListElement) {
+	
 	var linkSectionLineList = ds_list_create();
 	var currentLinkSectionStartIndex = fileLineRipListElement;
 	

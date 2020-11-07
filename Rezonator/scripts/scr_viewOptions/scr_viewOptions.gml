@@ -1,5 +1,4 @@
-function scr_viewOptions(argument0) {
-	var optionSelected = argument0;
+function scr_viewOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

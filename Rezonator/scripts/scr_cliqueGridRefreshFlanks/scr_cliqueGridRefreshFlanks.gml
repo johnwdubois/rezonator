@@ -1,5 +1,4 @@
-function scr_cliqueGridRefreshFlanks(argument0) {
-	var rowInCliqueGrid = argument0;
+function scr_cliqueGridRefreshFlanks(rowInCliqueGrid) {
 
 	var chainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, rowInCliqueGrid);
 

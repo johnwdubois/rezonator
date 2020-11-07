@@ -1,8 +1,5 @@
-function scr_gridToCSV(argument0, argument1) {
+function scr_gridToCSV(grid, fileName) {
 	// Write grid info into a CSV table format
-
-	var grid = argument0
-	var fileName = argument1;
 
 	var file = file_text_open_write_ns(fileName, -1);
 	var gridHeight = ds_grid_height(grid);

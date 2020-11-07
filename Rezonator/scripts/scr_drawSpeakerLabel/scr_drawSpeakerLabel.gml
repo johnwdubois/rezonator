@@ -1,27 +1,18 @@
-function scr_drawSpeakerLabel(argument0, argument1, argument2, argument3, argument4, argument5, argument6) {
-	/*
-		scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, 
-		speakerLabelTextBuffer, discoColor);
+/*
+	scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, 
+	speakerLabelTextBuffer, discoColor);
 	
-		Last Updated: 2019-12-28
+	Last Updated: 2019-12-28
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: draws the speaker labels to the left of the units in the discourse
+	Purpose: draws the speaker labels to the left of the units in the discourse
 	
-		Mechanism: Draw the rectangle and name, colored by the specific discourse, and allow for right-clicks by the user
+	Mechanism: Draw the rectangle and name, colored by the specific discourse, and allow for right-clicks by the user
 	
-		Author: Terry DuBois
-	*/
-
-	var unitID = argument0;
-	var currentDiscoID = argument1;
-	var currentLineNumberLabel = argument2;
-	var participantName = argument3;
-	var participantColor = argument4;
-	var speakerLabelTextBuffer = argument5;
-	var discoColor = argument6;
-
+	Author: Terry DuBois
+*/
+function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor) {
 
 	participantColor = (is_undefined(participantColor)) ? c_gray : participantColor;
 	discoColor = (is_undefined(discoColor)) ? c_gray : discoColor;

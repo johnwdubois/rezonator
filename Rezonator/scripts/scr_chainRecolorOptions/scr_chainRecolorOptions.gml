@@ -1,5 +1,4 @@
-function scr_chainRecolorOptions(argument0) {
-	var optionSelected = argument0;
+function scr_chainRecolorOptions(optionSelected) {
 
 	with (obj_panelPane)
 	{

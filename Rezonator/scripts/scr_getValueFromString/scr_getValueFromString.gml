@@ -1,9 +1,5 @@
-function scr_getValueFromString(argument0, argument1, argument2) {
+function scr_getValueFromString(fullString, subString, delimiter) {
 	// Extract a single value from the specified string
-
-	var fullString = argument0;
-	var subString = argument1;
-	var delimiter = argument2;
 
 	var charAt = 1;
 	var charStart = 1;

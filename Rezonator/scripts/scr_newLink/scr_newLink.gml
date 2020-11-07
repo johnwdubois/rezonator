@@ -1,17 +1,18 @@
-function scr_newLink(argument0, argument1) {
-	/*
-		scr_newLink(wordID, goal);
+/*
+	scr_newLink(wordID, goal);
 	
-		Last Updated: 2018-09-11
+	Last Updated: 2018-09-11
 	
-		Called from: obj_chain
+	Called from: obj_chain
 	
-		Purpose: the user has created a link, so this script will add it to the linkGrid
+	Purpose: the user has created a link, so this script will add it to the linkGrid
 	
-		Mechanism: add row to linkGrid and fill in column information from given arguments
+	Mechanism: add row to linkGrid and fill in column information from given arguments
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois
+*/
+function scr_newLink(wordID, goal) {
+	
 
 	//New funtionality for recording chain modification
 	while (ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) {
@@ -20,8 +21,6 @@ function scr_newLink(argument0, argument1) {
 	}
 	ds_list_insert(obj_chain.chainIDModifyList, 0, currentFocusedChainID);
 
-	var wordID = argument0;
-	var goal = argument1;
 	var focus = true;
 
 	//show_message(string(wordID));

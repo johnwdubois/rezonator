@@ -1,6 +1,5 @@
-function scr_proseOptions(argument0) {
+function scr_proseOptions(optionSelected) {
 	//proseOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

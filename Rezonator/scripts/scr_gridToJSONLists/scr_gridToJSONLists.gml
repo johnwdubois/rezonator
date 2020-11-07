@@ -1,7 +1,6 @@
-function scr_gridToJSONLists(argument0) {
+function scr_gridToJSONLists(grid) {
 	// Convert grid data in lists to JSON strings
 
-	var grid = argument0;
 	var gridClone = ds_grid_create(ds_grid_width(grid), ds_grid_height(grid));
 
 	ds_grid_copy(gridClone, grid);

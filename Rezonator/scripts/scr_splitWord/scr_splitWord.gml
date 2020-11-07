@@ -1,20 +1,17 @@
-function scr_splitWord(argument0) {
-	/*
-		scr_splitWord();
+/*
+	scr_splitWord();
 	
-		Last Updated: 2019-08-14
+	Last Updated: 2019-08-14
 	
-		Called from: obj_dialogueBox
+	Called from: obj_dialogueBox
 	
-		Purpose: to turn one word into two words in the discourse
+	Purpose: to turn one word into two words in the discourse
 	
-		Mechanism: calls replaceWord() and newWord() in one script to make two new user generated words
+	Mechanism: calls replaceWord() and newWord() in one script to make two new user generated words
 				
-		Author: Brady Moore
-	*/
-
-
-	var stringList = argument0;
+	Author: Brady Moore
+*/
+function scr_splitWord(stringList) {
 
 	var listOfWords = ds_list_create();
 

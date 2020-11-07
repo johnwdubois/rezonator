@@ -1,8 +1,6 @@
-function scr_raceCheckChain(argument0, argument1) {
+function scr_raceCheckChain(grid, rowInChainGrid) {
 	//show_message("here")
 
-	var grid = argument0;
-	var rowInChainGrid =  argument1;
 
 	//var displayColList = ds_list_create();
 	var displayColGridWidth = 2;

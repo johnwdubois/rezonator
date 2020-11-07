@@ -1,7 +1,6 @@
-function scr_getJSONWordsList(argument0) {
+function scr_getJSONWordsList(str) {
 	// Convert a string from a JSON into a List data type
 
-	var str = argument0;
 	var list = ds_list_create();
 
 	var charAt = 1;

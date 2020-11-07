@@ -1,8 +1,4 @@
-function scr_drawToolTip(argument0, argument1, argument2, argument3) {
-	var posX = argument0;
-	var posY = argument1;
-	var tipString = argument2;
-	var orientation = argument3;
+function scr_drawToolTip(posX, posY, tipString, orientation) {
 	var triangleOffset = 20;
 	var toolTipBoxX  = string_width(tipString)/2 +15;
 	var toolTipBoxY  = string_height(tipString)+15;

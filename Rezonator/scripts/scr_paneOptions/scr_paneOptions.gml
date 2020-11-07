@@ -1,6 +1,5 @@
-function scr_paneOptions(argument0) {
+function scr_paneOptions(optionSelected) {
 	//paneOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

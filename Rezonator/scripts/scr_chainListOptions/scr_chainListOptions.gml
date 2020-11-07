@@ -1,5 +1,4 @@
-function scr_chainListOptions(argument0) {
-	var optionSelected = argument0;
+function scr_chainListOptions(optionSelected) {
 
 	with (obj_panelPane)
 	{

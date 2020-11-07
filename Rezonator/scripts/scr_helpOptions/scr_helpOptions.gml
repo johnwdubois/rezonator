@@ -1,6 +1,5 @@
-function scr_helpOptions(argument0) {
+function scr_helpOptions(optionSelected) {
 	//helpOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

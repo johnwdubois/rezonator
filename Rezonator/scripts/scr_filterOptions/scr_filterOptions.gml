@@ -1,5 +1,4 @@
-function scr_filterOptions(argument0) {
-	var optionSelected = argument0;
+function scr_filterOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

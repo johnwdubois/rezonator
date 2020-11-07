@@ -1,7 +1,5 @@
-function scr_exportLinks(argument0, argument1) {
+function scr_exportLinks(file, grid) {
 	// DECOMMISSIONED
-	var file = argument0;
-	var grid = argument1;
 	var gridName = scr_getGridNameString(grid);
 
 	file_text_writeln(file);

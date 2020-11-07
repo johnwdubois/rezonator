@@ -1,5 +1,4 @@
-function scr_settingsOptions(argument0) {
-	var optionSelected = argument0;
+function scr_settingsOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

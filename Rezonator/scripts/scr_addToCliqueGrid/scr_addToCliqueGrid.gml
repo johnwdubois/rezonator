@@ -1,6 +1,4 @@
-function scr_addToCliqueGrid(argument0, argument1) {
-	var newWordID = argument0;
-	var chainID = argument1;
+function scr_addToCliqueGrid(newWordID, chainID) {
 
 	var newUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, newWordID - 1);
 

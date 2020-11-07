@@ -1,6 +1,5 @@
-function scr_clearOptions(argument0) {
+function scr_clearOptions(optionSelected) {
 	//clearOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

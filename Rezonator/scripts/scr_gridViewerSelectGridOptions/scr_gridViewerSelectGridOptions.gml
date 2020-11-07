@@ -1,6 +1,4 @@
-function scr_gridViewerSelectGridOptions(argument0) {
-
-	var optionSelected = argument0;
+function scr_gridViewerSelectGridOptions(optionSelected) {
 
 
 	// create a temp list called gridNameList to hold every gridName, then we can search that grid for optionSelected

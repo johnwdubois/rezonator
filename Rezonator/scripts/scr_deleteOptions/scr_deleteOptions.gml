@@ -1,5 +1,4 @@
-function scr_deleteOptions(argument0) {
-	var optionSelected = argument0;
+function scr_deleteOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

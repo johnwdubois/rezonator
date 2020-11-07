@@ -1,19 +1,17 @@
-function scr_jumpToEnd(argument0) {
-	/*
-		scr_jumpToEnd(jumpToStart);
+/*
+	scr_jumpToEnd(jumpToStart);
 	
-		Last Updated: 2019-12-27
+	Last Updated: 2019-12-27
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: Send the user to the last or first word of the currentCenterDisplayRow line (obsolete?)
+	Purpose: Send the user to the last or first word of the currentCenterDisplayRow line (obsolete?)
 	
-		Mechanism: gather the wordIDList of the center line, and jump to the display column of the first/last word
+	Mechanism: gather the wordIDList of the center line, and jump to the display column of the first/last word
 	
-		Author: ?
-	*/
-
-	var jumpToStart = argument0;
+	Author: ?
+*/
+function scr_jumpToEnd(jumpToStart) {
 
 	// Find the currentCenterDisplayRow
 	var rowInLineGrid = scr_currentTopLine();//ds_grid_value_y(currentActiveLineGrid, obj_control.lineGrid_colDisplayRow, 0, obj_control.lineGrid_colDisplayRow, ds_grid_height(currentActiveLineGrid), obj_control.currentCenterDisplayRow);

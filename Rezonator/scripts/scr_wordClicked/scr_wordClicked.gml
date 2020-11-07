@@ -1,18 +1,19 @@
-function scr_wordClicked(argument0, argument1) {
-	/*
-		scr_wordClicked(wordID, unitID);
+/*
+	scr_wordClicked(wordID, unitID);
 	
-		Last Updated: 2019-02-05
+	Last Updated: 2019-02-05
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: handle reaction to user clicking on a word
+	Purpose: handle reaction to user clicking on a word
 	
-		Mechanism: check obj_toolPane to see if a chainBrush is selected, if so either spawn a new chain or add
-					to an existing 
+	Mechanism: check obj_toolPane to see if a chainBrush is selected, if so either spawn a new chain or add
+				to an existing 
 				
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois
+*/
+
+function scr_wordClicked(wordID, unitID) {
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
 		var shouldExit = true;
@@ -26,9 +27,6 @@ function scr_wordClicked(argument0, argument1) {
 		}
 	}
 
-	var wordID = argument0;
-	var unitID = argument1;
-	//show_message("okay");
 
 	if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_toolPane.currentTool == obj_toolPane.toolStackBrush) { 
 		wordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, wordID - 1);

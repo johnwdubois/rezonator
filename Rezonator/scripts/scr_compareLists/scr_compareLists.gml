@@ -1,8 +1,5 @@
-function scr_compareLists(argument0, argument1) {
+function scr_compareLists(list1, list2) {
 	// Check if the 2 lists are exactly the same
-
-	var list1 = argument0;
-	var list2 = argument1;
 
 	if (ds_list_size(list1) != ds_list_size(list2)) {
 		return false;

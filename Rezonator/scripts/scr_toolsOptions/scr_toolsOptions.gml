@@ -1,6 +1,5 @@
-function scr_toolsOptions(argument0) {
+function scr_toolsOptions(optionSelected) {
 	//toolsOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

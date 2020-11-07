@@ -1,5 +1,4 @@
-function scr_sortOptions(argument0) {
-	var optionSelected = argument0;
+function scr_sortOptions(optionSelected) {
 
 	with (obj_panelPane)
 	{

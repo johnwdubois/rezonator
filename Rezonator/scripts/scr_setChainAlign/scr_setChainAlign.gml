@@ -1,20 +1,17 @@
-function scr_setChainAlign(argument0, argument1) {
-	/*
-		scr_setChainAlign(chainID, aligned);
+/*
+	scr_setChainAlign(chainID, aligned);
 	
-		Last Updated: 2019-02-20
+	Last Updated: 2019-02-20
 	
-		Called from: obj_chain
+	Called from: obj_chain
 	
-		Purpose: Set aligned value for given chain to given aligned
+	Purpose: Set aligned value for given chain to given aligned
 	
-		Mechanism: Find which chainGrid to set, and set the correct cell to given aligned variable
+	Mechanism: Find which chainGrid to set, and set the correct cell to given aligned variable
 	
-		Author: Terry DuBois
-	*/
-
-	var chainID = argument0;
-	var aligned = argument1;
+	Author: Terry DuBois
+*/
+function scr_setChainAlign(chainID, aligned) {
 
 	var rowInLinkGrid = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), chainID);
 

@@ -1,19 +1,18 @@
-function scr_unfocusOtherChains(argument0) {
-	/*
-		scr_unfocusOtherChains();
+/*
+	scr_unfocusOtherChains();
 	
-		Last Updated: 2018-09-11
+	Last Updated: 2018-09-11
 	
-		Called from: any object
+	Called from: any object
 	
-		Purpose: unfocus any chain that is not of the type/tier of the current selected tool
+	Purpose: unfocus any chain that is not of the type/tier of the current selected tool
 	
-		Mechanism: iterate over chainGrids of other tiers and mark them as unfocused
+	Mechanism: iterate over chainGrids of other tiers and mark them as unfocused
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois
+*/
+function scr_unfocusOtherChains(tool) {
 
-	var tool = argument0;
 	var grid = obj_chain.rezChainGrid;
 
 	// Select current chain type

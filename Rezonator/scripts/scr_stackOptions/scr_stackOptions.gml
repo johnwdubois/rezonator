@@ -1,5 +1,4 @@
-function scr_stackOptions(argument0) {
-	var optionSelected = argument0;
+function scr_stackOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

@@ -1,5 +1,4 @@
-function scr_getChainAlign(argument0) {
-	var chainID = argument0;
+function scr_getChainAlign(chainID) {
 
 	var rowInLinkGrid = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), chainID);
 

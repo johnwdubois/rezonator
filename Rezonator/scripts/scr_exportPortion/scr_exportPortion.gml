@@ -1,7 +1,6 @@
-function scr_exportPortion(argument0) {
+function scr_exportPortion(fullstring) {
 	// Save a Rez file containing a user specified collection of lines
 
-	var fullstring = argument0;
 
 	// Safety check, make sure something was inputted
 	if (string_length(fullstring) < 1) {

@@ -1,23 +1,17 @@
-function scr_drawLineHitIDListLoop(argument0, argument1, argument2, argument3, argument4) {
-	/*
-		scr_drawLineHitIDListLoop(hitIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
+/*
+	scr_drawLineHitIDListLoop(hitIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
 	
-		Last Updated: 2019-12-27
+	Last Updated: 2019-12-27
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: draws searched words to main screen, using hitIDs from the given hitIDList
+	Purpose: draws searched words to main screen, using hitIDs from the given hitIDList
 	
-		Mechanism: loop through hitIDList to get hitIDs, look up their display info in hitGrid & dynaWordGrid
+	Mechanism: loop through hitIDList to get hitIDs, look up their display info in hitGrid & dynaWordGrid
 	
-		Author: Terry DuBois
-	*/
-
-	var currentHitIDList = argument0;
-	var previousWordDisplayCol = argument1;
-	var currentLineY = argument2;
-	var drawLineLoop = argument3;
-	var unitID = argument4;
+	Author: Terry DuBois
+*/
+function scr_drawLineHitIDListLoop(currentHitIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID) {
 
 	draw_set_alpha(1);
 	var currentHitIDListSize = ds_list_size(currentHitIDList);

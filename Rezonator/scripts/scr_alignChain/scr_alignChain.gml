@@ -1,22 +1,18 @@
-function scr_alignChain(argument0, argument1) {
-	/*
-		scr_alignChain(wordIDList, pushOut);
+/*
+	scr_alignChain(wordIDList, pushOut);
 	
-		Last Updated: 2019-07-05
+	Last Updated: 2019-07-05
 	
-		Called from: obj_chain
+	Called from: obj_chain
 	
-		Purpose: perform alignment process on chain
+	Purpose: perform alignment process on chain
 	
-		Mechanism: get display column of aligned words and set all words to the maximum display column
+	Mechanism: get display column of aligned words and set all words to the maximum display column
 	
-		Author: Terry DuBois
-	*/
-
-
-	var wordIDList = argument0;
-	var pushOut = argument1;
-
+	Author: Terry DuBois
+*/
+function scr_alignChain(wordIDList, pushOut) {
+	
 	var furthestDisplayCol = 0;
 
 	var unitIDList = ds_list_create();

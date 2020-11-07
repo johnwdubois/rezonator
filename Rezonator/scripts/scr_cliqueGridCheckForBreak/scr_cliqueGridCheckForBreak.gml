@@ -1,5 +1,4 @@
-function scr_cliqueGridCheckForBreak(argument0) {
-	var rowInCliqueGrid = argument0;
+function scr_cliqueGridCheckForBreak(rowInCliqueGrid) {
 
 	if (obj_control.showDevMessages)
 	{

@@ -1,6 +1,5 @@
-function scr_wordOptions(argument0) {
+function scr_wordOptions(optionSelected) {
 	//wordOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

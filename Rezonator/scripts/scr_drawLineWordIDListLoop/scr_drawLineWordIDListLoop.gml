@@ -12,13 +12,7 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
-function scr_drawLineWordIDListLoop(argument0, argument1, argument2, argument3, argument4) {
-
-	var currentWordIDList = argument0;
-	var previousWordDisplayCol = argument1;
-	var currentLineY = argument2;
-	var drawLineLoop = argument3;
-	var unitID = argument4;
+function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID) {
 
 	var currentWordIDListSize = ds_list_size(currentWordIDList);
 	var shapeTextX = wordLeftMargin;

@@ -1,33 +1,18 @@
-function scr_scrollBarHelp(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10, argument11, argument12) {
-	/*
-		scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight);
+/*
+	scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight);
 	
-		Last Updated: 2018-12-18
+	Last Updated: 2018-12-18
 	
-		Called from: any object
+	Called from: any object
 	
-		Purpose: Draw the scroll bar used to naviagte a UI list
+	Purpose: Draw the scroll bar used to naviagte a UI list
 	
-		Mechanism: lotso math
+	Mechanism: lotso math
 	
-		Author: Terry DuBois
-	*/
-	var listSize = argument0;
-	var focusedElementY = argument1;
-	var strHeight = argument2;
-	var marginTop = argument3;
-	var scrollBackColor = argument4;
-	var scrollBarColor = argument5;
-	var scrollButtonColor1 = argument6;
-	var scrollButtonColor2 = argument7;
-	var scrollButtonSprite = argument8;
-	var windowWidth = argument9;
-	var windowHeight = argument10;
-
-	var relativeX = argument11;
-	var relativeY = argument12;
-
-
+	Author: Terry DuBois
+*/
+function scr_scrollBarHelp(listSize, focusedElementY, strHeight, marginTop, scrollBackColor, scrollBarColor, scrollButtonColor1, scrollButtonColor2, scrollButtonSprite, windowWidth, windowHeight, relativeX, relativeY) {
+	
 
 	draw_set_alpha(1);
 

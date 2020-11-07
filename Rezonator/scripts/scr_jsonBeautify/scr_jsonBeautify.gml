@@ -1,4 +1,4 @@
-function scr_jsonBeautify(argument0) {
+function scr_jsonBeautify(src) {
 	// Credit to YellowAfterLife
 	// yal.cc
 
@@ -7,7 +7,6 @@ function scr_jsonBeautify(argument0) {
 	// in old versions of GMS, you'd have this ran separately instead.
 	// in GMS2 it'd need to be @"..." instead of just "..."
 	gml_pragma("global", "global.g_json_beautify_fb = buffer_create(1024, buffer_fast, 1); global.g_json_beautify_rb = buffer_create(1024, buffer_grow, 1);");
-	var src = argument0;
 	// copy text to string buffer:
 	var rb = global.g_json_beautify_rb;
 	buffer_seek(rb, buffer_seek_start, 0);

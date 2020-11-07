@@ -1,5 +1,4 @@
-function scr_importTXT(argument0) {
-	var filename = argument0;
+function scr_importTXT(filename) {
 	global.importFilename = filename;
 
 	scr_getImportFileRipList(filename);

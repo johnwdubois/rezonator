@@ -1,5 +1,4 @@
-function scr_cliqueAnalyzeTilt(argument0) {
-	var rowInCliqueGrid = argument0;
+function scr_cliqueAnalyzeTilt(rowInCliqueGrid) {
 
 	if (rowInCliqueGrid < 0 or rowInCliqueGrid >= ds_grid_height(obj_chain.cliqueGrid))
 	{
