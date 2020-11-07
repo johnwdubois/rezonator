@@ -130,7 +130,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2), y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, string(currentLineUnitID));
+		draw_text(floor(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2)), floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), string(currentLineUnitID));
 	
 		//Color codes the line lists for User
 		draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
