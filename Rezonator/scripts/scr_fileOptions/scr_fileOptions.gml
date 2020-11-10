@@ -16,7 +16,7 @@ function scr_fileOptions(optionSelected) {
 			show_message("Coming Soon");
 			break;
 				
-		case "Save":
+		case "menu_save":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 			instLoading.loadSprite = spr_saving;
 		
@@ -55,7 +55,7 @@ function scr_fileOptions(optionSelected) {
 				alarm[0] = 3;
 			}
 			break;
-		case "Import":
+		case "menu_import":
 			
 			audio_stop_all();
 	
@@ -84,7 +84,7 @@ function scr_fileOptions(optionSelected) {
 			room_goto(rm_openingScreen);
 			
 			break;
-		case "Export":
+		case "menu_export":
 			
 			//draw_set_alpha(1);
 			//draw_set_color(obj_toolPane.progressBarFrontColor);
@@ -116,7 +116,7 @@ function scr_fileOptions(optionSelected) {
 			}
 			//show_message("BUH 3");
 			break;
-		case "Media":
+		case "menu_media":
 
 			with( obj_audioUI ){
 			
@@ -132,7 +132,7 @@ function scr_fileOptions(optionSelected) {
 
 			//show_message("Coming Soon");
 			break;	
-		case "Exit":
+		case "menu_exit":
 		
 		
 			audio_stop_all();

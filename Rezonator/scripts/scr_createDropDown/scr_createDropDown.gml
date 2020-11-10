@@ -5,10 +5,12 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	draw_set_font(global.fontMain);
 	var dropDownHeight = ds_list_size(dropDownOptionList) * string_height("A") * 1.25;
 	//show_message(string(obj_control.cameraBottomLine));
-	if((dropDownY + (dropDownHeight)) > obj_control.cameraBottomLine) {
-		dropDownY -= dropDownHeight;	
+	var camViewHeight = camera_get_view_height(view_get_camera(0));
+	if((dropDownY + (dropDownHeight)) > camViewHeight) {
+		var adjustedHeight = ds_list_size(dropDownOptionList) * string_height("A") * 1.25;
+		dropDownY -= adjustedHeight;	
 	}
-	dropDownY = clamp(dropDownY, 0, camera_get_view_height(camera_get_active()));
+	dropDownY = clamp(dropDownY, 0, camViewHeight);
 	
 	var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;

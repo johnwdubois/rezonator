@@ -4,12 +4,12 @@ function scr_editOptions(optionSelected){
 
 	switch (optionSelected)
 	{
-		case "Go to Line":
+		case "menu_go-to-line":
 			
 			scr_jumpToLineCalled();			
 
 			break;
-		case "Go to Time":	
+		case "menu_go-to-time":	
 		
 			scr_jumpToLineCalled();
 			obj_control.goToTime = true;

@@ -3,7 +3,7 @@ function scr_toolsOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Search":
+		case "menu_search":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Keyword", "Clear");
@@ -12,7 +12,7 @@ function scr_toolsOptions(optionSelected) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypeSearch);
 			}
 			break;
-		case "Rez":
+		case "menu_rez":
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList) {
 					functionChainList_currentTab = functionChainList_tabRezBrush;
@@ -31,7 +31,7 @@ function scr_toolsOptions(optionSelected) {
 				instance_destroy();
 			}
 			break;
-		case "Track":
+		case "menu_track":
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList) {
 					functionChainList_currentTab = functionChainList_tabTrackBrush;
@@ -50,7 +50,7 @@ function scr_toolsOptions(optionSelected) {
 				instance_destroy();
 			}
 			break;
-		case "Stack":
+		case "menu_stack":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Stack tab", "StackShow", "Stacker");

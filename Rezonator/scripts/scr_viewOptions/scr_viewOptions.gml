@@ -13,7 +13,7 @@ function scr_viewOptions(optionSelected) {
 		break;
 	
 	
-		case "Justify":
+		case "menu_justify":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Left", "Right", "Center");
@@ -23,7 +23,7 @@ function scr_viewOptions(optionSelected) {
 			}
 		break;
 	
-		case "Prose":
+		case "menu_prose":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Prose", "Grid");
@@ -33,7 +33,7 @@ function scr_viewOptions(optionSelected) {
 			}
 		break;
 	
-		case "Hide":
+		case "menu_hide":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Track", "Rez", "Stack", "Place");

@@ -2,7 +2,7 @@ function scr_filterOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Filter": // toggles the filter view on and off
+		case "menu_filter": // toggles the filter view on and off
 		
 	
 			if (obj_control.filterGridActive) {
@@ -35,7 +35,7 @@ function scr_filterOptions(optionSelected) {
 			}
 			break;
 	
-		case "Context":
+		case "menu_filter-context":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Above", "Between", "Below");
@@ -45,7 +45,7 @@ function scr_filterOptions(optionSelected) {
 			}
 			break;
 	
-		case "Pick": // add all of a certain chain type to filter
+		case "menu_pick": // add all of a certain chain type to filter
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();

@@ -2,7 +2,7 @@ function scr_settingsOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Theme":
+		case "menu_theme":
 		
 			global.colorTheme++;
 			if (global.colorTheme >= ds_grid_height(global.colorThemeGrid)) {
@@ -24,7 +24,7 @@ function scr_settingsOptions(optionSelected) {
 		
 			instance_destroy(obj_dropDown);
 		break;
-		case "Zoom":
+		case "menu_zoom":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "In", "Out", "Wide", "Narrow", "Tall", "Short");
@@ -35,7 +35,7 @@ function scr_settingsOptions(optionSelected) {
 	
 		break;
 
-		case "User":
+		case "menu_user":
 			obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";

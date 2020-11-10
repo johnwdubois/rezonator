@@ -32,7 +32,7 @@ textBuffer = 10;
 var showScrollBar = false;
 var camHeight = camera_get_view_height(camera_get_active());
 if (y + windowHeight > camHeight) {
-	windowHeight = camHeight - y - 50;
+	windowHeight = camHeight - y ;
 	showScrollBar = true;
 }
 
