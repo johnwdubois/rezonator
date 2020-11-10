@@ -529,6 +529,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					if (!is_undefined(dropDownOptionList) && !is_undefined(global.tokenImportColNameList)) {
 						ds_list_copy(dropDownOptionList, global.tokenImportColNameList);
 						if (ds_list_size(dropDownOptionList) > 0 ) {
+							
 							var dropDownInst = instance_create_depth(colRectX2,colRectY1+tabHeight , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
 							dropDownInst.optionListType = global.optionListTypeTokenSelection;

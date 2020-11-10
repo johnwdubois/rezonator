@@ -15,7 +15,7 @@ if ( variable_global_exists("locale_gloss") && ds_map_exists( global.locale_glos
 	// substitute this code line immediately above to test translation for debugging purposes.
 	// it will print the kay value of each pair for which the translation is missing:
 	
-	return "MISSING TRANSLATION: " + string(key);
+	return string(key);
 }
 
 

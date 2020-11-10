@@ -304,5 +304,10 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_navOptions(optionSelected);
 		instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeLanguage) //45
+	{
+	    scr_languageOptions(optionSelected);
+		instance_destroy();
+	}
 
 }

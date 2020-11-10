@@ -140,7 +140,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;*/
-				scr_createDropDown(menuWidth * menuHeaderLoop, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop));
+				scr_createDropDown(menuWidth * menuHeaderLoop, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
 			}
 		}
 	}
@@ -155,7 +155,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
 	//draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(mean(y, y + menuHeight)), headerString);
 	draw_set_colour(global.colorThemeText);
-	draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), headerString);
+	draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), scr_get_translation(headerString));
 }
 
 	

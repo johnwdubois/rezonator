@@ -405,6 +405,7 @@ global.optionListTypeStackTag = 41;
 global.optionListTypeEdit = 42;
 global.optionListTypePlayAndLearn = 43;
 global.optionListTypeNav = 44;
+global.optionListTypeLanguage = 45;
 
 scr_preImportInitiate();
 showPreImportScreen = false;
