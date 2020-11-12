@@ -21,7 +21,9 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	else{
 		dropDownInst.translateDropDown = false;
 	}
-					
+	
+	if(room == rm_mainScreen){
 	obj_control.ableToCreateDropDown = false;
 	obj_control.alarm[0] = 2;
+	}
 }

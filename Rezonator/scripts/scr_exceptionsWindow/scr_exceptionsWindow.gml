@@ -7,7 +7,7 @@ function scr_exceptionsWindow() {
 	// Exceptions window
 	var exceptionsInfoWindowRectX1 = (camWidth * 0.5) + 20;
 	var exceptionsInfoWindowRectY1 = 80 + string_height("0");
-	var exceptionsInfoWindowRectX2 = camWidth - 40;
+	var exceptionsInfoWindowRectX2 = camWidth - 50;
 	var exceptionsInfoWindowRectY2 = (camHeight / 2) - 180;
 
 	draw_set_color(global.colorThemeBorders);

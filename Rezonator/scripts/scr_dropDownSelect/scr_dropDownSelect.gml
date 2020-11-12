@@ -309,5 +309,10 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_languageOptions(optionSelected);
 		instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeImportGrid) //46
+	{
+	    scr_importGridOptions(optionSelected);
+		instance_destroy();
+	}
 
 }

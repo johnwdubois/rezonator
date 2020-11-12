@@ -6,8 +6,6 @@ function scr_importMappingTagDraw() {
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
-	var stringHeight = string_height("0");
-
 
 	// Import Screen Title
 	draw_set_color(global.colorThemeText);
@@ -20,72 +18,8 @@ function scr_importMappingTagDraw() {
 
 
 	// File window
-	var fileInfoWindowRectX1 = 40;
-	var fileInfoWindowRectY1 = 80 + string_height("0");
-	var fileInfoWindowRectX2 = (camWidth * 0.5) - 20;
-	var fileInfoWindowRectY2 = (camHeight / 2) - 180;
-
-	draw_set_color(global.colorThemeBorders);
-	draw_set_alpha(1);
-	draw_rectangle(fileInfoWindowRectX1, fileInfoWindowRectY1, fileInfoWindowRectX2, fileInfoWindowRectY2, true);
-	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_middle);
-	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), scr_get_translation("menu_summary"));
-
-	draw_set_font(global.fontMain);
-	
-	var filename = filename_name(global.importFilename);
-	var lineCount = ds_grid_height(global.importTXTLineGrid);
-	var blockCount = ds_grid_height(global.blockGrid);
-	var blockTypes = ds_grid_height(global.blockTypeGrid);
-	var tokenCount = global.tokenCountTotal;
-	var fieldCount = ds_grid_height(global.tagInfoGrid);
-	
-	if (global.importType == global.importType_CSV) {
-		lineCount = ds_grid_height(global.importCSVGrid);
-		global.tokenCountTotal = lineCount;
-		tokenCount = global.tokenCountTotal;
-	}
-	else if (global.importType == global.importType_IGT) {
-		fieldCount -= 2;
-	}
-	
-	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, scr_get_translation("label_user_file_name") + string(filename));
-	var actualIterations = 0;
-	for (var i = 0; i < 5; i++) {
-		
-		var currentStr = "";
-		if (i == 0) {
-			if (tokenCount < 1) continue;
-			currentStr = "Token count: " + string(tokenCount);
-		}
-		else if (i == 1) {
-			if (lineCount < 1) continue;
-			currentStr = scr_get_translation("label_total_line") + string(lineCount);
-		}
-		else if (i == 2) {
-			if (blockCount < 1) continue;
-			currentStr = "Block count: " + string(blockCount);
-		}
-		else if (i == 3) {
-			if (fieldCount < 1) continue;
-			currentStr = scr_get_translation("label_markers_found") + string(fieldCount);
-		}
-		else if (i == 4) {
-			if (blockTypes < 1) continue;
-			currentStr = "Block types: " + string(blockTypes);
-		}
-		
-		var textX = floor(fileInfoWindowRectX1 + 20);
-		var textY = floor(fileInfoWindowRectY1 + (stringHeight * (actualIterations + 2)));
-		
-		draw_text(textX, textY, currentStr);
-		actualIterations++;
-	}
-
-
+	var xBuffer = 40;
+	var yBuffer = (camHeight / 2) - 180;
 
 
 	/*
@@ -216,15 +150,15 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(floor(fileInfoWindowRectX1), floor(fileInfoWindowRectY2 + 50), scr_get_translation("menu_import_fields"));
+	draw_text(floor(xBuffer), floor(yBuffer + 50), scr_get_translation("menu_import_fields"));
 
 	var buttonBuffer = 20;
 
 
 	var loadPreviousButtonWidth = max(200, string_width(" Use Last Import Schema "));
 	var loadPreviousButtonHeight = 30;
-	var loadPreviousButtonRectX1 = fileInfoWindowRectX1 + string_width("ImportFields    ");
-	var loadPreviousButtonRectY1 = fileInfoWindowRectY2 + 50 - (loadPreviousButtonHeight / 2);
+	var loadPreviousButtonRectX1 = xBuffer + string_width("ImportFields    ");
+	var loadPreviousButtonRectY1 = yBuffer + 50 - (loadPreviousButtonHeight / 2);
 	var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
 	var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
 	
@@ -368,8 +302,39 @@ function scr_importMappingTagDraw() {
 		draw_set_color(global.colorThemeText);
 		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), scr_get_translation("msg_save-schema"));
 	}
+	
+	// if in IGT allow user to sitch grids
+	if( global.importType == global.importType_IGT){
+	
+		var changeGridButtonWidth = max(200, string_width(" Save Import Schema "));
+		var changeGridButtonHeight = 30;
+		var changeGridButtonRectX2 = (camWidth) - 50;
+		var changeGridButtonRectX1 = changeGridButtonRectX2 - changeGridButtonWidth;
+		var changeGridButtonRectY1 = loadPreviousButtonRectY1;
+		var changeGridButtonRectY2 = changeGridButtonRectY1 + changeGridButtonHeight;
 
 
+	
+		if (point_in_rectangle(mouse_x, mouse_y, changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2)) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2, false);
+	
+			if (mouse_check_button_pressed(mb_left)) {
+			
+				scr_createDropDown(changeGridButtonRectX1,changeGridButtonRectY2,gridList, global.optionListTypeImportGrid);
+			}
+		}
+	
+		draw_set_color(global.colorThemeBorders);
+		draw_set_alpha(1);
+		draw_rectangle(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2, true);
+
+		draw_set_font(global.fontMain);
+		draw_set_halign(fa_center);
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(mean(changeGridButtonRectX1, changeGridButtonRectX2)), floor(mean(changeGridButtonRectY1, changeGridButtonRectY2)), string(obj_importMapping.currentGridName));
+
+	}
 
 	if (tagGridHeight == 1) {
 		room_goto(rm_mainScreen)
