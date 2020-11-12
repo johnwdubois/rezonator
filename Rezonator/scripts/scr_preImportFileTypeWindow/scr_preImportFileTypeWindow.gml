@@ -5,6 +5,9 @@ function scr_preImportFileTypeWindow(){
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	
+	
+	
+	
 	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
@@ -23,8 +26,16 @@ function scr_preImportFileTypeWindow(){
 	var fileTypeWindowX1 = windowX;
 	var fileTypeWindowY1 = windowY;
 	var fileTypeWindowX2 = floor(camWidth * 0.41);
-	var fileTypeWindowY2 = floor(camHeight * 0.5);
+	var fileTypeWindowY2 = floor(camHeight * 0.8);
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, fileTypeWindowX1, fileTypeWindowY1, fileTypeWindowX2, fileTypeWindowY2);
+	
+	// draw window border
+	//var rezonatorPink = make_color_rgb(193, 30, 93);
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	
+	draw_roundrect(fileTypeWindowX1, fileTypeWindowY1, fileTypeWindowX2, fileTypeWindowY2, false);
+	
 	
 	// clipping stuff
 	windowWidth = max(fileTypeWindowX2 - fileTypeWindowX1, 48);
@@ -80,10 +91,10 @@ function scr_preImportFileTypeWindow(){
 		}
 		
 		// draw radio button
-		var buttonLeftBuffer = radioButtonRad + 30;
-		var buttonTopBuffer = radioButtonRad + 10;
+		var buttonLeftBuffer = radioButtonRad + 20;
+		var buttonTopBuffer = radioButtonRad + 20;
 		var buttonX = fileTypeWindowX1 + buttonLeftBuffer;
-		var buttonY = fileTypeWindowY1 + buttonTopBuffer + (strHeight * 1.5 * i) + scrollPlusY;
+		var buttonY = fileTypeWindowY1 + buttonTopBuffer + (strHeight * 1.5 * i);
 		draw_set_color(global.colorThemeBorders);
 		draw_circle(buttonX - clipX, buttonY - clipY, radioButtonRad, true);
 		
@@ -122,10 +133,12 @@ function scr_preImportFileTypeWindow(){
 	}
 	draw_set_valign(fa_top);
 	
+	/*
 	// draw scrollbar
 	scr_scrollBar(importTypeListSize, -1, strHeight * 1.5, 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	*/
 	
 	scr_surfaceEnd();
 	
@@ -135,14 +148,10 @@ function scr_preImportFileTypeWindow(){
 	draw_set_alpha(1);
 	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), "Choose a file type to import");
 	
-	// draw window border
-	var rezonatorPink = make_color_rgb(193, 30, 93);
-	draw_set_color(rezonatorPink);
-	draw_set_alpha(1);
-	for (var i = 0; i < 5; i++) {
-		draw_rectangle(fileTypeWindowX1 + i, fileTypeWindowY1 + i, fileTypeWindowX2 - i, fileTypeWindowY2 - i, true);
-	}
+
+
 	
+	/*
 	// mousewheel/keyboard scroll
 	if (mouseoverWindow) {
 		if (mouse_wheel_up() || keyboard_check(vk_up)) {
@@ -152,5 +161,6 @@ function scr_preImportFileTypeWindow(){
 			scrollPlusYDest -= 8;
 		}
 	}
+	*/
 
 }

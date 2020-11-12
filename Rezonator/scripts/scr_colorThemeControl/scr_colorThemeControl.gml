@@ -16,6 +16,7 @@ function scr_colorThemeControl() {
 		global.colorThemePaneBG = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, global.colorTheme);
 		global.colorThemeOutOfBounds = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, global.colorTheme);
 		global.colorThemeHighlight = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colHighlight, global.colorTheme);
+		global.colorThemeNegSpace = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, global.colorTheme);
 	
 		var layerID = layer_get_id("Background");
 		var backID = layer_background_get_id(layerID);

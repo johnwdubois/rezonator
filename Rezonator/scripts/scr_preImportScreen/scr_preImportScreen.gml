@@ -3,11 +3,16 @@
 function scr_preImportScreen(){
 	
 	scr_fontSizeControlOpeningScreen();
+	
 	scr_drawBackArrow();
 
-	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
+	
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemeNegSpace);
+	draw_rectangle(0, 0, camWidth, camHeight, false);
+	
 	
 	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
@@ -34,9 +39,9 @@ function scr_preImportScreen(){
 	///////////// EXAMPLE WINDOW ////////////////
 	
 	var exampleWindowX1 = floor(camWidth * 0.44);
-	var exampleWindowY1 = floor(camHeight * 0.25);
+	var exampleWindowY1 = floor(camHeight * 0.45);
 	var exampleWindowX2 = floor(camWidth * 0.9);
-	var exampleWindowY2 = floor(camHeight * 0.5);
+	var exampleWindowY2 = floor(camHeight * 0.8);
 	
 	// draw window title
 	draw_set_font(global.fontMain);
@@ -45,9 +50,9 @@ function scr_preImportScreen(){
 	draw_text(exampleWindowX1, floor(exampleWindowY1 - (strHeight)), "Example");
 	
 	// draw window border
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeBG);
 	draw_set_alpha(1);
-	draw_rectangle(exampleWindowX1, exampleWindowY1, exampleWindowX2, exampleWindowY2, true);
+	draw_roundrect(exampleWindowX1, exampleWindowY1, exampleWindowX2, exampleWindowY2, false);
 	
 	// draw example content
 	var exampleWindowList = ds_map_find_value(currentPreImportMap, "example");
@@ -94,10 +99,10 @@ function scr_preImportScreen(){
 	
 	///////////// DESCRIPTION WINDOW ////////////////
 	
-	var descriptionWindowX1 = floor(camWidth * 0.1);
-	var descriptionWindowY1 = floor(camHeight * 0.55);
-	var descriptionWindowX2 = floor(descriptionWindowX1 + (exampleWindowX2 - exampleWindowX1));
-	var descriptionWindowY2 = floor(camHeight * 0.8);
+	var descriptionWindowX1 = floor(camWidth * 0.44);
+	var descriptionWindowY1 = floor(camHeight * 0.25);
+	var descriptionWindowX2 = floor(camWidth * 0.9);
+	var descriptionWindowY2 = floor(camHeight * 0.40);
 	
 	// draw window title
 	draw_set_font(global.fontMain);
@@ -106,9 +111,9 @@ function scr_preImportScreen(){
 	draw_text(descriptionWindowX1, floor(descriptionWindowY1 - (strHeight)), "Description");
 	
 	// draw window border
-	draw_set_color(c_black);
+	draw_set_color(global.colorThemeBG);
 	draw_set_alpha(1);
-	draw_rectangle(descriptionWindowX1, descriptionWindowY1, descriptionWindowX2, descriptionWindowY2, true);
+	draw_roundrect(descriptionWindowX1, descriptionWindowY1, descriptionWindowX2, descriptionWindowY2, false);
 	
 	// draw description content
 	var descriptionWindowList = ds_map_find_value(currentPreImportMap, "description");
@@ -130,7 +135,7 @@ function scr_preImportScreen(){
 	
 	
 	
-	
+/*	
 	///////////// LINKS WINDOW ////////////////
 	var fileTypeWindowWidth = (floor(camWidth * 0.41) - floor(camWidth * 0.1))
 	var linksWindowX1 = floor(exampleWindowX2 - fileTypeWindowWidth);
@@ -180,17 +185,17 @@ function scr_preImportScreen(){
 	
 	
 	
-	
+	*/
 	
 	
 	
 	
 	// cover-up rectangle
-	var coverupRectX1 = linksWindowX2 + 2;
+	var coverupRectX1 = floor(camWidth * 0.9) + 2;
 	var coverupRectY1 = 0;
 	var coverupRectX2 = camWidth;
 	var coverupRectY2 = camHeight;
-	draw_set_color(global.colorThemeBG);
+	draw_set_color(global.colorThemeNegSpace);
 	draw_set_alpha(1);
 	draw_rectangle(coverupRectX1, coverupRectY1, coverupRectX2, coverupRectY2, false);
 	
@@ -236,7 +241,7 @@ function scr_preImportScreen(){
 	
 	
 	// draw logo higher than usual
-	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 7, false);
+	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 9, false);
 
 	
 	
