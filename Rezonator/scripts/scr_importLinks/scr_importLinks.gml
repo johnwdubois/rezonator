@@ -125,13 +125,13 @@ function scr_importLinks(fileLineRipListElement) {
 			{
 				switch (currentTier)
 				{
-					case 1:
+					case obj_chain.rezTier:
 						currentTool = toolRezBrush;
 						break;
-					case 2:
+					case obj_chain.trackTier:
 						currentTool = toolTrackBrush;
 						break;
-					case 3:
+					case obj_chain.stackTier:
 						currentTool = toolStackBrush;
 						break;
 					default:

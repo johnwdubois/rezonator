@@ -84,7 +84,7 @@ function scr_refreshChainGrid() {
 				var currentInChainListSize = ds_list_size(currentInChainList);
 				for(var inChainListLoop = 0; inChainListLoop < currentInChainListSize; inChainListLoop++) {
 					var inListChainID = ds_list_find_value(currentInChainList, inChainListLoop);
-					var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, 2);
+					var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, obj_chain.trackTier);
 					if(currentLinkGridPos != -1) {
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentID - 1, true);
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
@@ -123,7 +123,7 @@ function scr_refreshChainGrid() {
 				var currentInChainListSize = ds_list_size(currentInChainList);
 				for(var inChainListLoop = 0; inChainListLoop < currentInChainListSize; inChainListLoop++) {
 					var inListChainID = ds_list_find_value(currentInChainList, inChainListLoop);
-					var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, 1);
+					var currentLinkGridPos = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, inListChainID, obj_chain.linkGrid_colTier, obj_chain.rezTier);
 					if(currentLinkGridPos != -1) {
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
 						var currentRowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), inListChainID);

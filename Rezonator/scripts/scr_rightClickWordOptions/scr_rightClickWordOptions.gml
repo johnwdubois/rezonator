@@ -113,7 +113,7 @@ function scr_rightClickWordOptions(optionSelected) {
 		case "Delete New Word":
 			scr_destroyAllDropDownsOtherThanSelf();
 			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
-			obj_control.deleteNewWord =true;
+			obj_control.deleteNewWord = true;
 			//show_message("Coming Soon");
 			scr_deleteFromChain();
 			
@@ -165,7 +165,7 @@ function scr_rightClickWordOptions(optionSelected) {
 				// Using the rez tool
 				case obj_toolPane.modeRez:
 					grid = obj_chain.rezChainGrid;
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.rezTier) {
 						show_message("Please Click on a word before deleting it's link");
 						instance_destroy();
 						exit;	
@@ -174,14 +174,14 @@ function scr_rightClickWordOptions(optionSelected) {
 				case obj_toolPane.modeTrack:
 				// Using the track tool
 					grid = obj_chain.trackChainGrid;
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.trackTier) {
 						show_message("Please Click on a word before deleting it's link");
 						instance_destroy();
 						exit;
 					}
 					break;
 				default:
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.rezTier) {
 						instance_destroy();
 						exit;
 					}

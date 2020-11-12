@@ -115,7 +115,9 @@ rezPlayTime = 0;
 
 inRezPlay = false;
 
-
+rezTier = 1;
+trackTier = 2;
+stackTier = 3;
 
 vizLinkGridWidth = 10;
 vizLinkGrid_colTier = 0;

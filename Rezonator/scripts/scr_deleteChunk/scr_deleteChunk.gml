@@ -14,7 +14,7 @@
 function scr_deleteChunk() {
 	// Set variable to be used in both cases
 	var currentWordID = -1;
-
+	//show_message("Delete Chunk");
 	// Deletion of Chunks
 	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush or obj_control.deleteChunkWord) {
 		//obj_control.deleteChunkWord = false;	
@@ -84,18 +84,25 @@ function scr_deleteChunk() {
 	}
 	
 	// Safety check, we only want to delete Chunks or newWords
+	if(currentWordID == -1) {
+		//show_message(obj_control.newWordHoverWordID);
+		if(obj_control.newWordHoverWordID > -1 and obj_control.newWordHoverWordID <=(ds_grid_height(obj_control.dynamicWordGrid))) {
+			currentWordID = obj_control.newWordHoverWordID;
+		}
+	}
+	
 	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
-	if(currentWordState != obj_control.wordStateChunk && currentWordState != obj_control.wordStateNew) 
+	
+	if(currentWordState != obj_control.wordStateChunk and currentWordState != obj_control.wordStateNew) 
 	{
 		obj_control.linkDeleted = false;
 		obj_control.deleteNewWord = false;
-		obj_control.deleteChunkWord = false;
+		obj_control.deleteChunkWord = false;//show_message("exit");
 		exit;
 	}
 	
 	// Set the word state to dead
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1, obj_control.wordStateDead);
-	
 	
 	// Mechanism for removing this Chunk from any chains
 	// CUrrently experiencing bugs with deleting a nested Chunk plus it's nest within the same chain
@@ -112,13 +119,13 @@ function scr_deleteChunk() {
 	obj_chain.currentFocusedChainID = currentChainID;
 		
 	// access the currentChainGridRow using the chainID
-	if(tier == 1) {
+	if(tier == obj_chain.rezTier) {
 		obj_control.gridInDelete = obj_chain.rezChainGrid;
 	}
-	else if(tier == 2) {
+	else if(tier == obj_chain.trackTier) {
 		obj_control.gridInDelete = obj_chain.trackChainGrid;
 	}
-	else if(tier == 3) {
+	else if(tier == obj_chain.stackTier) {
 		obj_control.gridInDelete = obj_chain.stackChainGrid;
 	}
 		
