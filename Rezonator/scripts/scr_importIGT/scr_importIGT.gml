@@ -12,7 +12,6 @@ function scr_importIGT(){
 	ds_list_add(global.importGridColNameList, "~blockID");
 	ds_list_add(global.importGridColNameList, "~blockSeq");
 	
-	
 	// Fill up the importGrid based on blockGrid
 	var blockGridHeight = ds_grid_height(global.blockGrid);
 	for (var i = 0; i < blockGridHeight; i++) {

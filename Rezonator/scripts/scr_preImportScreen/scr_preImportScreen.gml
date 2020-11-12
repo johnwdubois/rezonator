@@ -3,15 +3,17 @@
 function scr_preImportScreen(){
 	
 	scr_fontSizeControlOpeningScreen();
-	
-	scr_drawBackArrow();
+
 
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	
+	// draw negative space BG
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeNegSpace);
 	draw_rectangle(0, 0, camWidth, camHeight, false);
+	
+	scr_drawBackArrow();
 	
 	
 	draw_set_font(global.fontMain);

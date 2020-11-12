@@ -54,6 +54,7 @@ function scr_fillImportGrids_IGT(){
 	var currentUnitID = -1;
 	var currentWordID = -1;
 	var currentTokenID = -1;
+	var prevSpeaker = "";
 	
 	
 	// get the display token field
@@ -63,17 +64,8 @@ function scr_fillImportGrids_IGT(){
 		displayTokenField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenFieldRow);
 	}
 	
-	// get the speaker field
-	var speakerField = "";
-	var speakerFieldRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
-	if (speakerFieldRow >= 0) {
-		speakerField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, speakerFieldRow);
-	}
 	
-	
-	
-	
-	
+
 	
 	// --- FILL DISCO/UNIT/TOKEN IMPORT ---
 	// loop over every row in the importGrid, create a Unit for every row in the importGrid
@@ -84,6 +76,8 @@ function scr_fillImportGrids_IGT(){
 		wordImportGridCol = 2;
 		unitImportGridCol = 2;
 		discoImportGridCol = 0;
+		
+		var speakerBeenSet = false;
 		
 		for (var j = 0; j < importGridWidth; j++) {
 			
@@ -131,8 +125,12 @@ function scr_fillImportGrids_IGT(){
 				
 				// set default Unit columns (~UnitID, ~Participant)
 				ds_grid_set(global.unitImportGrid, global.unitImport_colUnitID, i, currentUnitID);
-				if (currentField == speakerField) {
-					ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, i, currentStr);
+				if (currentField == global.unitImportSpeakerColName) {
+					if (currentStr != "0") {
+						ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, i, currentStr);
+						prevSpeaker = currentStr;
+						speakerBeenSet = true;
+					}
 				}
 				
 				unitImportGridCol++;
@@ -190,6 +188,13 @@ function scr_fillImportGrids_IGT(){
 				
 			}
 
+		}
+		
+		// if we haven't set a speaker for this Unit yet, we will try to set the previous speaker as this Unit's speaker
+		if (!speakerBeenSet) {
+			if (prevSpeaker != "" && typeof(prevSpeaker) == "string") {
+				ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, i, prevSpeaker);
+			}
 		}
 	}
 	currentUnitID = 0

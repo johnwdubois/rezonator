@@ -27,6 +27,5 @@ displayImportTypeList = ds_list_create();
 ds_list_add(displayImportTypeList, global.importType_PlainText,
 	global.importType_TabDelimited,
 	global.importType_IGT,
-	"Interlinear Glossed Text (Scription)",
 	global.importType_CSV,
 	global.importType_CoNLLU);

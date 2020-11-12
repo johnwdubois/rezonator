@@ -125,7 +125,7 @@ function scr_preImportFileTypeWindow(){
 		draw_set_valign(fa_middle);
 		var textX = fileTypeWindowX1 + (buttonLeftBuffer * 1.5) + radioButtonRad;
 		var textY = floor(buttonY);
-		var textStr = (currentImportType == global.importType_IGT) ? string(global.importType_IGT + " (General)") : string(currentImportType);
+		var textStr = string(currentImportType);
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_text(textX - clipX, textY - clipY, textStr);

@@ -46,7 +46,7 @@ function scr_colorThemeGridInit() {
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, 1, make_color_hsv(0, 0, 40));
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, 1, c_black);
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colHighlight, 1, c_green);
-	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, 1, make_color_rgb(0,0,40));
+	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, 1, make_color_rgb(20,20,20));
 
 
 	global.colorThemeBG = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBG, global.colorTheme);
