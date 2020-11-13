@@ -60,8 +60,7 @@ function scr_preImportScreen(){
 	var exampleWindowList = ds_map_find_value(currentPreImportMap, "example");
 	var exampleWindowListSize = ds_list_size(exampleWindowList);
 	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(infoAlpha);
+	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
 		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT ||
@@ -70,30 +69,51 @@ function scr_preImportScreen(){
 			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
 			if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
+				draw_set_color(global.colorThemeText);
+				draw_set_alpha(infoAlpha);
 				draw_text(currentTextX, currentTextY, currentText);
 			}
 		}
 		else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_CSV) {
 			
+			// draw column coverup rectangle
+			var colCoverUpRectX1 = currentTextX;
+			var colCoverUpRectY1 = exampleWindowY1 + 10;
+			var colCoverUpRectX2 = exampleWindowX2 - 10;
+			var colCoverUpRectY2 = exampleWindowY2 - 10;
+			draw_set_color(global.colorThemeBG);
+			draw_set_alpha(1);
+			draw_rectangle(colCoverUpRectX1, colCoverUpRectY1, colCoverUpRectX2, colCoverUpRectY2, false);
 			
+			// get column width list
+			var colWidthList = -1;
+			if (global.importType == global.importType_TabDelimited) colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
+			else if (global.importType == global.importType_CSV) colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
 			
 			var currentList = ds_list_find_value(exampleWindowList, i);
-			if (typeof(currentList) == "number") {
-				var currentListSize = ds_list_size(currentList);
-				var colWidth = (exampleWindowX2 - exampleWindowX1) / (exampleWindowListSize + 1);
+			if (typeof(currentList) == "number" && ds_exists(colWidthList, ds_type_list)) {
+				
+				if (exampleWindowListSize == ds_list_size(colWidthList)) {
 			
-				for (var j = 0; j < currentListSize; j++) {
-					var currentText = ds_list_find_value(currentList, j);
-					var currentTextX = floor(exampleWindowX1 + textBufferLeft + (colWidth * i));
-					var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * j));
-					if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
-						draw_text(currentTextX, currentTextY, currentText);
+					// draw example text columns
+					var currentListSize = ds_list_size(currentList);
+					for (var j = 0; j < currentListSize; j++) {
+					
+						var currentColWidthRatio = ds_list_find_value(colWidthList, i);
+						var currentColWidth = floor((exampleWindowX2 - exampleWindowX1) * (0.01 * currentColWidthRatio));
+					
+						var currentText = ds_list_find_value(currentList, j);
+						var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * j));
+						if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
+							draw_set_color(global.colorThemeText);
+							draw_set_alpha(infoAlpha);
+							draw_text(currentTextX, currentTextY, currentText);
+						}
 					}
+					currentTextX += floor(currentColWidth);
 				}
 			}
-			
 		}
-		
 	}
 	
 	

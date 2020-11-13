@@ -18,7 +18,7 @@ function scr_preImportInitiate(){
 		// Plain text
 		if (importTypeStr == global.importType_PlainText) {
 			// example
-			ds_list_add(exampleList, "We shall overcome,","We shall overcome,","We shall overcome, some day.","","Oh, deep in my heart,","I do believe","We shall overcome, some day.","","We'll walk hand in hand,","We'll walk hand in hand,","We'll walk hand in hand, some day.","","Oh, deep in my heart,","","We shall live in peace,","We shall live in peace,","We shall live in peace, some day.","","Oh, deep in my heart,","","We shall all be free,","We shall all be free,","We shall all be free, some day.","","Oh, deep in my heart,","","We are not afraid,","We are not afraid,","We are not afraid, TODAY","","Oh, deep in my heart,","","We shall overcome,","We shall overcome,","We shall overcome, some day.","","Oh, deep in my heart,","I do believe","We shall overcome, some day.");
+			ds_list_add(exampleList, "---","Danny Boy","---","Oh, Danny boy, the pipes, the pipes are calling","From glen to glen, and down the mountain side.","The summer's gone, and all the roses falling,","It's you, It's you must go and I must bide.","But come ye back when summer's in the meadow,","Or when the valley's hushed and white with snow,","It's I'll be here in sunshine or in shadow,—","Oh, Danny boy, O Danny boy, I love you so!","","But when ye come, and all the flowers are dying,","If I am dead, as dead I well may be,","Ye'll come and find the place where I am lying,","And kneel and say an Avè there for me.","And I shall hear, though soft you tread above me,","And all my grave will warmer, sweeter be,","For you will bend and tell me that you love me,","And I shall sleep in peace until you come to me!");
 			// description
 			ds_list_add(descriptionList, "• file extension: *.txt", "• songs, poems, etc.", "• short meaningful lines");
 			// links
@@ -97,4 +97,15 @@ function scr_preImportInitiate(){
 		// add currentImportTypeMap to preImportMap
 		ds_map_add_map(global.preImportMap, importTypeStr, currentImportTypeMap);
 	}
+	
+	
+	
+	// add example column width lists to preImportMap
+	// these lists will tell Rezonator how wide to draw each column in the "Example" window on preImportScreen
+	var tabDelimWidthList = ds_list_create();
+	ds_list_add(tabDelimWidthList, 20, 15, 15, 50);
+	ds_map_add_list(global.preImportMap, "tabDelimWidthList", tabDelimWidthList);
+	var csvWidthList = ds_list_create();
+	ds_list_add(csvWidthList, 14, 14, 14, 14, 14, 14, 14);
+	ds_map_add_list(global.preImportMap, "csvWidthList", csvWidthList);
 }
