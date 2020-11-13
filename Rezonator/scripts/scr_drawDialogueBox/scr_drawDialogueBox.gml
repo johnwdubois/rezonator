@@ -14,12 +14,22 @@ function scr_drawDialogueBox() {
 				
 		Author: Brady Moore
 	*/
-		var verticleBuffer = 125;
+		var verticalBuffer = 125;
 		var horizontalBuffer = 250;
 		var searchBarXOffset = 235;
 		var searchBarYOffset = 20;
 		var buttonXOffset = 50;
 		var buttonYOffset = 25;
+		
+		var cameraMidpointX = camera_get_view_width(camera_get_active())/2;
+		var cameraMidpointY = camera_get_view_height(camera_get_active())/2;
+		
+		
+		var dialogueBoxRectX1 = cameraMidpointX - horizontalBuffer;
+		var dialogueBoxRectY1 = cameraMidpointY - verticalBuffer;
+		var dialogueBoxRectX2 = cameraMidpointX + horizontalBuffer;
+		var dialogueBoxRectY2 = cameraMidpointY + verticalBuffer;
+		
 
 
 	if (obj_control.dialogueBoxActive) {
@@ -29,79 +39,84 @@ function scr_drawDialogueBox() {
 
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
+		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1, dialogueBoxRectX2, dialogueBoxRectY2, false);
 		draw_set_colour(global.colorThemePaneBG);
 		if (global.colorTheme ==0) {
 		draw_set_colour(c_ltgray);
 		}
 		// draw background UI
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
+		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1 + 30, dialogueBoxRectX2, dialogueBoxRectY2, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 30, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
+		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1 + 30, dialogueBoxRectX2, dialogueBoxRectY2, true);
+		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1, dialogueBoxRectX2, dialogueBoxRectY2, true);
 		draw_set_colour(global.colorThemeText);
 	
 		draw_set_font(fnt_mainBold);
-		draw_text(floor(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 15), floor(camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15), string(game_display_name));
+		draw_text(floor(dialogueBoxRectX1 + 15), floor(dialogueBoxRectY1 + 15), string(game_display_name));
 	
 		draw_set_font(fnt_mainLarge1);
 
 	
 		// draw search bar
 		draw_set_colour(c_white);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - searchBarXOffset, camera_get_view_height(camera_get_active())/2 - searchBarYOffset, camera_get_view_width(camera_get_active()) /2 + searchBarXOffset, camera_get_view_height(camera_get_active())/2 + searchBarYOffset, false);
+		draw_rectangle(cameraMidpointX - searchBarXOffset, cameraMidpointY - searchBarYOffset, cameraMidpointX + searchBarXOffset, cameraMidpointY + searchBarYOffset, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - searchBarXOffset, camera_get_view_height(camera_get_active())/2 - searchBarYOffset, camera_get_view_width(camera_get_active()) /2 + searchBarXOffset, camera_get_view_height(camera_get_active())/2 + searchBarYOffset, true);
+		draw_rectangle(cameraMidpointX - searchBarXOffset, cameraMidpointY - searchBarYOffset, cameraMidpointX + searchBarXOffset, cameraMidpointY + searchBarYOffset, true);
 
 		// draw buttons for OK and Cancel
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 50 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, false);
+		draw_rectangle(cameraMidpointX + 40 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 50 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 50 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, true);
+		draw_rectangle(cameraMidpointX + 40 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 50 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, true);
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 180 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 175 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, false);
+		draw_rectangle(cameraMidpointX + 180 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 175 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 180 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 175 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, true);
+		draw_rectangle(cameraMidpointX + 180 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 175 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, true);
 		draw_set_colour(global.colorThemeText);
 		draw_set_font(fnt_mainLarge1);
 	
 		// draw button text
-		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 30), floor(camera_get_view_height(camera_get_active()) / 2 + 75), scr_get_translation("msg_okay"));
-		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 150), floor(camera_get_view_height(camera_get_active()) / 2 + 75), scr_get_translation("msg_cancel"));
+		draw_text(floor(cameraMidpointX + 30), floor(cameraMidpointY + 75), scr_get_translation("msg_okay"));
+		draw_text(floor(cameraMidpointX + 150), floor(cameraMidpointY + 75), scr_get_translation("msg_cancel"));
 	
-		if (obj_control.changeAuthor) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_creator"));
-		}
-		if (obj_control.changeZero) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_new-string"));
-		}
+		// Set Text Position
+		var dialogueBoxTextX = floor(dialogueBoxRectX1 + 25);
+		var dialogueBoxTextY = floor(dialogueBoxRectY1 + 75);
 		
 	
+		if (obj_control.changeAuthor) {
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_creator"));
+		}
+		if (obj_control.changeZero) {
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_new-string"));
+		
+		}
+	
 		if (obj_control.swapLine) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_line_number"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_line_number"));
 		}
 	
 		if (obj_control.replace) {
 			if(obj_control.splitWord){
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_split_words"));
+				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_split_words"));
 			}
 			else{
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_new-word"));
+				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_new-word"));
 			}
 		
 					
 			// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
 			draw_set_font(fnt_main);
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), scr_get_translation("label_split-word"));
+			draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("label_split-word"));
 		
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
+			draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
 			if (obj_control.splitWord) {
-				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
+				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
 			}
 	
 			// splitWord boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -140,21 +155,21 @@ function scr_drawDialogueBox() {
 				obj_control.newWordPre3 = false;
 			}
 		
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_add_new-word"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_add_new-word"));
 	
 	
 				// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
 			draw_set_font(fnt_main);
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), scr_get_translation("msg_insert_before"));
+			draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("msg_insert_before"));
 		
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
+			draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
 			if (obj_control.before) {
-				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
+				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
 			}
 		
 				// splitWord boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -177,35 +192,35 @@ function scr_drawDialogueBox() {
 		}
 	
 		if(obj_control.caption){
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_caption"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_caption"));
 		}	
 	
 	
 		if (obj_control.rename) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_chain-name"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_chain-name"));
 		}
 		if (obj_control.recolor) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_chain-color"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_chain-color"));
 		}
 
 		if (obj_control.gPressed) {
 			if(obj_control.goToTime){
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_time-jump"));
+				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_time-jump"));
 			}
 			else{
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_line-jump"));
+				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_line-jump"));
 			}
 		
 				draw_set_font(fnt_main);
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), scr_get_translation("msg_time_search"));
+				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("msg_time_search"));
 	
-				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
+				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
 				if (obj_control.goToTime) {
-					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
+					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
 				}
 	
 				// GoToTime boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
 					draw_set_colour(global.colorThemeBorders);
@@ -228,33 +243,33 @@ function scr_drawDialogueBox() {
 		}
 	
 		if (obj_control.newCustomFieldToken) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("search_custom-field"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
 		}
 		if (obj_control.newCustomTagToken) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("search_custom-tag"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
 		}
 		if (obj_control.newCustomFieldUnit) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("search_custom-field"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
 		}
 		if (obj_control.newCustomTagUnit) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("search_custom-field"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
 		}
 		if (obj_control.newCustomTagStack) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("search_custom-field"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
 		}
 	
 
 		if (obj_control.ePressed) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("search_beginning-line"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_beginning-line"));
 		}
 
 		if(obj_control.fPressed) {
 			// draw background text
 			if(obj_control.regExCheck){
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_input_regex"));
+				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_regex"));
 			}
 			else{
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("search_dialogue_word"));
+				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_dialogue_word"));
 			}
 	
 
@@ -264,43 +279,43 @@ function scr_drawDialogueBox() {
 				// draw boolean option check boxes
 				draw_set_colour(global.colorThemeText);
 				/*
-				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 90, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 110, true);
+				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 90, cameraMidpointX - 215, cameraMidpointY + 110, true);
 				if (obj_control.transcriptSearch) {
-					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 90, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 110, false);	
+					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 90, cameraMidpointX - 215, cameraMidpointY + 110, false);	
 				}
 				*/
-				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 60, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 80, true);
+				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 60, cameraMidpointX - 215, cameraMidpointY + 80, true);
 				if (obj_control.caseSensitive) {
-					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 60, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 80, false);	
+					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 60, cameraMidpointX - 215, cameraMidpointY + 80, false);	
 				}
 	
-				draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, true);
+				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
 				if (obj_control.inChainBool) {
-					draw_rectangle(camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50, false);	
+					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
 				}
 	
 			}
 	
-			draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 60, camera_get_view_width(camera_get_active()) /2 + 60, camera_get_view_height(camera_get_active())/2 - 40, true);
+			draw_rectangle(cameraMidpointX + 40, cameraMidpointY - 60, cameraMidpointX + 60, cameraMidpointY - 40, true);
 			if (obj_control.regExCheck) {
-				draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 60, camera_get_view_width(camera_get_active()) /2 + 60, camera_get_view_height(camera_get_active())/2 - 40, false);	
+				draw_rectangle(cameraMidpointX + 40, cameraMidpointY - 60, cameraMidpointX + 60, cameraMidpointY - 40, false);	
 			}
 
 			//darw boolean options text
 			draw_set_font(fnt_main);
 			if (!obj_control.regExCheck) {
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 40), scr_get_translation("search_dialogue_current-unit"));
-				draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 70), scr_get_translation("search_dialogue_case"));
-				//draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 210), floor(camera_get_view_height(camera_get_active()) / 2 + 100), scr_get_translation("search_dialogue_transcript");
+				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("search_dialogue_current-unit"));
+				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 70), scr_get_translation("search_dialogue_case"));
+				//draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 100), scr_get_translation("search_dialogue_transcript");
 			}
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active()) / 2 - 48), scr_get_translation("search_dialogue_regEx"));
+			draw_text(floor(cameraMidpointX + 70), floor(cameraMidpointY - 48), scr_get_translation("search_dialogue_regEx"));
 	
 	
 
 			if(!obj_control.regExCheck){
 			/*
 			// transcript search boolean switch		
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 90, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 110)){
+			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 90, cameraMidpointX - 215, cameraMidpointY + 110)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -322,7 +337,7 @@ function scr_drawDialogueBox() {
 			}
 			*/
 			// case sensitive boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 60, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 80)){
+			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 60, cameraMidpointX - 215, cameraMidpointY + 80)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -345,7 +360,7 @@ function scr_drawDialogueBox() {
 
 
 			// current chain boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 - 235, camera_get_view_height(camera_get_active())/2 + 30, camera_get_view_width(camera_get_active()) /2 - 215, camera_get_view_height(camera_get_active())/2 + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y,cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -368,7 +383,7 @@ function scr_drawDialogueBox() {
 
 			}
 			// RegEx boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y,camera_get_view_width(camera_get_active()) /2 + 40, camera_get_view_height(camera_get_active())/2 - 60, camera_get_view_width(camera_get_active()) /2 + 60, camera_get_view_height(camera_get_active())/2 - 40)){
+			if (point_in_rectangle(mouse_x, mouse_y,cameraMidpointX + 40, cameraMidpointY - 60, cameraMidpointX + 60, cameraMidpointY - 40)){
 	
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y-20,mouse_x+35, mouse_y - 40,false);
@@ -390,7 +405,7 @@ function scr_drawDialogueBox() {
 			}
 		}
 		if (obj_control.newTagCategory) {
-			draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 75), scr_get_translation("msg_new-category"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_new-category"));
 		}
 
 
@@ -537,9 +552,9 @@ function scr_drawDialogueBox() {
 	}
 	draw_set_colour(c_black);
 	draw_set_halign(fa_left);
-	draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - searchBarXOffset + 5), floor(camera_get_view_height(camera_get_active()) / 2), displayText);
+	draw_text(floor(cameraMidpointX - searchBarXOffset + 5), floor(cameraMidpointY), displayText);
 
-	//draw_rectangle(camera_get_view_width(camera_get_active()) /2 - searchBarXOffset + 2 + (10 * cursorPos-1), camera_get_view_height(camera_get_active())/2 - searchBarYOffset + 10, camera_get_view_width(camera_get_active()) /2 - searchBarXOffset + 4 + (10 * cursorPos-1), camera_get_view_height(camera_get_active())/2 + searchBarYOffset - 10, false);
+	//draw_rectangle(cameraMidpointX - searchBarXOffset + 2 + (10 * cursorPos-1), cameraMidpointY - searchBarYOffset + 10, cameraMidpointX - searchBarXOffset + 4 + (10 * cursorPos-1), cameraMidpointY + searchBarYOffset - 10, false);
 
 	}
 
@@ -572,9 +587,13 @@ function scr_drawDialogueBox() {
 	}
 
 
-	// ok button check
-	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 + 50 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 50 + buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive){
-		if (mouse_check_button_released(mb_left)) {
+	// ok button & Enter Key check
+	if ((point_in_rectangle(mouse_x, mouse_y, cameraMidpointX + 50 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 50 + buttonXOffset, cameraMidpointY + 75 + buttonYOffset) 
+	and obj_control.dialogueBoxActive)
+	and mouse_check_button_released(mb_left)
+	or (keyboard_check_pressed(vk_enter) 
+	and obj_control.dialogueBoxActive)){
+		//if (mouse_check_button_released(mb_left)) {
 			obj_control.alarm[11] = 60;
 			
 			if (obj_control.fPressed) {
@@ -690,12 +709,12 @@ function scr_drawDialogueBox() {
 			
 			scr_closeDialogueBoxVariables();
 			instance_destroy();
-		}
+		//}
 		
 	}
 
 	// cancel button check
-	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 + 175 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 175 + buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
+	if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX + 175 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 175 + buttonXOffset, cameraMidpointY + 75 + buttonYOffset) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
 			|| keyboard_check_pressed(vk_escape)) {
 				obj_control.alarm[11] = 60;
 			
@@ -708,128 +727,4 @@ function scr_drawDialogueBox() {
 	
 		
 	}
-
-
-	// enter check
-	if (keyboard_check_pressed(vk_enter) && obj_control.dialogueBoxActive) {
-		obj_control.alarm[11] = 60;
-	
-		if (obj_control.fPressed) {
-			scr_searchForWord(obj_control.inputText);
-		}
-		if (obj_control.ePressed) {
-			scr_exportPortion(obj_control.inputText);
-		}
-		if (obj_control.gPressed) {
-			
-			if (obj_panelPane.discoIDSelected) {
-				//show_message(obj_panelPane.selectedDiscoID);
-				if(obj_control.goToTime){
-					scr_jumpToTime(obj_control.inputText);
-				}
-				else{
-					scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
-				}
-			}
-			else {
-				if(obj_control.goToTime){
-					scr_jumpToTime(obj_control.inputText);
-				}
-				else{
-					scr_jumpToLine("",obj_control.inputText);
-				}
-			}
-
-		}
-	
-		if (obj_control.newWordCreated) {
-				if(obj_control.fromDropDown){
-					if (obj_control.before) {
-						scr_newWord(obj_control.rightClickUnitID, max(-1,obj_control.rightClickWordSeq - 1), obj_control.inputText);
-						//show_message(string(obj_control.rightClickWordSeq));
-					}
-					else {
-						scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText);
-					}
-				}
-				else{
-					if (obj_control.before) {
-						scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), obj_control.inputText);
-											//show_message(string(obj_control.rightClickWordSeq));
-					}
-					else {
-						scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText);
-					}
-				}
-			obj_control.lastAddedWord = obj_control.inputText;
-		}
-		if (obj_control.changeZero) {
-			obj_control.lastAddedWord = obj_control.inputText;
-		}
-		
-		if (obj_control.newCustomFieldToken) {
-			scr_dialogueBoxNewCustomFieldToken();
-		}
-		if (obj_control.newCustomFieldUnit) {
-			scr_dialogueBoxNewCustomFieldUnit();
-		}
-		if (obj_control.newCustomTagToken) {
-			scr_dialogueBoxNewCustomTagToken();
-		}
-		if (obj_control.newCustomTagUnit) {
-			scr_dialogueBoxNewCustomTagUnit();
-		}
-		if (obj_control.newCustomTagStack) {
-			scr_dialogueBoxNewCustomTagStack();
-		}
-		if (obj_control.rename) {
-				ds_grid_set(grid,  obj_chain.chainGrid_colName, obj_control.selectedChainID, obj_control.inputText);
-		}
-	
-		if (obj_control.recolor) {
-			//scr_dialogueBoxRecolor();
-			if( string_digits(obj_control.inputText) == "" ){
-				show_message( scr_get_translation("msg_numbers_only") );
-			}
-			else{
-				if (grid != obj_chain.stackChainGrid){
-					for(var i = 0; i < ds_list_size(listOfWordID);i++){
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor,ds_list_find_value(listOfWordID, i) - 1, real(string_digits(obj_control.inputText)));
-					}
-				}
-				ds_grid_set(grid,  obj_chain.chainGrid_colColor, obj_control.selectedChainID, real(string_digits(obj_control.inputText)));
-			}
-		}
-		
-		if(obj_control.caption){
-			ds_grid_set(grid,  obj_chain.chainGrid_colCaption, obj_control.selectedChainID, obj_control.inputText);
-		}
-	
-		if (obj_control.replace) {
-			scr_dialogueBoxReplace();
-		}
-	
-		if (obj_control.swapLine) {
-			obj_control.swapLinePos2 = real(string_digits(obj_control.inputText)); 
-
-			scr_swapLine();
-		}
-	
-		if (obj_control.changeAuthor) {
-			global.userName = obj_control.inputText;
-		}
-		if (obj_control.newTagCategory) {
-			scr_dialogueBoxNewTagCategory();
-		}
-	
-		with (obj_panelPane) {
-			obj_control.discoIDSelected = false;
-		}
-		
-		scr_closeDialogueBoxVariables();
-		instance_destroy();
-	}
-
-
-
 }
