@@ -218,12 +218,12 @@ dynamicWordGrid_colTag1Label = "Tag1";
 dynamicWordGrid_colTag2Label = "Tag2";
 dynamicWordGrid_colTag3Label = "Tag3";
 
-wordStateNormal = 0;
-wordStateNew = 1;
-wordStateChunk = 2;
-wordStateDead = 3;
-wordStateGold = 4;
-wordStateRed = 5;
+wordStateNormal = "Normal";//0
+wordStateNew = "New";//1
+wordStateChunk = "Chunk";//2
+wordStateDead = "Dead";//3
+wordStateGold = "Gold";//4
+wordStateRed = "Red";//5
 
 
 

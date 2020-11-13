@@ -177,7 +177,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 					obj_control.ableToCreateDropDown = false;
 				}
 				// Options for a word in a Chain
-				else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
+				else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, false) != -1){
 					if(obj_control.searchGridActive){
 						ds_list_add(dropDownOptionList, "Delete Link");
 					}

@@ -29,7 +29,7 @@ function scr_chainRecolorOptions(optionSelected) {
 		}
 		
 		
-		obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+		obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 		
 		//show_message(ds_grid_height(grid));
 		if(ds_grid_height(grid) > 0){

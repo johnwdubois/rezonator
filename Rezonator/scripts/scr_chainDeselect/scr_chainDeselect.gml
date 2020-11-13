@@ -17,9 +17,9 @@ function scr_chainDeselect() {
 				break;
 		}
 	
-		while (ds_grid_value_exists(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus)) {
-			var index = ds_grid_value_y(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus);	
-			ds_grid_set(chainGrid, chainGrid_colChainState, index, chainStateNormal);
+		while (ds_grid_value_exists(chainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(chainGrid), obj_chain.chainStateFocus)) {
+			var index = ds_grid_value_y(chainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(chainGrid), obj_chain.chainStateFocus);	
+			ds_grid_set(chainGrid, obj_chain.chainGrid_colChainState, index, obj_chain.chainStateNormal);
 		}
 	}
 

@@ -24,7 +24,7 @@ function scr_stackShowWindow() {
 	var captionBoxWidth = 240;
 	var captionBoxHeight = 185;
 	var rightCenter = 160;
-	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 );
+	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , obj_chain.chainStateFocus);
 	var currentStackName = "";
 	var currentStackCaption = "";
 	
