@@ -1,7 +1,5 @@
 function scr_importMappingTagInfo() {
 	
-	//if(live_call()) return live_result;
-	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
@@ -274,46 +272,10 @@ function scr_importMappingTagInfo() {
 
 	draw_set_halign(fa_left);
 
-	if (obj_importMapping.mouseoverRow >= 0) {
-		if (mouse_check_button_released(mb_left) and !mouseOverLevel and !obj_importMapping.inDropDown) {
-			obj_importMapping.rezInfoGridSelectedRow = obj_importMapping.mouseoverRow;
-		
-		
-			// set every marker that has the same level as the one clicked to display false,
-			// and then set the clicked marker's display to true
-			var selectedRowLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, obj_importMapping.rezInfoGridSelectedRow);
-			var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
-			/*
-			for (var i = 0; i < tagInfoGridHeight; i++) {
-				var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
-				var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-				if (currentLevel == selectedRowLevel ) {
-					if (selectedRowLevel == global.levelToken && currentField == "Display Token") {
-						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, 0);
-					}
-					else if (selectedRowLevel == global.levelUnit && currentField == "Speaker") {
-						ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, 0);
-					}
-				}
-			}
-			if (selectedRowLevel == global.levelToken) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, obj_importMapping.rezInfoGridSelectedRow, "Display Token");
-			}
-			else if (selectedRowLevel == global.levelUnit) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, obj_importMapping.rezInfoGridSelectedRow, "Speaker");
-			}
-			*/
-		}
-	}
-
 
 	if (obj_importMapping.rezInfoGridSelectedRow < 0) {
 		obj_importMapping.rezInfoGridSelectedRow = -1;
 	}
-
-
-
-
 
 
 
