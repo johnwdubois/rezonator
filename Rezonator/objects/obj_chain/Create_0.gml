@@ -59,12 +59,12 @@ currentChain = 0;
 currentChainID = 0;
 
 //chainStateTotal = 5;
-chainStateNormal = "Normal";//0
+chainStateNormal = 0;//"Normal";//0
 //chainStateActive = 1;
-chainStateFocus = "Focus";//2
+chainStateFocus = 2;//"Focus";//2
 //chainStateInactive = 3;
 //chainStateHidden = 4;
-chainStateDead = "Dead";//5
+chainStateDead = 5;//"Dead";//5
 
 currentChainGrid = rezChainGrid;
 currentChainName = "Rez";
