@@ -9,7 +9,7 @@ function scr_getChainAlign(chainID) {
 
 	var chainTier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowInLinkGrid);
 	var grid = obj_chain.rezChainGrid;
-	if (chainTier == 1) {
+	if (chainTier == obj_chain.trackTier) {
 		grid = obj_chain.trackChainGrid;
 	}
 

@@ -345,7 +345,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 									for (var i = 0; i < currentWordIDListSize; i++) {
 										var currentWordID = ds_list_find_value(currentWordIDList, i);
 										var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-										if(currentWordState == 3){
+										if(currentWordState == obj_control.wordStateDead){
 											continue;
 										}
 										var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
