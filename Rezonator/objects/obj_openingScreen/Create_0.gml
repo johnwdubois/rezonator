@@ -358,6 +358,7 @@ ds_map_add(global.expandableDropDownMap, "Play and Learn", true);
 ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "Autosave", true);
 ds_map_add(global.expandableDropDownMap, "Advanced", true);
+ds_map_add(global.expandableDropDownMap, "Language", true);
 
 
 global.optionListTypeSort = 0;
