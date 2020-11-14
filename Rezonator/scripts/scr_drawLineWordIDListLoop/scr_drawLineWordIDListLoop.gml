@@ -293,7 +293,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 				scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop);
 			}
 	
-			scr_drawWord(currentWordGridRow, currentWordID, currentWordX, currentLineY, currentWordString, hitGridHeight);
+			scr_drawWord(currentWordGridRow, currentWordID, unitID, currentWordX, currentLineY, currentWordString, hitGridHeight);
 		}
 	
 		previousWordDisplayCol = currentWordDisplayCol;
