@@ -26,7 +26,7 @@ function scr_cliqueDisplayRefresh() {
 	var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
 	for (var i = 0; i < cliqueGridHeight; i++) {
 		var currentChainID = i;
-		var currentChainState = 0;
+		var currentChainState = obj_chain.chainStateNormal;
 		var currentWordIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colUnitIDList, i);
 		var currentName = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colName, i);
 		var currentColor = c_black;

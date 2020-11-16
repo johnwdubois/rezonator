@@ -1,22 +1,19 @@
-function scr_drawGridViewerGetItemString(argument0, argument1, argument2) {
-	/*
-		scr_drawGridViewerGetItemString(grid, col, row);
+/*
+	scr_drawGridViewerGetItemString(grid, col, row);
 	
-		Last Updated: 2018-09-11
+	Last Updated: 2018-09-11
 	
-		Called from: obj_gridViewer
+	Called from: obj_gridViewer
 	
-		Purpose: return the string version of the specified cell in the specified grid
+	Purpose: return the string version of the specified cell in the specified grid
 	
-		Mechanism: test the grid and the column specified in the arguments and take the necessary
-					action to convert the cell value to a human-readable string
+	Mechanism: test the grid and the column specified in the arguments and take the necessary
+				action to convert the cell value to a human-readable string
 	
-		Author: Terry DuBois
-	*/
-
-	var grid = argument0;
-	var col = argument1;
-	var row = argument2;
+	Author: Terry DuBois
+*/
+function scr_drawGridViewerGetItemString(grid, col, row) {
+	
 
 	var currentCell = ds_grid_get(grid, col, row);
 	var itemString = "";

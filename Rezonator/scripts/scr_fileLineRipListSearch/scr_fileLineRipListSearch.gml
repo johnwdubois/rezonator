@@ -1,23 +1,17 @@
-function scr_fileLineRipListSearch(argument0, argument1, argument2, argument3) {
-	/*
-		scr_fileLineRipListSearch(firstLine, query, delimitingCharacter, fileLineRipList)
+/*
+	scr_fileLineRipListSearch(firstLine, query, delimitingCharacter, fileLineRipList)
 	
-		Last Updated: 2018-07-12
+	Last Updated: 2018-07-12
 	
-		Called from: scr_loadUnitGrid
+	Called from: scr_loadUnitGrid
 	
-		Purpose: Locate string in fileLineRipList
+	Purpose: Locate string in fileLineRipList
 	
-		Mechanism: use GML string searching functions to get character position of queried string
+	Mechanism: use GML string searching functions to get character position of queried string
 	
-		Author: Terry DuBois
-	*/
-
-
-	var firstLine = argument0;
-	var query = argument1;
-	var delimitingChar = argument2;
-	var fileLineRipList = argument3;
+	Author: Terry DuBois
+*/
+function scr_fileLineRipListSearch(firstLine, query, delimitingChar, fileLineRipList) {
 
 	var returnString = "";
 	var lineString = ds_list_find_value(fileLineRipList, firstLine);

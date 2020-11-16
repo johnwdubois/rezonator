@@ -24,7 +24,7 @@ function scr_panelPane_drawGraphStats() {
 	draw_set_font(fnt_searchPaneBold);
 
 	draw_line(x, y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
-	draw_text(x + textMarginLeft, y + textMarginTop, "Graph Stats");
+	draw_text(x + textMarginLeft, y + textMarginTop, scr_get_translation("label_graph_stats"));
 
 	draw_set_font(fnt_searchPane);
 
@@ -47,7 +47,7 @@ function scr_panelPane_drawGraphStats() {
 	
 		draw_set_alpha(1);
 		draw_set_color(c_black);
-		draw_text(textX, textY, "Word: " + hoveredWord);
+		draw_text(textX, textY, scr_get_translation("label_word") + hoveredWord);
 	
 		textX = x + textMarginLeft;
 		 textY = y + (textMarginTop * 2) + textPlusY;
@@ -61,7 +61,7 @@ function scr_panelPane_drawGraphStats() {
 	
 		draw_set_alpha(1);
 		draw_set_color(c_black);
-		draw_text(textX, textY, "Void: " + string(hoveredWordVoid));
+		draw_text(textX, textY, scr_get_translation("label_void") + string(hoveredWordVoid));
 		}
 	
 	

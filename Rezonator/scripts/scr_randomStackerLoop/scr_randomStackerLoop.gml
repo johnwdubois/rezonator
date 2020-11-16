@@ -21,7 +21,7 @@ function scr_randomStackerLoop() {
 			randUnit = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, randUnitLoop - 1);
 			ds_list_add(stackerRandomCurrentUnitList, randUnit);
 		}
-		show_debug_message("obj_stacker Alarm1 ... stackerRandomCurrentUnitList: " + scr_getStringOfList(stackerRandomCurrentUnitList));
+		//show_debug_message("obj_stacker Alarm1 ... stackerRandomCurrentUnitList: " + scr_getStringOfList(stackerRandomCurrentUnitList));
 	
 		// Collect information of the first unit in the set of lines
 		var firstUnitID = ds_list_find_value(stackerRandomCurrentUnitList, 0);

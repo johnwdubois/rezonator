@@ -1,5 +1,4 @@
-function scr_getImportFileRipList(argument0) {
-	var filename = argument0;
+function scr_getImportFileRipList(filename) {
 	var fileOpenRead = file_text_open_read(filename);
 
 	while (not file_text_eof(fileOpenRead)) {

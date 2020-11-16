@@ -1,8 +1,5 @@
-function scr_loadDynamicWordGridIndividualCSV(argument0) {
+function scr_loadDynamicWordGridIndividualCSV(rowInWordGrid) {
 	// Copy word data from the wordGrid to the dynamicWordGrid ("vizWordGrid"), line by line
-
-
-	var rowInWordGrid = argument0;
 	
 	var currentWordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, rowInWordGrid);
 	var currentUtteranceID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUtteranceID, rowInWordGrid);

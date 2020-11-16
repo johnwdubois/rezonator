@@ -1,5 +1,4 @@
-function scr_gridViewerDynamicWidth(argument0) {
-	var grid = argument0;
+function scr_gridViewerDynamicWidth(grid) {
 
 	var importGridXColList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
 	var currentColX = windowX;

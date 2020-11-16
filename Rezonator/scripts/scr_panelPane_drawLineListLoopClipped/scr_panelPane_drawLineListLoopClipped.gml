@@ -100,7 +100,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 		
 			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-			if(currentWordState == 3){
+			if(currentWordState == obj_control.wordStateDead){
 				continue;
 			}
 			var currentWordToken = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);

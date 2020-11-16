@@ -1,5 +1,4 @@
-function scr_cliqueGetBreak(argument0) {
-	var rowInCliqueGrid = argument0;
+function scr_cliqueGetBreak(rowInCliqueGrid) {
 	if (rowInCliqueGrid < 0 or rowInCliqueGrid >= ds_grid_height(obj_chain.cliqueGrid))
 	{
 		exit;

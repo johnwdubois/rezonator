@@ -6,8 +6,6 @@ function scr_importMappingTagDraw() {
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
-	var stringHeight = string_height("0");
-
 
 	// Import Screen Title
 	draw_set_color(global.colorThemeText);
@@ -15,31 +13,13 @@ function scr_importMappingTagDraw() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(20 + sprite_get_width(spr_backArrow), 20, "Import File Mapping");
+	draw_text(20 + sprite_get_width(spr_backArrow), 20, scr_get_translation("msg_import_file_map"));
 
 
 
 	// File window
-	var fileInfoWindowRectX1 = 40;
-	var fileInfoWindowRectY1 = 80 + string_height("0");
-	var fileInfoWindowRectX2 = (camWidth * 0.5) - 20;
-	var fileInfoWindowRectY2 = (camHeight / 2) - 180;
-
-	draw_set_color(global.colorThemeBorders);
-	draw_set_alpha(1);
-	draw_rectangle(fileInfoWindowRectX1, fileInfoWindowRectY1, fileInfoWindowRectX2, fileInfoWindowRectY2, true);
-	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_middle);
-	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), "Summary");
-
-	draw_set_font(global.fontMain);
-	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + stringHeight, "File name: " + filename_name(global.importFilename));
-	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + stringHeight * 2.5), "Total Line Count: " + string(ds_grid_height(global.importGrid)));
-	draw_text(floor(fileInfoWindowRectX1 + 20), floor(fileInfoWindowRectY1 + (stringHeight) * 4), "Markers Found: " + string(ds_grid_height(global.tagInfoGrid)));
-
-
+	var xBuffer = 40;
+	var yBuffer = (camHeight / 2) - 180;
 
 
 	/*
@@ -134,7 +114,7 @@ function scr_importMappingTagDraw() {
 		draw_set_font(global.fontMain);
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
-		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Continue");
+		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 
 	}
 	else {
@@ -170,15 +150,15 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(floor(fileInfoWindowRectX1), floor(fileInfoWindowRectY2 + 50), "Import Fields");
+	draw_text(floor(xBuffer), floor(yBuffer + 50), scr_get_translation("menu_import_fields"));
 
 	var buttonBuffer = 20;
 
 
 	var loadPreviousButtonWidth = max(200, string_width(" Use Last Import Schema "));
 	var loadPreviousButtonHeight = 30;
-	var loadPreviousButtonRectX1 = fileInfoWindowRectX1 + string_width("ImportFields    ");
-	var loadPreviousButtonRectY1 = fileInfoWindowRectY2 + 50 - (loadPreviousButtonHeight / 2);
+	var loadPreviousButtonRectX1 = xBuffer + string_width("ImportFields    ");
+	var loadPreviousButtonRectY1 = yBuffer + 50 - (loadPreviousButtonHeight / 2);
 	var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
 	var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
 	
@@ -220,7 +200,7 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), "Use Last Import Schema");
+	draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), scr_get_translation("msg_last-schema"));
 
 
 
@@ -284,7 +264,7 @@ function scr_importMappingTagDraw() {
 	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), "Load Import Schema");
+	draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), scr_get_translation("msg_load-schema"));
 	
 	
 	// only draw the Save Schema button if there are no errors in the user's level mapping
@@ -320,10 +300,41 @@ function scr_importMappingTagDraw() {
 		draw_set_font(global.fontMain);
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
-		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), "Save Import Schema");
+		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), scr_get_translation("msg_save-schema"));
 	}
+	
+	// if in IGT allow user to sitch grids
+	if( global.importType == global.importType_IGT){
+	
+		var changeGridButtonWidth = max(200, string_width(" Save Import Schema "));
+		var changeGridButtonHeight = 30;
+		var changeGridButtonRectX2 = (camWidth) - 50;
+		var changeGridButtonRectX1 = changeGridButtonRectX2 - changeGridButtonWidth;
+		var changeGridButtonRectY1 = loadPreviousButtonRectY1;
+		var changeGridButtonRectY2 = changeGridButtonRectY1 + changeGridButtonHeight;
 
 
+	
+		if (point_in_rectangle(mouse_x, mouse_y, changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2)) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2, false);
+	
+			if (mouse_check_button_pressed(mb_left)) {
+			
+				scr_createDropDown(changeGridButtonRectX1,changeGridButtonRectY2,gridList, global.optionListTypeImportGrid);
+			}
+		}
+	
+		draw_set_color(global.colorThemeBorders);
+		draw_set_alpha(1);
+		draw_rectangle(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2, true);
+
+		draw_set_font(global.fontMain);
+		draw_set_halign(fa_center);
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(mean(changeGridButtonRectX1, changeGridButtonRectX2)), floor(mean(changeGridButtonRectY1, changeGridButtonRectY2)), string(obj_importMapping.currentGridName));
+
+	}
 
 	if (tagGridHeight == 1) {
 		room_goto(rm_mainScreen)

@@ -1,22 +1,18 @@
-function scr_newChain(argument0, argument1) {
-	/*
-		scr_newChain(wordID, unitID);
+/*
+	scr_newChain(wordID, unitID);
 	
-		Last Updated: 2018-07-12
+	Last Updated: 2018-07-12
 	
-		Called from: obj_chain
+	Called from: obj_chain
 	
-		Purpose: creates a new chain of correct type, enters given ID as first chain IDList value
+	Purpose: creates a new chain of correct type, enters given ID as first chain IDList value
 	
-		Mechanism: check obj_toolPane for current tool, add new row to corresponding chainGrid
+	Mechanism: check obj_toolPane for current tool, add new row to corresponding chainGrid
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois
+*/
 
-
-
-	var wordID = argument0;
-	var unitID = argument1;
+function scr_newChain(wordID, unitID) {
 
 	var chainGrid = currentChainGrid;
 	var chainName = "";

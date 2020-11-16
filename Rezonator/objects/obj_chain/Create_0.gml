@@ -59,12 +59,12 @@ currentChain = 0;
 currentChainID = 0;
 
 //chainStateTotal = 5;
-chainStateNormal = 0;
+chainStateNormal = 0;//"Normal";//0
 //chainStateActive = 1;
-chainStateFocus = 2;
+chainStateFocus = 2;//"Focus";//2
 //chainStateInactive = 3;
 //chainStateHidden = 4;
-chainStateDead = 5;
+chainStateDead = 5;//"Dead";//5
 
 currentChainGrid = rezChainGrid;
 currentChainName = "Rez";
@@ -115,7 +115,9 @@ rezPlayTime = 0;
 
 inRezPlay = false;
 
-
+rezTier = 1;
+trackTier = 2;
+stackTier = 3;
 
 vizLinkGridWidth = 10;
 vizLinkGrid_colTier = 0;

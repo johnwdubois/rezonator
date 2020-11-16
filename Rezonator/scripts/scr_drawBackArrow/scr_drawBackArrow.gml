@@ -8,6 +8,8 @@ function scr_drawBackArrow() {
 	var backArrowRectY1 = backArrowY - sprite_get_height(spr_backArrow) / 2;
 	var backArrowRectX2 = backArrowRectX1 + sprite_get_width(spr_backArrow);
 	var backArrowRectY2 = backArrowRectY1 + sprite_get_height(spr_backArrow);
+	
+	var triggerBackArrow = false;
 
 	if (point_in_rectangle(mouse_x, mouse_y, backArrowRectX1, backArrowRectY1, backArrowRectX2, backArrowRectY2)) {
 	
@@ -16,19 +18,25 @@ function scr_drawBackArrow() {
 		draw_rectangle(backArrowRectX1, backArrowRectY1, backArrowRectX2, backArrowRectY2, true);
 	
 		if (mouse_check_button_released(mb_left)) {
-			global.newProject = false;
-			global.openProject = false;
-			global.neworOpen = true;		
-			if (room == rm_importScreen) {
-				room_goto(rm_openingScreen)
-			}
+			triggerBackArrow = true;
 		}
 	}
 	
 	if (keyboard_check_released(vk_escape)) {
+		triggerBackArrow = true;
+	}
+	
+	if (triggerBackArrow) {
 		global.newProject = false;
 		global.openProject = false;
-		global.neworOpen = true;		
+		global.neworOpen = true;
+		if (instance_exists(obj_openingScreen)) {
+			with (obj_openingScreen) {
+				documentationButtonActive = false;
+				alarm[3] = 3;
+			}
+		}
+		
 		if (room == rm_importScreen) {
 			room_goto(rm_openingScreen)
 		}

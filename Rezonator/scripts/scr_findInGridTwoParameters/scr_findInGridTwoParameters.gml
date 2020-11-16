@@ -1,25 +1,19 @@
-function scr_findInGridTwoParameters(argument0, argument1, argument2, argument3, argument4) {
-	/*
-		scr_findInGridTwoParameters(grid, col1, valueInCol1, col2, valueInCol2);
+/*
+	scr_findInGridTwoParameters(grid, col1, valueInCol1, col2, valueInCol2);
 	
-		Last Updated: 2018-09-11
+	Last Updated: 2018-09-11
 	
-		Called from: any object
+	Called from: any object
 	
-		Purpose: get the row of a grid that has two specific values of two specific columns
+	Purpose: get the row of a grid that has two specific values of two specific columns
 	
-		Mechanism: create a temporary clone grid and loop through that once to find rows with the
-					first parameter, and then loop again to find the row with the second parameter
+	Mechanism: create a temporary clone grid and loop through that once to find rows with the
+				first parameter, and then loop again to find the row with the second parameter
 	
-		Author: Terry DuBois
-	*/
-
-	var grid = argument0;
-	var col1 = argument1;
-	var valueInCol1 = argument2;
-	var col2 = argument3;
-	var valueInCol2 = argument4;
-
+	Author: Terry DuBois
+*/
+function scr_findInGridTwoParameters(grid, col1, valueInCol1, col2, valueInCol2) {
+	
 	var tempGrid = ds_grid_create(ds_grid_width(grid), ds_grid_height(grid));
 
 	ds_grid_copy(tempGrid, grid);

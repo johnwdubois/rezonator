@@ -17,7 +17,7 @@ function scr_tokenMarkerOptions() {
 		scr_tokenTagMapOptions("Add new Tag");
 	}
 	else if(optionSelected == "Set as Transcription"){
-		global.tokenImportTranscriptionColName = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
+		global.tokenImportTranscriptColName = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
 	}
 
 }

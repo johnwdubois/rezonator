@@ -100,7 +100,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					//Get info on current word
 					var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
 					var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-					if(currentWordState == 3){
+					if(currentWordState == obj_control.wordStateDead){
 						continue;
 					}
 				
@@ -335,7 +335,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 										if (ds_list_size(dropDownOptionList) > 0 ) {
 											var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
 											dropDownInst.optionList = dropDownOptionList;
-											dropDownInst.optionListType = dropDownInst.optionListTypeTokenTagMap;
+											dropDownInst.optionListType = global.optionListTypeTokenTagMap;
 
 										}
 								
@@ -493,7 +493,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					}
 					obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
 					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Create Field");
+					ds_list_add(dropDownOptionList, "Set as Transcription" , "Create Field");
 					if (notUnitOrDiscoOrWordTag && !isTildaField) {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
@@ -501,7 +501,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					if (ds_list_size(dropDownOptionList) > 0) {
 						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeTokenMarker;
+						dropDownInst.optionListType = global.optionListTypeTokenMarker;
 					}
 				}
 			}
@@ -529,9 +529,10 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					if (!is_undefined(dropDownOptionList) && !is_undefined(global.tokenImportColNameList)) {
 						ds_list_copy(dropDownOptionList, global.tokenImportColNameList);
 						if (ds_list_size(dropDownOptionList) > 0 ) {
+							
 							var dropDownInst = instance_create_depth(colRectX2,colRectY1+tabHeight , -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = dropDownInst.optionListTypeTokenSelection;
+							dropDownInst.optionListType = global.optionListTypeTokenSelection;
 							//obj_control.ableToCreateDropDown = false;
 							//obj_control.alarm[0] = 2;
 						}

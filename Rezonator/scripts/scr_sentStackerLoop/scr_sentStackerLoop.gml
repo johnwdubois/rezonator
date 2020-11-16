@@ -45,14 +45,14 @@ function scr_sentStackerLoop(){
 
 	// Exit script if no turnOrder column was found
 	if (turnCol == -1) {
-		show_message("No turn order found");
+		show_message(scr_get_translation("msg_order-notfound"));
 		splitSave = false;
 
 		exit;	
 	}
 	
 	if (endCol == -1) {
-		show_message("No endNote column found");
+		show_message(scr_get_translation("msg_note-column"));
 		splitSave = false;
 
 		exit;	
@@ -91,7 +91,7 @@ function scr_sentStackerLoop(){
 							endNoteTagMatch = true;
 							loopBreak = true;
 							break;
-							show_debug_message("true");
+						//	show_debug_message("true");
 							//break;
 						}
 					}

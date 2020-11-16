@@ -1,21 +1,18 @@
-function scr_loadAnotherREZ(argument0, argument1, argument2) {
-	/*
-		scr_loadAnotherRez(originalGrid, map, gridStr);
+/*
+	scr_loadAnotherRez(originalGrid, map, gridStr);
 	
-		Last Updated: 2020-01-01
+	Last Updated: 2020-01-01
 	
-		Called from: obj_fileLoader
+	Called from: obj_fileLoader
 	
-		Purpose: Extract data from an individual map
+	Purpose: Extract data from an individual map
 	
-		Mechanism: Reconstruct Rezonator's critical grids line by line by changing the structure of the tempGrid 
+	Mechanism: Reconstruct Rezonator's critical grids line by line by changing the structure of the tempGrid 
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois
+*/
+function scr_loadAnotherREZ(originalGrid, map, gridStr) {
 
-	var originalGrid = argument0;
-	var map = argument1;
-	var gridStr = argument2;
 	var tempGrid = ds_grid_create(0, 0);
 
 

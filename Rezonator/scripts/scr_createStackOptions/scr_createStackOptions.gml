@@ -1,7 +1,6 @@
-function scr_createStackOptions(argument0) {
+function scr_createStackOptions(optionSelected) {
 	//if (live_call(argument0)) return live_result;
 	
-	var optionSelected = argument0;
 	var confirmStack = false;
 	var doStacksExist = (ds_grid_height(obj_chain.stackChainGrid) > 0);
 	
@@ -15,7 +14,7 @@ function scr_createStackOptions(argument0) {
 	
 		case "Default":
 			// need to make this into custom message
-			show_message("Click or Drag on Speaker Labels to create default stacks.");
+			show_message(scr_get_translation("msg_drag-speaker"));
 			if(obj_toolPane.currentMode == obj_toolPane.modeRead ) {
 				obj_toolPane.currentMode = obj_toolPane.modeTrack;	
 			}

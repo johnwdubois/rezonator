@@ -1,19 +1,19 @@
-function scr_lineIntersection(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8) {
-	// credit to https://www.gmlscripts.com/script/lines_intersect
+// credit to https://www.gmlscripts.com/script/lines_intersect
 
-	/*
-		scr_lineIntersection(x1, y1, x2, y2, x3, y3, x4, y4, segment);
+/*
+	scr_lineIntersection(x1, y1, x2, y2, x3, y3, x4, y4, segment);
 	
-		Last Updated: 2018-12-18
+	Last Updated: 2018-12-18
 	
-		Called from: any object
+	Called from: any object
 	
-		Purpose: test if two line segments intersect with each other, mostly used for identifying cross
+	Purpose: test if two line segments intersect with each other, mostly used for identifying cross
 	
-		Mechanism: vector math
+	Mechanism: vector math
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois
+*/
+function scr_lineIntersection(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8) {
 
 	var ua, ub, ud, ux, uy, vx, vy, wx, wy;
 	ua = 0;

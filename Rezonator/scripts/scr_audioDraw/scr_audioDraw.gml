@@ -36,7 +36,7 @@ function scr_audioDraw() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_font(global.fontChainList);
-	draw_text(x + 24, y + 24, "Audio Track");
+	draw_text(x + 24, y + 24, scr_get_translation("msg_audio"));
 	var strHeightAudioTrack = string_height("A");
 	draw_set_font(global.fontChainContents);
 	draw_text(x + 24, y + 24 + strHeightAudioTrack, string(audioFile));
@@ -85,12 +85,12 @@ function scr_audioDraw() {
 		//var stackSelected = 
 		if(selectedStackGridRow > -1) {
 			if(audioPaused) {
-				//show_message(stackStartUnit);
-				audio_sound_set_track_position(audioSound, bookmarkStartTime);
-				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
 			}
 			else{
+				//show_message(stackStartUnit);
+				audio_sound_set_track_position(audioSound, bookmarkStartTime);
+				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
 			}
 		}
@@ -189,21 +189,15 @@ function scr_audioDraw() {
 	
 	// Draw audio Bookmark
 	if(bookmarkStartTime > -1) {
-		//show_debug_message("bookmarkStartTime: " + string(bookmarkStartTime));
-		//show_debug_message("seekBarWidth: " + string(seekBarWidth));
 		
 		//Draw bookmarks
 		bookmarkX = ((real(bookmarkStartTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
 		bookmarkY = seekBarY1 - (playheadRad * 2);
 	
-		//draw_set_color(c_green);
-		//draw_line_width(bookmarkX, bookmarkY - playheadRad * 2, bookmarkX, bookmarkY + playheadRad * 2, 1);
 		draw_set_halign(fa_right);
 		draw_sprite_ext(spr_linkArrow, 0, bookmarkX, bookmarkY, 0.5, 0.5, 30, c_green, 1);
 		
 		if(bookmarkEndTime > -1) {
-		//	show_debug_message("bookmarkEndTime: " + string(bookmarkEndTime));
-			//show_debug_message("seekBarWidth: " + string(seekBarWidth));
 		
 			//Draw bookmarks
 			endmarkX = ((real(bookmarkEndTime) * real(seekBarWidth)) / audioLength) + seekBarX1;
@@ -215,15 +209,6 @@ function scr_audioDraw() {
 		
 		}
 	}
-	//else if(bookmarkX != -1) {
-		
-	//}
-
-	
-
-
-
-
 
 	// draw time lengths
 	var audioPosCurrent = (playheadHolding) ? audioPosTemp : audioPos;
@@ -259,7 +244,7 @@ function scr_audioDraw() {
 	draw_set_valign(fa_middle);
 	var jumpUnitStartTextX = x + windowWidth - string_width("A");
 	var jumpUnitStartTextY = y + (windowHeight / 2);
-	draw_text(jumpUnitStartTextX, jumpUnitStartTextY, "Click word to jump audio");
+	draw_text(jumpUnitStartTextX, jumpUnitStartTextY, scr_get_translation("msg_jump-audio"));
 
 	var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width("Click word to jump audio  ");
 	var jumpUnitStartRectY1 = jumpUnitStartTextY - 10;

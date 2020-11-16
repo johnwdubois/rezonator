@@ -1,16 +1,15 @@
-function scr_showStackOptions(argument0) {
-	var optionSelected = argument0;
+function scr_showStackOptions(optionSelected) {
 
 	switch (optionSelected)
 	{	
 	
 		case "Default":
 
-			show_message("Show Default Stacks");
+			show_message(scr_get_translation("msg_default-stack"));
 			break;
 		case "Random":
 
-			show_message("Show Random Stacks");
+			show_message(scr_get_translation("msg_random-stack"));
 			break;
 		default:
 			break;

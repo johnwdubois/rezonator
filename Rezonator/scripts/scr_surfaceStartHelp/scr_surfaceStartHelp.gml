@@ -1,8 +1,4 @@
-function scr_surfaceStartHelp(argument0, argument1, argument2, argument3) {
-	var relativeX = argument0;
-	var relativeY = argument1;
-	var helpWindowWidth = argument2;
-	var helpWindowHeight = argument3;
+function scr_surfaceStartHelp(relativeX, relativeY, helpWindowWidth, helpWindowHeight) {
 
 	clipWidth = helpWindowWidth;
 	clipHeight = helpWindowHeight;

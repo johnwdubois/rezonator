@@ -1,6 +1,5 @@
-function scr_contextOptions(argument0) {
+function scr_contextOptions(optionSelected) {
 	//contextOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

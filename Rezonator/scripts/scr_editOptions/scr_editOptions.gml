@@ -4,12 +4,12 @@ function scr_editOptions(optionSelected){
 
 	switch (optionSelected)
 	{
-		case "Go to Line":
+		case "menu_go-to-line":
 			
 			scr_jumpToLineCalled();			
 
 			break;
-		case "Go to Time":	
+		case "menu_go-to-time":	
 		
 			scr_jumpToLineCalled();
 			obj_control.goToTime = true;
@@ -23,12 +23,7 @@ function scr_editOptions(optionSelected){
 			ds_list_add(dropDownOptionList, "Track Chains", "Rez Chains", "Stacks", "Chains");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeDelete;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypeDelete);
 			}
 		break;
 		default:

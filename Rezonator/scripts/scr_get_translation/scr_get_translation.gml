@@ -1,13 +1,22 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+// This script works with obj_locale_manager
+// Author: Giorgia Troiani
+// Last update : 2020 - 11 - 04
+
 function scr_get_translation(key){
 	
 if ( variable_global_exists("locale_gloss") && ds_map_exists( global.locale_gloss, key ) )
 {
 	return ds_map_find_value( global.locale_gloss, key );
 } else {
-	return "MISSING TRANSLATION: " + string(key);
+	
+	// return the English value if nothing is found
+	// return ds_map_find_value( "locale_en" , key );
+	
+	// substitute this code line immediately above to test translation for debugging purposes.
+	// it will print the kay value of each pair for which the translation is missing:
+	
+	return string(key);
 }
 
-// add here another loop to specify that if translation is missing, program has to run the english value
+
 }

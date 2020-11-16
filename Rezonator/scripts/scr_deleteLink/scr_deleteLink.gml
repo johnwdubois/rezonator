@@ -33,7 +33,7 @@ function scr_deleteLink() {
 	}
 	
 	// Reset the alignment of the unchained word
-	if (source >= 0 and source < ds_grid_height(obj_control.dynamicWordGrid) and tier == 1) {
+	if (source >= 0 and source < ds_grid_height(obj_control.dynamicWordGrid) and tier == obj_chain.trackTier) {
 		if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, source - 1)) {
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, source - 1, false);
 		}
@@ -58,7 +58,7 @@ function scr_deleteLink() {
 	//show_message(string(newSource) + "," + string(newGoal))
 	
 	//Repeat the above process, but for Stacks
-	if (tier == 3) {
+	if (tier == obj_chain.stackTier) {
 		var rowInUnitInStackGrid = ds_grid_value_y(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colUnitID, 0, obj_chain.unitInStackGrid_colUnitID, ds_grid_height(obj_chain.unitInStackGrid), source);
 		
 		if (rowInUnitInStackGrid < 0 or rowInUnitInStackGrid >= ds_grid_height(obj_chain.unitInStackGrid)) {

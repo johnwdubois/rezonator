@@ -1,6 +1,4 @@
-function scr_toggleTranscriptionMulti(argument0, argument1) {
-	var grid = argument0;
-	var col = argument1;
+function scr_toggleTranscriptionMulti(grid, col) {
 
 	var dynamicWordGridHeight = ds_grid_height(obj_control.dynamicWordGrid);
 	for (var i = 0; i < dynamicWordGridHeight; i++) {

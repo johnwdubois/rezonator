@@ -1,7 +1,6 @@
-function scr_exportPortion(argument0) {
+function scr_exportPortion(fullstring) {
 	// Save a Rez file containing a user specified collection of lines
 
-	var fullstring = argument0;
 
 	// Safety check, make sure something was inputted
 	if (string_length(fullstring) < 1) {
@@ -14,25 +13,25 @@ function scr_exportPortion(argument0) {
 
 	// check if user input more than two line numbers
 	if (ds_list_size(obj_control.listOfNumbers) > 2) {
-		show_message("too many numbers inputed, please input two unique line numbers");
+		show_message(scr_get_translation("msg_error_many_numbers"));
 		exit;
 	}
 
 	// check if user input less than two line numbers
 	if (ds_list_size(obj_control.listOfNumbers) <= 1) {
-		show_message("only one number inputed, please input two unique line numbers");
+		show_message(scr_get_translation("msg_error_one_number"));
 		exit;
 	}
 
 	// string( real( string_to_test ) ) == string( string_to_text )
 	if (ds_list_find_value(obj_control.listOfNumbers, 0) == "" || ds_list_find_value(obj_control.listOfNumbers, 1) == "" ) {
-		show_message("one of your numbers is invalid");
+		show_message(scr_get_translation("msg_error_invalid_number"));
 		exit;
 	}
 
 	// make sure second number is bigger than the first
 	if (real(string_digits(ds_list_find_value(obj_control.listOfNumbers, 0))) > real(string_digits(ds_list_find_value(obj_control.listOfNumbers, 1)))) {
-		show_message("first number must be lower than the second");
+		show_message(scr_get_translation("msg_error_first_lower"));
 		exit;
 	}
 

@@ -1,7 +1,5 @@
-function scr_importJSON(argument0) {
+function scr_importJSON(filename) {
 	// Begin the import of a single user specified JSON file, usually a REZ file
-
-	var filename = argument0;
 
 	global.importCSVGrid = load_csv(filename);
 

@@ -22,7 +22,7 @@ function scr_sendGridToServer(argument0) {
 
 	var jsonString = json_encode(wrapper);
 
-	show_message("Finished JSON string");
+	show_message(scr_get_translation("msg_Json-finished"));
 
 
 	scr_networkEmit("position", jsonString);

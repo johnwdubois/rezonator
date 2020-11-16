@@ -1,5 +1,4 @@
-function scr_cliqueGridRefreshUnitIDList(argument0) {
-	var rowInCliqueGrid = argument0;
+function scr_cliqueGridRefreshUnitIDList(rowInCliqueGrid) {
 
 	var chainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, rowInCliqueGrid);
 	var unitIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colUnitIDList, rowInCliqueGrid);

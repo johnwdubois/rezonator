@@ -256,7 +256,7 @@ function scr_importMappingRezInfo() {
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(floor(rezInfoWindowRectX1), floor(rezInfoWindowRectY1 - string_height("0")), "Rezonator Fields");
+	draw_text(floor(rezInfoWindowRectX1), floor(rezInfoWindowRectY1 - string_height("0")), scr_get_translation("label_rezonator_fields"));
 
 
 	// custom label button
@@ -264,12 +264,12 @@ function scr_importMappingRezInfo() {
 	draw_set_font(fnt_main);
 	draw_set_halign(fa_center);
 
-	var customTagButtonRectX1 = rezInfoWindowRectX2 - string_width(" Add custom label ");
+	var customTagButtonRectX1 = rezInfoWindowRectX2 - string_width(scr_get_translation("label_add_custom_label"));
 	var customTagButtonRectY1 = rezInfoWindowRectY1 - string_height("0") - 10;
 	var customTagButtonRectX2 = rezInfoWindowRectX2;
 	var customTagButtonRectY2 = rezInfoWindowRectY1 - 5;
 
-	draw_text(floor(mean(customTagButtonRectX1, customTagButtonRectX2)), floor(mean(customTagButtonRectY1, customTagButtonRectY2)), "Add custom label");
+	draw_text(floor(mean(customTagButtonRectX1, customTagButtonRectX2)), floor(mean(customTagButtonRectY1, customTagButtonRectY2)), scr_get_translation("label_add_custom_label"));
 
 	// click on custom label button
 	if (point_in_rectangle(mouse_x, mouse_y, customTagButtonRectX1, customTagButtonRectY1, customTagButtonRectX2, customTagButtonRectY2)) {

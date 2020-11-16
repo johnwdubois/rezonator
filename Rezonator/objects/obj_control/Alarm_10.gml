@@ -1,4 +1,4 @@
-/// @description Box Creation
+/// @description Chunk Creation
 // Place all captured unit and word info into the box grid
 
 var inRectWordIDListSize = ds_list_size(inRectWordIDList);

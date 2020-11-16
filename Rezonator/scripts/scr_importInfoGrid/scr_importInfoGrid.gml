@@ -113,6 +113,7 @@ function scr_importInfoGrid() {
 				}
 			}
 			else {
+				show_debug_message("scr_importInfoGrid() Setting field estimates...");
 				// if this label is < 5% consistency and 1 token per group, it is probably discourse level
 				// if this label is >= 90% consistency and 1 token per group, it is probably unit level
 				// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
@@ -139,37 +140,51 @@ function scr_importInfoGrid() {
 		}
 	
 		ds_grid_sort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true);
-	
-		// after we have sorted, we will set displayToken to be the first token level marker
-		// and set displayUnit to be the first unit level marker
-		var setDisplayToken = false;
-		var setDisplayUnit = false;
-		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
-		for (var i = 0; i < tagInfoGridHeight; i++) {
-			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
-			var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 		
-			// we have found the first token level marker, let's set it to displayToken
-			if (!setDisplayToken) {
-				if (currentLevel == global.levelToken) {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Display Token");
-					obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
-					setDisplayToken = true;
-				}
-			}
-			// we have found the first unit level marker (that isn't a ~field), let's set it to displayUnit
-			if (!setDisplayUnit) {
-				if (currentLevel == global.levelUnit && string_char_at(currentField, 1) != "~") {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Speaker");
-					setDisplayUnit = true;
-				}
-			}
-		}
 		scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
 	}
 	
-	
+	// auto-load Schema
 	scr_loadRZS(true);
+	
+	// check if there are any Token level fields
+	var anyTokenFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
+	var anyWordFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "word");
+	show_debug_message("scr_importInfoGrid() ... anyTokenFields: " + string(anyTokenFields) + ", anyWordFields: " + string(anyWordFields));
+	
+	// if there are no Token level fields but there are Word level fields, let's change the Word fields to Tokens fields
+	if (!anyTokenFields && anyWordFields) {
+		var wordLevelRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "word");
+		while (wordLevelRow > -1) {
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, wordLevelRow, "token");
+			wordLevelRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "word");
+		}
+	}
+	
+	// if we have not set either DisplayToken or Speaker yet, we will try to...
+	// after we have sorted, we will set displayToken to be the first token level marker
+	// and set Speaker to be the first unit level marker
+	var setDisplayToken = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+	var setSpeaker = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
+	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
+	for (var i = 0; i < tagInfoGridHeight; i++) {
+		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+		var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
+		
+		// if this field is Token level and we have not yet set Display Token, let's set this field to Display Token
+		if (!setDisplayToken && currentLevel == global.levelToken) {
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Display Token");
+			obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
+			setDisplayToken = true;
+			show_debug_message("scr_importInfoGrid() ... DisplayToken set: " + string(currentField));
+		}
+		// if this field is Unit level and we have not yet set Speaker, and this is not a ~field, let's set this field to Speaker
+		if (!setSpeaker && currentLevel == global.levelUnit && string_char_at(currentField, 1) != "~") {
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "Speaker");
+			setSpeaker = true;
+			show_debug_message("scr_importInfoGrid() ... Speaker set: " + string(currentField));
+		}
+	}
 	
 	show_debug_message("scr_importInfoGrid, END... " + scr_printTime());
 

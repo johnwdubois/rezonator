@@ -1,11 +1,4 @@
 function scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor) {
-	/*var lineNameRectX1 = argument0;
-	var lineNameRectY1 = argument1;
-	var lineNameRectX2 = argument2;
-	var lineNameRectY2 = argument3;
-	var lineGridHeight = argument4;
-	var i = argument5;
-	var lineColor = argument6;*/
 
 
 	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2) and not chainListPane.scrollBarClickLock) {

@@ -1,22 +1,19 @@
-function scr_jumpToLine(argument0, argument1) {
-	/*
-		scr_jumpToLine(discoID, lineStr);
+/*
+	scr_jumpToLine(discoID, lineStr);
 	
-		Last Updated: 2019-12-27
+	Last Updated: 2019-12-27
 	
-		Called from: obj_control
+	Called from: obj_control
 	
-		Purpose: Send the user to a specific line in the discourse
+	Purpose: Send the user to a specific line in the discourse
 	
-		Mechanism: find the specified line within the currentActiveLineGrid and set the 
-			scrollPlusYDest to that line's Y value
+	Mechanism: find the specified line within the currentActiveLineGrid and set the 
+		scrollPlusYDest to that line's Y value
 	
-		Author: ?
-	*/
-
+	Author: ?
+*/
+function scr_jumpToLine(discoID, lineStr) {
 	// Get the current Discourse and specified line string
-	var discoID = argument0;
-	var lineStr = argument1;
 	discoID = obj_panelPane.selectedDiscoID;
 
 	// Safety checks
@@ -26,7 +23,7 @@ function scr_jumpToLine(argument0, argument1) {
 
 	if (string_length(string_digits(lineStr)) < string_length(lineStr)
 	or string_length(lineStr) < 1) {
-		show_message("Numbers only.");
+		show_message(scr_get_translation("msg_numbers_only"));
 		exit;
 	}
 

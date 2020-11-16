@@ -51,7 +51,7 @@ function scr_openXML() {
 	else if (global.importType == global.importType_IGT) {
 		fileExtension = "Interlinear glossed text (*.txt)|*.txt";
 	}
-	openedFile = get_open_filename_ext(fileExtension, "", discourseDirString, "Import File");
+	openedFile = get_open_filename_ext(fileExtension, "", discourseDirString, scr_get_translation("menu_import"));
 
 
 
@@ -89,7 +89,7 @@ function scr_openXML() {
 	var discoID = fileName;
 
 	if (ds_grid_value_exists(global.fileLineRipGrid, global.fileLineRipGrid_colDiscoID, 0, global.fileLineRipGrid_colDiscoID, ds_grid_height(global.fileLineRipGrid), discoID)) {
-		show_message("Cannot import the same file twice");
+		show_message(scr_get_translation("warning_import_twice"));
 		exit;
 	}
 

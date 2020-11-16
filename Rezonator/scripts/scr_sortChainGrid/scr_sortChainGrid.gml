@@ -1,21 +1,19 @@
-function scr_sortChainGrid(argument0, argument1, argument2) {
-	/*
-		scr_sortChainGrid(grid, sortCol, ascending);
+/*
+	scr_sortChainGrid(grid, sortCol, ascending);
 	
-		Last Updated: 2019-27-12
+	Last Updated: 2019-27-12
 	
-		Called from: obj_panelPane
+	Called from: obj_panelPane
 	
-		Purpose: Sort a specified column of a chain grid
+	Purpose: Sort a specified column of a chain grid
 	
-		Mechanism: ???
+	Mechanism: ???
 	
-		Author: Terry DuBois
-	*/
+	Author: Terry DuBois
+*/
+function scr_sortChainGrid(grid, sortCol, ascending) {
+	
 
-	var grid = argument0;
-	var sortCol = argument1;
-	var ascending = argument2;
 	// -1...wordID
 	// 0...uID
 	// 1...place

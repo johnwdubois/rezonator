@@ -1,12 +1,9 @@
-function scr_bufferWriteSlice(argument0, argument1, argument2, argument3) {
+function scr_bufferWriteSlice(buf, data, start, next) {
 	// Credit to YellowAfterLife
 	// yal.cc
 
-	var start = argument2;
-	var next = argument3 - start;
+	next = next - start;
 	if (next <= 0) exit;
-	var buf = argument0;
-	var data = argument1;
 	var size = buffer_get_size(buf);
 	var pos = buffer_tell(buf);
 	var need = pos + next;

@@ -1,5 +1,4 @@
-function scr_drawExportGridViewer(argument0) {
-	var grid = argument0;
+function scr_drawExportGridViewer(grid) {
 	var gridWidth = ds_grid_width(grid);
 	var gridHeight = ds_grid_height(grid);
 

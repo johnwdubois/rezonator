@@ -10,7 +10,7 @@
 // check with translators that they are following these conventions
 
 // create 4 global variables that maintain accessibility of translation in entire program
-global.lang_codes		= [];					// create an array to store the 2-letter code of supported languages
+global.lang_codes		= ds_list_create();					// create an array to store the 2-letter code of supported languages
 global.lang_index		= 0;
 global.locale_map		= ds_map_create();		// create a dictionary that stores the glossaries for all supported languages
 global.locale_gloss		= ds_map_create();		// create a dictionary that stores the glossary for a single language
@@ -18,7 +18,7 @@ global.locale_gloss		= ds_map_create();		// create a dictionary that stores the 
 var default_locale_code		= "en";
 var default_locale_index	= 0;
 
-var native_locale_code		= "en"; // os_get_language();	// return language of user's system
+var native_locale_code		= os_get_language();	// return language of user's system
 var native_locale_index		= 0;
 show_debug_message("OS locale: " + native_locale_code);
 
@@ -70,7 +70,7 @@ while ( locale_file_name != "" )									// if file name follows convention
 		default_locale_index = global.lang_index;
 
 	// add this locale's code to the list of available locales
-	global.lang_codes[global.lang_index] = locale_code;
+	global.lang_codes[| global.lang_index] = locale_code;
 	global.lang_index++;	
 
 	locale_file_name = file_find_next();	
@@ -94,7 +94,7 @@ if ( ds_map_exists( global.locale_map, native_locale_code ) )				// if in the gl
 } else {
 	show_debug_message("Setting locale to fallback language.");
 	global.lang_index = 0;
-	global.locale_gloss = global.locale_map[? global.lang_codes[0]];
+	global.locale_gloss = global.locale_map[? global.lang_codes[| 0]];
 }
 
-show_debug_message("Locale set to " + global.lang_codes[global.lang_index] );
+show_debug_message("Locale set to " + global.lang_codes[| global.lang_index] );

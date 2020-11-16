@@ -116,7 +116,7 @@ function scr_goldStandard() {
 		}
 		
 		// My shame
-		show_message("Score: " + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow)) + "%");
+		show_message(scr_get_translation("label_score") + string(ds_grid_get(goldStandardGrid, goldStandardGrid_colScore, currentGoldStandardRow)) + "%");
 	}
 
 

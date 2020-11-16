@@ -1,5 +1,4 @@
-function scr_unfocusChain(argument0) {
-	var chainID = argument0;
+function scr_unfocusChain(chainID) {
 
 	var rowInRezChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), chainID);
 	var rowInTrackChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), chainID);

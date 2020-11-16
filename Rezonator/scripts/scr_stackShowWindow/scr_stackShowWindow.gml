@@ -24,7 +24,7 @@ function scr_stackShowWindow() {
 	var captionBoxWidth = 240;
 	var captionBoxHeight = 185;
 	var rightCenter = 160;
-	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , 2 );
+	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , obj_chain.chainStateFocus);
 	var currentStackName = "";
 	var currentStackCaption = "";
 	
@@ -92,7 +92,7 @@ function scr_stackShowWindow() {
 	
 		draw_set_colour(global.colorThemeText);
 		draw_set_font(fnt_mainBold);
-		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - stackBoxXOffset  + 30), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 5), "Select All");
+		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - stackBoxXOffset  + 30), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 5), scr_get_translation("msg_select-all"));
 	
 		draw_set_colour(global.colorThemeText);
 		draw_set_font(fnt_mainBold);
@@ -117,8 +117,8 @@ function scr_stackShowWindow() {
 		draw_set_font(fnt_mainLarge1);
 	
 		// draw button text
-		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 155), floor(camera_get_view_height(camera_get_active()) / 2 + 180), "Show Stacks");
-		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active())/2 + 180), "Cancel");
+		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 155), floor(camera_get_view_height(camera_get_active()) / 2 + 180), scr_get_translation("msg_show-stack"));
+		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active())/2 + 180), scr_get_translation("msg_cancel"));
 
 	
 	
@@ -147,11 +147,11 @@ function scr_stackShowWindow() {
 		draw_set_alpha(1);
 		draw_set_font(fnt_mainBoldLarge1);
 		draw_set_colour(global.colorThemeText);
-		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + rightCenter), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 10), "MODE");
+		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + rightCenter), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 10), scr_get_translation("msg_mode"));
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + rightCenter - (string_width("GAME")/2) - 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset, camera_get_view_width(camera_get_active()) /2 + rightCenter + (string_width("GAME")/2) + 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset, true);
 	
 	
-		draw_text(floor(camera_get_view_width(camera_get_active()) /2 + rightCenter), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset / 2.5 - 10), "STACK");
+		draw_text(floor(camera_get_view_width(camera_get_active()) /2 + rightCenter), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset / 2.5 - 10), scr_get_translation("msg_stack"));
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + rightCenter - (string_width("STACK")/2) - 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset/2.5, camera_get_view_width(camera_get_active()) /2 + rightCenter + (string_width("STACK")/2) + 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset/2.5, true);
 	
 	
@@ -184,7 +184,7 @@ function scr_stackShowWindow() {
 		//options text draw
 		draw_set_font(fnt_main);
 		draw_set_halign(fa_left);
-		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active()) / 2 - 110), "Tutorial");
+		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active()) / 2 - 110), scr_get_translation("msg_tutorial"));
 
 	
 		// Tutorial toggle button
@@ -203,11 +203,11 @@ function scr_stackShowWindow() {
 			
 				if(obj_control.setTutorial){
 					draw_set_halign(fa_center);
-					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Enabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("search_enabled"));
 				}
 				else{
 					draw_set_halign(fa_center);
-					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), "Disabled");
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("search_disabled"));
 				}
 				if (device_mouse_check_button_released(0, mb_left)) {
 					obj_control.setTutorial = !obj_control.setTutorial;	
@@ -221,15 +221,10 @@ function scr_stackShowWindow() {
 
 						obj_control.wideDropDown = true;
 						var dropDownOptionList = ds_list_create();
-						ds_list_add(dropDownOptionList, "Present", "Where's Elmo", "Rezzles");
+						ds_list_add(dropDownOptionList, scr_get_translation("label_option_present"), scr_get_translation("label_option_where_elmo"), scr_get_translation("label_option_rezzles"));
 
 						if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-							var dropDownInst = instance_create_depth(camera_get_view_width(camera_get_active()) /2 + 134 - 52,  camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 22 + (string_height(currentGame)/2) + 5, -999, obj_dropDown);
-							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = dropDownInst.optionListTypeGame;
-					
-							obj_control.ableToCreateDropDown = false;
-							obj_control.alarm[0] = 2;
+							scr_createDropDown(camera_get_view_width(camera_get_active()) /2 + 134 - 52, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 22 + (string_height(currentGame)/2) + 5, dropDownOptionList, global.optionListTypeGame);
 						}
 				}
 		}

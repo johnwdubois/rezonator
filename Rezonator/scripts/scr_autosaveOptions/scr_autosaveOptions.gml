@@ -1,5 +1,4 @@
-function scr_autosaveOptions(argument0) {
-	var optionSelected = argument0;
+function scr_autosaveOptions(optionSelected) {
 
 	var wasOff = (global.autosaveTimer == -1);
 

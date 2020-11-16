@@ -14,7 +14,7 @@ function scr_colorThemeGridInit() {
 
 	// columns = Color sections
 	// rows = themes
-	global.colorThemeGridWidth = 8;
+	global.colorThemeGridWidth = 9;
 	global.colorThemeGrid_colBG = 0;
 	global.colorThemeGrid_colText = 1;
 	global.colorThemeGrid_colSelected1 = 2;
@@ -23,6 +23,7 @@ function scr_colorThemeGridInit() {
 	global.colorThemeGrid_colPaneBG = 5;
 	global.colorThemeGrid_colOutOfBounds = 6;
 	global.colorThemeGrid_colHighlight = 7;
+	global.colorThemeGrid_colNegSpace = 8;
 	global.colorThemeGrid = ds_grid_create(global.colorThemeGridWidth, 2);
 
 	// light theme
@@ -34,7 +35,8 @@ function scr_colorThemeGridInit() {
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, 0, c_white);
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, 0, c_ltgray);
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colHighlight, 0, c_green);
-
+	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, 0, make_color_rgb(234,234,234));
+	
 	// dark theme
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colBG, 1, make_color_hsv(0, 0, 40));
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colText, 1, c_white);
@@ -44,6 +46,7 @@ function scr_colorThemeGridInit() {
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, 1, make_color_hsv(0, 0, 40));
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, 1, c_black);
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colHighlight, 1, c_green);
+	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, 1, make_color_rgb(20,20,20));
 
 
 	global.colorThemeBG = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colBG, global.colorTheme);
@@ -54,6 +57,7 @@ function scr_colorThemeGridInit() {
 	global.colorThemePaneBG = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, global.colorTheme);
 	global.colorThemeOutOfBounds = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, global.colorTheme);
 	global.colorThemeHighlight = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colHighlight, global.colorTheme);
-
+	global.colorThemeNegSpace = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, global.colorTheme);
+	
 
 }

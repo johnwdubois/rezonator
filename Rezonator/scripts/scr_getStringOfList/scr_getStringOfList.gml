@@ -1,7 +1,6 @@
-function scr_getStringOfList(argument0) {
+function scr_getStringOfList(list) {
 	// Convert the data of a list into a readable string format
 
-	var list = argument0;
 	var str = "{";
 
 	if !ds_list_empty(list){

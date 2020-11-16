@@ -1,5 +1,4 @@
-function scr_getChainAlign(argument0) {
-	var chainID = argument0;
+function scr_getChainAlign(chainID) {
 
 	var rowInLinkGrid = ds_grid_value_y(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid), chainID);
 
@@ -10,7 +9,7 @@ function scr_getChainAlign(argument0) {
 
 	var chainTier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowInLinkGrid);
 	var grid = obj_chain.rezChainGrid;
-	if (chainTier == 1) {
+	if (chainTier == obj_chain.trackTier) {
 		grid = obj_chain.trackChainGrid;
 	}
 

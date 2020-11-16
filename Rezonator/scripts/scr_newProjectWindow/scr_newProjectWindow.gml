@@ -96,7 +96,7 @@ function scr_newProjectWindow() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), "Go!");
+	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_go"));
 
 
 	draw_set_alpha(1);
@@ -109,7 +109,7 @@ function scr_newProjectWindow() {
 	}
 	global.totalUnitAmount = totalUnitAmount;
 	draw_set_halign(fa_right);
-	draw_text(importWindowX2, importWindowY2 + 24, "Total line count: " + string(totalUnitAmount));
+	draw_text(importWindowX2, importWindowY2 + 24, scr_get_translation("msg_total-line") + string(totalUnitAmount));
 
 
 

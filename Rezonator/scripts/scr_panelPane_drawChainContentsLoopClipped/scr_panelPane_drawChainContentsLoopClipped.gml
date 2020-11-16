@@ -78,7 +78,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			break;
 		case functionChainList_tabLine:
 			grid = -1;
-			if (obj_control.showTranslation and not obj_control.showUnitTags) {
+			if (obj_control.showTranslation) {
 				scr_panelPane_drawLineTranslationLoopClipped();
 			}
 			else if (obj_control.showUnitTags and not obj_control.showTranslation) {
@@ -278,7 +278,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 							if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 			 					obj_control.ableToCreateDropDown = false;
 							}
-							else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, obj_chain.chainStateNormal) != -1){
+							else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, false) != -1){
 								if(obj_control.searchGridActive){
 									ds_list_add(dropDownOptionList, "Delete Link");
 								}
@@ -345,7 +345,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 									for (var i = 0; i < currentWordIDListSize; i++) {
 										var currentWordID = ds_list_find_value(currentWordIDList, i);
 										var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-										if(currentWordState == 3){
+										if(currentWordState == obj_control.wordStateDead){
 											continue;
 										}
 										var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);

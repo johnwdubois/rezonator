@@ -16,6 +16,8 @@
 #macro vk_lcommand 92
 
 shortcutsEnabled = true;
+cameraBottomLine = camera_get_view_height(view_get_camera(0));
+
 
 if (hideAll) {
 	gridView = false;
@@ -322,11 +324,11 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		//}
 	
 		// Sends user to the bottom of the main screen
-		if ((keyboard_check(vk_control) and keyboard_check_pressed(vk_down)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_down))) {
+		if ((ctrlHold and keyboard_check_pressed(vk_down)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_down))) {
 			scrollPlusYDest = -999999999999;
 		}
 		// Sends user to the top of the main screen
-		else if ((keyboard_check(vk_control) and keyboard_check_pressed(vk_up)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_up))) {
+		else if ((ctrlHold and keyboard_check_pressed(vk_up)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_up))) {
 			scrollPlusYDest = 100;
 		}
 		

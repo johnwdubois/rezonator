@@ -72,7 +72,7 @@ function scr_panelPane_drawTracker() {
 		draw_set_font(fnt_mainBold);
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeText);
-		draw_text(0 + 5, yBase + (newYheight/2), "End StackShow");
+		draw_text(0 + 5, yBase + (newYheight/2), scr_get_translation("msg_end_stackshow"));
 
 
 		var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
@@ -97,35 +97,6 @@ function scr_panelPane_drawTracker() {
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle( chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, true);
 	
-		/*if (point_in_rectangle(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-		and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)) {
-		
-		// Unfocus any already focused chains
-		for (var j = 0; j < ds_grid_height(grid); j++) {
-			if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
-			}
-		}
-				
-		// Set chain to focus in the grid
-		ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
-		scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
-				
-		
-		
-		
-			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Rename", "Recolor", "Caption");
-		
-			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 1;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
-			}
-		}*/
 	
 	
 		//draw stack name text
@@ -231,12 +202,12 @@ function scr_panelPane_drawTracker() {
 		// move counter text
 		draw_set_font(fnt_panelTab);
 		draw_set_color(global.colorThemeText);
-		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightCounterText, "Move Counter: "+ string(obj_control.moveCounter) +"");
+		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightCounterText, scr_get_translation("msg_move_counter")+ string(obj_control.moveCounter) +"");
 	
 		// timer text
 		draw_set_font(fnt_panelTab);
 		draw_set_color(global.colorThemeText);
-		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightTimerText, "Time Taken: "+ displayMinutes + ":"+ displaySeconds );
+		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightTimerText, scr_get_translation("msg_time_taken")+ displayMinutes + ":"+ displaySeconds );
 	
 
 		// reset button
@@ -265,7 +236,7 @@ function scr_panelPane_drawTracker() {
 		// reset text
 		draw_set_font(fnt_mainBold);
 		draw_set_color(global.colorThemeText);
-		draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, "RESET");
+		draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, scr_get_translation("label_reset"));
 	//}
 	
 

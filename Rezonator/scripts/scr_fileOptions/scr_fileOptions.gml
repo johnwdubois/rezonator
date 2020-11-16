@@ -1,5 +1,4 @@
-function scr_fileOptions(argument0) {
-	var optionSelected = argument0;
+function scr_fileOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
@@ -17,7 +16,7 @@ function scr_fileOptions(argument0) {
 			show_message("Coming Soon");
 			break;
 				
-		case "Save":
+		case "menu_save":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 			instLoading.loadSprite = spr_saving;
 		
@@ -28,7 +27,7 @@ function scr_fileOptions(argument0) {
 			draw_set_font(obj_toolPane.progressBarFont);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
-			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Saving...");
+			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
 			draw_set_font(fnt_dropDown);
 		
 			obj_fileLoader.ableToHotkey = false;
@@ -47,7 +46,7 @@ function scr_fileOptions(argument0) {
 			draw_set_font(obj_toolPane.progressBarFont);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
-			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Saving...");
+			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
 			draw_set_font(fnt_dropDown);
 			
 			obj_fileLoader.ableToHotkey = false;
@@ -56,7 +55,7 @@ function scr_fileOptions(argument0) {
 				alarm[0] = 3;
 			}
 			break;
-		case "Import":
+		case "menu_import":
 			
 			audio_stop_all();
 	
@@ -73,7 +72,7 @@ function scr_fileOptions(argument0) {
 		
 				}
 				else {
-					if (show_question("Would you like to save before importing new data?")) {
+					if (show_question(scr_get_translation("question_save_before_import"))) {
 						with (obj_fileLoader) {
 							scr_saveREZ(false);
 						}
@@ -85,7 +84,7 @@ function scr_fileOptions(argument0) {
 			room_goto(rm_openingScreen);
 			
 			break;
-		case "Export":
+		case "menu_export":
 			
 			//draw_set_alpha(1);
 			//draw_set_color(obj_toolPane.progressBarFrontColor);
@@ -94,7 +93,7 @@ function scr_fileOptions(argument0) {
 			//draw_set_font(obj_toolPane.progressBarFont);
 			//draw_set_halign(fa_left);
 			//draw_set_valign(fa_middle);
-			//draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), "Exporting...");
+			//draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_exporting"));
 			//draw_set_font(fnt_dropDown);
 		
 			obj_fileLoader.ableToHotkey = false;
@@ -117,7 +116,7 @@ function scr_fileOptions(argument0) {
 			}
 			//show_message("BUH 3");
 			break;
-		case "Media":
+		case "menu_media":
 
 			with( obj_audioUI ){
 			
@@ -133,7 +132,7 @@ function scr_fileOptions(argument0) {
 
 			//show_message("Coming Soon");
 			break;	
-		case "Exit":
+		case "menu_exit":
 		
 		
 			audio_stop_all();
@@ -152,7 +151,7 @@ function scr_fileOptions(argument0) {
 		
 				}
 				else {
-					if (show_question("Would you like to save before exiting?")) {
+					if (show_question(scr_get_translation("question_save_before_exit"))) {
 						with(obj_fileLoader){
 							scr_saveREZ(false);
 						}

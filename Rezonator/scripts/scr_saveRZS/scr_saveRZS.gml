@@ -14,10 +14,10 @@ function scr_saveRZS() {
 	*/
 
 
-	var fileName = get_save_filename_ext("Schema file|*.rzs", string_lettersdigits("Schema"), global.rezonatorSchemaDirString, "Choose a Location for the Schema file");
+	var fileName = get_save_filename_ext("Schema file|*.rzs", string_lettersdigits("Schema"), global.rezonatorSchemaDirString, scr_get_translation("msg_save_schema_file"));
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
-		show_message("Error in saving");
+		show_message(scr_get_translation("save_error"));
 		exit;
 	}
 

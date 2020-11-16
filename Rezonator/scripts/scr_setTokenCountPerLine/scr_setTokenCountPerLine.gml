@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_setTokenCountPerLine(){
 	
+	global.tokenCountTotal = 0;
+	
 	// loop through the blockGrid
 	var blockGridHeight = ds_grid_height(global.blockGrid);
 	for (var i = 0; i < blockGridHeight; i++) {
@@ -19,6 +21,7 @@ function scr_setTokenCountPerLine(){
 			var currentStr = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, currentLine);
 			var currentTokenList = scr_splitStringWhitespaceAndHyphen(currentStr);
 			var currentTokenListSize = ds_list_size(currentTokenList);
+			global.tokenCountTotal += currentTokenListSize;
 			
 			// store the amount of tokens in currentTokenCountList
 			ds_list_add(currentTokenCountList, currentTokenListSize);

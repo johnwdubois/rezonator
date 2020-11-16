@@ -1,5 +1,4 @@
-function scr_importPlainTXT(argument0) {
-	var filename = argument0;
+function scr_importPlainTXT(filename) {
 	global.importFilename = filename;
 
 	var fileOpenRead = file_text_open_read(filename);

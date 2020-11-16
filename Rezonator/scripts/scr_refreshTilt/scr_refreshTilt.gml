@@ -1,5 +1,4 @@
-function scr_refreshTilt(argument0) {
-	var rowInRezChainGrid = argument0;
+function scr_refreshTilt(rowInRezChainGrid) {
 
 	if (rowInRezChainGrid < 0)
 	{

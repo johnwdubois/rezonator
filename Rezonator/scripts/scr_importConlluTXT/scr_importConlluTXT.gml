@@ -1,5 +1,4 @@
-function scr_importConlluTXT(argument0) {
-	var filename = argument0;
+function scr_importConlluTXT(filename) {
 	global.importFilename = filename;
 
 	var tokensAdded = false;

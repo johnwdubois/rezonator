@@ -1,5 +1,4 @@
-function scr_chainListOptions(argument0) {
-	var optionSelected = argument0;
+function scr_chainListOptions(optionSelected) {
 
 	with (obj_panelPane)
 	{
@@ -27,7 +26,7 @@ function scr_chainListOptions(argument0) {
 					break;
 			}
 		
-			obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+			obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 			if(obj_control.selectedChainID == undefined){
 				exit;
 			}
@@ -44,7 +43,7 @@ function scr_chainListOptions(argument0) {
 				case "Rename":
 					//show_message("Rename chosen");
 						
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 )
+					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus)
 						
 						
 					if (!obj_control.dialogueBoxActive) {
@@ -64,25 +63,20 @@ function scr_chainListOptions(argument0) {
 				case "Recolor":
 					//might be a special case
 											
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList, "Red", "Blue", "Green", "Gold", "Custom");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
-						var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing  , -999, obj_dropDown);
-						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeChainRecolor;
-					
-						obj_control.ableToCreateDropDown = false;
-						obj_control.alarm[0] = 2;
+						scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + obj_dropDown.optionSpacing, dropDownOptionList, global.optionListTypeChainRecolor);
 					}
 	
 					break;
 				case "Delete":
 					//show_message("Delete chosen");
 
-						var focusedRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+						var focusedRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 						obj_control.selectedChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, focusedRow);
 							
 						//show_message("focused Row: " + string(focusedRow));
@@ -102,7 +96,7 @@ function scr_chainListOptions(argument0) {
 				case "Caption":
 				//show_message("Caption clicked");
 
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 	
 		
 					if (!obj_control.dialogueBoxActive) {
@@ -121,7 +115,7 @@ function scr_chainListOptions(argument0) {
 					break;
 				case "Clip":
 					// Get the ID of the currently selected Stack
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid) , 2 );
+					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 					
 					// Create a clip file based on that Stack
 					scr_clipFromStack(obj_control.selectedChainID);

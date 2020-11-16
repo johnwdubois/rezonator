@@ -1,6 +1,5 @@
-function scr_stackshowOptions(argument0) {
+function scr_stackshowOptions(optionSelected) {
 	//stackshowOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{

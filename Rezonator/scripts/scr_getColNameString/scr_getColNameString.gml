@@ -1,8 +1,5 @@
-function scr_getColNameString(argument0, argument1) {
+function scr_getColNameString(grid, col) {
 	// Store and return the strings of Grid Column names
-
-	var grid = argument0;
-	var col = argument1;
 
 	var colName = "";
 

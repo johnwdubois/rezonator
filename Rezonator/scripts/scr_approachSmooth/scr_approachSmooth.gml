@@ -1,11 +1,7 @@
-function scr_approachSmooth(argument0, argument1, argument2) {
+function scr_approachSmooth(value, valueDest, divisor) {
 	/*
 		Have the value approach the destination in incremental steps
 	*/
-
-	var value = argument0;
-	var valueDest = argument1;
-	var divisor = argument2;
 
 	if (value < valueDest) {
 		value += abs(value - valueDest) / divisor;

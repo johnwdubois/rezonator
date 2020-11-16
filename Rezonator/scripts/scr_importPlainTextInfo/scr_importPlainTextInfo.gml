@@ -152,7 +152,7 @@ function scr_importPlainTextInfo() {
 	draw_set_font(fnt_mainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_text(tagInfoWindowRectX1, floor(tagInfoWindowRectY1 - string_height("0")), "Lines Found");
+	draw_text(tagInfoWindowRectX1, floor(tagInfoWindowRectY1 - string_height("0")), scr_get_translation("msg_lines_found"));
 
 
 	// draw Tag Info window border

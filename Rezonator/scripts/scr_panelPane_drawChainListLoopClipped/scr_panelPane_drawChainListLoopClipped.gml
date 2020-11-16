@@ -228,12 +228,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
 			}
 			if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-				var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeChainList;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeChainList);
 			}
 		}
 	
@@ -291,7 +286,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			if (((mouseover and device_mouse_check_button_released(0, mb_left))
 			or (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and currentChainState == obj_chain.chainStateFocus)) and not instance_exists(obj_dialogueBox)) {
 				// Record previous display row in case Filter is empty
-				obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
+				//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow); // Shouldn't get in the of the other PrevRow check
 				// Set selected objects to be filtered
 				inFilter = !inFilter;
 				ds_grid_set(grid, obj_chain.chainGrid_colInFilter, i, inFilter);

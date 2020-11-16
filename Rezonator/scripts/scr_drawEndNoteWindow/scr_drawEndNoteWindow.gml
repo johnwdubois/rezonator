@@ -80,8 +80,8 @@ function scr_drawEndNoteWindow(){
 	
 	// draw button text
 	draw_set_halign(fa_center);
-	draw_text(floor(mean(okButtonX1, okButtonX2)), floor((okButtonY2 - okButtonY1)/2 + okButtonY1), "Create Stacks");
-	draw_text(floor(mean(cancelButtonX1, cancelButtonX2)), floor((cancelButtonY2 - cancelButtonY1)/2 + okButtonY1), "Cancel");
+	draw_text(floor(mean(okButtonX1, okButtonX2)), floor((okButtonY2 - okButtonY1)/2 + okButtonY1), scr_get_translation("label_create_stacks"));
+	draw_text(floor(mean(cancelButtonX1, cancelButtonX2)), floor((cancelButtonY2 - cancelButtonY1)/2 + okButtonY1), scr_get_translation("msg_cancel"));
 	
 	
 	

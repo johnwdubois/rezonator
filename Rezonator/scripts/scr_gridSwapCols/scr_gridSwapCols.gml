@@ -1,9 +1,5 @@
-function scr_gridSwapCols(argument0, argument1, argument2) {
+function scr_gridSwapCols(grid, col1, col2) {
 	// Swaps all the cells for 2 columns in a grid
-
-	var grid = argument0;
-	var col1 = argument1;
-	var col2 = argument2;
 
 	var gridCopy = ds_grid_create(ds_grid_width(grid), ds_grid_height(grid));
 	ds_grid_copy(gridCopy, grid);

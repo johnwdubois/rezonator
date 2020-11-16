@@ -7,7 +7,7 @@ function scr_exceptionsWindow() {
 	// Exceptions window
 	var exceptionsInfoWindowRectX1 = (camWidth * 0.5) + 20;
 	var exceptionsInfoWindowRectY1 = 80 + string_height("0");
-	var exceptionsInfoWindowRectX2 = camWidth - 40;
+	var exceptionsInfoWindowRectX2 = camWidth - 50;
 	var exceptionsInfoWindowRectY2 = (camHeight / 2) - 180;
 
 	draw_set_color(global.colorThemeBorders);
@@ -18,7 +18,7 @@ function scr_exceptionsWindow() {
 	draw_set_halign(fa_left);
 
 	draw_set_valign(fa_middle);
-	draw_text(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1 - string_height("0"), "Exceptions");
+	draw_text(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1 - string_height("0"), scr_get_translation("label_exceptions"));
 
 
 

@@ -22,6 +22,7 @@ flick_power_reduction_each_step = 3;
 currentCenterDisplayRow = 0;
 prevCenterYDest = 0;
 prevCenterDisplayRow = 0;
+cameraBottomLine = camera_get_view_height(camera_get_active());
 
 // Bound and set the display grid of the words
 gridSpaceHorizontalMin = 60;
@@ -217,12 +218,12 @@ dynamicWordGrid_colTag1Label = "Tag1";
 dynamicWordGrid_colTag2Label = "Tag2";
 dynamicWordGrid_colTag3Label = "Tag3";
 
-wordStateNormal = 0;
-wordStateNew = 1;
-wordStateChunk = 2;
-wordStateDead = 3;
-wordStateGold = 4;
-wordStateRed = 5;
+wordStateNormal = 0;//"Normal";//0
+wordStateNew = 1;//"New";//1
+wordStateChunk = 2;//"Chunk";//2
+wordStateDead = 3;//"Dead";//3
+wordStateGold = 4;//"Gold";//4
+wordStateRed = 5;//"Red";//5
 
 
 
@@ -675,6 +676,7 @@ readModeHints = 0;
 mouseOverUI = false;
 
 ctrlHold = false;
+
 
 with (obj_alarm) {
 	alarm[10] = 8;

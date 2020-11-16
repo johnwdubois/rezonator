@@ -1,9 +1,5 @@
-function scr_loadREZGridReset(argument0, argument1, argument2) {
+function scr_loadREZGridReset(tempGrid, map, mapKey) {
 	// Reset the tempGrid to load in the next Map into its respective grid
-
-	var tempGrid = argument0;
-	var map = argument1;
-	var mapKey = argument2;
 
 	var mapFind = ds_map_find_value(map, mapKey);
 

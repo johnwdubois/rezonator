@@ -1,6 +1,5 @@
-function scr_paneOptions(argument0) {
+function scr_paneOptions(optionSelected) {
 	//paneOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{
@@ -92,12 +91,7 @@ function scr_paneOptions(argument0) {
 			ds_list_add(dropDownOptionList, "Left", "Right", "Tools", "All");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(x + windowWidth , y+ optionSpacing, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeNav;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				scr_createDropDown(x + windowWidth, y + optionSpacing, dropDownOptionList, global.optionListTypeNav);
 			}
 
 			break;

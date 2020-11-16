@@ -1,7 +1,6 @@
-function scr_importCSV(argument0) {
+function scr_importCSV(filename) {
 	// Begin the import process of a single user specified CSV file
 
-	var filename = argument0;
 
 	//load csv into grid
 	//global.importCSVGrid = scr_CSVtoGrid(filename);

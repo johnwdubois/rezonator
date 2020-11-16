@@ -1,20 +1,17 @@
-function scr_saveREZ(argument0) {
-	/*
-		scr_saveRez(autosave);
+/*
+	scr_saveRez(autosave);
 	
-		Last Updated: 2020-01-01
+	Last Updated: 2020-01-01
 	
-		Called from: obj_fileLoader
+	Called from: obj_fileLoader
 	
-		Purpose: Save all user created data into a special type of JSON file, a Rez file
+	Purpose: Save all user created data into a special type of JSON file, a Rez file
 	
-		Mechanism: Organize the data into maps, then transfer those maps as JSON strings into the user specified file location
+	Mechanism: Organize the data into maps, then transfer those maps as JSON strings into the user specified file location
 	
-		Author: Terry DuBois
-	*/
-
-
-	var autosave = argument0;
+	Author: Terry DuBois
+*/
+function scr_saveREZ(autosave) {
 
 	/*if (global.games) {
 		autosave = false;
@@ -29,13 +26,13 @@ function scr_saveREZ(argument0) {
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
 				global.fileSaveName = "undefined";
-				show_message("Error in saving");
+				show_message(scr_get_translation("msg_saving-error"));
 				global.stackGrabSave = false;
 				exit;
 			}
 	
 			if (string_count(program_directory, global.fileSaveName) > 0) {
-				show_message("Error in saving. Please save outside of Rezonator program directory.");
+				show_message(scr_get_translation("msg_saving-rez-directory"));
 				scr_saveREZ(false);
 				exit;
 			}
@@ -45,7 +42,7 @@ function scr_saveREZ(argument0) {
 	// Prevent users from overwriting default discourse files
 	if(os_type == os_macosx){
 		if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "/" and not autosave) {
-			show_message("Error in saving. Please save file outside of Default Discourse folder");
+			show_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;
@@ -54,7 +51,7 @@ function scr_saveREZ(argument0) {
 	}
 	else {
 		if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
-			show_message("Error in saving. Please save file outside of Default Discourse folder");
+			show_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;

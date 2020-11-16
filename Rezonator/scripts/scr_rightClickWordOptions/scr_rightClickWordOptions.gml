@@ -1,5 +1,4 @@
-function scr_rightClickWordOptions(argument0) {
-	var optionSelected = argument0;
+function scr_rightClickWordOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
@@ -29,15 +28,8 @@ function scr_rightClickWordOptions(argument0) {
 			ds_list_add(dropDownOptionList, "Create tag", "Edit Tag", "Delete tag");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing*4, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeWordTags;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y+ obj_dropDown.optionSpacing * 4, dropDownOptionList, global.optionListTypeWordTags);
 			}
-
-			//show_message("BUH 2");
 			break;
 		case "Replace Word":
 		
@@ -110,12 +102,7 @@ function scr_rightClickWordOptions(argument0) {
 						
 
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing  , -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeNewWord;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + obj_dropDown.optionSpacing, dropDownOptionList, global.optionListTypeNewWord);
 			}
 	
 		
@@ -126,7 +113,7 @@ function scr_rightClickWordOptions(argument0) {
 		case "Delete New Word":
 			scr_destroyAllDropDownsOtherThanSelf();
 			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
-			obj_control.deleteNewWord =true;
+			obj_control.deleteNewWord = true;
 			//show_message("Coming Soon");
 			scr_deleteFromChain();
 			
@@ -178,7 +165,7 @@ function scr_rightClickWordOptions(argument0) {
 				// Using the rez tool
 				case obj_toolPane.modeRez:
 					grid = obj_chain.rezChainGrid;
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.rezTier) {
 						show_message("Please Click on a word before deleting it's link");
 						instance_destroy();
 						exit;	
@@ -187,14 +174,14 @@ function scr_rightClickWordOptions(argument0) {
 				case obj_toolPane.modeTrack:
 				// Using the track tool
 					grid = obj_chain.trackChainGrid;
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 2) {
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.trackTier) {
 						show_message("Please Click on a word before deleting it's link");
 						instance_destroy();
 						exit;
 					}
 					break;
 				default:
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != 1) {
+					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.rezTier) {
 						instance_destroy();
 						exit;
 					}

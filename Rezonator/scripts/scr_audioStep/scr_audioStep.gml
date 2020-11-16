@@ -53,7 +53,6 @@ function scr_audioStep() {
 	//Play through audio of Stack with line interuptions
 	if(selectedStackGridRow > -1) { 
 		if(stackUnitListSize > -1) {
-			//show_debug_message("stackUnitListPosition: " + string(stackUnitListPosition));
 			if(stackUnitListPosition <= stackUnitListSize - 1) {
 				var currentUnit = ds_list_find_value(stackUnitList, stackUnitListPosition);
 				var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentUnit - 1);
@@ -66,6 +65,7 @@ function scr_audioStep() {
 						if(currentUnit != nextUnit - 1) {
 							var nextUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, nextUnit - 1);
 							audio_sound_set_track_position(audioSound, nextUnitStartTime);
+							// Giorgia has requested a feature to wait 1 second before jumping to a non-sequetial unit
 						}
 					}
 					stackUnitListPosition++;
@@ -109,7 +109,7 @@ function scr_audioStep() {
 			stackUnitListSize = -1;
 			stackUnitListPosition = -1;
 			selectedStackID = -1;
-			if(stackUnfocus = false) {
+			if(!stackUnfocus) {
 				bookmarkStartTime = -1;
 				bookmarkEndTime = -1;
 				stackUnfocus = true;
@@ -122,7 +122,7 @@ function scr_audioStep() {
 		stackUnitListSize = -1;
 		stackUnitListPosition = -1;
 		selectedStackID = -1;
-		if(stackUnfocus = false) {
+		if(!stackUnfocus) {
 			bookmarkStartTime = -1;
 			bookmarkEndTime = -1;
 			stackUnfocus = true;

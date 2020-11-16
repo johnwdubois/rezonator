@@ -1,5 +1,4 @@
-function scr_speakerLabelOptions(argument0) {
-	var optionSelected = argument0;
+function scr_speakerLabelOptions(optionSelected) {
 
 	with (obj_panelPane)
 	{
@@ -78,10 +77,10 @@ function scr_speakerLabelOptions(argument0) {
 					}
 					
 					if(scr_compareLists(checkList1, checkList2)){
-						show_message("Congratulations! The Conversation is back in order.");
+						show_message(scr_get_translation("msg_congrats"));
 					}
 					else{
-						show_message("Sorry! Some lines are still out of order.");
+						show_message(scr_get_translation("msg_lines-notordered"));
 					}
 					
 					
@@ -98,12 +97,7 @@ function scr_speakerLabelOptions(argument0) {
 					ds_list_add(dropDownOptionList, "Happy", "Sad", "Playful", "Serious", "Delete tag");
 						
 					if (ds_list_size(dropDownOptionList) > 0) {
-						var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y+ obj_dropDown.optionSpacing*3, -999, obj_dropDown);
-						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = dropDownInst.optionListTypeWordTags;
-					
-						obj_control.ableToCreateDropDown = false;
-						obj_control.alarm[0] = 2;
+						scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing * 3, dropDownOptionList, global.optionListTypeWordTags);
 					}
 					
 					break;

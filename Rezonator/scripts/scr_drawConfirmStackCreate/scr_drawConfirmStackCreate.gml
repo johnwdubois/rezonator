@@ -158,9 +158,9 @@ function scr_drawConfirmStackCreate(){
 	draw_set_colour(global.colorThemeText);
 	draw_set_font(fnt_mainLarge1);
 	draw_set_halign(fa_center);
-	draw_text(floor(mean(yesButtonX1, yesButtonX2)), floor((yesButtonY2 - yesButtonY1) /2 + yesButtonY1), "Yes");
-	draw_text(floor(mean(noButtonX1, noButtonX2)), floor((noButtonY2 - noButtonY1) /2 + noButtonY1), "No");
-	draw_text(floor(mean(cancelButtonX1, cancelButtonX2)), floor((cancelButtonY2 - cancelButtonY1)/2 + yesButtonY1), "Cancel");
+	draw_text(floor(mean(yesButtonX1, yesButtonX2)), floor((yesButtonY2 - yesButtonY1) /2 + yesButtonY1), scr_get_translation("msg_yes"));
+	draw_text(floor(mean(noButtonX1, noButtonX2)), floor((noButtonY2 - noButtonY1) /2 + noButtonY1), scr_get_translation("msg_no"));
+	draw_text(floor(mean(cancelButtonX1, cancelButtonX2)), floor((cancelButtonY2 - cancelButtonY1)/2 + yesButtonY1), scr_get_translation("msg_cancel"));
 	
 
 	// draw prompt text
@@ -169,5 +169,5 @@ function scr_drawConfirmStackCreate(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
 	var stackAmount = ds_grid_height(obj_chain.stackChainGrid);
-	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + (string_height("A") / 2)), "You have created " + string(stackAmount) + " Stacks.\nDo you want to overwrite them with new automatic Stacks?");
+	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + (string_height("A") / 2)), scr_get_translation("msg_stacks_created-1") + string(stackAmount) + scr_get_translation("msg_stacks_created-2"));
 }

@@ -1,5 +1,4 @@
-function scr_wordTagsOptions(argument0) {
-	var optionSelected = argument0;
+function scr_wordTagsOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

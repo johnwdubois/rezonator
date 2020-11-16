@@ -1,22 +1,20 @@
-function scr_prevWordInSequence(argument0, argument1) {
-	/*
-		scr_prevWordInSequence();
+/*
+	scr_prevWordInSequence();
 	
-		Last Updated: 2019-07-05
+	Last Updated: 2019-07-05
 	
-		Called from: obj_chain
+	Called from: obj_chain
 	
-		Purpose: return the previous word within the word sequence
+	Purpose: return the previous word within the word sequence
 	
-		Mechanism: Step backwards through the current unit's wordIDList. If the current word is first in that list, 
-		loop through previous units to get the end of their wordIDList.
+	Mechanism: Step backwards through the current unit's wordIDList. If the current word is first in that list, 
+	loop through previous units to get the end of their wordIDList.
 				
-		Author: Georgio Klironomos
-	*/
+	Author: Georgio Klironomos
+*/
+function scr_prevWordInSequence(currentWordID, currentUnitID) {
+	
 
-
-	var currentWordID = argument0;
-	var currentUnitID = argument1;
 	var previousWordID = undefined;
 	if (currentWordID - 2 < 0) {
 		return -1;

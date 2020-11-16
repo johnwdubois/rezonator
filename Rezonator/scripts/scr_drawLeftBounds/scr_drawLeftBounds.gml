@@ -1,7 +1,6 @@
-function scr_drawLeftBounds(argument0) {
+function scr_drawLeftBounds(camViewHeight) {
 	// draw out of bounds rectangle on left
 
-	var camViewHeight = argument0;
 
 	draw_set_color(global.colorThemeOutOfBounds);
 	var leftOutOfBoundsRectX1 = obj_control.speakerLabelMargin;

@@ -45,7 +45,7 @@ function scr_gridViewDrawBackArrow() {
 	// Draw text
 	draw_set_colour(global.colorThemeBG);
 	draw_set_halign(fa_center);
-	draw_text((backArrowRectX1 + backArrowRectX2)/2, (backArrowRectY1 + backArrowRectY2)/2, "Back");
+	draw_text((backArrowRectX1 + backArrowRectX2)/2, (backArrowRectY1 + backArrowRectY2)/2, scr_get_translation("label_back"));
 
 	// Check for mouse hover over
 	if (point_in_rectangle(mouse_x, mouse_y, backArrowRectX1, backArrowRectY1, backArrowRectX2, backArrowRectY2)) {

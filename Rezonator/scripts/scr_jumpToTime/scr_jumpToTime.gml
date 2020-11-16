@@ -28,7 +28,7 @@ function scr_jumpToTime(timeStr) {
 	show_debug_message("scr_jumpToTime() ... strLenDigits: " + string(strLenDigits) + ", strLenTotal: " + string(strLenTotal));
 
 	if (strLenDigits < strLenTotal) {
-		show_message("Input a number please.");
+		show_message(scr_get_translation("msg_input_any_number"));
 		exit;
 	}
 	

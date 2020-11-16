@@ -7,7 +7,7 @@ function scr_panelPane_drawGoToLine() {
 	draw_set_font(fnt_main);
 	draw_set_color(global.colorThemeText);
 
-	draw_text(x + 20, y + plusY, "Select discourse");
+	draw_text(x + 20, y + plusY, scr_get_translation("msg_select_discourse"));
 	plusY += 30;
 
 	draw_set_color(c_purple);
@@ -81,7 +81,7 @@ function scr_panelPane_drawGoToLine() {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_text(mean(specifyLineRectX1, specifyLineRectX2), mean(specifyLineRectY1, specifyLineRectY2), "Specify Line...");
+	draw_text(mean(specifyLineRectX1, specifyLineRectX2), mean(specifyLineRectY1, specifyLineRectY2), scr_get_translation("msg_specify_line"));
 
 	windowHeight = plusY + 40;
 

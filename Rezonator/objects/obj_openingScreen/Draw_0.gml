@@ -23,6 +23,9 @@ importWindowY2 = importWindowY1 + importWindowHeight;
 
 scr_windowCameraAdjust();
 
+
+
+// draw Rezonator logo with version number
 if !(global.newProject and not global.openProject) {
 	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 4, true);
 }
@@ -48,15 +51,14 @@ if (obj_openingScreen.showDevVars) {
 
 
 
-
+showPreImportScreen = (global.newProject and not global.openProject);
+if (showPreImportScreen) {
+	scr_preImportScreen();
+}
 
 	
 if not (global.newProject or global.openProject) {
 	scr_openingMenu();
-}
-else if (global.newProject and not global.openProject) {
-	//scr_newProjectWindow();
-	scr_preImportScreen();
 }
 else if (not global.newProject and global.openProject) {
 //show_message("elmo: " + string(global.wheresElmo) + "  , rezzles: " +string(global.rezzles) + "  , tutorial: " +string(global.tutorial))

@@ -1,9 +1,8 @@
-function scr_filterOptions(argument0) {
-	var optionSelected = argument0;
+function scr_filterOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Filter": // toggles the filter view on and off
+		case "menu_filter": // toggles the filter view on and off
 		
 	
 			if (obj_control.filterGridActive) {
@@ -36,34 +35,24 @@ function scr_filterOptions(argument0) {
 			}
 			break;
 	
-		case "Context":
+		case "menu_filter-context":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Above", "Between", "Below");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing*2)  , -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeContext;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing*2), dropDownOptionList, global.optionListTypeContext);
 			}
 			break;
 	
-		case "Pick": // add all of a certain chain type to filter
+		case "menu_pick": // add all of a certain chain type to filter
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Rez", "Track", "Stack");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + (obj_dropDown.optionSpacing)  , -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = dropDownInst.optionListTypeAddToFilter;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, global.optionListTypeAddToFilter);
 			}
 			break;
 		case "Clear": // add all of a certain chain type to filter	
@@ -72,6 +61,12 @@ function scr_filterOptions(argument0) {
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
 			
 			if(obj_control.filterGridActive){
+				if(obj_control.currentCenterDisplayRow >= 0) { // Make sure the current center display row is within bounds
+					// Keep the focus on previous currentCenterDisplayRow
+					with (obj_control) {
+						alarm[5] = 3;
+					}
+				}
 				obj_control.filterGridActive = false;
 				obj_control.currentActiveLineGrid = obj_control.lineGrid;
 			}

@@ -57,16 +57,20 @@ global.games = false;
 
 
 global.importType_Default = 0;
-global.importType_CSV = 1;
-global.importType_CoNLLU = 2;
-global.importType_IGT = 3;
-global.importType_PlainText = 4;
-global.importType_TabDelimited = 5;
+global.importType_CSV = "CSV";
+global.importType_CoNLLU = "CoNLL-U";
+global.importType_IGT = "Interlinear Glossed Text";
+global.importType_PlainText = "Plain text";
+global.importType_TabDelimited = "Tab delimited";
 global.importType = global.importType_PlainText;
 
 // create list to hold all the import types (so we can loop over them easily)
-importTypeList = ds_list_create();
-ds_list_add(importTypeList, "Plain text", "Tab delimited", "Interlinear Glossed Text", "CSV", "CoNLL-U");
+global.importTypeList = ds_list_create();
+ds_list_add(global.importTypeList, global.importType_PlainText,
+	global.importType_TabDelimited,
+	global.importType_IGT,
+	global.importType_CSV,
+	global.importType_CoNLLU);
 
 
 
@@ -325,6 +329,12 @@ scr_fontGlobalUpdate();
 canPressMinus = true;
 canPressPlus = true;
 
+// put a small delay on activating the documentation button, so that users won't accidentally
+// click on it when hopping back to OpeningScreen
+documentationButtonActive = false;
+alarm[3] = 3;
+
+
 alarm[2] = 1;
 
 global.exitOut = false;
@@ -336,19 +346,70 @@ global.expandableDropDownMap = ds_map_create();
 ds_map_add(global.expandableDropDownMap, "Delete All", true);
 ds_map_add(global.expandableDropDownMap, "Window", true);
 ds_map_add(global.expandableDropDownMap, "Nav", true);
-ds_map_add(global.expandableDropDownMap, "Justify", true);
-ds_map_add(global.expandableDropDownMap, "Prose", true);
-ds_map_add(global.expandableDropDownMap, "Hide", true);
-ds_map_add(global.expandableDropDownMap, "Pick", true);
-ds_map_add(global.expandableDropDownMap, "Context", true);
-ds_map_add(global.expandableDropDownMap, "Search", true);
-ds_map_add(global.expandableDropDownMap, "Stack", true);
+ds_map_add(global.expandableDropDownMap, "menu_justify", true);
+ds_map_add(global.expandableDropDownMap, "menu_prose", true);
+ds_map_add(global.expandableDropDownMap, "menu_hide", true);
+ds_map_add(global.expandableDropDownMap, "menu_pick", true);
+ds_map_add(global.expandableDropDownMap, "menu_filter-context", true);
+ds_map_add(global.expandableDropDownMap, "menu_search", true);
+ds_map_add(global.expandableDropDownMap, "menu_stack", true);
 ds_map_add(global.expandableDropDownMap, "Stacker", true);
 ds_map_add(global.expandableDropDownMap, "Play and Learn", true);
-ds_map_add(global.expandableDropDownMap, "Zoom", true);
+ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "Autosave", true);
 ds_map_add(global.expandableDropDownMap, "Advanced", true);
+ds_map_add(global.expandableDropDownMap, "Language", true);
 
 
+global.optionListTypeSort = 0;
+global.optionListTypeChainList = 1;
+global.optionListTypeChainRecolor = 2;
+global.optionListTypeSpeakerLabel = 3;
+global.optionListTypeFile = 4;
+global.optionListTypeAdvanced = 5;
+global.optionListTypeView = 6;
+global.optionListTypeSearch = 7;
+global.optionListTypeRightClickWord = 8;
+global.optionListTypeWordTags = 9;
+global.optionListTypeGame = 10;
+global.optionListTypeNewWord = 11;
+global.optionListTypeMappingTag = 12;
+global.optionListTypeZoom = 13;
+global.optionListTypePane = 14;
+global.optionListTypeWord = 15;
+global.optionListTypeJustify = 16;
+global.optionListTypeProse = 17;
+global.optionListTypeHide = 18;
+global.optionListTypeContext = 19;
+global.optionListTypeClear = 20;
+global.optionListTypeSettings = 21;
+global.optionListTypeTools = 22;
+global.optionListTypeHelp = 23;
+global.optionListTypeToolsSort = 24;
+global.optionListTypeStackShow = 25;
+global.optionListTypeDelete = 26;
+global.optionListTypeTokenSelection = 27;
+global.optionListTypeStack = 28;
+global.optionListTypeCreateStack = 29;
+global.optionListTypeShowStack = 30;
+global.optionListTypeUnitSelection = 31;
+global.optionListTypeSpecialFields = 32;
+global.optionListTypeFilter = 33;
+global.optionListTypeAddToFilter = 34;
+global.optionListTypeTokenTagMap = 35;
+global.optionListTypeTokenMarker = 36;
+global.optionListTypeUnitMarker = 37;
+global.optionListTypeUnitTagMap = 38;
+global.optionListTypeGridViewerSelectGrid = 39;
+global.optionListTypeAutosave = 40;
+global.optionListTypeStackTag = 41;
+global.optionListTypeEdit = 42;
+global.optionListTypePlayAndLearn = 43;
+global.optionListTypeNav = 44;
+global.optionListTypeLanguage = 45;
+global.optionListTypeImportGrid = 46;
 
 scr_preImportInitiate();
+showPreImportScreen = false;
+
+global.tokenCountTotal = 0;

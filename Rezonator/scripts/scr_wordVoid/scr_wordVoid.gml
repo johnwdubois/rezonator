@@ -1,10 +1,5 @@
-function scr_wordVoid(argument0, argument1, argument2, argument3) {
+function scr_wordVoid(currentWordDisplayCol, previousWordDisplayCol, currentWordGridRow, currentWordID) {
 	// Check and set the void of the current word
-
-	var currentWordDisplayCol = argument0;
-	var previousWordDisplayCol = argument1;
-	var currentWordGridRow = argument2;
-	var currentWordID = argument3;
 
 	var currentWordVoid = abs(currentWordDisplayCol - (previousWordDisplayCol + 1));
 	ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, currentWordVoid);

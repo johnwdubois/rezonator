@@ -2,95 +2,110 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportInitiate(){
 
-// preImport map will have a node for every type of import
-global.preImportMap = ds_map_create();
-var importTypeListSize = ds_list_size(importTypeList);
-for (var i = 0; i < importTypeListSize; i++) {
+	// preImport map will have a node for every type of import
+	global.preImportMap = ds_map_create();
+	var importTypeListSize = ds_list_size(global.importTypeList);
+	for (var i = 0; i < importTypeListSize; i++) {
 	
-	var importTypeStr = ds_list_find_value(importTypeList, i);
-	var currentImportTypeMap = ds_map_create();
+		var importTypeStr = ds_list_find_value(global.importTypeList, i);
+		var currentImportTypeMap = ds_map_create();
 	
-	// figure out what example/description/links to put for each type of import
-	var exampleList = ds_list_create();
-	var descriptionList = ds_list_create();
-	var linksList = ds_list_create();
-	if (importTypeStr == "Plain text") {
-		// example
-		ds_list_add(exampleList, "We shall overcome,","We shall overcome,","We shall overcome, some day.","","Oh, deep in my heart,","I do believe","We shall overcome, some day.","","We'll walk hand in hand,","We'll walk hand in hand,","We'll walk hand in hand, some day.","","Oh, deep in my heart,","","We shall live in peace,","We shall live in peace,","We shall live in peace, some day.","","Oh, deep in my heart,","","We shall all be free,","We shall all be free,","We shall all be free, some day.","","Oh, deep in my heart,","","We are not afraid,","We are not afraid,","We are not afraid, TODAY","","Oh, deep in my heart,","","We shall overcome,","We shall overcome,","We shall overcome, some day.","","Oh, deep in my heart,","I do believe","We shall overcome, some day.");
+		// figure out what example/description/links to put for each type of import
+		var exampleList = ds_list_create();
+		var descriptionList = ds_list_create();
+		var linksList = ds_list_create();
 		
-		// description
-		ds_list_add(descriptionList, "file extension: *.txt");
-		ds_list_add(descriptionList, "songs, poems, etc.");
-		ds_list_add(descriptionList, "short meaningful lines");
+		// Plain text
+		if (importTypeStr == global.importType_PlainText) {
+			// example
+			ds_list_add(exampleList, "---","Danny Boy","---","Oh, Danny boy, the pipes, the pipes are calling","From glen to glen, and down the mountain side.","The summer's gone, and all the roses falling,","It's you, It's you must go and I must bide.","But come ye back when summer's in the meadow,","Or when the valley's hushed and white with snow,","It's I'll be here in sunshine or in shadow,—","Oh, Danny boy, O Danny boy, I love you so!","","But when ye come, and all the flowers are dying,","If I am dead, as dead I well may be,","Ye'll come and find the place where I am lying,","And kneel and say an Avè there for me.","And I shall hear, though soft you tread above me,","And all my grave will warmer, sweeter be,","For you will bend and tell me that you love me,","And I shall sleep in peace until you come to me!");
+			// description
+			ds_list_add(descriptionList, "• file extension: *.txt", "• songs, poems, etc.", "• short meaningful lines");
+			// links
+			ds_list_add(linksList, "https://rezonator.com", "https://genius.com");
+		}
 		
-		// links
-		ds_list_add(linksList, "https://rezonator.com");
-		ds_list_add(linksList, "https://genius.com");
-	}
-	else if (importTypeStr == "Tab delimited") {
-		// example
-		ds_list_add(exampleList, "LENORE;    0.0    9.21    … So you don't need to go … borrow equipment from anybody,","LENORE;        9.21    9.52    to —","LENORE;        9.52    14.1    … to do the feet?","LENORE;        14.1    15.78    … [Do the hooves]?","LENORE;        56.94    57.79    [Did they train you-] —","LENORE;        58.34    59.29    [2Did] they train you that — ","LENORE;        59.29    60.06    #[3#]*","LENORE;        60.73    61.8    ‥ [So you have your] own equipment,","LENORE;        61.8    62.05    but,","LENORE;        131.39    131.59    yeah,","LENORE;        131.59    131.93    [I bet].","LENORE;        166.65    167.05    [mhm].","LENORE;        178.23    178.44    [really].","LENORE;        252.54    252.74    [(AHEM)]","LENORE;        254.12    254.64    [2(AHEM)]","LENORE;        265.43    265.73    [farrier]?","LENORE;        297.67    299.69    You sai[d you never] made the horseshoes,","LENORE;        299.69    299.9    but,","LENORE;        352.07    352.57    [So every] —","LENORE;        352.57    353.42    [2every] uh:,","LENORE;        353.42    354.53    horseshoe is made —","LENORE;        354.53    355.62    custom-made for the horse then?","LENORE;        400.94    401.15    [Right].","LENORE;        411.19    411.54    [(AHEM)]","LENORE;        421.78    422.69    [How many have you got].","LENORE;        424.04    424.29    twen[ty].","LENORE;        497.85    498.29    [#What].","LENORE;        516.71    519.309    [I thought] they used the (AHEM) the horsehooves in ‥ for gelatin,","LENORE;        519.309    520.059    That's not so?","LENORE;        636.97    637.34    [Right].","LENORE;        725.31    726.08    … [Yeah].","LENORE;        726.69    726.89    [2#]","LENORE;        737.16    737.44    [Yeah].","LENORE;        873.35    873.76    M[hm],","LENORE;        908.36    909.06    (TSK) Why:.");
+		// Tab delimied
+		else if (importTypeStr == global.importType_TabDelimited) {
+			// example (contains a list of lists)
+			var tabDelimCol1 = ds_list_create();
+			var tabDelimCol2 = ds_list_create();
+			var tabDelimCol3 = ds_list_create();
+			var tabDelimCol4 = ds_list_create();
+			ds_list_add(tabDelimCol1, "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;");
+			ds_list_add(tabDelimCol2, "0.0", "9.21", "9.52", "14.1", "56.94", "58.34", "59.29", "60.73", "61.8", "131.39", "131.59", "166.65", "178.23", "252.54", "254.12", "265.43", "297.67", "299.69", "352.07", "352.57");
+			ds_list_add(tabDelimCol3, "9.21", "9.52", "14.1", "15.78", "57.79", "59.29", "60.06", "61.8", "62.05", "131.59", "131.93", "167.05", "178.44", "252.74", "254.64", "265.73", "299.69", "299.9", "352.57", "353.42");
+			ds_list_add(tabDelimCol4, "… So you don't need to go … borrow equipment from anybody,","to —","… to do the feet?","… [Do the hooves]?","[Did they train you-] —","[2Did] they train you that — ","#[3#]*","‥ [So you have your] own equipment,","but,","yeah,","[I bet].","[mhm].","[really].","[(AHEM)]","[2(AHEM)]","[farrier]?","You sai[d you never] made the horseshoes,","but,","[So every] —","[2every] uh:,");
+			ds_list_add(exampleList, tabDelimCol1, tabDelimCol2, tabDelimCol3, tabDelimCol4);
+			
+			// description
+			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by tabs");			
+			// links
+			ds_list_add(linksList, "https://rezonator.com");
+		}
 		
-		// description
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
+		// IGT
+		else if (importTypeStr == global.importType_IGT) {
+			// example
+			ds_list_add(exampleList, "\\ref","\\m","\\gl","\\tln","","1","(...) (H) Ee x-Ø-inw-il-anh ,","(...) (H) FOC CP-3.ABS-1.ERG-see-TV ,","(...) (H) What I saw was","","2","(.) x-Ø-aq'hn jun achenh ,","(.) CP-3.ABS-ascend one man ,","(.) a man climbed up, ","","3","(.) ch-u' chee' ,","(.) at-top tree ,","(.) in a tree,","","4","(...) (H) x-Ø-a-r: (...) ch'up-o' niky'aj péera-s .","(...) (H) CP-3.ABS-LAT-3.ERG (...) pick-DEP some pear-PL .","(...) (H) he went and (...) picked some pears.","","5","(...) Tik'ara' Ø-Ø-qaaj-uu:l ,","(...) then CP-3.ABS-descend-hither ,","(...) Then he came dow:n,","","6","(...) Ø-Ø-r-su' r-iij juu:n ,","(...) CP-3.ABS-3.ERG-wipe 3.ERG-back one ,","(...) he wiped one off,","","7","(...) (H) ii despwee:s ,","(...) (H) and then ,","(...) (H) and the:n,","","8","(...) (H) x-Ø-r-ya' qaj p l chikech ,","(...) (H) CP-3.ABS-3.ERG-put down at the basket ,","(...) (H) he put it in the basket,","","9","Ø-Ø-r-alsa-aj p l r:- (...) komo ber gabaacha .","CP-3.ABS-3.ERG-remove-TV at the 3.ERG (...) like see apron .","he removed it from his: (...) um like apron.","","10","(...) Despwees tik'ara' ,","(...) then then ,","(...) Then,","","11","(...) Ø-Ø-pee jun aj-laab' ,","(...) CP-3.ABS-come one DIM-boy ,","(...) a little boy came,","","12","(.) ch-ij bisikleeta ,","(.) at-back bicycle ,","(.) on a bicycle,","","13","(...) (H) xaq x-Ø-a-r-k'am-a' jun chkech peera .","(...) (H) just CP-3.ABS-LAT-3.ERG-take-DEP one basket pear .","(...) (H) he just came and took a basket of pears.");
+			// description
+			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by lines", "• blocks of lines denote units");
+			// links
+			ds_list_add(linksList, "https://scription.digitallinguistics.io/");
+		}
 		
-		// links
-		ds_list_add(linksList, "https://rezonator.com");
-	}
-	else if (importTypeStr == "Interlinear Glossed Text") {
-		// example
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
+		// CSV
+		else if (importTypeStr == global.importType_CSV) {
+			// example (contains a list of lists)
+			var csvCol1 = ds_list_create();
+			var csvCol2 = ds_list_create();
+			var csvCol3 = ds_list_create();
+			var csvCol4 = ds_list_create();
+			var csvCol5 = ds_list_create();
+			var csvCol6 = ds_list_create();
+			var csvCol7 = ds_list_create();
+			ds_list_add(csvCol1, "longId","0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18");
+			ds_list_add(csvCol2, "discoId","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1");
+			ds_list_add(csvCol3, "unitId","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","2","2","2","3");
+			ds_list_add(csvCol4, "tokenId","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19");
+			ds_list_add(csvCol5, "agent","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;","LENORE;");
+			ds_list_add(csvCol6, "text_LDC","...","So","you","do","n't","need","to","go","...","borrow","equipment","from","anybody",",","","to","--","","...");
+			ds_list_add(csvCol7, "DepRel_Spacy","punct","advmod","nsubj","aux","neg","acl","aux","xcomp","punct","conj","dobj","prep","pobj","punct","","prep","punct","","punct");
+			ds_list_add(exampleList, csvCol1, csvCol2, csvCol3, csvCol4, csvCol5, csvCol6, csvCol7);
+			
+			// description
+			ds_list_add(descriptionList, "• file extension: *.csv", "• one word per line", "• unit delimiting field is required");
+			// links
+			ds_list_add(linksList, "https://rezonator.com");
+		}
 		
-		// description
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
-		
-		// links
-		ds_list_add(linksList, "https://rezonator.com");
-	}
-	else if (importTypeStr == "CSV") {
-		// example
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		
-		// description
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
-		
-		// links
-		ds_list_add(linksList, "https://rezonator.com");
-	}
-	else if (importTypeStr == "CoNLL-U") {
-		// example
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		ds_list_add(exampleList, "W");
-		
-		// description
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
-		ds_list_add(descriptionList, "s");
-		
-		// links
-		ds_list_add(linksList, "https://rezonator.com");
+		// CoNLL-U
+		else if (importTypeStr == global.importType_CoNLLU) {
+			// example
+			ds_list_add(exampleList, "# newdoc id = GUM_interview_cyclone","# sent_id = GUM_interview_cyclone-1","# text = Wikinews interviews meteorological experts on Cyclone Phalin","# s_type=decl","1    Wikinews    Wikinews    PROPN    NNP    Number=Sing    2    subj    _    Entity=(organization-1)","2    interviews    interview    VERB    VBZ    Mood=IndNumber=SingPerson=3Tense=PresVerbForm=Fin    0    root    _    _","3    meteorological    meteorological    ADJ    JJ    Degree=Pos    4    mod    _    Entity=(person-2","4    experts    expert    NOUN    NNS    Number=Plur    2    compobj    _    Entity=person-2)","5    on    on    ADP    IN    _    2    udep    _    _","6    Cyclone    Cyclone    PROPN    NNP    Number=Sing    5    compobj    _    Entity=(event-3","7    Phalin    Phalin    PROPN    NNP    Number=Sing    6    flat    _    Entity=event-3)","","# sent_id = GUM_interview_cyclone-2","# text = File photo of interviewee David Titley.","# s_type=frag","1    File    File    NOUN    NN    Number=Sing    2    compound    _    Entity=(object-4","2    photo    photo    NOUN    NN    Number=Sing    0    root    _    _","3    of    of    ADP    IN    _    2    udep    _    _","4    interviewee    interviewee    NOUN    NN    Number=Sing    3    compobj    _    Entity=(person-5","5    David    David    PROPN    NNP    Number=Sing    4    flat    _    _","6    Titley    Titley    PROPN    NNP    Number=Sing    4    flat    _    Entity=object-4)person-5)SpaceAfter=No","7    .    .    PUNCT    .    _    2    punct    _    _");
+			// description
+			ds_list_add(descriptionList, "• file extension: *.txt", "• unit fields denoted with # character", "• token fields delimited by tabs");
+			// links
+			ds_list_add(linksList, "https://universaldependencies.org/format.html");
+		}
+	
+		// add example/description/links to currentImportTypeMap
+		ds_map_add_list(currentImportTypeMap, "example", exampleList);
+		ds_map_add_list(currentImportTypeMap, "description", descriptionList);
+		ds_map_add_list(currentImportTypeMap, "links", linksList);
+	
+		// add currentImportTypeMap to preImportMap
+		ds_map_add_map(global.preImportMap, importTypeStr, currentImportTypeMap);
 	}
 	
-	// add example/description/links to currentImportTypeMap
-	ds_map_add_list(currentImportTypeMap, "example", exampleList);
-	ds_map_add_list(currentImportTypeMap, "description", descriptionList);
-	ds_map_add_list(currentImportTypeMap, "links", linksList);
 	
-	// add currentImportTypeMap to preImportMap
-	ds_map_add_map(global.preImportMap, importTypeStr, currentImportTypeMap);
-}
+	
+	// add example column width lists to preImportMap
+	// these lists will tell Rezonator how wide to draw each column in the "Example" window on preImportScreen
+	var tabDelimWidthList = ds_list_create();
+	ds_list_add(tabDelimWidthList, 20, 15, 15, 50);
+	ds_map_add_list(global.preImportMap, "tabDelimWidthList", tabDelimWidthList);
+	var csvWidthList = ds_list_create();
+	ds_list_add(csvWidthList, 14, 14, 14, 14, 14, 14, 14);
+	ds_map_add_list(global.preImportMap, "csvWidthList", csvWidthList);
 }

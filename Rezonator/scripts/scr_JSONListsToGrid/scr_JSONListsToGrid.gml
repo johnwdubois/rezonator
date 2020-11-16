@@ -1,15 +1,7 @@
-function scr_JSONListsToGrid(argument0, argument1, argument2, argument3) {
+function scr_JSONListsToGrid(tempGrid, gridLists, map, gridName) {
 	// Convert JSON strings to grid data in lists
 
-	var tempGrid = argument0;
-	var gridLists = argument1;
-	var map = argument2;
-	var gridName = argument3;
-
 	//show_message("gridName: " + gridName);
-
-
-
 
 	// find the colList from the REZ file for this grid, and check if that colList matches the current version's colList
 	var needToReorderColList = false;

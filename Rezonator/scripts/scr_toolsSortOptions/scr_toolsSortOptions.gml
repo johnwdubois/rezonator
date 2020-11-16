@@ -1,6 +1,5 @@
-function scr_toolsSortOptions(argument0) {
+function scr_toolsSortOptions(optionSelected) {
 	//toolsSortOptions
-	var optionSelected = argument0;
 
 	switch (optionSelected)
 	{
