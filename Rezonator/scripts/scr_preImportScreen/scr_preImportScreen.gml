@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportScreen(){
-
+	
 	scr_fontSizeControlOpeningScreen();
 
 
@@ -15,6 +15,7 @@ function scr_preImportScreen(){
 	
 	scr_drawBackArrow();
 	
+	
 	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
@@ -24,26 +25,12 @@ function scr_preImportScreen(){
 	var textBufferTop = strHeight / 2;
 	var infoAlpha = 0.5;
 	
-
 	// get the currentPreImportMap from obj_preImportFileType
 	if (!instance_exists(obj_preImportFileType)) {
 		exit;
 	}
 	var currentPreImportMap = obj_preImportFileType.currentPreImportMap;
 	
-	// draw window title
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(1);
-	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), "Choose a file type to import");
-	
-	// draw window border
-	var rezonatorPink = make_color_rgb(193, 30, 93);
-	draw_set_color(rezonatorPink);
-	draw_set_alpha(1);
-	for (var i = 0; i < 5; i++) {
-		draw_rectangle(fileTypeWindowX1 + i, fileTypeWindowY1 + i, fileTypeWindowX2 - i, fileTypeWindowY2 - i, true);
-	}
 	
 	
 	
@@ -75,7 +62,7 @@ function scr_preImportScreen(){
 	draw_set_font(global.fontMain);
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
-	
+		
 		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT ||
 			global.importType == global.importType_CoNLLU) {
 			var currentText = ds_list_find_value(exampleWindowList, i);
@@ -216,136 +203,6 @@ function scr_preImportScreen(){
 			}
 		}
 	}
-	draw_set_valign(fa_top);
-	
-	
-	
-	///////////// EXAMPLE WINDOW ////////////////
-	
-	var exampleWindowX1 = floor(camWidth * 0.44);
-	var exampleWindowY1 = floor(camHeight * 0.25);
-	var exampleWindowX2 = floor(camWidth * 0.9);
-	var exampleWindowY2 = floor(camHeight * 0.5);
-	
-	// draw window title
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(1);
-	draw_text(exampleWindowX1, floor(exampleWindowY1 - (strHeight)), "Example");
-	
-	// draw window border
-	draw_set_color(c_black);
-	draw_set_alpha(1);
-	draw_rectangle(exampleWindowX1, exampleWindowY1, exampleWindowX2, exampleWindowY2, true);
-	
-	// draw example content
-	var exampleWindowList = ds_map_find_value(currentPreImportMap, "example");
-	var exampleWindowListSize = ds_list_size(exampleWindowList);
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(infoAlpha);
-	for (var i = 0; i < exampleWindowListSize; i++) {
-		var currentText = ds_list_find_value(exampleWindowList, i);
-		var currentTextX = floor(exampleWindowX1 + textBufferLeft);
-		var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
-		if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
-			draw_text(currentTextX, currentTextY, currentText);
-		}
-	}
-	
-	
-	
-	
-	///////////// DESCRIPTION WINDOW ////////////////
-	
-	var descriptionWindowX1 = floor(camWidth * 0.1);
-	var descriptionWindowY1 = floor(camHeight * 0.55);
-	var descriptionWindowX2 = floor(descriptionWindowX1 + (exampleWindowX2 - exampleWindowX1));
-	var descriptionWindowY2 = floor(camHeight * 0.8);
-	
-	// draw window title
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(1);
-	draw_text(descriptionWindowX1, floor(descriptionWindowY1 - (strHeight)), "Description");
-	
-	// draw window border
-	draw_set_color(c_black);
-	draw_set_alpha(1);
-	draw_rectangle(descriptionWindowX1, descriptionWindowY1, descriptionWindowX2, descriptionWindowY2, true);
-	
-	// draw description content
-	var descriptionWindowList = ds_map_find_value(currentPreImportMap, "description");
-	var descriptionWindowListSize = ds_list_size(descriptionWindowList);
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(infoAlpha);
-	for (var i = 0; i < descriptionWindowListSize; i++) {
-		var currentText = ds_list_find_value(descriptionWindowList, i);
-		var currentTextX = floor(descriptionWindowX1 + textBufferLeft);
-		var currentTextY = floor(descriptionWindowY1 + textBufferTop + (strHeight * i));
-		if (currentTextY < descriptionWindowY2 - (strHeight / 1.5)) {
-			draw_text(currentTextX, currentTextY, currentText);
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	///////////// LINKS WINDOW ////////////////
-	
-	var linksWindowX1 = floor(exampleWindowX2 - (fileTypeWindowX2 - fileTypeWindowX1));
-	var linksWindowY1 = floor(descriptionWindowY1);
-	var linksWindowX2 = floor(exampleWindowX2);
-	var linksWindowY2 = floor(descriptionWindowY2);
-	
-	// draw window title
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(1);
-	draw_text(linksWindowX1, floor(linksWindowY1 - (strHeight)), "Links");
-	
-	// draw window border
-	draw_set_color(c_black);
-	draw_set_alpha(1);
-	draw_rectangle(linksWindowX1, linksWindowY1, linksWindowX2, linksWindowY2, true);
-	
-	// draw links content
-	var linksWindowList = ds_map_find_value(currentPreImportMap, "links");
-	var linksWindowListSize = ds_list_size(linksWindowList);
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(infoAlpha);
-	for (var i = 0; i < linksWindowListSize; i++) {
-		var currentText = ds_list_find_value(linksWindowList, i);
-		var currentTextX = floor(linksWindowX1 + textBufferLeft);
-		var currentTextY = floor(linksWindowY1 + textBufferTop + (strHeight * i));
-		if (currentTextY < linksWindowY2 - (strHeight / 1.5)) {
-			draw_text(currentTextX, currentTextY, currentText);
-		}
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
