@@ -19,13 +19,15 @@ scrollPlusYDest = 0;
 scrollBarPlusY = 0;
 
 // set a default map for currentPreImportMap (this will be changed)
-currentPreImportMap = ds_map_find_value(global.preImportMap, "Plain text");
+currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType_PlainText);
 
 
 importTypeSelected = global.importType_PlainText;
 displayImportTypeList = ds_list_create();
-ds_list_add(displayImportTypeList, global.importType_PlainText,
-	global.importType_TabDelimited,
-	global.importType_IGT,
+ds_list_add(displayImportTypeList,
+	global.importType_PlainText,
 	global.importType_CSV,
-	global.importType_CoNLLU);
+	global.importType_CoNLLU,
+	global.importType_TabDelimited,
+	global.importType_IGT
+	);

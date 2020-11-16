@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportFileTypeWindow(){
 	
+	if (live_call()) return live_result;
+	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	

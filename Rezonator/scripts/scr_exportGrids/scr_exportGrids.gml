@@ -12,8 +12,8 @@ function scr_exportGrids() {
 	var dirName = filename_path(global.fileSaveName) + string_lettersdigits(filename_name(global.fileSaveName));
 
 	// Create the folder with the user created name
-	if (not directory_exists_ns(dirName)) {
-		directory_create_ns(dirName);
+	if (not directory_exists(dirName)) {
+		directory_create(dirName);
 	}
 
 	// Save the CSVs to the folder
@@ -31,6 +31,8 @@ function scr_exportGrids() {
 	scr_gridToCSV(obj_chain.rezChainGrid, dirName + "\\rez.csv");
 	scr_gridToCSV(obj_chain.trackChainGrid, dirName + "\\track.csv");
 	scr_gridToCSV(obj_chain.stackChainGrid, dirName + "\\stack.csv");
+
+	scr_gridToCSV(global.tokenImportGrid, dirName + "\\sdoaij.csv");
 
 
 }

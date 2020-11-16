@@ -1,7 +1,7 @@
 function scr_gridToCSV(grid, fileName) {
 	// Write grid info into a CSV table format
 
-	var file = file_text_open_write_ns(fileName, -1);
+	var file = file_text_open_write(fileName);
 	var gridHeight = ds_grid_height(grid);
 	var gridWidth = ds_grid_width(grid);
 
@@ -12,9 +12,11 @@ function scr_gridToCSV(grid, fileName) {
 		
 			var itemStr = "";
 			if (i == -1) {
+				// get column name for CSV header
 				itemStr = scr_getColNameString(grid, j);
 			}
 			else if (i >= 0) {
+				// get cell string
 				itemStr = scr_drawGridViewerGetItemString(grid, j, i);
 			}
 		
@@ -28,11 +30,15 @@ function scr_gridToCSV(grid, fileName) {
 				lineStr += ",";
 			}
 		}
-	
-		file_text_write_line_ns(file, lineStr);
+		
+		// remove any line breaks from line
+		lineStr = string_replace_all(lineStr, "\r", "");
+		lineStr = string_replace_all(lineStr, "\n", "");
+		file_text_write_string(file, lineStr);
+		file_text_writeln(file);
 	}
 
-	file_text_close_ns(file);
+	file_text_close(file);
 
 
 }

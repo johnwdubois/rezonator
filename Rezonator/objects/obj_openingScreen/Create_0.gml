@@ -57,11 +57,11 @@ global.games = false;
 
 
 global.importType_Default = 0;
-global.importType_CSV = "CSV";
+global.importType_CSV = "One Word per Line";
 global.importType_CoNLLU = "CoNLL-U";
 global.importType_IGT = "Interlinear Glossed Text";
-global.importType_PlainText = "Plain text";
-global.importType_TabDelimited = "Tab delimited";
+global.importType_PlainText = "Song & Verse";
+global.importType_TabDelimited = "Elan (tab-delimited)";
 global.importType = global.importType_PlainText;
 
 // create list to hold all the import types (so we can loop over them easily)
