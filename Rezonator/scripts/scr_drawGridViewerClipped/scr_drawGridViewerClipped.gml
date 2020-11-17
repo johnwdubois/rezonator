@@ -13,10 +13,10 @@ function scr_drawGridViewerClipped() {
 		Author: Terry DuBois
 	*/
 
-	
 
-	x = 120;
-	windowX = 120;
+
+	windowX = x;
+	windowY = y;
 
 
 	// press TAB or ALT+TAB to switch grids
@@ -32,14 +32,18 @@ function scr_drawGridViewerClipped() {
 				gridIndex = 0;
 			}
 			grid = ds_list_find_value(gridList, gridIndex);
+			obj_gridListWindow.currentGrid = grid;
 		}
 	}
 
 
 
-	var currentGridName = scr_drawGridViewerGridTabs();
+
 
 	scr_surfaceStart();
+	
+	clipWidth = windowWidth;
+	clipHeight = windowHeight;
 
 	// I suppose this is the variable to make dynamic
 	//var gridColWidthDefault = windowWidth / ds_grid_width(grid);
@@ -49,15 +53,15 @@ function scr_drawGridViewerClipped() {
 	var colNameHeight = strHeight;
 
 
-	var windowX1 = windowX;
-	var windowY1 = windowY;
-	var windowX2 = windowX1 + windowWidth;
-	var windowY2 = windowY1 + windowHeight;
+	windowX1 = windowX;
+	windowY1 = windowY;
+	windowX2 = windowX1 + windowWidth;
+	windowY2 = windowY1 + windowHeight;
 	var gridWidth = ds_grid_width(grid);
 	var gridHeight = ds_grid_height(grid);
 
 	draw_set_color(global.colorThemeBG);
-	draw_rectangle(windowX1 - global.scrollBarWidth - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
+	draw_rectangle(windowX1 - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
 	draw_set_font(global.fontGridView);
 
 
@@ -77,7 +81,7 @@ function scr_drawGridViewerClipped() {
 
 	for (var gridLoopCol = 0; gridLoopCol < gridWidth; gridLoopCol++) {
 	
-		var colRectX1 = global.scrollBarWidth;
+		var colRectX1 = x;
 		if (gridLoopCol < ds_list_size(gridColXList)) {
 			colRectX1 = ds_list_find_value(gridColXList, gridLoopCol);
 		}
@@ -211,12 +215,15 @@ function scr_drawGridViewerClipped() {
 	scr_scrollBar(ds_grid_height(grid), -1, strHeight, colNameHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+		
+		
+
 
 	scr_surfaceEnd();
 
-	for (var j = 0; j < 5; j++) {
+	for (var j = 0; j < 1; j++) {
 		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(windowX1 - global.scrollBarWidth - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
+		draw_rectangle(windowX1 - j, windowY1 - j, windowX2 + j, windowY2 + j, true);
 	}
 	draw_set_color(global.colorThemeBorders);
 	draw_line(windowX1, windowY1 + colNameHeight, windowX2, windowY1 + colNameHeight);
@@ -224,7 +231,10 @@ function scr_drawGridViewerClipped() {
 
 	// debug
 	if (obj_control.showDevVars) {
-		draw_text(windowX1, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
+		
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
+		draw_text(windowX1 + 200, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
 	}
 
 
@@ -291,11 +301,10 @@ function scr_drawGridViewerClipped() {
 		}
 	}
 	draw_set_alpha(1);
-	var currentGridNameWidth = string_width(currentGridName);
-	var currentGridNameHeight = string_height(currentGridName);
 
 
 
+/*
 	// Grid change dropDown button
 	draw_set_font(global.fontMain);
 	var dropDownButtonStr = "Grid: " + scr_getGridNameString(grid) + "      ";
@@ -304,6 +313,8 @@ function scr_drawGridViewerClipped() {
 	var dropDownButtonX2 = dropDownButtonX1 + string_width(dropDownButtonStr) + sprite_get_width(spr_dropDown);
 	var dropDownButtonY2 = windowY1 - 60;
 	var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+
+
 
 	draw_set_color(mouseoverDropDownButton ? global.colorThemeSelected1 : global.colorThemeBG);
 	draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2, false);
@@ -331,29 +342,27 @@ function scr_drawGridViewerClipped() {
 	
 	}
 
-
+*/
 
 	// draw the current mouseover item
 	draw_set_font(global.fontMain);
 	var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
-	var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString;
-	//currentGridName = "Current Grid: " + currentGridName;
+	var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString;	
 
 	draw_set_alpha(0.3);
 	draw_set_color(c_yellow);
-	draw_rectangle(dropDownButtonX2 + 10, windowY1 - strHeight - 20 - (string_height("0") /2), dropDownButtonX2 + string_width(highlightText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2), false);
+	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2), windowX1 + string_width(highlightText) + 55, windowY1 - strHeight - 40 + (string_height("0") /2), false);
 	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(dropDownButtonX2 + 10, windowY1 - strHeight - 20 - (string_height("0") /2) - string_height("0"), dropDownButtonX2 + string_width(mouseOverText) + 55, windowY1 - strHeight - 20 + (string_height("0") /2) - string_height("0"), false);
+	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2) - string_height("0"), windowX1 + string_width(mouseOverText) + 55, windowY1 - strHeight - 40 + (string_height("0") /2) - string_height("0"), false);
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeText);
 
-	//draw_text(windowX1 + 10, windowY1 - strHeight - 20, currentGridName);
 
-	draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20, highlightText);
+	draw_text(windowX1, windowY1 - strHeight - 40, highlightText);
 
-	draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20 - string_height("0"), mouseOverText);
+	draw_text(windowX1, windowY1 - strHeight - 40 - string_height("0"), mouseOverText);
 
-	draw_text(dropDownButtonX2 + 20, windowY1 - strHeight - 20 - (string_height("0") * 2), "fps: " + string(fps));
+	draw_text(windowX1, windowY1 - strHeight - 40 - (string_height("0") * 2), "fps: " + string(fps));
 
 	//draw_text(windowX1, windowY2 + strHeight + 60 + string_height("0"), "gridViewColXHolding: " + string(gridViewColXHolding));
 	//draw_text(windowX1, windowY2 + strHeight + 80 + string_height("0"), "gridViewColPrevList: " + scr_getStringOfList(gridViewColPrevList));
