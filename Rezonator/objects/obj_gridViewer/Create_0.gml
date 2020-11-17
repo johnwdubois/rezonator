@@ -42,8 +42,8 @@ grid = obj_control.unitGrid;
 
 windowX = 200;
 windowY = camera_get_view_height(view_get_camera(0)) / 5;
-windowWidth = camera_get_view_width(view_get_camera(0)) - (windowX*2);
-windowHeight = camera_get_view_height(view_get_camera(0)) - (windowY*2);
+windowWidth = camera_get_view_width(view_get_camera(0)) - (windowX) - 20;
+windowHeight = camera_get_view_height(view_get_camera(0)) - (windowY) - 100;
 windowX1 = windowX;
 windowX2 = windowX1 + windowWidth;
 windowY1 = windowY;

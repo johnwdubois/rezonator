@@ -12,7 +12,7 @@ function scr_gridListWindow() {
 	// GridList Window
 	var gridListInfoWindowRectX1 = 20;
 	var gridListInfoWindowRectY1 = obj_gridViewer.windowY1;
-	var gridListInfoWindowRectX2 = obj_gridViewer.windowX1-3;
+	var gridListInfoWindowRectX2 = obj_gridViewer.windowX1-20;
 	var gridListInfoWindowRectY2 = obj_gridViewer.windowY2;
 	var buttonSize = string_height("0")*2;
 
@@ -126,7 +126,7 @@ function scr_gridListWindow() {
 		draw_set_alpha(1);
 		draw_line(currentCellX1 - clipX , currentCellY2 + scrollPlusY - clipY , currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY);
 		draw_set_color(global.colorThemeText);
-		draw_text(floor(currentCellX1 + 30) - clipX, floor(mean(currentCellY1,currentCellY2)) - clipY + scrollPlusY, string(currentgridListString));
+		draw_text(floor(currentCellX1 + global.scrollBarWidth + 10) - clipX, floor(mean(currentCellY1,currentCellY2)) - clipY + scrollPlusY, string(currentgridListString));
 	
 
 	}
@@ -147,18 +147,18 @@ function scr_gridListWindow() {
 		if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 			// mousewheel input
 			if (mouse_wheel_up()) {
-				scrollPlusYDest += 20;
+				scrollPlusYDest += 40;
 			}
 			if (mouse_wheel_down()) {
-				scrollPlusYDest -= 20;
+				scrollPlusYDest -= 40;
 			}
 
 			// keyboard input for UP and DOWN
 			if (keyboard_check(vk_up)) {
-				scrollPlusYDest += 10;
+				scrollPlusYDest += 20;
 			}
 			if (keyboard_check(vk_down)) {
-				scrollPlusYDest -= 10;
+				scrollPlusYDest -= 20;
 			}
 
 			// CTRL+UP and CTRL+DOWN

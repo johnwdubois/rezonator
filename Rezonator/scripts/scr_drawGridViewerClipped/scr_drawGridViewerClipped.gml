@@ -13,7 +13,7 @@ function scr_drawGridViewerClipped() {
 		Author: Terry DuBois
 	*/
 
-
+	//if (live_call()) return live_result;
 
 	windowX = x;
 	windowY = y;
@@ -41,7 +41,9 @@ function scr_drawGridViewerClipped() {
 
 
 	scr_surfaceStart();
-	
+
+	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 20);		
+	windowHeight = (camera_get_view_height(view_get_camera(0)) - (windowY) - 100);
 	clipWidth = windowWidth;
 	clipHeight = windowHeight;
 
@@ -236,7 +238,7 @@ function scr_drawGridViewerClipped() {
 		draw_set_valign(fa_middle);
 		draw_text(windowX1 + 200, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
 	}
-
+	//draw_text(500,100,"Grid Viewer Window Width: " + string(windowWidth));
 
 
 	// Draw vertical column lines and make columns draggable
@@ -406,40 +408,41 @@ function scr_drawGridViewerClipped() {
 			}
 		}
 	*/
+	if(point_in_rectangle(mouse_x,mouse_y, windowX1, windowY1 ,windowX2, windowY2)){
 
-	if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {
-		// mousewheel input
-		if (mouse_wheel_up()) {
-			scrollPlusYDest += 8;
-		}
-		if (mouse_wheel_down()) {
-			scrollPlusYDest -= 8;
-		}
+		if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {
+			// mousewheel input
+			if (mouse_wheel_up()) {
+				scrollPlusYDest += 8;
+			}
+			if (mouse_wheel_down()) {
+				scrollPlusYDest -= 8;
+			}
 
-		// keyboard input for UP and DOWN
-		if (keyboard_check(vk_up)) {
-			scrollPlusYDest += 4;
-		}
-		if (keyboard_check(vk_down)) {
-			scrollPlusYDest -= 4;
-		}
+			// keyboard input for UP and DOWN
+			if (keyboard_check(vk_up)) {
+				scrollPlusYDest += 4;
+			}
+			if (keyboard_check(vk_down)) {
+				scrollPlusYDest -= 4;
+			}
 
-		// CTRL+UP and CTRL+DOWN
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-			scrollPlusYDest = 100;
-		}
-		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-			scrollPlusYDest = -999999999999;
-		}
+			// CTRL+UP and CTRL+DOWN
+			if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+				scrollPlusYDest = 100;
+			}
+			if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+				scrollPlusYDest = -999999999999;
+			}
 	
-		// PAGEUP and PAGEDOWN
-		if (keyboard_check_pressed(vk_pageup)) {
-			scrollPlusYDest += (windowHeight);
-		}
-		if (keyboard_check_pressed(vk_pagedown)) {
-			scrollPlusYDest -= (windowHeight);
+			// PAGEUP and PAGEDOWN
+			if (keyboard_check_pressed(vk_pageup)) {
+				scrollPlusYDest += (windowHeight);
+			}
+			if (keyboard_check_pressed(vk_pagedown)) {
+				scrollPlusYDest -= (windowHeight);
+			}
 		}
 	}
-
 
 }
