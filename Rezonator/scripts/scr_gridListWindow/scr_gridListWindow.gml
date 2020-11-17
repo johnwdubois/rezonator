@@ -1,6 +1,7 @@
 function scr_gridListWindow() {
 	
-
+	//if (live_call()) return live_result;
+	
 	// this window should only exist if hideAll is true and exportWindowGridList exists
 	if (!obj_control.gridView) {
 		exit;
@@ -28,7 +29,27 @@ function scr_gridListWindow() {
 
 
 
+
 	// abbreviated surfaceStart()
+	
+	if (mouse_check_button(mb_left)) {
+		if (obj_gridViewer.windowResizeYHolding) {
+			window_set_cursor(cr_size_ns);
+			windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(camera_get_active()) * 0.75);
+		}
+	
+		if (obj_gridViewer.windowResizeYHolding) {
+			if (surface_exists(clipSurface)) {
+				surface_resize(clipSurface, clipWidth, clipHeight);
+			}
+		}
+	}
+
+	if (windowResizeXHolding or windowResizeYHolding) {
+		obj_control.mouseoverPanelPane = true;
+	}
+	
+	
 	windowWidth = clamp(gridListInfoWindowRectX2 - gridListInfoWindowRectX1, 48, 2000);
 	windowHeight = clamp(gridListInfoWindowRectY2 - gridListInfoWindowRectY1, 48, 4000);
 	clipWidth = windowWidth;
@@ -40,6 +61,12 @@ function scr_gridListWindow() {
 	windowY = y;
 	clipX = x;
 	clipY = y;
+
+	//draw_text(800,1000, "gridListInfoWindowRectY2: " + string(gridListInfoWindowRectY2) + ",   windowHeight: " + string(windowHeight));
+	//draw_text(800,950, "clipHeight: " + string(clipHeight) + ",  clipWidth: " + string(clipWidth) );
+	//draw_text(800,900, "clipX: " + string(clipX) + ",  clipY: " + string(clipY) );
+
+
 
 	if (!surface_exists(clipSurface)) {
 	    clipSurface = surface_create(clipWidth, clipHeight);

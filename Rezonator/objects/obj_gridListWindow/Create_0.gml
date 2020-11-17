@@ -5,8 +5,8 @@ clipX = 0;
 clipY = 0;
 windowResizeXHolding = false;
 windowResizeYHolding = false;
-windowWidth = 100;
-windowHeight = 100;
+windowWidth = 180;
+windowHeight = 500;
 
 // scrollbar variables
 scrollBarHolding = false;
@@ -18,16 +18,10 @@ scrollPlusY = 0;
 scrollPlusYDest = 0;
 scrollBarPlusY = 0;
 
+
+
+x = 20;
+y = camera_get_view_height(view_get_camera(0)) / 5;
+
 currentGrid = obj_control.unitGrid;
 
-
-
-
-// make list of line strings that have been marked as exceptions
-exceptionStringList = ds_list_create();
-var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
-for (var i = 0; i < importTXTLineGridHeight; i++) {
-	if (ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colException, i)) {
-		ds_list_add(exceptionStringList, string(ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i)));
-	}
-}
