@@ -42,8 +42,8 @@ function scr_preImportScreen(){
 	
 	///////////// EXAMPLE WINDOW ////////////////
 	
-	var exampleWindowX1 = floor(camWidth * 0.44);
-	var exampleWindowY1 = floor(camHeight * 0.45);
+	var exampleWindowX1 = floor(camWidth * 0.512);
+	var exampleWindowY1 = floor(camHeight * 0.25);
 	var exampleWindowX2 = floor(camWidth * 0.9);
 	var exampleWindowY2 = floor(camHeight * 0.8);
 	
@@ -123,7 +123,7 @@ function scr_preImportScreen(){
 	
 	
 	///////////// DESCRIPTION WINDOW ////////////////
-	
+	/*
 	var descriptionWindowX1 = floor(camWidth * 0.44);
 	var descriptionWindowY1 = floor(camHeight * 0.25);
 	var descriptionWindowX2 = floor(camWidth * 0.9);
@@ -154,63 +154,11 @@ function scr_preImportScreen(){
 			draw_text(currentTextX, currentTextY, currentText);
 		}
 	}
-	
-	
-	
-	
-	
-	
-/*	
-	///////////// LINKS WINDOW ////////////////
-	var fileTypeWindowWidth = (floor(camWidth * 0.41) - floor(camWidth * 0.1))
-	var linksWindowX1 = floor(exampleWindowX2 - fileTypeWindowWidth);
-	var linksWindowY1 = floor(descriptionWindowY1);
-	var linksWindowX2 = floor(exampleWindowX2);
-	var linksWindowY2 = floor(descriptionWindowY2);
-	
-	// draw window title
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(1);
-	draw_text(linksWindowX1, floor(linksWindowY1 - (strHeight)), "Links");
-	
-	// draw window border
-	draw_set_color(c_black);
-	draw_set_alpha(1);
-	draw_rectangle(linksWindowX1, linksWindowY1, linksWindowX2, linksWindowY2, true);
-	
-	// draw links content
-	var linksWindowList = ds_map_find_value(currentPreImportMap, "links");
-	var linksWindowListSize = ds_list_size(linksWindowList);
-	draw_set_font(global.fontMain);
-	var linkColor = make_color_rgb(67, 96, 191);
-	draw_set_color(linkColor);
-	draw_set_alpha(1);
-	for (var i = 0; i < linksWindowListSize; i++) {
-		var currentText = ds_list_find_value(linksWindowList, i);
-		var currentTextX = floor(linksWindowX1 + textBufferLeft);
-		var currentTextY = floor(linksWindowY1 + textBufferTop + (strHeight * i));
-		if (currentTextY < linksWindowY2 - (strHeight / 1.5)) {
-			draw_text(currentTextX, currentTextY, currentText);
-		}
-		
-		// clickable link
-		var textRectX1 = currentTextX;
-		var textRectY1 = currentTextY;
-		var textRectX2 = textRectX1 + string_width(currentText);
-		var textRectY2 = textRectY1 + (strHeight * 0.9);
-		if (point_in_rectangle(mouse_x, mouse_y, textRectX1, textRectY1, textRectX2, textRectY2)) {
-			draw_line_width(textRectX1, textRectY2, textRectX2, textRectY2, 2);
-			if (mouse_check_button_released(mb_left)) {
-				scr_openURL(currentText);
-			}
-		}
-	}
-	
-	
-	
-	
 	*/
+	
+	
+	
+	
 	
 	
 	

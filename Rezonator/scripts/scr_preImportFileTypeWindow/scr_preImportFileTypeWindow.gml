@@ -27,7 +27,7 @@ function scr_preImportFileTypeWindow(){
 	clipY = y;
 	var fileTypeWindowX1 = windowX;
 	var fileTypeWindowY1 = windowY;
-	var fileTypeWindowX2 = floor(camWidth * 0.41);
+	var fileTypeWindowX2 = floor(camWidth * 0.488);
 	var fileTypeWindowY2 = floor(camHeight * 0.8);
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, fileTypeWindowX1, fileTypeWindowY1, fileTypeWindowX2, fileTypeWindowY2);
 	
