@@ -17,6 +17,7 @@ function scr_preImportInitiate(){
 		
 		// Plain text
 		if (importTypeStr == global.importType_PlainText) {
+			
 			// example
 			ds_list_add(exampleList, "---","Danny Boy","---","Oh, Danny boy, the pipes, the pipes are calling","From glen to glen, and down the mountain side.","The summer's gone, and all the roses falling,","It's you, It's you must go and I must bide.","But come ye back when summer's in the meadow,","Or when the valley's hushed and white with snow,","It's I'll be here in sunshine or in shadow,—","Oh, Danny boy, O Danny boy, I love you so!","","But when ye come, and all the flowers are dying,","If I am dead, as dead I well may be,","Ye'll come and find the place where I am lying,","And kneel and say an Avè there for me.","And I shall hear, though soft you tread above me,","And all my grave will warmer, sweeter be,","For you will bend and tell me that you love me,","And I shall sleep in peace until you come to me!");
 			// description
@@ -27,6 +28,7 @@ function scr_preImportInitiate(){
 		
 		// Tab delimied
 		else if (importTypeStr == global.importType_TabDelimited) {
+			
 			// example (contains a list of lists)
 			var tabDelimCol1 = ds_list_create();
 			var tabDelimCol2 = ds_list_create();
@@ -46,6 +48,7 @@ function scr_preImportInitiate(){
 		
 		// IGT
 		else if (importTypeStr == global.importType_IGT) {
+			
 			// example
 			ds_list_add(exampleList, "\\ref","\\m","\\gl","\\tln","","1","(...) (H) Ee x-Ø-inw-il-anh ,","(...) (H) FOC CP-3.ABS-1.ERG-see-TV ,","(...) (H) What I saw was","","2","(.) x-Ø-aq'hn jun achenh ,","(.) CP-3.ABS-ascend one man ,","(.) a man climbed up, ","","3","(.) ch-u' chee' ,","(.) at-top tree ,","(.) in a tree,","","4","(...) (H) x-Ø-a-r: (...) ch'up-o' niky'aj péera-s .","(...) (H) CP-3.ABS-LAT-3.ERG (...) pick-DEP some pear-PL .","(...) (H) he went and (...) picked some pears.","","5","(...) Tik'ara' Ø-Ø-qaaj-uu:l ,","(...) then CP-3.ABS-descend-hither ,","(...) Then he came dow:n,","","6","(...) Ø-Ø-r-su' r-iij juu:n ,","(...) CP-3.ABS-3.ERG-wipe 3.ERG-back one ,","(...) he wiped one off,","","7","(...) (H) ii despwee:s ,","(...) (H) and then ,","(...) (H) and the:n,","","8","(...) (H) x-Ø-r-ya' qaj p l chikech ,","(...) (H) CP-3.ABS-3.ERG-put down at the basket ,","(...) (H) he put it in the basket,","","9","Ø-Ø-r-alsa-aj p l r:- (...) komo ber gabaacha .","CP-3.ABS-3.ERG-remove-TV at the 3.ERG (...) like see apron .","he removed it from his: (...) um like apron.","","10","(...) Despwees tik'ara' ,","(...) then then ,","(...) Then,","","11","(...) Ø-Ø-pee jun aj-laab' ,","(...) CP-3.ABS-come one DIM-boy ,","(...) a little boy came,","","12","(.) ch-ij bisikleeta ,","(.) at-back bicycle ,","(.) on a bicycle,","","13","(...) (H) xaq x-Ø-a-r-k'am-a' jun chkech peera .","(...) (H) just CP-3.ABS-LAT-3.ERG-take-DEP one basket pear .","(...) (H) he just came and took a basket of pears.");
 			// description
@@ -56,6 +59,7 @@ function scr_preImportInitiate(){
 		
 		// CSV
 		else if (importTypeStr == global.importType_CSV) {
+			
 			// example (contains a list of lists)
 			var csvCol1 = ds_list_create();
 			var csvCol2 = ds_list_create();
@@ -81,6 +85,7 @@ function scr_preImportInitiate(){
 		
 		// CoNLL-U
 		else if (importTypeStr == global.importType_CoNLLU) {
+			
 			// example
 			var conlluCol1 = ds_list_create();
 			var conlluCol2 = ds_list_create();
@@ -92,7 +97,7 @@ function scr_preImportInitiate(){
 			var conlluCol8 = ds_list_create();
 			var conlluCol9 = ds_list_create();
 			var conlluCol10 = ds_list_create();
-			ds_list_add(conlluCol1, "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27");
+			ds_list_add(conlluCol1, "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24");
 			ds_list_add(conlluCol2, "Once","a","storm","moves","over","any","appreciably","sized","piece","of","land",",","the","moisture","source","is","removed","and","the","storm","begins","to","dissipate",".");
 			ds_list_add(conlluCol3, "once","a","storm","move","over","any","appreciably","size","piece","of","land",",","the","moisture","source","be","remove","and","the","storm","begin","to","dissipate",".");
 			ds_list_add(conlluCol4, "ADV","DET","NOUN","VERB","ADP","DET","ADV","VERB","NOUN","ADP","NOUN","PUNCT","DET","NOUN","NOUN","AUX","VERB","CCONJ","DET","NOUN","VERB","PART","VERB","PUNCT");
@@ -109,6 +114,7 @@ function scr_preImportInitiate(){
 			// links
 			ds_list_add(linksList, "https://universaldependencies.org/format.html");
 		}
+	
 	
 		// add example/description/links to currentImportTypeMap
 		ds_map_add_list(currentImportTypeMap, "example", exampleList);
@@ -132,4 +138,74 @@ function scr_preImportInitiate(){
 	var conlluWidthList = ds_list_create();
 	ds_list_add(conlluWidthList, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
 	ds_map_add_list(global.preImportMap, "conlluWidthList", conlluWidthList);
+	
+	
+	
+	
+	
+	// create a hard-coded grid for the preImportScreen, to explain the info for each import type
+	preImportInfoGridWidth = 7;
+	preImportInfoGrid_colChoose = 0;
+	preImportInfoGrid_colDataType = 1;
+	preImportInfoGrid_colPerLine = 2;
+	preImportInfoGrid_colTab = 3;
+	preImportInfoGrid_colWhitespace = 4;
+	preImportInfoGrid_colHyphen = 5;
+	preImportInfoGrid_colFile = 6;
+	preImportInfoGrid = ds_grid_create(preImportInfoGridWidth, 5);
+	
+	// fill the preImportInfoGrid
+	for (var i = 0; i < importTypeListSize; i++) {
+		var currentImportType = ds_list_find_value(global.importTypeList, i);
+		
+		var currentDataType = currentImportType;
+		var currentPerLine = "";
+		var currentTab = false;
+		var currentWhitespace = false;
+		var currentHyphen = false;
+		var currentFile = "";
+		
+		if (currentImportType == global.importType_TabDelimited) {
+			currentPerLine = "Unit";
+			currentTab = true;
+			currentWhitespace = true;
+			currentHyphen = false;
+			currentFile = ".txt";
+		}
+		else if (currentImportType == global.importType_PlainText) {
+			currentPerLine = "Unit";
+			currentTab = false;
+			currentWhitespace = true;
+			currentHyphen = false;
+			currentFile = ".txt";
+		}
+		else if (currentImportType == global.importType_CSV) {
+			currentPerLine = "Word";
+			currentTab = true;
+			currentWhitespace = false;
+			currentHyphen = false;
+			currentFile = ".csv";
+		}
+		else if (currentImportType == global.importType_CoNLLU) {
+			currentPerLine = "Word";
+			currentTab = true;
+			currentWhitespace = false;
+			currentHyphen = false;
+			currentFile = ".txt";
+		}
+		else if (currentImportType == global.importType_IGT) {
+			currentPerLine = "Unit Per Block";
+			currentTab = false;
+			currentWhitespace = true;
+			currentHyphen = true;
+			currentFile = ".txt";
+		}
+		
+		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colDataType, i, currentDataType);
+		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colPerLine, i, currentPerLine);
+		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colTab, i, currentTab);
+		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colWhitespace, i, currentWhitespace);
+		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colHyphen, i, currentHyphen);
+		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colFile, i, currentFile);
+	}
 }

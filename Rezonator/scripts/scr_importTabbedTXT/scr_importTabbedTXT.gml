@@ -1,4 +1,5 @@
 function scr_importTabbedTXT(filename) {
+	show_debug_message("scr_importTabbedTXT");
 	global.importFilename = filename;
 
 	var fileOpenRead = file_text_open_read(filename);

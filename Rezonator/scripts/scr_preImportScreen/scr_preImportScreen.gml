@@ -61,6 +61,7 @@ function scr_preImportScreen(){
 	// draw example content
 	var exampleWindowList = ds_map_find_value(currentPreImportMap, "example");
 	var exampleWindowListSize = ds_list_size(exampleWindowList);
+	
 	draw_set_font(global.fontMain);
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
@@ -76,7 +77,7 @@ function scr_preImportScreen(){
 			}
 		}
 		else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_CSV
-				|| global.importType == global.importType_CoNLLU) {
+				|| global.importType == global.importType_CoNLLU) {				
 			
 			// draw column coverup rectangle
 			var colCoverUpRectX1 = currentTextX;
@@ -208,9 +209,6 @@ function scr_preImportScreen(){
 		scr_openXML();
 		
 	}
-	
-	
-
 	
 	
 	// draw logo higher than usual

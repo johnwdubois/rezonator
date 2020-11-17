@@ -62,15 +62,18 @@ global.importType_CoNLLU = "CoNLL-U";
 global.importType_IGT = "Interlinear Glossed Text";
 global.importType_PlainText = "Song & Verse";
 global.importType_TabDelimited = "Elan (tab-delimited)";
-global.importType = global.importType_PlainText;
 
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
-ds_list_add(global.importTypeList, global.importType_PlainText,
+ds_list_add(global.importTypeList,
 	global.importType_TabDelimited,
-	global.importType_IGT,
+	global.importType_PlainText,
 	global.importType_CSV,
-	global.importType_CoNLLU);
+	global.importType_CoNLLU,
+	global.importType_IGT);
+
+// by default, we will set importType to be the first item in the importTypeList
+global.importType = ds_list_find_value(global.importTypeList, 0);
 
 
 
