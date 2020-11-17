@@ -83,8 +83,27 @@ function scr_preImportInitiate(){
 		else if (importTypeStr == global.importType_CoNLLU) {
 			// example
 			var conlluCol1 = ds_list_create();
+			var conlluCol2 = ds_list_create();
+			var conlluCol3 = ds_list_create();
+			var conlluCol4 = ds_list_create();
+			var conlluCol5 = ds_list_create();
+			var conlluCol6 = ds_list_create();
+			var conlluCol7 = ds_list_create();
+			var conlluCol8 = ds_list_create();
+			var conlluCol9 = ds_list_create();
+			var conlluCol10 = ds_list_create();
 			ds_list_add(conlluCol1, "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27");
-			ds_list_add(exampleList, "# newdoc id = GUM_interview_cyclone","# sent_id = GUM_interview_cyclone-1","# text = Wikinews interviews meteorological experts on Cyclone Phalin","# s_type=decl","1    Wikinews    Wikinews    PROPN    NNP    Number=Sing    2    subj    _    Entity=(organization-1)","2    interviews    interview    VERB    VBZ    Mood=IndNumber=SingPerson=3Tense=PresVerbForm=Fin    0    root    _    _","3    meteorological    meteorological    ADJ    JJ    Degree=Pos    4    mod    _    Entity=(person-2","4    experts    expert    NOUN    NNS    Number=Plur    2    compobj    _    Entity=person-2)","5    on    on    ADP    IN    _    2    udep    _    _","6    Cyclone    Cyclone    PROPN    NNP    Number=Sing    5    compobj    _    Entity=(event-3","7    Phalin    Phalin    PROPN    NNP    Number=Sing    6    flat    _    Entity=event-3)","","# sent_id = GUM_interview_cyclone-2","# text = File photo of interviewee David Titley.","# s_type=frag","1    File    File    NOUN    NN    Number=Sing    2    compound    _    Entity=(object-4","2    photo    photo    NOUN    NN    Number=Sing    0    root    _    _","3    of    of    ADP    IN    _    2    udep    _    _","4    interviewee    interviewee    NOUN    NN    Number=Sing    3    compobj    _    Entity=(person-5","5    David    David    PROPN    NNP    Number=Sing    4    flat    _    _","6    Titley    Titley    PROPN    NNP    Number=Sing    4    flat    _    Entity=object-4)person-5)SpaceAfter=No","7    .    .    PUNCT    .    _    2    punct    _    _");
+			ds_list_add(conlluCol2, "Once","a","storm","moves","over","any","appreciably","sized","piece","of","land",",","the","moisture","source","is","removed","and","the","storm","begins","to","dissipate",".");
+			ds_list_add(conlluCol3, "once","a","storm","move","over","any","appreciably","size","piece","of","land",",","the","moisture","source","be","remove","and","the","storm","begin","to","dissipate",".");
+			ds_list_add(conlluCol4, "ADV","DET","NOUN","VERB","ADP","DET","ADV","VERB","NOUN","ADP","NOUN","PUNCT","DET","NOUN","NOUN","AUX","VERB","CCONJ","DET","NOUN","VERB","PART","VERB","PUNCT");
+			ds_list_add(conlluCol5, "RB","DT","NN","VBZ","IN","DT","RB","VBN","NN","IN","NN",",","DT","NN","NN","VBZ","VBN","CC","DT","NN","VBZ","TO","VB",".");
+			ds_list_add(conlluCol6, "NumType=Mult","Definite=IndPronType=Art","Number=Sing","Mood=IndNumber=SingPerson=3Tense=PresVerbForm=Fin","_","_","_","Tense=PastVerbForm=Part","Number=Sing","_","Number=Sing","_","Definite=DefPronType=Art","Number=Sing","Number=Sing","Mood=IndNumber=SingPerson=3Tense=PresVerbForm=Fin","Tense=PastVerbForm=Part","_","Definite=DefPronType=Art","Number=Sing","Mood=IndNumber=SingPerson=3Tense=PresVerbForm=Fin","_","VerbForm=Inf","_");
+			ds_list_add(conlluCol7, "4","3","4","16","4","9","8","9","5","9","10","4","15","15","16","0","16","21","20","21","16","21","22","16");
+			ds_list_add(conlluCol8, "mod","det","subj","mod","udep","det","mod","mod","compobj","udep","compobj","punct","det","compound","subj@pass","root","compaux@pass","cc","det","subj","conj","comppred","compobj","punct");
+			ds_list_add(conlluCol9, "_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_");
+			ds_list_add(conlluCol10, "_","Entity=(event-12","Entity=event-12)","_","_","Entity=(place-13","_","_","_","_","Entity=place-13)SpaceAfter=No","_","Entity=(abstract-14","Entity=(abstract-15)","Entity=abstract-14)","_","_","_","Entity=(event-12","Entity=event-12)","_","_","SpaceAfter=No","_");			
+			ds_list_add(exampleList, conlluCol1, conlluCol2, conlluCol3, conlluCol4, conlluCol5, conlluCol6, conlluCol7, conlluCol8, conlluCol9, conlluCol10);
+			
 			// description
 			ds_list_add(descriptionList, "• file extension: *.txt", "• unit fields denoted with # character", "• token fields delimited by tabs");
 			// links
@@ -110,4 +129,7 @@ function scr_preImportInitiate(){
 	var csvWidthList = ds_list_create();
 	ds_list_add(csvWidthList, 14, 14, 14, 14, 14, 14, 14);
 	ds_map_add_list(global.preImportMap, "csvWidthList", csvWidthList);
+	var conlluWidthList = ds_list_create();
+	ds_list_add(conlluWidthList, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10);
+	ds_map_add_list(global.preImportMap, "conlluWidthList", conlluWidthList);
 }

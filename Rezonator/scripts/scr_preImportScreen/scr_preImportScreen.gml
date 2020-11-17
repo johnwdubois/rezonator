@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportScreen(){
 	
+	if (live_call()) return live_result;
+	
 	scr_fontSizeControlOpeningScreen();
 
 
@@ -63,8 +65,7 @@ function scr_preImportScreen(){
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
-		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT ||
-			global.importType == global.importType_CoNLLU) {
+		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT) {
 			var currentText = ds_list_find_value(exampleWindowList, i);
 			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
@@ -74,13 +75,14 @@ function scr_preImportScreen(){
 				draw_text(currentTextX, currentTextY, currentText);
 			}
 		}
-		else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_CSV) {
+		else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_CSV
+				|| global.importType == global.importType_CoNLLU) {
 			
 			// draw column coverup rectangle
 			var colCoverUpRectX1 = currentTextX;
-			var colCoverUpRectY1 = exampleWindowY1 + 10;
-			var colCoverUpRectX2 = exampleWindowX2 - 10;
-			var colCoverUpRectY2 = exampleWindowY2 - 10;
+			var colCoverUpRectY1 = exampleWindowY1 + 5;
+			var colCoverUpRectX2 = exampleWindowX2;
+			var colCoverUpRectY2 = exampleWindowY2 - 5;
 			draw_set_color(global.colorThemeBG);
 			draw_set_alpha(1);
 			draw_rectangle(colCoverUpRectX1, colCoverUpRectY1, colCoverUpRectX2, colCoverUpRectY2, false);
@@ -89,6 +91,7 @@ function scr_preImportScreen(){
 			var colWidthList = -1;
 			if (global.importType == global.importType_TabDelimited) colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
 			else if (global.importType == global.importType_CSV) colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
+			else if (global.importType == global.importType_CoNLLU) colWidthList = ds_map_find_value(global.preImportMap, "conlluWidthList");
 			
 			var currentList = ds_list_find_value(exampleWindowList, i);
 			if (typeof(currentList) == "number" && ds_exists(colWidthList, ds_type_list)) {
@@ -107,7 +110,7 @@ function scr_preImportScreen(){
 						if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
 							draw_set_color(global.colorThemeText);
 							draw_set_alpha(infoAlpha);
-							draw_text(currentTextX, currentTextY, currentText);
+							draw_text(currentTextX, currentTextY, string(currentText));
 						}
 					}
 					currentTextX += floor(currentColWidth);

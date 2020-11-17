@@ -32,7 +32,5 @@ function scr_exportGrids() {
 	scr_gridToCSV(obj_chain.trackChainGrid, dirName + "\\track.csv");
 	scr_gridToCSV(obj_chain.stackChainGrid, dirName + "\\stack.csv");
 
-	scr_gridToCSV(global.tokenImportGrid, dirName + "\\sdoaij.csv");
-
 
 }
