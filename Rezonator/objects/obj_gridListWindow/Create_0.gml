@@ -21,7 +21,7 @@ scrollBarPlusY = 0;
 
 
 x = 20;
-y = camera_get_view_height(view_get_camera(0)) / 5;
+y = camera_get_view_height(view_get_camera(0)) / 4;
 
 currentGrid = obj_control.unitGrid;
 

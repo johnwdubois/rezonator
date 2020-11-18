@@ -40,10 +40,10 @@ grid = obj_control.unitGrid;
 //gridCurrentTopViewRow[0] = 0;
 //gridCurrentTopViewRow[1] = 0;
 
-windowX = 200;
-windowY = camera_get_view_height(view_get_camera(0)) / 5;
+windowX = camera_get_view_width(view_get_camera(0)) / 6;
+windowY = camera_get_view_height(view_get_camera(0)) / 4;
 windowWidth = camera_get_view_width(view_get_camera(0)) - (windowX) - 20;
-windowHeight = camera_get_view_height(view_get_camera(0)) - (windowY) - 100;
+windowHeight = camera_get_view_height(view_get_camera(0)) - (windowY*1.5);
 windowX1 = windowX;
 windowX2 = windowX1 + windowWidth;
 windowY1 = windowY;
@@ -96,8 +96,8 @@ scrollPlusY = 100;
 scrollPlusYDest = 100;
 scrollBarPlusY = 0;
 
-x = 200;
-y = 200;
+x = windowX;
+y = windowY;
 
 rectX2 = 0;
 
