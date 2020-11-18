@@ -106,4 +106,3 @@ notRefreshed = true;
 
 instance_create_layer(0, 0, "InstancesDialogue", obj_gridListWindow);
 
-alarm[0] = 1;

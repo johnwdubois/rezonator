@@ -1,6 +1,7 @@
 // Draws the scroll together button in grid view and handles funtionality, calls funtion to draw both grids
 
 if (notRefreshed){
+	alarm[0] = 1;
 	alarm[1] = 1;
 	notRefreshed = false;
 }
