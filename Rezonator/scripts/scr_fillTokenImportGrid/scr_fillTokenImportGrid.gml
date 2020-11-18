@@ -24,15 +24,22 @@
 	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, unitGridHeight);
 
-
+	var prevParticipant = "";
 	for (var i = 0; i < unitGridHeight; i++) {
 		//set unit ID
 		var currentUnitID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitID, i);
 
 		ds_grid_set(global.unitImportGrid, global.unitImport_colUnitID, i, currentUnitID);
-	
 
-		var currentParticipant = ds_grid_get(obj_control.unitGrid,obj_control.unitGrid_colParticipantName,i);
+		// if a new speaker has not been specified since previous speaker, set the speaker to be same as previous
+		var currentParticipant = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, i));
+		if (currentParticipant == "undefined" || string_length(currentParticipant) < 1 || scr_isStrOnlyWhitespace(currentParticipant)) {
+			currentParticipant = prevParticipant;
+			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, i, currentParticipant);
+		}
+		else {
+			prevParticipant = currentParticipant;
+		}
 
 		ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, i, currentParticipant);
 	}
