@@ -32,7 +32,7 @@ ds_list_add(gridList,
 	obj_control.hitGrid,
 	obj_control.wordDrawGrid
 	);
-alarm[0] = 1;
+
 
 
 grid = obj_control.unitGrid;
@@ -105,3 +105,5 @@ rectX2 = 0;
 notRefreshed = true;
 
 instance_create_layer(0, 0, "InstancesDialogue", obj_gridListWindow);
+
+alarm[0] = 1;
