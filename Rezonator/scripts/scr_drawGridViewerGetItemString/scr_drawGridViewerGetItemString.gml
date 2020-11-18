@@ -22,7 +22,7 @@ function scr_drawGridViewerGetItemString(grid, col, row) {
 		itemString = scr_getStringOfList(currentCell);
 	}
 	else {
-		itemString = string(ds_grid_get(grid, col, row));
+		itemString = string(currentCell);
 	}
 
 	if (string_length(itemString) == 0) {

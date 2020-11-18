@@ -92,6 +92,9 @@ function scr_drawGridViewerClipped() {
 		var colRectX2 = windowX2;
 		if (gridLoopCol + 1 < ds_list_size(gridColXList)) {
 			colRectX2 = ds_list_find_value(gridColXList, gridLoopCol + 1);
+			if (gridLoopCol == gridWidth - 1) {
+				colRectX2 = windowX2;
+			}
 		}
 		var colRectY2 = colRectY1 + windowHeight;
 	
@@ -126,7 +129,7 @@ function scr_drawGridViewerClipped() {
 			currentItemString = scr_drawGridViewerGetItemString(grid, gridLoopCol, gridLoopRow);
 
 			if (currentItemString == "undefined") {
-				continue;
+				//continue;
 			}
 		
 		
@@ -138,7 +141,8 @@ function scr_drawGridViewerClipped() {
 			var currentCellRectX2 = colRectX2;
 			var currentCellRectY2 = currentCellRectY1 + strHeight;
 		
-			if (gridLoopRow == mouseoverRow and gridViewColXHolding == -1 and not windowResizeXHolding) {
+			if (gridLoopRow == mouseoverRow and gridViewColXHolding == -1 and not windowResizeXHolding
+			and point_in_rectangle(mouse_x, mouse_y, windowX1, windowY1, windowX2, windowY2)) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, false);
 			}
