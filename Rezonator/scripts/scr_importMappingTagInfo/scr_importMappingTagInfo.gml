@@ -1,5 +1,7 @@
 function scr_importMappingTagInfo() {
 	
+	if (live_call()) return live_result;
+	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
@@ -300,6 +302,9 @@ function scr_importMappingTagInfo() {
 		}
 		else if (i == global.tagInfoGrid_colLevel) {
 			headerStr = "Level Estimate";
+		}
+		else if (i == global.tagInfoGrid_colLevelPredict) {
+			headerStr = "Level Prediction";
 		}
 		else if (i == global.tagInfoGrid_colMarkerPercent) {
 			headerStr = "Marker %";
