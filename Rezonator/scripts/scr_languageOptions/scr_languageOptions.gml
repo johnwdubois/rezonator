@@ -56,4 +56,5 @@ function scr_languageOptions(optionSelected){
 		break;	
 		
 	}
+	scr_fontGlobalUpdate();
 }

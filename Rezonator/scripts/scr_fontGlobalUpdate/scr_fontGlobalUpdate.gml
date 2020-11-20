@@ -76,6 +76,39 @@ function scr_fontGlobalUpdate() {
 			global.fontGridView = fnt_gridView;
 			break;
 	}
+	
+	if (global.lang_codes[| global.lang_index] == "zh" ) {
+			global.fontMain = fnt_localeZH;
+			global.fontMainBold = fnt_localeZH;
+			global.fontChainContents = fnt_localeZH;
+			global.fontChainList = fnt_localeZH;
+			global.fontChainListFocused = fnt_localeZH;
+			global.fontPanelTab = fnt_localeZH;
+			global.fontSortPane = fnt_localeZH;
+			global.fontGridView = fnt_localeZH;
+	}
+	
+	if (global.lang_codes[| global.lang_index] == "ja" ) {
+			global.fontMain = fnt_localeJA;
+			global.fontMainBold = fnt_localeJA;
+			global.fontChainContents = fnt_localeJA;
+			global.fontChainList = fnt_localeJA;
+			global.fontChainListFocused = fnt_localeJA;
+			global.fontPanelTab = fnt_localeJA;
+			global.fontSortPane = fnt_localeJA;
+			global.fontGridView = fnt_localeJA;
+	}
+	
+	if (global.lang_codes[| global.lang_index] == "he" ) {
+			global.fontMain = fnt_localeHE;
+			global.fontMainBold = fnt_localeHE;
+			global.fontChainContents = fnt_localeHE;
+			global.fontChainList = fnt_localeHE;
+			global.fontChainListFocused = fnt_localeHE;
+			global.fontPanelTab = fnt_localeHE;
+			global.fontSortPane = fnt_localeHE;
+			global.fontGridView = fnt_localeHE;
+	}
 
 
 }

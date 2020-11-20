@@ -26,8 +26,8 @@
   "creationCodeFile": "",
   "inheritCode": false,
   "instanceCreationOrder": [
-    {"name":"inst_1615D388","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},
     {"name":"inst_60EEA211","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},
+    {"name":"inst_1615D388","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},
     {"name":"inst_5398B55","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},
     {"name":"inst_2E567ADD","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},
   ],
