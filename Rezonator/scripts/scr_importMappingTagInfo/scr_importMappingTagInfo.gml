@@ -303,9 +303,6 @@ function scr_importMappingTagInfo() {
 		else if (i == global.tagInfoGrid_colLevel) {
 			headerStr = "Level Estimate";
 		}
-		else if (i == global.tagInfoGrid_colLevelPredict) {
-			headerStr = "Level Prediction";
-		}
 		else if (i == global.tagInfoGrid_colMarkerPercent) {
 			headerStr = "Marker %";
 		}
