@@ -243,7 +243,7 @@ function scr_drawGridViewerClipped() {
 		draw_set_valign(fa_middle);
 		draw_text(windowX1 + 200, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
 	}
-	//draw_text(500,100,"Grid Viewer Window Width: " + string(windowWidth));
+	//draw_text(500,100,"Grid Viewer windowY1: " + string(windowY1));
 
 
 	// Draw vertical column lines and make columns draggable

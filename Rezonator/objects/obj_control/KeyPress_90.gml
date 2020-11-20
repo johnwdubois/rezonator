@@ -1,3 +1,5 @@
+/// @description Insert description here
+// You can write your code in this editor
 /// @description quick zero
 // You can write your code in this editor
 if(keyboard_check(vk_control)){
