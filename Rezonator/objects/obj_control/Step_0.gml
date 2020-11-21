@@ -34,6 +34,10 @@ else {
 		ctrlHold = true;
 	}
 }
+if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)) {
+	keyboard_key_release(vk_up);
+	keyboard_key_release(vk_down);
+}
 
 
 // Mechanism to update center display row
