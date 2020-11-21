@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportScreen(){
 	
-	if (live_call()) return live_result;
-	
 	scr_fontSizeControlOpeningScreen();
 
 
