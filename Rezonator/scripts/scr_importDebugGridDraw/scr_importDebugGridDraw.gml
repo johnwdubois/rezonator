@@ -53,10 +53,6 @@ function scr_importDebugGridDraw() {
 	}
 
 
-	var timesHit = 0;
-	var buttonRectSize = rowHeight - 10;
-
-
 
 	// Draw Tag Info window contents
 	draw_set_font(global.fontMain);
@@ -91,7 +87,6 @@ function scr_importDebugGridDraw() {
 			&& !instance_exists(obj_dropDown)) {
 				if (!scrollBarHolding) {
 					obj_importMapping.mouseoverRow = j;
-					timesHit++;
 				}
 			}
 			if (obj_importMapping.mouseoverRow == j) {

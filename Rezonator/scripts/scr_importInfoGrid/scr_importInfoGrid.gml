@@ -136,7 +136,7 @@ function scr_importInfoGrid() {
 					levelEstimate = global.levelUnknown;
 				}
 			}
-			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, levelEstimate);
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelPredict, i, levelEstimate);
 		}
 	
 		ds_grid_sort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true);
