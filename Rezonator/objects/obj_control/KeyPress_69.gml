@@ -19,4 +19,3 @@ dialogueBoxActive = true;
 	
 	
 }
-//scr_exportPortion();

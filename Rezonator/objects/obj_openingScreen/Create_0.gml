@@ -160,7 +160,7 @@ participantHueOffset = 0;
 
 showDevVars = false;
 
-scr_importPackage();
+scr_createRezDirectory();
 
 
 global.currentDirString = global.rezonatorDirString;
