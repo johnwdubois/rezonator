@@ -1,4 +1,8 @@
 function scr_surfaceStart() {
+	
+	
+	var panelPaneMaxHeight = camera_get_view_height(camera_get_active()) * 0.75;
+	
 	if (object_index == obj_panelPane) {
 	
 		var chainContentsX = 0;
@@ -22,18 +26,7 @@ function scr_surfaceStart() {
 	}
 
 
-/*
-	if (object_index == obj_gridViewer) {
-		if (abs(mouse_x - (x + windowWidth)) < 5
-		and mouse_y > y and mouse_y < y + windowHeight) {
-			obj_control.mouseoverPanelPane = true;
-			window_set_cursor(cr_size_we);
-			if (mouse_check_button_pressed(mb_left)) {
-				windowResizeXHolding = true;
-			}
-		}
-	}
-*/
+
 	
 	if (abs(mouse_y - (y + windowHeight)) < 5
 	and mouse_x > x and mouse_x < x + windowWidth) {
@@ -55,24 +48,24 @@ function scr_surfaceStart() {
 		}
 
 
-				var helpPaneY = 0;
-				with (obj_panelPane) {
-					if (currentFunction == functionChainList or currentFunction == functionChainContents
-					or currentFunction == functionSort or currentFunction == functionFilter) {
-						windowHeight = clamp(windowHeight, 150, camera_get_view_height(camera_get_active()) * 0.33);
-						if (surface_exists(clipSurface)) {
-							surface_resize(clipSurface, clipWidth, clipHeight);
-						}
-					}
+		var helpPaneY = 0;
+		with (obj_panelPane) {
+			if (currentFunction == functionChainList or currentFunction == functionChainContents
+			or currentFunction == functionSort or currentFunction == functionFilter) {
+				windowHeight = clamp(windowHeight, 150, panelPaneMaxHeight);
+				if (surface_exists(clipSurface)) {
+					surface_resize(clipSurface, clipWidth, clipHeight);
+				}
+			}
 				
-					if (currentFunction == functionHelp) {
-						y = other.y + other.windowHeight - windowHeight;//obj_control.wordTopMargin - windowHeight;
-						helpPaneY = y;
-					}
-				}
-				with (obj_toolPane) {
-					windowHeight = helpPaneY - y;
-				}
+			if (currentFunction == functionHelp) {
+				y = other.y + other.windowHeight - windowHeight;//obj_control.wordTopMargin - windowHeight;
+				helpPaneY = y;
+			}
+		}
+		with (obj_toolPane) {
+			windowHeight = helpPaneY - y;
+		}
 
 	}
 
@@ -88,7 +81,7 @@ function scr_surfaceStart() {
 				window_set_cursor(cr_size_ns);
 		
 				if (object_index == obj_panelPane) {
-					windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(camera_get_active()) * 0.33);
+					windowHeight = clamp(mouse_y - y, 150, panelPaneMaxHeight);
 					var helpPaneY = 0;
 					with (obj_panelPane) {
 						if (currentFunction == functionChainList or currentFunction == functionChainContents
