@@ -189,7 +189,6 @@
     {"id":{"name":"scr_importMappingTagInfo","path":"scripts/scr_importMappingTagInfo/scr_importMappingTagInfo.yy",},"order":12,},
     {"id":{"name":"utf8_unit_sequence_length","path":"scripts/utf8_unit_sequence_length/utf8_unit_sequence_length.yy",},"order":4,},
     {"id":{"name":"scr_importPlainTextInfo","path":"scripts/scr_importPlainTextInfo/scr_importPlainTextInfo.yy",},"order":13,},
-    {"id":{"name":"GMLive","path":"scripts/GMLive/GMLive.yy",},"order":0,},
     {"id":{"name":"scr_importMappingGroups","path":"scripts/scr_importMappingGroups/scr_importMappingGroups.yy",},"order":14,},
     {"id":{"name":"scr_importMappingTagDraw","path":"scripts/scr_importMappingTagDraw/scr_importMappingTagDraw.yy",},"order":15,},
     {"id":{"name":"scr_setFieldRelations","path":"scripts/scr_setFieldRelations/scr_setFieldRelations.yy",},"order":26,},
@@ -296,7 +295,6 @@
     {"id":{"name":"scr_chainListOptions","path":"scripts/scr_chainListOptions/scr_chainListOptions.yy",},"order":1,},
     {"id":{"name":"scr_chainRecolorOptions","path":"scripts/scr_chainRecolorOptions/scr_chainRecolorOptions.yy",},"order":2,},
     {"id":{"name":"scr_speakerLabelOptions","path":"scripts/scr_speakerLabelOptions/scr_speakerLabelOptions.yy",},"order":3,},
-    {"id":{"name":"obj_gmlive","path":"objects/obj_gmlive/obj_gmlive.yy",},"order":2,},
     {"id":{"name":"scr_fileOptions","path":"scripts/scr_fileOptions/scr_fileOptions.yy",},"order":4,},
     {"id":{"name":"scr_advancedOptions","path":"scripts/scr_advancedOptions/scr_advancedOptions.yy",},"order":5,},
     {"id":{"name":"scr_viewOptions","path":"scripts/scr_viewOptions/scr_viewOptions.yy",},"order":6,},
@@ -369,7 +367,6 @@
     {"id":{"name":"fnt_mainBold","path":"fonts/fnt_mainBold/fnt_mainBold.yy",},"order":7,},
     {"id":{"name":"fnt_mainBoldLarge1","path":"fonts/fnt_mainBoldLarge1/fnt_mainBoldLarge1.yy",},"order":8,},
     {"id":{"name":"fnt_mainBoldLarge2","path":"fonts/fnt_mainBoldLarge2/fnt_mainBoldLarge2.yy",},"order":9,},
-    {"id":{"name":"GMLiveAPI","path":"scripts/GMLiveAPI/GMLiveAPI.yy",},"order":1,},
     {"id":{"name":"fnt_mainBoldLarge3","path":"fonts/fnt_mainBoldLarge3/fnt_mainBoldLarge3.yy",},"order":10,},
     {"id":{"name":"fnt_mainBoldLarge4","path":"fonts/fnt_mainBoldLarge4/fnt_mainBoldLarge4.yy",},"order":11,},
     {"id":{"name":"fnt_mainBoldLarge5","path":"fonts/fnt_mainBoldLarge5/fnt_mainBoldLarge5.yy",},"order":12,},
@@ -508,11 +505,11 @@
     "name": "Default",
     "children": [],
   },
-  "RoomOrder": [
-    {"name":"rm_openingScreen","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},
-    {"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
-    {"name":"rm_importScreen","path":"rooms/rm_importScreen/rm_importScreen.yy",},
-    {"name":"rm_spotBot","path":"rooms/rm_spotBot/rm_spotBot.yy",},
+  "RoomOrderNodes": [
+    {"roomId":{"name":"rm_openingScreen","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},},
+    {"roomId":{"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},},
+    {"roomId":{"name":"rm_importScreen","path":"rooms/rm_importScreen/rm_importScreen.yy",},},
+    {"roomId":{"name":"rm_spotBot","path":"rooms/rm_spotBot/rm_spotBot.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":0,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
@@ -587,7 +584,7 @@
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},
   ],
   "TextureGroups": [
-    {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"targets":461609314234257646,"resourceVersion":"1.0","name":"Default","resourceType":"GMTextureGroup",},
+    {"isScaled":true,"autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":461609314234257646,"resourceVersion":"1.0","name":"Default","resourceType":"GMTextureGroup",},
   ],
   "IncludedFiles": [
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc001.csv","resourceType":"GMIncludedFile",},
@@ -1189,9 +1186,9 @@
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo","resourceVersion":"1.0","name":"Wheres_Lisabeth.rez","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
-    "IDEVersion": "2.3.0.529",
+    "IDEVersion": "2.3.1.536",
   },
-  "resourceVersion": "1.3",
+  "resourceVersion": "1.4",
   "name": "Rezonator",
   "tags": [],
   "resourceType": "GMProject",
