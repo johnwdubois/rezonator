@@ -99,7 +99,7 @@ function scr_importMappingTagDraw() {
 				var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 				instLoading.loadSprite = spr_loading;
 				scr_setSpecialFieldsVariables();
-				scr_storeSchLists();
+				scr_storeSchemaLists();
 				scr_fillFieldLevelMap();
 				show_debug_message("Continue button clicked... " + scr_printTime());
 			
@@ -169,7 +169,7 @@ function scr_importMappingTagDraw() {
 	
 		if (mouse_check_button_pressed(mb_left)) {
 			
-			scr_updateSchLists();
+			scr_updateSchemaLists();
 
 			if (global.importType == global.importType_IGT) {
 				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
@@ -220,7 +220,7 @@ function scr_importMappingTagDraw() {
 	
 		if (mouse_check_button_pressed(mb_left)) {
 			
-			scr_loadRZS(false);
+			scr_loadSchema(false);
 	
 			if (global.importType == global.importType_IGT) {
 				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
@@ -246,13 +246,13 @@ function scr_importMappingTagDraw() {
 
 	// if this is an importGroup, load the schema file automatically and then goto main screen
 	if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
-		scr_loadRZS(false);
+		scr_loadSchema(false);
 		importGroupSchemaLoaded = true;
 
 		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 		instLoading.loadSprite = spr_loading;
 		scr_setSpecialFieldsVariables();
-		scr_storeSchLists();
+		scr_storeSchemaLists();
 	
 		alarm[2] = 3;
 	}
@@ -286,10 +286,10 @@ function scr_importMappingTagDraw() {
 			if (mouse_check_button_pressed(mb_left)) {
 		
 				//populates lists with current display
-				scr_storeSchLists();
+				scr_storeSchemaLists();
 		
 				// User will specify a name and a location for the sch file 
-				scr_saveRZS();
+				scr_saveSchema();
 			}
 		}
 	

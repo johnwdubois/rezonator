@@ -48,7 +48,7 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	
 	
 	scr_importTagMaps();
-	scr_importSpecialFieldsUnitImport();
+	scr_transferSpecialFields();
 	//scr_copyLevelMapping();
 }
 

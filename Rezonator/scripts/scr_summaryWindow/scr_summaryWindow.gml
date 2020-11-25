@@ -73,7 +73,7 @@ function scr_summaryWindow() {
 		var currentStr = "";
 		if (i == 0) {
 			if (tokenCount < 1) continue;
-			currentStr = "Token count: " + string(tokenCount);
+			currentStr = "Total token count: " + string(tokenCount);
 		}
 		else if (i == 1) {
 			if (lineCount < 1) continue;

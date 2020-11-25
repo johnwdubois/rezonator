@@ -24,14 +24,14 @@ function scr_gridViewDrawBackArrow() {
 	draw_set_font(global.fontMain);
 	var largeHeight = string_height("A");
 	var spriteRatio = largeHeight/standardHeight;
-	var spriteSize = 2 * spriteRatio;
+	var spriteSize = 1;
 
 	var spriteWidth = sprite_get_width(spr_backArrow) * spriteSize;
 	var spriteHeight = sprite_get_height(spr_backArrow) * spriteSize;
 
 	// Set the arrow in the bottom right column
-	var backArrowX = spriteWidth / 2;
-	var backArrowY = camera_get_view_height(camera_get_active()) - spriteHeight / 3;
+	var backArrowX = spriteWidth;
+	var backArrowY = camera_get_view_height(camera_get_active()) - spriteHeight;
 
 	// Draw the arrow sprite
 	draw_sprite_ext(spr_backArrow, 0, backArrowX, backArrowY, spriteSize, spriteSize, 0, global.colorThemeBorders, 1);
@@ -45,7 +45,7 @@ function scr_gridViewDrawBackArrow() {
 	// Draw text
 	draw_set_colour(global.colorThemeBG);
 	draw_set_halign(fa_center);
-	draw_text((backArrowRectX1 + backArrowRectX2)/2, (backArrowRectY1 + backArrowRectY2)/2, scr_get_translation("label_back"));
+	//draw_text((backArrowRectX1 + backArrowRectX2)/2, (backArrowRectY1 + backArrowRectY2)/2, scr_get_translation("label_back"));
 
 	// Check for mouse hover over
 	if (point_in_rectangle(mouse_x, mouse_y, backArrowRectX1, backArrowRectY1, backArrowRectX2, backArrowRectY2)) {

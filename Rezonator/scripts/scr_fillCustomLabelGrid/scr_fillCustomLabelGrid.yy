@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "grid functions",
-    "path": "folders/Scripts/functions/grid functions.yy",
+    "name": "grid",
+    "path": "folders/Scripts/functions/grid.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_fillCustomLabelGrid",

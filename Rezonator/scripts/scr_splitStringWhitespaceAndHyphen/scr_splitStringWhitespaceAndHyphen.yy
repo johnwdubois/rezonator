@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "string functions",
-    "path": "folders/Scripts/functions/string functions.yy",
+    "name": "string",
+    "path": "folders/Scripts/functions/string.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_splitStringWhitespaceAndHyphen",

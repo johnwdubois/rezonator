@@ -11,7 +11,7 @@ if(inRectWordIDListSize > 0 and not inRectUnitIDListSize > 0 and obj_control.mou
 }
 inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
 
-if (inRectUnitIDListSize > 0 && inRectWordIDListSize > 0) { // Make sure the box captured something
+if (inRectUnitIDListSize > 0 && inRectWordIDListSize > 0 && is_numeric(obj_control.chunkID)) { // Make sure the box captured something
 	//show_message("doin");
 	// Expand the box grid to fit the new info
 	ds_grid_resize(obj_chain.chunkGrid, obj_chain.chainGridWidth + 2, ds_grid_height(obj_chain.chunkGrid) + 1);

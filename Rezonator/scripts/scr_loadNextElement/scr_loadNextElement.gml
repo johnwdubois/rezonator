@@ -191,7 +191,6 @@ function scr_loadNextElement() {
 	}
 
 	if (string_count("<Link>", currentElement) > 0) {
-		scr_importLinks(fileLineRipListElement);
 	}
 
 	if (not obj_control.initialValidFileCheck) {

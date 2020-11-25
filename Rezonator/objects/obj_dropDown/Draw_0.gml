@@ -141,12 +141,14 @@ for (var i = 0; i < optionListSize; i++) {
 			draw_set_color(global.colorThemeSelected2);
 		}
 	}
-	if (translateDropDown){
-		draw_text(optionRectX1 + textBuffer - clipX, mean(optionRectY1, optionRectY2) - clipY, scr_get_translation(optionText));
-	}
-	else{
-		draw_text(optionRectX1 + textBuffer - clipX, mean(optionRectY1, optionRectY2) - clipY, optionText);
-	}
+	
+	// draw option text
+	var optionTextStr = (translateDropDown) ? scr_get_translation(optionText) : optionText;
+	var optionTextX = floor(optionRectX1 + textBuffer);
+	var optionTextY = floor(mean(optionRectY1, optionRectY2));
+	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
+	
+	
 	draw_set_alpha(1);
 	
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {

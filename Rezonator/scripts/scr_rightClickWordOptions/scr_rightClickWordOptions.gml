@@ -55,15 +55,21 @@ function scr_rightClickWordOptions(optionSelected) {
 		case "Restore Word":
 		
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
-				if(!obj_control.wordTokenView){
-					var originalWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, obj_control.rightClickWordID - 1);
+				
+				var tokenImportIndex = -1;
+				if(obj_control.wordView > 2){
+					tokenImportIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView - 3);
 				}
 				else{
-					var originalWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, obj_control.rightClickWordID - 1);
+					tokenImportIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView - 2);				
 				}
-		
-			scr_replaceWord( obj_control.rightClickWordID , originalWord);
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord , obj_control.rightClickWordID - 1, "");
+				var tokenImportColName = ds_list_find_value(global.tokenImportColNameList, tokenImportIndex);
+				var importColPos = ds_list_find_index(global.importGridColNameList, tokenImportColName);
+				
+				var originalWord = ds_grid_get(global.importGrid, importColPos, obj_control.rightClickWordID - 1);
+
+				scr_replaceWord( obj_control.rightClickWordID , originalWord);
+				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colReplaceWord , obj_control.rightClickWordID - 1, "");
 			}
 			obj_control.rightClickonWord = false;
 			instance_destroy();

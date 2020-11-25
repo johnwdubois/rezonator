@@ -37,7 +37,7 @@ function scr_drawGridViewerClipped() {
 	}
 
 
-	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 20);		
+	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 40);		
 	windowHeight = (camera_get_view_height(view_get_camera(0)) - (windowY*1.5));
 
 
@@ -243,7 +243,7 @@ function scr_drawGridViewerClipped() {
 		draw_set_valign(fa_middle);
 		draw_text(windowX1 + 200, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
 	}
-	//draw_text(500,100,"Grid Viewer Window Width: " + string(windowWidth));
+	//draw_text(500,100,"Grid Viewer windowY1: " + string(windowY1));
 
 
 	// Draw vertical column lines and make columns draggable

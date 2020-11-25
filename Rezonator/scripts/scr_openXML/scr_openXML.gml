@@ -59,7 +59,6 @@ function scr_openXML() {
 		exit;
 	}
 	else{
-		scr_updateFileExtOrder(openedFile);
 		global.previousImportDirectory = filename_path(openedFile);
 	}
 
