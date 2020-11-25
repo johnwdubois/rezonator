@@ -710,10 +710,10 @@ if (instance_exists(obj_customTagPane)) {
 }
 
 
-if(not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
+if (not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
 	mouseOverUI = false;
 }
-else{
+else {
 	mouseOverUI = true;
 }
 
