@@ -78,36 +78,36 @@ function scr_fontGlobalUpdate() {
 	}
 	
 	if (global.lang_codes[| global.lang_index] == "zh" ) {
-			global.fontMain = fnt_localeZH;
-			global.fontMainBold = fnt_localeZH;
-			global.fontChainContents = fnt_localeZH;
-			global.fontChainList = fnt_localeZH;
-			global.fontChainListFocused = fnt_localeZH;
-			global.fontPanelTab = fnt_localeZH;
-			global.fontSortPane = fnt_localeZH;
-			global.fontGridView = fnt_localeZH;
+			global.fontMain = global.localeSC;
+			global.fontMainBold = global.localeSC;
+			global.fontChainContents = global.localeSC;
+			global.fontChainList = global.localeSC;
+			global.fontChainListFocused = global.localeSC;
+			global.fontPanelTab = global.localeSC;
+			global.fontSortPane = global.localeSC;
+			global.fontGridView = global.localeSC;
 	}
 	
 	if (global.lang_codes[| global.lang_index] == "ja" ) {
-			global.fontMain = fnt_localeJA;
-			global.fontMainBold = fnt_localeJA;
-			global.fontChainContents = fnt_localeJA;
-			global.fontChainList = fnt_localeJA;
-			global.fontChainListFocused = fnt_localeJA;
-			global.fontPanelTab = fnt_localeJA;
-			global.fontSortPane = fnt_localeJA;
-			global.fontGridView = fnt_localeJA;
+			global.fontMain = global.localeJA;
+			global.fontMainBold = global.localeJA;
+			global.fontChainContents = global.localeJA;
+			global.fontChainList = global.localeJA;
+			global.fontChainListFocused = global.localeJA;
+			global.fontPanelTab = global.localeJA;
+			global.fontSortPane = global.localeJA;
+			global.fontGridView = global.localeJA;
 	}
 	
 	if (global.lang_codes[| global.lang_index] == "he" ) {
-			global.fontMain = fnt_localeHE;
-			global.fontMainBold = fnt_localeHE;
-			global.fontChainContents = fnt_localeHE;
-			global.fontChainList = fnt_localeHE;
-			global.fontChainListFocused = fnt_localeHE;
-			global.fontPanelTab = fnt_localeHE;
-			global.fontSortPane = fnt_localeHE;
-			global.fontGridView = fnt_localeHE;
+			global.fontMain = global.localeHE;
+			global.fontMainBold = global.localeHE;
+			global.fontChainContents = global.localeHE;
+			global.fontChainList = global.localeHE;
+			global.fontChainListFocused = global.localeHE;
+			global.fontPanelTab = global.localeHE;
+			global.fontSortPane = global.localeHE;
+			global.fontGridView = global.localeHE;
 	}
 
 

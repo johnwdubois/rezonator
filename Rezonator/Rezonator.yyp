@@ -451,6 +451,7 @@
     {"id":{"name":"obj_importException","path":"objects/obj_importException/obj_importException.yy",},"order":7,},
     {"id":{"name":"scr_drawConfirmStackCreate","path":"scripts/scr_drawConfirmStackCreate/scr_drawConfirmStackCreate.yy",},"order":12,},
     {"id":{"name":"obj_exceptionsWindow","path":"objects/obj_exceptionsWindow/obj_exceptionsWindow.yy",},"order":8,},
+    {"id":{"name":"scr_createFonts","path":"scripts/scr_createFonts/scr_createFonts.yy",},"order":29,},
     {"id":{"name":"scr_setTokenCountPerLine","path":"scripts/scr_setTokenCountPerLine/scr_setTokenCountPerLine.yy",},"order":23,},
     {"id":{"name":"scr_updateTagInfoErrorCol","path":"scripts/scr_updateTagInfoErrorCol/scr_updateTagInfoErrorCol.yy",},"order":11,},
     {"id":{"name":"scr_identifyBlocks","path":"scripts/scr_identifyBlocks/scr_identifyBlocks.yy",},"order":3,},
@@ -784,6 +785,9 @@
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"README.txt","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Data/SBCorpus/Transcript","resourceVersion":"1.0","name":"sbc008.xml","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"~usersettings.ini","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansCJKsc-Regular.otf","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansCJKjp-Regular.otf","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansHebrew-Regular.otf","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.1.536",

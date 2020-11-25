@@ -37,7 +37,7 @@ function scr_drawGridViewerClipped() {
 	}
 
 
-	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 20);		
+	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 40);		
 	windowHeight = (camera_get_view_height(view_get_camera(0)) - (windowY*1.5));
 
 

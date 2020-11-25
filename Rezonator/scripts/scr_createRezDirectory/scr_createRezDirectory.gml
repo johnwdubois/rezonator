@@ -2,7 +2,7 @@ function scr_createRezDirectory() {
 	// Create the colelction of folders and files the user will receive on downloading Rezonator
 
 
-	if	(os_type == os_macosx)	{	
+	if	(os_type == os_macosx)	{
 		var userStr = environment_get_variable("USER");
 	
 	
@@ -15,6 +15,7 @@ function scr_createRezDirectory() {
 		global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "/Saved_Games";
 		global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "/Data";
 		global.rezonatorSchemaDirString = global.rezonatorDirString + "/Schemas";
+		global.rezonatorFontDirString = global.rezonatorDirString + "/Fonts";
 
 	}
 	else	{
@@ -28,6 +29,7 @@ function scr_createRezDirectory() {
 		global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "\\Saved Games";
 		global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "\\Data";
 		global.rezonatorSchemaDirString = global.rezonatorDirString + "\\Schemas";
+		global.rezonatorFontDirString = global.rezonatorDirString + "\\Fonts";
 	}
 
 
