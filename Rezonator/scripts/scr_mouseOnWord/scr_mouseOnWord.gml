@@ -168,7 +168,8 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				obj_control.rightClickUnitID = obj_control.newWordHoverUnitID;
 				obj_control.rightClickWordSeq = obj_control.newWordHoverWordSeq;
 				}
-
+				
+				var currentRightClickWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, obj_control.rightClickWordID - 1);
 				obj_control.rightClickonWord = true;
 				obj_control.wideDropDown = true;
 				var dropDownOptionList = ds_list_create();
@@ -182,8 +183,15 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 						ds_list_add(dropDownOptionList, "Delete Link");
 					}
 					else{
-						ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word", "Delete Link");
+						ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete Link");
 					}
+					if(currentRightClickWordState == obj_control.wordStateNew) {
+						ds_list_add(dropDownOptionList, "Delete New Word");
+					}
+					else{
+						ds_list_add(dropDownOptionList, "Replace Word", "Restore Word");
+					}
+					
 				}
 				// Options for a chainless word
 				else{
@@ -191,7 +199,13 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 						obj_control.ableToCreateDropDown = false;
 					}
 					else{
-						ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word");
+						ds_list_add(dropDownOptionList, "Split Word", "New Word");
+					}
+					if(currentRightClickWordState == obj_control.wordStateNew) {
+						ds_list_add(dropDownOptionList, "Delete New Word");
+					}
+					else{
+						ds_list_add(dropDownOptionList, "Replace Word", "Restore Word");
 					}
 				}
 				

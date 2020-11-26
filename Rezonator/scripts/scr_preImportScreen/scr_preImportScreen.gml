@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_preImportScreen(){
 	
-	if (live_call()) return live_result;
-	
 	scr_fontSizeControlOpeningScreen();
 
 
@@ -66,7 +64,7 @@ function scr_preImportScreen(){
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
-		if (global.importType == global.importType_PlainText || global.importType == global.importType_IGT) {
+		if (global.importType == global.importType_PlainText) {
 			var currentText = ds_list_find_value(exampleWindowList, i);
 			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
@@ -77,22 +75,14 @@ function scr_preImportScreen(){
 			}
 		}
 		else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_CSV
-				|| global.importType == global.importType_CoNLLU) {				
-			
-			// draw column coverup rectangle
-			var colCoverUpRectX1 = currentTextX;
-			var colCoverUpRectY1 = exampleWindowY1 + 5;
-			var colCoverUpRectX2 = exampleWindowX2;
-			var colCoverUpRectY2 = exampleWindowY2 - 5;
-			draw_set_color(global.colorThemeBG);
-			draw_set_alpha(1);
-			draw_rectangle(colCoverUpRectX1, colCoverUpRectY1, colCoverUpRectX2, colCoverUpRectY2, false);
+				|| global.importType == global.importType_CoNLLU || global.importType == global.importType_IGT) {				
 			
 			// get column width list
 			var colWidthList = -1;
 			if (global.importType == global.importType_TabDelimited) colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
 			else if (global.importType == global.importType_CSV) colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
 			else if (global.importType == global.importType_CoNLLU) colWidthList = ds_map_find_value(global.preImportMap, "conlluWidthList");
+			else if (global.importType == global.importType_IGT) colWidthList = ds_map_find_value(global.preImportMap, "igtWidthList");
 			
 			var currentList = ds_list_find_value(exampleWindowList, i);
 			if (typeof(currentList) == "number" && ds_exists(colWidthList, ds_type_list)) {
@@ -108,10 +98,25 @@ function scr_preImportScreen(){
 					
 						var currentText = ds_list_find_value(currentList, j);
 						var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * j));
-						if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
-							draw_set_color(global.colorThemeText);
-							draw_set_alpha(infoAlpha);
-							draw_text(currentTextX, currentTextY, string(currentText));
+						
+						// draw column coverup rectangle
+						if (string_length(currentText) > 0) {
+							var colCoverUpRectX1 = currentTextX;
+							var colCoverUpRectY1 = clamp(currentTextY - (strHeight / 2), exampleWindowY1, exampleWindowY2);
+							var colCoverUpRectX2 = colCoverUpRectX1 + currentColWidth;
+							var colCoverUpRectY2 = clamp(currentTextY + (strHeight / 2), exampleWindowY1, exampleWindowY2);
+							draw_set_color(global.colorThemeBG);
+							draw_set_alpha(1);
+							draw_rectangle(colCoverUpRectX1, colCoverUpRectY1, colCoverUpRectX2, colCoverUpRectY2, false);
+						
+							// draw text
+							if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
+								draw_set_color(global.colorThemeText);
+								draw_set_alpha(infoAlpha);
+								draw_set_halign(fa_left);
+								draw_set_valign(fa_middle);
+								draw_text(currentTextX, currentTextY, string(currentText));
+							}
 						}
 					}
 					currentTextX += floor(currentColWidth);

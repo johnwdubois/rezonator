@@ -231,6 +231,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(camera_get_active()) - 1000, 720, "global.windowWidth: " + string(window_get_width()));
 	draw_text(camera_get_view_width(camera_get_active()) - 1000, 740, "global.scrollBarWidth: " + string(global.scrollBarWidth));
 	draw_text(camera_get_view_width(camera_get_active()) - 1000, 760, "functionChainContents_lineGridRowFocused: " + string(obj_panelPane.functionChainContents_lineGridRowFocused));
+	draw_text(camera_get_view_width(camera_get_active()) - 1000, 780, "chunkID: " + string(obj_control.chunkID));
 }
 var scrollBarMarginTop = 230;
 if (!obj_panelPane.showNav) {

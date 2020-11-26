@@ -601,7 +601,7 @@ function scr_drawDialogueBox() {
 				scr_searchForWord(obj_control.inputText);
 			}
 			if (obj_control.ePressed) {
-				scr_exportPortion(obj_control.inputText);
+				scr_exportClip(obj_control.inputText);
 			}
 			if (obj_control.gPressed) {
 							

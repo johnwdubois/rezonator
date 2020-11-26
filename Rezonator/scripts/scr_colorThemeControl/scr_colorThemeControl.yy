@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "import_export",
-    "path": "folders/Scripts/import_export.yy",
+    "name": "theme",
+    "path": "folders/Scripts/functions/theme.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_colorThemeControl",

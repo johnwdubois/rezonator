@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "chains",
+    "path": "folders/Scripts/chains.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_deleteLink",
