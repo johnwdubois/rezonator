@@ -17,7 +17,7 @@ function scr_drawDialogueBox() {
 		var boxHeight = camera_get_view_height(camera_get_active())/5; 
 		var boxWidth = camera_get_view_width(camera_get_active())/3;
 		//replaced buffers with vars for width and height so that offsets can be calculated off that
-		var searchBarXOffset = boxHeight * 0.45;
+		var searchBarXOffset = boxWidth * 0.45;
 		var searchBarYOffset = 20;
 		var buttonXOffset = 50;
 		var buttonYOffset = 25;
