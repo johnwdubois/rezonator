@@ -21,7 +21,7 @@ function scr_morphToUnitGrid() {
 	var participantListSize = ds_list_size(participantList);
 	for (var i = 0; i < participantListSize; i++) {
 		var hue = (255 / ds_list_size(participantList) * i);
-		var color = make_color_hsv(hue, random_range(100, 200),  random_range(100, 200));
+		var color = make_color_hsv(hue, random_range(150, 200),  random_range(150, 200));
 		ds_list_add(participantColorList, color);
 	}
 

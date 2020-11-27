@@ -159,7 +159,7 @@ function scr_openXML() {
 	var participantIDListSize = ds_list_size(participantIDList);
 	for (var i = 0; i < participantIDListSize; i++) {
 		var hue = (255 / participantIDListSize * i) + participantHueOffset;
-		var color = make_color_hsv(hue, random_range(100, 200),  random_range(100, 200));
+		var color = make_color_hsv(hue, random_range(150, 200),  random_range(150, 200));
 		ds_list_add(colorList, color);
 	}
 
