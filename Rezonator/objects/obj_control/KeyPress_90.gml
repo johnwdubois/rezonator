@@ -2,6 +2,7 @@
 // You can write your code in this editor
 /// @description quick zero
 // You can write your code in this editor
+/*
 if(keyboard_check(vk_control)){
 	with(obj_panelPane){
 		showNav = not showNav;	
@@ -10,7 +11,9 @@ if(keyboard_check(vk_control)){
 	obj_toolPane.showTool = !obj_toolPane.showTool;
 exit;
 }
-else if(!obj_control.dialogueBoxActive){
+else
+*/
+if(!obj_control.dialogueBoxActive){
 	if(obj_control.hoverWordID != -1){
 		var fillWord = "";
 		if(obj_control.currentNewWordPre == 1){
