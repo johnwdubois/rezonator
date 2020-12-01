@@ -259,10 +259,14 @@ function scr_importMappingTagInfo() {
 
 	// draw header for column
 	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
 	draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
 	for (var i = 0; i < colAmount; i++) {
-		var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
+		var colWidth = windowWidth / colAmount;
+		var colX = tagInfoWindowRectX1 + (colWidth * i);
 		var headerStr = "";
+		var showLevelRadioButton = false;
+		
 		if (i == global.tagInfoGrid_colMarker) {
 			headerStr = "Marker";
 		}
@@ -271,9 +275,11 @@ function scr_importMappingTagInfo() {
 		}
 		else if (i == global.tagInfoGrid_colLevel) {
 			headerStr = "Level (Schema)";
+			showLevelRadioButton = true;
 		}
 		else if (i == global.tagInfoGrid_colLevelPredict) {
 			headerStr = "Level (Predicted)";
+			showLevelRadioButton = true;
 		}
 		else if (i == global.tagInfoGrid_colMarkerPercent) {
 			headerStr = "Marker %";
@@ -295,6 +301,29 @@ function scr_importMappingTagInfo() {
 		// draw column lines
 		draw_set_color(global.colorThemeBorders);
 		draw_line(colX - clipX, tagInfoWindowRectY1 - clipY, colX - clipX, tagInfoWindowRectY2 - clipY);
+		
+		// draw radio button for selecting level estimate
+		if (showLevelRadioButton) {
+			var levelRadioButtonRad = rowHeight * 0.35;
+			var levelRadioButtonX = colX + colWidth - (levelRadioButtonRad * 1.5);
+			var levelRadioButtonY = tagInfoWindowRectY1 + (rowHeight / 2);
+			draw_set_color(global.colorThemeBorders);
+			draw_circle(levelRadioButtonX - clipX, levelRadioButtonY - clipY, levelRadioButtonRad, true);
+			
+			// click on radio button to select it
+			if (point_in_circle(mouse_x, mouse_y, levelRadioButtonX, levelRadioButtonY, levelRadioButtonRad)) {
+				if (mouse_check_button_released(mb_left)) {
+					obj_importMapping.levelEstimateColumnSelected = i;
+				}
+			}
+			
+			// draw filled in radio button if this column is selected
+			if (obj_importMapping.levelEstimateColumnSelected == i) {
+				var filledLevelRadioButtonRad = levelRadioButtonRad * 0.85;
+				draw_set_color(global.colorThemeBorders);
+				draw_circle(levelRadioButtonX - clipX, levelRadioButtonY - clipY, filledLevelRadioButtonRad, false);
+			}
+		}
 	}
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, true);
