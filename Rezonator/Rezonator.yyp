@@ -773,7 +773,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/Play & Learn/Where's Elmo","resourceVersion":"1.0","name":"Wheres_Lisabeth.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"CoNLL-U Schema.rzs","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"CSV Schema.rzs","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Schemas","resourceVersion":"1.0","name":"IGT Schema.rzs","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_es.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_he.json","resourceType":"GMIncludedFile",},
@@ -787,6 +786,9 @@
     {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansCJKsc-Regular.otf","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansCJKjp-Regular.otf","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansHebrew-Regular.otf","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Data","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
+    {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.1.536",

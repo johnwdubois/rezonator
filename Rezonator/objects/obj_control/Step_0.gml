@@ -328,11 +328,11 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		//}
 	
 		// Sends user to the bottom of the main screen
-		if ((ctrlHold and keyboard_check_pressed(vk_down)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_down))) {
+		if ((ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
 			scrollPlusYDest = -999999999999;
 		}
 		// Sends user to the top of the main screen
-		else if ((ctrlHold and keyboard_check_pressed(vk_up)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_up))) {
+		else if ((ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
 			scrollPlusYDest = 100;
 		}
 		
@@ -340,8 +340,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			//show_message("right");
 			wordLeftMarginDest -= gridSpaceHorizontal;
 		}
-		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
+		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
 			scr_jumpToEnd(false);
 		}
 
@@ -350,8 +351,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			wordLeftMarginDest += gridSpaceHorizontal;
 			//show_message("left");
 		}
-		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_home) or keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) {
+		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_home) and not keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
 			if (searchGridActive) {
 				scr_jumpToEnd(true);
 			}
