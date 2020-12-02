@@ -80,7 +80,8 @@ function scr_drawGridViewerClipped() {
 	if (ds_list_size(gridColXList) < gridWidth) {
 		scr_gridViewerDynamicWidth(grid);
 	}
-
+	
+	
 
 	for (var gridLoopCol = 0; gridLoopCol < gridWidth; gridLoopCol++) {
 	
@@ -115,11 +116,11 @@ function scr_drawGridViewerClipped() {
 		for (var gridLoopRow = 0; gridLoopRow < gridHeight; gridLoopRow++) {
 		
 		
-			if (windowY1 + colNameHeight + scrollPlusY + textPlusY < windowY1 - strHeight) {
+			if (windowY1 + colNameHeight + scrollVerPlusY + textPlusY < windowY1 - strHeight) {
 				textPlusY += strHeight;
 				continue;
 			}
-			if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight + strHeight) {
+			if (windowY1 + colNameHeight + scrollVerPlusY + textPlusY > windowY1 + windowHeight + strHeight) {
 				textPlusY += strHeight;
 				break;
 			}
@@ -134,7 +135,7 @@ function scr_drawGridViewerClipped() {
 		
 		
 			var textX = colRectX1;
-			textY = windowY1 + colNameHeight + scrollPlusY + textPlusY;
+			textY = windowY1 + colNameHeight + scrollVerPlusY + textPlusY;
 		
 			var currentCellRectX1 = colRectX1;
 			var currentCellRectY1 = textY - (strHeight / 2);
@@ -219,10 +220,13 @@ function scr_drawGridViewerClipped() {
 
 
 	// Draw the scroll bar for the GridView
+	/*
 	scr_scrollBar(ds_grid_height(grid), -1, strHeight, colNameHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-		
+	*/
+	scr_scrollBarGridViewer(global.colorThemeSelected1, global.colorThemeSelected2, global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	
 		
 
 
@@ -241,7 +245,7 @@ function scr_drawGridViewerClipped() {
 		
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(windowX1 + 200, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
+		draw_text(windowX1 + 200, windowY2 + 70, "gridColXList: " + scr_getStringOfList(gridColXList));
 	}
 	//draw_text(500,100,"Grid Viewer windowY1: " + string(windowY1));
 
@@ -388,11 +392,11 @@ function scr_drawGridViewerClipped() {
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 				
 				if (focusedElementY <= y + textMarginTop + strHeight) {
-					scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+					scrollVerPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
 				}
 			}
 			else {
-				scrollPlusYDest += 4;
+				scrollVerPlusYDest += 4;
 			}
 		}
 		
@@ -405,11 +409,11 @@ function scr_drawGridViewerClipped() {
 				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {
-					scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					scrollVerPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
 				}
 			}
 			else {
-				scrollPlusYDest -= 4;
+				scrollVerPlusYDest -= 4;
 			}
 		}
 	*/
@@ -418,34 +422,34 @@ function scr_drawGridViewerClipped() {
 		if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 			// mousewheel input
 			if (mouse_wheel_up()) {
-				scrollPlusYDest += 8;
+				scrollVerPlusYDest += 8;
 			}
 			if (mouse_wheel_down()) {
-				scrollPlusYDest -= 8;
+				scrollVerPlusYDest -= 8;
 			}
 
 			// keyboard input for UP and DOWN
 			if (keyboard_check(vk_up)) {
-				scrollPlusYDest += 4;
+				scrollVerPlusYDest += 4;
 			}
 			if (keyboard_check(vk_down)) {
-				scrollPlusYDest -= 4;
+				scrollVerPlusYDest -= 4;
 			}
 
 			// CTRL+UP and CTRL+DOWN
 			if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-				scrollPlusYDest = 100;
+				scrollVerPlusYDest = 100;
 			}
 			if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-				scrollPlusYDest = -999999999999;
+				scrollVerPlusYDest = -999999999999;
 			}
 	
 			// PAGEUP and PAGEDOWN
 			if (keyboard_check_pressed(vk_pageup)) {
-				scrollPlusYDest += (windowHeight);
+				scrollVerPlusYDest += (windowHeight);
 			}
 			if (keyboard_check_pressed(vk_pagedown)) {
-				scrollPlusYDest -= (windowHeight);
+				scrollVerPlusYDest -= (windowHeight);
 			}
 		}
 	}
