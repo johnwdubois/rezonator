@@ -5,7 +5,7 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 	var lastColX = ds_list_find_value(colXList, ds_list_size(colXList) - 1);
 	var colXDifference = lastColX - firstColX;
 	
-	var minScrollHorPlusX = -(colXDifference + 100);
+	var minScrollHorPlusX = windowWidth - (colXDifference + 100);
 	var maxScrollHorPlusX = 16;
 	
 	// Set the scroll button size
@@ -29,6 +29,14 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 			with (obj_control) {
 				mouseoverNeutralSpace = false;
 			}
+			
+			// gridview-specific
+			if (gridViewColXHolding == -1) {
+				scrollHorPlusXPrev = scrollHorPlusX;
+				var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
+				ds_list_clear(gridViewColPrevList);
+				ds_list_copy(gridViewColPrevList, gridColXList);
+			}
 		}
 	}
 	
@@ -40,7 +48,6 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 	// Scroll based on clicked mouse pos
 	if (scrollBarHorHolding && mouse_check_button(mb_left)) {
 		var val = -(x - mouse_x) - (scrollBarHorWidth / 2);
-		show_debug_message("val: " + string(val));
 		
 		if (scrollBarHorPlusX < val) {
 			scrollHorPlusXDest -= abs(scrollBarHorPlusX - val);
@@ -148,5 +155,7 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 		}
 	}
 	scrollHorPlusXDest = clamp(scrollHorPlusXDest, minScrollHorPlusX, maxScrollHorPlusX);
+	
+	
 
 }

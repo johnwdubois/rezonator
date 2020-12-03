@@ -106,6 +106,9 @@ scrollHorPlusX = 100;
 scrollHorPlusXDest = 100;
 scrollBarHorPlusX = 0;
 
+scrollHorPlusXPrev = 0;
+scrollHorPlusXDiff = 0;
+
 
 
 
