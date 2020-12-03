@@ -18,5 +18,6 @@ for (var i = 0; i < unitGridHeight; i++) {
 // if we have not found any actual speaker name in the unitGrid, we
 // hide the speaker names
 if (!foundParticipant) {
-	scr_hideSpeakerName();
+	scr_showSpeakerName(false);
+	show_debug_message("obj_alarm Alarm 10");
 }

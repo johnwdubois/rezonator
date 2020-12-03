@@ -101,7 +101,7 @@
     {"id":{"name":"scr_drawLineWordIDListLoop","path":"scripts/scr_drawLineWordIDListLoop/scr_drawLineWordIDListLoop.yy",},"order":2,},
     {"id":{"name":"scr_drawLineHitIDListLoop","path":"scripts/scr_drawLineHitIDListLoop/scr_drawLineHitIDListLoop.yy",},"order":3,},
     {"id":{"name":"scr_setSpeakerLabelColWidth","path":"scripts/scr_setSpeakerLabelColWidth/scr_setSpeakerLabelColWidth.yy",},"order":4,},
-    {"id":{"name":"scr_hideSpeakerName","path":"scripts/scr_hideSpeakerName/scr_hideSpeakerName.yy",},"order":5,},
+    {"id":{"name":"scr_showSpeakerName","path":"scripts/scr_showSpeakerName/scr_showSpeakerName.yy",},"order":5,},
     {"id":{"name":"scr_setDrawRange","path":"scripts/scr_setDrawRange/scr_setDrawRange.yy",},"order":6,},
     {"id":{"name":"e_UTF8","path":"scripts/e_UTF8/e_UTF8.yy",},"order":2,},
     {"id":{"name":"scr_refreshLineGridDisplayRow","path":"scripts/scr_refreshLineGridDisplayRow/scr_refreshLineGridDisplayRow.yy",},"order":7,},

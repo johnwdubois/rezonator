@@ -6,7 +6,7 @@
     "path": "folders/Scripts/drawLine.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_hideSpeakerName",
+  "name": "scr_showSpeakerName",
   "tags": [],
   "resourceType": "GMScript",
 }

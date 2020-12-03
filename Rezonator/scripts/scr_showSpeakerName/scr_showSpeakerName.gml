@@ -1,6 +1,6 @@
-function scr_hideSpeakerName() {
+function scr_showSpeakerName(boolean) {
 	
-	obj_control.showParticipantName = !obj_control.showParticipantName;
+	obj_control.showParticipantName = boolean;
 
 	if (!obj_control.showParticipantName) {
 		var newColX = ds_list_find_value(obj_control.speakerLabelColXList, 2);
@@ -10,6 +10,6 @@ function scr_hideSpeakerName() {
 	obj_control.wordLeftMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1) + 20;
 	obj_control.wordLeftMarginDest = obj_control.wordLeftMargin;
 	
-	show_debug_message("scr_hideSpeakerName() ... obj_control.showParticipantName: " + string(obj_control.showParticipantName));
+	show_debug_message("scr_showSpeakerName() ... obj_control.showParticipantName: " + string(obj_control.showParticipantName));
 
 }

@@ -169,7 +169,7 @@ function scr_preImportInitiate(){
 	preImportInfoGrid_colWhitespace = 4;
 	preImportInfoGrid_colHyphen = 5;
 	preImportInfoGrid_colFile = 6;
-	preImportInfoGrid = ds_grid_create(preImportInfoGridWidth, 5);
+	preImportInfoGrid = ds_grid_create(preImportInfoGridWidth, ds_list_size(global.importTypeList));
 	
 	// fill the preImportInfoGrid
 	for (var i = 0; i < importTypeListSize; i++) {
@@ -215,6 +215,20 @@ function scr_preImportInitiate(){
 			currentTab = false;
 			currentWhitespace = true;
 			currentHyphen = true;
+			currentFile = ".txt";
+		}
+		else if (currentImportType == global.importType_Transcription) {
+			currentPerLine = "Unit";
+			currentTab = true;
+			currentWhitespace = true;
+			currentHyphen = false;
+			currentFile = ".txt, .csv";
+		}
+		else if (currentImportType == global.importType_Paragraph) {
+			currentPerLine = "Paragraph";
+			currentTab = false;
+			currentWhitespace = true;
+			currentHyphen = false;
 			currentFile = ".txt";
 		}
 		
