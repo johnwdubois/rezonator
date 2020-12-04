@@ -92,4 +92,6 @@ gridList = ds_list_create();
 ds_list_add(gridList, "Field Info", "Import Source", "Block Type", "Blocks", "Field Relations");
 currentGridName = "Field Info";
 
+alarm[5] = 2;
+
 show_debug_message("obj_importMapping Create END... " + scr_printTime());

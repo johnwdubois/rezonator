@@ -4,6 +4,14 @@ function scr_updateTagInfoErrorCol(){
 	
 	show_debug_message("scr_updateTagInfoErrorCol() ... START");
 	
+	// if there are any zeros in the schema column, change them to be level unknown
+	var zeroRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, 0, global.tagInfoGrid_colLevelSchema, ds_grid_height(global.tagInfoGrid), 0);
+	while (zeroRow > -1) {
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, zeroRow, global.levelUnknown);
+		zeroRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, 0, global.tagInfoGrid_colLevelSchema, ds_grid_height(global.tagInfoGrid), 0);
+	}
+	
+	
 	var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
 	var indexOfWordDelim = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
 			
