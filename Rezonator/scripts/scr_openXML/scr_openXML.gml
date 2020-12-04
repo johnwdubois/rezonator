@@ -37,19 +37,25 @@ function scr_openXML() {
 	
 	var fileExtension = "";
 	if (global.importType == global.importType_CSV) {
-		fileExtension = "CSV (*.csv)|*.csv";
+		fileExtension = "CSV (.csv)|*.csv";
 	}
 	else if (global.importType == global.importType_CoNLLU) {
-		fileExtension = "CoNLL-U (*.txt)|*.txt";
+		fileExtension = "CoNLL-U (.txt)|*.txt";
 	}
 	else if (global.importType == global.importType_PlainText) {
-		fileExtension = "Plain text (*.txt)|*.txt";
+		fileExtension = "Song & Verse (.txt)|*.txt";
+	}
+	else if (global.importType == global.importType_Paragraph) {
+		fileExtension = "Paragraph (.txt)|*.txt";
 	}
 	else if (global.importType == global.importType_TabDelimited) {
-		fileExtension = "Tab delimited (*.txt)|*.txt";
+		fileExtension = "Tab delimited (.txt)|*.txt";
 	}
 	else if (global.importType == global.importType_IGT) {
-		fileExtension = "Interlinear glossed text (*.txt)|*.txt";
+		fileExtension = "Interlinear glossed text (.txt)|*.txt";
+	}
+	else if (global.importType == global.importType_Transcription) {
+		fileExtension = "Transcription (.txt, .csv)|*.txt;*.csv";
 	}
 	openedFile = get_open_filename_ext(fileExtension, "", discourseDirString, scr_get_translation("menu_import"));
 
@@ -70,12 +76,11 @@ function scr_openXML() {
 		fileName = string_delete(fileName, fileExtCharAt, string_length(fileExt));
 	}
 
-	if (string_count("csv", fileExt) > 0) {
+	if (global.importType == global.importType_CSV) {
 		scr_importCSV(openedFile);
 		exit;
 	}
-
-	if (string_count("txt", fileExt) > 0) {
+	else {
 		scr_importTXT(openedFile);
 		exit;
 	}
