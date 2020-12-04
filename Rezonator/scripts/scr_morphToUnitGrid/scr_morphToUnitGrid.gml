@@ -6,15 +6,23 @@ function scr_morphToUnitGrid() {
 	var participantList = ds_list_create();
 
 
+	var prevParticipant = "";
 	var morphGridHeight = ds_grid_height(obj_control.morphGrid);
 	for (var i = 0; i < morphGridHeight; i++) {
 	
 		var currentParticipant = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colParticipant, i);
+		if (string_length(currentParticipant) < 1 && string_length(prevParticipant) > 0) {
+			currentParticipant = prevParticipant;
+			ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colParticipant, i, currentParticipant);
+		}
+		
 		var currentParticipantID = ds_list_find_index(participantList, currentParticipant);
 		if (currentParticipantID == -1) {
 			ds_list_add(participantList, currentParticipant)
 			currentParticipantID = ds_list_size(participantList) - 1;
 		}
+		
+		prevParticipant = currentParticipant;
 	}
 
 	var participantColorList = ds_list_create();
@@ -64,7 +72,6 @@ function scr_morphToUnitGrid() {
 			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentRowUnitGrid, currentUnitStart);
 			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, currentRowUnitGrid, currentUnitEnd);
 			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentRowUnitGrid, currentParticipantColor);
-			//ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colTag, currentRowUnitGrid, 0);
 			ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentRowUnitGrid, c_ltgray);
 		
 			// add new rows to wordGrid and dynamicWordGrid
