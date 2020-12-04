@@ -86,7 +86,7 @@ updatedErrorCol = false;
 displayMarker = "";
 wordDelimMarker = "";
 
-levelEstimateColumnSelected = global.tagInfoGrid_colLevel;
+levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 
 gridList = ds_list_create();
 ds_list_add(gridList, "Field Info", "Import Source", "Block Type", "Blocks", "Field Relations");

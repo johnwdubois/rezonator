@@ -95,11 +95,6 @@ function scr_importMappingTagDraw() {
 	
 			if (mouse_check_button_released(mb_left) && !continueButtonClicked) {
 				
-				// if the Level (Predicted) column is selected as the level estimates, copy those values to the level column
-				if (obj_importMapping.levelEstimateColumnSelected == global.tagInfoGrid_colLevelPredict) {
-					ds_grid_set_grid_region(global.tagInfoGrid, global.tagInfoGrid, global.tagInfoGrid_colLevelPredict, 0, global.tagInfoGrid_colLevelPredict, ds_grid_height(global.tagInfoGrid), global.tagInfoGrid_colLevel, 0);
-				}				
-				
 				continueButtonClicked = true;
 				var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 				instLoading.loadSprite = spr_loading;
