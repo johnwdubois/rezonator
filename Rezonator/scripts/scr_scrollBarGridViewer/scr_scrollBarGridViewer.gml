@@ -3,6 +3,15 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 	var colXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
 	var firstColX = ds_list_find_value(colXList, 0);
 	var lastColX = ds_list_find_value(colXList, ds_list_size(colXList) - 1);
+	
+	if (firstColX == undefined){
+	firstColX = 0;
+	}
+	if (lastColX == undefined){
+	lastColX = 0;
+	}
+	
+	
 	var colXDifference = lastColX - firstColX;
 	
 	var minScrollHorPlusX = windowWidth - (colXDifference + windowWidth);
