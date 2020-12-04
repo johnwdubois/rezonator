@@ -5,7 +5,7 @@ function scr_scrollBarGridViewer(scrollBackColor, scrollBarColor, scrollButtonCo
 	var lastColX = ds_list_find_value(colXList, ds_list_size(colXList) - 1);
 	var colXDifference = lastColX - firstColX;
 	
-	var minScrollHorPlusX = windowWidth - (colXDifference + 100);
+	var minScrollHorPlusX = windowWidth - (colXDifference + windowWidth);
 	var maxScrollHorPlusX = 16;
 	
 	// Set the scroll button size
