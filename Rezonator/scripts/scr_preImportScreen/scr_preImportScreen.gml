@@ -64,7 +64,7 @@ function scr_preImportScreen(){
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
-		if (global.importType == global.importType_PlainText) {
+		if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
 			var currentText = ds_list_find_value(exampleWindowList, i);
 			var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 			var currentTextY = floor(exampleWindowY1 + textBufferTop + (strHeight * i));
@@ -75,11 +75,13 @@ function scr_preImportScreen(){
 			}
 		}
 		else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_CSV
-				|| global.importType == global.importType_CoNLLU || global.importType == global.importType_IGT) {				
+				|| global.importType == global.importType_CoNLLU || global.importType == global.importType_IGT
+				|| global.importType == global.importType_Transcription) {				
 			
 			// get column width list
 			var colWidthList = -1;
-			if (global.importType == global.importType_TabDelimited) colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
+			if (global.importType == global.importType_Transcription) colWidthList = ds_map_find_value(global.preImportMap, "transcriptionWidthList");
+			else if (global.importType == global.importType_TabDelimited) colWidthList = ds_map_find_value(global.preImportMap, "tabDelimWidthList");
 			else if (global.importType == global.importType_CSV) colWidthList = ds_map_find_value(global.preImportMap, "csvWidthList");
 			else if (global.importType == global.importType_CoNLLU) colWidthList = ds_map_find_value(global.preImportMap, "conlluWidthList");
 			else if (global.importType == global.importType_IGT) colWidthList = ds_map_find_value(global.preImportMap, "igtWidthList");

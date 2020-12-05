@@ -25,22 +25,47 @@ function scr_preImportInitiate(){
 			// links
 			ds_list_add(linksList, "https://rezonator.com", "https://genius.com");
 		}
+
+		// Paragraph
+		if (importTypeStr == global.importType_Paragraph) {
+			
+			// example
+			ds_list_add(exampleList, "--","Wuthering Heights  ","by Emily Brontë ","---","","---","CHAPTER I ","---","","1801—I have just returned from a visit to my landlord—the solitary neighbour","that I shall be troubled with. This is certainly a beautiful country! In all England,","I do not believe that I could have fixed on a situation so completely removed from the","stir of society. A perfect misanthropist’s Heaven—and Mr. Heathcliff and I are such a","suitable pair to divide the desolation between us. A capital fellow! He little imagined","how my heart warmed towards him when I beheld his black eyes withdraw so suspiciously","under their brows, as I rode up, and when his fingers sheltered themselves, with a","jealous resolution, still further in his waistcoat, as I announced my name.  ","“Mr. Heathcliff?” I said.  ","A nod was the answer.  ","“Mr. Lockwood, your new tenant, sir. I do myself the honour of calling as soon","as possible after my arrival, to express the hope that I have not inconvenienced","you by my perseverance in soliciting the occupation of Thrushcross Grange: I heard","yesterday you had had some thoughts—”", "“Thrushcross Grange is my own, sir,” he interrupted, wincing. “I should not allow", "any one to inconvenience me, if I could hinder it—walk in!”");
+			// description
+			ds_list_add(descriptionList, "• file extension: *.txt", "• songs, poems, etc.", "• short meaningful lines");
+			// links
+			ds_list_add(linksList, "https://rezonator.com", "https://genius.com");
+		}
 		
-		// Tab delimied
+		// Transcription
+		else if (importTypeStr == global.importType_Transcription) {
+			
+			// example (contains a list of lists)
+			var transcriptionCol1 = ds_list_create();
+			var transcriptionCol2 = ds_list_create();
+			ds_list_add(transcriptionCol1, "---","A Book About Death (sbc006: Santa Barbara Corpus of Spoken American English)","---","","DARRYL;","","","PAMELA;","DARRYL;","PAMELA;","DARRYL;","","","PAMELA;","DARRYL;","","","","PAMELA;");
+			ds_list_add(transcriptionCol2, "","","","","I didn't like the book,","the way I —","the minute I looked at it.","(...) You didn't. ","No.","That's cause you,","(...) That's because I have my own ideas about it,","I guess.","That I'm (.) pretty comfortable with.","(...) Ah.","(...) I don't like re- -","I don't like reading books about what other people think about dying.","(...) And I,","(.) consider myself a real free [thinker when it comes to that] stuff.","[(TSK) (H) Well].");
+			ds_list_add(exampleList, transcriptionCol1, transcriptionCol2);
+			
+			// description
+			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by tabs");			
+			// links
+			ds_list_add(linksList, "https://rezonator.com");
+		}
+		
+		// Tab-delimited (Elan)
 		else if (importTypeStr == global.importType_TabDelimited) {
 			
 			// example (contains a list of lists)
 			var tabDelimCol1 = ds_list_create();
 			var tabDelimCol2 = ds_list_create();
-			/*
-			ds_list_add(tabDelimCol1, "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;", "LENORE;");
-			ds_list_add(tabDelimCol2, "0.0", "9.21", "9.52", "14.1", "56.94", "58.34", "59.29", "60.73", "61.8", "131.39", "131.59", "166.65", "178.23", "252.54", "254.12", "265.43", "297.67", "299.69", "352.07", "352.57");
-			ds_list_add(tabDelimCol3, "9.21", "9.52", "14.1", "15.78", "57.79", "59.29", "60.06", "61.8", "62.05", "131.59", "131.93", "167.05", "178.44", "252.74", "254.64", "265.73", "299.69", "299.9", "352.57", "353.42");
-			ds_list_add(tabDelimCol4, "… So you don't need to go … borrow equipment from anybody,","to —","… to do the feet?","… [Do the hooves]?","[Did they train you-] —","[2Did] they train you that — ","#[3#]*","‥ [So you have your] own equipment,","but,","yeah,","[I bet].","[mhm].","[really].","[(AHEM)]","[2(AHEM)]","[farrier]?","You sai[d you never] made the horseshoes,","but,","[So every] —","[2every] uh:,");
-			*/
-			ds_list_add(tabDelimCol1, "---","A Book About Death (sbc006: Santa Barbara Corpus of Spoken American English)","---","","DARRYL;","","","PAMELA;","DARRYL;","PAMELA;","DARRYL;","","","PAMELA;","DARRYL;","","","","PAMELA;");
-			ds_list_add(tabDelimCol2, "","","","","I didn't like the book,","the way I —","the minute I looked at it.","(...) You didn't. ","No.","That's cause you,","(...) That's because I have my own ideas about it,","I guess.","That I'm (.) pretty comfortable with.","(...) Ah.","(...) I don't like re- -","I don't like reading books about what other people think about dying.","(...) And I,","(.) consider myself a real free [thinker when it comes to that] stuff.","[(TSK) (H) Well].");
-			ds_list_add(exampleList, tabDelimCol1, tabDelimCol2);
+			var tabDelimCol3 = ds_list_create();
+			var tabDelimCol4 = ds_list_create();
+			ds_list_add(tabDelimCol1, "0.00","9.21","9.52","14.10","15.01","16.78","18.33","18.85","20.69","21.19","21.26","22.24","22.28","24.25","25.07","26.14","26.62","26.87","28.37","30.10");
+			ds_list_add(tabDelimCol2, "9.21","9.52","14.10","15.78","16.78","18.32","18.85","20.69","21.19","21.74","22.24","23.23","24.25","25.07","26.14","26.62","26.87","28.37","30.10","32.36");
+			ds_list_add(tabDelimCol3, "LENORE;","","","","LYNNE;","","","","DORIS;","","LYNNE;","DORIS;","LYNNE;","","","","","","","");
+			ds_list_add(tabDelimCol4, "… So you don't need to go … borrow equipment from anybody,","to —","… to do the feet?","… [Do the hooves]?","[(H):] <YAWN> Well,","we're gonna have to find somewhere,","to get,","(Hx) … something (Hx) </YAWN>.","‥ So,","[~Mae-] —","[I'm gonna] (Hx) —","[2~Mae ~Lynne ##]","[2(H) We're not] gonna do the feet today,","I'm gonna wait till like,","early in the morning:,","‥ to do those,","cause y- —","I mean you get s:o ti:red.","(H) … n- you just,","… it takes (%) —");
+			ds_list_add(exampleList, tabDelimCol1, tabDelimCol2, tabDelimCol3, tabDelimCol4);
 			
 			// description
 			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by tabs");			
@@ -143,8 +168,11 @@ function scr_preImportInitiate(){
 	
 	// add example column width lists to preImportMap
 	// these lists will tell Rezonator how wide to draw each column in the "Example" window on preImportScreen
+	var transcriptionWidthList = ds_list_create();
+	ds_list_add(transcriptionWidthList, 25, 75);
+	ds_map_add_list(global.preImportMap, "transcriptionWidthList", transcriptionWidthList);
 	var tabDelimWidthList = ds_list_create();
-	ds_list_add(tabDelimWidthList, 25, 75);
+	ds_list_add(tabDelimWidthList, 12, 12, 18, 58);
 	ds_map_add_list(global.preImportMap, "tabDelimWidthList", tabDelimWidthList);
 	var csvWidthList = ds_list_create();
 	ds_list_add(csvWidthList, 14, 14, 14, 14, 14, 14, 14);
