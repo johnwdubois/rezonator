@@ -441,6 +441,7 @@
     {"id":{"name":"obj_audioUI","path":"objects/obj_audioUI/obj_audioUI.yy",},"order":4,},
     {"id":{"name":"obj_chainContentsData","path":"objects/obj_chainContentsData/obj_chainContentsData.yy",},"order":5,},
     {"id":{"name":"obj_openingScreen","path":"objects/obj_openingScreen/obj_openingScreen.yy",},"order":6,},
+    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":7,},
     {"id":{"name":"obj_loadingScreen","path":"objects/obj_loadingScreen/obj_loadingScreen.yy",},"order":7,},
     {"id":{"name":"obj_fileLoader","path":"objects/obj_fileLoader/obj_fileLoader.yy",},"order":0,},
     {"id":{"name":"scr_turnStackerLoop","path":"scripts/scr_turnStackerLoop/scr_turnStackerLoop.yy",},"order":17,},
