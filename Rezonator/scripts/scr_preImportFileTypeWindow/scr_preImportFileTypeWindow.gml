@@ -17,7 +17,7 @@ function scr_preImportFileTypeWindow(){
 	
 	///////////// FILE TYPE WINDOW ////////////////
 	
-	x = floor(camWidth * 0.1);
+	x = floor(camWidth * 0.04);
 	y = floor(camHeight * 0.25);
 	windowX = x;
 	windowY = y;
@@ -106,7 +106,7 @@ function scr_preImportFileTypeWindow(){
 			// text position & string
 			var drawCheckmark = false;
 			var drawRadioButton = (j == obj_openingScreen.preImportInfoGrid_colChoose);
-			var textX = floor(tableX1 + plusX);
+			var textX = (j == obj_openingScreen.preImportInfoGrid_colFile) ? floor(fileTypeWindowX2 - (windowWidth * 0.05)) : floor(tableX1 + plusX);
 			var textY = floor(tableY1 + (strHeight * (i + 1)));
 			var text = string(ds_grid_get(preImportInfoGrid, j, i));
 			if (text == "0") {
@@ -121,7 +121,7 @@ function scr_preImportFileTypeWindow(){
 			// mouse interaction
 			var cellRectX1 = textX;
 			var cellRectY1 = textY - (strHeight / 2);
-			var cellRectX2 = textX + colWidth;
+			var cellRectX2 = (j == obj_openingScreen.preImportInfoGrid_colFile) ? textX - colWidth : textX + colWidth;
 			var cellRectY2 = textY + (strHeight / 2);
 			if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
 				importTypeMouseover = i;
@@ -152,6 +152,7 @@ function scr_preImportFileTypeWindow(){
 				draw_sprite_ext(spr_checkmark, 0, mean(cellRectX1, cellRectX1 + headerStrWidth), mean(cellRectY1, cellRectY2), 1, 1, 0, c_white, 1);
 			}
 			else {
+				draw_set_halign((j == obj_openingScreen.preImportInfoGrid_colFile) ? fa_right : fa_left);
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
 				draw_text(textX, textY, text);
@@ -185,6 +186,7 @@ function scr_preImportFileTypeWindow(){
 	
 	// draw window title
 	draw_set_font(global.fontMain);
+	draw_set_halign(fa_left);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), "Choose a file type to import");

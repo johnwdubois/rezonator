@@ -42,7 +42,7 @@ function scr_preImportScreen(){
 	
 	var exampleWindowX1 = floor(camWidth * 0.512);
 	var exampleWindowY1 = floor(camHeight * 0.25);
-	var exampleWindowX2 = floor(camWidth * 0.9);
+	var exampleWindowX2 = floor(camWidth * 0.96);
 	var exampleWindowY2 = floor(camHeight * 0.8);
 	
 	// draw window title
@@ -172,7 +172,7 @@ function scr_preImportScreen(){
 	
 	
 	// cover-up rectangle
-	var coverupRectX1 = floor(camWidth * 0.9) + 2;
+	var coverupRectX1 = exampleWindowX2 + 2;
 	var coverupRectY1 = 0;
 	var coverupRectX2 = camWidth;
 	var coverupRectY2 = camHeight;
