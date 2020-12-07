@@ -239,7 +239,7 @@ function scr_preImportInitiate(){
 			currentFile = ".txt";
 		}
 		else if (currentImportType == global.importType_IGT) {
-			currentPerLine = "Unit Per Block";
+			currentPerLine = "Unit per Block";
 			currentTab = false;
 			currentWhitespace = true;
 			currentHyphen = true;

@@ -62,7 +62,7 @@ global.importType_CoNLLU = "CoNLL-U";
 global.importType_IGT = "Interlinear Glossed Text";
 global.importType_PlainText = "Song & Verse";
 global.importType_TabDelimited = "Elan (tab-delimited)";
-global.importType_Paragraph = "Paragraph";
+global.importType_Paragraph = "Prose";
 global.importType_Transcription = "Transcription";
 
 // create list to hold all the import types (so we can loop over them easily)
