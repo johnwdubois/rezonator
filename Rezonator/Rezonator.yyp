@@ -153,6 +153,7 @@
     {"id":{"name":"scr_exportGrids","path":"scripts/scr_exportGrids/scr_exportGrids.yy",},"order":2,},
     {"id":{"name":"scr_createRezDirectory","path":"scripts/scr_createRezDirectory/scr_createRezDirectory.yy",},"order":11,},
     {"id":{"name":"scr_getListOfGridCols","path":"scripts/scr_getListOfGridCols/scr_getListOfGridCols.yy",},"order":22,},
+    {"id":{"name":"scr_sortElan","path":"scripts/scr_sortElan/scr_sortElan.yy",},"order":25,},
     {"id":{"name":"scr_colorThemeControl","path":"scripts/scr_colorThemeControl/scr_colorThemeControl.yy",},"order":0,},
     {"id":{"name":"scr_colorThemeGridInit","path":"scripts/scr_colorThemeGridInit/scr_colorThemeGridInit.yy",},"order":1,},
     {"id":{"name":"scr_userSettingsIniFile","path":"scripts/scr_userSettingsIniFile/scr_userSettingsIniFile.yy",},"order":13,},

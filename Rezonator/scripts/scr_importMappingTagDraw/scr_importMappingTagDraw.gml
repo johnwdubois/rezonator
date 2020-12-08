@@ -101,6 +101,7 @@ function scr_importMappingTagDraw() {
 				scr_setSpecialFieldsVariables();
 				scr_storeSchemaLists();
 				scr_fillFieldLevelMap();
+				scr_sortElan();
 				show_debug_message("Continue button clicked... " + scr_printTime());
 			
 				alarm[3] = 1;
