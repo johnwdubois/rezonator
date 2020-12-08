@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "word functions",
-    "path": "folders/Scripts/functions/word functions.yy",
+    "name": "word",
+    "path": "folders/Scripts/functions/word.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_newWord",

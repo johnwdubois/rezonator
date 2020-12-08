@@ -27,11 +27,13 @@ function scr_importPlainTXT(filename) {
 
 	
 		if (string_length(string_lettersdigits(lineInFile)) < 1) {
-		
-			ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
-			var row = ds_grid_height(global.importGrid) - 1;
-			var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));
-			ds_grid_set(global.importGrid, col, row, colVal);
+			
+			if(global.importType == global.importType_Paragraph){
+				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
+				var row = ds_grid_height(global.importGrid) - 1;
+				var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));
+				ds_grid_set(global.importGrid, col, row, colVal);
+			}
 			group++;
 		}
 		else {
@@ -44,22 +46,6 @@ function scr_importPlainTXT(filename) {
 		
 		}
 	
-
-	
-		//var colNameLength = string_pos(" ", lineInFile);
-		//var colName = string_copy(lineInFile, 2, colNameLength - 2);
-
-	
-	/*
-		var col = ds_map_find_value(global.importGridColMap, colName);
-		if (is_undefined(col)) {
-			global.importGridWidth++;
-			ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid));
-			global.importGridColName[global.importGridWidth - 1] = colName;
-			col = global.importGridWidth - 1;
-			ds_map_add(global.importGridColMap, colName, col);
-		}
-	*/
 
 
 	}

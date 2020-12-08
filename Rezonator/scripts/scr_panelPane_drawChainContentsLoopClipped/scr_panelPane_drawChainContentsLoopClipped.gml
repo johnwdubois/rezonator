@@ -167,6 +167,10 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					var rowInLinkGridListSize = ds_list_size(rowInLinkGridList);
 					//Get info on current word
 					var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+					
+					if (!is_numeric(currentWordID)) {
+						continue;
+					}
 
 					var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 					var currentWordInfoCol;

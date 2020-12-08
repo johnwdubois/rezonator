@@ -36,11 +36,13 @@ function scr_importTXT(filename) {
 		// CoNLL-U import
 		scr_importConlluTXT(filename);
 	}
-	else if (global.importType == global.importType_TabDelimited) {
-		// tab delimited import
-		scr_importTabbedTXT(filename);
+	else if (global.importType == global.importType_TabDelimited || global.importType == global.importType_Transcription) {
+		// tab delimited/elan/transcription import
+		var fileExt = filename_ext(obj_openingScreen.openedFile);
+		var delimiter = (string_count("csv", fileExt) > 0) ? "," : chr(9);
+		scr_importTabbedTXT(filename, delimiter);
 	}
-	else if (global.importType == global.importType_PlainText) {	
+	else if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {	
 		// plain text import
 		scr_importPlainTXT(filename);
 	}

@@ -37,7 +37,7 @@ function scr_drawGridViewerClipped() {
 	}
 
 
-	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 20);		
+	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 40);		
 	windowHeight = (camera_get_view_height(view_get_camera(0)) - (windowY*1.5));
 
 
@@ -77,10 +77,12 @@ function scr_drawGridViewerClipped() {
 	if (gridColXList == -1 or is_undefined(gridColXList)) {
 		exit;
 	}
-	if (ds_list_size(gridColXList) < gridWidth) {
+	var gridColXListSize = ds_list_size(gridColXList);
+	
+	if (gridColXListSize < gridWidth) {
 		scr_gridViewerDynamicWidth(grid);
 	}
-
+	
 
 	for (var gridLoopCol = 0; gridLoopCol < gridWidth; gridLoopCol++) {
 	
@@ -147,7 +149,7 @@ function scr_drawGridViewerClipped() {
 				draw_rectangle(currentCellRectX1 - clipX, currentCellRectY1 - clipY, currentCellRectX2 - clipX, currentCellRectY2 - clipY, false);
 			}
 		
-			if (not obj_control.mouseOverUI and point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2) and gridViewColXHolding == -1) {
+			if (point_in_rectangle(mouse_x, mouse_y, currentCellRectX1, currentCellRectY1, currentCellRectX2, currentCellRectY2) and gridViewColXHolding == -1) {
 				mouseoverRow = gridLoopRow;
 				mouseoverCol = gridLoopCol;
 				mouseoverItemString = currentItemString;
@@ -219,10 +221,15 @@ function scr_drawGridViewerClipped() {
 
 
 	// Draw the scroll bar for the GridView
+
 	scr_scrollBar(ds_grid_height(grid), -1, strHeight, colNameHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-		
+
+
+
+	scr_scrollBarGridViewer(global.colorThemeSelected1, global.colorThemeSelected2, global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	
 		
 
 
@@ -241,7 +248,20 @@ function scr_drawGridViewerClipped() {
 		
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(windowX1 + 200, windowY2 + 100, "gridColXList: " + scr_getStringOfList(gridColXList));
+		draw_text(windowX1 + 100, windowY2 + 45, "gridViewColPrevList: " + scr_getStringOfList(gridViewColPrevList));
+		draw_text(windowX1 + 100, windowY2 + 70, "gridColXList: " + scr_getStringOfList(gridColXList));
+		
+		draw_text(windowX1 + 350, windowY1 - 100, "scrollHorPlusX: " + string(scrollHorPlusX));
+		draw_text(windowX1 + 350, windowY1 - 75, "scrollHorPlusXDest: " + string(scrollHorPlusXDest));
+		draw_text(windowX1 + 350, windowY1 - 50, "scrollHorPlusXDiff: " + string(scrollHorPlusXDiff));
+		draw_text(windowX1 + 350, windowY1 - 25, "scrollHorPlusXPrev: " + string(scrollHorPlusXPrev));
+		
+		draw_text(windowX1 + 750, windowY1 - 100, "XDest: " + string(XDest));
+		
+		draw_set_halign(fa_right);
+		draw_text(windowX2, windowY2 + 30, "gridViewColXHolding: " + string(gridViewColXHolding));
+		draw_text(windowX2, windowY2 + 55, "gridViewColXHoldingPrev: " + string(gridViewColXHoldingPrev));
+		draw_text(windowX2, windowY2 + 80, "gridViewColXHoldingDiff: " + string(gridViewColXHoldingDiff));
 	}
 	//draw_text(500,100,"Grid Viewer windowY1: " + string(windowY1));
 
@@ -266,7 +286,7 @@ function scr_drawGridViewerClipped() {
 		}
 	
 	
-		if (not obj_control.mouseOverUI and point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
+		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
 			window_set_cursor(cr_size_we);
 			draw_set_alpha(0.8);
 		
@@ -277,6 +297,49 @@ function scr_drawGridViewerClipped() {
 				ds_list_copy(gridViewColPrevList, gridColXList);
 			}
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		if (scrollBarHorHolding or scrollBarLeftButtonHeld or scrollBarRightButtonHeld) {
+			var colXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
+			var firstColX = ds_list_find_value(colXList, 0);
+			var lastColX = ds_list_find_value(colXList, ds_list_size(colXList) - 1);
+			var colXDifference = lastColX - firstColX;
+			var minScrollHorPlusX = windowWidth - (colXDifference + windowWidth);
+			
+			scrollHorPlusXDiff = (scrollHorPlusX - scrollHorPlusXPrev);
+			
+			XDest = -colXDifference*(scrollHorPlusXDiff/minScrollHorPlusX);
+			
+			
+			for (var i = 0; i < gridColXListSize; i++) {
+				var currentNewColX = ds_list_find_value(gridViewColPrevList, i) + XDest;
+				ds_list_set(gridColXList, i, currentNewColX);
+			}
+		}
+		else {
+			scrollHorPlusXDiff = 0;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 		if (gridViewColXHolding == i) {
 			window_set_cursor(cr_size_we);
@@ -295,7 +358,7 @@ function scr_drawGridViewerClipped() {
 			gridViewColXHoldingDiff = newColX - gridViewColXHoldingPrev;
 		
 			// set X positions for all following columns
-			var gridColXListSize = ds_list_size(gridColXList);
+			
 			for (var j = i + 1; j < gridColXListSize; j++) {
 
 				var currentNewColX = ds_list_find_value(gridViewColPrevList, j) + gridViewColXHoldingDiff;
@@ -303,8 +366,8 @@ function scr_drawGridViewerClipped() {
 			}
 		}
 	
-		if (colX < windowX2 - global.scrollBarWidth) {
-			draw_line_width(colX, windowY1 + colNameHeight, colX, windowY2, 3);
+		if (colX < windowX2 - global.scrollBarWidth and colX > windowX1) {
+			draw_line_width(colX, windowY1 + colNameHeight, colX, windowY2 - global.scrollBarWidth, 3);
 		}
 	}
 	draw_set_alpha(1);

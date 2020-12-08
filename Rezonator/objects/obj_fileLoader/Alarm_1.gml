@@ -21,7 +21,8 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
 
 	if (global.importType == global.importType_Default || global.importType == global.importType_PlainText
-	|| global.importType == global.importType_TabDelimited) {
+	|| global.importType == global.importType_TabDelimited || global.importType == global.importType_Transcription
+	|| global.importType == global.importType_Paragraph) {
 		scr_fillTokenImportGrid();
 	}
 	else if (global.importType == global.importType_CSV) {
@@ -34,10 +35,15 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 		scr_fillImportGrids_IGT();
 	}
 	
-	if (global.importType == global.importType_PlainText) {
+	if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
 		show_debug_message("obj_fileLoader Alarm 1");
 		with (obj_alarm) {
 			alarm[7] = 2;
+		}
+		if(global.importType == global.importType_PlainText){
+			with (obj_stacker) {
+				alarm[8] = 2;
+			}
 		}
 	}
 	
@@ -48,7 +54,7 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	
 	
 	scr_importTagMaps();
-	scr_importSpecialFieldsUnitImport();
+	scr_transferSpecialFields();
 	//scr_copyLevelMapping();
 }
 

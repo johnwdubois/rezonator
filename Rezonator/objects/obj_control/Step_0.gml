@@ -34,6 +34,10 @@ else {
 		ctrlHold = true;
 	}
 }
+if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)) {
+	keyboard_key_release(vk_up);
+	keyboard_key_release(vk_down);
+}
 
 
 // Mechanism to update center display row
@@ -324,11 +328,11 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		//}
 	
 		// Sends user to the bottom of the main screen
-		if ((ctrlHold and keyboard_check_pressed(vk_down)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_down))) {
+		if ((ctrlHold and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_down) or keyboard_check_pressed(vk_end)))) {
 			scrollPlusYDest = -999999999999;
 		}
 		// Sends user to the top of the main screen
-		else if ((ctrlHold and keyboard_check_pressed(vk_up)) or (keyboard_check(vk_alt) and keyboard_check_pressed(vk_up))) {
+		else if ((ctrlHold and (keyboard_check_pressed(vk_up) or keyboard_check_pressed(vk_home))) or (keyboard_check(vk_alt) and (keyboard_check_pressed(vk_up)  or keyboard_check_pressed(vk_home)))) {
 			scrollPlusYDest = 100;
 		}
 		
@@ -336,8 +340,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			//show_message("right");
 			wordLeftMarginDest -= gridSpaceHorizontal;
 		}
-		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
+		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
 			scr_jumpToEnd(false);
 		}
 
@@ -346,8 +351,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			wordLeftMarginDest += gridSpaceHorizontal;
 			//show_message("left");
 		}
-		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_home) or keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) {
+		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_home) and not keyboard_check(vk_control))
+		or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
 			if (searchGridActive) {
 				scr_jumpToEnd(true);
 			}
@@ -649,7 +655,8 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 // hide participant names
 if (!gridView) {
 	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("H"))) {
-		scr_hideSpeakerName();
+		scr_showSpeakerName(!obj_control.showParticipantName);
+		show_debug_message("obj_control Step");
 	}
 }
 
@@ -706,10 +713,10 @@ if (instance_exists(obj_customTagPane)) {
 }
 
 
-if(not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
+if (not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
 	mouseOverUI = false;
 }
-else{
+else {
 	mouseOverUI = true;
 }
 

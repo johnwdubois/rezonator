@@ -10,7 +10,7 @@ function scr_gridListWindow() {
 
 
 	// GridList Window
-	var gridListInfoWindowRectX1 = 20;
+	var gridListInfoWindowRectX1 = x;
 	var gridListInfoWindowRectY1 = obj_gridViewer.windowY1;
 	var gridListInfoWindowRectX2 = obj_gridViewer.windowX1-20;
 	var gridListInfoWindowRectY2 = obj_gridViewer.windowY2;

@@ -40,9 +40,9 @@ grid = obj_control.unitGrid;
 //gridCurrentTopViewRow[0] = 0;
 //gridCurrentTopViewRow[1] = 0;
 
-windowX = camera_get_view_width(view_get_camera(0)) / 6;
+windowX = camera_get_view_width(view_get_camera(0)) / 5;
 windowY = camera_get_view_height(view_get_camera(0)) / 4;
-windowWidth = camera_get_view_width(view_get_camera(0)) - (windowX) - 20;
+windowWidth = camera_get_view_width(view_get_camera(0)) - (windowX) - 40;
 windowHeight = camera_get_view_height(view_get_camera(0)) - (windowY*1.5);
 windowX1 = windowX;
 windowX2 = windowX1 + windowWidth;
@@ -86,15 +86,32 @@ clipX = 0;
 clipY = 0;
 	
 
-// scrollbar variables
+// vertical scrollbar variables
 scrollBarHolding = false;
 scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
+scrollBarWidth = 20;
 scrollBarHeight = 0;
 scrollPlusY = 100;
 scrollPlusYDest = 100;
 scrollBarPlusY = 0;
+
+// horizontal scrollbar variables
+scrollBarHorHolding = false;
+scrollBarLeftButtonHeld = false;
+scrollBarRightButtonHeld = false;
+scrollBarHorWidth = 20;
+scrollBarHorHeight = 0;
+scrollHorPlusX = 100;
+scrollHorPlusXDest = 100;
+scrollBarHorPlusX = 0;
+
+scrollHorPlusXPrev = 0;
+scrollHorPlusXDiff = 0;
+XDest = 0;
+
+
+
 
 x = windowX;
 y = windowY;

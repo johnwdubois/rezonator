@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "dialogueBox",
+    "path": "folders/Scripts/UI/dialogueBox.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_drawConfirmStackCreate",

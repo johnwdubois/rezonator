@@ -73,7 +73,8 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	if (scrollBarHeight == windowHeightAdjusted - (global.scrollBarWidth * 2)) {
 		scrollBarPlusY = 0;
 	}
-	// Limit the scrol bar's pos within bounds
+	
+	// Limit the scroll bar's pos within bounds
 	scrollBarPlusY = clamp(scrollBarPlusY, global.scrollBarWidth, windowHeightAdjusted - global.scrollBarWidth);
 
 	//Instantiate drawing variables
@@ -121,12 +122,14 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	else {
 		scrollBarDownButtonHeld = false;
 	}
+	
 	if (!mouse_check_button(mb_left)) {
 		scrollBarHolding = false;
 		scrollBarUpButtonHeld = false;
 		scrollBarDownButtonHeld = false;
 		global.canScroll = true;
 	}
+	
 	draw_rectangle(scrollBarX1 - clipX, y + windowHeightAdjusted - global.scrollBarWidth + marginTop - clipY, scrollBarX2 - clipX, y + windowHeightAdjusted + marginTop - clipY, false);
 
 

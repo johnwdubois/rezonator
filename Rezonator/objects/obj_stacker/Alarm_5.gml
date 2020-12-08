@@ -15,6 +15,10 @@ switch (currentStackerFuntion) {
 		scr_sentStackerLoop();
 		break;
 		
+	case stackerFunctionGroup:
+		scr_groupStackerLoop();
+		break;
+		
 	default:
 		break;
 }

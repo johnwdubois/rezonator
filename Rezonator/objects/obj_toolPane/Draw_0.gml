@@ -57,4 +57,3 @@ scr_drawToolPaneNew();
 
 
 progressBarX = camera_get_view_width(camera_get_active()) - 100;
-scr_drawImportProgressBar();

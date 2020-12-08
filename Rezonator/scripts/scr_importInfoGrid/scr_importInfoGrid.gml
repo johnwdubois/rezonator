@@ -145,7 +145,7 @@ function scr_importInfoGrid() {
 	}
 	
 	// auto-load Schema
-	scr_loadRZS(true);
+	scr_loadSchema(true);
 	
 	// check if there are any Token level fields
 	var anyTokenFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");

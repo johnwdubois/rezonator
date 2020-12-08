@@ -23,7 +23,7 @@ function scr_stackOptions(optionSelected) {
 			break;
 		case "Stacker":
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList,  "Turn", "Sentence", "Random");
+			ds_list_add(dropDownOptionList,  "Turn", "Sentence", "Group", "Random");
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(x + windowWidth, y + (optionSpacing * 2), dropDownOptionList, global.optionListTypeCreateStack);
 			}

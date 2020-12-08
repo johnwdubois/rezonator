@@ -231,6 +231,7 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(camera_get_active()) - 1000, 720, "global.windowWidth: " + string(window_get_width()));
 	draw_text(camera_get_view_width(camera_get_active()) - 1000, 740, "global.scrollBarWidth: " + string(global.scrollBarWidth));
 	draw_text(camera_get_view_width(camera_get_active()) - 1000, 760, "functionChainContents_lineGridRowFocused: " + string(obj_panelPane.functionChainContents_lineGridRowFocused));
+	draw_text(camera_get_view_width(camera_get_active()) - 1000, 780, "chunkID: " + string(obj_control.chunkID));
 }
 var scrollBarMarginTop = 230;
 if (!obj_panelPane.showNav) {
@@ -240,18 +241,6 @@ if (!obj_panelPane.showNav) {
 	}
 }
 if (filterGridActive) {
-	/*
-	if(stackShowActive)	{
-		scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, wordTopMargin,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
-	}
-	else{
-		scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, wordTopMargin,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
-	}
-	*/
 	if (stackShowActive)	{
 		scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
 		global.colorThemeSelected1, global.colorThemeSelected2,

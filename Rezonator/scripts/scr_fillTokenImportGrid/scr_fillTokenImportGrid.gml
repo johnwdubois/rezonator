@@ -199,6 +199,15 @@
 			}
 		}
 	}
+	
+	// if this is ELAN/Tab delimited, we will see if there is Unit Start data filled out and if so, sort by that
+	if (global.importType == global.importType_TabDelimited) {
+		var unitStartCol = ds_list_find_index(global.unitImportColNameList, global.unitImportUnitStartColName);
+		show_debug_message("scr_fillTokenImportGrid(), unitStartCol: " + string(unitStartCol));
+		if (unitStartCol > -1) {
+			ds_grid_sort(global.unitImportGrid, unitStartCol, true);
+		}
+	}
 
 	show_debug_message("scr_fillTokenImportGrid(), ENDING..." + scr_printTime());
 

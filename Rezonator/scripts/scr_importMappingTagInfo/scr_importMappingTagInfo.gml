@@ -1,11 +1,10 @@
 function scr_importMappingTagInfo() {
 	
-	if (live_call()) return live_result;
-	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
-	var colAmount = global.tagInfoGridWidth - 1; // we subtract 1 so we don't show the error column
+	var colAmount = global.tagInfoGridWidth - 2; // we subtract 2 so we don't show the level column or the error column
+	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
 	scr_windowCameraAdjust();
 	
@@ -48,14 +47,9 @@ function scr_importMappingTagInfo() {
 	y = tagInfoWindowRectY1;
 
 
-	if ((!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown))
-	|| scrollBarHolding) {
-		obj_importMapping.mouseoverRow = -1;
-	}
 
-
-	var timesHit = 0;
 	var buttonRectSize = rowHeight - 10;
+	var mouseoverAnyRow = false;
 
 
 
@@ -65,19 +59,13 @@ function scr_importMappingTagInfo() {
 	draw_set_valign(fa_middle);
 
 	for (var i = 0; i < colAmount; i++) {
-		var prevColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * 2);
 		var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
-		var nextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * 3);
 		var plusY = tagInfoWindowRectY1 + rowHeight;
-	
 	
 		var realNextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * (i + 1));
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(colX - clipX, tagInfoWindowRectY1 - clipY, realNextColX - clipX, tagInfoWindowRectY2 - clipY, false);
-	
-	
-		var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
-	
+		
 		for (var j = 0; j < tagInfoGridHeight; j++) {
 			
 			// check if this is the blockSeq or blockID, if so
@@ -96,12 +84,6 @@ function scr_importMappingTagInfo() {
 			if (currentSpecialField == "Word Delimiter") {
 				wordDelimiterEncountered = true;
 			}
-			
-			
-
-			
-		
-			draw_set_halign(fa_left);
 		
 			var cellRectX1 = colX;
 			var cellRectY1 = plusY + scrollPlusY;
@@ -113,7 +95,7 @@ function scr_importMappingTagInfo() {
 			&& !instance_exists(obj_dropDown)) {
 				if (!scrollBarHolding) {
 					obj_importMapping.mouseoverRow = j;
-					timesHit++;
+					mouseoverAnyRow = true;
 				}
 			}
 			if (obj_importMapping.mouseoverRow == j) {
@@ -140,7 +122,9 @@ function scr_importMappingTagInfo() {
 			else if (i == global.tagInfoGrid_colSingleTokenMarker) {
 				currentCell = (currentCell) ? "Yes" : "";
 			}
-			else if (i == global.tagInfoGrid_colLevel) {
+			else if (i == global.tagInfoGrid_colLevelSchema || i == global.tagInfoGrid_colLevelPredict) {
+				
+				// change displayed string of level
 				if (currentCell == global.levelToken) {
 					currentCell = "token";
 				}
@@ -156,81 +140,19 @@ function scr_importMappingTagInfo() {
 				else {
 					currentCell = "";
 				}
-			}
-			else if (i == global.tagInfoGrid_colSpecialFields) {
-			
-				if (currentCell == "0") {
-					currentCell = "";
-				}
-			
-				var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
-				if (currentLevel == global.levelToken || currentLevel == global.levelUnit || currentLevel == global.levelWord) {
-			
-					var dropDownButtonX1 = floor(colX + colWidth - 4 - global.scrollBarWidth - buttonRectSize);
+				
+				// if this is the selected choice between Schema/Predicted, show the dropdown for adjusting the level
+				if (i == obj_importMapping.levelEstimateColumnSelected) {
+					// draw dropdown option for level column
+					var dropDownButtonX1 = floor(colX + colWidth - 4 - buttonRectSize);
 					var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
-					var dropDownButtonX2 = floor(dropDownButtonX1 + buttonRectSize);
-					var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
+					var dropDownButtonX2 = dropDownButtonX1 + buttonRectSize;
+					var dropDownButtonY2 = dropDownButtonY1 + buttonRectSize;
+					var mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 				
-					if (!instance_exists(obj_dropDown)) {
-						if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
-							
-							scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Special Field", obj_tooltip.arrowFaceUp);
-							
-							draw_set_color(global.colorThemeBG);
-							draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
-							draw_set_color(global.colorThemeBorders);
-							draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+					if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Level", obj_tooltip.arrowFaceUp);
 				
-							if (mouse_check_button_pressed(mb_left)) {
-								obj_importMapping.inDropDown = true;
-							}
-							if (mouse_check_button_released(mb_left)) {
-								obj_importMapping.colToChange = i;
-								obj_importMapping.rowToChange = j;
-					
-								var dropDownOptionList = ds_list_create();
-						
-								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
-									ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter", "Translation");
-								}
-								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
-									ds_list_add(dropDownOptionList, "Display Token", "Transcript");
-								}
-								if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelWord) {
-									ds_list_add(dropDownOptionList, "Word Delimiter");
-								}
-								if (ds_list_size(dropDownOptionList) > 0) {
-									var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
-									dropDownInst.optionList = dropDownOptionList;
-									dropDownInst.optionListType = global.optionListTypeSpecialFields;
-								}
-							}
-						}
-					}
-			
-					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
-				}
-			
-			}
-
-		
-		
-			draw_set_color(global.colorThemeText);
-			draw_set_font(global.fontMain);
-			draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
-		
-			if (i == global.tagInfoGrid_colLevel) {
-			
-				var dropDownButtonX1 = floor(colX + colWidth - 4 - buttonRectSize);
-				var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
-				var dropDownButtonX2 = dropDownButtonX1 + buttonRectSize;
-				var dropDownButtonY2 = dropDownButtonY1 + buttonRectSize;
-
-				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
-					
-					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Level", obj_tooltip.arrowFaceUp);
-				
-					if (!instance_exists(obj_dropDown)) {
 						draw_set_color(global.colorThemeBG);
 						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
 				
@@ -245,34 +167,90 @@ function scr_importMappingTagInfo() {
 							obj_importMapping.rowToChange = j;
 					
 							var dropDownOptionList = ds_list_create();
-							if(global.importType == global.importType_IGT){	
-								ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse" , "EXCEPTION");
+							if (global.importType == global.importType_IGT) {
+								ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse", "EXCEPTION");
 							}
 							else {
-								ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse" , "EXCEPTION");
-								
+								ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse", "EXCEPTION");
 							}
-							if (ds_list_size(dropDownOptionList) > 0 ) {
-								var dropDownInst = instance_create_depth(prevColX,floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
+							if (ds_list_size(dropDownOptionList) > 0) {
+								var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY), -999, obj_dropDown);
 								dropDownInst.optionList = dropDownOptionList;
 								dropDownInst.optionListType = global.optionListTypeMappingTag;
 							}
 						}
 					}
-				}
-				else {
-					mouseOverLevel = false;
-				}
+					else {
+						mouseOverLevel = false;
+					}
 		
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
-		
+					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+				}
 			}
+			else if (i == global.tagInfoGrid_colSpecialFields) {
+			
+				if (currentCell == "0") {
+					currentCell = "";
+				}
+				
+				// draw dropdown for special fields column
+				var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
+				if (currentLevel == global.levelToken || currentLevel == global.levelUnit || currentLevel == global.levelWord) {
+			
+					var dropDownButtonX1 = floor(colX + colWidth - 4 - global.scrollBarWidth - buttonRectSize);
+					var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);
+					var dropDownButtonX2 = floor(dropDownButtonX1 + buttonRectSize);
+					var dropDownButtonY2 = floor(dropDownButtonY1 + buttonRectSize);
+					var mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+				
+					if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
+						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Special Field", obj_tooltip.arrowFaceUp);
+							
+						draw_set_color(global.colorThemeBG);
+						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, false);
+						draw_set_color(global.colorThemeBorders);
+						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+						if (mouse_check_button_pressed(mb_left)) {
+							obj_importMapping.inDropDown = true;
+						}
+						if (mouse_check_button_released(mb_left)) {
+							obj_importMapping.colToChange = i;
+							obj_importMapping.rowToChange = j;
+					
+							var dropDownOptionList = ds_list_create();
+						
+							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
+								ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter", "Translation");
+							}
+							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
+								ds_list_add(dropDownOptionList, "Display Token", "Transcript");
+							}
+							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelWord) {
+								ds_list_add(dropDownOptionList, "Word Delimiter");
+							}
+							if (ds_list_size(dropDownOptionList) > 0) {
+								var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
+								dropDownInst.optionList = dropDownOptionList;
+								dropDownInst.optionListType = global.optionListTypeSpecialFields;
+							}
+						}
+					}
+			
+					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, c_white, 1);
+				}
+			
+			}
+
+		
+		
+			draw_set_color(global.colorThemeText);
+			draw_set_font(global.fontMain);
+			draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
 
 			plusY += rowHeight;
 		}
 	}
-
-	draw_set_halign(fa_left);
 
 
 	if (obj_importMapping.rezInfoGridSelectedRow < 0) {
@@ -284,16 +262,16 @@ function scr_importMappingTagInfo() {
 
 
 
-
-
-
-
 	// draw header for column
 	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
 	draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
 	for (var i = 0; i < colAmount; i++) {
-		var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
+		var colWidth = windowWidth / colAmount;
+		var colX = tagInfoWindowRectX1 + (colWidth * i);
 		var headerStr = "";
+		var showLevelRadioButton = false;
+		
 		if (i == global.tagInfoGrid_colMarker) {
 			headerStr = "Marker";
 		}
@@ -301,10 +279,15 @@ function scr_importMappingTagInfo() {
 			headerStr = "Example";
 		}
 		else if (i == global.tagInfoGrid_colLevel) {
-			headerStr = "Level Estimate";
+			headerStr = "Level";
+		}
+		else if (i == global.tagInfoGrid_colLevelSchema) {
+			headerStr = "Level (Schema)";
+			showLevelRadioButton = true;
 		}
 		else if (i == global.tagInfoGrid_colLevelPredict) {
-			headerStr = "Level Prediction";
+			headerStr = "Level (Predicted)";
+			showLevelRadioButton = true;
 		}
 		else if (i == global.tagInfoGrid_colMarkerPercent) {
 			headerStr = "Marker %";
@@ -318,7 +301,8 @@ function scr_importMappingTagInfo() {
 		else if (i == global.tagInfoGrid_colSpecialFields) {
 			headerStr = "Special Fields";
 		}
-
+		
+		// draw header text
 		draw_set_font(global.fontMainBold);
 		draw_set_color(global.colorThemeText);
 		draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
@@ -326,12 +310,47 @@ function scr_importMappingTagInfo() {
 		// draw column lines
 		draw_set_color(global.colorThemeBorders);
 		draw_line(colX - clipX, tagInfoWindowRectY1 - clipY, colX - clipX, tagInfoWindowRectY2 - clipY);
+		
+		// draw radio button for selecting level estimate
+		if (showLevelRadioButton) {
+			var levelRadioButtonRad = rowHeight * 0.35;
+			var levelRadioButtonX = colX + colWidth - (levelRadioButtonRad * 1.5);
+			var levelRadioButtonY = tagInfoWindowRectY1 + (rowHeight / 2);
+			draw_set_color(global.colorThemeBorders);
+			draw_circle(levelRadioButtonX - clipX, levelRadioButtonY - clipY, levelRadioButtonRad, true);
+			
+			// click on radio button to select it
+			if (point_in_circle(mouse_x, mouse_y, levelRadioButtonX, levelRadioButtonY, levelRadioButtonRad)) {
+				
+				// mouseover radio button
+				draw_set_color(global.colorThemeBorders);
+				draw_set_alpha(0.5);
+				draw_circle(levelRadioButtonX - clipX, levelRadioButtonY - clipY, levelRadioButtonRad * 0.8, false);
+				draw_set_alpha(1);
+				
+				// click radio button
+				if (mouse_check_button_released(mb_left)) {
+					obj_importMapping.levelEstimateColumnSelected = i;
+					with (obj_importMapping) {
+						alarm[4] = 1;
+					}
+				}
+			}
+			
+			// draw filled in radio button if this column is selected
+			if (obj_importMapping.levelEstimateColumnSelected == i) {
+				var filledLevelRadioButtonRad = levelRadioButtonRad * 0.85;
+				draw_set_color(global.colorThemeBorders);
+				draw_circle(levelRadioButtonX - clipX, levelRadioButtonY - clipY, filledLevelRadioButtonRad, false);
+			}
+		}
 	}
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, true);
-
-
-
+	
+	
+	// update levels from correct level column
+	ds_grid_set_grid_region(global.tagInfoGrid, global.tagInfoGrid, obj_importMapping.levelEstimateColumnSelected, 0, obj_importMapping.levelEstimateColumnSelected, ds_grid_height(global.tagInfoGrid), global.tagInfoGrid_colLevel, 0);
 
 
 
@@ -364,6 +383,11 @@ function scr_importMappingTagInfo() {
 
 
 
+	// if mouse is outside the window, or not on a row, then don't highlight a row
+	if ((!point_in_rectangle(mouse_x, mouse_y, tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2 - global.scrollBarWidth, tagInfoWindowRectY2) && !instance_exists(obj_dropDown))
+	|| scrollBarHolding || !mouseoverAnyRow) {
+		obj_importMapping.mouseoverRow = -1;
+	}
 
 
 
