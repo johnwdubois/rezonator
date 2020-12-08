@@ -40,6 +40,11 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 		with (obj_alarm) {
 			alarm[7] = 2;
 		}
+		if(global.importType == global.importType_PlainText){
+			with (obj_stacker) {
+				alarm[8] = 2;
+			}
+		}
 	}
 	
 	if (!obj_control.updatedSpeakerLabel) {

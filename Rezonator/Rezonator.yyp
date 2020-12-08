@@ -161,6 +161,7 @@
     {"id":{"name":"scr_fpsTrackerFile","path":"scripts/scr_fpsTrackerFile/scr_fpsTrackerFile.yy",},"order":5,},
     {"id":{"name":"scr_refreshLineGridPixelY","path":"scripts/scr_refreshLineGridPixelY/scr_refreshLineGridPixelY.yy",},"order":24,},
     {"id":{"name":"scr_getTotalUnitAmount","path":"scripts/scr_getTotalUnitAmount/scr_getTotalUnitAmount.yy",},"order":23,},
+    {"id":{"name":"scr_groupStackerLoop","path":"scripts/scr_groupStackerLoop/scr_groupStackerLoop.yy",},"order":24,},
     {"id":{"name":"scr_storeSchemaLists","path":"scripts/scr_storeSchemaLists/scr_storeSchemaLists.yy",},"order":0,},
     {"id":{"name":"scr_updateSchemaLists","path":"scripts/scr_updateSchemaLists/scr_updateSchemaLists.yy",},"order":1,},
     {"id":{"name":"scr_importTagMaps","path":"scripts/scr_importTagMaps/scr_importTagMaps.yy",},"order":15,},
