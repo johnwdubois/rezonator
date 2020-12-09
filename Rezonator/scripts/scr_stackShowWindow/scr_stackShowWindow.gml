@@ -48,11 +48,14 @@ function scr_stackShowWindow() {
 	if (obj_control.stackShowWindowActive) {
 		obj_control.mouseoverPanelPane = true;
 
+
+		x = camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset;
+		y = camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 11;
+		
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeBG);
 		draw_rectangle(windowX1, windowY1, windowX2, windowY2, false);
-		x = camera_get_view_width(camera_get_active()) /2 - stackBoxXOffset;
-		y = camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 11;
+		
 	
 		draw_set_colour(global.colorThemePaneBG);
 		if (global.colorTheme == 0) {

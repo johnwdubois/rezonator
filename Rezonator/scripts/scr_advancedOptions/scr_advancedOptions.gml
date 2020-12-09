@@ -21,18 +21,21 @@ function scr_advancedOptions(optionSelected) {
 			instance_destroy(obj_dropDown);
 		break;
 		case "Shuffle":
-			obj_control.lineGridShuffle = !obj_control.lineGridShuffle;
-			if (obj_control.lineGridShuffle) {
+
 				scr_shuffleDisplayRows();
 				scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-			}
-			else {
+				instance_destroy(obj_dropDown);
+		
+		break;
+		
+		case "Restore":
+		
 				ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
 				scr_refreshLineGridPixelY();
 				scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-			}
+
 		
-			instance_destroy(obj_dropDown);
+				instance_destroy(obj_dropDown);
 		break;
 	
 

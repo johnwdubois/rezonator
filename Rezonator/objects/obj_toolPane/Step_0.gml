@@ -1,6 +1,6 @@
 // Check for user inputs to switch between chain tools
 if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
-	if (keyboard_check_pressed(ord("R"))) {
+	if (keyboard_check_pressed(ord("R")) and not keyboard_check(vk_control)) {
 		with (obj_chain) {
 			scr_chainDeselect();
 		}
