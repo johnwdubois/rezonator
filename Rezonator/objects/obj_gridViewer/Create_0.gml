@@ -86,15 +86,32 @@ clipX = 0;
 clipY = 0;
 	
 
-// scrollbar variables
+// vertical scrollbar variables
 scrollBarHolding = false;
 scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
+scrollBarWidth = 20;
 scrollBarHeight = 0;
 scrollPlusY = 100;
 scrollPlusYDest = 100;
 scrollBarPlusY = 0;
+
+// horizontal scrollbar variables
+scrollBarHorHolding = false;
+scrollBarLeftButtonHeld = false;
+scrollBarRightButtonHeld = false;
+scrollBarHorWidth = 20;
+scrollBarHorHeight = 0;
+scrollHorPlusX = 100;
+scrollHorPlusXDest = 100;
+scrollBarHorPlusX = 0;
+
+scrollHorPlusXPrev = 0;
+scrollHorPlusXDiff = 0;
+XDest = 0;
+
+
+
 
 x = windowX;
 y = windowY;

@@ -1,7 +1,7 @@
 {
-  "option_windows_display_name": "Rezonator 0.9.1.1",
+  "option_windows_display_name": "Rezonator 0.9.1.3",
   "option_windows_executable_name": "${project_name}",
-  "option_windows_version": "0.9.1.1",
+  "option_windows_version": "0.9.1.3",
   "option_windows_company_info": "Rezonator Games",
   "option_windows_product_info": "Rezonator",
   "option_windows_copyright_info": "(c) 2018 Rezonator Games",
@@ -24,7 +24,7 @@
   "option_windows_installer_finished": "${options_dir}/windows/installer/finished.bmp",
   "option_windows_installer_header": "${options_dir}/windows/installer/header.bmp",
   "option_windows_license": "${base_options_dir}/windows/installer/license.txt",
-  "option_windows_nsis_file": "C:/ProgramData/GameMakerStudio2/Cache/runtimes/runtime-2.2.5.378/BaseProject/options/windows/installer/nsis_script.nsi",
+  "option_windows_nsis_file": "${base_options_dir}/windows/installer/nsis_script.nsi",
   "option_windows_enable_steam": false,
   "option_windows_disable_sandbox": true,
   "option_windows_steam_use_alternative_launcher": false,

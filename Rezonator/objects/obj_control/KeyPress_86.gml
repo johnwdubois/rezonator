@@ -16,15 +16,9 @@ if (!shortcutsEnabled || dialogueBoxActive) {
 	exit;
 }
 
-// Check for gridView switch first
-if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and !gridView) {
-		gridView = true;
-}
-else if (gridView) {
-	gridView = false;
-}
+
 // If we're not in grid view and there is a search, switch between the main and search screen
-else if (ds_grid_height(searchGrid) > 0 and !gridView) {
+if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main/filter to search
 	if(currentActiveLineGrid == lineGrid) {
 		scr_unFocusAllChains();

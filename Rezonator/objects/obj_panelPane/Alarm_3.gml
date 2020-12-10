@@ -329,7 +329,7 @@ ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colFunc, 2, scr_get
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colDesc, 2, scr_get_translation("help_description_mute"));
 ds_grid_set(functionHelp_helpGridPlay, functionHelp_helpGrid_colHide, 2, false);
 
-var helpGridHeightAdvanced = 4;
+var helpGridHeightAdvanced = 3;
 ds_grid_resize(functionHelp_helpGridAdvanced, functionHelp_helpGridWidth, helpGridHeightAdvanced);
 var altOption = "";
 if( os_type = os_macosx){
@@ -344,10 +344,7 @@ ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, scr
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, scr_get_translation("help_description_shuffle"));
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 0, false);
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, scr_get_translation("key_shuffle"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, scr_get_translation("help_label_shuffle"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, scr_get_translation("help_description_shuffle"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 1, false);
+
 
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, scr_get_translation("key_shuffle"));
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, scr_get_translation("help_label_restore-sequence"));

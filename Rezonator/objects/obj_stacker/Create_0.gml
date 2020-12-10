@@ -10,6 +10,7 @@ stackerFunctionDefault = 0;
 stackerFunctionRandom = 1;
 stackerFunctionTurn = 2;
 stackerFunctionSent = 3;
+stackerFunctionGroup = 4;
 currentStackerFuntion = stackerFunctionDefault;
 
 endNoteTagsGrid = ds_grid_create(2, 0);
@@ -25,6 +26,7 @@ confirmStackCreate = false;
 createStacksRandom = false;
 createStacksTurn = false;
 createStacksSentence = false;
+createStacksGroup = false;
 
 
 

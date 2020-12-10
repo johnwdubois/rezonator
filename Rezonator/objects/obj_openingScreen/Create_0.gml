@@ -62,12 +62,16 @@ global.importType_CoNLLU = "CoNLL-U";
 global.importType_IGT = "Interlinear Glossed Text";
 global.importType_PlainText = "Song & Verse";
 global.importType_TabDelimited = "Elan (tab-delimited)";
+global.importType_Paragraph = "Prose";
+global.importType_Transcription = "Transcription";
 
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
 ds_list_add(global.importTypeList,
+	global.importType_Transcription,
 	global.importType_TabDelimited,
 	global.importType_PlainText,
+	global.importType_Paragraph,
 	global.importType_CSV,
 	global.importType_CoNLLU,
 	global.importType_IGT);
@@ -208,16 +212,17 @@ global.importFileRipList = ds_list_create();
 
 
 
-global.tagInfoGridWidth = 9;
+global.tagInfoGridWidth = 10;
 global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colExample = 1;
 global.tagInfoGrid_colMarkerPercent = 2;
 global.tagInfoGrid_colSingleTokenMarker = 3;
 global.tagInfoGrid_colTokenCount = 4;
-global.tagInfoGrid_colLevel = 5;
+global.tagInfoGrid_colLevelSchema = 5;
 global.tagInfoGrid_colLevelPredict = 6;
 global.tagInfoGrid_colSpecialFields = 7;
-global.tagInfoGrid_colError = 8;
+global.tagInfoGrid_colLevel = 8;
+global.tagInfoGrid_colError = 9;
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 

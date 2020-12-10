@@ -1,4 +1,4 @@
-function scr_importTabbedTXT(filename) {
+function scr_importTabbedTXT(filename, delimiter) {
 	show_debug_message("scr_importTabbedTXT");
 	global.importFilename = filename;
 
@@ -10,7 +10,7 @@ function scr_importTabbedTXT(filename) {
 	
 		var lineInFile = file_text_readln(fileOpenRead);
 		var listOfColumns = ds_list_create();
-		listOfColumns = scr_splitString(lineInFile, chr(9));
+		listOfColumns = scr_splitString(lineInFile, delimiter);
 		var listOfColumnsSize = ds_list_size(listOfColumns);
 		
 		/*

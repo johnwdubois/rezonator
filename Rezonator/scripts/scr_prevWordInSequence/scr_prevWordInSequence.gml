@@ -23,8 +23,13 @@ function scr_prevWordInSequence(currentWordID, currentUnitID) {
 	// find currentWordID in unit's wordIDList
 	var lineWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
 	var currentWordIDIndex = ds_list_find_index(lineWordIDList, currentWordID);
+	
 
-	if (currentWordIDIndex == 0) {	
+
+	if (currentWordIDIndex < 0) {
+		return -1;
+	}
+	else if (currentWordIDIndex == 0) {	
 		// if this is the first word in the unit...
 	
 		// if this is the first word in the unit, and the first unit in the discourse, return -1

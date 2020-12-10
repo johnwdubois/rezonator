@@ -199,6 +199,9 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(camera_get_active()) - 300, 750, "mouseoverScrollBar: " + string(mouseoverScrollBar));
 	draw_text(camera_get_view_width(camera_get_active()) - 300, 780, "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
 	
+	draw_text(camera_get_view_width(camera_get_active()) - 600, 800, "wordWrap: " + string(wordWrap));
+	draw_text(camera_get_view_width(camera_get_active()) - 600, 820, "rightClickDisplayRow: " + string(rightClickDisplayRow));
+	
 	
 	var chainListY = 0;
 	with (obj_panelPane) {
@@ -241,18 +244,6 @@ if (!obj_panelPane.showNav) {
 	}
 }
 if (filterGridActive) {
-	/*
-	if(stackShowActive)	{
-		scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, wordTopMargin,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
-	}
-	else{
-		scr_scrollBar(ds_grid_height(currentActiveLineGrid) + stackShowBuffer , -1, gridSpaceVertical, wordTopMargin,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
-	}
-	*/
 	if (stackShowActive)	{
 		scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
 		global.colorThemeSelected1, global.colorThemeSelected2,

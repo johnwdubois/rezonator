@@ -94,13 +94,14 @@ function scr_importMappingTagDraw() {
 			draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
 	
 			if (mouse_check_button_released(mb_left) && !continueButtonClicked) {
-			
+				
 				continueButtonClicked = true;
 				var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 				instLoading.loadSprite = spr_loading;
 				scr_setSpecialFieldsVariables();
 				scr_storeSchemaLists();
 				scr_fillFieldLevelMap();
+				scr_sortElan();
 				show_debug_message("Continue button clicked... " + scr_printTime());
 			
 				alarm[3] = 1;

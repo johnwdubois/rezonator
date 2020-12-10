@@ -101,7 +101,7 @@ function scr_loadSchema(autoload) {
 			
 			// set level & special field (if they were found in this field's map)
 			if (!is_undefined(levelFromMap)) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, levelFromMap);
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, i, levelFromMap);
 			}
 			if (!is_undefined(specialFieldFromMap)) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);

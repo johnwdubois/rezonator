@@ -1,25 +1,30 @@
 function scr_mappingTagOptions(optionSelected) {
 
+	var levelToSet = global.levelToken;
 	switch (optionSelected)
 	{
 		case "Token":
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelToken);
+			levelToSet = global.levelToken;
 			break;
 		case "Word":
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelWord);
+			levelToSet = global.levelWord;
 			break;
 		case "Unit":
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelUnit);
+			levelToSet = global.levelUnit;
 			break;
 		case "Discourse":	
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelDiscourse);
+			levelToSet = global.levelDiscourse;
 			break;
 		case "EXCEPTION":
-			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange , global.levelUnknown);
+			levelToSet = global.levelUnknown;
 			break;
 		default:
 			break;
 	}
+	
+	// set level
+	ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, levelToSet);
+	ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, obj_importMapping.rowToChange, levelToSet);
 	
 	// clear special fields for this row
 	ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields , obj_importMapping.rowToChange , "");

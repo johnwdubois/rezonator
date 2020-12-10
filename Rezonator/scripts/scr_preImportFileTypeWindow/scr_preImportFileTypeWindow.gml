@@ -17,7 +17,7 @@ function scr_preImportFileTypeWindow(){
 	
 	///////////// FILE TYPE WINDOW ////////////////
 	
-	x = floor(camWidth * 0.1);
+	x = floor(camWidth * 0.04);
 	y = floor(camHeight * 0.25);
 	windowX = x;
 	windowY = y;
@@ -73,7 +73,7 @@ function scr_preImportFileTypeWindow(){
 	var strHeight = string_height("A") * 1.1;
 	var tableX1 = fileTypeWindowX1 + (windowWidth * 0.05);
 	var tableY1 = fileTypeWindowY1 + strHeight;
-	var tableX2 = fileTypeWindowX2;
+	var tableX2 = fileTypeWindowX2 - (windowWidth * 0.05)
 	var tableWidth = tableX2 - tableX1;
 	var mouseOverAnyCell = false;
 	for (var i = 0; i < preImportInfoGridHeight; i++) {
@@ -94,19 +94,20 @@ function scr_preImportFileTypeWindow(){
 			else if (j == 6) headerText = "File";
 			var headerStrWidth = string_width(headerText);
 			if (i == 0) {
-				var headerX = floor(tableX1 + plusX);
+				var headerX = (j == obj_openingScreen.preImportInfoGrid_colFile) ? tableX2 : floor(tableX1 + plusX);
 				var headerY = floor(tableY1);
 				draw_set_color(global.colorThemeBG);
 				draw_rectangle(headerX, headerY - (strHeight / 2), headerX + headerStrWidth, headerY + (strHeight / 2), false);
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
+				draw_set_halign((j == obj_openingScreen.preImportInfoGrid_colFile) ? fa_right : fa_left);
 				draw_text(headerX, headerY, headerText);
 			}
 			
 			// text position & string
 			var drawCheckmark = false;
 			var drawRadioButton = (j == obj_openingScreen.preImportInfoGrid_colChoose);
-			var textX = floor(tableX1 + plusX);
+			var textX = (j == obj_openingScreen.preImportInfoGrid_colFile) ? floor(fileTypeWindowX2 - (windowWidth * 0.05)) : floor(tableX1 + plusX);
 			var textY = floor(tableY1 + (strHeight * (i + 1)));
 			var text = string(ds_grid_get(preImportInfoGrid, j, i));
 			if (text == "0") {
@@ -116,14 +117,17 @@ function scr_preImportFileTypeWindow(){
 				drawCheckmark = true;
 			}
 			var colWidth = tableWidth * (ds_list_find_value(colWidthRatioList, j) / 100);
-			plusX += colWidth;
 			
 			// mouse interaction
-			var cellRectX1 = textX;
+			var cellRectX1 = (j == obj_openingScreen.preImportInfoGrid_colFile) ? floor(tableX1 + plusX) : textX;
 			var cellRectY1 = textY - (strHeight / 2);
-			var cellRectX2 = textX + colWidth;
+			var cellRectX2 = (j == obj_openingScreen.preImportInfoGrid_colFile) ? tableX2 : textX + colWidth;
 			var cellRectY2 = textY + (strHeight / 2);
-			if (point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2)) {
+			plusX += colWidth;
+			var mouseoverCurrentCell = point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2);
+			
+			
+			if (mouseoverCurrentCell) {
 				importTypeMouseover = i;
 				mouseOverAnyCell = true;
 			}
@@ -152,6 +156,7 @@ function scr_preImportFileTypeWindow(){
 				draw_sprite_ext(spr_checkmark, 0, mean(cellRectX1, cellRectX1 + headerStrWidth), mean(cellRectY1, cellRectY2), 1, 1, 0, c_white, 1);
 			}
 			else {
+				draw_set_halign((j == obj_openingScreen.preImportInfoGrid_colFile) ? fa_right : fa_left);
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
 				draw_text(textX, textY, text);
@@ -165,7 +170,7 @@ function scr_preImportFileTypeWindow(){
 	
 	// header line divider
 	draw_set_color(global.colorThemeBorders);
-	draw_line(tableX1, tableY1 + (strHeight / 2), fileTypeWindowX2 - (windowWidth * 0.05), tableY1 + (strHeight / 2));
+	draw_line(tableX1, tableY1 + (strHeight / 2), tableX2, tableY1 + (strHeight / 2));
 	
 	// don't draw mouseover effect if mouse isn't on any cell
 	if (!mouseOverAnyCell) {
@@ -185,6 +190,7 @@ function scr_preImportFileTypeWindow(){
 	
 	// draw window title
 	draw_set_font(global.fontMain);
+	draw_set_halign(fa_left);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), "Choose a file type to import");

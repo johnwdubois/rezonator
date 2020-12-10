@@ -4,9 +4,16 @@ function scr_updateTagInfoErrorCol(){
 	
 	show_debug_message("scr_updateTagInfoErrorCol() ... START");
 	
+	// if there are any zeros in the schema column, change them to be level unknown
+	var zeroRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, 0, global.tagInfoGrid_colLevelSchema, ds_grid_height(global.tagInfoGrid), 0);
+	while (zeroRow > -1) {
+		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, zeroRow, global.levelUnknown);
+		zeroRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, 0, global.tagInfoGrid_colLevelSchema, ds_grid_height(global.tagInfoGrid), 0);
+	}
+	
+	
 	var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
 	var indexOfWordDelim = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
-			
 			
 	obj_importMapping.canContinueToken1to1 = true;
 	obj_importMapping.canContinueWord1to1 = true;
@@ -59,6 +66,27 @@ function scr_updateTagInfoErrorCol(){
 				}
 			}
 		}
+		
+		// check if there is an error with the special fields
+		var specialFieldsError = false;
+		var currentSpecialFields = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
+		if (  (currentSpecialFields == "Unit Start" && levelOfField != global.levelUnit)
+		   || (currentSpecialFields == "Unit End" && levelOfField != global.levelUnit)
+		   || (currentSpecialFields == "Speaker" && levelOfField != global.levelUnit)
+		   || (currentSpecialFields == "Unit Delimiter" && levelOfField != global.levelUnit)
+		   || (currentSpecialFields == "Turn Delimiter" && levelOfField != global.levelUnit)
+		   || (currentSpecialFields == "Translation" && levelOfField != global.levelUnit)
+		   || (currentSpecialFields == "Display Token" && levelOfField != global.levelToken)
+		   || (currentSpecialFields == "Transcript" && levelOfField != global.levelToken)
+		   || (currentSpecialFields == "Word Delimiter" && levelOfField != global.levelWord)
+		   ) {
+			   specialFieldsError = true;
+		   }
+		// if there is an error with the special fields, remove the special field
+		if (specialFieldsError) {
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
+		}
+		
 	}
 	show_debug_message("scr_updateTagInfoErrorCol() ... post-loop, canContinueToken1to1: " + string(obj_importMapping.canContinueToken1to1) + " ... canContinueWord1to1: " + string(obj_importMapping.canContinueWord1to1));
 }

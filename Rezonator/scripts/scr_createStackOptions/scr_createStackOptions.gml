@@ -41,6 +41,16 @@ function scr_createStackOptions(optionSelected) {
 			}
 			obj_stacker.createStacksTurn = true;
 			break;
+		case "Group":
+			if (doStacksExist) {
+				confirmStack = true;
+			}
+			else {
+				obj_stacker.splitSave = true;
+				obj_stacker.alarm[8] = 1;
+			}
+			obj_stacker.createStacksGroup = true;
+			break;
 		case "Sentence":
 			if (doStacksExist) {
 				confirmStack = true;

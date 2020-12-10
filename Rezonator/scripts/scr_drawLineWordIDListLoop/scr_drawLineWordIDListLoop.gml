@@ -80,6 +80,10 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 		//var shake = false;
 		var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 		var currentWordGridRow = currentWordID - 1;
+		
+		if (currentWordID == obj_control.rightClickWordID) {
+			obj_control.rightClickDisplayRow = drawLineLoop;
+		}
 
 		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
 		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);

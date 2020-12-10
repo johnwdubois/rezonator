@@ -135,7 +135,11 @@ function scr_drawToolPaneNew() {
 
 	// Prevent typing in text from changing the tool mode
 	if (!obj_control.gridView and !obj_control.dialogueBoxActive) {
-		if (keyboard_check_pressed(ord("R"))) {
+		if (keyboard_check_pressed(ord("E")) and not keyboard_check(vk_control)) {
+			currentMode = modeRead;
+			obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
+		}
+		if (keyboard_check_pressed(ord("R")) and not keyboard_check(vk_control)) {
 			currentMode = modeRez;
 			obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 		}

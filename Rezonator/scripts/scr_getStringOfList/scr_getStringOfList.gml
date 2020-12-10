@@ -1,6 +1,8 @@
 function scr_getStringOfList(list) {
 	// Convert the data of a list into a readable string format
-
+	if (!is_numeric(list)) return "non-numeric list";
+	if (!ds_exists(list, ds_type_list)) return "list does not exist: " + string(list);
+	
 	var str = "{";
 
 	if !ds_list_empty(list){

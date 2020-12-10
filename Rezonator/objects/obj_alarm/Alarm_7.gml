@@ -1,9 +1,4 @@
-if (global.importType == global.importType_PlainText) {
-	scr_hideSpeakerName();
+if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
+	scr_showSpeakerName(false);
 }
-/*
-	var participantCheck = ds_grid_get(global.unitImportGrid, global.unitImport_colParticipant, (ds_grid_height(global.unitImportGrid) - 1));
-	if (participantCheck == undefined or participantCheck == 0 or participantCheck == "" or participantCheck == "undefined"){
-		scr_hideSpeakerName();
-	}
-*/
+show_debug_message("obj_alarm Alarm 7");

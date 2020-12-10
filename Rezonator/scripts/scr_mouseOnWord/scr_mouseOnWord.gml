@@ -161,57 +161,17 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			
 			
 			// Check for rightMouseClick
-			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
-
-				if(!instance_exists(obj_dialogueBox)){
+			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
+				
+				
 				obj_control.rightClickWordID = obj_control.newWordHoverWordID;
 				obj_control.rightClickUnitID = obj_control.newWordHoverUnitID;
 				obj_control.rightClickWordSeq = obj_control.newWordHoverWordSeq;
-				}
+				obj_control.rightClickDisplayRow = -1;
 				
-				var currentRightClickWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, obj_control.rightClickWordID - 1);
-				obj_control.rightClickonWord = true;
-				obj_control.wideDropDown = true;
-				var dropDownOptionList = ds_list_create();
-				// No dropdown if in Read Mode
-				if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
-					obj_control.ableToCreateDropDown = false;
-				}
-				// Options for a word in a Chain
-				else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, false) != -1){
-					if(obj_control.searchGridActive){
-						ds_list_add(dropDownOptionList, "Delete Link");
-					}
-					else{
-						ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete Link");
-					}
-					if(currentRightClickWordState == obj_control.wordStateNew) {
-						ds_list_add(dropDownOptionList, "Delete New Word");
-					}
-					else{
-						ds_list_add(dropDownOptionList, "Replace Word", "Restore Word");
-					}
-					
-				}
-				// Options for a chainless word
-				else{
-					if(obj_control.searchGridActive){
-						obj_control.ableToCreateDropDown = false;
-					}
-					else{
-						ds_list_add(dropDownOptionList, "Split Word", "New Word");
-					}
-					if(currentRightClickWordState == obj_control.wordStateNew) {
-						ds_list_add(dropDownOptionList, "Delete New Word");
-					}
-					else{
-						ds_list_add(dropDownOptionList, "Replace Word", "Restore Word");
-					}
-				}
-				
-				// Create the dropdown
-				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeRightClickWord);
+				// wait 1 frame and then show the right click dropdown
+				with (obj_alarm) {
+					alarm[11] = 2;
 				}
 
 			}
