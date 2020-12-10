@@ -608,6 +608,7 @@ rightClickUnitID = 0;
 rightClickWordID = 0;
 rightClickWordSeq = 0;
 rightClickonWord = false;
+rightClickDisplayRow = -1;
 deleteNewWord = false;
 deleteChunkWord = false;
 fromDropDown = false;
@@ -676,6 +677,8 @@ readModeHints = 0;
 mouseOverUI = false;
 
 ctrlHold = false;
+
+wordWrap = false;
 
 
 with (obj_alarm) {

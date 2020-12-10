@@ -27,6 +27,7 @@
     {"id":{"name":"spr_backArrow","path":"sprites/spr_backArrow/spr_backArrow.yy",},"order":15,},
     {"id":{"name":"spr_linkArrow","path":"sprites/spr_linkArrow/spr_linkArrow.yy",},"order":16,},
     {"id":{"name":"spr_alertArrow","path":"sprites/spr_alertArrow/spr_alertArrow.yy",},"order":17,},
+    {"id":{"name":"scr_wordRightClicked","path":"scripts/scr_wordRightClicked/scr_wordRightClicked.yy",},"order":5,},
     {"id":{"name":"scr_isStrOnlyWhitespace","path":"scripts/scr_isStrOnlyWhitespace/scr_isStrOnlyWhitespace.yy",},"order":6,},
     {"id":{"name":"spr_loading","path":"sprites/spr_loading/spr_loading.yy",},"order":18,},
     {"id":{"name":"spr_saving","path":"sprites/spr_saving/spr_saving.yy",},"order":19,},

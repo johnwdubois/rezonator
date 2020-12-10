@@ -348,12 +348,14 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 									var currentWordIDListSize = ds_list_size(currentWordIDList);
 									for (var i = 0; i < currentWordIDListSize; i++) {
 										var currentWordID = ds_list_find_value(currentWordIDList, i);
-										var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-										if(currentWordState == obj_control.wordStateDead){
-											continue;
+										if (is_numeric(currentWordID)) {
+											var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
+											if(currentWordState == obj_control.wordStateDead){
+												continue;
+											}
+											var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
+											currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
 										}
-										var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
-										currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
 									}
 									// remove any newlines or carriage returns from the utterance display
 									currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");

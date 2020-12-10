@@ -217,6 +217,70 @@ function scr_rightClickWordOptions(optionSelected) {
 			obj_control.rightClickonWord = false;
 			instance_destroy();
 			break;
+		case "Split Line":
+			
+			// get lineGridRow and wordIDList
+			var lineGrid = obj_control.lineGrid;
+			var lineGridRow = obj_control.rightClickDisplayRow;
+			var wordIDList = ds_grid_get(lineGrid, obj_control.lineGrid_colWordIDList, lineGridRow);
+			
+			// make sure that wordIDList exists
+			if (is_numeric(wordIDList)) {
+				if (ds_exists(wordIDList, ds_type_list)) {
+				
+					// find rightClickWordID in wordIDList
+					var wordIDListSize = ds_list_size(wordIDList);
+					var rightClickWordIndex = ds_list_find_index(wordIDList, obj_control.rightClickWordID);
+					show_debug_message("scr_rightClickWordOptions() ... wordIDList: " + scr_getStringOfList(wordIDList));
+					show_debug_message("scr_rightClickWordOptions() ... rightClickWordIndex: " + string(rightClickWordIndex));
+			
+					// make sure that rightClickWordID is in wordIDList
+					if (rightClickWordIndex >= 0) {
+						
+						// create a new row at the bottom of the lineGrid, then copy everything down a row
+						ds_grid_resize(lineGrid, ds_grid_width(lineGrid), ds_grid_height(lineGrid) + 1);
+						ds_grid_set_grid_region(lineGrid, lineGrid, 0, lineGridRow + 1, ds_grid_width(lineGrid), ds_grid_height(lineGrid) - 2, 0, lineGridRow + 2);
+						ds_grid_set_grid_region(lineGrid, lineGrid, 0, lineGridRow, ds_grid_width(lineGrid), lineGridRow, 0, lineGridRow + 1);
+
+						// split the existing wordIDList into 2 separate lists
+						var splitIDList1 = ds_list_create();
+						for (var i = 0; i < rightClickWordIndex; i++) {
+							var currentWordID = ds_list_find_value(wordIDList, i);
+							ds_list_add(splitIDList1, currentWordID);
+						}
+						var splitIDList2 = ds_list_create();
+						for (var i = rightClickWordIndex; i < wordIDListSize; i++) {
+							var currentWordID = ds_list_find_value(wordIDList, i);
+							ds_list_add(splitIDList2, currentWordID);
+						}
+						
+						show_debug_message("scr_rightClickWordOptions() ... splitIDList1: " + scr_getStringOfList(splitIDList1));
+						show_debug_message("scr_rightClickWordOptions() ... splitIDList2: " + scr_getStringOfList(splitIDList2));
+						
+						// set the new split lists in the lineGrid
+						ds_grid_set(lineGrid, obj_control.lineGrid_colWordIDList, lineGridRow, splitIDList1);
+						ds_grid_set(lineGrid, obj_control.lineGrid_colWordIDList, lineGridRow + 1, splitIDList2);
+						
+						
+						// add to the displayRow and pixelYOriginal for every following line in the lineGrid
+						var prevDisplayRow = ds_grid_get(lineGrid, obj_control.lineGrid_colDisplayRow, lineGridRow);
+						ds_grid_add_region(lineGrid, obj_control.lineGrid_colDisplayRow, lineGridRow + 1, obj_control.lineGrid_colDisplayRow, ds_grid_height(lineGrid), 1);
+						ds_grid_add_region(lineGrid, obj_control.lineGrid_colPixelYOriginal, lineGridRow + 1, obj_control.lineGrid_colPixelYOriginal, ds_grid_height(lineGrid), obj_control.gridSpaceVertical);
+						
+						// destroy the original wordIDList
+						//ds_list_destroy(wordIDList);
+					}
+				}
+			}
+			
+			
+			
+			
+			
+			instance_destroy();
+			break;
+			
+			
 			/*
 		case "Recolor":
 		

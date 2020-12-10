@@ -199,6 +199,9 @@ if (showDevVars) {
 	draw_text(camera_get_view_width(camera_get_active()) - 300, 750, "mouseoverScrollBar: " + string(mouseoverScrollBar));
 	draw_text(camera_get_view_width(camera_get_active()) - 300, 780, "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
 	
+	draw_text(camera_get_view_width(camera_get_active()) - 600, 800, "wordWrap: " + string(wordWrap));
+	draw_text(camera_get_view_width(camera_get_active()) - 600, 820, "rightClickDisplayRow: " + string(rightClickDisplayRow));
+	
 	
 	var chainListY = 0;
 	with (obj_panelPane) {

@@ -60,6 +60,7 @@ function scr_alignChain(wordIDList, pushOut) {
 			var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 			var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 			var previousDisplayCol = -1;
+
 			if (currentWordSeq == 0 or previousWordID - 1 < 0) {
 				currentVoid = currentDisplayCol;
 			}
