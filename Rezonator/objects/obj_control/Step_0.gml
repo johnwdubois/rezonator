@@ -634,18 +634,6 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 		room_goto(rm_openingScreen);
 }
 
-if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("E")) && shortcutsEnabled) {
-	lineGridShuffle = !lineGridShuffle;
-	if (lineGridShuffle) {
-		scr_shuffleDisplayRows();
-		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-	}
-	else {
-		ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
-		scr_refreshLineGridPixelY();
-		scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-	}
-}
 
 currentCenterDisplayRow = max(currentCenterDisplayRow, 0);
 currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentActiveLineGrid) - 1);

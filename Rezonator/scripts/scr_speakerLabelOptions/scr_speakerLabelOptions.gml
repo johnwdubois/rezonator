@@ -27,16 +27,9 @@ function scr_speakerLabelOptions(optionSelected) {
 					break;
 						
 				case "Shuffle":	
-					obj_control.lineGridShuffle = !obj_control.lineGridShuffle;
-					if (obj_control.lineGridShuffle) {
-						scr_shuffleDisplayRows();
-						scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-					}
-					else {
-						ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
-						scr_refreshLineGridPixelY();
-						scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-					}
+				
+					scr_shuffleDisplayRows();
+					scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 					instance_destroy(obj_dropDown);
 					//return true;
 					break;
