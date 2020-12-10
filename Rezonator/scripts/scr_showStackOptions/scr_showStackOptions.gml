@@ -7,7 +7,7 @@ function scr_showStackOptions(optionSelected) {
 
 			show_message(scr_get_translation("msg_default-stack"));
 			break;
-		case "Random":
+		case "menu_random":
 
 			show_message(scr_get_translation("msg_random-stack"));
 			break;

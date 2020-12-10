@@ -343,9 +343,9 @@ global.exitOut = false;
 // this map tells Rezonator what dropdowns expand to further dropdowns
 // so we can look up the strings in this map to know whether or not to draw the expand arrow
 global.expandableDropDownMap = ds_map_create();
-ds_map_add(global.expandableDropDownMap, "Delete All", true);
-ds_map_add(global.expandableDropDownMap, "Window", true);
-ds_map_add(global.expandableDropDownMap, "Nav", true);
+ds_map_add(global.expandableDropDownMap, "menu_delete-all", true);
+ds_map_add(global.expandableDropDownMap, "menu_window", true);
+ds_map_add(global.expandableDropDownMap, "menu_nav", true);
 ds_map_add(global.expandableDropDownMap, "menu_justify", true);
 ds_map_add(global.expandableDropDownMap, "menu_prose", true);
 ds_map_add(global.expandableDropDownMap, "menu_hide", true);
@@ -353,8 +353,8 @@ ds_map_add(global.expandableDropDownMap, "menu_pick", true);
 ds_map_add(global.expandableDropDownMap, "menu_filter-context", true);
 ds_map_add(global.expandableDropDownMap, "menu_search", true);
 ds_map_add(global.expandableDropDownMap, "menu_stack", true);
-ds_map_add(global.expandableDropDownMap, "Stacker", true);
-ds_map_add(global.expandableDropDownMap, "Play and Learn", true);
+ds_map_add(global.expandableDropDownMap, "menu_stacker", true);
+ds_map_add(global.expandableDropDownMap, "menu_play-learn", true);
 ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "Autosave", true);
 ds_map_add(global.expandableDropDownMap, "Advanced", true);

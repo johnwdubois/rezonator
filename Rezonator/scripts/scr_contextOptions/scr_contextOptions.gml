@@ -3,7 +3,7 @@ function scr_contextOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Above":// show/hide prior context
+		case "menu_above":// show/hide prior context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[0] = !functionFilter_peek[0];
@@ -18,7 +18,7 @@ function scr_contextOptions(optionSelected) {
 			}
 		
 		break;
-		case "Between":// show/hide tween context
+		case "menu_between":// show/hide tween context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[1] = !functionFilter_peek[1];
@@ -35,7 +35,7 @@ function scr_contextOptions(optionSelected) {
 		
 		break;
 	
-		case "Below":// hide/show next context
+		case "menu_below":// hide/show next context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[2] = !functionFilter_peek[2];

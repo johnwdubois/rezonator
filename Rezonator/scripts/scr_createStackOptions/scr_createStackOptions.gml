@@ -21,7 +21,7 @@ function scr_createStackOptions(optionSelected) {
 			obj_control.mouseoverPanelPane = false;
 			instance_destroy(obj_dropDown);
 			break;
-		case "Random":
+		case "menu_random":
 			if (doStacksExist) {
 				confirmStack = true;
 			}
@@ -31,7 +31,7 @@ function scr_createStackOptions(optionSelected) {
 			}
 			obj_stacker.createStacksRandom = true;
 			break;
-		case "Turn":
+		case "menu_turn":
 			if (doStacksExist) {
 				confirmStack = true;
 			}

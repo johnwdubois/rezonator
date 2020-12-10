@@ -5,7 +5,7 @@ function scr_playandLearnOptions(optionSelected){
 
 	switch (optionSelected)
 	{
-		case "Where's Elmo":
+		case "label_option_where_elmo":
 						
 			global.skipToPlayandLearn = true;
 			room_goto(rm_openingScreen);

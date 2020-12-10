@@ -16,11 +16,11 @@ function scr_editOptions(optionSelected){
 			
 			break;
 			
-		case "Delete All":
+		case "menu_delete-all":
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Track Chains", "Rez Chains", "Stacks", "Chains");
+			ds_list_add(dropDownOptionList, "menu_track_chains_pl", "menu_rez_chains_pl", "menu_stacks_pl", "menu_chains_pl");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypeDelete);

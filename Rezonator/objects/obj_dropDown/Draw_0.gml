@@ -124,13 +124,13 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// check whether this option is expandable
 	var isExpandable = ds_map_exists(global.expandableDropDownMap, optionText);
-	if (optionText == "Stack" && (ds_list_size(optionList) == 4 || ds_list_size(optionList) == 3)) {
+	if (optionText == "menu_stack" && (ds_list_size(optionList) == 4 || ds_list_size(optionList) == 3)) {
 		isExpandable = false;
 	}
-	else if (optionText == "Search" && ds_list_size(optionList) == 4) {
+	else if (optionText == "menu_search" && ds_list_size(optionList) == 4) {
 		isExpandable = false;
 	}
-	else if (optionText == "Prose" && ds_list_size(optionList) == 2) {
+	else if (optionText == "menu_prose" && ds_list_size(optionList) == 2) {
 		isExpandable = false;
 	}
 	
