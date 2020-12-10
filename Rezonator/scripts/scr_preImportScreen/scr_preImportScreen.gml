@@ -49,7 +49,7 @@ function scr_preImportScreen(){
 	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
-	draw_text(exampleWindowX1, floor(exampleWindowY1 - (strHeight)), "Example");
+	draw_text(exampleWindowX1, floor(exampleWindowY1 - (strHeight)), scr_get_translation("msg_example"));
 	
 	// draw window border
 	draw_set_color(global.colorThemeBG);
@@ -228,7 +228,7 @@ function scr_preImportScreen(){
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_text(floor(mean(buttonRectX1, buttonRectX2)), floor(mean(buttonRectY1, buttonRectY2)), "Continue");
+	draw_text(floor(mean(buttonRectX1, buttonRectX2)), floor(mean(buttonRectY1, buttonRectY2)), scr_get_translation("msg_continue"));
 	
 	// click on continue button
 	if (mouseoverContinue && mouse_check_button_released(mb_left)) {

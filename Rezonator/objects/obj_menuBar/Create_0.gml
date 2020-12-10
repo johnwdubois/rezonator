@@ -41,7 +41,7 @@ helpDropDownOptionListType = 23; // optionListTypeHelp = 23;
 
 fileOptionList = ds_list_create();
 ds_list_add(fileOptionList, "menu_save", 
-							"Save As",
+							"menu_save-as",
 							"menu_media", 
 							//scr_get_translation("menu_clip"), 
 							"menu_export",

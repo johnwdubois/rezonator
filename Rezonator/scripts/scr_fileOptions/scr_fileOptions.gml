@@ -35,7 +35,7 @@ function scr_fileOptions(optionSelected) {
 				alarm[0] = 3;
 			}
 			break;
-		case "Save As":
+		case "menu_save-as":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 			instLoading.loadSprite = spr_saving;
 		
