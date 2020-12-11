@@ -54,7 +54,7 @@ function scr_stackShowWindow() {
 		
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(windowX1, windowY1, windowX2, windowY2, false);
+		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
 		
 	
 		draw_set_colour(global.colorThemePaneBG);
@@ -94,14 +94,14 @@ function scr_stackShowWindow() {
 
 	
 		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainBold);
+		draw_set_font(global.fontMain);
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - stackBoxXOffset  + 30), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 5), scr_get_translation("msg_select-all"));
 	
 		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainBold);
+		draw_set_font(global.fontMain);
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - horizontalBuffer + 15), floor(camera_get_view_height(camera_get_active()) / 2 - verticleBuffer + 15), string(game_display_name));
 	
-		draw_set_font(fnt_mainLarge1);
+		draw_set_font(global.fontMain);
 
 		// draw buttons for OK and Cancel
 		var okButtonX1 = camera_get_view_width(camera_get_active()) /2 - 100 - buttonXOffset;
@@ -117,7 +117,7 @@ function scr_stackShowWindow() {
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 100 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset, true);
 		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainLarge1);
+		draw_set_font(global.fontMain);
 	
 		// draw button text
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 - 155), floor(camera_get_view_height(camera_get_active()) / 2 + 180), scr_get_translation("msg_show-stack"));
@@ -148,7 +148,7 @@ function scr_stackShowWindow() {
 		//option headers
 		draw_set_halign(fa_center);
 		draw_set_alpha(1);
-		draw_set_font(fnt_mainBoldLarge1);
+		draw_set_font(global.fontMain);
 		draw_set_colour(global.colorThemeText);
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + rightCenter), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 10), scr_get_translation("msg_mode"));
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + rightCenter - (string_width("GAME")/2) - 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset, camera_get_view_width(camera_get_active()) /2 + rightCenter + (string_width("GAME")/2) + 5, camera_get_view_height(camera_get_active())/2 - stackBoxYOffset, true);
@@ -159,7 +159,7 @@ function scr_stackShowWindow() {
 	
 	
 		//button for game selection
-		draw_set_font(fnt_mainLarge1);
+		draw_set_font(global.fontMain);
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + rightCenter), floor(camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset + 20), currentGame);
 		
 		// Prevent drawing of names that are too long
@@ -185,7 +185,7 @@ function scr_stackShowWindow() {
 
 	
 		//options text draw
-		draw_set_font(fnt_main);
+		draw_set_font(global.fontMain);
 		draw_set_halign(fa_left);
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active()) / 2 - 110), scr_get_translation("msg_tutorial"));
 
