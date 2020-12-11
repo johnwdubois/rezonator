@@ -15,15 +15,9 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
-	if(argument_count > 4){
-		dropDownInst.translateDropDown = translateDropDown;
-	}
-	else{
-		dropDownInst.translateDropDown = false;
-	}
 	
 	if(room == rm_mainScreen){
-	obj_control.ableToCreateDropDown = false;
-	obj_control.alarm[0] = 2;
+		obj_control.ableToCreateDropDown = false;
+		obj_control.alarm[0] = 2;
 	}
 }

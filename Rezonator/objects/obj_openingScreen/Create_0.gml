@@ -57,20 +57,27 @@ global.games = false;
 
 
 global.importType_Default = 0;
-global.importType_CSV = "CSV";
+global.importType_CSV = "One Word per Line";
 global.importType_CoNLLU = "CoNLL-U";
 global.importType_IGT = "Interlinear Glossed Text";
-global.importType_PlainText = "Plain text";
-global.importType_TabDelimited = "Tab delimited";
-global.importType = global.importType_PlainText;
+global.importType_PlainText = "Song & Verse";
+global.importType_TabDelimited = "Elan (tab-delimited)";
+global.importType_Paragraph = "Prose";
+global.importType_Transcription = "Transcription";
 
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
-ds_list_add(global.importTypeList, global.importType_PlainText,
+ds_list_add(global.importTypeList,
+	global.importType_Transcription,
 	global.importType_TabDelimited,
-	global.importType_IGT,
+	global.importType_PlainText,
+	global.importType_Paragraph,
 	global.importType_CSV,
-	global.importType_CoNLLU);
+	global.importType_CoNLLU,
+	global.importType_IGT);
+
+// by default, we will set importType to be the first item in the importTypeList
+global.importType = ds_list_find_value(global.importTypeList, 0);
 
 
 
@@ -157,7 +164,8 @@ participantHueOffset = 0;
 
 showDevVars = false;
 
-scr_importPackage();
+scr_createRezDirectory();
+scr_createFonts()
 
 
 global.currentDirString = global.rezonatorDirString;
@@ -204,15 +212,17 @@ global.importFileRipList = ds_list_create();
 
 
 
-global.tagInfoGridWidth = 8;
+global.tagInfoGridWidth = 10;
 global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colExample = 1;
-global.tagInfoGrid_colLevel = 2;
-global.tagInfoGrid_colMarkerPercent = 3;
-global.tagInfoGrid_colSingleTokenMarker = 4;
-global.tagInfoGrid_colTokenCount = 5;
-global.tagInfoGrid_colSpecialFields = 6;
-global.tagInfoGrid_colError = 7;
+global.tagInfoGrid_colMarkerPercent = 2;
+global.tagInfoGrid_colSingleTokenMarker = 3;
+global.tagInfoGrid_colTokenCount = 4;
+global.tagInfoGrid_colLevelSchema = 5;
+global.tagInfoGrid_colLevelPredict = 6;
+global.tagInfoGrid_colSpecialFields = 7;
+global.tagInfoGrid_colLevel = 8;
+global.tagInfoGrid_colError = 9;
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 
@@ -358,7 +368,7 @@ ds_map_add(global.expandableDropDownMap, "menu_play-learn", true);
 ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
-
+ds_map_add(global.expandableDropDownMap, "menu_language", true);
 
 global.optionListTypeSort = 0;
 global.optionListTypeChainList = 1;

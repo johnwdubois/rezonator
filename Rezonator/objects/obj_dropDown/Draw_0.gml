@@ -143,7 +143,7 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	// draw option text
-	var optionTextStr = (translateDropDown) ? scr_get_translation(optionText) : optionText;
+	var optionTextStr = scr_get_translation(optionText);
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);

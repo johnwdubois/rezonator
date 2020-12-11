@@ -38,8 +38,6 @@ optionCurrent = -1;
 mouseOverDropDown =  false;
 textBuffer = 10;
 
-translateDropDown = false;
-
 // scrollbar variables
 clipSurface = -1;
 clipWidth = 100;

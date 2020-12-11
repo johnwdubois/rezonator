@@ -129,7 +129,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		}*/
 	
 		//Color codes the line lists for User
-		draw_set_color(discoColor); //soften the color
+		draw_set_color(global.colorThemeSelected1); //soften the color
 		//draw_set_color(lineColor);
 		draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	

@@ -15,7 +15,7 @@
 function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor) {
 
 	participantColor = (is_undefined(participantColor)) ? c_gray : participantColor;
-	discoColor = (is_undefined(discoColor)) ? c_gray : discoColor;
+	discoColor = global.colorThemeSelected1; //(is_undefined(discoColor)) ? c_gray : discoColor;
 
 
 	// draw speaker label parts
