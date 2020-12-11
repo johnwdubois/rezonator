@@ -11,7 +11,7 @@ function scr_languageOptions(optionSelected){
 		
 		break;
 		
-		case "Italian" :
+		case "Italiano" :
 		
 		var indexOfLanguage = ds_list_find_index(global.lang_codes, "it")
 		global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	

@@ -91,8 +91,12 @@ ds_list_add(toolsOptionList,"menu_search",
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "menu_user", 
 								"menu_zoom",
-								"Zero", 
-								"menu_theme", "Restore Hints", "Language", "Autosave", "Advanced"); // "Delete All","Autosave");
+								"menu_zero", 
+								"menu_theme", 
+								"menu_restore-hints", 
+								"menu_language", 
+								"menu_autosave", 
+								"menu_advanced"); // "Delete All","Autosave");
 
 //settingsOptionList = ds_list_create();
 //ds_list_add(settingsOptionList, "Zoom", "Dark Theme", "Mute", "Author");
@@ -141,7 +145,7 @@ ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowTools, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowTools, toolsOptionList);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowTools, toolsDropDownOptionListType);
 
-ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowSettings, "Settings");
+ds_grid_set(menuBarGrid, menuBarGrid_colString, menuBarGrid_rowSettings, "menu_settings");
 ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuBarGrid_rowSettings, false);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionList, menuBarGrid_rowSettings, settingsOptionList);
 ds_grid_set(menuBarGrid, menuBarGrid_colOptionListType, menuBarGrid_rowSettings, settingsDropDownOptionListType);

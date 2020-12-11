@@ -15,7 +15,7 @@ function scr_advancedOptions(optionSelected) {
 			
 			//show_message("Coming Soon");
 			break;*/
-		case "Developer":
+		case "menu_developer":
 			obj_control.showDevVars = !obj_control.showDevVars;
 			obj_control.showFPS = !obj_control.showFPS;
 			instance_destroy(obj_dropDown);

@@ -356,8 +356,8 @@ ds_map_add(global.expandableDropDownMap, "menu_stack", true);
 ds_map_add(global.expandableDropDownMap, "menu_stacker", true);
 ds_map_add(global.expandableDropDownMap, "menu_play-learn", true);
 ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
-ds_map_add(global.expandableDropDownMap, "Autosave", true);
-ds_map_add(global.expandableDropDownMap, "Advanced", true);
+ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
+ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 
 
 global.optionListTypeSort = 0;
