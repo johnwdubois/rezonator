@@ -2,10 +2,10 @@ function scr_viewOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Window":
+		case "menu_window":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Main", "Nav", "Search", "Grid");
+			ds_list_add(dropDownOptionList, "menu_main", "menu_nav", "menu_search", "menu_grid");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypePane);
@@ -16,7 +16,7 @@ function scr_viewOptions(optionSelected) {
 		case "menu_justify":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Left", "Right", "Center");
+			ds_list_add(dropDownOptionList, "menu_left", "menu_right", "menu_center");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, global.optionListTypeJustify);
@@ -26,7 +26,7 @@ function scr_viewOptions(optionSelected) {
 		case "menu_prose":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Prose", "Grid");
+			ds_list_add(dropDownOptionList, "menu_prose", "menu_grid");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 2), dropDownOptionList, global.optionListTypeProse);
@@ -36,7 +36,7 @@ function scr_viewOptions(optionSelected) {
 		case "menu_hide":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Track", "Rez", "Stack", "Place");
+			ds_list_add(dropDownOptionList, "menu_track", "menu_rez", "menu_stack", "menu_place");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 3), dropDownOptionList, global.optionListTypeHide);
@@ -76,7 +76,7 @@ function scr_viewOptions(optionSelected) {
 	
 		case "Context":
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Above", "Between", "Below");
+			ds_list_add(dropDownOptionList, "menu_above", "menu_between", "menu_below");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 6), dropDownOptionList, global.optionListTypeContext);
@@ -108,7 +108,7 @@ function scr_viewOptions(optionSelected) {
 		case "Zoom":
 	
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "In", "Out", "Wide", "Narrow", "Tall", "Short");
+			ds_list_add(dropDownOptionList, "help_label_zoom-in", "help_label_zoom-out", "menu_wide", "menu_narrow", "help_label_tall-rows", "help_label_short");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypeZoom);

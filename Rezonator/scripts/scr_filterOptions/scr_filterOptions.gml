@@ -38,7 +38,7 @@ function scr_filterOptions(optionSelected) {
 		case "menu_filter-context":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Above", "Between", "Below");
+			ds_list_add(dropDownOptionList, "menu_above", "menu_between", "menu_below");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing*2), dropDownOptionList, global.optionListTypeContext);
@@ -49,13 +49,13 @@ function scr_filterOptions(optionSelected) {
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Rez", "Track", "Stack");
+			ds_list_add(dropDownOptionList, "menu_rez", "menu_track", "menu_stack");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing), dropDownOptionList, global.optionListTypeAddToFilter);
 			}
 			break;
-		case "Clear": // add all of a certain chain type to filter	
+		case "menu_clear": // add all of a certain chain type to filter	
 			ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
 			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);

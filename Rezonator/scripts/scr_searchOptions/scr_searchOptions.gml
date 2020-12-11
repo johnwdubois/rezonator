@@ -2,7 +2,7 @@ function scr_searchOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Keyword": // search for words
+		case "menu_keyword": // search for words
 		
 			obj_control.preSwitchDisplayRow = obj_control.scrollPlusYDest;
 			if (!obj_control.dialogueBoxActive) {
@@ -19,7 +19,7 @@ function scr_searchOptions(optionSelected) {
 
 			break;
 
-		case "Clear":// clear search
+		case "menu_clear":// clear search
 			
 			// Commented out so that Clear search only removes highlights
 			/*ds_grid_copy(obj_control.searchGrid, obj_control.emptySearchGrid);

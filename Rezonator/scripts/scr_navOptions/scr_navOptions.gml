@@ -3,7 +3,7 @@
 function scr_navOptions(optionSelected){
 	switch(optionSelected){
 
-		case "Left":
+		case "menu_left":
 			with(obj_panelPane){
 				
 				if(not showNav){
@@ -18,7 +18,7 @@ function scr_navOptions(optionSelected){
 			
 		break;
 		
-		case "Right" :
+		case "menu_right" :
 
 			with(obj_panelPane){
 				if(not showNav){
@@ -32,7 +32,7 @@ function scr_navOptions(optionSelected){
 			}
 		
 		break;		
-		case "Tools" :
+		case "menu_tools" :
 			with(obj_panelPane){
 				
 				if(not showNav){
@@ -49,7 +49,7 @@ function scr_navOptions(optionSelected){
 		
 		break;
 		
-		case "All" :
+		case "menu_all" :
 		
 			with(obj_panelPane){
 				showNav = not showNav;

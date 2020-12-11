@@ -27,7 +27,7 @@ function scr_settingsOptions(optionSelected) {
 		case "menu_zoom":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "In", "Out", "Wide", "Narrow", "Tall", "Short");
+			ds_list_add(dropDownOptionList, "help_label_zoom-in", "help_label_zoom-out", "menu_wide", "menu_narrow", "help_label_tall-rows", "help_label_short");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + optionSpacing, dropDownOptionList, global.optionListTypeZoom);
@@ -50,7 +50,7 @@ function scr_settingsOptions(optionSelected) {
 			}
 			instance_destroy(obj_dropDown);
 		break;
-		case "Zero":
+		case "menu_zero":
 			obj_control.currentNewWordPre = 4;
 			if (!obj_control.dialogueBoxActive) {
 				keyboard_string = "";
@@ -65,38 +65,33 @@ function scr_settingsOptions(optionSelected) {
 			}
 			instance_destroy(obj_dropDown);
 		break;
-		case "Restore Hints":
+		case "menu_restore-hints":
 			global.readHintHide = false;
 			instance_destroy(obj_dropDown);
 		break;
-		case "Language":
+		case "menu_language":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			if(obj_control.showDevVars) {
-				ds_list_add(dropDownOptionList, "English", "Italian", "Spanish", "Hebrew", "Vietnamese", "Japanese", "Chinese");
-			}
-			else {
-				ds_list_add(dropDownOptionList, "English", "Italian");
-			}
+			ds_list_add(dropDownOptionList, "English", "Italiano");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 5), dropDownOptionList, global.optionListTypeLanguage);
 			}
 		break;
 		
-		case "Autosave":
+		case "menu_autosave":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "5 minutes", "10 minutes", "20 minutes", "30 minutes", "Off");
+			ds_list_add(dropDownOptionList, "menu_5-min", "menu_10-min", "menu_20-min", "menu_30-min", "Off");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 6), dropDownOptionList, global.optionListTypeAutosave);
 			}
 		break;
-		case "Advanced":
+		case "menu_advanced":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Developer");
+			ds_list_add(dropDownOptionList, "menu_developer");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 7), dropDownOptionList, global.optionListTypeAdvanced);
