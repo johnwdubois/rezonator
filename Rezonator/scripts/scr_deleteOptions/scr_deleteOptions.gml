@@ -2,7 +2,7 @@ function scr_deleteOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Stacks":
+		case "menu_stacks_pl":
 			
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -14,7 +14,7 @@ function scr_deleteOptions(optionSelected) {
 			
 		//	show_message("Coming Soon");
 			break;
-		case "Rez Chains":
+		case "menu_rez_chains_pl":
 		
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -25,7 +25,7 @@ function scr_deleteOptions(optionSelected) {
 		
 
 			break;
-		case "Track Chains":
+		case "menu_track_chains_pl":
 		
 
 			if (!instance_exists(obj_dialogueBox)) {
@@ -37,7 +37,7 @@ function scr_deleteOptions(optionSelected) {
 		
 			//show_message("Coming Soon");
 			break;
-		case "Chains":
+		case "menu_chains_pl":
 		
 
 			if (!instance_exists(obj_dialogueBox)) {

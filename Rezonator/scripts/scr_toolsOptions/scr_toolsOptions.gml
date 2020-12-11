@@ -6,7 +6,7 @@ function scr_toolsOptions(optionSelected) {
 		case "menu_search":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Keyword", "Clear");
+			ds_list_add(dropDownOptionList, "menu_keyword", "menu_clear");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y, dropDownOptionList, global.optionListTypeSearch);
@@ -53,17 +53,17 @@ function scr_toolsOptions(optionSelected) {
 		case "menu_stack":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Stack tab", "StackShow", "Stacker");
+			ds_list_add(dropDownOptionList, "menu_stacktab", "menu_stackshow", "menu_stacker");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 3), dropDownOptionList, global.optionListTypeStack);
 			}
 			break;
 			
-		case "Play and Learn":
+		case "menu_play-learn":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Where's Elmo");
+			ds_list_add(dropDownOptionList, "label_option_where_elmo");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypePlayAndLearn);

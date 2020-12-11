@@ -57,27 +57,20 @@ global.games = false;
 
 
 global.importType_Default = 0;
-global.importType_CSV = "One Word per Line";
+global.importType_CSV = "CSV";
 global.importType_CoNLLU = "CoNLL-U";
 global.importType_IGT = "Interlinear Glossed Text";
-global.importType_PlainText = "Song & Verse";
-global.importType_TabDelimited = "Elan (tab-delimited)";
-global.importType_Paragraph = "Prose";
-global.importType_Transcription = "Transcription";
+global.importType_PlainText = "Plain text";
+global.importType_TabDelimited = "Tab delimited";
+global.importType = global.importType_PlainText;
 
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
-ds_list_add(global.importTypeList,
-	global.importType_Transcription,
+ds_list_add(global.importTypeList, global.importType_PlainText,
 	global.importType_TabDelimited,
-	global.importType_PlainText,
-	global.importType_Paragraph,
+	global.importType_IGT,
 	global.importType_CSV,
-	global.importType_CoNLLU,
-	global.importType_IGT);
-
-// by default, we will set importType to be the first item in the importTypeList
-global.importType = ds_list_find_value(global.importTypeList, 0);
+	global.importType_CoNLLU);
 
 
 
@@ -164,8 +157,7 @@ participantHueOffset = 0;
 
 showDevVars = false;
 
-scr_createRezDirectory();
-scr_createFonts()
+scr_importPackage();
 
 
 global.currentDirString = global.rezonatorDirString;
@@ -212,17 +204,15 @@ global.importFileRipList = ds_list_create();
 
 
 
-global.tagInfoGridWidth = 10;
+global.tagInfoGridWidth = 8;
 global.tagInfoGrid_colMarker = 0;
 global.tagInfoGrid_colExample = 1;
-global.tagInfoGrid_colMarkerPercent = 2;
-global.tagInfoGrid_colSingleTokenMarker = 3;
-global.tagInfoGrid_colTokenCount = 4;
-global.tagInfoGrid_colLevelSchema = 5;
-global.tagInfoGrid_colLevelPredict = 6;
-global.tagInfoGrid_colSpecialFields = 7;
-global.tagInfoGrid_colLevel = 8;
-global.tagInfoGrid_colError = 9;
+global.tagInfoGrid_colLevel = 2;
+global.tagInfoGrid_colMarkerPercent = 3;
+global.tagInfoGrid_colSingleTokenMarker = 4;
+global.tagInfoGrid_colTokenCount = 5;
+global.tagInfoGrid_colSpecialFields = 6;
+global.tagInfoGrid_colError = 7;
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 
@@ -353,9 +343,9 @@ global.exitOut = false;
 // this map tells Rezonator what dropdowns expand to further dropdowns
 // so we can look up the strings in this map to know whether or not to draw the expand arrow
 global.expandableDropDownMap = ds_map_create();
-ds_map_add(global.expandableDropDownMap, "Delete All", true);
-ds_map_add(global.expandableDropDownMap, "Window", true);
-ds_map_add(global.expandableDropDownMap, "Nav", true);
+ds_map_add(global.expandableDropDownMap, "menu_delete-all", true);
+ds_map_add(global.expandableDropDownMap, "menu_window", true);
+ds_map_add(global.expandableDropDownMap, "menu_nav", true);
 ds_map_add(global.expandableDropDownMap, "menu_justify", true);
 ds_map_add(global.expandableDropDownMap, "menu_prose", true);
 ds_map_add(global.expandableDropDownMap, "menu_hide", true);
@@ -363,12 +353,11 @@ ds_map_add(global.expandableDropDownMap, "menu_pick", true);
 ds_map_add(global.expandableDropDownMap, "menu_filter-context", true);
 ds_map_add(global.expandableDropDownMap, "menu_search", true);
 ds_map_add(global.expandableDropDownMap, "menu_stack", true);
-ds_map_add(global.expandableDropDownMap, "Stacker", true);
-ds_map_add(global.expandableDropDownMap, "Play and Learn", true);
+ds_map_add(global.expandableDropDownMap, "menu_stacker", true);
+ds_map_add(global.expandableDropDownMap, "menu_play-learn", true);
 ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
-ds_map_add(global.expandableDropDownMap, "Autosave", true);
-ds_map_add(global.expandableDropDownMap, "Advanced", true);
-ds_map_add(global.expandableDropDownMap, "Language", true);
+ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
+ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 
 
 global.optionListTypeSort = 0;

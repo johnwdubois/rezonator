@@ -193,7 +193,7 @@ function scr_preImportFileTypeWindow(){
 	draw_set_halign(fa_left);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
-	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), "Choose a file type to import");
+	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), scr_get_translation("msg_choose_import"));
 	
 
 

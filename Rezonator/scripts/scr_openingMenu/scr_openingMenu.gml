@@ -213,7 +213,7 @@ function scr_openingMenu() {
 
 	if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
 		//draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("menu_signin"));
-		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), "User Sign In");
+		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("menu_signin"));
 	}
 	draw_set_alpha(1);
 
@@ -250,7 +250,7 @@ function scr_openingMenu() {
 
 	draw_set_alpha(1);
 	draw_set_font(global.fontMain);
-	var documentationStr = " Open Rezonator Documentation ";
+	var documentationStr = scr_get_translation("msg_open_docs");
 	var documentationButtonX1 = 20;
 	var documentationButtonY1 = 20;
 	var documentationButtonX2 = documentationButtonX1 + 50;
