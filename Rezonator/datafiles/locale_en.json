@@ -8,6 +8,7 @@
 "menu_view" : "View",
 "menu_search" : "Search",
 "menu_filter" : "Filter",
+"menu_stack" : "Stack",
 "menu_options" : "Options",
 "menu_sort_pane" : "Sort Pane",
 "msg_elmo_title" : "Where's Elmo?",
