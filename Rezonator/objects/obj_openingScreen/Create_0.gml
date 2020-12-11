@@ -43,7 +43,7 @@ global.totalUnitAmount = 0;
 global.participantColorList = ds_list_create();
 
 global.wordGridWidth = 7;
-global.dynamicWordGridWidth = 17;
+global.dynamicWordGridWidth = 15;
 global.unitGridWidth = 10;
 
 global.openProject = false;

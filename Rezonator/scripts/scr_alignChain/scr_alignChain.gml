@@ -15,7 +15,7 @@ function scr_alignChain(wordIDList, pushOut) {
 	
 	var furthestDisplayCol = 0;
 
-	var unitIDList = ds_list_create();
+	var displayRowList = ds_list_create();
 	var nonVoidWordExists = false;
 	var wordIDListSize = ds_list_size(wordIDList);
 
@@ -33,18 +33,18 @@ function scr_alignChain(wordIDList, pushOut) {
 			}
 		
 			var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
-			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 		
 			// Access the previous word in sequence
-			var previousWordID = scr_prevWordInSequence(currentWordID, currentUnitID);
+			var previousWordID = scr_prevWordInSequence(currentWordID);
 		
 			// if we only care about the first word for each unitID (to take care of side links)
-			if (ds_list_find_index(unitIDList, currentUnitID) > -1) {
+			if (ds_list_find_index(displayRowList, currentDisplayRow) > -1) {
 				if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1) > 0) {
 					var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 				
-					var previousUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, previousWordID - 1);
-					if (currentUnitID == previousUnitID) {
+					var previousDisplayRow = ds_grid_get(obj_control.wordGrid, obj_control.dynamicWordGrid_colDisplayRow, previousWordID - 1);
+					if (currentDisplayRow == previousDisplayRow) {
 						var previousDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, previousWordID - 1);
 						if ((currentWordDisplayCol - previousDisplayCol) > 1) {
 							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentWordDisplayCol - 1);
@@ -53,7 +53,7 @@ function scr_alignChain(wordIDList, pushOut) {
 				}
 				continue;
 			}
-			ds_list_add(unitIDList, currentUnitID);
+			ds_list_add(displayRowList, currentDisplayRow);
 		
 			// Set the word's void according to the previous word's void
 			var currentVoid = 0;
@@ -95,11 +95,11 @@ function scr_alignChain(wordIDList, pushOut) {
 		}
 		
 		//furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
-		var unitIDList2 = ds_list_create();
+		var displayRowList2 = ds_list_create();
 	
 		for (var setDisplayColLoop = 0; setDisplayColLoop < wordIDListSize; setDisplayColLoop++) {
 			var currentWordID = ds_list_find_value(wordIDList, setDisplayColLoop);
-			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 		
 			if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1)) {
 				continue;
@@ -110,18 +110,14 @@ function scr_alignChain(wordIDList, pushOut) {
 			if (wordState == obj_control.wordStateDead or wordState == obj_control.wordStateChunk) {
 				continue;
 			}
-		
-			var currentRowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-			if (currentRowInLineGrid >= 0 and currentRowInLineGrid < ds_grid_height(obj_control.lineGrid)) {
-				if (ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colVoidMax, currentRowInLineGrid) >= obj_control.voidLimit) {
-					continue;
-				}
-			}
+			
+
+			var currentRowInLineGrid = currentDisplayRow;
 		
 		
 			// catch the race-to-infinity: mark as stretch if we are moving the most recently moved word more than once in a row
-			if (ds_list_find_index(unitIDList2, currentUnitID) == -1) {
-				ds_list_add(unitIDList2, currentUnitID);
+			if (ds_list_find_index(displayRowList2, currentDisplayRow) == -1) {
+				ds_list_add(displayRowList2, currentDisplayRow);
 				if (pushOut) {
 					var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 					if (currentWordID == obj_control.mostRecentlyAddedWord and furthestDisplayCol > currentDisplayCol) {
@@ -148,7 +144,7 @@ function scr_alignChain(wordIDList, pushOut) {
 			}
 		
 		}
-		ds_list_destroy(unitIDList2);
+		ds_list_destroy(displayRowList2);
 	}
 
 	// if every word in this chain has a void, we need to bring every word in the chain back
@@ -161,13 +157,12 @@ function scr_alignChain(wordIDList, pushOut) {
 			}
 		
 			var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-			var currentUnitID = ds_grid_get(obj_control.dynamicWordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol - 1);
 		}
 	}
 
-	ds_list_destroy(unitIDList);
+	ds_list_destroy(displayRowList);
 
 
 }

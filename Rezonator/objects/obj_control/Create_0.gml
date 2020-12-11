@@ -206,10 +206,7 @@ dynamicWordGrid_colAligned = 10;
 dynamicWordGrid_colVoid = 11;
 dynamicWordGrid_colStretch = 12;
 dynamicWordGrid_colReplaceWord = 13;
-// Hopefully these won't be here for long!
-dynamicWordGrid_colTag1 = 14;
-dynamicWordGrid_colTag2 = 15;
-dynamicWordGrid_colTag3 = 16;
+dynamicWordGrid_colDisplayRow = 14;
 
 dynamicWordGrid = ds_grid_create(dynamicWordGridWidth, 0);
 
