@@ -286,6 +286,7 @@
     {"id":{"name":"scr_chainListOptions","path":"scripts/scr_chainListOptions/scr_chainListOptions.yy",},"order":1,},
     {"id":{"name":"scr_chainRecolorOptions","path":"scripts/scr_chainRecolorOptions/scr_chainRecolorOptions.yy",},"order":2,},
     {"id":{"name":"scr_speakerLabelOptions","path":"scripts/scr_speakerLabelOptions/scr_speakerLabelOptions.yy",},"order":3,},
+    {"id":{"name":"obj_readModePopUp2","path":"objects/obj_readModePopUp2/obj_readModePopUp2.yy",},"order":10,},
     {"id":{"name":"scr_fileOptions","path":"scripts/scr_fileOptions/scr_fileOptions.yy",},"order":4,},
     {"id":{"name":"scr_advancedOptions","path":"scripts/scr_advancedOptions/scr_advancedOptions.yy",},"order":5,},
     {"id":{"name":"scr_viewOptions","path":"scripts/scr_viewOptions/scr_viewOptions.yy",},"order":6,},
