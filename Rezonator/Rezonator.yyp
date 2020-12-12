@@ -396,7 +396,6 @@
     {"id":{"name":"fnt_panelTabLarge4","path":"fonts/fnt_panelTabLarge4/fnt_panelTabLarge4.yy",},"order":4,},
     {"id":{"name":"fnt_panelTabLarge5","path":"fonts/fnt_panelTabLarge5/fnt_panelTabLarge5.yy",},"order":5,},
     {"id":{"name":"fnt_sortPane","path":"fonts/fnt_sortPane/fnt_sortPane.yy",},"order":0,},
-    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":6,},
     {"id":{"name":"fnt_sortPaneLarge1","path":"fonts/fnt_sortPaneLarge1/fnt_sortPaneLarge1.yy",},"order":1,},
     {"id":{"name":"fnt_localeZH","path":"fonts/fnt_localeZH/fnt_localeZH.yy",},"order":9,},
     {"id":{"name":"fnt_sortPaneLarge2","path":"fonts/fnt_sortPaneLarge2/fnt_sortPaneLarge2.yy",},"order":2,},
