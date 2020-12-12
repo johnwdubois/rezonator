@@ -21,9 +21,7 @@ function scr_searchToMain(){
 	// Make sure we don't try to render a line that doesn't exist
 	if(obj_control.highlightedSearchRow > 0 && ds_grid_value_exists(obj_control.preSwitchLineGrid, 0, 0, 0, ds_grid_height(obj_control.preSwitchLineGrid), obj_control.highlightedSearchRow)){
 		var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, obj_control.highlightedSearchRow);
-		show_debug_message(linePixelY);
 		obj_control.preSwitchDisplayRow = -linePixelY + (obj_control.gridSpaceVertical / 2);
-		show_debug_message(obj_control.preSwitchDisplayRow);
 	}
 	else {
 		var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentFocusLine - 1);

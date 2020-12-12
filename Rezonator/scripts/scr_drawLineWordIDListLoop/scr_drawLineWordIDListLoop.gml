@@ -149,7 +149,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 	
 		// if showing developer variables, draw rectangle to visualize voids
 		if ((showDevVars and currentWordVoid > 0)) {// or currentWordVoid > 17) { // Do we want to always be showing this?
-			show_debug_message(string(currentWordDisplayCol))
 			scr_drawVoids(drawWordLoop, previousWordDisplayCol, gridSpaceHorizontal, wordLeftMargin, currentLineY, currentWordVoid, currentWordDisplayCol);
 		}
 	
