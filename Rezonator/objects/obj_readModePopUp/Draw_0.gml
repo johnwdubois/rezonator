@@ -27,7 +27,7 @@ draw_set_font(global.fontMain);
 draw_text( floor(mean(rectX1, rectX2)), floor(mean(rectY1 + 20, rectY2)), popUpText2);
 
 var largeHeight = string_height(popUpText1);
-draw_set_font(fnt_main);
+draw_set_font(global.fontMain);
 var standardHeight = string_height(popUpText1);
 var spriteRatio = largeHeight/standardHeight;
 var spriteSize = 0.25 * spriteRatio;
@@ -46,7 +46,7 @@ draw_sprite_ext(spr_alertArrow, 0, camera_get_view_width(camera_get_active()) - 
 
 
 draw_set_colour(global.colorThemeText);
-draw_set_font(fnt_main);
+draw_set_font(global.fontMain);
 //draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), scr_get_translation("msg_no-show"));
 draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), "Don't show again");
 

@@ -22,7 +22,7 @@ function scr_newProjectWindow() {
 	draw_set_color(global.colorThemePaneBG);
 	draw_rectangle(importWindowX1, importWindowY1, importWindowX2, importWindowY2, false);
 
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 

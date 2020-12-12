@@ -78,7 +78,7 @@ function scr_drawElmoScreen() {
 		draw_rectangle(elmoScreenRectX1, elmoScreenRectY1, elmoScreenRectX2, elmoScreenRectY2, true);
 		draw_set_colour(global.colorThemeText);
 	
-		draw_set_font(fnt_mainBold);
+		draw_set_font(global.fontMain);
 		draw_text(elmoScreenRectX1 + 15, elmoScreenRectY1 + 15, string(game_display_name));
 	
 	
@@ -94,7 +94,7 @@ function scr_drawElmoScreen() {
 		draw_set_color(global.colorThemeBorders);
 		draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePlus, bubbleY2 + bubblePlus, true);
 	
-		draw_set_font(fnt_mainLarge1);
+		draw_set_font(global.fontMain);
 
 		var firstButtonRectX1 = camera_get_view_width(camera_get_active()) /2 - 80 - buttonXOffset,
 		firstButtonRectY1 = camera_get_view_height(camera_get_active())/2 + 35 - buttonYOffset,
@@ -124,7 +124,7 @@ function scr_drawElmoScreen() {
 		draw_rectangle(secondButtonRectX1, secondButtonRectY1, secondButtonRectX2, secondButtonRectY2, true);
 	
 		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainLarge1);
+		draw_set_font(global.fontMain);
 		draw_set_halign(fa_center);
 	
 		// draw button text

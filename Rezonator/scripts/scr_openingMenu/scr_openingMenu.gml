@@ -201,10 +201,10 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeText);
 
 
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, scr_get_translation("menu_remember"));
 
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_set_alpha(0.5);
 
 	if(string_length(obj_openingScreen.inputText) > 0 ){

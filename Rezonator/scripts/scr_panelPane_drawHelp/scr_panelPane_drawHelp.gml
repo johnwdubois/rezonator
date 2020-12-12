@@ -84,7 +84,7 @@ function scr_panelPane_drawHelp() {
 
 	// Set style for button text
 	draw_set_alpha(1);
-	draw_set_font(fnt_mainBold);
+	draw_set_font(global.fontMainBold);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
@@ -342,7 +342,7 @@ function scr_panelPane_drawHelp() {
 	}
 
 	var displayString = "";
-	draw_set_font(fnt_mainBold);
+	draw_set_font(global.fontMainBold);
 
 	for (var i = 0; i < toggleButtonAmount; i++) {
 		//draw tooltips

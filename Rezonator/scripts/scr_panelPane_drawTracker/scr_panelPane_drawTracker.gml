@@ -69,7 +69,7 @@ function scr_panelPane_drawTracker() {
 		draw_rectangle(0, yBase, 140, yBase + newYheight, true);
 
 		//draw end show text
-		draw_set_font(fnt_mainBold);
+		draw_set_font(global.fontMainBold);
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeText);
 		draw_text(0 + 5, yBase + (newYheight/2), scr_get_translation("msg_end_stackshow"));
@@ -200,12 +200,12 @@ function scr_panelPane_drawTracker() {
 		draw_rectangle(trackerX2 - Xdistance, yBase, trackerX2, yBase  + newYheight, true);
 
 		// move counter text
-		draw_set_font(fnt_panelTab);
+		draw_set_font(global.fontPanelTab);
 		draw_set_color(global.colorThemeText);
 		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightCounterText, scr_get_translation("msg_move_counter")+ string(obj_control.moveCounter) +"");
 	
 		// timer text
-		draw_set_font(fnt_panelTab);
+		draw_set_font(global.fontPanelTab);
 		draw_set_color(global.colorThemeText);
 		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightTimerText, scr_get_translation("msg_time_taken")+ displayMinutes + ":"+ displaySeconds );
 	
@@ -234,7 +234,7 @@ function scr_panelPane_drawTracker() {
 		draw_rectangle(trackerX2 - resetX1val, yBase + currentResetY1value, trackerX2 - resetX2val, yBase + currentResetY2value, true);
 
 		// reset text
-		draw_set_font(fnt_mainBold);
+		draw_set_font(global.fontMainBold);
 		draw_set_color(global.colorThemeText);
 		draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, scr_get_translation("label_reset"));
 	//}
