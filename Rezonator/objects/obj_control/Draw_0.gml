@@ -1,4 +1,4 @@
-/*
+     /*
 	obj_control: Draw
 	
 	Last Updated: 2019-02-11
@@ -96,146 +96,20 @@ if (not mouseoverPanelPane and not obj_panelPane.scrollBarClickLock and obj_tool
 
 
 
-
-draw_set_font(fnt_debug);
-draw_set_halign(fa_right);
-draw_set_valign(fa_middle);
-draw_set_alpha(1);
-
-
-
 // Shows variables used for in game bugtesting
 if (showDevVars) {
-	
 
 	scr_drawCompassRose();
 	
+	// draw line in center of screen
 	draw_set_color(c_ltgray);
 	draw_line(0, 150 + (camera_get_view_height(camera_get_active()) - 150) / 2, camera_get_view_width(camera_get_active()), 150 + (camera_get_view_height(camera_get_active()) - 150) / 2);
-
-	draw_set_color(global.colorThemeText);
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 80, "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 250, "fps: " + string(fps));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 270, "mouseOverHelpPane: " + string(mouseoverHelpPane));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 300, "searchGriActive: " + string(obj_control.searchGridActive));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 330, "gridSpaceVertical: " + string(gridSpaceVertical));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 350, "arrowSpeed: " + string(arrowSpeed));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 370, "activeStackType: " + string(activeStackType));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 400, "Tooltip Hover time: " + string(obj_toolPane.hoverTime[0]) +", "+ string(obj_toolPane.hoverTime[1]) +", "+ string(obj_toolPane.hoverTime[2]));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 450, "Tooltip Hover time Helpbar: " + string(obj_panelPane.hoverTime[0]) +", "+ string(obj_panelPane.hoverTime[1]) +", "+ string(obj_panelPane.hoverTime[2]) +", "+ string(obj_panelPane.hoverTime[3]));	
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 470, "hideAll: " + string(hideAll));	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 150, "currentCenterDisplayRow: " + string(currentCenterDisplayRow));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 170, "lineGrid height: " + string(ds_grid_height(lineGrid)));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 190, "unitGrid height: " + string(ds_grid_height(unitGrid)));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 210, "total unit amount: " + string(global.totalUnitAmount));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 230, "units loaded: " + string((ds_grid_height(unitGrid) / global.totalUnitAmount) * 100) + "%");
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 270, "wordGrid height: " + string(ds_grid_height(wordGrid)));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 290, "dynamicWordGrid height: " + string(ds_grid_height(dynamicWordGrid)));
-
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 310, "displayRowAscending: " + string(displayRowAscending));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 330, "currentChainID: " + string(obj_chain.currentChainID));
-	//draw_text(camera_get_view_width(camera_get_active()) - 100, 350, "clickedChunkID: " + string(clickedChunkID));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 370, "mouseLineHide: " + string(showMouseLine));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 400, "newWordHoverWordID: " + string(newWordHoverWordID));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 420, "rectNotInPanelPane: " + string(rectNotInPanelPane));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 440, "mouseOverPanelPane: " + string(mouseoverPanelPane));
-	
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 460, "Right clicked word: " + string(rightClickWordID));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 485, "chainIDModifyList: ");
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 500, scr_getStringOfList(obj_chain.chainIDModifyList));
-	
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 550, "inRectUnitIDList: ");
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 570, scr_getStringOfList(inRectUnitIDList));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 590, "inRectWordIDList: ");
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 610, scr_getStringOfList(inRectWordIDList));
-	
-	
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 630, "mostRecentlyAddedWord: " + string(mostRecentlyAddedWord));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 650, "mostRecentlyAddedWordMoved: " + string(mostRecentlyAddedWordMoved));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 680, "global.participantColorList: ");
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 700, scr_getStringOfList(global.participantColorList));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 750, "chainColorID[1]: " + string(obj_chain.chainColorID[1]));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 770, "chainColorID[2]: " + string(obj_chain.chainColorID[2]));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 790, "chainColorID[3]: " + string(obj_chain.chainColorID[3]));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 810, "wordLeftMargin: " + string(wordLeftMargin));
-	draw_text(camera_get_view_width(camera_get_active()) -500 , 810, "cursorPos: " + string(obj_control.cursorPos));
-	draw_text(camera_get_view_width(camera_get_active()) -500 , 830, "inputString Length: " + string(string_length(obj_control.inputText)));
-
-		
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 830, "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 850, "speakerLabelColPrevList: " + scr_getStringOfList(speakerLabelColPrevList));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 870, "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 900, "speakerLabelMargin: " + string(speakerLabelMargin));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 930, "allSaved: " + string(allSaved));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 960, "current_time: " + string(current_time));
-	draw_text(camera_get_view_width(camera_get_active()) - 100, 980, "hoverWordID: " + string(hoverWordID));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 400, 850, "drawLine offset: " + string(drawRangeCenterOffset));
-	draw_text(camera_get_view_width(camera_get_active()) - 600, 880, "drawRangeExtraStepsBack: " + string(drawRangeExtraStepsBack));
-	draw_text(camera_get_view_width(camera_get_active()) - 600, 900, "drawRangeExtraStepsForward: " + string(drawRangeExtraStepsForward));
-	draw_text(camera_get_view_width(camera_get_active()) - 600, 920, "drawRangeCenter: " + string(drawRangeCenter));
-	
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 400, 930, "toolPane.currentTool: " + string(obj_toolPane.currentTool));
-	draw_text(camera_get_view_width(camera_get_active()) - 400, 950, "toolPane.tempReturnTool: " + string(obj_toolPane.tempReturnTool));
-	
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 300, 680, "scrollPlusY: " + string(scrollPlusY));
-	draw_text(camera_get_view_width(camera_get_active()) - 300, 700, "scrollPlusYDest: " + string(scrollPlusYDest));
-	draw_text(camera_get_view_width(camera_get_active()) - 300, 720, "scrollBarPlusY: " + string(scrollBarPlusY));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 300, 750, "mouseoverScrollBar: " + string(mouseoverScrollBar));
-	draw_text(camera_get_view_width(camera_get_active()) - 300, 780, "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 600, 800, "wordWrap: " + string(wordWrap));
-	draw_text(camera_get_view_width(camera_get_active()) - 600, 820, "rightClickDisplayRow: " + string(rightClickDisplayRow));
-	
-	
-	var chainListY = 0;
-	with (obj_panelPane) {
-		if (currentFunction == functionChainList) {
-			chainListY = y;
-		}
-	}
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 550, "chainListY: " + string(chainListY));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 580, "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 600, "wordTopMargin: " + string(wordTopMargin));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 620, "wordTokenView: " + string(wordTokenView));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 640, "wordView: " + string(wordView));
-	draw_text(camera_get_view_width(camera_get_active()) - 500, 660, "tokenContentsHeaderListSize: " + string(obj_panelPane.tokenContentsHeaderListSize));
-	
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 310, "MinOriginal: " + string(obj_control.gridSpaceVerticalMinOriginal));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 330, "VerticalMin: " + string(obj_control.gridSpaceVerticalMin));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 370, "unitView: " + string(obj_control.unitView));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 350, "wordView: " + string(obj_control.wordView));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 400, "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 460, "global.tokenImportColNameList:");
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 480, scr_getStringOfList(global.tokenImportColNameList));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 520, "global.unitImportColNameList:");
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 540, scr_getStringOfList(global.unitImportColNameList));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 580, "obj_control.currentDisplayTokenColsList:");
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 600, scr_getStringOfList(obj_control.currentDisplayTokenColsList));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 620, "obj_control.currentDisplayUnitColsList:");
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 640, scr_getStringOfList(obj_control.currentDisplayUnitColsList));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 660, "obj_panelPane.selectedColToken: " + string(obj_panelPane.selectedColToken));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 680, "obj_panelPane.selectedColUnit: " + string(obj_panelPane.selectedColUnit));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 720, "global.windowWidth: " + string(window_get_width()));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 740, "global.scrollBarWidth: " + string(global.scrollBarWidth));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 760, "functionChainContents_lineGridRowFocused: " + string(obj_panelPane.functionChainContents_lineGridRowFocused));
-	draw_text(camera_get_view_width(camera_get_active()) - 1000, 780, "chunkID: " + string(obj_control.chunkID));
+	// draw dev variables on right side of screen
+	scr_drawDevVars();
 }
+
+
 var scrollBarMarginTop = 230;
 if (!obj_panelPane.showNav) {
 	scrollBarMarginTop -= inst_panelPane_help.windowHeight;

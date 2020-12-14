@@ -82,7 +82,6 @@ function scr_sentStackerLoop(){
 			for (var wordListLoop = 0; wordListLoop < randWordIDListSize; wordListLoop++) {
 				var currentWordID = ds_list_find_value(randWordIDList, wordListLoop);
 				var currentEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, currentWordID - 1);
-				show_debug_message(currentEndNoteTag);
 				
 				// Check if the word's endNote tag is one of the user designated end notes
 				for (var endTagsLoop = 0; endTagsLoop < endNoteTagsGridHeight; endTagsLoop++) {

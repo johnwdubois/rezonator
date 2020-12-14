@@ -377,7 +377,7 @@ function scr_panelPane_drawChainTabs() {
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, true);
 		draw_set_color(global.colorThemeText);
-		draw_text(tabRectX1 + textMarginLeft, tabRectY1, functionChainList_tabName[i]);
+		draw_text(tabRectX1 + textMarginLeft, tabRectY1, scr_get_translation(functionChainList_tabName[i]));
 
 	}
 

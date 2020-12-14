@@ -4,7 +4,7 @@ function scr_panelPane_drawGoToLine() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(fnt_main);
+	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 
 	draw_text(x + 20, y + plusY, scr_get_translation("msg_select_discourse"));

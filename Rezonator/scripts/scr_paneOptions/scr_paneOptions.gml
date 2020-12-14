@@ -3,7 +3,7 @@ function scr_paneOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Main":
+		case "menu_main":
 			if (obj_control.gridView) {
 				obj_control.gridView = false;
 				if (ds_grid_height(obj_control.searchGrid) > 0 ) {
@@ -60,7 +60,7 @@ function scr_paneOptions(optionSelected) {
 			}
 			instance_destroy();
 		break;
-		case "Search":
+		case "menu_search":
 		
 			if (ds_grid_height(obj_control.searchGrid) > 0 and !obj_control.gridView) {
 				// Main/filter to search
@@ -84,11 +84,11 @@ function scr_paneOptions(optionSelected) {
 			instance_destroy();
 			//show_message("BUH 2");
 		break;
-		case "Nav": // Show/hide Nav Window
+		case "menu_nav": // Show/hide Nav Window
 		
 			
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Left", "Right", "Tools", "All");
+			ds_list_add(dropDownOptionList, "menu_left", "menu_right", "menu_tools", "menu_all");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(x + windowWidth, y + optionSpacing, dropDownOptionList, global.optionListTypeNav);
@@ -97,7 +97,7 @@ function scr_paneOptions(optionSelected) {
 			break;
 		
 		break;
-		case "Grid": // show grid view
+		case "menu_grid": // show grid view
 			obj_control.gridView = !obj_control.gridView;
 			instance_destroy();
 		break;

@@ -220,7 +220,6 @@ function scr_saveREZ(autosave) {
 	}
 
 	var wrapper = ds_map_create();
-	show_debug_message(scr_getStringOfList(rootList));
 	ds_map_add_list(wrapper, "ROOT", rootList);
 
 	show_debug_message("AFter map created");

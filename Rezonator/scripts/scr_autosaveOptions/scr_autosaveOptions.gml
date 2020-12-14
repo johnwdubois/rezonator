@@ -5,19 +5,19 @@ function scr_autosaveOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "5 minutes":
+		case "menu_5-min":
 			global.autosaveTimer = 18000;
 			break;
-		case "10 minutes":
+		case "menu_10-min":
 			global.autosaveTimer = 36000;
 			break;
-		case "20 minutes":		
+		case "menu_20-min":		
 			global.autosaveTimer = 72000;
 			break;
-		case "30 minutes":
+		case "menu_30-min":
 			global.autosaveTimer = 108000;
 			break;
-		case "Off":
+		case "menu_off":
 			global.autosaveTimer = -1;
 			break;
 		default:

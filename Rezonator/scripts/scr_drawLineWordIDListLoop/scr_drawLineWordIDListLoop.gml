@@ -84,6 +84,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 		if (currentWordID == obj_control.rightClickWordID) {
 			obj_control.rightClickDisplayRow = drawLineLoop;
 		}
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1, drawLineLoop);
 
 		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
 		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
@@ -148,7 +149,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 	
 		// if showing developer variables, draw rectangle to visualize voids
 		if ((showDevVars and currentWordVoid > 0)) {// or currentWordVoid > 17) { // Do we want to always be showing this?
-			show_debug_message(string(currentWordDisplayCol))
 			scr_drawVoids(drawWordLoop, previousWordDisplayCol, gridSpaceHorizontal, wordLeftMargin, currentLineY, currentWordVoid, currentWordDisplayCol);
 		}
 	

@@ -35,7 +35,7 @@ function scr_drawEndNoteWindow(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(fullWindowX + 10), floor(mean(fullWindowY, fullWindowY + captionHeight)), string(game_display_name));
 	
-	draw_set_font(fnt_mainLarge1);
+	draw_set_font(global.fontMain);
 	var buttonXOffset = 65;
 	var buttonYOffset = 25;
 	var windowMidPointx = (fullWindowWidth/2) + fullWindowX;
@@ -76,7 +76,7 @@ function scr_drawEndNoteWindow(){
 	draw_rectangle(cancelButtonX1, cancelButtonY1, cancelButtonX2, cancelButtonY2, true);
 	
 	draw_set_colour(global.colorThemeText);
-	draw_set_font(fnt_mainLarge1);
+	draw_set_font(global.fontMain);
 	
 	// draw button text
 	draw_set_halign(fa_center);

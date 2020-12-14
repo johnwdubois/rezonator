@@ -22,7 +22,7 @@ function scr_zoomOptions(optionSelected) {
 			
 			//show_message("BUH 3");
 			break;
-		case "Wide":
+		case "menu_wide":
 		
 			if (!obj_control.gridView) {
 				obj_control.gridSpaceHorizontal += 20;
@@ -30,7 +30,7 @@ function scr_zoomOptions(optionSelected) {
 		
 			//show_message("BUH 4");
 			break;
-		case "Narrow":
+		case "menu_narrow":
 		
 			if (!obj_control.gridView) {
 				obj_control.gridSpaceHorizontal -= 20;
@@ -38,7 +38,7 @@ function scr_zoomOptions(optionSelected) {
 		
 			//show_message("BUH 5");
 			break;
-		case "Tall":
+		case "help_label_tall-rows":
 			
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
 			var filterGridPopulated = ds_grid_height(obj_control.filterGrid);
@@ -70,7 +70,7 @@ function scr_zoomOptions(optionSelected) {
 			}
 			//show_message("BUH 4");
 			break;
-		case "Short":
+		case "help_label_short":
 		
 			
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
@@ -103,7 +103,7 @@ function scr_zoomOptions(optionSelected) {
 			}
 			//show_message("BUH 5");
 			break;
-		case "In":
+		case "help_label_zoom-in":
 		
 			//vertical
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);
@@ -147,7 +147,7 @@ function scr_zoomOptions(optionSelected) {
 			global.navTextBig = true;
 			
 			break;
-		case "Out":
+		case "help_label_zoom-out":
 			
 			//Vertical				
 			var searchGridPopulated = ds_grid_height(obj_control.searchGrid);

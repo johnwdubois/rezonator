@@ -493,16 +493,5 @@ function scr_drawLine() {
 		}
 	}	 
 
-	// show draw range of lines if development variables are on
-	if (showDevVars) {
-		draw_set_alpha(1);
-		draw_set_font(fnt_debug);
-		draw_set_halign(fa_right);
-		draw_text(camViewWidth - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
-		draw_text(camViewWidth - 300, 265, "camY range: " + string(camera_get_view_y(camera_get_active()) + camViewHeight));
-	
-		draw_text(mouse_x, mouse_y, "(" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	}
-
 
 }

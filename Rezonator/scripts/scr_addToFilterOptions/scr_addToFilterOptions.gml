@@ -2,7 +2,7 @@ function scr_addToFilterOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Rez": // toggles the filter view on and off
+		case "menu_rez": // toggles the filter view on and off
 		var grid = obj_chain.rezChainGrid;
 		if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
 				if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {
@@ -87,7 +87,7 @@ function scr_addToFilterOptions(optionSelected) {
 
 		break;
 
-		case "Stack": // add all of a certain chain type to filter
+		case "menu_stack": // add all of a certain chain type to filter
 		var grid = obj_chain.stackChainGrid;
 		if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), true)) {
 				if (ds_grid_value_exists(grid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(grid), false)) {

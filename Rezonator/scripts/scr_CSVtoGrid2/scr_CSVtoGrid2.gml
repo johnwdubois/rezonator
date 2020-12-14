@@ -171,7 +171,6 @@ function scr_CSVtoGrid2() {
 
 			//A newline outside of a string triggers a new line... unsurprisingly
 			if ( _newline ) {
-				show_debug_message(string(_sheet_height));
 				//Clear cells horizontally to overwrite the default 0-value
 				if ( _sheet_width < _max_width ) ds_grid_set_region( _grid, _sheet_width, _sheet_height-1, _max_width-1, _sheet_height-1, "" );
 

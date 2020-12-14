@@ -9,7 +9,7 @@ if (splitSave) {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
-	draw_set_font(fnt_dropDown);
+	draw_set_font(global.fontMain);
 }
 
 if (keyboard_check(vk_control) && keyboard_check_pressed(vk_backspace)) {

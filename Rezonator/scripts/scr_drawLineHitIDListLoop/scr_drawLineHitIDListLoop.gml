@@ -201,7 +201,6 @@ function scr_drawLineHitIDListLoop(currentHitIDList, previousWordDisplayCol, cur
 				with (obj_control) {
 					//preSwitchDisplayRow = newSwitch;
 					highlightedSearchRow = newSwitch ;
-					show_debug_message(newSwitch);
 				
 				}
 			}

@@ -37,6 +37,9 @@ else {
 if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)) {
 	keyboard_key_release(vk_up);
 	keyboard_key_release(vk_down);
+	keyboard_key_release(vk_lshift);
+	keyboard_key_release(vk_lalt);
+	keyboard_key_release(vk_lcontrol);
 }
 
 
@@ -228,7 +231,6 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 			if (holdPgDn == 0 or (holdPgDn > 15 and holdPgDn % holdPgMod == 0)) {
 				// will need to make this the difference with windowHeight to scale with PanelPanes
 				scrollSpeed -= camera_get_view_height(view_get_camera(0)) - wordTopMargin - (gridSpaceVertical);//(((camera_get_view_height(camera_get_active()) - instance_find(obj_panelPane,0).windowHeight)) - obj_menuBar.menuHeight) * 0.9;//* 0.8;
-				show_debug_message(camera_get_view_height(view_get_camera(0)));
 			}
 			if(holdPgDn > 45) {
 				holdPgMod = 3;
@@ -644,7 +646,6 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 if (!gridView) {
 	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("H"))) {
 		scr_showSpeakerName(!obj_control.showParticipantName);
-		show_debug_message("obj_control Step");
 	}
 }
 

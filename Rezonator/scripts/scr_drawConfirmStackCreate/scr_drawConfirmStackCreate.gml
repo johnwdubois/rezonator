@@ -39,7 +39,7 @@ function scr_drawConfirmStackCreate(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(fullWindowX + 10), floor(mean(fullWindowY, fullWindowY + captionHeight)), string(game_display_name));
 	
-	draw_set_font(fnt_mainLarge1);
+	draw_set_font(global.fontMain);
 	
 	
 	// get XY positions for buttons
@@ -156,7 +156,7 @@ function scr_drawConfirmStackCreate(){
 	
 	// draw button text
 	draw_set_colour(global.colorThemeText);
-	draw_set_font(fnt_mainLarge1);
+	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_text(floor(mean(yesButtonX1, yesButtonX2)), floor((yesButtonY2 - yesButtonY1) /2 + yesButtonY1), scr_get_translation("msg_yes"));
 	draw_text(floor(mean(noButtonX1, noButtonX2)), floor((noButtonY2 - noButtonY1) /2 + noButtonY1), scr_get_translation("msg_no"));

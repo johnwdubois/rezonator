@@ -217,14 +217,8 @@ function scr_getColNameString(grid, col) {
 			case obj_control.dynamicWordGrid_colReplaceWord:
 				colName = "replaceWord";
 				break;
-			case obj_control.dynamicWordGrid_colTag1: // hard coded for now!
-				colName = obj_control.dynamicWordGrid_colTag1Label;
-				break;
-			case obj_control.dynamicWordGrid_colTag2:
-				colName = obj_control.dynamicWordGrid_colTag2Label;
-				break;
-			case obj_control.dynamicWordGrid_colTag3:
-				colName = obj_control.dynamicWordGrid_colTag3Label;
+			case obj_control.dynamicWordGrid_colDisplayRow:
+				colName = "displayRow";
 				break;
 			default:
 				break;

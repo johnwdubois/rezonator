@@ -2,7 +2,7 @@ function scr_stackOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "Stack tab":
+		case "menu_stacktab":
 			with (obj_panelPane) {
 				if (currentFunction == functionChainList) {
 					functionChainList_currentTab = functionChainList_tabStackBrush;
@@ -21,14 +21,14 @@ function scr_stackOptions(optionSelected) {
 			}
 			instance_destroy();
 			break;
-		case "Stacker":
+		case "menu_stacker":
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList,  "Turn", "Sentence", "Group", "Random");
+			ds_list_add(dropDownOptionList,  "menu_turn", "menu_sentence", "menu_random");
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(x + windowWidth, y + (optionSpacing * 2), dropDownOptionList, global.optionListTypeCreateStack);
 			}
 			break;
-		case "StackShow":
+		case "menu_stackshow":
 		/*
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList, "Create", "Run");

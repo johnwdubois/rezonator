@@ -52,10 +52,10 @@ function scr_drawDialogueBox() {
 		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1, dialogueBoxRectX2, dialogueBoxRectY2, true);
 		draw_set_colour(global.colorThemeText);
 	
-		draw_set_font(fnt_mainBold);
+		draw_set_font(global.fontMainBold);
 		draw_text(floor(dialogueBoxRectX1 + 15), floor(dialogueBoxRectY1 + 15), string(game_display_name));
 	
-		draw_set_font(fnt_mainLarge1);
+		draw_set_font(global.fontMain);
 
 	
 		// draw search bar
@@ -74,7 +74,7 @@ function scr_drawDialogueBox() {
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle(cameraMidpointX + 180 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 175 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, true);
 		draw_set_colour(global.colorThemeText);
-		draw_set_font(fnt_mainLarge1);
+		draw_set_font(global.fontMain);
 	
 		// draw button text
 		draw_text(floor(cameraMidpointX + 30), floor(cameraMidpointY + 75), scr_get_translation("msg_okay"));
@@ -108,7 +108,7 @@ function scr_drawDialogueBox() {
 					
 			// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
-			draw_set_font(fnt_main);
+			draw_set_font(global.fontMain);
 			draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("label_split-word"));
 		
 			draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
@@ -161,7 +161,7 @@ function scr_drawDialogueBox() {
 	
 				// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
-			draw_set_font(fnt_main);
+			draw_set_font(global.fontMain);
 			draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("msg_insert_before"));
 		
 			draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
@@ -212,7 +212,7 @@ function scr_drawDialogueBox() {
 				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_line-jump"));
 			}
 		
-				draw_set_font(fnt_main);
+				draw_set_font(global.fontMain);
 				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("msg_time_search"));
 	
 				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
@@ -303,7 +303,7 @@ function scr_drawDialogueBox() {
 			}
 
 			//darw boolean options text
-			draw_set_font(fnt_main);
+			draw_set_font(global.fontMain);
 			if (!obj_control.regExCheck) {
 				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("search_dialogue_current-unit"));
 				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 70), scr_get_translation("search_dialogue_case"));
