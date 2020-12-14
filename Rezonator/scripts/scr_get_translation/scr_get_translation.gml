@@ -16,12 +16,7 @@ function scr_get_translation(key){
 		// if they are, show the raw key value to reveal missing translations
 		// if dev variables are off, show the English translation
 		
-		if (instance_exists(obj_control)) {
-			return (obj_control.showDevVars) ? string(key) : ds_map_find_value( "locale_en" , key );
-		}
-		else {
-			return string(key);
-		}
+		string(key);
 		
 	}
 
