@@ -4,19 +4,25 @@
 
 function scr_get_translation(key){
 	
-if ( variable_global_exists("locale_gloss") && ds_map_exists( global.locale_gloss, key ) )
-{
-	return ds_map_find_value( global.locale_gloss, key );
-} else {
 	
-	// return the English value if nothing is found
-	// return ds_map_find_value( "locale_en" , key );
-	
-	// substitute this code line immediately above to test translation for debugging purposes.
-	// it will print the kay value of each pair for which the translation is missing:
-	
-	return string(key);
-}
-
+	if ( variable_global_exists("locale_gloss") && ds_map_exists( global.locale_gloss, key ) )
+	{
+		return ds_map_find_value( global.locale_gloss, key );
+	}
+	else {
+		
+		// if we cannot find the translated string...
+		// check if developer variables are on
+		// if they are, show the raw key value to reveal missing translations
+		// if dev variables are off, show the English translation
+		
+		if (instance_exists(obj_control)) {
+			return (obj_control.showDevVars) ? string(key) : ds_map_find_value( "locale_en" , key );
+		}
+		else {
+			return string(key);
+		}
+		
+	}
 
 }

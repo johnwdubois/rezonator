@@ -451,6 +451,7 @@
     {"id":{"name":"obj_importMappingRezInfo","path":"objects/obj_importMappingRezInfo/obj_importMappingRezInfo.yy",},"order":4,},
     {"id":{"name":"obj_importMappingTagInfo","path":"objects/obj_importMappingTagInfo/obj_importMappingTagInfo.yy",},"order":5,},
     {"id":{"name":"obj_importPlainTextInfo","path":"objects/obj_importPlainTextInfo/obj_importPlainTextInfo.yy",},"order":6,},
+    {"id":{"name":"scr_drawDevVars","path":"scripts/scr_drawDevVars/scr_drawDevVars.yy",},"order":30,},
     {"id":{"name":"obj_importException","path":"objects/obj_importException/obj_importException.yy",},"order":7,},
     {"id":{"name":"scr_drawConfirmStackCreate","path":"scripts/scr_drawConfirmStackCreate/scr_drawConfirmStackCreate.yy",},"order":12,},
     {"id":{"name":"obj_exceptionsWindow","path":"objects/obj_exceptionsWindow/obj_exceptionsWindow.yy",},"order":8,},
