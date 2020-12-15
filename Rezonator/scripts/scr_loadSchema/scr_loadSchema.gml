@@ -65,7 +65,7 @@ function scr_loadSchema(autoload) {
 	
 	if (not ds_exists(wrapper, ds_type_map)) {
 		show_message("Error loading " + fileName);
-		game_restart();
+		room_goto(rm_openingScreen);
 		exit;
 	}
 	
@@ -73,7 +73,7 @@ function scr_loadSchema(autoload) {
 	
 	if (is_undefined(list)) {
 		show_message("Error loading " + fileName);
-		game_restart();
+		room_goto(rm_openingScreen);
 		exit;
 	}
 	

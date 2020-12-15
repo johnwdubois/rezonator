@@ -165,6 +165,9 @@ participantHueOffset = 0;
 showDevVars = false;
 
 
+
+
+
 scr_createRezDirectory();
 
 //scr_createFonts();
