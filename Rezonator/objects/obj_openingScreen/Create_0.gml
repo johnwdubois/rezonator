@@ -166,7 +166,8 @@ showDevVars = false;
 
 
 scr_createRezDirectory();
-scr_createFonts();
+
+//scr_createFonts();
 
 
 global.currentDirString = global.rezonatorDirString;
