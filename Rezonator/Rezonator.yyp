@@ -152,6 +152,7 @@
     {"id":{"name":"scr_loadREZGridResize","path":"scripts/scr_loadREZGridResize/scr_loadREZGridResize.yy",},"order":7,},
     {"id":{"name":"scr_gridToCSV","path":"scripts/scr_gridToCSV/scr_gridToCSV.yy",},"order":6,},
     {"id":{"name":"scr_importDebugGridDraw","path":"scripts/scr_importDebugGridDraw/scr_importDebugGridDraw.yy",},"order":3,},
+    {"id":{"name":"obj_alarm2","path":"objects/obj_alarm2/obj_alarm2.yy",},"order":2,},
     {"id":{"name":"scr_exportGrids","path":"scripts/scr_exportGrids/scr_exportGrids.yy",},"order":2,},
     {"id":{"name":"scr_createRezDirectory","path":"scripts/scr_createRezDirectory/scr_createRezDirectory.yy",},"order":11,},
     {"id":{"name":"scr_getListOfGridCols","path":"scripts/scr_getListOfGridCols/scr_getListOfGridCols.yy",},"order":22,},
