@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_splitLine(splitWordID){
 	
+	show_debug_message("scr_splitLine() ... wordID: " + string(splitWordID));
+	
 	// get lineGridRow and wordIDList
 	var lineGrid = obj_control.lineGrid;
 	var lineGridRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, splitWordID - 1);
