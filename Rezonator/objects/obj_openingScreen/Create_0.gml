@@ -336,7 +336,7 @@ global.openedREZFile = false;
 
 
 global.scrollBarWidth = 20;
-scr_fontGlobalUpdate();
+
 
 canPressMinus = true;
 canPressPlus = true;

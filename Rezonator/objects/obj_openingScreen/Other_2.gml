@@ -7,3 +7,4 @@ global.skipToImportScreen = false;
 global.skipToPlayandLearn = false;
 
 scr_initializeFonts();
+scr_fontGlobalUpdate();
