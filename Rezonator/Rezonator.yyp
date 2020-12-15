@@ -786,7 +786,6 @@
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":"~usersettings.ini","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansCJKsc-Regular.otf","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansCJKjp-Regular.otf","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansHebrew-Regular.otf","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/Data","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
     {"CopyToMask":153157610357391598,"filePath":"datafiles","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
@@ -797,6 +796,10 @@
     {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"neko.dll","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"regexp.ndll","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"std.ndll","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansHebrew-Regular.ttf","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"NotoSansCombined.ttf","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"KlokanTechNotoSans-Regular.ttf","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/Fonts","resourceVersion":"1.0","name":"KlokanTechNotoSansCJK-Regular.otf","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.1.536",
