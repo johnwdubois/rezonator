@@ -165,8 +165,12 @@ participantHueOffset = 0;
 showDevVars = false;
 
 
+
+
+
 scr_createRezDirectory();
-scr_createFonts();
+
+//scr_createFonts();
 
 
 global.currentDirString = global.rezonatorDirString;
@@ -335,7 +339,7 @@ global.openedREZFile = false;
 
 
 global.scrollBarWidth = 20;
-scr_fontGlobalUpdate();
+
 
 canPressMinus = true;
 canPressPlus = true;

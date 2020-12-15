@@ -57,7 +57,18 @@ if (obj_openingScreen.showDevVars) {
 
 
 
-
+if(!global.fontsLoaded){
+	if(!global.loadingScreenCreated){
+	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	instLoading.loadSprite = spr_loading;
+	global.loadingScreenCreated = true;
+	}
+	else{
+		if(instance_exists(obj_loadingScreen)){
+			instance_destroy(instLoading);
+		}
+	}
+}
 
 
 showPreImportScreen = (global.newProject and not global.openProject);
