@@ -14,10 +14,8 @@ function scr_loadREZ() {
 	*/
 	var RezDirString = global.currentDirString;
 	if(!global.wheresElmo){
-		RezDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Rez";
-		if (os_type == os_macosx) {
-			RezDirString = global.rezonatorDirString + "/Data/SBCorpus/Rez";
-		}
+		var delimiter = (os_type == os_macosx) ? "/" : "\\";
+		RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
 	}
 
 	if (!global.wheresElmo and global.previousRezDirectory != "") {
