@@ -113,74 +113,6 @@ function scr_openingMenu() {
 
 
 
-	/*
-	var rezzlesButtonX1 = openProjectButtonX1
-	var rezzlesButtonY1 = openProjectButtonY2 + 70;
-	var rezzlesButtonX2 = openProjectButtonX2;
-	var rezzlesButtonY2 = rezzlesButtonY1 + buttonHeight;
-
-	if (point_in_rectangle(mouse_x, mouse_y, rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2))
-	{
-		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2, false);
-	
-		if (device_mouse_check_button_released(0, mb_left))
-		{
-			global.menuOpen = false;
-			global.newProject = false;
-			global.openProject = true;
-			global.games = true;
-
-			global.rezzles = true;
-			global.wheresElmo = false;
-			global.tutorial = false;
-	
-
-		}
-	}
-
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2, true);
-	draw_set_color(global.colorThemeText);
-	draw_text(mean(rezzlesButtonX1, rezzlesButtonX2), mean(rezzlesButtonY1, rezzlesButtonY2), "Rezzles");
-
-
-
-	//tutorial button
-
-
-	var openTutorialButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2);
-	var openTutorialButtonY1 = rezzlesButtonY2 + 70;
-	var openTutorialButtonX2 = openTutorialButtonX1 + buttonWidth;
-	var openTutorialButtonY2 = openTutorialButtonY1 + buttonHeight;
-	/*
-	if (point_in_rectangle(mouse_x, mouse_y, openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2))
-	{
-		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2, false);
-	
-		if (device_mouse_check_button_released(0, mb_left))
-		{
-			global.menuOpen = false;
-			global.newProject = false;
-			global.openProject = true;
-			global.tutorial = true;
-			global.rezzles = false;
-			global.wheresElmo = false;
-		}
-	}
-
-
-
-
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2, true);
-	draw_set_color(global.colorThemeText);
-	draw_text(mean(openTutorialButtonX1, openTutorialButtonX2), mean(openTutorialButtonY1, openTutorialButtonY2), "Tutorial");
-
-	*/
-
-
 	var signInXBuffer = 20;
 	var signInYBuffer = 25;
 
@@ -188,12 +120,6 @@ function scr_openingMenu() {
 	var userSignInBoxY1 = signInYBuffer;
 	var userSignInBoxX2 = userSignInBoxX1 + 250;
 	var userSignInBoxY2 = userSignInBoxY1 + 30;
-	/*
-	var userSignInBoxX1 = openTutorialButtonX1
-	var userSignInBoxY1 = openTutorialButtonY2 + 50;
-	var userSignInBoxX2 = openTutorialButtonX2;
-	var userSignInBoxY2 = userSignInBoxY1 + 30;
-	*/
 
 
 	draw_set_color(global.colorThemeBorders);
@@ -275,6 +201,38 @@ function scr_openingMenu() {
 	}
 
 
+
+	//localization font selection
+		var changeLanguageButtonWidth = max(200, string_width(" Save Import Schema "));
+		var changeLanguageButtonHeight = 30;
+		var changeLanguageButtonRectX2 = (camera_get_view_width(camera_get_active()) - 25);
+		var changeLanguageButtonRectX1 = changeLanguageButtonRectX2 - changeLanguageButtonWidth;
+		var changeLanguageButtonRectY2 = (camera_get_view_height(camera_get_active()) - 25);
+		var changeLanguageButtonRectY1 = changeLanguageButtonRectY2 - changeLanguageButtonHeight;
+
+
+	
+		if (point_in_rectangle(mouse_x, mouse_y, changeLanguageButtonRectX1, changeLanguageButtonRectY1, changeLanguageButtonRectX2, changeLanguageButtonRectY2)) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(changeLanguageButtonRectX1, changeLanguageButtonRectY1, changeLanguageButtonRectX2, changeLanguageButtonRectY2, false);
+	
+			if (mouse_check_button_pressed(mb_left)) {
+			var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh");
+				scr_createDropDown(changeLanguageButtonRectX1,changeLanguageButtonRectY1, dropDownOptionList, global.optionListTypeLanguage);
+			}
+		}
+	
+		draw_set_color(global.colorThemeBorders);
+		draw_set_alpha(1);
+		draw_rectangle(changeLanguageButtonRectX1, changeLanguageButtonRectY1, changeLanguageButtonRectX2, changeLanguageButtonRectY2, true);
+
+		draw_set_font(global.fontMain);
+		draw_set_halign(fa_center);
+		draw_set_color(global.colorThemeText);
+		var currentLanguageString = "menu_language-"+string(global.lang_codes[| global.lang_index]);
+
+		draw_text(floor(mean(changeLanguageButtonRectX1, changeLanguageButtonRectX2)), floor(mean(changeLanguageButtonRectY1, changeLanguageButtonRectY2)), scr_get_translation(currentLanguageString));
 
 
 	if(global.menuOpen){
