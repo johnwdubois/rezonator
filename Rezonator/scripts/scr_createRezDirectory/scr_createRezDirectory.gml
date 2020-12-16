@@ -43,16 +43,19 @@ function scr_createRezDirectory() {
 					directory_create(testDir + "/Rezonator");
 				}
 			}
-		
 
 			directory_create(global.rezonatorDirString);
-			directory_copy(working_directory + "Resources", global.rezonatorDirString);
+			scr_directoryCopy(working_directory, global.rezonatorDirString);
+			//directory_copy(working_directory + "Resources", global.rezonatorDirString);
 		}
 		else {
+			
+			
 			if (directory_exists(working_directory)) {
 		
 				if (!directory_exists(global.rezonatorDirString)) {
-					directory_copy(working_directory, global.rezonatorDirString);
+					scr_directoryCopy(working_directory, global.rezonatorDirString);
+					//directory_copy(working_directory, global.rezonatorDirString);
 				}
 			}
 		}
