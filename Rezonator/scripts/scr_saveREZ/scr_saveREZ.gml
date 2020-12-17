@@ -308,7 +308,7 @@ function scr_saveREZ(autosave) {
 
 	show_debug_message("scr_saveREZ(), END... " + scr_printTime());
 
-	if (autosave && directory_exists(global.importGroupOutputDir)) {
+	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
 		room_goto(rm_openingScreen);
 	}
 
