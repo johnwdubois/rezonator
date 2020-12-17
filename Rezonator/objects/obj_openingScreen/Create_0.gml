@@ -318,7 +318,7 @@ ds_list_clear(global.previousLevelEstimates);
 ds_list_clear(global.previousSpecialFields);
 
 global.readHintHide = false;
-global.fontSize = 0;
+
 
 
 
