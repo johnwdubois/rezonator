@@ -1,3 +1,9 @@
+scr_createRezDirectory();
+
+global.currentDirString = global.rezonatorDirString;
+
+scr_loadINI();
+
 global.importGroupDir = "";
 global.importGroupFileList = ds_list_create();
 global.importGroupFileIndex = 0;

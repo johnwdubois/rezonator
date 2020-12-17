@@ -168,12 +168,12 @@ showDevVars = false;
 
 
 
-scr_createRezDirectory();
+
 
 //scr_createFonts();
 
 
-global.currentDirString = global.rezonatorDirString;
+
 
 global.rememberMe = false;
 
@@ -320,7 +320,7 @@ ds_list_clear(global.previousSpecialFields);
 global.readHintHide = false;
 global.fontSize = 0;
 
-scr_loadINI();
+
 
 
 
