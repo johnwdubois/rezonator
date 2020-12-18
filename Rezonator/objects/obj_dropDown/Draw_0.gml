@@ -193,7 +193,6 @@ for (var i = 0; i < optionListSize; i++) {
 			} 
 			draw_set_font(fontScaledName);
 		}
-		show_debug_message(string(fontScaledName))
 	}
 	
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
