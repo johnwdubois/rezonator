@@ -500,6 +500,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
 			draw_set_color(global.colorThemeText);
 			draw_set_valign(fa_top);
+			draw_set_halign(fa_left);
 			draw_set_font(global.fontPanelTab);
 			draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		

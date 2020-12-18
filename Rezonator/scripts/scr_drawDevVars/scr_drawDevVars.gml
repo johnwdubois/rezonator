@@ -26,4 +26,6 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 	
+	draw_set_halign(fa_left);
+
 }

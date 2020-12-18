@@ -121,7 +121,7 @@ function scr_drawGridViewerClipped() {
 				textPlusY += strHeight;
 				continue;
 			}
-			if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight + strHeight) {
+			if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight  - global.scrollBarWidth) {
 				textPlusY += strHeight;
 				break;
 			}
@@ -286,7 +286,7 @@ function scr_drawGridViewerClipped() {
 		}
 	
 	
-		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
+		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2 - global.scrollBarWidth)) {
 			window_set_cursor(cr_size_we);
 			draw_set_alpha(0.8);
 		
