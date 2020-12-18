@@ -252,7 +252,7 @@ function scr_drawDialogueBox() {
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
 		}
 		if (obj_control.newCustomTagUnit) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
 		}
 		if (obj_control.newCustomTagStack) {
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
@@ -656,6 +656,9 @@ function scr_drawDialogueBox() {
 			}
 			if (obj_control.newCustomFieldUnit) {
 				scr_dialogueBoxNewCustomFieldUnit();
+			}
+			if (obj_control.newCustomTagUnit) {
+				scr_dialogueBoxNewCustomTagUnit();
 			}
 			if (obj_control.newCustomTagToken) {
 				scr_dialogueBoxNewCustomTagToken();
