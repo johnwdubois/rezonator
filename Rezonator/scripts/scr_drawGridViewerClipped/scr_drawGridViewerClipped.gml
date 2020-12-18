@@ -121,7 +121,7 @@ function scr_drawGridViewerClipped() {
 				textPlusY += strHeight;
 				continue;
 			}
-			if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight  - global.scrollBarWidth) {
+			if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight  - global.scrollBarWidth + strHeight) {
 				textPlusY += strHeight;
 				break;
 			}

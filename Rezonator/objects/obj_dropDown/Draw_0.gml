@@ -146,9 +146,59 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionTextStr = scr_get_translation(optionText);
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
+	
+	//draw correct font for language drop down
+	if(optionListType == global.optionListTypeLanguage){
+		if (optionText == "menu_language-ja" or optionText == "menu_language-zh" ) {
+			var fontScaledName = global.localeCJK_M_0;
+			if( global.fontSize == 0 ){
+				fontScaledName = global.localeCJK_M_0;
+			}
+			else if( global.fontSize == 1 ){
+				fontScaledName = global.localeCJK_M_1;
+			} 
+			else if( global.fontSize == 2 ){
+				fontScaledName = global.localeCJK_M_2;
+			}
+			else if( global.fontSize == 3 ){
+				fontScaledName = global.localeCJK_M_3;
+			}
+			else if( global.fontSize == 4 ){
+				fontScaledName = global.localeCJK_M_4;
+			}
+			else if( global.fontSize == 5 ){
+				fontScaledName = global.localeCJK_M_5;
+			} 
+			draw_set_font(fontScaledName);
+		}
+		else {
+			var fontScaledName = global.localeEN_M_0;
+			if( global.fontSize == 0 ){
+				fontScaledName = global.localeEN_M_0;
+			}
+			else if( global.fontSize == 1 ){
+				fontScaledName = global.localeEN_M_1;
+			} 
+			else if( global.fontSize == 2 ){
+				fontScaledName = global.localeEN_M_2;
+			}
+			else if( global.fontSize == 3 ){
+				fontScaledName = global.localeEN_M_3;
+			}
+			else if( global.fontSize == 4 ){
+				fontScaledName = global.localeEN_M_4;
+			}
+			else if( global.fontSize == 5 ){
+				fontScaledName = global.localeEN_M_5;
+			} 
+			draw_set_font(fontScaledName);
+		}
+		show_debug_message(string(fontScaledName))
+	}
+	
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
 	
-	
+
 	draw_set_alpha(1);
 	
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {
