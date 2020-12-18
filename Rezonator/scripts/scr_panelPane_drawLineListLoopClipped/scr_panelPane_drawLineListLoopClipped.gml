@@ -69,7 +69,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	
 		var currentLineState = ds_grid_get(currentLineGrid, obj_control.lineGrid_colLineState, i);
 		var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
-		if(lineColor == undefined){
+		if (!is_numeric(lineColor)) {
 			lineColor = 1;
 		}
 		var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
@@ -83,20 +83,18 @@ function scr_panelPane_drawLineListLoopClipped() {
 			discoColor = obj_control.c_ltblue;
 		}
 
-		var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
+		var currentLineWordList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, i);
 		var currentLineWordString = "";
 		var currentLineWordListSize = 0;
 		
-		if(currentLineWordList != undefined){
-			if(ds_exists(currentLineWordList , ds_type_list)){
+		if (is_numeric(currentLineWordList)) {
+			if (ds_exists(currentLineWordList , ds_type_list)) {
 				currentLineWordListSize = ds_list_size(currentLineWordList);
 			}
 		}
-
 	
-		//will want to use the dyanmic word grid instead
-		//var currentLineWordListSize = ds_list_size(currentLineWordList);
-		for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
+		// get this line's concatenated string
+		for (var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 		
 			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
@@ -107,8 +105,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 			currentLineWordString += string(currentWordToken) + " ";
 		}
 	
-		if(string_height(currentLineWordString) > 20) {
-			//strHeight = 20;
+		if (string_height(currentLineWordString) > 20) {
 			textAdjustY = string_height(currentLineWordString) - 20;
 		}
 	
