@@ -22,7 +22,7 @@ function scr_newProjectWindow() {
 	draw_set_color(global.colorThemePaneBG);
 	draw_rectangle(importWindowX1, importWindowY1, importWindowX2, importWindowY2, false);
 
-	draw_set_font(global.fontMain);
+
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 
@@ -59,6 +59,7 @@ function scr_newProjectWindow() {
 	}
 
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(importButtonString, "M");
 	draw_text(mean(importButtonRectX1, importButtonRectX2), mean(importButtonRectY1, importButtonRectY2), importButtonString);
 
 
@@ -253,7 +254,6 @@ function scr_newProjectWindow() {
 		draw_sprite(spr_calloutBubble, 0, calloutBubbleX, calloutBubbleY);
 		draw_set_color(c_black);
 		draw_set_halign(fa_center);
-		draw_set_font(fnt_calloutBubble);
 		draw_text(calloutBubbleX, calloutBubbleY - 15, calloutBubbleText);
 	}
 

@@ -24,7 +24,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	}
 
 
-	draw_set_font(global.fontChainList);
+
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
@@ -227,11 +227,8 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		        focusedLineNameRectY1 = lineNameRectY1;
 		        focusedLineNameRectY2 = lineNameRectY2;
 		        focusedElementY = y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY;
-		        draw_set_font(global.fontChainListFocused);
 		    }
-		    else {
-		        draw_set_font(global.fontMain);
-		    }
+
     
 		    // Draw text of unit tags
 		    draw_set_halign(fa_left);
@@ -251,6 +248,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		
 		
 			tagToDraw = (tagToDraw == undefined) ? "" : tagToDraw;
+			scr_adaptFont(string(tagToDraw), "S");
 		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
     
 		    // Get height of chain name
@@ -314,7 +312,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
 	    draw_set_color(global.colorThemeText);
 	    draw_set_valign(fa_top);
-	    draw_set_font(global.fontPanelTab);
+	    scr_adaptFont(colName, "M")
 	    draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 	
 		var notDiscoTag = (ds_list_find_index(global.discoImportColNameList, colName) == -1);

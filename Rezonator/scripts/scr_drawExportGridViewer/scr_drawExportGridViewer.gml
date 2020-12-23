@@ -6,8 +6,7 @@ function scr_drawExportGridViewer(grid) {
 
 	var textY = 0;
 	var textPlusY = 0;
-	draw_set_font(global.fontGridView);
-	var strWidth = string_width("A");
+	var strWidth = string_width("0");
 	var strHeight = string_height("0");
 
 	var windowX1 = windowX + (strWidth * 2);
@@ -63,6 +62,7 @@ function scr_drawExportGridViewer(grid) {
 			var currentCellRectY2 = currentCellRectY1 + strHeight;
 		
 			draw_set_color(global.colorThemeText);
+			scr_adaptFont(currentItemString, "S");
 			draw_text(textX - clipX, textY - clipY, currentItemString);
 		
 			textPlusY += strHeight;

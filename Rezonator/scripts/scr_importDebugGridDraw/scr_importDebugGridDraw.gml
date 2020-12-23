@@ -55,7 +55,6 @@ function scr_importDebugGridDraw() {
 
 
 	// Draw Tag Info window contents
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 
@@ -116,7 +115,7 @@ function scr_importDebugGridDraw() {
 		
 		
 			draw_set_color(global.colorThemeText);
-			draw_set_font(global.fontMain);
+			scr_adaptFont(currentCellStr, "M");
 			draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), currentCellStr);
 
 			plusY += rowHeight;
@@ -190,8 +189,9 @@ function scr_importDebugGridDraw() {
 			headerStr = ds_list_find_value(global.importGridColNameList, i+2);
 		}
 
-		draw_set_font(global.fontMainBold);
+
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(headerStr, "L");
 		draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
 	
 		// draw column lines

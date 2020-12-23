@@ -18,7 +18,6 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	//var lineListPanelPaneInst = inst_PanelPane_chainList;
 
 
-	draw_set_font(global.fontChainList);
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
@@ -120,11 +119,8 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 			focusedLineNameRectY1 = lineNameRectY1;
 			focusedLineNameRectY2 = lineNameRectY2;
 			focusedElementY = y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY;
-			draw_set_font(global.fontChainListFocused);
 		}
-		else {
-			draw_set_font(global.fontMain);
-		}
+
 	
 		// Draw text of chain names
 		draw_set_color(global.colorThemeText);
@@ -145,6 +141,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		draw_set_color(global.colorThemeBG);
 		draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(currentLineWordString, "M");
 		draw_text(windowWidth/3, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, currentLineWordString);
 	
 	

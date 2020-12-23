@@ -57,7 +57,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 		obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 	}
 
-	draw_set_font(global.fontChainList);
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
@@ -247,23 +246,22 @@ function scr_panelPane_drawChainListLoopClipped() {
 			focusedChainNameRectY1 = chainNameRectY1;
 			focusedChainNameRectY2 = chainNameRectY2;
 			focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
-			draw_set_font(global.fontChainListFocused);
 		}
-		else {
-			draw_set_font(global.fontChainList);
-		}
+
 	
 		// Draw text of chain names
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
+		scr_adaptFont(currentChainName, "M");
 		draw_text(floor(x + textMarginLeft) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, currentChainName);
 		if (currentChainCaption != "" && functionChainList_currentTab == functionChainList_tabStackBrush) {
 			draw_set_alpha(0.7);
 			// remove any newlines or carriage returns from caption
 			currentChainCaption = string_replace_all(currentChainCaption, "\r", "");
 			currentChainCaption = string_replace_all(currentChainCaption, "\n", "");
+			scr_adaptFont(string(currentChainCaption), "S");
 			draw_text(floor(x + textMarginLeft + string_width(currentChainName + "  ")) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentChainCaption));
 		}
 		draw_set_alpha(1);
@@ -276,7 +274,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 			var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
 			var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
 			var inFilter = ds_grid_get(grid, obj_chain.chainGrid_colInFilter, i);
-			draw_set_font(global.fontPanelTab);
 	
 			draw_set_color(global.colorThemeText);
 			// Fill in boxes if filtered

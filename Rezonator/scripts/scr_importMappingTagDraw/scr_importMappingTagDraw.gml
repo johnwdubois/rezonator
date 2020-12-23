@@ -9,10 +9,10 @@ function scr_importMappingTagDraw() {
 
 	// Import Screen Title
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("msg_import_file_map"), "L");
 	draw_text(20 + sprite_get_width(spr_backArrow), 20, scr_get_translation("msg_import_file_map"));
 
 
@@ -22,27 +22,6 @@ function scr_importMappingTagDraw() {
 	var yBuffer = (camHeight / 2) - 180;
 
 
-	/*
-
-
-
-	// Summary window
-	var summaryInfoWindowRectX1 = (camWidth / 3) + 20;
-	var summaryInfoWindowRectY1 = 80 + string_height("0");
-	var summaryInfoWindowRectX2 = (camWidth * 0.666) - 20;
-	var summaryInfoWindowRectY2 = (camHeight / 2) - 180;
-
-	draw_set_color(global.colorThemeBorders);
-	draw_set_alpha(1);
-	draw_rectangle(summaryInfoWindowRectX1, summaryInfoWindowRectY1, summaryInfoWindowRectX2, summaryInfoWindowRectY2, true);
-	draw_set_color(global.colorThemeText);
-	draw_set_font(fnt_mainBold);
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_middle);
-	draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), "Summary");
-
-
-	*/
 	var tagGridHeight = ds_grid_height(global.tagInfoGrid);
 	for (var j = 0 ; j < 2; j++){
 
@@ -112,9 +91,10 @@ function scr_importMappingTagDraw() {
 		draw_set_alpha(1);
 		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
 
-		draw_set_font(global.fontMain);
+
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(scr_get_translation("msg_continue"),"M");
 		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 
 	}
@@ -140,17 +120,19 @@ function scr_importMappingTagDraw() {
 			errorMessage = "Word fields do not align 1-to-1 with Word Delimiter.";
 		}
 	
-		draw_set_font(global.fontMain);
+
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(errorMessage,"M");
 		draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), errorMessage);
 	}
 
 
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
+
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("menu_import_fields"),"L");
 	draw_text(floor(xBuffer), floor(yBuffer + 50), scr_get_translation("menu_import_fields"));
 
 	var buttonBuffer = 20;
@@ -198,9 +180,10 @@ function scr_importMappingTagDraw() {
 	draw_set_alpha(1);
 	draw_rectangle(loadPreviousButtonRectX1, loadPreviousButtonRectY1, loadPreviousButtonRectX2, loadPreviousButtonRectY2, true);
 
-	draw_set_font(global.fontMain);
+
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("msg_last-schema"), "M");
 	draw_text(floor(mean(loadPreviousButtonRectX1, loadPreviousButtonRectX2)), floor(mean(loadPreviousButtonRectY1, loadPreviousButtonRectY2)), scr_get_translation("msg_last-schema"));
 
 
@@ -262,9 +245,10 @@ function scr_importMappingTagDraw() {
 	draw_set_alpha(1);
 	draw_rectangle(loadSchemaButtonRectX1, loadSchemaButtonRectY1, loadSchemaButtonRectX2, loadSchemaButtonRectY2, true);
 
-	draw_set_font(global.fontMain);
+
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("msg_load-schema"), "M");
 	draw_text(floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)), floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)), scr_get_translation("msg_load-schema"));
 	
 	
@@ -298,9 +282,10 @@ function scr_importMappingTagDraw() {
 		draw_set_alpha(1);
 		draw_rectangle(saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2, true);
 
-		draw_set_font(global.fontMain);
+
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(scr_get_translation("msg_save-schema"), "M");
 		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), scr_get_translation("msg_save-schema"));
 	}
 	
@@ -330,9 +315,10 @@ function scr_importMappingTagDraw() {
 		draw_set_alpha(1);
 		draw_rectangle(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2, true);
 
-		draw_set_font(global.fontMain);
+
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(string(obj_importMapping.currentGridName), "M");
 		draw_text(floor(mean(changeGridButtonRectX1, changeGridButtonRectX2)), floor(mean(changeGridButtonRectY1, changeGridButtonRectY2)), string(obj_importMapping.currentGridName));
 
 	}

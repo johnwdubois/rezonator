@@ -2,13 +2,12 @@ if (followWordID < 0 or followWordID >= ds_grid_height(obj_control.dynamicWordGr
 	exit;
 }
 
-draw_set_font(global.fontMain);
+scr_adaptFont(followWordString, "M");
 followWordStringWidth = string_width(followWordString);
 
 
 
-draw_set_font(global.fontChainContents);
-//draw_set_font(global.fontMain);
+scr_adaptFont(string_hash_to_newline(bubbleString), "S");
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 
@@ -64,4 +63,5 @@ draw_roundrect(bubbleX1 - bubblePlus, bubbleY1 - bubblePlus, bubbleX2 + bubblePl
 
 // draw callout text
 draw_set_color(global.colorThemeText);
+
 draw_text(x, y, string_hash_to_newline(bubbleString));

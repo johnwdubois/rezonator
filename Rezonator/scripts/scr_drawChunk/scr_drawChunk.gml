@@ -15,7 +15,7 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 
 
 	var currentWordGridRow = currentWordID - 1;
-	draw_set_font(global.fontMain);
+
 
 	// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
 	var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow);

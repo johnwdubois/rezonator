@@ -33,7 +33,6 @@ function scr_drawStackShowWindow() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontChainList);
 	var strHeight = string_height("0") + 5;
 
 	// Begin the scrollable surface
