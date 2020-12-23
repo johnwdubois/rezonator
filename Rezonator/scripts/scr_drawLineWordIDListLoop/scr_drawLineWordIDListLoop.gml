@@ -205,6 +205,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 		// get the string of this word to draw to the main screen
 		var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
 		var currentWordStringType = string(currentWordString);
+		scr_adaptFont(currentWordStringType,"M");
 		var currentWordStringWidth = string_width(currentWordStringType);
 		//var currentWordStringHeight = string_height(currentWordStringType);
 	
