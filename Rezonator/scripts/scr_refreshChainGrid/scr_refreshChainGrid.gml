@@ -116,9 +116,11 @@ function scr_refreshChainGrid() {
 		
 		// do not add wordID to idList if the word is dead or the source is -1
 		if (dead) {
+			rowInTempGrid = ds_grid_value_y(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(tempGrid), chainID);
 			continue;
 		}
 		if (source == -1) {
+			rowInTempGrid = ds_grid_value_y(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(tempGrid), chainID);
 			continue;
 		}
 		
