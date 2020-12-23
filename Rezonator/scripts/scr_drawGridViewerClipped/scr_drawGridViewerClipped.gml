@@ -376,22 +376,28 @@ function scr_drawGridViewerClipped() {
 
 
 	// draw the current mouseover item
-	var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
-	var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString;	
-
+	var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): ";
+	var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): ";	
+	scr_adaptFont(highlightText, "M");
+	
 	draw_set_alpha(0.3);
 	draw_set_color(c_yellow);
-	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2), windowX1 + string_width(highlightText) + 55, windowY1 - strHeight - 40 + (string_height("0") /2), false);
+	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2), windowX1 + string_width(highlightText), windowY1 - strHeight - 40 + (string_height("0") /2), false);
 	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2) - string_height("0"), windowX1 + string_width(mouseOverText) + 55, windowY1 - strHeight - 40 + (string_height("0") /2) - string_height("0"), false);
+	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2) - string_height("0"), windowX1 + string_width(mouseOverText), windowY1 - strHeight - 40 + (string_height("0") /2) - string_height("0"), false);
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeText);
 
-	scr_adaptFont(highlightText, "M");
+
 	draw_text(windowX1, windowY1 - strHeight - 40, highlightText);
-
 	draw_text(windowX1, windowY1 - strHeight - 40 - string_height("0"), mouseOverText);
-
+	var textBuffer1 = string_width(highlightText);
+	var textBuffer2 = string_width(mouseOverText);
+	scr_adaptFont(string(focusedItemString),"S");
+	draw_text(windowX1 + textBuffer1 + 5, windowY1 - strHeight - 40, string(focusedItemString));
+	scr_adaptFont(string(mouseoverItemString),"S");
+	draw_text(windowX1 + textBuffer2 + 5, windowY1 - strHeight - 40- string_height("0"), string(mouseoverItemString));
+	scr_adaptFont(string(fps), "M");
 	draw_text(windowX1, windowY1 - strHeight - 40 - (string_height("0") * 2), "fps: " + string(fps));
 
 

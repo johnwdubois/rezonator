@@ -20,7 +20,7 @@ function scr_splitLine(splitWordID){
 			show_debug_message("scr_splitLine() ... splitWordIndex: " + string(splitWordIndex));
 			
 			// make sure that splitWordID is in wordIDList
-			if (splitWordIndex >= 0) {
+			if (splitWordIndex > 0) {
 						
 				// create a new row at the bottom of the lineGrid, then copy everything down a row
 				ds_grid_resize(lineGrid, ds_grid_width(lineGrid), ds_grid_height(lineGrid) + 1);
