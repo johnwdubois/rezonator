@@ -4,9 +4,9 @@ function scr_panelPane_drawGoToLine() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 
+	scr_adaptFont(scr_get_translation("msg_select_discourse"), "L");
 	draw_text(x + 20, y + plusY, scr_get_translation("msg_select_discourse"));
 	plusY += 30;
 

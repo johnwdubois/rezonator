@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawDevVars(){
 	
-	draw_set_font(global.fontMain);
+
 	draw_set_color(global.colorThemeSelected2);
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_middle);
@@ -12,6 +12,8 @@ function scr_drawDevVars(){
 	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
+	
+	scr_adaptFont("allSaved: ","M")
 	
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 1), "allSaved: " + string(allSaved));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 2), "Right clicked word: " + string(rightClickWordID));

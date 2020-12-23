@@ -24,8 +24,7 @@ function scr_drawEndNoteWindow(){
 	}
 	
 	// draw caption
-	draw_set_font(global.fontMainBold);
-	var captionHeight = string_height("A") * 1.25;
+	var captionHeight = string_height("0") * 1.25;
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(fullWindowX, fullWindowY, fullWindowX + fullWindowWidth, fullWindowY + captionHeight, false);
 	draw_set_color(global.colorThemeBorders);
@@ -33,9 +32,10 @@ function scr_drawEndNoteWindow(){
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(string(game_display_name), "M");
 	draw_text(floor(fullWindowX + 10), floor(mean(fullWindowY, fullWindowY + captionHeight)), string(game_display_name));
 	
-	draw_set_font(global.fontMain);
+
 	var buttonXOffset = 65;
 	var buttonYOffset = 25;
 	var windowMidPointx = (fullWindowWidth/2) + fullWindowX;
@@ -76,11 +76,12 @@ function scr_drawEndNoteWindow(){
 	draw_rectangle(cancelButtonX1, cancelButtonY1, cancelButtonX2, cancelButtonY2, true);
 	
 	draw_set_colour(global.colorThemeText);
-	draw_set_font(global.fontMain);
 	
 	// draw button text
 	draw_set_halign(fa_center);
+	scr_adaptFont(scr_get_translation("label_create_stacks"), "M");
 	draw_text(floor(mean(okButtonX1, okButtonX2)), floor((okButtonY2 - okButtonY1)/2 + okButtonY1), scr_get_translation("label_create_stacks"));
+	scr_adaptFont(scr_get_translation("msg_cancel"), "M");
 	draw_text(floor(mean(cancelButtonX1, cancelButtonX2)), floor((cancelButtonY2 - cancelButtonY1)/2 + okButtonY1), scr_get_translation("msg_cancel"));
 	
 	
@@ -102,10 +103,9 @@ function scr_drawEndNoteWindow(){
 	scr_surfaceStart();
 	
 	// loop through the list and draw all endTagNotes
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	var strHeight = string_height("A");
+	var strHeight = string_height("0");
 	var plusY = strHeight / 2;
 	var endNoteTagsGridHeight = ds_grid_height(endNoteTagsGrid);
 	var checkedEndNoteTagRectBuffer = 10;
@@ -129,6 +129,7 @@ function scr_drawEndNoteWindow(){
 		draw_rectangle(currentEndNoteTagCheckedRectX1 - clipX, currentEndNoteTagCheckedRectY1 - clipY, currentEndNoteTagCheckedRectX2 - clipX, currentEndNoteTagCheckedRectY2 - clipY, (!currentEndNoteTagChecked));
 		
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(string(currentEndNoteTag), "M");
 		draw_text(floor(currentEndNoteTagCheckedRectX2 + 15) - clipX, floor(y + plusY + scrollPlusY) - clipY, string(currentEndNoteTag));
 		plusY += strHeight;
 	}

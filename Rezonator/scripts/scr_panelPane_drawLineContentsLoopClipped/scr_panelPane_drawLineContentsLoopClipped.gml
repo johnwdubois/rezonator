@@ -18,9 +18,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(global.fontChainContents);
 	var strHeight = string_height("0");
-	draw_set_font(global.fontPanelTab);
 	var tabHeight = functionChainList_tabHeight;
 	var scrollBarListHeight = 0;
 	var drawDropDowns = false;
@@ -263,7 +261,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 						draw_set_color(global.colorThemeText);
 						draw_set_alpha(1);
 						draw_set_valign(fa_middle);
-						draw_set_font(global.fontChainContents);
+						scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
 						draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 					
 					
@@ -364,7 +362,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 
 
 
-	draw_set_font(global.fontChainContents);
+
 	var strHeight = string_height("0");
 
 
@@ -388,7 +386,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	draw_set_alpha(1);
 
 
-	draw_set_font(global.fontPanelTab);
 
 
 	draw_set_color(global.colorThemeBG);
@@ -465,7 +462,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);
-		draw_set_font(global.fontPanelTab);
+		scr_adaptFont(colName, "M");
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 	
 		// draw wordView button

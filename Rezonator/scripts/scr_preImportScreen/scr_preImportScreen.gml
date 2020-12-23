@@ -16,11 +16,10 @@ function scr_preImportScreen(){
 	scr_drawBackArrow();
 	
 	
-	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
-	var strHeight = string_height("A");
+	var strHeight = string_height("0");
 	var textBufferLeft = strHeight / 2;
 	var textBufferTop = strHeight / 2;
 	var infoAlpha = 0.5;
@@ -46,7 +45,7 @@ function scr_preImportScreen(){
 	var exampleWindowY2 = floor(camHeight * 0.8);
 	
 	// draw window title
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("msg_example"), "M");
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_text(exampleWindowX1, floor(exampleWindowY1 - (strHeight)), scr_get_translation("msg_example"));
@@ -60,7 +59,7 @@ function scr_preImportScreen(){
 	var exampleWindowList = ds_map_find_value(currentPreImportMap, "example");
 	var exampleWindowListSize = ds_list_size(exampleWindowList);
 	
-	draw_set_font(global.fontMain);
+
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
@@ -71,6 +70,7 @@ function scr_preImportScreen(){
 			if (currentTextY < exampleWindowY2 - (strHeight / 1.5)) {
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(infoAlpha);
+				scr_adaptFont(currentText, "M");
 				draw_text(currentTextX, currentTextY, currentText);
 			}
 		}
@@ -117,6 +117,7 @@ function scr_preImportScreen(){
 								draw_set_alpha(infoAlpha);
 								draw_set_halign(fa_left);
 								draw_set_valign(fa_middle);
+								scr_adaptFont(string(currentText), "M");
 								draw_text(currentTextX, currentTextY, string(currentText));
 							}
 						}
@@ -207,6 +208,7 @@ function scr_preImportScreen(){
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("msg_continue"), "M");
 	draw_text(floor(mean(buttonRectX1, buttonRectX2)), floor(mean(buttonRectY1, buttonRectY2)), scr_get_translation("msg_continue"));
 	
 	// click on continue button

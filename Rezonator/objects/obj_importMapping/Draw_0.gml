@@ -21,7 +21,7 @@ else if (!instance_exists(obj_importException)) {
 
 
 if (showDevVars) {
-	draw_set_font(global.fontMain);
+	scr_adaptFont(string(canContinueDisplayToken), "M");
 	draw_set_halign(fa_left);
 	draw_text(500, 300, "canContinueDisplayToken: " + string(canContinueDisplayToken));
 	draw_text(500, 320, "canContinueToken1to1: " + string(canContinueToken1to1));

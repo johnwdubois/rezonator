@@ -35,10 +35,10 @@ function scr_audioDraw() {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(global.fontChainList);
+	scr_adaptFont(scr_get_translation("msg_audio"), "M");
 	draw_text(x + 24, y + 24, scr_get_translation("msg_audio"));
-	var strHeightAudioTrack = string_height("A");
-	draw_set_font(global.fontChainContents);
+	var strHeightAudioTrack = string_height("0");
+	scr_adaptFont(string(audioFile), "S");
 	draw_text(x + 24, y + 24 + strHeightAudioTrack, string(audioFile));
 
 
@@ -229,7 +229,6 @@ function scr_audioDraw() {
 		strTotalSeconds = "0" + string(floor(audioLength % 60));
 	}
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontChainContents);
 	draw_set_valign(fa_middle);
 	var timeXBuffer = 20;
 	draw_set_halign(fa_left);
@@ -239,7 +238,6 @@ function scr_audioDraw() {
 
 
 	// draw jumpToUnit toggle
-	draw_set_font(global.fontChainContents);
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_middle);
 	var jumpUnitStartTextX = x + windowWidth - string_width("A");

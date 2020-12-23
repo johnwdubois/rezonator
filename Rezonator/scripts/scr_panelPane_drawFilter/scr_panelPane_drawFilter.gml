@@ -19,7 +19,6 @@ function scr_panelPane_drawFilter() {
 
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_set_font(global.fontPanelTab);
 
 	var filterButtonX1 = x;
 	var filterButtonY1 = y;

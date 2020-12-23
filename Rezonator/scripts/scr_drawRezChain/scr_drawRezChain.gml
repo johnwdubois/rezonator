@@ -18,7 +18,6 @@ function scr_drawRezChain() {
 		exit;
 	}
 
-	draw_set_font(global.fontMain);
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;

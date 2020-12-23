@@ -20,17 +20,20 @@ draw_roundrect(submitChainRectX1, submitChainRectY1, submitChainRectX2, submitCh
 draw_set_colour(global.colorThemeBorders);
 draw_roundrect(submitChainRectX1, submitChainRectY1, submitChainRectX2, submitChainRectY2, true);
 
-draw_set_font(fnt_mainBold);
+
 draw_set_halign(fa_center);
 if(global.wheresElmo) {
+	scr_adaptFont(scr_get_translation("msg_elmo_title"), "L");
 	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, scr_get_translation("msg_elmo_title"));
 	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, scr_get_translation("msg_elmo_okay"));
 }
 else if(global.rezzles) {
+	scr_adaptFont(scr_get_translation("msg_game-description"), "L");
 	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, scr_get_translation("msg_game-description"));
 	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, scr_get_translation("msg_game-quitChain"));
 }
 else {
+	scr_adaptFont(scr_get_translation("msg_game-stackShow"), "L");
 	draw_text(mean(submitChainRectX1,  submitChainRectX2), 20 + submitChainRectY1, scr_get_translation("msg_game-stackShow"));
 	draw_text(mean(submitChainButtonX1,  submitChainButtonX2), 20 + submitChainButtonY1, scr_get_translation("msg_game-quitChain"));
 }

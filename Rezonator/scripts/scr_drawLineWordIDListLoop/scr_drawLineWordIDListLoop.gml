@@ -23,12 +23,12 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 
 	var previousWordDisplayString = "0";
 
-	draw_set_font(fnt_main);
-	var strHeightRegular = string_height("A");
-	draw_set_font(global.fontMain);
-	var strHeightScaled = string_height("A");
+
+	var strHeightRegular = string_height("0");
+
+	var strHeightScaled = string_height("0");
 	var fontScale = strHeightScaled / strHeightRegular;
-	//var currentPlaceChainColor = global.colorThemeText;
+
 
 	var panelPaneResizeHeld = false;
 

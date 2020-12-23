@@ -14,10 +14,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 
-
-
-
-	draw_set_font(global.fontChainList);
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
@@ -135,17 +131,15 @@ function scr_panelPane_drawLineListLoopClipped() {
 			focusedLineNameRectY1 = lineNameRectY1;
 			focusedLineNameRectY2 = lineNameRectY2;
 			focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
-			//draw_set_font(global.fontChainListFocused);
-			draw_set_font(global.fontMain);
 		}
-		else {
-			draw_set_font(global.fontMain);
-		}
+
 	
 		// Draw text of chain names
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
+		
+		scr_adaptFont(lineSpeaker,"M");
 		draw_text(floor(x + (textMarginLeft/2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
 	
 		//Color codes the line lists for User
@@ -163,6 +157,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_set_color(global.colorThemeBG);
 		draw_line_width(textMarginLeftReal - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(currentLineWordString,"M");
 		draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, currentLineWordString);
 		//draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, ds_list_find_value(functionChainList_lineGridDisplayYList, i));
 		

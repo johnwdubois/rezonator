@@ -16,7 +16,6 @@
 
 
 
-draw_set_font(global.fontMain);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
@@ -146,55 +145,8 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionTextStr = scr_get_translation(optionText);
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
-	
-	//draw correct font for language drop down
-	if(optionListType == global.optionListTypeLanguage){
-		if (optionText == "menu_language-ja" or optionText == "menu_language-zh" ) {
-			var fontScaledName = global.localeCJK_M_0;
-			if( global.fontSize == 0 ){
-				fontScaledName = global.localeCJK_M_0;
-			}
-			else if( global.fontSize == 1 ){
-				fontScaledName = global.localeCJK_M_1;
-			} 
-			else if( global.fontSize == 2 ){
-				fontScaledName = global.localeCJK_M_2;
-			}
-			else if( global.fontSize == 3 ){
-				fontScaledName = global.localeCJK_M_3;
-			}
-			else if( global.fontSize == 4 ){
-				fontScaledName = global.localeCJK_M_4;
-			}
-			else if( global.fontSize == 5 ){
-				fontScaledName = global.localeCJK_M_5;
-			} 
-			draw_set_font(fontScaledName);
-		}
-		else {
-			var fontScaledName = global.localeEN_M_0;
-			if( global.fontSize == 0 ){
-				fontScaledName = global.localeEN_M_0;
-			}
-			else if( global.fontSize == 1 ){
-				fontScaledName = global.localeEN_M_1;
-			} 
-			else if( global.fontSize == 2 ){
-				fontScaledName = global.localeEN_M_2;
-			}
-			else if( global.fontSize == 3 ){
-				fontScaledName = global.localeEN_M_3;
-			}
-			else if( global.fontSize == 4 ){
-				fontScaledName = global.localeEN_M_4;
-			}
-			else if( global.fontSize == 5 ){
-				fontScaledName = global.localeEN_M_5;
-			} 
-			draw_set_font(fontScaledName);
-		}
-	}
-	
+	scr_adaptFont(scr_get_translation(optionTextStr), "M");
+
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
 	
 

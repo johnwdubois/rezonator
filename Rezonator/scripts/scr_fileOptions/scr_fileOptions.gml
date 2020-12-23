@@ -24,11 +24,10 @@ function scr_fileOptions(optionSelected) {
 			draw_set_color(obj_toolPane.progressBarFrontColor);
 			draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
 			draw_set_color(c_white);
-			draw_set_font(obj_toolPane.progressBarFont);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
+			scr_adaptFont( scr_get_translation("save_saving"),"S");
 			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
-			draw_set_font(fnt_dropDown);
 		
 			obj_fileLoader.ableToHotkey = false;
 			with(obj_fileLoader){
@@ -43,11 +42,10 @@ function scr_fileOptions(optionSelected) {
 			draw_set_color(obj_toolPane.progressBarFrontColor);
 			draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
 			draw_set_color(c_white);
-			draw_set_font(obj_toolPane.progressBarFont);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
+			scr_adaptFont( scr_get_translation("save_saving"),"S");
 			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
-			draw_set_font(fnt_dropDown);
 			
 			obj_fileLoader.ableToHotkey = false;
 			global.fileSaveName = ""; // reset fileSaveName so they can save as whatever
@@ -72,6 +70,7 @@ function scr_fileOptions(optionSelected) {
 		
 				}
 				else {
+					scr_adaptFont(scr_get_translation("question_save_before_import"), "M");
 					if (show_question(scr_get_translation("question_save_before_import"))) {
 						with (obj_fileLoader) {
 							scr_saveREZ(false);
@@ -142,6 +141,7 @@ function scr_fileOptions(optionSelected) {
 		
 				}
 				else {
+					scr_adaptFont(scr_get_translation("question_save_before_exit"), "M");
 					if (show_question(scr_get_translation("question_save_before_exit"))) {
 						with(obj_fileLoader){
 							scr_saveREZ(false);

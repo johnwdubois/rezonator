@@ -16,7 +16,6 @@ function scr_openingMenu() {
 	scr_fontSizeControlOpeningScreen();
 
 	//Work in here to set the new menu buttons
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 
@@ -49,6 +48,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("help_label_open"),"M");
 	draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), scr_get_translation("help_label_open"));
 
 
@@ -74,6 +74,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("menu_import"),"M");
 	draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), scr_get_translation("menu_import"));
 
 
@@ -108,6 +109,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, true);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("menu_play-learn"),"M");
 	draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), scr_get_translation("menu_play-learn"));
 
 
@@ -127,10 +129,9 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeText);
 
 
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("menu_remember"),"M");
 	draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, scr_get_translation("menu_remember"));
 
-	draw_set_font(global.fontMain);
 	draw_set_alpha(0.5);
 
 	if(string_length(obj_openingScreen.inputText) > 0 ){
@@ -138,7 +139,7 @@ function scr_openingMenu() {
 	}
 
 	if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
-		//draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("msg_signin"));
+		scr_adaptFont(scr_get_translation("msg_signin"),"M");
 		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("msg_signin"));
 	}
 	draw_set_alpha(1);
@@ -175,7 +176,7 @@ function scr_openingMenu() {
 
 
 	draw_set_alpha(1);
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("msg_open_docs"),"M");
 	var documentationStr = scr_get_translation("msg_open_docs");
 	var documentationButtonX1 = 20;
 	var documentationButtonY1 = 20;
@@ -227,11 +228,11 @@ function scr_openingMenu() {
 		draw_set_alpha(1);
 		draw_rectangle(changeLanguageButtonRectX1, changeLanguageButtonRectY1, changeLanguageButtonRectX2, changeLanguageButtonRectY2, true);
 
-		draw_set_font(global.fontMain);
+
 		draw_set_halign(fa_center);
 		draw_set_color(global.colorThemeText);
 		var currentLanguageString = "menu_language-"+string(global.lang_codes[| global.lang_index]);
-
+		scr_adaptFont(scr_get_translation(currentLanguageString),"M");
 		draw_text(floor(mean(changeLanguageButtonRectX1, changeLanguageButtonRectX2)), floor(mean(changeLanguageButtonRectY1, changeLanguageButtonRectY2)), scr_get_translation(currentLanguageString));
 
 
@@ -365,12 +366,12 @@ function scr_openingMenu() {
 		}
 
 		draw_set_halign(fa_middle);
+		scr_adaptFont(displayText,"M");
 		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1,userSignInBoxY2) , displayText);
 	
 		global.userName = obj_openingScreen.inputText;
 	}
 
-	//draw_set_font(fnt_mainBoldLarge2);
 	//draw_text((camera_get_view_width(camera_get_active()) / 2) , wheresElmoButtonY1 - 25 ,scr_get_translation("msg_games"));
 	//draw_text((camera_get_view_width(camera_get_active()) / 2) , newProjectButtonY1 - 25 ,scr_get_translation("msg_research"));
 	//draw_text((camera_get_view_width(camera_get_active()) / 2) , openTutorialButtonY1 - 25 ,scr_get_translation("msg_tutorial"));
