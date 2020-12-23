@@ -352,6 +352,30 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
+	else if (grid == obj_chain.trackSeqGrid) {
+		switch (col) {
+			case obj_chain.trackSeqGrid_colChainID:
+				colName = "ChainID";
+				break;
+			case obj_chain.trackSeqGrid_colChainName:
+				colName = "ChainName";
+				break;
+			case obj_chain.trackSeqGrid_colTrackSeq:
+				colName = "TrackSeq";
+				break;
+			case obj_chain.trackSeqGrid_colWordID:
+				colName = "WordID";
+				break;
+			case obj_chain.trackSeqGrid_colText:
+				colName = "Text";
+				break;
+			case obj_chain.trackSeqGrid_colTranscript:
+				colName = "Transcript";
+				break;
+			default:
+				break;
+		}
+	}
 	else if (grid == obj_chain.chunkGrid) {
 		switch (col) {
 			case obj_chain.chainGrid_colChainID:
