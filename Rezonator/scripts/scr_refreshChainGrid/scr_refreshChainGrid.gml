@@ -160,8 +160,8 @@ function scr_refreshChainGrid() {
 			var currentWordID = ds_list_find_value(idList, idListLoop);
 	
 			// Pull UnitID and wordSeq info from wordGrid
-			var currentUnitID = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
-			var currentWordSeq = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayWordSeq, currentWordID - 1);
+			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+			var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 			
 			//show_debug_message("scr_refreshChainGrid() ... currentUnitID: " + string(currentUnitID) + ", currentWordSeq: " + string(currentWordSeq));
 			
@@ -176,7 +176,7 @@ function scr_refreshChainGrid() {
 
 		// Copy first column into idList
 		var tempListGridHeight = ds_grid_height(tempListGrid);
-		for(var idListLoop = 0; idListLoop < tempListGridHeight; idListLoop++) {
+		for (var idListLoop = 0; idListLoop < tempListGridHeight; idListLoop++) {
 			var currentWordID = ds_grid_get(tempListGrid, tempListGrid_colWordID, idListLoop);
 			ds_list_add(idList, currentWordID);
 		}
