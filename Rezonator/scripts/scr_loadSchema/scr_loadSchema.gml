@@ -76,6 +76,7 @@ function scr_loadSchema(autoload) {
 		room_goto(rm_openingScreen);
 		exit;
 	}
+	obj_importMapping.levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 	
 	// clear all Special Fields
 	ds_grid_set_region(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "");
