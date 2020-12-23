@@ -5,7 +5,6 @@
 
 draw_set_alpha(1);
 menuHeight = string_height("0") * 1.35;
-menuWidth = string_width("Advanced");
 
 // draw menu bar
 draw_set_colour(global.colorThemeBG);
@@ -17,14 +16,20 @@ draw_rectangle(-1, -1, camera_get_view_width(camera_get_active()) + 1, menuHeigh
 draw_set_colour(global.colorThemeText);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-
+var xBuffer = 0;
+var prevXBuffer = 0;
 
 
 for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++) {
+	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
+	scr_adaptFont(scr_get_translation(headerString),"M");
+	menuWidth = string_width(scr_get_translation(headerString))*1.5;
+	prevXBuffer = xBuffer;
+	xBuffer+= menuWidth;
 	
-	var menuHeaderRectX1 = menuWidth * menuHeaderLoop;
+	var menuHeaderRectX1 = prevXBuffer;
 	var menuHeaderRectY1 = 0;
-	var menuHeaderRectX2 = menuWidth * (menuHeaderLoop + 1);
+	var menuHeaderRectX2 = xBuffer;
 	var menuHeaderRectY2 = menuHeight;
 	
 	if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
@@ -55,7 +60,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 					
 				obj_control.ableToCreateDropDown = false;
 				obj_control.alarm[0] = 2;*/
-				scr_createDropDown(menuWidth * menuHeaderLoop, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
+				scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
 			}
 		}
 	}
@@ -67,10 +72,9 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 		draw_rectangle(menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2, false);
 		draw_set_colour(global.colorThemeText);
 	}
-	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
+	
 	//draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(mean(y, y + menuHeight)), headerString);
 	draw_set_colour(global.colorThemeText);
-	scr_adaptFont(scr_get_translation(headerString),"M");
 	draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), scr_get_translation(headerString));
 }
 
