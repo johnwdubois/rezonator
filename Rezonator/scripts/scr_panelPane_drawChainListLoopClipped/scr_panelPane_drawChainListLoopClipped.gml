@@ -13,6 +13,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 		Author: Terry DuBois, Georgio Klironomos
 	*/
+	
+
 
 
 	var filterPaneWidth = 0;
@@ -25,7 +27,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	windowWidth = camera_get_view_width(camera_get_active()) / 2.8;
 
 
-
+	
 	var grid = obj_chain.rezChainGrid;
 
 	// Based on user selection, get the grid of the current tab
@@ -78,7 +80,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	draw_set_color(global.colorThemeText);
 
 	scr_surfaceStart();
-
+	
 	var gridHeight = ds_grid_height(grid);
 	for (var i = 0; i < gridHeight; i++) {
 	
@@ -91,7 +93,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				textPlusY += strHeight;
 				break;
 		}
-	
+		
 	
 		// Get grid info of current chain
 		var currentChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i);
@@ -382,6 +384,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		// Get height of chain name
 		textPlusY += strHeight;
 	}
+	
 
 
 
@@ -466,7 +469,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 
 
 	scr_surfaceEnd();
-
+	
 
 
 

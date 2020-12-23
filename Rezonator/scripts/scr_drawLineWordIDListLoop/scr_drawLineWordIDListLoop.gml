@@ -118,6 +118,9 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 			if(currentWordState == wordStateChunk) {
 		
 				scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
+				
+				// set displayWordSeq for chunk
+				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordID - 1, drawWordLoop);
 			
 				drawWordLoop++;
 				continue;

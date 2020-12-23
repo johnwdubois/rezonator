@@ -13,6 +13,8 @@
 */
 function scr_sortChainGrid(grid, sortCol, ascending) {
 	
+	show_message("scr_sortChainGrid() ... sortCol: " + string(sortCol) + ", ascending: " + string(ascending));
+	
 
 	// -1...wordID
 	// 0...uID
@@ -56,7 +58,7 @@ function scr_sortChainGrid(grid, sortCol, ascending) {
 								sortVal = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentUnitID - 1);
 							}
 							else {
-								sortVal = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+								sortVal = ds_grid_get(obj_control.wordGrid, obj_control.dynamicWordGrid_colDisplayWordSeq, currentWordID - 1);
 							}
 							break;
 						case 2:

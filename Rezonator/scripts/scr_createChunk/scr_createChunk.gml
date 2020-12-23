@@ -6,8 +6,6 @@ function scr_createChunk(){
 	var inRectWordIDListSize = ds_list_size(inRectWordIDList);
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
 	
-	var lastWordID = ds_list_find_value(inRectWordIDList, inRectWordIDListSize - 1);
-	var lastWordDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, lastWordID - 1);
 
 	if(inRectWordIDListSize > 0 and not inRectUnitIDListSize > 0 and obj_control.mouseRectWithinLine) {
 		ds_list_add(inRectUnitIDList, ds_grid_get(wordGrid, wordGrid_colUnitID, ds_list_find_value(inRectWordIDList, 0) - 1));
