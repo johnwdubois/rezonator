@@ -84,7 +84,6 @@ function scr_panelPane_drawHelp() {
 
 	// Set style for button text
 	draw_set_alpha(1);
-	draw_set_font(global.fontMainBold);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
@@ -157,11 +156,11 @@ function scr_panelPane_drawHelp() {
 		var textBufferAll = 10;
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle)
-		draw_set_font(global.fontChainContents);
 		var titleTextAllX = helpWindowX1 + textBufferAll;
 		var titleTextAllY = helpWindowY1 + (textBufferAll * 2) + functionHelp_plusY + scrollPlusY;
 		draw_set_color(global.colorThemeText);
 		var titleTextAllStr = "All";
+		scr_adaptFont(titleTextAllStr, "M");
 		draw_text(titleTextAllX - clipX, titleTextAllY - clipY, titleTextAllStr);
 		var gridCollapseButtonAllX = titleTextAllX + string_width(titleTextAllStr) + (textBufferAll * 3);
 		var gridCollapseButtonAllY = titleTextAllY;
@@ -220,11 +219,11 @@ function scr_panelPane_drawHelp() {
 				var textBuffer = 10;
 				draw_set_halign(fa_left);
 				draw_set_valign(fa_middle)
-				draw_set_font(global.fontChainContents);
 				var titleTextX = helpWindowX1 + textBuffer;
 				var titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY + scrollPlusY;
 				draw_set_color(global.colorThemeText);
 				var titleTextStr = ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colName, i);
+				scr_adaptFont(titleTextStr, "S");
 				draw_text(titleTextX - clipX, titleTextY - clipY, titleTextStr);
 				var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 3);
 				var gridCollapseButtonY = titleTextY;
@@ -284,7 +283,7 @@ function scr_panelPane_drawHelp() {
 							draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 							draw_set_alpha(1);
 							draw_set_color(global.colorThemeText);
-							draw_set_font(global.fontChainContents);
+							
 							draw_set_halign(fa_left);
 							draw_set_valign(fa_middle);
 						
@@ -292,6 +291,7 @@ function scr_panelPane_drawHelp() {
 							var currentStrKey = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colKey, j);
 							var currentStrFunc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colFunc, j);
 							var currentStrDesc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colDesc, j);
+							scr_adaptFont(currentStrKey, "S");
 							draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), currentStrKey);
 							if(currentStrFunc == "Download" || currentStrFunc == "About Us") {
 								draw_set_color(c_blue);
@@ -342,7 +342,6 @@ function scr_panelPane_drawHelp() {
 	}
 
 	var displayString = "";
-	draw_set_font(global.fontMainBold);
 
 	for (var i = 0; i < toggleButtonAmount; i++) {
 		//draw tooltips

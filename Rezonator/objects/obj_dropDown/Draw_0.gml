@@ -16,13 +16,17 @@
 
 
 
-draw_set_font(global.fontMain);
 draw_set_alpha(1);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 
+var firstOptionText = ds_list_find_value(optionList, 0);
+var firstOptionTextStr = scr_get_translation(firstOptionText);
+scr_adaptFont(scr_get_translation(firstOptionTextStr), "M");
+
+
 var ableToMouseover = true;
-var strHeight = string_height("A")
+var strHeight = string_height("0")
 optionSpacing = strHeight * 1.25;
 windowHeight = ds_list_size(optionList) * optionSpacing;
 textBuffer = 10;
@@ -146,9 +150,11 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionTextStr = scr_get_translation(optionText);
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
+	scr_adaptFont(scr_get_translation(optionTextStr), "M");
+
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
 	
-	
+
 	draw_set_alpha(1);
 	
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {

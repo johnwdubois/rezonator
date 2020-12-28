@@ -35,9 +35,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(global.fontChainContents);
 	var strHeight = string_height("0");
-	draw_set_font(global.fontPanelTab);
 	var tabHeight = functionChainList_tabHeight;
 	var scrollBarListHeight = 0;
 
@@ -124,7 +122,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			}
 		}
 
-		draw_set_font(global.fontChainContents);
+
 		var strHeight = string_height("0");
 		
 
@@ -267,48 +265,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 							else {
 								doubleClickTimer = 0;
 							}
-						}
-						/*if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)and !instance_exists(obj_stackShow)) {
-
-							if(!instance_exists(obj_dialogueBox)){
-								obj_control.rightClickWordID = currentWordID;
-								obj_control.rightClickUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-								obj_control.rightClickWordSeq =  ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);;
-							}
-						
-							obj_control.rightClickonWord = true;
-							obj_control.wideDropDown = true;
-							var dropDownOptionList = ds_list_create();
-							if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
-			 					obj_control.ableToCreateDropDown = false;
-							}
-							else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, false) != -1){
-								if(obj_control.searchGridActive){
-									ds_list_add(dropDownOptionList, "Delete Link");
-								}
-								else{
-									ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word", "Delete Link");
-								}
-							}
-							else{
-								if(obj_control.searchGridActive){
-									obj_control.ableToCreateDropDown = false;
-								}
-								else{
-									ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete New Word");
-								}
-							}
-							if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-								var dropDownInst = instance_create_depth(mouse_x, mouse_y, -999, obj_dropDown);
-								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = 8;
-					
-								obj_control.ableToCreateDropDown = false;
-								obj_control.alarm[0] = 2;
-							}
-
-						}*/
-		
+						}	
 					}
 		
 					// Set collected info into correct places
@@ -378,7 +335,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 						draw_set_color(global.colorThemeText);
 						draw_set_alpha(1);
 						draw_set_valign(fa_middle);
-						draw_set_font(global.fontChainContents);
+						scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
 						draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 					}
 			
@@ -440,9 +397,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		draw_set_alpha(1);
 
 
-		draw_set_font(global.fontPanelTab);
-
-
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
@@ -500,7 +454,8 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
 			draw_set_color(global.colorThemeText);
 			draw_set_valign(fa_top);
-			draw_set_font(global.fontPanelTab);
+			draw_set_halign(fa_left);
+			scr_adaptFont(colName, "S");
 			draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
 			// sort arrow

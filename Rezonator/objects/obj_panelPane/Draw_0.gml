@@ -110,7 +110,6 @@ switch (currentFunction) {
 			// one-to-one or one-to-many
 			if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 				
-				draw_set_font(global.fontMain);
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
 				draw_set_halign(fa_right);

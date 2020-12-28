@@ -19,10 +19,8 @@ function scr_gridViewDrawBackArrow() {
 	}
 	
 	// Allow for text and arrow to resize based on user's textsize
-	draw_set_font(fnt_main);
-	var standardHeight = string_height("A");
-	draw_set_font(global.fontMain);
-	var largeHeight = string_height("A");
+	var standardHeight = 12;
+	var largeHeight = 22;
 	var spriteRatio = largeHeight/standardHeight;
 	var spriteSize = 1;
 

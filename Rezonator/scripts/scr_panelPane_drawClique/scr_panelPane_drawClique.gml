@@ -20,12 +20,11 @@ function scr_panelPane_drawClique() {
 	draw_set_color(c_black);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(fnt_searchPaneBold);
+	scr_adaptFont(scr_get_translation("menu_clique"), "M");
 
 	draw_line(x, y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
 	draw_text(x + textMarginLeft, y + textMarginTop, scr_get_translation("menu_clique"));
 
-	draw_set_font(fnt_searchPane);
 
 	var textPlusY = 0;
 	var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
@@ -53,6 +52,7 @@ function scr_panelPane_drawClique() {
 	
 		draw_set_alpha(1);
 		draw_set_color(c_black);
+		scr_adaptFont(cliqueName, "M");
 		draw_text(textX, textY, cliqueName);
 	}
 

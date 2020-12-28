@@ -14,10 +14,8 @@ function scr_loadREZ() {
 	*/
 	var RezDirString = global.currentDirString;
 	if(!global.wheresElmo){
-		RezDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Rez";
-		if (os_type == os_macosx) {
-			RezDirString = global.rezonatorDirString + "/Data/SBCorpus/Rez";
-		}
+		var delimiter = (os_type == os_macosx) ? "/" : "\\";
+		RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
 	}
 
 	if (!global.wheresElmo and global.previousRezDirectory != "") {
@@ -45,7 +43,7 @@ function scr_loadREZ() {
 	}
 
 	if (fileName == "" or not file_exists(fileName)) {
-		game_restart();
+		room_goto(rm_openingScreen);
 		exit;
 	}
 	else{
@@ -67,7 +65,7 @@ function scr_loadREZ() {
 	
 		if (not ds_exists(wrapper, ds_type_map)) {
 			show_message("Error loading " + fileName);
-			game_restart();
+			room_goto(rm_openingScreen);
 			exit;
 		}
 	
@@ -75,7 +73,7 @@ function scr_loadREZ() {
 	
 		if (is_undefined(list)) {
 			show_message("Error loading " + fileName);
-			game_restart();
+			room_goto(rm_openingScreen);
 			exit;
 		}
 	

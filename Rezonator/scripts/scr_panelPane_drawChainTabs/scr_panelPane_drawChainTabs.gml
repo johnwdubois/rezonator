@@ -17,7 +17,6 @@ function scr_panelPane_drawChainTabs() {
 
 
 	draw_set_alpha(1);
-	draw_set_font(global.fontPanelTab);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
 
@@ -264,7 +263,6 @@ function scr_panelPane_drawChainTabs() {
 							}
 						}
 					}
-					draw_set_font(global.fontMainBold);
 					draw_sprite_ext(spr_oneToOne, (obj_control.showUnitTags) ? 1 : 0, floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), 1, 1, 0, c_white, 1);
 					/*
 					if(!obj_control.showUnitTags) {
@@ -301,7 +299,7 @@ function scr_panelPane_drawChainTabs() {
 		
 		}
 	
-		draw_set_font(global.fontPanelTab);
+
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);
 	
@@ -377,6 +375,7 @@ function scr_panelPane_drawChainTabs() {
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, true);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(scr_get_translation(functionChainList_tabName[i]), "M");
 		draw_text(tabRectX1 + textMarginLeft, tabRectY1, scr_get_translation(functionChainList_tabName[i]));
 
 	}

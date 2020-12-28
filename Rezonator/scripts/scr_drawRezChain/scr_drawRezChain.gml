@@ -18,7 +18,6 @@ function scr_drawRezChain() {
 		exit;
 	}
 
-	draw_set_font(global.fontMain);
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
@@ -242,9 +241,13 @@ function scr_drawRezChain() {
 			
 					var mouseLineWordStringWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
 					var mouseLineWordStringHeight = string_height(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
-			
-					mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1) + (mouseLineWordStringWidth / 2);
-					mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow) + (mouseLineWordStringHeight / 2);
+					var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
+					var wordPixelY =ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
+					
+					if(wordPixelX != undefined and wordPixelY !=undefined){
+						mouseLineX =  wordPixelX + (mouseLineWordStringWidth / 2);
+						mouseLineY =  wordPixelY + (mouseLineWordStringHeight / 2);
+					}
 				//}
 			
 			}

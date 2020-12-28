@@ -253,7 +253,7 @@ function scr_saveREZ(autosave) {
 		}
 		else {
 		
-			if (directory_exists(global.importGroupOutputDir)) {
+			if (directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
 				var importGroupFileName = ds_list_find_value(global.importGroupFileList, global.importGroupFileIndex);
 				var importGroupFilePath = global.importGroupOutputDir + "\\" + filename_change_ext(filename_name(importGroupFileName), "") + ".rez";
 				show_debug_message("importGroupFileIndex: " + string(global.importGroupFileIndex) + ", Saving to: " + string(importGroupFilePath));
@@ -308,7 +308,7 @@ function scr_saveREZ(autosave) {
 
 	show_debug_message("scr_saveREZ(), END... " + scr_printTime());
 
-	if (autosave && directory_exists(global.importGroupOutputDir)) {
+	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
 		room_goto(rm_openingScreen);
 	}
 

@@ -36,9 +36,9 @@ function scr_panelPane_drawSearch() {
 	draw_set_color(c_black);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(fnt_searchPaneBold);
 
 	draw_line(x, y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
+	scr_adaptFont(scr_get_translation("label_search_function"), "L");
 	draw_text(x + textMarginLeft, y + textMarginTop, scr_get_translation("label_search_function"));
 
 	if (obj_control.searchGridActive)
@@ -46,10 +46,10 @@ function scr_panelPane_drawSearch() {
 		draw_set_alpha(1);
 		draw_set_color(c_black);
 		draw_set_halign(fa_left);
-		draw_set_font(fnt_searchPane);
 	
 		var matchCount = ds_grid_height(obj_control.searchGrid);
-	
+		
+		scr_adaptFont(scr_get_translation("msg_panelpane_match"), "M")
 		draw_text(x + textMarginLeft, y + windowHeight - textMarginTop, string(matchCount) + scr_get_translation("msg_panelpane_match"));
 	}
 

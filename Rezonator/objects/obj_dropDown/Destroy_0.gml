@@ -8,6 +8,6 @@ if (room == rm_mainScreen) {
 	obj_control.wideDropDown = false;
 	obj_panelPane.ascendYScale = 1;
 }
-else{
+else if (room == rm_importScreen) {
 obj_importMapping.inDropDown = false;
 }

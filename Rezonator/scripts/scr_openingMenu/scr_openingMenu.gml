@@ -16,7 +16,6 @@ function scr_openingMenu() {
 	scr_fontSizeControlOpeningScreen();
 
 	//Work in here to set the new menu buttons
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 
@@ -49,6 +48,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("help_label_open"),"M");
 	draw_text(mean(openProjectButtonX1, openProjectButtonX2), mean(openProjectButtonY1, openProjectButtonY2), scr_get_translation("help_label_open"));
 
 
@@ -74,6 +74,7 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("menu_import"),"M");
 	draw_text(mean(newProjectButtonX1, newProjectButtonX2), mean(newProjectButtonY1, newProjectButtonY2), scr_get_translation("menu_import"));
 
 
@@ -108,77 +109,10 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, true);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("menu_play-learn"),"M");
 	draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), scr_get_translation("menu_play-learn"));
 
 
-
-
-	/*
-	var rezzlesButtonX1 = openProjectButtonX1
-	var rezzlesButtonY1 = openProjectButtonY2 + 70;
-	var rezzlesButtonX2 = openProjectButtonX2;
-	var rezzlesButtonY2 = rezzlesButtonY1 + buttonHeight;
-
-	if (point_in_rectangle(mouse_x, mouse_y, rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2))
-	{
-		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2, false);
-	
-		if (device_mouse_check_button_released(0, mb_left))
-		{
-			global.menuOpen = false;
-			global.newProject = false;
-			global.openProject = true;
-			global.games = true;
-
-			global.rezzles = true;
-			global.wheresElmo = false;
-			global.tutorial = false;
-	
-
-		}
-	}
-
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(rezzlesButtonX1, rezzlesButtonY1, rezzlesButtonX2, rezzlesButtonY2, true);
-	draw_set_color(global.colorThemeText);
-	draw_text(mean(rezzlesButtonX1, rezzlesButtonX2), mean(rezzlesButtonY1, rezzlesButtonY2), "Rezzles");
-
-
-
-	//tutorial button
-
-
-	var openTutorialButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2);
-	var openTutorialButtonY1 = rezzlesButtonY2 + 70;
-	var openTutorialButtonX2 = openTutorialButtonX1 + buttonWidth;
-	var openTutorialButtonY2 = openTutorialButtonY1 + buttonHeight;
-	/*
-	if (point_in_rectangle(mouse_x, mouse_y, openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2))
-	{
-		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2, false);
-	
-		if (device_mouse_check_button_released(0, mb_left))
-		{
-			global.menuOpen = false;
-			global.newProject = false;
-			global.openProject = true;
-			global.tutorial = true;
-			global.rezzles = false;
-			global.wheresElmo = false;
-		}
-	}
-
-
-
-
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(openTutorialButtonX1, openTutorialButtonY1, openTutorialButtonX2, openTutorialButtonY2, true);
-	draw_set_color(global.colorThemeText);
-	draw_text(mean(openTutorialButtonX1, openTutorialButtonX2), mean(openTutorialButtonY1, openTutorialButtonY2), "Tutorial");
-
-	*/
 
 
 	var signInXBuffer = 20;
@@ -188,12 +122,6 @@ function scr_openingMenu() {
 	var userSignInBoxY1 = signInYBuffer;
 	var userSignInBoxX2 = userSignInBoxX1 + 250;
 	var userSignInBoxY2 = userSignInBoxY1 + 30;
-	/*
-	var userSignInBoxX1 = openTutorialButtonX1
-	var userSignInBoxY1 = openTutorialButtonY2 + 50;
-	var userSignInBoxX2 = openTutorialButtonX2;
-	var userSignInBoxY2 = userSignInBoxY1 + 30;
-	*/
 
 
 	draw_set_color(global.colorThemeBorders);
@@ -201,10 +129,9 @@ function scr_openingMenu() {
 	draw_set_color(global.colorThemeText);
 
 
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("menu_remember"),"M");
 	draw_text(mean(userSignInBoxX1, userSignInBoxX2)+10, userSignInBoxY2 + 18, scr_get_translation("menu_remember"));
 
-	draw_set_font(global.fontMain);
 	draw_set_alpha(0.5);
 
 	if(string_length(obj_openingScreen.inputText) > 0 ){
@@ -212,7 +139,7 @@ function scr_openingMenu() {
 	}
 
 	if(string_length(obj_openingScreen.inputText) == 0 and obj_openingScreen.clickedIn == false){
-		//draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("msg_signin"));
+		scr_adaptFont(scr_get_translation("msg_signin"),"M");
 		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1, userSignInBoxY2), scr_get_translation("msg_signin"));
 	}
 	draw_set_alpha(1);
@@ -249,7 +176,7 @@ function scr_openingMenu() {
 
 
 	draw_set_alpha(1);
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("msg_open_docs"),"M");
 	var documentationStr = scr_get_translation("msg_open_docs");
 	var documentationButtonX1 = 20;
 	var documentationButtonY1 = 20;
@@ -275,6 +202,38 @@ function scr_openingMenu() {
 	}
 
 
+
+	//localization font selection
+		var changeLanguageButtonWidth = max(200, string_width(" Save Import Schema "));
+		var changeLanguageButtonHeight = 30;
+		var changeLanguageButtonRectX2 = (camera_get_view_width(camera_get_active()) - 25);
+		var changeLanguageButtonRectX1 = changeLanguageButtonRectX2 - changeLanguageButtonWidth;
+		var changeLanguageButtonRectY2 = (camera_get_view_height(camera_get_active()) - 25);
+		var changeLanguageButtonRectY1 = changeLanguageButtonRectY2 - changeLanguageButtonHeight;
+
+
+	
+		if (point_in_rectangle(mouse_x, mouse_y, changeLanguageButtonRectX1, changeLanguageButtonRectY1, changeLanguageButtonRectX2, changeLanguageButtonRectY2)) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(changeLanguageButtonRectX1, changeLanguageButtonRectY1, changeLanguageButtonRectX2, changeLanguageButtonRectY2, false);
+	
+			if (mouse_check_button_pressed(mb_left)) {
+			var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh");
+				scr_createDropDown(changeLanguageButtonRectX1,changeLanguageButtonRectY1, dropDownOptionList, global.optionListTypeLanguage);
+			}
+		}
+	
+		draw_set_color(global.colorThemeBorders);
+		draw_set_alpha(1);
+		draw_rectangle(changeLanguageButtonRectX1, changeLanguageButtonRectY1, changeLanguageButtonRectX2, changeLanguageButtonRectY2, true);
+
+
+		draw_set_halign(fa_center);
+		draw_set_color(global.colorThemeText);
+		var currentLanguageString = "menu_language-"+string(global.lang_codes[| global.lang_index]);
+		scr_adaptFont(scr_get_translation(currentLanguageString),"M");
+		draw_text(floor(mean(changeLanguageButtonRectX1, changeLanguageButtonRectX2)), floor(mean(changeLanguageButtonRectY1, changeLanguageButtonRectY2)), scr_get_translation(currentLanguageString));
 
 
 	if(global.menuOpen){
@@ -407,12 +366,12 @@ function scr_openingMenu() {
 		}
 
 		draw_set_halign(fa_middle);
+		scr_adaptFont(displayText,"M");
 		draw_text(mean(userSignInBoxX1, userSignInBoxX2), mean(userSignInBoxY1,userSignInBoxY2) , displayText);
 	
 		global.userName = obj_openingScreen.inputText;
 	}
 
-	//draw_set_font(fnt_mainBoldLarge2);
 	//draw_text((camera_get_view_width(camera_get_active()) / 2) , wheresElmoButtonY1 - 25 ,scr_get_translation("msg_games"));
 	//draw_text((camera_get_view_width(camera_get_active()) / 2) , newProjectButtonY1 - 25 ,scr_get_translation("msg_research"));
 	//draw_text((camera_get_view_width(camera_get_active()) / 2) , openTutorialButtonY1 - 25 ,scr_get_translation("msg_tutorial"));

@@ -23,7 +23,6 @@ function scr_drawLine() {
 	ds_grid_set_region(wordDrawGrid, wordDrawGrid_colVisible, 0, wordDrawGrid_colVisible, ds_grid_height(wordDrawGrid), false);
 
 	// set draw variables for column text
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
@@ -301,7 +300,6 @@ function scr_drawLine() {
 						for (var i = 0; i < instance_number(obj_panelPane); i++) {
 							var currentPane = instance_find(obj_panelPane, i);
 							if (currentPane.currentFunction == obj_panelPane.functionChainList) {
-								draw_set_font(global.fontChainList);
 								var strHeight = string_height("0") * 1.5;
 								scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
 							}
@@ -329,7 +327,6 @@ function scr_drawLine() {
 								var currentPane = instance_find(obj_panelPane, i);
 								if (currentPane.currentFunction == obj_panelPane.functionChainList) {
 									//show_message(i);
-									draw_set_font(global.fontChainList);
 									var strHeight = string_height("0") * 1.5;
 									//we can affect the scrollPlusY, now we need the correct placement
 									scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
@@ -492,17 +489,6 @@ function scr_drawLine() {
 			}
 		}
 	}	 
-
-	// show draw range of lines if development variables are on
-	if (showDevVars) {
-		draw_set_alpha(1);
-		draw_set_font(fnt_debug);
-		draw_set_halign(fa_right);
-		draw_text(camViewWidth - 300, 250, "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
-		draw_text(camViewWidth - 300, 265, "camY range: " + string(camera_get_view_y(camera_get_active()) + camViewHeight));
-	
-		draw_text(mouse_x, mouse_y, "(" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	}
 
 
 }

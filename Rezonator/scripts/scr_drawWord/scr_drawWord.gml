@@ -7,7 +7,7 @@ function scr_drawWord(currentWordGridRow, currentWordID, currentUnitID, currentW
         
 	// Set the font, color, and alpha
 	draw_set_alpha(1);
-	draw_set_font(global.fontMain);
+	scr_adaptFont(currentWordString,"M");
 	draw_set_color(textColor);
 
 	// Highlight this word if it has been Searched

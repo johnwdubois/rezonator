@@ -34,9 +34,10 @@ function scr_panelPane_drawSort() {
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
 		draw_set_colour(global.colorThemeText);
 	
-		draw_set_font(fnt_mainBold);
+		scr_adaptFont(string(game_display_name), "L");
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 15, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15, string(game_display_name));
-	
+		
+		scr_adaptFont(string(game_display_name), "M");
 		draw_text(camera_get_view_width(camera_get_active())/2 + horizontalBuffer - 20, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15, scr_get_translation("label_panelpane_x"));
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemePaneBG);
@@ -89,7 +90,6 @@ function scr_panelPane_drawSort() {
 	var textMarginLeft = 12;
 	var textMarginTop = 20;
 
-	draw_set_font(global.fontSortPane);
 
 	var selectedGridName = "";
 
@@ -117,6 +117,7 @@ function scr_panelPane_drawSort() {
 	
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(gridName, "M");
 		draw_text(gridNameRectX1, mean(gridNameRectY1, gridNameRectY2), gridName);
 	
 		if (i == functionSort_gridGridSelected) {
@@ -139,11 +140,10 @@ function scr_panelPane_drawSort() {
 	draw_line(x + (windowWidth / 3), y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
 
 	draw_set_color(global.colorThemeText);
-	draw_set_font(fnt_sortPaneBold);
+	scr_adaptFont(scr_get_translation("msg_panel_sort_order"), "M");
 	draw_text(x + (windowWidth / 3) + textMarginLeft, y + textMarginTop, selectedGridName + scr_get_translation("msg_panel_sort_order"));
 
 
-	draw_set_font(global.fontSortPane);
 	draw_set_halign(fa_right);
 
 	var colSort;

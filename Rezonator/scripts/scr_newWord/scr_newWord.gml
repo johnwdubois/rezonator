@@ -1,4 +1,4 @@
-function scr_newWord() {
+function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 	/*
 		scr_newWord();
 	
@@ -12,11 +12,12 @@ function scr_newWord() {
 	
 		Author: Terry DuBois, Georgio Klironomos
 	*/
+	
+	var displayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, targetWord - 1);
+	var lineWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, displayRow);
+	wordSeq = ds_list_find_index(lineWordIDList, targetWord) - 1;
 
 	// Take in the arguments, and check if this word is a Chunk word
-	var unitID = argument[0];
-	var wordSeq = argument[1];
-	var wordTranscript = argument[2];
 
 
 	// Safety check
@@ -30,15 +31,15 @@ function scr_newWord() {
 	//var wordIDListUnitGrid = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1);
 
 	// Ask the user for the new word, if this is not a chunk
-	if(argument_count == 4) {
+	if(argument_count == 5) {
 		// If it is a Chunk, combine the words within the Chunk for the transcript
-		var chunkID = argument[3]; 
+		var chunkID = argument[4];
 		var currentChunkRow = chunkID - 1;
 		if(currentChunkRow < 0) {
 			exit;
 		}
 		var chunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
-		var wordTranscript = "";
+		wordTranscript = "";
 		var chunkWordIDListSize = ds_list_size(chunkWordIDList);
 		for(var transcriptLoop = 0; transcriptLoop < chunkWordIDListSize; transcriptLoop++) {
 			var chunkWordID = ds_list_find_value(chunkWordIDList, transcriptLoop);
@@ -109,24 +110,23 @@ function scr_newWord() {
 	scr_loadDynamicWordGridIndividual(ds_grid_height(obj_control.wordGrid) - 1);
 
 	// Designate the new word as a new word or a Chunk word
-	if(argument_count == 3) {
+	if(argument_count == 4) {
 		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateNew);
 	}
 	else {
 		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, ds_grid_height(obj_control.dynamicWordGrid) - 1, obj_control.wordStateChunk);
 	}
 
-	var rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), unitID);
+	var rowInLineGrid = displayRow;//ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), unitID);
 	if (rowInLineGrid < 0 or rowInLineGrid >= ds_grid_height(obj_control.lineGrid)) {
 		exit;
 	}
-
+	
+	
 
 	var wordIDListLineGrid = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, rowInLineGrid);
-
-
-
 	ds_list_insert(wordIDListLineGrid, wordSeq + 1, wordID);
+	
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1, wordIDListLineGrid);
 
 
@@ -148,7 +148,7 @@ function scr_newWord() {
 
 	// THIS ONLY WORKS FOR CHUNKS
 	// Check the wordID right before the new word, if it is not at the end of a line we check to see if it is in a box
-	if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUnitGrid) - 1) || argument_count == 4) {
+	if (ds_list_find_index(wordIDListUnitGrid,wordID) != (ds_list_size(wordIDListUnitGrid) - 1) || argument_count == 5) {
 	
 		// Find the ID of the word in front of the new word
 		var prevWordID = ds_list_find_value(wordIDListUnitGrid, ds_list_find_index(wordIDListUnitGrid,wordID) - 1);
@@ -171,11 +171,12 @@ function scr_newWord() {
 				var newWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, wordID - 1);
 
 				// Allow nesting chunks to be apended
-				if(newWordState == obj_control.wordStateChunk || ds_list_find_index(currentChunkWordList, prevWordID) != (ds_list_size(currentChunkWordList) - 1)) {
+				if (newWordState == obj_control.wordStateChunk || ds_list_find_index(currentChunkWordList, prevWordID) != (ds_list_size(currentChunkWordList) - 1)) {
 
-					// Insert new word into that chunk list, and add to the new word's inChunkList
-					ds_list_insert(currentChunkWordList, ds_list_find_index(currentChunkWordList, prevWordID) + 1, wordID);
-					ds_list_add(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1), currentChunkID);
+					// Add new word into that chunk list, and add to the new word's inChunkList
+					ds_list_add(currentChunkWordList, wordID);
+					var currentChunkInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
+					ds_list_add(currentChunkInBoxList, currentChunkID);
 				}
 			}
 		}

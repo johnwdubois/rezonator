@@ -35,7 +35,7 @@ function scr_drawLineHitIDListLoop(currentHitIDList, previousWordDisplayCol, cur
 		
 			// Here will be functionality to focus on a Chunk and add it to a Chain
 			// This includes: Hovering over Chunk will visually effect the outline
-			draw_set_font(global.fontMain);
+
 
 			// Aquire the Chunk's row in the Chunk grid (this is currently too expensive)
 			var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWordGridRow);
@@ -411,14 +411,14 @@ function scr_drawLineHitIDListLoop(currentHitIDList, previousWordDisplayCol, cur
 		ds_grid_set(wordDrawGrid, wordDrawGrid_colVisible, currentWordID - 1, true);
 	
 		draw_set_alpha(1);
-		draw_set_font(global.fontMain);
+
 		draw_set_color(global.colorThemeText);
 		if (ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colHitBool, currentHitID - 1)) {
-			draw_set_font(global.fontMainBold);
 			draw_set_color(make_color_rgb(19,69,150));
 		}
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
+		scr_adaptFont(currentWordString, "M");
 		draw_text(floor(currentWordX), floor(currentLineY), currentWordString);
 		
 		previousWordDisplayCol = currentWordDisplayCol;

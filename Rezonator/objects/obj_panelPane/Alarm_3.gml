@@ -339,22 +339,21 @@ else{
 	altOption = "Alt";
 }
 
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "["+ altOption + scr_get_translation("key_shuffle"));
+//hardcoded need translation 
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 0, "["+ correctKey + "] R");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 0, scr_get_translation("help_label_shuffle"));
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 0, scr_get_translation("help_description_shuffle"));
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 0, false);
 
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 1, "["+ correctKey + "] G");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 1, scr_get_translation("Grid View"));
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 1, scr_get_translation("Toggle Grid Viewer"));
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 1, false);
 
-
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, scr_get_translation("key_shuffle"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, scr_get_translation("help_label_restore-sequence"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 2, scr_get_translation("help_description_restore-sequence"));
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "["+ altOption + "]" + " [Shift] D");
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, scr_get_translation("help_label_developer"));
+ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 2, scr_get_translation("help_description_developer-view"));
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 2, false);
-
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 3, "["+ altOption + scr_get_translation("key_developer"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 3, scr_get_translation("help_label_developer"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colDesc, 3, scr_get_translation("help_description_developer-view"));
-ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colHide, 3, false);
 /*
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colKey, 2, "["+ altOption + "] [SHIFT] u");
 ds_grid_set(functionHelp_helpGridAdvanced, functionHelp_helpGrid_colFunc, 2, scr_get_translation("help_label_insert-word"));

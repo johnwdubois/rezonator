@@ -14,10 +14,9 @@ function scr_exceptionsWindow() {
 	draw_set_alpha(1);
 	draw_rectangle(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1, exceptionsInfoWindowRectX2, exceptionsInfoWindowRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
-
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("label_exceptions"), "L");
 	draw_text(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1 - string_height("0"), scr_get_translation("label_exceptions"));
 
 
@@ -51,10 +50,10 @@ function scr_exceptionsWindow() {
 
 	// draw all exception lines
 	var plusY = string_height("0");
-	draw_set_font(global.fontChainContents);;
 	var exceptionStringListSize = ds_list_size(exceptionStringList);
 	for (var i = 0; i < exceptionStringListSize; i++) {
 		var currentExceptionString = ds_list_find_value(exceptionStringList, i);
+		scr_adaptFont(string(currentExceptionString), "S");
 		draw_text(floor(exceptionsInfoWindowRectX1 + 20) - clipX, floor(exceptionsInfoWindowRectY1 + plusY + scrollPlusY) - clipY, string(currentExceptionString));
 		plusY += string_height("0");
 	}

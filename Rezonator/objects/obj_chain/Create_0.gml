@@ -224,3 +224,14 @@ stackChainGridRowToCaption = -1;
 
 
 chainShowList = ds_list_create();
+
+
+
+trackSeqGridWidth = 6;
+trackSeqGrid_colChainID = 0;
+trackSeqGrid_colChainName = 1;
+trackSeqGrid_colTrackSeq = 2;
+trackSeqGrid_colWordID = 3;
+trackSeqGrid_colText = 4;
+trackSeqGrid_colTranscript = 5;
+trackSeqGrid = ds_grid_create(trackSeqGridWidth, 0);

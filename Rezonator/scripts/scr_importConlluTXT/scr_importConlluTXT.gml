@@ -51,7 +51,7 @@ function scr_importConlluTXT(filename) {
 	
 	
 		// Check for blank rows to iterate clusters
-		if (string_length(string_lettersdigits(lineInFile)) < 1) {
+		if (scr_isStrOnlyWhitespace(lineInFile)) {
 			blankRow = true;
 			lineInCluster = 0;
 			currentCluster++;

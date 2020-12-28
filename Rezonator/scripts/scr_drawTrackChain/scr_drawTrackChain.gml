@@ -18,7 +18,6 @@ function scr_drawTrackChain() {
 		exit;
 	}
 
-	draw_set_font(global.fontMain);
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
@@ -61,7 +60,6 @@ function scr_drawTrackChain() {
 		for (var j = 0; j < currentWordIDListSize - 1; j++) {
 			var currentWordID1 = ds_list_find_value(currentWordIDList, j);
 			var currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);
-			//var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID1);
 			var chunkWord1 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk);
 			//Add a nesting check
 		
@@ -80,7 +78,6 @@ function scr_drawTrackChain() {
 		
 			var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
 			var currentLineID2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID2 - 1);
-			//var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID2);
 			var chunkWord2 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk);
 			var currentHitGridIndex2 = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid)-1, currentWordID2);
 			//Add a nesting check
@@ -94,9 +91,7 @@ function scr_drawTrackChain() {
 			else {
 				if (wordsInSameLine and firstWordInLine >= 0 and (firstWordInLine - 1) < ds_grid_height(obj_control.wordGrid)) {
 					currentWordID1 = firstWordInLine;
-					currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);
-					//currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID1);
-		
+					currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);		
 					currentWordStringWidth1 = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
 					currentWordStringHeight1 = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1));
 		
@@ -201,8 +196,6 @@ function scr_drawTrackChain() {
 		if (ds_grid_get(trackChainGrid, chainGrid_colChainState, rowInChainGrid) == chainStateFocus and not obj_control.gridView) {	
 			if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 				var mouseLineWordLineID = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, mouseLineWordID - 1);
-				//var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, mouseLineWordUnitID);
-			
 				var mouseLineWordStringWidth = string_width(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1));
 				var mouseLineWordStringHeight = string_height(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1));
 				var currentHitGridIndexPickWhip = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid)-1, mouseLineWordID);

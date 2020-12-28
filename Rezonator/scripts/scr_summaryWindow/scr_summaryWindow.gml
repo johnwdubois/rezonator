@@ -18,9 +18,10 @@ function scr_summaryWindow() {
 	draw_set_alpha(1);
 	draw_rectangle(fileInfoWindowRectX1, fileInfoWindowRectY1, fileInfoWindowRectX2, fileInfoWindowRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
+
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("menu_summary"), "M");
 	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), scr_get_translation("menu_summary"));
 	
 	
@@ -46,9 +47,6 @@ function scr_summaryWindow() {
 	draw_clear_alpha(c_black, 0);
 	
 	
-
-	draw_set_font(global.fontMain);
-	
 	var stringHeight = string_height("0");
 	var filename = filename_name(global.importFilename);
 	var lineCount = ds_grid_height(global.importTXTLineGrid);
@@ -66,6 +64,7 @@ function scr_summaryWindow() {
 		fieldCount -= 2;
 	}
 	
+	scr_adaptFont(scr_get_translation("label_user_file_name"), "M");
 	draw_text(fileInfoWindowRectX1 + 20 - clipX, fileInfoWindowRectY1 + stringHeight - clipY  + scrollPlusY, scr_get_translation("label_user_file_name") + string(filename));
 	var actualIterations = 0;
 	for (var i = 0; i < 5; i++) {

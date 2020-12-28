@@ -1,5 +1,5 @@
 {
-  "option_mac_display_name": "Rezonator 0.9.1.4",
+  "option_mac_display_name": "Rezonator 0.9.1.6",
   "option_mac_app_id": "com.company.game",
   "option_mac_version": "0.9.1",
   "option_mac_output_dir": "~/GameMakerStudio2/Mac",
