@@ -4,12 +4,27 @@ function scr_adaptFont(inputString,size){
 		if (!is_string(inputString)){
 			exit;
 		}
-		var unicodeValue = ord(inputString);
+		var isCJK = false;
+		var letterCount = string_length(inputString);
+		for(var i = 0;i <= letterCount; i++){
+			
+			var unicodeValue = ord(string_char_at(inputString,i));
+			if ( (12288 <= unicodeValue  and unicodeValue <= 40959)  or
+			(63744 <= unicodeValue  and unicodeValue <= 64255) or
+			(131072 <= unicodeValue  and unicodeValue <= 183983) or
+			(194560 <= unicodeValue  and unicodeValue <= 195103) ){
+			
+			isCJK = true;
+			break;
+			
+			}
+			
+			
+		}
 		
-		if ( (12288 <= unicodeValue  and unicodeValue <= 40959)  or
-		(63744 <= unicodeValue  and unicodeValue <= 64255) or
-		(131072 <= unicodeValue  and unicodeValue <= 183983) or
-		(194560 <= unicodeValue  and unicodeValue <= 195103) ){
+
+		
+		if ( isCJK ){
 			if(size == "S"){
 				var fontScaledName = global.localeCJK_S_0;
 				if( global.fontSize == 0 ){
@@ -75,6 +90,7 @@ function scr_adaptFont(inputString,size){
 			}
 
 		}
+		
 		else {
 			if(size == "S"){
 				var fontScaledName = global.localeEN_S_0;

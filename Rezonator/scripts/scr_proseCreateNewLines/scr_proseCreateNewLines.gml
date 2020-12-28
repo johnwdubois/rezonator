@@ -28,7 +28,13 @@ function scr_proseCreateNewLines(){
 		
 		// if this line has more words than maxWordsPerLine, we will split the line
 		if (totalLineWidth > maxScreenWidth) {
-			var splitWordID = ds_list_find_value(currentWordIDList, indexToSplit - 1);
+			if(indexToSplit == 0){
+				var splitWordID = ds_list_find_value(currentWordIDList, indexToSplit);
+			}
+			else{
+				var splitWordID = ds_list_find_value(currentWordIDList, indexToSplit - 1);
+			}
+
 			scr_splitLine(splitWordID);
 		}
 	}
