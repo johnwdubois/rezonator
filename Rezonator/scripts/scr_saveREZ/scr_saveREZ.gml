@@ -18,10 +18,17 @@ function scr_saveREZ(autosave) {
 	}*/
 
 	show_debug_message("scr_saveREZ(), STARTING... " + scr_printTime());
+	
+	show_debug_message("scr_saveREZ(), global.fileSaveName: " + string(global.fileSaveName));
 
 
 	if (not autosave) {
-		if (global.fileSaveName == "undefined" or (not file_exists(global.fileSaveName) and not obj_stacker.splitSave) or global.stackGrabSave ) {
+		if (global.fileSaveName == "undefined"
+		|| string_length(global.fileSaveName) < 1
+		|| (!file_exists(global.fileSaveName) && !obj_stacker.splitSave)
+		|| global.stackGrabSave) {
+			
+			show_debug_message("scr_saveREZ(), not autosave, loading new file");
 			global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {

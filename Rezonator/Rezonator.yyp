@@ -177,7 +177,6 @@
     {"id":{"name":"scr_importTXTExceptions","path":"scripts/scr_importTXTExceptions/scr_importTXTExceptions.yy",},"order":17,},
     {"id":{"name":"scr_adaptFont","path":"scripts/scr_adaptFont/scr_adaptFont.yy",},"order":21,},
     {"id":{"name":"scr_importPlainTXT","path":"scripts/scr_importPlainTXT/scr_importPlainTXT.yy",},"order":13,},
-    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":6,},
     {"id":{"name":"scr_get_translation","path":"scripts/scr_get_translation/scr_get_translation.yy",},"order":0,},
     {"id":{"name":"utf8_read","path":"scripts/utf8_read/utf8_read.yy",},"order":1,},
     {"id":{"name":"spr_checkmark","path":"sprites/spr_checkmark/spr_checkmark.yy",},"order":22,},
