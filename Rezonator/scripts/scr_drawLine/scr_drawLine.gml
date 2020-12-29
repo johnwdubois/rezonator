@@ -343,7 +343,7 @@ function scr_drawLine() {
 
 	
 	
-		var currentLineInStack = -1;
+		var currentLineInStack = "";
 		if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2 and not obj_control.rectNotInPanelPane) {
 			obj_control.lineContainsMouseYPos = speakerRectY1;	
 		}
@@ -356,14 +356,14 @@ function scr_drawLine() {
 				currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
 			}
 			else {
-				currentLineInStack = -1;
+				currentLineInStack = "";
 			}
 		}
 
 	
 		// draw stack rectangle if this line is in a stack
 	
-		if (currentLineInStack > -1) {
+		if (currentLineInStack != "") {
 			//scr_drawStackRect();
 		
 			if (obj_chain.toggleDrawStack) {
