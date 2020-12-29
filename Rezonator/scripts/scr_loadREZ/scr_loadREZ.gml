@@ -149,18 +149,24 @@ function scr_loadREZ() {
 				
 					global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
 					global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
+					global.nodeMap = ds_map_find_value(map, "nodeMap");
 				
-					if (global.tokenImportTagMap == undefined) {
+					if (is_undefined(global.tokenImportTagMap)) {
 						global.tokenImportTagMap = ds_map_create();
 					}
 					else {
 						global.tokenTagMapFilled = true;
 					}
-					if (global.unitImportTagMap == undefined) {
+					
+					if (is_undefined(global.unitImportTagMap)) {
 						global.unitImportTagMap = ds_map_create();
 					}
 					else {
 						global.unitTagMapFilled = true;
+					}
+					
+					if (is_undefined(global.nodeMap)) {
+						global.nodeMap = ds_map_create();
 					}
 					
 					// check if the stackTagMap is available in the REZ file
@@ -173,32 +179,32 @@ function scr_loadREZ() {
 				
 				
 				
-					if (global.tokenImportColNameList == undefined) {
+					if (is_undefined(global.tokenImportColNameList)) {
 						var tempList = ds_list_create();
 						global.tokenImportColNameList = tempList;
 						ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
 					}
-					if (global.wordImportColNameList == undefined) {
+					if (is_undefined(global.wordImportColNameList)) {
 						var tempList = ds_list_create();
 						global.wordImportColNameList = tempList;
 						ds_list_add(global.wordImportColNameList, "~UnitID", "~WordID");
 					}
-					if (global.unitImportColNameList == undefined) {
+					if (is_undefined(global.unitImportColNameList)) {
 						var tempList2 = ds_list_create();
 						global.unitImportColNameList = tempList2;
 						ds_list_add(global.tokenImportColNameList, "~UnitID", "~Participant");
 					}
-					if (global.importGridColNameList == undefined) {
+					if (is_undefined(global.importGridColNameList)) {
 						var tempList3 = ds_list_create();
 						global.importGridColNameList = tempList3;
 					}
-					if (obj_control.currentDisplayTokenColsList == undefined) {
+					if (is_undefined(obj_control.currentDisplayTokenColsList)) {
 						var tempList4 = ds_list_create();
 						obj_control.currentDisplayTokenColsList = tempList4;
 						ds_list_add(obj_control.currentDisplayTokenColsList,2,4,5,6,7);
 
 					}
-					if (obj_control.currentDisplayUnitColsList == undefined) {
+					if (is_undefined(obj_control.currentDisplayUnitColsList)) {
 						var tempList5 = ds_list_create();
 						obj_control.currentDisplayUnitColsList = tempList5;
 						ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
