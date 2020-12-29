@@ -20,3 +20,6 @@ global.fontsLoaded = false;
 global.loadingScreenCreated = false;
 
 alarm[4] = 2;
+
+// CREATING THE LEGENDARY NODE MAP
+global.nodeMap = ds_map_create();

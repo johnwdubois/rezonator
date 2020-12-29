@@ -140,7 +140,7 @@ stackChainNameCounter = 0;
 placeChainNameCounter = 0;
 //chunkNameCounter = 0;
 
-currentFocusedChainID = -1;
+currentFocusedChainID = "";
 currentFocusedChainIndex = -1;
 
 mouseLineHide = false;

@@ -73,7 +73,7 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 	
 }
 else {
-	currentFocusedChainID = -1;
+	currentFocusedChainID = "";
 	currentFocusedChainIndex = -1;
 }
 

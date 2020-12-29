@@ -260,6 +260,7 @@
     {"id":{"name":"scr_raceCheckChain","path":"scripts/scr_raceCheckChain/scr_raceCheckChain.yy",},"order":10,},
     {"id":{"name":"scr_chainDeselect","path":"scripts/scr_chainDeselect/scr_chainDeselect.yy",},"order":13,},
     {"id":{"name":"scr_rezPlay","path":"scripts/scr_rezPlay/scr_rezPlay.yy",},"order":14,},
+    {"id":{"name":"scr_addToNodeMap","path":"scripts/scr_addToNodeMap/scr_addToNodeMap.yy",},"order":16,},
     {"id":{"name":"scr_deadLinkFocusCheck","path":"scripts/scr_deadLinkFocusCheck/scr_deadLinkFocusCheck.yy",},"order":15,},
     {"id":{"name":"scr_randomStackerLoop","path":"scripts/scr_randomStackerLoop/scr_randomStackerLoop.yy",},"order":16,},
     {"id":{"name":"scr_panelPane_drawGoToLine","path":"scripts/scr_panelPane_drawGoToLine/scr_panelPane_drawGoToLine.yy",},"order":0,},

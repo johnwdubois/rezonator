@@ -67,7 +67,7 @@ function scr_newChain(wordID, unitID) {
 	if (obj_chain.currentChainID == undefined){
 		obj_chain.currentChainID = 0;
 	}
-	obj_chain.currentChainID++;
+	obj_chain.currentChainID = scr_addToNodeMap("chain");
 	//var chainIDType = ds_grid_height(chainGrid) - 1;
 	var wordIDList = ds_list_create();
 
@@ -121,10 +121,10 @@ function scr_newChain(wordID, unitID) {
 	}
 
 	currentFocusedChainID = currentChainID;
-	var newTop = currentChainID;
+	var newTop = currentRowChainGrid + 1;
 	with(obj_panelPane) {
-				currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
-			}
+		currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
+	}
 
 	with (obj_panelPane) {
 		functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;

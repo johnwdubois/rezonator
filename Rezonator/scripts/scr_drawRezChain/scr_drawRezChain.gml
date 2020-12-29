@@ -47,9 +47,7 @@ function scr_drawRezChain() {
 		minWordWidth = 9999999;
 	
 		var currentChainID = ds_list_find_value(chainShowList, i);
-		if (ds_list_find_value(chainShowList, currentChainID) == -1) {
-			continue;
-		}
+
 		var rowInChainGrid = ds_grid_value_y(rezChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, rezChainGridHeight, currentChainID);
 		if (rowInChainGrid < 0 or rowInChainGrid >= rezChainGridHeight) {
 			continue;

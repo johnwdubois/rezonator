@@ -222,6 +222,10 @@ function scr_saveREZ(autosave) {
 			var tempMap3 = ds_map_create();
 			ds_map_copy(tempMap3, global.stackTagMap);
 			ds_map_add_map(map, "stackTagMap", tempMap3);
+			
+			var tempMap4 = ds_map_create();
+			ds_map_copy(tempMap4, global.nodeMap);
+			ds_map_add_map(map, "nodeMap", tempMap4);
 	
 
 	}

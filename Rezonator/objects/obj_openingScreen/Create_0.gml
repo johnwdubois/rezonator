@@ -427,3 +427,5 @@ scr_preImportInitiate();
 showPreImportScreen = false;
 
 global.tokenCountTotal = 0;
+
+alarm[5] = 2;
