@@ -3,7 +3,7 @@
 function scr_addToNodeMap(type){
 	
 	// type variable should be a string that declares what "type" of Node this is
-	// for example, "Chain", "Link", or "Unit"
+	// for example, "Chain", "Link", "Unit", etc.
 	
 	// generate a random number and turn it into a hex string
 	var nodeKeyMin = 10000;
