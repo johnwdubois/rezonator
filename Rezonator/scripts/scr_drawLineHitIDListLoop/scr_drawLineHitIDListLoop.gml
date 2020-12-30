@@ -21,7 +21,9 @@ function scr_drawLineHitIDListLoop(currentHitIDList, previousWordDisplayCol, cur
 		var currentHitID = ds_list_find_value(currentHitIDList, drawWordLoop);
 	
 		var currentWordID = ds_grid_get(hitGrid, hitGrid_colWordID, currentHitID - 1);
-	
+		if(!is_numeric(currentWordID)){
+			exit;
+		}
 		// Prevent dead words from being drawn
 		var currentWordGridRow = currentWordID - 1;
 		var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordGridRow);

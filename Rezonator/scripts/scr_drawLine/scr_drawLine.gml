@@ -142,7 +142,14 @@ function scr_drawLine() {
 		var currentWordIDList = ds_grid_get(currentActiveLineGrid, lineGrid_colWordIDList, drawLineLoop);
 		var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
 		var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
-		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		var currentWordIDListSize = 0;
+		
+		if(is_numeric(currentWordIDList) and currentWordIDList != undefined){
+			if(ds_exists(currentWordIDList, ds_type_list)){
+				currentWordIDListSize = ds_list_size(currentWordIDList);
+			}
+		}
+
 	
 		// get & set the correct pixel-Y value for each line
 		var currentLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop);

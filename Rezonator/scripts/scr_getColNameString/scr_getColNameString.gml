@@ -42,7 +42,7 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
-	else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid == obj_control.searchGrid) {
+	else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid == obj_control.searchGrid  or grid == obj_control.quickFilterGrid ) {
 		switch (col) {
 			case obj_control.lineGrid_colDisplayRow:
 				colName = "displayRow";

@@ -179,11 +179,13 @@ voidLimit = 25;
 searchGrid_colHitIDList = lineGrid_colWordIDList;
 
 filterGrid = ds_grid_create(lineGridWidth, 0);
+quickFilterGrid = ds_grid_create(lineGridWidth, 0);
 searchGrid = ds_grid_create(lineGridWidth, 0);
 emptySearchGrid = ds_grid_create(lineGridWidth, 0);
 
 // Initialize filter and search as deactivated
 filterGridActive = false;
+quickFilterGridActive = false;
 searchGridActive = false;
 // Initialize line grid as active
 currentActiveLineGrid = lineGrid;

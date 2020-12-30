@@ -730,6 +730,42 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
+if(keyboard_check_pressed(ord("O")) and shortcutsEnabled and currentActiveLineGrid != searchGrid){
+	
+	
+				// If filter is active, deactivate it
+			if (obj_control.quickFilterGridActive) {
+				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.quickFilterGrid)) {
+					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+					//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
+					// Keep the focus on previous currentCenterDisplayRow
+				}
+			
+				// Switch to active grid
+				obj_control.quickFilterGridActive = false;
+				if(obj_control.filterGridActive == true){
+					obj_control.currentActiveLineGrid = obj_control.filterGrid;
+				}
+				else if (obj_control.searchGridActive == true) {
+					obj_control.currentActiveLineGrid = obj_control.searchGrid;
+				}
+				else{
+					obj_control.currentActiveLineGrid = obj_control.lineGrid;
+				}
+			}
+			else {
+			
+				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
+				// If filter is unactive. activate it
+				with (obj_control) {
+					scr_renderQuickFilter();
+				}
+			}
+	
+
+}
+
 scr_fontSizeControl();
 
 

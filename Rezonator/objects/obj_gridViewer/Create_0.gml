@@ -28,6 +28,7 @@ ds_list_add(gridList,
 	obj_control.wordGrid,
 	obj_control.dynamicWordGrid,
 	obj_control.filterGrid,
+	obj_control.quickFilterGrid,
 	obj_control.searchGrid,
 	obj_control.hitGrid,
 	obj_control.wordDrawGrid

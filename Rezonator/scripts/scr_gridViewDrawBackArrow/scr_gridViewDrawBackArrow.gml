@@ -67,7 +67,7 @@ function scr_gridViewDrawBackArrow() {
 						scr_searchToMain();
 					}
 					// Give the user another way to leave the filter view
-					else if(currentActiveLineGrid == filterGrid) { 
+					else if(currentActiveLineGrid == filterGrid or currentActiveLineGrid == quickFilterGrid ) { 
 						// Exit the stackShow
 						if(stackShowActive) {
 							obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
@@ -115,6 +115,32 @@ function scr_gridViewDrawBackArrow() {
 					}
 				}
 			}
+			else if(obj_control.currentActiveLineGrid == obj_control.quickFilterGrid){
+					with(obj_control) {
+					// Exit the plain filter
+					
+					// Remember the user's place
+					if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+						obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
+					}
+			
+					// Switch to active grid
+					obj_control.quickFilterGridActive = false;
+					if(obj_control.filterGridActive == true){
+						obj_control.currentActiveLineGrid = obj_control.filterGrid;
+					}
+					else if (obj_control.searchGridActive == true) {
+						obj_control.currentActiveLineGrid = obj_control.searchGrid;
+					}
+					else{
+						obj_control.currentActiveLineGrid = obj_control.lineGrid;
+					}	
+					// Reset wordLeftMargin
+					with (obj_alarm) {
+						alarm[1] = 5;
+					}
+				}
+			}	
 		}
 	}
 

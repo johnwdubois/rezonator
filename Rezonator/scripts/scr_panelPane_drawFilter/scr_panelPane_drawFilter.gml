@@ -115,7 +115,11 @@ function scr_panelPane_drawFilter() {
 	if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		if ((point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2) and device_mouse_check_button_released(0, mb_left))
 		or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not instance_exists(obj_dialogueBox)))) {
-		
+			
+			if(obj_control.quickFilterGridActive){
+				obj_control.quickFilterGridActive = false;
+			}
+			
 			// If filter is active, deactivate it
 			if (obj_control.filterGridActive) {
 				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
@@ -130,7 +134,7 @@ function scr_panelPane_drawFilter() {
 				obj_control.currentActiveLineGrid = obj_control.lineGrid;
 			}
 			else {
-			
+				
 				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 				// If filter is unactive. activate it
 				with (obj_control) {
