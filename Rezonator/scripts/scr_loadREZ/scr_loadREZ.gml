@@ -79,7 +79,6 @@ function scr_loadREZ() {
 	
 		global.openedREZFile = true;
 	
-		//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)) + ", global.tokenImportGridHeight: " + string(ds_grid_height(global.tokenImportGrid)));
 	
 		var listSize = ds_list_size(list);
 		for (var i = 0; i < listSize; i++) {
@@ -152,7 +151,7 @@ function scr_loadREZ() {
 					global.nodeMap = ds_map_find_value(map, "nodeMap");
 				
 					if (is_undefined(global.tokenImportTagMap)) {
-						show_message("scr_loadREZ() ... global.tokenImportTagMap is undefined");
+						show_debug_message("scr_loadREZ() ... global.tokenImportTagMap is undefined");
 						global.tokenImportTagMap = ds_map_create();
 					}
 					else {
@@ -160,7 +159,7 @@ function scr_loadREZ() {
 					}
 					
 					if (is_undefined(global.unitImportTagMap)) {
-						show_message("scr_loadREZ() ... global.unitImportTagMap is undefined");
+						show_debug_message("scr_loadREZ() ... global.unitImportTagMap is undefined");
 						global.unitImportTagMap = ds_map_create();
 					}
 					else {
@@ -169,7 +168,7 @@ function scr_loadREZ() {
 					
 					
 					if (is_undefined(global.nodeMap)) {
-						show_message("scr_loadREZ() ... global.nodeMap is undefined");
+						show_debug_message("scr_loadREZ() ... global.nodeMap is undefined");
 						global.nodeMap = ds_map_create();
 					}
 					
