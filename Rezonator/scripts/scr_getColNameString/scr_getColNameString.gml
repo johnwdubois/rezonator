@@ -324,8 +324,8 @@ function scr_getColNameString(grid, col) {
 			case obj_chain.chainGrid_colAlign:
 				colName = "align";
 				break;
-			case obj_chain.chainGrid_colTiltSum:
-				colName = "tiltSum";
+			case obj_chain.chainGrid_colChainSeq:
+				colName = "chainSeq";
 				break;
 			case obj_chain.chainGrid_colCaption:
 				colName = "caption";

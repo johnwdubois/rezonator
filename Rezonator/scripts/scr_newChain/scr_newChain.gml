@@ -16,6 +16,7 @@ function scr_newChain(wordID, unitID) {
 
 	var chainGrid = currentChainGrid;
 	var chainName = "";
+	var chainSeq = 0;
 
 	var aligned = false;
 
@@ -27,6 +28,7 @@ function scr_newChain(wordID, unitID) {
 			}
 			aligned = true;
 			rezChainNameCounter++;
+			chainSeq = rezChainNameCounter;
 			chainName = currentChainName + " " + string(rezChainNameCounter);
 			if(obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
@@ -38,6 +40,7 @@ function scr_newChain(wordID, unitID) {
 				functionChainList_currentTab = functionChainList_tabTrackBrush;
 			}
 			trackChainNameCounter++;
+			chainSeq = trackChainNameCounter;
 			chainName = currentChainName + " " + string(trackChainNameCounter);
 			break;
 		case obj_toolPane.toolStackBrush:
@@ -48,10 +51,12 @@ function scr_newChain(wordID, unitID) {
 				functionChainList_currentTab = functionChainList_tabStackBrush;
 			}
 			stackChainNameCounter++;
+			chainSeq = stackChainNameCounter;
 			chainName = currentChainName + " " + string(stackChainNameCounter);
 			break;
 		case obj_toolPane.toolPlaceChains:
 			placeChainNameCounter++;
+			chainSeq = placeChainNameCounter;
 			chainName = currentChainName + " " + string(placeChainNameCounter);
 		default:
 			exit;
@@ -76,8 +81,6 @@ function scr_newChain(wordID, unitID) {
 		ds_list_add(wordIDList, unitID);
 	
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, obj_chain.currentChainID);
-		//show_message(unitID);
-		//show_message(obj_chain.currentChainID);
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, unitID - 1, obj_control.activeStackType);
 		if(not obj_control.quickStackAbleToInitiate){
 			obj_control.moveCounter ++;
@@ -112,7 +115,8 @@ function scr_newChain(wordID, unitID) {
 	ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
 	ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
 	ds_grid_set(chainGrid, chainGrid_colAuthor, currentRowChainGrid, global.userName);
-	//ds_grid_set(chainGrid, chainGrid_colShow, currentRowChainGrid, true);
+	ds_grid_set(chainGrid, chainGrid_colChainSeq, currentRowChainGrid, chainSeq);
+	
 	if (chainGrid == obj_chain.stackChainGrid) {
 		ds_grid_set(chainGrid, chainGrid_colCaption, currentRowChainGrid, "");
 		ds_grid_set(chainGrid, chainGrid_colStackType, currentRowChainGrid, obj_control.activeStackType);

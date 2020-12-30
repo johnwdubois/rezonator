@@ -13,7 +13,7 @@
 */
 function scr_sortChainGrid(grid, sortCol, ascending) {
 	
-	show_message("scr_sortChainGrid() ... sortCol: " + string(sortCol) + ", ascending: " + string(ascending));
+	show_debug_message("scr_sortChainGrid() ... sortCol: " + string(sortCol) + ", ascending: " + string(ascending));
 	
 
 	// -1...wordID

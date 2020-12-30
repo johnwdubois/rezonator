@@ -25,6 +25,7 @@ chainGrid_colColor = 4;
 chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
 chainGrid_colTiltSum = 7;
+chainGrid_colChainSeq = 7;
 chainGrid_colAuthor = 8;
 chainGrid_colCaption = 9;
 chainGrid_colStackType = 10;

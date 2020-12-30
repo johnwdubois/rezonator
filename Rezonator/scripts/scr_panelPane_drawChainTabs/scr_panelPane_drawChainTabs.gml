@@ -180,20 +180,21 @@ function scr_panelPane_drawChainTabs() {
 							with (obj_panelPane) {
 								functionChainList_sortAsc[i] = !functionChainList_sortAsc[i];
 							}
+							var sortCol = obj_chain.chainGrid_colChainSeq;
 							switch (i) {
 								case functionChainList_tabRezBrush:
 									with (obj_chain) {
-										ds_grid_sort(rezChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
+										ds_grid_sort(rezChainGrid, sortCol, obj_panelPane.functionChainList_sortAsc[i]);
 									}
 									break;
 								case functionChainList_tabTrackBrush:
 									with (obj_chain) {
-										ds_grid_sort(trackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
+										ds_grid_sort(trackChainGrid, sortCol, obj_panelPane.functionChainList_sortAsc[i]);
 									}
 									break;
 								case functionChainList_tabStackBrush:
 									with (obj_chain) {
-										ds_grid_sort(stackChainGrid, chainGrid_colChainID, obj_panelPane.functionChainList_sortAsc[i]);
+										ds_grid_sort(stackChainGrid, sortCol, obj_panelPane.functionChainList_sortAsc[i]);
 									}
 									break;
 								default:
