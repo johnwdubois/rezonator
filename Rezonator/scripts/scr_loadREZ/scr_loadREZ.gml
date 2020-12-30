@@ -152,6 +152,7 @@ function scr_loadREZ() {
 					global.nodeMap = ds_map_find_value(map, "nodeMap");
 				
 					if (is_undefined(global.tokenImportTagMap)) {
+						show_message("scr_loadREZ() ... global.tokenImportTagMap is undefined");
 						global.tokenImportTagMap = ds_map_create();
 					}
 					else {
@@ -159,15 +160,19 @@ function scr_loadREZ() {
 					}
 					
 					if (is_undefined(global.unitImportTagMap)) {
+						show_message("scr_loadREZ() ... global.unitImportTagMap is undefined");
 						global.unitImportTagMap = ds_map_create();
 					}
 					else {
 						global.unitTagMapFilled = true;
 					}
 					
+					
 					if (is_undefined(global.nodeMap)) {
+						show_message("scr_loadREZ() ... global.nodeMap is undefined");
 						global.nodeMap = ds_map_create();
 					}
+					
 					
 					// check if the stackTagMap is available in the REZ file
 					// if it is, we will take the stackTagMap in the REZ file

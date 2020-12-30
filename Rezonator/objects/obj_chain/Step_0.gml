@@ -43,14 +43,18 @@ if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid
 	
 	if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
 		var idList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentFocusedChainIndex);
-		var idListSize = ds_list_size(idList);
-		for (var i = 0; i < idListSize; i++) {
-			var currentID = ds_list_find_value(idList, i);
-			var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentID -1);
-			var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID -1);
+		if (is_numeric(idList)) {
+			if (ds_exists(idList, ds_type_list)) {
+				var idListSize = ds_list_size(idList);
+				for (var i = 0; i < idListSize; i++) {
+					var currentID = ds_list_find_value(idList, i);
+					var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentID -1);
+					var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID -1);
 			
-			if (isVisible || isChunk) {
-				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentID - 1, true);
+					if (isVisible || isChunk) {
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentID - 1, true);
+					}
+				}
 			}
 		}
 	}

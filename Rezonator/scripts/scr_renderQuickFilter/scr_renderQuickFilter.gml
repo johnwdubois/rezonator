@@ -14,7 +14,7 @@ function scr_renderQuickFilter() {
 		Author: Terry DuBois, Georgio Klironomos
 	*/
 	
-	if(obj_chain.currentFocusedChainID == -1 and is_numeric(obj_chain.currentFocusedChainID)){
+	if (obj_chain.currentFocusedChainID == "" || !is_string(obj_chain.currentFocusedChainID) || instance_exists(obj_dialogueBox)) {
 		exit;
 	}
 	
@@ -22,10 +22,8 @@ function scr_renderQuickFilter() {
 	quickFilterGrid = ds_grid_create(lineGridWidth, 0);
 
 
-
-	with(obj_panelPane){
-		var grid;
-		
+	var grid = obj_chain.rezChainGrid;
+	with (obj_panelPane) {
 		switch (functionChainList_currentTab) {
 
 			case functionChainList_tabRezBrush:

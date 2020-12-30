@@ -55,7 +55,14 @@ function scr_drawRezChain() {
 	
 		var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, rowInChainGrid);
 		var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, rowInChainGrid);
-		var currentChainShow = true;//ds_grid_get(rezChainGrid, chainGrid_colShow, rowInChainGrid);
+		var currentChainShow = true;
+		
+		if (!is_numeric(currentWordIDList)) {
+			continue;
+		}
+		if (!ds_exists(currentWordIDList, ds_type_list)) {
+			continue;
+		}
 	
 		// find minimum word width so we know the X position of the chain
 		var currentWordIDListSize = ds_list_size(currentWordIDList);

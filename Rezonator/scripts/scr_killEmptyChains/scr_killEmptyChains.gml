@@ -24,6 +24,13 @@ function scr_killEmptyChains(grid) {
 	
 		var idList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
 		var chainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
+		
+		if (!is_numeric(idList)) {
+			continue;
+		}
+		if (!ds_exists(idList, ds_type_list)) {
+			continue;
+		}
 	
 		if (ds_list_size(idList) == 0) {
 			chainState = obj_chain.chainStateDead;
