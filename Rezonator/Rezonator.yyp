@@ -254,6 +254,7 @@
     {"id":{"name":"scr_preImportInitiate","path":"scripts/scr_preImportInitiate/scr_preImportInitiate.yy",},"order":1,},
     {"id":{"name":"scr_cliqueDisplayRefresh","path":"scripts/scr_cliqueDisplayRefresh/scr_cliqueDisplayRefresh.yy",},"order":4,},
     {"id":{"name":"scr_cliqueAnalyzeTilt","path":"scripts/scr_cliqueAnalyzeTilt/scr_cliqueAnalyzeTilt.yy",},"order":5,},
+    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":6,},
     {"id":{"name":"scr_autofillStackCaption","path":"scripts/scr_autofillStackCaption/scr_autofillStackCaption.yy",},"order":18,},
     {"id":{"name":"scr_cliqueGetCross","path":"scripts/scr_cliqueGetCross/scr_cliqueGetCross.yy",},"order":6,},
     {"id":{"name":"scr_cliqueGetBreak","path":"scripts/scr_cliqueGetBreak/scr_cliqueGetBreak.yy",},"order":7,},
