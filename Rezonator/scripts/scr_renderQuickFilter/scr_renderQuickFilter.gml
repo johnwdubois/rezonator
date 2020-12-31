@@ -50,41 +50,79 @@ function scr_renderQuickFilter() {
 	
 	scr_updateDisplayRow();
 		
-	// set information in quickFilterGrid for words in this chain
-	var currentIDListSize = ds_list_size(currentIDList);
-	for (var k = 0; k < currentIDListSize; k++) {
-		if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
-			var currentUnitID = ds_list_find_value(currentIDList, k);
-		}
-		else {
-			var currentWordID = ds_list_find_value(currentIDList, k);
-			var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
-			var currentDisplayRow = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1);
-		}
-			
-		if (ds_grid_value_exists(quickFilterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(quickFilterGrid), currentUnitID)) {
-			continue;
-		}
-			
-		var rowInLineGrid = ds_grid_value_y(lineGrid, lineGrid_colDisplayRow,0,lineGrid_colDisplayRow,ds_grid_height(lineGrid), currentDisplayRow )
-		var currentWordIDListUnitGrid = ds_grid_get(lineGrid, lineGrid_colWordIDList, rowInLineGrid);
-		var currentDiscoID = ds_grid_get(lineGrid, lineGrid_colDiscoID, rowInLineGrid);
-		var currentUtteranceID = ds_grid_get(lineGrid, lineGrid_colUnitID, rowInLineGrid);
+	var currentUnitID = 0;	
+	var currentWordID = 0;
+	var currentDisplayRow = 0;
+	
+	if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
 		
-		show_debug_message("WID:  " + string(currentWordID) + "   ,currentDisplayRow:  " + string(currentDisplayRow) + "  ,rowInLineGrid:  " + string(rowInLineGrid) + "  ,currentWordIDListUnitGrid:  " + scr_getStringOfList(currentWordIDListUnitGrid) )
+		//currentUnitID = ds_list_find_value(currentIDList, k);
+		// set information in quickFilterGrid for units in the stack chain
+		var currentLineGridSize = ds_grid_height(obj_control.lineGrid);
+		for (var i = 0; i < currentLineGridSize; i++) {
 			
-		ds_grid_resize(quickFilterGrid, lineGridWidth, ds_grid_height(quickFilterGrid) + 1);
-		var currentRowquickFilterGrid = ds_grid_height(quickFilterGrid) - 1;
+			var valueToCheck = ds_grid_get(obj_control.lineGrid,obj_control.lineGrid_colUnitID, i);
 			
-		ds_grid_set(quickFilterGrid, lineGrid_colDisplayRow, currentRowquickFilterGrid, currentRowquickFilterGrid);
-		ds_grid_set(quickFilterGrid, lineGrid_colLineState, currentRowquickFilterGrid, 0);
-		ds_grid_set(quickFilterGrid, lineGrid_colUnitID, currentRowquickFilterGrid, currentUnitID);
-		ds_grid_set(quickFilterGrid, lineGrid_colPixelY, currentRowquickFilterGrid, (currentRowquickFilterGrid * obj_control.gridSpaceVertical));
-		ds_grid_set(quickFilterGrid, lineGrid_colPixelYOriginal, currentRowquickFilterGrid, (currentRowquickFilterGrid * obj_control.gridSpaceVertical));
-		ds_grid_set(quickFilterGrid, lineGrid_colDiscoID, currentRowquickFilterGrid, currentDiscoID);
-		ds_grid_set(quickFilterGrid, lineGrid_colLineNumberLabel, currentRowquickFilterGrid, currentUnitID);
-		ds_grid_set(quickFilterGrid, lineGrid_colWordIDList, currentRowquickFilterGrid, currentWordIDListUnitGrid);
+			if(ds_list_find_index(currentIDList,valueToCheck) != -1){
+
+				var rowInLineGrid = i;
+				var currentWordIDListUnitGrid = ds_grid_get(lineGrid, lineGrid_colWordIDList, rowInLineGrid);
+				var currentDiscoID = ds_grid_get(lineGrid, lineGrid_colDiscoID, rowInLineGrid);
+				var currentUtteranceID = ds_grid_get(lineGrid, lineGrid_colUnitID, rowInLineGrid);
+		
+				show_debug_message("UID:  " + string(currentUtteranceID) +"  ,rowInLineGrid:  " + string(rowInLineGrid) + "  ,currentWordIDListUnitGrid:  " + scr_getStringOfList(currentWordIDListUnitGrid) )
+			
+				ds_grid_resize(quickFilterGrid, lineGridWidth, ds_grid_height(quickFilterGrid) + 1);
+				var currentRowquickFilterGrid = ds_grid_height(quickFilterGrid) - 1;
+			
+				ds_grid_set(quickFilterGrid, lineGrid_colDisplayRow, currentRowquickFilterGrid, currentRowquickFilterGrid);
+				ds_grid_set(quickFilterGrid, lineGrid_colLineState, currentRowquickFilterGrid, 0);
+				ds_grid_set(quickFilterGrid, lineGrid_colUnitID, currentRowquickFilterGrid, currentUtteranceID);
+				ds_grid_set(quickFilterGrid, lineGrid_colPixelY, currentRowquickFilterGrid, (currentRowquickFilterGrid * obj_control.gridSpaceVertical));
+				ds_grid_set(quickFilterGrid, lineGrid_colPixelYOriginal, currentRowquickFilterGrid, (currentRowquickFilterGrid * obj_control.gridSpaceVertical));
+				ds_grid_set(quickFilterGrid, lineGrid_colDiscoID, currentRowquickFilterGrid, currentDiscoID);
+				ds_grid_set(quickFilterGrid, lineGrid_colLineNumberLabel, currentRowquickFilterGrid, currentUtteranceID);
+				ds_grid_set(quickFilterGrid, lineGrid_colWordIDList, currentRowquickFilterGrid, currentWordIDListUnitGrid);
+				
+			}
 		}
+	
+	}
+	else {
+
+		// set information in quickFilterGrid for words in this chain
+		var currentIDListSize = ds_list_size(currentIDList);
+		for (var k = 0; k < currentIDListSize; k++) {
+			
+			currentWordID = ds_list_find_value(currentIDList, k);
+			currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+			currentDisplayRow = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1);
+			
+			if (ds_grid_value_exists(quickFilterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(quickFilterGrid), currentUnitID)) {
+				continue;
+			}
+
+			
+			var rowInLineGrid = ds_grid_value_y(lineGrid, lineGrid_colDisplayRow,0,lineGrid_colDisplayRow,ds_grid_height(lineGrid), currentDisplayRow )
+			var currentWordIDListUnitGrid = ds_grid_get(lineGrid, lineGrid_colWordIDList, rowInLineGrid);
+			var currentDiscoID = ds_grid_get(lineGrid, lineGrid_colDiscoID, rowInLineGrid);
+			var currentUtteranceID = ds_grid_get(lineGrid, lineGrid_colUnitID, rowInLineGrid);
+		
+			show_debug_message("WID:  " + string(currentWordID) + "   ,currentDisplayRow:  " + string(currentDisplayRow) + "  ,rowInLineGrid:  " + string(rowInLineGrid) + "  ,currentWordIDListUnitGrid:  " + scr_getStringOfList(currentWordIDListUnitGrid) )
+			
+			ds_grid_resize(quickFilterGrid, lineGridWidth, ds_grid_height(quickFilterGrid) + 1);
+			var currentRowquickFilterGrid = ds_grid_height(quickFilterGrid) - 1;
+			
+			ds_grid_set(quickFilterGrid, lineGrid_colDisplayRow, currentRowquickFilterGrid, currentRowquickFilterGrid);
+			ds_grid_set(quickFilterGrid, lineGrid_colLineState, currentRowquickFilterGrid, 0);
+			ds_grid_set(quickFilterGrid, lineGrid_colUnitID, currentRowquickFilterGrid, currentUnitID);
+			ds_grid_set(quickFilterGrid, lineGrid_colPixelY, currentRowquickFilterGrid, (currentRowquickFilterGrid * obj_control.gridSpaceVertical));
+			ds_grid_set(quickFilterGrid, lineGrid_colPixelYOriginal, currentRowquickFilterGrid, (currentRowquickFilterGrid * obj_control.gridSpaceVertical));
+			ds_grid_set(quickFilterGrid, lineGrid_colDiscoID, currentRowquickFilterGrid, currentDiscoID);
+			ds_grid_set(quickFilterGrid, lineGrid_colLineNumberLabel, currentRowquickFilterGrid, currentUnitID);
+			ds_grid_set(quickFilterGrid, lineGrid_colWordIDList, currentRowquickFilterGrid, currentWordIDListUnitGrid);
+		}
+	}
 	scr_refreshChainGrid();
 
 	
