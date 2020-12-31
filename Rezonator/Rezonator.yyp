@@ -390,6 +390,7 @@
     {"id":{"name":"fnt_chainListFocusedLarge4","path":"fonts/fnt_chainListFocusedLarge4/fnt_chainListFocusedLarge4.yy",},"order":10,},
     {"id":{"name":"fnt_chainListFocusedLarge5","path":"fonts/fnt_chainListFocusedLarge5/fnt_chainListFocusedLarge5.yy",},"order":11,},
     {"id":{"name":"scr_editOptions","path":"scripts/scr_editOptions/scr_editOptions.yy",},"order":40,},
+    {"id":{"name":"scr_fillHelpMenuGrid","path":"scripts/scr_fillHelpMenuGrid/scr_fillHelpMenuGrid.yy",},"order":26,},
     {"id":{"name":"fnt_chainContents","path":"fonts/fnt_chainContents/fnt_chainContents.yy",},"order":0,},
     {"id":{"name":"fnt_chainContentsLarge1","path":"fonts/fnt_chainContentsLarge1/fnt_chainContentsLarge1.yy",},"order":1,},
     {"id":{"name":"fnt_chainContentsLarge2","path":"fonts/fnt_chainContentsLarge2/fnt_chainContentsLarge2.yy",},"order":2,},
