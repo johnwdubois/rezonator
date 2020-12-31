@@ -87,10 +87,12 @@ function scr_wordClicked(wordID, unitID) {
 				var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID);
 				ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
 				currentFocusedChainID = currentChainID;
-		
-				with(obj_panelPane) {
-					currentTopViewRow = ((currentChainID - 2) > 2) ? (currentChainID - 2) : 0;	
+				var newTop = rowInChainGrid + 1;
+				show_debug_message("scr_wordClicked() ... newTop: " + string(newTop));
+				with (obj_panelPane) {
+					currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
 				}
+				show_debug_message("scr_wordClicked() ... obj_panelPane.currentTopViewRow: " + string(obj_panelPane.currentTopViewRow));
 		
 				var rowInLinkGrid = -1;
 				if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {

@@ -42,7 +42,7 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
-	else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid == obj_control.searchGrid) {
+	else if (grid == obj_control.lineGrid or grid == obj_control.filterGrid or grid == obj_control.searchGrid  or grid == obj_control.quickFilterGrid ) {
 		switch (col) {
 			case obj_control.lineGrid_colDisplayRow:
 				colName = "displayRow";
@@ -324,8 +324,8 @@ function scr_getColNameString(grid, col) {
 			case obj_chain.chainGrid_colAlign:
 				colName = "align";
 				break;
-			case obj_chain.chainGrid_colTiltSum:
-				colName = "tiltSum";
+			case obj_chain.chainGrid_colChainSeq:
+				colName = "chainSeq";
 				break;
 			case obj_chain.chainGrid_colCaption:
 				colName = "caption";

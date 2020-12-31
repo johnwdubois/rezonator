@@ -13,8 +13,18 @@
 */
 
 function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID) {
+	var currentWordIDListSize = 0;
+		
+	if(is_numeric(currentWordIDList) and currentWordIDList != undefined){
+		if(ds_exists(currentWordIDList, ds_type_list)){
+			currentWordIDListSize = ds_list_size(currentWordIDList);
+		}
+	}
+	else{
+		exit;
+	}
 
-	var currentWordIDListSize = ds_list_size(currentWordIDList);
+	
 	var shapeTextX = wordLeftMargin;
 	var shapeTextSpace = 12;
 

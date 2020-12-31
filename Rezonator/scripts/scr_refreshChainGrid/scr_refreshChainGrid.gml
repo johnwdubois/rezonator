@@ -59,23 +59,22 @@ function scr_refreshChainGrid() {
 		if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
 			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, false);
 			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentID - 1, -1);
-			if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
+			if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateRed) {
 				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
 			}
 		
 			// Will need to check for red Chunks as well
-			if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateChunk) {
+			if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1) == obj_control.wordStateChunk) {
 				var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentID);
 				var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
 				// Loop through the Chunk's wordID list and make sure none are red
 				var currentChunkWordIDListSize = ds_list_size(currentChunkWordIDList);
-				for(var chunkWordsLoop = 0; chunkWordsLoop < currentChunkWordIDListSize; chunkWordsLoop++) {
+				for (var chunkWordsLoop = 0; chunkWordsLoop < currentChunkWordIDListSize; chunkWordsLoop++) {
 					var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
 					if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
 					}
 				}
-				//ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentID - 1, obj_control.wordStateNormal);
 			}
 		
 			// Prevent this word from losing its border if it belongs to another chain
@@ -111,7 +110,8 @@ function scr_refreshChainGrid() {
 		var source = ds_grid_get(tempGrid, obj_chain.linkGrid_colSource, rowInTempGrid);
 		var goal = ds_grid_get(tempGrid, obj_chain.linkGrid_colGoal, rowInTempGrid);
 		var dead = ds_grid_get(tempGrid, obj_chain.linkGrid_colDead, rowInTempGrid);
-	
+		
+		// set the found cell to be -1 so it isn't found again in the next while loop
 		ds_grid_set(tempGrid, obj_chain.linkGrid_colChainID, rowInTempGrid, -1);
 		
 		// do not add wordID to idList if the word is dead or the source is -1
@@ -130,9 +130,7 @@ function scr_refreshChainGrid() {
 		}
 	
 		if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-		
-			if not (chainID == undefined) {
-			
+			if (!is_undefined(chainID)) {
 				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, source - 1, chainID);
 				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, source - 1, obj_control.activeStackType);
 				if (goal != -1) {
@@ -145,6 +143,9 @@ function scr_refreshChainGrid() {
 		// search again in tempGrid to continue the while loop
 		rowInTempGrid = ds_grid_value_y(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(tempGrid), chainID);
 	}
+	
+	show_debug_message("scr_refreshChainGrid() ... idList: " + scr_getStringOfList(idList));
+	
 
 	if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
 
@@ -162,8 +163,6 @@ function scr_refreshChainGrid() {
 			// Pull UnitID and wordSeq info from wordGrid
 			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 			var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
-			
-			//show_debug_message("scr_refreshChainGrid() ... currentUnitID: " + string(currentUnitID) + ", currentWordSeq: " + string(currentWordSeq));
 			
 			ds_grid_set(tempListGrid, tempListGrid_colWordID, idListLoop, currentWordID);
 			ds_grid_set(tempListGrid, tempListGrid_colUnitID, idListLoop, currentUnitID);
@@ -203,6 +202,11 @@ function scr_refreshChainGrid() {
 
 		ds_grid_destroy(tempGrid);
 		ds_grid_destroy(tempListGrid);
+	}
+	else if (grid == obj_chain.stackChainGrid) {
+		
+		// put idList back into stackChainGrid
+		ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
 	}
 
 

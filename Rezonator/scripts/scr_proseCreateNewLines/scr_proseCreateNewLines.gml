@@ -2,8 +2,11 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_proseCreateNewLines(){
 	
+	var wordSpacing = 12;
 	var lineGrid = obj_control.lineGrid;
-	var maxScreenWidth = (window_get_width() - window_get_width()/3);
+	var endOfLineBuffer = (global.scrollBarWidth * 4);
+	var maxScreenWidth = (window_get_width() - window_get_width() / 3) - obj_control.wordLeftMargin - endOfLineBuffer;
+	maxScreenWidth = clamp(maxScreenWidth, 100, 5000);
 	
 	// loop through lineGrid and split lines that have more words than maxWordsPerLine
 	for (var i = 0; i < ds_grid_height(lineGrid); i++) {
@@ -16,10 +19,10 @@ function scr_proseCreateNewLines(){
 		var currentWordIDListSize = ds_list_size(currentWordIDList);
 		for (var j = 0; j < currentWordIDListSize; j++) {
 			var currentWordID = ds_list_find_value(currentWordIDList, j);
-			var currentWordStr = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1)
+			var currentWordStr = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
 			scr_adaptFont(currentWordStr, "M");
-			totalLineWidth += string_width(currentWordStr);
-			if (totalLineWidth > maxScreenWidth and splitFound == false ) {
+			totalLineWidth += string_width(currentWordStr) + wordSpacing;
+			if (totalLineWidth > maxScreenWidth and !splitFound) {
 				indexToSplit = j;
 				splitFound = true;
 			}
@@ -28,8 +31,14 @@ function scr_proseCreateNewLines(){
 		
 		// if this line has more words than maxWordsPerLine, we will split the line
 		if (totalLineWidth > maxScreenWidth) {
-			var splitWordID = ds_list_find_value(currentWordIDList, indexToSplit - 1);
+			
+			// subtract 1 from indexToSplit if we can
+			indexToSplit = max(0, indexToSplit - 2);
+			
+			// get wordID of indexToSplit and splitLine on that word
+			var splitWordID = ds_list_find_value(currentWordIDList, indexToSplit);
 			scr_splitLine(splitWordID);
+			
 		}
 	}
 

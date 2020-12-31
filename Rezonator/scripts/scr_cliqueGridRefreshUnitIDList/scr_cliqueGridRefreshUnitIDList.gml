@@ -1,7 +1,14 @@
 function scr_cliqueGridRefreshUnitIDList(rowInCliqueGrid) {
-
+	/*
 	var chainIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colChainIDList, rowInCliqueGrid);
 	var unitIDList = ds_grid_get(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colUnitIDList, rowInCliqueGrid);
+	
+	if (!is_numeric(unitIDList)) {
+		exit;
+	}
+	if (!ds_exists(unitIDList, ds_type_list)) {
+		exit;
+	}
 
 	var chainIDListSize = ds_list_size(chainIDList);
 	for (var i = 0; i < chainIDListSize; i++) {
@@ -45,6 +52,6 @@ function scr_cliqueGridRefreshUnitIDList(rowInCliqueGrid) {
 
 
 	scr_cliqueDisplayRefresh();
-
+	*/
 
 }

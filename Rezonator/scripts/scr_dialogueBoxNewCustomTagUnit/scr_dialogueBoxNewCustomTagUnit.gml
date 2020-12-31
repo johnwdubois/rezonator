@@ -6,7 +6,10 @@ function scr_dialogueBoxNewCustomTagUnit() {
 	show_debug_message("scr_dialogueBoxNewCustomTagUnit() ... unitImportColToChange: " + string(obj_control.unitImportColToChange));
 	show_debug_message("scr_dialogueBoxNewCustomTagUnit() ... mapKey: " + string(mapKey));
 	
-	ds_list_add(tempList, obj_control.inputText);
-
+	if (is_numeric(tempList)) {
+		if (ds_exists(tempList, ds_type_list)) {
+			ds_list_add(tempList, obj_control.inputText);
+		}
+	}
 
 }

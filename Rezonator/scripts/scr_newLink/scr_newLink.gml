@@ -53,7 +53,7 @@ function scr_newLink(wordID, goal) {
 	}
 
 
-	if (currentFocusedChainID < 0) {
+	if (currentFocusedChainID = "") {
 		exit;
 	}
 

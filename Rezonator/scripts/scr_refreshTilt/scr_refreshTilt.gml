@@ -74,7 +74,7 @@ function scr_refreshTilt(rowInRezChainGrid) {
 		}
 	}
 
-	ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colTiltSum, rowInRezChainGrid, tiltSum);
+	//ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colTiltSum, rowInRezChainGrid, tiltSum);
 
 
 }

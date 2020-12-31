@@ -242,7 +242,7 @@ function scr_searchForWord() {
 	if (ds_grid_height(obj_control.searchGrid) > 0) {
 	
 		// If matches were found, switch the user over to the search view 
-		obj_control.filterGridActive = false;
+		//obj_control.filterGridActive = false;
 		obj_control.searchGridActive = true;
 		obj_control.clearSearch = false;
 		scr_unFocusAllChains();

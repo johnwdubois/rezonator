@@ -13,15 +13,17 @@
 */
 function scr_saveREZ(autosave) {
 
-	/*if (global.games) {
-		autosave = false;
-	}*/
-
 	show_debug_message("scr_saveREZ(), STARTING... " + scr_printTime());
-
-
+	show_debug_message("scr_saveREZ(), global.fileSaveName: " + string(global.fileSaveName));
+	
+	// get fileSaveName if we don't already have it
 	if (not autosave) {
-		if (global.fileSaveName == "undefined" or (not file_exists(global.fileSaveName) and not obj_stacker.splitSave) or global.stackGrabSave ) {
+		if (global.fileSaveName == "undefined"
+		|| string_length(global.fileSaveName) < 1
+		|| (!file_exists(global.fileSaveName) && !obj_stacker.splitSave)
+		|| global.stackGrabSave) {
+			
+			show_debug_message("scr_saveREZ(), not autosave, loading new file");
 			global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
 
 			if (global.fileSaveName == "" or global.fileSaveName == "undefined") {
@@ -46,22 +48,27 @@ function scr_saveREZ(autosave) {
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;
-			//autosave = false;
 		}
 	}
 	else {
-		if(filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
+		if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\" and not autosave) {
 			show_message(scr_get_translation("msg_saving-default-directory"));
 			global.fileSaveName = "";
 			scr_saveREZ(false);
 			exit;
-			//autosave = false;
 		}
 	}
+	
+	// create maps to hold copies of other maps we want in the REZ file
+	var nodeMapCopy = ds_map_create();
+	var tokenImportTagMapCopy = ds_map_create();
+	var unitImportTagMapCopy = ds_map_create();
+	var stackTagMapCopy = ds_map_create();
 
-	//show_message(program_directory);
+	// create a list to contain all of the data we will save	
 	var rootList = ds_list_create();
 
+	// go to every object with savable data and collect all of it into rootList
 	with (obj_saveParent) {
 		var map = ds_map_create();
 		ds_list_add(rootList, map);
@@ -175,6 +182,26 @@ function scr_saveREZ(autosave) {
 				ds_map_add(map, "subLineGridBeginning", -1);
 				ds_map_add(map, "subLineGridEnd", -1);
 			}
+			
+			
+			// deep-copy tokenImportTagMap
+			tokenImportTagMapCopy = json_decode(json_encode(global.tokenImportTagMap));
+			ds_map_add_map(map, "tokenImportTagMap", tokenImportTagMapCopy);
+			
+			// deep-copy unitImportTagMap
+			unitImportTagMapCopy = json_decode(json_encode(global.unitImportTagMap));
+			ds_map_add_map(map, "unitImportTagMap", unitImportTagMapCopy);
+			
+			// deep-copy stackTagMap
+			stackTagMapCopy = json_decode(json_encode(global.stackTagMap));
+			ds_map_add_map(map, "stackTagMap", stackTagMapCopy);
+			
+			// deep-copy nodeMap
+			nodeMapCopy = json_decode(json_encode(global.nodeMap));
+			ds_map_add_map(map, "nodeMap", nodeMapCopy);
+			
+			
+			
 		
 		}
 		else if (object_index == obj_chain) {
@@ -203,51 +230,37 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "chainColorID3", chainColorID[3]);
 		
 		}
-	
-			var tempMap = ds_map_create();
-			ds_map_copy(tempMap, global.tokenImportTagMap);
-			ds_map_add_map(map, "tokenImportTagMap", tempMap);
-
-			var tempMap2 = ds_map_create();
-			ds_map_copy(tempMap2, global.unitImportTagMap);
-			ds_map_add_map(map, "unitImportTagMap", tempMap2);
-			
-			var tempMap3 = ds_map_create();
-			ds_map_copy(tempMap3, global.stackTagMap);
-			ds_map_add_map(map, "stackTagMap", tempMap3);
-	
 
 	}
 
+	// wrap the root list in a map
 	var wrapper = ds_map_create();
 	ds_map_add_list(wrapper, "ROOT", rootList);
+	show_debug_message("After map created");
 
-	show_debug_message("AFter map created");
-
-
+	// encode the wrapper to a json
 	var jsonString = json_encode(wrapper);
-	show_debug_message("AFter json encoded");
+	show_debug_message("After json encoded");
 
+	// beautify/stylize the json if this is not an auto-save
 	if (not autosave) {
-	jsonString = scr_jsonBeautify(jsonString);
-	show_debug_message("AFter json beautified");
+		jsonString = scr_jsonBeautify(jsonString);
+		show_debug_message("After json beautified");
 	}
 
+	// save the file with the JSON encoded string
 	if (autosave) {
-		if(global.games) {
+		if (global.games) {
 			var gameSaveDirString = (global.rezzles ? global.rezonatorRezzlesSaveDirString : global.rezonatorElmoSaveDirString) ;
 		
 			if (directory_exists(gameSaveDirString)) {
-				//show_message(date_time_string(date_current_datetime()));
+				
 				var userString = (global.userName == "") ? ("player " + string_replace_all(date_time_string(date_current_datetime()), ":" , ".")) : global.userName;
-				//show_message(userString);
 				var fileName = filename_change_ext(filename_name(global.fileSaveName), "") + " - " + userString + ".rez";
-				//show_message(fileName);
-
 				scr_saveFileBuffer(0, gameSaveDirString + "\\" + fileName, jsonString);
+				
 			}
 			else {
-				//scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
 				show_message(string(gameSaveDirString) + " does not exist");
 			}
 		}
@@ -261,7 +274,7 @@ function scr_saveREZ(autosave) {
 				global.importGroupFileIndex++;
 			}
 		
-			if(os_type == os_macosx){
+			if (os_type == os_macosx) {
 				if (directory_exists(global.rezonatorDirString + "/Autosave")) {
 		
 					scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "/Autosave/autosave.rez", jsonString);
@@ -270,7 +283,7 @@ function scr_saveREZ(autosave) {
 					scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
 				}
 			}
-			else{
+			else {
 				if (directory_exists(global.rezonatorDirString + "\\Autosave")) {
 		
 					scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "\\Autosave\\autosave.rez", jsonString);
@@ -297,17 +310,21 @@ function scr_saveREZ(autosave) {
 	}
 
 	ds_map_destroy(wrapper);
-
-	// Export the grids to CSV format
-	//if(not global.games) {
-	//	scr_exportGrids();
-	//}
+	
+	// destroy various map deep-copies
+	ds_map_destroy(nodeMapCopy);
+	ds_map_destroy(tokenImportTagMapCopy);
+	ds_map_destroy(unitImportTagMapCopy);
+	ds_map_destroy(stackTagMapCopy);
+	
+	// set allSaved to true so user does not get prompted to save when they quit
 	if (not autosave) {
 		obj_control.allSaved = true;
 	}
 
 	show_debug_message("scr_saveREZ(), END... " + scr_printTime());
-
+	
+	// if this is a batch import, loop back to opening screen to auto-import another file
 	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
 		room_goto(rm_openingScreen);
 	}

@@ -130,7 +130,7 @@ if (filterGridActive) {
 	}
 	scr_gridViewDrawBackArrow();
 }
-else if (searchGridActive) {
+else if (searchGridActive or quickFilterGridActive) {
 	scr_gridViewDrawBackArrow();	
 	scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
 	global.colorThemeSelected1, global.colorThemeSelected2,

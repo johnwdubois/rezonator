@@ -19,7 +19,7 @@ if (keyboard_check(vk_control)) {
 }
 // If a normal delete, delete the singular focused link
 else {
-	if(obj_chain.currentFocusedChainID < 0 and hoverChunkID != -1) {
+	if (obj_chain.currentFocusedChainID == "" and hoverChunkID != -1) {
 		//show_message(hoverChunkIDRow);
 		//show_message(hoverChunkID);
 		deleteChunkWord = true;

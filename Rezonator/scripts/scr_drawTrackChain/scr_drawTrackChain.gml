@@ -39,9 +39,7 @@ function scr_drawTrackChain() {
 	for (var i = 0; i < chainShowListSize; i++) {
 	
 		var currentChainID = ds_list_find_value(chainShowList, i);
-		if (ds_list_find_value(chainShowList, currentChainID) == -1) {
-			continue;
-		}
+
 		var rowInChainGrid = ds_grid_value_y(trackChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, trackChainGridHeight, currentChainID);
 		if (rowInChainGrid < 0 or rowInChainGrid >= trackChainGridHeight) {
 			continue;

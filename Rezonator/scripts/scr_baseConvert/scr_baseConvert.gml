@@ -3,11 +3,17 @@
 // Credit to xot: https://gmlscripts.github.io/script/base_convert.html
 function scr_baseConvert(number, oldbase, newbase) {
 	
+	// catch errors
 	if (!is_numeric(number) && !is_string(number)) {
-		show_debug_message("scr_baseConvert() number is neither numeric or string")
+		show_debug_message("scr_baseConvert() ... number is neither numeric or string");
 		exit;
 	}
-
+	if (argument_count < 3) {
+		show_debug_message("scr_baseConvert() ... not enough arguments provided");
+		exit;
+	}
+	
+	// convert base
     var out = "";
     number = string_upper(number);
  
@@ -38,6 +44,7 @@ function scr_baseConvert(number, oldbase, newbase) {
         len = newlen;
         out = string_char_at(tab, divide+1) + out;
     } until (len == 0);
- 
+	
+	show_debug_message("scr_baseConvert() ... in: " + string(number) + ", out: " + string(out));
     return out;
 }

@@ -79,7 +79,6 @@ function scr_loadREZ() {
 	
 		global.openedREZFile = true;
 	
-		//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)) + ", global.tokenImportGridHeight: " + string(ds_grid_height(global.tokenImportGrid)));
 	
 		var listSize = ds_list_size(list);
 		for (var i = 0; i < listSize; i++) {
@@ -149,19 +148,30 @@ function scr_loadREZ() {
 				
 					global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
 					global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
+					global.nodeMap = ds_map_find_value(map, "nodeMap");
 				
-					if (global.tokenImportTagMap == undefined) {
+					if (is_undefined(global.tokenImportTagMap)) {
+						show_debug_message("scr_loadREZ() ... global.tokenImportTagMap is undefined");
 						global.tokenImportTagMap = ds_map_create();
 					}
 					else {
 						global.tokenTagMapFilled = true;
 					}
-					if (global.unitImportTagMap == undefined) {
+					
+					if (is_undefined(global.unitImportTagMap)) {
+						show_debug_message("scr_loadREZ() ... global.unitImportTagMap is undefined");
 						global.unitImportTagMap = ds_map_create();
 					}
 					else {
 						global.unitTagMapFilled = true;
 					}
+					
+					
+					if (is_undefined(global.nodeMap)) {
+						show_debug_message("scr_loadREZ() ... global.nodeMap is undefined");
+						global.nodeMap = ds_map_create();
+					}
+					
 					
 					// check if the stackTagMap is available in the REZ file
 					// if it is, we will take the stackTagMap in the REZ file
@@ -173,32 +183,32 @@ function scr_loadREZ() {
 				
 				
 				
-					if (global.tokenImportColNameList == undefined) {
+					if (is_undefined(global.tokenImportColNameList)) {
 						var tempList = ds_list_create();
 						global.tokenImportColNameList = tempList;
 						ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
 					}
-					if (global.wordImportColNameList == undefined) {
+					if (is_undefined(global.wordImportColNameList)) {
 						var tempList = ds_list_create();
 						global.wordImportColNameList = tempList;
 						ds_list_add(global.wordImportColNameList, "~UnitID", "~WordID");
 					}
-					if (global.unitImportColNameList == undefined) {
+					if (is_undefined(global.unitImportColNameList)) {
 						var tempList2 = ds_list_create();
 						global.unitImportColNameList = tempList2;
 						ds_list_add(global.tokenImportColNameList, "~UnitID", "~Participant");
 					}
-					if (global.importGridColNameList == undefined) {
+					if (is_undefined(global.importGridColNameList)) {
 						var tempList3 = ds_list_create();
 						global.importGridColNameList = tempList3;
 					}
-					if (obj_control.currentDisplayTokenColsList == undefined) {
+					if (is_undefined(obj_control.currentDisplayTokenColsList)) {
 						var tempList4 = ds_list_create();
 						obj_control.currentDisplayTokenColsList = tempList4;
 						ds_list_add(obj_control.currentDisplayTokenColsList,2,4,5,6,7);
 
 					}
-					if (obj_control.currentDisplayUnitColsList == undefined) {
+					if (is_undefined(obj_control.currentDisplayUnitColsList)) {
 						var tempList5 = ds_list_create();
 						obj_control.currentDisplayUnitColsList = tempList5;
 						ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
