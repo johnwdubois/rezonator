@@ -669,6 +669,7 @@ unitImportRowToChange = 0;
 stackColToChange = 0;
 stackRowToChange = 0;
 
+quickPickedChainID = -1;
 
 activeStackType = 0;
 readModeHints = 0;

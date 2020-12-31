@@ -13,6 +13,10 @@ function scr_searchToMain(){
 	if(obj_control.preSwitchLineGrid == obj_control.filterGrid) {
 		scr_renderFilter(); // Thankfully this script does a lot of work for us
 	}
+	else if(obj_control.preSwitchLineGrid == obj_control.quickFilterGrid){
+		obj_chain.currentFocusedChainID = obj_control.quickPickedChainID;
+		scr_renderQuickFilter();
+	}
 	else {
 		obj_control.currentActiveLineGrid = obj_control.lineGrid;
 	}

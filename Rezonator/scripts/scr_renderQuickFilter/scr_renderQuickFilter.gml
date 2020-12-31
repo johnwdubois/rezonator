@@ -20,31 +20,37 @@ function scr_renderQuickFilter() {
 	
 	ds_grid_destroy(quickFilterGrid);
 	quickFilterGrid = ds_grid_create(lineGridWidth, 0);
-
-
+	
 	var grid = obj_chain.rezChainGrid;
-	with (obj_panelPane) {
-		switch (functionChainList_currentTab) {
-
-			case functionChainList_tabRezBrush:
-				grid = obj_chain.rezChainGrid;
-				
+	var rowInChainGrid = 0;	
+	var currentIDList;
+	for(var j = 0; j < 3; j++){
+		if(j == 0 ){
+			grid = obj_chain.rezChainGrid;
+			if(ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0,obj_chain.chainGrid_colChainID, ds_grid_height(grid), obj_chain.currentFocusedChainID) != -1){
+				rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0,obj_chain.chainGrid_colChainID, ds_grid_height(grid), obj_chain.currentFocusedChainID);
+				currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 				break;
-			case functionChainList_tabTrackBrush:
-				grid = obj_chain.trackChainGrid;
-				
+			}
+		}
+		else if(j == 1){
+			grid = obj_chain.trackChainGrid;
+			if(ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0,obj_chain.chainGrid_colChainID, ds_grid_height(grid), obj_chain.currentFocusedChainID) != -1){
+				rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0,obj_chain.chainGrid_colChainID, ds_grid_height(grid), obj_chain.currentFocusedChainID);
+				currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 				break;
-			case functionChainList_tabStackBrush:
-				grid = obj_chain.stackChainGrid;
+			}
+		}
+		else if(j == 2){
+			grid = obj_chain.stackChainGrid;
+			if(ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0,obj_chain.chainGrid_colChainID, ds_grid_height(grid), obj_chain.currentFocusedChainID) != -1){
+				rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0,obj_chain.chainGrid_colChainID, ds_grid_height(grid), obj_chain.currentFocusedChainID);
+				currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 				break;
-			default:
-				break;
+			}
 		}
 	}
 
-	var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0,obj_chain.chainGrid_colChainID, ds_grid_height(grid), obj_chain.currentFocusedChainID);	
-	
-	var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 		
 	ds_list_sort(currentIDList, true);
 	
@@ -124,8 +130,7 @@ function scr_renderQuickFilter() {
 		}
 	}
 	scr_refreshChainGrid();
-
-	
+	obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
 
 	quickFilterGridActive = true;
 	currentActiveLineGrid = quickFilterGrid;

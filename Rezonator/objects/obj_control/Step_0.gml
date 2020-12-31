@@ -730,8 +730,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
-if(keyboard_check_pressed(ord("O")) and shortcutsEnabled and currentActiveLineGrid != searchGrid){
-	
+if(keyboard_check_pressed(ord("O")) and shortcutsEnabled and currentActiveLineGrid != searchGrid and showDevVars){
 	
 				// If filter is active, deactivate it
 			if (obj_control.quickFilterGridActive) {
