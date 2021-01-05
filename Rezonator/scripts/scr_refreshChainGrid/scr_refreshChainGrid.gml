@@ -71,7 +71,7 @@ function scr_refreshChainGrid() {
 				var currentChunkWordIDListSize = ds_list_size(currentChunkWordIDList);
 				for (var chunkWordsLoop = 0; chunkWordsLoop < currentChunkWordIDListSize; chunkWordsLoop++) {
 					var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
-					if(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
+					if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
 					}
 				}
@@ -179,7 +179,11 @@ function scr_refreshChainGrid() {
 			var currentWordID = ds_grid_get(tempListGrid, tempListGrid_colWordID, idListLoop);
 			ds_list_add(idList, currentWordID);
 		}
+		
+		// destroy previous idList
+		ds_list_destroy(oldIDList);
 
+		// put new idList back into rezChainGrid/trackChainGrid
 		ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
 
 		// draw rectangle borders around these proper wordIDs
@@ -205,8 +209,20 @@ function scr_refreshChainGrid() {
 	}
 	else if (grid == obj_chain.stackChainGrid) {
 		
-		// put idList back into stackChainGrid
+		// destroy previous idList
+		ds_list_destroy(oldIDList);
+		
+		// put new idList back into stackChainGrid
 		ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
+	}
+	
+	
+	// go into nodeMap and update idList for this chain
+	var subMap = ds_map_find_value(global.nodeMap, chainID);
+	if (ds_exists(subMap, ds_type_map) && ds_exists(idList, ds_type_list)) {
+		if (ds_map_exists(subMap, "wordIDList")) {
+			ds_map_replace_list(subMap, "wordIDList", idList);
+		}
 	}
 
 

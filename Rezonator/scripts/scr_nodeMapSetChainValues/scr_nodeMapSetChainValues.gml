@@ -1,0 +1,17 @@
+// Script assets have changed for v2.3.0 see
+// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+function scr_nodeMapSetChainValues(nodeID, wordIDList, chainName, chainColor) {
+	
+	// find subMap for this chain
+	var subMap = ds_map_find_value(global.nodeMap, nodeID);
+	if (ds_exists(subMap, ds_type_map)) {
+		
+		// add chain values to subMap
+		ds_map_add_list(subMap, "wordIDList", wordIDList);
+		ds_map_add(subMap, "chainName", chainName);
+		ds_map_add(subMap, "chainColor", chainColor);
+	}
+	
+	show_debug_message("scr_nodeMapSetChainValues() ... wordIDList: " + scr_getStringOfList(wordIDList));
+
+}
