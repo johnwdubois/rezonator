@@ -5,8 +5,8 @@ function scr_proseCreateNewLines(){
 	var wordSpacing = 12;
 	var lineGrid = obj_control.lineGrid;
 	var endOfLineBuffer = (global.scrollBarWidth * 4);
-	var maxScreenWidth = (window_get_width() - window_get_width() / 3) - obj_control.wordLeftMargin - endOfLineBuffer;
-	maxScreenWidth = clamp(maxScreenWidth, 100, 5000);
+	var maxScreenWidth = (window_get_width() * 0.4) - obj_control.wordLeftMargin - endOfLineBuffer;
+	maxScreenWidth = clamp(maxScreenWidth, 200, 5000);
 	
 	// loop through lineGrid and split lines that have more words than maxWordsPerLine
 	for (var i = 0; i < ds_grid_height(lineGrid); i++) {

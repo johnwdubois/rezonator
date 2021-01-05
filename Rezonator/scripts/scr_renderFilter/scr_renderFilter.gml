@@ -93,7 +93,6 @@ function scr_renderFilter() {
 				ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 				ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDListUnitGrid);
 			}
-			scr_refreshChainGrid();
 		}
 	}
 

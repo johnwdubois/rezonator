@@ -129,7 +129,6 @@ function scr_renderQuickFilter() {
 			ds_grid_set(quickFilterGrid, lineGrid_colWordIDList, currentRowquickFilterGrid, currentWordIDListUnitGrid);
 		}
 	}
-	scr_refreshChainGrid();
 	obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
 
 	quickFilterGridActive = true;

@@ -146,6 +146,15 @@ function scr_refreshChainGrid() {
 	
 	show_debug_message("scr_refreshChainGrid() ... idList: " + scr_getStringOfList(idList));
 	
+	// if this is a trackChain, get the trackIDList
+	var trackIDList = -1;
+	if (grid == obj_chain.trackChainGrid) {
+		var trackChainMap = ds_map_find_value(global.nodeMap, chainID);
+		if (ds_exists(trackChainMap, ds_type_map)) {
+			trackIDList = ds_map_find_value(trackChainMap, "trackIDList");
+		}
+	}
+	
 
 	if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
 
@@ -154,6 +163,8 @@ function scr_refreshChainGrid() {
 		var tempListGrid_colWordID = 0;
 		var tempListGrid_colUnitID = 1;
 		var tempListGrid_colWordSeq = 2;
+		
+		
 
 		// Populate Grid with wordID's from list
 		var idListSize = ds_list_size(idList);
@@ -167,6 +178,7 @@ function scr_refreshChainGrid() {
 			ds_grid_set(tempListGrid, tempListGrid_colWordID, idListLoop, currentWordID);
 			ds_grid_set(tempListGrid, tempListGrid_colUnitID, idListLoop, currentUnitID);
 			ds_grid_set(tempListGrid, tempListGrid_colWordSeq, idListLoop, currentWordSeq);
+			
 		}
 
 		// Multicolumn sort the grid based on UnitID and WordSeq

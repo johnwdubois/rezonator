@@ -10,8 +10,12 @@ function scr_nodeMapSetChainValues(nodeID, wordIDList, chainName, chainColor) {
 		ds_map_add_list(subMap, "wordIDList", wordIDList);
 		ds_map_add(subMap, "chainName", chainName);
 		ds_map_add(subMap, "chainColor", chainColor);
+		
+		// add idList and tagList to subMap
+		var idList = ds_list_create();
+		ds_map_add_list(subMap, "idList", idList);
+		var tagList = ds_list_create();
+		ds_map_add_list(subMap, "tagList", tagList);
 	}
-	
-	show_debug_message("scr_nodeMapSetChainValues() ... wordIDList: " + scr_getStringOfList(wordIDList));
 
 }

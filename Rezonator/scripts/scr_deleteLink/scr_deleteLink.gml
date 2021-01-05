@@ -10,6 +10,7 @@ function scr_deleteLink() {
 	}
 
 	// Access information on focused link
+	var linkID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, rowInLinkGridSource);
 	var chainID = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, rowInLinkGridSource);
 	obj_control.currentChainGridRowInDelete = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.currentChainGrid), chainID);
 	var tier = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowInLinkGridSource);
@@ -18,8 +19,26 @@ function scr_deleteLink() {
 	if (dead) {
 		exit;
 	}
+	
 	// This kills the link
+	// F
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridSource, true);
+	
+	// remove linkID from this chain's idList
+	var subMap = ds_map_find_value(global.nodeMap, chainID);
+	if (is_numeric(subMap)) {
+		if (ds_exists(subMap, ds_type_map)) {
+			var idList = ds_map_find_value(subMap, "idList");
+			if (is_numeric(idList)) {
+				if (ds_exists(subMap, ds_type_list)) {
+					show_debug_message("scr_deleteLink() ... oldIDList: " + scr_getStringOfList(idList));
+					var indexOfIDList = ds_list_find_index(idList, linkID);
+					ds_list_delete(idList, indexOfIDList);
+					show_debug_message("scr_deleteLink() ... newIDList: " + scr_getStringOfList(idList));
+				}
+			}
+		}
+	}
 	
 	// Aquire info on the link's source
 	var source = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridSource);
@@ -28,8 +47,7 @@ function scr_deleteLink() {
 	if (indexOfChainIDInChainsList > -1) {
 		// Delete this chain from the source's inChainList
 		ds_list_delete(sourceInChainsList, indexOfChainIDInChainsList);
-		
-		obj_control.moveCounter ++;
+		obj_control.moveCounter++;
 	}
 	
 	// Reset the alignment of the unchained word
@@ -48,16 +66,14 @@ function scr_deleteLink() {
 	// If possible, create a new link between the source's source and goal
 	if (scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, source, obj_chain.linkGrid_colChainID, chainID) > -1) {
 		rowInLinkGridGoal = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, source, obj_chain.linkGrid_colChainID, chainID, obj_chain.linkGrid_colDead, false);
-		if(rowInLinkGridGoal > -1) {
+		if (rowInLinkGridGoal > -1) {
 			newSource = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridGoal);
 			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridGoal, true);
 		}
 		
 	}
 	
-	//show_message(string(newSource) + "," + string(newGoal))
-	
-	//Repeat the above process, but for Stacks
+	// Repeat the above process, but for Stacks
 	if (tier == obj_chain.stackTier) {
 		var rowInUnitInStackGrid = ds_grid_value_y(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colUnitID, 0, obj_chain.unitInStackGrid_colUnitID, ds_grid_height(obj_chain.unitInStackGrid), source);
 		
@@ -93,7 +109,7 @@ function scr_deleteLink() {
 	
 	
 	// If there is a new source and goal, create the new link
-	if not (newSource == -1 or newSource == undefined or newGoal == undefined) {
+	if (newSource != -1 && newSource != undefined && newGoal != undefined) {
 		with (obj_chain) {
 			scr_newLink(newSource, newGoal);
 		}

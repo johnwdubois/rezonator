@@ -228,6 +228,7 @@ function scr_wordClicked(wordID, unitID) {
 		// add new link and refresh chain grid
 		scr_newLink(wordID, -1);
 		scr_refreshChainGrid();
+		
 
 
 		// update the list of chains that this word is in

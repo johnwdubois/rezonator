@@ -6,8 +6,8 @@ function scr_addToNodeMap(type){
 	// for example, "Chain", "Link", "Unit", etc.
 	
 	// generate a random number and turn it into a hex string
-	var nodeKeyMin = 10000;
-	var nodeKeyMax = 100000000000000;
+	var nodeKeyMin = 1000;
+	var nodeKeyMax = 1000000000000000;
 	var nodeKey = irandom_range(nodeKeyMin, nodeKeyMax);
 	nodeKey = scr_baseConvert(nodeKey, 10, 16);
 	
