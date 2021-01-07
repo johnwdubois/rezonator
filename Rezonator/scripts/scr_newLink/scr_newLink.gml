@@ -64,32 +64,42 @@ function scr_newLink(wordID, goal) {
 		nodeType = "stack";
 	}
 	
+	var linkSourceID = ""; 
+	
+	// add an item/entry (rez/track/stack) to the nodeMap
 	// find this chain's node in the nodeMap
 	var nodeID = "";
-	var subMap = ds_map_find_value(global.nodeMap, currentFocusedChainID);
-	if (is_numeric(subMap)) {
-		if (ds_exists(subMap, ds_type_map)) {
+	var chainSubMap = ds_map_find_value(global.nodeMap, currentFocusedChainID);
+	if (is_numeric(chainSubMap)) {
+		if (ds_exists(chainSubMap, ds_type_map)) {
 			
-			// get the idList for this chain's node
-			var idList = ds_map_find_value(subMap, "idList");
+			// get the sourceID for the link
+			linkSourceID = ds_map_find_value(chainSubMap, "focused");
+			
+			// get the setIDList for this chain's node
+			var idList = ds_map_find_value(chainSubMap, "setIDList");
 			if (is_numeric(idList)) {
 				if (ds_exists(idList, ds_type_list)) {
 					
-					// create a new node for this link with type being rez, track, or stack
+					// create a new node this entry with type being rez, track, or stack
 					nodeID = scr_addToNodeMap(nodeType);
 					
-					// set link node values in nodeMap
-					var subMap = ds_map_find_value(global.nodeMap, nodeID)
-					is_numeric(subMap) {
-						if (ds_exists(subMap, ds_type_map)) {
-							ds_map_add(subMap, "chain", currentFocusedChainID);
+					// set entry node values in nodeMap
+					var setSubMap = ds_map_find_value(global.nodeMap, nodeID)
+					is_numeric(setSubMap) {
+						if (ds_exists(setSubMap, ds_type_map)) {
+							ds_map_add(setSubMap, "chain", currentFocusedChainID);
+							ds_map_add(setSubMap, "word", idSet);
 						}
 					}
-					
+
 					// check if this chain already contains this node
 					// otherwise add it to the chain's idList
 					if (ds_list_find_index(idList, nodeID) == -1) {
 						ds_list_add(idList, nodeID);
+						
+						// let's also tell this chain that this new node should be focused
+						ds_map_replace(chainSubMap, "focused", nodeID);
 					}
 					
 					show_debug_message("scr_newLink() ... link nodeID: " + string(nodeID));
@@ -119,13 +129,24 @@ function scr_newLink(wordID, goal) {
 	if (focusedRow > -1 and focusedRow < ds_grid_height(obj_chain.linkGrid) and not obj_control.linkDeleted) {
 		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, focusedRow, idSet);
 		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoalClickTime, focusedRow, (current_time - obj_control.sessionStartTime) / 1000);
+		
+		// create a node for the link (now that we know its source & goal)
+		var linkGoalID = nodeID;
+		var linkID = scr_addToNodeMap("link");
+		var linkSubMap = ds_map_find_value(global.nodeMap, linkID);
+		ds_map_add(linkSubMap, "source", linkSourceID);
+		ds_map_add(linkSubMap, "goal", linkGoalID);
+		
+		// add this link to the chain's linkIDList
+		var chainLinkIDList = ds_map_find_value(chainSubMap, "linkIDList");
+		ds_list_add(chainLinkIDList, linkID);
 	}
 
 	
 	// fill in info for new row in linkGrid
 	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentLinkGridRow, currentFocusedChainID);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, currentLinkGridRow, nodeID);
+	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, currentLinkGridRow, obj_chain.linkIDCounter);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTier, currentLinkGridRow, currentChainTier);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentLinkGridRow, idSet);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, currentLinkGridRow, goal);

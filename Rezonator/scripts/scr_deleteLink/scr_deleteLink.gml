@@ -25,6 +25,7 @@ function scr_deleteLink() {
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, rowInLinkGridSource, true);
 	
 	// remove linkID from this chain's idList
+	/*
 	var subMap = ds_map_find_value(global.nodeMap, chainID);
 	if (is_numeric(subMap)) {
 		if (ds_exists(subMap, ds_type_map)) {
@@ -39,6 +40,7 @@ function scr_deleteLink() {
 			}
 		}
 	}
+	*/
 	
 	// Aquire info on the link's source
 	var source = ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colSource, rowInLinkGridSource);

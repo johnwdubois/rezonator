@@ -15,11 +15,16 @@ function scr_drawDevVars(){
 	scr_adaptFont("allSaved: ","M");
 	
 	// get any necessary variables here
-	var focusedChainIDListStr = "";
+	var focusedChainSetIDList = -1;
+	var focusedChainLinkIDList = -1;
+	var focusedChainWordID = "";
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var chainMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-		focusedChainIDListStr = ds_map_find_value(chainMap, "idList");
-		focusedChainIDListStr = scr_getStringOfList(focusedChainIDListStr);
+		focusedChainSetIDList = ds_map_find_value(chainMap, "setIDList");
+		focusedChainLinkIDList = ds_map_find_value(chainMap, "linkIDList");
+		var focusedChainFocused = ds_map_find_value(chainMap, "focused");
+		var focusedsetSubMap = ds_map_find_value(global.nodeMap, focusedChainFocused);
+		focusedChainWordID = ds_map_find_value(focusedsetSubMap, "word");
 	}
 	
 	// draw dev vars
@@ -36,8 +41,10 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 14), "focusedChain's idList: " + focusedChainIDListStr);
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 15), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 15), "focusedChain's linkIDList: " + ((ds_exists(focusedChainLinkIDList, ds_type_list)) ?  scr_getStringOfList(focusedChainLinkIDList) : ""));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 16), "focusedChainWordID: " + string(focusedChainWordID));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 17), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	
 	// reset halign to left
 	draw_set_halign(fa_left);

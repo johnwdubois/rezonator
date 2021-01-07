@@ -478,6 +478,7 @@
     {"id":{"name":"obj_regular_expression_edge","path":"objects/obj_regular_expression_edge/obj_regular_expression_edge.yy",},"order":0,},
     {"id":{"name":"obj_regular_expression_node","path":"objects/obj_regular_expression_node/obj_regular_expression_node.yy",},"order":1,},
     {"id":{"name":"obj_alarm","path":"objects/obj_alarm/obj_alarm.yy",},"order":0,},
+    {"id":{"name":"scr_refocusChainEntry","path":"scripts/scr_refocusChainEntry/scr_refocusChainEntry.yy",},"order":26,},
     {"id":{"name":"obj_automaticLinkDraw","path":"objects/obj_automaticLinkDraw/obj_automaticLinkDraw.yy",},"order":1,},
     {"id":{"name":"obj_stacker","path":"objects/obj_stacker/obj_stacker.yy",},"order":7,},
     {"id":{"name":"obj_readModePopUp","path":"objects/obj_readModePopUp/obj_readModePopUp.yy",},"order":8,},
