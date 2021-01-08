@@ -6,7 +6,7 @@
     "path": "folders/Scripts/functions/nodeMap.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_addToNodeMap",
+  "name": "scr_nodeMapSetChainValues",
   "tags": [],
   "resourceType": "GMScript",
 }

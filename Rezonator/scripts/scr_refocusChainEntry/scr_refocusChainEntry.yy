@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "nodeMap",
-    "path": "folders/Scripts/functions/nodeMap.yy",
+    "name": "chains",
+    "path": "folders/Scripts/chains.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_addToNodeMap",
+  "name": "scr_refocusChainEntry",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -76,8 +76,6 @@ function scr_killEmptyChains(grid) {
 		var deadRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateDead);
 		scr_gridDeleteRow(grid, deadRow);
 	}
-	//show_message("ehere");
-	//scr_refreshChainGrid();
 
 
 }
