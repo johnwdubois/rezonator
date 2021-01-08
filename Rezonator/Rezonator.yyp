@@ -351,7 +351,6 @@
     {"id":{"name":"scr_panelPane_drawUnitTagsLoopClipped","path":"scripts/scr_panelPane_drawUnitTagsLoopClipped/scr_panelPane_drawUnitTagsLoopClipped.yy",},"order":17,},
     {"id":{"name":"obj_tooltip","path":"objects/obj_tooltip/obj_tooltip.yy",},"order":8,},
     {"id":{"name":"scr_bufferWriteSlice","path":"scripts/scr_bufferWriteSlice/scr_bufferWriteSlice.yy",},"order":13,},
-    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":6,},
     {"id":{"name":"scr_jsonBeautify","path":"scripts/scr_jsonBeautify/scr_jsonBeautify.yy",},"order":14,},
     {"id":{"name":"scr_drawVoids","path":"scripts/scr_drawVoids/scr_drawVoids.yy",},"order":20,},
     {"id":{"name":"scr_gridViewDrawBackArrow","path":"scripts/scr_gridViewDrawBackArrow/scr_gridViewDrawBackArrow.yy",},"order":6,},
