@@ -78,6 +78,15 @@ function scr_wordClicked(wordID, unitID) {
 		var inChainsListSize = ds_list_size(inChainsList);
 		for (var i = 0; i < inChainsListSize; i++) {
 			var currentChainID = ds_list_find_value(inChainsList, i);
+			currentFocusedChainID = currentChainID;
+			
+			var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID);
+			ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
+			
+			scr_refocusChainEntry(wordID);
+			exit;
+			
+			/*
 			if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID)) {
 				scr_setAllValuesInCol(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
 				scr_setAllValuesInCol(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, obj_chain.chainStateNormal);
@@ -115,7 +124,6 @@ function scr_wordClicked(wordID, unitID) {
 					if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
 						ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, wordID - 1, true);
-						obj_chain.mouseLineWordID = wordID;
 		
 					}
 					with (obj_panelPane) {
@@ -141,8 +149,10 @@ function scr_wordClicked(wordID, unitID) {
 					exit;
 				}
 			}
+			*/
 		}
 	}
+	
 
 	// Will need to get back to this
 	// loop through the chunks that this word is already in (if any) to refocus that chunk

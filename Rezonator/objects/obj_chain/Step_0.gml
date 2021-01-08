@@ -17,6 +17,32 @@ if(keyboard_check_pressed(ord("A")) and keyboard_check(vk_control) and not (!obj
 	//showPlaceChains = !showPlaceChains;	
 }
 
+
+// set mouseLineWordID & fillRect
+mouseLineWordID = -1;
+ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
+if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
+	var chainSubMap = ds_map_find_value(global.nodeMap, currentFocusedChainID);
+	if (ds_exists(chainSubMap, ds_type_map)) {
+		var chainType = ds_map_find_value(chainSubMap, "type");
+		if (chainType == "rezChain" || chainType == "trackChain") {
+			var focusedEntry = ds_map_find_value(chainSubMap, "focused");
+			var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedEntry);
+			if (is_numeric(focusedEntrySubMap)) {
+				if (ds_exists(focusedEntrySubMap, ds_type_map)) {
+					var focusedEntryWordID = ds_map_find_value(focusedEntrySubMap, "word");
+					mouseLineWordID = focusedEntryWordID;
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, focusedEntryWordID - 1, true);
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
 if (mouseLineHide and not obj_stacker.splitSave) {
 	var focusedRezChain = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
 	var focusedTrackChain = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
@@ -32,14 +58,13 @@ if (mouseLineHide and not obj_stacker.splitSave) {
 	if (focusedStackChain > -1) {
 		ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, focusedStackChain, obj_chain.chainStateFocus);
 	}
-	obj_chain.mouseLineWordID = tempMouseLineWordID;
 }
 
 ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, 0, obj_control.wordDrawGrid_colFocused, ds_grid_height(obj_control.wordDrawGrid), false);
 
-if (ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
+if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 	currentFocusedChainIndex = ds_grid_value_y(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus);
-	currentFocusedChainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, currentFocusedChainIndex);
+	//currentFocusedChainID = ds_grid_get(currentChainGrid, chainGrid_colChainID, currentFocusedChainIndex);
 	
 	if (currentChainGrid == rezChainGrid or currentChainGrid == trackChainGrid) {
 		var idList = ds_grid_get(currentChainGrid, chainGrid_colWordIDList, currentFocusedChainIndex);
@@ -80,6 +105,8 @@ else {
 	currentFocusedChainID = "";
 	currentFocusedChainIndex = -1;
 }
+
+
 
 switch (obj_toolPane.currentTool) {
 	case obj_toolPane.toolRezBrush:

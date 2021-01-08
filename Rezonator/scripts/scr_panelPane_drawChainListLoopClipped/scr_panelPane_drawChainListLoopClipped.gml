@@ -177,7 +177,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 									if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
 										scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 									}
-									obj_chain.mouseLineWordID = -1;
 			
 								// Set scroll range in the chain list
 								with (obj_panelPane) {

@@ -89,7 +89,9 @@ function scr_newLink(wordID, goal) {
 					is_numeric(setSubMap) {
 						if (ds_exists(setSubMap, ds_type_map)) {
 							ds_map_add(setSubMap, "chain", currentFocusedChainID);
-							ds_map_add(setSubMap, "word", idSet);
+							ds_map_add(setSubMap, (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) ? "unit" : "word", idSet);
+							ds_map_add(setSubMap, "sourceLink", "");
+							ds_map_add_list(setSubMap, "goalLinkList", ds_list_create());
 						}
 					}
 
@@ -107,6 +109,7 @@ function scr_newLink(wordID, goal) {
 			}
 		}
 	}
+	
 	
 	if (nodeID == "") {
 		show_debug_message("scr_newLink() ... ERROR: nodeID is blank string. Exiting...");
@@ -140,6 +143,25 @@ function scr_newLink(wordID, goal) {
 		// add this link to the chain's linkIDList
 		var chainLinkIDList = ds_map_find_value(chainSubMap, "linkIDList");
 		ds_list_add(chainLinkIDList, linkID);
+		
+		// add this new link to the source's goalLinkList
+		var sourceSetSubMap = ds_map_find_value(global.nodeMap, linkSourceID);
+		var sourceSetGoalLinkList = ds_map_find_value(sourceSetSubMap, "goalLinkList");
+		if (is_numeric(sourceSetGoalLinkList)) {
+			if (ds_exists(sourceSetGoalLinkList, ds_type_list)) {
+				ds_list_add(sourceSetGoalLinkList, linkID);
+				show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(sourceSetSubMap));
+			}
+		}
+		
+		// add this new link to the goal's source
+		var goalSetSubMap = ds_map_find_value(global.nodeMap, linkGoalID);
+		if (is_numeric(goalSetSubMap)) {
+			if (ds_exists(goalSetSubMap, ds_type_map)) {
+				ds_map_replace(goalSetSubMap, "sourceLink", linkID);
+				show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(goalSetSubMap));
+			}
+		}
 	}
 
 	

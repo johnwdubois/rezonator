@@ -216,7 +216,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 							if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
 								ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 								ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, sourceWordID - 1, true);
-								obj_chain.mouseLineWordID = sourceWordID;
 							}
 						}
 						else if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {

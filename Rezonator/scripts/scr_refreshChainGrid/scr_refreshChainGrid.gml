@@ -52,8 +52,8 @@ function scr_refreshChainGrid() {
 
 	// stop drawing the rectangle around the words in this chain
 	var oldIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
-	var oldIDListSize = ds_list_size(oldIDList);
-	for (var i = 0; i < oldIDListSize; i++) {
+	var oldsetIDListSize = ds_list_size(oldIDList);
+	for (var i = 0; i < oldsetIDListSize; i++) {
 		var currentID = ds_list_find_value(oldIDList, i);
 		var currentInChainList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentID - 1);
 		if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
@@ -68,8 +68,8 @@ function scr_refreshChainGrid() {
 				var currentChunkGridRow = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentID);
 				var currentChunkWordIDList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkGridRow);
 				// Loop through the Chunk's wordID list and make sure none are red
-				var currentChunkWordIDListSize = ds_list_size(currentChunkWordIDList);
-				for (var chunkWordsLoop = 0; chunkWordsLoop < currentChunkWordIDListSize; chunkWordsLoop++) {
+				var currentChunkWordsetIDListSize = ds_list_size(currentChunkWordIDList);
+				for (var chunkWordsLoop = 0; chunkWordsLoop < currentChunkWordsetIDListSize; chunkWordsLoop++) {
 					var currentChunkWord = ds_list_find_value(currentChunkWordIDList, chunkWordsLoop);
 					if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1) == obj_control.wordStateRed) {
 						ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentChunkWord - 1, obj_control.wordStateNormal);
@@ -97,13 +97,15 @@ function scr_refreshChainGrid() {
 	}
 
 
+	/*
+
 	var tempGrid = ds_grid_create(ds_grid_width(obj_chain.linkGrid), ds_grid_height(obj_chain.linkGrid));
 	ds_grid_copy(tempGrid, obj_chain.linkGrid);
 
 
-	var idList = ds_list_create();
+	var setIDList = ds_list_create();
 
-	// check all links in linkGrid from this chainID, and add the living (non-dead) links to idList
+	// check all links in linkGrid from this chainID, and add the living (non-dead) links to setIDList
 	var rowInTempGrid = ds_grid_value_y(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(tempGrid), chainID);
 	while (rowInTempGrid > -1) {
 		
@@ -114,7 +116,7 @@ function scr_refreshChainGrid() {
 		// set the found cell to be -1 so it isn't found again in the next while loop
 		ds_grid_set(tempGrid, obj_chain.linkGrid_colChainID, rowInTempGrid, -1);
 		
-		// do not add wordID to idList if the word is dead or the source is -1
+		// do not add wordID to setIDList if the word is dead or the source is -1
 		if (dead) {
 			rowInTempGrid = ds_grid_value_y(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(tempGrid), chainID);
 			continue;
@@ -124,9 +126,9 @@ function scr_refreshChainGrid() {
 			continue;
 		}
 		
-		// make sure wordID is not already in idList before adding it
-		if (ds_list_find_index(idList, source) == -1) {
-			ds_list_add(idList, source);
+		// make sure wordID is not already in setIDList before adding it
+		if (ds_list_find_index(setIDList, source) == -1) {
+			ds_list_add(setIDList, source);
 		}
 	
 		if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
@@ -144,7 +146,7 @@ function scr_refreshChainGrid() {
 		rowInTempGrid = ds_grid_value_y(tempGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(tempGrid), chainID);
 	}
 	
-	show_debug_message("scr_refreshChainGrid() ... idList: " + scr_getStringOfList(idList));
+	show_debug_message("scr_refreshChainGrid() ... setIDList: " + scr_getStringOfList(setIDList));
 	
 	// if this is a trackChain, get the trackIDList
 	var trackIDList = -1;
@@ -155,54 +157,94 @@ function scr_refreshChainGrid() {
 		}
 	}
 	
+	*/
+	
+	
+	
+	
+	// get setIDList for this chain
+	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
+	if (!is_numeric(chainSubMap)) {
+		show_debug_message("scr_refreshChainGrid() ... ERROR: chainSubMap is non-numeric");
+		exit;
+	}
+	if (!ds_exists(chainSubMap, ds_type_map)) {
+		show_debug_message("scr_refreshChainGrid() ... ERROR: no map for chainSubMap");
+		exit;
+	}
+	var setIDList = ds_map_find_value(chainSubMap, "setIDList");
+	if (!is_numeric(setIDList)) {
+		show_debug_message("scr_refreshChainGrid() ... ERROR: setIDList is non-numeric");
+		exit;
+	}
+	if (!ds_exists(setIDList, ds_type_list)) {
+		show_debug_message("scr_refreshChainGrid() ... ERROR: no list for setIDList");
+		exit;
+	}
+	
+	
+	
+	var newIDList = ds_list_create();
+	
 
 	if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
 
 		// Create a temp grid 3 col's wide and the list size high
-		var tempListGrid = ds_grid_create(3, ds_list_size(idList));
+		var tempListGrid = ds_grid_create(4, ds_list_size(setIDList));
 		var tempListGrid_colWordID = 0;
-		var tempListGrid_colUnitID = 1;
-		var tempListGrid_colWordSeq = 2;
-		
-		
+		var tempListGrid_colSetID = 1;
+		var tempListGrid_colUnitID = 2;
+		var tempListGrid_colWordSeq = 3;
 
 		// Populate Grid with wordID's from list
-		var idListSize = ds_list_size(idList);
-		for (var idListLoop = 0; idListLoop < idListSize; idListLoop++) {
-			var currentWordID = ds_list_find_value(idList, idListLoop);
+		var setIDListSize = ds_list_size(setIDList);
+		for (var i = 0; i < setIDListSize; i++) {
+			
+			// get currentSet from chain's setIDList
+			var currentSetID = ds_list_find_value(setIDList, i);
+			var currentSetSubMap = ds_map_find_value(global.nodeMap, currentSetID);
+			if (is_numeric(currentSetSubMap)) {
+				if (ds_exists(currentSetSubMap, ds_type_map)) {
+					
+					// get wordID from currentSet
+					var currentWordID = ds_map_find_value(currentSetSubMap, "word");
 	
-			// Pull UnitID and wordSeq info from wordGrid
-			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-			var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+					// Pull UnitID and wordSeq info from wordGrid
+					var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+					var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 			
-			ds_grid_set(tempListGrid, tempListGrid_colWordID, idListLoop, currentWordID);
-			ds_grid_set(tempListGrid, tempListGrid_colUnitID, idListLoop, currentUnitID);
-			ds_grid_set(tempListGrid, tempListGrid_colWordSeq, idListLoop, currentWordSeq);
-			
+					ds_grid_set(tempListGrid, tempListGrid_colWordID, i, currentWordID);
+					ds_grid_set(tempListGrid, tempListGrid_colSetID, i, currentSetID);
+					ds_grid_set(tempListGrid, tempListGrid_colUnitID, i, currentUnitID);
+					ds_grid_set(tempListGrid, tempListGrid_colWordSeq, i, currentWordSeq);
+				}
+			}
 		}
 
 		// Multicolumn sort the grid based on UnitID and WordSeq
 		scr_gridMultiColSort(tempListGrid, tempListGrid_colUnitID, true, tempListGrid_colWordSeq, true);
-		ds_list_clear(idList);
+		ds_list_clear(setIDList);
 
-		// Copy first column into idList
+		// Copy sorted wordIDs into wordIDList and sorted setIDs into setIDList
 		var tempListGridHeight = ds_grid_height(tempListGrid);
-		for (var idListLoop = 0; idListLoop < tempListGridHeight; idListLoop++) {
-			var currentWordID = ds_grid_get(tempListGrid, tempListGrid_colWordID, idListLoop);
-			ds_list_add(idList, currentWordID);
+		for (var i = 0; i < tempListGridHeight; i++) {
+			var currentWordID = ds_grid_get(tempListGrid, tempListGrid_colWordID, i);
+			var currentSetID = ds_grid_get(tempListGrid, tempListGrid_colSetID, i);
+			ds_list_add(newIDList, currentWordID);
+			ds_list_add(setIDList, currentSetID);
 		}
 		
-		// destroy previous idList
+		// destroy previous wordIDList
 		ds_list_destroy(oldIDList);
 
-		// put new idList back into rezChainGrid/trackChainGrid
-		ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
+		// put new setIDList back into rezChainGrid/trackChainGrid
+		ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, newIDList);
 
 		// draw rectangle borders around these proper wordIDs
-		var idListSize = ds_list_size(idList);
-		for (var i = 0; i < idListSize; i++) {
+		var wordIDListSize = ds_list_size(newIDList);
+		for (var i = 0; i < wordIDListSize; i++) {
 			if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid) {
-				var currentID = ds_list_find_value(idList, i);
+				var currentID = ds_list_find_value(newIDList, i);
 				var chainColor = ds_grid_get(grid, obj_chain.chainGrid_colColor, rowInChainGrid);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentID - 1, true);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentID - 1, chainColor);
@@ -216,25 +258,57 @@ function scr_refreshChainGrid() {
 			}
 		}
 
-		ds_grid_destroy(tempGrid);
+		//ds_grid_destroy(tempGrid);
 		ds_grid_destroy(tempListGrid);
 	}
 	else if (grid == obj_chain.stackChainGrid) {
 		
-		// destroy previous idList
-		ds_list_destroy(oldIDList);
+		// Create a temp grid 3 col's wide and the list size high
+		var tempListGrid = ds_grid_create(2, ds_list_size(setIDList));
+		var tempListGrid_colSetID = 0;
+		var tempListGrid_colUnitID = 1;
 		
-		// put new idList back into stackChainGrid
-		ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, idList);
-	}
-	
-	
-	// go into nodeMap and update idList for this chain
-	var subMap = ds_map_find_value(global.nodeMap, chainID);
-	if (ds_exists(subMap, ds_type_map) && ds_exists(idList, ds_type_list)) {
-		if (ds_map_exists(subMap, "wordIDList")) {
-			ds_map_replace_list(subMap, "wordIDList", idList);
+		// Populate Grid with wordID's from list
+		var setIDListSize = ds_list_size(setIDList);
+		for (var i = 0; i < setIDListSize; i++) {
+			
+			// get currentSet from chain's setIDList
+			var currentSetID = ds_list_find_value(setIDList, i);
+			var currentSetSubMap = ds_map_find_value(global.nodeMap, currentSetID);
+			if (is_numeric(currentSetSubMap)) {
+				if (ds_exists(currentSetSubMap, ds_type_map)) {
+					
+					// get unitID from currentSet
+					var currentUnitID = ds_map_find_value(currentSetSubMap, "unit");
+			
+					ds_grid_set(tempListGrid, tempListGrid_colUnitID, i, currentUnitID);
+					ds_grid_set(tempListGrid, tempListGrid_colSetID, i, currentSetID);
+				}
+			}
 		}
+		
+		// sort the grid based on UnitID
+		ds_grid_sort(tempListGrid, tempListGrid_colUnitID, true);
+		ds_list_clear(setIDList);
+
+		// Copy sorted unitIDs into unitIDList and sorted setIDs into setIDList
+		var tempListGridHeight = ds_grid_height(tempListGrid);
+		for (var i = 0; i < tempListGridHeight; i++) {
+			var currentUnitID = ds_grid_get(tempListGrid, tempListGrid_colUnitID, i);
+			var currentSetID = ds_grid_get(tempListGrid, tempListGrid_colSetID, i);
+			ds_list_add(newIDList, currentUnitID);
+			ds_list_add(setIDList, currentSetID);
+			
+			// set unitInStackGrid
+			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, currentUnitID - 1, chainID);
+			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, currentUnitID - 1, obj_control.activeStackType);
+		}
+		
+		// destroy previous wordIDList
+		ds_list_destroy(oldIDList);
+
+		// put new setIDList back into rezChainGrid/trackChainGrid
+		ds_grid_set(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid, newIDList);
 	}
 
 

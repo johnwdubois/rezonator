@@ -238,22 +238,17 @@ function scr_drawRezChain() {
 	
 		if (ds_grid_get(rezChainGrid, chainGrid_colChainState, rowInChainGrid) == chainStateFocus) {	
 			if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
+				
 				var mouseLineWordDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, mouseLineWordID - 1);
-				//var mouseLineWordGridIndex = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, mouseLineWordUnitID);
-			
-				//if (mouseLineWordGridIndex > -1 and mouseLineWordGridIndex < ds_grid_height(obj_control.currentActiveLineGrid
-				//and mouseLineWordID > -1 and mouseLineWordID < ds_grid_height(obj_control.wordGrid))) {
-			
-					var mouseLineWordStringWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
-					var mouseLineWordStringHeight = string_height(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
-					var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
-					var wordPixelY =ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
+				var mouseLineWordStringWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
+				var mouseLineWordStringHeight = string_height(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
+				var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
+				var wordPixelY =ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
 					
-					if(wordPixelX != undefined and wordPixelY !=undefined){
-						mouseLineX =  wordPixelX + (mouseLineWordStringWidth / 2);
-						mouseLineY =  wordPixelY + (mouseLineWordStringHeight / 2);
-					}
-				//}
+				if(wordPixelX != undefined and wordPixelY != undefined){
+					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
+					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
+				}
 			
 			}
 		}
@@ -267,18 +262,20 @@ function scr_drawRezChain() {
 	// draw pickwhip line to mouse from chain
 	if (not (mouseLineX == undefined or mouseLineY == undefined)) {
 		//obj_control.showMouseLine = true;	
-		if (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus)) {
-			var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-			if (rowInChainGrid >= 0) {
-				currentChainColor = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colColor, rowInChainGrid);
-				draw_set_color(currentChainColor);
+		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
+			var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+			if (is_numeric(chainSubMap)) {
+				if (ds_exists(chainSubMap, ds_type_map)) {
+					currentChainColor = ds_map_find_value(chainSubMap, "chainColor");
+					draw_set_color(currentChainColor);
 			
-				if (currentChainShow) {
-					if (not mouseLineHide) {
-						draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
-						if(obj_chain.showChainArrows) {
-							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
-							draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
+					if (currentChainShow) {
+						if (not mouseLineHide) {
+							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+							if (obj_chain.showChainArrows) {
+								var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
+								draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
+							}
 						}
 					}
 				}

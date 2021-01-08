@@ -6,14 +6,14 @@ function scr_refocusChainEntry(wordID){
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var entryToFocus = "";
 		var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-		var chainEntryList = ds_map_find_value(chainSubMap, "setIDList");
+		var chainSetList = ds_map_find_value(chainSubMap, "setIDList");
 		
 		// loop through this chain's entry list to find the entry with the correct word
-		var chainEntryListSize = ds_list_size(chainEntryList);
-		for (var i = 0; i < chainEntryListSize; i++) {
-			var currentChainEntry = ds_list_find_value(chainEntryList, i);
-			var currentChainsetSubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
-			var currentChainEntryWordID = ds_map_find_value(currentChainsetSubMap, "word");
+		var chainSetListSize = ds_list_size(chainSetList);
+		for (var i = 0; i < chainSetListSize; i++) {
+			var currentChainEntry = ds_list_find_value(chainSetList, i);
+			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
+			var currentChainEntryWordID = ds_map_find_value(currentChainEntrySubMap, "word");
 			if (wordID == currentChainEntryWordID) {
 				entryToFocus = currentChainEntry;
 			}

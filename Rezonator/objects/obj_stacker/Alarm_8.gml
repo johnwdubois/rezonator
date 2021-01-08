@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 
-if(obj_toolPane.currentMode == obj_toolPane.modeRead) {
+if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 	obj_toolPane.currentMode = obj_toolPane.modeTrack;
 	if(obj_control.searchGridActive) {
 		obj_toolPane.setModeSearch = obj_toolPane.modeTrack;

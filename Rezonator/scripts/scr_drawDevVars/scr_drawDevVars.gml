@@ -23,8 +23,8 @@ function scr_drawDevVars(){
 		focusedChainSetIDList = ds_map_find_value(chainMap, "setIDList");
 		focusedChainLinkIDList = ds_map_find_value(chainMap, "linkIDList");
 		var focusedChainFocused = ds_map_find_value(chainMap, "focused");
-		var focusedsetSubMap = ds_map_find_value(global.nodeMap, focusedChainFocused);
-		focusedChainWordID = ds_map_find_value(focusedsetSubMap, "word");
+		var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFocused);
+		focusedChainWordID = ds_map_find_value(focusedEntrySubMap, "word");
 	}
 	
 	// draw dev vars
@@ -42,9 +42,10 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 15), "focusedChain's linkIDList: " + ((ds_exists(focusedChainLinkIDList, ds_type_list)) ?  scr_getStringOfList(focusedChainLinkIDList) : ""));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 15), "focusedChain's linkIDList: " + ((ds_exists(focusedChainLinkIDList, ds_type_list)) ? scr_getStringOfList(focusedChainLinkIDList) : ""));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 16), "focusedChainWordID: " + string(focusedChainWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 17), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 17), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 18), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	
 	// reset halign to left
 	draw_set_halign(fa_left);

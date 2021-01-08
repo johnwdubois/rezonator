@@ -88,7 +88,6 @@ function scr_drawStackShowWindow() {
 					if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
 						scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 					}
-					obj_chain.mouseLineWordID = -1;
 				}
 
 			}
@@ -117,7 +116,6 @@ function scr_drawStackShowWindow() {
 					if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
 						scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 					}
-					obj_chain.mouseLineWordID = -1;
 				}
 			
 				obj_control.selectedChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i); 

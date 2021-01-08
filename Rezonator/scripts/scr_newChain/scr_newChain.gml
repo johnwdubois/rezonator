@@ -56,7 +56,7 @@ function scr_newChain(wordID, unitID) {
 			stackChainNameCounter++;
 			chainSeq = stackChainNameCounter;
 			chainName = currentChainName + " " + string(stackChainNameCounter);
-			chainType = "stackSet";
+			chainType = "stackChain";
 			break;
 		case obj_toolPane.toolPlaceChains:
 			placeChainNameCounter++;
