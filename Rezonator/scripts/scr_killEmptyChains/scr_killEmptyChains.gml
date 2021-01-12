@@ -21,6 +21,14 @@ function scr_killEmptyChains(grid) {
 		if (i >= ds_grid_height(grid)) {
 			continue;
 		}
+		
+		// if we cannot find the currentChainID in the nodeMap, we will kill this chain
+		var currentChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, i);
+		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
+		if (!is_numeric(currentChainSubMap)) {
+			ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateDead);
+		}
+		
 	
 		var idList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, i);
 		var chainState = ds_grid_get(grid, obj_chain.chainGrid_colChainState, i);
