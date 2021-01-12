@@ -51,6 +51,11 @@ function scr_deleteFromChain() {
 			ds_map_delete(global.nodeMap, obj_chain.currentFocusedChainID);
 			ds_map_destroy(focusedEntrySubMap);
 			ds_map_destroy(chainSubMap);
+			var listOfChainsKey = "rezChainGrid";
+			if (focusedEntryType = "track") listOfChainsKey = "trackChainGrid";
+			else if (focusedEntryType = "stack") listOfChainsKey = "stackChainGrid";
+			var listOfChains = ds_map_find_value(global.nodeMap, listOfChains);
+			scr_deleteFromList(listOfChains, obj_chain.currentFocusedChainID);
 			obj_chain.currentFocusedChainID = "";
 	
 			scr_refreshChainGrid();

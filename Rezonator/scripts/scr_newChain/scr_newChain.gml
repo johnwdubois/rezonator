@@ -67,15 +67,21 @@ function scr_newChain(wordID, unitID) {
 			exit;
 	}
 
+	// get random hex chainID
+	obj_chain.currentChainID = scr_addToNodeMap(chainType);
 
 	// resize the chainGrid properly (the stackChainGrid gets +5 width because of Caption, StackType, and tag columns)
 	var currentChainGridWidth = (chainGrid == obj_chain.stackChainGrid) ? chainGridWidth + 5 : chainGridWidth;
 	ds_grid_resize(chainGrid, currentChainGridWidth, ds_grid_height(chainGrid) + 1);
 	var currentRowChainGrid = ds_grid_height(chainGrid) - 1;
 	
+	// get list of chains from nodeMap and add to it
+	var listOfChainsKey = "rezChainList";
+	if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) listOfChainsKey = "trackChainList";
+	else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) listOfChainsKey = "stackChainList";
+	var listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
+	ds_list_add(listOfChains, obj_chain.currentChainID);
 	
-	// get random hex chainID
-	obj_chain.currentChainID = scr_addToNodeMap(chainType);
 
 	var wordIDList = ds_list_create();
 

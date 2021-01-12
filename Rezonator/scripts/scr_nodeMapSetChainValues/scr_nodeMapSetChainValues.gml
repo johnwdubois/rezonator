@@ -7,10 +7,16 @@ function scr_nodeMapSetChainValues(nodeID, wordIDList, chainName, chainColor) {
 	if (ds_exists(subMap, ds_type_map)) {
 		
 		// add chain values to subMap
-		//ds_map_add_list(subMap, "wordIDList", wordIDList);
 		ds_map_add(subMap, "chainName", chainName);
 		ds_map_add(subMap, "chainColor", chainColor);
 		ds_map_add(subMap, "focused", "");
+		ds_map_add(subMap, "filter", false);
+		
+		// set alignment
+		var type = ds_map_find_value(subMap, "type");
+		if (type == "rezChain" || type == "trackChain") {
+			ds_map_add(subMap, "align", (type == "rezChain") ? true : false);
+		}
 		
 		// add setIDList, linkIDList, and tagList to subMap
 		var setIDList = ds_list_create();

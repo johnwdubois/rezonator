@@ -684,3 +684,9 @@ wordWrap = false;
 with (obj_alarm) {
 	alarm[10] = 8;
 }
+
+
+// add chainLists to nodeMap
+ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
+ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
+ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());

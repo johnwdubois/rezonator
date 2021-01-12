@@ -141,7 +141,13 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	
 			// Get wordID list
 			with (obj_panelPane) {
-				functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
+				var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				if (is_numeric(focusedChainSubMap)) {
+					if (ds_exists(focusedChainSubMap, ds_type_map)) {
+						functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, "setIDList");
+					}
+				}
+				//functionChainContents_IDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, rowInChainGrid);
 		
 				if (functionChainContents_IDList != undefined) {
 					// Select top of the content list
@@ -163,8 +169,12 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					var rowInLinkGridListSize = ds_list_size(rowInLinkGridList);
 					for (var j = 0; j < IDListSize; j++) {
 						var rowInLinkGridListSize = ds_list_size(rowInLinkGridList);
-						//Get info on current word
-						var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+						
+						// Get info on current word
+						var currentSet = ds_list_find_value(functionChainContents_IDList, j);
+						var currentSetSubMap = ds_map_find_value(global.nodeMap, currentSet);
+						var currentWordID = ds_map_find_value(currentSetSubMap, (grid == obj_chain.stackChainGrid) ? "unit" : "word");
+						//var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
 					
 						if (!is_numeric(currentWordID)) {
 							continue;
