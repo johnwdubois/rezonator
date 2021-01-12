@@ -239,6 +239,7 @@
     {"id":{"name":"scr_unfocusChain","path":"scripts/scr_unfocusChain/scr_unfocusChain.yy",},"order":7,},
     {"id":{"name":"scr_createPlaceChains","path":"scripts/scr_createPlaceChains/scr_createPlaceChains.yy",},"order":8,},
     {"id":{"name":"scr_deleteEntireChain","path":"scripts/scr_deleteEntireChain/scr_deleteEntireChain.yy",},"order":9,},
+    {"id":{"name":"scr_deleteFromList","path":"scripts/scr_deleteFromList/scr_deleteFromList.yy",},"order":5,},
     {"id":{"name":"scr_deleteFromChain","path":"scripts/scr_deleteFromChain/scr_deleteFromChain.yy",},"order":10,},
     {"id":{"name":"scr_drawRezChain","path":"scripts/scr_drawRezChain/scr_drawRezChain.yy",},"order":0,},
     {"id":{"name":"scr_drawTrackChain","path":"scripts/scr_drawTrackChain/scr_drawTrackChain.yy",},"order":1,},

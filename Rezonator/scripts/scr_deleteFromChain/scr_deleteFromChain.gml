@@ -27,8 +27,6 @@ function scr_deleteFromChain() {
 	
 	// find where in the chain's setList the focused entry is
 	var chainSetList = ds_map_find_value(chainSubMap, "setIDList");
-	var chainSetListIndex = ds_list_find_index(chainSetList, focusedEntry);
-	show_debug_message("scr_deleteFromChain() ... chainSetListIndex: " + string(chainSetListIndex));
 	var chainLinkList = ds_map_find_value(chainSubMap, "linkIDList");
 	
 	// get the focused entry's sourceLink's submap
@@ -44,9 +42,8 @@ function scr_deleteFromChain() {
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
-				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);
-				var focusedEntryInChainsListIndex = ds_list_find_index(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
-				ds_list_delete(focusedEntryInChainsList, focusedEntryInChainsListIndex);
+				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
+				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
 			}
 		
 			// delete and destroy the focused entry and its chain
@@ -82,24 +79,38 @@ function scr_deleteFromChain() {
 				show_debug_message("scr_deleteFromChain() ... goalEntrySubMap does not exist");
 				exit;
 			}
+			
+			// go through all goalLinks (excluding firstGoalLink) and set their sources to be goalEntry
 			var goalEntryGoalLinkList = ds_map_find_value(goalEntrySubMap, "goalLinkList");
-			var goalEntryGoalLinkListSize = ds_list_size(goalEntryGoalLinkList);
-			for (var i = 0; i < goalEntryGoalLinkListSize; i++) {
-				 var currentGoalEntryGoalLink = ds_list_find_value(goalEntryGoalLinkList, i);
-				 var currentGoalEntryGoalLinkSubMap = ds_map_find_value(global.nodeMap, currentGoalEntryGoalLink);
-				 ds_map_replace(currentGoalEntryGoalLinkSubMap, "source", goalEntry);
+			for (var i = 0; i < focusedEntryGoalLinkListSize; i++) {
+				 var currentGoalEntryGoalLink = ds_list_find_value(focusedEntryGoalLinkList, i);
+				 if (currentGoalEntryGoalLink != firstGoalLink) {
+					 var currentGoalEntryGoalLinkSubMap = ds_map_find_value(global.nodeMap, currentGoalEntryGoalLink);
+					 ds_map_replace(currentGoalEntryGoalLinkSubMap, "source", goalEntry);
+					 ds_list_add(goalEntryGoalLinkList, currentGoalEntryGoalLink);
+				 }
 			}
 			
-			ds_list_delete(chainSetList, chainSetListIndex);
+			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
+			if (focusedEntryType == "rez" || focusedEntryType == "track") {
+				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
+				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
+				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
+			}
+			
+			// remove the focused entry from its chain's setList and delete it from nodeMap
+			scr_deleteFromList(chainSetList, focusedEntry);
 			ds_map_delete(global.nodeMap, focusedEntry);
 			ds_map_destroy(focusedEntrySubMap);
 			
+			// delete & destroy the firstGoalLink and all references to it
 			ds_map_destroy(firstGoalLinkSubMap);
 			var chainLinkListIndex = ds_list_find_index(chainLinkList, firstGoalLink);
 			ds_list_delete(chainLinkList, chainLinkListIndex);
 			ds_map_replace(goalEntrySubMap, "sourceLink", "");
 			ds_map_delete(global.nodeMap, firstGoalLink);
 			
+			// focus goalEntry
 			ds_map_replace(chainSubMap, "focused", goalEntry);
 			
 			scr_refreshChainGrid();
@@ -161,7 +172,7 @@ function scr_deleteFromChain() {
 	}
 	
 	// remove the focusedEntry from its chain's setList
-	ds_list_delete(chainSetList, chainSetListIndex);
+	scr_deleteFromList(chainSetList, focusedEntry);
 	
 	// unfocus focusedEntry
 	var newFocusedEntry = (ds_exists(sourceEntrySubMap, ds_type_map)) ? sourceEntry : "";
@@ -171,9 +182,8 @@ function scr_deleteFromChain() {
 	// removed chain from focusedEntry's word's inChainsList (if it is a rez or track)
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
-		var focusedEntryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);
-		var focusedEntryWordInChainsListIndex = ds_list_find_index(focusedEntryWordInChainsList, obj_chain.currentFocusedChainID);
-		ds_list_delete(focusedEntryWordInChainsList, focusedEntryWordInChainsListIndex);
+		var focusedEntryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);		
+		scr_deleteFromList(focusedEntryWordInChainsList, obj_chain.currentFocusedChainID);
 	}
 	
 	// remove focusedEntry from nodeMap and destroy focusedEntry
