@@ -163,9 +163,13 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					var rowInLinkGridListSize = ds_list_size(rowInLinkGridList);
 					for (var j = 0; j < IDListSize; j++) {
 						var rowInLinkGridListSize = ds_list_size(rowInLinkGridList);
+						var currentWordID = "";
 						//Get info on current word
-						var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
-					
+						if (is_numeric(functionChainContents_IDList)) {
+							if (ds_exists(functionChainContents_IDList, ds_type_list)) {
+								currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+							}
+						}
 						if (!is_numeric(currentWordID)) {
 							continue;
 						}

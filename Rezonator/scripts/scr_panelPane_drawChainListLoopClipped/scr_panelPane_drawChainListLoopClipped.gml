@@ -235,7 +235,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 						//show_message(string(obj_control.selectedChainID));
 						var dropDownOptionList = ds_list_create();
 						if (grid  == obj_chain.stackChainGrid) {
-							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip");
+							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");// clip removed 
 						}
 						else {
 							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
