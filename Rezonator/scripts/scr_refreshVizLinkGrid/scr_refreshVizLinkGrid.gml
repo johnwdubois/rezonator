@@ -1,4 +1,7 @@
 function scr_refreshVizLinkGrid() {
+	
+	// CHAIN OVERHAUL: delete this script!
+	/*
 	var linkGridCopy = ds_grid_create(obj_chain.vizLinkGridWidth, ds_grid_height(obj_chain.linkGrid));
 	ds_grid_copy(linkGridCopy, obj_chain.linkGrid);
 
@@ -8,7 +11,6 @@ function scr_refreshVizLinkGrid() {
 		scr_gridDeleteRow(linkGridCopy, rowToDelete);
 	}
 
-	//var linkGridCopyHeight = ;
 	for (var i = 0; i < ds_grid_height(linkGridCopy); i++)
 	{
 		var currentChainID = ds_grid_get(linkGridCopy, obj_chain.linkGrid_colChainID, i);
@@ -82,15 +84,6 @@ function scr_refreshVizLinkGrid() {
 		var currentAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentSource - 1);
 		ds_grid_set(obj_chain.vizLinkGrid, obj_chain.vizLinkGrid_colAlign, i, currentAligned);
 	}
+*/
 
-	/*
-	var col1 = obj_chain.vizLinkGrid_colTier;
-	var col2 = obj_chain.vizLinkGrid_colChainID;
-	var col3 = obj_chain.vizLinkGrid_colSource;
-	var col4 = obj_chain.vizLinkGrid_colGoal;
-	scr_gridMultiColSort(obj_chain.vizLinkGrid, col1, true, col2, true, col3, true, col4, true);
-
-	for ()
-
-/* end scr_refreshVizLinkGrid */
 }

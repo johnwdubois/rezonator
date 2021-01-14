@@ -34,12 +34,12 @@ function scr_newLink(wordID, goal) {
 	if (unitID == undefined) {
 		exit;
 	}
-
-
+	
+	
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 		var idSet = unitID;
 		if (obj_control.quickStackAbleToInitiate) {
-			obj_control.moveCounter ++;
+			obj_control.moveCounter++;
 		}
 	}
 	else {
@@ -81,7 +81,7 @@ function scr_newLink(wordID, goal) {
 			if (is_numeric(idList)) {
 				if (ds_exists(idList, ds_type_list)) {
 					
-					// create a new node this entry with type being rez, track, or stack
+					// create a new node for this entry with type being rez, track, or stack
 					nodeID = scr_addToNodeMap(nodeType);
 					
 					// set entry node values in nodeMap
@@ -104,7 +104,14 @@ function scr_newLink(wordID, goal) {
 						ds_map_replace(chainSubMap, "focused", nodeID);
 					}
 					
-					show_debug_message("scr_newLink() ... link nodeID: " + string(nodeID));
+					// set wordDrawGrid if this is a rez or track
+					if (nodeType == "rez" || nodeType == "track") {
+						var chainColor = ds_map_find_value(chainSubMap, "chainColor");
+						ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
+					}
+					
+					show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
 				}
 			}
 		}
@@ -202,15 +209,15 @@ function scr_newLink(wordID, goal) {
 		}
 	}
 	
-
-	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-		scr_addToCliqueGrid(wordID, currentFocusedChainID);
+	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
+	if (nodeType == "rez" || nodeType == "track") {
+		var entryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, idSet - 1);
+		if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
+			ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
+		}
 	}
 
 	alarm[3] = 1;
-	with(obj_panelPane) {
-		ds_list_clear(rowInLinkGridList);	
-	}
 
 
 }

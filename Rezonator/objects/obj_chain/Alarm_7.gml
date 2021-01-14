@@ -23,6 +23,7 @@ var currentSourceUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid
 var currentChainID = ds_grid_get(rezPlayLinkGrid, linkGrid_colChainID, rezPlayLinkGridRow);
 
 if (rezPlayLinkGridChainID > -1 && rezPlayLinkGridChainID != currentChainID) {
+	show_debug_message("obj_chain Alarm 7");
 	scr_chainDeselect();
 	scr_refreshVizLinkGrid();
 }

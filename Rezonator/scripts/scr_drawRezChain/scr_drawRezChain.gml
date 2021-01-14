@@ -36,43 +36,46 @@ function scr_drawRezChain() {
 	var currentWordStringHeight2 = currentWordStringHeight1;
 
 	var wordTopMargin = obj_control.wordTopMargin;
-	var rezChainGridHeight = ds_grid_height(rezChainGrid);
+	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
+	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var linkGridHeight = ds_grid_height(linkGrid);
 	var arrowSize = 0.3 + (0.1 * global.fontSize/5);
 
-	// loop through rezChainGrid to get chain info
+	// loop through rezChainList to get chain info
 	var chainShowListSize = ds_list_size(chainShowList);
 	for (var i = 0; i < chainShowListSize; i++) {
 		minWordWidth = 9999999;
-	
+		
 		var currentChainID = ds_list_find_value(chainShowList, i);
-
-		var rowInChainGrid = ds_grid_value_y(rezChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, rezChainGridHeight, currentChainID);
-		if (rowInChainGrid < 0 or rowInChainGrid >= rezChainGridHeight) {
-			continue;
-		}
-	
-		var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, rowInChainGrid);
-		var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, rowInChainGrid);
+		
+		// skip this chain if we can't find it in the nodeMap
+		if (!ds_map_exists(global.nodeMap, currentChainID)) continue;
+		
+		// make sure this chain's subMap exists and that it is actually a map
+		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
+		if (!is_numeric(currentChainSubMap)) continue;
+		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		
+		// get chain variables from chain's subMap
+		var currentSetIDList = ds_map_find_value(currentChainSubMap, "setIDList");
+		var currentSetIDListSize = ds_list_size(currentSetIDList);
+		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 		var currentChainShow = true;
 		
-		if (!is_numeric(currentWordIDList)) {
-			continue;
-		}
-		if (!ds_exists(currentWordIDList, ds_type_list)) {
-			continue;
-		}
+		// make sure setIDList exists
+		if (!is_numeric(currentSetIDList)) continue;
+		if (!ds_exists(currentSetIDList, ds_type_list)) continue;
 	
 		// find minimum word width so we know the X position of the chain
-		var currentWordIDListSize = ds_list_size(currentWordIDList);
-		for (var j = 0; j < currentWordIDListSize; j++) {
-			var currentWordID = ds_list_find_value(currentWordIDList, j);
+		for (var j = 0; j < currentSetIDListSize; j++) {
+			var currentEntry = ds_list_find_value(currentSetIDList, j);
+			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
 			var currentWordWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1))) / 2;
 			currentWordWidth = max(currentWordWidth, 0);
 		
-			if (currentWordWidth < minWordWidth)
-			{
+			if (currentWordWidth < minWordWidth) {
 				minWordWidth = currentWordWidth;
 				linePlusX = minWordWidth;
 			}
@@ -82,12 +85,17 @@ function scr_drawRezChain() {
 		var firstWordInLine = -1;
 	
 		// loop through current chain's wordIDList to draw the lines of the chain
-		for (var j = 0; j < currentWordIDListSize - 1; j++) {
-			var currentWordID1 = ds_list_find_value(currentWordIDList, j);
-			var currentWordID2 = ds_list_find_value(currentWordIDList, j + 1);
+		for (var j = 0; j < currentSetIDListSize - 1; j++) {
+			
+			// get the wordIDs for the 2 words we want to draw a line between
+			var currentEntry1 = ds_list_find_value(currentSetIDList, j);
+			var currentEntry1SubMap = ds_map_find_value(global.nodeMap, currentEntry1);
+			var currentEntry2 = ds_list_find_value(currentSetIDList, j + 1);
+			var currentEntry2SubMap = ds_map_find_value(global.nodeMap, currentEntry2);
+			var currentWordID1 = ds_map_find_value(currentEntry1SubMap, "word");
+			var currentWordID2 = ds_map_find_value(currentEntry2SubMap, "word");
 		
 			var currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);
-			//var currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID1);
 			var chunkWord1 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk);
 			//Add a nesting check
 		
@@ -98,7 +106,6 @@ function scr_drawRezChain() {
 		
 		
 			var currentLineID2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID2 - 1);
-			//var currentLineGridIndex2 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID2);
 			var chunkWord2 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk);
 			//Add a nesting check
 			var sideLink = false;
@@ -164,69 +171,12 @@ function scr_drawRezChain() {
 				if (currentChainShow) {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
-					if(chunkWord2) {
+					if (chunkWord2) {
 						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
-						if(obj_control.shape == obj_control.shapeBlock) {
-							var lineDist = point_distance(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2));
-							var arrowAngle = point_direction(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2));
-							if(lineDist > 30 and obj_chain.showChainArrows) {
-								//calculate the direciton of the arrow
-								var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
-								var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
-								var arrowX = lineX2 + linePlusX;
-								var arrowY = lineY2 - (currentWordStringHeight2 / 2) - 8;
-								if(reverseLink) {
-									arrowAngle += 180;	
-									arrowX = lineX1 + linePlusX;
-									arrowY = lineY1 + (currentWordStringHeight1/2) + 10;
-									if(sideLink) {
-										//arrowAngle += 270;	
-										arrowX = lineX1 +10+ string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
-										arrowY = lineY1 + (currentWordStringHeight2 / 2);
-									}
-								}
-								else if(sideLink) {
-									//arrowAngle += 180;	
-									arrowX = lineX2 - 10;
-									arrowY = lineY2 + (currentWordStringHeight2 / 2);	
-								}
-								draw_sprite_ext(spr_linkArrow, 1, arrowX, arrowY, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
-							}
-						}
 					}
 					else {
 						// Draw the link line
 						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
-						// Calculate and draw the link arrows
-						if(obj_control.shape == obj_control.shapeBlock) {
-							var lineDist = point_distance(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
-							var arrowAngle = point_direction(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2));
-							if(lineDist > 30 and obj_chain.showChainArrows) {
-								//calculate the direciton of the arrow
-								var linkGridY = ds_grid_value_y(linkGrid, linkGrid_colGoal, 0, linkGrid_colGoal, linkGridHeight, currentWordID1);
-								var reverseLink = currentWordID2 == ds_grid_get(linkGrid, linkGrid_colSource, linkGridY);
-								var arrowX = lineX2 + linePlusX;
-								var arrowY = lineY2 - (currentWordStringHeight2 / 2) - 8;
-								if(reverseLink) {
-									arrowAngle += 180;	
-									arrowX = lineX1 + linePlusX;
-									arrowY = lineY1 + (currentWordStringHeight1/2) + 10;
-									if(sideLink) {
-										//arrowAngle += 270;	
-										arrowX = lineX1 +10+ string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
-										arrowY = lineY1 + (currentWordStringHeight2 / 2);
-									}
-								}
-								else if(sideLink) {
-									//arrowAngle += 180;	
-									arrowX = lineX2 - 10;
-									arrowY = lineY2 + (currentWordStringHeight2 / 2);	
-								}
-								draw_sprite_ext(spr_linkArrow, 1, arrowX, arrowY, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
-							}
-					
-					
-						}
 					}
 				}
 				// I need to modify this with the Chunk's wordRectBuffer
@@ -236,26 +186,27 @@ function scr_drawRezChain() {
 	
 	
 	
-		if (ds_grid_get(rezChainGrid, chainGrid_colChainState, rowInChainGrid) == chainStateFocus) {	
+		if (obj_chain.currentFocusedChainID == currentChainID) {	
 			if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 				
 				var mouseLineWordDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, mouseLineWordID - 1);
 				var mouseLineWordStringWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
 				var mouseLineWordStringHeight = string_height(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
 				var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
-				var wordPixelY =ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
+				var wordPixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
 					
 				if(wordPixelX != undefined and wordPixelY != undefined){
 					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
 					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
 				}
-			
 			}
 		}
 	
-	
-		var isAligned = ds_grid_get(rezChainGrid, chainGrid_colAlign, rowInChainGrid);
-		scr_alignChain(currentWordIDList, isAligned);
+		// CHAIN REHAUL: bring back alignment
+		/*
+		var isAligned = ds_map_find_value(currentChainSubMap, "align");
+		scr_alignChain(currentSetIDList, isAligned);
+		*/
 	}
 
 
@@ -283,7 +234,6 @@ function scr_drawRezChain() {
 		}
 	}
 
-	scr_unfocusOtherChains(obj_toolPane.toolRezBrush);
 
 
 }

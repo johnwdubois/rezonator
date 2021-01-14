@@ -1,5 +1,7 @@
 function scr_addToCliqueGrid(newWordID, chainID) {
 
+	// CHAIN REHAUL: we should delete this script :D
+	/*
 	var newUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, newWordID - 1);
 
 
@@ -169,6 +171,6 @@ function scr_addToCliqueGrid(newWordID, chainID) {
 			i--;
 		}
 	}
-
+	*/
 
 }

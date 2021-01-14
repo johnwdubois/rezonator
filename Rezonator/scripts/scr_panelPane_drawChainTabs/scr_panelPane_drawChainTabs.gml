@@ -38,23 +38,6 @@ function scr_panelPane_drawChainTabs() {
 
 
 	for (var i = 0; i < tabAmount; i++) {// main mechanism
-	
-		var grid = obj_chain.rezChainGrid;
-		if (i == 0) {
-			grid = obj_control.lineGrid;
-		}
-		else if (i == 2) {
-			grid = obj_chain.rezChainGrid;
-		}
-		else if (i == 1) {
-			grid = obj_chain.trackChainGrid;
-		}
-		else if (i == 3) {
-			grid = obj_chain.stackChainGrid;
-		}
-		else if (i == 4) {
-			grid = obj_chain.cliqueDisplayGrid;
-		}
 
 	
 		// set dimensions for tabs
@@ -67,7 +50,9 @@ function scr_panelPane_drawChainTabs() {
 			draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, false);
 		}
 	
-	
+		
+		// CHAIN OVERHAUL: come back later
+		/*
 		if (grid != obj_chain.cliqueDisplayGrid) {
 			if (grid != obj_control.lineGrid) {
 				if(i == functionChainList_currentTab){
@@ -206,36 +191,8 @@ function scr_panelPane_drawChainTabs() {
 					var ascendYScale = (functionChainList_sortAsc[i]) ? 1 : -1;
 					draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
 				}
-			}
-			// experimental stuff!
-
-			
+			}			
 			else if (functionChainList_currentTab == functionChainList_tabLine) {
-					/*
-					// Button to switch between translation or not
-					var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
-					var translateRectX1 = tabRectX2 - buttonRectSize - 4;
-					var translateRectY1 = tabRectY1 + 4;
-					var translateRectX2 = translateRectX1 + buttonRectSize;
-					var translateRectY2 = translateRectY1 + buttonRectSize;
-					draw_set_color(global.colorThemeText);
-					if (point_in_rectangle(mouse_x, mouse_y, translateRectX1, translateRectY1, translateRectX2, translateRectY2)) {
-						draw_set_color(global.colorThemeBorders);
-						draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, false);
-						if (mouse_check_button_released(mb_left)) {
-							obj_control.showTranslation = !obj_control.showTranslation;
-							if(obj_control.showUnitTags) {
-								obj_control.showUnitTags = false;
-							}
-						}
-					}
-				
-					if(obj_control.showTranslation) {
-						draw_set_color(global.colorThemeText);
-						draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, false);
-					}
-					draw_rectangle(translateRectX1, translateRectY1, translateRectX2, translateRectY2, true);
-					*/
 				
 					var mouseOverUnitTab = false;
 					// Unit Tag toggle button
@@ -265,40 +222,13 @@ function scr_panelPane_drawChainTabs() {
 						}
 					}
 					draw_sprite_ext(spr_oneToOne, (obj_control.showUnitTags) ? 1 : 0, floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), 1, 1, 0, c_white, 1);
-					/*
-					if(!obj_control.showUnitTags) {
-						draw_set_halign(fa_center);
-						draw_set_valign(fa_center);
-						if(!mouseOverUnitTab){
-							draw_set_color(global.colorThemeBorders);
-							draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
-							draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "T");
-						}
-						else{
-							draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
-							draw_set_color(global.colorThemeBG);
-							draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "T");
-						}
-					}
-					else{
-						draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
-						draw_set_halign(fa_center);
-						draw_set_valign(fa_center);
-						if(!mouseOverUnitTab){
-							draw_set_color(global.colorThemeBorders);
-							draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, true);
-							draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "U");
-						}
-						else{
-							draw_rectangle(tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2, false);
-							draw_set_color(global.colorThemeBG);
-							draw_text(mean(tagButtonRectX1,tagButtonRectX2), mean(tagButtonRectY1, tagButtonRectY2), "U");
-						}
-					}
-					*/
 				}	
-		
 		}
+		*/
+		
+		
+		
+		
 	
 
 		draw_set_halign(fa_left);
@@ -306,25 +236,6 @@ function scr_panelPane_drawChainTabs() {
 	
 		// check for mouse clicks to change the selected tab
 		if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) and not chainListPane.scrollBarClickLock) {
-		
-			/*obj_panelPane.hoverTime[i]++;
-		
-			if(obj_panelPane.hoverTime[i] == obj_toolPane.hoverTimeLimit){
-				obj_toolPane.ToolTipPosX = mouse_x;
-				obj_toolPane.ToolTipPosY = mouse_y;
-			}
-			else if(obj_panelPane.hoverTime[i] == obj_toolPane.hoverTimeLimit){
-				show_message(string(i) + "greater");
-				if (i == 0) {
-					scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Show Line Contents", "top");
-				}
-				if (i == 1) {
-					scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Show Track Chain Contents", "top");
-				}
-				if (i == 2) {
-					scr_drawToolTip(obj_toolPane.ToolTipPosX, obj_toolPane.ToolTipPosY, "Show Rez Chain Contents", "top");
-				}
-			}*/
 			if (device_mouse_check_button_released(0, mb_left)) {
 				//show_message(string(i));
 				functionChainList_currentTab = i;
@@ -353,23 +264,15 @@ function scr_panelPane_drawChainTabs() {
 				if (i == 3) {
 					if(obj_toolPane.currentMode = obj_toolPane.modeRead) {
 						obj_toolPane.currentMode = obj_toolPane.modeTrack;
-						if(obj_control.searchGridActive) {
-						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+						if (obj_control.searchGridActive) {
+							obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
+						}
+						else {
+							obj_toolPane.setModeMain = obj_toolPane.modeTrack;
+						}
 					}
-					else {
-						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
-					}
-					}
-				}
-			
-				//refocus chains related to currently selected tab
-				if (functionChainList_currentTab >= 0 and grid != obj_control.lineGrid) {
-					scr_reFocusOldChains();
 				}
 			}
-		}
-		else {
-			//obj_panelPane.hoverTime[i] = 0;
 		}
 	
 		// keeps drawing the name of the tabs

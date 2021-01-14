@@ -45,7 +45,10 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 15), "focusedChain's linkIDList: " + ((ds_exists(focusedChainLinkIDList, ds_type_list)) ? scr_getStringOfList(focusedChainLinkIDList) : ""));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 16), "focusedChainWordID: " + string(focusedChainWordID));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 17), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 18), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 18), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 19), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 20), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 21), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
 	
 	// reset halign to left
 	draw_set_halign(fa_left);

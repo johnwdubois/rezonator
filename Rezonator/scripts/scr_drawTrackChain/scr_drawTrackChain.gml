@@ -32,7 +32,7 @@ function scr_drawTrackChain() {
 	var trackChainGridHeight = ds_grid_height(trackChainGrid);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var linkGridHeight = ds_grid_height(linkGrid);
-	var arrowSize = 0.3 + (0.1 * global.fontSize/5);
+	var arrowSize = 0.3 + (0.1 * global.fontSize / 5);
 
 	// loop through trackChainGrid to get chain info
 	var chainShowListSize = ds_list_size(chainShowList);
@@ -236,7 +236,6 @@ function scr_drawTrackChain() {
 
 
 
-	scr_unfocusOtherChains(obj_toolPane.toolTrackBrush);
 
 
 }

@@ -135,16 +135,22 @@ function scr_loadINI() {
 			
 			
 				if (instance_exists(obj_gridViewer)) {
-				
-					if (ds_exists(obj_gridViewer.gridViewColXListMap, ds_type_map)) {
-						var tempMap = ds_map_find_value(map, "gridViewColXListMap");
-						//show_message("tempMapSize: " + string(ds_map_size(tempMap)));
-						if (ds_map_size(tempMap) == ds_map_size(obj_gridViewer.gridViewColXListMap)) {
-							//show_message("map sizes equal");
-							ds_map_clear(obj_gridViewer.gridViewColXListMap);
-							ds_map_copy(obj_gridViewer.gridViewColXListMap, tempMap);
+					if (is_numeric(obj_gridViewer.gridViewColXListMap)) {
+						if (ds_exists(obj_gridViewer.gridViewColXListMap, ds_type_map)) {
+							var tempMap = ds_map_find_value(map, "gridViewColXListMap");
+							
+							
+							if (is_numeric(tempMap)) {
+								if (ds_exists(tempMap, ds_type_map)) {	
+									if (ds_map_size(tempMap) == ds_map_size(obj_gridViewer.gridViewColXListMap)) {
+										//show_message("map sizes equal");
+										ds_map_clear(obj_gridViewer.gridViewColXListMap);
+										ds_map_copy(obj_gridViewer.gridViewColXListMap, tempMap);
+									}
+								}
+							}
+							//show_message("scr_loadINI()... Unit: " + scr_getStringOfList(ds_map_find_value(obj_gridViewer.gridViewColXListMap, "Unit")));
 						}
-						//show_message("scr_loadINI()... Unit: " + scr_getStringOfList(ds_map_find_value(obj_gridViewer.gridViewColXListMap, "Unit")));
 					}
 				
 				}

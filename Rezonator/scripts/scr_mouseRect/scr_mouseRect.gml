@@ -83,9 +83,15 @@ function scr_mouseRect() {
 		}
 	
 		// Draw the rect if not making a quickStack
-		if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
-			if(obj_control.mouseRectWithinLine) {
-				if(obj_chain.currentFocusedChainID != "") {
+		if (!obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+			if (obj_control.mouseRectWithinLine) {
+				if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
+					
+					var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+					var chainColor = ds_map_find_value(chainSubMap, "chainColor");
+					draw_set_color(chainColor);
+					
+					/*
 					var currentChainGrid = -1;
 					if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 						currentChainGrid = obj_chain.trackChainGrid;
@@ -103,6 +109,7 @@ function scr_mouseRect() {
 					else {
 						draw_set_color(global.colorThemeSelected1);	
 					}
+					*/
 				
 				} else {
 					draw_set_color(global.colorThemeSelected1);	
@@ -152,10 +159,13 @@ function scr_mouseRect() {
 	}
 
 	// Refresh the cliques if we've made Rez chains
+	// CHAIN REHAUL: let's ditch cliques
+	/*
 	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 		var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
 		for (var i = 0; i < cliqueGridHeight; i++) {
 			scr_cliqueGridRefreshUnitIDList(i);
 		}
 	}
+	*/
 }

@@ -176,7 +176,6 @@ scrollBarHolding = false;
 scrollBarClickLock = false;
 scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
-//oldFocusedContentsRow = -1;
 //backupFocusedRow = -1;
 
 showAdvancedNav = false;
@@ -228,7 +227,6 @@ chainTagsHighlightRow = -1;
 chainViewOneToMany = true;
 
 previousChainContentsRow = -1;
-rowInLinkGridList = ds_list_create();
 
 
 hoverTime[0] = 0;

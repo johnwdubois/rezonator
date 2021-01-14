@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_nodeMapSetChainValues(nodeID, wordIDList, chainName, chainColor) {
+function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 	
 	// find subMap for this chain
 	var subMap = ds_map_find_value(global.nodeMap, nodeID);
@@ -11,6 +11,8 @@ function scr_nodeMapSetChainValues(nodeID, wordIDList, chainName, chainColor) {
 		ds_map_add(subMap, "chainColor", chainColor);
 		ds_map_add(subMap, "focused", "");
 		ds_map_add(subMap, "filter", false);
+		ds_map_add(subMap, "author", global.userName);
+		ds_map_add(subMap, "chainSeq", chainSeq);
 		
 		// set alignment
 		var type = ds_map_find_value(subMap, "type");

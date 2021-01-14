@@ -35,10 +35,7 @@ chainGrid_colActSequence = 13; // stack tag
 
 chainGrid_colShow = 9;
 
-rezChainGrid = ds_grid_create(chainGridWidth, 0);
-trackChainGrid = ds_grid_create(chainGridWidth, 0);
-stackChainGrid = ds_grid_create(chainGridWidth + 5, 0);
-cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
+
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
 chunkGrid_colBoxWordIDList = 8;
@@ -67,7 +64,6 @@ chainStateFocus = 2;//"Focus";//2
 //chainStateHidden = 4;
 chainStateDead = 5;//"Dead";//5
 
-currentChainGrid = rezChainGrid;
 currentChainName = "Rez";
 
 chainColorList = ds_list_create();
@@ -142,7 +138,6 @@ placeChainNameCounter = 0;
 //chunkNameCounter = 0;
 
 currentFocusedChainID = "";
-currentFocusedChainIndex = -1;
 
 mouseLineHide = false;
 
@@ -205,7 +200,6 @@ raceGrid_colRaceRank = 2;
 
 chainIDRaceCheck = -1;
 
-oldFocusedContentsRow = -1;
 
 
 goldStandardGridWidth = 4;
