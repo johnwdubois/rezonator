@@ -58,6 +58,7 @@ function scr_drawRezChain() {
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		
 		// get chain variables from chain's subMap
+		var chainType = ds_map_find_value(currentChainSubMap, "type");
 		var currentSetIDList = ds_map_find_value(currentChainSubMap, "setIDList");
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
 		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
@@ -134,7 +135,7 @@ function scr_drawRezChain() {
 				firstWordInLine = -1;
 			}
 		
-			//var currentWordStringWidth2 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1)));
+			var currentWordStringWidth2 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1)));
 		
 			lineX2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID2 - 1);
 			lineY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineID2);
@@ -172,11 +173,20 @@ function scr_drawRezChain() {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
 					if (chunkWord2) {
-						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
+						if (chainType == "rezChain") {
+							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
+						}
+						else if (chainType == "trackChain") {
+							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						}
 					}
 					else {
-						// Draw the link line
-						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+						if (chainType == "rezChain") {
+							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+						}
+						else if (chainType == "trackChain") {
+							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						}
 					}
 				}
 				// I need to modify this with the Chunk's wordRectBuffer
@@ -202,27 +212,29 @@ function scr_drawRezChain() {
 			}
 		}
 	
-		// CHAIN REHAUL: bring back alignment
-		/*
 		var isAligned = ds_map_find_value(currentChainSubMap, "align");
 		scr_alignChain(currentSetIDList, isAligned);
-		*/
 	}
 
 
 	// draw pickwhip line to mouse from chain
 	if (not (mouseLineX == undefined or mouseLineY == undefined)) {
-		//obj_control.showMouseLine = true;	
 		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 			var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 			if (is_numeric(chainSubMap)) {
 				if (ds_exists(chainSubMap, ds_type_map)) {
+					var chainType = ds_map_find_value(chainSubMap, "type");
 					currentChainColor = ds_map_find_value(chainSubMap, "chainColor");
 					draw_set_color(currentChainColor);
 			
 					if (currentChainShow) {
 						if (not mouseLineHide) {
-							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+							if (chainType == "rezChain") {
+								draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+							}
+							else if (chainType == "trackChain") {
+								scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
+							}
 							if (obj_chain.showChainArrows) {
 								var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
 								draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
