@@ -21,7 +21,7 @@ var wordDisplayString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dyn
 var wordCenterX = wordPixelX + (string_width(wordDisplayString)/2);
 
 var rectx1, recty1, rectx2, recty2; //rectangle points+
-if(obj_tooltip.currentMode == obj_tooltip.readMode){
+if(obj_toolPane.currentMode == obj_toolPane.modeRead){
 	rectx1 = wordPixelX + string_width(wordDisplayString);
 	recty1 = wordPixelY + string_height(wordDisplayString)/2;
 	rectx2 = rectx1 + 100;
