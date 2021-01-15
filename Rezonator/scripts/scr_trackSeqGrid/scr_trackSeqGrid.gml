@@ -93,9 +93,32 @@ function scr_trackSeqGrid(){
 		
 		// create a list that is a duplicate of the currentWordIDList, but then sort it
 		// so that the trackSeqGrid is in default sorted order
+		var tempGrid2_colWordID = 0;
+		var tempGrid2_colUnitSeq = 1;
+		var tempGrid2_colWordOrder = 2;
+		var tempGrid2 = ds_grid_create(3, 0);
 		var currentWordIDListSorted = ds_list_create();
-		ds_list_copy(currentWordIDListSorted, currentWordIDList);
-		ds_list_sort(currentWordIDListSorted, true);
+		
+		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		for (var j = 0; j < currentWordIDListSize; j++) {
+			
+			var currentWordID = ds_list_find_value(currentWordIDList, j);
+			var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+			var currentWordOrder = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+			
+			ds_grid_resize(tempGrid2, ds_grid_width(tempGrid2), ds_grid_height(tempGrid2) + 1);
+			ds_grid_set(tempGrid2, tempGrid2_colWordID, ds_grid_height(tempGrid2) - 1, currentWordID);
+			ds_grid_set(tempGrid2, tempGrid2_colUnitSeq, ds_grid_height(tempGrid2) - 1, currentUnitID);
+			ds_grid_set(tempGrid2, tempGrid2_colWordOrder, ds_grid_height(tempGrid2) - 1, currentWordOrder);
+		}
+		scr_gridMultiColSort(tempGrid2, tempGrid2_colUnitSeq, true, tempGrid2_colWordOrder, true);
+		var tempGrid2Height = ds_grid_height(tempGrid2);
+		for (var j = 0; j < tempGrid2Height; j++) {
+			var currentWordID = ds_grid_get(tempGrid2, tempGrid2_colWordID, j);
+			ds_list_add(currentWordIDListSorted, currentWordID);
+		}
+		ds_grid_destroy(tempGrid2);
+		
 		
 		// get the chain values that we will want for the trackSeqGrid
 		var currentChainID = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, rowInChainGrid);
