@@ -24,7 +24,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	}
 
 
-	draw_set_font(global.fontChainList);
+
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
@@ -49,7 +49,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 
 
 	var headerListSize = unitContentsHeaderListSize;
-	unitContentsHeaderListSize = min(6,max(1,ds_grid_width(global.unitImportGrid)));
+	unitContentsHeaderListSize = min(6, max(1, ds_grid_width(global.unitImportGrid)));
 	headerListSize = unitContentsHeaderListSize;
 
 
@@ -116,6 +116,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		    var currentLineState = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineState, i);
 		    var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
 		    var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
+			
 		    // Prevent those pesky comments from showing up in the line list
 		    if (lineSpeaker == "COMMENT") {
 		        continue;
@@ -226,29 +227,28 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		        focusedLineNameRectY1 = lineNameRectY1;
 		        focusedLineNameRectY2 = lineNameRectY2;
 		        focusedElementY = y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY;
-		        draw_set_font(global.fontChainListFocused);
 		    }
-		    else {
-		        draw_set_font(global.fontMain);
-		    }
+
     
 		    // Draw text of unit tags
 		    draw_set_halign(fa_left);
 		    draw_set_valign(fa_middle);
 		    draw_set_color(global.colorThemeText);
 		
-			var tagToDraw = ds_grid_get(global.unitImportGrid, j, i);
+			var tagToDraw = "";
+			var unitImportGridRow = currentLineUnitID - 1;
 		
 			var importCol = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-			if( importCol != undefined ){
-				tagToDraw = string(ds_grid_get(global.unitImportGrid, importCol, i));
+			if (importCol != undefined) {
+				tagToDraw = string(ds_grid_get(global.unitImportGrid, importCol, unitImportGridRow));
 			}
-			else{
-				tagToDraw = ds_grid_get(global.unitImportGrid,j,i);
+			else {
+				tagToDraw = ds_grid_get(global.unitImportGrid, j, unitImportGridRow);
 			}
 		
 		
 			tagToDraw = (tagToDraw == undefined) ? "" : tagToDraw;
+			scr_adaptFont(string(tagToDraw), "S");
 		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
     
 		    // Get height of chain name
@@ -312,7 +312,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
 	    draw_set_color(global.colorThemeText);
 	    draw_set_valign(fa_top);
-	    draw_set_font(global.fontPanelTab);
+	    scr_adaptFont(colName, "M")
 	    draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 	
 		var notDiscoTag = (ds_list_find_index(global.discoImportColNameList, colName) == -1);

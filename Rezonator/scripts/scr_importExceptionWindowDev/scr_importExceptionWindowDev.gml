@@ -41,7 +41,6 @@ function scr_importExceptionWindowDev() {
 
 
 	// Draw exception Info window contents
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	var mouseoverRow = -1;
@@ -83,7 +82,7 @@ function scr_importExceptionWindowDev() {
 	
 		draw_set_alpha(currentException ? 0.5 : 1);
 		draw_set_color(global.colorThemeText);
-		draw_set_font(global.fontMain);
+		scr_adaptFont(string(currentLine), "M");
 		draw_text(cellRectX1 + 5 - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentLine));
 	
 	
@@ -139,9 +138,9 @@ function scr_importExceptionWindowDev() {
 
 
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("label_mark_exceptions"), "L");
 	draw_text(exceptionInfoWindowRectX1, floor(exceptionInfoWindowRectY1 - string_height("0")), scr_get_translation("label_mark_exceptions"));
 
 
@@ -191,9 +190,10 @@ function scr_importExceptionWindowDev() {
 	draw_set_alpha(1);
 	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
 
-	draw_set_font(global.fontMain);
+
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("msg_continue"), "M");
 	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 
 

@@ -90,6 +90,9 @@ function scr_getGridNameString(gridName) {
 		case global.customLabelGrid:
 			gridName = "CustomLabel"; // Custom Label Grid
 			break;
+		case obj_control.quickFilterGrid:
+			gridName = "QuickPick"; // Custom Label Grid
+			break;
 		default:
 			gridName = string(gridName);
 			break;

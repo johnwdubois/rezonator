@@ -16,7 +16,6 @@ draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 var strHeight = string_height("0");
 var plusY = 0;
 draw_set_alpha(1);
-draw_set_font(global.fontMain);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 var customLabelGridHeight = ds_grid_height(global.customLabelGrid);
@@ -36,6 +35,7 @@ for (var i = 0; i < customLabelGridHeight; i++) {
 	}
 	
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(string(currentLabel), "M");
 	draw_text(floor(x + 10) - clipX, floor(y + plusY) + scrollPlusY - clipY, string(currentLabel));
 	
 	plusY += strHeight;

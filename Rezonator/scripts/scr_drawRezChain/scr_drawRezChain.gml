@@ -13,12 +13,11 @@ function scr_drawRezChain() {
 				
 		Author: Terry DuBois
 	*/
-	//if(live_call()) return live_result;
+
 	if (not obj_chain.toggleDrawRez) {
 		exit;
 	}
 
-	draw_set_font(global.fontMain);
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
@@ -48,9 +47,7 @@ function scr_drawRezChain() {
 		minWordWidth = 9999999;
 	
 		var currentChainID = ds_list_find_value(chainShowList, i);
-		if (ds_list_find_value(chainShowList, currentChainID) == -1) {
-			continue;
-		}
+
 		var rowInChainGrid = ds_grid_value_y(rezChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, rezChainGridHeight, currentChainID);
 		if (rowInChainGrid < 0 or rowInChainGrid >= rezChainGridHeight) {
 			continue;
@@ -58,7 +55,14 @@ function scr_drawRezChain() {
 	
 		var currentWordIDList = ds_grid_get(rezChainGrid, chainGrid_colWordIDList, rowInChainGrid);
 		var currentChainColor = ds_grid_get(rezChainGrid, chainGrid_colColor, rowInChainGrid);
-		var currentChainShow = true;//ds_grid_get(rezChainGrid, chainGrid_colShow, rowInChainGrid);
+		var currentChainShow = true;
+		
+		if (!is_numeric(currentWordIDList)) {
+			continue;
+		}
+		if (!ds_exists(currentWordIDList, ds_type_list)) {
+			continue;
+		}
 	
 		// find minimum word width so we know the X position of the chain
 		var currentWordIDListSize = ds_list_size(currentWordIDList);
@@ -242,9 +246,13 @@ function scr_drawRezChain() {
 			
 					var mouseLineWordStringWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
 					var mouseLineWordStringHeight = string_height(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
-			
-					mouseLineX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1) + (mouseLineWordStringWidth / 2);
-					mouseLineY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow) + (mouseLineWordStringHeight / 2);
+					var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
+					var wordPixelY =ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
+					
+					if(wordPixelX != undefined and wordPixelY !=undefined){
+						mouseLineX =  wordPixelX + (mouseLineWordStringWidth / 2);
+						mouseLineY =  wordPixelY + (mouseLineWordStringHeight / 2);
+					}
 				//}
 			
 			}

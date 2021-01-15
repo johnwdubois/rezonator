@@ -13,7 +13,6 @@
 	Author: Georgio Klironomos
 */
 function scr_drawCompassRose() {
-	draw_set_font(global.fontMain);
 
 	// Keep track of the initial drag point
 	if(not mouse_check_button(mb_left)) {

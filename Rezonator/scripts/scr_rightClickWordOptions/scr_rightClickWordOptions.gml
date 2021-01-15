@@ -219,6 +219,10 @@ function scr_rightClickWordOptions(optionSelected) {
 			break;
 		case "Split Line":
 			
+			if (instance_exists(obj_control)) {
+				scr_splitLine(obj_control.rightClickWordID);
+			}
+			/*
 			// get lineGridRow and wordIDList
 			var lineGrid = obj_control.lineGrid;
 			var lineGridRow = obj_control.rightClickDisplayRow;
@@ -274,7 +278,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			}
 			
 			
-			
+			*/
 			
 			
 			instance_destroy();

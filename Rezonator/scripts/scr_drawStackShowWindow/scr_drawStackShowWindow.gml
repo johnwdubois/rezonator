@@ -33,7 +33,6 @@ function scr_drawStackShowWindow() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontChainList);
 	var strHeight = string_height("0") + 5;
 
 	// Begin the scrollable surface
@@ -125,7 +124,7 @@ function scr_drawStackShowWindow() {
 		
 				var dropDownOptionList = ds_list_create();
 		
-				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip");
+				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
 		
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeChainList);

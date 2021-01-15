@@ -22,7 +22,10 @@ var native_locale_code		= os_get_language();	// return language of user's system
 var native_locale_index		= 0;
 show_debug_message("OS locale: " + native_locale_code);
 
-var locale_file_name = file_find_first( "locale_*.json", 0 );		// find the first glossary file matching naming convention
+var delimiter = (os_type == os_macosx) ? "/" : "\\";
+var locale_file_name = file_find_first( "IncludedFiles" + delimiter + "Localization" + delimiter + "locale_*.json", 0 );		// find the first glossary file matching naming convention
+
+show_debug_message("locale_file_name: " + string(locale_file_name));
 if ( locale_file_name == "" )										// if file name does not follow convention, ignore it
 {
 	show_error( "No locale files found!", true );
@@ -30,9 +33,10 @@ if ( locale_file_name == "" )										// if file name does not follow conventio
 }
 while ( locale_file_name != "" )									// if file name follows convention
 {
-	show_debug_message("Loading locale file: " + locale_file_name );
+	var locale_file_name_full = "IncludedFiles" + delimiter + "Localization" + delimiter + locale_file_name;
+	show_debug_message("Loading locale file: " + locale_file_name_full );
 
-	var locale_file	= file_text_open_read( locale_file_name );		// open the glossary file for reading
+	var locale_file	= file_text_open_read( locale_file_name_full );		// open the glossary file for reading
 	if ( locale_file == -1 )										// return error message if there are issues within the glossary file
 	{
 		show_error( "LOCALE WARNING: Error reading locale file " + locale_file_name, true);

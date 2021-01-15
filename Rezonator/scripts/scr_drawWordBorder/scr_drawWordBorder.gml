@@ -42,7 +42,6 @@ function scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRect
     
 	if (drawFocused) {
 	    if ((not borderRounded and obj_chain.toggleDrawRez) or (borderRounded and obj_chain.toggleDrawTrack)) {
-	        draw_set_font(global.fontMain);
 	        draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY1 - wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
 	        draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY1 - wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);
 	        draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, fontScale, fontScale, 0, effectColor, 1);

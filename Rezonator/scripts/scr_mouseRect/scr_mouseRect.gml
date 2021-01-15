@@ -85,7 +85,7 @@ function scr_mouseRect() {
 		// Draw the rect if not making a quickStack
 		if (!(obj_toolPane.currentTool == obj_toolPane.toolStackBrush)) {
 			if(obj_control.mouseRectWithinLine) {
-				if(obj_chain.currentFocusedChainID >= 0) {
+				if(obj_chain.currentFocusedChainID != "") {
 					var currentChainGrid = -1;
 					if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 						currentChainGrid = obj_chain.trackChainGrid;

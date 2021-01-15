@@ -18,7 +18,6 @@ function scr_panelPane_drawChainsOneToOne(){
 	scr_surfaceStart();
 	
 	
-	draw_set_font(global.fontChainList);
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
@@ -183,13 +182,13 @@ function scr_panelPane_drawChainsOneToOne(){
 			
 			
 			// Draw text of chain tags
-			draw_set_font(global.fontMain);
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
 			draw_set_color(global.colorThemeText);
 			
 			var tagToDraw = ds_grid_get(obj_chain.stackChainGrid, tagCol, i);
 			tagToDraw = (tagToDraw == undefined or tagToDraw == 0) ? "" : tagToDraw;
+			scr_adaptFont(string(tagToDraw), "S");
 			draw_text(x + (textMarginLeft) + (xbuffer * j) - clipX, y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
 			
 			
@@ -236,7 +235,7 @@ function scr_panelPane_drawChainsOneToOne(){
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + functionChainList_tabHeight - clipY, true);
 		draw_set_color(global.colorThemeText);
 		draw_set_valign(fa_top);
-		draw_set_font(global.fontPanelTab);
+		scr_adaptFont(colName, "M");
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
 		

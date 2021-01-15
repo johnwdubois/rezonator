@@ -23,7 +23,6 @@ function scr_drawLine() {
 	ds_grid_set_region(wordDrawGrid, wordDrawGrid_colVisible, 0, wordDrawGrid_colVisible, ds_grid_height(wordDrawGrid), false);
 
 	// set draw variables for column text
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
@@ -143,7 +142,14 @@ function scr_drawLine() {
 		var currentWordIDList = ds_grid_get(currentActiveLineGrid, lineGrid_colWordIDList, drawLineLoop);
 		var currentDiscoID = ds_grid_get(currentActiveLineGrid, lineGrid_colDiscoID, drawLineLoop);
 		var currentLineNumberLabel = ds_grid_get(currentActiveLineGrid, lineGrid_colLineNumberLabel, drawLineLoop);
-		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		var currentWordIDListSize = 0;
+		
+		if(is_numeric(currentWordIDList) and currentWordIDList != undefined){
+			if(ds_exists(currentWordIDList, ds_type_list)){
+				currentWordIDListSize = ds_list_size(currentWordIDList);
+			}
+		}
+
 	
 		// get & set the correct pixel-Y value for each line
 		var currentLineY = ds_grid_get(currentActiveLineGrid, lineGrid_colPixelY, drawLineLoop);
@@ -301,7 +307,6 @@ function scr_drawLine() {
 						for (var i = 0; i < instance_number(obj_panelPane); i++) {
 							var currentPane = instance_find(obj_panelPane, i);
 							if (currentPane.currentFunction == obj_panelPane.functionChainList) {
-								draw_set_font(global.fontChainList);
 								var strHeight = string_height("0") * 1.5;
 								scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
 							}
@@ -329,7 +334,6 @@ function scr_drawLine() {
 								var currentPane = instance_find(obj_panelPane, i);
 								if (currentPane.currentFunction == obj_panelPane.functionChainList) {
 									//show_message(i);
-									draw_set_font(global.fontChainList);
 									var strHeight = string_height("0") * 1.5;
 									//we can affect the scrollPlusY, now we need the correct placement
 									scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
@@ -346,7 +350,7 @@ function scr_drawLine() {
 
 	
 	
-		var currentLineInStack = -1;
+		var currentLineInStack = "";
 		if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2 and not obj_control.rectNotInPanelPane) {
 			obj_control.lineContainsMouseYPos = speakerRectY1;	
 		}
@@ -359,14 +363,14 @@ function scr_drawLine() {
 				currentLineInStack = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
 			}
 			else {
-				currentLineInStack = -1;
+				currentLineInStack = "";
 			}
 		}
 
 	
 		// draw stack rectangle if this line is in a stack
 	
-		if (currentLineInStack > -1) {
+		if (currentLineInStack != "") {
 			//scr_drawStackRect();
 		
 			if (obj_chain.toggleDrawStack) {

@@ -72,7 +72,7 @@ function scr_settingsOptions(optionSelected) {
 		case "menu_language":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "English", "Italiano", "Spanish", "Hebrew", "Vietnamese", "Japanese", "Chinese");
+			ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 5), dropDownOptionList, global.optionListTypeLanguage);

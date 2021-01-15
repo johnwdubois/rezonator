@@ -27,8 +27,8 @@ draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 // draw window title
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
-draw_set_font(global.fontMainBold);
 draw_set_color(global.colorThemeText);
+scr_adaptFont(scr_get_translation("menu_export"), "L");
 draw_text(x, y - string_height("0"), scr_get_translation("menu_export"));
 
 
@@ -62,7 +62,7 @@ for (var i = 0; i < exportGridListSize; i++) {
 	draw_rectangle(x - clipX, currentCellY1 - clipY, x + windowWidth - clipX, currentCellY2 - clipY, true);
 	
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMain);
+	scr_adaptFont(currentGridStr,"M");
 	draw_text(x + string_width("AA") - clipX, floor(mean(currentCellY1, currentCellY2)) - clipY, currentGridStr);
 	
 }

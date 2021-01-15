@@ -36,8 +36,7 @@ function scr_setSpeakerLabelColWidth() {
 
 
 
-	draw_set_font(global.fontMain);
-	var minColWidth = string_width("AAAAA");
+	var minColWidth = string_width("00000");
 	var maxColWidth = camera_get_view_width(camera_get_active()) / 6;
 	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
 	for (var i = 0; i < speakerLabelColXListSize - 1; i++) {

@@ -23,16 +23,6 @@ importWindowY2 = importWindowY1 + importWindowHeight;
 
 scr_windowCameraAdjust();
 
-/*
-draw_set_alpha(1);
-var logoScale = clamp(camera_get_view_height(camera_get_active()) / 2160, 0.25, 1);
-draw_sprite_ext(spr_logo, global.fontSize, camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 4, 1, 1, 0, c_white, 1);
-draw_set_font(global.fontMain);
-draw_set_halign(fa_right);
-draw_set_valign(fa_middle);
-draw_set_color(global.colorThemeText);
-draw_text((camera_get_view_width(camera_get_active()) / 2) + (sprite_get_width(spr_logo) * logoScale * 0.5), (camera_get_view_height(camera_get_active()) / 4) + (sprite_get_height(spr_logo) * logoScale * 0.5), global.versionString);
-*/
 
 // draw Rezonator logo with version number
 if !(global.newProject and not global.openProject) {
@@ -57,7 +47,18 @@ if (obj_openingScreen.showDevVars) {
 
 
 
-
+if(!global.fontsLoaded){
+	if(!global.loadingScreenCreated){
+	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+	instLoading.loadSprite = spr_loading;
+	global.loadingScreenCreated = true;
+	}
+	else{
+		if(instance_exists(obj_loadingScreen)){
+			instance_destroy(instLoading);
+		}
+	}
+}
 
 
 showPreImportScreen = (global.newProject and not global.openProject);

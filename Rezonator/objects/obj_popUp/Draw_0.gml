@@ -10,8 +10,9 @@ if(currentPopUp == 0){
 	draw_rectangle(camera_get_view_width(camera_get_active()) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,175 + obj_menuBar.menuHeight, true);
 	draw_rectangle(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),200 + obj_menuBar.menuHeight, true);
 	
-	draw_set_font(fnt_mainBold);
+
 	draw_set_halign(fa_center);
+	scr_adaptFont("TOOL PANE","L");
 	draw_text(mean(camera_get_view_width(camera_get_active()) - 295,  camera_get_view_width(camera_get_active()) - 105)-10, 20 + obj_menuBar.menuHeight, "TOOL PANE");
 	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
 	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 36 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 36 + obj_menuBar.menuHeight, true);
@@ -26,7 +27,7 @@ if(currentPopUp == 0){
 			draw_rectangle(camera_get_view_width(camera_get_active()) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
 	}
 	
-	draw_set_font(fnt_main);
+	scr_adaptFont(popUpText1, "M");
 	draw_text( mean(camera_get_view_width(camera_get_active()) - 285, camera_get_view_width(camera_get_active()) - 105 ), 110 + obj_menuBar.menuHeight , popUpText1);
 	
 	draw_sprite_ext(spr_ascend, 0, mean(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),camera_get_view_width(camera_get_active()) -  105), mean(175 + obj_menuBar.menuHeight,200 + obj_menuBar.menuHeight), 1, 1, 270, c_white, 1);
@@ -42,7 +43,7 @@ else if(currentPopUp == 1){
 	draw_rectangle(camera_get_view_width(camera_get_active()) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,175 + obj_menuBar.menuHeight, true);
 	draw_rectangle(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),200 + obj_menuBar.menuHeight, true);
 	
-	draw_set_font(fnt_mainBold);
+	scr_adaptFont("NAV WINDOW","L");
 	draw_set_halign(fa_center);
 	draw_text(mean(camera_get_view_width(camera_get_active()) - 295,  camera_get_view_width(camera_get_active()) - 105)-10, 20 + obj_menuBar.menuHeight, "NAV WINDOW");
 	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
@@ -58,7 +59,7 @@ else if(currentPopUp == 1){
 			draw_rectangle(camera_get_view_width(camera_get_active()) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
 	}
 	
-	draw_set_font(fnt_main);
+	scr_adaptFont(popUpText2, "M");
 	draw_text( mean(camera_get_view_width(camera_get_active()) - 285, camera_get_view_width(camera_get_active()) - 105 ), 110 + obj_menuBar.menuHeight , popUpText2);
 	
 	
@@ -103,7 +104,7 @@ else if(currentPopUp == 2){
 	draw_rectangle(camera_get_view_width(camera_get_active()) - 295, 175 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105,175 + obj_menuBar.menuHeight, true);
 	draw_rectangle(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), 175 + obj_menuBar.menuHeight,mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105),200 + obj_menuBar.menuHeight, true);
 	
-	draw_set_font(fnt_mainBold);
+	scr_adaptFont("TOOL PANE","L");
 	draw_set_halign(fa_center);
 	draw_text(mean(camera_get_view_width(camera_get_active()) - 295,  camera_get_view_width(camera_get_active()) - 105)-10, 20 + obj_menuBar.menuHeight, "TOOL PANE");
 	draw_rectangle(camera_get_view_width(camera_get_active()) - 295 + 30, 35 + obj_menuBar.menuHeight,  camera_get_view_width(camera_get_active()) - 105 - 50, 35 + obj_menuBar.menuHeight, true);
@@ -119,7 +120,7 @@ else if(currentPopUp == 2){
 			draw_rectangle(camera_get_view_width(camera_get_active()) - 105 -30 , 10 + obj_menuBar.menuHeight, camera_get_view_width(camera_get_active()) - 105 -10 ,30 + obj_menuBar.menuHeight, true);
 	}
 	
-	draw_set_font(fnt_main);
+	scr_adaptFont(popUpText3, "M");
 	draw_text( mean(camera_get_view_width(camera_get_active()) - 285, camera_get_view_width(camera_get_active()) - 105 ), 110 + obj_menuBar.menuHeight , popUpText3);
 	
 	draw_sprite_ext(spr_ascend, 0,mean(mean(camera_get_view_width(camera_get_active()) - 295,camera_get_view_width(camera_get_active()) - 105), camera_get_view_width(camera_get_active()) - 295), mean(175 + obj_menuBar.menuHeight ,200 + obj_menuBar.menuHeight ), 1, 1, 90, c_white, 1);

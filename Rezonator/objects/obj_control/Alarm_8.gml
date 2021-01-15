@@ -71,7 +71,7 @@ for (var i = 0; i < ds_list_size(inRectList); i++) {
 }
 
 // Keep the focus of chains during the process
-if (obj_chain.currentFocusedChainID >= 0) {
+if (obj_chain.currentFocusedChainID != "") {
 	
 	// Keep the focus of track chains
 	if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){

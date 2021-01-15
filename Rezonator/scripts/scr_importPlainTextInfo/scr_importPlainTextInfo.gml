@@ -41,7 +41,6 @@ function scr_importPlainTextInfo() {
 
 
 	// Draw Tag Info window contents
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	var mouseoverRow = -1;
@@ -80,7 +79,8 @@ function scr_importPlainTextInfo() {
 			*/
 		
 			draw_set_color(global.colorThemeText);
-			draw_set_font(global.fontMain);
+
+			scr_adaptFont(string(currentCell), "M");
 			draw_text(colX + 5 - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY) - clipY, string(currentCell));
 		
 			plusY += rowHeight;
@@ -107,8 +107,9 @@ function scr_importPlainTextInfo() {
 			default:
 				break;
 		}
-		draw_set_font(global.fontMainBold);
+
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(headerStr, "L");
 		draw_text(colX + 5 - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2)) - clipY, headerStr);
 	
 		// draw column lines
@@ -149,9 +150,9 @@ function scr_importPlainTextInfo() {
 
 
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("msg_lines_found"), "L");
 	draw_text(tagInfoWindowRectX1, floor(tagInfoWindowRectY1 - string_height("0")), scr_get_translation("msg_lines_found"));
 
 

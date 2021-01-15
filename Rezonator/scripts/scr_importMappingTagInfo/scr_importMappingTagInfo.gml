@@ -54,7 +54,7 @@ function scr_importMappingTagInfo() {
 
 
 	// Draw Tag Info window contents
-	draw_set_font(global.fontMain);
+
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 
@@ -245,7 +245,7 @@ function scr_importMappingTagInfo() {
 		
 		
 			draw_set_color(global.colorThemeText);
-			draw_set_font(global.fontMain);
+			scr_adaptFont(string(currentCell), "M");
 			draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
 
 			plusY += rowHeight;
@@ -303,8 +303,8 @@ function scr_importMappingTagInfo() {
 		}
 		
 		// draw header text
-		draw_set_font(global.fontMainBold);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(headerStr, "L");
 		draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
 	
 		// draw column lines

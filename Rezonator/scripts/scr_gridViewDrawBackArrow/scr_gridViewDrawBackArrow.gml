@@ -19,10 +19,8 @@ function scr_gridViewDrawBackArrow() {
 	}
 	
 	// Allow for text and arrow to resize based on user's textsize
-	draw_set_font(fnt_main);
-	var standardHeight = string_height("A");
-	draw_set_font(global.fontMain);
-	var largeHeight = string_height("A");
+	var standardHeight = 12;
+	var largeHeight = 22;
 	var spriteRatio = largeHeight/standardHeight;
 	var spriteSize = 1;
 
@@ -61,15 +59,15 @@ function scr_gridViewDrawBackArrow() {
 				obj_control.gridView = false;
 			}
 			// If we're not in grid view and there is a search, switch between the main and search screen
-			else if (ds_grid_height(obj_control.searchGrid) > 0 and !obj_control.gridView) {
+			else if (currentActiveLineGrid == searchGrid) {
 				with(obj_control) {
 					// Switch back to either main or filter grids
 					if(currentActiveLineGrid == searchGrid) { 
 						// Switch back to the main screen from the Search Screen
 						scr_searchToMain();
 					}
-					// Give the user another way to leave the filter view
-					else if(currentActiveLineGrid == filterGrid) { 
+					// Give the user another way to leave the filter view   
+					else if(currentActiveLineGrid == filterGrid ) { 
 						// Exit the stackShow
 						if(stackShowActive) {
 							obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
@@ -91,8 +89,55 @@ function scr_gridViewDrawBackArrow() {
 							alarm[1] = 5;
 						}
 					}
+					else if(currentActiveLineGrid == quickFilterGrid) { 
+
+						// Exit the plain filter
+
+						// Remember the user's place
+						if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+							obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
+						}
+			
+						// Switch to active grid
+						obj_control.quickFilterGridActive = false;
+						obj_control.currentActiveLineGrid = obj_control.lineGrid
+
+						// Reset wordLeftMargin
+						with (obj_alarm) {
+							alarm[1] = 5;
+						}
+					}
 				}
 			}
+			else if(obj_control.currentActiveLineGrid == obj_control.quickFilterGrid){
+					with(obj_control) {
+					// Exit the plain filter
+					
+					// Remember the user's place
+					if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+						obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
+					}
+			
+					// Switch to active grid
+					obj_control.quickFilterGridActive = false;
+					if(obj_control.filterGridActive == true){
+						obj_control.currentActiveLineGrid = obj_control.filterGrid;
+					}
+					else if (obj_control.searchGridActive == true) {
+						obj_control.currentActiveLineGrid = obj_control.searchGrid;
+					}
+					else{
+						obj_control.currentActiveLineGrid = obj_control.lineGrid;
+					}	
+					// Reset wordLeftMargin
+					with (obj_alarm) {
+						alarm[1] = 5;
+					}
+				}
+			}	
+			
+			
+			
 			else if(obj_control.currentActiveLineGrid == obj_control.filterGrid) { 
 				with(obj_control) {
 					// Exit the stackShow
@@ -117,6 +162,7 @@ function scr_gridViewDrawBackArrow() {
 					}
 				}
 			}
+			
 		}
 	}
 

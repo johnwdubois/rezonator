@@ -27,7 +27,7 @@ var grid = obj_exportWindowGridList.selectedGrid;
 var gridName = scr_getGridNameString(grid);
 
 draw_set_color(global.colorThemeText);
-draw_set_font(global.fontMainBold);
+scr_adaptFont(gridName, "L")
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 draw_text(x + string_width("0"), y + string_height("0"), gridName);
