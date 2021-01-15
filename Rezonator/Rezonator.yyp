@@ -194,6 +194,7 @@
     {"id":{"name":"scr_setFieldRelations","path":"scripts/scr_setFieldRelations/scr_setFieldRelations.yy",},"order":20,},
     {"id":{"name":"scr_exceptionsWindow","path":"scripts/scr_exceptionsWindow/scr_exceptionsWindow.yy",},"order":2,},
     {"id":{"name":"scr_fillFieldLevelMap","path":"scripts/scr_fillFieldLevelMap/scr_fillFieldLevelMap.yy",},"order":1,},
+    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":6,},
     {"id":{"name":"scr_importPlainTextDraw","path":"scripts/scr_importPlainTextDraw/scr_importPlainTextDraw.yy",},"order":11,},
     {"id":{"name":"scr_importInfoGrid","path":"scripts/scr_importInfoGrid/scr_importInfoGrid.yy",},"order":8,},
     {"id":{"name":"scr_importExceptionWindowDev","path":"scripts/scr_importExceptionWindowDev/scr_importExceptionWindowDev.yy",},"order":6,},
