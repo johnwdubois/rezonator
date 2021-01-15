@@ -75,6 +75,11 @@ function scr_isItemAList(grid, col, row) {
 			itemList = currentCell;
 		}
 	}
+	else if (grid == obj_control.quickFilterGrid) {
+		if (col == obj_control.lineGrid_colWordIDList) {
+			itemList = currentCell;
+		}
+	}
 
 
 

@@ -25,6 +25,7 @@ chainGrid_colColor = 4;
 chainGrid_colInFilter = 5;
 chainGrid_colAlign = 6;
 chainGrid_colTiltSum = 7;
+chainGrid_colChainSeq = 7;
 chainGrid_colAuthor = 8;
 chainGrid_colCaption = 9;
 chainGrid_colStackType = 10;
@@ -140,7 +141,7 @@ stackChainNameCounter = 0;
 placeChainNameCounter = 0;
 //chunkNameCounter = 0;
 
-currentFocusedChainID = -1;
+currentFocusedChainID = "";
 currentFocusedChainIndex = -1;
 
 mouseLineHide = false;
@@ -224,3 +225,16 @@ stackChainGridRowToCaption = -1;
 
 
 chainShowList = ds_list_create();
+
+
+
+trackSeqGridWidth = 8;
+trackSeqGrid_colChainID = 0;
+trackSeqGrid_colChainName = 1;
+trackSeqGrid_colChainSeq = 2;
+trackSeqGrid_colTrackSeq = 3;
+trackSeqGrid_colWordID = 4;
+trackSeqGrid_colText = 5;
+trackSeqGrid_colTranscript = 6;
+trackSeqGrid_colUnitText = 7;
+trackSeqGrid = ds_grid_create(trackSeqGridWidth, 0);

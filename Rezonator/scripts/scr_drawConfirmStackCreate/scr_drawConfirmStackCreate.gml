@@ -28,8 +28,8 @@ function scr_drawConfirmStackCreate(){
 	}
 	
 	// draw caption
-	draw_set_font(global.fontMainBold);
-	var captionHeight = string_height("A") * 1.25;
+	scr_adaptFont(string(game_display_name),"L");
+	var captionHeight = string_height("0") * 1.25;
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(fullWindowX, fullWindowY, fullWindowX + fullWindowWidth, fullWindowY + captionHeight, false);
 	draw_set_color(global.colorThemeBorders);
@@ -39,7 +39,7 @@ function scr_drawConfirmStackCreate(){
 	draw_set_valign(fa_middle);
 	draw_text(floor(fullWindowX + 10), floor(mean(fullWindowY, fullWindowY + captionHeight)), string(game_display_name));
 	
-	draw_set_font(global.fontMain);
+
 	
 	
 	// get XY positions for buttons
@@ -156,7 +156,7 @@ function scr_drawConfirmStackCreate(){
 	
 	// draw button text
 	draw_set_colour(global.colorThemeText);
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("msg_yes"),"M");
 	draw_set_halign(fa_center);
 	draw_text(floor(mean(yesButtonX1, yesButtonX2)), floor((yesButtonY2 - yesButtonY1) /2 + yesButtonY1), scr_get_translation("msg_yes"));
 	draw_text(floor(mean(noButtonX1, noButtonX2)), floor((noButtonY2 - noButtonY1) /2 + noButtonY1), scr_get_translation("msg_no"));
@@ -165,9 +165,8 @@ function scr_drawConfirmStackCreate(){
 
 	// draw prompt text
 	draw_set_colour(global.colorThemeText);
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
 	var stackAmount = ds_grid_height(obj_chain.stackChainGrid);
-	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + (string_height("A") / 2)), scr_get_translation("msg_stacks_created-1") + string(stackAmount) + scr_get_translation("msg_stacks_created-2"));
+	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + (string_height("0") / 2)), scr_get_translation("msg_stacks_created-1") + string(stackAmount) + scr_get_translation("msg_stacks_created-2"));
 }

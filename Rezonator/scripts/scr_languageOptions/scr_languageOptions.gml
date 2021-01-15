@@ -3,7 +3,7 @@
 function scr_languageOptions(optionSelected){
 	switch(optionSelected){
 
-		case "English":
+		case "menu_language-en":
 
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "en")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
@@ -11,7 +11,7 @@ function scr_languageOptions(optionSelected){
 		
 		break;
 		
-		case "Italiano" :
+		case "menu_language-it" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "it")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
@@ -19,35 +19,35 @@ function scr_languageOptions(optionSelected){
 		
 		break;		
 
-		case "Spanish" :
+		case "menu_language-es" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "es")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
 			global.lang_index = indexOfLanguage;
 		
 		break;	
-		case "Hebrew" :
+		case "menu_language-he" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "he")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
 			global.lang_index = indexOfLanguage;
 		
 		break;	
-		case "Vietnamese" :
+		case "menu_language-vi" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "vi")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
 			global.lang_index = indexOfLanguage;
 		
 		break;	
-		case "Japanese" :
+		case "menu_language-ja" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "ja")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
 			global.lang_index = indexOfLanguage;
 		
 		break;
-		case "Chinese" :
+		case "menu_language-zh" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "zh")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	

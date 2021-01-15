@@ -29,6 +29,7 @@ function scr_panelPane_drawHelp() {
 	var mouseoverHelp = false;
 	var toggleButtonAmount = 2;
 	var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
+	var collapseButtonRad = string_height("A") * 0.5;
 
 	for(var i = 0; i < toggleButtonAmount; i++) {
 		
@@ -84,35 +85,21 @@ function scr_panelPane_drawHelp() {
 
 	// Set style for button text
 	draw_set_alpha(1);
-	draw_set_font(global.fontMainBold);
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 
 	// Draw either button & helpBox, or just button depending
 	if (functionHelp_collapsed) {
-		//draw_set_color(global.colorThemeText);
-		//if(mouseoverHelp) {
-		//	draw_set_alpha(0.25);
-		//	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-		//}
 	
 		draw_set_alpha(1);
-		//draw_text(x + 10, y + (windowHeight / 2), "Help");
 	
 		if ((functionHelp_plusX) <= camWidth) {
 			functionHelp_plusX += abs(functionHelp_plusX - camWidth) / 4 ;
 		}
 	
-		//if (obj_control.showDevVars) {
-		//	draw_text(x + windowWidth - string_width("000"), y + (windowHeight / 2), string(fps));
-		//}
 	}
 	else {
-		//draw_set_color(global.colorThemeText);
-		//draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-		//draw_set_color(global.colorThemeBG);
-		//draw_text(x + 10, y + (windowHeight / 2), "Help");
 
 		if ((functionHelp_plusX) <= (camWidth - functionHelp_windowWidth)) {
 			functionHelp_plusX += abs(functionHelp_plusX - (camWidth - functionHelp_windowWidth)) / 4;
@@ -157,11 +144,11 @@ function scr_panelPane_drawHelp() {
 		var textBufferAll = 10;
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle)
-		draw_set_font(global.fontChainContents);
 		var titleTextAllX = helpWindowX1 + textBufferAll;
 		var titleTextAllY = helpWindowY1 + (textBufferAll * 2) + functionHelp_plusY + scrollPlusY;
 		draw_set_color(global.colorThemeText);
 		var titleTextAllStr = "All";
+		scr_adaptFont(titleTextAllStr, "M");
 		draw_text(titleTextAllX - clipX, titleTextAllY - clipY, titleTextAllStr);
 		var gridCollapseButtonAllX = titleTextAllX + string_width(titleTextAllStr) + (textBufferAll * 3);
 		var gridCollapseButtonAllY = titleTextAllY;
@@ -171,10 +158,10 @@ function scr_panelPane_drawHelp() {
 	
 	
 		// Draw the mouseoverHelp circles around arrows
-		if (point_distance(mouse_x, mouse_y, gridCollapseButtonAllX, gridCollapseButtonAllY) < 20) {
+		if (point_distance(mouse_x, mouse_y, gridCollapseButtonAllX, gridCollapseButtonAllY) < collapseButtonRad) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(1);
-			draw_circle(gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 20, false);
+			draw_circle(gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, collapseButtonRad, false);
 			if (device_mouse_check_button_released(0, mb_left)) {
 			
 				for(var i = 0; i < helpMenuGridHeight; i++) {
@@ -197,7 +184,6 @@ function scr_panelPane_drawHelp() {
 		else {
 			draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 1, 1, 180, c_white, 1);
 		}
-		draw_circle(gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 20, true);
 	
 		var cellHeight = string_height("M") + 10;
 		var cellPlusY = string_height("M") + 10;
@@ -220,25 +206,24 @@ function scr_panelPane_drawHelp() {
 				var textBuffer = 10;
 				draw_set_halign(fa_left);
 				draw_set_valign(fa_middle)
-				draw_set_font(global.fontChainContents);
 				var titleTextX = helpWindowX1 + textBuffer;
 				var titleTextY = helpWindowY1 + (textBuffer * 2) + functionHelp_plusY + cellPlusY + scrollPlusY;
 				draw_set_color(global.colorThemeText);
 				var titleTextStr = ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colName, i);
-				draw_text(titleTextX - clipX, titleTextY - clipY, titleTextStr);
-				var gridCollapseButtonX = titleTextX + string_width(titleTextStr) + (textBuffer * 3);
+				scr_adaptFont(scr_get_translation(titleTextStr), "S");
+				draw_text(titleTextX - clipX, titleTextY - clipY, scr_get_translation(titleTextStr));
+				var gridCollapseButtonX = titleTextX + string_width(scr_get_translation(titleTextStr)) + (textBuffer * 3);
 				var gridCollapseButtonY = titleTextY;
 	
 				// draw the toggle arrows
 				draw_set_alpha(1);
-				draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 20, true);
 			
 				// Draw the mouseoverHelp circles around arrows
-				if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < 20) {
+				if (point_distance(mouse_x, mouse_y, gridCollapseButtonX, gridCollapseButtonY) < collapseButtonRad) {
 					//draw_set_color(global.colorThemeText);
 					//draw_set_alpha(0.5);
 					draw_set_color(global.colorThemeSelected1);
-					draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 20, false);
+					draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, collapseButtonRad, false);
 					if (device_mouse_check_button_released(0, mb_left)) {
 						ds_grid_set(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i, not ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i));
 					}
@@ -253,7 +238,6 @@ function scr_panelPane_drawHelp() {
 					draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 1, 1, 180, c_white, 1);
 				}
 				draw_set_alpha(1);
-				draw_circle(gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 20, true);
 	
 				cellPlusY += string_height("M");	
 			
@@ -284,7 +268,7 @@ function scr_panelPane_drawHelp() {
 							draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 							draw_set_alpha(1);
 							draw_set_color(global.colorThemeText);
-							draw_set_font(global.fontChainContents);
+							
 							draw_set_halign(fa_left);
 							draw_set_valign(fa_middle);
 						
@@ -292,11 +276,12 @@ function scr_panelPane_drawHelp() {
 							var currentStrKey = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colKey, j);
 							var currentStrFunc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colFunc, j);
 							var currentStrDesc = ds_grid_get(currentHelpGrid, functionHelp_helpGrid_colDesc, j);
-							draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), currentStrKey);
+							scr_adaptFont(scr_get_translation(currentStrKey), "S");
+							draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), scr_get_translation(currentStrKey));
 							if(currentStrFunc == "Download" || currentStrFunc == "About Us") {
 								draw_set_color(c_blue);
 							}
-							draw_text(floor(mean(cellRectX1, cellRectX2) + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), currentStrFunc);
+							draw_text(floor(mean(cellRectX1, cellRectX2) + textBuffer - clipX), floor(mean(cellRectY1, cellRectY2) - clipY), scr_get_translation(currentStrFunc));
 							draw_set_color(global.colorThemeText);
 						
 							// Check for mouseoverHelp over content, if so, then show extra content
@@ -312,7 +297,7 @@ function scr_panelPane_drawHelp() {
 								draw_rectangle(cellRectX1 + 1 - clipX, cellRectY1 + cellHeight - clipY, cellRectX2 - 1 - clipX, cellRectY2 + cellHeight - 2 - clipY, false);
 								draw_set_alpha(1);
 								draw_set_color(global.colorThemeText);
-								draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight) - clipY), currentStrDesc);
+								draw_text(floor(cellRectX1 + textBuffer - clipX), floor(mean(cellRectY1 + cellHeight, cellRectY2 + cellHeight) - clipY), scr_get_translation(currentStrDesc));
 								cellPlusY += (2 * cellHeight);
 							
 								if(device_mouse_check_button_released(0, mb_left)) { // Clicking the About sections will open the user's browser to one of these two URL's
@@ -342,7 +327,6 @@ function scr_panelPane_drawHelp() {
 	}
 
 	var displayString = "";
-	draw_set_font(global.fontMainBold);
 
 	for (var i = 0; i < toggleButtonAmount; i++) {
 		//draw tooltips

@@ -37,7 +37,7 @@ function scr_renderFilter() {
 			default:
 				break;
 		}
-	
+		
 		// loop through current chainGrid to include chains marked with filter
 		var gridHeight = ds_grid_height(grid);
 		if (gridHeight < 1) {
@@ -93,7 +93,6 @@ function scr_renderFilter() {
 				ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 				ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDListUnitGrid);
 			}
-			scr_refreshChainGrid();
 		}
 	}
 
@@ -140,7 +139,24 @@ function scr_renderFilter() {
 			if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
 				continue;
 			}
-		
+			
+			if (currentUnitID == undefined or !is_numeric(currentUnitID)) { // If there's no units to be filtered, hop back to the main screen
+
+				// If filter is active, deactivate it
+				if (obj_control.filterGridActive) {
+					if(obj_control.currentCenterDisplayRow >= 0) { // Make sure the current center display row is within bounds
+						// Keep the focus on previous currentCenterDisplayRow
+						with (obj_control) {
+							alarm[5] = 3;
+						}
+					}
+				}
+				// Switch to active grid
+				obj_control.filterGridActive = false;
+				obj_control.currentActiveLineGrid = obj_control.lineGrid;
+				exit;
+			}
+			
 			var currentDiscoID = ds_grid_get(unitGrid, unitGrid_colDiscoID, currentUnitID - 1);
 			var currentUtteranceID = ds_grid_get(unitGrid, unitGrid_colUtteranceID, currentUnitID - 1);
 			var currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
@@ -366,11 +382,9 @@ function scr_renderFilter() {
 	filterGridActive = true;
 	currentActiveLineGrid = filterGrid;
 	wordLeftMarginDest = 170; // Make sure the margin is placed correctly
-
 	with (obj_alarm) {
 		alarm[1] = 5;
 	}
-
 
 
 }

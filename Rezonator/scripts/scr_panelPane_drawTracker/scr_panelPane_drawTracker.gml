@@ -69,9 +69,10 @@ function scr_panelPane_drawTracker() {
 		draw_rectangle(0, yBase, 140, yBase + newYheight, true);
 
 		//draw end show text
-		draw_set_font(global.fontMainBold);
+
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeText);
+		scr_adaptFont(scr_get_translation("msg_end_stackshow"), "L");
 		draw_text(0 + 5, yBase + (newYheight/2), scr_get_translation("msg_end_stackshow"));
 
 
@@ -100,12 +101,13 @@ function scr_panelPane_drawTracker() {
 	
 	
 		//draw stack name text
-		draw_set_font(global.fontMain);
+
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeText);
 		if(nameOfStack == undefined) {
 			nameOfStack = "";	
 		}
+		scr_adaptFont(nameOfStack, "M");
 		draw_text(chainNameRectX1 + 5, yBase + (newYheight/2), nameOfStack);
 
 		var chainCaptionRectX1 = chainNameRectX2, 
@@ -122,12 +124,12 @@ function scr_panelPane_drawTracker() {
 		var captionOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption, currentRowinStack);
 	
 		//draw stack caption text
-		draw_set_font(global.fontMain);
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeText);
 		if(captionOfStack == undefined) {
 			captionOfStack = "";	
 		}
+		scr_adaptFont(captionOfStack, "M");
 		draw_text((chainCaptionRectX1 + chainNameRectX1 + 180)/2, yBase + (newYheight/2), captionOfStack);
 
 
@@ -190,9 +192,6 @@ function scr_panelPane_drawTracker() {
 
 	
 		draw_set_alpha(1);
-		//if(not isTrackerOpen) {draw_set_alpha(0);}
-		// draw hidden stuff first y value will be changed if clicked on
-		//if(not obj_panelPane.showNav and not obj_toolPane.showTool) {
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeBG);
 		draw_rectangle(trackerX2 - Xdistance, yBase, trackerX2, yBase  + newYheight, false);
@@ -200,12 +199,11 @@ function scr_panelPane_drawTracker() {
 		draw_rectangle(trackerX2 - Xdistance, yBase, trackerX2, yBase  + newYheight, true);
 
 		// move counter text
-		draw_set_font(global.fontPanelTab);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(scr_get_translation("msg_move_counter"),"S");
 		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightCounterText, scr_get_translation("msg_move_counter")+ string(obj_control.moveCounter) +"");
 	
 		// timer text
-		draw_set_font(global.fontPanelTab);
 		draw_set_color(global.colorThemeText);
 		draw_text(trackerX2 - Xdistance + 5, yBase + currentYheightTimerText, scr_get_translation("msg_time_taken")+ displayMinutes + ":"+ displaySeconds );
 	
@@ -234,45 +232,20 @@ function scr_panelPane_drawTracker() {
 		draw_rectangle(trackerX2 - resetX1val, yBase + currentResetY1value, trackerX2 - resetX2val, yBase + currentResetY2value, true);
 
 		// reset text
-		draw_set_font(global.fontMainBold);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(scr_get_translation("label_reset"), "L");
 		draw_text(trackerX2 - resetX1val + 7, yBase + currentYheightResetText, scr_get_translation("label_reset"));
-	//}
+
 	
 
 
 		//now draw reztracker box
 		draw_set_halign(fa_left);
 		draw_set_alpha(1);
-	
-		/*var mouseOverTrackerButton = false;
-		// Check for mouse location over "RezTracker" button and check for open/close button
-		if (point_in_rectangle(mouse_x, mouse_y, trackerX2 - Xdistance, camera_get_view_height(camera_get_active()) - Ydistance, trackerX2, camera_get_view_height(camera_get_active()))) {
-			mouseOverTrackerButton = true;
-			if (device_mouse_check_button_released(0, mb_left)) {
-				isTrackerOpen = !isTrackerOpen ;
-			}
-		}*/
 
 		draw_set_colour(global.colorThemePaneBG);
 	
-		/*if(mouseOverTrackerButton){
-			draw_set_colour(c_gray);
-		}
-		draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(camera_get_active()) - Ydistance, trackerX2, camera_get_view_height(camera_get_active()), false);
-		draw_set_alpha(1);
-		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(trackerX2 - Xdistance, camera_get_view_height(camera_get_active()) - Ydistance, trackerX2, camera_get_view_height(camera_get_active()), true);
-
-
-		draw_set_font(fnt_mainBold);
-
-
-		draw_set_colour(global.colorThemeText);
-	
-		draw_text(trackerX2 - Xdistance + 5, camera_get_view_height(camera_get_active()) - Ydistance +15, "Rez Tracker");*/
-	
-
+		
 
 		// bring up background interface
 		//if (isTrackerOpen) {

@@ -20,11 +20,12 @@ function scr_gridListWindow() {
 	draw_set_alpha(1);
 	draw_rectangle(gridListInfoWindowRectX1, gridListInfoWindowRectY1, gridListInfoWindowRectX2, gridListInfoWindowRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
+
 	draw_set_halign(fa_left);
 
 	draw_set_valign(fa_middle);
 	var currentgridListString = scr_getGridNameString(currentGrid);
+	scr_adaptFont(string(currentgridListString), "L");
 	draw_text(gridListInfoWindowRectX1, gridListInfoWindowRectY1 - string_height("0"), "Current Grid: " + string(currentgridListString));
 
 
@@ -84,7 +85,7 @@ function scr_gridListWindow() {
 
 	// draw all exception lines
 	var plusY = buttonSize;
-	draw_set_font(global.fontChainContents);
+
 	var gridListtringListSize = ds_list_size(obj_gridViewer.gridList);
 	for (var i = 0; i < gridListtringListSize; i++) {
 		
@@ -126,6 +127,7 @@ function scr_gridListWindow() {
 		draw_set_alpha(1);
 		draw_line(currentCellX1 - clipX , currentCellY2 + scrollPlusY - clipY , currentCellX2 - clipX, currentCellY2 - clipY + scrollPlusY);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(string(currentgridListString), "M");
 		draw_text(floor(currentCellX1 + global.scrollBarWidth + 10) - clipX, floor(mean(currentCellY1,currentCellY2)) - clipY + scrollPlusY, string(currentgridListString));
 	
 

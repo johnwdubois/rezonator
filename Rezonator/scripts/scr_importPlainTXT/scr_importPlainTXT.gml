@@ -26,7 +26,7 @@ function scr_importPlainTXT(filename) {
 		var col = 0;
 
 	
-		if (string_length(string_lettersdigits(lineInFile)) < 1) {
+		if (scr_isStrOnlyWhitespace(lineInFile)) {
 			
 			if(global.importType == global.importType_Paragraph){
 				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);

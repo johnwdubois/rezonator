@@ -4,111 +4,142 @@ function scr_fontGlobalUpdate() {
 
 	switch (global.fontSize) {
 		case 0:
-			global.fontMain = fnt_main;
-			global.fontMainBold = fnt_main;
-			global.fontChainContents = fnt_chainContents;
-			global.fontChainList = fnt_main;
-			global.fontChainListFocused = fnt_main;
-			global.fontPanelTab = fnt_panelTab;
-	//		global.fontSortPane = fnt_sortPane;
-			global.fontGridView = fnt_gridView;
-			//global.fontGridView = fnt_gridViewLarge2;
+			if (global.lang_codes[| global.lang_index] == "zh" or global.lang_codes[| global.lang_index] == "ja" ) {
+				global.fontMain = global.localeCJK_M_0;
+				global.fontMainBold = global.localeCJK_M_0;
+				global.fontChainContents = global.localeCJK_S_0;
+				global.fontChainList = global.localeCJK_M_0;
+				global.fontChainListFocused = global.localeCJK_S_0;
+				global.fontPanelTab = global.localeCJK_S_0;
+				global.fontGridView = global.localeCJK_S_0;
+			}
+			else{
+				global.fontMain = global.localeEN_M_0;
+				global.fontMainBold = global.localeEN_M_0;
+				global.fontChainContents = global.localeEN_S_0;
+				global.fontChainList = global.localeEN_M_0;
+				global.fontChainListFocused = global.localeEN_S_0;
+				global.fontPanelTab = global.localeEN_S_0;
+				global.fontGridView = global.localeEN_S_0;
+			}
 			break;
 		case 1:
-			global.fontMain = fnt_mainLarge1;
-			global.fontMainBold = fnt_mainLarge1;
-			global.fontChainContents = fnt_chainContentsLarge1;
-			global.fontChainList = fnt_mainLarge1;
-			global.fontChainListFocused = fnt_mainLarge1;
-			global.fontPanelTab = fnt_panelTabLarge1;
-	//		global.fontSortPane = fnt_sortPaneLarge1;
-			global.fontGridView = fnt_gridViewLarge1;
-			//global.fontGridView = fnt_gridViewLarge2;
+			if (global.lang_codes[| global.lang_index] == "zh" or global.lang_codes[| global.lang_index] == "ja" ) {
+				global.fontMain = global.localeCJK_M_1;
+				global.fontMainBold = global.localeCJK_M_1;
+				global.fontChainContents = global.localeCJK_S_1;
+				global.fontChainList = global.localeCJK_M_1;
+				global.fontChainListFocused = global.localeCJK_S_1;
+				global.fontPanelTab = global.localeCJK_S_1;
+				global.fontGridView = global.localeCJK_S_1;
+			}
+			else{
+				global.fontMain = global.localeEN_M_1;
+				global.fontMainBold = global.localeEN_M_1;
+				global.fontChainContents = global.localeEN_S_1;
+				global.fontChainList = global.localeEN_M_1;
+				global.fontChainListFocused = global.localeEN_S_1;
+				global.fontPanelTab = global.localeEN_S_1;
+				global.fontGridView = global.localeEN_S_1;
+			}
 			break;
 		case 2:
-			global.fontMain = fnt_mainLarge2;
-			global.fontMainBold = fnt_mainLarge2;
-			global.fontChainContents = fnt_chainContentsLarge2;
-			global.fontChainList = fnt_mainLarge2;
-			global.fontChainListFocused = fnt_mainLarge2;
-			global.fontPanelTab = fnt_panelTabLarge2;
-	//		global.fontSortPane = fnt_sortPaneLarge1;
-			global.fontGridView = fnt_gridViewLarge2;
+			if (global.lang_codes[| global.lang_index] == "zh" or global.lang_codes[| global.lang_index] == "ja" ) {
+				global.fontMain = global.localeCJK_M_2;
+				global.fontMainBold = global.localeCJK_M_2;
+				global.fontChainContents = global.localeCJK_S_2;
+				global.fontChainList = global.localeCJK_M_2;
+				global.fontChainListFocused = global.localeCJK_S_2;
+				global.fontPanelTab = global.localeCJK_S_2;
+				global.fontGridView = global.localeCJK_S_2;
+			}
+			else{
+				global.fontMain = global.localeEN_M_2;
+				global.fontMainBold = global.localeEN_M_2;
+				global.fontChainContents = global.localeEN_S_2;
+				global.fontChainList = global.localeEN_M_0;
+				global.fontChainListFocused = global.localeEN_S_2;
+				global.fontPanelTab = global.localeEN_S_2;
+				global.fontGridView = global.localeEN_S_2;
+			}
 			break;
 		case 3:
-			global.fontMain = fnt_mainLarge3;
-			global.fontMainBold = fnt_mainLarge3;
-			global.fontChainContents = fnt_chainContentsLarge3;
-			global.fontChainList = fnt_mainLarge3;
-			global.fontChainListFocused = fnt_mainLarge3;
-			global.fontPanelTab = fnt_panelTabLarge3;
-	//		global.fontSortPane = fnt_sortPaneLarge1;
-			global.fontGridView = fnt_gridViewLarge3;
+			if (global.lang_codes[| global.lang_index] == "zh" or global.lang_codes[| global.lang_index] == "ja" ) {
+				global.fontMain = global.localeCJK_M_3;
+				global.fontMainBold = global.localeCJK_M_3;
+				global.fontChainContents = global.localeCJK_S_3;
+				global.fontChainList = global.localeCJK_M_3;
+				global.fontChainListFocused = global.localeCJK_S_3;
+				global.fontPanelTab = global.localeCJK_S_3;
+				global.fontGridView = global.localeCJK_S_3;
+			}
+			else{
+				global.fontMain = global.localeEN_M_3;
+				global.fontMainBold = global.localeEN_M_3;
+				global.fontChainContents = global.localeEN_S_3;
+				global.fontChainList = global.localeEN_M_3;
+				global.fontChainListFocused = global.localeEN_S_3;
+				global.fontPanelTab = global.localeEN_S_3;
+				global.fontGridView = global.localeEN_S_3;
+			}
 			break;
 		case 4:
-			global.fontMain = fnt_mainLarge4;
-			global.fontMainBold = fnt_mainLarge4;
-			global.fontChainContents = fnt_chainContentsLarge4;
-			global.fontChainList = fnt_mainLarge4;
-			global.fontChainListFocused = fnt_mainLarge4;
-			global.fontPanelTab = fnt_panelTabLarge4;
-	//		global.fontSortPane = fnt_sortPaneLarge1;
-			global.fontGridView = fnt_gridViewLarge4;
+			if (global.lang_codes[| global.lang_index] == "zh" or global.lang_codes[| global.lang_index] == "ja" ) {
+				global.fontMain = global.localeCJK_M_4;
+				global.fontMainBold = global.localeCJK_M_4;
+				global.fontChainContents = global.localeCJK_S_4;
+				global.fontChainList = global.localeCJK_M_4;
+				global.fontChainListFocused = global.localeCJK_S_4;
+				global.fontPanelTab = global.localeCJK_S_4;
+				global.fontGridView = global.localeCJK_S_4;
+			}
+			else{
+				global.fontMain = global.localeEN_M_4;
+				global.fontMainBold = global.localeEN_M_4;
+				global.fontChainContents = global.localeEN_S_4;
+				global.fontChainList = global.localeEN_M_4;
+				global.fontChainListFocused = global.localeEN_S_4;
+				global.fontPanelTab = global.localeEN_S_4;
+				global.fontGridView = global.localeEN_S_4;
+			}
 			break;
 		case 5:
-			global.fontMain = fnt_mainLarge5;
-			global.fontMainBold = fnt_mainLarge5;
-			global.fontChainContents = fnt_chainContentsLarge5;
-			global.fontChainList = fnt_mainLarge5;
-			global.fontChainListFocused = fnt_mainLarge5;
-			global.fontPanelTab = fnt_panelTabLarge5;
-	//		global.fontSortPane = fnt_sortPaneLarge1;
-			global.fontGridView = fnt_gridViewLarge5;
+			if (global.lang_codes[| global.lang_index] == "zh" or global.lang_codes[| global.lang_index] == "ja" ) {
+				global.fontMain = global.localeCJK_M_5;
+				global.fontMainBold = global.localeCJK_M_5;
+				global.fontChainContents = global.localeCJK_S_5;
+				global.fontChainList = global.localeCJK_M_5;
+				global.fontChainListFocused = global.localeCJK_S_5;
+				global.fontPanelTab = global.localeCJK_S_5;
+				global.fontGridView = global.localeCJK_S_5;
+			}
+			else{
+				global.fontMain = global.localeEN_M_5;
+				global.fontMainBold = global.localeEN_M_5;
+				global.fontChainContents = global.localeEN_S_5;
+				global.fontChainList = global.localeEN_M_5;
+				global.fontChainListFocused = global.localeEN_S_5;
+				global.fontPanelTab = global.localeEN_S_5;
+				global.fontGridView = global.localeEN_S_5;
+			}
 			break;
 		default:
-			global.fontMain = fnt_main;
-			global.fontMainBold = fnt_main;
-			global.fontChainContents = fnt_chainContents;
-			global.fontChainList = fnt_main;
-			global.fontChainListFocused = fnt_main;
-			global.fontPanelTab = fnt_panelTab;
-			global.fontSortPane = fnt_sortPane;
-			global.fontGridView = fnt_gridView;
+		
+			global.fontMain = global.localeEN_M_0;
+			global.fontMainBold = global.localeEN_M_0;
+			global.fontChainContents = global.localeEN_S_0;
+			global.fontChainList = global.localeEN_M_0;
+			global.fontChainListFocused = global.localeEN_S_0;
+			global.fontPanelTab = global.localeEN_S_0;
+			global.fontGridView = global.localeEN_S_0;
+			global.fontSortPane = global.localeEN_S_0;
+			
 			break;
 	}
 	
-	if (global.lang_codes[| global.lang_index] == "zh" ) {
-			global.fontMain = global.localeSC;
-			global.fontMainBold = global.localeSC;
-			global.fontChainContents = global.localeSC;
-			global.fontChainList = global.localeSC;
-			global.fontChainListFocused = global.localeSC;
-			global.fontPanelTab = global.localeSC;
-			global.fontSortPane = global.localeSC;
-			global.fontGridView = global.localeSC;
-	}
+
 	
-	if (global.lang_codes[| global.lang_index] == "ja" ) {
-			global.fontMain = global.localeJA;
-			global.fontMainBold = global.localeJA;
-			global.fontChainContents = global.localeJA;
-			global.fontChainList = global.localeJA;
-			global.fontChainListFocused = global.localeJA;
-			global.fontPanelTab = global.localeJA;
-			global.fontSortPane = global.localeJA;
-			global.fontGridView = global.localeJA;
-	}
-	
-	if (global.lang_codes[| global.lang_index] == "he" ) {
-			global.fontMain = global.localeHE;
-			global.fontMainBold = global.localeHE;
-			global.fontChainContents = global.localeHE;
-			global.fontChainList = global.localeHE;
-			global.fontChainListFocused = global.localeHE;
-			global.fontPanelTab = global.localeHE;
-			global.fontSortPane = global.localeHE;
-			global.fontGridView = global.localeHE;
-	}
+
 
 
 }

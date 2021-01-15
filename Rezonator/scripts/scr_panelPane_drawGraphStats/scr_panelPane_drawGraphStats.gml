@@ -21,12 +21,11 @@ function scr_panelPane_drawGraphStats() {
 	draw_set_color(c_black);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	draw_set_font(fnt_searchPaneBold);
+	scr_adaptFont(scr_get_translation("label_graph_stats"), "M");
 
 	draw_line(x, y + textMarginTop + 12, x + windowWidth, y + textMarginTop + 12);
 	draw_text(x + textMarginLeft, y + textMarginTop, scr_get_translation("label_graph_stats"));
 
-	draw_set_font(fnt_searchPane);
 
 	var textPlusY = 0;
 
@@ -34,7 +33,7 @@ function scr_panelPane_drawGraphStats() {
 		var textY = y + (textMarginTop * 2) + textPlusY;
 	
 		if(obj_control.hoverWordID > 0) {
-			var hoveredWordUnitID = obj_control.hoverWordID - 1;
+		var hoveredWordUnitID = obj_control.hoverWordID - 1;
 		var hoveredWord = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, hoveredWordUnitID );
 		var hoveredWordVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, hoveredWordUnitID );
 	
@@ -47,6 +46,7 @@ function scr_panelPane_drawGraphStats() {
 	
 		draw_set_alpha(1);
 		draw_set_color(c_black);
+		scr_adaptFont(scr_get_translation("label_word"), "S");
 		draw_text(textX, textY, scr_get_translation("label_word") + hoveredWord);
 	
 		textX = x + textMarginLeft;

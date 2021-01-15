@@ -23,7 +23,7 @@ function scr_importTXTExceptions() {
 			}
 	
 			var lineInFile = ds_grid_get(global.importTXTLineGrid, global.importTXTLineGrid_colLine, i);
-			if (string_length(string_lettersdigits(lineInFile)) < 1) {
+			if (scr_isStrOnlyWhitespace(lineInFile)) {
 				blankRow = true;
 				lineInCluster = 0;
 				if (firstCluster) {

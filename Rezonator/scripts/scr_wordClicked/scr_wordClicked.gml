@@ -17,8 +17,8 @@ function scr_wordClicked(wordID, unitID) {
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
 		var shouldExit = true;
-		if(obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)){
-			if(obj_dialogueBox.combineChains){
+		if (obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)) {
+			if (obj_dialogueBox.combineChains) {
 				shouldExit = false;	
 			}
 		}
@@ -41,8 +41,8 @@ function scr_wordClicked(wordID, unitID) {
 	}
 
 	// Safety check, but allows for Chunks/newWords
-	if(wordID < 0 or wordID > ds_grid_height(obj_control.dynamicWordGrid)) {
-		exit;	
+	if (wordID < 0 or wordID > ds_grid_height(obj_control.dynamicWordGrid)) {
+		exit;
 	}
 
 	// if we are not on rez-tool, track-tool, or stack-tool, leave this script
@@ -64,12 +64,11 @@ function scr_wordClicked(wordID, unitID) {
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 		ds_list_add(fakeInChainsList, ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1));
 		var inChainsList = fakeInChainsList;
-	//	show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
 	}
 	else {
 		var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
 	}
-	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
 		var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
 	}
 	
@@ -87,10 +86,12 @@ function scr_wordClicked(wordID, unitID) {
 				var rowInChainGrid = ds_grid_value_y(currentChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(currentChainGrid), currentChainID);
 				ds_grid_set(currentChainGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
 				currentFocusedChainID = currentChainID;
-		
-				with(obj_panelPane) {
-					currentTopViewRow = ((currentChainID - 2) > 2) ? (currentChainID - 2) : 0;	
+				var newTop = rowInChainGrid + 1;
+				show_debug_message("scr_wordClicked() ... newTop: " + string(newTop));
+				with (obj_panelPane) {
+					currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
 				}
+				show_debug_message("scr_wordClicked() ... obj_panelPane.currentTopViewRow: " + string(obj_panelPane.currentTopViewRow));
 		
 				var rowInLinkGrid = -1;
 				if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
@@ -135,47 +136,11 @@ function scr_wordClicked(wordID, unitID) {
 							functionChainContents_hop = wordID;
 						}
 					}
-			
+					
+					scr_refocusChainEntry(wordID);
 					exit;
 				}
 			}
-			// Out of comission until Jack says otherwise
-			/*else {
-				if(!obj_control.layerLinkAllow) {
-				
-					// Before we do the safety check for layered links, we make sure it's not a stub.
-					// Get the opposite chan grid
-					var oppositeChainGrid = (currentChainGrid == rezChainGrid) ? trackChainGrid : rezChainGrid;
-				
-					// Check if this chain is in the opposite grid
-					var oppositeChainRow = ds_grid_value_y(oppositeChainGrid, chainGrid_colChainID, 0, chainGrid_colChainID, ds_grid_height(oppositeChainGrid), currentChainID);
-					if(oppositeChainRow >= 0 and oppositeChainRow < ds_grid_height(oppositeChainGrid)) {
-						var oppositeChainList = ds_grid_get(oppositeChainGrid, chainGrid_colWordIDList, oppositeChainRow);
-					
-						// If then chain is in the opposite list, and it's not a stub, issue the warning
-						if (ds_list_size(oppositeChainList) > 1 ) {
-						
-							// Make sure the user wants to layer links of different types
-							if (!instance_exists(obj_dialogueBox)) {
-								instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-								obj_dialogueBox.layerLink = true;
-								obj_dialogueBox.questionWindowActive = true;
-							}
-							// gonna have to exit this program and come back to it if they say yes
-							obj_control.layerLinkWordID = wordID;
-							obj_control.layerLinkUnitID = unitID;
-				
-							exit; 
-						}
-					}
-				}
-				else {
-					//show_message("yep");
-					obj_control.layerLinkAllow = false;
-					obj_control.layerLinkWordID = -1;
-					obj_control.layerLinkUnitID = -1;
-				}
-			}*/
 		}
 	}
 
@@ -187,7 +152,8 @@ function scr_wordClicked(wordID, unitID) {
 			// Find the value of the current Chunk
 			var currentChunkID = ds_list_find_value(inChunkList, i);
 			var rowInChainGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
-			if(rowInChainGrid < 0) {
+			if (rowInChainGrid < 0) {
+				scr_refocusChainEntry(wordID);
 				exit;
 			}
 			var currentChunkWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, rowInChainGrid);
@@ -211,13 +177,14 @@ function scr_wordClicked(wordID, unitID) {
 			//show_message(string(currentChunkWordID));
 			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
 			currentFocusedChunkID = currentChunkID;
+			scr_refocusChainEntry(wordID);
 			exit;
 
 			
 		}
 	}
 	else {
-		//show_message("okay");
+
 		// if there is not a focused chain, we create a new chain
 		if (not ds_grid_value_exists(currentChainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(currentChainGrid), chainStateFocus)) {
 			scr_newChain(wordID, unitID);
@@ -225,7 +192,8 @@ function scr_wordClicked(wordID, unitID) {
 
 		// add new link and refresh chain grid
 		scr_newLink(wordID, -1);
-		scr_refreshChainGrid();
+		scr_refreshChainGrid(wordID);
+		
 
 
 		// update the list of chains that this word is in
@@ -242,6 +210,13 @@ function scr_wordClicked(wordID, unitID) {
 	}
 	ds_list_destroy(fakeInChainsList);
 	obj_control.allSaved = false;
+	
+	
+	scr_refocusChainEntry(wordID);
+	
+	
+	
+
 
 
 }

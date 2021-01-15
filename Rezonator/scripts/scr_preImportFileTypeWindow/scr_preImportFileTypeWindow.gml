@@ -8,11 +8,11 @@ function scr_preImportFileTypeWindow(){
 	
 	
 	
-	draw_set_font(global.fontMain);
+
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
-	var strHeight = string_height("A");
+	var strHeight = string_height("0");
 	var radioButtonRad = strHeight * 0.5;
 	
 	///////////// FILE TYPE WINDOW ////////////////
@@ -101,6 +101,7 @@ function scr_preImportFileTypeWindow(){
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
 				draw_set_halign((j == obj_openingScreen.preImportInfoGrid_colFile) ? fa_right : fa_left);
+				scr_adaptFont(headerText, "M");
 				draw_text(headerX, headerY, headerText);
 			}
 			
@@ -159,6 +160,7 @@ function scr_preImportFileTypeWindow(){
 				draw_set_halign((j == obj_openingScreen.preImportInfoGrid_colFile) ? fa_right : fa_left);
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
+				scr_adaptFont(text, "M");
 				draw_text(textX, textY, text);
 			}
 		}
@@ -189,10 +191,11 @@ function scr_preImportFileTypeWindow(){
 	//scr_surfaceEnd();
 	
 	// draw window title
-	draw_set_font(global.fontMain);
+
 	draw_set_halign(fa_left);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
+	scr_adaptFont( scr_get_translation("msg_choose_import"), "M");
 	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), scr_get_translation("msg_choose_import"));
 	
 

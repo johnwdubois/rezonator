@@ -6,10 +6,10 @@ function scr_importPlainTextDraw() {
 
 	// Import Screen Title
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("msg_plain-import"), "L");
 	draw_text(20 + sprite_get_width(spr_backArrow), 20, scr_get_translation("msg_plain-import"));
 
 
@@ -24,12 +24,12 @@ function scr_importPlainTextDraw() {
 	draw_set_alpha(1);
 	draw_rectangle(fileInfoWindowRectX1, fileInfoWindowRectY1, fileInfoWindowRectX2, fileInfoWindowRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("msg_file"), "L");
 	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), scr_get_translation("msg_file"));
 
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("msg_file-name"), "M");
 	draw_text(fileInfoWindowRectX1 + 20, fileInfoWindowRectY1 + string_height("0"), scr_get_translation("msg_file-name") + filename_name(global.importFilename));
 
 
@@ -57,12 +57,12 @@ function scr_importPlainTextDraw() {
 	draw_rectangle(summaryInfoWindowRectX1, summaryInfoWindowRectY1, summaryInfoWindowRectX2, summaryInfoWindowRectY2, true);
 	draw_rectangle(parEntryWindowRectX1, parEntryWindowRectY1, parEntryWindowRectX2, parEntryWindowRectY2, true);
 	draw_set_color(global.colorThemeText);
-	draw_set_font(global.fontMainBold);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("menu_summary"), "L");
 	draw_text(summaryInfoWindowRectX1, summaryInfoWindowRectY1 - string_height("0"), scr_get_translation("menu_summary"));
 
-	draw_set_font(global.fontMain);
+	scr_adaptFont(scr_get_translation("label_total_lines_found"), "M");
 	draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0"), scr_get_translation("label_total_lines_found") + string(ds_grid_height(global.importGrid)));
 	draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + string_height("0")*3, scr_get_translation("msg_input_speaker"));
 	//draw_text(summaryInfoWindowRectX1 + 20, summaryInfoWindowRectY1 + (string_height("0") * 2.5), "Tags found: " + string(ds_grid_height(tagInfoGrid)));
@@ -249,9 +249,9 @@ function scr_importPlainTextDraw() {
 	draw_set_alpha(1);
 	draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, true);
 
-	draw_set_font(global.fontMain);
 	draw_set_halign(fa_center);
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont(scr_get_translation("msg_continue"), "M");
 	draw_text(mean(continueButtonRectX1, continueButtonRectX2), mean(continueButtonRectY1, continueButtonRectY2), scr_get_translation("msg_continue"));
 
 

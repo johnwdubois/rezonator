@@ -6,7 +6,7 @@
 //rectY1 = obj_menuBar.menuHeight + obj_toolPane.windowHeight + 50;
 //rectX2 = camera_get_view_width(camera_get_active()) - 45;
 //rectY2 = 180 + rectY1;//
-draw_set_font(global.fontMainBold);
+scr_adaptFont(popUpText1,"L");
 rectX2 = rectX1 + 60 + string_width("Track mode (to mark coreference between mentions)");
 rectY2 = 40 + rectY1 + string_height(popUpText2) + (string_height(popUpText1) * 2);
 var bubblePlus = obj_control.wordDrawGridFocusedAnimation;
@@ -23,11 +23,11 @@ draw_text(floor(mean(rectX1,  rectX2)), floor(20 + rectY1), popUpText1);
 draw_line_width(rectX1 + 30, 35 + rectY1,  rectX2 - 30, 35 + rectY1, 3);
 	
 	
-draw_set_font(global.fontMain);
+scr_adaptFont(popUpText2,"M");
 draw_text( floor(mean(rectX1, rectX2)), floor(mean(rectY1 + 20, rectY2)), popUpText2);
 
 var largeHeight = string_height(popUpText1);
-draw_set_font(global.fontMain);
+
 var standardHeight = string_height(popUpText1);
 var spriteRatio = largeHeight/standardHeight;
 var spriteSize = 0.25 * spriteRatio;
@@ -46,9 +46,9 @@ draw_sprite_ext(spr_alertArrow, 0, camera_get_view_width(camera_get_active()) - 
 
 
 draw_set_colour(global.colorThemeText);
-draw_set_font(global.fontMain);
-//draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), scr_get_translation("msg_no-show"));
-draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), "Don't show again");
+scr_adaptFont(scr_get_translation("msg_no-show"), "S");
+draw_text(floor(mean(rectX1, rectX2)), floor(rectY2 - largeHeight + 10), scr_get_translation("msg_no-show"));
+
 
 
 var buttonX1 = floor(mean(rectX1, rectX2) - (string_width("Don't show again")/2 + 25));

@@ -16,6 +16,8 @@ function scr_newChain(wordID, unitID) {
 
 	var chainGrid = currentChainGrid;
 	var chainName = "";
+	var chainSeq = 0;
+	var chainType = "";
 
 	var aligned = false;
 
@@ -27,7 +29,9 @@ function scr_newChain(wordID, unitID) {
 			}
 			aligned = true;
 			rezChainNameCounter++;
+			chainSeq = rezChainNameCounter;
 			chainName = currentChainName + " " + string(rezChainNameCounter);
+			chainType = "rezChain";
 			if(obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
 				obj_control.shape = obj_control.shapeBlock;
@@ -38,7 +42,9 @@ function scr_newChain(wordID, unitID) {
 				functionChainList_currentTab = functionChainList_tabTrackBrush;
 			}
 			trackChainNameCounter++;
+			chainSeq = trackChainNameCounter;
 			chainName = currentChainName + " " + string(trackChainNameCounter);
+			chainType = "trackChain";
 			break;
 		case obj_toolPane.toolStackBrush:
 			if (ds_grid_height(obj_chain.unitInStackGrid) < ds_grid_height(obj_control.unitGrid)) {
@@ -48,27 +54,29 @@ function scr_newChain(wordID, unitID) {
 				functionChainList_currentTab = functionChainList_tabStackBrush;
 			}
 			stackChainNameCounter++;
+			chainSeq = stackChainNameCounter;
 			chainName = currentChainName + " " + string(stackChainNameCounter);
+			chainType = "stackSet";
 			break;
 		case obj_toolPane.toolPlaceChains:
 			placeChainNameCounter++;
+			chainSeq = placeChainNameCounter;
 			chainName = currentChainName + " " + string(placeChainNameCounter);
+			chainType = "placeChain";
 		default:
 			exit;
 	}
 
 
-	// resize the chainGrid properly (the stackChainGrid gets +2 width because of Caption and StackType)
+	// resize the chainGrid properly (the stackChainGrid gets +5 width because of Caption, StackType, and tag columns)
 	var currentChainGridWidth = (chainGrid == obj_chain.stackChainGrid) ? chainGridWidth + 5 : chainGridWidth;
 	ds_grid_resize(chainGrid, currentChainGridWidth, ds_grid_height(chainGrid) + 1);
-
-
 	var currentRowChainGrid = ds_grid_height(chainGrid) - 1;
-	if (obj_chain.currentChainID == undefined){
-		obj_chain.currentChainID = 0;
-	}
-	obj_chain.currentChainID++;
-	//var chainIDType = ds_grid_height(chainGrid) - 1;
+	
+	
+	// get random hex chainID
+	obj_chain.currentChainID = scr_addToNodeMap(chainType);
+
 	var wordIDList = ds_list_create();
 
 	// if we are creating a stack, add the new stack to unitInStackGrid
@@ -76,11 +84,9 @@ function scr_newChain(wordID, unitID) {
 		ds_list_add(wordIDList, unitID);
 	
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, obj_chain.currentChainID);
-		//show_message(unitID);
-		//show_message(obj_chain.currentChainID);
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, unitID - 1, obj_control.activeStackType);
-		if(not obj_control.quickStackAbleToInitiate){
-			obj_control.moveCounter ++;
+		if (not obj_control.quickStackAbleToInitiate) {
+			obj_control.moveCounter++;
 		}
 	}
 	else {
@@ -112,7 +118,13 @@ function scr_newChain(wordID, unitID) {
 	ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
 	ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
 	ds_grid_set(chainGrid, chainGrid_colAuthor, currentRowChainGrid, global.userName);
-	//ds_grid_set(chainGrid, chainGrid_colShow, currentRowChainGrid, true);
+	ds_grid_set(chainGrid, chainGrid_colChainSeq, currentRowChainGrid, chainSeq);
+	
+	// set values in nodeMap
+	scr_nodeMapSetChainValues(currentChainID, wordIDList, chainName, chainColor);
+	
+	
+	
 	if (chainGrid == obj_chain.stackChainGrid) {
 		ds_grid_set(chainGrid, chainGrid_colCaption, currentRowChainGrid, "");
 		ds_grid_set(chainGrid, chainGrid_colStackType, currentRowChainGrid, obj_control.activeStackType);
@@ -121,10 +133,10 @@ function scr_newChain(wordID, unitID) {
 	}
 
 	currentFocusedChainID = currentChainID;
-	var newTop = currentChainID;
+	var newTop = currentRowChainGrid + 1;
 	with(obj_panelPane) {
-				currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
-			}
+		currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
+	}
 
 	with (obj_panelPane) {
 		functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;

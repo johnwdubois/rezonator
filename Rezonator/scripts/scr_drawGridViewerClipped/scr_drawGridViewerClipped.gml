@@ -65,7 +65,7 @@ function scr_drawGridViewerClipped() {
 
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(windowX1 - clipX, windowY1 - clipY, windowX1 - clipX, windowY2 - clipY, false);
-	draw_set_font(global.fontGridView);
+	
 
 
 	var currentItemString = " ";
@@ -121,7 +121,7 @@ function scr_drawGridViewerClipped() {
 				textPlusY += strHeight;
 				continue;
 			}
-			if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight + strHeight) {
+			if (windowY1 + colNameHeight + scrollPlusY + textPlusY > windowY1 + windowHeight  - global.scrollBarWidth + strHeight) {
 				textPlusY += strHeight;
 				break;
 			}
@@ -166,6 +166,7 @@ function scr_drawGridViewerClipped() {
 		
 		
 			draw_set_color(global.colorThemeText);
+			scr_adaptFont(currentItemString, "S");
 			draw_text(textX - clipX, textY - clipY, currentItemString);
 		
 			if (gridLoopCol == ds_grid_width(grid) - 1) {
@@ -208,6 +209,7 @@ function scr_drawGridViewerClipped() {
 			draw_rectangle(colNameX - clipX, windowY1 - clipY, windowX2 - clipX, windowY1 + colNameHeight - clipY, false);
 	
 			draw_set_color(global.colorThemeText);
+			scr_adaptFont(colName, "S");
 			draw_text(colNameX - clipX, windowY1 + (colNameHeight / 2) - clipY, colName);
 		}
 	}
@@ -286,7 +288,7 @@ function scr_drawGridViewerClipped() {
 		}
 	
 	
-		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2)) {
+		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, windowY1 + colNameHeight, colX + 3, windowY2 - global.scrollBarWidth)) {
 			window_set_cursor(cr_size_we);
 			draw_set_alpha(0.8);
 		
@@ -373,109 +375,32 @@ function scr_drawGridViewerClipped() {
 	draw_set_alpha(1);
 
 
-
-/*
-	// Grid change dropDown button
-	draw_set_font(global.fontMain);
-	var dropDownButtonStr = "Grid: " + scr_getGridNameString(grid) + "      ";
-	var dropDownButtonX1 = 20;
-	var dropDownButtonY1 = obj_menuBar.menuHeight + 30;
-	var dropDownButtonX2 = dropDownButtonX1 + string_width(dropDownButtonStr) + sprite_get_width(spr_dropDown);
-	var dropDownButtonY2 = windowY1 - 60;
-	var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
-
-
-
-	draw_set_color(mouseoverDropDownButton ? global.colorThemeSelected1 : global.colorThemeBG);
-	draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2, false);
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2, true);
-
-	draw_set_halign(fa_left);
-	draw_text(dropDownButtonX1 + 20, floor(mean(dropDownButtonY1, dropDownButtonY2)), dropDownButtonStr);
-
-	draw_sprite(spr_dropDown, 0, dropDownButtonX2 - sprite_get_width(spr_dropDown), floor(mean(dropDownButtonY1, dropDownButtonY2)));
-	if (mouseoverDropDownButton && mouse_check_button_released(mb_left)) {
-	
-	    var dropDownOptionList = ds_list_create();
-
-	    // copy all grid names from gridList to dropDownOptionList
-		var gridListSize = ds_list_size(gridList);
-		for (var i = 0; i < gridListSize; i++) {
-			var currentGrid = ds_list_find_value(gridList, i);
-			ds_list_add(dropDownOptionList, scr_getGridNameString(currentGrid));
-		}
-
-	    if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-			scr_createDropDown(dropDownButtonX1, dropDownButtonY2, dropDownOptionList, global.optionListTypeGridViewerSelectGrid);
-	    }
-	
-	}
-
-*/
-
 	// draw the current mouseover item
-	draw_set_font(global.fontMain);
-	var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): " + focusedItemString;
-	var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): " + mouseoverItemString;	
-
+	var highlightText = "Highlighted Cell: (" + string(floor(focusedCol)) + ", " + string(floor(focusedRow)) + "): ";
+	var mouseOverText = "MouseOver Cell: (" + string(floor(mouseoverCol)) + ", " + string(floor(mouseoverRow)) + "): ";	
+	scr_adaptFont(highlightText, "M");
+	
 	draw_set_alpha(0.3);
 	draw_set_color(c_yellow);
-	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2), windowX1 + string_width(highlightText) + 55, windowY1 - strHeight - 40 + (string_height("0") /2), false);
+	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2), windowX1 + string_width(highlightText), windowY1 - strHeight - 40 + (string_height("0") /2), false);
 	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2) - string_height("0"), windowX1 + string_width(mouseOverText) + 55, windowY1 - strHeight - 40 + (string_height("0") /2) - string_height("0"), false);
+	draw_rectangle(windowX1 - 5, windowY1 - strHeight - 40 - (string_height("0") /2) - string_height("0"), windowX1 + string_width(mouseOverText), windowY1 - strHeight - 40 + (string_height("0") /2) - string_height("0"), false);
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeText);
 
 
 	draw_text(windowX1, windowY1 - strHeight - 40, highlightText);
-
 	draw_text(windowX1, windowY1 - strHeight - 40 - string_height("0"), mouseOverText);
-
+	var textBuffer1 = string_width(highlightText);
+	var textBuffer2 = string_width(mouseOverText);
+	scr_adaptFont(string(focusedItemString),"S");
+	draw_text(windowX1 + textBuffer1 + 5, windowY1 - strHeight - 40, string(focusedItemString));
+	scr_adaptFont(string(mouseoverItemString),"S");
+	draw_text(windowX1 + textBuffer2 + 5, windowY1 - strHeight - 40- string_height("0"), string(mouseoverItemString));
+	scr_adaptFont(string(fps), "M");
 	draw_text(windowX1, windowY1 - strHeight - 40 - (string_height("0") * 2), "fps: " + string(fps));
 
-	//draw_text(windowX1, windowY2 + strHeight + 60 + string_height("0"), "gridViewColXHolding: " + string(gridViewColXHolding));
-	//draw_text(windowX1, windowY2 + strHeight + 80 + string_height("0"), "gridViewColPrevList: " + scr_getStringOfList(gridViewColPrevList));
-	//draw_text(windowX1, windowY2 + strHeight + 100 + string_height("0"), "gridViewColXHoldingDiff: " + string(gridViewColXHoldingDiff));
 
-
-
-	/* How the Nav Window does its thing
-	if (clickedIn) {	
-		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
-			
-			if (focusedChainRow > 0 and focusedChainRow < ds_grid_height(grid)) {
-				scr_unFocusAllChains();
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-				focusedChainRow--;
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
-				
-				if (focusedElementY <= y + textMarginTop + strHeight) {
-					scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
-				}
-			}
-			else {
-				scrollPlusYDest += 4;
-			}
-		}
-		
-		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
-			
-			if (focusedChainRow < ds_grid_height(grid) - 1 and focusedChainRow >= 0) {
-				scr_unFocusAllChains();
-				scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
-				focusedChainRow++;
-				ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
-				
-				if (focusedElementY >= y + windowHeight - strHeight) {
-					scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
-				}
-			}
-			else {
-				scrollPlusYDest -= 4;
-			}
-		}
-	*/
 	if(point_in_rectangle(mouse_x,mouse_y, windowX1, windowY1 ,windowX2, windowY2)){
 
 		if (not obj_control.mouseoverHelpPane and !instance_exists(obj_dropDown)) {

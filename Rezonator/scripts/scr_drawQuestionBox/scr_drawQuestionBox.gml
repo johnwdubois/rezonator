@@ -41,10 +41,10 @@ function scr_drawQuestionBox() {
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, true);
 		draw_set_colour(global.colorThemeText);
 	
-		draw_set_font(global.fontMain);
+		scr_adaptFont(string(game_display_name), "S");
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 15, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 15, string(game_display_name));
 	
-		draw_set_font(global.fontMain);
+		
 
 		// draw buttons for OK and Cancel
 		draw_set_colour(global.colorThemeBG);
@@ -56,7 +56,7 @@ function scr_drawQuestionBox() {
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 + 180 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 75 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 175 + buttonXOffset,camera_get_view_height(camera_get_active())/2 + 75 + buttonYOffset, true);
 		draw_set_colour(global.colorThemeText);
-		draw_set_font(global.fontMain);
+		scr_adaptFont(scr_get_translation("msg_yes"), "M");
 	
 		// draw button text
 		draw_text(camera_get_view_width(camera_get_active()) /2 + 30, camera_get_view_height(camera_get_active())/2 + 75, scr_get_translation("msg_yes"));
