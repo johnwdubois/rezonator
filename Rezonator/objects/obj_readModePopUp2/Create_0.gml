@@ -1,7 +1,8 @@
 /// @description Insert description here
 
-boxHeight = 300;
-boxWidth = 500;
+// WordTip box's dimensions
+boxHeight = 80;
+boxWidth = 100;
 
 
 var mouseOnWord;
