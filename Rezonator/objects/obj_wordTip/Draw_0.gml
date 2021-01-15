@@ -21,12 +21,20 @@ var wordDisplayString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dyn
 var wordCenterX = wordPixelX + (string_width(wordDisplayString)/2);
 
 var rectx1, recty1, rectx2, recty2; //rectangle points+
+//declare variables for stuff we wanna output
+var currentNodeID, currentTargetID, currentText, currentTranscript, 
+	currentPOS, currentDepRel, currentStartTIme, currentEndTime;
+	
+	currentText = ds_grid_get(global.tokenImportGrid, ds_list_find_index(global.tokenImportColNameList,"~text"), currentWordID-1);
 if(obj_toolPane.currentMode == obj_toolPane.modeRead){
 	rectx1 = wordPixelX + string_width(wordDisplayString);
 	recty1 = wordPixelY + string_height(wordDisplayString)/2;
 	rectx2 = rectx1 + 100;
 	recty2 = recty1 + 80;
-	draw_set_color(c_blue);
-	//draw_circle(wordCenterX, wordPixelY, 20, true);
-	draw_rectangle(rectx1,recty1,rectx2,recty2,false);
+	
+	draw_text(rectx2,recty2,currentText);
+	
+	
+	draw_set_color(c_gray);
+	draw_rectangle(rectx1,recty1,rectx2,recty2,true);
 }
