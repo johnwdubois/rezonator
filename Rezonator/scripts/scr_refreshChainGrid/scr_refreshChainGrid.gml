@@ -231,9 +231,11 @@ function scr_refreshChainGrid() {
 	
 	// go into nodeMap and update idList for this chain
 	var subMap = ds_map_find_value(global.nodeMap, chainID);
-	if (ds_exists(subMap, ds_type_map) && ds_exists(idList, ds_type_list)) {
-		if (ds_map_exists(subMap, "wordIDList")) {
-			ds_map_replace_list(subMap, "wordIDList", idList);
+	if(is_numeric(subMap) and is_numeric(idList) ){
+		if (ds_exists(subMap, ds_type_map) && ds_exists(idList, ds_type_list)) {
+			if (ds_map_exists(subMap, "wordIDList")) {
+				ds_map_replace_list(subMap, "wordIDList", idList);
+			}
 		}
 	}
 
