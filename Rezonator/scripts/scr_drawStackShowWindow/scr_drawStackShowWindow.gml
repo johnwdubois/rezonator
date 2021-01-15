@@ -124,7 +124,7 @@ function scr_drawStackShowWindow() {
 		
 				var dropDownOptionList = ds_list_create();
 		
-				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip");
+				ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption");
 		
 				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeChainList);

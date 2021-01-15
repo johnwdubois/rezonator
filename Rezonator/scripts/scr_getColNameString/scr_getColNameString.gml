@@ -360,6 +360,9 @@ function scr_getColNameString(grid, col) {
 			case obj_chain.trackSeqGrid_colChainName:
 				colName = "ChainName";
 				break;
+			case obj_chain.trackSeqGrid_colChainSeq:
+				colName = "ChainSeq";
+				break;
 			case obj_chain.trackSeqGrid_colTrackSeq:
 				colName = "TrackSeq";
 				break;
@@ -371,6 +374,9 @@ function scr_getColNameString(grid, col) {
 				break;
 			case obj_chain.trackSeqGrid_colTranscript:
 				colName = "Transcript";
+				break;
+			case obj_chain.trackSeqGrid_colUnitText:
+				colName = "UnitText";
 				break;
 			default:
 				break;
