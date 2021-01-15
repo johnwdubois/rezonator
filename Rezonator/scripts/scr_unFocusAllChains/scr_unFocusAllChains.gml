@@ -12,42 +12,40 @@ function scr_unFocusAllChains() {
 	
 		Author: Terry DuBois, Georgio Klironomos
 	*/
-
-	// Unfocus all rez chains
-	while (ds_grid_value_exists(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus))
-	{
-		var rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-		// Keep track of previously focused chains
-		obj_chain.oldRezFocus = rowInChainGrid;
-		if(rowInChainGrid >= 0){
-			ds_grid_set(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, rowInChainGrid, obj_chain.chainStateNormal);
-		}
+	
+	// unfocus the current focused chain (if there is one)
+	obj_chain.currentFocusedChainID = "";
+	
+	// get all of the chainLists
+	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
+	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
+	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	var rezChainListSize = ds_list_size(rezChainList);
+	var trackChainListSize = ds_list_size(trackChainList);
+	var stackChainListSize = ds_list_size(stackChainList);
+	
+	// loop through the chainLists and make sure none of them have any focused entries
+	for (var i = 0; i < rezChainListSize; i++) {
+		var currentChain = ds_list_find_value(rezChainList, i);
+		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+		if (ds_exists(currentChainSubMap, ds_type_map)) {
+			ds_map_replace(currentChainSubMap, "focused", "");	
+		}	
 	}
-
-	// Unfocus all track chains
-	while (ds_grid_value_exists(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus))
-	{
-		var rowInChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
-		// Keep track of previously focused chains
-		obj_chain.oldTrackFocus = rowInChainGrid;
-		if(rowInChainGrid >= 0){
-			ds_grid_set(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, rowInChainGrid, obj_chain.chainStateNormal);
-		}
+	for (var i = 0; i < trackChainListSize; i++) {
+		var currentChain = ds_list_find_value(trackChainList, i);
+		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+		if (ds_exists(currentChainSubMap, ds_type_map)) {
+			ds_map_replace(currentChainSubMap, "focused", "");	
+		}	
 	}
-
-	// Unfocus all stack chains
-	while (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus))
-	{
-		var rowInChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
-		// Keep track of previously focused chains
-		obj_chain.oldStackFocus = rowInChainGrid;
-		if(rowInChainGrid >= 0){
-			ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, rowInChainGrid, obj_chain.chainStateNormal);
-		}
+	for (var i = 0; i < stackChainListSize; i++) {
+		var currentChain = ds_list_find_value(stackChainList, i);
+		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+		if (ds_exists(currentChainSubMap, ds_type_map)) {
+			ds_map_replace(currentChainSubMap, "focused", "");	
+		}	
 	}
-
-	// Unfocus any links
-	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
-
+	
 
 }
