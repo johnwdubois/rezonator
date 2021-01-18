@@ -281,59 +281,105 @@ function scr_drawLine() {
 				currentLineInStack = "";
 			}
 		}
-
-	
-		// draw stack rectangle if this line is in a stack
-	
-		if (currentLineInStack != "") {
-			//scr_drawStackRect();
 		
-			if (obj_chain.toggleDrawStack) {
-				var currentStackChainID = currentLineInStack;
-				var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, stackChainGridHeight, currentStackChainID);
-			
-				//var showStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colShow, rowInStackChainGrid);
-				//if (showStack) {
-					var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
-			
-					if (typeof(stackColor) == "number") {
 		
+		var drawStackRect = false;
+		if (obj_chain.toggleDrawStack) {
+			if (ds_map_exists(global.nodeMap, currentLineInStack)) {
+				
+				var stackChainSubMap = ds_map_find_value(global.nodeMap, currentLineInStack);
+				if (is_numeric(stackChainSubMap)) {
+					if (ds_exists(stackChainSubMap, ds_type_map)) {
+						var stackColor = ds_map_find_value(stackChainSubMap, "chainColor");
 						draw_set_color(stackColor);
 						draw_set_alpha(0.2);
-			
-						var stackRectWidth = (camViewWidth - speakerRectX2);
-						var stackRectX1 = speakerRectX2;
-						var stackRectY1 = speakerRectY1;
-						var stackRectX2 = camViewWidth;
-						var stackRectY2 = speakerRectY2;
-				
-						draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+						drawStackRect = true;
 					}
-				//}
+				}
 			}
-		}
-		else {
-			if (ds_list_size(inRectUnitIDList) > 0) {
-				if (ds_list_find_index(inRectUnitIDList, unitID) > -1) {
-					if (stackChainGridHeight > 0) {
-						var focusedStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, stackChainGridHeight, obj_chain.chainStateFocus);
-						if (focusedStackRow >= 0 and focusedStackRow < stackChainGridHeight) {
-							var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, focusedStackRow);
-							var stackRectWidth = (camViewWidth - speakerRectX2);
-							var stackRectX1 = speakerRectX2 + (stackRectWidth);
-							var stackRectY1 = speakerRectY1;
-							var stackRectX2 = camViewWidth;
-							var stackRectY2 = speakerRectY2;
+			else {
+				if (ds_list_size(inRectUnitIDList) > 0) {
+					if (ds_list_find_index(inRectUnitIDList, unitID) > -1) {
 						
-							draw_set_color(stackColor);
-							draw_set_alpha(0.2);
-						
-							draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+						var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+						if (is_numeric(focusedChainSubMap)) {
+							if (ds_exists(focusedChainSubMap, ds_type_map)) {
+								var stackColor = ds_map_find_value(focusedChainSubMap, "chainColor");
+								draw_set_color(stackColor);
+								draw_set_alpha(0.2);
+								drawStackRect = true;
+							}
 						}
+						
 					}
 				}
 			}
 		}
+		
+		if (drawStackRect) {
+			var stackRectWidth = (camViewWidth - speakerRectX2);
+			var stackRectX1 = speakerRectX2;
+			var stackRectY1 = speakerRectY1;
+			var stackRectX2 = camViewWidth;
+			var stackRectY2 = speakerRectY2;
+						
+			draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+		}
+
+		
+		// draw stack rectangle if this line is in a stack
+		//if (currentLineInStack != "") {
+		//	//scr_drawStackRect();
+		
+		//	if (obj_chain.toggleDrawStack) {
+		//		var currentStackChainID = currentLineInStack;
+		//		var rowInStackChainGrid = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, stackChainGridHeight, currentStackChainID);
+			
+		//		//var showStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colShow, rowInStackChainGrid);
+		//		//if (showStack) {
+		//			var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, rowInStackChainGrid);
+			
+		//			if (typeof(stackColor) == "number") {
+		
+		//				draw_set_color(stackColor);
+		//				draw_set_alpha(0.2);
+			
+		//				var stackRectWidth = (camViewWidth - speakerRectX2);
+		//				var stackRectX1 = speakerRectX2;
+		//				var stackRectY1 = speakerRectY1;
+		//				var stackRectX2 = camViewWidth;
+		//				var stackRectY2 = speakerRectY2;
+				
+		//				draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+		//			}
+		//		//}
+		//	}
+		//}
+		//else {
+		//	if (ds_list_size(inRectUnitIDList) > 0) {
+		//		if (ds_list_find_index(inRectUnitIDList, unitID) > -1) {
+		//			if (stackChainGridHeight > 0) {
+		//				var focusedStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, stackChainGridHeight, obj_chain.chainStateFocus);
+		//				if (focusedStackRow >= 0 and focusedStackRow < stackChainGridHeight) {
+		//					var stackColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, focusedStackRow);
+		//					var stackRectWidth = (camViewWidth - speakerRectX2);
+		//					var stackRectX1 = speakerRectX2 + (stackRectWidth);
+		//					var stackRectY1 = speakerRectY1;
+		//					var stackRectX2 = camViewWidth;
+		//					var stackRectY2 = speakerRectY2;
+						
+		//					draw_set_color(stackColor);
+		//					draw_set_alpha(0.2);
+						
+		//					draw_rectangle(stackRectX1, stackRectY1, stackRectX2, stackRectY2, false);
+		//				}
+		//			}
+		//		}
+		//	}
+		//}
+		
+		
+		
 	
 	
 	

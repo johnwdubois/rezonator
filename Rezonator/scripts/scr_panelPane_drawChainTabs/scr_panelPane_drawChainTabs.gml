@@ -25,7 +25,7 @@ function scr_panelPane_drawChainTabs() {
 		functionChainList_tabHeight = string_height("0") + 20;
 	}
 
-	var tabAmount = 5;
+	var tabAmount = 4;
 
 	if (obj_panelPane.showNav) {
 		y = obj_menuBar.menuHeight;
