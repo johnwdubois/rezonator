@@ -153,11 +153,15 @@ function scr_newLink(wordID, goal) {
 		
 		// add this new link to the source's goalLinkList
 		var sourceSetSubMap = ds_map_find_value(global.nodeMap, linkSourceID);
-		var sourceSetGoalLinkList = ds_map_find_value(sourceSetSubMap, "goalLinkList");
-		if (is_numeric(sourceSetGoalLinkList)) {
-			if (ds_exists(sourceSetGoalLinkList, ds_type_list)) {
-				ds_list_add(sourceSetGoalLinkList, linkID);
-				show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(sourceSetSubMap));
+		if (is_numeric(sourceSetSubMap)) {
+			if (ds_exists(sourceSetSubMap, ds_type_map)) {
+				var sourceSetGoalLinkList = ds_map_find_value(sourceSetSubMap, "goalLinkList");
+				if (is_numeric(sourceSetGoalLinkList)) {
+					if (ds_exists(sourceSetGoalLinkList, ds_type_list)) {
+						ds_list_add(sourceSetGoalLinkList, linkID);
+						show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(sourceSetSubMap));
+					}
+				}
 			}
 		}
 		

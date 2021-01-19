@@ -73,7 +73,10 @@ function scr_drawRezChain() {
 			var currentEntry = ds_list_find_value(currentSetIDList, j);
 			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
-			var currentWordWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1))) / 2;
+			var currentWordWidth = 0;
+			if(is_numeric(currentWordID)){
+				currentWordWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1))) / 2;
+			}
 			currentWordWidth = max(currentWordWidth, 0);
 		
 			if (currentWordWidth < minWordWidth) {

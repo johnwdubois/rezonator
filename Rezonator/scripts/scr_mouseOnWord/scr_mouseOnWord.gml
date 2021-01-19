@@ -38,6 +38,16 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			
 			// Word clicked with a Chain tool selected
 			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+				var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				
+				if(is_numeric(focusedchainIDSubMap)){
+					if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+						var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+						if(prevChainType == "stackChain"){
+							scr_chainDeselect();
+						}
+					}
+				}
 				// Check for Merge Chains click
 				if(obj_control.ctrlHold){						
 					var grid = obj_chain.rezChainGrid;

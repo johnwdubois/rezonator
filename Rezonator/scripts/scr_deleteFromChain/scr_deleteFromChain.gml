@@ -43,18 +43,22 @@ function scr_deleteFromChain() {
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
 				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
+				var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
+				ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
 				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
 			}
+
 		
 			// delete and destroy the focused entry and its chain
 			ds_map_delete(global.nodeMap, focusedEntry);
 			ds_map_delete(global.nodeMap, obj_chain.currentFocusedChainID);
 			ds_map_destroy(focusedEntrySubMap);
 			ds_map_destroy(chainSubMap);
-			var listOfChainsKey = "rezChainGrid";
-			if (focusedEntryType = "track") listOfChainsKey = "trackChainGrid";
-			else if (focusedEntryType = "stack") listOfChainsKey = "stackChainGrid";
-			var listOfChains = ds_map_find_value(global.nodeMap, listOfChains);
+			var listOfChainsKey = "rezChainList";
+			if (focusedEntryType = "track") listOfChainsKey = "trackChainList";
+			else if (focusedEntryType = "stack") listOfChainsKey = "stackChainList";
+			var listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
 			scr_deleteFromList(listOfChains, obj_chain.currentFocusedChainID);
 			obj_chain.currentFocusedChainID = "";
 	
@@ -98,6 +102,9 @@ function scr_deleteFromChain() {
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
 				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
+				var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
+				ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
 				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
 			}
 			
@@ -183,6 +190,9 @@ function scr_deleteFromChain() {
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
 		var focusedEntryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);		
+		var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
+		ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
+		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
 		scr_deleteFromList(focusedEntryWordInChainsList, obj_chain.currentFocusedChainID);
 	}
 	

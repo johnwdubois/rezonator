@@ -83,37 +83,10 @@ function scr_mouseRect() {
 		}
 	
 		// Draw the rect if not making a quickStack
-		if (!obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+		if (obj_toolPane.currentTool != obj_toolPane.toolStackBrush) {
 			if (obj_control.mouseRectWithinLine) {
-				if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-					
-					var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-					var chainColor = ds_map_find_value(chainSubMap, "chainColor");
-					draw_set_color(chainColor);
-					
-					/*
-					var currentChainGrid = -1;
-					if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-						currentChainGrid = obj_chain.trackChainGrid;
-					}
-					else {
-						currentChainGrid = obj_chain.rezChainGrid;
-					}
-					var currentChainGridRow = ds_grid_value_y(currentChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(currentChainGrid), obj_chain.currentFocusedChainID);
-					
-					// Set the highlight to be the focused chains's color
-					if(currentChainGridRow > -1) {
-						var currentChainColor = ds_grid_get(currentChainGrid, obj_chain.chainGrid_colColor, currentChainGridRow);
-						draw_set_color(currentChainColor);
-					}
-					else {
-						draw_set_color(global.colorThemeSelected1);	
-					}
-					*/
-				
-				} else {
-					draw_set_color(global.colorThemeSelected1);	
-				}
+
+				draw_set_color(global.colorThemeSelected1);	
 				draw_set_alpha(1);
 				draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
 				

@@ -18,17 +18,21 @@ function scr_drawDevVars(){
 	var focusedChainSetIDList = -1;
 	var focusedChainLinkIDList = -1;
 	var focusedChainWordID = "";
+	var focusedChainType = "";
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var chainMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		focusedChainSetIDList = ds_map_find_value(chainMap, "setIDList");
 		focusedChainLinkIDList = ds_map_find_value(chainMap, "linkIDList");
+		focusedChainType =  ds_map_find_value(chainMap, "type");
 		var focusedChainFocused = ds_map_find_value(chainMap, "focused");
 		var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFocused);
+
 		if (is_numeric(focusedEntrySubMap)) {			
 			if (ds_exists(focusedEntrySubMap, ds_type_map)) {
-				focusedChainWordID = ds_map_find_value(focusedEntrySubMap, "word");
+				focusedChainWordID = ds_map_find_value(focusedEntrySubMap, focusedChainType == "stack" ? "unit" : "word");
 			}
 		}
+		
 	}
 	
 	// draw dev vars
