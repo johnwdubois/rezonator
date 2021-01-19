@@ -81,8 +81,8 @@ for (var i = 0; i < ds_grid_height(attribGrid); i++)
 boxWidth = maxAttribNameWidth + attribGridColPadding + maxAttribValWidth;
 
 // Set the box's points
-var rectx1 = wordPixelX + string_width(wordDisplayString);
-var recty1 = wordPixelY + string_height(wordDisplayString) / 2;
+var rectx1 = mouse_x;
+var recty1 = mouse_y + mouseCursorHeight;
 var rectx2 = rectx1 + boxWidth;
 var recty2 = recty1 + boxHeight;
 

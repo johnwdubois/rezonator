@@ -6,3 +6,5 @@ boxWidth = 100;
 
 // Attribute grid for display
 attribGridColPadding = 15;	// Padding between end of longest attribute name and beginning of longest attribute value
+
+mouseCursorHeight = 20;
