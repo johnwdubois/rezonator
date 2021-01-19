@@ -22,7 +22,8 @@ function scr_wordClicked(wordID, unitID) {
 				shouldExit = false;	
 			}
 		}
-		if(shouldExit){
+		if (shouldExit) {
+			show_debug_message("scr_wordClicked() ... exit 1...");
 			exit;
 		}
 	}
@@ -42,6 +43,7 @@ function scr_wordClicked(wordID, unitID) {
 
 	// Safety check, but allows for Chunks/newWords
 	if (wordID < 0 or wordID > ds_grid_height(obj_control.dynamicWordGrid)) {
+		show_debug_message("scr_wordClicked() ... exit 2...");
 		exit;
 	}
 
@@ -51,6 +53,7 @@ function scr_wordClicked(wordID, unitID) {
 	or obj_toolPane.currentTool == obj_toolPane.toolStackBrush
 	or obj_toolPane.currentTool == obj_toolPane.toolPlaceChains
 	or obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
+		show_debug_message("scr_wordClicked() ... exit 3...");
 		exit;
 	}
 	//show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
@@ -59,28 +62,36 @@ function scr_wordClicked(wordID, unitID) {
 		obj_control.moveCounter++;
 	}
 
+	var inChainsList = -1;
 	var fakeInChainsList = ds_list_create();
-
+	
+	// set inChainsList to be this word's inChainsList ... and if this is a stack, we make a "fakeInChainsList" 
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-		ds_list_add(fakeInChainsList, ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1));
-		var inChainsList = fakeInChainsList;
+		var unitInStackChain = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
+		if (unitInStackChain != -1 && ds_map_exists(global.nodeMap, unitInStackChain)) {
+			ds_list_add(fakeInChainsList, unitInStackChain);
+		}
+		inChainsList = fakeInChainsList;
 	}
 	else {
-		var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
+		inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
 	}
 	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-		var inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
+		inChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
 	}
 	
 	
 	// loop through the chains that this word is already in (if any) to refocus that chain
-	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
+	show_debug_message("inChainsList: " + scr_getStringOfList(inChainsList));
+	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush
+	and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		var inChainsListSize = ds_list_size(inChainsList);
 		for (var i = 0; i < inChainsListSize; i++) {
 			var currentChainID = ds_list_find_value(inChainsList, i);
 			currentFocusedChainID = currentChainID;
 			
 			scr_refocusChainEntry(wordID);
+			show_debug_message("scr_wordClicked() ... exit 4...");
 			exit;
 		}
 	}
@@ -96,6 +107,7 @@ function scr_wordClicked(wordID, unitID) {
 			var rowInChainGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
 			if (rowInChainGrid < 0) {
 				scr_refocusChainEntry(wordID);
+				show_debug_message("scr_wordClicked() ... exit 5...");
 				exit;
 			}
 			var currentChunkWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, rowInChainGrid);
@@ -114,6 +126,7 @@ function scr_wordClicked(wordID, unitID) {
 			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
 			currentFocusedChunkID = currentChunkID;
 			scr_refocusChainEntry(wordID);
+			show_debug_message("scr_wordClicked() ... exit 6...");
 			exit;
 
 			

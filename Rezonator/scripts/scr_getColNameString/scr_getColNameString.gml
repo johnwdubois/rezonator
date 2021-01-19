@@ -296,6 +296,7 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
+	/*
 	else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid or grid == obj_chain.placeChainGrid) {
 		switch (col) {
 			case obj_chain.chainGrid_colChainID:
@@ -352,6 +353,7 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
+	*/
 	else if (grid == obj_chain.trackSeqGrid) {
 		switch (col) {
 			case obj_chain.trackSeqGrid_colChainID:

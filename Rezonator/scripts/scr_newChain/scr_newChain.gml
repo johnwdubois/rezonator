@@ -13,6 +13,8 @@
 */
 
 function scr_newChain(wordID, unitID) {
+	
+	show_debug_message("scr_newChain() ... wordID: " + string(wordID) + ", unitID: " + string(unitID));
 
 	var chainName = "";
 	var chainSeq = 0;

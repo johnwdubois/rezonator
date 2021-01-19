@@ -118,7 +118,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					// if this is a stack, we will loop through its setIDList and get a caption
 					if (functionChainList_currentTab == functionChainList_tabStackBrush && currentChainCaption == "") {
 						for (var j = 0; j < setIDListSize; j++) {
-							var currentEntry = ds_list_find_value(currentUnitIDList, j);
+							var currentEntry = ds_list_find_value(setIDList, j);
 							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 							var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 							var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);

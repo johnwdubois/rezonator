@@ -216,6 +216,11 @@ function scr_newLink(wordID, goal) {
 			ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
 		}
 	}
+	// if this is a stack, we will make sure this unit is updated in the unitInStackGrid
+	else if (nodeType == "stack") {
+		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, idSet - 1, currentFocusedChainID);
+		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, idSet - 1, 0);
+	}
 
 	alarm[3] = 1;
 

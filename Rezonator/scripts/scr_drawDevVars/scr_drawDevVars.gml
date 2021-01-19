@@ -53,6 +53,7 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 19), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 20), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 21), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 22), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
 	
 	// reset halign to left
 	draw_set_halign(fa_left);
