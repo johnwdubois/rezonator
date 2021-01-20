@@ -1,4 +1,4 @@
-function scr_raceCheckChain(grid, rowInChainGrid) {
+function scr_raceCheckChain(chainID) {
 	//show_message("here")
 
 
@@ -7,15 +7,42 @@ function scr_raceCheckChain(grid, rowInChainGrid) {
 	var displayColGrid_colWordID = 0;
 	var displayColGrid_colDisplayCol = 1;
 	var displayColGrid = ds_grid_create(displayColGridWidth, 0);
+	
 
-	var wordIDList = ds_grid_get(grid, chainGrid_colWordIDList, rowInChainGrid);
+	var wordIDList = ds_list_create();
+	
+	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
+	
+	if (is_numeric(chainSubMap)) {
+		if (ds_exists(chainSubMap, ds_type_map)) {
+			var entryIDList = ds_map_find_value(chainSubMap, "setIDList");
+			if(!is_numeric(entryIDList)){ exit; }
+			if(!ds_exists(entryIDList, ds_type_list)){ exit; }
+		}
+	}
+	
+	var sizeOfEntryList = ds_list_size(entryIDList);
+	
+	for(var i = 0; i < sizeOfEntryList; i++){
+		var entryID = ds_list_find_value(entryIDList, i );
+		var entrySubMap = ds_map_find_value(global.nodeMap, entryID);
+	
+		if (is_numeric(entrySubMap)) {
+			if (ds_exists(entrySubMap, ds_type_map)) {
+				var entryWordID = ds_map_find_value(entrySubMap, "word");
+				ds_list_add(wordIDList,entryWordID);
+			}
+		}
+	}
+
+
+
 
 	if (ds_list_size(wordIDList) < 1) {
 		exit;
 	}
 
-
-
+	
 	// find the leftmost word in the word list for this chain
 	var furthestBackWord = ds_list_find_value(wordIDList, 0);
 	var wordIDListSize = ds_list_size(wordIDList);
@@ -129,7 +156,8 @@ function scr_raceCheckChain(grid, rowInChainGrid) {
 
 	ds_grid_destroy(displayColGrid);
 	ds_list_destroy(firstDisplayColWordIDList);
-
+	ds_list_destroy(wordIDList);
+	ds_list_destroy(entryIDList);
 
 
 	with (obj_chain) {
