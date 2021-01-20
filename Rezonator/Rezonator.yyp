@@ -231,7 +231,6 @@
     {"id":{"name":"scr_getChainAlign","path":"scripts/scr_getChainAlign/scr_getChainAlign.yy",},"order":3,},
     {"id":{"name":"scr_unFocusAllChains","path":"scripts/scr_unFocusAllChains/scr_unFocusAllChains.yy",},"order":0,},
     {"id":{"name":"scr_newLink","path":"scripts/scr_newLink/scr_newLink.yy",},"order":1,},
-    {"id":{"name":"scr_refreshChainGrid","path":"scripts/scr_refreshChainGrid/scr_refreshChainGrid.yy",},"order":2,},
     {"id":{"name":"scr_fillImportGrids_IGT","path":"scripts/scr_fillImportGrids_IGT/scr_fillImportGrids_IGT.yy",},"order":2,},
     {"id":{"name":"scr_killEmptyChains","path":"scripts/scr_killEmptyChains/scr_killEmptyChains.yy",},"order":4,},
     {"id":{"name":"scr_refreshVizLinkGrid","path":"scripts/scr_refreshVizLinkGrid/scr_refreshVizLinkGrid.yy",},"order":5,},

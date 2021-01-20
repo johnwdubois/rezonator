@@ -49,6 +49,7 @@ function scr_loadREZ() {
 	else{
 		global.previousRezDirectory = filename_path(fileName);
 	}
+	
 
 
 
@@ -148,7 +149,8 @@ function scr_loadREZ() {
 				
 					global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
 					global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
-					global.nodeMap = ds_map_find_value(map, "nodeMap");
+					global.nodeMap = ds_map_find_value(map, "nodeMap");					
+					
 				
 					if (is_undefined(global.tokenImportTagMap)) {
 						show_debug_message("scr_loadREZ() ... global.tokenImportTagMap is undefined");
@@ -248,34 +250,22 @@ function scr_loadREZ() {
 					scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
 					scr_loadAnotherREZ(global.discoImportGrid, map, "discoImport");
 					scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
-				
-				
-			
-				
+
 				
 					global.totalUnitAmount = scr_getTotalUnitAmount();
+
+					
+					
 				}
 				else if (objectIndex == "obj_chain") {
 				
 					scr_loadREZGridReset(obj_chain.linkGrid, map, "linkGrid");
-					scr_loadREZGridReset(obj_chain.rezChainGrid, map, "rezChainGrid");
-					scr_loadREZGridReset(obj_chain.trackChainGrid, map, "trackChainGrid");
-					scr_loadREZGridReset(obj_chain.stackChainGrid, map, "stackChainGrid");
 					scr_loadREZGridReset(obj_chain.chunkGrid, map, "chunkChainGrid");
 					scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
 					scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
 					scr_loadREZGridReset(obj_chain.goldStandardGrid, map, "goldStandardGrid");
 				
-				
-					// Set the cliqueDisplayGrid to the correct height
-					ds_grid_resize(obj_chain.cliqueDisplayGrid, obj_chain.chainGridWidth, ds_grid_height(obj_chain.cliqueGrid));
-				
-					obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-					scr_refreshChainGrid();
-					obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
-					scr_refreshChainGrid();
-					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-					scr_refreshChainGrid();
+
 				
 					obj_chain.chainColorID[1] = ds_map_find_value(map, "chainColorID1");
 					obj_chain.chainColorID[2] = ds_map_find_value(map, "chainColorID2");
@@ -288,14 +278,19 @@ function scr_loadREZ() {
 	}
 
 	ds_list_destroy(newInstList);
+	
+	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
+	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
+	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
 
 	obj_chain.currentChainID = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid));
 	obj_chain.linkIDCounter = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, 0, obj_chain.linkGrid_colLinkID, ds_grid_height(obj_chain.linkGrid));
 	obj_chain.cliqueIDCounter = ds_grid_get_max(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colCliqueID, 0, obj_chain.cliqueGrid_colCliqueID, ds_grid_height(obj_chain.cliqueGrid));
-	obj_chain.rezChainNameCounter = ds_grid_height(obj_chain.rezChainGrid);
-	obj_chain.trackChainNameCounter = ds_grid_height(obj_chain.trackChainGrid);
-	obj_chain.stackChainNameCounter = ds_grid_height(obj_chain.stackChainGrid);
-	obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
+	obj_chain.rezChainNameCounter = ds_list_size(rezChainList);
+	obj_chain.trackChainNameCounter = ds_list_size(trackChainList);
+	obj_chain.stackChainNameCounter = ds_list_size(stackChainList);
+	//obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
+	
 	obj_control.chunkID = ds_grid_get_max(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid));
 	if (!is_numeric(obj_control.chunkID)) {
 		obj_control.chunkID = 0;
@@ -304,14 +299,14 @@ function scr_loadREZ() {
 
 	scr_refreshVizLinkGrid();
 
-	if(ds_grid_height(obj_control.lineGrid) > 1) {
+	if (ds_grid_height(obj_control.lineGrid) > 1) {
 	
 		var newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
-		if(newGridSpaceVertical < 60) {
+		if (newGridSpaceVertical < 60) {
 			scr_refreshLineGridPixelY();
 			newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
 		}
-		if(newGridSpaceVertical != obj_control.gridSpaceVertical) {
+		if (newGridSpaceVertical != obj_control.gridSpaceVertical) {
 			obj_control.gridSpaceVertical = newGridSpaceVertical;
 			obj_control.prevGridSpaceVertical = newGridSpaceVertical;
 			obj_control.filterPrevGridSpaceVertical = newGridSpaceVertical;
@@ -319,12 +314,11 @@ function scr_loadREZ() {
 		}
 	}
 
-	if(obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGridEnd != undefined ){
-		if(obj_fileLoader.subLineGridBeginning > -1 and obj_fileLoader.subLineGridEnd > -1){
+	if (obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGridEnd != undefined) {
+		if (obj_fileLoader.subLineGridBeginning > -1 and obj_fileLoader.subLineGridEnd > -1) {
 			scr_gridDeleteRange(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_fileLoader.subLineGridBeginning, obj_fileLoader.subLineGridEnd);
 			var lineGridHeight = ds_grid_height(obj_control.lineGrid);
-			for (var i = 0; i < lineGridHeight; i++)
-			{
+			for (var i = 0; i < lineGridHeight; i++) {
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelY, i, i * obj_control.gridSpaceVertical);
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, i, i * obj_control.gridSpaceVertical);
 			}
