@@ -89,6 +89,16 @@ function scr_wordClicked(wordID, unitID) {
 		for (var i = 0; i < inChainsListSize; i++) {
 			var currentChainID = ds_list_find_value(inChainsList, i);
 			currentFocusedChainID = currentChainID;
+			var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				
+			if(is_numeric(focusedchainIDSubMap)){
+				if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+					var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+					if(prevChainType == "stackChain"){
+						wordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID -1);
+					}
+				}
+			}
 			
 			scr_refocusChainEntry(wordID);
 			show_debug_message("scr_wordClicked() ... exit 4...");

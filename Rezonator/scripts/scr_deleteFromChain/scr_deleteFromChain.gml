@@ -48,7 +48,11 @@ function scr_deleteFromChain() {
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
 				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
 			}
-
+			else if (focusedEntryType == "stack"){
+				var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
+				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, focusedEntryUnit-1,-1);
+				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, focusedEntryUnit-1, -1);	
+			}
 		
 			// delete and destroy the focused entry and its chain
 			ds_map_delete(global.nodeMap, focusedEntry);
@@ -106,6 +110,11 @@ function scr_deleteFromChain() {
 				ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
 				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
 				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
+			}
+			else if (focusedEntryType == "stack"){
+				var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
+				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, focusedEntryUnit-1,-1);
+				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, focusedEntryUnit-1, -1);	
 			}
 			
 			// remove the focused entry from its chain's setList and delete it from nodeMap
@@ -195,7 +204,11 @@ function scr_deleteFromChain() {
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
 		scr_deleteFromList(focusedEntryWordInChainsList, obj_chain.currentFocusedChainID);
 	}
-	
+	else if (focusedEntryType == "stack"){
+		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
+		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, focusedEntryUnit-1,-1);
+		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, focusedEntryUnit-1, -1);	
+	}
 	// remove focusedEntry from nodeMap and destroy focusedEntry
 	ds_map_delete(global.nodeMap, focusedEntry);
 	ds_map_destroy(focusedEntrySubMap);

@@ -106,7 +106,7 @@ if (obj_chain.currentFocusedChainID != "") {
 	// Keep the focus of Rez chains
 	else {
 		
-		var focusedChainSubMap = ds_map_find_value(global.nodeMape, obj_chain.currentFocusedChainID);
+		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		if (is_numeric(focusedChainSubMap)) {
 			if (ds_exists(focusedChainSubMap, ds_type_map)) {
 				

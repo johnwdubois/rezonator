@@ -189,17 +189,6 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 		}
 	}
 
-	// Allows for adding to a stack w/in the speaker labels
-	else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not obj_control.mouseoverPanelPane 
-	and rectangle_in_rectangle(0, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
-		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
-			with (obj_chain) {
-				scr_wordClicked(currentWordID, unitID);
-			}
-		}
-	}
-
-	
 	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
 	var inMouseHoldRect = 0;	
 	if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {

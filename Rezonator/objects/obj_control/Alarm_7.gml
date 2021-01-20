@@ -10,6 +10,17 @@ var currentWordIDList;
 // Check for things caught in mouse drag rectangle
 if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and quickLinkAllowed  and !instance_exists(obj_stackShow)) {
 	
+	var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				
+	if(is_numeric(focusedchainIDSubMap)){
+		if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+			var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+			if( prevChainType == "rezChain" or prevChainType == "trackChain" ){
+				scr_chainDeselect();
+			}
+		}
+	}
+	
 	if ((mouseHoldRectY1 - mouseHoldRectY2) < 0) {
 		firstUnitID = ds_list_find_value(inRectUnitIDList, 0);
 	}

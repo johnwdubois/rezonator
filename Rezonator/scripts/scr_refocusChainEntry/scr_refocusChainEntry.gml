@@ -4,7 +4,7 @@ function scr_refocusChainEntry(wordID){
 	
 	// looks in the currentFocusedChain for the given wordID and focus that entry
 	// note: wordID could mean unitID if we are refocusing a stack
-	
+	show_debug_message("scr_refocusChainEntry() ... wordID: " + string(wordID));
 	// find which chain entry node this word is associated with, so we can refocus it
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var entryToFocus = "";
@@ -18,6 +18,7 @@ function scr_refocusChainEntry(wordID){
 			var currentChainEntry = ds_list_find_value(chainSetList, i);
 			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
 			var currentChainEntryWordID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
+			show_debug_message("scr_refocusChainEntry() ... currentChainEntryWordID: " + string(currentChainEntryWordID));
 			if (wordID == currentChainEntryWordID) {
 				entryToFocus = currentChainEntry;
 			}

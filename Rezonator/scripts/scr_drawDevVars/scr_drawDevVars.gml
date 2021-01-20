@@ -19,17 +19,18 @@ function scr_drawDevVars(){
 	var focusedChainLinkIDList = -1;
 	var focusedChainWordID = "";
 	var focusedChainType = "";
+	var focusedChainFocused = "";
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var chainMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		focusedChainSetIDList = ds_map_find_value(chainMap, "setIDList");
 		focusedChainLinkIDList = ds_map_find_value(chainMap, "linkIDList");
 		focusedChainType =  ds_map_find_value(chainMap, "type");
-		var focusedChainFocused = ds_map_find_value(chainMap, "focused");
+		focusedChainFocused = ds_map_find_value(chainMap, "focused");
 		var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFocused);
 
 		if (is_numeric(focusedEntrySubMap)) {			
 			if (ds_exists(focusedEntrySubMap, ds_type_map)) {
-				focusedChainWordID = ds_map_find_value(focusedEntrySubMap, focusedChainType == "stack" ? "unit" : "word");
+				focusedChainWordID = ds_map_find_value(focusedEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "word");
 			}
 		}
 		
@@ -51,13 +52,14 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 15), "focusedChain's linkIDList: " + ((ds_exists(focusedChainLinkIDList, ds_type_list)) ? scr_getStringOfList(focusedChainLinkIDList) : ""));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 16), "focusedChainWordID: " + string(focusedChainWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 17), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 18), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 19), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 20), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 21), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 22), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(focusedChainWordID));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 18), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 19), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 20), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 22), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 23), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
 	
 	// reset halign to left
 	draw_set_halign(fa_left);

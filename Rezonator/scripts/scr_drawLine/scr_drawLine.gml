@@ -192,6 +192,17 @@ function scr_drawLine() {
 						
 					}
 					else {
+						var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				
+						if(is_numeric(focusedchainIDSubMap)){
+							if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+								var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+								if( prevChainType == "rezChain" or prevChainType == "trackChain" ){
+									scr_chainDeselect();
+								}
+							}
+						}
+			
 						with (obj_chain) {
 							scr_wordClicked(currentWordID, unitID);
 						}
