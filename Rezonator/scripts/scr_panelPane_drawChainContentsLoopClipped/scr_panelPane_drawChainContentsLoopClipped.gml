@@ -115,7 +115,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			exit;
 		}
 		
-		var chainType = ds_map_find_value(global.nodeMap, "type");
+		var chainType = ds_map_find_value(chainSubMap, "type");
 		var chainAligned = ds_map_find_value(chainSubMap, "align");
 		var chainFocusedEntry = ds_map_find_value(chainSubMap, "focused");
 	
@@ -154,11 +154,14 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 					var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
 					
-					if (!is_numeric(currentWordID)) {
+					
+					if (!is_numeric(currentEntrySubMap)) {
 						continue;
 					}
+					
 
-					var currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
+					
+					var currentWordAligned = false;
 					var currentWordInfoCol;
 					currentWordInfoCol[0] = "";
 		
@@ -171,12 +174,13 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 		
 					// Draw red rectangles if stretch word
-					if (chainType == "rezChainGrid" or chainType == "trackChainGrid") {
+					if (chainType == "rezChain" or chainType == "trackChain") {
 						if (currentWordID != undefined) {
 							if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
 								draw_set_alpha(0.25);
 								draw_set_color(c_red);
 								draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+								currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
 							}
 						}
 					}
