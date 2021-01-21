@@ -1,70 +1,37 @@
 function scr_chainListOptions(optionSelected) {
 
-	with (obj_panelPane)
-	{
-		if (currentFunction == functionChainList)
-		{
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
 			
-			var grid = obj_chain.rezChainGrid;
 
-			// Based on user selection, get the grid of the current tab
-			switch (obj_panelPane.functionChainList_currentTab) {
-				case obj_panelPane.functionChainList_tabRezBrush:
-					grid = obj_chain.rezChainGrid;
-					break;
-				case obj_panelPane.functionChainList_tabTrackBrush:
-					grid = obj_chain.trackChainGrid;
-					break;
-				case obj_panelPane.functionChainList_tabStackBrush:
-					grid = obj_chain.stackChainGrid;
-					break;
-				case obj_panelPane.functionChainList_tabClique:
-					grid = obj_chain.cliqueDisplayGrid;
-					break;
-				default:
-					grid = obj_chain.rezChainGrid;
-					break;
-			}
 		
-			obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-			if(obj_control.selectedChainID == undefined){
+			obj_control.selectedChainID = obj_chain.currentFocusedChainID;
+			if (!ds_map_exists(global.nodeMap, obj_control.selectedChainID) || obj_control.selectedChainID == "") {
+				show_debug_message("scr_chainListOptions() exiting...");
 				exit;
 			}
-			//show_message(ds_grid_height(grid));
-			//show_message(obj_control.selectedChainID);
-			if(ds_grid_height(grid) > 0 && grid != obj_chain.stackChainGrid){
-				var listOfWordID = ds_list_create();
-				ds_list_copy(listOfWordID, ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, obj_control.selectedChainID));
-			}
+
 
 			//"Rename", "Recolor", "Delete"
-			switch (optionSelected)
-			{
+			switch (optionSelected) {
 				case "Rename":
-					//show_message("Rename chosen");
-						
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus)
-						
-						
+
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
 						obj_control.rename = true;
 					}
-
 
 					obj_control.dialogueBoxActive = true;
 
 					if (!instance_exists(obj_dialogueBox)) {
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 					}
-						instance_destroy(obj_dropDown);
-						//return true;	
+					instance_destroy(obj_dropDown);
+					
 					break;
 				case "Recolor":
 					//might be a special case
-											
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-	
+
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList, "Red", "Blue", "Green", "Gold", "Custom");
 						
@@ -74,30 +41,18 @@ function scr_chainListOptions(optionSelected) {
 	
 					break;
 				case "Delete":
-					//show_message("Delete chosen");
 
-						var focusedRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-						obj_control.selectedChainID = ds_grid_get(grid, obj_chain.chainGrid_colChainID, focusedRow);
-							
-						//show_message("focused Row: " + string(focusedRow));
-						//show_message("chainId: " + string(obj_control.selectedChainID));
-				
 						
-						if (!instance_exists(obj_dialogueBox)) {
-							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-							obj_dialogueBox.clearChain = true;
-							obj_dialogueBox.questionWindowActive = true;
-						}
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						obj_dialogueBox.clearChain = true;
+						obj_dialogueBox.questionWindowActive = true;
+					}
 		
-							
-							instance_destroy(obj_dropDown);
-							//return true;
+					instance_destroy(obj_dropDown);
+
 					break;
 				case "Caption":
-				//show_message("Caption clicked");
-
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-	
 		
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -111,11 +66,9 @@ function scr_chainListOptions(optionSelected) {
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 					}
 						instance_destroy(obj_dropDown);
-						//return true;
+
 					break;
 				case "Clip":
-					// Get the ID of the currently selected Stack
-					obj_control.selectedChainID = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 					
 					// Create a clip file based on that Stack
 					scr_clipFromStack(obj_control.selectedChainID);

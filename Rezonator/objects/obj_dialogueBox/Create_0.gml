@@ -58,7 +58,6 @@ canPressRightHoldingCounter = 0;
 holdingLimit = 6;
 loopItterations = 0;
 
-grid = obj_chain.rezChainGrid;
 
 
 with (obj_dropDown) {

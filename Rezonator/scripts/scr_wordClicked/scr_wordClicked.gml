@@ -82,7 +82,7 @@ function scr_wordClicked(wordID, unitID) {
 	
 	
 	// loop through the chains that this word is already in (if any) to refocus that chain
-	show_debug_message("inChainsList: " + scr_getStringOfList(inChainsList));
+	show_debug_message("scr_wordClicked() inChainsList: " + scr_getStringOfList(inChainsList));
 	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush
 	and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		var inChainsListSize = ds_list_size(inChainsList);

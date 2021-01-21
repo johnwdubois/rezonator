@@ -31,13 +31,13 @@ function scr_sentStackerLoop(){
 
 		if (ds_list_find_value(global.unitImportColNameList, unitColLoop) == "~UnitID") {
 			unitCol = unitColLoop;
-			show_debug_message("obj_stacker Alarm 4 ... unitCol: " + string(unitCol));
+			show_debug_message("scr_sentStackerLoop() ... unitCol: " + string(unitCol));
 			continue;
 		}
 		
 		if (string(ds_list_find_value(global.unitImportColNameList, unitColLoop)) == "turnId") {
 			turnCol = unitColLoop;
-			show_debug_message("obj_stacker Alarm 4 ... turnCol: " + string(turnCol));
+			show_debug_message("scr_sentStackerLoop() ... turnCol: " + string(turnCol));
 			continue;
 		}
 

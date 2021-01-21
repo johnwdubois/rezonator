@@ -25,7 +25,7 @@ function scr_groupStackerLoop(){
 
 		if (ds_list_find_value(global.importGridColNameList, groupColLoop) == "Group") {
 			groupCol = groupColLoop;
-			show_debug_message("obj_stacker Alarm 4 ... groupCol: " + string(groupCol));
+			show_debug_message("scr_groupStackerLoop() ... groupCol: " + string(groupCol));
 			break;
 		}
 

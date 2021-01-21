@@ -5,7 +5,7 @@ for (var tokenColLoop = 0; tokenColLoop < tokenImportColNameListSize; tokenColLo
 
 	if (ds_list_find_value(global.tokenImportColNameList, tokenColLoop) == "endNote") {
 		endCol = tokenColLoop;
-		show_debug_message("obj_stacker Alarm 5 ... endCol: " + string(endCol));
+		show_debug_message("obj_stacker Alarm 7 ... endCol: " + string(endCol));
 		break;
 	}
 

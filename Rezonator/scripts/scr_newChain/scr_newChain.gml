@@ -31,7 +31,7 @@ function scr_newChain(wordID, unitID) {
 			aligned = true;
 			rezChainNameCounter++;
 			chainSeq = rezChainNameCounter;
-			chainName = currentChainName + " " + string(rezChainNameCounter);
+			chainName = "Rez " + string(rezChainNameCounter);
 			chainType = "rezChain";
 			if(obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
@@ -44,7 +44,7 @@ function scr_newChain(wordID, unitID) {
 			}
 			trackChainNameCounter++;
 			chainSeq = trackChainNameCounter;
-			chainName = currentChainName + " " + string(trackChainNameCounter);
+			chainName = "Track " + string(trackChainNameCounter);
 			chainType = "trackChain";
 			break;
 		case obj_toolPane.toolStackBrush:
@@ -56,13 +56,13 @@ function scr_newChain(wordID, unitID) {
 			}
 			stackChainNameCounter++;
 			chainSeq = stackChainNameCounter;
-			chainName = currentChainName + " " + string(stackChainNameCounter);
+			chainName = "Stack " + string(stackChainNameCounter);
 			chainType = "stackChain";
 			break;
 		case obj_toolPane.toolPlaceChains:
 			placeChainNameCounter++;
 			chainSeq = placeChainNameCounter;
-			chainName = currentChainName + " " + string(placeChainNameCounter);
+			chainName = "Place " + string(placeChainNameCounter);
 			chainType = "placeChain";
 		default:
 			exit;

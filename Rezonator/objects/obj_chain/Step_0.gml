@@ -106,29 +106,8 @@ else {
 
 
 
-switch (obj_toolPane.currentTool) {
-	case obj_toolPane.toolRezBrush:
-		currentChainName = "Rez";
-		break;
-	case obj_toolPane.toolTrackBrush:
-		currentChainName = "Track";
-		break;
-	case obj_toolPane.toolStackBrush:
-		currentChainName = "Stack";
-		break;
-	case obj_toolPane.toolPlaceChains:
-		currentChainName = "Place";
-		break;
-	case obj_toolPane.toolBoxBrush:
-		currentChainName = "Box";
-		break;
-	default:
-		break;
-}
 
 mouseLineHide = false;
-if(obj_control.mouseoverPanelPane) {
+if (obj_control.mouseoverPanelPane) {
 	mouseLineHide = true;
 }
-
-

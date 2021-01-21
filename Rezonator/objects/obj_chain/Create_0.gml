@@ -64,8 +64,6 @@ chainStateFocus = 2;//"Focus";//2
 //chainStateHidden = 4;
 chainStateDead = 5;//"Dead";//5
 
-currentChainName = "Rez";
-
 chainColorList = ds_list_create();
 chainColorID[1] = 0;
 chainColorID[2] = 0;

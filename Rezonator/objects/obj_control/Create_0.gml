@@ -511,7 +511,7 @@ lastAddedWord = "";
 
 hitIDCounter = 1;
 
-selectedChainID = 0;
+selectedChainID = "";
 
 dialogueBoxActive = false;
 newWordCreated = false;
