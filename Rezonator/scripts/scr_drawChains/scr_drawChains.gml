@@ -1,6 +1,6 @@
-function scr_drawRezChain() {
+function scr_drawChains() {
 	/*
-		scr_drawRezChain();
+		scr_drawChains();
 	
 		Last Updated: 2018-07-12
 	
@@ -8,7 +8,7 @@ function scr_drawRezChain() {
 	
 		Purpose: draw rezChains and move words on screen according to the rezChains
 	
-		Mechanism: loop through each row in rezChainGrid, get the wordIDList from each chain, and draw lines
+		Mechanism: loop through chain show list and get the wordIDList from each chain, and draw lines
 					from word information
 				
 		Author: Terry DuBois
