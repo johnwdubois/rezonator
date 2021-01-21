@@ -19,6 +19,7 @@ function scr_renderFilter() {
 	ds_grid_destroy(filterGrid);
 	filterGrid = ds_grid_create(lineGridWidth, 0);
 
+	// get lists of all types of chains
 	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
 	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
 	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
