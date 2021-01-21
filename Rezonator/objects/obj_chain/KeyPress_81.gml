@@ -4,6 +4,8 @@ if(keyboard_check(vk_control)) {
 	obj_chain.showChainArrows = !obj_chain.showChainArrows;
 }
 else {
-	scr_chainDeselect();
-	scr_refreshVizLinkGrid();
+	if(!obj_control.dialogueBoxActive){
+		scr_chainDeselect();
+		scr_refreshVizLinkGrid();
+	}
 }

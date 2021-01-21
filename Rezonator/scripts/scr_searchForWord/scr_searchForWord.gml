@@ -72,7 +72,37 @@ function scr_searchForWord() {
 	obj_control.hitGrid = ds_grid_create(obj_control.hitGridWidth, 0);
 
 	obj_control.hitIDCounter = 1;
-
+	
+	// getting word ID list for focused chain
+	var wordIDList = ds_list_create();
+	var inChain = -1;
+	if(obj_chain.currentFocusedChainID != ""){
+		var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+	
+		if (is_numeric(chainSubMap)) {
+			if (ds_exists(chainSubMap, ds_type_map)) {
+				var entryIDList = ds_map_find_value(chainSubMap, "setIDList");
+				if(!is_numeric(entryIDList)){ exit; }
+				if(!ds_exists(entryIDList, ds_type_list)){ exit; }
+			}
+		}
+	
+		var sizeOfEntryList = ds_list_size(entryIDList);
+	
+		for(var i = 0; i < sizeOfEntryList; i++){
+			var entryID = ds_list_find_value(entryIDList, i );
+			var entrySubMap = ds_map_find_value(global.nodeMap, entryID);
+	
+			if (is_numeric(entrySubMap)) {
+				if (ds_exists(entrySubMap, ds_type_map)) {
+					var entryWordID = ds_map_find_value(entrySubMap, "word");
+					ds_list_add(wordIDList,entryWordID);
+				}
+			}
+		}
+	}					
+	var sizeOfwordIDList = ds_list_size(wordIDList);
+	
 	// loop through unitGrid, so we can get the wordID list of every unit
 	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
 	for (var i = 0; i < unitGridHeight; i++) {
@@ -116,8 +146,7 @@ function scr_searchForWord() {
 		
 				// loop through all words in list
 				var listOfWordsSize = ds_list_size(obj_control.listOfWords);
-				for (var l = 0; l < listOfWordsSize; l++) {
-									
+				for (var l = 0; l < listOfWordsSize; l++) {				
 					if !ds_list_empty(obj_control.listOfWords) {
 						wordToFind = ds_list_find_value(obj_control.listOfWords, l);
 					}
@@ -155,14 +184,11 @@ function scr_searchForWord() {
 					}
 					else if (obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
 				
-						var focusedRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-						var inChain = -10;
-						if(focusedRow > -1){
-							var chainWordIdList = ds_list_create(); 
-							ds_list_copy(chainWordIdList, ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, focusedRow))
-							inChain = ds_list_find_index(chainWordIdList, currentWordID);
+						if(wordIDList > -1){
+							inChain = ds_list_find_index(wordIDList, currentWordID);
 						}
-					
+
+						
 						if ( wordToFind == currentWordTranscript and inChain > -1) {
 				
 							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
@@ -170,33 +196,29 @@ function scr_searchForWord() {
 						}
 					}
 					else if (not obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
-				
-						//var inChain = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentWordID - 1);
-						var focusedRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-						var inChain = -10;
-						if(focusedRow > -1){
-							var chainWordIdList = ds_list_create(); 
-							ds_list_copy(chainWordIdList, ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, focusedRow))
-							inChain = ds_list_find_index(chainWordIdList, currentWordID);
+						
+						
+						if(wordIDList > -1){
+							inChain = ds_list_find_index(wordIDList, currentWordID);
 						}
-				
+
+
 						if (string_lower(wordToFind) == string_lower(currentWordToken) and inChain > -1 or string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
 				
 					
 							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
 
 						}
+						
+
+						
 					}
 					else if (obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
 				
-						var focusedRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-						var inChain = -10;
-						if(focusedRow > -1){
-							var chainWordIdList = ds_list_create(); 
-							ds_list_copy(chainWordIdList, ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, focusedRow))
-							inChain = ds_list_find_index(chainWordIdList, currentWordID);
+						if(wordIDList > -1){
+							inChain = ds_list_find_index(wordIDList, currentWordID);
 						}
-				
+
 						if (string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain > -1) {
 				
 							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
@@ -205,13 +227,10 @@ function scr_searchForWord() {
 					}
 					else if (not obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
 				
-						var focusedRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-						var inChain = -10;
-						if(focusedRow > -1){
-							var chainWordIdList = ds_list_create(); 
-							ds_list_copy(chainWordIdList, ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colWordIDList, focusedRow))
-							inChain = ds_list_find_index(chainWordIdList, currentWordID);
+						if(wordIDList > -1){
+							inChain = ds_list_find_index(wordIDList, currentWordID);
 						}
+						
 				
 						if (wordToFind == currentWordToken and inChain == 1 or wordToFind == currentWordTranscript and inChain > -1) {
 				
@@ -233,7 +252,7 @@ function scr_searchForWord() {
 			}
 		}
 	}
-
+	ds_list_destroy(wordIDList);
 	if(obj_control.newWordDeleted) {
 		exit;
 	}
