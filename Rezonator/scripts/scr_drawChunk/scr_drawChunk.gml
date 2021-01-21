@@ -24,7 +24,7 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 	}
 		
 	// A chunkWord always has its own Chunk as firstin its list
-	var currentChunkID = (ds_list_find_value(inChunkList, 0)); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+	var currentChunkID = (ds_list_find_value(inChunkList, 0));
 	if(currentChunkID == undefined) {
 		return;
 	}

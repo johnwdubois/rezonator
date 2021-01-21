@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "chains",
-    "path": "folders/Scripts/chains.yy",
+    "name": "drawChains",
+    "path": "folders/Scripts/chains/drawChains.yy",
   },
   "resourceVersion": "1.0",
-  "name": "Script339",
+  "name": "scr_drawChains",
   "tags": [],
   "resourceType": "GMScript",
 }

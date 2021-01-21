@@ -27,27 +27,10 @@ function scr_isItemAList(grid, col, row) {
 			itemList = currentCell;
 		}
 	}
-	/*
-	else if (grid == obj_chain.rez000 or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid or grid == obj_chain.placeChainGrid or grid == obj_chain.chunkGrid) {
-		if (col == obj_chain.chainGrid_colWordIDList) {
-			itemList = currentCell;
-		}
-		if (grid == obj_chain.chunkGrid) {
-			if (col == obj_chain.chunkGrid_colBoxWordIDList) {
-				itemList = currentCell;
-			}
-		}
-	}
-	*/
 	else if (grid == obj_control.searchGrid) {
 		if (col == obj_control.searchGrid_colHitIDList) {
 			itemList = currentCell;
 		}
-	}
-	else if (grid == obj_chain.unitInStackGrid) {
-		//if (col == obj_chain.unitInStackGrid_colStack) {
-		//	itemList = currentCell;
-		//}
 	}
 	else if (grid == obj_chain.cliqueGrid) {
 		if (col == obj_chain.cliqueGrid_colChainIDList or col == obj_chain.cliqueGrid_colUnitIDList) {
