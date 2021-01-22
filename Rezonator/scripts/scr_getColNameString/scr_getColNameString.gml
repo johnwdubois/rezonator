@@ -224,7 +224,7 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
-	else if (grid == obj_chain.linkGrid or grid == obj_chain.rezPlayLinkGrid) {
+	else if (grid == obj_chain.linkGrid) {
 		switch (col) {
 			case obj_chain.linkGrid_colTier:
 				colName = "tier";

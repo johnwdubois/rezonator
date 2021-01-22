@@ -63,7 +63,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 	var mouseRectWithinLine = obj_control.mouseRectWithinLine;
 	var mouseRectBeginBetweenWords = obj_control.mouseRectBeginBetweenWords;
 	var colorThemeBG = global.colorThemeBG;
-	var inRezPlay = obj_chain.inRezPlay;
 	var hitGridHeight = ds_grid_height(obj_control.hitGrid);
 	var camWidth = camera_get_view_width(camera_get_active());
 
@@ -307,7 +306,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 			//scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 			scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 			// Until I can get a check that sees if the mouseRect is in the line, this can't happen
-			if (!obj_control.mouseOverUI && (hoverWordID == -1 || hoverWordID == currentWordID) && ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade)) && !inRezPlay) {
+			if (!obj_control.mouseOverUI && (hoverWordID == -1 || hoverWordID == currentWordID) && ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade))) {
 				scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop);
 			}
 	

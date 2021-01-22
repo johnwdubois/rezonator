@@ -286,7 +286,6 @@ with (obj_alarm) {
 
 
 
-// Create variable checks for RezPlay
 originalWordGridHeight = ds_grid_height(wordGrid);
 originalUnitGridHeight = ds_grid_height(unitGrid);
 originalLineGridHeight = ds_grid_height(lineGrid);

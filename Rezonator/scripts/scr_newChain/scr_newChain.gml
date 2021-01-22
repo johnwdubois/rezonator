@@ -108,14 +108,6 @@ function scr_newChain(wordID, unitID) {
 	}
 
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
-	
-	// CHAIN REHAUL: come back later
-	/*
-	var newTop = currentRowChainGrid + 1;
-	with (obj_panelPane) {
-		currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
-	}
-	*/
 
 	with (obj_panelPane) {
 		functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;

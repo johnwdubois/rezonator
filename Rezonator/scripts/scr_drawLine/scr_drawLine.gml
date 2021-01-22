@@ -183,7 +183,7 @@ function scr_drawLine() {
 			}
 			else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2)) {
 				obj_control.mouseoverNeutralSpace = false;
-				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+				if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
 					if (obj_control.ctrlHold) {
 						
@@ -220,7 +220,7 @@ function scr_drawLine() {
 				var mouseOverLine = point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, camera_get_view_width(camera_get_active()), speakerRectY2);
 				if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and mouseOverLine)) {
 				obj_control.mouseoverNeutralSpace = false;
-				if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+				if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 					
 					ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
 					ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -247,7 +247,7 @@ function scr_drawLine() {
 			
 				if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and mouseOverLine)) {
 					obj_control.mouseoverNeutralSpace = false;
-					if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+					if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
 						//show_message("here");
 						ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
 						ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -340,23 +340,22 @@ function scr_drawLine() {
 		
 	
 		//Draw quickstack highlights here
-		if (!obj_chain.inRezPlay) {
-			if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
+		if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
 		
-				var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, camViewWidth, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-				if (inMouseRect and speakerLabelColXHolding == -1) {
-					draw_set_color(c_ltblue);
-					draw_set_alpha(0.3);
+			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, camViewWidth, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+			if (inMouseRect and speakerLabelColXHolding == -1) {
+				draw_set_color(c_ltblue);
+				draw_set_alpha(0.3);
 			
-					var quickStackRectX1 = speakerRectX2;
-					var quickStackRectY1 = speakerRectY1;
-					var quickStackRectX2 = camViewWidth;
-					var quickStackRectY2 = speakerRectY2;
+				var quickStackRectX1 = speakerRectX2;
+				var quickStackRectY1 = speakerRectY1;
+				var quickStackRectX2 = camViewWidth;
+				var quickStackRectY2 = speakerRectY2;
 		
-					draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
-				}
+				draw_rectangle(quickStackRectX1, quickStackRectY1, quickStackRectX2, quickStackRectY2, false);
 			}
 		}
+
 		
 		//var previousWordDisplayCol = -1;
 	

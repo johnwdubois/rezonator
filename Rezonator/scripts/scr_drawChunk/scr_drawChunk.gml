@@ -116,7 +116,6 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 	// Check for mouseover of the Chunk 
 	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) 
-	and not obj_chain.inRezPlay
 	and not mouseoverPanelPane 
 	and (hoverChunkID == currentWordID || hoverChunkID == -1) 
 	and hoverWordID == -1 

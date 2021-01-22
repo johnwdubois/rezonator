@@ -2,7 +2,6 @@
 ds_list_add(gridList,
 	obj_chain.linkGrid,
 	obj_chain.vizLinkGrid,
-	obj_chain.rezPlayLinkGrid,
 	obj_chain.DepRelLinkGrid,
 	obj_chain.chunkGrid,
 	obj_chain.unitInStackGrid,

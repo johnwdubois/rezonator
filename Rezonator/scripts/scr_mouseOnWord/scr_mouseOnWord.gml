@@ -29,8 +29,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 		hoverWordID = currentWordID;
 		
 		// Check to see if this word should be hovered over and allowed to be clicked
-		if(not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
-			and not obj_control.mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)){
+		if (not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_control.mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
 		
 			draw_set_color(global.colorThemeBorders);
 			draw_set_alpha(1);

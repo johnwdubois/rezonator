@@ -30,9 +30,6 @@ function scr_getGridNameString(gridName) {
 		case obj_chain.linkGrid:
 			gridName = "Link"; // Link Grid 
 			break;
-		case obj_chain.rezPlayLinkGrid:
-			gridName = "playLink"; // rezPlay Link Grid
-			break;
 		case obj_chain.vizLinkGrid:
 			gridName = "vizLink"; // vizLink Grid
 			break;
