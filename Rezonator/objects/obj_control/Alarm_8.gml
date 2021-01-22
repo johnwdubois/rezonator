@@ -75,33 +75,41 @@ if (obj_chain.currentFocusedChainID != "") {
 	
 	// Keep the focus of track chains
 	if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
-		//show_message("trying to make track link");
-		var rowInTrackChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), obj_chain.currentFocusedChainID);
-		if (rowInTrackChainGrid >= 0) {
-			var focusedChainWordIDList = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colWordIDList, rowInTrackChainGrid);
-			//show_message("size of chain to be added" + string(ds_list_size(focusedChainWordIDList)));
-			if (ds_list_size(focusedChainWordIDList) > 0) {
-			
-				var focusedChainFirstWordID = ds_list_find_value(focusedChainWordIDList, 0);
-				if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-					var focusedChainFirstHitGridRow = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), focusedChainFirstWordID);
-					var firstItemDisplayCol = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colDisplayCol, focusedChainFirstHitGridRow);
-				}
-				else {
-					var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
-				}
-				// Change this to hitGrid
+
+		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+		if (is_numeric(focusedChainSubMap)) {
+			if (ds_exists(focusedChainSubMap, ds_type_map)) {
 				
-				var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
-				for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
-					var currentRowDisplayCol = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colDisplayCol, i);
-					if (currentRowDisplayCol == firstItemDisplayCol) {
-						ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, i, true);
+				var setIDList = ds_map_find_value(focusedChainSubMap, "setIDList");
+				var setIDListSize = ds_list_size(setIDList);
+					
+				if (setIDListSize > 0) {
+						
+					var focusedChainFirstEntry = ds_list_find_value(setIDList, 0);
+					var focusedChainFirstEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFirstEntry);
+					var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "word");
+					
+					if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+						var focusedChainFirstHitGridRow = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), focusedChainFirstWordID);
+						var firstItemDisplayCol = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colDisplayCol, focusedChainFirstHitGridRow);
 					}
+					else {
+						var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
+					}
+					// Change this to hitGrid
+				
+					var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
+					for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+						var currentRowDisplayCol = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colDisplayCol, i);
+						if (currentRowDisplayCol == firstItemDisplayCol) {
+							ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, i, true);
+						}
+					}
+					ds_grid_sort(gridOfFutureChains, gridOfFutureChains_colFocused, false);
 				}
-				ds_grid_sort(gridOfFutureChains, gridOfFutureChains_colFocused, false);
 			}
 		}
+		
 	}
 	// Keep the focus of Rez chains
 	else {

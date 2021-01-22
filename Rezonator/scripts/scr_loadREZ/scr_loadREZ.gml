@@ -282,6 +282,20 @@ function scr_loadREZ() {
 	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
 	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
 	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	
+	if(!is_numeric(rezChainList)){
+			ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
+	}
+	if(!is_numeric(trackChainList)){
+			ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
+	}
+	if(!is_numeric(stackChainList)){
+			ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
+	}
+	
+	rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
+	trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
+	stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
 
 	obj_chain.currentChainID = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid));
 	obj_chain.linkIDCounter = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, 0, obj_chain.linkGrid_colLinkID, ds_grid_height(obj_chain.linkGrid));
@@ -289,6 +303,7 @@ function scr_loadREZ() {
 	obj_chain.rezChainNameCounter = ds_list_size(rezChainList);
 	obj_chain.trackChainNameCounter = ds_list_size(trackChainList);
 	obj_chain.stackChainNameCounter = ds_list_size(stackChainList);
+
 	//obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
 	
 	obj_control.chunkID = ds_grid_get_max(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid));
