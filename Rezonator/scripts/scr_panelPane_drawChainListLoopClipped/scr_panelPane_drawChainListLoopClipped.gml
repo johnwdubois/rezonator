@@ -99,16 +99,22 @@ function scr_panelPane_drawChainListLoopClipped() {
 		}
 		else if (i >= 0 && i < listOfChainsSize) {
 			
-			// Get info of current chain
+			// get submap of current chain
 			var currentChainID = ds_list_find_value(listOfChains, i);
 			var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
+			
+			// make sure that the chain's submap exists
+			if (!is_numeric(currentChainSubMap)) continue;
+			if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+			
+			// get info of current chain
+			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
 			var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
 			var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 			var currentChainCaption = "";
 			if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 				currentChainCaption = "";
 			}
-			
 			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
 			var setIDListSize = ds_list_size(setIDList);
 			
@@ -146,31 +152,31 @@ function scr_panelPane_drawChainListLoopClipped() {
 							draw_set_color(c_red);
 							draw_circle(mouse_x, mouse_y, 5, true);
 						}
-		
-						if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
+						
+						if (device_mouse_check_button_released(0, mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown)) {
 		
 							if (obj_chain.currentFocusedChainID != currentChainID) {
 								// Focuses on selected chain
-									switch (functionChainList_currentTab) {
-										case functionChainList_tabRezBrush:
-											obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
-											break;
-										case functionChainList_tabTrackBrush:
-											obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
-											break;
-										case functionChainList_tabStackBrush:
-											obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-											break;
-										default:
-											break;
-									}
+								switch (functionChainList_currentTab) {
+									case functionChainList_tabRezBrush:
+										obj_toolPane.currentTool = obj_toolPane.toolRezBrush;
+										break;
+									case functionChainList_tabTrackBrush:
+										obj_toolPane.currentTool = obj_toolPane.toolTrackBrush;
+										break;
+									case functionChainList_tabStackBrush:
+										obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+										break;
+									default:
+										break;
+								}
 				
-									obj_chain.currentFocusedChainID = currentChainID;
+								obj_chain.currentFocusedChainID = currentChainID;
 				
-									// Set chain to focus in the main screen
-									if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
-										scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
-									}
+								// Set chain to focus in the main screen
+								if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
+									scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
+								}
 			
 								// Set scroll range in the chain list
 								with (obj_panelPane) {
@@ -270,18 +276,34 @@ function scr_panelPane_drawChainListLoopClipped() {
 						draw_set_color(global.colorThemeText);
 						// Fill in boxes if filtered
 						// Check boxes for user selection with mouse click
-						var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
-						if (mouseover) {
+						var mouseoverFilter = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
+						if (mouseoverFilter) {
 							scr_createTooltip(chainFilterRectX2 + clipX, mean(chainFilterRectY1 + clipY, chainFilterRectY2 + clipY), "Filter", obj_tooltip.arrowFaceLeft);
 							draw_set_alpha(1);
 							draw_set_color(global.colorThemeBorders);
 							draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 						}
-						if (((mouseover and device_mouse_check_button_released(0, mb_left))
+						if (((mouseoverFilter and device_mouse_check_button_released(0, mb_left))
 						or (keyboard_check_pressed(ord("P")) and (keyboard_check(vk_lshift) or keyboard_check(vk_rshift)) and !keyboard_check(vk_control) and obj_chain.currentFocusedChainID == currentChainID)) and not instance_exists(obj_dialogueBox)) {
 							// Set selected objects to be filtered
 							inFilter = !inFilter;
 							ds_map_replace(currentChainSubMap, "filter", inFilter);
+							
+							// get corresponding filter list
+							var listOfFilteredChains = -1;
+							if (currentChainType == "rezChain") listOfFilteredChains = obj_chain.filteredRezChainList;
+							else if (currentChainType == "trackChain") listOfFilteredChains = obj_chain.filteredTrackChainList;
+							else if (currentChainType == "stackChain") listOfFilteredChains = obj_chain.filteredStackChainList;
+							
+							// update corresponding filtered list
+							if (inFilter) {
+								if (ds_list_find_index(listOfFilteredChains, currentChainID) == -1) {
+									ds_list_add(listOfFilteredChains, currentChainID);
+								}
+							}
+							else {
+								scr_deleteFromList(listOfFilteredChains, currentChainID);
+							}
 			
 							// Render the filter in the mainscreen
 							if (obj_control.filterGridActive) {

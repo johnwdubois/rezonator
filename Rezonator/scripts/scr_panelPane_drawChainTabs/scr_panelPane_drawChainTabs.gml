@@ -85,7 +85,87 @@ function scr_panelPane_drawChainTabs() {
 			}
 			
 			
+			// determine the chainType and listOfChains based on what tab we are on
+			var currentTabChainType = "";
+			var listOfChains = -1;
+			var listOfFilteredChains = -1;
+			if (i == functionChainList_tabRezBrush) {
+				listOfChains = ds_map_find_value(global.nodeMap, "rezChainList");
+				currentTabChainType = "rezChain";
+				listOfFilteredChains = obj_chain.filteredRezChainList;
+			}
+			else if (i == functionChainList_tabTrackBrush) {
+				listOfChains = ds_map_find_value(global.nodeMap, "trackChainList");
+				currentTabChainType = "trackChain";
+				listOfFilteredChains = obj_chain.filteredTrackChainList;
+			}
+			else if (i == functionChainList_tabStackBrush) {
+				listOfChains = ds_map_find_value(global.nodeMap, "stackChainList");
+				currentTabChainType = "stackChain";
+				listOfFilteredChains = obj_chain.filteredStackChainList;
+			}
+			var listOfChainsSize = ds_list_size(listOfChains);
 			
+			
+			// draw filter button
+			var filterRectX1 = toggleDrawRectX1 - 4 - buttonRectSize;
+			var filterRectY1 = toggleDrawRectY1;
+			var filterRectX2 = filterRectX1 + buttonRectSize;
+			var filterRectY2 = filterRectY1 + buttonRectSize;
+			var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
+			if (mouseoverFilter && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
+				scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
+				if (mouse_check_button_released(mb_left)) {
+									
+					// if all chains are filtered, unfilter all of them
+					if (ds_list_size(listOfFilteredChains) == listOfChainsSize) {
+						show_debug_message("scr_panelPane_drawChainTabs() ... unfiltering all chains of type: " + string(currentTabChainType));
+						scr_setValueForAllChains(currentTabChainType, "filter", false);
+					}
+					// if not all of the chains are filtered, filter all of them
+					else if (ds_list_size(listOfFilteredChains) >= 0) {
+						show_debug_message("scr_panelPane_drawChainTabs() ... filtering all chains of type: " + string(currentTabChainType));
+						scr_setValueForAllChains(currentTabChainType, "filter", true);
+					}
+					
+					// render filter!
+					if (obj_control.filterGridActive) {
+						with (obj_control) {
+							scr_renderFilter();
+						}
+						
+						// if there is nothing filtered, we turn filter off
+						var totalChainsFiltered = ds_list_size(obj_chain.filteredRezChainList) + ds_list_size(obj_chain.filteredTrackChainList) + ds_list_size(obj_chain.filteredStackChainList);
+						if (totalChainsFiltered <= 0) {
+							with (obj_control) {
+								searchGridActive = false;
+								filterGridActive = false;
+								currentActiveLineGrid = lineGrid;
+								obj_toolPane.currentMode = obj_toolPane.setModeMain;
+								wordLeftMarginDest = 170; // Make sure the margin is placed correctly
+
+								with (obj_alarm) {
+									alarm[1] = 5;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			// adjust image index of filter sprite depending on how many chains are filtered
+			var filterImageIndex = 0;
+			if (ds_list_size(listOfFilteredChains) > 0) {
+				if (ds_list_size(listOfFilteredChains) < listOfChainsSize) {
+					filterImageIndex = 2;
+				}
+				else {
+					filterImageIndex = 1;
+				}
+			}
+			draw_sprite_ext(spr_filterIcons, filterImageIndex, mean(filterRectX1, filterRectX2), mean(filterRectY1, filterRectY2), 1, 1, 0, c_white, 1);
 		}
 		
 		// CHAIN OVERHAUL: come back later

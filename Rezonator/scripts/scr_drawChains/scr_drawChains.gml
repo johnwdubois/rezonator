@@ -14,10 +14,6 @@ function scr_drawChains() {
 		Author: Terry DuBois
 	*/
 
-	if (not obj_chain.toggleDrawRez) {
-		exit;
-	}
-
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
@@ -67,6 +63,11 @@ function scr_drawChains() {
 		// make sure setIDList exists
 		if (!is_numeric(currentSetIDList)) continue;
 		if (!ds_exists(currentSetIDList, ds_type_list)) continue;
+		
+		// make sure this is a rezChain or trackChain and that we should be drawing it
+		if (chainType != "rezChain" && chainType != "trackChain") continue;
+		if (chainType == "rezChain" && !obj_chain.toggleDrawRez) continue;
+		if (chainType == "trackChain" && !obj_chain.toggleDrawTrack) continue;
 	
 		// find minimum word width so we know the X position of the chain
 		for (var j = 0; j < currentSetIDListSize; j++) {
@@ -74,7 +75,7 @@ function scr_drawChains() {
 			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
 			var currentWordWidth = 0;
-			if(is_numeric(currentWordID)){
+			if (is_numeric(currentWordID)){
 				currentWordWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1))) / 2;
 			}
 			currentWordWidth = max(currentWordWidth, 0);
