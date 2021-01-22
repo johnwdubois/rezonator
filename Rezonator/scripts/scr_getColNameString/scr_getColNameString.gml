@@ -296,64 +296,6 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
-	/*
-	else if (grid == obj_chain.rezChainGrid or grid == obj_chain.trackChainGrid or grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid or grid == obj_chain.placeChainGrid) {
-		switch (col) {
-			case obj_chain.chainGrid_colChainID:
-				colName = "chainID";
-				break;
-			case obj_chain.chainGrid_colChainState:
-				colName = "chainState";
-				break;
-			case obj_chain.chainGrid_colWordIDList:
-				if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
-					colName = "unitIDList";
-				}
-				else {
-					colName = "wordList";
-				}
-				break;
-			case obj_chain.chainGrid_colName:
-				colName = "name";
-				break;
-			case obj_chain.chainGrid_colColor:
-				colName = "color";
-				break;
-			case obj_chain.chainGrid_colInFilter:
-				colName = "inFilter";
-				break;
-			case obj_chain.chainGrid_colAlign:
-				colName = "align";
-				break;
-			case obj_chain.chainGrid_colChainSeq:
-				colName = "chainSeq";
-				break;
-			case obj_chain.chainGrid_colCaption:
-				colName = "caption";
-				break;
-			case obj_chain.chainGrid_colAuthor:
-				colName = "author";
-				break;
-			case obj_chain.chainGrid_colShow:
-				colName = "show";
-				break;
-			case obj_chain.chainGrid_colStackType:
-				colName = "stackType";
-				break;
-			case obj_chain.chainGrid_colAct:
-				colName = "act";
-				break;
-			case obj_chain.chainGrid_colRepair:
-				colName = "repair";
-				break;
-			case obj_chain.chainGrid_colActSequence:
-				colName = "act sequence";
-				break;
-			default:
-				break;
-		}
-	}
-	*/
 	else if (grid == obj_chain.trackSeqGrid) {
 		switch (col) {
 			case obj_chain.trackSeqGrid_colChainID:

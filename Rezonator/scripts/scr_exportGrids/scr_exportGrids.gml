@@ -30,10 +30,6 @@ function scr_exportGrids() {
 	scr_gridToCSV(obj_control.unitGrid, exportDir + "\\unit.csv");
 	scr_gridToCSV(obj_chain.linkGrid, exportDir + "\\link.csv");
 	scr_gridToCSV(obj_chain.cliqueGrid, exportDir + "\\clique.csv");
-	//scr_gridToCSV(obj_chain.rezChainGrid, exportDir + "\\rez.csv");
-	//scr_gridToCSV(obj_chain.trackSeqGrid, exportDir + "\\track.csv");
-	//scr_gridToCSV(obj_chain.trackChainGrid, exportDir + "\\trackChain.csv");
-	//scr_gridToCSV(obj_chain.stackChainGrid, exportDir + "\\stack.csv");
 
 
 }

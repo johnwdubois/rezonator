@@ -527,7 +527,6 @@ mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
 mouseoverHelpPane = false;
 
-currentChainGridRowInDelete = undefined;
 gridInDelete = undefined;
 
 newWordDeleted = false;

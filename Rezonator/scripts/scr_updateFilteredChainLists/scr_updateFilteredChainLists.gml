@@ -13,9 +13,14 @@ function scr_updateFilteredChainLists(){
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		
+		// add or remove chain from filtered chains list as needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredRezChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredRezChainList, currentChain);
+		}
+		else if (!inFilter) {
+			scr_deleteFromList(obj_chain.filteredRezChainList, currentChain);
 		}
 	}
 	// update filteredChainLists for tracks
@@ -25,9 +30,14 @@ function scr_updateFilteredChainLists(){
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		
+		// add or remove chain from filtered chains list as needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredTrackChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredTrackChainList, currentChain);
+		}
+		else if (!inFilter) {
+			scr_deleteFromList(obj_chain.filteredTrackChainList, currentChain);
 		}
 	}
 	// update filteredChainLists for stacks
@@ -37,9 +47,14 @@ function scr_updateFilteredChainLists(){
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		
+		// add or remove chain from filtered chains list as needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredStackChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredStackChainList, currentChain);
+		}
+		else if (!inFilter) {
+			scr_deleteFromList(obj_chain.filteredStackChainList, currentChain);
 		}
 	}
 	
