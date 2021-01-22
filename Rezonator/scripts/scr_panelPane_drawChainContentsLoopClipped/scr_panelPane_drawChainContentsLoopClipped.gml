@@ -194,7 +194,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 						draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
 			
 						// Focus in the main screen
-						if (chainType == "rezChainGrid" or chainType == "trackChainGrid") {
+						if (chainType == "rezChain" or chainType == "trackChain") {
 							ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
 						}

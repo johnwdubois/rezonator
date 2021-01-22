@@ -293,7 +293,6 @@ function scr_drawLineHitIDListLoop(currentHitIDList, previousWordDisplayCol, cur
 			if (device_mouse_check_button_released(0, mb_left)) {
 				with(obj_chain) {
 					scr_chainDeselect();
-					scr_refreshVizLinkGrid();	
 				}
 			}
 		}

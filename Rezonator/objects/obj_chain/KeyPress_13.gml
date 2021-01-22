@@ -19,5 +19,4 @@ if(!obj_control.dialogueBoxActive){
 	
 	scr_chainDeselect();
 
-	scr_refreshVizLinkGrid();
 }

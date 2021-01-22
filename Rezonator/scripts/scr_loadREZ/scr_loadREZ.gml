@@ -297,7 +297,6 @@ function scr_loadREZ() {
 	}
 	show_debug_message("scr_loadREZ() ... obj_control.chunkID: " + string(obj_control.chunkID));
 
-	scr_refreshVizLinkGrid();
 
 	if (ds_grid_height(obj_control.lineGrid) > 1) {
 	

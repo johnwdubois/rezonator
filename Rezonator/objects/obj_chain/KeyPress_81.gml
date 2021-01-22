@@ -6,6 +6,5 @@ if(keyboard_check(vk_control)) {
 else {
 	if(!obj_control.dialogueBoxActive){
 		scr_chainDeselect();
-		scr_refreshVizLinkGrid();
 	}
 }

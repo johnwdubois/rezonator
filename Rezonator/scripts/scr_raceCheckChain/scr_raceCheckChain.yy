@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "cliques",
-    "path": "folders/Scripts/chains/cliques.yy",
+    "name": "chains",
+    "path": "folders/Scripts/chains.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_raceCheckChain",

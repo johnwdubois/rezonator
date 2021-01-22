@@ -1,8 +1,6 @@
 function scr_raceCheckChain(chainID) {
-	//show_message("here")
 
 
-	//var displayColList = ds_list_create();
 	var displayColGridWidth = 2;
 	var displayColGrid_colWordID = 0;
 	var displayColGrid_colDisplayCol = 1;
@@ -63,14 +61,6 @@ function scr_raceCheckChain(chainID) {
 		}
 	}
 
-
-
-
-
-
-
-
-
 	var unitIDList = ds_list_create();
 
 	for (var i = 0; i < wordIDListSize; i++) {
@@ -93,7 +83,7 @@ function scr_raceCheckChain(chainID) {
 	
 		ds_list_add(unitIDList, currentUnitID);
 	
-		//ds_list_add(displayColList, currentWordDisplayCol);
+
 		ds_grid_resize(displayColGrid, displayColGridWidth, ds_grid_height(displayColGrid) + 1);
 		ds_grid_set(displayColGrid, displayColGrid_colWordID, ds_grid_height(displayColGrid) - 1, currentWordID);
 		ds_grid_set(displayColGrid, displayColGrid_colDisplayCol, ds_grid_height(displayColGrid) - 1, currentWordDisplayCol);
@@ -131,19 +121,10 @@ function scr_raceCheckChain(chainID) {
 		var currentWordID = ds_list_find_value(firstDisplayColWordIDList, i);
 		str += string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1)) + ", ";
 	}
-	//show_message(str);
-	//show_message(scr_getStringOfList(firstDisplayColWordIDList));
 
 	var displayColGridFirst_wordID = ds_list_find_value(firstDisplayColWordIDList, 0);
 
-
-	//show_message(string(displayColGridFirst_displayCol) + "," + string(displayColGridLast_displayCol));
-
 	if (displayColGridFirst_displayCol < displayColGridLast_displayCol) {
-		/*
-		var displayColGridFirst_str = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, displayColGridFirst_wordID - 1);
-		show_message(displayColGridFirst_str);
-		*/
 	
 		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, displayColGridFirst_wordID - 1, false);
 		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, displayColGridFirst_wordID - 1, true);

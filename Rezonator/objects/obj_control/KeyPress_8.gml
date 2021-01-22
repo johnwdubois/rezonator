@@ -14,16 +14,13 @@ if(gridView) {
 }*/
 if (keyboard_check(vk_control)) {
 	// Delete the entire chain if one is focused
-	var currentChainRow = ds_grid_value_y(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.currentChainGrid) -1, obj_chain.chainStateFocus);
-	if(currentChainRow > -1) {
-		scr_deleteChain(ds_grid_get(obj_chain.currentChainGrid, obj_chain.chainGrid_colChainID, currentChainRow));
+	if(ds_map_exists(global.nodeMap,obj_chain.currentFocusedChainID)) {
+		scr_deleteChain(obj_chain.currentFocusedChainID);
 	}
 }
 // If a normal delete, delete the singular focused link
 else {
 	if(obj_chain.currentFocusedChainID == "" and hoverChunkID != -1) {
-		//show_message(hoverChunkIDRow);
-		//show_message(hoverChunkID);
 		deleteChunkWord = true;
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, hoverChunkIDRow, obj_chain.chainStateFocus);
 	}

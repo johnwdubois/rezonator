@@ -211,19 +211,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 					if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
 					and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)) {
-		
-						// Unfocus any already focused chains
-						/*
-						for (var j = 0; j < gridHeight; j++) {
-							if (ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
-								ds_grid_set(grid, obj_chain.chainGrid_colChainState, j, obj_chain.chainStateNormal);
-							}
-						}
-						*/
-				
-						// Set chain to focus in the grid
-						//ds_grid_set(grid, obj_chain.chainGrid_colChainState, i, obj_chain.chainStateFocus);
-						//scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
+
 						obj_chain.currentFocusedChainID = currentChainID;
 				
 
