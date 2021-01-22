@@ -1,6 +1,12 @@
 ///@description Remove Link or Chunk
 function scr_deleteFromChain() {
 	
+	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
+		scr_deleteChunk();
+	}
+	
+	
+	
 	// get the focused chain's submap
 	var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 	if (!is_numeric(chainSubMap)) {

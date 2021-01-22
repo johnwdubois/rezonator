@@ -40,12 +40,21 @@ function scr_combineChainsDrawLine(){
 						
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	// store WID list for future
 	var selectedIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, selectedChainfocusedChainRow);
-	//var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, currentChainfocusedChainRow);
 	var selectedIDListSize = ds_list_size(selectedIDList);
-	//var sizeOfCurrentIDList = ds_list_size(currentIDList);
+
 						
 	if ( selectedIDListSize == 1 ){
 		obj_control.clickedWordID = currentWordID;

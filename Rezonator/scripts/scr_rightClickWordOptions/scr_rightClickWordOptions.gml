@@ -2,26 +2,7 @@ function scr_rightClickWordOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		/*
-		case "Link":
-		
-			
-			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "Create Rez", "Create track", "Delete link");
-			
-			if (ds_list_size(dropDownOptionList) > 0) {
-				
-				var dropDownInst = instance_create_depth(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = 9;
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;
-			}
 
-			//show_message("BUH 1");
-			break;
-			*/
 		case "Tag":
 				
 			var dropDownOptionList = ds_list_create();
@@ -34,7 +15,7 @@ function scr_rightClickWordOptions(optionSelected) {
 		case "Replace Word":
 		
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
-				//show_message("buh");
+
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
 						obj_control.replace = true;
@@ -50,7 +31,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			}
 			obj_control.rightClickonWord = false;
 			instance_destroy();
-			//show_message("BUH 1");
+
 			break;
 		case "Restore Word":
 		
@@ -73,13 +54,13 @@ function scr_rightClickWordOptions(optionSelected) {
 			}
 			obj_control.rightClickonWord = false;
 			instance_destroy();
-			//show_message("BUH 1");
+	
 			break;
 		case "Split Word":
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			if (obj_control.rightClickWordID > -1 and obj_control.rightClickWordID  < ds_grid_height(obj_control.wordGrid)) {
-				//show_message("buh");
+
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
 						obj_control.replace = true;
@@ -97,7 +78,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			}
 			obj_control.rightClickonWord = false;
 			instance_destroy();
-			//show_message("BUH 2");
+
 			break;
 		case "New Word":
 		
@@ -114,13 +95,12 @@ function scr_rightClickWordOptions(optionSelected) {
 		
 		
 
-			//show_message("BUH 3");
+
 			break;
 		case "Delete New Word":
 			scr_destroyAllDropDownsOtherThanSelf();
 			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
 			obj_control.deleteNewWord = true;
-			//show_message("Coming Soon");
 			scr_deleteFromChain();
 			
 			obj_control.deleteNewWord = false;
@@ -129,80 +109,7 @@ function scr_rightClickWordOptions(optionSelected) {
 	
 			break;
 		case "Delete Link":
-			/*
-			var currentInChainList = ds_list_create();
-			ds_list_copy(currentInChainList, ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList,obj_control.rightClickWordID - 1) );
-			if(obj_toolPane.currentMode == obj_toolPane.modeRez){
-				var chainGridRowToSet = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID,0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), ds_list_find_value(currentInChainList,0));
-				ds_grid_set(obj_chain.rezChainGrid,obj_chain.chainGrid_colChainState, chainGridRowToSet, 2);
-			}
-			else if(obj_toolPane.currentMode == obj_toolPane.modeTrack){
-				var chainGridRowToSet = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID,0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), ds_list_find_value(currentInChainList,0));
-				ds_grid_set(obj_chain.trackChainGrid,obj_chain.chainGrid_colChainState, chainGridRowToSet, 2);
-			}
-			else{
-				break;
-			}
-			*/
-			var rowInChainGrid = -1;
-			var currentChainID = -1;
-			if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
-				rowInChainGrid = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.rezChainGrid), obj_chain.chainStateFocus);
-				currentChainID = ds_grid_get(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, rowInChainGrid);
-			}
-			else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
-				rowInChainGrid = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.trackChainGrid), obj_chain.chainStateFocus);
-				currentChainID = ds_grid_get(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, rowInChainGrid);
-			}
-		
-			show_debug_message("scr_rightClickWordOptions()... rowInChainGrid: " + string(rowInChainGrid));
-			show_debug_message("scr_rightClickWordOptions()... currentChainID: " + string(currentChainID));
-		
-			var rowToSet = scr_findInGridThreeParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource, obj_control.rightClickWordID, obj_chain.linkGrid_colChainID, currentChainID, obj_chain.linkGrid_colDead, false);
-		
-			show_debug_message("scr_rightClickWordOptions()... rowToSet: " + string(rowToSet));
-		
-		
-		
-			var grid = obj_chain.rezChainGrid;
 
-			// find which grid we are dealing with (depending on current tool)
-			switch (obj_toolPane.currentMode) {
-				// Using the rez tool
-				case obj_toolPane.modeRez:
-					grid = obj_chain.rezChainGrid;
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.rezTier) {
-						show_message("Please Click on a word before deleting it's link");
-						instance_destroy();
-						exit;	
-					}
-					break;
-				case obj_toolPane.modeTrack:
-				// Using the track tool
-					grid = obj_chain.trackChainGrid;
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.trackTier) {
-						show_message("Please Click on a word before deleting it's link");
-						instance_destroy();
-						exit;
-					}
-					break;
-				default:
-					if(ds_grid_get(obj_chain.linkGrid, obj_chain.linkGrid_colTier, rowToSet) != obj_chain.rezTier) {
-						instance_destroy();
-						exit;
-					}
-					break;
-			}
-			
-			ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, rowToSet, true);
-		
-		
-
-			obj_chain.currentFocusedChainID = currentChainID;
-			
-			//var rowInChainGrid = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid), currentChainID);
-			ds_grid_set(grid, obj_chain.chainGrid_colChainState, rowInChainGrid, obj_chain.chainStateFocus);
-				
 			scr_deleteFromChain();
 			instance_destroy();
 			break;
