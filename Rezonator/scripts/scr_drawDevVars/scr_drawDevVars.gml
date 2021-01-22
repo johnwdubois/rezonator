@@ -60,9 +60,6 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 22), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 23), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 24), "filteredRezChainList: " + scr_getStringOfList(obj_chain.filteredRezChainList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 25), "filteredTrackChainList: " + scr_getStringOfList(obj_chain.filteredTrackChainList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 26), "filteredStackChainList: " + scr_getStringOfList(obj_chain.filteredStackChainList));
 	
 	// reset halign to left
 	draw_set_halign(fa_left);

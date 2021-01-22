@@ -222,6 +222,7 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "chainColorID1", chainColorID[1]);
 			ds_map_add(map, "chainColorID2", chainColorID[2]);
 			ds_map_add(map, "chainColorID3", chainColorID[3]);
+			
 		
 		}
 

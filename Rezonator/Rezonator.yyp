@@ -340,6 +340,7 @@
     {"id":{"name":"fnt_main","path":"fonts/fnt_main/fnt_main.yy",},"order":0,},
     {"id":{"name":"fnt_mainLarge1","path":"fonts/fnt_mainLarge1/fnt_mainLarge1.yy",},"order":1,},
     {"id":{"name":"fnt_mainLarge2","path":"fonts/fnt_mainLarge2/fnt_mainLarge2.yy",},"order":2,},
+    {"id":{"name":"scr_updateFilteredChainLists","path":"scripts/scr_updateFilteredChainLists/scr_updateFilteredChainLists.yy",},"order":30,},
     {"id":{"name":"fnt_mainLarge3","path":"fonts/fnt_mainLarge3/fnt_mainLarge3.yy",},"order":3,},
     {"id":{"name":"fnt_mainLarge4","path":"fonts/fnt_mainLarge4/fnt_mainLarge4.yy",},"order":4,},
     {"id":{"name":"g_UTF8","path":"scripts/g_UTF8/g_UTF8.yy",},"order":3,},
