@@ -118,40 +118,7 @@ function scr_panelPane_drawChainTabs() {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
 				if (mouse_check_button_released(mb_left)) {
-									
-					// if all chains are filtered, unfilter all of them
-					if (ds_list_size(listOfFilteredChains) == listOfChainsSize) {
-						show_debug_message("scr_panelPane_drawChainTabs() ... unfiltering all chains of type: " + string(currentTabChainType));
-						scr_setValueForAllChains(currentTabChainType, "filter", false);
-					}
-					// if not all of the chains are filtered, filter all of them
-					else if (ds_list_size(listOfFilteredChains) >= 0) {
-						show_debug_message("scr_panelPane_drawChainTabs() ... filtering all chains of type: " + string(currentTabChainType));
-						scr_setValueForAllChains(currentTabChainType, "filter", true);
-					}
-					
-					// render filter!
-					if (obj_control.filterGridActive) {
-						with (obj_control) {
-							scr_renderFilter();
-						}
-						
-						// if there is nothing filtered, we turn filter off
-						var totalChainsFiltered = ds_list_size(obj_chain.filteredRezChainList) + ds_list_size(obj_chain.filteredTrackChainList) + ds_list_size(obj_chain.filteredStackChainList);
-						if (totalChainsFiltered <= 0) {
-							with (obj_control) {
-								searchGridActive = false;
-								filterGridActive = false;
-								currentActiveLineGrid = lineGrid;
-								obj_toolPane.currentMode = obj_toolPane.setModeMain;
-								wordLeftMarginDest = 170; // Make sure the margin is placed correctly
-
-								with (obj_alarm) {
-									alarm[1] = 5;
-								}
-							}
-						}
-					}
+					scr_toggleFilterForAllChains(currentTabChainType);
 				}
 			}
 			
