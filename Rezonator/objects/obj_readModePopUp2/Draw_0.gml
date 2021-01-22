@@ -1,7 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
 // Get wordID of the word currently being hovered
 var currentWordID = obj_control.hoverWordID;
 
@@ -17,22 +16,16 @@ if (obj_toolPane.currentMode != obj_toolPane.modeRead)
 	exit;
 }
 
-// Get the (x, y) coordinates of the word
-var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID-1);
-var wordDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID-1);
-var wordPixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, wordDisplayRow);
-
 draw_set_alpha(1);
 draw_set_font(global.fontMain);
-
-// Get the word's display string
-var wordDisplayString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID-1);
 
 
 /* --- Fill a grid with the word's attributes' names and values to display --- */
 
 // Init. the grid
 var attribGrid = ds_grid_create(2, 7);	// N + 1 rows for N attributes
+										// If you want to add more variables, simply add them to the first column of the attribute grid
+										// The program will automatically resize the box and display the additional variables' values
 
 // Set attribute name-value headers
 ds_grid_set(attribGrid, 0, 0, "Attribute");
