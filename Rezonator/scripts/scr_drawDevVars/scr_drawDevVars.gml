@@ -33,7 +33,6 @@ function scr_drawDevVars(){
 				focusedChainWordID = ds_map_find_value(focusedEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "word");
 			}
 		}
-		
 	}
 	
 	// draw dev vars

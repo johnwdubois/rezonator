@@ -121,18 +121,25 @@ function scr_panelPane_drawChainListLoopClipped() {
 			if (is_numeric(setIDList)) {
 				if (ds_exists(setIDList, ds_type_list)) {
 		
-					// if this is a stack, we will loop through its setIDList and get a caption
-					if (functionChainList_currentTab == functionChainList_tabStackBrush && currentChainCaption == "") {
-						for (var j = 0; j < setIDListSize; j++) {
-							var currentEntry = ds_list_find_value(setIDList, j);
-							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-							var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
-							var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
-							if (is_numeric(currentWordIDList)) {
-								var currentWordIDListSize = ds_list_size(currentWordIDList);
-								for (var k = 0; k < currentWordIDListSize; k++) {
-									var currentWordID = ds_list_find_value(currentWordIDList, k);
-									currentChainCaption += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1)) + " ";
+					// stack captions!
+					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+						// first, we will check if the stack has a caption specified in its submap
+						currentChainCaption = ds_map_find_value(currentChainSubMap, "caption");
+						
+						// if it does not have a caption specified, we will show its contents in the chainList window
+						if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
+							currentChainCaption = "";
+							for (var j = 0; j < setIDListSize; j++) {
+								var currentEntry = ds_list_find_value(setIDList, j);
+								var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
+								var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
+								if (is_numeric(currentWordIDList)) {
+									var currentWordIDListSize = ds_list_size(currentWordIDList);
+									for (var k = 0; k < currentWordIDListSize; k++) {
+										var currentWordID = ds_list_find_value(currentWordIDList, k);
+										currentChainCaption += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1)) + " ";
+									}
 								}
 							}
 						}
