@@ -86,8 +86,8 @@ boxWidth = maxAttribNameWidth + attribGridColPadding + maxAttribValWidth;
 // Set the box's points
 var rectx1 = mouse_x;
 var recty1 = mouse_y + mouseCursorHeight;
-var rectx2 = rectx1 + boxWidth;
-var recty2 = recty1 + boxHeight;
+var rectx2 = rectx1 + boxWidth + 2 * boxPaddingHoriz;
+var recty2 = recty1 + boxHeight + 2 * boxPaddingVert;
 
 // Draw the box's outline
 draw_set_color(c_black);
@@ -103,18 +103,24 @@ draw_rectangle(rectx1, recty1, rectx2, recty2, false);
 // Calculate width of first column
 var attribGridCol1Width = maxAttribNameWidth + attribGridColPadding;
 
-// Draw the attribute grid
+// Set drawing params
+draw_set_halign(fa_left);
+draw_set_valign(fa_top);
 draw_set_color(c_black);
+
+// Draw the attribute grid
 for(var i = 0; i < ds_grid_height(attribGrid); i++)
 {
 	var attribName = ds_grid_get(attribGrid, 0, i);
 	var attribValue = ds_grid_get(attribGrid, 1, i);
 	
 	// Draw the attribute name
-	draw_text(rectx1, recty1 + i * lineHeight + lineHeight / 2, attribName);
+	draw_text(	floor(rectx1 + boxPaddingHoriz), 
+				floor(recty1 + boxPaddingVert + i * lineHeight),
+				attribName);
 	
 	// Draw the attribute value to the right
-	draw_text(	rectx1 + attribGridCol1Width,
-				recty1 + i * lineHeight + lineHeight / 2,
+	draw_text(	floor(rectx1 + boxPaddingHoriz + attribGridCol1Width),
+				floor(recty1 + boxPaddingVert + i * lineHeight),
 				string(attribValue) );
 }
