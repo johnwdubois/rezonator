@@ -1,6 +1,16 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+// TO-DO: Make click make box persist until a non-word is clicked
+// 1. If no persistentBox
+//		a. hover word, display
+//		b. If click word, display persistent box
+// 2. If persistentBox yes
+//		a. don't display hover word
+//		b. display persistent box
+//		c. If click same word or non-word, then turn off persistentBox
+//		d. If click different word, then switch persistentBox display
+
 // Get wordID of the word currently being hovered
 var currentWordID = obj_control.hoverWordID;
 
@@ -84,7 +94,7 @@ draw_set_color(c_black);
 draw_rectangle(rectx1, recty1, rectx2, recty2, true);
 
 // Draw the box's fill color
-draw_set_color(c_ltgrey);
+draw_set_color(make_color_rgb(245, 245, 245) );
 draw_rectangle(rectx1, recty1, rectx2, recty2, false);
 
 
