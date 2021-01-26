@@ -71,10 +71,18 @@ function scr_deleteFromChain() {
 			ds_map_destroy(focusedEntrySubMap);
 			ds_map_destroy(chainSubMap);
 			var listOfChainsKey = "rezChainList";
-			if (focusedEntryType = "track") listOfChainsKey = "trackChainList";
-			else if (focusedEntryType = "stack") listOfChainsKey = "stackChainList";
+			if (focusedEntryType == "track") listOfChainsKey = "trackChainList";
+			else if (focusedEntryType == "stack") listOfChainsKey = "stackChainList";
 			var listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
 			scr_deleteFromList(listOfChains, obj_chain.currentFocusedChainID);
+			
+			// remove chain from filter list if necessary
+			var filteredChainList = obj_chain.filteredRezChainList;
+			if (focusedEntryType == "track") filteredChainList = obj_chain.filteredTrackChainList;
+			else if (focusedEntryType == "stack") filteredChainList = obj_chain.filteredStackChainList;
+			scr_deleteFromList(filteredChainList, obj_chain.currentFocusedChainID);
+			
+			// unfocus chain
 			obj_chain.currentFocusedChainID = "";
 	
 			exit;
