@@ -22,14 +22,23 @@ function scr_exportGrids() {
 	}
 	
 	// refresh trackSeqGrid
-	// CHAIN OVER-HAUL Revist
-	//scr_trackSeqGrid();
+	scr_trackSeqGrid();
+	
+	// make temporary chain grids
+	var tempRezChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "rezChainList"));
+	var tempTrackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "trackChainList"));
+	var tempStackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "stackChainList"));
 
 	// Save the CSVs to the folder
 	scr_gridToCSV(obj_control.wordGrid, exportDir + "\\word.csv");
 	scr_gridToCSV(obj_control.unitGrid, exportDir + "\\unit.csv");
-	scr_gridToCSV(obj_chain.linkGrid, exportDir + "\\link.csv");
-	scr_gridToCSV(obj_chain.cliqueGrid, exportDir + "\\clique.csv");
+	scr_gridToCSV(tempRezChainGrid, exportDir + "\\rezChain.csv");
+	scr_gridToCSV(tempTrackChainGrid, exportDir + "\\trackChain.csv");
+	scr_gridToCSV(tempStackChainGrid, exportDir + "\\stackChain.csv");
+	scr_gridToCSV(obj_chain.trackSeqGrid, exportDir + "\\track.csv");
 
-
+	// destroy temp grids
+	ds_grid_destroy(tempRezChainGrid);
+	ds_grid_destroy(tempTrackChainGrid);
+	ds_grid_destroy(tempStackChainGrid);
 }
