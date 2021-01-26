@@ -84,7 +84,7 @@ for (var i = 0; i < ds_grid_height(attribGrid); i++)
 boxWidth = maxAttribNameWidth + attribGridColPadding + maxAttribValWidth;
 
 // Set the box's coordinates
-var rectx1 = mouse_x;
+var rectx1 = mouse_x + mouseCursorWidth;
 var recty1 = mouse_y + mouseCursorHeight;
 var rectx2 = rectx1 + boxWidth + 2 * boxPaddingHoriz;
 var recty2 = recty1 + boxHeight + 2 * boxPaddingVert;
