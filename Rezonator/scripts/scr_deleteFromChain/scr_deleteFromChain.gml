@@ -48,6 +48,11 @@ function scr_deleteFromChain() {
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
+				if(obj_control.rightClickonWord){
+					if(obj_control.rightClickWordID != focusedEntryWord){
+						exit;
+					}
+				}
 				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
 				var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
 				ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
