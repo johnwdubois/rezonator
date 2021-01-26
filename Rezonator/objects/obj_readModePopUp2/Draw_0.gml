@@ -89,13 +89,22 @@ var recty1 = mouse_y + mouseCursorHeight;
 var rectx2 = rectx1 + boxWidth + 2 * boxPaddingHoriz;
 var recty2 = recty1 + boxHeight + 2 * boxPaddingVert;
 
-// Handle the case when the box clips off the bottom of the screen
+// Handle the case where the box clips off the bottom of the screen
 var fullWindowHeight = camera_get_view_height(camera_get_active() );
 if (recty2 >= fullWindowHeight)
 {
 	var overflowHeight = recty2 - fullWindowHeight;
 	recty1 -= overflowHeight;
 	recty2 -= overflowHeight;
+}
+
+// Handle the case where the box clips off the right side of the screen
+var fullWindowWidth = camera_get_view_width(camera_get_active() );
+if (rectx2 >= fullWindowWidth)
+{
+	var overflowWidth = rectx2 - fullWindowWidth;
+	rectx1 -= overflowWidth;
+	rectx2 -= overflowWidth;
 }
 
 
