@@ -49,7 +49,6 @@ if (ds_list_size(inRectUnitIDList) > 0 and (obj_toolPane.currentTool == obj_tool
 	}
 	// Unfocus all links and chains
 	scr_unFocusAllChains();
-	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 }
 
 

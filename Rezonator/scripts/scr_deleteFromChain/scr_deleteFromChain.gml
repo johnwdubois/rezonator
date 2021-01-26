@@ -156,7 +156,7 @@ function scr_deleteFromChain() {
 		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap does not exist");
 		exit;
 	}
-	
+
 	// get the sourceLink's source (sourceEntry) submap
 	var sourceEntry = ds_map_find_value(sourceLinkSubMap, "source");
 	var sourceEntrySubMap = ds_map_find_value(global.nodeMap, sourceEntry);

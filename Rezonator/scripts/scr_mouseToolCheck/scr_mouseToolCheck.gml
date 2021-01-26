@@ -10,16 +10,6 @@ function scr_mouseToolCheck() {
 		}
 	}
 	else {
-		// If we are not in the line numbers or speaker labels, then unfocus any stacks
-		if (mouse_check_button_pressed(mb_left) or mouse_check_button_released(mb_left)) {
-			if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-				with (obj_chain) {
-					// CHAIN REHAUL: unfocusing chain when we dont want to
-					//scr_chainDeselect();
-					//scr_refreshVizLinkGrid();
-				}
-			}
-		}
 		
 		// Ensure we're using the right tool based on the current mode
 		if ((mouse_check_button(mb_left) or mouse_check_button_released(mb_left))) {// and not mouseoverNeutralSpace) {

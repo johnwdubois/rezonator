@@ -35,7 +35,6 @@ function scr_drawChains() {
 	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
 	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
-	var linkGridHeight = ds_grid_height(linkGrid);
 	var arrowSize = 0.3 + (0.1 * global.fontSize/5);
 
 	// loop through rezChainList to get chain info

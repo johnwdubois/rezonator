@@ -224,78 +224,6 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
-	else if (grid == obj_chain.linkGrid) {
-		switch (col) {
-			case obj_chain.linkGrid_colTier:
-				colName = "tier";
-				break;
-			case obj_chain.linkGrid_colChainID:
-				colName = "chainID";
-				break;
-			case obj_chain.linkGrid_colLinkID:
-				colName = "linkID";
-				break;
-			case obj_chain.linkGrid_colSource:
-				colName = "source";
-				break;
-			case obj_chain.linkGrid_colGoal:
-				colName = "goal";
-				break;
-			case obj_chain.linkGrid_colFocus:
-				colName = "focus";
-				break;
-			case obj_chain.linkGrid_colDead:
-				colName = "dead";
-				break;
-			case obj_chain.linkGrid_colTilt:
-				colName = "tilt";
-				break;
-			case obj_chain.linkGrid_colSourceClickTime:
-				colName = "sourceClickTime";
-				break;
-			case obj_chain.linkGrid_colGoalClickTime:
-				colName = "sourceGoalTime";
-				break;
-			default:
-				break;
-		}
-	}
-	else if (grid == obj_chain.vizLinkGrid) {
-		switch (col) {
-			case obj_chain.vizLinkGrid_colTier:
-				colName = "tier";
-				break;
-			case obj_chain.vizLinkGrid_colChainID:
-				colName = "chainID";
-				break;
-			case obj_chain.vizLinkGrid_colLinkID:
-				colName = "linkID";
-				break;
-			case obj_chain.vizLinkGrid_colSource:
-				colName = "source";
-				break;
-			case obj_chain.vizLinkGrid_colGoal:
-				colName = "goal";
-				break;
-			case obj_chain.vizLinkGrid_colFocus:
-				colName = "focus";
-				break;
-			case obj_chain.vizLinkGrid_colTilt:
-				colName = "tilt";
-				break;
-			case obj_chain.vizLinkGrid_colCross:
-				colName = "cross";
-				break;
-			case obj_chain.vizLinkGrid_colStretch:
-				colName = "stretch";
-				break;
-			case obj_chain.vizLinkGrid_colAlign:
-				colName = "align";
-				break;
-			default:
-				break;
-		}
-	}
 	else if (grid == obj_chain.trackSeqGrid) {
 		switch (col) {
 			case obj_chain.trackSeqGrid_colChainID:
@@ -405,30 +333,6 @@ function scr_getColNameString(grid, col) {
 				break;
 			case obj_chain.cliqueGrid_colName:
 				colName = "name";
-				break;
-			default:
-				break;
-		}
-	}
-	else if (grid == obj_chain.DepRelLinkGrid) {
-		switch (col) {
-			case obj_chain.DepRelLinkGrid_colDepRelLinkID:
-				colName = "DepRelLinkID";
-				break;
-			case obj_chain.DepRelLinkGrid_colSource:
-				colName = "source";
-				break;
-			case obj_chain.DepRelLinkGrid_colGoal:
-				colName = "goal";
-				break;
-			case obj_chain.DepRelLinkGrid_colRole:
-				colName = "role";
-				break;
-			case obj_chain.DepRelLinkGrid_colLabel:
-				colName = "label";
-				break;
-			case obj_chain.DepRelLinkGrid_colTag:
-				colName = "tag";
 				break;
 			default:
 				break;

@@ -27,12 +27,6 @@ function scr_getGridNameString(gridName) {
 		case obj_control.wordDrawGrid:
 			gridName = "wordDrawGrid";
 			break;
-		case obj_chain.linkGrid:
-			gridName = "Link"; // Link Grid 
-			break;
-		case obj_chain.vizLinkGrid:
-			gridName = "vizLink"; // vizLink Grid
-			break;
 		case obj_chain.placeChainGrid:
 			gridName = "Place"; // Place Chain Grid
 			break;
@@ -45,9 +39,7 @@ function scr_getGridNameString(gridName) {
 		case obj_chain.cliqueGrid:
 			gridName = "Clique"; // Clique Grid
 			break;
-		case obj_chain.DepRelLinkGrid:
-			gridName = "DepRelLink"; // vizClique
-			break;
+
 		case obj_chain.goldStandardGrid:
 			gridName = "GoldStandard"; // vizClique
 			break;

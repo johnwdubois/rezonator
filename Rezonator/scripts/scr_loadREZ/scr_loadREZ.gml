@@ -259,7 +259,7 @@ function scr_loadREZ() {
 				}
 				else if (objectIndex == "obj_chain") {
 				
-					scr_loadREZGridReset(obj_chain.linkGrid, map, "linkGrid");
+
 					scr_loadREZGridReset(obj_chain.chunkGrid, map, "chunkChainGrid");
 					scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
 					scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
@@ -300,9 +300,6 @@ function scr_loadREZ() {
 	scr_updateFilteredChainLists();
 
 
-	obj_chain.currentChainID = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, 0, obj_chain.linkGrid_colChainID, ds_grid_height(obj_chain.linkGrid));
-	obj_chain.linkIDCounter = ds_grid_get_max(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, 0, obj_chain.linkGrid_colLinkID, ds_grid_height(obj_chain.linkGrid));
-	obj_chain.cliqueIDCounter = ds_grid_get_max(obj_chain.cliqueGrid, obj_chain.cliqueGrid_colCliqueID, 0, obj_chain.cliqueGrid_colCliqueID, ds_grid_height(obj_chain.cliqueGrid));
 	obj_chain.rezChainNameCounter = ds_list_size(rezChainList);
 	obj_chain.trackChainNameCounter = ds_list_size(trackChainList);
 	obj_chain.stackChainNameCounter = ds_list_size(stackChainList);

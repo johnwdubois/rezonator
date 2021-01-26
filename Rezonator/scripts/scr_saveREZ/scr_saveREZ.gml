@@ -205,14 +205,12 @@ function scr_saveREZ(autosave) {
 		
 		}
 		else if (object_index == obj_chain) {
-			var mapLinkGrid = scr_gridToJSONLists(linkGrid);
 			var mapChunkChainGrid = scr_gridToJSONLists(chunkGrid);
 			var mapUnitInStackGrid = scr_gridToJSONLists(unitInStackGrid);
 			var mapCliqueGrid = scr_gridToJSONLists(cliqueGrid);
 			var mapGoldStandardGrid = scr_gridToJSONLists(goldStandardGrid);
 		
 
-			ds_map_add_list(map, "linkGrid", mapLinkGrid);
 			ds_map_add_list(map, "chunkChainGrid", mapChunkChainGrid);
 			ds_map_add_list(map, "unitInStackGrid", mapUnitInStackGrid);
 			ds_map_add_list(map, "cliqueGrid", mapCliqueGrid);

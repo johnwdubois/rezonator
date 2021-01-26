@@ -142,7 +142,8 @@ function scr_stackShowWindow() {
 		}
 	
 		//draw list of stacks for selection
-		scr_drawStackShowWindow();
+		//Chain OverHaul 
+		//scr_drawStackShowWindow();
 
 		//right side of window options
 	

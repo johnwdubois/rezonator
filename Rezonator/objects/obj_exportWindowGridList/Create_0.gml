@@ -9,7 +9,6 @@ ds_list_add(exportGridList,
 	obj_control.unitGrid,
 	obj_control.wordGrid,
 	obj_control.dynamicWordGrid,
-	obj_chain.linkGrid
 );
 
 selectedGrid = obj_control.unitGrid;

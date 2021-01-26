@@ -173,7 +173,6 @@ if (ds_grid_height(gridOfFutureChains) > 0) {
 		ds_list_destroy(currentList);
 	}
 	
-	scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false);
 	scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 }
 

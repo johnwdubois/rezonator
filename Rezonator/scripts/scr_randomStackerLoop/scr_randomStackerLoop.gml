@@ -49,7 +49,6 @@ function scr_randomStackerLoop() {
 		}
 		// Unfocus all links and chains
 		scr_unFocusAllChains();
-		ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 
 		// randomize the lines for the next set
 		randLine1 = randLine2;

@@ -433,8 +433,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
 			if (focusedChainIndex > 0 and focusedChainIndex < listOfChainsSize) {
-				//scr_unFocusAllChains();
-				//scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
 				focusedChainIndex--;
 				var newFocusedChainID = ds_list_find_value(listOfChains, focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
@@ -451,8 +449,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 			
 			if (focusedChainIndex < listOfChainsSize - 1 and focusedChainIndex >= 0) {
-				//scr_unFocusAllChains();
-				//scr_setAllValuesInCol(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, false); 
 				focusedChainIndex++;
 				var newFocusedChainID = ds_list_find_value(listOfChains, focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
