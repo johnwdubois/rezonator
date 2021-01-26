@@ -83,11 +83,21 @@ for (var i = 0; i < ds_grid_height(attribGrid); i++)
 // Set the box width based on the maximum-width line
 boxWidth = maxAttribNameWidth + attribGridColPadding + maxAttribValWidth;
 
-// Set the box's points
+// Set the box's coordinates
 var rectx1 = mouse_x;
 var recty1 = mouse_y + mouseCursorHeight;
 var rectx2 = rectx1 + boxWidth + 2 * boxPaddingHoriz;
 var recty2 = recty1 + boxHeight + 2 * boxPaddingVert;
+
+// Handle the case when the box clips off the bottom of the screen
+var fullWindowHeight = camera_get_view_height(camera_get_active() );
+if (recty2 >= fullWindowHeight)
+{
+	var overflowHeight = recty2 - fullWindowHeight;
+	recty1 -= overflowHeight;
+	recty2 -= overflowHeight;
+}
+
 
 // Draw the box's outline
 draw_set_color(c_black);
