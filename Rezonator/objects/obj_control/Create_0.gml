@@ -599,8 +599,9 @@ if(global.tutorial){
 		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
 }
 
+combineChainsFocused = "";
+combineChainsSelected = "";
 stackMerged = false;
-clickedWordID = -1;
 rightClickUnitID = 0;
 rightClickWordID = 0;
 rightClickWordSeq = 0;

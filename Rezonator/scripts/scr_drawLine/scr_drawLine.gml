@@ -187,8 +187,16 @@ function scr_drawLine() {
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
 					if (obj_control.ctrlHold) {
 						
-						// CHAIN OVERHAUL: come back later
-						//scr_combineChainsDrawLine();
+						// make a temporary "fake" inChainsList that will contain the chain that this stack is in (or no chain if there is none)
+						var fakeInChainsList = ds_list_create();
+						var chainToAdd = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
+						if (ds_map_exists(global.nodeMap, chainToAdd)) {
+							ds_list_add(fakeInChainsList, chainToAdd);
+						}
+	
+						// combine the chains
+						scr_combineChainsDrawLine(fakeInChainsList);
+						ds_list_destroy(fakeInChainsList);
 						
 					}
 					else {

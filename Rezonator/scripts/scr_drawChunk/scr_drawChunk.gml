@@ -138,13 +138,17 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 			
 			// Add this Chunk to a chain
 			if(obj_control.ctrlHold){
-					scr_combineChains(currentWordID);
+				var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordID - 1);
+				scr_combineChainsDrawLine(inChainsList);
+			}
+			else {
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
 				}
-				else {
-					with (obj_chain) {
-						scr_wordClicked(currentWordID, unitID);
-					}
-				}
+			}
+			
+			
+			
 		}
 		
 		// Check for Left Mouse CLick on Chunk

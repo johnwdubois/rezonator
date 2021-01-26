@@ -92,7 +92,7 @@ function scr_drawQuestionBox() {
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("masg_warning_layer_link"));
 	}
 	if(combineChains) {
-		if(obj_control.stackMerged){
+		if (obj_control.stackMerged) {
 			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("msg_warning_merge_stacks"));
 		}
 		else{
@@ -159,9 +159,11 @@ function scr_drawQuestionBox() {
 				alarm[8] = 2;	
 			}
 		}
+		
 		if(combineChains){
-			scr_combineChains(obj_control.clickedWordID);
+			scr_combineChains(obj_control.combineChainsFocused, obj_control.combineChainsSelected);
 		}
+		
 		questionWindowActive = false;
 		clearAllStacks = false;
 		clearAllTracks = false;
@@ -171,6 +173,8 @@ function scr_drawQuestionBox() {
 		layerLink = false;
 		combineChains = false;
 		obj_control.stackMerged = false;
+		obj_control.combineChainsFocused = "";
+		obj_control.combineChainsSelected = "";
 			
 		instance_destroy();
 

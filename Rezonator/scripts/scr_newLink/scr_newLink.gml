@@ -1,5 +1,5 @@
 /*
-	scr_newLink(wordID, goal);
+	scr_newLink(wordID);
 	
 	Last Updated: 2018-09-11
 	
@@ -11,9 +11,9 @@
 	
 	Author: Terry DuBois
 */
-function scr_newLink(wordID, goal) {
+function scr_newLink(wordID) {
 	
-	show_debug_message("scr_newLink() ... wordID: " + string(wordID) + ", goal: " + string(goal));
+	show_debug_message("scr_newLink() ... wordID: " + string(wordID));
 
 	//New funtionality for recording chain modification
 	while (ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) {
@@ -30,11 +30,9 @@ function scr_newLink(wordID, goal) {
 	}
 
 	var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
-
 	if (unitID == undefined) {
 		exit;
 	}
-	
 	
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 		var idSet = unitID;
@@ -182,7 +180,7 @@ function scr_newLink(wordID, goal) {
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, currentLinkGridRow, obj_chain.linkIDCounter);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTier, currentLinkGridRow, currentChainTier);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentLinkGridRow, idSet);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, currentLinkGridRow, goal);
+	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, currentLinkGridRow, -1);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, focus);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, currentLinkGridRow, false);
 	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTilt, currentLinkGridRow, 0);
@@ -224,9 +222,7 @@ function scr_newLink(wordID, goal) {
 	else if (nodeType == "stack") {
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, idSet - 1, currentFocusedChainID);
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, idSet - 1, 0);
+		show_debug_message("scr_newLink() ... idSet: " + string(idSet));
 	}
-
-	alarm[3] = 1;
-
 
 }

@@ -53,16 +53,14 @@ function scr_drawChains() {
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		
-		// get chain variables from chain's subMap
+		// get chain's setIDList and make sure it exists
 		var chainType = ds_map_find_value(currentChainSubMap, "type");
 		var currentSetIDList = ds_map_find_value(currentChainSubMap, "setIDList");
+		if (!is_numeric(currentSetIDList)) continue;
+		if (!ds_exists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
 		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 		var currentChainShow = true;
-		
-		// make sure setIDList exists
-		if (!is_numeric(currentSetIDList)) continue;
-		if (!ds_exists(currentSetIDList, ds_type_list)) continue;
 		
 		// make sure this is a rezChain or trackChain and that we should be drawing it
 		if (chainType != "rezChain" && chainType != "trackChain") continue;
