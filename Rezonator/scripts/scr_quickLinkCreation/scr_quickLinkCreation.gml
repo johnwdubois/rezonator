@@ -5,7 +5,10 @@ function scr_quickLinkCreation(){
 	if (current_time - sessionStartTime < 2000 or not quickLinkAllowed) {
 		exit;
 	}
-
+	
+	// create a temporary grid: "the grid of future chains"
+	// this will organize the group of words in the inRectWordIDList by their
+	// display columns, so we can then create quicklinks based on their display columns
 	var gridOfFutureChainsWidth = 3;
 	var gridOfFutureChains_colDisplayCol = 0;
 	var gridOfFutureChains_colWordIDList = 1;
@@ -17,9 +20,9 @@ function scr_quickLinkCreation(){
 
 	// Use the wordList or hitList depending on the context
 	var inRectList = ds_list_create();
-	if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
+	if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 		// Ensure the gesture is correct for a trackChunk
-		if(not searchGridActive and obj_control.mouseRectWithinLine) {
+		if (not searchGridActive and obj_control.mouseRectWithinLine) {
 			alarm[10] = 1;
 			exit;
 		}
@@ -27,24 +30,40 @@ function scr_quickLinkCreation(){
 	} 
 	else {
 		// Ensure the gesture is correct for a rezChunk
-		if(not searchGridActive and obj_control.mouseRectWithinLine) {
+		if (not searchGridActive and obj_control.mouseRectWithinLine) {
 			alarm[10] = 1;
 			exit;
 		}
 		ds_list_copy(inRectList, inRectWordIDList);
 	}
-
-
+	
+	// fill up the grid of future chains
 	for (var i = 0; i < ds_list_size(inRectList); i++) {
 		var currentWordID = ds_list_find_value(inRectList, i);
 		// Access the display column of the relevent grid
-		if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
+		if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 			// Instead hitID
 			var currentDisplayCol = ds_grid_get(hitGrid, hitGrid_colDisplayCol, currentWordID - 1);
 		}
 		else {
 			// Instead hitID
 			var currentDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordID - 1);
+			
+			// make sure this word isn't in a track
+			var currentWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordID - 1);
+			var currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
+			var wordIsInTrackChain = false;
+			for (var j = 0; j < currentWordInChainsListSize; j++) {
+				var currentChain = ds_list_find_value(currentWordInChainsList, j);
+				var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+				var currentChainType = ds_map_find_value(currentChainSubMap, "type");
+				if (currentChainType == "trackChain") {
+					wordIsInTrackChain = true;
+				}
+			}
+			if (wordIsInTrackChain) {
+				continue;
+			}
 		}
 
 		// Mechanism for splitting wordLists into their respective dislayColumns
@@ -67,10 +86,10 @@ function scr_quickLinkCreation(){
 	}
 
 	// Keep the focus of chains during the process
-	if (obj_chain.currentFocusedChainID != "") {
+	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
 	
 		// Keep the focus of track chains
-		if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush){
+		if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 
 			var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 			if (is_numeric(focusedChainSubMap)) {
@@ -85,7 +104,7 @@ function scr_quickLinkCreation(){
 						var focusedChainFirstEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFirstEntry);
 						var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "word");
 					
-						if(obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+						if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 							var focusedChainFirstHitGridRow = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), focusedChainFirstWordID);
 							var firstItemDisplayCol = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colDisplayCol, focusedChainFirstHitGridRow);
 						}
@@ -168,11 +187,10 @@ function scr_quickLinkCreation(){
 		scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 	}
 
-	// Clear the data structures
-	ds_grid_destroy(gridOfFutureChains);
+	// Clear/destroy/reset the quicklink data structures
 	obj_control.mouseRectBeginInWord = -1;
 	obj_control.mouseRectBeginBetweenWords = -1;
-
+	ds_grid_destroy(gridOfFutureChains);
 	ds_list_clear(inRectWordIDList);
 	ds_list_clear(inRectHitIDList);
 }
