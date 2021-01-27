@@ -88,7 +88,12 @@ switch (currentFunction) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-			if (typeof(functionChainContents_BGColor) == "number") {
+			if (is_numeric(functionChainContents_BGColor)) {
+				// if we are on the line tab, set the BG color to be regular
+				if (functionChainList_currentTab == functionChainList_tabLine) {
+					functionChainContents_BGColor = global.colorThemeBG;
+				}
+				// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
 				if (functionChainContents_BGColor != global.colorThemeBG) {
 					draw_set_alpha(0.1);
 					draw_set_color(functionChainContents_BGColor);

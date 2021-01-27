@@ -73,8 +73,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			else {
 				scr_panelPane_drawLineContentsLoopClipped();
 			}
-		
-			//scr_panelPane_drawLineTranslationLoopClipped();
 			break;
 		default:
 			break;
@@ -85,7 +83,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	var textMarginTop = tabHeight;
 	var textPlusY = 0;
 	var ableToBeMouseOver = true;
-
 	var xBuffer = 6;
 
 
@@ -94,253 +91,269 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 	var focusedElementY = -1;
 
-
-
-
 	var strHeight = string_height("0");
-		
+	
 
 	// Check for focused chain and make sure grid is not empty, gather information from grids
-		// Collect beginning of chain info
-		focusedChainExists = true;
-		var chainID = obj_chain.currentFocusedChainID;
-		var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
-		
-		if (!is_numeric(chainSubMap)) {
-			scr_surfaceEnd();
-			exit;
-		}
-		if (!ds_exists(chainSubMap, ds_type_map)) {
-			scr_surfaceEnd();
-			exit;
-		}
-		
-		var chainType = ds_map_find_value(chainSubMap, "type");
-		var chainAligned = ds_map_find_value(chainSubMap, "align");
-		var chainFocusedEntry = ds_map_find_value(chainSubMap, "focused");
+	// Collect beginning of chain info
+	focusedChainExists = true;
+	var chainID = functionChainContents_chainID;
+	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
 	
-		// Get wordID list
-		with (obj_panelPane) {
-			var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-			if (is_numeric(focusedChainSubMap)) {
-				if (ds_exists(focusedChainSubMap, ds_type_map)) {
-					functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, "setIDList");
-				}
+	// make sure chain exists and that its submap exists
+	if (!is_numeric(chainSubMap)) {
+		scr_surfaceEnd();
+		exit;
+	}
+	if (!ds_exists(chainSubMap, ds_type_map)) {
+		scr_surfaceEnd();
+		exit;
+	}
+	
+	// get some cool variables from the chain
+	var chainType = ds_map_find_value(chainSubMap, "type");
+	var chainAligned = ds_map_find_value(chainSubMap, "align");
+	var chainFocusedEntry = ds_map_find_value(chainSubMap, "focused");
+	
+	// make sure that we have a valid chain type
+	if (chainType != "rezChain" && chainType != "trackChain" && chainType != "stackChain") {
+		functionChainContents_chainID = "";
+		scr_surfaceEnd();
+		exit;
+	}
+	
+	// make sure that the chain type that we are trying to view matches the tab we are on
+	if ((chainType == "rezChain" && functionChainList_currentTab != functionChainList_tabRezBrush)
+	|| (chainType == "trackChain" && functionChainList_currentTab != functionChainList_tabTrackBrush)
+	|| (chainType == "stackChain" && functionChainList_currentTab != functionChainList_tabStackBrush)) {
+		functionChainContents_chainID = "";
+		scr_surfaceEnd();
+		exit;
+	}
+	
+	
+	// Get wordID list
+	with (obj_panelPane) {
+		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+		if (is_numeric(focusedChainSubMap)) {
+			if (ds_exists(focusedChainSubMap, ds_type_map)) {
+				functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, "setIDList");
 			}
-			if (functionChainContents_IDList != undefined) {
-				// Select top of the content list
-				if (functionChainContents_hop > -1) {
-					if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
-						//currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
-					}
-					functionChainContents_hop = -1;
+		}
+		if (functionChainContents_IDList != undefined) {
+			// Select top of the content list
+			if (functionChainContents_hop > -1) {
+				if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
+					//currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
 				}
+				functionChainContents_hop = -1;
 			}
 		}
+	}
 		
 		
 		
 	
-		if (is_numeric(functionChainContents_IDList)) {
-			if (ds_exists(functionChainContents_IDList, ds_type_list)) {
-				scrollBarListHeight = ds_list_size(functionChainContents_IDList);
+	if (is_numeric(functionChainContents_IDList)) {
+		if (ds_exists(functionChainContents_IDList, ds_type_list)) {
+			scrollBarListHeight = ds_list_size(functionChainContents_IDList);
 	
-				// Gather specfic information on words
-				var entryIDListSize = ds_list_size(functionChainContents_IDList);
-				for (var j = 0; j < entryIDListSize; j++) {
+			// Gather specfic information on words
+			var entryIDListSize = ds_list_size(functionChainContents_IDList);
+			for (var j = 0; j < entryIDListSize; j++) {
 						
-					// Get info on current word
-					var currentEntry = ds_list_find_value(functionChainContents_IDList, j);
-					var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-					var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
+				// Get info on current word
+				var currentEntry = ds_list_find_value(functionChainContents_IDList, j);
+				var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+				var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
 					
 					
-					if (!is_numeric(currentEntrySubMap)) {
-						continue;
+				if (!is_numeric(currentEntrySubMap)) {
+					continue;
+				}
+					
+
+					
+				var currentWordAligned = false;
+				var currentWordInfoCol;
+				currentWordInfoCol[0] = "";
+		
+				//Set size of rectangle around word
+				var rectX1 = x;
+				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
+				var rectX2 = x + windowWidth - global.scrollBarWidth;
+				var rectY2 = rectY1 + strHeight;
+		
+
+		
+				// Draw red rectangles if stretch word
+				if (chainType == "rezChain" or chainType == "trackChain") {
+					if (currentWordID != undefined) {
+						if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
+							draw_set_alpha(0.25);
+							draw_set_color(c_red);
+							draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+							currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
+						}
 					}
-					
-
-					
-					var currentWordAligned = false;
-					var currentWordInfoCol;
-					currentWordInfoCol[0] = "";
-		
-					//Set size of rectangle around word
-					var rectX1 = x;
-					var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
-					var rectX2 = x + windowWidth - global.scrollBarWidth;
-					var rectY2 = rectY1 + strHeight;
-		
-
-		
-					// Draw red rectangles if stretch word
+				}
+			
+				// Sets the link focused in the panelPane to the link focused in the main screen
+				if (chainFocusedEntry == currentEntry) {
+			
+					// Fill in square
+					draw_set_alpha(0.25);
+					draw_set_color(global.colorThemeText);
+					draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+			
+					// Focus in the main screen
 					if (chainType == "rezChain" or chainType == "trackChain") {
-						if (currentWordID != undefined) {
-							if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
-								draw_set_alpha(0.25);
-								draw_set_color(c_red);
-								draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
-								currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
+						ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
+					}
+				}
+				else if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
+					ableToBeMouseOver = false;
+					draw_set_alpha(0.25);
+					draw_set_color(global.colorThemeText);
+					draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+			
+					// Focus in the main screen
+					if (device_mouse_check_button_released(0, mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {	
+						ds_map_replace(chainSubMap, "focused", currentEntry);
+					}
+				}
+				draw_set_alpha(1);
+	
+				// Check for double click
+				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
+					if( device_mouse_check_button_released(0, mb_left)) {
+						if (doubleClickTimer > -1) {
+				
+							var rowInLineGrid = -1;
+				
+							// Set double clicked word to center display row, if possible
+							if (functionChainList_currentTab == functionChainList_tabStackBrush
+							or functionChainList_currentTab == functionChainList_tabClique) {
+								var currentUnitID = currentWordID;
+								rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+							}
+							else {
+								var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+								rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+							}
+					
+							if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {
+								var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
+								obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 							}
 						}
-					}
-			
-					// Sets the link focused in the panelPane to the link focused in the main screen
-					if (chainFocusedEntry == currentEntry) {
-			
-						// Fill in square
-						draw_set_alpha(0.25);
-						draw_set_color(global.colorThemeText);
-						draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
-			
-						// Focus in the main screen
-						if (chainType == "rezChain" or chainType == "trackChain") {
-							ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
-							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
+						else {
+							doubleClickTimer = 0;
 						}
-					}
-					else if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
-						ableToBeMouseOver = false;
-						draw_set_alpha(0.25);
-						draw_set_color(global.colorThemeText);
-						draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+					}	
+				}
+		
+				// Set collected info into correct places
+				for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
+					currentWordInfoCol[getInfoLoop] = "";
 			
-						// Focus in the main screen
-						if (device_mouse_check_button_released(0, mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {	
-							ds_map_replace(chainSubMap, "focused", currentEntry);
-						}
-					}
-					draw_set_alpha(1);
-	
-					// Check for double click
-					if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
-						if( device_mouse_check_button_released(0, mb_left)) {
-							if (doubleClickTimer > -1) {
-				
-								var rowInLineGrid = -1;
-				
-								// Set double clicked word to center display row, if possible
-								if (functionChainList_currentTab == functionChainList_tabStackBrush
-								or functionChainList_currentTab == functionChainList_tabClique) {
-									var currentUnitID = currentWordID;
-									rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+					switch (getInfoLoop) {
+						case 0:
+							if (functionChainList_currentTab == functionChainList_tabStackBrush
+							or functionChainList_currentTab == functionChainList_tabClique) {
+								var unitID = currentWordID;
+								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
+							}
+							else {
+								var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
+							}
+							break;
+						case 1:
+							if (functionChainList_currentTab == functionChainList_tabStackBrush
+							or functionChainList_currentTab == functionChainList_tabClique) {
+								currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
+							}
+							else {
+								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
+							}
+							break;
+						case 2:
+							if (functionChainList_currentTab == functionChainList_tabStackBrush
+							or functionChainList_currentTab == functionChainList_tabClique) {
+								currentWordInfoCol[getInfoLoop] = "";
+								var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
+								if (currentWordIDList == undefined) {
+									break;
 								}
-								else {
-									var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-									rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
+
+								var currentWordIDListSize = ds_list_size(currentWordIDList);
+								for (var i = 0; i < currentWordIDListSize; i++) {
+									var currentWordID = ds_list_find_value(currentWordIDList, i);
+									if (is_numeric(currentWordID)) {
+										var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
+										if(currentWordState == obj_control.wordStateDead){
+											continue;
+										}
+										var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
+										currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
+									}
 								}
-					
-								if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {
-									var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-									obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
+								// remove any newlines or carriage returns from the utterance display
+								currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
+								currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\n", "");
+						
+								if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
+									currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
+									currentWordInfoCol[getInfoLoop] += "...";
 								}
 							}
 							else {
-								doubleClickTimer = 0;
+								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
 							}
-						}	
-					}
-		
-					// Set collected info into correct places
-					for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
-						currentWordInfoCol[getInfoLoop] = "";
-			
-						switch (getInfoLoop) {
-							case 0:
-								if (functionChainList_currentTab == functionChainList_tabStackBrush
-								or functionChainList_currentTab == functionChainList_tabClique) {
-									var unitID = currentWordID;
-									currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-								}
-								else {
-									var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-									currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-								}
-								break;
-							case 1:
-								if (functionChainList_currentTab == functionChainList_tabStackBrush
-								or functionChainList_currentTab == functionChainList_tabClique) {
-									currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
-								}
-								else {
-									currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
-								}
-								break;
-							case 2:
-								if (functionChainList_currentTab == functionChainList_tabStackBrush
-								or functionChainList_currentTab == functionChainList_tabClique) {
-									currentWordInfoCol[getInfoLoop] = "";
-									var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
-									if (currentWordIDList == undefined) {
-										break;
-									}
-
-									var currentWordIDListSize = ds_list_size(currentWordIDList);
-									for (var i = 0; i < currentWordIDListSize; i++) {
-										var currentWordID = ds_list_find_value(currentWordIDList, i);
-										if (is_numeric(currentWordID)) {
-											var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-											if(currentWordState == obj_control.wordStateDead){
-												continue;
-											}
-											var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
-											currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
-										}
-									}
-									// remove any newlines or carriage returns from the utterance display
-									currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
-									currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\n", "");
-						
-									if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
-										currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
-										currentWordInfoCol[getInfoLoop] += "...";
-									}
-								}
-								else {
-									currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
-								}
-								break;
-						}
-			
-						var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
-						var textY = y + textMarginTop + textPlusY;
-			
-						draw_set_color(global.colorThemeText);
-						draw_set_alpha(1);
-						draw_set_valign(fa_middle);
-						scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
-						draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
+							break;
 					}
 			
-					if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+					var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
+					var textY = y + textMarginTop + textPlusY;
 			
-						var alignRectX1 = x + windowWidth - global.scrollBarWidth - strHeight - alignRectSize;
-						var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
-						var alignRectX2 = x + windowWidth - global.scrollBarWidth - strHeight;
-						var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
-		
-				 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {
-							scr_createTooltip(alignRectX1, mean(alignRectY1, alignRectY2), "Align link", obj_tooltip.arrowFaceRight);
-							draw_set_color(c_purple);
-							draw_set_alpha(0.5);
-							draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, false);
-				
-							if (device_mouse_check_button_released(0, mb_left)
-							and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
-								currentWordAligned = !currentWordAligned;
-								ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
-							}
-				
-				
-						}
-						draw_sprite_ext(spr_align, !currentWordAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
-			
-					}
-			
-					textPlusY += strHeight;
+					draw_set_color(global.colorThemeText);
+					draw_set_alpha(1);
+					draw_set_valign(fa_middle);
+					scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
+					draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 				}
+			
+				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+			
+					var alignRectX1 = x + windowWidth - global.scrollBarWidth - strHeight - alignRectSize;
+					var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
+					var alignRectX2 = x + windowWidth - global.scrollBarWidth - strHeight;
+					var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
+		
+				 	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {
+						scr_createTooltip(alignRectX1, mean(alignRectY1, alignRectY2), "Align link", obj_tooltip.arrowFaceRight);
+						draw_set_color(c_purple);
+						draw_set_alpha(0.5);
+						draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, false);
+				
+						if (device_mouse_check_button_released(0, mb_left)
+						and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
+							currentWordAligned = !currentWordAligned;
+							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
+						}
+				
+				
+					}
+					draw_sprite_ext(spr_align, !currentWordAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
+			
+				}
+			
+				textPlusY += strHeight;
 			}
 		}
+	}
 	
 	
 	

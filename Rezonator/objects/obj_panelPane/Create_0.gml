@@ -87,6 +87,7 @@ functionChainContents_hop = -1;
 functionChainContents_lineGridRowFocused = -1;
 functionChainContents_sortedCol = -1;
 functionChainContents_sortedColAsc = true;
+functionChainContents_chainID = "";
 alarm[8] = 5;
 
 functionChainContents_colXList = ds_list_create();
