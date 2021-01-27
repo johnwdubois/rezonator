@@ -33,6 +33,7 @@ function scr_deleteFromChain() {
 	
 	// find where in the chain's setList the focused entry is
 	var chainSetList = ds_map_find_value(chainSubMap, "setIDList");
+	var chainVizSetList = ds_map_find_value(chainSubMap, "vizSetIDList");
 	var chainLinkList = ds_map_find_value(chainSubMap, "linkIDList");
 	
 	// get the focused entry's sourceLink's submap
@@ -141,6 +142,9 @@ function scr_deleteFromChain() {
 			ds_map_delete(global.nodeMap, focusedEntry);
 			ds_map_destroy(focusedEntrySubMap);
 			
+			// remove the entry from the vizSetList
+			scr_deleteFromList(chainVizSetList, focusedEntry);
+			
 			// delete & destroy the firstGoalLink and all references to it
 			ds_map_destroy(firstGoalLinkSubMap);
 			var chainLinkListIndex = ds_list_find_index(chainLinkList, firstGoalLink);
@@ -208,6 +212,9 @@ function scr_deleteFromChain() {
 	
 	// remove the focusedEntry from its chain's setList
 	scr_deleteFromList(chainSetList, focusedEntry);
+	
+	// remove the entry from the vizSetList
+	scr_deleteFromList(chainVizSetList, focusedEntry);
 	
 	// unfocus focusedEntry
 	var newFocusedEntry = (ds_exists(sourceEntrySubMap, ds_type_map)) ? sourceEntry : "";

@@ -54,7 +54,7 @@ function scr_drawChains() {
 		
 		// get chain's setIDList and make sure it exists
 		var chainType = ds_map_find_value(currentChainSubMap, "type");
-		var currentSetIDList = ds_map_find_value(currentChainSubMap, "setIDList");
+		var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
 		if (!is_numeric(currentSetIDList)) continue;
 		if (!ds_exists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
@@ -165,7 +165,7 @@ function scr_drawChains() {
 					lineY1 += wordRectBuffer;
 					chunkWord1 = 0;
 				}
-				if(chunkWord2) {
+				if (chunkWord2) {
 					var wordRectBuffer = 15;
 					lineY2 -= (wordRectBuffer);
 				}

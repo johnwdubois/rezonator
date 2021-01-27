@@ -24,9 +24,11 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 			ds_map_add(subMap, "caption", "");
 		}
 		
-		// add setIDList, linkIDList, and tagList to subMap
+		// add setIDList, vizSetIDList, linkIDList, and tagList to subMap
 		var setIDList = ds_list_create();
 		ds_map_add_list(subMap, "setIDList", setIDList);
+		var vizSetIDList = ds_list_create();
+		ds_map_add_list(subMap, "vizSetIDList", vizSetIDList);
 		var linkIDList = ds_list_create();
 		ds_map_add_list(subMap, "linkIDList", linkIDList);
 		var tagList = ds_list_create();

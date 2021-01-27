@@ -382,6 +382,7 @@
     {"id":{"name":"fnt_panelTabLarge2","path":"fonts/fnt_panelTabLarge2/fnt_panelTabLarge2.yy",},"order":2,},
     {"id":{"name":"scr_sentStackerLoop","path":"scripts/scr_sentStackerLoop/scr_sentStackerLoop.yy",},"order":14,},
     {"id":{"name":"fnt_panelTabLarge3","path":"fonts/fnt_panelTabLarge3/fnt_panelTabLarge3.yy",},"order":3,},
+    {"id":{"name":"scr_sortVizSetIDList","path":"scripts/scr_sortVizSetIDList/scr_sortVizSetIDList.yy",},"order":32,},
     {"id":{"name":"fnt_panelTabLarge4","path":"fonts/fnt_panelTabLarge4/fnt_panelTabLarge4.yy",},"order":4,},
     {"id":{"name":"fnt_panelTabLarge5","path":"fonts/fnt_panelTabLarge5/fnt_panelTabLarge5.yy",},"order":5,},
     {"id":{"name":"fnt_sortPane","path":"fonts/fnt_sortPane/fnt_sortPane.yy",},"order":0,},
