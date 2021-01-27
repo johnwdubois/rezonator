@@ -161,18 +161,17 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			var entryIDListSize = ds_list_size(functionChainContents_IDList);
 			for (var j = 0; j < entryIDListSize; j++) {
 						
-				// Get info on current word
+				// Get map of current entry
 				var currentEntry = ds_list_find_value(functionChainContents_IDList, j);
 				var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+				
+				// make sure the current entry's map exists
+				if (!is_numeric(currentEntrySubMap)) continue;
+				if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
+				
+				// get the wordID (or unitID is this is a stackChain)
 				var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
-					
-					
-				if (!is_numeric(currentEntrySubMap)) {
-					continue;
-				}
-					
 
-					
 				var currentWordAligned = false;
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";
@@ -184,7 +183,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				var rectY2 = rectY1 + strHeight;
 		
 
-		
 				// Draw red rectangles if stretch word
 				if (chainType == "rezChain" or chainType == "trackChain") {
 					if (currentWordID != undefined) {

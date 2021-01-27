@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_quickLinkCreation(){
+	
 	if (current_time - sessionStartTime < 2000 or not quickLinkAllowed) {
 		exit;
 	}
@@ -138,18 +139,17 @@ function scr_quickLinkCreation(){
 				}
 			}
 		}
-	
 	}
 
 	// Using the organized grid, simulate clicks to create the chains
 	if (ds_grid_height(gridOfFutureChains) > 0) {
-
+		
+		obj_chain.currentFocusedChainID = "";
 		var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
-		for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+		for (var i = 0; i < gridOfFutureChainsHeight; i++) {
 			var currentList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, i);
 
 			if (ds_list_size(currentList) > 1) {
-			
 				for (var j = 0; j < ds_list_size(currentList); j++) {
 					var currentWordID = ds_list_find_value(currentList, j);
 					if (currentWordID >= 1 and currentWordID <= ds_grid_height(obj_control.wordGrid)) {
@@ -160,11 +160,11 @@ function scr_quickLinkCreation(){
 					}
 				}
 			}
-			scr_unFocusAllChains();
-	
+			
+			// unfocus the chain and destroy that list cuz we don't need it no more
+			obj_chain.currentFocusedChainID = "";
 			ds_list_destroy(currentList);
 		}
-	
 		scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 	}
 
