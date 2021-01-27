@@ -31,6 +31,34 @@ function scr_refocusChainEntry(wordID){
 			show_debug_message("scr_refocusChainEntry() ... focusing... ");
 			ds_map_replace(chainSubMap, "focused", entryToFocus);
 		}
+		
+		// determine which chainList tab and mode we should be on
+		var chainListTab = obj_panelPane.functionChainList_tabRezBrush;
+		var chainMode = obj_toolPane.modeRez;
+		if (chainType == "rezChain") {
+			chainListTab = obj_panelPane.functionChainList_tabRezBrush;
+			chainMode = obj_toolPane.modeRez;
+		}
+		else if (chainType == "trackChain") {
+			chainListTab = obj_panelPane.functionChainList_tabTrackBrush;
+			chainMode = obj_toolPane.modeTrack;
+		}
+		else if (chainType == "stackChain") {
+			chainListTab = obj_panelPane.functionChainList_tabStackBrush;
+			chainMode = obj_toolPane.modeRez;
+		}
+		
+		// set chainList tab
+		with (obj_panelPane) {
+			if (currentFunction == functionChainList) {
+				functionChainList_currentTab = chainListTab;
+			}
+		}
+		
+		// set mode
+		with (obj_toolPane) {
+			currentMode = chainMode;
+		}
 	}
 
 }
