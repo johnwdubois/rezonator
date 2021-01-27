@@ -131,7 +131,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		exit;
 	}
 	
-	
 	// Get wordID list
 	with (obj_panelPane) {
 		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
