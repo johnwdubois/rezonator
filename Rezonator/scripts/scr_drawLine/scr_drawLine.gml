@@ -123,8 +123,6 @@ function scr_drawLine() {
 
 	ds_list_clear(obj_chain.chainShowList);
 
-	var previousWordDisplayCol = -1;
-
 	// for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 	for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLoop++) {
 		if (drawLineLoop < 0 or drawLineLoop >= activeLineGridHeight) {
@@ -364,15 +362,13 @@ function scr_drawLine() {
 			}
 		}
 
-		
-		//var previousWordDisplayCol = -1;
 	
 		// draw hits if in search view, otherwise draw words for this line
 		if (searchGridActive) {
-			scr_drawLineHitIDListLoop(currentWordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
+			scr_drawLineHitIDListLoop(currentWordIDList, currentLineY, drawLineLoop, unitID);
 		}
 		else {
-			scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
+			scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoop, unitID);
 		}
 	
 	
@@ -391,12 +387,6 @@ function scr_drawLine() {
 		scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor);
 		
 		
-		if ((obj_control.currentActiveLineGrid == obj_control.searchGrid) and (ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colLineState, drawLineLoop) == 1)) {
-			draw_set_color(global.colorThemeBorders);
-			for (var j = 0; j < 4; j++) {
-				draw_rectangle(speakerRectX1 + j, speakerRectY1 + j, speakerRectX1 + camViewWidth - j, speakerRectY2 - j - 4, true);
-			}
-		}
 	}	 
 
 

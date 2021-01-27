@@ -38,11 +38,11 @@ function scr_drawChains() {
 	var arrowSize = 0.3 + (0.1 * global.fontSize/5);
 
 	// loop through rezChainList to get chain info
-	var chainShowListSize = ds_list_size(chainShowList);
+	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
 	for (var i = 0; i < chainShowListSize; i++) {
 		minWordWidth = 9999999;
 		
-		var currentChainID = ds_list_find_value(chainShowList, i);
+		var currentChainID = ds_list_find_value(obj_chain.chainShowList, i);
 		
 		// skip this chain if we can't find it in the nodeMap
 		if (!ds_map_exists(global.nodeMap, currentChainID)) continue;
@@ -158,8 +158,7 @@ function scr_drawChains() {
 			// only draw line if every value is real and we are in the draw range
 			if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
 			and not (lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2))
-			and not (lineY1 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2))
-			and not (obj_control.searchGridActive) {
+			and not (lineY1 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2)) {
 				if (chunkWord1) {
 					var wordRectBuffer = 15;
 					lineY1 += wordRectBuffer;

@@ -12,9 +12,10 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 
-function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID) {
+function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoop, unitID) {
 	var currentWordIDListSize = 0;
-		
+	var previousWordDisplayCol = -1;
+	
 	if(is_numeric(currentWordIDList) and currentWordIDList != undefined){
 		if(ds_exists(currentWordIDList, ds_type_list)){
 			currentWordIDListSize = ds_list_size(currentWordIDList);
@@ -143,6 +144,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, previousWordDisplayCol, c
 	
 		// using the previous word's display column, set the current word's void
 		var currentWordVoid = 0;
+
 		if (drawWordLoop > 0) {
 			currentWordDisplayCol = scr_wordVoid(currentWordDisplayCol, previousWordDisplayCol, currentWordGridRow, currentWordID);
 			
