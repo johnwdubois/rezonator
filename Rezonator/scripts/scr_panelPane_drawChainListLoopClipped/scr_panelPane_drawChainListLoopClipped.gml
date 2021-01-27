@@ -116,11 +116,11 @@ function scr_panelPane_drawChainListLoopClipped() {
 				currentChainCaption = "";
 			}
 			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
-			var setIDListSize = ds_list_size(setIDList);
+
 			
 			if (is_numeric(setIDList)) {
 				if (ds_exists(setIDList, ds_type_list)) {
-		
+					var setIDListSize = ds_list_size(setIDList);
 					// stack captions!
 					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 						// first, we will check if the stack has a caption specified in its submap
