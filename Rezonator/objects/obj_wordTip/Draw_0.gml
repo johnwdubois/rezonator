@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Rezonator/objects/obj_readModePopUp2/Draw_0.gml
 /// @description Insert description here
 // You can write your code in this editor
 
