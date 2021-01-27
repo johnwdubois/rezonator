@@ -26,9 +26,6 @@ if (obj_toolPane.currentMode != obj_toolPane.modeRead)
 	exit;
 }
 
-draw_set_alpha(1);
-draw_set_font(global.fontMain);
-
 
 /* --- Fill a grid with the word's attributes' names and values to display --- */
 
@@ -125,7 +122,10 @@ var attribGridCol1Width = maxAttribNameWidth + attribGridColPadding;
 // Set drawing params
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
+draw_set_font(global.fontMain);
+scr_adaptFont("", "M");	// set font to English, Medium
 draw_set_color(c_black);
+draw_set_alpha(1);
 
 // Draw the attribute grid
 for(var i = 0; i < ds_grid_height(attribGrid); i++)
