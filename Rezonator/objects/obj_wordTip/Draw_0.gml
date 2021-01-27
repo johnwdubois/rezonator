@@ -57,7 +57,7 @@ for (var i = 1; i < ds_grid_height(attribGrid); i++)
 }
 
 
-/* --- Calculate dimensions of and display the WordTip box --- */
+/* --- Calculate the dimensions of the WordTip box --- */
 
 // Calculate the box height based on the number and size of attributes
 var lineHeight = string_height(ds_grid_get(attribGrid, 0, 0) );
@@ -104,6 +104,9 @@ if (rectx2 >= fullWindowWidth)
 	rectx2 -= overflowWidth;
 }
 
+// Set the box paddings based on the box dimensions
+boxPaddingHoriz = floor(0.05 * boxWidth);
+boxPaddingVert = floor(0.03 * boxHeight);
 
 // Draw the box's outline
 draw_set_color(c_black);
