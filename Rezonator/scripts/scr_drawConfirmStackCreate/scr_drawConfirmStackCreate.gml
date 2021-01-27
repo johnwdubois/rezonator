@@ -71,10 +71,11 @@ function scr_drawConfirmStackCreate(){
 		if (mouse_check_button_released(mb_left)) {
 			
 			// if they say yes, we will delete all of their stacks before creating new ones
-			var stackChainGridHeight = ds_grid_height(obj_chain.stackChainGrid);
+			var stackChainList = ds_map_find_value(global.nodeMap,"stackChainList")
+			var stackChainListSize = ds_list_size(stackChainList);
 			var deleteChainsList = ds_list_create();
-			for (var i = 0; i < stackChainGridHeight; i++) {
-				var currentChainID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, i);
+			for (var i = 0; i < stackChainListSize; i++) {
+				var currentChainID = ds_list_find_value(stackChainList, i);
 				ds_list_add(deleteChainsList, currentChainID);
 			}
 			var deleteChainsListSize = ds_list_size(deleteChainsList);
@@ -167,6 +168,7 @@ function scr_drawConfirmStackCreate(){
 	draw_set_colour(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
-	var stackAmount = ds_grid_height(obj_chain.stackChainGrid);
-	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + (string_height("0") / 2)), scr_get_translation("msg_stacks_created-1") + string(stackAmount) + scr_get_translation("msg_stacks_created-2"));
+	var stackChainList = ds_map_find_value(global.nodeMap,"stackChainList")
+	var stackChainListSize = ds_list_size(stackChainList);
+	draw_text(floor(fullWindowX + 20), floor(fullWindowY + captionHeight + (string_height("0") / 2)), scr_get_translation("msg_stacks_created-1") + string(stackChainListSize) + scr_get_translation("msg_stacks_created-2"));
 }

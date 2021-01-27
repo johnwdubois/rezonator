@@ -51,7 +51,7 @@ function scr_createStackOptions(optionSelected) {
 			}
 			obj_stacker.createStacksGroup = true;
 			break;
-		case "Sentence":
+		case "menu_sentence":
 			if (doStacksExist) {
 				confirmStack = true;
 			}

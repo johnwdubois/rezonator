@@ -138,14 +138,14 @@ function scr_newLink(wordID) {
 	
 		// switch panel pane to corresponding tab
 	with (obj_panelPane) {
-		switch (obj_toolPane.currentTool) {
-			case obj_toolPane.toolRezBrush:
+		switch (nodeType) {
+			case "rez":
 				functionChainList_currentTab = functionChainList_tabRezBrush;
 				break;
-			case obj_toolPane.toolTrackBrush:
+			case "track":
 				functionChainList_currentTab = functionChainList_tabTrackBrush;
 				break;
-			case obj_toolPane.toolStackBrush:
+			case "stack":
 				functionChainList_currentTab = functionChainList_tabStackBrush;
 				break;
 			default:

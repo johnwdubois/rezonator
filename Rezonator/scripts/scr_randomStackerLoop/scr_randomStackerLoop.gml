@@ -32,12 +32,7 @@ function scr_randomStackerLoop() {
 		var inRectUnitIDListSize = ds_list_size(stackerRandomCurrentUnitList);
 		for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 		
-			with (obj_toolPane) {
-				currentMode = modeRez;
-			}
-			with (obj_panelPane) {
-				functionChainList_currentTab = functionChainList_tabStackBrush;
-			}
+			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 		
 			var currentUnitID = ds_list_find_value(stackerRandomCurrentUnitList, quickStackLoop);
 			currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);

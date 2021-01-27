@@ -47,16 +47,16 @@ function scr_wordClicked(wordID, unitID) {
 		exit;
 	}
 
-	// if we are not on rez-tool, track-tool, or stack-tool, leave this script
-	if not (obj_toolPane.currentTool == obj_toolPane.toolRezBrush
-	or obj_toolPane.currentTool == obj_toolPane.toolTrackBrush
-	or obj_toolPane.currentTool == obj_toolPane.toolStackBrush
-	or obj_toolPane.currentTool == obj_toolPane.toolPlaceChains
-	or obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-		show_debug_message("scr_wordClicked() ... exit 3...");
-		exit;
-	}
+
 	//show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
+	var makingStacks = false;
+	with (obj_panelPane) {
+		if(functionChainList_currentTab == functionChainList_tabStackBrush){
+			makingStacks = true;
+		}
+	}
+
+
 
 	if (ds_list_size(obj_control.inRectWordIDList) <= 1 && obj_toolPane.currentTool != obj_toolPane.toolStackBrush&& obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		obj_control.moveCounter++;
