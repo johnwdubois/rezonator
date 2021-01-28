@@ -31,7 +31,7 @@ function scr_trackSeqGrid(){
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 		
 		// go through the current track's wordIDList and determine which word is earliest in the timeline
-		var currentWordIDList = scr_getChainTempWordList(currentChain);
+		var currentWordIDList = scr_getChainTempList(currentChain);
 		var currentWordIDListSize = ds_list_size(currentWordIDList);
 		var earliestWordID = -1;
 		for (var j = 0; j < currentWordIDListSize; j++) {
@@ -89,7 +89,7 @@ function scr_trackSeqGrid(){
 		var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
 		
 		// get a temporary wordIDList for current chain
-		var currentWordIDList = scr_getChainTempWordList(currentChain);
+		var currentWordIDList = scr_getChainTempList(currentChain);
 		if (!ds_exists(currentWordIDList, ds_type_list)) {
 			continue;
 		}
