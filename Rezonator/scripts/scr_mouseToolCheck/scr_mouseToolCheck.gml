@@ -25,7 +25,7 @@ function scr_mouseToolCheck() {
 			}
 			
 			// If we are in empty space, deselect the current chain on mouseLeftClick
-			if (mouseoverNeutralSpace) {
+			if (mouseoverNeutralSpace && obj_control.hoverWordID == -1) {
 				with(obj_chain) {
 					alarm[9] = 1;
 				}
