@@ -377,15 +377,6 @@ canPressMinus = true;
 
 // Set global font info
 global.fontSize = 0;
-global.fontMain = fnt_main;
-global.fontMainBold = fnt_mainBold;
-global.fontChainList = fnt_chainList;
-global.fontChainListFocused = fnt_chainListFocused;
-global.fontChainContents = fnt_chainContents;
-global.fontPanelTab = fnt_panelTab;
-global.fontSortPane = fnt_sortPane;
-global.fontGridView = fnt_gridView;
-global.navTextBig = false;
 
 // UNused variable
 //scrollFast = 0;
@@ -595,9 +586,6 @@ showParticipantName = true;
 //audioTrackIndex = -1;
 
 
-if(global.tutorial){
-		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
-}
 
 combineChainsFocused = "";
 combineChainsSelected = "";

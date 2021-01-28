@@ -47,7 +47,6 @@ function scr_fontSizeControl() {
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal -= 20;
 				}
-				global.navTextBig = false;
 			}
 			else {
 				if (!gridView) {
@@ -100,7 +99,6 @@ function scr_fontSizeControl() {
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal += 20;
 				}
-				global.navTextBig = true;
 			}
 			else {
 				if (!gridView) {
@@ -163,7 +161,6 @@ function scr_fontSizeControl() {
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal -= 20;
 				}
-				global.navTextBig = false;
 			}
 			else {
 				if (!gridView) {
@@ -216,7 +213,6 @@ function scr_fontSizeControl() {
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal += 20;
 				}
-				global.navTextBig = true;
 			}
 			else {
 				if (!gridView) {
@@ -239,16 +235,6 @@ function scr_fontSizeControl() {
 
 	gridSpaceVerticalMin = gridSpaceVerticalMinOriginal + ((global.fontSize + 1) * 5);
 
-	if(global.navTextBig){
-	//		global.fontChainContents = fnt_chainContentsLarge1;	
-	//		global.fontPanelTab = fnt_panelTabLarge1;
-	//		global.fontSortPane = fnt_sortPaneLarge1;
-	}
-	else{
-	//		global.fontChainContents = fnt_chainContents;
-	//		global.fontPanelTab = fnt_panelTab;
-	//		global.fontSortPane = fnt_sortPane;
-	}
 
 
 }
