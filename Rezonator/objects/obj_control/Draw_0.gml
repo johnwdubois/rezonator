@@ -42,7 +42,9 @@ if (showDisplayCols) {
 
 obj_control.mouseoverSpeakerLabel = false;
 if(global.canScroll) {
-	obj_control.mouseoverNeutralSpace = true;
+	if(!stackShowWindowActive){
+		obj_control.mouseoverNeutralSpace = true;
+	}
 }
 if (!hideAll) {
 	scr_drawLine();
