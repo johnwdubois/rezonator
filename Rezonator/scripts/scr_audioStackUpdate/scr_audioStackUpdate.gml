@@ -11,15 +11,15 @@
 	
 	Author: Terry DuBois, Georgio Klironomos
 */
-function scr_audioStackUpdate(currentStackRow){
+function scr_audioStackUpdate(currentStackChain){
 	
-	selectedStackGridRow = currentStackRow;
+	selectedStackChain = currentStackChain;
 	bookmarkStartTime = -1;
 	bookmarkEndTime = -1;
 	
 	// Get UnitID list info
-	selectedStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, currentStackRow);
-	stackUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, currentStackRow);
+
+	stackUnitList = scr_getChainTempList(selectedStackChain);
 	stackUnitListSize = ds_list_size(stackUnitList);
 	
 	//Loop through UnitIDList and gather time stamps
