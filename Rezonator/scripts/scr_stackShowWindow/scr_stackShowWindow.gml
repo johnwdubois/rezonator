@@ -265,6 +265,8 @@ function scr_stackShowWindow() {
 				}
 				else{
 					obj_panelPane.showNav = false;
+					obj_panelPane.showNavLeft = false;
+					obj_panelPane.showNavRight = false;
 					obj_toolPane.showTool = false;
 				}
 			
@@ -343,6 +345,8 @@ function scr_stackShowWindow() {
 					obj_dialogueBox.elmoActive = true;
 					if(string(global.userName) != "gold") {
 						obj_panelPane.showNav = false;
+						obj_panelPane.showNavLeft = false;
+						obj_panelPane.showNavRight = false;
 						obj_toolPane.showTool = false;
 					}
 				}

@@ -171,7 +171,9 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				
 				// get the wordID (or unitID is this is a stackChain)
 				var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
-
+				
+				if(currentWordID == undefined) continue;
+				
 				var currentWordAligned = false;
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";

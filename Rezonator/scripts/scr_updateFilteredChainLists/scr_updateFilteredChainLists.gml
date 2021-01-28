@@ -6,6 +6,12 @@ function scr_updateFilteredChainLists(){
 	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
 	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
 	
+	// reset filter lists
+	ds_list_clear(obj_chain.filteredRezChainList);
+	ds_list_clear(obj_chain.filteredTrackChainList);
+	ds_list_clear(obj_chain.filteredStackChainList);
+	
+	
 	// update filteredChainLists for rez
 	var rezChainListSize = ds_list_size(rezChainList);
 	for (var i = 0; i < rezChainListSize; i++) {
@@ -18,9 +24,6 @@ function scr_updateFilteredChainLists(){
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredRezChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredRezChainList, currentChain);
-		}
-		else if (!inFilter) {
-			scr_deleteFromList(obj_chain.filteredRezChainList, currentChain);
 		}
 	}
 	// update filteredChainLists for tracks
@@ -36,9 +39,6 @@ function scr_updateFilteredChainLists(){
 		if (inFilter && ds_list_find_index(obj_chain.filteredTrackChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredTrackChainList, currentChain);
 		}
-		else if (!inFilter) {
-			scr_deleteFromList(obj_chain.filteredTrackChainList, currentChain);
-		}
 	}
 	// update filteredChainLists for stacks
 	var stackChainListSize = ds_list_size(stackChainList);
@@ -52,9 +52,6 @@ function scr_updateFilteredChainLists(){
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredStackChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredStackChainList, currentChain);
-		}
-		else if (!inFilter) {
-			scr_deleteFromList(obj_chain.filteredStackChainList, currentChain);
 		}
 	}
 	
