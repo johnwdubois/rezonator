@@ -1,4 +1,4 @@
-function scr_searchForWord() {
+function scr_searchForWord(strToFind) {
 	/*
 		scr_searchForWord();
 	
@@ -8,28 +8,18 @@ function scr_searchForWord() {
 	
 		Purpose: search entire wordGrid for given word, then create a new lineGrid that features every line containing that word
 	
-		Mechanism: loop through unitGrid looking at every wordIDList for searched word, if that row in unitGrid contains searched word,
+		Mechanism: loop through unitGrid looking at every tempWordIDList for searched word, if that row in unitGrid contains searched word,
 					add that row to new lineGrid
 	
 		Author: Terry DuBois, Georgio Klironomos, Brady Moore
 	*/
-
-	var wordToFind = argument[0];
-
-	// Get the word's string from the user
-	//var wordToFind = get_string("Type string to find", "");
+	
+	show_debug_message("scr_searchForWord() ... strToFind: " + string(strToFind));
 
 	// Safety check, make sure something was inputted
-	if (string_length(wordToFind) < 1) {
+	if (string_length(strToFind) < 1) {
 		exit;
 	}
-
-
-	// Keep a temporary grid
-	var tempSearchGrid = ds_grid_create(ds_grid_width(obj_control.lineGrid), ds_grid_height(obj_control.lineGrid));
-
-	ds_grid_copy(tempSearchGrid, obj_control.lineGrid);
-
 
 	// Fill backup grids in case the new word is not found
 	var oldSearch = ds_grid_create(ds_grid_width(obj_control.searchGrid), ds_grid_height(obj_control.searchGrid));
@@ -37,31 +27,31 @@ function scr_searchForWord() {
 	var oldHit = ds_grid_create(ds_grid_width(obj_control.hitGrid), ds_grid_height(obj_control.hitGrid));
 	ds_grid_copy(oldHit, obj_control.hitGrid);
 
-
 	// creating list of words if user inputed multiple words
 	obj_control.listOfWords = ds_list_create();
-	ds_list_copy( obj_control.listOfWords, scr_splitString(wordToFind, "&"));
+	var listOfWordsInput = scr_splitString(strToFind, "&");
+	ds_list_copy(obj_control.listOfWords, listOfWordsInput);
+	ds_list_destroy(listOfWordsInput);
 
 	// if user input regEx string
-	//var firstChar =  string_copy( wordToFind, 0,1);
 	obj_control.RegEx = ds_list_create();
 
 	var regExString = "(\@)*";// "(^|\[)\\+(\\0-9|\@)*\\+(^|\])";// "(\\0-9|\@|\[|\])*"; //finds laughter
 	//var regExString = "(\\a-z|\\A-Z)*"; //finds all words  "(\a-z|\A-Z|\0-9|_|.|-)*"
 	ds_list_copy(obj_control.RegEx,  scr_regularExpressionCreate( regExString ) ); //"(^|\[)\\+(\0-9|\@)*\\+(^|\])"  "(\@)*"
 		
-	if (!is_string(scr_regularExpressionCreate(wordToFind)) && obj_control.regExCheck) {
-		ds_list_copy(obj_control.RegEx, scr_regularExpressionCreate(wordToFind));
+	if (!is_string(scr_regularExpressionCreate(strToFind)) && obj_control.regExCheck) {
+		ds_list_copy(obj_control.RegEx, scr_regularExpressionCreate(strToFind));
 	}
 	else {
-		if(obj_control.regExCheck) {
-			show_message(scr_regularExpressionCreate(wordToFind));
+		if (obj_control.regExCheck) {
+			show_message(scr_regularExpressionCreate(strToFind));
 		}
 	}
 
 	// display RegEx in debug
 	//		obj_control.moveCounter = scr_regularExpressionCreate( regExString) ;
-	if(is_string(scr_regularExpressionCreate(wordToFind))){
+	if (is_string(scr_regularExpressionCreate(strToFind))) {
 		obj_control.regExCheck = false;
 	}
 
@@ -73,187 +63,99 @@ function scr_searchForWord() {
 
 	obj_control.hitIDCounter = 1;
 	
-	// getting word ID list for focused chain
-	var wordIDList = ds_list_create();
-	var inChain = -1;
-	if(obj_chain.currentFocusedChainID != ""){
-		var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+
+	// determine if there is a match in the currentFocusedChain
+	var tempWordIDList = -1;
+	var tempWordIDListSize = 0;
+	var inChainMatchCaseSensitive = false;
+	var inChainMatchNonCaseSensitive = false;
 	
-		if (is_numeric(chainSubMap)) {
-			if (ds_exists(chainSubMap, ds_type_map)) {
-				var entryIDList = ds_map_find_value(chainSubMap, "setIDList");
-				if(!is_numeric(entryIDList)){ exit; }
-				if(!ds_exists(entryIDList, ds_type_list)){ exit; }
-			}
-		}
-	
-		var sizeOfEntryList = ds_list_size(entryIDList);
-	
-		for(var i = 0; i < sizeOfEntryList; i++){
-			var entryID = ds_list_find_value(entryIDList, i );
-			var entrySubMap = ds_map_find_value(global.nodeMap, entryID);
-	
-			if (is_numeric(entrySubMap)) {
-				if (ds_exists(entrySubMap, ds_type_map)) {
-					var entryWordID = ds_map_find_value(entrySubMap, "word");
-					ds_list_add(wordIDList,entryWordID);
-				}
-			}
-		}
-	}					
-	var sizeOfwordIDList = ds_list_size(wordIDList);
+	// make a list of wordIDs from the currently focused chain
+	// and if there is no currently focused chain, the list will be empty
+	var focusedChainWordIDList = ds_list_create();
+	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+		ds_list_copy(focusedChainWordIDList, scr_getChainTempList(obj_chain.currentFocusedChainID));
+	}
 	
 	// loop through unitGrid, so we can get the wordID list of every unit
 	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
 	for (var i = 0; i < unitGridHeight; i++) {
+
+		var currentUnitID = i + 1;
 		var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, i);
 		var currentDiscoID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoID, i);
 		var currentUtteranceID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, i);
 		var currentUnitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, i);
 		var currentUnitEnd = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitEnd, i);
-	
-		if(obj_fileLoader.subLineGridBeginning != undefined) {
-			if(obj_fileLoader.subLineGridBeginning > -1) {
-				var unitInLineGrid = ds_grid_value_exists(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), i + 1);
-				if(not unitInLineGrid) {
-					continue;	
-				}
-			}
-		}
 			
-			// now we loop through every word in wordID list to see if matches our search word
-			//var currentWordIDListSize = ds_list_size(currentWordIDList);
-			for (var j = 0; j < ds_list_size(currentWordIDList); j++) {
-				var currentWordID = ds_list_find_value(currentWordIDList, j);
-				if(obj_control.wordView == 2){
-					var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-2);
-				}
-				else{				
-					var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-3);
-				}
-
+		// now we loop through every word in wordID list to see if matches our search word
+		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		for (var j = 0; j < currentWordIDListSize; j++) {
 			
-				var currentWordToken = ds_grid_get(global.tokenImportGrid, colIndex, currentWordID - 1);
-				var currentWordTranscript = ds_grid_get(global.tokenImportGrid, colIndex, currentWordID - 1);
-		
-				// Prevent the Search from picking up dead words
-				var currentWordGridRow = currentWordID - 1;
-				var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordGridRow);
-				if(currentWordState == obj_control.wordStateDead or currentWordState == obj_control.wordStateChunk) {
-		
+			var currentWordID = ds_list_find_value(currentWordIDList, j);			
+			var currentWordDisplayStr = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
+			var currentWordMatches = false;
+			
+			// if we only care about the words in the focused chain, we will make sure currentWordID is in the chain before doing any string checks
+			if (obj_control.inChainBool) {
+				var currentWordInFocusedChain = (ds_list_find_index(focusedChainWordIDList, currentWordID) >= 0);
+				if (!currentWordInFocusedChain) {
 					continue;
 				}
-		
-				// loop through all words in list
-				var listOfWordsSize = ds_list_size(obj_control.listOfWords);
-				for (var l = 0; l < listOfWordsSize; l++) {				
-					if !ds_list_empty(obj_control.listOfWords) {
-						wordToFind = ds_list_find_value(obj_control.listOfWords, l);
-					}
-				
-					if (obj_control.regExCheck) {
-						if (scr_regularExpressionMatch(obj_control.RegEx, currentWordTranscript)) {
-					
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
-						}
-					}
+			}
 			
+			// Prevent the Search from picking up dead words
+			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
+			if (currentWordState == obj_control.wordStateDead or currentWordState == obj_control.wordStateChunk) {
+				continue;
+			}
+			
+			// remove any newline characters from currentWordDisplayStr (so that the search isn't screwed up)
+			currentWordDisplayStr = string_replace(currentWordDisplayStr, "\n", "");
+			currentWordDisplayStr = string_replace(currentWordDisplayStr, "\r", "");
+			
+			// loop through all of the searched words to see if they match currentWordDisplayStr
+			var listOfWordsSize = ds_list_size(obj_control.listOfWords);
+			for (var k = 0; k < listOfWordsSize; k++) {
+				
+				strToFind = ds_list_find_value(obj_control.listOfWords, k);
+				
+				if (obj_control.regExCheck) {
+					if (scr_regularExpressionMatch(obj_control.RegEx, currentWordDisplayStr)) {
+						currentWordMatches = true;
+					}
+				}
+				else {
+					// determine if the current word has a non-regex match, either case-sensitive or non-case-sensitive
+					var foundCaseSensitiveMatch = (strToFind == currentWordDisplayStr);
+					var foundNonCaseSensitiveMatch = (string_lower(strToFind) == string_lower(currentWordDisplayStr));
+					if (obj_control.caseSensitive) {
+						if (foundCaseSensitiveMatch) {
+							currentWordMatches = true;
+						}
+					}
 					else {
-					// if statement for boolean logic and search selection	
-					if (obj_control.caseSensitive and not obj_control.transcriptSearch and not obj_control.inChainBool) {
-						if (wordToFind == currentWordToken) {
-				
-								scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
-						}
-					}
-					else if (obj_control.transcriptSearch and not obj_control.caseSensitive and not obj_control.inChainBool) {
-						if (string_lower(wordToFind) == string_lower(currentWordTranscript)) {
-				
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
-						}
-					}
-					else if (obj_control.transcriptSearch and obj_control.caseSensitive and not obj_control.inChainBool) {
-						if ( wordToFind == currentWordTranscript ) {
-				
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
-						}
-					}
-					else if (obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
-				
-						if(wordIDList > -1){
-							inChain = ds_list_find_index(wordIDList, currentWordID);
-						}
-
-						
-						if ( wordToFind == currentWordTranscript and inChain > -1) {
-				
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
-						}
-					}
-					else if (not obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
-						
-						
-						if(wordIDList > -1){
-							inChain = ds_list_find_index(wordIDList, currentWordID);
-						}
-
-
-						if (string_lower(wordToFind) == string_lower(currentWordToken) and inChain > -1 or string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain == 1) {
-				
-					
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
-						}
-						
-
-						
-					}
-					else if (obj_control.transcriptSearch and not obj_control.caseSensitive and obj_control.inChainBool) {
-				
-						if(wordIDList > -1){
-							inChain = ds_list_find_index(wordIDList, currentWordID);
-						}
-
-						if (string_lower(wordToFind) == string_lower(currentWordTranscript) and inChain > -1) {
-				
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
-						}
-					}
-					else if (not obj_control.transcriptSearch and obj_control.caseSensitive and obj_control.inChainBool) {
-				
-						if(wordIDList > -1){
-							inChain = ds_list_find_index(wordIDList, currentWordID);
-						}
-						
-				
-						if (wordToFind == currentWordToken and inChain == 1 or wordToFind == currentWordTranscript and inChain > -1) {
-				
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);	
-
-						}
-					}
-					else{
-						// if the word matches, we will add another row to the serachGrid and add all of this word's unit information
-						//if (scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
-						//if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) or scr_regularExpressionMatch(RegEx, currentWordTranscript)) {
-						if (string_lower(wordToFind) == string_lower(currentWordToken) or string_lower(wordToFind) == string_lower(currentWordTranscript) ) {
-					
-							scr_addToSearchGrid(i, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
-
+						if (foundCaseSensitiveMatch || foundNonCaseSensitiveMatch) {
+							currentWordMatches = true;
 						}
 					}
 				}
+			}
+			
+			// if any of the searched words matches currentWordDisplayStr, we will add this unit to the searchGrid
+			if (currentWordMatches) {
+				scr_addToSearchGrid(currentUnitID, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, j, obj_control.hitIDCounter);		
 			}
 		}
 	}
-	ds_list_destroy(wordIDList);
-	if(obj_control.newWordDeleted) {
+	
+	ds_list_destroy(focusedChainWordIDList);
+	
+	
+	
+	
+	
+	if (obj_control.newWordDeleted) {
 		exit;
 	}
 
@@ -312,7 +214,6 @@ function scr_searchForWord() {
 		}
 	}
 
-	ds_grid_destroy(tempSearchGrid);
 
 
 }

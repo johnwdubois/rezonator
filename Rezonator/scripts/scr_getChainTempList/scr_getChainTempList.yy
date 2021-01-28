@@ -6,7 +6,7 @@
     "path": "folders/Scripts/chains.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_getChainTempWordList",
+  "name": "scr_getChainTempList",
   "tags": [],
   "resourceType": "GMScript",
 }

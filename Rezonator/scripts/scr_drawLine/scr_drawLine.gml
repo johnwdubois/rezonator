@@ -208,6 +208,13 @@ function scr_drawLine() {
 								}
 							}
 						}
+						
+						
+						// if we are in the search screen, the currentWordID will actually be a hitID,
+						// so we need to convert it back to a wordID before trying to make a stack
+						if (obj_control.currentActiveLineGrid == obj_control.searchGrid) {
+							currentWordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, currentWordID - 1);
+						}
 			
 						with (obj_chain) {
 							scr_wordClicked(currentWordID, unitID);
@@ -216,7 +223,7 @@ function scr_drawLine() {
 				}
 			}
 		}
-		else if(currentWordIDListSize > 0 and obj_toolPane.currentMode == obj_toolPane.modeRead) {
+		else if (currentWordIDListSize > 0 and obj_toolPane.currentMode == obj_toolPane.modeRead) {
 			var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
 			if(mouseRectExists) {
 				obj_control.mouseoverNeutralSpace = false;		

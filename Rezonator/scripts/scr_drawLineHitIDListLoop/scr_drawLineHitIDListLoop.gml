@@ -15,6 +15,24 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 
 	var chainShowList = obj_chain.chainShowList;
 	var strHeightScaled = string_height("0");
+	
+	// if there is a currently focused chain, get its focused word
+	var focusedChainFocusedWordID = -1;
+	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
+		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+		if (is_numeric(focusedChainSubMap)) {
+			if (ds_exists(focusedChainSubMap, ds_type_map)) {
+				var focusedEntry = ds_map_find_value(focusedChainSubMap, "focused");
+				var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedEntry);
+				if (is_numeric(focusedEntrySubMap)) {
+					if (ds_exists(focusedEntrySubMap, ds_type_map)) {
+						focusedChainFocusedWordID = ds_map_find_value(focusedEntrySubMap, "word");
+					}
+				}
+			}
+		}
+	}
+	
 
 	draw_set_alpha(1);
 	var currentHitIDListSize = ds_list_size(currentHitIDList);
@@ -93,9 +111,8 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 		}
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		scr_adaptFont(currentWordString, "M");
-		draw_text(floor(currentWordX), floor(currentLineY), currentWordString);
 		
+		scr_adaptFont(currentWordString, "M");
 		
 		// get wordRect dimensions
 		var currentWordStringWidth = string_width(currentWordString);
@@ -108,7 +125,7 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 		
 		if (mouseoverWord) {
 			obj_control.hoverWordID = currentWordID;
-			if (mouse_check_button_released(mb_left)) {
+			if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left)) {
 				with (obj_toolPane) {
 					currentMode = modeTrack;
 				}
@@ -117,8 +134,11 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 						functionChainList_currentTab = functionChainList_tabTrackBrush;
 					}
 				}
-				with (obj_chain) {
-					scr_wordClicked(currentWordID, unitID);
+				
+				if (mouse_check_button_released(mb_left)) {
+					with (obj_chain) {
+						scr_wordClicked(currentWordID, unitID);
+					}
 				}
 			}
 		}
@@ -130,8 +150,16 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 			if (!ds_exists(chainSubMap, ds_type_map)) continue;
 			var chainColor = ds_map_find_value(chainSubMap, "chainColor");
 			draw_set_color(chainColor);
-			for (var i = 0; i < 3; i += 0.5) {
+			draw_set_alpha(1);
+			for (var i = 0; i < 2; i ++) {
 				draw_roundrect(wordRectX1 - i, wordRectY1 - i, wordRectX2 + i, wordRectY2 + i, true);
+			}
+			
+			// draw filled rect if this word is in a focused chain, and this word is focused
+			if (focusedChainFocusedWordID == currentWordID) {
+				draw_set_alpha(0.2);
+				draw_roundrect(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+				draw_set_alpha(1);
 			}
 		}
 		else {
@@ -150,6 +178,11 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 			draw_sprite_ext(spr_focusPoint, 0, wordRectX1 - wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 			draw_sprite_ext(spr_focusPoint, 0, wordRectX2 + wordDrawGridFocusedAnimation, wordRectY2 + wordDrawGridFocusedAnimation, 1, 1, 0, effectColor, 1);
 		}
+		
+		// draw the string!
+		draw_set_color(global.colorThemeText);
+		draw_set_alpha(1);
+		draw_text(floor(currentWordX), floor(currentLineY), currentWordString);
 		
 			
 	}

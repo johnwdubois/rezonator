@@ -14,6 +14,8 @@
 */
 
 function scr_wordClicked(wordID, unitID) {
+	
+	show_debug_message("scr_wordClicked()... wordID: " + string(wordID) + "unitID: " + string(unitID));
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
 		var shouldExit = true;
@@ -28,11 +30,11 @@ function scr_wordClicked(wordID, unitID) {
 		}
 	}
 
-
-	if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_toolPane.currentTool == obj_toolPane.toolStackBrush) { 
+	/*
+	if (obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_toolPane.currentTool == obj_toolPane.toolStackBrush) { 
 		wordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, wordID - 1);
-		//show_message(wordID);
 	}
+	*/
 
 	// jump audio position to unitStart time (if audioUI is visible)
 	if (instance_exists(obj_audioUI)) {
@@ -89,12 +91,12 @@ function scr_wordClicked(wordID, unitID) {
 		for (var i = 0; i < inChainsListSize; i++) {
 			var currentChainID = ds_list_find_value(inChainsList, i);
 			currentFocusedChainID = currentChainID;
-			var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+			var focusedChainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 				
-			if(is_numeric(focusedchainIDSubMap)){
-				if(ds_exists(focusedchainIDSubMap, ds_type_map)){
-					var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
-					if(prevChainType == "stackChain"){
+			if (is_numeric(focusedChainIDSubMap)) {
+				if (ds_exists(focusedChainIDSubMap, ds_type_map)) {
+					var prevChainType = ds_map_find_value(focusedChainIDSubMap, "type");
+					if (prevChainType == "stackChain") {
 						wordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID -1);
 					}
 				}
