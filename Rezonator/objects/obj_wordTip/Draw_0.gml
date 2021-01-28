@@ -51,9 +51,17 @@ for (var i = 1; i < ds_grid_height(attribGrid); i++)
 {
 	var attribName = ds_grid_get(attribGrid, 0, i);	// Attribute name to find the value of
 	var tokenImportGridAttribColNum = ds_list_find_index(global.tokenImportColNameList, attribName);	// Column number which stores the attribute in the tokenImportGrid
-	var attribValue = ds_grid_get(global.tokenImportGrid, tokenImportGridAttribColNum, currentWordID - 1);	// Attribute value from the tokenImportGrid
 	
-	ds_grid_set(attribGrid, 1, i, attribValue);	// Insert attribute value into 2nd column
+	if (tokenImportGridAttribColNum == -1)	// No such attribute
+	{
+		ds_grid_set(attribGrid, 1, i, "N/A");	
+	}
+	
+	else
+	{
+		var attribValue = ds_grid_get(global.tokenImportGrid, tokenImportGridAttribColNum, currentWordID - 1);	// Attribute value from the tokenImportGrid
+		ds_grid_set(attribGrid, 1, i, attribValue);	// Insert attribute value into 2nd column	
+	}
 }
 
 
