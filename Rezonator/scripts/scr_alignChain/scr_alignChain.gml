@@ -11,20 +11,26 @@
 	
 	Author: Terry DuBois
 */
-function scr_alignChain(wordIDList, pushOut) {
+function scr_alignChain(setIDList, pushOut) {
 	
 	var furthestDisplayCol = 0;
 
 	var displayRowList = ds_list_create();
 	var nonVoidWordExists = false;
-	var wordIDListSize = ds_list_size(wordIDList);
+	var setIDListSize = ds_list_size(setIDList);
 
-	if (ds_list_size(wordIDList) > 0) {
+	if (setIDListSize > 0) {
 	
 		// find which word in this chain is the furthest to the right (largest display column)
-		var furthestWordID = ds_list_find_value(wordIDList, 0);
-		for (var displayColLoop = 0; displayColLoop < wordIDListSize; displayColLoop++) {
-			var currentWordID = ds_list_find_value(wordIDList, displayColLoop);
+		var firstEntry = ds_list_find_value(setIDList, 0);
+		var firstEntrySubMap = ds_map_find_value(global.nodeMap, firstEntry);
+		var furthestWordID = ds_map_find_value(firstEntrySubMap, "word");
+		
+		for (var displayColLoop = 0; displayColLoop < setIDListSize; displayColLoop++) {
+			
+			var currentEntry = ds_list_find_value(setIDList, displayColLoop);
+			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
 		
 			// Prevent dead or chunk words to mess with alignment
 			var wordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
@@ -96,9 +102,11 @@ function scr_alignChain(wordIDList, pushOut) {
 		
 		//furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
 		var displayRowList2 = ds_list_create();
-	
-		for (var setDisplayColLoop = 0; setDisplayColLoop < wordIDListSize; setDisplayColLoop++) {
-			var currentWordID = ds_list_find_value(wordIDList, setDisplayColLoop);
+		for (var setDisplayColLoop = 0; setDisplayColLoop < setIDListSize; setDisplayColLoop++) {
+			
+			var currentEntry = ds_list_find_value(setIDList, setDisplayColLoop);
+			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
 			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 		
 			if (not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1)) {
@@ -149,8 +157,11 @@ function scr_alignChain(wordIDList, pushOut) {
 
 	// if every word in this chain has a void, we need to bring every word in the chain back
 	if (not nonVoidWordExists) {
-		for (var i = 0; i < wordIDListSize; i++) {
-			var currentWordID = ds_list_find_value(wordIDList, i);
+		for (var i = 0; i < setIDListSize; i++) {
+			
+			var currentEntry = ds_list_find_value(setIDList, i);
+			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
 			var currentVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1);
 			if (currentVoid <= 0) {
 				continue;

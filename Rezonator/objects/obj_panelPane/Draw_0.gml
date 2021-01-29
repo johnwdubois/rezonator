@@ -84,11 +84,16 @@ switch (currentFunction) {
 		}
 		break;
 	case functionChainContents:
-		if(showNavRight){
+		if (showNavRight) {
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-			if (typeof(functionChainContents_BGColor) == "number") {
+			if (is_numeric(functionChainContents_BGColor)) {
+				// if we are on the line tab, set the BG color to be regular
+				if (functionChainList_currentTab == functionChainList_tabLine) {
+					functionChainContents_BGColor = global.colorThemeBG;
+				}
+				// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
 				if (functionChainContents_BGColor != global.colorThemeBG) {
 					draw_set_alpha(0.1);
 					draw_set_color(functionChainContents_BGColor);
@@ -105,11 +110,11 @@ switch (currentFunction) {
 			else {
 				scr_panelPane_drawChainContentsLoopClipped();
 			}
-		
-		
+			
+			
 			// one-to-one or one-to-many
+			/*
 			if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-				
 				draw_set_color(global.colorThemeText);
 				draw_set_alpha(1);
 				draw_set_halign(fa_right);
@@ -135,23 +140,23 @@ switch (currentFunction) {
 			
 				}
 				draw_sprite_ext(spr_oneToOne, (chainViewOneToMany) ? 0 : 1, floor(mean(oneToManyRectX1, oneToManyRectX2)), floor(mean(oneToManyRectY1, oneToManyRectY2)), 1, 1, 0, c_white, 1);
-		
-		
-		
-		
-				if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-					clickedIn = true;
-				}
-				else {
-					clickedIn = false;
-				}
-				if (clickedIn) {
-					draw_set_alpha(1);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
-					draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
-				}
 			}
+			*/
+			
+			if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+				clickedIn = true;
+			}
+			else {
+				clickedIn = false;
+			}
+			if (clickedIn) {
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
+				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
+			}
+			
+			
 		}
 		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
 			alarm[6] = 1;	
@@ -201,11 +206,11 @@ switch (currentFunction) {
 		if(obj_panelPane.showNav) {
 			if (obj_toolPane.showTool){
 			
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemePaneBG);
+				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
-			scr_panelPane_drawHelp();
+				scr_panelPane_drawHelp();
 			}
 		}
 		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
@@ -265,25 +270,21 @@ switch (currentFunction) {
 
 if(obj_panelPane.showNav){
 
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemeBorders);
-		//if(currentFunction == functionSort && !obj_menuBar.sortPaneOpen){
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemeBorders);
+
+	if(currentFunction == functionChainContents && !obj_panelPane.showNavRight){
 	
-		//}
-		if(currentFunction == functionChainContents && !obj_panelPane.showNavRight){
+	}
+	else if(currentFunction == functionHelp && !obj_toolPane.showTool){
 	
-		}
-		else if(currentFunction == functionHelp && !obj_toolPane.showTool){
+	}
+	else if((currentFunction == functionChainList or currentFunction == functionFilter) && !obj_panelPane.showNavLeft){
 	
-		}
-		else if((currentFunction == functionChainList or currentFunction == functionFilter) && !obj_panelPane.showNavLeft){
-	
-		}
-		else {
-			
-				
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
-		}
+	}
+	else {
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+	}
 }
 
 

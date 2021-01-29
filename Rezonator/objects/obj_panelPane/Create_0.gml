@@ -85,9 +85,9 @@ functionChainContents_scrollRangeMin[0] = 0;
 functionChainContents_scrollRangeMax[0] = functionChainContents_maxScrollRange;
 functionChainContents_hop = -1;
 functionChainContents_lineGridRowFocused = -1;
-functionChainContents_chainGridRowFocused = -1;
 functionChainContents_sortedCol = -1;
 functionChainContents_sortedColAsc = true;
+functionChainContents_chainID = "";
 alarm[8] = 5;
 
 functionChainContents_colXList = ds_list_create();
@@ -176,7 +176,6 @@ scrollBarHolding = false;
 scrollBarClickLock = false;
 scrollBarHoldingPlusY = 0;
 currentTopViewRow = 0;
-//oldFocusedContentsRow = -1;
 //backupFocusedRow = -1;
 
 showAdvancedNav = false;
@@ -228,7 +227,6 @@ chainTagsHighlightRow = -1;
 chainViewOneToMany = true;
 
 previousChainContentsRow = -1;
-rowInLinkGridList = ds_list_create();
 
 
 hoverTime[0] = 0;

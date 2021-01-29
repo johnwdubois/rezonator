@@ -43,7 +43,8 @@ if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_
 	}
 }
 
-if (obj_panelPane.showNav) {
+
+if (obj_panelPane.showNav && obj_toolPane.showTool) {
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);

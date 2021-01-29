@@ -1,19 +1,19 @@
 /*
-	scr_newLink(wordID, goal);
+	scr_newLink(wordID);
 	
 	Last Updated: 2018-09-11
 	
 	Called from: obj_chain
 	
-	Purpose: the user has created a link, so this script will add it to the linkGrid
+	Purpose: the user has created a link, so this script will add it to the node map
 	
-	Mechanism: add row to linkGrid and fill in column information from given arguments
+	Mechanism: create new node in map for link
 	
 	Author: Terry DuBois
 */
-function scr_newLink(wordID, goal) {
+function scr_newLink(wordID) {
 	
-	show_debug_message("scr_newLink() ... wordID: " + string(wordID) + ", goal: " + string(goal));
+	show_debug_message("scr_newLink() ... wordID: " + string(wordID));
 
 	//New funtionality for recording chain modification
 	while (ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) {
@@ -30,16 +30,14 @@ function scr_newLink(wordID, goal) {
 	}
 
 	var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
-
 	if (unitID == undefined) {
 		exit;
 	}
-
-
+	
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 		var idSet = unitID;
 		if (obj_control.quickStackAbleToInitiate) {
-			obj_control.moveCounter ++;
+			obj_control.moveCounter++;
 		}
 	}
 	else {
@@ -81,7 +79,7 @@ function scr_newLink(wordID, goal) {
 			if (is_numeric(idList)) {
 				if (ds_exists(idList, ds_type_list)) {
 					
-					// create a new node this entry with type being rez, track, or stack
+					// create a new node for this entry with type being rez, track, or stack
 					nodeID = scr_addToNodeMap(nodeType);
 					
 					// set entry node values in nodeMap
@@ -89,7 +87,15 @@ function scr_newLink(wordID, goal) {
 					is_numeric(setSubMap) {
 						if (ds_exists(setSubMap, ds_type_map)) {
 							ds_map_add(setSubMap, "chain", currentFocusedChainID);
-							ds_map_add(setSubMap, "word", idSet);
+							ds_map_add(setSubMap, (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) ? "unit" : "word", idSet);
+							ds_map_add(setSubMap, "sourceLink", "");
+							ds_map_add_list(setSubMap, "goalLinkList", ds_list_create());
+							if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+								ds_map_add(setSubMap, "alignEntry", true);
+							}
+							else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+								ds_map_add(setSubMap, "alignEntry", false);
+							}
 						}
 					}
 
@@ -102,73 +108,53 @@ function scr_newLink(wordID, goal) {
 						ds_map_replace(chainSubMap, "focused", nodeID);
 					}
 					
-					show_debug_message("scr_newLink() ... link nodeID: " + string(nodeID));
+					// set wordDrawGrid if this is a rez or track
+					if (nodeType == "rez" || nodeType == "track") {
+						var chainColor = ds_map_find_value(chainSubMap, "chainColor");
+						ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
+						
+						// sort the displayed links
+						scr_sortVizSetIDList(currentFocusedChainID);
+					}
+					
+					show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
 				}
 			}
 		}
 	}
 	
+	
 	if (nodeID == "") {
 		show_debug_message("scr_newLink() ... ERROR: nodeID is blank string. Exiting...");
 		exit;
 	}
-
-	// add new row to linkGrid
-	ds_grid_resize(obj_chain.linkGrid, obj_chain.linkGridWidth, ds_grid_height(obj_chain.linkGrid) + 1);
-	var currentLinkGridRow = ds_grid_height(obj_chain.linkGrid) - 1;
-	if (obj_chain.linkIDCounter == undefined) {
-		obj_chain.linkIDCounter = 0;
-	}
-	obj_chain.linkIDCounter++;
-
-
-	// if this new word is the goal of a previous link, we must update the linkGrid on that row
-	var focusedRow = scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentFocusedChainID, obj_chain.linkGrid_colGoal, -1);
-	
-	// Does not need to happen when a link was deleted
-	if (focusedRow > -1 and focusedRow < ds_grid_height(obj_chain.linkGrid) and not obj_control.linkDeleted) {
-		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, focusedRow, idSet);
-		ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoalClickTime, focusedRow, (current_time - obj_control.sessionStartTime) / 1000);
 		
-		// create a node for the link (now that we know its source & goal)
-		var linkGoalID = nodeID;
-		var linkID = scr_addToNodeMap("link");
-		var linkSubMap = ds_map_find_value(global.nodeMap, linkID);
-		ds_map_add(linkSubMap, "source", linkSourceID);
-		ds_map_add(linkSubMap, "goal", linkGoalID);
 		
-		// add this link to the chain's linkIDList
-		var chainLinkIDList = ds_map_find_value(chainSubMap, "linkIDList");
-		ds_list_add(chainLinkIDList, linkID);
+	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
+	if (nodeType == "rez" || nodeType == "track") {
+		var entryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, idSet - 1);
+		if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
+			ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
+		}
 	}
-
+	// if this is a stack, we will make sure this unit is updated in the unitInStackGrid
+	else if (nodeType == "stack") {
+		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, idSet - 1, currentFocusedChainID);
+		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, idSet - 1, 0);
+		show_debug_message("scr_newLink() ... idSet: " + string(idSet));
+	}
 	
-	// fill in info for new row in linkGrid
-	ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colChainID, currentLinkGridRow, currentFocusedChainID);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colLinkID, currentLinkGridRow, obj_chain.linkIDCounter);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTier, currentLinkGridRow, currentChainTier);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colSource, currentLinkGridRow, idSet);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoal, currentLinkGridRow, goal);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, currentLinkGridRow, focus);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colDead, currentLinkGridRow, false);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colTilt, currentLinkGridRow, 0);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colSourceClickTime, currentLinkGridRow, (current_time - obj_control.sessionStartTime) / 1000);
-	ds_grid_set(obj_chain.linkGrid, obj_chain.linkGrid_colGoalClickTime, currentLinkGridRow, -1);
-
-	// sort linkGrid based on tier, chainID, and dead
-	scr_gridMultiColSort(linkGrid, linkGrid_colTier, true, linkGrid_colChainID, true, linkGrid_colDead, true);
-
-	// switch panel pane to corresponding tab
+		// switch panel pane to corresponding tab
 	with (obj_panelPane) {
-		switch (obj_toolPane.currentTool) {
-			case obj_toolPane.toolRezBrush:
+		switch (nodeType) {
+			case "rez":
 				functionChainList_currentTab = functionChainList_tabRezBrush;
 				break;
-			case obj_toolPane.toolTrackBrush:
+			case "track":
 				functionChainList_currentTab = functionChainList_tabTrackBrush;
 				break;
-			case obj_toolPane.toolStackBrush:
+			case "stack":
 				functionChainList_currentTab = functionChainList_tabStackBrush;
 				break;
 			default:
@@ -180,15 +166,41 @@ function scr_newLink(wordID, goal) {
 		}
 	}
 	
-
-	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-		scr_addToCliqueGrid(wordID, currentFocusedChainID);
+	var linkGoalID = nodeID;
+	if(ds_map_exists(global.nodeMap,linkSourceID) and ds_map_exists(global.nodeMap,linkGoalID) ){
+		// create a node for the link (now that we know its source & goal)
+		
+		var linkID = scr_addToNodeMap("link");
+		var linkSubMap = ds_map_find_value(global.nodeMap, linkID);
+		ds_map_add(linkSubMap, "source", linkSourceID);
+		ds_map_add(linkSubMap, "goal", linkGoalID);
+		
+		// add this link to the chain's linkIDList
+		var chainLinkIDList = ds_map_find_value(chainSubMap, "linkIDList");
+		ds_list_add(chainLinkIDList, linkID);
+		
+		// add this new link to the source's goalLinkList
+		var sourceSetSubMap = ds_map_find_value(global.nodeMap, linkSourceID);
+		if (is_numeric(sourceSetSubMap)) {
+			if (ds_exists(sourceSetSubMap, ds_type_map)) {
+				var sourceSetGoalLinkList = ds_map_find_value(sourceSetSubMap, "goalLinkList");
+				if (is_numeric(sourceSetGoalLinkList)) {
+					if (ds_exists(sourceSetGoalLinkList, ds_type_list)) {
+						ds_list_add(sourceSetGoalLinkList, linkID);
+						show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(sourceSetSubMap));
+					}
+				}
+			}
+		}
+		
+		// add this new link to the goal's source
+		var goalSetSubMap = ds_map_find_value(global.nodeMap, linkGoalID);
+		if (is_numeric(goalSetSubMap)) {
+			if (ds_exists(goalSetSubMap, ds_type_map)) {
+				ds_map_replace(goalSetSubMap, "sourceLink", linkID);
+				show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(goalSetSubMap));
+			}
+		}
 	}
-
-	alarm[3] = 1;
-	with(obj_panelPane) {
-		ds_list_clear(rowInLinkGridList);	
-	}
-
 
 }

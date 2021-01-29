@@ -108,8 +108,10 @@ else {
 
 var canScrollWithStackShow = true;
 if (instance_exists(obj_stackShow)) {
-	if (ds_grid_height(obj_chain.stackChainGrid) > 0) {
-		if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0,  obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus)) {
+	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
+		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+		var focusedChainType = ds_map_find_value(focusedChainSubMap, "type");
+		if (focusedChainType == "stackChain") {
 			canScrollWithStackShow = false;
 		}
 	}
@@ -658,30 +660,56 @@ if ((window_get_cursor() != cr_size_ns) && !mouse_check_button(mb_left)) {
 	mouseoverScrollBar = false;
 	mouseoverDialogueBox = false;
 }
-for (var i = 0; i < instance_number(obj_panelPane); i++) {
-	var panelPaneInst = instance_find(obj_panelPane, i);
-	var toolPaneInst = instance_find(obj_toolPane, 0);
-	
-	if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
-		mouseoverPanelPane = true;
-	}
 
-	if (point_in_rectangle(mouse_x, mouse_y, toolPaneInst.x, toolPaneInst.y, toolPaneInst.x + toolPaneInst.windowWidth, toolPaneInst.y + toolPaneInst.windowHeight)) {
-		mouseoverPanelPane = true;
-	}
-	//check for mouse over search pane
-	if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 250, camera_get_view_height(camera_get_active())/2 - 125 + 30, camera_get_view_width(camera_get_active()) /2 + 250, camera_get_view_height(camera_get_active())/2 + 125)){
-		mouseoverPanelPane = true;		
-	}
-	
-	if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
-		if (!panelPaneInst.functionHelp_collapsed) {
-			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.functionHelp_helpWindowRectX1, panelPaneInst.functionHelp_helpWindowRectY1, panelPaneInst.functionHelp_helpWindowRectX2, panelPaneInst.functionHelp_helpWindowRectY2)) {
+// set mouseoverPanelPane
+if (obj_panelPane.showNav) {
+	for (var i = 0; i < instance_number(obj_panelPane); i++) {
+		
+		// get current pane
+		var panelPaneInst = instance_find(obj_panelPane, i);
+		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList || panelPaneInst.currentFunction == panelPaneInst.functionFilter);
+		var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
+		
+		// don't set mouseover to be true if this pane is hidden!
+		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight)) {
+			// check if mouse is in range
+			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
 				mouseoverPanelPane = true;
+			}
+		}
+		
+		// check for mouse over search pane
+		if (obj_control.dialogueBoxActive && point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 - 250, camera_get_view_height(camera_get_active())/2 - 125 + 30, camera_get_view_width(camera_get_active()) /2 + 250, camera_get_view_height(camera_get_active())/2 + 125)){
+			mouseoverPanelPane = true;		
+		}
+	
+		if (panelPaneInst.currentFunction == panelPaneInst.functionHelp) {
+			if (!panelPaneInst.functionHelp_collapsed) {
+				if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.functionHelp_helpWindowRectX1, panelPaneInst.functionHelp_helpWindowRectY1, panelPaneInst.functionHelp_helpWindowRectX2, panelPaneInst.functionHelp_helpWindowRectY2)) {
+					mouseoverPanelPane = true;
+				}
 			}
 		}
 	}
 }
+
+// make sure mouseoverpanelpane accounts for the menu bar as well!
+if (instance_exists(obj_menuBar)) {
+	if (obj_menuBar.mouseoverMenuBar) {
+		mouseoverPanelPane = true;
+	}
+}
+
+// also make sure mouseoverpanelpane accounts for the toolpane
+if (instance_exists(obj_toolPane)) {
+	if (point_in_rectangle(mouse_x, mouse_y, obj_toolPane.x, obj_toolPane.y, obj_toolPane.x + obj_toolPane.windowWidth, obj_toolPane.y + obj_toolPane.windowHeight)) {
+		mouseoverPanelPane = true;
+	}
+}
+
+
+
+
 
 if (instance_exists(obj_audioUI)) {
 	if (obj_audioUI.visible) {
@@ -778,22 +806,4 @@ if (global.wheresElmo) {
 	with (obj_toolPane) {
 		showTool = false;
 	}
-	
-	/*
-				with(obj_panelPane){
-				showNav = not showNav;
-
-				if(showNav){
-					showNavRight = true;	
-					showNavLeft = true;
-					obj_toolPane.showTool = true;
-			
-				}
-				else{
-					showNavRight = false;	
-					showNavLeft = false;
-					obj_toolPane.showTool = false;
-				}
-			}
-	*/
 }

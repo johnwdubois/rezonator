@@ -466,7 +466,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	            ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
             
             
-	        //    ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+
 	            if (focusedElementY <= y + textMarginTop + strHeight) {
 	                lineListPanelPaneInst.scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
 	            }
@@ -488,7 +488,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	            ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 	            ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
             
-	            //ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
+
 	            if (focusedElementY >= y + windowHeight - strHeight) {
 	                lineListPanelPaneInst.scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
 	            }

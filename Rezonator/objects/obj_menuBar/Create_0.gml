@@ -85,8 +85,7 @@ toolsOptionList = ds_list_create();
 ds_list_add(toolsOptionList,"menu_search", 
 							"menu_track",
 							"menu_rez",
-							"menu_stack", 
-							"menu_play-learn");
+							"menu_stack");
 
 settingsOptionList = ds_list_create();
 ds_list_add(settingsOptionList, "menu_user", 
@@ -182,3 +181,5 @@ chainDeselected = false;
 /*menuList = ds_list_create();
 ds_list_add(menuList, "File", "Link", "Edit", "View", "Search", "Tools", "Advanced", "Setting", "Help");
 menuListSize = ds_list_size(menuList);*/
+
+mouseoverMenuBar = false;

@@ -113,9 +113,6 @@ function scr_panelPane_drawChainsOneToOne(){
 			    if (device_mouse_check_button_released(0, mb_left)) {
 			        ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), false);
 			        ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, i, true);
-			        with (obj_panelPane) {
-			            functionChainContents_chainGridRowFocused = i;
-			        }
 			    }
 			}
 			
