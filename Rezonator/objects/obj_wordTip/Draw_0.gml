@@ -67,6 +67,8 @@ for (var i = 1; i < ds_grid_height(attribGrid); i++)
 
 /* --- Calculate the dimensions of the WordTip box --- */
 
+scr_adaptFont("A", "M");	// set font to English, Medium
+
 // Calculate the box height based on the number and size of attributes
 var lineHeight = string_height(ds_grid_get(attribGrid, 0, 0) );
 boxHeight = ds_grid_height(attribGrid) * lineHeight;
@@ -133,8 +135,6 @@ var attribGridCol1Width = maxAttribNameWidth + attribGridColPadding;
 // Set drawing params
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
-draw_set_font(global.fontMain);
-scr_adaptFont("", "M");	// set font to English, Medium
 draw_set_color(c_black);
 draw_set_alpha(1);
 
@@ -144,10 +144,14 @@ for(var i = 0; i < ds_grid_height(attribGrid); i++)
 	var attribName = ds_grid_get(attribGrid, 0, i);
 	var attribValue = ds_grid_get(attribGrid, 1, i);
 	
+	scr_adaptFont(attribName, "M");
+	
 	// Draw the attribute name
 	draw_text(	floor(rectx1 + boxPaddingHoriz), 
 				floor(recty1 + boxPaddingVert + i * lineHeight),
 				attribName);
+	
+	scr_adaptFont(attribValue, "M");
 	
 	// Draw the attribute value to the right
 	draw_text(	floor(rectx1 + boxPaddingHoriz + attribGridCol1Width),
