@@ -108,8 +108,10 @@ else {
 
 var canScrollWithStackShow = true;
 if (instance_exists(obj_stackShow)) {
-	if (ds_grid_height(obj_chain.stackChainGrid) > 0) {
-		if (ds_grid_value_exists(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0,  obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus)) {
+	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
+		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+		var focusedChainType = ds_map_find_value(focusedChainSubMap, "type");
+		if (focusedChainType == "stackChain") {
 			canScrollWithStackShow = false;
 		}
 	}

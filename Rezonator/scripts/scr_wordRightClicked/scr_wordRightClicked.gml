@@ -12,6 +12,7 @@ function scr_wordRightClicked(){
 		// check if this is the first word in its line
 		var lineGridRow = obj_control.rightClickDisplayRow;
 		var lineGridWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, lineGridRow);
+		var WordsInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, obj_control.rightClickWordID -1);
 		var firstWordInLine = true;
 		if (is_numeric(lineGridWordIDList)) {
 			firstWordInLine = (obj_control.rightClickWordID == ds_list_find_value(lineGridWordIDList, 0));
@@ -22,7 +23,7 @@ function scr_wordRightClicked(){
 			obj_control.ableToCreateDropDown = false;
 		}
 		// Options for a word in a Chain
-		else if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, false) != -1){
+		else if(ds_list_size(WordsInChainsList) > 0){
 			if(obj_control.searchGridActive){
 				ds_list_add(dropDownOptionList, "Delete Link");
 			}

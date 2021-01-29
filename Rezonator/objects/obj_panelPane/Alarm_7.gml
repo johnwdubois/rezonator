@@ -1,6 +1,6 @@
 obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 // Instantiate the screen for users to select which stacks go in the stackShow
-ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), true);
+scr_setValueForAllChains("stackChain", "filter", true);
 if (!instance_exists(obj_stackShow)) {
 	instance_create_layer(x, y, "InstancesAudio", obj_stackShow);
 }

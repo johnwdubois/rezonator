@@ -19,7 +19,7 @@ function scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRect
     
 	// draw border if needed
 	//var borderRounded = false;
-	if (drawBorder) {
+	if (drawBorder || borderRounded) {
 	    //borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
 	    if (effectColor == -1){
 			effectColor = 16758711;

@@ -25,7 +25,7 @@ function scr_groupStackerLoop(){
 
 		if (ds_list_find_value(global.importGridColNameList, groupColLoop) == "Group") {
 			groupCol = groupColLoop;
-			show_debug_message("obj_stacker Alarm 4 ... groupCol: " + string(groupCol));
+			show_debug_message("scr_groupStackerLoop() ... groupCol: " + string(groupCol));
 			break;
 		}
 
@@ -87,7 +87,6 @@ function scr_groupStackerLoop(){
 			}
 			// Unfocus all links and chains
 			scr_unFocusAllChains();
-			ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
 
 		}
 	

@@ -16,9 +16,11 @@ with (obj_panelPane) {
 scr_unFocusAllChains();
 			
 //refocus chains related to currently selected tab
+/*
 with (obj_panelPane) {
 	scr_reFocusOldChains();
 }
+*/
 
 // Got to fix this somehow...
 //obj_fileLoader.subLineGridBeginning = string_digits(ds_list_find_value(obj_control.listOfNumbers, 0));

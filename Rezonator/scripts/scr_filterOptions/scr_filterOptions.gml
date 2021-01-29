@@ -6,14 +6,8 @@ function scr_filterOptions(optionSelected) {
 		
 	
 			if (obj_control.filterGridActive) {
-				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-					//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+				if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
 					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-					// Keep the focus on previous currentCenterDisplayRow
-					//with (obj_control) {
-					//	alarm[5] = 1;
-					//}
 				}
 			
 				// Switch to active grid
@@ -56,11 +50,12 @@ function scr_filterOptions(optionSelected) {
 			}
 			break;
 		case "menu_clear": // add all of a certain chain type to filter	
-			ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
-			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
-			ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
+			scr_setValueForAllChains("rezChain", "filter", false);
+			scr_setValueForAllChains("trackChain", "filter", false);
+			scr_setValueForAllChains("stackChain", "filter", false);
+			scr_updateFilteredChainLists();
 			
-			if(obj_control.filterGridActive){
+			if (obj_control.filterGridActive) {
 				if(obj_control.currentCenterDisplayRow >= 0) { // Make sure the current center display row is within bounds
 					// Keep the focus on previous currentCenterDisplayRow
 					with (obj_control) {

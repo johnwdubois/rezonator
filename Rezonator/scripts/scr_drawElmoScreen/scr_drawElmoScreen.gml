@@ -280,8 +280,10 @@ function scr_drawElmoScreen() {
 			// Restart the stackShow
 			else if(endingScreen) {
 				obj_control.currentStackShowListPosition = -1;
-				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+				//ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
 				obj_panelPane.showNav = false;
+				obj_panelPane.showNavLeft = false;
+				obj_panelPane.showNavRight = false;
 				obj_toolPane.showTool = false;
 				scr_stackShow();
 			}

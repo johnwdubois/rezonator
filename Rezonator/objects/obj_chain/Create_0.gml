@@ -35,10 +35,7 @@ chainGrid_colActSequence = 13; // stack tag
 
 chainGrid_colShow = 9;
 
-rezChainGrid = ds_grid_create(chainGridWidth, 0);
-trackChainGrid = ds_grid_create(chainGridWidth, 0);
-stackChainGrid = ds_grid_create(chainGridWidth + 5, 0);
-cliqueDisplayGrid = ds_grid_create(chainGridWidth, 0);
+
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
 chunkGrid_colBoxWordIDList = 8;
@@ -67,9 +64,6 @@ chainStateFocus = 2;//"Focus";//2
 //chainStateHidden = 4;
 chainStateDead = 5;//"Dead";//5
 
-currentChainGrid = rezChainGrid;
-currentChainName = "Rez";
-
 chainColorList = ds_list_create();
 chainColorID[1] = 0;
 chainColorID[2] = 0;
@@ -78,63 +72,12 @@ ds_list_add(chainColorList, c_blue, c_red, c_green, c_purple, c_olive, c_orange,
 
 
 
-
-DepRelLinkGridWidth = 6;
-DepRelLinkGrid_colDepRelLinkID = 0;
-DepRelLinkGrid_colSource = 1;
-DepRelLinkGrid_colGoal = 2;
-DepRelLinkGrid_colRole = 3;
-DepRelLinkGrid_colLabel = 4;
-DepRelLinkGrid_colTag = 5;
-
-DepRelLinkGrid = ds_grid_create(DepRelLinkGridWidth, 0);
-
-
-
-
-linkGridWidth = 10;
-linkGrid_colTier = 0;
-linkGrid_colChainID = 1;
-linkGrid_colLinkID = 2;
-linkGrid_colSource = 3;
-linkGrid_colGoal = 4;
-linkGrid_colFocus = 5;
-linkGrid_colDead = 6;
-linkGrid_colTilt = 7;
-//linkGrid_colTimeStamp = 8;
-linkGrid_colSourceClickTime = 8;
-linkGrid_colGoalClickTime = 9;
-
-
-linkGrid = ds_grid_create(linkGridWidth, 0);
-
-rezPlayLinkGrid = ds_grid_create(linkGridWidth, 0);
-rezPlayLinkGridRow = -1;
-//rezPlayLinkGridWait = 20;
-rezPlayLinkGridChainID = -1;
-rezPlayTime = 0;
-
-inRezPlay = false;
-
 rezTier = 1;
 trackTier = 2;
 stackTier = 3;
 
-vizLinkGridWidth = 10;
-vizLinkGrid_colTier = 0;
-vizLinkGrid_colChainID = 1;
-vizLinkGrid_colLinkID = 2;
-vizLinkGrid_colSource = 3;
-vizLinkGrid_colGoal = 4;
-vizLinkGrid_colFocus = 5;
-vizLinkGrid_colTilt = 6;
-vizLinkGrid_colCross = 7;
-vizLinkGrid_colStretch = 8;
-vizLinkGrid_colAlign = 9;
 
-vizLinkGrid = ds_grid_create(vizLinkGridWidth, 0);
 
-linkIDCounter = 0;
 rezChainNameCounter = 0;
 trackChainNameCounter = 0;
 stackChainNameCounter = 0;
@@ -142,7 +85,6 @@ placeChainNameCounter = 0;
 //chunkNameCounter = 0;
 
 currentFocusedChainID = "";
-currentFocusedChainIndex = -1;
 
 mouseLineHide = false;
 
@@ -205,7 +147,6 @@ raceGrid_colRaceRank = 2;
 
 chainIDRaceCheck = -1;
 
-oldFocusedContentsRow = -1;
 
 
 goldStandardGridWidth = 4;
@@ -225,6 +166,10 @@ stackChainGridRowToCaption = -1;
 
 
 chainShowList = ds_list_create();
+
+filteredRezChainList = ds_list_create();
+filteredTrackChainList = ds_list_create();
+filteredStackChainList = ds_list_create();
 
 
 

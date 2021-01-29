@@ -29,8 +29,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 		hoverWordID = currentWordID;
 		
 		// Check to see if this word should be hovered over and allowed to be clicked
-		if(not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_chain.inRezPlay
-			and not obj_control.mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)){
+		if (not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_control.mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
 		
 			draw_set_color(global.colorThemeBorders);
 			draw_set_alpha(1);
@@ -38,93 +37,22 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			
 			// Word clicked with a Chain tool selected
 			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+				var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				
+				//dont allow words to be added to stacks by deselecting them
+				if(is_numeric(focusedchainIDSubMap)){
+					if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+						var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+						if(prevChainType == "stackChain"){
+							scr_chainDeselect();
+						}
+					}
+				}
 				// Check for Merge Chains click
-				if(obj_control.ctrlHold){						
-					var grid = obj_chain.rezChainGrid;
-					
-					// Select the right chain grid
-					with(obj_panelPane){
-						if (currentFunction == functionChainList) {
-							// Based on user selection, get the grid of the current tab
-							switch (functionChainList_currentTab) {
-								case functionChainList_tabRezBrush:
-									grid = obj_chain.rezChainGrid;
-									show_debug_message("scr_combineChains()... grid: rezChainGrid");
-									break;
-								case functionChainList_tabTrackBrush:
-									grid = obj_chain.trackChainGrid;
-									show_debug_message("scr_combineChains()... grid: trackChainGrid");
-									break;
-								case functionChainList_tabStackBrush:
-									grid = obj_chain.stackChainGrid;
-									show_debug_message("scr_combineChains()... grid: stackChainGrid");
-									break;
-								case functionChainList_tabClique:
-									grid = obj_chain.cliqueDisplayGrid;
-									show_debug_message("scr_combineChains()... grid: cliqueDisplayGrid");
-									break;
-								default:
-									grid = obj_chain.rezChainGrid;
-									show_debug_message("scr_combineChains()... could not find grid, defaulting to rezChainGrid");
-									break;
-							}
-						}
-					}
-	
-					//find current selected chain, ie starting chain that will be added to				
-					var currentChainfocusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
-	
-	
-					// find next selected chain, ie the chain that will be deleted and merged into the other chain
-					// if this is a rezChain or trackChain, we'll get the chainID from the inChainsList from the dynamicWordGrid
-					// if this is a stackChain, we'll get the chainID from the unitInStackGrid
-					var selectedChainfocusedChainRow = -1;
-					var chainIDRow = -1;
-					if (grid == obj_chain.rezChainGrid || grid == obj_chain.trackChainGrid) {
-						var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordID- 1);
-						var inChainsListSize = ds_list_size(inChainsList);
-						for (var i = 0; i < inChainsListSize; i++) {
-							var currentChainID = ds_list_find_value(inChainsList, i);
-							chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
-							if (chainIDRow != -1) {
-								break;
-							}
-						}
-					}
-					else if (grid == obj_chain.stackChainGrid) {
-						var _unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID);
-						var currentChainID = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, _unitID - 1);
-						chainIDRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(grid) , currentChainID);
-					}
-					if (chainIDRow != -1){
-						selectedChainfocusedChainRow = chainIDRow;
-					}
-	
-					// Ensure this is a valid merge
-					if (selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1
-					or selectedChainfocusedChainRow == currentChainfocusedChainRow) {
-						show_debug_message("scr_combineChains()... selectedChainfocusedChainRow == -1 or currentChainfocusedChainRow == -1, or they are equal,  exiting...");
-						exit;
-					}
-					
-		
-					// store WID list for future
-					var selectedIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, selectedChainfocusedChainRow);
-					//var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, currentChainfocusedChainRow);
-					var selectedIDListSize = ds_list_size(selectedIDList);
-					//var sizeOfCurrentIDList = ds_list_size(currentIDList);
-					
-					if ( selectedIDListSize == 1 ){
-						obj_control.clickedWordID = currentWordID;
-						scr_combineChains(currentWordID);
-					}
-					else{
-						obj_control.clickedWordID = currentWordID;
-						//Confirm Merge Chains
-						with(obj_alarm){
-							alarm[9] = 3;
-						}
-					}
+				if (obj_control.ctrlHold) {
+					// if we are going to combine chains, we need to get the inChainsList for this word
+					var hoverWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, obj_control.hoverWordID - 1);
+					scr_combineChainsDrawLine(hoverWordInChainsList);
 				}
 				else {
 					with (obj_chain) {
@@ -179,17 +107,6 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 		}
 	}
 
-	// Allows for adding to a stack w/in the speaker labels
-	else if(obj_control.mouseoverSpeakerLabel and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not obj_control.mouseoverPanelPane 
-	and rectangle_in_rectangle(0, wordRectY1, room_width - global.scrollBarWidth, wordRectY1 + gridSpaceVertical, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2))) {
-		if ((device_mouse_check_button_released(0, mb_left) and !obj_chain.inRezPlay) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow)) {
-			with (obj_chain) {
-				scr_wordClicked(currentWordID, unitID);
-			}
-		}
-	}
-
-	
 	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
 	var inMouseHoldRect = 0;	
 	if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {

@@ -153,7 +153,6 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 
 
 
-	//var focusedChainRow = ds_grid_value_y(grid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(grid), obj_chain.chainStateFocus);
 
 	// will create a focusedLine vriable in panelPane create, update it when changed, no gridValueY
 
@@ -172,7 +171,6 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 			
 			
-			//	ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 				if (focusedElementY <= y + textMarginTop + strHeight) {
 					inst_PanelPane_chainList.scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
 				}
@@ -194,7 +192,6 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 			
-				//ds_grid_set(grid, obj_chain.chainGrid_colChainState, focusedChainRow, obj_chain.chainStateFocus);
 				if (focusedElementY >= y + windowHeight - strHeight) {
 					inst_PanelPane_chainList.scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
 				}

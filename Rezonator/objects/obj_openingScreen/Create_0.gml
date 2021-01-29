@@ -170,11 +170,6 @@ showDevVars = false;
 
 
 
-//scr_createFonts();
-
-
-
-
 global.rememberMe = false;
 
 global.importCSVGrid = ds_grid_create(0, 0);

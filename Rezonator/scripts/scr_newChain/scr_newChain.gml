@@ -13,8 +13,9 @@
 */
 
 function scr_newChain(wordID, unitID) {
+	
+	show_debug_message("scr_newChain() ... wordID: " + string(wordID) + ", unitID: " + string(unitID));
 
-	var chainGrid = currentChainGrid;
 	var chainName = "";
 	var chainSeq = 0;
 	var chainType = "";
@@ -30,7 +31,7 @@ function scr_newChain(wordID, unitID) {
 			aligned = true;
 			rezChainNameCounter++;
 			chainSeq = rezChainNameCounter;
-			chainName = currentChainName + " " + string(rezChainNameCounter);
+			chainName = "Rez " + string(rezChainNameCounter);
 			chainType = "rezChain";
 			if(obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
@@ -43,7 +44,7 @@ function scr_newChain(wordID, unitID) {
 			}
 			trackChainNameCounter++;
 			chainSeq = trackChainNameCounter;
-			chainName = currentChainName + " " + string(trackChainNameCounter);
+			chainName = "Track " + string(trackChainNameCounter);
 			chainType = "trackChain";
 			break;
 		case obj_toolPane.toolStackBrush:
@@ -55,49 +56,37 @@ function scr_newChain(wordID, unitID) {
 			}
 			stackChainNameCounter++;
 			chainSeq = stackChainNameCounter;
-			chainName = currentChainName + " " + string(stackChainNameCounter);
-			chainType = "stackSet";
+			chainName = "Stack " + string(stackChainNameCounter);
+			chainType = "stackChain";
 			break;
 		case obj_toolPane.toolPlaceChains:
 			placeChainNameCounter++;
 			chainSeq = placeChainNameCounter;
-			chainName = currentChainName + " " + string(placeChainNameCounter);
+			chainName = "Place " + string(placeChainNameCounter);
 			chainType = "placeChain";
 		default:
 			exit;
 	}
 
-
-	// resize the chainGrid properly (the stackChainGrid gets +5 width because of Caption, StackType, and tag columns)
-	var currentChainGridWidth = (chainGrid == obj_chain.stackChainGrid) ? chainGridWidth + 5 : chainGridWidth;
-	ds_grid_resize(chainGrid, currentChainGridWidth, ds_grid_height(chainGrid) + 1);
-	var currentRowChainGrid = ds_grid_height(chainGrid) - 1;
-	
-	
 	// get random hex chainID
 	obj_chain.currentChainID = scr_addToNodeMap(chainType);
-
-	var wordIDList = ds_list_create();
+	var newChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentChainID);
+	
+	// get list of chains from nodeMap and add to it
+	var listOfChainsKey = "rezChainList";
+	if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) listOfChainsKey = "trackChainList";
+	else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) listOfChainsKey = "stackChainList";
+	var listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
+	ds_list_add(listOfChains, obj_chain.currentChainID);
 
 	// if we are creating a stack, add the new stack to unitInStackGrid
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-		ds_list_add(wordIDList, unitID);
 	
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, obj_chain.currentChainID);
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, unitID - 1, obj_control.activeStackType);
 		if (not obj_control.quickStackAbleToInitiate) {
 			obj_control.moveCounter++;
 		}
-	}
-	else {
-		ds_list_add(wordIDList, wordID);
-	}
-
-
-	// unfocus all other chains of this tier
-	while (ds_grid_value_exists(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus)) {
-		var index = ds_grid_value_y(chainGrid, chainGrid_colChainState, 0, chainGrid_colChainState, ds_grid_height(chainGrid), chainStateFocus);	
-		ds_grid_set(chainGrid, chainGrid_colChainState, index, chainStateNormal);
 	}
 
 
@@ -108,35 +97,17 @@ function scr_newChain(wordID, unitID) {
 	if (chainColorID[obj_toolPane.currentTool] >= ds_list_size(chainColorList)) {
 		chainColorID[obj_toolPane.currentTool] = 0;
 	}
-
-	// enter default values for chainGrid
-	ds_grid_set(chainGrid, chainGrid_colChainID, currentRowChainGrid, currentChainID);
-	ds_grid_set(chainGrid, chainGrid_colChainState, currentRowChainGrid, chainStateFocus);
-	ds_grid_set(chainGrid, chainGrid_colWordIDList, currentRowChainGrid, wordIDList);
-	ds_grid_set(chainGrid, chainGrid_colName, currentRowChainGrid, chainName);
-	ds_grid_set(chainGrid, chainGrid_colColor, currentRowChainGrid, chainColor);
-	ds_grid_set(chainGrid, chainGrid_colInFilter, currentRowChainGrid, false);
-	ds_grid_set(chainGrid, chainGrid_colAlign, currentRowChainGrid, aligned);
-	ds_grid_set(chainGrid, chainGrid_colAuthor, currentRowChainGrid, global.userName);
-	ds_grid_set(chainGrid, chainGrid_colChainSeq, currentRowChainGrid, chainSeq);
 	
 	// set values in nodeMap
-	scr_nodeMapSetChainValues(currentChainID, wordIDList, chainName, chainColor);
+	scr_nodeMapSetChainValues(obj_chain.currentChainID, chainName, chainColor, chainSeq);
 	
 	
-	
-	if (chainGrid == obj_chain.stackChainGrid) {
-		ds_grid_set(chainGrid, chainGrid_colCaption, currentRowChainGrid, "");
-		ds_grid_set(chainGrid, chainGrid_colStackType, currentRowChainGrid, obj_control.activeStackType);
-		stackChainGridRowToCaption = currentRowChainGrid;
-		alarm[10] = 2;
+	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+		ds_map_add(newChainSubMap, "caption", "");
+		ds_map_add(newChainSubMap, "stackType", obj_control.activeStackType);
 	}
 
-	currentFocusedChainID = currentChainID;
-	var newTop = currentRowChainGrid + 1;
-	with(obj_panelPane) {
-		currentTopViewRow = ((newTop - 2) > 2) ? (newTop - 2) : 0;	
-	}
+	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
 
 	with (obj_panelPane) {
 		functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;

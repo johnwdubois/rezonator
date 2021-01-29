@@ -1,16 +1,16 @@
 function scr_createStackOptions(optionSelected) {
-	//if (live_call(argument0)) return live_result;
+
 	
 	var confirmStack = false;
-	var doStacksExist = (ds_grid_height(obj_chain.stackChainGrid) > 0);
+	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	var doStacksExist = (ds_list_size(stackChainList) > 0);
 	
 	obj_stacker.createStacksRandom = false;
 	obj_stacker.createStacksTurn = false;
 	obj_stacker.createStacksSentence = false;
 	
 
-	switch (optionSelected)
-	{	
+	switch (optionSelected) {	
 	
 		case "Default":
 			// need to make this into custom message
@@ -51,7 +51,7 @@ function scr_createStackOptions(optionSelected) {
 			}
 			obj_stacker.createStacksGroup = true;
 			break;
-		case "Sentence":
+		case "menu_sentence":
 			if (doStacksExist) {
 				confirmStack = true;
 			}

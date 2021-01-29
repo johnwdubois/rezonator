@@ -1,2 +1,1 @@
-///@description scr_refreshVizLinkGrid();
-scr_refreshVizLinkGrid();
+///@description empty alarm was refresh viz link grid

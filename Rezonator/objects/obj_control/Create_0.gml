@@ -286,7 +286,6 @@ with (obj_alarm) {
 
 
 
-// Create variable checks for RezPlay
 originalWordGridHeight = ds_grid_height(wordGrid);
 originalUnitGridHeight = ds_grid_height(unitGrid);
 originalLineGridHeight = ds_grid_height(lineGrid);
@@ -378,15 +377,6 @@ canPressMinus = true;
 
 // Set global font info
 global.fontSize = 0;
-global.fontMain = fnt_main;
-global.fontMainBold = fnt_mainBold;
-global.fontChainList = fnt_chainList;
-global.fontChainListFocused = fnt_chainListFocused;
-global.fontChainContents = fnt_chainContents;
-global.fontPanelTab = fnt_panelTab;
-global.fontSortPane = fnt_sortPane;
-global.fontGridView = fnt_gridView;
-global.navTextBig = false;
 
 // UNused variable
 //scrollFast = 0;
@@ -511,7 +501,7 @@ lastAddedWord = "";
 
 hitIDCounter = 1;
 
-selectedChainID = 0;
+selectedChainID = "";
 
 dialogueBoxActive = false;
 newWordCreated = false;
@@ -527,7 +517,6 @@ mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
 mouseoverHelpPane = false;
 
-currentChainGridRowInDelete = undefined;
 gridInDelete = undefined;
 
 newWordDeleted = false;
@@ -597,12 +586,10 @@ showParticipantName = true;
 //audioTrackIndex = -1;
 
 
-if(global.tutorial){
-		instance_create_layer(x, y, "InstancesPopUp", obj_popUp);
-}
 
+combineChainsFocused = "";
+combineChainsSelected = "";
 stackMerged = false;
-clickedWordID = -1;
 rightClickUnitID = 0;
 rightClickWordID = 0;
 rightClickWordSeq = 0;
@@ -684,3 +671,9 @@ wordWrap = false;
 with (obj_alarm) {
 	alarm[10] = 8;
 }
+
+
+// add chainLists to nodeMap
+ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
+ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
+ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());

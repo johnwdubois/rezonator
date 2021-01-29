@@ -75,12 +75,20 @@ function scr_panelPane_drawTracker() {
 		scr_adaptFont(scr_get_translation("msg_end_stackshow"), "L");
 		draw_text(0 + 5, yBase + (newYheight/2), scr_get_translation("msg_end_stackshow"));
 
+		var nameOfStack = "";
+		var colorOfStack = 0;
+		var captionOfStack = "";
 
 		var currentListChainID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
-		var currentRowinStack = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0 , obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentListChainID );
-		var nameOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName, currentRowinStack);
-		var colorOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, currentRowinStack);
-	
+		var chainSubMap = ds_map_find_value(global.nodeMap, currentListChainID);
+		if(is_numeric(chainSubMap)){
+			if(ds_exists(chainSubMap,ds_type_map)){
+				nameOfStack = ds_map_find_value(chainSubMap, "chainName");
+				colorOfStack = ds_map_find_value(chainSubMap, "chainColor");
+				captionOfStack = ds_map_find_value(chainSubMap, "caption");
+			}
+		}
+
 		var chainNameRectX1 = 140, 
 		chainNameRectY1 = yBase, 
 		chainNameRectX2 = 300, 
@@ -92,16 +100,12 @@ function scr_panelPane_drawTracker() {
 		}
 		else{
 		draw_set_color(merge_color(colorOfStack, global.colorThemeBG, 0.65));
-		//draw_set_colour(colorOfStack);
 		}
 		draw_rectangle( chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, false);
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle( chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2, true);
-	
-	
-	
-		//draw stack name text
 
+		//draw stack name text
 		draw_set_halign(fa_left);
 		draw_set_colour(global.colorThemeText);
 		if(nameOfStack == undefined) {
@@ -121,7 +125,6 @@ function scr_panelPane_drawTracker() {
 		draw_set_colour(global.colorThemeBorders);
 		draw_rectangle(chainCaptionRectX1, chainCaptionRectY1, chainCaptionRectX2, chainCaptionRectY2, true);
 
-		var captionOfStack = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption, currentRowinStack);
 	
 		//draw stack caption text
 		draw_set_halign(fa_left);
