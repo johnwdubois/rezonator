@@ -24,25 +24,33 @@ function scr_stackShowWindow() {
 	var captionBoxWidth = 240;
 	var captionBoxHeight = 185;
 	var rightCenter = 160;
-	var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid) , obj_chain.chainStateFocus);
+	var currentStackChainID = obj_chain.currentFocusedChainID;
 	var currentStackName = "";
 	var currentStackCaption = "";
 	
-	if(currentStackRow == -1){
+	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	
+	var stackChainListSize = ds_list_size(stackChainList);
+	
+	if(!ds_map_exists(global.nodeMap, currentStackChainID)){
 		currentStackName = "NO STACK SELECTED";
 		currentStackCaption = "";
 	}
 	else{
-		currentStackName = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colName,currentStackRow);
-		currentStackCaption = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colCaption,currentStackRow);
-		var hashCounter = 1;
-		for(i = 0; i < string_length(currentStackCaption); i++){
+		var chainSubMap = ds_map_find_value(global.nodeMap, currentStackChainID);
+		var chainType = ds_map_find_value(chainSubMap, "type");
+		if(chainType == "stackChain"){
+			currentStackName = ds_map_find_value(chainSubMap, "chainName");
+			currentStackCaption = ds_map_find_value(chainSubMap, "caption");
+			var hashCounter = 1;
+			for(var i = 0; i < string_length(currentStackCaption); i++){
 		
-			if(i == hashCounter*24){
-				currentStackCaption = string_insert("#",currentStackCaption, i);
-				hashCounter ++;
+				if(i == hashCounter*24){
+					currentStackCaption = string_insert("#",currentStackCaption, i);
+					hashCounter ++;
+				}
 			}
-		}
+		}	
 	}
 
 	if (obj_control.stackShowWindowActive) {
@@ -125,7 +133,7 @@ function scr_stackShowWindow() {
 		draw_text(floor(camera_get_view_width(camera_get_active()) / 2 + 70), floor(camera_get_view_height(camera_get_active())/2 + 180), scr_get_translation("msg_cancel"));
 
 	
-	
+
 		// Draw the Filter All button
 		var filterAllButtonX1 = camera_get_view_width(camera_get_active()) / 2 - stackBoxXOffset  + 5;
 		var filterAllButtonY1 = camera_get_view_height(camera_get_active()) / 2 - stackBoxYOffset - 15;
@@ -137,10 +145,11 @@ function scr_stackShowWindow() {
 			draw_rectangle(filterAllButtonX1, filterAllButtonY1, filterAllButtonX2, filterAllButtonY2, true);
 			if (device_mouse_check_button_released(0, mb_left)) {
 				selectAll = !selectAll;	
-				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), selectAll);
+				scr_setValueForAllChains("stackChain", "filter", selectAll);
+				scr_updateFilteredChainLists();
 			}
 		}
-	
+
 		//draw list of stacks for selection
 		scr_drawStackShowWindow();
 
@@ -256,25 +265,32 @@ function scr_stackShowWindow() {
 				}
 				else{
 					obj_panelPane.showNav = false;
+					obj_panelPane.showNavLeft = false;
+					obj_panelPane.showNavRight = false;
 					obj_toolPane.showTool = false;
 				}
 			
 				// In here is where the stackShow initiation code will go
-				//obj_control.currentStackShowListPosition = 0;
-				for(var stackShowListLoop = 0; stackShowListLoop < ds_grid_height(obj_chain.stackChainGrid); stackShowListLoop++) {
+				
+				for(var stackShowListLoop = 0; stackShowListLoop < stackChainListSize; stackShowListLoop++) {
 					// Currently adds Stacks into the list if they are within the filter
-					if(ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, stackShowListLoop)) {
-						var currentStackID = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, stackShowListLoop);
-						ds_list_add(obj_control.stackShowList, currentStackID);	
+					var chainID = ds_list_find_value(stackChainList,stackShowListLoop);
+					var chainSubMap	= ds_map_find_value(global.nodeMap,chainID);
+					if(is_numeric(chainSubMap)){
+						if(ds_exists(chainSubMap,ds_type_map)){
+							var inFilter = ds_map_find_value(chainSubMap,"filter");
+							if(inFilter) {
+								ds_list_add(obj_control.stackShowList, chainID);	
+							}
+						}
 					}
 				}
 			
 			
 			
 				// Clear the Filter of all chains
-				ds_grid_set_region(obj_chain.rezChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.rezChainGrid), false);
-				ds_grid_set_region(obj_chain.trackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.trackChainGrid), false);
-				ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+				scr_setValueForAllChains("stackChain", "filter", false);
+				scr_updateFilteredChainLists();
 				instance_destroy();
 				// Begin the show
 				scr_stackShow();
@@ -329,6 +345,8 @@ function scr_stackShowWindow() {
 					obj_dialogueBox.elmoActive = true;
 					if(string(global.userName) != "gold") {
 						obj_panelPane.showNav = false;
+						obj_panelPane.showNavLeft = false;
+						obj_panelPane.showNavRight = false;
 						obj_toolPane.showTool = false;
 					}
 				}
@@ -336,6 +354,7 @@ function scr_stackShowWindow() {
 			}
 		
 	}
+
 	// cancel button check
 	if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active()) /2 + 100 - buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 - buttonYOffset, camera_get_view_width(camera_get_active()) /2 + 100 + buttonXOffset, camera_get_view_height(camera_get_active())/2 + 180 + buttonYOffset) && obj_control.stackShowWindowActive && mouse_check_button_released(mb_left) 
 			|| keyboard_check_pressed(vk_escape)) {

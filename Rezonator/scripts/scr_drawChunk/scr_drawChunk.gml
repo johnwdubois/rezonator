@@ -24,7 +24,7 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 	}
 		
 	// A chunkWord always has its own Chunk as firstin its list
-	var currentChunkID = (ds_list_find_value(inChunkList, 0)); //ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWordID);
+	var currentChunkID = (ds_list_find_value(inChunkList, 0));
 	if(currentChunkID == undefined) {
 		return;
 	}
@@ -116,7 +116,6 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 	// Check for mouseover of the Chunk 
 	var mouseover = false;
 	if (point_in_rectangle(mouse_x, mouse_y, topLeftX, topLeftY, bottomRightX, bottomRightY) 
-	and not obj_chain.inRezPlay
 	and not mouseoverPanelPane 
 	and (hoverChunkID == currentWordID || hoverChunkID == -1) 
 	and hoverWordID == -1 
@@ -139,13 +138,17 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 			
 			// Add this Chunk to a chain
 			if(obj_control.ctrlHold){
-					scr_combineChains(currentWordID);
+				var inChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordID - 1);
+				scr_combineChainsDrawLine(inChainsList);
+			}
+			else {
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
 				}
-				else {
-					with (obj_chain) {
-						scr_wordClicked(currentWordID, unitID);
-					}
-				}
+			}
+			
+			
+			
 		}
 		
 		// Check for Left Mouse CLick on Chunk
@@ -163,9 +166,10 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 			// Activate Chunk's right click options
 			obj_control.rightClickonWord = true;
 			obj_control.wideDropDown = true;
+			var wordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, obj_control.rightClickWordID);
 			var dropDownOptionList = ds_list_create();
-			if(scr_findInGridTwoParameters(obj_chain.linkGrid, obj_chain.linkGrid_colSource , obj_control.rightClickWordID, obj_chain.linkGrid_colDead, false) != -1){
-				ds_list_add(dropDownOptionList,"Delete Chunk");
+			if(ds_list_size(wordInChainsList) > 0){
+				ds_list_add(dropDownOptionList,"Delete Chunk", "Delete Link");
 			}
 			else{
 				ds_list_add(dropDownOptionList,"Delete Chunk");

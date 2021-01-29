@@ -51,7 +51,7 @@ function scr_audioStep() {
 	}
 	
 	//Play through audio of Stack with line interuptions
-	if(selectedStackGridRow > -1) { 
+	if(ds_map_exists(global.nodeMap,selectedStackChain)) { 
 		if(stackUnitListSize > -1) {
 			if(stackUnitListPosition <= stackUnitListSize - 1) {
 				var currentUnit = ds_list_find_value(stackUnitList, stackUnitListPosition);
@@ -86,25 +86,16 @@ function scr_audioStep() {
 	
 	// Update the Stack audio Bookmark and endmark if the selected stack has changed
 	if(obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) {
-		var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0,  obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), obj_chain.chainStateFocus);
-		if(currentStackRow > -1) {
-			if(currentStackRow != selectedStackGridRow) {
+		var currentStackChain = obj_chain.currentFocusedChainID;
+		if(ds_map_exists(global.nodeMap,currentStackChain)) {
+
 				
-				scr_audioStackUpdate(currentStackRow);
-			}
-			else {
-				stackUnitList = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colWordIDList, selectedStackGridRow);
-				if(stackStartUnit != ds_list_find_value(stackUnitList, 0)) {
-					scr_audioStackUpdate(selectedStackGridRow);	
-				}
-				else if (stackEndUnit != ds_list_find_value(stackUnitList, ds_list_size(stackUnitList) - 1)) {
-					scr_audioStackUpdate(selectedStackGridRow);
-				}
-			}
+			scr_audioStackUpdate(currentStackChain);
+			
 			stackUnfocus = false;
 		}
 		else {
-			selectedStackGridRow = -1;	
+			selectedStackChain = -1;	
 			stackUnitList = -1;
 			stackUnitListSize = -1;
 			stackUnitListPosition = -1;
@@ -117,7 +108,7 @@ function scr_audioStep() {
 		}
 	}
 	else {
-		selectedStackGridRow = -1;	
+		selectedStackChain = -1;	
 		stackUnitList = -1;
 		stackUnitListSize = -1;
 		stackUnitListPosition = -1;

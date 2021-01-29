@@ -80,7 +80,7 @@ function scr_openingMenu() {
 
 
 
-
+/*
 
 	//play and learn selection
 	var wheresElmoButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2);
@@ -112,7 +112,7 @@ function scr_openingMenu() {
 	scr_adaptFont(scr_get_translation("menu_play-learn"),"M");
 	draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), scr_get_translation("menu_play-learn"));
 
-
+*/
 
 
 	var signInXBuffer = 20;

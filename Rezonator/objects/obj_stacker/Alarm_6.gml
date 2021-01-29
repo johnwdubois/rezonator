@@ -17,10 +17,11 @@ obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tab
 scr_unFocusAllChains();
 			
 //refocus chains related to currently selected tab
+/*
 with(obj_panelPane) {
 	scr_reFocusOldChains();
 }
-
+*/
 currentStackerFuntion = stackerFunctionSent;
 
 alarm[5] = 2;

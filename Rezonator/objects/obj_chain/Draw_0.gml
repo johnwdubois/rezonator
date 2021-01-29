@@ -1,8 +1,4 @@
 // Draw all chains within view
-if (not obj_control.gridView) {
-	scr_drawRezChain();
-	scr_drawTrackChain();
-	//scr_drawChunk();
+if (!obj_control.gridView && !obj_control.searchGridActive) {
+	scr_drawChains();
 }
-
-scr_unfocusOtherChains(obj_toolPane.toolStackBrush);

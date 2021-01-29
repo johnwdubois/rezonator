@@ -55,7 +55,6 @@ if(mouseOver) {
 	
 				scr_chainDeselect();
 
-				scr_refreshVizLinkGrid();
 			}
 		}
 	}

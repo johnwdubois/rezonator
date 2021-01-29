@@ -13,69 +13,100 @@ function scr_renderFilter() {
 	
 		Author: Terry DuBois, Georgio Klironomos
 	*/
+	
+	show_debug_message("scr_renderFilter()");
 
 	ds_grid_destroy(filterGrid);
 	filterGrid = ds_grid_create(lineGridWidth, 0);
 
-	var grid;
-
-	for (var i = 0; i < 4; i++) {
+	// get lists of all types of chains
+	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
+	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
+	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	var listOfChains = -1;
+	
+	// find all the chains that are filtered
+	for (var i = 0; i < 3; i++) {
 	
 		switch (i) {
 			case 0:
-				grid = obj_chain.rezChainGrid;
+				listOfChains = rezChainList;
 				break;
 			case 1:
-				grid = obj_chain.trackChainGrid;
+				listOfChains = trackChainList;
 				break;
 			case 2:
-				grid = obj_chain.stackChainGrid;
-				break;
-			case 3:
-				grid = obj_chain.cliqueDisplayGrid;
+				listOfChains = stackChainList;
 				break;
 			default:
 				break;
 		}
 		
-		// loop through current chainGrid to include chains marked with filter
-		var gridHeight = ds_grid_height(grid);
-		if (gridHeight < 1) {
+		// loop through current chainList to include chains marked with filter
+		var listOfChainsSize = ds_list_size(listOfChains);
+		if (listOfChainsSize < 1) {
 			continue;	
 		}
-		for (var j = 0; j < gridHeight; j++) {
-			if (not ds_grid_get(grid, obj_chain.chainGrid_colInFilter, j)) {
-				if(ds_grid_get(grid, obj_chain.chainGrid_colChainState, j) == obj_chain.chainStateFocus) {
+		
+		for (var j = 0; j < listOfChainsSize; j++) {
+			
+			// get submap for current chain and make sure it exists
+			var currentChain = ds_list_find_value(listOfChains, j);
+			var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+			if (!is_numeric(currentChainSubMap)) continue;
+			if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
+			
+			// check if this chain is filtered
+			var isFiltered = ds_map_find_value(currentChainSubMap, "filter");
+			
+			show_debug_message("scr_renderFilter() ... currentChain: " + string(currentChain) + ", isFiltered: " + string(isFiltered));
+			
+			// if this chain is focused but not filtered, and newWordInFilter is false, then unfocus it
+			if (!isFiltered) {
+				if (obj_chain.currentFocusedChainID == currentChain) {
 					// Unfocus chains only if we aren't adding a chunk to a chain within the FilterView
-					if(obj_toolPane.newWordInFilter == false) {
-					scr_unfocusChain(ds_grid_get(grid, obj_chain.chainGrid_colChainID, j));
+					if (obj_toolPane.newWordInFilter) {
+						obj_toolPane.newWordInFilter = false;	
 					}
 					else {
-						obj_toolPane.newWordInFilter = false;	
+						obj_chain.currentFocusedChainID = "";
 					}
 				}
 				continue;
 			}
-		
-			var currentIDList = ds_grid_get(grid, obj_chain.chainGrid_colWordIDList, j);
-		
-			ds_list_sort(currentIDList, true);
+			
+			// get set list for this chain
+			var currentSetIDList = ds_map_find_value(currentChainSubMap, "setIDList");
+			var currentSetIDListSize = ds_list_size(currentSetIDList);
 		
 			// set information in filterGrid for words in this chain
-			var currentIDListSize = ds_list_size(currentIDList);
-			for (var k = 0; k < currentIDListSize; k++) {
-				if (grid == obj_chain.stackChainGrid or grid == obj_chain.cliqueDisplayGrid) {
-					var currentUnitID = ds_list_find_value(currentIDList, k);
+			for (var k = 0; k < currentSetIDListSize; k++) {
+				
+				// get currentEntry and make sure it exists
+				var currentEntry = ds_list_find_value(currentSetIDList, k);
+				var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+				if (!is_numeric(currentEntrySubMap)) continue;
+				if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
+				
+				// get word/unit ID for this entry
+				var currentWordID = -1;
+				var currentUnitID = -1;
+				if (currentChainType == "stackChain") {
+					currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 				}
 				else {
-					var currentWordID = ds_list_find_value(currentIDList, k);
-					var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+					currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+					currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 				}
-			
-				if (ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID)) {
+				
+				show_debug_message("scr_renderFilter() ... currentEntry: " + string(currentEntry) + ", currentUnitID: " + string(currentUnitID) + ", currentWordID: " + string(currentWordID));
+				
+				// determine if this unit is already in the filter grid (in which case we aren't going to add it again)
+				var unitInFilterGrid = ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID);
+				if (unitInFilterGrid) {
 					continue;
 				}
-			
 			
 				var currentWordIDListUnitGrid = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
 				var currentDiscoID = ds_grid_get(unitGrid, unitGrid_colDiscoID, currentUnitID - 1);
@@ -174,52 +205,6 @@ function scr_renderFilter() {
 			ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 		}
 	
-		var chainIDModifyListSize = ds_list_size(obj_chain.chainIDModifyList);
-		for(var i = 0; i < chainIDModifyListSize; i++) {
-			var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
-			var relevantGrid = obj_chain.rezChainGrid;
-			var relevantRow = -1;
-			relevantRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID);
-			if (relevantRow < 0) {
-				relevantRow = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), currentChainID);
-				if (relevantRow < 0) {
-					relevantRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentChainID);
-					if (relevantRow >= 0) {
-						relevantGrid = obj_chain.stackChainGrid;
-					}
-				}
-				else {
-					relevantGrid = obj_chain.trackChainGrid;
-				}
-			}
-		
-			// Mchanism for recording specific lines to keep user's focus
-			if (relevantRow >= 0 and relevantRow < ds_grid_height(relevantGrid)) {
-				if (ds_grid_get(relevantGrid, obj_chain.chainGrid_colInFilter, relevantRow)) {
-					if(relevantGrid == obj_chain.stackChainGrid) {//for Stacks
-						var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
-						obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
-						obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-					}
-					else {// Navigate through grids to find first & last lines
-						var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
-						var firstWordOfChain = ds_list_find_value(IDList, 0);
-						var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-						obj_chain.unitIDOfFirstWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, firstWordOfChain - 1);
-						obj_chain.unitIDOfLastWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, lastWordOfChain - 1);
-					}
-
-					// Alarm for focusing on the correct lines
-					with (obj_chain) {
-						focusPrior = true;
-						alarm[5] = 3;
-					}
-				
-					break;
-				}
-			}	
-		}
-	
 	}
 
 
@@ -248,50 +233,7 @@ function scr_renderFilter() {
 			ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 			ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 		}
-	
-		var chainIDModifyListSize = ds_list_size(obj_chain.chainIDModifyList);
-		for(var i = 0; i < chainIDModifyListSize; i++) {
-			var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
-			var relevantGrid = obj_chain.rezChainGrid;
-			var relevantRow = -1;
-			relevantRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID);
-			if (relevantRow < 0) {
-				relevantRow = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), currentChainID);
-				if (relevantRow < 0) {
-					relevantRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentChainID);
-					if (relevantRow >= 0) {
-						relevantGrid = obj_chain.stackChainGrid;
-					}
-				}
-				else {
-					relevantGrid = obj_chain.trackChainGrid;
-				}
-			}
-			// Mechanism for recording specific lines to keep user's focus
-			if (relevantRow >= 0 and relevantRow < ds_grid_height(relevantGrid)) {
-				if (ds_grid_get(relevantGrid, obj_chain.chainGrid_colInFilter, relevantRow)) {
-					if(relevantGrid == obj_chain.stackChainGrid) {
-						var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
-						obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
-						obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-					}
-					else {// Navigate through grids to find first & last lines
-						var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
-						var firstWordOfChain = ds_list_find_value(IDList, 0);
-						var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-						obj_chain.unitIDOfFirstWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, firstWordOfChain - 1);
-						obj_chain.unitIDOfLastWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, lastWordOfChain - 1);
-					}
-				
-					with (obj_chain) {
-						focusTween = true;
-						alarm[5] = 3;// Alarm for focusing on the correct lines
-					}
-				
-					break;
-				}
-			}	
-		}
+		
 	}
 
 	// Set filter to Next Context
@@ -320,48 +262,6 @@ function scr_renderFilter() {
 			ds_grid_set(filterGrid, lineGrid_colLineNumberLabel, currentRowFilterGrid, currentUtteranceID);
 			ds_grid_set(filterGrid, lineGrid_colWordIDList, currentRowFilterGrid, currentWordIDList);
 		}
-		var chainIDModifyListSize = ds_list_size(obj_chain.chainIDModifyList);
-		for (var i = 0; i < chainIDModifyListSize; i++) {
-			var currentChainID = ds_list_find_value(obj_chain.chainIDModifyList, i);
-			var relevantGrid = obj_chain.rezChainGrid;
-			var relevantRow = -1;
-			relevantRow = ds_grid_value_y(obj_chain.rezChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.rezChainGrid), currentChainID);
-			if (relevantRow < 0) {
-				relevantRow = ds_grid_value_y(obj_chain.trackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.trackChainGrid), currentChainID);
-				if (relevantRow < 0) {
-					relevantRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentChainID);
-					if (relevantRow >= 0) {
-						relevantGrid = obj_chain.stackChainGrid;
-					}
-				}
-				else {
-					relevantGrid = obj_chain.trackChainGrid;
-				}
-			}
-			// Mechanism for recording specific lines to keep user's focus
-			if (relevantRow >= 0 and relevantRow < ds_grid_height(relevantGrid)) {
-				if (ds_grid_get(relevantGrid, obj_chain.chainGrid_colInFilter, relevantRow)) {
-					if(relevantGrid == obj_chain.stackChainGrid) {//for stacks
-						var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
-						obj_chain.unitIDOfFirstWord = ds_list_find_value(IDList, 0);
-						obj_chain.unitIDOfLastWord = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-					}
-					else {// Navigate through grids to find first & last lines
-						var IDList = ds_grid_get(relevantGrid, obj_chain.chainGrid_colWordIDList, relevantRow);	
-						var firstWordOfChain = ds_list_find_value(IDList, 0);
-						var lastWordOfChain = ds_list_find_value(IDList, ds_list_size(IDList) - 1);
-						obj_chain.unitIDOfFirstWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, firstWordOfChain - 1);
-						obj_chain.unitIDOfLastWord = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, lastWordOfChain - 1);
-					}
-					with (obj_chain) {
-						focusNext = true;
-						alarm[5] = 3;// Alarm for focusing on the correct lines
-					}
-				
-					break;
-				}
-			}	
-		}
 	}
 
 	// Sort filterGrid again
@@ -375,7 +275,7 @@ function scr_renderFilter() {
 
 
 
-	if(searchGridActive) {
+	if (searchGridActive) {
 		searchGridActive = false;
 		obj_toolPane.currentMode = obj_toolPane.setModeMain;	
 	}

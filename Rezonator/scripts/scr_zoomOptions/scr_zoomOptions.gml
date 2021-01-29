@@ -8,7 +8,6 @@ function scr_zoomOptions(optionSelected) {
 				global.fontSize++;
 				scr_setSpeakerLabelColWidth();
 			}
-			global.navTextBig = true;
 		
 			//show_message("BUH 2");
 			break;
@@ -18,7 +17,6 @@ function scr_zoomOptions(optionSelected) {
 				global.fontSize--;
 				scr_setSpeakerLabelColWidth();
 			}
-			global.navTextBig = false;
 			
 			//show_message("BUH 3");
 			break;
@@ -144,7 +142,6 @@ function scr_zoomOptions(optionSelected) {
 				global.fontSize++;
 				scr_setSpeakerLabelColWidth();
 			}
-			global.navTextBig = true;
 			
 			break;
 		case "help_label_zoom-out":
@@ -189,7 +186,6 @@ function scr_zoomOptions(optionSelected) {
 				global.fontSize--;
 				scr_setSpeakerLabelColWidth();
 			}
-			global.navTextBig = false;
 			
 			break;
 	}

@@ -1,4 +1,4 @@
-function scr_addToSearchGrid() {
+function scr_addToSearchGrid(currentUnitID, currentDiscoID, currentUtteranceID, currentUnitStart, currentUnitEnd, currentWordIDList, currentWordID, jCounter) {
 	/*
 		scr_addToSearchGrid();
 	
@@ -13,25 +13,15 @@ function scr_addToSearchGrid() {
 	
 		Author: Terry DuBois, Georgio Klironomos, Brady Moore
 	*/
-
-
-	var iCounter  = argument[0];
-	var currentDiscoID = argument[1];
-	var currentUtteranceID = argument[2];
-	var currentUnitStart = argument[3];
-	var currentUnitEnd = argument[4];
-	var currentWordIDList = argument[5];
-	var currentWordID = argument[6];
-	var jCounter =  argument[7]; 
-
-
+	
+	show_debug_message("scr_addToSearchGrid() ... currentUnitID: " + string(currentUnitID) + ", currentWordID: " + string(currentWordID) + ", jCounter: " + string(jCounter));
 
 	ds_grid_resize(obj_control.searchGrid, obj_control.lineGridWidth, ds_grid_height(obj_control.searchGrid) + 1);
 	var currentRowSearchGrid = ds_grid_height(obj_control.searchGrid) - 1;
 			
 	ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colDisplayRow, currentRowSearchGrid, currentRowSearchGrid);
 	ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, currentRowSearchGrid, 0);
-	ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colUnitID, currentRowSearchGrid, iCounter + 1);
+	ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colUnitID, currentRowSearchGrid, currentUnitID);
 	ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colPixelY, currentRowSearchGrid, currentRowSearchGrid * (obj_control.gridSpaceVertical));
 	ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colPixelYOriginal, currentRowSearchGrid, currentRowSearchGrid * (obj_control.gridSpaceVertical));
 	ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colDiscoID, currentRowSearchGrid, currentDiscoID);

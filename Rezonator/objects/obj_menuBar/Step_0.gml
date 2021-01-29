@@ -5,7 +5,6 @@ if(point_in_rectangle(mouse_x, mouse_y, 0, 0, camera_get_view_width(camera_get_a
 	if(!chainDeselected){
 		with(obj_chain) {
 			scr_chainDeselect();
-			scr_refreshVizLinkGrid();	
 			chainDeselected = true;
 		}
 	}

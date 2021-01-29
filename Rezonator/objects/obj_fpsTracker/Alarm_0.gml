@@ -6,6 +6,6 @@ if (fpsGridCurrentRow >= ds_grid_height(fpsGrid)) {
 
 ds_grid_set(fpsGrid, fpsGrid_colTime, fpsGridCurrentRow, date_time_string(date_current_datetime()));
 ds_grid_set(fpsGrid, fpsGrid_colFPS, fpsGridCurrentRow, fps);
-ds_grid_set(fpsGrid, fpsGrid_colLinkGridHeight, fpsGridCurrentRow, ds_grid_height(obj_chain.linkGrid));
+ds_grid_set(fpsGrid, fpsGrid_colNodeMapSize, fpsGridCurrentRow, ds_map_size(global.nodeMap));
 
 fpsGridCurrentRow++;

@@ -205,20 +205,12 @@ function scr_saveREZ(autosave) {
 		
 		}
 		else if (object_index == obj_chain) {
-			var mapLinkGrid = scr_gridToJSONLists(linkGrid);
-			var mapRezChainGrid = scr_gridToJSONLists(rezChainGrid);
-			var mapTrackChainGrid = scr_gridToJSONLists(trackChainGrid);
-			var mapStackChainGrid = scr_gridToJSONLists(stackChainGrid);
 			var mapChunkChainGrid = scr_gridToJSONLists(chunkGrid);
 			var mapUnitInStackGrid = scr_gridToJSONLists(unitInStackGrid);
 			var mapCliqueGrid = scr_gridToJSONLists(cliqueGrid);
 			var mapGoldStandardGrid = scr_gridToJSONLists(goldStandardGrid);
 		
 
-			ds_map_add_list(map, "linkGrid", mapLinkGrid);
-			ds_map_add_list(map, "rezChainGrid", mapRezChainGrid);
-			ds_map_add_list(map, "trackChainGrid", mapTrackChainGrid);
-			ds_map_add_list(map, "stackChainGrid", mapStackChainGrid);
 			ds_map_add_list(map, "chunkChainGrid", mapChunkChainGrid);
 			ds_map_add_list(map, "unitInStackGrid", mapUnitInStackGrid);
 			ds_map_add_list(map, "cliqueGrid", mapCliqueGrid);
@@ -228,6 +220,7 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "chainColorID1", chainColorID[1]);
 			ds_map_add(map, "chainColorID2", chainColorID[2]);
 			ds_map_add(map, "chainColorID3", chainColorID[3]);
+			
 		
 		}
 

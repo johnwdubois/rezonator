@@ -103,14 +103,22 @@ function scr_stackShow() {
 			if( obj_control.stackShowBackwards ){
 				prevStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition + 1);
 			}
-			var prevStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), prevStackID);
-			ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, prevStackRow, false);
+			var chainSubMap = ds_map_find_value(global.nodeMap,prevStackID);
+			if(is_numeric(chainSubMap)){
+				if(ds_exists(chainSubMap,ds_type_map)){
+					ds_map_replace(chainSubMap, "filter", false);
+				}
+			}
 		}
 	
 		// Filter the current stack
 		var currentStackID = ds_list_find_value(obj_control.stackShowList, obj_control.currentStackShowListPosition);
-		var currentStackRow = ds_grid_value_y(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.stackChainGrid), currentStackID);
-		ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, currentStackRow, true);
+		var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
+		if(is_numeric(chainSubMap)){
+			if(ds_exists(chainSubMap,ds_type_map)){
+				ds_map_replace(chainSubMap, "filter", true);
+			}
+		}
 			
 		// Render the filter in the mainscreen
 		with (obj_control) {
@@ -153,7 +161,8 @@ function scr_stackShow() {
 			ds_list_clear(obj_control.stackShowList);
 	
 			// Exit the filter
-			ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colInFilter, 0, obj_chain.chainGrid_colInFilter, ds_grid_height(obj_chain.stackChainGrid), false);
+			scr_setValueForAllChains("stackChain", "filter", false);
+			scr_updateFilteredChainLists();
 	
 			// Switch to active grid
 			obj_control.stackShowWindowActive = false;
@@ -195,6 +204,8 @@ function scr_stackShow() {
 		}
 	
 		obj_panelPane.showNav = true;
+		obj_panelPane.showNavLeft = true;
+		obj_panelPane.showNavRight = true;
 		obj_toolPane.showTool = true;
 	
 		if(global.rezzles) {

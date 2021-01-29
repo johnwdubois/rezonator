@@ -66,7 +66,7 @@ function scr_audioDraw() {
 	// Check for mouseClick on play/pause button
 	if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
 		if (mouse_check_button_pressed(mb_left)) {
-			if(selectedStackGridRow > -1) {
+			if(selectedStackChain > -1) {
 				if(audioPaused) {
 					if(audioPos >= bookmarkEndTime) {
 						scr_audioJumpToUnit(stackStartUnit);
@@ -83,7 +83,7 @@ function scr_audioDraw() {
 	// Check for Spacebar to toggle play/pause and set Bookmark
 	if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
 		//var stackSelected = 
-		if(selectedStackGridRow > -1) {
+		if(selectedStackChain > -1) {
 			if(audioPaused) {
 				audioPaused = !audioPaused;
 			}
@@ -110,7 +110,7 @@ function scr_audioDraw() {
 	
 	// Check for Enter to set bookmark
 	if (keyboard_check_pressed(vk_enter) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
-		if(selectedStackGridRow == -1) {
+		if(selectedStackChain == -1) {
 			if(audioPaused) {
 				var currentFocusUnit = scr_currentTopLine();
 				var currentFocusUnitStartTime = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, currentFocusUnit - 1);

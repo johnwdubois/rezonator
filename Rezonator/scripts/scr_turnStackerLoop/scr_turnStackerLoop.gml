@@ -25,7 +25,7 @@ function scr_turnStackerLoop(){
 
 		if (ds_list_find_value(global.unitImportColNameList, unitColLoop) == "~UnitID") {
 			unitCol = unitColLoop;
-			show_debug_message("obj_stacker Alarm 4 ... unitCol: " + string(unitCol));
+			show_debug_message("scr_turnStackerLoop() ... unitCol: " + string(unitCol));
 			break;
 		}
 
@@ -35,7 +35,7 @@ function scr_turnStackerLoop(){
 
 		if (string(ds_list_find_value(global.unitImportColNameList, turnColLoop)) == "turnId") {
 			turnCol = turnColLoop;
-			show_debug_message("obj_stacker Alarm 4 ... turnCol: " + string(turnCol));
+			show_debug_message("scr_turnStackerLoop() ... turnCol: " + string(turnCol));
 			break;
 		}
 	}
@@ -93,7 +93,7 @@ function scr_turnStackerLoop(){
 			}
 			// Unfocus all links and chains
 			scr_unFocusAllChains();
-			ds_grid_set_region(obj_chain.linkGrid, obj_chain.linkGrid_colFocus, 0, obj_chain.linkGrid_colFocus, ds_grid_height(obj_chain.linkGrid), false);
+
 
 		}
 	
