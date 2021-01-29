@@ -1,31 +1,37 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-// TO-DO: Make click make box persist until a non-word is clicked
-// 1. If no persistentBox
-//		a. hover word, display
-//		b. If click word, display persistent box
-// 2. If persistentBox yes
-//		a. don't display hover word
-//		b. display persistent box
-//		c. If click same word or non-word, then turn off persistentBox
-//		d. If click different word, then switch persistentBox display
-
-// Get wordID of the word currently being hovered
-var currentWordID = obj_control.hoverWordID;
-
-if (currentWordID == -1)
-{
-	// If no word is being hovered, then do nothing
-	exit;
-}
-
 // Only read-mode has WordTips
 if (obj_toolPane.currentMode != obj_toolPane.modeRead)
 {
 	exit;
 }
 
+if (persistentBoxFlag == false)
+{	
+	// There is no persistent box currently
+	
+	if (obj_control.hoverWordID == -1)
+	{
+		// No word is being hovered
+		exit;
+	}
+	
+	else
+	{
+		// Make the box display the word at the mouse cursor
+		currentWordID = obj_control.hoverWordID;
+		boxX = mouse_x + mouseCursorWidth;
+		boxY = mouse_y + mouseCursorHeight;
+	}
+}
+
+else
+{
+	// There is a persistent box currently
+	
+	// TO-DO: Draw an outline around the word that has the persistent box
+}
 
 /* --- Fill a grid with the word's attributes' names and values to display --- */
 
@@ -91,8 +97,8 @@ for (var i = 0; i < ds_grid_height(attribGrid); i++)
 boxWidth = maxAttribNameWidth + attribGridColPadding + maxAttribValWidth;
 
 // Set the box's coordinates
-var rectx1 = mouse_x + mouseCursorWidth;
-var recty1 = mouse_y + mouseCursorHeight;
+var rectx1 = boxX;
+var recty1 = boxY;
 var rectx2 = rectx1 + boxWidth + 2 * boxPaddingHoriz;
 var recty2 = recty1 + boxHeight + 2 * boxPaddingVert;
 
