@@ -181,3 +181,5 @@ chainDeselected = false;
 /*menuList = ds_list_create();
 ds_list_add(menuList, "File", "Link", "Edit", "View", "Search", "Tools", "Advanced", "Setting", "Help");
 menuListSize = ds_list_size(menuList);*/
+
+mouseoverMenuBar = false;
