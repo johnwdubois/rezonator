@@ -2,7 +2,7 @@
 
 ///@description Remove Link
 //show_message("delete");
-if(gridView) {
+if(gridView || instance_exists(obj_dialogueBox)) {
 	exit;	
 }
 

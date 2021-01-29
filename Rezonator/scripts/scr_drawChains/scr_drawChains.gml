@@ -212,13 +212,13 @@ function scr_drawChains() {
 			}
 		}
 	
-		var isAligned = ds_map_find_value(currentChainSubMap, "align");
+		var isAligned = ds_map_find_value(currentChainSubMap, "alignChain");
 		scr_alignChain(currentSetIDList, isAligned);
 	}
 
 
 	// draw pickwhip line to mouse from chain
-	if (not (mouseLineX == undefined or mouseLineY == undefined)) {
+	if (!is_undefined(mouseLineX) && !is_undefined(mouseLineY) && !instance_exists(obj_dialogueBox)) {
 		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 			var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 			if (is_numeric(chainSubMap)) {
@@ -245,7 +245,6 @@ function scr_drawChains() {
 			}
 		}
 	}
-
 
 
 }

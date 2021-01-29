@@ -90,6 +90,12 @@ function scr_newLink(wordID) {
 							ds_map_add(setSubMap, (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) ? "unit" : "word", idSet);
 							ds_map_add(setSubMap, "sourceLink", "");
 							ds_map_add_list(setSubMap, "goalLinkList", ds_list_create());
+							if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+								ds_map_add(setSubMap, "alignEntry", true);
+							}
+							else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+								ds_map_add(setSubMap, "alignEntry", false);
+							}
 						}
 					}
 

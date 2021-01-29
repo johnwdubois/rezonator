@@ -14,6 +14,6 @@ if (keyboard_check(vk_control)) {
 	
 	// if we are not justifying left, let's not try to align chains
 	var alignChains = (obj_control.justify == obj_control.justifyLeft);
-	scr_setValueForAllChains("rezChain", "align", alignChains);
-	scr_setValueForAllChains("trackChain", "align", alignChains);
+	scr_setValueForAllChains("rezChain", "alignChain", alignChains);
+	scr_setValueForAllChains("trackChain", "alignChain", alignChains);
 }

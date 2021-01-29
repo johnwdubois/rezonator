@@ -33,7 +33,7 @@ function scr_exportChainTempGrid(chainList){
 		
 		// put alignment in export grids if this is a rez or track
 		if (currentChainType == "rezChain" || currentChainType == "trackChain") {
-			var currentChainAlign = ds_map_find_value(currentChainSubMap, "align");
+			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 			ds_grid_set(grid, grid_colAlign, ds_grid_height(grid) - 1, currentChainAlign);
 		}
 	}

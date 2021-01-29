@@ -112,7 +112,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	
 	// get some cool variables from the chain
 	var chainType = ds_map_find_value(chainSubMap, "type");
-	var chainAligned = ds_map_find_value(chainSubMap, "align");
+	var chainAligned = ds_map_find_value(chainSubMap, "alignChain");
 	var chainFocusedEntry = ds_map_find_value(chainSubMap, "focused");
 	
 	// make sure that we have a valid chain type
@@ -174,7 +174,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				
 				if(currentWordID == undefined) continue;
 				
-				var currentWordAligned = false;
+				var currentEntryAligned = false;
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";
 		
@@ -188,11 +188,12 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				// Draw red rectangles if stretch word
 				if (chainType == "rezChain" or chainType == "trackChain") {
 					if (currentWordID != undefined) {
+						currentEntryAligned = ds_map_find_value(currentEntrySubMap, "alignEntry");
 						if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
 							draw_set_alpha(0.25);
 							draw_set_color(c_red);
 							draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
-							currentWordAligned = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1);
+							currentEntryAligned = false;
 						}
 					}
 				}
@@ -325,7 +326,9 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				}
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-			
+					
+					// TEMPORARILY TAKING OUT: the align individual entry button
+					/*
 					var alignRectX1 = x + windowWidth - global.scrollBarWidth - strHeight - alignRectSize;
 					var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
 					var alignRectX2 = x + windowWidth - global.scrollBarWidth - strHeight;
@@ -339,14 +342,13 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				
 						if (device_mouse_check_button_released(0, mb_left)
 						and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
-							currentWordAligned = !currentWordAligned;
-							ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colAligned, currentWordID - 1, currentWordAligned);
+							currentEntryAligned = !currentEntryAligned;
+							ds_map_replace(currentEntrySubMap, "alignEntry", currentEntryAligned);
 						}
-				
-				
 					}
-					draw_sprite_ext(spr_align, !currentWordAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
-			
+					
+					draw_sprite_ext(spr_align, !currentEntryAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
+					*/
 				}
 			
 				textPlusY += strHeight;
@@ -390,37 +392,27 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		}
 		var colRectY2 = colRectY1 + windowHeight;
 	
-		var colName = "";
 	
+		// headers for the chainContents columns
+		var colName = "";
 		switch (i) {
-			// 0 --> wordID
-			// 1 --> unitID
-			// 2 --> wordTranscript
 			case 0:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					colName = "uID";
-				}
-				else {
-					colName = "uID";
-				}
+				colName = "unitSeq";
 				break;
 			case 1:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					colName = "speaker";
+				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					colName = "speaker"; // stacks
 				}
 				else {
-					colName = "place";
+					colName = "wordOrder"; // rez & track
 				}
 				break;
 			case 2:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					colName = "utterance";
+				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					colName = "utterance"; // stacks
 				}
 				else {
-					colName = "text";
+					colName = "text"; // rez & track
 				}
 				break;
 			default:
@@ -438,6 +430,9 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		scr_adaptFont(colName, "S");
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
+		
+		// TAKING OUT THE CHAIN SORT BUTTONS .... for now!!!
+		/*
 		// sort arrow
 		var sortArrowTipText = (functionChainContents_sortedCol == i) ? "Sort ascending" : "Sort default";
 		var sortArrowAngle = (functionChainContents_sortedCol == i) ? 0 : 270;
@@ -473,15 +468,13 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					functionChainContents_sortedColAsc = true;
 				}
 				
-				
-				// CHAIN OVERHAUL: come back later
-				/*
 				scr_sortChainGrid(obj_chain.rezChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
 				scr_sortChainGrid(obj_chain.trackChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
 				scr_sortChainGrid(obj_chain.stackChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
-				*/
+				
 			}
 		}
+		*/
 	}
 
 

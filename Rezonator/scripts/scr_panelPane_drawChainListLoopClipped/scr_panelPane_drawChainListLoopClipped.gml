@@ -339,7 +339,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 						var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY;
 						var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
 						var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;
-						var isAligned = ds_map_find_value(currentChainSubMap, "align");
+						var isAligned = ds_map_find_value(currentChainSubMap, "alignChain");
 		
 						// Check for user selection of alignment with mouse clicks
 						if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
@@ -358,7 +358,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 											for (var j = 0; j < trackChainListSize; j++) {
 												var currentTrack = ds_list_find_value(trackChainList, j);
 												var currentTrackSubMap = ds_map_find_value(global.nodeMap, currentTrack);
-												ds_map_replace(currentTrackSubMap, "align", false);
+												ds_map_replace(currentTrackSubMap, "alignChain", false);
 											}
 										}
 				
@@ -373,7 +373,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 										}
 				
 										// Set alignment in chain's subMap
-										ds_map_replace(currentChainSubMap, "align", isAligned);
+										ds_map_replace(currentChainSubMap, "alignChain", isAligned);
 									}
 								}
 							}

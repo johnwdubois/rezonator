@@ -1,6 +1,6 @@
 ///@description Remove Link
 
-if (gridView) {
+if (gridView || instance_exists(obj_dialogueBox)) {
 	exit;	
 }
 
