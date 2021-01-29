@@ -93,7 +93,6 @@
     {"id":{"name":"scr_toggleTranscriptionMulti","path":"scripts/scr_toggleTranscriptionMulti/scr_toggleTranscriptionMulti.yy",},"order":6,},
     {"id":{"name":"scr_toggleUnitMulti","path":"scripts/scr_toggleUnitMulti/scr_toggleUnitMulti.yy",},"order":7,},
     {"id":{"name":"scr_fontSizeControl","path":"scripts/scr_fontSizeControl/scr_fontSizeControl.yy",},"order":0,},
-    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":6,},
     {"id":{"name":"scr_fontSizeControlOpeningScreen","path":"scripts/scr_fontSizeControlOpeningScreen/scr_fontSizeControlOpeningScreen.yy",},"order":1,},
     {"id":{"name":"scr_fontGlobalUpdate","path":"scripts/scr_fontGlobalUpdate/scr_fontGlobalUpdate.yy",},"order":2,},
     {"id":{"name":"scr_audioJumpToUnit","path":"scripts/scr_audioJumpToUnit/scr_audioJumpToUnit.yy",},"order":0,},
