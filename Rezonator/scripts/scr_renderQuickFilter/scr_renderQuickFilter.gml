@@ -29,7 +29,7 @@ function scr_renderQuickFilter() {
 	quickFilterGrid = ds_grid_create(lineGridWidth, 0);
 
 
-	var setIDList = ds_map_find_value(chainSubMap, "setIDList");
+	var setIDList = ds_map_find_value(chainSubMap, "vizSetIDList");
 	var setIDListSize = ds_list_size(setIDList);
 	
 	scr_updateDisplayRow();
