@@ -59,6 +59,11 @@ function scr_isItemAList(grid, col, row) {
 			itemList = currentCell;
 		}
 	}
+	else if (grid == obj_chain.chunkGrid) {
+		if (col == obj_chain.chainGrid_colWordIDList || col == obj_chain.chunkGrid_colBoxWordIDList) {
+			itemList = currentCell;
+		}
+	}
 
 
 
