@@ -96,6 +96,10 @@ function scr_newLink(wordID) {
 							else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 								ds_map_add(setSubMap, "alignEntry", false);
 							}
+							
+							// add tagmap to this entry's submap
+							var tagMap = ds_map_create();
+							ds_map_add_map(setSubMap, "tagMap", tagMap);
 						}
 					}
 
