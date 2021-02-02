@@ -42,13 +42,13 @@ function scr_quickStackCreation(){
 			currentWordIDList = ds_grid_get(unitGrid, unitGrid_colWordIDList, currentUnitID - 1);
 			var currentWordID = ds_list_find_value(currentWordIDList, 0);
 			with (obj_chain) {
-				scr_wordClicked(prevWordID, prevUnitID);
+				scr_wordClicked(firstWordID, firstUnitID);
 				scr_wordClicked(currentWordID, currentUnitID);
 			}
-		
 			prevWordID = currentWordID;
 			prevUnitID = currentUnitID;
 		}
+		
 		// Unfocus all links and chains
 		scr_unFocusAllChains();
 	}

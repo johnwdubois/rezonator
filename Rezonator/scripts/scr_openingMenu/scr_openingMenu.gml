@@ -29,7 +29,7 @@ function scr_openingMenu() {
 
 	// open rez selection
 	var openProjectButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2); 
-	var openProjectButtonY1 = camera_get_view_height(camera_get_active()) * 0.40;
+	var openProjectButtonY1 = camera_get_view_height(camera_get_active()) * 0.45;
 	var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 	var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
 

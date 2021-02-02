@@ -38,7 +38,13 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 	var currentWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, currentChunkRow);
 		
 	// Safety Check
-	if (currentWordList == undefined || ds_list_size(currentWordList) < 1) {
+	if (!is_numeric(currentWordList)) {
+		return;
+	}
+	if (!ds_exists(currentWordList, ds_type_list)) {
+		return;
+	}
+	if (ds_list_size(currentWordList) < 1) {
 		return;
 	}
 		
