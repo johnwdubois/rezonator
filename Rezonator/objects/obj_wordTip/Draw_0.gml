@@ -52,7 +52,7 @@ ds_grid_set(attribGrid, 0, 4, "DepRel_Spacy");
 ds_grid_set(attribGrid, 0, 5, "wordStart");
 ds_grid_set(attribGrid, 0, 6, "wordEnd");
 
-// For each attribute, get its value (from the tokenImportGrid) and put it in the 2nd column
+// For each attribute, get its value (from the tokenImportGrid) and put it in the 2nd column; if it does not exist, then remove it from the attribute grid
 for (var i = 1; i < ds_grid_height(attribGrid); i++)
 {
 	var attribName = ds_grid_get(attribGrid, 0, i);	// Attribute name to find the value of
@@ -60,7 +60,7 @@ for (var i = 1; i < ds_grid_height(attribGrid); i++)
 	
 	if (tokenImportGridAttribColNum == -1)	// No such attribute
 	{
-		ds_grid_set(attribGrid, 1, i, "N/A");	
+		scr_gridDeleteRow(attribGrid, i);
 	}
 	
 	else
@@ -68,6 +68,11 @@ for (var i = 1; i < ds_grid_height(attribGrid); i++)
 		var attribValue = ds_grid_get(global.tokenImportGrid, tokenImportGridAttribColNum, currentWordID - 1);	// Attribute value from the tokenImportGrid
 		ds_grid_set(attribGrid, 1, i, attribValue);	// Insert attribute value into 2nd column	
 	}
+}
+
+if (ds_grid_height(attribGrid) == 1)	// Nothing to display
+{
+	exit;	
 }
 
 
