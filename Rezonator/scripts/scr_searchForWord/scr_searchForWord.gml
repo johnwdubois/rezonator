@@ -74,7 +74,7 @@ function scr_searchForWord(strToFind) {
 	// and if there is no currently focused chain, the list will be empty
 	var focusedChainWordIDList = ds_list_create();
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
-		ds_list_copy(focusedChainWordIDList, scr_getChainTempList(obj_chain.currentFocusedChainID));
+		ds_list_copy(focusedChainWordIDList, scr_getChainTempList(obj_chain.currentFocusedChainID, false));
 	}
 	
 	// loop through unitGrid, so we can get the wordID list of every unit

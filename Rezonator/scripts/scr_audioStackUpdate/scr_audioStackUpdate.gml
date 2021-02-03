@@ -19,7 +19,7 @@ function scr_audioStackUpdate(currentStackChain){
 	
 	// Get UnitID list info
 
-	stackUnitList = scr_getChainTempList(selectedStackChain);
+	stackUnitList = scr_getChainTempList(selectedStackChain, false);
 	stackUnitListSize = ds_list_size(stackUnitList);
 	
 	//Loop through UnitIDList and gather time stamps

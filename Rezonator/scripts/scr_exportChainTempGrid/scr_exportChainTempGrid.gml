@@ -10,7 +10,8 @@ function scr_exportChainTempGrid(chainList){
 	var grid_colName = 2;
 	var grid_colFilter = 3;
 	var grid_colAlign = 4;
-	var grid = ds_grid_create(5, 0);
+	var grid_colGapUnits = 5;
+	var grid = ds_grid_create(6, 0);
 	
 	for (var i = 0; i < chainListSize; i++) {
 		// get current chain
@@ -31,8 +32,9 @@ function scr_exportChainTempGrid(chainList){
 		ds_grid_set(grid, grid_colName, ds_grid_height(grid) - 1, currentChainName);
 		ds_grid_set(grid, grid_colFilter, ds_grid_height(grid) - 1, currentChainFilter);
 		
-		// put alignment in export grids if this is a rez or track
+		// put in stuff that is rez/track 
 		if (currentChainType == "rezChain" || currentChainType == "trackChain") {
+			// alignment
 			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 			ds_grid_set(grid, grid_colAlign, ds_grid_height(grid) - 1, currentChainAlign);
 		}
