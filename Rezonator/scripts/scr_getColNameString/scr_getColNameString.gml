@@ -256,6 +256,10 @@ function scr_getColNameString(grid, col) {
 			default:
 				break;
 		}
+		if (col >= obj_chain.trackSeqGridWidth) {
+			colName = string(ds_list_find_value(global.tokenImportColNameList, col - 5));
+		}
+		
 	}
 	else if (grid == obj_chain.chunkGrid) {
 		switch (col) {

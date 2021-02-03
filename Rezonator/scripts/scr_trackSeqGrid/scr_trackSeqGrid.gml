@@ -8,8 +8,12 @@ function scr_trackSeqGrid(){
 	
 	// reset trackSeqGrid
 	var trackSeqGrid = obj_chain.trackSeqGrid;
+	var trackSeqGridWidth = obj_chain.trackSeqGridWidth + (ds_grid_width(global.tokenImportGrid) - 4);
 	ds_grid_clear(trackSeqGrid, 0);
-	ds_grid_resize(trackSeqGrid, obj_chain.trackSeqGridWidth, 0);
+	ds_grid_resize(trackSeqGrid, trackSeqGridWidth, 0);
+	
+	
+	
 	
 	// get trackChainList
 	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
@@ -97,14 +101,21 @@ function scr_trackSeqGrid(){
 					if (currentTranscript == 0 || currentTranscript == "0") currentTranscript = "";
 			
 					// add new row to trackSeqGrid
-					ds_grid_resize(trackSeqGrid, obj_chain.trackSeqGridWidth, ds_grid_height(trackSeqGrid) + 1);
+					ds_grid_resize(trackSeqGrid, trackSeqGridWidth, ds_grid_height(trackSeqGrid) + 1);
 					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainID, ds_grid_height(trackSeqGrid) - 1, currentChain);
 					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainName, ds_grid_height(trackSeqGrid) - 1, currentChainName);
 					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colTrackSeq, ds_grid_height(trackSeqGrid) - 1, j + 1);
 					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colWordID, ds_grid_height(trackSeqGrid) - 1, currentWordID);
 					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colText, ds_grid_height(trackSeqGrid) - 1, currentText);
 					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colGapUnits, ds_grid_height(trackSeqGrid) - 1, currentGapUnits);
-				
+					
+					// add tokenImport data to trackSeqGrid
+					var tokenImportGridWidth = ds_grid_width(global.tokenImportGrid);
+					for (var k = 4; k < tokenImportGridWidth; k++) {
+						var currentTokenImportValue = ds_grid_get(global.tokenImportGrid, k, currentWordID - 1);
+						ds_grid_set(trackSeqGrid, obj_chain.trackSeqGridWidth - 4 + k, ds_grid_height(trackSeqGrid) - 1, currentTokenImportValue);
+					}
+					
 				}
 			}
 		}
