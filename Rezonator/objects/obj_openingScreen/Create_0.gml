@@ -418,6 +418,11 @@ global.optionListTypeNav = 44;
 global.optionListTypeLanguage = 45;
 global.optionListTypeImportGrid = 46;
 
+
+//this map stores all the keyboard shortcuts to late be displayed on the tooltip
+global.keyboardShortcutMap = ds_map_create();
+ds_map_add(global.keyboardShortcutMap, "Search", "F");
+
 scr_preImportInitiate();
 showPreImportScreen = false;
 

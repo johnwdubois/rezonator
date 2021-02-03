@@ -14,9 +14,10 @@ function scr_drawDialogueBox() {
 				
 		Author: Brady Moore
 	*/
-		var verticalBuffer = 125;
-		var horizontalBuffer = 250;
-		var searchBarXOffset = 235;
+		var boxHeight = camera_get_view_height(camera_get_active())/5; 
+		var boxWidth = camera_get_view_width(camera_get_active())/3;
+		//replaced buffers with vars for width and height so that offsets can be calculated off that
+		var searchBarXOffset = boxWidth * 0.45;
 		var searchBarYOffset = 20;
 		var buttonXOffset = 50;
 		var buttonYOffset = 25;
@@ -25,10 +26,10 @@ function scr_drawDialogueBox() {
 		var cameraMidpointY = camera_get_view_height(camera_get_active())/2;
 		
 		
-		var dialogueBoxRectX1 = cameraMidpointX - horizontalBuffer;
-		var dialogueBoxRectY1 = cameraMidpointY - verticalBuffer;
-		var dialogueBoxRectX2 = cameraMidpointX + horizontalBuffer;
-		var dialogueBoxRectY2 = cameraMidpointY + verticalBuffer;
+		var dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
+		var dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
+		var dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
+		var dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
 		
 
 

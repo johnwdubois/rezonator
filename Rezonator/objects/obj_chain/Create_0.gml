@@ -173,7 +173,7 @@ filteredStackChainList = ds_list_create();
 
 
 
-trackSeqGridWidth = 8;
+trackSeqGridWidth = 9;
 trackSeqGrid_colChainID = 0;
 trackSeqGrid_colChainName = 1;
 trackSeqGrid_colChainSeq = 2;
@@ -182,4 +182,5 @@ trackSeqGrid_colWordID = 4;
 trackSeqGrid_colText = 5;
 trackSeqGrid_colTranscript = 6;
 trackSeqGrid_colUnitText = 7;
+trackSeqGrid_colGapUnits = 8;
 trackSeqGrid = ds_grid_create(trackSeqGridWidth, 0);

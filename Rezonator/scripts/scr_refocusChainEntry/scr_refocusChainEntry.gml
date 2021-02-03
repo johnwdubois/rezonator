@@ -18,17 +18,15 @@ function scr_refocusChainEntry(wordID){
 			var currentChainEntry = ds_list_find_value(chainSetList, i);
 			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
 			var currentChainEntryWordID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
-			show_debug_message("scr_refocusChainEntry() ... currentChainEntryWordID: " + string(currentChainEntryWordID));
 			if (wordID == currentChainEntryWordID) {
 				entryToFocus = currentChainEntry;
+				break;
 			}
 		}
 		
-		show_debug_message("scr_refocusChainEntry() ... entryToFocus: " + string(entryToFocus));
-		
 		// if we have found the entry to focus, and it exists in the NodeMap, let's focus it!
 		if (ds_map_exists(global.nodeMap, entryToFocus)) {
-			show_debug_message("scr_refocusChainEntry() ... focusing... ");
+			show_debug_message("scr_refocusChainEntry() ... focusing entry: " + string(entryToFocus));
 			ds_map_replace(chainSubMap, "focused", entryToFocus);
 		}
 		

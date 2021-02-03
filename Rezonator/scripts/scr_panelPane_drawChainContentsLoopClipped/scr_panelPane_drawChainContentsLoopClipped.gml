@@ -136,7 +136,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		if (is_numeric(focusedChainSubMap)) {
 			if (ds_exists(focusedChainSubMap, ds_type_map)) {
-				functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, "setIDList");
+				functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, (chainType == "stackChain") ? "vizSetIDList" : "setIDList");
 			}
 		}
 		if (functionChainContents_IDList != undefined) {
@@ -321,8 +321,12 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					draw_set_color(global.colorThemeText);
 					draw_set_alpha(1);
 					draw_set_valign(fa_middle);
-					scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
-					draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
+					
+					// remove linebreaks from string before drawing it
+					var drawStr = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
+					drawStr = string_replace_all(drawStr, "\n", "");
+					scr_adaptFont(drawStr, "S");
+					draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, drawStr);
 				}
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {

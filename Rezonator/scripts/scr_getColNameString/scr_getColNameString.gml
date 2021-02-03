@@ -250,6 +250,9 @@ function scr_getColNameString(grid, col) {
 			case obj_chain.trackSeqGrid_colUnitText:
 				colName = "UnitText";
 				break;
+			case obj_chain.trackSeqGrid_colGapUnits:
+				colName = "GapUnits";
+				break;
 			default:
 				break;
 		}
