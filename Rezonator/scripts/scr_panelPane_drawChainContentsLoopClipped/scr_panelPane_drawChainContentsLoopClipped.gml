@@ -136,7 +136,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		if (is_numeric(focusedChainSubMap)) {
 			if (ds_exists(focusedChainSubMap, ds_type_map)) {
-				functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, (chainType == "stackChain") ? "vizSetIDList" : "setIDList");
+				functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, (chainType == "stackChain") ? "setIDList" : "vizSetIDList");
 			}
 		}
 		if (functionChainContents_IDList != undefined) {
