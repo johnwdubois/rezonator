@@ -41,9 +41,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 
 
-
-
-
 	if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_colXList)) {
 		exit;
 	}
@@ -61,8 +58,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 	// Find current tab to draw correct contents
 	switch (functionChainList_currentTab) {
-		
-		
 		case functionChainList_tabLine:
 			if (obj_control.showTranslation) {
 				scr_panelPane_drawLineTranslationLoopClipped();
@@ -80,10 +75,9 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 
 	// Set text margins
-	var textMarginTop = tabHeight;
 	var textPlusY = 0;
 	var ableToBeMouseOver = true;
-	var xBuffer = 6;
+	var textMarginTop = tabHeight;
 
 
 	var focusedChainExists = false;
@@ -92,7 +86,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	var focusedElementY = -1;
 
 	var strHeight = string_height("0");
-	
 
 	// Check for focused chain and make sure grid is not empty, gather information from grids
 	// Collect beginning of chain info
@@ -131,7 +124,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		exit;
 	}
 	
-	// Get wordID list
+	// Get vizSetIDList list for the focused chain
 	with (obj_panelPane) {
 		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		if (is_numeric(focusedChainSubMap)) {
@@ -152,13 +145,13 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		
 		
 		
-	
+	// loop over the vizSetIDList and draw the data in each of the chain entries
 	if (is_numeric(functionChainContents_IDList)) {
 		if (ds_exists(functionChainContents_IDList, ds_type_list)) {
-			scrollBarListHeight = ds_list_size(functionChainContents_IDList);
-	
-			// Gather specfic information on words
+			
 			var entryIDListSize = ds_list_size(functionChainContents_IDList);
+			scrollBarListHeight = entryIDListSize
+	
 			for (var j = 0; j < entryIDListSize; j++) {
 						
 				// Get map of current entry
@@ -172,18 +165,17 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				// get the wordID (or unitID is this is a stackChain)
 				var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
 				
-				if(currentWordID == undefined) continue;
+				if (currentWordID == undefined) continue;
 				
 				var currentEntryAligned = false;
 				var currentWordInfoCol;
 				currentWordInfoCol[0] = "";
 		
-				//Set size of rectangle around word
+				// Set size of rectangle around word
 				var rectX1 = x;
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
-		
 
 				// Draw red rectangles if stretch word
 				if (chainType == "rezChain" or chainType == "trackChain") {
@@ -254,80 +246,8 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					}	
 				}
 		
-				// Set collected info into correct places
-				for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
-					currentWordInfoCol[getInfoLoop] = "";
-			
-					switch (getInfoLoop) {
-						case 0:
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								var unitID = currentWordID;
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-							}
-							else {
-								var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-							}
-							break;
-						case 1:
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
-							}
-							else {
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
-							}
-							break;
-						case 2:
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								currentWordInfoCol[getInfoLoop] = "";
-								var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
-								if (currentWordIDList == undefined) {
-									break;
-								}
-
-								var currentWordIDListSize = ds_list_size(currentWordIDList);
-								for (var i = 0; i < currentWordIDListSize; i++) {
-									var currentWordID = ds_list_find_value(currentWordIDList, i);
-									if (is_numeric(currentWordID)) {
-										var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-										if(currentWordState == obj_control.wordStateDead){
-											continue;
-										}
-										var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
-										currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
-									}
-								}
-								// remove any newlines or carriage returns from the utterance display
-								currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
-								currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\n", "");
-						
-								if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
-									currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
-									currentWordInfoCol[getInfoLoop] += "...";
-								}
-							}
-							else {
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
-							}
-							break;
-					}
-			
-					var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
-					var textY = y + textMarginTop + textPlusY;
-			
-					draw_set_color(global.colorThemeText);
-					draw_set_alpha(1);
-					draw_set_valign(fa_middle);
-					
-					// remove linebreaks from string before drawing it
-					var drawStr = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
-					drawStr = string_replace_all(drawStr, "\n", "");
-					scr_adaptFont(drawStr, "S");
-					draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, drawStr);
-				}
+				scr_panelPane_drawChainContentsInnerLoop(currentWordID, textPlusY);
+				
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 					

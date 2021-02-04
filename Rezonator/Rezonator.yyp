@@ -36,6 +36,7 @@
     {"id":{"name":"scr_jumpToLine","path":"scripts/scr_jumpToLine/scr_jumpToLine.yy",},"order":0,},
     {"id":{"name":"scr_jumpToEnd","path":"scripts/scr_jumpToEnd/scr_jumpToEnd.yy",},"order":1,},
     {"id":{"name":"scr_jumpToTime","path":"scripts/scr_jumpToTime/scr_jumpToTime.yy",},"order":2,},
+    {"id":{"name":"scr_panelPane_drawChainContentsInnerLoop","path":"scripts/scr_panelPane_drawChainContentsInnerLoop/scr_panelPane_drawChainContentsInnerLoop.yy",},"order":19,},
     {"id":{"name":"scr_approachSmooth","path":"scripts/scr_approachSmooth/scr_approachSmooth.yy",},"order":3,},
     {"id":{"name":"scr_jumpToLineCalled","path":"scripts/scr_jumpToLineCalled/scr_jumpToLineCalled.yy",},"order":4,},
     {"id":{"name":"scr_gridMultiColSort","path":"scripts/scr_gridMultiColSort/scr_gridMultiColSort.yy",},"order":0,},
