@@ -101,11 +101,19 @@ for (var i = 0; i < ds_grid_height(attribGrid); i++)
 // Set the box width based on the maximum-width line
 boxWidth = maxAttribNameWidth + attribGridColPadding + maxAttribValWidth;
 
+// Set the box paddings based on the box dimensions
+boxPaddingHoriz = floor(0.05 * boxWidth);
+boxPaddingVert = floor(0.03 * boxHeight);
+
+// Update the box dimensions to include the padding
+boxWidth += boxPaddingHoriz * 2;
+boxHeight += boxPaddingVert * 2;
+
 // Set the box's coordinates
 var rectx1 = boxX;
 var recty1 = boxY;
-var rectx2 = rectx1 + boxWidth + 2 * boxPaddingHoriz;
-var recty2 = recty1 + boxHeight + 2 * boxPaddingVert;
+var rectx2 = rectx1 + boxWidth;
+var recty2 = recty1 + boxHeight;
 
 // Handle the case where the box clips off the bottom of the screen
 var fullWindowHeight = camera_get_view_height(camera_get_active() );
@@ -124,10 +132,6 @@ if (rectx2 >= fullWindowWidth)
 	rectx1 -= overflowWidth;
 	rectx2 -= overflowWidth;
 }
-
-// Set the box paddings based on the box dimensions
-boxPaddingHoriz = floor(0.05 * boxWidth);
-boxPaddingVert = floor(0.03 * boxHeight);
 
 // Draw the box's outline
 draw_set_color(c_black);
