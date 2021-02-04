@@ -13,7 +13,8 @@ function scr_sortVizSetIDList(chainID){
 		exit;
 	}
 	
-	show_debug_message("scr_sortVizSetIDList() ... sorting chain: " + string(chainID)); 
+	var chainType = ds_map_find_value(chainSubMap, "type");
+	show_debug_message("scr_sortVizSetIDList() ... sorting chain: " + string(chainID) + ", type: " + string(chainType));
 	
 	// get set list from chain
 	var setIDList = ds_map_find_value(chainSubMap, "setIDList");
@@ -33,15 +34,30 @@ function scr_sortVizSetIDList(chainID){
 		var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 		if (!is_numeric(currentEntrySubMap)) continue;
 		if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
-		var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
-		var currentUnitSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-		var currentWordOrder = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+		
+		var currentWordID = -1;
+		var currentUnitSeq = -1;
+		var currentWordOrder = -1;
+		
+		// if this is a rez/track, get each entry's UnitSeq and WordOrder ... if this is a stack, we just get each entry's UnitSeq
+		if (chainType == "rezChain" || chainType == "trackChain") {
+			currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+			currentUnitSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+			currentWordOrder = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+		}
+		else if (chainType == "stackChain") {
+			currentWordID = -1;
+			currentUnitSeq = ds_map_find_value(currentEntrySubMap, "unit");
+			currentWordOrder = -1;
+		}
 		
 		// set values in tempGrid
 		ds_grid_set(tempGrid, tempGrid_colEntryID, i, currentEntry);
 		ds_grid_set(tempGrid, tempGrid_colUnitSeq, i, currentUnitSeq);
 		ds_grid_set(tempGrid, tempGrid_colWordOrder, i, currentWordOrder);
 	}
+	
+	
 	
 	// sort the tempGrid!!!
 	scr_gridMultiColSort(tempGrid, tempGrid_colUnitSeq, true, tempGrid_colWordOrder, true);
@@ -58,9 +74,15 @@ function scr_sortVizSetIDList(chainID){
 		if (is_numeric(currentEntrySubMap)) {
 			if (ds_exists(currentEntrySubMap, ds_type_map)) {
 				
-				// get word & unit from this entry
-				var currentWord = ds_map_find_value(currentEntrySubMap, "word");
-				var currentUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWord - 1);
+				// get unit from this entry
+				var currentUnit = -1;
+				if (chainType == "rezChain" || chainType == "trackChain") {
+					var currentWord = ds_map_find_value(currentEntrySubMap, "word");
+					currentUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWord - 1);
+				}
+				else if (chainType == "stackChain") {
+					currentUnit = ds_map_find_value(currentEntrySubMap, "unit");
+				}
 				
 				// calculate gapUnits
 				var currentGapUnits = "N/A";
