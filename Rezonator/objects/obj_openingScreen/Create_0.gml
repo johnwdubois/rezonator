@@ -423,7 +423,11 @@ global.optionListTypeImportGrid = 46;
 global.keyboardShortcutMap = ds_map_create();
 ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
 ds_map_add(global.keyboardShortcutMap, "menu_go-to-line", "G");
-ds_map_add(global.keyboardShortcutMap, "Grid View", "CTRL+G");
+ds_map_add(global.keyboardShortcutMap, "menu_save", "CTRL+S");
+ds_map_add(global.keyboardShortcutMap, "menu_grid", "CTRL+G");
+ds_map_add(global.keyboardShortcutMap, "menu_theme", "CTRL+B");
+
+
 
 scr_preImportInitiate();
 showPreImportScreen = false;
