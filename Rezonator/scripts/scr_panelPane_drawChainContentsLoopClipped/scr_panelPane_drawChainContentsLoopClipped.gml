@@ -14,7 +14,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	*/
 
 	// INcrease the size of the utterance column!!!
-
 	var filterPaneWidth = 0;
 	var chainListPaneWidth = 0;
 	with (obj_panelPane) {
@@ -28,8 +27,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 	//Set this pane to the right of the chainListPane
 	x = filterPaneWidth + chainListPaneWidth;
-
-
 
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);

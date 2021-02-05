@@ -43,7 +43,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	var textPlusY = 0;
 	var ableToBeMouseOver = true;
 
-	var xBuffer = 6;
 
 	// Create scroll bars
 	global.scrollBarWidth = 16;
@@ -153,205 +152,15 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 							}
 						}
 						else {
-			
-							//ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
-							//ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
 							with (obj_panelPane) {
 								functionChainContents_lineGridRowFocused = j;
-								//functionChainContents_BGColor = lineColor;
 							}
 							doubleClickTimer = 0;
 						}
 		
 					}
-			
-					var infoListSize = 3;
-					if (functionChainList_currentTab == functionChainList_tabLine) {
-						infoListSize = tokenContentsHeaderListSize;
-					}
-				
-					var activeCols = 0;
-					// Set collected info into respective columns
-					for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
 					
-						// if this is the transcript column, and there's no transcript, skip it!
-						if (getInfoLoop == 3 and !obj_control.transcriptAvailable) {
-							continue;
-						}
-					
-						var unitOrWordTagTokenView = false;
-					
-						currentWordInfoCol[getInfoLoop] = "";
-					
-						if (getInfoLoop == 0) {
-
-								//var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-								currentWordInfoCol[getInfoLoop] = currentWordID //string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-
-						}
-						else if (getInfoLoop == 1) {
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
-							}
-							else {
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
-							}
-						}
-						/*
-						else if (getInfoLoop == 2) {
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								currentWordInfoCol[getInfoLoop] = "";
-								var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
-								if (currentWordIDList == undefined) {
-									break;
-								}
-								var currentWordIDListSize = ds_list_size(currentWordIDList);
-								for (var i = 0; i < currentWordIDListSize; i++) {
-									var currentWordID = ds_list_find_value(currentWordIDList, i);
-									var currentWordString = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
-									currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
-								}
-						
-								if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
-									currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
-									currentWordInfoCol[getInfoLoop] += "...";
-								}
-							}
-							else {
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
-							}
-						}
-						*/
-						else if (getInfoLoop >= 2) {
-							if(getInfoLoop == 2) {
-								var importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop-2);
-							
-							
-							}
-							else{
-								var importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop-3);
-							}
-							//show_message(string(importcol));
-							if( importCol != undefined ){
-								currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.tokenImportGrid, importCol, currentWordID - 1));
-							}
-							else{
-								currentWordInfoCol[getInfoLoop] = "";
-							}
-	
-							var colName = ds_list_find_value(global.tokenImportColNameList, importCol);
-							if (ds_list_find_index(global.unitImportColNameList, colName) != -1 && ds_list_find_index(global.wordImportColNameList, colName) != -1) {
-								unitOrWordTagTokenView = true;
-							}
-							
-						
-						}
-					
-			
-						if(getInfoLoop == 0 or getInfoLoop ==1){
-							var textX = x + (activeCols * (windowWidth / 12)) + xBuffer;
-						}
-						else{
-							var textX = x + (activeCols * (windowWidth / 6)) + xBuffer - (windowWidth / 6);
-						}
-						var textY = y + textMarginTop + textPlusY;
-			
-						draw_set_color(global.colorThemeText);
-						draw_set_alpha(1);
-						draw_set_valign(fa_middle);
-						scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
-						draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
-					
-					
-						var scrollBarBuffer = 0;				
-						if(getInfoLoop >= 7){
-							scrollBarBuffer = global.scrollBarWidth;
-						}
-
-						var dropDownButtonSize = (tabHeight / 2);
-						var dropDownButtonWidthSize = sprite_get_width(spr_dropDown);
-						var dropDownRectX1 = textX + (windowWidth / 6) - 16 - scrollBarBuffer - dropDownButtonWidthSize;
-						var dropDownRectY1 = textY - (strHeight / 2) + 5 + scrollPlusY;
-						var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidthSize;
-						var dropDownRectY2 = dropDownRectY1 + dropDownButtonSize;
-
-					
-
-					
-						if(getInfoLoop >= 2) {
-						//draw tag selection
-						
-							if (getInfoLoop >= 3) {
-								var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-							}
-							else {
-								var colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-							}
-							var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-							var isTildaField = (string_char_at(string(mapKey), 1) == "~");
-
-							if (drawDropDowns && !unitOrWordTagTokenView && ds_map_exists(global.tokenImportTagMap, mapKey) && !isTildaField) {
-								
-								var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-								draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
-				
-								if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
-									
-									scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change tag", obj_tooltip.arrowFaceUp);
-									draw_set_color(global.colorThemeBorders);
-						
-									draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY , dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
-
-									if (mouse_check_button_released(mb_left)) {
-										with (obj_panelPane) {
-											selectedColToken = getInfoLoop;
-										}
-								
-										var dropDownOptionList = ds_list_create();
-										if (getInfoLoop >= 3) {
-											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
-												ds_list_copy(dropDownOptionList, tagMapList);
-												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-												obj_control.tokenImportRowToChange =currentWordID-1;
-											}
-										}
-										else {
-											if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
-												ds_list_copy(dropDownOptionList, tagMapList);
-												obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-												obj_control.tokenImportRowToChange = currentWordID - 1;
-											}
-										}
-								
-										var dropDownX = textX - xBuffer;
-										var dropDownY = textY + scrollPlusY + (strHeight / 2);
-
-								
-
-										if (ds_list_size(dropDownOptionList) > 0 ) {
-											var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
-											dropDownInst.optionList = dropDownOptionList;
-											dropDownInst.optionListType = global.optionListTypeTokenTagMap;
-
-										}
-								
-						
-
-
-									}
-				
-								}
-							}
-					
-					
-						}
-					
-						activeCols++;
-					}
-				
-			
+					scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY);
 			
 					textPlusY += strHeight;
 				} 
