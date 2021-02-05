@@ -369,7 +369,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	var scrollBarListSize = 0;
 	if (functionChainContents_IDList != undefined) {
 		if (ds_exists(functionChainContents_IDList, ds_type_list)) {
-			scrollBarListSize = ds_list_size(functionChainContents_IDList);
+			scrollBarListSize = ds_list_size(functionChainContents_IDList) + 2;
 		}
 	}
 

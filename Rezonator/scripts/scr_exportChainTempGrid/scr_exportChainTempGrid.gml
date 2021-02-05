@@ -36,6 +36,11 @@ function scr_exportChainTempGrid(chainList){
 			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 			ds_grid_set(grid, grid_colAlign, ds_grid_height(grid) - 1, currentChainAlign);
 		}
+		
+		// get rid of align column if this is stack grid
+		if (currentChainType == "stackChain" && ds_grid_width(grid) > 4) {
+			ds_grid_resize(grid, 4, ds_grid_height(grid));
+		}
 	}
 	
 	return grid;

@@ -206,11 +206,11 @@ switch (currentFunction) {
 		if(obj_panelPane.showNav) {
 			if (obj_toolPane.showTool){
 			
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+				draw_set_alpha(1);
+				draw_set_color(global.colorThemePaneBG);
+				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
-			scr_panelPane_drawHelp();
+				scr_panelPane_drawHelp();
 			}
 		}
 		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
@@ -270,25 +270,21 @@ switch (currentFunction) {
 
 if(obj_panelPane.showNav){
 
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemeBorders);
-		//if(currentFunction == functionSort && !obj_menuBar.sortPaneOpen){
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemeBorders);
+
+	if(currentFunction == functionChainContents && !obj_panelPane.showNavRight){
 	
-		//}
-		if(currentFunction == functionChainContents && !obj_panelPane.showNavRight){
+	}
+	else if(currentFunction == functionHelp && !obj_toolPane.showTool){
 	
-		}
-		else if(currentFunction == functionHelp && !obj_toolPane.showTool){
+	}
+	else if((currentFunction == functionChainList or currentFunction == functionFilter) && !obj_panelPane.showNavLeft){
 	
-		}
-		else if((currentFunction == functionChainList or currentFunction == functionFilter) && !obj_panelPane.showNavLeft){
-	
-		}
-		else {
-			
-				
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
-		}
+	}
+	else {
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+	}
 }
 
 

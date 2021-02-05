@@ -150,14 +150,24 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	// draw option text
+	//var optionTextStr = optionText;
+	var shortcutStr = "";
+	if(ds_map_exists(global.keyboardShortcutMap, optionText)){
+		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, optionText);	
+	}
 	var optionTextStr = scr_get_translation(optionText);
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
+	var shortcutTextX = floor(optionRectX2 - textBuffer);
 	scr_adaptFont(scr_get_translation(optionTextStr), "M");
 
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
-	
+	draw_set_halign(fa_right);
+	if(shortcutStr != ""){
+		draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
+	}
 
+	draw_set_halign(fa_left);
 	draw_set_alpha(1);
 	
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {

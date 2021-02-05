@@ -421,7 +421,9 @@ global.optionListTypeImportGrid = 46;
 
 //this map stores all the keyboard shortcuts to late be displayed on the tooltip
 global.keyboardShortcutMap = ds_map_create();
-ds_map_add(global.keyboardShortcutMap, "Search", "F");
+ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
+ds_map_add(global.keyboardShortcutMap, "menu_go-to-line", "G");
+ds_map_add(global.keyboardShortcutMap, "Grid View", "CTRL+G");
 
 scr_preImportInitiate();
 showPreImportScreen = false;
