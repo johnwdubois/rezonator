@@ -63,11 +63,12 @@ function scr_deleteChunk() {
 			}
 			
 			var chunkWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWordID - 1);
-			while(ds_list_size(chunkWordInChainsList) > 0){
+			//while(ds_list_size(chunkWordInChainsList) > 0){
 				obj_chain.currentFocusedChainID = ds_list_find_value(chunkWordInChainsList, 0);
 				scr_refocusChainEntry(currentWordID);
-				scr_deleteFromChain(true);
-			}
+				obj_control.deleteChunkWord = false;
+				//scr_deleteFromChain(true);
+			//}
 			
 			
 			// Disconnect the Chunk from its Chunkword

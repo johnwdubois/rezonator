@@ -174,7 +174,13 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 			obj_control.wideDropDown = true;
 			var wordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, obj_control.rightClickWordID);
 			var dropDownOptionList = ds_list_create();
-			if(ds_list_size(wordInChainsList) > 0){
+			var sizeOfList = 0;
+			if(is_numeric(wordInChainsList)){
+				if(ds_exists(wordInChainsList, ds_type_list)){
+					sizeOfList = ds_list_size(wordInChainsList);
+				}
+			}
+			if(sizeOfList > 0){
 				ds_list_add(dropDownOptionList,"Delete Chunk", "Delete Link");
 			}
 			else{

@@ -1,10 +1,14 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+// TEMPORARY EXIT for realease version 
+// Feel free to delete line 6
+exit;
+
 // Only read-mode has WordTips
 if (obj_toolPane.currentMode != obj_toolPane.modeRead)
 {
-	exit;
+//exit;
 }
 
 if (persistentBoxFlag == false)
