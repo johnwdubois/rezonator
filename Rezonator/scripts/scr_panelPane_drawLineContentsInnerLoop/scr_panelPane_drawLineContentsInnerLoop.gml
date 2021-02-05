@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY){
+function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2){
 
 	var xBuffer = 6;
 	var tabHeight = functionChainList_tabHeight;
@@ -59,16 +59,29 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 			}
 		}
 					
-		
+		// text coordinates
 		var textX = 0;
+		var colWidth = 0;
 		if (getInfoLoop == 0 or getInfoLoop == 1) {
-			textX = x + (activeCols * (windowWidth / 12)) + xBuffer;
+			colWidth = windowWidth / 12;
+			textX = x + (activeCols * colWidth) + xBuffer;
 		}
 		else {
-			textX = x + (activeCols * (windowWidth / 6)) + xBuffer - (windowWidth / 6);
+			colWidth = windowWidth / 6;
+			textX = x + (activeCols * colWidth) + xBuffer - (windowWidth / 6);
 		}
 		var textY = y + tabHeight + textPlusY;
-			
+		
+		// BG rect coordinates
+		var cellRectX1 = textX - xBuffer;
+		var cellRectY1 = rectY1;
+		var cellRectX2 = cellRectX1 + colWidth;
+		var cellRectY2 = rectY2;
+		draw_set_color(global.colorThemeBG);
+		draw_set_alpha(1);
+		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		
+		// draw text	
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
@@ -79,14 +92,14 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 		if (getInfoLoop >= 7) {
 			scrollBarBuffer = global.scrollBarWidth;
 		}
-
+		
+		// dropDown button coordinates
 		var dropDownButtonSize = (tabHeight / 2);
 		var dropDownButtonWidthSize = sprite_get_width(spr_dropDown);
 		var dropDownRectX1 = textX + (windowWidth / 6) - 16 - scrollBarBuffer - dropDownButtonWidthSize;
 		var dropDownRectY1 = textY - (strHeight / 2) + 5 + scrollPlusY;
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidthSize;
 		var dropDownRectY2 = dropDownRectY1 + dropDownButtonSize;
-
 					
 		if (getInfoLoop >= 2) {
 			//draw tag selection

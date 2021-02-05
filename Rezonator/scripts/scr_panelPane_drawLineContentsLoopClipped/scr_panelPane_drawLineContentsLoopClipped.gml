@@ -109,8 +109,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 					var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 					var rectX2 = x + windowWidth - global.scrollBarWidth;
 					var rectY2 = rectY1 + strHeight;
-				
-
 
 					if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + tabHeight), rectX2, rectY2) and ableToBeMouseOver and !instance_exists(obj_dropDown)
 					and !instance_exists(obj_dialogueBox)) {
@@ -160,7 +158,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 		
 					}
 					
-					scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY);
+					scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2);
 			
 					textPlusY += strHeight;
 				} 
@@ -317,7 +315,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	
 		if(i == 0 or i ==1){
 		}
-	
 		else {
 		
 			//user interaction for token selection
@@ -449,10 +446,5 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 			scrollPlusYDest -= (windowHeight);
 		}
 	}
-
-
-
-
-
 
 }
