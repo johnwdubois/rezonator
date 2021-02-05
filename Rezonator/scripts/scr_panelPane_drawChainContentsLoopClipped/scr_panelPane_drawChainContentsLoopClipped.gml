@@ -45,15 +45,6 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		exit;
 	}
 
-
-	if (clickedIn and keyboard_check_pressed(vk_escape)) {
-		with (obj_panelPane) {
-			functionChainList_lineGridRowFocused = -1;
-			functionChainContents_BGColor = global.colorThemeBG;
-		}
-	}
-
-
 	scr_surfaceStart();
 
 	// Find current tab to draw correct contents
@@ -176,6 +167,8 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
+				
+				var highlightEntryRect = false;
 
 				// Draw red rectangles if stretch word
 				if (chainType == "rezChain" or chainType == "trackChain") {
@@ -192,11 +185,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			
 				// Sets the link focused in the panelPane to the link focused in the main screen
 				if (chainFocusedEntry == currentEntry) {
-			
-					// Fill in square
-					draw_set_alpha(0.25);
-					draw_set_color(global.colorThemeText);
-					draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+					highlightEntryRect = true;
 			
 					// Focus in the main screen
 					if (chainType == "rezChain" or chainType == "trackChain") {
@@ -206,12 +195,11 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				}
 				else if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
 					ableToBeMouseOver = false;
-					draw_set_alpha(0.25);
-					draw_set_color(global.colorThemeText);
-					draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
+					highlightEntryRect = true;
 			
-					// Focus in the main screen
-					if (device_mouse_check_button_released(0, mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {	
+					// if the user clicks on the currentEntry in the chainContents, let's focus the chain and its currentEntry
+					if (device_mouse_check_button_released(0, mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
+						obj_chain.currentFocusedChainID = chainID;
 						ds_map_replace(chainSubMap, "focused", currentEntry);
 					}
 				}
@@ -245,8 +233,10 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 						}
 					}	
 				}
+				
+				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
 		
-				scr_panelPane_drawChainContentsInnerLoop(currentWordID, textPlusY);
+				scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
 				
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
@@ -299,25 +289,25 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		scrollBarBackColor, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
-
+	// draw background for headers
 	draw_set_alpha(1);
-
-
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
 
 
-	for (var i = 0; i < 3; i++) {
-		var colRectX1 = x + (i * (windowWidth / 6));
+	// draw headers for chainContents columns
+	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chainContents1toManyFieldList);
+	var colAmount = 3 + chainContents1toManyFieldListSize;
+	for (var i = 0; i < colAmount; i++) {
+		var colRectX1 = x + (i * (windowWidth / colAmount));
 		var colRectY1 = y;
-		var colRectX2 = colRectX1 + (windowWidth / 6);
-		if(i == 2) {
+		var colRectX2 = colRectX1 + (windowWidth / colAmount);
+		if (colAmount == 3 && i == 2) {
 			var colRectX2 = colRectX1 + (windowWidth);	
 		}
 		var colRectY2 = colRectY1 + windowHeight;
 	
-	
-		// headers for the chainContents columns
+		// get header string for static columns
 		var colName = "";
 		switch (i) {
 			case 0:
@@ -343,65 +333,35 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				colName = "N/A";
 				break;
 		}
+		
+		// get header string for dynamic columns
+		if (i >= 3) {
+			var currentField = ds_list_find_value(obj_control.chainContents1toManyFieldList, i - 3);
+			if (is_string(currentField)) {
+				colName = currentField;
+			}
+		}
 	
+		// make headers not overlap with each other
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
+		
 		draw_set_color(global.colorThemeText);
 		draw_set_valign(fa_top);
 		draw_set_halign(fa_left);
 		scr_adaptFont(colName, "S");
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
-		
-		// TAKING OUT THE CHAIN SORT BUTTONS .... for now!!!
-		/*
-		// sort arrow
-		var sortArrowTipText = (functionChainContents_sortedCol == i) ? "Sort ascending" : "Sort default";
-		var sortArrowAngle = (functionChainContents_sortedCol == i) ? 0 : 270;
-		if (functionChainContents_sortedCol == i and not functionChainContents_sortedColAsc) {
-			sortArrowAngle = 180;
-			sortArrowTipText = "Sort descending";
-		}
-		var sortArrowX = colRectX1 + string_width(colName + "AA");
-		var sortArrowY = y + (sprite_get_height(spr_ascend) * 0.4);
-		var sortArrowRectX1 = sortArrowX - 10;
-		var sortArrowRectY1 = sortArrowY - 10;
-		var sortArrowRectX2 = sortArrowX + 10;
-		var sortArrowRectY2 = sortArrowY + 10;
-		draw_sprite_ext(spr_ascend, 0, sortArrowX - clipX, sortArrowY - clipY, 1, 1, sortArrowAngle, c_white, 1);
-		if (point_in_rectangle(mouse_x, mouse_y, sortArrowRectX1, sortArrowRectY1, sortArrowRectX2, sortArrowRectY2)) {
-			scr_createTooltip(mean(sortArrowRectX1, sortArrowRectX2), sortArrowRectY2, sortArrowTipText, obj_tooltip.arrowFaceUp);
+		// draw vertical line between columns
+		if (i > 0) {
 			draw_set_color(global.colorThemeBorders);
+			draw_set_alpha(0.5);
+			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, colRectY2 - clipY);
 			draw_set_alpha(1);
-			draw_rectangle(sortArrowRectX1 - clipX, sortArrowRectY1 - clipY, sortArrowRectX2 - clipX, sortArrowRectY2 - clipY, true);
-			
-			if (device_mouse_check_button_released(0, mb_left)) {
-				if (functionChainContents_sortedCol == i) {
-					if (functionChainContents_sortedColAsc) {
-						functionChainContents_sortedColAsc = false;
-					}
-					else {
-						functionChainContents_sortedCol = -1;
-						functionChainContents_sortedColAsc = true;
-					}
-				}
-				else {
-					functionChainContents_sortedCol = i;
-					functionChainContents_sortedColAsc = true;
-				}
-				
-				scr_sortChainGrid(obj_chain.rezChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
-				scr_sortChainGrid(obj_chain.trackChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
-				scr_sortChainGrid(obj_chain.stackChainGrid, functionChainContents_sortedCol, functionChainContents_sortedColAsc);
-				
-			}
 		}
-		*/
 	}
 
-
+	// draw horizontal line between headers and contents
 	draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeight - clipY);
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents

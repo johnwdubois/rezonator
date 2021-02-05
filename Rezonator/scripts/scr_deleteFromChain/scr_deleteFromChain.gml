@@ -1,9 +1,11 @@
 ///@description Remove Link or Chunk
-function scr_deleteFromChain() {
+function scr_deleteFromChain(sortVizSetList) {
 	
 	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
 		scr_deleteChunk();
 	}
+	
+	show_debug_message("scr_deleteFromChain() , sortVizSetList: " + string(sortVizSetList));
 
 	
 	// get the focused chain's submap
@@ -84,7 +86,6 @@ function scr_deleteFromChain() {
 			
 			// unfocus chain
 			obj_chain.currentFocusedChainID = "";
-	
 			exit;
 		}
 		// if no source but it has at least 1 goal, we will restructure the links
@@ -151,17 +152,20 @@ function scr_deleteFromChain() {
 			ds_map_replace(goalEntrySubMap, "sourceLink", "");
 			ds_map_delete(global.nodeMap, firstGoalLink);
 			
+			// sort vizSetList!
+			if (sortVizSetList) {
+				scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
+			}
+			
 			// focus goalEntry
 			ds_map_replace(chainSubMap, "focused", goalEntry);
-			
 			exit;
 		}
 	}
 	
 	var sourceLinkSubMap = ds_map_find_value(global.nodeMap, sourceLink);
 	if (!is_numeric(sourceLinkSubMap)) {
-		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap is non-numeric");
-		exit;
+		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap is non-numeric");;
 	}
 	if (!ds_exists(sourceLinkSubMap, ds_type_map)) {
 		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap does not exist");
@@ -238,6 +242,9 @@ function scr_deleteFromChain() {
 	ds_map_delete(global.nodeMap, focusedEntry);
 	ds_map_destroy(focusedEntrySubMap);
 	
-	
+	// sort vizSetList!
+	if (sortVizSetList) {
+		scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
+	}
 
 }

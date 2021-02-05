@@ -1,16 +1,28 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawChainContentsInnerLoop(currentWordID, textPlusY){
+function scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight){
 	
 	// NOTE: for stacks, the currentWordID variable will be a unit
 	
 	var textMarginTop = functionChainList_tabHeight;
 	var xBuffer = 6;
 	
-	// Set collected info into correct places
-	for (var getInfoLoop = 0; getInfoLoop < 3; getInfoLoop++) {
+	// loop across horizontally along the chainContents window, getting each field for each entry
+	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chainContents1toManyFieldList);
+	var colAmount = 3 + chainContents1toManyFieldListSize;
+	for (var getInfoLoop = 0; getInfoLoop < colAmount; getInfoLoop++) {
+
+		// draw rectangle to prevent text overlapping
+		var cellRectX1 = x + (getInfoLoop * (windowWidth / colAmount));
+		var cellRectY1 = rectY1;
+		var cellRectX2 = cellRectX1 + (windowWidth / colAmount);
+		var cellRectY2 = rectY2;
+		draw_set_alpha(1);
+		draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, (highlight) ? 0.75 : 0.9));
+		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		
+		// get string of data
 		currentWordInfoCol[getInfoLoop] = "";
-			
 		switch (getInfoLoop) {
 			case 0:
 				if (functionChainList_currentTab == functionChainList_tabStackBrush
@@ -67,17 +79,36 @@ function scr_panelPane_drawChainContentsInnerLoop(currentWordID, textPlusY){
 				}
 				break;
 		}
+		
+		
+		// dynamic columns
+		if (getInfoLoop >= 3) {
 			
-		var textX = x + (getInfoLoop * (windowWidth / 6)) + xBuffer;
+			// get the current field and make sure its a string
+			var currentField = ds_list_find_value(obj_control.chainContents1toManyFieldList, getInfoLoop - 3);
+			if (!is_string(currentField)) continue;
+			
+			// look up currentField in tagMap
+			if (is_numeric(currentTagMap)) {
+				if (ds_exists(currentTagMap, ds_type_map)) {	
+					if (ds_map_exists(currentTagMap, currentField)) {
+						currentWordInfoCol[getInfoLoop] = ds_map_find_value(currentTagMap, currentField);
+					}
+				}
+			}
+		}
+			
+		var textX = x + (getInfoLoop * (windowWidth / colAmount)) + xBuffer;
 		var textY = y + textMarginTop + textPlusY;
+		
+		// remove linebreaks from string before drawing it
+		var drawStr = string(currentWordInfoCol[getInfoLoop]);
+		drawStr = string_replace_all(drawStr, "\r", "");
+		drawStr = string_replace_all(drawStr, "\n", "");
 			
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
-					
-		// remove linebreaks from string before drawing it
-		var drawStr = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
-		drawStr = string_replace_all(drawStr, "\n", "");
 		scr_adaptFont(drawStr, "S");
 		draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, drawStr);
 	}

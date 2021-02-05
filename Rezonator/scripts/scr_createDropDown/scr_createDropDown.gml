@@ -1,6 +1,6 @@
 // Create Dropdown Lists
 
-function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOptionListType, translateDropDown){
+function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOptionListType){
 	//var dropDownY = mouse_y;
 	var dropDownHeight = ds_list_size(dropDownOptionList) * string_height("0") * 1.25;
 	//show_message(string(obj_control.cameraBottomLine));

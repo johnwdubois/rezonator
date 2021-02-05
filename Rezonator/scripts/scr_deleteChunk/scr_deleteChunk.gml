@@ -66,7 +66,7 @@ function scr_deleteChunk() {
 			while(ds_list_size(chunkWordInChainsList) > 0){
 				obj_chain.currentFocusedChainID = ds_list_find_value(chunkWordInChainsList, 0);
 				scr_refocusChainEntry(currentWordID);
-				scr_deleteFromChain();
+				scr_deleteFromChain(true);
 			}
 			
 			
