@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2){
+function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2, highlight){
 
 	var xBuffer = 6;
 	var tabHeight = functionChainList_tabHeight;
@@ -11,6 +11,12 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 		infoListSize = tokenContentsHeaderListSize;
 	}
 	
+	// draw BG highlight for the entire windowWidth (if we have less than 6 columns)
+	if (highlight && infoListSize < 6) {
+		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeText, 0.15));
+		draw_set_alpha(1);
+		draw_rectangle(x - clipX, rectY1 - clipY, x + windowWidth - clipX, rectY2 - clipY, false);
+	}
 	
 	// Set collected info into respective columns
 	for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
@@ -77,7 +83,7 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 		var cellRectY1 = rectY1;
 		var cellRectX2 = cellRectX1 + colWidth;
 		var cellRectY2 = rectY2;
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(highlight ? merge_color(global.colorThemeBG, global.colorThemeText, 0.15) : global.colorThemeBG);
 		draw_set_alpha(1);
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		
