@@ -122,6 +122,7 @@ function scr_drawQuestionBox() {
 			while (ds_list_size(chainList) > 0) {
 				var currentChainID = ds_list_find_value(chainList, 0);
 				scr_deleteChain(currentChainID);
+				scr_deleteFromList(chainList, currentChainID); // safety check to eliminate infinite loop
 			}
 		}
 		if (clearAllRez || clearAllLinks) {
@@ -132,6 +133,7 @@ function scr_drawQuestionBox() {
 			while (ds_list_size(chainList) > 0) {
 				var currentChainID = ds_list_find_value(chainList, 0);
 				scr_deleteChain(currentChainID);
+				scr_deleteFromList(chainList, currentChainID); // safety check to eliminate infinite loop
 			}
 		}
 		if (clearAllTracks || clearAllLinks) {
@@ -142,6 +144,7 @@ function scr_drawQuestionBox() {
 			while (ds_list_size(chainList) > 0) {
 				var currentChainID = ds_list_find_value(chainList, 0);
 				scr_deleteChain(currentChainID);
+				scr_deleteFromList(chainList, currentChainID); // safety check to eliminate infinite loop
 			}
 		}
 			
