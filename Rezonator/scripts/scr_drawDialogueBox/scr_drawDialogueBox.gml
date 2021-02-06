@@ -14,7 +14,7 @@ function scr_drawDialogueBox() {
 				
 		Author: Brady Moore
 	*/
-		var boxHeight = camera_get_view_height(camera_get_active())/5; 
+		var boxHeight = camera_get_view_height(camera_get_active())/4; 
 		var boxWidth = camera_get_view_width(camera_get_active())/3;
 		//replaced buffers with vars for width and height so that offsets can be calculated off that
 		var searchBarXOffset = boxWidth * 0.45;
@@ -39,52 +39,92 @@ function scr_drawDialogueBox() {
 	
 
 		draw_set_halign(fa_left);
-		draw_set_colour(global.colorThemeBG);
+		draw_set_colour(merge_color(global.colorThemeBG,global.colorThemeText,0.1));
+		
 		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1, dialogueBoxRectX2, dialogueBoxRectY2, false);
 		draw_set_colour(global.colorThemePaneBG);
 		if (global.colorTheme ==0) {
-		draw_set_colour(c_ltgray);
+			draw_set_colour(c_ltgray);
 		}
+		var headerRectX1 = dialogueBoxRectX1;
+		var headerRectY1 = dialogueBoxRectY1;
+		var headerRectX2 = dialogueBoxRectX2;
+		var headerRectY2 = dialogueBoxRectY1+ (boxHeight*0.1);
+		
 		// draw background UI
-		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1 + 30, dialogueBoxRectX2, dialogueBoxRectY2, false);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1 + 30, dialogueBoxRectX2, dialogueBoxRectY2, true);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
+		
 		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1, dialogueBoxRectX2, dialogueBoxRectY2, true);
 		draw_set_colour(global.colorThemeText);
 	
-		scr_adaptFont(string(game_display_name),"M");
-		draw_text(floor(dialogueBoxRectX1 + 15), floor(dialogueBoxRectY1 + 15), string(game_display_name));
+		var headerTextX = floor(headerRectX1 + (boxWidth*0.025));
+		var headerTextY = floor(mean(headerRectY1,headerRectY2));
 	
+	
+	
+		scr_adaptFont(string(game_display_name),"M");
+		draw_text(headerTextX , headerTextY, string(game_display_name));
+	
+
+		var searchBarX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+		var searchBarY1 = dialogueBoxRectY1 + (boxHeight*0.4);
+		var searchBarX2 = dialogueBoxRectX1 + (boxWidth*0.95);
+		var searchBarY2 = dialogueBoxRectY1 + (boxHeight*0.6);
 
 	
 		// draw search bar
 		draw_set_colour(c_white);
-		draw_rectangle(cameraMidpointX - searchBarXOffset, cameraMidpointY - searchBarYOffset, cameraMidpointX + searchBarXOffset, cameraMidpointY + searchBarYOffset, false);
+		draw_rectangle(searchBarX1, searchBarY1, searchBarX2, searchBarY2, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(cameraMidpointX - searchBarXOffset, cameraMidpointY - searchBarYOffset, cameraMidpointX + searchBarXOffset, cameraMidpointY + searchBarYOffset, true);
+		draw_rectangle(searchBarX1, searchBarY1, searchBarX2, searchBarY2, true);
 
+
+
+		var okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+		var okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+		var okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+		var okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+		
 		// draw buttons for OK and Cancel
 		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(cameraMidpointX + 40 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 50 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, false);
+		draw_rectangle(okBoxRectX1, okBoxRectY1, okBoxRectX2,okBoxRectY2, false);
 		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(cameraMidpointX + 40 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 50 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, true);
-		draw_set_colour(global.colorThemeBG);
-		draw_rectangle(cameraMidpointX + 180 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 175 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, false);
-		draw_set_colour(global.colorThemeBorders);
-		draw_rectangle(cameraMidpointX + 180 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 175 + buttonXOffset,cameraMidpointY + 75 + buttonYOffset, true);
-		draw_set_colour(global.colorThemeText);
-
-	
-		// draw button text
-		scr_adaptFont(scr_get_translation("msg_okay"), "M");
-		draw_text(floor(cameraMidpointX + 30), floor(cameraMidpointY + 75), scr_get_translation("msg_okay"));
-		scr_adaptFont(scr_get_translation("msg_cancel"), "M");
-		draw_text(floor(cameraMidpointX + 150), floor(cameraMidpointY + 75), scr_get_translation("msg_cancel"));
-	
-		// Set Text Position
-		var dialogueBoxTextX = floor(dialogueBoxRectX1 + 25);
-		var dialogueBoxTextY = floor(dialogueBoxRectY1 + 75);
+		draw_rectangle(okBoxRectX1, okBoxRectY1, okBoxRectX2,okBoxRectY2, true);
 		
+		
+		var cancelBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.75);
+		var cancelBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+		var cancelBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.95);
+		var cancelBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+		
+		draw_set_colour(global.colorThemeBG);
+		draw_rectangle(cancelBoxRectX1,cancelBoxRectY1, cancelBoxRectX2,cancelBoxRectY2, false);
+		draw_set_colour(global.colorThemeBorders);
+		draw_rectangle(cancelBoxRectX1,cancelBoxRectY1, cancelBoxRectX2,cancelBoxRectY2, true);
+		
+		
+		
+		draw_set_colour(global.colorThemeText);
+		// draw ok button text
+		scr_adaptFont(scr_get_translation("msg_okay"), "M");
+		draw_set_halign(fa_center);
+		var okTextX = floor(mean(okBoxRectX1,okBoxRectX2));
+		var okTextY = floor(mean(okBoxRectY1,okBoxRectY2));
+		draw_text(okTextX, okTextY, scr_get_translation("msg_okay"));
+		
+		// draw cancel button text
+		var cancelTextX = floor(mean(cancelBoxRectX1,cancelBoxRectX2));
+		var cancelTextY = floor(mean(cancelBoxRectY1,cancelBoxRectY2));
+		scr_adaptFont(scr_get_translation("msg_cancel"), "M");
+		draw_text(cancelTextX, cancelTextY, scr_get_translation("msg_cancel"));
+		
+		draw_set_halign(fa_left);
+		// Set instruction text Position
+		var dialogueBoxTextX = floor(dialogueBoxRectX1 + (boxWidth*0.05));
+		var dialogueBoxTextY = floor(dialogueBoxRectY1 + (boxHeight*0.25));
+		var booleanBoxWidth = (boxWidth*0.04);
 	
 		if (obj_control.changeAuthor) {
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_creator"));
@@ -106,19 +146,26 @@ function scr_drawDialogueBox() {
 				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_new-word"));
 			}
 		
-					
+			
+			var splitWordBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			var splitWordBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+			var splitWordBoxRectX2 = splitWordBoxRectX1 + booleanBoxWidth;
+			var splitWordBoxRectY2 = splitWordBoxRectY1 + booleanBoxWidth;
+			
 			// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
 			scr_adaptFont(scr_get_translation("label_split-word"), "S");
-			draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("label_split-word"));
+			var splitWordBoleanTextX = splitWordBoxRectX2 + (boxWidth*0.025);
+			var splitWordBoleanTextY = floor(mean(splitWordBoxRectY1,splitWordBoxRectY2));
+			draw_text(splitWordBoleanTextX, splitWordBoleanTextY, scr_get_translation("label_split-word"));
 		
-			draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
+			draw_rectangle(splitWordBoxRectX1, splitWordBoxRectY1, splitWordBoxRectX2,splitWordBoxRectY2, true);
 			if (obj_control.splitWord) {
-				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
+				draw_rectangle(splitWordBoxRectX1, splitWordBoxRectY1, splitWordBoxRectX2, splitWordBoxRectY2, false);	
 			}
 	
 			// splitWord boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
+			if (point_in_rectangle(mouse_x, mouse_y, splitWordBoxRectX1, splitWordBoxRectY1, splitWordBoxRectX2, splitWordBoxRectY2)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -159,19 +206,26 @@ function scr_drawDialogueBox() {
 		
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_add_new-word"));
 	
+			var insertBeforeBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			var insertBeforeBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+			var insertBeforeBoxRectX2 = insertBeforeBoxRectX1 + booleanBoxWidth;
+			var insertBeforeBoxRectY2 = insertBeforeBoxRectY1 + booleanBoxWidth;
+	
+			var insertBeforeBoleanTextX = insertBeforeBoxRectX2 + (boxWidth*0.025);
+			var insertBeforeBoleanTextY = floor(mean(insertBeforeBoxRectY1,insertBeforeBoxRectY2));
 	
 				// draw boolean option check boxes
 			draw_set_colour(global.colorThemeText);
 			scr_adaptFont(scr_get_translation("msg_insert_before"), "S");
-			draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("msg_insert_before"));
+			draw_text(insertBeforeBoleanTextX, insertBeforeBoleanTextY , scr_get_translation("msg_insert_before"));
 		
-			draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
+			draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, true);
 			if (obj_control.before) {
-				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
+				draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, false);	
 			}
 		
-				// splitWord boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
+				// insert before boolean switch
+			if (point_in_rectangle(mouse_x, mouse_y, insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -212,34 +266,45 @@ function scr_drawDialogueBox() {
 			else{
 				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_line-jump"));
 			}
-		
-				scr_adaptFont(scr_get_translation("msg_time_search"), "S");
-				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("msg_time_search"));
+			
+			
+			
+			var timeSearchBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			var timeSearchBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+			var timeSearchBoxRectX2 = timeSearchBoxRectX1 + booleanBoxWidth;
+			var timeSearchBoxRectY2 = timeSearchBoxRectY1 + booleanBoxWidth;
 	
-				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
-				if (obj_control.goToTime) {
-					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
-				}
+			var timeSearchBoleanTextX = timeSearchBoxRectX2 + (boxWidth*0.025);
+			var timeSearchBoleanTextY = floor(mean(timeSearchBoxRectY1,timeSearchBoxRectY2));
+			
+		
+			scr_adaptFont(scr_get_translation("msg_time_search"), "S");
+			draw_text(timeSearchBoleanTextX, timeSearchBoleanTextY, scr_get_translation("msg_time_search"));
+	
+			draw_rectangle(timeSearchBoxRectX1, timeSearchBoxRectY1,timeSearchBoxRectX2, timeSearchBoxRectY2, true);
+			if (obj_control.goToTime) {
+				draw_rectangle(timeSearchBoxRectX1, timeSearchBoxRectY1,timeSearchBoxRectX2, timeSearchBoxRectY2, false);	
+			}
 	
 				// GoToTime boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
-					draw_set_color(c_white);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-					draw_set_colour(global.colorThemeBorders);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
+			if (point_in_rectangle(mouse_x, mouse_y, timeSearchBoxRectX1, timeSearchBoxRectY1,timeSearchBoxRectX2, timeSearchBoxRectY2)){
+				draw_set_color(c_white);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
+				draw_set_colour(global.colorThemeBorders);
+				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
 			
-					if(obj_control.goToTime){
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_enabled"));
-					}
-					else{
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_disabled"));
-					}
+				if(obj_control.goToTime){
+					draw_set_halign(fa_center);
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_enabled"));
+				}
+				else{
+					draw_set_halign(fa_center);
+					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_disabled"));
+				}
 				
-					if (mouse_check_button_pressed(mb_left)) {
-						obj_control.goToTime = !obj_control.goToTime;
-					}
+				if (mouse_check_button_pressed(mb_left)) {
+					obj_control.goToTime = !obj_control.goToTime;
+				}
 			}
 	
 		}
@@ -274,72 +339,67 @@ function scr_drawDialogueBox() {
 				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_dialogue_word"));
 			}
 	
-
+			
+			var caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			var caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+			var caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
+			var caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
+	
+			var caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
+			var caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
+			
+			var inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			var inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
+			var inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
+			var inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
+	
+			var inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
+			var inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
+			
+			var RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
+			var RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
+			var RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
+			var RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
+	
+			var RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
+			var RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
+			
 			//search functionality
 			if (!obj_control.regExCheck) {
 	
 				// draw boolean option check boxes
 				draw_set_colour(global.colorThemeText);
-				/*
-				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 90, cameraMidpointX - 215, cameraMidpointY + 110, true);
-				if (obj_control.transcriptSearch) {
-					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 90, cameraMidpointX - 215, cameraMidpointY + 110, false);	
-				}
-				*/
-				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 60, cameraMidpointX - 215, cameraMidpointY + 80, true);
+				draw_rectangle(caseSensitiveBoxRectX1, caseSensitiveBoxRectY1, caseSensitiveBoxRectX2, caseSensitiveBoxRectY2, true);
 				if (obj_control.caseSensitive) {
-					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 60, cameraMidpointX - 215, cameraMidpointY + 80, false);	
+					draw_rectangle(caseSensitiveBoxRectX1, caseSensitiveBoxRectY1, caseSensitiveBoxRectX2, caseSensitiveBoxRectY2, false);	
 				}
 	
-				draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, true);
+				draw_rectangle(inChainBoxRectX1,inChainBoxRectY1, inChainBoxRectX2, inChainBoxRectY2, true);
 				if (obj_control.inChainBool) {
-					draw_rectangle(cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50, false);	
+					draw_rectangle(inChainBoxRectX1,inChainBoxRectY1, inChainBoxRectX2, inChainBoxRectY2, false);	
 				}
 	
 			}
 	
-			draw_rectangle(cameraMidpointX + 40, cameraMidpointY - 60, cameraMidpointX + 60, cameraMidpointY - 40, true);
+			draw_rectangle(RegExBoxRectX1, RegExBoxRectY1,RegExBoxRectX2, RegExBoxRectY2, true);
 			if (obj_control.regExCheck) {
-				draw_rectangle(cameraMidpointX + 40, cameraMidpointY - 60, cameraMidpointX + 60, cameraMidpointY - 40, false);	
+				draw_rectangle(RegExBoxRectX1, RegExBoxRectY1,RegExBoxRectX2, RegExBoxRectY2, false);	
 			}
 
 			//darw boolean options text
 			scr_adaptFont(scr_get_translation("search_dialogue_regEx"), "S");
 			if (!obj_control.regExCheck) {
-				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 40), scr_get_translation("search_dialogue_current-unit"));
-				draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 70), scr_get_translation("search_dialogue_case"));
-				//draw_text(floor(cameraMidpointX - 210), floor(cameraMidpointY + 100), scr_get_translation("search_dialogue_transcript");
+				draw_text(caseSensitiveBoleanTextX, caseSensitiveBoleanTextY, scr_get_translation("search_dialogue_case"));
+				draw_text(inChainBoleanTextX, inChainBoleanTextY, scr_get_translation("search_dialogue_current-unit"));
 			}
-			draw_text(floor(cameraMidpointX + 70), floor(cameraMidpointY - 48), scr_get_translation("search_dialogue_regEx"));
+			draw_text(RegExBoleanTextX, RegExBoleanTextY, scr_get_translation("search_dialogue_regEx"));
 	
 	
 
 			if(!obj_control.regExCheck){
-			/*
-			// transcript search boolean switch		
-			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 90, cameraMidpointX - 215, cameraMidpointY + 110)){
-				
-					draw_set_color(c_white);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-					draw_set_colour(global.colorThemeBorders);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-					if(obj_control.transcriptSearch){
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25,mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Enabled");
-					}
-					else{
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25,mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), "Disabled");
-					}
-				
-					if (mouse_check_button_pressed(mb_left)) {
-						obj_control.transcriptSearch = !obj_control.transcriptSearch;		
-					}
-			}
-			*/
-			// case sensitive boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX - 235, cameraMidpointY + 60, cameraMidpointX - 215, cameraMidpointY + 80)){
+
+				// case sensitive boolean switch
+				if (point_in_rectangle(mouse_x, mouse_y, caseSensitiveBoxRectX1, caseSensitiveBoxRectY1, caseSensitiveBoxRectX2, caseSensitiveBoxRectY2)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -358,11 +418,11 @@ function scr_drawDialogueBox() {
 					if (mouse_check_button_pressed(mb_left)) {
 						obj_control.caseSensitive = !obj_control.caseSensitive;			
 					}
-			}
+				}
 
 
-			// current chain boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y,cameraMidpointX - 235, cameraMidpointY + 30, cameraMidpointX - 215, cameraMidpointY + 50)){
+				// current chain boolean switch
+				if (point_in_rectangle(mouse_x, mouse_y,inChainBoxRectX1,inChainBoxRectY1, inChainBoxRectX2, inChainBoxRectY2)){
 				
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
@@ -381,11 +441,11 @@ function scr_drawDialogueBox() {
 					if (mouse_check_button_pressed(mb_left)) {
 						obj_control.inChainBool = !obj_control.inChainBool;
 					}
-			}
+				}
 
 			}
 			// RegEx boolean switch
-			if (point_in_rectangle(mouse_x, mouse_y,cameraMidpointX + 40, cameraMidpointY - 60, cameraMidpointX + 60, cameraMidpointY - 40)){
+			if (point_in_rectangle(mouse_x, mouse_y,RegExBoxRectX1, RegExBoxRectY1,RegExBoxRectX2, RegExBoxRectY2)){
 	
 					draw_set_color(c_white);
 					draw_rectangle(mouse_x-35, mouse_y-20,mouse_x+35, mouse_y - 40,false);
@@ -592,7 +652,7 @@ function scr_drawDialogueBox() {
 
 
 	// ok button & Enter Key check
-	if ((point_in_rectangle(mouse_x, mouse_y, cameraMidpointX + 50 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 50 + buttonXOffset, cameraMidpointY + 75 + buttonYOffset) 
+	if ((point_in_rectangle(mouse_x, mouse_y, okBoxRectX1, okBoxRectY1, okBoxRectX2, okBoxRectY2) 
 	and obj_control.dialogueBoxActive)
 	and mouse_check_button_released(mb_left)
 	or (keyboard_check_pressed(vk_enter) 
@@ -735,7 +795,7 @@ function scr_drawDialogueBox() {
 	}
 
 	// cancel button check
-	if (point_in_rectangle(mouse_x, mouse_y, cameraMidpointX + 175 - buttonXOffset, cameraMidpointY + 75 - buttonYOffset, cameraMidpointX + 175 + buttonXOffset, cameraMidpointY + 75 + buttonYOffset) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
+	if (point_in_rectangle(mouse_x, mouse_y, cancelBoxRectX1,cancelBoxRectY1, cancelBoxRectX2,cancelBoxRectY2) && obj_control.dialogueBoxActive && mouse_check_button_released(mb_left) 
 			|| keyboard_check_pressed(vk_escape)) {
 				obj_control.alarm[11] = 60;
 			
