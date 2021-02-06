@@ -1,9 +1,12 @@
 ///@description Remove Link or Chunk
-function scr_deleteFromChain() {
+function scr_deleteFromChain(sortVizSetList) {
 	
 	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
+		//show_message("current Tool :   "+string(obj_toolPane.currentTool) + ",  newWordDeleted: " + string(obj_control.newWordDeleted)+ ",  deleteNewWord: " + string(obj_control.deleteNewWord)+ ",  deleteChunkWord: " + string(obj_control.deleteChunkWord))
 		scr_deleteChunk();
 	}
+	
+	show_debug_message("scr_deleteFromChain() , sortVizSetList: " + string(sortVizSetList));
 
 	
 	// get the focused chain's submap
@@ -28,6 +31,8 @@ function scr_deleteFromChain() {
 		show_debug_message("scr_deleteFromChain() ... focusedEntrySubMap does not exist");
 		exit;
 	}
+	
+	show_debug_message("scr_deleteFromChain() , CHECK 1");
 	var focusedEntryType = ds_map_find_value(focusedEntrySubMap, "type");
 	
 	// find where in the chain's setList the focused entry is
@@ -48,11 +53,13 @@ function scr_deleteFromChain() {
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
-				if(obj_control.rightClickonWord){
+				
+				if(obj_control.rightClickonWord and obj_control.deleteChunkWord){
 					if(obj_control.rightClickWordID != focusedEntryWord){
 						exit;
 					}
 				}
+				
 				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
 				var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
 				ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
@@ -64,7 +71,7 @@ function scr_deleteFromChain() {
 				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, focusedEntryUnit-1,-1);
 				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, focusedEntryUnit-1, -1);	
 			}
-		
+			show_debug_message("scr_deleteFromChain() , CHECK 2");
 			// delete and destroy the focused entry and its chain
 			ds_map_delete(global.nodeMap, focusedEntry);
 			ds_map_delete(global.nodeMap, obj_chain.currentFocusedChainID);
@@ -84,11 +91,11 @@ function scr_deleteFromChain() {
 			
 			// unfocus chain
 			obj_chain.currentFocusedChainID = "";
-	
 			exit;
 		}
 		// if no source but it has at least 1 goal, we will restructure the links
 		else {
+			show_debug_message("scr_deleteFromChain() , CHECK 3");
 			var firstGoalLink = ds_list_find_value(focusedEntryGoalLinkList, 0);
 			var firstGoalLinkSubMap = ds_map_find_value(global.nodeMap, firstGoalLink);
 			if (!is_numeric(firstGoalLinkSubMap)) {
@@ -109,7 +116,7 @@ function scr_deleteFromChain() {
 				show_debug_message("scr_deleteFromChain() ... goalEntrySubMap does not exist");
 				exit;
 			}
-			
+				show_debug_message("scr_deleteFromChain() , CHECK 4");
 			// go through all goalLinks (excluding firstGoalLink) and set their sources to be goalEntry
 			var goalEntryGoalLinkList = ds_map_find_value(goalEntrySubMap, "goalLinkList");
 			for (var i = 0; i < focusedEntryGoalLinkListSize; i++) {
@@ -135,7 +142,7 @@ function scr_deleteFromChain() {
 				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, focusedEntryUnit-1,-1);
 				ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, focusedEntryUnit-1, -1);	
 			}
-			
+			show_debug_message("scr_deleteFromChain() , CHECK 5");
 			// remove the focused entry from its chain's setList and delete it from nodeMap
 			scr_deleteFromList(chainSetList, focusedEntry);
 			ds_map_delete(global.nodeMap, focusedEntry);
@@ -151,17 +158,20 @@ function scr_deleteFromChain() {
 			ds_map_replace(goalEntrySubMap, "sourceLink", "");
 			ds_map_delete(global.nodeMap, firstGoalLink);
 			
+			// sort vizSetList!
+			if (sortVizSetList) {
+				scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
+			}
+			
 			// focus goalEntry
 			ds_map_replace(chainSubMap, "focused", goalEntry);
-			
 			exit;
 		}
 	}
 	
 	var sourceLinkSubMap = ds_map_find_value(global.nodeMap, sourceLink);
 	if (!is_numeric(sourceLinkSubMap)) {
-		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap is non-numeric");
-		exit;
+		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap is non-numeric");;
 	}
 	if (!ds_exists(sourceLinkSubMap, ds_type_map)) {
 		show_debug_message("scr_deleteFromChain() ... sourceLinkSubMap does not exist");
@@ -180,7 +190,7 @@ function scr_deleteFromChain() {
 		exit;
 	}
 	
-	
+	show_debug_message("scr_deleteFromChain() , CHECK 6");
 	
 	// remove the sourceLink from sourceEntry's goalLinkList
 	var sourceEntryGoalLinkList = ds_map_find_value(sourceEntrySubMap, "goalLinkList");
@@ -238,6 +248,12 @@ function scr_deleteFromChain() {
 	ds_map_delete(global.nodeMap, focusedEntry);
 	ds_map_destroy(focusedEntrySubMap);
 	
+	// sort vizSetList!
+	if (sortVizSetList) {
+		scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
+	}
 	
+	
+	show_debug_message("scr_deleteFromChain() , FINAL CHECK");
 
 }

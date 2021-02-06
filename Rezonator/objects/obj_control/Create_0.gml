@@ -668,6 +668,12 @@ ctrlHold = false;
 wordWrap = false;
 
 
+
+chainContents1toManyFieldList = ds_list_create();
+ds_list_add(chainContents1toManyFieldList, "gapUnits");
+
+
+
 with (obj_alarm) {
 	alarm[10] = 8;
 }

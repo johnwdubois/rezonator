@@ -95,8 +95,8 @@ switch (currentFunction) {
 				}
 				// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
 				if (functionChainContents_BGColor != global.colorThemeBG) {
-					draw_set_alpha(0.1);
-					draw_set_color(functionChainContents_BGColor);
+					draw_set_alpha(1);
+					draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, 0.9));
 					draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 				}
 			}

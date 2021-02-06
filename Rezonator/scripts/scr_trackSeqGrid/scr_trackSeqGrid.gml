@@ -8,15 +8,16 @@ function scr_trackSeqGrid(){
 	
 	// reset trackSeqGrid
 	var trackSeqGrid = obj_chain.trackSeqGrid;
+	var trackSeqGridWidth = obj_chain.trackSeqGridWidth + (ds_grid_width(global.tokenImportGrid) - 4);
 	ds_grid_clear(trackSeqGrid, 0);
-	ds_grid_resize(trackSeqGrid, obj_chain.trackSeqGridWidth, 0);
+	ds_grid_resize(trackSeqGrid, trackSeqGridWidth, 0);
+	
+	
+	
 	
 	// get trackChainList
 	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
 	var trackChainListSize = ds_list_size(trackChainList);
-	
-	
-
 	
 	// make temp grid to sort trackChains based on their first word's unitSeq and wordOrder
 	var tempGrid_colChainID = 0;
@@ -31,31 +32,12 @@ function scr_trackSeqGrid(){
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 		
 		// go through the current track's wordIDList and determine which word is earliest in the timeline
-		var currentWordIDList = scr_getChainTempList(currentChain);
-		var currentWordIDListSize = ds_list_size(currentWordIDList);
+		var currentWordIDList = scr_getChainTempList(currentChain, true);
 		var earliestWordID = -1;
-		for (var j = 0; j < currentWordIDListSize; j++) {
-			var currentWordID = ds_list_find_value(currentWordIDList, j);
-			if (earliestWordID == -1) {
-				// if the earliest word has not been set yet, let's make this word the earliest word
-				earliestWordID = currentWordID;
-			}
-			else {
-				// let's see if the current word has an earlier unitSeq than the earliest word
-				var currentUnitSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-				var earliestUnitSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, earliestWordID - 1);
-				if (currentUnitSeq < earliestUnitSeq) {
-					earliestWordID = currentWordID;
-				}
-				else if (currentUnitSeq == earliestUnitSeq) {
-					// if the current word and the earliest word have the same unitSeq, then we will compare their wordOrders
-					var currentWordOrder = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
-					var earliestWordOrder = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, earliestWordID - 1);
-					if (currentWordOrder < earliestWordOrder) {
-						earliestWordID = currentWordID;
-					}
-				}
-			}
+		
+		// the earliest word should be the first word in the currentWordIDList (because it came from the vizSetIDList)
+		if (ds_list_size(currentWordIDList) > 0) {
+			earliestWordID = ds_list_find_value(currentWordIDList, 0);
 		}
 		
 		// by now, we should know what this chain's earliest word in the timeline is
@@ -88,42 +70,54 @@ function scr_trackSeqGrid(){
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
 		
-		// get a temporary wordIDList for current chain
-		var currentWordIDList = scr_getChainTempList(currentChain);
-		if (!ds_exists(currentWordIDList, ds_type_list)) {
+		// get the setList for current chain
+		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		if (!is_numeric(currentVizSetIDList)) {
+			continue;
+		}
+		if (!ds_exists(currentVizSetIDList, ds_type_list)) {
 			continue;
 		}
 		
-		// create a list that is a duplicate of the currentWordIDList, but then sort it
-		// so that the trackSeqGrid is in default sorted order
-		var currentWordIDListSorted = ds_list_create();
-		ds_list_copy(currentWordIDListSorted, currentWordIDList);
-		ds_list_sort(currentWordIDListSorted, true);		
-		
-		// loop through currentWordIDListSorted and get the word values we will want for the trackSeqGrid
-		var currentWordIDListSortedSize = ds_list_size(currentWordIDListSorted);
-		for (var j = 0; j < currentWordIDListSortedSize; j++) {
+		// loop through currentVizSetIDList and get the word values we will want for the trackSeqGrid
+		var currentVizSetIDListSize = ds_list_size(currentVizSetIDList);
+		for (var j = 0; j < currentVizSetIDListSize; j++) {
 			
-			var currentWordID = ds_list_find_value(currentWordIDListSorted, j);
-			var currentText = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
-			var currentTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
-			if (currentTranscript == 0 || currentTranscript == "0") currentTranscript = "";
+			// get current entry and its corresponding word and fill up trackSeqGrid
+			var currentEntry = ds_list_find_value(currentVizSetIDList, j);
+			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 			
-			// add new row to trackSeqGrid
-			ds_grid_resize(trackSeqGrid, obj_chain.trackSeqGridWidth, ds_grid_height(trackSeqGrid) + 1);
-			ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainID, ds_grid_height(trackSeqGrid) - 1, currentChain);
-			ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainName, ds_grid_height(trackSeqGrid) - 1, currentChainName);
-			ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colTrackSeq, ds_grid_height(trackSeqGrid) - 1, j + 1);
-			ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colWordID, ds_grid_height(trackSeqGrid) - 1, currentWordID);
-			ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colText, ds_grid_height(trackSeqGrid) - 1, currentText);
-			ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colTranscript, ds_grid_height(trackSeqGrid) - 1, currentTranscript);
+			if (is_numeric(currentEntrySubMap)) {
+				if (is_numeric(currentEntrySubMap)) {
+					
+					// get currentEntry's tagmap
+					var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
+					var currentGapUnits = ds_map_find_value(currentTagMap, "gapUnits");
 			
+					// get word info
+					var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+					var currentText = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+					var currentTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
+					if (currentTranscript == 0 || currentTranscript == "0") currentTranscript = "";
+			
+					// add new row to trackSeqGrid
+					ds_grid_resize(trackSeqGrid, trackSeqGridWidth, ds_grid_height(trackSeqGrid) + 1);
+					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainID, ds_grid_height(trackSeqGrid) - 1, currentChain);
+					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainName, ds_grid_height(trackSeqGrid) - 1, currentChainName);
+					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colTrackSeq, ds_grid_height(trackSeqGrid) - 1, j + 1);
+					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colWordID, ds_grid_height(trackSeqGrid) - 1, currentWordID);
+					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colText, ds_grid_height(trackSeqGrid) - 1, currentText);
+					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colGapUnits, ds_grid_height(trackSeqGrid) - 1, currentGapUnits);
+					
+					// add tokenImport data to trackSeqGrid
+					var tokenImportGridWidth = ds_grid_width(global.tokenImportGrid);
+					for (var k = 4; k < tokenImportGridWidth; k++) {
+						var currentTokenImportValue = ds_grid_get(global.tokenImportGrid, k, currentWordID - 1);
+						ds_grid_set(trackSeqGrid, obj_chain.trackSeqGridWidth - 4 + k, ds_grid_height(trackSeqGrid) - 1, currentTokenImportValue);
+					}
+					
+				}
+			}
 		}
-		
-		// destroy the temporary wordIDList
-		ds_list_destroy(currentWordIDList);
-		
 	}
-	
-	
 }

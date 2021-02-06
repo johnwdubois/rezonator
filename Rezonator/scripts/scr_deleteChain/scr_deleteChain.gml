@@ -36,7 +36,7 @@ function scr_deleteChain(chainID){
 	while (sizeOfEntryList > 0) {
 		var currentEntry = ds_list_find_value(setIDList, 0);
 		ds_map_replace(chainSubMap, "focused", currentEntry);
-		scr_deleteFromChain();
+		scr_deleteFromChain(false);
 		
 		if (ds_exists(setIDList, ds_type_list)) {
 			sizeOfEntryList = ds_list_size(setIDList);

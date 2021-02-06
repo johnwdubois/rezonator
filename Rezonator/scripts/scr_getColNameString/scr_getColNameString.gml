@@ -250,9 +250,16 @@ function scr_getColNameString(grid, col) {
 			case obj_chain.trackSeqGrid_colUnitText:
 				colName = "UnitText";
 				break;
+			case obj_chain.trackSeqGrid_colGapUnits:
+				colName = "GapUnits";
+				break;
 			default:
 				break;
 		}
+		if (col >= obj_chain.trackSeqGridWidth) {
+			colName = string(ds_list_find_value(global.tokenImportColNameList, col - 5));
+		}
+		
 	}
 	else if (grid == obj_chain.chunkGrid) {
 		switch (col) {

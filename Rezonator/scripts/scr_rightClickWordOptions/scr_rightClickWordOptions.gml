@@ -120,15 +120,11 @@ function scr_rightClickWordOptions(optionSelected) {
 				show_debug_message("scr_rightclickwordOptions() ... word has no chains no slectioon should happen...");
 				obj_chain.currentFocusedChainID = chainToSelect;
 			}
-			
 
-			if(chainToSelect != ""){
-				//scr_deleteFromChain();
-			}
 			
 			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
 			obj_control.deleteNewWord = true;
-			scr_deleteFromChain();
+			scr_deleteFromChain(true);
 			
 			obj_control.deleteNewWord = false;
 			obj_control.rightClickonWord = false;
@@ -154,7 +150,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			if (chainToSelect != "" || ds_map_exists(global.nodeMap, chainToSelect)) {
 				show_debug_message("scr_rightclickwordOptions() ... word has no chains no slectioon should happen...");
 				obj_chain.currentFocusedChainID = chainToSelect;
-				scr_deleteFromChain();
+				scr_deleteFromChain(true);
 			}
 			
 			
@@ -167,7 +163,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			//obj_control.newWordHoverWordID = obj_control.rightClickWordID;
 			obj_control.deleteChunkWord = true;
 			//show_message("Coming Soon");
-			scr_deleteFromChain();
+			scr_deleteFromChain(true);
 			
 			obj_control.deleteChunkWord = false;
 			obj_control.rightClickonWord = false;
