@@ -1,34 +1,30 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_trackSeqGrid(){
+function scr_exportChainEntryGrid(grid){
 	
 	if (!instance_exists(obj_chain) || !instance_exists(obj_control)) {
 		exit;
 	}
 	
-	// reset trackSeqGrid
-	var trackSeqGrid = obj_chain.trackSeqGrid;
-	var trackSeqGridWidth = obj_chain.trackSeqGridWidth + (ds_grid_width(global.tokenImportGrid) - 4);
-	ds_grid_clear(trackSeqGrid, 0);
-	ds_grid_resize(trackSeqGrid, trackSeqGridWidth, 0);
+	// reset trackGrid
+	var gridWidth = obj_chain.trackGridWidth + (ds_grid_width(global.tokenImportGrid) - 4);
+	ds_grid_clear(grid, 0);
+	ds_grid_resize(grid, gridWidth, 0);
 	
-	
-	
-	
-	// get trackChainList
-	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
-	var trackChainListSize = ds_list_size(trackChainList);
+	// get chainList
+	var chainList = ds_map_find_value(global.nodeMap, (grid == obj_chain.trackGrid) ? "trackChainList" : "rezChainList");
+	var chainListSize = ds_list_size(chainList);
 	
 	// make temp grid to sort trackChains based on their first word's unitSeq and wordOrder
 	var tempGrid_colChainID = 0;
 	var tempGrid_colUnitSeq = 1;
 	var tempGrid_colWordOrder = 2;
-	var tempGrid = ds_grid_create(3, trackChainListSize);
+	var tempGrid = ds_grid_create(3, chainListSize);
 	
 	// set the chainSeq values for each track
-	for (var i = 0; i < trackChainListSize; i++) {
+	for (var i = 0; i < chainListSize; i++) {
 		
-		var currentChain = ds_list_find_value(trackChainList, i);
+		var currentChain = ds_list_find_value(chainList, i);
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 		
 		// go through the current track's wordIDList and determine which word is earliest in the timeline
@@ -59,7 +55,7 @@ function scr_trackSeqGrid(){
 	
 	
 	
-	// loop through the sorted tempGrid and fill up trackSeqGrid
+	// loop through the sorted tempGrid and fill up trackGrid
 	var tempGridHeight = ds_grid_height(tempGrid);
 	for (var i = 0; i < tempGridHeight; i++) {
 		
@@ -79,11 +75,11 @@ function scr_trackSeqGrid(){
 			continue;
 		}
 		
-		// loop through currentVizSetIDList and get the word values we will want for the trackSeqGrid
+		// loop through currentVizSetIDList and get the word values we will want for the trackGrid
 		var currentVizSetIDListSize = ds_list_size(currentVizSetIDList);
 		for (var j = 0; j < currentVizSetIDListSize; j++) {
 			
-			// get current entry and its corresponding word and fill up trackSeqGrid
+			// get current entry and its corresponding word and fill up trackGrid
 			var currentEntry = ds_list_find_value(currentVizSetIDList, j);
 			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 			
@@ -100,22 +96,22 @@ function scr_trackSeqGrid(){
 					var currentTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
 					if (currentTranscript == 0 || currentTranscript == "0") currentTranscript = "";
 			
-					// add new row to trackSeqGrid
-					ds_grid_resize(trackSeqGrid, trackSeqGridWidth, ds_grid_height(trackSeqGrid) + 1);
-					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainID, ds_grid_height(trackSeqGrid) - 1, currentChain);
-					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colChainName, ds_grid_height(trackSeqGrid) - 1, currentChainName);
-					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colTrackSeq, ds_grid_height(trackSeqGrid) - 1, j + 1);
-					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colWordID, ds_grid_height(trackSeqGrid) - 1, currentWordID);
-					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colText, ds_grid_height(trackSeqGrid) - 1, currentText);
-					ds_grid_set(trackSeqGrid, obj_chain.trackSeqGrid_colGapUnits, ds_grid_height(trackSeqGrid) - 1, currentGapUnits);
+					// add new row to trackGrid
+					ds_grid_resize(grid, gridWidth, ds_grid_height(grid) + 1);
+					var newGridRow = ds_grid_height(grid) - 1;
+					ds_grid_set(grid, obj_chain.trackGrid_colChainID, newGridRow, currentChain);
+					ds_grid_set(grid, obj_chain.trackGrid_colChainName, newGridRow, currentChainName);
+					ds_grid_set(grid, obj_chain.trackGrid_colTrackSeq, newGridRow, j + 1);
+					ds_grid_set(grid, obj_chain.trackGrid_colWordID, newGridRow, currentWordID);
+					ds_grid_set(grid, obj_chain.trackGrid_colText, newGridRow, currentText);
+					ds_grid_set(grid, obj_chain.trackGrid_colGapUnits, newGridRow, currentGapUnits);
 					
-					// add tokenImport data to trackSeqGrid
+					// add tokenImport data to trackGrid
 					var tokenImportGridWidth = ds_grid_width(global.tokenImportGrid);
 					for (var k = 4; k < tokenImportGridWidth; k++) {
 						var currentTokenImportValue = ds_grid_get(global.tokenImportGrid, k, currentWordID - 1);
-						ds_grid_set(trackSeqGrid, obj_chain.trackSeqGridWidth - 4 + k, ds_grid_height(trackSeqGrid) - 1, currentTokenImportValue);
-					}
-					
+						ds_grid_set(grid, obj_chain.trackGridWidth - 4 + k, ds_grid_height(grid) - 1, currentTokenImportValue);
+					}					
 				}
 			}
 		}
