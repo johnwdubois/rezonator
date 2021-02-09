@@ -5,6 +5,7 @@ function scr_adaptFont(inputString,size){
 			exit;
 		}
 		var isCJK = false;
+		var isHE = false;
 		var letterCount = string_length(inputString);
 		for(var i = 0;i <= letterCount; i++){
 			
@@ -14,9 +15,13 @@ function scr_adaptFont(inputString,size){
 			(131072 <= unicodeValue  and unicodeValue <= 183983) or
 			(194560 <= unicodeValue  and unicodeValue <= 195103) ){
 			
-			isCJK = true;
-			break;
+				isCJK = true;
+				break;
 			
+			}
+
+			if ( 1424 <= unicodeValue  and unicodeValue <= 1535 ){
+				isHE = true;
 			}
 			
 			
@@ -158,4 +163,10 @@ function scr_adaptFont(inputString,size){
 		}
 		
 	draw_set_font(fontScaledName);
+	
+	if(isHE){ inputString = scr_stringReverse(inputString); }
+	
+	return inputString;
+	
+	
 }
