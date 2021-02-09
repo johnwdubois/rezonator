@@ -339,6 +339,7 @@
     {"id":{"name":"g_UTF8","path":"scripts/g_UTF8/g_UTF8.yy",},"order":3,},
     {"id":{"name":"scr_directoryCopy","path":"scripts/scr_directoryCopy/scr_directoryCopy.yy",},"order":14,},
     {"id":{"name":"scr_quickLinkCreation","path":"scripts/scr_quickLinkCreation/scr_quickLinkCreation.yy",},"order":34,},
+    {"id":{"name":"spr_saveWarning","path":"sprites/spr_saveWarning/spr_saveWarning.yy",},"order":24,},
     {"id":{"name":"scr_languageOptions","path":"scripts/scr_languageOptions/scr_languageOptions.yy",},"order":44,},
     {"id":{"name":"scr_closeDialogueBoxVariables","path":"scripts/scr_closeDialogueBoxVariables/scr_closeDialogueBoxVariables.yy",},"order":11,},
     {"id":{"name":"scr_editOptions","path":"scripts/scr_editOptions/scr_editOptions.yy",},"order":40,},
