@@ -84,7 +84,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 
 	// get each wordID from wordIDList and draw it
-	drawWordLoop = 0;
+	
+	drawWordLoop = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : currentWordIDListSize-1;
 	repeat (currentWordIDListSize) {
 	//for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
 		//var shake = false;
@@ -119,8 +120,10 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	
 		if(currentWordState != wordStateNormal) {
 			if(currentWordState == wordStateDead) {
-			
-				drawWordLoop++;
+				
+				if(drawLineState = lineState_ltr){ drawWordLoop++; }
+				else{drawWordLoop--;}
+				
 				continue;
 			}
 	
@@ -132,7 +135,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				// set displayWordSeq for chunk
 				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordID - 1, drawWordLoop);
 			
-				drawWordLoop++;
+				if(drawLineState = lineState_ltr){ drawWordLoop++; }
+				else{drawWordLoop--;}
 				continue;
 			}
 		}
@@ -319,7 +323,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		previousWordDisplayString = currentWordString;
 	
 		shapeTextX += currentWordStringWidth + shapeTextSpace;
-		drawWordLoop++;
+		if(drawLineState = lineState_ltr){ drawWordLoop++; }
+		else{drawWordLoop--;}
 	}
 
 

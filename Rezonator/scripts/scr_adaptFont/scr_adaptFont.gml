@@ -1,10 +1,16 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_adaptFont(inputString,size){
+
 	
 	if (!is_string(inputString)){
 		exit;
 	}
+
+
+	inputString = string_replace_all(inputString, "\n", "");
+	inputString = string_replace_all(inputString, "\r", "");
+	
 	
 	var isCJK = false;
 	var isHE = false;
@@ -183,6 +189,8 @@ function scr_adaptFont(inputString,size){
 	draw_set_font(fontScaledName);
 	
 	if(isHE){ inputString = scr_stringReverse(inputString); }
+	
+	
 	
 	return inputString;
 	

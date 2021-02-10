@@ -9,7 +9,9 @@ function scr_stringReverse(inputString){
 		var newString = "";
 		var letterCount = string_length(inputString);
 		for(var i = letterCount;i > 0; i--){
-			newString += string_char_at(inputString,i);
+			var charToAdd = string_char_at(inputString,i);
+			if(charToAdd == "\n" ||charToAdd == "\r" ){continue;}
+			newString += charToAdd;
 		}
 		ds_map_add(global.reverseStrMap, inputString, newString);
 		return newString;

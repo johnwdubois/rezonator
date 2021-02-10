@@ -109,7 +109,7 @@ function scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, 
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
-		scr_adaptFont(drawStr, "S");
+		drawStr = scr_adaptFont(drawStr, "S");
 		draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, drawStr);
 	}
 }

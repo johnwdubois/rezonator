@@ -90,20 +90,27 @@ function scr_panelPane_drawLineListLoopClipped() {
 		}
 	
 		// get this line's concatenated string
-		for (var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
+		var wordListLoop = (obj_control.drawLineState == obj_control.lineState_ltr) ? 0 : currentLineWordListSize-1;
+		repeat(currentLineWordListSize){
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 		
 			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
 			if(currentWordState == obj_control.wordStateDead){
+				if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
+				else{wordListLoop--;}
 				continue;
 			}
-			var currentWordToken = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+			var currentWordToken = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
+			currentWordToken = scr_adaptFont(currentWordToken,"M");
 			currentLineWordString += string(currentWordToken) + " ";
+			if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
+			else{wordListLoop--;}
 		}
-	
-		if (string_height(currentLineWordString) > 20) {
-			textAdjustY = string_height(currentLineWordString) - 20;
-		}
+		
+
+		//if (string_height(currentLineWordString) > 20) {
+		//	textAdjustY = string_height(currentLineWordString) - 20;
+		//}
 	
 		// Get dimensions of rectangle around line name
 		var lineNameRectX1 = x;
@@ -159,10 +166,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(currentLineWordString,"M");
 		draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, currentLineWordString);
-		//draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, ds_list_find_value(functionChainList_lineGridDisplayYList, i));
-		
-	
-	
+
 	
 		// Get height of chain name
 		textPlusY += strHeight;

@@ -667,7 +667,10 @@ ctrlHold = false;
 
 wordWrap = false;
 
-
+//draw Line directional states
+lineState_ltr = "leftToRight";
+lineState_rtl = "righToLeft";
+drawLineState = lineState_ltr;
 
 chainContents1toManyFieldList = ds_list_create();
 ds_list_add(chainContents1toManyFieldList, "gapUnits");
