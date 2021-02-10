@@ -31,7 +31,7 @@ function scr_importPlainTXT(filename) {
 			if(global.importType == global.importType_Paragraph){
 				ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
 				var row = ds_grid_height(global.importGrid) - 1;
-				var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));
+				var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));				
 				ds_grid_set(global.importGrid, col, row, colVal);
 			}
 			group++;
@@ -40,7 +40,40 @@ function scr_importPlainTXT(filename) {
 			ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid) + 1);
 			var row = ds_grid_height(global.importGrid) - 1;
 			var colVal = string_copy(lineInFile, 0 , string_length(lineInFile));
-			ds_grid_set(global.importGrid, col, row, colVal);
+			
+			var newString = "";
+			
+			var letterCount = string_length(colVal);
+			show_debug_message("letterCount: " + string(letterCount));
+			for(var i = 1;i <= letterCount; i++){
+				var charFromFile = string_char_at(colVal,i);
+				var nextChar = string_char_at(colVal,i+1);
+				var unicodeValue = ord(charFromFile);
+				var nextUnicodeValue = ord(nextChar);
+				
+				newString += charFromFile;
+				
+				if ( (12288 <= unicodeValue  and unicodeValue <= 40959)  or
+				(63744 <= unicodeValue  and unicodeValue <= 64255) or
+				(131072 <= unicodeValue  and unicodeValue <= 183983) or
+				(194560 <= unicodeValue  and unicodeValue <= 195103) ){
+					
+					newString += " ";
+
+				}
+				else if ( (12288 <= nextUnicodeValue  and nextUnicodeValue <= 40959)  or
+				(63744 <= nextUnicodeValue  and nextUnicodeValue <= 64255) or
+				(131072 <= nextUnicodeValue  and nextUnicodeValue <= 183983) or
+				(194560 <= nextUnicodeValue  and nextUnicodeValue <= 195103) ){
+					
+					newString += " ";
+
+				}
+				
+			}
+
+			
+			ds_grid_set(global.importGrid, col, row, newString);
 			col++;
 			ds_grid_set(global.importGrid, col, row, group);
 		
