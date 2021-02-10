@@ -6,7 +6,7 @@
     "path": "folders/Scripts/export.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_trackSeqGrid",
+  "name": "scr_exportChainEntryGrid",
   "tags": [],
   "resourceType": "GMScript",
 }

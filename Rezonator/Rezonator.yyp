@@ -309,7 +309,7 @@
     {"id":{"name":"scr_unitTagMapOptions","path":"scripts/scr_unitTagMapOptions/scr_unitTagMapOptions.yy",},"order":30,},
     {"id":{"name":"scr_importIGT","path":"scripts/scr_importIGT/scr_importIGT.yy",},"order":7,},
     {"id":{"name":"scr_tokenMarkerOptions","path":"scripts/scr_tokenMarkerOptions/scr_tokenMarkerOptions.yy",},"order":31,},
-    {"id":{"name":"scr_trackSeqGrid","path":"scripts/scr_trackSeqGrid/scr_trackSeqGrid.yy",},"order":7,},
+    {"id":{"name":"scr_exportChainEntryGrid","path":"scripts/scr_exportChainEntryGrid/scr_exportChainEntryGrid.yy",},"order":7,},
     {"id":{"name":"scr_unitMarkerOptions","path":"scripts/scr_unitMarkerOptions/scr_unitMarkerOptions.yy",},"order":32,},
     {"id":{"name":"scr_stackOptions","path":"scripts/scr_stackOptions/scr_stackOptions.yy",},"order":33,},
     {"id":{"name":"scr_createChunk","path":"scripts/scr_createChunk/scr_createChunk.yy",},"order":19,},
