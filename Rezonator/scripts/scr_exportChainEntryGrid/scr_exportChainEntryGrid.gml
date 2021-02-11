@@ -53,67 +53,82 @@ function scr_exportChainEntryGrid(grid){
 	// we sort the tempGrid based on 1) unitSeq and then 2) wordOrder
 	scr_gridMultiColSort(tempGrid, tempGrid_colUnitSeq, true, tempGrid_colWordOrder, true);
 	
-	
-	
-	// loop through the sorted tempGrid and fill up trackGrid
+	// get sorted list of chains
+	var chainSeqList = ds_list_create();
 	var tempGridHeight = ds_grid_height(tempGrid);
 	for (var i = 0; i < tempGridHeight; i++) {
+		var currentChain = ds_grid_get(tempGrid, tempGrid_colChainID, i);
+		ds_list_add(chainSeqList, currentChain);
+	}
+	show_debug_message("scr_exportChainEntryGrid() ... chainSeqList: " + scr_getStringOfList(chainSeqList));
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// loop through the sorted list of chains and fill up trackGrid
+	var chainSeqListSize = ds_list_size(chainSeqList);
+	for (var i = 0; i < chainSeqListSize; i++) {
 		
 		// get current chain and its name
-		var currentChain = ds_grid_get(tempGrid, tempGrid_colChainID, i);
+		var currentChain = ds_list_find_value(chainSeqList, i);
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+		
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
 		
 		// get the setList for current chain
 		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
-		if (!is_numeric(currentVizSetIDList)) {
-			continue;
-		}
-		if (!ds_exists(currentVizSetIDList, ds_type_list)) {
-			continue;
-		}
+		if (!is_numeric(currentVizSetIDList)) continue;
+		if (!ds_exists(currentVizSetIDList, ds_type_list)) continue;
 		
-		// loop through currentVizSetIDList and get the word values we will want for the trackGrid
+		// loop through setList and get the word values we will want for the trackGrid
 		var currentVizSetIDListSize = ds_list_size(currentVizSetIDList);
 		for (var j = 0; j < currentVizSetIDListSize; j++) {
-			
+		
 			// get current entry and its corresponding word and fill up trackGrid
 			var currentEntry = ds_list_find_value(currentVizSetIDList, j);
 			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 			
+			// get currentEntry's word and check if its a chunk
+			var currentWord = -1;
+			var rowInChunkGrid = -1;
+			var isChunk = false;
+			var isInChunk = false;
 			if (is_numeric(currentEntrySubMap)) {
-				if (is_numeric(currentEntrySubMap)) {
-					
-					// get currentEntry's tagmap
-					var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
-					var currentGapUnits = ds_map_find_value(currentTagMap, "gapUnits");
+				if (ds_exists(currentEntrySubMap, ds_type_map)) {
+					currentWord = ds_map_find_value(currentEntrySubMap, "word");
+					var currentWordInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWord - 1);
+					var currentWordInBoxListSize = ds_list_size(currentWordInBoxList);
+					if (currentWordInBoxListSize > 0) {
+						rowInChunkGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWord);
+						if (rowInChunkGrid >= 0) isChunk = true;
+						else isInChunk = true;
+					}
+				}
+			}
 			
-					// get word info
-					var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
-					var currentText = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
-					var currentTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
-					if (currentTranscript == 0 || currentTranscript == "0") currentTranscript = "";
+			// make a new row for this entry
+			scr_exportChainEntryGridNewRow(grid, currentChain, currentChainName, currentEntry, currentWord, i + 1, j + 1, isChunk, isInChunk);
 			
-					// add new row to trackGrid
-					ds_grid_resize(grid, gridWidth, ds_grid_height(grid) + 1);
-					var newGridRow = ds_grid_height(grid) - 1;
-					ds_grid_set(grid, obj_chain.trackGrid_colChainID, newGridRow, currentChain);
-					ds_grid_set(grid, obj_chain.trackGrid_colChainName, newGridRow, currentChainName);
-					ds_grid_set(grid, obj_chain.trackGrid_colTrackSeq, newGridRow, j + 1);
-					ds_grid_set(grid, obj_chain.trackGrid_colWordID, newGridRow, currentWordID);
-					ds_grid_set(grid, obj_chain.trackGrid_colText, newGridRow, currentText);
-					ds_grid_set(grid, obj_chain.trackGrid_colGapUnits, newGridRow, currentGapUnits);
-					
-					// add tokenImport data to trackGrid
-					var tokenImportGridWidth = ds_grid_width(global.tokenImportGrid);
-					for (var k = 4; k < tokenImportGridWidth; k++) {
-						var currentTokenImportValue = ds_grid_get(global.tokenImportGrid, k, currentWordID - 1);
-						ds_grid_set(grid, obj_chain.trackGridWidth - 4 + k, ds_grid_height(grid) - 1, currentTokenImportValue);
-					}					
+			// if this word is a chunk, then we will loop through all of the words in it and give them a new row too!
+			if (isChunk) {
+				var chunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, rowInChunkGrid);
+				var chunkWordListSize = ds_list_size(chunkWordList);
+				for (var k = 0; k < chunkWordListSize - 1; k++) {
+					var currentChunkWord = ds_list_find_value(chunkWordList, k);
+					scr_exportChainEntryGridNewRow(grid, currentChain, currentChainName, currentEntry, currentChunkWord, i + 1, j + 1, false, true);
 				}
 			}
 		}
 	}
+	
+	ds_list_destroy(chainSeqList);
 }
