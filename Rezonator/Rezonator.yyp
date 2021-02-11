@@ -326,6 +326,7 @@
     {"id":{"name":"scr_dialogueBoxReplace","path":"scripts/scr_dialogueBoxReplace/scr_dialogueBoxReplace.yy",},"order":7,},
     {"id":{"name":"scr_combineChains","path":"scripts/scr_combineChains/scr_combineChains.yy",},"order":15,},
     {"id":{"name":"scr_dialogueBoxNewTagCategory","path":"scripts/scr_dialogueBoxNewTagCategory/scr_dialogueBoxNewTagCategory.yy",},"order":9,},
+    {"id":{"name":"scr_getUnitText","path":"scripts/scr_getUnitText/scr_getUnitText.yy",},"order":19,},
     {"id":{"name":"scr_panelPane_drawLineTranslationLoopClipped","path":"scripts/scr_panelPane_drawLineTranslationLoopClipped/scr_panelPane_drawLineTranslationLoopClipped.yy",},"order":2,},
     {"id":{"name":"scr_windowCameraAdjust","path":"scripts/scr_windowCameraAdjust/scr_windowCameraAdjust.yy",},"order":0,},
     {"id":{"name":"scr_deleteChunk","path":"scripts/scr_deleteChunk/scr_deleteChunk.yy",},"order":17,},
