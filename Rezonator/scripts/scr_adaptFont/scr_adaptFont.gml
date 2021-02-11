@@ -1,32 +1,28 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_adaptFont(inputString,size){
-
+function scr_adaptFont(inputString, size){
 	
-	if (!is_string(inputString)){
-		exit;
-	}
+	// make sure we're dealing with a string
+	if (!is_string(inputString)) inputString = string(inputString);
 
-
+	// get rid of any newlines in this string
 	inputString = string_replace_all(inputString, "\n", "");
 	inputString = string_replace_all(inputString, "\r", "");
 	
-	
+	// determine if this string is latin, CJK, or hebrew
 	var isCJK = false;
 	var isHE = false;
 	if (ds_map_exists(global.strToLangMap, inputString)) {
-		
 		var langCode = ds_map_find_value(global.strToLangMap, inputString);
-		if (langCode == 1) isCJK = true;
-		else if (langCode == 2) isHE = true;
-		
+		if (langCode == "CJK") isCJK = true;
+		else if (langCode == "HE") isHE = true;
 	}
 	else {
-		
 		var letterCount = string_length(inputString);
-		for(var i = 0;i <= letterCount; i++){
+		for (var i = 0;i <= letterCount; i++) {
 			var unicodeValue = ord(string_char_at(inputString,i));
-			if ( (12288 <= unicodeValue  and unicodeValue <= 40959)  or
+			// check if char is in CJK unicode range
+			if ( (12288 <= unicodeValue  and unicodeValue <= 40959) or
 			(63744 <= unicodeValue  and unicodeValue <= 64255) or
 			(131072 <= unicodeValue  and unicodeValue <= 183983) or
 			(194560 <= unicodeValue  and unicodeValue <= 195103) ){
@@ -34,25 +30,22 @@ function scr_adaptFont(inputString,size){
 				break;
 			
 			}
+			// check if char is in Hebrew unicode range
 			if ( 1424 <= unicodeValue  and unicodeValue <= 1535 ){
 				isHE = true;
 			}
 		}
-		var langCode = 0;
-		if (isCJK) langCode = 1;
-		else if (isHE) langCode = 2;
+		
+		// attach a language code to the string and put it in strToLang map
+		var langCode = "";
+		if (isCJK) langCode = "CJK";
+		else if (isHE) langCode = "HE";
+		else langCode = "LATIN";
 		ds_map_add(global.strToLangMap, inputString, langCode);
 	}
 		
 		
-		
-		
-		
-
-
-		
-
-		
+	// determine the font to set
 	if ( isCJK ){
 		if(size == "S"){
 			var fontScaledName = global.localeCJK_S_0;
@@ -188,11 +181,8 @@ function scr_adaptFont(inputString,size){
 		
 	draw_set_font(fontScaledName);
 	
-	if(isHE){ inputString = scr_stringReverse(inputString); }
-	
-	
+	// flip the string if it's Hebrew!
+	if (isHE) inputString = scr_stringReverse(inputString);
 	
 	return inputString;
-	
-	
 }
