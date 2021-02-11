@@ -23,7 +23,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	var textMarginTop = functionChainList_tabHeight;
 	var textPlusY = 0;
-	//var chainNameRectMinusY = 4;
 	var textAdjustY = 0;
 
 	var focusedElementY = -1;
@@ -46,7 +45,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 	for (var i = 0; i < lineGridHeight; i++) {
 	
 		if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight) {
-		//or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			continue;
 		}
@@ -54,7 +52,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 				textPlusY += strHeight;
 				break;
 		}
-	
 	
 		// Get grid info of current chain
 		var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, i);
@@ -90,6 +87,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 		}
 	
 		// get this line's concatenated string
+		currentLineWordString = scr_getUnitText(currentLineUnitID);
+		/*
 		var wordListLoop = (obj_control.drawLineState == obj_control.lineState_ltr) ? 0 : currentLineWordListSize-1;
 		repeat(currentLineWordListSize){
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
@@ -106,6 +105,9 @@ function scr_panelPane_drawLineListLoopClipped() {
 			if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
 			else{wordListLoop--;}
 		}
+		*/
+		
+		
 		
 
 		//if (string_height(currentLineWordString) > 20) {
@@ -253,9 +255,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 	scr_scrollBar(lineGridHeight, focusedElementY, strHeight, textMarginTop,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-
-
-
 
 
 
