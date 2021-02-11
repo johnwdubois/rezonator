@@ -44,7 +44,6 @@ function scr_importPlainTXT(filename) {
 			var newString = "";
 			
 			var letterCount = string_length(colVal);
-			show_debug_message("letterCount: " + string(letterCount));
 			for(var i = 1;i <= letterCount; i++){
 				var charFromFile = string_char_at(colVal,i);
 				var nextChar = string_char_at(colVal,i+1);
@@ -57,17 +56,13 @@ function scr_importPlainTXT(filename) {
 				(63744 <= unicodeValue  and unicodeValue <= 64255) or
 				(131072 <= unicodeValue  and unicodeValue <= 183983) or
 				(194560 <= unicodeValue  and unicodeValue <= 195103) ){
-					
 					newString += " ";
-
 				}
 				else if ( (12288 <= nextUnicodeValue  and nextUnicodeValue <= 40959)  or
 				(63744 <= nextUnicodeValue  and nextUnicodeValue <= 64255) or
 				(131072 <= nextUnicodeValue  and nextUnicodeValue <= 183983) or
 				(194560 <= nextUnicodeValue  and nextUnicodeValue <= 195103) ){
-					
 					newString += " ";
-
 				}
 				
 			}
