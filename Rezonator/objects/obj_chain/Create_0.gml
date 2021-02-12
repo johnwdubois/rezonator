@@ -138,6 +138,7 @@ oldTrackFocus = -1;
 oldStackFocus = -1;
 
 
+
 /*
 raceGridWidth = 3;
 raceGrid_colWordID = 0;

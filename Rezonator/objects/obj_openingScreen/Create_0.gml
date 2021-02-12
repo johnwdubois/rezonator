@@ -417,6 +417,7 @@ global.optionListTypePlayAndLearn = 43;
 global.optionListTypeNav = 44;
 global.optionListTypeLanguage = 45;
 global.optionListTypeImportGrid = 46;
+global.optionListTypeChainContents1ToMany = 47;
 
 
 //this map stores all the keyboard shortcuts to late be displayed on the tooltip

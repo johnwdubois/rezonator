@@ -164,6 +164,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
+				var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 				
 				var highlightEntryRect = false;
 
@@ -190,7 +191,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
 					}
 				}
-				else if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) and ableToBeMouseOver) {
+				else if (mouseover and ableToBeMouseOver) {
 					ableToBeMouseOver = false;
 					highlightEntryRect = true;
 			
@@ -203,8 +204,8 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				draw_set_alpha(1);
 	
 				// Check for double click
-				if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
-					if( device_mouse_check_button_released(0, mb_left)) {
+				if (mouseover) {
+					if (device_mouse_check_button_released(0, mb_left)) {
 						if (doubleClickTimer > -1) {
 				
 							var rowInLineGrid = -1;
@@ -331,18 +332,37 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				break;
 		}
 		
-		// get header string for dynamic columns
+		
+		// make headers not overlap with each other
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
+		
+		// headers for dynamic columns
 		if (i >= 3) {
 			var currentField = ds_list_find_value(obj_control.chainContents1toManyFieldList, i - 3);
 			if (is_string(currentField)) {
 				colName = currentField;
 			}
+			
+			// dropdown button to switch dynamic fields
+			var dropDownButtonX1 = colRectX1 + ((colRectX2 - colRectX1) * 0.8);
+			var dropDownButtonY1 = colRectY1 + (tabHeight * 0.25);
+			var dropDownButtonX2 = colRectX1 + ((colRectX2 - colRectX1) * 0.95);
+			var dropDownButtonY2 = colRectY1 + (tabHeight * 0.75);
+			var mouseoverDropDownButton = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+			draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+			if (mouseoverDropDownButton && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+				draw_set_color(global.colorThemeBorders);
+				draw_set_alpha(1);
+				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				if (mouse_check_button_released(mb_left)) {
+					obj_control.chainContents1ToManyFieldToChange = i - 3;
+					scr_createDropDown(colRectX1, colRectY1 + tabHeight, obj_control.chainEntryFieldList, global.optionListTypeChainContents1ToMany);
+				}
+			}
 		}
-	
-		// make headers not overlap with each other
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		
+		// draw header name
 		draw_set_color(global.colorThemeText);
 		draw_set_valign(fa_top);
 		draw_set_halign(fa_left);
