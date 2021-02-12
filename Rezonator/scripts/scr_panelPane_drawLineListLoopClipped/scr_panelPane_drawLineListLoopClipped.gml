@@ -23,7 +23,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	var textMarginTop = functionChainList_tabHeight;
 	var textPlusY = 0;
-	//var chainNameRectMinusY = 4;
 	var textAdjustY = 0;
 
 	var focusedElementY = -1;
@@ -46,7 +45,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 	for (var i = 0; i < lineGridHeight; i++) {
 	
 		if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight) {
-		//or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			continue;
 		}
@@ -54,7 +52,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 				textPlusY += strHeight;
 				break;
 		}
-	
 	
 		// Get grid info of current chain
 		var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, i);
@@ -90,20 +87,32 @@ function scr_panelPane_drawLineListLoopClipped() {
 		}
 	
 		// get this line's concatenated string
-		for (var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
+		currentLineWordString = scr_getUnitText(currentLineUnitID);
+		/*
+		var wordListLoop = (obj_control.drawLineState == obj_control.lineState_ltr) ? 0 : currentLineWordListSize-1;
+		repeat(currentLineWordListSize){
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
 		
 			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
 			if(currentWordState == obj_control.wordStateDead){
+				if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
+				else{wordListLoop--;}
 				continue;
 			}
-			var currentWordToken = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);//ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentWordID - 1);
+			var currentWordToken = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
+			currentWordToken = scr_adaptFont(currentWordToken,"M");
 			currentLineWordString += string(currentWordToken) + " ";
+			if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
+			else{wordListLoop--;}
 		}
-	
-		if (string_height(currentLineWordString) > 20) {
-			textAdjustY = string_height(currentLineWordString) - 20;
-		}
+		*/
+		
+		
+		
+
+		//if (string_height(currentLineWordString) > 20) {
+		//	textAdjustY = string_height(currentLineWordString) - 20;
+		//}
 	
 		// Get dimensions of rectangle around line name
 		var lineNameRectX1 = x;
@@ -159,10 +168,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(currentLineWordString,"M");
 		draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, currentLineWordString);
-		//draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, ds_list_find_value(functionChainList_lineGridDisplayYList, i));
-		
-	
-	
+
 	
 		// Get height of chain name
 		textPlusY += strHeight;
@@ -249,9 +255,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 	scr_scrollBar(lineGridHeight, focusedElementY, strHeight, textMarginTop,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-
-
-
 
 
 

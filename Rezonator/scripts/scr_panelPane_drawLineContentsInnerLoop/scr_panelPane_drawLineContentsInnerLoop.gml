@@ -91,7 +91,7 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);
-		scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
+		currentWordInfoCol[getInfoLoop] = scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
 		draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
 					
 		var scrollBarBuffer = 0;				

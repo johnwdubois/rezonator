@@ -21,8 +21,9 @@ function scr_exportGrids() {
 		directory_create(exportDir);
 	}
 	
-	// refresh trackSeqGrid
-	scr_trackSeqGrid();
+	// refresh trackGrid and rezGrid
+	scr_exportChainEntryGrid(obj_chain.trackGrid);
+	scr_exportChainEntryGrid(obj_chain.rezGrid);
 
 	// make temporary pick/quickpick grid (so we can add an extra col)
 	var tempPickGrid = scr_exportLineTempGrid(obj_control.filterGrid);
@@ -46,7 +47,8 @@ function scr_exportGrids() {
 	scr_gridToCSV(obj_control.searchGrid, exportDir + "\\search.csv", tempLineGridHeaderList);
 	scr_gridToCSV(obj_control.wordGrid, exportDir + "\\word.csv");
 	scr_gridToCSV(obj_control.unitGrid, exportDir + "\\unit.csv");
-	scr_gridToCSV(obj_chain.trackSeqGrid, exportDir + "\\track.csv");
+	scr_gridToCSV(obj_chain.trackGrid, exportDir + "\\track.csv");
+	scr_gridToCSV(obj_chain.rezGrid, exportDir + "\\rez.csv");
 	scr_gridToCSV(tempRezChainGrid, exportDir + "\\rezChain.csv", tempChainGridHeaderList);
 	scr_gridToCSV(tempTrackChainGrid, exportDir + "\\trackChain.csv", tempChainGridHeaderList);
 	scr_gridToCSV(tempStackChainGrid, exportDir + "\\stackChain.csv", tempChainGridHeaderList);

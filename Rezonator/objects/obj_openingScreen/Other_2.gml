@@ -21,5 +21,13 @@ global.loadingScreenCreated = false;
 
 alarm[4] = 2;
 
+
+// translation visualization maps
+global.reverseStrMap = ds_map_create();
+global.strToLangMap = ds_map_create();
+
+
+
+
 // CREATING THE LEGENDARY NODE MAP
 global.nodeMap = ds_map_create();

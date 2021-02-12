@@ -8,7 +8,19 @@ function scr_get_translation(key){
 	// if we can find the translation, return the translation
 	
 	if (variable_global_exists("locale_gloss") && ds_map_exists( global.locale_gloss, key )) {
-		return ds_map_find_value( global.locale_gloss, key );
+		var outputString = ds_map_find_value( global.locale_gloss, key );
+		var letterCount = string_length(outputString);
+		var isHe = false;
+		for(var i = 0; i <= letterCount; i++){
+			
+			var unicodeValue = ord(string_char_at(outputString,i));
+
+			if ( 1424 <= unicodeValue and unicodeValue <= 1535 ){
+				isHe = true;
+			}
+		}
+		if(isHe){outputString = scr_stringReverse(outputString)}
+		return outputString;
 	}
 	else if (room == rm_mainScreen) {
 			
