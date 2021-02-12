@@ -23,7 +23,7 @@ function scr_getUnitText(unitID){
 				
 		// concatenate the UnitText string if this is not a chunk
 		if (!unitTextWordIDIsChunk) {
-			if (is_string(unitTextWordDisplayStr)) unitText += unitTextWordDisplayStr;
+			if (is_string(unitTextWordDisplayStr)) unitText += scr_adaptFont(unitTextWordDisplayStr,"M");
 			if (i < wordIDListSize - 1) unitText += " ";
 		}
 		
