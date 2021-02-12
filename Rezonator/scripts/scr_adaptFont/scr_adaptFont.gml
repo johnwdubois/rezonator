@@ -22,10 +22,10 @@ function scr_adaptFont(inputString, size){
 		for (var i = 0;i <= letterCount; i++) {
 			var unicodeValue = ord(string_char_at(inputString,i));
 			// check if char is in CJK unicode range
-			if ( (12288 <= unicodeValue  and unicodeValue <= 40959) or
-			(63744 <= unicodeValue  and unicodeValue <= 64255) or
+			if ( (12288 <= unicodeValue and unicodeValue <= 65535) or
 			(131072 <= unicodeValue  and unicodeValue <= 183983) or
 			(194560 <= unicodeValue  and unicodeValue <= 195103) ){
+
 				isCJK = true;
 				break;
 			
