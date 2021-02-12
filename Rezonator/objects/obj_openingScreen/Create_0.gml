@@ -419,14 +419,19 @@ global.optionListTypeLanguage = 45;
 global.optionListTypeImportGrid = 46;
 
 
-//this map stores all the keyboard shortcuts to late be displayed on the tooltip
+//this map stores all the keyboard shortcuts to be displayed on the tooltip
 global.keyboardShortcutMap = ds_map_create();
 ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
 ds_map_add(global.keyboardShortcutMap, "menu_go-to-line", "G");
 ds_map_add(global.keyboardShortcutMap, "menu_save", "CTRL+S");
 ds_map_add(global.keyboardShortcutMap, "menu_grid", "CTRL+G");
 ds_map_add(global.keyboardShortcutMap, "menu_theme", "CTRL+B");
-
+ds_map_add(global.keyboardShortcutMap, "help_label_zoom-in", "CTRL SHIFT +");
+ds_map_add(global.keyboardShortcutMap, "help_label_zoom-out", "CTRL SHIFT -");
+ds_map_add(global.keyboardShortcutMap, "help_label_tall-rows", "SHIFT +");
+ds_map_add(global.keyboardShortcutMap, "help_label_short", "SHIFT -");
+ds_map_add(global.keyboardShortcutMap, "menu_wide", "CTRL +");
+ds_map_add(global.keyboardShortcutMap, "menu_narrow", "CTRL -");
 
 
 scr_preImportInitiate();

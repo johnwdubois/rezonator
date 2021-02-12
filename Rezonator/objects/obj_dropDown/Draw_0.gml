@@ -46,7 +46,14 @@ var optionListSize = ds_list_size(optionList);
 var maxStrWidth = originalWindowWidth;
 for (var i = 0; i < optionListSize; i++) {
 	var currentOptionStr = string(ds_list_find_value(optionList, i));
-	var currentOptionStrWidth = string_width(currentOptionStr) + (textBuffer * 2);
+	var shortcutStr = "";
+	if(ds_map_exists(global.keyboardShortcutMap, currentOptionStr)){
+		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, currentOptionStr);	
+	}
+	
+	currentOptionStr = scr_get_translation(currentOptionStr);
+	
+	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
 	if (currentOptionStrWidth > maxStrWidth) {
 		maxStrWidth = currentOptionStrWidth;
 	}
@@ -155,6 +162,10 @@ for (var i = 0; i < optionListSize; i++) {
 	if(ds_map_exists(global.keyboardShortcutMap, optionText)){
 		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, optionText);	
 	}
+
+	if(optionText == "menu_grid" and  optionListType == global.optionListTypeProse){
+		shortcutStr = "";
+	}
 	var optionTextStr = scr_get_translation(optionText);
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
@@ -164,6 +175,7 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
 	draw_set_halign(fa_right);
 	if(shortcutStr != ""){
+		scr_adaptFont(scr_get_translation(shortcutStr), "S");
 		draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
 	}
 
