@@ -673,11 +673,14 @@ lineState_rtl = "righToLeft";
 drawLineState = lineState_ltr;
 
 
-chainContents1ToManyFieldToChange = -1;
-chainContents1toManyFieldList = ds_list_create(); // the dynamic columns in the chainContents pane
+chain1toManyEntryToChange = "";
+chain1toManyFieldToChange = "";
+chain1ToManyColFieldToChange = -1;
+chain1toManyColFieldList = ds_list_create(); // the dynamic columns in the chainContents pane
 chainEntryFieldList = ds_list_create(); // all of the entry level fields
-ds_list_add(chainContents1toManyFieldList, "gapUnits");
-ds_list_add(chainEntryFieldList, "gapUnits");
+ds_list_add(chain1toManyColFieldList, "gapUnits", "gender", "pronType");
+ds_list_add(chainEntryFieldList, "gapUnits", "gender", "pronType");
+
 
 with (obj_alarm) {
 	alarm[10] = 8;

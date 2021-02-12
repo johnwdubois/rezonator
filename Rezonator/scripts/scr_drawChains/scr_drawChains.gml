@@ -218,7 +218,7 @@ function scr_drawChains() {
 
 
 	// draw pickwhip line to mouse from chain
-	if (!is_undefined(mouseLineX) && !is_undefined(mouseLineY) && !instance_exists(obj_dialogueBox)) {
+	if (!is_undefined(mouseLineX) && !is_undefined(mouseLineY) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 			var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 			if (is_numeric(chainSubMap)) {

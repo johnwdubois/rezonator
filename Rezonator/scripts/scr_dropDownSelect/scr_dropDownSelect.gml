@@ -314,9 +314,14 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_importGridOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChainContents1ToMany) //47
+	else if (optionListType == global.optionListTypeChainContents1ToManyField) //47
 	{
-	    scr_chainContents1ToManyOptions(optionSelected);
+	    scr_chainContents1ToManyFieldOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChainContents1ToManyTag) //48
+	{
+	    scr_chainContents1ToManyTagOptions(optionSelected);
 		instance_destroy();
 	}
 

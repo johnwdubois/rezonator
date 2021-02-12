@@ -234,7 +234,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				
 				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
 		
-				scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
+				scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
 				
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
@@ -294,7 +294,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 
 	// draw headers for chainContents columns
-	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chainContents1toManyFieldList);
+	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chain1toManyColFieldList);
 	var colAmount = 3 + chainContents1toManyFieldListSize;
 	for (var i = 0; i < colAmount; i++) {
 		var colRectX1 = x + (i * (windowWidth / colAmount));
@@ -339,7 +339,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		
 		// headers for dynamic columns
 		if (i >= 3) {
-			var currentField = ds_list_find_value(obj_control.chainContents1toManyFieldList, i - 3);
+			var currentField = ds_list_find_value(obj_control.chain1toManyColFieldList, i - 3);
 			if (is_string(currentField)) {
 				colName = currentField;
 			}
@@ -356,8 +356,8 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				draw_set_alpha(1);
 				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 				if (mouse_check_button_released(mb_left)) {
-					obj_control.chainContents1ToManyFieldToChange = i - 3;
-					scr_createDropDown(colRectX1, colRectY1 + tabHeight, obj_control.chainEntryFieldList, global.optionListTypeChainContents1ToMany);
+					obj_control.chain1ToManyColFieldToChange = i - 3;
+					scr_createDropDown(colRectX1, colRectY1 + tabHeight, obj_control.chainEntryFieldList, global.optionListTypeChainContents1ToManyField);
 				}
 			}
 		}

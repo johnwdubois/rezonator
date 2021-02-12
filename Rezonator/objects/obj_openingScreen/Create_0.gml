@@ -417,7 +417,31 @@ global.optionListTypePlayAndLearn = 43;
 global.optionListTypeNav = 44;
 global.optionListTypeLanguage = 45;
 global.optionListTypeImportGrid = 46;
-global.optionListTypeChainContents1ToMany = 47;
+global.optionListTypeChainContents1ToManyField = 47;
+global.optionListTypeChainContents1ToManyTag = 48;
+
+// initialize entry field map
+global.entryFieldMap = ds_map_create();
+
+// gapUnits
+scr_addToEntryFieldMap("gapUnits", undefined, undefined, true, true, true);
+
+// gender tags
+var genderTagSet = ds_list_create();
+var genderShortcutSet = ds_list_create();
+ds_list_add(genderTagSet, "fem", "masc", "neuter");
+ds_list_add(genderShortcutSet, "F", "M", "N");
+scr_addToEntryFieldMap("gender", genderTagSet, genderShortcutSet, true, true, false);
+
+// pronType tags
+var pronTypeTagSet = ds_list_create();
+var pronTypeShortcutSet = ds_list_create();
+ds_list_add(pronTypeTagSet, "personal", "other");
+ds_list_add(pronTypeShortcutSet, "P", "O");
+scr_addToEntryFieldMap("pronType", pronTypeTagSet, pronTypeShortcutSet, true, true, false);
+
+
+
 
 
 //this map stores all the keyboard shortcuts to late be displayed on the tooltip

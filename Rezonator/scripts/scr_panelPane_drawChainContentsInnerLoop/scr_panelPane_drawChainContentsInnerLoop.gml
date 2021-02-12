@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight){
+function scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight){
 	
 	// NOTE: for stacks, the currentWordID variable will be a unit
 	
@@ -8,7 +8,7 @@ function scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, 
 	var xBuffer = 6;
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry
-	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chainContents1toManyFieldList);
+	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chain1toManyColFieldList);
 	var colAmount = 3 + chainContents1toManyFieldListSize;
 	for (var getInfoLoop = 0; getInfoLoop < colAmount; getInfoLoop++) {
 
@@ -17,6 +17,7 @@ function scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, 
 		var cellRectY1 = rectY1;
 		var cellRectX2 = cellRectX1 + (windowWidth / colAmount);
 		var cellRectY2 = rectY2;
+		var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		draw_set_alpha(1);
 		draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, (highlight) ? 0.75 : 0.9));
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
@@ -85,14 +86,82 @@ function scr_panelPane_drawChainContentsInnerLoop(currentWordID, currentTagMap, 
 		if (getInfoLoop >= 3) {
 			
 			// get the current field and make sure its a string
-			var currentField = ds_list_find_value(obj_control.chainContents1toManyFieldList, getInfoLoop - 3);
+			var currentField = ds_list_find_value(obj_control.chain1toManyColFieldList, getInfoLoop - 3);
 			if (!is_string(currentField)) continue;
-			
+		
 			// look up currentField in tagMap
 			if (is_numeric(currentTagMap)) {
 				if (ds_exists(currentTagMap, ds_type_map)) {	
 					if (ds_map_exists(currentTagMap, currentField)) {
 						currentWordInfoCol[getInfoLoop] = ds_map_find_value(currentTagMap, currentField);
+					}
+				}
+			}
+			
+			// dropDown button for editing tags
+			var currentFieldTagSubMap = ds_map_find_value(global.entryFieldMap, currentField);
+			if (is_numeric(currentFieldTagSubMap)) {
+				if (ds_exists(currentFieldTagSubMap, ds_type_map)) {
+										
+					// check whether this field has a tagSet
+					var currentFieldHasTagSet = ds_map_exists(currentFieldTagSubMap, "tagSet");
+					var currentFieldHasShortcutSet = ds_map_exists(currentFieldTagSubMap, "shortcutSet");
+	
+					// draw dropDown button if this field has a tagSet
+					if (currentFieldHasTagSet) {
+			
+						// get the tagSet of this field and make sure it exists
+						var currentFieldTagSet = ds_map_find_value(currentFieldTagSubMap, "tagSet");
+						if (is_numeric(currentFieldTagSet)) {
+							if (ds_exists(currentFieldTagSet, ds_type_list)) {
+						
+								// dropdown button coordinates
+								var dropDownButtonX1 = cellRectX1 + ((cellRectX2 - cellRectX1) * 0.8);
+								var dropDownButtonY1 = cellRectY1 + ((cellRectY2 - cellRectY1) * 0.25);
+								var dropDownButtonX2 = cellRectX1 + ((cellRectX2 - cellRectX1) * 0.95);
+								var dropDownButtonY2 = cellRectY1 + ((cellRectY2 - cellRectY1) * 0.75);
+								if (getInfoLoop == colAmount - 1) {
+									dropDownButtonX1 -= global.scrollBarWidth;
+									dropDownButtonX2 -= global.scrollBarWidth;
+								}
+								var mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+						
+								draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+								
+								// click on dropdown button to create dropdown
+								if (mouseoverDropDown) {
+									draw_set_color(global.colorThemeBorders);
+									draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+									if (mouse_check_button_released(mb_left)) {
+										obj_control.chain1toManyEntryToChange = currentEntry;
+										obj_control.chain1toManyFieldToChange = currentField;
+										scr_createDropDown(cellRectX1, cellRectY2, currentFieldTagSet, global.optionListTypeChainContents1ToManyTag);
+									}
+								}
+						
+								// keyboard shortcut
+								if (currentFieldHasShortcutSet && mouseoverCell) {
+									var currentFieldShortcutSet = ds_map_find_value(currentFieldTagSubMap, "shortcutSet");
+									if (is_numeric(currentFieldShortcutSet)) {
+										if (ds_exists(currentFieldShortcutSet, ds_type_list)) {
+											var currentFieldShortcutSetSize = ds_list_size(currentFieldShortcutSet);
+											for (var i = 0; i < currentFieldShortcutSetSize; i++) {
+												var currentShortcut = ds_list_find_value(currentFieldShortcutSet, i);
+												currentShortcut = string_upper(string(currentShortcut));
+												if (string_length(currentShortcut) == 1) {
+													if (keyboard_check_released(ord(currentShortcut))) {
+														obj_control.chain1toManyEntryToChange = currentEntry;
+														obj_control.chain1toManyFieldToChange = currentField;
+														var optionSelected = ds_list_find_value(currentFieldTagSet, i);
+														scr_chainContents1ToManyTagOptions(optionSelected);
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
