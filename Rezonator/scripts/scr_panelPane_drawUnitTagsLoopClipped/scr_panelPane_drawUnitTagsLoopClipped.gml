@@ -123,8 +123,11 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		    }
     
 		    var discoColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentLineUnitID - 1);
-		    if (discoColor == -1 or discoColor == 0) {
+		    if (!is_numeric(discoColor)) {
 		        discoColor = obj_control.c_ltblue;
+		    }
+			if (!is_numeric(lineColor)) {
+		        lineColor = c_gray;
 		    }
 
 		    var currentLineWordString = "";

@@ -94,3 +94,14 @@ if (obj_control.showFPS) {
 	draw_set_valign(fa_middle);
 	draw_text(fpsTextX, fpsTextY, "FPS: " + string(fps));
 }
+// show unsaved warning
+var fpsTextX = camera_get_view_width(camera_get_active()) - string_width("000");
+var fpsTextY = menuHeight / 2;
+draw_set_halign(fa_right);
+draw_set_valign(fa_middle);
+if(obj_control.allSaved){
+	draw_text(fpsTextX, fpsTextY, "Saved");
+}else{
+	draw_text(fpsTextX, fpsTextY, "Unsaved");
+	draw_sprite_ext(spr_saveWarning,0,fpsTextX-string_width("Unsaved0000"),fpsTextY-0.85*string_width("00"),0.3,0.3, 0, make_colour_rgb(125, 125, 125), 1)
+}

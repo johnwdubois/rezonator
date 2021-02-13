@@ -667,11 +667,21 @@ ctrlHold = false;
 
 wordWrap = false;
 
+//draw Line directional states
+lineState_ltr = "leftToRight";
+lineState_rtl = "righToLeft";
+drawLineState = lineState_ltr;
+
+
+chainContents1ToManyFieldToChange = -1;
+chainContents1toManyFieldList = ds_list_create(); // the dynamic columns in the chainContents pane
+chainEntryFieldList = ds_list_create(); // all of the entry level fields
+ds_list_add(chainContents1toManyFieldList, "gapUnits");
+ds_list_add(chainEntryFieldList, "gapUnits");
 
 with (obj_alarm) {
 	alarm[10] = 8;
 }
-
 
 // add chainLists to nodeMap
 ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());

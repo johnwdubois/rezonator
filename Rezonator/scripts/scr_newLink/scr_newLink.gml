@@ -96,6 +96,10 @@ function scr_newLink(wordID) {
 							else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 								ds_map_add(setSubMap, "alignEntry", false);
 							}
+							
+							// add tagmap to this entry's submap
+							var tagMap = ds_map_create();
+							ds_map_add_map(setSubMap, "tagMap", tagMap);
 						}
 					}
 
@@ -113,10 +117,10 @@ function scr_newLink(wordID) {
 						var chainColor = ds_map_find_value(chainSubMap, "chainColor");
 						ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
-						
-						// sort the displayed links
-						scr_sortVizSetIDList(currentFocusedChainID);
 					}
+					
+					// sort the displayed links
+					scr_sortVizSetIDList(currentFocusedChainID);
 					
 					show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
 				}

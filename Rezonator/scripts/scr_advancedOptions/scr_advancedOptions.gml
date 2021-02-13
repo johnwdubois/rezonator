@@ -20,6 +20,16 @@ function scr_advancedOptions(optionSelected) {
 			obj_control.showFPS = !obj_control.showFPS;
 			instance_destroy(obj_dropDown);
 		break;
+		
+		case "Right To Left":
+			obj_control.drawLineState = obj_control.lineState_rtl;
+			instance_destroy(obj_dropDown);
+		break;
+		case "Left To Right":
+			obj_control.drawLineState = obj_control.lineState_ltr;
+			instance_destroy(obj_dropDown);
+		break;
+		
 		case "Shuffle":
 
 				scr_shuffleDisplayRows();

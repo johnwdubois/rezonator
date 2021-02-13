@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_getChainTempList(chainID){
+function scr_getChainTempList(chainID, sorted){
 	
 	// get chain submap and make sure it exists
 	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
@@ -17,7 +17,7 @@ function scr_getChainTempList(chainID){
 	var tempWordList = ds_list_create();
 	
 	// get the chain's setIDList and make sure it exists
-	var currentSetIDList = ds_map_find_value(chainSubMap, "setIDList");
+	var currentSetIDList = ds_map_find_value(chainSubMap, (sorted) ? "vizSetIDList" : "setIDList");
 	if (!is_numeric(currentSetIDList)) {
 		show_debug_message("scr_getChainTempList() ... currentSetIDList is non-numeric. Exiting...");
 		exit;

@@ -2,7 +2,7 @@
 function scr_clipFromStack(selectedStackID) {
 
 	// gather the beginning and the end of the Stack
-	var unitIDList = scr_getChainTempList(selectedStackID);
+	var unitIDList = scr_getChainTempList(selectedStackID, false);
 	var firstUnitInStack = ds_list_find_value(unitIDList, 0);
 	var lastUnitInStack = ds_list_find_value(unitIDList, ds_list_size(unitIDList) - 1);
 	

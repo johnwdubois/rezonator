@@ -64,8 +64,12 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		}
 	
 		var discoColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentLineUnitID - 1);
-		if (discoColor == -1 or discoColor == 0) {
+		if (!is_numeric(discoColor)) {
 			discoColor = obj_control.c_ltblue;
+		}
+		
+		if (!is_numeric(lineColor)) {
+		    lineColor = c_gray;
 		}
 
 		var currentLineWordString = "";
@@ -123,27 +127,41 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 
 	
 		// Draw text of chain names
-		draw_set_color(global.colorThemeText);
+		
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(floor(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2)), floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), string(currentLineUnitID));
-	
-		//Color codes the line lists for User
-		draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
-		//draw_set_color(lineColor);
-		draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+		draw_set_color(global.colorThemeNegSpace)
+		draw_rectangle(x - clipX, lineNameRectY1 - clipY, x + textMarginLeft - clipX, lineNameRectY2 - clipY - 2, false);
 		draw_set_color(global.colorThemeText);
-		draw_text(x + (textMarginLeft) - clipX + 10, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, lineSpeaker);
-	
+		draw_text(floor(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2)), floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), string(currentLineUnitID));
+		
+		
+		var drawingSpeaker = false;
+		
+		if(is_string(lineSpeaker)){
+		//Color codes the line lists for User
+			if(string_length(lineSpeaker) > 0){
+				drawingSpeaker = true;
+				draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
+				draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+				draw_set_color(global.colorThemeText);
+		
+				scr_adaptFont(lineSpeaker, "M");
+				draw_text(x + (textMarginLeft) - clipX + 10, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), lineSpeaker);
+			}
+		}
+		
 		//draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(windowWidth/3 - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 		draw_set_color(global.colorThemeBG);
 		draw_line_width(windowWidth/3 - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
 		draw_set_color(global.colorThemeText);
-		scr_adaptFont(currentLineWordString, "M");
-		draw_text(windowWidth/3, y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY, currentLineWordString);
-	
+		if(is_string(currentLineWordString)){
+			scr_adaptFont(currentLineWordString, "M");
+			var textXPos = (drawingSpeaker) ? windowWidth/3: (x + textMarginLeft + 5);
+			draw_text(textXPos - clipX, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), currentLineWordString);
+		}
 	
 	
 		// Get height of chain name
@@ -243,7 +261,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	draw_rectangle(topBarX1,topBarY1,topBarX2,topBarY2, true);
 	
 	draw_set_color(global.colorThemeText);
-	draw_text( 10 , mean(topBarY1,topBarY2) , "Translation: " + string(global.unitImportTranslationColName));
+	draw_text( 10 , floor(mean(topBarY1,topBarY2)) , "Translation: " + string(global.unitImportTranslationColName));
 	
 
 

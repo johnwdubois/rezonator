@@ -138,6 +138,7 @@ oldTrackFocus = -1;
 oldStackFocus = -1;
 
 
+
 /*
 raceGridWidth = 3;
 raceGrid_colWordID = 0;
@@ -173,13 +174,15 @@ filteredStackChainList = ds_list_create();
 
 
 
-trackSeqGridWidth = 8;
-trackSeqGrid_colChainID = 0;
-trackSeqGrid_colChainName = 1;
-trackSeqGrid_colChainSeq = 2;
-trackSeqGrid_colTrackSeq = 3;
-trackSeqGrid_colWordID = 4;
-trackSeqGrid_colText = 5;
-trackSeqGrid_colTranscript = 6;
-trackSeqGrid_colUnitText = 7;
-trackSeqGrid = ds_grid_create(trackSeqGridWidth, 0);
+trackGridWidth = 9;
+trackGrid_colChainID = 0;
+trackGrid_colChainName = 1;
+trackGrid_colChainSeq = 2;
+trackGrid_colTrackSeq = 3;
+trackGrid_colWordID = 4;
+trackGrid_colText = 5;
+trackGrid_colTranscript = 6;
+trackGrid_colUnitText = 7;
+trackGrid_colGapUnits = 8;
+trackGrid = ds_grid_create(trackGridWidth, 0);
+rezGrid = ds_grid_create(trackGridWidth, 0);

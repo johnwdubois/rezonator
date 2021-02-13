@@ -24,5 +24,5 @@ else {
 		deleteChunkWord = true;
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, hoverChunkIDRow, obj_chain.chainStateFocus);
 	}
-	scr_deleteFromChain();
+	scr_deleteFromChain(true);
 }

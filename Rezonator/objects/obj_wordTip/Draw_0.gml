@@ -1,6 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+
 // Only read-mode has WordTips
 if (obj_toolPane.currentMode != obj_toolPane.modeRead)
 {
