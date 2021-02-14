@@ -424,6 +424,7 @@ global.optionListTypeChainContents1ToMany = 47;
 global.keyboardShortcutMap = ds_map_create();
 ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
 ds_map_add(global.keyboardShortcutMap, "menu_go-to-line", "G");
+ds_map_add(global.keyboardShortcutMap, "menu_go-to-time", "G");
 ds_map_add(global.keyboardShortcutMap, "menu_save", "CTRL+S");
 ds_map_add(global.keyboardShortcutMap, "menu_grid", "CTRL+G");
 ds_map_add(global.keyboardShortcutMap, "menu_theme", "CTRL+B");
@@ -434,7 +435,12 @@ ds_map_add(global.keyboardShortcutMap, "help_label_short", "SHIFT -");
 ds_map_add(global.keyboardShortcutMap, "menu_wide", "CTRL +");
 ds_map_add(global.keyboardShortcutMap, "menu_narrow", "CTRL -");
 ds_map_add(global.keyboardShortcutMap, "menu_justify", "CTRL+K");
-
+ds_map_add(global.keyboardShortcutMap, "menu_exit", "CTRL+Q");
+ds_map_add(global.keyboardShortcutMap, "menu_search", "V");
+ds_map_add(global.keyboardShortcutMap, "menu_filter", "CTRL+P");
+ds_map_add(global.keyboardShortcutMap, "menu_track", "T");
+ds_map_add(global.keyboardShortcutMap, "menu_rez", "R");
+ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 
 scr_preImportInitiate();
 showPreImportScreen = false;
