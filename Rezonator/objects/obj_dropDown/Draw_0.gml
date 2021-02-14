@@ -157,16 +157,27 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	// draw option text
-	//var optionTextStr = optionText;
+	
+	var optionTextStr = scr_get_translation(optionText);
+	
+	//optionTextStr = optionText;
+	//uncomment this line to see the raw strings instead of display strings in dropdown
+	
 	var shortcutStr = "";
 	if(ds_map_exists(global.keyboardShortcutMap, optionText)){
 		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, optionText);	
 	}
 
-	if(optionText == "menu_grid" and  optionListType == global.optionListTypeProse){
+	if(optionText == "menu_grid" and  optionListType != global.optionListTypePane){
 		shortcutStr = "";
 	}
-	var optionTextStr = scr_get_translation(optionText);
+	if(optionText == "menu_search" and optionListType != global.optionListTypePane){
+		shortcutStr = "";
+	}
+	if((optionText == "menu_rez" or optionText == "menu_track") and optionListType != global.optionListTypeTools){
+		shortcutStr = "";	
+	}
+	
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
 	var shortcutTextX = floor(optionRectX2 - textBuffer);
