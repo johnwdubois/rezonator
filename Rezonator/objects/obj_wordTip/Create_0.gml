@@ -14,7 +14,7 @@ boxY = -1;
 
 currentWordID = -1;	// Current word whose attributes are being displayed
 
-persistentBoxFlag = false;	// flag for when a persistent box is active
+//persistentBoxFlag = false;	// flag for when a persistent box is active
 
 
 /* Hard-coded dimensions */

@@ -8,6 +8,9 @@ if (obj_toolPane.currentMode != obj_toolPane.modeRead)
 	exit;
 }
 
+/*
+ * UNCOMMENT BELOW FOR persistent box when clicking a word
+
 if (persistentBoxFlag == false)
 {	
 	// There is no persistent box currently
@@ -31,7 +34,21 @@ else
 {
 	// There is a persistent box currently
 	
-	// TO-DO: Draw an outline around the word that has the persistent box
+	// [TODO]: Draw an outline around the word that has the persistent box
+}*/
+
+if (obj_control.hoverWordID == -1)
+{
+	// No word is being hovered
+	exit;
+}
+	
+else
+{
+	// Make the box display the word at the mouse cursor
+	currentWordID = obj_control.hoverWordID;
+	boxX = floor(mouse_x + mouseCursorWidth);
+	boxY = floor(mouse_y + mouseCursorHeight);
 }
 
 /* --- Fill a grid with the word's attributes' names and values to display --- */
