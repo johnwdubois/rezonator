@@ -176,7 +176,12 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_set_halign(fa_right);
 	if(shortcutStr != ""){
 		scr_adaptFont(scr_get_translation(shortcutStr), "S");
-		draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
+		if(isExpandable){
+			draw_text(shortcutTextX - clipX - sprite_get_width(spr_ascend), optionTextY - clipY, shortcutStr);
+		}
+		else{
+			draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
+		}
 	}
 
 	draw_set_halign(fa_left);

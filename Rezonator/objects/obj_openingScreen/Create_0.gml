@@ -433,6 +433,7 @@ ds_map_add(global.keyboardShortcutMap, "help_label_tall-rows", "SHIFT +");
 ds_map_add(global.keyboardShortcutMap, "help_label_short", "SHIFT -");
 ds_map_add(global.keyboardShortcutMap, "menu_wide", "CTRL +");
 ds_map_add(global.keyboardShortcutMap, "menu_narrow", "CTRL -");
+ds_map_add(global.keyboardShortcutMap, "menu_justify", "CTRL+K");
 
 
 scr_preImportInitiate();
