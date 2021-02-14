@@ -96,17 +96,18 @@ for (var i = 0; i < ds_grid_height(attribGrid); i++)
 	maxAttribValWidth = max(maxAttribValWidth, attribValWidth);
 }
 
-boxWidth = maxAttribNameWidth + colPadding + maxAttribValWidth;	// Box width fits the whole row with some padding
+boxWidth = maxAttribNameWidth + maxAttribValWidth;	// Box width fits the whole row
 
 // Scale the box padding by the box's dimensions
 boxPaddingHoriz = floor(0.05 * boxWidth);
 boxPaddingVert = floor(0.03 * boxHeight);
 
-// Calculate header height
-var headerHeight = boxPaddingVert * 2 + max( string_height("Attribute"), string_height("Value") );
+var colPadding = boxPaddingHoriz * 2;	// Padding between end of longest attribute name and beginning of longest value
+
+var headerHeight = boxPaddingVert * 2 + max( string_height("Attribute"), string_height("Value") );	// Height of header section/box
 
 // Update the box dimensions to include the padding and header
-boxWidth += boxPaddingHoriz * 2;
+boxWidth += boxPaddingHoriz * 2 + colPadding;
 boxHeight += boxPaddingVert + headerHeight;
 
 /* --- Set the box's coordinates --- */
@@ -171,7 +172,7 @@ for(var i = 0; i < ds_grid_height(attribGrid); i++)
 	var attribName = ds_grid_get(attribGrid, 0, i);
 	var attribValueStr = string( ds_grid_get(attribGrid, 1, i) );
 	
-	var rowY = boxY + headerHeight + i * lineHeight;
+	var rowY = boxY + headerHeight + boxPaddingVert / 2 + i * lineHeight;
 	
 	scr_adaptFont(attribName, "M");
 	

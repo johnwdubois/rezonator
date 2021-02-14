@@ -19,7 +19,5 @@ persistentBoxFlag = false;	// flag for when a persistent box is active
 
 /* Hard-coded dimensions */
 
-colPadding = 15;	// Padding between end of longest attribute name and beginning of longest attribute value
-
 mouseCursorWidth = 10;
 mouseCursorHeight = 20;
