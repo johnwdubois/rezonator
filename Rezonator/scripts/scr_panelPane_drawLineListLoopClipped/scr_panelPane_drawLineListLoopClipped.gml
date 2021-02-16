@@ -87,8 +87,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 		}
 	
 		// get this line's concatenated string
-		currentLineWordString = scr_getUnitText(currentLineUnitID);
-		/*
+		//currentLineWordString = scr_getUnitText(currentLineUnitID);
+		
 		var wordListLoop = (obj_control.drawLineState == obj_control.lineState_ltr) ? 0 : currentLineWordListSize-1;
 		repeat(currentLineWordListSize){
 			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
@@ -105,7 +105,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 			if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
 			else{wordListLoop--;}
 		}
-		*/
+		
 		
 		
 		

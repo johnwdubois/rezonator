@@ -287,6 +287,7 @@
     {"id":{"name":"scr_newWordOptions","path":"scripts/scr_newWordOptions/scr_newWordOptions.yy",},"order":10,},
     {"id":{"name":"scr_createTooltip","path":"scripts/scr_createTooltip/scr_createTooltip.yy",},"order":5,},
     {"id":{"name":"scr_mappingTagOptions","path":"scripts/scr_mappingTagOptions/scr_mappingTagOptions.yy",},"order":11,},
+    {"id":{"name":"scr_textDirectionOptions","path":"scripts/scr_textDirectionOptions/scr_textDirectionOptions.yy",},"order":48,},
     {"id":{"name":"scr_zoomOptions","path":"scripts/scr_zoomOptions/scr_zoomOptions.yy",},"order":12,},
     {"id":{"name":"obj_gridListWindow","path":"objects/obj_gridListWindow/obj_gridListWindow.yy",},"order":14,},
     {"id":{"name":"scr_paneOptions","path":"scripts/scr_paneOptions/scr_paneOptions.yy",},"order":13,},
