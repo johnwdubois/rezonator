@@ -17,7 +17,7 @@ function scr_addToEntryFieldMap(key, tagSet, shortcutSet, rezTag, trackTag, stac
 	if (is_numeric(tagSet)) {
 		if (ds_exists(tagSet, ds_type_list)) {
 			show_debug_message("scr_addToEntryFieldMap() ... tagSet: " + scr_getStringOfList(tagSet));
-			ds_list_add(tagSet, "Remove tag");
+			ds_list_add(tagSet, "Add to tag set", "Remove tag");
 			ds_map_add_list(subMap, "tagSet", tagSet);
 		}
 	}

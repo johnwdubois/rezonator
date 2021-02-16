@@ -85,5 +85,6 @@ function scr_chainTagInit(){
 	ds_list_add(markCountTagSet, "0", "1", "2");
 	ds_list_add(markCountShortcutSet, "0", "1", "2");
 	scr_addToEntryFieldMap("markCount", markCountTagSet, markCountShortcutSet, true, true, true);
+	
 
 }

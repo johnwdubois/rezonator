@@ -9,7 +9,6 @@ function scr_stackTagOptions(){
 	}
 	else if (optionSelected == "Add tag option") {
 		// prompt user for name of new stack tag
-		obj_control.newCustomTagStack = true;
 		obj_control.dialogueBoxActive = true;
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);

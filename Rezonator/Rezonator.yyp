@@ -213,6 +213,7 @@
     {"id":{"name":"scr_exportLineTempGrid","path":"scripts/scr_exportLineTempGrid/scr_exportLineTempGrid.yy",},"order":9,},
     {"id":{"name":"scr_drawCompassRose","path":"scripts/scr_drawCompassRose/scr_drawCompassRose.yy",},"order":0,},
     {"id":{"name":"scr_boxRect","path":"scripts/scr_boxRect/scr_boxRect.yy",},"order":1,},
+    {"id":{"name":"scr_dialogueBoxNewCustomTagEntry","path":"scripts/scr_dialogueBoxNewCustomTagEntry/scr_dialogueBoxNewCustomTagEntry.yy",},"order":14,},
     {"id":{"name":"scr_mouseRect","path":"scripts/scr_mouseRect/scr_mouseRect.yy",},"order":2,},
     {"id":{"name":"scr_stackShowWindow","path":"scripts/scr_stackShowWindow/scr_stackShowWindow.yy",},"order":0,},
     {"id":{"name":"scr_drawStackShowWindow","path":"scripts/scr_drawStackShowWindow/scr_drawStackShowWindow.yy",},"order":1,},

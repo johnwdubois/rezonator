@@ -321,8 +321,8 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomTagUnit) {
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
 		}
-		if (obj_control.newCustomTagStack) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
+		if (obj_control.newCustomTagEntry) {
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
 		}
 	
 
@@ -652,11 +652,9 @@ function scr_drawDialogueBox() {
 
 
 	// ok button & Enter Key check
-	if ((point_in_rectangle(mouse_x, mouse_y, okBoxRectX1, okBoxRectY1, okBoxRectX2, okBoxRectY2) 
-	and obj_control.dialogueBoxActive)
-	and mouse_check_button_released(mb_left)
-	or (keyboard_check_pressed(vk_enter) 
-	and obj_control.dialogueBoxActive)) {
+	var okButtonClickced = (point_in_rectangle(mouse_x, mouse_y, okBoxRectX1, okBoxRectY1, okBoxRectX2, okBoxRectY2) && mouse_check_button_released(mb_left));
+	var enterKeyPressed = keyboard_check_pressed(vk_enter);
+	if (obj_control.dialogueBoxActive && (okButtonClickced || enterKeyPressed)) {
 			
 		obj_control.alarm[11] = 60;
 			
@@ -731,10 +729,10 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomTagToken) {
 			scr_dialogueBoxNewCustomTagToken();
 		}
-		if (obj_control.newCustomTagStack) {
-			scr_dialogueBoxNewCustomTagStack();
+		if (obj_control.newCustomTagEntry) {
+			scr_dialogueBoxNewCustomTagEntry();
 		}
-	
+
 		if (obj_control.recolor) {
 
 			if (string_digits(obj_control.inputText) == "") {

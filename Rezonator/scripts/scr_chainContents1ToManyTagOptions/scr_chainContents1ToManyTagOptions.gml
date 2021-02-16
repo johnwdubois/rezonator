@@ -2,6 +2,17 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_chainContents1ToManyTagOptions(optionSelected){
 	
+	// check to see if the user is trying to create a new tag
+	if (optionSelected == "Add to tag set") {
+		obj_control.newCustomTagEntry = true;
+		obj_control.dialogueBoxActive = true;
+
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		}
+		exit;
+	}
+	
 	// make sure entry exists in nodeMap and get its submap
 	var entryToChange = obj_control.chain1toManyEntryToChange;
 	var fieldToChange = obj_control.chain1toManyFieldToChange;
