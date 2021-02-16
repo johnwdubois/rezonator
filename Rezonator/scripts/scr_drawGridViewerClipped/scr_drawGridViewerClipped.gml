@@ -166,7 +166,7 @@ function scr_drawGridViewerClipped() {
 		
 		
 			draw_set_color(global.colorThemeText);
-			scr_adaptFont(currentItemString, "S");
+			currentItemString = scr_adaptFont(currentItemString, "S");
 			draw_text(textX - clipX, textY - clipY, currentItemString);
 		
 			if (gridLoopCol == ds_grid_width(grid) - 1) {
