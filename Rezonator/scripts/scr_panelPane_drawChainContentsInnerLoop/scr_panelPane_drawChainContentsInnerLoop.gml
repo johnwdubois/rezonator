@@ -141,6 +141,7 @@ function scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, c
 						
 								// keyboard shortcut
 								if (currentFieldHasShortcutSet && mouseoverCell) {
+									obj_control.mouseoverTagShortcut = true;
 									var currentFieldShortcutSet = ds_map_find_value(currentFieldTagSubMap, "shortcutSet");
 									if (is_numeric(currentFieldShortcutSet)) {
 										if (ds_exists(currentFieldShortcutSet, ds_type_list)) {

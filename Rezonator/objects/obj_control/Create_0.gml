@@ -516,6 +516,7 @@ rectNotInPanelPane = false;
 mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
 mouseoverHelpPane = false;
+mouseoverTagShortcut = false;
 
 gridInDelete = undefined;
 

@@ -35,8 +35,8 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	var strHeight = string_height("0");
 	var tabHeight = functionChainList_tabHeight;
 	var scrollBarListHeight = 0;
-
-
+	
+	obj_control.mouseoverTagShortcut = false;
 
 	if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_colXList)) {
 		exit;

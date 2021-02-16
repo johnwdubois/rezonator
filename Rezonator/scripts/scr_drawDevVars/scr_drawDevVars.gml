@@ -63,6 +63,7 @@ function scr_drawDevVars(){
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 23), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 24), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(camWidth - 100, wordTopMargin + (strHeight * 25), "mouseoverPanelPane: " + string(mouseoverPanelPane));
+	draw_text(camWidth - 100, wordTopMargin + (strHeight * 26), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
 
 	
 	// reset halign to left

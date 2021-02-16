@@ -291,7 +291,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 							draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
 						}
 						if (((mouseoverFilter and device_mouse_check_button_released(0, mb_left))
-						or (keyboard_check_pressed(ord("P")) and (keyboard_check(vk_lshift) or keyboard_check(vk_rshift)) and !keyboard_check(vk_control) and obj_chain.currentFocusedChainID == currentChainID)) and not instance_exists(obj_dialogueBox)) {
+						or (keyboard_check_pressed(ord("P")) and (keyboard_check(vk_lshift) or keyboard_check(vk_rshift)) and !keyboard_check(vk_control) and obj_chain.currentFocusedChainID == currentChainID)) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown) and !obj_control.mouseoverTagShortcut) {
 							// Set selected objects to be filtered
 							inFilter = !inFilter;
 							ds_map_replace(currentChainSubMap, "filter", inFilter);
