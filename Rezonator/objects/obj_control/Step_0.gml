@@ -757,7 +757,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 
 
 if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and (!keyboard_check(vk_lshift) and !keyboard_check(vk_rshift))
-and shortcutsEnabled and !mouseoverTagShortcut and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
+and shortcutsEnabled and mouseoverTagShortcut = "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
 	// If filter is active, deactivate it
 	if (obj_control.quickFilterGridActive) {

@@ -140,21 +140,28 @@ function scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, c
 								}
 						
 								// keyboard shortcut
-								if (currentFieldHasShortcutSet && mouseoverCell) {
-									obj_control.mouseoverTagShortcut = true;
-									var currentFieldShortcutSet = ds_map_find_value(currentFieldTagSubMap, "shortcutSet");
-									if (is_numeric(currentFieldShortcutSet)) {
-										if (ds_exists(currentFieldShortcutSet, ds_type_list)) {
-											var currentFieldShortcutSetSize = ds_list_size(currentFieldShortcutSet);
-											for (var i = 0; i < currentFieldShortcutSetSize; i++) {
-												var currentShortcut = ds_list_find_value(currentFieldShortcutSet, i);
-												currentShortcut = string_upper(string(currentShortcut));
-												if (string_length(currentShortcut) == 1) {
-													if (keyboard_check_released(ord(currentShortcut))) {
-														obj_control.chain1toManyEntryToChange = currentEntry;
-														obj_control.chain1toManyFieldToChange = currentField;
-														var optionSelected = ds_list_find_value(currentFieldTagSet, i);
-														scr_chainContents1ToManyTagOptions(optionSelected);
+								if (currentFieldHasShortcutSet) {
+									if (mouseoverCell) {
+										obj_control.mouseoverTagShortcut = string(currentField);
+										obj_control.chain1toManyEntryToChange = currentEntry;
+										obj_control.chain1toManyFieldToChange = currentField;
+									}
+									if (obj_control.mouseoverTagShortcut == string(currentField)) {
+										var currentFieldShortcutSet = ds_map_find_value(currentFieldTagSubMap, "shortcutSet");
+										if (is_numeric(currentFieldShortcutSet)) {
+											if (ds_exists(currentFieldShortcutSet, ds_type_list)) {
+												var currentFieldShortcutSetSize = ds_list_size(currentFieldShortcutSet);
+												for (var i = 0; i < currentFieldShortcutSetSize; i++) {
+													var currentShortcut = ds_list_find_value(currentFieldShortcutSet, i);
+													currentShortcut = string_upper(string(currentShortcut));
+													if (string_length(currentShortcut) == 1) {
+														if (keyboard_check_released(ord(currentShortcut))) {
+															var optionSelected = ds_list_find_value(currentFieldTagSet, i);
+															scr_chainContents1ToManyTagOptions(optionSelected);
+															with (obj_dropDown) {
+																instance_destroy();
+															}
+														}
 													}
 												}
 											}
