@@ -324,5 +324,10 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_chainContents1ToManyTagOptions(optionSelected);
 		instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeTextDirection) //49
+	{
+	    scr_textDirectionOptions(optionSelected);
+		instance_destroy();
+	}
 
 }

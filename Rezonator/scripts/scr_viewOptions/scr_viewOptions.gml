@@ -115,6 +115,17 @@ function scr_viewOptions(optionSelected) {
 			}
 	
 		break;
+		
+		case "Text Direction":
+			var dropDownOptionList = ds_list_create();
+			
+			ds_list_add(dropDownOptionList, "Left To Right","Right To Left");
+				
+			if (ds_list_size(dropDownOptionList) > 0) {
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypeTextDirection);
+			}
+		
+		break;
 	
 		default:
 		break;

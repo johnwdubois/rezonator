@@ -357,6 +357,7 @@ ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
+ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 
 global.optionListTypeSort = 0;
 global.optionListTypeChainList = 1;
@@ -407,6 +408,7 @@ global.optionListTypeLanguage = 45;
 global.optionListTypeImportGrid = 46;
 global.optionListTypeChainContents1ToManyField = 47;
 global.optionListTypeChainContents1ToManyTag = 48;
+global.optionListTypeTextDirection = 49;
 
 
 

@@ -149,7 +149,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		// using the previous word's display column, set the current word's void
 		var currentWordVoid = 0;
 
-		if (drawWordLoop > 0) {
+		if (drawWordLoop >= 0) {
 			currentWordDisplayCol = scr_wordVoid(currentWordDisplayCol, previousWordDisplayCol, currentWordGridRow, currentWordID);
 			
 		}
@@ -172,11 +172,12 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	
 		// if the previous word is on top of the current word, push the current word out by one column
 		currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
+		/*
 		if (previousWordDisplayCol >= currentWordDisplayCol) {
 			currentWordDisplayCol++;
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
 		}
-	
+	*/
 		// horizontally move this word to its desired x-pixel value
 		var currentWordDestX = 0;
 		if (justify == justifyLeft) {
