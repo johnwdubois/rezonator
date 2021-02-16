@@ -677,10 +677,8 @@ drawLineState = lineState_ltr;
 chain1toManyEntryToChange = "";
 chain1toManyFieldToChange = "";
 chain1ToManyColFieldToChange = -1;
-chain1toManyColFieldList = ds_list_create(); // the dynamic columns in the chainContents pane
-chainEntryFieldList = ds_list_create(); // all of the entry level fields
+chain1toManyColFieldList = ds_list_create(); // list of the dynamic columns in the chainContents pane
 ds_list_add(chain1toManyColFieldList, "gapUnits", "gender", "pronType");
-ds_list_add(chainEntryFieldList, "gapUnits", "gender", "pronType");
 
 
 with (obj_alarm) {

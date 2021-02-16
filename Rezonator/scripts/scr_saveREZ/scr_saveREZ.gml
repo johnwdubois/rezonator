@@ -192,10 +192,6 @@ function scr_saveREZ(autosave) {
 			unitImportTagMapCopy = json_decode(json_encode(global.unitImportTagMap));
 			ds_map_add_map(map, "unitImportTagMap", unitImportTagMapCopy);
 			
-			// deep-copy stackTagMap
-			stackTagMapCopy = json_decode(json_encode(global.stackTagMap));
-			ds_map_add_map(map, "stackTagMap", stackTagMapCopy);
-			
 			// deep-copy nodeMap
 			nodeMapCopy = json_decode(json_encode(global.nodeMap));
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);

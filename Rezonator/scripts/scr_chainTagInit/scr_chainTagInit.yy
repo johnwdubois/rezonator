@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "dialogueBox",
-    "path": "folders/Scripts/UI/dialogueBox.yy",
+    "name": "chains",
+    "path": "folders/Scripts/chains.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_dialogueBoxNewCustomTagStack",
+  "name": "scr_chainTagInit",
   "tags": [],
   "resourceType": "GMScript",
 }

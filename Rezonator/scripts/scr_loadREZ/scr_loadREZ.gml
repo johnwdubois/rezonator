@@ -175,13 +175,6 @@ function scr_loadREZ() {
 					}
 					
 					
-					// check if the stackTagMap is available in the REZ file
-					// if it is, we will take the stackTagMap in the REZ file
-					// if it is not, we will stick with the one we've already created
-					var stackMapFromREZ = ds_map_find_value(map, "stackTagMap");
-					if (!is_undefined(stackMapFromREZ)) {
-						 global.stackTagMap = ds_map_find_value(map, "stackTagMap");
-					}
 				
 				
 				

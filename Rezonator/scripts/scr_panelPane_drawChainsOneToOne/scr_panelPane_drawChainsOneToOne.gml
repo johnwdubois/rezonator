@@ -3,8 +3,8 @@
 function scr_panelPane_drawChainsOneToOne(){
 	
 	
-
-	
+	// TAKING OUT TEMPORARILY ... while we're working on entry tags
+	/*
 	
 	var chainListPanelPaneInst = 0;
 	with (obj_panelPane) {
@@ -239,5 +239,7 @@ function scr_panelPane_drawChainsOneToOne(){
 	}
 	
 	scr_surfaceEnd();
+	
+	*/
 
 }

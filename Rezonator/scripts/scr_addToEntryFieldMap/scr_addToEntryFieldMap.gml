@@ -8,6 +8,8 @@ function scr_addToEntryFieldMap(key, tagSet, shortcutSet, rezTag, trackTag, stac
 		exit;
 	}
 	
+	ds_list_add(global.chainEntryFieldList, key);
+	
 	var subMap = ds_map_create();
 	ds_map_add_map(global.entryFieldMap, key, subMap);
 	

@@ -357,7 +357,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 				if (mouse_check_button_released(mb_left)) {
 					obj_control.chain1ToManyColFieldToChange = i - 3;
-					scr_createDropDown(colRectX1, colRectY1 + tabHeight, obj_control.chainEntryFieldList, global.optionListTypeChainContents1ToManyField);
+					scr_createDropDown(colRectX1, colRectY1 + tabHeight, global.chainEntryFieldList, global.optionListTypeChainContents1ToManyField);
 				}
 			}
 		}

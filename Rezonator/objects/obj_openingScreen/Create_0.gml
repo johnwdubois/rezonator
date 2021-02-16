@@ -99,18 +99,6 @@ ds_list_clear(global.discoImportColNameList);
 
 global.tokenImportTagMap = ds_map_create();
 global.unitImportTagMap  = ds_map_create();
-global.stackTagMap = ds_map_create();
-
-// stack tags hard-coded in map for now...
-var actTagList = ds_list_create();
-var repairTagList = ds_list_create();
-var actSequenceTagList = ds_list_create();
-ds_list_add(actTagList, "Question", "Answer");
-ds_list_add(repairTagList, "Break", "Edit", "Fix");
-ds_list_add(actSequenceTagList, "Q&A", "Repair");
-ds_map_add_list(global.stackTagMap, "act", actTagList);
-ds_map_add_list(global.stackTagMap, "repair", repairTagList);
-ds_map_add_list(global.stackTagMap, "act sequence", actSequenceTagList);
 
 
 
@@ -420,28 +408,9 @@ global.optionListTypeImportGrid = 46;
 global.optionListTypeChainContents1ToManyField = 47;
 global.optionListTypeChainContents1ToManyTag = 48;
 
-// initialize entry field map
-global.entryFieldMap = ds_map_create();
-
-// gapUnits
-scr_addToEntryFieldMap("gapUnits", undefined, undefined, true, true, true);
-
-// gender tags
-var genderTagSet = ds_list_create();
-var genderShortcutSet = ds_list_create();
-ds_list_add(genderTagSet, "fem", "masc", "neuter");
-ds_list_add(genderShortcutSet, "F", "M", "N");
-scr_addToEntryFieldMap("gender", genderTagSet, genderShortcutSet, true, true, false);
-
-// pronType tags
-var pronTypeTagSet = ds_list_create();
-var pronTypeShortcutSet = ds_list_create();
-ds_list_add(pronTypeTagSet, "personal", "other");
-ds_list_add(pronTypeShortcutSet, "P", "O");
-scr_addToEntryFieldMap("pronType", pronTypeTagSet, pronTypeShortcutSet, true, true, false);
 
 
-
+scr_chainTagInit();
 
 
 //this map stores all the keyboard shortcuts to late be displayed on the tooltip
