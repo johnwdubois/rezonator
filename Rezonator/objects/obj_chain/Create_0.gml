@@ -174,15 +174,17 @@ filteredStackChainList = ds_list_create();
 
 
 
-trackGridWidth = 9;
+trackGridWidth = 11;
 trackGrid_colChainID = 0;
 trackGrid_colChainName = 1;
 trackGrid_colChainSeq = 2;
 trackGrid_colTrackSeq = 3;
 trackGrid_colWordID = 4;
-trackGrid_colText = 5;
-trackGrid_colTranscript = 6;
-trackGrid_colUnitText = 7;
-trackGrid_colGapUnits = 8;
+trackGrid_colIsChunk = 5;
+trackGrid_colChunkID = 6;
+trackGrid_colText = 7;
+trackGrid_colTranscript = 8;
+trackGrid_colUnitText = 9;
+trackGrid_colGapUnits = 10;
 trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);

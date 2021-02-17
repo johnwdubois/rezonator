@@ -253,6 +253,12 @@ function scr_getColNameString(grid, col) {
 			case obj_chain.trackGrid_colGapUnits:
 				colName = "GapUnits";
 				break;
+			case obj_chain.trackGrid_colIsChunk:
+				colName = "IsChunk";
+				break;
+			case obj_chain.trackGrid_colChunkID:
+				colName = "ChunkID";
+				break;
 			default:
 				break;
 		}

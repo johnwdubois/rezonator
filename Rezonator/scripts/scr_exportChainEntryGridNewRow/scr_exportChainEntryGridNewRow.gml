@@ -23,6 +23,12 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 			var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
 			var unitText = scr_getUnitText(unitID);
 			
+			// get chunkID 
+			var chunkID = "";
+			if (isInChunk) {
+				chunkID = ds_map_find_value(entrySubMap, "word");
+			}
+			
 			// add new row to trackGrid
 			ds_grid_resize(grid, gridWidth, ds_grid_height(grid) + 1);
 			var newGridRow = ds_grid_height(grid) - 1;
@@ -31,6 +37,8 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 			ds_grid_set(grid, obj_chain.trackGrid_colChainSeq, newGridRow, chainSeq);
 			ds_grid_set(grid, obj_chain.trackGrid_colTrackSeq, newGridRow, trackSeq);
 			ds_grid_set(grid, obj_chain.trackGrid_colWordID, newGridRow, wordID);
+			ds_grid_set(grid, obj_chain.trackGrid_colIsChunk, newGridRow, (isChunk) ? "TRUE" : "FALSE");
+			ds_grid_set(grid, obj_chain.trackGrid_colChunkID, newGridRow, chunkID);
 			ds_grid_set(grid, obj_chain.trackGrid_colText, newGridRow, text);
 			ds_grid_set(grid, obj_chain.trackGrid_colTranscript, newGridRow, transcript);
 			ds_grid_set(grid, obj_chain.trackGrid_colUnitText, newGridRow, unitText);
