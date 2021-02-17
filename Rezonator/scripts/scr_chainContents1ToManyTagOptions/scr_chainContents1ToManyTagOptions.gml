@@ -26,7 +26,6 @@ function scr_chainContents1ToManyTagOptions(optionSelected){
 	if (!is_numeric(entryTagMap)) exit;
 	if (!ds_exists(entryTagMap, ds_type_map)) exit;
 	
-	
 	if (optionSelected == "Remove tag") {
 		// if user selected "Remove tag" then we delete the tag from this entry's tagmap
 		ds_map_delete(entryTagMap, fieldToChange);

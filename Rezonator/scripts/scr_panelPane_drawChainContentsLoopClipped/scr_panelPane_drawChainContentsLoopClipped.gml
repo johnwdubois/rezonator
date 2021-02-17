@@ -306,6 +306,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			var colRectX2 = colRectX1 + (windowWidth);	
 		}
 		var colRectY2 = colRectY1 + windowHeight;
+		var mouseoverHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight);
 	
 		// get header string for static columns
 		var colName = "";
@@ -361,6 +362,14 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 					obj_control.chain1ToManyColFieldToChange = i - 3;
 					scr_createDropDown(colRectX1, colRectY1 + tabHeight, global.chainEntryFieldList, global.optionListTypeChainContents1ToManyField);
 				}
+			}
+			
+			// right-click on header
+			if (mouseoverHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+				obj_control.chain1ToManyColFieldToChange = i - 3;
+				var headerRightClickList = ds_list_create();
+				ds_list_add(headerRightClickList, "Create Field");
+				scr_createDropDown(colRectX1, colRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1ToManyHeaderRightClick);
 			}
 		}
 		

@@ -483,6 +483,7 @@ newCustomFieldToken = false;
 newCustomTagUnit = false;
 newCustomFieldUnit = false;
 newCustomTagEntry = false;
+newCustomFieldEntry = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;

@@ -324,6 +324,9 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomTagEntry) {
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
 		}
+		if (obj_control.newCustomFieldEntry) {
+			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
+		}
 	
 
 		if (obj_control.ePressed) {
@@ -732,6 +735,10 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomTagEntry) {
 			scr_dialogueBoxNewCustomTagEntry();
 		}
+		if (obj_control.newCustomFieldEntry) {
+			scr_dialogueBoxNewCustomFieldEntry();
+		}
+		
 
 		if (obj_control.recolor) {
 

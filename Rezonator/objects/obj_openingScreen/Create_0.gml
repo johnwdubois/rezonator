@@ -409,6 +409,7 @@ global.optionListTypeImportGrid = 46;
 global.optionListTypeChainContents1ToManyField = 47;
 global.optionListTypeChainContents1ToManyTag = 48;
 global.optionListTypeTextDirection = 49;
+global.optionListTypeChain1ToManyHeaderRightClick = 50;
 
 
 

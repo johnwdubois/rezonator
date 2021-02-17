@@ -21,14 +21,5 @@ function scr_dialogueBoxNewCustomTagEntry(){
 	
 	// set the entry with the new tag
 	scr_chainContents1ToManyTagOptions(newTag);
-	/*
-	var entrySubMap = ds_map_find_value(global.nodeMap, obj_control.chain1toManyEntryToChange);
-	if (!is_numeric(entrySubMap)) exit;
-	if (!ds_exists(entrySubMap, ds_type_map)) exit;
-	var tagSubMap = ds_map_find_value(entrySubMap, "tagMap");
-	if (!is_numeric(tagSubMap)) exit;
-	if (!ds_exists(tagSubMap, ds_type_map)) exit;
-	scr_setMap()
-	*/
 	
 }
