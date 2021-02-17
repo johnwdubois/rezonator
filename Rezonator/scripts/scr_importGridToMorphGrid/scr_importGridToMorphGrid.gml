@@ -1,6 +1,6 @@
 function scr_importGridToMorphGrid() {
 	show_debug_message("scr_importGridToMorphGrid() START ... " + scr_printTime());
-	
+	var RTL = false;
 	if (ds_grid_height(global.importGrid) < 1) {
 		exit;
 	}
@@ -21,7 +21,7 @@ function scr_importGridToMorphGrid() {
 			glossCol = -1;
 		}
 		*/
-
+		
 		// build morphGrid!
 		var plainTextInfoGridHeight = ds_grid_height(global.plainTextInfoGrid);
 		for (var i = 0; i < plainTextInfoGridHeight; i++) {
@@ -47,7 +47,19 @@ function scr_importGridToMorphGrid() {
 				ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
 		
 				var currentMorph = ds_list_find_value(currentMorphList, j);
+				
+				if(!RTL){
+					var letterCount = string_length(currentMorph);
+				
+					for(var i = 0; i <= letterCount; i++){
+			
+						var unicodeValue = ord(string_char_at(currentMorph,i));
 
+						if ( 1424 <= unicodeValue and unicodeValue <= 1535 ){
+							RTL = true;
+						}
+					}
+				}
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
@@ -157,6 +169,19 @@ function scr_importGridToMorphGrid() {
 				if (glossCol >= 0) {
 					currentGloss = ds_list_find_value(currentGlossList, j);
 				}
+				
+				if(!RTL){
+					var letterCount = string_length(currentMorph);
+				
+					for(var i = 0; i <= letterCount; i++){
+			
+						var unicodeValue = ord(string_char_at(currentMorph,i));
+
+						if ( 1424 <= unicodeValue and unicodeValue <= 1535 ){
+							RTL = true;
+						}
+					}
+				}
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
@@ -251,6 +276,20 @@ function scr_importGridToMorphGrid() {
 				if (glossCol >= 0) {
 					currentGloss = ds_list_find_value(currentGlossList, j);
 				}
+				
+				if(!RTL){
+					var letterCount = string_length(currentMorph);
+				
+					for(var i = 0; i <= letterCount; i++){
+			
+						var unicodeValue = ord(string_char_at(currentMorph,i));
+
+						if ( 1424 <= unicodeValue and unicodeValue <= 1535 ){
+							RTL = true;
+						}
+					}
+				}
+				
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
@@ -333,6 +372,20 @@ function scr_importGridToMorphGrid() {
 				if (glossCol >= 0) {
 					currentGloss = ds_list_find_value(currentGlossList, j);
 				}
+				
+				if(!RTL){
+					var letterCount = string_length(currentMorph);
+				
+					for(var i = 0; i <= letterCount; i++){
+			
+						var unicodeValue = ord(string_char_at(currentMorph,i));
+
+						if ( 1424 <= unicodeValue and unicodeValue <= 1535 ){
+							RTL = true;
+						}
+					}
+				}
+				
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
@@ -345,7 +398,9 @@ function scr_importGridToMorphGrid() {
 			}
 		}
 	}
-	
+	if(RTL){
+		obj_control.drawLineState = obj_control.lineState_rtl;
+	}
 	scr_morphToUnitGrid();
 	
 	show_debug_message("scr_importGridToMorphGrid() END ... " + scr_printTime());
