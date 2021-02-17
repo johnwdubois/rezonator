@@ -226,23 +226,7 @@ function scr_fillTokenImportGridCSV() {
 			
 					var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
 					ds_list_add(tokenList, currentLine);
-					//var currentLineTokenList = scr_splitStringImport(currentLine);
-					//var currentLineTokenListSize = ds_list_size(currentLineTokenList);
-					
-					/*
-					if (currentLineTokenListSize == 0) {
-						currentLineTokenListSize = 1;
-					}
-					*/
-					/*
-					for (var k = 0; k < currentLineTokenListSize; k++) {
-						//if (ds_list_find_value(currentLineTokenList, k) == undefined){
-						//	ds_list_add(currentLineTokenList, "");
-						//}
-						ds_list_add(tokenList, ds_list_find_value(currentLineTokenList, k));
-					}
-					*/
-					//ds_list_destroy(currentLineTokenList);
+
 				}
 		
 				var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
