@@ -117,6 +117,7 @@ function scr_viewOptions(optionSelected) {
 		break;
 		
 		case "Text Direction":
+			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
 			
 			ds_list_add(dropDownOptionList, "Left To Right","Right To Left");
