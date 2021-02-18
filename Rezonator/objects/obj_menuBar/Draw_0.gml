@@ -83,25 +83,42 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 }
 
 	
-	
-	
+var fpsTextX = camera_get_view_width(camera_get_active()) - string_width("000");
+var fpsTextY = menuHeight / 2;	
+var spriteScale = 0.4;
+var sizeOfSave = sprite_get_width(spr_saveWarning)*spriteScale;
+
+
+var saveIconX1 = fpsTextX - (sizeOfSave/2);
+var saveIconY1 = fpsTextY - (sizeOfSave/2);
+var saveIconX2 =  fpsTextX + (sizeOfSave/2);
+var saveIconY2 = fpsTextY + (sizeOfSave/2);
 	
 	
 if (obj_control.showFPS) {
-	var fpsTextX = camera_get_view_width(camera_get_active()) - string_width("000");
-	var fpsTextY = menuHeight / 2;
+	if(obj_control.allSaved){
+		fpsTextX = saveIconX1 - string_width("000");
+	}
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_middle);
 	draw_text(fpsTextX, fpsTextY, "FPS: " + string(fps));
 }
 // show unsaved warning
-var fpsTextX = camera_get_view_width(camera_get_active()) - string_width("000");
-var fpsTextY = menuHeight / 2;
+
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
+
+
 if(obj_control.allSaved){
-	draw_text(fpsTextX, fpsTextY, "Saved");
-}else{
-	draw_text(fpsTextX, fpsTextY, "Unsaved");
-	draw_sprite_ext(spr_saveWarning,0,fpsTextX-string_width("Unsaved0000"),fpsTextY-0.85*string_width("00"),0.3,0.3, 0, make_colour_rgb(125, 125, 125), 1)
+	saveTextAlpha -= 0.01;
+	saveTextAlpha = clamp(saveTextAlpha,0 ,1);
+	draw_set_alpha(saveTextAlpha);	
+	draw_text(fpsTextX,fpsTextY, "Saved!");
+}
+else{
+	if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
+		scr_createTooltip(saveIconX1 ,fpsTextY, "Unsaved Changes!", obj_tooltip.arrowFaceRight);
+	}
+	draw_sprite_ext(spr_saveWarning,0,fpsTextX,fpsTextY,spriteScale,spriteScale, 0,global.colorThemeText , 1)
+	saveTextAlpha = 1;	
 }

@@ -66,9 +66,12 @@ ds_grid_set(attribGrid, 0, 2, "POS_Spacy");
 ds_grid_set(attribGrid, 0, 3, "DepRel_Spacy");
 ds_grid_set(attribGrid, 0, 4, "wordStart");
 ds_grid_set(attribGrid, 0, 5, "wordEnd");
+var listOfMarkers = ds_list_create();
+ds_list_add(listOfMarkers,"text","transcript","POS_Spacy","DepRel_Spacy","wordStart","wordEnd");
+var listOfMarkersSize = ds_list_size(listOfMarkers)
 
 // For each attribute, get its value (from the tokenImportGrid) and put it in the 2nd column; if it does not exist, then remove the row from the attribute grid
-for (var i = 0; i < ds_grid_height(attribGrid); i++)
+for (var i = 0; i <= listOfMarkersSize; i++)
 {
 	var attribName = ds_grid_get(attribGrid, 0, i);	// Attribute name to find the value of
 	var tokenImportGridAttribColNum = ds_list_find_index(global.tokenImportColNameList, attribName);	// Column number which stores the attribute in the tokenImportGrid
@@ -87,9 +90,10 @@ for (var i = 0; i < ds_grid_height(attribGrid); i++)
 
 if (ds_grid_height(attribGrid) == 0)	// Nothing to display, so stop here
 {
+	ds_grid_destroy(attribGrid)
 	exit;	
 }
-
+ds_list_destroy(listOfMarkers);
 
 /* --- Calculate the dimensions of the WordTip box --- */
 
@@ -179,15 +183,23 @@ draw_set_valign(fa_top);
 draw_set_color(c_black);
 draw_set_alpha(1);
 
-// Draw the headers
-draw_text(boxX + boxPaddingHoriz, boxY + boxPaddingVert, "Attribute");
-draw_text(boxX + secondColumnOffsetX, boxY + boxPaddingVert, "Value");
 
 // Draw the attribute grid
 for(var i = 0; i < ds_grid_height(attribGrid); i++)
-{
+{	
+	
 	var attribName = ds_grid_get(attribGrid, 0, i);
 	var attribValueStr = string( ds_grid_get(attribGrid, 1, i) );
+	
+
+	
+	if(i == 0){
+		// Draw the headers
+		draw_text(boxX + boxPaddingHoriz, boxY + boxPaddingVert, "Attribute");
+		draw_text(boxX + secondColumnOffsetX, boxY + boxPaddingVert, "Value");
+	}
+
+
 	
 	var rowY = boxY + headerHeight + boxPaddingVert / 2 + i * lineHeight;
 	
@@ -201,3 +213,5 @@ for(var i = 0; i < ds_grid_height(attribGrid); i++)
 	// Draw the attribute value to the right
 	draw_text(boxX + secondColumnOffsetX, rowY, attribValueStr);
 }
+
+ds_grid_destroy(attribGrid)

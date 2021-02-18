@@ -184,3 +184,5 @@ ds_list_add(menuList, "File", "Link", "Edit", "View", "Search", "Tools", "Advanc
 menuListSize = ds_list_size(menuList);*/
 
 mouseoverMenuBar = false;
+
+saveTextAlpha = 1;
