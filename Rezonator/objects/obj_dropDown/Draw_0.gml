@@ -46,7 +46,14 @@ var optionListSize = ds_list_size(optionList);
 var maxStrWidth = originalWindowWidth;
 for (var i = 0; i < optionListSize; i++) {
 	var currentOptionStr = string(ds_list_find_value(optionList, i));
-	var currentOptionStrWidth = string_width(currentOptionStr) + (textBuffer * 2);
+	var shortcutStr = "";
+	if(ds_map_exists(global.keyboardShortcutMap, currentOptionStr)){
+		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, currentOptionStr);	
+	}
+	
+	currentOptionStr = scr_get_translation(currentOptionStr);
+	
+	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
 	if (currentOptionStrWidth > maxStrWidth) {
 		maxStrWidth = currentOptionStrWidth;
 	}
@@ -166,11 +173,47 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	// draw option text
+	
 	var optionTextStr = scr_get_translation(optionText);
+	
+	//optionTextStr = optionText;
+	//uncomment this line to see the raw strings instead of display strings in dropdown
+	
+	var shortcutStr = "";
+	if(ds_map_exists(global.keyboardShortcutMap, optionText)){
+		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, optionText);	
+	}
+
+	if(optionText == "menu_grid" and  optionListType != global.optionListTypePane){
+		shortcutStr = "";
+	}
+	if(optionText == "menu_search" and optionListType != global.optionListTypePane){
+		shortcutStr = "";
+	}
+	if((optionText == "menu_rez" or optionText == "menu_track") and optionListType != global.optionListTypeTools){
+		shortcutStr = "";	
+	}
+	
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
+	var shortcutTextX = floor(optionRectX2 - textBuffer);
 	scr_adaptFont(scr_get_translation(optionTextStr), "M");
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
+
+
+	draw_set_halign(fa_right);
+	if(shortcutStr != ""){
+		scr_adaptFont(scr_get_translation(shortcutStr), "S");
+		if(isExpandable){
+			draw_text(shortcutTextX - clipX - sprite_get_width(spr_ascend), optionTextY - clipY, shortcutStr);
+		}
+		else{
+			draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
+		}
+	}
+
+	draw_set_halign(fa_left);
+	draw_set_alpha(1);
 	
 	// click on option
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {
