@@ -42,14 +42,28 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 			ds_grid_set(grid, obj_chain.trackGrid_colText, newGridRow, text);
 			ds_grid_set(grid, obj_chain.trackGrid_colTranscript, newGridRow, transcript);
 			ds_grid_set(grid, obj_chain.trackGrid_colUnitText, newGridRow, unitText);
-			ds_grid_set(grid, obj_chain.trackGrid_colGapUnits, newGridRow, gapUnits);
 					
 			// add tokenImport data to trackGrid (as long as this entry is not a chunk)
 			var tokenImportGridWidth = ds_grid_width(global.tokenImportGrid);
 			for (var i = 4; i < tokenImportGridWidth; i++) {
 				var currentTokenImportValue = ds_grid_get(global.tokenImportGrid, i, wordID - 1);
-				ds_grid_set(grid, obj_chain.trackGridWidth - 4 + i, ds_grid_height(grid) - 1, (isChunk) ? "" : currentTokenImportValue);
+				var currentCol = obj_chain.trackGridWidth + (i - 4);
+				ds_grid_set(grid, currentCol, ds_grid_height(grid) - 1, (isChunk) ? "" : currentTokenImportValue);
 			}
+			
+			// add entry tags to trackGrid
+			var chainEntryFieldListSize = ds_list_size(global.chainEntryFieldList);
+			for (var i = 0; i < chainEntryFieldListSize; i++) {
+				var currentEntryField = ds_list_find_value(global.chainEntryFieldList, i);
+				var tag = "";
+				if (ds_map_exists(tagMap, currentEntryField)) {
+					tag = ds_map_find_value(tagMap, currentEntryField);
+				}
+				var currentCol = obj_chain.trackGridWidth + (tokenImportGridWidth - 4) + i;
+				ds_grid_set(grid, currentCol, ds_grid_height(grid) - 1, (isInChunk) ? "" : tag);
+			}
+			
+			
 		}
 	}
 	

@@ -174,7 +174,7 @@ filteredStackChainList = ds_list_create();
 
 
 
-trackGridWidth = 11;
+trackGridWidth = 10;
 trackGrid_colChainID = 0;
 trackGrid_colChainName = 1;
 trackGrid_colChainSeq = 2;
@@ -185,6 +185,5 @@ trackGrid_colChunkID = 6;
 trackGrid_colText = 7;
 trackGrid_colTranscript = 8;
 trackGrid_colUnitText = 9;
-trackGrid_colGapUnits = 10;
 trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);

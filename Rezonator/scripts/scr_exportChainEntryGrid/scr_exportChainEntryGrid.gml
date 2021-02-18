@@ -7,7 +7,7 @@ function scr_exportChainEntryGrid(grid){
 	}
 	
 	// reset trackGrid
-	var gridWidth = obj_chain.trackGridWidth + (ds_grid_width(global.tokenImportGrid) - 4);
+	var gridWidth = obj_chain.trackGridWidth + (ds_grid_width(global.tokenImportGrid) - 4) + (ds_list_size(global.chainEntryFieldList));
 	ds_grid_clear(grid, 0);
 	ds_grid_resize(grid, gridWidth, 0);
 	

@@ -250,9 +250,6 @@ function scr_getColNameString(grid, col) {
 			case obj_chain.trackGrid_colUnitText:
 				colName = "UnitText";
 				break;
-			case obj_chain.trackGrid_colGapUnits:
-				colName = "GapUnits";
-				break;
 			case obj_chain.trackGrid_colIsChunk:
 				colName = "IsChunk";
 				break;
@@ -263,7 +260,13 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 		if (col >= obj_chain.trackGridWidth) {
-			colName = string(ds_list_find_value(global.tokenImportColNameList, col - 5));
+			if (col < ds_grid_width(obj_chain.trackGrid) - ds_list_size(global.chainEntryFieldList) + 3) {
+				colName = string(ds_list_find_value(global.tokenImportColNameList, col - 6));
+			}
+			else {
+				var chainEntryFieldIndex = ds_grid_width(obj_chain.trackGrid) - obj_chain.trackGridWidth - (ds_list_size(global.tokenImportColNameList) - 4);
+				colName = ds_list_find_value(global.chainEntryFieldList, chainEntryFieldIndex);
+			}
 		}
 		
 	}
