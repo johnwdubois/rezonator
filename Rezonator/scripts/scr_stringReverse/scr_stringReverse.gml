@@ -38,6 +38,16 @@ function scr_stringReverse(inputString){
 			if(isNotHE){
 				nonReverseChars+=charToAdd
 				show_debug_message("scr_stringReverse: nonreversed: " + string(nonReverseChars));
+				if(i == 1){
+					var nonReverseletterCount = string_length(nonReverseChars);
+					for(var j = nonReverseletterCount;j > 0; j--){
+						newNonReverseChars += string_char_at(nonReverseChars,j);
+					}
+					newString += newNonReverseChars;
+					newNonReverseChars = "";
+					nonReverseChars = "";
+				
+				}
 			}
 			else{
 				if(isPrevNotHE){
