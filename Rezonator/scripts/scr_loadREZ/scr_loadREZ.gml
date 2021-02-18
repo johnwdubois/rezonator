@@ -208,18 +208,24 @@ function scr_loadREZ() {
 						obj_control.currentDisplayUnitColsList = tempList5;
 						ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
 					}
-				
-				
+					
+					
+					// get chainEntryFieldList, if supplied
+					var chainEntryFieldList = ds_map_find_value(map, "chainEntryFieldList");
+					if (!is_undefined(chainEntryFieldList)) {
+						ds_map_destroy(global.chainEntryFieldList);
+						global.chainEntryFieldList = chainEntryFieldList;
+					}
+					
+					// get entry field map, if supplied
+					var entryFieldMap = ds_map_find_value(map, "entryFieldMap");
+					if (!is_undefined(entryFieldMap)) {
+						ds_map_destroy(global.entryFieldMap);
+						global.entryFieldMap = entryFieldMap;
+					}
+					
 
-			
-					/*
-					scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
-					scr_loadREZGridReset(tempWordGrid, map, "wordGrid");
-					scr_loadREZGridReset(dynamicWordGrid, map, "dynaWordGrid");
-					scr_loadREZGridReset(wordDrawGrid, map, "wordDrawGrid");
-					scr_loadREZGridReset(unitGrid, map, "unitGrid");
-					scr_loadREZGridReset(lineGrid, map, "lineGrid");
-					*/
+	
 				
 					originalWordGridHeight = ds_grid_height(wordGrid);
 					originalUnitGridHeight = ds_grid_height(unitGrid);

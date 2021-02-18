@@ -89,6 +89,11 @@ scrollPlusY = min(scrollPlusY, 0);
 var optionListSize = ds_list_size(optionList);
 for (var i = 0; i < optionListSize; i++) {
 	draw_set_alpha(1);
+	
+	// get option text
+	var optionText = ds_list_find_value(optionList, i);
+	
+	// optionRect coordinates
 	var optionRectX1 = x;
 	var optionRectY1 = y + (optionSpacing * i) + scrollPlusY;
 	var optionRectX2 = x + windowWidth;
@@ -116,15 +121,24 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 	}
 	
-	draw_set_color(global.colorThemeBG);
-	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
-		draw_set_color(c_ltblue);
-	}
-
 	
+	
+	// draw BG rectangle for each option
+	var optionBGColor = global.colorThemeBG;
+	if (optionText == "Add to tag set") {
+		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(60, 230, 65), 0.5);
+	}
+	else if (optionText == "Remove tag") {
+		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
+	}
+	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
+		optionBGColor = c_ltblue;
+	}
+	draw_set_color(optionBGColor);
+	draw_set_alpha(1);
 	draw_rectangle(optionRectX1 - clipX, optionRectY1 - clipY, optionRectX2 - clipX, optionRectY2 - clipY, false);
 	
-	var optionText = ds_list_find_value(optionList, i);
+	
 	
 	// check whether this option is expandable
 	var isExpandable = false;
@@ -141,11 +155,13 @@ for (var i = 0; i < optionListSize; i++) {
 		}
 	}
 	
-	
+	// gray out option if it begins with ~
 	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {
-		if (string_char_at(optionText, 1) == "~") {
-			draw_set_color(global.colorThemeSelected2);
+		if (string_length(optionText) >= 1) {
+			if (string_char_at(optionText, 1) == "~") {
+				draw_set_color(global.colorThemeSelected2);
+			}
 		}
 	}
 	
@@ -154,12 +170,9 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionTextX = floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
 	scr_adaptFont(scr_get_translation(optionTextStr), "M");
-
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
 	
-
-	draw_set_alpha(1);
-	
+	// click on option
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {
 		optionCurrent = i;
 		var optionSelected = ds_list_find_value(optionList, i);

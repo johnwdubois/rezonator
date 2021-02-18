@@ -64,6 +64,7 @@ function scr_saveREZ(autosave) {
 	var tokenImportTagMapCopy = ds_map_create();
 	var unitImportTagMapCopy = ds_map_create();
 	var stackTagMapCopy = ds_map_create();
+	var entryFieldMapCopy = ds_map_create();
 
 	// create a list to contain all of the data we will save	
 	var rootList = ds_list_create();
@@ -157,6 +158,12 @@ function scr_saveREZ(autosave) {
 				ds_list_copy(tempList5, obj_control.currentDisplayUnitColsList);
 			}
 			ds_map_add_list(map, "currentDisplayUnitColsList", tempList5);
+			
+			var tempList6 = ds_list_create();
+			if (!is_undefined(global.chainEntryFieldList)) {
+				ds_list_copy(tempList6, global.chainEntryFieldList);
+			}
+			ds_map_add_list(map, "chainEntryFieldList", tempList6);
 		
 		
 			//save special feild colnames
@@ -192,11 +199,15 @@ function scr_saveREZ(autosave) {
 			unitImportTagMapCopy = json_decode(json_encode(global.unitImportTagMap));
 			ds_map_add_map(map, "unitImportTagMap", unitImportTagMapCopy);
 			
+			// deep-copy entryFieldMap
+			entryFieldMapCopy = json_decode(json_encode(global.entryFieldMap));
+			ds_map_add_map(map, "entryFieldMap", entryFieldMapCopy);
+			
 			// deep-copy nodeMap
 			nodeMapCopy = json_decode(json_encode(global.nodeMap));
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);
 			
-			
+		 	
 			
 		
 		}
@@ -300,11 +311,19 @@ function scr_saveREZ(autosave) {
 
 	ds_map_destroy(wrapper);
 	
-	// destroy various map deep-copies
+	// destroy various map/list deep-copies
 	ds_map_destroy(nodeMapCopy);
 	ds_map_destroy(tokenImportTagMapCopy);
 	ds_map_destroy(unitImportTagMapCopy);
 	ds_map_destroy(stackTagMapCopy);
+	ds_map_destroy(entryFieldMapCopy);
+	ds_list_destroy(tempList);
+	ds_list_destroy(tempList2);
+	ds_list_destroy(tempList3);
+	ds_list_destroy(tempList4);
+	ds_list_destroy(tempList5);
+	ds_list_destroy(tempList6);
+	
 	
 	// set allSaved to true so user does not get prompted to save when they quit
 	if (not autosave) {
