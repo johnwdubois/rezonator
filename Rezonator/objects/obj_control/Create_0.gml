@@ -681,8 +681,8 @@ chain1ToManyColFieldToChange = -1;
 chain1toManyColFieldListRez = ds_list_create(); // list of the dynamic columns in the chainContents pane
 chain1toManyColFieldListTrack = ds_list_create(); // list of the dynamic columns in the chainContents pane
 chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns in the chainContents pane
-ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "pronType");
-ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "pronType");
+ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
+ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 

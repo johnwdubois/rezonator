@@ -64,7 +64,10 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 						var currentDisplayStr = "";
 						currentDisplayStr = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWord - 1));
 						currentCharCount = string_length(currentDisplayStr);
-						if (currentChunkFirstWord >= 0) currentCharCount -= 1;
+						if (currentChunkFirstWord >= 0) {
+							var displayStrNoWhitespace = string_replace_all(currentDisplayStr, " ", "");
+							currentCharCount = string_length(displayStrNoWhitespace);
+						}
 						if (currentTokenCount == "N/A") {
 							currentTokenCount = 1;
 						}
