@@ -148,7 +148,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		
-		scr_adaptFont(lineSpeaker,"M");
+		lineSpeaker = scr_adaptFont(lineSpeaker,"M");
 		draw_text(floor(x + (textMarginLeft/2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
 	
 		//Color codes the line lists for User

@@ -16,13 +16,11 @@ function scr_stringReverse(inputString){
 		for(var i = letterCount;i > 0; i--){
 			var charToAdd = string_char_at(inputString,i);
 			if(charToAdd == "\n" ||charToAdd == "\r" ){continue;}
-			
 			var unicodeValue = ord(string_char_at(inputString,i));
-			show_debug_message("scr_stringReverse: unicodeValue: " + string(unicodeValue) + ",   char: " + string(charToAdd));
+			
 			
 			if ( 1424 > unicodeValue or unicodeValue > 1535 ){
 				isNotHE = true;
-				show_debug_message("scr_stringReverse: unicodeValue is not HE: " + string(unicodeValue) + ",     isNotHE: " + string(isNotHE) +",   isPrevNotHE: " + string(isPrevNotHE));
 			}
 			else{
 				isNotHE = false;
@@ -37,7 +35,6 @@ function scr_stringReverse(inputString){
 			
 			if(isNotHE){
 				nonReverseChars+=charToAdd
-				show_debug_message("scr_stringReverse: nonreversed: " + string(nonReverseChars));
 				if(i == 1){
 					var nonReverseletterCount = string_length(nonReverseChars);
 					for(var j = nonReverseletterCount;j > 0; j--){
@@ -58,7 +55,6 @@ function scr_stringReverse(inputString){
 					newString += newNonReverseChars;
 					newNonReverseChars = "";
 					nonReverseChars = "";
-					show_debug_message("scr_stringReverse: newString newnonreversed: " + string(newString));
 
 				}
 				newString += charToAdd;

@@ -139,9 +139,9 @@ function scr_importInfoGrid() {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelPredict, i, levelEstimate);
 		}
 	
-		ds_grid_sort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true);
+		//ds_grid_sort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true);
 		
-		scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
+		//scr_gridMultiColSort(global.tagInfoGrid, global.tagInfoGrid_colLevel, true, global.tagInfoGrid_colTokenCount, false);
 	}
 	
 	// auto-load Schema
