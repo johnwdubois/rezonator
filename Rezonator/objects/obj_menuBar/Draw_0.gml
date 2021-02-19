@@ -94,11 +94,20 @@ if (obj_control.showFPS) {
 	draw_set_valign(fa_middle);
 	draw_text(fpsTextX, fpsTextY, "FPS: " + string(fps));
 }
+
+
+//show current file name
+var fileTextX = string_width(" setting tool  ")*2.7;
+var fileTextY = menuHeight / 2;
+draw_text(fileTextX,fileTextY,filename_name(global.fileSaveName))
+
+
 // show unsaved warning
 var fpsTextX = camera_get_view_width(camera_get_active()) - string_width("000");
 var fpsTextY = menuHeight / 2;
 draw_set_halign(fa_right);
 draw_set_valign(fa_middle);
+
 if(obj_control.allSaved){
 	draw_text(fpsTextX, fpsTextY, "Saved");
 }else{
