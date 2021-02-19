@@ -84,6 +84,7 @@ function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, pa
 			
 		}
 		draw_set_color(global.colorThemeText);
+		speakerLabelCurrentColStr = scr_adaptFont(speakerLabelCurrentColStr,"M");
 		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
 		
 	}
