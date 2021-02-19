@@ -678,8 +678,12 @@ drawLineState = lineState_ltr;
 chain1toManyEntryToChange = "";
 chain1toManyFieldToChange = "";
 chain1ToManyColFieldToChange = -1;
-chain1toManyColFieldList = ds_list_create(); // list of the dynamic columns in the chainContents pane
-ds_list_add(chain1toManyColFieldList, "gapUnits", "gender", "pronType");
+chain1toManyColFieldListRez = ds_list_create(); // list of the dynamic columns in the chainContents pane
+chain1toManyColFieldListTrack = ds_list_create(); // list of the dynamic columns in the chainContents pane
+chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns in the chainContents pane
+ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "pronType");
+ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "pronType");
+ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 
 with (obj_alarm) {

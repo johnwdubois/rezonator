@@ -65,6 +65,7 @@ function scr_sortVizSetIDList(chainID){
 	// refresh vizSetIDList based on the sorted tempGrid
 	ds_list_clear(vizSetIDList);
 	var prevUnit = -1;
+	var prevWord = -1;
 	for (var i = 0; i < setIDListSize; i++) {
 		var currentEntry = ds_grid_get(tempGrid, tempGrid_colEntryID, i);
 		ds_list_add(vizSetIDList, currentEntry);
@@ -74,11 +75,26 @@ function scr_sortVizSetIDList(chainID){
 		if (is_numeric(currentEntrySubMap)) {
 			if (ds_exists(currentEntrySubMap, ds_type_map)) {
 				
-				// get unit from this entry
+				// get unit/word from this entry
 				var currentUnit = -1;
+				var currentWord = -1;
 				if (chainType == "rezChain" || chainType == "trackChain") {
-					var currentWord = ds_map_find_value(currentEntrySubMap, "word");
+					currentWord = ds_map_find_value(currentEntrySubMap, "word");
 					currentUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWord - 1);
+					
+					// if this word is a chunk, we consider the currentWord to be the first word in the chunk (for gapWords)
+					var rowInChunkGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWord);
+					show_debug_message("rowInChunkGrid: " + string(rowInChunkGrid));
+					if (rowInChunkGrid >= 0) {
+						var boxWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, rowInChunkGrid);
+						if (is_numeric(boxWordList)) {
+							if (ds_exists(boxWordList, ds_type_list)) {
+								if (ds_list_size(boxWordList) > 0) {
+									currentWord = ds_list_find_value(boxWordList, 0);
+								}
+							}
+						}
+					}
 				}
 				else if (chainType == "stackChain") {
 					currentUnit = ds_map_find_value(currentEntrySubMap, "unit");
@@ -89,16 +105,27 @@ function scr_sortVizSetIDList(chainID){
 				if (prevUnit >= 0) {
 					currentGapUnits = currentUnit - prevUnit;
 				}
+				
+				// calculate gapWords
+				var currentGapWords = "N/A";
+				if (chainType == "rezChain" || chainType == "trackChain") {
+					if (prevWord >= 0) {
+						currentGapWords = currentWord - prevWord;
+					}
+				}
 
-				// set the tags
+				// set auto-tags
 				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
 				if (is_numeric(currentTagMap)) {
 					if (ds_exists(currentTagMap, ds_type_map)) {
 						scr_setMap(currentTagMap, "gapUnits", currentGapUnits);
+						scr_setMap(currentTagMap, "gapWords", currentGapWords);
 					}
 				}
 				
+				// used for gapUnits & gapWords
 				prevUnit = currentUnit;
+				prevWord = currentWord;
 			}
 		}
 	}
