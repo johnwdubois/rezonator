@@ -213,7 +213,7 @@ function scr_loadREZ() {
 					// get chainEntryFieldList, if supplied
 					var chainEntryFieldList = ds_map_find_value(map, "chainEntryFieldList");
 					if (!is_undefined(chainEntryFieldList)) {
-						ds_map_destroy(global.chainEntryFieldList);
+						ds_list_destroy(global.chainEntryFieldList);
 						global.chainEntryFieldList = chainEntryFieldList;
 					}
 					

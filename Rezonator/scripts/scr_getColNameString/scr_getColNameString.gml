@@ -260,11 +260,13 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 		if (col >= obj_chain.trackGridWidth) {
-			if (col < ds_grid_width(obj_chain.trackGrid) - ds_list_size(global.chainEntryFieldList) + 3) {
+			// col names for token fields
+			if (col < ds_grid_width(obj_chain.trackGrid) - ds_list_size(global.chainEntryFieldList)) {
 				colName = string(ds_list_find_value(global.tokenImportColNameList, col - 6));
 			}
+			// col names for entry fields
 			else {
-				var chainEntryFieldIndex = ds_grid_width(obj_chain.trackGrid) - obj_chain.trackGridWidth - (ds_list_size(global.tokenImportColNameList) - 4);
+				var chainEntryFieldIndex = col - obj_chain.trackGridWidth - (ds_list_size(global.tokenImportColNameList) - 4);
 				colName = ds_list_find_value(global.chainEntryFieldList, chainEntryFieldIndex);
 			}
 		}

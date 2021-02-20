@@ -11,6 +11,15 @@ function scr_chainTagInit(){
 	// gapUnits
 	scr_addToEntryFieldMap("gapUnits", undefined, undefined, true, true, true);
 	
+	// gapWords
+	scr_addToEntryFieldMap("gapWords", undefined, undefined, true, true, false);
+	
+	// tokenCount
+	scr_addToEntryFieldMap("tokenCount", undefined, undefined, true, true, false);
+	
+	// charCount
+	scr_addToEntryFieldMap("charCount", undefined, undefined, true, true, false);
+	
 	// person tags
 	var personTagSet = ds_list_create();
 	ds_list_add(personTagSet, "1", "2", "3");

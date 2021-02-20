@@ -130,7 +130,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_set_color(global.colorThemeNegSpace)
+		draw_set_color(global.colorThemeNegSpace);
 		draw_rectangle(x - clipX, lineNameRectY1 - clipY, x + textMarginLeft - clipX, lineNameRectY2 - clipY - 2, false);
 		draw_set_color(global.colorThemeText);
 		draw_text(floor(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2)), floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), string(currentLineUnitID));
@@ -146,7 +146,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 				draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 				draw_set_color(global.colorThemeText);
 		
-				scr_adaptFont(lineSpeaker, "M");
+				lineSpeaker = scr_adaptFont(lineSpeaker, "M");
 				draw_text(x + (textMarginLeft) - clipX + 10, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), lineSpeaker);
 			}
 		}
@@ -159,8 +159,10 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		if(is_string(currentLineWordString)){
 			scr_adaptFont(currentLineWordString, "M");
-			var textXPos = (drawingSpeaker) ? windowWidth/3: (x + textMarginLeft + 5);
-			draw_text(textXPos - clipX, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), currentLineWordString);
+			var textXPos = (drawingSpeaker) ? x + (windowWidth/3): (x + textMarginLeft + 5);
+			draw_set_alpha(1);
+			draw_set_halign(fa_left);
+			draw_text(floor(textXPos) - clipX, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY)- clipY, currentLineWordString);
 		}
 	
 	

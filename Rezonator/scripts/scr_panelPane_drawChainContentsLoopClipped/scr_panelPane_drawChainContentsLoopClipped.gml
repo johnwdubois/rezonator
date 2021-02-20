@@ -12,6 +12,16 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 	
 		Author: Terry DuBois, Georgio Klironomos
 	*/
+	
+	var chain1toManyColFieldList = -1;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
+			if (functionChainList_currentTab == functionChainList_tabRezBrush) chain1toManyColFieldList = obj_control.chain1toManyColFieldListRez;
+			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) chain1toManyColFieldList = obj_control.chain1toManyColFieldListTrack;
+			else if (functionChainList_currentTab == functionChainList_tabStackBrush) chain1toManyColFieldList = obj_control.chain1toManyColFieldListStack;
+		}
+	}
+
 
 	// INcrease the size of the utterance column!!!
 	var filterPaneWidth = 0;
@@ -61,6 +71,12 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 			break;
 		default:
 			break;
+	}
+	
+	
+	if (!ds_exists(chain1toManyColFieldList, ds_type_list)) {
+		scr_surfaceEnd();
+		exit;
 	}
 
 
@@ -236,7 +252,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				
 				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
 		
-				scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
+				scr_panelPane_drawChainContentsInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
 				
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
@@ -296,7 +312,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 
 
 	// draw headers for chainContents columns
-	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chain1toManyColFieldList);
+	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 	var colAmount = 3 + chainContents1toManyFieldListSize;
 	for (var i = 0; i < colAmount; i++) {
 		var colRectX1 = x + (i * (windowWidth / colAmount));
@@ -342,7 +358,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 		
 		// headers for dynamic columns
 		if (i >= 3) {
-			var currentField = ds_list_find_value(obj_control.chain1toManyColFieldList, i - 3);
+			var currentField = ds_list_find_value(chain1toManyColFieldList, i - 3);
 			if (is_string(currentField)) {
 				colName = currentField;
 			}
@@ -360,7 +376,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 				if (mouse_check_button_released(mb_left)) {
 					obj_control.chain1ToManyColFieldToChange = i - 3;
-					scr_createDropDown(colRectX1, colRectY1 + tabHeight, global.chainEntryFieldList, global.optionListTypeChainContents1ToManyField);
+					scr_createDropDown(colRectX1, colRectY1 + tabHeight, scr_getChainEntryFieldList(chainType), global.optionListTypeChainContents1ToManyField);
 				}
 			}
 			

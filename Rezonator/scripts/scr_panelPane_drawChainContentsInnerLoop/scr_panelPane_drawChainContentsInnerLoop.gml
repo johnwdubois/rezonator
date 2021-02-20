@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight){
+function scr_panelPane_drawChainContentsInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight){
 	
 	// NOTE: for stacks, the currentWordID variable will be a unit
 	
@@ -8,7 +8,7 @@ function scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, c
 	var xBuffer = 6;
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry
-	var chainContents1toManyFieldListSize = ds_list_size(obj_control.chain1toManyColFieldList);
+	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 	var colAmount = 3 + chainContents1toManyFieldListSize;
 	for (var getInfoLoop = 0; getInfoLoop < colAmount; getInfoLoop++) {
 
@@ -86,7 +86,7 @@ function scr_panelPane_drawChainContentsInnerLoop(currentEntry, currentWordID, c
 		if (getInfoLoop >= 3) {
 			
 			// get the current field and make sure its a string
-			var currentField = ds_list_find_value(obj_control.chain1toManyColFieldList, getInfoLoop - 3);
+			var currentField = ds_list_find_value(chain1toManyColFieldList, getInfoLoop - 3);
 			if (!is_string(currentField)) continue;
 		
 			// look up currentField in tagMap
