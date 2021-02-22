@@ -68,12 +68,12 @@ global.importType_Transcription = "Transcription";
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
 ds_list_add(global.importTypeList,
-	global.importType_Transcription,
-	global.importType_TabDelimited,
 	global.importType_PlainText,
 	global.importType_Paragraph,
 	global.importType_CSV,
 	global.importType_CoNLLU,
+	global.importType_Transcription,
+	global.importType_TabDelimited,
 	global.importType_IGT);
 
 // by default, we will set importType to be the first item in the importTypeList
