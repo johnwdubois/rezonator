@@ -2,6 +2,8 @@ function scr_dialogueBoxNewCustomFieldEntry() {
 	
 	// set the new field to be viewed in the chainContents pane
 	var newField = obj_control.inputText;
+	show_debug_message("scr_dialogueBoxNewCustomFieldEntry(), newField: " + string(newField));
+	
 	var chain1toManyColFieldList = -1;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {

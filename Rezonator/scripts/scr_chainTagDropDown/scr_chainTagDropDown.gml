@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, lastColumn) {
 	
-	if (mouseoverCell) {
+	if (mouseoverCell && !instance_exists(obj_dialogueBox)) {
 		// dropDown button for editing tags
 		var fieldTagSubMap = ds_map_find_value(fieldMap, field);
 		if (is_numeric(fieldTagSubMap)) {

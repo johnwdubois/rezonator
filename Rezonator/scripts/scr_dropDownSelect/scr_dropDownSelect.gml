@@ -344,5 +344,10 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_chain1To1TagOptions(optionSelected);
 		instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeChain1To1HeaderRightClick) //52
+	{
+	    scr_chain1To1HeaderRightClickOptions(optionSelected);
+		instance_destroy();
+	}
 
 }

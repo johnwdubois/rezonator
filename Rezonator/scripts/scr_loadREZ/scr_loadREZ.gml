@@ -224,6 +224,19 @@ function scr_loadREZ() {
 						global.entryFieldMap = entryFieldMap;
 					}
 					
+					// get chainFieldList, if supplied
+					var chainFieldList = ds_map_find_value(map, "chainFieldList");
+					if (!is_undefined(chainFieldList)) {
+						ds_list_destroy(global.chainFieldList);
+						global.chainFieldList = chainFieldList;
+					}
+					
+					// get chain field map, if supplied
+					var chainFieldMap = ds_map_find_value(map, "chainFieldMap");
+					if (!is_undefined(chainFieldMap)) {
+						ds_map_destroy(global.chainFieldMap);
+						global.chainFieldMap = chainFieldMap;
+					}
 
 	
 				

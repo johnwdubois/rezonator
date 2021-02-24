@@ -45,6 +45,7 @@ function scr_panelPane_drawChains1ToMany() {
 	var strHeight = string_height("0");
 	var tabHeight = functionChainList_tabHeight;
 	var scrollBarListHeight = 0;
+	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + tabHeight);
 	
 	if (!instance_exists(obj_dropDown)) {
 		obj_control.mouseoverTagShortcut = "";
@@ -182,7 +183,7 @@ function scr_panelPane_drawChains1ToMany() {
 				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 				var rectX2 = x + windowWidth - global.scrollBarWidth;
 				var rectY2 = rectY1 + strHeight;
-				var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+				var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader;
 				
 				var highlightEntryRect = false;
 
@@ -252,7 +253,7 @@ function scr_panelPane_drawChains1ToMany() {
 				
 				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
 		
-				scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
+				scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader);
 				
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
@@ -322,7 +323,7 @@ function scr_panelPane_drawChains1ToMany() {
 			var colRectX2 = colRectX1 + (windowWidth);	
 		}
 		var colRectY2 = colRectY1 + windowHeight;
-		var mouseoverHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight);
+		var mouseoverColHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight);
 	
 		// get header string for static columns
 		var colName = "";
@@ -381,7 +382,7 @@ function scr_panelPane_drawChains1ToMany() {
 			}
 			
 			// right-click on header
-			if (mouseoverHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+			if (mouseoverColHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
 				obj_control.chain1ToManyColFieldToChange = i - 3;
 				var headerRightClickList = ds_list_create();
 				ds_list_add(headerRightClickList, "Create Field");

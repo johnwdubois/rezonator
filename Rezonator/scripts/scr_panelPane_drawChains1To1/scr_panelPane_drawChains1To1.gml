@@ -158,6 +158,7 @@ function scr_panelPane_drawChains1To1(){
 		var colRectY1 = y;
 		var colRectX2 = colRectX1 + (windowWidth / chain1to1ColFieldListSize);
 		var colRectY2 = colRectY1 + windowHeight;
+		var mouseoverColHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight);
 		
 		// get header column name
 		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
@@ -195,7 +196,16 @@ function scr_panelPane_drawChains1To1(){
 				obj_control.chain1To1ColFieldToChange = i;
 				scr_createDropDown(colRectX1, colRectY1 + tabHeight, scr_getChainFieldList(chainType), global.optionListTypeChain1To1Field);
 			}
-		}	
+		}
+		
+		
+		// right-click on header
+		if (mouseoverColHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+			obj_control.chain1To1ColFieldToChange = i;
+			var headerRightClickList = ds_list_create();
+			ds_list_add(headerRightClickList, "Create Field");
+			scr_createDropDown(colRectX1, colRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1To1HeaderRightClick);
+		}
 	}
 	
 	scr_surfaceEnd();
