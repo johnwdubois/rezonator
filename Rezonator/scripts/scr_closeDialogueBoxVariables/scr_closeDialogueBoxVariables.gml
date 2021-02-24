@@ -25,6 +25,7 @@ function scr_closeDialogueBoxVariables(){
 		newCustomTagUnit = false;
 		newCustomFieldUnit = false;
 		newCustomTagEntry = false;
+		newCustomTagChain = false;
 		newCustomFieldEntry = false;
 		fromDropDown = false;
 		inputText = "";

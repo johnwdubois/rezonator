@@ -655,9 +655,9 @@ function scr_drawDialogueBox() {
 
 
 	// ok button & Enter Key check
-	var okButtonClickced = (point_in_rectangle(mouse_x, mouse_y, okBoxRectX1, okBoxRectY1, okBoxRectX2, okBoxRectY2) && mouse_check_button_released(mb_left));
+	var okButtonClicked = (point_in_rectangle(mouse_x, mouse_y, okBoxRectX1, okBoxRectY1, okBoxRectX2, okBoxRectY2) && mouse_check_button_released(mb_left));
 	var enterKeyPressed = keyboard_check_pressed(vk_enter);
-	if (obj_control.dialogueBoxActive && (okButtonClickced || enterKeyPressed)) {
+	if (obj_control.dialogueBoxActive && (okButtonClicked || enterKeyPressed)) {
 			
 		obj_control.alarm[11] = 60;
 			
@@ -737,6 +737,9 @@ function scr_drawDialogueBox() {
 		}
 		if (obj_control.newCustomFieldEntry) {
 			scr_dialogueBoxNewCustomFieldEntry();
+		}
+		if (obj_control.newCustomTagChain) {
+			scr_dialogueBoxNewCustomTagChain();
 		}
 		
 

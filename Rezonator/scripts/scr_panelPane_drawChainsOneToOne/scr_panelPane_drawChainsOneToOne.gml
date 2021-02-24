@@ -127,7 +127,7 @@ function scr_panelPane_drawChainsOneToOne(){
 
 		
 			// check if this chain has a tag filled in for this field
-			var tagStr = "N/A";
+			var tagStr = "";
 			if (ds_map_exists(tagMap, currentField)) {
 				tagStr = ds_map_find_value(tagMap, currentField);
 			}

@@ -4,7 +4,7 @@ function scr_chain1To1TagOptions(optionSelected){
 	
 	// check to see if the user is trying to create a new tag
 	if (optionSelected == "Add to tag set") {
-		obj_control.newCustomTagEntry = true;
+		obj_control.newCustomTagChain = true;
 		obj_control.dialogueBoxActive = true;
 
 		if (!instance_exists(obj_dialogueBox)) {

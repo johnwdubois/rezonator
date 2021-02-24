@@ -484,6 +484,7 @@ newCustomTagUnit = false;
 newCustomFieldUnit = false;
 newCustomTagEntry = false;
 newCustomFieldEntry = false;
+newCustomTagChain = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
