@@ -2,17 +2,45 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChainsOneToOne(){
 	
-	
-	// TAKING OUT TEMPORARILY ... while we're working on entry tags
-	/*
-	
+	if (live_call()) return live_result;
+
+	// get the instance ID for the chainList pane so we can easily reference it
 	var chainListPanelPaneInst = 0;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			chainListPanelPaneInst = self.id;
 		}
 	}
-
+	
+	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
+	var listOfChains = -1;
+	var listOfChainsKey = "";
+	var chain1to1ColFieldList = -1;
+	with (chainListPanelPaneInst) {
+		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+			listOfChainsKey = "rezChainList";
+			chain1to1ColFieldList = obj_control.chain1to1ColFieldListRez;
+		}
+		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+			listOfChainsKey = "trackChainList";
+			chain1to1ColFieldList = obj_control.chain1to1ColFieldListTrack;
+		}
+		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			listOfChainsKey = "stackChainList";
+			chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;
+		}
+	}
+	listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
+	
+	// make sure we found those lists!
+	if (!is_numeric(listOfChains) || !is_numeric(chain1to1ColFieldList)) {
+		exit;
+	}
+	if (!ds_exists(listOfChains, ds_type_list) || !ds_exists(chain1to1ColFieldList, ds_type_list)) {
+		exit;
+	}
+	var chain1to1ColFieldListSize = ds_list_size(chain1to1ColFieldList);
+	var listOfChainsSize = ds_list_size(listOfChains);
 	
 	
 	scr_surfaceStart();
@@ -21,27 +49,19 @@ function scr_panelPane_drawChainsOneToOne(){
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
-	var filterRectMargin = 8;
-	var filterRectSize = (strHeight / 2) + 5;
-	var textMarginLeft = filterRectMargin;
+	var textMarginLeft = 8;
 
 	var textMarginTop = functionChainList_tabHeight;
 	var textPlusY = 0;
-	var chainNameRectMinusY = 4;
-
-	var focusedElementY = -1;
-	var focusedLineNameRectY1 = -1;
-	var focusedLineNameRectY2 = -1;
-	var xbuffer = (windowWidth / 3);
 
 	var drawDropDowns = false;
-	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 		with (obj_panelPane) {
 			chainTagsHighlightRow = -1;
 		}
 	}
 	
-	var headerListSize = 3;
+	
 	
 	// Set opacity, font, and alignment of text chain lists
 	draw_set_alpha(1);
@@ -49,197 +69,133 @@ function scr_panelPane_drawChainsOneToOne(){
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
 	
-	var chainGridHeight = ds_grid_height(obj_chain.stackChainGrid);
 	
-	for (var j = 0; j < headerListSize; j++) {
+	for (var j = 0; j < chain1to1ColFieldListSize; j++) {
 		
 		textPlusY = 0;
 		drawDropDowns = false;
 		
-		var colRectX1 = x + (j * (windowWidth / 3));
-		var colRectY1 = y;
-		var colRectX2 = colRectX1 + (windowWidth / 3);
-		var colRectY2 = colRectY1 + windowHeight;
+		// get field/key for this column
+		var currentField = ds_list_find_value(chain1to1ColFieldList, j);
 		
-		
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
-		
-		
-		var tagCol = -1;
-		var mapKey = "";
-		switch (j) {
-			case 0:
-				tagCol = obj_chain.chainGrid_colAct;
-				mapKey = "act";
-				break;
-			case 1:
-				tagCol = obj_chain.chainGrid_colRepair;
-				mapKey = "repair";
-				break;
-			case 2:
-				tagCol = obj_chain.chainGrid_colActSequence;
-				mapKey = "act sequence";
-				break;
-			default:
-				break;
-		}
-		
-		
-		for (var i = 0; i < chainGridHeight; i++) {
+		for (var i = 0; i < listOfChainsSize; i++) {
 			
+			// don't bother drawing this stuff if it won't be on screen
 			if (y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY < y - strHeight
 			or y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			    textPlusY += strHeight;
 			    continue;
 			}
+
+			// get chainID & tagMap for the chain (and make sure it all exists)
+			var chainID = ds_list_find_value(listOfChains, i);
+			var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
+			if (!is_numeric(chainSubMap)) continue;
+			if (!ds_exists(chainSubMap, ds_type_map)) continue;
+			var tagMap = ds_map_find_value(chainSubMap, "tagMap");
+			if (!is_numeric(tagMap)) continue;
+			if (!ds_exists(tagMap, ds_type_map)) continue;
+			var chainType = ds_map_find_value(chainSubMap, "type");
 			
-			// Get dimensions of rectangle around line name
-			var chainRowRectX1 = x;
-			var chainRowRectY1 = y + textMarginTop + textPlusY + chainListPanelPaneInst.scrollPlusY - (strHeight / 2);
-			var chainRowRectX2 = x + windowWidth;
-			var chainRowRectY2 = chainRowRectY1 + strHeight;
-			var mouseoverChainRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainRowRectX1, max(chainRowRectY1, y + textMarginTop), chainRowRectX2, chainRowRectY2);
+			// get coordinates for cell rectangle
+			var cellRectX1 = x + (j * (windowWidth / chain1to1ColFieldListSize));
+			var cellRectY1 = y + textMarginTop + textPlusY + chainListPanelPaneInst.scrollPlusY - (strHeight / 2);
+			var cellRectX2 = cellRectX1 + (windowWidth / chain1to1ColFieldListSize);
+			var cellRectY2 = cellRectY1 + strHeight;
+			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + textMarginTop), cellRectX2, cellRectY2);
+			var highlightCell = (obj_chain.currentFocusedChainID == chainID || chainTagsHighlightRow == i);
+			var chainColor = ds_map_find_value(chainSubMap, "chainColor");
+			draw_set_alpha(1);
+			var cellColor = merge_color(chainColor, global.colorThemeBG, (highlightCell) ? 0.65 : 0.75);
+			draw_set_color(cellColor);
+			draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 			
-			//Check mouse clicks to focus a line in the list
-			if (mouseoverChainRow && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+			// Check mouse clicks to focus a line in the list
+			if (mouseoverCell && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 				drawDropDowns = true;
 				with (obj_panelPane) {
 					chainTagsHighlightRow = i;
 				}
         
 			    if (device_mouse_check_button_released(0, mb_left)) {
-			        ds_grid_set_region(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, 0, obj_chain.chainGrid_colChainState, ds_grid_height(obj_chain.stackChainGrid), false);
-			        ds_grid_set(obj_chain.stackChainGrid, obj_chain.chainGrid_colChainState, i, true);
+			        obj_control.currentFocusedChainID = chainID;
 			    }
 			}
 			
-			if (chainTagsHighlightRow == i) {
-				
-				// dropdown buttons
-				var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
-				var dropDownButtonY1 = chainRowRectY1;
-				var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
-				var dropDownButtonY2 = chainRowRectY2;
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
-				if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
-					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
-					
-					draw_set_alpha(1);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
-				
-				
-					if (mouse_check_button_released(mb_left)) {
-					
-						with (obj_panelPane) {
-							selectedColChain = tagCol;
-							stackTagMapKey = mapKey;
-						}
-								
-						var dropDownOptionList = ds_list_create();
-						var tagMapList = ds_map_find_value(global.stackTagMap, mapKey);
-						
-						if (!is_undefined(tagMapList)) {
-							ds_list_copy(dropDownOptionList, tagMapList);
-							ds_list_add(dropDownOptionList, "Add tag option");
-							if (ds_grid_get(obj_chain.stackChainGrid, tagCol, i) != 0) {
-								ds_list_add(dropDownOptionList, "Delete tag");
-							}
-							
-							obj_control.stackColToChange = tagCol;
-							obj_control.stackRowToChange = i;
-								
-							var dropDownX = colRectX1;
-							var dropDownY = chainRowRectY2;
 
-							if (ds_list_size(dropDownOptionList) > 0 ) {
-								var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
-								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = global.optionListTypeStackTag;
-
-							}
-						}
-					}
-				}
-				
-				// highlight rectangle
-				if (j == headerListSize - 1) {
-					var chainColor = ds_grid_get(obj_chain.stackChainGrid, obj_chain.chainGrid_colColor, chainTagsHighlightRow);
-					draw_set_alpha(0.2);
-					draw_set_color(chainColor);
-					draw_rectangle(chainRowRectX1 - clipX, chainRowRectY1 - clipY, chainRowRectX2 - clipX, chainRowRectY2 - clipY, false);
-				}
-				draw_set_alpha(1);
+		
+			// check if this chain has a tag filled in for this field
+			var tagStr = "N/A";
+			if (ds_map_exists(tagMap, currentField)) {
+				tagStr = ds_map_find_value(tagMap, currentField);
 			}
 			
-			
-			
-			
-			// Draw text of chain tags
+			// draw text for chain tag
+			scr_adaptFont(string(tagStr), "S");
 			draw_set_halign(fa_left);
 			draw_set_valign(fa_middle);
-			draw_set_color(global.colorThemeText);
-			
-			var tagToDraw = ds_grid_get(obj_chain.stackChainGrid, tagCol, i);
-			tagToDraw = (tagToDraw == undefined or tagToDraw == 0) ? "" : tagToDraw;
-			scr_adaptFont(string(tagToDraw), "S");
-			draw_text(x + (textMarginLeft) + (xbuffer * j) - clipX, y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
-			
-			
-			// draw lines dividing rows
-			draw_set_color(global.colorThemeBorders);
-			draw_set_alpha(0.3);
-			draw_line(chainRowRectX1 - clipX, chainRowRectY2 - clipY, chainRowRectX2 - clipX, chainRowRectY2 - clipY);
 			draw_set_alpha(1);
+			draw_set_color(global.colorThemeText);
+			draw_text(cellRectX1 + (textMarginLeft) - clipX, y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagStr));
 			
 			textPlusY += strHeight;
+								
+			scr_chainTagDropDown(global.chainFieldMap, currentField, chainID, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (j == chain1to1ColFieldListSize - 1));
 		}
 	}
 	
+	
+	
 	// Create the column headers
-	for (var i = 0; i < headerListSize; i++) {
+	for (var i = 0; i < chain1to1ColFieldListSize; i++) {
 		
-		var colRectX1 = x + (i * (windowWidth / 3));
+		// header coordinates
+		var colRectX1 = x + (i * (windowWidth / chain1to1ColFieldListSize));
 		var colRectY1 = y;
-		var colRectX2 = colRectX1 + (windowWidth / 3);
+		var colRectX2 = colRectX1 + (windowWidth / chain1to1ColFieldListSize);
 		var colRectY2 = colRectY1 + windowHeight;
-		var colWidth = colRectX2 - colRectX1;
-		var colName = "";
 		
+		// get header column name
+		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
+		
+		// BG & outline rects
+		var tabHeight = functionChainList_tabHeight;
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + functionChainList_tabHeight - clipY, false);
+		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + functionChainList_tabHeight - clipY, true);
+		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
 		
-		switch (i) {
-			case 0:
-				colName = "act";
-				break;
-			case 1:
-				colName = "repair";
-				break;
-			case 2:
-				colName = "act sequence";
-				break;
-			default:
-				break;
-		}
-		
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + functionChainList_tabHeight - clipY, true);
+		// draw header name
 		draw_set_color(global.colorThemeText);
 		draw_set_valign(fa_top);
 		scr_adaptFont(colName, "M");
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
+		// draw lines for diving columns
+		if (i > 0) {
+			draw_set_color(global.colorThemeBorders);
+			draw_line(colRectX1, colRectY1, colRectX1, colRectY2);
+		}
 		
+		// dropdown button to switch dynamic fields
+		var dropDownButtonX1 = colRectX1 + ((colRectX2 - colRectX1) * 0.8);
+		var dropDownButtonY1 = colRectY1 + (tabHeight * 0.25);
+		var dropDownButtonX2 = colRectX1 + ((colRectX2 - colRectX1) * 0.95);
+		var dropDownButtonY2 = colRectY1 + (tabHeight * 0.75);
+		var mouseoverDropDownButton = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+		draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+		if (mouseoverDropDownButton && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+			draw_set_color(global.colorThemeBorders);
+			draw_set_alpha(1);
+			draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+			if (mouse_check_button_released(mb_left)) {
+				obj_control.chain1To1ColFieldToChange = i;
+				scr_createDropDown(colRectX1, colRectY1 + tabHeight, scr_getChainFieldList(chainType), global.optionListTypeChain1To1Field);
+			}
+		}	
 	}
 	
 	scr_surfaceEnd();
-	
-	*/
+
 
 }

@@ -410,6 +410,8 @@ global.optionListTypeChainContents1ToManyField = 47;
 global.optionListTypeChainContents1ToManyTag = 48;
 global.optionListTypeTextDirection = 49;
 global.optionListTypeChain1ToManyHeaderRightClick = 50;
+global.optionListTypeChain1To1Field = 51;
+global.optionListTypeChain1To1Tag = 52;
 
 
 

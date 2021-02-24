@@ -20,6 +20,6 @@ function scr_dialogueBoxNewCustomTagEntry(){
 	ds_list_insert(tagSet, ds_list_size(tagSet) - 2, newTag);
 	
 	// set the entry with the new tag
-	scr_chainContents1ToManyTagOptions(newTag);
+	scr_chain1ToManyTagOptions(newTag);
 	
 }

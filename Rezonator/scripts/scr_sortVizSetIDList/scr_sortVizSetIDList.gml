@@ -57,8 +57,6 @@ function scr_sortVizSetIDList(chainID){
 		ds_grid_set(tempGrid, tempGrid_colWordOrder, i, currentWordOrder);
 	}
 	
-	
-	
 	// sort the tempGrid!!!
 	scr_gridMultiColSort(tempGrid, tempGrid_colUnitSeq, true, tempGrid_colWordOrder, true);
 	
@@ -67,6 +65,9 @@ function scr_sortVizSetIDList(chainID){
 	
 	// set auto tags for entries
 	scr_setEntryAutoTags(tempGrid, tempGrid_colEntryID, vizSetIDList, chainType);
+	
+	// set auto tags for chain
+	scr_setChainAutoTags(chainID, chainSubMap);
 	
 	// we dont need tempGrid anymore
 	ds_grid_destroy(tempGrid);

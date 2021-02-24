@@ -678,12 +678,27 @@ drawLineState = lineState_ltr;
 chain1toManyEntryToChange = "";
 chain1toManyFieldToChange = "";
 chain1ToManyColFieldToChange = -1;
-chain1toManyColFieldListRez = ds_list_create(); // list of the dynamic columns in the chainContents pane
-chain1toManyColFieldListTrack = ds_list_create(); // list of the dynamic columns in the chainContents pane
-chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns in the chainContents pane
+
+chain1to1ChainToChange = "";
+chain1to1FieldToChange = "";
+chain1To1ColFieldToChange = -1;
+
+chain1to1ColFieldListRez = ds_list_create(); // list of the dynamic columns in the rezChain 1-1 pane
+chain1to1ColFieldListTrack = ds_list_create(); // list of the dynamic columns in the trackChain 1-1 pane
+chain1to1ColFieldListStack = ds_list_create(); // list of the dynamic columns in the stackChain 1-1 pane
+ds_list_add(chain1to1ColFieldListRez, "chainSize", "entityType");
+ds_list_add(chain1to1ColFieldListTrack, "chainSize", "entityType");
+ds_list_add(chain1to1ColFieldListStack, "chainSize", "entityType");
+
+chain1toManyColFieldListRez = ds_list_create(); // list of the dynamic columns in the rez 1-many pane
+chain1toManyColFieldListTrack = ds_list_create(); // list of the dynamic columns in the track 1-many pane
+chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns in the stack 1-many pane
 ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
+ds_list_add(chain1toManyColFieldListStack, "gapUnits");
+
+
 
 
 with (obj_alarm) {

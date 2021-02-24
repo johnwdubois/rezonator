@@ -104,7 +104,7 @@ switch (currentFunction) {
 				functionChainContents_BGColor = global.colorThemeBG;
 			}
 		
-			if (!chainViewOneToMany && functionChainList_currentTab == functionChainList_tabStackBrush) {
+			if (!chainViewOneToMany && functionChainList_currentTab != functionChainList_tabLine) {
 				scr_panelPane_drawChainsOneToOne();
 			}
 			else {

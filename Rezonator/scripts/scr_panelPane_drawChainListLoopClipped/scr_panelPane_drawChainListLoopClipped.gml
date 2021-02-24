@@ -27,7 +27,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	windowWidth = camera_get_view_width(camera_get_active()) / 2.8;
 
 
-	
+	// get list of chains for this tab
 	var listOfChains = -1;
 	var listOfChainsKey = "";
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) listOfChainsKey = "rezChainList";
@@ -223,7 +223,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 
 	
 					if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-					and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)) {
+					and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
 
 						obj_chain.currentFocusedChainID = currentChainID;
 				
@@ -252,7 +252,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 						focusedChainNameRectY2 = chainNameRectY2;
 						focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
 					}
-
 	
 					// Draw text of chain names
 					draw_set_color(global.colorThemeText);
