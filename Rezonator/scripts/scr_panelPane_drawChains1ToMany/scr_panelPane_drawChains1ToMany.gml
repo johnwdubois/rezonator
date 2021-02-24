@@ -1,4 +1,4 @@
-function scr_panelPane_drawChainContentsLoopClipped() {
+function scr_panelPane_drawChains1ToMany() {
 	/*
 		scr_panelPane_drawchainContentsLoop();
 	
@@ -252,7 +252,7 @@ function scr_panelPane_drawChainContentsLoopClipped() {
 				
 				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
 		
-				scr_panelPane_drawChainContentsInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
+				scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect);
 				
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {

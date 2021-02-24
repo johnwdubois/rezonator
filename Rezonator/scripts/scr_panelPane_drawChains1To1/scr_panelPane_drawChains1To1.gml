@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawChainsOneToOne(){
+function scr_panelPane_drawChains1To1(){
 
 	// get the instance ID for the chainList pane so we can easily reference it
 	var chainListPanelPaneInst = 0;
@@ -13,6 +13,8 @@ function scr_panelPane_drawChainsOneToOne(){
 	if (!instance_exists(obj_dropDown)) {
 		obj_control.mouseoverTagShortcut = "";
 	}
+	
+	var tabHeight = functionChainList_tabHeight;
 	
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
 	var listOfChains = -1;
@@ -57,7 +59,7 @@ function scr_panelPane_drawChainsOneToOne(){
 	var textPlusY = 0;
 
 	var drawDropDowns = false;
-	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, y + tabHeight, x + windowWidth, y + windowHeight)) {
 		with (obj_panelPane) {
 			chainTagsHighlightRow = -1;
 		}
@@ -104,7 +106,7 @@ function scr_panelPane_drawChainsOneToOne(){
 			var cellRectY1 = y + textMarginTop + textPlusY + chainListPanelPaneInst.scrollPlusY - (strHeight / 2);
 			var cellRectX2 = cellRectX1 + (windowWidth / chain1to1ColFieldListSize);
 			var cellRectY2 = cellRectY1 + strHeight;
-			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + textMarginTop), cellRectX2, cellRectY2);
+			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + tabHeight), cellRectX2, cellRectY2);
 			var highlightCell = (obj_chain.currentFocusedChainID == chainID || chainTagsHighlightRow == i);
 			var chainColor = ds_map_find_value(chainSubMap, "chainColor");
 			draw_set_alpha(1);
@@ -161,7 +163,6 @@ function scr_panelPane_drawChainsOneToOne(){
 		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
 		
 		// BG & outline rects
-		var tabHeight = functionChainList_tabHeight;
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		draw_set_color(global.colorThemeBorders);

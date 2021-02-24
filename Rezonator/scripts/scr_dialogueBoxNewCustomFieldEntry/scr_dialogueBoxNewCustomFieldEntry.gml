@@ -17,6 +17,6 @@ function scr_dialogueBoxNewCustomFieldEntry() {
 	// create a new tagSet and shortcutSet for the new field
 	var tagSet = ds_list_create();
 	var shortcutSet = ds_list_create();
-	scr_addToEntryFieldMap(newField, tagSet, shortcutSet, true, true, true);
+	scr_addToChainFieldMap(global.entryFieldMap, newField, tagSet, shortcutSet, true, true, true);
 
 }

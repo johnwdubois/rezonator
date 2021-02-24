@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/panelPane.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_drawChainsOneToOne",
+  "name": "scr_panelPane_drawChains1ToManyInnerLoop",
   "tags": [],
   "resourceType": "GMScript",
 }

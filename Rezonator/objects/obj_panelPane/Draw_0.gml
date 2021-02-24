@@ -105,10 +105,10 @@ switch (currentFunction) {
 			}
 		
 			if (!chainViewOneToMany && functionChainList_currentTab != functionChainList_tabLine) {
-				scr_panelPane_drawChainsOneToOne();
+				scr_panelPane_drawChains1To1();
 			}
 			else {
-				scr_panelPane_drawChainContentsLoopClipped();
+				scr_panelPane_drawChains1ToMany();
 			}
 			
 			
