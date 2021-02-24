@@ -115,7 +115,7 @@ function scr_panelPane_drawFilter() {
 	if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
 		var filterButtonClicked = (point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2) and device_mouse_check_button_released(0, mb_left));
 		var filterShortcut = (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P"))));
-		if ((filterButtonClicked || filterShortcut) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut = "") {
+		if ((filterButtonClicked || filterShortcut) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut == "") {
 			
 			if(obj_control.quickFilterGridActive){
 				obj_control.quickFilterGridActive = false;

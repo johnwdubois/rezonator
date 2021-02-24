@@ -291,7 +291,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 						}
 						var filterChainClicked = (mouseoverFilter and device_mouse_check_button_released(0, mb_left));
 						var filterChainShortcut = (keyboard_check_pressed(ord("P")) and (keyboard_check(vk_lshift) or keyboard_check(vk_rshift)) and !keyboard_check(vk_control) and obj_chain.currentFocusedChainID == currentChainID);
-						if ((filterChainClicked || filterChainShortcut) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut = "") {
+						if ((filterChainClicked || filterChainShortcut) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut == "") {
 							// Set selected objects to be filtered
 							inFilter = !inFilter;
 							ds_map_replace(currentChainSubMap, "filter", inFilter);

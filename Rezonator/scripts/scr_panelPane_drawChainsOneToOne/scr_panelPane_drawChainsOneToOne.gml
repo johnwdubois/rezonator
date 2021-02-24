@@ -1,8 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChainsOneToOne(){
-	
-	if (live_call()) return live_result;
 
 	// get the instance ID for the chainList pane so we can easily reference it
 	var chainListPanelPaneInst = 0;
@@ -10,6 +8,10 @@ function scr_panelPane_drawChainsOneToOne(){
 		if (currentFunction == functionChainList) {
 			chainListPanelPaneInst = self.id;
 		}
+	}
+	
+	if (!instance_exists(obj_dropDown)) {
+		obj_control.mouseoverTagShortcut = "";
 	}
 	
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab

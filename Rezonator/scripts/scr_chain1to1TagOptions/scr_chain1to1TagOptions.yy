@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/dropDownLists.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_chain1to1TagOptions",
+  "name": "scr_chain1To1TagOptions",
   "tags": [],
   "resourceType": "GMScript",
 }

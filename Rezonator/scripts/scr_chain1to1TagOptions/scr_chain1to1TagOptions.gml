@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_chain1to1TagOptions(optionSelected){
+function scr_chain1To1TagOptions(optionSelected){
 	
 	// check to see if the user is trying to create a new tag
 	if (optionSelected == "Add to tag set") {

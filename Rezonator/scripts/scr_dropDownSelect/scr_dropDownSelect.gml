@@ -314,12 +314,12 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_importGridOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChainContents1ToManyField) //47
+	else if (optionListType == global.optionListTypeChain1ToManyField) //47
 	{
 	    scr_chain1ToManyFieldOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChainContents1ToManyTag) //48
+	else if (optionListType == global.optionListTypeChain1ToManyTag) //48
 	{
 	    scr_chain1ToManyTagOptions(optionSelected);
 		instance_destroy();
@@ -339,9 +339,9 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_chain1To1FieldOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeChain1To1Tag) //48
+	else if (optionListType == global.optionListTypeChain1To1Tag) //52
 	{
-	    scr_chain1ToManyTagOptions(optionSelected);
+	    scr_chain1To1TagOptions(optionSelected);
 		instance_destroy();
 	}
 

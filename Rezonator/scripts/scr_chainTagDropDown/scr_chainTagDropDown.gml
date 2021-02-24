@@ -40,21 +40,24 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 							draw_set_color(global.colorThemeBorders);
 							draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 							if (mouse_check_button_released(mb_left)) {
+								var optionListType = -1;
 								if (fieldMap == global.entryFieldMap) {
 									obj_control.chain1toManyEntryToChange = IDtoChange;
 									obj_control.chain1toManyFieldToChange = field;
+									optionListType = global.optionListTypeChain1ToManyTag;
 								}
 								else if (fieldMap == global.chainFieldMap) {
 									obj_control.chain1to1ChainToChange = IDtoChange;
 									obj_control.chain1to1FieldToChange = field;
+									optionListType = global.optionListTypeChain1To1Tag;
 								}
-								scr_createDropDown(cellRectX1, cellRectY2, fieldTagSet, global.optionListTypeChainContents1ToManyTag);
+								scr_createDropDown(cellRectX1, cellRectY2, fieldTagSet, optionListType);
 							}
 						}
 						
 						// keyboard shortcut
 						if (fieldHasShortcutSet) {
-							if (mouseoverCell) {
+							if (mouseoverCell && !instance_exists(obj_dropDown)) {
 								obj_control.mouseoverTagShortcut = string(field);
 								if (fieldMap == global.entryFieldMap) {
 									obj_control.chain1toManyEntryToChange = IDtoChange;
@@ -69,16 +72,29 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 								var fieldShortcutSet = ds_map_find_value(fieldTagSubMap, "shortcutSet");
 								if (is_numeric(fieldShortcutSet)) {
 									if (ds_exists(fieldShortcutSet, ds_type_list)) {
-										var fieldShortcutSetSize = ds_list_size(fieldShortcutSet);
-										for (var i = 0; i < fieldShortcutSetSize; i++) {
-											var currentShortcut = ds_list_find_value(fieldShortcutSet, i);
-											currentShortcut = string_upper(string(currentShortcut));
-											if (string_length(currentShortcut) == 1) {
-												if (keyboard_check_released(ord(currentShortcut))) {
-													var optionSelected = ds_list_find_value(fieldTagSet, i);
-													scr_chain1ToManyTagOptions(optionSelected);
-													with (obj_dropDown) {
-														instance_destroy();
+										
+										if (keyboard_check_released(vk_anykey)) {
+										
+											// loop down through all possible shortcuts and see if any of them are being used
+											var fieldShortcutSetSize = ds_list_size(fieldShortcutSet);
+											for (var i = 0; i < fieldShortcutSetSize; i++) {
+												var currentShortcut = ds_list_find_value(fieldShortcutSet, i);
+												currentShortcut = string_upper(string(currentShortcut));
+												if (string_length(currentShortcut) == 1) {
+													if (keyboard_check_released(ord(currentShortcut))) {
+													
+														// set value if keyboard shortcut used
+														var optionSelected = ds_list_find_value(fieldTagSet, i);
+														if (fieldMap == global.entryFieldMap) {
+															scr_chain1ToManyTagOptions(optionSelected);
+														}
+														else if (fieldMap == global.chainFieldMap) {
+															scr_chain1To1TagOptions(optionSelected);
+														}
+													
+														with (obj_dropDown) {
+															instance_destroy();
+														}
 													}
 												}
 											}
