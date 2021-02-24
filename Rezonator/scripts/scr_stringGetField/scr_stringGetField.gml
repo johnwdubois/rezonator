@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_stringGetField(str){
 	
-	//if (live_call(str)) return live_result;
-	
 	var field = "";
 	
 	// if this string has no characters at all, return ""

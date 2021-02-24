@@ -13,7 +13,6 @@ function scr_drawGridViewerClipped() {
 		Author: Terry DuBois
 	*/
 
-	//if (live_call()) return live_result;
 
 	windowX = x;
 	windowY = y;
