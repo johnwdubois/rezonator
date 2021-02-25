@@ -196,7 +196,7 @@ function scr_preImportFileTypeWindow(){
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	scr_adaptFont( scr_get_translation("msg_choose_import"), "M");
-	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), scr_get_translation("msg_choose_import"));
+	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)), "Choose the import path that best matches your data:");
 	
 
 
