@@ -210,9 +210,9 @@ switch (currentFunction) {
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemePaneBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-
-				scr_panelPane_drawHelp();
 				*/
+				scr_panelPane_drawHelp();
+				
 			}
 		}
 		if(not obj_control.scrollBarHolding and not scrollBarHolding) {

@@ -1,10 +1,9 @@
 /*
 	Purpose: Draw the tool pane and all of its contents
 */
-
 var camWidth = camera_get_view_width(camera_get_active());
 var camHeight = camera_get_view_height(camera_get_active());
-var toolSprScale = 1;
+var toolSprScale = (camWidth*0.70)/camWidth;
 var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 
 // toolpane positioning
@@ -28,7 +27,7 @@ if (obj_panelPane.showNav && obj_toolPane.showTool) {
 }
 
 
-scr_drawToolPane();
+scr_drawToolPane(toolSprScale);
 
 
 

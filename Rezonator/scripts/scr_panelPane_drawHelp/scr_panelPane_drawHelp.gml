@@ -1,21 +1,4 @@
 function scr_panelPane_drawHelp() {
-	/*
-		scr_panelPane_drawchainContentsLoop();
-	
-		Last Updated: 2018-07-12
-	
-		Called from: obj_panelPane
-	
-		Purpose: whatever chain is focused on in the chainList panelPane, draw information on the individual contents of that chain
-	
-		Mechanism: loop through the IDList of the focused chain and gather information from corresponding grids
-	
-		Author: Terry DuBois
-	*/
-	
-	if(not obj_panelPane.showNav) {
-		//exit;	
-	}
 
 
 	// Establish location of camera
@@ -31,6 +14,8 @@ function scr_panelPane_drawHelp() {
 	var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
 	var collapseButtonRad = string_height("A") * 0.5;
 
+
+/*
 	for(var i = 0; i < toggleButtonAmount; i++) {
 		
 		// (i == 0) --> justify
@@ -76,7 +61,7 @@ function scr_panelPane_drawHelp() {
 		}
 	}
 
-
+*/
 
 	// Toggle collapse if mouseClick
 	if ((mouseoverHelp and device_mouse_check_button_released(0, mb_left)) and not scrollBarClickLock) {
@@ -320,7 +305,7 @@ function scr_panelPane_drawHelp() {
 	
 		scr_scrollBarHelp(itemSize, -1, cellHeight, 0, 
 		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, helpWindowX2 - helpWindowX1, helpWindowY2 - helpWindowY1,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (helpWindowX2 - helpWindowX1) - global.toolPaneWidth + global.scrollBarWidth, helpWindowY2 - helpWindowY1,
 		helpWindowX1, helpWindowY1);
 	
 		scr_surfaceEnd();

@@ -1,6 +1,5 @@
-function scr_drawToolPane() {
+function scr_drawToolPane(toolSprScale) {
 
-	var toolSprScale = 1;
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
 
@@ -15,7 +14,7 @@ function scr_drawToolPane() {
 		var toolButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 		var toolButtonRectY2 = floor(toolButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 		
-		var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !instance_exists(obj_dropDown);
+		var mouseover = point_in_rectangle(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !instance_exists(obj_dropDown);
 		var toolSelected = (i == 0 && currentMode == modeRead) || (i == 1 && currentMode == modeTrack) || (i == 2 && currentMode == modeRez);
 		
 		// determine which image index of sprite to use
@@ -91,7 +90,7 @@ function scr_drawToolPane() {
 				}
 			}
 		
-			scr_createTooltip(toolButtonX, toolButtonY + (sprite_get_height(spr_toolsNew) * 0.5), toolTipText, obj_tooltip.arrowFaceUp);
+			scr_createTooltip(toolButtonX - (toolSprWidth *0.5), toolButtonY, toolTipText, obj_tooltip.arrowFaceRight);
 		}
 		else {
 			hoverTime[i] = 0;		
@@ -127,6 +126,29 @@ function scr_drawToolPane() {
 			}
 		}
 	}
-
+	
+	var helpSpriteWidth = sprite_get_width(spr_helpToggle) * toolSprScale;
+	var helpX1 = x + (windowWidth/2) - (helpSpriteWidth/2);
+	var helpY1 = camera_get_view_height(camera_get_active())*0.95;
+	var helpX2 = helpX1 + helpSpriteWidth;
+	var helpY2 = helpY1 + helpSpriteWidth;
+	
+	
+	var mouseOverHelp = point_in_rectangle(mouse_x,mouse_y,helpX1, helpY1, helpX2, helpY2);
+	
+	var helpSubImage = (mouseOverHelp) ? 1 : 0;
+	
+	draw_sprite_ext(spr_helpToggle, helpSubImage , floor( mean( helpX2 , helpX1)), floor( mean( helpY2 , helpY1)) , toolSprScale, toolSprScale,0, c_white ,1);
+	
+	var helpToolTipText = "Help";
+	
+	if(mouseOverHelp){
+		scr_createTooltip(helpX1, floor( mean( helpY2 , helpY1)), helpToolTipText , obj_tooltip.arrowFaceRight);
+		if(device_mouse_check_button_released(0, mb_left)){
+			with(obj_panelPane){
+				functionHelp_collapsed = !functionHelp_collapsed;
+			}
+		}
+	}
 
 }
