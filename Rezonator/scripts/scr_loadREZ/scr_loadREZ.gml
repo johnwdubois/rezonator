@@ -124,6 +124,9 @@ function scr_loadREZ() {
 					if (ds_map_find_value(map, "showParticipantName") != undefined) {
 						obj_control.showParticipantName = ds_map_find_value(map, "showParticipantName");
 					}
+					if (ds_map_find_value(map, "justify") != undefined) {
+						obj_control.justify = ds_map_find_value(map, "justify");
+					}
 				
 					if (global.tokenImportColNameList == undefined) {
 						global.tokenImportColNameList = ds_list_create();
