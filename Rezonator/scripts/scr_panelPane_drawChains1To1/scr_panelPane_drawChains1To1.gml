@@ -85,8 +85,8 @@ function scr_panelPane_drawChains1To1(){
 		for (var i = 0; i < listOfChainsSize; i++) {
 			
 			// don't bother drawing this stuff if it won't be on screen
-			if (y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY < y - strHeight
-			or y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+			if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
+			or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			    textPlusY += strHeight;
 			    continue;
 			}
@@ -103,7 +103,7 @@ function scr_panelPane_drawChains1To1(){
 			
 			// get coordinates for cell rectangle
 			var cellRectX1 = x + (j * (windowWidth / chain1to1ColFieldListSize));
-			var cellRectY1 = y + textMarginTop + textPlusY + chainListPanelPaneInst.scrollPlusY - (strHeight / 2);
+			var cellRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
 			var cellRectX2 = cellRectX1 + (windowWidth / chain1to1ColFieldListSize);
 			var cellRectY2 = cellRectY1 + strHeight;
 			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + tabHeight), cellRectX2, cellRectY2);
@@ -140,7 +140,7 @@ function scr_panelPane_drawChains1To1(){
 			draw_set_valign(fa_middle);
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeText);
-			draw_text(cellRectX1 + (textMarginLeft) - clipX, y + textMarginTop + chainListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagStr));
+			draw_text(cellRectX1 + (textMarginLeft) - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(tagStr));
 			
 			textPlusY += strHeight;
 								
@@ -175,10 +175,11 @@ function scr_panelPane_drawChains1To1(){
 		scr_adaptFont(colName, "M");
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 		
-		// draw lines for diving columns
+		// draw lines for dividing columns
 		if (i > 0) {
 			draw_set_color(global.colorThemeBorders);
-			draw_line(colRectX1, colRectY1, colRectX1, colRectY2);
+			draw_set_alpha(1);
+			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, colRectY2 - clipY);
 		}
 		
 		// dropdown button to switch dynamic fields
@@ -207,6 +208,12 @@ function scr_panelPane_drawChains1To1(){
 			scr_createDropDown(colRectX1, colRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1To1HeaderRightClick);
 		}
 	}
+	
+	
+	scr_scrollBar(listOfChainsSize, -1, strHeight, textMarginTop,
+		global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	
 	
 	scr_surfaceEnd();
 
