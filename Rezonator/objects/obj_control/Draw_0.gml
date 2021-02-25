@@ -111,7 +111,6 @@ if (showDevVars) {
 	scr_drawDevVars();
 }
 
-
 var scrollBarMarginTop = 230;
 if (!obj_panelPane.showNav) {
 	scrollBarMarginTop -= inst_panelPane_help.windowHeight;
@@ -119,37 +118,25 @@ if (!obj_panelPane.showNav) {
 		scrollBarMarginTop -= obj_toolPane.windowHeight;
 	}
 }
-if (filterGridActive) {
-	if (stackShowActive)	{
-		scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
-	}
-	else {
-		scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
-	}
+
+
+// draw scrollbar for main screen!!
+var drawScrollBar = false;
+if (filterGridActive or searchGridActive or quickFilterGridActive) {
+	drawScrollBar = true;
 	scr_gridViewDrawBackArrow();
 }
-else if (searchGridActive or quickFilterGridActive) {
-	scr_gridViewDrawBackArrow();	
+else {
+	if (!hideAll) {
+		drawScrollBar = true;
+	}
+}
+
+if (drawScrollBar) {
 	scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()) - global.toolPaneWidth, camera_get_view_height(camera_get_active()));
 }
-else {
-	
-	if (!hideAll) {
-		scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()), camera_get_view_height(camera_get_active()));
-	}
-
-}
-
-
-
 
 
 

@@ -271,7 +271,7 @@
     {"id":{"name":"scr_panelPane_sortDefaultSetup","path":"scripts/scr_panelPane_sortDefaultSetup/scr_panelPane_sortDefaultSetup.yy",},"order":11,},
     {"id":{"name":"scr_panelPane_drawSort","path":"scripts/scr_panelPane_drawSort/scr_panelPane_drawSort.yy",},"order":12,},
     {"id":{"name":"scr_panelPane_drawAudio","path":"scripts/scr_panelPane_drawAudio/scr_panelPane_drawAudio.yy",},"order":13,},
-    {"id":{"name":"scr_drawToolPaneNew","path":"scripts/scr_drawToolPaneNew/scr_drawToolPaneNew.yy",},"order":14,},
+    {"id":{"name":"scr_drawToolPane","path":"scripts/scr_drawToolPane/scr_drawToolPane.yy",},"order":14,},
     {"id":{"name":"scr_pointInRectangleClippedWindow","path":"scripts/scr_pointInRectangleClippedWindow/scr_pointInRectangleClippedWindow.yy",},"order":15,},
     {"id":{"name":"utf8_unit_codepoint","path":"scripts/utf8_unit_codepoint/utf8_unit_codepoint.yy",},"order":2,},
     {"id":{"name":"scr_nodeMapSetChainValues","path":"scripts/scr_nodeMapSetChainValues/scr_nodeMapSetChainValues.yy",},"order":1,},

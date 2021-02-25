@@ -11,6 +11,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			filterPaneWidth = windowWidth;
 		}
 	}
+	
 	x = filterPaneWidth;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2.8;
 	
@@ -223,13 +224,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 						}
 					}
 
-	
-					if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-					and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
+					// right-click on chain in chainList
+					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 
 						obj_chain.currentFocusedChainID = currentChainID;
-				
-
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
 
 						var dropDownOptionList = ds_list_create();
@@ -324,9 +322,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 							obj_control.moveCounter++;
 						}
 						draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
-	
-	
-	
 	
 	
 					}
@@ -505,7 +500,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		}
 	}
 	
-	// only draw scrollbar if this we are in 1toMany view
+	// only draw scrollbar if we are in 1toMany view
 	if (drawScrollbar) {
 		scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
 			global.colorThemeSelected1, global.colorThemeSelected2,

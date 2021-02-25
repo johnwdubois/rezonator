@@ -1,51 +1,58 @@
-function scr_drawToolPaneNew() {
-	
-	if (!obj_panelPane.showNav or !obj_toolPane.showTool) {
-		y = -(windowHeight * 2);
-		exit;
-	}
-	y = obj_menuBar.menuHeight;
+function scr_drawToolPane() {
 
 	var toolSprScale = 1;
+	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
+	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
 
 	for (var i = 0; i < 3; i++) {
 	
-		var toolButtonX = x + ((i + 1) * (global.toolPaneWidth / 4));
-		if (i == 0) {
-			toolButtonX -= 15;
-		}
-		else if (i == 2) {
-			toolButtonX += 15;
-		}
-		var toolButtonY = floor(y + (windowHeight / 2));
-		var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, toolButtonX - (sprite_get_width(spr_toolsNew) / 2), toolButtonY - (sprite_get_height(spr_toolsNew) / 2), toolButtonX + (sprite_get_width(spr_toolsNew) / 2), toolButtonY + (sprite_get_height(spr_toolsNew) / 2));
+		// get tool button coordinates
+		var toolButtonX = floor(x + (windowWidth / 2));
+		var toolButtonY = floor(y + (toolSprHeight * ((i * 1.3) + 1)));
+		var toolButtonRectBuffer = toolSprWidth * 0.06;
+		var toolButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+		var toolButtonRectY1 = floor(toolButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+		var toolButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+		var toolButtonRectY2 = floor(toolButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 		
+		var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !instance_exists(obj_dropDown);
+		var toolSelected = (i == 0 && currentMode == modeRead) || (i == 1 && currentMode == modeTrack) || (i == 2 && currentMode == modeRez);
+		
+		// determine which image index of sprite to use
 		var toolImageIndex = 0;
 		var toolTipText = "";
 		if (i == 0) {
-			toolImageIndex = (currentMode == modeRead) ? 2 : 0;
+			toolImageIndex = (toolSelected) ? 2 : 0;
 			if (currentMode != modeRead and mouseover) {
 				toolImageIndex = 1;
 			}
 			toolTipText = "Read Mode";
 		}
 		else if (i == 1) {
-			toolImageIndex = (currentMode == modeTrack) ? 8 : 6;
+			toolImageIndex = (toolSelected) ? 8 : 6;
 			if (currentMode != modeTrack and mouseover) {
 				toolImageIndex = 7;
 			}
 			toolTipText = "Track Mode";
 		}
 		else {
-			toolImageIndex = (currentMode == modeRez) ? 5 : 3;
+			toolImageIndex = (toolSelected) ? 5 : 3;
 			if (currentMode != modeRez and mouseover) {
 				toolImageIndex = 4;
 			}
 			toolTipText = "Rez Mode";
 		}
-	
+		
+		// draw highlight rectangle if tool is selected
+		if (toolSelected) {
+			draw_set_color(global.colorThemeBG);
+			draw_roundrect(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, false);
+		}
+		
+		// draw tool button sprite
 		draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 	
+		// mouseover & click on tool button
 		if (mouseover and not obj_panelPane.scrollBarClickLock) {
 			hoverTime[i]++;
 			if (mouse_check_button_released(mb_left) and not obj_panelPane.scrollBarClickLock) {
@@ -110,6 +117,15 @@ function scr_drawToolPaneNew() {
 
 	if (global.wheresElmo) {
 		currentMode = modeTrack;
+	}
+	
+	// clicking on toolpane will deselect chain
+	if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (not obj_control.gridView) {
+			with (obj_chain) {
+				scr_chainDeselect();
+			}
+		}
 	}
 
 

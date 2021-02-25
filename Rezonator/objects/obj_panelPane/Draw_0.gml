@@ -205,12 +205,14 @@ switch (currentFunction) {
 	case functionHelp:
 		if(obj_panelPane.showNav) {
 			if (obj_toolPane.showTool){
-			
+				
+				/*
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemePaneBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 				scr_panelPane_drawHelp();
+				*/
 			}
 		}
 		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
@@ -272,28 +274,19 @@ if(obj_panelPane.showNav){
 
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBorders);
+	
+	var showBorder = !((currentFunction == functionChainContents && !obj_panelPane.showNavRight)
+					|| (currentFunction == functionHelp)
+					|| ((currentFunction == functionChainList or currentFunction == functionFilter) && !obj_panelPane.showNavLeft));
 
-	if(currentFunction == functionChainContents && !obj_panelPane.showNavRight){
-	
-	}
-	else if(currentFunction == functionHelp && !obj_toolPane.showTool){
-	
-	}
-	else if((currentFunction == functionChainList or currentFunction == functionFilter) && !obj_panelPane.showNavLeft){
-	
-	}
-	else {
+	if (showBorder) {
 		draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 	}
 }
 
 
-var mouseover = false;// Checks mouseover for all panelPane windows
-if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-	mouseover = true;
-}
-
-
+// Checks mouseover for all panelPane windows
+var mouseover = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 
 
 if (device_mouse_check_button_released(0, mb_left) and mouseover

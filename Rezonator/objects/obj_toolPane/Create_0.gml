@@ -1,15 +1,5 @@
 /*
-	obj_toolPane: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of the toolPane object
-	
 	Purpose: Instantiate all variables used by the toolPane object
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
 
 global.toolPaneWidth = 300;

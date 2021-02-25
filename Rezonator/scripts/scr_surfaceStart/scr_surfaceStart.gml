@@ -14,7 +14,7 @@ function scr_surfaceStart() {
 	
 		if (currentFunction == functionChainContents) {
 			x = chainContentsX;
-			windowWidth = camera_get_view_width(camera_get_active()) - x - global.toolPaneWidth;
+			windowWidth = camera_get_view_width(camera_get_active()) - x;
 		}
 	}
 
