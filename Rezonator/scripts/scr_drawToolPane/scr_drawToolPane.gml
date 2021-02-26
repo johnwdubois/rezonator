@@ -1,7 +1,10 @@
 function scr_drawToolPane(toolSprScale) {
+	
+	if (live_call(toolSprScale)) return live_result;
 
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
+	var camHeight = camera_get_view_height(camera_get_active());
 
 	for (var i = 0; i < 3; i++) {
 	
@@ -127,13 +130,12 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
+	// help button
 	var helpSpriteWidth = sprite_get_width(spr_helpToggle) * toolSprScale;
 	var helpX1 = x + (windowWidth/2) - (helpSpriteWidth/2);
-	var helpY1 = camera_get_view_height(camera_get_active())*0.95;
+	var helpY1 = camHeight * 0.95;
 	var helpX2 = helpX1 + helpSpriteWidth;
 	var helpY2 = helpY1 + helpSpriteWidth;
-	
-	
 	var mouseOverHelp = point_in_rectangle(mouse_x,mouse_y,helpX1, helpY1, helpX2, helpY2);
 	
 	var helpSubImage = (mouseOverHelp) ? 1 : 0;
@@ -149,6 +151,68 @@ function scr_drawToolPane(toolSprScale) {
 				functionHelp_collapsed = !functionHelp_collapsed;
 			}
 		}
+	}
+	
+	
+	// justify buttons
+	var justifySprWidth = sprite_get_width(spr_justifyLeft) * toolSprScale;
+	for (var i = 0; i < 3; i++) {
+		
+		// determine stuff based on i loop
+		var justifyX = 0;
+		var sprIndex = spr_justifyLeft;
+		var justifyMode = 0;
+		var tipText = "";
+		if (i == 0) {
+			justifyX = x + (global.toolPaneWidth * 0.2);
+			sprIndex = spr_justifyLeft;
+			justifyMode = obj_control.justifyLeft;
+			tipText = "Justify left";
+		}
+		else if (i == 1) {
+			justifyX = x + (global.toolPaneWidth / 2);
+			sprIndex = spr_justifyCenter;
+			justifyMode = obj_control.justifyCenter;
+			tipText = "Justify center";
+		}
+		else if (i == 2) {
+			justifyX = x + (global.toolPaneWidth * 0.8);
+			sprIndex = spr_justifyRight;
+			justifyMode = obj_control.justifyRight;
+			tipText = "Justify right";
+		}
+	
+		// coordinates for justify buttons
+		var justifyRectX1 = justifyX - (justifySprWidth / 2);
+		var justifyRectY1 = camHeight * 0.9;
+		var justifyRectX2 = justifyRectX1 + justifySprWidth;
+		var justifyRectY2 = justifyRectY1 + justifySprWidth;
+		var mouseoverJustify = point_in_rectangle(mouse_x, mouse_y, justifyRectX1, justifyRectY1, justifyRectX2, justifyRectY2);
+		var justifySelected = ((i == 0 && obj_control.justify == obj_control.justifyLeft)
+							|| (i == 1 && obj_control.justify == obj_control.justifyCenter)
+							|| (i == 2 && obj_control.justify == obj_control.justifyRight));
+		
+		var imgIndex = 0;
+		if (justifySelected) imgIndex = 2;
+		else if (mouseoverJustify) imgIndex = 1;
+		
+		// selected rect
+		if (justifySelected) {
+			var selectedRectBuffer = justifySprWidth * 0.06;
+			draw_set_color(global.colorThemeBG);
+			draw_roundrect(justifyRectX1 - selectedRectBuffer, justifyRectY1 - selectedRectBuffer, justifyRectX2 + selectedRectBuffer, justifyRectY2 + selectedRectBuffer, false);
+		}
+		
+		// mouseover & click
+		if (mouseoverJustify) {
+			if (mouse_check_button_released(mb_left)) {
+				obj_control.justify = justifyMode;
+			}
+			scr_createTooltip(justifyX, justifyRectY1, tipText, obj_tooltip.arrowFaceDown);
+		}
+		
+		draw_sprite_ext(sprIndex, imgIndex, mean(justifyRectX1, justifyRectX2), mean(justifyRectY1, justifyRectY2), toolSprScale, toolSprScale, 0, c_white, 1);
+		
 	}
 
 }

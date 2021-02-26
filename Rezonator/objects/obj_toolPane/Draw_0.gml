@@ -1,13 +1,17 @@
 /*
 	Purpose: Draw the tool pane and all of its contents
 */
+if (live_call()) return live_result;
+
 var camWidth = camera_get_view_width(camera_get_active());
 var camHeight = camera_get_view_height(camera_get_active());
-var toolSprScale = clamp(camWidth / 3000, 0.6, 1);
+var toolSprScale = clamp(camWidth / 2500, 0.6, 1);
 var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 
+show_debug_message("toolSprScale:" + string(toolSprScale));
+
 // toolpane positioning
-global.toolPaneWidth = toolSprWidth * 1.85;
+global.toolPaneWidth = toolSprWidth * 2;
 windowWidth = global.toolPaneWidth;
 x = camera_get_view_width(camera_get_active()) - global.toolPaneWidth;
 y = obj_control.wordTopMargin;

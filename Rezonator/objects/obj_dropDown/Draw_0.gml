@@ -1,19 +1,9 @@
 /*
-	obj_dropDown: Draw
-	
-	Last Updated: 2019-02-15
-	
-	Called from: Every frame of the game
-	
 	Purpose: Create the visuals of any drop down menus
-	
-	Mechanism: Draw the outlines and text, and check for user mouse input
-	
-	Author: Terry DuBois
 */
 
 
-
+if (live_call()) return live_result;
 
 
 draw_set_alpha(1);
@@ -30,6 +20,9 @@ var strHeight = string_height("0")
 optionSpacing = strHeight * 1.25;
 windowHeight = ds_list_size(optionList) * optionSpacing;
 textBuffer = 10;
+
+
+
 
 
 // clamp windowHeight so dropDown is not hanging off the screen
@@ -61,6 +54,9 @@ for (var i = 0; i < optionListSize; i++) {
 windowWidth = maxStrWidth;
 
 
+//scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
+
+
 // surface stuff
 windowX = x;
 windowY = y;
@@ -81,15 +77,14 @@ draw_clear_alpha(c_black, 0);
 
 
 
+
+
 if (ds_list_size(optionList) <= 0) {
 	show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0");
 	instance_destroy();
 }
 
-mouseOverDropDown =  false;
-if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-	mouseOverDropDown =  true;
-}
+mouseOverDropDown = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 
 scrollPlusY = min(scrollPlusY, 0);
 

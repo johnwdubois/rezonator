@@ -1,7 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
+var camWidth = camera_get_view_width(camera_get_active());
 
-
+//scr_dropShadow(-10, 0, camWidth, menuHeight);
 
 draw_set_alpha(1);
 var firstheaderString = ds_grid_get(menuBarGrid, menuBarGrid_colString, 0);
@@ -10,9 +11,9 @@ menuHeight = string_height("0") * 1.35;
 
 // draw menu bar
 draw_set_colour(global.colorThemeBG);
-draw_rectangle(0, 0, camera_get_view_width(camera_get_active()), menuHeight, false);
+draw_rectangle(0, 0, camWidth, menuHeight, false);
 draw_set_colour(global.colorThemeBorders);
-draw_rectangle(-1, -1, camera_get_view_width(camera_get_active()) + 1, menuHeight, true);
+draw_rectangle(-1, -1, camWidth + 1, menuHeight, true);
 mouseoverMenuBar = point_in_rectangle(mouse_x, mouse_y, -1, -1, camera_get_view_width(camera_get_active()) + 1, menuHeight);
 
 	
