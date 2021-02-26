@@ -1,6 +1,5 @@
 function scr_drawToolPane(toolSprScale) {
-	
-	if (live_call(toolSprScale)) return live_result;
+
 
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
