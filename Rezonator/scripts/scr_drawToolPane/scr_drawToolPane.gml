@@ -197,9 +197,9 @@ function scr_drawToolPane(toolSprScale) {
 		
 		// selected rect
 		if (justifySelected) {
-			var selectedRectBuffer = justifySprWidth * 0.06;
+			var selectedRectBuffer = justifySprWidth * 0.1;
 			draw_set_color(global.colorThemeBG);
-			draw_roundrect(justifyRectX1 - selectedRectBuffer, justifyRectY1 - selectedRectBuffer, justifyRectX2 + selectedRectBuffer, justifyRectY2 + selectedRectBuffer, false);
+			draw_roundrect(floor(justifyRectX1 - selectedRectBuffer-1), floor(justifyRectY1 - selectedRectBuffer-1), floor(justifyRectX2 + selectedRectBuffer), floor(justifyRectY2 + selectedRectBuffer), false);
 		}
 		
 		// mouseover & click
@@ -211,6 +211,63 @@ function scr_drawToolPane(toolSprScale) {
 		}
 		
 		draw_sprite_ext(sprIndex, imgIndex, mean(justifyRectX1, justifyRectX2), mean(justifyRectY1, justifyRectY2), toolSprScale, toolSprScale, 0, c_white, 1);
+		
+	}
+	
+	
+	// shape buttons
+	var shapeSprWidth = sprite_get_width(spr_proseText) * toolSprScale;
+
+	for (var i = 0; i < 2; i++) {
+		
+		// determine stuff based on i loop
+		var shapeX = 0;
+		var sprIndex = spr_proseText;
+		var shapeMode = 0;
+		var tipText = "";
+		if (i == 0) {
+			shapeX = x + (global.toolPaneWidth * 0.33);
+			sprIndex = spr_proseText;
+			shapeMode = obj_control.shapeText;
+			tipText = "Prose view";
+		}
+		else if (i == 1) {
+			shapeX = x + (global.toolPaneWidth * 0.66);
+			sprIndex = spr_gridText;
+			shapeMode = obj_control.shapeBlock;
+			tipText = "Grid view";
+		}
+	
+		// coordinates for justify buttons
+		var shapeRectX1 = shapeX - (shapeSprWidth / 2);
+		var shapeRectY1 = camHeight * 0.85;
+		var shapeRectX2 = shapeRectX1 + shapeSprWidth;
+		var shapeRectY2 = shapeRectY1 + shapeSprWidth;
+		var mouseoverShape = point_in_rectangle(mouse_x, mouse_y, shapeRectX1, shapeRectY1, shapeRectX2, shapeRectY2);
+		var shapeSelected = ((i == 0 && obj_control.shape == obj_control.shapeText)
+							|| (i == 1 && obj_control.shape == obj_control.shapeBlock));
+
+		
+		var imgIndex = 0;
+		if (shapeSelected) imgIndex = 2;
+		else if (mouseoverShape) imgIndex = 1;
+		
+		// selected rect
+		if (shapeSelected) {
+			var selectedRectBuffer = shapeSprWidth * 0.1;
+			draw_set_color(global.colorThemeBG);
+			draw_roundrect(floor(shapeRectX1 - selectedRectBuffer-1), floor(shapeRectY1 - selectedRectBuffer-1), floor(shapeRectX2 + selectedRectBuffer), floor(shapeRectY2 + selectedRectBuffer), false);
+		}
+		
+		// mouseover & click
+		if (mouseoverShape) {
+			if (mouse_check_button_released(mb_left)) {
+				obj_control.shape = shapeMode;
+			}
+			scr_createTooltip(shapeX, shapeRectY1, tipText, obj_tooltip.arrowFaceDown);
+		}
+		
+		draw_sprite_ext(sprIndex, imgIndex, mean(shapeRectX1, shapeRectX2), mean(shapeRectY1, shapeRectY2), toolSprScale, toolSprScale, 0, c_white, 1);
 		
 	}
 

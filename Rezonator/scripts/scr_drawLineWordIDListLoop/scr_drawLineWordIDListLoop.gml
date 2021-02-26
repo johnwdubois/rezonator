@@ -198,7 +198,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		}
 		else if (justify == justifyRight) {
 			if (shape == shapeText) {
-				currentWordDestX = camWidth - global.scrollBarWidth - unitWidth + shapeTextX;
+				currentWordDestX = camWidth - global.toolPaneWidth -global.scrollBarWidth - unitWidth + shapeTextX;
 			}
 			else {
 				currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (currentWordDisplayCol * gridSpaceHorizontal);
