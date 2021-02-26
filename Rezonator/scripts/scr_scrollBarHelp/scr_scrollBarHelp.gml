@@ -26,9 +26,6 @@ function scr_scrollBarHelp(listSize, focusedElementY, strHeight, marginTop, scro
 	var scrollBarHeightMin = 30;
 	var scrollBarHeightMax = windowHeightAdjusted - (global.scrollBarWidth * 2);
 
-	// Set the scroll bar's width
-	global.scrollBarWidth = 20;
-
 	// Calculate the height based on the window height, string height, and the size of the list
 	scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHeightAdjusted - (global.scrollBarWidth * 2));
 	scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);

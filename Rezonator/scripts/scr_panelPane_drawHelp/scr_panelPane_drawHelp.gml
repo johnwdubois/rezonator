@@ -1,12 +1,13 @@
 function scr_panelPane_drawHelp() {
-
+	
+	
 
 	// Establish location of camera
 	windowWidth = global.toolPaneWidth;
 	var camWidth = camera_get_view_width(camera_get_active());
+	var camHeight = camera_get_view_height(camera_get_active());
 	x = camWidth - windowWidth;
 	y = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight;
-	var scrollBarOffset = 20;
 
 	// Check for mouse location over "Help" button
 	var mouseoverHelp = false;
@@ -73,36 +74,28 @@ function scr_panelPane_drawHelp() {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	
+	// set width of help window
+	functionHelp_windowWidth = camWidth * 0.3;
 
-	// Draw either button & helpBox, or just button depending
+	// set x position of help window
+	var plusXDest = 0;
 	if (functionHelp_collapsed) {
-	
-		draw_set_alpha(1);
-	
-		if ((functionHelp_plusX) <= camWidth) {
-			functionHelp_plusX += abs(functionHelp_plusX - camWidth) / 4 ;
-		}
-	
+		plusXDest = functionHelp_windowWidth;
 	}
-	else {
+	functionHelp_plusX = lerp(functionHelp_plusX, plusXDest, 0.3);
 
-		if ((functionHelp_plusX) <= (camWidth - functionHelp_windowWidth)) {
-			functionHelp_plusX += abs(functionHelp_plusX - (camWidth - functionHelp_windowWidth)) / 4;
-		}
-		if ((functionHelp_plusX) >= (camWidth - functionHelp_windowWidth)) {
-			functionHelp_plusX -= abs(functionHelp_plusX - (camWidth - functionHelp_windowWidth)) / 4;
-		}
-	}
 
 	obj_control.mouseoverHelpPane = false;
 
 	// If helpBox is in view, draw the outline of the box and its contents
-	if !(abs(functionHelp_plusX - camWidth) < 0.1) {
+	var drawWindow = (abs(functionHelp_plusX - functionHelp_windowWidth) >= 0.1);
+	if (drawWindow) {
 	
-		var helpWindowX1 = functionHelp_plusX - scrollBarOffset;
+		var helpWindowX2 = camWidth - global.toolPaneWidth + functionHelp_plusX;
+		var helpWindowX1 = helpWindowX2 - functionHelp_windowWidth;
 		var helpWindowY1 = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight + windowHeight;
-		var helpWindowX2 = helpWindowX1 + functionHelp_windowWidth;
-		var helpWindowY2 = camera_get_view_height(camera_get_active());
+		var helpWindowY2 = camHeight;
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2, false);
 		draw_set_color(global.colorThemeBorders);
@@ -113,7 +106,9 @@ function scr_panelPane_drawHelp() {
 		functionHelp_helpWindowRectY2 = helpWindowY2;
 	
 		if (point_in_rectangle(mouse_x, mouse_y, helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2)) {
-			obj_control.mouseoverHelpPane = true;
+			if (!functionHelp_collapsed) {
+				obj_control.mouseoverHelpPane = true;
+			}
 			if (mouse_wheel_up() or keyboard_check(vk_up)) {
 				scrollPlusYDest += 12;
 			}
@@ -305,7 +300,7 @@ function scr_panelPane_drawHelp() {
 	
 		scr_scrollBarHelp(itemSize, -1, cellHeight, 0, 
 		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (helpWindowX2 - helpWindowX1) - global.toolPaneWidth + global.scrollBarWidth, helpWindowY2 - helpWindowY1,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, (helpWindowX2 - helpWindowX1), helpWindowY2 - helpWindowY1,
 		helpWindowX1, helpWindowY1);
 	
 		scr_surfaceEnd();

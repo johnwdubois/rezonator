@@ -3,7 +3,7 @@
 */
 var camWidth = camera_get_view_width(camera_get_active());
 var camHeight = camera_get_view_height(camera_get_active());
-var toolSprScale = (camWidth*0.70)/camWidth;
+var toolSprScale = clamp(camWidth / 3000, 0.6, 1);
 var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 
 // toolpane positioning
