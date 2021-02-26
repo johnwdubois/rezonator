@@ -28,7 +28,7 @@ function scr_importMappingTagDraw() {
 		for (var i = 0 ; i < tagGridHeight; i++ ){
 			if( j == 0 ){	
 				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-				if(cutTest == "Display Token"){
+				if(cutTest == scr_get_translation("import_mapping_fields_displaytoken")){
 					obj_importMapping.canContinueDisplayToken = true;
 					i = tagGridHeight;
 				}
@@ -38,7 +38,7 @@ function scr_importMappingTagDraw() {
 			}
 			else{
 				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-				if(cutTest == "Speaker"){
+				if(cutTest == scr_get_translation("import_mapping_fields_speaker")){
 					obj_importMapping.canContinueUnit = true;
 					i = tagGridHeight;
 				}
@@ -108,7 +108,7 @@ function scr_importMappingTagDraw() {
 		
 		var errorMessage = "";
 		if (!obj_importMapping.canContinueDisplayToken) {
-			errorMessage = "Please select a field to be the Display Token using the Special Fields section.";
+			errorMessage = scr_get_translation("import_mapping_selectmessage");
 		}
 		else if (!obj_importMapping.canContinueToken1to1) {
 			errorMessage = "Token fields do not align 1-to-1 with Display Token.";
@@ -138,9 +138,9 @@ function scr_importMappingTagDraw() {
 	var buttonBuffer = 20;
 
 
-	var loadPreviousButtonWidth = max(200, string_width(" Use Last Import Schema "));
+	var loadPreviousButtonWidth = max(200, string_width(scr_get_translation("msg_last-schema")));
 	var loadPreviousButtonHeight = 30;
-	var loadPreviousButtonRectX1 = xBuffer + string_width("ImportFields    ");
+	var loadPreviousButtonRectX1 = xBuffer + string_width(scr_get_translation("menu_import_fields"));
 	var loadPreviousButtonRectY1 = yBuffer + 50 - (loadPreviousButtonHeight / 2);
 	var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
 	var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
@@ -155,7 +155,7 @@ function scr_importMappingTagDraw() {
 			scr_updateSchemaLists();
 
 			if (global.importType == global.importType_IGT) {
-				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), scr_get_translation("import_mapping_fields_displaytoken"));
 				var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
 			
 				if(wordDelimRow != -1){
