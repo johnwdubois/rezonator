@@ -105,12 +105,6 @@ if (obj_control.showFPS) {
 }
 
 
-//show current file name
-var fileTextX = xBuffer;
-var fileTextY = menuHeight / 2;
-draw_set_halign(fa_left);
-draw_text(fileTextX,fileTextY,filename_name(global.fileSaveName))
-
 
 // show unsaved warning
 
