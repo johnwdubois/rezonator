@@ -350,6 +350,7 @@ function scr_importGridToMorphGrid() {
 	}
 	if(RTL){
 		obj_control.drawLineState = obj_control.lineState_rtl;
+		obj_control.justify = obj_control.justifyRight;
 	}
 	scr_morphToUnitGrid();
 	

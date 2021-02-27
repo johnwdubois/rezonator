@@ -1,21 +1,9 @@
 function scr_panelPane_drawChainListLoopClipped() {
+	
 	/*
-		scr_panelPane_drawChainListLoop();
-	
-		Last Updated: 2019-01-29
-	
-		Called from: obj_panelPane
-	
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
-	
-		Mechanism: loop through chainGrid of whatever tab you are on and draw chainName
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
-	
-
-
 
 	var filterPaneWidth = 0;
 	with (obj_panelPane) {
@@ -23,11 +11,25 @@ function scr_panelPane_drawChainListLoopClipped() {
 			filterPaneWidth = windowWidth;
 		}
 	}
+	
 	x = filterPaneWidth;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2.8;
-
-
 	
+	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
+	var scrollbarWidth = (drawScrollbar) ? global.scrollBarWidth : 0;
+	
+	
+	// get the instance ID for the chainContents pane so we can easily reference it
+	var chainContentsPanelPaneInst = 0;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainContents) {
+			chainContentsPanelPaneInst = self.id;
+		}
+	}
+	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
+
+
+	// get list of chains for this tab
 	var listOfChains = -1;
 	var listOfChainsKey = "";
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) listOfChainsKey = "rezChainList";
@@ -63,6 +65,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 
 	var strHeight = string_height("0") * 1.5;
+	
 
 	// Set text margin area
 	var filterRectMargin = 8;
@@ -88,12 +91,12 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var listOfChainsSize = ds_list_size(listOfChains);
 	for (var i = 0; i < listOfChainsSize; i++) {
 	
-		if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
-		or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		if (y + textMarginTop + relativeScrollPlusY + textPlusY < y - strHeight
+		or y + textMarginTop + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			continue;
 		}
-		else if (y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		else if (y + textMarginTop + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			break;
 		}
@@ -148,8 +151,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 					// Get dimensions of rectagle around chain name
 					var chainNameRectX1 = x;
-					var chainNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
-					var chainNameRectX2 = x + windowWidth - global.scrollBarWidth;
+					var chainNameRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
+					var chainNameRectX2 = x + windowWidth - scrollbarWidth;
 					var chainNameRectY2 = chainNameRectY1 + strHeight;
 					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2);
 	
@@ -221,13 +224,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 						}
 					}
 
-	
-					if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-					and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)) {
+					// right-click on chain in chainList
+					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 
 						obj_chain.currentFocusedChainID = currentChainID;
-				
-
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
 
 						var dropDownOptionList = ds_list_create();
@@ -250,9 +250,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 					if (obj_chain.currentFocusedChainID == currentChainID) {
 						focusedChainNameRectY1 = chainNameRectY1;
 						focusedChainNameRectY2 = chainNameRectY2;
-						focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
+						focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
 					}
-
 	
 					// Draw text of chain names
 					draw_set_color(global.colorThemeText);
@@ -260,14 +259,14 @@ function scr_panelPane_drawChainListLoopClipped() {
 					draw_set_halign(fa_left);
 					draw_set_valign(fa_middle);
 					scr_adaptFont(currentChainName, "M");
-					draw_text(floor(x + textMarginLeft) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, currentChainName);
+					draw_text(floor(x + textMarginLeft) - clipX, floor(y + textMarginTop + relativeScrollPlusY + textPlusY) - clipY, currentChainName);
 					if (currentChainCaption != "" && functionChainList_currentTab == functionChainList_tabStackBrush) {
 						draw_set_alpha(0.7);
 						// remove any newlines or carriage returns from caption
 						currentChainCaption = string_replace_all(currentChainCaption, "\r", "");
 						currentChainCaption = string_replace_all(currentChainCaption, "\n", "");
 						scr_adaptFont(string(currentChainCaption), "S");
-						draw_text(floor(x + textMarginLeft + string_width(currentChainName + "  ")) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentChainCaption));
+						draw_text(floor(x + textMarginLeft + string_width(currentChainName + "  ")) - clipX, floor(y + textMarginTop + relativeScrollPlusY + textPlusY) - clipY, string(currentChainCaption));
 					}
 					draw_set_alpha(1);
 	
@@ -275,7 +274,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 						// Draw little boxes for filter selection
 						var chainFilterRectX1 = x + filterRectMargin - clipX;
-						var chainFilterRectY1 = y + textMarginTop + scrollPlusY + textPlusY - (filterRectSize / 2) - clipY;
+						var chainFilterRectY1 = y + textMarginTop + relativeScrollPlusY + textPlusY - (filterRectSize / 2) - clipY;
 						var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
 						var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
 						var inFilter = ds_map_find_value(currentChainSubMap, "filter");
@@ -292,7 +291,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 						}
 						var filterChainClicked = (mouseoverFilter and device_mouse_check_button_released(0, mb_left));
 						var filterChainShortcut = (keyboard_check_pressed(ord("P")) and (keyboard_check(vk_lshift) or keyboard_check(vk_rshift)) and !keyboard_check(vk_control) and obj_chain.currentFocusedChainID == currentChainID);
-						if ((filterChainClicked || filterChainShortcut) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut = "") {
+						if ((filterChainClicked || filterChainShortcut) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut == "") {
 							// Set selected objects to be filtered
 							inFilter = !inFilter;
 							ds_map_replace(currentChainSubMap, "filter", inFilter);
@@ -325,9 +324,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 						draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
 	
 	
-	
-	
-	
 					}
 
 	
@@ -336,8 +332,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 					if (functionChainList_currentTab == functionChainList_tabRezBrush
 					or functionChainList_currentTab == functionChainList_tabTrackBrush) {
 						// Set dimensions for little boxes
-						var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - global.scrollBarWidth;//x + (filterRectMargin * 2) + filterRectSize - clipX;
-						var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY;
+						var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - scrollbarWidth;
+						var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + relativeScrollPlusY;
 						var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
 						var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;
 						var isAligned = ds_map_find_value(currentChainSubMap, "alignChain");
@@ -430,6 +426,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	}
 	
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
 	if (clickedIn) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
@@ -439,11 +436,15 @@ function scr_panelPane_drawChainListLoopClipped() {
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				if (focusedElementY <= y + textMarginTop + strHeight) {
-					scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+					with (instToScroll) {
+						scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+					}
 				}
 			}
 			else {
-				scrollPlusYDest += 4;
+				with (instToScroll) {
+					scrollPlusYDest += 4;
+				}
 			}
 		}
 		
@@ -455,28 +456,40 @@ function scr_panelPane_drawChainListLoopClipped() {
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {
-					scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					with (instToScroll) {
+						scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					}
 				}
 			}
 			else {
-				scrollPlusYDest -= 4;
+				with (instToScroll) {
+					scrollPlusYDest -= 4;
+				}
 			}
 		}
 	
 		// CTRL+UP and CTRL+DOWN
 		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-			scrollPlusYDest = 100;
+			with (instToScroll) {
+				scrollPlusYDest = 100;
+			}
 		}
 		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-			scrollPlusYDest = -999999999999;
+			with (instToScroll) {
+				scrollPlusYDest = -999999999999;
+			}
 		}
 	
 		// PAGEUP and PAGEDOWN
 		if (keyboard_check_pressed(vk_pageup)) {
-			scrollPlusYDest += (windowHeight);
+			with (instToScroll) {
+				scrollPlusYDest += (windowHeight);
+			}
 		}
 		if (keyboard_check_pressed(vk_pagedown)) {
-			scrollPlusYDest -= (windowHeight);
+			with (instToScroll) {
+				scrollPlusYDest -= (windowHeight);
+			}
 		}
 	}
 
@@ -486,14 +499,13 @@ function scr_panelPane_drawChainListLoopClipped() {
 			draw_rectangle(x + j - clipX, focusedChainNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedChainNameRectY2 - j - clipY, true);
 		}
 	}
-
-
-
-
-	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-
+	
+	// only draw scrollbar if we are in 1toMany view
+	if (drawScrollbar) {
+		scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
+			global.colorThemeSelected1, global.colorThemeSelected2,
+			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	}
 
 
 

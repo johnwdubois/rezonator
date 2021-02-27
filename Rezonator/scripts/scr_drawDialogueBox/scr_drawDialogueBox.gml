@@ -308,25 +308,17 @@ function scr_drawDialogueBox() {
 			}
 	
 		}
+		
+		var drawNewFieldText = (obj_control.newCustomFieldToken || obj_control.newCustomFieldUnit || obj_control.newCustomFieldEntry || obj_control.newCustomFieldChain);
+		var drawNewTagText = (obj_control.newCustomTagToken || obj_control.newCustomTagUnit || obj_control.newCustomTagEntry || obj_control.newCustomTagChain);
 	
-		if (obj_control.newCustomFieldToken) {
+		if (drawNewFieldText) {
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
 		}
-		if (obj_control.newCustomTagToken) {
+		else if (drawNewTagText) {
 			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
 		}
-		if (obj_control.newCustomFieldUnit) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
-		}
-		if (obj_control.newCustomTagUnit) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
-		}
-		if (obj_control.newCustomTagEntry) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
-		}
-		if (obj_control.newCustomFieldEntry) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
-		}
+
 	
 
 		if (obj_control.ePressed) {
@@ -655,9 +647,9 @@ function scr_drawDialogueBox() {
 
 
 	// ok button & Enter Key check
-	var okButtonClickced = (point_in_rectangle(mouse_x, mouse_y, okBoxRectX1, okBoxRectY1, okBoxRectX2, okBoxRectY2) && mouse_check_button_released(mb_left));
+	var okButtonClicked = (point_in_rectangle(mouse_x, mouse_y, okBoxRectX1, okBoxRectY1, okBoxRectX2, okBoxRectY2) && mouse_check_button_released(mb_left));
 	var enterKeyPressed = keyboard_check_pressed(vk_enter);
-	if (obj_control.dialogueBoxActive && (okButtonClickced || enterKeyPressed)) {
+	if (obj_control.dialogueBoxActive && (okButtonClicked || enterKeyPressed)) {
 			
 		obj_control.alarm[11] = 60;
 			
@@ -737,6 +729,12 @@ function scr_drawDialogueBox() {
 		}
 		if (obj_control.newCustomFieldEntry) {
 			scr_dialogueBoxNewCustomFieldEntry();
+		}
+		if (obj_control.newCustomTagChain) {
+			scr_dialogueBoxNewCustomTagChain();
+		}
+		if (obj_control.newCustomFieldChain) {
+			scr_dialogueBoxNewCustomFieldChain();
 		}
 		
 

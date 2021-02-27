@@ -5,12 +5,12 @@ if (!shortcutsEnabled || dialogueBoxActive) {
 }
 
 var updateReadTab = false;
-with(obj_panelPane){
-	if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-		chainViewOneToMany = !chainViewOneToMany;
-	}
+with (obj_panelPane) {
 	if (functionChainList_currentTab == functionChainList_tabLine) {
 		updateReadTab = true;
+	}
+	else {
+		chainViewOneToMany = !chainViewOneToMany;
 	}
 }
 if(updateReadTab){

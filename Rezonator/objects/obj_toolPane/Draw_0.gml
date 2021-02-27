@@ -1,59 +1,36 @@
 /*
-	obj_toolPane: Draw
-	
-	Last Updated: 2019-02-14
-	
-	Called from: Every frame of the game
-	
 	Purpose: Draw the tool pane and all of its contents
-	
-	Mechanism: Draw all text, icons, and boxes in the tool pane, and check for user mouseover
-	
-	Author: Terry DuBois
 */
 
+
+var camWidth = camera_get_view_width(camera_get_active());
+var camHeight = camera_get_view_height(camera_get_active());
+var toolSprScale = clamp(camWidth / 2500, 0.6, 1);
+var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
+
+
+// toolpane positioning
+global.toolPaneWidth = toolSprWidth * 2;
 windowWidth = global.toolPaneWidth;
 x = camera_get_view_width(camera_get_active()) - global.toolPaneWidth;
-y = 0;
+y = obj_control.wordTopMargin;
 
-if (obj_control.gridView) {
-windowHeight = 100;
-//	exit;
-}
+// don't draw if hideAll
 if (obj_control.hideAll) {
 	exit;
 }
 
-// Set the original height as the file loads
-if(current_time - obj_control.sessionStartTime < 2000) {
-	//originalWindowHeight = y;
-}
-// Allow hiding the Nav Window via setting each window's height to 2000
-else{
-	if(showTool) {
-		y = originalWindowHeight;	
-	} 
-}
-
-if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-	if (not obj_control.gridView) {
-		with (obj_chain) {
-			scr_chainDeselect();
-		}
-	}
-}
-
-
+// draw toolpane BG and border
 if (obj_panelPane.showNav && obj_toolPane.showTool) {
 	draw_set_alpha(1);
-	draw_set_color(global.colorThemeBG);
-	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+	draw_set_color(global.colorThemeRezPurple);
+	draw_rectangle(x, y, x + camWidth, y + camHeight, false);
 	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+	draw_rectangle(x, y, x + camWidth, y + camHeight, true);
 }
 
 
-scr_drawToolPaneNew();
+scr_drawToolPane(toolSprScale);
 
 
 

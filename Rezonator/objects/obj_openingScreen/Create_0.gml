@@ -1,3 +1,4 @@
+
 /*
 	obj_openingScreen: Create
 	
@@ -257,11 +258,12 @@ global.fieldRelationHelperGrid = ds_grid_create(global.fieldRelationHelperGridWi
 
 
 
+//create font itterator
+CJKLoopIteration = 0;
 
-
-
-
-
+smallFontSize = 10;
+mediumFontSize = 12;
+largeFontSize = 14;
 
 
 

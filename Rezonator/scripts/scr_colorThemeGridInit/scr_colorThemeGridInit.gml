@@ -59,5 +59,11 @@ function scr_colorThemeGridInit() {
 	global.colorThemeHighlight = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colHighlight, global.colorTheme);
 	global.colorThemeNegSpace = ds_grid_get(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, global.colorTheme);
 	
+	
+	
+	// colors that are not in the colorThemeGrid, because they never change!
+	global.colorThemeRezPurple = make_color_rgb(108, 61, 93);
+	global.colorThemeRezPink = make_color_rgb(193, 30, 93);
+	
 
 }

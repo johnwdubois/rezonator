@@ -1,7 +1,5 @@
 function scr_gridListWindow() {
 	
-	//if (live_call()) return live_result;
-	
 	// this window should only exist if hideAll is true and exportWindowGridList exists
 	if (!obj_control.gridView) {
 		exit;

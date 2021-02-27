@@ -54,9 +54,10 @@ if(!global.fontsLoaded){
 	global.loadingScreenCreated = true;
 	}
 	else{
-		if(instance_exists(obj_loadingScreen)){
-			instance_destroy(instLoading);
-		}
+
+
+
+
 	}
 }
 

@@ -1,7 +1,5 @@
 function scr_importDebugGridDraw() {
 	
-	//if (live_call()) return live_result;
-	
 	var grid = obj_importMappingTagInfo.gridViewing;
 
 	var camWidth = camera_get_view_width(camera_get_active());

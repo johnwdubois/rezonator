@@ -12,8 +12,7 @@ function scr_chain1ToManyHeaderRightClickOptions(optionSelected){
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			}
 			exit;
-		
-		
+
 			break;
 		default:
 			break;
