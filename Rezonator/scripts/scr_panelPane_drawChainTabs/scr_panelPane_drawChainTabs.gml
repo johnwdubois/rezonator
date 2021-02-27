@@ -19,10 +19,11 @@ function scr_panelPane_drawChainTabs() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
-
+	
+	var sprHeight = sprite_get_height(spr_filterIcons);
 	var textMarginLeft = 5;
 	with (obj_panelPane) {
-		functionChainList_tabHeight = string_height("0") + 20;
+		functionChainList_tabHeight = string_height("0") + sprHeight +textMarginLeft;
 	}
 
 	var tabAmount = 4;
@@ -51,39 +52,70 @@ function scr_panelPane_drawChainTabs() {
 		}
 		
 		if (i == functionChainList_tabRezBrush || i == functionChainList_tabTrackBrush || i == functionChainList_tabStackBrush) {
+		
+		
+			scr_adaptFont(scr_get_translation(functionChainList_tabName[i]), "M");
+			var heightOfHeaderStr = string_height(scr_get_translation(functionChainList_tabName[i]));
 			// draw toggleDraw button
-			var buttonRectSize = (tabRectY2 - tabRectY1) - 20;
-			var toggleDrawRectX1 = tabRectX2 - buttonRectSize - 4;
-			var toggleDrawRectY1 = tabRectY2 - string_height("0") - 4;
-			var toggleDrawRectX2 = toggleDrawRectX1 + buttonRectSize;
+			
+
+			
+			
+			var buttonRectSize = sprHeight;
+			var tagButtonRectX1 = tabRectX2 - buttonRectSize - 4;
+			var tagButtonRectY1 = ((tabRectY1 + tabRectY2)/2) - sprHeight/2;
+			var tagButtonRectX2 = tagButtonRectX1 + buttonRectSize;
+			var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
+			var mouseOverOnetoMany = point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2);
+			
+			
+			var buttonRectSize = sprHeight ;
+			var toggleDrawRectX2 = tagButtonRectX1 - textMarginLeft;
+			var toggleDrawRectX1 = toggleDrawRectX2 - buttonRectSize;
+			var toggleDrawRectY1 = tabRectY1 + heightOfHeaderStr;
 			var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
-			if (i == functionChainList_tabRezBrush) {
-				draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-			}
-			else if (i == functionChainList_tabTrackBrush) {
-				draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-			}
-			else if (i == functionChainList_tabStackBrush) {
-				draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-			}
-			var mouseoverToggleDraw = point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2);
-			if (mouseoverToggleDraw && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
-				scr_createTooltip(mean(toggleDrawRectX1, toggleDrawRectX2), toggleDrawRectY2, "Toggle visible", obj_tooltip.arrowFaceUp);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2, true);
-				if (mouse_check_button_released(mb_left)) {
-					if (i == functionChainList_tabRezBrush) {
-						obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
-					}
-					else if (i == functionChainList_tabTrackBrush) {
-						obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
-					}
-					else if (i == functionChainList_tabStackBrush) {
-						obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
-					}
+			
+			
+			
+			var chainListInst = -1;
+			with(obj_panelPane){
+				if(currentFunction == functionChainList){
+					chainListInst = self.id;
 				}
 			}
 			
+			var drawIcons = (chainListInst.functionChainList_currentTab == i);
+			
+			
+
+			if(drawIcons){
+
+			
+				if (i == functionChainList_tabRezBrush) {
+					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+				}
+				else if (i == functionChainList_tabTrackBrush) {
+					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+				}
+				else if (i == functionChainList_tabStackBrush) {
+					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
+				}
+				var mouseoverToggleDraw = point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2);
+				if (mouseoverToggleDraw && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
+					scr_createTooltip(mean(toggleDrawRectX1, toggleDrawRectX2), toggleDrawRectY2, "Toggle visible", obj_tooltip.arrowFaceUp);
+					if (mouse_check_button_released(mb_left)) {
+						if (i == functionChainList_tabRezBrush) {
+							obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
+						}
+						else if (i == functionChainList_tabTrackBrush) {
+							obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
+						}
+						else if (i == functionChainList_tabStackBrush) {
+							obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
+						}
+					}
+				}
+			}
 			
 			// determine the chainType and listOfChains based on what tab we are on
 			var currentTabChainType = "";
@@ -93,11 +125,13 @@ function scr_panelPane_drawChainTabs() {
 				listOfChains = ds_map_find_value(global.nodeMap, "rezChainList");
 				currentTabChainType = "rezChain";
 				listOfFilteredChains = obj_chain.filteredRezChainList;
+
 			}
 			else if (i == functionChainList_tabTrackBrush) {
 				listOfChains = ds_map_find_value(global.nodeMap, "trackChainList");
 				currentTabChainType = "trackChain";
 				listOfFilteredChains = obj_chain.filteredTrackChainList;
+				
 			}
 			else if (i == functionChainList_tabStackBrush) {
 				listOfChains = ds_map_find_value(global.nodeMap, "stackChainList");
@@ -106,33 +140,49 @@ function scr_panelPane_drawChainTabs() {
 			}
 			var listOfChainsSize = ds_list_size(listOfChains);
 			
+			if(drawIcons){
+				// draw filter button
+				var filterRectX2 = toggleDrawRectX1 - textMarginLeft;
+				var filterRectY1 = toggleDrawRectY1;
+				var filterRectX1 = filterRectX2 - buttonRectSize;
+				var filterRectY2 = filterRectY1 + buttonRectSize;
+				var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
+				if (mouseoverFilter && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
+					scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
+					if (mouse_check_button_released(mb_left)) {
+						scr_toggleFilterForAllChains(currentTabChainType);
+					}
+				}
 			
-			// draw filter button
-			var filterRectX1 = toggleDrawRectX1 - 4 - buttonRectSize;
-			var filterRectY1 = toggleDrawRectY1;
-			var filterRectX2 = filterRectX1 + buttonRectSize;
-			var filterRectY2 = filterRectY1 + buttonRectSize;
-			var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
-			if (mouseoverFilter && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
-				scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
-				if (mouse_check_button_released(mb_left)) {
-					scr_toggleFilterForAllChains(currentTabChainType);
+				// adjust image index of filter sprite depending on how many chains are filtered
+				var filterImageIndex = 0;
+				if (ds_list_size(listOfFilteredChains) > 0) {
+					if (ds_list_size(listOfFilteredChains) < listOfChainsSize) {
+						filterImageIndex = 2;
+					}
+					else {
+						filterImageIndex = 1;
+					}
 				}
-			}
+				draw_sprite_ext(spr_filterIcons, filterImageIndex, mean(filterRectX1, filterRectX2), mean(filterRectY1, filterRectY2), 1, 1, 0, c_white, 1);
 			
-			// adjust image index of filter sprite depending on how many chains are filtered
-			var filterImageIndex = 0;
-			if (ds_list_size(listOfFilteredChains) > 0) {
-				if (ds_list_size(listOfFilteredChains) < listOfChainsSize) {
-					filterImageIndex = 2;
+				if (mouseOverOnetoMany && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
+					var toolTipText = (obj_panelPane.chainViewOneToMany) ? "One To Many" : "One To One";
+					scr_createTooltip(mean(tagButtonRectX1, tagButtonRectX2), tagButtonRectY2, toolTipText, obj_tooltip.arrowFaceUp);
+					if (mouse_check_button_released(mb_left)) {
+						with(obj_panelPane){
+							chainViewOneToMany = !chainViewOneToMany;
+						}
+					}
 				}
-				else {
-					filterImageIndex = 1;
-				}
+			
+				draw_sprite_ext(spr_oneToOne, (!obj_panelPane.chainViewOneToMany) ? 1 : 0, floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), 1, 1, 0, c_white, 1);
+			
+			
 			}
-			draw_sprite_ext(spr_filterIcons, filterImageIndex, mean(filterRectX1, filterRectX2), mean(filterRectY1, filterRectY2), 1, 1, 0, c_white, 1);
+		
+
+
 		}
 		else if (functionChainList_currentTab == functionChainList_tabLine) {
 			
