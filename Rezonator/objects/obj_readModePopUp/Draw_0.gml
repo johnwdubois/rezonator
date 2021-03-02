@@ -40,9 +40,6 @@ draw_sprite_ext(spr_toolsNew, 5, rectX1 + 40, mean(rectY1 + 45, rectY2) + largeH
 //var c_rez = c_maroon;//make_color_rgb(193, 130, 93);
 //draw_sprite_ext(spr_linkArrow, 0, camera_get_view_width(camera_get_active()) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 41 + (bubblePlus * 3), 1, 1, 90, c_rez, 0.85); 
 //draw_sprite_ext(spr_linkArrow, 0, camera_get_view_width(camera_get_active()) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 41 + (3* bubblePlus), 1, 1, 90, c_rez, 0.85); 
-var arrowScale = 0.5;
-draw_sprite_ext(spr_alertArrow, 0, camera_get_view_width(camera_get_active()) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (bubblePlus * 3), arrowScale, arrowScale, 270, c_white, 1); 
-draw_sprite_ext(spr_alertArrow, 0, camera_get_view_width(camera_get_active()) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (3* bubblePlus), arrowScale, arrowScale, 270, c_white, 1); 
 
 
 draw_set_colour(global.colorThemeText);

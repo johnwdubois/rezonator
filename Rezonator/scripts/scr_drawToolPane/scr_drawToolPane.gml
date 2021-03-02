@@ -19,6 +19,14 @@ function scr_drawToolPane(toolSprScale) {
 		var mouseover = point_in_rectangle(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !instance_exists(obj_dropDown);
 		var toolSelected = (i == 0 && currentMode == modeRead) || (i == 1 && currentMode == modeTrack) || (i == 2 && currentMode == modeRez);
 		
+		
+		var arrowScale = 0.5;
+		var arrowSize = sprite_get_width(spr_alertArrow)*arrowScale;
+		var popUpActive = instance_exists(obj_readModePopUp);
+		if(i < 2 and popUpActive){
+		draw_sprite_ext(spr_alertArrow, 0, toolButtonRectX2 - arrowSize, mean(toolButtonRectY2,toolButtonRectY1) , arrowScale, arrowScale, 180, c_white, 1); 
+		
+		}
 		// determine which image index of sprite to use
 		var toolImageIndex = 0;
 		var toolTipText = "";
