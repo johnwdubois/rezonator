@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2, highlight){
-
+	
 	var xBuffer = 6;
 	var tabHeight = functionChainList_tabHeight;
 	var activeCols = 0;
@@ -64,22 +64,47 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 				unitOrWordTagTokenView = true;
 			}
 		}
+		
+		// get size of dropdown buttons
+		var dropDownButtonWidth = sprite_get_width(spr_dropDown);
+		var dropDownButtonHeight = (tabHeight / 2);
 					
 		// text coordinates
+		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 		var textX = 0;
+		var textX_LTR = 0;
 		var colWidth = 0;
 		if (getInfoLoop == 0 or getInfoLoop == 1) {
+			// first 2 columns (token ID & place)
 			colWidth = windowWidth / 12;
-			textX = x + (activeCols * colWidth) + xBuffer;
+			textX_LTR = x + (activeCols * colWidth) + xBuffer;
+			if (lineStateLTR) {
+				textX = textX_LTR;
+			}
+			else {
+				textX = x + (activeCols * colWidth) + colWidth - xBuffer - dropDownButtonWidth;
+			}
 		}
 		else {
+			// columns 3+
 			colWidth = windowWidth / 6;
-			textX = x + (activeCols * colWidth) + xBuffer - (windowWidth / 6);
+			textX_LTR = x + (activeCols * colWidth) + xBuffer - (windowWidth / 6);
+			if (lineStateLTR) {
+				textX = textX_LTR;
+			}
+			else {
+				textX = x + (activeCols * colWidth) - (windowWidth / 6) + colWidth - xBuffer - dropDownButtonWidth;
+			}
 		}
 		var textY = y + tabHeight + textPlusY;
 		
+		// leave room for scrollbar if we're in RTL and on the last column
+		if (!lineStateLTR && getInfoLoop == infoListSize - 1) {
+			textX -= global.scrollBarWidth;
+		}
+		
 		// BG rect coordinates
-		var cellRectX1 = textX - xBuffer;
+		var cellRectX1 = textX_LTR - xBuffer;
 		var cellRectY1 = rectY1;
 		var cellRectX2 = cellRectX1 + colWidth;
 		var cellRectY2 = rectY2;
@@ -90,6 +115,7 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 		// draw text	
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
+		draw_set_halign(lineStateLTR ? fa_left : fa_right);
 		draw_set_valign(fa_middle);
 		currentWordInfoCol[getInfoLoop] = scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
 		draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
@@ -100,12 +126,13 @@ function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, s
 		}
 		
 		// dropDown button coordinates
-		var dropDownButtonSize = (tabHeight / 2);
-		var dropDownButtonWidthSize = sprite_get_width(spr_dropDown);
-		var dropDownRectX1 = textX + (windowWidth / 6) - 16 - scrollBarBuffer - dropDownButtonWidthSize;
-		var dropDownRectY1 = textY - (strHeight / 2) + 5 + scrollPlusY;
-		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidthSize;
-		var dropDownRectY2 = dropDownRectY1 + dropDownButtonSize;
+		var dropDownRectX1 = cellRectX2 - dropDownButtonWidth;
+		if (getInfoLoop == infoListSize - 1) {
+			dropDownRectX1 -= global.scrollBarWidth;
+		}
+		var dropDownRectY1 = mean(cellRectY1, cellRectY2) - (dropDownButtonHeight / 2);
+		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidth;
+		var dropDownRectY2 = dropDownRectY1 + dropDownButtonHeight;
 					
 		if (getInfoLoop >= 2) {
 			//draw tag selection

@@ -45,7 +45,6 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 
 
 	// Create scroll bars
-	global.scrollBarWidth = 16;
 
 	var focusedChainExists = false;
 	var alignRectSize = strHeight;

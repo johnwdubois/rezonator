@@ -10,7 +10,6 @@ windowResizeYHolding = false;
 scrollBarHolding = false;
 scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
 scrollBarHeight = 0;
 scrollPlusY = 0;
 scrollPlusYDest = 0;

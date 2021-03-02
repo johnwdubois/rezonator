@@ -1,17 +1,7 @@
 function scr_panelPane_drawLineListLoopClipped() {
 	/*
-		scr_panelPane_drawChainListLoop();
-	
-		Last Updated: 2019-01-29
-	
-		Called from: obj_panelPane
-	
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
-	
-		Mechanism: loop through chainGrid of whatever tab you are on and draw chainName
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
 
 	var strHeight = string_height("0") * 1.5;
@@ -19,11 +9,13 @@ function scr_panelPane_drawLineListLoopClipped() {
 	// Set text margin area
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
-	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
+	var unitSeqMargin = filterRectMargin + (filterRectSize * 2);
+	var speakerRectWidth = windowWidth / 3;
 
 	var textMarginTop = functionChainList_tabHeight;
 	var textPlusY = 0;
 	var textAdjustY = 0;
+	var textBuffer = 4;
 
 	var focusedElementY = -1;
 	var focusedLineNameRectY1 = -1;
@@ -109,10 +101,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		
 		
-
-		//if (string_height(currentLineWordString) > 20) {
-		//	textAdjustY = string_height(currentLineWordString) - 20;
-		//}
 	
 		// Get dimensions of rectangle around line name
 		var lineNameRectX1 = x;
@@ -121,19 +109,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		var lineNameRectY2 = lineNameRectY1 + strHeight;
 	
 		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor);
-		
-		// Store the lineNameRectY1 so it may be scrolled to automatically
-		/*if(ds_list_size(obj_panelPane.functionChainList_lineGridDisplayYList) < i + 1) {
-			ds_list_add(obj_panelPane.functionChainList_lineGridDisplayYList, lineNameRectY1);	
-		}
-		else if(ds_list_find_value(obj_panelPane.functionChainList_lineGridDisplayYList, i) != lineNameRectY1) {
-			ds_list_replace(obj_panelPane.functionChainList_lineGridDisplayYList, i, lineNameRectY1);
-		}*/
 	
-		//Color codes the line lists for User
-		draw_set_color(global.colorThemeSelected1); //soften the color
-		//draw_set_color(lineColor);
-		draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 	
 		// Outline the rectangle in black
 		if (currentLineState == 1) {
@@ -141,37 +117,52 @@ function scr_panelPane_drawLineListLoopClipped() {
 			focusedLineNameRectY2 = lineNameRectY2;
 			focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
 		}
-
 	
-		// Draw text of chain names
+		// get speaker rect coordinates
+		var speakerRectX1 = lineNameRectX1 + unitSeqMargin;
+		var speakerRectX2 = speakerRectX1;
+		if (obj_control.showParticipantName) {
+			speakerRectX1 = floor(lineNameRectX1 + unitSeqMargin);
+			speakerRectX2 = floor(speakerRectX1 + speakerRectWidth);
+		}
+	
+		// get x position of text, and adjust for RTL if needed
+		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+		var textX = lineStateLTR ? floor(speakerRectX2 + textBuffer) : floor(lineNameRectX1 + windowWidth - global.scrollBarWidth);
+		var textY = floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2);
+
+		// draw line string
+		draw_set_halign(lineStateLTR ? fa_left : fa_right);
+		draw_set_color(global.colorThemeText);
+		scr_adaptFont(currentLineWordString,"M");
+		draw_text(textX - clipX, textY - clipY, currentLineWordString);
+		
+		// draw speaker rect & name
+		if (obj_control.showParticipantName) {
+			draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
+			draw_rectangle(speakerRectX1 - clipX, lineNameRectY1 - clipY, speakerRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+			
+			lineSpeaker = scr_adaptFont(lineSpeaker,"M");
+			draw_set_color(global.colorThemeText);
+			draw_set_halign(lineStateLTR ? fa_left : fa_right);
+			var speakerTextX = lineStateLTR ? floor(speakerRectX1 + textBuffer) : floor(speakerRectX2);
+			draw_text(speakerTextX - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, lineSpeaker);
+		}
+		
+		// draw unitSeq rect & text
+		draw_set_color(global.colorThemeSelected1); //soften the color
+		draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX1 + unitSeqMargin - clipX, lineNameRectY2 - clipY - 2, false);
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
+		draw_text(floor(x + (unitSeqMargin / 2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
 		
-		lineSpeaker = scr_adaptFont(lineSpeaker,"M");
-		draw_text(floor(x + (textMarginLeft/2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
 	
-		//Color codes the line lists for User
-		draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
-		//draw_set_color(lineColor);
-		draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
-		draw_set_color(global.colorThemeText);
-		draw_text(floor(x + (textMarginLeft) + 10) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, lineSpeaker);
-	
-		var textMarginLeftReal = (obj_control.showParticipantName) ? (windowWidth / 3) : textMarginLeft;
-	
-		//draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(textMarginLeftReal - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
-		draw_set_color(global.colorThemeBG);
-		draw_line_width(textMarginLeftReal - 10, lineNameRectY1 - clipY, windowWidth/3 - 10, lineNameRectY2 - clipY - 2, 1);
-		draw_set_color(global.colorThemeText);
-		scr_adaptFont(currentLineWordString,"M");
-		draw_text(floor(textMarginLeftReal), floor(y + textMarginTop + scrollPlusY + textPlusY + textAdjustY / 2) - clipY, currentLineWordString);
-
-	
-		// Get height of chain name
+		// increment plusY
 		textPlusY += strHeight;
+		
+		
+		
 	}
 
 
