@@ -26,21 +26,9 @@ if (obj_control.hideAll) {
 	exit;
 }
 
+var camWidth = camera_get_view_width(camera_get_active());
+var camHeight = camera_get_view_height(camera_get_active());
 
-// Set the original height as the file loads
-/*if(current_time - obj_control.sessionStartTime < 2000) {
-	originalWindowHeight = y;
-}*/
-// Allow hiding the Nav Window via setting each window's height to 2000
-if(currentFunction != functionHelp) {
-	if(showNav) {
-		y = originalWindowHeight;	
-	} 
-}
-
-//draw_set_alpha(1);
-//draw_set_color(global.colorThemePaneBG);
-//draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 switch (currentFunction) {
 	case functionChainList:
@@ -50,7 +38,6 @@ switch (currentFunction) {
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 			
 			scr_panelPane_drawChainListLoopClipped();
-			scr_panelPane_drawChainTabs();
 			/*if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 				clickedIn = true;
 			}
@@ -112,37 +99,7 @@ switch (currentFunction) {
 			}
 			
 			
-			// one-to-one or one-to-many
-			/*
-			if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-				draw_set_color(global.colorThemeText);
-				draw_set_alpha(1);
-				draw_set_halign(fa_right);
-				draw_set_valign(fa_middle);
-			
-				var oneToManyRectX1 = x + windowWidth - 20 - sprite_get_width(spr_oneToOne);
-				var oneToManyRectY1 = y + 4;
-				var oneToManyRectX2 = x + windowWidth - 10;
-				var oneToManyRectY2 = y + functionChainList_tabHeight - 4;
-				var mouseoverOneToManyRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2);
-				
-				if (mouseoverOneToManyRect) {
-					scr_createTooltip(mean(oneToManyRectX1, oneToManyRectX2), oneToManyRectY2, (chainViewOneToMany) ? "1-to-many" : "1-to-1", obj_tooltip.arrowFaceUp);
-					draw_set_color(global.colorThemeSelected1);
-					draw_rectangle(oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2, false);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(oneToManyRectX1, oneToManyRectY1, oneToManyRectX2, oneToManyRectY2, true);
-					if (mouse_check_button_released(mb_left)) {
-						with (obj_panelPane) {
-							chainViewOneToMany = !chainViewOneToMany;
-						}
-					}
-			
-				}
-				draw_sprite_ext(spr_oneToOne, (chainViewOneToMany) ? 0 : 1, floor(mean(oneToManyRectX1, oneToManyRectX2)), floor(mean(oneToManyRectY1, oneToManyRectY2)), 1, 1, 0, c_white, 1);
-			}
-			*/
-			
+
 			if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 				clickedIn = true;
 			}
@@ -172,18 +129,6 @@ switch (currentFunction) {
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 			scr_panelPane_drawFilter();
-		}
-		break;
-	case functionSort:
-			x = camera_get_view_width(camera_get_active())/2 - 100;
-			y = camera_get_view_height(camera_get_active())/2 - 91;
-		if (obj_menuBar.sortPaneOpen) {
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-
-			scr_panelPane_drawSort();
 		}
 		break;
 	case functionSearch:
@@ -225,17 +170,6 @@ switch (currentFunction) {
 			scr_panelPane_drawTracker();
 		}
 		break;
-	case functionGoToLine:
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemePaneBG);
-		
-
-		x = camera_get_view_x(camera_get_active()) + (camera_get_view_width(camera_get_active()) / 2) - (windowWidth / 2);
-		y = camera_get_view_y(camera_get_active()) + (camera_get_view_height(camera_get_active()) / 2) - (windowHeight / 2);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-
-		scr_panelPane_drawGoToLine();
-		break;
 	case functionGraphStats:
 		if (showAdvancedNav) {
 			draw_set_alpha(1);
@@ -254,16 +188,26 @@ switch (currentFunction) {
 			functionAudio_show = !functionAudio_show;
 		}
 	
-		windowWidth = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
+		windowWidth = camWidth - global.scrollBarWidth;
 		windowHeight = 84;
 		x = 0;
-		y = functionAudio_show ? camera_get_view_height(camera_get_active()) - windowHeight : camera_get_view_height(camera_get_active());
+		y = functionAudio_show ? camHeight - windowHeight : camHeight;
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemePaneBG);
 		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-		if (y < camera_get_view_height(camera_get_active())) {
+		if (y < camHeight) {
 			scr_panelPane_drawAudio();
 		}
+		break;
+	case functionTabs:
+	
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		
+		windowWidth = camWidth;
+		windowHeight = (functionTabs_tabHeight * 2);
+		scr_panelPane_drawTabs();
+		
 		break;
 	default:
 		break;

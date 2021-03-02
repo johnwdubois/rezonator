@@ -25,7 +25,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	var filterRectSize = (strHeight / 2) + 5;
 	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 
-	var textMarginTop = functionChainList_tabHeight;
+	var textMarginTop = functionTabs_tabHeight;
 	var textPlusY = 0;
 	//var chainNameRectMinusY = 4;
 
@@ -256,7 +256,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	var topBarX1 = 0;
 	var topBarX2 = topBarX1 + windowWidth;
 	var topBarY1 = 0;
-	var topBarY2 = topBarY1 + functionChainList_tabHeight-1;
+	var topBarY2 = topBarY1 + functionTabs_tabHeight-1;
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(topBarX1,topBarY1,topBarX2,topBarY2, false);
 	draw_set_color(global.colorThemeBorders);

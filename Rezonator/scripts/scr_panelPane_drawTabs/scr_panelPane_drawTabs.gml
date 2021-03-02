@@ -1,16 +1,6 @@
-function scr_panelPane_drawChainTabs() {
+function scr_panelPane_drawTabs() {
 	/*
-		scr_panelPane_drawChainTabs();
-	
-		Last Updated: 2019-01-29
-	
-		Called from: obj_panelPane
-	
 		Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
-	
-		Mechanism: loop 3 times and create a rectangle button tab for each type of chain
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
 
 	// Set opacity, font, and alignment of text in chain tabs
@@ -22,24 +12,32 @@ function scr_panelPane_drawChainTabs() {
 	
 	var sprHeight = sprite_get_height(spr_filterIcons);
 	var textMarginLeft = 5;
+	
+	// set positions for other panelPanes
+	var tabsPaneInst = self.id;
 	with (obj_panelPane) {
-		functionChainList_tabHeight = string_height("0") + sprHeight +textMarginLeft;
+		functionTabs_tabHeight = string_height("0") + sprHeight + textMarginLeft;
+		if (currentFunction == functionChainList || currentFunction == functionChainContents || currentFunction == functionFilter) {
+			y = tabsPaneInst.y + tabsPaneInst.windowHeight;
+		}
 	}
+
+
 
 	var tabAmount = 4;
 
+	x = 0;
 	if (obj_panelPane.showNav) {
 		y = obj_menuBar.menuHeight;
 	}
 
 	var tabRectY1 = y;
-	var tabRectY2 = tabRectY1 + functionChainList_tabHeight;
+	var tabRectY2 = tabRectY1 + functionTabs_tabHeight;
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x, tabRectY1, x + windowWidth, tabRectY2, false);
-
-
-	for (var i = 0; i < tabAmount; i++) {// main mechanism
-
+	
+	// loop over tabs
+	for (var i = 0; i < tabAmount; i++) {
 	
 		// set dimensions for tabs
 		var tabRectX1 = x + (i * (windowWidth / tabAmount));

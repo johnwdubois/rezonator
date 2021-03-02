@@ -4,16 +4,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
-
-	var filterPaneWidth = 0;
-	with (obj_panelPane) {
-		if (currentFunction == functionFilter) {
-			filterPaneWidth = windowWidth;
-		}
-	}
 	
-	x = filterPaneWidth;
-	windowWidth = camera_get_view_width(camera_get_active()) / 2.8;
+	x = 0;
+	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	
 	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
 	var scrollbarWidth = (drawScrollbar) ? global.scrollBarWidth : 0;
@@ -72,7 +65,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var filterRectSize = (strHeight / 2) + 5;
 	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
 
-	var textMarginTop = functionChainList_tabHeight;
+	var textMarginTop = 0;
 	var textPlusY = 0;
 	//var chainNameRectMinusY = 4;
 
