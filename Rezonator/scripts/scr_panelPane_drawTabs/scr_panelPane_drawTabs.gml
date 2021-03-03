@@ -4,8 +4,6 @@ function scr_panelPane_drawTabs() {
 	*/
 
 	// Set opacity, font, and alignment of text in chain tabs
-
-
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
@@ -42,6 +40,7 @@ function scr_panelPane_drawTabs() {
 		// set dimensions for tabs
 		var tabRectX1 = x + (i * (windowWidth / tabAmount));
 		var tabRectX2 = tabRectX1 + (windowWidth / tabAmount);
+		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2);
 	
 		// highlight current tab
 		if (i == functionChainList_currentTab) {
@@ -49,16 +48,13 @@ function scr_panelPane_drawTabs() {
 			draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, false);
 		}
 		
+		// chain tab specific stuff
 		if (i == functionChainList_tabRezBrush || i == functionChainList_tabTrackBrush || i == functionChainList_tabStackBrush) {
-		
 		
 			scr_adaptFont(scr_get_translation(functionChainList_tabName[i]), "M");
 			var heightOfHeaderStr = string_height(scr_get_translation(functionChainList_tabName[i]));
-			// draw toggleDraw button
-			
 
-			
-			
+
 			var buttonRectSize = sprHeight;
 			var tagButtonRectX1 = tabRectX2 - buttonRectSize - 4;
 			var tagButtonRectY1 = ((tabRectY1 + tabRectY2)/2) - sprHeight/2;
@@ -266,10 +262,15 @@ function scr_panelPane_drawTabs() {
 		draw_set_valign(fa_top);
 	
 		// check for mouse clicks to change the selected tab
-		if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) and not chainListPane.scrollBarClickLock) {
+		if (mouseoverTab && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
 			if (device_mouse_check_button_released(0, mb_left)) {
-				//show_message(string(i));
-				functionChainList_currentTab = i;
+				
+				show_debug_message("scr_panelPane_drawTabs() ... switch to tab " + string(i));
+				
+				// switch tab
+				with (obj_panelPane) {
+					functionChainList_currentTab = i;
+				}
 			
 				// unfocus chains of all type
 				scr_unFocusAllChains();
