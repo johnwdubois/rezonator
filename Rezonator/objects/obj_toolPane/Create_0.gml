@@ -62,3 +62,5 @@ hoverTime[3] = 0;
 ToolTipPosX = 0;
 ToolTipPosY = 0;
 hoverTimeLimit = 60;
+
+mouseOverToolPane = false;
