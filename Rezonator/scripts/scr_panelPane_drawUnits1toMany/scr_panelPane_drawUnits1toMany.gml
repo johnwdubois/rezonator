@@ -1,18 +1,8 @@
-function scr_panelPane_drawLineContentsLoopClipped() {
+function scr_panelPane_drawUnits1toMany() {
+	
 	/*
-		scr_panelPane_drawLineContentsLoop();
-	
-		Last Updated: 2019-012-28
-	
-		Called from: obj_panelPane
-	
 		Purpose: whatever Line is focused on in the lineList panelPane, draw information on the individual words of that Line
-	
-		Mechanism: loop through the IDList of the focused Line and gather information from corresponding grids
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
-
 
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
@@ -151,7 +141,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 						}
 					}
 					
-					scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2, (lineContentsHighlightRow == j));
+					scr_panelPane_drawUnits1toManyInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2, (lineContentsHighlightRow == j));
 			
 					textPlusY += strHeight;
 				} 

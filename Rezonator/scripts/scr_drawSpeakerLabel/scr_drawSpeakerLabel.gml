@@ -85,9 +85,23 @@ function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, pa
 		}
 		draw_set_color(global.colorThemeText);
 		speakerLabelCurrentColStr = scr_adaptFont(speakerLabelCurrentColStr,"M");
-		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
+		
+		
+		// get position of column text
+		var halign = fa_left;
+		var speakerLabelTextX = speakerLabelCurrentColX1 + speakerLabelTextBuffer;
+		var speakerLabelTextY = mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2);
+		if (i == 2 and participantName != undefined) {
+			if (obj_control.drawLineState == obj_control.lineState_rtl) {
+				speakerLabelTextX = speakerLabelCurrentColX2 - speakerLabelTextBuffer;
+				halign = fa_right;
+			}
+		}
+		
+		// draw text
+		draw_set_halign(halign);
+		draw_text(speakerLabelTextX, speakerLabelTextY, speakerLabelCurrentColStr);
 		
 	}
-
 
 }

@@ -1,16 +1,6 @@
-function scr_panelPane_drawUnitTagsLoopClipped() {
+function scr_panelPane_drawUnits1to1() {
 	/*
-	    scr_panelPane_drawUnitTagsLoopClipped();
-    
-	    Last Updated: 2019-12-28
-    
-	    Called from: obj_panelPane
-    
 	    Purpose: Draw the translation of each line in the Nav window
-    
-	    Mechanism: loop through LineGrid and translate each line
-    
-	    Author: Georgio Klironomos
 	*/
 
 	
@@ -26,6 +16,14 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 
 
 	var strHeight = string_height("0") * 1.5;
+	
+	
+	var drawScrollbar = (obj_control.showUnitTags);
+	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
+	
+	
+
+	
 
 	// Set text margin area
 	var filterRectMargin = 8;
@@ -104,8 +102,8 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 
 		for (var i = 0; i < lineGridHeight; i++) {
     
-		    if (y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY < y - strHeight
-		    or y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		    if (y + textMarginTop + relativeScrollPlusY + textPlusY < y - strHeight
+		    or y + textMarginTop + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 		        textPlusY += strHeight;
 		        continue;
 		    }
@@ -146,7 +144,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
     
 		    // Get dimensions of rectangle around line name
 		    var lineNameRectX1 = x;
-		    var lineNameRectY1 = y + textMarginTop + textPlusY + lineListPanelPaneInst.scrollPlusY - (strHeight / 2);
+		    var lineNameRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		    var lineNameRectX2 = x + windowWidth;
 		    var lineNameRectY2 = lineNameRectY1 + strHeight;
     
@@ -229,7 +227,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		    if (currentLineState == 1) {
 		        focusedLineNameRectY1 = lineNameRectY1;
 		        focusedLineNameRectY2 = lineNameRectY2;
-		        focusedElementY = y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY;
+		        focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
 		    }
 
     
@@ -252,7 +250,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 		
 			tagToDraw = (tagToDraw == undefined) ? "" : tagToDraw;
 			scr_adaptFont(string(tagToDraw), "S");
-		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + lineListPanelPaneInst.scrollPlusY + textPlusY - clipY, string(tagToDraw));
+		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + relativeScrollPlusY + textPlusY - clipY, string(tagToDraw));
     
 		    // Get height of chain name
 		    textPlusY += strHeight;
@@ -453,6 +451,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 
 
 	// will create a focusedLine vriable in panelPane create, update it when changed, no gridValueY
+	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	if (clickedIn) {    
@@ -471,11 +470,15 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
             
 
 	            if (focusedElementY <= y + textMarginTop + strHeight) {
-	                lineListPanelPaneInst.scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+					with (instToScroll) {
+						scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+					}
 	            }
 	        }
 	        else {
-	            lineListPanelPaneInst.scrollPlusYDest += 4;
+				with (instToScroll) {
+					scrollPlusYDest += 4;
+				}
 	        }
 	    }
         
@@ -493,36 +496,48 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
             
 
 	            if (focusedElementY >= y + windowHeight - strHeight) {
-	                lineListPanelPaneInst.scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					with (instToScroll) {
+						scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					}
 	            }
 	        }
 	        else {
-	            lineListPanelPaneInst.scrollPlusYDest -= 4;
+				with (instToScroll) {
+					scrollPlusYDest -= 4;
+				}
 	        }
 	    }
     
 	    // CTRL+UP and CTRL+DOWN
 	    if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-	        lineListPanelPaneInst.scrollPlusYDest = 100;
+			with (instToScroll) {
+				scrollPlusYDest = 100;
+			}
 	    }
 	    if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-	        lineListPanelPaneInst.scrollPlusYDest = -999999999999;
+			with (instToScroll) {
+				scrollPlusYDest = -999999999999;
+			}
 	    }
     
 	    // PAGEUP and PAGEDOWN
 	    if (keyboard_check_pressed(vk_pageup)) {
-	        lineListPanelPaneInst.scrollPlusYDest += (windowHeight);
+			with (instToScroll) {
+				scrollPlusYDest += (windowHeight);
+			}
 	    }
 	    if (keyboard_check_pressed(vk_pagedown)) {
-	        lineListPanelPaneInst.scrollPlusYDest -= (windowHeight);
+			with (instToScroll) {
+				scrollPlusYDest -= (windowHeight);
+			}
 	    }
 	}
-
-
-
-	/*scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
-	    global.colorThemeSelected1, global.colorThemeSelected2,
-	    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);*/
+	
+	if (obj_control.showUnitTags) {
+		scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
+		    global.colorThemeSelected1, global.colorThemeSelected2,
+		    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	}
 
 
 

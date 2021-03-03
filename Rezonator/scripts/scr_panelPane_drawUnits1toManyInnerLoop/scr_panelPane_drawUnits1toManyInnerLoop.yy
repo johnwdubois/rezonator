@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/panelPane.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_drawLineContentsInnerLoop",
+  "name": "scr_panelPane_drawUnits1toManyInnerLoop",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -4,7 +4,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
-	
+
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	

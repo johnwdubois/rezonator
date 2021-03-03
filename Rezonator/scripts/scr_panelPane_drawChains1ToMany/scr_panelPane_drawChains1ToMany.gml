@@ -60,10 +60,10 @@ function scr_panelPane_drawChains1ToMany() {
 				scr_panelPane_drawLineTranslationLoopClipped();
 			}
 			else if (obj_control.showUnitTags and not obj_control.showTranslation) {
-				scr_panelPane_drawUnitTagsLoopClipped();	
+				scr_panelPane_drawUnits1to1();	
 			}
 			else {
-				scr_panelPane_drawLineContentsLoopClipped();
+				scr_panelPane_drawUnits1toMany();
 			}
 			break;
 		default:
