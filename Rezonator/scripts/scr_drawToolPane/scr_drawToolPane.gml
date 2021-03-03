@@ -24,8 +24,7 @@ function scr_drawToolPane(toolSprScale) {
 		var arrowSize = sprite_get_width(spr_alertArrow)*arrowScale;
 		var popUpActive = instance_exists(obj_readModePopUp);
 		if(i < 2 and popUpActive){
-		draw_sprite_ext(spr_alertArrow, 0, toolButtonRectX2 - arrowSize, mean(toolButtonRectY2,toolButtonRectY1) , arrowScale, arrowScale, 180, c_white, 1); 
-		
+			draw_sprite_ext(spr_alertArrow, 0, obj_toolPane.x - arrowSize/2 +20, mean(toolButtonRectY2,toolButtonRectY1) , arrowScale, arrowScale, 180, c_white, 1); 
 		}
 		// determine which image index of sprite to use
 		var toolImageIndex = 0;

@@ -16,24 +16,25 @@ draw_roundrect(rectX1 - bubblePlus, rectY1 - bubblePlus, rectX2 + bubblePlus, re
 draw_set_colour(global.colorThemeBorders);
 draw_roundrect(rectX1 - bubblePlus, rectY1 - bubblePlus, rectX2 + bubblePlus, rectY2 + bubblePlus, true);
 
-	
+var largeHeight = string_height(popUpText1);
 
 draw_set_halign(fa_center);
-draw_text(floor(mean(rectX1,  rectX2)), floor(20 + rectY1), popUpText1);
-draw_line_width(rectX1 + 30, 35 + rectY1,  rectX2 - 30, 35 + rectY1, 3);
+draw_set_valign(fa_middle);
+draw_text(floor(mean(rectX1,  rectX2)), floor(rectY1 + largeHeight/2), popUpText1);
+draw_line_width(rectX1 + 30, floor(rectY1 + largeHeight + 5),  rectX2 - 30, floor(rectY1 + largeHeight + 5), 3);
 	
 	
 scr_adaptFont(popUpText2,"M");
-draw_text( floor(mean(rectX1, rectX2)), floor(mean(rectY1 + 20, rectY2)), popUpText2);
+draw_text( floor(mean(rectX1, rectX2)), floor(mean(rectY1, rectY2)), popUpText2);
 
-var largeHeight = string_height(popUpText1);
+
 
 var standardHeight = string_height(popUpText1);
 var spriteRatio = largeHeight/standardHeight;
 var spriteSize = 0.25 * spriteRatio;
 
-draw_sprite_ext(spr_toolsNew, 8, rectX1 + 15, mean(rectY1 + 45, rectY2), spriteSize, spriteSize, 0, c_white, 1); 
-draw_sprite_ext(spr_toolsNew, 5, rectX1 + 40, mean(rectY1 + 45, rectY2) + largeHeight, spriteSize, spriteSize, 0, c_white, 1); 
+draw_sprite_ext(spr_toolsNew, 8, rectX1 + 50, mean(rectY1 + largeHeight, rectY2), spriteSize, spriteSize, 0, c_white, 1); 
+draw_sprite_ext(spr_toolsNew, 5, rectX1 + 75, mean(rectY1 + largeHeight, rectY2) + largeHeight, spriteSize, spriteSize, 0, c_white, 1); 
 
 //draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(camera_get_active()) - 150, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (bubblePlus * 3), 2.5, 2.5, 270, global.colorThemeBorders, 1); 
 //draw_sprite_ext(spr_backArrow, 0, camera_get_view_width(camera_get_active()) - 60, obj_menuBar.menuHeight + obj_toolPane.windowHeight - 24 + (3* bubblePlus), 2.5, 2.5, 270, global.colorThemeBorders, 1); 
