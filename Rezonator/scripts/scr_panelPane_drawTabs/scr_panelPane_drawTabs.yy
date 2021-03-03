@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/panelPane.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_drawChainTabs",
+  "name": "scr_panelPane_drawTabs",
   "tags": [],
   "resourceType": "GMScript",
 }

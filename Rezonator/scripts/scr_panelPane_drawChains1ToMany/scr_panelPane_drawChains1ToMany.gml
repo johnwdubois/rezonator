@@ -24,26 +24,22 @@ function scr_panelPane_drawChains1ToMany() {
 
 
 	// INcrease the size of the utterance column!!!
-	var filterPaneWidth = 0;
 	var chainListPaneWidth = 0;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			chainListPaneWidth = windowWidth;
 		}
-		else if (currentFunction == functionFilter) {
-			filterPaneWidth = windowWidth;
-		}
 	}
 
 	//Set this pane to the right of the chainListPane
-	x = filterPaneWidth + chainListPaneWidth;
+	x = chainListPaneWidth;
 
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	var strHeight = string_height("0");
-	var tabHeight = functionChainList_tabHeight;
+	var tabHeight = functionTabs_tabHeight;
 	var scrollBarListHeight = 0;
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + tabHeight);
 	

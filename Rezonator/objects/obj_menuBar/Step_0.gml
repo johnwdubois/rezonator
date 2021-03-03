@@ -59,12 +59,3 @@ if(!menuClickedIn || !obj_control.mouseoverPanelPane){
 		mouseOverSortPane = false;*/
 		ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
 }
-
-with(obj_panelPane){
-	if(currentFunction == functionChainList || currentFunction == functionChainContents || currentFunction == functionFilter || currentFunction == functionSort){
-		y =  obj_menuBar.y + obj_menuBar.menuHeight;
-	}
-}
-with(obj_toolPane){
-	y =  obj_menuBar.y + obj_menuBar.menuHeight;
-}

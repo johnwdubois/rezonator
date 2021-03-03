@@ -32,7 +32,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	var filterRectSize = (strHeight / 2) + 5;
 	var textMarginLeft = filterRectMargin;
 
-	var textMarginTop = functionChainList_tabHeight;
+	var textMarginTop = functionTabs_tabHeight;
 	var textPlusY = 0;
 	var chainNameRectMinusY = 4;
 
@@ -277,7 +277,7 @@ function scr_panelPane_drawUnitTagsLoopClipped() {
 	//draw unit Tabs
 
 
-	var tabHeight = functionChainList_tabHeight;
+	var tabHeight = functionTabs_tabHeight;
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 

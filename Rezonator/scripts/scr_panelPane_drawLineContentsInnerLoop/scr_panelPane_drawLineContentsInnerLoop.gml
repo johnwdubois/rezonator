@@ -3,7 +3,7 @@
 function scr_panelPane_drawLineContentsInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2, highlight){
 	
 	var xBuffer = 6;
-	var tabHeight = functionChainList_tabHeight;
+	var tabHeight = functionTabs_tabHeight;
 	var activeCols = 0;
 	
 	var infoListSize = 3;

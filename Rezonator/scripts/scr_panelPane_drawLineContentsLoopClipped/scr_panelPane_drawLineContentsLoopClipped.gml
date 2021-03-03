@@ -19,7 +19,7 @@ function scr_panelPane_drawLineContentsLoopClipped() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	var strHeight = string_height("0");
-	var tabHeight = functionChainList_tabHeight;
+	var tabHeight = functionTabs_tabHeight;
 	var scrollBarListHeight = 0;
 	var drawDropDowns = false;
 

@@ -15,7 +15,7 @@ function scr_panelPane_drawFilter() {
 
 	// Set contraints for filter button
 
-	windowWidth = functionChainList_tabHeight;
+	windowWidth = functionTabs_tabHeight;
 
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
@@ -23,7 +23,7 @@ function scr_panelPane_drawFilter() {
 	var filterButtonX1 = x;
 	var filterButtonY1 = y;
 	var filterButtonX2 = x + windowWidth;
-	var filterButtonY2 = y + functionChainList_tabHeight +1;
+	var filterButtonY2 = y + functionTabs_tabHeight +1;
 
 	// Draw filter button, and check for coloring
 	draw_sprite_ext(spr_filterIcons, obj_control.filterGridActive, mean(filterButtonX1, filterButtonX2), mean(filterButtonY1, filterButtonY2), 1, 1, 0, c_white, 1);

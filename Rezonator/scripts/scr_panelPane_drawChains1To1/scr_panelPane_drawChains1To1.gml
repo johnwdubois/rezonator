@@ -14,7 +14,7 @@ function scr_panelPane_drawChains1To1(){
 		obj_control.mouseoverTagShortcut = "";
 	}
 	
-	var tabHeight = functionChainList_tabHeight;
+	var tabHeight = functionTabs_tabHeight;
 	
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
 	var listOfChains = -1;
@@ -55,7 +55,7 @@ function scr_panelPane_drawChains1To1(){
 	// Set text margin area
 	var textMarginLeft = 8;
 
-	var textMarginTop = functionChainList_tabHeight;
+	var textMarginTop = functionTabs_tabHeight;
 	var textPlusY = 0;
 
 	var drawDropDowns = false;

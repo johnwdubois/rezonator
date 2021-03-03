@@ -12,7 +12,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var unitSeqMargin = filterRectMargin + (filterRectSize * 2);
 	var speakerRectWidth = windowWidth / 3;
 
-	var textMarginTop = functionChainList_tabHeight;
+	var textMarginTop = 0;
 	var textPlusY = 0;
 	var textAdjustY = 0;
 	var textBuffer = 4;
