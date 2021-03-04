@@ -185,7 +185,7 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "tokenImportDisplayTokenColName", global.tokenImportDisplayTokenColName);
 		
 			// mainscreen display information
-			ds_map_add(map, "showParticipantName", obj_control.showParticipantName);
+			ds_map_add(map, "showParticipantName", obj_control.showSpeakerName);
 			ds_map_add(map, "justify", obj_control.justify);
 			
 		

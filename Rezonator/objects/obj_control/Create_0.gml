@@ -583,7 +583,7 @@ swapLinePos1 =  0;
 swapLinePos2 =  0;
 
 showLineNumber = true;
-showParticipantName = true;
+showSpeakerName = true;
 
 //audioTrackStream = -1;
 //audioTrackIndex = -1;

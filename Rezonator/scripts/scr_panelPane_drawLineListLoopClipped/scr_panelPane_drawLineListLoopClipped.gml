@@ -18,13 +18,12 @@ function scr_panelPane_drawLineListLoopClipped() {
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
 	
-	
 
 
 	// Set text margin area
 	var filterRectSize = (strHeight / 2) + 5;
 	var unitSeqRectWidth = (filterRectSize * 2);
-	var speakerRectWidth = windowWidth / 3;
+	var speakerRectWidth = (obj_control.showSpeakerName) ? (windowWidth / 3) : 0;
 
 	var textMarginTop = functionTabs_tabHeight;
 	var textPlusY = 0;
@@ -32,8 +31,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var textBuffer = 8;
 
 	var focusedElementY = -1;
-	var focusedLineNameRectY1 = -1;
-	var focusedLineNameRectY2 = -1;
+	var focusedRowRectY1 = -1;
+	var focusedRowRectY2 = -1;
 
 	var currentLineGrid = obj_control.currentActiveLineGrid;
 	var lineGridHeight = ds_grid_height(currentLineGrid);
@@ -132,17 +131,17 @@ function scr_panelPane_drawLineListLoopClipped() {
 		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor);
 	
 	
-		// Outline the rectangle in black
+		// get position of focused rect
 		if (currentLineState == 1) {
-			focusedLineNameRectY1 = lineNameRectY1;
-			focusedLineNameRectY2 = lineNameRectY2;
+			focusedRowRectY1 = lineNameRectY1;
+			focusedRowRectY2 = lineNameRectY2;
 			focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
 		}
 	
 		// get speaker rect coordinates
 		var speakerRectX1 = lineNameRectX1 + unitSeqRectWidth;
 		var speakerRectX2 = speakerRectX1;
-		if (obj_control.showParticipantName) {
+		if (obj_control.showSpeakerName) {
 			speakerRectX1 = floor(lineNameRectX1 + unitSeqRectWidth);
 			speakerRectX2 = floor(speakerRectX1 + speakerRectWidth);
 		}
@@ -159,7 +158,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_text(textX - clipX, textY - clipY, currentLineWordString);
 		
 		// draw speaker rect & name
-		if (obj_control.showParticipantName) {
+		if (obj_control.showSpeakerName) {
 			draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
 			draw_rectangle(speakerRectX1 - clipX, lineNameRectY1 - clipY, speakerRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 			
@@ -270,12 +269,12 @@ function scr_panelPane_drawLineListLoopClipped() {
 			}
 		}
 	}
-
-	if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
+	
+	// draw focus outline
+	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
-		for (var j = 0; j < 4; j++) {
-			draw_rectangle(x + j - clipX, focusedLineNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedLineNameRectY2 - j - clipY, true);
-		}
+		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
+		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
 
 	// only show a scrollbar if we're in 1toMany

@@ -73,8 +73,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var textBuffer = 8;
 
 	var focusedElementY = -1;
-	var focusedChainNameRectY1 = -1;
-	var focusedChainNameRectY2 = -1;
+	var focusedRowRectY1 = -1;
+	var focusedRowRectY2 = -1;
 
 	// Set opacity, font, and alignment of text chain lists
 	draw_set_alpha(1);
@@ -242,8 +242,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 					// Outline the rectangle in black
 					if (obj_chain.currentFocusedChainID == currentChainID) {
-						focusedChainNameRectY1 = chainNameRectY1;
-						focusedChainNameRectY2 = chainNameRectY2;
+						focusedRowRectY1 = chainNameRectY1;
+						focusedRowRectY2 = chainNameRectY2;
 						focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
 					}
 					
@@ -281,9 +281,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 	}
 	
 
-
-
-	var focusedChainIndex = ds_list_find_index(listOfChains, obj_chain.currentFocusedChainID);
+	with (obj_panelPane) {
+		functionChainList_focusedChainIndex = ds_list_find_index(listOfChains, obj_chain.currentFocusedChainID);
+	}
 	
 	// get color of focused chain
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
@@ -303,9 +303,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 	if (clickedIn) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
-			if (focusedChainIndex > 0 and focusedChainIndex < listOfChainsSize) {
-				focusedChainIndex--;
-				var newFocusedChainID = ds_list_find_value(listOfChains, focusedChainIndex);
+			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
+				with (obj_panelPane) functionChainList_focusedChainIndex--;
+				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				if (focusedElementY <= y + textMarginTop + strHeight) {
@@ -323,9 +323,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 			
-			if (focusedChainIndex < listOfChainsSize - 1 and focusedChainIndex >= 0) {
-				focusedChainIndex++;
-				var newFocusedChainID = ds_list_find_value(listOfChains, focusedChainIndex);
+			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
+				with (obj_panelPane) functionChainList_focusedChainIndex++;
+				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {
@@ -365,12 +365,13 @@ function scr_panelPane_drawChainListLoopClipped() {
 			}
 		}
 	}
+	
 
-	if (focusedChainNameRectY1 > -1 and focusedChainNameRectY2 > -1) {
+	// draw focus outline
+	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
-		for (var j = 0; j < 4; j++) {
-			draw_rectangle(x + j - clipX, focusedChainNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedChainNameRectY2 - j - clipY, true);
-		}
+		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
+		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
 	
 	// only draw scrollbar if we are in 1toMany view

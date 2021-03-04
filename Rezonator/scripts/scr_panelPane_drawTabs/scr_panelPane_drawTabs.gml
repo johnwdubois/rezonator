@@ -48,137 +48,8 @@ function scr_panelPane_drawTabs() {
 			draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, false);
 		}
 		
-		// chain tab specific stuff
-		if (i == functionChainList_tabRezBrush || i == functionChainList_tabTrackBrush || i == functionChainList_tabStackBrush) {
-		
-			scr_adaptFont(scr_get_translation(functionChainList_tabName[i]), "M");
-			var heightOfHeaderStr = string_height(scr_get_translation(functionChainList_tabName[i]));
-
-
-			var buttonRectSize = sprHeight;
-			var tagButtonRectX1 = tabRectX2 - buttonRectSize - 4;
-			var tagButtonRectY1 = ((tabRectY1 + tabRectY2)/2) - sprHeight/2;
-			var tagButtonRectX2 = tagButtonRectX1 + buttonRectSize;
-			var tagButtonRectY2 = tagButtonRectY1 + buttonRectSize;
-			var mouseOverOnetoMany = point_in_rectangle(mouse_x, mouse_y, tagButtonRectX1, tagButtonRectY1, tagButtonRectX2, tagButtonRectY2);
-			
-			
-			var buttonRectSize = sprHeight ;
-			var toggleDrawRectX2 = tagButtonRectX1 - textMarginLeft;
-			var toggleDrawRectX1 = toggleDrawRectX2 - buttonRectSize;
-			var toggleDrawRectY1 = tabRectY1 + heightOfHeaderStr;
-			var toggleDrawRectY2 = toggleDrawRectY1 + buttonRectSize;
-			
-			
-			
-			var chainListInst = -1;
-			with(obj_panelPane){
-				if(currentFunction == functionChainList){
-					chainListInst = self.id;
-				}
-			}
-			
-			var drawIcons = (chainListInst.functionChainList_currentTab == i);
-			
-			
-
-			if(drawIcons){
-
-			
-				if (i == functionChainList_tabRezBrush) {
-					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawRez, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-				}
-				else if (i == functionChainList_tabTrackBrush) {
-					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawTrack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-				}
-				else if (i == functionChainList_tabStackBrush) {
-					draw_sprite_ext(spr_toggleDraw, obj_chain.toggleDrawStack, mean(toggleDrawRectX1, toggleDrawRectX2), mean(toggleDrawRectY1, toggleDrawRectY2), 1, 1, 0, c_white, 1);
-				}
-				var mouseoverToggleDraw = point_in_rectangle(mouse_x, mouse_y, toggleDrawRectX1, toggleDrawRectY1, toggleDrawRectX2, toggleDrawRectY2);
-				if (mouseoverToggleDraw && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
-					scr_createTooltip(mean(toggleDrawRectX1, toggleDrawRectX2), toggleDrawRectY2, "Toggle visible", obj_tooltip.arrowFaceUp);
-					if (mouse_check_button_released(mb_left)) {
-						if (i == functionChainList_tabRezBrush) {
-							obj_chain.toggleDrawRez = !obj_chain.toggleDrawRez;
-						}
-						else if (i == functionChainList_tabTrackBrush) {
-							obj_chain.toggleDrawTrack = !obj_chain.toggleDrawTrack;
-						}
-						else if (i == functionChainList_tabStackBrush) {
-							obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
-						}
-					}
-				}
-			}
-			
-			// determine the chainType and listOfChains based on what tab we are on
-			var currentTabChainType = "";
-			var listOfChains = -1;
-			var listOfFilteredChains = -1;
-			if (i == functionChainList_tabRezBrush) {
-				listOfChains = ds_map_find_value(global.nodeMap, "rezChainList");
-				currentTabChainType = "rezChain";
-				listOfFilteredChains = obj_chain.filteredRezChainList;
-
-			}
-			else if (i == functionChainList_tabTrackBrush) {
-				listOfChains = ds_map_find_value(global.nodeMap, "trackChainList");
-				currentTabChainType = "trackChain";
-				listOfFilteredChains = obj_chain.filteredTrackChainList;
-				
-			}
-			else if (i == functionChainList_tabStackBrush) {
-				listOfChains = ds_map_find_value(global.nodeMap, "stackChainList");
-				currentTabChainType = "stackChain";
-				listOfFilteredChains = obj_chain.filteredStackChainList;
-			}
-			var listOfChainsSize = ds_list_size(listOfChains);
-			
-			if(drawIcons){
-				// draw filter button
-				var filterRectX2 = toggleDrawRectX1 - textMarginLeft;
-				var filterRectY1 = toggleDrawRectY1;
-				var filterRectX1 = filterRectX2 - buttonRectSize;
-				var filterRectY2 = filterRectY1 + buttonRectSize;
-				var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
-				if (mouseoverFilter && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
-					scr_createTooltip(mean(filterRectX1, filterRectX2), filterRectY2, "Filter chains", obj_tooltip.arrowFaceUp);
-					if (mouse_check_button_released(mb_left)) {
-						scr_toggleFilterForAllChains(currentTabChainType);
-					}
-				}
-			
-				// adjust image index of filter sprite depending on how many chains are filtered
-				var filterImageIndex = 0;
-				if (ds_list_size(listOfFilteredChains) > 0) {
-					if (ds_list_size(listOfFilteredChains) < listOfChainsSize) {
-						filterImageIndex = 2;
-					}
-					else {
-						filterImageIndex = 1;
-					}
-				}
-				draw_sprite_ext(spr_filterIcons, filterImageIndex, mean(filterRectX1, filterRectX2), mean(filterRectY1, filterRectY2), 1, 1, 0, c_white, 1);
-			
-				if (mouseOverOnetoMany && !instance_exists(obj_dropDown) && !chainListPane.scrollBarClickLock) {
-					var toolTipText = (obj_panelPane.chainViewOneToMany) ? "One To Many" : "One To One";
-					scr_createTooltip(mean(tagButtonRectX1, tagButtonRectX2), tagButtonRectY2, toolTipText, obj_tooltip.arrowFaceUp);
-					if (mouse_check_button_released(mb_left)) {
-						with(obj_panelPane){
-							chainViewOneToMany = !chainViewOneToMany;
-						}
-					}
-				}
-			
-				draw_sprite_ext(spr_oneToOne, (!obj_panelPane.chainViewOneToMany) ? 1 : 0, floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), 1, 1, 0, c_white, 1);
-			
-			
-			}
-		
-
-
-		}
-		else if (functionChainList_currentTab == functionChainList_tabLine) {
+		/*
+		if (functionChainList_currentTab == functionChainList_tabLine) {
 			
 			// Unit Tag toggle button
 			var buttonRectSize = (tabRectY2 - tabRectY1) - 8;
@@ -206,54 +77,47 @@ function scr_panelPane_drawTabs() {
 			}
 			draw_sprite_ext(spr_oneToOne, (obj_control.showUnitTags) ? 1 : 0, floor(mean(tagButtonRectX1, tagButtonRectX2)), floor(mean(tagButtonRectY1, tagButtonRectY2)), 1, 1, 0, c_white, 1);
 		}
-		
-		// CHAIN OVERHAUL: come back later
-		/*
-					var ascendRectX1 = filterRectX1 - 4 - buttonRectSize;
-					var ascendRectY1 = filterRectY1;
-					var ascendRectX2 = ascendRectX1 + buttonRectSize;
-					var ascendRectY2 = ascendRectY1 + buttonRectSize;
-			
-					if (not instance_exists(obj_dropDown) and point_in_rectangle(mouse_x, mouse_y, ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2) and not chainListPane.scrollBarClickLock) {
-						scr_createTooltip(mean(ascendRectX1, ascendRectX2), ascendRectY2, (functionChainList_sortAsc[i]) ? "Sort ascending" : "Sort descending", obj_tooltip.arrowFaceUp);
-						draw_set_color(global.colorThemeBorders);
-						draw_rectangle(ascendRectX1, ascendRectY1, ascendRectX2, ascendRectY2, true);
-				
-						if (mouse_check_button_released(mb_left)) {
-							with (obj_panelPane) {
-								functionChainList_sortAsc[i] = !functionChainList_sortAsc[i];
-							}
-							var sortCol = obj_chain.chainGrid_colChainSeq;
-							switch (i) {
-								case functionChainList_tabRezBrush:
-									with (obj_chain) {
-										ds_grid_sort(rezChainGrid, sortCol, obj_panelPane.functionChainList_sortAsc[i]);
-									}
-									break;
-								case functionChainList_tabTrackBrush:
-									with (obj_chain) {
-										ds_grid_sort(trackChainGrid, sortCol, obj_panelPane.functionChainList_sortAsc[i]);
-									}
-									break;
-								case functionChainList_tabStackBrush:
-									with (obj_chain) {
-										ds_grid_sort(stackChainGrid, sortCol, obj_panelPane.functionChainList_sortAsc[i]);
-									}
-									break;
-								default:
-									break;
-							}
-						}
-					}
-			
-					var ascendYScale = (functionChainList_sortAsc[i]) ? 1 : -1;
-					draw_sprite_ext(spr_ascend, 0, mean(ascendRectX1, ascendRectX2), mean(ascendRectY1, ascendRectY2), 1, ascendYScale, 0, c_white, 1);
-				}
-			}			
-			
 		*/
 		
 		
+		var buttonSize = sprite_get_width(spr_filterIcons) * 1.25;
+		
+		// draw filter/visible buttons if there is a focused chain
+		if (obj_chain.currentFocusedChainID != "") {
+			if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
+				
+				// filter button
+				var filterRectX1 = x + (buttonSize / 2);
+				var filterRectY1 = y + functionTabs_tabHeight + (functionTabs_tabHeight / 2) - (buttonSize / 2);
+				var filterRectX2 = filterRectX1 + buttonSize;
+				var filterRectY2 = filterRectY1 + buttonSize;
+				var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
+				draw_set_color(global.colorThemeSelected1);
+				draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, false);
+				if (mouseoverFilter) {
+					draw_set_color(global.colorThemeBorders);
+					draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
+				}
+				draw_sprite_ext(spr_filterIcons, 0, floor(mean(filterRectX1, filterRectX2)), floor(mean(filterRectY1, filterRectY2)), 1, 1, 0, c_white, 1);
+				
+				
+				
+				// visible button
+				var visibleRectX1 = filterRectX2 + (buttonSize / 2);
+				var visibleRectY1 = filterRectY1;
+				var visibleRectX2 = visibleRectX1 + buttonSize;
+				var visibleRectY2 = filterRectY2;
+				var mouseoverVisible = point_in_rectangle(mouse_x, mouse_y, visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2);
+				draw_set_color(global.colorThemeSelected1);
+				draw_roundrect(visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2, false);
+				if (mouseoverVisible) {
+					draw_set_color(global.colorThemeBorders);
+					draw_roundrect(visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2, true);
+				}
+				draw_sprite_ext(spr_toggleDraw, 0, floor(mean(visibleRectX1, visibleRectX2)), floor(mean(visibleRectY1, visibleRectY2)), 1, 1, 0, c_white, 1);
+
+			}
+		}
 		
 		
 	

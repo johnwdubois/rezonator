@@ -14,7 +14,7 @@ function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, pa
 		if (!obj_control.showLineNumber and i != 2) {
 			continue;
 		}
-		if (!obj_control.showParticipantName and i == 2) {
+		if (!obj_control.showSpeakerName and i == 2) {
 			continue;
 		}
 		

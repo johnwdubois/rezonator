@@ -647,7 +647,7 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 // hide participant names
 if (!gridView) {
 	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("H"))) {
-		scr_showSpeakerName(!obj_control.showParticipantName);
+		scr_showSpeakerName(!obj_control.showSpeakerName);
 	}
 }
 

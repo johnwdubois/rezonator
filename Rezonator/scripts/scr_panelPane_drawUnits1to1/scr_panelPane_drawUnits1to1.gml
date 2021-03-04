@@ -34,8 +34,8 @@ function scr_panelPane_drawUnits1to1() {
 	var chainNameRectMinusY = 4;
 
 	var focusedElementY = -1;
-	var focusedlineRowRectY1 = -1;
-	var focusedlineRowRectY2 = -1;
+	var focusedRowRectY1 = -1;
+	var focusedRowRectY2 = -1;
 	var xbuffer = (windowWidth / 6);
 
 	var drawDropDowns = false;
@@ -223,8 +223,8 @@ function scr_panelPane_drawUnits1to1() {
     
 		    // Outline the rectangle in black
 		    if (currentLineState == 1) {
-		        focusedlineRowRectY1 = lineRowRectY1;
-		        focusedlineRowRectY2 = lineRowRectY2;
+		        focusedRowRectY1 = lineRowRectY1;
+		        focusedRowRectY2 = lineRowRectY2;
 		        focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
 		    }
 
@@ -258,15 +258,12 @@ function scr_panelPane_drawUnits1to1() {
 
 
 
-	//draw hover selection
-	if (focusedlineRowRectY1 > -1 and focusedlineRowRectY2 > -1) {
-	    draw_set_color(global.colorThemeBorders);
-	    for (var j = 0; j < 3; j++) {
-	        draw_rectangle(x + j - clipX, focusedlineRowRectY1 + j - clipY, x + windowWidth - j - clipX, focusedlineRowRectY2 - j - clipY, true);
-	    }
+	// draw focus outline
+	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
+		draw_set_color(global.colorThemeBorders);
+		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
+		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
-
-
 
 
 
