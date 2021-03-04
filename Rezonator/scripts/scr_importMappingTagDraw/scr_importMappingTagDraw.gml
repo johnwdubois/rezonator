@@ -207,7 +207,7 @@ function scr_importMappingTagDraw() {
 			scr_loadSchema(false);
 	
 			if (global.importType == global.importType_IGT) {
-				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), scr_get_translation("import_mapping_fields_displaytoken"));
 				var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
 			
 				if (wordDelimRow != -1) {

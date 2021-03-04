@@ -168,10 +168,10 @@ function scr_importMappingTagInfo() {
 					
 							var dropDownOptionList = ds_list_create();
 							if (global.importType == global.importType_IGT) {
-								ds_list_add(dropDownOptionList, "Token", "Word", "Unit", "Discourse", "EXCEPTION");
+								ds_list_add(dropDownOptionList, scr_get_translation("import_mapping_level_token"), scr_get_translation("import_line_word"), scr_get_translation("import_line_unit"), scr_get_translation("import_mapping_level_discourse"), scr_get_translation("import_mapping_level_exception"));
 							}
 							else {
-								ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse", "EXCEPTION");
+								ds_list_add(dropDownOptionList, scr_get_translation("import_mapping_level_token"), scr_get_translation("import_line_unit"), scr_get_translation("import_mapping_level_discourse"), scr_get_translation("import_mapping_level_exception"));
 							}
 							if (ds_list_size(dropDownOptionList) > 0) {
 								var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY), -999, obj_dropDown);
@@ -219,12 +219,21 @@ function scr_importMappingTagInfo() {
 							obj_importMapping.rowToChange = j;
 					
 							var dropDownOptionList = ds_list_create();
-						
+							speaker = "import_mapping_fields_speaker";
+							unitStart = "import_mapping_fields_unitStart";
+							unitEnd = "import_mapping_fields_unitEnd";
+							unitDelim = "import_mapping_fields_unitDelim";
+							turnDelim = "import_mapping_fields_turnDelim";
+							translation = "import_mapping_fields_trnaslation";
+							dispTok = "import_mapping_fields_displaytoken";
+							transcript = "import_mapping_fields_transcript";
+							// workDelim = "import_mapping_fields_unitDelim";
+							
 							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
-								ds_list_add(dropDownOptionList, "Speaker", "Unit Start", "Unit End", "Unit Delimiter", "Turn Delimiter", "Translation");
+								ds_list_add(dropDownOptionList, scr_get_translation(speaker), scr_get_translation(unitStart), scr_get_translation(unitEnd), scr_get_translation(unitDelim), scr_get_translation(turnDelim), scr_get_translation(translation));
 							}
 							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
-								ds_list_add(dropDownOptionList, "Display Token", "Transcript");
+								ds_list_add(dropDownOptionList, scr_get_translation(dispTok), scr_get_translation(transcript));
 							}
 							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelWord) {
 								ds_list_add(dropDownOptionList, "Word Delimiter");
@@ -272,6 +281,7 @@ function scr_importMappingTagInfo() {
 		var headerStr = "";
 		var showLevelRadioButton = false;
 		
+		// get translation here?
 		if (i == global.tagInfoGrid_colMarker) {
 			headerStr = "Marker";
 		}
