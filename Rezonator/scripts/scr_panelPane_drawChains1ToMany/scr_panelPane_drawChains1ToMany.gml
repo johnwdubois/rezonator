@@ -292,12 +292,6 @@ function scr_panelPane_drawChains1ToMany() {
 		scrollBarBackColor, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
-	// draw background for headers
-	draw_set_alpha(1);
-	draw_set_color(global.colorThemeBG);
-	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
-
-
 	// draw headers for chainContents columns
 	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 	var colAmount = 3 + chainContents1toManyFieldListSize;
@@ -340,7 +334,7 @@ function scr_panelPane_drawChains1ToMany() {
 		
 		
 		// make headers not overlap with each other
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		
 		// headers for dynamic columns

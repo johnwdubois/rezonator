@@ -164,7 +164,7 @@ function scr_panelPane_drawChains1To1(){
 		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
 		
 		// BG & outline rects
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);

@@ -667,9 +667,10 @@ if (obj_panelPane.showNav) {
 		var panelPaneInst = instance_find(obj_panelPane, i);
 		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList || panelPaneInst.currentFunction == panelPaneInst.functionFilter);
 		var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
+		var isTabs = (panelPaneInst.currentFunction == panelPaneInst.functionTabs);
 		
 		// don't set mouseover to be true if this pane is hidden!
-		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight)) {
+		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight) || isTabs) {
 			// check if mouse is in range
 			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
 				mouseoverPanelPane = true;

@@ -240,7 +240,7 @@ function scr_panelPane_drawUnits1toMany() {
 	
 		// draw BG rects & lines to separate columns
 		draw_set_alpha(1);
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 		if (i > 0) {
 			draw_set_color(global.colorThemeBorders);

@@ -2,7 +2,6 @@ function scr_panelPane_drawUnits1to1() {
 	/*
 	    Purpose: Draw the translation of each line in the Nav window
 	*/
-
 	
 	// Access the lineList panelPane object to get it's scrollPlusY
 
@@ -35,15 +34,11 @@ function scr_panelPane_drawUnits1to1() {
 	var chainNameRectMinusY = 4;
 
 	var focusedElementY = -1;
-	var focusedLineNameRectY1 = -1;
-	var focusedLineNameRectY2 = -1;
+	var focusedlineRowRectY1 = -1;
+	var focusedlineRowRectY2 = -1;
 	var xbuffer = (windowWidth / 6);
 
 	var drawDropDowns = false;
-	if (!instance_exists(obj_dropDown)) {
-		unitTagsHighlightRow = -1;
-	}
-
 
 
 	var headerListSize = unitContentsHeaderListSize;
@@ -83,9 +78,7 @@ function scr_panelPane_drawUnits1to1() {
     
 	    draw_set_color(global.colorThemeBG);
 	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
-	    draw_set_color(global.colorThemeBorders);
-	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, true);
-	
+
 		var discoTagUnitView = false;
 		var isUnitIDCol = false;
 		if (j > 0) {
@@ -107,7 +100,7 @@ function scr_panelPane_drawUnits1to1() {
 		        textPlusY += strHeight;
 		        continue;
 		    }
-    
+
     
 		    // Get grid info of current chain
 		    var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, i);
@@ -143,16 +136,18 @@ function scr_panelPane_drawUnits1to1() {
 		    }
     
 		    // Get dimensions of rectangle around line name
-		    var lineNameRectX1 = x;
-		    var lineNameRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
-		    var lineNameRectX2 = x + windowWidth;
-		    var lineNameRectY2 = lineNameRectY1 + strHeight;
+		    var lineRowRectX1 = x;
+		    var lineRowRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
+		    var lineRowRectX2 = x + windowWidth;
+		    var lineRowRectY2 = lineRowRectY1 + strHeight;
+			var mouseoverLineRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineRowRectX1, max(lineRowRectY1, y + textMarginTop), lineRowRectX2, lineRowRectY2);
     
 		    //Check mouse clicks to focus a line in the list
-		    if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, max(lineNameRectY1, y + textMarginTop), lineNameRectX2, lineNameRectY2)
-			&& !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+		    if (mouseoverLineRowRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 				drawDropDowns = true;
-				unitTagsHighlightRow = i;
+				with (obj_panelPane) {
+					unitTagsHighlightRow = i;
+				}
         
 		        if (device_mouse_check_button_released(0, mb_left)) {
 		            ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
@@ -163,58 +158,61 @@ function scr_panelPane_drawUnits1to1() {
 		            }
 		        }
 		    }
-			if (unitTagsHighlightRow == i && j > 0) {
 			
-				if (!discoTagUnitView && !isUnitIDCol) {
-					// dropdown buttons
-					var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
-					var dropDownButtonY1 = lineNameRectY1;
-					var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
-					var dropDownButtonY2 = lineNameRectY2;
-					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
-					if (point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2)) {
-						scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
-						draw_set_alpha(1);
-						draw_set_color(global.colorThemeBorders);
-						draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+			
+			
+			if (unitTagsHighlightRow == i) {
 				
-						if (mouse_check_button_released(mb_left)) {
+				// highlight rect
+				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.4));
+				draw_rectangle(colRectX1 - clipX, lineRowRectY1 - clipY, colRectX2 - clipX, lineRowRectY2 - clipY, false);
+				
+				
+				if (j > 0) {
+					if (!discoTagUnitView && !isUnitIDCol) {
+						// dropdown buttons
+						var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
+						var dropDownButtonY1 = lineRowRectY1;
+						var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
+						var dropDownButtonY2 = lineRowRectY2;
+						var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 					
-							with (obj_panelPane) {
-								selectedColUnit = j;
-							}
+						draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+						if (mouseoverDropDownButton) {
+							scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
+							draw_set_alpha(1);
+							draw_set_color(global.colorThemeBorders);
+							draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				
+							if (mouse_check_button_released(mb_left)) {
+					
+								with (obj_panelPane) {
+									selectedColUnit = j;
+								}
 								
-							var dropDownOptionList = ds_list_create();
-							var colIndex = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-							var mapKey = ds_list_find_value(global.unitImportColNameList, colIndex);
-							var tagMapList = ds_map_find_value(global.unitImportTagMap, mapKey);
+								var dropDownOptionList = ds_list_create();
+								var colIndex = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
+								var mapKey = ds_list_find_value(global.unitImportColNameList, colIndex);
+								var tagMapList = ds_map_find_value(global.unitImportTagMap, mapKey);
 						
-							if (!is_undefined(tagMapList)) {
-								ds_list_copy(dropDownOptionList, tagMapList);
-								obj_control.unitImportColToChange = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-								obj_control.unitImportRowToChange = currentLineUnitID - 1;
+								if (!is_undefined(tagMapList)) {
+									ds_list_copy(dropDownOptionList, tagMapList);
+									obj_control.unitImportColToChange = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
+									obj_control.unitImportRowToChange = currentLineUnitID - 1;
 								
-								var dropDownX = colRectX1;
-								var dropDownY = lineNameRectY2;
+									var dropDownX = colRectX1;
+									var dropDownY = lineRowRectY2;
 
-								if (ds_list_size(dropDownOptionList) > 0 ) {
-									var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
-									dropDownInst.optionList = dropDownOptionList;
-									dropDownInst.optionListType = global.optionListTypeUnitTagMap;
+									if (ds_list_size(dropDownOptionList) > 0 ) {
+										var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
+										dropDownInst.optionList = dropDownOptionList;
+										dropDownInst.optionListType = global.optionListTypeUnitTagMap;
 
+									}
 								}
 							}
-		
-					
 						}
 					}
-				}
-			
-				// highlight rectangle
-				if (j == headerListSize - 1) {
-					draw_set_alpha(0.2);
-					draw_set_color(global.colorThemeText);
-					draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
 				}
 			}
 			draw_set_alpha(1);
@@ -225,8 +223,8 @@ function scr_panelPane_drawUnits1to1() {
     
 		    // Outline the rectangle in black
 		    if (currentLineState == 1) {
-		        focusedLineNameRectY1 = lineNameRectY1;
-		        focusedLineNameRectY2 = lineNameRectY2;
+		        focusedlineRowRectY1 = lineRowRectY1;
+		        focusedlineRowRectY2 = lineRowRectY2;
 		        focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
 		    }
 
@@ -261,10 +259,10 @@ function scr_panelPane_drawUnits1to1() {
 
 
 	//draw hover selection
-	if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
+	if (focusedlineRowRectY1 > -1 and focusedlineRowRectY2 > -1) {
 	    draw_set_color(global.colorThemeBorders);
 	    for (var j = 0; j < 3; j++) {
-	        draw_rectangle(x + j - clipX, focusedLineNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedLineNameRectY2 - j - clipY, true);
+	        draw_rectangle(x + j - clipX, focusedlineRowRectY1 + j - clipY, x + windowWidth - j - clipX, focusedlineRowRectY2 - j - clipY, true);
 	    }
 	}
 
@@ -273,10 +271,8 @@ function scr_panelPane_drawUnits1to1() {
 
 
 	//draw unit Tabs
-
-
 	var tabHeight = functionTabs_tabHeight;
-	draw_set_color(global.colorThemeBG);
+	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
 	draw_rectangle(x - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 
 
@@ -287,10 +283,14 @@ function scr_panelPane_drawUnits1to1() {
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + (windowWidth / 6);
 		var colWidth = colRectX2 - colRectX1;
-	    if (i == 5) {
-	        //var colRectX2 = colRectX1 + (windowWidth);    
-	    }
 	    var colRectY2 = colRectY1 + windowHeight;
+		
+		// dividing lines
+		if (i > 0) {
+			draw_set_color(global.colorThemeBorders);
+			draw_set_alpha(1);
+			draw_line(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + windowHeight - clipY);
+		}
 		
 		// if this is the last column, extend it to the end of the window
 		if (i == headerListSize - 1) {
@@ -389,9 +389,6 @@ function scr_panelPane_drawUnits1to1() {
 						var dropDownInst = instance_create_depth(colRectX1,colRectY1+tabHeight , -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
 						dropDownInst.optionListType = global.optionListTypeUnitSelection;
-					
-						//obj_control.ableToCreateDropDown = false;
-						//obj_control.alarm[0] = 2;
 					}
 				}
 			}

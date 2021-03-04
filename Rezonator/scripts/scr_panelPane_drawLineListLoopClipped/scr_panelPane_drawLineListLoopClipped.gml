@@ -3,7 +3,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
-
 	
 	var strHeight = string_height("0") * 1.5;
 	
@@ -122,6 +121,13 @@ function scr_panelPane_drawLineListLoopClipped() {
 		var lineNameRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		var lineNameRectX2 = x + windowWidth - scrollBarWidth;
 		var lineNameRectY2 = lineNameRectY1 + strHeight;
+		
+		if (unitTagsHighlightRow == i) {
+			draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.4));
+			draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
+		}
+		
+		
 	
 		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor);
 	
@@ -286,7 +292,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	
 	
 	// draw column headers
-	var plusX = 0;
+	var headerPlusX = 0;
 	for (var i = 0; i < 3; i++) {
 		
 		// get column data
@@ -306,7 +312,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		}
 		
 		// get header coordinates
-		var headerRectX1 = x + plusX;
+		var headerRectX1 = x + headerPlusX;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + textMarginTop;
@@ -326,7 +332,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_text(headerTextX, headerTextY, colText);
 		
 		
-		plusX += colWidth;
+		headerPlusX += colWidth;
 	}
 
 

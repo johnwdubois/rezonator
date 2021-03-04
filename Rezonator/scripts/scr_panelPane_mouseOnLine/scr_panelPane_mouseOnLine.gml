@@ -1,7 +1,11 @@
 function scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor) {
-
-
-	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2) and not chainListPane.scrollBarClickLock) {
+	
+	var mouseoverLineName = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2);
+	if (mouseoverLineName and !chainListPane.scrollBarClickLock) {
+		
+		with (obj_panelPane) {
+			unitTagsHighlightRow = i;
+		}
 		
 		if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 			ds_grid_set_region(obj_control.currentActiveLineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);

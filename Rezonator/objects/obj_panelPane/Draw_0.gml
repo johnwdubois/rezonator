@@ -1,16 +1,29 @@
 /*
-	obj_panelPane: Draw
-	
-	Last Updated: 2019-02-14
-	
-	Called from: Every frame of the game
-	
 	Purpose: Create the visuals of the panel pane
-	
-	Mechanism: Draw the outlines, call the drawing functions of each window, and check for user's mouse in the panel pane
-	
-	Author: Terry DuBois
+
 */
+
+if (!obj_control.mouseoverPanelPane) {
+	unitTagsHighlightRow = -1;
+}
+if (currentFunction != functionChainList) {
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (currentFunction == functionChainContents) {
+			if (!obj_control.showUnitTags) {
+				with (obj_panelPane) {
+					unitTagsHighlightRow = -1;
+				}
+			}
+		}
+		else {
+			with (obj_panelPane) {
+				unitTagsHighlightRow = -1;
+			}
+		}
+	}
+}
+
+
 
 
 
