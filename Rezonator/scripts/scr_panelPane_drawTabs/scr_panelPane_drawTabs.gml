@@ -2,7 +2,6 @@ function scr_panelPane_drawTabs() {
 	/*
 		Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
 	*/
-	
 
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);
@@ -207,6 +206,34 @@ function scr_panelPane_drawTabs() {
 		draw_text(tabRectX1 + textMarginLeft, tabRectY1, scr_get_translation(functionChainList_tabName[i]));
 
 	}
-
+	
+	
+	// 1to1 vs 1toMany button
+	var oneToOneButtonX = floor(x + windowWidth - buttonSize);
+	var oneToOneButtonY = floor(y + functionTabs_tabHeight * 1.5);
+	var oneToOneButtonX1 = oneToOneButtonX - (buttonSize / 2);
+	var oneToOneButtonY1 = oneToOneButtonY - (buttonSize / 2);
+	var oneToOneButtonX2 = oneToOneButtonX1 + buttonSize;
+	var oneToOneButtonY2 = oneToOneButtonY1 + buttonSize;
+	var mouseoverOneToOneButton = point_in_rectangle(mouse_x, mouse_y, oneToOneButtonX1, oneToOneButtonY1, oneToOneButtonX2, oneToOneButtonY2);
+	
+	// determine whether we are in 1to1 or 1toMany
+	var oneToOneView = false;
+	if (functionChainList_currentTab == functionChainList_tabLine && obj_control.showUnitTags) oneToOneView = true;
+	else if (!chainViewOneToMany) oneToOneView = true;
+	
+	if (mouseoverOneToOneButton) {
+		scr_createTooltip(mean(oneToOneButtonX1, oneToOneButtonX2), floor(oneToOneButtonY2), (oneToOneView) ? "One to one" : "One to many", obj_tooltip.arrowFaceUp);
+		
+		draw_set_color(global.colorThemeSelected1);
+		draw_roundrect(oneToOneButtonX1 - (buttonSize * 0.15), oneToOneButtonY1 - (buttonSize * 0.15), oneToOneButtonX2  + (buttonSize * 0.15), oneToOneButtonY2 + (buttonSize * 0.15), false);
+		
+		if (mouse_check_button_released(mb_left)) {
+			scr_toggle1to1();
+		}
+	}
+	
+	draw_sprite_ext(spr_oneToOne, oneToOneView, oneToOneButtonX, oneToOneButtonY, 1, 1, 0, c_white, 1);
+	
 
 }
