@@ -3,7 +3,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
-	
+
+
 	var strHeight = string_height("0") * 1.5;
 	
 	var drawScrollbar = (!obj_control.showUnitTags);
@@ -25,11 +26,19 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var unitSeqRectWidth = (filterRectSize * 2);
 	var speakerRectWidth = (obj_control.showSpeakerName) ? (windowWidth / 3) : 0;
 
-	var textMarginTop = functionTabs_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
 	var textAdjustY = 0;
 	var textBuffer = 8;
-
+	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	
+	// if mouse is hovered on header region, make sure there is no line highlighted
+	if (mouseoverHeaderRegion) {
+		with (obj_panelPane) {
+			unitTagsHighlightRow = -1;
+		}
+	}
+	
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
@@ -49,11 +58,11 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var mouseInPane = obj_control.mouseoverPanelPane;
 	for (var i = 0; i < lineGridHeight; i++) {
 	
-		if (y + textMarginTop + relativeScrollPlusY + textPlusY < y - strHeight) {
+		if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight) {
 			textPlusY += strHeight;
 			continue;
 		}
-		if (y + textMarginTop + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		if (y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 				textPlusY += strHeight;
 				break;
 		}
@@ -117,7 +126,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	
 		// Get dimensions of rectangle around line name
 		var lineNameRectX1 = x;
-		var lineNameRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
+		var lineNameRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		var lineNameRectX2 = x + windowWidth - scrollBarWidth;
 		var lineNameRectY2 = lineNameRectY1 + strHeight;
 		
@@ -128,14 +137,14 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		
 	
-		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor);
+		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor, mouseoverHeaderRegion);
 	
 	
 		// get position of focused rect
 		if (currentLineState == 1) {
 			focusedRowRectY1 = lineNameRectY1;
 			focusedRowRectY2 = lineNameRectY2;
-			focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
+			focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
 		}
 	
 		// get speaker rect coordinates
@@ -149,7 +158,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		// get x position of text, and adjust for RTL if needed
 		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 		var textX = lineStateLTR ? floor(speakerRectX2 + textBuffer) : floor(lineNameRectX1 + windowWidth - scrollBarWidth);
-		var textY = floor(y + textMarginTop + relativeScrollPlusY + textPlusY + textAdjustY / 2);
+		var textY = floor(y + headerHeight + relativeScrollPlusY + textPlusY + textAdjustY / 2);
 
 		// draw line string
 		draw_set_halign(lineStateLTR ? fa_left : fa_right);
@@ -166,7 +175,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 			draw_set_color(global.colorThemeText);
 			draw_set_halign(lineStateLTR ? fa_left : fa_right);
 			var speakerTextX = lineStateLTR ? floor(speakerRectX1 + textBuffer) : floor(speakerRectX2);
-			draw_text(speakerTextX - clipX, floor(y + textMarginTop + relativeScrollPlusY + textPlusY) - clipY, lineSpeaker);
+			draw_text(speakerTextX - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, lineSpeaker);
 		}
 		
 		// draw unitSeq rect & text
@@ -175,7 +184,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(floor(x + (unitSeqRectWidth / 2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + textMarginTop + relativeScrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
+		draw_text(floor(x + (unitSeqRectWidth / 2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
 		
 	
 		// increment plusY
@@ -205,9 +214,9 @@ function scr_panelPane_drawLineListLoopClipped() {
 				ds_grid_set(currentLineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;
 			
-				if (focusedElementY <= y + textMarginTop + strHeight) {
+				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
-						scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
 					}
 				}
 			}
@@ -279,7 +288,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	// only show a scrollbar if we're in 1toMany
 	if (drawScrollbar) {
-		scr_scrollBar(lineGridHeight, focusedElementY, strHeight, textMarginTop,
+		scr_scrollBar(lineGridHeight, focusedElementY, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	}
@@ -314,7 +323,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		var headerRectX1 = x + headerPlusX;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
-		var headerRectY2 = headerRectY1 + textMarginTop;
+		var headerRectY2 = headerRectY1 + headerHeight;
 		
 		// draw header rects
 		draw_set_color(global.colorThemeSelected2);

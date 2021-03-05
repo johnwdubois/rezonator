@@ -2,11 +2,13 @@ function scr_panelPane_drawTabs() {
 	/*
 		Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
 	*/
+	
 
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
+	scr_adaptFont("0", "M");
 	
 	var sprHeight = sprite_get_height(spr_filterIcons);
 	var textMarginLeft = 5;
@@ -14,7 +16,7 @@ function scr_panelPane_drawTabs() {
 	// set positions for other panelPanes
 	var tabsPaneInst = self.id;
 	with (obj_panelPane) {
-		functionTabs_tabHeight = string_height("0") + sprHeight + textMarginLeft;
+		functionTabs_tabHeight = (string_height("0") * 1.5) + textMarginLeft;
 		if (currentFunction == functionChainList || currentFunction == functionChainContents || currentFunction == functionFilter) {
 			y = tabsPaneInst.y + tabsPaneInst.windowHeight;
 		}
@@ -80,27 +82,31 @@ function scr_panelPane_drawTabs() {
 		}
 		*/
 		
-		
+		var nodesSelected = (ds_list_size(obj_control.selectedNodeList) > 0);
+		var buttonAlpha = nodesSelected ? 1 : 0.4;
 		var buttonSize = sprite_get_width(spr_filterIcons) * 1.25;
 		
 		// draw filter/visible buttons if there is anything selected
 		if (i == functionChainList_currentTab) {
 			if (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush) {
-				if (ds_list_size(obj_control.selectedNodeList) > 0) {
 				
-					// filter button
-					var filterRectX1 = x + (buttonSize / 2);
-					var filterRectY1 = y + functionTabs_tabHeight + (functionTabs_tabHeight / 2) - (buttonSize / 2);
-					var filterRectX2 = filterRectX1 + buttonSize;
-					var filterRectY2 = filterRectY1 + buttonSize;
-					var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
-					draw_set_color(global.colorThemeSelected1);
-					draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, false);
-					if (mouseoverFilter) {
-						draw_set_color((obj_control.filterGridActive) ? global.colorThemeText : global.colorThemeBorders);
+				// filter button
+				var filterRectX1 = x + (buttonSize / 2);
+				var filterRectY1 = y + functionTabs_tabHeight + (functionTabs_tabHeight / 2) - (buttonSize / 2);
+				var filterRectX2 = filterRectX1 + buttonSize;
+				var filterRectY2 = filterRectY1 + buttonSize;
+				var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
+				draw_set_alpha(buttonAlpha);
+				draw_set_color(obj_control.filterGridActive ? global.colorThemeText : global.colorThemeSelected1);
+				draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, false);
+				if (mouseoverFilter) {
+					scr_createTooltip(mean(filterRectX1, filterRectX2), floor(filterRectY2), "Filter", obj_tooltip.arrowFaceUp);
+						
+					if (nodesSelected) {
+						draw_set_color(global.colorThemeText);
 						draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
-						scr_createTooltip(mean(filterRectX1, filterRectX2), floor(filterRectY2), "Filter", obj_tooltip.arrowFaceUp);
-				
+							
+						// click filter button
 						if (mouse_check_button_released(mb_left)) {
 					
 							scr_setValueForAllChains("rezChain", "filter", false);
@@ -117,31 +123,33 @@ function scr_panelPane_drawTabs() {
 							}
 						}
 					}
-					draw_sprite_ext(spr_filterIcons, 0, floor(mean(filterRectX1, filterRectX2)), floor(mean(filterRectY1, filterRectY2)), 1, 1, 0, c_white, 1);
+				}
+				draw_sprite_ext(spr_filterIcons, 0, floor(mean(filterRectX1, filterRectX2)), floor(mean(filterRectY1, filterRectY2)), 1, 1, 0, obj_control.filterGridActive ? global.colorThemeBG : global.colorThemeText, buttonAlpha);
 				
 				
 				
-					// visible button
-					var visibleRectX1 = filterRectX2 + (buttonSize / 2);
-					var visibleRectY1 = filterRectY1;
-					var visibleRectX2 = visibleRectX1 + buttonSize;
-					var visibleRectY2 = filterRectY2;
-					var mouseoverVisible = point_in_rectangle(mouse_x, mouse_y, visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2);
-					draw_set_color(global.colorThemeSelected1);
-					draw_roundrect(visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2, false);
-					if (mouseoverVisible) {
+				// visible button
+				var visibleRectX1 = filterRectX2 + (buttonSize / 2);
+				var visibleRectY1 = filterRectY1;
+				var visibleRectX2 = visibleRectX1 + buttonSize;
+				var visibleRectY2 = filterRectY2;
+				var mouseoverVisible = point_in_rectangle(mouse_x, mouse_y, visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2);
+				draw_set_alpha(buttonAlpha);
+				draw_set_color(global.colorThemeSelected1);
+				draw_roundrect(visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2, false);
+				if (mouseoverVisible) {
+					if (nodesSelected) {
 						draw_set_color(global.colorThemeBorders);
 						draw_roundrect(visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2, true);
-						scr_createTooltip(mean(visibleRectX1, visibleRectX2), floor(visibleRectY2), "Visible", obj_tooltip.arrowFaceUp);
 					}
-					draw_sprite_ext(spr_toggleDraw, 0, floor(mean(visibleRectX1, visibleRectX2)), floor(mean(visibleRectY1, visibleRectY2)), 1, 1, 0, c_white, 1);
-				
+					scr_createTooltip(mean(visibleRectX1, visibleRectX2), floor(visibleRectY2), "Visible", obj_tooltip.arrowFaceUp);
 				}
+				draw_sprite_ext(spr_toggleDraw, 0, floor(mean(visibleRectX1, visibleRectX2)), floor(mean(visibleRectY1, visibleRectY2)), 1, 1, 0, c_white, buttonAlpha);
+				
 			}
 		}
 		
-	
-
+		draw_set_alpha(1);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);
 	

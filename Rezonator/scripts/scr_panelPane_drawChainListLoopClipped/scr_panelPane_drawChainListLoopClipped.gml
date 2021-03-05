@@ -5,6 +5,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				set chainContents panelPane to look at that chain
 	*/
 	
+	
 
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -69,9 +70,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 	
 
-	var textMarginTop = functionTabs_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
 	var textBuffer = 8;
+	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
@@ -88,12 +90,12 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var listOfChainsSize = ds_list_size(listOfChains);
 	for (var i = 0; i < listOfChainsSize; i++) {
 	
-		if (y + textMarginTop + relativeScrollPlusY + textPlusY < y - strHeight
-		or y + textMarginTop + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight
+		or y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			continue;
 		}
-		else if (y + textMarginTop + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		else if (y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			break;
 		}
@@ -145,17 +147,17 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 					// Get dimensions of rectangle around chain name
 					var chainNameRectX1 = x;
-					var chainNameRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
+					var chainNameRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 					var chainNameRectX2 = x + windowWidth - scrollbarWidth;
 					var chainNameRectY2 = chainNameRectY1 + strHeight;
-					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2);
+					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion;
 					
 					// get dimensions of checkbox rect
 					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2);
+					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion;
 	
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
@@ -251,13 +253,20 @@ function scr_panelPane_drawChainListLoopClipped() {
 					if (obj_chain.currentFocusedChainID == currentChainID) {
 						focusedRowRectY1 = chainNameRectY1;
 						focusedRowRectY2 = chainNameRectY2;
-						focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
+						focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
 					}
 					
 					// draw checkbox
-					if (mouseoverCheckbox || currentChainSelected) {
+					if (mouseoverCheckbox) {
+						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, "Select", obj_tooltip.arrowFaceUp);
+					}
+					if (currentChainSelected) {
 						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
-						draw_rectangle(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, false);
+						draw_roundrect(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, false);
+					}
+					else if (mouseoverCheckbox) {
+						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
+						draw_roundrect(checkboxRectX1 - (strHeight * 0.15) - clipX, checkboxRectY1 - (strHeight * 0.15) - clipY, checkboxRectX2 + (strHeight * 0.15) - clipX, checkboxRectY2 + (strHeight * 0.15) - clipY, false);
 					}
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, 2);
@@ -326,16 +335,16 @@ function scr_panelPane_drawChainListLoopClipped() {
 					scr_adaptFont(currentChainName, "M");
 					
 					// draw text: number column
-					draw_text(floor(numColX + textBuffer) - clipX, floor(y + textMarginTop + relativeScrollPlusY + textPlusY) - clipY, string(i + 1));
+					draw_text(floor(numColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(i + 1));
 	
 					// draw text: name column
-					draw_text(floor(nameColX + textBuffer) - clipX, floor(y + textMarginTop + relativeScrollPlusY + textPlusY) - clipY, currentChainName);
+					draw_text(floor(nameColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, currentChainName);
 					
 					// draw text: text/caption column
 					if (currentChainCaption != "") {
 						draw_set_alpha(0.7);
 						scr_adaptFont(string(currentChainCaption), "S");
-						draw_text(floor(textColX + textBuffer) - clipX, floor(y + textMarginTop + relativeScrollPlusY + textPlusY) - clipY, string(currentChainCaption));
+						draw_text(floor(textColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(currentChainCaption));
 						draw_set_alpha(1);
 					}
 					
@@ -379,9 +388,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
-				if (focusedElementY <= y + textMarginTop + strHeight) {
+				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
-						scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
 					}
 				}
 			}
@@ -447,7 +456,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 	// only draw scrollbar if we are in 1toMany view
 	if (drawScrollbar) {
-		scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
+		scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	}
@@ -490,7 +499,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		// get header coordinates
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
-		var headerRectY2 = headerRectY1 + textMarginTop;
+		var headerRectY2 = headerRectY1 + headerHeight;
 		
 		// draw header rects
 		draw_set_alpha(1);

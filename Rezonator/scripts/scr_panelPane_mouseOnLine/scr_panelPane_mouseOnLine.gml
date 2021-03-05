@@ -1,6 +1,8 @@
-function scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor) {
+function scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor, mouseoverHeaderRegion) {
 	
-	var mouseoverLineName = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2);
+	var mouseoverLineName = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2) && !mouseoverHeaderRegion;
+	
+	
 	if (mouseoverLineName and !chainListPane.scrollBarClickLock) {
 		
 		with (obj_panelPane) {
