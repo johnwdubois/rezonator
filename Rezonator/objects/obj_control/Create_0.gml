@@ -710,3 +710,5 @@ with (obj_alarm) {
 ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
+
+selectedNodeList = ds_list_create();

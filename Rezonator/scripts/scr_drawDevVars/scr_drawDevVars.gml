@@ -67,6 +67,11 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "mouseoverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
 	draw_text(devVarX, wordTopMargin + (strHeight * 27), "scrollBarWidth: " + string(global.scrollBarWidth));
+	draw_text(devVarX, wordTopMargin + (strHeight * 28), "selectedNodeList: " + scr_getStringOfList(selectedNodeList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 29), "filteredRezChainList: " + scr_getStringOfList(obj_chain.filteredRezChainList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 30), "filteredTrackChainList: " + scr_getStringOfList(obj_chain.filteredTrackChainList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 31), "filteredStackChainList: " + scr_getStringOfList(obj_chain.filteredStackChainList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 32), "filterGridActive: " + string(filterGridActive));
 
 	
 	// reset halign to left
