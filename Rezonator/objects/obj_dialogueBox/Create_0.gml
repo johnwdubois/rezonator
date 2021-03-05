@@ -28,6 +28,7 @@ canResizeWindowY = true;
 
 maxDisplaySize = 30;
 displayText = "";
+dialogueBoxText = "";
 
 
 questionWindowActive = false;

@@ -792,6 +792,15 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 
 }
 
+
+//display current file name in window caption
+if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){
+	window_set_caption(string(game_display_name) + " - " + filename_name(global.importFilename));
+}
+else{
+	window_set_caption(string(game_display_name) + " - " + filename_name(global.fileSaveName));
+}
+
 scr_fontSizeControl();
 
 

@@ -104,6 +104,9 @@ if (obj_control.showFPS) {
 	draw_set_valign(fa_middle);
 	draw_text(fpsTextX, fpsTextY, "FPS: " + string(fps));
 }
+
+
+
 // show unsaved warning
 
 draw_set_halign(fa_right);

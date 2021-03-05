@@ -1,3 +1,4 @@
+
 /*
 	obj_openingScreen: Create
 	
@@ -68,12 +69,12 @@ global.importType_Transcription = "Transcription";
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
 ds_list_add(global.importTypeList,
-	global.importType_Transcription,
-	global.importType_TabDelimited,
 	global.importType_PlainText,
 	global.importType_Paragraph,
 	global.importType_CSV,
 	global.importType_CoNLLU,
+	global.importType_Transcription,
+	global.importType_TabDelimited,
 	global.importType_IGT);
 
 // by default, we will set importType to be the first item in the importTypeList
@@ -257,17 +258,14 @@ global.fieldRelationHelperGrid = ds_grid_create(global.fieldRelationHelperGridWi
 
 
 
-
-
-
-
-
 //create font itterator
 CJKLoopIteration = 0;
 
 smallFontSize = 10;
 mediumFontSize = 12;
 largeFontSize = 14;
+
+
 
 
 //variables for keyboard
@@ -363,8 +361,58 @@ ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 
+global.optionListTypeSort = 0;
+global.optionListTypeChainList = 1;
+global.optionListTypeChainRecolor = 2;
+global.optionListTypeSpeakerLabel = 3;
+global.optionListTypeFile = 4;
+global.optionListTypeAdvanced = 5;
+global.optionListTypeView = 6;
+global.optionListTypeSearch = 7;
+global.optionListTypeRightClickWord = 8;
+global.optionListTypeWordTags = 9;
+global.optionListTypeGame = 10;
+global.optionListTypeNewWord = 11;
+global.optionListTypeMappingTag = 12;
+global.optionListTypeZoom = 13;
+global.optionListTypePane = 14;
+global.optionListTypeWord = 15;
+global.optionListTypeJustify = 16;
+global.optionListTypeProse = 17;
+global.optionListTypeHide = 18;
+global.optionListTypeContext = 19;
+global.optionListTypeClear = 20;
+global.optionListTypeSettings = 21;
+global.optionListTypeTools = 22;
+global.optionListTypeHelp = 23;
+global.optionListTypeToolsSort = 24;
+global.optionListTypeStackShow = 25;
+global.optionListTypeDelete = 26;
+global.optionListTypeTokenSelection = 27;
+global.optionListTypeStack = 28;
+global.optionListTypeCreateStack = 29;
+global.optionListTypeShowStack = 30;
+global.optionListTypeUnitSelection = 31;
+global.optionListTypeSpecialFields = 32;
+global.optionListTypeFilter = 33;
+global.optionListTypeAddToFilter = 34;
+global.optionListTypeTokenTagMap = 35;
+global.optionListTypeTokenMarker = 36;
+global.optionListTypeUnitMarker = 37;
+global.optionListTypeUnitTagMap = 38;
+global.optionListTypeGridViewerSelectGrid = 39;
+global.optionListTypeAutosave = 40;
+global.optionListTypeStackTag = 41;
+global.optionListTypeEdit = 42;
+global.optionListTypePlayAndLearn = 43;
+global.optionListTypeNav = 44;
+global.optionListTypeLanguage = 45;
+global.optionListTypeImportGrid = 46;
+global.optionListTypeChainContents1ToManyField = 47;
+global.optionListTypeChainContents1ToManyTag = 48;
+global.optionListTypeTextDirection = 49;
+global.optionListTypeChain1ToManyHeaderRightClick = 50;
 
-scr_dropDownOptionListTypeInit();
 
 
 scr_chainTagInit();
