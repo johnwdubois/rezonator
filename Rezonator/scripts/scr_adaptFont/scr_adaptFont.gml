@@ -11,11 +11,11 @@ function scr_adaptFont(inputString, size){
 	
 	// determine if this string is latin, CJK, or hebrew
 	var isCJK = false;
-	var isHE = false;
+	var isRTL = false;
 	if (ds_map_exists(global.strToLangMap, inputString)) {
 		var langCode = ds_map_find_value(global.strToLangMap, inputString);
 		if (langCode == "CJK") isCJK = true;
-		else if (langCode == "HE") isHE = true;
+		else if (langCode == "RTL") isRTL = true;
 	}
 	else {
 		var letterCount = string_length(inputString);
@@ -31,15 +31,26 @@ function scr_adaptFont(inputString, size){
 			
 			}
 			// check if char is in Hebrew unicode range
-			if ( 1424 <= unicodeValue  and unicodeValue <= 1535 ){
-				isHE = true;
+			if ( 1424 <= unicodeValue and unicodeValue <= 1969 ||
+			 1984 <= unicodeValue and unicodeValue <= 2143 ||
+			 2208 <= unicodeValue and unicodeValue <= 2303 ||
+			 64336 <= unicodeValue and unicodeValue <= 65023 ||
+			 65136 <= unicodeValue and unicodeValue <= 65279 ||
+			 67648 <= unicodeValue and unicodeValue <= 67679 ||
+			 68864 <= unicodeValue and unicodeValue <= 68921 ||
+			 69216 <= unicodeValue and unicodeValue <= 69247 ||
+			 125184 <= unicodeValue and unicodeValue <= 125279 ||
+			 126064 <= unicodeValue and unicodeValue <= 126143 ||
+			 126208 <= unicodeValue and unicodeValue <= 126287 ||
+			 126464 <= unicodeValue and unicodeValue <= 126719){
+				isRTL = true;
 			}
 		}
 		
 		// attach a language code to the string and put it in strToLang map
 		var langCode = "";
 		if (isCJK) langCode = "CJK";
-		else if (isHE) langCode = "HE";
+		else if (isRTL) langCode = "RTL";
 		else langCode = "LATIN";
 		ds_map_add(global.strToLangMap, inputString, langCode);
 	}
@@ -181,8 +192,8 @@ function scr_adaptFont(inputString, size){
 		
 	draw_set_font(fontScaledName);
 	
-	// flip the string if it's Hebrew!
-	if (isHE) inputString = scr_stringReverse(inputString);
+	// flip the string if it's RTL!
+	if (isRTL) inputString = scr_stringReverse(inputString);
 	
 	return inputString;
 }

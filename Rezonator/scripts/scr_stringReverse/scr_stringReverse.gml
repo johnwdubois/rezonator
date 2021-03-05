@@ -10,8 +10,8 @@ function scr_stringReverse(inputString){
 		var letterCount = string_length(inputString);
 		var nonReverseChars = "";
 		var newNonReverseChars = "";
-		var isNotHE = false;
-		var isPrevNotHE = false;
+		var isRTL = false;
+		var isPrevRTL = false;
 		var previousUnicodeValue = 1425;
 		for(var i = letterCount;i > 0; i--){
 			var charToAdd = string_char_at(inputString,i);
@@ -19,21 +19,43 @@ function scr_stringReverse(inputString){
 			var unicodeValue = ord(string_char_at(inputString,i));
 			
 			
-			if ( 1424 > unicodeValue or unicodeValue > 1535 ){
-				isNotHE = true;
+			if ( 1424 <= unicodeValue and unicodeValue <= 1969 ||
+			 1984 <= unicodeValue and unicodeValue <= 2143 ||
+			 2208 <= unicodeValue and unicodeValue <= 2303 ||
+			 64336 <= unicodeValue and unicodeValue <= 65023 ||
+			 65136 <= unicodeValue and unicodeValue <= 65279 ||
+			 67648 <= unicodeValue and unicodeValue <= 67679 ||
+			 68864 <= unicodeValue and unicodeValue <= 68921 ||
+			 69216 <= unicodeValue and unicodeValue <= 69247 ||
+			 125184 <= unicodeValue and unicodeValue <= 125279 ||
+			 126064 <= unicodeValue and unicodeValue <= 126143 ||
+			 126208 <= unicodeValue and unicodeValue <= 126287 ||
+			 126464 <= unicodeValue and unicodeValue <= 126719){
+				isRTL = true;
 			}
 			else{
-				isNotHE = false;
+				isRTL = false;
 			}
-			if ( 1424 > previousUnicodeValue or previousUnicodeValue > 1535 ){
-				isPrevNotHE = true;
+			if ( 1424 <= previousUnicodeValue and previousUnicodeValue <= 1969 ||
+			 1984 <= previousUnicodeValue and previousUnicodeValue <= 2143 ||
+			 2208 <= previousUnicodeValue and previousUnicodeValue <= 2303 ||
+			 64336 <= previousUnicodeValue and previousUnicodeValue <= 65023 ||
+			 65136 <= previousUnicodeValue and previousUnicodeValue <= 65279 ||
+			 67648 <= previousUnicodeValue and previousUnicodeValue <= 67679 ||
+			 68864 <= previousUnicodeValue and previousUnicodeValue <= 68921 ||
+			 69216 <= previousUnicodeValue and previousUnicodeValue <= 69247 ||
+			 125184 <= previousUnicodeValue and previousUnicodeValue <= 125279 ||
+			 126064 <= previousUnicodeValue and previousUnicodeValue <= 126143 ||
+			 126208 <= previousUnicodeValue and previousUnicodeValue <= 126287 ||
+			 126464 <= previousUnicodeValue and previousUnicodeValue <= 126719){
+				isPrevRTL = true;
 			}
 			else{
-				isPrevNotHE = false;
+				isPrevRTL = false;
 			}
 			
 			
-			if(isNotHE){
+			if(!isRTL){
 				nonReverseChars+=charToAdd
 				if(i == 1){
 					var nonReverseletterCount = string_length(nonReverseChars);
@@ -47,7 +69,7 @@ function scr_stringReverse(inputString){
 				}
 			}
 			else{
-				if(isPrevNotHE){
+				if(!isPrevRTL){
 					var nonReverseletterCount = string_length(nonReverseChars);
 					for(var j = nonReverseletterCount;j > 0; j--){
 						newNonReverseChars += string_char_at(nonReverseChars,j);
@@ -61,6 +83,7 @@ function scr_stringReverse(inputString){
 			}
 			previousUnicodeValue = unicodeValue;
 		}
+		show_debug_message("input:  "+ string(inputString) + "   -  reversed: "+string(newString))
 		ds_map_add(global.reverseStrMap, inputString, newString);
 		return newString;
 	}
