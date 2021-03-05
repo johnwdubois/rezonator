@@ -127,7 +127,7 @@ function scr_panelPane_drawTabs() {
 				draw_sprite_ext(spr_filterIcons, 0, floor(mean(filterRectX1, filterRectX2)), floor(mean(filterRectY1, filterRectY2)), 1, 1, 0, obj_control.filterGridActive ? global.colorThemeBG : global.colorThemeText, buttonAlpha);
 				
 				
-				
+				/*
 				// visible button
 				var visibleRectX1 = filterRectX2 + (buttonSize / 2);
 				var visibleRectY1 = filterRectY1;
@@ -145,7 +145,7 @@ function scr_panelPane_drawTabs() {
 					scr_createTooltip(mean(visibleRectX1, visibleRectX2), floor(visibleRectY2), "Visible", obj_tooltip.arrowFaceUp);
 				}
 				draw_sprite_ext(spr_toggleDraw, 0, floor(mean(visibleRectX1, visibleRectX2)), floor(mean(visibleRectY1, visibleRectY2)), 1, 1, 0, c_white, buttonAlpha);
-				
+				*/
 			}
 		}
 		

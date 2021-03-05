@@ -4,8 +4,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
-	
-	
+
 
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -514,8 +513,21 @@ function scr_panelPane_drawChainListLoopClipped() {
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2);
 			draw_set_color(global.colorThemeBG);
 			scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2);
+			
+			/*
+			if (currentChainSelected) {
+				draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
+				draw_roundrect(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, false);
+			}
+			else if (mouseoverCheckbox) {
+				draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
+				draw_roundrect(checkboxRectX1 - (strHeight * 0.15) - clipX, checkboxRectY1 - (strHeight * 0.15) - clipY, checkboxRectX2 + (strHeight * 0.15) - clipX, checkboxRectY2 + (strHeight * 0.15) - clipY, false);
+			}
+			*/
+			
 		}
 		
 		// draw header text

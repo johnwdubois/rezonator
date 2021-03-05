@@ -9,7 +9,7 @@ function scr_panelPane_drawUnits1toMany() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	var strHeight = string_height("0");
-	var tabHeight = functionTabs_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	var scrollBarListHeight = 0;
 	var drawDropDowns = false;
 
@@ -29,7 +29,7 @@ function scr_panelPane_drawUnits1toMany() {
 
 
 	// Set text margins
-	var textMarginTop = tabHeight;
+	var textMarginTop = headerHeight;
 	var textPlusY = 0;
 	var ableToBeMouseOver = true;
 
@@ -98,7 +98,7 @@ function scr_panelPane_drawUnits1toMany() {
 					var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
 					var rectX2 = x + windowWidth - global.scrollBarWidth;
 					var rectY2 = rectY1 + strHeight;
-					var mouseoverRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + tabHeight), rectX2, rectY2);
+					var mouseoverRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, max(rectY1, y + headerHeight), rectX2, rectY2);
 
 					if (mouseoverRect and ableToBeMouseOver and !instance_exists(obj_dropDown)
 					and !instance_exists(obj_dialogueBox)) {
@@ -168,7 +168,7 @@ function scr_panelPane_drawUnits1toMany() {
 		scrollBarBackColor = global.colorThemeSelected2;
 	}
 
-	scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, tabHeight,
+	scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, headerHeight,
 		scrollBarBackColor, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
@@ -179,7 +179,7 @@ function scr_panelPane_drawUnits1toMany() {
 
 
 	draw_set_color(global.colorThemeBG);
-	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
+	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, false);
 
 	var headerListSize = 3;
 	tokenContentsHeaderListSize = min(8, max(3, ds_grid_width(global.tokenImportGrid)));
@@ -189,9 +189,12 @@ function scr_panelPane_drawUnits1toMany() {
 
 
 	// Create the column headers
+	var lastCol = headerListSize - 1;
+	if (!obj_control.transcriptAvailable && headerListSize == 4) lastCol = 2;
+	
 	var activeCols = 0;
 	for (var i = 0; i < headerListSize; i++) {
-	
+		
 		// if this is the transcript column, and there's no transcript, skip it!
 		if (i == 3 and !obj_control.transcriptAvailable) {
 			continue;
@@ -204,15 +207,23 @@ function scr_panelPane_drawUnits1toMany() {
 		if (i == 0 or i == 1) {
 			colWidth = windowWidth / 12;
 			colRectX1 = x + (activeCols * colWidth);
-			colRectX2 = colRectX1 + colWidth;
 		}
 		else {
 			colWidth = windowWidth / 6;
 			colRectX1 = x + (activeCols * colWidth) - colWidth;
-			colRectX2 = colRectX1 + colWidth;
 		}
+		
+		if (i == lastCol) {
+			colWidth = x + windowWidth - colRectX1;
+		}
+		colRectX2 = colRectX1 + colWidth;
+		
 		var colRectY1 = y;
-		var colRectY2 = colRectY1 + tabHeight;
+		var colRectY2 = colRectY1 + headerHeight;
+		
+		
+
+		
 	
 		// get column name
 		var colName = "";
@@ -255,7 +266,7 @@ function scr_panelPane_drawUnits1toMany() {
 		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
 	
 		// draw wordView button
-		var wordViewButtonSize = (tabHeight / 4);
+		var wordViewButtonSize = (headerHeight / 4);
 		var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
 		var wordViewButtonY = mean(colRectY1, colRectY2);
 	
@@ -268,8 +279,7 @@ function scr_panelPane_drawUnits1toMany() {
 		var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
 	
 		if (i >= 2) {
-			var tempColRectX2 = x + ((activeCols + 1) * (windowWidth / 6)) - (windowWidth / 6);
-			if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, tempColRectX2, colRectY1 + tabHeight)) {
+			if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + headerHeight)) {
 				if (mouse_check_button_released(mb_right)) {
 					with (obj_dropDown) {
 						instance_destroy();
@@ -284,7 +294,7 @@ function scr_panelPane_drawUnits1toMany() {
 						ds_list_add(dropDownOptionList, "Add new Tag"); // only add the "Add new Tag" option if this is a token-level field
 					}
 					if (ds_list_size(dropDownOptionList) > 0) {
-						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
+						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + headerHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
 						dropDownInst.optionListType = global.optionListTypeTokenMarker;
 					}
@@ -313,7 +323,7 @@ function scr_panelPane_drawUnits1toMany() {
 						ds_list_copy(dropDownOptionList, global.tokenImportColNameList);
 						if (ds_list_size(dropDownOptionList) > 0 ) {
 							
-							var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
+							var dropDownInst = instance_create_depth(colRectX1, colRectY1 + headerHeight, -999, obj_dropDown);
 							dropDownInst.optionList = dropDownOptionList;
 							dropDownInst.optionListType = global.optionListTypeTokenSelection;
 							//obj_control.ableToCreateDropDown = false;
@@ -392,7 +402,7 @@ function scr_panelPane_drawUnits1toMany() {
 
 	// draw line to separate column headers from data
 	draw_set_color(global.colorThemeBorders);
-	draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeight - clipY);
+	draw_line(x - clipX, y + headerHeight - clipY, x + windowWidth - clipX, y + headerHeight - clipY);
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {

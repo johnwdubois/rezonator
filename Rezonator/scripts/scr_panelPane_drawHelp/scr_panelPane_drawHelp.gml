@@ -1,6 +1,5 @@
 function scr_panelPane_drawHelp() {
 	
-	
 
 	// Establish location of camera
 	windowWidth = global.toolPaneWidth;
@@ -15,54 +14,6 @@ function scr_panelPane_drawHelp() {
 	var helpMenuGridHeight = ds_grid_height(functionHelp_menuGrid);
 	var collapseButtonRad = string_height("A") * 0.5;
 
-
-/*
-	for(var i = 0; i < toggleButtonAmount; i++) {
-		
-		// (i == 0) --> justify
-		// (i == 1) --> help
-	
-		var rectX1 = x + (i * (windowWidth / toggleButtonAmount));
-		var rectY1 = y;
-		var rectX2 = rectX1 + (windowWidth / toggleButtonAmount);
-		var rectY2 = y + windowHeight;
-	
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(rectX1, rectY1, rectX2, rectY2, true);
-		if (point_in_rectangle(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2)) {
-			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(rectX1, rectY1, rectX2, rectY2, false);
-		
-			obj_panelPane.hoverTime[i]++;
-		
-			if (i == 0) {
-				if (device_mouse_check_button_released(0, mb_left) and not scrollBarClickLock) {
-					scr_justifyWords();
-					if (obj_control.gridView) {
-						obj_control.gridView = false;
-					}
-				}
-				scr_createTooltip(mean(rectX1, rectX2), rectY2, "Justify", obj_tooltip.arrowFaceUp);
-			}
-			else {
-				mouseoverHelp = true;
-				scr_createTooltip(mean(rectX1, rectX2), rectY2, "Help", obj_tooltip.arrowFaceUp);
-			}
-		}
-		else {
-			obj_panelPane.hoverTime[i] = 0;
-		}
-	
-		if (i == 0) {
-			var xScale = (obj_control.justify == obj_control.justifyRight) ? -1 : 1;
-			draw_sprite_ext(spr_justifyToggle, (obj_control.shape == obj_control.shapeText) ? 0 : 1, mean(rectX1, rectX2), mean(rectY1, rectY2), xScale, 1, 0, c_white, 1);
-		}
-		else {
-			draw_sprite_ext(spr_helpToggle, !functionHelp_collapsed, mean(rectX1, rectX2), mean(rectY1, rectY2), 1, 1, 0, c_white, 1);
-		}
-	}
-
-*/
 
 	// Toggle collapse if mouseClick
 	if ((mouseoverHelp and device_mouse_check_button_released(0, mb_left)) and not scrollBarClickLock) {
@@ -94,7 +45,7 @@ function scr_panelPane_drawHelp() {
 	
 		var helpWindowX2 = camWidth - global.toolPaneWidth + functionHelp_plusX;
 		var helpWindowX1 = helpWindowX2 - functionHelp_windowWidth;
-		var helpWindowY1 = obj_toolPane.originalWindowHeight + obj_toolPane.windowHeight + windowHeight;
+		var helpWindowY1 = obj_control.wordTopMargin;
 		var helpWindowY2 = camHeight;
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(helpWindowX1, helpWindowY1, helpWindowX2, helpWindowY2, false);
