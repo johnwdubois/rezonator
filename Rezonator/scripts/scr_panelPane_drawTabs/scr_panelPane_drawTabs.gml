@@ -2,8 +2,6 @@ function scr_panelPane_drawTabs() {
 	/*
 		Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
 	*/
-	
-	if (live_call()) return live_result;
 
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);

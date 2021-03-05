@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChains1To1(){
 	
-	if (live_call()) return live_result;
-	
 	// get the instance ID for the chainList pane so we can easily reference it
 	var chainListPanelPaneInst = 0;
 	with (obj_panelPane) {
