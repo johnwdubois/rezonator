@@ -35,6 +35,7 @@ function scr_drawQuestionBox() {
 	
 
 	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
 	draw_set_colour(global.colorThemeBG);
 	draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
 	draw_set_colour(global.colorThemePaneBG);

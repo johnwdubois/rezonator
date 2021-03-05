@@ -792,14 +792,21 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 
 }
 
-
+var fileCaptionString = string(game_display_name)
 //display current file name in window caption
 if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){
-	window_set_caption(string(game_display_name) + " - " + filename_name(global.importFilename));
+	fileCaptionString = string(game_display_name) + " - " + filename_name(global.importFilename);
 }
 else{
-	window_set_caption(string(game_display_name) + " - " + filename_name(global.fileSaveName));
+	fileCaptionString = string(game_display_name) + " - " + filename_name(global.fileSaveName);
 }
+var captionString = fileCaptionString;
+if(!obj_control.allSaved){
+captionString = fileCaptionString + "*"
+}
+
+window_set_caption(captionString);
+
 
 scr_fontSizeControl();
 

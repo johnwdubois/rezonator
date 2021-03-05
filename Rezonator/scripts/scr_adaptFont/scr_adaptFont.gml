@@ -30,7 +30,7 @@ function scr_adaptFont(inputString, size){
 				break;
 			
 			}
-			// check if char is in Hebrew unicode range
+			// check if char is in RTL unicode range
 			if ( 1424 <= unicodeValue and unicodeValue <= 1969 ||
 			 1984 <= unicodeValue and unicodeValue <= 2143 ||
 			 2208 <= unicodeValue and unicodeValue <= 2303 ||

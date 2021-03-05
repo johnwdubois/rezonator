@@ -123,6 +123,7 @@ function scr_drawDialogueBox() {
 		}
 
 		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
 		draw_set_colour(merge_color(global.colorThemeBG,global.colorThemeText,0.1));
 		
 		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1, dialogueBoxRectX2, dialogueBoxRectY2, false);
@@ -210,7 +211,7 @@ function scr_drawDialogueBox() {
 		var dialogueBoxTextY = floor(dialogueBoxRectY1 + (boxHeight*0.25));
 		var booleanBoxWidth = (boxWidth*0.04);
 	
-	
+		
 		// WHERE THE DIALOGUE BOX TEXT IS DRAWN
 		draw_text(dialogueBoxTextX, dialogueBoxTextY, obj_dialogueBox.dialogueBoxText);
 		
