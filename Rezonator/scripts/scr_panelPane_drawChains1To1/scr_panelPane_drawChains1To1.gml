@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChains1To1(){
-
+	
 	// get the instance ID for the chainList pane so we can easily reference it
 	var chainListPanelPaneInst = 0;
 	with (obj_panelPane) {
@@ -14,7 +14,11 @@ function scr_panelPane_drawChains1To1(){
 		obj_control.mouseoverTagShortcut = "";
 	}
 	
-	var tabHeight = functionChainList_tabHeight;
+	var tabHeight = functionTabs_tabHeight;
+	
+	var focusedElementY = -1;
+	var focusedRowRectY1 = -1;
+	var focusedRowRectY2 = -1;
 	
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
 	var listOfChains = -1;
@@ -55,7 +59,7 @@ function scr_panelPane_drawChains1To1(){
 	// Set text margin area
 	var textMarginLeft = 8;
 
-	var textMarginTop = functionChainList_tabHeight;
+	var textMarginTop = functionTabs_tabHeight;
 	var textPlusY = 0;
 
 	var drawDropDowns = false;
@@ -107,7 +111,15 @@ function scr_panelPane_drawChains1To1(){
 			var cellRectX2 = cellRectX1 + (windowWidth / chain1to1ColFieldListSize);
 			var cellRectY2 = cellRectY1 + strHeight;
 			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + tabHeight), cellRectX2, cellRectY2);
-			var highlightCell = (obj_chain.currentFocusedChainID == chainID || chainTagsHighlightRow == i);
+			var focusedCell = (obj_chain.currentFocusedChainID == chainID);
+			var highlightCell = (focusedCell || chainTagsHighlightRow == i);
+			
+			if (focusedCell) {
+				focusedRowRectY1 = cellRectY1;
+				focusedRowRectY2 = cellRectY2;
+				focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
+			}
+			
 			var chainColor = ds_map_find_value(chainSubMap, "chainColor");
 			draw_set_alpha(1);
 			var cellColor = merge_color(chainColor, global.colorThemeBG, (highlightCell) ? 0.65 : 0.75);
@@ -122,7 +134,7 @@ function scr_panelPane_drawChains1To1(){
 				}
         
 			    if (device_mouse_check_button_released(0, mb_left)) {
-			        obj_control.currentFocusedChainID = chainID;
+			        obj_chain.currentFocusedChainID = chainID;
 			    }
 			}
 			
@@ -149,6 +161,14 @@ function scr_panelPane_drawChains1To1(){
 	}
 	
 	
+	// draw focus outline
+	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
+		draw_set_color(global.colorThemeBorders);
+		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
+		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
+	}
+	
+	
 	
 	// Create the column headers
 	for (var i = 0; i < chain1to1ColFieldListSize; i++) {
@@ -164,7 +184,7 @@ function scr_panelPane_drawChains1To1(){
 		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
 		
 		// BG & outline rects
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
@@ -210,7 +230,82 @@ function scr_panelPane_drawChains1To1(){
 	}
 	
 	
-	scr_scrollBar(listOfChainsSize, -1, strHeight, textMarginTop,
+	
+	
+	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+	var instToScroll = self.id;
+	if (clickedIn) {	
+		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
+
+			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
+				with (obj_panelPane) functionChainList_focusedChainIndex--;
+				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
+				obj_chain.currentFocusedChainID = newFocusedChainID;
+				
+				if (focusedElementY <= y + textMarginTop + strHeight) {
+					with (instToScroll) {
+						scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+					}
+				}
+			}
+			else {
+				with (instToScroll) {
+					scrollPlusYDest += 4;
+				}
+			}
+		}
+		
+		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (holdDown < 2 || holdDown > 30)) {
+			
+			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
+				with (obj_panelPane) functionChainList_focusedChainIndex++;
+				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
+				obj_chain.currentFocusedChainID = newFocusedChainID;
+				
+				if (focusedElementY >= y + windowHeight - strHeight) {
+					with (instToScroll) {
+						scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					}
+				}
+			}
+			else {
+				with (instToScroll) {
+					scrollPlusYDest -= 4;
+				}
+			}
+		}
+	
+		// CTRL+UP and CTRL+DOWN
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+			with (instToScroll) {
+				scrollPlusYDest = 100;
+			}
+		}
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+			with (instToScroll) {
+				scrollPlusYDest = -999999999999;
+			}
+		}
+	
+		// PAGEUP and PAGEDOWN
+		if (keyboard_check_pressed(vk_pageup)) {
+			with (instToScroll) {
+				scrollPlusYDest += (windowHeight);
+			}
+		}
+		if (keyboard_check_pressed(vk_pagedown)) {
+			with (instToScroll) {
+				scrollPlusYDest -= (windowHeight);
+			}
+		}
+	}
+	
+	
+	
+
+	
+	
+	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	

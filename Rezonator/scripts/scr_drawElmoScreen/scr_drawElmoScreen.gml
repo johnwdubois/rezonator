@@ -61,6 +61,7 @@ function scr_drawElmoScreen() {
 		draw_roundrect(elmoScreenRectX1 - 2, elmoScreenRectY1 - 2, elmoScreenRectX2 + 10, elmoScreenRectY2 + 10, false);
 
 		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
 		draw_set_colour(global.colorThemeBG);
 		draw_rectangle(elmoScreenRectX1, elmoScreenRectY1, elmoScreenRectX2, elmoScreenRectY2, false);
 	

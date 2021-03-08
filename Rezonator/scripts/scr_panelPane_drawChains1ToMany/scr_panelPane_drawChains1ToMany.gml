@@ -1,16 +1,6 @@
 function scr_panelPane_drawChains1ToMany() {
 	/*
-		scr_panelPane_drawchainContentsLoop();
-	
-		Last Updated: 2018-07-12
-	
-		Called from: obj_panelPane
-	
 		Purpose: whatever chain is focused on in the chainList panelPane, draw information on the individual contents of that chain
-	
-		Mechanism: loop through the IDList of the focused chain and gather information from corresponding grids
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
 	
 	var chain1toManyColFieldList = -1;
@@ -24,26 +14,22 @@ function scr_panelPane_drawChains1ToMany() {
 
 
 	// INcrease the size of the utterance column!!!
-	var filterPaneWidth = 0;
 	var chainListPaneWidth = 0;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			chainListPaneWidth = windowWidth;
 		}
-		else if (currentFunction == functionFilter) {
-			filterPaneWidth = windowWidth;
-		}
 	}
 
 	//Set this pane to the right of the chainListPane
-	x = filterPaneWidth + chainListPaneWidth;
+	x = chainListPaneWidth;
 
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	var strHeight = string_height("0");
-	var tabHeight = functionChainList_tabHeight;
+	var tabHeight = functionTabs_tabHeight;
 	var scrollBarListHeight = 0;
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + tabHeight);
 	
@@ -64,10 +50,10 @@ function scr_panelPane_drawChains1ToMany() {
 				scr_panelPane_drawLineTranslationLoopClipped();
 			}
 			else if (obj_control.showUnitTags and not obj_control.showTranslation) {
-				scr_panelPane_drawUnitTagsLoopClipped();	
+				scr_panelPane_drawUnits1to1();	
 			}
 			else {
-				scr_panelPane_drawLineContentsLoopClipped();
+				scr_panelPane_drawUnits1toMany();
 			}
 			break;
 		default:
@@ -306,12 +292,6 @@ function scr_panelPane_drawChains1ToMany() {
 		scrollBarBackColor, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
-	// draw background for headers
-	draw_set_alpha(1);
-	draw_set_color(global.colorThemeBG);
-	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + tabHeight - clipY, false);
-
-
 	// draw headers for chainContents columns
 	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 	var colAmount = 3 + chainContents1toManyFieldListSize;
@@ -354,7 +334,7 @@ function scr_panelPane_drawChains1ToMany() {
 		
 		
 		// make headers not overlap with each other
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		
 		// headers for dynamic columns

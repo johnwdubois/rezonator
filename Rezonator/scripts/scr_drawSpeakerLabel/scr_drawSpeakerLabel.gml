@@ -1,16 +1,7 @@
 /*
-	scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, 
-	speakerLabelTextBuffer, discoColor);
-	
-	Last Updated: 2019-12-28
-	
-	Called from: obj_control
 	
 	Purpose: draws the speaker labels to the left of the units in the discourse
 	
-	Mechanism: Draw the rectangle and name, colored by the specific discourse, and allow for right-clicks by the user
-	
-	Author: Terry DuBois
 */
 function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor) {
 
@@ -23,7 +14,7 @@ function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, pa
 		if (!obj_control.showLineNumber and i != 2) {
 			continue;
 		}
-		if (!obj_control.showParticipantName and i == 2) {
+		if (!obj_control.showSpeakerName and i == 2) {
 			continue;
 		}
 		
@@ -85,9 +76,23 @@ function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, pa
 		}
 		draw_set_color(global.colorThemeText);
 		speakerLabelCurrentColStr = scr_adaptFont(speakerLabelCurrentColStr,"M");
-		draw_text(speakerLabelCurrentColX1 + speakerLabelTextBuffer, mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2), speakerLabelCurrentColStr);
+		
+		
+		// get position of column text
+		var halign = fa_left;
+		var speakerLabelTextX = speakerLabelCurrentColX1 + speakerLabelTextBuffer;
+		var speakerLabelTextY = mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2);
+		if (i == 2 and participantName != undefined) {
+			if (obj_control.drawLineState == obj_control.lineState_rtl) {
+				speakerLabelTextX = speakerLabelCurrentColX2 - speakerLabelTextBuffer;
+				halign = fa_right;
+			}
+		}
+		
+		// draw text
+		draw_set_halign(halign);
+		draw_text(speakerLabelTextX, speakerLabelTextY, speakerLabelCurrentColStr);
 		
 	}
-
 
 }

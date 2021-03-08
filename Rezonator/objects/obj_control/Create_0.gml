@@ -554,7 +554,6 @@ setNavWindow = false;
 scrollBarHolding = false;
 scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
 scrollBarHeight = 0;
 scrollPlusY = 0;
 scrollPlusYDest = 0;
@@ -584,7 +583,7 @@ swapLinePos1 =  0;
 swapLinePos2 =  0;
 
 showLineNumber = true;
-showParticipantName = true;
+showSpeakerName = true;
 
 //audioTrackStream = -1;
 //audioTrackIndex = -1;
@@ -711,3 +710,5 @@ with (obj_alarm) {
 ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
+
+selectedNodeList = ds_list_create();

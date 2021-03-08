@@ -5,7 +5,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 	
 	// NOTE: for stacks, the currentWordID variable will be a unitID
 	
-	var textMarginTop = functionChainList_tabHeight;
+	var textMarginTop = functionTabs_tabHeight;
 	var xBuffer = 6;
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry

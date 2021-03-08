@@ -30,7 +30,6 @@ y = originalWindowHeight;
 scrollBarHolding = false;
 scrollBarUpButtonHeld = false;
 scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
 scrollBarHeight = 0;
 scrollPlusY = 0;
 scrollPlusYDest = 0;
@@ -55,6 +54,8 @@ functionClique = 5;
 functionHelp = 6;
 functionGoToLine = 7;
 functionGraphStats = 8;
+functionTabs = 9;
+
 
 functionChainList_tabLine = 0;
 functionChainList_tabRezBrush = 2;
@@ -68,7 +69,7 @@ functionChainList_tabName[2] = "menu_rez";
 functionChainList_tabName[1] = "menu_track";
 functionChainList_tabName[3] = "menu_stack";
 functionChainList_tabName[4] = "menu_clique";
-functionChainList_tabHeight = 16;
+functionTabs_tabHeight = 16;
 functionChainList_sortAsc[0] = true;
 functionChainList_sortAsc[1] = true;
 functionChainList_sortAsc[2] = true;
@@ -76,6 +77,7 @@ functionChainList_sortAsc[3] = true;
 functionChainList_sortAsc[4] = true;
 functionChainList_lineGridRowFocused = 0;
 functionChainList_lineGridDisplayYList = ds_list_create();
+functionChainList_focusedChainIndex = -1;
 
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;

@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_proseCreateNewLines(){
 	
+	show_debug_message("scr_proseCreateNewLines()");
+	
 	var wordSpacing = 12;
 	var lineGrid = obj_control.lineGrid;
 	var endOfLineBuffer = (global.scrollBarWidth * 4);

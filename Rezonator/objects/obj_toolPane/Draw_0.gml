@@ -24,9 +24,10 @@ if (obj_control.hideAll) {
 if (obj_panelPane.showNav && obj_toolPane.showTool) {
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeRezPurple);
-	draw_rectangle(x, y, x + camWidth, y + camHeight, false);
+	draw_rectangle(x, y, camWidth,camHeight, false);
 	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(x, y, x + camWidth, y + camHeight, true);
+	draw_rectangle(x, y, camWidth,camHeight, true);
+	mouseOverToolPane = point_in_rectangle(mouse_x,mouse_y, x, y, camWidth,camHeight)
 }
 
 

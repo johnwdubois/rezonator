@@ -122,7 +122,7 @@ function scr_loadREZ() {
 					obj_control.currentDisplayUnitColsList = ds_map_find_value(map, "currentDisplayUnitColsList");
 				
 					if (ds_map_find_value(map, "showParticipantName") != undefined) {
-						obj_control.showParticipantName = ds_map_find_value(map, "showParticipantName");
+						obj_control.showSpeakerName = ds_map_find_value(map, "showParticipantName");
 					}
 					if (ds_map_find_value(map, "justify") != undefined) {
 						obj_control.justify = ds_map_find_value(map, "justify");

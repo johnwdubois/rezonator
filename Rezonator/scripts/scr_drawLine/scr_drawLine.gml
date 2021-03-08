@@ -41,14 +41,18 @@ function scr_drawLine() {
 		menuBarHeight = obj_menuBar.menuHeight;
 	}
 	var chainListHeight = 0;
+	var tabsHeight = 0;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			chainListHeight = windowHeight;
 		}
+		else if (currentFunction == functionTabs) {
+			tabsHeight = windowHeight;
+		}
 	}
 
-
-	wordTopMargin = menuBarHeight + chainListHeight;
+	wordTopMargin = menuBarHeight + chainListHeight + tabsHeight;
+	
 	if (global.wheresElmo || global.rezzles) {
 		wordTopMargin += 80;
 	}
@@ -84,11 +88,11 @@ function scr_drawLine() {
 
 
 	// get speakerLabelMargin
-	if (!obj_control.showParticipantName) {
+	if (!obj_control.showSpeakerName) {
 		ds_list_set(obj_control.speakerLabelColXList, 3, ds_list_find_value(obj_control.speakerLabelColXList, 2));
 	}
 	speakerLabelMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1);
-	if (speakerLabelColXHolding > -1) {// || !obj_control.showParticipantName) {
+	if (speakerLabelColXHolding > -1) {// || !obj_control.showSpeakerName) {
 		wordLeftMargin = speakerLabelMargin + 20;
 	}
 
@@ -247,7 +251,7 @@ function scr_drawLine() {
 							var currentPane = instance_find(obj_panelPane, i);
 							if (currentPane.currentFunction == obj_panelPane.functionChainList) {
 								var strHeight = string_height("0") * 1.5;
-								scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
+								scrollPlusYDest = -((y + currentPane.functionTabs_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
 							}
 						}
 						
@@ -275,8 +279,7 @@ function scr_drawLine() {
 									//show_message(i);
 									var strHeight = string_height("0") * 1.5;
 									//we can affect the scrollPlusY, now we need the correct placement
-									scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
-									//show_message(y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop));
+									scrollPlusYDest = -((y + currentPane.functionTabs_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
 								}
 							}
 						

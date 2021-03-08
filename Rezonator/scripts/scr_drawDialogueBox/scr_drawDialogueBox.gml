@@ -14,8 +14,8 @@ function scr_drawDialogueBox() {
 				
 		Author: Brady Moore
 	*/
-		var boxHeight = camera_get_view_height(camera_get_active())/4; 
-		var boxWidth = camera_get_view_width(camera_get_active())/3;
+		var boxHeight = max(270, camera_get_view_height(camera_get_active())/4); 
+		var boxWidth = max(640, camera_get_view_width(camera_get_active())/3);
 		//replaced buffers with vars for width and height so that offsets can be calculated off that
 		var searchBarXOffset = boxWidth * 0.45;
 		var searchBarYOffset = 20;
@@ -25,6 +25,73 @@ function scr_drawDialogueBox() {
 		var cameraMidpointX = camera_get_view_width(camera_get_active())/2;
 		var cameraMidpointY = camera_get_view_height(camera_get_active())/2;
 		
+		//Setting input prompt
+		if (obj_control.changeAuthor) {
+			dialogueBoxText = scr_get_translation("msg_input_creator");
+		}
+		if (obj_control.changeZero) {
+			dialogueBoxText = scr_get_translation("msg_input_new-string");
+		}
+		if (obj_control.swapLine) {
+			dialogueBoxText = scr_get_translation("msg_input_line_number");
+		}
+		if (obj_control.replace) {
+			if(obj_control.splitWord){
+				dialogueBoxText = scr_get_translation("msg_input_split_words");
+			}
+			else{
+				dialogueBoxText = scr_get_translation("msg_input_new-word");
+			}
+		}
+		if (obj_control.newWordCreated) {
+			dialogueBoxText = scr_get_translation("msg_input_add_new-word");
+		}
+		
+		if(obj_control.caption){
+			dialogueBoxText = scr_get_translation("msg_input_caption");
+		}	
+		if (obj_control.rename) {
+			dialogueBoxText = scr_get_translation("msg_input_chain-name");
+		}
+		if (obj_control.recolor) {
+			dialogueBoxText = scr_get_translation("msg_input_chain-color");
+		}
+		
+		if (obj_control.gPressed) {
+			if(obj_control.goToTime){
+				dialogueBoxText = scr_get_translation("msg_input_time-jump");
+			}
+			else{
+				dialogueBoxText = scr_get_translation("msg_input_line-jump");
+			}
+		}
+		
+		var drawNewFieldText = (obj_control.newCustomFieldToken || obj_control.newCustomFieldUnit || obj_control.newCustomFieldEntry || obj_control.newCustomFieldChain);
+		var drawNewTagText = (obj_control.newCustomTagToken || obj_control.newCustomTagUnit || obj_control.newCustomTagEntry || obj_control.newCustomTagChain);
+		
+		if (drawNewFieldText) {
+			dialogueBoxText = scr_get_translation("search_custom-field");
+		}
+		else if (drawNewTagText) {
+			dialogueBoxText = scr_get_translation("search_custom-tag");
+		}
+		if (obj_control.ePressed) {
+			dialogueBoxText = scr_get_translation("search_beginning-line");
+		}
+		
+		if(obj_control.fPressed) {
+			// draw background text
+			if(obj_control.regExCheck){
+				dialogueBoxText = scr_get_translation("msg_input_regex");
+			}
+			else{
+				dialogueBoxText = scr_get_translation("search_dialogue_word");
+			}
+		}
+		
+		if (obj_control.newTagCategory) {
+			dialogueBoxTest = scr_get_translation("msg_new-category");
+		}
 		
 		var dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
 		var dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
@@ -37,8 +104,26 @@ function scr_drawDialogueBox() {
 			obj_control.mouseoverPanelPane = true;
 			obj_control.quickLinkAllowed = false;
 	
+		var overlapFlag = false;
+		//this loop checks for any overlaps and breaks after adjusting parameters
+		while(overlapFlag){
+			
+	
+			//OK box parameters
+			var okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+			var okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+			var okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+			var okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+			
+			//readjust dialogue box parameters for next pass through
+			dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
+			dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
+			dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
+			dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
+		}
 
 		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
 		draw_set_colour(merge_color(global.colorThemeBG,global.colorThemeText,0.1));
 		
 		draw_rectangle(dialogueBoxRectX1, dialogueBoxRectY1, dialogueBoxRectX2, dialogueBoxRectY2, false);
@@ -126,27 +211,14 @@ function scr_drawDialogueBox() {
 		var dialogueBoxTextY = floor(dialogueBoxRectY1 + (boxHeight*0.25));
 		var booleanBoxWidth = (boxWidth*0.04);
 	
-		if (obj_control.changeAuthor) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_creator"));
-		}
-		if (obj_control.changeZero) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_new-string"));
 		
-		}
+		// WHERE THE DIALOGUE BOX TEXT IS DRAWN
+		draw_text(dialogueBoxTextX, dialogueBoxTextY, obj_dialogueBox.dialogueBoxText);
+		
 	
-		if (obj_control.swapLine) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_line_number"));
-		}
+		
 	
 		if (obj_control.replace) {
-			if(obj_control.splitWord){
-				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_split_words"));
-			}
-			else{
-				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_new-word"));
-			}
-		
-			
 			var splitWordBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
 			var splitWordBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
 			var splitWordBoxRectX2 = splitWordBoxRectX1 + booleanBoxWidth;
@@ -166,20 +238,9 @@ function scr_drawDialogueBox() {
 	
 			// splitWord boolean switch
 			if (point_in_rectangle(mouse_x, mouse_y, splitWordBoxRectX1, splitWordBoxRectY1, splitWordBoxRectX2, splitWordBoxRectY2)){
-				
-					draw_set_color(c_white);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-					draw_set_colour(global.colorThemeBorders);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-					if(obj_control.splitWord){
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_enabled"));
-					}
-					else{
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_disabled"));
-					}
+					
+					scr_drawBoolHover(obj_control.splitWord);
+					
 					if (mouse_check_button_pressed(mb_left)) {
 						obj_control.splitWord = !obj_control.splitWord;
 					}
@@ -203,8 +264,7 @@ function scr_drawDialogueBox() {
 				obj_control.cursorPos += string_length(obj_control.inputText);
 				obj_control.newWordPre3 = false;
 			}
-		
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_add_new-word"));
+			
 	
 			var insertBeforeBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
 			var insertBeforeBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
@@ -227,46 +287,16 @@ function scr_drawDialogueBox() {
 				// insert before boolean switch
 			if (point_in_rectangle(mouse_x, mouse_y, insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2)){
 				
-					draw_set_color(c_white);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-					draw_set_colour(global.colorThemeBorders);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-					if(obj_control.before){
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), scr_get_translation("msg_enabled"));
-					}
-					else{
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20,mouse_y + 40)), scr_get_translation("msg_disabled"));
-					}
+					scr_drawBoolHover(obj_control.before);
 					if (mouse_check_button_pressed(mb_left)) {
 						obj_control.before = !obj_control.before;
 					}
 			}
 	
 		}
-	
-		if(obj_control.caption){
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_caption"));
-		}	
-	
-	
-		if (obj_control.rename) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_chain-name"));
-		}
-		if (obj_control.recolor) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_chain-color"));
-		}
+
 
 		if (obj_control.gPressed) {
-			if(obj_control.goToTime){
-				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_time-jump"));
-			}
-			else{
-				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_line-jump"));
-			}
-			
 			
 			
 			var timeSearchBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
@@ -288,19 +318,8 @@ function scr_drawDialogueBox() {
 	
 				// GoToTime boolean switch
 			if (point_in_rectangle(mouse_x, mouse_y, timeSearchBoxRectX1, timeSearchBoxRectY1,timeSearchBoxRectX2, timeSearchBoxRectY2)){
-				draw_set_color(c_white);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-				draw_set_colour(global.colorThemeBorders);
-				draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-				if(obj_control.goToTime){
-					draw_set_halign(fa_center);
-					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_enabled"));
-				}
-				else{
-					draw_set_halign(fa_center);
-					draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_disabled"));
-				}
+				
+				scr_drawBoolHover(obj_control.goToTime);
 				
 				if (mouse_check_button_pressed(mb_left)) {
 					obj_control.goToTime = !obj_control.goToTime;
@@ -308,31 +327,12 @@ function scr_drawDialogueBox() {
 			}
 	
 		}
+
+	
+
 		
-		var drawNewFieldText = (obj_control.newCustomFieldToken || obj_control.newCustomFieldUnit || obj_control.newCustomFieldEntry || obj_control.newCustomFieldChain);
-		var drawNewTagText = (obj_control.newCustomTagToken || obj_control.newCustomTagUnit || obj_control.newCustomTagEntry || obj_control.newCustomTagChain);
-	
-		if (drawNewFieldText) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-field"));
-		}
-		else if (drawNewTagText) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_custom-tag"));
-		}
-
-	
-
-		if (obj_control.ePressed) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_beginning-line"));
-		}
 
 		if(obj_control.fPressed) {
-			// draw background text
-			if(obj_control.regExCheck){
-				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_input_regex"));
-			}
-			else{
-				draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("search_dialogue_word"));
-			}
 	
 			
 			var caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
@@ -381,7 +381,7 @@ function scr_drawDialogueBox() {
 				draw_rectangle(RegExBoxRectX1, RegExBoxRectY1,RegExBoxRectX2, RegExBoxRectY2, false);	
 			}
 
-			//darw boolean options text
+			//draw boolean options text
 			scr_adaptFont(scr_get_translation("search_dialogue_regEx"), "S");
 			if (!obj_control.regExCheck) {
 				draw_text(caseSensitiveBoleanTextX, caseSensitiveBoleanTextY, scr_get_translation("search_dialogue_case"));
@@ -396,19 +396,7 @@ function scr_drawDialogueBox() {
 				// case sensitive boolean switch
 				if (point_in_rectangle(mouse_x, mouse_y, caseSensitiveBoxRectX1, caseSensitiveBoxRectY1, caseSensitiveBoxRectX2, caseSensitiveBoxRectY2)){
 				
-					draw_set_color(c_white);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-					draw_set_colour(global.colorThemeBorders);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-					if(obj_control.caseSensitive){
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_enabled"));
-					}
-					else{
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_disabled"));
-					}
+					scr_drawBoolHover(obj_control.caseSensitive);
 				
 					if (mouse_check_button_pressed(mb_left)) {
 						obj_control.caseSensitive = !obj_control.caseSensitive;			
@@ -419,19 +407,7 @@ function scr_drawDialogueBox() {
 				// current chain boolean switch
 				if (point_in_rectangle(mouse_x, mouse_y,inChainBoxRectX1,inChainBoxRectY1, inChainBoxRectX2, inChainBoxRectY2)){
 				
-					draw_set_color(c_white);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,false);
-					draw_set_colour(global.colorThemeBorders);
-					draw_rectangle(mouse_x-35, mouse_y+20,mouse_x+35, mouse_y + 40,true);
-			
-					if(obj_control.inChainBool){
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_enabled"));
-					}
-					else{
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y + 20, mouse_y + 40)), scr_get_translation("msg_disabled"));
-					}
+					scr_drawBoolHover(obj_control.inChainBool);
 				
 					if (mouse_check_button_pressed(mb_left)) {
 						obj_control.inChainBool = !obj_control.inChainBool;
@@ -442,28 +418,14 @@ function scr_drawDialogueBox() {
 			// RegEx boolean switch
 			if (point_in_rectangle(mouse_x, mouse_y,RegExBoxRectX1, RegExBoxRectY1,RegExBoxRectX2, RegExBoxRectY2)){
 	
-					draw_set_color(c_white);
-					draw_rectangle(mouse_x-35, mouse_y-20,mouse_x+35, mouse_y - 40,false);
-					draw_set_colour(global.colorThemeBorders);
-					draw_rectangle(mouse_x-35, mouse_y-20,mouse_x+35, mouse_y - 40,true);
-			
-					if(obj_control.regExCheck){
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y - 20, mouse_y - 40)), scr_get_translation("msg_enabled"));
-					}
-					else{
-						draw_set_halign(fa_center);
-						draw_text(floor(mean(mouse_x - 25, mouse_x + 25)), floor(mean(mouse_y - 20, mouse_y - 40)), scr_get_translation("msg_disabled"));
-					}
+					scr_drawBoolHover(obj_control.regExCheck);
 				
 				if (mouse_check_button_pressed(mb_left)) {
 						obj_control.regExCheck = !obj_control.regExCheck;
 					}
 			}
 		}
-		if (obj_control.newTagCategory) {
-			draw_text(dialogueBoxTextX, dialogueBoxTextY, scr_get_translation("msg_new-category"));
-		}
+		
 
 
 	}

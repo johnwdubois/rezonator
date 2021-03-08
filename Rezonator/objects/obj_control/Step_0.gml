@@ -647,7 +647,7 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 // hide participant names
 if (!gridView) {
 	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("H"))) {
-		scr_showSpeakerName(!obj_control.showParticipantName);
+		scr_showSpeakerName(!obj_control.showSpeakerName);
 	}
 }
 
@@ -667,9 +667,10 @@ if (obj_panelPane.showNav) {
 		var panelPaneInst = instance_find(obj_panelPane, i);
 		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList || panelPaneInst.currentFunction == panelPaneInst.functionFilter);
 		var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
+		var isTabs = (panelPaneInst.currentFunction == panelPaneInst.functionTabs);
 		
 		// don't set mouseover to be true if this pane is hidden!
-		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight)) {
+		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight) || isTabs) {
 			// check if mouse is in range
 			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
 				mouseoverPanelPane = true;
@@ -791,14 +792,21 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 
 }
 
-
+var fileCaptionString = string(game_display_name)
 //display current file name in window caption
 if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){
-	window_set_caption(string(game_display_name) + " - " + filename_name(global.importFilename));
+	fileCaptionString = string(game_display_name) + " - " + filename_name(global.importFilename);
 }
 else{
-	window_set_caption(string(game_display_name) + " - " + filename_name(global.fileSaveName));
+	fileCaptionString = string(game_display_name) + " - " + filename_name(global.fileSaveName);
 }
+var captionString = fileCaptionString;
+if(!obj_control.allSaved){
+captionString = fileCaptionString + "*"
+}
+
+window_set_caption(captionString);
+
 
 scr_fontSizeControl();
 

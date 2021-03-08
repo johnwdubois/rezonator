@@ -37,36 +37,41 @@ function scr_drawDevVars(){
 		}
 	}
 	
+	
 	// draw dev vars
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 1), "allSaved: " + string(allSaved));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 2), "Right clicked word: " + string(rightClickWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 3), "mouseOverPanelPane: " + string(mouseoverPanelPane));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 4), "wordTopMargin: " + string(wordTopMargin));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 5), "wordLeftMargin: " + string(wordLeftMargin));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 6), "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 7), "hoverWordID: " + string(hoverWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 8), "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 9), "obj_control.currentDisplayTokenColsList: " + scr_getStringOfList(obj_control.currentDisplayTokenColsList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 10), "obj_control.currentDisplayUnitColsList: " + scr_getStringOfList(obj_control.currentDisplayUnitColsList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 16), "focusedChain's linkIDList: " + ((ds_exists(focusedChainLinkIDList, ds_type_list)) ? scr_getStringOfList(focusedChainLinkIDList) : ""));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 17), "focusedChainEntry: " + string(focusedChainFocused));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 18), "focusedChainWordID: " + string(focusedChainWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 19), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 20), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 21), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 22), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 23), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 24), "showNav: " + string(obj_panelPane.showNav));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 25), "mouseoverPanelPane: " + string(mouseoverPanelPane));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 26), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 26), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 26), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
-	draw_text(camWidth - 100, wordTopMargin + (strHeight * 26), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
+	var devVarX = camWidth - global.toolPaneWidth - global.scrollBarWidth - 20;
+	draw_text(devVarX, wordTopMargin + (strHeight * 1), "allSaved: " + string(allSaved));
+	draw_text(devVarX, wordTopMargin + (strHeight * 2), "Right clicked word: " + string(rightClickWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 3), "mouseOverPanelPane: " + string(mouseoverPanelPane));
+	draw_text(devVarX, wordTopMargin + (strHeight * 4), "wordTopMargin: " + string(wordTopMargin));
+	draw_text(devVarX, wordTopMargin + (strHeight * 5), "wordLeftMargin: " + string(wordLeftMargin));
+	draw_text(devVarX, wordTopMargin + (strHeight * 6), "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 7), "hoverWordID: " + string(hoverWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 8), "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
+	draw_text(devVarX, wordTopMargin + (strHeight * 9), "obj_control.currentDisplayTokenColsList: " + scr_getStringOfList(obj_control.currentDisplayTokenColsList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 10), "obj_control.currentDisplayUnitColsList: " + scr_getStringOfList(obj_control.currentDisplayUnitColsList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
+	draw_text(devVarX, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
+	draw_text(devVarX, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
+	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
+	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChain's linkIDList: " + ((ds_exists(focusedChainLinkIDList, ds_type_list)) ? scr_getStringOfList(focusedChainLinkIDList) : ""));
+	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainEntry: " + string(focusedChainFocused));
+	draw_text(devVarX, wordTopMargin + (strHeight * 18), "focusedChainWordID: " + string(focusedChainWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 19), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 20), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
+	draw_text(devVarX, wordTopMargin + (strHeight * 21), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
+	draw_text(devVarX, wordTopMargin + (strHeight * 22), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
+	draw_text(devVarX, wordTopMargin + (strHeight * 23), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 24), "showNav: " + string(obj_panelPane.showNav));
+	draw_text(devVarX, wordTopMargin + (strHeight * 25), "mouseoverPanelPane: " + string(mouseoverPanelPane));
+	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
+	draw_text(devVarX, wordTopMargin + (strHeight * 27), "scrollBarWidth: " + string(global.scrollBarWidth));
+	draw_text(devVarX, wordTopMargin + (strHeight * 28), "selectedNodeList: " + scr_getStringOfList(selectedNodeList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 29), "filteredRezChainList: " + scr_getStringOfList(obj_chain.filteredRezChainList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 30), "filteredTrackChainList: " + scr_getStringOfList(obj_chain.filteredTrackChainList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 31), "filteredStackChainList: " + scr_getStringOfList(obj_chain.filteredStackChainList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 32), "filterGridActive: " + string(filterGridActive));
 
 	
 	// reset halign to left

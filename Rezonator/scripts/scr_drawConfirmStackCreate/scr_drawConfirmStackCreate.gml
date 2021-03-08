@@ -11,8 +11,8 @@ function scr_drawConfirmStackCreate(){
 	var buttonYOffset = 25;
 
 
-	var fullWindowWidth = camera_get_view_width(camera_get_active()) / 3;
-	var fullWindowHeight = camera_get_view_height(camera_get_active()) / 6;
+	var fullWindowWidth = camera_get_view_width(camera_get_active()) / 2.5;
+	var fullWindowHeight = camera_get_view_height(camera_get_active()) / 4;
 	
 	// draw dialogue box BG
 	var fullWindowX = (camera_get_view_width(camera_get_active()) / 2) - (fullWindowWidth / 2);
