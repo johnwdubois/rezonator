@@ -10,7 +10,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	
 	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
-	var scrollbarWidth = (drawScrollbar) ? global.scrollBarWidth : 0;
+	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
 	
 	
 	// get the instance ID for the chainContents pane so we can easily reference it

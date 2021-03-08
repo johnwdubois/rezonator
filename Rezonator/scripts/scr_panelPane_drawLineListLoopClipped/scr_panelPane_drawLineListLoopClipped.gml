@@ -8,7 +8,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var strHeight = string_height("0") * 1.5;
 	
 	var drawScrollbar = (!obj_control.showUnitTags);
-	var scrollBarWidth = (drawScrollbar) ? global.scrollBarWidth : 0;
+	var scrollBarWidth = 0;
 	
 	// get the instance ID for the lineContents pane so we can easily reference it
 	var chainContentsPanelPaneInst = 0;
