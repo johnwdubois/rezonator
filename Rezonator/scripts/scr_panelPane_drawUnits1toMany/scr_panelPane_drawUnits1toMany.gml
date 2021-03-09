@@ -1,5 +1,7 @@
 function scr_panelPane_drawUnits1toMany() {
 	
+	if (live_call()) return live_result;
+	
 	/*
 		Purpose: whatever Line is focused on in the lineList panelPane, draw information on the individual words of that Line
 	*/
@@ -217,7 +219,6 @@ function scr_panelPane_drawUnits1toMany() {
 			colWidth = x + windowWidth - colRectX1;
 		}
 		colRectX2 = colRectX1 + colWidth;
-		
 		var colRectY1 = y;
 		var colRectY2 = colRectY1 + headerHeight;
 		
@@ -251,19 +252,21 @@ function scr_panelPane_drawUnits1toMany() {
 	
 		// draw BG rects & lines to separate columns
 		draw_set_alpha(1);
-		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
+		draw_set_color(global.colorThemeSelected2);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 		if (i > 0) {
 			draw_set_color(global.colorThemeBorders);
-			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, y + windowHeight - clipY);
+			draw_line(colRectX1 - clipX, colRectY1 + headerHeight - clipY, colRectX1 - clipX, y + windowHeight - clipY);
+			draw_set_color(global.colorThemeBG);
+			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, y + headerHeight - clipY);
 		}
 
 		// draw column header names
-		draw_set_color(global.colorThemeText);
+		draw_set_color(global.colorThemeBG);
 		draw_set_halign(fa_left);
-		draw_set_valign(fa_top);
+		draw_set_valign(fa_middle);
 		scr_adaptFont(colName, "M");
-		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
+		draw_text(colRectX1 + 8 - clipX, floor(y + (headerHeight / 2)) - clipY, colName);
 	
 		// draw wordView button
 		var wordViewButtonSize = (headerHeight / 4);
@@ -340,7 +343,7 @@ function scr_panelPane_drawUnits1toMany() {
 			if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize) && !instance_exists(obj_dropDown)) {
 				
 				scr_createTooltip(wordViewButtonX, wordViewButtonY + wordViewButtonSize, "Display token", obj_tooltip.arrowFaceUp);
-				draw_set_color(global.colorThemeSelected2);
+				draw_set_color(global.colorThemeSelected1);
 				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 				if (mouse_check_button_released(mb_left)) {
 					obj_control.wordView = i;
@@ -375,13 +378,13 @@ function scr_panelPane_drawUnits1toMany() {
 				}
 			}
 
-			draw_set_color(global.colorThemeBorders);
+			draw_set_color(global.colorThemeBG);
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
-			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
 
 		if (obj_control.wordView == i) {
-			draw_set_color(global.colorThemeBorders);
+			draw_set_color(global.colorThemeBG);
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 			draw_set_color(global.colorThemeBG);
 		}
@@ -403,6 +406,10 @@ function scr_panelPane_drawUnits1toMany() {
 	// draw line to separate column headers from data
 	draw_set_color(global.colorThemeBorders);
 	draw_line(x - clipX, y + headerHeight - clipY, x + windowWidth - clipX, y + headerHeight - clipY);
+	
+	// draw short white line to separate from left nav
+	draw_set_color(global.colorThemeBG);
+	draw_line(x - clipX, y - clipY, x - clipX, y + headerHeight - clipY);
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {

@@ -346,6 +346,10 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		headerPlusX += colWidth;
 	}
+	
+
+	
+
 
 
 }

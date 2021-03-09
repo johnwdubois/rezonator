@@ -181,7 +181,7 @@ function scr_panelPane_drawUnits1to1() {
 						var dropDownButtonY2 = lineRowRectY2;
 						var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 					
-						draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+						draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 						if (mouseoverDropDownButton) {
 							scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
 							draw_set_alpha(1);
@@ -271,11 +271,10 @@ function scr_panelPane_drawUnits1to1() {
 
 
 
-	//draw unit Tabs
-	var tabHeight = functionTabs_tabHeight;
-	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
-	draw_rectangle(x - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
-
+	// draw BG for headers
+	var headerHeight = functionTabs_tabHeight;
+	draw_set_color(global.colorThemeSelected2);
+	draw_rectangle(x - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + headerHeight - clipY, false);
 
 	// Create the column headers
 	var activeCols = 0;
@@ -288,9 +287,11 @@ function scr_panelPane_drawUnits1to1() {
 		
 		// dividing lines
 		if (i > 0) {
-			draw_set_color(global.colorThemeBorders);
 			draw_set_alpha(1);
-			draw_line(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + windowHeight - clipY);
+			draw_set_color(global.colorThemeBG);
+			draw_line(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + headerHeight - clipY);
+			draw_set_color(global.colorThemeBorders);
+			draw_line(colRectX1 - clipX, y + headerHeight - clipY, colRectX1 - clipX, y + windowHeight - clipY);
 		}
 		
 		// if this is the last column, extend it to the end of the window
@@ -310,12 +311,10 @@ function scr_panelPane_drawUnits1to1() {
 		}
 		colName = nameFromList
     
-	    draw_set_color(global.colorThemeBorders);
-	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
-	    draw_set_color(global.colorThemeText);
-	    draw_set_valign(fa_top);
+	    draw_set_color(global.colorThemeBG);
+	    draw_set_valign(fa_middle);
 	    scr_adaptFont(colName, "M")
-	    draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
+	    draw_text(colRectX1 + 4 - clipX, floor(y + (headerHeight / 2)) - clipY, colName);
 	
 		var notDiscoTag = (ds_list_find_index(global.discoImportColNameList, colName) == -1);
 		var isUnitIDCol = (colName == "UnitID");
@@ -328,9 +327,9 @@ function scr_panelPane_drawUnits1to1() {
 
 	
 		// draw wordView button
-		var wordViewButtonSize = (tabHeight / 4);
+		var wordViewButtonSize = (headerHeight / 4);
 		var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
-		var wordViewButtonY = colRectY1 + (tabHeight) - (tabHeight / 4)/2 - 10;
+		var wordViewButtonY = colRectY1 + (headerHeight) - (headerHeight / 4)/2 - 10;
 	
 	
 		//draw token selection button
@@ -338,7 +337,7 @@ function scr_panelPane_drawUnits1to1() {
 		var dropDownRectX1 = wordViewButtonX - 16 - dropDownButtonSize;
 		var dropDownRectY1 = colRectY1 + (dropDownButtonSize * 0.6);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;
-		var dropDownRectY2 = colRectY1 + tabHeight - (dropDownButtonSize * 0.2);
+		var dropDownRectY2 = colRectY1 + headerHeight - (dropDownButtonSize * 0.2);
 	
 
 
@@ -347,7 +346,7 @@ function scr_panelPane_drawUnits1to1() {
 		}
 		else{
 			var tempColRectX2 = x + ((activeCols + 1) * (windowWidth / 6)) - (windowWidth / 6);
-			if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight)) {
+			if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + headerHeight)) {
 				if (mouse_check_button_released(mb_right)) {
 					with (obj_dropDown) {
 						instance_destroy();
@@ -363,7 +362,7 @@ function scr_panelPane_drawUnits1to1() {
 					}
 					//ds_list_add(dropDownOptionList, "Set as Translation");
 					if (ds_list_size(dropDownOptionList) > 0) {
-						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + tabHeight, -999, obj_dropDown);
+						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + headerHeight, -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
 						dropDownInst.optionListType = global.optionListTypeUnitMarker;
 					}
@@ -387,7 +386,7 @@ function scr_panelPane_drawUnits1to1() {
 					ds_list_copy(dropDownOptionList, global.unitImportColNameList);
 
 					if (ds_list_size(dropDownOptionList) > 0 ) {
-						var dropDownInst = instance_create_depth(colRectX1,colRectY1+tabHeight , -999, obj_dropDown);
+						var dropDownInst = instance_create_depth(colRectX1,colRectY1+headerHeight , -999, obj_dropDown);
 						dropDownInst.optionList = dropDownOptionList;
 						dropDownInst.optionListType = global.optionListTypeUnitSelection;
 					}
@@ -400,7 +399,7 @@ function scr_panelPane_drawUnits1to1() {
 			//user interaction for display view change
 			if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
 				scr_createTooltip(wordViewButtonX, wordViewButtonY + wordViewButtonSize, "Speaker", obj_tooltip.arrowFaceUp);
-				draw_set_color(global.colorThemeSelected2);
+				draw_set_color(global.colorThemeBG);
 				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 				if (mouse_check_button_released(mb_left)) {
 					obj_control.unitView = i;
@@ -417,17 +416,15 @@ function scr_panelPane_drawUnits1to1() {
 					scr_toggleUnitMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
 				}
 			}
-	
-
-			draw_set_color(global.colorThemeBorders);
+			
+			// draw circle for selecting unit tag
+			draw_set_color(global.colorThemeBG);
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
-			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
+			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 	
-	
-
-
+			// draw filled in circle if this unit tag is chosen
 			if (obj_control.unitView == i) {
-				draw_set_color(global.colorThemeBorders);
+				draw_set_color(global.colorThemeBG);
 				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 				draw_set_color(global.colorThemeBG);
 			}

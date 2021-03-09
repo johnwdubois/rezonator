@@ -210,7 +210,7 @@ function scr_panelPane_drawChains1To1(){
 		var dropDownButtonX2 = colRectX1 + ((colRectX2 - colRectX1) * 0.95);
 		var dropDownButtonY2 = colRectY1 + (tabHeight * 0.75);
 		var mouseoverDropDownButton = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
-		draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		if (mouseoverDropDownButton && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
 			draw_set_color(global.colorThemeBorders);
 			draw_set_alpha(1);
