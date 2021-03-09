@@ -31,6 +31,10 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var textAdjustY = 0;
 	var textBuffer = 8;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	var mouseoverScrollBar = false;
+	if (drawScrollbar) {
+		mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
+	}
 	
 	// if mouse is hovered on header region, make sure there is no line highlighted
 	if (mouseoverHeaderRegion) {
@@ -137,7 +141,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		
 	
-		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor, mouseoverHeaderRegion);
+		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor, mouseoverHeaderRegion, mouseoverScrollBar);
 	
 	
 		// get position of focused rect

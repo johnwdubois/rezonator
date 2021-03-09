@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader){
+function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
 	
 	
 	// NOTE: for stacks, the currentWordID variable will be a unitID
@@ -18,7 +18,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 		var cellRectY1 = rectY1;
 		var cellRectX2 = cellRectX1 + (windowWidth / colAmount);
 		var cellRectY2 = rectY2;
-		var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader;
+		var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar;
 		draw_set_alpha(1);
 		draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, (highlight) ? 0.75 : 0.9));
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);

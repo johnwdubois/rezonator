@@ -30,10 +30,11 @@ function scr_panelPane_drawUnits1to1() {
 	var filterRectSize = (strHeight / 2) + 5;
 	var textMarginLeft = filterRectMargin;
 
-	var textMarginTop = functionTabs_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
 	var chainNameRectMinusY = 4;
-
+	
+	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
@@ -97,8 +98,8 @@ function scr_panelPane_drawUnits1to1() {
 
 		for (var i = 0; i < lineGridHeight; i++) {
     
-		    if (y + textMarginTop + relativeScrollPlusY + textPlusY < y - strHeight
-		    or y + textMarginTop + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		    if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight
+		    or y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 		        textPlusY += strHeight;
 		        continue;
 		    }
@@ -139,10 +140,10 @@ function scr_panelPane_drawUnits1to1() {
     
 		    // Get dimensions of rectangle around line name
 		    var lineRowRectX1 = x;
-		    var lineRowRectY1 = y + textMarginTop + textPlusY + relativeScrollPlusY - (strHeight / 2);
+		    var lineRowRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 		    var lineRowRectX2 = x + windowWidth;
 		    var lineRowRectY2 = lineRowRectY1 + strHeight;
-			var mouseoverLineRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineRowRectX1, max(lineRowRectY1, y + textMarginTop), lineRowRectX2, lineRowRectY2);
+			var mouseoverLineRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineRowRectX1, max(lineRowRectY1, y + headerHeight), lineRowRectX2, lineRowRectY2) && !mouseoverScrollBar;
     
 		    //Check mouse clicks to focus a line in the list
 		    if (mouseoverLineRowRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
@@ -228,7 +229,7 @@ function scr_panelPane_drawUnits1to1() {
 		    if (currentLineState == 1) {
 		        focusedRowRectY1 = lineRowRectY1;
 		        focusedRowRectY2 = lineRowRectY2;
-		        focusedElementY = y + textMarginTop + relativeScrollPlusY + textPlusY;
+		        focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
 		    }
 
     
@@ -251,7 +252,7 @@ function scr_panelPane_drawUnits1to1() {
 		
 			tagToDraw = (tagToDraw == undefined) ? "" : tagToDraw;
 			scr_adaptFont(string(tagToDraw), "S");
-		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + textMarginTop + relativeScrollPlusY + textPlusY - clipY, string(tagToDraw));
+		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, string(tagToDraw));
     
 		    // Get height of chain name
 		    textPlusY += strHeight;
@@ -466,9 +467,9 @@ function scr_panelPane_drawUnits1to1() {
             
             
 
-	            if (focusedElementY <= y + textMarginTop + strHeight) {
+	            if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
-						scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
 					}
 	            }
 	        }
@@ -531,7 +532,7 @@ function scr_panelPane_drawUnits1to1() {
 	}
 	
 	if (obj_control.showUnitTags) {
-		scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
+		scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, headerHeight,
 		    global.colorThemeSelected1, global.colorThemeSelected2,
 		    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	}
