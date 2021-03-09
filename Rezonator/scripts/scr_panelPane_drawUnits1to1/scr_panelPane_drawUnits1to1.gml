@@ -3,6 +3,7 @@ function scr_panelPane_drawUnits1to1() {
 	    Purpose: Draw the translation of each line in the Nav window
 	*/
 	
+	
 	// Access the lineList panelPane object to get it's scrollPlusY
 
 	var lineListPanelPaneInst = 0;
@@ -60,8 +61,9 @@ function scr_panelPane_drawUnits1to1() {
 	if (ds_exists(global.unitImportColNameList, ds_type_list)) {
 		widthOfUnitGrid = ds_list_size(global.unitImportColNameList);
 	}
-	//show_message(string(headerListSize));
-	for (var j = 0 ; j < headerListSize; j++) {
+
+
+	for (var j = 0; j < headerListSize; j++) {
 	
 		textPlusY = 0;
 		drawDropDowns = false;
@@ -172,6 +174,7 @@ function scr_panelPane_drawUnits1to1() {
 					if (!discoTagUnitView && !isUnitIDCol) {
 						// dropdown buttons
 						var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
+						if (j == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
 						var dropDownButtonY1 = lineRowRectY1;
 						var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
 						var dropDownButtonY2 = lineRowRectY2;
