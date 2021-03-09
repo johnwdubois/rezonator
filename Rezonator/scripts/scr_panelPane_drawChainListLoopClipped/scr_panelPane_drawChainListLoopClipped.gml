@@ -12,6 +12,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
 	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
 	
+
+	
 	
 	// get the instance ID for the chainContents pane so we can easily reference it
 	var chainContentsPanelPaneInst = 0;
@@ -73,6 +75,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var textPlusY = 0;
 	var textBuffer = 8;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	var mouseoverScrollBar = false;
+	if (drawScrollbar) {
+		mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
+	}
 
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
@@ -149,14 +155,14 @@ function scr_panelPane_drawChainListLoopClipped() {
 					var chainNameRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 					var chainNameRectX2 = x + windowWidth - scrollbarWidth;
 					var chainNameRectY2 = chainNameRectY1 + strHeight;
-					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion;
+					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
 					
 					// get dimensions of checkbox rect
 					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion;
+					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
 	
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {

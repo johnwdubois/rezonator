@@ -20,6 +20,8 @@ function scr_panelPane_drawChains1To1(){
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
 	
+	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + tabHeight, x + windowWidth, y + windowHeight);
+	
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
 	var listOfChains = -1;
 	var listOfChainsKey = "";
@@ -110,7 +112,7 @@ function scr_panelPane_drawChains1To1(){
 			var cellRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
 			var cellRectX2 = cellRectX1 + (windowWidth / chain1to1ColFieldListSize);
 			var cellRectY2 = cellRectY1 + strHeight;
-			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + tabHeight), cellRectX2, cellRectY2);
+			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + tabHeight), cellRectX2, cellRectY2) && !mouseoverScrollBar;
 			var focusedCell = (obj_chain.currentFocusedChainID == chainID);
 			var highlightCell = (focusedCell || chainTagsHighlightRow == i);
 			

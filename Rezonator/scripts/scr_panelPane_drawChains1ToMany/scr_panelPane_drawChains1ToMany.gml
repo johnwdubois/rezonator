@@ -12,7 +12,6 @@ function scr_panelPane_drawChains1ToMany() {
 		}
 	}
 
-
 	// INcrease the size of the utterance column!!!
 	var chainListPaneWidth = 0;
 	with (obj_panelPane) {
@@ -32,6 +31,7 @@ function scr_panelPane_drawChains1ToMany() {
 	var tabHeight = functionTabs_tabHeight;
 	var scrollBarListHeight = 0;
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + tabHeight);
+	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + tabHeight, x + windowWidth, y + windowHeight);
 	
 	if (!instance_exists(obj_dropDown)) {
 		obj_control.mouseoverTagShortcut = "";
@@ -239,7 +239,7 @@ function scr_panelPane_drawChains1ToMany() {
 				
 				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
 		
-				scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader);
+				scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader, mouseoverScrollBar);
 				
 			
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
