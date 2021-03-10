@@ -29,17 +29,25 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var listOfChains = -1;
 	var listOfChainsKey = "";
 	var tabChainType = "";
+	var filterList = -1;
+	var selectedList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 		listOfChainsKey = "rezChainList";
 		tabChainType = "rezChain";
+		filterList = obj_chain.filteredRezChainList;
+		selectedList = obj_control.selectedRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 		listOfChainsKey = "trackChainList";
 		tabChainType = "trackChain";
+		filterList = obj_chain.filteredTrackChainList;
+		selectedList = obj_control.selectedTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 		listOfChainsKey = "stackChainList";
 		tabChainType = "stackChain";
+		filterList = obj_chain.filteredStackChainList;
+		selectedList = obj_control.selectedStackChainList;
 	}
 	
 	// do lineList loop if user is on Read/Unit tab
@@ -281,21 +289,16 @@ function scr_panelPane_drawChainListLoopClipped() {
 					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
 						currentChainSelected = !currentChainSelected;
 						scr_setMap(currentChainSubMap, "selected", currentChainSelected);
-						if (currentChainSelected && ds_list_find_index(obj_control.selectedNodeList, currentChainID) == -1) {
-							ds_list_add(obj_control.selectedNodeList, currentChainID);
+						if (currentChainSelected && ds_list_find_index(selectedList, currentChainID) == -1) {
+							ds_list_add(selectedList, currentChainID);
 						}
 						else if (!currentChainSelected) {
-							scr_deleteFromList(obj_control.selectedNodeList, currentChainID);
+							scr_deleteFromList(selectedList, currentChainID);
 						}
 						
 						
 						// filter stuff
 						if (obj_control.filterGridActive) {
-							
-							var filterList = obj_chain.filteredRezChainList;
-							if (tabChainType == "rezChain") filterList = obj_chain.filteredRezChainList;
-							else if (tabChainType == "trackChain") filterList = obj_chain.filteredTrackChainList;
-							else if (tabChainType == "stackChain") filterList = obj_chain.filteredStackChainList;
 							
 							if (currentChainSelected) {
 								if (ds_list_find_index(filterList, currentChainID) == -1) {
@@ -304,7 +307,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 									scr_setValueForAllChains("rezChain", "filter", false);
 									scr_setValueForAllChains("trackChain", "filter", false);
 									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes("filter", true);
+									scr_setValueForSelectedNodes(tabChainType, "filter", true);
 									scr_renderFilter();
 								}
 							}
@@ -321,7 +324,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 									scr_setValueForAllChains("rezChain", "filter", false);
 									scr_setValueForAllChains("trackChain", "filter", false);
 									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes("filter", true);
+									scr_setValueForSelectedNodes(tabChainType, "filter", true);
 									scr_renderFilter();
 								}
 							}
