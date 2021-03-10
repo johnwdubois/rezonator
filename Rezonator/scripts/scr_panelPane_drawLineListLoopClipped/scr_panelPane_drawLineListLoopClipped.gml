@@ -57,6 +57,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	draw_set_color(global.colorThemeText);
 
 	scr_surfaceStart();
+	
 
 	//really super wanna set a draw range for this guy!!
 	var mouseInPane = obj_control.mouseoverPanelPane;
@@ -350,6 +351,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	
 
-
+	// draw short white line to separate from left nav
+	draw_set_color(global.colorThemeBG);
+	draw_line(x + windowWidth-1 , y , x + windowWidth-1, y + headerHeight);
 
 }

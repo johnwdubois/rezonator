@@ -72,8 +72,6 @@ function scr_panelPane_drawChains1ToMany() {
 	var ableToBeMouseOver = true;
 	var textMarginTop = tabHeight;
 
-
-	var focusedChainExists = false;
 	var alignRectSize = strHeight;
 
 	var focusedElementY = -1;
@@ -82,7 +80,6 @@ function scr_panelPane_drawChains1ToMany() {
 
 	// Check for focused chain and make sure grid is not empty, gather information from grids
 	// Collect beginning of chain info
-	focusedChainExists = true;
 	var chainID = functionChainContents_chainID;
 	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
 	
@@ -238,7 +235,7 @@ function scr_panelPane_drawChains1ToMany() {
 				}
 				
 				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
-		
+				
 				scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader, mouseoverScrollBar);
 				
 			
@@ -292,102 +289,7 @@ function scr_panelPane_drawChains1ToMany() {
 		scrollBarBackColor, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
-	// draw headers for chainContents columns
-	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
-	var colAmount = 3 + chainContents1toManyFieldListSize;
-	for (var i = 0; i < colAmount; i++) {
-		var colRectX1 = x + (i * (windowWidth / colAmount));
-		var colRectY1 = y;
-		var colRectX2 = colRectX1 + (windowWidth / colAmount);
-		if (colAmount == 3 && i == 2) {
-			var colRectX2 = colRectX1 + (windowWidth);	
-		}
-		var colRectY2 = colRectY1 + windowHeight;
-		var mouseoverColHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight);
-	
-		// get header string for static columns
-		var colName = "";
-		switch (i) {
-			case 0:
-				colName = "unitSeq";
-				break;
-			case 1:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-					colName = "speaker"; // stacks
-				}
-				else {
-					colName = "wordOrder"; // rez & track
-				}
-				break;
-			case 2:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-					colName = "utterance"; // stacks
-				}
-				else {
-					colName = "text"; // rez & track
-				}
-				break;
-			default:
-				colName = "N/A";
-				break;
-		}
-		
-		
-		// make headers not overlap with each other
-		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
-		
-		// headers for dynamic columns
-		if (i >= 3) {
-			var currentField = ds_list_find_value(chain1toManyColFieldList, i - 3);
-			if (is_string(currentField)) {
-				colName = currentField;
-			}
-			
-			// dropdown button to switch dynamic fields
-			var dropDownButtonX1 = colRectX1 + ((colRectX2 - colRectX1) * 0.8);
-			var dropDownButtonY1 = colRectY1 + (tabHeight * 0.25);
-			var dropDownButtonX2 = colRectX1 + ((colRectX2 - colRectX1) * 0.95);
-			var dropDownButtonY2 = colRectY1 + (tabHeight * 0.75);
-			var mouseoverDropDownButton = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
-			draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-			if (mouseoverDropDownButton && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-				draw_set_color(global.colorThemeBorders);
-				draw_set_alpha(1);
-				draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
-				if (mouse_check_button_released(mb_left)) {
-					obj_control.chain1ToManyColFieldToChange = i - 3;
-					scr_createDropDown(colRectX1, colRectY1 + tabHeight, scr_getChainEntryFieldList(chainType), global.optionListTypeChain1ToManyField);
-				}
-			}
-			
-			// right-click on header
-			if (mouseoverColHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-				obj_control.chain1ToManyColFieldToChange = i - 3;
-				var headerRightClickList = ds_list_create();
-				ds_list_add(headerRightClickList, "Create Field");
-				scr_createDropDown(colRectX1, colRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1ToManyHeaderRightClick);
-			}
-		}
-		
-		// draw header name
-		draw_set_color(global.colorThemeText);
-		draw_set_valign(fa_top);
-		draw_set_halign(fa_left);
-		scr_adaptFont(colName, "S");
-		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
-		
-		// draw vertical line between columns
-		if (i > 0) {
-			draw_set_color(global.colorThemeBorders);
-			draw_set_alpha(0.5);
-			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, colRectY2 - clipY);
-			draw_set_alpha(1);
-		}
-	}
 
-	// draw horizontal line between headers and contents
-	draw_line(x - clipX, y + tabHeight - clipY, x + windowWidth - clipX, y + tabHeight - clipY);
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {

@@ -329,7 +329,7 @@ function scr_panelPane_drawUnits1to1() {
 		// draw wordView button
 		var wordViewButtonSize = (headerHeight / 4);
 		var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
-		var wordViewButtonY = colRectY1 + (headerHeight) - (headerHeight / 4)/2 - 10;
+		var wordViewButtonY = colRectY1 + (headerHeight)/2;
 	
 	
 		//draw token selection button

@@ -552,6 +552,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 		}
 	}
 
-
+	// draw short white line to separate from left nav
+	draw_set_color(global.colorThemeBG);
+	draw_line(x + windowWidth-1 , y , x + windowWidth-1, y + headerHeight);
 
 }

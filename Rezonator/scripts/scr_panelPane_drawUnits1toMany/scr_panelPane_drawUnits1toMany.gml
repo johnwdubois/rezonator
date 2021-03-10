@@ -1,7 +1,6 @@
 function scr_panelPane_drawUnits1toMany() {
 	
-	if (live_call()) return live_result;
-	
+
 	/*
 		Purpose: whatever Line is focused on in the lineList panelPane, draw information on the individual words of that Line
 	*/
@@ -407,9 +406,7 @@ function scr_panelPane_drawUnits1toMany() {
 	draw_set_color(global.colorThemeBorders);
 	draw_line(x - clipX, y + headerHeight - clipY, x + windowWidth - clipX, y + headerHeight - clipY);
 	
-	// draw short white line to separate from left nav
-	draw_set_color(global.colorThemeBG);
-	draw_line(x - clipX, y - clipY, x - clipX, y + headerHeight - clipY);
+
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainContents
 	if (clickedIn) {

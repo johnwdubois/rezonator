@@ -96,6 +96,7 @@ switch (currentFunction) {
 			}
 			else {
 				scr_panelPane_drawChains1ToMany();
+				scr_panelPane_drawChains1ToManyHeaders();
 			}
 			
 			

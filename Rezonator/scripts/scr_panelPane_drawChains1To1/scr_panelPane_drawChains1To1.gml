@@ -25,18 +25,22 @@ function scr_panelPane_drawChains1To1(){
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
 	var listOfChains = -1;
 	var listOfChainsKey = "";
+	var chainType = "";
 	var chain1to1ColFieldList = -1;
 	with (chainListPanelPaneInst) {
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 			listOfChainsKey = "rezChainList";
+			chainType = "rezChain";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListRez;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 			listOfChainsKey = "trackChainList";
+			chainType = "trackChain";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListTrack;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 			listOfChainsKey = "stackChainList";
+			chainType = "stackChain";
 			chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;
 		}
 	}
@@ -105,7 +109,6 @@ function scr_panelPane_drawChains1To1(){
 			var tagMap = ds_map_find_value(chainSubMap, "tagMap");
 			if (!is_numeric(tagMap)) continue;
 			if (!ds_exists(tagMap, ds_type_map)) continue;
-			var chainType = ds_map_find_value(chainSubMap, "type");
 			
 			// get coordinates for cell rectangle
 			var cellRectX1 = x + (j * (windowWidth / chain1to1ColFieldListSize));
@@ -186,20 +189,20 @@ function scr_panelPane_drawChains1To1(){
 		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
 		
 		// BG & outline rects
-		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.5));
+		draw_set_color(global.colorThemeSelected2);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
-		draw_set_color(global.colorThemeBorders);
+		draw_set_color(global.colorThemeBG);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
 		
 		// draw header name
-		draw_set_color(global.colorThemeText);
-		draw_set_valign(fa_top);
+		draw_set_color(global.colorThemeBG);
+		draw_set_valign(fa_middle);
 		scr_adaptFont(colName, "M");
-		draw_text(colRectX1 + 4 - clipX, y - clipY, colName);
+		draw_text(colRectX1 + 4 - clipX, y + tabHeight/2 - clipY, colName);
 		
 		// draw lines for dividing columns
 		if (i > 0) {
-			draw_set_color(global.colorThemeBorders);
+			draw_set_color(global.colorThemeBG);
 			draw_set_alpha(1);
 			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, colRectY2 - clipY);
 		}
