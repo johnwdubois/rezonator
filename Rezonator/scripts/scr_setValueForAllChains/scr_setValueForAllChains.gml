@@ -23,12 +23,7 @@ function scr_setValueForAllChains(chainType, key, value) {
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		
 		// add/replace the key-value pair
-		if (ds_map_exists(currentChainSubMap, key)) {
-			ds_map_replace(currentChainSubMap, key, value);
-		}
-		else {
-			ds_map_add(currentChainSubMap, key, value);
-		}
+		scr_setMap(currentChainSubMap, key, value);
 		
 		// filter specific stuff (update filter list)
 		if (key == "filter") {
@@ -46,6 +41,24 @@ function scr_setValueForAllChains(chainType, key, value) {
 				scr_deleteFromList(listOfFilteredChains, currentChain);
 			}
 		}
+		
+		// selected specific stuff (update selected list)
+		else if (key == "selected") {
+			// determine which filter list to look at
+			var listOfSelectedChains = -1;
+			if (chainType == "rezChain") listOfSelectedChains = obj_control.selectedRezChainList;
+			else if (chainType == "trackChain") listOfSelectedChains = obj_control.selectedTrackChainList;
+			else if (chainType == "stackChain") listOfSelectedChains = obj_control.selectedStackChainList;
+			
+			// either add or remove this chain from the corresponding filter list
+			if (value && ds_list_find_index(listOfSelectedChains, currentChain) == -1) {
+				ds_list_add(listOfSelectedChains, currentChain);
+			}
+			else if (!value && ds_list_find_index(listOfSelectedChains, currentChain) >= 0) {
+				scr_deleteFromList(listOfSelectedChains, currentChain);
+			}
+		}
+		
 	}
 	
 }

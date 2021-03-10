@@ -5,7 +5,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 				set chainContents panelPane to look at that chain
 	*/
 
-
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	
@@ -131,7 +130,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
 			var vizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
 			
-			if (!is_bool(currentChainSelected)) currentChainSelected = false;
+			if (!is_numeric(currentChainSelected)) currentChainSelected = false;
 			
 			if (is_numeric(setIDList) || is_numeric(vizSetIDList)) {
 				if (ds_exists(setIDList, ds_type_list) || ds_exists(vizSetIDList, ds_type_list)) {
@@ -518,25 +517,54 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 		// draw checkbox header
 		if (i == 0) {
+			var allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList) && ds_list_size(listOfChains) > 0);
 			var headerCheckboxX1 = mean(headerRectX1, headerRectX2) - (checkboxSize / 2);
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
-			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2);
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0;
+			if (mouseoverHeaderCheckbox) {
+				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
+				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
+				
+				// click on checkbox header
+				if (mouse_check_button_released(mb_left)) {
+
+					scr_setValueForAllChains(tabChainType, "selected", (allChainsSelected) ? false : true);
+					allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList));
+
+					// filter stuff
+					if (obj_control.filterGridActive) {
+							
+						if (allChainsSelected) {
+							// if the user has just selected all chains while filter is on, then we can just
+							// put all the chains in listOfChains in the filterList. then refresh the filter
+							ds_list_copy(filterList, listOfChains);
+							scr_setValueForAllChains("rezChain", "filter", false);
+							scr_setValueForAllChains("trackChain", "filter", false);
+							scr_setValueForAllChains("stackChain", "filter", false);
+							scr_setValueForSelectedNodes(tabChainType, "filter", true);
+							scr_renderFilter();
+						}
+						else {
+							// if the user has deselected all chains while filter is on, we will clear the filter
+							// list and disable the filter
+							ds_list_clear(filterList);
+							scr_disableFilter();
+						}
+					}
+				}
+			}
+			
+			// draw checkmark for checkbox header
+			if (allChainsSelected) {
+				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.6));
+				draw_rectangle(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, false);
+				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), 1, 1, 0, c_white, 1);
+			}
+			
 			draw_set_color(global.colorThemeBG);
 			scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2);
-			
-			/*
-			if (currentChainSelected) {
-				draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
-				draw_roundrect(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, false);
-			}
-			else if (mouseoverCheckbox) {
-				draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
-				draw_roundrect(checkboxRectX1 - (strHeight * 0.15) - clipX, checkboxRectY1 - (strHeight * 0.15) - clipY, checkboxRectX2 + (strHeight * 0.15) - clipX, checkboxRectY2 + (strHeight * 0.15) - clipY, false);
-			}
-			*/
-			
 		}
 		
 		// draw header text
