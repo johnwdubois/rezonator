@@ -307,7 +307,7 @@ randomise();
 //cursorBoxY = 0;
 
 // Initialize the camera's draw range
-drawRange = 8;
+drawRange = 12;
 drawRangeStart = 0;
 drawRangeEnd = 0;
 lineSpacing = 6;

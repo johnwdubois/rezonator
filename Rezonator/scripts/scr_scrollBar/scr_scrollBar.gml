@@ -26,6 +26,10 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHeightAdjusted - (global.scrollBarWidth * 2));
 	scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
 	mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + global.scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - global.scrollBarWidth)
+	
+	if (scrollBarHeight == scrollBarHeightMax) currentAlpha = 0;
+	draw_set_alpha(currentAlpha);
+	
 	// For clicking and dragging scrollbar
 	if (mouseoverScrollBar) {
 		if (mouse_check_button_pressed(mb_left) and global.canScroll) {
