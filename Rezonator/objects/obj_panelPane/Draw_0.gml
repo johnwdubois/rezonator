@@ -148,18 +148,18 @@ switch (currentFunction) {
 		}
 		break;
 	case functionHelp:
-		if(obj_panelPane.showNav) {
-			if (obj_toolPane.showTool){
+
+		if (obj_toolPane.showTool){
 				
-				/*
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemePaneBG);
-				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-				*/
-				scr_panelPane_drawHelp();
+			/*
+			draw_set_alpha(1);
+			draw_set_color(global.colorThemePaneBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+			*/
+			scr_panelPane_drawHelp();
 				
-			}
 		}
+		
 		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
 			alarm[6] = 1;	
 		}
@@ -200,13 +200,14 @@ switch (currentFunction) {
 		}
 		break;
 	case functionTabs:
-	
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		if(obj_panelPane.showNav){
+			draw_set_color(global.colorThemeBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 		
-		windowWidth = camWidth;
-		windowHeight = (functionTabs_tabHeight * 2);
-		scr_panelPane_drawTabs();
+			windowWidth = camWidth;
+			windowHeight = (functionTabs_tabHeight * 2);
+			scr_panelPane_drawTabs();
+		}
 		
 		break;
 	default:

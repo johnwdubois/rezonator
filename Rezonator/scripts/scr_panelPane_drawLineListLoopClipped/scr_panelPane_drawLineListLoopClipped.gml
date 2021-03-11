@@ -320,7 +320,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 			colText = "Speaker";
 		}
 		else if (i == 2) {
-			colWidth = windowWidth;
+			colWidth = windowWidth - unitSeqRectWidth - speakerRectWidth;
 			colText = "Text";
 		}
 		

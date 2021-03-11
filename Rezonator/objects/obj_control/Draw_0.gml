@@ -123,10 +123,15 @@ else {
 	}
 }
 
+var toolbarX = camera_get_view_width(camera_get_active()) - global.toolPaneWidth;
+if(!obj_toolPane.showTool){
+	toolbarX = camera_get_view_width(camera_get_active());
+}
+
 if (drawScrollBar and not obj_control.mouseoverHelpPane) {
 	scr_scrollBar(ds_grid_height(currentActiveLineGrid), -1, gridSpaceVertical, wordTopMargin,
 	global.colorThemeSelected1, global.colorThemeSelected2,
-	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, camera_get_view_width(camera_get_active()) - global.toolPaneWidth, camera_get_view_height(camera_get_active()));
+	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, toolbarX, camera_get_view_height(camera_get_active()));
 }
 
 

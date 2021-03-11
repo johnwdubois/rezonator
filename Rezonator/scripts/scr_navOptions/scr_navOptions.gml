@@ -11,7 +11,7 @@ function scr_navOptions(optionSelected){
 				}
 				showNavLeft = not showNavLeft;	
 				
-				if(showNavRight == false && showNavLeft == false && obj_toolPane.showTool == false){
+				if(showNavRight == false && showNavLeft == false){
 					showNav = false;
 				}
 			}
@@ -26,12 +26,31 @@ function scr_navOptions(optionSelected){
 				}
 				showNavRight = not showNavRight;	
 			
-				if(showNavRight == false && showNavLeft == false && obj_toolPane.showTool == false){
+				if(showNavRight == false && showNavLeft == false){
 					showNav = false;
 				}
 			}
 		
 		break;		
+		case "menu_nav" :
+		
+			with(obj_panelPane){
+				showNav = not showNav;
+
+				if(showNav){
+					showNavRight = true;	
+					showNavLeft = true;
+	
+				}
+				else{
+					showNavRight = false;	
+					showNavLeft = false;
+
+				}
+			}
+		break;
+		
+		
 		case "menu_tools" :
 			with(obj_panelPane){
 				

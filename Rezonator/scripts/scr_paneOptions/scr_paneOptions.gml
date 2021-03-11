@@ -88,7 +88,7 @@ function scr_paneOptions(optionSelected) {
 		
 			
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_left", "menu_right", "menu_tools", "menu_all");
+			ds_list_add(dropDownOptionList, "menu_left", "menu_right", "menu_nav", "menu_tools", "menu_all");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(x + windowWidth, y + optionSpacing, dropDownOptionList, global.optionListTypeNav);

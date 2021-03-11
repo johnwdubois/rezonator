@@ -153,6 +153,9 @@ for (var i = 0; i < optionListSize; i++) {
 		else if (optionText == "menu_prose" && ds_list_size(optionList) == 2) {
 			isExpandable = false;
 		}
+		else if (optionText == "menu_nav" && ds_list_size(optionList) == 5) {
+			isExpandable = false;
+		}
 	}
 	
 	// gray out option if it begins with ~
