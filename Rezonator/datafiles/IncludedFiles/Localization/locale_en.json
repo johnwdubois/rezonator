@@ -30,7 +30,7 @@
 "menu_help" : "Help",
 "menu_docs" : "Docs",
 "menu_about" : "About",
-"menu_track" : "Track",
+"menu_track" : "Trail",
 "menu_rez" : "Rez",
 "menu_stack" : "Stack",
 "msg_file_audio" : "Select audio file (*.ogg)",
@@ -478,5 +478,5 @@
 "menu_20-min" : "20 minutes",
 "menu_30-min" : "30 minutes",
 "menu_off" : "Off",
-"menu_read" : "Read"
+"menu_read" : "Unit"
 }

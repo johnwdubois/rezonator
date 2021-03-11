@@ -52,7 +52,7 @@ for (var i = 0; i < optionListSize; i++) {
 windowWidth = maxStrWidth;
 
 
-//scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
+scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 
 
 // surface stuff
@@ -222,7 +222,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (isExpandable) {
 		var expandArrowX = floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
-		draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, global.colorThemeText, 1);
 	}
 }
 

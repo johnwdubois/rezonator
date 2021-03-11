@@ -46,6 +46,8 @@ var camHeight = camera_get_view_height(camera_get_active());
 switch (currentFunction) {
 	case functionChainList:
 		if(showNavLeft){
+			
+			scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemePaneBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
@@ -72,6 +74,7 @@ switch (currentFunction) {
 		break;
 	case functionChainContents:
 		if (showNavRight) {
+			scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
