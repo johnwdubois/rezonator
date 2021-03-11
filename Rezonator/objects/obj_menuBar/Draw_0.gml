@@ -10,15 +10,13 @@ scr_adaptFont(scr_get_translation(firstheaderString),"M");
 menuHeight = string_height("0") * 1.35;
 
 // draw menu bar
-draw_set_colour(global.colorThemeBG);
+draw_set_colour(global.colorThemeRezPurple);
 draw_rectangle(0, 0, camWidth, menuHeight, false);
-draw_set_colour(global.colorThemeBorders);
-draw_rectangle(-1, -1, camWidth + 1, menuHeight, true);
 mouseoverMenuBar = point_in_rectangle(mouse_x, mouse_y, -1, -1, camera_get_view_width(camera_get_active()) + 1, menuHeight);
 
 	
 //draw text fore boxes
-draw_set_colour(global.colorThemeText);
+draw_set_colour(global.colorThemeBG);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 var xBuffer = 0;
@@ -43,7 +41,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 		var roundedRectBuffer = 4;
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(1);
-		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
+		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2-20, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
 		
 		obj_control.mouseoverPanelPane = true;		
 		instance_destroy(obj_dropDown);
@@ -70,22 +68,21 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 		}
 	}
 	
-	
+	draw_set_colour(c_white);
 	if (ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)) {
-		draw_set_colour(global.colorThemeOutOfBounds);
+		draw_set_colour(global.colorThemeBG);
 		//draw_rectangle((menuWidth * menuHeaderLoop) - 1, -1, menuWidth * (menuHeaderLoop + 1), menuHeight, false);
-		draw_rectangle(menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2, false);
+		draw_rectangle(menuHeaderRectX1, menuHeaderRectY1-20, menuHeaderRectX2, menuHeaderRectY2, false);
 		draw_set_colour(global.colorThemeText);
 	}
 	
-	//draw_text(floor(mean(menuWidth * (menuHeaderLoop), menuWidth * (menuHeaderLoop + 1))), floor(mean(y, y + menuHeight)), headerString);
-	draw_set_colour(global.colorThemeText);
+	
 	draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), scr_get_translation(headerString));
 }
 
 	
 var fpsTextX = camera_get_view_width(camera_get_active()) - string_width("000");
-var fpsTextY = menuHeight / 2;	
+var fpsTextY = menuHeight * 0.66;	
 var spriteScale = 0.4;
 var sizeOfSave = sprite_get_width(spr_saveWarning)*spriteScale;
 
@@ -123,6 +120,6 @@ else{
 	if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
 		scr_createTooltip(saveIconX1 ,fpsTextY, "Unsaved Changes!", obj_tooltip.arrowFaceRight);
 	}
-	draw_sprite_ext(spr_saveWarning,0,fpsTextX,fpsTextY,spriteScale,spriteScale, 0,global.colorThemeText , 1)
+	draw_sprite_ext(spr_saveWarning,0,fpsTextX,fpsTextY,spriteScale,spriteScale, 0,c_white , 1)
 	saveTextAlpha = 1;	
 }

@@ -47,6 +47,9 @@ function scr_panelPane_drawTabs() {
 	
 
 		draw_set_color(global.colorThemeSelected1);
+		if(mouseoverTab){
+		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
+		}
 		draw_roundrect(tabRectX1+edgeBufferX , tabRectY1, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, false);
 		draw_set_color(global.colorThemeBorders);
 		draw_roundrect(tabRectX1+edgeBufferX, tabRectY1, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, true);

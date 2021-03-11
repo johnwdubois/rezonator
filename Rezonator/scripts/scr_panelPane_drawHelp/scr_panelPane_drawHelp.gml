@@ -110,10 +110,10 @@ function scr_panelPane_drawHelp() {
 		}
 		draw_set_color(global.colorThemeText);
 		if (obj_panelPane.functionHelp_allCollapsed) {
-			draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 1, 1, 270, c_white, 1);
+			draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 1, 1, 270, global.colorThemeText, 1);
 		}
 		else {
-			draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 1, 1, 180, c_white, 1);
+			draw_sprite_ext(spr_ascend, 0, gridCollapseButtonAllX - clipX, gridCollapseButtonAllY - clipY, 1, 1, 180, global.colorThemeText, 1);
 		}
 	
 		var cellHeight = string_height("M") + 10;
@@ -163,10 +163,10 @@ function scr_panelPane_drawHelp() {
 			
 				// draw the toggle arrows
 				if (ds_grid_get(functionHelp_menuGrid, functionHelp_menuGrid_colCollapsed, i)) {
-					draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 1, 1, 270, c_white, 1);
+					draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 1, 1, 270, global.colorThemeText, 1);
 				}
 				else {
-					draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 1, 1, 180, c_white, 1);
+					draw_sprite_ext(spr_ascend, 0, gridCollapseButtonX - clipX, gridCollapseButtonY - clipY, 1, 1, 180, global.colorThemeText, 1);
 				}
 				draw_set_alpha(1);
 	
@@ -300,7 +300,7 @@ function scr_panelPane_drawHelp() {
 		}
 	}
 
-
+scr_adaptFont(scr_get_translation(displayString), "M");
 
 
 }
