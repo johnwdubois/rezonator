@@ -11,6 +11,10 @@ function scr_updateFilteredChainLists(){
 	ds_list_clear(obj_chain.filteredTrackChainList);
 	ds_list_clear(obj_chain.filteredStackChainList);
 	
+	// reset selected lists
+	ds_list_clear(obj_control.selectedRezChainList);
+	ds_list_clear(obj_control.selectedTrackChainList);
+	ds_list_clear(obj_control.selectedStackChainList);
 	
 	// update filteredChainLists for rez
 	var rezChainListSize = ds_list_size(rezChainList);
@@ -20,10 +24,16 @@ function scr_updateFilteredChainLists(){
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		
-		// add or remove chain from filtered chains list as needed
+		// add chain to filtered list if needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredRezChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredRezChainList, currentChain);
+		}
+		
+		// add chain to selected list if needed
+		var isSelected = ds_map_find_value(currentChainSubMap, "selected");
+		if (isSelected && ds_list_find_index(obj_control.selectedRezChainList, currentChain) == -1) {
+			ds_list_add(obj_control.selectedRezChainList, currentChain);
 		}
 	}
 	// update filteredChainLists for tracks
@@ -34,10 +44,16 @@ function scr_updateFilteredChainLists(){
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		
-		// add or remove chain from filtered chains list as needed
+		// add chain to filtered list if needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredTrackChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredTrackChainList, currentChain);
+		}
+		
+		// add chain to selected list if needed
+		var isSelected = ds_map_find_value(currentChainSubMap, "selected");
+		if (isSelected && ds_list_find_index(obj_control.selectedTrackChainList, currentChain) == -1) {
+			ds_list_add(obj_control.selectedTrackChainList, currentChain);
 		}
 	}
 	// update filteredChainLists for stacks
@@ -48,10 +64,16 @@ function scr_updateFilteredChainLists(){
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
 		
-		// add or remove chain from filtered chains list as needed
+		// add chain to filtered list if needed
 		var inFilter = ds_map_find_value(currentChainSubMap, "filter");
 		if (inFilter && ds_list_find_index(obj_chain.filteredStackChainList, currentChain) == -1) {
 			ds_list_add(obj_chain.filteredStackChainList, currentChain);
+		}
+		
+		// add chain to selected list if needed
+		var isSelected = ds_map_find_value(currentChainSubMap, "selected");
+		if (isSelected && ds_list_find_index(obj_control.selectedStackChainList, currentChain) == -1) {
+			ds_list_add(obj_control.selectedStackChainList, currentChain);
 		}
 	}
 	
