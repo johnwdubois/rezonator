@@ -41,14 +41,14 @@ function scr_panelPane_drawTabs() {
 		// set dimensions for tabs
 		var tabRectX1 = x + (i * (windowWidth / tabAmount));
 		var tabRectX2 = tabRectX1 + (windowWidth / tabAmount);
-		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2);
+		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 
 		var buttonSize = sprite_get_width(spr_filterIcons) * 1.25;
 	
 
 		draw_set_color(global.colorThemeSelected1);
 		if(mouseoverTab){
-		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
+			draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 		}
 		draw_roundrect(tabRectX1+edgeBufferX , tabRectY1, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, false);
 		draw_set_color(global.colorThemeBorders);

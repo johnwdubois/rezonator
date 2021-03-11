@@ -1,8 +1,8 @@
-x = room_width - 100;
-y = 150;
+x= 0
+y= 0
 
-windowWidth = 100;
-windowHeight = 42;
+windowWidth = 0;
+windowHeight = 0;
 
 currentFunction = 6;
 scrollRange = 6;

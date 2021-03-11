@@ -43,7 +43,7 @@
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_toolPane","path":"objects/obj_toolPane/obj_toolPane.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":877.0,"y":586.0,"resourceVersion":"1.0","name":"inst_3952938F","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":500,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"ToolPane","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1696.0,"y":928.0,"resourceVersion":"1.0","name":"inst_7E5EAFBE","tags":[],"resourceType":"GMRInstance",},
+        {"properties":[],"isDnd":false,"objectId":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"inheritCode":false,"hasCreationCode":true,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":1696.0,"y":928.0,"resourceVersion":"1.0","name":"inst_panelPane_help","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":600,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"HelpPane","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_control","path":"objects/obj_control/obj_control.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":160.0,"y":512.0,"resourceVersion":"1.0","name":"inst_control","tags":[],"resourceType":"GMRInstance",},
@@ -78,7 +78,7 @@
     {"name":"inst_3E524CF6","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_panelPane_tabs","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_3952938F","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
-    {"name":"inst_7E5EAFBE","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
+    {"name":"inst_panelPane_help","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
   ],
   "inheritCreationOrder": false,
   "sequenceId": null,

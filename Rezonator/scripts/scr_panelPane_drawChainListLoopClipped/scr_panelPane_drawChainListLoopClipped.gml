@@ -527,6 +527,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
 				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
 				
+				var tooltipText = (allChainsSelected) ? "Deselect all" : "Select all";
+				scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, obj_tooltip.arrowFaceUp);
+				
 				// click on checkbox header
 				if (mouse_check_button_released(mb_left)) {
 

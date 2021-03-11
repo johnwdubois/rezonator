@@ -1,15 +1,6 @@
-     /*
-	obj_control: Draw
-	
-	Last Updated: 2019-02-11
-	
-	Called from: Every frame of the game
-	
+/*
 	Purpose: Call the camera adjuster, show the display columns and the developer variables
-	
-	Mechanism: DevVars: checks for necessity, then draws developer variables wherever the camera is
-	
-	Author: Terry DuBois
+
 */
 
 window_set_cursor(cr_default);
