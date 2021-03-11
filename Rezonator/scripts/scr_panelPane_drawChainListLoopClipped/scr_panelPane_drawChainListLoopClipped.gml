@@ -11,7 +11,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
 	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
 	
-
+	var checkBoxScale = 1* max(global.fontSize,3)/5;
 	
 	
 	// get the instance ID for the chainContents pane so we can easily reference it
@@ -282,7 +282,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, 2);
-					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, 1, 1, 0, c_white, 1);
+					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, c_white, 1);
 					
 					// click on checkbox
 					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
@@ -560,7 +560,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			if (allChainsSelected) {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.6));
 				draw_rectangle(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, false);
-				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), 1, 1, 0, c_white, 1);
+				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
 			}
 			
 			draw_set_color(global.colorThemeBG);
