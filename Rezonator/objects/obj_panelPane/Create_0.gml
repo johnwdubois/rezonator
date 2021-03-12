@@ -81,6 +81,7 @@ functionChainList_sortAsc[4] = true;
 functionChainList_lineGridRowFocused = 0;
 functionChainList_lineGridDisplayYList = ds_list_create();
 functionChainList_focusedChainIndex = -1;
+functionChainList_playShowID = "";
 
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;

@@ -50,6 +50,8 @@ function scr_panelPane_drawShowList(){
 		if (!is_numeric(currentShowSubMap)) continue;
 		if (!ds_exists(currentShowSubMap, ds_type_map)) continue;
 		var currentShowName = ds_map_find_value(currentShowSubMap, "name");
+		var currentShowSetList = ds_map_find_value(currentShowSubMap, "setList");
+		var currentShowPlaying = (functionChainList_playShowID == currentShow);
 		
 		// Get dimensions of rectangle around show name
 		var showRectX1 = x;
@@ -66,20 +68,29 @@ function scr_panelPane_drawShowList(){
 		}
 		
 		// draw rect
-		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, highlight ? 0.8 : 0.4));
+		var rectColor = (currentShowPlaying) ? global.colorThemeSelected2 : merge_color(global.colorThemeBG, global.colorThemeSelected1, highlight ? 0.8 : 0.4);
+		var textColor = (currentShowPlaying) ? global.colorThemeBG : global.colorThemeText;
+		draw_set_color(rectColor);
 		draw_rectangle(showRectX1 - clipX, showRectY1 - clipY, showRectX2 - clipX, showRectY2 - clipY, false);
 		
 		// # column
-		draw_set_color(global.colorThemeText);
+		draw_set_color(textColor);
 		draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 		// name column
-		draw_set_color(global.colorThemeText);
+		draw_set_color(textColor);
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentShowName));
 		
 		// start column
-		if (mouseoverShowRect || functionChainContents_showID == currentShow) {
-			draw_sprite_ext(spr_ascend, 0, mean(startColX, x + windowWidth) - clipX, mean(showRectY1, showRectY2) - clipY, 1, 1, 270, global.colorThemeText, 1);
+		if (mouseoverShowRect || functionChainContents_showID == currentShow || currentShowPlaying) {
+			var mouseoverStartCol = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, startColX, showRectY1, x + windowWidth, showRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && ds_list_size(currentShowSetList) > 0;
+			var startArrowScale = (mouseoverStartCol || currentShowPlaying) ? 1.5 : 1;
+			draw_sprite_ext(spr_ascend, 0, mean(startColX, x + windowWidth) - clipX, mean(showRectY1, showRectY2) - clipY, startArrowScale, startArrowScale, 270, (currentShowPlaying) ? c_green : global.colorThemeText, 1);
+			if (mouseoverStartCol && mouse_check_button_released(mb_left)) {
+				with (obj_panelPane) {
+					functionChainList_playShowID = currentShow;
+				}
+			}
 		}
 
 		

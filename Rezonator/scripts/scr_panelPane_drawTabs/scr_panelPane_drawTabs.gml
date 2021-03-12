@@ -9,13 +9,14 @@ function scr_panelPane_drawTabs() {
 	draw_set_valign(fa_top);
 	scr_adaptFont("0", "M");
 	
+	var strHeight = string_height("0");
 	var sprHeight = sprite_get_height(spr_filterIcons);
 	var textMarginLeft = 5;
 	
 	// set positions for other panelPanes
 	var tabsPaneInst = self.id;
 	with (obj_panelPane) {
-		functionTabs_tabHeight = (string_height("0") * 1.5) + textMarginLeft;
+		functionTabs_tabHeight = (strHeight * 1.5) + textMarginLeft;
 		if (currentFunction == functionChainList || currentFunction == functionChainContents || currentFunction == functionFilter) {
 			y = tabsPaneInst.y + tabsPaneInst.windowHeight;
 		}
@@ -141,26 +142,7 @@ function scr_panelPane_drawTabs() {
 				}
 				draw_sprite_ext(spr_filterIcons, 0, floor(mean(filterRectX1, filterRectX2)), floor(mean(filterRectY1, filterRectY2)), 1, 1, 0, obj_control.filterGridActive ? global.colorThemeBG : global.colorThemeText, buttonAlpha);
 				
-				
-				/*
-				// visible button
-				var visibleRectX1 = filterRectX2 + (buttonSize / 2);
-				var visibleRectY1 = filterRectY1;
-				var visibleRectX2 = visibleRectX1 + buttonSize;
-				var visibleRectY2 = filterRectY2;
-				var mouseoverVisible = point_in_rectangle(mouse_x, mouse_y, visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2);
-				draw_set_alpha(buttonAlpha);
-				draw_set_color(global.colorThemeSelected1);
-				draw_roundrect(visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2, false);
-				if (mouseoverVisible) {
-					if (nodesSelected) {
-						draw_set_color(global.colorThemeBorders);
-						draw_roundrect(visibleRectX1, visibleRectY1, visibleRectX2, visibleRectY2, true);
-					}
-					scr_createTooltip(mean(visibleRectX1, visibleRectX2), floor(visibleRectY2), "Visible", obj_tooltip.arrowFaceUp);
-				}
-				draw_sprite_ext(spr_toggleDraw, 0, floor(mean(visibleRectX1, visibleRectX2)), floor(mean(visibleRectY1, visibleRectY2)), 1, 1, 0, c_white, buttonAlpha);
-				*/
+
 			}
 		}
 		
@@ -177,6 +159,7 @@ function scr_panelPane_drawTabs() {
 				// switch tab
 				with (obj_panelPane) {
 					functionChainList_currentTab = i;
+					functionChainList_playShowID = "";
 				}
 				
 				// re-determine tab data (now that we've switched tabs)
@@ -291,32 +274,66 @@ function scr_panelPane_drawTabs() {
 	if(functionChainList_currentTab != functionChainList_tabShow){
 	
 	
-	// 1to1 vs 1toMany button
-	var oneToOneButtonX = floor(x + windowWidth - buttonSize);
-	var oneToOneButtonY = floor(y + functionTabs_tabHeight * 1.5);
-	var oneToOneButtonX1 = oneToOneButtonX - (buttonSize / 2);
-	var oneToOneButtonY1 = oneToOneButtonY - (buttonSize / 2);
-	var oneToOneButtonX2 = oneToOneButtonX1 + buttonSize;
-	var oneToOneButtonY2 = oneToOneButtonY1 + buttonSize;
-	var mouseoverOneToOneButton = point_in_rectangle(mouse_x, mouse_y, oneToOneButtonX1, oneToOneButtonY1, oneToOneButtonX2, oneToOneButtonY2);
+		// 1to1 vs 1toMany button
+		var oneToOneButtonX = floor(x + windowWidth - buttonSize);
+		var oneToOneButtonY = floor(y + functionTabs_tabHeight * 1.5);
+		var oneToOneButtonX1 = oneToOneButtonX - (buttonSize / 2);
+		var oneToOneButtonY1 = oneToOneButtonY - (buttonSize / 2);
+		var oneToOneButtonX2 = oneToOneButtonX1 + buttonSize;
+		var oneToOneButtonY2 = oneToOneButtonY1 + buttonSize;
+		var mouseoverOneToOneButton = point_in_rectangle(mouse_x, mouse_y, oneToOneButtonX1, oneToOneButtonY1, oneToOneButtonX2, oneToOneButtonY2);
 	
-	// determine whether we are in 1to1 or 1toMany
-	var oneToOneView = false;
-	if (functionChainList_currentTab == functionChainList_tabLine && obj_control.showUnitTags) oneToOneView = true;
-	else if (!chainViewOneToMany) oneToOneView = true;
+		// determine whether we are in 1to1 or 1toMany
+		var oneToOneView = false;
+		if (functionChainList_currentTab == functionChainList_tabLine && obj_control.showUnitTags) oneToOneView = true;
+		else if (!chainViewOneToMany) oneToOneView = true;
 	
-	if (mouseoverOneToOneButton) {
-		scr_createTooltip(mean(oneToOneButtonX1, oneToOneButtonX2), floor(oneToOneButtonY2), (oneToOneView) ? "One to one" : "One to many", obj_tooltip.arrowFaceUp);
+		if (mouseoverOneToOneButton) {
+			scr_createTooltip(mean(oneToOneButtonX1, oneToOneButtonX2), floor(oneToOneButtonY2), (oneToOneView) ? "One to one" : "One to many", obj_tooltip.arrowFaceUp);
 		
-		draw_set_color(global.colorThemeSelected1);
-		draw_roundrect(oneToOneButtonX1 - (buttonSize * 0.15), oneToOneButtonY1 - (buttonSize * 0.15), oneToOneButtonX2  + (buttonSize * 0.15), oneToOneButtonY2 + (buttonSize * 0.15), false);
+			draw_set_color(global.colorThemeSelected1);
+			draw_roundrect(oneToOneButtonX1 - (buttonSize * 0.15), oneToOneButtonY1 - (buttonSize * 0.15), oneToOneButtonX2  + (buttonSize * 0.15), oneToOneButtonY2 + (buttonSize * 0.15), false);
 		
-		if (mouse_check_button_released(mb_left)) {
-			scr_toggle1to1();
+			if (mouse_check_button_released(mb_left)) {
+				scr_toggle1to1();
+			}
 		}
-	}
 	
-	draw_sprite_ext(spr_oneToOne, oneToOneView, oneToOneButtonX, oneToOneButtonY, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_oneToOne, oneToOneView, oneToOneButtonX, oneToOneButtonY, 1, 1, 0, c_white, 1);
 	
+
 	}
+
+	
+	
+	
+	
+	// show buttons (prev)
+	/*
+	var showPrevButtonText = " Previous Stack ";
+	scr_adaptFont(showPrevButtonText, "M");
+	var showPrevButtonX1 = x + (windowWidth * 0.5);
+	var showPrevButtonY1 = y + (functionTabs_tabHeight * 1.5) - (strHeight * 0.5);
+	var showPrevButtonX2 = showPrevButtonX1 + string_width(showPrevButtonText);
+	var showPrevButtonY2 = showPrevButtonY1 + strHeight;
+	var mouseoverShowPrevButton = point_in_rectangle(mouse_x, mouse_y, showPrevButtonX1, showPrevButtonY1, showPrevButtonX2, showPrevButtonY2);
+	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowPrevButton ? 0 : 0.5));
+	draw_roundrect(showPrevButtonX1, showPrevButtonY1, showPrevButtonX2, showPrevButtonY2, false);
+	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)), floor(mean(showPrevButtonY1, showPrevButtonY2)), showPrevButtonText);
+	
+	// show buttons (next) 
+	var showNextButtonText = " Next Stack ";
+	var showNextButtonX1 = x + (windowWidth * 0.5);
+	var showNextButtonY1 = showPrevButtonY1;
+	var showNextButtonX2 = showNextButtonX1 + string_width(showNextButtonText);
+	var showNextButtonY2 = showPrevButtonY2;
+	var mouseoverShowNextButton = point_in_rectangle(mouse_x, mouse_y, showNextButtonX1, showNextButtonY1, showNextButtonX2, showNextButtonY2);
+	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowNextButton ? 0 : 0.5));
+	draw_roundrect(showNextButtonX1, showNextButtonY1, showNextButtonX2, showNextButtonY2, false);
+	draw_text(floor(mean(showNextButtonX1, showNextButtonX2)), floor(mean(showNextButtonY1, showNextButtonY2)), showNextButtonText);
+	*/
+
 }
