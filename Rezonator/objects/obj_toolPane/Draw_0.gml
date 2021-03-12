@@ -36,4 +36,3 @@ scr_drawToolPane(toolSprScale);
 }
 
 
-progressBarX = camera_get_view_width(camera_get_active()) - 100;

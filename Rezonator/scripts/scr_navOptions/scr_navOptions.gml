@@ -52,12 +52,7 @@ function scr_navOptions(optionSelected){
 		
 		
 		case "menu_tools" :
-			with(obj_panelPane){
-				
-				if(not showNav){
-					showNav = true;
-				}
-			}
+
 			obj_toolPane.showTool = !obj_toolPane.showTool;	
 			
 			with(obj_panelPane){
