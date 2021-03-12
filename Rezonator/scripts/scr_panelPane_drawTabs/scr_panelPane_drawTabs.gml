@@ -29,7 +29,7 @@ function scr_panelPane_drawTabs() {
 	if (obj_panelPane.showNav) {
 		y = obj_menuBar.menuHeight;
 	}
-	var edgeBufferY = 10;
+	var edgeBufferY = 0;
 	var edgeBufferX = 3;
 	var tabRectY1 = y+edgeBufferY;
 	var tabRectY2 = tabRectY1 + functionTabs_tabHeight-edgeBufferY;
@@ -40,28 +40,35 @@ function scr_panelPane_drawTabs() {
 	for (var i = 0; i < tabAmount; i++) {
 
 		// set dimensions for tabs
-		var tabRectX1 = x + (i * (windowWidth / tabAmount));
-		var tabRectX2 = tabRectX1 + (windowWidth / tabAmount);
+		var tabRectX1 = x + (i * (windowWidth / (tabAmount+2)));
+		var tabRectX2 = tabRectX1 + (windowWidth / (tabAmount+2));
 		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 
 		var buttonSize = sprite_get_width(spr_filterIcons) * 1.25;
 	
-
+		if (i != functionChainList_currentTab) {
+			edgeBufferY = functionTabs_tabHeight * 0.3;
+		}
+		else{
+			edgeBufferY = functionTabs_tabHeight * 0.2;
+		}
+		
 		draw_set_color(global.colorThemeSelected1);
 		if(mouseoverTab){
 			draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 		}
-		draw_roundrect(tabRectX1+edgeBufferX , tabRectY1, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, false);
+		draw_roundrect(tabRectX1+edgeBufferX , tabRectY1+edgeBufferY, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, false);
 		draw_set_color(global.colorThemeBorders);
-		draw_roundrect(tabRectX1+edgeBufferX, tabRectY1, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, true);
+		draw_roundrect(tabRectX1+edgeBufferX, tabRectY1+edgeBufferY, tabRectX2-edgeBufferX, tabRectY2+edgeBufferY, true);
 		
 		
 		
 		// highlight current tab
 		if (i == functionChainList_currentTab) {
 			draw_set_color(global.colorThemeBG);
-			draw_roundrect(tabRectX1+edgeBufferX, tabRectY1, tabRectX2-edgeBufferX, tabRectY2 +edgeBufferY, false);
+			draw_roundrect(tabRectX1+edgeBufferX, tabRectY1+edgeBufferY, tabRectX2-edgeBufferX, tabRectY2 +edgeBufferY, false);
 		}
+
 
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(tabRectX1+edgeBufferX, tabRectY2, tabRectX2-edgeBufferX+1, y+ windowHeight, false);
@@ -272,7 +279,7 @@ function scr_panelPane_drawTabs() {
 		scr_adaptFont(scr_get_translation(functionChainList_tabName[i]), "M");
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
-		draw_text(floor(mean(tabRectX2, tabRectX1)),floor(mean(tabRectY2, tabRectY1)), scr_get_translation(functionChainList_tabName[i]));
+		draw_text(floor(mean(tabRectX2, tabRectX1)),floor(mean(tabRectY2, tabRectY1+edgeBufferY)), scr_get_translation(functionChainList_tabName[i]));
 
 	}
 	
