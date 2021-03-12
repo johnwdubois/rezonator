@@ -13,7 +13,7 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	var windowHeightAdjusted = windowHeight - marginTop;
 
 	var minScrollPlusY = windowHeightAdjusted - (listSize * strHeight);
-	var maxScrollPlusY = global.scrollBarWidth;
+	var maxScrollPlusY = 24;
 
 	// Setup scrollbar height limiters
 	var scrollBarHeightMin = 30;

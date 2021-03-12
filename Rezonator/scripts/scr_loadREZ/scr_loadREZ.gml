@@ -298,6 +298,7 @@ function scr_loadREZ() {
 	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
 	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
 	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	var showList = ds_map_find_value(global.nodeMap, "showList");
 	if (!is_numeric(rezChainList)){
 		ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
 		rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
@@ -309,6 +310,9 @@ function scr_loadREZ() {
 	if (!is_numeric(stackChainList)){
 		ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 		stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	}
+	if (!is_numeric(showList)){
+		ds_map_add_list(global.nodeMap, "showList", ds_list_create());
 	}
 	
 	// update the filtered chain lists now that we have those good ol chain lists loaded
