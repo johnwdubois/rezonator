@@ -54,6 +54,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 		scr_panelPane_drawLineListLoopClipped();
 		exit;
 	}
+	else if (functionChainList_currentTab == functionChainList_tabShow) {
+		scr_panelPane_drawShowList();
+		exit;
+	}
 	
 	if (instance_exists(obj_stackShow)) {
 		listOfChainsKey = "stackChainList";

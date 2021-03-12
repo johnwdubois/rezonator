@@ -56,6 +56,9 @@ function scr_panelPane_drawChains1ToMany() {
 				scr_panelPane_drawUnits1toMany();
 			}
 			break;
+		case functionChainList_tabShow:
+			scr_panelPane_drawShow1toMany();
+			break;
 		default:
 			break;
 	}
@@ -71,11 +74,8 @@ function scr_panelPane_drawChains1ToMany() {
 	var textPlusY = 0;
 	var ableToBeMouseOver = true;
 	var textMarginTop = tabHeight;
-
 	var alignRectSize = strHeight;
-
 	var focusedElementY = -1;
-
 	var strHeight = string_height("0");
 
 	// Check for focused chain and make sure grid is not empty, gather information from grids

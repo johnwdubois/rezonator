@@ -169,8 +169,18 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	// draw option text
-	
 	var optionTextStr = scr_get_translation(optionText);
+	
+	// for special cases, draw chain name instead of hex-string
+	if (optionListType == global.optionListTypeAddToShow) {
+		var subMap = ds_map_find_value(global.nodeMap, optionText);
+		if (is_numeric(subMap)) {
+			if (ds_exists(subMap, ds_type_map)) {
+				optionTextStr = ds_map_find_value(subMap, "chainName");
+			}
+		}
+	}
+	
 	
 	//optionTextStr = optionText;
 	//uncomment this line to see the raw strings instead of display strings in dropdown

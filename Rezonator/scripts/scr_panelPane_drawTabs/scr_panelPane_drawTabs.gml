@@ -2,6 +2,7 @@ function scr_panelPane_drawTabs() {
 	/*
 		Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
 	*/
+	
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
@@ -22,7 +23,7 @@ function scr_panelPane_drawTabs() {
 
 
 
-	var tabAmount = 4;
+	var tabAmount = 5;
 
 	x = 0;
 	if (obj_panelPane.showNav) {

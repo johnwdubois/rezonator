@@ -711,6 +711,11 @@ ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 
+// add showList to nodeMap
+var showList = ds_list_create();
+ds_map_add_list(global.nodeMap, "showList", showList);
+
+
 selectedRezChainList = ds_list_create();
 selectedTrackChainList = ds_list_create();
 selectedStackChainList = ds_list_create();
