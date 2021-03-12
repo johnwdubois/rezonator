@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawShow1toMany(){
 	
-	if (live_call()) return live_result;
-	
 	// Set text margins
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
