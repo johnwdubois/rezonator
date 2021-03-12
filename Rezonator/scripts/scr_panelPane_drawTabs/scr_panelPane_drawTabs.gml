@@ -195,6 +195,11 @@ function scr_panelPane_drawTabs() {
 					selectedNodeList = obj_control.selectedStackChainList;
 					filterList = obj_chain.filteredStackChainList;
 				}
+				else if (functionChainList_currentTab == functionChainList_tabShow) {
+					with (obj_panelPane) {
+						chainViewOneToMany = true;
+					}
+				}
 	
 				// clear filter lists of other tabs
 				if (filterList == obj_chain.filteredRezChainList) {
@@ -283,6 +288,8 @@ function scr_panelPane_drawTabs() {
 
 	}
 	
+	if(functionChainList_currentTab != functionChainList_tabShow){
+	
 	
 	// 1to1 vs 1toMany button
 	var oneToOneButtonX = floor(x + windowWidth - buttonSize);
@@ -311,5 +318,5 @@ function scr_panelPane_drawTabs() {
 	
 	draw_sprite_ext(spr_oneToOne, oneToOneView, oneToOneButtonX, oneToOneButtonY, 1, 1, 0, c_white, 1);
 	
-
+	}
 }
