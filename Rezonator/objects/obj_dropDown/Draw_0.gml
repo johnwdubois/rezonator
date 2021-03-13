@@ -26,6 +26,7 @@ textBuffer = 10;
 // clamp windowHeight so dropDown is not hanging off the screen
 var showScrollBar = false;
 var camHeight = camera_get_view_height(camera_get_active());
+var camWidth = camera_get_view_width(camera_get_active());
 if (y + windowHeight > camHeight) {
 	windowHeight = camHeight - y ;
 	showScrollBar = true;
@@ -51,6 +52,9 @@ for (var i = 0; i < optionListSize; i++) {
 }
 windowWidth = maxStrWidth;
 
+if( x + windowWidth > camWidth ){
+	x = camWidth - windowWidth;
+}
 
 scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 
