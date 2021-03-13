@@ -168,11 +168,13 @@ function scr_panelPane_drawUnits1toMany() {
 	if (scrollBarListSize > 1000) {
 		scrollBarBackColor = global.colorThemeSelected2;
 	}
-
-	scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, headerHeight,
-		scrollBarBackColor, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-
+	if(!instance_exists(obj_dropDown)){
+		
+		scr_scrollBar(scrollBarListSize, focusedElementY, strHeight, headerHeight,
+			scrollBarBackColor, global.colorThemeSelected2,
+			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	
+	}
 
 	draw_set_alpha(1);
 
