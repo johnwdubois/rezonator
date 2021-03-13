@@ -25,7 +25,7 @@ function scr_stackOptions(optionSelected) {
 			var dropDownOptionList = ds_list_create();
 			ds_list_add(dropDownOptionList,  "menu_turn", "menu_sentence", "menu_random");
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(x + windowWidth, y + (optionSpacing * 2), dropDownOptionList, global.optionListTypeCreateStack);
+				scr_createDropDown(x + windowWidth, y + (optionSpacing ), dropDownOptionList, global.optionListTypeCreateStack);
 			}
 			break;
 		case "menu_stackshow":
