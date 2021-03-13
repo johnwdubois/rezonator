@@ -83,6 +83,7 @@ function scr_panelPane_drawShowList(){
 		
 		// start column
 		if (mouseoverShowRect || functionChainContents_showID == currentShow || currentShowPlaying) {
+			/*
 			var mouseoverStartCol = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, startColX, showRectY1, x + windowWidth, showRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && ds_list_size(currentShowSetList) > 0;
 			var startArrowScale = (mouseoverStartCol || currentShowPlaying) ? 1.5 : 1;
 			draw_sprite_ext(spr_ascend, 0, mean(startColX, x + windowWidth) - clipX, mean(showRectY1, showRectY2) - clipY, startArrowScale, startArrowScale, 270, (currentShowPlaying) ? c_green : global.colorThemeText, 1);
@@ -91,6 +92,7 @@ function scr_panelPane_drawShowList(){
 					functionChainList_playShowID = currentShow;
 				}
 			}
+			*/
 		}
 
 		
