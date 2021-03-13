@@ -39,19 +39,10 @@ setModeSearch = modeRead;
 checkedForParticipantNames = false;
 
 
-
 tracksOnlyStackShow = false;
 rezOnlyStackShow = false;
 newWordInFilter = false;
 
-
-progressBarX = room_width - 100;
-progressBarY = windowHeight + 72;
-progressBarWidth = 100;
-progressBarHeight = 32;
-progressBarBackColor = c_gray;
-progressBarFrontColor = c_blue;
-progressBarFont = global.fontMain;
 
 alarm[0] = 2;
 

@@ -8,7 +8,7 @@ function scr_dropShadow(rectX1, rectY1, rectX2, rectY2){
 		var shadowRectY1 = rectY1 + i;
 		var shadowRectX2 = rectX2 + i;
 		var shadowRectY2 = rectY2 + i;
-		draw_set_color(global.colorThemeText);
+		draw_set_color(c_black);
 		var shadowAlpha = clamp(((10 - i) * 0.075) * 0.2, 0, 1);
 		draw_set_alpha(shadowAlpha);
 		draw_rectangle(shadowRectX1, shadowRectY1, shadowRectX2, shadowRectY2, false);

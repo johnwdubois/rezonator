@@ -56,5 +56,6 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeChain1To1Field = 51;
 	global.optionListTypeChain1To1Tag = 52;
 	global.optionListTypeChain1To1HeaderRightClick = 53;
+	global.optionListTypeAddToShow = 54;
 
 }

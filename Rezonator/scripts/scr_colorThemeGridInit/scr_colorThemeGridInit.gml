@@ -1,15 +1,13 @@
 function scr_colorThemeGridInit() {
 	/*
-		scr_colorThemeGridInit();
-	
-		Last Updated: 2018-09-11
-	
-		Called from: obj_openingScreen
-	
 		Purpose: creates color theme grid and populates it with default values
-	
-		Mechanism: GM grid functions
 	*/
+	
+	// colors that are not in the colorThemeGrid, because they never change!
+	global.colorThemeRezPurple = make_color_rgb(108, 61, 93);
+	global.colorThemeRezPink = make_color_rgb(193, 30, 93);
+	
+	
 	global.colorTheme = 0;
 
 	// columns = Color sections
@@ -42,10 +40,10 @@ function scr_colorThemeGridInit() {
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colText, 1, c_white);
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colSelected1, 1, c_gray);
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colSelected2, 1, c_ltgray);
-	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colBorders, 1, c_green);
+	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colBorders, 1, make_color_rgb(165, 234, 240));
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colPaneBG, 1, make_color_hsv(0, 0, 40));
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colOutOfBounds, 1, c_black);
-	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colHighlight, 1, c_green);
+	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colHighlight, 1, make_color_rgb(25, 157, 218));
 	ds_grid_set(global.colorThemeGrid, global.colorThemeGrid_colNegSpace, 1, make_color_rgb(20,20,20));
 
 
@@ -61,9 +59,7 @@ function scr_colorThemeGridInit() {
 	
 	
 	
-	// colors that are not in the colorThemeGrid, because they never change!
-	global.colorThemeRezPurple = make_color_rgb(108, 61, 93);
-	global.colorThemeRezPink = make_color_rgb(193, 30, 93);
+
 	
 
 }

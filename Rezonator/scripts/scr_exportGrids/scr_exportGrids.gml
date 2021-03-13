@@ -6,7 +6,7 @@ function scr_exportGrids() {
 	show_debug_message("scr_exportGrids() ... exportDirDefault: " + string(exportDirDefault));
 	
 	// User will specify a name and a location for the CSV folder
-	var exportDir = get_save_filename_ext("CSV Folder", exportDirDefault, program_directory, scr_get_translation("msg_save_csv"));
+	var exportDir = get_save_filename_ext("CSV Folder|", exportDirDefault, program_directory, scr_get_translation("msg_save_csv"));
 	show_debug_message("scr_exportGrids() ... exportDir: " + string(exportDir));
 	
 	// Check if exportDir is valid, or if the user exited the window

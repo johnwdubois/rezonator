@@ -57,4 +57,8 @@ function scr_languageOptions(optionSelected){
 		
 	}
 	scr_fontGlobalUpdate();
+	
+	with(obj_dropDown){
+		instance_destroy();
+	}
 }

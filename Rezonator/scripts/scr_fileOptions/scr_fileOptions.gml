@@ -19,16 +19,7 @@ function scr_fileOptions(optionSelected) {
 		case "menu_save":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 			instLoading.loadSprite = spr_saving;
-		
-			draw_set_alpha(1);
-			draw_set_color(obj_toolPane.progressBarFrontColor);
-			draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
-			draw_set_color(c_white);
-			draw_set_halign(fa_left);
-			draw_set_valign(fa_middle);
-			scr_adaptFont( scr_get_translation("save_saving"),"S");
-			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
-		
+
 			obj_fileLoader.ableToHotkey = false;
 			with(obj_fileLoader){
 				alarm[0] = 3;
@@ -37,16 +28,7 @@ function scr_fileOptions(optionSelected) {
 		case "menu_save-as":
 			var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 			instLoading.loadSprite = spr_saving;
-		
-			draw_set_alpha(1);
-			draw_set_color(obj_toolPane.progressBarFrontColor);
-			draw_rectangle(obj_toolPane.progressBarX, obj_toolPane.progressBarY, obj_toolPane.progressBarX + obj_toolPane.progressBarWidth, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight, false);
-			draw_set_color(c_white);
-			draw_set_halign(fa_left);
-			draw_set_valign(fa_middle);
-			scr_adaptFont( scr_get_translation("save_saving"),"S");
-			draw_text(obj_toolPane.progressBarX + 12, mean(obj_toolPane.progressBarY, obj_toolPane.progressBarY + obj_toolPane.progressBarHeight), scr_get_translation("save_saving"));
-			
+
 			obj_fileLoader.ableToHotkey = false;
 			global.fileSaveName = ""; // reset fileSaveName so they can save as whatever
 			with(obj_fileLoader){

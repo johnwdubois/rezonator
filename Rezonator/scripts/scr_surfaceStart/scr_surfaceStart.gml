@@ -1,6 +1,7 @@
 function scr_surfaceStart() {
 	
 	
+	var panelPaneMinHeight = camera_get_view_height(camera_get_active()) * 0.138;
 	var panelPaneMaxHeight = camera_get_view_height(camera_get_active()) * 0.75;
 	
 	if (object_index == obj_panelPane) {
@@ -52,7 +53,7 @@ function scr_surfaceStart() {
 		with (obj_panelPane) {
 			if (currentFunction == functionChainList or currentFunction == functionChainContents
 			or currentFunction == functionSort or currentFunction == functionFilter) {
-				windowHeight = clamp(windowHeight, 150, panelPaneMaxHeight);
+				windowHeight = clamp(windowHeight, panelPaneMinHeight, panelPaneMaxHeight);
 				if (surface_exists(clipSurface)) {
 					surface_resize(clipSurface, clipWidth, clipHeight);
 				}
@@ -81,7 +82,7 @@ function scr_surfaceStart() {
 				window_set_cursor(cr_size_ns);
 		
 				if (object_index == obj_panelPane) {
-					windowHeight = clamp(mouse_y - y, 150, panelPaneMaxHeight);
+					windowHeight = clamp(mouse_y - y, panelPaneMinHeight, panelPaneMaxHeight);
 					var helpPaneY = 0;
 					with (obj_panelPane) {
 						if (currentFunction == functionChainList or currentFunction == functionChainContents
@@ -102,7 +103,7 @@ function scr_surfaceStart() {
 					}
 				}
 				else {
-					windowHeight = clamp(mouse_y - y, 150, camera_get_view_height(camera_get_active()) * 0.75);
+					windowHeight = clamp(mouse_y - y, panelPaneMinHeight, camera_get_view_height(camera_get_active()) * 0.75);
 				}
 			}
 	

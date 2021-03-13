@@ -5,12 +5,13 @@ function scr_panelPane_drawChainListLoopClipped() {
 				set chainContents panelPane to look at that chain
 	*/
 
-
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	
 	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
-	var scrollbarWidth = (drawScrollbar) ? global.scrollBarWidth : 0;
+	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
+	
+	var checkBoxScale = 1* max(global.fontSize,3)/5;
 	
 	
 	// get the instance ID for the chainContents pane so we can easily reference it
@@ -27,22 +28,34 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var listOfChains = -1;
 	var listOfChainsKey = "";
 	var tabChainType = "";
+	var filterList = -1;
+	var selectedList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 		listOfChainsKey = "rezChainList";
 		tabChainType = "rezChain";
+		filterList = obj_chain.filteredRezChainList;
+		selectedList = obj_control.selectedRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 		listOfChainsKey = "trackChainList";
 		tabChainType = "trackChain";
+		filterList = obj_chain.filteredTrackChainList;
+		selectedList = obj_control.selectedTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 		listOfChainsKey = "stackChainList";
 		tabChainType = "stackChain";
+		filterList = obj_chain.filteredStackChainList;
+		selectedList = obj_control.selectedStackChainList;
 	}
 	
 	// do lineList loop if user is on Read/Unit tab
 	if (functionChainList_currentTab == functionChainList_tabLine) {
 		scr_panelPane_drawLineListLoopClipped();
+		exit;
+	}
+	else if (functionChainList_currentTab == functionChainList_tabShow) {
+		scr_panelPane_drawShowList();
 		exit;
 	}
 	
@@ -73,6 +86,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var textPlusY = 0;
 	var textBuffer = 8;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	var mouseoverScrollBar = false;
+	if (drawScrollbar) {
+		mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
+	}
 
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
@@ -117,7 +134,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
 			var vizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
 			
-			if (!is_bool(currentChainSelected)) currentChainSelected = false;
+			if (!is_numeric(currentChainSelected)) currentChainSelected = false;
 			
 			if (is_numeric(setIDList) || is_numeric(vizSetIDList)) {
 				if (ds_exists(setIDList, ds_type_list) || ds_exists(vizSetIDList, ds_type_list)) {
@@ -149,14 +166,14 @@ function scr_panelPane_drawChainListLoopClipped() {
 					var chainNameRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
 					var chainNameRectX2 = x + windowWidth - scrollbarWidth;
 					var chainNameRectY2 = chainNameRectY1 + strHeight;
-					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion;
+					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
 					
 					// get dimensions of checkbox rect
 					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
 					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
-					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion;
+					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
 	
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
@@ -269,27 +286,22 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, 2);
-					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, 1, 1, 0, c_white, 1);
+					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, c_white, 1);
 					
 					// click on checkbox
 					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
 						currentChainSelected = !currentChainSelected;
 						scr_setMap(currentChainSubMap, "selected", currentChainSelected);
-						if (currentChainSelected && ds_list_find_index(obj_control.selectedNodeList, currentChainID) == -1) {
-							ds_list_add(obj_control.selectedNodeList, currentChainID);
+						if (currentChainSelected && ds_list_find_index(selectedList, currentChainID) == -1) {
+							ds_list_add(selectedList, currentChainID);
 						}
 						else if (!currentChainSelected) {
-							scr_deleteFromList(obj_control.selectedNodeList, currentChainID);
+							scr_deleteFromList(selectedList, currentChainID);
 						}
 						
 						
 						// filter stuff
 						if (obj_control.filterGridActive) {
-							
-							var filterList = obj_chain.filteredRezChainList;
-							if (tabChainType == "rezChain") filterList = obj_chain.filteredRezChainList;
-							else if (tabChainType == "trackChain") filterList = obj_chain.filteredTrackChainList;
-							else if (tabChainType == "stackChain") filterList = obj_chain.filteredStackChainList;
 							
 							if (currentChainSelected) {
 								if (ds_list_find_index(filterList, currentChainID) == -1) {
@@ -298,7 +310,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 									scr_setValueForAllChains("rezChain", "filter", false);
 									scr_setValueForAllChains("trackChain", "filter", false);
 									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes("filter", true);
+									scr_setValueForSelectedNodes(tabChainType, "filter", true);
 									scr_renderFilter();
 								}
 							}
@@ -315,7 +327,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 									scr_setValueForAllChains("rezChain", "filter", false);
 									scr_setValueForAllChains("trackChain", "filter", false);
 									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes("filter", true);
+									scr_setValueForSelectedNodes(tabChainType, "filter", true);
 									scr_renderFilter();
 								}
 							}
@@ -509,25 +521,57 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 		// draw checkbox header
 		if (i == 0) {
+			var allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList) && ds_list_size(listOfChains) > 0);
 			var headerCheckboxX1 = mean(headerRectX1, headerRectX2) - (checkboxSize / 2);
 			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
 			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
 			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
-			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2);
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0;
+			if (mouseoverHeaderCheckbox) {
+				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
+				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
+				
+				var tooltipText = (allChainsSelected) ? "Deselect all" : "Select all";
+				scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, obj_tooltip.arrowFaceUp);
+				
+				// click on checkbox header
+				if (mouse_check_button_released(mb_left)) {
+
+					scr_setValueForAllChains(tabChainType, "selected", (allChainsSelected) ? false : true);
+					allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList));
+
+					// filter stuff
+					if (obj_control.filterGridActive) {
+							
+						if (allChainsSelected) {
+							// if the user has just selected all chains while filter is on, then we can just
+							// put all the chains in listOfChains in the filterList. then refresh the filter
+							ds_list_copy(filterList, listOfChains);
+							scr_setValueForAllChains("rezChain", "filter", false);
+							scr_setValueForAllChains("trackChain", "filter", false);
+							scr_setValueForAllChains("stackChain", "filter", false);
+							scr_setValueForSelectedNodes(tabChainType, "filter", true);
+							scr_renderFilter();
+						}
+						else {
+							// if the user has deselected all chains while filter is on, we will clear the filter
+							// list and disable the filter
+							ds_list_clear(filterList);
+							scr_disableFilter();
+						}
+					}
+				}
+			}
+			
+			// draw checkmark for checkbox header
+			if (allChainsSelected) {
+				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.6));
+				draw_rectangle(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, false);
+				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
+			}
+			
 			draw_set_color(global.colorThemeBG);
 			scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2);
-			
-			/*
-			if (currentChainSelected) {
-				draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
-				draw_roundrect(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, false);
-			}
-			else if (mouseoverCheckbox) {
-				draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
-				draw_roundrect(checkboxRectX1 - (strHeight * 0.15) - clipX, checkboxRectY1 - (strHeight * 0.15) - clipY, checkboxRectX2 + (strHeight * 0.15) - clipX, checkboxRectY2 + (strHeight * 0.15) - clipY, false);
-			}
-			*/
-			
 		}
 		
 		// draw header text
@@ -546,6 +590,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 		}
 	}
 
-
+	// draw short white line to separate from left nav
+	draw_set_color(global.colorThemeBG);
+	draw_line(x + windowWidth-1 , y , x + windowWidth-1, y + headerHeight);
 
 }

@@ -145,11 +145,12 @@ function scr_panelPane_drawUnits1toManyInnerLoop(currentWordID, drawDropDowns, s
 			}
 			var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
 			var isTildaField = (string_char_at(string(mapKey), 1) == "~");
+			
 
 			if (drawDropDowns && !unitOrWordTagTokenView && ds_map_exists(global.tokenImportTagMap, mapKey) && !isTildaField) {
 								
 				var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, c_white, 1);
+				draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 				var mouseoverDropDown = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
 				
 				if (mouseoverDropDown) {

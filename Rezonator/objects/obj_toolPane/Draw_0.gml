@@ -21,18 +21,18 @@ if (obj_control.hideAll) {
 }
 
 // draw toolpane BG and border
-if (obj_panelPane.showNav && obj_toolPane.showTool) {
+if (obj_toolPane.showTool) {
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(x, y, camWidth,camHeight, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(x, y, camWidth,camHeight, true);
 	mouseOverToolPane = point_in_rectangle(mouse_x,mouse_y, x, y, camWidth,camHeight)
-}
+
 
 
 scr_drawToolPane(toolSprScale);
 
+}
 
 
-progressBarX = camera_get_view_width(camera_get_active()) - 100;

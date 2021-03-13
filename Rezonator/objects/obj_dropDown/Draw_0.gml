@@ -26,6 +26,7 @@ textBuffer = 10;
 // clamp windowHeight so dropDown is not hanging off the screen
 var showScrollBar = false;
 var camHeight = camera_get_view_height(camera_get_active());
+var camWidth = camera_get_view_width(camera_get_active());
 if (y + windowHeight > camHeight) {
 	windowHeight = camHeight - y ;
 	showScrollBar = true;
@@ -51,8 +52,11 @@ for (var i = 0; i < optionListSize; i++) {
 }
 windowWidth = maxStrWidth;
 
+if( x + windowWidth > camWidth ){
+	x = camWidth - windowWidth;
+}
 
-//scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
+scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 
 
 // surface stuff
@@ -153,6 +157,9 @@ for (var i = 0; i < optionListSize; i++) {
 		else if (optionText == "menu_prose" && ds_list_size(optionList) == 2) {
 			isExpandable = false;
 		}
+		else if (optionText == "menu_nav" && ds_list_size(optionList) == 5) {
+			isExpandable = false;
+		}
 	}
 	
 	// gray out option if it begins with ~
@@ -166,8 +173,18 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 	
 	// draw option text
-	
 	var optionTextStr = scr_get_translation(optionText);
+	
+	// for special cases, draw chain name instead of hex-string
+	if (optionListType == global.optionListTypeAddToShow) {
+		var subMap = ds_map_find_value(global.nodeMap, optionText);
+		if (is_numeric(subMap)) {
+			if (ds_exists(subMap, ds_type_map)) {
+				optionTextStr = ds_map_find_value(subMap, "chainName");
+			}
+		}
+	}
+	
 	
 	//optionTextStr = optionText;
 	//uncomment this line to see the raw strings instead of display strings in dropdown
@@ -222,7 +239,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (isExpandable) {
 		var expandArrowX = floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
-		draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, c_white, 1);
+		draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, global.colorThemeText, 1);
 	}
 }
 

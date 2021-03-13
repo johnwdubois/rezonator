@@ -1,15 +1,5 @@
 /*
-	scr_alignChain(wordIDList, pushOut);
-	
-	Last Updated: 2019-07-05
-	
-	Called from: obj_chain
-	
 	Purpose: perform alignment process on chain
-	
-	Mechanism: get display column of aligned words and set all words to the maximum display column
-	
-	Author: Terry DuBois
 */
 function scr_alignChain(setIDList, pushOut) {
 	

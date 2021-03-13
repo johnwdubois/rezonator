@@ -46,35 +46,24 @@ var camHeight = camera_get_view_height(camera_get_active());
 switch (currentFunction) {
 	case functionChainList:
 		if(showNavLeft){
+			
+			scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemePaneBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 			
 			scr_panelPane_drawChainListLoopClipped();
-			/*if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-				clickedIn = true;
-			}
-			if (device_mouse_check_button_released(0, mb_left) and not point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-				clickedIn = false;
-			}
-			if(clickedIn) {
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
-				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
-			}*/
-			if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-				clickedIn = true;
-			}
-			else {
-				clickedIn = false;
-			}
+			
+			clickedIn = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
+			
+			/*
 			if(clickedIn) {
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
 				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
 			}
+			*/
 		}
 		if(not obj_control.scrollBarHolding and not chainListPane.scrollBarHolding) {
 			alarm[6] = 1;	
@@ -85,6 +74,7 @@ switch (currentFunction) {
 		break;
 	case functionChainContents:
 		if (showNavRight) {
+			scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
@@ -109,22 +99,19 @@ switch (currentFunction) {
 			}
 			else {
 				scr_panelPane_drawChains1ToMany();
+				scr_panelPane_drawChains1ToManyHeaders();
 			}
 			
 			
-
-			if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
-				clickedIn = true;
-			}
-			else {
-				clickedIn = false;
-			}
+			clickedIn = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
+			/*
 			if (clickedIn) {
 				draw_set_alpha(1);
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
 				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
 			}
+			*/
 			
 			
 		}
@@ -161,18 +148,18 @@ switch (currentFunction) {
 		}
 		break;
 	case functionHelp:
-		if(obj_panelPane.showNav) {
-			if (obj_toolPane.showTool){
+
+		if (obj_toolPane.showTool){
 				
-				/*
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemePaneBG);
-				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-				*/
-				scr_panelPane_drawHelp();
+			/*
+			draw_set_alpha(1);
+			draw_set_color(global.colorThemePaneBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+			*/
+			scr_panelPane_drawHelp();
 				
-			}
 		}
+		
 		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
 			alarm[6] = 1;	
 		}
@@ -213,20 +200,21 @@ switch (currentFunction) {
 		}
 		break;
 	case functionTabs:
-	
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
+		if(obj_panelPane.showNav){
+			draw_set_color(global.colorThemeBG);
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 		
-		windowWidth = camWidth;
-		windowHeight = (functionTabs_tabHeight * 2);
-		scr_panelPane_drawTabs();
+			windowWidth = camWidth;
+			windowHeight = (functionTabs_tabHeight * 2);
+			scr_panelPane_drawTabs();
+		}
 		
 		break;
 	default:
 		break;
 }
 
-
+// draw pane border
 if(obj_panelPane.showNav){
 
 	draw_set_alpha(1);
@@ -234,10 +222,18 @@ if(obj_panelPane.showNav){
 	
 	var showBorder = !((currentFunction == functionChainContents && !obj_panelPane.showNavRight)
 					|| (currentFunction == functionHelp)
-					|| ((currentFunction == functionChainList or currentFunction == functionFilter) && !obj_panelPane.showNavLeft));
+					|| ((currentFunction == functionChainList) && !obj_panelPane.showNavLeft));
 
 	if (showBorder) {
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+		if (currentFunction == functionHelp) {
+			draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
+		}
+		else {
+			draw_line(x, y + windowHeight, x + windowWidth, y + windowHeight);
+			
+			var divideLineX = (currentFunction == functionChainList) ? x + windowWidth : x;
+			draw_line(divideLineX, y + functionTabs_tabHeight, divideLineX, y + windowHeight);
+		}
 	}
 }
 

@@ -50,12 +50,13 @@ function scr_drawLine() {
 			tabsHeight = windowHeight;
 		}
 	}
-
-	wordTopMargin = menuBarHeight + chainListHeight + tabsHeight;
-	
-	if (global.wheresElmo || global.rezzles) {
-		wordTopMargin += 80;
+	if(obj_panelPane.showNav){
+		wordTopMargin = menuBarHeight + chainListHeight + tabsHeight;
 	}
+	else{
+		wordTopMargin = menuBarHeight;
+	}
+
 
 	var activeLineGridHeight = ds_grid_height(currentActiveLineGrid);
 

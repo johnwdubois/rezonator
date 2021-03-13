@@ -8,7 +8,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var strHeight = string_height("0") * 1.5;
 	
 	var drawScrollbar = (!obj_control.showUnitTags);
-	var scrollBarWidth = (drawScrollbar) ? global.scrollBarWidth : 0;
+	var scrollBarWidth = 0;
 	
 	// get the instance ID for the lineContents pane so we can easily reference it
 	var chainContentsPanelPaneInst = 0;
@@ -31,6 +31,10 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var textAdjustY = 0;
 	var textBuffer = 8;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	var mouseoverScrollBar = false;
+	if (drawScrollbar) {
+		mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
+	}
 	
 	// if mouse is hovered on header region, make sure there is no line highlighted
 	if (mouseoverHeaderRegion) {
@@ -53,6 +57,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	draw_set_color(global.colorThemeText);
 
 	scr_surfaceStart();
+	
 
 	//really super wanna set a draw range for this guy!!
 	var mouseInPane = obj_control.mouseoverPanelPane;
@@ -137,7 +142,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		
 	
-		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor, mouseoverHeaderRegion);
+		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor, mouseoverHeaderRegion, mouseoverScrollBar);
 	
 	
 		// get position of focused rect
@@ -315,7 +320,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 			colText = "Speaker";
 		}
 		else if (i == 2) {
-			colWidth = windowWidth;
+			colWidth = windowWidth - unitSeqRectWidth - speakerRectWidth;
 			colText = "Text";
 		}
 		
@@ -342,6 +347,12 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		headerPlusX += colWidth;
 	}
+	
 
+	
+
+	// draw short white line to separate from left nav
+	draw_set_color(global.colorThemeBG);
+	draw_line(x + windowWidth-1 , y , x + windowWidth-1, y + headerHeight);
 
 }

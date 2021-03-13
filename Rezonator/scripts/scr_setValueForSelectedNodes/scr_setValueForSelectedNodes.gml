@@ -1,8 +1,18 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_setValueForSelectedNodes(key, value){
+function scr_setValueForSelectedNodes(type, key, value){
 	
-	var selectedList = obj_control.selectedNodeList;
+	// determine which selected list to use
+	var selectedList = -1;
+	if (type == "rezChain") selectedList = obj_control.selectedRezChainList;
+	else if (type == "trackChain") selectedList = obj_control.selectedTrackChainList;
+	else if (type == "stackChain") selectedList = obj_control.selectedStackChainList;
+	
+	if (!ds_exists(selectedList, ds_type_list)) {
+		show_debug_message("scr_setValueForSelectedNodes() ... ERROR: could not find selected list. Exiting...");
+		exit;
+	}
+	
 	var selectedListSize = ds_list_size(selectedList);
 	
 	for (var i = 0; i < selectedListSize; i++) {
