@@ -29,15 +29,8 @@ createStacksSentence = false;
 createStacksGroup = false;
 
 
+scr_scrollBarInit();
 
-// scrollbar variables
-scrollBarHolding = false;
-scrollBarUpButtonHeld = false;
-scrollBarDownButtonHeld = false;
-scrollBarHeight = 0;
-scrollPlusY = 0;
-scrollPlusYDest = 0;
-scrollBarPlusY = 0;
 
 //panel pane variables
 windowHeight = 289;

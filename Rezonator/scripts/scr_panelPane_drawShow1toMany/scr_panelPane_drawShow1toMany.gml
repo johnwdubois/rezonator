@@ -158,8 +158,9 @@ function scr_panelPane_drawShow1toMany(){
 	
 
 	
-	
 	// headers!!!
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
 	for (var i = 0; i < 3; i++) {
 		
 		// get coordinates for header

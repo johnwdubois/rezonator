@@ -549,20 +549,8 @@ setJustified = false;
 setTranscript = false;
 setNavWindow = false;
 
+scr_scrollBarInit();
 
-// scrollbar variables
-scrollBarHolding = false;
-scrollBarUpButtonHeld = false;
-scrollBarDownButtonHeld = false;
-scrollBarHeight = 0;
-scrollPlusY = 0;
-scrollPlusYDest = 0;
-scrollBarPlusY = 0;
-scrollBarCenter = 0;
-windowResizeXHolding = false;
-windowResizeYHolding = false;
-clipX = 0;
-clipY = 0;
 x = 0;
 y = 0;
 //stackShowBuffer = 10;
