@@ -82,20 +82,24 @@ function scr_panelPane_drawTabs() {
 		var tabChainType = "";
 		var selectedNodeList = -1;
 		var filterList = -1;
+		var tabFilterActive = false;
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 			tabChainType = "rezChain";
 			selectedNodeList = obj_control.selectedRezChainList;
 			filterList = obj_chain.filteredRezChainList;
+			tabFilterActive = obj_control.filterActiveRez;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 			tabChainType = "trackChain";
 			selectedNodeList = obj_control.selectedTrackChainList;
 			filterList = obj_chain.filteredTrackChainList;
+			tabFilterActive = obj_control.filterActiveTrack;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 			tabChainType = "stackChain";
 			selectedNodeList = obj_control.selectedStackChainList;
 			filterList = obj_chain.filteredStackChainList;
+			tabFilterActive = obj_control.filterActiveStack;
 		}
 
 		
@@ -128,8 +132,17 @@ function scr_panelPane_drawTabs() {
 							scr_setValueForAllChains("trackChain", "filter", false);
 							scr_setValueForAllChains("stackChain", "filter", false);
 							scr_setValueForSelectedNodes(tabChainType, "filter", true);
-					
-							obj_control.filterGridActive = !obj_control.filterGridActive;
+							
+							// toggle filter depending on tab
+							if (functionChainList_currentTab == functionChainList_tabRezBrush) obj_control.filterActiveRez = !obj_control.filterActiveRez;
+							else if (functionChainList_currentTab == functionChainList_tabTrackBrush) obj_control.filterActiveTrack = !obj_control.filterActiveTrack;
+							else if (functionChainList_currentTab == functionChainList_tabStackBrush) obj_control.filterActiveStack = !obj_control.filterActiveStack;
+							
+							// determine if filter should be activated or disabled
+							obj_control.filterGridActive = (functionChainList_currentTab == functionChainList_tabRezBrush && obj_control.filterActiveRez)
+															|| (functionChainList_currentTab == functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
+															|| (functionChainList_currentTab == functionChainList_tabStackBrush && obj_control.filterActiveStack);
+							
 							if (obj_control.filterGridActive) {
 								scr_renderFilter();
 							}
@@ -137,6 +150,7 @@ function scr_panelPane_drawTabs() {
 								ds_list_clear(filterList);
 								scr_disableFilter();
 							}
+
 						}
 					}
 				}
@@ -167,22 +181,26 @@ function scr_panelPane_drawTabs() {
 					tabChainType = "rezChain";
 					selectedNodeList = obj_control.selectedRezChainList;
 					filterList = obj_chain.filteredRezChainList;
+					tabFilterActive = obj_control.filterActiveRez;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 					tabChainType = "trackChain";
 					selectedNodeList = obj_control.selectedTrackChainList;
 					filterList = obj_chain.filteredTrackChainList;
+					tabFilterActive = obj_control.filterActiveTrack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 					tabChainType = "stackChain";
 					selectedNodeList = obj_control.selectedStackChainList;
 					filterList = obj_chain.filteredStackChainList;
+					tabFilterActive = obj_control.filterActiveStack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabShow) {
 					with (obj_panelPane) {
 						chainViewOneToMany = true;
 					}
 				}
+				chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 	
 				// clear filter lists of other tabs
 				if (filterList == obj_chain.filteredRezChainList) {
@@ -218,7 +236,13 @@ function scr_panelPane_drawTabs() {
 				
 				if (chainTab) {
 					scr_setValueForSelectedNodes(tabChainType, "filter", true);
-					if (obj_control.filterGridActive) scr_renderFilter();
+					if (tabFilterActive) {
+						scr_renderFilter();
+					}
+					else if (obj_control.filterGridActive) {
+						ds_list_clear(filterList);
+						scr_disableFilter();
+					}
 				}
 				else if (obj_control.filterGridActive) {
 					obj_control.filterGridActive = false;
@@ -228,6 +252,7 @@ function scr_panelPane_drawTabs() {
 				// unfocus chains of all type
 				scr_unFocusAllChains();
 			
+				/*
 				if (i == 1) {
 					obj_toolPane.currentMode = obj_toolPane.modeTrack;
 					if(obj_control.searchGridActive) {
@@ -257,6 +282,11 @@ function scr_panelPane_drawTabs() {
 						}
 					}
 				}
+				*/
+				
+				
+				
+				
 			}
 		}
 	

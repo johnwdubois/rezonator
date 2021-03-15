@@ -707,3 +707,7 @@ ds_map_add_list(global.nodeMap, "showList", showList);
 selectedRezChainList = ds_list_create();
 selectedTrackChainList = ds_list_create();
 selectedStackChainList = ds_list_create();
+
+filterActiveRez = false;
+filterActiveTrack = false;
+filterActiveStack = false;

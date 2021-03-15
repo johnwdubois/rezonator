@@ -66,7 +66,7 @@ function scr_drawToolPane(toolSprScale) {
 			if (mouse_check_button_released(mb_left) and not obj_panelPane.scrollBarClickLock) {
 				if (i == 0) {
 					currentMode = modeRead;
-					obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
+					//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 					if(obj_control.searchGridActive) {
 						obj_toolPane.setModeSearch = obj_toolPane.modeRead;
 					}
@@ -76,7 +76,7 @@ function scr_drawToolPane(toolSprScale) {
 				}
 				else if (i == 1) {
 					currentMode = modeTrack;
-					obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
+					//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
 					if(obj_control.searchGridActive) {
 						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
 					}
@@ -86,7 +86,7 @@ function scr_drawToolPane(toolSprScale) {
 				}
 				else if (i == 2) {
 					currentMode = modeRez;
-					obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
+					//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 					if(obj_control.searchGridActive) {
 						obj_toolPane.setModeSearch = obj_toolPane.modeRez;
 					}
@@ -111,15 +111,15 @@ function scr_drawToolPane(toolSprScale) {
 	if (!obj_control.gridView and !obj_control.dialogueBoxActive and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox) and obj_control.mouseoverTagShortcut == "") {
 		if (keyboard_check_pressed(ord("E")) and not keyboard_check(vk_control)) {
 			currentMode = modeRead;
-			obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
+			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
 		}
 		if (keyboard_check_pressed(ord("R")) and not keyboard_check(vk_control)) {
 			currentMode = modeRez;
-			obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
+			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
 		}
 		if (keyboard_check_pressed(ord("T"))) {
 			currentMode = modeTrack;
-			obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
+			//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
 		}
 	}
 
