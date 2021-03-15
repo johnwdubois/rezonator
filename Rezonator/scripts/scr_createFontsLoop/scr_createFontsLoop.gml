@@ -5,7 +5,7 @@ function scr_createFontsLoop(){
 	// CHANGE THIS VAR WHEN MAKING A BUILD
 	// if build is true --> CJK fonts will be loaded
 	// if build is false --> CJK fonts will not be loaded
-	var build = false;
+	var build = true;
 	
 	// find font file
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
@@ -14,13 +14,13 @@ function scr_createFontsLoop(){
 	
 	// continue creating CJK fonts if build is true
 	if (build) {
-		if(CJKLoopIteration <= 5 ){
+		if (CJKLoopIteration <= 5) {
 			scr_createFonts(CKJFont_file_name_full, CJKLoopIteration);
 
 			smallFontSize +=2;
 			mediumFontSize +=2;
 			largeFontSize +=2;
-			CJKLoopIteration ++;
+			CJKLoopIteration++;
 	
 			alarm[4] = 2;
 		}

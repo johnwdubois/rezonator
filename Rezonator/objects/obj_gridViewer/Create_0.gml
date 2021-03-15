@@ -80,22 +80,7 @@ focusedCol = -1;
 focusedRow = -1;
 focusedItemString = " ";
 
-clipSurface = -1;
-clipWidth = 100;
-clipHeight = 100;
-clipX = 0;
-clipY = 0;
-	
-
-// vertical scrollbar variables
-scrollBarHolding = false;
-scrollBarUpButtonHeld = false;
-scrollBarDownButtonHeld = false;
-scrollBarWidth = 20;
-scrollBarHeight = 0;
-scrollPlusY = 100;
-scrollPlusYDest = 100;
-scrollBarPlusY = 0;
+scr_scrollBarInit();
 
 // horizontal scrollbar variables
 scrollBarHorHolding = false;
