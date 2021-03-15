@@ -4,6 +4,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
+	
 
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -74,8 +75,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var checkboxColX = x;
 	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
 	var checkboxSize = checkboxColWidth * 0.35;
-	var numColX = checkboxColX + checkboxColWidth;
-	var numColWidth = windowWidth / 9;
+	var optionsColX = checkboxColX + checkboxColWidth;
+	var optionsColWidth = windowWidth * 0.14;
+	var numColX = optionsColX + optionsColWidth;
+	var numColWidth = windowWidth * 0.07;
 	var nameColX = numColX + numColWidth;
 	var nameColWidth = windowWidth / 4;
 	var textColX = nameColX + nameColWidth;
@@ -130,6 +133,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 			var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
 			var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 			var currentChainSelected = ds_map_find_value(currentChainSubMap, "selected");
+			var currentChainFiltered = ds_map_find_value(currentChainSubMap, "filter");
+			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
+			var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
 			var currentChainCaption = "";
 			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
 			var vizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
@@ -174,7 +180,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
 					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
-	
+					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
 						if (obj_control.showDevVars) {
@@ -332,11 +338,60 @@ function scr_panelPane_drawChainListLoopClipped() {
 								}
 							}
 						}
-						
-						
-						
-						
 					}
+					
+					// setup filter/align/visible buttons
+					var optionsIconScale = 1;
+					var optionsIconRad = sprite_get_width(spr_toggleDraw) * optionsIconScale * 0.7;
+					var filterChainX = optionsColX + (optionsColWidth * 0.25);
+					var visibleChainX = optionsColX + (optionsColWidth * 0.5);
+					var alignChainX = optionsColX + (optionsColWidth * 0.75);
+					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
+					var mouseoverFilterChain = point_in_circle(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					var mouseoverVisibleChain = point_in_circle(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain ;
+					var mouseoverAlignChain = point_in_circle(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab != functionChainList_tabStackBrush;
+					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
+					
+					// mouseover & click on filter
+					if (mouseoverFilterChain) {
+						draw_circle(filterChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainFiltered = !currentChainFiltered;
+							scr_setMap(currentChainSubMap, "filter", currentChainFiltered);
+							if (currentChainFiltered && ds_list_find_index(filterList, currentChainID) == -1) ds_list_add(filterList, currentChainID);
+							else if (!currentChainFiltered) scr_deleteFromList(filterList, currentChainID);
+							
+							// update the filter if we need to
+							if (obj_control.filterGridActive) {
+								if (ds_list_size(filterList) > 0) scr_renderFilter();
+								else scr_disableFilter();
+							}
+						}
+					}
+					// mouseover & click on visible
+					if (mouseoverVisibleChain) {
+						draw_circle(visibleChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainVisible = !currentChainVisible;
+							scr_setMap(currentChainSubMap, "visible", currentChainVisible);
+						}
+					}
+					// mouseover & click on align
+					if (mouseoverAlignChain) {
+						draw_circle(alignChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainAlign = !currentChainAlign;
+							scr_setMap(currentChainSubMap, "alignChain", currentChainAlign);
+						}
+					}
+					
+					// draw filter/align/visible buttons
+					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, c_white, 1);
+					if (functionChainList_currentTab != functionChainList_tabStackBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					
+					
+					
 					
 					// set up stuff for drawing text
 					draw_set_color(global.colorThemeText);
@@ -480,7 +535,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 	
 	// draw column headers
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 5; i++) {
 		
 		// get column data
 		var headerRectX1 = 0;
@@ -492,16 +547,21 @@ function scr_panelPane_drawChainListLoopClipped() {
 			colText = "";
 		}
 		else if (i == 1) {
+			headerRectX1 = optionsColX;
+			colWidth = optionsColWidth;
+			colText = "Options";
+		}
+		else if (i == 2) {
 			headerRectX1 = numColX;
 			colWidth = numColWidth;
 			colText = "#";
 		}
-		else if (i == 2) {
+		else if (i == 3) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
 			colText = "Name";
 		}
-		else if (i == 3) {
+		else if (i == 4) {
 			headerRectX1 = textColX;
 			colWidth = windowWidth - headerRectX1;
 			colText = "Text";

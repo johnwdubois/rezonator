@@ -106,8 +106,8 @@ function scr_panelPane_drawTabs() {
 		// draw filter/visible buttons if there is anything selected
 		if (i == functionChainList_currentTab) {
 			if (chainTab) {
-				var nodesSelected = (ds_list_size(selectedNodeList) > 0);
-				var buttonAlpha = nodesSelected ? 1 : 0.4;
+				var itemsInFilter = (ds_list_size(filterList) > 0);
+				var buttonAlpha = itemsInFilter ? 1 : 0.4;
 				
 				// filter button
 				var filterRectX1 = x + (buttonSize / 2);
@@ -121,17 +121,12 @@ function scr_panelPane_drawTabs() {
 				if (mouseoverFilter) {
 					scr_createTooltip(mean(filterRectX1, filterRectX2), floor(filterRectY2), "Filter", obj_tooltip.arrowFaceUp);
 						
-					if (nodesSelected) {
+					if (itemsInFilter) {
 						draw_set_color(global.colorThemeText);
 						draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
 							
 						// click filter button
 						if (mouse_check_button_released(mb_left)) {
-					
-							scr_setValueForAllChains("rezChain", "filter", false);
-							scr_setValueForAllChains("trackChain", "filter", false);
-							scr_setValueForAllChains("stackChain", "filter", false);
-							scr_setValueForSelectedNodes(tabChainType, "filter", true);
 							
 							// toggle filter depending on tab
 							if (functionChainList_currentTab == functionChainList_tabRezBrush) obj_control.filterActiveRez = !obj_control.filterActiveRez;
@@ -147,7 +142,6 @@ function scr_panelPane_drawTabs() {
 								scr_renderFilter();
 							}
 							else {
-								ds_list_clear(filterList);
 								scr_disableFilter();
 							}
 
@@ -201,46 +195,12 @@ function scr_panelPane_drawTabs() {
 					}
 				}
 				chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
-	
-				// clear filter lists of other tabs
-				if (filterList == obj_chain.filteredRezChainList) {
-					show_debug_message("scr_panelPane_drawTabs() ... filtering rezChains");
-					ds_list_clear(obj_chain.filteredTrackChainList);
-					ds_list_clear(obj_chain.filteredStackChainList);
-					scr_setValueForAllChains("trackChain", "filter", false);
-					scr_setValueForAllChains("stackChain", "filter", false);
-				}
-				else if (filterList == obj_chain.filteredTrackChainList) {
-					show_debug_message("scr_panelPane_drawTabs() ... filtering trackChains");
-					ds_list_clear(obj_chain.filteredRezChainList);
-					ds_list_clear(obj_chain.filteredStackChainList);
-					scr_setValueForAllChains("rezChain", "filter", false);
-					scr_setValueForAllChains("stackChain", "filter", false);
-				}
-				else if (filterList == obj_chain.filteredStackChainList) {
-					show_debug_message("scr_panelPane_drawTabs() ... filtering stackChains");
-					ds_list_clear(obj_chain.filteredRezChainList);
-					ds_list_clear(obj_chain.filteredTrackChainList);
-					scr_setValueForAllChains("rezChain", "filter", false);
-					scr_setValueForAllChains("trackChain", "filter", false);
-				}
-				else {
-					show_debug_message("scr_panelPane_drawTabs() ... clearing all filter lists");
-					ds_list_clear(obj_chain.filteredRezChainList);
-					ds_list_clear(obj_chain.filteredTrackChainList);
-					ds_list_clear(obj_chain.filteredStackChainList);
-					scr_setValueForAllChains("rezChain", "filter", false);
-					scr_setValueForAllChains("trackChain", "filter", false);
-					scr_setValueForAllChains("stackChain", "filter", false);
-				}
 				
 				if (chainTab) {
-					scr_setValueForSelectedNodes(tabChainType, "filter", true);
 					if (tabFilterActive) {
 						scr_renderFilter();
 					}
 					else if (obj_control.filterGridActive) {
-						ds_list_clear(filterList);
 						scr_disableFilter();
 					}
 				}
