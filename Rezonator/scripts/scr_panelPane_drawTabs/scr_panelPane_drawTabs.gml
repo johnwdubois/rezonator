@@ -81,24 +81,21 @@ function scr_panelPane_drawTabs() {
 		var chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 		var tabChainType = "";
 		var selectedNodeList = -1;
-		var filterList = -1;
+		var filterList = scr_getFilterList();
 		var tabFilterActive = false;
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 			tabChainType = "rezChain";
 			selectedNodeList = obj_control.selectedRezChainList;
-			filterList = obj_chain.filteredRezChainList;
 			tabFilterActive = obj_control.filterActiveRez;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 			tabChainType = "trackChain";
 			selectedNodeList = obj_control.selectedTrackChainList;
-			filterList = obj_chain.filteredTrackChainList;
 			tabFilterActive = obj_control.filterActiveTrack;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 			tabChainType = "stackChain";
 			selectedNodeList = obj_control.selectedStackChainList;
-			filterList = obj_chain.filteredStackChainList;
 			tabFilterActive = obj_control.filterActiveStack;
 		}
 
@@ -174,19 +171,16 @@ function scr_panelPane_drawTabs() {
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 					tabChainType = "rezChain";
 					selectedNodeList = obj_control.selectedRezChainList;
-					filterList = obj_chain.filteredRezChainList;
 					tabFilterActive = obj_control.filterActiveRez;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 					tabChainType = "trackChain";
 					selectedNodeList = obj_control.selectedTrackChainList;
-					filterList = obj_chain.filteredTrackChainList;
 					tabFilterActive = obj_control.filterActiveTrack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 					tabChainType = "stackChain";
 					selectedNodeList = obj_control.selectedStackChainList;
-					filterList = obj_chain.filteredStackChainList;
 					tabFilterActive = obj_control.filterActiveStack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabShow) {
@@ -194,6 +188,8 @@ function scr_panelPane_drawTabs() {
 						chainViewOneToMany = true;
 					}
 				}
+				
+				filterList = scr_getFilterList();
 				chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 				
 				if (chainTab) {

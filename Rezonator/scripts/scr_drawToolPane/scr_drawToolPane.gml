@@ -1,14 +1,14 @@
 function scr_drawToolPane(toolSprScale) {
-
-
+	
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
 	var camHeight = camera_get_view_height(camera_get_active());
-
-	for (var i = 0; i < 3; i++) {
 	
+	var toolButtonX = floor(x + (windowWidth / 2));
+	for (var i = 0; i < 3; i++) {
+		
 		// get tool button coordinates
-		var toolButtonX = floor(x + (windowWidth / 2));
 		var toolButtonY = floor(y + (toolSprHeight * ((i * 1.3) + 1)));
 		var toolButtonRectBuffer = toolSprWidth * 0.06;
 		var toolButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
@@ -16,7 +16,7 @@ function scr_drawToolPane(toolSprScale) {
 		var toolButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 		var toolButtonRectY2 = floor(toolButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 		
-		var mouseover = point_in_rectangle(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !instance_exists(obj_dropDown);
+		var mouseover = point_in_rectangle(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !mouseoverCancel;
 		var toolSelected = (i == 0 && currentMode == modeRead) || (i == 1 && currentMode == modeTrack) || (i == 2 && currentMode == modeRez);
 		
 		
@@ -105,6 +105,39 @@ function scr_drawToolPane(toolSprScale) {
 			hoverTime[i] = 0;		
 		}
 	}
+	
+	
+	
+	// filter button
+	var filterButtonY = floor(y + (toolSprHeight * ((3 * 1.3) + 1)));
+	var filterButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var filterButtonRectY1 = floor(filterButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var filterButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
+	var filterImageIndex = 0;
+	
+	// mouseover & click on filter button
+	if (mouseoverFilter) {
+		filterImageIndex = 1;
+		if (mouse_check_button_released(mb_left)) {
+			var filterList = scr_getFilterList();
+		}
+	}
+	
+	// draw highlight rectangle if filter is on
+	if (obj_control.filterGridActive) {
+		draw_set_color(global.colorThemeBG);
+		draw_roundrect(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, false);
+		filterImageIndex = 2;
+	}
+	
+	// draw filter sprite
+	draw_sprite_ext(spr_filterTool, filterImageIndex, toolButtonX, filterButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	
+	
+	
+	
 
 
 	// Prevent typing in text from changing the tool mode

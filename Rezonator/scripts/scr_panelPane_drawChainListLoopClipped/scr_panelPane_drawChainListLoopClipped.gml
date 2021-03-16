@@ -29,24 +29,21 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var listOfChains = -1;
 	var listOfChainsKey = "";
 	var tabChainType = "";
-	var filterList = -1;
+	var filterList = scr_getFilterList();
 	var selectedList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 		listOfChainsKey = "rezChainList";
 		tabChainType = "rezChain";
-		filterList = obj_chain.filteredRezChainList;
 		selectedList = obj_control.selectedRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 		listOfChainsKey = "trackChainList";
 		tabChainType = "trackChain";
-		filterList = obj_chain.filteredTrackChainList;
 		selectedList = obj_control.selectedTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 		listOfChainsKey = "stackChainList";
 		tabChainType = "stackChain";
-		filterList = obj_chain.filteredStackChainList;
 		selectedList = obj_control.selectedStackChainList;
 	}
 	
