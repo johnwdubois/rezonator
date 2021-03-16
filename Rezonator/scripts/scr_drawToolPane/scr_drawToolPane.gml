@@ -122,6 +122,25 @@ function scr_drawToolPane(toolSprScale) {
 		filterImageIndex = 1;
 		if (mouse_check_button_released(mb_left)) {
 			var filterList = scr_getFilterList();
+			if (ds_list_size(filterList) > 0) {
+				
+				// toggle filter depending on tab
+				if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) obj_control.filterActiveRez = !obj_control.filterActiveRez;
+				else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) obj_control.filterActiveTrack = !obj_control.filterActiveTrack;
+				else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) obj_control.filterActiveStack = !obj_control.filterActiveStack;
+							
+				// determine if filter should be activated or disabled
+				obj_control.filterGridActive = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
+												|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
+												|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush && obj_control.filterActiveStack);
+							
+				if (obj_control.filterGridActive) {
+					scr_renderFilter();
+				}
+				else {
+					scr_disableFilter();
+				}
+			}
 		}
 	}
 	
@@ -134,6 +153,15 @@ function scr_drawToolPane(toolSprScale) {
 	
 	// draw filter sprite
 	draw_sprite_ext(spr_filterTool, filterImageIndex, toolButtonX, filterButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	
+	// TEMP CODE FOR TESTING FLYOUTS
+	/*
+	if (keyboard_check_released(ord("C"))) {
+		var contextOptionList = ds_list_create();
+		ds_list_add(contextOptionList, "Context above", "Context between", "Context below");
+		scr_createFlyout(mouse_x, mouse_y, contextOptionList, global.optionListTypeContext, spr_context);
+	}
+	*/
 	
 	
 	

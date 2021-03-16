@@ -107,6 +107,7 @@ function scr_panelPane_drawTabs() {
 				var buttonAlpha = itemsInFilter ? 1 : 0.4;
 				
 				// filter button
+				/*
 				var filterRectX1 = x + (buttonSize / 2);
 				var filterRectY1 = y + functionTabs_tabHeight + (functionTabs_tabHeight / 2) - (buttonSize / 2);
 				var filterRectX2 = filterRectX1 + buttonSize;
@@ -126,9 +127,18 @@ function scr_panelPane_drawTabs() {
 						if (mouse_check_button_released(mb_left)) {
 							
 							// toggle filter depending on tab
-							if (functionChainList_currentTab == functionChainList_tabRezBrush) obj_control.filterActiveRez = !obj_control.filterActiveRez;
-							else if (functionChainList_currentTab == functionChainList_tabTrackBrush) obj_control.filterActiveTrack = !obj_control.filterActiveTrack;
-							else if (functionChainList_currentTab == functionChainList_tabStackBrush) obj_control.filterActiveStack = !obj_control.filterActiveStack;
+							if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+								obj_control.filterActiveRez = !obj_control.filterActiveRez;
+								show_debug_message("filterActiveRez: " + string(filterActiveRez));
+							}
+							else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+								obj_control.filterActiveTrack = !obj_control.filterActiveTrack;
+								show_debug_message("filterActiveTrack: " + string(filterActiveTrack));
+							}
+							else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+								obj_control.filterActiveStack = !obj_control.filterActiveStack;
+								show_debug_message("filterActiveStack: " + string(filterActiveStack));
+							}
 							
 							// determine if filter should be activated or disabled
 							obj_control.filterGridActive = (functionChainList_currentTab == functionChainList_tabRezBrush && obj_control.filterActiveRez)
@@ -146,7 +156,7 @@ function scr_panelPane_drawTabs() {
 					}
 				}
 				draw_sprite_ext(spr_filterIcons, 0, floor(mean(filterRectX1, filterRectX2)), floor(mean(filterRectY1, filterRectY2)), 1, 1, 0, obj_control.filterGridActive ? global.colorThemeBG : global.colorThemeText, buttonAlpha);
-				
+				*/
 
 			}
 		}

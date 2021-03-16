@@ -363,6 +363,7 @@ ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 
 
 scr_dropDownOptionListTypeInit();
+scr_flyoutOptionListTypeInit();
 
 
 scr_chainTagInit();

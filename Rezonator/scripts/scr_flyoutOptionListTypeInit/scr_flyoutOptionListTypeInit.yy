@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "dropDownLists",
-    "path": "folders/Scripts/UI/dropDownLists.yy",
+    "name": "flyouts",
+    "path": "folders/Scripts/UI/flyouts.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_dropDownSelect",
+  "name": "scr_flyoutOptionListTypeInit",
   "tags": [],
   "resourceType": "GMScript",
 }
