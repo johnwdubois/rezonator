@@ -1,9 +1,13 @@
 function scr_drawToolPane(toolSprScale) {
 	
+	if (live_call(toolSprScale)) return live_result;
+	
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
 	var camHeight = camera_get_view_height(camera_get_active());
+	
+	var mouseoverRectWidth = 5;
 	
 	var toolButtonX = floor(x + (windowWidth / 2));
 	for (var i = 0; i < 3; i++) {
@@ -30,23 +34,29 @@ function scr_drawToolPane(toolSprScale) {
 		var toolImageIndex = 0;
 		var toolTipText = "";
 		if (i == 0) {
-			toolImageIndex = (toolSelected) ? 2 : 0;
+			toolImageIndex = (toolSelected) ? 1 : 0;
 			if (currentMode != modeRead and mouseover) {
-				toolImageIndex = 1;
+				//toolImageIndex = 0;
+				draw_set_color(global.colorThemeBG);
+				scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
 			}
 			toolTipText = "Read Mode";
 		}
 		else if (i == 1) {
-			toolImageIndex = (toolSelected) ? 8 : 6;
+			toolImageIndex = (toolSelected) ? 5 : 4;
 			if (currentMode != modeTrack and mouseover) {
-				toolImageIndex = 7;
+				//toolImageIndex = 2;
+				draw_set_color(global.colorThemeBG);
+				scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
 			}
 			toolTipText = "Track Mode";
 		}
 		else {
-			toolImageIndex = (toolSelected) ? 5 : 3;
+			toolImageIndex = (toolSelected) ? 3 : 2;
 			if (currentMode != modeRez and mouseover) {
-				toolImageIndex = 4;
+				//toolImageIndex = 4;
+				draw_set_color(global.colorThemeBG);
+				scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
 			}
 			toolTipText = "Rez Mode";
 		}
@@ -119,7 +129,9 @@ function scr_drawToolPane(toolSprScale) {
 	
 	// mouseover & click on filter button
 	if (mouseoverFilter) {
-		filterImageIndex = 1;
+		draw_set_color(global.colorThemeBG);
+		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth);
+		
 		if (mouse_check_button_released(mb_left)) {
 			var filterList = scr_getFilterList();
 			if (ds_list_size(filterList) > 0) {
@@ -148,11 +160,29 @@ function scr_drawToolPane(toolSprScale) {
 	if (obj_control.filterGridActive) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, false);
-		filterImageIndex = 2;
+		filterImageIndex = 1;
 	}
 	
 	// draw filter sprite
 	draw_sprite_ext(spr_filterTool, filterImageIndex, toolButtonX, filterButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	
+	
+	// context button
+	var contextButtonY = floor(y + (toolSprHeight * ((4 * 1.3) + 1)));
+	var contextButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var contextButtonRectY1 = floor(contextButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var contextButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var contextButtonRectY2 = floor(contextButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	var mouseoverContext = point_in_rectangle(mouse_x, mouse_y, contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2) && !mouseoverCancel;
+	var contextImageIndex = 0;
+	
+	if (mouseoverContext) {
+		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth);
+	}
+	
+	// draw context sprite
+	draw_sprite_ext(spr_contextTool, contextImageIndex, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	
 	
 	// TEMP CODE FOR TESTING FLYOUTS
 	/*

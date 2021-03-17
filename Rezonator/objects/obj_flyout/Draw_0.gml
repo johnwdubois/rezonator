@@ -2,7 +2,6 @@ if (!ds_exists(optionList, ds_type_list)) exit;
 if (!sprite_exists(sprite)) exit;
 
 
-
 var imageNum = sprite_get_number(sprite);
 var optionScale = 0.8;
 var sprWidth = sprite_get_width(sprite)
