@@ -24,6 +24,7 @@ function scr_renderFilter() {
 		if (chainListInst.functionChainList_currentTab == chainListInst.functionChainList_tabRezBrush) chainList = ds_map_find_value(global.nodeMap, "rezChainList");
 		else if (chainListInst.functionChainList_currentTab == chainListInst.functionChainList_tabTrackBrush) chainList = ds_map_find_value(global.nodeMap, "trackChainList");
 		else if (chainListInst.functionChainList_currentTab == chainListInst.functionChainList_tabStackBrush) chainList = ds_map_find_value(global.nodeMap, "stackChainList");
+		else if (chainListInst.functionChainList_currentTab == chainListInst.functionChainList_tabShow) chainList = ds_map_find_value(global.nodeMap, "stackChainList");
 
 		
 		if (!ds_exists(chainList, ds_type_list)) {

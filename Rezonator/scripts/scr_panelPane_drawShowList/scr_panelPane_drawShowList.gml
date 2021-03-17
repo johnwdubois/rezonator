@@ -14,6 +14,8 @@ function scr_panelPane_drawShowList(){
 	var textPlusY = 0;
 	var textAdjustY = 0;
 	var drawScrollbar = true;
+	
+	var anyOptionMousedOver = false;
 	var mouseoverScrollBar = (drawScrollbar) ? point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight) : false;
 	
 	// get the instance ID for the showContents pane so we can easily reference it
@@ -63,9 +65,14 @@ function scr_panelPane_drawShowList(){
 		var textY = floor(mean(showRectY1, showRectY2));
 		
 		// click on show name
-		if (mouseoverShowRect && mouse_check_button_released(mb_left)) {
-			with (obj_panelPane) functionChainContents_showID = currentShow;
+		if (mouseoverShowRect) {
+			anyOptionMousedOver = true;
+			if(mouse_check_button_released(mb_left)){
+				with (obj_panelPane) functionChainContents_showID = currentShow;
+			}
+			
 		}
+
 		
 		// draw rect
 		var rectColor = (currentShowPlaying) ? global.colorThemeSelected2 : merge_color(global.colorThemeBG, global.colorThemeSelected1, highlight ? 0.8 : 0.4);
@@ -82,8 +89,8 @@ function scr_panelPane_drawShowList(){
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentShowName));
 		
 		// start column
-		if (mouseoverShowRect || functionChainContents_showID == currentShow || currentShowPlaying) {
-			/*
+		if (mouseoverShowRect || currentShowPlaying) {
+			
 			var mouseoverStartCol = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, startColX, showRectY1, x + windowWidth, showRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && ds_list_size(currentShowSetList) > 0;
 			var startArrowScale = (mouseoverStartCol || currentShowPlaying) ? 1.5 : 1;
 			draw_sprite_ext(spr_ascend, 0, mean(startColX, x + windowWidth) - clipX, mean(showRectY1, showRectY2) - clipY, startArrowScale, startArrowScale, 270, (currentShowPlaying) ? c_green : global.colorThemeText, 1);
@@ -91,8 +98,37 @@ function scr_panelPane_drawShowList(){
 				with (obj_panelPane) {
 					functionChainList_playShowID = currentShow;
 				}
+				
+				
+				if(is_numeric(currentShowSubMap)){
+					if(ds_exists(currentShowSubMap,ds_type_map)){
+						var setList = ds_map_find_value(currentShowSubMap, "setList");
+						if (is_numeric(setList)) {
+							if (ds_exists(setList, ds_type_list)) {
+								// Filter the first current stack
+								var currentStackID = ds_list_find_value(setList, 0);
+								if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
+									ds_list_add(obj_chain.filteredStackChainList,currentStackID);
+									var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
+									if(is_numeric(chainSubMap)){
+										if(ds_exists(chainSubMap,ds_type_map)){
+											ds_map_replace(chainSubMap, "filter", true);
+
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				// Render the filter in the mainscreen
+				with (obj_control) {
+					scr_renderFilter();
+				}
+			
+				
 			}
-			*/
+		
 		}
 
 		
@@ -135,8 +171,14 @@ function scr_panelPane_drawShowList(){
 	
 		
 	scr_surfaceEnd();
-	
-	
+
+	var mouseOverWindow = point_in_rectangle(mouse_x,mouse_y, x, y, x + windowWidth, y + windowHeight);
+	if(!anyOptionMousedOver and !mouseoverCreateShowRect and mouse_check_button_released(mb_left) and mouseOverWindow){
+		with(obj_panelPane){
+			functionChainContents_showID = "";
+		}
+	}
+
 	
 	
 	// draw column headers
