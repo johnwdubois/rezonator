@@ -3,6 +3,7 @@ function scr_panelPane_drawTabs() {
 		Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
 	*/
 	
+	
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
@@ -34,7 +35,7 @@ function scr_panelPane_drawTabs() {
 	var edgeBufferX = 3;
 	var tabRectY1 = y+edgeBufferY;
 	var tabRectY2 = tabRectY1 + functionTabs_tabHeight-edgeBufferY;
-	draw_set_color(global.colorThemeRezPurple);
+	draw_set_color(make_color_rgb(125, 125, 128));
 	draw_rectangle(x, y, x + windowWidth, tabRectY2, false);
 
 	// loop over tabs

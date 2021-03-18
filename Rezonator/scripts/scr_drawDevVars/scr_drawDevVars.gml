@@ -74,6 +74,12 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "filterActiveTrack: " + string(filterActiveTrack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "filterActiveStack: " + string(filterActiveStack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 33), "filterGridActive: " + string(filterGridActive));
+	
+	
+	draw_text(devVarX - 500, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
+	draw_text(devVarX - 500, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
+	draw_text(devVarX - 500, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
+	draw_text(devVarX - 500, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
 
 	
 	// reset halign to left

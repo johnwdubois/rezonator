@@ -1,5 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
+
+
 var camWidth = camera_get_view_width(camera_get_active());
 
 //scr_dropShadow(-10, 0, camWidth, menuHeight);
@@ -10,7 +12,8 @@ scr_adaptFont(scr_get_translation(firstheaderString),"M");
 menuHeight = string_height("0") * 1.35;
 
 // draw menu bar
-draw_set_colour(global.colorThemeRezPurple);
+//draw_set_colour(global.colorThemeRezPurple);
+draw_set_colour(make_color_rgb(125, 125, 128));
 draw_rectangle(0, 0, camWidth, menuHeight, false);
 mouseoverMenuBar = point_in_rectangle(mouse_x, mouse_y, -1, -1, camera_get_view_width(camera_get_active()) + 1, menuHeight);
 
@@ -98,10 +101,12 @@ if(mouseOverMax){
 	draw_set_color(global.colorThemeText);
 	scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, "Maximize", obj_tooltip.arrowFaceUp);
 	
-	if(mouse_check_button_released(mb_left)){
-		obj_panelPane.showNav = true;
-		obj_panelPane.showNavRight = true;
-		obj_panelPane.showNavLeft = true;
+	if (mouse_check_button_released(mb_left)) {
+		with (obj_panelPane) {
+			showNav = true;
+			showNavRight = true;
+			showNavLeft = true;
+		}
 	}
 }
 
@@ -127,9 +132,11 @@ if(mouseOverMin){
 	draw_set_color(global.colorThemeText);
 	scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, "Minimize", obj_tooltip.arrowFaceUp);
 	if(mouse_check_button_released(mb_left)){
-		obj_panelPane.showNav = false;
-		obj_panelPane.showNavRight = false;
-		obj_panelPane.showNavLeft = false;
+		with (obj_panelPane) {
+			showNav = false;
+			showNavRight = false;
+			showNavLeft = false;
+		}
 	}
 }
 
