@@ -27,12 +27,12 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverTool) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
-		scr_createTooltip(toolButtonRectX1, mean(toolButtonRectY1, toolButtonRectY2), "Tool", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(toolButtonRectX1, toolButtonY, "Tool", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
 			ds_list_add(toolOptionList, "menu_read", "menu_track", "menu_rez");
-			scr_createFlyout(toolButtonRectX1, mean(toolButtonRectY1, toolButtonRectY2), toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
+			scr_createFlyout(toolButtonRectX1, toolButtonY, toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
 		}
 	}
 	
@@ -55,7 +55,7 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverFilter) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth);
-		scr_createTooltip(filterButtonRectX1, mean(filterButtonRectY1, filterButtonRectY2), "Filter", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(filterButtonRectX1, filterButtonY, "Filter", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var filterList = scr_getFilterList();
@@ -106,12 +106,12 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverContext) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth);
-		scr_createTooltip(contextButtonRectX1, mean(contextButtonRectY1, contextButtonRectY2), "Context", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(contextButtonRectX1, contextButtonY, "Context", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var contextOptionList = ds_list_create();
 			ds_list_add(contextOptionList, "menu_above", "menu_between", "menu_below");
-			scr_createFlyout(contextButtonRectX1, mean(contextButtonRectY1, contextButtonRectY2), contextOptionList, global.optionListTypeContext, spr_contextOptions, true);
+			scr_createFlyout(contextButtonRectX1, contextButtonY, contextOptionList, global.optionListTypeContext, spr_contextOptions, true);
 		}
 	}
 	
@@ -133,12 +133,12 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverShapeText) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2, mouseoverRectWidth);
-		scr_createTooltip(shapeTextButtonRectX1, mean(shapeTextButtonRectY1, shapeTextButtonRectY2), "Prose", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(shapeTextButtonRectX1, shapeTextButtonY, "Prose", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var shapeTextOptionList = ds_list_create();
 			ds_list_add(shapeTextOptionList, "menu_prose", "menu_grid");
-			scr_createFlyout(shapeTextButtonRectX1, mean(shapeTextButtonRectY1, shapeTextButtonRectY2), shapeTextOptionList, global.optionListTypeProse, spr_shapeOptions, false);
+			scr_createFlyout(shapeTextButtonRectX1, shapeTextButtonY, shapeTextOptionList, global.optionListTypeProse, spr_shapeOptions, false);
 		}
 	}
 	
@@ -161,12 +161,12 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverJustify) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth);
-		scr_createTooltip(justifyButtonRectX1, mean(justifyButtonRectY1, justifyButtonRectY2), "Justify", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(justifyButtonRectX1, justifyButtonY, "Justify", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var justifyOptionList = ds_list_create();
 			ds_list_add(justifyOptionList, "menu_left", "menu_center", "menu_right");
-			scr_createFlyout(justifyButtonRectX1, mean(justifyButtonRectY1, justifyButtonRectY2), justifyOptionList, global.optionListTypeJustify, spr_justifyOptions, false);
+			scr_createFlyout(justifyButtonRectX1, justifyButtonY, justifyOptionList, global.optionListTypeJustify, spr_justifyOptions, false);
 		}
 	}
 	
