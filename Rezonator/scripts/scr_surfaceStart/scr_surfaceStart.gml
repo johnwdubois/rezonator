@@ -2,7 +2,8 @@ function scr_surfaceStart() {
 	
 	
 	var panelPaneMinHeight = camera_get_view_height(camera_get_active()) * 0.138;
-	var panelPaneMaxHeight = camera_get_view_height(camera_get_active()) * 0.75;
+	var widthOfTool = sprite_get_height(spr_toolsNew);
+	var panelPaneMaxHeight = camera_get_view_height(camera_get_active()) - (obj_toolPane.toolSpriteScale*widthOfTool)*10;
 	
 	if (object_index == obj_panelPane) {
 	

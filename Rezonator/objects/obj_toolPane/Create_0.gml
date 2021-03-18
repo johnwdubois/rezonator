@@ -25,7 +25,7 @@ currentTool = toolRezBrush;
 
 tempReturnTool = -1;
 
-
+toolSpriteScale = 1;
 
 modeRead = 0;
 modeRez = 1;
