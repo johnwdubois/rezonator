@@ -1,6 +1,5 @@
 function scr_drawToolPane(toolSprScale) {
 	
-	
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
@@ -9,116 +8,42 @@ function scr_drawToolPane(toolSprScale) {
 	var mouseoverRectWidth = 5;
 	
 	var toolButtonX = floor(x + (windowWidth / 2));
-	for (var i = 0; i < 3; i++) {
-		
-		// get tool button coordinates
-		var toolButtonY = floor(y + (toolSprHeight * ((i * 1.3) + 1)));
-		var toolButtonRectBuffer = toolSprWidth * 0.06;
-		var toolButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
-		var toolButtonRectY1 = floor(toolButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
-		var toolButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
-		var toolButtonRectY2 = floor(toolButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
-		
-		var mouseover = point_in_rectangle(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !mouseoverCancel;
-		var toolSelected = (i == 0 && currentMode == modeRead) || (i == 1 && currentMode == modeTrack) || (i == 2 && currentMode == modeRez);
-		
-		
-		var arrowScale = 0.5;
-		var arrowSize = sprite_get_width(spr_alertArrow)*arrowScale;
-		var popUpActive = instance_exists(obj_readModePopUp);
-		if(i < 2 and popUpActive){
-			draw_sprite_ext(spr_alertArrow, 0, obj_toolPane.x - arrowSize/2 +20, mean(toolButtonRectY2,toolButtonRectY1) , arrowScale, arrowScale, 180, c_white, 1); 
-		}
-		// determine which image index of sprite to use
-		var toolImageIndex = 0;
-		var toolTipText = "";
-		if (i == 0) {
-			toolImageIndex = (toolSelected) ? 1 : 0;
-			if (currentMode != modeRead and mouseover) {
-				//toolImageIndex = 0;
-				draw_set_color(global.colorThemeBG);
-				scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
-			}
-			toolTipText = "Read Mode";
-		}
-		else if (i == 1) {
-			toolImageIndex = (toolSelected) ? 5 : 4;
-			if (currentMode != modeTrack and mouseover) {
-				//toolImageIndex = 2;
-				draw_set_color(global.colorThemeBG);
-				scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
-			}
-			toolTipText = "Track Mode";
-		}
-		else {
-			toolImageIndex = (toolSelected) ? 3 : 2;
-			if (currentMode != modeRez and mouseover) {
-				//toolImageIndex = 4;
-				draw_set_color(global.colorThemeBG);
-				scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
-			}
-			toolTipText = "Rez Mode";
-		}
-		
-		// draw highlight rectangle if tool is selected
-		if (toolSelected) {
-			draw_set_color(global.colorThemeBG);
-			draw_roundrect(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, false);
-		}
-		
-		// draw tool button sprite
-		draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	var toolButtonRectBuffer = toolSprWidth * 0.06;
 	
-		// mouseover & click on tool button
-		if (mouseover and not obj_panelPane.scrollBarClickLock) {
-			hoverTime[i]++;
-			if (mouse_check_button_released(mb_left) and not obj_panelPane.scrollBarClickLock) {
-				if (i == 0) {
-					currentMode = modeRead;
-					//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabLine;
-					if(obj_control.searchGridActive) {
-						obj_toolPane.setModeSearch = obj_toolPane.modeRead;
-					}
-					else {
-						obj_toolPane.setModeMain = obj_toolPane.modeRead;
-					}
-				}
-				else if (i == 1) {
-					currentMode = modeTrack;
-					//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabTrackBrush;
-					if(obj_control.searchGridActive) {
-						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
-					}
-					else {
-						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
-					}
-				}
-				else if (i == 2) {
-					currentMode = modeRez;
-					//obj_panelPane.functionChainList_currentTab = obj_panelPane.functionChainList_tabRezBrush;
-					if(obj_control.searchGridActive) {
-						obj_toolPane.setModeSearch = obj_toolPane.modeRez;
-					}
-					else {
-						obj_toolPane.setModeMain = obj_toolPane.modeRez;
-					}
-				}
-				if (obj_control.gridView) {
-					obj_control.gridView = false;
-				}
-			}
+	
+	
+	// tool button
+	var toolButtonY = floor(y + (toolSprHeight * ((0 * 1.3) + 1)));
+	var toolButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var toolButtonRectY1 = floor(toolButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var toolButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var toolButtonRectY2 = floor(toolButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	var mouseoverTool = point_in_rectangle(mouse_x, mouse_y, toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2) && !mouseoverCancel;
+	var toolImageIndex = 0;
+	if (currentMode == modeRead) toolImageIndex = 0;
+	else if (currentMode == modeTrack) toolImageIndex = 1;
+	else if (currentMode == modeRez) toolImageIndex = 2;
+	
+	if (mouseoverTool) {
+		draw_set_color(c_white);
+		scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
+		scr_createTooltip(toolButtonRectX1, mean(toolButtonRectY1, toolButtonRectY2), "Tool", obj_tooltip.arrowFaceRight);
 		
-			scr_createTooltip(toolButtonX - (toolSprWidth *0.5), toolButtonY, toolTipText, obj_tooltip.arrowFaceRight);
-		}
-		else {
-			hoverTime[i] = 0;		
+		if (mouse_check_button_released(mb_left)) {
+			var toolOptionList = ds_list_create();
+			ds_list_add(toolOptionList, "menu_read", "menu_track", "menu_rez");
+			scr_createFlyout(toolButtonRectX1, mean(toolButtonRectY1, toolButtonRectY2), toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
 		}
 	}
 	
+	// draw tool sprite
+	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+
+
 	
 	
 	// filter button
-	var filterButtonY = floor(y + (toolSprHeight * ((3 * 1.3) + 1)));
+	var filterButtonY = floor(y + (toolSprHeight * ((1 * 1.3) + 1)));
 	var filterButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
 	var filterButtonRectY1 = floor(filterButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var filterButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
@@ -128,7 +53,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	// mouseover & click on filter button
 	if (mouseoverFilter) {
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(c_white);
 		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth);
 		scr_createTooltip(filterButtonRectX1, mean(filterButtonRectY1, filterButtonRectY2), "Filter", obj_tooltip.arrowFaceRight);
 		
@@ -167,8 +92,10 @@ function scr_drawToolPane(toolSprScale) {
 	draw_sprite_ext(spr_filterTool, filterImageIndex, toolButtonX, filterButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 	
 	
+	
+	
 	// context button
-	var contextButtonY = floor(y + (toolSprHeight * ((4 * 1.3) + 1)));
+	var contextButtonY = floor(y + (toolSprHeight * ((2 * 1.3) + 1)));
 	var contextButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
 	var contextButtonRectY1 = floor(contextButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var contextButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
@@ -177,6 +104,7 @@ function scr_drawToolPane(toolSprScale) {
 	var contextImageIndex = 0;
 	
 	if (mouseoverContext) {
+		draw_set_color(c_white);
 		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth);
 		scr_createTooltip(contextButtonRectX1, mean(contextButtonRectY1, contextButtonRectY2), "Context", obj_tooltip.arrowFaceRight);
 		
@@ -194,7 +122,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	
 	// text shape button
-	var shapeTextButtonY = floor(y + (toolSprHeight * ((5 * 1.3) + 1)));
+	var shapeTextButtonY = floor(y + (toolSprHeight * ((3 * 1.3) + 1)));
 	var shapeTextButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
 	var shapeTextButtonRectY1 = floor(shapeTextButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var shapeTextButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
@@ -203,6 +131,7 @@ function scr_drawToolPane(toolSprScale) {
 	var shapeTextImageIndex = (obj_control.shape == obj_control.shapeText) ? 0 : 1;
 	
 	if (mouseoverShapeText) {
+		draw_set_color(c_white);
 		scr_drawRectWidth(shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2, mouseoverRectWidth);
 		scr_createTooltip(shapeTextButtonRectX1, mean(shapeTextButtonRectY1, shapeTextButtonRectY2), "Prose", obj_tooltip.arrowFaceRight);
 		
@@ -213,13 +142,13 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
-	// draw context sprite
+	// draw shape sprite
 	draw_sprite_ext(spr_proseGridTool, shapeTextImageIndex, toolButtonX, shapeTextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 
 	
 	
 	// justify button
-	var justifyButtonY = floor(y + (toolSprHeight * ((6 * 1.3) + 1)));
+	var justifyButtonY = floor(y + (toolSprHeight * ((4 * 1.3) + 1)));
 	var justifyButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
 	var justifyButtonRectY1 = floor(justifyButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var justifyButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
@@ -230,6 +159,7 @@ function scr_drawToolPane(toolSprScale) {
 	else if (obj_control.justify == obj_control.justifyRight) justifyImageIndex = 2;
 	
 	if (mouseoverJustify) {
+		draw_set_color(c_white);
 		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth);
 		scr_createTooltip(justifyButtonRectX1, mean(justifyButtonRectY1, justifyButtonRectY2), "Justify", obj_tooltip.arrowFaceRight);
 		
@@ -240,7 +170,7 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
-	// draw context sprite
+	// draw justify sprite
 	draw_sprite_ext(spr_justifyTool, justifyImageIndex, toolButtonX, justifyButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 
 	

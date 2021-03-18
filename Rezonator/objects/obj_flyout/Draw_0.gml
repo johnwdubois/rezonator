@@ -1,6 +1,8 @@
 if (!ds_exists(optionList, ds_type_list)) exit;
 if (!sprite_exists(sprite)) exit;
 
+if (live_call()) return live_result;
+
 
 var imageNum = sprite_get_number(sprite);
 var optionScale = 0.8;
@@ -50,11 +52,19 @@ for (var i = 0; i < imageNum; i++) {
 		else if (optionStr == "menu_center") currentOptionSelected = (obj_control.justify == obj_control.justifyCenter);
 		else if (optionStr == "menu_right") currentOptionSelected = (obj_control.justify == obj_control.justifyRight);
 	}
+	else if (optionListType == global.optionListTypeToolButton) {
+		if (optionStr == "menu_read") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRead);
+		else if (optionStr == "menu_rez") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRez);
+		else if (optionStr == "menu_track") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeTrack);
+	}
+	
+	
 	
 	// mouseover & click on option
 	if (mouseoverCurrentOption) {
 		
-		draw_set_color(global.colorThemeSelected1);
+		var mouseoverColor = merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5);
+		draw_set_color(mouseoverColor);
 		draw_roundrect(currentOptionRectX1, currentOptionRectY1, currentOptionRectX2, currentOptionRectY2, false);
 		
 		if (drawBG) {
@@ -63,7 +73,7 @@ for (var i = 0; i < imageNum; i++) {
 			var optionBGRectX2 = optionBGRectX1 + (sprWidth * optionScale) - 4;
 			var optionBGRectY2 = optionBGRectY1 + (sprWidth * optionScale) - 4;
 			draw_set_color(global.colorThemeBG);
-			draw_rectangle(optionBGRectX1, optionBGRectY1, optionBGRectX2, optionBGRectY2, false);
+			//draw_rectangle(optionBGRectX1, optionBGRectY1, optionBGRectX2, optionBGRectY2, false);
 		}
 
 		scr_createTooltip(mean(currentOptionRectX1, currentOptionRectX2), currentOptionRectY2, scr_get_translation(optionStr), obj_tooltip.arrowFaceUp);
@@ -73,7 +83,8 @@ for (var i = 0; i < imageNum; i++) {
 	
 	
 	// draw option sprite
-	var sprColor = (currentOptionSelected) ? global.colorThemeRezPink : global.colorThemeText;
+	var unselectedColor = merge_color(global.colorThemeSelected2, global.colorThemeText, 0.5);
+	var sprColor = (currentOptionSelected) ? global.colorThemeRezPink : unselectedColor;
 	draw_sprite_ext(sprite, i, currentOptionX, optionY, optionScale, optionScale, 0, sprColor, 1);
 }
 

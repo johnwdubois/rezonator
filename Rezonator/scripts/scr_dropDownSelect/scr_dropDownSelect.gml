@@ -344,10 +344,14 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_addToShowOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeShowList) //54
+	else if (optionListType == global.optionListTypeShowList) //55
 	{
 	    scr_showListOptions(optionSelected);
 		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeToolButton) //56
+	{
+		scr_toolButtonOptions(optionSelected);
 	}
 
 }

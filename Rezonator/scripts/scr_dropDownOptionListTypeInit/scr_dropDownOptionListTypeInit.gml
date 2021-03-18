@@ -58,5 +58,6 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeChain1To1HeaderRightClick = 53;
 	global.optionListTypeAddToShow = 54;
 	global.optionListTypeShowList = 55;
+	global.optionListTypeToolButton = 56;
 
 }
