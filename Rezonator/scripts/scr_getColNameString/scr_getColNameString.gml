@@ -230,7 +230,7 @@ function scr_getColNameString(grid, col) {
 				colName = "ChainID";
 				break;
 			case obj_chain.trackGrid_colChainName:
-				colName = "ChainName";
+				colName = "name";
 				break;
 			case obj_chain.trackGrid_colChainSeq:
 				colName = "ChainSeq";

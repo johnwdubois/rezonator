@@ -25,6 +25,7 @@ clearAllTracks = false;
 clearAllRez = false;
 clearAllLinks = false;
 clearChain = false;
+clearShow = false;
 layerLink = false;
 combineChains = false;
 

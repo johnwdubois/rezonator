@@ -10,7 +10,7 @@ function scr_addToShowOptions(optionSelected){
 		if (ds_exists(showSubMap, ds_type_map)) {
 			
 			// get setList from show & make sure it exists
-			var setList = ds_map_find_value(showSubMap, "setList");
+			var setList = ds_map_find_value(showSubMap, "setIDList");
 			if (is_numeric(setList)) {
 				if (ds_exists(setList, ds_type_list)) {
 					

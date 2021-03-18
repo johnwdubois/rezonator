@@ -83,7 +83,7 @@ function scr_panelPane_drawTracker() {
 		var chainSubMap = ds_map_find_value(global.nodeMap, currentListChainID);
 		if(is_numeric(chainSubMap)){
 			if(ds_exists(chainSubMap,ds_type_map)){
-				nameOfStack = ds_map_find_value(chainSubMap, "chainName");
+				nameOfStack = ds_map_find_value(chainSubMap, "name");
 				colorOfStack = ds_map_find_value(chainSubMap, "chainColor");
 				captionOfStack = ds_map_find_value(chainSubMap, "caption");
 			}

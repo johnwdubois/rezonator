@@ -313,7 +313,7 @@ function scr_panelPane_drawTabs() {
 		if(is_numeric(currentShowSubMap)){
 			if(ds_exists(currentShowSubMap,ds_type_map)){
 				//get setlist of playing show
-				setList = ds_map_find_value(currentShowSubMap, "setList");	
+				setList = ds_map_find_value(currentShowSubMap, "setIDList");	
 				if (is_numeric(setList)) {
 					if (ds_exists(setList, ds_type_list)) {		
 						//get index of filtered chain in show's setList
@@ -434,7 +434,7 @@ function scr_panelPane_drawTabs() {
 						if(is_numeric(currentShowSubMap)){
 							if(ds_exists(currentShowSubMap,ds_type_map)){
 								//get setlist of playing show
-								setList = ds_map_find_value(currentShowSubMap, "setList");	
+								setList = ds_map_find_value(currentShowSubMap, "setIDList");	
 								if (is_numeric(setList)) {
 									if (ds_exists(setList, ds_type_list)) {		
 										//get size of setList to see if we can start a show

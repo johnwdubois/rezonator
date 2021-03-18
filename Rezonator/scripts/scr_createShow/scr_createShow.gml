@@ -16,7 +16,7 @@ function scr_createShow(){
 	var newShowName = "Show " + string(showListSize + 1);
 	var newShowSetList = ds_list_create();
 	ds_map_add(subMap, "name", newShowName);
-	ds_map_add(subMap, "setList", newShowSetList);
+	ds_map_add_list(subMap, "setIDList", newShowSetList);
 	
 	
 	

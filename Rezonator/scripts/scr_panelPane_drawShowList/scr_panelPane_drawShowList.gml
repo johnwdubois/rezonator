@@ -42,7 +42,8 @@ function scr_panelPane_drawShowList(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_alpha(1);
-	
+	var setList = "";
+	var setListSize = 0;
 	// loop over shows
 	for (var i = 0; i < showListSize; i++) {
 		
@@ -51,8 +52,20 @@ function scr_panelPane_drawShowList(){
 		var currentShowSubMap = ds_map_find_value(global.nodeMap, currentShow);
 		if (!is_numeric(currentShowSubMap)) continue;
 		if (!ds_exists(currentShowSubMap, ds_type_map)) continue;
+		
+		if(is_numeric(currentShowSubMap)){
+			if(ds_exists(currentShowSubMap,ds_type_map)){
+				setList = ds_map_find_value(currentShowSubMap, "setIDList");
+				if (is_numeric(setList)) {
+					if (ds_exists(setList, ds_type_list)) {
+						setListSize = ds_list_size(setList);
+					}
+				}
+				
+			}
+		}
 		var currentShowName = ds_map_find_value(currentShowSubMap, "name");
-		var currentShowSetList = ds_map_find_value(currentShowSubMap, "setList");
+		var currentShowSetList = ds_map_find_value(currentShowSubMap, "setIDList");
 		var currentShowPlaying = (functionChainList_playShowID == currentShow);
 		
 		// Get dimensions of rectangle around show name
@@ -67,8 +80,21 @@ function scr_panelPane_drawShowList(){
 		// click on show name
 		if (mouseoverShowRect) {
 			anyOptionMousedOver = true;
-			if(mouse_check_button_released(mb_left)){
+			if(mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)){
 				with (obj_panelPane) functionChainContents_showID = currentShow;
+			}
+			
+			if(mouse_check_button_released(mb_right)){
+				with (obj_panelPane) functionChainContents_showID = currentShow;
+				obj_control.selectedChainID = functionChainContents_showID;
+				var dropDownOptionList = ds_list_create();
+
+				ds_list_add(dropDownOptionList, "Rename", "Delete");
+
+				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
+					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeShowList);
+				}
+			
 			}
 			
 		}
@@ -87,45 +113,67 @@ function scr_panelPane_drawShowList(){
 		// name column
 		draw_set_color(textColor);
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentShowName));
-		
+		var startStopText = "";
 		// start column
 		if (mouseoverShowRect || currentShowPlaying) {
 			
-			var mouseoverStartCol = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, startColX, showRectY1, x + windowWidth, showRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && ds_list_size(currentShowSetList) > 0;
+			var mouseoverStartCol = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, startColX, showRectY1, showRectX2, showRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && ds_list_size(currentShowSetList) > 0;
 			var startArrowScale = (mouseoverStartCol || currentShowPlaying) ? 1.5 : 1;
-			draw_sprite_ext(spr_ascend, 0, mean(startColX, x + windowWidth) - clipX, mean(showRectY1, showRectY2) - clipY, startArrowScale, startArrowScale, 270, (currentShowPlaying) ? c_green : global.colorThemeText, 1);
+			
+			if(mouseoverShowRect && setListSize > 0){
+				startStopText = "  ►  ";
+			}
+			
+			if(currentShowPlaying){
+				startStopText =  "  ■  ";
+			}
+			
+			draw_set_halign(fa_center);
+			draw_set_valign(fa_middle);
+			draw_text(mean(startColX, x + windowWidth) - clipX, mean(showRectY1, showRectY2) - clipY, startStopText);
+			draw_set_halign(fa_left);
+			draw_set_valign(fa_middle);
 			if (mouseoverStartCol && mouse_check_button_released(mb_left)) {
-				with (obj_panelPane) {
-					functionChainList_playShowID = currentShow;
-				}
 				
-				
-				if(is_numeric(currentShowSubMap)){
-					if(ds_exists(currentShowSubMap,ds_type_map)){
-						var setList = ds_map_find_value(currentShowSubMap, "setList");
-						if (is_numeric(setList)) {
-							if (ds_exists(setList, ds_type_list)) {
-								// Filter the first current stack
-								var currentStackID = ds_list_find_value(setList, 0);
-								if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
-									ds_list_add(obj_chain.filteredStackChainList,currentStackID);
-									var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
-									if(is_numeric(chainSubMap)){
-										if(ds_exists(chainSubMap,ds_type_map)){
-											ds_map_replace(chainSubMap, "filter", true);
+				if(!currentShowPlaying){
+					if (is_numeric(setList)) {
+						if (ds_exists(setList, ds_type_list)) {
+									
+								with (obj_panelPane) {
+									functionChainList_playShowID = currentShow;
+								}
+									
+							scr_setValueForAllChains("stackChain","filter", false);
+							// Filter the first current stack
+							var currentStackID = ds_list_find_value(setList, 0);
+							if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
+								ds_list_add(obj_chain.filteredStackChainList,currentStackID);
+								var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
+								if(is_numeric(chainSubMap)){
+									if(ds_exists(chainSubMap,ds_type_map)){
+										ds_map_replace(chainSubMap, "filter", true);
 
-										}
 									}
 								}
 							}
 						}
 					}
+					// Render the filter in the mainscreen
+					with (obj_control) {
+						scr_renderFilter();
+					}
 				}
-				// Render the filter in the mainscreen
-				with (obj_control) {
-					scr_renderFilter();
+				else{
+						scr_setValueForAllChains("stackChain","filter", false);
+						with(obj_panelPane){
+							functionChainList_playShowID = "";
+						}				
+						with (obj_control) {
+							scr_renderFilter();	
+						}
+					
+					
 				}
-			
 				
 			}
 		

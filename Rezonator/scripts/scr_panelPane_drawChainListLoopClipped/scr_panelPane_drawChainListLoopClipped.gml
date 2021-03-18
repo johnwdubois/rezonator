@@ -127,7 +127,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			
 			// get info of current chain
 			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
-			var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
+			var currentChainName = ds_map_find_value(currentChainSubMap, "name");
 			var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 			var currentChainSelected = ds_map_find_value(currentChainSubMap, "selected");
 			var currentChainFiltered = ds_map_find_value(currentChainSubMap, "filter");

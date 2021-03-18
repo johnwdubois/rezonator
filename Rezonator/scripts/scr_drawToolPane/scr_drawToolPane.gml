@@ -1,6 +1,5 @@
 function scr_drawToolPane(toolSprScale) {
 	
-	if (live_call(toolSprScale)) return live_result;
 	
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;

@@ -57,12 +57,6 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 			
 			var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
 			if (ds_list_size(dropDownOptionList) > 0) {
-				/*var dropDownInst = instance_create_depth(menuWidth * menuHeaderLoop, menuHeight, -999, obj_dropDown);
-				dropDownInst.optionList = dropDownOptionList;
-				dropDownInst.optionListType = ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop);
-					
-				obj_control.ableToCreateDropDown = false;
-				obj_control.alarm[0] = 2;*/
 				scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
 			}
 		}

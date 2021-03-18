@@ -38,7 +38,7 @@ function scr_panelPane_drawShow1toMany(){
 				
 			
 				// get setList from show & make sure it exists
-				setList = ds_map_find_value(showSubMap, "setList");
+				setList = ds_map_find_value(showSubMap, "setIDList");
 				if (is_numeric(setList)) {
 					if (ds_exists(setList, ds_type_list)) {
 					
@@ -51,7 +51,7 @@ function scr_panelPane_drawShow1toMany(){
 							var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
 							if (!is_numeric(currentChainSubMap)) continue;
 							if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
-							var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
+							var currentChainName = ds_map_find_value(currentChainSubMap, "name");
 							var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor")
 							var chainIsFiltered = (currentChain == filteredChain);
 							

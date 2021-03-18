@@ -40,7 +40,7 @@ function scr_stackShowWindow() {
 		var chainSubMap = ds_map_find_value(global.nodeMap, currentStackChainID);
 		var chainType = ds_map_find_value(chainSubMap, "type");
 		if(chainType == "stackChain"){
-			currentStackName = ds_map_find_value(chainSubMap, "chainName");
+			currentStackName = ds_map_find_value(chainSubMap, "name");
 			currentStackCaption = ds_map_find_value(chainSubMap, "caption");
 			var hashCounter = 1;
 			for(var i = 0; i < string_length(currentStackCaption); i++){
