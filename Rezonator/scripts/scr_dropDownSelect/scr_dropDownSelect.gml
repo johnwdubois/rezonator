@@ -122,14 +122,14 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeJustify) //16
 	{
 	    scr_justifyOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//proseOptions
 	else if (optionListType == global.optionListTypeProse) //17
 	{
 	    scr_proseOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//hideOptions
@@ -143,7 +143,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeContext) //19
 	{
 	    scr_contextOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//clearOptions

@@ -1,7 +1,7 @@
 function scr_drawToolPane(toolSprScale) {
 	
 	
-	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox));
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
 	var camHeight = camera_get_view_height(camera_get_active());
@@ -130,6 +130,7 @@ function scr_drawToolPane(toolSprScale) {
 	if (mouseoverFilter) {
 		draw_set_color(global.colorThemeBG);
 		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth);
+		scr_createTooltip(filterButtonRectX1, mean(filterButtonRectY1, filterButtonRectY2), "Filter", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var filterList = scr_getFilterList();
@@ -177,20 +178,83 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverContext) {
 		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth);
+		scr_createTooltip(contextButtonRectX1, mean(contextButtonRectY1, contextButtonRectY2), "Context", obj_tooltip.arrowFaceRight);
+		
+		if (mouse_check_button_released(mb_left)) {
+			var contextOptionList = ds_list_create();
+			ds_list_add(contextOptionList, "menu_above", "menu_between", "menu_below");
+			scr_createFlyout(contextButtonRectX1, mean(contextButtonRectY1, contextButtonRectY2), contextOptionList, global.optionListTypeContext, spr_contextOptions, true);
+		}
 	}
 	
 	// draw context sprite
 	draw_sprite_ext(spr_contextTool, contextImageIndex, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+
 	
 	
-	// TEMP CODE FOR TESTING FLYOUTS
-	/*
-	if (keyboard_check_released(ord("C"))) {
-		var contextOptionList = ds_list_create();
-		ds_list_add(contextOptionList, "Context above", "Context between", "Context below");
-		scr_createFlyout(mouse_x, mouse_y, contextOptionList, global.optionListTypeContext, spr_context);
+	
+	// text shape button
+	var shapeTextButtonY = floor(y + (toolSprHeight * ((5 * 1.3) + 1)));
+	var shapeTextButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var shapeTextButtonRectY1 = floor(shapeTextButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var shapeTextButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var shapeTextButtonRectY2 = floor(shapeTextButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	var mouseoverShapeText = point_in_rectangle(mouse_x, mouse_y, shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2) && !mouseoverCancel;
+	var shapeTextImageIndex = (obj_control.shape == obj_control.shapeText) ? 0 : 1;
+	
+	if (mouseoverShapeText) {
+		scr_drawRectWidth(shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2, mouseoverRectWidth);
+		scr_createTooltip(shapeTextButtonRectX1, mean(shapeTextButtonRectY1, shapeTextButtonRectY2), "Prose", obj_tooltip.arrowFaceRight);
+		
+		if (mouse_check_button_released(mb_left)) {
+			var shapeTextOptionList = ds_list_create();
+			ds_list_add(shapeTextOptionList, "menu_prose", "menu_grid");
+			scr_createFlyout(shapeTextButtonRectX1, mean(shapeTextButtonRectY1, shapeTextButtonRectY2), shapeTextOptionList, global.optionListTypeProse, spr_shapeOptions, false);
+		}
 	}
-	*/
+	
+	// draw context sprite
+	draw_sprite_ext(spr_proseGridTool, shapeTextImageIndex, toolButtonX, shapeTextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+
+	
+	
+	// justify button
+	var justifyButtonY = floor(y + (toolSprHeight * ((6 * 1.3) + 1)));
+	var justifyButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var justifyButtonRectY1 = floor(justifyButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var justifyButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var justifyButtonRectY2 = floor(justifyButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	var mouseoverJustify = point_in_rectangle(mouse_x, mouse_y, justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2) && !mouseoverCancel;
+	var justifyImageIndex = 0;
+	if (obj_control.justify == obj_control.justifyCenter) justifyImageIndex = 1;
+	else if (obj_control.justify == obj_control.justifyRight) justifyImageIndex = 2;
+	
+	if (mouseoverJustify) {
+		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth);
+		scr_createTooltip(justifyButtonRectX1, mean(justifyButtonRectY1, justifyButtonRectY2), "Justify", obj_tooltip.arrowFaceRight);
+		
+		if (mouse_check_button_released(mb_left)) {
+			var justifyOptionList = ds_list_create();
+			ds_list_add(justifyOptionList, "menu_left", "menu_center", "menu_right");
+			scr_createFlyout(justifyButtonRectX1, mean(justifyButtonRectY1, justifyButtonRectY2), justifyOptionList, global.optionListTypeJustify, spr_justifyOptions, false);
+		}
+	}
+	
+	// draw context sprite
+	draw_sprite_ext(spr_justifyTool, justifyImageIndex, toolButtonX, justifyButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -251,6 +315,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	
 	// justify buttons
+	/*
 	var justifySprWidth = sprite_get_width(spr_justifyLeft) * toolSprScale;
 	for (var i = 0; i < 3; i++) {
 		
@@ -310,9 +375,12 @@ function scr_drawToolPane(toolSprScale) {
 		draw_sprite_ext(sprIndex, imgIndex, mean(justifyRectX1, justifyRectX2), mean(justifyRectY1, justifyRectY2), toolSprScale, toolSprScale, 0, c_white, 1);
 		
 	}
+	*/
+	
 	
 	
 	// shape buttons
+	/*
 	var shapeSprWidth = sprite_get_width(spr_proseText) * toolSprScale;
 
 	for (var i = 0; i < 2; i++) {
@@ -367,5 +435,6 @@ function scr_drawToolPane(toolSprScale) {
 		draw_sprite_ext(sprIndex, imgIndex, mean(shapeRectX1, shapeRectX2), mean(shapeRectY1, shapeRectY2), toolSprScale, toolSprScale, 0, c_white, 1);
 		
 	}
+	*/
 
 }

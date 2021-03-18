@@ -1,0 +1,1 @@
+canDestroy = true;

@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"bd92edaa-60d2-4632-bb87-b801d335ea51","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "UI",
-    "path": "folders/Sprites/UI.yy",
+    "name": "toolbar",
+    "path": "folders/Sprites/UI/toolbar.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_contextTool",
