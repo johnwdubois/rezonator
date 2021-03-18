@@ -1,12 +1,12 @@
 if (!ds_exists(optionList, ds_type_list)) exit;
 if (!sprite_exists(sprite)) exit;
 
-if (live_call()) return live_result;
+
 
 
 var imageNum = sprite_get_number(sprite);
 var optionScale = 0.8;
-var sprWidth = sprite_get_width(sprite)
+var sprWidth = sprite_get_width(sprite);
 windowWidth = imageNum * sprWidth;
 var flyoutX1 = x - windowWidth;
 var flyoutY1 = y - sprWidth * 0.5;

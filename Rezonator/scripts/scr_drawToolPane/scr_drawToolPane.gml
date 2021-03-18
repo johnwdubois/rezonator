@@ -1,5 +1,6 @@
 function scr_drawToolPane(toolSprScale) {
 	
+
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
@@ -101,7 +102,6 @@ function scr_drawToolPane(toolSprScale) {
 	var contextButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var contextButtonRectY2 = floor(contextButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverContext = point_in_rectangle(mouse_x, mouse_y, contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2) && !mouseoverCancel;
-	var contextImageIndex = 0;
 	
 	if (mouseoverContext) {
 		draw_set_color(c_white);
@@ -115,8 +115,12 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
+	if (obj_panelPane.functionFilter_peek[0]) draw_sprite_ext(spr_contextTool, 1, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	if (obj_panelPane.functionFilter_peek[1]) draw_sprite_ext(spr_contextTool, 2, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	if (obj_panelPane.functionFilter_peek[2]) draw_sprite_ext(spr_contextTool, 3, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	
 	// draw context sprite
-	draw_sprite_ext(spr_contextTool, contextImageIndex, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	draw_sprite_ext(spr_contextTool, 0, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 
 	
 	
