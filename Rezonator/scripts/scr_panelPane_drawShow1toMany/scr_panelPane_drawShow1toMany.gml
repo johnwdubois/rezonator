@@ -132,10 +132,16 @@ function scr_panelPane_drawShow1toMany(){
 							draw_rectangle(addToShowRectX1 - clipX, addToShowRectY1 - clipY, addToShowRectX2 - clipX, addToShowRectY2 - clipY, false);
 							draw_set_color(global.colorThemeText);
 							draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(addToShowRectY1, addToShowRectY2)) - clipY, "Add to show...");
+							
+							
+							draw_set_halign(fa_right);
+							draw_set_valign(fa_middle);
+							draw_text(seqColX  - textBuffer - clipX, floor(mean(addToShowRectY1, addToShowRectY2)) - clipY, obj_panelPane.errorText);
+							draw_set_halign(fa_left);
+							draw_set_valign(fa_middle);
 	
 							// click "add to show" option
-							if (mouseoverAddToShow && mouse_check_button_released(mb_left)) {
-		
+							if (mouseoverAddToShow && mouse_check_button_released(mb_left)) {		
 								var addToShowList = ds_list_create();
 								ds_list_copy(addToShowList, stackChainList);
 								scr_createDropDown(nameColX, addToShowRectY2, addToShowList, global.optionListTypeAddToShow);
@@ -146,8 +152,7 @@ function scr_panelPane_drawShow1toMany(){
 			}
 		}
 	}
-	else {
-		
+	else {		
 		// if there's no stacks, show a message to user
 		draw_set_color(merge_color(global.colorThemeText, global.colorThemeBG, 0.5));
 		var noStackTextY = floor(y + headerHeight + (strHeight / 2));
