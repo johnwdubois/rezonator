@@ -59,12 +59,17 @@ function scr_drawChains() {
 		if (!ds_exists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
 		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
-		var currentChainShow = true;
+		var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
+		var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
 		
 		// make sure this is a rezChain or trackChain and that we should be drawing it
 		if (chainType != "rezChain" && chainType != "trackChain") continue;
-		if (chainType == "rezChain" && !obj_chain.toggleDrawRez) continue;
-		if (chainType == "trackChain" && !obj_chain.toggleDrawTrack) continue;
+		var showRezBorder = false;
+		var showTrackBorder = false;
+		if (currentChainVisible) {
+			if (chainType == "rezChain") showRezBorder = true;
+			else if (chainType == "trackChain") showTrackBorder = true;
+		}
 	
 		// find minimum word width so we know the X position of the chain
 		for (var j = 0; j < currentSetIDListSize; j++) {
@@ -84,6 +89,7 @@ function scr_drawChains() {
 		}
 	
 		var wordsInSameLine = false;
+		var firstWordInLine = -1;
 		var firstWordInLine = -1;
 	
 		// loop through current chain's wordIDList to draw the lines of the chain
@@ -169,7 +175,7 @@ function scr_drawChains() {
 					lineY2 -= (wordRectBuffer);
 				}
 			
-				if (currentChainShow) {
+				if (currentChainVisible) {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
 					if (chunkWord2) {
@@ -212,8 +218,7 @@ function scr_drawChains() {
 			}
 		}
 	
-		var isAligned = ds_map_find_value(currentChainSubMap, "alignChain");
-		scr_alignChain(currentSetIDList, isAligned);
+		scr_alignChain(currentSetIDList, currentChainAlign);
 	}
 
 
@@ -227,7 +232,7 @@ function scr_drawChains() {
 					currentChainColor = ds_map_find_value(chainSubMap, "chainColor");
 					draw_set_color(currentChainColor);
 			
-					if (currentChainShow) {
+					if (currentChainVisible) {
 						if (not mouseLineHide) {
 							if (chainType == "rezChain") {
 								draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
