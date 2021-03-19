@@ -10,7 +10,22 @@ function scr_drawToolPane(toolSprScale) {
 	
 	var toolButtonX = floor(x + (windowWidth / 2));
 	var toolButtonRectBuffer = toolSprWidth * 0.06;
+	var flyoutXBuffer = mouseoverRectWidth * 2;
 	
+	
+	
+	
+	// determine whether specific flyouts exist
+	var toolFlyoutExists = false;
+	var contextFlyoutExists = false;
+	var shapeFlyoutExists = false;
+	var justifyFlyoutExists = false;
+	if (instance_exists(obj_flyout)) {
+		toolFlyoutExists = (obj_flyout.optionListType == global.optionListTypeToolButton);
+		contextFlyoutExists = (obj_flyout.optionListType == global.optionListTypeContext);
+		shapeFlyoutExists = (obj_flyout.optionListType == global.optionListTypeProse);
+		justifyFlyoutExists = (obj_flyout.optionListType == global.optionListTypeJustify);
+	}
 
 	
 	
@@ -26,15 +41,18 @@ function scr_drawToolPane(toolSprScale) {
 	else if (currentMode == modeTrack) toolImageIndex = 1;
 	else if (currentMode == modeRez) toolImageIndex = 2;
 	
-	if (mouseoverTool) {
+	if (mouseoverTool || toolFlyoutExists) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
+	}
+	
+	if (mouseoverTool) {
 		scr_createTooltip(toolButtonRectX1, toolButtonY, "Tool", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
 			ds_list_add(toolOptionList, "menu_read", "menu_track", "menu_rez");
-			scr_createFlyout(toolButtonRectX1, toolButtonY, toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
+			scr_createFlyout(toolButtonRectX1 - flyoutXBuffer, toolButtonY, toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
 		}
 	}
 	
@@ -104,15 +122,18 @@ function scr_drawToolPane(toolSprScale) {
 	var contextButtonRectY2 = floor(contextButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverContext = point_in_rectangle(mouse_x, mouse_y, contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2) && !mouseoverCancel;
 	
-	if (mouseoverContext) {
+	if (mouseoverContext || contextFlyoutExists) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth);
+	}
+	
+	if (mouseoverContext) {
 		scr_createTooltip(contextButtonRectX1, contextButtonY, "Context", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var contextOptionList = ds_list_create();
 			ds_list_add(contextOptionList, "menu_above", "menu_between", "menu_below");
-			scr_createFlyout(contextButtonRectX1, contextButtonY, contextOptionList, global.optionListTypeContext, spr_contextOptions, true);
+			scr_createFlyout(contextButtonRectX1 - flyoutXBuffer, contextButtonY, contextOptionList, global.optionListTypeContext, spr_contextOptions, true);
 		}
 	}
 	
@@ -135,15 +156,18 @@ function scr_drawToolPane(toolSprScale) {
 	var mouseoverShapeText = point_in_rectangle(mouse_x, mouse_y, shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2) && !mouseoverCancel;
 	var shapeTextImageIndex = (obj_control.shape == obj_control.shapeText) ? 0 : 1;
 	
-	if (mouseoverShapeText) {
+	if (mouseoverShapeText || shapeFlyoutExists) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2, mouseoverRectWidth);
+	}
+	
+	if (mouseoverShapeText) {
 		scr_createTooltip(shapeTextButtonRectX1, shapeTextButtonY, "Prose", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var shapeTextOptionList = ds_list_create();
 			ds_list_add(shapeTextOptionList, "menu_prose", "menu_grid");
-			scr_createFlyout(shapeTextButtonRectX1, shapeTextButtonY, shapeTextOptionList, global.optionListTypeProse, spr_shapeOptions, false);
+			scr_createFlyout(shapeTextButtonRectX1 - flyoutXBuffer, shapeTextButtonY, shapeTextOptionList, global.optionListTypeProse, spr_shapeOptions, false);
 		}
 	}
 	
@@ -163,15 +187,18 @@ function scr_drawToolPane(toolSprScale) {
 	if (obj_control.justify == obj_control.justifyCenter) justifyImageIndex = 1;
 	else if (obj_control.justify == obj_control.justifyRight) justifyImageIndex = 2;
 	
-	if (mouseoverJustify) {
+	if (mouseoverJustify || justifyFlyoutExists) {
 		draw_set_color(c_white);
 		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth);
+	}
+	
+	if (mouseoverJustify) {
 		scr_createTooltip(justifyButtonRectX1, justifyButtonY, "Justify", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var justifyOptionList = ds_list_create();
 			ds_list_add(justifyOptionList, "menu_left", "menu_center", "menu_right");
-			scr_createFlyout(justifyButtonRectX1, justifyButtonY, justifyOptionList, global.optionListTypeJustify, spr_justifyOptions, false);
+			scr_createFlyout(justifyButtonRectX1 - flyoutXBuffer, justifyButtonY, justifyOptionList, global.optionListTypeJustify, spr_justifyOptions, false);
 		}
 	}
 	
