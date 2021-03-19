@@ -610,26 +610,6 @@ justifyCenter = 1;
 justifyRight = 2;
 justify = justifyLeft;
 
-justifyGridWidth = 2;
-justifyGridHeight = 4;
-justifyGridColJustify = 0;
-justifyGridColShape = 1;
-justifyLoop = 0;
-
-justifyGrid = ds_grid_create(justifyGridWidth, justifyGridHeight);
-ds_grid_set(justifyGrid, justifyGridColJustify, 0, justifyLeft);
-ds_grid_set(justifyGrid, justifyGridColShape, 0, shapeText);
-
-ds_grid_set(justifyGrid, justifyGridColJustify, 1, justifyLeft);
-ds_grid_set(justifyGrid, justifyGridColShape, 1, shapeBlock);
-
-ds_grid_set(justifyGrid, justifyGridColJustify, 2, justifyRight);
-ds_grid_set(justifyGrid, justifyGridColShape, 2, shapeBlock);
-
-ds_grid_set(justifyGrid, justifyGridColJustify, 3, justifyRight);
-ds_grid_set(justifyGrid, justifyGridColShape, 3, shapeText);
-
-
 
 hideAll = false;
 
