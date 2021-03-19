@@ -4,7 +4,10 @@
 
 var camWidth = camera_get_view_width(camera_get_active());
 
-//scr_dropShadow(-10, 0, camWidth, menuHeight);
+// draw drop shadow if both nav windows are hidden
+var drawDropShadow = !obj_panelPane.showNav || (!obj_panelPane.showNavLeft && !obj_panelPane.showNavRight);
+if (drawDropShadow) scr_dropShadow(-10, 0, camWidth - global.toolPaneWidth, menuHeight);
+
 
 draw_set_alpha(1);
 var firstheaderString = ds_grid_get(menuBarGrid, menuBarGrid_colString, 0);
@@ -190,4 +193,11 @@ else{
 	}
 	draw_sprite_ext(spr_saveWarning,0,floor(mean(saveIconX1, saveIconX2)) ,fpsTextY,spriteScale,spriteScale, 0,c_white , 1)
 	saveTextAlpha = 1;	
+}
+
+// draw border if nav is collapsed
+if (drawDropShadow) {
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemeBorders);
+	draw_line(0, menuHeight, camWidth - global.toolPaneWidth, menuHeight);
 }

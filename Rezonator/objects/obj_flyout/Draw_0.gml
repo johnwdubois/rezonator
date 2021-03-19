@@ -3,15 +3,15 @@ if (!sprite_exists(sprite)) exit;
 
 
 
-
+// define flyout coordinates
 var imageNum = sprite_get_number(sprite);
-var optionScale = 0.8;
-var sprWidth = sprite_get_width(sprite);
+var optionScale = obj_toolPane.toolSpriteScale;
+var sprWidth = sprite_get_width(sprite) * optionScale * 1.2;
 windowWidth = imageNum * sprWidth;
 var flyoutX1 = x - windowWidth;
 var flyoutY1 = y - sprWidth * 0.5;
 var flyoutX2 = x;
-var flyoutY2 =  flyoutY1 + sprite_get_height(sprite);
+var flyoutY2 =  flyoutY1 + sprWidth;
 var mouseoverFlyout = point_in_rectangle(mouse_x, mouse_y, flyoutX1, flyoutY1, flyoutX2, flyoutY2);
 
 
