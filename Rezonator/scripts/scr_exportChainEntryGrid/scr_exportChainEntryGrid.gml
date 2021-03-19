@@ -82,7 +82,7 @@ function scr_exportChainEntryGrid(grid){
 		
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
-		var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
+		var currentChainName = ds_map_find_value(currentChainSubMap, "name");
 		
 		// get the setList for current chain
 		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");

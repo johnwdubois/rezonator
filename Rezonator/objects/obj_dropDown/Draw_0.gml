@@ -180,7 +180,7 @@ for (var i = 0; i < optionListSize; i++) {
 		var subMap = ds_map_find_value(global.nodeMap, optionText);
 		if (is_numeric(subMap)) {
 			if (ds_exists(subMap, ds_type_map)) {
-				optionTextStr = ds_map_find_value(subMap, "chainName");
+				optionTextStr = ds_map_find_value(subMap, "name");
 			}
 		}
 	}

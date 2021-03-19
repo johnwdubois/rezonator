@@ -670,7 +670,7 @@ function scr_drawDialogueBox() {
 		if (obj_control.rename) {
 			if (is_numeric(chainSubMap)) {
 				if (ds_exists(chainSubMap, ds_type_map)) {
-					ds_map_replace(chainSubMap, "chainName", obj_control.inputText);
+					ds_map_replace(chainSubMap, "name", obj_control.inputText);
 				}
 			}
 		}

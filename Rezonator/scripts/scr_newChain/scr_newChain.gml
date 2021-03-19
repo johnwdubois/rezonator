@@ -26,7 +26,7 @@ function scr_newChain(wordID, unitID) {
 	switch (obj_toolPane.currentTool) {
 		case obj_toolPane.toolRezBrush:
 			with (obj_panelPane) {
-				functionChainList_currentTab = functionChainList_tabRezBrush;
+				//functionChainList_currentTab = functionChainList_tabRezBrush;
 			}
 			aligned = true;
 			rezChainNameCounter++;
@@ -40,7 +40,7 @@ function scr_newChain(wordID, unitID) {
 			break;
 		case obj_toolPane.toolTrackBrush:
 			with (obj_panelPane) {
-				functionChainList_currentTab = functionChainList_tabTrackBrush;
+				//functionChainList_currentTab = functionChainList_tabTrackBrush;
 			}
 			trackChainNameCounter++;
 			chainSeq = trackChainNameCounter;
@@ -52,7 +52,7 @@ function scr_newChain(wordID, unitID) {
 				exit;
 			}
 			with (obj_panelPane) {
-				functionChainList_currentTab = functionChainList_tabStackBrush;
+				//functionChainList_currentTab = functionChainList_tabStackBrush;
 			}
 			stackChainNameCounter++;
 			chainSeq = stackChainNameCounter;

@@ -12,12 +12,6 @@ if (!obj_control.gridView and !obj_control.dialogueBoxActive and !instance_exist
 		}
 		currentTool = toolTrackBrush;
 	}
-	else if (keyboard_check_pressed(ord("K"))) {
-		with (obj_chain) {
-			scr_chainDeselect();
-		}
-		currentTool = toolStackBrush;
-	}
 }
 
 global.toolPaneWidth = windowWidth;

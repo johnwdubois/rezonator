@@ -89,6 +89,9 @@ function scr_drawQuestionBox() {
 	if (clearChain) {
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("msg_warning_clear_focused_chain"));
 	}
+	if (clearShow) {
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("You are about to delete this show"));
+	}
 	if(layerLink) {
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("masg_warning_layer_link"));
 	}
@@ -101,7 +104,7 @@ function scr_drawQuestionBox() {
 		}
 	}
 
-	draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 105, scr_get_translation("msg_ask_sure"));
+	draw_text(floor(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active())/2 - verticleBuffer + 105), scr_get_translation("msg_ask_sure"));
 
 
 
@@ -154,6 +157,11 @@ function scr_drawQuestionBox() {
 		if (clearChain) {
 			scr_deleteChain(obj_control.selectedChainID);
 		}
+		if (clearShow) {
+			scr_deleteShow(obj_control.selectedChainID);
+
+		}
+		
 			
 		if(layerLink) {
 			

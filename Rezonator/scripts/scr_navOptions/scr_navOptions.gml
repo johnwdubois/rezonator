@@ -4,52 +4,43 @@ function scr_navOptions(optionSelected){
 	switch(optionSelected){
 
 		case "menu_left":
+			var navLeft = obj_panelPane.showNavLeft;
+			navLeft = !navLeft;
 			with(obj_panelPane){
-				
-				if(not showNav){
-					showNav = true;
-				}
-				showNavLeft = not showNavLeft;	
-				
-				if(showNavRight == false && showNavLeft == false){
+				showNav = true;
+				showNavLeft = navLeft;	
+				if (!showNavRight && !showNavLeft) {
 					showNav = false;
 				}
 			}
-			
-		break;
+			break;
 		
-		case "menu_right" :
-
+		case "menu_right":
+			var navRight = obj_panelPane.showNavRight;
+			navRight = !navRight;
 			with(obj_panelPane){
-				if(not showNav){
-					showNav = true;
-				}
-				showNavRight = not showNavRight;	
-			
-				if(showNavRight == false && showNavLeft == false){
+				showNav = true;
+				showNavRight = navRight;	
+				if (!showNavRight && !showNavLeft) {
 					showNav = false;
 				}
 			}
+			break;
 		
-		break;		
 		case "menu_nav" :
 		
 			with(obj_panelPane){
 				showNav = not showNav;
-
 				if(showNav){
 					showNavRight = true;	
 					showNavLeft = true;
-	
 				}
 				else{
 					showNavRight = false;	
 					showNavLeft = false;
-
 				}
 			}
-		break;
-		
+			break;
 		
 		case "menu_tools" :
 
@@ -67,7 +58,6 @@ function scr_navOptions(optionSelected){
 		
 			with(obj_panelPane){
 				showNav = not showNav;
-
 				if(showNav){
 					showNavRight = true;	
 					showNavLeft = true;

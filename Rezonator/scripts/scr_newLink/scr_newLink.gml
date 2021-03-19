@@ -153,13 +153,13 @@ function scr_newLink(wordID) {
 	with (obj_panelPane) {
 		switch (nodeType) {
 			case "rez":
-				functionChainList_currentTab = functionChainList_tabRezBrush;
+				//functionChainList_currentTab = functionChainList_tabRezBrush;
 				break;
 			case "track":
-				functionChainList_currentTab = functionChainList_tabTrackBrush;
+				//functionChainList_currentTab = functionChainList_tabTrackBrush;
 				break;
 			case "stack":
-				functionChainList_currentTab = functionChainList_tabStackBrush;
+				//functionChainList_currentTab = functionChainList_tabStackBrush;
 				break;
 			default:
 				break;

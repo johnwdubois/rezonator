@@ -7,12 +7,13 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 	if (ds_exists(subMap, ds_type_map)) {
 		
 		// add chain values to subMap
-		ds_map_add(subMap, "chainName", chainName);
+		ds_map_add(subMap, "name", chainName);
 		ds_map_add(subMap, "chainColor", chainColor);
 		ds_map_add(subMap, "focused", "");
 		ds_map_add(subMap, "filter", false);
 		ds_map_add(subMap, "author", global.userName);
 		ds_map_add(subMap, "chainSeq", chainSeq);
+		ds_map_add(subMap, "visible", true);
 		ds_map_add(subMap, "selected", false);
 		
 		// set alignment

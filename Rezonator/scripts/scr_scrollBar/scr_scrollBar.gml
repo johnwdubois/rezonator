@@ -4,6 +4,8 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 		Purpose: Draw the scroll bar used to naviagte a UI list
 	*/
 	
+	var scrollCancel = instance_exists(obj_flyout);
+	
 	var outterBuffer = 50;
 	var mouseNear = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth - outterBuffer, y - outterBuffer, x + windowWidth + outterBuffer, y + windowHeight + outterBuffer);
 	var currentAlpha = (mouseNear || scrollBarHolding) ? 1 : 0.5;
@@ -13,7 +15,7 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	var windowHeightAdjusted = windowHeight - marginTop;
 
 	var minScrollPlusY = windowHeightAdjusted - (listSize * strHeight);
-	var maxScrollPlusY = 24;
+	var maxScrollPlusY = 16;
 
 	// Setup scrollbar height limiters
 	var scrollBarHeightMin = 30;
@@ -25,7 +27,7 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	// Calculate the height based on the window height, string height, and the size of the list
 	scrollBarHeight = ((windowHeightAdjusted / strHeight) / (listSize)) * (windowHeightAdjusted - (global.scrollBarWidth * 2));
 	scrollBarHeight = clamp(scrollBarHeight, scrollBarHeightMin, scrollBarHeightMax);
-	mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + global.scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - global.scrollBarWidth)
+	mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + global.scrollBarWidth + marginTop, x + windowWidth, y + windowHeight - global.scrollBarWidth);
 	
 	if (scrollBarHeight == scrollBarHeightMax) currentAlpha = 0;
 	draw_set_alpha(currentAlpha);
@@ -42,7 +44,7 @@ function scr_scrollBar(listSize, focusedElementY, strHeight, marginTop, scrollBa
 	}
 
 	// User can't scroll if they're changing the window size
-	if (windowResizeXHolding) {
+	if (windowResizeXHolding || scrollCancel) {
 		scrollBarHolding = false;
 	}
 

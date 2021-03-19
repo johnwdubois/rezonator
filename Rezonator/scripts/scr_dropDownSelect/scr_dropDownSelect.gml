@@ -1,15 +1,5 @@
 /*
-	scr_dropDownSelect();
-    
-	Last Updated: 2019-08-14
-    
-	Called from: obj_dropDown
-    
 	Purpose: draw custom drop down menu with multiple options
-    
-	Mechanism: draws multiple rectangles and text to represent options to the user.
-                
-	Author: Terry Dubois, Brady Moore
 */
 function scr_dropDownSelect(optionSelected) {
 
@@ -132,14 +122,14 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeJustify) //16
 	{
 	    scr_justifyOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//proseOptions
 	else if (optionListType == global.optionListTypeProse) //17
 	{
 	    scr_proseOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//hideOptions
@@ -153,7 +143,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeContext) //19
 	{
 	    scr_contextOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//clearOptions
@@ -353,6 +343,15 @@ function scr_dropDownSelect(optionSelected) {
 	{
 	    scr_addToShowOptions(optionSelected);
 		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeShowList) //55
+	{
+	    scr_showListOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeToolButton) //56
+	{
+		scr_toolButtonOptions(optionSelected);
 	}
 
 }

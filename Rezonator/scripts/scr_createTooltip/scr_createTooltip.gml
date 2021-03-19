@@ -12,7 +12,7 @@ function scr_createTooltip(tipX, tipY, tipText, arrowFaceDirection){
 		arrowFacing = arrowFaceDirection;
 		x = tipX;
 		y = tipY;
-		show = true;
+		showCount = 2;
 		if (text != tipText) {
 			alpha = 0;
 		}

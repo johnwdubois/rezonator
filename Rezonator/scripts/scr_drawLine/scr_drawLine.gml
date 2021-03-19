@@ -276,7 +276,7 @@ function scr_drawLine() {
 							// Y value not in a grid for read tab, have to store somewhere
 							for (var i = 0; i < instance_number(obj_panelPane); i++) {
 								var currentPane = instance_find(obj_panelPane, i);
-								if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+								if (currentPane.currentFunction == obj_panelPane.functionChainList && currentPane.functionChainList_currentTab != currentPane.functionChainList_tabShow) {
 									//show_message(i);
 									var strHeight = string_height("0") * 1.5;
 									//we can affect the scrollPlusY, now we need the correct placement
@@ -319,9 +319,10 @@ function scr_drawLine() {
 				if (is_numeric(stackChainSubMap)) {
 					if (ds_exists(stackChainSubMap, ds_type_map)) {
 						var stackColor = ds_map_find_value(stackChainSubMap, "chainColor");
+						var stackVisible = ds_map_find_value(stackChainSubMap, "visible");
 						draw_set_color(stackColor);
 						draw_set_alpha(0.2);
-						drawStackRect = true;
+						if (stackVisible) drawStackRect = true;
 					}
 				}
 			}
@@ -333,9 +334,10 @@ function scr_drawLine() {
 						if (is_numeric(focusedChainSubMap)) {
 							if (ds_exists(focusedChainSubMap, ds_type_map)) {
 								var stackColor = ds_map_find_value(focusedChainSubMap, "chainColor");
+								var stackVisible = ds_map_find_value(stackChainSubMap, "visible");
 								draw_set_color(stackColor);
 								draw_set_alpha(0.2);
-								drawStackRect = true;
+								if (stackVisible) drawStackRect = true;
 							}
 						}
 						

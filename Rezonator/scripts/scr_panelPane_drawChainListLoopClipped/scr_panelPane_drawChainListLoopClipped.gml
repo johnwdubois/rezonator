@@ -4,6 +4,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
+	
 
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -28,24 +29,21 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var listOfChains = -1;
 	var listOfChainsKey = "";
 	var tabChainType = "";
-	var filterList = -1;
+	var filterList = scr_getFilterList();
 	var selectedList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 		listOfChainsKey = "rezChainList";
 		tabChainType = "rezChain";
-		filterList = obj_chain.filteredRezChainList;
 		selectedList = obj_control.selectedRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 		listOfChainsKey = "trackChainList";
 		tabChainType = "trackChain";
-		filterList = obj_chain.filteredTrackChainList;
 		selectedList = obj_control.selectedTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 		listOfChainsKey = "stackChainList";
 		tabChainType = "stackChain";
-		filterList = obj_chain.filteredStackChainList;
 		selectedList = obj_control.selectedStackChainList;
 	}
 	
@@ -74,8 +72,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var checkboxColX = x;
 	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
 	var checkboxSize = checkboxColWidth * 0.35;
-	var numColX = checkboxColX + checkboxColWidth;
-	var numColWidth = windowWidth / 9;
+	var optionsColX = checkboxColX + checkboxColWidth;
+	var optionsColWidth = windowWidth * 0.14;
+	var numColX = optionsColX + optionsColWidth;
+	var numColWidth = windowWidth * 0.07;
 	var nameColX = numColX + numColWidth;
 	var nameColWidth = windowWidth / 4;
 	var textColX = nameColX + nameColWidth;
@@ -127,9 +127,12 @@ function scr_panelPane_drawChainListLoopClipped() {
 			
 			// get info of current chain
 			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
-			var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
+			var currentChainName = ds_map_find_value(currentChainSubMap, "name");
 			var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 			var currentChainSelected = ds_map_find_value(currentChainSubMap, "selected");
+			var currentChainFiltered = ds_map_find_value(currentChainSubMap, "filter");
+			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
+			var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
 			var currentChainCaption = "";
 			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
 			var vizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
@@ -174,7 +177,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
 					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
 					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
-	
+					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
 						if (obj_control.showDevVars) {
@@ -299,44 +302,63 @@ function scr_panelPane_drawChainListLoopClipped() {
 							scr_deleteFromList(selectedList, currentChainID);
 						}
 						
-						
-						// filter stuff
-						if (obj_control.filterGridActive) {
+					}
+					
+					// setup filter/align/visible buttons
+					var optionsIconScale = 1;
+					var optionsIconRad = sprite_get_width(spr_toggleDraw) * optionsIconScale * 0.7;
+					var filterChainX = optionsColX + (optionsColWidth * 0.25);
+					var visibleChainX = optionsColX + (optionsColWidth * 0.5);
+					var alignChainX = optionsColX + (optionsColWidth * 0.75);
+					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
+					var mouseoverFilterChain = point_in_circle(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					var mouseoverVisibleChain = point_in_circle(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain ;
+					var mouseoverAlignChain = point_in_circle(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush;
+					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
+					
+					// mouseover & click on filter
+					if (mouseoverFilterChain) {
+						draw_circle(filterChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainFiltered = !currentChainFiltered;
+							scr_setMap(currentChainSubMap, "filter", currentChainFiltered);
+							if (currentChainFiltered && ds_list_find_index(filterList, currentChainID) == -1) ds_list_add(filterList, currentChainID);
+							else if (!currentChainFiltered) scr_deleteFromList(filterList, currentChainID);
 							
-							if (currentChainSelected) {
-								if (ds_list_find_index(filterList, currentChainID) == -1) {
-									ds_list_add(filterList, currentChainID);
-									
-									scr_setValueForAllChains("rezChain", "filter", false);
-									scr_setValueForAllChains("trackChain", "filter", false);
-									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes(tabChainType, "filter", true);
-									scr_renderFilter();
-								}
-							}
-							else {
-								scr_deleteFromList(filterList, currentChainID);	
-								
-								// if there is nothing filtered, we turn filter off
-								var totalChainsFiltered = ds_list_size(obj_chain.filteredRezChainList) + ds_list_size(obj_chain.filteredTrackChainList) + ds_list_size(obj_chain.filteredStackChainList);
-								if (totalChainsFiltered <= 0) {
-									scr_disableFilter();
-								}
-								else {
-									
-									scr_setValueForAllChains("rezChain", "filter", false);
-									scr_setValueForAllChains("trackChain", "filter", false);
-									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes(tabChainType, "filter", true);
-									scr_renderFilter();
-								}
+							// update the filter if we need to
+							if (obj_control.filterGridActive) {
+								if (ds_list_size(filterList) > 0) scr_renderFilter();
+								else scr_disableFilter();
 							}
 						}
-						
-						
-						
-						
+						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, "Filter", obj_tooltip.arrowFaceUp);
 					}
+					// mouseover & click on visible
+					if (mouseoverVisibleChain) {
+						draw_circle(visibleChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainVisible = !currentChainVisible;
+							scr_setMap(currentChainSubMap, "visible", currentChainVisible);
+						}
+						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, "Visible", obj_tooltip.arrowFaceUp);
+					}
+					// mouseover & click on align
+					if (mouseoverAlignChain) {
+						draw_circle(alignChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainAlign = !currentChainAlign;
+							scr_setMap(currentChainSubMap, "alignChain", currentChainAlign);
+						}
+						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, "Align", obj_tooltip.arrowFaceUp);
+					}
+					
+					// draw filter/align/visible buttons
+					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, c_white, 1);
+					if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					
+					
+					
 					
 					// set up stuff for drawing text
 					draw_set_color(global.colorThemeText);
@@ -480,7 +502,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 	
 	// draw column headers
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 5; i++) {
 		
 		// get column data
 		var headerRectX1 = 0;
@@ -492,16 +514,21 @@ function scr_panelPane_drawChainListLoopClipped() {
 			colText = "";
 		}
 		else if (i == 1) {
+			headerRectX1 = optionsColX;
+			colWidth = optionsColWidth;
+			colText = "Options";
+		}
+		else if (i == 2) {
 			headerRectX1 = numColX;
 			colWidth = numColWidth;
 			colText = "#";
 		}
-		else if (i == 2) {
+		else if (i == 3) {
 			headerRectX1 = nameColX;
 			colWidth = nameColWidth;
 			colText = "Name";
 		}
-		else if (i == 3) {
+		else if (i == 4) {
 			headerRectX1 = textColX;
 			colWidth = windowWidth - headerRectX1;
 			colText = "Text";
@@ -536,30 +563,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 				
 				// click on checkbox header
 				if (mouse_check_button_released(mb_left)) {
-
 					scr_setValueForAllChains(tabChainType, "selected", (allChainsSelected) ? false : true);
 					allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList));
-
-					// filter stuff
-					if (obj_control.filterGridActive) {
-							
-						if (allChainsSelected) {
-							// if the user has just selected all chains while filter is on, then we can just
-							// put all the chains in listOfChains in the filterList. then refresh the filter
-							ds_list_copy(filterList, listOfChains);
-							scr_setValueForAllChains("rezChain", "filter", false);
-							scr_setValueForAllChains("trackChain", "filter", false);
-							scr_setValueForAllChains("stackChain", "filter", false);
-							scr_setValueForSelectedNodes(tabChainType, "filter", true);
-							scr_renderFilter();
-						}
-						else {
-							// if the user has deselected all chains while filter is on, we will clear the filter
-							// list and disable the filter
-							ds_list_clear(filterList);
-							scr_disableFilter();
-						}
-					}
 				}
 			}
 			
