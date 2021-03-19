@@ -319,9 +319,10 @@ function scr_drawLine() {
 				if (is_numeric(stackChainSubMap)) {
 					if (ds_exists(stackChainSubMap, ds_type_map)) {
 						var stackColor = ds_map_find_value(stackChainSubMap, "chainColor");
+						var stackVisible = ds_map_find_value(stackChainSubMap, "visible");
 						draw_set_color(stackColor);
 						draw_set_alpha(0.2);
-						drawStackRect = true;
+						if (stackVisible) drawStackRect = true;
 					}
 				}
 			}
@@ -333,9 +334,10 @@ function scr_drawLine() {
 						if (is_numeric(focusedChainSubMap)) {
 							if (ds_exists(focusedChainSubMap, ds_type_map)) {
 								var stackColor = ds_map_find_value(focusedChainSubMap, "chainColor");
+								var stackVisible = ds_map_find_value(stackChainSubMap, "visible");
 								draw_set_color(stackColor);
 								draw_set_alpha(0.2);
-								drawStackRect = true;
+								if (stackVisible) drawStackRect = true;
 							}
 						}
 						
