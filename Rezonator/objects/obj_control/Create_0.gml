@@ -685,8 +685,6 @@ chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns
 ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
-ds_list_add(chain1toManyColFieldListStack, "gapUnits");
-
 
 
 

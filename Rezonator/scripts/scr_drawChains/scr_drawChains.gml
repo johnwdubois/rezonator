@@ -218,7 +218,9 @@ function scr_drawChains() {
 			}
 		}
 	
-		scr_alignChain(currentSetIDList, currentChainAlign);
+		if (obj_control.drawLineState == obj_control.lineState_ltr && obj_control.justify == obj_control.justifyLeft) {
+			scr_alignChain(currentSetIDList, currentChainAlign);
+		}
 	}
 
 
