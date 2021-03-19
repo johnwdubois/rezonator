@@ -346,7 +346,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
 					var mouseoverFilterChain = point_in_circle(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 					var mouseoverVisibleChain = point_in_circle(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain ;
-					var mouseoverAlignChain = point_in_circle(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab != functionChainList_tabStackBrush;
+					var mouseoverAlignChain = point_in_circle(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush;
 					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
 					
 					// mouseover & click on filter
@@ -364,6 +364,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 								else scr_disableFilter();
 							}
 						}
+						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, "Filter", obj_tooltip.arrowFaceUp);
 					}
 					// mouseover & click on visible
 					if (mouseoverVisibleChain) {
@@ -372,6 +373,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 							currentChainVisible = !currentChainVisible;
 							scr_setMap(currentChainSubMap, "visible", currentChainVisible);
 						}
+						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, "Visible", obj_tooltip.arrowFaceUp);
 					}
 					// mouseover & click on align
 					if (mouseoverAlignChain) {
@@ -380,12 +382,13 @@ function scr_panelPane_drawChainListLoopClipped() {
 							currentChainAlign = !currentChainAlign;
 							scr_setMap(currentChainSubMap, "alignChain", currentChainAlign);
 						}
+						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, "Align", obj_tooltip.arrowFaceUp);
 					}
 					
 					// draw filter/align/visible buttons
 					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, c_white, 1);
-					if (functionChainList_currentTab != functionChainList_tabStackBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					
 					
 					
