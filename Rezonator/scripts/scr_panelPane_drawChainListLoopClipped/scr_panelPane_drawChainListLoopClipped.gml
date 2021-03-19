@@ -302,39 +302,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 							scr_deleteFromList(selectedList, currentChainID);
 						}
 						
-						
-						// filter stuff
-						if (obj_control.filterGridActive) {
-							
-							if (currentChainSelected) {
-								if (ds_list_find_index(filterList, currentChainID) == -1) {
-									ds_list_add(filterList, currentChainID);
-									
-									scr_setValueForAllChains("rezChain", "filter", false);
-									scr_setValueForAllChains("trackChain", "filter", false);
-									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes(tabChainType, "filter", true);
-									scr_renderFilter();
-								}
-							}
-							else {
-								scr_deleteFromList(filterList, currentChainID);	
-								
-								// if there is nothing filtered, we turn filter off
-								var totalChainsFiltered = ds_list_size(obj_chain.filteredRezChainList) + ds_list_size(obj_chain.filteredTrackChainList) + ds_list_size(obj_chain.filteredStackChainList);
-								if (totalChainsFiltered <= 0) {
-									scr_disableFilter();
-								}
-								else {
-									
-									scr_setValueForAllChains("rezChain", "filter", false);
-									scr_setValueForAllChains("trackChain", "filter", false);
-									scr_setValueForAllChains("stackChain", "filter", false);
-									scr_setValueForSelectedNodes(tabChainType, "filter", true);
-									scr_renderFilter();
-								}
-							}
-						}
 					}
 					
 					// setup filter/align/visible buttons
@@ -596,30 +563,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 				
 				// click on checkbox header
 				if (mouse_check_button_released(mb_left)) {
-
 					scr_setValueForAllChains(tabChainType, "selected", (allChainsSelected) ? false : true);
 					allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList));
-
-					// filter stuff
-					if (obj_control.filterGridActive) {
-							
-						if (allChainsSelected) {
-							// if the user has just selected all chains while filter is on, then we can just
-							// put all the chains in listOfChains in the filterList. then refresh the filter
-							ds_list_copy(filterList, listOfChains);
-							scr_setValueForAllChains("rezChain", "filter", false);
-							scr_setValueForAllChains("trackChain", "filter", false);
-							scr_setValueForAllChains("stackChain", "filter", false);
-							scr_setValueForSelectedNodes(tabChainType, "filter", true);
-							scr_renderFilter();
-						}
-						else {
-							// if the user has deselected all chains while filter is on, we will clear the filter
-							// list and disable the filter
-							ds_list_clear(filterList);
-							scr_disableFilter();
-						}
-					}
 				}
 			}
 			
