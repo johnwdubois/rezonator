@@ -32,6 +32,7 @@ function scr_deleteShow(showID){
 	//set active show to be nothing
 	obj_chain.currentFocusedshowID = "";
 	
+	scr_deleteFromList(ds_map_find_value(global.nodeMap, "showList"), showID);
 	
 		//show that is being deleted is also current show playing
 	if(chainSubMap == currentShowSubMap){
