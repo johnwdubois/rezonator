@@ -82,6 +82,7 @@ function scr_panelPane_drawShowList(){
 			anyOptionMousedOver = true;
 			if(mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)){
 				with (obj_panelPane) functionChainContents_showID = currentShow;
+				obj_control.selectedChainID = functionChainContents_showID;
 			}
 			
 			if(mouse_check_button_released(mb_right)){

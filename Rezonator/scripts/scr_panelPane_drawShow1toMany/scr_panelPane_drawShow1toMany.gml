@@ -12,6 +12,9 @@ function scr_panelPane_drawShow1toMany(){
 	var nameColX = numColX + numColWidth;
 	var nameColWidth = windowWidth * 0.7;
 	var seqColX = nameColX + nameColWidth;
+	var seqColWidth = windowWidth * 0.1;
+	var delColX = seqColX + seqColWidth;
+	var delColWidth = windowWidth * 0.1;
 	var textBuffer = 8;
 	var textPlusY = 0;
 	var headerHeight = functionTabs_tabHeight;
@@ -79,33 +82,62 @@ function scr_panelPane_drawShow1toMany(){
 							draw_set_color(global.colorThemeText);
 							draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(currentChainName));
 							
-							// sequence arrows
-							var showSeqUpArrow = (i > 0);
-							var showSeqDownArrow = (i < setListSize - 1);
-							var seqArrowX = mean(seqColX, x + windowWidth);
-							var seqUpArrowY = chainRectY1 + (strHeight * 0.3);
-							var seqDownArrowY = chainRectY1 + (strHeight * 0.7);
-							var mouseoverSeqUpArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, chainRectY1, x + windowWidth - global.scrollBarWidth, mean(chainRectY1, chainRectY2)) && showSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-							var mouseoverSeqDownArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, mean(chainRectY1, chainRectY2), x + windowWidth - global.scrollBarWidth, chainRectY2) && showSeqDownArrow && !mouseoverSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 							
-							// mouseover & click on sequence arrows
-							if (mouseoverSeqUpArrow) {
-								draw_set_color(global.colorThemeSelected2);
-								draw_rectangle(seqColX - clipX, chainRectY1 - clipY, x + windowWidth - clipX, mean(chainRectY1, chainRectY2) - clipY, false);
-								if (mouse_check_button_released(mb_left)) {
-									scr_listSwap(setList, i - 1, i);
-								}
-							}
-							else if (mouseoverSeqDownArrow) {
-								draw_set_color(global.colorThemeSelected2);
-								draw_rectangle(seqColX - clipX, mean(chainRectY1, chainRectY2) - clipY, x + windowWidth - clipX, chainRectY2 - clipY, false);
-								if (mouse_check_button_released(mb_left)) {
-									scr_listSwap(setList, i, i + 1);
-								}
-							}
-							if (showSeqUpArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqUpArrowY - clipY, 1, 1, 0, global.colorThemeText, 1);
-							if (showSeqDownArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqDownArrowY - clipY, 1, 1, 180, global.colorThemeText, 1);
+							if(mouseoverChainRect){
 							
+								// sequence arrows
+								var showSeqUpArrow = (i > 0);
+								var showSeqDownArrow = (i < setListSize - 1);
+								var seqArrowX = mean(seqColX, seqColX + seqColWidth);
+								var seqUpArrowY = chainRectY1 + (strHeight * 0.3);
+								var seqDownArrowY = chainRectY1 + (strHeight * 0.7);
+								var mouseoverSeqUpArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, chainRectY1, seqColX + seqColWidth, mean(chainRectY1, chainRectY2)) && showSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+								var mouseoverSeqDownArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, mean(chainRectY1, chainRectY2), seqColX + seqColWidth - global.scrollBarWidth, chainRectY2) && showSeqDownArrow && !mouseoverSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+							
+							
+							
+								var delButtonX = mean(delColX, delColX + delColWidth);
+								var delButtonY = chainRectY1 + (strHeight * 0.5);
+								var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, delColX, chainRectY1, delColX + delColWidth - global.scrollBarWidth, chainRectY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+
+								var trashAlpha = .5;
+								
+								if(functionChainList_playShowID != showID){
+								
+									// mouseover & click on sequence arrows
+									if (mouseOverDel) {
+										draw_set_color(global.colorThemeSelected2);
+										draw_rectangle(delColX - clipX, chainRectY1 - clipY, delColX + delColWidth - clipX, chainRectY2 - clipY, false);
+										if (mouse_check_button_released(mb_left)) {
+											scr_deleteFromList(setList, currentChain);
+										}
+										scr_createTooltip(delButtonX, chainRectY2, "Remove", obj_tooltip.arrowFaceUp);
+									}
+									
+									 trashAlpha = 1;
+								}
+								
+								draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+								
+								// mouseover & click on sequence arrows
+								if (mouseoverSeqUpArrow) {
+									draw_set_color(global.colorThemeSelected2);
+									draw_rectangle(seqColX - clipX, chainRectY1 - clipY, seqColX + seqColWidth - clipX, mean(chainRectY1, chainRectY2) - clipY, false);
+									if (mouse_check_button_released(mb_left)) {
+										scr_listSwap(setList, i - 1, i);
+									}
+								}
+								else if (mouseoverSeqDownArrow) {
+									draw_set_color(global.colorThemeSelected2);
+									draw_rectangle(seqColX - clipX, mean(chainRectY1, chainRectY2) - clipY, seqColX + seqColWidth - clipX, chainRectY2 - clipY, false);
+									if (mouse_check_button_released(mb_left)) {
+										scr_listSwap(setList, i, i + 1);
+									}
+								}
+								if (showSeqUpArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqUpArrowY - clipY, 1, 1, 0, global.colorThemeText, 1);
+								if (showSeqDownArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqDownArrowY - clipY, 1, 1, 180, global.colorThemeText, 1);
+							
+							}
 							// draw horizontal dividing line
 							draw_set_color(global.colorThemeBG);
 							draw_line(chainRectX1 - clipX, chainRectY2 - 1 - clipY, chainRectX2 - clipX, chainRectY2 - 1 - clipY);

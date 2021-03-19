@@ -167,6 +167,7 @@
     {"id":{"name":"scr_saveFileBuffer","path":"scripts/scr_saveFileBuffer/scr_saveFileBuffer.yy",},"order":9,},
     {"id":{"name":"scr_loadJSONBuffer","path":"scripts/scr_loadJSONBuffer/scr_loadJSONBuffer.yy",},"order":4,},
     {"id":{"name":"scr_gridToJSONLists","path":"scripts/scr_gridToJSONLists/scr_gridToJSONLists.yy",},"order":0,},
+    {"id":{"name":"spr_trash","path":"sprites/spr_trash/spr_trash.yy",},"order":7,},
     {"id":{"name":"scr_searchToMain","path":"scripts/scr_searchToMain/scr_searchToMain.yy",},"order":3,},
     {"id":{"name":"scr_JSONListsToGrid","path":"scripts/scr_JSONListsToGrid/scr_JSONListsToGrid.yy",},"order":1,},
     {"id":{"name":"scr_loadREZGridReset","path":"scripts/scr_loadREZGridReset/scr_loadREZGridReset.yy",},"order":6,},

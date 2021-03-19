@@ -276,7 +276,7 @@ function scr_drawLine() {
 							// Y value not in a grid for read tab, have to store somewhere
 							for (var i = 0; i < instance_number(obj_panelPane); i++) {
 								var currentPane = instance_find(obj_panelPane, i);
-								if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+								if (currentPane.currentFunction == obj_panelPane.functionChainList && currentPane.functionChainList_currentTab != currentPane.functionChainList_tabShow) {
 									//show_message(i);
 									var strHeight = string_height("0") * 1.5;
 									//we can affect the scrollPlusY, now we need the correct placement
