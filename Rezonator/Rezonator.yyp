@@ -328,6 +328,7 @@
     {"id":{"name":"scr_contextOptions","path":"scripts/scr_contextOptions/scr_contextOptions.yy",},"order":17,},
     {"id":{"name":"spr_proseText","path":"sprites/spr_proseText/spr_proseText.yy",},"order":27,},
     {"id":{"name":"scr_clearOptions","path":"scripts/scr_clearOptions/scr_clearOptions.yy",},"order":18,},
+    {"id":{"name":"scr_justifyProseOptions","path":"scripts/scr_justifyProseOptions/scr_justifyProseOptions.yy",},"order":58,},
     {"id":{"name":"scr_settingsOptions","path":"scripts/scr_settingsOptions/scr_settingsOptions.yy",},"order":19,},
     {"id":{"name":"scr_getChainEntryFieldList","path":"scripts/scr_getChainEntryFieldList/scr_getChainEntryFieldList.yy",},"order":38,},
     {"id":{"name":"scr_hideOptions","path":"scripts/scr_hideOptions/scr_hideOptions.yy",},"order":20,},

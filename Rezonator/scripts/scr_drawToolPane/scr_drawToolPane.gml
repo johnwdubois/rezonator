@@ -155,46 +155,20 @@ function scr_drawToolPane(toolSprScale) {
 
 	
 	
-	
-	// text shape button
-	var shapeTextButtonY = floor(y + (toolSprHeight * ((3 * 1.3) + 1)));
-	var shapeTextButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
-	var shapeTextButtonRectY1 = floor(shapeTextButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
-	var shapeTextButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
-	var shapeTextButtonRectY2 = floor(shapeTextButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
-	var mouseoverShapeText = point_in_rectangle(mouse_x, mouse_y, shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2) && !mouseoverCancel;
-	var shapeTextImageIndex = (obj_control.shape == obj_control.shapeText) ? 0 : 1;
-	
-	if (mouseoverShapeText || shapeFlyoutExists) {
-		draw_set_color(c_white);
-		scr_drawRectWidth(shapeTextButtonRectX1, shapeTextButtonRectY1, shapeTextButtonRectX2, shapeTextButtonRectY2, mouseoverRectWidth);
-	}
-	
-	if (mouseoverShapeText) {
-		scr_createTooltip(shapeTextButtonRectX1, shapeTextButtonY, "Prose", obj_tooltip.arrowFaceRight);
-		
-		if (mouse_check_button_released(mb_left)) {
-			var shapeTextOptionList = ds_list_create();
-			ds_list_add(shapeTextOptionList, "menu_prose", "menu_grid");
-			scr_createFlyout(shapeTextButtonRectX1 - flyoutXBuffer, shapeTextButtonY, shapeTextOptionList, global.optionListTypeProse, spr_shapeOptions, false);
-		}
-	}
-	
-	// draw shape sprite
-	draw_sprite_ext(spr_proseGridTool, shapeTextImageIndex, toolButtonX, shapeTextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
-
-	
-	
 	// justify button
-	var justifyButtonY = floor(y + (toolSprHeight * ((4 * 1.3) + 1)));
+	var justifyButtonY = floor(y + (toolSprHeight * ((3 * 1.3) + 1)));
 	var justifyButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
 	var justifyButtonRectY1 = floor(justifyButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var justifyButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var justifyButtonRectY2 = floor(justifyButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverJustify = point_in_rectangle(mouse_x, mouse_y, justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2) && !mouseoverCancel;
 	var justifyImageIndex = 0;
-	if (obj_control.justify == obj_control.justifyCenter) justifyImageIndex = 1;
-	else if (obj_control.justify == obj_control.justifyRight) justifyImageIndex = 2;
+	if (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeText) justifyImageIndex = 0;
+	else if (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeBlock) justifyImageIndex = 1;
+	else if (obj_control.justify == obj_control.justifyCenter && obj_control.shape == obj_control.shapeText) justifyImageIndex = 2;
+	else if (obj_control.justify == obj_control.justifyCenter && obj_control.shape == obj_control.shapeBlock) justifyImageIndex = 3;
+	else if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeText) justifyImageIndex = 4;
+	else if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) justifyImageIndex = 5;
 	
 	if (mouseoverJustify || justifyFlyoutExists) {
 		draw_set_color(c_white);
@@ -206,8 +180,8 @@ function scr_drawToolPane(toolSprScale) {
 		
 		if (mouse_check_button_released(mb_left)) {
 			var justifyOptionList = ds_list_create();
-			ds_list_add(justifyOptionList, "menu_left", "menu_center", "menu_right");
-			scr_createFlyout(justifyButtonRectX1 - flyoutXBuffer, justifyButtonY, justifyOptionList, global.optionListTypeJustify, spr_justifyOptions, false);
+			ds_list_add(justifyOptionList, "Left Prose", "Left Grid", "Center Prose", "Center Grid", "Right Prose", "Right Grid");
+			scr_createFlyout(justifyButtonRectX1 - flyoutXBuffer, justifyButtonY, justifyOptionList, global.optionListTypeJustifyProse, spr_justifyOptions, false);
 		}
 	}
 	
