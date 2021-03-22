@@ -108,6 +108,10 @@ function scr_wordClicked(wordID, unitID) {
 		}
 	}
 	
+	if(obj_toolPane.currentMode == obj_toolPane.modeRead){
+	exit;
+	}
+	
 
 	// Will need to get back to this
 	// loop through the chunks that this word is already in (if any) to refocus that chunk

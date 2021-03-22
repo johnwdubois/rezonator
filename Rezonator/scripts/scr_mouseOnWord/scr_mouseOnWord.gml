@@ -61,6 +61,9 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 					}
 				}
 				
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
+				}
 				//forgot why this was taken out
 				/*ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -70,11 +73,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 					functionChainList_currentTab = functionChainList_tabLine;
 				}*/
 				
-				// Show the ReadModeHint if applicable
-				if(not global.readHintHide and not obj_audioUI.audioJumpOnWordClick and not obj_control.searchGridActive){
-					var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
-					//obj_control.readModeHints++;
-				}
+
 			}
 			
 			

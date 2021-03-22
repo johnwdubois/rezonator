@@ -55,7 +55,7 @@ function scr_refocusChainEntry(wordID){
 		
 		// set mode
 		with (obj_toolPane) {
-			currentMode = chainMode;
+			//currentMode = chainMode;
 		}
 	}
 
