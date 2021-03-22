@@ -282,7 +282,11 @@ function scr_panelPane_drawTabs() {
 	
 		// determine whether we are in 1to1 or 1toMany
 		var oneToOneView = false;
-		if (functionChainList_currentTab == functionChainList_tabLine && obj_control.showUnitTags) oneToOneView = true;
+		if (functionChainList_currentTab == functionChainList_tabLine) {
+			if (obj_control.showUnitTags) {
+				oneToOneView = true;
+			}
+		}
 		else if (!chainViewOneToMany) oneToOneView = true;
 	
 		if (mouseoverOneToOneButton) {

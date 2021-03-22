@@ -1,16 +1,5 @@
 /*
-	scr_mouseOnWord();
-	
-	Last Updated: 2020-10-28
-	
-	Called from: obj_control
-	
 	Purpose: Check for the mouse cursor over this word, and check for left and right mouse click
-	
-	Mechanism: Using the word's rectangle, check for mouseover. On leftMouseClick, select word and possibly add to chain.
-				On rightMouseClick, activate dropdowns. During mouseDrag, put word into mouseHoldRect
-	
-	Author: Terry DuBois, Georgio Klironomos, Brady Moore
 */
 function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop) {
 
@@ -22,10 +11,11 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 	}
 	
 	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
-	var mouseover = false;
-	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2)) {
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
+	var mouseoverWord = point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) && !mouseoverCancel;
+	
+	if (mouseoverWord) {
 		obj_control.mouseoverNeutralSpace = false;	
-		mouseover = true;
 		hoverWordID = currentWordID;
 		
 		// Check to see if this word should be hovered over and allowed to be clicked
