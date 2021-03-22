@@ -56,8 +56,12 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
+	// draw highlight rect
+	draw_set_color(global.colorThemeBG);
+	draw_roundrect(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, false);
+	
 	// draw tool sprite
-	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	draw_sprite_ext(spr_toolsNew, toolImageIndex, toolButtonX, toolButtonY, toolSprScale, toolSprScale, 0, global.colorThemeRezPink, 1);
 
 
 	
@@ -69,7 +73,7 @@ function scr_drawToolPane(toolSprScale) {
 	var filterButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
-	var filterImageIndex = 0;
+	var filterButtonColor = (obj_control.filterGridActive) ? global.colorThemeRezPink : c_white;
 	
 	// mouseover & click on filter button
 	if (mouseoverFilter) {
@@ -105,11 +109,10 @@ function scr_drawToolPane(toolSprScale) {
 	if (obj_control.filterGridActive) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, false);
-		filterImageIndex = 1;
 	}
 	
 	// draw filter sprite
-	draw_sprite_ext(spr_filterTool, filterImageIndex, toolButtonX, filterButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	draw_sprite_ext(spr_filterTool, 0, toolButtonX, filterButtonY, toolSprScale, toolSprScale, 0, filterButtonColor, 1);
 	
 	
 	
@@ -137,12 +140,18 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
-	if (obj_panelPane.functionFilter_peek[0]) draw_sprite_ext(spr_contextTool, 1, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
-	if (obj_panelPane.functionFilter_peek[1]) draw_sprite_ext(spr_contextTool, 2, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
-	if (obj_panelPane.functionFilter_peek[2]) draw_sprite_ext(spr_contextTool, 3, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	// draw highlight rect
+	if (obj_control.filterGridActive) {
+		draw_set_color(global.colorThemeBG);
+		draw_roundrect(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, false);
+	}
+	
+	if (obj_panelPane.functionFilter_peek[0]) draw_sprite_ext(spr_contextTool, 1, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, filterButtonColor, 1);
+	if (obj_panelPane.functionFilter_peek[1]) draw_sprite_ext(spr_contextTool, 2, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, filterButtonColor, 1);
+	if (obj_panelPane.functionFilter_peek[2]) draw_sprite_ext(spr_contextTool, 3, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, filterButtonColor, 1);
 	
 	// draw context sprite
-	draw_sprite_ext(spr_contextTool, 0, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	draw_sprite_ext(spr_contextTool, 0, toolButtonX, contextButtonY, toolSprScale, toolSprScale, 0, filterButtonColor, 1);
 
 	
 	
