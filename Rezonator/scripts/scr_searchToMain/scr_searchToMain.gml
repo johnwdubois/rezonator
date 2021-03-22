@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_searchToMain(){
 	obj_control.searchGridActive = false;
-	obj_toolPane.currentMode = obj_toolPane.setModeMain;
+	
 	var currentFocusLineSearch = scr_currentTopLine() - 2;
 	//show_message(currentFocusLineSearch);
 	var currentFocusUnitID = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, currentFocusLineSearch);
