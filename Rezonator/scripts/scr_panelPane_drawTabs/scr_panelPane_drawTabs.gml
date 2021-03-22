@@ -23,7 +23,7 @@ function scr_panelPane_drawTabs() {
 		}
 	}
 
-
+	var buttonScale = (1+global.fontSize/10);
 
 	var tabAmount = 5;
 
@@ -46,7 +46,7 @@ function scr_panelPane_drawTabs() {
 		var tabRectX2 = tabRectX1 + (windowWidth / (tabAmount+2));
 		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 
-		var buttonSize = sprite_get_width(spr_filterIcons) * 1.25;
+		var buttonSize = sprite_get_width(spr_oneToOne) * buttonScale;
 	
 		if (i != functionChainList_currentTab) {
 			edgeBufferY = functionTabs_tabHeight * 0.3;
@@ -296,7 +296,7 @@ function scr_panelPane_drawTabs() {
 			}
 		}
 	
-		draw_sprite_ext(spr_oneToOne, oneToOneView, oneToOneButtonX, oneToOneButtonY, 1, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_oneToOne, oneToOneView, oneToOneButtonX, oneToOneButtonY, buttonScale, buttonScale, 0, c_white, 1);
 	
 
 	}
