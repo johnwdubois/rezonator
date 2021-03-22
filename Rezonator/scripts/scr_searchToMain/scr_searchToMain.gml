@@ -29,8 +29,9 @@ function scr_searchToMain(){
 	}
 	else {
 		var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentFocusLine - 1);
-		//show_message(linePixelY);
-		obj_control.preSwitchDisplayRow = -linePixelY + (obj_control.gridSpaceVertical / 2);
+		if(is_numeric(linePixelY)){
+			obj_control.preSwitchDisplayRow = -linePixelY + (obj_control.gridSpaceVertical / 2);
+		}
 	}
 	//currentCenterDisplayRow = preSwitchDisplayRow;
 	obj_control.scrollPlusYDest = obj_control.preSwitchDisplayRow;

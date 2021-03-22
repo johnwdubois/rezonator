@@ -262,4 +262,248 @@ function scr_panelPane_drawShow1toMany(){
 		
 	}
 	
+	
+	
+	
+	//Show Traversal buttons
+	
+
+	//find only filtered chain
+	var currentFilteredChain = ds_list_find_value(obj_chain.filteredStackChainList, 0);
+	//find map of show that is playing
+	var currentShowSubMap = ds_map_find_value(global.nodeMap, obj_panelPane.functionChainList_playShowID);
+	var isSelected = ("" != obj_panelPane.functionChainContents_showID);
+	var setList = "";
+	var currentChainIndex = -1;
+	var setListSize = 0;
+	var isPlaying = false;
+	if(is_numeric(currentShowSubMap)){
+		if(ds_exists(currentShowSubMap,ds_type_map)){
+			//get setlist of playing show
+			setList = ds_map_find_value(currentShowSubMap, "setIDList");	
+			if (is_numeric(setList)) {
+				if (ds_exists(setList, ds_type_list)) {		
+					//get index of filtered chain in show's setList
+					currentChainIndex = ds_list_find_index(setList,currentFilteredChain);
+					setListSize = ds_list_size(setList);
+					isPlaying = true;
+				}
+			}
+		}
+	}
+	// show buttons (next) 
+	var showNextButtonText = "  >  ";
+	scr_adaptFont(showNextButtonText, "M");
+	var showNextButtonX2 = seqColX - 20;
+	var showNextButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
+	var showNextButtonX1 = showNextButtonX2 - string_width(showNextButtonText);
+	var showNextButtonY2 = showNextButtonY1 + strHeight/2;
+		
+				
+	// show buttons (Stop) 
+	var showStopButtonText = "  ►  ";
+	var showStopButtonX2 = showNextButtonX1 - 20;
+	var showStopButtonY1 = showNextButtonY1;
+	var showStopButtonX1 = showStopButtonX2 - string_width(showStopButtonText);
+	var showStopButtonY2 = showNextButtonY2;
+		
+		
+	// show buttons (prev)
+	var showPrevButtonText = "  <  ";
+	var showPrevButtonX2 = showStopButtonX1 - 20;
+	var showPrevButtonY1 = showNextButtonY1;
+	var showPrevButtonX1 = showPrevButtonX2 - string_width(showPrevButtonText);
+	var showPrevButtonY2 = showNextButtonY2;
+		
+
+
+		
+		
+		
+	if(isPlaying || isSelected){
+		
+		
+		// show buttons (prev)
+		var mouseoverShowPrevButton = point_in_rectangle(mouse_x, mouse_y, showPrevButtonX1, showPrevButtonY1, showPrevButtonX2, showPrevButtonY2);
+		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowPrevButton ? 0 : 0.5));
+		draw_roundrect(showPrevButtonX1- clipX, showPrevButtonY1- clipY, showPrevButtonX2- clipX, showPrevButtonY2- clipY, false);
+		draw_set_color(global.colorThemeText);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)- clipX), floor(mean(showPrevButtonY1, showPrevButtonY2)- clipY), showPrevButtonText);
+		if(mouseoverShowPrevButton){scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2),showPrevButtonY2, "Previous",obj_tooltip.arrowFaceUp);}
+		
+		if(isPlaying){
+			if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
+			
+				if(currentChainIndex > 0){				
+					scr_setValueForAllChains("stackChain","filter", false);
+									
+					// Filter the first current stack
+					var currentStackID = ds_list_find_value(setList, currentChainIndex-1);
+									
+					if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
+						ds_list_add(obj_chain.filteredStackChainList,currentStackID);
+						var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
+						if(is_numeric(chainSubMap)){
+							if(ds_exists(chainSubMap,ds_type_map)){
+								ds_map_replace(chainSubMap, "filter", true);
+
+							}
+						}
+										
+						with (obj_control) {
+							scr_renderFilter();
+						}
+					}
+
+				}
+				else{
+					scr_setValueForAllChains("stackChain","filter", false);
+					with(obj_panelPane){
+						functionChainList_playShowID = "";
+					}				
+					with (obj_control) {
+						scr_renderFilter();	
+					}
+				}
+		
+			}
+		}
+		
+
+		var mouseoverShowStopButton = point_in_rectangle(mouse_x, mouse_y, showStopButtonX1, showStopButtonY1, showStopButtonX2, showStopButtonY2);
+		// show buttons (Stop) 
+		if(isPlaying){
+			showStopButtonText =  "  ■  ";
+			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),mean(showStopButtonY1, showStopButtonY2), "Stop",obj_tooltip.arrowFaceUp);}
+		}
+		else{
+			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),showStopButtonY2, "Play",obj_tooltip.arrowFaceUp);}
+		}
+				
+		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowStopButton ? 0.0 : 0.5));
+		draw_roundrect(showStopButtonX1- clipX, showStopButtonY1- clipY, showStopButtonX2- clipX, showStopButtonY2- clipY, false);
+		draw_set_color(global.colorThemeText);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_text(floor(mean(showStopButtonX1, showStopButtonX2)- clipX), floor(mean(showStopButtonY1, showStopButtonY2)- clipY), showStopButtonText);
+	
+		
+		if (mouse_check_button_released(mb_left) && mouseoverShowStopButton ) {
+				if(isPlaying){
+					scr_setValueForAllChains("stackChain","filter", false);
+					with(obj_panelPane){
+						functionChainList_playShowID = "";
+					}
+					show_debug_message("functionChainList_playShowID:" + string(obj_panelPane.functionChainList_playShowID));
+					with (obj_control) {
+						scr_renderFilter();	
+					}
+				}
+				else {
+						
+					var currentShowSubMap = ds_map_find_value(global.nodeMap, obj_panelPane.functionChainContents_showID);
+		
+					if(is_numeric(currentShowSubMap)){
+						if(ds_exists(currentShowSubMap,ds_type_map)){
+							//get setlist of playing show
+							setList = ds_map_find_value(currentShowSubMap, "setIDList");	
+							if (is_numeric(setList)) {
+								if (ds_exists(setList, ds_type_list)) {		
+									//get size of setList to see if we can start a show
+									setListSize = ds_list_size(setList);
+
+								}
+							}
+						}
+					}
+					
+					if(setListSize > 0){
+							
+						with (obj_panelPane) {
+							functionChainList_playShowID = functionChainContents_showID;
+						}
+							
+						scr_setValueForAllChains("stackChain","filter", false);
+									
+						// Filter the first current stack
+						var currentStackID = ds_list_find_value(setList, 0);
+						show_debug_message("currentStackID : "+ string(currentStackID));
+
+						if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
+							if(currentStackID != undefined){
+								ds_list_add(obj_chain.filteredStackChainList,currentStackID);
+								var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
+								if(is_numeric(chainSubMap)){
+									if(ds_exists(chainSubMap,ds_type_map)){
+										ds_map_replace(chainSubMap, "filter", true);
+
+									}
+								}
+							}
+							with (obj_control) {
+								scr_renderFilter();
+							}
+						}
+					}
+					
+				}
+				
+		}
+		
+		
+		// show buttons (next)
+		var mouseoverShowNextButton = point_in_rectangle(mouse_x, mouse_y, showNextButtonX1, showNextButtonY1, showNextButtonX2, showNextButtonY2);
+		draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowNextButton ? 0 : 0.5));
+		draw_roundrect(showNextButtonX1- clipX, showNextButtonY1- clipY, showNextButtonX2- clipX, showNextButtonY2- clipY, false);
+		draw_set_color(global.colorThemeText);
+		draw_set_halign(fa_center);
+		draw_set_valign(fa_middle);
+		draw_text(floor(mean(showNextButtonX1, showNextButtonX2)- clipX), floor(mean(showNextButtonY1, showNextButtonY2)- clipY), showNextButtonText);
+	
+		if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, "Next",obj_tooltip.arrowFaceUp);}
+	
+		if(isPlaying){
+			if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {
+
+				if(currentChainIndex < setListSize-1 && currentChainIndex != -1){
+									
+					scr_setValueForAllChains("stackChain","filter", false);
+									
+					// Filter the first current stack
+					var currentStackID = ds_list_find_value(setList, currentChainIndex+1);
+
+					if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
+						if(currentStackID != undefined){
+							ds_list_add(obj_chain.filteredStackChainList,currentStackID);
+							var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
+							if(is_numeric(chainSubMap)){
+								if(ds_exists(chainSubMap,ds_type_map)){
+									ds_map_replace(chainSubMap, "filter", true);
+
+								}
+							}
+						}
+						with (obj_control) {
+							scr_renderFilter();
+						}
+					}
+
+				}
+				else{
+					scr_setValueForAllChains("stackChain","filter", false);
+					with(obj_panelPane){
+						functionChainList_playShowID = "";
+					}
+					show_debug_message("functionChainList_playShowID:" + string(obj_panelPane.functionChainList_playShowID));
+					with (obj_control) {
+						scr_renderFilter();	
+					}
+				}
+				
+			}
+		}
+		
+	}	
 }
