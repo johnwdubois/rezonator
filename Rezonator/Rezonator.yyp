@@ -134,6 +134,7 @@
     {"id":{"name":"scr_drawWordBorder","path":"scripts/scr_drawWordBorder/scr_drawWordBorder.yy",},"order":13,},
     {"id":{"name":"scr_addToChainFieldMap","path":"scripts/scr_addToChainFieldMap/scr_addToChainFieldMap.yy",},"order":35,},
     {"id":{"name":"scr_drawWord","path":"scripts/scr_drawWord/scr_drawWord.yy",},"order":14,},
+    {"id":{"name":"scr_pointInCircleClippedWindow","path":"scripts/scr_pointInCircleClippedWindow/scr_pointInCircleClippedWindow.yy",},"order":25,},
     {"id":{"name":"scr_mouseOnWord","path":"scripts/scr_mouseOnWord/scr_mouseOnWord.yy",},"order":15,},
     {"id":{"name":"scr_drawChunk","path":"scripts/scr_drawChunk/scr_drawChunk.yy",},"order":16,},
     {"id":{"name":"scr_wordVoid","path":"scripts/scr_wordVoid/scr_wordVoid.yy",},"order":17,},

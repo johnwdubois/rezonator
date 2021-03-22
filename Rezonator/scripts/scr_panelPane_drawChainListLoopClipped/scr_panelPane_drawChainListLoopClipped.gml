@@ -23,6 +23,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 		}
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
+	var ableToMouseoverOption = true;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
 
 
 	// get list of chains for this tab
@@ -185,7 +187,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 							draw_circle(mouse_x, mouse_y, 5, true);
 						}
 						
-						if (device_mouse_check_button_released(0, mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown)) {
+						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel) {
 		
 							if (obj_chain.currentFocusedChainID != currentChainID) {
 								// Focuses on selected chain
@@ -247,7 +249,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 
 					// right-click on chain in chainList
-					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !mouseoverCancel) {
 
 						obj_chain.currentFocusedChainID = currentChainID;
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
@@ -292,7 +294,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, c_white, 1);
 					
 					// click on checkbox
-					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !mouseoverCancel) {
 						currentChainSelected = !currentChainSelected;
 						scr_setMap(currentChainSubMap, "selected", currentChainSelected);
 						if (currentChainSelected && ds_list_find_index(selectedList, currentChainID) == -1) {
@@ -301,7 +303,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 						else if (!currentChainSelected) {
 							scr_deleteFromList(selectedList, currentChainID);
 						}
-						
 					}
 					
 					// setup filter/align/visible buttons
@@ -311,13 +312,14 @@ function scr_panelPane_drawChainListLoopClipped() {
 					var visibleChainX = optionsColX + (optionsColWidth * 0.5);
 					var alignChainX = optionsColX + (optionsColWidth * 0.75);
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
-					var mouseoverFilterChain = point_in_circle(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-					var mouseoverVisibleChain = point_in_circle(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain ;
-					var mouseoverAlignChain = point_in_circle(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush;
+					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption;
+					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption;
+					var mouseoverAlignChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush && ableToMouseoverOption;
 					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
 					
 					// mouseover & click on filter
 					if (mouseoverFilterChain) {
+						ableToMouseoverOption = false;
 						draw_circle(filterChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
 						if (mouse_check_button_released(mb_left)) {
 							currentChainFiltered = !currentChainFiltered;
@@ -335,6 +337,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 					// mouseover & click on visible
 					if (mouseoverVisibleChain) {
+						ableToMouseoverOption = false;
 						draw_circle(visibleChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
 						if (mouse_check_button_released(mb_left)) {
 							currentChainVisible = !currentChainVisible;
@@ -344,6 +347,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 					// mouseover & click on align
 					if (mouseoverAlignChain) {
+						ableToMouseoverOption = false;
 						draw_circle(alignChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
 						if (mouse_check_button_released(mb_left)) {
 							currentChainAlign = !currentChainAlign;

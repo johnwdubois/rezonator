@@ -10,7 +10,7 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	}
 	dropDownY = clamp(dropDownY, 0, camViewHeight);
 	
-	var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
+	var dropDownInst = instance_create_layer(dropDownX, dropDownY, "InstancesDialogue", obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
 	
