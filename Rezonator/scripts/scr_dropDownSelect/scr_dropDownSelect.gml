@@ -357,5 +357,9 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_justifyProseOptions(optionSelected);
 	}
+	else if (optionListType == global.optionListType1to1) //58
+	{
+		scr_1to1Options(optionSelected);
+	}
 
 }

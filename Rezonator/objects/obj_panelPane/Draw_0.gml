@@ -205,7 +205,7 @@ switch (currentFunction) {
 			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 		
 			windowWidth = camWidth;
-			windowHeight = (functionTabs_tabHeight * 2);
+			windowHeight = functionTabs_tabHeight;
 			scr_panelPane_drawTabs();
 		}
 		

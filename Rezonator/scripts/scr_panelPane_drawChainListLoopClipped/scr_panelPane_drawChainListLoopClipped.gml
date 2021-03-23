@@ -5,7 +5,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 				set chainContents panelPane to look at that chain
 	*/
 	
-
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	

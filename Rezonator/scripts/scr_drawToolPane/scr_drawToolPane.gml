@@ -1,5 +1,5 @@
 function scr_drawToolPane(toolSprScale) {
-	
+
 
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
@@ -20,11 +20,13 @@ function scr_drawToolPane(toolSprScale) {
 	var contextFlyoutExists = false;
 	var shapeFlyoutExists = false;
 	var justifyFlyoutExists = false;
+	var oneToOneFlyoutExists = false;
 	if (instance_exists(obj_flyout)) {
 		toolFlyoutExists = (obj_flyout.optionListType == global.optionListTypeToolButton);
 		contextFlyoutExists = (obj_flyout.optionListType == global.optionListTypeContext);
 		shapeFlyoutExists = (obj_flyout.optionListType == global.optionListTypeProse);
-		justifyFlyoutExists = (obj_flyout.optionListType == global.optionListTypeJustify);
+		justifyFlyoutExists = (obj_flyout.optionListType == global.optionListTypeJustifyProse);
+		oneToOneFlyoutExists = (obj_flyout.optionListType == global.optionListType1to1);
 	}
 
 	
@@ -187,6 +189,39 @@ function scr_drawToolPane(toolSprScale) {
 	
 	// draw justify sprite
 	draw_sprite_ext(spr_justifyTool, justifyImageIndex, toolButtonX, justifyButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	
+	
+	
+	// oneToOne button
+	var oneToOneButtonY = floor(y + (toolSprHeight * ((4 * 1.3) + 1)));
+	var oneToOneButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var oneToOneButtonRectY1 = floor(oneToOneButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var oneToOneButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var oneToOneButtonRectY2 = floor(oneToOneButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	var oneToOneImageIndex = !obj_control.showUnitTags;
+	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine) oneToOneImageIndex = obj_panelPane.chainViewOneToMany;
+	
+	var mouseoverOneToOne = point_in_rectangle(mouse_x, mouse_y, oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2) && !mouseoverCancel;
+	
+	if (mouseoverOneToOne || oneToOneFlyoutExists) {
+		draw_set_color(c_white);
+		scr_drawRectWidth(oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2, mouseoverRectWidth);
+	}
+	
+	if (mouseoverOneToOne) {
+		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, obj_control.showUnitTags ? "One to one" : "One to many", obj_tooltip.arrowFaceRight);
+		
+		if (mouse_check_button_released(mb_left)) {
+			var oneToOneOptionList = ds_list_create();
+			ds_list_add(oneToOneOptionList, "One to one", "One to many");
+			scr_createFlyout(oneToOneButtonRectX1 - flyoutXBuffer, oneToOneButtonY, oneToOneOptionList, global.optionListType1to1, spr_oneToOneTool, false);
+		}
+	}
+	
+	// draw oneToOne sprite
+	draw_sprite_ext(spr_oneToOneTool, oneToOneImageIndex, toolButtonX, oneToOneButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	
+	
 	
 	
 	

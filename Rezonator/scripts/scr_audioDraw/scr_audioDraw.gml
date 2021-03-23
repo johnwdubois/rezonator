@@ -1,73 +1,93 @@
 /*
-	scr_audioDraw();
-	
-	Last Updated: 2020-10-26
-	
-	Called from: obj_audioUI
-	
 	Purpose: Draw the Audio GUI when an Audio File has been uploaded, including plauhead, bookmarks, and toggles
-	
-	Mechanism: Track playhead position using audioPos
-	
-	Author: Terry DuBois, Georgio Klironomos
 */
 function scr_audioDraw() {
 	
 	// Get dimensions of whole GUI window
 	windowHeight = (camera_get_view_height(camera_get_active())) * 0.08;
-	windowWidth = camera_get_view_width(camera_get_active()) - global.scrollBarWidth;
+	windowWidth = camera_get_view_width(camera_get_active()) - global.toolPaneWidth;
 	x = 0;
 	y = (camera_get_view_height(camera_get_active())) - windowHeight;
 	  
 	var progressColor = c_orange;
-	var playPauseSprite = spr_playPause;
 
 	// draw GUI background
-	draw_set_color(global.colorThemeBG);
+	var bgColor = make_color_rgb(125, 125, 128);
+	draw_set_color(bgColor);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
-	if(point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 		mouseOverAudioUI = true;
 	}
 
 	// draw track title
-	draw_set_color(global.colorThemeText);
+	draw_set_color(global.colorThemeBG);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	scr_adaptFont(scr_get_translation("msg_audio"), "M");
+	var strHeight = string_height("0");
 	draw_text(x + 24, y + 24, scr_get_translation("msg_audio"));
 	var strHeightAudioTrack = string_height("0");
 	scr_adaptFont(string(audioFile), "S");
 	draw_text(x + 24, y + 24 + strHeightAudioTrack, string(audioFile));
+	
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight)) {
+		scr_createTooltip(mean(x, seekBarX1 - string_width("AAAAAAA")), y, string(audioFile), obj_tooltip.arrowFaceDown);
+	}
+	
+	playheadRadSmall = strHeight * 0.2;
+	playheadRadBig = strHeight * 0.3;
 
 
 
 	// draw seekbar BG
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, x + (windowWidth / 2), y + windowHeight, true);
-	draw_set_color(global.colorThemeBG);
+	draw_set_color(bgColor);
 	draw_rectangle(seekBarX1 - string_width("AAAAAAA"), y, seekBarX2 + string_width("AAAAAAA"), y + windowHeight, false);
 	
 	// draw play/pause button
-	var playPauseMouseOver = false;
-	var playPauseRad = sprite_get_width(playPauseSprite) / 2;
+	var playTriangleWidth = strHeight * 0.9;
+	var playTriangleHeight = strHeight * 0.8;
 	var playPauseX = mean(seekBarX1, seekBarX2);
-	var playPauseY = clamp(seekBarY1 - 38, y + playPauseRad + 2, y + windowHeight);
-	draw_sprite(playPauseSprite, !audioPaused, playPauseX, playPauseY);
+	var playPauseY = y + (windowHeight * 0.35) - (playTriangleHeight * 0.5);
+	var pauseLineLeftX = x + (windowWidth * 0.5) - (7);
+	var pauseLineRightX = x + (windowWidth * 0.5) + (7);
+	var pauseLineY1 = y + (windowHeight * 0.35) - (playTriangleHeight * 0.5);
+	var pauseLineY2 = pauseLineY1 + playTriangleHeight;
+	var playPauseMouseY1 = clamp(pauseLineY1 - (strHeight * 0.5), y, seekBarY1);
+	var playPauseMouseY2 = clamp(pauseLineY2 + (strHeight * 0.5), y, seekBarY1);
+	var mouseoverSeekbar = point_in_rectangle(mouse_x, mouse_y, seekBarX1 - (playheadRad * 2), seekBarY1 - (playheadRad * 2), seekBarX2 + (playheadRad * 2), seekBarY2 + (playheadRad * 2));
+	var mouseOverPlayPause = point_in_rectangle(mouse_x, mouse_y, pauseLineLeftX - (strHeight * 0.5), playPauseMouseY1, pauseLineRightX + (strHeight * 0.5), playPauseMouseY2);
 	
-	// draw hover circle around play/pause button
-	draw_set_color(global.colorThemeBorders);
-	draw_set_circle_precision(64);
-	for (var i = 0; i < 1.5; i += 0.25) {
-		draw_circle(playPauseX, playPauseY, playPauseRad - i, true);
+	if (audioPaused) {
+		// draw play triangle
+		var playTriangleX1 = x + (windowWidth * 0.5) - (playTriangleWidth * 0.5);
+		var playTriangleY1 = y + (windowHeight * 0.35) - (playTriangleHeight * 0.5);
+		var playTriangleX2 = playTriangleX1;
+		var playTriangleY2 = playTriangleY1 + playTriangleHeight;
+		var playTriangleX3 = playTriangleX1 + playTriangleWidth;
+		var playTriangleY3 = mean(playTriangleY1, playTriangleY2);
+		draw_set_color((mouseOverPlayPause) ? global.colorThemeSelected1 : global.colorThemeBG);
+		draw_triangle(playTriangleX1, playTriangleY1, playTriangleX2, playTriangleY2, playTriangleX3, playTriangleY3, false);
+	}
+	else {
+		// draw pause
+		draw_set_color((mouseOverPlayPause) ? global.colorThemeSelected1 : global.colorThemeBG);
+		draw_line_width(pauseLineLeftX, pauseLineY1, pauseLineLeftX, pauseLineY2, 5);
+		draw_line_width(pauseLineRightX, pauseLineY1, pauseLineRightX, pauseLineY2, 5);
 	}
 	
+	if (mouseOverPlayPause) {
+		//draw_rectangle(pauseLineLeftX - (strHeight * 0.5), playPauseMouseY1, pauseLineRightX + (strHeight * 0.5), playPauseMouseY2, true);
+		scr_createTooltip(mean(pauseLineLeftX, pauseLineRightX), pauseLineY1 - (strHeight * 0.25), (audioPaused) ? "Play" : "Pause", obj_tooltip.arrowFaceDown);
+	}
+
+	
 	// Check for mouseClick on play/pause button
-	if (point_in_circle(mouse_x, mouse_y, playPauseX, playPauseY, playPauseRad)) {
+	if (mouseOverPlayPause) {
 		if (mouse_check_button_pressed(mb_left)) {
-			if(selectedStackChain > -1) {
-				if(audioPaused) {
+			if (selectedStackChain > -1) {
+				if (audioPaused) {
 					if(audioPos >= bookmarkEndTime) {
 						scr_audioJumpToUnit(stackStartUnit);
 						audioPaused = !audioPaused;
@@ -76,8 +96,6 @@ function scr_audioDraw() {
 			}
 			audioPaused = !audioPaused;
 		}
-		playPauseMouseOver = true;
-		playPauseRad += 3;
 	}
 	
 	// Check for Spacebar to toggle play/pause and set Bookmark
@@ -134,7 +152,7 @@ function scr_audioDraw() {
 	seekBarY1 = y + (windowHeight * 0.75) - (seekBarHeight / 2);
 	seekBarX2 = seekBarX1 + seekBarWidth;
 	seekBarY2 = seekBarY1 + seekBarHeight;
-	draw_set_color(global.colorThemeText);
+	draw_set_color(global.colorThemeSelected1);
 	draw_rectangle(seekBarX1, seekBarY1, seekBarX2, seekBarY2, false);
 	draw_set_color(progressColor);
 	draw_rectangle(seekBarX1, seekBarY1, playheadX, seekBarY2, false);
@@ -155,11 +173,10 @@ function scr_audioDraw() {
 	//Check for mousehover/click on Playhead
 	var playheadHoldable = false;
 
-	if (point_in_rectangle(mouse_x, mouse_y, seekBarX1 - (playheadRad * 2), seekBarY1 - (playheadRad * 2), seekBarX2 + (playheadRad * 2), seekBarY2 + (playheadRad * 2))
-	or playheadHolding) {
+	if (mouseoverSeekbar or playheadHolding) {
 		playheadHoldable = true;
 	}
-	if (playheadHoldable and not playPauseMouseOver) {
+	if (playheadHoldable and !mouseOverPlayPause) {
 		playheadRadDest = playheadRadBig;
 		if (mouse_check_button_pressed(mb_left)) {
 			playheadHolding = true;
@@ -205,8 +222,6 @@ function scr_audioDraw() {
 			
 			draw_set_halign(fa_left);
 			draw_sprite_ext(spr_linkArrow, 0, endmarkX, endmarkY, 0.5, 0.5, 210, c_red, 1);
-		
-		
 		}
 	}
 
@@ -228,7 +243,7 @@ function scr_audioDraw() {
 	if (string_length(strTotalSeconds) < 2) {
 		strTotalSeconds = "0" + string(floor(audioLength % 60));
 	}
-	draw_set_color(global.colorThemeText);
+	draw_set_color(global.colorThemeBG);
 	draw_set_valign(fa_middle);
 	var timeXBuffer = 20;
 	draw_set_halign(fa_left);
@@ -241,26 +256,26 @@ function scr_audioDraw() {
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_middle);
 	var jumpUnitStartTextX = x + windowWidth - string_width("A");
-	var jumpUnitStartTextY = y + (windowHeight / 2);
+	var jumpUnitStartTextY = y + (windowHeight * 0.25);
 	draw_text(jumpUnitStartTextX, jumpUnitStartTextY, scr_get_translation("msg_jump-audio"));
 
 	var jumpUnitStartRectX1 = jumpUnitStartTextX - string_width("Click word to jump audio  ");
-	var jumpUnitStartRectY1 = jumpUnitStartTextY - 10;
-	var jumpUnitStartRectX2 = jumpUnitStartRectX1 - 20;
-	var jumpUnitStartRectY2 = jumpUnitStartTextY + 10;
+	var jumpUnitStartRectY1 = max(y, jumpUnitStartTextY - strHeight * 0.55);
+	var jumpUnitStartRectX2 = jumpUnitStartRectX1 - strHeight;
+	var jumpUnitStartRectY2 = jumpUnitStartTextY + strHeight * 0.55;
 
 	if (point_in_rectangle(mouse_x, mouse_y, jumpUnitStartRectX2, jumpUnitStartRectY1, jumpUnitStartRectX1, jumpUnitStartRectY2)
 	and mouse_check_button_released(mb_left)) {
 		audioJumpOnWordClick = !audioJumpOnWordClick;
 	}
-
+	
 	if (audioJumpOnWordClick) {
-		draw_set_color(global.colorThemeBorders);
+		draw_set_color(merge_color(global.colorThemeBG, bgColor, 0.5));
 		draw_rectangle(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, false);
+		draw_sprite_ext(spr_checkmark, 0, mean(jumpUnitStartRectX1, jumpUnitStartRectX2), mean(jumpUnitStartRectY1, jumpUnitStartRectY2), 1, 1, 0, c_white, 1);
 	}
-	else {
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, true);
-	}
+	
+	draw_set_color(global.colorThemeBG);
+	scr_drawRectWidth(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, 2);
 
 }

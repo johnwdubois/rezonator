@@ -74,6 +74,8 @@ function scr_panelPane_drawTabs() {
 
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(tabRectX1+edgeBufferX, tabRectY2, tabRectX2-edgeBufferX+1, y+ windowHeight, false);
+		
+		
 		if (i != functionChainList_currentTab) {
 			draw_set_color(global.colorThemeBorders)
 			draw_line(tabRectX1-edgeBufferX,tabRectY2,tabRectX2+edgeBufferX*2,tabRectY2)
@@ -100,67 +102,7 @@ function scr_panelPane_drawTabs() {
 			tabFilterActive = obj_control.filterActiveStack;
 		}
 
-		
-		// draw filter/visible buttons if there is anything selected
-		if (i == functionChainList_currentTab) {
-			if (chainTab) {
-				var itemsInFilter = (ds_list_size(filterList) > 0);
-				var buttonAlpha = itemsInFilter ? 1 : 0.4;
-				
-				// filter button
-				/*
-				var filterRectX1 = x + (buttonSize / 2);
-				var filterRectY1 = y + functionTabs_tabHeight + (functionTabs_tabHeight / 2) - (buttonSize / 2);
-				var filterRectX2 = filterRectX1 + buttonSize;
-				var filterRectY2 = filterRectY1 + buttonSize;
-				var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterRectX1, filterRectY1, filterRectX2, filterRectY2);
-				draw_set_alpha(buttonAlpha);
-				draw_set_color(obj_control.filterGridActive ? global.colorThemeText : global.colorThemeSelected1);
-				draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, false);
-				if (mouseoverFilter) {
-					scr_createTooltip(mean(filterRectX1, filterRectX2), floor(filterRectY2), "Filter", obj_tooltip.arrowFaceUp);
-						
-					if (itemsInFilter) {
-						draw_set_color(global.colorThemeText);
-						draw_roundrect(filterRectX1, filterRectY1, filterRectX2, filterRectY2, true);
-							
-						// click filter button
-						if (mouse_check_button_released(mb_left)) {
-							
-							// toggle filter depending on tab
-							if (functionChainList_currentTab == functionChainList_tabRezBrush) {
-								obj_control.filterActiveRez = !obj_control.filterActiveRez;
-								show_debug_message("filterActiveRez: " + string(filterActiveRez));
-							}
-							else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
-								obj_control.filterActiveTrack = !obj_control.filterActiveTrack;
-								show_debug_message("filterActiveTrack: " + string(filterActiveTrack));
-							}
-							else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-								obj_control.filterActiveStack = !obj_control.filterActiveStack;
-								show_debug_message("filterActiveStack: " + string(filterActiveStack));
-							}
-							
-							// determine if filter should be activated or disabled
-							obj_control.filterGridActive = (functionChainList_currentTab == functionChainList_tabRezBrush && obj_control.filterActiveRez)
-															|| (functionChainList_currentTab == functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
-															|| (functionChainList_currentTab == functionChainList_tabStackBrush && obj_control.filterActiveStack);
-							
-							if (obj_control.filterGridActive) {
-								scr_renderFilter();
-							}
-							else {
-								scr_disableFilter();
-							}
 
-						}
-					}
-				}
-				draw_sprite_ext(spr_filterIcons, 0, floor(mean(filterRectX1, filterRectX2)), floor(mean(filterRectY1, filterRectY2)), 1, 1, 0, obj_control.filterGridActive ? global.colorThemeBG : global.colorThemeText, buttonAlpha);
-				*/
-
-			}
-		}
 		
 		draw_set_alpha(1);
 		draw_set_halign(fa_left);
@@ -219,41 +161,7 @@ function scr_panelPane_drawTabs() {
 				// unfocus chains of all type
 				scr_unFocusAllChains();
 			
-				/*
-				if (i == 1) {
-					obj_toolPane.currentMode = obj_toolPane.modeTrack;
-					if(obj_control.searchGridActive) {
-						obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
-					}
-					else {
-						obj_toolPane.setModeMain = obj_toolPane.modeTrack;
-					}
-				}
-				if (i == 2) {
-					obj_toolPane.currentMode = obj_toolPane.modeRez;
-					if(obj_control.searchGridActive) {
-						obj_toolPane.setModeSearch = obj_toolPane.modeRez;
-					}
-					else {
-						obj_toolPane.setModeMain = obj_toolPane.modeRez;
-					}
-				}
-				if (i == 3) {
-					if(obj_toolPane.currentMode = obj_toolPane.modeRead) {
-						obj_toolPane.currentMode = obj_toolPane.modeTrack;
-						if (obj_control.searchGridActive) {
-							obj_toolPane.setModeSearch = obj_toolPane.modeTrack;
-						}
-						else {
-							obj_toolPane.setModeMain = obj_toolPane.modeTrack;
-						}
-					}
-				}
-				*/
-				
-				
-				
-				
+
 			}
 		}
 	
@@ -268,43 +176,6 @@ function scr_panelPane_drawTabs() {
 
 	}
 	
-	if(functionChainList_currentTab != functionChainList_tabShow){
-	
-	
-		// 1to1 vs 1toMany button
-		var oneToOneButtonX = floor(x + windowWidth - buttonSize);
-		var oneToOneButtonY = floor(y + functionTabs_tabHeight * 1.5);
-		var oneToOneButtonX1 = oneToOneButtonX - (buttonSize / 2);
-		var oneToOneButtonY1 = oneToOneButtonY - (buttonSize / 2);
-		var oneToOneButtonX2 = oneToOneButtonX1 + buttonSize;
-		var oneToOneButtonY2 = oneToOneButtonY1 + buttonSize;
-		var mouseoverOneToOneButton = point_in_rectangle(mouse_x, mouse_y, oneToOneButtonX1, oneToOneButtonY1, oneToOneButtonX2, oneToOneButtonY2);
-	
-		// determine whether we are in 1to1 or 1toMany
-		var oneToOneView = false;
-		if (functionChainList_currentTab == functionChainList_tabLine) {
-			if (obj_control.showUnitTags) {
-				oneToOneView = true;
-			}
-		}
-		else if (!chainViewOneToMany) oneToOneView = true;
-	
-		if (mouseoverOneToOneButton) {
-			scr_createTooltip(mean(oneToOneButtonX1, oneToOneButtonX2), floor(oneToOneButtonY2), (oneToOneView) ? "One to one" : "One to many", obj_tooltip.arrowFaceUp);
-		
-			draw_set_color(global.colorThemeSelected1);
-			draw_roundrect(oneToOneButtonX1 - (buttonSize * 0.15), oneToOneButtonY1 - (buttonSize * 0.15), oneToOneButtonX2  + (buttonSize * 0.15), oneToOneButtonY2 + (buttonSize * 0.15), false);
-		
-			if (mouse_check_button_released(mb_left)) {
-				scr_toggle1to1();
-			}
-		}
-	
-		draw_sprite_ext(spr_oneToOne, oneToOneView, oneToOneButtonX, oneToOneButtonY, buttonScale, buttonScale, 0, c_white, 1);
-	
-
-	}
-
 
 
 

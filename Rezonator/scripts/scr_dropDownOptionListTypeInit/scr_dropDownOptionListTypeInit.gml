@@ -60,5 +60,6 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeShowList = 55;
 	global.optionListTypeToolButton = 56;
 	global.optionListTypeJustifyProse = 57;
+	global.optionListType1to1 = 58;
 
 }
