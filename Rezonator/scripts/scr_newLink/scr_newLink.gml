@@ -1,15 +1,5 @@
-/*
-	scr_newLink(wordID);
-	
-	Last Updated: 2018-09-11
-	
-	Called from: obj_chain
-	
+/*	
 	Purpose: the user has created a link, so this script will add it to the node map
-	
-	Mechanism: create new node in map for link
-	
-	Author: Terry DuBois
 */
 function scr_newLink(wordID) {
 	
@@ -205,6 +195,10 @@ function scr_newLink(wordID) {
 				show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(goalSetSubMap));
 			}
 		}
+	}
+	
+	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+		scr_alignChain2ElectricBoogaloo(currentFocusedChainID);
 	}
 
 }

@@ -1,22 +1,13 @@
 /*
-	scr_drawLineWordIDListLoop(wordIDList, previousWordDisplayCol, currentLineY, drawLineLoop, unitID);
-	
-	Last Updated: 2019-02-11
-	
-	Called from: obj_control
-	
 	Purpose: draws words to main screen, using wordIDs from the given wordIDList
-	
-	Mechanism: loop through wordIDList to get wordIDs, look up their display info in wordGrid & dynaWordGrid
-	
-	Author: Terry DuBois, Georgio Klironomos
 */
 
 function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoop, unitID) {
+
 	var currentWordIDListSize = 0;
-	var previousWordDisplayCol = -1;
+	var previousWordID = -1;
 	
-	if(is_numeric(currentWordIDList) and currentWordIDList != undefined){
+	if (is_numeric(currentWordIDList) and currentWordIDList != undefined) {
 		if(ds_exists(currentWordIDList, ds_type_list)){
 			currentWordIDListSize = ds_list_size(currentWordIDList);
 		}
@@ -28,9 +19,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	
 	var shapeTextX = wordLeftMargin;
 	var shapeTextSpace = 12;
-
-	var voidMax = 0;
-	var voidSum = 0;
 
 	var previousWordDisplayString = "0";
 
@@ -84,11 +72,9 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 
 	// get each wordID from wordIDList and draw it
-	
 	drawWordLoop = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : currentWordIDListSize-1;
 	repeat (currentWordIDListSize) {
-	//for (var drawWordLoop = 0; drawWordLoop < currentWordIDListSize; drawWordLoop++) {
-		//var shake = false;
+
 		var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
 		var currentWordGridRow = currentWordID - 1;
 		
@@ -142,42 +128,63 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		}
 	
 	
-		// Draw a word normally
+	
+	
+	
+	
+		// get void for word
 		var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
-		//var currentWordDisplayString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
-	
-		// using the previous word's display column, set the current word's void
-		var currentWordVoid = 0;
 
-		if (drawWordLoop >= 0) {
-			currentWordDisplayCol = scr_wordVoid(currentWordDisplayCol, previousWordDisplayCol, currentWordGridRow, currentWordID);
-			
-		}
-		else {
-			// if the current word is the first word of the line, and it is floating out in space for no reason, bring it back to the left
-			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, abs(currentWordDisplayCol));
+		var previousWordDisplayCol = 0;
+		if (previousWordID >= 0) previousWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, previousWordID - 1);
 		
-			if (not drawBorder and not borderRounded and abs(currentWordDisplayCol) > 0) {
-				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol - 1);
-			}
-		}
-		currentWordVoid = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow);
-		voidSum += currentWordVoid;
-		voidMax = max(voidMax, currentWordVoid);
-	
-		// if showing developer variables, draw rectangle to visualize voids
-		if ((showDevVars and currentWordVoid > 0)) {// or currentWordVoid > 17) { // Do we want to always be showing this?
-			scr_drawVoids(drawWordLoop, previousWordDisplayCol, gridSpaceHorizontal, wordLeftMargin, currentLineY, currentWordVoid, currentWordDisplayCol);
-		}
-	
-		// if the previous word is on top of the current word, push the current word out by one column
-		currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
-		/*
-		if (previousWordDisplayCol >= currentWordDisplayCol) {
+		var currentWordVoid = currentWordDisplayCol - previousWordDisplayCol;
+		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, currentWordVoid);
+		
+		if (currentWordVoid < 1 && previousWordID >= 0) {
 			currentWordDisplayCol++;
 			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
+			
+			// if we are pushing a word in a chain, realign that chain
+			if (currentWordInChainsListSize > 0) {
+				for (var i = 0; i < currentWordInChainsListSize; i++) {
+					var currentChain = ds_list_find_value(currentWordInChainsList, i);
+					scr_alignChain2ElectricBoogaloo(currentChain);
+				}
+			}
 		}
-	*/
+		
+		// if this word is not in a chain, but has a void greater than 1, bring it back!!
+		if (currentWordInChainsListSize < 1) {
+			if (currentWordVoid > 1) {
+				currentWordDisplayCol--;
+				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		// if showing developer variables, draw rectangle to visualize voids
+		/*
+		if ((showDevVars and currentWordVoid > 0)) {
+			scr_drawVoids(drawWordLoop, previousWordDisplayCol, gridSpaceHorizontal, wordLeftMargin, currentLineY, currentWordVoid, currentWordDisplayCol);
+		}
+		*/
+
+
+
+
+
+
+
+
+
 		// horizontally move this word to its desired x-pixel value
 		var currentWordDestX = 0;
 		if (justify == justifyLeft) {
@@ -320,7 +327,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 			scr_drawWord(currentWordGridRow, currentWordID, unitID, currentWordX, currentLineY, currentWordString, hitGridHeight);
 		}
 	
-		previousWordDisplayCol = currentWordDisplayCol;
+		previousWordID = currentWordID;
 		previousWordDisplayString = currentWordString;
 	
 		shapeTextX += currentWordStringWidth + shapeTextSpace;
@@ -331,8 +338,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 
 	// set total void values for this line, now that we have gone through every word in the line
-	ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidMax, drawLineLoop, voidMax);
-	ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidSum, drawLineLoop, voidSum);
+	//ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidMax, drawLineLoop, voidMax);
+	//ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidSum, drawLineLoop, voidSum);
 
 
 }

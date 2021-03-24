@@ -1,6 +1,7 @@
 ///@description Remove Link or Chunk
 function scr_deleteFromChain(sortVizSetList) {
 	
+
 	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
 		//show_message("current Tool :   "+string(obj_toolPane.currentTool) + ",  newWordDeleted: " + string(obj_control.newWordDeleted)+ ",  deleteNewWord: " + string(obj_control.deleteNewWord)+ ",  deleteChunkWord: " + string(obj_control.deleteChunkWord))
 		scr_deleteChunk();
@@ -175,6 +176,8 @@ function scr_deleteFromChain(sortVizSetList) {
 				scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
 			}
 			
+			scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID);
+			
 			// focus goalEntry
 			ds_map_replace(chainSubMap, "focused", goalEntry);
 			exit;
@@ -266,6 +269,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	}
 	
 	
+	scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID);
 	show_debug_message("scr_deleteFromChain() , FINAL CHECK");
 
 }
