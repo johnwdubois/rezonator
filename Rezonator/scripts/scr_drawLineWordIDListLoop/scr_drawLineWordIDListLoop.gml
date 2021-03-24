@@ -132,35 +132,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	
 	
 	
-		// get void for word
-		var currentWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow);
 
-		var previousWordDisplayCol = 0;
-		if (previousWordID >= 0) previousWordDisplayCol = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayCol, previousWordID - 1);
-		
-		var currentWordVoid = currentWordDisplayCol - previousWordDisplayCol;
-		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colVoid, currentWordGridRow, currentWordVoid);
-		
-		if (currentWordVoid < 1 && previousWordID >= 0) {
-			currentWordDisplayCol++;
-			ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
-			
-			// if we are pushing a word in a chain, realign that chain
-			if (currentWordInChainsListSize > 0) {
-				for (var i = 0; i < currentWordInChainsListSize; i++) {
-					var currentChain = ds_list_find_value(currentWordInChainsList, i);
-					scr_alignChain2ElectricBoogaloo(currentChain);
-				}
-			}
-		}
-		
-		// if this word is not in a chain, but has a void greater than 1, bring it back!!
-		if (currentWordInChainsListSize < 1) {
-			if (currentWordVoid > 1) {
-				currentWordDisplayCol--;
-				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayCol, currentWordGridRow, currentWordDisplayCol);
-			}
-		}
+		scr_wordCalculateVoid(currentWordID)
 		
 		
 		
@@ -181,7 +154,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 
 
-
+		var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 
 
 

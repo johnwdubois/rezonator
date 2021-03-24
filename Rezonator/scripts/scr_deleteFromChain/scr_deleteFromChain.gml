@@ -36,6 +36,13 @@ function scr_deleteFromChain(sortVizSetList) {
 	show_debug_message("scr_deleteFromChain() , CHECK 1");
 	var focusedEntryType = ds_map_find_value(focusedEntrySubMap, "type");
 	
+	// get the focusedEntry's word & displayrow
+	var focusedEntryWord = -1;
+	if (focusedEntryType == "rez" || focusedEntryType == "track") {
+		focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
+	}
+	
+	
 	// find where in the chain's setList the focused entry is
 	var chainSetList = ds_map_find_value(chainSubMap, "setIDList");
 	var chainVizSetList = ds_map_find_value(chainSubMap, "vizSetIDList");
@@ -176,7 +183,7 @@ function scr_deleteFromChain(sortVizSetList) {
 				scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
 			}
 			
-			scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID);
+			scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID, focusedEntryWord, true);
 			
 			// focus goalEntry
 			ds_map_replace(chainSubMap, "focused", goalEntry);
@@ -269,7 +276,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	}
 	
 	
-	scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID);
+	scr_deleteFromChainVoidCheck(obj_chain.currentFocusedChainID, focusedEntryWord, true);
 	show_debug_message("scr_deleteFromChain() , FINAL CHECK");
 
 }
