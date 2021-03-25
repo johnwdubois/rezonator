@@ -85,7 +85,17 @@ function scr_panelPane_drawUnits1toMany() {
 				for (var j = 0; j < IDListSize; j++) {
 					drawDropDowns = false;
 					//Get info on current word
-					var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+					var currentWordID = -1;
+					
+					if (obj_control.searchGridActive) {
+						var hitID = ds_list_find_value(functionChainContents_IDList, j);
+						currentWordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, hitID - 1);
+					}
+					else {
+						currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+					}
+					
+					
 					var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
 					if(currentWordState == obj_control.wordStateDead){
 						continue;

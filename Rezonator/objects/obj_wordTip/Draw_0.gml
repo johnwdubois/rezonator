@@ -3,7 +3,7 @@
 
 
 // Only read-mode has WordTips
-if (obj_toolPane.currentMode != obj_toolPane.modeRead)
+if (obj_toolPane.currentMode != obj_toolPane.modeRead || obj_control.mouseoverPanelPane)
 {
 	exit;
 }
