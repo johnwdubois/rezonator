@@ -99,21 +99,21 @@ function scr_audioDraw() {
 	}
 	
 	// Check for Spacebar to toggle play/pause and set Bookmark
-	if (keyboard_check_pressed(vk_space) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
+	if (keyboard_check_pressed(vk_space) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow) && audioSound != -1) {
 		//var stackSelected = 
-		if(selectedStackChain > -1) {
-			if(audioPaused) {
+		if (selectedStackChain > -1) {
+			if (audioPaused) {
 				audioPaused = !audioPaused;
 			}
-			else{
+			else {
 				//show_message(stackStartUnit);
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				stackUnitListPosition = 0;	
 				audioPaused = !audioPaused;
 			}
 		}
-		else if(bookmarkStartTime > -1) {
-			if(audioPaused) {
+		else if (bookmarkStartTime > -1) {
+			if (audioPaused) {
 				audio_sound_set_track_position(audioSound, bookmarkStartTime);
 				audioPaused = !audioPaused;
 			}
@@ -127,7 +127,7 @@ function scr_audioDraw() {
 	}
 	
 	// Check for Enter to set bookmark
-	if (keyboard_check_pressed(vk_enter) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_stackShow)) {
+	if (keyboard_check_pressed(vk_enter) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow) && audioSound != -1) {
 		if(selectedStackChain == -1) {
 			if(audioPaused) {
 				var currentFocusUnit = scr_currentTopLine();
@@ -173,7 +173,7 @@ function scr_audioDraw() {
 	//Check for mousehover/click on Playhead
 	var playheadHoldable = false;
 
-	if (mouseoverSeekbar or playheadHolding) {
+	if ((mouseoverSeekbar or playheadHolding) && audioSound != -1 && file_exists(audioFile)) {
 		playheadHoldable = true;
 	}
 	if (playheadHoldable and !mouseOverPlayPause) {
@@ -188,7 +188,7 @@ function scr_audioDraw() {
 	playheadRad = lerp(playheadRad, playheadRadDest, 0.5);
 
 
-	if (!mouse_check_button(mb_left)) {
+	if (!mouse_check_button(mb_left) && audioSound != -1) {
 		if (playheadHolding) {
 			audioPosTemp = clamp(audioPosTemp, 0, audioLength);
 			audio_sound_set_track_position(audioSound, audioPosTemp);
@@ -277,5 +277,45 @@ function scr_audioDraw() {
 	
 	draw_set_color(global.colorThemeBG);
 	scr_drawRectWidth(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, 2);
+	
+	
+	
+	// load audio button
+	var loadAudioButtonX1 = x + (windowWidth * 0.02);
+	var loadAudioButtonY1 = y + (windowHeight * 0.6);
+	var loadAudioButtonX2 = x + (windowWidth * 0.15);
+	var loadAudioButtonY2 = y + (windowHeight * 0.9);
+	var mouseoverLoadAudio = point_in_rectangle(mouse_x, mouse_y, loadAudioButtonX1, loadAudioButtonY1, loadAudioButtonX2, loadAudioButtonY2);
+	
+	draw_set_color(mouseoverLoadAudio ? merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.3) : global.colorThemeSelected1);
+	draw_rectangle(loadAudioButtonX1, loadAudioButtonY1, loadAudioButtonX2, loadAudioButtonY2, false);
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(loadAudioButtonX1, loadAudioButtonY1, loadAudioButtonX2, loadAudioButtonY2, true);
+	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(floor(mean(loadAudioButtonX1, loadAudioButtonX2)), floor(mean(loadAudioButtonY1, loadAudioButtonY2)), "Load Audio");
+	
+	if (mouseoverLoadAudio) {
+		if (mouse_check_button_released(mb_left)) {
+			
+			audio_stop_all();
+			audioFile = "";
+			audioStream = -1;
+			audioSound = -1;
+			audioLength = 0;
+			audioPos = 0;
+			audioPaused = true;
+			
+			
+			var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, scr_get_translation("msg_file_audio"));
+			if (getAudioFile != "" and file_exists(getAudioFile)) {
+				audioFile = getAudioFile;
+				audioStream = audio_create_stream(audioFile);
+				audioSound = audio_play_sound(audioStream, 100, false);
+				visible = true;
+			}
+		}
+	}
 
 }

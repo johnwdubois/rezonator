@@ -1,6 +1,5 @@
 function scr_drawToolPane(toolSprScale) {
 
-
 	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout));
 	var toolSprWidth = sprite_get_width(spr_toolsNew) * toolSprScale;
 	var toolSprHeight = sprite_get_height(spr_toolsNew) * toolSprScale;
@@ -221,6 +220,40 @@ function scr_drawToolPane(toolSprScale) {
 	// draw oneToOne sprite
 	draw_sprite_ext(spr_oneToOneTool, oneToOneImageIndex, toolButtonX, oneToOneButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 	
+	
+	
+	
+	
+	
+	
+	// audio button
+	var audioButtonY = floor(y + (toolSprHeight * ((5 * 1.3) + 1)));
+	var audioButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var audioButtonRectY1 = floor(audioButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var audioButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var audioButtonRectY2 = floor(audioButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	var audioImageIndex = !obj_control.showUnitTags;
+	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine) audioImageIndex = obj_panelPane.chainViewOneToMany;
+	
+	var mouseoverAudio = point_in_rectangle(mouse_x, mouse_y, audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2) && !mouseoverCancel;
+	
+	if (mouseoverAudio) {
+		draw_set_color(c_white);
+		scr_drawRectWidth(audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2, mouseoverRectWidth);
+	}
+	
+	if (mouseoverAudio) {
+		scr_createTooltip(audioButtonRectX1, audioButtonY, scr_get_translation("menu_media"), obj_tooltip.arrowFaceRight);
+		
+		if (mouse_check_button_released(mb_left)) {
+			with (obj_audioUI) {
+				visible = !visible;
+			}
+		}
+	}
+	
+	// draw audio sprite
+	draw_sprite_ext(spr_audioTool, 0, toolButtonX, audioButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
 	
 	
 	
