@@ -638,6 +638,8 @@ ctrlHold = false;
 
 wordWrap = false;
 
+chainVoidCheckList = ds_list_create();
+
 //draw Line directional states
 lineState_ltr = "leftToRight";
 lineState_rtl = "righToLeft";

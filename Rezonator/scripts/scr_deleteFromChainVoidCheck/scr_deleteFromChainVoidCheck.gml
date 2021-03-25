@@ -1,7 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBack){
-	
+
+	show_debug_message("scr_deleteFromChainVoidCheck() chainID " + string(chainID) + ", deletedWordID: " + string(deletedWordID) + ", deletedWordPushBack: " + string(deletedWordPushBack));
 	
 	// get chain submap and make sure it exists
 	var chainSubMap = global.nodeMap[? chainID];
@@ -15,38 +16,62 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 	
 	if (deletedWordPushBack) {
 		
-		//for (var j = 0; j < chainSetListSize; j++) {
+		var deletedWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, deletedWordID - 1);
+		var deleteDisplayColDest = 0;
+		if (deletedWordSeq > 1) {
+			var prevDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, deletedWordID - 2);
+			deleteDisplayColDest = prevDisplayCol + 1;
+		}
+		else {
+			deleteDisplayColDest = 0;
+		}
+		ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, deletedWordID - 1, deleteDisplayColDest);
+		
 			
-			//var currentEntry = chainSetList[| j];
-			//var currentEntrySubMap = global.nodeMap[? currentEntry];
-			//if (!is_numeric(currentEntrySubMap)) continue;
-			//if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
-			//deletedWordID = currentEntrySubMap[? "word"];
+		var deleteDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, deletedWordID - 1);
+		var deleteDisplayRowWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, deleteDisplayRow);
+		var deleteDisplayRowWordIDListSize = ds_list_size(deleteDisplayRowWordIDList);
+		var posInWordIDList = ds_list_find_index(deleteDisplayRowWordIDList, deletedWordID);
+		if (posInWordIDList >= 0) {
+			for (var i = posInWordIDList + 1; i < deleteDisplayRowWordIDListSize; i++) {
+				var nextWordID = deleteDisplayRowWordIDList[| i];
+				scr_wordCalculateVoid(nextWordID);
+			}
+		}
 			
-			var deletedWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, deletedWordID - 1);
+			
+			
+			
+		for (var j = 0; j < chainSetListSize; j++) {
+			var currentEntry = chainSetList[| j];
+			var currentEntrySubMap = global.nodeMap[? currentEntry];
+			if (!is_numeric(currentEntrySubMap)) continue;
+			if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
+			var currentWordID = currentEntrySubMap[? "word"];
+
+
+			var deletedWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 			var deleteDisplayColDest = 0;
 			if (deletedWordSeq > 1) {
-				var prevDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, deletedWordID - 2);
+				var prevDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 2);
 				deleteDisplayColDest = prevDisplayCol + 1;
 			}
 			else {
 				deleteDisplayColDest = 0;
 			}
-			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, deletedWordID - 1, deleteDisplayColDest);
-		
-
-			var deleteDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, deletedWordID - 1);
+			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, deleteDisplayColDest);
+			var deleteDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 			var deleteDisplayRowWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, deleteDisplayRow);
 			var deleteDisplayRowWordIDListSize = ds_list_size(deleteDisplayRowWordIDList);
-			var posInWordIDList = ds_list_find_index(deleteDisplayRowWordIDList, deletedWordID);
+			var posInWordIDList = ds_list_find_index(deleteDisplayRowWordIDList, currentWordID);
 			if (posInWordIDList >= 0) {
 				for (var i = posInWordIDList + 1; i < deleteDisplayRowWordIDListSize; i++) {
 					var nextWordID = deleteDisplayRowWordIDList[| i];
 					scr_wordCalculateVoid(nextWordID);
 				}
 			}
-		
-		//}
+
+		}
 		
 	}
 	
@@ -96,8 +121,8 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			}
 		}
 		
-		ds_list_destroy(displayRowList);
-		
+	
+		ds_list_clear(displayRowList);
 		
 		
 		if (!smallVoidExists) {
@@ -128,6 +153,8 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 		
 		
 		
+		/*
+		
 		
 		// for every word in this chain, look at the words after it in its display row and 
 		// for any one of those words thats in a chain, run this script on that chain
@@ -139,18 +166,27 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			
 			var currentWordID = currentEntrySubMap[? "word"];
 			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
-			var displayRowWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, currentDisplayRow);
-			var displayRowWordIDListSize = ds_list_size(displayRowWordIDList);
+	
+			if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {
+				
+				ds_list_add(displayRowList, currentDisplayRow);
 			
-			var posInWordIDList = ds_list_find_index(displayRowWordIDList, currentWordID);
-			if (posInWordIDList >= 0) {
-				for (var j = posInWordIDList + 1; j < displayRowWordIDListSize; j++) {
-					var nextWordID = displayRowWordIDList[| j];
-					var nextWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, nextWordID - 1);
-					var nextWordInChainsListSize = ds_list_size(nextWordInChainsList);
-					for (var k = 0; k < nextWordInChainsListSize; k++) {
-						var nextChainID = nextWordInChainsList[| k];
-						scr_deleteFromChainVoidCheck(nextChainID, nextWordID, false);
+				var displayRowWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, currentDisplayRow);
+				var displayRowWordIDListSize = ds_list_size(displayRowWordIDList);
+			
+				var posInWordIDList = ds_list_find_index(displayRowWordIDList, currentWordID);
+				if (posInWordIDList >= 0) {
+					for (var j = posInWordIDList + 1; j < displayRowWordIDListSize; j++) {
+						var nextWordID = displayRowWordIDList[| j];
+						var nextWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, nextWordID - 1);
+						var nextWordInChainsListSize = ds_list_size(nextWordInChainsList);
+						for (var k = 0; k < nextWordInChainsListSize; k++) {
+							var nextChainID = nextWordInChainsList[| k];
+							if (nextChainID != chainID) {
+								show_debug_message("here1");
+								scr_deleteFromChainVoidCheck(nextChainID, nextWordID, false);
+							}
+						}
 					}
 				}
 			}
@@ -170,14 +206,19 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 				var nextWordInChainsListSize = ds_list_size(nextWordInChainsList);
 				for (var k = 0; k < nextWordInChainsListSize; k++) {
 					var nextChainID = nextWordInChainsList[| k];
-					show_debug_message("nextChainID: " + string(nextChainID));
-					scr_deleteFromChainVoidCheck(nextChainID, nextWordID, false);
+					if (nextChainID != chainID) {
+						show_debug_message("here2");
+						scr_deleteFromChainVoidCheck(nextChainID, nextWordID, false);
+					}
 				}
 			}
 		}
 		
 		
 		
+		
+		ds_list_destroy(displayRowList);
+		*/
 		
 	}
 	

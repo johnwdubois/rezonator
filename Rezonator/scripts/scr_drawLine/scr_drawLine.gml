@@ -127,6 +127,7 @@ function scr_drawLine() {
 
 
 	ds_list_clear(obj_chain.chainShowList);
+	ds_list_clear(chainVoidCheckList);
 
 	// for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 	for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLoop++) {
