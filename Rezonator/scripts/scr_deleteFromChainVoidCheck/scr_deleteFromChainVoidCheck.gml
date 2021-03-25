@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBack){
-
+	
 	show_debug_message("scr_deleteFromChainVoidCheck() chainID " + string(chainID) + ", deletedWordID: " + string(deletedWordID) + ", deletedWordPushBack: " + string(deletedWordPushBack));
 	
 	// get chain submap and make sure it exists
@@ -9,8 +9,12 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 	if (!is_numeric(chainSubMap)) exit;
 	if (!ds_exists(chainSubMap, ds_type_map)) exit;
 	var chainType = chainSubMap[? "type"];
+	if (chainType != "rezChain") exit;
 	var chainSetList = chainSubMap[? "vizSetIDList"];
+	if (!is_numeric(chainSetList)) exit;
+	if (!ds_exists(chainSetList, ds_type_list)) exit;
 	var chainSetListSize = ds_list_size(chainSetList);
+	
 	
 	
 	
@@ -101,9 +105,9 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 			
-			if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {
-				
+			//if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {
 				ds_list_add(displayRowList, currentDisplayRow);
+				
 				var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 				if (currentWordSeq > 1) {
 					var prevDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 2);
@@ -118,7 +122,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 				else if (currentDisplayCol == 0) {
 					smallVoidExists = true;
 				}
-			}
+			//}
 		}
 		
 	
