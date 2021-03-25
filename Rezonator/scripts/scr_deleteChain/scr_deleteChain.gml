@@ -65,6 +65,17 @@ function scr_deleteChain(chainID){
 	scr_deleteFromList(filterList, chainID);
 	scr_deleteFromList(selectedList, chainID);
 	
+	
+	
+	var showList = global.nodeMap[?"showList"];
+	var totalShows = ds_list_size(showList);
+	for(var i = 0; i < totalShows; i++){
+		var showID = showList[|i];
+		var showSubMap = global.nodeMap[?showID];
+		var setIDList = showSubMap[?"setIDList"];
+		scr_deleteFromList(setIDList, chainID);
+	}
+	
 	// unfocus chain
 	obj_chain.currentFocusedChainID = "";
 	
