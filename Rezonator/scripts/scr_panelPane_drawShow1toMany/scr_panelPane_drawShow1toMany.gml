@@ -11,7 +11,7 @@ function scr_panelPane_drawShow1toMany(){
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var nameColX = numColX + numColWidth;
-	var nameColWidth = windowWidth * 0.7;
+	var nam6eColWidth = windowWidth * 0.7;
 	var seqColX = nameColX + nameColWidth;
 	var seqColWidth = windowWidth * 0.1;
 	var delColX = seqColX + seqColWidth;
