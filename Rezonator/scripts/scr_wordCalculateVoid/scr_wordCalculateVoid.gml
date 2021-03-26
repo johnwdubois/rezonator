@@ -54,8 +54,8 @@ function scr_wordCalculateVoid(wordID){
 				
 
 				if (currentChainType == "rezChain") {
-					if (ds_list_find_index(chainVoidCheckList, currentChain) == -1) {
-						ds_list_add(chainVoidCheckList, currentChain);
+					if (ds_list_find_index(obj_control.chainVoidCheckList, currentChain) == -1) {
+						ds_list_add(obj_control.chainVoidCheckList, currentChain);
 						
 						var currentChainSetList = currentChainSubMap[? "vizSetIDList"];
 						if (!is_numeric(currentChainSetList)) continue;
