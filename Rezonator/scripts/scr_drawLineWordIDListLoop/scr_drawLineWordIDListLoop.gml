@@ -153,8 +153,14 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 		var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 		var displayColEdit = (drawLineState = lineState_ltr) ? currentWordDisplayCol : currentWordIDListSize - currentWordDisplayCol;
+
 		var speakerLabelWidth = ds_list_find_value(speakerLabelColXList, 3) + 20;
 		var wordLeftMarginEdit = (justify == justifyLeft) ? wordLeftMargin : wordLeftMargin - speakerLabelWidth;
+
+		
+		displayColEdit--;
+		displayColEdit= max(0,displayColEdit);
+
 
 		// horizontally move this word to its desired x-pixel value
 		var currentWordDestX = 0;
