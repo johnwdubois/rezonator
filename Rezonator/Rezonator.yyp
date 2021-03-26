@@ -85,6 +85,7 @@
     {"id":{"name":"scr_splitString","path":"scripts/scr_splitString/scr_splitString.yy",},"order":2,},
     {"id":{"name":"utf8_unit_type","path":"scripts/utf8_unit_type/utf8_unit_type.yy",},"order":5,},
     {"id":{"name":"scr_splitStringTabs","path":"scripts/scr_splitStringTabs/scr_splitStringTabs.yy",},"order":3,},
+    {"id":{"name":"scr_appearancesInList","path":"scripts/scr_appearancesInList/scr_appearancesInList.yy",},"order":7,},
     {"id":{"name":"scr_splitStringImport","path":"scripts/scr_splitStringImport/scr_splitStringImport.yy",},"order":4,},
     {"id":{"name":"scr_addBackSlashes","path":"scripts/scr_addBackSlashes/scr_addBackSlashes.yy",},"order":5,},
     {"id":{"name":"scr_disableFilter","path":"scripts/scr_disableFilter/scr_disableFilter.yy",},"order":22,},

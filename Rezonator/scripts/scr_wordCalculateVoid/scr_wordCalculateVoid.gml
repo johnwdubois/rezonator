@@ -71,6 +71,8 @@ function scr_wordCalculateVoid(wordID){
 							var currentEntrySubMap = global.nodeMap[? currentEntry];
 							if (!is_numeric(currentEntrySubMap)) continue;
 							if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
+							var currentStretch = currentEntrySubMap[? "stretch"];
+							if (currentStretch) continue;
 							var currentWordID = currentEntrySubMap[? "word"];
 							var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 							if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {

@@ -4,6 +4,7 @@
 function scr_newLink(wordID) {
 	
 	show_debug_message("scr_newLink() ... wordID: " + string(wordID));
+	ds_list_clear(obj_control.chainStretchCheckList);
 
 	//New funtionality for recording chain modification
 	while (ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) {
@@ -71,6 +72,7 @@ function scr_newLink(wordID) {
 					
 					// create a new node for this entry with type being rez, track, or stack
 					nodeID = scr_addToNodeMap(nodeType);
+					obj_control.newestEntry = nodeID;
 					
 					// set entry node values in nodeMap
 					var setSubMap = ds_map_find_value(global.nodeMap, nodeID)
@@ -90,6 +92,8 @@ function scr_newLink(wordID) {
 							// add tagmap to this entry's submap
 							var tagMap = ds_map_create();
 							ds_map_add_map(setSubMap, "tagMap", tagMap);
+							
+							ds_map_add(setSubMap, "stretch", false);
 						}
 					}
 

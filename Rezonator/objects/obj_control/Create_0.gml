@@ -639,6 +639,8 @@ ctrlHold = false;
 wordWrap = false;
 
 chainVoidCheckList = ds_list_create();
+chainStretchCheckList = ds_list_create();
+newestEntry = "";
 
 //draw Line directional states
 lineState_ltr = "leftToRight";
