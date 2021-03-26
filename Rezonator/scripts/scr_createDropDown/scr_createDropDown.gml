@@ -10,7 +10,7 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	}
 	dropDownY = clamp(dropDownY, 0, camViewHeight);
 	
-	var dropDownInst = instance_create_layer(dropDownX, dropDownY, "InstancesDialogue", obj_dropDown);
+	var dropDownInst = instance_create_depth(dropDownX, dropDownY, obj_control.menuDepth, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
 	
@@ -18,4 +18,5 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 		obj_control.ableToCreateDropDown = false;
 		obj_control.alarm[0] = 2;
 	}
+	obj_control.menuDepth--;
 }

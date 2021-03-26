@@ -691,3 +691,5 @@ selectedStackChainList = ds_list_create();
 filterActiveRez = false;
 filterActiveTrack = false;
 filterActiveStack = false;
+
+menuDepth = -1;

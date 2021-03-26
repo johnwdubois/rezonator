@@ -11,3 +11,6 @@ if (room == rm_mainScreen) {
 else if (room == rm_importScreen) {
 obj_importMapping.inDropDown = false;
 }
+if(!object_exists(obj_dropDown)){
+	obj_control.menuDepth = -1;
+}

@@ -229,9 +229,6 @@ for (var i = 0; i < optionListSize; i++) {
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {
 		optionCurrent = i;
 		var optionSelected = ds_list_find_value(optionList, i);
-		if (room == rm_mainScreen) {
-			obj_menuBar.menuClickedIn = false;
-		}
 		scr_dropDownSelect(optionSelected);
 	}
 	
