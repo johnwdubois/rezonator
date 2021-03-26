@@ -153,6 +153,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 		var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 		var displayColEdit = (drawLineState = lineState_ltr) ? currentWordDisplayCol : currentWordIDListSize - currentWordDisplayCol;
+		var speakerLabelWidth = ds_list_find_value(speakerLabelColXList, 3) + 20;
+		var wordLeftMarginEdit = (justify == justifyLeft) ? wordLeftMargin : wordLeftMargin - speakerLabelWidth;
 
 		// horizontally move this word to its desired x-pixel value
 		var currentWordDestX = 0;
@@ -161,23 +163,23 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				currentWordDestX = shapeTextX;
 			}
 			else {
-				currentWordDestX = displayColEdit * gridSpaceHorizontal + wordLeftMargin;
+				currentWordDestX = displayColEdit * gridSpaceHorizontal + wordLeftMarginEdit;
 			}
 		}
 		else if (justify == justifyCenter) {
 			if (shape == shapeText) {
-				currentWordDestX = (camWidth / 2) - (unitWidth / 2) + shapeTextX;
+				currentWordDestX = (camWidth / 2) - (unitWidth / 2) + shapeTextX + wordLeftMarginEdit;
 			}
 			else {
-				currentWordDestX = (camWidth / 2) - (ceil((currentWordIDListSize / 2)) * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal);
+				currentWordDestX = (camWidth / 2) - (ceil((currentWordIDListSize / 2)) * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal) + wordLeftMarginEdit;
 			}
 		}
 		else if (justify == justifyRight) {
 			if (shape == shapeText) {
-				currentWordDestX = camWidth - global.toolPaneWidth -global.scrollBarWidth - unitWidth + shapeTextX;
+				currentWordDestX = camWidth - global.toolPaneWidth -global.scrollBarWidth - unitWidth + shapeTextX + wordLeftMarginEdit;
 			}
 			else {
-				currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal);
+				currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal) + wordLeftMarginEdit;
 			}
 		}
 	
