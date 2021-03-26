@@ -4,6 +4,7 @@
 
 function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoop, unitID) {
 
+
 	var currentWordIDListSize = 0;
 	var previousWordID = -1;
 	
@@ -69,6 +70,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 			}
 		}
 	}
+	
+	var rtlMulti = (obj_control.drawLineState == obj_control.lineState_ltr) ? 1 : -1;
 
 
 	// get each wordID from wordIDList and draw it
@@ -142,21 +145,14 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		
 		
 		
-	
-		// if showing developer variables, draw rectangle to visualize voids
-		/*
-		if ((showDevVars and currentWordVoid > 0)) {
-			scr_drawVoids(drawWordLoop, previousWordDisplayCol, gridSpaceHorizontal, wordLeftMargin, currentLineY, currentWordVoid, currentWordDisplayCol);
-		}
-		*/
+		//show_debug_message("drawWordLoop: " + string(drawWordLoop));
 
 
 
 
 
 		var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-
-
+		var displayColEdit = (drawLineState = lineState_ltr) ? currentWordDisplayCol : currentWordIDListSize - currentWordDisplayCol;
 
 		// horizontally move this word to its desired x-pixel value
 		var currentWordDestX = 0;
@@ -165,7 +161,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				currentWordDestX = shapeTextX;
 			}
 			else {
-				currentWordDestX = currentWordDisplayCol * gridSpaceHorizontal + wordLeftMargin;
+				currentWordDestX = displayColEdit * gridSpaceHorizontal + wordLeftMargin;
 			}
 		}
 		else if (justify == justifyCenter) {
@@ -173,7 +169,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				currentWordDestX = (camWidth / 2) - (unitWidth / 2) + shapeTextX;
 			}
 			else {
-				currentWordDestX = (camWidth / 2) - (ceil((currentWordIDListSize / 2)) * gridSpaceHorizontal) + (currentWordDisplayCol * gridSpaceHorizontal);
+				currentWordDestX = (camWidth / 2) - (ceil((currentWordIDListSize / 2)) * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal);
 			}
 		}
 		else if (justify == justifyRight) {
@@ -181,7 +177,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				currentWordDestX = camWidth - global.toolPaneWidth -global.scrollBarWidth - unitWidth + shapeTextX;
 			}
 			else {
-				currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (currentWordDisplayCol * gridSpaceHorizontal);
+				currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal);
 			}
 		}
 	
