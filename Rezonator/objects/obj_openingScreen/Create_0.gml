@@ -359,6 +359,7 @@ ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
+ds_map_add(global.expandableDropDownMap, "Recolor", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 
 

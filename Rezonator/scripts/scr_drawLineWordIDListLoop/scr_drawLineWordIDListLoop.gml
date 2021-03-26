@@ -157,9 +157,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		var speakerLabelWidth = ds_list_find_value(speakerLabelColXList, 3) + 20;
 		var wordLeftMarginEdit = (justify == justifyLeft) ? wordLeftMargin : wordLeftMargin - speakerLabelWidth;
 
-		
-		displayColEdit--;
-		displayColEdit= max(0,displayColEdit);
 
 
 		// horizontally move this word to its desired x-pixel value

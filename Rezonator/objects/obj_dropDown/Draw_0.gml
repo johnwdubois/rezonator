@@ -148,7 +148,7 @@ for (var i = 0; i < optionListSize; i++) {
 	var isExpandable = false;
 	if (ds_exists(global.expandableDropDownMap, ds_type_map)) {
 		isExpandable = ds_map_exists(global.expandableDropDownMap, optionText);
-		if (optionText == "menu_stack" && (ds_list_size(optionList) == 4 || ds_list_size(optionList) == 3)) {
+		if (optionText == "menu_stack" &&  ds_list_size(optionList) == 3) {
 			isExpandable = false;
 		}
 		else if (optionText == "menu_search" && ds_list_size(optionList) == 4) {
