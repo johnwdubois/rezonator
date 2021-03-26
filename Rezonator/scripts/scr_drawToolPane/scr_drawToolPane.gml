@@ -238,8 +238,6 @@ function scr_drawToolPane(toolSprScale) {
 	var audioButtonRectY1 = floor(audioButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var audioButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var audioButtonRectY2 = floor(audioButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
-	var audioImageIndex = !obj_control.showUnitTags;
-	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine) audioImageIndex = obj_panelPane.chainViewOneToMany;
 	
 	var mouseoverAudio = point_in_rectangle(mouse_x, mouse_y, audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2) && !mouseoverCancel;
 	
@@ -258,8 +256,61 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 	
+	// draw highlight rectangle if audio is on
+	if (obj_audioUI.visible) {
+		draw_set_color(global.colorThemeBG);
+		draw_roundrect(audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2, false);
+	}
+	
 	// draw audio sprite
-	draw_sprite_ext(spr_audioTool, 0, toolButtonX, audioButtonY, toolSprScale, toolSprScale, 0, c_white, 1);
+	draw_sprite_ext(spr_audioTool, 0, toolButtonX, audioButtonY, toolSprScale, toolSprScale, 0, obj_audioUI.visible ? global.colorThemeRezPink : c_white, 1);
+	
+	
+	
+	
+	
+	
+	// help button
+	var helpButtonY = floor(y + (toolSprHeight * ((6 * 1.3) + 1)));
+	var helpButtonRectX1 = floor(toolButtonX - (toolSprWidth / 2) - toolButtonRectBuffer);
+	var helpButtonRectY1 = floor(helpButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
+	var helpButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
+	var helpButtonRectY2 = floor(helpButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
+	
+	var mouseoverHelp = point_in_rectangle(mouse_x, mouse_y, helpButtonRectX1, helpButtonRectY1, helpButtonRectX2, helpButtonRectY2) && !mouseoverCancel;
+	
+	if (mouseoverHelp) {
+		draw_set_color(c_white);
+		scr_drawRectWidth(helpButtonRectX1, helpButtonRectY1, helpButtonRectX2, helpButtonRectY2, mouseoverRectWidth);
+	}
+	
+	if (mouseoverHelp) {
+		scr_createTooltip(helpButtonRectX1, helpButtonY, scr_get_translation("Help"), obj_tooltip.arrowFaceRight);
+		
+		if (mouse_check_button_released(mb_left)) {
+			var helpCollapsed = obj_panelPane.functionHelp_collapsed;
+			with (obj_panelPane) {
+				functionHelp_collapsed = !helpCollapsed;
+			}
+		}
+	}
+	
+	// draw highlight rectangle if help is on
+	if (!obj_panelPane.functionHelp_collapsed) {
+		draw_set_color(global.colorThemeBG);
+		draw_roundrect(helpButtonRectX1, helpButtonRectY1, helpButtonRectX2, helpButtonRectY2, false);
+	}
+	
+	// draw help sprite
+	draw_sprite_ext(spr_helpTool, 0, toolButtonX, helpButtonY, toolSprScale, toolSprScale, 0, obj_panelPane.functionHelp_collapsed ? c_white : global.colorThemeRezPink, 1);
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -300,29 +351,7 @@ function scr_drawToolPane(toolSprScale) {
 			}
 		}
 	}
-	
-	// help button
-	var helpSpriteWidth = sprite_get_width(spr_helpToggle) * toolSprScale;
-	var helpX1 = x + (windowWidth/2) - (helpSpriteWidth/2);
-	var helpY1 = camHeight * 0.95;
-	var helpX2 = helpX1 + helpSpriteWidth;
-	var helpY2 = helpY1 + helpSpriteWidth;
-	var mouseOverHelp = point_in_rectangle(mouse_x,mouse_y,helpX1, helpY1, helpX2, helpY2);
-	
-	var helpSubImage = (mouseOverHelp) ? 1 : 0;
-	
-	draw_sprite_ext(spr_helpToggle, helpSubImage , floor( mean( helpX2 , helpX1)), floor( mean( helpY2 , helpY1)) , toolSprScale, toolSprScale,0, c_white ,1);
-	
-	var helpToolTipText = "Help";
-	
-	if(mouseOverHelp){
-		scr_createTooltip(helpX1, floor( mean( helpY2 , helpY1)), helpToolTipText , obj_tooltip.arrowFaceRight);
-		if(device_mouse_check_button_released(0, mb_left)){
-			with(obj_panelPane){
-				functionHelp_collapsed = !functionHelp_collapsed;
-			}
-		}
-	}
+
 	
 
 }
