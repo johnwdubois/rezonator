@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawShow1toMany(){
 	
+	
 	// draw BG rect
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + windowHeight - clipY, false);
@@ -239,29 +240,33 @@ function scr_panelPane_drawShow1toMany(){
 		}
 		
 		// draw header rect
-		draw_set_color(global.colorThemeSelected2);
+		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1 - clipX, headerRectY1 - clipY, headerRectX2 - clipX, headerRectY2 - clipY, false);
 		
 		// header text: # column
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeText);
 		draw_text(floor(numColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, "#");
 		
 		// header text: name column
-		draw_set_color(global.colorThemeBG);
 		draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, "Stack");
 		
 		// header text: seq column
-		draw_set_color(global.colorThemeBG);
 		draw_text(floor(seqColX + textBuffer) - clipX, floor(mean(headerRectY1, headerRectY2)) - clipY, "Seq");
 		
 		// dividing lines
 		if (i > 0) {
+			draw_set_color(global.colorThemeBorders);
+			draw_line(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + headerHeight - clipY);
 			draw_set_color(global.colorThemeBG);
-			draw_line(headerRectX1 - clipX, y - clipY, headerRectX1 - clipX, y + windowHeight - clipY);
+			draw_line(headerRectX1 - clipX, y + headerHeight - clipY, headerRectX1 - clipX, y + windowHeight - clipY);
 		}
 		
 	}
 	
+	// short line to divide left from right nav
+	draw_set_color(global.colorThemeBorders);
+	draw_line(x - clipX, y - clipY, x - clipX, y + headerHeight - clipY);
+	draw_line(x - clipX, y + headerHeight - clipY, x + windowWidth - clipX, y + headerHeight - clipY);
 	
 	
 	

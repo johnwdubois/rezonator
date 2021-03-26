@@ -274,7 +274,7 @@ function scr_panelPane_drawUnits1to1() {
 
 	// draw BG for headers
 	var headerHeight = functionTabs_tabHeight;
-	draw_set_color(global.colorThemeSelected2);
+	draw_set_color(global.colorThemeBG);
 	draw_rectangle(x - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + headerHeight - clipY, false);
 
 	// Create the column headers
@@ -289,7 +289,7 @@ function scr_panelPane_drawUnits1to1() {
 		// dividing lines
 		if (i > 0) {
 			draw_set_alpha(1);
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeBorders);
 			draw_line(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + headerHeight - clipY);
 			draw_set_color(global.colorThemeBorders);
 			draw_line(colRectX1 - clipX, y + headerHeight - clipY, colRectX1 - clipX, y + windowHeight - clipY);
@@ -312,7 +312,7 @@ function scr_panelPane_drawUnits1to1() {
 		}
 		colName = nameFromList
     
-	    draw_set_color(global.colorThemeBG);
+	    draw_set_color(global.colorThemeText);
 	    draw_set_valign(fa_middle);
 	    scr_adaptFont(colName, "M")
 	    draw_text(colRectX1 + 4 - clipX, floor(y + (headerHeight / 2)) - clipY, colName);
@@ -400,7 +400,7 @@ function scr_panelPane_drawUnits1to1() {
 			//user interaction for display view change
 			if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
 				scr_createTooltip(wordViewButtonX, wordViewButtonY + wordViewButtonSize, "Speaker", obj_tooltip.arrowFaceUp);
-				draw_set_color(global.colorThemeBG);
+				draw_set_color(global.colorThemeSelected1);
 				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
 				if (mouse_check_button_released(mb_left)) {
 					obj_control.unitView = i;
@@ -419,15 +419,15 @@ function scr_panelPane_drawUnits1to1() {
 			}
 			
 			// draw circle for selecting unit tag
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeBorders);
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 	
 			// draw filled in circle if this unit tag is chosen
 			if (obj_control.unitView == i) {
-				draw_set_color(global.colorThemeBG);
+				draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
 				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
-				draw_set_color(global.colorThemeBG);
+				draw_set_color(global.colorThemeBorders);
 			}
 			else {
 				draw_set_color(global.colorThemeText);
@@ -438,6 +438,11 @@ function scr_panelPane_drawUnits1to1() {
 	
 		activeCols++;
 	}
+	
+	
+	// draw line to separate column headers from data
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, true);
 
 
 

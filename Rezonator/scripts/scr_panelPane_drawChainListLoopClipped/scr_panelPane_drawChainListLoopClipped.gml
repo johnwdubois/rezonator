@@ -5,6 +5,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				set chainContents panelPane to look at that chain
 	*/
 	
+	
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	
@@ -544,7 +545,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 		// draw header rects
 		draw_set_alpha(1);
-		draw_set_color(global.colorThemeSelected2);
+		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
@@ -578,7 +579,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
 			}
 			
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeBorders);
 			scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2);
 		}
 		
@@ -587,19 +588,21 @@ function scr_panelPane_drawChainListLoopClipped() {
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeText);
 		scr_adaptFont(colText, "M");
 		draw_text(headerTextX, headerTextY, colText);
 		
 		// dividing lines
 		if (i > 0) {
+			draw_set_color(global.colorThemeBorders);
+			draw_line(headerRectX1, y, headerRectX1, y + headerHeight);
 			draw_set_color(global.colorThemeBG);
-			draw_line(headerRectX1, y, headerRectX1, y + windowHeight);
+			draw_line(headerRectX1, y + headerHeight, headerRectX1, y + windowHeight);
 		}
 	}
 
-	// draw short white line to separate from left nav
-	draw_set_color(global.colorThemeBG);
-	draw_line(x + windowWidth-1 , y , x + windowWidth-1, y + headerHeight);
+	// border for headers
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(x, y, x + windowWidth - 2, y + headerHeight, true);
 
 }

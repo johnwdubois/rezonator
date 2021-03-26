@@ -32,7 +32,7 @@ function scr_audioDraw() {
 	scr_adaptFont(string(audioFile), "S");
 	draw_text(x + 24, y + 24 + strHeightAudioTrack, string(audioFile));
 	
-	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight)) {
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, seekBarX1 - string_width("AAAAAAA"), y + windowHeight) && audioFile != "" && file_exists(audioFile)) {
 		scr_createTooltip(mean(x, seekBarX1 - string_width("AAAAAAA")), y, string(audioFile), obj_tooltip.arrowFaceDown);
 	}
 	
@@ -294,7 +294,7 @@ function scr_audioDraw() {
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
-	draw_text(floor(mean(loadAudioButtonX1, loadAudioButtonX2)), floor(mean(loadAudioButtonY1, loadAudioButtonY2)), "Load Audio");
+	draw_text(floor(mean(loadAudioButtonX1, loadAudioButtonX2)), floor(mean(loadAudioButtonY1, loadAudioButtonY2)), "Import Audio");
 	
 	if (mouseoverLoadAudio) {
 		if (mouse_check_button_released(mb_left)) {

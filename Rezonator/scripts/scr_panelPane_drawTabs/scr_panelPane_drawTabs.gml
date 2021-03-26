@@ -176,6 +176,9 @@ function scr_panelPane_drawTabs() {
 
 	}
 	
+	
+	draw_set_color(global.colorThemeBorders);
+	draw_line_width(x, y + windowHeight, x + windowWidth, y + windowHeight, 3);
 
 
 

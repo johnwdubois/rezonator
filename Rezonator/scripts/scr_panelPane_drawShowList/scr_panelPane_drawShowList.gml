@@ -257,9 +257,9 @@ function scr_panelPane_drawShowList(){
 		var headerRectY2 = headerRectY1 + headerHeight;
 		
 		// draw header rects
-		draw_set_color(global.colorThemeSelected2);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_color(global.colorThemeBG);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
+		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
 		
 		// draw header text
@@ -267,7 +267,7 @@ function scr_panelPane_drawShowList(){
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeText);
 		draw_text(headerTextX, headerTextY, colText);
 		
 		// dividing lines
