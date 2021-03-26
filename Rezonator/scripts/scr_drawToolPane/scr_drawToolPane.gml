@@ -75,6 +75,12 @@ function scr_drawToolPane(toolSprScale) {
 	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
 	var filterButtonColor = (obj_control.filterGridActive) ? global.colorThemeRezPink : c_white;
+	var filterList = scr_getFilterList();
+	var filterListSize = ds_list_size(filterList);
+	
+	if (filterListSize <= 0 && obj_control.filterGridActive && obj_panelPane.functionChainList_playShowID == "") {
+		scr_disableFilter();
+	}
 	
 	// mouseover & click on filter button
 	if (mouseoverFilter) {
@@ -82,10 +88,10 @@ function scr_drawToolPane(toolSprScale) {
 		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth);
 		scr_createTooltip(filterButtonRectX1, filterButtonY, "Filter", obj_tooltip.arrowFaceRight);
 		
+		
 		if (mouse_check_button_released(mb_left)) {
-			var filterList = scr_getFilterList();
-			if (ds_list_size(filterList) > 0) {
-				
+			
+			if (filterListSize > 0) {
 				// toggle filter depending on tab
 				if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) obj_control.filterActiveRez = !obj_control.filterActiveRez;
 				else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) obj_control.filterActiveTrack = !obj_control.filterActiveTrack;
