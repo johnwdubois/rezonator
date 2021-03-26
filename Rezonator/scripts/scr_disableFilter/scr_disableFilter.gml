@@ -6,7 +6,6 @@ function scr_disableFilter(){
 		searchGridActive = false;
 		filterGridActive = false;
 		currentActiveLineGrid = lineGrid;
-		obj_toolPane.currentMode = obj_toolPane.setModeMain;
 		wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 
 		with (obj_alarm) {

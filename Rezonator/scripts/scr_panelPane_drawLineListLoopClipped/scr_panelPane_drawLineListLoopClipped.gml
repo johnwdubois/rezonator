@@ -4,7 +4,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 				set chainContents panelPane to look at that chain
 	*/
 
-
 	var strHeight = string_height("0") * 1.5;
 	
 	var drawScrollbar = (!obj_control.showUnitTags);
@@ -95,7 +94,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 			discoColor = obj_control.c_ltblue;
 		}
 
-		var currentLineWordList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, i);
+		var currentLineWordList = ds_grid_get(currentLineGrid, obj_control.lineGrid_colWordIDList, i);
 		var currentLineWordString = "";
 		var currentLineWordListSize = 0;
 		
@@ -110,7 +109,15 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		var wordListLoop = (obj_control.drawLineState == obj_control.lineState_ltr) ? 0 : currentLineWordListSize-1;
 		repeat(currentLineWordListSize){
-			var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
+			
+			var currentWordID = -1;
+			if (obj_control.searchGridActive) {
+				var hitID = ds_list_find_value(currentLineWordList, wordListLoop);
+				currentWordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, hitID - 1);
+			}
+			else {
+				currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
+			}
 		
 			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
 			if(currentWordState == obj_control.wordStateDead){
@@ -205,7 +212,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
-	if (clickedIn) {	
+	if (clickedIn && obj_control.mouseoverPanelPane) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
 			if (functionChainList_lineGridRowFocused > 0 and functionChainList_lineGridRowFocused < lineGridHeight) {
@@ -331,9 +338,9 @@ function scr_panelPane_drawLineListLoopClipped() {
 		var headerRectY2 = headerRectY1 + headerHeight;
 		
 		// draw header rects
-		draw_set_color(global.colorThemeSelected2);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_color(global.colorThemeBG);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
+		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
 		
 		// draw header text
@@ -341,7 +348,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeText);
 		draw_text(headerTextX, headerTextY, colText);
 		
 		
@@ -351,8 +358,8 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	
 
-	// draw short white line to separate from left nav
-	draw_set_color(global.colorThemeBG);
+	// draw short line to separate left nav from right nav
+	draw_set_color(global.colorThemeBorders);
 	draw_line(x + windowWidth-1 , y , x + windowWidth-1, y + headerHeight);
 
 }

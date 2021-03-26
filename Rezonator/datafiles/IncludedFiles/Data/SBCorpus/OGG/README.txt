@@ -1,0 +1,1 @@
+Access all of the Santa Barbara Corpus OGG audio files here: https://drive.google.com/drive/folders/1EkHdSUB05GfuuCmZOr6QndkfiBZyAJTU?usp=sharing

@@ -353,5 +353,13 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_toolButtonOptions(optionSelected);
 	}
+	else if (optionListType == global.optionListTypeJustifyProse) //57
+	{
+		scr_justifyProseOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListType1to1) //58
+	{
+		scr_1to1Options(optionSelected);
+	}
 
 }

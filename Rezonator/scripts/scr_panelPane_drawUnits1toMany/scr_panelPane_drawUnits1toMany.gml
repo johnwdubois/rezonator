@@ -1,9 +1,8 @@
 function scr_panelPane_drawUnits1toMany() {
-	
-
 	/*
 		Purpose: whatever Line is focused on in the lineList panelPane, draw information on the individual words of that Line
 	*/
+
 
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
@@ -85,7 +84,17 @@ function scr_panelPane_drawUnits1toMany() {
 				for (var j = 0; j < IDListSize; j++) {
 					drawDropDowns = false;
 					//Get info on current word
-					var currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+					var currentWordID = -1;
+					
+					if (obj_control.searchGridActive) {
+						var hitID = ds_list_find_value(functionChainContents_IDList, j);
+						currentWordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, hitID - 1);
+					}
+					else {
+						currentWordID = ds_list_find_value(functionChainContents_IDList, j);
+					}
+					
+					
 					var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
 					if(currentWordState == obj_control.wordStateDead){
 						continue;
@@ -253,17 +262,17 @@ function scr_panelPane_drawUnits1toMany() {
 	
 		// draw BG rects & lines to separate columns
 		draw_set_alpha(1);
-		draw_set_color(global.colorThemeSelected2);
+		draw_set_color(global.colorThemeBG);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 		if (i > 0) {
 			draw_set_color(global.colorThemeBorders);
 			draw_line(colRectX1 - clipX, colRectY1 + headerHeight - clipY, colRectX1 - clipX, y + windowHeight - clipY);
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeBorders);
 			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, y + headerHeight - clipY);
 		}
 
 		// draw column header names
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		scr_adaptFont(colName, "M");
@@ -379,15 +388,15 @@ function scr_panelPane_drawUnits1toMany() {
 				}
 			}
 
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeBorders);
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
 
 		if (obj_control.wordView == i) {
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
 			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeBorders);
 		}
 		else {
 			draw_set_color(global.colorThemeText);

@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChains1To1(){
 	
+	
 	// get the instance ID for the chainList pane so we can easily reference it
 	var chainListPanelPaneInst = 0;
 	with (obj_panelPane) {
@@ -189,13 +190,13 @@ function scr_panelPane_drawChains1To1(){
 		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
 		
 		// BG & outline rects
-		draw_set_color(global.colorThemeSelected2);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		draw_set_color(global.colorThemeBG);
+		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
+		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
 		
 		// draw header name
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeText);
 		draw_set_valign(fa_middle);
 		scr_adaptFont(colName, "M");
 		draw_text(colRectX1 + 4 - clipX, y + tabHeight/2 - clipY, colName);

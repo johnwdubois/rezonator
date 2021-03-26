@@ -5,7 +5,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				set chainContents panelPane to look at that chain
 	*/
 	
-
+	
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	
@@ -23,6 +23,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 		}
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
+	var ableToMouseoverOption = true;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
 
 
 	// get list of chains for this tab
@@ -185,7 +187,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 							draw_circle(mouse_x, mouse_y, 5, true);
 						}
 						
-						if (device_mouse_check_button_released(0, mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown)) {
+						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel) {
 		
 							if (obj_chain.currentFocusedChainID != currentChainID) {
 								// Focuses on selected chain
@@ -247,7 +249,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 
 					// right-click on chain in chainList
-					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !mouseoverCancel) {
 
 						obj_chain.currentFocusedChainID = currentChainID;
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
@@ -292,7 +294,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, c_white, 1);
 					
 					// click on checkbox
-					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !mouseoverCancel) {
 						currentChainSelected = !currentChainSelected;
 						scr_setMap(currentChainSubMap, "selected", currentChainSelected);
 						if (currentChainSelected && ds_list_find_index(selectedList, currentChainID) == -1) {
@@ -301,23 +303,23 @@ function scr_panelPane_drawChainListLoopClipped() {
 						else if (!currentChainSelected) {
 							scr_deleteFromList(selectedList, currentChainID);
 						}
-						
 					}
 					
 					// setup filter/align/visible buttons
 					var optionsIconScale = 1;
 					var optionsIconRad = sprite_get_width(spr_toggleDraw) * optionsIconScale * 0.7;
-					var filterChainX = optionsColX + (optionsColWidth * 0.25);
-					var visibleChainX = optionsColX + (optionsColWidth * 0.5);
+					var filterChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.25) : optionsColX + (optionsColWidth * 0.33);
+					var visibleChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.5) : optionsColX + (optionsColWidth * 0.66);
 					var alignChainX = optionsColX + (optionsColWidth * 0.75);
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
-					var mouseoverFilterChain = point_in_circle(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-					var mouseoverVisibleChain = point_in_circle(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain ;
-					var mouseoverAlignChain = point_in_circle(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush;
+					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverAlignChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush && ableToMouseoverOption && !mouseoverHeaderRegion;
 					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
 					
 					// mouseover & click on filter
 					if (mouseoverFilterChain) {
+						ableToMouseoverOption = false;
 						draw_circle(filterChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
 						if (mouse_check_button_released(mb_left)) {
 							currentChainFiltered = !currentChainFiltered;
@@ -335,6 +337,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 					// mouseover & click on visible
 					if (mouseoverVisibleChain) {
+						ableToMouseoverOption = false;
 						draw_circle(visibleChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
 						if (mouse_check_button_released(mb_left)) {
 							currentChainVisible = !currentChainVisible;
@@ -344,6 +347,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 					// mouseover & click on align
 					if (mouseoverAlignChain) {
+						ableToMouseoverOption = false;
 						draw_circle(alignChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
 						if (mouse_check_button_released(mb_left)) {
 							currentChainAlign = !currentChainAlign;
@@ -354,7 +358,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					
 					// draw filter/align/visible buttons
 					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
-					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, c_white, 1);
+					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					
 					
@@ -541,7 +545,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		
 		// draw header rects
 		draw_set_alpha(1);
-		draw_set_color(global.colorThemeSelected2);
+		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
@@ -575,7 +579,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
 			}
 			
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeBorders);
 			scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2);
 		}
 		
@@ -584,19 +588,21 @@ function scr_panelPane_drawChainListLoopClipped() {
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeText);
 		scr_adaptFont(colText, "M");
 		draw_text(headerTextX, headerTextY, colText);
 		
 		// dividing lines
 		if (i > 0) {
+			draw_set_color(global.colorThemeBorders);
+			draw_line(headerRectX1, y, headerRectX1, y + headerHeight);
 			draw_set_color(global.colorThemeBG);
-			draw_line(headerRectX1, y, headerRectX1, y + windowHeight);
+			draw_line(headerRectX1, y + headerHeight, headerRectX1, y + windowHeight);
 		}
 	}
 
-	// draw short white line to separate from left nav
-	draw_set_color(global.colorThemeBG);
-	draw_line(x + windowWidth-1 , y , x + windowWidth-1, y + headerHeight);
+	// border for headers
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(x, y, x + windowWidth - 2, y + headerHeight, true);
 
 }

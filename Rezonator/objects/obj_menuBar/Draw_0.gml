@@ -145,13 +145,42 @@ if(mouseOverMin){
 
 draw_text(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2) - menuHeight *.05), "-");
 
-
 var spriteScale = 0.4;
 var sizeOfSave = sprite_get_width(spr_saveWarning)*spriteScale;
+
+
+//lang button
+var langString = string(global.lang_codes[|global.lang_index]);
+var widthOfLang = string_width(langString);
 var fpsTextY = y+ menuHeight *.66 ;	
 
 
-var saveIconX2 =  minimizeX1- sizeOfButtons/2;
+var langTextX2 =  minimizeX1- sizeOfButtons/2;
+var langTextX1 = langTextX2 - widthOfLang;
+var langTextY1 = fpsTextY - (sizeOfSave/2);
+var langTextY2 = fpsTextY + (sizeOfSave/2);
+draw_set_color(c_white);
+var mouseOverLang = point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
+if(mouseOverLang){
+	//draw_set_color(global.colorThemeText);
+	scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
+	if(mouse_check_button_released(mb_left)){
+		var dropDownOptionList = ds_list_create();
+		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh");
+						
+		if (ds_list_size(dropDownOptionList) > 0) {
+			scr_createDropDown(langTextX1, langTextY2, dropDownOptionList, global.optionListTypeLanguage);
+		}
+	}
+}
+
+
+draw_text(floor(mean(langTextX1, langTextX2)),floor(mean(langTextY1, langTextY2) - menuHeight *.05), string_upper(langString));
+
+
+
+
+var saveIconX2 =  langTextX1- sizeOfButtons/2;
 var saveIconX1 = saveIconX2 - sizeOfSave;
 var saveIconY1 = fpsTextY - (sizeOfSave/2);
 var saveIconY2 = fpsTextY + (sizeOfSave/2);

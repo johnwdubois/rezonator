@@ -28,7 +28,7 @@ if (obj_toolPane.showTool) {
 	draw_rectangle(x, y, camWidth,camHeight, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(x, y, camWidth,camHeight, true);
-	mouseOverToolPane = point_in_rectangle(mouse_x,mouse_y, x, y, camWidth,camHeight)
+	mouseOverToolPane = point_in_rectangle(mouse_x,mouse_y, x, y, camWidth,camHeight);
 
 	scr_drawToolPane(toolSpriteScale);
 }

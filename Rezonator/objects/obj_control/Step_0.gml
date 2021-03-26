@@ -126,6 +126,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	// Single press of arrow keys now moves screen by one line
 	if ((keyboard_check(vk_down) or mouse_wheel_down())) {
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
+			/*
 			scrollSpeed = -gridSpaceVertical;
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
 				obj_panelPane.functionChainList_lineGridRowFocused++;
@@ -136,12 +137,14 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		if (holdDownArrowKey > 15) {
 			scrollSpeed = (-min(arrowSpeed, 25)) * holdArrowMod;
 			if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
 			}
+			/*
 			if((holdDownArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
 				obj_panelPane.functionChainList_lineGridRowFocused++;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
@@ -151,6 +154,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		else if(mouse_wheel_down()) {
 			scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
@@ -177,6 +181,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	}
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
+			/*
 			scrollSpeed = gridSpaceVertical;
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
 				obj_panelPane.functionChainList_lineGridRowFocused--;
@@ -187,12 +192,14 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		if (holdUpArrowKey > 15) {
 			scrollSpeed = min(arrowSpeed, 25) * holdArrowMod;
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);
 			}
+			/*
 			if((holdUpArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
 				obj_panelPane.functionChainList_lineGridRowFocused--;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
@@ -202,6 +209,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		else if(mouse_wheel_up()) {
 			scrollSpeed = (min(arrowSpeed, 25) *1.5);
@@ -822,3 +830,4 @@ if (global.wheresElmo) {
 		showTool = false;
 	}
 }
+

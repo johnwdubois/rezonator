@@ -3,6 +3,8 @@ function scr_panelPane_drawChains1ToMany() {
 		Purpose: whatever chain is focused on in the chainList panelPane, draw information on the individual contents of that chain
 	*/
 	
+	
+	
 	var chain1toManyColFieldList = -1;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {

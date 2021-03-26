@@ -92,7 +92,7 @@ function scr_fileOptions(optionSelected) {
 
 			with( obj_audioUI ){
 			
-				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, "Open a discourse ogg OGG file");
+				var getAudioFile = get_open_filename_ext("ogg file|*.ogg", "", working_directory, scr_get_translation("msg_file_audio"));
 					if (getAudioFile != "" and file_exists(getAudioFile)) {
 						audioFile = getAudioFile;
 						audioStream = audio_create_stream(audioFile);

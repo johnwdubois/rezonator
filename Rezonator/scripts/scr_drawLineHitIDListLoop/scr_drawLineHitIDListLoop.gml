@@ -61,6 +61,7 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 		
 		// check if this hit contains a chain, if so then add to chainShowList
 		var currentWordInTrack = "";
+		var currentWordInRez = "";
 		for (var i = 0; i < currentWordInChainsListSize; i++) {
 			var currentChain = ds_list_find_value(currentWordInChainsList, i);
 			var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
@@ -76,6 +77,9 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
 			if (currentChainType == "trackChain") {
 				currentWordInTrack = currentChain;
+			}
+			if (currentChainType == "rezChain") {
+				currentWordInRez = currentChain;
 			}
 		}
 		
@@ -126,15 +130,6 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 		if (mouseoverWord) {
 			obj_control.hoverWordID = currentWordID;
 			if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left)) {
-				with (obj_toolPane) {
-					currentMode = modeTrack;
-				}
-				with (obj_panelPane) {
-					if (currentFunction == functionChainList) {
-						functionChainList_currentTab = functionChainList_tabTrackBrush;
-					}
-				}
-				
 				if (mouse_check_button_released(mb_left)) {
 					with (obj_chain) {
 						scr_wordClicked(currentWordID, unitID);
@@ -144,21 +139,38 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 		}
 		
 		// if this word is in a track, we draw a rounded border around it
-		if (ds_map_exists(global.nodeMap, currentWordInTrack) && currentWordInTrack != "") {
-			var chainSubMap = ds_map_find_value(global.nodeMap, currentWordInTrack);
+		if ((ds_map_exists(global.nodeMap, currentWordInTrack) && currentWordInTrack != "") 
+		or (ds_map_exists(global.nodeMap, currentWordInRez) && currentWordInRez != "")) {
+			if(currentWordInTrack != ""){
+				var chainSubMap = ds_map_find_value(global.nodeMap, currentWordInTrack);
+			}
+			else{
+				var chainSubMap = ds_map_find_value(global.nodeMap, currentWordInRez);
+			}
+
 			if (!is_numeric(chainSubMap)) continue;
 			if (!ds_exists(chainSubMap, ds_type_map)) continue;
 			var chainColor = ds_map_find_value(chainSubMap, "chainColor");
 			draw_set_color(chainColor);
 			draw_set_alpha(1);
 			for (var i = 0; i < 2; i ++) {
-				draw_roundrect(wordRectX1 - i, wordRectY1 - i, wordRectX2 + i, wordRectY2 + i, true);
+				if(currentWordInTrack != ""){
+					draw_roundrect(wordRectX1 - i, wordRectY1 - i, wordRectX2 + i, wordRectY2 + i, true);
+				}
+				else{
+					draw_rectangle(wordRectX1 - i, wordRectY1 - i, wordRectX2 + i, wordRectY2 + i, true);
+				}
 			}
 			
 			// draw filled rect if this word is in a focused chain, and this word is focused
 			if (focusedChainFocusedWordID == currentWordID) {
 				draw_set_alpha(0.2);
-				draw_roundrect(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+				if(currentWordInTrack != ""){
+					draw_roundrect(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+				}
+				else{
+					draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
+				}
 				draw_set_alpha(1);
 			}
 		}

@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChains1ToManyHeaders(){
+	
 	var tabHeight = functionTabs_tabHeight;
 	var chain1toManyColFieldList = -1;
 	var chainType = "";
@@ -63,7 +64,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		
 		
 			// make headers not overlap with each other
-			draw_set_color(global.colorThemeSelected2);
+			draw_set_color(global.colorThemeBG);
 			draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight, false);
 		
 			// headers for dynamic columns
@@ -100,7 +101,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			}
 		
 			// draw header name
-			draw_set_color(global.colorThemeBG);
+			draw_set_color(global.colorThemeText);
 			draw_set_valign(fa_middle);
 			draw_set_halign(fa_left);
 			scr_adaptFont(colName, "M");
@@ -108,7 +109,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		
 			// draw vertical line between columns
 			if (i > 0) {
-				draw_set_color(global.colorThemeBG);	
+				draw_set_color(global.colorThemeText);	
 				draw_line(colRectX1 , colRectY1 , colRectX1 , colRectY2 );
 			}
 		}

@@ -10,12 +10,16 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	}
 	dropDownY = clamp(dropDownY, 0, camViewHeight);
 	
-	var dropDownInst = instance_create_depth(dropDownX, dropDownY, -999, obj_dropDown);
+	var dropDownDepth = -1;
+	if (instance_exists(obj_control)) dropDownDepth = obj_control.menuDepth;
+	var dropDownInst = instance_create_depth(dropDownX, dropDownY, dropDownDepth, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
 	
-	if (room == rm_mainScreen) {
+	if (room == rm_mainScreen && instance_exists(obj_control)) {
 		obj_control.ableToCreateDropDown = false;
 		obj_control.alarm[0] = 2;
+		obj_control.menuDepth--;
 	}
+	
 }

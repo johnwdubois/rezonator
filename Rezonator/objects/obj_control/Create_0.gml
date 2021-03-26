@@ -638,6 +638,10 @@ ctrlHold = false;
 
 wordWrap = false;
 
+chainVoidCheckList = ds_list_create();
+chainStretchCheckList = ds_list_create();
+newestEntry = "";
+
 //draw Line directional states
 lineState_ltr = "leftToRight";
 lineState_rtl = "righToLeft";
@@ -689,3 +693,5 @@ selectedStackChainList = ds_list_create();
 filterActiveRez = false;
 filterActiveTrack = false;
 filterActiveStack = false;
+
+menuDepth = -1;

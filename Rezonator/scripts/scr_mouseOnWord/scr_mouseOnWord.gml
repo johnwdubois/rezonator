@@ -1,16 +1,5 @@
 /*
-	scr_mouseOnWord();
-	
-	Last Updated: 2020-10-28
-	
-	Called from: obj_control
-	
 	Purpose: Check for the mouse cursor over this word, and check for left and right mouse click
-	
-	Mechanism: Using the word's rectangle, check for mouseover. On leftMouseClick, select word and possibly add to chain.
-				On rightMouseClick, activate dropdowns. During mouseDrag, put word into mouseHoldRect
-	
-	Author: Terry DuBois, Georgio Klironomos, Brady Moore
 */
 function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop) {
 
@@ -22,10 +11,11 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 	}
 	
 	// figure out if the user has their mouse hovering over this word, and if so, are they clicking?
-	var mouseover = false;
-	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2)) {
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
+	var mouseoverWord = point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) && !mouseoverCancel;
+	
+	if (mouseoverWord) {
 		obj_control.mouseoverNeutralSpace = false;	
-		mouseover = true;
 		hoverWordID = currentWordID;
 		
 		// Check to see if this word should be hovered over and allowed to be clicked
@@ -71,6 +61,9 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 					}
 				}
 				
+				with (obj_chain) {
+					scr_wordClicked(currentWordID, unitID);
+				}
 				//forgot why this was taken out
 				/*ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
 				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -80,11 +73,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 					functionChainList_currentTab = functionChainList_tabLine;
 				}*/
 				
-				// Show the ReadModeHint if applicable
-				if(not global.readHintHide and not obj_audioUI.audioJumpOnWordClick and not obj_control.searchGridActive){
-					var popUpInst = instance_create_layer(x, y, "InstancesPopUp", obj_readModePopUp);
-					//obj_control.readModeHints++;
-				}
+
 			}
 			
 			

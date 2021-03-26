@@ -43,19 +43,22 @@ for (var i = 0; i < imageNum; i++) {
 	if (optionListType == global.optionListTypeContext) {
 		currentOptionSelected = obj_panelPane.functionFilter_peek[i];
 	}
-	else if (optionListType == global.optionListTypeProse) {
-		if (optionStr == "menu_prose") currentOptionSelected = (obj_control.shape == obj_control.shapeText);
-		else if (optionStr == "menu_grid") currentOptionSelected = (obj_control.shape == obj_control.shapeBlock);
-	}
-	else if (optionListType == global.optionListTypeJustify) {
-		if (optionStr == "menu_left") currentOptionSelected = (obj_control.justify == obj_control.justifyLeft);
-		else if (optionStr == "menu_center") currentOptionSelected = (obj_control.justify == obj_control.justifyCenter);
-		else if (optionStr == "menu_right") currentOptionSelected = (obj_control.justify == obj_control.justifyRight);
+	else if (optionListType == global.optionListTypeJustifyProse) {
+		if (optionStr == "Left Prose") currentOptionSelected = (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeText);
+		else if (optionStr == "Left Grid") currentOptionSelected = (obj_control.justify == obj_control.justifyLeft && obj_control.shape == obj_control.shapeBlock);
+		else if (optionStr == "Center Prose") currentOptionSelected = (obj_control.justify == obj_control.justifyCenter && obj_control.shape == obj_control.shapeText);
+		else if (optionStr == "Center Grid") currentOptionSelected = (obj_control.justify == obj_control.justifyCenter && obj_control.shape == obj_control.shapeBlock);
+		else if (optionStr == "Right Prose") currentOptionSelected = (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeText);
+		else if (optionStr == "Right Grid") currentOptionSelected = (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock);
 	}
 	else if (optionListType == global.optionListTypeToolButton) {
 		if (optionStr == "menu_read") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRead);
 		else if (optionStr == "menu_rez") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRez);
 		else if (optionStr == "menu_track") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeTrack);
+	}
+	else if (optionListType == global.optionListType1to1) {
+		if (optionStr == "One to one") currentOptionSelected = (obj_control.showUnitTags);
+		else if (optionStr == "One to many") currentOptionSelected = (!obj_control.showUnitTags);
 	}
 	
 	

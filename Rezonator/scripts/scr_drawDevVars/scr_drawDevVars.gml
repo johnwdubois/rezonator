@@ -74,6 +74,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "filterActiveTrack: " + string(filterActiveTrack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "filterActiveStack: " + string(filterActiveStack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 33), "filterGridActive: " + string(filterGridActive));
+	draw_text(devVarX, wordTopMargin + (strHeight * 34), "setModeSearch: " + string(obj_toolPane.setModeSearch));
+	draw_text(devVarX, wordTopMargin + (strHeight * 35), "chainStretchCheckList: " + scr_getStringOfList(chainStretchCheckList));
 	
 	
 	draw_text(devVarX - 500, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));

@@ -2,11 +2,12 @@
 	Purpose: perform alignment process on chain
 */
 function scr_alignChain(setIDList, pushOut) {
+
 	
 	var furthestDisplayCol = 0;
 
 	var displayRowList = ds_list_create();
-	var nonVoidWordExists = false;
+	var nonVoidWordExists = true;
 	var setIDListSize = ds_list_size(setIDList);
 
 	if (setIDListSize > 0) {
@@ -34,7 +35,7 @@ function scr_alignChain(setIDList, pushOut) {
 			// Access the previous word in sequence
 			var previousWordID = scr_prevWordInSequence(currentWordID);
 		
-			// if we only care about the first word for each unitID (to take care of side links)
+			// we only care about the first word for each unitID (to take care of side links)
 			if (ds_list_find_index(displayRowList, currentDisplayRow) > -1) {
 				if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1) > 0) {
 					var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
@@ -78,7 +79,7 @@ function scr_alignChain(setIDList, pushOut) {
 				currentVoid = abs(currentDisplayCol - (previousDisplayCol + 1));
 				ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1, currentVoid);
 			}
-		
+			
 		
 			if (not currentWordAligned or (not pushOut and currentVoid > 0)) {
 				continue;
@@ -89,6 +90,25 @@ function scr_alignChain(setIDList, pushOut) {
 			}
 
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		//furthestDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, furthestWordID - 1);
 		var displayRowList2 = ds_list_create();
