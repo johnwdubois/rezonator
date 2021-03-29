@@ -15,25 +15,6 @@ function scr_deleteChain(chainID){
 	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
 	var chainType = ds_map_find_value(chainSubMap, "type");
 	
-	// get list of chains
-	var listOfChains = -1;
-	var filterList = -1;
-	var selectedList = -1;
-	if (chainType == "rezChainList") {
-		listOfChains = ds_map_find_value(global.nodeMap, "rezChainList");
-		filterList = obj_chain.filteredRezChainList;
-		selectedList = obj_control.selectedRezChainList;
-	}
-	else if (chainType == "trackChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "trackChainList");
-		filterList = obj_chain.filteredTrackChainList;
-		selectedList = obj_control.selectedTrackChainList;
-	}
-	else if (chainType == "stackChain") {
-		listOfChains = ds_map_find_value(global.nodeMap, "stackChainList");
-		filterList = obj_chain.filteredStackChainList;
-		selectedList = obj_control.selectedStackChainList;
-	}
 	
 	// get setIDList
 	var setIDList = -1;
@@ -60,11 +41,8 @@ function scr_deleteChain(chainID){
 		}
 	}
 	
-	// delete this chain from the list of chains (and filter list, and selected list....)
-	scr_deleteFromList(listOfChains, chainID);
-	scr_deleteFromList(filterList, chainID);
-	scr_deleteFromList(selectedList, chainID);
 	
+	scr_removeChainFromLists(chainID, chainType);
 	
 	
 	var showList = global.nodeMap[?"showList"];

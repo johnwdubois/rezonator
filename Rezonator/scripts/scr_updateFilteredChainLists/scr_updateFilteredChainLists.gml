@@ -16,6 +16,11 @@ function scr_updateFilteredChainLists(){
 	ds_list_clear(obj_control.selectedTrackChainList);
 	ds_list_clear(obj_control.selectedStackChainList);
 	
+	// reset hidden lists
+	ds_list_clear(obj_control.hiddenRezChainList);
+	ds_list_clear(obj_control.hiddenTrackChainList);
+	ds_list_clear(obj_control.hiddenStackChainList);
+	
 	// update filteredChainLists for rez
 	var rezChainListSize = ds_list_size(rezChainList);
 	for (var i = 0; i < rezChainListSize; i++) {
@@ -34,6 +39,12 @@ function scr_updateFilteredChainLists(){
 		var isSelected = ds_map_find_value(currentChainSubMap, "selected");
 		if (isSelected && ds_list_find_index(obj_control.selectedRezChainList, currentChain) == -1) {
 			ds_list_add(obj_control.selectedRezChainList, currentChain);
+		}
+		
+		// add chain to hidden list if needed
+		var isVisible = ds_map_find_value(currentChainSubMap, "visible");
+		if (!isVisible && ds_list_find_index(obj_control.hiddenRezChainList, currentChain) == -1) {
+			ds_list_add(obj_control.hiddenRezChainList, currentChain);
 		}
 	}
 	// update filteredChainLists for tracks
@@ -55,6 +66,12 @@ function scr_updateFilteredChainLists(){
 		if (isSelected && ds_list_find_index(obj_control.selectedTrackChainList, currentChain) == -1) {
 			ds_list_add(obj_control.selectedTrackChainList, currentChain);
 		}
+		
+		// add chain to hidden list if needed
+		var isVisible = ds_map_find_value(currentChainSubMap, "visible");
+		if (!isVisible && ds_list_find_index(obj_control.hiddenTrackChainList, currentChain) == -1) {
+			ds_list_add(obj_control.hiddenTrackChainList, currentChain);
+		}
 	}
 	// update filteredChainLists for stacks
 	var stackChainListSize = ds_list_size(stackChainList);
@@ -74,6 +91,12 @@ function scr_updateFilteredChainLists(){
 		var isSelected = ds_map_find_value(currentChainSubMap, "selected");
 		if (isSelected && ds_list_find_index(obj_control.selectedStackChainList, currentChain) == -1) {
 			ds_list_add(obj_control.selectedStackChainList, currentChain);
+		}
+		
+		// add chain to hidden list if needed
+		var isVisible = ds_map_find_value(currentChainSubMap, "visible");
+		if (!isVisible && ds_list_find_index(obj_control.hiddenStackChainList, currentChain) == -1) {
+			ds_list_add(obj_control.hiddenStackChainList, currentChain);
 		}
 	}
 	

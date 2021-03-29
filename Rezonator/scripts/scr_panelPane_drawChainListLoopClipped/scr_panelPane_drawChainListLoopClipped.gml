@@ -35,20 +35,24 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var tabChainType = "";
 	var filterList = scr_getFilterList();
 	var selectedList = -1;
+	var hiddenList = -1;
 	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 		listOfChainsKey = "rezChainList";
 		tabChainType = "rezChain";
 		selectedList = obj_control.selectedRezChainList;
+		hiddenList = obj_control.hiddenRezChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 		listOfChainsKey = "trackChainList";
 		tabChainType = "trackChain";
 		selectedList = obj_control.selectedTrackChainList;
+		hiddenList = obj_control.hiddenTrackChainList;
 	}
 	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 		listOfChainsKey = "stackChainList";
 		tabChainType = "stackChain";
 		selectedList = obj_control.selectedStackChainList;
+		hiddenList = obj_control.hiddenStackChainList;
 	}
 	
 	// do lineList loop if user is on Read/Unit tab
@@ -339,6 +343,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 						if (mouse_check_button_released(mb_left)) {
 							currentChainVisible = !currentChainVisible;
 							scr_setMap(currentChainSubMap, "visible", currentChainVisible);
+							if (!currentChainVisible && ds_list_find_index(hiddenList, currentChainID) == -1) ds_list_add(hiddenList, currentChainID);
+							else if (currentChainVisible) scr_deleteFromList(hiddenList, currentChainID);
 						}
 						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, "Visible", obj_tooltip.arrowFaceUp);
 					}
@@ -583,11 +589,11 @@ function scr_panelPane_drawChainListLoopClipped() {
 		// filter all / visible all / align all chain options
 		if (i == 1) {
 			
+			// filter all
 			var allChainsFiltered = (ds_list_size(listOfChains) == ds_list_size(filterList) && ds_list_size(listOfChains) > 0);
 			var filterAllX = filterChainX;
 			var filterAllY = mean(headerRectY1, headerRectY2);
 			var mouseoverFilterAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterAllX, filterAllY, optionsIconRad) && !mouseoverCancel;
-			
 			if (mouseoverFilterAll) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_circle(filterAllX, filterAllY, optionsIconRad, false);
@@ -602,8 +608,25 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 				}
 			}
-			
 			draw_sprite_ext(spr_filterIcons, !allChainsFiltered, filterAllX, filterAllY, 1, 1, 0, global.colorThemeText, 1);
+			
+			
+			// visible all
+			var allChainsHidden = (ds_list_size(listOfChains) == ds_list_size(hiddenList) && ds_list_size(listOfChains) > 0);
+			var hideAllX = visibleChainX;
+			var hideAllY = mean(headerRectY1, headerRectY2);
+			var mouseoverHideAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, hideAllX, hideAllY, optionsIconRad) && !mouseoverCancel;
+			if (mouseoverHideAll) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_circle(hideAllX, hideAllY, optionsIconRad, false);
+				scr_createTooltip(hideAllX, hideAllY + optionsIconRad, "Hide all", obj_tooltip.arrowFaceUp);
+				
+				if (mouse_check_button_pressed(mb_left)) {
+					scr_setValueForAllChains(tabChainType, "visible", (allChainsHidden) ? true : false);
+				}
+			}
+			draw_sprite_ext(spr_toggleDraw, !allChainsHidden, hideAllX, hideAllY, 1, 1, 0, global.colorThemeText, 1);
+					
 		}
 		
 		

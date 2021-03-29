@@ -677,6 +677,11 @@ selectedRezChainList = ds_list_create();
 selectedTrackChainList = ds_list_create();
 selectedStackChainList = ds_list_create();
 
+hiddenRezChainList = ds_list_create();
+hiddenTrackChainList = ds_list_create();
+hiddenStackChainList = ds_list_create();
+
+
 filterActiveRez = false;
 filterActiveTrack = false;
 filterActiveStack = false;

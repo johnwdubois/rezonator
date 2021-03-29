@@ -80,25 +80,21 @@ function scr_panelPane_drawTabs() {
 			draw_set_color(global.colorThemeBorders)
 			draw_line(tabRectX1-edgeBufferX,tabRectY2,tabRectX2+edgeBufferX*2,tabRectY2)
 		}
-		// determine tabChainType & selectedNodeList for this tab
+		// determine tabChainType for this tab
 		var chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 		var tabChainType = "";
-		var selectedNodeList = -1;
 		var filterList = scr_getFilterList();
 		var tabFilterActive = false;
 		if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 			tabChainType = "rezChain";
-			selectedNodeList = obj_control.selectedRezChainList;
 			tabFilterActive = obj_control.filterActiveRez;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 			tabChainType = "trackChain";
-			selectedNodeList = obj_control.selectedTrackChainList;
 			tabFilterActive = obj_control.filterActiveTrack;
 		}
 		else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 			tabChainType = "stackChain";
-			selectedNodeList = obj_control.selectedStackChainList;
 			tabFilterActive = obj_control.filterActiveStack;
 		}
 
@@ -123,17 +119,14 @@ function scr_panelPane_drawTabs() {
 				// re-determine tab data (now that we've switched tabs)
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 					tabChainType = "rezChain";
-					selectedNodeList = obj_control.selectedRezChainList;
 					tabFilterActive = obj_control.filterActiveRez;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
 					tabChainType = "trackChain";
-					selectedNodeList = obj_control.selectedTrackChainList;
 					tabFilterActive = obj_control.filterActiveTrack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 					tabChainType = "stackChain";
-					selectedNodeList = obj_control.selectedStackChainList;
 					tabFilterActive = obj_control.filterActiveStack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabShow) {

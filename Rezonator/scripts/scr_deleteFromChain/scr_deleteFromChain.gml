@@ -21,6 +21,7 @@ function scr_deleteFromChain(sortVizSetList) {
 		show_debug_message("scr_deleteFromChain() ... chainSubMap does not exist");
 		exit;
 	}
+	var chainType = ds_map_find_value(chainSubMap, "type");
 	
 	// get the focused entry's submap
 	var focusedEntry = ds_map_find_value(chainSubMap, "focused");
@@ -86,29 +87,8 @@ function scr_deleteFromChain(sortVizSetList) {
 			ds_map_delete(global.nodeMap, obj_chain.currentFocusedChainID);
 			ds_map_destroy(focusedEntrySubMap);
 			ds_map_destroy(chainSubMap);
-			var listOfChainsKey = "rezChainList";
-			if (focusedEntryType == "track") listOfChainsKey = "trackChainList";
-			else if (focusedEntryType == "stack") listOfChainsKey = "stackChainList";
-			var listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
-			scr_deleteFromList(listOfChains, obj_chain.currentFocusedChainID);
 			
-			// remove chain from filter/selected list if necessary
-			var filteredChainList = -1;
-			var selectedChainList = -1;
-			if (focusedEntryType == "rez") {
-				filteredChainList = obj_chain.filteredRezChainList;
-				selectedChainList = obj_control.selectedRezChainList;
-			}
-			else if (focusedEntryType == "track") {
-				filteredChainList = obj_chain.filteredTrackChainList;
-				selectedChainList = obj_control.selectedTrackChainList;
-			}
-			else if (focusedEntryType == "stack") {
-				filteredChainList = obj_chain.filteredStackChainList;
-				selectedChainList = obj_control.selectedStackChainList;
-			}
-			scr_deleteFromList(filteredChainList, obj_chain.currentFocusedChainID);
-			scr_deleteFromList(selectedChainList, obj_chain.currentFocusedChainID);
+			scr_removeChainFromLists(obj_chain.currentFocusedChainID, chainType);
 			
 			// unfocus chain
 			obj_chain.currentFocusedChainID = "";
