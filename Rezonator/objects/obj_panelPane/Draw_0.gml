@@ -176,26 +176,6 @@ switch (currentFunction) {
 			scr_panelPane_drawGraphStats();
 		}
 		break;
-	case functionAudio:
-		if (keyboard_check(vk_control) and keyboard_check_pressed(ord("A"))) {
-			//var audioFile = get_open_filename_ext("audio file|*.ogg", "", working_directory, "Open a discourse audio OGG file");
-			//if (file_exists(audioFile)) {
-			//	scr_setAllValuesInCol(obj_control.unitGrid, obj_control.unitGrid_colAudioFile, audioFile);
-			//}
-			functionAudio_show = !functionAudio_show;
-		}
-	
-		windowWidth = camWidth - global.scrollBarWidth;
-		windowHeight = 84;
-		x = 0;
-		y = functionAudio_show ? camHeight - windowHeight : camHeight;
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemePaneBG);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-		if (y < camHeight) {
-			scr_panelPane_drawAudio();
-		}
-		break;
 	case functionTabs:
 		if(obj_panelPane.showNav){
 			draw_set_color(global.colorThemeBG);

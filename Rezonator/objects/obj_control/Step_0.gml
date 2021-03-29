@@ -716,11 +716,6 @@ if (instance_exists(obj_audioUI)) {
 		}
 	}
 }
-if (instance_exists(obj_customTagPane)) {
-	if (point_in_rectangle(mouse_x, mouse_y, obj_customTagPane.x, obj_customTagPane.y, obj_customTagPane.x + obj_customTagPane.windowWidth, obj_customTagPane.y + obj_customTagPane.windowHeight)) {
-		mouseoverPanelPane = true;	
-	}
-}
 
 
 if (not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {

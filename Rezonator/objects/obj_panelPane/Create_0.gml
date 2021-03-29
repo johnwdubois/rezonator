@@ -152,15 +152,6 @@ functionGoToLine_selectedDisco = 0;
 //functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
 
 
-functionAudio = 0;
-functionAudio_filename = 0;
-functionAudio_ogg = 0;
-functionAudio_tickSize = 0;
-functionAudio_audio = 0;
-functionAudio_buffSize = 0;
-functionAudio_bufferMap = 0;
-functionAudio_seekTo = 0;
-
 
 
 for (var i = 0; i < 3; i++) {
