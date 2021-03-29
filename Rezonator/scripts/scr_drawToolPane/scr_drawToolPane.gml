@@ -74,7 +74,7 @@ function scr_drawToolPane(toolSprScale) {
 	var filterButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
-	var filterButtonColor = (obj_control.filterGridActive) ? global.colorThemeRezPink : c_white;
+	var filterButtonColor = (obj_control.filterGridActive|| obj_control.quickFilterGridActive) ? global.colorThemeRezPink : c_white;
 	var filterList = scr_getFilterList();
 	var filterListSize = ds_list_size(filterList);
 	
@@ -109,11 +109,14 @@ function scr_drawToolPane(toolSprScale) {
 					scr_disableFilter();
 				}
 			}
+			if (obj_control.quickFilterGridActive) {
+				scr_disableFilter();
+			}
 		}
 	}
 	
 	// draw highlight rectangle if filter is on
-	if (obj_control.filterGridActive) {
+	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, false);
 	}
@@ -148,7 +151,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	// draw highlight rect
-	if (obj_control.filterGridActive) {
+	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, false);
 	}

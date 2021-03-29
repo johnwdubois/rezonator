@@ -86,6 +86,7 @@ placeChainNameCounter = 0;
 
 currentFocusedChainID = "";
 
+
 mouseLineHide = false;
 
 mouseLineWordID = -1;

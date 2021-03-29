@@ -5,6 +5,8 @@ function scr_disableFilter(){
 	with (obj_control) {
 		searchGridActive = false;
 		filterGridActive = false;
+		quickFilterGridActive = false;
+		quickPickedChainID = "";
 		currentActiveLineGrid = lineGrid;
 		wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 

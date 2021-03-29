@@ -771,8 +771,10 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 	else {
 			
 		obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
+		obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
 		// If filter is unactive. activate it
 		with (obj_control) {
+			
 			scr_renderQuickFilter();
 		}
 	}
