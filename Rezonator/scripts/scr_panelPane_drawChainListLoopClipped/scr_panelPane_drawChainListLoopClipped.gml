@@ -4,7 +4,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
-	
+
 	
 	x = 0;
 	windowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -13,6 +13,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
 	
 	var checkBoxScale = 1* max(global.fontSize,3)/5;
+	var optionsIconScale = 1;
+	var optionsIconRad = sprite_get_width(spr_toggleDraw) * optionsIconScale * 0.7;
 	
 	
 	// get the instance ID for the chainContents pane so we can easily reference it
@@ -78,6 +80,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var nameColWidth = windowWidth / 4;
 	var textColX = nameColX + nameColWidth;
 	
+	
+	var filterChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.25) : optionsColX + (optionsColWidth * 0.33);
+	var visibleChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.5) : optionsColX + (optionsColWidth * 0.66);
+	var alignChainX = optionsColX + (optionsColWidth * 0.75);
 	
 
 	var headerHeight = functionTabs_tabHeight;
@@ -302,11 +308,6 @@ function scr_panelPane_drawChainListLoopClipped() {
 					}
 					
 					// setup filter/align/visible buttons
-					var optionsIconScale = 1;
-					var optionsIconRad = sprite_get_width(spr_toggleDraw) * optionsIconScale * 0.7;
-					var filterChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.25) : optionsColX + (optionsColWidth * 0.33);
-					var visibleChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.5) : optionsColX + (optionsColWidth * 0.66);
-					var alignChainX = optionsColX + (optionsColWidth * 0.75);
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
 					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
 					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
@@ -516,7 +517,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 		else if (i == 1) {
 			headerRectX1 = optionsColX;
 			colWidth = optionsColWidth;
-			colText = "Options";
+			colText = "";
 		}
 		else if (i == 2) {
 			headerRectX1 = numColX;
@@ -578,6 +579,34 @@ function scr_panelPane_drawChainListLoopClipped() {
 			draw_set_color(global.colorThemeBorders);
 			scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2);
 		}
+		
+		// filter all / visible all / align all chain options
+		if (i == 1) {
+			
+			var allChainsFiltered = (ds_list_size(listOfChains) == ds_list_size(filterList) && ds_list_size(listOfChains) > 0);
+			var filterAllX = filterChainX;
+			var filterAllY = mean(headerRectY1, headerRectY2);
+			var mouseoverFilterAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterAllX, filterAllY, optionsIconRad) && !mouseoverCancel;
+			
+			if (mouseoverFilterAll) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_circle(filterAllX, filterAllY, optionsIconRad, false);
+				scr_createTooltip(filterAllX, filterAllY + optionsIconRad, "Filter all", obj_tooltip.arrowFaceUp);
+				
+				if (mouse_check_button_pressed(mb_left)) {
+					scr_setValueForAllChains(tabChainType, "filter", (allChainsFiltered) ? false : true);
+					// update the filter if we need to
+					if (obj_control.filterGridActive) {
+						if (ds_list_size(filterList) > 0) scr_renderFilter();
+						else scr_disableFilter();
+					}
+				}
+			}
+			
+			draw_sprite_ext(spr_filterIcons, !allChainsFiltered, filterAllX, filterAllY, 1, 1, 0, global.colorThemeText, 1);
+		}
+		
+		
 		
 		// draw header text
 		var headerTextX = floor(headerRectX1 + textBuffer);
