@@ -61,31 +61,6 @@ function scr_dropDownSelect(optionSelected) {
 	{
 	    scr_wordTagsOptions(optionSelected);
 	}
-	//gameSelection
-	else if (optionListType == global.optionListTypeGame) //10
-	{
-
-	    switch (optionSelected)
-	    {
-	        case "Present":
-	            obj_stackShow.currentGame = "Present";
-	            break;
-	        case "Where's Elmo":
-	            obj_stackShow.currentGame = "Where's Elmo";
-	            break;
-	        case "Rezzles":    
-	            obj_stackShow.currentGame = "Rezzles";
-	            break;
-	        case "SpotBot":
-	            obj_stackShow.currentGame = "SpotBot";
-	            break;
-	        default:
-	            break;
-	    }
-	    with(obj_dropDown){
-	        instance_destroy();
-	    }
-	}
 	//newWordOptions
 	else if (optionListType == global.optionListTypeNewWord) //11
 	{
@@ -176,13 +151,6 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeToolsSort) //24
 	{
 	    scr_toolsSortOptions(optionSelected);
-	    instance_destroy();
-	}
-
-	//stackshowOptions
-	else if (optionListType == global.optionListTypeStackShow) //25
-	{
-	    scr_stackshowOptions(optionSelected);
 	    instance_destroy();
 	}
 

@@ -32,7 +32,7 @@ function scr_surfaceStart() {
 	
 	if (abs(mouse_y - (y + windowHeight)) < 5
 	and mouse_x > x and mouse_x < x + windowWidth) {
-		if (object_index != obj_stackShow and object_index != obj_gridViewer) {
+		if (object_index != obj_gridViewer) {
 			obj_control.mouseoverPanelPane = true;
 			window_set_cursor(cr_size_ns);
 			if (mouse_check_button_pressed(mb_left)) {

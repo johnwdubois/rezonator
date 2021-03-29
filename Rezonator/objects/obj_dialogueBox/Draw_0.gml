@@ -7,7 +7,3 @@ if (obj_control.dialogueBoxActive) {
 else if(questionWindowActive) {
 	scr_drawQuestionBox();
 }
-else if(elmoActive) {
-	scr_drawElmoScreen();	
-}
-		//draw_text(camera_get_view_width(camera_get_active()) -700 , 810, "can press right: " + string(canPressRight));

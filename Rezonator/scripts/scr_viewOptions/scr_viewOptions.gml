@@ -46,14 +46,8 @@ function scr_viewOptions(optionSelected) {
 		case "Filter":
 		
 			if (obj_control.filterGridActive) {
-				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-					//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+				if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
 					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-					// Keep the focus on previous currentCenterDisplayRow
-					//with (obj_control) {
-					//	alarm[5] = 1;
-					//}
 				}
 			
 				// Switch to active grid

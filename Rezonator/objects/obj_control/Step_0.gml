@@ -106,20 +106,11 @@ else {
 	}
 }*/
 
-var canScrollWithStackShow = true;
-if (instance_exists(obj_stackShow)) {
-	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-		var focusedChainType = ds_map_find_value(focusedChainSubMap, "type");
-		if (focusedChainType == "stackChain") {
-			canScrollWithStackShow = false;
-		}
-	}
-}
+
 
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
-if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
+if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 
 	
 	var scrollSpeed = 0;
@@ -725,11 +716,6 @@ if (instance_exists(obj_audioUI)) {
 		}
 	}
 }
-if (instance_exists(obj_stackShow)) {
-	if (point_in_rectangle(mouse_x, mouse_y, obj_stackShow.windowX1, obj_stackShow.windowY1, obj_stackShow.windowX2, obj_stackShow.windowY2)) {
-		mouseoverPanelPane = true;	
-	}
-}
 if (instance_exists(obj_customTagPane)) {
 	if (point_in_rectangle(mouse_x, mouse_y, obj_customTagPane.x, obj_customTagPane.y, obj_customTagPane.x + obj_customTagPane.windowWidth, obj_customTagPane.y + obj_customTagPane.windowHeight)) {
 		mouseoverPanelPane = true;	
@@ -771,8 +757,6 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 	// If filter is active, deactivate it
 	if (obj_control.quickFilterGridActive) {
 		if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.quickFilterGrid)) {
-			//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-			//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
 			obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 			// Keep the focus on previous currentCenterDisplayRow
 		}

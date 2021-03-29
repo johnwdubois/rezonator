@@ -40,8 +40,6 @@ setModeSearch = modeRead;
 checkedForParticipantNames = false;
 
 
-tracksOnlyStackShow = false;
-rezOnlyStackShow = false;
 newWordInFilter = false;
 
 

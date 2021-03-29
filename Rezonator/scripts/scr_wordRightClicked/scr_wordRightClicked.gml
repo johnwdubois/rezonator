@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_wordRightClicked(){
 	
-	if (instance_exists(obj_control) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
+	if (instance_exists(obj_control) and !instance_exists(obj_dialogueBox)) {
 	
 		var currentRightClickWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, obj_control.rightClickWordID - 1);
 		obj_control.rightClickonWord = true;

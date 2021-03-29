@@ -3,7 +3,7 @@
 */
 
 function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoop, unitID) {
-
+	
 
 	var currentWordIDListSize = 0;
 	var previousWordID = -1;
@@ -44,7 +44,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	var wordStateNormal = obj_control.wordStateNormal;
 	var gridSpaceHorizontal = obj_control.gridSpaceHorizontal;
 	var showPlaceChains = obj_chain.showPlaceChains;
-	var stackShowActive = obj_control.stackShowActive;
 	var showDevVars = obj_control.showDevVars;
 	var leftScreenBound = obj_control.leftScreenBound;
 	var currentTool = obj_toolPane.currentTool;
@@ -266,28 +265,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		}
 	
 	
-		// figure out whether or not to draw fill/border for this word
-		/*var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordGridRow);
-		//var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
-		var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordGridRow);
-		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);*/
-		if(stackShowActive) {
-			var drawGoldStandard = (currentWordState == obj_control.wordStateGold);
-			var drawIncorrect = (currentWordState == obj_control.wordStateRed);
-			if (drawGoldStandard) {
-				draw_set_color(c_green);
-				draw_set_alpha(0.4);
-				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
-				draw_set_alpha(1);
-			}
 	
-			if (drawIncorrect) {
-				draw_set_color(c_red);
-				draw_set_alpha(0.4);
-				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
-				draw_set_alpha(1);
-			}
-		}
 	
 		if (wordRectX2 > speakerRectX2) {
 

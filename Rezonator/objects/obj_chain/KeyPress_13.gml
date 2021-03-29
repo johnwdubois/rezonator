@@ -2,9 +2,6 @@
 // End chain adding/use
 if(!obj_control.dialogueBoxActive){
 	
-	if((obj_control.stackShowActive) and global.wheresElmo) {
-		scr_goldStandard();
-	}
 	var shouldExit = false;
 	if(instance_exists(obj_dialogueBox)){
 		if(obj_dialogueBox.combineChains){
@@ -15,8 +12,5 @@ if(!obj_control.dialogueBoxActive){
 		exit;
 	}
 	
-	
-	
 	scr_chainDeselect();
-
 }

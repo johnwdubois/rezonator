@@ -166,9 +166,6 @@ switch (currentFunction) {
 		else {
 			scrollBarClickLock = true;	
 		}
-		if(obj_control.stackShowActive){
-			scr_panelPane_drawTracker();
-		}
 		break;
 	case functionGraphStats:
 		if (showAdvancedNav) {

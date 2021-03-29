@@ -99,7 +99,7 @@ function scr_audioDraw() {
 	}
 	
 	// Check for Spacebar to toggle play/pause and set Bookmark
-	if (keyboard_check_pressed(vk_space) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow) && audioSound != -1) {
+	if (keyboard_check_pressed(vk_space) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
 		//var stackSelected = 
 		if (selectedStackChain > -1) {
 			if (audioPaused) {
@@ -127,7 +127,7 @@ function scr_audioDraw() {
 	}
 	
 	// Check for Enter to set bookmark
-	if (keyboard_check_pressed(vk_enter) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow) && audioSound != -1) {
+	if (keyboard_check_pressed(vk_enter) and !instance_exists(obj_dialogueBox) && audioSound != -1) {
 		if(selectedStackChain == -1) {
 			if(audioPaused) {
 				var currentFocusUnit = scr_currentTopLine();

@@ -534,26 +534,13 @@ boxGrid_colChainIDLists = 2;
 //boxGrid_colMoveCount = 5;
 
 
-//stack Show variables
-currentStackShowListPosition = -1;
-stackShowList = ds_list_create();
-stackShowWindowActive = false;
-stackShowActive = false;
-stackShowBackwards = false;
-stackShowSwitchedWordView = false;
-stackShowSwitchedTextShape = false;
 
-//stackshow options
-setTutorial = false;
-setJustified = false;
-setTranscript = false;
-setNavWindow = false;
+
 
 scr_scrollBarInit();
 
 x = 0;
 y = 0;
-//stackShowBuffer = 10;
 
 drawRangeCenterOffset = 0;
 drawRangeExtraStepsForward = 0;

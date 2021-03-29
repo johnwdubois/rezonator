@@ -35,7 +35,6 @@
     {"isDnD":false,"eventNum":15,"eventType":7,"collisionObjectId":null,"parent":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":74,"eventType":7,"collisionObjectId":null,"parent":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":6,"eventType":2,"collisionObjectId":null,"parent":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":7,"eventType":2,"collisionObjectId":null,"parent":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":8,"eventType":2,"collisionObjectId":null,"parent":{"name":"obj_panelPane","path":"objects/obj_panelPane/obj_panelPane.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],

@@ -234,11 +234,6 @@ hoverTime[3] = 0;
 errorText = ""
 
 
-// Begin gameplay if user is in games mode
-if(string_lower(global.userName) != "gold" && global.games) {
-	// Begin the StackShow
-	alarm[7] = 1;
-}
 
 
 #macro EVENT_TICK 0

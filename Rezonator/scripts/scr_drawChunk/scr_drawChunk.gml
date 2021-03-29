@@ -125,8 +125,7 @@ function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 	and not mouseoverPanelPane 
 	and (hoverChunkID == currentWordID || hoverChunkID == -1) 
 	and hoverWordID == -1 
-	and !instance_exists(obj_dialogueBox) 
-	and !instance_exists(obj_stackShow)) {
+	and !instance_exists(obj_dialogueBox) ) {
 		mouseover = true;
 		obj_control.mouseoverNeutralSpace = false;	
 			
