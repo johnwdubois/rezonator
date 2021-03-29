@@ -437,7 +437,6 @@
     {"id":{"name":"scr_panelPane_drawChains1ToManyHeaders","path":"scripts/scr_panelPane_drawChains1ToManyHeaders/scr_panelPane_drawChains1ToManyHeaders.yy",},"order":22,},
     {"id":{"name":"obj_exportWindowGridList","path":"objects/obj_exportWindowGridList/obj_exportWindowGridList.yy",},"order":9,},
     {"id":{"name":"obj_exportWindowGridContents","path":"objects/obj_exportWindowGridContents/obj_exportWindowGridContents.yy",},"order":10,},
-    {"id":{"name":"obj_network","path":"objects/obj_network/obj_network.yy",},"order":0,},
     {"id":{"name":"obj_regular_expression_edge","path":"objects/obj_regular_expression_edge/obj_regular_expression_edge.yy",},"order":0,},
     {"id":{"name":"scr_setValueForAllChains","path":"scripts/scr_setValueForAllChains/scr_setValueForAllChains.yy",},"order":28,},
     {"id":{"name":"obj_regular_expression_node","path":"objects/obj_regular_expression_node/obj_regular_expression_node.yy",},"order":1,},
