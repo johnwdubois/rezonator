@@ -125,38 +125,49 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			}
 		}
 	}
-	
-	
-		
-	var inBoxHoldRect = false;
-	// Make sure the user has the box brush selected
-	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-			
-		// Check if this word is within the Box brush rectangle
-		with (obj_control) { 
-			if(boxRectWithinLine) {
-				if(shape = shapeBlock) {
-					inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));	
-				}
-				// If the text is left justified, we don't use the gridSpaceHorizontal
-				else {
-					inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
-				}
-			}
-		}
-		// If the box has been made, capture the info of the contained words
-		if(obj_control.boxRectMade and inBoxHoldRect > 0) {
-
-			// Make sure this word has not already been captured
+	else if (mouseRectMade and not mouseoverPanelPane) {
+		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (inMouseHoldRect) {
 			with (obj_control) {
 				if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
 					// Add the word info to the rectangle lists
-					ds_list_add(inRectUnitIDList, unitID);
+					//ds_list_add(inRectUnitIDList, unitID);
 					ds_list_add(inRectWordIDList, currentWordID);
 				}
 			}
 		}
 	}
+	
+	
+		
+	var inBoxHoldRect = false;
+
+			
+	// Check if this word is within the Box brush rectangle
+	with (obj_control) { 
+		if(boxRectWithinLine) {
+			if(shape == shapeBlock) {
+				inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));	
+			}
+			// If the text is left justified, we don't use the gridSpaceHorizontal
+			else {
+				inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
+			}
+		}
+	}
+	// If the box has been made, capture the info of the contained words
+	if(obj_control.boxRectMade and inBoxHoldRect > 0) {
+
+		// Make sure this word has not already been captured
+		with (obj_control) {
+			if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
+				// Add the word info to the rectangle lists
+				ds_list_add(inRectUnitIDList, unitID);
+				ds_list_add(inRectWordIDList, currentWordID);
+			}
+		}
+	}
+
 	
 	// Set this to be the hovered wordID
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and !instance_exists(obj_dialogueBox)) {

@@ -5,22 +5,23 @@ function scr_createChunk(){
 	// Place all captured unit and word info into the box grid
 	var inRectWordIDListSize = ds_list_size(inRectWordIDList);
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
-	
+	if(inRectWordIDListSize <= 1){ exit;}
 
-	if(inRectWordIDListSize > 0 and not inRectUnitIDListSize > 0 and obj_control.mouseRectWithinLine) {
+	if(inRectWordIDListSize > 0 and inRectUnitIDListSize <= 0 and obj_control.mouseRectWithinLine) {
 		ds_list_add(inRectUnitIDList, ds_grid_get(wordGrid, wordGrid_colUnitID, ds_list_find_value(inRectWordIDList, 0) - 1));
 
 		trackChunkMade = true;
 	}
 	inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
-
 	if (inRectUnitIDListSize > 0 && inRectWordIDListSize > 0 && is_numeric(obj_control.chunkID)) { // Make sure the box captured something
-		
+
 		// Retrieve references of the lists being added to
 		var currentUnitList = ds_list_create();
 		var currentWordList = ds_list_create();
 		
-
+		
+		// create Chunk new node in node map
+		
 		// Expand the box grid to fit the new info
 		ds_grid_resize(obj_chain.chunkGrid, obj_chain.chainGridWidth + 2, ds_grid_height(obj_chain.chunkGrid) + 1);
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid) - 1, ++obj_control.chunkID);
@@ -29,6 +30,7 @@ function scr_createChunk(){
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, ds_grid_height(obj_chain.chunkGrid) - 1, currentWordList);
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chunkGrid_colNest, ds_grid_height(obj_chain.chunkGrid) - 1, false);
 
+	
 		
 		var innerLoop = 0;
 	

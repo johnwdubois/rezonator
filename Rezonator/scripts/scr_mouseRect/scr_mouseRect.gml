@@ -22,8 +22,7 @@ function scr_mouseRect() {
 	if (mouse_check_button_pressed(mb_left) 
 	and not obj_control.mouseoverPanelPane 
 	and not obj_control.dialogueBoxActive 
-	and not obj_control.mouseRectMade 
-	and not obj_toolPane.currentMode == obj_toolPane.modeRead) {
+	and not obj_control.mouseRectMade) {
 		
 		obj_control.rectNotInPanelPane = true;
 		mouseHoldRectX1 = mouse_x;
