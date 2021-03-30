@@ -168,6 +168,9 @@ stackChainGridRowToCaption = -1;
 
 
 chainShowList = ds_list_create();
+chunkShowList = ds_list_create();
+
+
 
 filteredRezChainList = ds_list_create();
 filteredTrackChainList = ds_list_create();

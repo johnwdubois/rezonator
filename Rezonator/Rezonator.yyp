@@ -134,6 +134,7 @@
     {"id":{"name":"scr_currentTopLine","path":"scripts/scr_currentTopLine/scr_currentTopLine.yy",},"order":10,},
     {"id":{"name":"scr_renderFilter","path":"scripts/scr_renderFilter/scr_renderFilter.yy",},"order":11,},
     {"id":{"name":"scr_drawPlaceChains","path":"scripts/scr_drawPlaceChains/scr_drawPlaceChains.yy",},"order":12,},
+    {"id":{"name":"scr_drawChunks","path":"scripts/scr_drawChunks/scr_drawChunks.yy",},"order":23,},
     {"id":{"name":"scr_scrollBarInit","path":"scripts/scr_scrollBarInit/scr_scrollBarInit.yy",},"order":8,},
     {"id":{"name":"scr_drawWordBorder","path":"scripts/scr_drawWordBorder/scr_drawWordBorder.yy",},"order":13,},
     {"id":{"name":"scr_addToChainFieldMap","path":"scripts/scr_addToChainFieldMap/scr_addToChainFieldMap.yy",},"order":35,},

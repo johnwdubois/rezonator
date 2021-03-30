@@ -1,15 +1,5 @@
 /*
-	scr_drawChunk();
-	
-	Last Updated: 2020-10-26
-	
-	Called from: obj_control -> drawLine()
-	
 	Purpose: Draw the visual representation of a Chunk around the words within the Chunk
-	
-	Mechanism: Using the position of the words, draw a rectangle around the words. And check for mouseclicks within that Rectangle
-	
-	Author: Georgio Klironomos
 */
 function scr_drawChunk(currentWordID, currentLineY, fontScale, unitID) {
 

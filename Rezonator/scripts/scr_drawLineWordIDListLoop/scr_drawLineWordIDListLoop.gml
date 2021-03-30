@@ -39,6 +39,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	}
 
 	var chainShowList = obj_chain.chainShowList;
+	var chunkShowList = obj_chain.chunkShowList;
 	var wordStateDead = obj_control.wordStateDead;
 	var wordStateChunk = obj_control.wordStateChunk;
 	var wordStateNormal = obj_control.wordStateNormal;
@@ -85,25 +86,45 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		}
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1, drawLineLoop);
 
-		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
-		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
 		var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
 		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
+		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
+		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
+		var currentWordInBoxList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInBoxList, currentWordGridRow);
+
+		// get size of inChainsList
 		var currentWordInChainsListSize = 0;
-		
-		if(currentWordInChainsList != undefined){
-			if(ds_exists(currentWordInChainsList, ds_type_list)){
+		if (is_numeric(currentWordInChainsList)) {
+			if (ds_exists(currentWordInChainsList, ds_type_list)) {
 				currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
 			}
 		}
-
 		
 		
+		// if this word has any chains that are not yet in chainShowList, add them!
 		for (var i = 0; i < currentWordInChainsListSize; i++) {
 			if (ds_list_find_index(chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
 				ds_list_add(chainShowList, ds_list_find_value(currentWordInChainsList, i));
 			}
 		}
+		
+		// get size of inBoxList
+		var currentWordInBoxListSize = 0;
+		if (is_numeric(currentWordInBoxList)) {
+			if (ds_exists(currentWordInBoxList, ds_type_list)) {
+				currentWordInBoxListSize = ds_list_size(currentWordInBoxList);
+			}
+		}
+		
+		// if this word has any chunks that are not yet in chunkShowList, add them!
+		for (var i = 0; i < currentWordInBoxListSize; i++) {
+			if (ds_list_find_index(chunkShowList, ds_list_find_value(currentWordInBoxList, i)) == -1) {
+				ds_list_add(chunkShowList, ds_list_find_value(currentWordInBoxList, i));
+			}
+		}
+		
+		
+		
 	
 	
 		if(currentWordState != wordStateNormal) {
@@ -116,9 +137,10 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 			}
 	
 			// Check if the word is a ChunkWord
+			/*
 			if(currentWordState == wordStateChunk) {
 		
-				scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
+				//scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
 				
 				// set displayWordSeq for chunk
 				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordID - 1, drawWordLoop);
@@ -127,6 +149,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				else{drawWordLoop--;}
 				continue;
 			}
+			*/
 		}
 	
 	
