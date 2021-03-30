@@ -38,14 +38,20 @@ function scr_drawChunks(){
 		var chunkRectX2 = lastTokenRightX + 10;
 		var chunkRectY2 = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, displayRow) + strHeight;
 		
-		
+		//draw selection box		
+		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverWordID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
+		if(mouseOverChunk){
+			draw_set_color(global.colorThemeSelected1);
+			draw_set_alpha(.5);
+			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
+			if(device_mouse_check_button_released(0, mb_left)){
+				show_debug_message("TERRY, YOU ARE TOO COOL");
+			}
+		}
+			
 		draw_set_color(global.colorThemeSelected2);
 		draw_set_alpha(1);
-		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 4);
-
-		
-	
+		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3);
 	}
-	
-	
+		
 }
