@@ -1,17 +1,6 @@
 function scr_drawChains() {
 	/*
-		scr_drawChains();
-	
-		Last Updated: 2018-07-12
-	
-		Called from: obj_chain
-	
 		Purpose: draw rezChains and move words on screen according to the rezChains
-	
-		Mechanism: loop through chain show list and get the wordIDList from each chain, and draw lines
-					from word information
-				
-		Author: Terry DuBois
 	*/
 
 
@@ -96,26 +85,45 @@ function scr_drawChains() {
 		for (var j = 0; j < currentSetIDListSize - 1; j++) {
 			
 			// get the wordIDs for the 2 words we want to draw a line between
-			var currentEntry1 = ds_list_find_value(currentSetIDList, j);
-			var currentEntry1SubMap = ds_map_find_value(global.nodeMap, currentEntry1);
-			var currentEntry2 = ds_list_find_value(currentSetIDList, j + 1);
-			var currentEntry2SubMap = ds_map_find_value(global.nodeMap, currentEntry2);
-			var currentWordID1 = ds_map_find_value(currentEntry1SubMap, "word");
-			var currentWordID2 = ds_map_find_value(currentEntry2SubMap, "word");
+			var currentEntry1 = currentSetIDList[| j];
+			var currentEntry1SubMap = global.nodeMap[? currentEntry1];
+			var currentEntry2 = currentSetIDList[| j + 1];
+			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
+			var currentWordID1 = currentEntry1SubMap[? "word"];
+			var currentWordID2 = currentEntry2SubMap[? "word"];
+			
+			// check if the words are chunks
+			var currentWordID1IsChunk = false;
+			if (ds_map_exists(global.nodeMap, currentWordID1)) {
+				var currentWordID1SubMap = global.nodeMap[? currentWordID1];
+				var currentWordID1Type = currentWordID1SubMap[? "type"];
+				if (currentWordID1Type == "chunk") currentWordID1IsChunk = true;
+				if (currentWordID1IsChunk) {
+					var currentWordID1TokenList = currentWordID1SubMap[? "tokenList"];
+					currentWordID1 = currentWordID1TokenList[| 0];
+				}
+			}
+			var currentWordID2IsChunk = false;
+			if (ds_map_exists(global.nodeMap, currentWordID2)) {
+				var currentWordID2SubMap = global.nodeMap[? currentWordID2];
+				var currentWordID2Type = currentWordID2SubMap[? "type"];
+				if (currentWordID2Type == "chunk") currentWordID2IsChunk = true;
+				if (currentWordID2IsChunk) {
+					var currentWordID2TokenList = currentWordID2SubMap[? "tokenList"];
+					currentWordID2 = currentWordID2TokenList[| 0];
+				}
+			}
+			
 		
 			var currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);
-			var chunkWord1 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk);
-			//Add a nesting check
-		
+			var chunkWord1 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk);		
 			var currentWordStringWidth1 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
 		
 			lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
 			lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineID1);
 		
-		
 			var currentLineID2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID2 - 1);
 			var chunkWord2 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk);
-			//Add a nesting check
 			var sideLink = false;
 			
 			// check if this is a side link

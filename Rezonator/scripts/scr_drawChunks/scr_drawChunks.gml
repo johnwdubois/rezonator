@@ -38,46 +38,53 @@ function scr_drawChunks(){
 		var chunkRectX2 = lastTokenRightX + 10;
 		var chunkRectY2 = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, displayRow) + strHeight;
 		
-		//draw selection box		
+		// draw selection box		
 		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverWordID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
 		if(mouseOverChunk){
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
 			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
-			if(device_mouse_check_button_released(0, mb_left)){
+			// click on chunk
+			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_chain.currentFocusedChunkID = currentChunkID;
+				// add chunk to pre-existing chain
+				if (obj_chain.currentFocusedChainID != "") {
+					var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+					if (is_numeric(chainSubMap)) {
+						if (ds_exists(chainSubMap, ds_type_map)) {
+							scr_newLink(currentChunkID);
+						}
+					}
+				}
 			}
 			mouseOverAnyChunk = true;
 		}
 
-		
+		// draw border of chunk
 		draw_set_color(global.colorThemeSelected2);
 		draw_set_alpha(1);
 		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3);
 		
+		// if this chunk is focused, fill it in and draw the focused sqaures
 		if(obj_chain.currentFocusedChunkID == currentChunkID){
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
-			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
-			
-			
-			var strHeightRegular = string_height("0");
+			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);			
 
-			var strHeightScaled = string_height("0");
-			var fontScale = strHeightScaled / strHeightRegular;
-	   
+			var fontScale = 1;
 		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX1 - obj_control.wordDrawGridFocusedAnimation, chunkRectY1 - obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);
 		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX2 + obj_control.wordDrawGridFocusedAnimation, chunkRectY1 - obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);
 		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX1 - obj_control.wordDrawGridFocusedAnimation, chunkRectY2 + obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);
 		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX2 + obj_control.wordDrawGridFocusedAnimation, chunkRectY2 + obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);	    
-
 		}
 	}
-		if(!mouseOverAnyChunk){
-			if(device_mouse_check_button_released(0, mb_left)){
-				obj_chain.currentFocusedChunkID = "";
-			}
+	
+	// unfocus chunks if user clicks anywhere else
+	if(!mouseOverAnyChunk){
+		if(device_mouse_check_button_released(0, mb_left)){
+			obj_chain.currentFocusedChunkID = "";
 		}
+	}
 
 		draw_set_alpha(1);
 		

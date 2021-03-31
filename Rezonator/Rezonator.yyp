@@ -151,6 +151,7 @@
     {"id":{"name":"scr_drawGridViewerGridTabs","path":"scripts/scr_drawGridViewerGridTabs/scr_drawGridViewerGridTabs.yy",},"order":2,},
     {"id":{"name":"scr_stringGetField","path":"scripts/scr_stringGetField/scr_stringGetField.yy",},"order":7,},
     {"id":{"name":"scr_drawExportGridViewer","path":"scripts/scr_drawExportGridViewer/scr_drawExportGridViewer.yy",},"order":3,},
+    {"id":{"name":"scr_getFirstWordOfChunk","path":"scripts/scr_getFirstWordOfChunk/scr_getFirstWordOfChunk.yy",},"order":43,},
     {"id":{"name":"scr_gridViewerDynamicWidth","path":"scripts/scr_gridViewerDynamicWidth/scr_gridViewerDynamicWidth.yy",},"order":4,},
     {"id":{"name":"scr_chainTagInit","path":"scripts/scr_chainTagInit/scr_chainTagInit.yy",},"order":36,},
     {"id":{"name":"scr_playandLearnOptions","path":"scripts/scr_playandLearnOptions/scr_playandLearnOptions.yy",},"order":42,},

@@ -6,36 +6,42 @@ function scr_newLink(wordID) {
 	show_debug_message("scr_newLink() ... wordID: " + string(wordID));
 	ds_list_clear(obj_control.chainStretchCheckList);
 
-	//New funtionality for recording chain modification
+	// New funtionality for recording chain modification
 	while (ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) {
 		var ind = ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID);
 		ds_list_delete(obj_chain.chainIDModifyList, ind);
 	}
 	ds_list_insert(obj_chain.chainIDModifyList, 0, currentFocusedChainID);
 
-	var focus = true;
-
-
+		
+	// make sure this is a valid ID
 	if (wordID == undefined) {
 		exit;
 	}
-
-	var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
+	var unitID = -1;
+	if (is_numeric(wordID)) unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
 	if (unitID == undefined) {
 		exit;
 	}
+	var isChunk = (obj_chain.currentFocusedChunkID != "");
 	
-	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-		var idSet = unitID;
+	// determine whether to treat as unit (stack) or word (rez/track)
+	var idSet = -1;
+	if (isChunk) {
+		idSet = wordID;
+	}
+	else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+		idSet = unitID;
 		if (obj_control.quickStackAbleToInitiate) {
 			obj_control.moveCounter++;
 		}
 	}
 	else {
-		var idSet = wordID;
+		idSet = wordID;
 		obj_control.mostRecentlyAddedWord = wordID;
 	}
 
+	// make sure there is a focused chain
 	if (currentFocusedChainID = "") {
 		show_debug_message("scr_newLink() ... ERROR: currentFocusedChainID is blank string. Exiting...");
 		exit;
@@ -55,18 +61,18 @@ function scr_newLink(wordID) {
 	
 	var linkSourceID = ""; 
 	
-	// add an item/entry (rez/track/stack) to the nodeMap
+	// add an entry (rez/track/stack) to the nodeMap
 	// find this chain's node in the nodeMap
 	var nodeID = "";
-	var chainSubMap = ds_map_find_value(global.nodeMap, currentFocusedChainID);
+	var chainSubMap = global.nodeMap[? currentFocusedChainID];
 	if (is_numeric(chainSubMap)) {
 		if (ds_exists(chainSubMap, ds_type_map)) {
 			
 			// get the sourceID for the link
-			linkSourceID = ds_map_find_value(chainSubMap, "focused");
+			linkSourceID = chainSubMap[? "focused"];
 			
 			// get the setIDList for this chain's node
-			var idList = ds_map_find_value(chainSubMap, "setIDList");
+			var idList = chainSubMap[? "setIDList"];
 			if (is_numeric(idList)) {
 				if (ds_exists(idList, ds_type_list)) {
 					
@@ -107,7 +113,7 @@ function scr_newLink(wordID) {
 					}
 					
 					// set wordDrawGrid if this is a rez or track
-					if (nodeType == "rez" || nodeType == "track") {
+					if ((nodeType == "rez" || nodeType == "track") && !isChunk) {
 						var chainColor = ds_map_find_value(chainSubMap, "chainColor");
 						ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
@@ -131,7 +137,15 @@ function scr_newLink(wordID) {
 		
 	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
 	if (nodeType == "rez" || nodeType == "track") {
-		var entryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, idSet - 1);
+		var entryWordInChainsList = -1;
+		if (isChunk) {
+			var chunkSubMap = global.nodeMap[? wordID];
+			entryWordInChainsList = chunkSubMap[? "inChainsList"];
+		}
+		else {
+			entryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, idSet - 1);
+		}
+		
 		if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
 			ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
 		}
@@ -204,5 +218,7 @@ function scr_newLink(wordID) {
 	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 		scr_alignChain2ElectricBoogaloo(currentFocusedChainID);
 	}
+	
+	show_debug_message("scr_newLink() ... end of script for wordID: " + string(wordID));
 
 }

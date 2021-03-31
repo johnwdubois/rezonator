@@ -22,21 +22,8 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 				var currentTokenCount = "N/A";
 				if (chainType == "rezChain" || chainType == "trackChain") {
 					currentWord = ds_map_find_value(currentEntrySubMap, "word");
-					currentUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWord - 1);
-					
-					// if this word is a chunk, we consider the currentWord to be the first word in the chunk (for gapWords)
-					var rowInChunkGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWord);
-					if (rowInChunkGrid >= 0) {
-						var boxWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, rowInChunkGrid);
-						if (is_numeric(boxWordList)) {
-							if (ds_exists(boxWordList, ds_type_list)) {
-								if (ds_list_size(boxWordList) > 0) {
-									currentChunkFirstWord = ds_list_find_value(boxWordList, 0);
-									currentTokenCount = ds_list_size(boxWordList) - 1;
-								}
-							}
-						}
-					}
+					currentChunkFirstWord = scr_getFirstWordOfChunk(currentWord);
+					currentUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, (currentChunkFirstWord >= 0) ? currentChunkFirstWord : currentWord - 1);
 				}
 				else if (chainType == "stackChain") {
 					currentUnit = ds_map_find_value(currentEntrySubMap, "unit");
@@ -60,17 +47,34 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 							currentGapWords = currentWord - prevWord;
 						}
 					}
-					if (currentWord >= 0) {
-						var currentDisplayStr = "";
-						currentDisplayStr = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWord - 1));
-						currentCharCount = string_length(currentDisplayStr);
-						if (currentChunkFirstWord >= 0) {
-							var displayStrNoWhitespace = string_replace_all(currentDisplayStr, " ", "");
-							currentCharCount = string_length(displayStrNoWhitespace);
+					
+					// calculate character & token count
+					if (currentChunkFirstWord == -1) {
+						if (currentWord >= 0) {
+							var currentDisplayStr = "";
+							currentDisplayStr = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWord - 1));
+							currentCharCount = string_length(currentDisplayStr);
+							if (currentChunkFirstWord >= 0) {
+								var displayStrNoWhitespace = string_replace_all(currentDisplayStr, " ", "");
+								currentCharCount = string_length(displayStrNoWhitespace);
+							}
+							if (currentTokenCount == "N/A") {
+								currentTokenCount = 1;
+							}
 						}
-						if (currentTokenCount == "N/A") {
-							currentTokenCount = 1;
+					}
+					else {
+						// calculate character & token count ... for chunks!!
+						var chunkSubMap = global.nodeMap[? currentWord];
+						var tokenList = chunkSubMap[? "tokenList"];
+						var tokenListSize = ds_list_size(tokenList);
+						currentCharCount = 0;
+						for (var j = 0; j < tokenListSize; j++) {
+							var currentToken = tokenList[| j];
+							var currentTokenDisplayStr = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentToken - 1));
+							currentCharCount += string_length(currentTokenDisplayStr);
 						}
+						currentTokenCount = tokenListSize;
 					}
 				}
 
