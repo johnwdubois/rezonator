@@ -71,6 +71,7 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"7384e534-48fd-4e8a-9b0a-6ccfa6abb487","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
     "name": "panelPane",
     "path": "folders/Sprites/UI/panelPane.yy",
