@@ -30,6 +30,9 @@ function scr_createChunk(){
 		var chunkSubMap = global.nodeMap[? chunkID];
 		ds_map_add_list(chunkSubMap, "tokenList", tokenIDList);
 		
+		//set to focused chunk
+		obj_chain.currentFocusedChunkID = chunkID;
+		
 		// loop over tokenIDList and tell each word what its chunk is
 		var tokenIDListSize = ds_list_size(tokenIDList);
 		for (var i = 0; i < tokenIDListSize; i++) {

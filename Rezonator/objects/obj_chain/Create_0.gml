@@ -86,6 +86,8 @@ placeChainNameCounter = 0;
 
 currentFocusedChainID = "";
 
+currentFocusedChunkID = "";
+
 
 mouseLineHide = false;
 

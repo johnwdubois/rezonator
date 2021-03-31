@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawChunks(){
-	
+	var mouseOverAnyChunk = false;
 	// loop through all the chunks currently on screen, and draw them!
 	var chunkShowListSize = ds_list_size(chunkShowList);
 	for (var i = 0; i < chunkShowListSize; i++) {
@@ -45,13 +45,40 @@ function scr_drawChunks(){
 			draw_set_alpha(.5);
 			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 			if(device_mouse_check_button_released(0, mb_left)){
-				show_debug_message("TERRY, YOU ARE TOO COOL");
+				obj_chain.currentFocusedChunkID = currentChunkID;
 			}
+			mouseOverAnyChunk = true;
 		}
-			
+
+		
 		draw_set_color(global.colorThemeSelected2);
 		draw_set_alpha(1);
 		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3);
+		
+		if(obj_chain.currentFocusedChunkID == currentChunkID){
+			draw_set_color(global.colorThemeSelected1);
+			draw_set_alpha(.5);
+			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
+			
+			
+			var strHeightRegular = string_height("0");
+
+			var strHeightScaled = string_height("0");
+			var fontScale = strHeightScaled / strHeightRegular;
+	   
+		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX1 - obj_control.wordDrawGridFocusedAnimation, chunkRectY1 - obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);
+		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX2 + obj_control.wordDrawGridFocusedAnimation, chunkRectY1 - obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);
+		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX1 - obj_control.wordDrawGridFocusedAnimation, chunkRectY2 + obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);
+		    draw_sprite_ext(spr_focusPoint, 0, chunkRectX2 + obj_control.wordDrawGridFocusedAnimation, chunkRectY2 + obj_control.wordDrawGridFocusedAnimation, fontScale, fontScale, 0, global.colorThemeSelected2, 1);	    
+
+		}
 	}
+		if(!mouseOverAnyChunk){
+			if(device_mouse_check_button_released(0, mb_left)){
+				obj_chain.currentFocusedChunkID = "";
+			}
+		}
+
+		draw_set_alpha(1);
 		
 }

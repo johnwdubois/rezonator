@@ -82,6 +82,13 @@ else {
 
 
 
+if (ds_map_exists(global.nodeMap, currentFocusedChunkID)) {
+}
+else{
+	//currentFocusedChunkID = "";
+}
+
+
 
 mouseLineHide = false;
 if (obj_control.mouseoverPanelPane) {
