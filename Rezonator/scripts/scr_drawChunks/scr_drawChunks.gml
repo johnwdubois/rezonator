@@ -12,10 +12,11 @@ function scr_drawChunks(){
 		if (!is_numeric(currentChunkSubMap)) continue;
 		if (!ds_exists(currentChunkSubMap, ds_type_map)) continue;
 		
-		// get tokenList of current chunk
+		// get tokenList & inChainsList of current chunk
 		var currentChunkTokenList = currentChunkSubMap[? "tokenList"];
-		if (!is_numeric(currentChunkTokenList)) continue;
-		if (!ds_exists(currentChunkTokenList, ds_type_list)) continue;
+		var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+		if (!is_numeric(currentChunkTokenList) || !is_numeric(currentChunkInChainsList)) continue;
+		if (!ds_exists(currentChunkTokenList, ds_type_list) || !ds_exists(currentChunkInChainsList, ds_type_list)) continue;
 		
 		// get first & last token of chunk
 		var currentChunkFirstTokenID = currentChunkTokenList[| 0];
@@ -45,7 +46,7 @@ function scr_drawChunks(){
 		
 		// draw selection box		
 		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverWordID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
-		if(mouseOverChunk){
+		if (mouseOverChunk) {
 			obj_control.mouseoverNeutralSpace = false;
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
@@ -54,8 +55,7 @@ function scr_drawChunks(){
 			if (device_mouse_check_button_released(0, mb_left)) {
 				obj_chain.currentFocusedChunkID = currentChunkID;
 				// add chunk to pre-existing chain
-				var chunksInChainsList = currentChunkSubMap[? "inChainsList"];
-				if(ds_list_size(chunksInChainsList) < 1){
+				if (ds_list_size(currentChunkInChainsList) < 1) {
 					if (obj_chain.currentFocusedChainID != "") {
 						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 						if (is_numeric(chainSubMap)) {
@@ -68,34 +68,27 @@ function scr_drawChunks(){
 			}
 			obj_chain.mouseOverAnyChunk = true;
 		}
+		
 		var colorOfRect = global.colorThemeSelected2;	
 		var typeOfChain = "rezChain";
-		var chunksInChainsList = currentChunkSubMap[?"inChainsList"];
-		if (is_numeric(chunksInChainsList)){ 
-			if (ds_exists(chunksInChainsList, ds_type_list)) {
-				if(ds_list_size(chunksInChainsList) > 0){
-					var chunksChain = chunksInChainsList[|0];
-					var chunksChainsSubMap = global.nodeMap[?chunksChain];
+
+		if (ds_list_size(currentChunkInChainsList) > 0) {
+			var chunksChain = currentChunkInChainsList[| 0];
+			var chunksChainsSubMap = global.nodeMap[? chunksChain];
 					
-					if (is_numeric(chunksChainsSubMap)) {
-						if (ds_exists(chunksChainsSubMap, ds_type_map)) {
-						typeOfChain = chunksChainsSubMap[?"type"];
-						colorOfRect = chunksChainsSubMap[?"chainColor"];
-						}
-					}
+			if (is_numeric(chunksChainsSubMap)) {
+				if (ds_exists(chunksChainsSubMap, ds_type_map)) {
+					typeOfChain = chunksChainsSubMap[? "type"];
+					colorOfRect = chunksChainsSubMap[? "chainColor"];
 				}
 			}
 		}
+		
 		// draw border of chunk
 		draw_set_color(colorOfRect);
 		draw_set_alpha(1);
-		if(typeOfChain == "rezChain"){
-			scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, false);
-		}
-		else{
-			scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, true);
-			
-		}
+		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, (typeOfChain == "trackChain"));
+		
 		// if this chunk is focused, fill it in and draw the focused sqaures
 		if(obj_chain.currentFocusedChunkID == currentChunkID){
 			draw_set_color(global.colorThemeSelected1);

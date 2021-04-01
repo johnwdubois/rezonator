@@ -35,7 +35,6 @@ else {
 	
 	if (obj_chain.currentFocusedChunkID != "") {
 		scr_deleteChunk(obj_chain.currentFocusedChunkID);
-		
 	}
 	
 }

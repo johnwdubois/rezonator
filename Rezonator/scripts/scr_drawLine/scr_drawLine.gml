@@ -124,10 +124,18 @@ function scr_drawLine() {
 	hoverWordID = -1;
 	hoverChunkID = -1;
 	hoverChunkIDRow = -1;
+	
+	// when releasing the mouse, save the inRectWordIDList so it can be used for chunks & quicklinks
+	if (mouse_check_button_released(mb_left)) {
+		if (ds_list_size(inRectWordIDList) > 0) {
+			ds_list_copy(inRectWordIDListCopy, inRectWordIDList);
+		}
+	}
 
-
+	// clear lists that are meant to be refreshed each frame
 	ds_list_clear(obj_chain.chainShowList);
 	ds_list_clear(obj_chain.chunkShowList)
+	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
 
 	// for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
@@ -296,7 +304,7 @@ function scr_drawLine() {
 	
 	
 		var currentLineInStack = "";
-		if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2 and not obj_control.rectNotInPanelPane) {
+		if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2) {
 			obj_control.lineContainsMouseYPos = speakerRectY1;	
 		}
 	

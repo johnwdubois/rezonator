@@ -8,7 +8,6 @@ function scr_getFirstWordOfChunk(chunkID){
 	var chunkSubMap = global.nodeMap[? chunkID];
 	if (is_numeric(chunkSubMap)) {
 		if (ds_exists(chunkSubMap, ds_type_map)) {
-			show_debug_message(string(firstWord) + "   1");
 			
 			// get the chunk's token list and get that list's first item
 			var tokenList = chunkSubMap[? "tokenList"];
@@ -16,14 +15,12 @@ function scr_getFirstWordOfChunk(chunkID){
 				if (ds_exists(tokenList, ds_type_list)) {
 					if (ds_list_size(tokenList) > 0) {
 						firstWord = tokenList[| 0];
-						show_debug_message(string(firstWord) + "   2");
 					}
 				}
 			}			
 		}
 	}
-	
-	show_debug_message(string(firstWord) + "   3");
+
 	return firstWord;
 
 }

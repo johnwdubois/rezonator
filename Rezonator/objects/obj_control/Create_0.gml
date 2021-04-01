@@ -425,6 +425,7 @@ mouseHoldRectY2 = 0;
 mouseRectMade = false;
 mouseRectReleased = false;
 inRectWordIDList = ds_list_create();
+inRectWordIDListCopy = ds_list_create();
 inRectHitIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;

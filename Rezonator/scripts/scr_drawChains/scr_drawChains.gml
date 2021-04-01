@@ -11,9 +11,6 @@ function scr_drawChains() {
 	var mouseLineX = undefined;
 	var mouseLineY = undefined;
 
-	//var furthestWordID = -1;
-	//var furthestDisplayCol = -1;
-
 	var minWordWidth = 9999999;
 	var linePlusX = 0;
 
@@ -24,7 +21,7 @@ function scr_drawChains() {
 	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
 	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
-	var arrowSize = 0.3 + (0.1 * global.fontSize/5);
+	var arrowSize = 0.3 + (0.1 * global.fontSize / 5);
 
 	// loop through rezChainList to get chain info
 	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
@@ -209,7 +206,6 @@ function scr_drawChains() {
 		}
 	
 	
-	
 		if (obj_chain.currentFocusedChainID == currentChainID) {	
 			if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 				
@@ -224,10 +220,6 @@ function scr_drawChains() {
 					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
 				}
 			}
-		}
-	
-		if (obj_control.drawLineState == obj_control.lineState_ltr && obj_control.justify == obj_control.justifyLeft) {
-			//scr_alignChain(currentSetIDList, currentChainAlign);
 		}
 	}
 

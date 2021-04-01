@@ -287,9 +287,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 			}
 		}
 	
-	
-	
-	
 		if (wordRectX2 > speakerRectX2) {
 
 			//scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
@@ -301,6 +298,23 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	
 			scr_drawWord(currentWordGridRow, currentWordID, unitID, currentWordX, currentLineY, currentWordString, hitGridHeight);
 		}
+		
+		
+		// check to see if this word should be added to inRectWordIDList (if it is in mouse rect)
+		var inMouseRectX2 = (shape == shapeBlock) ? wordRectX1 + obj_control.gridSpaceHorizontal - 20 : wordRectX2;
+		var inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, inMouseRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (mouse_check_button(mb_left)) {
+			if (inMouseHoldRect && !mouseoverPanelPane) {
+				with (obj_control) {
+					if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
+						ds_list_add(inRectWordIDList, currentWordID);
+					}
+				}
+			}
+		}
+		
+		
+		
 	
 		previousWordID = currentWordID;
 		previousWordDisplayString = currentWordString;

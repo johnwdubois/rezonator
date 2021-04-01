@@ -3,12 +3,12 @@
 function scr_createChunk(){
 	
 	// Place all captured unit and word info into the box grid
-	var inRectWordIDListSize = ds_list_size(inRectWordIDList);
+	var inRectWordIDListSize = ds_list_size(inRectWordIDListCopy);
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
-	if(inRectWordIDListSize <= 1){ exit;}
+	if (inRectWordIDListSize <= 1) exit;
 
 	if (inRectWordIDListSize > 0 and inRectUnitIDListSize <= 0 and obj_control.mouseRectWithinLine) {
-		var wordID = ds_list_find_value(inRectWordIDList, 0);
+		var wordID = inRectWordIDListCopy[| 0];
 		var unitID = ds_grid_get(wordGrid, wordGrid_colUnitID, wordID - 1);
 		ds_list_add(inRectUnitIDList, unitID);
 	}
@@ -23,7 +23,7 @@ function scr_createChunk(){
 		var inChainsList = ds_list_create();
 		
 		// copy contents of inRectWordIDList into tokenIDList
-		ds_list_copy(tokenIDList, inRectWordIDList);
+		ds_list_copy(tokenIDList, inRectWordIDListCopy);
 		show_debug_message("scr_createChunk() ... tokenIDList: " + scr_getStringOfList(tokenIDList));
 		
 		// create Chunk new node in node map
@@ -61,6 +61,7 @@ function scr_createChunk(){
 	// Clear the rect word list for next use
 	ds_list_clear(inRectUnitIDList);
 	ds_list_clear(inRectWordIDList);
+	ds_list_clear(inRectWordIDListCopy);
 
 
 	// Reset all box grid variables

@@ -2,19 +2,23 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_quickLinkCreation(){
 	
+	var quickLinkWordIDList = inRectWordIDListCopy
+	show_debug_message("scr_quickLinkCreation() ... quickLinkWordIDList: " + scr_getStringOfList(quickLinkWordIDList));
+	
 	if (current_time - sessionStartTime < 2000 or not quickLinkAllowed) {
+		show_debug_message("quickLink not allowed. Exiting...");
 		exit;
 	}
 	
 	// create a temporary grid: "the grid of future chains"
-	// this will organize the group of words in the inRectWordIDList by their
+	// this will organize the group of words in the quickLinkWordIDList by their
 	// display columns, so we can then create quicklinks based on their display columns
 	var gridOfFutureChainsWidth = 3;
 	var gridOfFutureChains_colDisplayCol = 0;
 	var gridOfFutureChains_colWordIDList = 1;
 	var gridOfFutureChains_colFocused = 2;
 	var gridOfFutureChains = ds_grid_create(gridOfFutureChainsWidth, 0);
-	if (ds_list_size(inRectWordIDList) > 0) {
+	if (ds_list_size(quickLinkWordIDList) > 0) {
 		moveCounter++;
 	}
 
@@ -34,7 +38,7 @@ function scr_quickLinkCreation(){
 			alarm[10] = 1;
 			exit;
 		}
-		ds_list_copy(inRectList, inRectWordIDList);
+		ds_list_copy(inRectList, quickLinkWordIDList);
 	}
 	
 	// fill up the grid of future chains
@@ -72,7 +76,7 @@ function scr_quickLinkCreation(){
 			ds_grid_resize(gridOfFutureChains, gridOfFutureChainsWidth, ds_grid_height(gridOfFutureChains) + 1);
 		
 			var newWordIDList = ds_list_create();
-			ds_list_add(newWordIDList, ds_list_find_value(inRectWordIDList, i));
+			ds_list_add(newWordIDList, ds_list_find_value(quickLinkWordIDList, i));
 		
 			ds_grid_set(gridOfFutureChains, gridOfFutureChains_colDisplayCol, ds_grid_height(gridOfFutureChains) - 1, currentDisplayCol);
 			ds_grid_set(gridOfFutureChains, gridOfFutureChains_colWordIDList, ds_grid_height(gridOfFutureChains) - 1, newWordIDList);
@@ -81,7 +85,7 @@ function scr_quickLinkCreation(){
 		}
 		else {
 			var displayColList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, rowInFutureChainGrid);
-			ds_list_add(displayColList, ds_list_find_value(inRectWordIDList, i));
+			ds_list_add(displayColList, ds_list_find_value(quickLinkWordIDList, i));
 		}
 	}
 
@@ -191,6 +195,6 @@ function scr_quickLinkCreation(){
 	obj_control.mouseRectBeginInWord = -1;
 	obj_control.mouseRectBeginBetweenWords = -1;
 	ds_grid_destroy(gridOfFutureChains);
-	ds_list_clear(inRectWordIDList);
+	ds_list_clear(quickLinkWordIDList);
 	ds_list_clear(inRectHitIDList);
 }

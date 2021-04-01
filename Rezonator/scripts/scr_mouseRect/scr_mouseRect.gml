@@ -1,23 +1,8 @@
-/*
-	scr_mouseRect();
-	
-	Last Updated: 2020-10-28
-	
-	Called from: obj_control
-	
+/*	
 	Purpose: draw a rectangle for creating quickLinks/quickStacks
-	
-	Mechanism: Create and draw a rectangle based on the positions of a mouse drag
-				
-	Author: Georgio Klironomos
 */
-
 function scr_mouseRect() {
-
-	//Set the color and alpha of the rectangle
-	draw_set_color(global.colorThemeSelected1);
-	draw_set_alpha(0.5);
-
+	
 	// Initialize the rectangle's top left position based on mouse position
 	if (mouse_check_button_pressed(mb_left) 
 	and not obj_control.mouseoverPanelPane 
@@ -38,11 +23,6 @@ function scr_mouseRect() {
 		if(obj_control.mouseoverSpeakerLabel) {
 			obj_control.mouseRectBeginInSpeakerLabel = true;
 		}
-	
-		// Set the active tool based on the gesture
-		with (obj_toolPane) {
-			alarm[2] = 1;// Is super finnicky, but kinda works??
-		}
 	}
 
 	// Dynamically set the bottom right corner of the rect
@@ -55,9 +35,8 @@ function scr_mouseRect() {
 		var rectTopY = min(mouseHoldRectY1, mouseHoldRectY2);
 		
 		//Check if the mouseRect is within a discourse line
-		if(rectTopY > obj_control.lineContainsMouseYPos 
+		if (rectTopY > obj_control.lineContainsMouseYPos 
 		and rectBottomY < (obj_control.lineContainsMouseYPos + obj_control.gridSpaceVertical)) {
-			
 			obj_control.mouseRectWithinLine = true;
 		
 			// Check if the current gesture is a rezChunk
@@ -73,8 +52,9 @@ function scr_mouseRect() {
 			}
 		}
 		
+
 		// Check if the mouseRect is contained within a single column of words
-		if(abs(mouseHoldRectX1 - mouseHoldRectX2) < obj_control.gridSpaceVertical) {
+		if (abs(mouseHoldRectX1 - mouseHoldRectX2) < obj_control.gridSpaceVertical) {
 			obj_control.mouseRectWithinColumn = true;
 		}
 		else {
@@ -100,6 +80,8 @@ function scr_mouseRect() {
 				}
 			}
 			else {
+				draw_set_color(global.colorThemeSelected1);	
+				draw_set_alpha(0.5);
 				draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, false);
 				draw_set_alpha(1);
 				draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouseHoldRectX2, mouseHoldRectY2, true);
@@ -129,15 +111,4 @@ function scr_mouseRect() {
 		obj_control.mouseRectBeginInSpeakerLabel = false;
 
 	}
-
-	// Refresh the cliques if we've made Rez chains
-	// CHAIN REHAUL: let's ditch cliques
-	/*
-	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-		var cliqueGridHeight = ds_grid_height(obj_chain.cliqueGrid);
-		for (var i = 0; i < cliqueGridHeight; i++) {
-			scr_cliqueGridRefreshUnitIDList(i);
-		}
-	}
-	*/
 }
