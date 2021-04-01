@@ -44,7 +44,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverTool || toolFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverTool) {
@@ -85,7 +85,7 @@ function scr_drawToolPane(toolSprScale) {
 	// mouseover & click on filter button
 	if (mouseoverFilter) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth , false);
 		scr_createTooltip(filterButtonRectX1, filterButtonY, "Filter", obj_tooltip.arrowFaceRight);
 		
 		
@@ -137,7 +137,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverContext || contextFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverContext) {
@@ -182,7 +182,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverJustify || justifyFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverJustify) {
@@ -213,7 +213,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverOneToOne || oneToOneFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverOneToOne) {
@@ -246,7 +246,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverAudio) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverAudio) {
@@ -284,7 +284,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverHelp) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(helpButtonRectX1, helpButtonRectY1, helpButtonRectX2, helpButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(helpButtonRectX1, helpButtonRectY1, helpButtonRectX2, helpButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverHelp) {

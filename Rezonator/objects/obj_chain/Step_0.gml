@@ -33,7 +33,9 @@ if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 					var focusedEntryWordID = ds_map_find_value(focusedEntrySubMap, "word");
 					var focusedEntryChunkFirstWord = scr_getFirstWordOfChunk(focusedEntryWordID);
 					mouseLineWordID = (focusedEntryChunkFirstWord >= 0) ? focusedEntryChunkFirstWord : focusedEntryWordID;
-					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, focusedEntryWordID - 1, true);
+					if(focusedEntryChunkFirstWord < 0){
+						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, focusedEntryWordID - 1, true);
+					}
 				}
 			}
 		}
@@ -57,11 +59,17 @@ if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 					var currentEntry = ds_list_find_value(setIDList, i);
 					var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 					var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
-					var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentWordID - 1);
-					var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
+					focusedEntryChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
+					//set grid stuff if is not a chunk
+					if(focusedEntryChunkFirstWord < 0){
+								
+						var isVisible = ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colVisible, currentWordID - 1);
+						var isChunk = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
 			
-					if (isVisible || isChunk) {
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentWordID - 1, true);
+						if (isVisible || isChunk) {
+							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentWordID - 1, true);
+						}
+					
 					}
 				}
 			}

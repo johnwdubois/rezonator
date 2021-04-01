@@ -2,8 +2,6 @@
 	Purpose: Remove the Chunk from it's chain, and delete the Chunk word
 */
 function scr_deleteChunk(chunkID) {
-	show_debug_message("BUH");
-
 	var chunkSubMap = global.nodeMap[?chunkID];
 	
 	if(!is_numeric(chunkSubMap)){exit;}

@@ -1,5 +1,5 @@
 /*
-	scr_newChain(wordID, unitID);
+	scr_newChain(unitID);
 	
 	Last Updated: 2018-07-12
 	
@@ -12,9 +12,9 @@
 	Author: Terry DuBois
 */
 
-function scr_newChain(wordID, unitID) {
+function scr_newChain(unitID) {
 	
-	show_debug_message("scr_newChain() ... wordID: " + string(wordID) + ", unitID: " + string(unitID));
+	show_debug_message("scr_newChain() ... unitID: " + string(unitID));
 
 	var chainName = "";
 	var chainSeq = 0;
@@ -29,9 +29,9 @@ function scr_newChain(wordID, unitID) {
 				//functionChainList_currentTab = functionChainList_tabRezBrush;
 			}
 			aligned = true;
-			rezChainNameCounter++;
-			chainSeq = rezChainNameCounter;
-			chainName = "Rez " + string(rezChainNameCounter);
+			obj_chain.rezChainNameCounter++;
+			chainSeq = obj_chain.rezChainNameCounter;
+			chainName = "Rez " + string(obj_chain.rezChainNameCounter);
 			chainType = "rezChain";
 			if(obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
@@ -42,9 +42,9 @@ function scr_newChain(wordID, unitID) {
 			with (obj_panelPane) {
 				//functionChainList_currentTab = functionChainList_tabTrackBrush;
 			}
-			trackChainNameCounter++;
-			chainSeq = trackChainNameCounter;
-			chainName = "Track " + string(trackChainNameCounter);
+			obj_chain.trackChainNameCounter++;
+			chainSeq = obj_chain.trackChainNameCounter;
+			chainName = "Track " + string(obj_chain.trackChainNameCounter);
 			chainType = "trackChain";
 			break;
 		case obj_toolPane.toolStackBrush:
@@ -54,15 +54,15 @@ function scr_newChain(wordID, unitID) {
 			with (obj_panelPane) {
 				//functionChainList_currentTab = functionChainList_tabStackBrush;
 			}
-			stackChainNameCounter++;
-			chainSeq = stackChainNameCounter;
-			chainName = "Stack " + string(stackChainNameCounter);
+			obj_chain.stackChainNameCounter++;
+			chainSeq = obj_chain.stackChainNameCounter;
+			chainName = "Stack " + string(obj_chain.stackChainNameCounter);
 			chainType = "stackChain";
 			break;
 		case obj_toolPane.toolPlaceChains:
-			placeChainNameCounter++;
-			chainSeq = placeChainNameCounter;
-			chainName = "Place " + string(placeChainNameCounter);
+			obj_chain.placeChainNameCounter++;
+			chainSeq = obj_chain.placeChainNameCounter;
+			chainName = "Place " + string(obj_chain.placeChainNameCounter);
 			chainType = "placeChain";
 		default:
 			exit;
@@ -90,12 +90,12 @@ function scr_newChain(wordID, unitID) {
 	}
 
 
-	var chainColor = ds_list_find_value(chainColorList, chainColorID[obj_toolPane.currentTool]);
+	var chainColor = ds_list_find_value(obj_chain.chainColorList, obj_chain.chainColorID[obj_toolPane.currentTool]);
 
-	chainColorID[obj_toolPane.currentTool]++;
+	obj_chain.chainColorID[obj_toolPane.currentTool]++;
 
-	if (chainColorID[obj_toolPane.currentTool] >= ds_list_size(chainColorList)) {
-		chainColorID[obj_toolPane.currentTool] = 0;
+	if (obj_chain.chainColorID[obj_toolPane.currentTool] >= ds_list_size(obj_chain.chainColorList)) {
+		obj_chain.chainColorID[obj_toolPane.currentTool] = 0;
 	}
 	
 	// set values in nodeMap

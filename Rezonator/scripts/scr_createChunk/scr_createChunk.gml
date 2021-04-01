@@ -42,10 +42,21 @@ function scr_createChunk(){
 			var currentTokenInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentTokenID - 1);
 			if (ds_list_find_index(currentTokenInBoxList, chunkID) == -1) ds_list_add(currentTokenInBoxList, chunkID);
 		}
-		
-
 	}
-		
+	var chunksInChainsList = chunkSubMap[? "inChainsList"];
+	if(ds_list_size(chunksInChainsList) < 1){
+		//in chain making tool
+		if(obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack){
+			//chain is already seleceted
+			if(obj_chain.currentFocusedChainID != ""){
+				scr_newLink(chunkID);
+			}
+			else{
+				scr_newChain(unitID)
+				scr_newLink(chunkID);
+			}
+		}
+	}
 
 	// Clear the rect word list for next use
 	ds_list_clear(inRectUnitIDList);

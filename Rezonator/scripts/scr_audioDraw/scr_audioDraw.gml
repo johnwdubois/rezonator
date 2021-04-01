@@ -276,7 +276,7 @@ function scr_audioDraw() {
 	}
 	
 	draw_set_color(global.colorThemeBG);
-	scr_drawRectWidth(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, 2);
+	scr_drawRectWidth(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, 2 , false);
 	
 	
 	
