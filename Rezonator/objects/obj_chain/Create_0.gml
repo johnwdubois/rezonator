@@ -195,3 +195,5 @@ trackGrid_colTranscript = 8;
 trackGrid_colUnitText = 9;
 trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);
+
+mouseOverAnyChunk = false;

@@ -33,7 +33,7 @@ else {
 	}
 	scr_deleteFromChain(true);
 	
-	if (obj_chain.currentFocusedChunkID != "" ) {
+	if (obj_chain.currentFocusedChunkID != "") {
 		scr_deleteChunk(obj_chain.currentFocusedChunkID);
 		
 	}
