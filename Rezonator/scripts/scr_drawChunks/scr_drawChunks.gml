@@ -38,6 +38,11 @@ function scr_drawChunks(){
 		var chunkRectX2 = lastTokenRightX + 10;
 		var chunkRectY2 = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, displayRow) + strHeight;
 		
+		// draw BG rect
+		draw_set_color(global.colorThemeBG);
+		draw_set_alpha(1);
+		draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
+		
 		// draw selection box		
 		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverWordID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
 		if(mouseOverChunk){

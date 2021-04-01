@@ -219,7 +219,7 @@ function scr_drawChains() {
 				var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
 				var wordPixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
 					
-				if(wordPixelX != undefined and wordPixelY != undefined){
+				if(wordPixelX != undefined and wordPixelY != undefined) {
 					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
 					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
 				}

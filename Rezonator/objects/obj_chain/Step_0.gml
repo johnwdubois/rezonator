@@ -31,7 +31,8 @@ if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 			if (is_numeric(focusedEntrySubMap)) {
 				if (ds_exists(focusedEntrySubMap, ds_type_map)) {
 					var focusedEntryWordID = ds_map_find_value(focusedEntrySubMap, "word");
-					mouseLineWordID = focusedEntryWordID;
+					var focusedEntryChunkFirstWord = scr_getFirstWordOfChunk(focusedEntryWordID);
+					mouseLineWordID = (focusedEntryChunkFirstWord >= 0) ? focusedEntryChunkFirstWord : focusedEntryWordID;
 					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, focusedEntryWordID - 1, true);
 				}
 			}
