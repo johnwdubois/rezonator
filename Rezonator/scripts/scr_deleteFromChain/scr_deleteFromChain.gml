@@ -86,7 +86,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			ds_map_destroy(focusedEntrySubMap);
 			ds_map_destroy(chainSubMap);
 			
-			scr_removeChainFromLists(obj_chain.currentFocusedChainID, focusedEntry, chainType);
+			scr_removeChainFromLists(obj_chain.currentFocusedChainID, chainType);
 			
 			// unfocus chain
 			obj_chain.currentFocusedChainID = "";

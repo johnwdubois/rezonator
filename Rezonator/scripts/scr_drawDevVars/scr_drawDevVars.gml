@@ -39,6 +39,7 @@ function scr_drawDevVars(){
 	
 	
 	
+	
 	// draw dev vars
 	var devVarX = camWidth - global.toolPaneWidth - global.scrollBarWidth - 20;
 	draw_text(devVarX, wordTopMargin + (strHeight * 1), "allSaved: " + string(allSaved));
@@ -62,7 +63,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
-	draw_text(devVarX, wordTopMargin + (strHeight * 22), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 22), "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
 	draw_text(devVarX, wordTopMargin + (strHeight * 23), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
