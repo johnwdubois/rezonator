@@ -161,6 +161,7 @@
     {"id":{"name":"scr_loadLineGridSection","path":"scripts/scr_loadLineGridSection/scr_loadLineGridSection.yy",},"order":6,},
     {"id":{"name":"scr_saveREZ","path":"scripts/scr_saveREZ/scr_saveREZ.yy",},"order":11,},
     {"id":{"name":"scr_saveSchema","path":"scripts/scr_saveSchema/scr_saveSchema.yy",},"order":12,},
+    {"id":{"name":"scr_setFocusedChainWordID","path":"scripts/scr_setFocusedChainWordID/scr_setFocusedChainWordID.yy",},"order":45,},
     {"id":{"name":"scr_saveINI","path":"scripts/scr_saveINI/scr_saveINI.yy",},"order":10,},
     {"id":{"name":"scr_exportChainTempGrid","path":"scripts/scr_exportChainTempGrid/scr_exportChainTempGrid.yy",},"order":8,},
     {"id":{"name":"scr_loadREZ","path":"scripts/scr_loadREZ/scr_loadREZ.yy",},"order":5,},

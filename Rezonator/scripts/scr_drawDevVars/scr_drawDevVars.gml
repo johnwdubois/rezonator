@@ -27,13 +27,6 @@ function scr_drawDevVars(){
 		focusedChainLinkIDList = ds_map_find_value(chainMap, "linkIDList");
 		focusedChainType =  ds_map_find_value(chainMap, "type");
 		focusedChainFocused = ds_map_find_value(chainMap, "focused");
-		var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFocused);
-
-		if (is_numeric(focusedEntrySubMap)) {			
-			if (ds_exists(focusedEntrySubMap, ds_type_map)) {
-				obj_chain.focusedChainWordID = ds_map_find_value(focusedEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "word");
-			}
-		}
 	}
 	
 	

@@ -64,13 +64,14 @@ function scr_drawChunks(){
 				// add chunk to pre-existing chain
 				if (ds_list_size(currentChunkInChainsList) < 1) {
 					obj_chain.currentFocusedChunkID = currentChunkID;
-					if (obj_chain.currentFocusedChainID != "") {
+					if (obj_chain.currentFocusedChainID != "") {						
 						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 						if (is_numeric(chainSubMap)) {
 							if (ds_exists(chainSubMap, ds_type_map)) {
 								scr_newLink(currentChunkID);
 							}
 						}
+						obj_chain.currentFocusedChunkID = "";
 					}
 				}
 				else {

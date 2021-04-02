@@ -17,6 +17,8 @@ if(keyboard_check_pressed(ord("A")) and keyboard_check(vk_control) and not (!obj
 	//showPlaceChains = !showPlaceChains;	
 }
 
+scr_setFocusedChainWordID();
+
 
 // set mouseLineWordID & fillRect
 mouseLineWordID = -1;
