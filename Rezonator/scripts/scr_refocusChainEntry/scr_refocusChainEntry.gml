@@ -45,18 +45,6 @@ function scr_refocusChainEntry(wordID){
 			chainListTab = obj_panelPane.functionChainList_tabStackBrush;
 			chainMode = obj_toolPane.modeRez;
 		}
-		
-		// set chainList tab
-		with (obj_panelPane) {
-			if (currentFunction == functionChainList) {
-				//functionChainList_currentTab = chainListTab;
-			}
-		}
-		
-		// set mode
-		with (obj_toolPane) {
-			//currentMode = chainMode;
-		}
 	}
 
 }

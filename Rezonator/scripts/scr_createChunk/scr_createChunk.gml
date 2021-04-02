@@ -43,8 +43,10 @@ function scr_createChunk(){
 			if (ds_list_find_index(currentTokenInBoxList, chunkID) == -1) ds_list_add(currentTokenInBoxList, chunkID);
 		}
 	}
+	
+	
 	var chunksInChainsList = chunkSubMap[? "inChainsList"];
-	if(ds_list_size(chunksInChainsList) < 1){
+	if (ds_list_size(chunksInChainsList) < 1) {
 		//in chain making tool
 		if(obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack){
 			//chain is already seleceted
@@ -57,6 +59,12 @@ function scr_createChunk(){
 			}
 		}
 	}
+	
+	// if there is a focused chain, unfocus the chunk
+	if (obj_chain.currentFocusedChainID != "") {
+		obj_chain.currentFocusedChunkID = "";
+	}
+	
 
 	// Clear the rect word list for next use
 	ds_list_clear(inRectUnitIDList);

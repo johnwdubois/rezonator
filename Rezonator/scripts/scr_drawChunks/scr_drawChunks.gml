@@ -44,6 +44,14 @@ function scr_drawChunks(){
 		draw_set_alpha(1);
 		draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 		
+		// check whether this chunk is in a focused chain
+		var chunkInFocusedChain = false;
+		if (obj_chain.currentFocusedChainID != "") {
+			for (var j = 0; j < ds_list_size(currentChunkInChainsList); j++) {
+				if (obj_chain.currentFocusedChainID == currentChunkInChainsList[| j]) chunkInFocusedChain = true;
+			}
+		}
+		
 		// draw selection box		
 		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverWordID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
 		if (mouseOverChunk) {
@@ -53,9 +61,9 @@ function scr_drawChunks(){
 			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 			// click on chunk
 			if (device_mouse_check_button_released(0, mb_left)) {
-				obj_chain.currentFocusedChunkID = currentChunkID;
 				// add chunk to pre-existing chain
 				if (ds_list_size(currentChunkInChainsList) < 1) {
+					obj_chain.currentFocusedChunkID = currentChunkID;
 					if (obj_chain.currentFocusedChainID != "") {
 						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 						if (is_numeric(chainSubMap)) {
@@ -63,6 +71,15 @@ function scr_drawChunks(){
 								scr_newLink(currentChunkID);
 							}
 						}
+					}
+				}
+				else {
+					// if this chunk is in at least 1 chain, we will focus the first chain its inChainsList
+					obj_chain.currentFocusedChunkID = "";
+					var chainToRefocus = currentChunkInChainsList[| 0];
+					if (is_string(chainToRefocus) && ds_map_exists(global.nodeMap, chainToRefocus)) {
+						obj_chain.currentFocusedChainID = chainToRefocus;
+						scr_refocusChainEntry(currentChunkID);
 					}
 				}
 			}
@@ -90,8 +107,8 @@ function scr_drawChunks(){
 		scr_drawRectWidth(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, 3, (typeOfChain == "trackChain"));
 		
 		// if this chunk is focused, fill it in and draw the focused sqaures
-		if(obj_chain.currentFocusedChunkID == currentChunkID){
-			draw_set_color(global.colorThemeSelected1);
+		if (obj_chain.currentFocusedChunkID == currentChunkID || chunkInFocusedChain) {
+			draw_set_color((obj_chain.focusedChainWordID == currentChunkID) ? colorOfRect : global.colorThemeSelected1);
 			draw_set_alpha(.5);
 			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);			
 

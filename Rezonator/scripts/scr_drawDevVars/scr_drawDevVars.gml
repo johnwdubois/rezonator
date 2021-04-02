@@ -18,7 +18,6 @@ function scr_drawDevVars(){
 	var focusedChainSetIDList = -1;
 	var focusedChainVizSetIDList = -1;
 	var focusedChainLinkIDList = -1;
-	var focusedChainWordID = "";
 	var focusedChainType = "";
 	var focusedChainFocused = "";
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
@@ -32,7 +31,7 @@ function scr_drawDevVars(){
 
 		if (is_numeric(focusedEntrySubMap)) {			
 			if (ds_exists(focusedEntrySubMap, ds_type_map)) {
-				focusedChainWordID = ds_map_find_value(focusedEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "word");
+				obj_chain.focusedChainWordID = ds_map_find_value(focusedEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "word");
 			}
 		}
 	}
@@ -58,7 +57,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
-	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(focusedChainWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(obj_chain.focusedChainWordID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 18), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
@@ -77,8 +76,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 33), "filterGridActive: " + string(filterGridActive));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "setModeSearch: " + string(obj_toolPane.setModeSearch));
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "chunkShowList: " + scr_getStringOfList(obj_chain.chunkShowList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 36), "inRectWordIDList: " + scr_getStringOfList(inRectWordIDList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 37), "inRectWordIDListCopy: " + scr_getStringOfList(inRectWordIDListCopy));
+	draw_text(devVarX, wordTopMargin + (strHeight * 36), "currentFocusedChunkID: " + string(obj_chain.currentFocusedChunkID));
 	
 	draw_text(devVarX - 500, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX - 500, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));

@@ -85,8 +85,8 @@ placeChainNameCounter = 0;
 //chunkNameCounter = 0;
 
 currentFocusedChainID = "";
-
 currentFocusedChunkID = "";
+focusedChainWordID = "";
 
 
 mouseLineHide = false;
