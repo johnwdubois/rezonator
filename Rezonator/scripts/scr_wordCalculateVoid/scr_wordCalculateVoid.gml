@@ -74,6 +74,9 @@ function scr_wordCalculateVoid(wordID){
 							var currentStretch = currentEntrySubMap[? "stretch"];
 							if (currentStretch) continue;
 							var currentWordID = currentEntrySubMap[? "word"];
+							if(scr_isChunk(currentWordID)){
+									currentWordID = scr_getFirstWordOfChunk(currentWordID);
+							}
 							var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 							if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {
 								ds_list_add(displayRowList, currentDisplayRow);
@@ -92,6 +95,9 @@ function scr_wordCalculateVoid(wordID){
 								if (!is_numeric(currentEntrySubMap)) continue;
 								if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 								var currentWordID = currentEntrySubMap[? "word"];
+								if(scr_isChunk(currentWordID)){
+									currentWordID = scr_getFirstWordOfChunk(currentWordID);
+								}
 								var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 								currentDisplayCol--;
 								ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol);

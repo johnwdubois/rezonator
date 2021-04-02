@@ -109,6 +109,10 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 			var currentWordID = currentEntrySubMap[? "word"];
 			
+			if(scr_isChunk(currentWordID)){
+				currentWordID = scr_getFirstWordOfChunk(currentWordID);
+			}
+			
 			
 			var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
@@ -146,6 +150,10 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 				if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 				
 				var currentWordID = currentEntrySubMap[? "word"];
+				
+				if(scr_isChunk(currentWordID)){
+					currentWordID = scr_getFirstWordOfChunk(currentWordID);
+				}
 				var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 				var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 			
