@@ -1,23 +1,14 @@
 function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 	/*
-		scr_newWord();
-	
-		Last Updated: 2019-06-25
-	
-		Called from: obj_control
-	
 		Purpose: Create a new word within the discourse based on user string input
-	
-		Mechanism: Place the new word and its attributes into each word grid
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
+	
+	// temporary exit while we work on chunks/alignment with new words
+	exit;
 	
 	var displayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, targetWord - 1);
 	var lineWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, displayRow);
 	wordSeq = ds_list_find_index(lineWordIDList, targetWord) - 1;
-
-	// Take in the arguments, and check if this word is a Chunk word
 
 
 	// Safety check
@@ -25,10 +16,6 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 		exit;
 	}
 
-
-
-
-	//var wordIDListUnitGrid = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1);
 
 	// Ask the user for the new word, if this is not a chunk
 	if(argument_count == 5) {
@@ -158,6 +145,7 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 			var prevInChunkList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, prevWordID - 1);
 		
 			// For each chunk the prev word is in, check if the prev word is not the last word in the chunk
+			/*
 			var prevInChunkListSize = ds_list_size(prevInChunkList);
 			for(var chunkListLoop = 0; chunkListLoop < prevInChunkListSize; chunkListLoop++) {
 
@@ -179,6 +167,7 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 					ds_list_add(currentChunkInBoxList, currentChunkID);
 				}
 			}
+			*/
 		}
 	}
 

@@ -28,7 +28,8 @@ function scr_wordRightClicked(){
 				ds_list_add(dropDownOptionList, "Delete Link");
 			}
 			else{
-				ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete Link");
+				//ds_list_add(dropDownOptionList, "Split Word", "New Word", "Delete Link");
+				//ds_list_add(dropDownOptionList, "Split Word", "Delete Link");
 				if (!firstWordInLine && obj_control.showDevVars) {
 					ds_list_add(dropDownOptionList, "Split Line");
 				}
@@ -47,10 +48,13 @@ function scr_wordRightClicked(){
 				obj_control.ableToCreateDropDown = false;
 			}
 			else{
+				// bring back split word :(
+				/*
 				ds_list_add(dropDownOptionList, "Split Word", "New Word");
 				if (!firstWordInLine && obj_control.showDevVars) {
 					ds_list_add(dropDownOptionList, "Split Line");
 				}
+				*/
 			}
 			if(currentRightClickWordState == obj_control.wordStateNew) {
 				ds_list_add(dropDownOptionList, "Delete New Word");
