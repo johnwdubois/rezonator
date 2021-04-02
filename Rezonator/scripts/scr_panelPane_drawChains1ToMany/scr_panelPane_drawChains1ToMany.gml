@@ -179,7 +179,10 @@ function scr_panelPane_drawChains1ToMany() {
 					// Focus in the main screen
 					if (chainType == "rezChain" or chainType == "trackChain") {
 						ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
+						
+						if(!scr_isChunk(currentEntry)){
+							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
+						}
 					}
 				}
 				else if (mouseover and ableToBeMouseOver) {
