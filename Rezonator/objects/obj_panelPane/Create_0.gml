@@ -12,11 +12,8 @@
 	Author: Terry DuBois
 */
 
-clipSurface = -1;
-clipWidth = 100;
-clipHeight = 100;
-clipX = 0;
-clipY = 0;
+scr_scrollBarInit();
+
 windowResizeXHolding = false;
 windowResizeYHolding = false;
 canResizeWindowX = true;
@@ -26,15 +23,6 @@ originalWindowHeight = 20;
 y = originalWindowHeight;
 
 
-// scrollbar variables
-scrollBarHolding = false;
-scrollBarUpButtonHeld = false;
-scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
-scrollBarHeight = 0;
-scrollPlusY = 0;
-scrollPlusYDest = 0;
-scrollBarPlusY = 0;
 
 
 
@@ -55,20 +43,25 @@ functionClique = 5;
 functionHelp = 6;
 functionGoToLine = 7;
 functionGraphStats = 8;
+functionTabs = 9;
+
 
 functionChainList_tabLine = 0;
 functionChainList_tabRezBrush = 2;
 functionChainList_tabTrackBrush = 1;
 functionChainList_tabStackBrush = 3;
-functionChainList_tabClique = 4;
+functionChainList_tabShow = 4;
+functionChainList_tabClique = -1;
+
+
 functionChainList_currentTab = functionChainList_tabLine;
-//functionChainList_maxScrollRange = 5;
 functionChainList_tabName[0] = "menu_read";
 functionChainList_tabName[2] = "menu_rez";
 functionChainList_tabName[1] = "menu_track";
 functionChainList_tabName[3] = "menu_stack";
-functionChainList_tabName[4] = "menu_clique";
-functionChainList_tabHeight = 16;
+//functionChainList_tabName[4] = "menu_clique";
+functionChainList_tabName[4] = "Show";
+functionTabs_tabHeight = 16;
 functionChainList_sortAsc[0] = true;
 functionChainList_sortAsc[1] = true;
 functionChainList_sortAsc[2] = true;
@@ -76,6 +69,8 @@ functionChainList_sortAsc[3] = true;
 functionChainList_sortAsc[4] = true;
 functionChainList_lineGridRowFocused = 0;
 functionChainList_lineGridDisplayYList = ds_list_create();
+functionChainList_focusedChainIndex = -1;
+functionChainList_playShowID = "";
 
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;
@@ -88,6 +83,7 @@ functionChainContents_lineGridRowFocused = -1;
 functionChainContents_sortedCol = -1;
 functionChainContents_sortedColAsc = true;
 functionChainContents_chainID = "";
+functionChainContents_showID = "";
 alarm[8] = 5;
 
 functionChainContents_colXList = ds_list_create();
@@ -234,6 +230,8 @@ hoverTime[1] = 0;
 hoverTime[2] = 0;
 hoverTime[3] = 0;
 
+
+errorText = ""
 
 
 // Begin gameplay if user is in games mode

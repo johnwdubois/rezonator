@@ -125,7 +125,7 @@ if (rectX2 > camWidth) {
 
 
 // draw arrow and rounded rectangle
-draw_set_color(global.colorThemeBorders);
+draw_set_color(global.colorThemeText);
 draw_triangle(arrowX1, arrowY1, arrowX2, arrowY2, arrowX3, arrowY3, false);
 draw_roundrect(rectX1, rectY1, rectX2, rectY2, false);
 

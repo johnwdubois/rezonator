@@ -40,7 +40,7 @@ function scr_stackShowWindow() {
 		var chainSubMap = ds_map_find_value(global.nodeMap, currentStackChainID);
 		var chainType = ds_map_find_value(chainSubMap, "type");
 		if(chainType == "stackChain"){
-			currentStackName = ds_map_find_value(chainSubMap, "chainName");
+			currentStackName = ds_map_find_value(chainSubMap, "name");
 			currentStackCaption = ds_map_find_value(chainSubMap, "caption");
 			var hashCounter = 1;
 			for(var i = 0; i < string_length(currentStackCaption); i++){
@@ -61,6 +61,7 @@ function scr_stackShowWindow() {
 		y = camera_get_view_height(camera_get_active())/2 - stackBoxYOffset + 11;
 		
 		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
 		draw_set_colour(global.colorThemeBG);
 		draw_rectangle(camera_get_view_width(camera_get_active()) /2 - horizontalBuffer, camera_get_view_height(camera_get_active())/2 - verticleBuffer, camera_get_view_width(camera_get_active()) /2 + horizontalBuffer, camera_get_view_height(camera_get_active())/2 + verticleBuffer, false);
 		

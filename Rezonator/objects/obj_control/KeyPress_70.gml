@@ -1,12 +1,11 @@
 ///@description Activate Search
-if (!shortcutsEnabled || obj_panelPane.discoSelectionActive) {
+if (!shortcutsEnabled || obj_panelPane.discoSelectionActive || mouseoverTagShortcut != ""
+|| instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox)) {
 	exit;
 }
 
 // Activates word searching using search grid
-//if(currentActiveLineGrid == lineGrid) {
 preSwitchDisplayRow = obj_control.scrollPlusYDest;
-//}
 preSwitchLineGrid = currentActiveLineGrid;
 preSwitchSearchDisplayRow = 0;
 
@@ -18,9 +17,9 @@ if (!obj_control.dialogueBoxActive) {
 
 dialogueBoxActive = true;
 
-	if (!instance_exists(obj_dialogueBox)) {
-		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-	}
+if (!instance_exists(obj_dialogueBox)) {
+	instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+}
 
 //have the input be here?
 

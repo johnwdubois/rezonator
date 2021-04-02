@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "chains",
-    "path": "folders/Scripts/chains.yy",
+    "name": "functions",
+    "path": "folders/Scripts/functions.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_deleteFromChain",

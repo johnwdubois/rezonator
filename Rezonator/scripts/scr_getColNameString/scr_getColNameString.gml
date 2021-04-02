@@ -224,40 +224,51 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
-	else if (grid == obj_chain.trackSeqGrid) {
+	else if (grid == obj_chain.trackGrid || grid == obj_chain.rezGrid) {
 		switch (col) {
-			case obj_chain.trackSeqGrid_colChainID:
+			case obj_chain.trackGrid_colChainID:
 				colName = "ChainID";
 				break;
-			case obj_chain.trackSeqGrid_colChainName:
-				colName = "ChainName";
+			case obj_chain.trackGrid_colChainName:
+				colName = "name";
 				break;
-			case obj_chain.trackSeqGrid_colChainSeq:
+			case obj_chain.trackGrid_colChainSeq:
 				colName = "ChainSeq";
 				break;
-			case obj_chain.trackSeqGrid_colTrackSeq:
+			case obj_chain.trackGrid_colTrackSeq:
 				colName = "TrackSeq";
 				break;
-			case obj_chain.trackSeqGrid_colWordID:
+			case obj_chain.trackGrid_colWordID:
 				colName = "WordID";
 				break;
-			case obj_chain.trackSeqGrid_colText:
+			case obj_chain.trackGrid_colText:
 				colName = "Text";
 				break;
-			case obj_chain.trackSeqGrid_colTranscript:
+			case obj_chain.trackGrid_colTranscript:
 				colName = "Transcript";
 				break;
-			case obj_chain.trackSeqGrid_colUnitText:
+			case obj_chain.trackGrid_colUnitText:
 				colName = "UnitText";
 				break;
-			case obj_chain.trackSeqGrid_colGapUnits:
-				colName = "GapUnits";
+			case obj_chain.trackGrid_colIsChunk:
+				colName = "IsChunk";
+				break;
+			case obj_chain.trackGrid_colChunkID:
+				colName = "ChunkID";
 				break;
 			default:
 				break;
 		}
-		if (col >= obj_chain.trackSeqGridWidth) {
-			colName = string(ds_list_find_value(global.tokenImportColNameList, col - 5));
+		if (col >= obj_chain.trackGridWidth) {
+			// col names for token fields
+			if (col < ds_grid_width(obj_chain.trackGrid) - ds_list_size(global.chainEntryFieldList)) {
+				colName = string(ds_list_find_value(global.tokenImportColNameList, col - 6));
+			}
+			// col names for entry fields
+			else {
+				var chainEntryFieldIndex = col - obj_chain.trackGridWidth - (ds_list_size(global.tokenImportColNameList) - 4);
+				colName = ds_list_find_value(global.chainEntryFieldList, chainEntryFieldIndex);
+			}
 		}
 		
 	}

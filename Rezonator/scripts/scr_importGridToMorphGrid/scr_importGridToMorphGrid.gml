@@ -1,6 +1,6 @@
 function scr_importGridToMorphGrid() {
 	show_debug_message("scr_importGridToMorphGrid() START ... " + scr_printTime());
-	
+	var RTL = false;
 	if (ds_grid_height(global.importGrid) < 1) {
 		exit;
 	}
@@ -21,7 +21,7 @@ function scr_importGridToMorphGrid() {
 			glossCol = -1;
 		}
 		*/
-
+		
 		// build morphGrid!
 		var plainTextInfoGridHeight = ds_grid_height(global.plainTextInfoGrid);
 		for (var i = 0; i < plainTextInfoGridHeight; i++) {
@@ -47,7 +47,9 @@ function scr_importGridToMorphGrid() {
 				ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
 		
 				var currentMorph = ds_list_find_value(currentMorphList, j);
-
+				if (!RTL) {
+					RTL = scr_isStrRTL(currentMorph);
+				}
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
@@ -103,7 +105,7 @@ function scr_importGridToMorphGrid() {
 		var importGridHeight = ds_grid_height(global.importGrid);
 		var currentParticipant = "";
 		for (var i = 0; i < importGridHeight; i++) {
-	
+			show_debug_message("scr_importGridToMorphGrid() ... i: " + string(i));
 
 			if(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i) == undefined or ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i) == 0
 			or string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i)) == "undefined" or string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i)) == "0"){
@@ -157,6 +159,10 @@ function scr_importGridToMorphGrid() {
 				if (glossCol >= 0) {
 					currentGloss = ds_list_find_value(currentGlossList, j);
 				}
+				
+				if (!RTL) {
+					RTL = scr_isStrRTL(currentMorph);
+				}
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
@@ -165,7 +171,6 @@ function scr_importGridToMorphGrid() {
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitStart, ds_grid_height(obj_control.morphGrid) - 1, currentUnitStart);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitEnd, ds_grid_height(obj_control.morphGrid) - 1, currentUnitEnd);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colGloss, ds_grid_height(obj_control.morphGrid) - 1, currentGloss);
-			
 			}
 		}
 	}
@@ -230,15 +235,12 @@ function scr_importGridToMorphGrid() {
 			if (unitEndCol >= 0) {
 				currentUnitEnd = ds_grid_get(global.importGrid, unitEndCol, i);
 			}
-		
-			if(i > 0){
-			var prevUID = ds_grid_get(global.importGrid, deliminaterCol, i-1);
+			if (i > 0) {
+				var prevUID = ds_grid_get(global.importGrid, deliminaterCol, i-1);
 				var curUID = ds_grid_get(global.importGrid, deliminaterCol, i);	
 			}
-	
-			if(prevUID != curUID){
-
-			unitCounter++;
+			if (prevUID != curUID) {
+				unitCounter++;
 			}
 			
 			var currentMorphListSize = ds_list_size(currentMorphList);
@@ -250,6 +252,10 @@ function scr_importGridToMorphGrid() {
 				var currentGloss = 0;
 				if (glossCol >= 0) {
 					currentGloss = ds_list_find_value(currentGlossList, j);
+				}
+				
+				if (!RTL) {
+					RTL = scr_isStrRTL(currentMorph);
 				}
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
@@ -263,8 +269,7 @@ function scr_importGridToMorphGrid() {
 			}
 		}
 	}
-
-	else{
+	else {
 	
 		// get importGrid columns
 		var unitCounter = 0;
@@ -275,8 +280,6 @@ function scr_importGridToMorphGrid() {
 		var glossCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 4);
 	
 	
-	
-	
 		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
 		var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
 		var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
@@ -285,10 +288,7 @@ function scr_importGridToMorphGrid() {
 		var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
 		var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
 	
-	
-	
-	
-	
+
 	
 
 		if (typeof(glossCol) != "number") {
@@ -333,6 +333,9 @@ function scr_importGridToMorphGrid() {
 				if (glossCol >= 0) {
 					currentGloss = ds_list_find_value(currentGlossList, j);
 				}
+				if (!RTL) {
+					RTL = scr_isStrRTL(currentMorph);
+				}
 		
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
@@ -345,7 +348,10 @@ function scr_importGridToMorphGrid() {
 			}
 		}
 	}
-	
+	if(RTL){
+		obj_control.drawLineState = obj_control.lineState_rtl;
+		obj_control.justify = obj_control.justifyRight;
+	}
 	scr_morphToUnitGrid();
 	
 	show_debug_message("scr_importGridToMorphGrid() END ... " + scr_printTime());

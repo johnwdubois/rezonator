@@ -20,6 +20,9 @@ function scr_advancedOptions(optionSelected) {
 			obj_control.showFPS = !obj_control.showFPS;
 			instance_destroy(obj_dropDown);
 		break;
+		
+
+		
 		case "Shuffle":
 
 				scr_shuffleDisplayRows();

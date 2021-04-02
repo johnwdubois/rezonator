@@ -2,12 +2,11 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_identifyBlocks(){
 	
-	//if (live_call()) return live_result;
 	var lineExitedOn = 0;
 	show_debug_message("starting scr_identifyBlocks... time is: " + scr_printTime());
 	
 	global.exitOut = false;
-	
+
 	var prevException = false;
 	var nextException = false;
 	var blockLineList = ds_list_create();
@@ -218,20 +217,20 @@ function scr_identifyBlocks(){
 							ds_list_clear(blockLineList);
 						}
 						else {
-							global.exitOut = true;
-							lineExitedOn = i;
-							show_message("Error, unable to find Block Type " + string(blockType)+  "  Error found on line: " + string(lineExitedOn));
+							if (!global.exitOut) {
+								global.exitOut = true;	
+								lineExitedOn = i;
+								show_message("Error, unable to find Block Type " + string(blockType)+  "  Error found on line: " + string(lineExitedOn));
+							}
 						}
-							
-
 					}
 					else {
-						global.exitOut = true;	
-						lineExitedOn = i;
-						show_message("Invalid IGT file. Block found with inconsistent field marking" +  "  Error found on line: " + string(lineExitedOn)); // future dev: change to custom dialogue box, show incorrect Block to user
+						if (!global.exitOut) {
+							global.exitOut = true;	
+							lineExitedOn = i;
+							show_message("Invalid IGT file. Block found with inconsistent field marking" +  "  Error found on line: " + string(lineExitedOn)); // future dev: change to custom dialogue box, show incorrect Block to user
+						}
 					}
-						  
-					 
 				}
 			}
 			else {

@@ -1,3 +1,4 @@
+
 /*
 	obj_openingScreen: Create
 	
@@ -68,12 +69,12 @@ global.importType_Transcription = "Transcription";
 // create list to hold all the import types (so we can loop over them easily)
 global.importTypeList = ds_list_create();
 ds_list_add(global.importTypeList,
-	global.importType_Transcription,
-	global.importType_TabDelimited,
 	global.importType_PlainText,
 	global.importType_Paragraph,
 	global.importType_CSV,
 	global.importType_CoNLLU,
+	global.importType_Transcription,
+	global.importType_TabDelimited,
 	global.importType_IGT);
 
 // by default, we will set importType to be the first item in the importTypeList
@@ -99,18 +100,6 @@ ds_list_clear(global.discoImportColNameList);
 
 global.tokenImportTagMap = ds_map_create();
 global.unitImportTagMap  = ds_map_create();
-global.stackTagMap = ds_map_create();
-
-// stack tags hard-coded in map for now...
-var actTagList = ds_list_create();
-var repairTagList = ds_list_create();
-var actSequenceTagList = ds_list_create();
-ds_list_add(actTagList, "Question", "Answer");
-ds_list_add(repairTagList, "Break", "Edit", "Fix");
-ds_list_add(actSequenceTagList, "Q&A", "Repair");
-ds_map_add_list(global.stackTagMap, "act", actTagList);
-ds_map_add_list(global.stackTagMap, "repair", repairTagList);
-ds_map_add_list(global.stackTagMap, "act sequence", actSequenceTagList);
 
 
 
@@ -269,11 +258,12 @@ global.fieldRelationHelperGrid = ds_grid_create(global.fieldRelationHelperGridWi
 
 
 
+//create font itterator
+CJKLoopIteration = 0;
 
-
-
-
-
+smallFontSize = 10;
+mediumFontSize = 12;
+largeFontSize = 14;
 
 
 
@@ -369,59 +359,38 @@ ds_map_add(global.expandableDropDownMap, "menu_zoom", true);
 ds_map_add(global.expandableDropDownMap, "menu_autosave", true);
 ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
-
-global.optionListTypeSort = 0;
-global.optionListTypeChainList = 1;
-global.optionListTypeChainRecolor = 2;
-global.optionListTypeSpeakerLabel = 3;
-global.optionListTypeFile = 4;
-global.optionListTypeAdvanced = 5;
-global.optionListTypeView = 6;
-global.optionListTypeSearch = 7;
-global.optionListTypeRightClickWord = 8;
-global.optionListTypeWordTags = 9;
-global.optionListTypeGame = 10;
-global.optionListTypeNewWord = 11;
-global.optionListTypeMappingTag = 12;
-global.optionListTypeZoom = 13;
-global.optionListTypePane = 14;
-global.optionListTypeWord = 15;
-global.optionListTypeJustify = 16;
-global.optionListTypeProse = 17;
-global.optionListTypeHide = 18;
-global.optionListTypeContext = 19;
-global.optionListTypeClear = 20;
-global.optionListTypeSettings = 21;
-global.optionListTypeTools = 22;
-global.optionListTypeHelp = 23;
-global.optionListTypeToolsSort = 24;
-global.optionListTypeStackShow = 25;
-global.optionListTypeDelete = 26;
-global.optionListTypeTokenSelection = 27;
-global.optionListTypeStack = 28;
-global.optionListTypeCreateStack = 29;
-global.optionListTypeShowStack = 30;
-global.optionListTypeUnitSelection = 31;
-global.optionListTypeSpecialFields = 32;
-global.optionListTypeFilter = 33;
-global.optionListTypeAddToFilter = 34;
-global.optionListTypeTokenTagMap = 35;
-global.optionListTypeTokenMarker = 36;
-global.optionListTypeUnitMarker = 37;
-global.optionListTypeUnitTagMap = 38;
-global.optionListTypeGridViewerSelectGrid = 39;
-global.optionListTypeAutosave = 40;
-global.optionListTypeStackTag = 41;
-global.optionListTypeEdit = 42;
-global.optionListTypePlayAndLearn = 43;
-global.optionListTypeNav = 44;
-global.optionListTypeLanguage = 45;
-global.optionListTypeImportGrid = 46;
+ds_map_add(global.expandableDropDownMap, "Recolor", true);
+ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 
 
-//this map stores all the keyboard shortcuts to late be displayed on the tooltip
+scr_dropDownOptionListTypeInit();
+
+
+scr_chainTagInit();
+
+
+//this map stores all the keyboard shortcuts to be displayed on the tooltip
 global.keyboardShortcutMap = ds_map_create();
-ds_map_add(global.keyboardShortcutMap, "Search", "F");
+ds_map_add(global.keyboardShortcutMap, "menu_keyword", "F");
+ds_map_add(global.keyboardShortcutMap, "menu_go-to-line", "G");
+ds_map_add(global.keyboardShortcutMap, "menu_go-to-time", "G");
+ds_map_add(global.keyboardShortcutMap, "menu_save", "CTRL+S");
+ds_map_add(global.keyboardShortcutMap, "menu_grid", "CTRL+G");
+ds_map_add(global.keyboardShortcutMap, "menu_theme", "CTRL+B");
+ds_map_add(global.keyboardShortcutMap, "help_label_zoom-in", "CTRL SHIFT +");
+ds_map_add(global.keyboardShortcutMap, "help_label_zoom-out", "CTRL SHIFT -");
+ds_map_add(global.keyboardShortcutMap, "help_label_tall-rows", "SHIFT +");
+ds_map_add(global.keyboardShortcutMap, "help_label_short", "SHIFT -");
+ds_map_add(global.keyboardShortcutMap, "menu_wide", "CTRL +");
+ds_map_add(global.keyboardShortcutMap, "menu_narrow", "CTRL -");
+ds_map_add(global.keyboardShortcutMap, "menu_justify", "J");
+ds_map_add(global.keyboardShortcutMap, "menu_prose", "K");
+ds_map_add(global.keyboardShortcutMap, "menu_exit", "CTRL+Q");
+ds_map_add(global.keyboardShortcutMap, "menu_search", "V");
+ds_map_add(global.keyboardShortcutMap, "menu_filter", "CTRL+P");
+ds_map_add(global.keyboardShortcutMap, "menu_track", "T");
+ds_map_add(global.keyboardShortcutMap, "menu_rez", "R");
+ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 
 scr_preImportInitiate();
 showPreImportScreen = false;

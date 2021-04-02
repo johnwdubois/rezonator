@@ -52,7 +52,7 @@ function scr_drawStackShowWindow() {
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
 	
 		// Get grid info of current chain
-		var currentChainName = ds_map_find_value(currentChainSubMap, "chainName"); 
+		var currentChainName = ds_map_find_value(currentChainSubMap, "name"); 
 		var chainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 	
 		// Get dimensions of rectagle around chain name

@@ -53,7 +53,7 @@ function scr_toolsOptions(optionSelected) {
 		case "menu_stack":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_stacktab", "menu_stackshow", "menu_stacker");
+			ds_list_add(dropDownOptionList, "menu_stacktab", "menu_stacker");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 3), dropDownOptionList, global.optionListTypeStack);

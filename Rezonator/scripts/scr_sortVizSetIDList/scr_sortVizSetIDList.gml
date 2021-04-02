@@ -57,51 +57,17 @@ function scr_sortVizSetIDList(chainID){
 		ds_grid_set(tempGrid, tempGrid_colWordOrder, i, currentWordOrder);
 	}
 	
-	
-	
 	// sort the tempGrid!!!
 	scr_gridMultiColSort(tempGrid, tempGrid_colUnitSeq, true, tempGrid_colWordOrder, true);
 	
 	// refresh vizSetIDList based on the sorted tempGrid
 	ds_list_clear(vizSetIDList);
-	var prevUnit = -1;
-	for (var i = 0; i < setIDListSize; i++) {
-		var currentEntry = ds_grid_get(tempGrid, tempGrid_colEntryID, i);
-		ds_list_add(vizSetIDList, currentEntry);
-		
-		// set gap tag in this entry's tagmap
-		var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-		if (is_numeric(currentEntrySubMap)) {
-			if (ds_exists(currentEntrySubMap, ds_type_map)) {
-				
-				// get unit from this entry
-				var currentUnit = -1;
-				if (chainType == "rezChain" || chainType == "trackChain") {
-					var currentWord = ds_map_find_value(currentEntrySubMap, "word");
-					currentUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWord - 1);
-				}
-				else if (chainType == "stackChain") {
-					currentUnit = ds_map_find_value(currentEntrySubMap, "unit");
-				}
-				
-				// calculate gapUnits
-				var currentGapUnits = "N/A";
-				if (prevUnit >= 0) {
-					currentGapUnits = currentUnit - prevUnit;
-				}
-
-				// set the tags
-				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
-				if (is_numeric(currentTagMap)) {
-					if (ds_exists(currentTagMap, ds_type_map)) {
-						scr_setMap(currentTagMap, "gapUnits", currentGapUnits);
-					}
-				}
-				
-				prevUnit = currentUnit;
-			}
-		}
-	}
+	
+	// set auto tags for entries
+	scr_setEntryAutoTags(tempGrid, tempGrid_colEntryID, vizSetIDList, chainType);
+	
+	// set auto tags for chain
+	scr_setChainAutoTags(chainID, chainSubMap);
 	
 	// we dont need tempGrid anymore
 	ds_grid_destroy(tempGrid);

@@ -41,17 +41,22 @@ function scr_drawLine() {
 		menuBarHeight = obj_menuBar.menuHeight;
 	}
 	var chainListHeight = 0;
+	var tabsHeight = 0;
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			chainListHeight = windowHeight;
 		}
+		else if (currentFunction == functionTabs) {
+			tabsHeight = windowHeight;
+		}
+	}
+	if(obj_panelPane.showNav){
+		wordTopMargin = menuBarHeight + chainListHeight + tabsHeight;
+	}
+	else{
+		wordTopMargin = menuBarHeight;
 	}
 
-
-	wordTopMargin = menuBarHeight + chainListHeight;
-	if (global.wheresElmo || global.rezzles) {
-		wordTopMargin += 80;
-	}
 
 	var activeLineGridHeight = ds_grid_height(currentActiveLineGrid);
 
@@ -84,11 +89,11 @@ function scr_drawLine() {
 
 
 	// get speakerLabelMargin
-	if (!obj_control.showParticipantName) {
+	if (!obj_control.showSpeakerName) {
 		ds_list_set(obj_control.speakerLabelColXList, 3, ds_list_find_value(obj_control.speakerLabelColXList, 2));
 	}
 	speakerLabelMargin = ds_list_find_value(obj_control.speakerLabelColXList, ds_list_size(obj_control.speakerLabelColXList) - 1);
-	if (speakerLabelColXHolding > -1) {// || !obj_control.showParticipantName) {
+	if (speakerLabelColXHolding > -1) {// || !obj_control.showSpeakerName) {
 		wordLeftMargin = speakerLabelMargin + 20;
 	}
 
@@ -122,6 +127,7 @@ function scr_drawLine() {
 
 
 	ds_list_clear(obj_chain.chainShowList);
+	ds_list_clear(chainVoidCheckList);
 
 	// for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
 	for (var drawLineLoop = drawRangeStart; drawLineLoop <= drawRangeEnd; drawLineLoop++) {
@@ -247,7 +253,7 @@ function scr_drawLine() {
 							var currentPane = instance_find(obj_panelPane, i);
 							if (currentPane.currentFunction == obj_panelPane.functionChainList) {
 								var strHeight = string_height("0") * 1.5;
-								scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
+								scrollPlusYDest = -((y + currentPane.functionTabs_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10;
 							}
 						}
 						
@@ -271,12 +277,11 @@ function scr_drawLine() {
 							// Y value not in a grid for read tab, have to store somewhere
 							for (var i = 0; i < instance_number(obj_panelPane); i++) {
 								var currentPane = instance_find(obj_panelPane, i);
-								if (currentPane.currentFunction == obj_panelPane.functionChainList) {
+								if (currentPane.currentFunction == obj_panelPane.functionChainList && currentPane.functionChainList_currentTab != currentPane.functionChainList_tabShow) {
 									//show_message(i);
 									var strHeight = string_height("0") * 1.5;
 									//we can affect the scrollPlusY, now we need the correct placement
-									scrollPlusYDest = -((y + currentPane.functionChainList_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
-									//show_message(y + currentPane.functionChainList_tabHeight + currentPane.scrollPlusY + (strHeight * drawLineLoop));
+									scrollPlusYDest = -((y + currentPane.functionTabs_tabHeight + (strHeight * (drawLineLoop - 2)))) + 10; //currentPane.scrollPlusY - 
 								}
 							}
 						
@@ -315,9 +320,10 @@ function scr_drawLine() {
 				if (is_numeric(stackChainSubMap)) {
 					if (ds_exists(stackChainSubMap, ds_type_map)) {
 						var stackColor = ds_map_find_value(stackChainSubMap, "chainColor");
+						var stackVisible = ds_map_find_value(stackChainSubMap, "visible");
 						draw_set_color(stackColor);
 						draw_set_alpha(0.2);
-						drawStackRect = true;
+						if (stackVisible) drawStackRect = true;
 					}
 				}
 			}
@@ -329,9 +335,10 @@ function scr_drawLine() {
 						if (is_numeric(focusedChainSubMap)) {
 							if (ds_exists(focusedChainSubMap, ds_type_map)) {
 								var stackColor = ds_map_find_value(focusedChainSubMap, "chainColor");
+								var stackVisible = ds_map_find_value(focusedChainSubMap, "visible");
 								draw_set_color(stackColor);
 								draw_set_alpha(0.2);
-								drawStackRect = true;
+								if (stackVisible) drawStackRect = true;
 							}
 						}
 						

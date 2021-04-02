@@ -1,81 +1,101 @@
 function scr_panelPane_drawChainListLoopClipped() {
+	
 	/*
-		scr_panelPane_drawChainListLoop();
-	
-		Last Updated: 2019-01-29
-	
-		Called from: obj_panelPane
-	
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
-	
-		Mechanism: loop through chainGrid of whatever tab you are on and draw chainName
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
 	
-
-
-
-	var filterPaneWidth = 0;
+	
+	x = 0;
+	windowWidth = camera_get_view_width(camera_get_active()) / 2;
+	
+	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
+	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
+	
+	var checkBoxScale = 1* max(global.fontSize,3)/5;
+	
+	
+	// get the instance ID for the chainContents pane so we can easily reference it
+	var chainContentsPanelPaneInst = 0;
 	with (obj_panelPane) {
-		if (currentFunction == functionFilter) {
-			filterPaneWidth = windowWidth;
+		if (currentFunction == functionChainContents) {
+			chainContentsPanelPaneInst = self.id;
 		}
 	}
-	x = filterPaneWidth;
-	windowWidth = camera_get_view_width(camera_get_active()) / 2.8;
+	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
+	var ableToMouseoverOption = true;
+	var mouseoverCancel = instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || instance_exists(obj_flyout);
 
 
-	
+	// get list of chains for this tab
 	var listOfChains = -1;
 	var listOfChainsKey = "";
-	if (functionChainList_currentTab == functionChainList_tabRezBrush) listOfChainsKey = "rezChainList";
-	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) listOfChainsKey = "trackChainList";
-	else if (functionChainList_currentTab == functionChainList_tabStackBrush) listOfChainsKey = "stackChainList";
-
-	// Based on user selection, get the grid of the current tab
-	switch (functionChainList_currentTab) {
-		case functionChainList_tabRezBrush:
-			break;
-		case functionChainList_tabTrackBrush:
-			break;
-		case functionChainList_tabStackBrush:
-			break;
-		case functionChainList_tabClique:
-			break;
-		case functionChainList_tabLine:
-			scr_panelPane_drawLineListLoopClipped();
-			exit;
-			break;
-		default:
-			break;
+	var tabChainType = "";
+	var filterList = scr_getFilterList();
+	var selectedList = -1;
+	if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+		listOfChainsKey = "rezChainList";
+		tabChainType = "rezChain";
+		selectedList = obj_control.selectedRezChainList;
 	}
+	else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+		listOfChainsKey = "trackChainList";
+		tabChainType = "trackChain";
+		selectedList = obj_control.selectedTrackChainList;
+	}
+	else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+		listOfChainsKey = "stackChainList";
+		tabChainType = "stackChain";
+		selectedList = obj_control.selectedStackChainList;
+	}
+	
+	// do lineList loop if user is on Read/Unit tab
+	if (functionChainList_currentTab == functionChainList_tabLine) {
+		scr_panelPane_drawLineListLoopClipped();
+		exit;
+	}
+	else if (functionChainList_currentTab == functionChainList_tabShow) {
+		scr_panelPane_drawShowList();
+		exit;
+	}
+	
 	if (instance_exists(obj_stackShow)) {
 		listOfChainsKey = "stackChainList";
 		obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 	}
 	listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
 	
-	
-	
-	
-	
-
 	var strHeight = string_height("0") * 1.5;
+	
 
 	// Set text margin area
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
-	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
+	var checkboxColX = x;
+	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
+	var checkboxSize = checkboxColWidth * 0.35;
+	var optionsColX = checkboxColX + checkboxColWidth;
+	var optionsColWidth = windowWidth * 0.14;
+	var numColX = optionsColX + optionsColWidth;
+	var numColWidth = windowWidth * 0.07;
+	var nameColX = numColX + numColWidth;
+	var nameColWidth = windowWidth / 4;
+	var textColX = nameColX + nameColWidth;
+	
+	
 
-	var textMarginTop = functionChainList_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
-	//var chainNameRectMinusY = 4;
+	var textBuffer = 8;
+	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	var mouseoverScrollBar = false;
+	if (drawScrollbar) {
+		mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
+	}
 
 	var focusedElementY = -1;
-	var focusedChainNameRectY1 = -1;
-	var focusedChainNameRectY2 = -1;
+	var focusedRowRectY1 = -1;
+	var focusedRowRectY2 = -1;
 
 	// Set opacity, font, and alignment of text chain lists
 	draw_set_alpha(1);
@@ -88,12 +108,12 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var listOfChainsSize = ds_list_size(listOfChains);
 	for (var i = 0; i < listOfChainsSize; i++) {
 	
-		if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
-		or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight
+		or y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			continue;
 		}
-		else if (y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+		else if (y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			textPlusY += strHeight;
 			break;
 		}
@@ -109,50 +129,57 @@ function scr_panelPane_drawChainListLoopClipped() {
 			
 			// get info of current chain
 			var currentChainType = ds_map_find_value(currentChainSubMap, "type");
-			var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
+			var currentChainName = ds_map_find_value(currentChainSubMap, "name");
 			var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
+			var currentChainSelected = ds_map_find_value(currentChainSubMap, "selected");
+			var currentChainFiltered = ds_map_find_value(currentChainSubMap, "filter");
+			var currentChainAlign = ds_map_find_value(currentChainSubMap, "alignChain");
+			var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
 			var currentChainCaption = "";
-			if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-				currentChainCaption = "";
-			}
 			var setIDList = ds_map_find_value(currentChainSubMap, "setIDList");
-
+			var vizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
 			
-			if (is_numeric(setIDList)) {
-				if (ds_exists(setIDList, ds_type_list)) {
+			if (!is_numeric(currentChainSelected)) currentChainSelected = false;
+			
+			if (is_numeric(setIDList) || is_numeric(vizSetIDList)) {
+				if (ds_exists(setIDList, ds_type_list) || ds_exists(vizSetIDList, ds_type_list)) {
 					var setIDListSize = ds_list_size(setIDList);
-					// stack captions!
-					if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-						// first, we will check if the stack has a caption specified in its submap
-						currentChainCaption = ds_map_find_value(currentChainSubMap, "caption");
+					
+					// chain captions!
+					// first, we will check if the stack has a caption specified in its submap
+					currentChainCaption = ds_map_find_value(currentChainSubMap, "caption");
 						
-						// if it does not have a caption specified, we will show its contents in the chainList window
-						if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
-							currentChainCaption = "";
-							for (var j = 0; j < setIDListSize; j++) {
-								var currentEntry = ds_list_find_value(setIDList, j);
-								var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+					// if it does not have a caption specified, we will show its contents in the chainList window
+					if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
+						currentChainCaption = "";
+						for (var j = 0; j < setIDListSize; j++) {
+							var currentEntry = ds_list_find_value(vizSetIDList, j);
+							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+							
+							if (currentChainType == "stackChain") {
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
-								var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
-								if (is_numeric(currentWordIDList)) {
-									var currentWordIDListSize = ds_list_size(currentWordIDList);
-									for (var k = 0; k < currentWordIDListSize; k++) {
-										var currentWordID = ds_list_find_value(currentWordIDList, k);
-										currentChainCaption += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1)) + " ";
-									}
-								}
+								currentChainCaption += scr_getUnitText(currentUnitID) + " ";
+							}
+							else {
+								currentChainCaption = "";
 							}
 						}
 					}
 	
-	
-					// Get dimensions of rectagle around chain name
+					// Get dimensions of rectangle around chain name
 					var chainNameRectX1 = x;
-					var chainNameRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
-					var chainNameRectX2 = x + windowWidth - global.scrollBarWidth;
+					var chainNameRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
+					var chainNameRectX2 = x + windowWidth - scrollbarWidth;
 					var chainNameRectY2 = chainNameRectY1 + strHeight;
-					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2);
-	
+					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+					
+					// get dimensions of checkbox rect
+					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
+					var checkboxRectY1 = mean(chainNameRectY1, chainNameRectY2) - (checkboxSize / 2);
+					var checkboxRectX2 = checkboxRectX1 + checkboxSize;
+					var checkboxRectY2 = checkboxRectY1 + checkboxSize;
+					var mouseoverCheckbox = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, checkboxRectX1, checkboxRectY1, checkboxRectX2, checkboxRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
 						if (obj_control.showDevVars) {
@@ -160,7 +187,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 							draw_circle(mouse_x, mouse_y, 5, true);
 						}
 						
-						if (device_mouse_check_button_released(0, mb_left) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown)) {
+						if (device_mouse_check_button_released(0, mb_left) and !mouseoverCancel) {
 		
 							if (obj_chain.currentFocusedChainID != currentChainID) {
 								// Focuses on selected chain
@@ -221,13 +248,10 @@ function scr_panelPane_drawChainListLoopClipped() {
 						}
 					}
 
-	
-					if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2)
-					and mouse_check_button_pressed(mb_right) and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown)) {
+					// right-click on chain in chainList
+					if (mouseoverChainNameRect && mouse_check_button_pressed(mb_right) && !mouseoverCancel) {
 
 						obj_chain.currentFocusedChainID = currentChainID;
-				
-
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
 
 						var dropDownOptionList = ds_list_create();
@@ -248,161 +272,124 @@ function scr_panelPane_drawChainListLoopClipped() {
 	
 					// Outline the rectangle in black
 					if (obj_chain.currentFocusedChainID == currentChainID) {
-						focusedChainNameRectY1 = chainNameRectY1;
-						focusedChainNameRectY2 = chainNameRectY2;
-						focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
+						focusedRowRectY1 = chainNameRectY1;
+						focusedRowRectY2 = chainNameRectY2;
+						focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
 					}
-
-	
-					// Draw text of chain names
+					
+					// draw checkbox
+					if (mouseoverCheckbox) {
+						scr_createTooltip(mean(checkboxRectX1, checkboxRectX2), checkboxRectY2, "Select", obj_tooltip.arrowFaceUp);
+					}
+					if (currentChainSelected) {
+						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
+						draw_roundrect(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, false);
+					}
+					else if (mouseoverCheckbox) {
+						draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.9));
+						draw_roundrect(checkboxRectX1 - (strHeight * 0.15) - clipX, checkboxRectY1 - (strHeight * 0.15) - clipY, checkboxRectX2 + (strHeight * 0.15) - clipX, checkboxRectY2 + (strHeight * 0.15) - clipY, false);
+					}
+					draw_set_color(global.colorThemeBorders);
+					scr_drawRectWidth(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, 2);
+					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, c_white, 1);
+					
+					// click on checkbox
+					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !mouseoverCancel) {
+						currentChainSelected = !currentChainSelected;
+						scr_setMap(currentChainSubMap, "selected", currentChainSelected);
+						if (currentChainSelected && ds_list_find_index(selectedList, currentChainID) == -1) {
+							ds_list_add(selectedList, currentChainID);
+						}
+						else if (!currentChainSelected) {
+							scr_deleteFromList(selectedList, currentChainID);
+						}
+					}
+					
+					// setup filter/align/visible buttons
+					var optionsIconScale = 1;
+					var optionsIconRad = sprite_get_width(spr_toggleDraw) * optionsIconScale * 0.7;
+					var filterChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.25) : optionsColX + (optionsColWidth * 0.33);
+					var visibleChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.5) : optionsColX + (optionsColWidth * 0.66);
+					var alignChainX = optionsColX + (optionsColWidth * 0.75);
+					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
+					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverAlignChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush && ableToMouseoverOption && !mouseoverHeaderRegion;
+					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
+					
+					// mouseover & click on filter
+					if (mouseoverFilterChain) {
+						ableToMouseoverOption = false;
+						draw_circle(filterChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainFiltered = !currentChainFiltered;
+							scr_setMap(currentChainSubMap, "filter", currentChainFiltered);
+							if (currentChainFiltered && ds_list_find_index(filterList, currentChainID) == -1) ds_list_add(filterList, currentChainID);
+							else if (!currentChainFiltered) scr_deleteFromList(filterList, currentChainID);
+							
+							// update the filter if we need to
+							if (obj_control.filterGridActive) {
+								if (ds_list_size(filterList) > 0) scr_renderFilter();
+								else scr_disableFilter();
+							}
+						}
+						scr_createTooltip(filterChainX, optionsChainY + optionsIconRad, "Filter", obj_tooltip.arrowFaceUp);
+					}
+					// mouseover & click on visible
+					if (mouseoverVisibleChain) {
+						ableToMouseoverOption = false;
+						draw_circle(visibleChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainVisible = !currentChainVisible;
+							scr_setMap(currentChainSubMap, "visible", currentChainVisible);
+						}
+						scr_createTooltip(visibleChainX, optionsChainY + optionsIconRad, "Visible", obj_tooltip.arrowFaceUp);
+					}
+					// mouseover & click on align
+					if (mouseoverAlignChain) {
+						ableToMouseoverOption = false;
+						draw_circle(alignChainX - clipX, optionsChainY - clipY, optionsIconRad, false);
+						if (mouse_check_button_released(mb_left)) {
+							currentChainAlign = !currentChainAlign;
+							scr_setMap(currentChainSubMap, "alignChain", currentChainAlign);
+						}
+						scr_createTooltip(alignChainX, optionsChainY + optionsIconRad, "Align", obj_tooltip.arrowFaceUp);
+					}
+					
+					// draw filter/align/visible buttons
+					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					
+					
+					
+					
+					// set up stuff for drawing text
 					draw_set_color(global.colorThemeText);
 					draw_set_alpha(1);
 					draw_set_halign(fa_left);
 					draw_set_valign(fa_middle);
 					scr_adaptFont(currentChainName, "M");
-					draw_text(floor(x + textMarginLeft) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, currentChainName);
-					if (currentChainCaption != "" && functionChainList_currentTab == functionChainList_tabStackBrush) {
+					
+					// draw text: number column
+					draw_text(floor(numColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(i + 1));
+	
+					// draw text: name column
+					draw_text(floor(nameColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, currentChainName);
+					
+					// draw text: text/caption column
+					if (currentChainCaption != "") {
 						draw_set_alpha(0.7);
-						// remove any newlines or carriage returns from caption
-						currentChainCaption = string_replace_all(currentChainCaption, "\r", "");
-						currentChainCaption = string_replace_all(currentChainCaption, "\n", "");
 						scr_adaptFont(string(currentChainCaption), "S");
-						draw_text(floor(x + textMarginLeft + string_width(currentChainName + "  ")) - clipX, floor(y + textMarginTop + scrollPlusY + textPlusY) - clipY, string(currentChainCaption));
-					}
-					draw_set_alpha(1);
-	
-					if (functionChainList_currentTab != functionChainList_tabClique) {
-	
-						// Draw little boxes for filter selection
-						var chainFilterRectX1 = x + filterRectMargin - clipX;
-						var chainFilterRectY1 = y + textMarginTop + scrollPlusY + textPlusY - (filterRectSize / 2) - clipY;
-						var chainFilterRectX2 = chainFilterRectX1 + filterRectSize;
-						var chainFilterRectY2 = chainFilterRectY1 + filterRectSize;
-						var inFilter = ds_map_find_value(currentChainSubMap, "filter");
-	
-						draw_set_color(global.colorThemeText);
-						// Fill in boxes if filtered
-						// Check boxes for user selection with mouse click
-						var mouseoverFilter = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainFilterRectX1 + clipX, chainFilterRectY1 + clipY, chainFilterRectX2 + clipX, chainFilterRectY2 + clipY);
-						if (mouseoverFilter) {
-							scr_createTooltip(chainFilterRectX2 + clipX, mean(chainFilterRectY1 + clipY, chainFilterRectY2 + clipY), "Filter", obj_tooltip.arrowFaceLeft);
-							draw_set_alpha(1);
-							draw_set_color(global.colorThemeBorders);
-							draw_rectangle(chainFilterRectX1, chainFilterRectY1, chainFilterRectX2, chainFilterRectY2, true);
-						}
-						if (((mouseoverFilter and device_mouse_check_button_released(0, mb_left))
-						or (keyboard_check_pressed(ord("P")) and (keyboard_check(vk_lshift) or keyboard_check(vk_rshift)) and !keyboard_check(vk_control) and obj_chain.currentFocusedChainID == currentChainID)) and not instance_exists(obj_dialogueBox)) {
-							// Set selected objects to be filtered
-							inFilter = !inFilter;
-							ds_map_replace(currentChainSubMap, "filter", inFilter);
-							
-							// get corresponding filter list
-							var listOfFilteredChains = -1;
-							if (currentChainType == "rezChain") listOfFilteredChains = obj_chain.filteredRezChainList;
-							else if (currentChainType == "trackChain") listOfFilteredChains = obj_chain.filteredTrackChainList;
-							else if (currentChainType == "stackChain") listOfFilteredChains = obj_chain.filteredStackChainList;
-							
-							// update corresponding filtered list
-							if (inFilter) {
-								if (ds_list_find_index(listOfFilteredChains, currentChainID) == -1) {
-									ds_list_add(listOfFilteredChains, currentChainID);
-								}
-							}
-							else {
-								scr_deleteFromList(listOfFilteredChains, currentChainID);
-							}
-			
-							// Render the filter in the mainscreen
-							if (obj_control.filterGridActive) {
-								with (obj_control) {
-									scr_renderFilter();
-								}
-							}
-							// Add to moveCounter
-							obj_control.moveCounter++;
-						}
-						draw_sprite_ext(spr_filterIcons, inFilter, mean(chainFilterRectX1, chainFilterRectX2), chainFilterRectY1 + (filterRectSize / 2), 1, 1, 0, c_white, 1);
-	
-	
-	
-	
-	
-					}
-
-	
-	
-					// Create little boxes for alignment selection
-					if (functionChainList_currentTab == functionChainList_tabRezBrush
-					or functionChainList_currentTab == functionChainList_tabTrackBrush) {
-						// Set dimensions for little boxes
-						var chainAlignRectX1 = x + windowWidth - (filterRectSize * 2) - global.scrollBarWidth;//x + (filterRectMargin * 2) + filterRectSize - clipX;
-						var chainAlignRectY1 = y + textMarginTop + textPlusY - (filterRectSize / 2) + scrollPlusY;
-						var chainAlignRectX2 = chainAlignRectX1 + filterRectSize;
-						var chainAlignRectY2 = chainAlignRectY1 + filterRectSize;
-						var isAligned = ds_map_find_value(currentChainSubMap, "alignChain");
-		
-						// Check for user selection of alignment with mouse clicks
-						if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainAlignRectX1, chainAlignRectY1, chainAlignRectX2, chainAlignRectY2)) {
-							scr_createTooltip(chainAlignRectX1, mean(chainAlignRectY1, chainAlignRectY2), "Align chain", obj_tooltip.arrowFaceRight);
-							if (obj_control.shape == obj_control.shapeBlock) {
-								draw_set_alpha(0.5);
-								draw_set_color(c_purple);
-								draw_rectangle(chainAlignRectX1 - clipX, chainAlignRectY1 - clipY, chainAlignRectX2 - clipX, chainAlignRectY2 - clipY, false);
-								if (device_mouse_check_button_released(0, mb_left)) {
-				
-									if (obj_control.justify == obj_control.justifyLeft) {
-										// Unselect alignment if already selected
-										if (functionChainList_currentTab == functionChainList_tabTrackBrush and not isAligned) {
-											var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
-											var trackChainListSize = ds_list_size(trackChainList);
-											for (var j = 0; j < trackChainListSize; j++) {
-												var currentTrack = ds_list_find_value(trackChainList, j);
-												var currentTrackSubMap = ds_map_find_value(global.nodeMap, currentTrack);
-												ds_map_replace(currentTrackSubMap, "alignChain", false);
-											}
-										}
-				
-										// Show alignments in main screen
-										isAligned = !isAligned;
-										if (isAligned) {
-											with (obj_chain) {
-												alarm[6] = 5;
-												// Protect against RaceToInfinity
-												chainIDRaceCheck = currentChainID;
-											}
-										}
-				
-										// Set alignment in chain's subMap
-										ds_map_replace(currentChainSubMap, "alignChain", isAligned);
-									}
-								}
-							}
-				
-						}
-						if (obj_control.shape == obj_control.shapeText){
-							draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 0.5);
-						}
-						else {
-							// Fill in selected boxes
-							if (isAligned) {
-								draw_sprite_ext(spr_align, 0, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
-							}
-							else if (isAligned == -1) {
-								draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 0.5);
-							}
-							else {
-								draw_sprite_ext(spr_align, 1, mean(chainAlignRectX1, chainAlignRectX2) - clipX, mean(chainAlignRectY1, chainAlignRectY2) - clipY, 1, 1, 0, c_white, 1);
-							}
-						}
-		
+						draw_text(floor(textColX + textBuffer) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(currentChainCaption));
 						draw_set_alpha(1);
 					}
-		
-	
-	
+					
+					
 	
 
-	
+
+
 					// Get height of chain name
 					textPlusY += strHeight;
 				}
@@ -411,9 +398,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 	}
 	
 
-
-
-	var focusedChainIndex = ds_list_find_index(listOfChains, obj_chain.currentFocusedChainID);
+	with (obj_panelPane) {
+		functionChainList_focusedChainIndex = ds_list_find_index(listOfChains, obj_chain.currentFocusedChainID);
+	}
 	
 	// get color of focused chain
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
@@ -429,77 +416,193 @@ function scr_panelPane_drawChainListLoopClipped() {
 	}
 	
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
 	if (clickedIn) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
-			if (focusedChainIndex > 0 and focusedChainIndex < listOfChainsSize) {
-				focusedChainIndex--;
-				var newFocusedChainID = ds_list_find_value(listOfChains, focusedChainIndex);
+			if (functionChainList_focusedChainIndex > 0 and functionChainList_focusedChainIndex < listOfChainsSize) {
+				with (obj_panelPane) functionChainList_focusedChainIndex--;
+				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
-				if (focusedElementY <= y + textMarginTop + strHeight) {
-					scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+				if (focusedElementY <= y + headerHeight + strHeight) {
+					with (instToScroll) {
+						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
+					}
 				}
 			}
 			else {
-				scrollPlusYDest += 4;
+				with (instToScroll) {
+					scrollPlusYDest += 4;
+				}
 			}
 		}
 		
 		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 			
-			if (focusedChainIndex < listOfChainsSize - 1 and focusedChainIndex >= 0) {
-				focusedChainIndex++;
-				var newFocusedChainID = ds_list_find_value(listOfChains, focusedChainIndex);
+			if (functionChainList_focusedChainIndex < listOfChainsSize - 1 and functionChainList_focusedChainIndex >= 0) {
+				with (obj_panelPane) functionChainList_focusedChainIndex++;
+				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
 				if (focusedElementY >= y + windowHeight - strHeight) {
-					scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					with (instToScroll) {
+						scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					}
 				}
 			}
 			else {
-				scrollPlusYDest -= 4;
+				with (instToScroll) {
+					scrollPlusYDest -= 4;
+				}
 			}
 		}
 	
 		// CTRL+UP and CTRL+DOWN
 		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-			scrollPlusYDest = 100;
+			with (instToScroll) {
+				scrollPlusYDest = 100;
+			}
 		}
 		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-			scrollPlusYDest = -999999999999;
+			with (instToScroll) {
+				scrollPlusYDest = -999999999999;
+			}
 		}
 	
 		// PAGEUP and PAGEDOWN
 		if (keyboard_check_pressed(vk_pageup)) {
-			scrollPlusYDest += (windowHeight);
+			with (instToScroll) {
+				scrollPlusYDest += (windowHeight);
+			}
 		}
 		if (keyboard_check_pressed(vk_pagedown)) {
-			scrollPlusYDest -= (windowHeight);
+			with (instToScroll) {
+				scrollPlusYDest -= (windowHeight);
+			}
 		}
 	}
+	
 
-	if (focusedChainNameRectY1 > -1 and focusedChainNameRectY2 > -1) {
+	// draw focus outline
+	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
-		for (var j = 0; j < 4; j++) {
-			draw_rectangle(x + j - clipX, focusedChainNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedChainNameRectY2 - j - clipY, true);
-		}
+		draw_line_width(x - clipX, focusedRowRectY1 - clipY, x + windowWidth - clipX, focusedRowRectY1 - clipY, 4);
+		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
-
-
-
-
-	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-
-
-
-
+	
+	// only draw scrollbar if we are in 1toMany view
+	if (drawScrollbar) {
+		scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, headerHeight,
+			global.colorThemeSelected1, global.colorThemeSelected2,
+			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	}
+	
+	
+	
 
 	scr_surfaceEnd();
 	
+	
+	
+	// draw column headers
+	for (var i = 0; i < 5; i++) {
+		
+		// get column data
+		var headerRectX1 = 0;
+		var colWidth = 0;
+		var colText = "";
+		if (i == 0) {
+			headerRectX1 = checkboxColX;
+			colWidth = checkboxColWidth;
+			colText = "";
+		}
+		else if (i == 1) {
+			headerRectX1 = optionsColX;
+			colWidth = optionsColWidth;
+			colText = "Options";
+		}
+		else if (i == 2) {
+			headerRectX1 = numColX;
+			colWidth = numColWidth;
+			colText = "#";
+		}
+		else if (i == 3) {
+			headerRectX1 = nameColX;
+			colWidth = nameColWidth;
+			colText = "Name";
+		}
+		else if (i == 4) {
+			headerRectX1 = textColX;
+			colWidth = windowWidth - headerRectX1;
+			colText = "Text";
+		}
+		
+		// get header coordinates
+		var headerRectY1 = y;
+		var headerRectX2 = headerRectX1 + colWidth;
+		var headerRectY2 = headerRectY1 + headerHeight;
+		
+		// draw header rects
+		draw_set_alpha(1);
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);
+		
+		// draw checkbox header
+		if (i == 0) {
+			var allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList) && ds_list_size(listOfChains) > 0);
+			var headerCheckboxX1 = mean(headerRectX1, headerRectX2) - (checkboxSize / 2);
+			var headerCheckboxY1 = mean(headerRectY1, headerRectY2) - (checkboxSize / 2);
+			var headerCheckboxX2 = headerCheckboxX1 + checkboxSize;
+			var headerCheckboxY2 = headerCheckboxY1 + checkboxSize;
+			var mouseoverHeaderCheckbox = point_in_rectangle(mouse_x, mouse_y, headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2) && ds_list_size(listOfChains) > 0;
+			if (mouseoverHeaderCheckbox) {
+				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.4));
+				draw_roundrect(headerCheckboxX1 - (strHeight * 0.15), headerCheckboxY1 - (strHeight * 0.15), headerCheckboxX2 + (strHeight * 0.15), headerCheckboxY2 + (strHeight * 0.15), false);
+				
+				var tooltipText = (allChainsSelected) ? "Deselect all" : "Select all";
+				scr_createTooltip(mean(headerCheckboxX1, headerCheckboxX2), headerCheckboxY2, tooltipText, obj_tooltip.arrowFaceUp);
+				
+				// click on checkbox header
+				if (mouse_check_button_released(mb_left)) {
+					scr_setValueForAllChains(tabChainType, "selected", (allChainsSelected) ? false : true);
+					allChainsSelected = (ds_list_size(listOfChains) == ds_list_size(selectedList));
+				}
+			}
+			
+			// draw checkmark for checkbox header
+			if (allChainsSelected) {
+				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.6));
+				draw_rectangle(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, false);
+				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
+			}
+			
+			draw_set_color(global.colorThemeBorders);
+			scr_drawRectWidth(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, 2);
+		}
+		
+		// draw header text
+		var headerTextX = floor(headerRectX1 + textBuffer);
+		var headerTextY = floor(mean(headerRectY1, headerRectY2));
+		draw_set_halign(fa_left);
+		draw_set_valign(fa_middle);
+		draw_set_color(global.colorThemeText);
+		scr_adaptFont(colText, "M");
+		draw_text(headerTextX, headerTextY, colText);
+		
+		// dividing lines
+		if (i > 0) {
+			draw_set_color(global.colorThemeBorders);
+			draw_line(headerRectX1, y, headerRectX1, y + headerHeight);
+			draw_set_color(global.colorThemeBG);
+			draw_line(headerRectX1, y + headerHeight, headerRectX1, y + windowHeight);
+		}
+	}
 
-
+	// border for headers
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(x, y, x + windowWidth - 2, y + headerHeight, true);
 
 }

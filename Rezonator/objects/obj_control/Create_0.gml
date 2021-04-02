@@ -307,7 +307,7 @@ randomise();
 //cursorBoxY = 0;
 
 // Initialize the camera's draw range
-drawRange = 8;
+drawRange = 12;
 drawRangeStart = 0;
 drawRangeEnd = 0;
 lineSpacing = 6;
@@ -482,7 +482,10 @@ newCustomTagToken = false;
 newCustomFieldToken = false;
 newCustomTagUnit = false;
 newCustomFieldUnit = false;
-newCustomTagStack = false;
+newCustomTagEntry = false;
+newCustomFieldEntry = false;
+newCustomTagChain = false;
+newCustomFieldChain = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
@@ -516,6 +519,7 @@ rectNotInPanelPane = false;
 mouseoverDialogueBox = false;
 mouseoverSpeakerLabel = false;
 mouseoverHelpPane = false;
+mouseoverTagShortcut = "";
 
 gridInDelete = undefined;
 
@@ -545,21 +549,8 @@ setJustified = false;
 setTranscript = false;
 setNavWindow = false;
 
+scr_scrollBarInit();
 
-// scrollbar variables
-scrollBarHolding = false;
-scrollBarUpButtonHeld = false;
-scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
-scrollBarHeight = 0;
-scrollPlusY = 0;
-scrollPlusYDest = 0;
-scrollBarPlusY = 0;
-scrollBarCenter = 0;
-windowResizeXHolding = false;
-windowResizeYHolding = false;
-clipX = 0;
-clipY = 0;
 x = 0;
 y = 0;
 //stackShowBuffer = 10;
@@ -580,7 +571,7 @@ swapLinePos1 =  0;
 swapLinePos2 =  0;
 
 showLineNumber = true;
-showParticipantName = true;
+showSpeakerName = true;
 
 //audioTrackStream = -1;
 //audioTrackIndex = -1;
@@ -619,26 +610,6 @@ justifyCenter = 1;
 justifyRight = 2;
 justify = justifyLeft;
 
-justifyGridWidth = 2;
-justifyGridHeight = 4;
-justifyGridColJustify = 0;
-justifyGridColShape = 1;
-justifyLoop = 0;
-
-justifyGrid = ds_grid_create(justifyGridWidth, justifyGridHeight);
-ds_grid_set(justifyGrid, justifyGridColJustify, 0, justifyLeft);
-ds_grid_set(justifyGrid, justifyGridColShape, 0, shapeText);
-
-ds_grid_set(justifyGrid, justifyGridColJustify, 1, justifyLeft);
-ds_grid_set(justifyGrid, justifyGridColShape, 1, shapeBlock);
-
-ds_grid_set(justifyGrid, justifyGridColJustify, 2, justifyRight);
-ds_grid_set(justifyGrid, justifyGridColShape, 2, shapeBlock);
-
-ds_grid_set(justifyGrid, justifyGridColJustify, 3, justifyRight);
-ds_grid_set(justifyGrid, justifyGridColShape, 3, shapeText);
-
-
 
 hideAll = false;
 
@@ -667,10 +638,37 @@ ctrlHold = false;
 
 wordWrap = false;
 
+chainVoidCheckList = ds_list_create();
+chainStretchCheckList = ds_list_create();
+newestEntry = "";
+
+//draw Line directional states
+lineState_ltr = "leftToRight";
+lineState_rtl = "righToLeft";
+drawLineState = lineState_ltr;
 
 
-chainContents1toManyFieldList = ds_list_create();
-ds_list_add(chainContents1toManyFieldList, "gapUnits");
+chain1toManyEntryToChange = "";
+chain1toManyFieldToChange = "";
+chain1ToManyColFieldToChange = -1;
+
+chain1to1ChainToChange = "";
+chain1to1FieldToChange = "";
+chain1To1ColFieldToChange = -1;
+
+chain1to1ColFieldListRez = ds_list_create(); // list of the dynamic columns in the rezChain 1-1 pane
+chain1to1ColFieldListTrack = ds_list_create(); // list of the dynamic columns in the trackChain 1-1 pane
+chain1to1ColFieldListStack = ds_list_create(); // list of the dynamic columns in the stackChain 1-1 pane
+ds_list_add(chain1to1ColFieldListRez, "chainSize", "entityType");
+ds_list_add(chain1to1ColFieldListTrack, "chainSize", "entityType");
+ds_list_add(chain1to1ColFieldListStack, "chainSize", "entityType");
+
+chain1toManyColFieldListRez = ds_list_create(); // list of the dynamic columns in the rez 1-many pane
+chain1toManyColFieldListTrack = ds_list_create(); // list of the dynamic columns in the track 1-many pane
+chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns in the stack 1-many pane
+ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
+ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
+ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 
 
@@ -678,8 +676,22 @@ with (obj_alarm) {
 	alarm[10] = 8;
 }
 
-
 // add chainLists to nodeMap
 ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
 ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
+
+// add showList to nodeMap
+var showList = ds_list_create();
+ds_map_add_list(global.nodeMap, "showList", showList);
+
+
+selectedRezChainList = ds_list_create();
+selectedTrackChainList = ds_list_create();
+selectedStackChainList = ds_list_create();
+
+filterActiveRez = false;
+filterActiveTrack = false;
+filterActiveStack = false;
+
+menuDepth = -1;

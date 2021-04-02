@@ -18,9 +18,19 @@ if (keyboard_check(vk_control)) {
 }
 // If a normal delete, delete the singular focused link
 else {
+
+	
+	with(obj_panelPane){
+		if(functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != ""){
+			scr_deleteShow(obj_control.selectedChainID);
+		}
+	
+	}
+	
 	if (obj_chain.currentFocusedChainID == "" and hoverChunkID != -1) {
 		deleteChunkWord = true;
 		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, hoverChunkIDRow, obj_chain.chainStateFocus);
 	}
 	scr_deleteFromChain(true);
+	
 }

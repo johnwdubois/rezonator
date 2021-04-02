@@ -42,10 +42,11 @@ else{
 //		}
 //	}
 //}
-
+var camViewWidth = camera_get_view_width(camera_get_active());
+var camViewHeight = camera_get_view_height(camera_get_active());
 draw_set_alpha(1);
 draw_set_color(global.colorThemeBG);
-//draw_rectangle(20,windowY,windowX,windowY + windowHeight, false);
+draw_rectangle(0,0,camViewWidth,camViewHeight, false);
 draw_set_color(global.colorThemeBorders);
 //draw_rectangle(20,windowY,windowX,windowY + windowHeight, true);
 

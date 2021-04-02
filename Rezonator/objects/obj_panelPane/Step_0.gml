@@ -92,13 +92,10 @@ if (keyboard_check_pressed(ord("N")) and keyboard_check(vk_control)) {
 		if(showNav){
 			showNavRight = true;	
 			showNavLeft = true;
-			obj_toolPane.showTool = true;
-			
 		}
 		else{
 			showNavRight = false;	
 			showNavLeft = false;
-			obj_toolPane.showTool = false;
 		}
 	}
 }

@@ -126,6 +126,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	// Single press of arrow keys now moves screen by one line
 	if ((keyboard_check(vk_down) or mouse_wheel_down())) {
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
+			/*
 			scrollSpeed = -gridSpaceVertical;
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
 				obj_panelPane.functionChainList_lineGridRowFocused++;
@@ -136,12 +137,14 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		if (holdDownArrowKey > 15) {
 			scrollSpeed = (-min(arrowSpeed, 25)) * holdArrowMod;
 			if (mouse_wheel_down()) {
 				scrollSpeed = -(min(arrowSpeed, 25) * 2);
 			}
+			/*
 			if((holdDownArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
 				obj_panelPane.functionChainList_lineGridRowFocused++;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
@@ -151,6 +154,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		else if(mouse_wheel_down()) {
 			scrollSpeed = -(min(arrowSpeed, 25) * 1.5);
@@ -177,6 +181,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	}
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
+			/*
 			scrollSpeed = gridSpaceVertical;
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
 				obj_panelPane.functionChainList_lineGridRowFocused--;
@@ -187,12 +192,14 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		if (holdUpArrowKey > 15) {
 			scrollSpeed = min(arrowSpeed, 25) * holdArrowMod;
 			if (mouse_wheel_up()) {
 				scrollSpeed = (min(arrowSpeed, 25) * 2);
 			}
+			/*
 			if((holdUpArrowKey % (4 - holdArrowMod) == 0) and obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
 				obj_panelPane.functionChainList_lineGridRowFocused--;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
@@ -202,6 +209,7 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 				ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
 				obj_panelPane.functionChainContents_lineGridRowFocused = -1;	
 			}
+			*/
 		}
 		else if(mouse_wheel_up()) {
 			scrollSpeed = (min(arrowSpeed, 25) *1.5);
@@ -647,11 +655,9 @@ currentCenterDisplayRow = min(currentCenterDisplayRow, ds_grid_height(currentAct
 // hide participant names
 if (!gridView) {
 	if (keyboard_check(vk_control) and keyboard_check_pressed(ord("H"))) {
-		scr_showSpeakerName(!obj_control.showParticipantName);
+		scr_showSpeakerName(!obj_control.showSpeakerName);
 	}
 }
-
-
 
 // Check for mouse over of the Panel Pane
 // It's gotta stop the drag but not require the user to click into the main screen first
@@ -669,9 +675,10 @@ if (obj_panelPane.showNav) {
 		var panelPaneInst = instance_find(obj_panelPane, i);
 		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList || panelPaneInst.currentFunction == panelPaneInst.functionFilter);
 		var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
+		var isTabs = (panelPaneInst.currentFunction == panelPaneInst.functionTabs);
 		
 		// don't set mouseover to be true if this pane is hidden!
-		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight)) {
+		if ((isLeft && obj_panelPane.showNavLeft) || (isRight && obj_panelPane.showNavRight) || isTabs) {
 			// check if mouse is in range
 			if (point_in_rectangle(mouse_x, mouse_y, panelPaneInst.x, panelPaneInst.y, panelPaneInst.x + panelPaneInst.windowWidth, panelPaneInst.y + panelPaneInst.windowHeight)) {
 				mouseoverPanelPane = true;
@@ -758,40 +765,56 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
-if(keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and (!keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)) and shortcutsEnabled and currentActiveLineGrid != searchGrid){
+if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and (!keyboard_check(vk_lshift) and !keyboard_check(vk_rshift))
+and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
-				// If filter is active, deactivate it
-			if (obj_control.quickFilterGridActive) {
-				if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.quickFilterGrid)) {
-					//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-					//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
-					obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-					// Keep the focus on previous currentCenterDisplayRow
-				}
+	// If filter is active, deactivate it
+	if (obj_control.quickFilterGridActive) {
+		if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.quickFilterGrid)) {
+			//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
+			//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
+			obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
+			// Keep the focus on previous currentCenterDisplayRow
+		}
 			
-				// Switch to active grid
-				obj_control.quickFilterGridActive = false;
-				if(obj_control.filterGridActive == true){
-					obj_control.currentActiveLineGrid = obj_control.filterGrid;
-				}
-				else if (obj_control.searchGridActive == true) {
-					obj_control.currentActiveLineGrid = obj_control.searchGrid;
-				}
-				else{
-					obj_control.currentActiveLineGrid = obj_control.lineGrid;
-				}
-			}
-			else {
+		// Switch to active grid
+		obj_control.quickFilterGridActive = false;
+		if (obj_control.filterGridActive) {
+			obj_control.currentActiveLineGrid = obj_control.filterGrid;
+		}
+		else if (obj_control.searchGridActive) {
+			obj_control.currentActiveLineGrid = obj_control.searchGrid;
+		}
+		else {
+			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+		}
+	}
+	else {
 			
-				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
-				// If filter is unactive. activate it
-				with (obj_control) {
-					scr_renderQuickFilter();
-				}
-			}
-	
+		obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
+		// If filter is unactive. activate it
+		with (obj_control) {
+			scr_renderQuickFilter();
+		}
+	}
 
 }
+
+var fileCaptionString = string(game_display_name)
+//display current file name in window caption
+if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){
+	fileCaptionString = string(game_display_name) + " - " + filename_name(global.importFilename);
+}
+else{
+	fileCaptionString = string(game_display_name) + " - " + filename_name(global.fileSaveName);
+}
+var captionString = fileCaptionString;
+if(!obj_control.allSaved){
+captionString = fileCaptionString + "*"
+}
+
+window_set_caption(captionString);
+
 
 scr_fontSizeControl();
 
@@ -807,3 +830,4 @@ if (global.wheresElmo) {
 		showTool = false;
 	}
 }
+

@@ -2,33 +2,12 @@
 // You can write your code in this editor
 
 
-// scrollbar variables
-scrollBarHolding = false;
-scrollBarUpButtonHeld = false;
-scrollBarDownButtonHeld = false;
-global.scrollBarWidth = 20;
-scrollBarHeight = 0;
-scrollPlusY = 0;
-scrollPlusYDest = 0;
-scrollBarPlusY = 0;
+scr_scrollBarInit();
 
-
-
-windowHeight = 299;
-windowWidth = 360;
-clipSurface = -1;
-clipWidth = 100;
-clipHeight = 100;
-clipX = 0;
-clipY = 0;
-scrollPlusY = 0;
-windowResizeXHolding = false;
-windowResizeYHolding = false;
-canResizeWindowX = true;
-canResizeWindowY = true;
 
 maxDisplaySize = 30;
 displayText = "";
+dialogueBoxText = "";
 
 
 questionWindowActive = false;
@@ -46,6 +25,7 @@ clearAllTracks = false;
 clearAllRez = false;
 clearAllLinks = false;
 clearChain = false;
+clearShow = false;
 layerLink = false;
 combineChains = false;
 

@@ -24,7 +24,10 @@ function scr_closeDialogueBoxVariables(){
 		newCustomFieldToken = false;
 		newCustomTagUnit = false;
 		newCustomFieldUnit = false;
-		newCustomTagStack = false;
+		newCustomTagEntry = false;
+		newCustomTagChain = false;
+		newCustomFieldEntry = false;
+		newCustomFieldChain = false;
 		fromDropDown = false;
 		inputText = "";
 		cursorPos = 1;

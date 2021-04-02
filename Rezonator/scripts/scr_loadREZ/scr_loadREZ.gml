@@ -122,7 +122,10 @@ function scr_loadREZ() {
 					obj_control.currentDisplayUnitColsList = ds_map_find_value(map, "currentDisplayUnitColsList");
 				
 					if (ds_map_find_value(map, "showParticipantName") != undefined) {
-						obj_control.showParticipantName = ds_map_find_value(map, "showParticipantName");
+						obj_control.showSpeakerName = ds_map_find_value(map, "showParticipantName");
+					}
+					if (ds_map_find_value(map, "justify") != undefined) {
+						obj_control.justify = ds_map_find_value(map, "justify");
 					}
 				
 					if (global.tokenImportColNameList == undefined) {
@@ -175,13 +178,6 @@ function scr_loadREZ() {
 					}
 					
 					
-					// check if the stackTagMap is available in the REZ file
-					// if it is, we will take the stackTagMap in the REZ file
-					// if it is not, we will stick with the one we've already created
-					var stackMapFromREZ = ds_map_find_value(map, "stackTagMap");
-					if (!is_undefined(stackMapFromREZ)) {
-						 global.stackTagMap = ds_map_find_value(map, "stackTagMap");
-					}
 				
 				
 				
@@ -215,18 +211,37 @@ function scr_loadREZ() {
 						obj_control.currentDisplayUnitColsList = tempList5;
 						ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
 					}
-				
-				
+					
+					
+					// get chainEntryFieldList, if supplied
+					var chainEntryFieldList = ds_map_find_value(map, "chainEntryFieldList");
+					if (!is_undefined(chainEntryFieldList)) {
+						ds_list_destroy(global.chainEntryFieldList);
+						global.chainEntryFieldList = chainEntryFieldList;
+					}
+					
+					// get entry field map, if supplied
+					var entryFieldMap = ds_map_find_value(map, "entryFieldMap");
+					if (!is_undefined(entryFieldMap)) {
+						ds_map_destroy(global.entryFieldMap);
+						global.entryFieldMap = entryFieldMap;
+					}
+					
+					// get chainFieldList, if supplied
+					var chainFieldList = ds_map_find_value(map, "chainFieldList");
+					if (!is_undefined(chainFieldList)) {
+						ds_list_destroy(global.chainFieldList);
+						global.chainFieldList = chainFieldList;
+					}
+					
+					// get chain field map, if supplied
+					var chainFieldMap = ds_map_find_value(map, "chainFieldMap");
+					if (!is_undefined(chainFieldMap)) {
+						ds_map_destroy(global.chainFieldMap);
+						global.chainFieldMap = chainFieldMap;
+					}
 
-			
-					/*
-					scr_loadREZGridReset(global.fileLineRipGrid, map, "fileLineRipGrid");
-					scr_loadREZGridReset(tempWordGrid, map, "wordGrid");
-					scr_loadREZGridReset(dynamicWordGrid, map, "dynaWordGrid");
-					scr_loadREZGridReset(wordDrawGrid, map, "wordDrawGrid");
-					scr_loadREZGridReset(unitGrid, map, "unitGrid");
-					scr_loadREZGridReset(lineGrid, map, "lineGrid");
-					*/
+	
 				
 					originalWordGridHeight = ds_grid_height(wordGrid);
 					originalUnitGridHeight = ds_grid_height(unitGrid);
@@ -283,6 +298,7 @@ function scr_loadREZ() {
 	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
 	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
 	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	var showList = ds_map_find_value(global.nodeMap, "showList");
 	if (!is_numeric(rezChainList)){
 		ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
 		rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
@@ -294,6 +310,9 @@ function scr_loadREZ() {
 	if (!is_numeric(stackChainList)){
 		ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 		stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	}
+	if (!is_numeric(showList)){
+		ds_map_add_list(global.nodeMap, "showList", ds_list_create());
 	}
 	
 	// update the filtered chain lists now that we have those good ol chain lists loaded

@@ -27,7 +27,6 @@ if (ds_grid_height(searchGrid) > 0 and !gridView) {
 		preSwitchLineGrid = currentActiveLineGrid; 
 		searchGridActive = true;
 		currentActiveLineGrid = searchGrid;
-		obj_toolPane.currentMode = obj_toolPane.setModeSearch;
 		
 		// Which row are we switching from?
 		preSwitchDisplayRow = obj_control.scrollPlusYDest;

@@ -8,7 +8,30 @@ function scr_get_translation(key){
 	// if we can find the translation, return the translation
 	
 	if (variable_global_exists("locale_gloss") && ds_map_exists( global.locale_gloss, key )) {
-		return ds_map_find_value( global.locale_gloss, key );
+		var outputString = ds_map_find_value( global.locale_gloss, key );
+		var letterCount = string_length(outputString);
+		var isRTL = false;
+		for(var i = 0; i <= letterCount; i++){
+			
+			var unicodeValue = ord(string_char_at(outputString,i));
+
+			if ( 1424 <= unicodeValue and unicodeValue <= 1969 ||
+				 1984 <= unicodeValue and unicodeValue <= 2143 ||
+				 2208 <= unicodeValue and unicodeValue <= 2303 ||
+				 64336 <= unicodeValue and unicodeValue <= 65023 ||
+				 65136 <= unicodeValue and unicodeValue <= 65279 ||
+				 67648 <= unicodeValue and unicodeValue <= 67679 ||
+				 68864 <= unicodeValue and unicodeValue <= 68921 ||
+				 69216 <= unicodeValue and unicodeValue <= 69247 ||
+				 125184 <= unicodeValue and unicodeValue <= 125279 ||
+				 126064 <= unicodeValue and unicodeValue <= 126143 ||
+				 126208 <= unicodeValue and unicodeValue <= 126287 ||
+				 126464 <= unicodeValue and unicodeValue <= 126719) {
+					isRTL = true;
+			}
+		}
+		if(isRTL){outputString = scr_stringReverse(outputString)}
+		return outputString;
 	}
 	else if (room == rm_mainScreen) {
 			

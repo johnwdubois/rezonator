@@ -1,15 +1,5 @@
 /*
-	scr_dropDownSelect();
-    
-	Last Updated: 2019-08-14
-    
-	Called from: obj_dropDown
-    
 	Purpose: draw custom drop down menu with multiple options
-    
-	Mechanism: draws multiple rectangles and text to represent options to the user.
-                
-	Author: Terry Dubois, Brady Moore
 */
 function scr_dropDownSelect(optionSelected) {
 
@@ -132,14 +122,14 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeJustify) //16
 	{
 	    scr_justifyOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//proseOptions
 	else if (optionListType == global.optionListTypeProse) //17
 	{
 	    scr_proseOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//hideOptions
@@ -153,7 +143,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeContext) //19
 	{
 	    scr_contextOptions(optionSelected);
-	    instance_destroy();
+	    if (object_index == obj_dropDown) instance_destroy();
 	}
 
 	//clearOptions
@@ -313,6 +303,63 @@ function scr_dropDownSelect(optionSelected) {
 	{
 	    scr_importGridOptions(optionSelected);
 		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChain1ToManyField) //47
+	{
+	    scr_chain1ToManyFieldOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChain1ToManyTag) //48
+	{
+	    scr_chain1ToManyTagOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeTextDirection) //49
+	{
+	    scr_textDirectionOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChain1ToManyHeaderRightClick) //50
+	{
+	    scr_chain1ToManyHeaderRightClickOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChain1To1Field) //51
+	{
+	    scr_chain1To1FieldOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChain1To1Tag) //52
+	{
+	    scr_chain1To1TagOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChain1To1HeaderRightClick) //53
+	{
+	    scr_chain1To1HeaderRightClickOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeAddToShow) //54
+	{
+	    scr_addToShowOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeShowList) //55
+	{
+	    scr_showListOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeToolButton) //56
+	{
+		scr_toolButtonOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeJustifyProse) //57
+	{
+		scr_justifyProseOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListType1to1) //58
+	{
+		scr_1to1Options(optionSelected);
 	}
 
 }

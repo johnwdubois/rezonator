@@ -1,15 +1,5 @@
 /*
-	obj_toolPane: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of the toolPane object
-	
 	Purpose: Instantiate all variables used by the toolPane object
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
 
 global.toolPaneWidth = 300;
@@ -35,12 +25,13 @@ currentTool = toolRezBrush;
 
 tempReturnTool = -1;
 
+toolSpriteScale = 1;
 
 
 modeRead = 0;
 modeRez = 1;
 modeTrack = 2;
-currentMode = modeRead;
+currentMode = modeTrack;
 
 setModeMain = modeRead;
 setModeSearch = modeRead;
@@ -49,19 +40,10 @@ setModeSearch = modeRead;
 checkedForParticipantNames = false;
 
 
-
 tracksOnlyStackShow = false;
 rezOnlyStackShow = false;
 newWordInFilter = false;
 
-
-progressBarX = room_width - 100;
-progressBarY = windowHeight + 72;
-progressBarWidth = 100;
-progressBarHeight = 32;
-progressBarBackColor = c_gray;
-progressBarFrontColor = c_blue;
-progressBarFont = global.fontMain;
 
 alarm[0] = 2;
 
@@ -72,3 +54,5 @@ hoverTime[3] = 0;
 ToolTipPosX = 0;
 ToolTipPosY = 0;
 hoverTimeLimit = 60;
+
+mouseOverToolPane = false;

@@ -22,7 +22,7 @@ function scr_exportChainTempGrid(chainList){
 		
 		// get chain info
 		var currentChainType = ds_map_find_value(currentChainSubMap, "type");
-		var currentChainName = ds_map_find_value(currentChainSubMap, "chainName");
+		var currentChainName = ds_map_find_value(currentChainSubMap, "name");
 		var currentChainFilter = ds_map_find_value(currentChainSubMap, "filter");
 		
 		// put info in grid

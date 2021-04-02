@@ -1,14 +1,5 @@
 /*
-	scr_audioStep();
-	
-	Last Updated: 2020-10-26
-	
-	Called from: obj_audioUI
-	
 	Purpose: Check for window resizing, play/pause, and bookmarks set by stacks
-	
-	
-	Author: Terry DuBois, Georgio Klironomos
 */
 function scr_audioStep() {
 	

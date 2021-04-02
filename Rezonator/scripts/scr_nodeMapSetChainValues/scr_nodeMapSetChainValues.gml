@@ -7,12 +7,14 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 	if (ds_exists(subMap, ds_type_map)) {
 		
 		// add chain values to subMap
-		ds_map_add(subMap, "chainName", chainName);
+		ds_map_add(subMap, "name", chainName);
 		ds_map_add(subMap, "chainColor", chainColor);
 		ds_map_add(subMap, "focused", "");
 		ds_map_add(subMap, "filter", false);
 		ds_map_add(subMap, "author", global.userName);
 		ds_map_add(subMap, "chainSeq", chainSeq);
+		ds_map_add(subMap, "visible", true);
+		ds_map_add(subMap, "selected", false);
 		
 		// set alignment
 		var type = ds_map_find_value(subMap, "type");
@@ -31,8 +33,10 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 		ds_map_add_list(subMap, "vizSetIDList", vizSetIDList);
 		var linkIDList = ds_list_create();
 		ds_map_add_list(subMap, "linkIDList", linkIDList);
-		var tagList = ds_list_create();
-		ds_map_add_list(subMap, "tagList", tagList);
+		
+		// add 1-1 chain tagMap for this chain
+		var tagMap = ds_map_create();
+		ds_map_add_map(subMap, "tagMap", tagMap);
 	}
 
 }

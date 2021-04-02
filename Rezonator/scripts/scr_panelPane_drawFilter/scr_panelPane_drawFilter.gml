@@ -15,7 +15,7 @@ function scr_panelPane_drawFilter() {
 
 	// Set contraints for filter button
 
-	windowWidth = functionChainList_tabHeight;
+	windowWidth = functionTabs_tabHeight;
 
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
@@ -23,7 +23,7 @@ function scr_panelPane_drawFilter() {
 	var filterButtonX1 = x;
 	var filterButtonY1 = y;
 	var filterButtonX2 = x + windowWidth;
-	var filterButtonY2 = y + functionChainList_tabHeight +1;
+	var filterButtonY2 = y + functionTabs_tabHeight +1;
 
 	// Draw filter button, and check for coloring
 	draw_sprite_ext(spr_filterIcons, obj_control.filterGridActive, mean(filterButtonX1, filterButtonX2), mean(filterButtonY1, filterButtonY2), 1, 1, 0, c_white, 1);
@@ -113,8 +113,9 @@ function scr_panelPane_drawFilter() {
 
 	// Check for mouse clicks on filter button, if we're out of the search grid
 	if(obj_control.currentActiveLineGrid != obj_control.searchGrid){
-		if ((point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2) and device_mouse_check_button_released(0, mb_left))
-		or (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P")) and not instance_exists(obj_dialogueBox)))) {
+		var filterButtonClicked = (point_in_rectangle(mouse_x, mouse_y, filterButtonX1, filterButtonY1, filterButtonX2, filterButtonY2) and device_mouse_check_button_released(0, mb_left));
+		var filterShortcut = (keyboard_check(vk_control) and (keyboard_check_pressed(ord("P"))));
+		if ((filterButtonClicked || filterShortcut) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and obj_control.mouseoverTagShortcut == "") {
 			
 			if(obj_control.quickFilterGridActive){
 				obj_control.quickFilterGridActive = false;

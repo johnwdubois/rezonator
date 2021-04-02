@@ -70,7 +70,8 @@ viewOptionList = ds_list_create();
 ds_list_add(viewOptionList, "menu_window", 
 							"menu_justify",
 							"menu_prose",
-							"menu_hide");//"Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");
+							"menu_hide",
+							"Text Direction");//"Word", "Justify", "Prose", "Hide", "Zoom", "Dark Theme");
 
 filterOptionList = ds_list_create();
 ds_list_add(filterOptionList, "menu_filter",
@@ -183,3 +184,5 @@ ds_list_add(menuList, "File", "Link", "Edit", "View", "Search", "Tools", "Advanc
 menuListSize = ds_list_size(menuList);*/
 
 mouseoverMenuBar = false;
+
+saveTextAlpha = 1;

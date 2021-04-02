@@ -1,19 +1,10 @@
-/*
-	scr_newLink(wordID);
-	
-	Last Updated: 2018-09-11
-	
-	Called from: obj_chain
-	
+/*	
 	Purpose: the user has created a link, so this script will add it to the node map
-	
-	Mechanism: create new node in map for link
-	
-	Author: Terry DuBois
 */
 function scr_newLink(wordID) {
 	
 	show_debug_message("scr_newLink() ... wordID: " + string(wordID));
+	ds_list_clear(obj_control.chainStretchCheckList);
 
 	//New funtionality for recording chain modification
 	while (ds_list_find_index(obj_chain.chainIDModifyList, currentFocusedChainID) > -1) {
@@ -81,6 +72,7 @@ function scr_newLink(wordID) {
 					
 					// create a new node for this entry with type being rez, track, or stack
 					nodeID = scr_addToNodeMap(nodeType);
+					obj_control.newestEntry = nodeID;
 					
 					// set entry node values in nodeMap
 					var setSubMap = ds_map_find_value(global.nodeMap, nodeID)
@@ -100,6 +92,8 @@ function scr_newLink(wordID) {
 							// add tagmap to this entry's submap
 							var tagMap = ds_map_create();
 							ds_map_add_map(setSubMap, "tagMap", tagMap);
+							
+							ds_map_add(setSubMap, "stretch", false);
 						}
 					}
 
@@ -153,13 +147,13 @@ function scr_newLink(wordID) {
 	with (obj_panelPane) {
 		switch (nodeType) {
 			case "rez":
-				functionChainList_currentTab = functionChainList_tabRezBrush;
+				//functionChainList_currentTab = functionChainList_tabRezBrush;
 				break;
 			case "track":
-				functionChainList_currentTab = functionChainList_tabTrackBrush;
+				//functionChainList_currentTab = functionChainList_tabTrackBrush;
 				break;
 			case "stack":
-				functionChainList_currentTab = functionChainList_tabStackBrush;
+				//functionChainList_currentTab = functionChainList_tabStackBrush;
 				break;
 			default:
 				break;
@@ -205,6 +199,10 @@ function scr_newLink(wordID) {
 				show_debug_message("scr_newLink() ... adding " + string(linkID) + " to " + string(goalSetSubMap));
 			}
 		}
+	}
+	
+	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+		scr_alignChain2ElectricBoogaloo(currentFocusedChainID);
 	}
 
 }

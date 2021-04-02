@@ -68,7 +68,7 @@ function scr_setSpeakerLabelColWidth() {
 		var colX = ds_list_find_value(speakerLabelColXList, i);
 	
 		// if this is the speaker column and there's no speaker, set width to 0
-		if (i == speakerLabelColXListSize - 1 && !obj_control.showParticipantName) {
+		if (i == speakerLabelColXListSize - 1 && !obj_control.showSpeakerName) {
 			//ds_list_set(speakerLabelColXList, i, );
 		}
 

@@ -49,13 +49,13 @@ function scr_refocusChainEntry(wordID){
 		// set chainList tab
 		with (obj_panelPane) {
 			if (currentFunction == functionChainList) {
-				functionChainList_currentTab = chainListTab;
+				//functionChainList_currentTab = chainListTab;
 			}
 		}
 		
 		// set mode
 		with (obj_toolPane) {
-			currentMode = chainMode;
+			//currentMode = chainMode;
 		}
 	}
 
