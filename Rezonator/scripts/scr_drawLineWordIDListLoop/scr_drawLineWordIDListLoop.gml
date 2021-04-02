@@ -103,8 +103,17 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		// if this word has any chains that are not yet in chainShowList, add them!
 		for (var i = 0; i < currentWordInChainsListSize; i++) {
 			var currentChain = currentWordInChainsList[| i];
-			if (ds_list_find_index(chainShowList, currentChain) == -1) {
-				ds_list_add(chainShowList, currentChain);
+			if(ds_map_exists(global.nodeMap,currentChain)){
+				if(!is_string(currentChain)){ 
+					scr_deleteFromList(currentWordInChainsList, currentChain);
+					continue;
+				}
+				if (ds_list_find_index(chainShowList, currentChain) == -1) {
+					ds_list_add(chainShowList, currentChain);
+				}
+			}
+			else{
+				scr_deleteFromList(currentWordInChainsList, currentChain);
 			}
 		}
 		
