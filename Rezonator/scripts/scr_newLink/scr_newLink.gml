@@ -23,16 +23,11 @@ function scr_newLink(wordID) {
 	if (unitID == undefined) {
 		exit;
 	}
-	var isChunk = (obj_chain.currentFocusedChunkID != "");
-	
+
+	var isChunk = scr_isChunk(wordID);
 	// determine whether to treat as unit (stack) or word (rez/track)
 	var idSet = -1;
-	if (isChunk) {
-
-
-		idSet = wordID;
-	}
-	else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
 		idSet = unitID;
 		if (obj_control.quickStackAbleToInitiate) {
 			obj_control.moveCounter++;
