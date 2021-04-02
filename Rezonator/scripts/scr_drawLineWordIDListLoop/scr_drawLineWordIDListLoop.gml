@@ -103,8 +103,8 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		// if this word has any chains that are not yet in chainShowList, add them!
 		for (var i = 0; i < currentWordInChainsListSize; i++) {
 			var currentChain = currentWordInChainsList[| i];
-			if(ds_map_exists(global.nodeMap,currentChain)){
-				if(!is_string(currentChain)){ 
+			if (ds_map_exists(global.nodeMap,currentChain)) {
+				if (!is_string(currentChain)) { 
 					scr_deleteFromList(currentWordInChainsList, currentChain);
 					continue;
 				}
@@ -112,7 +112,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 					ds_list_add(chainShowList, currentChain);
 				}
 			}
-			else{
+			else {
 				scr_deleteFromList(currentWordInChainsList, currentChain);
 			}
 		}
