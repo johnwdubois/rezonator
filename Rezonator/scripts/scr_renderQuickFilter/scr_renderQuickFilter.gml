@@ -1,17 +1,6 @@
 function scr_renderQuickFilter() {
 	/*
-		scr_renderFilter();
-	
-		Last Updated: 2018-09-11
-	
-		Called from: obj_control
-	
 		Purpose: clear and then populate quickFilterGrid with necessary units
-	
-		Mechanism: check all chains to see if they are flagged with the filter option, and if they are
-					then add a row to the quickFilterGrid
-	
-		Author: Terry DuBois, Georgio Klironomos
 	*/
 	
 	if (instance_exists(obj_dialogueBox)) {
@@ -88,9 +77,10 @@ function scr_renderQuickFilter() {
 					if (!is_numeric(currentEntrySubMap)) continue;
 					if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 			
-					currentWordID = ds_map_find_value(currentEntrySubMap, "word");
-					currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
-					currentDisplayRow = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1);
+					var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+					if (scr_isChunk(currentWordID)) currentWordID = scr_getFirstWordOfChunk(currentWordID);
+					var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
+					var currentDisplayRow = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1);
 			
 					if (ds_grid_value_exists(quickFilterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(quickFilterGrid), currentUnitID)) {
 						continue;

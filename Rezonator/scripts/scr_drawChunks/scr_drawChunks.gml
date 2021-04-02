@@ -34,10 +34,17 @@ function scr_drawChunks(){
 		var strHeight = string_height(lastTokenDisplayStr);
 		
 		// set rect coordinates for chunk
-		var chunkRectX1 = firstTokenLeftX - 10;
-		var chunkRectY1 = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, displayRow) - strHeight;
-		var chunkRectX2 = lastTokenRightX + 10;
-		var chunkRectY2 = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, displayRow) + strHeight;
+		var chunkRectX1 = -1;
+		var chunkRectY1 = -1;
+		var chunkRectX2 = -1;
+		var chunkRectY2 = -1;
+		
+		if (is_numeric(firstTokenLeftX)) chunkRectX1 = firstTokenLeftX - 10;
+		if (is_numeric(lastTokenRightX)) chunkRectX2 = lastTokenRightX + 10;
+		if (displayRow >= 0 && displayRow < ds_grid_height(obj_control.currentActiveLineGrid)) {
+			chunkRectY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, displayRow) - strHeight;
+			chunkRectY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, displayRow) + strHeight;
+		}
 		
 		// draw BG rect
 		draw_set_color(global.colorThemeBG);

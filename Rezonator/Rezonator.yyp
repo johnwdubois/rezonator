@@ -695,6 +695,13 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/OGG","resourceVersion":"1.0","name":".SBC001.ogg","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/OGG","resourceVersion":"1.0","name":"README.txt","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"gcmt-dll.dll","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"gmlive-server.exe","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"gmlive-server.n","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"gmlive.html","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"neko.dll","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"regexp.ndll","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/GMLive","resourceVersion":"1.0","name":"std.ndll","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.2.556",
