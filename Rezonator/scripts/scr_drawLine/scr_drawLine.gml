@@ -1,16 +1,7 @@
 function scr_drawLine() {
+	
 	/*
-		scr_drawLine();
-	
-		Last Updated: 2018-07-12
-	
-		Called from: obj_control
-	
 		Purpose: draws words and lines from the lineGrid that are within the drawRange
-	
-		Mechanism: loop through the lineGrid (only loop through necessary lines) and get wordIDList from each line, then draw out those words
-	
-		Author: Terry DuBois
 	*/
 
 

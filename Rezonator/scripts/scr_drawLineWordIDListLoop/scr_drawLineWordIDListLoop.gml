@@ -100,11 +100,11 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 			}
 		}
 		
-		
 		// if this word has any chains that are not yet in chainShowList, add them!
 		for (var i = 0; i < currentWordInChainsListSize; i++) {
-			if (ds_list_find_index(chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
-				ds_list_add(chainShowList, ds_list_find_value(currentWordInChainsList, i));
+			var currentChain = currentWordInChainsList[| i];
+			if (ds_list_find_index(chainShowList, currentChain) == -1) {
+				ds_list_add(chainShowList, currentChain);
 			}
 		}
 		
@@ -118,8 +118,27 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		
 		// if this word has any chunks that are not yet in chunkShowList, add them!
 		for (var i = 0; i < currentWordInBoxListSize; i++) {
-			if (ds_list_find_index(chunkShowList, ds_list_find_value(currentWordInBoxList, i)) == -1) {
-				ds_list_add(chunkShowList, ds_list_find_value(currentWordInBoxList, i));
+			var currentChunk = currentWordInBoxList[| i];
+			if (ds_list_find_index(chunkShowList, currentChunk) == -1) {
+				ds_list_add(chunkShowList, currentChunk);
+			}
+			// check if this chunk is in any chains that should be added to chainShowList
+			var currentChunkSubMap = global.nodeMap[? currentChunk];
+			if (is_numeric(currentChunkSubMap)) {
+				if (ds_exists(currentChunkSubMap, ds_type_map)) {
+					var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+					if (is_numeric(currentChunkInChainsList)) {
+						if (ds_exists(currentChunkInChainsList, ds_type_list)) {
+							var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+							for (var j = 0; j < currentChunkInChainsListSize; j++) {
+								var currentChain = currentChunkInChainsList[| j];
+								if (ds_list_find_index(chainShowList, currentChain) == -1) {
+									ds_list_add(chainShowList, currentChain);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 		
