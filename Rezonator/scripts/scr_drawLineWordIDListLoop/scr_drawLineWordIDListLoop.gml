@@ -136,26 +136,11 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				continue;
 			}
 	
-			// Check if the word is a ChunkWord
-			/*
-			if(currentWordState == wordStateChunk) {
-		
-				//scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
-				
-				// set displayWordSeq for chunk
-				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordID - 1, drawWordLoop);
-			
-				if(drawLineState = lineState_ltr){ drawWordLoop++; }
-				else{drawWordLoop--;}
-				continue;
-			}
-			*/
 		}
 	
 	
 	
-	
-	
+
 	
 
 		scr_wordCalculateVoid(currentWordID)
@@ -164,13 +149,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		
 		
 		
-		
-		
-		
-		//show_debug_message("drawWordLoop: " + string(drawWordLoop));
-
-
-
 
 
 		var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
