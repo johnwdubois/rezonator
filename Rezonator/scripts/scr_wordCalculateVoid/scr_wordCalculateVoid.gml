@@ -13,6 +13,17 @@ function scr_wordCalculateVoid(wordID){
 	if (previousWordID >= 1 && currentWordSeq > 0) {
 		previousWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, previousWordID - 1);
 	}
+	
+	var inAlignedChunk = false;
+	var wordInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
+	var wordInBoxListSize = ds_list_size(wordInBoxList);
+	for (var i = 0; i < wordInBoxListSize; i++) {
+		var currentChunk = wordInBoxList[| i];
+		var currentChunkSubMap = global.nodeMap[? currentChunk];
+		var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+		if (ds_list_size(currentChunkInChainsList) > 0) inAlignedChunk = true;
+	}
+	
 		
 	var currentWordVoid = currentWordDisplayCol - previousWordDisplayCol;
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, wordID - 1, currentWordVoid);
@@ -32,7 +43,7 @@ function scr_wordCalculateVoid(wordID){
 	
 	// if this word is not in a chain, but has a void greater than 1, bring it back!!
 	if (currentWordVoid > 1) {
-		if (wordInChainsListSize < 1) {
+		if (wordInChainsListSize < 1 && !inAlignedChunk) {
 			if (currentWordSeq == 0) {
 				currentWordDisplayCol = 0;
 			}

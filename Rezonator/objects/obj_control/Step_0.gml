@@ -1,15 +1,5 @@
 /*
-	obj_control: Step
-	
-	Last Updated: 2019-02-11
-	
-	Called from: Every frame of the game
-	
 	Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
-	
-	Mechanism: Check keys every frame for input, and control the speed of navigation using conditionals
-	
-	Author: Terry DuBois
 */
 
 #macro vk_rcommand 91
@@ -18,6 +8,7 @@
 shortcutsEnabled = true;
 cameraBottomLine = camera_get_view_height(view_get_camera(0));
 
+global.delayInput = max(global.delayInput - 1, 0);
 
 if (hideAll) {
 	gridView = false;

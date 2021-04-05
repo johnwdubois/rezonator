@@ -75,13 +75,15 @@ function scr_drawChunks(){
 						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 						if (is_numeric(chainSubMap)) {
 							if (ds_exists(chainSubMap, ds_type_map)) {
-								scr_newLink(currentChunkID);		
+								scr_newLink(currentChunkID);
+								global.delayInput = 5;
 							}
 						}
 					}
 					else{
 						scr_newChain(-1);
 						scr_newLink(currentChunkID);
+						global.delayInput = 5;
 					}
 					// if there is a focused chain, unfocus the chunk
 					if (obj_chain.currentFocusedChainID != "") {

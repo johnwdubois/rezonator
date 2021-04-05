@@ -4,6 +4,10 @@
 
 function scr_wordClicked(wordID, unitID) {
 	
+	if (global.delayInput > 0) {
+		exit;
+	}
+	
 	show_debug_message("scr_wordClicked()... wordID: " + string(wordID) + "unitID: " + string(unitID));
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {

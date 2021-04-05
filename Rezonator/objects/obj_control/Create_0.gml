@@ -673,6 +673,8 @@ ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 var showList = ds_list_create();
 ds_map_add_list(global.nodeMap, "showList", showList);
 
+global.delayInput = 0;
+
 
 selectedRezChainList = ds_list_create();
 selectedTrackChainList = ds_list_create();
