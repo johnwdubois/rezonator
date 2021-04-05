@@ -117,8 +117,9 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	// Single press of arrow keys now moves screen by one line
 	if ((keyboard_check(vk_down) or mouse_wheel_down())) {
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
-			/*
+
 			scrollSpeed = -gridSpaceVertical;
+			/*
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
 				obj_panelPane.functionChainList_lineGridRowFocused++;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
@@ -172,8 +173,9 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	}
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
-			/*
+			
 			scrollSpeed = gridSpaceVertical;
+			/*
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
 				obj_panelPane.functionChainList_lineGridRowFocused--;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
