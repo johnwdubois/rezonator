@@ -14,24 +14,33 @@ function scr_wordCalculateVoid(wordID){
 		previousWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, previousWordID - 1);
 	}
 	
+	// check if this word is the first word in an aligned chunk
 	var inAlignedChunk = false;
 	var wordInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
 	var wordInBoxListSize = ds_list_size(wordInBoxList);
 	for (var i = 0; i < wordInBoxListSize; i++) {
 		var currentChunk = wordInBoxList[| i];
 		var currentChunkSubMap = global.nodeMap[? currentChunk];
-		var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-		if (scr_getFirstWordOfChunk(currentChunk) == wordID) {
-			var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
-			for (var j = 0; j < currentChunkInChainsListSize; j++) {
-				var currentChunkInChain = currentChunkInChainsList[| j];
-				var currentChunkInChainSubMap = global.nodeMap[? currentChunkInChain];
-				if (currentChunkInChainSubMap[? "alignChain"]) inAlignedChunk = true;
+		if (is_numeric(currentChunkSubMap)) {
+			if (ds_exists(currentChunkSubMap, ds_type_map)) {
+				var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+				if (is_numeric(currentChunkInChainsList)) {
+					if (ds_exists(currentChunkInChainsList, ds_type_list)) {
+						if (scr_getFirstWordOfChunk(currentChunk) == wordID) {
+							var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+							for (var j = 0; j < currentChunkInChainsListSize; j++) {
+								var currentChunkInChain = currentChunkInChainsList[| j];
+								var currentChunkInChainSubMap = global.nodeMap[? currentChunkInChain];
+								if (currentChunkInChainSubMap[? "alignChain"]) inAlignedChunk = true;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
 	
-		
+	// set the void for this word
 	var currentWordVoid = currentWordDisplayCol - previousWordDisplayCol;
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, wordID - 1, currentWordVoid);
 		
