@@ -23,7 +23,6 @@ function scr_wordClicked(wordID, unitID) {
 		}
 	}
 
-
 	// jump audio position to unitStart time (if audioUI is visible)
 	if (instance_exists(obj_audioUI)) {
 		if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
