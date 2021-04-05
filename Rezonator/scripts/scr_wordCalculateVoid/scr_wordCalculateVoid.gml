@@ -21,7 +21,14 @@ function scr_wordCalculateVoid(wordID){
 		var currentChunk = wordInBoxList[| i];
 		var currentChunkSubMap = global.nodeMap[? currentChunk];
 		var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-		if (ds_list_size(currentChunkInChainsList) > 0) inAlignedChunk = true;
+		if (scr_getFirstWordOfChunk(currentChunk) == wordID) {
+			var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+			for (var j = 0; j < currentChunkInChainsListSize; j++) {
+				var currentChunkInChain = currentChunkInChainsList[| j];
+				var currentChunkInChainSubMap = global.nodeMap[? currentChunkInChain];
+				if (currentChunkInChainSubMap[? "alignChain"]) inAlignedChunk = true;
+			}
+		}
 	}
 	
 		
