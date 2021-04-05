@@ -7,27 +7,38 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 	var entrySubMap = ds_map_find_value(global.nodeMap, entry);
 	var gridWidth = ds_grid_width(grid);
 	
+	// get chunkID
+	var chunkID = "";
+	var chunkSubMap = -1;
+	var firstWordOfChunk = -1;
+	if (isChunk) {
+		chunkID = ds_map_find_value(entrySubMap, "word");
+		chunkSubMap = global.nodeMap[? chunkID];
+		firstWordOfChunk = scr_getFirstWordOfChunk(chunkID);
+	}
+	
 	if (is_numeric(entrySubMap)) {
 		if (ds_exists(entrySubMap, ds_type_map)) {
 					
 			// get currentEntry's tagmap
 			var tagMap = ds_map_find_value(entrySubMap, "tagMap");
-			var gapUnits = ds_map_find_value(tagMap, "gapUnits");
 			
 			// get word info
-			var text = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, wordID - 1);
-			var transcript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, wordID - 1);
+			var text = "";
+			var transcript = "";
+			if (isChunk) {
+				text = scr_getChunkText(chunkID, global.tokenImportDisplayTokenColName);
+				transcript = scr_getChunkText(chunkID, global.tokenImportTranscriptColName);
+			}
+			else {
+				text = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, wordID - 1);
+				transcript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, wordID - 1);
+			}
 			if (transcript == 0 || transcript == "0") transcript = "";
 			
 			// get UnitText
-			var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
+			var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, (isChunk) ? firstWordOfChunk : wordID - 1);
 			var unitText = scr_getUnitText(unitID);
-			
-			// get chunkID 
-			var chunkID = "";
-			if (isInChunk) {
-				chunkID = ds_map_find_value(entrySubMap, "word");
-			}
 			
 			// add new row to trackGrid
 			ds_grid_resize(grid, gridWidth, ds_grid_height(grid) + 1);
@@ -46,9 +57,9 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 			// add tokenImport data to trackGrid (as long as this entry is not a chunk)
 			var tokenImportGridWidth = ds_grid_width(global.tokenImportGrid);
 			for (var i = 4; i < tokenImportGridWidth; i++) {
-				var currentTokenImportValue = ds_grid_get(global.tokenImportGrid, i, wordID - 1);
 				var currentCol = obj_chain.trackGridWidth + (i - 4);
-				ds_grid_set(grid, currentCol, ds_grid_height(grid) - 1, (isChunk) ? "" : currentTokenImportValue);
+				var currentTokenImportValue = (isChunk) ? "" : ds_grid_get(global.tokenImportGrid, i, wordID - 1);
+				ds_grid_set(grid, currentCol, ds_grid_height(grid) - 1, currentTokenImportValue);
 			}
 			
 			// add entry tags to trackGrid
@@ -62,8 +73,7 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 				var currentCol = obj_chain.trackGridWidth + (tokenImportGridWidth - 4) + i;
 				ds_grid_set(grid, currentCol, ds_grid_height(grid) - 1, (isInChunk) ? "" : tag);
 			}
-			
-			
+
 		}
 	}
 	
