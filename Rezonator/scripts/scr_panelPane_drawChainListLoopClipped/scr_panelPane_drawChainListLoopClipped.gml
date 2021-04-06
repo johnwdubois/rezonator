@@ -615,7 +615,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 			var allChainsHidden = (ds_list_size(listOfChains) == ds_list_size(hiddenList) && ds_list_size(listOfChains) > 0);
 			var hideAllX = visibleChainX;
 			var hideAllY = mean(headerRectY1, headerRectY2);
-			var mouseoverHideAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, hideAllX, hideAllY, optionsIconRad) && !mouseoverCancel;
+			var mouseoverHideAll = scr_pointInCircleClippedWindow(mouse_x, mouse_y, hideAllX, hideAllY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterAll;
 			if (mouseoverHideAll) {
 				draw_set_color(global.colorThemeSelected1);
 				draw_circle(hideAllX, hideAllY, optionsIconRad, false);

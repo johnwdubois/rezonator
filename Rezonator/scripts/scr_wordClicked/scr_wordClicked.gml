@@ -37,7 +37,6 @@ function scr_wordClicked(wordID, unitID) {
 	}
 
 
-	//show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
 	var makingStacks = false;
 	with (obj_panelPane) {
 		if(functionChainList_currentTab == functionChainList_tabStackBrush){
@@ -81,8 +80,9 @@ function scr_wordClicked(wordID, unitID) {
 			var currentChainType = currentChainSubMap[?"type"];
 			
 			var refocusEntry = (currentChainType == "rezChain" && obj_toolPane.currentTool == obj_toolPane.toolRezBrush)
-			or(currentChainType == "trackChain" && obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)
-			or(currentChainType == "stackChain" && obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
+			or (currentChainType == "trackChain" && obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)
+			or (currentChainType == "stackChain" && obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
+			or (obj_toolPane.currentMode == obj_toolPane.modeRead);
 	
 			if(refocusEntry){
 				obj_chain.currentFocusedChainID = currentChainID;
@@ -98,7 +98,7 @@ function scr_wordClicked(wordID, unitID) {
 				}
 			
 				scr_refocusChainEntry(wordID);
-			exit;
+				exit;
 			}
 		}
 	}
