@@ -136,6 +136,7 @@
     {"id":{"name":"scr_drawPlaceChains","path":"scripts/scr_drawPlaceChains/scr_drawPlaceChains.yy",},"order":12,},
     {"id":{"name":"scr_drawChunks","path":"scripts/scr_drawChunks/scr_drawChunks.yy",},"order":2,},
     {"id":{"name":"scr_scrollBarInit","path":"scripts/scr_scrollBarInit/scr_scrollBarInit.yy",},"order":8,},
+    {"id":{"name":"scr_isNumericAndExists","path":"scripts/scr_isNumericAndExists/scr_isNumericAndExists.yy",},"order":30,},
     {"id":{"name":"scr_drawWordBorder","path":"scripts/scr_drawWordBorder/scr_drawWordBorder.yy",},"order":13,},
     {"id":{"name":"scr_addToChainFieldMap","path":"scripts/scr_addToChainFieldMap/scr_addToChainFieldMap.yy",},"order":35,},
     {"id":{"name":"scr_drawWord","path":"scripts/scr_drawWord/scr_drawWord.yy",},"order":14,},

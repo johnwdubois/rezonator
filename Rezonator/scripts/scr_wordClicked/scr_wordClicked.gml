@@ -74,26 +74,24 @@ function scr_wordClicked(wordID, unitID) {
 	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		var inChainsListSize = ds_list_size(inChainsList);
 		for (var i = 0; i < inChainsListSize; i++) {
-			var currentChainID = ds_list_find_value(inChainsList, i);
+			var currentChainID = inChainsList[| i];
+			var currentChainSubMap = global.nodeMap[? currentChainID];
+			var currentChainType = currentChainSubMap[? "type"];
 			
-			var currentChainSubMap = global.nodeMap[?currentChainID];
-			var currentChainType = currentChainSubMap[?"type"];
-			
+			// check whether we should refocus this word's entry or not
 			var refocusEntry = (currentChainType == "rezChain" && obj_toolPane.currentTool == obj_toolPane.toolRezBrush)
 			or (currentChainType == "trackChain" && obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)
 			or (currentChainType == "stackChain" && obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
 			or (obj_toolPane.currentMode == obj_toolPane.modeRead);
 	
-			if(refocusEntry){
+			if (refocusEntry) {
 				obj_chain.currentFocusedChainID = currentChainID;
-				var focusedChainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 				
-				if (is_numeric(focusedChainIDSubMap)) {
-					if (ds_exists(focusedChainIDSubMap, ds_type_map)) {
-						var prevChainType = ds_map_find_value(focusedChainIDSubMap, "type");
-						if (prevChainType == "stackChain") {
-							wordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID -1);
-						}
+				if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
+					var prevChainType = focusedChainIDSubMap[? "type"];
+					if (prevChainType == "stackChain") {
+						wordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID -1);
 					}
 				}
 			
@@ -116,7 +114,6 @@ function scr_wordClicked(wordID, unitID) {
 
 	// add new link and refresh chain grid
 	scr_newLink(wordID);
-
 		
 
 	ds_list_destroy(fakeInChainsList);
