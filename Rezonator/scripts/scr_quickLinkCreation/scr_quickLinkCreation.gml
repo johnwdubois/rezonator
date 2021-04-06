@@ -66,7 +66,7 @@ function scr_quickLinkCreation(){
 				}
 			}
 			if (wordIsInTrackChain) {
-				continue;
+				//continue;
 			}
 		}
 
