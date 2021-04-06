@@ -100,31 +100,9 @@ function scr_rightClickWordOptions(optionSelected) {
 		case "Delete New Word":
 			scr_destroyAllDropDownsOtherThanSelf();
 
-			
-			
-			var inChainsList = ds_grid_get(obj_control.dynamicWordGrid,obj_control.dynamicWordGrid_colInChainList, obj_control.rightClickWordID-1);
-		
-			// get inChainsListSize and submap of focusedChain
-			var inChainsListSize = ds_list_size(inChainsList);
-
-	
-			// next, we need to see if the hoverWord has a chain of the same type as the currently focused chain
-			var chainToSelect = "";
-			for (var i = 0; i < inChainsListSize; i++) {
-				var currentChain = ds_list_find_value(inChainsList, i);
-				chainToSelect = currentChain;
-				break;
-			}
-	
-			if (chainToSelect != "" || ds_map_exists(global.nodeMap, chainToSelect)) {
-				show_debug_message("scr_rightclickwordOptions() ... word has no chains no slectioon should happen...");
-				obj_chain.currentFocusedChainID = chainToSelect;
-			}
-
-			
 			obj_control.newWordHoverWordID = obj_control.rightClickWordID;
 			obj_control.deleteNewWord = true;
-			scr_deleteFromChain(true);
+			scr_deleteNewWord();
 			
 			obj_control.deleteNewWord = false;
 			obj_control.rightClickonWord = false;
@@ -137,21 +115,8 @@ function scr_rightClickWordOptions(optionSelected) {
 		
 			// get inChainsListSize and submap of focusedChain
 			var inChainsListSize = ds_list_size(inChainsList);
-
-	
-			// next, we need to see if the hoverWord has a chain of the same type as the currently focused chain
-			var chainToSelect = "";
-			for (var i = 0; i < inChainsListSize; i++) {
-				var currentChain = ds_list_find_value(inChainsList, i);
-				chainToSelect = currentChain;
-				break;
-			}
-	
-			if (chainToSelect != "" || ds_map_exists(global.nodeMap, chainToSelect)) {
-				show_debug_message("scr_rightclickwordOptions() ... word has no chains no slectioon should happen...");
-				obj_chain.currentFocusedChainID = chainToSelect;
-				scr_deleteFromChain(true);
-			}
+			scr_deleteFromChain(true);
+			
 			
 			
 

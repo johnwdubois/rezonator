@@ -180,7 +180,7 @@ function scr_panelPane_drawChains1ToMany() {
 					if (chainType == "rezChain" or chainType == "trackChain") {
 						ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
 						
-						if(!scr_isChunk(currentEntry)){
+						if(!scr_isChunk(currentEntry) && is_numeric(currentWordID)){
 							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
 						}
 					}

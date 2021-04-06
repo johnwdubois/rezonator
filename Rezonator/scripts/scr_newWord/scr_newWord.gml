@@ -2,9 +2,7 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 	/*
 		Purpose: Create a new word within the discourse based on user string input
 	*/
-	
-	// temporary exit while we work on chunks/alignment with new words
-	exit;
+
 	
 	var displayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, targetWord - 1);
 	var lineWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, displayRow);
@@ -51,15 +49,11 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 
 
 	if(obj_control.wordView == 2){
-		var tokenColIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-2);
+		var tokenColIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-2);
 	}
 	else{				
-		var tokenColIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-3);
+		var tokenColIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, obj_control.wordView-3);
 	}
-
-
-
-
 
 	// Set the WordGrid to take in the new word
 	ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
