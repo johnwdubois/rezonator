@@ -32,6 +32,13 @@ function scr_removeChainFromInChainsList(chainID, entryID, tokenID) {
 			var otherChain = inChainsList[|0]
 			var otherChainsSubMap = global.nodeMap[?otherChain];
 			effectColor = otherChainsSubMap[?"chainColor"];
+			var otherChainType = otherChainsSubMap[?"type"];
+			if(otherChainType == "trackChain"){
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, tokenID - 1, true);
+			}
+			else{
+				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, tokenID - 1, true);
+			}
 		}
 		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, tokenID - 1, effectColor);
 
