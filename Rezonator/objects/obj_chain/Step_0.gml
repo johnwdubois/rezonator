@@ -1,15 +1,5 @@
 /*
-	obj_chain: Step
-	
-	Last Updated: 2019-02-14
-	
-	Called from: Every frame of the game
-	
 	Purpose: Consistently update attributes of chain objects
-	
-	Mechanism: Hide/reveal the mouseLine depending on mouse position, use on the grid connected to the tool in use, and keep focused chains visible in the focus view. 
-	
-	Author: Terry DuBois
 */
 
 if(keyboard_check_pressed(ord("A")) and keyboard_check(vk_control) and not (!obj_control.shortcutsEnabled || obj_control.dialogueBoxActive || obj_panelPane.discoSelectionActive)) {

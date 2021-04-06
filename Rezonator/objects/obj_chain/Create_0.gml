@@ -1,15 +1,5 @@
 /*
-	obj_chain: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of a chain object
-	
 	Purpose: Instantiate all variables used by the chain objects
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
 
 toggleDrawRez = true;
@@ -87,6 +77,7 @@ placeChainNameCounter = 0;
 currentFocusedChainID = "";
 currentFocusedChunkID = "";
 focusedChainWordID = "";
+focusedChainWrongTool = false;
 
 
 mouseLineHide = false;

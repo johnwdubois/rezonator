@@ -36,15 +36,17 @@ function scr_wordClicked(wordID, unitID) {
 		exit;
 	}
 
-
 	var makingStacks = false;
 	with (obj_panelPane) {
 		if(functionChainList_currentTab == functionChainList_tabStackBrush){
 			makingStacks = true;
 		}
 	}
-
-
+	
+	// if there is a focused chain, but you are not on the tool of that chain, cancel this click
+	if (obj_chain.focusedChainWrongTool) {
+		exit;
+	}
 
 	if (ds_list_size(obj_control.inRectWordIDList) <= 1 && obj_toolPane.currentTool != obj_toolPane.toolStackBrush&& obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		obj_control.moveCounter++;
