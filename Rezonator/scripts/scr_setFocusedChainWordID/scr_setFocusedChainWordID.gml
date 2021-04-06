@@ -8,8 +8,9 @@ function scr_setFocusedChainWordID(){
 			
 			// check to see if the tool corresponds to the focused chain
 			var focusedChainType = chainMap[? "type"];
-			focusedChainWrongTool = (focusedChainType == "rezChain" && obj_toolPane.currentMode != obj_toolPane.modeRez)
-									or (focusedChainType == "trackChain" && obj_toolPane.currentMode != obj_toolPane.modeTrack);
+			focusedChainWrongTool = ((focusedChainType == "rezChain" && obj_toolPane.currentMode != obj_toolPane.modeRez)
+									or (focusedChainType == "trackChain" && obj_toolPane.currentMode != obj_toolPane.modeTrack)) 
+									and obj_toolPane.currentMode != obj_toolPane.modeRead;
 
 			
 			// set the focused chain's focused entry
