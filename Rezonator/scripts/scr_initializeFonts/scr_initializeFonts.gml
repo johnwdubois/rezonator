@@ -4,7 +4,7 @@ function scr_initializeFonts(){
 		// find font file
 		var delimiter = (os_type == os_macosx) ? "/" : "\\";
 		var font_file_name = file_find_first( working_directory + "IncludedFiles" + delimiter + "Fonts" + delimiter + "*.ttf", 0 );		// find the ttf file
-		var font_file_name_full = "IncludedFiles" + delimiter + "Fonts" + delimiter + CKJFont_file_name;
+		var font_file_name_full = "IncludedFiles" + delimiter + "Fonts" + delimiter + font_file_name;
 	
 
 		global.localeEN_S_0 = font_add(font_file_name_full,10,false,false,32,127);
