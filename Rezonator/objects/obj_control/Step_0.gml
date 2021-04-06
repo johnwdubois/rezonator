@@ -54,9 +54,6 @@ if (!gridView) {
 	}
 	
 	
-	//var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
-	//	obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-	
 // Retrieve booleans for NavWindow.
 var clickedInChainList = false;
 var clickedInChainContents = false;
@@ -68,34 +65,6 @@ with (obj_panelPane) {
 		clickedInChainContents = clickedIn;
 	}
 }
-
-/*var numOfTouches = 0;
-for(var touchLoop = 0; touchLoop < 4; touchLoop++) {
-	if(device_mouse_check_button_pressed(touchLoop, mb_left)) {
-		numOfTouches++;	
-	}
-	
-}
-
-if(numOfTouches >= 2) {
-	multiTouch = true;	
-	//show_message(string(numOfTouches));
-}
-else {
-	numOfTouches = 0;
-	for(var touchLoop = 0; touchLoop < 5; touchLoop++) {
-		if(device_mouse_check_button(touchLoop, mb_left)) {
-			numOfTouches++;	
-		}
-	}
-	if(numOfTouches >= 2) {
-		multiTouch = true;	
-		//show_message(string(numOfTouches));
-	}
-	else {
-		multiTouch = false;	
-	}
-}*/
 
 
 
@@ -359,31 +328,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		}
 	}
 }
-
-
-	/*if (not instance_exists(obj_dialogueBox)) {		
-		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			wordLeftMarginDest -= gridSpaceHorizontal;
-		}
-		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
-			scr_jumpToEnd(false);
-		}
-	
-
-		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			wordLeftMarginDest += gridSpaceHorizontal;
-		}
-		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_home) or keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) {
-			if (searchGridActive) {
-				scr_jumpToEnd(true);
-			}
-			else {
-				wordLeftMarginDest = speakerLabelMargin + 20;
-			}
-		}
-	}*/
 	
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
 		showDevVars = !showDevVars;
@@ -578,34 +522,12 @@ if (shortcutsEnabled) {
 gridSpaceHorizontal = clamp(gridSpaceHorizontal, gridSpaceHorizontalMin, gridSpaceHorizontalMax);
 gridSpaceVertical = clamp(gridSpaceVertical, gridSpaceVerticalMin, gridSpaceVerticalMax);
 
-/*
-if (keyboard_check_pressed(ord("Q"))) {
-	displayRowAscending = !displayRowAscending;
-	ds_grid_sort(currentActiveLineGrid, lineGrid_colDisplayRow, displayRowAscending);
-	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-}
-*/
+
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
-	
-	
-/*
-	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
-		
-		if (!instance_exists(obj_dialogueBox)) {
-			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-		}
-	obj_dialogueBox.questionWindowActive = true;
-	
-	}
-
-				
-*/
 
 
 	audio_stop_all();
-	
-
 	scr_saveINI();
 	
 	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
@@ -625,9 +547,8 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 			}
 		}
 	}
-		global.tutorial = false;
-		keyboard_string = "";
-		room_goto(rm_openingScreen);
+	keyboard_string = "";
+	room_goto(rm_openingScreen);
 }
 
 
@@ -783,25 +704,12 @@ else{
 	fileCaptionString = string(game_display_name) + " - " + filename_name(global.fileSaveName);
 }
 var captionString = fileCaptionString;
-if(!obj_control.allSaved){
-captionString = fileCaptionString + "*"
+if (!obj_control.allSaved) {
+	captionString = fileCaptionString + "*"
 }
 
 window_set_caption(captionString);
 
 
 scr_fontSizeControl();
-
-
-// hide panel panes and toolpanes if doing Play & Learn
-if (global.wheresElmo) {
-	with (obj_panelPane) {
-		showNav = false;
-		showNavLeft = false;
-		showNavRight = false;
-	}
-	with (obj_toolPane) {
-		showTool = false;
-	}
-}
 

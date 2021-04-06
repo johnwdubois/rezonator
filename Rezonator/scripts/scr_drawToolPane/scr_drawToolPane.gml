@@ -342,9 +342,6 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 
-	if (global.wheresElmo) {
-		currentMode = modeTrack;
-	}
 	
 	// clicking on toolpane will deselect chain
 	if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {

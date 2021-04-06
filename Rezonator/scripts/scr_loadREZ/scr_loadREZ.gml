@@ -1,24 +1,12 @@
 function scr_loadREZ() {
 	/*
-		scr_loadRez();
-	
-		Last Updated: 2020-01-01
-	
-		Called from: obj_fileLoader
-	
 		Purpose: Load data from a Rez file into Rezonator
-	
-		Mechanism: Separate the JSON string into its different maps, then load the data from those maps into all the grids.
-	
-		Author: Terry DuBois
 	*/
-	var RezDirString = global.currentDirString;
-	if(!global.wheresElmo){
-		var delimiter = (os_type == os_macosx) ? "/" : "\\";
-		RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
-	}
 
-	if (!global.wheresElmo and global.previousRezDirectory != "") {
+	var delimiter = (os_type == os_macosx) ? "/" : "\\";
+	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
+
+	if (global.previousRezDirectory != "") {
 		RezDirString = global.previousRezDirectory;
 	
 		// trimming the spaces off of RezDirString

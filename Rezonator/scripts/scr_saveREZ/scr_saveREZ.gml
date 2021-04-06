@@ -262,49 +262,33 @@ function scr_saveREZ(autosave) {
 
 	// save the file with the JSON encoded string
 	if (autosave) {
-		if (global.games) {
-			var gameSaveDirString = (global.rezzles ? global.rezonatorRezzlesSaveDirString : global.rezonatorElmoSaveDirString) ;
+		if (directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
+			var importGroupFileName = ds_list_find_value(global.importGroupFileList, global.importGroupFileIndex);
+			var importGroupFilePath = global.importGroupOutputDir + "\\" + filename_change_ext(filename_name(importGroupFileName), "") + ".rez";
+			show_debug_message("importGroupFileIndex: " + string(global.importGroupFileIndex) + ", Saving to: " + string(importGroupFilePath));
+			scr_saveFileBuffer(importGroupFilePath, importGroupFilePath, jsonString);
+			global.importGroupFileIndex++;
+		}
 		
-			if (directory_exists(gameSaveDirString)) {
-				
-				var userString = (global.userName == "") ? ("player " + string_replace_all(date_time_string(date_current_datetime()), ":" , ".")) : global.userName;
-				var fileName = filename_change_ext(filename_name(global.fileSaveName), "") + " - " + userString + ".rez";
-				scr_saveFileBuffer(0, gameSaveDirString + "\\" + fileName, jsonString);
-				
+		if (os_type == os_macosx) {
+			if (directory_exists(global.rezonatorDirString + "/Autosave")) {
+		
+				scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "/Autosave/autosave.rez", jsonString);
 			}
 			else {
-				show_message(string(gameSaveDirString) + " does not exist");
+				scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
 			}
 		}
 		else {
+			if (directory_exists(global.rezonatorDirString + "\\Autosave")) {
 		
-			if (directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
-				var importGroupFileName = ds_list_find_value(global.importGroupFileList, global.importGroupFileIndex);
-				var importGroupFilePath = global.importGroupOutputDir + "\\" + filename_change_ext(filename_name(importGroupFileName), "") + ".rez";
-				show_debug_message("importGroupFileIndex: " + string(global.importGroupFileIndex) + ", Saving to: " + string(importGroupFilePath));
-				scr_saveFileBuffer(importGroupFilePath, importGroupFilePath, jsonString);
-				global.importGroupFileIndex++;
-			}
-		
-			if (os_type == os_macosx) {
-				if (directory_exists(global.rezonatorDirString + "/Autosave")) {
-		
-					scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "/Autosave/autosave.rez", jsonString);
-				}
-				else {
-					scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
-				}
+				scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "\\Autosave\\autosave.rez", jsonString);
 			}
 			else {
-				if (directory_exists(global.rezonatorDirString + "\\Autosave")) {
-		
-					scr_saveFileBuffer(working_directory + "autosave.rez", global.rezonatorDirString + "\\Autosave\\autosave.rez", jsonString);
-				}
-				else {
-					scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
-				}
+				scr_saveFileBuffer(working_directory + "autosave.rez", working_directory + "autosave.rez", jsonString);
 			}
 		}
+
 	}
 	else {
 		scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);

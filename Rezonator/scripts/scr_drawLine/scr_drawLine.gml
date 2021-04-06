@@ -97,7 +97,7 @@ function scr_drawLine() {
 	var unitInStackGridHeight = ds_grid_height(obj_chain.unitInStackGrid);
 	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
 
-	if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
+	if (not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
 		scr_mouseToolCheck();
 	}
 
