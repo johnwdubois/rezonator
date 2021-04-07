@@ -8,10 +8,8 @@ function scr_deleteNewWord(){
 	if(obj_control.newWordHoverWordID > -1 and obj_control.newWordHoverWordID <=(ds_grid_height(obj_control.dynamicWordGrid))) {
 		currentWordID = obj_control.newWordHoverWordID;
 	}
-	
-	
-	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);
-	
+
+	var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID - 1);	
 	if(currentWordState != obj_control.wordStateChunk and currentWordState != obj_control.wordStateNew) {
 		exit;
 	}
@@ -32,7 +30,7 @@ function scr_deleteNewWord(){
 			scr_deleteFromChain(true);
 			scr_unFocusAllChains();
 		}
-	
+
 	}
 	
 	// Set the word state to dead

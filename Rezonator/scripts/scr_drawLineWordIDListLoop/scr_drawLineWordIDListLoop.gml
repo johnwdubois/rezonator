@@ -9,27 +9,21 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	var previousWordID = -1;
 	
 	if (is_numeric(currentWordIDList) and currentWordIDList != undefined) {
-		if(ds_exists(currentWordIDList, ds_type_list)){
+		if (ds_exists(currentWordIDList, ds_type_list)) {
 			currentWordIDListSize = ds_list_size(currentWordIDList);
 		}
 	}
-	else{
+	else {
 		exit;
 	}
 
 	
 	var shapeTextX = wordLeftMargin;
 	var shapeTextSpace = 12;
-
 	var previousWordDisplayString = "0";
-
-
 	var strHeightRegular = string_height("0");
-
 	var strHeightScaled = string_height("0");
 	var fontScale = strHeightScaled / strHeightRegular;
-
-
 	var panelPaneResizeHeld = false;
 
 	with(obj_panelPane) {
@@ -78,7 +72,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	drawWordLoop = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : currentWordIDListSize-1;
 	repeat (currentWordIDListSize) {
 
-		var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
+		var currentWordID = currentWordIDList[| drawWordLoop];
 		var currentWordGridRow = currentWordID - 1;
 		
 		if (currentWordID == obj_control.rightClickWordID) {
@@ -91,151 +85,26 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
 		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
 		var currentWordInBoxList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInBoxList, currentWordGridRow);
+		
+		if (currentWordState == wordStateDead) {
+			scr_deleteFromList(currentWordIDList, currentWordID);
+			continue;
+		}
 
-		// get size of inChainsList
-		var currentWordInChainsListSize = 0;
-		if (is_numeric(currentWordInChainsList)) {
-			if (ds_exists(currentWordInChainsList, ds_type_list)) {
-				currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
-			}
-		}
-		
-		// if this word has any chains that are not yet in chainShowList, add them!
-		for (var i = 0; i < currentWordInChainsListSize; i++) {
-			var currentChain = currentWordInChainsList[| i];
-			if (ds_map_exists(global.nodeMap,currentChain)) {
-				if (!is_string(currentChain)) { 
-					scr_deleteFromList(currentWordInChainsList, currentChain);
-					continue;
-				}
-				if (ds_list_find_index(chainShowList, currentChain) == -1) {
-					ds_list_add(chainShowList, currentChain);
-				}
-			}
-			else {
-				scr_deleteFromList(currentWordInChainsList, currentChain);
-			}
-		}
-		
-		// get size of inBoxList
-		var currentWordInBoxListSize = 0;
-		if (is_numeric(currentWordInBoxList)) {
-			if (ds_exists(currentWordInBoxList, ds_type_list)) {
-				currentWordInBoxListSize = ds_list_size(currentWordInBoxList);
-			}
-		}
-		
-		// if this word has any chunks that are not yet in chunkShowList, add them!
-		for (var i = 0; i < currentWordInBoxListSize; i++) {
-			var currentChunk = currentWordInBoxList[| i];
-			if (ds_list_find_index(chunkShowList, currentChunk) == -1) {
-				ds_list_add(chunkShowList, currentChunk);
-			}
-			// check if this chunk is in any chains that should be added to chainShowList
-			var currentChunkSubMap = global.nodeMap[? currentChunk];
-			if (is_numeric(currentChunkSubMap)) {
-				if (ds_exists(currentChunkSubMap, ds_type_map)) {
-					var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-					if (is_numeric(currentChunkInChainsList)) {
-						if (ds_exists(currentChunkInChainsList, ds_type_list)) {
-							var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
-							for (var j = 0; j < currentChunkInChainsListSize; j++) {
-								var currentChain = currentChunkInChainsList[| j];
-								if (ds_list_find_index(chainShowList, currentChain) == -1) {
-									ds_list_add(chainShowList, currentChain);
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		
-		
-		
-	
-	
-		if(currentWordState != wordStateNormal) {
-			if(currentWordState == wordStateDead) {
-				
-				if(drawLineState = lineState_ltr){ drawWordLoop++; }
-				else{drawWordLoop--;}
-				
-				continue;
-			}
-	
-		}
-	
-	
-	
+		scr_updateChainShowList(currentWordInChainsList, chainShowList, currentWordInBoxList, chunkShowList);	
 
-	
-
-		scr_wordCalculateVoid(currentWordID)
+		scr_wordCalculateVoid(currentWordID);
 		
-		
-		
+		var currentWordX = scr_setTokenX(currentWordID, shapeTextX, currentWordIDListSize, unitWidth, drawWordLoop, camWidth);
 		
 		
 
-
-		var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-		var displayColEdit = (drawLineState = lineState_ltr) ? currentWordDisplayCol : currentWordIDListSize - currentWordDisplayCol;
-
-		var speakerLabelWidth = ds_list_find_value(speakerLabelColXList, 3) + 20;
-		var wordLeftMarginEdit = (justify == justifyLeft) ? wordLeftMargin : wordLeftMargin - speakerLabelWidth;
-
-
-
-		// horizontally move this word to its desired x-pixel value
-		var currentWordDestX = 0;
-		if (justify == justifyLeft) {
-			if (shape == shapeText) {
-				currentWordDestX = shapeTextX;
-			}
-			else {
-				currentWordDestX = displayColEdit * gridSpaceHorizontal + wordLeftMarginEdit;
-			}
-		}
-		else if (justify == justifyCenter) {
-			if (shape == shapeText) {
-				currentWordDestX = (camWidth / 2) - (unitWidth / 2) + shapeTextX + wordLeftMarginEdit;
-			}
-			else {
-				currentWordDestX = (camWidth / 2) - (ceil((currentWordIDListSize / 2)) * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal) + wordLeftMarginEdit;
-			}
-		}
-		else if (justify == justifyRight) {
-			if (shape == shapeText) {
-				currentWordDestX = camWidth - global.toolPaneWidth -global.scrollBarWidth - unitWidth + shapeTextX + wordLeftMarginEdit;
-			}
-			else {
-				currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal) + wordLeftMarginEdit;
-			}
-		}
-	
-		var currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow);
-		if (is_string(currentWordX)) {
-			currentWordX = 0;
-		}
-		leftScreenBound = min(currentWordX, leftScreenBound);
-		
-		if (currentWordX < currentWordDestX) {
-			currentWordX += abs(currentWordX - currentWordDestX) / 4;
-		}
-		else if (currentWordX > currentWordDestX) {
-			currentWordX -= abs(currentWordX - currentWordDestX) / 4;
-		}
-		
-		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, currentWordX);
-		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordGridRow, drawWordLoop);
 		
 		// get the string of this word to draw to the main screen
 		var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
 		var currentWordStringType = string(currentWordString);
 		scr_adaptFont(currentWordStringType,"M");
 		var currentWordStringWidth = string_width(currentWordStringType);
-		//var currentWordStringHeight = string_height(currentWordStringType);
 	
 		
 		var wordRectBuffer = 3;
@@ -294,8 +163,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		}
 	
 		if (wordRectX2 > speakerRectX2) {
-
-			//scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 			scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 			// Until I can get a check that sees if the mouseRect is in the line, this can't happen
 			if (!obj_toolPane.mouseOverToolPane && !obj_control.mouseOverUI && (hoverWordID == -1 || hoverWordID == currentWordID) && ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade))) {
@@ -318,9 +185,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 				}
 			}
 		}
-		
-		
-		
+
 	
 		previousWordID = currentWordID;
 		previousWordDisplayString = currentWordString;
@@ -329,12 +194,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		if(drawLineState = lineState_ltr){ drawWordLoop++; }
 		else{drawWordLoop--;}
 	}
-
-
-
-	// set total void values for this line, now that we have gone through every word in the line
-	//ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidMax, drawLineLoop, voidMax);
-	//ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidSum, drawLineLoop, voidSum);
 
 
 }
