@@ -35,25 +35,21 @@ function scr_wordCalculateVoid(wordID){
 	if (currentWordVoid > 1) {
 	
 		// check if this word is the first word in an aligned chunk
-		var inAlignedChunk = false;
+		var alignedChunkChainID = "";
 		var wordInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
 		var wordInBoxListSize = ds_list_size(wordInBoxList);
 		for (var i = 0; i < wordInBoxListSize; i++) {
 			var currentChunk = wordInBoxList[| i];
 			var currentChunkSubMap = global.nodeMap[? currentChunk];
-			if (is_numeric(currentChunkSubMap)) {
-				if (ds_exists(currentChunkSubMap, ds_type_map)) {
-					var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-					if (is_numeric(currentChunkInChainsList)) {
-						if (ds_exists(currentChunkInChainsList, ds_type_list)) {
-							if (scr_getFirstWordOfChunk(currentChunk) == wordID) {
-								var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
-								for (var j = 0; j < currentChunkInChainsListSize; j++) {
-									var currentChunkInChain = currentChunkInChainsList[| j];
-									var currentChunkInChainSubMap = global.nodeMap[? currentChunkInChain];
-									if (currentChunkInChainSubMap[? "alignChain"]) inAlignedChunk = true;
-								}
-							}
+			if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
+				var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+				if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list)) {
+					if (scr_getFirstWordOfChunk(currentChunk) == wordID) {
+						var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+						for (var j = 0; j < currentChunkInChainsListSize; j++) {
+							var currentChunkInChain = currentChunkInChainsList[| j];
+							var currentChunkInChainSubMap = global.nodeMap[? currentChunkInChain];
+							if (currentChunkInChainSubMap[? "alignChain"]) alignedChunkChainID = currentChunkInChain;
 						}
 					}
 				}
@@ -61,16 +57,15 @@ function scr_wordCalculateVoid(wordID){
 		}
 	
 		
-		if (wordInChainsListSize < 1 && !inAlignedChunk) {
-			if (currentWordSeq == 0) {
-				currentWordDisplayCol = 0;
-			}
-			else {
-				currentWordDisplayCol = previousWordDisplayCol + 1;
-			}
+		if (wordInChainsListSize < 1 && alignedChunkChainID == "") {
+			
+			// if this word is not in a chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
+			currentWordDisplayCol = (currentWordSeq == 0) ? 0 : previousWordDisplayCol + 1;
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, wordID - 1, currentWordDisplayCol);
+			
 		}
 		else {
+			
 			// if this word is in a chain, and it has >1 void, let's quickly check that chain to see if it has any words with <=1 void
 			// if it doesn't, let's pull that shit back!!!!
 			for (var i = 0; i < wordInChainsListSize; i++) {
@@ -79,79 +74,24 @@ function scr_wordCalculateVoid(wordID){
 				var currentChainSubMap = global.nodeMap[? currentChain];
 				if (!is_numeric(currentChainSubMap)) continue;
 				if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
-				var currentChainType = currentChainSubMap[? "type"];
-				
+				var currentChainAlign = currentChainSubMap[? "alignChain"];
 
-				if (currentChainType == "rezChain") {
+				if (currentChainAlign) {
 					if (ds_list_find_index(obj_control.chainVoidCheckList, currentChain) == -1) {
 						ds_list_add(obj_control.chainVoidCheckList, currentChain);
 						
-						var currentChainSetList = currentChainSubMap[? "vizSetIDList"];
-						if (!is_numeric(currentChainSetList)) continue;
-						if (!ds_exists(currentChainSetList, ds_type_list)) continue;
-						var currentChainSetListSize = ds_list_size(currentChainSetList);
-						var smallVoidExists = false;
-						var displayRowList = ds_list_create();
-						var sideLinkList = ds_list_create();
-						
-						// check to see if the chain has any voids < 1
-						for (var j = 0; j < currentChainSetListSize; j++) {
-							var currentEntry = currentChainSetList[| j];
-							var currentEntrySubMap = global.nodeMap[? currentEntry];
-							if (!is_numeric(currentEntrySubMap)) continue;
-							if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
-							var currentStretch = currentEntrySubMap[? "stretch"];
-							if (currentStretch) continue;
-							var currentWordID = currentEntrySubMap[? "word"];
-							if(scr_isChunk(currentWordID)){
-									currentWordID = scr_getFirstWordOfChunk(currentWordID);
-							}
-							var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
-							if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {
-								ds_list_add(displayRowList, currentDisplayRow);
-								var currentVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1);
-								if (currentVoid <= 1) smallVoidExists = true;
-							}
-							else {
-								ds_list_add(sideLinkList, currentWordID);
-							}
-						}
-						
-						if (!smallVoidExists) {
-							for (var j = 0; j < currentChainSetListSize; j++) {
-								var currentEntry = currentChainSetList[| j];
-								var currentEntrySubMap = global.nodeMap[? currentEntry];
-								if (!is_numeric(currentEntrySubMap)) continue;
-								if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
-								var currentWordID = currentEntrySubMap[? "word"];
-								if(scr_isChunk(currentWordID)){
-									currentWordID = scr_getFirstWordOfChunk(currentWordID);
-								}
-								var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-								currentDisplayCol--;
-								ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol);
-							}
-						}
-						else {
-							// if there are any side links still hanging out in space, bring them back
-							var sideLinkListSize = ds_list_size(sideLinkList);
-							for (var j = 0; j < sideLinkListSize; j++) {
-								var currentWordID = sideLinkList[| j];
-								var currentVoid = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, currentWordID - 1);
-								if (currentVoid > 1) {
-									var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-									currentDisplayCol--;
-									ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1, currentDisplayCol);
-								}							
-							}
-						}
-						
-						ds_list_destroy(displayRowList);
-						ds_list_destroy(sideLinkList);
+						scr_handleVoid(currentChainSubMap[? "vizSetIDList"]);
 					}
 				}
-
 			}
 		}
+		
+		if (alignedChunkChainID != "") {
+			var alignedChunkChainSubMap = global.nodeMap[? alignedChunkChainID];
+			if (scr_isNumericAndExists(alignedChunkChainSubMap, ds_type_map)) {
+				scr_handleVoid(alignedChunkChainSubMap[? "vizSetIDList"]);
+			}
+		}
+		
 	}
 }

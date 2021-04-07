@@ -2,7 +2,8 @@ function scr_drawChains() {
 	/*
 		Purpose: draw rezChains and move words on screen according to the rezChains
 	*/
-
+	
+	scr_setMouseLineWordID();
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
@@ -222,33 +223,34 @@ function scr_drawChains() {
 			}
 		}
 	}
+	
+	draw_set_alpha(1);
 
 
 	// draw pickwhip line to mouse from chain
 	var drawPickwhip = (!is_undefined(mouseLineX) && !is_undefined(mouseLineY) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)
 						&& obj_toolPane.currentMode != obj_toolPane.modeRead && !obj_chain.focusedChainWrongTool);
-		
+	
 	if (drawPickwhip) {
 		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-			var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-			if (is_numeric(chainSubMap)) {
-				if (ds_exists(chainSubMap, ds_type_map)) {
-					var chainType = ds_map_find_value(chainSubMap, "type");
-					currentChainColor = ds_map_find_value(chainSubMap, "chainColor");
-					draw_set_color(currentChainColor);
+			var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+				var chainType = chainSubMap[? "type"];
+				currentChainColor = chainSubMap[? "chainColor"];
+				currentChainVisible = chainSubMap[? "visible"];
+				draw_set_color(currentChainColor);
 			
-					if (currentChainVisible) {
-						if (not mouseLineHide) {
-							if (chainType == "rezChain") {
-								draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
-							}
-							else if (chainType == "trackChain") {
-								scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
-							}
-							if (obj_chain.showChainArrows) {
-								var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
-								draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
-							}
+				if (currentChainVisible) {
+					if (not mouseLineHide) {
+						if (chainType == "rezChain") {
+							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+						}
+						else if (chainType == "trackChain") {
+							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
+						}
+						if (obj_chain.showChainArrows) {
+							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
+							draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
 						}
 					}
 				}
