@@ -269,6 +269,9 @@ function scr_fillImportGrids_IGT(){
 						if (currentField == displayTokenField) {
 						ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, currentTokenImportGridRow, currentToken);
 						}
+						if (currentField == global.tokenImportTranscriptColName) {
+							ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentTokenImportGridRow, currentToken);
+						}
 						currentTokenID++;
 					}
 					 
@@ -307,11 +310,14 @@ function fillMorphGrid_IGT() {
 		var currentWordID = ds_grid_get(global.tokenImportGrid, global.tokenImport_colTokenID, i);
 		var currentParticipant = ds_grid_get(global.unitImportGrid, global.unitImport_colParticipant, currentUnitID - 1);
 		var currentMorph = ds_grid_get(global.tokenImportGrid, global.tokenImport_colWordToken, i);
+		var currentGloss = ds_grid_get(global.tokenImportGrid, global.tokenImport_colWordTranscript, i);
+		
 		
 		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, i, currentUnitID);
 		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, i, currentWordID);
 		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colParticipant, i, currentParticipant);
 		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colMorph, i, currentMorph);
+		ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colGloss, i, currentGloss);
 	}
 	
 	scr_morphToUnitGrid();

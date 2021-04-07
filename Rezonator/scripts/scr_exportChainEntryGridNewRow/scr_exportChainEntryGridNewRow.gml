@@ -22,7 +22,7 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 					
 			// get currentEntry's tagmap
 			var tagMap = ds_map_find_value(entrySubMap, "tagMap");
-			
+			var fieldIndex = ds_list_find_index(global.tokenImportColNameList, global.tokenImportTranscriptColName);
 			// get word info
 			var text = "";
 			var transcript = "";
@@ -32,9 +32,9 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 			}
 			else {
 				text = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, wordID - 1);
-				transcript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, wordID - 1);
+				transcript = ds_grid_get(global.tokenImportGrid, fieldIndex, wordID - 1);
 			}
-			if (transcript == 0 || transcript == "0") transcript = "";
+			if (transcript == 0 || transcript == "0"|| transcript == undefined) transcript = "";
 			
 			// get UnitText
 			var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, (isChunk) ? firstWordOfChunk : wordID - 1);
