@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createChunk(){
 	
+	var chunkID = "";
+	
 	// Place all captured unit and word info into the box grid
 	var inRectWordIDListSize = ds_list_size(inRectWordIDListCopy);
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
@@ -27,7 +29,7 @@ function scr_createChunk(){
 		show_debug_message("scr_createChunk() ... tokenIDList: " + scr_getStringOfList(tokenIDList));
 		
 		// create Chunk new node in node map
-		var chunkID = scr_addToNodeMap("chunk");
+		chunkID = scr_addToNodeMap("chunk");
 		var chunkSubMap = global.nodeMap[? chunkID];
 		ds_map_add_list(chunkSubMap, "tokenList", tokenIDList);
 		ds_map_add_list(chunkSubMap, "inChainsList", inChainsList);
@@ -42,6 +44,10 @@ function scr_createChunk(){
 			var currentTokenInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentTokenID - 1);
 			if (ds_list_find_index(currentTokenInBoxList, chunkID) == -1) ds_list_add(currentTokenInBoxList, chunkID);
 		}
+		
+		// add the new chunk to the chunkList
+		var chunkList = global.nodeMap[? "chunkList"];
+		if (ds_list_find_index(chunkList, chunkID) == -1) ds_list_add(chunkList, chunkID);
 	}
 	
 	

@@ -283,25 +283,31 @@ function scr_loadREZ() {
 	ds_list_destroy(newInstList);
 	
 	// get chain lists from nodeMap, and if they aren't provided in the nodeMap then we'll make them!
-	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
-	var trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
-	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
-	var showList = ds_map_find_value(global.nodeMap, "showList");
-	if (!is_numeric(rezChainList)){
-		ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
-		rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
+	var rezChainList = global.nodeMap[? "rezChainList"];
+	var trackChainList = global.nodeMap[? "trackChainList"];
+	var stackChainList = global.nodeMap[? "stackChainList"];
+	var showList = global.nodeMap[? "showList"];
+	var chunkList = global.nodeMap[? "chunkList"];
+	if (!is_numeric(rezChainList)) {
+		rezChainList = ds_list_create();
+		ds_map_add_list(global.nodeMap, "rezChainList", rezChainList);
 	}
-	if (!is_numeric(trackChainList)){
-		ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
-		trackChainList = ds_map_find_value(global.nodeMap, "trackChainList");
+	if (!is_numeric(trackChainList)) {
+		trackChainList = ds_list_create();
+		ds_map_add_list(global.nodeMap, "trackChainList", trackChainList);
 	}
-	if (!is_numeric(stackChainList)){
-		ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
-		stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	if (!is_numeric(stackChainList)) {
+		stackChainList = ds_list_create();
+		ds_map_add_list(global.nodeMap, "stackChainList", stackChainList);
 	}
-	if (!is_numeric(showList)){
+	if (!is_numeric(showList)) {
 		ds_map_add_list(global.nodeMap, "showList", ds_list_create());
 	}
+	if (!is_numeric(chunkList)) {
+		ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
+	}
+	
+	
 	
 	// update the filtered chain lists now that we have those good ol chain lists loaded
 	scr_updateFilteredChainLists();
@@ -311,13 +317,7 @@ function scr_loadREZ() {
 	obj_chain.trackChainNameCounter = ds_list_size(trackChainList);
 	obj_chain.stackChainNameCounter = ds_list_size(stackChainList);
 
-	//obj_chain.placeChainNameCounter = ds_grid_height(obj_chain.placeChainGrid);
-	
-	obj_control.chunkID = ds_grid_get_max(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid));
-	if (!is_numeric(obj_control.chunkID)) {
-		obj_control.chunkID = 0;
-	}
-	show_debug_message("scr_loadREZ() ... obj_control.chunkID: " + string(obj_control.chunkID));
+
 
 
 	if (ds_grid_height(obj_control.lineGrid) > 1) {
@@ -348,7 +348,6 @@ function scr_loadREZ() {
 	}
 
 	ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
-	//scr_refreshLineGridDisplayRow(obj_control.lineGridBackup);
 
 
 	// update tokenImport
@@ -369,11 +368,6 @@ function scr_loadREZ() {
 	}
 	if (ds_grid_height(global.unitImportGrid) <= ds_grid_height(obj_control.unitGrid)) {
 		ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
-	}
-
-
-	if (ds_grid_width(global.importCSVGrid) <= 0) {
-		//scr_fillTokenImportGrid();
 	}
 
 

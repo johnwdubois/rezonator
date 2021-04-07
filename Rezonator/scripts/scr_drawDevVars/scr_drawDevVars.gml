@@ -20,6 +20,7 @@ function scr_drawDevVars(){
 	var focusedChainLinkIDList = -1;
 	var focusedChainType = "";
 	var focusedChainFocused = "";
+	var chunkList = global.nodeMap[? "chunkList"];
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var chainMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		focusedChainSetIDList = ds_map_find_value(chainMap, "setIDList");

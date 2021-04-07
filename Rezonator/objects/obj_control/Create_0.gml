@@ -442,7 +442,6 @@ lineContainsMouseYPos = -1;
 
 
 // Set variables for box creation
-chunkID = 0;
 boxHoldRectX1 = 0;
 boxHoldRectY1 = 0;
 boxHoldRectX2 = 0;
@@ -672,6 +671,10 @@ ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 // add showList to nodeMap
 var showList = ds_list_create();
 ds_map_add_list(global.nodeMap, "showList", showList);
+
+// add chunkList to nodeMap
+ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
+
 
 global.delayInput = 0;
 
