@@ -18,6 +18,8 @@ function scr_tokenMarkerOptions() {
 	}
 	else if(optionSelected == "Set as Transcription"){
 		global.tokenImportTranscriptColName = ds_list_find_value(global.tokenImportColNameList, obj_control.tokenImportColToChange);
+		ds_grid_set_grid_region(obj_control.wordGrid, global.tokenImportGrid, obj_control.tokenImportColToChange, 0 , obj_control.tokenImportColToChange, ds_grid_height(global.tokenImportGrid), obj_control.wordGrid_colWordTranscript, 0);
+	
 	}
 
 }
