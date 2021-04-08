@@ -263,7 +263,6 @@ function scr_loadREZ() {
 				else if (objectIndex == "obj_chain") {
 				
 
-					scr_loadREZGridReset(obj_chain.chunkGrid, map, "chunkChainGrid");
 					scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
 					scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
 					scr_loadREZGridReset(obj_chain.goldStandardGrid, map, "goldStandardGrid");

@@ -224,42 +224,6 @@ function scr_getColNameString(grid, col) {
 				break;
 		}
 	}
-	else if (grid == obj_chain.chunkGrid) {
-		switch (col) {
-			case obj_chain.chainGrid_colChainID:
-				colName = "chainID";
-				break;
-			case obj_chain.chainGrid_colChainState:
-				colName = "chainState";
-				break;
-			case obj_chain.chainGrid_colWordIDList:
-				colName = "unitIDList";
-				break;
-			case obj_chain.chainGrid_colName:
-				colName = "name";
-				break;
-			case obj_chain.chainGrid_colColor:
-				colName = "color";
-				break;
-			case obj_chain.chainGrid_colInFilter:
-				colName = "inFilter";
-				break;
-			case obj_chain.chainGrid_colAlign:
-				colName = "align";
-				break;
-			case obj_chain.chainGrid_colTiltSum:
-				colName = "tiltSum";
-				break;
-			case obj_chain.chunkGrid_colBoxWordIDList:
-				colName = "boxWordList";
-				break;
-			case obj_chain.chunkGrid_colNest:
-				colName = "Nest";
-				break;
-			default:
-				break;
-		}
-	}
 	else if (grid == obj_chain.unitInStackGrid) {
 		switch (col) {
 			case obj_chain.unitInStackGrid_colUnitID:

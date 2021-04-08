@@ -28,11 +28,7 @@ chainGrid_colShow = 9;
 
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
-chunkGrid_colBoxWordIDList = 8;
-chunkGrid_colNest = 9;
 
-
-chunkGrid = ds_grid_create(chainGridWidth + 2, 0);
 
 //creatingPlaceChains = false;
 

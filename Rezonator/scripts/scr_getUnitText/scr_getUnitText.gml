@@ -8,24 +8,13 @@ function scr_getUnitText(unitID){
 	var wordIDListSize = ds_list_size(wordIDList);
 	var i = 0;
 	
-	repeat(wordIDListSize) {
-		var unitTextWordID = ds_list_find_value(wordIDList, i);
+	repeat (wordIDListSize) {
+		var unitTextWordID = wordIDList[| i];
 		var unitTextWordDisplayStr = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, unitTextWordID - 1);
 				
-		// determine if this word is a chunk (in which case it should not be included in UnitText)
-		var unitTextWordIDIsChunk = false;
-		var unitTextWordInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, unitTextWordID - 1);
-		var unitTextWordInBoxListSize = ds_list_size(unitTextWordInBoxList);
-		if (unitTextWordInBoxListSize > 0) {
-			var rowInChunkGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), unitTextWordID);
-			if (rowInChunkGrid >= 0) unitTextWordIDIsChunk = true;
-		}
-				
-		// concatenate the UnitText string if this is not a chunk
-		if (!unitTextWordIDIsChunk) {
-			if (is_string(unitTextWordDisplayStr)) unitText += scr_adaptFont(unitTextWordDisplayStr,"M");
-			if (i < wordIDListSize - 1) unitText += " ";
-		}
+		// concatenate the UnitText string
+		if (is_string(unitTextWordDisplayStr)) unitText += scr_adaptFont(unitTextWordDisplayStr,"M");
+		if (i < wordIDListSize - 1) unitText += " ";
 		
 		i++;
 	}

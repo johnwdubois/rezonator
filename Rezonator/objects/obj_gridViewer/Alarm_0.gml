@@ -1,6 +1,5 @@
 ///@description GridList
 ds_list_add(gridList,
-	obj_chain.chunkGrid,
 	obj_chain.unitInStackGrid,
 	obj_chain.goldStandardGrid,
 	global.importGrid,
