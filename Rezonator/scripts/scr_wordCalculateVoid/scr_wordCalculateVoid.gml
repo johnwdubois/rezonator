@@ -86,6 +86,7 @@ function scr_wordCalculateVoid(wordID){
 			}
 		}
 		
+		// if this word is in an aligned chunk, we should check the aligned chain that the chunk is in to make sure it has a small void
 		if (alignedChunkChainID != "") {
 			var alignedChunkChainSubMap = global.nodeMap[? alignedChunkChainID];
 			if (scr_isNumericAndExists(alignedChunkChainSubMap, ds_type_map)) {
