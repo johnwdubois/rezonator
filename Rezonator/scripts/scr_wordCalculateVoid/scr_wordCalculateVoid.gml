@@ -17,6 +17,9 @@ function scr_wordCalculateVoid(wordID){
 	// set the void for this word
 	var currentWordVoid = currentWordDisplayCol - previousWordDisplayCol;
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colVoid, wordID - 1, currentWordVoid);
+	
+	// check if this word is the first word in an aligned chunk
+	var alignedChunkChainID = scr_firstWordInAlignedChunk(wordID);
 		
 	if (currentWordVoid < 1 && previousWordID >= 0) {
 		currentWordDisplayCol++;
@@ -29,32 +32,13 @@ function scr_wordCalculateVoid(wordID){
 				scr_alignChain2ElectricBoogaloo(currentChain);
 			}
 		}
+		
+		// if we are pushing a word in an aligned chunk, realign that chain too!
+		if (alignedChunkChainID != "") scr_alignChain2ElectricBoogaloo(alignedChunkChainID);
 	}
 	
 	// if this word is not in a chain, but has a void greater than 1, bring it back!!
 	if (currentWordVoid > 1) {
-	
-		// check if this word is the first word in an aligned chunk
-		var alignedChunkChainID = "";
-		var wordInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, wordID - 1);
-		var wordInBoxListSize = ds_list_size(wordInBoxList);
-		for (var i = 0; i < wordInBoxListSize; i++) {
-			var currentChunk = wordInBoxList[| i];
-			var currentChunkSubMap = global.nodeMap[? currentChunk];
-			if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
-				var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
-				if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list)) {
-					if (scr_getFirstWordOfChunk(currentChunk) == wordID) {
-						var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
-						for (var j = 0; j < currentChunkInChainsListSize; j++) {
-							var currentChunkInChain = currentChunkInChainsList[| j];
-							var currentChunkInChainSubMap = global.nodeMap[? currentChunkInChain];
-							if (currentChunkInChainSubMap[? "alignChain"]) alignedChunkChainID = currentChunkInChain;
-						}
-					}
-				}
-			}
-		}
 	
 		
 		if (wordInChainsListSize < 1 && alignedChunkChainID == "") {

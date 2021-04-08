@@ -89,10 +89,9 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 	ds_grid_set(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, unitID - 1, wordIDListLineGrid);
 
 
-
 	var wordIDListLineGridSize = ds_list_size(wordIDListLineGrid);
 	for (var i = wordSeq + 2; i < wordIDListLineGridSize; i++) {
-		var currentWordID = ds_list_find_value(wordIDListLineGrid, i);
+		var currentWordID = wordIDListLineGrid[| i];
 		var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 		var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 	
@@ -113,6 +112,44 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 			scr_renderFilter();
 		}
 	}
+	
+	
+	// loop through the wordIDList for this line and check if there are any chains that should be aligned
+	var alignChainList = ds_list_create();
+	for (var i = 0; i < wordIDListLineGridSize; i++) {
+		var currentWord = wordIDListLineGrid[| i];
+		var currentWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, currentWord - 1);
+		if (scr_isNumericAndExists(currentWordInChainsList, ds_type_list)) {
+			var currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
+			for (var j = 0; j < currentWordInChainsListSize; j++) {
+				var currentWordInChain = currentWordInChainsList[| j];
+				var currentWordInChainSubMap = global.nodeMap[? currentWordInChain];
+				if (scr_isNumericAndExists(currentWordInChainSubMap, ds_type_map)) {
+					var currentWordInChainAlign = currentWordInChainSubMap[? "alignChain"];
+					if (currentWordInChainAlign) {
+						if (ds_list_find_index(alignChainList, currentWordInChain) <= 0) {
+							ds_list_add(alignChainList, currentWordInChain);
+						}
+					}
+				}
+			}
+		}
+		
+		var alignedChunkChain = scr_firstWordInAlignedChunk(currentWord);
+		if (alignedChunkChain != "") {
+			if (ds_list_find_index(alignChainList, alignedChunkChain) <= 0) {
+				ds_list_add(alignChainList, alignedChunkChain);
+			}
+		}
+	}
+	show_debug_message("scr_newWord() ... alignChainList: " + scr_getStringOfList(alignChainList));
+	
+	var alignChainListSize = ds_list_size(alignChainList);
+	for (var i = 0; i < alignChainListSize; i++) {
+		scr_alignChain2ElectricBoogaloo(alignChainList[| i]);
+	}
+	
+	ds_list_destroy(alignChainList);
 
 
 }
