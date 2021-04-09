@@ -2,9 +2,22 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_wordCalculateVoid(wordID){
 
-	
+	// check if this word is in an aligned chain
+	var alignedChainID = "";
 	var wordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
-	var wordInChainsListSize = ds_list_size(wordInChainsList);
+	var wordInChainsListSize = 0;
+	if (scr_isNumericAndExists(wordInChainsList, ds_type_list)) {
+		wordInChainsListSize = ds_list_size(wordInChainsList);
+		if (wordInChainsListSize > 0) {
+			for (var i = 0; i < wordInChainsListSize; i++) {
+				var currentChain = wordInChainsList[| i];
+				var currentChainSubMap = global.nodeMap[? currentChain];
+				if (scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {
+					if (currentChainSubMap[? "alignChain"]) alignedChainID = currentChain;
+				}
+			}
+		}
+	}
 	
 	var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, wordID - 1);
 	var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, wordID - 1);
@@ -21,6 +34,7 @@ function scr_wordCalculateVoid(wordID){
 	
 	// check if this word is the first word in an aligned chunk
 	var alignedChunkChainID = scr_firstWordInAlignedChunk(wordID);
+	
 		
 	if (currentWordVoid < 1 && previousWordID >= 0) {
 		currentWordDisplayCol++;
@@ -42,7 +56,7 @@ function scr_wordCalculateVoid(wordID){
 	if (currentWordVoid > 1) {
 	
 		
-		if (wordInChainsListSize < 1 && alignedChunkChainID == "") {
+		if (alignedChainID == "" && alignedChunkChainID == "") {
 			
 			// if this word is not in a chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
 			currentWordDisplayCol = (currentWordSeq == 0) ? 0 : previousWordDisplayCol + 1;
