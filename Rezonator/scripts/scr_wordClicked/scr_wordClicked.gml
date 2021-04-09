@@ -10,7 +10,7 @@ function scr_wordClicked(wordID, unitID) {
 	
 	show_debug_message("scr_wordClicked()... wordID: " + string(wordID) + "unitID: " + string(unitID));
 
-	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
+	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or (instance_exists(obj_dropDown) and not obj_stacker.splitSave)) {
 		var shouldExit = true;
 		if (obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)) {
 			if (obj_dialogueBox.combineChains) {
