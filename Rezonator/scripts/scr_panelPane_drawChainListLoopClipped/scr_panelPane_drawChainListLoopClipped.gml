@@ -85,9 +85,9 @@ function scr_panelPane_drawChainListLoopClipped() {
 	var textColX = nameColX + nameColWidth;
 	
 	
-	var filterChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.25) : optionsColX + (optionsColWidth * 0.33);
-	var visibleChainX = (functionChainList_currentTab == functionChainList_tabRezBrush) ? optionsColX + (optionsColWidth * 0.5) : optionsColX + (optionsColWidth * 0.66);
-	var alignChainX = optionsColX + (optionsColWidth * 0.75);
+	var filterChainX = optionsColX + (optionsColWidth * 0.33);
+	var visibleChainX = optionsColX + (optionsColWidth * 0.66);
+	var alignChainX = optionsColX + (optionsColWidth * 0.75); // alignChain button will be out of commission temporarily(?)
 	
 
 	var headerHeight = functionTabs_tabHeight;
@@ -315,7 +315,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					var optionsChainY = floor(mean(chainNameRectY1, chainNameRectY2));
 					var mouseoverFilterChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, filterChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && ableToMouseoverOption && !mouseoverHeaderRegion;
 					var mouseoverVisibleChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, visibleChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && ableToMouseoverOption && !mouseoverHeaderRegion;
-					var mouseoverAlignChain = scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush && ableToMouseoverOption && !mouseoverHeaderRegion;
+					var mouseoverAlignChain = false; // scr_pointInCircleClippedWindow(mouse_x, mouse_y, alignChainX, optionsChainY, optionsIconRad) && !mouseoverCancel && !mouseoverFilterChain && !mouseoverVisibleChain && functionChainList_currentTab == functionChainList_tabRezBrush && ableToMouseoverOption && !mouseoverHeaderRegion;
 					draw_set_color(merge_color(global.colorThemeSelected1, currentChainColor, 0.3));
 					
 					// mouseover & click on filter
@@ -362,7 +362,7 @@ function scr_panelPane_drawChainListLoopClipped() {
 					// draw filter/align/visible buttons
 					draw_sprite_ext(spr_filterIcons, !currentChainFiltered, filterChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					draw_sprite_ext(spr_toggleDraw, currentChainVisible, visibleChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
-					if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
+					//if (functionChainList_currentTab == functionChainList_tabRezBrush) draw_sprite_ext(spr_align, !currentChainAlign, alignChainX - clipX, optionsChainY - clipY, 1, 1, 0, global.colorThemeText, 1);
 					
 					
 					
