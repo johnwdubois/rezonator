@@ -20,14 +20,9 @@ function scr_panelPane_drawUnits1toManyInnerLoop(currentWordID, drawDropDowns, s
 	
 	// Set collected info into respective columns
 	for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
-					
-		// if this is the transcript column, and there's no transcript, skip it!
-		if (getInfoLoop == 3 and !obj_control.transcriptAvailable) {
-			continue;
-		}
+
 					
 		var unitOrWordTagTokenView = false;
-					
 		currentWordInfoCol[getInfoLoop] = "";
 					
 		if (getInfoLoop == 0) {
