@@ -11,7 +11,7 @@ function scr_prevWordInSequence(currentWordID) {
 
 	// find currentWordID in unit's wordIDList
 	var displayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
-	var lineWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, displayRow);
+	var lineWordIDList = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colWordIDList, displayRow);
 	var currentWordIDIndex = ds_list_find_index(lineWordIDList, currentWordID);
 
 	// if this word cannot be found in this line, or if this is the first word in the line, return -1

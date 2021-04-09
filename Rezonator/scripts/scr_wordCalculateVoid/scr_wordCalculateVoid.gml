@@ -58,7 +58,7 @@ function scr_wordCalculateVoid(wordID){
 		
 		if (alignedChainID == "" && alignedChunkChainID == "") {
 			
-			// if this word is not in a chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
+			// if this word is not in an aligned chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
 			currentWordDisplayCol = (currentWordSeq == 0) ? 0 : previousWordDisplayCol + 1;
 			ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, wordID - 1, currentWordDisplayCol);
 			
