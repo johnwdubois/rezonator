@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_wordCalculateVoid(wordID){
+
 	
 	var wordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, wordID - 1);
 	var wordInChainsListSize = ds_list_size(wordInChainsList);
@@ -9,7 +10,7 @@ function scr_wordCalculateVoid(wordID){
 	var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, wordID - 1);
 	var previousWordID = scr_prevWordInSequence(wordID);
 
-	var previousWordDisplayCol = 0;
+	var previousWordDisplayCol = -1;
 	if (previousWordID >= 1 && currentWordSeq > 0) {
 		previousWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, previousWordID - 1);
 	}

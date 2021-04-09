@@ -72,10 +72,13 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "chunkShowList: " + scr_getStringOfList(obj_chain.chunkShowList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 36), "focusedChainWrongTool: " + string(obj_chain.focusedChainWrongTool));
 	
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 5), "tokenImportDisplayTokenColName: " + string(global.tokenImportDisplayTokenColName));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 6), "tokenImportTranscriptColName: " + string(global.tokenImportTranscriptColName));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 7), "wordView: " + string(wordView));
 
 	
 	// reset halign to left

@@ -45,12 +45,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(currentWordID, drawDropDowns, s
 		else if (getInfoLoop >= 2) {
 			
 			var importCol = -1;
-			if (getInfoLoop == 2) {
-				importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);			
-			}
-			else{
-				importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-			}
+			importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);			
 			
 			if (importCol == undefined) {
 				currentWordInfoCol[getInfoLoop] = "";
@@ -137,12 +132,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(currentWordID, drawDropDowns, s
 		if (getInfoLoop >= 2) {
 			//draw tag selection
 			var colIndex = -1;
-			if (getInfoLoop >= 3) {
-				colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-			}
-			else {
-				colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-			}
+			colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
 			var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
 			var isTildaField = (string_char_at(string(mapKey), 1) == "~");
 			
@@ -165,20 +155,12 @@ function scr_panelPane_drawUnits1toManyInnerLoop(currentWordID, drawDropDowns, s
 						}
 								
 						var dropDownOptionList = ds_list_create();
-						if (getInfoLoop >= 3) {
-							if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
-								ds_list_copy(dropDownOptionList, tagMapList);
-								obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 3);
-								obj_control.tokenImportRowToChange = currentWordID - 1;
-							}
+						if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
+							ds_list_copy(dropDownOptionList, tagMapList);
+							obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
+							obj_control.tokenImportRowToChange = currentWordID - 1;
 						}
-						else {
-							if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
-								ds_list_copy(dropDownOptionList, tagMapList);
-								obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-								obj_control.tokenImportRowToChange = currentWordID - 1;
-							}
-						}
+		
 							
 						// create dropdown
 						if (ds_list_size(dropDownOptionList) > 0) {

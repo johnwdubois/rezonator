@@ -4,6 +4,7 @@ function scr_panelPane_drawUnits1toMany() {
 	*/
 
 
+
 	// Set opacity, alignment, and font of contents list
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
@@ -194,7 +195,11 @@ function scr_panelPane_drawUnits1toMany() {
 	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, false);
 
 	var headerListSize = 3;
-	tokenContentsHeaderListSize = min(8, max(3, ds_grid_width(global.tokenImportGrid)));
+	var minsize = 0;
+	if (ds_grid_width(global.tokenImportGrid) == 4) minsize = 3;
+	else minsize = 4;
+	tokenContentsHeaderListSize = clamp(ds_grid_width(global.tokenImportGrid) - 2, minsize, 7);
+	
 	if (functionChainList_currentTab == functionChainList_tabLine) {
 		headerListSize = tokenContentsHeaderListSize;
 	}
@@ -202,14 +207,14 @@ function scr_panelPane_drawUnits1toMany() {
 
 	// Create the column headers
 	var lastCol = headerListSize - 1;
-	if (!obj_control.transcriptAvailable && headerListSize == 4) lastCol = 2;
+	//if (!obj_control.transcriptAvailable && headerListSize == 4) lastCol = 2;
 	
 	var activeCols = 0;
 	for (var i = 0; i < headerListSize; i++) {
 		
 		// if this is the transcript column, and there's no transcript, skip it!
 		if (i == 3 and !obj_control.transcriptAvailable) {
-			continue;
+		//	continue;
 		}
 		
 		// get column coordinates
@@ -226,7 +231,7 @@ function scr_panelPane_drawUnits1toMany() {
 		}
 		
 		if (i == lastCol) {
-			colWidth = x + windowWidth - colRectX1;
+		//	colWidth = x + windowWidth - colRectX1;
 		}
 		colRectX2 = colRectX1 + colWidth;
 		var colRectY1 = y;
@@ -244,13 +249,8 @@ function scr_panelPane_drawUnits1toMany() {
 		else if (i == 1) {
 			colName = "place";
 		}
-		else if(i >= 2 and i < 8) {
-			if (i == 2) {
-				var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, i - 2);
-			}
-			else{
-				var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, i - 3);
-			}
+		else if (i >= 2 and i < 7) {
+			var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, i - 2);
 			colName = ds_list_find_value(global.tokenImportColNameList, colIndex);
 		}
 	
@@ -369,20 +369,12 @@ function scr_panelPane_drawUnits1toMany() {
 						toggleTranscriptionCol = obj_control.wordGrid_colWordSeq;
 					}
 
-					else if (i == 2) {
+					else if (i >= 2 && i < 7) {
 						toggleTranscriptionGrid = global.tokenImportGrid;
 						var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList,i-2)
 						toggleTranscriptionCol =  colIndex;
-					
-					
 					}
-					else if (i >= 3 and i < 8) {
-						toggleTranscriptionGrid = global.tokenImportGrid;
-						var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList,i-3)
-						toggleTranscriptionCol = colIndex;
-					
-					
-					}
+
 				
 					scr_toggleTranscriptionMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
 				}

@@ -2,6 +2,7 @@
 	Purpose: return the previous word within the word sequence
 */
 function scr_prevWordInSequence(currentWordID) {
+	
 
 	var previousWordID = undefined;
 	if (currentWordID <= 0) {

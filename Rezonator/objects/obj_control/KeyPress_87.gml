@@ -21,12 +21,9 @@ if( global.tokenImportTranscriptColName != undefined && global.tokenImportDispla
 		}
 			
 		if(inDisplayCol >= 0){
-			if(inDisplayCol == 0){
+			//if (inDisplayCol == 0) {
 				wordView = inDisplayCol+2;
-			}
-			else{
-				wordView = inDisplayCol+3;
-			}
+			//}
 		}
 		if(wordTokenView && global.tokenImportDisplayTokenColName == "~text"){
 			wordView = 2;
