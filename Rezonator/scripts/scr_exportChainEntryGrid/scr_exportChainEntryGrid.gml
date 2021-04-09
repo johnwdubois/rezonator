@@ -1,18 +1,16 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_exportChainEntryGrid(grid){
+function scr_exportChainEntryGrid(chainList, headerList){
 	
 	if (!instance_exists(obj_chain) || !instance_exists(obj_control)) {
 		exit;
 	}
 	
-	// reset trackGrid
-	var gridWidth = obj_chain.trackGridWidth + (ds_grid_width(global.tokenImportGrid) - 4) + (ds_list_size(global.chainEntryFieldList));
-	ds_grid_clear(grid, 0);
-	ds_grid_resize(grid, gridWidth, 0);
+	// create entryGrid
+	var gridWidth = ds_list_size(headerList);
+	var grid = ds_grid_create(gridWidth, 0);
 	
-	// get chainList
-	var chainList = ds_map_find_value(global.nodeMap, (grid == obj_chain.trackGrid) ? "trackChainList" : "rezChainList");
+	// get chainListSize
 	var chainListSize = ds_list_size(chainList);
 	
 	// make temp grid to sort trackChains based on their first word's unitSeq and wordOrder
@@ -21,19 +19,27 @@ function scr_exportChainEntryGrid(grid){
 	var tempGrid_colWordOrder = 2;
 	var tempGrid = ds_grid_create(3, chainListSize);
 	
-	// set the chainSeq values for each track
+	// get the chain value
 	for (var i = 0; i < chainListSize; i++) {
 		
-		var currentChain = ds_list_find_value(chainList, i);
-		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+		var currentChain = chainList[| i];
+		var currentChainSubMap = global.nodeMap[? currentChain];
 		
-		// go through the current track's wordIDList and determine which word is earliest in the timeline
-		var currentWordIDList = scr_getChainTempList(currentChain, true);
+		// go through the current track's vizSetIDList and determine which word is earliest in the timeline
+		var vizSetIDList = currentChainSubMap[? "vizSetIDList"];
 		var earliestWordID = -1;
 		
 		// the earliest word should be the first word in the currentWordIDList (because it came from the vizSetIDList)
-		if (ds_list_size(currentWordIDList) > 0) {
-			earliestWordID = ds_list_find_value(currentWordIDList, 0);
+		if (ds_list_size(vizSetIDList) > 0) {
+			var firstEntry = vizSetIDList[| 0];
+			var firstEntrySubMap = global.nodeMap[? firstEntry];
+			var firstEntryWord = firstEntrySubMap[? "word"];
+			if (scr_isChunk(firstEntryWord)) {
+				earliestWordID = scr_getFirstWordOfChunk(firstEntryWord);
+			}
+			else {
+				earliestWordID = firstEntryWord;
+			}
 		}
 		
 		// by now, we should know what this chain's earliest word in the timeline is
@@ -43,8 +49,6 @@ function scr_exportChainEntryGrid(grid){
 		ds_grid_set(tempGrid, tempGrid_colChainID, i, currentChain);
 		ds_grid_set(tempGrid, tempGrid_colUnitSeq, i, earliestUnitSeq);
 		ds_grid_set(tempGrid, tempGrid_colWordOrder, i, earliestWordOrder);
-		
-		ds_list_destroy(currentWordIDList);
 	}
 	
 	
@@ -62,6 +66,7 @@ function scr_exportChainEntryGrid(grid){
 	}
 	show_debug_message("scr_exportChainEntryGrid() ... chainSeqList: " + scr_getStringOfList(chainSeqList));
 	
+	ds_grid_destroy(tempGrid);
 	
 	
 	
@@ -70,65 +75,66 @@ function scr_exportChainEntryGrid(grid){
 	
 	
 	
-	
-	
-	// loop through the sorted list of chains and fill up trackGrid
+	// loop through the sorted list of chains and fill up entryGrid
 	var chainSeqListSize = ds_list_size(chainSeqList);
 	for (var i = 0; i < chainSeqListSize; i++) {
 		
 		// get current chain and its name
-		var currentChain = ds_list_find_value(chainSeqList, i);
-		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
+		var currentChain = chainSeqList[| i];
+		var currentChainSubMap = global.nodeMap[? currentChain];
 		
 		if (!is_numeric(currentChainSubMap)) continue;
 		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
-		var currentChainName = ds_map_find_value(currentChainSubMap, "name");
+		var currentChainName = currentChainSubMap[? "name"];
 		
 		// get the setList for current chain
-		var currentVizSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
+		var currentVizSetIDList = currentChainSubMap[? "vizSetIDList"];
 		if (!is_numeric(currentVizSetIDList)) continue;
 		if (!ds_exists(currentVizSetIDList, ds_type_list)) continue;
 		
-		// loop through setList and get the word values we will want for the trackGrid
+		// loop through setList and get the word values we will want for the entryGrid
 		var currentVizSetIDListSize = ds_list_size(currentVizSetIDList);
 		for (var j = 0; j < currentVizSetIDListSize; j++) {
 		
-			// get current entry and its corresponding word and fill up trackGrid
-			var currentEntry = ds_list_find_value(currentVizSetIDList, j);
-			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+			// get current entry and its corresponding word and fill up entryGrid
+			var currentEntry = currentVizSetIDList[| j];
+			var currentEntrySubMap = global.nodeMap[? currentEntry];
 			
 			// get currentEntry's word and check if its a chunk
 			var currentWord = -1;
-			var rowInChunkGrid = -1;
 			var isChunk = false;
 			var isInChunk = false;
-			if (is_numeric(currentEntrySubMap)) {
-				if (ds_exists(currentEntrySubMap, ds_type_map)) {
-					currentWord = ds_map_find_value(currentEntrySubMap, "word");
+			if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
+				currentWord = currentEntrySubMap[? "word"];
+				isChunk = scr_isChunk(currentWord);
+					
+				if (!isChunk) {
 					var currentWordInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentWord - 1);
 					var currentWordInBoxListSize = ds_list_size(currentWordInBoxList);
 					if (currentWordInBoxListSize > 0) {
-						rowInChunkGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colName, 0, obj_chain.chainGrid_colName, ds_grid_height(obj_chain.chunkGrid), currentWord);
-						if (rowInChunkGrid >= 0) isChunk = true;
-						else isInChunk = true;
+						isInChunk = true;
 					}
 				}
 			}
 			
 			// make a new row for this entry
-			scr_exportChainEntryGridNewRow(grid, currentChain, currentChainName, currentEntry, currentWord, i + 1, j + 1, isChunk, isInChunk);
+			scr_exportChainEntryGridNewRow(grid, currentChain, currentChainName, currentEntry, currentWord, i + 1, j + 1, isChunk, "");
 			
 			// if this word is a chunk, then we will loop through all of the words in it and give them a new row too!
 			if (isChunk) {
-				var chunkWordList = ds_grid_get(obj_chain.chunkGrid, obj_chain.chunkGrid_colBoxWordIDList, rowInChunkGrid);
-				var chunkWordListSize = ds_list_size(chunkWordList);
-				for (var k = 0; k < chunkWordListSize - 1; k++) {
-					var currentChunkWord = ds_list_find_value(chunkWordList, k);
-					scr_exportChainEntryGridNewRow(grid, currentChain, currentChainName, currentEntry, currentChunkWord, i + 1, j + 1, false, true);
+				var chunkSubMap = global.nodeMap[? currentWord];
+				var chunkTokenList = chunkSubMap[? "tokenList"];
+				var chunkTokenListSize = ds_list_size(chunkTokenList);
+				for (var k = 0; k < chunkTokenListSize; k++) {
+					var currentChunkWord = chunkTokenList[| k];
+					scr_exportChainEntryGridNewRow(grid, currentChain, currentChainName, currentEntry, currentChunkWord, i + 1, j + 1, false, currentWord);
 				}
 			}
 		}
 	}
 	
 	ds_list_destroy(chainSeqList);
+	
+	return grid;
+	
 }

@@ -2,11 +2,12 @@
 function scr_deleteFromChain(sortVizSetList) {
 	
 	ds_list_clear(obj_control.chainStretchCheckList);
-
+	
+	/*
 	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush || obj_toolPane.currentTool == obj_toolPane.toolNewWord || obj_control.newWordDeleted || obj_control.deleteNewWord || obj_control.deleteChunkWord) {
-		//show_message("current Tool :   "+string(obj_toolPane.currentTool) + ",  newWordDeleted: " + string(obj_control.newWordDeleted)+ ",  deleteNewWord: " + string(obj_control.deleteNewWord)+ ",  deleteChunkWord: " + string(obj_control.deleteChunkWord))
 		scr_deleteChunk();
 	}
+	*/
 	
 	show_debug_message("scr_deleteFromChain() , sortVizSetList: " + string(sortVizSetList));
 
@@ -21,6 +22,7 @@ function scr_deleteFromChain(sortVizSetList) {
 		show_debug_message("scr_deleteFromChain() ... chainSubMap does not exist");
 		exit;
 	}
+	var chainType = ds_map_find_value(chainSubMap, "type");
 	
 	// get the focused entry's submap
 	var focusedEntry = ds_map_find_value(chainSubMap, "focused");
@@ -42,6 +44,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
 	}
+	var focusedEntryIsChunk = scr_isChunk(focusedEntryWord);
 	
 	
 	// find where in the chain's setList the focused entry is
@@ -63,17 +66,13 @@ function scr_deleteFromChain(sortVizSetList) {
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
 				
-				if(obj_control.rightClickonWord and obj_control.deleteChunkWord){
-					if(obj_control.rightClickWordID != focusedEntryWord){
+				if (obj_control.rightClickonWord and obj_control.deleteChunkWord) {
+					if (obj_control.rightClickWordID != focusedEntryWord) {
 						exit;
 					}
 				}
 				
-				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
-				var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
-				ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
-				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
-				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryWord);
 			}
 			else if (focusedEntryType == "stack"){
 				var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
@@ -86,29 +85,8 @@ function scr_deleteFromChain(sortVizSetList) {
 			ds_map_delete(global.nodeMap, obj_chain.currentFocusedChainID);
 			ds_map_destroy(focusedEntrySubMap);
 			ds_map_destroy(chainSubMap);
-			var listOfChainsKey = "rezChainList";
-			if (focusedEntryType == "track") listOfChainsKey = "trackChainList";
-			else if (focusedEntryType == "stack") listOfChainsKey = "stackChainList";
-			var listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
-			scr_deleteFromList(listOfChains, obj_chain.currentFocusedChainID);
 			
-			// remove chain from filter/selected list if necessary
-			var filteredChainList = -1;
-			var selectedChainList = -1;
-			if (focusedEntryType == "rez") {
-				filteredChainList = obj_chain.filteredRezChainList;
-				selectedChainList = obj_control.selectedRezChainList;
-			}
-			else if (focusedEntryType == "track") {
-				filteredChainList = obj_chain.filteredTrackChainList;
-				selectedChainList = obj_control.selectedTrackChainList;
-			}
-			else if (focusedEntryType == "stack") {
-				filteredChainList = obj_chain.filteredStackChainList;
-				selectedChainList = obj_control.selectedStackChainList;
-			}
-			scr_deleteFromList(filteredChainList, obj_chain.currentFocusedChainID);
-			scr_deleteFromList(selectedChainList, obj_chain.currentFocusedChainID);
+			scr_removeChainFromLists(obj_chain.currentFocusedChainID, chainType);
 			
 			// unfocus chain
 			obj_chain.currentFocusedChainID = "";
@@ -151,12 +129,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
-				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
-				var focusedEntryInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);				
-				var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
-				ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
-				ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
-				scr_deleteFromList(focusedEntryInChainsList, obj_chain.currentFocusedChainID);
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryWord);
 			}
 			else if (focusedEntryType == "stack"){
 				var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
@@ -239,7 +212,6 @@ function scr_deleteFromChain(sortVizSetList) {
 		
 		// add the currentGoalLink to its new source's goalLinkList
 		ds_list_add(sourceEntryGoalLinkList, currentGoalLink);
-		
 	}
 	
 	// remove the focusedEntry from its chain's setList
@@ -255,18 +227,14 @@ function scr_deleteFromChain(sortVizSetList) {
 	
 	// removed chain from focusedEntry's word's inChainsList (if it is a rez or track)
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
-		var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
-		var focusedEntryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, focusedEntryWord - 1);		
-		var wordDrawCol = focusedEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
-		ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, focusedEntryWord - 1, false);
-		ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, focusedEntryWord - 1, 0);
-		scr_deleteFromList(focusedEntryWordInChainsList, obj_chain.currentFocusedChainID);
+		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntry, focusedEntryWord);
 	}
 	else if (focusedEntryType == "stack"){
 		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, focusedEntryUnit-1,-1);
 		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, focusedEntryUnit-1, -1);	
 	}
+	
 	// remove focusedEntry from nodeMap and destroy focusedEntry
 	ds_map_delete(global.nodeMap, focusedEntry);
 	ds_map_destroy(focusedEntrySubMap);

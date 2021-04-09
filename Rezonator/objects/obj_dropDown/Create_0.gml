@@ -11,12 +11,7 @@ if (room == rm_mainScreen) {
 		originalWindowWidth = 200;
 	}
 	if (obj_control.wideDropDown) {
-		if (instance_exists(obj_dialogueBox)) {
-			if (obj_control.stackShowWindowActive) {
-				originalWindowWidth = 137;
-			}
-		}
-		else {
+		if (!instance_exists(obj_dialogueBox)) {
 			originalWindowWidth = 150;
 		}
 	}

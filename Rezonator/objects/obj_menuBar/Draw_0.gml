@@ -71,9 +71,12 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	draw_set_colour(c_white);
 	if (ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)) {
 		draw_set_colour(global.colorThemeBG);
-		//draw_rectangle((menuWidth * menuHeaderLoop) - 1, -1, menuWidth * (menuHeaderLoop + 1), menuHeight, false);
 		draw_rectangle(menuHeaderRectX1, menuHeaderRectY1-20, menuHeaderRectX2, menuHeaderRectY2, false);
 		draw_set_colour(global.colorThemeText);
+	}
+	
+	if (!instance_exists(obj_dropDown)) {
+		ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, false);
 	}
 	
 	
@@ -114,7 +117,7 @@ if(mouseOverMax){
 }
 
 
-scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2)
+scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
 
 
 

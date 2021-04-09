@@ -3,33 +3,27 @@
 */
 
 function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoop, unitID) {
-
+	
 
 	var currentWordIDListSize = 0;
 	var previousWordID = -1;
 	
 	if (is_numeric(currentWordIDList) and currentWordIDList != undefined) {
-		if(ds_exists(currentWordIDList, ds_type_list)){
+		if (ds_exists(currentWordIDList, ds_type_list)) {
 			currentWordIDListSize = ds_list_size(currentWordIDList);
 		}
 	}
-	else{
+	else {
 		exit;
 	}
 
 	
 	var shapeTextX = wordLeftMargin;
 	var shapeTextSpace = 12;
-
 	var previousWordDisplayString = "0";
-
-
 	var strHeightRegular = string_height("0");
-
 	var strHeightScaled = string_height("0");
 	var fontScale = strHeightScaled / strHeightRegular;
-
-
 	var panelPaneResizeHeld = false;
 
 	with(obj_panelPane) {
@@ -39,12 +33,12 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	}
 
 	var chainShowList = obj_chain.chainShowList;
+	var chunkShowList = obj_chain.chunkShowList;
 	var wordStateDead = obj_control.wordStateDead;
 	var wordStateChunk = obj_control.wordStateChunk;
 	var wordStateNormal = obj_control.wordStateNormal;
 	var gridSpaceHorizontal = obj_control.gridSpaceHorizontal;
 	var showPlaceChains = obj_chain.showPlaceChains;
-	var stackShowActive = obj_control.stackShowActive;
 	var showDevVars = obj_control.showDevVars;
 	var leftScreenBound = obj_control.leftScreenBound;
 	var currentTool = obj_toolPane.currentTool;
@@ -78,7 +72,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	drawWordLoop = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : currentWordIDListSize-1;
 	repeat (currentWordIDListSize) {
 
-		var currentWordID = ds_list_find_value(currentWordIDList, drawWordLoop);
+		var currentWordID = currentWordIDList[| drawWordLoop];
 		var currentWordGridRow = currentWordID - 1;
 		
 		if (currentWordID == obj_control.rightClickWordID) {
@@ -86,128 +80,31 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		}
 		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1, drawLineLoop);
 
-		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
-		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
 		var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
 		var borderRounded = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorderRounded, currentWordGridRow);
-		var currentWordInChainsListSize = 0;
+		var currentWordState = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colWordState, currentWordGridRow);
+		var currentWordInChainsList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInChainList, currentWordGridRow);
+		var currentWordInBoxList = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colInBoxList, currentWordGridRow);
 		
-		if(currentWordInChainsList != undefined){
-			if(ds_exists(currentWordInChainsList, ds_type_list)){
-				currentWordInChainsListSize = ds_list_size(currentWordInChainsList);
-			}
+		if (currentWordState == wordStateDead) {
+			scr_deleteFromList(currentWordIDList, currentWordID);
+			continue;
 		}
 
-		
-		
-		for (var i = 0; i < currentWordInChainsListSize; i++) {
-			if (ds_list_find_index(chainShowList, ds_list_find_value(currentWordInChainsList, i)) == -1) {
-				ds_list_add(chainShowList, ds_list_find_value(currentWordInChainsList, i));
-			}
-		}
-	
-	
-		if(currentWordState != wordStateNormal) {
-			if(currentWordState == wordStateDead) {
-				
-				if(drawLineState = lineState_ltr){ drawWordLoop++; }
-				else{drawWordLoop--;}
-				
-				continue;
-			}
-	
-			// Check if the word is a ChunkWord
-			if(currentWordState == wordStateChunk) {
-		
-				scr_drawChunk(currentWordID, currentLineY, fontScale, unitID);
-				
-				// set displayWordSeq for chunk
-				ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordID - 1, drawWordLoop);
-			
-				if(drawLineState = lineState_ltr){ drawWordLoop++; }
-				else{drawWordLoop--;}
-				continue;
-			}
-		}
-	
-	
-	
-	
-	
-	
+		scr_updateChainShowList(currentWordInChainsList, chainShowList, currentWordInBoxList, chunkShowList);	
 
-		scr_wordCalculateVoid(currentWordID)
+		scr_wordCalculateVoid(currentWordID);
+		
+		var currentWordX = scr_setTokenX(currentWordID, shapeTextX, currentWordIDListSize, unitWidth, drawWordLoop, camWidth);
 		
 		
-		
-		
-		
-		
-		
-		
-		//show_debug_message("drawWordLoop: " + string(drawWordLoop));
 
-
-
-
-
-		var currentWordDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
-		var displayColEdit = (drawLineState = lineState_ltr) ? currentWordDisplayCol : currentWordIDListSize - currentWordDisplayCol;
-
-		var speakerLabelWidth = ds_list_find_value(speakerLabelColXList, 3) + 20;
-		var wordLeftMarginEdit = (justify == justifyLeft) ? wordLeftMargin : wordLeftMargin - speakerLabelWidth;
-
-
-
-		// horizontally move this word to its desired x-pixel value
-		var currentWordDestX = 0;
-		if (justify == justifyLeft) {
-			if (shape == shapeText) {
-				currentWordDestX = shapeTextX;
-			}
-			else {
-				currentWordDestX = displayColEdit * gridSpaceHorizontal + wordLeftMarginEdit;
-			}
-		}
-		else if (justify == justifyCenter) {
-			if (shape == shapeText) {
-				currentWordDestX = (camWidth / 2) - (unitWidth / 2) + shapeTextX + wordLeftMarginEdit;
-			}
-			else {
-				currentWordDestX = (camWidth / 2) - (ceil((currentWordIDListSize / 2)) * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal) + wordLeftMarginEdit;
-			}
-		}
-		else if (justify == justifyRight) {
-			if (shape == shapeText) {
-				currentWordDestX = camWidth - global.toolPaneWidth -global.scrollBarWidth - unitWidth + shapeTextX + wordLeftMarginEdit;
-			}
-			else {
-				currentWordDestX = camWidth - (currentWordIDListSize * gridSpaceHorizontal) + (displayColEdit * gridSpaceHorizontal) + wordLeftMarginEdit;
-			}
-		}
-	
-		var currentWordX = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow);
-		if (is_string(currentWordX)) {
-			currentWordX = 0;
-		}
-		leftScreenBound = min(currentWordX, leftScreenBound);
-		
-		if (currentWordX < currentWordDestX) {
-			currentWordX += abs(currentWordX - currentWordDestX) / 4;
-		}
-		else if (currentWordX > currentWordDestX) {
-			currentWordX -= abs(currentWordX - currentWordDestX) / 4;
-		}
-		
-		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colPixelX, currentWordGridRow, currentWordX);
-		ds_grid_set(dynamicWordGrid, dynamicWordGrid_colDisplayWordSeq, currentWordGridRow, drawWordLoop);
 		
 		// get the string of this word to draw to the main screen
 		var currentWordString = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayString, currentWordGridRow);
 		var currentWordStringType = string(currentWordString);
 		scr_adaptFont(currentWordStringType,"M");
 		var currentWordStringWidth = string_width(currentWordStringType);
-		//var currentWordStringHeight = string_height(currentWordStringType);
 	
 		
 		var wordRectBuffer = 3;
@@ -265,33 +162,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 			}
 		}
 	
-	
-		// figure out whether or not to draw fill/border for this word
-		/*var drawFillRect = ds_grid_get(wordDrawGrid, wordDrawGrid_colFillRect, currentWordGridRow);
-		//var drawBorder = ds_grid_get(wordDrawGrid, wordDrawGrid_colBorder, currentWordGridRow);
-		var drawFocused = ds_grid_get(wordDrawGrid, wordDrawGrid_colFocused, currentWordGridRow);
-		var effectColor = ds_grid_get(wordDrawGrid, wordDrawGrid_colEffectColor, currentWordGridRow);*/
-		if(stackShowActive) {
-			var drawGoldStandard = (currentWordState == obj_control.wordStateGold);
-			var drawIncorrect = (currentWordState == obj_control.wordStateRed);
-			if (drawGoldStandard) {
-				draw_set_color(c_green);
-				draw_set_alpha(0.4);
-				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
-				draw_set_alpha(1);
-			}
-	
-			if (drawIncorrect) {
-				draw_set_color(c_red);
-				draw_set_alpha(0.4);
-				draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
-				draw_set_alpha(1);
-			}
-		}
-	
 		if (wordRectX2 > speakerRectX2) {
-
-			//scr_drawWordBorder(drawBorder, drawFillRect, drawFocused, effectColor, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 			scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 			// Until I can get a check that sees if the mouseRect is in the line, this can't happen
 			if (!obj_toolPane.mouseOverToolPane && !obj_control.mouseOverUI && (hoverWordID == -1 || hoverWordID == currentWordID) && ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade))) {
@@ -300,6 +171,21 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	
 			scr_drawWord(currentWordGridRow, currentWordID, unitID, currentWordX, currentLineY, currentWordString, hitGridHeight);
 		}
+		
+		
+		// check to see if this word should be added to inRectWordIDList (if it is in mouse rect)
+		var inMouseRectX2 = (shape == shapeBlock) ? wordRectX1 + obj_control.gridSpaceHorizontal - 20 : wordRectX2;
+		var inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, inMouseRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
+		if (mouse_check_button(mb_left)) {
+			if (inMouseHoldRect && !mouseoverPanelPane) {
+				with (obj_control) {
+					if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
+						ds_list_add(inRectWordIDList, currentWordID);
+					}
+				}
+			}
+		}
+
 	
 		previousWordID = currentWordID;
 		previousWordDisplayString = currentWordString;
@@ -308,12 +194,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		if(drawLineState = lineState_ltr){ drawWordLoop++; }
 		else{drawWordLoop--;}
 	}
-
-
-
-	// set total void values for this line, now that we have gone through every word in the line
-	//ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidMax, drawLineLoop, voidMax);
-	//ds_grid_set(currentActiveLineGrid, obj_control.lineGrid_colVoidSum, drawLineLoop, voidSum);
 
 
 }

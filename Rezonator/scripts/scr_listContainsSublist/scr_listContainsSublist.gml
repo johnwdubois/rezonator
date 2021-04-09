@@ -1,16 +1,5 @@
 /*
-	scr_listContainsSublist();
-	
-	Last Updated: 2020-10-28
-	
-	Called from: obj_control
-	
 	Purpose: return location of sublist within list. If sublist isn't present, return -1
-	
-	Mechanism: find sublist's first element in list, then check each subsequent element in the 
-			sublist against what follows the element in the list. 
-				
-	Author: Georgio Klironomos
 */
 
 function scr_listContainsSublist() {

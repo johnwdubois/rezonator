@@ -48,14 +48,6 @@ if (global.skipToPlayandLearn) {
 	
 	global.newProject = false;
 	global.openProject = true;
-	global.games = true;
-	global.wheresElmo =true;
-	if(global.wheresElmo){
-
-		global.currentDirString = global.rezonatorElmoDirString;
-
-
-	}
 	room_goto(rm_mainScreen);
 }
 

@@ -1,18 +1,7 @@
 function scr_swapLine() {
 	/*
-		scr_swapLine();
-	
-		Last Updated: 2019-08-10
-	
-		Called from: obj_diaalogueBox
-	
 		Purpose: swaps the position of two lines in the line grid and stores original in back up
-	
-		Mechanism: used for rezzles that require line swapping
-				
-		Author: Brady Moore
 	*/
-
 
 
 	if (obj_control.swapLinePos2 <= 0 or obj_control.swapLinePos2 > ds_grid_height(obj_control.lineGrid)) {

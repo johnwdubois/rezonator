@@ -1,15 +1,5 @@
 /*
-	obj_control: Step
-	
-	Last Updated: 2019-02-11
-	
-	Called from: Every frame of the game
-	
 	Purpose: Check for user key inputs and navigate accordingly, update the center display row based on positioning, change the font size, and check for panel pane mouse over
-	
-	Mechanism: Check keys every frame for input, and control the speed of navigation using conditionals
-	
-	Author: Terry DuBois
 */
 
 #macro vk_rcommand 91
@@ -18,6 +8,7 @@
 shortcutsEnabled = true;
 cameraBottomLine = camera_get_view_height(view_get_camera(0));
 
+global.delayInput = max(global.delayInput - 1, 0);
 
 if (hideAll) {
 	gridView = false;
@@ -63,9 +54,6 @@ if (!gridView) {
 	}
 	
 	
-	//var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentCenterDisplayRow);
-	//	obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-	
 // Retrieve booleans for NavWindow.
 var clickedInChainList = false;
 var clickedInChainContents = false;
@@ -78,56 +66,20 @@ with (obj_panelPane) {
 	}
 }
 
-/*var numOfTouches = 0;
-for(var touchLoop = 0; touchLoop < 4; touchLoop++) {
-	if(device_mouse_check_button_pressed(touchLoop, mb_left)) {
-		numOfTouches++;	
-	}
-	
-}
 
-if(numOfTouches >= 2) {
-	multiTouch = true;	
-	//show_message(string(numOfTouches));
-}
-else {
-	numOfTouches = 0;
-	for(var touchLoop = 0; touchLoop < 5; touchLoop++) {
-		if(device_mouse_check_button(touchLoop, mb_left)) {
-			numOfTouches++;	
-		}
-	}
-	if(numOfTouches >= 2) {
-		multiTouch = true;	
-		//show_message(string(numOfTouches));
-	}
-	else {
-		multiTouch = false;	
-	}
-}*/
-
-var canScrollWithStackShow = true;
-if (instance_exists(obj_stackShow)) {
-	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-		var focusedChainType = ds_map_find_value(focusedChainSubMap, "type");
-		if (focusedChainType == "stackChain") {
-			canScrollWithStackShow = false;
-		}
-	}
-}
 
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
-if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
+if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane and !instance_exists(obj_dropDown)) {
 
 	
 	var scrollSpeed = 0;
 	// Single press of arrow keys now moves screen by one line
 	if ((keyboard_check(vk_down) or mouse_wheel_down())) {
 		if(holdDownArrowKey == 0 and not mouse_wheel_down()) {
-			/*
+
 			scrollSpeed = -gridSpaceVertical;
+			/*
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused < ds_grid_height(obj_control.searchGrid) - 1) {
 				obj_panelPane.functionChainList_lineGridRowFocused++;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
@@ -181,8 +133,9 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 	}
 	if (keyboard_check(vk_up) or mouse_wheel_up()) {
 		if(holdUpArrowKey == 0 and not mouse_wheel_up()) {
-			/*
+			
 			scrollSpeed = gridSpaceVertical;
+			/*
 			if(obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_panelPane.functionChainList_lineGridRowFocused > 0) {
 				obj_panelPane.functionChainList_lineGridRowFocused--;
 				var currentLineUnitID = ds_grid_get(obj_control.searchGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
@@ -375,31 +328,6 @@ if (!clickedInChainList and !clickedInChainContents and canScrollWithStackShow a
 		}
 	}
 }
-
-
-	/*if (not instance_exists(obj_dialogueBox)) {		
-		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			wordLeftMarginDest -= gridSpaceHorizontal;
-		}
-		if (keyboard_check_pressed(vk_right) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_end) or keyboard_check_pressed(vk_right) and keyboard_check(vk_alt)) {
-			scr_jumpToEnd(false);
-		}
-	
-
-		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			wordLeftMarginDest += gridSpaceHorizontal;
-		}
-		if (keyboard_check_pressed(vk_left) and keyboard_check(vk_control)
-		or keyboard_check_pressed(vk_home) or keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) {
-			if (searchGridActive) {
-				scr_jumpToEnd(true);
-			}
-			else {
-				wordLeftMarginDest = speakerLabelMargin + 20;
-			}
-		}
-	}*/
 	
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
 		showDevVars = !showDevVars;
@@ -594,34 +522,12 @@ if (shortcutsEnabled) {
 gridSpaceHorizontal = clamp(gridSpaceHorizontal, gridSpaceHorizontalMin, gridSpaceHorizontalMax);
 gridSpaceVertical = clamp(gridSpaceVertical, gridSpaceVerticalMin, gridSpaceVerticalMax);
 
-/*
-if (keyboard_check_pressed(ord("Q"))) {
-	displayRowAscending = !displayRowAscending;
-	ds_grid_sort(currentActiveLineGrid, lineGrid_colDisplayRow, displayRowAscending);
-	scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-}
-*/
+
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("Q")) ) {
-	
-	
-/*
-	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
-		
-		if (!instance_exists(obj_dialogueBox)) {
-			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-		}
-	obj_dialogueBox.questionWindowActive = true;
-	
-	}
-
-				
-*/
 
 
 	audio_stop_all();
-	
-
 	scr_saveINI();
 	
 	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
@@ -641,9 +547,8 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 			}
 		}
 	}
-		global.tutorial = false;
-		keyboard_string = "";
-		room_goto(rm_openingScreen);
+	keyboard_string = "";
+	room_goto(rm_openingScreen);
 }
 
 
@@ -725,16 +630,6 @@ if (instance_exists(obj_audioUI)) {
 		}
 	}
 }
-if (instance_exists(obj_stackShow)) {
-	if (point_in_rectangle(mouse_x, mouse_y, obj_stackShow.windowX1, obj_stackShow.windowY1, obj_stackShow.windowX2, obj_stackShow.windowY2)) {
-		mouseoverPanelPane = true;	
-	}
-}
-if (instance_exists(obj_customTagPane)) {
-	if (point_in_rectangle(mouse_x, mouse_y, obj_customTagPane.x, obj_customTagPane.y, obj_customTagPane.x + obj_customTagPane.windowWidth, obj_customTagPane.y + obj_customTagPane.windowHeight)) {
-		mouseoverPanelPane = true;	
-	}
-}
 
 
 if (not obj_audioUI.mouseOverAudioUI and not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
@@ -771,8 +666,6 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 	// If filter is active, deactivate it
 	if (obj_control.quickFilterGridActive) {
 		if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.quickFilterGrid)) {
-			//obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList);
-			//obj_control.prevCenterYDest = ds_grid_get(obj_control.filterGrid, obj_control.lineGrid_colUnitID, obj_control.currentCenterDisplayRow);
 			obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 			// Keep the focus on previous currentCenterDisplayRow
 		}
@@ -792,8 +685,10 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 	else {
 			
 		obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
+		obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
 		// If filter is unactive. activate it
 		with (obj_control) {
+			
 			scr_renderQuickFilter();
 		}
 	}
@@ -809,25 +704,12 @@ else{
 	fileCaptionString = string(game_display_name) + " - " + filename_name(global.fileSaveName);
 }
 var captionString = fileCaptionString;
-if(!obj_control.allSaved){
-captionString = fileCaptionString + "*"
+if (!obj_control.allSaved) {
+	captionString = fileCaptionString + "*"
 }
 
 window_set_caption(captionString);
 
 
 scr_fontSizeControl();
-
-
-// hide panel panes and toolpanes if doing Play & Learn
-if (global.wheresElmo) {
-	with (obj_panelPane) {
-		showNav = false;
-		showNavLeft = false;
-		showNavRight = false;
-	}
-	with (obj_toolPane) {
-		showTool = false;
-	}
-}
 

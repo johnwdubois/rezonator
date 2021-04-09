@@ -1,16 +1,7 @@
 function scr_drawLine() {
+	
 	/*
-		scr_drawLine();
-	
-		Last Updated: 2018-07-12
-	
-		Called from: obj_control
-	
 		Purpose: draws words and lines from the lineGrid that are within the drawRange
-	
-		Mechanism: loop through the lineGrid (only loop through necessary lines) and get wordIDList from each line, then draw out those words
-	
-		Author: Terry DuBois
 	*/
 
 
@@ -106,7 +97,7 @@ function scr_drawLine() {
 	var unitInStackGridHeight = ds_grid_height(obj_chain.unitInStackGrid);
 	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
 
-	if (not mouseoverPanelPane and not global.wheresElmo and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
+	if (not mouseoverPanelPane and not instance_exists(obj_dropDown) and not instance_exists(obj_dialogueBox)) {
 		scr_mouseToolCheck();
 	}
 
@@ -124,9 +115,18 @@ function scr_drawLine() {
 	hoverWordID = -1;
 	hoverChunkID = -1;
 	hoverChunkIDRow = -1;
+	
+	// when releasing the mouse, save the inRectWordIDList so it can be used for chunks & quicklinks
+	if (mouse_check_button_released(mb_left)) {
+		if (ds_list_size(inRectWordIDList) > 0) {
+			ds_list_copy(inRectWordIDListCopy, inRectWordIDList);
+		}
+	}
 
-
+	// clear lists that are meant to be refreshed each frame
 	ds_list_clear(obj_chain.chainShowList);
+	ds_list_clear(obj_chain.chunkShowList)
+	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
 
 	// for every row in lineGrid from drawRangeStart to drawRangeEnd, draw the words in that line
@@ -174,7 +174,7 @@ function scr_drawLine() {
 			if(mouseRectExists) {
 				obj_control.mouseoverNeutralSpace = false;		
 			}
-			if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_stackShow) and !instance_exists(obj_dialogueBox)) {
+			if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
 				//show_message("here");
 				inMouseHoldRect = rectangle_in_rectangle(speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 				if (inMouseHoldRect) {
@@ -187,7 +187,7 @@ function scr_drawLine() {
 			}
 			else if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, speakerRectX2, speakerRectY2)) {
 				obj_control.mouseoverNeutralSpace = false;
-				if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+				if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
 					var currentWordID = ds_list_find_value(currentWordIDList, 0);
 					if (obj_control.ctrlHold) {
 						
@@ -239,7 +239,7 @@ function scr_drawLine() {
 				var mouseOverLine = point_in_rectangle(mouse_x, mouse_y, speakerRectX1, speakerRectY1, camera_get_view_width(camera_get_active()), speakerRectY2);
 				if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and mouseOverLine)) {
 				obj_control.mouseoverNeutralSpace = false;
-				if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+				if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
 					
 					ds_grid_set_region(obj_control.searchGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.searchGrid), 0);
 					ds_grid_set(obj_control.searchGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -266,7 +266,7 @@ function scr_drawLine() {
 			
 				if((not mouseoverPanelPane and (window_get_cursor() != cr_size_we) and mouseOverLine)) {
 					obj_control.mouseoverNeutralSpace = false;
-					if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and !instance_exists(obj_stackShow) and not obj_control.speakerLabelHoldingDelay) {
+					if (device_mouse_check_button_released(0, mb_left) and (not mouseRectExists and touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
 						//show_message("here");
 						ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
 						ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, drawLineLoop, 1);
@@ -295,7 +295,7 @@ function scr_drawLine() {
 	
 	
 		var currentLineInStack = "";
-		if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2 and not obj_control.rectNotInPanelPane) {
+		if (mouse_y > speakerRectY1 and mouse_y < speakerRectY2) {
 			obj_control.lineContainsMouseYPos = speakerRectY1;	
 		}
 	
@@ -360,7 +360,7 @@ function scr_drawLine() {
 		
 	
 		//Draw quickstack highlights here
-		if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
+		if (mouse_check_button(mb_left) and (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and !instance_exists(obj_dialogueBox)) {
 		
 			var inMouseRect = rectangle_in_rectangle(0, speakerRectY1, camViewWidth, speakerRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
 			if (inMouseRect and speakerLabelColXHolding == -1) {

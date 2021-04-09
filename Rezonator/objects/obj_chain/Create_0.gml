@@ -1,15 +1,5 @@
 /*
-	obj_chain: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of a chain object
-	
 	Purpose: Instantiate all variables used by the chain objects
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
 
 toggleDrawRez = true;
@@ -38,11 +28,7 @@ chainGrid_colShow = 9;
 
 placeChainGrid = ds_grid_create(chainGridWidth, 0);
 
-chunkGrid_colBoxWordIDList = 8;
-chunkGrid_colNest = 9;
 
-
-chunkGrid = ds_grid_create(chainGridWidth + 2, 0);
 
 //creatingPlaceChains = false;
 
@@ -85,6 +71,10 @@ placeChainNameCounter = 0;
 //chunkNameCounter = 0;
 
 currentFocusedChainID = "";
+currentFocusedChunkID = "";
+focusedChainWordID = "";
+focusedChainWrongTool = false;
+
 
 mouseLineHide = false;
 
@@ -167,6 +157,9 @@ stackChainGridRowToCaption = -1;
 
 
 chainShowList = ds_list_create();
+chunkShowList = ds_list_create();
+
+
 
 filteredRezChainList = ds_list_create();
 filteredTrackChainList = ds_list_create();
@@ -189,3 +182,5 @@ trackGrid_colTranscript = 8;
 trackGrid_colUnitText = 9;
 trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);
+
+mouseOverAnyChunk = false;

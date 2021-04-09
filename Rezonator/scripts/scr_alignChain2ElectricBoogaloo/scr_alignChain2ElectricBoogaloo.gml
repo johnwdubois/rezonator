@@ -25,6 +25,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 	
 	// first, find the word with furthest display col in chain
 	var furthestDisplayCol = -1;
+	var currentChunkFirstWord = -1;
 	var setIDList = ds_map_find_value(chainSubMap, "vizSetIDList");
 	var setIDListSize = ds_list_size(setIDList);
 	for (var i = 0; i < setIDListSize; i++) {
@@ -36,6 +37,10 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		if (currentStretch) continue;
 		
 		var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+		currentChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
+		if(currentChunkFirstWord > 0){
+			currentWordID = currentChunkFirstWord;
+		}
 		var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 		
 		// check if we've seen this display row before
@@ -55,7 +60,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 	
 	
 	
-	
+	currentChunkFirstWord = -1;
 	ds_list_clear(displayRowList);
 	
 	// set all words to have display col as furthest word
@@ -68,6 +73,10 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		if (currentStretch) continue;
 		
 		var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+		currentChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
+		if(currentChunkFirstWord > 0){
+			currentWordID = currentChunkFirstWord;
+		}
 		var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 		
 		if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {

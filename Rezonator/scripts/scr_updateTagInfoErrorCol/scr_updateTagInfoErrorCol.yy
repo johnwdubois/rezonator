@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Import_Export",
-    "path": "folders/Objects/Import_Export.yy",
+    "name": "importScreen",
+    "path": "folders/Scripts/import/importScreen.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_updateTagInfoErrorCol",

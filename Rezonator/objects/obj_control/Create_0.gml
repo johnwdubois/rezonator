@@ -425,6 +425,7 @@ mouseHoldRectY2 = 0;
 mouseRectMade = false;
 mouseRectReleased = false;
 inRectWordIDList = ds_list_create();
+inRectWordIDListCopy = ds_list_create();
 inRectHitIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
 quickStackAbleToInitiate = true;
@@ -441,7 +442,6 @@ lineContainsMouseYPos = -1;
 
 
 // Set variables for box creation
-chunkID = 0;
 boxHoldRectX1 = 0;
 boxHoldRectY1 = 0;
 boxHoldRectX2 = 0;
@@ -534,26 +534,13 @@ boxGrid_colChainIDLists = 2;
 //boxGrid_colMoveCount = 5;
 
 
-//stack Show variables
-currentStackShowListPosition = -1;
-stackShowList = ds_list_create();
-stackShowWindowActive = false;
-stackShowActive = false;
-stackShowBackwards = false;
-stackShowSwitchedWordView = false;
-stackShowSwitchedTextShape = false;
 
-//stackshow options
-setTutorial = false;
-setJustified = false;
-setTranscript = false;
-setNavWindow = false;
+
 
 scr_scrollBarInit();
 
 x = 0;
 y = 0;
-//stackShowBuffer = 10;
 
 drawRangeCenterOffset = 0;
 drawRangeExtraStepsForward = 0;
@@ -685,10 +672,21 @@ ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 var showList = ds_list_create();
 ds_map_add_list(global.nodeMap, "showList", showList);
 
+// add chunkList to nodeMap
+ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
+
+
+global.delayInput = 0;
+
 
 selectedRezChainList = ds_list_create();
 selectedTrackChainList = ds_list_create();
 selectedStackChainList = ds_list_create();
+
+hiddenRezChainList = ds_list_create();
+hiddenTrackChainList = ds_list_create();
+hiddenStackChainList = ds_list_create();
+
 
 filterActiveRez = false;
 filterActiveTrack = false;

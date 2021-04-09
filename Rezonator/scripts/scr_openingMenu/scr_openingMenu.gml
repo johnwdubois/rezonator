@@ -80,39 +80,6 @@ function scr_openingMenu() {
 
 
 
-/*
-
-	//play and learn selection
-	var wheresElmoButtonX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonWidth / 2);
-	var wheresElmoButtonY1 = newProjectButtonY2 + verticalYSpacing;
-	var wheresElmoButtonX2 = (camera_get_view_width(camera_get_active()) / 2) + (buttonWidth / 2);
-	var wheresElmoButtonY2 = wheresElmoButtonY1 + buttonHeight;
-
-	if (point_in_rectangle(mouse_x, mouse_y, wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2))
-	{
-		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, false);
-	
-		if (device_mouse_check_button_released(0, mb_left))
-		{
-			global.menuOpen = false;
-			global.newProject = false;
-			global.openProject = true;
-			global.games = true;
-			global.rezzles = false;
-			global.wheresElmo = true;
-			global.tutorial = false;
-
-		}
-	}
-
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(wheresElmoButtonX1, wheresElmoButtonY1, wheresElmoButtonX2, wheresElmoButtonY2, true);
-	draw_set_color(global.colorThemeText);
-	scr_adaptFont(scr_get_translation("menu_play-learn"),"M");
-	draw_text(mean(wheresElmoButtonX1, wheresElmoButtonX2), mean(wheresElmoButtonY1, wheresElmoButtonY2), scr_get_translation("menu_play-learn"));
-
-*/
 
 
 	var signInXBuffer = 20;
@@ -371,10 +338,6 @@ function scr_openingMenu() {
 	
 		global.userName = obj_openingScreen.inputText;
 	}
-
-	//draw_text((camera_get_view_width(camera_get_active()) / 2) , wheresElmoButtonY1 - 25 ,scr_get_translation("msg_games"));
-	//draw_text((camera_get_view_width(camera_get_active()) / 2) , newProjectButtonY1 - 25 ,scr_get_translation("msg_research"));
-	//draw_text((camera_get_view_width(camera_get_active()) / 2) , openTutorialButtonY1 - 25 ,scr_get_translation("msg_tutorial"));
 
 
 

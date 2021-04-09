@@ -27,10 +27,10 @@ else {
 	
 	}
 	
-	if (obj_chain.currentFocusedChainID == "" and hoverChunkID != -1) {
-		deleteChunkWord = true;
-		ds_grid_set(obj_chain.chunkGrid, obj_chain.chainGrid_colChainState, hoverChunkIDRow, obj_chain.chainStateFocus);
-	}
 	scr_deleteFromChain(true);
+	
+	if (obj_chain.currentFocusedChunkID != "") {
+		scr_deleteChunk(obj_chain.currentFocusedChunkID);
+	}
 	
 }

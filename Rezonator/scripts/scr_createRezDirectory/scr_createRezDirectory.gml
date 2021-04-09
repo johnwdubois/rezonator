@@ -1,82 +1,52 @@
 function scr_createRezDirectory() {
+	
 	// Create the colelction of folders and files the user will receive on downloading Rezonator
+	var userName = (os_type == os_macosx) ? "USER" : "USERNAME";
+	var userStr = environment_get_variable(userName);
+	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 
-
-	if	(os_type == os_macosx)	{
-		var userStr = environment_get_variable("USER");
-	
-	
+	// create core rezonator directories
+	if (os_type == os_macosx) {
 		global.documentsDirString = "/Users/" + string(userStr) + "/Documents";
-		global.rezonatorDirString = global.documentsDirString + "/Rezonator/" + global.versionString;
-		global.rezonatorTutorialDirString = global.rezonatorDirString + "/Tutorial";
-		global.rezonatorElmoDirString = global.rezonatorDirString + "/Play_&_Learn/Where's_Elmo";
-		global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "/Saved_Games";
-		global.rezonatorRezzlesDirString = global.rezonatorElmoDirString; //global.rezonatorRezzlesDirString = global.rezonatorDirString + "/Play_&_Learn/Where's_Elmo";
-		global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "/Saved_Games";
-		global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "/Data";
-		global.rezonatorSchemaDirString = global.rezonatorDirString + "/Schemas";
-		global.rezonatorFontDirString = global.rezonatorDirString + "/Fonts";
-
 	}
-	else	{
-		var userStr = environment_get_variable("USERNAME");
+	else {
 		global.documentsDirString = "C:\\Users\\" + userStr + "\\Documents";
-		global.rezonatorDirString = global.documentsDirString + "\\Rezonator\\" + global.versionString;
-		global.rezonatorTutorialDirString = global.rezonatorDirString + "\\Tutorial";
-		global.rezonatorElmoDirString = global.rezonatorDirString + "\\Play & Learn\\Where's Elmo";
-		global.rezonatorElmoSaveDirString = global.rezonatorElmoDirString + "\\Saved Games";
-		global.rezonatorRezzlesDirString = global.rezonatorElmoDirString; //global.rezonatorRezzlesDirString = global.rezonatorDirString + "\\Games\\Rezzles";
-		global.rezonatorRezzlesSaveDirString = global.rezonatorRezzlesDirString + "\\Saved Games";
-		global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + "\\Data";
-		global.rezonatorSchemaDirString = global.rezonatorDirString + "\\Schemas";
-		global.rezonatorFontDirString = global.rezonatorDirString + "\\Fonts";
 	}
-
-
+	global.rezonatorDirString = global.documentsDirString + delimiter + "Rezonator" + delimiter + global.versionString;
+	global.rezonatorDefaultDiscourseDirString = global.rezonatorDirString + delimiter + "Data";
+	global.rezonatorSchemaDirString = global.rezonatorDirString + delimiter + "Schemas";
+	
+	// copy directory to user's Documents folder
 	if (directory_exists(global.documentsDirString)) {
-		if	(os_type == os_macosx)	{
-			var userStr = environment_get_variable("USER");
-			var testDir = "/Users/" + string(userStr) + "/Documents";
-			
-			if(directory_exists(testDir)){
-				if(!directory_exists(testDir + "/Rezonator")){
-					directory_create(testDir + "/Rezonator");
+		var includedFilesDir = working_directory + delimiter + "IncludedFiles";
+		if (os_type == os_macosx) {
+			if (directory_exists(global.documentsDirString)) {
+				if (!directory_exists(global.documentsDirString + "/Rezonator")) {
+					directory_create(global.documentsDirString + "/Rezonator");
 				}
 			}
-
 			directory_create(global.rezonatorDirString);
-			scr_directoryCopy(working_directory + "/IncludedFiles", global.rezonatorDirString);
-			//directory_copy(working_directory + "Resources", global.rezonatorDirString);
+			scr_directoryCopy(includedFilesDir, global.rezonatorDirString);
 		}
 		else {
-			
-			
-			if (directory_exists(working_directory + "\\IncludedFiles")) {
-		
+			if (directory_exists(includedFilesDir)) {
 				if (!directory_exists(global.rezonatorDirString)) {
-					scr_directoryCopy(working_directory + "\\IncludedFiles", global.rezonatorDirString);
-					//directory_copy(working_directory, global.rezonatorDirString);
+					scr_directoryCopy(includedFilesDir, global.rezonatorDirString);
 				}
 			}
 		}
 	}
-
+	
+	
+	// create autosave & schema directory
 	if (directory_exists(global.rezonatorDirString)) {
-		if	(os_type == os_macosx)	{
-			if (!directory_exists(global.rezonatorDirString + "/Autosave")) {
-				directory_create(global.rezonatorDirString + "/Autosave");
-			}
-		}
-		else {
-			if (!directory_exists(global.rezonatorDirString + "\\Autosave")) {
-				directory_create(global.rezonatorDirString + "\\Autosave");
-			}
+		var autosaveDir = global.rezonatorDirString + delimiter + "Autosave";		
+		if (!directory_exists(autosaveDir)) {
+			directory_create(autosaveDir);
 		}
 	
 		if (!directory_exists(global.rezonatorSchemaDirString)) {
 			directory_create(global.rezonatorSchemaDirString);
 		}
 	}
-
-
 }

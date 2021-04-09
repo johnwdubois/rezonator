@@ -1,23 +1,16 @@
-/*
-	scr_wordClicked(wordID, unitID);
-	
-	Last Updated: 2019-02-05
-	
-	Called from: obj_control
-	
+/*	
 	Purpose: handle reaction to user clicking on a word
-	
-	Mechanism: check obj_toolPane to see if a chainBrush is selected, if so either spawn a new chain or add
-				to an existing 
-				
-	Author: Terry DuBois
 */
 
 function scr_wordClicked(wordID, unitID) {
 	
+	if (global.delayInput > 0) {
+		exit;
+	}
+	
 	show_debug_message("scr_wordClicked()... wordID: " + string(wordID) + "unitID: " + string(unitID));
 
-	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown)) {
+	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or (instance_exists(obj_dropDown) and not obj_stacker.splitSave)) {
 		var shouldExit = true;
 		if (obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)) {
 			if (obj_dialogueBox.combineChains) {
@@ -29,12 +22,6 @@ function scr_wordClicked(wordID, unitID) {
 			exit;
 		}
 	}
-
-	/*
-	if (obj_control.currentActiveLineGrid == obj_control.searchGrid and obj_toolPane.currentTool == obj_toolPane.toolStackBrush) { 
-		wordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, wordID - 1);
-	}
-	*/
 
 	// jump audio position to unitStart time (if audioUI is visible)
 	if (instance_exists(obj_audioUI)) {
@@ -49,16 +36,17 @@ function scr_wordClicked(wordID, unitID) {
 		exit;
 	}
 
-
-	//show_message(obj_toolPane.currentTool == obj_toolPane.toolStackBrush);
 	var makingStacks = false;
 	with (obj_panelPane) {
 		if(functionChainList_currentTab == functionChainList_tabStackBrush){
 			makingStacks = true;
 		}
 	}
-
-
+	
+	// if there is a focused chain, but you are not on the tool of that chain, cancel this click
+	if (obj_chain.focusedChainWrongTool) {
+		exit;
+	}
 
 	if (ds_list_size(obj_control.inRectWordIDList) <= 1 && obj_toolPane.currentTool != obj_toolPane.toolStackBrush&& obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		obj_control.moveCounter++;
@@ -85,81 +73,51 @@ function scr_wordClicked(wordID, unitID) {
 	
 	// loop through the chains that this word is already in (if any) to refocus that chain
 	show_debug_message("scr_wordClicked() inChainsList: " + scr_getStringOfList(inChainsList));
-	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush
-	and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
+	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		var inChainsListSize = ds_list_size(inChainsList);
 		for (var i = 0; i < inChainsListSize; i++) {
-			var currentChainID = ds_list_find_value(inChainsList, i);
-			currentFocusedChainID = currentChainID;
-			var focusedChainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+			var currentChainID = inChainsList[| i];
+			var currentChainSubMap = global.nodeMap[? currentChainID];
+			var currentChainType = currentChainSubMap[? "type"];
+			
+			// check whether we should refocus this word's entry or not
+			var refocusEntry = (currentChainType == "rezChain" && obj_toolPane.currentTool == obj_toolPane.toolRezBrush)
+			or (currentChainType == "trackChain" && obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)
+			or (currentChainType == "stackChain" && obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
+			or (obj_toolPane.currentMode == obj_toolPane.modeRead);
+	
+			if (refocusEntry) {
+				obj_chain.currentFocusedChainID = currentChainID;
+				var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 				
-			if (is_numeric(focusedChainIDSubMap)) {
-				if (ds_exists(focusedChainIDSubMap, ds_type_map)) {
-					var prevChainType = ds_map_find_value(focusedChainIDSubMap, "type");
+				if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
+					var prevChainType = focusedChainIDSubMap[? "type"];
 					if (prevChainType == "stackChain") {
 						wordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID -1);
 					}
 				}
-			}
 			
-			scr_refocusChainEntry(wordID);
-			show_debug_message("scr_wordClicked() ... exit 4...");
-			exit;
+				scr_refocusChainEntry(wordID);
+				exit;
+			}
 		}
 	}
 	
 	if(obj_toolPane.currentMode == obj_toolPane.modeRead){
-	exit;
+		exit;
 	}
 	
 
-	// Will need to get back to this
-	// loop through the chunks that this word is already in (if any) to refocus that chunk
-	if (obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-		var inChunkListSize = ds_list_size(inChunkList);
-		for (var i = 0; i < inChunkListSize; i++) {
-			// Find the value of the current Chunk
-			var currentChunkID = ds_list_find_value(inChunkList, i);
-			var rowInChainGrid = ds_grid_value_y(obj_chain.chunkGrid, obj_chain.chainGrid_colChainID, 0, obj_chain.chainGrid_colChainID, ds_grid_height(obj_chain.chunkGrid), currentChunkID);
-			if (rowInChainGrid < 0) {
-				scr_refocusChainEntry(wordID);
-				show_debug_message("scr_wordClicked() ... exit 5...");
-				exit;
-			}
-			var currentChunkWordID = ds_grid_get(obj_chain.chunkGrid, obj_chain.chainGrid_colName, rowInChainGrid);
-		
-			// Unfocus all Chunks
-			var chunkGridHeight = ds_grid_height(obj_chain.chunkGrid);
-			for (var chunkListLoop = 0; chunkListLoop < chunkGridHeight; chunkListLoop++) {
-				if (ds_grid_get(obj_chain.chunkGrid, chainGrid_colChainState, chunkListLoop) == chainStateFocus) {
-					ds_grid_set(obj_chain.chunkGrid, chainGrid_colChainState, rowInChainGrid, chainStateNormal);
-				}
-			}
-			
-			// Set the Chunk to be focused
-			ds_grid_set(obj_chain.chunkGrid, chainGrid_colChainState, rowInChainGrid, chainStateFocus);
-			//show_message(string(currentChunkWordID));
-			ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, currentChunkWordID - 1, true);
-			currentFocusedChunkID = currentChunkID;
-			scr_refocusChainEntry(wordID);
-			show_debug_message("scr_wordClicked() ... exit 6...");
-			exit;
 
-			
-		}
+	// if there is not a focused chain, we create a new chain
+	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
+		scr_newChain( unitID);
 	}
-	else {
 
-		// if there is not a focused chain, we create a new chain
-		if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-			scr_newChain(wordID, unitID);
-		}
-
-		// add new link and refresh chain grid
-		scr_newLink(wordID);
-
+	// add new link and refresh chain grid
+	scr_newLink(wordID);
 		
-	}
+
 	ds_list_destroy(fakeInChainsList);
 	obj_control.allSaved = false;
 	

@@ -11,9 +11,6 @@ dialogueBoxText = "";
 
 
 questionWindowActive = false;
-//askingQuestion = false;
-
-elmoActive = false;
 
 holdUp = 0;
 holdDown = 0;

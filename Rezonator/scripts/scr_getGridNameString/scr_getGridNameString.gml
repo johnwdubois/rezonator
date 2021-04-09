@@ -30,9 +30,6 @@ function scr_getGridNameString(gridName) {
 		case obj_chain.placeChainGrid:
 			gridName = "Place"; // Place Chain Grid
 			break;
-		case obj_chain.chunkGrid:
-			gridName = "Chunk"; // Chunk Grid
-			break;
 		case obj_chain.unitInStackGrid:
 			gridName = "StackUnit"; // Unit In Stack
 			break;

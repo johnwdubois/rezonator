@@ -1,17 +1,9 @@
 function scr_boxRect() {
 	/*
-		scr_boxRect();
-	
-		Last Updated: 2019-08-13
-	
-		Called from: obj_control
-	
 		Purpose: draw a the specialized mouseRect for creating Boxes/Chunks
-	
-		Mechanism: Create and draw a rectangle based on the positions of a mouse drag
-				
-		Author: Georgio Klironomos
 	*/
+	
+	show_debug_message("scr_boxRect()");
 
 	// Draw the mouse drag rectangle, and the record when the mouse is released
 	draw_set_color(global.colorThemeSelected1);
