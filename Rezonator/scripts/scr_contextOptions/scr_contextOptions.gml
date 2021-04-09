@@ -17,6 +17,13 @@ function scr_contextOptions(optionSelected) {
 				}
 			}
 		
+			// Rerender quick filter
+			if (obj_control.quickFilterGridActive) {
+				with (obj_control) {
+					scr_renderQuickFilter();
+				}
+			}
+		
 		break;
 		case "menu_between":// show/hide tween context
 	
@@ -30,6 +37,13 @@ function scr_contextOptions(optionSelected) {
 			if (obj_control.filterGridActive) {
 				with (obj_control) {
 					scr_renderFilter();
+				}
+			}
+			
+			// Rerender quick filter
+			if (obj_control.quickFilterGridActive) {
+				with (obj_control) {
+					scr_renderQuickFilter();
 				}
 			}
 		
@@ -49,6 +63,13 @@ function scr_contextOptions(optionSelected) {
 					scr_renderFilter();
 				}
 			}	
+			
+			// Rerender quick filter
+			if (obj_control.quickFilterGridActive) {
+				with (obj_control) {
+					scr_renderQuickFilter();
+				}
+			}
 	
 		break;
 		default:

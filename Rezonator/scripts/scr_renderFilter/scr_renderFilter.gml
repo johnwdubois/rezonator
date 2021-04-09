@@ -1,7 +1,6 @@
 function scr_renderFilter() {
 	/*
 		Purpose: clear and then populate filterGrid with necessary units
-
 	*/
 
 
@@ -17,10 +16,8 @@ function scr_renderFilter() {
 		ds_grid_destroy(filterGrid);
 		filterGrid = ds_grid_create(lineGridWidth, 0);
 
-		// get lists of all types of chains
-		var chainList = -1;
-	
 		// find all the chains that are filtered
+		var chainList = -1;
 		if (chainListInst.functionChainList_currentTab == chainListInst.functionChainList_tabRezBrush) chainList = ds_map_find_value(global.nodeMap, "rezChainList");
 		else if (chainListInst.functionChainList_currentTab == chainListInst.functionChainList_tabTrackBrush) chainList = ds_map_find_value(global.nodeMap, "trackChainList");
 		else if (chainListInst.functionChainList_currentTab == chainListInst.functionChainList_tabStackBrush) chainList = ds_map_find_value(global.nodeMap, "stackChainList");
@@ -87,6 +84,7 @@ function scr_renderFilter() {
 				}
 				else {
 					currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+					if (scr_isChunk(currentWordID)) currentWordID = scr_getFirstWordOfChunk(currentWordID);
 					currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 				}
 				

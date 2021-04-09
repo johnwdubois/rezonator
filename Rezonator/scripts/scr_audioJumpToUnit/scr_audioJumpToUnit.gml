@@ -1,6 +1,8 @@
 function scr_audioJumpToUnit(unitID) {
+	
+	show_debug_message("scr_audioJumpToUnit() ... unitID: " + string(unitID));
+	
 	// Set the position of the audio track based on the specified line's unit start time
-
 	if (instance_exists(obj_audioUI)) {
 		if (obj_audioUI.audioJumpOnWordClick) {
 		
@@ -8,9 +10,8 @@ function scr_audioJumpToUnit(unitID) {
 	
 				var unitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, unitID - 1);
 				unitStart = real(unitStart);
-				//show_message("maybe");
+				
 				if (unitStart != undefined and unitStart > 0) {
-					//show_message("its a number");
 					with (obj_audioUI) {
 						audioPos = unitStart;
 						if (audioPos >= 0 and audioPos <= audioLength) {

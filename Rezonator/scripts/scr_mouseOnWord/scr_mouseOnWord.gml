@@ -26,7 +26,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 			// Word clicked with a Chain tool selected
-			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow) and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and obj_toolPane.currentMode != obj_toolPane.modeRead) {
 				var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 				
 				//dont allow words to be added to stacks by deselecting them
@@ -52,7 +52,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				
 			}
 			// If in Read Mode, focus line in Nav window
-			else if (obj_toolPane.currentMode == obj_toolPane.modeRead and ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and !instance_exists(obj_stackShow))) {
+			else if (obj_toolPane.currentMode == obj_toolPane.modeRead and ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck)) {
 				
 				// With Audio, jump to this line's start time in the Audio File
 				if (instance_exists(obj_audioUI)) {
@@ -78,7 +78,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			
 			
 			// Check for rightMouseClick
-			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox) and !instance_exists(obj_stackShow)) {
+			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
 				
 				
 				obj_control.rightClickWordID = obj_control.newWordHoverWordID;
@@ -95,68 +95,20 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				
 		}
 	}
+	
 
-	// If the mouse is dragged, record all the words that fit into the rectangle in order to quickStack them.
-	var inMouseHoldRect = 0;	
-	if ((obj_toolPane.currentTool == obj_toolPane.toolRezBrush) and mouseRectMade) {
-		if(obj_control.mouseRectWithinLine) {
-			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		}
-		else {
-			inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX1 + obj_control.gridSpaceHorizontal - 20, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		}
-		if (inMouseHoldRect) {
-			with (obj_control) {
-				if (ds_list_find_index(inRectWordIDList, currentWordID) < 0) {
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-		}
-	}
-	else if ((obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) and mouseRectMade and not mouseoverPanelPane) {
-		inMouseHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-		if (inMouseHoldRect) {
-			with (obj_control) {
-				if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
-					// Add the word info to the rectangle lists
-					//ds_list_add(inRectUnitIDList, unitID);
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-		}
-	}
+
+
+	
+	
+	
 	
 	
 		
 	var inBoxHoldRect = false;
-	// Make sure the user has the box brush selected
-	if(obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-			
-		// Check if this word is within the Box brush rectangle
-		with (obj_control) { 
-			if(boxRectWithinLine) {
-				if(shape = shapeBlock) {
-					inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1 + gridSpaceVertical, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));	
-				}
-				// If the text is left justified, we don't use the gridSpaceHorizontal
-				else {
-					inBoxHoldRect = rectangle_in_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY1, min(boxHoldRectX1, boxHoldRectX2), min(boxHoldRectY1, boxHoldRectY2), max(boxHoldRectX1, boxHoldRectX2), max(boxHoldRectY1, boxHoldRectY2));
-				}
-			}
-		}
-		// If the box has been made, capture the info of the contained words
-		if(obj_control.boxRectMade and inBoxHoldRect > 0) {
 
-			// Make sure this word has not already been captured
-			with (obj_control) {
-				if (ds_list_find_index(inRectWordIDList, currentWordID) == -1) {
-					// Add the word info to the rectangle lists
-					ds_list_add(inRectUnitIDList, unitID);
-					ds_list_add(inRectWordIDList, currentWordID);
-				}
-			}
-		}
-	}
+
+
 	
 	// Set this to be the hovered wordID
 	if (point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2) and !instance_exists(obj_dialogueBox)) {

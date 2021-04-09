@@ -44,18 +44,35 @@ function scr_setValueForAllChains(chainType, key, value) {
 		
 		// selected specific stuff (update selected list)
 		else if (key == "selected") {
-			// determine which filter list to look at
+			// determine which selected list to look at
 			var listOfSelectedChains = -1;
 			if (chainType == "rezChain") listOfSelectedChains = obj_control.selectedRezChainList;
 			else if (chainType == "trackChain") listOfSelectedChains = obj_control.selectedTrackChainList;
 			else if (chainType == "stackChain") listOfSelectedChains = obj_control.selectedStackChainList;
 			
-			// either add or remove this chain from the corresponding filter list
+			// either add or remove this chain from the corresponding selected list
 			if (value && ds_list_find_index(listOfSelectedChains, currentChain) == -1) {
 				ds_list_add(listOfSelectedChains, currentChain);
 			}
 			else if (!value && ds_list_find_index(listOfSelectedChains, currentChain) >= 0) {
 				scr_deleteFromList(listOfSelectedChains, currentChain);
+			}
+		}
+		
+		// hidden specific stuff (update hidden list)
+		else if (key == "visible") {
+			// determine which hidden list to look at
+			var listOfHiddenChains = -1;
+			if (chainType == "rezChain") listOfHiddenChains = obj_control.hiddenRezChainList;
+			else if (chainType == "trackChain") listOfHiddenChains = obj_control.hiddenTrackChainList;
+			else if (chainType == "stackChain") listOfHiddenChains = obj_control.hiddenStackChainList;
+			
+			// either add or remove this chain from the corresponding hidden list
+			if (!value && ds_list_find_index(listOfHiddenChains, currentChain) == -1) {
+				ds_list_add(listOfHiddenChains, currentChain);
+			}
+			else if (value && ds_list_find_index(listOfHiddenChains, currentChain) >= 0) {
+				scr_deleteFromList(listOfHiddenChains, currentChain);
 			}
 		}
 		

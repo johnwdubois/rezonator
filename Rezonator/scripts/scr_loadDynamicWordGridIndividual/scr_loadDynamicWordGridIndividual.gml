@@ -13,7 +13,7 @@ function scr_loadDynamicWordGridIndividual(rowInWordGrid) {
 	var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, rowInWordGrid);
 	var emptyList = ds_list_create();
 	var emptyListTwo = ds_list_create();
-	var currentWordState = (string_length(string(currentWordToken)) < 1) ? obj_control.wordStateDead : obj_control.wordStateNormal;
+	var currentWordState = obj_control.wordStateNormal;//(string_length(string(currentWordToken)) < 1) ? obj_control.wordStateDead : obj_control.wordStateNormal;
 
 	
 	ds_grid_set(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordID, currentRowDynamicWordGrid, currentWordID);

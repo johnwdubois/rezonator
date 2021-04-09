@@ -59,16 +59,6 @@ function scr_toolsOptions(optionSelected) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 3), dropDownOptionList, global.optionListTypeStack);
 			}
 			break;
-			
-		case "menu_play-learn":
-			scr_destroyAllDropDownsOtherThanSelf();
-			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "label_option_where_elmo");
-						
-			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypePlayAndLearn);
-			}
-		break;
 		default:
 			break;
 	}

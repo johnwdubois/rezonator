@@ -31,22 +31,16 @@ if (showDisplayCols) {
 	}
 }
 
-obj_control.mouseoverSpeakerLabel = false;
-if(global.canScroll) {
-	if(!stackShowWindowActive){
-		obj_control.mouseoverNeutralSpace = true;
-	}
+mouseoverSpeakerLabel = false;
+if (global.canScroll) {
+	mouseoverNeutralSpace = true;
 }
 if (!hideAll) {
 	scr_drawLine();
 }
-//scr_drawChunk();
-//scr_drawDialogueBox();
-//scr_stackShowWindow();
 
-//mouseRectWithinLine = false;
 // Draw the mouse drag rectangle
-if (not mouseoverPanelPane and not obj_panelPane.scrollBarClickLock and obj_toolPane.currentTool != obj_toolPane.toolNewWord and not mouseoverNeutralSpace and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+if (not mouseoverPanelPane and not obj_panelPane.scrollBarClickLock and obj_toolPane.currentTool != obj_toolPane.toolNewWord and not mouseoverNeutralSpace) {
 	if(not mouseRectMade) {
 		if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {// Curfew for the volunteers
 			if(obj_toolPane.currentTool != obj_toolPane.toolStackBrush or mouseoverSpeakerLabel) {
@@ -67,24 +61,17 @@ if (not mouseoverPanelPane and not obj_panelPane.scrollBarClickLock and obj_tool
 	if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
 		alarm[8] = 5;
 	}
-	/*else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-		//show_message("made");
-		alarm[10] = 5;
-	}*/
 	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 		alarm[8] = 5;
 	}
 	else if(mouseRectMade) {
+		alarm[8] = 5;
+	}
+	else {
 		alarm[9] = 5;
 	}
 	
-	if(boxRectMade and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush and boxRectAbleToInitiate) {
-		boxRectAbleToInitiate = false;
-		alarm[10] = 5;
-	}
-	/*if(abs(mouseHoldRectY1 - mouseHoldRectY2) < gridSpaceVertical) {
-		mouseRectWithinLine = true;
-	}*/
+
 }
 
 

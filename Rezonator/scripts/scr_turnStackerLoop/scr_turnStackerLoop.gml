@@ -33,7 +33,7 @@ function scr_turnStackerLoop(){
 
 	for (var turnColLoop = 0; turnColLoop < ds_list_size(global.unitImportColNameList); turnColLoop++) {
 
-		if (string(ds_list_find_value(global.unitImportColNameList, turnColLoop)) == "turnId") {
+		if (string(ds_list_find_value(global.unitImportColNameList, turnColLoop)) == "turnSeq") {
 			turnCol = turnColLoop;
 			show_debug_message("scr_turnStackerLoop() ... turnCol: " + string(turnCol));
 			break;
@@ -75,7 +75,8 @@ function scr_turnStackerLoop(){
 			var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
 			var firstWordID = ds_list_find_value(currentWordIDList, 0);
 			var prevUnitID = -1;
-	
+			
+
 			// Loop through lines and click on them with the Stack Tool
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {

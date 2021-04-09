@@ -44,7 +44,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverTool || toolFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(toolButtonRectX1, toolButtonRectY1, toolButtonRectX2, toolButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverTool) {
@@ -74,7 +74,7 @@ function scr_drawToolPane(toolSprScale) {
 	var filterButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var filterButtonRectY2 = floor(filterButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
 	var mouseoverFilter = point_in_rectangle(mouse_x, mouse_y, filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2) && !mouseoverCancel;
-	var filterButtonColor = (obj_control.filterGridActive) ? global.colorThemeRezPink : c_white;
+	var filterButtonColor = (obj_control.filterGridActive|| obj_control.quickFilterGridActive) ? global.colorThemeRezPink : c_white;
 	var filterList = scr_getFilterList();
 	var filterListSize = ds_list_size(filterList);
 	
@@ -85,7 +85,7 @@ function scr_drawToolPane(toolSprScale) {
 	// mouseover & click on filter button
 	if (mouseoverFilter) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, mouseoverRectWidth , false);
 		scr_createTooltip(filterButtonRectX1, filterButtonY, "Filter", obj_tooltip.arrowFaceRight);
 		
 		
@@ -109,11 +109,14 @@ function scr_drawToolPane(toolSprScale) {
 					scr_disableFilter();
 				}
 			}
+			if (obj_control.quickFilterGridActive) {
+				scr_disableFilter();
+			}
 		}
 	}
 	
 	// draw highlight rectangle if filter is on
-	if (obj_control.filterGridActive) {
+	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(filterButtonRectX1, filterButtonRectY1, filterButtonRectX2, filterButtonRectY2, false);
 	}
@@ -134,7 +137,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverContext || contextFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverContext) {
@@ -148,7 +151,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	// draw highlight rect
-	if (obj_control.filterGridActive) {
+	if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect(contextButtonRectX1, contextButtonRectY1, contextButtonRectX2, contextButtonRectY2, false);
 	}
@@ -179,7 +182,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverJustify || justifyFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(justifyButtonRectX1, justifyButtonRectY1, justifyButtonRectX2, justifyButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverJustify) {
@@ -210,7 +213,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverOneToOne || oneToOneFlyoutExists) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverOneToOne) {
@@ -243,7 +246,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverAudio) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(audioButtonRectX1, audioButtonRectY1, audioButtonRectX2, audioButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverAudio) {
@@ -281,7 +284,7 @@ function scr_drawToolPane(toolSprScale) {
 	
 	if (mouseoverHelp) {
 		draw_set_color(c_white);
-		scr_drawRectWidth(helpButtonRectX1, helpButtonRectY1, helpButtonRectX2, helpButtonRectY2, mouseoverRectWidth);
+		scr_drawRectWidth(helpButtonRectX1, helpButtonRectY1, helpButtonRectX2, helpButtonRectY2, mouseoverRectWidth , false);
 	}
 	
 	if (mouseoverHelp) {
@@ -339,9 +342,6 @@ function scr_drawToolPane(toolSprScale) {
 		}
 	}
 
-	if (global.wheresElmo) {
-		currentMode = modeTrack;
-	}
 	
 	// clicking on toolpane will deselect chain
 	if (device_mouse_check_button_released(0, mb_left) and point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {

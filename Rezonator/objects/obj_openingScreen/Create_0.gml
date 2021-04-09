@@ -1,16 +1,5 @@
-
 /*
-	obj_openingScreen: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of the openingScreen object
-	
 	Purpose: Instantiate all variables used by the openingScreen object
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
 
 
@@ -51,9 +40,6 @@ global.openProject = false;
 global.newProject = false;
 global.menuOpen = true;
 global.neworOpen = false;
-global.tutorial = false;
-global.games = false;
-//global.inRezzles = false;
 
 
 
@@ -287,9 +273,7 @@ loopItterations = 0;
 
 
 
-// variables for different games
-global.wheresElmo = false;
-global.rezzles = false;
+
 
 //ini variables
 

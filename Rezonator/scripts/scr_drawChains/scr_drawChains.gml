@@ -1,19 +1,9 @@
 function scr_drawChains() {
 	/*
-		scr_drawChains();
-	
-		Last Updated: 2018-07-12
-	
-		Called from: obj_chain
-	
 		Purpose: draw rezChains and move words on screen according to the rezChains
-	
-		Mechanism: loop through chain show list and get the wordIDList from each chain, and draw lines
-					from word information
-				
-		Author: Terry DuBois
 	*/
-
+	
+	scr_setMouseLineWordID();
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
@@ -21,9 +11,6 @@ function scr_drawChains() {
 	var lineY2 = undefined;
 	var mouseLineX = undefined;
 	var mouseLineY = undefined;
-
-	//var furthestWordID = -1;
-	//var furthestDisplayCol = -1;
 
 	var minWordWidth = 9999999;
 	var linePlusX = 0;
@@ -35,7 +22,7 @@ function scr_drawChains() {
 	var rezChainList = ds_map_find_value(global.nodeMap, "rezChainList");
 	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
-	var arrowSize = 0.3 + (0.1 * global.fontSize/5);
+	var arrowSize = 0.3 + (0.1 * global.fontSize / 5);
 
 	// loop through rezChainList to get chain info
 	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
@@ -96,26 +83,45 @@ function scr_drawChains() {
 		for (var j = 0; j < currentSetIDListSize - 1; j++) {
 			
 			// get the wordIDs for the 2 words we want to draw a line between
-			var currentEntry1 = ds_list_find_value(currentSetIDList, j);
-			var currentEntry1SubMap = ds_map_find_value(global.nodeMap, currentEntry1);
-			var currentEntry2 = ds_list_find_value(currentSetIDList, j + 1);
-			var currentEntry2SubMap = ds_map_find_value(global.nodeMap, currentEntry2);
-			var currentWordID1 = ds_map_find_value(currentEntry1SubMap, "word");
-			var currentWordID2 = ds_map_find_value(currentEntry2SubMap, "word");
+			var currentEntry1 = currentSetIDList[| j];
+			var currentEntry1SubMap = global.nodeMap[? currentEntry1];
+			var currentEntry2 = currentSetIDList[| j + 1];
+			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
+			var currentWordID1 = currentEntry1SubMap[? "word"];
+			var currentWordID2 = currentEntry2SubMap[? "word"];
+			
+			// check if the words are chunks
+			var currentWordID1IsChunk = false;
+			if (ds_map_exists(global.nodeMap, currentWordID1)) {
+				var currentWordID1SubMap = global.nodeMap[? currentWordID1];
+				var currentWordID1Type = currentWordID1SubMap[? "type"];
+				if (currentWordID1Type == "chunk") currentWordID1IsChunk = true;
+				if (currentWordID1IsChunk) {
+					var currentWordID1TokenList = currentWordID1SubMap[? "tokenList"];
+					currentWordID1 = currentWordID1TokenList[| 0];
+				}
+			}
+			var currentWordID2IsChunk = false;
+			if (ds_map_exists(global.nodeMap, currentWordID2)) {
+				var currentWordID2SubMap = global.nodeMap[? currentWordID2];
+				var currentWordID2Type = currentWordID2SubMap[? "type"];
+				if (currentWordID2Type == "chunk") currentWordID2IsChunk = true;
+				if (currentWordID2IsChunk) {
+					var currentWordID2TokenList = currentWordID2SubMap[? "tokenList"];
+					currentWordID2 = currentWordID2TokenList[| 0];
+				}
+			}
+			
 		
 			var currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);
-			var chunkWord1 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk);
-			//Add a nesting check
-		
+			var chunkWord1 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk);		
 			var currentWordStringWidth1 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
 		
 			lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
 			lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineID1);
 		
-		
 			var currentLineID2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID2 - 1);
 			var chunkWord2 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk);
-			//Add a nesting check
 			var sideLink = false;
 			
 			// check if this is a side link
@@ -201,7 +207,6 @@ function scr_drawChains() {
 		}
 	
 	
-	
 		if (obj_chain.currentFocusedChainID == currentChainID) {	
 			if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
 				
@@ -211,41 +216,41 @@ function scr_drawChains() {
 				var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
 				var wordPixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
 					
-				if(wordPixelX != undefined and wordPixelY != undefined){
+				if(wordPixelX != undefined and wordPixelY != undefined) {
 					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
 					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
 				}
 			}
 		}
-	
-		if (obj_control.drawLineState == obj_control.lineState_ltr && obj_control.justify == obj_control.justifyLeft) {
-			//scr_alignChain(currentSetIDList, currentChainAlign);
-		}
 	}
+	
+	draw_set_alpha(1);
 
 
 	// draw pickwhip line to mouse from chain
-	if (!is_undefined(mouseLineX) && !is_undefined(mouseLineY) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown) && obj_toolPane.currentMode != obj_toolPane.modeRead) {
+	var drawPickwhip = (!is_undefined(mouseLineX) && !is_undefined(mouseLineY) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)
+						&& obj_toolPane.currentMode != obj_toolPane.modeRead && !obj_chain.focusedChainWrongTool);
+	
+	if (drawPickwhip) {
 		if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-			var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-			if (is_numeric(chainSubMap)) {
-				if (ds_exists(chainSubMap, ds_type_map)) {
-					var chainType = ds_map_find_value(chainSubMap, "type");
-					currentChainColor = ds_map_find_value(chainSubMap, "chainColor");
-					draw_set_color(currentChainColor);
+			var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+			if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+				var chainType = chainSubMap[? "type"];
+				currentChainColor = chainSubMap[? "chainColor"];
+				currentChainVisible = chainSubMap[? "visible"];
+				draw_set_color(currentChainColor);
 			
-					if (currentChainVisible) {
-						if (not mouseLineHide) {
-							if (chainType == "rezChain") {
-								draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
-							}
-							else if (chainType == "trackChain") {
-								scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
-							}
-							if (obj_chain.showChainArrows) {
-								var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
-								draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
-							}
+				if (currentChainVisible) {
+					if (not mouseLineHide) {
+						if (chainType == "rezChain") {
+							draw_line_width(mouseLineX, mouseLineY, mouse_x, mouse_y, 2);
+						}
+						else if (chainType == "trackChain") {
+							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
+						}
+						if (obj_chain.showChainArrows) {
+							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
+							draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
 						}
 					}
 				}

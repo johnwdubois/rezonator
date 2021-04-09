@@ -15,7 +15,11 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 	if (!ds_exists(chainSetList, ds_type_list)) exit;
 	var chainSetListSize = ds_list_size(chainSetList);
 	
-	
+
+	var deletedWordIDChunkFirstWord = scr_getFirstWordOfChunk(deletedWordID);
+	if(deletedWordIDChunkFirstWord  > 0){
+		deletedWordID = deletedWordIDChunkFirstWord ;
+	}
 	
 	
 	if (deletedWordPushBack) {
@@ -45,13 +49,17 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			
 			
 			
-			
+		var currentChunkFirstWord = -1;	
 		for (var j = 0; j < chainSetListSize; j++) {
 			var currentEntry = chainSetList[| j];
 			var currentEntrySubMap = global.nodeMap[? currentEntry];
 			if (!is_numeric(currentEntrySubMap)) continue;
 			if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 			var currentWordID = currentEntrySubMap[? "word"];
+			currentChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
+			if(currentChunkFirstWord > 0){
+				currentWordID = currentChunkFirstWord;
+			}
 
 
 			var deletedWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
@@ -101,6 +109,10 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 			var currentWordID = currentEntrySubMap[? "word"];
 			
+			if(scr_isChunk(currentWordID)){
+				currentWordID = scr_getFirstWordOfChunk(currentWordID);
+			}
+			
 			
 			var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
@@ -138,6 +150,10 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 				if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 				
 				var currentWordID = currentEntrySubMap[? "word"];
+				
+				if(scr_isChunk(currentWordID)){
+					currentWordID = scr_getFirstWordOfChunk(currentWordID);
+				}
 				var currentWordSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 				var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);
 			

@@ -190,8 +190,6 @@ function scr_fillTokenImportGridCSV() {
 	// actually fill in all the cells of tokenImportGrid and unitImportGrid
 	for (var i = 0; i < customLabelGridHeight; i++) {
 	
-		show_debug_message("scr_fillTokenImportGridCSV(), LOOP 5, i: " + string(i) + ", customLabelGridHeight: " + string(customLabelGridHeight) + "..." + scr_printTime());
-
 		var importGridCol = -1;
 		var currentMarker = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colMarker, i);
 		var currentLevel = ds_grid_get(global.customLabelGrid, global.customLabelGrid_colLevel, i);
@@ -233,7 +231,6 @@ function scr_fillTokenImportGridCSV() {
 				for (var j = 0; j < tokenImportGridHeight; j++) {
 					var currentToken = ds_list_find_value(tokenList, j);
 					ds_grid_set(global.tokenImportGrid, currentTokenImportCol, j, currentToken);
-					show_debug_message("scr_fillTokenImportGridCSV() ... currentToken: " + string(currentToken));
 				}
 				currentTokenImportCol++;
 

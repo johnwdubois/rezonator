@@ -18,9 +18,9 @@ function scr_drawDevVars(){
 	var focusedChainSetIDList = -1;
 	var focusedChainVizSetIDList = -1;
 	var focusedChainLinkIDList = -1;
-	var focusedChainWordID = "";
 	var focusedChainType = "";
 	var focusedChainFocused = "";
+	var chunkList = global.nodeMap[? "chunkList"];
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var chainMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		focusedChainSetIDList = ds_map_find_value(chainMap, "setIDList");
@@ -28,14 +28,8 @@ function scr_drawDevVars(){
 		focusedChainLinkIDList = ds_map_find_value(chainMap, "linkIDList");
 		focusedChainType =  ds_map_find_value(chainMap, "type");
 		focusedChainFocused = ds_map_find_value(chainMap, "focused");
-		var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFocused);
-
-		if (is_numeric(focusedEntrySubMap)) {			
-			if (ds_exists(focusedEntrySubMap, ds_type_map)) {
-				focusedChainWordID = ds_map_find_value(focusedEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "word");
-			}
-		}
 	}
+	
 	
 	
 	
@@ -57,12 +51,12 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
-	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(focusedChainWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(obj_chain.focusedChainWordID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 18), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
-	draw_text(devVarX, wordTopMargin + (strHeight * 22), "chainShowList: " + scr_getStringOfList(obj_chain.chainShowList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 22), "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
 	draw_text(devVarX, wordTopMargin + (strHeight * 23), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
@@ -75,13 +69,17 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "filterActiveStack: " + string(filterActiveStack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 33), "filterGridActive: " + string(filterGridActive));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "setModeSearch: " + string(obj_toolPane.setModeSearch));
-	draw_text(devVarX, wordTopMargin + (strHeight * 35), "chainStretchCheckList: " + scr_getStringOfList(chainStretchCheckList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 35), "chunkShowList: " + scr_getStringOfList(obj_chain.chunkShowList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 36), "focusedChainWrongTool: " + string(obj_chain.focusedChainWrongTool));
 	
-	
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
-	draw_text(devVarX - 500, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 3), "showNavRight: " + string(obj_panelPane.showNavRight));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 5), "tokenImportDisplayTokenColName: " + string(global.tokenImportDisplayTokenColName));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 6), "tokenImportTranscriptColName: " + string(global.tokenImportTranscriptColName));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 7), "wordView: " + string(wordView));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 8), "unitView: " + string(unitView));
 
 	
 	// reset halign to left

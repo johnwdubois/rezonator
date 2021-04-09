@@ -36,22 +36,17 @@ function scr_paneOptions(optionSelected) {
 				}
 				// Give the user another way to leave the filter view
 				else if(obj_control.currentActiveLineGrid == obj_control.filterGrid) { 
-					// Exit the stackShow
-					if(obj_control.stackShowActive) {
-						obj_control.currentStackShowListPosition = ds_list_size(obj_control.stackShowList)-1;
-						scr_stackShow();
-					}
+
 					// Exit the plain filter
-					else {
-						// Remember the user's place
-						if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-							obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-						}
-			
-						// Switch to active grid
-						obj_control.filterGridActive = false;
-						obj_control.currentActiveLineGrid = obj_control.lineGrid
+					// Remember the user's place
+					if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
+						obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
 					}
+			
+					// Switch to active grid
+					obj_control.filterGridActive = false;
+					obj_control.currentActiveLineGrid = obj_control.lineGrid
+
 		
 					with (obj_alarm) {
 						alarm[1] = 5;

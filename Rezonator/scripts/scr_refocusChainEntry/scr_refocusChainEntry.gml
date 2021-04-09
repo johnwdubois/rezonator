@@ -11,6 +11,7 @@ function scr_refocusChainEntry(wordID){
 		var chainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 		var chainSetList = ds_map_find_value(chainSubMap, "setIDList");
 		var chainType = ds_map_find_value(chainSubMap, "type");
+		var effectColor = chainSubMap[?"chainColor"];
 		
 		// loop through this chain's entry list to find the entry with the correct word
 		var chainSetListSize = ds_list_size(chainSetList);
@@ -18,9 +19,28 @@ function scr_refocusChainEntry(wordID){
 			var currentChainEntry = ds_list_find_value(chainSetList, i);
 			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
 			var currentChainEntryWordID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
+			var currentChainEntryType = currentChainEntrySubMap[?"type"];
 			if (wordID == currentChainEntryWordID) {
 				entryToFocus = currentChainEntry;
-				break;
+			}
+			if(chainType == "rezChain" or chainType == "trackChain"){
+				if(!scr_isChunk(currentChainEntryWordID)){
+					
+					var wordDrawCol = currentChainEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
+					ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, currentChainEntryWordID - 1, true);
+					if(currentChainEntryType == "rez" ){
+						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryWordID - 1)){
+							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryWordID - 1, false);
+						}
+					}
+					if(currentChainEntryType == "track" ){
+						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryWordID - 1)){
+							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryWordID - 1, false);
+						}
+					}
+
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentChainEntryWordID - 1, effectColor);
+				}
 			}
 		}
 		
@@ -44,18 +64,6 @@ function scr_refocusChainEntry(wordID){
 		else if (chainType == "stackChain") {
 			chainListTab = obj_panelPane.functionChainList_tabStackBrush;
 			chainMode = obj_toolPane.modeRez;
-		}
-		
-		// set chainList tab
-		with (obj_panelPane) {
-			if (currentFunction == functionChainList) {
-				//functionChainList_currentTab = chainListTab;
-			}
-		}
-		
-		// set mode
-		with (obj_toolPane) {
-			//currentMode = chainMode;
 		}
 	}
 

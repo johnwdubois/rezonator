@@ -6,8 +6,8 @@ function scr_adaptFont(inputString, size){
 	if (!is_string(inputString)) inputString = string(inputString);
 
 	// get rid of any newlines in this string
-	inputString = string_replace_all(inputString, "\n", "");
-	inputString = string_replace_all(inputString, "\r", "");
+	if (string_count("\n", inputString) > 0) inputString = string_replace_all(inputString, "\n", "");
+	if (string_count("\r", inputString) > 0) inputString = string_replace_all(inputString, "\r", "");
 	
 	// determine if this string is latin, CJK, or hebrew
 	var isCJK = false;

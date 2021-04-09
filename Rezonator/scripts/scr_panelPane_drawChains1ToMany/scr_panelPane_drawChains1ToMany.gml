@@ -171,19 +171,6 @@ function scr_panelPane_drawChains1ToMany() {
 				var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader;
 				
 				var highlightEntryRect = false;
-
-				// Draw red rectangles if stretch word
-				if (chainType == "rezChain" or chainType == "trackChain") {
-					if (currentWordID != undefined) {
-						currentEntryAligned = ds_map_find_value(currentEntrySubMap, "alignEntry");
-						if (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
-							draw_set_alpha(0.25);
-							draw_set_color(c_red);
-							draw_rectangle(rectX1 - clipX, rectY1 - clipY, rectX2 - clipX, rectY2 - clipY, false);
-							currentEntryAligned = false;
-						}
-					}
-				}
 			
 				// Sets the link focused in the panelPane to the link focused in the main screen
 				if (chainFocusedEntry == currentEntry) {
@@ -192,7 +179,10 @@ function scr_panelPane_drawChains1ToMany() {
 					// Focus in the main screen
 					if (chainType == "rezChain" or chainType == "trackChain") {
 						ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
+						
+						if(!scr_isChunk(currentEntry) && is_numeric(currentWordID)){
+							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
+						}
 					}
 				}
 				else if (mouseover and ableToBeMouseOver) {
