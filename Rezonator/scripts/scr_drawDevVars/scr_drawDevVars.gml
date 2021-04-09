@@ -79,6 +79,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 550, wordTopMargin + (strHeight * 5), "tokenImportDisplayTokenColName: " + string(global.tokenImportDisplayTokenColName));
 	draw_text(devVarX - 550, wordTopMargin + (strHeight * 6), "tokenImportTranscriptColName: " + string(global.tokenImportTranscriptColName));
 	draw_text(devVarX - 550, wordTopMargin + (strHeight * 7), "wordView: " + string(wordView));
+	draw_text(devVarX - 550, wordTopMargin + (strHeight * 8), "unitView: " + string(unitView));
 
 	
 	// reset halign to left

@@ -256,7 +256,12 @@ function scr_loadREZ() {
 
 				
 					global.totalUnitAmount = scr_getTotalUnitAmount();
-
+					
+					// get wordView and unitView
+					var getWordView = ds_map_find_value(map, "wordView");
+					var getUnitView = ds_map_find_value(map, "unitView");
+					if (is_numeric(getWordView)) wordView = getWordView;
+					if (is_numeric(getUnitView)) unitView = getUnitView;
 					
 					
 				}

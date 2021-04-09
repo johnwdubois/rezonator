@@ -247,7 +247,7 @@ function scr_panelPane_drawUnits1toMany() {
 			colName = "tokenID";
 		}
 		else if (i == 1) {
-			colName = "place";
+			colName = "order";
 		}
 		else if (i >= 2 and i < 7) {
 			var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList, i - 2);

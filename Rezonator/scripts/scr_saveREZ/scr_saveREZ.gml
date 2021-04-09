@@ -1,15 +1,5 @@
 /*
-	scr_saveRez(autosave);
-	
-	Last Updated: 2020-01-01
-	
-	Called from: obj_fileLoader
-	
 	Purpose: Save all user created data into a special type of JSON file, a Rez file
-	
-	Mechanism: Organize the data into maps, then transfer those maps as JSON strings into the user specified file location
-	
-	Author: Terry DuBois
 */
 function scr_saveREZ(autosave) {
 
@@ -220,7 +210,9 @@ function scr_saveREZ(autosave) {
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);
 			
 		 	
-			
+			// save the wordView & unitView
+			ds_map_add(map, "wordView", wordView);
+			ds_map_add(map, "unitView", unitView);
 		
 		}
 		else if (object_index == obj_chain) {
