@@ -115,7 +115,11 @@ function scr_newChain(unitID) {
 	}
 
 	with (obj_panelPane) {
-		if (currentFunction == functionChainList) {
+		var willHop = (functionChainList_currentTab == functionChainList_tabRezBrush && obj_toolPane.currentMode == obj_toolPane.modeRez)
+		or (functionChainList_currentTab == functionChainList_tabTrackBrush && obj_toolPane.currentMode == obj_toolPane.modeTrack)
+		or (functionChainList_currentTab == functionChainList_tabStackBrush && obj_toolPane.currentMode != obj_toolPane.modeRead)
+		
+		if (currentFunction == functionChainList and willHop) {
 			alarm[4] = 2;
 		}
 	}
