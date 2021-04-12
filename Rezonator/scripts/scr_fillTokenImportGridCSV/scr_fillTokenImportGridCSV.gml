@@ -61,15 +61,7 @@ function scr_fillTokenImportGridCSV() {
 		ds_list_add(global.unitImportColNameList, "~UnitID", "~Participant");
 	}
 
-	// set custom label names for token and transcript columns
-	if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 3) != -1) {
-		var labelName = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colTier, 3);
-		ds_list_set(global.tokenImportColNameList, 2, labelName);
-	}
-	if (ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedTag, 4) != -1) {
-		var labelName = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colTier, 4);
-		ds_list_set(global.tokenImportColNameList, 3, labelName);
-	}
+
 
 	show_debug_message("scr_fillCustomLabelGrid(), STARTING... " + scr_printTime());
 	scr_fillCustomLabelGrid();

@@ -4,23 +4,19 @@ function scr_importGridToMorphGrid() {
 	if (ds_grid_height(global.importGrid) < 1) {
 		exit;
 	}
+	
+	var unitCounter = 1;
+	var unitStartCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitStartColName);
+	var unitEndCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitEndColName);
 
 	if (global.plainText) {
-	
-	
-		//ds_grid_set(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGrid_colText, j, currentExample);
 		
-		//ds_grid_set(obj_importMapping.plainTextInfoGrid, obj_importMapping.plainTextInfoGrid_colGroup, j, currentExample);
-		// get importGrid columns
 		var unitCounter = 0;
-		//var participantCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 3);
+	
+
+		// get importGrid columns
 		var morphCol = global.plainTextInfoGrid_colText;
 	
-		/*
-		if (typeof(glossCol) != "number") {
-			glossCol = -1;
-		}
-		*/
 		
 		// build morphGrid!
 		var plainTextInfoGridHeight = ds_grid_height(global.plainTextInfoGrid);
@@ -68,13 +64,7 @@ function scr_importGridToMorphGrid() {
 
 
 	
-		// get importGrid columns
-		var unitCounter = 1;
-		var unitStartCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 0);
-		var unitEndCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 1);
-		var participantCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 2);
-		var morphCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 3);
-		var glossCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 4);
+
 	
 	
 		var prevUID = 0;
@@ -94,7 +84,7 @@ function scr_importGridToMorphGrid() {
 		var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
 
 
-		glossCol = ds_list_find_index(global.importGridColNameList, global.tokenImportTranscriptColName);
+		var glossCol = ds_list_find_index(global.importGridColNameList, global.tokenImportTranscriptColName);
 	
 
 		if (typeof(glossCol) != "number") {
@@ -179,14 +169,6 @@ function scr_importGridToMorphGrid() {
 
 
 	
-		// get importGrid columns
-		var unitCounter = 1;
-		var unitStartCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 0);
-		var unitEndCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 1);
-		var participantCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 2);
-		var morphCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 3);
-		var glossCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 4);
-	
 	
 		var prevUID = 0;
 		var curUID = 0;
@@ -270,15 +252,8 @@ function scr_importGridToMorphGrid() {
 		}
 	}
 	else {
-	
-		// get importGrid columns
-		var unitCounter = 0;
-		var unitStartCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 0);
-		var unitEndCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 1);
-		var participantCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 2);
-		var morphCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 3);
-		var glossCol = ds_grid_get(global.rezInfoGrid, global.rezInfoGrid_colAssignedCol, 4);
-	
+		
+		unitCounter = 0;
 	
 		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
 		var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
@@ -313,12 +288,6 @@ function scr_importGridToMorphGrid() {
 	
 			var currentUnitStart = 0;
 			var currentUnitEnd = 0;
-			if (unitStartCol >= 0) {
-				currentUnitStart = ds_grid_get(global.importGrid, unitStartCol, i);
-			}
-			if (unitEndCol >= 0) {
-				currentUnitEnd = ds_grid_get(global.importGrid, unitEndCol, i);
-			}
 	
 			unitCounter++;
 		

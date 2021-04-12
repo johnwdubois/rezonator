@@ -9,7 +9,6 @@ showDevVars = false;
 //pickwhipColorNormal = c_blue;
 //pickwhipColorRequired = c_red;
 
-rezInfoGridSelectedRow = -1;
 tagInfoGridSelectedRow = -1;
 
 tagColorList = ds_list_create();
