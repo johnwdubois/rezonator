@@ -178,7 +178,7 @@ function scr_importExceptionWindowDev() {
 			scr_importTXTExceptions();
 			scr_importInfoGrid();
 		
-			instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingRezInfo);
+			
 			instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingTagInfo);
 		
 			with (obj_importException) {

@@ -36,8 +36,6 @@ if (global.plainText) {
 	room_goto(rm_mainScreen);
 }
 else{
-	//instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingRezInfo);
-	//instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingTagInfo);
 	instance_create_layer(0, 0, "InstancesDialogue", obj_importException);
 }
 

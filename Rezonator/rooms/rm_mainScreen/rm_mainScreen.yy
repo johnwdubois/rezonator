@@ -47,7 +47,6 @@
       ],"visible":true,"depth":600,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"HelpPane","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_control","path":"objects/obj_control/obj_control.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":160.0,"y":512.0,"resourceVersion":"1.0","name":"inst_control","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"obj_automaticLinkDraw","path":"objects/obj_automaticLinkDraw/obj_automaticLinkDraw.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":416.0,"y":960.0,"resourceVersion":"1.0","name":"inst_22E70A02","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":700,"userdefinedDepth":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"gridX":32,"gridY":32,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"InstanceControl","tags":[],"resourceType":"GMRInstanceLayer",},
     {"instances":[
         {"properties":[],"isDnd":false,"objectId":{"name":"obj_chain","path":"objects/obj_chain/obj_chain.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":621.0,"y":93.0,"resourceVersion":"1.0","name":"inst_chain","tags":[],"resourceType":"GMRInstance",},
@@ -69,7 +68,6 @@
     {"name":"inst_menuBar","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_43C46CAB","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_4309C9E","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
-    {"name":"inst_22E70A02","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_PanelPane_chainList","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_14039C89","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
     {"name":"inst_4B7998C1","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},
