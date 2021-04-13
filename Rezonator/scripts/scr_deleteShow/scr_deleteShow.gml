@@ -26,7 +26,7 @@ function scr_deleteShow(showID){
 	}
 
 	//delete show from map
-	ds_map_delete(global.nodeMap, showID);
+	scr_deleteFromNodeMap(showID);
 	
 	
 	//set active show to be nothing

@@ -292,6 +292,7 @@ function scr_loadREZ() {
 	var stackChainList = global.nodeMap[? "stackChainList"];
 	var showList = global.nodeMap[? "showList"];
 	var chunkList = global.nodeMap[? "chunkList"];
+	var nodeList = global.nodeMap[? "nodeList"];
 	if (!is_numeric(rezChainList)) {
 		rezChainList = ds_list_create();
 		ds_map_add_list(global.nodeMap, "rezChainList", rezChainList);
@@ -309,6 +310,9 @@ function scr_loadREZ() {
 	}
 	if (!is_numeric(chunkList)) {
 		ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
+	}
+	if (!is_numeric(nodeList)) {
+		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 	}
 	
 	

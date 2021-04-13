@@ -674,6 +674,9 @@ ds_map_add_list(global.nodeMap, "showList", showList);
 // add chunkList to nodeMap
 ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
 
+// add NodeList to nodeMap
+ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
+
 
 global.delayInput = 0;
 

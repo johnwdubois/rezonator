@@ -16,32 +16,21 @@ else{
 }
 
 
-//var scrollTogetherButtonX = 100;
-//var scrollTogetherButtonY = 100;
-//var scrollTogetherButtonRectX1 = scrollTogetherButtonX - sprite_get_width(spr_scrollTogether) / 2;
-//var scrollTogetherButtonRectY1 = scrollTogetherButtonY - sprite_get_height(spr_scrollTogether) / 2;
-//var scrollTogetherButtonRectX2 = scrollTogetherButtonX + sprite_get_width(spr_scrollTogether) / 2;
-//var scrollTogetherButtonRectY2 = scrollTogetherButtonY + sprite_get_height(spr_scrollTogether) / 2;
+var scrollTogetherButtonX = 100;
+var scrollTogetherButtonY = 100;
+var mapViewerButtonRectX1 = scrollTogetherButtonX - 15;
+var mapViewerButtonRectY1 = scrollTogetherButtonY - 15;
+var mapViewerButtonRectX2 = scrollTogetherButtonX + 15;
+var mapViewerButtonRectY2 = scrollTogetherButtonY + 15;
 
-//draw_sprite_ext(spr_scrollTogether, scrollTogether, scrollTogetherButtonX, scrollTogetherButtonY, 1, 1, 0, c_purple, 1);
+var mouseOverMapViewer = point_in_rectangle(mouse_x, mouse_y, mapViewerButtonRectX1, mapViewerButtonRectY1, mapViewerButtonRectX2, mapViewerButtonRectY2)
+if (mouseOverMapViewer) {
+	if(device_mouse_check_button_released(0,mb_left)){
+		mapViewActive = !mapViewActive;
+	}
+}
 
-//if (point_in_rectangle(mouse_x, mouse_y, scrollTogetherButtonRectX1, scrollTogetherButtonRectY1, scrollTogetherButtonRectX2, scrollTogetherButtonRectY2)) {
-//	if (mouse_check_button_pressed(mb_left)) {
-//		if (scrollTogether) {
-//			scrollTogether = false;
-//		}
-//		else {
-//			scrollTogether = true;
-			
-//			/*
-//			for (var i = 0; i < array_length_1d(grid); i++)
-//			{
-//				gridCurrentTopViewRow[i] = 0;
-//			}
-//			*/
-//		}
-//	}
-//}
+
 var camViewWidth = camera_get_view_width(camera_get_active());
 var camViewHeight = camera_get_view_height(camera_get_active());
 draw_set_alpha(1);
@@ -50,6 +39,13 @@ draw_rectangle(0,0,camViewWidth,camViewHeight, false);
 draw_set_color(global.colorThemeBorders);
 //draw_rectangle(20,windowY,windowX,windowY + windowHeight, true);
 
+draw_set_color(global.colorThemeText);
+var checkBoxScale = 1* max(global.fontSize,3)/5;
+scr_drawRectWidth(mapViewerButtonRectX1, mapViewerButtonRectY1, mapViewerButtonRectX2, mapViewerButtonRectY2, 3, true);
+if(!mapViewActive) draw_sprite_ext(spr_checkmark, 0, mean(mapViewerButtonRectX1, mapViewerButtonRectX2), mean(mapViewerButtonRectY1, mapViewerButtonRectY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
+
+
+draw_text(mapViewerButtonRectX2 + 10, mean(mapViewerButtonRectY1, mapViewerButtonRectY2), (mapViewActive)? "MapView":"GridView");
 
 
 
@@ -61,7 +57,11 @@ draw_set_valign(fa_middle);
 //for (var i = 0; i < currentGrids; i++) {
 //	windowX[i] = ((window_get_width() / currentGrids) * i) + 20;
 //	windowWidth[i] = (window_get_width() / currentGrids) - 20;
-	
-scr_drawGridViewerClipped();
+if(!obj_gridViewer.mapViewActive){
+	scr_drawGridViewerClipped();
+}
+else{
+	scr_drawMapViewer();
+}
 scr_gridViewDrawBackArrow();
 //}
