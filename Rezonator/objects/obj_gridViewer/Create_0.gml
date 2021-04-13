@@ -108,4 +108,3 @@ rectX2 = 0;
 notRefreshed = true;
 
 instance_create_layer(0, 0, "InstancesDialogue", obj_gridListWindow);
-

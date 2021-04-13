@@ -60,8 +60,5 @@ draw_set_valign(fa_middle);
 if(!obj_gridViewer.mapViewActive){
 	scr_drawGridViewerClipped();
 }
-else{
-	scr_drawMapViewer();
-}
 scr_gridViewDrawBackArrow();
 //}

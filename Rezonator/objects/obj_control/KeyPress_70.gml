@@ -1,6 +1,6 @@
 ///@description Activate Search
 if (!shortcutsEnabled || obj_panelPane.discoSelectionActive || mouseoverTagShortcut != ""
-|| instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox)) {
+|| instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || gridView) {
 	exit;
 }
 
