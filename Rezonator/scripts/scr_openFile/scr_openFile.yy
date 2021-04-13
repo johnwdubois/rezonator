@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "chains",
-    "path": "folders/Scripts/chains.yy",
+    "name": "functions",
+    "path": "folders/Scripts/import/functions.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_raceCheckChain",
+  "name": "scr_openFile",
   "tags": [],
   "resourceType": "GMScript",
 }

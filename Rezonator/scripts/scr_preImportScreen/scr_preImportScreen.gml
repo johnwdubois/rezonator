@@ -215,7 +215,7 @@ function scr_preImportScreen(){
 	if (mouseoverContinue && mouse_check_button_released(mb_left)) {
 		
 		global.currentDirString = global.previousImportDirectory;
-		scr_openXML();
+		scr_openFile();
 		
 	}
 	

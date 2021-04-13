@@ -12,9 +12,6 @@ function scr_hideOptions(optionSelected) {
 		case "menu_stack":// hide/show stack chains
 			obj_chain.toggleDrawStack = !obj_chain.toggleDrawStack;
 		break;
-		case "menu_place":// hide/show place chains
-			obj_chain.showPlaceChains = !obj_chain.showPlaceChains;	
-		break;
 		default:
 		break;
 	

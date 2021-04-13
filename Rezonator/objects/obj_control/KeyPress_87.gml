@@ -3,9 +3,6 @@ if (!shortcutsEnabled || dialogueBoxActive) {
 	exit;
 }
 
-//On time out until we know what to do with it
-//scr_toggleTranscription();
-//show_message("trnascript col: " +string(global.tokenImportTranscriptColName) + ",      dispay col: " + string(global.tokenImportDisplayTokenColName));
 if( global.tokenImportTranscriptColName != undefined && global.tokenImportDisplayTokenColName != undefined){
 	if( string_length(global.tokenImportTranscriptColName) > 0 &&  string_length(global.tokenImportDisplayTokenColName) > 0){
 		var transcriptCol = ds_list_find_index(global.tokenImportColNameList, global.tokenImportTranscriptColName);

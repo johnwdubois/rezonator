@@ -1,16 +1,4 @@
-function scr_openXML() {
-	/*
-		scr_openXML();
-	
-		Last Updated: 2018-07-12
-	
-		Called from: obj_openingScreen
-	
-		Purpose: Opens up dialogue box for importing XML file
-	
-		Mechanism: Loop through entire text file and add each line to global.fileLineRipList
-	*/
-	//show_message(string(global.previousImportDirectory));
+function scr_openFile() {
 	
 	show_debug_message("global.importType: " + string(global.importType));
 

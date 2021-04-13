@@ -11,7 +11,7 @@ function scr_importGridToMorphGrid() {
 
 	if (global.plainText) {
 		
-		var unitCounter = 0;
+		unitCounter = 0;
 	
 
 		// get importGrid columns

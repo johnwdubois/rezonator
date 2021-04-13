@@ -38,7 +38,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 	var wordStateChunk = obj_control.wordStateChunk;
 	var wordStateNormal = obj_control.wordStateNormal;
 	var gridSpaceHorizontal = obj_control.gridSpaceHorizontal;
-	var showPlaceChains = obj_chain.showPlaceChains;
 	var showDevVars = obj_control.showDevVars;
 	var leftScreenBound = obj_control.leftScreenBound;
 	var currentTool = obj_toolPane.currentTool;
@@ -153,14 +152,6 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, false);
 	
 	
-		// Draw Place chains when needed
-		if(showPlaceChains) {
-			// Place Chains Prototype
-			var wordHasLetters = string_length(string_letters(currentWordStringType)) > 0;
-			if(drawWordLoop != currentWordIDListSize - 1 && wordHasLetters) {
-				scr_drawPlaceChains(wordRectX1, wordRectY1, wordRectX2, wordRectY2, drawWordLoop, currentWordIDListSize, currentWordGridRow,currentWordDisplayCol);
-			}
-		}
 	
 		if (wordRectX2 > speakerRectX2) {
 			scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);

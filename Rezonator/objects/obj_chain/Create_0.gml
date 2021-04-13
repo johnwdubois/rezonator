@@ -149,7 +149,6 @@ goldStandardGrid_colUser = 2;
 goldStandardGrid_colScore = 3;
 
 // For toggling Place chains
-showPlaceChains = false;
 showChainArrows = false;
 
 
