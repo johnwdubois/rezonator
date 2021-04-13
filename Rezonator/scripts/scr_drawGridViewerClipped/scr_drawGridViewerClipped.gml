@@ -1,16 +1,6 @@
 function scr_drawGridViewerClipped() {
 	/*
-		scr_drawGridViewer(gridArrayIndex);
-	
-		Last Updated: 2019-02-05
-	
-		Called from: obj_gridViewer
-	
 		Purpose: display Rezonator's backend grids for debugging and research purposes
-	
-		Mechanism: loop through the selected grid and draw a string version of every cell value
-	
-		Author: Terry DuBois
 	*/
 
 
@@ -73,10 +63,19 @@ function scr_drawGridViewerClipped() {
 
 
 	var gridColXList = ds_map_find_value(gridViewColXListMap, scr_getGridNameString(grid));
-	if (gridColXList == -1 or is_undefined(gridColXList)) {
+	if (!scr_isNumericAndExists(gridColXList, ds_type_list)) {
 		exit;
 	}
 	var gridColXListSize = ds_list_size(gridColXList);
+	
+	// spread the columns to be evenly spaced across the window width
+	if (keyboard_check(vk_alt) && keyboard_check(vk_shift) && keyboard_check_released(ord("Z"))) {
+		for (var i = 0; i < gridColXListSize; i++) {
+			var currentColX = windowX1 + (((windowWidth / gridColXListSize) + 1) * i);
+			ds_list_set(gridColXList, i, currentColX);
+		}
+	}
+	
 	
 	if (gridColXListSize < gridWidth) {
 		scr_gridViewerDynamicWidth(grid);
