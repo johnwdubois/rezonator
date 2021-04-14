@@ -14,6 +14,7 @@
     {"id":{"name":"spr_wheresElmoBG","path":"sprites/spr_wheresElmoBG/spr_wheresElmoBG.yy",},"order":3,},
     {"id":{"name":"spr_calloutBubble","path":"sprites/spr_calloutBubble/spr_calloutBubble.yy",},"order":4,},
     {"id":{"name":"spr_search","path":"sprites/spr_search/spr_search.yy",},"order":5,},
+    {"id":{"name":"scr_initializeDiscourseNodes","path":"scripts/scr_initializeDiscourseNodes/scr_initializeDiscourseNodes.yy",},"order":25,},
     {"id":{"name":"spr_focusPoint","path":"sprites/spr_focusPoint/spr_focusPoint.yy",},"order":6,},
     {"id":{"name":"spr_xButton","path":"sprites/spr_xButton/spr_xButton.yy",},"order":7,},
     {"id":{"name":"scr_chain1ToManyHeaderRightClickOptions","path":"scripts/scr_chain1ToManyHeaderRightClickOptions/scr_chain1ToManyHeaderRightClickOptions.yy",},"order":49,},
