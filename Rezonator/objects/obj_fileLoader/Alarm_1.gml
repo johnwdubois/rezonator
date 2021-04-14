@@ -55,7 +55,6 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	
 	scr_importTagMaps();
 	scr_transferSpecialFields();
-	//scr_copyLevelMapping();
 }
 
 alarm[1] = global.autosaveTimer;

@@ -17,7 +17,7 @@ gridViewColXHolding = -1
 gridViewColXHoldingPrev = 0;
 gridViewColXHoldingDiff = 0;
 gridViewColPrevList = ds_list_create();
-
+mapViewActive = false;
 
 //scrollTogether = false;
 
@@ -108,4 +108,3 @@ rectX2 = 0;
 notRefreshed = true;
 
 instance_create_layer(0, 0, "InstancesDialogue", obj_gridListWindow);
-

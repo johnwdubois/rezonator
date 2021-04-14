@@ -130,7 +130,6 @@ unitIDCounter = 0;
 
 // Boolean for switching transcript view on/off
 wordTokenView = false;
-obj_alarm.alarm[8] = 5;
 wordView = 2;
 unitView = 1;
 
@@ -674,6 +673,9 @@ ds_map_add_list(global.nodeMap, "showList", showList);
 
 // add chunkList to nodeMap
 ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
+
+// add NodeList to nodeMap
+ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 
 
 global.delayInput = 0;

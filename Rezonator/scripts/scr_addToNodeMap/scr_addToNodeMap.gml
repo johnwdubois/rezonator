@@ -29,6 +29,8 @@ function scr_addToNodeMap(type){
 	// add Node to NodeMap
 	ds_map_add_map(global.nodeMap, nodeKey, subMap);
 	
+	ds_list_add(global.nodeMap[?"nodeList"], nodeKey);
+	
 	// return unique ID as random hex string (nodeKey)
 	return nodeKey;
 	

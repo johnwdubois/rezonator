@@ -81,10 +81,10 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 2");
 			// delete and destroy the focused entry and its chain
-			ds_map_delete(global.nodeMap, focusedEntry);
-			ds_map_delete(global.nodeMap, obj_chain.currentFocusedChainID);
+			scr_deleteFromNodeMap(focusedEntry);
+			scr_deleteFromNodeMap(obj_chain.currentFocusedChainID);
 			ds_map_destroy(focusedEntrySubMap);
-			ds_map_destroy(chainSubMap);
+			ds_map_destroy(chainSubMap);	
 			
 			scr_removeChainFromLists(obj_chain.currentFocusedChainID, chainType);
 			
@@ -139,7 +139,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			show_debug_message("scr_deleteFromChain() , CHECK 5");
 			// remove the focused entry from its chain's setList and delete it from nodeMap
 			scr_deleteFromList(chainSetList, focusedEntry);
-			ds_map_delete(global.nodeMap, focusedEntry);
+			scr_deleteFromNodeMap(focusedEntry);
 			ds_map_destroy(focusedEntrySubMap);
 			
 			// remove the entry from the vizSetList
@@ -150,7 +150,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			var chainLinkListIndex = ds_list_find_index(chainLinkList, firstGoalLink);
 			ds_list_delete(chainLinkList, chainLinkListIndex);
 			ds_map_replace(goalEntrySubMap, "sourceLink", "");
-			ds_map_delete(global.nodeMap, firstGoalLink);
+			scr_deleteFromNodeMap(firstGoalLink);
 			
 			// sort vizSetList!
 			if (sortVizSetList) {
@@ -200,7 +200,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	ds_list_delete(chainLinkList, chainLinkListIndex);
 	
 	// remove sourceLink from nodeMap and destroy sourceLink
-	ds_map_delete(global.nodeMap, sourceLink);
+	scr_deleteFromNodeMap(sourceLink);
 	ds_map_destroy(sourceLinkSubMap);
 	
 	// loop through the goals for the current entry and reset their sources to be sourceEntry
@@ -236,7 +236,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	}
 	
 	// remove focusedEntry from nodeMap and destroy focusedEntry
-	ds_map_delete(global.nodeMap, focusedEntry);
+	scr_deleteFromNodeMap(focusedEntry);
 	ds_map_destroy(focusedEntrySubMap);
 	
 	// sort vizSetList!

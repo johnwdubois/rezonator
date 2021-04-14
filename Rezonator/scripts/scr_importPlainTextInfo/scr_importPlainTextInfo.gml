@@ -160,11 +160,6 @@ function scr_importPlainTextInfo() {
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(1);
 	draw_rectangle(tagInfoWindowRectX1, tagInfoWindowRectY1, tagInfoWindowRectX2, tagInfoWindowRectY2, true);
-	if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
-		for (var i = 0; i < 5; i++) {
-			draw_rectangle(tagInfoWindowRectX1 - i, tagInfoWindowRectY1 - i, tagInfoWindowRectX2 + i, tagInfoWindowRectY2 + i, true);
-		}
-	}
 
 
 
