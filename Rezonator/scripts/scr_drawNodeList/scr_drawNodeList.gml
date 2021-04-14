@@ -17,13 +17,13 @@ function scr_drawNodeList(){
 	draw_text(100, 150 + strHeight, "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
 	draw_text(100, 150 + (strHeight * 2), "trackChainList: " + scr_getStringOfList(global.nodeMap[? "trackChainList"]));
 	draw_text(100, 150 + (strHeight * 3), "stackChainList: " + scr_getStringOfList(global.nodeMap[? "stackChainList"]));
-	draw_text(100, 150 + (strHeight * 3), "stackChainList: " + scr_getStringOfList(global.nodeMap[? "stackChainList"]));
+	draw_text(100, 150 + (strHeight * 4), "showList: " + scr_getStringOfList(global.nodeMap[? "showList"]));
 	
 	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	x = 100;
-	y = 180 + (strHeight * 4);
+	y = 180 + (strHeight * 5);
 	windowWidth = camWidth * 0.2;
 	windowHeight = camHeight - windowY - 100;
 	

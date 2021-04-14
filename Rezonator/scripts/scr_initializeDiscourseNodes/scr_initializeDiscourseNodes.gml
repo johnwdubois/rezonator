@@ -3,7 +3,13 @@
 function scr_initializeDiscourseNodes(){
 	
 	show_debug_message("scr_initializeDiscourseNodes() ... START " + scr_printTime());
-	show_message("scr_initializeDiscourseNodes() ... START " + scr_printTime());
+	
+	var currentDiscourseNode = scr_addToNodeMap("Discourse");
+	var currentDiscourseSubMap = global.nodeMap[? currentDiscourseNode];	
+	
+	var unitList = ds_list_create();
+	var tokenList = ds_list_create();
+	
 	
 	var tokenSeq = 1;
 	
@@ -23,6 +29,8 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentTokenSubMap, "tokenSeq", tokenSeq);
 				tokenSeq++;
 				
+				//add each token to the totoal token's List
+				ds_list_add(tokenList, currentTokenNode);
 				
 				// make entry node
 				var currentEntryNode = scr_addToNodeMap("entry");
@@ -30,7 +38,7 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentEntrySubMap, "token", currentTokenNode);
 				
 				
-				ds_list_add(currentEntryList, currentTokenNode);
+				ds_list_add(currentEntryList, currentEntryNode);
 			}
 		}
 		
@@ -41,12 +49,17 @@ function scr_initializeDiscourseNodes(){
 		// add values to unit node
 		ds_map_add(currentUnitSubMap, "unitSeq", i + 1);
 		ds_map_add_list(currentUnitSubMap, "entryList", currentEntryList);
+		
+		//add each token to the totoal token's List
+		ds_list_add(unitList, currentUnitNode);
 	
 	}
 	
 	
+	ds_map_add(currentDiscourseSubMap, "unitList", unitList);
+	ds_map_add(currentDiscourseSubMap, "tokenList", tokenList);	
+	
 	show_debug_message("scr_initializeDiscourseNodes() ... END " + scr_printTime());
-	show_message("scr_initializeDiscourseNodes() ... END " + scr_printTime());
 	
 
 }

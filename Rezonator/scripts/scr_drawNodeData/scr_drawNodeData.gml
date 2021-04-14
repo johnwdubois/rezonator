@@ -44,7 +44,8 @@ function scr_drawNodeData(){
 
 			// check if this value is a list
 			var isList = (subMapKey == "goalLinkList" || subMapKey == "linkIDList" || subMapKey == "vizSetIDList"
-							|| subMapKey == "setIDList"  || subMapKey == "inChainsList" || subMapKey == "tokenList");
+							|| subMapKey == "setIDList"  || subMapKey == "inChainsList" || subMapKey == "tokenList"
+							|| subMapKey == "entryList"|| subMapKey == "unitList");
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}
@@ -54,7 +55,7 @@ function scr_drawNodeData(){
 			var textY = y + (i * strHeight) + scrollPlusY;
 			draw_set_color((subMapKey == "type") ? c_green : global.colorThemeText);
 			draw_set_alpha(1);
-			draw_text(textX - clipX, textY - clipY, string(subMapKey) + ":    " + subMapValStr);
+			draw_text(textX - clipX, textY - clipY, string(subMapKey) + ":    " + subMapValStr,);
 			subMapKey = ds_map_find_next(subMap, subMapKey);
 	
 		}
