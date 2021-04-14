@@ -9,7 +9,6 @@ showDevVars = false;
 //pickwhipColorNormal = c_blue;
 //pickwhipColorRequired = c_red;
 
-rezInfoGridSelectedRow = -1;
 tagInfoGridSelectedRow = -1;
 
 tagColorList = ds_list_create();
@@ -36,8 +35,6 @@ if (global.plainText) {
 	room_goto(rm_mainScreen);
 }
 else{
-	//instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingRezInfo);
-	//instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingTagInfo);
 	instance_create_layer(0, 0, "InstancesDialogue", obj_importException);
 }
 

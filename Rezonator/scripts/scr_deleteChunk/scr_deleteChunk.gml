@@ -13,7 +13,7 @@ function scr_deleteChunk(chunkID) {
 	if (!ds_exists(chunkSubMap, ds_type_map)) exit;
 	
 	// remove the submap from the nodemap
-	ds_map_delete(global.nodeMap, chunkID);
+	scr_deleteFromNodeMap(chunkID);
 	
 	// destroy the chunk's tokenList
 	var tokenList = chunkSubMap[? "tokenList"];

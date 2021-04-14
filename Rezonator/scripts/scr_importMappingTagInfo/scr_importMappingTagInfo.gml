@@ -262,10 +262,6 @@ function scr_importMappingTagInfo() {
 	}
 
 
-	if (obj_importMapping.rezInfoGridSelectedRow < 0) {
-		obj_importMapping.rezInfoGridSelectedRow = -1;
-	}
-
 
 
 

@@ -16,11 +16,15 @@ function scr_sortElan(){
 		for (var i = 0; i < ds_grid_height(global.importGrid); i++) {
 			if (unitStartColFound) {
 				var currentUnitStart = ds_grid_get(global.importGrid, unitStartCol, i);
-				ds_grid_set(global.importGrid, unitStartCol, i, real(currentUnitStart));
+				if(is_string(currentUnitStart) && currentUnitStart != undefined && string_letters(currentUnitStart) != ""){
+					ds_grid_set(global.importGrid, unitStartCol, i, real(currentUnitStart));
+				}
 			}
 			if (unitEndColFound) {
 				var currentUnitEnd = ds_grid_get(global.importGrid, unitEndCol, i);
-				ds_grid_set(global.importGrid, unitEndCol, i, real(currentUnitEnd));
+				if(is_string(currentUnitEnd) && currentUnitEnd != undefined && string_letters(currentUnitEnd) != ""){
+					ds_grid_set(global.importGrid, unitEndCol, i, real(currentUnitEnd));
+				}
 			}
 		}
 		

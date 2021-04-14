@@ -148,11 +148,7 @@ function scr_importExceptionWindowDev() {
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(1);
 	draw_rectangle(exceptionInfoWindowRectX1, exceptionInfoWindowRectY1, exceptionInfoWindowRectX2, exceptionInfoWindowRectY2, true);
-	if (obj_importMapping.rezInfoGridSelectedRow >= 0) {
-		for (var i = 0; i < 5; i++) {
-			draw_rectangle(exceptionInfoWindowRectX1 - i, exceptionInfoWindowRectY1 - i, exceptionInfoWindowRectX2 + i, exceptionInfoWindowRectY2 + i, true);
-		}
-	}
+
 
 
 
@@ -178,7 +174,7 @@ function scr_importExceptionWindowDev() {
 			scr_importTXTExceptions();
 			scr_importInfoGrid();
 		
-			instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingRezInfo);
+			
 			instance_create_layer(0, 0, "InstancesDialogue", obj_importMappingTagInfo);
 		
 			with (obj_importException) {

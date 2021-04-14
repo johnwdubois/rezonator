@@ -43,7 +43,7 @@ function scr_newProjectWindow() {
 				alarm[3] = 0;
 			}
 			global.currentDirString = global.previousImportDirectory;
-			scr_openXML();
+			scr_openFile();
 		}
 	}
 	else {
