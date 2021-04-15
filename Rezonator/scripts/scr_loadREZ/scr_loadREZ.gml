@@ -338,8 +338,6 @@ function scr_loadREZ() {
 		if (newGridSpaceVertical != obj_control.gridSpaceVertical) {
 			obj_control.gridSpaceVertical = newGridSpaceVertical;
 			obj_control.prevGridSpaceVertical = newGridSpaceVertical;
-			obj_control.filterPrevGridSpaceVertical = newGridSpaceVertical;
-			obj_control.searchPrevGridSpaceVertical = newGridSpaceVertical;
 		}
 	}
 

@@ -3,8 +3,73 @@
 	Purpose: draws the speaker labels to the left of the units in the discourse
 	
 */
-function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, participantName, participantColor, speakerLabelTextBuffer, discoColor) {
+function scr_drawSpeakerLabel(unitSubMap, pixelY) {
 
+	
+	// get y coordinates for this speaker label
+	var sectionRectY1 = pixelY - (gridSpaceVertical * 0.5);
+	var sectionRectY2 = sectionRectY1 + gridSpaceVertical;
+	
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
+	draw_set_alpha(1);
+	var spaceWidth = string_width("  ");
+	
+	// get tag map for this unit
+	var tagMap = unitSubMap[? "tagMap"];
+	if (!scr_isNumericAndExists(tagMap, ds_type_map)) exit;
+	
+	// draw each section of speaker label
+	var plusX = 0;
+	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
+	for (var i = 0; i < speakerLabelColXListSize; i++) {
+		
+		// get x coordinates for this speaker label
+		var sectionRectX1 = plusX;
+		var sectionRectX2 = speakerLabelColXList[| i];
+		
+		// draw rectangle
+		draw_set_color(i == 0 ? c_blue : c_red);
+		draw_rectangle(sectionRectX1, sectionRectY1, sectionRectX2, sectionRectY2, false);
+		
+		// get section text
+		var sectionText = "";
+		if (i == 0) sectionText = string(unitSubMap[? "unitSeq"]);
+		else if (i == 1) sectionText = string(tagMap[? "~Participant"]);
+		
+		// cut off section text if its too long
+		var cutoffs = 0;
+		while (string_width(sectionText + "... ") + spaceWidth > (sectionRectX2 - sectionRectX1) and cutoffs < 100) {
+			sectionText = string_delete(sectionText, string_length(sectionText), 1);
+			cutoffs++;
+		}
+		if (cutoffs > 0) {
+			sectionText += "... ";
+		}
+		
+		// draw section text
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(sectionRectX1 + spaceWidth), floor(pixelY), sectionText);
+		
+		// if this is the last section, let's draw a horizontal line to divide units
+		if (i == speakerLabelColXListSize - 1) {
+			draw_set_color(global.colorThemeBG);
+			draw_line(0, sectionRectY2 - 2, sectionRectX2, sectionRectY2 - 2);
+		}
+		
+		plusX += sectionRectX2;
+	}
+	
+	
+
+	
+	
+
+	
+	
+	
+	
+	/*
 	participantColor = (is_undefined(participantColor)) ? c_gray : participantColor;
 	discoColor = global.colorThemeSelected1;
 
@@ -94,5 +159,6 @@ function scr_drawSpeakerLabel(unitID, currentDiscoID, currentLineNumberLabel, pa
 		draw_text(speakerLabelTextX, speakerLabelTextY, speakerLabelCurrentColStr);
 		
 	}
+	*/
 
 }

@@ -1,16 +1,10 @@
 /*
-	obj_control: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of a control object
-	
 	Purpose: Instantiate all variables used by control objects
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
+
+var camWidth = camera_get_view_width(view_camera[0]);
+var camHeight = camera_get_view_height(view_camera[0]);
+
 inDrag = false;
 drag_offsetY = 0;
 flickVelY = 0;
@@ -22,7 +16,7 @@ flick_power_reduction_each_step = 3;
 currentCenterDisplayRow = 0;
 prevCenterYDest = 0;
 prevCenterDisplayRow = 0;
-cameraBottomLine = camera_get_view_height(camera_get_active());
+cameraBottomLine = camHeight;
 
 // Bound and set the display grid of the words
 gridSpaceHorizontalMin = 60;
@@ -34,10 +28,6 @@ gridSpaceVerticalMax = 300;
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 60;
 prevGridSpaceVertical = gridSpaceVertical;
-//searchGridSpaceVertical = gridSpaceVertical;
-searchPrevGridSpaceVertical = gridSpaceVertical;
-//filterGridSpaceVertical = gridSpaceVertical;
-filterPrevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
 // Set the speed of scrolling
@@ -49,7 +39,7 @@ arrowSpeed = 18;
 
 // Measure the space taken up by the speaker labels, and set the left-align margin of the words
 speakerLabelMargin = 200;
-wordLeftMargin = 220;
+wordLeftMargin = 0;
 wordLeftMarginDest = 220;
 speakerLabelHoldingDelay = false;
 
@@ -59,17 +49,18 @@ speakerLabelColXHolding = -1
 speakerLabelColXHoldingPrev = 0;
 speakerLabelColXHoldingDiff = 0;
 speakerLabelColPrevList = ds_list_create();
-for (var i = 0; i < 4; i++) {
-	//if (i == 3) {
-	//	ds_list_add(speakerLabelColXList, (i - 1) * 100);
-	//}
-	//else {
-		ds_list_add(speakerLabelColXList, i * 100);
-	//}
+
+// set default width values for speaker label
+var speakerLabelPlusX = 0;
+for (var i = 0; i < 2; i++) {
+	var currentSectionX2 = 0;
+	if (i == 0) currentSectionX2 = camWidth * 0.1;
+	else if (i == 1) currentSectionX2 = camWidth * 0.2;
+	ds_list_add(speakerLabelColXList, speakerLabelPlusX + currentSectionX2);
+	speakerLabelPlusX += currentSectionX2;
 }
-if (ds_grid_height(global.fileLineRipGrid) < 2) {
-	ds_list_set(speakerLabelColXList, 2, 100);
-}
+
+
 with (obj_alarm) {
 	alarm[1] = 5;
 }
@@ -537,6 +528,9 @@ boxGrid_colChainIDLists = 2;
 
 
 scr_scrollBarInit();
+scrollPlusX = 0;
+scrollPlusXDest = 0;
+
 
 x = 0;
 y = 0;

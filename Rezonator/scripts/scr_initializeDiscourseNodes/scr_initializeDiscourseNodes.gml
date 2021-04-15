@@ -58,9 +58,18 @@ function scr_initializeDiscourseNodes(){
 			}
 		}
 		
-		
 		var currentUnitNode = scr_addToNodeMap("unit");
 		var currentUnitSubMap = global.nodeMap[? currentUnitNode];
+		
+		// make tag map for unit & copy tags from unitImportGrid
+		var tagMap = ds_map_create();
+		ds_map_add_map(currentUnitSubMap, "tagMap", tagMap);
+		var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
+		for (var j = 1; j < unitImportColNameListSize; j++) {
+			var currentField = string(global.unitImportColNameList[| j]);
+			var currentTag = ds_grid_get(global.unitImportGrid, j, i);
+			ds_map_add(tagMap, currentField, currentTag);
+		}
 		
 		// add values to unit node
 		ds_map_add(currentUnitSubMap, "unitSeq", i + 1);
@@ -70,6 +79,8 @@ function scr_initializeDiscourseNodes(){
 		//add each token to the totoal token's List
 		ds_list_add(unitList, currentUnitNode);
 	}
+	
+	
 	
 	// copy unitList into displayUnitList
 	ds_list_copy(displayUnitList, unitList);

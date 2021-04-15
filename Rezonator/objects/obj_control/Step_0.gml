@@ -67,6 +67,7 @@ with (obj_panelPane) {
 }
 
 
+scrollPlusX = lerp(scrollPlusX, scrollPlusXDest, 0.4);
 
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
@@ -303,7 +304,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		
 		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
 			//show_message("right");
-			wordLeftMarginDest -= gridSpaceHorizontal;
+			scrollPlusXDest -= gridSpaceHorizontal;
 		}
 		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
@@ -313,7 +314,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 
 
 		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			wordLeftMarginDest += gridSpaceHorizontal;
+			scrollPlusXDest += gridSpaceHorizontal;
 			//show_message("left");
 		}
 		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
@@ -373,8 +374,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		}
 	}
 }
-
-wordLeftMargin = lerp(wordLeftMargin, wordLeftMarginDest, 0.5);
 
 var searchGridPopulated = ds_grid_height(searchGrid);
 var filterGridPopulated = ds_grid_height(filterGrid);
