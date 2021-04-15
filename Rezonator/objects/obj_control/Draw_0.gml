@@ -36,7 +36,8 @@ if (global.canScroll) {
 	mouseoverNeutralSpace = true;
 }
 if (!hideAll) {
-	scr_drawLine();
+	//scr_drawLine();
+	scr_drawLine2ElectricBoogaloo();
 }
 
 // Draw the mouse drag rectangle
