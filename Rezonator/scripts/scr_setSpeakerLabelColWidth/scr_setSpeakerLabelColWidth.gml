@@ -1,23 +1,70 @@
 function scr_setSpeakerLabelColWidth() {
+	
 	/*
-		scr_setSpeakerLabelColWidth();
-	
-		Last Updated: 2019-12-27
-	
-		Called from: obj_control
-	
 		Purpose: Adapt the Speaker Label width based on the font size of the Speaker Name
-	
-		Mechanism: Based off of a sample text, dynamically change the width of the each Speaker Label
-	
-		Author: Terry DuBois
 	*/
 
-	
 
 	if (object_index != obj_control) {
 		exit;
 	}
+	
+	var camHeight = camera_get_view_height(camera_get_active());
+	var minColWidth = string_width("00000");
+	var maxColWidth = camera_get_view_width(camera_get_active()) * 0.16;
+	var sectionMouseWidth = 3;
+	
+	// reset variables when not holding left click
+	if (!mouse_check_button(mb_left)) {
+		speakerLabelColXHolding = -1;
+		speakerLabelColXHoldingPrev = 0;
+		speakerLabelColXHoldingDiff = 0;
+		ds_list_clear(speakerLabelColPrevList);
+	}
+	
+	
+	var speakerLabelColXListSize = ds_list_size(speakerLabelColXList);
+	for (var i = 0; i < speakerLabelColXListSize; i++) {
+		
+		var colX = speakerLabelColXList[| i];
+		var mouseoverColX = point_in_rectangle(mouse_x, mouse_y, colX - sectionMouseWidth, wordTopMargin, colX + sectionMouseWidth, camHeight);
+		
+		if (mouseoverColX) {
+			if (mouse_check_button_pressed(mb_left)) {
+				speakerLabelColXHolding = i;
+				speakerLabelColXHoldingPrev = colX;
+				ds_list_copy(speakerLabelColPrevList, speakerLabelColXList);
+			}
+		}
+		
+		// if we are dragging this column
+		if (speakerLabelColXHolding == i) {
+			
+			var newColX = max(mouse_x, minColWidth);
+		
+			// clamp column x values
+			if (speakerLabelColXHolding >= 0) {
+				var prevColX = 0;
+				if (speakerLabelColXHolding > 0) {
+					prevColX = ds_list_find_value(speakerLabelColXList, i - 1);
+				}
+				var minColX = prevColX + minColWidth;
+				var maxColX = prevColX + maxColWidth;
+				newColX = clamp(newColX, minColX, maxColX);
+			}
+		
+			ds_list_set(speakerLabelColXList, i, newColX);
+			speakerLabelColXHoldingDiff = newColX - speakerLabelColXHoldingPrev;
+		
+			// set X positions for all following columns
+			for (var j = i + 1; j < speakerLabelColXListSize; j++) {
+				var currentNewColX = ds_list_find_value(speakerLabelColPrevList, j) + speakerLabelColXHoldingDiff;
+				ds_list_set(speakerLabelColXList, j, currentNewColX);
+			}
+		}
+	}
+	
+	/*
 
 	if ((not mouse_check_button(mb_left)) or speakerLabelColXHolding >= 4) {
 		if (speakerLabelColXHolding > -1) {
@@ -61,17 +108,9 @@ function scr_setSpeakerLabelColWidth() {
 
 
 
-
-
 	for (var i = 1; i < speakerLabelColXListSize; i++) {
 	
 		var colX = ds_list_find_value(speakerLabelColXList, i);
-	
-		// if this is the speaker column and there's no speaker, set width to 0
-		if (i == speakerLabelColXListSize - 1 && !obj_control.showSpeakerName) {
-			//ds_list_set(speakerLabelColXList, i, );
-		}
-
 	
 		// clicking to drag size of speakerLabelCol with mouse
 		if (point_in_rectangle(mouse_x, mouse_y, colX - 3, wordTopMargin, colX + 3, camera_get_view_height(camera_get_active())) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
@@ -105,12 +144,6 @@ function scr_setSpeakerLabelColWidth() {
 				newColX = clamp(newColX, minColX, maxColX);
 			}
 		
-			/*
-			if (ds_list_find_value(speakerLabelColXList, ds_list_size(speakerLabelColXList) - 1) > 800) {
-				newColX = min(newColX, ds_list_find_value(speakerLabelColXList, i));
-			}
-			*/
-		
 			ds_list_set(speakerLabelColXList, i, newColX);
 			speakerLabelColXHoldingDiff = newColX - speakerLabelColXHoldingPrev;
 		
@@ -121,12 +154,9 @@ function scr_setSpeakerLabelColWidth() {
 				ds_list_set(speakerLabelColXList, j, currentNewColX);
 			}
 		}
-	
-	
 	}
-	
 
 	draw_set_alpha(1);
-
+	*/
 
 }

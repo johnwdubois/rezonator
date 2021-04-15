@@ -55,4 +55,6 @@ function scr_drawLine2ElectricBoogaloo(){
 	// set wordLeftMargin
 	wordLeftMargin = speakerLabelColXList[| speakerLabelColXListSize - 1];
 	
+	scr_setSpeakerLabelColWidth();
+	
 }

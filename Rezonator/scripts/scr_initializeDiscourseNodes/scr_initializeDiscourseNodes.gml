@@ -20,8 +20,12 @@ function scr_initializeDiscourseNodes(){
 	var unitGridHeight = ds_grid_height(unitGrid);
 	for (var i = 0; i < unitGridHeight; i++) {
 		
-		// get list of tokens
+		// get data for current unit
 		var currentWordIDList = ds_grid_get(unitGrid, obj_control.unitGrid_colWordIDList, i);
+		var currentPID = ds_grid_get(unitGrid, obj_control.unitGrid_colpID, i);
+		var currentSpeakerColor = ds_grid_get(unitGrid, obj_control.unitGrid_colParticipantColor, i);
+		
+		// get list of tokens
 		var currentEntryList = ds_list_create();
 		if (scr_isNumericAndExists(currentWordIDList, ds_type_list)) {
 			var currentWordIDListSize = ds_list_size(currentWordIDList);
@@ -75,6 +79,8 @@ function scr_initializeDiscourseNodes(){
 		ds_map_add(currentUnitSubMap, "unitSeq", i + 1);
 		ds_map_add_list(currentUnitSubMap, "entryList", currentEntryList);
 		ds_map_add(currentUnitSubMap, "pixelY", 0);
+		ds_map_add(currentUnitSubMap, "pID", currentPID);
+		ds_map_add(currentUnitSubMap, "speakerColor", currentSpeakerColor);
 		
 		//add each token to the totoal token's List
 		ds_list_add(unitList, currentUnitNode);

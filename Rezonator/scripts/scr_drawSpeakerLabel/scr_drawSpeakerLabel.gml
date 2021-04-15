@@ -4,6 +4,8 @@
 	
 */
 function scr_drawSpeakerLabel(unitSubMap, pixelY) {
+	
+
 
 	
 	// get y coordinates for this speaker label
@@ -28,8 +30,12 @@ function scr_drawSpeakerLabel(unitSubMap, pixelY) {
 		var sectionRectX1 = plusX;
 		var sectionRectX2 = speakerLabelColXList[| i];
 		
+		// get rectangle color
+		var sectionColor = global.colorThemeSelected1;
+		if (i == 1) sectionColor = unitSubMap[? "speakerColor"];
+		
 		// draw rectangle
-		draw_set_color(i == 0 ? c_blue : c_red);
+		draw_set_color(sectionColor);
 		draw_rectangle(sectionRectX1, sectionRectY1, sectionRectX2, sectionRectY2, false);
 		
 		// get section text

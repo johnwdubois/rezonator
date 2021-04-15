@@ -64,10 +64,10 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 27), "filteredRezChainList: " + scr_getStringOfList(obj_chain.filteredRezChainList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 28), "filteredTrackChainList: " + scr_getStringOfList(obj_chain.filteredTrackChainList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 29), "filteredStackChainList: " + scr_getStringOfList(obj_chain.filteredStackChainList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 30), "filterActiveRez: " + string(filterActiveRez));
-	draw_text(devVarX, wordTopMargin + (strHeight * 31), "filterActiveTrack: " + string(filterActiveTrack));
-	draw_text(devVarX, wordTopMargin + (strHeight * 32), "filterActiveStack: " + string(filterActiveStack));
-	draw_text(devVarX, wordTopMargin + (strHeight * 33), "filterGridActive: " + string(filterGridActive));
+	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
+	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
+	draw_text(devVarX, wordTopMargin + (strHeight * 32), "speakerLabelColXHoldingPrev: " + string(speakerLabelColXHoldingPrev));
+	draw_text(devVarX, wordTopMargin + (strHeight * 33), "speakerLabelColPrevList: " + scr_getStringOfList(speakerLabelColPrevList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "setModeSearch: " + string(obj_toolPane.setModeSearch));
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "scrollPlusX: " + string(scrollPlusX));
 	draw_text(devVarX, wordTopMargin + (strHeight * 36), "scrollPlusXDest: " + string(scrollPlusXDest));
