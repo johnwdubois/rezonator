@@ -3,8 +3,10 @@ function scr_panelPane_drawLineListLoopClipped() {
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
+	
 
 	var strHeight = string_height("0") * 1.5;
+	var spaceWidth = string_width(" ");
 	
 	var drawScrollbar = (!obj_control.showUnitTags);
 	var scrollBarWidth = 0;
@@ -38,7 +40,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 	// if mouse is hovered on header region, make sure there is no line highlighted
 	if (mouseoverHeaderRegion) {
 		with (obj_panelPane) {
-			unitTagsHighlightRow = -1;
+			functionChainList_highlightUnit = "";
 		}
 	}
 	
@@ -46,8 +48,11 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
 
-	var currentLineGrid = obj_control.currentActiveLineGrid;
-	var lineGridHeight = ds_grid_height(currentLineGrid);
+
+	var displayUnitList = obj_control.displayUnitList;
+	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) exit;
+	var displayUnitListSize = ds_list_size(displayUnitList);
+	
 
 	// Set opacity, font, and alignment of text chain lists
 	draw_set_alpha(1);
@@ -60,171 +65,115 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	//really super wanna set a draw range for this guy!!
 	var mouseInPane = obj_control.mouseoverPanelPane;
-	for (var i = 0; i < lineGridHeight; i++) {
+	for (var i = 0; i < displayUnitListSize; i++) {
 	
 		if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight) {
 			textPlusY += strHeight;
 			continue;
 		}
 		if (y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
-				textPlusY += strHeight;
-				break;
+			textPlusY += strHeight;
+			break;
 		}
 	
-		// Get grid info of current chain
-		var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, i);
-	
-		if (currentLineUnitID < 0) {
-			continue;
-		}
-	
-		var currentLineState = ds_grid_get(currentLineGrid, obj_control.lineGrid_colLineState, i);
-		var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
-		if (!is_numeric(lineColor)) {
-			lineColor = 1;
-		}
-		var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
-		// Prevent those pesky comments from showing up in the line list
-		if (lineSpeaker == "COMMENT") {
-			continue;
-		}
-	
-		var discoColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentLineUnitID - 1);
-		if (discoColor == -1 or discoColor == 0 or discoColor == undefined) {
-			discoColor = obj_control.c_ltblue;
-		}
-
-		var currentLineWordList = ds_grid_get(currentLineGrid, obj_control.lineGrid_colWordIDList, i);
-		var currentLineWordString = "";
-		var currentLineWordListSize = 0;
+		// get current unitID and its submap, and also its tagmap!
+		var currentUnitID = displayUnitList[| i];
+		var currentUnitSubMap = global.nodeMap[? currentUnitID];
+		if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) continue;
+		var currentTagMap = currentUnitSubMap[? "tagMap"];
+		if (!scr_isNumericAndExists(currentTagMap, ds_type_map)) continue;
 		
-		if (is_numeric(currentLineWordList)) {
-			if (ds_exists(currentLineWordList , ds_type_list)) {
-				currentLineWordListSize = ds_list_size(currentLineWordList);
-			}
-		}
-	
-		// get this line's concatenated string
-		//currentLineWordString = scr_getUnitText(currentLineUnitID);
-		
-		var wordListLoop = (obj_control.drawLineState == obj_control.lineState_ltr) ? 0 : currentLineWordListSize-1;
-		repeat(currentLineWordListSize){
-			
-			var currentWordID = -1;
-			if (obj_control.searchGridActive) {
-				var hitID = ds_list_find_value(currentLineWordList, wordListLoop);
-				currentWordID = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colWordID, hitID - 1);
-			}
-			else {
-				currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
-			}
-		
-			var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID-1);
-			if(currentWordState == obj_control.wordStateDead){
-				if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
-				else{wordListLoop--;}
-				continue;
-			}
-			var currentWordToken = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1);
-			currentWordToken = scr_adaptFont(currentWordToken,"M");
-			currentLineWordString += string(currentWordToken) + " ";
-			if(obj_control.drawLineState == obj_control.lineState_ltr){ wordListLoop++; }
-			else{wordListLoop--;}
-		}
-		
-		
+		// get data from unit
+		var currentUnitSeq = currentUnitSubMap[? "unitSeq"];
+		var currentSpeaker = currentTagMap[? "~Participant"];
+		var currentSpeakerColor = currentUnitSubMap[? "speakerColor"];
+		if (!is_numeric(currentSpeakerColor)) currentSpeakerColor = global.colorThemeSelected1;
+		var currentEntryList = currentUnitSubMap[? "entryList"];
+		var currentEntryListSize = 0;
+		if (scr_isNumericAndExists(currentEntryList, ds_type_list)) currentEntryListSize = ds_list_size(currentEntryList);
+		var currentUnitText = scr_getUnitText(currentUnitSubMap);
 		
 		
 	
-		// Get dimensions of rectangle around line name
-		var lineNameRectX1 = x;
-		var lineNameRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
-		var lineNameRectX2 = x + windowWidth - scrollBarWidth;
-		var lineNameRectY2 = lineNameRectY1 + strHeight;
+		// get coordinates of unit rect within panelpane
+		var currentUnitRectX1 = x;
+		var currentUnitRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
+		var currentUnitRectX2 = x + windowWidth - scrollBarWidth;
+		var currentUnitRectY2 = currentUnitRectY1 + strHeight;
 		
-		if (unitTagsHighlightRow == i) {
+		if (functionChainList_highlightUnit == currentUnitID) {
 			draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.4));
-			draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY, false);
+			draw_rectangle(currentUnitRectX1 - clipX, currentUnitRectY1 - clipY, currentUnitRectX2 - clipX, currentUnitRectY2 - clipY, false);
 		}
-		
-		
 	
-		scr_panelPane_mouseOnLine(lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2, lineGridHeight, i, lineColor, mouseoverHeaderRegion, mouseoverScrollBar);
+		scr_panelPane_mouseOnLine(currentUnitRectX1, currentUnitRectY1, currentUnitRectX2, currentUnitRectY2, currentUnitID, i, currentSpeakerColor, mouseoverHeaderRegion, mouseoverScrollBar);
+		
 	
 	
 		// get position of focused rect
-		if (currentLineState == 1) {
-			focusedRowRectY1 = lineNameRectY1;
-			focusedRowRectY2 = lineNameRectY2;
+		if (functionChainList_focusedUnitIndex == i) {
+			focusedRowRectY1 = currentUnitRectY1;
+			focusedRowRectY2 = currentUnitRectY2;
 			focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
 		}
 	
 		// get speaker rect coordinates
-		var speakerRectX1 = lineNameRectX1 + unitSeqRectWidth;
+		var speakerRectX1 = currentUnitRectX1 + unitSeqRectWidth;
 		var speakerRectX2 = speakerRectX1;
-		if (obj_control.showSpeakerName) {
-			speakerRectX1 = floor(lineNameRectX1 + unitSeqRectWidth);
+		if (ds_list_size(obj_control.speakerLabelColXList) > 1) {
+			speakerRectX1 = floor(currentUnitRectX1 + unitSeqRectWidth);
 			speakerRectX2 = floor(speakerRectX1 + speakerRectWidth);
 		}
 	
 		// get x position of text, and adjust for RTL if needed
 		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
-		var textX = lineStateLTR ? floor(speakerRectX2 + textBuffer) : floor(lineNameRectX1 + windowWidth - scrollBarWidth);
+		var textX = lineStateLTR ? floor(speakerRectX2 + textBuffer) : floor(speakerRectX1 + windowWidth - scrollBarWidth);
 		var textY = floor(y + headerHeight + relativeScrollPlusY + textPlusY + textAdjustY / 2);
 
 		// draw line string
 		draw_set_halign(lineStateLTR ? fa_left : fa_right);
 		draw_set_color(global.colorThemeText);
-		scr_adaptFont(currentLineWordString,"M");
-		draw_text(textX - clipX, textY - clipY, currentLineWordString);
+		scr_adaptFont(currentUnitText, "M");
+		draw_text(textX - clipX, textY - clipY, currentUnitText);
 		
-		// draw speaker rect & name
-		if (obj_control.showSpeakerName) {
-			draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
-			draw_rectangle(speakerRectX1 - clipX, lineNameRectY1 - clipY, speakerRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+		// draw speaker rect & name (if we have to)
+		if (ds_list_size(obj_control.speakerLabelColXList) > 1) {
+			draw_set_color(merge_color(currentSpeakerColor, global.colorThemeBG, 0.4)); //soften the color
+			draw_rectangle(speakerRectX1 - clipX, currentUnitRectY1 - clipY, speakerRectX2 - clipX, currentUnitRectY2 - clipY - 2, false);
 			
-			lineSpeaker = scr_adaptFont(lineSpeaker,"M");
+			currentSpeaker = scr_adaptFont(currentSpeaker, "M");
 			draw_set_color(global.colorThemeText);
 			draw_set_halign(lineStateLTR ? fa_left : fa_right);
 			var speakerTextX = lineStateLTR ? floor(speakerRectX1 + textBuffer) : floor(speakerRectX2);
-			draw_text(speakerTextX - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, lineSpeaker);
+			draw_text(speakerTextX - clipX, textY - clipY, currentSpeaker);
 		}
 		
 		// draw unitSeq rect & text
 		draw_set_color(global.colorThemeSelected1); //soften the color
-		draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX1 + unitSeqRectWidth - clipX, lineNameRectY2 - clipY - 2, false);
+		draw_rectangle(currentUnitRectX1 - clipX, currentUnitRectY1 - clipY, currentUnitRectX1 + unitSeqRectWidth - clipX, currentUnitRectY2 - clipY - 2, false);
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		draw_text(floor(x + (unitSeqRectWidth / 2) - (string_width(currentLineUnitID) / 2)) - clipX, floor(y + headerHeight + relativeScrollPlusY + textPlusY) - clipY, string(currentLineUnitID));
+		draw_text(floor(x + spaceWidth) - clipX, textY - clipY, string(currentUnitSeq));
 		
 	
 		// increment plusY
 		textPlusY += strHeight;
 		
-		
-		
 	}
 
 
-
-	// will create a focusedLine vriable in panelPane create, update it when changed, no gridValueY
+	
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
 	if (clickedIn && obj_control.mouseoverPanelPane) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
 			
-			if (functionChainList_lineGridRowFocused > 0 and functionChainList_lineGridRowFocused < lineGridHeight) {
+			if (functionChainList_focusedUnitIndex > 0 and functionChainList_focusedUnitIndex < displayUnitListSize) {
 
 				//Allow for arrow keys to shift focus down the list of lines
-				obj_panelPane.functionChainList_lineGridRowFocused--;
-				var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(currentLineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
-				ds_grid_set(currentLineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;
+				with (obj_panelPane) functionChainList_focusedUnitIndex--;
 			
 				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
@@ -241,17 +190,10 @@ function scr_panelPane_drawLineListLoopClipped() {
 		
 		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
 			
-			if (functionChainList_lineGridRowFocused < lineGridHeight - 1 and functionChainList_lineGridRowFocused >= 0) {
+			if (functionChainList_focusedUnitIndex < displayUnitListSize - 1 and functionChainList_focusedUnitIndex >= 0) {
 
 				//Allow for arrow keys to shift focus down the list of lines
-				obj_panelPane.functionChainList_lineGridRowFocused++;
-				var currentLineUnitID = ds_grid_get(currentLineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(currentLineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, lineGridHeight, 0);
-				ds_grid_set(currentLineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-				obj_panelPane.functionChainContents_lineGridRowFocused = -1;
-			
+				with (obj_panelPane) functionChainList_focusedUnitIndex++;
 
 				if (focusedElementY >= y + windowHeight - strHeight) {
 					with (instToScroll) {
@@ -290,6 +232,9 @@ function scr_panelPane_drawLineListLoopClipped() {
 			}
 		}
 	}
+
+
+	
 	
 	// draw focus outline
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
@@ -300,7 +245,7 @@ function scr_panelPane_drawLineListLoopClipped() {
 
 	// only show a scrollbar if we're in 1toMany
 	if (drawScrollbar) {
-		scr_scrollBar(lineGridHeight, focusedElementY, strHeight, headerHeight,
+		scr_scrollBar(displayUnitListSize, focusedElementY, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	}

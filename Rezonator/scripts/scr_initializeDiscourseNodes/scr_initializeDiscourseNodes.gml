@@ -95,6 +95,7 @@ function scr_initializeDiscourseNodes(){
 	ds_map_add(currentDiscourseSubMap, "unitList", unitList);
 	ds_map_add(currentDiscourseSubMap, "tokenList", tokenList);
 	ds_map_add(currentDiscourseSubMap, "displayUnitList", displayUnitList);
+	obj_control.displayUnitList = displayUnitList;
 	
 	// set default displayTokenField
 	global.displayTokenField = "~text";

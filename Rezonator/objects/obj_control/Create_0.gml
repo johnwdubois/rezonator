@@ -689,3 +689,6 @@ filterActiveTrack = false;
 filterActiveStack = false;
 
 menuDepth = -1;
+
+
+displayUnitList = -1;

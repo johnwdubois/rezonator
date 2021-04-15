@@ -67,6 +67,7 @@ functionChainList_sortAsc[1] = true;
 functionChainList_sortAsc[2] = true;
 functionChainList_sortAsc[3] = true;
 functionChainList_sortAsc[4] = true;
+functionChainList_focusedUnitIndex = -1;
 functionChainList_lineGridRowFocused = 0;
 functionChainList_lineGridDisplayYList = ds_list_create();
 functionChainList_focusedChainIndex = -1;
@@ -210,6 +211,7 @@ stackTagMapKey = "";
 lineContentsHighlightRow = -1;
 unitTagsHighlightRow = -1;
 chainTagsHighlightRow = -1;
+functionChainList_highlightUnit = "";
 
 chainViewOneToMany = true;
 
