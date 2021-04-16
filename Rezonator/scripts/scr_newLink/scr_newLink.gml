@@ -136,7 +136,7 @@ function scr_newLink(ID) {
 					
 					
 					// sort the displayed links
-					//scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
+					scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
 					
 					show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
 				}

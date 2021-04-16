@@ -58,7 +58,9 @@ function scr_sortVizSetIDList(chainID){
 		}
 		else if (chainType == "stackChain") {
 			currentWordID = -1;
-			currentUnitSeq = currentEntrySubMap[? "unit"];
+			var unitID = currentEntrySubMap[? "unit"];
+			var unitSubMap = global.nodeMap[?unitID];
+			currentUnitSeq = unitSubMap[?"unitSeq"];
 			currentWordOrder = -1;
 		}
 		

@@ -16,23 +16,25 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 			if (ds_exists(currentEntrySubMap, ds_type_map)) {
 				
 				// get unit/word from this entry
-				var currentUnit = -1;
+				var currentUnitSeq = -1;
 				var currentWord = -1;
 				var currentChunkFirstWord = -1;
 				var currentTokenCount = "N/A";
 				if (chainType == "rezChain" || chainType == "trackChain") {
 					currentWord = ds_map_find_value(currentEntrySubMap, "word");
 					currentChunkFirstWord = scr_getFirstWordOfChunk(currentWord);
-					currentUnit = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, (currentChunkFirstWord >= 0) ? currentChunkFirstWord : currentWord - 1);
+					currentUnitSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, (currentChunkFirstWord >= 0) ? currentChunkFirstWord : currentWord - 1);
 				}
 				else if (chainType == "stackChain") {
-					currentUnit = ds_map_find_value(currentEntrySubMap, "unit");
+					var unitID = currentEntrySubMap[? "unit"];
+					var unitSubMap = global.nodeMap[?unitID];
+					currentUnitSeq = unitSubMap[?"unitSeq"];
 				}
 				
 				// calculate gapUnits
 				var currentGapUnits = "N/A";
 				if (prevUnit >= 0) {
-					currentGapUnits = currentUnit - prevUnit;
+					currentGapUnits = currentUnitSeq - prevUnit;
 				}
 				
 				// calculate auto-tags for rez & track
@@ -90,7 +92,7 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 				}
 				
 				// used for gapUnits & gapWords
-				prevUnit = currentUnit;
+				prevUnit = currentUnitSeq;
 				prevWord = (currentChunkFirstWord >= 0) ? currentChunkFirstWord : currentWord;
 			}
 		}

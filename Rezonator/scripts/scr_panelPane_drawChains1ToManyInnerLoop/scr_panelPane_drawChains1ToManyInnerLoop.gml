@@ -1,16 +1,41 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
+function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, ID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
+
+	// NOTE: for stacks, the ID variable will be a unitID
+	
+		// make sure this is a valid ID
+	if (ID == undefined) {
+		exit;
+	}
 	
 	
-	// NOTE: for stacks, the currentWordID variable will be a unitID
+	
+	var unitID = -1;
+	var tokenID = -1;
+	var IDsubMap = global.nodeMap[?ID];
+	var type = IDsubMap[?"type"];
+	if(type == "unit"){
+		unitID = ID
+		var entryList = IDsubMap[?"entryList"];
+		var firstEntry = entryList[|0];
+		var entrySubMap = global.nodeMap[?firstEntry];
+		tokenID = entrySubMap[?"token"]
+	}
+	else if(type == "token"){	
+		unitID = IDsubMap[?"unit"];
+		tokenID = ID
+	}
+	
+	var unitSubMap = global.nodeMap[?unitID];
+	var tokenSubMap = global.nodeMap[?tokenID];
 	
 	var textMarginTop = functionTabs_tabHeight;
 	var xBuffer = 6;
 	
-	var chunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
+	var chunkFirstWord = scr_getFirstWordOfChunk(ID);
 	var isChunk = (chunkFirstWord >= 0);
-	var chunkSubMap = isChunk ? global.nodeMap[? currentWordID] : -1;
+	var chunkSubMap = isChunk ? global.nodeMap[? ID] : -1;
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry
 	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
@@ -26,53 +51,52 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 		draw_set_alpha(1);
 		draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, (highlight) ? 0.75 : 0.9));
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
-		
+		var tagMap = unitSubMap[?"tagMap"];
 		// get string of data
 		currentWordInfoCol[getInfoLoop] = "";
 		switch (getInfoLoop) {
 			// unitSeq
 			case 0:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					var unitID = currentWordID;
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-				}
-				else {
-					var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, (isChunk) ? chunkFirstWord - 1 : currentWordID - 1);
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
+				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					currentWordInfoCol[getInfoLoop] = string(unitSubMap[?"unitSeq"]);
 				}
 				break;
 			// wordOrder
 			case 1:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
+				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					currentWordInfoCol[getInfoLoop] = string(tagMap[?global.speakerField]);
 				}
 				else {
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, (isChunk) ? chunkFirstWord - 1 : currentWordID - 1));
+				//	currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, (isChunk) ? chunkFirstWord - 1 : ID - 1));
 				}
 				break;
 			// text
 			case 2:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
+				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 					currentWordInfoCol[getInfoLoop] = "";
-					var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
-					if (currentWordIDList == undefined) {
+					var entryList = unitSubMap[?"entryList"];
+					if (entryList == undefined) {
 						break;
 					}
 
-					var currentWordIDListSize = ds_list_size(currentWordIDList);
-					for (var i = 0; i < currentWordIDListSize; i++) {
-						var currentUnitWordID = ds_list_find_value(currentWordIDList, i);
-						if (is_numeric(currentUnitWordID)) {
-							var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentUnitWordID - 1);
-							if (currentWordState == obj_control.wordStateDead) {
-								continue;
-							}
-							var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentUnitWordID - 1);
-							currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
+					var entryListSize = ds_list_size(entryList);
+					for (var i = 0; i < entryListSize; i++) {
+						
+						var currentUnitEntryID = ds_list_find_value(entryList, i);
+						var currentUnitEntrySubMap = global.nodeMap[?currentUnitEntryID];
+						var currentUnitTokenID = currentUnitEntrySubMap[?"token"];
+									
+						/* bring back dead words maybe one day
+						var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentUnitWordID - 1);
+						if (currentWordState == obj_control.wordStateDead) {
+							continue;
 						}
+						*/
+						var currentTokenSubMap = global.nodeMap[?currentUnitTokenID];
+						var tokenTagMap = currentTokenSubMap[?"tagMap"];
+						var currentWordString = tokenTagMap[?global.displayTokenField];
+						currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
+						
 					}
 					// remove any newlines or carriage returns from the utterance display
 					currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
@@ -93,7 +117,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 						}
 					}
 					else {
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
+						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, ID - 1));
 					}
 				}
 				break;

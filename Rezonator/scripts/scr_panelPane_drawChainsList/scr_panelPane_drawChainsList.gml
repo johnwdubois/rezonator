@@ -141,17 +141,20 @@ function scr_panelPane_drawChainsList() {
 					// chain captions!
 					// first, we will check if the stack has a caption specified in its submap
 					currentChainCaption = ds_map_find_value(currentChainSubMap, "caption");
-						
+					
+					
+					
 					// if it does not have a caption specified, we will show its contents in the chainList window
 					if (string_length(string(currentChainCaption)) < 1 || !is_string(currentChainCaption)) {
 						currentChainCaption = "";
 						for (var j = 0; j < setIDListSize; j++) {
 							var currentEntry = ds_list_find_value(vizSetIDList, j);
 							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-							
+							show_debug_message("currentEntry:  "+string(currentEntry))
 							if (currentChainType == "stackChain") {
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
-								currentChainCaption += scr_getUnitText(currentUnitID) + " ";
+								var currentUnitSubMap = global.nodeMap[?currentUnitID];
+								currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
 							}
 							else {
 								currentChainCaption = "";

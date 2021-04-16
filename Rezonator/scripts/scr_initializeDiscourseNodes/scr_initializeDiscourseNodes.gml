@@ -107,6 +107,7 @@ function scr_initializeDiscourseNodes(){
 	
 	// set default displayTokenField
 	global.displayTokenField = "~text";
+	global.speakerField = "~Participant";
 	
 	show_debug_message("scr_initializeDiscourseNodes() ... END " + scr_printTime());
 	
