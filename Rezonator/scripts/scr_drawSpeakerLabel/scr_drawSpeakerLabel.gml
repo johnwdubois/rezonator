@@ -3,9 +3,9 @@
 	Purpose: draws the speaker labels to the left of the units in the discourse
 	
 */
-function scr_drawSpeakerLabel(unitSubMap, pixelY) {
+function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	
-
+	
 
 	
 	// get y coordinates for this speaker label
@@ -63,108 +63,51 @@ function scr_drawSpeakerLabel(unitSubMap, pixelY) {
 			draw_line(0, sectionRectY2 - 2, sectionRectX2, sectionRectY2 - 2);
 		}
 		
+		
+		
+
+		
 		plusX += sectionRectX2;
+		
 	}
 	
 	
-
+		mouseoverSpeakerLabel = point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2);
 	
-	
-
-	
-	
-	
-	
-	/*
-	participantColor = (is_undefined(participantColor)) ? c_gray : participantColor;
-	discoColor = global.colorThemeSelected1;
-
-
-	// draw speaker label parts
-	for (var i = 0; i < 3; i++) {
-		if (!obj_control.showLineNumber and i != 2) {
-			continue;
-		}
-		if (!obj_control.showSpeakerName and i == 2) {
-			continue;
-		}
-		
-		var speakerLabelCurrentColX1 = ds_list_find_value(obj_control.speakerLabelColXList, i);
-		var speakerLabelCurrentColY1 = speakerRectY1;
-		var speakerLabelCurrentColX2 = ds_list_find_value(obj_control.speakerLabelColXList, i + 1);
-		var speakerLabelCurrentColY2 = speakerRectY2;
-		
-		
-		draw_set_color((i == 2) ? participantColor: discoColor);
-		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, false);
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2, true);
-		
-		var speakerLabelCurrentColStr = "";
-		if (i == 0 and currentDiscoID != undefined) {
-			speakerLabelCurrentColStr = (ds_grid_height(global.fileLineRipGrid) < 2) ? "" : string(currentDiscoID);
-		}
-		else if (i == 1 and currentLineNumberLabel != undefined) {
-			speakerLabelCurrentColStr = "  " + string(currentLineNumberLabel);
-		}
-		
-		if (i == 2 and participantName != undefined) {
-			speakerLabelCurrentColStr = "  " + string(participantName);
-		
-			var speakerNameColWidth = ds_list_find_value(obj_control.speakerLabelColXList, 3) - ds_list_find_value(obj_control.speakerLabelColXList, 2);
-			var cutoffs = 0;
-			while (string_width(speakerLabelCurrentColStr + "... ") > speakerNameColWidth and cutoffs < 100) {
-				speakerLabelCurrentColStr = string_delete(speakerLabelCurrentColStr, string_length(speakerLabelCurrentColStr), 1);
-				cutoffs++;
+		if (device_mouse_check_button_released(0, mb_left) and  mouseoverSpeakerLabel and (touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
+		/*
+		if (obj_control.ctrlHold) {
+						
+			// make a temporary "fake" inChainsList that will contain the chain that this stack is in (or no chain if there is none)
+			var fakeInChainsList = ds_list_create();
+			var chainToAdd = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
+			if (ds_map_exists(global.nodeMap, chainToAdd)) {
+				ds_list_add(fakeInChainsList, chainToAdd);
 			}
-			if (cutoffs > 0) {
-				speakerLabelCurrentColStr += "... ";
-			}
+	
+			// combine the chains
+			scr_combineChainsDrawLine(fakeInChainsList);
+			ds_list_destroy(fakeInChainsList);
+						
 		}
-		
-		if (point_in_rectangle(mouse_x, mouse_y,speakerLabelCurrentColX1, speakerLabelCurrentColY1, speakerLabelCurrentColX2, speakerLabelCurrentColY2)
-		and not instance_exists(obj_dialogueBox)  and not instance_exists(obj_dropDown) and !obj_control.mouseoverPanelPane) {
-			obj_control.mouseoverSpeakerLabel = true;
-			
-			if(mouse_check_button_pressed(mb_right)) {
-				//show_message("clicked here" + string(drawLineLoop));
+		else {
+		*/
+		var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 				
-				var dropDownOptionList = ds_list_create();
-			
-				obj_control.swapLinePos1 = unitID;
-				if(obj_control.searchGridActive or obj_control.filterGridActive or obj_toolPane.currentMode == obj_toolPane.modeRead){
-					obj_control.ableToCreateDropDown = false;
-				}
-				else{
-					ds_list_add(dropDownOptionList, "Swap", "Shuffle", "Reset Order");
-				}
-
-				if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
-					scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeSpeakerLabel);
+		if(is_numeric(focusedchainIDSubMap)){
+			if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+				var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+				if( prevChainType == "rezChain" or prevChainType == "trackChain" ){
+					scr_chainDeselect();
 				}
 			}
-			
 		}
-		draw_set_color(global.colorThemeText);
-		speakerLabelCurrentColStr = scr_adaptFont(speakerLabelCurrentColStr,"M");
-		
-		
-		// get position of column text
-		var halign = fa_left;
-		var speakerLabelTextX = speakerLabelCurrentColX1 + speakerLabelTextBuffer;
-		var speakerLabelTextY = mean(speakerLabelCurrentColY1, speakerLabelCurrentColY2);
-		if (i == 2 and participantName != undefined) {
-			if (obj_control.drawLineState == obj_control.lineState_rtl) {
-				speakerLabelTextX = speakerLabelCurrentColX2 - speakerLabelTextBuffer;
-				halign = fa_right;
-			}
+						
+		with (obj_chain) {	
+			scr_unitClicked(unitID, unitSubMap);
 		}
-		
-		// draw text
-		draw_set_halign(halign);
-		draw_text(speakerLabelTextX, speakerLabelTextY, speakerLabelCurrentColStr);
-		
 	}
-	*/
-
+	
+	
+	
 }

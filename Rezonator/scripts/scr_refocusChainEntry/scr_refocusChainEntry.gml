@@ -1,10 +1,28 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_refocusChainEntry(wordID){
+function scr_refocusChainEntry(ID){
 	
-	// looks in the currentFocusedChain for the given wordID and focus that entry
-	// note: wordID could mean unitID if we are refocusing a stack
-	show_debug_message("scr_refocusChainEntry() ... wordID: " + string(wordID));
+	
+	
+		
+	var unitID = -1;
+	var tokenID = -1;
+	var IDsubMap = global.nodeMap[?ID];
+	var type = IDsubMap[?"type"];
+	if(type == "unit"){
+		unitID = ID
+		var entryList = IDsubMap[?"entryList"];
+		var firstEntry = entryList[|0];
+		var entrySubMap = global.nodeMap[?firstEntry];
+		tokenID = entrySubMap[?"token"]
+	}
+	else if(type == "token"){	
+		unitID = IDsubMap[?"unit"];
+		tokenID = ID
+	}
+	
+	// looks in the currentFocusedChain for the given ID of word or unit and focus that entry
+	show_debug_message("scr_refocusChainEntry() ... ID: " + string(ID)+",  unitID: " + string(unitID)+",   tokenID: " + string(tokenID));
 	// find which chain entry node this word is associated with, so we can refocus it
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
 		var entryToFocus = "";
@@ -18,31 +36,38 @@ function scr_refocusChainEntry(wordID){
 		for (var i = 0; i < chainSetListSize; i++) {
 			var currentChainEntry = ds_list_find_value(chainSetList, i);
 			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
-			var currentChainEntryWordID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
+			var currentChainEntryID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
 			var currentChainEntryType = currentChainEntrySubMap[?"type"];
-			if (wordID == currentChainEntryWordID) {
+			
+			
+			if (tokenID == currentChainEntryID or unitID ==currentChainEntryID) {
 				entryToFocus = currentChainEntry;
 			}
+			show_debug_message("entryToFocus:  " + string(entryToFocus));
+			/*
+			drawing of rez/tracks chains come back later
 			if(chainType == "rezChain" or chainType == "trackChain"){
-				if(!scr_isChunk(currentChainEntryWordID)){
+				if(!scr_isChunk(currentChainEntryTokenID)){
 					
 					var wordDrawCol = currentChainEntryType == "rez" ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded;
-					ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, currentChainEntryWordID - 1, true);
+					ds_grid_set(obj_control.wordDrawGrid, wordDrawCol, currentChainEntryTokenID - 1, true);
 					if(currentChainEntryType == "rez" ){
-						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryWordID - 1)){
-							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryWordID - 1, false);
+						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryTokenID - 1)){
+							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorderRounded, currentChainEntryTokenID - 1, false);
 						}
 					}
 					if(currentChainEntryType == "track" ){
-						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryWordID - 1)){
-							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryWordID - 1, false);
+						if(ds_grid_get(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryTokenID - 1)){
+							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colBorder, currentChainEntryTokenID - 1, false);
 						}
 					}
 
-					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentChainEntryWordID - 1, effectColor);
+					ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentChainEntryTokenID - 1, effectColor);
 				}
 			}
+			*/
 		}
+	
 		
 		// if we have found the entry to focus, and it exists in the NodeMap, let's focus it!
 		if (ds_map_exists(global.nodeMap, entryToFocus)) {

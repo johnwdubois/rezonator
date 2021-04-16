@@ -1,9 +1,9 @@
 /*	
 	Purpose: the user has created a link, so this script will add it to the node map
 */
-function scr_newLink(wordID) {
+function scr_newLink(ID) {
 	
-	show_debug_message("scr_newLink() ... wordID: " + string(wordID));
+	show_debug_message("scr_newLink() ... ID: " + string(ID));
 	ds_list_clear(obj_control.chainStretchCheckList);
 
 	// New funtionality for recording chain modification
@@ -15,16 +15,29 @@ function scr_newLink(wordID) {
 
 		
 	// make sure this is a valid ID
-	if (wordID == undefined) {
+	if (ID == undefined) {
 		exit;
 	}
+	
+	
+	
 	var unitID = -1;
-	if (is_numeric(wordID)) unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
-	if (unitID == undefined) {
-		exit;
+	var tokenID = -1;
+	var IDsubMap = global.nodeMap[?ID];
+	var type = IDsubMap[?"type"];
+	if(type == "unit"){
+		unitID = ID
+		var entryList = IDsubMap[?"entryList"];
+		var firstEntry = entryList[|0];
+		var entrySubMap = global.nodeMap[?firstEntry];
+		tokenID = entrySubMap[?"token"]
 	}
-
-	var isChunk = scr_isChunk(wordID);
+	else if(type == "token"){	
+		unitID = IDsubMap[?"unit"];
+		tokenID = ID
+	}
+	
+	var isChunk = scr_isChunk(ID);
 	// determine whether to treat as unit (stack) or word (rez/track)
 	var idSet = -1;
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
@@ -34,8 +47,8 @@ function scr_newLink(wordID) {
 		}
 	}
 	else {
-		idSet = wordID;
-		obj_control.mostRecentlyAddedWord = wordID;
+		idSet = tokenID;
+		obj_control.mostRecentlyAddedWord = tokenID;
 	}
 
 	// make sure there is a focused chain
@@ -109,15 +122,21 @@ function scr_newLink(wordID) {
 						ds_map_replace(chainSubMap, "focused", nodeID);
 					}
 					
+					
+					/*
+					come back when doing words
+					
 					// set wordDrawGrid if this is a rez or track
 					if ((nodeType == "rez" || nodeType == "track") && !isChunk) {
 						var chainColor = ds_map_find_value(chainSubMap, "chainColor");
 						ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
 						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
 					}
+					*/
+					
 					
 					// sort the displayed links
-					scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
+					//scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
 					
 					show_debug_message("scr_newLink() ... entry nodeID: " + string(nodeID));
 				}
@@ -136,22 +155,30 @@ function scr_newLink(wordID) {
 	if (nodeType == "rez" || nodeType == "track") {
 		var entryWordInChainsList = -1;
 		if (isChunk) {
-			var chunkSubMap = global.nodeMap[? wordID];
-			entryWordInChainsList = chunkSubMap[? "inChainsList"];
+			var chunkSubMap = global.nodeMap[?ID];
+			if(scr_isNumericAndExists(chunkSubMap, ds_type_map)){
+				entryWordInChainsList = chunkSubMap[? "inChainsList"];
+			}
 		}
 		else {
-			entryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, idSet - 1);
+			var tokenSubMap = global.nodeMap[?idSet];
+			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+				entryWordInChainsList = tokenSubMap[? "inChainsList"];
+			}
 		}
-		
-		if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
-			ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
+		if(scr_isNumericAndExists(entryWordInChainsList, ds_type_list)){
+			if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
+				ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
+			}
 		}
 	}
 	// if this is a stack, we will make sure this unit is updated in the unitInStackGrid
 	else if (nodeType == "stack") {
-		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, idSet - 1, obj_chain.currentFocusedChainID);
-		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, idSet - 1, 0);
-		show_debug_message("scr_newLink() ... idSet: " + string(idSet));
+		var unitSubMap = global.nodeMap[?unitID];
+		if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+			var inChainsList = unitSubMap[?"inChainsList"];
+			ds_list_add(inChainsList, obj_chain.currentChainID);
+		}
 	}
 	
 		// switch panel pane to corresponding tab
@@ -169,6 +196,10 @@ function scr_newLink(wordID) {
 			default:
 				break;
 		}
+		
+		
+		/*
+		set id to hop to nav window to
 		var chunksFirstWord = -1;
 		if (currentFunction == functionChainContents) {
 			chunksFirstWord = scr_getFirstWordOfChunk(idSet);
@@ -179,6 +210,7 @@ function scr_newLink(wordID) {
 				functionChainContents_hop = idSet;
 			}
 		}
+		*/
 	}
 	
 	var linkGoalID = nodeID;
@@ -222,6 +254,6 @@ function scr_newLink(wordID) {
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
 	
-	show_debug_message("scr_newLink() ... end of script for wordID: " + string(wordID));
+	show_debug_message("scr_newLink() ... end of script for ID: " + string(ID));
 
 }

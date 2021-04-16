@@ -6,7 +6,7 @@ scr_setFocusedChainWordID();
 
 
 ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFocused, 0, obj_control.wordDrawGrid_colFocused, ds_grid_height(obj_control.wordDrawGrid), false);
-
+/*
 if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 	
 	var currentFocusedChainSubMap = ds_map_find_value(global.nodeMap, currentFocusedChainID);
@@ -41,7 +41,7 @@ if (ds_map_exists(global.nodeMap, currentFocusedChainID)) {
 else {
 	currentFocusedChainID = "";
 }
-
+*/
 
 
 mouseLineHide = false;

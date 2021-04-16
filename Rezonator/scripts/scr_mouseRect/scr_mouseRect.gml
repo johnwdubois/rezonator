@@ -48,7 +48,10 @@ function scr_mouseRect() {
 			obj_control.mouseRectWithinLine = false;
 			// Check if the current gesture is a quickStack
 			if(obj_control.mouseoverSpeakerLabel and obj_control.mouseRectBeginInSpeakerLabel) {
+				
 				obj_toolPane.currentTool = obj_toolPane.toolStackBrush;	
+				
+				show_debug_message(string(obj_toolPane.currentTool))
 			}
 		}
 		

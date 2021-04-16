@@ -25,6 +25,11 @@ function scr_initializeDiscourseNodes(){
 		var currentPID = ds_grid_get(unitGrid, obj_control.unitGrid_colpID, i);
 		var currentSpeakerColor = ds_grid_get(unitGrid, obj_control.unitGrid_colParticipantColor, i);
 		
+		
+		var currentUnitNode = scr_addToNodeMap("unit");
+		var currentUnitSubMap = global.nodeMap[? currentUnitNode];
+		
+		
 		// get list of tokens
 		var currentEntryList = ds_list_create();
 		if (scr_isNumericAndExists(currentWordIDList, ds_type_list)) {
@@ -37,6 +42,8 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentTokenSubMap, "tokenSeq", tokenSeq);
 				ds_map_add(currentTokenSubMap, "displayCol", j);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
+				ds_map_add(currentTokenSubMap, "unit", currentUnitNode);
+				ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 				
 				// make tag map for token & copy tags from tokenImportGrid
 				var tagMap = ds_map_create();
@@ -55,6 +62,7 @@ function scr_initializeDiscourseNodes(){
 				var currentEntryNode = scr_addToNodeMap("entry");
 				var currentEntrySubMap = global.nodeMap[? currentEntryNode];
 				ds_map_add(currentEntrySubMap, "token", currentTokenNode);
+				ds_map_add(currentEntrySubMap, "unit", currentUnitNode);
 				
 				ds_list_add(currentEntryList, currentEntryNode);
 				
@@ -62,8 +70,7 @@ function scr_initializeDiscourseNodes(){
 			}
 		}
 		
-		var currentUnitNode = scr_addToNodeMap("unit");
-		var currentUnitSubMap = global.nodeMap[? currentUnitNode];
+
 		
 		// make tag map for unit & copy tags from unitImportGrid
 		var tagMap = ds_map_create();
@@ -78,6 +85,7 @@ function scr_initializeDiscourseNodes(){
 		// add values to unit node
 		ds_map_add(currentUnitSubMap, "unitSeq", i + 1);
 		ds_map_add_list(currentUnitSubMap, "entryList", currentEntryList);
+		ds_map_add_list(currentUnitSubMap, "inChainsList", ds_list_create());
 		ds_map_add(currentUnitSubMap, "pixelY", 0);
 		ds_map_add(currentUnitSubMap, "pID", currentPID);
 		ds_map_add(currentUnitSubMap, "speakerColor", currentSpeakerColor);

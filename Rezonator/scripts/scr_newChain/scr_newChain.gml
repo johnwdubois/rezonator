@@ -81,9 +81,13 @@ function scr_newChain(unitID) {
 
 	// if we are creating a stack, add the new stack to unitInStackGrid
 	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-	
-		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1, obj_chain.currentChainID);
-		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, unitID - 1, obj_control.activeStackType);
+		
+		var unitSubMap = global.nodeMap[?unitID];
+		var inChainsList = unitSubMap[?"inChainsList"];
+		if(ds_list_size(inChainsList) < 1){
+			ds_list_add(inChainsList, obj_chain.currentChainID);
+		}
+
 		if (not obj_control.quickStackAbleToInitiate) {
 			obj_control.moveCounter++;
 		}
