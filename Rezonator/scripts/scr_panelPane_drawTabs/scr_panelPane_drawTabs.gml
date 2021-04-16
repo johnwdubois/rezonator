@@ -4,6 +4,7 @@ function scr_panelPane_drawTabs() {
 	*/
 	
 	
+	
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
@@ -18,7 +19,7 @@ function scr_panelPane_drawTabs() {
 	var tabsPaneInst = self.id;
 	with (obj_panelPane) {
 		functionTabs_tabHeight = (strHeight * 1.5) + textMarginLeft;
-		if (currentFunction == functionChainList || currentFunction == functionChainContents || currentFunction == functionFilter) {
+		if (currentFunction == functionChainList || currentFunction == functionChainContents) {
 			y = tabsPaneInst.y + tabsPaneInst.windowHeight;
 		}
 	}

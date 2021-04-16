@@ -13,8 +13,9 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 		if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 			
 			with (obj_panelPane) {
-				if (functionChainList_focusedUnitIndex != unitID) {
+				if (functionChainList_focusedUnitIndex != i) {
 					functionChainList_focusedUnitIndex = i;
+					functionChainList_focusedUnit = unitID;
 					functionChainContents_BGColor = lineColor;
 					functionChainContents_lineGridRowFocused = -1;
 				}

@@ -577,7 +577,7 @@ if (obj_panelPane.showNav) {
 		
 		// get current pane
 		var panelPaneInst = instance_find(obj_panelPane, i);
-		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList || panelPaneInst.currentFunction == panelPaneInst.functionFilter);
+		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList);
 		var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
 		var isTabs = (panelPaneInst.currentFunction == panelPaneInst.functionTabs);
 		

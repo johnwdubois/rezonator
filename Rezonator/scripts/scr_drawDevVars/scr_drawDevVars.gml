@@ -43,8 +43,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 6), "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 7), "hoverWordID: " + string(hoverWordID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 8), "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	draw_text(devVarX, wordTopMargin + (strHeight * 9), "obj_control.currentDisplayTokenColsList: " + scr_getStringOfList(obj_control.currentDisplayTokenColsList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 10), "obj_control.currentDisplayUnitColsList: " + scr_getStringOfList(obj_control.currentDisplayUnitColsList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 9), "currentDisplayTokenColsList: " + scr_getStringOfList(currentDisplayTokenColsList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 10), "currentDisplayUnitColsList: " + scr_getStringOfList(currentDisplayUnitColsList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
 	draw_text(devVarX, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 	draw_text(devVarX, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
@@ -53,8 +53,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
 	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(obj_chain.focusedChainWordID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 18), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
-	draw_text(devVarX, wordTopMargin + (strHeight * 19), "toggleDrawRez: " + string(obj_chain.toggleDrawRez));
-	draw_text(devVarX, wordTopMargin + (strHeight * 20), "toggleDrawTrack: " + string(obj_chain.toggleDrawTrack));
+	draw_text(devVarX, wordTopMargin + (strHeight * 19), "navTokenFieldList: " + scr_getStringOfList(navTokenFieldList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 20), "navUnitFieldList: " + scr_getStringOfList(navUnitFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
 	draw_text(devVarX, wordTopMargin + (strHeight * 23), "showNav: " + string(obj_panelPane.showNav));
@@ -69,8 +69,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "speakerLabelColXHoldingPrev: " + string(speakerLabelColXHoldingPrev));
 	draw_text(devVarX, wordTopMargin + (strHeight * 33), "speakerLabelColPrevList: " + scr_getStringOfList(speakerLabelColPrevList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "setModeSearch: " + string(obj_toolPane.setModeSearch));
-	draw_text(devVarX, wordTopMargin + (strHeight * 35), "scrollPlusX: " + string(scrollPlusX));
-	draw_text(devVarX, wordTopMargin + (strHeight * 36), "scrollPlusXDest: " + string(scrollPlusXDest));
+	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_focusedUnit: " + string(obj_panelPane.functionChainList_focusedUnit));
 	
 	draw_text(devVarX - 550, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX - 550, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));

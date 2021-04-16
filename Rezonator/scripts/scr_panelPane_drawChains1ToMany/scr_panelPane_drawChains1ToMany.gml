@@ -44,26 +44,6 @@ function scr_panelPane_drawChains1ToMany() {
 	}
 
 	scr_surfaceStart();
-
-	// Find current tab to draw correct contents
-	switch (functionChainList_currentTab) {
-		case functionChainList_tabLine:
-			if (obj_control.showTranslation) {
-				scr_panelPane_drawLineTranslationLoopClipped();
-			}
-			else if (obj_control.showUnitTags and not obj_control.showTranslation) {
-				scr_panelPane_drawUnits1to1();	
-			}
-			else {
-				scr_panelPane_drawUnits1toMany();
-			}
-			break;
-		case functionChainList_tabShow:
-			scr_panelPane_drawShow1toMany();
-			break;
-		default:
-			break;
-	}
 	
 	
 	if (!ds_exists(chain1toManyColFieldList, ds_type_list)) {

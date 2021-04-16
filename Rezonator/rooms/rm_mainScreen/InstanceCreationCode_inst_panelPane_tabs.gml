@@ -4,5 +4,5 @@ y = 0;
 windowWidth = 100;
 windowHeight = 150;
 
-currentFunction = 9;
+currentFunction = "tabs";
 scrollRange = 9;

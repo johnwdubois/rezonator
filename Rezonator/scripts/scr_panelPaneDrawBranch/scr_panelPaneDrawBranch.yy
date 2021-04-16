@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/panelPane.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_drawLineListLoopClipped",
+  "name": "scr_panelPaneDrawBranch",
   "tags": [],
   "resourceType": "GMScript",
 }

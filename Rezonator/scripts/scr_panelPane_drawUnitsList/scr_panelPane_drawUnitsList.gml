@@ -1,4 +1,4 @@
-function scr_panelPane_drawLineListLoopClipped() {
+function scr_panelPane_drawUnitsList() {
 	/*
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
@@ -26,7 +26,6 @@ function scr_panelPane_drawLineListLoopClipped() {
 	var filterRectSize = (strHeight / 2) + 5;
 	var unitSeqRectWidth = (filterRectSize * 2);
 	var speakerRectWidth = (obj_control.showSpeakerName) ? (windowWidth / 3) : 0;
-
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
 	var textAdjustY = 0;
@@ -115,6 +114,9 @@ function scr_panelPane_drawLineListLoopClipped() {
 			focusedRowRectY1 = currentUnitRectY1;
 			focusedRowRectY2 = currentUnitRectY2;
 			focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
+			with (obj_panelPane) {
+				functionChainList_focusedUnit = currentUnitID;
+			}
 		}
 	
 		// get speaker rect coordinates

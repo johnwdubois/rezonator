@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/panelPane.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_drawGraphStats",
+  "name": "scr_panelPane_drawChainsList",
   "tags": [],
   "resourceType": "GMScript",
 }

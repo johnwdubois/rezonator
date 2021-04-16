@@ -1,13 +1,10 @@
-function scr_panelPane_drawChainListLoopClipped() {
+function scr_panelPane_drawChainsList() {
 	
 	/*
 		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
 				set chainContents panelPane to look at that chain
 	*/
 
-	
-	x = 0;
-	windowWidth = camera_get_view_width(camera_get_active()) / 2;
 	
 	var drawScrollbar = (chainViewOneToMany || functionChainList_currentTab == functionChainList_tabLine);
 	var scrollbarWidth = 0;//(drawScrollbar) ? global.scrollBarWidth : 0;
@@ -55,18 +52,8 @@ function scr_panelPane_drawChainListLoopClipped() {
 		hiddenList = obj_control.hiddenStackChainList;
 	}
 	
-	// do lineList loop if user is on Read/Unit tab
-	if (functionChainList_currentTab == functionChainList_tabLine) {
-		scr_panelPane_drawLineListLoopClipped();
-		exit;
-	}
-	else if (functionChainList_currentTab == functionChainList_tabShow) {
-		scr_panelPane_drawShowList();
-		exit;
-	}
 	
 	listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
-	
 	var strHeight = string_height("0") * 1.5;
 	
 

@@ -52,8 +52,7 @@ function scr_surfaceStart() {
 
 		var helpPaneY = 0;
 		with (obj_panelPane) {
-			if (currentFunction == functionChainList or currentFunction == functionChainContents
-			or currentFunction == functionSort or currentFunction == functionFilter) {
+			if (currentFunction == functionChainList or currentFunction == functionChainContents) {
 				windowHeight = clamp(windowHeight, panelPaneMinHeight, panelPaneMaxHeight);
 				if (surface_exists(clipSurface)) {
 					surface_resize(clipSurface, clipWidth, clipHeight);
@@ -86,8 +85,7 @@ function scr_surfaceStart() {
 					windowHeight = clamp(mouse_y - y, panelPaneMinHeight, panelPaneMaxHeight);
 					var helpPaneY = 0;
 					with (obj_panelPane) {
-						if (currentFunction == functionChainList or currentFunction == functionChainContents
-						or currentFunction == functionSort or currentFunction == functionFilter) {
+						if (currentFunction == functionChainList or currentFunction == functionChainContents) {
 							windowHeight = other.windowHeight;
 							if (surface_exists(clipSurface)) {
 								surface_resize(clipSurface, clipWidth, clipHeight);

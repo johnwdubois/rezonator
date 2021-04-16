@@ -595,6 +595,10 @@ hideAll = false;
 
 updatedSpeakerLabel = false;
 
+navTokenFieldList = ds_list_create();
+navUnitFieldList = ds_list_create();
+ds_list_add(navTokenFieldList, "~text", "tokenField1", "tokenField2", "tokenField3");
+ds_list_add(navUnitFieldList, "~Participant");
 currentDisplayTokenColsList = ds_list_create();
 currentDisplayUnitColsList = ds_list_create();
 ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);

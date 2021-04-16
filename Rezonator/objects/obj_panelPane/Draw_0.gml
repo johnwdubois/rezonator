@@ -24,172 +24,17 @@ if (currentFunction != functionChainList) {
 }
 
 
-
-
-
 if (obj_control.gridView and currentFunction != functionHelp) {
 	exit;
-}
-if (not showAdvancedNav) {
-	if(currentFunction == functionClique || currentFunction == functionGraphStats) {
-		exit;	
-	}
 }
 if (obj_control.hideAll) {
 	exit;
 }
 
-var camWidth = camera_get_view_width(camera_get_active());
-var camHeight = camera_get_view_height(camera_get_active());
+
+scr_panelPaneDrawBranch();
 
 
-switch (currentFunction) {
-	case functionChainList:
-		if(showNavLeft){
-			
-			scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-			
-			scr_panelPane_drawChainListLoopClipped();
-			
-			clickedIn = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
-			
-			/*
-			if(clickedIn) {
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
-				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
-			}
-			*/
-		}
-		if(not obj_control.scrollBarHolding and not chainListPane.scrollBarHolding) {
-			alarm[6] = 1;	
-		}
-		else {
-			scrollBarClickLock = true;	
-		}
-		break;
-	case functionChainContents:
-		if (showNavRight) {
-			scr_dropShadow(x, y, x + windowWidth, y + windowHeight);
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemeBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-			if (is_numeric(functionChainContents_BGColor)) {
-				// if we are on the line tab, set the BG color to be regular
-				if (functionChainList_currentTab == functionChainList_tabLine) {
-					functionChainContents_BGColor = global.colorThemeBG;
-				}
-				// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
-				if (functionChainContents_BGColor != global.colorThemeBG) {
-					draw_set_alpha(1);
-					draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, 0.9));
-					draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-				}
-			}
-			else {
-				functionChainContents_BGColor = global.colorThemeBG;
-			}
-		
-			if (!chainViewOneToMany && functionChainList_currentTab != functionChainList_tabLine) {
-				scr_panelPane_drawChains1To1();
-			}
-			else {
-				scr_panelPane_drawChains1ToMany();
-				scr_panelPane_drawChains1ToManyHeaders();
-			}
-			
-			
-			clickedIn = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
-			/*
-			if (clickedIn) {
-				draw_set_alpha(1);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-1, true);
-				draw_rectangle(x+1, y+1, x + windowWidth-1, y + windowHeight-2, true);
-			}
-			*/
-			
-			
-		}
-		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
-			alarm[6] = 1;	
-		}
-		else {
-			scrollBarClickLock = true;	
-		}
-		break;
-	case functionFilter:
-		if(showNavLeft){
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-
-			scr_panelPane_drawFilter();
-		}
-		break;
-	case functionSearch:
-		draw_set_alpha(1);
-		draw_set_color(global.colorThemePaneBG);
-		draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-
-		scr_panelPane_drawSearch();
-		break;
-	case functionClique:
-		if (showAdvancedNav) {
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-
-			scr_panelPane_drawClique();
-		}
-		break;
-	case functionHelp:
-
-		if (obj_toolPane.showTool){
-				
-			/*
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-			*/
-			scr_panelPane_drawHelp();
-				
-		}
-		
-		if(not obj_control.scrollBarHolding and not scrollBarHolding) {
-			alarm[6] = 1;	
-		}
-		else {
-			scrollBarClickLock = true;	
-		}
-		break;
-	case functionGraphStats:
-		if (showAdvancedNav) {
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemePaneBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-
-			scr_panelPane_drawGraphStats();
-		}
-		break;
-	case functionTabs:
-		if(obj_panelPane.showNav){
-			draw_set_color(global.colorThemeBG);
-			draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
-		
-			windowWidth = camWidth;
-			windowHeight = functionTabs_tabHeight;
-			scr_panelPane_drawTabs();
-		}
-		
-		break;
-	default:
-		break;
-}
 
 // draw pane border
 if(obj_panelPane.showNav){
@@ -218,12 +63,9 @@ if(obj_panelPane.showNav){
 // Checks mouseover for all panelPane windows
 var mouseover = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 
-
 if (device_mouse_check_button_released(0, mb_left) and mouseover
-and not obj_control.gridView and not currentFunction == functionChainList and not currentFunction == functionChainContents)
-{
-	with (obj_chain)
-	{
+and !obj_control.gridView and currentFunction != functionChainList and currentFunction != functionChainContents) {
+	with (obj_chain) {
 		scr_chainDeselect();
 	}
 }

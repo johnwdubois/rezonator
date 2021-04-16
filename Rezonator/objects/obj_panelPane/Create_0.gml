@@ -1,15 +1,5 @@
 /*
-	obj_panelPane: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of panelPane objects
-	
 	Purpose: Instantiate all variables used by panelPane objects
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
 
 scr_scrollBarInit();
@@ -18,10 +8,10 @@ windowResizeXHolding = false;
 windowResizeYHolding = false;
 canResizeWindowX = true;
 canResizeWindowY = true;
+
 // For hiding the Nav window
 originalWindowHeight = 20;
 y = originalWindowHeight;
-
 
 
 
@@ -34,16 +24,11 @@ with (obj_alarm) {
 
 
 
-functionChainList = 0;
-functionChainContents = 1;
-functionFilter = 2;
-functionSort = 3;
-functionSearch = 4;
-functionClique = 5;
-functionHelp = 6;
-functionGoToLine = 7;
-functionGraphStats = 8;
-functionTabs = 9;
+functionChainList = "chainList";
+functionChainContents = "chainContents";
+functionHelp = "help";
+functionTabs = "tabs";
+
 
 
 functionChainList_tabLine = 0;
@@ -59,7 +44,6 @@ functionChainList_tabName[0] = "menu_read";
 functionChainList_tabName[2] = "menu_rez";
 functionChainList_tabName[1] = "menu_track";
 functionChainList_tabName[3] = "menu_stack";
-//functionChainList_tabName[4] = "menu_clique";
 functionChainList_tabName[4] = "Show";
 functionTabs_tabHeight = 16;
 functionChainList_sortAsc[0] = true;
@@ -68,6 +52,7 @@ functionChainList_sortAsc[2] = true;
 functionChainList_sortAsc[3] = true;
 functionChainList_sortAsc[4] = true;
 functionChainList_focusedUnitIndex = -1;
+functionChainList_focusedUnit = "";
 functionChainList_lineGridRowFocused = 0;
 functionChainList_lineGridDisplayYList = ds_list_create();
 functionChainList_focusedChainIndex = -1;
@@ -88,27 +73,9 @@ functionChainContents_showID = "";
 alarm[8] = 5;
 
 functionChainContents_colXList = ds_list_create();
-//functionChainContents_colXHolding = -1
-//functionChainContents_colXHoldingPrev = 0;
-//functionChainContents_colXHoldingDiff = 0;
-//functionChainContents_colPrevList = ds_list_create();
 
 
 
-functionSort_initialSort = false;
-functionSort_performSort = false;
-functionSort_animationSeq = -1;
-functionSort_animationAlpha = 0;
-//functionSort_grid = -1;
-functionSort_gridGridSelected = 0;
-functionSort_gridGrid_colGrid = 0;
-functionSort_gridGrid_colHard = 1;
-functionSort_gridGrid_colSortGrid = 2;
-functionSort_gridGrid = ds_grid_create(3, 4);
-functionSort_gridSortGridWidth = 3;
-functionSort_gridSortColGrid_colCol = 0;
-functionSort_gridSortColGrid_colAscend = 1;
-functionSort_gridSortColGrid_colMouseover = 2;
 
 functionHelp_collapsed = true;
 functionHelp_windowWidth = 600;
@@ -138,8 +105,6 @@ functionHelp_helpGridAdvanced = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridAbout = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_helpGridRightClick = ds_grid_create(functionHelp_helpGridWidth, 0);
 functionHelp_allCollapsed = true;
-//functionHelp_rezCollapsed = false;
-//functionHelp_navCollapsed = false;
 
 functionHelp_helpWindowRectX1 = 0;
 functionHelp_helpWindowRectY1 = 0;
@@ -147,17 +112,10 @@ functionHelp_helpWindowRectX2 = 0;
 functionHelp_helpWindowRectY2 = 0;
 alarm[3] = 1;
 
-functionGoToLine_selectedDisco = 0;
-
-//functionGraphStats_mainGridWidth = 3;
-//functionGraphStats_mainGrid = ds_grid_create(functionGraphStats_mainGridWidth, 0);
-
-
 
 
 for (var i = 0; i < 3; i++) {
 	functionFilter_peek[i] = false;
-	//functionFilter_peekList[i] = ds_list_create();
 }
 
 scrollBarHolding = false;

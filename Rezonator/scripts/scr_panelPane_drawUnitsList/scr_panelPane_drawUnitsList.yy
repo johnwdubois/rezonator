@@ -6,7 +6,7 @@
     "path": "folders/Scripts/UI/panelPane.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_sortDefaultSetup",
+  "name": "scr_panelPane_drawUnitsList",
   "tags": [],
   "resourceType": "GMScript",
 }

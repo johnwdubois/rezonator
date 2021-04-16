@@ -27,7 +27,7 @@ function scr_drawLineEntryList(entryList, pixelY){
 		// get tag map for this token
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(currentTagMap, ds_type_map)) continue;
-		var currentDisplayStr = currentTagMap[? global.displayTokenField];
+		var currentDisplayStr = string(currentTagMap[? global.displayTokenField]);
 		
 		// get & set pixelX value
 		var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
