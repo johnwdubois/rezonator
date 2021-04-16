@@ -9,6 +9,7 @@ function scr_panelPane_drawUnits1toMany() {
 	draw_set_alpha(1);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	scr_adaptFont("0", "S");
 	var strHeight = string_height("0");
 	var headerHeight = functionTabs_tabHeight;
 	var scrollBarListSize = 0;
@@ -56,12 +57,15 @@ function scr_panelPane_drawUnits1toMany() {
 		
 		if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {
 		
-			scrollBarListSize = ds_list_size(functionChainContents_IDList) + 2;
+			scrollBarListSize = ds_list_size(functionChainContents_IDList);
 		
 			// loop down entryList
 			var IDListSize = ds_list_size(functionChainContents_IDList);
 			for (var i = 0; i < IDListSize; i++) {
 				
+				// get current entry
+				var currentEntry = functionChainContents_IDList[| i];
+				var currentEntrySubMap = global.nodeMap[? currentEntry];
 				drawDropDowns = false;
 				
 				// get currentTokenID
@@ -72,7 +76,7 @@ function scr_panelPane_drawUnits1toMany() {
 					currentTokenID = hitID;
 				}
 				else {
-					currentTokenID = functionChainContents_IDList[| i];
+					currentTokenID = currentEntrySubMap[? "token"];
 				}
 		
 				// get coordinates of rect
