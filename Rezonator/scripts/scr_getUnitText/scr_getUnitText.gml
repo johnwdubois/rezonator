@@ -16,10 +16,10 @@ function scr_getUnitText(unitSubMap){
 		var currentToken = currentEntrySubMap[? "token"];
 		var currentTokenSubMap = global.nodeMap[? currentToken];
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
-		var currentDisplayStr = currentTagMap[? global.displayTokenField];
+		var currentDisplayStr = string(currentTagMap[? global.displayTokenField]);
 				
 		// concatenate the UnitText string
-		if (is_string(currentDisplayStr)) unitText += scr_adaptFont(currentDisplayStr, "M");
+		unitText += scr_adaptFont(currentDisplayStr, "M");
 		if (i < entryListSize - 1) unitText += " ";
 		
 		i++;

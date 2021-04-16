@@ -3,6 +3,8 @@ function scr_panelPane_drawUnits1to1() {
 	    Purpose: Draw the translation of each line in the Nav window
 	*/
 	
+	scr_surfaceStart();
+	
 	
 	// Access the lineList panelPane object to get it's scrollPlusY
 
@@ -16,36 +18,27 @@ function scr_panelPane_drawUnits1to1() {
 
 
 	var strHeight = string_height("0") * 1.5;
-	
-	
 	var drawScrollbar = (obj_control.showUnitTags);
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
-	
-	
-
 	
 
 	// Set text margin area
 	var filterRectMargin = 8;
-	var filterRectSize = (strHeight / 2) + 5;
 	var textMarginLeft = filterRectMargin;
 
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
-	var chainNameRectMinusY = 4;
 	
 	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
-	var xbuffer = (windowWidth / 6);
 
 	var drawDropDowns = false;
+	
+	var headerList = obj_control.navUnitFieldList;
+	var headerListSize = ds_list_size(headerList);
 
-
-	var headerListSize = unitContentsHeaderListSize;
-	unitContentsHeaderListSize = min(6, max(1, ds_grid_width(global.unitImportGrid)));
-	headerListSize = unitContentsHeaderListSize;
 
 
 	// Set opacity, font, and alignment of text chain lists
@@ -53,169 +46,113 @@ function scr_panelPane_drawUnits1to1() {
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
-
-	//scr_surfaceStart();
-	// Not doing a surface here so it can scroll along with the left Navwindow
-
-	var grid = obj_control.currentActiveLineGrid;
-	var lineGridHeight = ds_grid_height(grid);
-	var widthOfUnitGrid = 1;
-	if (ds_exists(global.unitImportColNameList, ds_type_list)) {
-		widthOfUnitGrid = ds_list_size(global.unitImportColNameList);
-	}
-
-
-	for (var j = 0; j < headerListSize; j++) {
 	
+
+	var displayUnitList = obj_control.displayUnitList;
+	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) exit;
+	var displayUnitListSize = ds_list_size(displayUnitList);
+	
+	
+	// loop across unit fields
+	var plusX = 0;
+	for (var i = 0; i < headerListSize; i++) {
+		
+		var currentField = headerList[| i];
 		textPlusY = 0;
 		drawDropDowns = false;
-
-
-	    var colRectX1 = x + (j * (windowWidth / 6));
+		
+		var colWidth = windowWidth / headerListSize;
+	    var colRectX1 = x + plusX;
 	    var colRectY1 = y;
-	    var colRectX2 = colRectX1 + (windowWidth / 6);
+	    var colRectX2 = colRectX1 + colWidth;
 	    var colRectY2 = colRectY1 + windowHeight;
+		
 		// if this is the last column, extend it to the end of the window
-		if (j == headerListSize - 1) {
+		if (i == headerListSize - 1) {
 			colRectX2 = x + windowWidth;
 		}
     
 	    draw_set_color(global.colorThemeBG);
 	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
-
-		var discoTagUnitView = false;
-		var isUnitIDCol = false;
-		if (j > 0) {
-			var importColReal = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-			var colName = ds_list_find_value(global.unitImportColNameList, importColReal);
-			if (ds_list_find_index(global.discoImportColNameList, colName) > -1) {
-				discoTagUnitView = true;
-			}
-			if (colName == "UnitID") {
-				isUnitIDCol = true;
-			}
-		}
 	
-
-		for (var i = 0; i < lineGridHeight; i++) {
+		// loop down units for this field
+		for (var j = 0; j < displayUnitListSize; j++) {
     
 		    if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight
 		    or y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 		        textPlusY += strHeight;
 		        continue;
 		    }
-
-    
-		    // Get grid info of current chain
-		    var currentLineUnitID = ds_grid_get(grid, obj_control.lineGrid_colUnitID, i);
-		    var currentLineState = ds_grid_get(grid, obj_control.lineGrid_colLineState, i);
-		    var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
-		    var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
 			
-		    // Prevent those pesky comments from showing up in the line list
-		    if (lineSpeaker == "COMMENT") {
-		        continue;
-		    }
-    
-		    var discoColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentLineUnitID - 1);
-		    if (!is_numeric(discoColor)) {
-		        discoColor = obj_control.c_ltblue;
-		    }
-			if (!is_numeric(lineColor)) {
-		        lineColor = c_gray;
-		    }
-
-		    var currentLineWordString = "";
-		    if (ds_grid_height(global.importGrid) > 0) {
-		        currentLineWordString = ds_grid_get(global.importGrid, 12, i + 1);
-		    }
-		    else {
-		        var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
-		        var currentLineWordListSize = ds_list_size(currentLineWordList);
-				for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
-		            var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
-		            var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
-		            currentLineWordString += currentWordTranscript + " ";
-		        }
-		    }
+			// get current unit and its submap
+			var currentUnitID = displayUnitList[| i];
+			var currentUnitSubMap = global.nodeMap[? currentUnitID];
+			var currentTagMap = currentUnitSubMap[? "tagMap"];		
+		    var currentStr = string(currentTagMap[? currentField]);
     
 		    // Get dimensions of rectangle around line name
-		    var lineRowRectX1 = x;
-		    var lineRowRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
-		    var lineRowRectX2 = x + windowWidth;
-		    var lineRowRectY2 = lineRowRectY1 + strHeight;
-			var mouseoverLineRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineRowRectX1, max(lineRowRectY1, y + headerHeight), lineRowRectX2, lineRowRectY2) && !mouseoverScrollBar;
+		    var unitRectX1 = x;
+		    var unitRectY1 = y + headerHeight + textPlusY + relativeScrollPlusY - (strHeight / 2);
+		    var unitRectX2 = x + windowWidth;
+		    var unitRectY2 = unitRectY1 + strHeight;
+			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar;
     
 		    //Check mouse clicks to focus a line in the list
-		    if (mouseoverLineRowRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+		    if (mouseoverunitRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 				drawDropDowns = true;
 				with (obj_panelPane) {
-					unitTagsHighlightRow = i;
+					unitTagsHighlightRow = j;
 				}
         
 		        if (device_mouse_check_button_released(0, mb_left)) {
-		            ds_grid_set_region(grid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(grid), 0);
-		            ds_grid_set(grid, obj_control.lineGrid_colLineState, i, 1);
 		            with (obj_panelPane) {
-		                functionChainList_lineGridRowFocused = i;
-		                functionChainContents_BGColor = lineColor;
+						functionChainList_focusedUnitIndex = j;
+						functionChainList_focusedUnit = currentUnitID;
 		            }
 		        }
 		    }
 			
-			
-			
-			if (unitTagsHighlightRow == i) {
+			if (unitTagsHighlightRow == j) {
 				
 				// highlight rect
 				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.4));
-				draw_rectangle(colRectX1 - clipX, lineRowRectY1 - clipY, colRectX2 - clipX, lineRowRectY2 - clipY, false);
+				draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
 				
-				
-				if (j > 0) {
-					if (!discoTagUnitView && !isUnitIDCol) {
-						// dropdown buttons
-						var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
-						if (j == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
-						var dropDownButtonY1 = lineRowRectY1;
-						var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
-						var dropDownButtonY2 = lineRowRectY2;
-						var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
+			
+				// dropdown buttons
+				var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
+				if (i == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
+				var dropDownButtonY1 = unitRectY1;
+				var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
+				var dropDownButtonY2 = unitRectY2;
+				var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 					
-						draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-						if (mouseoverDropDownButton) {
-							scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
-							draw_set_alpha(1);
-							draw_set_color(global.colorThemeBorders);
-							draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
+				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+				if (mouseoverDropDownButton) {
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change tag", obj_tooltip.arrowFaceUp);
+					draw_set_alpha(1);
+					draw_set_color(global.colorThemeBorders);
+					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 				
-							if (mouse_check_button_released(mb_left)) {
+					if (mouse_check_button_released(mb_left)) {
 					
-								with (obj_panelPane) {
-									selectedColUnit = j;
-								}
+						with (obj_panelPane) {
+							selectedColUnit = i;
+						}
 								
-								var dropDownOptionList = ds_list_create();
-								var colIndex = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-								var mapKey = ds_list_find_value(global.unitImportColNameList, colIndex);
-								var tagMapList = ds_map_find_value(global.unitImportTagMap, mapKey);
+						var dropDownOptionList = ds_list_create();
+						var tagMapList = ds_map_find_value(global.unitImportTagMap, currentField);
 						
-								if (!is_undefined(tagMapList)) {
-									ds_list_copy(dropDownOptionList, tagMapList);
-									obj_control.unitImportColToChange = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-									obj_control.unitImportRowToChange = currentLineUnitID - 1;
+						if (scr_isNumericAndExists(tagMapList, ds_type_list)) {
+							// come back to this...
+							ds_list_copy(dropDownOptionList, tagMapList);
+							obj_control.unitImportColToChange = -1;
+							obj_control.unitImportRowToChange = -1;
 								
-									var dropDownX = colRectX1;
-									var dropDownY = lineRowRectY2;
-
-									if (ds_list_size(dropDownOptionList) > 0 ) {
-										var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
-										dropDownInst.optionList = dropDownOptionList;
-										dropDownInst.optionListType = global.optionListTypeUnitTagMap;
-
-									}
-								}
-							}
+							var dropDownX = colRectX1;
+							var dropDownY = unitRectY2;
+									
+							scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
 						}
 					}
 				}
@@ -223,13 +160,10 @@ function scr_panelPane_drawUnits1to1() {
 			draw_set_alpha(1);
     
     
-		    //Color codes the line lists for User
-		    draw_set_color(discoColor); //soften the color
-    
 		    // Outline the rectangle in black
-		    if (currentLineState == 1) {
-		        focusedRowRectY1 = lineRowRectY1;
-		        focusedRowRectY2 = lineRowRectY2;
+		    if (functionChainList_focusedUnitIndex == j) {
+		        focusedRowRectY1 = unitRectY1;
+		        focusedRowRectY2 = unitRectY2;
 		        focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
 		    }
 
@@ -238,27 +172,12 @@ function scr_panelPane_drawUnits1to1() {
 		    draw_set_halign(fa_left);
 		    draw_set_valign(fa_middle);
 		    draw_set_color(global.colorThemeText);
-		
-			var tagToDraw = "";
-			var unitImportGridRow = currentLineUnitID - 1;
-		
-			var importCol = ds_list_find_value(obj_control.currentDisplayUnitColsList, j - 1);
-			if (importCol != undefined) {
-				tagToDraw = string(ds_grid_get(global.unitImportGrid, importCol, unitImportGridRow));
-			}
-			else {
-				tagToDraw = ds_grid_get(global.unitImportGrid, j, unitImportGridRow);
-			}
-		
-		
-			tagToDraw = (tagToDraw == undefined) ? "" : tagToDraw;
-			scr_adaptFont(string(tagToDraw), "S");
-		    draw_text(x + (textMarginLeft) + (xbuffer*j) - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, string(tagToDraw));
+			scr_adaptFont(string(currentStr), "S");
+		    draw_text(x + textMarginLeft + (colWidth * i) - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, currentStr);
     
 		    // Get height of chain name
 		    textPlusY += strHeight;
 		}
-
 	}
 
 
@@ -278,6 +197,7 @@ function scr_panelPane_drawUnits1to1() {
 	draw_rectangle(x - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + headerHeight - clipY, false);
 
 	// Create the column headers
+	/*
 	var activeCols = 0;
 	for (var i = 0; i < headerListSize; i++) {
 	    var colRectX1 = x + (i * (windowWidth / 6));
@@ -307,7 +227,7 @@ function scr_panelPane_drawUnits1to1() {
 			var unitColValue = ds_list_find_value(obj_control.currentDisplayUnitColsList, i - 1);
 			nameFromList = ds_list_find_value(global.unitImportColNameList, unitColValue);
 		}	
-		if(nameFromList == undefined){
+		if (nameFromList == undefined) {
 				nameFromList = "";
 		}
 		colName = nameFromList
@@ -438,6 +358,7 @@ function scr_panelPane_drawUnits1to1() {
 	
 		activeCols++;
 	}
+	*/
 	
 	
 	// draw line to separate column headers from data
@@ -446,100 +367,16 @@ function scr_panelPane_drawUnits1to1() {
 
 
 
-
-
-
-
-
-	// will create a focusedLine vriable in panelPane create, update it when changed, no gridValueY
-	var instToScroll = (drawScrollbar) ? self.id : chainContentsPanelPaneInst;
-
-	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
-	if (clickedIn) {    
-	    if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
-            
-	        if (functionChainList_lineGridRowFocused > 0 and functionChainList_lineGridRowFocused < ds_grid_height(grid)) {
-
-	            //Allow for arrow keys to shift focus down the list of lines
-	            obj_panelPane.functionChainList_lineGridRowFocused--;
-	            var currentLineUnitID = ds_grid_get(grid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-	            var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-	            obj_panelPane.functionChainContents_BGColor = lineColor;
-	            ds_grid_set_region(grid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(grid), 0);
-	            ds_grid_set(grid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-            
-            
-
-	            if (focusedElementY <= y + headerHeight + strHeight) {
-					with (instToScroll) {
-						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
-					}
-	            }
-	        }
-	        else {
-				with (instToScroll) {
-					scrollPlusYDest += 4;
-				}
-	        }
-	    }
-        
-	    if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
-            
-	        if (functionChainList_lineGridRowFocused < ds_grid_height(grid) - 1 and functionChainList_lineGridRowFocused >= 0) {
-
-	            //Allow for arrow keys to shift focus down the list of lines
-	            obj_panelPane.functionChainList_lineGridRowFocused++;
-	            var currentLineUnitID = ds_grid_get(grid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-	            var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-	            obj_panelPane.functionChainContents_BGColor = lineColor;
-	            ds_grid_set_region(grid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(grid), 0);
-	            ds_grid_set(grid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-            
-
-	            if (focusedElementY >= y + windowHeight - strHeight) {
-					with (instToScroll) {
-						scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
-					}
-	            }
-	        }
-	        else {
-				with (instToScroll) {
-					scrollPlusYDest -= 4;
-				}
-	        }
-	    }
-    
-	    // CTRL+UP and CTRL+DOWN
-	    if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-			with (instToScroll) {
-				scrollPlusYDest = 100;
-			}
-	    }
-	    if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-			with (instToScroll) {
-				scrollPlusYDest = -999999999999;
-			}
-	    }
-    
-	    // PAGEUP and PAGEDOWN
-	    if (keyboard_check_pressed(vk_pageup)) {
-			with (instToScroll) {
-				scrollPlusYDest += (windowHeight);
-			}
-	    }
-	    if (keyboard_check_pressed(vk_pagedown)) {
-			with (instToScroll) {
-				scrollPlusYDest -= (windowHeight);
-			}
-	    }
-	}
+	scr_panelPane_unitScroll(focusedElementY, strHeight);
+	
 	
 	if (obj_control.showUnitTags) {
-		scr_scrollBar(ds_grid_height(grid), focusedElementY, strHeight, headerHeight,
+		scr_scrollBar(displayUnitListSize, focusedElementY, strHeight, headerHeight,
 		    global.colorThemeSelected1, global.colorThemeSelected2,
 		    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	}
-
+	
+	scr_surfaceEnd();
 
 
 
