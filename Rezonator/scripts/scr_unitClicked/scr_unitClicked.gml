@@ -24,7 +24,6 @@ function scr_unitClicked(unitID, unitSubMap){
 			if (refocusEntry) {
 				
 				obj_chain.currentFocusedChainID = currentChainID;
-				scr_unFocusAllChains();
 				scr_refocusChainEntry(unitID);
 				exit;
 				

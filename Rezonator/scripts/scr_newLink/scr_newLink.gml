@@ -177,7 +177,7 @@ function scr_newLink(ID) {
 		var unitSubMap = global.nodeMap[?unitID];
 		if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
 			var inChainsList = unitSubMap[?"inChainsList"];
-			ds_list_add(inChainsList, obj_chain.currentChainID);
+			ds_list_add(inChainsList, obj_chain.currentFocusedChainID);
 		}
 	}
 	
