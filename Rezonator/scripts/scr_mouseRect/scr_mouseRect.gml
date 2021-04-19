@@ -16,8 +16,8 @@ function scr_mouseRect() {
 		mouseHoldRectY2 = mouse_y;
 	
 		// Set the gesture's starting pos
-		if(obj_control.hoverWordID != -1) {
-			obj_control.mouseRectBeginInWord = obj_control.hoverWordID;	
+		if(obj_control.hoverTokenID != -1) {
+			obj_control.mouseRectBeginInWord = obj_control.hoverTokenID;	
 		}
 	
 		if(obj_control.mouseoverSpeakerLabel) {

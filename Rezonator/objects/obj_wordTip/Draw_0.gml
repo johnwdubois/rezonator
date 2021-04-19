@@ -15,7 +15,7 @@ if (persistentBoxFlag == false)
 {	
 	// There is no persistent box currently
 	
-	if (obj_control.hoverWordID == -1)
+	if (obj_control.hoverTokenID == -1)
 	{
 		// No word is being hovered
 		exit;
@@ -24,7 +24,7 @@ if (persistentBoxFlag == false)
 	else
 	{
 		// Make the box display the word at the mouse cursor
-		currentWordID = obj_control.hoverWordID;
+		currentWordID = obj_control.hoverTokenID;
 		boxX = floor(mouse_x + mouseCursorWidth);
 		boxY = floor(mouse_y + mouseCursorHeight);
 	}
@@ -37,7 +37,7 @@ else
 	// [TODO]: Draw an outline around the word that has the persistent box
 }*/
 
-if (obj_control.hoverWordID == -1)
+if (obj_control.hoverTokenID == -1)
 {
 	// No word is being hovered
 	exit;
@@ -46,7 +46,7 @@ if (obj_control.hoverWordID == -1)
 else
 {
 	// Make the box display the word at the mouse cursor
-	currentWordID = obj_control.hoverWordID;
+	currentWordID = obj_control.hoverTokenID;
 	boxX = floor(mouse_x + mouseCursorWidth);
 	boxY = floor(mouse_y + mouseCursorHeight);
 }

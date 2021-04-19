@@ -4,7 +4,7 @@
 // You can write your code in this editor
 
 if(!obj_control.dialogueBoxActive){
-	if(obj_control.hoverWordID != -1){
+	if(obj_control.hoverTokenID != ""){
 		var fillWord = "";
 		if(obj_control.currentNewWordPre == 1){
 			fillWord = "<0>";
@@ -21,6 +21,6 @@ if(!obj_control.dialogueBoxActive){
 		else{
 			fillWord = "<0>";
 		}
-		scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), fillWord, obj_control.hoverWordID);
+		scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), fillWord, obj_control.hoverTokenID);
 	}
 }

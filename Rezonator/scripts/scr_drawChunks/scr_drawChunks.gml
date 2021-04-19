@@ -60,7 +60,7 @@ function scr_drawChunks(){
 		}
 		
 		// draw selection box		
-		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverWordID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
+		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverTokenID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
 		if (mouseOverChunk) {
 			obj_control.mouseoverNeutralSpace = false;
 			draw_set_color(global.colorThemeSelected1);

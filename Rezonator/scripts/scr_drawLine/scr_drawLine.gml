@@ -93,7 +93,7 @@ function scr_drawLine() {
 
 	obj_control.leftScreenBound = camViewWidth;
 
-	hoverWordID = -1;
+	hoverTokenID = "";
 	hoverChunkID = -1;
 	hoverChunkIDRow = -1;
 	

@@ -44,6 +44,7 @@
     {"id":{"name":"scr_jumpToLine","path":"scripts/scr_jumpToLine/scr_jumpToLine.yy",},"order":0,},
     {"id":{"name":"scr_panelPaneDrawBranch","path":"scripts/scr_panelPaneDrawBranch/scr_panelPaneDrawBranch.yy",},"order":27,},
     {"id":{"name":"scr_jumpToEnd","path":"scripts/scr_jumpToEnd/scr_jumpToEnd.yy",},"order":1,},
+    {"id":{"name":"scr_tokenClicked","path":"scripts/scr_tokenClicked/scr_tokenClicked.yy",},"order":10,},
     {"id":{"name":"scr_jumpToTime","path":"scripts/scr_jumpToTime/scr_jumpToTime.yy",},"order":2,},
     {"id":{"name":"scr_panelPane_drawChains1ToManyInnerLoop","path":"scripts/scr_panelPane_drawChains1ToManyInnerLoop/scr_panelPane_drawChains1ToManyInnerLoop.yy",},"order":19,},
     {"id":{"name":"scr_jumpToLineCalled","path":"scripts/scr_jumpToLineCalled/scr_jumpToLineCalled.yy",},"order":4,},

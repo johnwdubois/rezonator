@@ -122,17 +122,15 @@ function scr_newLink(ID) {
 						ds_map_replace(chainSubMap, "focused", nodeID);
 					}
 					
-					
-					/*
-					come back when doing words
+
 					
 					// set wordDrawGrid if this is a rez or track
 					if ((nodeType == "rez" || nodeType == "track") && !isChunk) {
 						var chainColor = ds_map_find_value(chainSubMap, "chainColor");
-						ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
+						//ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
+						//ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
 					}
-					*/
+					
 					
 					
 					// sort the displayed links
@@ -152,7 +150,7 @@ function scr_newLink(ID) {
 		
 		
 	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
-	if (nodeType == "rez" || nodeType == "track") {
+	if (nodeType == "rez" || nodeType == "track" || nodeType == "stack") {
 		var entryWordInChainsList = -1;
 		if (isChunk) {
 			var chunkSubMap = global.nodeMap[?ID];
@@ -172,16 +170,8 @@ function scr_newLink(ID) {
 			}
 		}
 	}
-	// if this is a stack, we will make sure this unit is updated in the unitInStackGrid
-	else if (nodeType == "stack") {
-		var unitSubMap = global.nodeMap[?unitID];
-		if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
-			var inChainsList = unitSubMap[?"inChainsList"];
-			ds_list_add(inChainsList, obj_chain.currentFocusedChainID);
-		}
-	}
 	
-		// switch panel pane to corresponding tab
+	// switch panel pane to corresponding tab
 	with (obj_panelPane) {
 		switch (nodeType) {
 			case "rez":

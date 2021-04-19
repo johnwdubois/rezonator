@@ -45,23 +45,31 @@ function scr_sortVizSetIDList(chainID){
 			
 			// check if this is a chunk, and if so, just use the chunk's first word to sort on
 			if (ds_map_exists(global.nodeMap, currentWordID)) {
-				var currentWordIDSubMap = global.nodeMap[? currentWordID];
-				var currentWordIDType = currentWordIDSubMap[? "type"];
-				if (currentWordIDType == "chunk") {
-					var currentWordIDTokenList = currentWordIDSubMap[? "tokenList"];
-					currentWordID = currentWordIDTokenList[| 0];
+				var currentTokenIDSubMap = global.nodeMap[? currentWordID];
+				var currentTokenIDType = currentTokenIDSubMap[? "type"];
+				
+				if (currentTokenIDType == "chunk") {
+					var currentTokenIDTokenList = currentTokenIDSubMap[? "tokenList"];
+					currentWordID = currentTokenIDTokenList[| 0];
 				}
+	
+				var currentUnitSubMap = currentTokenIDSubMap[? "unit"];   
+				if(scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){
+					currentUnitSeq = currentUnitSubMap[?"unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+				}
+
+				currentWordOrder = currentTokenIDSubMap[? "tokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+				
+				
+
 			}
 			
-			currentUnitSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-			currentWordOrder = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+
 		}
 		else if (chainType == "stackChain") {
-			currentWordID = -1;
 			var unitID = currentEntrySubMap[? "unit"];
 			var unitSubMap = global.nodeMap[?unitID];
 			currentUnitSeq = unitSubMap[?"unitSeq"];
-			currentWordOrder = -1;
 		}
 		
 		// set values in tempGrid

@@ -12,9 +12,9 @@
 	Author: Terry DuBois
 */
 
-function scr_newChain(unitID) {
+function scr_newChain(ID) {
 	
-	show_debug_message("scr_newChain() ... unitID: " + string(unitID));
+	show_debug_message("scr_newChain() ... ID: " + string(ID));
 
 	var chainName = "";
 	var chainSeq = 0;
@@ -78,20 +78,6 @@ function scr_newChain(unitID) {
 	else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) listOfChainsKey = "stackChainList";
 	var listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
 	ds_list_add(listOfChains, obj_chain.currentChainID);
-
-	// if we are creating a stack, add the new stack to unitInStackGrid
-	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-		
-		var unitSubMap = global.nodeMap[?unitID];
-		var inChainsList = unitSubMap[?"inChainsList"];
-		if(ds_list_size(inChainsList) < 1){
-			ds_list_add(inChainsList, obj_chain.currentChainID);
-		}
-
-		if (not obj_control.quickStackAbleToInitiate) {
-			obj_control.moveCounter++;
-		}
-	}
 
 
 	var chainColor = ds_list_find_value(obj_chain.chainColorList, obj_chain.chainColorID[obj_toolPane.currentTool]);

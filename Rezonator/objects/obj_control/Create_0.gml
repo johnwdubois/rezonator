@@ -334,7 +334,7 @@ newWordHoverUnitID = -1;
 newWordHoverWordSeq = -1;
 newWordHoverWordID = -1;
 
-hoverWordID = -1;
+hoverTokenID = "";
 hoverChunkID = -1;
 hoverChunkIDRow = -1;
 showMouseLine = false;

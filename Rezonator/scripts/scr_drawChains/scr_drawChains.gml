@@ -63,9 +63,13 @@ function scr_drawChains() {
 			var currentEntry = ds_list_find_value(currentSetIDList, j);
 			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+			var tokenSubMap = global.nodeMap[?currentWordID];
 			var currentWordWidth = 0;
-			if (is_numeric(currentWordID)){
-				currentWordWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1))) / 2;
+			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+				var tagMap = tokenSubMap[?"tagMap"];
+				if (scr_isNumericAndExists(tagMap, ds_type_map)){
+					currentWordWidth = string_width(string(tagMap[?global.displayTokenField]));
+				}
 			}
 			currentWordWidth = max(currentWordWidth, 0);
 		

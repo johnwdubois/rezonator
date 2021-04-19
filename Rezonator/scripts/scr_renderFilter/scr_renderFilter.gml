@@ -88,7 +88,7 @@ function scr_renderFilter() {
 					currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 				}
 				
-				show_debug_message("scr_renderFilter() ... currentEntry: " + string(currentEntry) + ", currentUnitID: " + string(currentUnitID) + ", currentWordID: " + string(currentWordID));
+				//show_debug_message("scr_renderFilter() ... currentEntry: " + string(currentEntry) + ", currentUnitID: " + string(currentUnitID) + ", currentWordID: " + string(currentWordID));
 				
 				// determine if this unit is already in the filter grid (in which case we aren't going to add it again)
 				var unitInFilterGrid = ds_grid_value_exists(filterGrid, lineGrid_colUnitID, 0, lineGrid_colUnitID, ds_grid_height(filterGrid), currentUnitID);

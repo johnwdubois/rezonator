@@ -338,7 +338,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	
 	// replace word
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("X"))) {
-		if (hoverWordID > -1 and hoverWordID  < ds_grid_height(wordGrid)) {
+		if (hoverTokenID > -1 and hoverTokenID  < ds_grid_height(wordGrid)) {
 				
 				if (!obj_control.dialogueBoxActive) {
 					keyboard_string = "";

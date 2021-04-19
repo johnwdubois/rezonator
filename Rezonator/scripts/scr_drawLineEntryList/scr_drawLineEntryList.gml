@@ -30,10 +30,32 @@ function scr_drawLineEntryList(entryList, pixelY){
 		var currentDisplayStr = string(currentTagMap[? global.displayTokenField]);
 		
 		// get & set pixelX value
-		var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, 0, shapeTextX, camWidth);
 		shapeTextX += string_width(currentDisplayStr) + spaceWidth;
+		
+		//mouseover Token check
+		scr_adaptFont(currentDisplayStr,"M");
+		var currentTokenStringWidth = string_width(currentDisplayStr);
+		var currentTokenStringHeight = string_height(currentDisplayStr);
+	
+		
+		var tokenRectBuffer = 3;
+		var tokenRectX1 = currentPixelX - tokenRectBuffer;
+		var tokenRectY1 = pixelY - (currentTokenStringHeight / 2) - tokenRectBuffer;
+		var tokenRectX2 = tokenRectX1 + currentTokenStringWidth + (tokenRectBuffer * 2);
+		var tokenRectY2 = tokenRectY1 + currentTokenStringHeight + (tokenRectBuffer * 2);
+		
+		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2) && obj_control.hoverTokenID == "";
+		
+		if(mouseOverToken){
+			draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
+			obj_control.hoverTokenID = currentToken;
+			if(device_mouse_check_button_released(0, mb_left)){
+				scr_tokenClicked(currentToken);
+			}
+		}
+
 
 		
 		draw_text(currentPixelX, pixelY, currentDisplayStr);

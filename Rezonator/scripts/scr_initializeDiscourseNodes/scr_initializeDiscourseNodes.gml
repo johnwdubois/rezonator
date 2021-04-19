@@ -14,7 +14,7 @@ function scr_initializeDiscourseNodes(){
 	var displayUnitList = ds_list_create();
 	
 	
-	var tokenSeq = 1;
+	var discourseTokenSeq = 1;
 	
 	var unitGrid = obj_control.unitGrid;
 	var unitGridHeight = ds_grid_height(unitGrid);
@@ -39,7 +39,8 @@ function scr_initializeDiscourseNodes(){
 				// make token node
 				var currentTokenNode = scr_addToNodeMap("token");
 				var currentTokenSubMap = global.nodeMap[? currentTokenNode];
-				ds_map_add(currentTokenSubMap, "tokenSeq", tokenSeq);
+				ds_map_add(currentTokenSubMap, "discoursediscourseTokenSeq", discourseTokenSeq);
+				ds_map_add(currentTokenSubMap, "discourseTokenSeq", j);
 				ds_map_add(currentTokenSubMap, "displayCol", j);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
 				ds_map_add(currentTokenSubMap, "unit", currentUnitNode);
@@ -51,7 +52,7 @@ function scr_initializeDiscourseNodes(){
 				var tokenImportColNameListSize = ds_list_size(global.tokenImportColNameList);
 				for (var k = 2; k < tokenImportColNameListSize; k++) {
 					var currentField = string(global.tokenImportColNameList[| k]);
-					var currentTag = ds_grid_get(global.tokenImportGrid, k, tokenSeq - 1);
+					var currentTag = ds_grid_get(global.tokenImportGrid, k, discourseTokenSeq - 1);
 					ds_map_add(tagMap, currentField, currentTag);
 				}
 				
@@ -66,7 +67,7 @@ function scr_initializeDiscourseNodes(){
 				
 				ds_list_add(currentEntryList, currentEntryNode);
 				
-				tokenSeq++;
+				discourseTokenSeq++;
 			}
 		}
 		

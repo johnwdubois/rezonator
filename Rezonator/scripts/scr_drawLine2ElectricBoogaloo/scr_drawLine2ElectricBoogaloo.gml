@@ -17,6 +17,8 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize);
 	
+	hoverTokenID = "";
+	
 	// loop through units
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);
 	for (var i = 0; i < displayUnitListSize; i++) {
