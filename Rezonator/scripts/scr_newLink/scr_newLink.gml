@@ -5,24 +5,14 @@ function scr_newLink(ID) {
 	
 	show_debug_message("scr_newLink() ... ID: " + string(ID));
 	ds_list_clear(obj_control.chainStretchCheckList);
-
-	// New funtionality for recording chain modification
-	while (ds_list_find_index(obj_chain.chainIDModifyList, obj_chain.currentFocusedChainID) > -1) {
-		var ind = ds_list_find_index(obj_chain.chainIDModifyList, obj_chain.currentFocusedChainID);
-		ds_list_delete(obj_chain.chainIDModifyList, ind);
-	}
-	ds_list_insert(obj_chain.chainIDModifyList, 0, obj_chain.currentFocusedChainID);
-
 		
 	// make sure this is a valid ID
-	if (ID == undefined) {
-		exit;
-	}
+	var idSubMap = global.nodeMap[? ID];
+	if (!scr_isNumericAndExists(idSubMap, ds_type_map)) exit;
 	
 	
-	
-	var unitID = -1;
-	var tokenID = -1;
+	var unitID = "";
+	var tokenID = "";
 	var IDsubMap = global.nodeMap[?ID];
 	var type = IDsubMap[?"type"];
 	if(type == "unit"){
@@ -37,10 +27,13 @@ function scr_newLink(ID) {
 		tokenID = ID
 	}
 	
+	
+
 	var isChunk = scr_isChunk(ID);
+	
 	// determine whether to treat as unit (stack) or word (rez/track)
-	var idSet = -1;
-	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+	var idSet = "";
+	if (type == "unit") {
 		idSet = unitID;
 		if (obj_control.quickStackAbleToInitiate) {
 			obj_control.moveCounter++;
@@ -50,6 +43,7 @@ function scr_newLink(ID) {
 		idSet = tokenID;
 		obj_control.mostRecentlyAddedWord = tokenID;
 	}
+	
 
 	// make sure there is a focused chain
 	if (obj_chain.currentFocusedChainID = "") {
@@ -57,14 +51,18 @@ function scr_newLink(ID) {
 		exit;
 	}
 	
+	// get type of focused chain
+	var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+	var focusedChainType = focusedChainSubMap[? "type"];
+	
 	// determine the tier/type of this link
 	var nodeType = "rez";
 	var currentChainTier = obj_chain.rezTier;
-	if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+	if (focusedChainType == "trackChain") {
 		currentChainTier = obj_chain.trackTier;
 		nodeType = "track";
 	}
-	else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+	else if (focusedChainType == "stackChain") {
 		currentChainTier = obj_chain.stackTier;
 		nodeType = "stack";
 	}

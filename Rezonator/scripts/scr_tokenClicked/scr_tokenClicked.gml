@@ -45,10 +45,10 @@ function scr_tokenClicked(tokenID){
 	}
 	
 	var inChainsList = tokenSubMap[?"inChainsList"];
+	show_debug_message("scr_tokenClicked() inChainsList: " + scr_getStringOfList(inChainsList));
 	
 	
 	// loop through the chains that this word is already in (if any) to refocus that chain
-	show_debug_message("scr_tokenClicked() inChainsList: " + scr_getStringOfList(inChainsList));
 	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
 		var inChainsListSize = ds_list_size(inChainsList);
 		for (var i = 0; i < inChainsListSize; i++) {
@@ -73,10 +73,11 @@ function scr_tokenClicked(tokenID){
 		}
 	}
 	
+	
+	
 	if(obj_toolPane.currentMode == obj_toolPane.modeRead){
 		exit;
 	}
-	
 
 
 	// if there is not a focused chain, we create a new chain

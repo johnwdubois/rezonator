@@ -114,7 +114,6 @@ recentlyMovedWords = ds_list_create();
 alarm[4] = 30;
 
 //New fields for Tween focus funtionality
-chainIDModifyList = ds_list_create();
 unitIDOfFirstWord = -1;
 unitIDOfLastWord = -1;
 

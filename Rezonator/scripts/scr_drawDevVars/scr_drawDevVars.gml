@@ -77,8 +77,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 4), "showTool: " + string(obj_toolPane.showTool));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 5), "displayTokenField: " + string(global.displayTokenField));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 6), "speakerField: " + string(global.speakerField));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "wordView: " + string(wordView));
-	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "unitView: " + string(unitView));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "currentTool: " + string(obj_toolPane.currentTool));
 
 	
 	// reset halign to left

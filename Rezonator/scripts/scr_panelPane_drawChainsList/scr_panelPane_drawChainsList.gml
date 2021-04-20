@@ -150,7 +150,6 @@ function scr_panelPane_drawChainsList() {
 						for (var j = 0; j < setIDListSize; j++) {
 							var currentEntry = ds_list_find_value(vizSetIDList, j);
 							var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-							show_debug_message("currentEntry:  "+string(currentEntry))
 							if (currentChainType == "stackChain") {
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 								var currentUnitSubMap = global.nodeMap[?currentUnitID];
