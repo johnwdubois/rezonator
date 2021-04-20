@@ -220,7 +220,7 @@ function scr_panelPane_drawChainsList() {
 									var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 						
 									if (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush) {
-										var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+										var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 										currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 									}
 									else if (functionChainList_currentTab == functionChainList_tabStackBrush) {

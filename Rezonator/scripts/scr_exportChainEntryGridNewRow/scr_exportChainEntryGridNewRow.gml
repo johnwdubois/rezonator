@@ -12,7 +12,7 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, wordID,
 	var chunkSubMap = -1;
 	var firstWordOfChunk = -1;
 	if (isChunk) {
-		chunkID = entrySubMap[? "word"];
+		chunkID = entrySubMap[? "token"];
 		chunkSubMap = global.nodeMap[? chunkID];
 		firstWordOfChunk = scr_getFirstWordOfChunk(chunkID);
 	}

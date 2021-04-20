@@ -36,7 +36,7 @@ function scr_refocusChainEntry(ID){
 		for (var i = 0; i < chainSetListSize; i++) {
 			var currentChainEntry = ds_list_find_value(chainSetList, i);
 			var currentChainEntrySubMap = ds_map_find_value(global.nodeMap, currentChainEntry);
-			var currentChainEntryID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
+			var currentChainEntryID = ds_map_find_value(currentChainEntrySubMap, (chainType == "stackChain") ? "unit" : "token");
 			var currentChainEntryType = currentChainEntrySubMap[?"type"];
 			
 			

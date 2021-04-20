@@ -93,13 +93,13 @@ function scr_newLink(ID) {
 					is_numeric(setSubMap) {
 						if (ds_exists(setSubMap, ds_type_map)) {
 							ds_map_add(setSubMap, "chain", obj_chain.currentFocusedChainID);
-							ds_map_add(setSubMap, (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) ? "unit" : "word", idSet);
+							ds_map_add(setSubMap, (focusedChainType == "stackChain") ? "unit" : "token", idSet);
 							ds_map_add(setSubMap, "sourceLink", "");
 							ds_map_add_list(setSubMap, "goalLinkList", ds_list_create());
-							if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+							if (focusedChainType == "rezChain") {
 								ds_map_add(setSubMap, "alignEntry", true);
 							}
-							else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+							else if (focusedChainType == "trackChain") {
 								ds_map_add(setSubMap, "alignEntry", false);
 							}
 							
@@ -238,7 +238,7 @@ function scr_newLink(ID) {
 		}
 	}
 	
-	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+	if (focusedChainType == "rezChain") {
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
 	

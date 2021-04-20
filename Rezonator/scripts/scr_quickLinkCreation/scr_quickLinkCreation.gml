@@ -106,7 +106,7 @@ function scr_quickLinkCreation(){
 						
 						var focusedChainFirstEntry = ds_list_find_value(setIDList, 0);
 						var focusedChainFirstEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFirstEntry);
-						var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "word");
+						var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "token");
 					
 						if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 							var focusedChainFirstHitGridRow = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), focusedChainFirstWordID);
@@ -146,7 +146,7 @@ function scr_quickLinkCreation(){
 						
 							var focusedChainFirstEntry = ds_list_find_value(setIDList, 0);
 							var focusedChainFirstEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFirstEntry);
-							var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "word");
+							var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "token");
 							var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
 						
 							var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);

@@ -135,7 +135,7 @@ function scr_panelPane_drawChains1ToMany() {
 				if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 				
 				// get the wordID (or unitID is this is a stackChain)
-				var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "word");
+				var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "token");
 				
 				if (currentWordID == undefined) continue;
 				

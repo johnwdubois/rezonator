@@ -51,23 +51,27 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 		draw_set_alpha(1);
 		draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, (highlight) ? 0.75 : 0.9));
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 		var tagMap = unitSubMap[?"tagMap"];
+		}
+		else{
+		var tagMap = tokenSubMap[?"tagMap"];
+		}
 		// get string of data
 		currentWordInfoCol[getInfoLoop] = "";
 		switch (getInfoLoop) {
 			// unitSeq
 			case 0:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-					currentWordInfoCol[getInfoLoop] = string(unitSubMap[?"unitSeq"]);
-				}
+				currentWordInfoCol[getInfoLoop] = string(unitSubMap[?"unitSeq"]);
 				break;
-			// wordOrder
+			// text
 			case 1:
 				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 					currentWordInfoCol[getInfoLoop] = string(tagMap[?global.speakerField]);
 				}
 				else {
-				//	currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, (isChunk) ? chunkFirstWord - 1 : ID - 1));
+					currentWordInfoCol[getInfoLoop] = string(tokenSubMap[?"tokenSeq"]);
+				
 				}
 				break;
 			// text
@@ -117,7 +121,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 						}
 					}
 					else {
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, ID - 1));
+						currentWordInfoCol[getInfoLoop] = tagMap[?global.displayTokenField];
 					}
 				}
 				break;

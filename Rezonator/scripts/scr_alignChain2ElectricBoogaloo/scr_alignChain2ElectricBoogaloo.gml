@@ -36,7 +36,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		var currentStretch = currentEntrySubMap[? "stretch"];
 		if (currentStretch) continue;
 		
-		var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+		var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 		currentChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
 		if(currentChunkFirstWord > 0){
 			currentWordID = currentChunkFirstWord;
@@ -72,7 +72,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		var currentStretch = currentEntrySubMap[? "stretch"];
 		if (currentStretch) continue;
 		
-		var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+		var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 		currentChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
 		if(currentChunkFirstWord > 0){
 			currentWordID = currentChunkFirstWord;

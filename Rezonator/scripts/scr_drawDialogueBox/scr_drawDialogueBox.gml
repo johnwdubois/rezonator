@@ -600,7 +600,7 @@ function scr_drawDialogueBox() {
 				for (var i = 0; i < setIDListSize; i++) {
 					var currentEntry = ds_list_find_value(setIDList, i);
 					var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-					var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+					var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 					ds_list_add(listOfWordID, currentWordID);
 				}
 			}

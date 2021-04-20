@@ -3,7 +3,7 @@ function scr_drawChains() {
 		Purpose: draw rezChains and move words on screen according to the rezChains
 	*/
 	
-	scr_setMouseLineWordID();
+	//scr_setMouseLineWordID();
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
@@ -62,7 +62,7 @@ function scr_drawChains() {
 		for (var j = 0; j < currentSetIDListSize; j++) {
 			var currentEntry = ds_list_find_value(currentSetIDList, j);
 			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-			var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+			var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 			var tokenSubMap = global.nodeMap[?currentWordID];
 			var currentWordWidth = 0;
 			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)){
@@ -91,8 +91,8 @@ function scr_drawChains() {
 			var currentEntry1SubMap = global.nodeMap[? currentEntry1];
 			var currentEntry2 = currentSetIDList[| j + 1];
 			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
-			var currentWordID1 = currentEntry1SubMap[? "word"];
-			var currentWordID2 = currentEntry2SubMap[? "word"];
+			var currentWordID1 = currentEntry1SubMap[? "token"];
+			var currentWordID2 = currentEntry2SubMap[? "token"];
 			
 			// check if the words are chunks
 			var currentWordID1IsChunk = false;

@@ -33,7 +33,7 @@ function scr_exportChainEntryGrid(chainList, headerList){
 		if (ds_list_size(vizSetIDList) > 0) {
 			var firstEntry = vizSetIDList[| 0];
 			var firstEntrySubMap = global.nodeMap[? firstEntry];
-			var firstEntryWord = firstEntrySubMap[? "word"];
+			var firstEntryWord = firstEntrySubMap[? "token"];
 			if (scr_isChunk(firstEntryWord)) {
 				earliestWordID = scr_getFirstWordOfChunk(firstEntryWord);
 			}
@@ -105,7 +105,7 @@ function scr_exportChainEntryGrid(chainList, headerList){
 			var isChunk = false;
 			var isInChunk = false;
 			if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
-				currentWord = currentEntrySubMap[? "word"];
+				currentWord = currentEntrySubMap[? "token"];
 				isChunk = scr_isChunk(currentWord);
 					
 				if (!isChunk) {

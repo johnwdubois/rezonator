@@ -16,7 +16,7 @@ function scr_handleVoid(setList) {
 		if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 		var currentStretch = currentEntrySubMap[? "stretch"];
 		if (currentStretch) continue;
-		var currentWordID = currentEntrySubMap[? "word"];
+		var currentWordID = currentEntrySubMap[? "token"];
 		if (scr_isChunk(currentWordID)) currentWordID = scr_getFirstWordOfChunk(currentWordID);
 		
 		var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
@@ -37,7 +37,7 @@ function scr_handleVoid(setList) {
 			var currentEntrySubMap = global.nodeMap[? currentEntry];
 			if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 			
-			var currentWordID = currentEntrySubMap[? "word"];
+			var currentWordID = currentEntrySubMap[? "token"];
 			if (scr_isChunk(currentWordID)) currentWordID = scr_getFirstWordOfChunk(currentWordID);
 			
 			var currentDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, currentWordID - 1);

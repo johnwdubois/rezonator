@@ -55,7 +55,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			var currentEntrySubMap = global.nodeMap[? currentEntry];
 			if (!is_numeric(currentEntrySubMap)) continue;
 			if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
-			var currentWordID = currentEntrySubMap[? "word"];
+			var currentWordID = currentEntrySubMap[? "token"];
 			currentChunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
 			if(currentChunkFirstWord > 0){
 				currentWordID = currentChunkFirstWord;
@@ -107,7 +107,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			var currentEntrySubMap = global.nodeMap[? currentEntry];
 			if (!is_numeric(currentEntrySubMap)) continue;
 			if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
-			var currentWordID = currentEntrySubMap[? "word"];
+			var currentWordID = currentEntrySubMap[? "token"];
 			
 			if(scr_isChunk(currentWordID)){
 				currentWordID = scr_getFirstWordOfChunk(currentWordID);
@@ -149,7 +149,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 				if (!is_numeric(currentEntrySubMap)) continue;
 				if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 				
-				var currentWordID = currentEntrySubMap[? "word"];
+				var currentWordID = currentEntrySubMap[? "token"];
 				
 				if(scr_isChunk(currentWordID)){
 					currentWordID = scr_getFirstWordOfChunk(currentWordID);
@@ -184,7 +184,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			if (!is_numeric(currentEntrySubMap)) continue;
 			if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 			
-			var currentWordID = currentEntrySubMap[? "word"];
+			var currentWordID = currentEntrySubMap[? "token"];
 			var currentDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID - 1);
 	
 			if (ds_list_find_index(displayRowList, currentDisplayRow) == -1) {

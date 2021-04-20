@@ -83,7 +83,7 @@ function scr_renderFilter() {
 					currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 				}
 				else {
-					currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+					currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 					if (scr_isChunk(currentWordID)) currentWordID = scr_getFirstWordOfChunk(currentWordID);
 					currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
 				}

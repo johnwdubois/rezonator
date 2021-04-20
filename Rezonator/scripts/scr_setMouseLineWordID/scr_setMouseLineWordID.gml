@@ -14,7 +14,7 @@ function scr_setMouseLineWordID(){
 				var focusedEntry = chainSubMap[? "focused"];
 				var focusedEntrySubMap = global.nodeMap[? focusedEntry];
 				if (scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {
-					var focusedEntryWordID = focusedEntrySubMap[? "word"];
+					var focusedEntryWordID = focusedEntrySubMap[? "token"];
 					var focusedEntryWordIDIsChunk = scr_isChunk(focusedEntryWordID);
 					mouseLineWordID = focusedEntryWordIDIsChunk ? scr_getFirstWordOfChunk(focusedEntryWordID) : focusedEntryWordID;
 					if (!focusedEntryWordIDIsChunk) {

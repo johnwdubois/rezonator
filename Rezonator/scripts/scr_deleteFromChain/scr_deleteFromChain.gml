@@ -42,7 +42,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	// get the focusedEntry's word & displayrow
 	var focusedEntryWord = -1;
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
-		focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
+		focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "token");
 	}
 	var focusedEntryIsChunk = scr_isChunk(focusedEntryWord);
 	
@@ -64,7 +64,7 @@ function scr_deleteFromChain(sortVizSetList) {
 		if (focusedEntryGoalLinkListSize < 1) {
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
-				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "word");
+				var focusedEntryWord = ds_map_find_value(focusedEntrySubMap, "token");
 				
 				if (obj_control.rightClickonWord and obj_control.deleteChunkWord) {
 					if (obj_control.rightClickWordID != focusedEntryWord) {

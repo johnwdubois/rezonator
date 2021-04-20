@@ -26,7 +26,7 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 				var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedEntry);
 				if (is_numeric(focusedEntrySubMap)) {
 					if (ds_exists(focusedEntrySubMap, ds_type_map)) {
-						focusedChainFocusedWordID = ds_map_find_value(focusedEntrySubMap, "word");
+						focusedChainFocusedWordID = ds_map_find_value(focusedEntrySubMap, "token");
 					}
 				}
 			}

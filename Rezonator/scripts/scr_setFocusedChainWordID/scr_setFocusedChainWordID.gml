@@ -17,7 +17,7 @@ function scr_setFocusedChainWordID(){
 			var focusedChainFocused = chainMap[? "focused"];
 			var focusedEntrySubMap = global.nodeMap[? focusedChainFocused];
 			if (scr_isNumericAndExists(focusedEntrySubMap, ds_type_map)) {			
-				var focusedEntryKey = (focusedChainType == "stackChain") ? "unit" : "word";
+				var focusedEntryKey = (focusedChainType == "stackChain") ? "unit" : "token";
 				focusedChainWordID = focusedEntrySubMap[? focusedEntryKey];
 			}
 		}
