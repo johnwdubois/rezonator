@@ -210,9 +210,12 @@ function scr_saveREZ(autosave) {
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);
 			
 		 	
-			// save the wordView & unitView
-			ds_map_add(map, "wordView", wordView);
-			ds_map_add(map, "unitView", unitView);
+			// save the displayTokenField & speakerField
+			ds_map_add(map, "displayTokenField", global.displayTokenField);
+			ds_map_add(map, "speakerField", global.speakerField);
+			
+			// save discourse node
+			ds_map_add(map, "discourseNode", global.discourseNode);
 		
 		}
 		else if (object_index == obj_chain) {

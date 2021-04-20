@@ -140,7 +140,7 @@ function scr_loadREZ() {
 				
 					global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
 					global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
-					global.nodeMap = ds_map_find_value(map, "nodeMap");					
+					global.nodeMap = ds_map_find_value(map, "nodeMap");
 					
 				
 					if (is_undefined(global.tokenImportTagMap)) {
@@ -257,12 +257,17 @@ function scr_loadREZ() {
 				
 					global.totalUnitAmount = scr_getTotalUnitAmount();
 					
-					// get wordView and unitView
-					var getWordView = ds_map_find_value(map, "wordView");
-					var getUnitView = ds_map_find_value(map, "unitView");
-					if (is_numeric(getWordView)) wordView = getWordView;
-					if (is_numeric(getUnitView)) unitView = getUnitView;
+					// get displayTokenField & speakerField
+					var getDisplayTokenField = ds_map_find_value(map, "displayTokenField");
+					var getSpeakerField = ds_map_find_value(map, "speakerField");
+					if (is_string(getDisplayTokenField)) global.displayTokenField = getDisplayTokenField;
+					if (is_string(getSpeakerField)) global.speakerField = getSpeakerField;
 					
+					// get discourse node
+					global.discourseNode = map[? "discourseNode"];
+					if (!ds_map_exists(global.nodeMap, global.discourseNode)) {
+						scr_initializeDiscourseNodes();
+					}
 					
 				}
 				else if (objectIndex == "obj_chain") {
@@ -374,6 +379,12 @@ function scr_loadREZ() {
 	}
 	if (ds_grid_height(global.unitImportGrid) <= ds_grid_height(obj_control.unitGrid)) {
 		ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
+	}
+	
+	// update displayUnitList
+	var discourseNodeSubMap = global.nodeMap[? global.discourseNode];
+	if (scr_isNumericAndExists(discourseNodeSubMap, ds_type_map)) {
+		obj_control.displayUnitList = discourseNodeSubMap[? "displayUnitList"];
 	}
 
 

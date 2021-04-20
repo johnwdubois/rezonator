@@ -23,7 +23,18 @@ function scr_drawLine2ElectricBoogaloo(){
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);
 	for (var i = 0; i < displayUnitListSize; i++) {
 		
+		// if unit is outside of draw range, do not draw its entries/tokens
 		if (i < drawRangeStart || i > drawRangeEnd) {
+			
+			if (i > drawRangeEnd && i < drawRangeEnd + (drawRange * 0.5)) {
+				var currentUnit = displayUnitList[| i];
+				var currentUnitSubMap = global.nodeMap[? currentUnit];
+				if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) continue;
+				var currentPixelY = floor(unitPlusY + scrollPlusY);
+				currentUnitSubMap[? "pixelY"] = currentPixelY;
+			}
+			
+			
 			unitPlusY += gridSpaceVertical;
 			continue;
 		}
@@ -94,7 +105,6 @@ function scr_drawLine2ElectricBoogaloo(){
 								if (stackVisible) drawStackRect = true;
 							}
 						}
-						
 					}
 				}
 			}
@@ -112,14 +122,6 @@ function scr_drawLine2ElectricBoogaloo(){
 		}
 
 		
-		
-		
-
-		
-		
-		
-		
-		
 		// get current unit's entryList and make sure it exists
 		var currentEntryList = currentUnitSubMap[? "entryList"];
 		if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
@@ -127,11 +129,6 @@ function scr_drawLine2ElectricBoogaloo(){
 		
 		// draw speaker label for this unit
 		scr_drawSpeakerLabel(currentUnit, currentUnitSubMap, currentPixelY);
-		
-		
-		
-		
-		
 		
 		
 		

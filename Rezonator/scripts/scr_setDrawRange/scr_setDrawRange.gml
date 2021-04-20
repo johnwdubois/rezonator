@@ -48,6 +48,8 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	if (drawRangeExtraStepsBack > 0) {
 		drawRangeEnd = min(drawRangeEnd, drawRangeStart + (drawRange * 2));
 	}
+	
+
 
 	// extend drawRange forwards
 	if (drawRangeEnd + 1 < displayUnitListSize) {

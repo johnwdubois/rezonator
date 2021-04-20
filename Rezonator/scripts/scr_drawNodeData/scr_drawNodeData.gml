@@ -45,7 +45,7 @@ function scr_drawNodeData(){
 			// check if this value is a list
 			var isList = (subMapKey == "goalLinkList" || subMapKey == "linkIDList" || subMapKey == "vizSetIDList"
 							|| subMapKey == "setIDList"  || subMapKey == "inChainsList" || subMapKey == "tokenList"
-							|| subMapKey == "entryList"|| subMapKey == "unitList");
+							|| subMapKey == "entryList"|| subMapKey == "unitList" || subMapKey == "displayUnitList");
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}
