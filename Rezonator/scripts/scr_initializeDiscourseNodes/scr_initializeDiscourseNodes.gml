@@ -39,8 +39,8 @@ function scr_initializeDiscourseNodes(){
 				// make token node
 				var currentTokenNode = scr_addToNodeMap("token");
 				var currentTokenSubMap = global.nodeMap[? currentTokenNode];
-				ds_map_add(currentTokenSubMap, "discoursediscourseTokenSeq", discourseTokenSeq);
-				ds_map_add(currentTokenSubMap, "discourseTokenSeq", j);
+				ds_map_add(currentTokenSubMap, "discourseTokenSeq", discourseTokenSeq);
+				ds_map_add(currentTokenSubMap, "tokenSeq", j);
 				ds_map_add(currentTokenSubMap, "displayCol", j);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
 				ds_map_add(currentTokenSubMap, "unit", currentUnitNode);
@@ -101,9 +101,9 @@ function scr_initializeDiscourseNodes(){
 	ds_list_copy(displayUnitList, unitList);
 	
 	// attach core lists to discourse map
-	ds_map_add(currentDiscourseSubMap, "unitList", unitList);
-	ds_map_add(currentDiscourseSubMap, "tokenList", tokenList);
-	ds_map_add(currentDiscourseSubMap, "displayUnitList", displayUnitList);
+	ds_map_add_list(currentDiscourseSubMap, "unitList", unitList);
+	ds_map_add_list(currentDiscourseSubMap, "tokenList", tokenList);
+	ds_map_add_list(currentDiscourseSubMap, "displayUnitList", displayUnitList);
 	obj_control.displayUnitList = displayUnitList;
 	
 	// set default displayTokenField
