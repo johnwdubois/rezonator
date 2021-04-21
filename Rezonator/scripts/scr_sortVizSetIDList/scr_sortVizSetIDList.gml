@@ -4,15 +4,12 @@ function scr_sortVizSetIDList(chainID){
 	
 	// get chain's submap
 	var chainSubMap = global.nodeMap[? chainID];
-	if (!is_numeric(chainSubMap)) {
+	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 		show_debug_message("scr_sortVizSetIDList() ... chainSubMap is non-numeric");
 		exit;
 	}
-	if (!ds_exists(chainSubMap, ds_type_map)) {
-		show_debug_message("scr_sortVizSetIDList() ... chainSubMap does not exist");
-		exit;
-	}
 	
+	// get chainType
 	var chainType = chainSubMap[? "type"];
 	show_debug_message("scr_sortVizSetIDList() ... sorting chain: " + string(chainID) + ", type: " + string(chainType));
 	
@@ -32,8 +29,7 @@ function scr_sortVizSetIDList(chainID){
 		// get word info from this entry
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
-		if (!is_numeric(currentEntrySubMap)) continue;
-		if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 		
 		var currentWordID = -1;
 		var currentUnitSeq = -1;
@@ -59,12 +55,8 @@ function scr_sortVizSetIDList(chainID){
 				}
 
 				currentWordOrder = currentTokenIDSubMap[? "discourseTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
-				
-				
 
 			}
-			
-
 		}
 		else if (chainType == "stackChain") {
 			var unitID = currentEntrySubMap[? "unit"];

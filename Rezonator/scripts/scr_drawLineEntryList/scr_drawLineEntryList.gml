@@ -43,47 +43,37 @@ function scr_drawLineEntryList(entryList, pixelY){
 		var tokenRectY1 = pixelY - (currentTokenStringHeight / 2) - tokenRectBuffer;
 		var tokenRectX2 = tokenRectX1 + currentTokenStringWidth + (tokenRectBuffer * 2);
 		var tokenRectY2 = tokenRectY1 + currentTokenStringHeight + (tokenRectBuffer * 2);
-			
-
-		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2) && obj_control.hoverTokenID == "";
+		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && obj_control.hoverTokenID == "";
 		
-		
-		
-
+		// draw background tokenRect
+		draw_set_color(global.colorThemeBG);
+		draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
+	
 		
 		//if token has anything in chainslist add to show list
 		var inChainsList = currentTokenSubMap[?"inChainsList"];
 		var sizeOfInChainsList = ds_list_size(inChainsList);
-		if(sizeOfInChainsList > 0){
-			for(var j = 0 ; j < sizeOfInChainsList ; j++ ){
+		if (sizeOfInChainsList > 0) {
+			for(var j = 0; j < sizeOfInChainsList; j++ ){
 				var chainID = inChainsList[|j];
 				if(ds_list_find_index(obj_chain.chainShowList, inChainsList[|j]) == -1){
 					ds_list_add(obj_chain.chainShowList,  inChainsList[|j]);
 				}
+				
+				// draw border around token
 				var chainSubMap = global.nodeMap[?chainID];
 				var chainColor = chainSubMap[?"chainColor"]
 				var chainType = chainSubMap[?"type"]
 				draw_set_color(chainColor);
-				if (chainType == "rezChain") {
-					draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
-				}
-				else if (chainType == "trackChain") {
-					draw_roundrect(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
-				}
-				
+				scr_drawRectWidth(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, 2, chainType == "trackChain");				
 			}
 		}
-		//get border info from token
-		var borderType = currentTokenSubMap[?"border"];
-		if(borderType == "rez"|| borderType == "track"){
-			draw_set_color(global.colorThemeBG);
-			draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, false);
-		}
 		
-
-				
+		
+		// mouseover & click on token
 		if(mouseOverToken){
 			if(sizeOfInChainsList == 0){
+				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
 			}
 			obj_control.hoverTokenID = currentToken;

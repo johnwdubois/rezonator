@@ -57,13 +57,10 @@ function scr_newLink(ID) {
 	
 	// determine the tier/type of this link
 	var nodeType = "rez";
-	var currentChainTier = obj_chain.rezTier;
 	if (focusedChainType == "trackChain") {
-		currentChainTier = obj_chain.trackTier;
 		nodeType = "track";
 	}
 	else if (focusedChainType == "stackChain") {
-		currentChainTier = obj_chain.stackTier;
 		nodeType = "stack";
 	}
 	

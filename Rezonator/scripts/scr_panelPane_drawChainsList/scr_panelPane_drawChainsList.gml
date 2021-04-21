@@ -202,10 +202,6 @@ function scr_panelPane_drawChainsList() {
 				
 								obj_chain.currentFocusedChainID = currentChainID;
 				
-								// Set chain to focus in the main screen
-								if (obj_chain.mouseLineWordID >= 0 and obj_chain.mouseLineWordID < ds_grid_height(obj_control.wordDrawGrid)) {
-									scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
-								}
 			
 								// Set scroll range in the chain list
 								with (obj_panelPane) {

@@ -63,22 +63,18 @@ function scr_panelPane_drawChains1ToMany() {
 	// Check for focused chain and make sure grid is not empty, gather information from grids
 	// Collect beginning of chain info
 	var chainID = functionChainContents_chainID;
-	var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
+	var chainSubMap = global.nodeMap[? chainID];
 	
 	// make sure chain exists and that its submap exists
-	if (!is_numeric(chainSubMap)) {
-		scr_surfaceEnd();
-		exit;
-	}
-	if (!ds_exists(chainSubMap, ds_type_map)) {
+	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 		scr_surfaceEnd();
 		exit;
 	}
 	
 	// get some cool variables from the chain
-	var chainType = ds_map_find_value(chainSubMap, "type");
-	var chainAligned = ds_map_find_value(chainSubMap, "alignChain");
-	var chainFocusedEntry = ds_map_find_value(chainSubMap, "focused");
+	var chainType = chainSubMap[? "type"];
+	var chainAligned = chainSubMap[? "alignChain"];
+	var chainFocusedEntry = chainSubMap[? "focused"];
 	
 	// make sure that we have a valid chain type
 	if (chainType != "rezChain" && chainType != "trackChain" && chainType != "stackChain") {
@@ -99,146 +95,95 @@ function scr_panelPane_drawChains1ToMany() {
 	// Get vizSetIDList list for the focused chain
 	with (obj_panelPane) {
 		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-		if (is_numeric(focusedChainSubMap)) {
-			if (ds_exists(focusedChainSubMap, ds_type_map)) {
-				functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, "vizSetIDList");
-			}
+		if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
+			functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, "vizSetIDList");
 		}
 		if (functionChainContents_IDList != undefined) {
 			// Select top of the content list
 			if (functionChainContents_hop > -1) {
-				if (ds_list_find_index(functionChainContents_IDList, functionChainContents_hop) > -1) {
-					//currentTopViewRow = ds_list_find_index(functionChainContents_IDList, functionChainContents_hop);
-				}
 				functionChainContents_hop = -1;
 			}
 		}
 	}
 		
-		
+
 		
 	// loop over the vizSetIDList and draw the data in each of the chain entries
-	if (is_numeric(functionChainContents_IDList)) {
-		if (ds_exists(functionChainContents_IDList, ds_type_list)) {
+	if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {
 			
-			var entryIDListSize = ds_list_size(functionChainContents_IDList);
-			scrollBarListHeight = entryIDListSize
+		var entryIDListSize = ds_list_size(functionChainContents_IDList);
+		scrollBarListHeight = entryIDListSize;
 	
-			for (var j = 0; j < entryIDListSize; j++) {
+		for (var i = 0; i < entryIDListSize; i++) {
 						
-				// Get map of current entry
-				var currentEntry = ds_list_find_value(functionChainContents_IDList, j);
-				var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
+			// Get map of current entry
+			var currentEntry = functionChainContents_IDList[| i];
+			var currentEntrySubMap = global.nodeMap[? currentEntry];
 				
-				// make sure the current entry's map exists
-				if (!is_numeric(currentEntrySubMap)) continue;
-				if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
+			// make sure the current entry's map exists
+			if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 				
-				// get the wordID (or unitID is this is a stackChain)
-				var currentWordID = ds_map_find_value(currentEntrySubMap, (chainType == "stackChain") ? "unit" : "token");
-				
-				if (currentWordID == undefined) continue;
-				
-				var currentEntryAligned = false;
-				var currentWordInfoCol;
-				currentWordInfoCol[0] = "";
+			// get the tokenID (or unitID is this is a stackChain)
+			var currentID = currentEntrySubMap[? (chainType == "stackChain") ? "unit" : "token"];
+			if (!is_string(currentID)) continue;
 		
-				// Set size of rectangle around word
-				var rectX1 = x;
-				var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
-				var rectX2 = x + windowWidth - global.scrollBarWidth;
-				var rectY2 = rectY1 + strHeight;
-				var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader;
-				
-				var highlightEntryRect = false;
+			// Set size of rectangle around word
+			var rectX1 = x;
+			var rectY1 = y + textMarginTop + textPlusY - (strHeight / 2) + scrollPlusY;
+			var rectX2 = x + windowWidth - global.scrollBarWidth;
+			var rectY2 = rectY1 + strHeight;
+			var mouseover = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rectX1, rectY1, rectX2, rectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader;
+			var highlightEntryRect = false;
 			
-				// Sets the link focused in the panelPane to the link focused in the main screen
-				if (chainFocusedEntry == currentEntry) {
-					highlightEntryRect = true;
+			// Sets the link focused in the panelPane to the link focused in the main screen
+			if (chainFocusedEntry == currentEntry) {
+				highlightEntryRect = true;
+			}
+			else if (mouseover and ableToBeMouseOver) {
+				ableToBeMouseOver = false;
+				highlightEntryRect = true;
 			
-					// Focus in the main screen
-					if (chainType == "rezChain" or chainType == "trackChain") {
-						ds_grid_set_region(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, 0, obj_control.wordDrawGrid_colFillRect, ds_grid_height(obj_control.wordDrawGrid), false);
-						
-						if(!scr_isChunk(currentEntry) && is_numeric(currentWordID)){
-							ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, currentWordID - 1, true);
-						}
-					}
+				// if the user clicks on the currentEntry in the chainContents, let's focus the chain and its currentEntry
+				if (device_mouse_check_button_released(0, mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
+					obj_chain.currentFocusedChainID = chainID;
+					ds_map_replace(chainSubMap, "focused", currentEntry);
 				}
-				else if (mouseover and ableToBeMouseOver) {
-					ableToBeMouseOver = false;
-					highlightEntryRect = true;
-			
-					// if the user clicks on the currentEntry in the chainContents, let's focus the chain and its currentEntry
-					if (device_mouse_check_button_released(0, mb_left) and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
-						obj_chain.currentFocusedChainID = chainID;
-						ds_map_replace(chainSubMap, "focused", currentEntry);
-					}
-				}
-				draw_set_alpha(1);
+			}
+			draw_set_alpha(1);
 	
-				// Check for double click
-				if (mouseover) {
-					if (device_mouse_check_button_released(0, mb_left)) {
-						if (doubleClickTimer > -1) {
+			// Check for double click
+			if (mouseover) {
+				if (device_mouse_check_button_released(0, mb_left)) {
+					if (doubleClickTimer > -1) {
 				
-							var rowInLineGrid = -1;
+						var rowInLineGrid = -1;
 				
-							// Set double clicked word to center display row, if possible
-							if (functionChainList_currentTab == functionChainList_tabStackBrush
-							or functionChainList_currentTab == functionChainList_tabClique) {
-								var currentUnitID = currentWordID;
-								rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-							}
-							else {
-								var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-								rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-							}
-					
-							if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {
-								var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-								obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-							}
+						// Set double clicked word to center display row, if possible
+						if (functionChainList_currentTab == functionChainList_tabStackBrush
+						or functionChainList_currentTab == functionChainList_tabClique) {
+							var currentUnitID = currentID;
+							rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
 						}
 						else {
-							doubleClickTimer = 0;
+							var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentID - 1);
+							rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
 						}
-					}	
-				}
-				
-				var currentTagMap = ds_map_find_value(currentEntrySubMap, "tagMap");
-				
-				scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader, mouseoverScrollBar);
-				
-			
-				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
 					
-					// TEMPORARILY TAKING OUT: the align individual entry button
-					/*
-					var alignRectX1 = x + windowWidth - global.scrollBarWidth - strHeight - alignRectSize;
-					var alignRectY1 = y + textMarginTop + textPlusY - (alignRectSize / 2) + scrollPlusY + 1;
-					var alignRectX2 = x + windowWidth - global.scrollBarWidth - strHeight;
-					var alignRectY2 = y + textMarginTop + textPlusY + (alignRectSize / 2) + scrollPlusY - 1;
-		
-				 	if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, alignRectX1, alignRectY1, alignRectX2, alignRectY2)) {
-						scr_createTooltip(alignRectX1, mean(alignRectY1, alignRectY2), "Align link", obj_tooltip.arrowFaceRight);
-						draw_set_color(c_purple);
-						draw_set_alpha(0.5);
-						draw_rectangle(alignRectX1 - clipX, alignRectY1 - clipY, alignRectX2 - clipX, alignRectY2 - clipY, false);
-				
-						if (device_mouse_check_button_released(0, mb_left)
-						and chainAligned and not ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colStretch, currentWordID - 1)) {
-							currentEntryAligned = !currentEntryAligned;
-							ds_map_replace(currentEntrySubMap, "alignEntry", currentEntryAligned);
+						if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {
+							var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
+							obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 						}
 					}
-					
-					draw_sprite_ext(spr_align, !currentEntryAligned, mean(alignRectX1, alignRectX2) - clipX, mean(alignRectY1, alignRectY2) - clipY, 1, 1, 0, c_white, 1);
-					*/
-				}
-			
-				textPlusY += strHeight;
+					else {
+						doubleClickTimer = 0;
+					}
+				}	
 			}
+				
+			// loop across to draw all of the column values for this entry
+			var currentTagMap = currentEntrySubMap[? "tagMap"];
+			scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentID, currentTagMap, textPlusY, rectY1, rectY2, highlightEntryRect, mouseoverHeader, mouseoverScrollBar);
+			textPlusY += strHeight;
 		}
 	}
 	
@@ -246,10 +191,8 @@ function scr_panelPane_drawChains1ToMany() {
 	
 
 	var scrollBarListSize = 0;
-	if (is_numeric(functionChainContents_IDList)) {
-		if (ds_exists(functionChainContents_IDList, ds_type_list)) {
-			scrollBarListSize = ds_list_size(functionChainContents_IDList);
-		}
+	if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {
+		scrollBarListSize = ds_list_size(functionChainContents_IDList);
 	}
 
 	var scrollBarBackColor = global.colorThemeSelected1;

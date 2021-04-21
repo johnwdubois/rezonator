@@ -3,7 +3,7 @@ function scr_drawChains() {
 		Purpose: draw rezChains and move words on screen according to the rezChains
 	*/
 	
-	//scr_setMouseLineWordID();
+	scr_setMouseLineWordID();
 
 	var lineX1 = undefined;
 	var lineY1 = undefined;
