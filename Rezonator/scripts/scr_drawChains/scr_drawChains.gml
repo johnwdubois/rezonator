@@ -79,9 +79,8 @@ function scr_drawChains() {
 			}
 		}
 	
-		var wordsInSameLine = false;
-		var firstWordInLine = -1;
-		var firstWordInLine = -1;
+		var tokensInSameLine = false;
+		var firstTokenInLine = "";
 	
 		// loop through current chain's wordIDList to draw the lines of the chain
 		for (var j = 0; j < currentSetIDListSize - 1; j++) {
@@ -91,90 +90,113 @@ function scr_drawChains() {
 			var currentEntry1SubMap = global.nodeMap[? currentEntry1];
 			var currentEntry2 = currentSetIDList[| j + 1];
 			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
-			var currentWordID1 = currentEntry1SubMap[? "token"];
-			var currentWordID2 = currentEntry2SubMap[? "token"];
+			var currentTokenID1 = currentEntry1SubMap[? "token"];
+			var currentTokenID2 = currentEntry2SubMap[? "token"];
 			
+			//get tokenSubMaps
+			var currentToken1SubMap = global.nodeMap[? currentTokenID1];
+			var currentToken2SubMap = global.nodeMap[? currentTokenID2];
+			if(!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)){show_debug_message("TRERRY IS A DINGLE1") continue;}
+			if(!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){show_debug_message("TRERRY IS A DINGLE2") continue;}
+				
+			//get tokenTagSubMaps
+			var currentTagSubMap1 = currentToken1SubMap[? "tagMap"];
+			var currentTagSubMap2 = currentToken2SubMap[? "tagMap"];		
+	
+			
+			//get unit IDs
+			var tokenUnitID1 = currentToken1SubMap[?"unit"];
+			var	tokenUnitID2 = currentToken2SubMap[?"unit"];
+			
+			//get token's Unit's subMap
+			var tokenUnitID1SubMap = global.nodeMap[?tokenUnitID1];
+			var tokenUnitID2SubMap = global.nodeMap[?tokenUnitID2];
+			
+			/*
 			// check if the words are chunks
 			var currentWordID1IsChunk = false;
-			if (ds_map_exists(global.nodeMap, currentWordID1)) {
-				var currentWordID1SubMap = global.nodeMap[? currentWordID1];
+			if (ds_map_exists(global.nodeMap, currentTokenID1)) {
+				var currentWordID1SubMap = global.nodeMap[? currentTokenID1];
 				var currentWordID1Type = currentWordID1SubMap[? "type"];
 				if (currentWordID1Type == "chunk") currentWordID1IsChunk = true;
 				if (currentWordID1IsChunk) {
 					var currentWordID1TokenList = currentWordID1SubMap[? "tokenList"];
-					currentWordID1 = currentWordID1TokenList[| 0];
+					currentTokenID1 = currentWordID1TokenList[| 0];
 				}
 			}
 			var currentWordID2IsChunk = false;
-			if (ds_map_exists(global.nodeMap, currentWordID2)) {
-				var currentWordID2SubMap = global.nodeMap[? currentWordID2];
+			if (ds_map_exists(global.nodeMap, currentTokenID2)) {
+				var currentWordID2SubMap = global.nodeMap[? currentTokenID2];
 				var currentWordID2Type = currentWordID2SubMap[? "type"];
 				if (currentWordID2Type == "chunk") currentWordID2IsChunk = true;
 				if (currentWordID2IsChunk) {
 					var currentWordID2TokenList = currentWordID2SubMap[? "tokenList"];
-					currentWordID2 = currentWordID2TokenList[| 0];
+					currentTokenID2 = currentWordID2TokenList[| 0];
 				}
 			}
-			
+			*/
+	
+			var currentWordStringWidth1 = string_width(string(currentTagSubMap1[?global.displayTokenField]));
+			var currentWordStringWidth2 = string_width(string(currentTagSubMap2[?global.displayTokenField]));
 		
-			var currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);
-			var chunkWord1 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID1 - 1) == obj_control.wordStateChunk);		
-			var currentWordStringWidth1 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
+			lineX1 = currentToken1SubMap[?"pixelX"];
+			lineY1 = tokenUnitID1SubMap[?"pixelY"];
 		
-			lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
-			lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineID1);
-		
-			var currentLineID2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID2 - 1);
-			var chunkWord2 = (ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentWordID2 - 1) == obj_control.wordStateChunk);
+	
 			var sideLink = false;
 			
 			// check if this is a side link
-			if (currentLineID1 == currentLineID2) {
-				wordsInSameLine = true;
+			if (tokenUnitID1 == tokenUnitID2) {
+				tokensInSameLine = true;
 				// if we have not set the first word in the line yet, set it to be this one
-				if (firstWordInLine < 0) {
-					firstWordInLine = currentWordID1;
+				if (firstTokenInLine == "") {
+					firstTokenInLine = currentTokenID1;
 				}
 				sideLink = true;
 			}
 			else {
-				if (wordsInSameLine and firstWordInLine >= 0 and (firstWordInLine - 1) < ds_grid_height(obj_control.wordGrid)) {
-					currentWordID1 = firstWordInLine;
-					currentLineID1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentWordID1 - 1);
-					//currentLineGridIndex1 = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, activeLineGridHeight, currentUnitID1);
+				if (tokensInSameLine and firstTokenInLine != "") {
+					currentTokenID1 = firstTokenInLine;
+					currentToken1SubMap = global.nodeMap[? currentTokenID1];
+					tokenUnitID1 = currentToken1SubMap[?"unit"];
+					currentTagSubMap1 = currentToken1SubMap[? "tagMap"];
+					tokenUnitID1SubMap = global.nodeMap[?tokenUnitID1];
 		
-					currentWordStringWidth1 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID1 - 1)));
+					currentWordStringWidth1 = string_width(string(currentTagSubMap1[?global.displayTokenField]));
 		
-					lineX1 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID1 - 1);
-					lineY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineID1);
+					lineX1 = currentToken1SubMap[?"pixelX"];
+					lineY1 = tokenUnitID1SubMap[?"pixelY"];
 				}
 			
-				firstWordInLine = -1;
+				firstTokenInLine = "";
 			}
 		
-			var currentWordStringWidth2 = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID2 - 1)));
+			var currentWordStringWidth2 = string_width(string(currentTagSubMap2[?global.displayTokenField]));
 		
-			lineX2 = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentWordID2 - 1);
-			lineY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, currentLineID2);
+			lineX2 = currentToken2SubMap[?"pixelX"];
+			lineY2 = tokenUnitID2SubMap[?"pixelY"];
 		
 			var currentLineGridIndex1InDrawRange = true;
 			var currentLineGridIndex2InDrawRange = true;
+			
+			var unitSeq1 = tokenUnitID1SubMap[?"unitSeq"];
+			var unitSeq2 = tokenUnitID2SubMap[?"unitSeq"];
 		
-			if (currentLineID1 < obj_control.drawRangeStart or currentLineID1 > obj_control.drawRangeEnd) {
+			if (unitSeq1 < obj_control.drawRangeStart or unitSeq1 > obj_control.drawRangeEnd) {
 				currentLineGridIndex1InDrawRange = false;
 			}
 		
-			if (currentLineID2 < obj_control.drawRangeStart or currentLineID2 > obj_control.drawRangeEnd) {
+			if (unitSeq2 < obj_control.drawRangeStart or unitSeq2 > obj_control.drawRangeEnd) {
 				currentLineGridIndex2InDrawRange = false;
 			}
 		
 		
-		
-			//wordTopMargin + 
+		 
 			// only draw line if every value is real and we are in the draw range
 			if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
 			and not (lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2))
 			and not (lineY1 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2)) {
+				/*
 				if (chunkWord1) {
 					var wordRectBuffer = 15;
 					lineY1 += wordRectBuffer;
@@ -184,10 +206,12 @@ function scr_drawChains() {
 					var wordRectBuffer = 15;
 					lineY2 -= (wordRectBuffer);
 				}
+				*/
 			
 				if (currentChainVisible) {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
+					/*
 					if (chunkWord2) {
 						if (chainType == "rezChain") {
 							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
@@ -196,29 +220,36 @@ function scr_drawChains() {
 							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
 						}
 					}
-					else {
-						if (chainType == "rezChain") {
-							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
-						}
-						else if (chainType == "trackChain") {
-							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
-						}
+					else{*/
+					if (chainType == "rezChain") {
+						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
 					}
+					else if (chainType == "trackChain") {
+						scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+					}
+					
 				}
 				// I need to modify this with the Chunk's wordRectBuffer
-				chunkWord2 = 0;
+				//chunkWord2 = 0;
 			}
 		}
 	
 	
 		if (obj_chain.currentFocusedChainID == currentChainID) {	
-			if (mouseLineWordID >= 0 && (mouseLineWordID - 1) < ds_grid_height(obj_control.wordGrid)) {
+			if (mouseLineWordID != "") {
 				
-				var mouseLineWordDisplayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, mouseLineWordID - 1);
-				var mouseLineWordStringWidth = string_width(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
-				var mouseLineWordStringHeight = string_height(string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, mouseLineWordID - 1)));
-				var wordPixelX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, mouseLineWordID - 1);
-				var wordPixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, mouseLineWordDisplayRow);
+				var mouseLineTokenSubMap = global.nodeMap[?mouseLineWordID];
+				var mouseLineTokenTagSubMap = mouseLineTokenSubMap[?"tagMap"];
+				var mouseLineUnitId = mouseLineTokenSubMap[?"unit"];
+				var mouseLineUnitSubMap = global.nodeMap[?mouseLineUnitId];
+				
+				
+				var mouseLineWordStringWidth = string_width(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
+				var mouseLineWordStringHeight = string_height(string(mouseLineTokenTagSubMap[?global.displayTokenField]));
+				
+				
+				var wordPixelX = mouseLineTokenSubMap[?"pixelX"];
+				var wordPixelY = mouseLineUnitSubMap[?"pixelY"];
 					
 				if(wordPixelX != undefined and wordPixelY != undefined) {
 					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);

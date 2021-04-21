@@ -78,7 +78,7 @@ focusedChainWrongTool = false;
 
 mouseLineHide = false;
 
-mouseLineWordID = -1;
+mouseLineWordID = "";
 
 
 cliqueGridWidth = 11;

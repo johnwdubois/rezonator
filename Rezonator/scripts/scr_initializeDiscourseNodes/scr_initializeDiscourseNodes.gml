@@ -43,8 +43,10 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentTokenSubMap, "tokenSeq", j);
 				ds_map_add(currentTokenSubMap, "displayCol", j);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
+				ds_map_add(currentTokenSubMap, "border", "");
 				ds_map_add(currentTokenSubMap, "unit", currentUnitNode);
 				ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
+				ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
 				
 				// make tag map for token & copy tags from tokenImportGrid
 				var tagMap = ds_map_create();
