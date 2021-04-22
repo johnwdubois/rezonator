@@ -18,6 +18,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize);
 	
 	hoverTokenID = "";
+	mouseoverSpeakerLabel = false;
 	
 	// clear lists that are meant to be refreshed each frame
 	ds_list_clear(obj_chain.chainShowList);
@@ -86,6 +87,12 @@ function scr_drawLine2ElectricBoogaloo(){
 		
 		
 		unitPlusY += gridSpaceVertical;
+	}
+	
+	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == ""){
+		if(device_mouse_check_button_released(0, mb_left)){
+			scr_chainDeselect();
+		}
 	}
 	
 	// draw vertical lines to divide sections of speaker label

@@ -31,7 +31,7 @@ if (showDisplayCols) {
 	}
 }
 
-mouseoverSpeakerLabel = false;
+
 if (global.canScroll) {
 	mouseoverNeutralSpace = true;
 }

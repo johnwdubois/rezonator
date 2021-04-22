@@ -92,9 +92,24 @@ function scr_drawLineEntryList(entryList, pixelY){
 			}
 			obj_control.hoverTokenID = currentToken;
 			if(device_mouse_check_button_released(0, mb_left)){
+				
+				
+				var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+				
+				if(is_numeric(focusedchainIDSubMap)){
+					if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+						var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+						if( prevChainType == "stackChain"){
+							scr_chainDeselect();
+						}
+					}
+				}
+				
+				
 				scr_tokenClicked(currentToken);
 			}
 		}
+
 		
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);

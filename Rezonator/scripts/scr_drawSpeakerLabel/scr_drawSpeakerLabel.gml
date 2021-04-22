@@ -72,9 +72,12 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	}
 	
 	
-		mouseoverSpeakerLabel = point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2);
+		var mouseOverCurrentSpeakerLabel = (point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2));
+		if(mouseOverCurrentSpeakerLabel){
+			obj_control.mouseoverSpeakerLabel = true;
+		}
 	
-		if (device_mouse_check_button_released(0, mb_left) and  mouseoverSpeakerLabel and (touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
+		if (device_mouse_check_button_released(0, mb_left) and  mouseOverCurrentSpeakerLabel and (touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
 		/*
 		if (obj_control.ctrlHold) {
 						
