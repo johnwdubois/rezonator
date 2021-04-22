@@ -2,7 +2,7 @@ function scr_panelPane_drawUnits1to1() {
 	/*
 	    Purpose: Draw the translation of each line in the Nav window
 	*/
-	
+
 	scr_surfaceStart();
 	
 	
@@ -62,30 +62,28 @@ function scr_panelPane_drawUnits1to1() {
 		drawDropDowns = false;
 		
 		var colWidth = windowWidth / headerListSize;
-	    var colRectX1 = x + plusX;
+	    var colRectX1 = x + (colWidth * i);
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + colWidth;
-	    var colRectY2 = colRectY1 + windowHeight;
+	    var colRectY2 = colRectY1 + headerHeight;
 		
 		// if this is the last column, extend it to the end of the window
 		if (i == headerListSize - 1) {
 			colRectX2 = x + windowWidth;
 		}
     
-	    draw_set_color(global.colorThemeBG);
-	    draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
-	
+
 		// loop down units for this field
 		for (var j = 0; j < displayUnitListSize; j++) {
-    
+
 		    if (y + headerHeight + relativeScrollPlusY + textPlusY < y - strHeight
 		    or y + headerHeight + relativeScrollPlusY + textPlusY > y + windowHeight + strHeight) {
 		        textPlusY += strHeight;
 		        continue;
 		    }
-			
+
 			// get current unit and its submap
-			var currentUnitID = displayUnitList[| i];
+			var currentUnitID = displayUnitList[| j];
 			var currentUnitSubMap = global.nodeMap[? currentUnitID];
 			var currentTagMap = currentUnitSubMap[? "tagMap"];		
 		    var currentStr = string(currentTagMap[? currentField]);
@@ -97,6 +95,11 @@ function scr_panelPane_drawUnits1to1() {
 		    var unitRectY2 = unitRectY1 + strHeight;
 			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar;
     
+					// highlight rect
+				draw_set_color(global.colorThemeBG);
+				draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
+				
+	
 		    //Check mouse clicks to focus a line in the list
 		    if (mouseoverunitRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
 				drawDropDowns = true;
@@ -158,7 +161,9 @@ function scr_panelPane_drawUnits1to1() {
 				}
 			}
 			draw_set_alpha(1);
-    
+
+	
+	
     
 		    // Outline the rectangle in black
 		    if (functionChainList_focusedUnitIndex == j) {
@@ -167,21 +172,49 @@ function scr_panelPane_drawUnits1to1() {
 		        focusedElementY = y + headerHeight + relativeScrollPlusY + textPlusY;
 		    }
 
+			draw_set_color(global.colorThemeBG);
+			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
+		
+
     
 		    // Draw text of unit tags
 		    draw_set_halign(fa_left);
 		    draw_set_valign(fa_middle);
 		    draw_set_color(global.colorThemeText);
 			scr_adaptFont(string(currentStr), "S");
+			//show_debug_message(string(currentStr));
 		    draw_text(x + textMarginLeft + (colWidth * i) - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, currentStr);
     
 		    // Get height of chain name
 		    textPlusY += strHeight;
+			
 		}
+		
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
+	
+	if(i > 0){	
+		draw_set_color(global.colorThemeBorders);
+		draw_line_width(x + (colWidth * i)- clipX, y - clipY, x + (colWidth * i) - clipX, y + windowHeight - clipY, 1);
 	}
+			    
+
+	//draw header text
+	scr_adaptFont(string(currentField), "M");
+	draw_set_color(global.colorThemeText);
+	draw_text( colRectX1 + textMarginLeft - clipX, floor(mean(colRectY1,colRectY2)) - clipY, currentField);
+	
+	
+	}
+	
 
 
 
+	
+	// draw line to separate column headers from data
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, true);
+	
 	// draw focus outline
 	if (focusedRowRectY1 > -1 and focusedRowRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
@@ -189,182 +222,7 @@ function scr_panelPane_drawUnits1to1() {
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
 
-
-
-	// draw BG for headers
-	var headerHeight = functionTabs_tabHeight;
-	draw_set_color(global.colorThemeBG);
-	draw_rectangle(x - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + headerHeight - clipY, false);
-
-	// Create the column headers
-	/*
-	var activeCols = 0;
-	for (var i = 0; i < headerListSize; i++) {
-	    var colRectX1 = x + (i * (windowWidth / 6));
-	    var colRectY1 = y;
-	    var colRectX2 = colRectX1 + (windowWidth / 6);
-		var colWidth = colRectX2 - colRectX1;
-	    var colRectY2 = colRectY1 + windowHeight;
-		
-		// dividing lines
-		if (i > 0) {
-			draw_set_alpha(1);
-			draw_set_color(global.colorThemeBorders);
-			draw_line(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + headerHeight - clipY);
-			draw_set_color(global.colorThemeBorders);
-			draw_line(colRectX1 - clipX, y + headerHeight - clipY, colRectX1 - clipX, y + windowHeight - clipY);
-		}
-		
-		// if this is the last column, extend it to the end of the window
-		if (i == headerListSize - 1) {
-			colRectX2 = x + windowWidth;
-		}
-    
-	    var colName = "";
-    
-		var nameFromList =  ds_list_find_value(global.unitImportColNameList, i);
-		if(i != 0){
-			var unitColValue = ds_list_find_value(obj_control.currentDisplayUnitColsList, i - 1);
-			nameFromList = ds_list_find_value(global.unitImportColNameList, unitColValue);
-		}	
-		if (nameFromList == undefined) {
-				nameFromList = "";
-		}
-		colName = nameFromList
-    
-	    draw_set_color(global.colorThemeText);
-	    draw_set_valign(fa_middle);
-	    scr_adaptFont(colName, "M")
-	    draw_text(colRectX1 + 4 - clipX, floor(y + (headerHeight / 2)) - clipY, colName);
 	
-		var notDiscoTag = (ds_list_find_index(global.discoImportColNameList, colName) == -1);
-		var isUnitIDCol = (colName == "UnitID");
-		var isTildaField = false;
-		if (typeof(colName) == "string") {
-			isTildaField = (string_char_at(colName, 1) == "~");
-		}
-
-
-
-	
-		// draw wordView button
-		var wordViewButtonSize = (headerHeight / 4);
-		var wordViewButtonX = colRectX2 - wordViewButtonSize - 4;
-		var wordViewButtonY = colRectY1 + (headerHeight)/2;
-	
-	
-		//draw token selection button
-		var dropDownButtonSize = sprite_get_width(spr_dropDown);
-		var dropDownRectX1 = wordViewButtonX - 16 - dropDownButtonSize;
-		var dropDownRectY1 = colRectY1 + (dropDownButtonSize * 0.6);
-		var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;
-		var dropDownRectY2 = colRectY1 + headerHeight - (dropDownButtonSize * 0.2);
-	
-
-
-	
-		if(i == 0 ){
-		}
-		else{
-			var tempColRectX2 = x + ((activeCols + 1) * (windowWidth / 6)) - (windowWidth / 6);
-			if (point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + headerHeight)) {
-				if (mouse_check_button_released(mb_right)) {
-					with (obj_dropDown) {
-						instance_destroy();
-					}
-					with (obj_panelPane) {
-						chosenCol = i;
-					}
-					obj_control.unitImportColToChange = ds_list_find_index(global.unitImportColNameList, colName);
-					var dropDownOptionList = ds_list_create();		
-					ds_list_add(dropDownOptionList, "Set as Translation", "Create Field");
-					if (notDiscoTag && !isUnitIDCol && !isTildaField) {
-						ds_list_add(dropDownOptionList, "Add new Tag");
-					}
-					//ds_list_add(dropDownOptionList, "Set as Translation");
-					if (ds_list_size(dropDownOptionList) > 0) {
-						var dropDownInst = instance_create_depth(colRectX1, colRectY1 + headerHeight, -999, obj_dropDown);
-						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = global.optionListTypeUnitMarker;
-					}
-				}
-			}
-		
-		
-			//user interaction for token selection
-			if (point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2)) {
-				scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change field", obj_tooltip.arrowFaceUp);
-				draw_set_color(global.colorThemeBorders);
-				draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY, dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
-
-				if (mouse_check_button_released(mb_left)) {
-					with(obj_panelPane){
-						chosenCol = i;
-					}
-
-					var dropDownOptionList = ds_list_create();
-
-					ds_list_copy(dropDownOptionList, global.unitImportColNameList);
-
-					if (ds_list_size(dropDownOptionList) > 0 ) {
-						var dropDownInst = instance_create_depth(colRectX1,colRectY1+headerHeight , -999, obj_dropDown);
-						dropDownInst.optionList = dropDownOptionList;
-						dropDownInst.optionListType = global.optionListTypeUnitSelection;
-					}
-				}
-			}
-		
-
-	
-	
-			//user interaction for display view change
-			if (point_in_circle(mouse_x, mouse_y, wordViewButtonX, wordViewButtonY, wordViewButtonSize)) {
-				scr_createTooltip(wordViewButtonX, wordViewButtonY + wordViewButtonSize, "Speaker", obj_tooltip.arrowFaceUp);
-				draw_set_color(global.colorThemeSelected1);
-				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
-				if (mouse_check_button_released(mb_left)) {
-					obj_control.unitView = i;
-			
-					var toggleTranscriptionGrid = -1;
-					var toggleTranscriptionCol = -1;
-
-					toggleTranscriptionGrid = global.unitImportGrid;
-
-					var colIndex =  ds_list_find_value(obj_control.currentDisplayUnitColsList,obj_control.unitView-1);
-					toggleTranscriptionCol = colIndex;
-
-				
-					scr_toggleUnitMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
-				}
-			}
-			
-			// draw circle for selecting unit tag
-			draw_set_color(global.colorThemeBorders);
-			draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize, true);
-			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-	
-			// draw filled in circle if this unit tag is chosen
-			if (obj_control.unitView == i) {
-				draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
-				draw_circle(wordViewButtonX - clipX, wordViewButtonY - clipY, wordViewButtonSize * 0.75, false);
-				draw_set_color(global.colorThemeBorders);
-			}
-			else {
-				draw_set_color(global.colorThemeText);
-			}
-
-	
-		}
-	
-		activeCols++;
-	}
-	*/
-	
-	
-	// draw line to separate column headers from data
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(x - clipX, y - clipY, x + windowWidth - clipX, y + headerHeight - clipY, true);
-
 
 
 	scr_panelPane_unitScroll(focusedElementY, strHeight);

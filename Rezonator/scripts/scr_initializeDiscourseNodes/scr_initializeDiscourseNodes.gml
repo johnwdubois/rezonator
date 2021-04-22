@@ -103,7 +103,7 @@ function scr_initializeDiscourseNodes(){
 			ds_map_add(tagMap, currentField, currentTag);
 			
 			if(i == 0){
-				if(j < 5 and ds_list_find_index(obj_control.navUnitFieldList, currentField) == -1){
+				if(j < 7 and ds_list_find_index(obj_control.navUnitFieldList, currentField) == -1){
 					ds_list_add(obj_control.navUnitFieldList, currentField);
 				}
 			}
