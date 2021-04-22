@@ -29,6 +29,14 @@ function scr_initializeDiscourseNodes(){
 		var currentUnitNode = scr_addToNodeMap("unit");
 		var currentUnitSubMap = global.nodeMap[? currentUnitNode];
 		
+		//if this is first unit set it to be focused
+		if(i == 0){
+			with(obj_panelPane){
+				functionChainList_focusedUnitIndex = i;
+				functionChainList_focusedUnit = currentUnitNode;
+			}
+		}
+		
 		
 		// get list of tokens
 		var currentEntryList = ds_list_create();
@@ -56,6 +64,15 @@ function scr_initializeDiscourseNodes(){
 					var currentField = string(global.tokenImportColNameList[| k]);
 					var currentTag = ds_grid_get(global.tokenImportGrid, k, discourseTokenSeq - 1);
 					ds_map_add(tagMap, currentField, currentTag);
+					if(i == 0){
+						if(k < 8 and (ds_list_find_index(obj_control.navTokenFieldList, currentField) == -1) ){
+							if(k == 3 and (global.tokenImportTranscriptColName == "" or global.tokenImportTranscriptColName == undefined)){}
+							else{
+								ds_list_add(obj_control.navTokenFieldList, currentField);
+							}
+						}
+					}
+					
 				}
 				
 				//add each token to the totoal token's List
@@ -83,6 +100,12 @@ function scr_initializeDiscourseNodes(){
 			var currentField = string(global.unitImportColNameList[| j]);
 			var currentTag = ds_grid_get(global.unitImportGrid, j, i);
 			ds_map_add(tagMap, currentField, currentTag);
+			
+			if(i == 0){
+				if(j < 5 and ds_list_find_index(obj_control.navUnitFieldList, currentField) == -1){
+					ds_list_add(obj_control.navUnitFieldList, currentField);
+				}
+			}
 		}
 		
 		// add values to unit node

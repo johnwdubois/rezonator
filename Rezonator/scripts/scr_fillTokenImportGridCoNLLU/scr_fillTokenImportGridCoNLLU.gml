@@ -1,20 +1,8 @@
 function scr_fillTokenImportGridCoNLLU() {
 	// fill tokenImport with UnitID, WordID, token, and transcript information
-	/*
-	var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
-	for (var i = 0; i < tokenImportGridHeight; i++) {
-		var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, i);
-		var currentWordID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordID, i);
-		var currentWordToken = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordToken, i);
-		var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i);
-	
-		ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
-		ds_grid_set(global.tokenImportGrid, global.tokenImport_colTokenID, i, currentWordID);
-		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordToken, i, currentWordToken);
-		ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, i, currentWordTranscript);
-	}
 
 
+/*
 	// fill unitImport with UnitID information
 	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
 	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
@@ -87,6 +75,13 @@ function scr_fillTokenImportGridCoNLLU() {
 		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
 		var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
 		var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
+		
+
+		var transcriptMarkerStr = "";
+		if(global.tokenImportTranscriptColName != "" or global.tokenImportTranscriptColName != undefined){
+			transcriptMarkerStr = global.tokenImportTranscriptColName
+		}
+		var importGrid_colTranscript = ds_list_find_index(global.importGridColNameList, transcriptMarkerStr);
 	
 		var displayUnitRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
 		var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
@@ -141,8 +136,12 @@ function scr_fillTokenImportGridCoNLLU() {
 
 		var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 		var currentWordToken = ds_grid_get(global.importGrid, importGrid_colDisplayToken, i);
+		
+		var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 		var currentWordTranscript = "";
-
+		if(importGrid_colTranscript){
+			currentWordTranscript = ds_grid_get(global.importGrid, importGrid_colTranscript, i);
+		}
 		if(currentWordToken != undefined){
 	
 			ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);
