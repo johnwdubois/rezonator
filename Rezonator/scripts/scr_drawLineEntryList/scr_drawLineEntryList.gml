@@ -48,6 +48,7 @@ function scr_drawLineEntryList(entryList, pixelY){
 		
 		// draw background tokenRect
 		draw_set_color(global.colorThemeBG);
+		draw_set_alpha(1);
 		draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
 	
 		
@@ -61,12 +62,24 @@ function scr_drawLineEntryList(entryList, pixelY){
 					ds_list_add(obj_chain.chainShowList,  inChainsList[|j]);
 				}
 				
-				// draw border around token
+				// get cool chain vars
 				var chainSubMap = global.nodeMap[?chainID];
 				var chainColor = chainSubMap[?"chainColor"]
 				var chainType = chainSubMap[?"type"]
+				
+				// draw filled in rect if this is the focused entry of the focused chain
+				if (obj_chain.mouseLineWordID == currentToken && obj_chain.currentFocusedChainID == chainID) {
+					draw_set_alpha(0.25);
+					draw_set_color(chainColor);
+					if (chainType == "rezChain") draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
+					else if (chainType == "trackChain") draw_roundrect(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
+					draw_set_alpha(1);
+				}
+				
+				// draw border around token if its in a chain
 				draw_set_color(chainColor);
-				scr_drawRectWidth(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, 2, chainType == "trackChain");				
+				draw_set_alpha(1);
+				scr_drawRectWidth(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, 2, chainType == "trackChain");
 			}
 		}
 		
@@ -84,6 +97,7 @@ function scr_drawLineEntryList(entryList, pixelY){
 		}
 		
 		draw_set_color(global.colorThemeText);
+		draw_set_alpha(1);
 		draw_text(currentPixelX, pixelY, currentDisplayStr);
 		
 	}
