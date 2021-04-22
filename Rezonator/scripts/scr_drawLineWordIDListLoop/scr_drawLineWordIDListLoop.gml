@@ -92,7 +92,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 		scr_updateChainShowList(currentWordInChainsList, chainShowList, currentWordInBoxList, chunkShowList);	
 
-		scr_wordCalculateVoid(currentWordID);
+		scr_tokenCalculateVoid(currentWordID);
 		
 		var currentWordX = scr_setTokenX(currentWordID, shapeTextX, currentWordIDListSize, unitWidth, drawWordLoop, camWidth);
 		

@@ -43,7 +43,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 		if (posInWordIDList >= 0) {
 			for (var i = posInWordIDList + 1; i < deleteDisplayRowWordIDListSize; i++) {
 				var nextWordID = deleteDisplayRowWordIDList[| i];
-				scr_wordCalculateVoid(nextWordID);
+				scr_tokenCalculateVoid(nextWordID);
 			}
 		}
 			
@@ -79,7 +79,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedWordID, deletedWordPushBac
 			if (posInWordIDList >= 0) {
 				for (var i = posInWordIDList + 1; i < deleteDisplayRowWordIDListSize; i++) {
 					var nextWordID = deleteDisplayRowWordIDList[| i];
-					scr_wordCalculateVoid(nextWordID);
+					scr_tokenCalculateVoid(nextWordID);
 				}
 			}
 

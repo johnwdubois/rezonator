@@ -50,6 +50,7 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentTokenSubMap, "discourseTokenSeq", discourseTokenSeq);
 				ds_map_add(currentTokenSubMap, "tokenSeq", j);
 				ds_map_add(currentTokenSubMap, "displayCol", j);
+				ds_map_add(currentTokenSubMap, "void", 1);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
 				ds_map_add(currentTokenSubMap, "border", "");
 				ds_map_add(currentTokenSubMap, "unit", currentUnitNode);

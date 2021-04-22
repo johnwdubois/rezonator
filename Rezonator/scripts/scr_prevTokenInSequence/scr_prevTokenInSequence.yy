@@ -6,7 +6,7 @@
     "path": "folders/Scripts/functions/word.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_wordCalculateVoid",
+  "name": "scr_prevTokenInSequence",
   "tags": [],
   "resourceType": "GMScript",
 }

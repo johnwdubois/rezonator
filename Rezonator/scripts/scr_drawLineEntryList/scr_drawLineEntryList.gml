@@ -30,6 +30,7 @@ function scr_drawLineEntryList(entryList, pixelY){
 		var currentDisplayStr = string(currentTagMap[? global.displayTokenField]);
 		
 		// get & set pixelX value
+		scr_tokenCalculateVoid(currentToken);
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, 0, shapeTextX, camWidth);
 		shapeTextX += string_width(currentDisplayStr) + spaceWidth;
