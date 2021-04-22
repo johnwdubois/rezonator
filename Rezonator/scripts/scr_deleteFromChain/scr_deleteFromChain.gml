@@ -68,6 +68,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 			else if (focusedEntryType == "stack"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 2");
 			
@@ -116,6 +117,7 @@ function scr_deleteFromChain(sortVizSetList) {
 			}
 			else if (focusedEntryType == "stack"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
+				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
 			}
 			show_debug_message("scr_deleteFromChain() , CHECK 5");
 			
@@ -206,8 +208,7 @@ function scr_deleteFromChain(sortVizSetList) {
 	}
 	else if (focusedEntryType == "stack"){
 		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");
-		//ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, focusedEntryUnit-1,-1);
-		//ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, focusedEntryUnit-1, -1);	
+		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryUnit);
 	}
 	
 	// remove focusedEntry from nodeMap and destroy focusedEntry

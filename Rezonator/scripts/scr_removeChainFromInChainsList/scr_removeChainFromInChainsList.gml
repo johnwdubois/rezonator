@@ -15,7 +15,7 @@ function scr_removeChainFromInChainsList(chainID, tokenID) {
 		inChainsList = chunkSubMap[? "inChainsList"];
 	}
 	else {
-		inChainsList = tokenSubMap[? "inChainsList"];				;
+		inChainsList = tokenSubMap[? "inChainsList"];
 	}
 	scr_deleteFromList(inChainsList, chainID);
 	
