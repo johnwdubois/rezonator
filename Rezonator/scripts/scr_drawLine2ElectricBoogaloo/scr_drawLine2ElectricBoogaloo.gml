@@ -19,6 +19,13 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	hoverTokenID = "";
 	
+	// clear lists that are meant to be refreshed each frame
+	ds_list_clear(obj_chain.chainShowList);
+	ds_list_clear(obj_chain.chunkShowList)
+	ds_list_clear(inRectWordIDList);
+	ds_list_clear(chainVoidCheckList);
+	
+	
 	// loop through units
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);
 	for (var i = 0; i < displayUnitListSize; i++) {
