@@ -13,6 +13,7 @@ function scr_unitClicked(unitID, unitSubMap){
 		for (var i = 0; i < inChainsListSize; i++) {
 			var currentChainID = inChainsList[| i];
 			var currentChainSubMap = global.nodeMap[? currentChainID];
+			if(scr_isNumericAndExists(currentChainSubMap, ds_type_map)){continue;}
 			var currentChainType = currentChainSubMap[? "type"];
 			
 			// check whether we should refocus this word's entry or not

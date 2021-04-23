@@ -78,36 +78,32 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		}
 	
 		if (device_mouse_check_button_released(0, mb_left) and  mouseOverCurrentSpeakerLabel and (touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
-		/*
+
 		if (obj_control.ctrlHold) {
 						
 			// make a temporary "fake" inChainsList that will contain the chain that this stack is in (or no chain if there is none)
-			var fakeInChainsList = ds_list_create();
-			var chainToAdd = ds_grid_get(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitID - 1);
-			if (ds_map_exists(global.nodeMap, chainToAdd)) {
-				ds_list_add(fakeInChainsList, chainToAdd);
-			}
-	
+			var inChainsList = unitSubMap[?"inChainsList"];
 			// combine the chains
-			scr_combineChainsDrawLine(fakeInChainsList);
-			ds_list_destroy(fakeInChainsList);
+			scr_combineChainsDrawLine(inChainsList);
+
 						
 		}
 		else {
-		*/
-		var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
+
+			var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 				
-		if(is_numeric(focusedchainIDSubMap)){
-			if(ds_exists(focusedchainIDSubMap, ds_type_map)){
-				var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
-				if( prevChainType == "rezChain" or prevChainType == "trackChain" ){
-					scr_chainDeselect();
+			if(is_numeric(focusedchainIDSubMap)){
+				if(ds_exists(focusedchainIDSubMap, ds_type_map)){
+					var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
+					if( prevChainType == "rezChain" or prevChainType == "trackChain" ){
+						scr_chainDeselect();
+					}
 				}
 			}
-		}
 						
-		with (obj_chain) {	
-			scr_unitClicked(unitID, unitSubMap);
+			with (obj_chain) {	
+				scr_unitClicked(unitID, unitSubMap);
+			}
 		}
 	}
 	

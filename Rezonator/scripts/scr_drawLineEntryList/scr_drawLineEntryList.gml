@@ -105,6 +105,16 @@ function scr_drawLineEntryList(entryList, pixelY){
 					}
 				}
 				
+				if (obj_control.ctrlHold) {
+						
+					// make a temporary "fake" inChainsList that will contain the chain that this stack is in (or no chain if there is none)
+					var inChainsList = currentTokenSubMap[?"inChainsList"];
+					// combine the chains
+					scr_combineChainsDrawLine(inChainsList);
+
+						
+				}
+				
 				
 				scr_tokenClicked(currentToken);
 			}

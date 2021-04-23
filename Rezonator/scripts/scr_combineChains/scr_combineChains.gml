@@ -43,18 +43,7 @@ function scr_combineChains(focusedChain, clickedChain){
 		var currentWordOrUnit = ds_list_find_value(tempList, i);
 		with (obj_chain) {
 			currentFocusedChainID = focusedChain;
-			
-			// if this is a stack, let's get it's first wordID
-			if (focusedChainType == "stackChain") {
-				var wordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordOrUnit - 1);
-				if (ds_list_size(wordIDList) > 0) {
-					currentWordOrUnit = ds_list_find_value(wordIDList, 0);
-				}
-				else {
-					continue;
-				}
-			}
-			
+			show_debug_message("currentWordOrUnit:  "+ string(currentWordOrUnit));
 			scr_newLink(currentWordOrUnit);
 		}
 	}
