@@ -700,3 +700,4 @@ menuDepth = -1;
 
 
 displayUnitList = -1;
+filterUnitList = ds_list_create();

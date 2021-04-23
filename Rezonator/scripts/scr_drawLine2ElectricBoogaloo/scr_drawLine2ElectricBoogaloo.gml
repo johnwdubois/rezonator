@@ -2,6 +2,13 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawLine2ElectricBoogaloo(){
 	
+	// temp, please take out soon
+	if (keyboard_check(vk_alt) && keyboard_check_pressed(ord("P"))) {
+		show_message("filter time!");
+		scr_renderFilter2(global.nodeMap[? "stackChainList"]);
+	}
+	
+	
 	
 	var camHeight = camera_get_view_height(camera_get_active());
 	var camWidth = camera_get_view_width(camera_get_active());
@@ -42,7 +49,6 @@ function scr_drawLine2ElectricBoogaloo(){
 				currentUnitSubMap[? "pixelY"] = currentPixelY;
 			}
 			
-			
 			unitPlusY += gridSpaceVertical;
 			continue;
 		}
@@ -74,9 +80,6 @@ function scr_drawLine2ElectricBoogaloo(){
 		}
 
 		
-		
-
-		
 		// get current unit's entryList and make sure it exists
 		var currentEntryList = currentUnitSubMap[? "entryList"];
 		if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
@@ -84,7 +87,6 @@ function scr_drawLine2ElectricBoogaloo(){
 		
 		// draw speaker label for this unit
 		scr_drawSpeakerLabel(currentUnit, currentUnitSubMap, currentPixelY);
-		
 		
 		unitPlusY += gridSpaceVertical;
 	}
