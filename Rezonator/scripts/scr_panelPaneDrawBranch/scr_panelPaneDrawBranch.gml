@@ -106,7 +106,9 @@ function scr_panelPaneDrawBranch(){
 			
 		case functionHelp:
 			if (obj_toolPane.showTool){
-				scr_panelPane_drawHelp();
+				if(!obj_panelPane.functionHelp_collapsed){
+					scr_panelPane_drawHelp();
+				}
 			}
 			if(not obj_control.scrollBarHolding and not scrollBarHolding) {
 				alarm[6] = 1;	
