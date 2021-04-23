@@ -132,6 +132,16 @@ function scr_initializeDiscourseNodes(){
 	ds_map_add_list(currentDiscourseSubMap, "displayUnitList", displayUnitList);
 	obj_control.displayUnitList = displayUnitList;
 	
+	//copy import grid field lists
+	var sizeOfTokenImportList = ds_list_size(global.tokenImportColNameList);
+	for(var j = 2; j < sizeOfTokenImportList; j++){
+		ds_list_add(obj_control.tokenFieldList, global.tokenImportColNameList[|j]);
+	}
+	var sizeOfUnitImportList = ds_list_size(global.unitImportColNameList);
+	for(var j = 1; j < sizeOfUnitImportList; j++){
+		ds_list_add(obj_control.unitFieldList, global.unitImportColNameList[|j]);
+	}
+	
 	// set default displayTokenField
 	global.displayTokenField = "~text";
 	global.speakerField = "~Participant";

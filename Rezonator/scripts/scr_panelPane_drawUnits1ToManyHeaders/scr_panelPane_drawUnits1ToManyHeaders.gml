@@ -79,7 +79,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 				}
 
 				var dropDownOptionList = ds_list_create();
-				ds_list_copy(dropDownOptionList, global.tokenImportColNameList);
+				ds_list_copy(dropDownOptionList, obj_control.tokenFieldList);
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeTokenSelection);
 			}
 		}
@@ -92,30 +92,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize * 0.75, false);
 			
 			if (mouse_check_button_released(mb_left)) {
-				obj_control.displayToken = i;
-				global.displayTokenField = colName;
-				
-				// return to this later!
-				/*
-				var toggleTranscriptionGrid = -1;
-				var toggleTranscriptionCol = -1;
-				if (i == 0) {
-					toggleTranscriptionGrid = obj_control.wordGrid;
-					toggleTranscriptionCol = obj_control.wordGrid_colUtteranceID;
-				}
-				else if (i == 1) {
-					toggleTranscriptionGrid = obj_control.wordGrid;
-					toggleTranscriptionCol = obj_control.wordGrid_colWordSeq;
-				}
-
-				else if (i >= 2 && i < 7) {
-					toggleTranscriptionGrid = global.tokenImportGrid;
-					var colIndex =  ds_list_find_value(obj_control.currentDisplayTokenColsList,i-2)
-					toggleTranscriptionCol =  colIndex;
-				}
-				scr_toggleTranscriptionMulti(toggleTranscriptionGrid, toggleTranscriptionCol);
-				*/
-				
+				global.displayTokenField = colName;		
 			}
 		}
 

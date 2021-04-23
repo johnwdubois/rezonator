@@ -655,6 +655,10 @@ ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 
+tokenFieldList = ds_list_create();
+unitFieldList = ds_list_create();
+
+
 
 with (obj_alarm) {
 	alarm[10] = 8;
