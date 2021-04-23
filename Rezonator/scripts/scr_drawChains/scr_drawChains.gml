@@ -23,6 +23,7 @@ function scr_drawChains() {
 	var rezChainListSize = ds_list_size(rezChainList);
 	var activeLineGridHeight = ds_grid_height(obj_control.currentActiveLineGrid);
 	var arrowSize = 0.3 + (0.1 * global.fontSize / 5);
+	var camHeight = camera_get_view_height(camera_get_active());
 
 	// loop through rezChainList to get chain info
 	var chainShowListSize = ds_list_size(obj_chain.chainShowList);
@@ -36,14 +37,12 @@ function scr_drawChains() {
 		
 		// make sure this chain's subMap exists and that it is actually a map
 		var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChainID);
-		if (!is_numeric(currentChainSubMap)) continue;
-		if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
 		
 		// get chain's setIDList and make sure it exists
 		var chainType = ds_map_find_value(currentChainSubMap, "type");
 		var currentSetIDList = ds_map_find_value(currentChainSubMap, "vizSetIDList");
-		if (!is_numeric(currentSetIDList)) continue;
-		if (!ds_exists(currentSetIDList, ds_type_list)) continue;
+		if (!scr_isNumericAndExists(currentSetIDList, ds_type_list)) continue;
 		var currentSetIDListSize = ds_list_size(currentSetIDList);
 		var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor");
 		var currentChainVisible = ds_map_find_value(currentChainSubMap, "visible");
@@ -193,9 +192,16 @@ function scr_drawChains() {
 		
 		 
 			// only draw line if every value is real and we are in the draw range
-			if not (lineX1 == undefined or lineY1 == undefined or lineX2 == undefined or lineY2 == undefined)
+			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2))
 			and not (lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2))
-			and not (lineY1 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2) and lineY2 > camera_get_view_height(camera_get_active()) + (obj_control.gridSpaceVertical * 2)) {
+			and not (lineY1 > camHeight + (obj_control.gridSpaceVertical * 2) and lineY2 > camHeight + (obj_control.gridSpaceVertical * 2)) {
+				
+				// check if text is right aligned
+				if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
+					lineX1 -= currentWordStringWidth1;
+					lineX2 -= currentWordStringWidth2;
+				}
+				
 				/*
 				if (chunkWord1) {
 					var wordRectBuffer = 15;
@@ -251,9 +257,12 @@ function scr_drawChains() {
 				var wordPixelX = mouseLineTokenSubMap[?"pixelX"];
 				var wordPixelY = mouseLineUnitSubMap[?"pixelY"];
 					
-				if(wordPixelX != undefined and wordPixelY != undefined) {
+				if (is_numeric(wordPixelX) and is_numeric(wordPixelY)) {
 					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
 					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
+					if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
+						mouseLineX -= mouseLineWordStringWidth;
+					}
 				}
 			}
 		}
@@ -263,7 +272,7 @@ function scr_drawChains() {
 
 
 	// draw pickwhip line to mouse from chain
-	var drawPickwhip = (!is_undefined(mouseLineX) && !is_undefined(mouseLineY) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)
+	var drawPickwhip = (is_numeric(mouseLineX) && is_numeric(mouseLineY) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)
 						&& obj_toolPane.currentMode != obj_toolPane.modeRead && !obj_chain.focusedChainWrongTool);
 	
 	if (drawPickwhip) {

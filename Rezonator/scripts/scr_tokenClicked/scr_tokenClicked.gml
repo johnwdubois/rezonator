@@ -12,7 +12,7 @@ function scr_tokenClicked(tokenID){
 
 	show_debug_message("scr_tokenClicked()... tokenID: " + string(tokenID));
 
-	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or (instance_exists(obj_dropDown) and not obj_stacker.splitSave)) {
+	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_flyout)) {
 		var shouldExit = true;
 		if (obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox)) {
 			if (obj_dialogueBox.combineChains) {

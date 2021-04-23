@@ -1,15 +1,25 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_drawLineEntryList(entryList, pixelY){
+function scr_drawLineEntryList(unitSubMap, entryList, pixelY){
 	
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
-	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
+	
+	// set halign
+	var halign = fa_left;
+	if (justify == justifyRight && shape == shapeBlock) halign = fa_right;
+	draw_set_halign(halign);
 	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var shapeTextX = 0;
 	var spaceWidth = string_width(" ");
+	
+	// get unit width
+	var unitWidth = 0;
+	if (justify != justifyLeft) {
+		unitWidth = string_width(scr_getUnitText(unitSubMap));
+	}
 	
 	var entryListSize = ds_list_size(entryList);
 	for (var i = 0; i < entryListSize; i++) {
@@ -32,7 +42,7 @@ function scr_drawLineEntryList(entryList, pixelY){
 		// get & set pixelX value
 		scr_tokenCalculateVoid(currentToken);
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
-		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, 0, shapeTextX, camWidth);
+		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, i, unitWidth, shapeTextX, camWidth);
 		shapeTextX += string_width(currentDisplayStr) + spaceWidth;
 		
 		//mouseover Token check
@@ -44,6 +54,10 @@ function scr_drawLineEntryList(entryList, pixelY){
 		var tokenRectY1 = pixelY - (currentTokenStringHeight / 2) - tokenRectBuffer;
 		var tokenRectX2 = tokenRectX1 + currentTokenStringWidth + (tokenRectBuffer * 2);
 		var tokenRectY2 = tokenRectY1 + currentTokenStringHeight + (tokenRectBuffer * 2);
+		if (halign == fa_right) {
+			tokenRectX1 -= currentTokenStringWidth;
+			tokenRectX2 -= currentTokenStringWidth;
+		}
 		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && obj_control.hoverTokenID == "";
 		
 		// draw background tokenRect
