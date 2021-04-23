@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawShow1toMany(){
 	
+	scr_surfaceStart();
 	
 	// draw BG rect
 	draw_set_color(global.colorThemeBG);
@@ -511,4 +512,5 @@ function scr_panelPane_drawShow1toMany(){
 		}
 		
 	}	
+	scr_surfaceEnd();
 }

@@ -91,7 +91,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		unitPlusY += gridSpaceVertical;
 	}
 	
-	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == ""){
+	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and !obj_control.mouseoverPanelPane){
 		if(device_mouse_check_button_released(0, mb_left)){
 			scr_chainDeselect();
 		}
