@@ -25,127 +25,75 @@ mouseoverMenuBar = point_in_rectangle(mouse_x, mouse_y, -1, -1, camera_get_view_
 draw_set_colour(global.colorThemeBG);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-var xBuffer = 0;
-var prevXBuffer = 0;
+var xBuffer = (global.lang_codes[| global.lang_index] == "he") ? camWidth : 0;
+var prevXBuffer = (global.lang_codes[| global.lang_index] == "he") ? camWidth : 0;
 
-
-
-
-if (global.lang_codes[| global.lang_index] == "he"){
-	//RTL behavior here
-	xBuffer = camWidth;
-	prevXBuffer = camWidth;
-	for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++){
-		var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
-		scr_adaptFont(scr_get_translation(headerString),"M");
-		menuWidth = string_width(scr_get_translation(headerString))*1.5;
-		prevXBuffer = xBuffer;
-		xBuffer -= menuWidth;
+for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++) {
+	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
+	scr_adaptFont(scr_get_translation(headerString),"M");
+	menuWidth = string_width(scr_get_translation(headerString))*1.5;
+	prevXBuffer = xBuffer;
+	if(global.lang_codes[| global.lang_index] == "he"){
+		xBuffer -= menuWidth;	
+	}
+	else{
+		xBuffer += menuWidth;	
+	}
+		
 	
-		var menuHeaderRectX1 = xBuffer;
-		var menuHeaderRectY1 = 0;
-		var menuHeaderRectX2 = prevXBuffer;
-		var menuHeaderRectY2 = menuHeight;
+	var menuHeaderRectX1 = (global.lang_codes[| global.lang_index] == "he") ? xBuffer : prevXBuffer;
+	var menuHeaderRectY1 = 0;
+	var menuHeaderRectX2 = (global.lang_codes[| global.lang_index] == "he") ? prevXBuffer : xBuffer;
+	var menuHeaderRectY2 = menuHeight;
+	
+	if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
 		
-		if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
+		// draw hover rectangle
+		var roundedRectBuffer = 4;
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(1);
+		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2-20, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
 		
-			// draw hover rectangle
-			var roundedRectBuffer = 4;
-			draw_set_color(global.colorThemeSelected1);
-			draw_set_alpha(1);
-			draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2-20, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
+		obj_control.mouseoverPanelPane = true;		
+		instance_destroy(obj_dropDown);
 		
-			obj_control.mouseoverPanelPane = true;		
-			instance_destroy(obj_dropDown);
-		
-			if(mouse_check_button_released(mb_left) and menuClickedIn){
-				menuClickedIn = false;
-			}
-			else if(mouse_check_button_released(mb_left) or menuClickedIn){
-				menuClickedIn = true;
+		if(mouse_check_button_released(mb_left) and menuClickedIn){
+			menuClickedIn = false;
+		}
+		else if(mouse_check_button_released(mb_left) or menuClickedIn){
+			menuClickedIn = true;
 			
-				ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
-				ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, true);
+			ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
+			ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, true);
 			
-				var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
-				if (ds_list_size(dropDownOptionList) > 0) {
-					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
+			var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
+			if (ds_list_size(dropDownOptionList) > 0) {
+				if(global.lang_codes[| global.lang_index] == "he"){
+					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
 				}
+				else{
+					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);	
+				}
+				
 			}
-			
 		}
-		
-		draw_set_colour(c_white);
-		if (ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)) {
-			draw_set_colour(global.colorThemeBG);
-			draw_rectangle(menuHeaderRectX1, menuHeaderRectY1-20, menuHeaderRectX2, menuHeaderRectY2, false);
-			draw_set_colour(global.colorThemeText);
-		}
+	}
 	
-		if (!instance_exists(obj_dropDown)) {
-			ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, false);
-		}
+	draw_set_colour(c_white);
+	if (ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)) {
+		draw_set_colour(global.colorThemeBG);
+		draw_rectangle(menuHeaderRectX1, menuHeaderRectY1-20, menuHeaderRectX2, menuHeaderRectY2, false);
+		draw_set_colour(global.colorThemeText);
+	}
 	
-		draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), scr_get_translation(headerString));
+	if (!instance_exists(obj_dropDown)) {
+		ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, false);
 	}
 	
 	
+	draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), scr_get_translation(headerString));
 }
-else{
-	for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++) {
-		var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
-		scr_adaptFont(scr_get_translation(headerString),"M");
-		menuWidth = string_width(scr_get_translation(headerString))*1.5;
-		prevXBuffer = xBuffer;
-		xBuffer+= menuWidth;
-	
-		var menuHeaderRectX1 = prevXBuffer;
-		var menuHeaderRectY1 = 0;
-		var menuHeaderRectX2 = xBuffer;
-		var menuHeaderRectY2 = menuHeight;
-	
-		if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
-		
-			// draw hover rectangle
-			var roundedRectBuffer = 4;
-			draw_set_color(global.colorThemeSelected1);
-			draw_set_alpha(1);
-			draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2-20, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
-		
-			obj_control.mouseoverPanelPane = true;		
-			instance_destroy(obj_dropDown);
-		
-			if(mouse_check_button_released(mb_left) and menuClickedIn){
-				menuClickedIn = false;
-			}
-			else if(mouse_check_button_released(mb_left) or menuClickedIn){
-				menuClickedIn = true;
-			
-				ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
-				ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, true);
-			
-				var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
-				if (ds_list_size(dropDownOptionList) > 0) {
-					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
-				}
-			}
-		}
-	
-		draw_set_colour(c_white);
-		if (ds_grid_get(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop)) {
-			draw_set_colour(global.colorThemeBG);
-			draw_rectangle(menuHeaderRectX1, menuHeaderRectY1-20, menuHeaderRectX2, menuHeaderRectY2, false);
-			draw_set_colour(global.colorThemeText);
-		}
-	
-		if (!instance_exists(obj_dropDown)) {
-			ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, false);
-		}
-	
-	
-		draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), scr_get_translation(headerString));
-	}
-}
+
 
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
