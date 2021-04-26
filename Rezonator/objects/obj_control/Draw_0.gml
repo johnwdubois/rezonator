@@ -19,6 +19,10 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active
 	mouseoverPanelPane = true;
 }
 
+
+
+
+
 // Turns on a grid of lines
 if (showDisplayCols) {
 	draw_set_alpha(0.25);
@@ -35,12 +39,18 @@ if (showDisplayCols) {
 if (global.canScroll) {
 	mouseoverNeutralSpace = true;
 }
+
+scr_mouseRect();
+
 if (!hideAll) {
 	//scr_drawLine();
 	scr_drawLine2ElectricBoogaloo();
 }
 
+
+
 // Draw the mouse drag rectangle
+/*
 if (not mouseoverPanelPane and not obj_panelPane.scrollBarClickLock and obj_toolPane.currentTool != obj_toolPane.toolNewWord and not mouseoverNeutralSpace) {
 	if(not mouseRectMade) {
 		if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {// Curfew for the volunteers
@@ -71,9 +81,10 @@ if (not mouseoverPanelPane and not obj_panelPane.scrollBarClickLock and obj_tool
 	else {
 		alarm[9] = 5;
 	}
-	
-
 }
+*/
+
+
 
 
 

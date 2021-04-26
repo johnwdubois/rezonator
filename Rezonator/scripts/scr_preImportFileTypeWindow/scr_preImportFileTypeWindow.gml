@@ -31,9 +31,9 @@ function scr_preImportFileTypeWindow(){
 	
 	// draw window border
 	//var rezonatorPink = make_color_rgb(193, 30, 93);
+	
 	draw_set_color(global.colorThemeBG);
 	draw_set_alpha(1);
-	
 	draw_roundrect(fileTypeWindowX1, fileTypeWindowY1, fileTypeWindowX2, fileTypeWindowY2, false);
 	
 	

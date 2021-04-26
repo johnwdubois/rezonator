@@ -59,11 +59,11 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
 	draw_text(devVarX, wordTopMargin + (strHeight * 23), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));
-	draw_text(devVarX, wordTopMargin + (strHeight * 25), "mouseoverTagShortcut: " + string(mouseoverTagShortcut));
-	draw_text(devVarX, wordTopMargin + (strHeight * 26), "scrollBarWidth: " + string(global.scrollBarWidth));
-	draw_text(devVarX, wordTopMargin + (strHeight * 27), "filteredRezChainList: " + scr_getStringOfList(obj_chain.filteredRezChainList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 28), "filteredTrackChainList: " + scr_getStringOfList(obj_chain.filteredTrackChainList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 29), "filteredStackChainList: " + scr_getStringOfList(obj_chain.filteredStackChainList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 25), "inRectTokenIDList: " + scr_getStringOfList(inRectTokenIDList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseRectXY: " + string(mouseHoldRectX1) + ", " + string(mouseHoldRectY1));
+	draw_text(devVarX, wordTopMargin + (strHeight * 27), "mouseoverNeutralSpace: " + string(mouseoverNeutralSpace));
+	draw_text(devVarX, wordTopMargin + (strHeight * 28), "");
+	draw_text(devVarX, wordTopMargin + (strHeight * 29), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "speakerLabelColXHoldingPrev: " + string(speakerLabelColXHoldingPrev));

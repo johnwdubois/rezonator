@@ -1,6 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_drawLineEntryList(unitSubMap, entryList, pixelY){
+function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
@@ -45,6 +45,7 @@ function scr_drawLineEntryList(unitSubMap, entryList, pixelY){
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, i, unitWidth, shapeTextX, camWidth);
 		shapeTextX += string_width(currentDisplayStr) + spaceWidth;
 		
+		
 		//mouseover Token check
 		scr_adaptFont(currentDisplayStr,"M");
 		var currentTokenStringWidth = string_width(currentDisplayStr);
@@ -64,6 +65,25 @@ function scr_drawLineEntryList(unitSubMap, entryList, pixelY){
 		draw_set_color(global.colorThemeBG);
 		draw_set_alpha(1);
 		draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
+		
+		// check if this token is in mouse rect
+		var mouseRectExists = (mouseHoldRectX1 >= 0 && mouseHoldRectY1 >= 0);
+		var inMouseRect = false;
+		if (mouseRectExists) {
+			inMouseRect = rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1));
+			if (inMouseRect && !mouse_check_button_released(mb_left)) {
+				ds_list_add(inRectTokenIDList, currentToken);
+				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
+					ds_list_add(inRectUnitIDList, unitID);
+				}
+			}
+		}
+		
+		// draw border on this token if it is in the mouse rect
+		if (mouseRectExists && inMouseRect && !mouse_check_button_released(mb_left)) {
+			draw_set_color(c_ltblue);
+			scr_drawRectWidth(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, 2, true);
+		}
 	
 		
 		//if token has anything in chainslist add to show list

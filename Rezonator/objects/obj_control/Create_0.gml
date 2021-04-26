@@ -408,12 +408,13 @@ compassCenterLineY = -1;
 
 
 // Set variables for the mouse drag rectangle, and quick gestures
-mouseHoldRectX1 = 0;
-mouseHoldRectY1 = 0;
+mouseHoldRectX1 = -1;
+mouseHoldRectY1 = -1;
 mouseHoldRectX2 = 0;
 mouseHoldRectY2 = 0;
 mouseRectMade = false;
 mouseRectReleased = false;
+inRectTokenIDList = ds_list_create();
 inRectWordIDList = ds_list_create();
 inRectWordIDListCopy = ds_list_create();
 inRectHitIDList = ds_list_create();
@@ -428,6 +429,8 @@ mouseRectBeginBetweenWords = -1;
 mouseRectBeginInSpeakerLabel = false;
 mouseoverNeutralSpace = false;	
 lineContainsMouseYPos = -1;
+
+
 
 
 

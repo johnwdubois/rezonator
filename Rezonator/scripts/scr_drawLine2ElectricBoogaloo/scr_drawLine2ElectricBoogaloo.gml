@@ -32,6 +32,8 @@ function scr_drawLine2ElectricBoogaloo(){
 	ds_list_clear(obj_chain.chunkShowList)
 	ds_list_clear(inRectWordIDList);
 	ds_list_clear(chainVoidCheckList);
+	ds_list_clear(inRectTokenIDList);
+	ds_list_clear(inRectUnitIDList);
 	
 	
 	// loop through units
@@ -62,28 +64,11 @@ function scr_drawLine2ElectricBoogaloo(){
 
 		// draw this unit's stack if its has one
 		scr_drawStack(currentUnitSubMap, camWidth, currentPixelY);
-
-		//mouse rect stuff
-		var mouseRectExists = (abs(obj_control.mouseHoldRectY1 - obj_control.mouseHoldRectY2) > 5);
-		if(mouseRectExists) {
-			obj_control.mouseoverNeutralSpace = false;		
-		}
-		if ((obj_toolPane.currentTool == obj_toolPane.toolStackBrush) and mouseRectMade and not mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
-			inMouseHoldRect = rectangle_in_rectangle(0, sectionRectY1, wordLeftMargin, sectionRectY2, min(mouseHoldRectX1, mouseHoldRectX2), min(mouseHoldRectY1, mouseHoldRectY2), max(mouseHoldRectX1, mouseHoldRectX2), max(mouseHoldRectY1, mouseHoldRectY2));
-			if (inMouseHoldRect) {
-				with (obj_control) {
-					if (ds_list_find_index(inRectUnitIDList, currentUnit) == -1) {
-						ds_list_add(inRectUnitIDList, currentUnit);
-					}
-				}
-			}
-		}
-
 		
 		// get current unit's entryList and make sure it exists
 		var currentEntryList = currentUnitSubMap[? "entryList"];
 		if (!scr_isNumericAndExists(currentEntryList, ds_type_list)) continue;
-		scr_drawLineEntryList(currentUnitSubMap, currentEntryList, currentPixelY);
+		scr_drawLineEntryList(currentUnit, currentUnitSubMap, currentEntryList, currentPixelY);
 		
 		// draw speaker label for this unit
 		scr_drawSpeakerLabel(currentUnit, currentUnitSubMap, currentPixelY);

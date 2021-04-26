@@ -30,11 +30,6 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		// get size of dropdown buttons
 		var dropDownButtonWidth = sprite_get_width(spr_dropDown);
 		var dropDownButtonHeight = (tabHeight / 2);
-					
-		// leave room for scrollbar if we're in RTL and on the last column
-		if (!lineStateLTR && i == fieldListSize - 1) {
-			textX -= global.scrollBarWidth;
-		}
 		
 		// BG rect coordinates
 		var colWidth = windowWidth / fieldListSize;
@@ -47,6 +42,11 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		// text coordinates
 		var textX = floor(cellRectX1 + spaceWidth);
 		var textY = floor(mean(cellRectY1, cellRectY2));
+		
+		// leave room for scrollbar if we're in RTL and on the last column
+		if (!lineStateLTR && i == fieldListSize - 1) {
+			textX -= global.scrollBarWidth;
+		}
 		
 		// draw text	
 		draw_set_color(global.colorThemeText);
