@@ -3,8 +3,8 @@
 function scr_preImportScreen(){
 	
 	scr_fontSizeControlOpeningScreen();
-
-
+	
+	// get camera width & height
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	
