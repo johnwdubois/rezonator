@@ -5,8 +5,9 @@ function scr_refocusChainEntry(ID){
 	
 	
 		
-	var unitID = -1;
-	var tokenID = -1;
+	var unitID = "";
+	var tokenID = "";
+	var chunkID = "";
 	var IDsubMap = global.nodeMap[?ID];
 	var type = IDsubMap[?"type"];
 	if(type == "unit"){
@@ -19,6 +20,13 @@ function scr_refocusChainEntry(ID){
 	else if(type == "token"){	
 		unitID = IDsubMap[?"unit"];
 		tokenID = ID
+	}
+	else if(type == "chunk"){
+		chunkID = ID;
+		tokenID = scr_getFirstWordOfChunk(ID);
+		var tokenSubMap = global.nodeMap[?tokenID];
+		unitID = tokenSubMap[?"unit"];
+		
 	}
 	
 	// looks in the currentFocusedChain for the given ID of word or unit and focus that entry
@@ -40,7 +48,7 @@ function scr_refocusChainEntry(ID){
 			var currentChainEntryType = currentChainEntrySubMap[?"type"];
 			
 			
-			if (tokenID == currentChainEntryID or unitID ==currentChainEntryID) {
+			if (tokenID == currentChainEntryID or unitID == currentChainEntryID or chunkID == currentChainEntryID) {
 				entryToFocus = currentChainEntry;
 			}
 			show_debug_message("entryToFocus:  " + string(entryToFocus));

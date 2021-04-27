@@ -89,8 +89,19 @@ function scr_drawChains() {
 			var currentEntry1SubMap = global.nodeMap[? currentEntry1];
 			var currentEntry2 = currentSetIDList[| j + 1];
 			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
-			var currentTokenID1 = currentEntry1SubMap[? "token"];
-			var currentTokenID2 = currentEntry2SubMap[? "token"];
+			
+			var currentTokenID1 = currentEntry1SubMap[? "token"];;
+			var currentTokenID2 = currentEntry2SubMap[? "token"];;
+			
+			if(scr_isChunk(currentTokenID1)){
+				currentTokenID1 =scr_getFirstWordOfChunk(currentTokenID1);
+			}
+		
+			if(scr_isChunk(currentTokenID2)){
+				currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
+			}
+
+
 			
 			//get tokenSubMaps
 			var currentToken1SubMap = global.nodeMap[? currentTokenID1];

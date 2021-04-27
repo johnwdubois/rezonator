@@ -47,6 +47,7 @@ function scr_sortVizSetIDList(chainID){
 				if (currentTokenIDType == "chunk") {
 					var currentTokenIDTokenList = currentTokenIDSubMap[? "tokenList"];
 					currentWordID = currentTokenIDTokenList[| 0];
+					currentTokenIDSubMap = global.nodeMap[? currentWordID];
 				}
 	
 				var currentUnitSubMap = currentTokenIDSubMap[? "unit"];   

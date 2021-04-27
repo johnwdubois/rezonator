@@ -40,7 +40,12 @@ function scr_newLink(ID) {
 		}
 	}
 	else {
-		idSet = tokenID;
+		if(isChunk){
+			idSet = ID;
+		}
+		else{
+			idSet = tokenID;
+		}
 		obj_control.mostRecentlyAddedWord = tokenID;
 	}
 	

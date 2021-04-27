@@ -20,7 +20,7 @@ function scr_newChain(ID) {
 
 
 	// set up chain variables depending on what type of ID is passed in
-	if (idType == "token") {
+	if (idType == "token" || idType == "chunk") {
 		if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
 			aligned = true;
 			obj_chain.rezChainNameCounter++;
@@ -45,6 +45,7 @@ function scr_newChain(ID) {
 		chainName = "Stack " + string(obj_chain.stackChainNameCounter);
 		chainType = "stackChain";	
 	}
+
 	
 	show_debug_message("scr_newChain() ... chainType: " + string(chainType) + ", chainName:" + string(chainName));
 	

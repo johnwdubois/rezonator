@@ -6,7 +6,7 @@
     "path": "folders/Scripts/gridViewer.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_drawNodeData",
+  "name": "scr_mapViewerDrawNodeData",
   "tags": [],
   "resourceType": "GMScript",
 }

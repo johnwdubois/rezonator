@@ -72,5 +72,5 @@ function scr_createChunk(){
 		obj_chain.currentFocusedChunkID = "";
 	}
 
-
+	global.delayInput = 5;
 }

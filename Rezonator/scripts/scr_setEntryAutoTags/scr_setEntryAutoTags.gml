@@ -9,19 +9,30 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 	for (var i = 0; i < gridHeight; i++) {
 		var currentEntry = ds_grid_get(grid, gridCol, i);
 		ds_list_add(vizSetIDList, currentEntry);
-		
+		var isChunk = false;
 		// set gap tag in this entry's tagmap
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
 		if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
 				
 			// get unit/token from this entry
 			var discourseTokenSeq = -1;
+			var currentChunk = "";
 			var currentUnitSeq = -1;
-			var currentToken = -1;
+			var currentToken = "";
 			var currentTokenCount = "N/A";
 			if (chainType == "rezChain" || chainType == "trackChain") {
 				currentToken = currentEntrySubMap[? "token"];
+				
+				isChunk = scr_isChunk(currentToken);
+				
+				if(isChunk){
+					currentChunk = currentToken;
+					currentToken = scr_getFirstWordOfChunk(currentToken);
+				}
+				
 				var tokenSubMap = global.nodeMap[? currentToken];
+				
+				
 				if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 					discourseTokenSeq = tokenSubMap[? "discourseTokenSeq"];
 					var tokenUnitID = tokenSubMap[? "unit"];
@@ -53,12 +64,25 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 					
 				// calculate character & token count
 				if (currentToken != "") {
-					var tokenTagMap = tokenSubMap[? "tagMap"];
-					var currentDisplayStr = tokenTagMap[? global.displayTokenField];
-					currentCharCount = string_length(currentDisplayStr);
+					//start token count for tokens to  be 1
 					if (currentTokenCount == "N/A") {
 						currentTokenCount = 1;
 					}
+					
+					
+					if(isChunk){
+						var currentDisplayStr = scr_getChunkText(currentChunk);
+						var chunkSubMap = global.nodeMap[?currentChunk];
+						currentTokenCount = ds_list_size(chunkSubMap[?"tokenList"]);
+					}
+					else{
+						var tokenTagMap = tokenSubMap[? "tagMap"];
+						var currentDisplayStr = tokenTagMap[? global.displayTokenField];
+					}
+					
+					
+					currentCharCount = string_length(currentDisplayStr);
+
 				}
 			}
 

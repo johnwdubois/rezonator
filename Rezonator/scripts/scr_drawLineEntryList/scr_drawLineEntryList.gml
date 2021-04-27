@@ -85,41 +85,17 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			scr_drawRectWidth(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, 2, true);
 		}
 	
-		
-		//if token has anything in chainslist add to show list
 		var inChainsList = currentTokenSubMap[?"inChainsList"];
-		var sizeOfInChainsList = ds_list_size(inChainsList);
-		if (sizeOfInChainsList > 0) {
-			for(var j = 0; j < sizeOfInChainsList; j++ ){
-				var chainID = inChainsList[|j];
-				if(ds_list_find_index(obj_chain.chainShowList, inChainsList[|j]) == -1){
-					ds_list_add(obj_chain.chainShowList,  inChainsList[|j]);
-				}
-				
-				// get cool chain vars
-				var chainSubMap = global.nodeMap[?chainID];
-				var chainColor = chainSubMap[?"chainColor"]
-				var chainType = chainSubMap[?"type"]
-				
-				// draw filled in rect if this is the focused entry of the focused chain
-				if (obj_chain.mouseLineWordID == currentToken && obj_chain.currentFocusedChainID == chainID) {
-					draw_set_alpha(0.25);
-					draw_set_color(chainColor);
-					if (chainType == "rezChain") draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
-					else if (chainType == "trackChain") draw_roundrect(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
-					draw_set_alpha(1);
-				}
-				
-				// draw border around token if its in a chain
-				draw_set_color(chainColor);
-				draw_set_alpha(1);
-				scr_drawRectWidth(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, 2, chainType == "trackChain");
-			}
-		}
+	
+		scr_updateChainShowList(inChainsList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);
 		
+        
 		
 		// mouseover & click on token
 		if(mouseOverToken){
+			// get size of inChainsList
+			var sizeOfInChainsList = 0;
+			if (scr_isNumericAndExists(inChainsList, ds_type_list)) sizeOfInChainsList = ds_list_size(inChainsList);
 			if(sizeOfInChainsList == 0){
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
