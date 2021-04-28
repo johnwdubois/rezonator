@@ -19,7 +19,7 @@ function scr_filterOptions(optionSelected) {
 				obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 				// If filter is unactive. activate it
 				with (obj_control) {
-					scr_renderFilter();
+					scr_renderFilter2();
 				}
 			}
 			// Add to moveCounter

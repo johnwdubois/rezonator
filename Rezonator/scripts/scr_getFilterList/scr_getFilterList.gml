@@ -9,6 +9,7 @@ function scr_getFilterList(){
 	if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush) filterList = obj_chain.filteredRezChainList;
 	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) filterList = obj_chain.filteredTrackChainList;
 	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) filterList = obj_chain.filteredStackChainList;
+	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabShow) filterList = obj_chain.filteredStackChainList;
 	return filterList;
 	
 }

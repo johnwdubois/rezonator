@@ -359,7 +359,7 @@ function scr_panelPane_drawShow1toMany(){
 						}
 										
 						with (obj_control) {
-							scr_renderFilter();
+							scr_renderFilter2();
 						}
 					}
 
@@ -370,7 +370,7 @@ function scr_panelPane_drawShow1toMany(){
 						functionChainList_playShowID = "";
 					}				
 					with (obj_control) {
-						scr_renderFilter();	
+						scr_renderFilter2();	
 					}
 				}
 		
@@ -404,7 +404,7 @@ function scr_panelPane_drawShow1toMany(){
 					}
 					show_debug_message("functionChainList_playShowID:" + string(obj_panelPane.functionChainList_playShowID));
 					with (obj_control) {
-						scr_renderFilter();	
+						scr_renderFilter2();	
 					}
 				}
 				else {
@@ -449,7 +449,7 @@ function scr_panelPane_drawShow1toMany(){
 								}
 							}
 							with (obj_control) {
-								scr_renderFilter();
+								scr_renderFilter2();
 							}
 						}
 					}
@@ -492,7 +492,7 @@ function scr_panelPane_drawShow1toMany(){
 							}
 						}
 						with (obj_control) {
-							scr_renderFilter();
+							scr_renderFilter2();
 						}
 					}
 

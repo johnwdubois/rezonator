@@ -161,7 +161,7 @@ function scr_panelPane_drawShowList(){
 					}
 					// Render the filter in the mainscreen
 					with (obj_control) {
-						scr_renderFilter();
+						scr_renderFilter2();
 					}
 				}
 				else{
@@ -170,7 +170,7 @@ function scr_panelPane_drawShowList(){
 							functionChainList_playShowID = "";
 						}				
 						with (obj_control) {
-							scr_renderFilter();	
+							scr_renderFilter2();	
 						}
 					
 					

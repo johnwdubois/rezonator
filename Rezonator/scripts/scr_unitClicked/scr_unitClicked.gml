@@ -9,21 +9,19 @@ function scr_unitClicked(unitID, unitSubMap){
 	// loop through the chains that this word is already in (if any) to refocus that chain
 	show_debug_message("scr_unitClicked() inChainsList: " + scr_getStringOfList(inChainsList));
 	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
+		
 		var inChainsListSize = ds_list_size(inChainsList);
 		for (var i = 0; i < inChainsListSize; i++) {
 			var currentChainID = inChainsList[| i];
 			var currentChainSubMap = global.nodeMap[? currentChainID];
-			if(scr_isNumericAndExists(currentChainSubMap, ds_type_map)){continue;}
+
+			if(!scr_isNumericAndExists(currentChainSubMap, ds_type_map)){continue;}
 			var currentChainType = currentChainSubMap[? "type"];
 			
 			// check whether we should refocus this word's entry or not
-			var refocusEntry = (currentChainType == "rezChain" && obj_toolPane.currentTool == obj_toolPane.toolRezBrush)
-			or (currentChainType == "trackChain" && obj_toolPane.currentTool == obj_toolPane.toolTrackBrush)
-			or (currentChainType == "stackChain" && obj_toolPane.currentTool == obj_toolPane.toolStackBrush)
-			or (obj_toolPane.currentMode == obj_toolPane.modeRead);
-	
+			var refocusEntry = (currentChainType == "stackChain");
 			if (refocusEntry) {
-				
+
 				obj_chain.currentFocusedChainID = currentChainID;
 				scr_refocusChainEntry(unitID);
 				exit;

@@ -109,7 +109,7 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 	if(obj_control.filterGridActive) {
 		obj_toolPane.newWordInFilter = true;
 		with (obj_control) {
-			scr_renderFilter();
+			scr_renderFilter2();
 		}
 	}
 	

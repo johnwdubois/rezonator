@@ -5,7 +5,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	// temp, please take out soon
 	if (keyboard_check(vk_alt) && keyboard_check_pressed(ord("P"))) {
 		show_message("filter time!");
-		scr_renderFilter2(global.nodeMap[? "stackChainList"]);
+		scr_renderFilter2(global.nodeMap[? "trackChainList"]);
 	}
 	
 	

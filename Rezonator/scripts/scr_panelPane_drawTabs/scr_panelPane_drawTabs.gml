@@ -141,7 +141,7 @@ function scr_panelPane_drawTabs() {
 				
 				if (chainTab) {
 					if (tabFilterActive) {
-						scr_renderFilter();
+						scr_renderFilter2();
 					}
 					else if (obj_control.filterGridActive) {
 						scr_disableFilter();

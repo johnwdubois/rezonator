@@ -81,7 +81,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 
 		if (obj_control.ctrlHold) {
 						
-			// make a temporary "fake" inChainsList that will contain the chain that this stack is in (or no chain if there is none)
+			
 			var inChainsList = unitSubMap[?"inChainsList"];
 			// combine the chains
 			scr_combineChainsDrawLine(inChainsList);

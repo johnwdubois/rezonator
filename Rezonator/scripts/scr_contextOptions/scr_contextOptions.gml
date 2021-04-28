@@ -13,7 +13,7 @@ function scr_contextOptions(optionSelected) {
 			// Rerender filter
 			if (obj_control.filterGridActive) {
 				with (obj_control) {
-					scr_renderFilter();
+					scr_renderFilter2();
 				}
 			}
 		
@@ -36,7 +36,7 @@ function scr_contextOptions(optionSelected) {
 			// Rerender filter
 			if (obj_control.filterGridActive) {
 				with (obj_control) {
-					scr_renderFilter();
+					scr_renderFilter2();
 				}
 			}
 			
@@ -60,7 +60,7 @@ function scr_contextOptions(optionSelected) {
 			// Rerender filter
 			if (obj_control.filterGridActive) {
 				with (obj_control) {
-					scr_renderFilter();
+					scr_renderFilter2();
 				}
 			}	
 			

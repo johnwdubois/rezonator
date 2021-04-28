@@ -8,7 +8,7 @@ function scr_getChunkText(chunkID){
 	
 	var nodeType = chunkSubMap[?"type"];
 
-	show_debug_message(string(nodeType));
+
 
 	if (global.displayTokenField != "" && is_string(global.displayTokenField)) {
 		if (scr_isNumericAndExists(chunkSubMap, ds_type_map)){

@@ -103,7 +103,8 @@ function scr_drawToolPane(toolSprScale) {
 												|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush && obj_control.filterActiveStack);
 							
 				if (obj_control.filterGridActive) {
-					scr_renderFilter();
+					
+					scr_renderFilter2();
 				}
 				else {
 					scr_disableFilter();
