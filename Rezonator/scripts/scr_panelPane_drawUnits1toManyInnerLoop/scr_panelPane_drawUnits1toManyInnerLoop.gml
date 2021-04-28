@@ -19,10 +19,10 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		draw_set_alpha(1);
 		draw_rectangle(x - clipX, cellRectY1 - clipY, x + windowWidth - clipX, cellRectY2 - clipY, false);
 	}
-	
+	var i = 0
 	// Set collected info into respective columns
 	var plusX = x;
-	for (var i = 0; i < fieldListSize; i++) {
+	repeat(fieldListSize) {
 		
 		var currentField = fieldList[| i];
 		var currentStr = "";
@@ -40,11 +40,16 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 		
 		// text coordinates
-		var textX = floor(cellRectX1 + spaceWidth);
+		if(lineStateLTR){
+			var textX = floor(cellRectX1 + spaceWidth);
+		}
+		else{
+			var textX = floor(cellRectX2 - spaceWidth);
+		}
 		var textY = floor(mean(cellRectY1, cellRectY2));
 		
 		// leave room for scrollbar if we're in RTL and on the last column
-		if (!lineStateLTR && i == fieldListSize - 1) {
+		if (!lineStateLTR && i == fieldListSize-1) {
 			textX -= global.scrollBarWidth;
 		}
 		
@@ -110,5 +115,6 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		}
 		
 		plusX += colWidth;
+		i++
 	}
 }

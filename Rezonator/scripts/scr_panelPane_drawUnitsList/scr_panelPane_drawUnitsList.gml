@@ -9,7 +9,7 @@ function scr_panelPane_drawUnitsList() {
 	var spaceWidth = string_width(" ");
 	
 	var drawScrollbar = (!obj_control.showUnitTags);
-	var scrollBarWidth = 0;
+	var scrollBarWidth = global.scrollBarWidth;
 	
 	// get the instance ID for the lineContents pane so we can easily reference it
 	var chainContentsPanelPaneInst = 0;
@@ -102,7 +102,7 @@ function scr_panelPane_drawUnitsList() {
 		
 		if (functionChainList_highlightUnit == currentUnitID) {
 			draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.4));
-			draw_rectangle(currentUnitRectX1 - clipX, currentUnitRectY1 - clipY, currentUnitRectX2 - clipX, currentUnitRectY2 - clipY, false);
+			draw_rectangle(currentUnitRectX1 - clipX, currentUnitRectY1 - clipY, currentUnitRectX2 + scrollBarWidth - clipX, currentUnitRectY2 - clipY, false);
 		}
 	
 		scr_panelPane_mouseOnLine(currentUnitRectX1, currentUnitRectY1, currentUnitRectX2, currentUnitRectY2, currentUnitID, i, currentSpeakerColor, mouseoverHeaderRegion, mouseoverScrollBar);
@@ -129,7 +129,7 @@ function scr_panelPane_drawUnitsList() {
 	
 		// get x position of text, and adjust for RTL if needed
 		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
-		var textX = lineStateLTR ? floor(speakerRectX2 + textBuffer) : floor(speakerRectX1 + windowWidth - scrollBarWidth);
+		var textX = lineStateLTR ? floor(speakerRectX2 + textBuffer) : floor(x + windowWidth - scrollBarWidth);
 		var textY = floor(y + headerHeight + relativeScrollPlusY + textPlusY + textAdjustY / 2);
 
 		// draw line string

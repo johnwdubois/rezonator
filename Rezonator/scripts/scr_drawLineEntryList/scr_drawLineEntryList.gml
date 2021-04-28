@@ -22,7 +22,9 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	}
 	
 	var entryListSize = ds_list_size(entryList);
-	for (var i = 0; i < entryListSize; i++) {
+	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+
+	repeat(entryListSize) {
 		
 		// get current entry submap and make sure it exists
 		var currentEntry = entryList[| i];
@@ -134,6 +136,10 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_text(currentPixelX, pixelY, currentDisplayStr);
+		
+		
+		if(drawLineState = lineState_ltr){ i++; }
+		else{i--;}
 		
 	}
 

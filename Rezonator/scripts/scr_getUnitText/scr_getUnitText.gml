@@ -6,7 +6,8 @@ function scr_getUnitText(unitSubMap){
 	var unitText = "";
 	var entryList = unitSubMap[? "entryList"];
 	var entryListSize = ds_list_size(entryList);
-	var i = 0;
+	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	
 	
 	repeat (entryListSize) {
 		
@@ -22,7 +23,8 @@ function scr_getUnitText(unitSubMap){
 		unitText += scr_adaptFont(currentDisplayStr, "M");
 		if (i < entryListSize - 1) unitText += " ";
 		
-		i++;
+		if(obj_control.drawLineState = obj_control.lineState_ltr){ i++; }
+		else{i--;}
 	}
 	
 	return unitText;
