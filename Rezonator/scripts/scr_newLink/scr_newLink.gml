@@ -3,6 +3,10 @@
 */
 function scr_newLink(ID) {
 	
+	
+	if(obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
+	
+	
 	show_debug_message("scr_newLink() ... ID: " + string(ID));
 	ds_list_clear(obj_control.chainStretchCheckList);
 		

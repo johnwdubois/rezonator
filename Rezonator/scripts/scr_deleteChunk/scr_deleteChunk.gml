@@ -23,7 +23,8 @@ function scr_deleteChunk(chunkID) {
 			var tokenListSize = ds_list_size(tokenList);
 			for (var i = 0; i < tokenListSize; i++) {
 				var currentToken = tokenList[| i];
-				var currentTokenInBoxList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInBoxList, currentToken - 1);
+				var tokenSubMap = global.nodeMap[?currentToken];
+				var currentTokenInBoxList = tokenSubMap[?"inChunkList"];
 				if (is_numeric(currentTokenInBoxList)) {
 					if (ds_exists(currentTokenInBoxList, ds_type_list)) {
 						scr_deleteFromList(currentTokenInBoxList, chunkID);

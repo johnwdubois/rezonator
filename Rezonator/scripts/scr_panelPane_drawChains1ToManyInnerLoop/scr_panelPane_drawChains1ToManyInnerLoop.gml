@@ -9,7 +9,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		exit;
 	}
 	
-	
+	var isChunk = scr_isChunk(ID);
 	var unitID = "";
 	var tokenID = "";
 	var IDsubMap = global.nodeMap[?ID];
@@ -25,6 +25,12 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		unitID = IDsubMap[?"unit"];
 		tokenID = ID;
 	}
+	else if(type == "chunk"){
+
+		tokenID = scr_getFirstWordOfChunk(ID);
+		var firstTokenSubMap = global.nodeMap[?tokenID];
+		unitID = firstTokenSubMap[?"unit"];
+	}
 	
 	
 	var unitSubMap = global.nodeMap[?unitID];
@@ -33,7 +39,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	var textMarginTop = functionTabs_tabHeight;
 	var xBuffer = 6;
 	
-	var isChunk = scr_isChunk(ID);
+
 	var chunkSubMap = isChunk ? global.nodeMap[? ID] : -1;
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry
@@ -70,7 +76,9 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 					cellText = string(tagMap[?global.speakerField]);
 				}
 				else {
+
 					cellText = string(tokenSubMap[?"tokenSeq"]);
+
 				
 				}
 				break;
@@ -90,12 +98,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 					
 					if (isChunk) {
 						// getting the text for a chunk
-						var tokenList = chunkSubMap[? "tokenList"];
-						var tokenListSize = ds_list_size(tokenList);
-						for (var i = 0; i < tokenListSize; i++) {
-							var currentToken = tokenList[| i];
-							cellText += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentToken - 1)) + " ";
-						}
+						cellText = scr_getChunkText(ID);
 					}
 					else {
 						// getting the text for a token

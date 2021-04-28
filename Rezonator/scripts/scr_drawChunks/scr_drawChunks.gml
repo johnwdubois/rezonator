@@ -94,7 +94,7 @@ function scr_drawChunks(){
 						}
 					}
 					else{
-						scr_newChain(-1);
+						scr_newChain(currentChunkID);
 						scr_newLink(currentChunkID);
 						global.delayInput = 5;
 					}

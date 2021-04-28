@@ -41,7 +41,7 @@ function scr_tokenCalculateVoid(tokenID){
 	
 	
 	// check if this word is the first word in an aligned chunk
-	//var alignedChunkChainID = scr_firstWordInAlignedChunk(tokenID);
+	var alignedChunkChainID = scr_firstWordInAlignedChunk(tokenID);
 	
 	
 		
@@ -59,7 +59,7 @@ function scr_tokenCalculateVoid(tokenID){
 		
 		
 		// if we are pushing a word in an aligned chunk, realign that chain too!
-		//if (alignedChunkChainID != "") scr_alignChain2ElectricBoogaloo(alignedChunkChainID);
+		if (alignedChunkChainID != "") scr_alignChain2ElectricBoogaloo(alignedChunkChainID);
 	}
 	
 	
@@ -67,8 +67,7 @@ function scr_tokenCalculateVoid(tokenID){
 	// if this token is not in a chain, but has a void greater than 1, bring it back!!
 	if (tokenVoid > 1) {
 		
-		//if (alignedChainID == "" && alignedChunkChainID == "") {
-		if (alignedChainID == "") {
+		if (alignedChainID == "" && alignedChunkChainID == "") {
 			
 			// if this token is not in an aligned chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
 			tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol + 1;
@@ -98,14 +97,14 @@ function scr_tokenCalculateVoid(tokenID){
 		
 		
 		// if this word is in an aligned chunk, we should check the aligned chain that the chunk is in to make sure it has a small void
-		/*
+
 		if (alignedChunkChainID != "") {
 			var alignedChunkChainSubMap = global.nodeMap[? alignedChunkChainID];
 			if (scr_isNumericAndExists(alignedChunkChainSubMap, ds_type_map)) {
 				scr_handleVoid(alignedChunkChainSubMap[? "vizSetIDList"]);
 			}
 		}
-		*/
+
 		
 	}
 }
