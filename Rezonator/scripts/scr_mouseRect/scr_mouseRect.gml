@@ -7,8 +7,13 @@ function scr_mouseRect() {
 	if (mouse_check_button_released(mb_left)) {
 
 		if (ds_list_size(inRectTokenIDList) > 0) {
+			// create chunk
 			if (ds_list_size(inRectUnitIDList) == 1) {
 				scr_createChunk();
+			}
+			// quicklinks
+			else if (ds_list_size(inRectUnitIDList) > 1 && obj_toolPane.currentMode == obj_toolPane.modeRez) {
+				scr_quickLinkCreation();
 			}
 		}
 		

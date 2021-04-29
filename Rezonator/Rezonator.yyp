@@ -329,6 +329,7 @@
     {"id":{"name":"scr_toolsSortOptions","path":"scripts/scr_toolsSortOptions/scr_toolsSortOptions.yy",},"order":24,},
     {"id":{"name":"scr_deleteOptions","path":"scripts/scr_deleteOptions/scr_deleteOptions.yy",},"order":25,},
     {"id":{"name":"scr_autosaveOptions","path":"scripts/scr_autosaveOptions/scr_autosaveOptions.yy",},"order":26,},
+    {"id":{"name":"scr_addToListOnce","path":"scripts/scr_addToListOnce/scr_addToListOnce.yy",},"order":8,},
     {"id":{"name":"spr_helpTool","path":"sprites/spr_helpTool/spr_helpTool.yy",},"order":7,},
     {"id":{"name":"scr_panelPane_drawChains1To1","path":"scripts/scr_panelPane_drawChains1To1/scr_panelPane_drawChains1To1.yy",},"order":18,},
     {"id":{"name":"scr_tokenSelection","path":"scripts/scr_tokenSelection/scr_tokenSelection.yy",},"order":27,},

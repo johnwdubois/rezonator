@@ -2,8 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_quickLinkCreation(){
 	
-	var quickLinkWordIDList = inRectWordIDListCopy
-	show_debug_message("scr_quickLinkCreation() ... quickLinkWordIDList: " + scr_getStringOfList(quickLinkWordIDList));
+	var quickLinkTokenIDList = inRectTokenIDList;
+	show_debug_message("scr_quickLinkCreation() ... quickLinkTokenIDList: " + scr_getStringOfList(quickLinkTokenIDList));
 	
 	if (current_time - sessionStartTime < 2000 or not quickLinkAllowed) {
 		show_debug_message("quickLink not allowed. Exiting...");
@@ -11,39 +11,31 @@ function scr_quickLinkCreation(){
 	}
 	
 	// create a temporary grid: "the grid of future chains"
-	// this will organize the group of words in the quickLinkWordIDList by their
+	// this will organize the group of words in the quickLinkTokenIDList by their
 	// display columns, so we can then create quicklinks based on their display columns
 	var gridOfFutureChainsWidth = 3;
 	var gridOfFutureChains_colDisplayCol = 0;
-	var gridOfFutureChains_colWordIDList = 1;
+	var gridOfFutureChains_colTokenIDList = 1;
 	var gridOfFutureChains_colFocused = 2;
 	var gridOfFutureChains = ds_grid_create(gridOfFutureChainsWidth, 0);
-	if (ds_list_size(quickLinkWordIDList) > 0) {
+	if (ds_list_size(quickLinkTokenIDList) > 0) {
 		moveCounter++;
 	}
 
-	// Use the wordList or hitList depending on the context
-	var inRectList = ds_list_create();
-	if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-		// Ensure the gesture is correct for a trackChunk
-		if (not searchGridActive and obj_control.mouseRectWithinLine) {
-			alarm[10] = 1;
-			exit;
-		}
-		ds_list_copy(inRectList, inRectHitIDList);
-	} 
-	else {
-		// Ensure the gesture is correct for a rezChunk
-		if (not searchGridActive and obj_control.mouseRectWithinLine) {
-			alarm[10] = 1;
-			exit;
-		}
-		ds_list_copy(inRectList, quickLinkWordIDList);
-	}
 	
 	// fill up the grid of future chains
-	for (var i = 0; i < ds_list_size(inRectList); i++) {
-		var currentWordID = ds_list_find_value(inRectList, i);
+	var quickLinkTokenIDListSize = ds_list_size(quickLinkTokenIDList);
+	for (var i = 0; i < quickLinkTokenIDListSize; i++) {
+		
+		// get current token, make sure it exists
+		var currentTokenID = quickLinkTokenIDList[| i];
+		var currentTokenSubMap = global.nodeMap[? currentTokenID];
+		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
+		
+		// get this token's displayCol
+		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
+		
+		/*
 		// Access the display column of the relevent grid
 		if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
 			// Instead hitID
@@ -69,56 +61,69 @@ function scr_quickLinkCreation(){
 				//continue;
 			}
 		}
+		*/
+		
 
-		// Mechanism for splitting wordLists into their respective dislayColumns
+		// check if this displayCol has already been added to the gridOfFutureChains
 		var rowInFutureChainGrid = ds_grid_value_y(gridOfFutureChains, gridOfFutureChains_colDisplayCol, 0, gridOfFutureChains_colDisplayCol, ds_grid_height(gridOfFutureChains), currentDisplayCol);
-		if (rowInFutureChainGrid < 0 or ds_grid_height(gridOfFutureChains) < 1) {
+		var newDisplayCol = (rowInFutureChainGrid == -1 or ds_grid_height(gridOfFutureChains) < 1);
+		
+		
+		if (newDisplayCol) {
+			
+			// if we have not yet encountered this displayCol, let's grow the gridOfFutureChains by 1 row
 			ds_grid_resize(gridOfFutureChains, gridOfFutureChainsWidth, ds_grid_height(gridOfFutureChains) + 1);
-		
-			var newWordIDList = ds_list_create();
-			ds_list_add(newWordIDList, ds_list_find_value(quickLinkWordIDList, i));
-		
+			
+			// create the tokenList for this displayCol and add the current token
+			var newTokenIDList = ds_list_create();
+			ds_list_add(newTokenIDList, currentTokenID);
+			
+			// set everything in gridOfFutureChains
 			ds_grid_set(gridOfFutureChains, gridOfFutureChains_colDisplayCol, ds_grid_height(gridOfFutureChains) - 1, currentDisplayCol);
-			ds_grid_set(gridOfFutureChains, gridOfFutureChains_colWordIDList, ds_grid_height(gridOfFutureChains) - 1, newWordIDList);
+			ds_grid_set(gridOfFutureChains, gridOfFutureChains_colTokenIDList, ds_grid_height(gridOfFutureChains) - 1, newTokenIDList);
 			ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, ds_grid_height(gridOfFutureChains) - 1, false);
-		
 		}
 		else {
-			var displayColList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, rowInFutureChainGrid);
-			ds_list_add(displayColList, ds_list_find_value(quickLinkWordIDList, i));
+			
+			// if we have already seen this displayCol before, we will add the current token to the tokenList for this displayCol
+			var tokenIDList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colTokenIDList, rowInFutureChainGrid);
+			scr_addToListOnce(tokenIDList, currentTokenID);
 		}
-	}
 
-	// Keep the focus of chains during the process
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	// if there is a chain focused at the time of making quick links,
+	// we need to make sure we keep it focused
 	if (ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID) && obj_chain.currentFocusedChainID != "") {
 	
-		// Keep the focus of track chains
-		if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-
-			var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-			if (is_numeric(focusedChainSubMap)) {
-				if (ds_exists(focusedChainSubMap, ds_type_map)) {
+		// Keep the focus of Rez chains
+		if (obj_toolPane.currentMode == obj_toolPane.modeRez) {
+		
+			var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+			if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
 				
-					var setIDList = ds_map_find_value(focusedChainSubMap, "setIDList");
+				var focusedChainType = focusedChainSubMap[? "type"];
+				if (focusedChainType == "rezChain") {
+					var setIDList = focusedChainSubMap[? "setIDList"];
 					var setIDListSize = ds_list_size(setIDList);
 					
 					if (setIDListSize > 0) {
 						
-						var focusedChainFirstEntry = ds_list_find_value(setIDList, 0);
-						var focusedChainFirstEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFirstEntry);
-						var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "token");
-					
-						if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-							var focusedChainFirstHitGridRow = ds_grid_value_y(obj_control.hitGrid, obj_control.hitGrid_colWordID, 0, obj_control.hitGrid_colWordID, ds_grid_height(obj_control.hitGrid), focusedChainFirstWordID);
-							var firstItemDisplayCol = ds_grid_get(obj_control.hitGrid, obj_control.hitGrid_colDisplayCol, focusedChainFirstHitGridRow);
-						}
-						else {
-							var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
-						}
-						// Change this to hitGrid
-				
+						var focusedChainFirstEntry = setIDList[| 0];
+						var focusedChainFirstEntrySubMap = global.nodeMap[? focusedChainFirstEntry];
+						var focusedChainFirstTokenID = focusedChainFirstEntrySubMap[? "token"];
+						var focusedChainFirstTokenSubMap = global.nodeMap[? focusedChainFirstTokenID];
+						var firstItemDisplayCol = focusedChainFirstTokenSubMap[? "displayCol"];
+						
 						var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
-						for (var i = 0; i < ds_grid_height(gridOfFutureChains); i++) {
+						for (var i = 0; i < gridOfFutureChainsHeight; i++) {
 							var currentRowDisplayCol = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colDisplayCol, i);
 							if (currentRowDisplayCol == firstItemDisplayCol) {
 								ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, i, true);
@@ -128,57 +133,25 @@ function scr_quickLinkCreation(){
 					}
 				}
 			}
-		
-		}
-		// Keep the focus of Rez chains
-		else {
-		
-			var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-			if (is_numeric(focusedChainSubMap)) {
-				if (ds_exists(focusedChainSubMap, ds_type_map)) {
-				
-					var focusedChainType = ds_map_find_value(focusedChainSubMap, "type");
-					if (focusedChainType == "rezChain") {
-						var setIDList = ds_map_find_value(focusedChainSubMap, "setIDList");
-						var setIDListSize = ds_list_size(setIDList);
-					
-						if (setIDListSize > 0) {
-						
-							var focusedChainFirstEntry = ds_list_find_value(setIDList, 0);
-							var focusedChainFirstEntrySubMap = ds_map_find_value(global.nodeMap, focusedChainFirstEntry);
-							var focusedChainFirstWordID = ds_map_find_value(focusedChainFirstEntrySubMap, "token");
-							var firstItemDisplayCol = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayCol, focusedChainFirstWordID - 1);
-						
-							var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
-							for (var i = 0; i < gridOfFutureChainsHeight; i++) {
-								var currentRowDisplayCol = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colDisplayCol, i);
-								if (currentRowDisplayCol == firstItemDisplayCol) {
-									ds_grid_set(gridOfFutureChains, gridOfFutureChains_colFocused, i, true);
-								}
-							}
-							ds_grid_sort(gridOfFutureChains, gridOfFutureChains_colFocused, false);
-						}
-					}
-				}
-			}
 		}
 	}
 
-	// Using the organized grid, simulate clicks to create the chains
+
+	// Using the organized & sorted grid, simulate clicks to create the chains
 	if (ds_grid_height(gridOfFutureChains) > 0) {
 		
 		obj_chain.currentFocusedChainID = "";
 		var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
 		for (var i = 0; i < gridOfFutureChainsHeight; i++) {
-			var currentList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colWordIDList, i);
+			var currentTokenIDList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colTokenIDList, i);
+			var currentTokenIDListSize = ds_list_size(currentTokenIDList);
 
-			if (ds_list_size(currentList) > 1) {
-				for (var j = 0; j < ds_list_size(currentList); j++) {
-					var currentWordID = ds_list_find_value(currentList, j);
-					if (currentWordID >= 1 and currentWordID <= ds_grid_height(obj_control.wordGrid)) {
-						var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+			if (currentTokenIDListSize > 1) {
+				for (var j = 0; j < currentTokenIDListSize; j++) {
+					var currentTokenID = currentTokenIDList[| j];
+					if (is_string(currentTokenID)) {
 						with (obj_chain) {
-							scr_wordClicked(currentWordID, currentUnitID);
+							scr_tokenClicked(currentTokenID)
 						}
 					}
 				}
@@ -186,15 +159,10 @@ function scr_quickLinkCreation(){
 			
 			// unfocus the chain and destroy that list cuz we don't need it no more
 			obj_chain.currentFocusedChainID = "";
-			ds_list_destroy(currentList);
+			ds_list_destroy(currentTokenIDList);
 		}
-		scr_setAllValuesInCol(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colFillRect, false);
 	}
 
 	// Clear/destroy/reset the quicklink data structures
-	obj_control.mouseRectBeginInWord = -1;
-	obj_control.mouseRectBeginBetweenWords = -1;
 	ds_grid_destroy(gridOfFutureChains);
-	ds_list_clear(quickLinkWordIDList);
-	ds_list_clear(inRectHitIDList);
 }
