@@ -1,16 +1,14 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_tokenClicked(tokenID){
-
+	
+	if (global.delayInput > 0) exit;
+	
+	// get this token's submap and make sure it exists
 	var tokenSubMap = global.nodeMap[?tokenID];
-	if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}	
-
-
-	if (global.delayInput > 0) {
-		exit;
-	}
-
+	if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}
 	show_debug_message("scr_tokenClicked()... tokenID: " + string(tokenID));
+
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_flyout)) {
 		var shouldExit = true;
@@ -62,9 +60,7 @@ function scr_tokenClicked(tokenID){
 			or (obj_toolPane.currentMode == obj_toolPane.modeRead);
 	
 			if (refocusEntry) {
-				obj_chain.currentFocusedChainID = currentChainID;
-				var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-				
+				obj_chain.currentFocusedChainID = currentChainID;				
 				scr_refocusChainEntry(tokenID);
 				exit;
 			}

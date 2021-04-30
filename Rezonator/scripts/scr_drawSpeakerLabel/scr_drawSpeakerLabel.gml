@@ -87,7 +87,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 
 	
 	// click on speaker label
-	if (device_mouse_check_button_released(0, mb_left) && mouseOverCurrentSpeakerLabel && touchReleaseCheck && !obj_control.speakerLabelHoldingDelay) {
+	if (device_mouse_check_button_released(0, mb_left) && mouseOverCurrentSpeakerLabel && touchReleaseCheck && !obj_control.speakerLabelHoldingDelay && ds_list_size(inRectUnitIDList) <= 1) {
 		if (obj_control.ctrlHold) {
 			// combine chains
 			var inChainsList = unitSubMap[?"inChainsList"];
@@ -103,8 +103,8 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 					scr_chainDeselect();
 				}
 			}
-						
-			with (obj_chain) {	
+			
+			with (obj_chain) {
 				scr_unitClicked(unitID);
 			}
 		}

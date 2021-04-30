@@ -13,21 +13,22 @@ function scr_quickStackCreation(){
 		// if there is a focused chain that's not a stack, deselect it
 		var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 		if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
-			var focusedChainType = ds_map_find_value(focusedChainIDSubMap, "type");
+			var focusedChainType = focusedChainIDSubMap[? "type"];
 			if (focusedChainType != "stackChain") {
 				scr_chainDeselect();
 			}
 		}
 		
+		// click on every unit in inRectUnitIDList
 		for (var i = 0; i < inRectUnitIDListSize; i++) {
 			var currentUnit = inRectUnitIDList[| i];
 			scr_unitClicked(currentUnit);
 		}
 		
-		// Unfocus all links and chains
-		scr_unFocusAllChains();
+		global.delayInput = 5;
+		
+		scr_chainDeselect();
 	}
-
 
 
 	// Reset mouse drag rectangle

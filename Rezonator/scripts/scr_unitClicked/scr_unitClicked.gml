@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_unitClicked(unitID){
 	
+	if (global.delayInput > 0) exit;
+	
 	// get submap for this unit and make sure it exists
 	var unitSubMap = global.nodeMap[? unitID];
 	if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) exit;
