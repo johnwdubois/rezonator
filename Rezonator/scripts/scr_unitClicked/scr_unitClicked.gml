@@ -1,37 +1,34 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_unitClicked(unitID, unitSubMap){
-
-	// set inChainsList to be this word's inChainsList ... and if this is a stack, we make a "fakeInChainsList" 
-	var inChainsList = unitSubMap[?"inChainsList"];
+function scr_unitClicked(unitID){
+	
+	// get submap for this unit and make sure it exists
+	var unitSubMap = global.nodeMap[? unitID];
+	if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) exit;
+	show_debug_message("scr_unitClicked ... unitID: " + string(unitID));
+	
+	// get inChainsList for this unit
+	var inChainsList = unitSubMap[? "inChainsList"];
+	var inChainsListSize = ds_list_size(inChainsList);
 	
 	obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-	// loop through the chains that this word is already in (if any) to refocus that chain
-	show_debug_message("scr_unitClicked() inChainsList: " + scr_getStringOfList(inChainsList));
-	if (obj_toolPane.currentTool != obj_toolPane.toolPlaceChains and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {
-		
-		var inChainsListSize = ds_list_size(inChainsList);
-		for (var i = 0; i < inChainsListSize; i++) {
-			var currentChainID = inChainsList[| i];
-			var currentChainSubMap = global.nodeMap[? currentChainID];
+	
+	// refocus any chain that this unit is in
+	for (var i = 0; i < inChainsListSize; i++) {
+		var currentChainID = inChainsList[| i];
+		var currentChainSubMap = global.nodeMap[? currentChainID];
 
-			if(!scr_isNumericAndExists(currentChainSubMap, ds_type_map)){continue;}
-			var currentChainType = currentChainSubMap[? "type"];
+		if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) {continue;}
+		var currentChainType = currentChainSubMap[? "type"];
 			
-			// check whether we should refocus this word's entry or not
-			var refocusEntry = (currentChainType == "stackChain");
-			if (refocusEntry) {
-
-				obj_chain.currentFocusedChainID = currentChainID;
-				scr_refocusChainEntry(unitID);
-				exit;
-				
-			}
+		// check whether we should refocus this word's entry or not
+		var refocusEntry = (currentChainType == "stackChain");
+		if (refocusEntry) {
+			obj_chain.currentFocusedChainID = currentChainID;
+			scr_refocusChainEntry(unitID);
+			exit;
 		}
 	}
-	
-
-	
 
 
 	// if there is not a focused chain, we create a new chain
@@ -41,11 +38,8 @@ function scr_unitClicked(unitID, unitSubMap){
 
 	// add new link and refresh chain grid
 	scr_newLink(unitID);
-		
-
 
 	obj_control.allSaved = false;
-	
 	
 	scr_refocusChainEntry(unitID);
 	

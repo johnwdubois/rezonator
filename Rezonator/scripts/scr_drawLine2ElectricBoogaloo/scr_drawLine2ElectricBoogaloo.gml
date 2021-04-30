@@ -61,9 +61,17 @@ function scr_drawLine2ElectricBoogaloo(){
 		if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) continue;
 		var currentPixelY = floor(unitPlusY + scrollPlusY);
 		currentUnitSubMap[? "pixelY"] = currentPixelY;
+		
+		// check if this unit should be added to unitRectList
+		if (mouseHoldRectX1 >= 0 && mouseHoldRectY1 >= 0 && mouse_check_button(mb_left)) {
+			var inMouseHoldRect = (min(mouse_y, mouseHoldRectY1) < currentPixelY + (gridSpaceVertical * 0.5) && max(mouse_y, mouseHoldRectY1) > currentPixelY - (gridSpaceVertical * 0.5));
+			if (inMouseHoldRect) {
+				scr_addToListOnce(inRectUnitIDList, currentUnit);
+			}
+		}
 
 		// draw this unit's stack if its has one
-		scr_drawStack(currentUnitSubMap, camWidth, currentPixelY);
+		scr_drawStack(currentUnit, currentUnitSubMap, camWidth, currentPixelY);
 		
 		// get current unit's entryList and make sure it exists
 		var currentEntryList = currentUnitSubMap[? "entryList"];
@@ -79,7 +87,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane){
 		if(device_mouse_check_button_released(0, mb_left)){
 			if (global.delayInput <= 0) {
-			scr_chainDeselect();
+				scr_chainDeselect();
 			}
 		}
 	}

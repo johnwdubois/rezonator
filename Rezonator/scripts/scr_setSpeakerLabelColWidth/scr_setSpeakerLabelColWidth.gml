@@ -4,7 +4,6 @@ function scr_setSpeakerLabelColWidth() {
 		Purpose: Adapt the Speaker Label width based on the font size of the Speaker Name
 	*/
 
-
 	if (object_index != obj_control) {
 		exit;
 	}

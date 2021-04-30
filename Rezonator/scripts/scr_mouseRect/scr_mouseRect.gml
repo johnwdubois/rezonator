@@ -6,16 +6,21 @@ function scr_mouseRect() {
 	// is user releases mouse, do something!
 	if (mouse_check_button_released(mb_left)) {
 
-		if (ds_list_size(inRectTokenIDList) > 0) {
+		// quick stacks
+		if (ds_list_size(inRectUnitIDList) > 1 && mouseoverSpeakerLabel) {
+			scr_quickStackCreation();
+		}
+		else if (ds_list_size(inRectTokenIDList) > 0) {
 			// create chunk
 			if (ds_list_size(inRectUnitIDList) == 1) {
 				scr_createChunk();
 			}
 			// quicklinks
-			else if (ds_list_size(inRectUnitIDList) > 1 && obj_toolPane.currentMode == obj_toolPane.modeRez) {
+			else if (ds_list_size(inRectUnitIDList) > 1 && obj_toolPane.currentMode == obj_toolPane.modeRez && !mouseoverSpeakerLabel) {
 				scr_quickLinkCreation();
 			}
 		}
+		
 		
 		// reset mouserect variables
 		mouseHoldRectX1 = -1;

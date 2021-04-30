@@ -61,7 +61,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			tokenRectX1 -= currentTokenStringWidth;
 			tokenRectX2 -= currentTokenStringWidth;
 		}
-		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && obj_control.hoverTokenID == "";
+		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane;
 		
 		// draw background tokenRect
 		draw_set_color(global.colorThemeBG);
@@ -75,9 +75,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			inMouseRect = rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1));
 			if (inMouseRect && !mouse_check_button_released(mb_left)) {
 				ds_list_add(inRectTokenIDList, currentToken);
-				if (ds_list_find_index(inRectUnitIDList, unitID) == -1) {
-					ds_list_add(inRectUnitIDList, unitID);
-				}
+				scr_addToListOnce(inRectUnitIDList, unitID);
 			}
 		}
 		
@@ -87,59 +85,52 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			scr_drawRectWidth(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, 2, true);
 		}
 	
+		// get this token's inChainsList, and update the chainShowList accordingly
 		var inChainsList = currentTokenSubMap[?"inChainsList"];
-	
-		scr_updateChainShowList(inChainsList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);
+		scr_updateChainShowList(inChainsList, obj_chain.chainShowList, currentTokenSubMap[?"inChunkList"], obj_chain.chunkShowList, currentToken, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2);	
 		
-        
-		
-		// mouseover & click on token
+		// mouseover token
 		if(mouseOverToken){
-			// get size of inChainsList
+			
+			// if this token is not in a chain, draw a thin border when mousing over
 			var sizeOfInChainsList = 0;
 			if (scr_isNumericAndExists(inChainsList, ds_type_list)) sizeOfInChainsList = ds_list_size(inChainsList);
-			if(sizeOfInChainsList == 0){
+			if (sizeOfInChainsList == 0) {
 				draw_set_color(global.colorThemeBorders);
 				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
 			}
 			obj_control.hoverTokenID = currentToken;
-			if(device_mouse_check_button_released(0, mb_left)){
+			
+			// click on token
+			if(device_mouse_check_button_released(0, mb_left)) {
+				var focusedchainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 				
-				
-				var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-				
-				if(is_numeric(focusedchainIDSubMap)){
-					if(ds_exists(focusedchainIDSubMap, ds_type_map)){
-						var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
-						if( prevChainType == "stackChain"){
-							scr_chainDeselect();
-						}
+				// if focused chain is a stack, deselect it
+				if (scr_isNumericAndExists(focusedchainIDSubMap, ds_type_map)){
+					var focusedChainType = focusedchainIDSubMap[? "type"];
+					if (focusedChainType == "stackChain") {
+						scr_chainDeselect();
 					}
 				}
 				
 				if (obj_control.ctrlHold) {
-						
-					// make a temporary "fake" inChainsList that will contain the chain that this stack is in (or no chain if there is none)
+					// combine chains
 					var inChainsList = currentTokenSubMap[?"inChainsList"];
-					// combine the chains
 					scr_combineChainsDrawLine(inChainsList);
-
-						
 				}
-				
 				
 				scr_tokenClicked(currentToken);
 			}
 		}
-
 		
+		// draw the token's text
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_text(currentPixelX, pixelY, currentDisplayStr);
 		
-		
-		if(drawLineState = lineState_ltr){ i++; }
-		else{i--;}
+		// run through the loop forward or backward depending on if LTR or RTL
+		if (drawLineState = lineState_ltr) i++;
+		else i--;
 		
 	}
 

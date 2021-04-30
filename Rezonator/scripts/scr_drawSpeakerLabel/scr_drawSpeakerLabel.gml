@@ -73,8 +73,6 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			draw_line(0, sectionRectY2 - 2, sectionRectX2, sectionRectY2 - 2);
 		}
 		
-		
-		
 
 		
 		plusX += sectionRectX2;
@@ -82,41 +80,35 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	}
 	
 	
-		var mouseOverCurrentSpeakerLabel = (point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2));
-		if(mouseOverCurrentSpeakerLabel){
-			obj_control.mouseoverSpeakerLabel = true;
-		}
+	var mouseOverCurrentSpeakerLabel = (point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2));
+	if (mouseOverCurrentSpeakerLabel) {
+		obj_control.mouseoverSpeakerLabel = true;
+	}
+
 	
-		if (device_mouse_check_button_released(0, mb_left) and  mouseOverCurrentSpeakerLabel and (touchReleaseCheck) and not obj_control.speakerLabelHoldingDelay) {
-
+	// click on speaker label
+	if (device_mouse_check_button_released(0, mb_left) && mouseOverCurrentSpeakerLabel && touchReleaseCheck && !obj_control.speakerLabelHoldingDelay) {
 		if (obj_control.ctrlHold) {
-						
-			
+			// combine chains
 			var inChainsList = unitSubMap[?"inChainsList"];
-			// combine the chains
 			scr_combineChainsDrawLine(inChainsList);
-
-						
 		}
 		else {
-
-			var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-				
-			if(is_numeric(focusedchainIDSubMap)){
-				if(ds_exists(focusedchainIDSubMap, ds_type_map)){
-					var prevChainType = ds_map_find_value(focusedchainIDSubMap, "type");
-					if( prevChainType == "rezChain" or prevChainType == "trackChain" ){
-						scr_chainDeselect();
-					}
+			
+			// if there is a focused chain that is not a stack, deselect it
+			var focusedChainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+			if (scr_isNumericAndExists(focusedChainIDSubMap, ds_type_map)) {
+				var focusedChainType = focusedChainIDSubMap[? "type"];
+				if (focusedChainType != "stackChain") {
+					scr_chainDeselect();
 				}
 			}
 						
 			with (obj_chain) {	
-				scr_unitClicked(unitID, unitSubMap);
+				scr_unitClicked(unitID);
 			}
 		}
 	}
-	
 	
 	
 }

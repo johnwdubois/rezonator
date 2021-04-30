@@ -62,7 +62,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "inRectTokenIDList: " + scr_getStringOfList(inRectTokenIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseRectXY: " + string(mouseHoldRectX1) + ", " + string(mouseHoldRectY1));
 	draw_text(devVarX, wordTopMargin + (strHeight * 27), "mouseoverNeutralSpace: " + string(mouseoverNeutralSpace));
-	draw_text(devVarX, wordTopMargin + (strHeight * 28), "");
+	draw_text(devVarX, wordTopMargin + (strHeight * 28), "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
 	draw_text(devVarX, wordTopMargin + (strHeight * 29), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
