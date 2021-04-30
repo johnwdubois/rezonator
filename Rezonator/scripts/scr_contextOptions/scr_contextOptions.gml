@@ -3,77 +3,52 @@ function scr_contextOptions(optionSelected) {
 
 	switch (optionSelected)
 	{
-		case "menu_above":// show/hide prior context
+		case "menu_above":// show/hide above context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[0] = !functionFilter_peek[0];
 			}
-			obj_chain.focusPrior = !obj_chain.focusPrior;
-		
+
 			// Rerender filter
-			if (obj_control.filterGridActive) {
+			if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
 				with (obj_control) {
 					scr_renderFilter2();
 				}
 			}
 		
-			// Rerender quick filter
-			if (obj_control.quickFilterGridActive) {
-				with (obj_control) {
-					scr_renderQuickFilter();
-				}
-			}
-		
-		break;
-		case "menu_between":// show/hide tween context
+			break;
+			
+		case "menu_between":// show/hide between context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[1] = !functionFilter_peek[1];
 			}
 		
-			obj_chain.focusTween = !obj_chain.focusTween;
-		
 			// Rerender filter
-			if (obj_control.filterGridActive) {
+			if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
 				with (obj_control) {
 					scr_renderFilter2();
 				}
 			}
 			
-			// Rerender quick filter
-			if (obj_control.quickFilterGridActive) {
-				with (obj_control) {
-					scr_renderQuickFilter();
-				}
-			}
-		
-		break;
+			break;
 	
-		case "menu_below":// hide/show next context
+		case "menu_below":// hide/show below context
 	
 			with (obj_panelPane) {
 				functionFilter_peek[2] = !functionFilter_peek[2];
 			}
-		
-			obj_chain.focusNext = !obj_chain.focusNext;
 	
 			// Rerender filter
-			if (obj_control.filterGridActive) {
+			if (obj_control.filterGridActive || obj_control.quickFilterGridActive) {
 				with (obj_control) {
 					scr_renderFilter2();
 				}
 			}	
+			break;
 			
-			// Rerender quick filter
-			if (obj_control.quickFilterGridActive) {
-				with (obj_control) {
-					scr_renderQuickFilter();
-				}
-			}
-	
-		break;
 		default:
-		break;
+			break;
 	
 	}
 

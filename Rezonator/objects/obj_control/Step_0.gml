@@ -659,15 +659,12 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
-if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and (!keyboard_check(vk_lshift) and !keyboard_check(vk_rshift))
+// quick filter
+if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
 and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
 	// If filter is active, deactivate it
 	if (obj_control.quickFilterGridActive) {
-		if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.quickFilterGrid)) {
-			obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-			// Keep the focus on previous currentCenterDisplayRow
-		}
 			
 		// Switch to active grid
 		obj_control.quickFilterGridActive = false;
@@ -678,21 +675,22 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 			obj_control.currentActiveLineGrid = obj_control.searchGrid;
 		}
 		else {
-			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			scr_disableFilter();
 		}
+
 	}
-	else {
+	else if (obj_chain.currentFocusedChainID != "" || quickPickedChainID != "") {
 			
 		obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 		obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
-		// If filter is unactive. activate it
-		with (obj_control) {
-			
-			scr_renderQuickFilter();
-		}
+		
+		// activate quick filter!
+		scr_renderFilter2();
 	}
-
 }
+
+
+
 
 var fileCaptionString = string(game_display_name)
 //display current file name in window caption

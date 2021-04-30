@@ -68,8 +68,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "speakerLabelColXHoldingPrev: " + string(speakerLabelColXHoldingPrev));
 	draw_text(devVarX, wordTopMargin + (strHeight * 33), "speakerLabelColPrevList: " + scr_getStringOfList(speakerLabelColPrevList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 34), "setModeSearch: " + string(obj_toolPane.setModeSearch));
-	draw_text(devVarX, wordTopMargin + (strHeight * 35), "chainVoidCheckList: " + scr_getStringOfList(chainVoidCheckList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 34), "quickFilterGridActive: " + string(quickFilterGridActive));
+	draw_text(devVarX, wordTopMargin + (strHeight * 35), "quickPickedChainID: " + string(quickPickedChainID));
 	
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 1), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 2), "showNavLeft: " + string(obj_panelPane.showNavLeft));

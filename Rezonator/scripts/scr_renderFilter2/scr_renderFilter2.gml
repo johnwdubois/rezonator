@@ -3,6 +3,16 @@
 function scr_renderFilter2(){
 	
 	var list = scr_getFilterList();
+	
+	// if we're doing a quickpick, just make a list that contains only the quickpicked chain
+	var quickpick = obj_control.quickPickedChainID != "" && ds_map_exists(global.nodeMap, obj_control.quickPickedChainID);
+	if (quickpick) {
+		obj_control.quickFilterGridActive = true;
+		list = ds_list_create();
+		ds_list_add(list, obj_control.quickPickedChainID);
+	}
+	
+	
 	// determine if filter should be activated or disabled
 	obj_control.filterGridActive = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
 									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
@@ -30,88 +40,72 @@ function scr_renderFilter2(){
 		if (!scr_isNumericAndExists(currentNodeSubMap, ds_type_map)) continue;
 		var currentNodeType = currentNodeSubMap[? "type"];
 		
-		
-		// check if this node should be filtered, and make sure its not in the filterUnitList already
-		if (currentNodeSubMap[? "filter"]) {
-			
-			if (currentNodeType == "unit") {
-				// if this node is just a regular old unit, we can add the node directly to the filter list
-				if (ds_list_find_index(filterUnitList, currentNodeID) == -1) {
-					show_debug_message("scr_renderFilter2() ... adding unit " + string(currentNodeID));
-					ds_list_add(filterUnitList, currentNodeID);
-				}
-			}
-			else if (currentNodeType == "stackChain") {
-				// if this node is a stackChain, we can loop through its entry list and add each unit
-				var setIDList = currentNodeSubMap[? "setIDList"];
-				if (scr_isNumericAndExists(setIDList, ds_type_list)) {
-					var setIDListSize = ds_list_size(setIDList);
-					for (var j = 0; j < setIDListSize; j++) {
-						var currentEntry = setIDList[| j];
-						var currentEntrySubMap = global.nodeMap[? currentEntry];
-						if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
-							var currentUnitID = currentEntrySubMap[? "unit"];
-							if (ds_list_find_index(filterUnitList, currentUnitID) == -1 && is_string(currentUnitID)) {
-								show_debug_message("scr_renderFilter2() ... adding unit " + string(currentUnitID));
-								ds_list_add(filterUnitList, currentUnitID);
-							}
-						}
-					}
-				}
-			}
-			else if (currentNodeType == "rezChain" ||currentNodeType == "trackChain") {
-				// if this node is a stackChain, we can loop through its entry list and add each unit
-				var setIDList = currentNodeSubMap[? "setIDList"];
-				if (scr_isNumericAndExists(setIDList, ds_type_list)) {
-					var setIDListSize = ds_list_size(setIDList);
-					for (var j = 0; j < setIDListSize; j++) {
-						var currentEntry = setIDList[| j];
-						var currentEntrySubMap = global.nodeMap[? currentEntry];
-						if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
-							var currentTokenID = currentEntrySubMap[? "token"];
-							if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
-							var tokenSubMap = global.nodeMap[?currentTokenID];
-							var currentUnitID = tokenSubMap[?"unit"];
-							if (ds_list_find_index(filterUnitList, currentUnitID) == -1 && is_string(currentUnitID)) {
-								show_debug_message("scr_renderFilter2() ... adding unit " + string(currentUnitID));
-								ds_list_add(filterUnitList, currentUnitID);
-							}
+	
+		if (currentNodeType == "unit") {
+			// if this node is just a regular old unit, we can add the node directly to the filter list
+			scr_addToListOnce(filterUnitList, currentNodeID);
+		}
+		else if (currentNodeType == "stackChain") {
+			// if this node is a stackChain, we can loop through its entry list and add each unit
+			var setIDList = currentNodeSubMap[? "setIDList"];
+			if (scr_isNumericAndExists(setIDList, ds_type_list)) {
+				var setIDListSize = ds_list_size(setIDList);
+				for (var j = 0; j < setIDListSize; j++) {
+					var currentEntry = setIDList[| j];
+					var currentEntrySubMap = global.nodeMap[? currentEntry];
+					if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
+						var currentUnitID = currentEntrySubMap[? "unit"];
+						if (is_string(currentUnitID)) {
+							scr_addToListOnce(filterUnitList, currentUnitID);
 						}
 					}
 				}
 			}
 		}
+		else if (currentNodeType == "rezChain" ||currentNodeType == "trackChain") {
+			// if this node is a stackChain, we can loop through its entry list and add each unit
+			var setIDList = currentNodeSubMap[? "setIDList"];
+			if (scr_isNumericAndExists(setIDList, ds_type_list)) {
+				var setIDListSize = ds_list_size(setIDList);
+				for (var j = 0; j < setIDListSize; j++) {
+					var currentEntry = setIDList[| j];
+					var currentEntrySubMap = global.nodeMap[? currentEntry];
+					if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
+						var currentTokenID = currentEntrySubMap[? "token"];
+						if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
+						var tokenSubMap = global.nodeMap[?currentTokenID];
+						var currentUnitID = tokenSubMap[?"unit"];
+						if (is_string(currentUnitID)) {
+							scr_addToListOnce(filterUnitList, currentUnitID);
+						}
+					}
+				}
+			}
+		}
+
 	}
 	
 	scr_sortFilterList(filterUnitList);
 	var filterUnitListSize = ds_list_size(filterUnitList);
 	
-	var firstUnit = filterUnitList[|0];
-	var lastUnit = filterUnitList[|filterUnitListSize-1];
-	
-	var indexOfFirst = ds_list_find_index(unitList,firstUnit);
-	var indexOfLast = ds_list_find_index(unitList,lastUnit);
+	// get the first & last unit in the filter list so far, and find where they are in the full unit list
+	var firstUnit = filterUnitList[| 0];
+	var lastUnit = filterUnitList[| filterUnitListSize - 1];
+	var indexOfFirst = ds_list_find_index(unitList, firstUnit);
+	var indexOfLast = ds_list_find_index(unitList, lastUnit);
 	
 	//context above
 	if (obj_panelPane.functionFilter_peek[0]) {
-		
 		for(var i = 0; i < indexOfFirst; i++){
 			var currentUnitID = unitList[|i];
-			if(ds_list_find_index(filterUnitList, currentUnitID) == -1){
-				ds_list_add(filterUnitList, currentUnitID);
-			}
+			scr_addToListOnce(filterUnitList, currentUnitID);
 		}
-		
-		
 	}
 	//context between
 	if (obj_panelPane.functionFilter_peek[1]) {
-		
 		for(var i = indexOfFirst; i < indexOfLast; i++){
 			var currentUnitID = unitList[|i];
-			if(ds_list_find_index(filterUnitList, currentUnitID) == -1){
-				ds_list_add(filterUnitList, currentUnitID);
-			}
+			scr_addToListOnce(filterUnitList, currentUnitID);
 		}
 	}
 	//context below
@@ -119,9 +113,7 @@ function scr_renderFilter2(){
 		var sizeOfUnitList = ds_list_size(unitList);
 		for(var i = indexOfLast; i < sizeOfUnitList; i++){
 			var currentUnitID = unitList[|i];
-			if(ds_list_find_index(filterUnitList, currentUnitID) == -1){
-				ds_list_add(filterUnitList, currentUnitID);
-			}
+			scr_addToListOnce(filterUnitList, currentUnitID);
 		}
 	}
 	
@@ -129,5 +121,9 @@ function scr_renderFilter2(){
 	
 	// set the displayUnitList to be the filterUnitList
 	discourseSubMap[? "displayUnitList"] = filterUnitList;
+	
+	if (quickpick) {
+		ds_list_destroy(list);
+	}
 
 }

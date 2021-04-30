@@ -117,9 +117,6 @@ alarm[4] = 30;
 unitIDOfFirstWord = -1;
 unitIDOfLastWord = -1;
 
-focusPrior = false;
-focusTween = false;
-focusNext = false;
 
 //Fields for keeping tabFocus
 oldRezFocus = -1;

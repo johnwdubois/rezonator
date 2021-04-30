@@ -6,8 +6,6 @@
 function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	
 	
-
-	
 	// get y coordinates for this speaker label
 	var sectionRectY1 = pixelY - (gridSpaceVertical * 0.5);
 	var sectionRectY2 = sectionRectY1 + gridSpaceVertical;
