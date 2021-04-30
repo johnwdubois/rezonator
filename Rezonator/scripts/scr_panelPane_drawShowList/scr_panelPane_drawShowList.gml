@@ -27,14 +27,12 @@ function scr_panelPane_drawShowList(){
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
 	
-	
 	// get the show list & make sure it exists
-	var showList = ds_map_find_value(global.nodeMap, "showList");
-	if (!is_numeric(showList)) {
-		show_debug_message("non numer")
+	var showList = global.nodeMap[? "showList"];
+	if (!scr_isNumericAndExists(showList, ds_type_list)) {
+		show_debug_message("scr_panelPane_drawShowList ... showList does not exist");
 		exit;
 	}
-	if (!ds_exists(showList, ds_type_list)) exit;
 	var showListSize = ds_list_size(showList);
 	
 	scr_surfaceStart();
@@ -48,25 +46,20 @@ function scr_panelPane_drawShowList(){
 	for (var i = 0; i < showListSize; i++) {
 		
 		// get data for currentShow
-		var currentShow = ds_list_find_value(showList, i);
-		var currentShowSubMap = ds_map_find_value(global.nodeMap, currentShow);
-		if (!is_numeric(currentShowSubMap)) continue;
-		if (!ds_exists(currentShowSubMap, ds_type_map)) continue;
+		var currentShow = showList[| i];
+		var currentShowSubMap = global.nodeMap[? currentShow];
+		if (!scr_isNumericAndExists(currentShowSubMap, ds_type_map)) continue;
 		
-		if(is_numeric(currentShowSubMap)){
-			if(ds_exists(currentShowSubMap,ds_type_map)){
-				setList = ds_map_find_value(currentShowSubMap, "setIDList");
-				if (is_numeric(setList)) {
-					if (ds_exists(setList, ds_type_list)) {
-						setListSize = ds_list_size(setList);
-					}
-				}
-				
+		if (scr_isNumericAndExists(currentShowSubMap,ds_type_map)) {
+			setList = currentShowSubMap[? "setIDList"];
+			if (scr_isNumericAndExists(setList, ds_type_list)) {
+				setListSize = ds_list_size(setList);
 			}
 		}
-		var currentShowName = ds_map_find_value(currentShowSubMap, "name");
-		var currentShowSetList = ds_map_find_value(currentShowSubMap, "setIDList");
+		var currentShowName = currentShowSubMap[? "name"];
+		var currentShowSetList = currentShowSubMap[? "setIDList"];
 		var currentShowPlaying = (functionChainList_playShowID == currentShow);
+		
 		
 		// Get dimensions of rectangle around show name
 		var showRectX1 = x;
@@ -80,12 +73,12 @@ function scr_panelPane_drawShowList(){
 		// click on show name
 		if (mouseoverShowRect) {
 			anyOptionMousedOver = true;
-			if(mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)){
+			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
 				with (obj_panelPane) functionChainContents_showID = currentShow;
 				obj_control.selectedChainID = functionChainContents_showID;
 			}
 			
-			if(mouse_check_button_released(mb_right)){
+			if (mouse_check_button_released(mb_right)) {
 				with (obj_panelPane) functionChainContents_showID = currentShow;
 				obj_control.selectedChainID = functionChainContents_showID;
 				var dropDownOptionList = ds_list_create();
@@ -97,7 +90,6 @@ function scr_panelPane_drawShowList(){
 				}
 			
 			}
-			
 		}
 
 		
@@ -115,17 +107,18 @@ function scr_panelPane_drawShowList(){
 		draw_set_color(textColor);
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentShowName));
 		var startStopText = "";
+		
 		// start column
 		if (mouseoverShowRect || currentShowPlaying) {
 			
 			var mouseoverStartCol = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, startColX, showRectY1, showRectX2, showRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && ds_list_size(currentShowSetList) > 0;
 			var startArrowScale = (mouseoverStartCol || currentShowPlaying) ? 1.5 : 1;
 			
-			if(mouseoverShowRect && setListSize > 0){
+			if (mouseoverShowRect && setListSize > 0) {
 				startStopText = "  ►  ";
 			}
 			
-			if(currentShowPlaying){
+			if (currentShowPlaying) {
 				startStopText =  "  ■  ";
 			}
 			
@@ -137,25 +130,20 @@ function scr_panelPane_drawShowList(){
 			if (mouseoverStartCol && mouse_check_button_released(mb_left)) {
 				
 				if(!currentShowPlaying){
-					if (is_numeric(setList)) {
-						if (ds_exists(setList, ds_type_list)) {
+					if (scr_isNumericAndExists(setList, ds_type_list)) {
 									
-								with (obj_panelPane) {
-									functionChainList_playShowID = currentShow;
-								}
+						with (obj_panelPane) {
+							functionChainList_playShowID = currentShow;
+						}
 									
-							scr_setValueForAllChains("stackChain","filter", false);
-							// Filter the first current stack
-							var currentStackID = ds_list_find_value(setList, 0);
-							if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
-								ds_list_add(obj_chain.filteredStackChainList,currentStackID);
-								var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
-								if(is_numeric(chainSubMap)){
-									if(ds_exists(chainSubMap,ds_type_map)){
-										ds_map_replace(chainSubMap, "filter", true);
-
-									}
-								}
+						scr_setValueForAllChains("stackChain","filter", false);
+						// Filter the first current stack
+						var currentStackID = ds_list_find_value(setList, 0);
+						if (ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1) {
+							ds_list_add(obj_chain.filteredStackChainList,currentStackID);
+							var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
+							if (scr_isNumericAndExists(chainSubMap,ds_type_map)) {
+								chainSubMap[? "filter"] = true;
 							}
 						}
 					}
@@ -165,19 +153,16 @@ function scr_panelPane_drawShowList(){
 					}
 				}
 				else{
-						scr_setValueForAllChains("stackChain","filter", false);
-						with(obj_panelPane){
-							functionChainList_playShowID = "";
-						}				
-						with (obj_control) {
-							scr_renderFilter2();	
-						}
 					
-					
+					scr_setValueForAllChains("stackChain","filter", false);
+					with(obj_panelPane){
+						functionChainList_playShowID = "";
+					}				
+					with (obj_control) {
+						scr_renderFilter2();	
+					}
 				}
-				
 			}
-		
 		}
 
 		

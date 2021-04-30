@@ -70,6 +70,7 @@ functionChainContents_sortedCol = -1;
 functionChainContents_sortedColAsc = true;
 functionChainContents_chainID = "";
 functionChainContents_showID = "";
+
 alarm[8] = 5;
 
 functionChainContents_colXList = ds_list_create();

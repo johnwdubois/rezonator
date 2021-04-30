@@ -28,159 +28,153 @@ function scr_panelPane_drawShow1toMany(){
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	
-	var stackChainList = ds_map_find_value(global.nodeMap, "stackChainList");
+	var stackChainList = global.nodeMap[? "stackChainList"];
 	
 	
 	// get showID and look it up in nodeMap
 	var showID = functionChainContents_showID;
-	var showSubMap = ds_map_find_value(global.nodeMap, showID);
+	var showSubMap = global.nodeMap[? showID];
 	var setList = -1;
 	var setListSize = 0;
 	
 	if (ds_list_size(stackChainList) > 0) {
-		if (is_numeric(showSubMap)) {
-			if (ds_exists(showSubMap, ds_type_map)) {
+		if (scr_isNumericAndExists(showSubMap, ds_type_map)) {
 				
-			
-				// get setList from show & make sure it exists
-				setList = ds_map_find_value(showSubMap, "setIDList");
-				if (is_numeric(setList)) {
-					if (ds_exists(setList, ds_type_list)) {
+			// get setList from show & make sure it exists
+			setList = showSubMap[? "setIDList"];
+			if (scr_isNumericAndExists(setList, ds_type_list)) {
 					
-						// loop over setList and draw a row for each chain
-						setListSize = ds_list_size(setList);
-						for (var i = 0; i < setListSize; i++) {
-							// get currentChain & make sure it exists
-							var filteredChain = ds_list_find_value(obj_chain.filteredStackChainList,0);
-							var currentChain = ds_list_find_value(setList, i);
-							var currentChainSubMap = ds_map_find_value(global.nodeMap, currentChain);
-							if (!is_numeric(currentChainSubMap)) continue;
-							if (!ds_exists(currentChainSubMap, ds_type_map)) continue;
-							var currentChainName = ds_map_find_value(currentChainSubMap, "name");
-							var currentChainColor = ds_map_find_value(currentChainSubMap, "chainColor")
-							var chainIsFiltered = (currentChain == filteredChain);
+				// loop over setList and draw a row for each chain
+				setListSize = ds_list_size(setList);
+				for (var i = 0; i < setListSize; i++) {
+					// get currentChain & make sure it exists
+					var filteredChain = obj_chain.filteredStackChainList[| 0];
+					var currentChain = setList[| i];
+					var currentChainSubMap = global.nodeMap[? currentChain];
+					if (!scr_isNumericAndExists(currentChainSubMap, ds_type_map)) continue;
+					var currentChainName = currentChainSubMap[? "name"];
+					var currentChainColor = currentChainSubMap[? "chainColor"];
+					var chainIsFiltered = (currentChain == filteredChain);
 							
 				
 							
-							// get coordinates of rectangle around chain name
-							var chainRectX1 = x;
-							var chainRectY1 = y + headerHeight + textPlusY - (strHeight / 2) + scrollPlusY;
-							var chainRectX2 = x + windowWidth;
-							var chainRectY2 = chainRectY1 + strHeight;
-							var mouseoverChainRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainRectX1, chainRectY1, chainRectX2, chainRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					// get coordinates of rectangle around chain name
+					var chainRectX1 = x;
+					var chainRectY1 = y + headerHeight + textPlusY - (strHeight / 2) + scrollPlusY;
+					var chainRectX2 = x + windowWidth;
+					var chainRectY2 = chainRectY1 + strHeight;
+					var mouseoverChainRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainRectX1, chainRectY1, chainRectX2, chainRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 						
 							
 						
-							// draw chain option rect
-							draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.65));
-							//draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.8));
-							draw_rectangle(chainRectX1 - clipX, chainRectY1 - clipY, chainRectX2 - clipX, chainRectY2 - clipY, false);
+					// draw chain option rect
+					draw_set_color(merge_color(currentChainColor, global.colorThemeBG, 0.65));
+					//draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.8));
+					draw_rectangle(chainRectX1 - clipX, chainRectY1 - clipY, chainRectX2 - clipX, chainRectY2 - clipY, false);
 							
-							// draw chain #
-							draw_set_color(global.colorThemeText);
-							draw_text(floor(numColX + textBuffer) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(i + 1));
+					// draw chain #
+					draw_set_color(global.colorThemeText);
+					draw_text(floor(numColX + textBuffer) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(i + 1));
 						
-							// draw chain name
-							draw_set_color(global.colorThemeText);
-							draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(currentChainName));
+					// draw chain name
+					draw_set_color(global.colorThemeText);
+					draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(chainRectY1, chainRectY2)) - clipY, string(currentChainName));
 							
 							
-							if(mouseoverChainRect){
+					if(mouseoverChainRect){
 							
-								// sequence arrows
-								var showSeqUpArrow = (i > 0);
-								var showSeqDownArrow = (i < setListSize - 1);
-								var seqArrowX = mean(seqColX, seqColX + seqColWidth);
-								var seqUpArrowY = chainRectY1 + (strHeight * 0.3);
-								var seqDownArrowY = chainRectY1 + (strHeight * 0.7);
-								var mouseoverSeqUpArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, chainRectY1, seqColX + seqColWidth, mean(chainRectY1, chainRectY2)) && showSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-								var mouseoverSeqDownArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, mean(chainRectY1, chainRectY2), seqColX + seqColWidth - global.scrollBarWidth, chainRectY2) && showSeqDownArrow && !mouseoverSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+						// sequence arrows
+						var showSeqUpArrow = (i > 0);
+						var showSeqDownArrow = (i < setListSize - 1);
+						var seqArrowX = mean(seqColX, seqColX + seqColWidth);
+						var seqUpArrowY = chainRectY1 + (strHeight * 0.3);
+						var seqDownArrowY = chainRectY1 + (strHeight * 0.7);
+						var mouseoverSeqUpArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, chainRectY1, seqColX + seqColWidth, mean(chainRectY1, chainRectY2)) && showSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+						var mouseoverSeqDownArrow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, seqColX, mean(chainRectY1, chainRectY2), seqColX + seqColWidth - global.scrollBarWidth, chainRectY2) && showSeqDownArrow && !mouseoverSeqUpArrow && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 							
 							
 							
-								var delButtonX = mean(delColX, delColX + delColWidth);
-								var delButtonY = chainRectY1 + (strHeight * 0.5);
-								var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, delColX, chainRectY1, delColX + delColWidth - global.scrollBarWidth, chainRectY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+						var delButtonX = mean(delColX, delColX + delColWidth);
+						var delButtonY = chainRectY1 + (strHeight * 0.5);
+						var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, delColX, chainRectY1, delColX + delColWidth - global.scrollBarWidth, chainRectY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 
-								var trashAlpha = .5;
+						var trashAlpha = .5;
 								
-								if(functionChainList_playShowID != showID){
+						if(functionChainList_playShowID != showID){
 								
-									// mouseover & click on sequence arrows
-									if (mouseOverDel) {
-										draw_set_color(global.colorThemeSelected2);
-										draw_rectangle(delColX - clipX, chainRectY1 - clipY, delColX + delColWidth - clipX, chainRectY2 - clipY, false);
-										if (mouse_check_button_released(mb_left)) {
-											scr_deleteFromList(setList, currentChain);
-										}
-										scr_createTooltip(delButtonX, chainRectY2, "Remove", obj_tooltip.arrowFaceUp);
-									}
+							// mouseover & click on sequence arrows
+							if (mouseOverDel) {
+								draw_set_color(global.colorThemeSelected2);
+								draw_rectangle(delColX - clipX, chainRectY1 - clipY, delColX + delColWidth - clipX, chainRectY2 - clipY, false);
+								if (mouse_check_button_released(mb_left)) {
+									scr_deleteFromList(setList, currentChain);
+								}
+								scr_createTooltip(delButtonX, chainRectY2, "Remove", obj_tooltip.arrowFaceUp);
+							}
 									
-									 trashAlpha = 1;
-								}
-								
-								draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
-								
-								// mouseover & click on sequence arrows
-								if (mouseoverSeqUpArrow) {
-									draw_set_color(global.colorThemeSelected2);
-									draw_rectangle(seqColX - clipX, chainRectY1 - clipY, seqColX + seqColWidth - clipX, mean(chainRectY1, chainRectY2) - clipY, false);
-									if (mouse_check_button_released(mb_left)) {
-										scr_listSwap(setList, i - 1, i);
-									}
-								}
-								else if (mouseoverSeqDownArrow) {
-									draw_set_color(global.colorThemeSelected2);
-									draw_rectangle(seqColX - clipX, mean(chainRectY1, chainRectY2) - clipY, seqColX + seqColWidth - clipX, chainRectY2 - clipY, false);
-									if (mouse_check_button_released(mb_left)) {
-										scr_listSwap(setList, i, i + 1);
-									}
-								}
-								if (showSeqUpArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqUpArrowY - clipY, 1, 1, 0, global.colorThemeText, 1);
-								if (showSeqDownArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqDownArrowY - clipY, 1, 1, 180, global.colorThemeText, 1);
-							
-							}
-							// draw horizontal dividing line
-							draw_set_color(global.colorThemeBG);
-							draw_line(chainRectX1 - clipX, chainRectY2 - 1 - clipY, chainRectX2 - clipX, chainRectY2 - 1 - clipY);
-						
-							textPlusY += strHeight;
-							
-							if(chainIsFiltered){
-								focusedLineY1 = chainRectY1;
-								focusedLineY2 = chainRectY2;
-							}
-							
+								trashAlpha = 1;
 						}
+								
+						draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+								
+						// mouseover & click on sequence arrows
+						if (mouseoverSeqUpArrow) {
+							draw_set_color(global.colorThemeSelected2);
+							draw_rectangle(seqColX - clipX, chainRectY1 - clipY, seqColX + seqColWidth - clipX, mean(chainRectY1, chainRectY2) - clipY, false);
+							if (mouse_check_button_released(mb_left)) {
+								scr_listSwap(setList, i - 1, i);
+							}
+						}
+						else if (mouseoverSeqDownArrow) {
+							draw_set_color(global.colorThemeSelected2);
+							draw_rectangle(seqColX - clipX, mean(chainRectY1, chainRectY2) - clipY, seqColX + seqColWidth - clipX, chainRectY2 - clipY, false);
+							if (mouse_check_button_released(mb_left)) {
+								scr_listSwap(setList, i, i + 1);
+							}
+						}
+						if (showSeqUpArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqUpArrowY - clipY, 1, 1, 0, global.colorThemeText, 1);
+						if (showSeqDownArrow) draw_sprite_ext(spr_ascend, 0, seqArrowX - clipX, seqDownArrowY - clipY, 1, 1, 180, global.colorThemeText, 1);
+							
+					}
+					// draw horizontal dividing line
+					draw_set_color(global.colorThemeBG);
+					draw_line(chainRectX1 - clipX, chainRectY2 - 1 - clipY, chainRectX2 - clipX, chainRectY2 - 1 - clipY);
+						
+					textPlusY += strHeight;
+							
+					if(chainIsFiltered){
+						focusedLineY1 = chainRectY1;
+						focusedLineY2 = chainRectY2;
+					}
+							
+				}
 
 					
-						if (ds_list_size(stackChainList) > 0) {
+				if (ds_list_size(stackChainList) > 0) {
 					
-							// put "Add to Show" option at bottom of list
-							var addToShowRectX1 = x;
-							var addToShowRectY1 = y + headerHeight + textPlusY - (strHeight / 2) + scrollPlusY;
-							var addToShowRectX2 = x + windowWidth;
-							var addToShowRectY2 = addToShowRectY1 + strHeight;
-							var mouseoverAddToShow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, addToShowRectX1, addToShowRectY1, addToShowRectX2, addToShowRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-							draw_set_color(merge_color(c_green, global.colorThemeSelected1, mouseoverAddToShow ? 0.4 : 0.6));
-							draw_rectangle(addToShowRectX1 - clipX, addToShowRectY1 - clipY, addToShowRectX2 - clipX, addToShowRectY2 - clipY, false);
-							draw_set_color(global.colorThemeText);
-							draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(addToShowRectY1, addToShowRectY2)) - clipY, "Add to show...");
+					// put "Add to Show" option at bottom of list
+					var addToShowRectX1 = x;
+					var addToShowRectY1 = y + headerHeight + textPlusY - (strHeight / 2) + scrollPlusY;
+					var addToShowRectX2 = x + windowWidth;
+					var addToShowRectY2 = addToShowRectY1 + strHeight;
+					var mouseoverAddToShow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, addToShowRectX1, addToShowRectY1, addToShowRectX2, addToShowRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					draw_set_color(merge_color(c_green, global.colorThemeSelected1, mouseoverAddToShow ? 0.4 : 0.6));
+					draw_rectangle(addToShowRectX1 - clipX, addToShowRectY1 - clipY, addToShowRectX2 - clipX, addToShowRectY2 - clipY, false);
+					draw_set_color(global.colorThemeText);
+					draw_text(floor(nameColX + textBuffer) - clipX, floor(mean(addToShowRectY1, addToShowRectY2)) - clipY, "Add to show...");
 							
 							
-							draw_set_halign(fa_right);
-							draw_set_valign(fa_middle);
-							draw_text(seqColX  - textBuffer - clipX, floor(mean(addToShowRectY1, addToShowRectY2)) - clipY, obj_panelPane.errorText);
-							draw_set_halign(fa_left);
-							draw_set_valign(fa_middle);
+					draw_set_halign(fa_right);
+					draw_set_valign(fa_middle);
+					draw_text(seqColX  - textBuffer - clipX, floor(mean(addToShowRectY1, addToShowRectY2)) - clipY, obj_panelPane.errorText);
+					draw_set_halign(fa_left);
+					draw_set_valign(fa_middle);
 	
-							// click "add to show" option
-							if (mouseoverAddToShow && mouse_check_button_released(mb_left)) {		
-								var addToShowList = ds_list_create();
-								ds_list_copy(addToShowList, stackChainList);
-								scr_createDropDown(nameColX, addToShowRectY2, addToShowList, global.optionListTypeAddToShow);
-							}
-						}
+					// click "add to show" option
+					if (mouseoverAddToShow && mouse_check_button_released(mb_left)) {		
+						var addToShowList = ds_list_create();
+						ds_list_copy(addToShowList, stackChainList);
+						scr_createDropDown(nameColX, addToShowRectY2, addToShowList, global.optionListTypeAddToShow);
 					}
 				}
 			}
@@ -199,10 +193,8 @@ function scr_panelPane_drawShow1toMany(){
 	
 	// scrollbar
 	var scrollBarListSize = 0;
-	if (is_numeric(setList)) {
-		if (ds_exists(setList, ds_type_list)) {
-			scrollBarListSize = setListSize + 1;
-		}
+	if (scr_isNumericAndExists(setList, ds_type_list)) {
+		scrollBarListSize = setListSize + 1;
 	}
 	scr_scrollBar(scrollBarListSize, -1, strHeight, headerHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,
@@ -273,30 +265,27 @@ function scr_panelPane_drawShow1toMany(){
 	
 	//Show Traversal buttons
 	
-
 	//find only filtered chain
-	var currentFilteredChain = ds_list_find_value(obj_chain.filteredStackChainList, 0);
+	var currentFilteredChain = obj_chain.filteredStackChainList[| 0];
+	
 	//find map of show that is playing
-	var currentShowSubMap = ds_map_find_value(global.nodeMap, obj_panelPane.functionChainList_playShowID);
-	var isSelected = ("" != obj_panelPane.functionChainContents_showID);
+	var currentShowSubMap = global.nodeMap[? obj_panelPane.functionChainList_playShowID];
+	var isSelected = (obj_panelPane.functionChainContents_showID != "");
 	var setList = "";
 	var currentChainIndex = -1;
 	var setListSize = 0;
 	var isPlaying = false;
-	if(is_numeric(currentShowSubMap)){
-		if(ds_exists(currentShowSubMap,ds_type_map)){
-			//get setlist of playing show
-			setList = ds_map_find_value(currentShowSubMap, "setIDList");	
-			if (is_numeric(setList)) {
-				if (ds_exists(setList, ds_type_list)) {		
-					//get index of filtered chain in show's setList
-					currentChainIndex = ds_list_find_index(setList,currentFilteredChain);
-					setListSize = ds_list_size(setList);
-					isPlaying = true;
-				}
-			}
+	if (scr_isNumericAndExists(currentShowSubMap,ds_type_map)) {
+		//get setlist of playing show
+		setList = currentShowSubMap[? "setIDList"];	
+		if (scr_isNumericAndExists(setList, ds_type_list)) {		
+			//get index of filtered chain in show's setList
+			currentChainIndex = ds_list_find_index(setList,currentFilteredChain);
+			setListSize = ds_list_size(setList);
+			isPlaying = true;
 		}
 	}
+	
 	// show buttons (next) 
 	var showNextButtonText = "  >  ";
 	scr_adaptFont(showNextButtonText, "M");
@@ -326,7 +315,7 @@ function scr_panelPane_drawShow1toMany(){
 		
 		
 		
-	if(isPlaying || isSelected){
+	if (isPlaying || isSelected) {
 		
 		
 		// show buttons (prev)
@@ -337,40 +326,38 @@ function scr_panelPane_drawShow1toMany(){
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
 		draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)- clipX), floor(mean(showPrevButtonY1, showPrevButtonY2)- clipY), showPrevButtonText);
-		if(mouseoverShowPrevButton){scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2),showPrevButtonY2, "Previous",obj_tooltip.arrowFaceUp);}
+		if (mouseoverShowPrevButton) {
+			scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, "Previous", obj_tooltip.arrowFaceUp);
+		}
 		
-		if(isPlaying){
+		if (isPlaying) {
 			if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
 			
 				if(currentChainIndex > 0){				
 					scr_setValueForAllChains("stackChain","filter", false);
 									
 					// Filter the first current stack
-					var currentStackID = ds_list_find_value(setList, currentChainIndex-1);
+					var currentStackID = setList[| currentChainIndex - 1];
 									
-					if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
+					if (ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1) {
 						ds_list_add(obj_chain.filteredStackChainList,currentStackID);
-						var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
-						if(is_numeric(chainSubMap)){
-							if(ds_exists(chainSubMap,ds_type_map)){
-								ds_map_replace(chainSubMap, "filter", true);
-
-							}
+						var chainSubMap = global.nodeMap[? currentStackID];
+						if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+							chainSubMap[? "filter"] = true;
 						}
 										
 						with (obj_control) {
 							scr_renderFilter2();
 						}
 					}
-
 				}
 				else{
-					scr_setValueForAllChains("stackChain","filter", false);
+					scr_setValueForAllChains("stackChain", "filter", false);
 					with(obj_panelPane){
 						functionChainList_playShowID = "";
 					}				
 					with (obj_control) {
-						scr_renderFilter2();	
+						scr_disableFilter();
 					}
 				}
 		
@@ -378,8 +365,8 @@ function scr_panelPane_drawShow1toMany(){
 		}
 		
 
-		var mouseoverShowStopButton = point_in_rectangle(mouse_x, mouse_y, showStopButtonX1, showStopButtonY1, showStopButtonX2, showStopButtonY2);
 		// show buttons (Stop) 
+		var mouseoverShowStopButton = point_in_rectangle(mouse_x, mouse_y, showStopButtonX1, showStopButtonY1, showStopButtonX2, showStopButtonY2);
 		if(isPlaying){
 			showStopButtonText =  "  ■  ";
 			if(mouseoverShowStopButton){scr_createTooltip(mean(showStopButtonX1, showStopButtonX2),mean(showStopButtonY1, showStopButtonY2), "Stop",obj_tooltip.arrowFaceUp);}
@@ -395,68 +382,62 @@ function scr_panelPane_drawShow1toMany(){
 		draw_set_valign(fa_middle);
 		draw_text(floor(mean(showStopButtonX1, showStopButtonX2)- clipX), floor(mean(showStopButtonY1, showStopButtonY2)- clipY), showStopButtonText);
 	
-		
-		if (mouse_check_button_released(mb_left) && mouseoverShowStopButton ) {
-				if(isPlaying){
-					scr_setValueForAllChains("stackChain","filter", false);
-					with(obj_panelPane){
-						functionChainList_playShowID = "";
-					}
-					show_debug_message("functionChainList_playShowID:" + string(obj_panelPane.functionChainList_playShowID));
-					with (obj_control) {
-						scr_renderFilter2();	
-					}
+		if (mouse_check_button_released(mb_left) && mouseoverShowStopButton) {
+			
+			if(isPlaying){
+				// stop show!
+				scr_setValueForAllChains("stackChain","filter", false);
+				with(obj_panelPane){
+					functionChainList_playShowID = "";
 				}
-				else {
+				with (obj_control) {
+					scr_disableFilter();
+				}
+			}
+			else {
 						
-					var currentShowSubMap = ds_map_find_value(global.nodeMap, obj_panelPane.functionChainContents_showID);
+				var currentShowSubMap = global.nodeMap[? obj_panelPane.functionChainContents_showID];
 		
-					if(is_numeric(currentShowSubMap)){
-						if(ds_exists(currentShowSubMap,ds_type_map)){
-							//get setlist of playing show
-							setList = ds_map_find_value(currentShowSubMap, "setIDList");	
-							if (is_numeric(setList)) {
-								if (ds_exists(setList, ds_type_list)) {		
-									//get size of setList to see if we can start a show
-									setListSize = ds_list_size(setList);
-
-								}
-							}
-						}
-					}
+				if (scr_isNumericAndExists(currentShowSubMap, ds_type_map)) {
 					
-					if(setListSize > 0){
-							
-						with (obj_panelPane) {
-							functionChainList_playShowID = functionChainContents_showID;
-						}
-							
-						scr_setValueForAllChains("stackChain","filter", false);
-									
-						// Filter the first current stack
-						var currentStackID = ds_list_find_value(setList, 0);
-						show_debug_message("currentStackID : "+ string(currentStackID));
-
-						if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
-							if(currentStackID != undefined){
-								ds_list_add(obj_chain.filteredStackChainList,currentStackID);
-								var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
-								if(is_numeric(chainSubMap)){
-									if(ds_exists(chainSubMap,ds_type_map)){
-										ds_map_replace(chainSubMap, "filter", true);
-
-									}
-								}
-							}
-							with (obj_control) {
-								scr_renderFilter2();
-							}
-						}
+					//get setlist of playing show
+					setList = currentShowSubMap[? "setIDList"];
+					if (scr_isNumericAndExists(setList, ds_type_list)) {		
+						//get size of setList to see if we can start a show
+						setListSize = ds_list_size(setList);
 					}
-					
 				}
-				
+					
+				if(setListSize > 0){
+							
+					with (obj_panelPane) {
+						functionChainList_playShowID = functionChainContents_showID;
+					}
+							
+					scr_setValueForAllChains("stackChain","filter", false);
+									
+					// Filter the first current stack
+					var currentStackID = setList[| 0];
+					show_debug_message("currentStackID : "+ string(currentStackID));
+
+					if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
+						if(currentStackID != undefined){
+							ds_list_add(obj_chain.filteredStackChainList,currentStackID);
+							var chainSubMap = global.nodeMap[? currentStackID];
+							if (scr_isNumericAndExists(chainSubMap,ds_type_map)) {
+								chainSubMap[? "filter"] = true;
+							}
+						}
+						with (obj_control) {
+							scr_renderFilter2();
+						}
+					}
+				}
+			}
 		}
+		
+		
+		
 		
 		
 		// show buttons (next)
@@ -478,17 +459,14 @@ function scr_panelPane_drawShow1toMany(){
 					scr_setValueForAllChains("stackChain","filter", false);
 									
 					// Filter the first current stack
-					var currentStackID = ds_list_find_value(setList, currentChainIndex+1);
+					var currentStackID = setList[| currentChainIndex + 1];
 
 					if(ds_list_find_index(obj_chain.filteredStackChainList,currentStackID) == -1){
 						if(currentStackID != undefined){
 							ds_list_add(obj_chain.filteredStackChainList,currentStackID);
-							var chainSubMap = ds_map_find_value(global.nodeMap,currentStackID);
-							if(is_numeric(chainSubMap)){
-								if(ds_exists(chainSubMap,ds_type_map)){
-									ds_map_replace(chainSubMap, "filter", true);
-
-								}
+							var chainSubMap = global.nodeMap[? currentStackID];
+							if (scr_isNumericAndExists(chainSubMap,ds_type_map)) {
+								chainSubMap[? "filter"] = true;
 							}
 						}
 						with (obj_control) {
@@ -502,9 +480,8 @@ function scr_panelPane_drawShow1toMany(){
 					with(obj_panelPane){
 						functionChainList_playShowID = "";
 					}
-					show_debug_message("functionChainList_playShowID:" + string(obj_panelPane.functionChainList_playShowID));
 					with (obj_control) {
-						scr_renderFilter();	
+						scr_disableFilter();
 					}
 				}
 				
