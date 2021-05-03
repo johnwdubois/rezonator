@@ -169,7 +169,10 @@ function scr_loadREZ() {
 						global.nodeMap = ds_map_create();
 					}
 					
-					
+					if(!scr_isNumericAndExists( global.nodeMap[?"nodeList"], ds_type_list)){
+						var nodeList = ds_list_create();
+						ds_map_add_list(global.nodeMap, "nodeList", nodeList);
+					}
 				
 				
 				
