@@ -695,6 +695,12 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 
 }
 
+if (keyboard_check_pressed(ord("Y")) and keyboard_check(vk_control)){
+	with(obj_fileLoader){
+		alarm[7] = 2;
+	}
+}
+
 var fileCaptionString = string(game_display_name)
 //display current file name in window caption
 if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){

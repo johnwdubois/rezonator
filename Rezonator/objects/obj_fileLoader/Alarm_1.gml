@@ -35,18 +35,6 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 		scr_fillImportGrids_IGT();
 	}
 	
-	if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
-		show_debug_message("obj_fileLoader Alarm 1");
-		with (obj_alarm) {
-			alarm[7] = 2;
-		}
-		if(global.importType == global.importType_PlainText){
-			with (obj_stacker) {
-				alarm[8] = 2;
-			}
-		}
-	}
-	
 	if (!obj_control.updatedSpeakerLabel) {
 
 		obj_control.updatedSpeakerLabel = true;
@@ -56,16 +44,30 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	scr_importTagMaps();
 	scr_transferSpecialFields();
 }
-
+alarm[7] = 1;
 alarm[1] = global.autosaveTimer;
 
 show_debug_message("obj_fileLoader Alarm 1, ENDING... " + scr_printTime());
 
 
-var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+
+
+// load warning before calling autosave function
+
+//instLoading.loadSprite = spr_autosavingWarning;
+
+if(global.autosaveTimer != -1){
+	with(obj_fileLoader){
+		alarm[7] = 2;
+	}
+}
+
+/*
 instLoading.loadSprite = spr_saving;
 if(global.autosaveTimer != -1){
 	with(obj_fileLoader){
 		alarm[6] = 2;
 	}
 }
+
+*/
