@@ -28,18 +28,18 @@ draw_set_valign(fa_middle);
 var xBuffer = (global.lang_codes[| global.lang_index] == "he") ? camWidth : 0;
 var prevXBuffer = (global.lang_codes[| global.lang_index] == "he") ? camWidth : 0;
 
+
+
 for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop++) {
 	var headerString = ds_grid_get(menuBarGrid, menuBarGrid_colString, menuHeaderLoop);
 	scr_adaptFont(scr_get_translation(headerString),"M");
 	menuWidth = string_width(scr_get_translation(headerString))*1.5;
 	prevXBuffer = xBuffer;
 	if(global.lang_codes[| global.lang_index] == "he"){
-		xBuffer -= menuWidth;	
+		xBuffer -= menuWidth;
+	}else{
+		xBuffer += menuWidth;
 	}
-	else{
-		xBuffer += menuWidth;	
-	}
-		
 	
 	var menuHeaderRectX1 = (global.lang_codes[| global.lang_index] == "he") ? xBuffer : prevXBuffer;
 	var menuHeaderRectY1 = 0;
@@ -68,13 +68,7 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 			
 			var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
 			if (ds_list_size(dropDownOptionList) > 0) {
-				if(global.lang_codes[| global.lang_index] == "he"){
-					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
-				}
-				else{
-					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);	
-				}
-				
+				scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
 			}
 		}
 	}
@@ -101,8 +95,8 @@ draw_set_valign(fa_middle);
 
 var sizeOfButtons = menuHeight * 0.6
 
-var maximizeX2 =  camera_get_view_width(camera_get_active()) - string_width("0");
-var maximizeX1 = maximizeX2 - sizeOfButtons;
+var maximizeX2 = (global.lang_codes[| global.lang_index] == "he") ? string_width("0") : camera_get_view_width(camera_get_active()) - string_width("0");
+var maximizeX1 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX2 + sizeOfButtons :  maximizeX2 - sizeOfButtons;
 var maximizeY2 = y + menuHeight *.66  +sizeOfButtons/2;
 var maximizeY1 = maximizeY2 - sizeOfButtons;
 
@@ -127,15 +121,18 @@ if(mouseOverMax){
 	}
 }
 
-
-scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
+if(global.lang_codes[| global.lang_index] == "he"){
+	scr_drawRectWidth(maximizeX1 - sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 + sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
+}else{
+	scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
+}
 
 
 
 
 var minimizeY1 = maximizeY1
-var minimizeX2 =  maximizeX1 - sizeOfButtons/2;
-var minimizeX1 = minimizeX2 - sizeOfButtons
+var minimizeX2 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
+var minimizeX1 = (global.lang_codes[| global.lang_index] == "he") ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
 var minimizeY2 = maximizeY2
 
 draw_set_color(c_white);
@@ -169,12 +166,12 @@ var widthOfLang = string_width(langString);
 var fpsTextY = y+ menuHeight *.66 ;	
 
 
-var langTextX2 =  minimizeX1- sizeOfButtons/2;
-var langTextX1 = langTextX2 - widthOfLang;
+var langTextX2 = (global.lang_codes[| global.lang_index] == "he") ?  minimizeX1 + sizeOfButtons/2 : minimizeX1 - sizeOfButtons/2;
+var langTextX1 = (global.lang_codes[| global.lang_index] == "he") ? langTextX2 + widthOfLang : langTextX2 - widthOfLang;
 var langTextY1 = fpsTextY - (sizeOfSave/2);
 var langTextY2 = fpsTextY + (sizeOfSave/2);
 draw_set_color(c_white);
-var mouseOverLang = point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
+var mouseOverLang = (global.lang_codes[| global.lang_index] == "he") ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
 if(mouseOverLang){
 	//draw_set_color(global.colorThemeText);
 	scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
