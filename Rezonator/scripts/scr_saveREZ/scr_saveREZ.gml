@@ -120,47 +120,72 @@ function scr_saveREZ(autosave) {
 			ds_map_add_list(map, "unitImport", mapunitImport);
 			ds_map_add_list(map, "discoImport", mapDiscoImport);
 			ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
-			var tempList2 = ds_list_create();
-			if (global.tokenImportColNameList  != undefined) {
-				ds_list_copy(tempList2, global.tokenImportColNameList);
-			}
-			ds_map_add_list(map, "tokenImportColNameList", tempList2);
 			
-			var tempList6 = ds_list_create();
-			if (global.wordImportColNameList  != undefined) {
-				ds_list_copy(tempList6, global.wordImportColNameList);
+			var tempTokenImportColNameList = ds_list_create();
+			if (scr_isNumericAndExists(global.tokenImportColNameList, ds_type_list)) {
+				ds_list_copy(tempTokenImportColNameList, global.tokenImportColNameList);
 			}
-			ds_map_add_list(map, "wordImportColNameList", tempList6);
+			ds_map_add_list(map, "tokenImportColNameList", tempTokenImportColNameList);
+
+			var tempUnitImportColNameList = ds_list_create();
+			if (scr_isNumericAndExists(global.unitImportColNameList, ds_type_list)) {
+				ds_list_copy(tempUnitImportColNameList, global.unitImportColNameList);
+			}
+			ds_map_add_list(map, "unitImportColNameList", tempUnitImportColNameList);
 		
-			var tempList3 = ds_list_create();
-			if (global.unitImportColNameList  != undefined) {
-				ds_list_copy(tempList3, global.unitImportColNameList);
+			var tempCurrentDisplayTokenColsList = ds_list_create();
+			if (scr_isNumericAndExists(obj_control.currentDisplayTokenColsList, ds_type_list)) {
+				ds_list_copy(tempCurrentDisplayTokenColsList, obj_control.currentDisplayTokenColsList);
 			}
-			ds_map_add_list(map, "unitImportColNameList", tempList3);
+			ds_map_add_list(map, "currentDisplayTokenColsList", tempCurrentDisplayTokenColsList);
 		
-			var tempList4 = ds_list_create();
-			if (obj_control.currentDisplayTokenColsList != undefined) {
-				ds_list_copy(tempList4, obj_control.currentDisplayTokenColsList);
+			var tempCurrentDisplayUnitColsList = ds_list_create();
+			if (scr_isNumericAndExists(obj_control.currentDisplayTokenColsList, ds_type_list)) {
+				ds_list_copy(tempCurrentDisplayUnitColsList, obj_control.currentDisplayUnitColsList);
 			}
-			ds_map_add_list(map, "currentDisplayTokenColsList", tempList4);
-		
-			var tempList5 = ds_list_create();
-			if (obj_control.currentDisplayTokenColsList != undefined) {
-				ds_list_copy(tempList5, obj_control.currentDisplayUnitColsList);
-			}
-			ds_map_add_list(map, "currentDisplayUnitColsList", tempList5);
+			ds_map_add_list(map, "currentDisplayUnitColsList", tempCurrentDisplayUnitColsList);		
 			
-			var tempList6 = ds_list_create();
-			if (!is_undefined(global.chainEntryFieldList)) {
-				ds_list_copy(tempList6, global.chainEntryFieldList);
+			var tempWordImportColNameList = ds_list_create();
+			if (scr_isNumericAndExists(global.wordImportColNameList, ds_type_list)) {
+				ds_list_copy(tempWordImportColNameList, global.wordImportColNameList);
 			}
-			ds_map_add_list(map, "chainEntryFieldList", tempList6);
+			ds_map_add_list(map, "wordImportColNameList", tempWordImportColNameList);
 			
-			var tempList7 = ds_list_create();
-			if (!is_undefined(global.chainFieldList)) {
-				ds_list_copy(tempList7, global.chainFieldList);
+			var tempChainEntryFieldList = ds_list_create();
+			if (scr_isNumericAndExists(global.chainEntryFieldList, ds_type_list)) {
+				ds_list_copy(tempChainEntryFieldList, global.chainEntryFieldList);
 			}
-			ds_map_add_list(map, "chainFieldList", tempList7);
+			ds_map_add_list(map, "chainEntryFieldList", tempChainEntryFieldList);
+			
+			var tempChainFieldList = ds_list_create();
+			if (scr_isNumericAndExists(global.chainFieldList, ds_type_list)) {
+				ds_list_copy(tempChainFieldList, global.chainFieldList);
+			}
+			ds_map_add_list(map, "chainFieldList", tempChainFieldList);
+			
+			var tempNavTokenFieldList = ds_list_create();
+			if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) {
+				ds_list_copy(tempNavTokenFieldList, navTokenFieldList);
+			}
+			ds_map_add_list(map, "navTokenFieldList", tempNavTokenFieldList);
+			
+			var tempTokenFieldList = ds_list_create();
+			if (scr_isNumericAndExists(tokenFieldList, ds_type_list)) {
+				ds_list_copy(tempTokenFieldList, tokenFieldList);
+			}
+			ds_map_add_list(map, "tokenFieldList", tempTokenFieldList);
+			
+			var tempNavUnitFieldList = ds_list_create();
+			if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) {
+				ds_list_copy(tempNavUnitFieldList, navUnitFieldList);
+			}
+			ds_map_add_list(map, "navUnitFieldList", tempNavUnitFieldList);
+			
+			var tempUnitFieldList = ds_list_create();
+			if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
+				ds_list_copy(tempUnitFieldList, unitFieldList);
+			}
+			ds_map_add_list(map, "unitFieldList", tempUnitFieldList);
 		
 		
 			//save special feild colnames
@@ -177,6 +202,9 @@ function scr_saveREZ(autosave) {
 			// mainscreen display information
 			ds_map_add(map, "showParticipantName", obj_control.showSpeakerName);
 			ds_map_add(map, "justify", obj_control.justify);
+			
+			ds_map_add(map, "functionChainList_focusedUnit", obj_panelPane.functionChainList_focusedUnit);
+			ds_map_add(map, "functionChainList_focusedUnitIndex", obj_panelPane.functionChainList_focusedUnitIndex);
 			
 		
 			if (global.stackGrabSave) {
@@ -307,13 +335,17 @@ function scr_saveREZ(autosave) {
 	ds_map_destroy(stackTagMapCopy);
 	ds_map_destroy(entryFieldMapCopy);
 	ds_map_destroy(chainFieldMapCopy);
-	ds_list_destroy(tempList);
-	ds_list_destroy(tempList2);
-	ds_list_destroy(tempList3);
-	ds_list_destroy(tempList4);
-	ds_list_destroy(tempList5);
-	ds_list_destroy(tempList6);
-	ds_list_destroy(tempList7);
+	ds_list_destroy(tempTokenImportColNameList);
+	ds_list_destroy(tempUnitImportColNameList);
+	ds_list_destroy(tempCurrentDisplayTokenColsList);
+	ds_list_destroy(tempCurrentDisplayUnitColsList);
+	ds_list_destroy(tempWordImportColNameList);
+	ds_list_destroy(tempChainEntryFieldList);
+	ds_list_destroy(tempChainFieldList);
+	ds_list_destroy(tempNavTokenFieldList);
+	ds_list_destroy(tempNavUnitFieldList);
+	ds_list_destroy(tempTokenFieldList);
+	ds_list_destroy(tempUnitFieldList);
 	
 	
 	// set allSaved to true so user does not get prompted to save when they quit

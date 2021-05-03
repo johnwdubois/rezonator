@@ -94,6 +94,10 @@ function scr_loadREZ() {
 					global.unitImportUnitStartColName = ds_map_find_value(map, "unitImportUnitStartColName");
 					global.tokenImportTranscriptColName = ds_map_find_value(map, "tokenImportTranscriptColName");
 					global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
+					with(obj_panelPane){
+						functionChainList_focusedUnit = ds_map_find_value(map, "functionChainList_focusedUnit");
+						functionChainList_focusedUnitIndex = ds_map_find_value(map, "functionChainList_focusedUnitIndex");
+					}
 					
 					if(global.tokenImportDisplayTokenColName == undefined ){
 						global.tokenImportDisplayTokenColName = "~text";
@@ -198,6 +202,36 @@ function scr_loadREZ() {
 						var tempList5 = ds_list_create();
 						obj_control.currentDisplayUnitColsList = tempList5;
 						ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
+					}
+					
+					
+					// get navTokenFieldList, if supplied
+					var navTokenFieldList = ds_map_find_value(map, "navTokenFieldList");
+					if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.navTokenFieldList);
+						obj_control.navTokenFieldList = navTokenFieldList;
+					}
+					
+					// get navTokenFieldList, if supplied
+					var tokenFieldList = ds_map_find_value(map, "tokenFieldList");
+					if (scr_isNumericAndExists(tokenFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.tokenFieldList);
+						obj_control.tokenFieldList = tokenFieldList;
+					}
+					
+					
+					// get navUnitFieldList, if supplied
+					var navUnitFieldList = ds_map_find_value(map, "navUnitFieldList");
+					if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.navUnitFieldList);
+						obj_control.navUnitFieldList = navUnitFieldList;
+					}
+					
+										// get navTokenFieldList, if supplied
+					var unitFieldList = ds_map_find_value(map, "unitFieldList");
+					if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.unitFieldList);
+						obj_control.unitFieldList = unitFieldList;
 					}
 					
 					
