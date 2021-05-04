@@ -5,7 +5,7 @@ function scr_rightClickWordOptions(optionSelected) {
 		
 		case "Replace Word":
 		
-			if (obj_control.rightClickTokenID != "") {
+			if (obj_control.rightClickID != "") {
 
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -27,7 +27,7 @@ function scr_rightClickWordOptions(optionSelected) {
 			
 		case "Split Word":
 			scr_destroyAllDropDownsOtherThanSelf();
-			if (obj_control.rightClickTokenID != "") {
+			if (obj_control.rightClickID != "") {
 
 					if (!obj_control.dialogueBoxActive) {
 						keyboard_string = "";
@@ -89,12 +89,12 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			
 			obj_control.deleteChunkWord = true;
-			var chunkSubMap = global.nodeMap[?obj_control.rightClickTokenID];
+			var chunkSubMap = global.nodeMap[?obj_control.rightClickID];
 			var inChainsList = chunkSubMap[?"inChainsList"];
 			if(ds_list_size(inChainsList) > 0){
 				scr_deleteFromChain(true);
 			}
-			scr_deleteChunk(obj_control.rightClickTokenID);
+			scr_deleteChunk(obj_control.rightClickID);
 			
 			obj_control.deleteChunkWord = false;
 			instance_destroy();
@@ -113,5 +113,5 @@ function scr_rightClickWordOptions(optionSelected) {
 			break;
 	}
 
-obj_control.rightClickonWord = false;
+obj_control.rightClicked = false;
 }

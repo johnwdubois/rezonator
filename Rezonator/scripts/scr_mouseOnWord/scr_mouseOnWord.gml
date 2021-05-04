@@ -119,7 +119,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 	
 	
 	// If the user has the New-Word tool selected, create a new word right next to this word
-	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord or (instance_exists(obj_dropDown) and rightClickonWord) ) {
+	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord or (instance_exists(obj_dropDown) and rightClicked) ) {
 		if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
 			draw_set_color(c_ltblue);
 			draw_line_width(wordRectX2, wordRectY1, wordRectX2, wordRectY2, 2);

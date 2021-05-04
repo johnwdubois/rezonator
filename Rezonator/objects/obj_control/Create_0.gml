@@ -563,12 +563,9 @@ showSpeakerName = true;
 combineChainsFocused = "";
 combineChainsSelected = "";
 stackMerged = false;
-rightClickUnitID = "";
-rightClickTokenID = "";
-rightClickWordID = 0;
-rightClickWordSeq = 0;
-rightClickonWord = false;
-rightClickDisplayRow = -1;
+rightClickID = "";
+rightClicked = false;
+
 deleteNewWord = false;
 deleteChunkWord = false;
 fromDropDown = false;

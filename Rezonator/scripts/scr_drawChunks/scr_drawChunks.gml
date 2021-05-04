@@ -118,7 +118,7 @@ function scr_drawChunks(){
 			// Check for rightMouseClick
 			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
 				
-				obj_control.rightClickTokenID = currentChunkID;
+				obj_control.rightClickID = currentChunkID;
 	
 				// wait 1 frame and then show the right click dropdown
 				with (obj_alarm) {

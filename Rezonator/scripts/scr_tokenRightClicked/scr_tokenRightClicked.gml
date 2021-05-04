@@ -4,7 +4,7 @@ function scr_tokenRightClicked(){
 	
 	if (instance_exists(obj_control) and !instance_exists(obj_dialogueBox)) {
 		
-		var tokenSubMap = global.nodeMap[?obj_control.rightClickTokenID];
+		var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
 		if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}
 		
 		var tokenInChainsList = tokenSubMap[?"inChainsList"];
@@ -15,13 +15,13 @@ function scr_tokenRightClicked(){
 		var firstEntry = entryList[|0];
 		var firstEntrySubMap = global.nodeMap[?firstEntry];
 		
-		obj_control.rightClickonWord = true;
+		obj_control.rightClicked = true;
 		obj_control.wideDropDown = true;
 		var dropDownOptionList = ds_list_create();
 			
 		// check if this is the first word in its line
 
-		var firstWordInLine = (firstEntrySubMap[?"token"] == obj_control.rightClickTokenID);
+		var firstWordInLine = (firstEntrySubMap[?"token"] == obj_control.rightClickID);
 
 		
 
@@ -55,7 +55,7 @@ function scr_tokenRightClicked(){
 				
 				if(refocusEntry){
 					obj_chain.currentFocusedChainID = chainID;
-					scr_refocusChainEntry(obj_control.rightClickTokenID);
+					scr_refocusChainEntry(obj_control.rightClickID);
 				}
 			}
 					

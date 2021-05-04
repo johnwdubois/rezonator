@@ -19,7 +19,7 @@ function scr_newWordOptions(optionSelected) {
 						}
 
 			}
-			obj_control.rightClickonWord = false;
+			obj_control.rightClicked = false;
 			instance_destroy();
 			break;
 		case "<ZERO>":
@@ -39,7 +39,7 @@ function scr_newWordOptions(optionSelected) {
 						}
 
 			}
-			obj_control.rightClickonWord = false;
+			obj_control.rightClicked = false;
 
 			break;
 		case "<PRO>":	
@@ -59,7 +59,7 @@ function scr_newWordOptions(optionSelected) {
 						}
 
 			}
-			obj_control.rightClickonWord = false;
+			obj_control.rightClicked = false;
 
 			break;
 		case "Custom":
@@ -78,7 +78,7 @@ function scr_newWordOptions(optionSelected) {
 						}
 
 			}
-			obj_control.rightClickonWord = false;
+			obj_control.rightClicked = false;
 
 			break;
 		default:

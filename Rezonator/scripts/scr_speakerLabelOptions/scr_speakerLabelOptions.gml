@@ -84,21 +84,20 @@ function scr_speakerLabelOptions(optionSelected) {
 					instance_destroy(obj_dropDown);
 					//return true;
 					break;
-				case "Tag":
-						
-					var dropDownOptionList = ds_list_create();
-					ds_list_add(dropDownOptionList, "Happy", "Sad", "Playful", "Serious", "Delete tag");
-						
-					if (ds_list_size(dropDownOptionList) > 0) {
-						scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth , obj_dropDown.y + obj_dropDown.optionSpacing * 3, dropDownOptionList, global.optionListTypeWordTags);
-					}
-					
+				case "Delete Link":
+			
+					scr_deleteFromChain(true);
+			
+			
+
+
+					instance_destroy(obj_dropDown);
 					break;
 				default:
 					break;
 			}
 		}
 	}
-
+obj_control.rightClicked = false;
 
 }
