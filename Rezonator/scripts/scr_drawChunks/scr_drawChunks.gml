@@ -80,7 +80,7 @@ function scr_drawChunks(){
 			draw_set_alpha(.5);
 			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 			// click on chunk
-			if (device_mouse_check_button_released(0, mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
 				// add chunk to pre-existing chain
 				if (ds_list_size(currentChunkInChainsList) < 1) {
 					obj_chain.currentFocusedChunkID = currentChunkID;
@@ -114,6 +114,19 @@ function scr_drawChunks(){
 					}
 				}
 			}
+			
+			// Check for rightMouseClick
+			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
+				
+				obj_control.rightClickTokenID = currentChunkID;
+	
+				// wait 1 frame and then show the right click dropdown
+				with (obj_alarm) {
+					alarm[11] = 2;
+				}
+
+			}
+			
 			obj_chain.mouseOverAnyChunk = true;
 		}
 		

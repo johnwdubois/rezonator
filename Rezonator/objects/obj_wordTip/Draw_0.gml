@@ -3,10 +3,9 @@
 
 
 // Only read-mode has WordTips
-if (obj_toolPane.currentMode != obj_toolPane.modeRead || obj_control.mouseoverPanelPane)
-{
-	exit;
-}
+
+exit;
+
 
 /*
  * UNCOMMENT BELOW FOR persistent box when clicking a word

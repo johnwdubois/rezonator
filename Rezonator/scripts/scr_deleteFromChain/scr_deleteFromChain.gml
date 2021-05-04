@@ -58,12 +58,6 @@ function scr_deleteFromChain(sortVizSetList) {
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryToken = focusedEntrySubMap[? "token"];
 				
-				if (obj_control.rightClickonWord and obj_control.deleteChunkWord) {
-					if (obj_control.rightClickWordID != focusedEntryWord) {
-						exit;
-					}
-				}
-				
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
 			}
 			else if (focusedEntryType == "stack"){

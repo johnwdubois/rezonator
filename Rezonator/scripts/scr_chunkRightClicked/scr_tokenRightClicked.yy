@@ -6,7 +6,7 @@
     "path": "folders/Scripts/chains/drawChains.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_wordRightClicked",
+  "name": "scr_tokenRightClicked",
   "tags": [],
   "resourceType": "GMScript",
 }

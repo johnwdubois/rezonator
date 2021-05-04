@@ -121,6 +121,20 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 				
 				scr_tokenClicked(currentToken);
 			}
+			
+			// Check for rightMouseClick
+			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
+				
+				obj_control.rightClickTokenID = obj_control.hoverTokenID;
+	
+				// wait 1 frame and then show the right click dropdown
+				with (obj_alarm) {
+					alarm[11] = 2;
+				}
+
+			}
+			
+			
 		}
 		
 		// draw the token's text
