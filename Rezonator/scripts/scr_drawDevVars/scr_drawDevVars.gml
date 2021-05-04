@@ -36,7 +36,7 @@ function scr_drawDevVars(){
 	// draw dev vars
 	var devVarX = camWidth - global.toolPaneWidth - global.scrollBarWidth - 20;
 	draw_text(devVarX, wordTopMargin + (strHeight * 1), "allSaved: " + string(allSaved));
-	draw_text(devVarX, wordTopMargin + (strHeight * 2), "Right clicked word: " + string(rightClickWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 2), "rightClickID: " + string(rightClickID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 3), "mouseOverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 4), "wordTopMargin: " + string(wordTopMargin));
 	draw_text(devVarX, wordTopMargin + (strHeight * 5), "wordLeftMargin: " + string(wordLeftMargin));
@@ -66,8 +66,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 29), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
-	draw_text(devVarX, wordTopMargin + (strHeight * 32), "speakerLabelColXHoldingPrev: " + string(speakerLabelColXHoldingPrev));
-	draw_text(devVarX, wordTopMargin + (strHeight * 33), "speakerLabelColPrevList: " + scr_getStringOfList(speakerLabelColPrevList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 32), "searchGridActive: " + string(searchGridActive));
+	draw_text(devVarX, wordTopMargin + (strHeight * 33), "listOfWords: " + scr_getStringOfList(listOfWords));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "functionChainContents_showID: " + string(obj_panelPane.functionChainContents_showID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	

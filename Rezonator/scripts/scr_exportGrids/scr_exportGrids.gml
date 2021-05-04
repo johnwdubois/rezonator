@@ -23,7 +23,7 @@ function scr_exportGrids() {
 	
 	// create header list for entryGrid
 	var tempEntryGridHeaderList = ds_list_create();
-	ds_list_add(tempEntryGridHeaderList, "chainID", "chainName", "chainSeq", "trackSeq", "wordID", "isChunk", "chunkID", "text", "transcript", "unitText");
+	ds_list_add(tempEntryGridHeaderList, "chainID", "chainName", "chainSeq", "trackSeq", "tokenID", "isChunk", "chunkID", "text", "transcript", "unitText");
 	var tempWordGridHeaderList = ds_list_create();
 	ds_list_add(tempWordGridHeaderList, "wordID", "wID", "unitID", "uID", "wordSeq", "wordToken", "wordTranscript");
 	

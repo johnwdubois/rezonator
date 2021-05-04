@@ -13,6 +13,18 @@ function scr_renderFilter2(){
 	}
 	
 	
+	
+	var search = obj_control.searchGridActive;
+	if (search) {
+		show_debug_message("scr_renderFilter2 search, listOfWords: " + scr_getStringOfList(obj_control.listOfWords));
+		list = scr_getSearchUnitList();
+		show_debug_message("scr_renderFilter2 search, list: " + scr_getStringOfList(list));
+	}
+	
+
+	
+	
+	
 	// determine if filter should be activated or disabled
 	obj_control.filterGridActive = (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabRezBrush && obj_control.filterActiveRez)
 									|| (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush && obj_control.filterActiveTrack)
@@ -82,7 +94,6 @@ function scr_renderFilter2(){
 				}
 			}
 		}
-
 	}
 	
 	scr_sortFilterList(filterUnitList);

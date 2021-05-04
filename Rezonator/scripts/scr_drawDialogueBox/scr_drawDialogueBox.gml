@@ -1,19 +1,9 @@
 function scr_drawDialogueBox() {
 
 	/*
-		scr_drawDialogueBox();
-	
-		Last Updated: 2019-06-25
-	
-		Called from: obj_dialogueBox
-	
 		Purpose: draw custom search box for multiple options
-	
-		Mechanism: draws multiple rectangles and text to represent options to the user when they search,
-		this includes booleans for a case sensitive search, transcript search, and a search within a chain
-				
-		Author: Brady Moore
 	*/
+	
 		var boxHeight = max(270, camera_get_view_height(camera_get_active())/4); 
 		var boxWidth = max(640, camera_get_view_width(camera_get_active())/3);
 		//replaced buffers with vars for width and height so that offsets can be calculated off that
@@ -616,7 +606,16 @@ function scr_drawDialogueBox() {
 		obj_control.alarm[11] = 60;
 			
 		if (obj_control.fPressed) {
-			scr_searchForWord(obj_control.inputText);
+			
+			// creating list of words if user inputed multiple words
+			obj_control.listOfWords = ds_list_create();
+			var listOfWordsInput = scr_splitString(obj_control.inputText, "&");
+			ds_list_copy(obj_control.listOfWords, listOfWordsInput);
+			ds_list_destroy(listOfWordsInput);
+			
+			obj_control.searchGridActive = true;
+			scr_renderFilter2();
+			//scr_searchForWord(obj_control.inputText);
 		}
 		if (obj_control.ePressed) {
 			scr_exportClip(obj_control.inputText);

@@ -28,7 +28,6 @@ function scr_searchForWord(strToFind) {
 	ds_grid_copy(oldHit, obj_control.hitGrid);
 
 	// creating list of words if user inputed multiple words
-	obj_control.listOfWords = ds_list_create();
 	var listOfWordsInput = scr_splitString(strToFind, "&");
 	ds_list_copy(obj_control.listOfWords, listOfWordsInput);
 	ds_list_destroy(listOfWordsInput);
