@@ -24,6 +24,7 @@ function scr_mapViewerDrawNodeData(){
 	
 	// get submap for node to show
 	var subMapSize = 0;
+	var scrollBarSize = 0;
 	var subMap = global.nodeMap[? nodeShow];
 	
 	if (scr_isNumericAndExists(subMap, ds_type_map)) {
@@ -56,6 +57,7 @@ function scr_mapViewerDrawNodeData(){
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;
+				scrollBarSize ++;
 				// if this is a map, loop over it and display its contents
 				var subsubMapSize = ds_map_size(subMapVal);
 				var subsubMapKey = ds_map_find_first(subMapVal);
@@ -88,7 +90,10 @@ function scr_mapViewerDrawNodeData(){
 					draw_text(subTextX - clipX, subTextY - clipY, subsubMapKey + ":    " + subsubMapValStr);
 					
 					var subsubMapKey = ds_map_find_next(subMapVal, subsubMapKey);
-					if (j < subsubMapSize - 1) plusY += strHeight;
+					if (j < subsubMapSize - 1){
+						plusY += strHeight;
+						scrollBarSize ++;
+					}
 				}
 			}
 			
@@ -102,11 +107,12 @@ function scr_mapViewerDrawNodeData(){
 			subMapKey = ds_map_find_next(subMap, subMapKey);
 			
 			plusY += strHeight;
+			scrollBarSize ++;
 		}
 	}
 	
 	
-	scr_scrollBar(subMapSize, -1, strHeight, 0,
+	scr_scrollBar(scrollBarSize, -1, strHeight, 0,
 		c_white, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	

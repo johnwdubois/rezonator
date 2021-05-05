@@ -1,4 +1,4 @@
-function scr_newWordOptions(optionSelected) {
+function scr_newTokenOptions(optionSelected) {
 
 	switch (optionSelected)
 	{

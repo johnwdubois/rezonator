@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "word",
-    "path": "folders/Scripts/functions/word.yy",
+    "name": "functions",
+    "path": "folders/Scripts/import/functions.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_newWord",
+  "name": "scr_createTokenNode",
   "tags": [],
   "resourceType": "GMScript",
 }

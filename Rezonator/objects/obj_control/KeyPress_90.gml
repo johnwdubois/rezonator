@@ -21,6 +21,6 @@ if(!obj_control.dialogueBoxActive){
 		else{
 			fillWord = "<0>";
 		}
-		scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), fillWord, obj_control.hoverTokenID);
+		scr_newToken(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), fillWord, obj_control.hoverTokenID);
 	}
 }

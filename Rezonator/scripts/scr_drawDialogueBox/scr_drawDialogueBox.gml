@@ -643,22 +643,11 @@ function scr_drawDialogueBox() {
 		
 		if (obj_control.newWordCreated) {
 				
-			if(obj_control.fromDropDown){
-				if (obj_control.before) {
-					scr_newWord(obj_control.rightClickUnitID, max(-1,obj_control.rightClickWordSeq - 1), obj_control.inputText, obj_control.rightClickWordID);
-				}
-				else {
-					scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, obj_control.inputText, obj_control.rightClickWordID);
-				}
-			}
-			else{
-				if (obj_control.before) {
-					scr_newWord(obj_control.newWordHoverUnitID, max(-1,obj_control.newWordHoverWordSeq - 1), obj_control.inputText, obj_control.rightClickWordID);
-				}
-				else {
-					scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, obj_control.inputText, obj_control.rightClickWordID);
-				}
-			}
+		
+				
+			scr_newToken(obj_control.inputText, obj_control.rightClickID);
+
+			
 			obj_control.lastAddedWord = obj_control.inputText;
 		}
 		if (obj_control.changeZero) {

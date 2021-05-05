@@ -1,8 +1,90 @@
-function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
+function scr_newToken(newTokenStr, refTokenID) {
 	/*
 		Purpose: Create a new word within the discourse based on user string input
 	*/
+	
 
+
+	var refTokenSubMap = global.nodeMap[?refTokenID];
+	if(!scr_isNumericAndExists(refTokenSubMap, ds_type_map)){ exit; }
+	
+	var newDiscourseTokenSeq = refTokenSubMap[?"discourseTokenSeq"];
+	var newTokenSeq = refTokenSubMap[?"tokenSeq"];
+	var newDisplayCol = refTokenSubMap[?"displayCol"];
+	
+	if(obj_control.before){
+		newDiscourseTokenSeq -= 1;
+		newTokenSeq -= 1;
+		newDisplayCol -= 1;
+	}
+	else{
+		newDiscourseTokenSeq += 1;
+		newTokenSeq += 1;
+		newDisplayCol += 1;
+	}
+	
+	var unitID = refTokenSubMap[?"unit"];	
+	var unitSubMap = global.nodeMap[?unitID];
+	
+	//create new token Node
+	var newTokenID = scr_createTokenNode(newDiscourseTokenSeq, newTokenStr,newTokenSeq,newDisplayCol, unitID);
+	
+	
+
+	
+	var unitEntryList = unitSubMap[?"entryList"];
+	var indexToAdd = -1;
+	
+	var sizeOfEntryList = ds_list_size(unitEntryList);
+	
+	for(var i = 0; i < sizeOfEntryList ; i ++){
+		var entrySubMap = global.nodeMap[?unitEntryList[|i]];
+		if(refTokenID == entrySubMap[?"token"]){
+			indexToAdd = i;
+		}
+	}
+	
+	// make entry node
+	var currentEntryNode = scr_addToNodeMap("entry");
+	var currentEntrySubMap = global.nodeMap[? currentEntryNode];
+	ds_map_add(currentEntrySubMap, "token", newTokenID);
+	ds_map_add(currentEntrySubMap, "unit", unitID);
+	
+	//inserting entry node into unit's entry list
+	ds_list_insert(unitEntryList,indexToAdd,currentEntryNode);
+	
+	
+	
+	var discourseSubMap = global.nodeMap[?global.discourseNode];
+	var tokenList = discourseSubMap[?"tokenList"];
+	var indexOfToken = ds_list_find_index(tokenList, refTokenID);
+		
+	if(obj_control.before){
+		indexOfToken -= 1;
+	}
+	else{
+		indexOfToken += 1;
+	}
+	
+	//inserting token node into discourse node's token list
+	ds_list_insert(tokenList, indexOfToken, newTokenID);
+	
+	
+	var indexOfNextToken = ds_list_find_index(tokenList, newTokenID)+1;
+	var sizeOfTokenList = ds_list_size(tokenList);
+	for( var j = indexOfNextToken; j < sizeOfTokenList ; j++){
+		var currentTokenSubMap = global.nodeMap[?tokenList[|j]];
+		var currentUnitID = currentTokenSubMap[?"unit"];
+		
+		if(unitID == currentUnitID){
+			currentTokenSubMap[?"tokenSeq"] ++;
+		}
+		
+		currentTokenSubMap[?"discourseTokenSeq"] ++;
+		
+	}
+	
+/*
 	
 	var displayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, targetWord - 1);
 	var lineWordIDList = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, displayRow);
@@ -142,7 +224,7 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 			}
 		}
 	}
-	show_debug_message("scr_newWord() ... alignChainList: " + scr_getStringOfList(alignChainList));
+	show_debug_message("scr_newToken() ... alignChainList: " + scr_getStringOfList(alignChainList));
 	
 	var alignChainListSize = ds_list_size(alignChainList);
 	for (var i = 0; i < alignChainListSize; i++) {
@@ -151,5 +233,5 @@ function scr_newWord(unitID, wordSeq, wordTranscript, targetWord) {
 	
 	ds_list_destroy(alignChainList);
 
-
+	*/
 }
