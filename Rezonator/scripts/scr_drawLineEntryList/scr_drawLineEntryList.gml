@@ -138,7 +138,13 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		}
 		
 		// draw the token's text
-		draw_set_color(global.colorThemeText);
+		var wordFound = currentTokenSubMap[?"searched"];
+		if(wordFound){
+			draw_set_color(make_color_rgb(20, 146, 181));
+		}
+		else{
+			draw_set_color(global.colorThemeText);
+		}
 		draw_set_alpha(1);
 		draw_text(currentPixelX, pixelY, currentDisplayStr);
 		

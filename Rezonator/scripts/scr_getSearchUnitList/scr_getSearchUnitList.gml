@@ -39,6 +39,9 @@ function scr_getSearchUnitList(){
 				var currentToken = currentEntrySubMap[? "token"];
 				var currentTokenSubMap = global.nodeMap[? currentToken];
 				
+				//reset seached value for all tokens
+				currentTokenSubMap[?"searched"] = false;
+				
 				// get tagmap for this token
 				var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 				var currentDisplayStr = currentTokenTagMap[? global.displayTokenField];
@@ -49,6 +52,7 @@ function scr_getSearchUnitList(){
 				
 				if (caseSensitiveMatch || nonCaseSensitiveMatch) {
 					scr_addToListOnce(searchUnitList, currentUnit);
+					currentTokenSubMap[?"searched"] = true;
 				}
 			}
 		}

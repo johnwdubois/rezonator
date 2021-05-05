@@ -53,6 +53,7 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentTokenSubMap, "void", 1);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
 				ds_map_add(currentTokenSubMap, "border", "");
+				ds_map_add(currentTokenSubMap, "searched", false);
 				ds_map_add(currentTokenSubMap, "unit", currentUnitNode);
 				ds_map_add_list(currentTokenSubMap, "inChainsList", ds_list_create());
 				ds_map_add_list(currentTokenSubMap, "inChunkList", ds_list_create());
