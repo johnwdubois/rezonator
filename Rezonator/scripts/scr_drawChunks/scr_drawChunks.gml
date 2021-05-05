@@ -35,13 +35,13 @@ function scr_drawChunks(){
 		var firstTokenLeftX = currentChunkFirstTokenSubMap[?"pixelX"];		
 		var lastTokenLeftX = currentChunkLastTokenSubMap[?"pixelX"];	
 		var lastTokenDisplayStr = currentChunkLastTokenTagMap[?global.displayTokenField];	
-		var lastTokenStrWidth = string_width(lastTokenDisplayStr);
+		var lastTokenStrWidth = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
 		var lastTokenRightX = lastTokenLeftX + lastTokenStrWidth;
 		var displayUnit = currentChunkFirstTokenSubMap[?"unit"];
 		
 		
 		scr_adaptFont(lastTokenDisplayStr, "M");
-		var strHeight = string_height(lastTokenDisplayStr);
+		var strHeight = (is_string(lastTokenDisplayStr)) ? string_height(lastTokenDisplayStr) : 0;
 		
 		// set rect coordinates for chunk
 		var chunkRectX1 = -1;

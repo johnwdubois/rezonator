@@ -261,6 +261,7 @@
     {"id":{"name":"scr_newLink","path":"scripts/scr_newLink/scr_newLink.yy",},"order":1,},
     {"id":{"name":"scr_showListOptions","path":"scripts/scr_showListOptions/scr_showListOptions.yy",},"order":56,},
     {"id":{"name":"scr_fillImportGrids_IGT","path":"scripts/scr_fillImportGrids_IGT/scr_fillImportGrids_IGT.yy",},"order":2,},
+    {"id":{"name":"scr_initializeDiscourseTagSet","path":"scripts/scr_initializeDiscourseTagSet/scr_initializeDiscourseTagSet.yy",},"order":26,},
     {"id":{"name":"scr_deleteFromList","path":"scripts/scr_deleteFromList/scr_deleteFromList.yy",},"order":5,},
     {"id":{"name":"scr_deleteFromChain","path":"scripts/scr_deleteFromChain/scr_deleteFromChain.yy",},"order":21,},
     {"id":{"name":"scr_drawChains","path":"scripts/scr_drawChains/scr_drawChains.yy",},"order":0,},

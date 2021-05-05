@@ -46,13 +46,13 @@ function scr_mapViewerDrawNodeData(){
 			var isList = (subMapKey == "goalLinkList" || subMapKey == "linkIDList" || subMapKey == "vizSetIDList"
 							|| subMapKey == "setIDList"  || subMapKey == "inChainsList" || subMapKey == "tokenList"
 							|| subMapKey == "entryList"|| subMapKey == "unitList" || subMapKey == "displayUnitList"
-							|| subMapKey == "inChunkList");
+							|| subMapKey == "inChunkList"|| subMapKey == "tagSet");
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}
 			
 			// check if this value is a map
-			var isMap = (subMapKey == "tagMap");
+			var isMap = (subMapKey == "tagMap" or nodeShow == "tokenTagMap" or nodeShow == "unitTagMap");
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;
@@ -76,6 +76,13 @@ function scr_mapViewerDrawNodeData(){
 					// check whether this field should be in a special color
 					var specialField = ((subMapKey == "tagMap" && global.displayTokenField == subsubMapKey)
 										|| (subMapKey == "tagMap" && global.speakerField == subsubMapKey));
+					
+					
+					var isList = (subsubMapKey == "tagSet" );
+					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
+						subsubMapValStr = scr_getStringOfList(subsubMapVal);
+					}
+					
 					
 					draw_set_color(specialField ? c_blue : global.colorThemeSelected2);
 					draw_text(subTextX - clipX, subTextY - clipY, subsubMapKey + ":    " + subsubMapValStr);

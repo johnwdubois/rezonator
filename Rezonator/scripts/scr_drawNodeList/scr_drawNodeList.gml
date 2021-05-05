@@ -153,6 +153,16 @@ function scr_drawNodeList(){
 		}
 	}
 	
+	if( keyboard_check(vk_control) and keyboard_check_pressed(vk_down)){
+		
+		scrollPlusYDest -= 999999;
+	
+	}
+	if( keyboard_check(vk_control) and keyboard_check_pressed(vk_up)){
+		scrollPlusYDest += 999999;
+	
+	}
+	
 
 	
 }

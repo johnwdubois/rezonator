@@ -144,6 +144,8 @@ function scr_initializeDiscourseNodes(){
 		ds_list_add(obj_control.unitFieldList, global.unitImportColNameList[|j]);
 	}
 	
+	scr_initializeDiscourseTagSet();
+	
 	// set default displayTokenField
 	global.displayTokenField = "~text";
 	global.speakerField = "~Participant";
