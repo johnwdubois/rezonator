@@ -11,12 +11,14 @@ function scr_tokenTagMapOptions(optionSelected) {
 	
 	}
 	else {
-		ds_grid_set(global.tokenImportGrid, obj_control.tokenImportColToChange, obj_control.tokenImportRowToChange, optionSelected);
+		
+		// get the tokenToChange's submap, and that token's tagmap
+		var tokenSubMap = global.nodeMap[? obj_control.tokenToChange];
+		var tokenTagMap = tokenSubMap[? "tagMap"];
+		
+		// set the new value in this token's tagmap
+		tokenTagMap[? obj_control.tokenFieldToChange] = optionSelected;
+		
 	}
-
-	if (obj_control.wordView == obj_panelPane.selectedColToken) {
-		scr_toggleTranscriptionMulti(global.tokenImportGrid, obj_control.tokenImportColToChange);
-	}
-
 
 }

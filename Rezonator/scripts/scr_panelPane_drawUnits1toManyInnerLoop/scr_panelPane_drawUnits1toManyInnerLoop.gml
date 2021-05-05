@@ -31,10 +31,13 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var dropDownButtonWidth = sprite_get_width(spr_dropDown);
 		var dropDownButtonHeight = (tabHeight / 2);
 		
-		// BG rect coordinates
+		// get BG rect coordinates
 		var colWidth = windowWidth / fieldListSize;
 		var cellRectX1 = plusX;
 		var cellRectX2 = cellRectX1 + colWidth;
+		var mouseoverCell = point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2);
+		
+		// draw BG rect for this cell
 		draw_set_color(highlight ? merge_color(global.colorThemeBG, global.colorThemeText, 0.15) : global.colorThemeBG);
 		draw_set_alpha(1);
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
@@ -68,16 +71,18 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var dropDownRectY1 = mean(cellRectY1, cellRectY2) - (dropDownButtonHeight / 2);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidth;
 		var dropDownRectY2 = dropDownRectY1 + dropDownButtonHeight;
-					
+		var mouseoverDropDown = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
+		
+		// draw dropdown sprite if mouseover on this cell
+		if (mouseoverCell) {
+			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+		}
 	
 		// draw tag selection
-		var colIndex = -1;
-		//colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-		var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-		var isTildaField = (string_char_at(string(mapKey), 1) == "~");
+		var isTildaField = (string_char_at(string(currentField), 1) == "~");
 			
 
-		if (drawDropDowns && ds_map_exists(global.tokenImportTagMap, mapKey) && !isTildaField) {
+		if (drawDropDowns && !isTildaField) {
 				
 			if (mouseoverDropDown) {
 									
@@ -87,28 +92,25 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 
 				if (mouse_check_button_released(mb_left)) {
 					
-					// get list of token tags for this field
-					var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-					draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-					var mouseoverDropDown = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
+					// get submap for this field
+					var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+					var fieldSubMap = tokenTagMap[? currentField];
 					
+					// get the tagSet for this field
+					var tagSet = fieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
 					
-					with (obj_panelPane) {
-						selectedColToken = i;
-					}
-					
-					// create dropdown
-					var dropDownOptionList = ds_list_create();
-					if (scr_isNumericAndExists(tagMapList, ds_type_list)) {
-						if (ds_list_size(tagMapList) > 0) {
-							ds_list_copy(dropDownOptionList, tagMapList);
-							obj_control.tokenImportColToChange = 0;
-							obj_control.tokenImportRowToChange = 0;
-							
-							var dropDownX = textX - xBuffer;
-							var dropDownY = textY + scrollPlusY + (strHeight / 2);							
-							scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeTokenTagMap);
-						}
+						// create dropdown
+						var dropDownOptionList = ds_list_create();
+						ds_list_copy(dropDownOptionList, tagSet);
+						ds_list_add(dropDownOptionList, "Add new Tag");
+
+						obj_control.tokenToChange = tokenID;
+						obj_control.tokenFieldToChange = currentField;
+						var dropDownX = textX - xBuffer;
+						var dropDownY = textY + scrollPlusY;							
+						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeTokenTagMap);
+
 					}
 				}
 			}

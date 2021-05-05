@@ -615,6 +615,8 @@ stackRowToChange = 0;
 
 tokenFieldToChange = "";
 unitFieldToChange = "";
+tokenToChange = "";
+unitToChange = "";
 
 
 

@@ -138,24 +138,26 @@ function scr_panelPane_drawUnits1to1() {
 					draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
 				
 					if (mouse_check_button_released(mb_left)) {
+								
+						// get submap for this field
+						var unitTagMap = global.nodeMap[? "unitTagMap"];
+						var fieldSubMap = unitTagMap[? currentField];
 					
-						with (obj_panelPane) {
-							selectedColUnit = i;
-						}
-								
-						var dropDownOptionList = ds_list_create();
-						var tagMapList = ds_map_find_value(global.unitImportTagMap, currentField);
-						
-						if (scr_isNumericAndExists(tagMapList, ds_type_list)) {
-							// come back to this...
-							ds_list_copy(dropDownOptionList, tagMapList);
-							obj_control.unitImportColToChange = -1;
-							obj_control.unitImportRowToChange = -1;
-								
+						// get the tagSet for this field
+						var tagSet = fieldSubMap[? "tagSet"];
+						if (scr_isNumericAndExists(tagSet, ds_type_list)) {
+					
+							// create dropdown
+							var dropDownOptionList = ds_list_create();
+							ds_list_copy(dropDownOptionList, tagSet);
+							ds_list_add(dropDownOptionList, "Add new Tag");
+
+							obj_control.unitToChange = currentUnitID;
+							obj_control.unitFieldToChange = currentField;
 							var dropDownX = colRectX1;
-							var dropDownY = unitRectY2;
-									
+							var dropDownY = unitRectY2;						
 							scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeUnitTagMap);
+
 						}
 					}
 				}
@@ -238,7 +240,7 @@ function scr_panelPane_drawUnits1to1() {
 		
 	// right-click on header
 	if (mouseoverColHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-		//obj_control.chain1To1ColFieldToChange = i;
+		obj_control.unitFieldToChange = currentField;
 		var headerRightClickList = ds_list_create();
 		ds_list_add(headerRightClickList, "Create Field","Add new Tag","Set as Translation");
 		scr_createDropDown(colRectX1, colRectY1 + headerHeight, headerRightClickList, global.optionListTypeUnitMarker);
@@ -275,10 +277,10 @@ function scr_panelPane_drawUnits1to1() {
 	
 			    
 
-	//draw header text
-	scr_adaptFont(string(currentField), "M");
-	draw_set_color(global.colorThemeText);
-	draw_text( colRectX1 + textMarginLeft - clipX, floor(mean(colRectY1,colRectY2)) - clipY, currentField);
+		//draw header text
+		scr_adaptFont(string(currentField), "M");
+		draw_set_color(global.colorThemeText);
+		draw_text( colRectX1 + textMarginLeft - clipX, floor(mean(colRectY1,colRectY2)) - clipY, currentField);
 	
 	
 	}
