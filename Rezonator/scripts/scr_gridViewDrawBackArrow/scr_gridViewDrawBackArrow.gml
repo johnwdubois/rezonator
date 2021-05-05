@@ -1,15 +1,5 @@
 /*
-	scr_gridViewDrawBackArrow();
-	
-	Last Updated: 2020-10-28
-	
-	Called from: obj_control
-	
 	Purpose: Allow for a UI element taking the user back to the main screen from the Grid View, Search Screen, and Filter View
-	
-	Mechanism: Draw the text, draw the arrow sprite, and check for Left Mouse Click on the arrow
-	
-	Author: Georgio Klironomos
 */
 function scr_gridViewDrawBackArrow() {
 	

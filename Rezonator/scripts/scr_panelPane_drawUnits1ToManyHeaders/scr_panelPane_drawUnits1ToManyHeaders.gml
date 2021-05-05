@@ -17,8 +17,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		var headerRectY2 = headerRectY1 + headerHeight;
 		var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2);
 		
-		// get column name
-		var colName = headerList[| i];
+		// get column name/current field
+		var currentField = headerList[| i];
 	
 		// draw BG rects & lines to separate columns
 		draw_set_alpha(1);
@@ -35,8 +35,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
-		scr_adaptFont(colName, "M");
-		draw_text(headerRectX1 + 8, floor(y + (headerHeight / 2)), colName);
+		scr_adaptFont(currentField, "M");
+		draw_text(headerRectX1 + 8, floor(y + (headerHeight / 2)), currentField);
 	
 		// draw displayToken button
 		var displayTokenButtonSize = (headerHeight / 4);
@@ -61,7 +61,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 				with(obj_panelPane) {
 					chosenCol = i;
 				}
-				obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportColNameList, colName);
+				//obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportcurrentFieldList, currentField);
+				obj_control.tokenFieldToChange = currentField;
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "Set as Transcription" , "Create Field", "Add new Tag");
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeTokenMarker);
@@ -92,7 +93,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize * 0.75, false);
 			
 			if (mouse_check_button_released(mb_left)) {
-				global.displayTokenField = colName;		
+				global.displayTokenField = currentField;		
 			}
 		}
 
@@ -100,7 +101,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize, true);
 		draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2), mean(dropDownRectY1, dropDownRectY2), 1, 1, 0, global.colorThemeText, 1);
 
-		if (global.displayTokenField == colName) {
+		if (global.displayTokenField == currentField) {
 			draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
 			draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize * 0.75, false);
 			draw_set_color(global.colorThemeBorders);
