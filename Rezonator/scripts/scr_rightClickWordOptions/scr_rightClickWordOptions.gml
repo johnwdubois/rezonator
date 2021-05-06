@@ -48,7 +48,7 @@ function scr_rightClickWordOptions(optionSelected) {
 
 			break;
 			
-		case "New Word":
+		case "New Token":
 		
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
@@ -97,6 +97,14 @@ function scr_rightClickWordOptions(optionSelected) {
 			scr_deleteChunk(obj_control.rightClickID);
 			
 			obj_control.deleteChunkWord = false;
+			instance_destroy();
+			break;
+		case "Delete Token":
+
+
+			var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
+			scr_deleteToken(obj_control.rightClickID);
+			
 			instance_destroy();
 			break;
 		case "Split Line":

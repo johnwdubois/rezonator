@@ -37,7 +37,7 @@ function scr_tokenRightClicked(){
 					ds_list_add(dropDownOptionList, "Split Line");
 				}
 			}
-
+			
 			//ds_list_add(dropDownOptionList, "Delete New Word", "Replace Word", "Restore Word");
 
 			
@@ -77,7 +77,7 @@ function scr_tokenRightClicked(){
 			//ds_list_add(dropDownOptionList, "Delete Word", "Replace Word");
 			
 		}
-		ds_list_add(dropDownOptionList, "New Word");		
+		ds_list_add(dropDownOptionList, "New Token", "Delete Token");		
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 			scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeRightClickWord);

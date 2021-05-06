@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "functions",
-    "path": "folders/Scripts/import/functions.yy",
+    "name": "token",
+    "path": "folders/Scripts/functions/token.yy",
   },
   "resourceVersion": "1.0",
   "name": "scr_createTokenNode",

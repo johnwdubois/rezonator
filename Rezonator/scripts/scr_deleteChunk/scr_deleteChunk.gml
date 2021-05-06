@@ -9,8 +9,7 @@ function scr_deleteChunk(chunkID) {
 	
 	// get chunk's submap and make sure it exists
 	var chunkSubMap = global.nodeMap[? chunkID];
-	if (!is_numeric(chunkSubMap)) exit;
-	if (!ds_exists(chunkSubMap, ds_type_map)) exit;
+	if (!scr_isNumericAndExists(chunkSubMap, ds_type_map)) exit;
 	
 	// remove the submap from the nodemap
 	scr_deleteFromNodeMap(chunkID);

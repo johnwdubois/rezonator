@@ -6,7 +6,7 @@
     "path": "folders/Scripts/functions/token.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_splitWord",
+  "name": "scr_deleteToken",
   "tags": [],
   "resourceType": "GMScript",
 }
