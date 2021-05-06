@@ -13,46 +13,70 @@
 */
 function scr_randomStackerLoop() {
 	
-	//Loop through the random lkines until we hit the end of the discourse
-	while (randLine2 <= endLine && randLine1 < endLine) { 
+	// Set script variables
+	var currentUnitList = ds_list_create();
+	ds_list_clear(currentUnitList);
+	var discourseSubMap = global.nodeMap[?global.discourseNode];
+	var unitList = discourseSubMap[?"unitList"];
+	var unitListSize = ds_list_size(unitList);
+	var amountOfLines = floor(random(7));
+	//Starting at the top of the unitImportGrid
+	for (var importLoop = 0; importLoop < unitListSize; importLoop++) {
+		var currentUnitID = unitList[|importLoop];
+		var currentUnitSubMap = global.nodeMap[?currentUnitID];
 		
-		// Loop through the current random line set
-		for (var randUnitLoop = randLine1; randUnitLoop < randLine2; randUnitLoop++) {
-			randUnit = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, randUnitLoop - 1);
-			ds_list_add(stackerRandomCurrentUnitList, randUnit);
-		}
-		//show_debug_message("obj_stacker Alarm1 ... stackerRandomCurrentUnitList: " + scr_getStringOfList(stackerRandomCurrentUnitList));
-	
-		// Collect information of the first unit in the set of lines
-		var firstUnitID = ds_list_find_value(stackerRandomCurrentUnitList, 0);
-		var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
-		var firstWordID = ds_list_find_value(currentWordIDList, 0);
-	
-		// Loop through the set of lines to create a stack
-		var inRectUnitIDListSize = ds_list_size(stackerRandomCurrentUnitList);
-		for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
-		
-			obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
-		
-			var currentUnitID = ds_list_find_value(stackerRandomCurrentUnitList, quickStackLoop);
-			currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
-			var currentWordID = ds_list_find_value(currentWordIDList, 0);
-			with (obj_chain) {
-				scr_wordClicked(firstWordID, firstUnitID);
-				scr_wordClicked(currentWordID, currentUnitID);
-			}
-		}
-		// Unfocus all links and chains
-		scr_unFocusAllChains();
 
-		// randomize the lines for the next set
-		randLine1 = randLine2;
-		randLine2 = randLine1 + floor(random(7) + 1);
-		ds_list_clear(stackerRandomCurrentUnitList);
-		//global.fileSaveName = global.fileSaveName + string(fileNameNumber++);
+
+		
+		// Loop through lines until we hit a new turn order
+		while ((amountOfLines > 0) and (importLoop < unitListSize)) { 	
+			currentUnitID = unitList[|importLoop];
+			currentUnitSubMap = global.nodeMap[?currentUnitID];
+
+			if((amountOfLines > 0)){
+				ds_list_add(currentUnitList, currentUnitID);
+				importLoop++;
+			}
+			amountOfLines--;
+
+		}
+		importLoop--;
+		amountOfLines = floor(random(7));
+
+	
+		// Create a Stack based on the current Set of Lines
+		if (ds_list_size(currentUnitList) > 0) {
+			
+			var firstUnitID = ds_list_find_value(currentUnitList, 0);
+			
+			var prevUnitID = -1;
+	
+			// Loop through lines and click on them with the Stack Tool
+			var inRectUnitIDListSize = ds_list_size(currentUnitList);
+			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
+				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
+					if(currentUnitID != prevUnitID) {
+					
+					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
+					with (obj_chain) {
+						scr_unitClicked(firstUnitID);
+						scr_unitClicked(currentUnitID);
+					}
+				}
+				prevUnitID = currentUnitID;
+			}
+			// Unfocus all links and chains
+			scr_unFocusAllChains();
+
+
+		}
+	
+		ds_list_clear(currentUnitList);
 	}
+	// Unfocus all links and chains
+	scr_unFocusAllChains();
+
+
 	//reset the ransom numbers
 	splitSave = false;
-	randLine1 = 1;
-	randLine2 = randLine1 + floor(random(7)) + 1;
 }

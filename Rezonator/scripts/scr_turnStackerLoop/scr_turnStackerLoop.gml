@@ -17,19 +17,7 @@ function scr_turnStackerLoop(){
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
 	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
-	var unitCol = -1;
 	var turnCol = -1;
-
-    // Find the UnitID column and TurnID column within the UnitImportGrid
-	for (var unitColLoop = 0; unitColLoop < ds_list_size(global.unitImportColNameList); unitColLoop++) {
-
-		if (ds_list_find_value(global.unitImportColNameList, unitColLoop) == "~UnitID") {
-			unitCol = unitColLoop;
-			show_debug_message("scr_turnStackerLoop() ... unitCol: " + string(unitCol));
-			break;
-		}
-
-	}
 
 	for (var turnColLoop = 0; turnColLoop < ds_list_size(global.unitImportColNameList); turnColLoop++) {
 
@@ -49,45 +37,54 @@ function scr_turnStackerLoop(){
 	}
 
 	//Set variables for loop
-	var currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, 0);
-	var previousTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, 0);
-
-	//Starting at the top of the unitImportGrid
-	for (var tokenImportLoop = 0; tokenImportLoop < unitImportGridHeight; tokenImportLoop++) {
+	var currentTurnOrder = 0;
+	var previousTurnOrder = 0;
+	var discourseSubMap = global.nodeMap[?global.discourseNode];
+	var unitList = discourseSubMap[?"unitList"];
+	var unitListSize = ds_list_size(unitList);
 	
-		currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, tokenImportLoop);
+	//Starting at the top of the unitImportGrid
+	for (var importLoop = 0; importLoop < unitListSize; importLoop++) {
+		var currentUnit = unitList[|importLoop];
+		var currentUnitSubMap = global.nodeMap[?currentUnit];
+		var unitTagMap = currentUnitSubMap[?"tagMap"];
+		currentTurnOrder = unitTagMap[?"turnSeq"];
 		previousTurnOrder = currentTurnOrder;
 		
 		// Loop through lines until we hit a new turn order
-		while ((currentTurnOrder == previousTurnOrder) and (tokenImportLoop < unitImportGridHeight)) { 	
-			var randUnit = ds_grid_get(global.unitImportGrid, unitCol, tokenImportLoop);
-			ds_list_add(currentUnitList, randUnit);
-			tokenImportLoop++;
-			currentTurnOrder = ds_grid_get(global.unitImportGrid, turnCol, tokenImportLoop);
-			//show_message(currentTurnOrder);
+		while ((currentTurnOrder == previousTurnOrder) and (importLoop < unitListSize)) { 	
+			currentUnit = unitList[|importLoop];
+
+			currentUnitSubMap = global.nodeMap[?currentUnit];
+			unitTagMap = currentUnitSubMap[?"tagMap"];
+			currentTurnOrder = unitTagMap[?"turnSeq"];
+			if((currentTurnOrder == previousTurnOrder)){
+				ds_list_add(currentUnitList, currentUnit);
+				importLoop++;
+			}
+
+			show_debug_message(currentTurnOrder);
 		}
-		tokenImportLoop--;
+		importLoop--;
+
 	
 		// Create a Stack based on the current Set of Lines
 		if (ds_list_size(currentUnitList) > 0) {
 			
 			var firstUnitID = ds_list_find_value(currentUnitList, 0);
-			var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
-			var firstWordID = ds_list_find_value(currentWordIDList, 0);
-			var prevUnitID = -1;
 			
-
+			var prevUnitID = -1;
+	
 			// Loop through lines and click on them with the Stack Tool
 			var inRectUnitIDListSize = ds_list_size(currentUnitList);
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
 					if(currentUnitID != prevUnitID) {
-					currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
-					var currentWordID = ds_list_find_value(currentWordIDList, 0);
+					
 					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 					with (obj_chain) {
-						scr_wordClicked(firstWordID, firstUnitID);
-						scr_wordClicked(currentWordID, currentUnitID);
+						scr_unitClicked(firstUnitID);
+						scr_unitClicked(currentUnitID);
 					}
 				}
 				prevUnitID = currentUnitID;
