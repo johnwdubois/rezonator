@@ -103,13 +103,21 @@ function scr_initializeDiscourseNodes(){
 			var currentTag = ds_grid_get(global.unitImportGrid, j, i);
 			ds_map_add(tagMap, currentField, currentTag);
 			
+			if(currentField == global.unitImportUnitStartColName){
+				ds_map_add(currentUnitSubMap, "unitStart", currentTag);
+			}
+			if(currentField == global.unitImportUnitEndColName){
+				ds_map_add(currentUnitSubMap, "unitEnd", currentTag);
+			}
+			
+			
 			if(i == 0){
 				if(j < 7 and ds_list_find_index(obj_control.navUnitFieldList, currentField) == -1){
 					ds_list_add(obj_control.navUnitFieldList, currentField);
 				}
 			}
 		}
-		
+
 		// add values to unit node
 		ds_map_add(currentUnitSubMap, "unitSeq", i + 1);
 		ds_map_add_list(currentUnitSubMap, "entryList", currentEntryList);

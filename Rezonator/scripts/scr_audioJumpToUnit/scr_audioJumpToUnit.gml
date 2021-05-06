@@ -6,9 +6,11 @@ function scr_audioJumpToUnit(unitID) {
 	if (instance_exists(obj_audioUI)) {
 		if (obj_audioUI.audioJumpOnWordClick) {
 		
-			if (unitID > 0 and unitID <= ds_grid_height(obj_control.unitGrid)) {
-	
-				var unitStart = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitStart, unitID - 1);
+			if (unitID != "" or unitID != undefined) {
+				var unitSubMap = global.nodeMap[?unitID];
+				if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){exit;}
+				
+				var unitStart = unitSubMap[?"unitStart"];
 				unitStart = real(unitStart);
 				
 				if (unitStart != undefined and unitStart > 0) {

@@ -4,10 +4,20 @@ function scr_unitClicked(unitID){
 	
 	if (global.delayInput > 0) exit;
 	
+	
 	// get submap for this unit and make sure it exists
 	var unitSubMap = global.nodeMap[? unitID];
 	if (!scr_isNumericAndExists(unitSubMap, ds_type_map)) exit;
 	show_debug_message("scr_unitClicked ... unitID: " + string(unitID));
+	
+	
+	// With Audio, jump to this line's start time in the Audio File
+	if (instance_exists(obj_audioUI)) {
+		if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
+			scr_audioJumpToUnit(unitID);
+		}
+	}
+	
 	
 	// get inChainsList for this unit
 	var inChainsList = unitSubMap[? "inChainsList"];

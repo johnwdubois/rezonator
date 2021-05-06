@@ -8,7 +8,8 @@ function scr_tokenClicked(tokenID){
 	var tokenSubMap = global.nodeMap[?tokenID];
 	if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}
 	show_debug_message("scr_tokenClicked()... tokenID: " + string(tokenID));
-
+	
+	var unitID = tokenSubMap[?"unit"];
 
 	if (obj_control.gridView or (obj_control.mouseoverPanelPane and not obj_stacker.splitSave) or obj_control.dialogueBoxActive or instance_exists(obj_dialogueBox) or instance_exists(obj_dropDown) or instance_exists(obj_flyout)) {
 		var shouldExit = true;
@@ -23,15 +24,14 @@ function scr_tokenClicked(tokenID){
 		}
 	}
 	
-	/*
-	bring back w/ audio
+
 	// jump audio position to unitStart time (if audioUI is visible)
 	if (instance_exists(obj_audioUI)) {
 		if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {
 			scr_audioJumpToUnit(unitID);
 		}
 	}
-	*/
+	
 	
 	// if there is a focused chain, but you are not on the tool of that chain, cancel this click
 	if (obj_chain.focusedChainWrongTool) {

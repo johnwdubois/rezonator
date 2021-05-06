@@ -26,9 +26,7 @@ function scr_importMappingGridsInit() {
 	global.discoImportGrid = ds_grid_create(global.discoImportGridWidth, 0);
 
 
-	// special fields for unitImport
-	global.unitImport_colUnitStart = -1;
-	global.unitImport_colUnitEnd = -1;
+
 
 
 
