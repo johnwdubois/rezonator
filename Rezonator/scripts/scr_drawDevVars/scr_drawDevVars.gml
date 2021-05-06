@@ -52,7 +52,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
 	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(obj_chain.focusedChainWordID));
-	draw_text(devVarX, wordTopMargin + (strHeight * 18), "mouseLineWordID: " + string(obj_chain.mouseLineWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 18), "tokenFieldList: " + scr_getStringOfList(tokenFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "navTokenFieldList: " + scr_getStringOfList(navTokenFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "navUnitFieldList: " + scr_getStringOfList(navUnitFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));

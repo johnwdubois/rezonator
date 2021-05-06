@@ -30,10 +30,10 @@ function scr_exportGrids() {
 	var tempUnitGridHeaderList = ds_list_create();
 	ds_list_add(tempUnitGridHeaderList, "unitID", "uID", "wordIDList", "discoID", "pID", "participantName", "Unit Start","Unit End","participantColor","discoColor");
 	
-	var tokenImportColNameListSize = ds_list_size(global.tokenImportColNameList);
-	for (var i = 4; i < tokenImportColNameListSize; i++) {
-		ds_list_add(tempEntryGridHeaderList, global.tokenImportColNameList[| i]);
-		ds_list_add(tempWordGridHeaderList, global.tokenImportColNameList[| i]);
+	var tokenFieldSize = ds_list_size(obj_control.tokenFieldList);
+	for (var i = 0; i < tokenFieldSize; i++) {
+		ds_list_add(tempEntryGridHeaderList, obj_control.tokenFieldList[| i]);
+		ds_list_add(tempWordGridHeaderList, obj_control.tokenFieldList[| i]);
 	}
 	
 	var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
