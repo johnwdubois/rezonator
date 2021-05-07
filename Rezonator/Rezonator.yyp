@@ -31,7 +31,7 @@
     {"id":{"name":"scr_stackTagOptions","path":"scripts/scr_stackTagOptions/scr_stackTagOptions.yy",},"order":39,},
     {"id":{"name":"spr_gridViewToggle","path":"sprites/spr_gridViewToggle/spr_gridViewToggle.yy",},"order":11,},
     {"id":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"order":12,},
-    {"id":{"name":"scr_exportWordTempGrid","path":"scripts/scr_exportWordTempGrid/scr_exportWordTempGrid.yy",},"order":12,},
+    {"id":{"name":"scr_exportTokenTempGrid","path":"scripts/scr_exportTokenTempGrid/scr_exportTokenTempGrid.yy",},"order":12,},
     {"id":{"name":"spr_helpToggle","path":"sprites/spr_helpToggle/spr_helpToggle.yy",},"order":13,},
     {"id":{"name":"spr_transcriptionToggle","path":"sprites/spr_transcriptionToggle/spr_transcriptionToggle.yy",},"order":14,},
     {"id":{"name":"spr_backArrow","path":"sprites/spr_backArrow/spr_backArrow.yy",},"order":15,},
