@@ -19,7 +19,12 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		draw_set_alpha(1);
 		draw_rectangle(x - clipX, cellRectY1 - clipY, x + windowWidth - clipX, cellRectY2 - clipY, false);
 	}
+	
 	var i = 0
+	// get size of dropdown buttons
+	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
+	var dropDownButtonHeight = (tabHeight / 2);
+	
 	// Set collected info into respective columns
 	var plusX = x;
 	repeat(fieldListSize) {
@@ -27,9 +32,10 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var currentField = fieldList[| i];
 		var currentStr = "";
 
-		// get size of dropdown buttons
-		var dropDownButtonWidth = sprite_get_width(spr_dropDown);
-		var dropDownButtonHeight = (tabHeight / 2);
+
+		
+		// draw tag selection
+		var isTildaField = (string_char_at(string(currentField), 1) == "~");
 		
 		// get BG rect coordinates
 		var colWidth = windowWidth / fieldListSize;
@@ -48,6 +54,9 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		}
 		else{
 			var textX = floor(cellRectX2 - spaceWidth);
+			if(drawDropDowns && mouseoverCell && !isTildaField){
+				textX = textX - dropDownButtonWidth;
+			}
 		}
 		var textY = floor(mean(cellRectY1, cellRectY2));
 		
@@ -74,12 +83,11 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var mouseoverDropDown = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
 		
 		// draw dropdown sprite if mouseover on this cell
-		if (mouseoverCell) {
+		if (mouseoverCell && !isTildaField) {
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
 	
-		// draw tag selection
-		var isTildaField = (string_char_at(string(currentField), 1) == "~");
+
 			
 
 		if (drawDropDowns && !isTildaField) {

@@ -40,10 +40,11 @@ function scr_panelPane_drawUnits1to1() {
 	var headerListSize = ds_list_size(headerList);
 
 
-
+	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
+	
 	// Set opacity, font, and alignment of text chain lists
 	draw_set_alpha(1);
-	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
 	
@@ -180,12 +181,31 @@ function scr_panelPane_drawUnits1to1() {
 
     
 		    // Draw text of unit tags
-		    draw_set_halign(fa_left);
+		    draw_set_halign(lineStateLTR ? fa_left : fa_right);
 		    draw_set_valign(fa_middle);
 		    draw_set_color(global.colorThemeText);
 			scr_adaptFont(string(currentStr), "S");
 			//show_debug_message(string(currentStr));
-		    draw_text(x + textMarginLeft + (colWidth * i) - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, currentStr);
+					// text coordinates
+			
+				
+			if(lineStateLTR){
+				var textX = floor(colRectX1 + textMarginLeft);
+			}
+			else{
+				var textX = floor(colRectX2 - textMarginLeft);
+				if(drawDropDowns && mouseoverunitRect ){
+					textX = textX - dropDownButtonWidth;
+				}
+			}
+			
+			// leave room for scrollbar if we're in RTL and on the last column
+			if (!lineStateLTR && i == headerListSize-1) {
+				textX -= global.scrollBarWidth;
+			}
+			
+			
+		    draw_text(textX - clipX, y + headerHeight + relativeScrollPlusY + textPlusY - clipY, currentStr);
     
 		    // Get height of chain name
 		    textPlusY += strHeight;
@@ -280,7 +300,13 @@ function scr_panelPane_drawUnits1to1() {
 		//draw header text
 		scr_adaptFont(string(currentField), "M");
 		draw_set_color(global.colorThemeText);
-		draw_text( colRectX1 + textMarginLeft - clipX, floor(mean(colRectY1,colRectY2)) - clipY, currentField);
+		
+		var headertextX = colRectX1 + (textMarginLeft);
+		if(!lineStateLTR){
+			headertextX = colRectX2 - (textMarginLeft) - dropDownButtonWidth*2;
+		}
+
+		draw_text( headertextX - clipX, floor(mean(colRectY1,colRectY2)) - clipY, currentField);
 	
 	
 	}

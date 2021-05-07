@@ -12,6 +12,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	var isChunk = scr_isChunk(ID);
 	var unitID = "";
 	var tokenID = "";
+		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var IDsubMap = global.nodeMap[?ID];
 	var type = IDsubMap[?"type"];
 	if(type == "unit"){
@@ -38,7 +39,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	
 	var textMarginTop = functionTabs_tabHeight;
 	var xBuffer = 6;
-	
+	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
 
 	var chunkSubMap = isChunk ? global.nodeMap[? ID] : -1;
 	
@@ -127,7 +128,19 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		}
 		
 		// get coordinates for text
-		var textX = x + (i * (windowWidth / colAmount)) + xBuffer;
+		// text coordinates
+		if(lineStateLTR){
+			draw_set_halign(fa_left);
+			var textX = x + (i * (windowWidth / colAmount)) + xBuffer;
+		}
+		else{
+			draw_set_halign(fa_right);
+			var textX = floor(x + ((i+1) * (windowWidth / colAmount)) - xBuffer);
+			if(mouseoverCell ){
+				textX = textX - dropDownButtonWidth;
+			}
+		}
+		
 		var textY = y + textMarginTop + textPlusY;
 		
 		// remove linebreaks from string before drawing it
