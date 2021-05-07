@@ -126,6 +126,8 @@ function scr_initializeDiscourseNodes(){
 		ds_map_add(currentUnitSubMap, "pID", currentPID);
 		ds_map_add(currentUnitSubMap, "speakerColor", currentSpeakerColor);
 		ds_map_add(currentUnitSubMap, "filter", false);
+		if (!ds_map_exists(currentUnitSubMap, "unitStart")) ds_map_add(currentUnitSubMap, "unitStart", "");
+		if (!ds_map_exists(currentUnitSubMap, "unitEnd")) ds_map_add(currentUnitSubMap, "unitEnd", "");
 		
 		//add each token to the totoal token's List
 		ds_list_add(unitList, currentUnitNode);

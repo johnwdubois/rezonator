@@ -28,7 +28,7 @@ function scr_exportGrids() {
 	ds_list_add(tempTokenGridHeaderList, "tokenID", "tokenOrder", "unitID", "unitSeq");
 	
 	var tempUnitGridHeaderList = ds_list_create();
-	ds_list_add(tempUnitGridHeaderList, "unitID", "uID", "wordIDList", "discoID", "pID", "participantName", "Unit Start","Unit End","participantColor","discoColor");
+	ds_list_add(tempUnitGridHeaderList, "unitID", "unitSeq", "speaker", "unitStart", "unitEnd");
 	
 	var tokenFieldSize = ds_list_size(obj_control.tokenFieldList);
 	for (var i = 0; i < tokenFieldSize; i++) {
@@ -47,10 +47,8 @@ function scr_exportGrids() {
 	}
 	
 	//make temp unit and token grid with all tag info
-	var tempTokenGrid = scr_exportTokenTempGrid(tempTokenGridHeaderList);
-	var tempUnitGrid = scr_exportUnitTempGrid(tempUnitGridHeaderList);
-	
-	
+	var tempTokenGrid = scr_exportDiscourseTempGrid(tempTokenGridHeaderList, obj_control.tokenFieldList);
+	var tempUnitGrid = scr_exportDiscourseTempGrid(tempUnitGridHeaderList, obj_control.unitFieldList);
 	
 	// make temp entry grids for track & rez
 	var tempTrackGrid = scr_exportChainEntryGrid(global.nodeMap[? "trackChainList"], tempEntryGridHeaderList);
