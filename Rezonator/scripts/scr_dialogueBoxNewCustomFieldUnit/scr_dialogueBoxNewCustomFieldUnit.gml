@@ -9,6 +9,13 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
 	
+	//add to nav window list if
+	var sizeOfNavUnitList = ds_list_size(obj_control.navUnitFieldList);
+	if(sizeOfNavUnitList < 6){
+		ds_list_add(obj_control.navUnitFieldList, newField);
+	}
+	
+	
 	// add our new field's submap to the tagMap
 	var tagMap = global.nodeMap[? "unitTagMap"];
 	ds_map_add_map(tagMap, newField, newFieldMap);
@@ -36,8 +43,8 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	
 	
 	
-	
-	scr_unitSelection(newField);
-	
+	if(sizeOfNavUnitList == 6){
+		scr_unitSelection(newField);
+	}
 	
 }

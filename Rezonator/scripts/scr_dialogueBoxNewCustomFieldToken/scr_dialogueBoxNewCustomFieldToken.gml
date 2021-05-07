@@ -5,6 +5,12 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	// add new field to the list of token fields
 	ds_list_add(obj_control.tokenFieldList, newField);
 	
+	//add to nav window list if
+	var sizeOfNavTokenList = ds_list_size(obj_control.navTokenFieldList);
+	if(sizeOfNavTokenList < 6){
+		ds_list_add(obj_control.navTokenFieldList, newField);
+	}
+	
 	// create a new submap for this field
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
@@ -17,6 +23,8 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	// loop over all tokens and give their tagmaps this new field
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var tokenList = discourseSubMap[? "tokenList"];
+	
+
 	if (scr_isNumericAndExists(tokenList, ds_type_list)) {
 		
 		var tokenListSize = ds_list_size(tokenList);
@@ -34,8 +42,9 @@ function scr_dialogueBoxNewCustomFieldToken() {
 		}
 	}
 	
-	
-	scr_tokenSelection(newField);
+	if(sizeOfNavTokenList == 6){
+		scr_tokenSelection(newField);
+	}
 	
 
 
