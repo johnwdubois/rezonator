@@ -19,7 +19,18 @@ function scr_drawLine2ElectricBoogaloo(){
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	if (!scr_isNumericAndExists(discourseSubMap, ds_type_map)) exit;
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
-	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) exit;
+	var unitList = discourseSubMap[? "unitList"];
+	
+	if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
+		if(scr_isNumericAndExists(unitList, ds_type_list)){
+			discourseSubMap[? "displayUnitList"] = unitList;
+			displayUnitList = discourseSubMap[? "displayUnitList"];
+			obj_control.displayUnitList = displayUnitList;
+		}
+		else{
+			exit;
+		}
+	}
 	var displayUnitListSize = ds_list_size(displayUnitList);
 	
 	scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize);
