@@ -23,6 +23,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	
 	var entryListSize = ds_list_size(entryList);
 	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	var j = 0;
 
 	repeat(entryListSize) {
 		
@@ -44,12 +45,12 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		// get & set pixelX value
 		scr_tokenCalculateVoid(currentToken);
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
-		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, i, unitWidth, shapeTextX, camWidth);
+		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth);
 		shapeTextX += string_width(currentDisplayStr) + spaceWidth;
 		
 		
 		//mouseover Token check
-		scr_adaptFont(currentDisplayStr,"M");
+		currentDisplayStr = scr_adaptFont(currentDisplayStr,"M");
 		var currentTokenStringWidth = string_width(currentDisplayStr);
 		var currentTokenStringHeight = string_height(currentDisplayStr);		
 		var tokenRectBuffer = 3;
@@ -151,6 +152,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		// run through the loop forward or backward depending on if LTR or RTL
 		if (drawLineState = lineState_ltr) i++;
 		else i--;
+		j++;
 		
 	}
 

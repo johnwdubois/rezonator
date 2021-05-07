@@ -37,11 +37,11 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		
 		if (shape == shapeText) {
 			// Right Prose
-			tokenPixelXDest = camWidth - unitWidth + shapeTextX + scrollPlusX - gridSpaceHorizontal;
+			tokenPixelXDest = camWidth - global.scrollBarWidth - unitWidth + shapeTextX + scrollPlusX - gridSpaceHorizontal;
 		}
 		else {
 			// Right Grid
-			tokenPixelXDest = camWidth - (entryListSize * gridSpaceHorizontal) + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
+			tokenPixelXDest = camWidth - global.scrollBarWidth - (entryListSize * gridSpaceHorizontal) + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
 		}
 	}
 	
