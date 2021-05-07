@@ -24,8 +24,8 @@ function scr_exportGrids() {
 	// create header list for entryGrid
 	var tempEntryGridHeaderList = ds_list_create();
 	ds_list_add(tempEntryGridHeaderList, "chainID", "chainName", "chainSeq", "trackSeq", "tokenID", "isChunk", "chunkID", "text", "transcript", "unitText");
-	var tempWordGridHeaderList = ds_list_create();
-	ds_list_add(tempWordGridHeaderList, "wordID", "wID", "unitID", "uID", "wordSeq", "wordToken", "wordTranscript");
+	var tempTokenGridHeaderList = ds_list_create();
+	ds_list_add(tempTokenGridHeaderList, "tokenID", "tokenOrder", "unitID", "unitSeq");
 	
 	var tempUnitGridHeaderList = ds_list_create();
 	ds_list_add(tempUnitGridHeaderList, "unitID", "uID", "wordIDList", "discoID", "pID", "participantName", "Unit Start","Unit End","participantColor","discoColor");
@@ -33,7 +33,7 @@ function scr_exportGrids() {
 	var tokenFieldSize = ds_list_size(obj_control.tokenFieldList);
 	for (var i = 0; i < tokenFieldSize; i++) {
 		ds_list_add(tempEntryGridHeaderList, obj_control.tokenFieldList[| i]);
-		ds_list_add(tempWordGridHeaderList, obj_control.tokenFieldList[| i]);
+		ds_list_add(tempTokenGridHeaderList, obj_control.tokenFieldList[| i]);
 	}
 	
 	var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
@@ -46,8 +46,8 @@ function scr_exportGrids() {
 		ds_list_add(tempEntryGridHeaderList, global.chainEntryFieldList[| i]);
 	}
 	
-	//make temp unit and word grid with all tag info
-	var tempWordGrid = scr_exportWordTempGrid(tempWordGridHeaderList);
+	//make temp unit and token grid with all tag info
+	var tempTokenGrid = scr_exportTokenTempGrid(tempTokenGridHeaderList);
 	var tempUnitGrid = scr_exportUnitTempGrid(tempUnitGridHeaderList);
 	
 	
@@ -81,8 +81,8 @@ function scr_exportGrids() {
 
 	// Save the CSVs to the folder
 	scr_gridToCSV(obj_control.searchGrid, exportDir + "\\search.csv", tempLineGridHeaderList);
-	scr_gridToCSV(tempWordGrid, exportDir + "\\word.csv",tempWordGridHeaderList);
-	scr_gridToCSV(tempUnitGrid, exportDir + "\\unit.csv",tempUnitGridHeaderList);
+	scr_gridToCSV(tempTokenGrid, exportDir + "\\token.csv", tempTokenGridHeaderList);
+	scr_gridToCSV(tempUnitGrid, exportDir + "\\unit.csv", tempUnitGridHeaderList);
 	scr_gridToCSV(tempTrackGrid, exportDir + "\\track.csv", tempEntryGridHeaderList);
 	scr_gridToCSV(tempRezGrid, exportDir + "\\rez.csv", tempEntryGridHeaderList);
 	scr_gridToCSV(tempRezChainGrid, exportDir + "\\rezChain.csv", tempChainGridHeaderList);
@@ -93,7 +93,7 @@ function scr_exportGrids() {
 	scr_gridToCSV(tempChunkGrid, exportDir + "\\chunk.csv", tempChunkGridHeaderList);
 
 	// destroy temp grids
-	ds_grid_destroy(tempWordGrid);
+	ds_grid_destroy(tempTokenGrid);
 	ds_grid_destroy(tempUnitGrid);
 	ds_grid_destroy(tempRezChainGrid);
 	ds_grid_destroy(tempTrackChainGrid);

@@ -6,7 +6,7 @@
     "path": "folders/Scripts/export.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_exportWordTempGrid",
+  "name": "scr_exportTokenTempGrid",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -48,7 +48,7 @@ function scr_initializeDiscourseNodes(){
 				var currentTokenNode = scr_addToNodeMap("token");
 				var currentTokenSubMap = global.nodeMap[? currentTokenNode];
 				ds_map_add(currentTokenSubMap, "discourseTokenSeq", discourseTokenSeq);
-				ds_map_add(currentTokenSubMap, "tokenSeq", j);
+				ds_map_add(currentTokenSubMap, "tokenSeq", j + 1);
 				ds_map_add(currentTokenSubMap, "displayCol", j);
 				ds_map_add(currentTokenSubMap, "void", 1);
 				ds_map_add(currentTokenSubMap, "pixelX", 0);
