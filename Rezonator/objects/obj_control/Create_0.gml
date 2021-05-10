@@ -336,6 +336,7 @@ newWordHoverWordID = -1;
 
 hoverTokenID = "";
 hoverChunkID = "";
+hoverUnitID = "";
 showMouseLine = false;
 linkDeleted = false;
 

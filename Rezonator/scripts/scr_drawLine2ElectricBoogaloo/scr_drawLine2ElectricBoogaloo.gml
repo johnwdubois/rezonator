@@ -36,6 +36,8 @@ function scr_drawLine2ElectricBoogaloo(){
 	scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize);
 	
 	hoverTokenID = "";
+	hoverUnitID = "";
+
 	mouseoverSpeakerLabel = false;
 	
 	// clear lists that are meant to be refreshed each frame
