@@ -94,6 +94,10 @@ function scr_loadREZ() {
 					global.unitImportUnitStartColName = ds_map_find_value(map, "unitImportUnitStartColName");
 					global.tokenImportTranscriptColName = ds_map_find_value(map, "tokenImportTranscriptColName");
 					global.tokenImportDisplayTokenColName = ds_map_find_value(map, "tokenImportDisplayTokenColName");
+					with(obj_panelPane){
+						functionChainList_focusedUnit = ds_map_find_value(map, "functionChainList_focusedUnit");
+						functionChainList_focusedUnitIndex = ds_map_find_value(map, "functionChainList_focusedUnitIndex");
+					}
 					
 					if(global.tokenImportDisplayTokenColName == undefined ){
 						global.tokenImportDisplayTokenColName = "~text";
@@ -140,7 +144,7 @@ function scr_loadREZ() {
 				
 					global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
 					global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
-					global.nodeMap = ds_map_find_value(map, "nodeMap");					
+					global.nodeMap = ds_map_find_value(map, "nodeMap");
 					
 				
 					if (is_undefined(global.tokenImportTagMap)) {
@@ -165,7 +169,10 @@ function scr_loadREZ() {
 						global.nodeMap = ds_map_create();
 					}
 					
-					
+					if(!scr_isNumericAndExists( global.nodeMap[?"nodeList"], ds_type_list)){
+						var nodeList = ds_list_create();
+						ds_map_add_list(global.nodeMap, "nodeList", nodeList);
+					}
 				
 				
 				
@@ -198,6 +205,36 @@ function scr_loadREZ() {
 						var tempList5 = ds_list_create();
 						obj_control.currentDisplayUnitColsList = tempList5;
 						ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
+					}
+					
+					
+					// get navTokenFieldList, if supplied
+					var navTokenFieldList = ds_map_find_value(map, "navTokenFieldList");
+					if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.navTokenFieldList);
+						obj_control.navTokenFieldList = navTokenFieldList;
+					}
+					
+					// get navTokenFieldList, if supplied
+					var tokenFieldList = ds_map_find_value(map, "tokenFieldList");
+					if (scr_isNumericAndExists(tokenFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.tokenFieldList);
+						obj_control.tokenFieldList = tokenFieldList;
+					}
+					
+					
+					// get navUnitFieldList, if supplied
+					var navUnitFieldList = ds_map_find_value(map, "navUnitFieldList");
+					if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.navUnitFieldList);
+						obj_control.navUnitFieldList = navUnitFieldList;
+					}
+					
+										// get navTokenFieldList, if supplied
+					var unitFieldList = ds_map_find_value(map, "unitFieldList");
+					if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.unitFieldList);
+						obj_control.unitFieldList = unitFieldList;
 					}
 					
 					
@@ -257,12 +294,17 @@ function scr_loadREZ() {
 				
 					global.totalUnitAmount = scr_getTotalUnitAmount();
 					
-					// get wordView and unitView
-					var getWordView = ds_map_find_value(map, "wordView");
-					var getUnitView = ds_map_find_value(map, "unitView");
-					if (is_numeric(getWordView)) wordView = getWordView;
-					if (is_numeric(getUnitView)) unitView = getUnitView;
+					// get displayTokenField & speakerField
+					var getDisplayTokenField = ds_map_find_value(map, "displayTokenField");
+					var getSpeakerField = ds_map_find_value(map, "speakerField");
+					if (is_string(getDisplayTokenField)) global.displayTokenField = getDisplayTokenField;
+					if (is_string(getSpeakerField)) global.speakerField = getSpeakerField;
 					
+					// get discourse node
+					global.discourseNode = map[? "discourseNode"];
+					if (!ds_map_exists(global.nodeMap, global.discourseNode)) {
+						scr_initializeDiscourseNodes();
+					}
 					
 				}
 				else if (objectIndex == "obj_chain") {
@@ -338,8 +380,6 @@ function scr_loadREZ() {
 		if (newGridSpaceVertical != obj_control.gridSpaceVertical) {
 			obj_control.gridSpaceVertical = newGridSpaceVertical;
 			obj_control.prevGridSpaceVertical = newGridSpaceVertical;
-			obj_control.filterPrevGridSpaceVertical = newGridSpaceVertical;
-			obj_control.searchPrevGridSpaceVertical = newGridSpaceVertical;
 		}
 	}
 
@@ -376,6 +416,12 @@ function scr_loadREZ() {
 	}
 	if (ds_grid_height(global.unitImportGrid) <= ds_grid_height(obj_control.unitGrid)) {
 		ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
+	}
+	
+	// update displayUnitList
+	var discourseNodeSubMap = global.nodeMap[? global.discourseNode];
+	if (scr_isNumericAndExists(discourseNodeSubMap, ds_type_map)) {
+		obj_control.displayUnitList = discourseNodeSubMap[? "displayUnitList"];
 	}
 
 

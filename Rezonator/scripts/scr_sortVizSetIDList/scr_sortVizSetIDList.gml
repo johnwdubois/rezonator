@@ -4,15 +4,12 @@ function scr_sortVizSetIDList(chainID){
 	
 	// get chain's submap
 	var chainSubMap = global.nodeMap[? chainID];
-	if (!is_numeric(chainSubMap)) {
+	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
 		show_debug_message("scr_sortVizSetIDList() ... chainSubMap is non-numeric");
 		exit;
 	}
-	if (!ds_exists(chainSubMap, ds_type_map)) {
-		show_debug_message("scr_sortVizSetIDList() ... chainSubMap does not exist");
-		exit;
-	}
 	
+	// get chainType
 	var chainType = chainSubMap[? "type"];
 	show_debug_message("scr_sortVizSetIDList() ... sorting chain: " + string(chainID) + ", type: " + string(chainType));
 	
@@ -32,8 +29,7 @@ function scr_sortVizSetIDList(chainID){
 		// get word info from this entry
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
-		if (!is_numeric(currentEntrySubMap)) continue;
-		if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 		
 		var currentWordID = -1;
 		var currentUnitSeq = -1;
@@ -41,25 +37,32 @@ function scr_sortVizSetIDList(chainID){
 		
 		// if this is a rez/track, get each entry's UnitSeq and WordOrder ... if this is a stack, we just get each entry's UnitSeq
 		if (chainType == "rezChain" || chainType == "trackChain") {
-			currentWordID = currentEntrySubMap[? "word"];
+			currentWordID = currentEntrySubMap[? "token"];
 			
 			// check if this is a chunk, and if so, just use the chunk's first word to sort on
 			if (ds_map_exists(global.nodeMap, currentWordID)) {
-				var currentWordIDSubMap = global.nodeMap[? currentWordID];
-				var currentWordIDType = currentWordIDSubMap[? "type"];
-				if (currentWordIDType == "chunk") {
-					var currentWordIDTokenList = currentWordIDSubMap[? "tokenList"];
-					currentWordID = currentWordIDTokenList[| 0];
+				var currentTokenIDSubMap = global.nodeMap[? currentWordID];
+				var currentTokenIDType = currentTokenIDSubMap[? "type"];
+				
+				if (currentTokenIDType == "chunk") {
+					var currentTokenIDTokenList = currentTokenIDSubMap[? "tokenList"];
+					currentWordID = currentTokenIDTokenList[| 0];
+					currentTokenIDSubMap = global.nodeMap[? currentWordID];
 				}
+	
+				var currentUnitSubMap = currentTokenIDSubMap[? "unit"];   
+				if(scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){
+					currentUnitSeq = currentUnitSubMap[?"unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+				}
+
+				currentWordOrder = currentTokenIDSubMap[? "discourseTokenSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
+
 			}
-			
-			currentUnitSeq = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
-			currentWordOrder = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1);
 		}
 		else if (chainType == "stackChain") {
-			currentWordID = -1;
-			currentUnitSeq = currentEntrySubMap[? "unit"];
-			currentWordOrder = -1;
+			var unitID = currentEntrySubMap[? "unit"];
+			var unitSubMap = global.nodeMap[?unitID];
+			currentUnitSeq = unitSubMap[?"unitSeq"];
 		}
 		
 		// set values in tempGrid

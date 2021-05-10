@@ -1,174 +1,130 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawUnits1toManyInnerLoop(currentWordID, drawDropDowns, strHeight, textPlusY, rectY1, rectY2, highlight){
+function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeight, textPlusY, cellRectY1, cellRectY2, highlight){
+
+	var tokenSubMap = global.nodeMap[? tokenID];
+	var tagMap = tokenSubMap[? "tagMap"];
+	if (!scr_isNumericAndExists(tagMap, ds_type_map)) exit;
 	
 	var xBuffer = 6;
 	var tabHeight = functionTabs_tabHeight;
-	var activeCols = 0;
-	
-	var infoListSize = 3;
-	if (functionChainList_currentTab == functionChainList_tabLine) {
-		infoListSize = tokenContentsHeaderListSize;
-	}
+	var fieldList = obj_control.navTokenFieldList;
+	var fieldListSize = ds_list_size(fieldList);
+	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+	var spaceWidth = string_width(" ");
 	
 	// draw BG highlight for the entire windowWidth (if we have less than 6 columns)
-	if (highlight && infoListSize < 6) {
+	if (highlight && fieldListSize < 6) {
 		draw_set_color(merge_color(global.colorThemeBG, global.colorThemeText, 0.15));
 		draw_set_alpha(1);
-		draw_rectangle(x - clipX, rectY1 - clipY, x + windowWidth - clipX, rectY2 - clipY, false);
+		draw_rectangle(x - clipX, cellRectY1 - clipY, x + windowWidth - clipX, cellRectY2 - clipY, false);
 	}
 	
-	// Set collected info into respective columns
-	for (var getInfoLoop = 0; getInfoLoop < infoListSize; getInfoLoop++) {
-
-					
-		var unitOrWordTagTokenView = false;
-		currentWordInfoCol[getInfoLoop] = "";
-					
-		if (getInfoLoop == 0) {
-			currentWordInfoCol[getInfoLoop] = currentWordID;
-		}
-		else if (getInfoLoop == 1) {
-			if (functionChainList_currentTab == functionChainList_tabStackBrush
-			or functionChainList_currentTab == functionChainList_tabClique) {
-				currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
-			}
-			else {
-				currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, currentWordID - 1));
-			}
-		}
-		else if (getInfoLoop >= 2) {
-			
-			var importCol = -1;
-			importCol = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);			
-			
-			if (importCol == undefined) {
-				currentWordInfoCol[getInfoLoop] = "";
-			}
-			else {
-				currentWordInfoCol[getInfoLoop] = string(ds_grid_get(global.tokenImportGrid, importCol, currentWordID - 1));
-			}
+	var i = 0
+	// get size of dropdown buttons
+	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
+	var dropDownButtonHeight = (tabHeight / 2);
 	
-			var colName = ds_list_find_value(global.tokenImportColNameList, importCol);
-			if (ds_list_find_index(global.unitImportColNameList, colName) != -1 && ds_list_find_index(global.wordImportColNameList, colName) != -1) {
-				unitOrWordTagTokenView = true;
-			}
-		}
+	// Set collected info into respective columns
+	var plusX = x;
+	repeat(fieldListSize) {
 		
-		// get size of dropdown buttons
-		var dropDownButtonWidth = sprite_get_width(spr_dropDown);
-		var dropDownButtonHeight = (tabHeight / 2);
-					
-		// text coordinates
-		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
-		var textX = 0;
-		var textX_LTR = 0;
-		var colWidth = 0;
-		if (getInfoLoop == 0 or getInfoLoop == 1) {
-			// first 2 columns (token ID & place)
-			colWidth = windowWidth / 12;
-			textX_LTR = x + (activeCols * colWidth) + xBuffer;
-			if (lineStateLTR) {
-				textX = textX_LTR;
-			}
-			else {
-				textX = x + (activeCols * colWidth) + colWidth - xBuffer - dropDownButtonWidth;
-			}
-		}
-		else {
-			// columns 3+
-			colWidth = windowWidth / 6;
-			textX_LTR = x + (activeCols * colWidth) + xBuffer - (windowWidth / 6);
-			if (lineStateLTR) {
-				textX = textX_LTR;
-			}
-			else {
-				textX = x + (activeCols * colWidth) - (windowWidth / 6) + colWidth - xBuffer - dropDownButtonWidth;
-			}
-		}
-		var textY = y + tabHeight + textPlusY;
+		var currentField = fieldList[| i];
+		var currentStr = "";
+
+
 		
-		// leave room for scrollbar if we're in RTL and on the last column
-		if (!lineStateLTR && getInfoLoop == infoListSize - 1) {
-			textX -= global.scrollBarWidth;
-		}
+		// draw tag selection
+		var isTildaField = (string_char_at(string(currentField), 1) == "~");
 		
-		// BG rect coordinates
-		var cellRectX1 = textX_LTR - xBuffer;
-		var cellRectY1 = rectY1;
+		// get BG rect coordinates
+		var colWidth = windowWidth / fieldListSize;
+		var cellRectX1 = plusX;
 		var cellRectX2 = cellRectX1 + colWidth;
-		var cellRectY2 = rectY2;
+		var mouseoverCell = point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2);
+		
+		// draw BG rect for this cell
 		draw_set_color(highlight ? merge_color(global.colorThemeBG, global.colorThemeText, 0.15) : global.colorThemeBG);
 		draw_set_alpha(1);
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		
+		// text coordinates
+		if(lineStateLTR){
+			var textX = floor(cellRectX1 + spaceWidth);
+		}
+		else{
+			var textX = floor(cellRectX2 - spaceWidth);
+			if(drawDropDowns && mouseoverCell && !isTildaField){
+				textX = textX - dropDownButtonWidth;
+			}
+		}
+		var textY = floor(mean(cellRectY1, cellRectY2));
+		
+		// leave room for scrollbar if we're in RTL and on the last column
+		if (!lineStateLTR && i == fieldListSize-1) {
+			textX -= global.scrollBarWidth;
+		}
 		
 		// draw text	
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_set_halign(lineStateLTR ? fa_left : fa_right);
 		draw_set_valign(fa_middle);
-		currentWordInfoCol[getInfoLoop] = scr_adaptFont(currentWordInfoCol[getInfoLoop], "S");
-		draw_text(textX - clipX + 2, textY - clipY + scrollPlusY, currentWordInfoCol[getInfoLoop]);
-					
-		var scrollBarBuffer = 0;				
-		if (getInfoLoop >= 7) {
-			scrollBarBuffer = global.scrollBarWidth;
-		}
+		currentStr = tagMap[? currentField];
+		currentStr = scr_adaptFont(currentStr, "S");
+		draw_text(textX - clipX, textY - clipY, currentStr);
 		
 		// dropDown button coordinates
 		var dropDownRectX1 = cellRectX2 - dropDownButtonWidth;
-		if (getInfoLoop == infoListSize - 1) {
-			dropDownRectX1 -= global.scrollBarWidth;
-		}
+		if (i == fieldListSize - 1) dropDownRectX1 -= global.scrollBarWidth;
 		var dropDownRectY1 = mean(cellRectY1, cellRectY2) - (dropDownButtonHeight / 2);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonWidth;
 		var dropDownRectY2 = dropDownRectY1 + dropDownButtonHeight;
-					
-		if (getInfoLoop >= 2) {
-			//draw tag selection
-			var colIndex = -1;
-			colIndex = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-			var mapKey = ds_list_find_value(global.tokenImportColNameList, colIndex);
-			var isTildaField = (string_char_at(string(mapKey), 1) == "~");
+		var mouseoverDropDown = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
+		
+		// draw dropdown sprite if mouseover on this cell
+		if (mouseoverCell && !isTildaField) {
+			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+		}
+	
+
 			
 
-			if (drawDropDowns && !unitOrWordTagTokenView && ds_map_exists(global.tokenImportTagMap, mapKey) && !isTildaField) {
-								
-				var tagMapList = ds_map_find_value(global.tokenImportTagMap, mapKey);
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-				var mouseoverDropDown = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
+		if (drawDropDowns && !isTildaField) {
 				
-				if (mouseoverDropDown) {
+			if (mouseoverDropDown) {
 									
-					scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change tag", obj_tooltip.arrowFaceUp);
-					draw_set_color(global.colorThemeBorders);
-					draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY , dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
+				scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change tag", obj_tooltip.arrowFaceUp);
+				draw_set_color(global.colorThemeBorders);
+				draw_rectangle(dropDownRectX1- clipX, dropDownRectY1 - clipY , dropDownRectX2 - clipX, dropDownRectY2 - clipY, true);
 
-					if (mouse_check_button_released(mb_left)) {
-						with (obj_panelPane) {
-							selectedColToken = getInfoLoop;
-						}
-								
-						var dropDownOptionList = ds_list_create();
-						if (!is_undefined(dropDownOptionList) && !is_undefined(tagMapList)) {
-							ds_list_copy(dropDownOptionList, tagMapList);
-							obj_control.tokenImportColToChange = ds_list_find_value(obj_control.currentDisplayTokenColsList, getInfoLoop - 2);
-							obj_control.tokenImportRowToChange = currentWordID - 1;
-						}
-		
-							
+				if (mouse_check_button_released(mb_left)) {
+					
+					// get submap for this field
+					var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+					var fieldSubMap = tokenTagMap[? currentField];
+					
+					// get the tagSet for this field
+					var tagSet = fieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(tagSet, ds_type_list)) {
+					
 						// create dropdown
-						if (ds_list_size(dropDownOptionList) > 0) {
-							var dropDownX = textX - xBuffer;
-							var dropDownY = textY + scrollPlusY + (strHeight / 2);
-							var dropDownInst = instance_create_depth(dropDownX, dropDownY , -999, obj_dropDown);
-							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = global.optionListTypeTokenTagMap;
-						}
+						var dropDownOptionList = ds_list_create();
+						ds_list_copy(dropDownOptionList, tagSet);
+						ds_list_add(dropDownOptionList, "Add new Tag");
+
+						obj_control.tokenToChange = tokenID;
+						obj_control.tokenFieldToChange = currentField;
+						var dropDownX = textX - xBuffer;
+						var dropDownY = textY + scrollPlusY;							
+						scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, global.optionListTypeTokenTagMap);
+
 					}
 				}
 			}
 		}
-		activeCols++;
+		
+		plusX += colWidth;
+		i++
 	}
 }

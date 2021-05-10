@@ -132,7 +132,7 @@ function scr_importMappingTagInfo() {
 					currentCell = "unit";
 				}
 				else if (currentCell == global.levelWord) {
-					currentCell = "word";
+					currentCell = "token";
 				}
 				else if (currentCell == global.levelDiscourse) {
 					currentCell = "discourse";

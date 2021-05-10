@@ -23,6 +23,9 @@ function scr_panelPane_drawChains1To1(){
 	
 	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + tabHeight, x + windowWidth, y + windowHeight);
 	
+	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
+	
 	// get list of dynamic 1-1 columns for this tab, as well as the list of chains for this tab
 	var listOfChains = -1;
 	var listOfChainsKey = "";
@@ -80,7 +83,7 @@ function scr_panelPane_drawChains1To1(){
 	
 	// Set opacity, font, and alignment of text chain lists
 	draw_set_alpha(1);
-	draw_set_halign(fa_left);
+	draw_set_halign(lineStateLTR ? fa_left : fa_right);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
 	
@@ -154,11 +157,27 @@ function scr_panelPane_drawChains1To1(){
 			
 			// draw text for chain tag
 			scr_adaptFont(string(tagStr), "S");
-			draw_set_halign(fa_left);
+			draw_set_halign(lineStateLTR ? fa_left : fa_right);
 			draw_set_valign(fa_middle);
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeText);
-			draw_text(cellRectX1 + (textMarginLeft) - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(tagStr));
+			
+			if(lineStateLTR){
+				var textX = floor(cellRectX1 + (textMarginLeft));
+			}
+			else{
+				var textX = floor(cellRectX2 - (textMarginLeft));
+				if(drawDropDowns && mouseoverCell){
+					textX = textX - dropDownButtonWidth;
+				}
+			}
+			
+			// leave room for scrollbar if we're in RTL and on the last column
+			if (!lineStateLTR && i == chain1to1ColFieldListSize-1) {
+				textX -= global.scrollBarWidth;
+			}
+			
+			draw_text(textX  - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(tagStr));
 			
 			textPlusY += strHeight;
 								
@@ -199,7 +218,14 @@ function scr_panelPane_drawChains1To1(){
 		draw_set_color(global.colorThemeText);
 		draw_set_valign(fa_middle);
 		scr_adaptFont(colName, "M");
-		draw_text(colRectX1 + 4 - clipX, y + tabHeight/2 - clipY, colName);
+		
+				
+		var headertextX = colRectX1 + (textMarginLeft);
+		if(!lineStateLTR){
+			headertextX = colRectX2 - (textMarginLeft) - dropDownButtonWidth*2;
+		}
+		
+		draw_text(headertextX - clipX, y + tabHeight/2 - clipY, colName);
 		
 		// draw lines for dividing columns
 		if (i > 0) {

@@ -17,18 +17,6 @@ function scr_jumpToLineCalled() {
 		exit;
 	}
 
-	// if there already is a GoToLine pane, destroy it
-	var shouldExit = false;
-	with (obj_panelPane) {
-		if (currentFunction == functionGoToLine) {
-			shouldExit = true;
-			instance_destroy();
-		}
-	}
-	if (shouldExit) {
-		exit;
-	}
-
 
 	if (!obj_control.dialogueBoxActive) {
 		keyboard_string = "";
@@ -46,20 +34,12 @@ function scr_jumpToLineCalled() {
 		obj_control.moveCounter++;
 	}
 	else {
-
-		for (var i = 0; i < instance_number(obj_panelPane); i++) {
-			var currentPane = instance_find(obj_panelPane, i);
-			if (currentPane.currentFunction == obj_panelPane.functionGoToLine) {
-				exit;
-			}
-		}
 	
 		var paneWidth = 250;
 		var paneHeight = 300;
 		var paneX = camera_get_view_x(camera_get_active()) + (camera_get_view_width(camera_get_active()) / 2) - (paneWidth / 2);
 		var paneY = camera_get_view_y(camera_get_active()) + (camera_get_view_height(camera_get_active()) / 2) - (paneHeight / 2);
-	
-		//show_message(paneY);
+
 	
 		var inst = instance_create_layer(paneX, paneY, "InstancesDialogue", obj_panelPane);
 

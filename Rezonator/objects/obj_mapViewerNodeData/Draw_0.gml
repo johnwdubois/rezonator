@@ -1,3 +1,3 @@
 if (obj_control.gridView && obj_gridViewer.mapViewActive) {
-	scr_drawNodeData();
+	scr_mapViewerDrawNodeData();
 }

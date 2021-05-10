@@ -303,6 +303,10 @@ global.tokenImportDisplayTokenColName = "";
 global.openedREZFile = false;
 
 
+global.displayTokenField = "";
+global.speakerField = "";
+
+
 
 global.scrollBarWidth = 20;
 
@@ -377,5 +381,7 @@ scr_preImportInitiate();
 showPreImportScreen = false;
 
 global.tokenCountTotal = 0;
+
+global.discourseNode = "";
 
 alarm[5] = 2;

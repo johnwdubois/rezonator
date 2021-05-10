@@ -1,7 +1,7 @@
 {
-  "option_mac_display_name": "Rezonator 0.11.0.2",
+  "option_mac_display_name": "Rezonator 0.12.0.0",
   "option_mac_app_id": "com.company.game",
-  "option_mac_version": "0.11.0",
+  "option_mac_version": "0.12.0",
   "option_mac_output_dir": "~/GameMakerStudio2/Mac",
   "option_mac_team_id": "SGU37PG886",
   "option_mac_signing_identity": "Terrence DuBois",
@@ -16,7 +16,7 @@
   "option_mac_interpolate_pixels": false,
   "option_mac_vsync": true,
   "option_mac_resize_window": true,
-  "option_mac_enable_retina": true,
+  "option_mac_enable_retina": false,
   "option_mac_scale": 0,
   "option_mac_texture_page": "2048x2048",
   "option_mac_build_app_store": false,

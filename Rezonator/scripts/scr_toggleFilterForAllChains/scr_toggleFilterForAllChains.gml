@@ -37,7 +37,7 @@ function scr_toggleFilterForAllChains(chainType){
 	// render filter!
 	if (obj_control.filterGridActive) {
 		with (obj_control) {
-			scr_renderFilter();
+			scr_renderFilter2();
 		}
 						
 		// if there is nothing filtered, we turn filter off

@@ -26,7 +26,7 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 				var focusedEntrySubMap = ds_map_find_value(global.nodeMap, focusedEntry);
 				if (is_numeric(focusedEntrySubMap)) {
 					if (ds_exists(focusedEntrySubMap, ds_type_map)) {
-						focusedChainFocusedWordID = ds_map_find_value(focusedEntrySubMap, "word");
+						focusedChainFocusedWordID = ds_map_find_value(focusedEntrySubMap, "token");
 					}
 				}
 			}
@@ -128,7 +128,7 @@ function scr_drawLineHitIDListLoop(currentHitIDList, currentLineY, drawLineLoop,
 		var mouseoverWord = point_in_rectangle(mouse_x, mouse_y, wordRectX1, wordRectY1, wordRectX2, wordRectY2);
 		
 		if (mouseoverWord) {
-			obj_control.hoverWordID = currentWordID;
+			obj_control.hoverTokenID = currentWordID;
 			if (mouse_check_button_pressed(mb_left) || mouse_check_button_released(mb_left)) {
 				if (mouse_check_button_released(mb_left)) {
 					with (obj_chain) {

@@ -61,6 +61,14 @@ function scr_fillImportGrids_IGT(){
 	if (displayTokenFieldRow >= 0) {
 		displayTokenField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenFieldRow);
 	}
+	// get the display token field
+
+	var transcriptMarkerStr = "";
+	if(global.tokenImportTranscriptColName != "" or global.tokenImportTranscriptColName != undefined){
+		transcriptMarkerStr = global.tokenImportTranscriptColName
+	}
+	var importGrid_colTranscript = ds_list_find_index(global.importGridColNameList, transcriptMarkerStr);
+	
 	
 	
 
@@ -259,11 +267,17 @@ function scr_fillImportGrids_IGT(){
 						
 						
 						var currentWordID = ds_grid_get(global.wordImportGrid,global.wordImport_colWordID,i);
+						
+						var currentWordTranscript = "";
+						if(importGrid_colTranscript){
+							currentWordTranscript = ds_grid_get(global.importGrid, importGrid_colTranscript, i);
+						}
+						
 						 
 						// set default Token columns (~UnitID, ~WordID, ~text, ~transcript)
 						ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, currentTokenImportGridRow, currentUnitID);
 						ds_grid_set(global.tokenImportGrid, global.tokenImport_colTokenID, currentTokenImportGridRow, currentTokenID);
-						ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentTokenImportGridRow, "");
+						ds_grid_set(global.tokenImportGrid, global.tokenImport_colWordTranscript, currentTokenImportGridRow, currentWordTranscript);
 						ds_grid_set(global.tokenImportGrid, 4, currentTokenImportGridRow, currentWordID);
 						
 						if (currentField == displayTokenField) {

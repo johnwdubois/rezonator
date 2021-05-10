@@ -92,7 +92,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 
 		scr_updateChainShowList(currentWordInChainsList, chainShowList, currentWordInBoxList, chunkShowList);	
 
-		scr_wordCalculateVoid(currentWordID);
+		scr_tokenCalculateVoid(currentWordID);
 		
 		var currentWordX = scr_setTokenX(currentWordID, shapeTextX, currentWordIDListSize, unitWidth, drawWordLoop, camWidth);
 		
@@ -156,7 +156,7 @@ function scr_drawLineWordIDListLoop(currentWordIDList, currentLineY, drawLineLoo
 		if (wordRectX2 > speakerRectX2) {
 			scr_drawWordBorder(drawBorder, currentWordGridRow, wordRectX1, wordRectY1, wordRectX2, wordRectY2, borderRounded, fontScale);
 			// Until I can get a check that sees if the mouseRect is in the line, this can't happen
-			if (!obj_toolPane.mouseOverToolPane && !obj_control.mouseOverUI && (hoverWordID == -1 || hoverWordID == currentWordID) && ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade))) {
+			if (!obj_toolPane.mouseOverToolPane && !obj_control.mouseOverUI && (hoverTokenID == -1 || hoverTokenID == currentWordID) && ((mouse_y > wordRectY1 && mouse_y < wordRectY2) || (mouseRectMade || obj_control.boxRectMade))) {
 				scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, wordRectY2, unitID, drawWordLoop, currentWordIDListSize, panelPaneResizeHeld, currentWordState, drawLineLoop);
 			}
 	

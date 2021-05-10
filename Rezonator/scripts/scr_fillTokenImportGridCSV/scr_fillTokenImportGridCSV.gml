@@ -124,6 +124,12 @@ function scr_fillTokenImportGridCSV() {
 	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
 
 
+	var transcriptMarkerStr = "";
+	if(global.tokenImportTranscriptColName != "" or global.tokenImportTranscriptColName != undefined){
+		transcriptMarkerStr = global.tokenImportTranscriptColName
+	}
+	var importGrid_colTranscript = ds_list_find_index(global.importGridColNameList, transcriptMarkerStr);
+	
 
 
 	var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
@@ -160,7 +166,9 @@ function scr_fillTokenImportGridCSV() {
 		var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 		var currentWordToken = ds_grid_get(global.importGrid, importGrid_colDisplayToken, i);
 		var currentWordTranscript = "";
-
+		if(importGrid_colTranscript){
+			currentWordTranscript = ds_grid_get(global.importGrid, importGrid_colTranscript, i);
+		}
 		if(currentWordToken != undefined){
 	
 			ds_grid_set(global.tokenImportGrid, global.tokenImport_colUnitID, i, currentUnitID);

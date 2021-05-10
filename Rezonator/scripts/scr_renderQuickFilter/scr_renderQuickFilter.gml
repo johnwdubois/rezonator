@@ -77,7 +77,7 @@ function scr_renderQuickFilter() {
 					if (!is_numeric(currentEntrySubMap)) continue;
 					if (!ds_exists(currentEntrySubMap, ds_type_map)) continue;
 			
-					var currentWordID = ds_map_find_value(currentEntrySubMap, "word");
+					var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
 					if (scr_isChunk(currentWordID)) currentWordID = scr_getFirstWordOfChunk(currentWordID);
 					var currentUnitID = ds_grid_get(wordGrid, wordGrid_colUnitID, currentWordID - 1);
 					var currentDisplayRow = ds_grid_get(dynamicWordGrid, dynamicWordGrid_colDisplayRow, currentWordID - 1);

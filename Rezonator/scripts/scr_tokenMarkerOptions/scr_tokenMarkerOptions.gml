@@ -1,5 +1,4 @@
-function scr_tokenMarkerOptions() {
-	var optionSelected = argument[0];
+function scr_tokenMarkerOptions(optionSelected) {
 
 	if (optionSelected == "Create Field") {
 

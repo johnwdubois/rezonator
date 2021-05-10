@@ -1,13 +1,15 @@
-function scr_unitSelection() {
-	var optionSelected = argument[0];
-	var colValToSet = ds_list_find_index(global.unitImportColNameList, optionSelected);
-	var colListIndex = obj_panelPane.chosenCol - 1; 
-
-	ds_list_set(obj_control.currentDisplayUnitColsList, colListIndex, colValToSet);
-
-	if (obj_control.unitView == obj_panelPane.chosenCol) {
-		scr_toggleUnitMulti(global.unitImportGrid, colValToSet);
+function scr_unitSelection(optionSelected) {
+	
+	// check whether or not to update display token
+	var updateDisplayUnit = (ds_list_find_index(obj_control.navUnitFieldList, global.speakerField) == obj_panelPane.chosenCol);
+	
+	// change the field list
+	var colListIndex = obj_panelPane.chosenCol; 
+	ds_list_set(obj_control.navUnitFieldList, colListIndex, optionSelected);
+	
+	// update display token if need be
+	if (updateDisplayUnit) {
+		global.speakerField = optionSelected
 	}
-
 
 }

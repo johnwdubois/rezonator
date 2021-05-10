@@ -11,7 +11,7 @@ function scr_searchToMain(){
 						
 	// Check to see which grid we're switching back into
 	if(obj_control.preSwitchLineGrid == obj_control.filterGrid) {
-		scr_renderFilter(); // Thankfully this script does a lot of work for us
+		scr_renderFilter2(); // Thankfully this script does a lot of work for us
 	}
 	else if(obj_control.preSwitchLineGrid == obj_control.quickFilterGrid){
 		obj_chain.currentFocusedChainID = obj_control.quickPickedChainID;

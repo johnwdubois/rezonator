@@ -46,7 +46,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 						colName = "speaker"; // stacks
 					}
 					else {
-						colName = "wordOrder"; // rez & track
+						colName = "tokenOrder"; // rez & track
 					}
 					break;
 				case 2:

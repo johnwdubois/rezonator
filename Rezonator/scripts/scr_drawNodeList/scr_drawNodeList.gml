@@ -17,13 +17,13 @@ function scr_drawNodeList(){
 	draw_text(100, 150 + strHeight, "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
 	draw_text(100, 150 + (strHeight * 2), "trackChainList: " + scr_getStringOfList(global.nodeMap[? "trackChainList"]));
 	draw_text(100, 150 + (strHeight * 3), "stackChainList: " + scr_getStringOfList(global.nodeMap[? "stackChainList"]));
-	draw_text(100, 150 + (strHeight * 3), "stackChainList: " + scr_getStringOfList(global.nodeMap[? "stackChainList"]));
+	draw_text(100, 150 + (strHeight * 4), "showList: " + scr_getStringOfList(global.nodeMap[? "showList"]));
 	
 	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 	x = 100;
-	y = 180 + (strHeight * 4);
+	y = 180 + (strHeight * 5);
 	windowWidth = camWidth * 0.2;
 	windowHeight = camHeight - windowY - 100;
 	
@@ -116,17 +116,51 @@ function scr_drawNodeList(){
 	// search
 	if (keyboard_check(vk_control) && keyboard_check_pressed(ord("F"))) {
 		nodeListSearch = get_string("", "");
+		
 		if (string_length(nodeListSearch) > 0) {
+			
+			// check if user is doing a filter by type
+			var typeFilter = (string_char_at(nodeListSearch, 1) == "*");
+			var type = "";
+			if (typeFilter) {
+				type = string_replace_all(nodeListSearch, "*", "");
+			}
+		
 			ds_list_clear(subNodeList);
 			var fullNodeList = global.nodeMap[? "nodeList"];
 			var fullNodeListSize = ds_list_size(fullNodeList);
+			
+			// loop through nodeList to find nodes that match the search
 			for (var i = 0; i < fullNodeListSize; i++) {
 				var currentNode = string(fullNodeList[| i]);
-				if (string_count(string_lower(nodeListSearch), string_lower(currentNode)) > 0) {
-					ds_list_add(subNodeList, currentNode);
+				var addNode = false;
+				
+				if (typeFilter) {
+					var currentNodeSubMap = global.nodeMap[? currentNode];
+					if (currentNodeSubMap[? "type"] == type) {
+						addNode = true;
+					}
 				}
+				else {
+					if (string_count(string_lower(nodeListSearch), string_lower(currentNode)) > 0) {
+						addNode = true;
+					}
+				}
+				
+				// if the node matches the search, add it to the list
+				if (addNode) ds_list_add(subNodeList, currentNode);
 			}
 		}
+	}
+	
+	if( keyboard_check(vk_control) and keyboard_check_pressed(vk_down)){
+		
+		scrollPlusYDest -= 999999;
+	
+	}
+	if( keyboard_check(vk_control) and keyboard_check_pressed(vk_up)){
+		scrollPlusYDest += 999999;
+	
 	}
 	
 

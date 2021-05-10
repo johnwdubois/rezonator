@@ -1,16 +1,10 @@
 /*
-	obj_control: Create
-	
-	Last Updated: 2019-02-11
-	
-	Called from: The creation of a control object
-	
 	Purpose: Instantiate all variables used by control objects
-	
-	Mechanism: variable creation and assignment
-	
-	Author: Terry DuBois
 */
+
+var camWidth = camera_get_view_width(view_camera[0]);
+var camHeight = camera_get_view_height(view_camera[0]);
+
 inDrag = false;
 drag_offsetY = 0;
 flickVelY = 0;
@@ -22,7 +16,7 @@ flick_power_reduction_each_step = 3;
 currentCenterDisplayRow = 0;
 prevCenterYDest = 0;
 prevCenterDisplayRow = 0;
-cameraBottomLine = camera_get_view_height(camera_get_active());
+cameraBottomLine = camHeight;
 
 // Bound and set the display grid of the words
 gridSpaceHorizontalMin = 60;
@@ -34,10 +28,6 @@ gridSpaceVerticalMax = 300;
 gridSpaceHorizontal = 100;
 gridSpaceVertical = 60;
 prevGridSpaceVertical = gridSpaceVertical;
-//searchGridSpaceVertical = gridSpaceVertical;
-searchPrevGridSpaceVertical = gridSpaceVertical;
-//filterGridSpaceVertical = gridSpaceVertical;
-filterPrevGridSpaceVertical = gridSpaceVertical;
 gridSpaceRatio = 1;
 
 // Set the speed of scrolling
@@ -49,7 +39,7 @@ arrowSpeed = 18;
 
 // Measure the space taken up by the speaker labels, and set the left-align margin of the words
 speakerLabelMargin = 200;
-wordLeftMargin = 220;
+wordLeftMargin = 0;
 wordLeftMarginDest = 220;
 speakerLabelHoldingDelay = false;
 
@@ -59,17 +49,18 @@ speakerLabelColXHolding = -1
 speakerLabelColXHoldingPrev = 0;
 speakerLabelColXHoldingDiff = 0;
 speakerLabelColPrevList = ds_list_create();
-for (var i = 0; i < 4; i++) {
-	//if (i == 3) {
-	//	ds_list_add(speakerLabelColXList, (i - 1) * 100);
-	//}
-	//else {
-		ds_list_add(speakerLabelColXList, i * 100);
-	//}
+
+// set default width values for speaker label
+var speakerLabelPlusX = 0;
+for (var i = 0; i < 2; i++) {
+	var currentSectionX2 = 0;
+	if (i == 0) currentSectionX2 = camWidth * 0.1;
+	else if (i == 1) currentSectionX2 = camWidth * 0.2;
+	ds_list_add(speakerLabelColXList, speakerLabelPlusX + currentSectionX2);
+	speakerLabelPlusX += currentSectionX2;
 }
-if (ds_grid_height(global.fileLineRipGrid) < 2) {
-	ds_list_set(speakerLabelColXList, 2, 100);
-}
+
+
 with (obj_alarm) {
 	alarm[1] = 5;
 }
@@ -343,9 +334,8 @@ newWordHoverUnitID = -1;
 newWordHoverWordSeq = -1;
 newWordHoverWordID = -1;
 
-hoverWordID = -1;
-hoverChunkID = -1;
-hoverChunkIDRow = -1;
+hoverTokenID = "";
+hoverChunkID = "";
 showMouseLine = false;
 linkDeleted = false;
 
@@ -417,12 +407,13 @@ compassCenterLineY = -1;
 
 
 // Set variables for the mouse drag rectangle, and quick gestures
-mouseHoldRectX1 = 0;
-mouseHoldRectY1 = 0;
+mouseHoldRectX1 = -1;
+mouseHoldRectY1 = -1;
 mouseHoldRectX2 = 0;
 mouseHoldRectY2 = 0;
 mouseRectMade = false;
 mouseRectReleased = false;
+inRectTokenIDList = ds_list_create();
 inRectWordIDList = ds_list_create();
 inRectWordIDListCopy = ds_list_create();
 inRectHitIDList = ds_list_create();
@@ -437,6 +428,8 @@ mouseRectBeginBetweenWords = -1;
 mouseRectBeginInSpeakerLabel = false;
 mouseoverNeutralSpace = false;	
 lineContainsMouseYPos = -1;
+
+
 
 
 
@@ -537,6 +530,9 @@ boxGrid_colChainIDLists = 2;
 
 
 scr_scrollBarInit();
+scrollPlusX = 0;
+scrollPlusXDest = 0;
+
 
 x = 0;
 y = 0;
@@ -567,11 +563,9 @@ showSpeakerName = true;
 combineChainsFocused = "";
 combineChainsSelected = "";
 stackMerged = false;
-rightClickUnitID = 0;
-rightClickWordID = 0;
-rightClickWordSeq = 0;
-rightClickonWord = false;
-rightClickDisplayRow = -1;
+rightClickID = "";
+rightClicked = false;
+
 deleteNewWord = false;
 deleteChunkWord = false;
 fromDropDown = false;
@@ -601,10 +595,16 @@ hideAll = false;
 
 updatedSpeakerLabel = false;
 
+navTokenFieldList = ds_list_create();
+navUnitFieldList = ds_list_create();
+ds_list_add(navTokenFieldList, "~text");
+ds_list_add(navUnitFieldList, "~Participant");
 currentDisplayTokenColsList = ds_list_create();
 currentDisplayUnitColsList = ds_list_create();
 ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
 ds_list_add(currentDisplayUnitColsList,1,2,3,4,5);
+
+
 
 tokenImportColToChange = 0;
 tokenImportRowToChange = 0;
@@ -613,7 +613,15 @@ unitImportRowToChange = 0;
 stackColToChange = 0;
 stackRowToChange = 0;
 
-quickPickedChainID = -1;
+tokenFieldToChange = "";
+unitFieldToChange = "";
+tokenToChange = "";
+unitToChange = "";
+
+
+
+
+quickPickedChainID = "";
 
 activeStackType = 0;
 readModeHints = 0;
@@ -657,6 +665,10 @@ ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 
+tokenFieldList = ds_list_create();
+unitFieldList = ds_list_create();
+
+
 
 with (obj_alarm) {
 	alarm[10] = 8;
@@ -695,3 +707,9 @@ filterActiveTrack = false;
 filterActiveStack = false;
 
 menuDepth = -1;
+
+
+displayUnitList = -1;
+filterUnitList = ds_list_create();
+
+listOfWords = ds_list_create();

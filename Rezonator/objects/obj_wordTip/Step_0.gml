@@ -4,12 +4,12 @@
 // Check for LMB clicks
 if (mouse_check_button_pressed(mb_left) )
 {
-	if (obj_control.hoverWordID != -1)
+	if (obj_control.hoverTokenID != -1)
 	{
 		// A word has been clicked
 		// Set up the persistent box
 		persistentBoxFlag = true;
-		currentWordID = obj_control.hoverWordID;
+		currentWordID = obj_control.hoverTokenID;
 		boxX = mouse_x + mouseCursorWidth;
 		boxY = mouse_y + mouseCursorHeight;
 	}
