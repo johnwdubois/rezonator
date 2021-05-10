@@ -204,18 +204,30 @@ for (var i = 0; i < optionListSize; i++) {
 		shortcutStr = "";	
 	}
 	
-	var optionTextX = floor(optionRectX1 + textBuffer);
+	var optionTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX2 - textBuffer) : floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
-	var shortcutTextX = floor(optionRectX2 - textBuffer);
+	var shortcutTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
 	scr_adaptFont(scr_get_translation(optionTextStr), "M");
+	if(global.lang_codes[| global.lang_index] == "he"){
+		draw_set_halign(fa_right);	
+	}
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
 
-
-	draw_set_halign(fa_right);
+	if(global.lang_codes[| global.lang_index] == "he"){
+		draw_set_halign(fa_left);	
+	}
+	else{
+		draw_set_halign(fa_right);
+	}
 	if(shortcutStr != ""){
 		scr_adaptFont(scr_get_translation(shortcutStr), "S");
 		if(isExpandable){
-			draw_text(shortcutTextX - clipX - sprite_get_width(spr_ascend), optionTextY - clipY, shortcutStr);
+			if(global.lang_codes[| global.lang_index] == "he"){
+				draw_text(shortcutTextX - clipX + sprite_get_width(spr_ascend), optionTextY - clipY, shortcutStr);
+			}
+			else{	
+				draw_text(shortcutTextX - clipX - sprite_get_width(spr_ascend), optionTextY - clipY, shortcutStr);
+			}
 		}
 		else{
 			draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
@@ -234,9 +246,14 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// draw arrow if expandable
 	if (isExpandable) {
-		var expandArrowX = floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
+		var expandArrowX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
-		draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, global.colorThemeText, 1);
+		if(global.lang_codes[| global.lang_index] == "he"){
+			draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 90, global.colorThemeText, 1);
+		}
+		else{
+			draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, global.colorThemeText, 1);
+		}
 	}
 }
 
