@@ -12,6 +12,57 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 	var fieldList = (map == global.chainFieldMap) ? global.chainFieldList : global.chainEntryFieldList;
 	ds_list_add(fieldList, key);
 	
+	if(room == rm_mainScreen){
+		//add to nav window list if is right type and has space
+		var sizeOfchainFieldList = (map == global.chainFieldMap) ? ds_list_size(obj_control.chain1to1ColFieldListRez): ds_list_size(obj_control.chain1toManyColFieldListRez);
+		
+			if(rezTag){
+				if (map == global.chainFieldMap){ 
+					if(sizeOfchainFieldList < 6){
+						ds_list_add(obj_control.chain1to1ColFieldListRez, key);
+					}
+				}
+				else{
+					if(sizeOfchainFieldList < 3){
+						ds_list_add(obj_control.chain1toManyColFieldListRez, key);
+					}
+				}
+			
+		}
+		sizeOfchainFieldList = (map == global.chainFieldMap) ? ds_list_size(obj_control.chain1to1ColFieldListTrack): ds_list_size(obj_control.chain1toManyColFieldListTrack);
+		
+			if(trackTag){
+				if (map == global.chainFieldMap){ 
+					if(sizeOfchainFieldList < 6){
+						ds_list_add(obj_control.chain1to1ColFieldListTrack, key);
+					}
+				}
+				else{
+					if(sizeOfchainFieldList < 3){
+						ds_list_add(obj_control.chain1toManyColFieldListTrack, key);
+					}
+				}
+			
+		}
+		sizeOfchainFieldList = (map == global.chainFieldMap) ? ds_list_size(obj_control.chain1to1ColFieldListStack): ds_list_size(obj_control.chain1toManyColFieldListStack);
+		
+			if(stackTag){
+				
+				if (map == global.chainFieldMap){
+					if(sizeOfchainFieldList < 6){
+						ds_list_add(obj_control.chain1to1ColFieldListStack, key);
+					}
+				}
+				else{
+					if(sizeOfchainFieldList < 3){
+						ds_list_add(obj_control.chain1toManyColFieldListStack, key);
+					}
+				}
+			}
+		
+	}
+	
+	
 	// create a subMap for this field
 	var subMap = ds_map_create();
 	ds_map_add_map(map, key, subMap);

@@ -1,24 +1,55 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, currentEntry, currentWordID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
+function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entry, ID, currentTagMap, textPlusY, rectY1, rectY2, highlight, mouseoverHeader, mouseoverScrollBar){
+
+	// NOTE: for stacks, the ID variable will be a unitID
+	
+	// make sure this is a valid ID
+	if (!is_string(ID)) {
+		exit;
+	}
+	
+	var isChunk = scr_isChunk(ID);
+	var unitID = "";
+	var tokenID = "";
+		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+	var IDsubMap = global.nodeMap[?ID];
+	var type = IDsubMap[?"type"];
+	if(type == "unit"){
+		unitID = ID;
+		var entryList = IDsubMap[?"entryList"];
+		var firstEntry = entryList[|0];
+		var entrySubMap = global.nodeMap[?firstEntry];
+		tokenID = entrySubMap[?"token"];
+	}
+	else if(type == "token"){	
+		unitID = IDsubMap[?"unit"];
+		tokenID = ID;
+	}
+	else if(type == "chunk"){
+
+		tokenID = scr_getFirstWordOfChunk(ID);
+		var firstTokenSubMap = global.nodeMap[?tokenID];
+		unitID = firstTokenSubMap[?"unit"];
+	}
 	
 	
-	// NOTE: for stacks, the currentWordID variable will be a unitID
+	var unitSubMap = global.nodeMap[?unitID];
+	var tokenSubMap = global.nodeMap[?tokenID];
 	
 	var textMarginTop = functionTabs_tabHeight;
 	var xBuffer = 6;
-	
-	var chunkFirstWord = scr_getFirstWordOfChunk(currentWordID);
-	var isChunk = (chunkFirstWord >= 0);
-	var chunkSubMap = isChunk ? global.nodeMap[? currentWordID] : -1;
+	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
+
+	var chunkSubMap = isChunk ? global.nodeMap[? ID] : -1;
 	
 	// loop across horizontally along the chainContents window, getting each field for each entry
 	var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 	var colAmount = 3 + chainContents1toManyFieldListSize;
-	for (var getInfoLoop = 0; getInfoLoop < colAmount; getInfoLoop++) {
+	for (var i = 0; i < colAmount; i++) {
 
 		// draw rectangle to prevent text overlapping
-		var cellRectX1 = x + (getInfoLoop * (windowWidth / colAmount));
+		var cellRectX1 = x + (i * (windowWidth / colAmount));
 		var cellRectY1 = rectY1;
 		var cellRectX2 = cellRectX1 + (windowWidth / colAmount);
 		var cellRectY2 = rectY2;
@@ -26,74 +57,53 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 		draw_set_alpha(1);
 		draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, (highlight) ? 0.75 : 0.9));
 		draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
+		if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+			var tagMap = unitSubMap[?"tagMap"];
+		}
+		else{
+			var tagMap = tokenSubMap[?"tagMap"];
+		}
 		
 		// get string of data
-		currentWordInfoCol[getInfoLoop] = "";
-		switch (getInfoLoop) {
+		var cellText = "";
+		switch (i) {
 			// unitSeq
 			case 0:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					var unitID = currentWordID;
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-				}
-				else {
-					var unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, (isChunk) ? chunkFirstWord - 1 : currentWordID - 1);
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUtteranceID, unitID - 1));
-				}
+				cellText = string(unitSubMap[?"unitSeq"]);
 				break;
-			// wordOrder
+			// tokenSeq / speaker
 			case 1:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					currentWordInfoCol[getInfoLoop] = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentWordID - 1);
+				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					cellText = string(tagMap[?global.speakerField]);
 				}
 				else {
-					currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordSeq, (isChunk) ? chunkFirstWord - 1 : currentWordID - 1));
+
+					cellText = string(tokenSubMap[?"tokenSeq"]);
+
+				
 				}
 				break;
 			// text
 			case 2:
-				if (functionChainList_currentTab == functionChainList_tabStackBrush
-				or functionChainList_currentTab == functionChainList_tabClique) {
-					currentWordInfoCol[getInfoLoop] = "";
-					var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordID - 1);
-					if (currentWordIDList == undefined) {
-						break;
-					}
-
-					var currentWordIDListSize = ds_list_size(currentWordIDList);
-					for (var i = 0; i < currentWordIDListSize; i++) {
-						var currentUnitWordID = ds_list_find_value(currentWordIDList, i);
-						if (is_numeric(currentUnitWordID)) {
-							var currentWordState = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colWordState, currentUnitWordID - 1);
-							if (currentWordState == obj_control.wordStateDead) {
-								continue;
-							}
-							var currentWordString = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentUnitWordID - 1);
-							currentWordInfoCol[getInfoLoop] += string(currentWordString) + " ";
-						}
-					}
-					// remove any newlines or carriage returns from the utterance display
-					currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\r", "");
-					currentWordInfoCol[getInfoLoop] = string_replace_all(currentWordInfoCol[getInfoLoop], "\n", "");
+				if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+					// getting the text for a unit
+					if (!scr_isNumericAndExists(entryList, ds_type_list)) break;
+					cellText = scr_getUnitText(unitSubMap);
 						
-					if (string_length(currentWordInfoCol[getInfoLoop]) > 100) {
-						currentWordInfoCol[getInfoLoop] = string_delete(currentWordInfoCol[getInfoLoop], 100, string_length(currentWordInfoCol[getInfoLoop]) - 100);
-						currentWordInfoCol[getInfoLoop] += "...";
+					if (string_length(cellText) > 100) {
+						cellText = string_delete(cellText, 100, string_length(cellText) - 100);
+						cellText += "...";
 					}
 				}
 				else {
+					
 					if (isChunk) {
-						var tokenList = chunkSubMap[? "tokenList"];
-						var tokenListSize = ds_list_size(tokenList);
-						for (var i = 0; i < tokenListSize; i++) {
-							var currentToken = tokenList[| i];
-							currentWordInfoCol[getInfoLoop] += string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentToken - 1)) + " ";
-						}
+						// getting the text for a chunk
+						cellText = scr_getChunkText(ID);
 					}
 					else {
-						currentWordInfoCol[getInfoLoop] = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentWordID - 1));
+						// getting the text for a token
+						cellText = tagMap[?global.displayTokenField];
 					}
 				}
 				break;
@@ -101,32 +111,44 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, curr
 		
 		
 		// dynamic columns
-		if (getInfoLoop >= 3) {
+		if (i >= 3) {
 			
 			// get the current field and make sure its a string
-			var currentField = ds_list_find_value(chain1toManyColFieldList, getInfoLoop - 3);
+			var currentField = ds_list_find_value(chain1toManyColFieldList, i - 3);
 			if (!is_string(currentField)) continue;
 		
 			// look up currentField in tagMap
-			if (is_numeric(currentTagMap)) {
-				if (ds_exists(currentTagMap, ds_type_map)) {	
-					if (ds_map_exists(currentTagMap, currentField)) {
-						currentWordInfoCol[getInfoLoop] = ds_map_find_value(currentTagMap, currentField);
-					}
+			if (scr_isNumericAndExists(currentTagMap, ds_type_map)) {	
+				if (ds_map_exists(currentTagMap, currentField)) {
+					cellText = ds_map_find_value(currentTagMap, currentField);
 				}
 			}
 			
-			scr_chainTagDropDown(global.entryFieldMap, currentField, currentEntry, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (getInfoLoop == colAmount - 1));
+			scr_chainTagDropDown(global.entryFieldMap, currentField, entry, cellRectX1, cellRectY1, cellRectX2, cellRectY2, mouseoverCell, (i == colAmount - 1));
 		}
-			
-		var textX = x + (getInfoLoop * (windowWidth / colAmount)) + xBuffer;
+		
+		// get coordinates for text
+		// text coordinates
+		if(lineStateLTR){
+			draw_set_halign(fa_left);
+			var textX = x + (i * (windowWidth / colAmount)) + xBuffer;
+		}
+		else{
+			draw_set_halign(fa_right);
+			var textX = floor(x + ((i+1) * (windowWidth / colAmount)) - xBuffer);
+			if(mouseoverCell ){
+				textX = textX - dropDownButtonWidth;
+			}
+		}
+		
 		var textY = y + textMarginTop + textPlusY;
 		
 		// remove linebreaks from string before drawing it
-		var drawStr = string(currentWordInfoCol[getInfoLoop]);
+		var drawStr = string(cellText);
 		drawStr = string_replace_all(drawStr, "\r", "");
 		drawStr = string_replace_all(drawStr, "\n", "");
-			
+		
+		// finally, draw the string in the cell
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);
 		draw_set_valign(fa_middle);

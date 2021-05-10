@@ -28,7 +28,6 @@ function scr_searchForWord(strToFind) {
 	ds_grid_copy(oldHit, obj_control.hitGrid);
 
 	// creating list of words if user inputed multiple words
-	obj_control.listOfWords = ds_list_create();
 	var listOfWordsInput = scr_splitString(strToFind, "&");
 	ds_list_copy(obj_control.listOfWords, listOfWordsInput);
 	ds_list_destroy(listOfWordsInput);
@@ -163,7 +162,6 @@ function scr_searchForWord(strToFind) {
 	if (ds_grid_height(obj_control.searchGrid) > 0) {
 	
 		// If matches were found, switch the user over to the search view 
-		//obj_control.filterGridActive = false;
 		obj_control.searchGridActive = true;
 		obj_control.clearSearch = false;
 		scr_unFocusAllChains();

@@ -1,22 +1,22 @@
 ///@description Main/Search/Grid Cycle
 /*
-	obj_control: Key Press - V
-	
-	Last Updated: 2019-02-12
-	
-	Called from: User pressing 'V' key
-	
 	Purpose: Cycle between main screen and grid view, plus search screen if it exists
-	
-	Mechanism: DevVars: Uses 3-way toggle logic to activate/deactivate grids and adjust the left margin accordingly
-	
-	Author: Georgio Klironomos, Terry DuBois
 */
 if (!shortcutsEnabled || dialogueBoxActive) {
 	exit;
 }
 
+if (searchGridActive) {
+	searchGridActive = false;
+	scr_disableFilter();
+}
+else {
+	searchGridActive = true;
+	scr_renderFilter2();
+}
 
+
+/*
 // If we're not in grid view and there is a search, switch between the main and search screen
 if (ds_grid_height(searchGrid) > 0 and !gridView) {
 	// Main/filter to search
@@ -77,5 +77,4 @@ else if(currentActiveLineGrid == filterGrid) {
 		alarm[1] = 5;
 	}
 }
-
-
+*/

@@ -45,6 +45,8 @@ function scr_groupStackerLoop(){
 	//Set variables for loop
 	var currentGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
 	var previousGroupOrder = ds_grid_get(global.importGrid, groupCol, 0);
+	var discourseSubMap = global.nodeMap[?global.discourseNode];
+	var unitList = discourseSubMap[?"unitList"];
 
 	//Starting at the top of the unitImportGrid
 	for (var importLoop = 0; importLoop < importGridHeight; importLoop++) {
@@ -54,8 +56,8 @@ function scr_groupStackerLoop(){
 		
 		// Loop through lines until we hit a new turn order
 		while ((currentGroupOrder == previousGroupOrder) and (importLoop < importGridHeight)) { 	
-			var randUnit = importLoop+1;
-			ds_list_add(currentUnitList, randUnit);
+			var currentUnit = unitList[|importLoop];
+			ds_list_add(currentUnitList, currentUnit);
 			importLoop++;
 			currentGroupOrder = ds_grid_get(global.importGrid, groupCol, importLoop);
 			//show_message(currentGroupOrder);
@@ -66,8 +68,7 @@ function scr_groupStackerLoop(){
 		if (ds_list_size(currentUnitList) > 0) {
 			
 			var firstUnitID = ds_list_find_value(currentUnitList, 0);
-			var currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, firstUnitID - 1);
-			var firstWordID = ds_list_find_value(currentWordIDList, 0);
+			
 			var prevUnitID = -1;
 	
 			// Loop through lines and click on them with the Stack Tool
@@ -75,12 +76,11 @@ function scr_groupStackerLoop(){
 			for (var quickStackLoop = 0; quickStackLoop < inRectUnitIDListSize; quickStackLoop++) {
 				var currentUnitID = ds_list_find_value(currentUnitList, quickStackLoop);
 					if(currentUnitID != prevUnitID) {
-					currentWordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentUnitID - 1);
-					var currentWordID = ds_list_find_value(currentWordIDList, 0);
+	
 					obj_toolPane.currentTool = obj_toolPane.toolStackBrush;
 					with (obj_chain) {
-						scr_wordClicked(firstWordID, firstUnitID);
-						scr_wordClicked(currentWordID, currentUnitID);
+						scr_unitClicked(firstUnitID);
+						scr_unitClicked(currentUnitID);
 					}
 				}
 				prevUnitID = currentUnitID;

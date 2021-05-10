@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawChunks(){
 	obj_chain.mouseOverAnyChunk = false;
+	obj_control.hoverChunkID = "";
 	// loop through all the chunks currently on screen, and draw them!
 	var chunkShowListSize = ds_list_size(chunkShowList);
 	for (var i = 0; i < chunkShowListSize; i++) {
@@ -22,16 +23,25 @@ function scr_drawChunks(){
 		var currentChunkFirstTokenID = currentChunkTokenList[| 0];
 		var currentChunkLastTokenID = currentChunkTokenList[| ds_list_size(currentChunkTokenList) - 1];
 		
+		var currentChunkFirstTokenSubMap = global.nodeMap[?currentChunkFirstTokenID];
+		var currentChunkLastTokenSubMap = global.nodeMap[?currentChunkLastTokenID];
+		
+		var currentChunkFirstTokenTagMap = currentChunkFirstTokenSubMap[?"tagMap"];
+		var currentChunkLastTokenTagMap = currentChunkLastTokenSubMap[?"tagMap"];
+		
+		
+		
 		// get x coordinates of words
-		var firstTokenLeftX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentChunkFirstTokenID - 1);		
-		var lastTokenLeftX = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colPixelX, currentChunkLastTokenID - 1);
-		var lastTokenDisplayStr = string(ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayString, currentChunkLastTokenID - 1));
-		var lastTokenStrWidth = string_width(lastTokenDisplayStr);
+		var firstTokenLeftX = currentChunkFirstTokenSubMap[?"pixelX"];		
+		var lastTokenLeftX = currentChunkLastTokenSubMap[?"pixelX"];	
+		var lastTokenDisplayStr = currentChunkLastTokenTagMap[?global.displayTokenField];	
+		var lastTokenStrWidth = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
 		var lastTokenRightX = lastTokenLeftX + lastTokenStrWidth;
-		var displayRow = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colDisplayRow, currentChunkFirstTokenID - 1);
+		var displayUnit = currentChunkFirstTokenSubMap[?"unit"];
+		
 		
 		scr_adaptFont(lastTokenDisplayStr, "M");
-		var strHeight = string_height(lastTokenDisplayStr);
+		var strHeight = (is_string(lastTokenDisplayStr)) ? string_height(lastTokenDisplayStr) : 0;
 		
 		// set rect coordinates for chunk
 		var chunkRectX1 = -1;
@@ -41,9 +51,11 @@ function scr_drawChunks(){
 		
 		if (is_numeric(firstTokenLeftX)) chunkRectX1 = firstTokenLeftX - 10;
 		if (is_numeric(lastTokenRightX)) chunkRectX2 = lastTokenRightX + 10;
-		if (displayRow >= 0 && displayRow < ds_grid_height(obj_control.currentActiveLineGrid)) {
-			chunkRectY1 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, displayRow) - strHeight;
-			chunkRectY2 = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelY, displayRow) + strHeight;
+		if (displayUnit != "" and is_string(displayUnit)) {
+			var unitSubMap = global.nodeMap[?displayUnit];
+			var pixelY = unitSubMap[?"pixelY"]
+			chunkRectY1 = pixelY - strHeight;
+			chunkRectY2 = pixelY + strHeight;
 		}
 		
 		// draw BG rect
@@ -60,14 +72,15 @@ function scr_drawChunks(){
 		}
 		
 		// draw selection box		
-		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverWordID == -1 && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
+		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverTokenID == "" && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
 		if (mouseOverChunk) {
+			obj_control.hoverChunkID = currentChunkID;
 			obj_control.mouseoverNeutralSpace = false;
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
 			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 			// click on chunk
-			if (device_mouse_check_button_released(0, mb_left)) {
+			if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
 				// add chunk to pre-existing chain
 				if (ds_list_size(currentChunkInChainsList) < 1) {
 					obj_chain.currentFocusedChunkID = currentChunkID;
@@ -81,7 +94,7 @@ function scr_drawChunks(){
 						}
 					}
 					else{
-						scr_newChain(-1);
+						scr_newChain(currentChunkID);
 						scr_newLink(currentChunkID);
 						global.delayInput = 5;
 					}
@@ -101,6 +114,19 @@ function scr_drawChunks(){
 					}
 				}
 			}
+			
+			// Check for rightMouseClick
+			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
+				
+				obj_control.rightClickID = currentChunkID;
+	
+				// wait 1 frame and then show the right click dropdown
+				with (obj_alarm) {
+					alarm[11] = 2;
+				}
+
+			}
+			
 			obj_chain.mouseOverAnyChunk = true;
 		}
 		
@@ -126,7 +152,7 @@ function scr_drawChunks(){
 		
 		// if this chunk is focused, fill it in and draw the focused sqaures
 		if (obj_chain.currentFocusedChunkID == currentChunkID || chunkInFocusedChain) {
-			draw_set_color((obj_chain.focusedChainWordID == currentChunkID) ? colorOfRect : global.colorThemeSelected1);
+			draw_set_color((obj_chain.mouseLineWordID == currentChunkID || obj_chain.mouseLineWordID ==  scr_getFirstWordOfChunk(currentChunkID)) ? colorOfRect : global.colorThemeSelected1);
 			draw_set_alpha(.5);
 			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);			
 

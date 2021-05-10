@@ -111,7 +111,7 @@ function scr_wordClicked(wordID, unitID) {
 
 	// if there is not a focused chain, we create a new chain
 	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
-		scr_newChain( unitID);
+		scr_newChain(unitID);
 	}
 
 	// add new link and refresh chain grid

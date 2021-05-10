@@ -30,6 +30,7 @@ function scr_createStackOptions(optionSelected) {
 				obj_stacker.alarm[1] = 1;
 			}
 			obj_stacker.createStacksRandom = true;
+			instance_destroy(obj_dropDown);
 			break;
 		case "menu_turn":
 			if (doStacksExist) {
@@ -40,6 +41,7 @@ function scr_createStackOptions(optionSelected) {
 				obj_stacker.alarm[4] = 1;
 			}
 			obj_stacker.createStacksTurn = true;
+			instance_destroy(obj_dropDown);
 			break;
 		case "Group":
 			if (doStacksExist) {
@@ -50,6 +52,7 @@ function scr_createStackOptions(optionSelected) {
 				obj_stacker.alarm[8] = 1;
 			}
 			obj_stacker.createStacksGroup = true;
+			instance_destroy(obj_dropDown);
 			break;
 		case "menu_sentence":
 			if (doStacksExist) {
@@ -59,6 +62,7 @@ function scr_createStackOptions(optionSelected) {
 				obj_stacker.showEndNoteWindow = true;
 			}
 			obj_stacker.createStacksSentence = true;
+			instance_destroy(obj_dropDown);
 			break;
 		default:
 			break;

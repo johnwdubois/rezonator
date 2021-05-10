@@ -6,19 +6,15 @@ function scr_deleteFromList(list, item){
 	// even if it is in the list multiple times!
 	
 	// make sure the list exists
-	if (!is_numeric(list)) {
-		show_debug_message("scr_deleteFromList() ... list is non-numeric, exiting...");
-		exit;
-	}
-	if (!ds_exists(list, ds_type_list)) {
-		show_debug_message("scr_deleteFromList() ... list does not exist, exiting...");
+	if (!scr_isNumericAndExists(list, ds_type_list)) {
+		show_debug_message("scr_deleteFromList() ... list is invalid. Exiting...")
 		exit;
 	}
 
 	// as long as we are able to find the item in the list, delete it from the list
 	var index = ds_list_find_index(list, item);
 	while (index >= 0) {
-		show_debug_message("scr_deleteFromList() ... deleting index " + string(index) + " from " + scr_getStringOfList(list));
+		show_debug_message("scr_deleteFromList() ... deleting index " + string(index) + " from list " + string(list));
 		ds_list_delete(list, index);
 		
 		index = ds_list_find_index(list, item);

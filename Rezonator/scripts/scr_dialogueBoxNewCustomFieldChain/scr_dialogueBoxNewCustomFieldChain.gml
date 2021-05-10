@@ -13,7 +13,10 @@ function scr_dialogueBoxNewCustomFieldChain() {
 		}
 	}
 	if (ds_exists(chain1to1ColFieldList, ds_type_list)) {
-		ds_list_set(chain1to1ColFieldList, obj_control.chain1To1ColFieldToChange, newField);
+		var sizeofList = ds_list_size(chain1to1ColFieldList);
+		if(sizeofList == 6){
+			ds_list_set(chain1to1ColFieldList, obj_control.chain1To1ColFieldToChange, newField);
+		}
 	}
 	
 	// create a new tagSet and shortcutSet for the new field

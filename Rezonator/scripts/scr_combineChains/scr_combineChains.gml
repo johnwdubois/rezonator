@@ -27,7 +27,7 @@ function scr_combineChains(focusedChain, clickedChain){
 	for (var i = 0; i < clickedChainSetIDListSize; i++) {
 		var currentEntry = ds_list_find_value(clickedChainSetIDList, i);
 		var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-		var currentWordOrUnit = ds_map_find_value(currentEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "word");
+		var currentWordOrUnit = ds_map_find_value(currentEntrySubMap, (focusedChainType == "stackChain") ? "unit" : "token");
 		if (ds_list_find_index(tempList, currentWordOrUnit) == -1) {
 			ds_list_add(tempList, currentWordOrUnit);
 		}
@@ -43,18 +43,7 @@ function scr_combineChains(focusedChain, clickedChain){
 		var currentWordOrUnit = ds_list_find_value(tempList, i);
 		with (obj_chain) {
 			currentFocusedChainID = focusedChain;
-			
-			// if this is a stack, let's get it's first wordID
-			if (focusedChainType == "stackChain") {
-				var wordIDList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentWordOrUnit - 1);
-				if (ds_list_size(wordIDList) > 0) {
-					currentWordOrUnit = ds_list_find_value(wordIDList, 0);
-				}
-				else {
-					continue;
-				}
-			}
-			
+			show_debug_message("currentWordOrUnit:  "+ string(currentWordOrUnit));
 			scr_newLink(currentWordOrUnit);
 		}
 	}

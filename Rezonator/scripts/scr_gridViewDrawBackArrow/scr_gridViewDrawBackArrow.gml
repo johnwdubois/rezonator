@@ -1,15 +1,5 @@
 /*
-	scr_gridViewDrawBackArrow();
-	
-	Last Updated: 2020-10-28
-	
-	Called from: obj_control
-	
 	Purpose: Allow for a UI element taking the user back to the main screen from the Grid View, Search Screen, and Filter View
-	
-	Mechanism: Draw the text, draw the arrow sprite, and check for Left Mouse Click on the arrow
-	
-	Author: Georgio Klironomos
 */
 function scr_gridViewDrawBackArrow() {
 	
@@ -58,99 +48,10 @@ function scr_gridViewDrawBackArrow() {
 			if (obj_control.gridView) {
 				obj_control.gridView = false;
 			}
-			// If we're not in grid view and there is a search, switch between the main and search screen
-			else if (currentActiveLineGrid == searchGrid) {
-				with(obj_control) {
-					// Switch back to either main or filter grids
-					if(currentActiveLineGrid == searchGrid) { 
-						// Switch back to the main screen from the Search Screen
-						scr_searchToMain();
-					}
-					// Give the user another way to leave the filter view   
-					else if(currentActiveLineGrid == filterGrid ) { 
-						
-						// Exit the plain filter
-						// Remember the user's place
-						if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-							obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-						}
-			
-						// Switch to active grid
-						obj_control.filterGridActive = false;
-						obj_control.currentActiveLineGrid = obj_control.lineGrid
-
-						// Reset wordLeftMargin
-						with (obj_alarm) {
-							alarm[1] = 5;
-						}
-					}
-					else if(currentActiveLineGrid == quickFilterGrid) { 
-
-						// Exit the plain filter
-
-						// Remember the user's place
-						if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-							obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-						}
-			
-						// Switch to active grid
-						obj_control.quickFilterGridActive = false;
-						obj_control.currentActiveLineGrid = obj_control.lineGrid
-
-						// Reset wordLeftMargin
-						with (obj_alarm) {
-							alarm[1] = 5;
-						}
-					}
-				}
-			}
-			else if(obj_control.currentActiveLineGrid == obj_control.quickFilterGrid){
-					with(obj_control) {
-					// Exit the plain filter
-					
-					// Remember the user's place
-					if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-						obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-					}
-			
-					// Switch to active grid
-					obj_control.quickFilterGridActive = false;
-					if(obj_control.filterGridActive == true){
-						obj_control.currentActiveLineGrid = obj_control.filterGrid;
-					}
-					else if (obj_control.searchGridActive == true) {
-						obj_control.currentActiveLineGrid = obj_control.searchGrid;
-					}
-					else{
-						obj_control.currentActiveLineGrid = obj_control.lineGrid;
-					}	
-					// Reset wordLeftMargin
-					with (obj_alarm) {
-						alarm[1] = 5;
-					}
-				}
-			}	
 			
 			
-			
-			else if(obj_control.currentActiveLineGrid == obj_control.filterGrid) { 
-				with(obj_control) {
-
-					// Exit the plain filter
-					// Remember the user's place
-					if(obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.filterGrid)) {
-						obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-					}
-			
-					// Switch to active grid
-					obj_control.filterGridActive = false;
-					obj_control.currentActiveLineGrid = obj_control.lineGrid
-
-					// Reset wordLeftMargin
-					with (obj_alarm) {
-						alarm[1] = 5;
-					}
-				}
+			if(obj_control.filterGridActive) { 
+				scr_disableFilter();
 			}
 			
 		}

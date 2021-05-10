@@ -19,4 +19,8 @@ function scr_disableFilter(){
 	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabTrackBrush) obj_control.filterActiveTrack = false;
 	else if (obj_panelPane.functionChainList_currentTab == obj_panelPane.functionChainList_tabStackBrush) obj_control.filterActiveStack = false;
 
+	// set the displayUnitList to be the filterUnitList
+	var discourseSubMap = global.nodeMap[? global.discourseNode];
+	discourseSubMap[? "displayUnitList"] = discourseSubMap[? "unitList"];
+
 }

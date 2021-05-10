@@ -129,9 +129,7 @@ function scr_loadINI() {
 			
 
 				global.fontSize = ds_map_find_value(map, "fontSize"); 
-			
-				ds_list_replace(obj_control.speakerLabelColXList, 2, ds_map_find_value(map, "SpeakerLabelX3") );
-				ds_list_replace(obj_control.speakerLabelColXList, 3, ds_map_find_value(map, "SpeakerLabelX4") );
+
 			
 			
 				if (instance_exists(obj_gridViewer)) {

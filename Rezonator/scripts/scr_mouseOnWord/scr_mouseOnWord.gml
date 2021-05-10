@@ -16,10 +16,10 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 	
 	if (mouseoverWord) {
 		obj_control.mouseoverNeutralSpace = false;	
-		hoverWordID = currentWordID;
+		hoverTokenID = currentWordID;
 		
 		// Check to see if this word should be hovered over and allowed to be clicked
-		if (not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_control.mouseoverPanelPane and (hoverWordID == currentWordID || hoverWordID == -1)) {
+		if (not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) and not obj_control.mouseoverPanelPane and (hoverTokenID == currentWordID || hoverTokenID == -1)) {
 		
 			draw_set_color(global.colorThemeBorders);
 			draw_set_alpha(1);
@@ -41,7 +41,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				// Check for Merge Chains click
 				if (obj_control.ctrlHold) {
 					// if we are going to combine chains, we need to get the inChainsList for this word
-					var hoverWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, obj_control.hoverWordID - 1);
+					var hoverWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, obj_control.hoverTokenID - 1);
 					scr_combineChainsDrawLine(hoverWordInChainsList);
 				}
 				else {
@@ -119,7 +119,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 	
 	
 	// If the user has the New-Word tool selected, create a new word right next to this word
-	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord or (instance_exists(obj_dropDown) and rightClickonWord) ) {
+	if (obj_toolPane.currentTool == obj_toolPane.toolNewWord or (instance_exists(obj_dropDown) and rightClicked) ) {
 		if (newWordHoverUnitID == unitID and newWordHoverWordSeq == ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1) and newWordHoverWordID == currentWordID) {
 			draw_set_color(c_ltblue);
 			draw_line_width(wordRectX2, wordRectY1, wordRectX2, wordRectY2, 2);
@@ -139,7 +139,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			newWordHoverUnitID = unitID;
 			newWordHoverWordSeq = ds_grid_get(wordGrid, wordGrid_colWordSeq, currentWordID - 1);
 			newWordHoverWordID = currentWordID;
-			hoverWordID = currentWordID;
+			hoverTokenID = currentWordID;
 				
 		}
 		
@@ -171,7 +171,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 	}
 	
 	// Check if the mouseRect is starting between words
-	if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverWordID == -1 and not obj_control.mouseRectMade) {
+	if (point_in_rectangle(mouse_x, mouse_y, wordRectX2, wordRectY1, wordRectX1 + gridSpaceHorizontal, wordRectY1 + gridSpaceVertical) and hoverTokenID == -1 and not obj_control.mouseRectMade) {
 		if(mouse_check_button_pressed(mb_left)) {	
 			obj_control.mouseRectBeginBetweenWords = currentWordID;
 		}

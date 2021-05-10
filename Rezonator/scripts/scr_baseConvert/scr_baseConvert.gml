@@ -45,6 +45,5 @@ function scr_baseConvert(number, oldbase, newbase) {
         out = string_char_at(tab, divide+1) + out;
     } until (len == 0);
 	
-	show_debug_message("scr_baseConvert() ... in: " + string(number) + ", out: " + string(out));
     return out;
 }

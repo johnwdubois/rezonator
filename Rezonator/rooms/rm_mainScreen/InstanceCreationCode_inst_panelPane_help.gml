@@ -4,5 +4,5 @@ y= 0
 windowWidth = 0;
 windowHeight = 0;
 
-currentFunction = 6;
+currentFunction = "help";
 scrollRange = 6;

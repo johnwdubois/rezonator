@@ -26,27 +26,8 @@ function scr_drawLine() {
 	if (filterGridActive) {
 		drawLineYOffset = (camViewHeight / 2) - 200;
 	}
-
-	var menuBarHeight = 0;
-	if (instance_exists(obj_menuBar)) {
-		menuBarHeight = obj_menuBar.menuHeight;
-	}
-	var chainListHeight = 0;
-	var tabsHeight = 0;
-	with (obj_panelPane) {
-		if (currentFunction == functionChainList) {
-			chainListHeight = windowHeight;
-		}
-		else if (currentFunction == functionTabs) {
-			tabsHeight = windowHeight;
-		}
-	}
-	if(obj_panelPane.showNav){
-		wordTopMargin = menuBarHeight + chainListHeight + tabsHeight;
-	}
-	else{
-		wordTopMargin = menuBarHeight;
-	}
+	
+	scr_setWordTopMargin();
 
 
 	var activeLineGridHeight = ds_grid_height(currentActiveLineGrid);
@@ -112,7 +93,7 @@ function scr_drawLine() {
 
 	obj_control.leftScreenBound = camViewWidth;
 
-	hoverWordID = -1;
+	hoverTokenID = "";
 	hoverChunkID = -1;
 	hoverChunkIDRow = -1;
 	

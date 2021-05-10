@@ -64,7 +64,7 @@ function scr_dropDownSelect(optionSelected) {
 	//newWordOptions
 	else if (optionListType == global.optionListTypeNewWord) //11
 	{
-	    scr_newWordOptions(optionSelected);
+	    scr_newTokenOptions(optionSelected);
 	}
 
 	//mappingTagOptions

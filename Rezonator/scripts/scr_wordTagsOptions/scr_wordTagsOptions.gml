@@ -24,7 +24,7 @@ function scr_wordTagsOptions(optionSelected) {
 	with(obj_dropDown){
 		instance_destroy();
 	}
-	obj_control.rightClickonWord = false;
+	obj_control.rightClicked = false;
 
 
 }

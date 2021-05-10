@@ -67,6 +67,7 @@ with (obj_panelPane) {
 }
 
 
+scrollPlusX = lerp(scrollPlusX, scrollPlusXDest, 0.4);
 
 
 // Check if user is in the NavWindow. If not, allow key control on main screen.
@@ -303,7 +304,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		
 		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
 			//show_message("right");
-			wordLeftMarginDest -= gridSpaceHorizontal;
+			scrollPlusXDest -= gridSpaceHorizontal;
 		}
 		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
@@ -313,7 +314,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 
 
 		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			wordLeftMarginDest += gridSpaceHorizontal;
+			scrollPlusXDest += gridSpaceHorizontal;
 			//show_message("left");
 		}
 		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
@@ -337,7 +338,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	
 	// replace word
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("X"))) {
-		if (hoverWordID > -1 and hoverWordID  < ds_grid_height(wordGrid)) {
+		if (hoverTokenID > -1 and hoverTokenID  < ds_grid_height(wordGrid)) {
 				
 				if (!obj_control.dialogueBoxActive) {
 					keyboard_string = "";
@@ -373,8 +374,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		}
 	}
 }
-
-wordLeftMargin = lerp(wordLeftMargin, wordLeftMarginDest, 0.5);
 
 var searchGridPopulated = ds_grid_height(searchGrid);
 var filterGridPopulated = ds_grid_height(filterGrid);
@@ -578,7 +577,7 @@ if (obj_panelPane.showNav) {
 		
 		// get current pane
 		var panelPaneInst = instance_find(obj_panelPane, i);
-		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList || panelPaneInst.currentFunction == panelPaneInst.functionFilter);
+		var isLeft = (panelPaneInst.currentFunction == panelPaneInst.functionChainList);
 		var isRight = (panelPaneInst.currentFunction == panelPaneInst.functionChainContents);
 		var isTabs = (panelPaneInst.currentFunction == panelPaneInst.functionTabs);
 		
@@ -660,15 +659,12 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 }
 
 
-if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and (!keyboard_check(vk_lshift) and !keyboard_check(vk_rshift))
+// quick filter
+if (keyboard_check_pressed(ord("P")) and !keyboard_check(vk_control) and !keyboard_check(vk_lshift) and !keyboard_check(vk_rshift)
 and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid != searchGrid and !instance_exists(obj_dropDown) and !instance_exists(obj_dialogueBox)) {
 	
 	// If filter is active, deactivate it
 	if (obj_control.quickFilterGridActive) {
-		if (obj_control.currentCenterDisplayRow >= 0 and obj_control.currentCenterDisplayRow < ds_grid_height(obj_control.quickFilterGrid)) {
-			obj_control.scrollPlusYDest = obj_control.prevCenterYDest;
-			// Keep the focus on previous currentCenterDisplayRow
-		}
 			
 		// Switch to active grid
 		obj_control.quickFilterGridActive = false;
@@ -679,21 +675,22 @@ and shortcutsEnabled and mouseoverTagShortcut == "" and currentActiveLineGrid !=
 			obj_control.currentActiveLineGrid = obj_control.searchGrid;
 		}
 		else {
-			obj_control.currentActiveLineGrid = obj_control.lineGrid;
+			scr_disableFilter();
 		}
+
 	}
-	else {
+	else if (obj_chain.currentFocusedChainID != "" || quickPickedChainID != "") {
 			
 		obj_control.prevCenterYDest = obj_control.scrollPlusYDest;
 		obj_control.quickPickedChainID = obj_chain.currentFocusedChainID;
-		// If filter is unactive. activate it
-		with (obj_control) {
-			
-			scr_renderQuickFilter();
-		}
+		
+		// activate quick filter!
+		scr_renderFilter2();
 	}
-
 }
+
+
+
 
 var fileCaptionString = string(game_display_name)
 //display current file name in window caption

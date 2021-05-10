@@ -1,42 +1,58 @@
 /*	
 	Purpose: the user has created a link, so this script will add it to the node map
 */
-function scr_newLink(wordID) {
+function scr_newLink(ID) {
 	
-	show_debug_message("scr_newLink() ... wordID: " + string(wordID));
+	
+	if(obj_toolPane.currentMode == obj_toolPane.modeRead) exit;
+	
+	
+	show_debug_message("scr_newLink() ... ID: " + string(ID));
 	ds_list_clear(obj_control.chainStretchCheckList);
-
-	// New funtionality for recording chain modification
-	while (ds_list_find_index(obj_chain.chainIDModifyList, obj_chain.currentFocusedChainID) > -1) {
-		var ind = ds_list_find_index(obj_chain.chainIDModifyList, obj_chain.currentFocusedChainID);
-		ds_list_delete(obj_chain.chainIDModifyList, ind);
-	}
-	ds_list_insert(obj_chain.chainIDModifyList, 0, obj_chain.currentFocusedChainID);
-
 		
 	// make sure this is a valid ID
-	if (wordID == undefined) {
-		exit;
+	var idSubMap = global.nodeMap[? ID];
+	if (!scr_isNumericAndExists(idSubMap, ds_type_map)) exit;
+	
+	
+	var unitID = "";
+	var tokenID = "";
+	var IDsubMap = global.nodeMap[?ID];
+	var type = IDsubMap[?"type"];
+	if(type == "unit"){
+		unitID = ID
+		var entryList = IDsubMap[?"entryList"];
+		var firstEntry = entryList[|0];
+		var entrySubMap = global.nodeMap[?firstEntry];
+		tokenID = entrySubMap[?"token"]
 	}
-	var unitID = -1;
-	if (is_numeric(wordID)) unitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, wordID - 1);
-	if (unitID == undefined) {
-		exit;
+	else if(type == "token"){	
+		unitID = IDsubMap[?"unit"];
+		tokenID = ID
 	}
+	
+	
 
-	var isChunk = scr_isChunk(wordID);
+	var isChunk = scr_isChunk(ID);
+	
 	// determine whether to treat as unit (stack) or word (rez/track)
-	var idSet = -1;
-	if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
+	var idSet = "";
+	if (type == "unit") {
 		idSet = unitID;
 		if (obj_control.quickStackAbleToInitiate) {
 			obj_control.moveCounter++;
 		}
 	}
 	else {
-		idSet = wordID;
-		obj_control.mostRecentlyAddedWord = wordID;
+		if(isChunk){
+			idSet = ID;
+		}
+		else{
+			idSet = tokenID;
+		}
+		obj_control.mostRecentlyAddedWord = tokenID;
 	}
+	
 
 	// make sure there is a focused chain
 	if (obj_chain.currentFocusedChainID = "") {
@@ -44,15 +60,16 @@ function scr_newLink(wordID) {
 		exit;
 	}
 	
+	// get type of focused chain
+	var focusedChainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+	var focusedChainType = focusedChainSubMap[? "type"];
+	
 	// determine the tier/type of this link
 	var nodeType = "rez";
-	var currentChainTier = obj_chain.rezTier;
-	if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-		currentChainTier = obj_chain.trackTier;
+	if (focusedChainType == "trackChain") {
 		nodeType = "track";
 	}
-	else if (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) {
-		currentChainTier = obj_chain.stackTier;
+	else if (focusedChainType == "stackChain") {
 		nodeType = "stack";
 	}
 	
@@ -82,13 +99,13 @@ function scr_newLink(wordID) {
 					is_numeric(setSubMap) {
 						if (ds_exists(setSubMap, ds_type_map)) {
 							ds_map_add(setSubMap, "chain", obj_chain.currentFocusedChainID);
-							ds_map_add(setSubMap, (obj_toolPane.currentTool == obj_toolPane.toolStackBrush) ? "unit" : "word", idSet);
+							ds_map_add(setSubMap, (focusedChainType == "stackChain") ? "unit" : "token", idSet);
 							ds_map_add(setSubMap, "sourceLink", "");
 							ds_map_add_list(setSubMap, "goalLinkList", ds_list_create());
-							if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+							if (focusedChainType == "rezChain") {
 								ds_map_add(setSubMap, "alignEntry", true);
 							}
-							else if (obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
+							else if (focusedChainType == "trackChain") {
 								ds_map_add(setSubMap, "alignEntry", false);
 							}
 							
@@ -109,12 +126,16 @@ function scr_newLink(wordID) {
 						ds_map_replace(chainSubMap, "focused", nodeID);
 					}
 					
+
+					
 					// set wordDrawGrid if this is a rez or track
 					if ((nodeType == "rez" || nodeType == "track") && !isChunk) {
 						var chainColor = ds_map_find_value(chainSubMap, "chainColor");
-						ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
+						//ds_grid_set(obj_control.wordDrawGrid, (nodeType == "rez") ? obj_control.wordDrawGrid_colBorder : obj_control.wordDrawGrid_colBorderRounded, wordID - 1, true);
+						//ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, wordID - 1, chainColor);
 					}
+					
+					
 					
 					// sort the displayed links
 					scr_sortVizSetIDList(obj_chain.currentFocusedChainID);
@@ -133,28 +154,28 @@ function scr_newLink(wordID) {
 		
 		
 	// if this is a rez or track, we will make sure we are adding to the word's inChainsList
-	if (nodeType == "rez" || nodeType == "track") {
+	if (nodeType == "rez" || nodeType == "track" || nodeType == "stack") {
 		var entryWordInChainsList = -1;
 		if (isChunk) {
-			var chunkSubMap = global.nodeMap[? wordID];
-			entryWordInChainsList = chunkSubMap[? "inChainsList"];
+			var chunkSubMap = global.nodeMap[?ID];
+			if(scr_isNumericAndExists(chunkSubMap, ds_type_map)){
+				entryWordInChainsList = chunkSubMap[? "inChainsList"];
+			}
 		}
 		else {
-			entryWordInChainsList = ds_grid_get(obj_control.dynamicWordGrid, obj_control.dynamicWordGrid_colInChainList, idSet - 1);
+			var tokenSubMap = global.nodeMap[?idSet];
+			if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+				entryWordInChainsList = tokenSubMap[? "inChainsList"];
+			}
 		}
-		
-		if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
-			ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
+		if(scr_isNumericAndExists(entryWordInChainsList, ds_type_list)){
+			if (ds_list_find_index(entryWordInChainsList, obj_chain.currentFocusedChainID) == -1) {
+				ds_list_add(entryWordInChainsList, obj_chain.currentFocusedChainID);
+			}
 		}
-	}
-	// if this is a stack, we will make sure this unit is updated in the unitInStackGrid
-	else if (nodeType == "stack") {
-		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, idSet - 1, obj_chain.currentFocusedChainID);
-		ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, idSet - 1, 0);
-		show_debug_message("scr_newLink() ... idSet: " + string(idSet));
 	}
 	
-		// switch panel pane to corresponding tab
+	// switch panel pane to corresponding tab
 	with (obj_panelPane) {
 		switch (nodeType) {
 			case "rez":
@@ -169,6 +190,10 @@ function scr_newLink(wordID) {
 			default:
 				break;
 		}
+		
+		
+		/*
+		set id to hop to nav window to
 		var chunksFirstWord = -1;
 		if (currentFunction == functionChainContents) {
 			chunksFirstWord = scr_getFirstWordOfChunk(idSet);
@@ -179,6 +204,7 @@ function scr_newLink(wordID) {
 				functionChainContents_hop = idSet;
 			}
 		}
+		*/
 	}
 	
 	var linkGoalID = nodeID;
@@ -218,10 +244,10 @@ function scr_newLink(wordID) {
 		}
 	}
 	
-	if (obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
+	if (focusedChainType == "rezChain") {
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
 	
-	show_debug_message("scr_newLink() ... end of script for wordID: " + string(wordID));
+	show_debug_message("scr_newLink() ... end of script for ID: " + string(ID));
 
 }

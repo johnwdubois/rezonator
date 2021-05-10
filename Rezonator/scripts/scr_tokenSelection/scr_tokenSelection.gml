@@ -1,18 +1,15 @@
-function scr_tokenSelection() {
+function scr_tokenSelection(optionSelected) {
 	
-	var optionSelected = argument[0];
-	var colValToSet = ds_list_find_index(global.tokenImportColNameList, optionSelected);
-	var colListIndex = obj_panelPane.chosenCol - 2; 
-
+	// check whether or not to update display token
+	var updateDisplayToken = (ds_list_find_index(obj_control.navTokenFieldList, global.displayTokenField) == obj_panelPane.chosenCol);
 	
-	show_debug_message("obj_panelPane.chosenCol: " + string(obj_panelPane.chosenCol) + ", colListIndex: " + string(colListIndex));
-
-	ds_list_set(obj_control.currentDisplayTokenColsList, colListIndex, colValToSet);
-
-
-	if (obj_control.wordView == obj_panelPane.chosenCol) {
-		scr_toggleTranscriptionMulti(global.tokenImportGrid, colValToSet);
+	// change the field list
+	var colListIndex = obj_panelPane.chosenCol; 
+	ds_list_set(obj_control.navTokenFieldList, colListIndex, optionSelected);
+	
+	// update display token if need be
+	if (updateDisplayToken) {
+		global.displayTokenField = optionSelected
 	}
-
 
 }

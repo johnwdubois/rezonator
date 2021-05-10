@@ -41,10 +41,10 @@ function scr_splitWord(stringList) {
 	//obj_toolPane.currentTool = obj_toolPane.toolNewWord;
 
 	if(obj_control.fromDropDown){
-		scr_newWord(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, ds_list_find_value(listOfWords, 1), obj_control.rightClickWordID+1);
+		scr_newToken(obj_control.rightClickUnitID, obj_control.rightClickWordSeq, ds_list_find_value(listOfWords, 1), obj_control.rightClickWordID+1);
 	}
 	else{
-		scr_newWord(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, ds_list_find_value(listOfWords, 1), obj_control.rightClickWordID+1);
+		scr_newToken(obj_control.newWordHoverUnitID, obj_control.newWordHoverWordSeq, ds_list_find_value(listOfWords, 1), obj_control.rightClickWordID+1);
 	}
 
 

@@ -1,5 +1,4 @@
 function scr_panelPane_drawHelp() {
-	
 
 	// Establish location of camera
 	windowWidth = global.toolPaneWidth;
@@ -15,10 +14,6 @@ function scr_panelPane_drawHelp() {
 	var collapseButtonRad = string_height("A") * 0.5;
 
 
-	// Toggle collapse if mouseClick
-	if ((mouseoverHelp and device_mouse_check_button_released(0, mb_left)) and not scrollBarClickLock) {
-		functionHelp_collapsed = !functionHelp_collapsed;
-	}
 
 	// Set style for button text
 	draw_set_alpha(1);

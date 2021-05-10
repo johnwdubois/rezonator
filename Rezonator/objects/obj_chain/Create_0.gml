@@ -78,7 +78,7 @@ focusedChainWrongTool = false;
 
 mouseLineHide = false;
 
-mouseLineWordID = -1;
+mouseLineWordID = "";
 
 
 cliqueGridWidth = 11;
@@ -114,13 +114,9 @@ recentlyMovedWords = ds_list_create();
 alarm[4] = 30;
 
 //New fields for Tween focus funtionality
-chainIDModifyList = ds_list_create();
 unitIDOfFirstWord = -1;
 unitIDOfLastWord = -1;
 
-focusPrior = false;
-focusTween = false;
-focusNext = false;
 
 //Fields for keeping tabFocus
 oldRezFocus = -1;
