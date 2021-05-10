@@ -1,23 +1,13 @@
 /// @description Insert description here
 
 // WordTip box's dimensions
-boxHeight = -1;
-boxWidth = -1;
+boxHeight = 0;
+boxWidth = 0;
 
-// Padding around edges of box
-boxPaddingHoriz = -1;
-boxPaddingVert = -1;
-	
-// Top-left coordinates of where the box is displayed
-boxX = -1;
-boxY = -1;
-
-currentWordID = -1;	// Current word whose attributes are being displayed
-
-//persistentBoxFlag = false;	// flag for when a persistent box is active
+// Current token whose attributes are being displayed
+currentID = -1;	
 
 
 /* Hard-coded dimensions */
-
 mouseCursorWidth = 10;
 mouseCursorHeight = 20;

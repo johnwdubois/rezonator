@@ -175,7 +175,7 @@ var mouseOverLang = (global.lang_codes[| global.lang_index] == "he") ? point_in_
 if(mouseOverLang){
 	//draw_set_color(global.colorThemeText);
 	if(global.lang_codes[| global.lang_index] == "he"){
-		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceLeft);
+		scr_createTooltip(langTextX2, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceLeft);
 	}else{
 		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
 	}
@@ -184,7 +184,12 @@ if(mouseOverLang){
 		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
-			scr_createDropDown(langTextX1, langTextY2, dropDownOptionList, global.optionListTypeLanguage);
+			if(global.lang_codes[| global.lang_index] == "he"){
+				scr_createDropDown(langTextX2, langTextY2, dropDownOptionList, global.optionListTypeLanguage);
+			}
+			else{
+				scr_createDropDown(langTextX1, langTextY2, dropDownOptionList, global.optionListTypeLanguage);
+			}
 		}
 	}
 }

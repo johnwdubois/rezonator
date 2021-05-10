@@ -1,216 +1,129 @@
 /// @description Insert description here
 // You can write your code in this editor
+if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_toolPane.currentMode == obj_toolPane.modeRead) {
 
-
-// Only read-mode has WordTips
-
-exit;
-
-
-/*
- * UNCOMMENT BELOW FOR persistent box when clicking a word
-
-if (persistentBoxFlag == false)
-{	
-	// There is no persistent box currently
-	
-	if (obj_control.hoverTokenID == -1)
-	{
-		// No word is being hovered
-		exit;
+	if(obj_control.hoverUnitID != ""){
+		currentID = obj_control.hoverUnitID;
 	}
-	
-	else
-	{
+	else{
 		// Make the box display the word at the mouse cursor
-		currentWordID = obj_control.hoverTokenID;
-		boxX = floor(mouse_x + mouseCursorWidth);
-		boxY = floor(mouse_y + mouseCursorHeight);
+		currentID = obj_control.hoverTokenID;
+	}
+	x = floor(mouse_x + mouseCursorWidth);
+	y = floor(mouse_y + mouseCursorHeight);
+
+	var IDSubMap = global.nodeMap[?currentID];
+	var IDType = IDSubMap[?"type"];
+	var tagMap = IDSubMap[?"tagMap"];
+	var plusY = 0;
+
+	var maxPlusX = 0;
+	var colX2Max = string_width("Attribute   ");
+
+	/* --- determine size of box by field names and values to display --- */
+	var sizeOfFieldList = 0;
+	var fieldList = obj_control.tokenFieldList;
+	if(IDType == "unit"){
+		fieldList = obj_control.unitFieldList;
+	}
+
+	sizeOfFieldList = ds_list_size(fieldList);
+
+	var spaceGap = string_width("   ");
+	// For each attribute, get its value (from the tokenImportGrid) and put it in the 2nd column; if it does not exist, then remove the row from the attribute grid
+	for (var i = 0; i < sizeOfFieldList; i++)
+	{
+		var fieldName = fieldList[|i];
+		var fieldNameWidth = string_width(string(fieldName));
+		var fieldValue = tagMap[?fieldName];
+		var fieldValueWidth = string_width(string(fieldValue));
+		plusY += string_height(string(fieldName)) + 5;
+		var lineWidth = fieldNameWidth + fieldValueWidth + spaceGap;
+	
+		colX2Max = max(fieldNameWidth + spaceGap,colX2Max);
+		maxPlusX = max(colX2Max + fieldValueWidth + spaceGap,maxPlusX);
+
+
+	}
+	var lineHeight = string_height(string(fieldName)) + 5;
+	plusY += lineHeight;
+
+
+	boxWidth = maxPlusX;	// Box width fits the whole row
+	boxHeight = plusY;	// Box width fits the whole row
+
+	/* --- Draw the WordTip box and its attribute grid --- */
+
+	var boxX1 = x;
+	var boxY1 = y;
+	var boxX2 = x + boxWidth;
+	var boxY2 = y + boxHeight;
+
+
+	// Handle the case where the box clips off the bottom of the screen
+	var fullWindowHeight = camera_get_view_height(camera_get_active());
+	if (boxY2 >= fullWindowHeight)
+	{
+		var overflowHeight = boxY2 - fullWindowHeight;
+		boxY1 -= overflowHeight;
+		boxY2 -= overflowHeight;
+	}
+
+	// Draw the box's outline
+	draw_set_color(c_black);
+	draw_rectangle(boxX1, boxY1, boxX2, boxY2, true);
+
+	// Draw the box's fill color
+	draw_set_color(make_color_rgb(245, 245, 245) );
+	draw_rectangle(boxX1, boxY1, boxX2, boxY2, false);
+
+	// Draw the header's fill color
+	draw_set_color(make_color_rgb(220, 220, 220) );
+	draw_rectangle(boxX1, boxY1 + lineHeight, boxX2, boxY2, false);
+
+	// Draw the header and column separator lines
+	draw_set_color(c_grey);
+	draw_line(boxX1, boxY1 + lineHeight, boxX2, boxY1 + lineHeight);	// Header line
+
+
+	// Set params for drawing text
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
+	draw_set_color(global.colorThemeText);
+	draw_set_alpha(1);
+
+	var col1X = boxX1 + 5
+	var col2X = boxX1 + colX2Max; 
+	var valueY = boxY1 + lineHeight + string_height(string(fieldName))/2;
+	// Draw the attribute grid
+	for(var i = 0; i < sizeOfFieldList+1; i++)
+	{		
+		if(i == 0){
+			// Draw the headers
+			var headerTextY = mean(boxY1 + lineHeight, boxY1);
+			draw_text(col1X,floor(headerTextY), "Attribute");
+			draw_text(col2X,floor(headerTextY), "Value");
+		}
+		else{
+			var fieldName = fieldList[|i-1];
+			var fieldValue = tagMap[?fieldName];
+
+			scr_adaptFont(fieldName, "M");
+	
+			// Draw the attribute name
+			draw_text(col1X, floor(valueY), fieldName);
+	
+			scr_adaptFont(fieldValue, "M");
+	
+			// Draw the attribute value to the right
+			draw_text(col2X, floor(valueY), fieldValue);
+			if(i < sizeOfFieldList){
+				valueY += lineHeight;
+			}
+	
+		}
 	}
 }
-
-else
-{
-	// There is a persistent box currently
-	
-	// [TODO]: Draw an outline around the word that has the persistent box
-}*/
-
-if (obj_control.hoverTokenID == -1)
-{
-	// No word is being hovered
+else{
 	exit;
 }
-	
-else
-{
-	// Make the box display the word at the mouse cursor
-	currentWordID = obj_control.hoverTokenID;
-	boxX = floor(mouse_x + mouseCursorWidth);
-	boxY = floor(mouse_y + mouseCursorHeight);
-}
-
-/* --- Fill a grid with the word's attributes' names and values to display --- */
-
-// N rows for N attributes
-// If you want to add more variables, simply add them to the first column of the attribute grid
-// The program will automatically resize the box and display the additional variables' values in the second column
-
-var attribGrid = ds_grid_create(2, 7);	// Init. the grid
-
-// Set the attribute names
-ds_grid_set(attribGrid, 0, 0, "text");
-ds_grid_set(attribGrid, 0, 1, "transcript");
-ds_grid_set(attribGrid, 0, 2, "POS_Spacy");
-ds_grid_set(attribGrid, 0, 3, "DepRel_Spacy");
-ds_grid_set(attribGrid, 0, 4, "wordStart");
-ds_grid_set(attribGrid, 0, 5, "wordEnd");
-var listOfMarkers = ds_list_create();
-ds_list_add(listOfMarkers,"text","transcript","POS_Spacy","DepRel_Spacy","wordStart","wordEnd");
-var listOfMarkersSize = ds_list_size(listOfMarkers)
-
-// For each attribute, get its value (from the tokenImportGrid) and put it in the 2nd column; if it does not exist, then remove the row from the attribute grid
-for (var i = 0; i <= listOfMarkersSize; i++)
-{
-	var attribName = ds_grid_get(attribGrid, 0, i);	// Attribute name to find the value of
-	var tokenImportGridAttribColNum = ds_list_find_index(global.tokenImportColNameList, attribName);	// Column number which stores the attribute in the tokenImportGrid
-	
-	if (tokenImportGridAttribColNum == -1)	// No such attribute
-	{
-		scr_gridDeleteRow(attribGrid, i);
-	}
-	
-	else
-	{
-		var attribValue = ds_grid_get(global.tokenImportGrid, tokenImportGridAttribColNum, currentWordID - 1);	// Attribute value from the tokenImportGrid
-		ds_grid_set(attribGrid, 1, i, attribValue);	// Insert attribute value into 2nd column	
-	}
-}
-
-if (ds_grid_height(attribGrid) == 0)	// Nothing to display, so stop here
-{
-	ds_grid_destroy(attribGrid)
-	exit;	
-}
-ds_list_destroy(listOfMarkers);
-
-/* --- Calculate the dimensions of the WordTip box --- */
-
-scr_adaptFont("A", "M");	// Set font to English, Medium
-
-// Box height is based on the number and height of the attributes
-var lineHeight = string_height(ds_grid_get(attribGrid, 0, 0) );
-boxHeight = ds_grid_height(attribGrid) * lineHeight;
-
-// Calculate the maximum widths of the attribute names and values (including the headers)
-var maxAttribNameWidth = string_width("Attribute");
-var maxAttribValWidth = string_width("Value");
-for (var i = 0; i < ds_grid_height(attribGrid); i++)
-{
-	// For each line, calculate the widths
-	var attribNameWidth = string_width(string(ds_grid_get(attribGrid, 0, i) ) );
-	var attribValWidth = string_width(string(ds_grid_get(attribGrid, 1, i) ) );
-	
-	// Then update the maximum widths
-	maxAttribNameWidth = max(maxAttribNameWidth, attribNameWidth);
-	maxAttribValWidth = max(maxAttribValWidth, attribValWidth);
-}
-
-boxWidth = maxAttribNameWidth + maxAttribValWidth;	// Box width fits the whole row
-
-// Scale the box padding by the box's dimensions
-boxPaddingHoriz = floor(0.05 * boxWidth);
-boxPaddingVert = floor(0.03 * boxHeight);
-
-var colPadding = boxPaddingHoriz * 2;	// Padding between end of longest attribute name and beginning of longest value
-
-var headerHeight = boxPaddingVert * 2 + max( string_height("Attribute"), string_height("Value") );	// Height of header section/box
-
-// Update the box dimensions to include the padding and header
-boxWidth += boxPaddingHoriz * 2 + colPadding;
-boxHeight += boxPaddingVert + headerHeight;
-
-/* --- Set the box's coordinates --- */
-
-var rectx2 = boxX + boxWidth;
-var recty2 = boxY + boxHeight;
-
-// Handle the case where the box clips off the bottom of the screen
-var fullWindowHeight = camera_get_view_height(camera_get_active() );
-if (recty2 >= fullWindowHeight)
-{
-	var overflowHeight = recty2 - fullWindowHeight;
-	boxY -= overflowHeight;
-	recty2 -= overflowHeight;
-}
-
-// Handle the case where the box clips off the right side of the screen
-var fullWindowWidth = camera_get_view_width(camera_get_active() );
-if (rectx2 >= fullWindowWidth)
-{
-	var overflowWidth = rectx2 - fullWindowWidth;
-	boxX -= overflowWidth;
-	rectx2 -= overflowWidth;
-}
-
-
-/* --- Draw the WordTip box and its attribute grid --- */
-
-// Variable for reading purposes
-var secondColumnOffsetX = boxPaddingHoriz + maxAttribNameWidth + colPadding;
-
-// Draw the box's outline
-draw_set_color(c_black);
-draw_rectangle(boxX, boxY, rectx2, recty2, true);
-
-// Draw the box's fill color
-draw_set_color(make_color_rgb(245, 245, 245) );
-draw_rectangle(boxX, boxY, rectx2, recty2, false);
-
-// Draw the header's fill color
-draw_set_color(make_color_rgb(220, 220, 220) );
-draw_rectangle(boxX, boxY, rectx2, boxY + headerHeight, false);
-
-// Draw the header and column separator lines
-draw_set_color(c_grey);
-draw_line(boxX, boxY + headerHeight, rectx2, boxY + headerHeight);	// Header line
-draw_line(boxX + secondColumnOffsetX - colPadding / 2, boxY, boxX + secondColumnOffsetX - colPadding / 2, recty2);	// Column separator line
-
-// Set params for drawing text
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
-draw_set_color(c_black);
-draw_set_alpha(1);
-
-
-// Draw the attribute grid
-for(var i = 0; i < ds_grid_height(attribGrid); i++)
-{	
-	
-	var attribName = ds_grid_get(attribGrid, 0, i);
-	var attribValueStr = string( ds_grid_get(attribGrid, 1, i) );
-	
-
-	
-	if(i == 0){
-		// Draw the headers
-		draw_text(boxX + boxPaddingHoriz, boxY + boxPaddingVert, "Attribute");
-		draw_text(boxX + secondColumnOffsetX, boxY + boxPaddingVert, "Value");
-	}
-
-
-	
-	var rowY = boxY + headerHeight + boxPaddingVert / 2 + i * lineHeight;
-	
-	scr_adaptFont(attribName, "M");
-	
-	// Draw the attribute name
-	draw_text(boxX + boxPaddingHoriz, rowY,	attribName);
-	
-	scr_adaptFont(attribValueStr, "M");
-	
-	// Draw the attribute value to the right
-	draw_text(boxX + secondColumnOffsetX, rowY, attribValueStr);
-}
-
-ds_grid_destroy(attribGrid)
