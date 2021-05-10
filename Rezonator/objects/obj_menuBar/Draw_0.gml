@@ -110,7 +110,7 @@ draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY
 if(mouseOverMax){
 	draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , false);
 	draw_set_color(global.colorThemeText);
-	scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, "Maximize", obj_tooltip.arrowFaceUp);
+	scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("Maximize"), obj_tooltip.arrowFaceUp);
 	
 	if (mouse_check_button_released(mb_left)) {
 		with (obj_panelPane) {
@@ -144,7 +144,7 @@ draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY
 if(mouseOverMin){
 	draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2 , false);
 	draw_set_color(global.colorThemeText);
-	scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, "Minimize", obj_tooltip.arrowFaceUp);
+	scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("Minimize"), obj_tooltip.arrowFaceUp);
 	if(mouse_check_button_released(mb_left)){
 		with (obj_panelPane) {
 			showNav = false;
@@ -174,7 +174,11 @@ draw_set_color(c_white);
 var mouseOverLang = (global.lang_codes[| global.lang_index] == "he") ? point_in_rectangle(mouse_x,mouse_y,langTextX2,langTextY1,langTextX1,langTextY2) : point_in_rectangle(mouse_x,mouse_y,langTextX1,langTextY1,langTextX2,langTextY2);
 if(mouseOverLang){
 	//draw_set_color(global.colorThemeText);
-	scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
+	if(global.lang_codes[| global.lang_index] == "he"){
+		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceLeft);
+	}else{
+		scr_createTooltip(langTextX1, mean(langTextY1,langTextY2), scr_get_translation("menu_language"),obj_tooltip.arrowFaceRight);
+	}
 	if(mouse_check_button_released(mb_left)){
 		var dropDownOptionList = ds_list_create();
 		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh");
@@ -191,8 +195,8 @@ draw_text(floor(mean(langTextX1, langTextX2)),floor(mean(langTextY1, langTextY2)
 
 
 
-var saveIconX2 =  langTextX1- sizeOfButtons/2;
-var saveIconX1 = saveIconX2 - sizeOfSave;
+var saveIconX2 = (global.lang_codes[| global.lang_index] == "he") ? langTextX1 + sizeOfButtons/2 : langTextX1- sizeOfButtons/2;
+var saveIconX1 = (global.lang_codes[| global.lang_index] == "he") ? saveIconX2 + sizeOfSave : saveIconX2 - sizeOfSave;
 var saveIconY1 = fpsTextY - (sizeOfSave/2);
 var saveIconY2 = fpsTextY + (sizeOfSave/2);
 
@@ -225,11 +229,17 @@ if(obj_control.allSaved){
 	saveTextAlpha -= 0.01;
 	saveTextAlpha = clamp(saveTextAlpha,0 ,1);
 	draw_set_alpha(saveTextAlpha);	
-	draw_text(saveIconX2,fpsTextY, "Saved!");
+	if(global.lang_codes[| global.lang_index] == "he"){
+		draw_text(saveIconX1 + string_width("0"), fpsTextY, scr_get_translation("Saved!"));   // felt too close to lang button, so I added string_width("0")
+	}else{
+		draw_text(saveIconX2,fpsTextY, scr_get_translation("Saved!"));
+	}
 }
 else{
-	if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
-		scr_createTooltip(saveIconX1,fpsTextY, "Unsaved Changes!", obj_tooltip.arrowFaceRight);
+	if(global.lang_codes[| global.lang_index] == "he") and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ){
+		scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceLeft);
+	}else if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
+		scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceRight);
 	}
 	draw_sprite_ext(spr_saveWarning,0,floor(mean(saveIconX1, saveIconX2)) ,fpsTextY,spriteScale,spriteScale, 0,c_white , 1)
 	saveTextAlpha = 1;	
