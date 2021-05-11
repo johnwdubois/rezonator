@@ -189,82 +189,18 @@ function scr_preImportInitiate(){
 	
 	
 	// create a hard-coded grid for the preImportScreen, to explain the info for each import type
-	preImportInfoGridWidth = 7;
+	preImportInfoGridWidth = 2;
 	preImportInfoGrid_colChoose = 0;
 	preImportInfoGrid_colDataType = 1;
-	preImportInfoGrid_colPerLine = 2;
-	preImportInfoGrid_colTab = 3;
-	preImportInfoGrid_colWhitespace = 4;
-	preImportInfoGrid_colHyphen = 5;
-	preImportInfoGrid_colFile = 6;
 	preImportInfoGrid = ds_grid_create(preImportInfoGridWidth, ds_list_size(global.importTypeList));
 	
 	// fill the preImportInfoGrid
 	for (var i = 0; i < importTypeListSize; i++) {
+		
 		var currentImportType = ds_list_find_value(global.importTypeList, i);
-		
 		var currentDataType = currentImportType;
-		var currentPerLine = "";
-		var currentTab = false;
-		var currentWhitespace = false;
-		var currentHyphen = false;
-		var currentFile = "";
-		
-		if (currentImportType == global.importType_TabDelimited) {
-			currentPerLine = "Unit";
-			currentTab = true;
-			currentWhitespace = true;
-			currentHyphen = false;
-			currentFile = ".txt";
-		}
-		else if (currentImportType == global.importType_PlainText) {
-			currentPerLine = "Unit";
-			currentTab = false;
-			currentWhitespace = true;
-			currentHyphen = false;
-			currentFile = ".txt";
-		}
-		else if (currentImportType == global.importType_CSV) {
-			currentPerLine = "Word";
-			currentTab = true;
-			currentWhitespace = false;
-			currentHyphen = false;
-			currentFile = ".csv";
-		}
-		else if (currentImportType == global.importType_CoNLLU) {
-			currentPerLine = "Word";
-			currentTab = true;
-			currentWhitespace = false;
-			currentHyphen = false;
-			currentFile = ".txt";
-		}
-		else if (currentImportType == global.importType_IGT) {
-			currentPerLine = "Unit per Block";
-			currentTab = false;
-			currentWhitespace = true;
-			currentHyphen = true;
-			currentFile = ".txt";
-		}
-		else if (currentImportType == global.importType_Transcription) {
-			currentPerLine = "Unit";
-			currentTab = true;
-			currentWhitespace = true;
-			currentHyphen = false;
-			currentFile = ".txt, .csv";
-		}
-		else if (currentImportType == global.importType_Paragraph) {
-			currentPerLine = "Paragraph";
-			currentTab = false;
-			currentWhitespace = true;
-			currentHyphen = false;
-			currentFile = ".txt";
-		}
-		
+
 		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colDataType, i, currentDataType);
-		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colPerLine, i, currentPerLine);
-		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colTab, i, currentTab);
-		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colWhitespace, i, currentWhitespace);
-		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colHyphen, i, currentHyphen);
-		ds_grid_set(preImportInfoGrid, preImportInfoGrid_colFile, i, currentFile);
+
 	}
 }
