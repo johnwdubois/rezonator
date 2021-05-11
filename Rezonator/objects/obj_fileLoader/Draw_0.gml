@@ -35,7 +35,7 @@ if(drawAutosaveText){
 	
 	// get coordinates for autosave text
 	var autosaveTextX = camWidth * 0.5;
-	var autosaveTextY = camHeight * 0.75;
+	var autosaveTextY = camHeight * 0.9;
 	var savingRectX1 = autosaveTextX - (textWidth * 0.5);
 	var savingRectY1 = autosaveTextY - (textHeight * 0.5);
 	var savingRectX2 = savingRectX1 + textWidth;

@@ -4,10 +4,13 @@ function scr_isStrRTL(str){
 	
 	// loop through the string and check if it has any RTL characters
 	var RTL = false;
-	var letterCount = string_length(str);		
+	var letterCount = string_length(str);
 	for (var i = 0; i <= letterCount; i++) {
 		var unicodeValue = ord(string_char_at(str, i));
-		if ( 1424 <= unicodeValue and unicodeValue <= 1969 ||
+		if ( 1424 <= unicodeValue and unicodeValue <= 1439 ||
+			 1441 <= unicodeValue and unicodeValue <= 1452 ||
+			 1454 <= unicodeValue and unicodeValue <= 1484 ||
+			 1486 <= unicodeValue and unicodeValue <=1969 ||
 			 1984 <= unicodeValue and unicodeValue <= 2143 ||
 			 2208 <= unicodeValue and unicodeValue <= 2303 ||
 			 64336 <= unicodeValue and unicodeValue <= 65023 ||
@@ -20,6 +23,7 @@ function scr_isStrRTL(str){
 			 126208 <= unicodeValue and unicodeValue <= 126287 ||
 			 126464 <= unicodeValue and unicodeValue <= 126719){
 			RTL = true;
+			show_debug_message( string(str) + ":   "+ string(unicodeValue));
 		}
 	}
 	return RTL;
