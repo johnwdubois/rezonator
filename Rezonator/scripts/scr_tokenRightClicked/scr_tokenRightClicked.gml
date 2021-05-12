@@ -34,7 +34,7 @@ function scr_tokenRightClicked(){
 				//"Split Word", "New Word",
 				ds_list_add(dropDownOptionList,  "Delete Link");
 				if (!firstWordInLine && obj_control.showDevVars) {
-					ds_list_add(dropDownOptionList, "Split Line");
+					//ds_list_add(dropDownOptionList, "Split Line");
 				}
 			}
 			
@@ -69,7 +69,7 @@ function scr_tokenRightClicked(){
 
 				//ds_list_add(dropDownOptionList, "Split Word", "New Word");
 				if (!firstWordInLine && obj_control.showDevVars) {
-					ds_list_add(dropDownOptionList, "Split Line");
+					//ds_list_add(dropDownOptionList, "Split Line");
 				}
 				
 			}

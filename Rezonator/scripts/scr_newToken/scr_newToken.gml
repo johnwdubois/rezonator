@@ -10,6 +10,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 	
 	
 	// get the tokenSeq & displayCol for our new token
+	show_debug_message("insert Before:   "+ string(obj_control.before));
 	var newTokenSeqIncr = (obj_control.before) ? 0 : 1;
 	var newDiscourseTokenSeq = refTokenSubMap[? "discourseTokenSeq"] + newTokenSeqIncr;
 	var newTokenSeq = refTokenSubMap[? "tokenSeq"] + newTokenSeqIncr;
