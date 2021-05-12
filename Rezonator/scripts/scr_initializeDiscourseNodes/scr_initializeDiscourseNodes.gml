@@ -109,7 +109,13 @@ function scr_initializeDiscourseNodes(){
 			if(currentField == global.unitImportUnitEndColName){
 				ds_map_add(currentUnitSubMap, "unitEnd", currentTag);
 			}
-			
+			if (currentField == global.speakerField && !obj_control.showSpeakerName) {
+				if (is_string(currentTag)) {
+					if (string_length(currentTag) >= 1) {
+						scr_showSpeakerName(true);
+					}
+				}
+			}
 			
 			if(i == 0){
 				if(j < 7 and ds_list_find_index(obj_control.navUnitFieldList, currentField) == -1){
