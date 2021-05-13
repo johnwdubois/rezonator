@@ -36,6 +36,7 @@ functionChainList_tabRezBrush = 2;
 functionChainList_tabTrackBrush = 1;
 functionChainList_tabStackBrush = 3;
 functionChainList_tabShow = 4;
+functionChainList_tabTranslations = 5;
 functionChainList_tabClique = -1;
 
 
@@ -45,6 +46,7 @@ functionChainList_tabName[2] = "menu_rez";
 functionChainList_tabName[1] = "menu_track";
 functionChainList_tabName[3] = "menu_stack";
 functionChainList_tabName[4] = "Show";
+functionChainList_tabName[5] = "Translations";
 functionTabs_tabHeight = 16;
 functionChainList_sortAsc[0] = true;
 functionChainList_sortAsc[1] = true;

@@ -25,6 +25,9 @@ function scr_panelPaneDrawBranch(){
 				else if (functionChainList_currentTab == functionChainList_tabShow) {
 					scr_panelPane_drawShowList();
 				}
+				else if (functionChainList_currentTab == functionChainList_tabTranslations) {
+					scr_panelPane_drawUnitsList();
+				}
 				else {
 					scr_panelPane_drawChainsList();
 				}
@@ -69,11 +72,14 @@ function scr_panelPaneDrawBranch(){
 				if (chainViewOneToMany) {
 					// one to many
 					if (functionChainList_currentTab == functionChainList_tabLine) {
-						scr_panelPane_drawUnits1toMany();
-						scr_panelPane_drawUnits1ToManyHeaders();
+							scr_panelPane_drawUnits1toMany();
+							scr_panelPane_drawUnits1ToManyHeaders();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabShow) {
 						scr_panelPane_drawShow1toMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
+						scr_panelPane_drawLineTranslationLoopClipped();
 					}
 					else {
 						scr_panelPane_drawChains1ToMany();
@@ -84,13 +90,19 @@ function scr_panelPaneDrawBranch(){
 					// one to one
 					if (functionChainList_currentTab == functionChainList_tabLine) {
 						scr_panelPane_drawUnits1to1();
+						
 					}
 					else if (functionChainList_currentTab == functionChainList_tabShow) {
+					}
+					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
+						scr_panelPane_drawLineTranslationLoopClipped();
 					}
 					else {
 						scr_panelPane_drawChains1To1();
 					}
 				}
+				
+
 			
 				clickedIn = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 			}

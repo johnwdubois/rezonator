@@ -17,8 +17,11 @@ function scr_setSpecialFieldsVariables() {
 	global.wordImportWordDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, wordDelimiterRow);
 
 	var translationRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Translation");
-	global.unitImportTranslationColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, translationRow);
-
+	if(ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, translationRow) != undefined){
+		scr_addToListOnce(global.translationList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, translationRow));
+		global.currentTranslation = global.translationList[|0];
+	}
+	
 	var speakerRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
 	global.unitImportSpeakerColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, speakerRow);
 

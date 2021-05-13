@@ -8,7 +8,7 @@ function scr_panelPane_drawUnitsList() {
 	var strHeight = string_height("0") * 1.5;
 	var spaceWidth = string_width(" ");
 	
-	var drawScrollbar = (!obj_control.showUnitTags);
+	var drawScrollbar = ((!obj_control.showUnitTags) or functionChainList_currentTab == functionChainList_tabTranslations);
 	var scrollBarWidth = global.scrollBarWidth;
 	
 	// get the instance ID for the lineContents pane so we can easily reference it

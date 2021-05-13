@@ -295,10 +295,12 @@ global.unitImportUnitEndColName = "";
 global.unitImportUnitDelimColName = "";
 global.unitImportTurnDelimColName = "";
 global.wordImportWordDelimColName = "";
-global.unitImportTranslationColName = "";
+global.currentTranslation = "";
 global.unitImportSpeakerColName = "";
 global.tokenImportTranscriptColName = "";
 global.tokenImportDisplayTokenColName = "";
+
+global.translationList = ds_list_create();
 
 global.openedREZFile = false;
 

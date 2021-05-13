@@ -27,6 +27,11 @@ function scr_panelPane_drawTabs() {
 	var buttonScale = (1+global.fontSize/10);
 
 	var tabAmount = 5;
+	var translationListSize = ds_list_size(global.translationList);
+	var hasTranslation = (translationListSize > 0)
+	if(hasTranslation){
+		tabAmount = 6;
+	}
 
 	x = 0;
 	if (obj_panelPane.showNav) {

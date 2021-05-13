@@ -329,5 +329,9 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_1to1Options(optionSelected);
 	}
+	else if (optionListType == global.optionListTypeTranslation) //59
+	{
+		scr_translationOptions(optionSelected);
+	}
 
 }
