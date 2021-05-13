@@ -124,7 +124,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		if(is_string(currentLineWordString)){
 			scr_adaptFont(currentLineWordString, "M");
-			var textXPos = (drawingSpeaker) ? lineNameRectX1 + (windowWidth/3): (lineNameRectX1 + textMarginLeft + 5);
+			var textXPos = (drawingSpeaker) ? lineNameRectX1 + (windowWidth/3): unitColX2 + (textMarginLeft);
 			draw_set_alpha(1);
 			draw_set_halign(fa_left);
 			draw_text(floor(textXPos) - clipX, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY)- clipY, currentLineWordString);
