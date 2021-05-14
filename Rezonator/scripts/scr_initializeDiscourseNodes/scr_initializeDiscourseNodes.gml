@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_initializeDiscourseNodes(){
 	
-	show_debug_message("scr_initializeDiscourseNodes() ... START " + scr_printTime());
+	show_debug_message("scr_initializeDiscourseNodes ... START " + scr_printTime());
 	
 	// create discourse node
 	var currentDiscourseNode = scr_addToNodeMap("Discourse");
@@ -95,12 +95,16 @@ function scr_initializeDiscourseNodes(){
 
 		
 		// make tag map for unit & copy tags from unitImportGrid
+		show_debug_message("scr_initializeDiscourseNodes... speakerField: " + string(global.speakerField));
 		var tagMap = ds_map_create();
 		ds_map_add_map(currentUnitSubMap, "tagMap", tagMap);
 		var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
 		for (var j = 1; j < unitImportColNameListSize; j++) {
 			var currentField = string(global.unitImportColNameList[| j]);
 			var currentTag = ds_grid_get(global.unitImportGrid, j, i);
+			
+			show_debug_message("scr_initializeDiscourseNodes... currentField: " + string(currentField));
+			
 			ds_map_add(tagMap, currentField, currentTag);
 			
 			if(currentField == global.unitImportUnitStartColName){
@@ -109,9 +113,11 @@ function scr_initializeDiscourseNodes(){
 			if(currentField == global.unitImportUnitEndColName){
 				ds_map_add(currentUnitSubMap, "unitEnd", currentTag);
 			}
-			if (currentField == global.speakerField && !obj_control.showSpeakerName) {
+			if (currentField == global.speakerField) {
+				show_debug_message("boyyyy");
 				if (is_string(currentTag)) {
 					if (string_length(currentTag) >= 1) {
+						show_debug_message("scr_initializeDiscourseNodes ... showSpeakerName is true!");
 						scr_showSpeakerName(true);
 					}
 				}
@@ -167,7 +173,7 @@ function scr_initializeDiscourseNodes(){
 	global.displayTokenField = "~text";
 	global.speakerField = "~Participant";
 	
-	show_debug_message("scr_initializeDiscourseNodes() ... END " + scr_printTime());
+	show_debug_message("scr_initializeDiscourseNodes ... END " + scr_printTime());
 	
 
 }

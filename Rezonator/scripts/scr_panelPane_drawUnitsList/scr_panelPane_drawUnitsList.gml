@@ -4,6 +4,8 @@ function scr_panelPane_drawUnitsList() {
 				set chainContents panelPane to look at that chain
 	*/
 	
+	if (live_call()) return live_result;
+	
 
 	var strHeight = string_height("0") * 1.5;
 	var spaceWidth = string_width(" ");
@@ -20,7 +22,8 @@ function scr_panelPane_drawUnitsList() {
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
 	
-
+	
+	
 
 	// Set text margin area
 	var filterRectSize = (strHeight / 2) + 5;
@@ -120,10 +123,9 @@ function scr_panelPane_drawUnitsList() {
 		}
 	
 		// get speaker rect coordinates
-		var speakerRectX1 = currentUnitRectX1 + unitSeqRectWidth;
+		var speakerRectX1 = floor(currentUnitRectX1 + unitSeqRectWidth);
 		var speakerRectX2 = speakerRectX1;
 		if (ds_list_size(obj_control.speakerLabelColXList) > 1) {
-			speakerRectX1 = floor(currentUnitRectX1 + unitSeqRectWidth);
 			speakerRectX2 = floor(speakerRectX1 + speakerRectWidth);
 		}
 	
@@ -149,6 +151,7 @@ function scr_panelPane_drawUnitsList() {
 			var speakerTextX = lineStateLTR ? floor(speakerRectX1 + textBuffer) : floor(speakerRectX2);
 			draw_text(speakerTextX - clipX, textY - clipY, currentSpeaker);
 		}
+		
 		
 		// draw unitSeq rect & text
 		draw_set_color(global.colorThemeSelected1); //soften the color
