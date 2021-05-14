@@ -119,7 +119,6 @@ function scr_panelPane_drawTabs() {
 				// switch tab
 				with (obj_panelPane) {
 					functionChainList_currentTab = i;
-					functionChainList_playShowID = "";
 				}
 				
 				// re-determine tab data (now that we've switched tabs)
@@ -141,6 +140,13 @@ function scr_panelPane_drawTabs() {
 					}
 				}
 				
+				
+				if (functionChainList_currentTab != functionChainList_tabShow) {
+					with(obj_panelPane){
+						functionChainList_playShowID = "";
+					}	
+				}
+				
 				filterList = scr_getFilterList();
 				chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 				
@@ -151,6 +157,7 @@ function scr_panelPane_drawTabs() {
 					else if (obj_control.filterGridActive) {
 						scr_disableFilter();
 					}
+
 				}
 				else if (obj_control.filterGridActive) {
 					obj_control.filterGridActive = false;

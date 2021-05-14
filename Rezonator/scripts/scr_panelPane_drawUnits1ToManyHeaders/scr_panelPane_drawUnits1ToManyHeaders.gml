@@ -5,7 +5,8 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	var headerList = obj_control.navTokenFieldList;
 	var headerListSize = ds_list_size(headerList);
 	var headerHeight = functionTabs_tabHeight;
-
+	var textMarginLeft = 8;
+	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var plusX = x
 	for (var i = 0; i < headerListSize; i++) {
 		
@@ -30,13 +31,19 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			draw_set_color(global.colorThemeBorders);
 			draw_line(headerRectX1, headerRectY1, headerRectX1, y + headerHeight);
 		}
-
+		// draw token selection button
+		var dropDownButtonSize = sprite_get_width(spr_dropDown);
 		// draw column header names
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		scr_adaptFont(currentField, "M");
-		draw_text(headerRectX1 + 8, floor(y + (headerHeight / 2)), currentField);
+		var headertextX = headerRectX1 + textMarginLeft;
+		if(!lineStateLTR){
+			draw_set_halign(fa_right);
+			headertextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize*2;
+		}
+		draw_text(headertextX, floor(y + (headerHeight / 2)), currentField);
 	
 		// draw displayToken button
 		var displayTokenButtonSize = (headerHeight / 4);
@@ -44,8 +51,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		var displayTokenButtonY = mean(headerRectY1, headerRectY2);
 		var mouseoverDisplayToken = point_in_circle(mouse_x, mouse_y, displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize);
 	
-		// draw token selection button
-		var dropDownButtonSize = sprite_get_width(spr_dropDown);
+
 		var dropDownRectX1 = displayTokenButtonX - 16 - dropDownButtonSize;
 		var dropDownRectY1 = headerRectY1 + (dropDownButtonSize * 0.25);
 		var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;

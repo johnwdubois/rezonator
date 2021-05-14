@@ -41,10 +41,6 @@ function scr_specialFieldsOptions(optionSelected) {
 				}
 			}
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Translation");
-			if(ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange) != undefined){
-				scr_addToListOnce(global.translationList, ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange));
-				global.currentTranslation = global.translationList[|0];
-			}
 			break;
 		case "Transcript":
 		global.tokenImportTranscriptColName = "";

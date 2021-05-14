@@ -232,7 +232,7 @@ function scr_panelPane_drawUnits1to1() {
 	else{
 		if(i < headerListSize-1){
 			draw_set_color(global.colorThemeBorders);
-			draw_line_width(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + windowHeight - clipY, 2);
+			draw_line_width(colRectX1+1 - clipX, y - clipY, colRectX1+1 - clipX, y + windowHeight - clipY, 1);
 		}
 	}
 	
