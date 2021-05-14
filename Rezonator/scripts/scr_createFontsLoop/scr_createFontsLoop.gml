@@ -5,7 +5,7 @@ function scr_createFontsLoop(){
 	// CHANGE THIS VAR WHEN MAKING A BUILD
 	// if build is true --> CJK fonts will be loaded
 	// if build is false --> CJK fonts will not be loaded
-	var build = false;
+	var build = true;
 	
 	// find font file
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
