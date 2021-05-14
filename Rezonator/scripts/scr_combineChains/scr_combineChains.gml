@@ -20,6 +20,9 @@ function scr_combineChains(focusedChain, clickedChain){
 		exit;
 	}
 	
+	var focusedChainEntryList = focusedChainSubMap[?"setIDList"];
+	var focusedChainEntry = focusedChainEntryList[|0];
+	
 	// make a temporary list of the words/units in the clicked chain
 	var tempList = ds_list_create();
 	var clickedChainSetIDList = ds_map_find_value(clickedChainSubMap, "setIDList");
@@ -43,6 +46,7 @@ function scr_combineChains(focusedChain, clickedChain){
 		var currentWordOrUnit = ds_list_find_value(tempList, i);
 		with (obj_chain) {
 			currentFocusedChainID = focusedChain;
+			focusedChainSubMap[? "focused"] = focusedChainEntry;
 			show_debug_message("currentWordOrUnit:  "+ string(currentWordOrUnit));
 			scr_newLink(currentWordOrUnit);
 		}
