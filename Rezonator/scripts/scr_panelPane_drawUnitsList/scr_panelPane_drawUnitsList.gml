@@ -4,7 +4,7 @@ function scr_panelPane_drawUnitsList() {
 				set chainContents panelPane to look at that chain
 	*/
 	
-	if (live_call()) return live_result;
+
 	
 
 	var strHeight = string_height("0") * 1.5;
