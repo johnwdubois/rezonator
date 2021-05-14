@@ -103,24 +103,30 @@ function scr_drawChains() {
 
 
 			
-			//get tokenSubMaps
+			// get tokenSubMaps
 			var currentToken1SubMap = global.nodeMap[? currentTokenID1];
 			var currentToken2SubMap = global.nodeMap[? currentTokenID2];
 			if(!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)){show_debug_message("TRERRY IS A DINGLE1") continue;}
 			if(!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){show_debug_message("TRERRY IS A DINGLE2") continue;}
 				
-			//get tokenTagSubMaps
+			// get tokenTagSubMaps
 			var currentTagSubMap1 = currentToken1SubMap[? "tagMap"];
 			var currentTagSubMap2 = currentToken2SubMap[? "tagMap"];		
 	
 			
-			//get unit IDs
-			var tokenUnitID1 = currentToken1SubMap[?"unit"];
-			var	tokenUnitID2 = currentToken2SubMap[?"unit"];
+			// get unit IDs
+			var tokenUnitID1 = currentToken1SubMap[? "unit"];
+			var	tokenUnitID2 = currentToken2SubMap[? "unit"];
 			
-			//get token's Unit's subMap
-			var tokenUnitID1SubMap = global.nodeMap[?tokenUnitID1];
-			var tokenUnitID2SubMap = global.nodeMap[?tokenUnitID2];
+			// get token's Unit's subMap
+			var tokenUnitID1SubMap = global.nodeMap[? tokenUnitID1];
+			var tokenUnitID2SubMap = global.nodeMap[? tokenUnitID2];
+			
+			// check if the units are active
+			var unit1Active = tokenUnitID1SubMap[? "active"];
+			var unit2Active = tokenUnitID2SubMap[? "active"];
+			
+
 			
 			/*
 			// check if the words are chunks
@@ -199,13 +205,15 @@ function scr_drawChains() {
 			if (unitSeq2 < obj_control.drawRangeStart or unitSeq2 > obj_control.drawRangeEnd) {
 				currentLineGridIndex2InDrawRange = false;
 			}
-		
-		
+			
+			
+			// check if these y values are in our draw range
+			var inDrawRange1 = !(lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2));
+			var inDrawRange2 = !(lineY1 > camHeight + (obj_control.gridSpaceVertical * 2) and lineY2 > camHeight + (obj_control.gridSpaceVertical * 2));
 		 
 			// only draw line if every value is real and we are in the draw range
-			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2))
-			and not (lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2))
-			and not (lineY1 > camHeight + (obj_control.gridSpaceVertical * 2) and lineY2 > camHeight + (obj_control.gridSpaceVertical * 2)) {
+			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2)
+			&& unit1Active && unit2Active && inDrawRange1 && inDrawRange2) {
 				
 				// check if text is right aligned
 				if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {

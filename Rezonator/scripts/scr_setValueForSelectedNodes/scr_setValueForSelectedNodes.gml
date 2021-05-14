@@ -20,12 +20,11 @@ function scr_setValueForSelectedNodes(type, key, value){
 		// get current node and its submap
 		var currentNode = ds_list_find_value(selectedList, i);
 		var currentNodeSubMap = ds_map_find_value(global.nodeMap, currentNode);
-		if (!is_numeric(currentNodeSubMap)) continue;
-		if (!ds_exists(currentNodeSubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(currentNodeSubMap, ds_type_map)) continue;
 		
 		// set value in map
 		show_debug_message("scr_setValueForSelectedNodes() ... currentNode: " + string(currentNode) + ", key: " + string(key) + ", value: " + string(value));
-		scr_setMap(currentNodeSubMap, key, value);
+		currentNodeSubMap[? key] = value;
 		
 		// add to filteredLists
 		if (key == "filter") {

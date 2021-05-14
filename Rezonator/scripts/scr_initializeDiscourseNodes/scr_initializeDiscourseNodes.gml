@@ -132,6 +132,7 @@ function scr_initializeDiscourseNodes(){
 		ds_map_add(currentUnitSubMap, "pID", currentPID);
 		ds_map_add(currentUnitSubMap, "speakerColor", currentSpeakerColor);
 		ds_map_add(currentUnitSubMap, "filter", false);
+		ds_map_add(currentUnitSubMap, "active", true);
 		if (!ds_map_exists(currentUnitSubMap, "unitStart")) ds_map_add(currentUnitSubMap, "unitStart", "");
 		if (!ds_map_exists(currentUnitSubMap, "unitEnd")) ds_map_add(currentUnitSubMap, "unitEnd", "");
 		
