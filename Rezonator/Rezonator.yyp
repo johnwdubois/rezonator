@@ -85,6 +85,7 @@
     {"id":{"name":"scr_appearancesInList","path":"scripts/scr_appearancesInList/scr_appearancesInList.yy",},"order":7,},
     {"id":{"name":"scr_splitStringImport","path":"scripts/scr_splitStringImport/scr_splitStringImport.yy",},"order":4,},
     {"id":{"name":"scr_disableFilter","path":"scripts/scr_disableFilter/scr_disableFilter.yy",},"order":4,},
+    {"id":{"name":"execute_shell_simple","path":"extensions/execute_shell_simple/execute_shell_simple.yy",},"order":6,},
     {"id":{"name":"scr_destroyAllDropDownsOtherThanSelf","path":"scripts/scr_destroyAllDropDownsOtherThanSelf/scr_destroyAllDropDownsOtherThanSelf.yy",},"order":41,},
     {"id":{"name":"scr_searchForWord","path":"scripts/scr_searchForWord/scr_searchForWord.yy",},"order":0,},
     {"id":{"name":"scr_addToSearchGrid","path":"scripts/scr_addToSearchGrid/scr_addToSearchGrid.yy",},"order":1,},
