@@ -13,17 +13,16 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		Author: Georgio Klironomos
 	*/
 
-
+	scr_surfaceStart();
 	// Access the lineList panelPane object to get it's scrollPlusY
 	//var lineListPanelPaneInst = inst_PanelPane_chainList;
-
 
 	var strHeight = string_height("0") * 1.5;
 
 	// Set text margin area
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
-	var textMarginLeft = filterRectMargin + (filterRectSize * 2);
+	var textMarginLeft = filterRectMargin;
 
 	var textMarginTop = functionTabs_tabHeight;
 	var textPlusY = 0;
@@ -39,12 +38,16 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeText);
 	
-	var translationCol =  ds_list_find_index(global.unitImportColNameList, global.unitImportTranslationColName);
 
-	//scr_surfaceStart();
+
 	// Not doing a surface here so it can scroll along with the left Navwindow
-	var lineGridHeight = ds_grid_height(obj_control.lineGrid);
-	for (var i = 0; i < lineGridHeight; i++) {
+	
+	var discourseSubMap = global.nodeMap[?global.discourseNode];
+	var unitList = discourseSubMap[?"unitList"];
+	var unitListSize = ds_list_size(unitList);
+	
+	
+	for (var i = 0; i < unitListSize; i++) {
 	
 		if (y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY < y - strHeight
 		or y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY > y + windowHeight + strHeight) {
@@ -54,86 +57,46 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	
 	
 		// Get grid info of current chain
-		var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, i);
-		var currentLineState = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colLineState, i);
-		var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1); // Access color of line
-		var lineSpeaker = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantName, currentLineUnitID - 1);
-		// Prevent those pesky comments from showing up in the line list
-		if (lineSpeaker == "COMMENT") {
-			continue;
-		}
-	
-		var discoColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colDiscoColor, currentLineUnitID - 1);
-		if (!is_numeric(discoColor)) {
-			discoColor = obj_control.c_ltblue;
-		}
-		
-		if (!is_numeric(lineColor)) {
-		    lineColor = c_gray;
-		}
+		var currentUnitID = unitList[|i];
+		var unitSubMap = global.nodeMap[?currentUnitID];
+		if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){ continue;}
+			var unitTagMap = unitSubMap[?"tagMap"];
+			var lineSpeaker = unitTagMap[?global.speakerField];
 
 		var currentLineWordString = "";
 
-		if(ds_grid_height(global.importGrid) > 0 && translationCol != undefined) {
-			currentLineWordString = ds_grid_get(global.unitImportGrid, translationCol, i);
-		}
-		// If there is no translation, merely show the transcripts instead
-		else {
-			var currentLineWordList = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colWordIDList, currentLineUnitID - 1);
-			var currentLineWordListSize = ds_list_size(currentLineWordList)
-			for(var wordListLoop = 0; wordListLoop < currentLineWordListSize; wordListLoop++) {
-				var currentWordID = ds_list_find_value(currentLineWordList, wordListLoop);
-				var currentWordTranscript = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentWordID - 1);
-				currentLineWordString += currentWordTranscript + " ";
-			}
+		if(global.currentTranslation != undefined and global.currentTranslation != "") {
+			currentLineWordString = unitTagMap[?global.currentTranslation];
 		}
 	
 		// Get dimensions of rectangle around line name
 		var lineNameRectX1 = x;
 		var lineNameRectY1 = y + textMarginTop + textPlusY + inst_PanelPane_chainList.scrollPlusY - (strHeight / 2);
-		var lineNameRectX2 = x + windowWidth;
+		var lineNameRectX2 = lineNameRectX1 + windowWidth;
 		var lineNameRectY2 = lineNameRectY1 + strHeight;
 	
 		//Check mouse clicks to focus a line in the list
 		if (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, lineNameRectX1, lineNameRectY1, lineNameRectX2, lineNameRectY2)) {
-			//if (obj_control.showDevVars) {
-				draw_set_color(c_red);
-				draw_circle(mouse_x, mouse_y, 5, true);
-			//}
-		
 			if (device_mouse_check_button_released(0, mb_left) and not instance_exists(obj_dialogueBox) and not instance_exists(obj_dropDown)) {
-				//show_message("line");
-				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
-				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, i, 1);
 				with (obj_panelPane) {
 					functionChainList_lineGridRowFocused = i;
-					functionChainContents_BGColor = lineColor;
 				}
 			}
 		}
-	
-	
-		//Color codes the line lists for User
-		draw_set_color(discoColor); //soften the color
-		//draw_set_color(lineColor);
-		//draw_rectangle(lineNameRectX1 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
-	
-		// Outline the rectangle in black
-		if (currentLineState == 1) {
-			focusedLineNameRectY1 = lineNameRectY1;
-			focusedLineNameRectY2 = lineNameRectY2;
-			focusedElementY = y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY;
-		}
+		var unitColX1 = lineNameRectX1
+		
+		var unitColX2 = lineNameRectX1 + (textMarginLeft) + string_width("     ");
+ 
+		var textY =floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY )
 
 	
 		// Draw text of chain names
-		
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		draw_set_color(global.colorThemeNegSpace);
-		draw_rectangle(x - clipX, lineNameRectY1 - clipY, x + textMarginLeft - clipX, lineNameRectY2 - clipY - 2, false);
+		draw_rectangle(unitColX1 - clipX, lineNameRectY1 - clipY, unitColX2 - clipX, lineNameRectY2 - clipY - 2, false);
 		draw_set_color(global.colorThemeText);
-		draw_text(floor(x + (textMarginLeft/2) - clipX - (string_width(currentLineUnitID)/2)), floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), string(currentLineUnitID));
+		draw_text(floor(unitColX1 + (textMarginLeft) - clipX) , textY - clipY, string(i+1));
 		
 		
 		var drawingSpeaker = false;
@@ -141,17 +104,19 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		if(is_string(lineSpeaker)){
 		//Color codes the line lists for User
 			if(string_length(lineSpeaker) > 0){
+				
+				
 				drawingSpeaker = true;
-				draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
-				draw_rectangle(x + (textMarginLeft) - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
+				draw_set_color(merge_color(unitSubMap[?"speakerColor"], global.colorThemeBG, 0.4)); //soften the color
+				draw_rectangle(unitColX2 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 				draw_set_color(global.colorThemeText);
 		
 				lineSpeaker = scr_adaptFont(lineSpeaker, "M");
-				draw_text(x + (textMarginLeft) - clipX + 10, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY - clipY), lineSpeaker);
+				draw_text(unitColX2 + (textMarginLeft) - clipX , textY - clipY, lineSpeaker);
 			}
 		}
 		
-		//draw_set_color(merge_color(lineColor, global.colorThemeBG, 0.4)); //soften the color
+
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(windowWidth/3 - 10, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 		draw_set_color(global.colorThemeBG);
@@ -159,7 +124,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		draw_set_color(global.colorThemeText);
 		if(is_string(currentLineWordString)){
 			scr_adaptFont(currentLineWordString, "M");
-			var textXPos = (drawingSpeaker) ? x + (windowWidth/3): (x + textMarginLeft + 5);
+			var textXPos = (drawingSpeaker) ? lineNameRectX1 + (windowWidth/3): unitColX2 + (textMarginLeft);
 			draw_set_alpha(1);
 			draw_set_halign(fa_left);
 			draw_text(floor(textXPos) - clipX, floor(y + textMarginTop + inst_PanelPane_chainList.scrollPlusY + textPlusY)- clipY, currentLineWordString);
@@ -179,46 +144,11 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
 	if (clickedIn) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
-			
-			if (functionChainList_lineGridRowFocused > 0 and functionChainList_lineGridRowFocused < ds_grid_height(obj_control.lineGrid)) {
-
-				//Allow for arrow keys to shift focus down the list of lines
-				obj_panelPane.functionChainList_lineGridRowFocused--;
-				var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
-				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-			
-			
-				if (focusedElementY <= y + textMarginTop + strHeight) {
-					inst_PanelPane_chainList.scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
-				}
-			}
-			else {
-				inst_PanelPane_chainList.scrollPlusYDest += 4;
-			}
+			inst_PanelPane_chainList.scrollPlusYDest += 4;
 		}
 		
 		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (obj_panelPane.holdDown < 2 || obj_panelPane.holdDown > 30)) {
-			
-			if (functionChainList_lineGridRowFocused < ds_grid_height(obj_control.lineGrid) - 1 and functionChainList_lineGridRowFocused >= 0) {
-
-				//Allow for arrow keys to shift focus down the list of lines
-				obj_panelPane.functionChainList_lineGridRowFocused++;
-				var currentLineUnitID = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_panelPane.functionChainList_lineGridRowFocused);
-				var lineColor = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colParticipantColor, currentLineUnitID - 1);
-				obj_panelPane.functionChainContents_BGColor = lineColor;
-				ds_grid_set_region(obj_control.lineGrid, obj_control.lineGrid_colLineState, 0, obj_control.lineGrid_colLineState, ds_grid_height(obj_control.lineGrid), 0);
-				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, obj_panelPane.functionChainList_lineGridRowFocused, 1);
-			
-				if (focusedElementY >= y + windowHeight - strHeight) {
-					inst_PanelPane_chainList.scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
-				}
-			}
-			else {
 				inst_PanelPane_chainList.scrollPlusYDest -= 4;
-			}
 		}
 	
 		// CTRL+UP and CTRL+DOWN
@@ -241,21 +171,16 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	if (focusedLineNameRectY1 > -1 and focusedLineNameRectY2 > -1) {
 		draw_set_color(global.colorThemeBorders);
 		for (var j = 0; j < 3; j++) {
-			draw_rectangle(x + j - clipX, focusedLineNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedLineNameRectY2 - j - clipY, true);
+			draw_rectangle(lineNameRectX1 + j - clipX, focusedLineNameRectY1 + j - clipY, x + windowWidth - j - clipX, focusedLineNameRectY2 - j - clipY, true);
 		}
 	}
 
-
-
-
-	/*scr_scrollBar(ds_grid_height(obj_control.lineGrid), focusedElementY, strHeight, textMarginTop,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);*/
+	scr_surfaceEnd();
 
 	//draw topbar
-	var topBarX1 = 0;
+	var topBarX1 = x;
 	var topBarX2 = topBarX1 + windowWidth;
-	var topBarY1 = 0;
+	var topBarY1 = y;
 	var topBarY2 = topBarY1 + functionTabs_tabHeight-1;
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(topBarX1,topBarY1,topBarX2,topBarY2, false);
@@ -263,8 +188,31 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 	draw_rectangle(topBarX1,topBarY1,topBarX2,topBarY2, true);
 	
 	draw_set_color(global.colorThemeText);
-	draw_text( 10 , floor(mean(topBarY1,topBarY2)) , "Translation: " + string(global.unitImportTranslationColName));
+	draw_text( topBarX1 + textMarginLeft , floor(mean(topBarY1,topBarY2)) , "Translation: " + string(global.currentTranslation));
 	
+	
+	
+		// draw token selection button
+		var dropDownButtonSize = sprite_get_width(spr_dropDown);
+		var dropDownRectX2 = topBarX2 - 16;
+		var dropDownRectX1 = dropDownRectX2 - dropDownButtonSize;
+		var dropDownRectY1 = topBarY1 + (dropDownButtonSize * 0.25);
+		var dropDownRectY2 = topBarY2 - (dropDownButtonSize * 0.25);
+		var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
+		
+		// user interaction for token selection
+		if (mouseoverDropDownButton && !instance_exists(obj_dropDown)) {
+			scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change field", obj_tooltip.arrowFaceUp);
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2, true);
+			if (mouse_check_button_released(mb_left)) {
+				var dropDownOptionList = ds_list_create();
+				ds_list_copy(dropDownOptionList, global.translationList);
+				scr_createDropDown(dropDownRectX2, dropDownRectY2, dropDownOptionList, global.optionListTypeTranslation);
+			}
+		}
+		draw_set_color(global.colorThemeBorders);
+		draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2), mean(dropDownRectY1, dropDownRectY2), 1, 1, 0, global.colorThemeText, 1);
 
 
 

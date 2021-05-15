@@ -22,6 +22,7 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	drawRangeExtraStepsForward = 0;
 	drawRangeExtraStepsBack = 0;
 	
+	
 	// extend drawRange backwards
 	if (drawRangeStart - 1 >= 0) {
 		currentUnit = displayUnitList[| drawRangeStart - 1];
@@ -42,6 +43,29 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 			}
 		}
 	}
+	
+	
+	
+	var firstUnit = displayUnitList[| drawRangeStart];
+	var firstUnitSubMap = global.nodeMap[? firstUnit];
+	var firstUnitPixelY = firstUnitSubMap[? "pixelY"];
+	while (firstUnitPixelY > -gridSpaceVertical && drawRangeStart - 1 >= 0) {
+		drawRangeStart--;
+		drawRangeExtraStepsBack++;
+		
+		if (drawRangeStart - 1 < 0) {
+			break;
+		}
+		else {
+			firstUnit = displayUnitList[| drawRangeStart];
+			firstUnitSubMap = global.nodeMap[? firstUnit];
+			firstUnitPixelY = firstUnitSubMap[? "pixelY"];
+		}
+	}
+	
+	
+
+	
 	
 	
 	// make sure that the drawRangeEnd is never extending more than it should

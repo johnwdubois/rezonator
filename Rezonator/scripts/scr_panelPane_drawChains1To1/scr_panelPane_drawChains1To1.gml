@@ -213,6 +213,11 @@ function scr_panelPane_drawChains1To1(){
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
+		// draw line to separate column headers from data
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(x - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + tabHeight - clipY, true);
+	
+		
 		
 		// draw header name
 		draw_set_color(global.colorThemeText);
@@ -222,22 +227,30 @@ function scr_panelPane_drawChains1To1(){
 				
 		var headertextX = colRectX1 + (textMarginLeft);
 		if(!lineStateLTR){
-			headertextX = colRectX2 - (textMarginLeft) - dropDownButtonWidth*2;
+			draw_set_halign(fa_right);
+			headertextX = colRectX2 - (textMarginLeft)*2 - dropDownButtonWidth*2;
 		}
 		
 		draw_text(headertextX - clipX, y + tabHeight/2 - clipY, colName);
 		
 		// draw lines for dividing columns
-		if (i > 0) {
-			draw_set_color(global.colorThemeBG);
-			draw_set_alpha(1);
-			draw_line(colRectX1 - clipX, colRectY1 - clipY, colRectX1 - clipX, colRectY2 - clipY);
+		if(lineStateLTR){	
+			if(i > 0){
+				draw_set_color(global.colorThemeBorders);
+				draw_line_width(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + windowHeight - clipY, 1);
+			}
+		}
+		else{
+			if(i > 0 && i < chain1to1ColFieldListSize){
+				draw_set_color(global.colorThemeBorders);
+				draw_line_width(colRectX1 + 1 - clipX, y - clipY, colRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
+			}
 		}
 		
 		// dropdown button to switch dynamic fields
-		var dropDownButtonX1 = colRectX1 + ((colRectX2 - colRectX1) * 0.8);
+		var dropDownButtonX1 = colRectX2 - (textMarginLeft) - dropDownButtonWidth*2;
 		var dropDownButtonY1 = colRectY1 + (tabHeight * 0.25);
-		var dropDownButtonX2 = colRectX1 + ((colRectX2 - colRectX1) * 0.95);
+		var dropDownButtonX2 = colRectX2 - (textMarginLeft) - dropDownButtonWidth;
 		var dropDownButtonY2 = colRectY1 + (tabHeight * 0.75);
 		var mouseoverDropDownButton = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
 		draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);

@@ -2,6 +2,11 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChains1ToManyHeaders(){
 	
+	
+	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+	var textMarginLeft = 8;
+	var dropDownButtonSize = sprite_get_width(spr_dropDown);
+	
 	var tabHeight = functionTabs_tabHeight;
 	var chain1toManyColFieldList = -1;
 	var chainType = "";
@@ -25,10 +30,14 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		// draw headers for chainContents columns
 		var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 		var colAmount = 3 + chainContents1toManyFieldListSize;
-		for (var i = 0; i < colAmount; i++) {
-			var colRectX1 = x + (i * (windowWidth / colAmount));
+		var i = 0;
+		repeat(colAmount) {
+			
+			
+			var colWidth = windowWidth / colAmount;
+			var colRectX1 = (lineStateLTR)? x + (colWidth * i): x + windowWidth - (colWidth * (i+1));
 			var colRectY1 = y;
-			var colRectX2 = colRectX1 + (windowWidth / colAmount);
+			var colRectX2 = colRectX1 + colWidth;
 			if (colAmount == 3 && i == 2) {
 				var colRectX2 = colRectX1 + (windowWidth);	
 			}
@@ -105,14 +114,36 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			draw_set_valign(fa_middle);
 			draw_set_halign(fa_left);
 			scr_adaptFont(colName, "M");
-			draw_text(colRectX1 + 4 , y + tabHeight/2 , colName);
-		
-			// draw vertical line between columns
-			if (i > 0) {
-				draw_set_color(global.colorThemeText);	
-				draw_line(colRectX1 , colRectY1 , colRectX1 , colRectY2 );
+			
+			var headertextX = colRectX1 + textMarginLeft;
+			if(!lineStateLTR){
+				draw_set_halign(fa_right);
+				headertextX = colRectX2 - (textMarginLeft)
+				if(i >= 3){
+					headertextX = headertextX - dropDownButtonSize;
+				}
 			}
+			
+			draw_text(headertextX , y + tabHeight/2 , colName);
+		
+	
+			if(lineStateLTR){	
+				if(i > 0){
+					draw_set_color(global.colorThemeBorders);
+					draw_line_width(colRectX1, y, colRectX1, y + windowHeight, 1);
+				}
+			}
+			else{
+				if(i < colAmount-1){
+					draw_set_color(global.colorThemeBorders);
+					draw_line_width(colRectX1+1, y, colRectX1+1, y + windowHeight, 1);
+				}
+			}
+			
+			i++;
 		}
+		
+
 
 		// draw horizontal line between headers and contents
 		draw_line(x , y + tabHeight , x + windowWidth , y + tabHeight  );

@@ -186,13 +186,18 @@ function scr_saveREZ(autosave) {
 				ds_list_copy(tempUnitFieldList, unitFieldList);
 			}
 			ds_map_add_list(map, "unitFieldList", tempUnitFieldList);
+			
+			var tempTranslationList = ds_list_create();
+			if (scr_isNumericAndExists(global.translationList, ds_type_list)) {
+				ds_list_copy(tempTranslationList, global.translationList);
+			}
+			ds_map_add_list(map, "translationList", tempTranslationList);
 		
 		
 			//save special feild colnames
 			ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
 			ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
 			ds_map_add(map, "wordImportWordDelimColName", global.wordImportWordDelimColName);
-			ds_map_add(map, "unitImportTranslationColName", global.unitImportTranslationColName);
 			ds_map_add(map, "unitImportUnitEndColName", global.unitImportUnitEndColName);
 			ds_map_add(map, "unitImportUnitStartColName", global.unitImportUnitStartColName);
 			ds_map_add(map, "unitImportSpeakerColName", global.unitImportSpeakerColName);
@@ -346,6 +351,7 @@ function scr_saveREZ(autosave) {
 	ds_list_destroy(tempNavUnitFieldList);
 	ds_list_destroy(tempTokenFieldList);
 	ds_list_destroy(tempUnitFieldList);
+	ds_list_destroy(tempTranslationList);
 	
 	
 	// set allSaved to true so user does not get prompted to save when they quit

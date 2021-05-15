@@ -42,6 +42,16 @@ function scr_renderFilter2(){
 	var unitList = discourseSubMap[? "unitList"];
 	
 	
+	// if search returned no results, then exit the filter
+	if (ds_list_size(list) < 1) {
+		scr_disableFilter();
+		exit;
+	}
+	
+	// set all units to be unactive
+	scr_setValueForAllNodesInList(unitList, "active", false);
+	
+	
 	// loop through list and check which one have filter set to true
 	// and then add those units to the filterList
 	for (var i = 0; i < listSize; i++) {
@@ -56,6 +66,7 @@ function scr_renderFilter2(){
 		if (currentNodeType == "unit") {
 			// if this node is just a regular old unit, we can add the node directly to the filter list
 			scr_addToListOnce(filterUnitList, currentNodeID);
+			currentNodeSubMap[? "active"] = true;
 		}
 		else if (currentNodeType == "stackChain") {
 			// if this node is a stackChain, we can loop through its entry list and add each unit
@@ -67,8 +78,10 @@ function scr_renderFilter2(){
 					var currentEntrySubMap = global.nodeMap[? currentEntry];
 					if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
 						var currentUnitID = currentEntrySubMap[? "unit"];
-						if (is_string(currentUnitID)) {
+						var currentUnitSubMap = global.nodeMap[? currentUnitID];
+						if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
 							scr_addToListOnce(filterUnitList, currentUnitID);
+							currentUnitSubMap[? "active"] = true;
 						}
 					}
 				}
@@ -85,15 +98,20 @@ function scr_renderFilter2(){
 					if (scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) {
 						var currentTokenID = currentEntrySubMap[? "token"];
 						if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
-						var tokenSubMap = global.nodeMap[?currentTokenID];
-						var currentUnitID = tokenSubMap[?"unit"];
-						if (is_string(currentUnitID)) {
+						var tokenSubMap = global.nodeMap[? currentTokenID];
+						var currentUnitID = tokenSubMap[? "unit"];
+						var currentUnitSubMap = global.nodeMap[? currentUnitID];
+						if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
 							scr_addToListOnce(filterUnitList, currentUnitID);
+							currentUnitSubMap[? "active"] = true;
 						}
 					}
 				}
 			}
 		}
+		
+		
+		
 	}
 	
 	scr_sortFilterList(filterUnitList);
@@ -109,6 +127,8 @@ function scr_renderFilter2(){
 	if (obj_panelPane.functionFilter_peek[0]) {
 		for(var i = 0; i < indexOfFirst; i++){
 			var currentUnitID = unitList[|i];
+			var currentUnitSubMap = global.nodeMap[? currentUnitID];
+			currentUnitSubMap[? "active"] = true;
 			scr_addToListOnce(filterUnitList, currentUnitID);
 		}
 	}
@@ -116,6 +136,8 @@ function scr_renderFilter2(){
 	if (obj_panelPane.functionFilter_peek[1]) {
 		for(var i = indexOfFirst; i < indexOfLast; i++){
 			var currentUnitID = unitList[|i];
+			var currentUnitSubMap = global.nodeMap[? currentUnitID];
+			currentUnitSubMap[? "active"] = true;
 			scr_addToListOnce(filterUnitList, currentUnitID);
 		}
 	}
@@ -124,6 +146,8 @@ function scr_renderFilter2(){
 		var sizeOfUnitList = ds_list_size(unitList);
 		for(var i = indexOfLast; i < sizeOfUnitList; i++){
 			var currentUnitID = unitList[|i];
+			var currentUnitSubMap = global.nodeMap[? currentUnitID];
+			currentUnitSubMap[? "active"] = true;
 			scr_addToListOnce(filterUnitList, currentUnitID);
 		}
 	}

@@ -49,41 +49,6 @@ if (!hideAll) {
 
 
 
-// Draw the mouse drag rectangle
-/*
-if (not mouseoverPanelPane and not obj_panelPane.scrollBarClickLock and obj_toolPane.currentTool != obj_toolPane.toolNewWord and not mouseoverNeutralSpace) {
-	if(not mouseRectMade) {
-		if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool != obj_toolPane.toolBoxBrush) {// Curfew for the volunteers
-			if(obj_toolPane.currentTool != obj_toolPane.toolStackBrush or mouseoverSpeakerLabel) {
-				scr_mouseRect();
-			}
-		}
-		else if (current_time - sessionStartTime > 2000 and obj_toolPane.currentTool == obj_toolPane.toolBoxBrush) {
-			scr_boxRect();
-		}
-	}
-
-	// Create the quickStack with the mouse drag, if possible
-	if (mouseRectMade and quickStackAbleToInitiate) {
-		quickStackAbleToInitiate = false;
-		alarm[7] = 5;
-	}
-	// SHould this be just an if??
-	if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolRezBrush) {
-		alarm[8] = 5;
-	}
-	else if (mouseRectMade and obj_toolPane.currentTool == obj_toolPane.toolTrackBrush) {
-		alarm[8] = 5;
-	}
-	else if(mouseRectMade) {
-		alarm[8] = 5;
-	}
-	else {
-		alarm[9] = 5;
-	}
-}
-*/
-
 
 
 

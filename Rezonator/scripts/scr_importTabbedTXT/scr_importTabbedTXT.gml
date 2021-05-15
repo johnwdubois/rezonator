@@ -35,6 +35,9 @@ function scr_importTabbedTXT(filename, delimiter) {
 		for(var i = 0; i <= listOfColumnsSize; i++){
 		
 			var fullColString = string(ds_list_find_value(listOfColumns,i));
+			
+			fullColString = scr_inputSpaces(fullColString);
+			
 			var colStringList = ds_list_create();
 			colStringList = scr_splitString(fullColString, " ");
 		

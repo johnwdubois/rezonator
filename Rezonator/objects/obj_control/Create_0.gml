@@ -554,7 +554,7 @@ swapLinePos1 =  0;
 swapLinePos2 =  0;
 
 showLineNumber = true;
-showSpeakerName = true;
+showSpeakerName = false;
 
 //audioTrackStream = -1;
 //audioTrackIndex = -1;

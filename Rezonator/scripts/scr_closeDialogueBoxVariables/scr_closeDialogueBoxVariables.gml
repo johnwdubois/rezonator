@@ -31,7 +31,6 @@ function scr_closeDialogueBoxVariables(){
 		fromDropDown = false;
 		inputText = "";
 		cursorPos = 1;
-		before = true;
 		dialogueBoxActive = false;
 		
 	}

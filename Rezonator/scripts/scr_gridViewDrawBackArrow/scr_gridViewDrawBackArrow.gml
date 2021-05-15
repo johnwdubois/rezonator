@@ -49,7 +49,10 @@ function scr_gridViewDrawBackArrow() {
 				obj_control.gridView = false;
 			}
 			
-			
+			if (searchGridActive) {
+				searchGridActive = false;
+				scr_disableFilter();
+			}
 			if(obj_control.filterGridActive) { 
 				scr_disableFilter();
 			}

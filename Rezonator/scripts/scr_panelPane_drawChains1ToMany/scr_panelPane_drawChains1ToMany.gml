@@ -126,6 +126,9 @@ function scr_panelPane_drawChains1ToMany() {
 			// get the tokenID (or unitID is this is a stackChain)
 			var currentID = currentEntrySubMap[? (chainType == "stackChain") ? "unit" : "token"];
 			if (!is_string(currentID)) continue;
+			var IDSubMap = global.nodeMap[?currentID];
+			var unitID = (chainType == "stackChain") ? currentID : IDSubMap[? "unit"];
+			var unitIDSubMap = global.nodeMap[?unitID];
 		
 			// Set size of rectangle around word
 			var rectX1 = x;
@@ -156,23 +159,10 @@ function scr_panelPane_drawChains1ToMany() {
 				if (device_mouse_check_button_released(0, mb_left)) {
 					if (doubleClickTimer > -1) {
 				
-						var rowInLineGrid = -1;
-				
-						// Set double clicked word to center display row, if possible
-						if (functionChainList_currentTab == functionChainList_tabStackBrush
-						or functionChainList_currentTab == functionChainList_tabClique) {
-							var currentUnitID = currentID;
-							rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-						}
-						else {
-							var currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentID - 1);
-							rowInLineGrid = ds_grid_value_y(obj_control.currentActiveLineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-						}
 					
-						if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.currentActiveLineGrid)) {
-							var linePixelY = ds_grid_get(obj_control.currentActiveLineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
-							obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-						}
+						var linePixelY = unitIDSubMap[?"pixelY"];
+						obj_control.scrollPlusYDest = -linePixelY;
+						
 					}
 					else {
 						doubleClickTimer = 0;

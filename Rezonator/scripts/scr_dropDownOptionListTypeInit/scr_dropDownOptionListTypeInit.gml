@@ -61,5 +61,6 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeToolButton = 56;
 	global.optionListTypeJustifyProse = 57;
 	global.optionListType1to1 = 58;
+	global.optionListTypeTranslation = 59;
 
 }

@@ -93,61 +93,37 @@ function scr_drawChains() {
 			var currentTokenID1 = currentEntry1SubMap[? "token"];;
 			var currentTokenID2 = currentEntry2SubMap[? "token"];;
 			
-			if(scr_isChunk(currentTokenID1)){
-				currentTokenID1 =scr_getFirstWordOfChunk(currentTokenID1);
-			}
-		
-			if(scr_isChunk(currentTokenID2)){
-				currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
-			}
-
+			// if this token is a chunk, we will just draw the line coming out of the chunk's first token
+			if (scr_isChunk(currentTokenID1)) currentTokenID1 =scr_getFirstWordOfChunk(currentTokenID1);
+			if (scr_isChunk(currentTokenID2)) currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
 
 			
-			//get tokenSubMaps
+			// get tokenSubMaps
 			var currentToken1SubMap = global.nodeMap[? currentTokenID1];
 			var currentToken2SubMap = global.nodeMap[? currentTokenID2];
-			if(!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)){show_debug_message("TRERRY IS A DINGLE1") continue;}
-			if(!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){show_debug_message("TRERRY IS A DINGLE2") continue;}
+			if (!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)) {show_debug_message("TRERRY IS A DINGLE1") continue;}
+			if (!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){ show_debug_message("TRERRY IS A DINGLE2") continue;}
 				
-			//get tokenTagSubMaps
+			// get tokenTagSubMaps
 			var currentTagSubMap1 = currentToken1SubMap[? "tagMap"];
 			var currentTagSubMap2 = currentToken2SubMap[? "tagMap"];		
 	
 			
-			//get unit IDs
-			var tokenUnitID1 = currentToken1SubMap[?"unit"];
-			var	tokenUnitID2 = currentToken2SubMap[?"unit"];
+			// get unit IDs
+			var tokenUnitID1 = currentToken1SubMap[? "unit"];
+			var	tokenUnitID2 = currentToken2SubMap[? "unit"];
 			
-			//get token's Unit's subMap
-			var tokenUnitID1SubMap = global.nodeMap[?tokenUnitID1];
-			var tokenUnitID2SubMap = global.nodeMap[?tokenUnitID2];
+			// get token's Unit's subMap
+			var tokenUnitID1SubMap = global.nodeMap[? tokenUnitID1];
+			var tokenUnitID2SubMap = global.nodeMap[? tokenUnitID2];
 			
-			/*
-			// check if the words are chunks
-			var currentWordID1IsChunk = false;
-			if (ds_map_exists(global.nodeMap, currentTokenID1)) {
-				var currentWordID1SubMap = global.nodeMap[? currentTokenID1];
-				var currentWordID1Type = currentWordID1SubMap[? "type"];
-				if (currentWordID1Type == "chunk") currentWordID1IsChunk = true;
-				if (currentWordID1IsChunk) {
-					var currentWordID1TokenList = currentWordID1SubMap[? "tokenList"];
-					currentTokenID1 = currentWordID1TokenList[| 0];
-				}
-			}
-			var currentWordID2IsChunk = false;
-			if (ds_map_exists(global.nodeMap, currentTokenID2)) {
-				var currentWordID2SubMap = global.nodeMap[? currentTokenID2];
-				var currentWordID2Type = currentWordID2SubMap[? "type"];
-				if (currentWordID2Type == "chunk") currentWordID2IsChunk = true;
-				if (currentWordID2IsChunk) {
-					var currentWordID2TokenList = currentWordID2SubMap[? "tokenList"];
-					currentTokenID2 = currentWordID2TokenList[| 0];
-				}
-			}
-			*/
-	
-			var currentWordStringWidth1 = string_width(string(currentTagSubMap1[?global.displayTokenField]));
-			var currentWordStringWidth2 = string_width(string(currentTagSubMap2[?global.displayTokenField]));
+			// check if the units are active
+			var unit1Active = tokenUnitID1SubMap[? "active"];
+			var unit2Active = tokenUnitID2SubMap[? "active"];
+			
+			// get the width of each token
+			var currentWordStringWidth1 = string_width(string(currentTagSubMap1[? global.displayTokenField]));
+			var currentWordStringWidth2 = string_width(string(currentTagSubMap2[? global.displayTokenField]));
 		
 			lineX1 = currentToken1SubMap[?"pixelX"];
 			lineY1 = tokenUnitID1SubMap[?"pixelY"];
@@ -181,31 +157,19 @@ function scr_drawChains() {
 				firstTokenInLine = "";
 			}
 		
-			var currentWordStringWidth2 = string_width(string(currentTagSubMap2[?global.displayTokenField]));
+			// get the pixel X values for each token
+			lineX2 = currentToken2SubMap[? "pixelX"];
+			lineY2 = tokenUnitID2SubMap[? "pixelY"];
 		
-			lineX2 = currentToken2SubMap[?"pixelX"];
-			lineY2 = tokenUnitID2SubMap[?"pixelY"];
-		
-			var currentLineGridIndex1InDrawRange = true;
-			var currentLineGridIndex2InDrawRange = true;
+
 			
-			var unitSeq1 = tokenUnitID1SubMap[?"unitSeq"];
-			var unitSeq2 = tokenUnitID2SubMap[?"unitSeq"];
-		
-			if (unitSeq1 < obj_control.drawRangeStart or unitSeq1 > obj_control.drawRangeEnd) {
-				currentLineGridIndex1InDrawRange = false;
-			}
-		
-			if (unitSeq2 < obj_control.drawRangeStart or unitSeq2 > obj_control.drawRangeEnd) {
-				currentLineGridIndex2InDrawRange = false;
-			}
-		
-		
+			// check if these y values are in our draw range
+			var inDrawRange1 = !(lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2));
+			var inDrawRange2 = !(lineY1 > camHeight + (obj_control.gridSpaceVertical * 2) and lineY2 > camHeight + (obj_control.gridSpaceVertical * 2));
 		 
 			// only draw line if every value is real and we are in the draw range
-			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2))
-			and not (lineY1 < wordTopMargin + (-obj_control.gridSpaceVertical * 2) and lineY2 < wordTopMargin + (-obj_control.gridSpaceVertical * 2))
-			and not (lineY1 > camHeight + (obj_control.gridSpaceVertical * 2) and lineY2 > camHeight + (obj_control.gridSpaceVertical * 2)) {
+			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2)
+			&& unit1Active && unit2Active && inDrawRange1 && inDrawRange2) {
 				
 				// check if text is right aligned
 				if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
@@ -213,31 +177,12 @@ function scr_drawChains() {
 					lineX2 -= currentWordStringWidth2;
 				}
 				
-				/*
-				if (chunkWord1) {
-					var wordRectBuffer = 15;
-					lineY1 += wordRectBuffer;
-					chunkWord1 = 0;
-				}
-				if (chunkWord2) {
-					var wordRectBuffer = 15;
-					lineY2 -= (wordRectBuffer);
-				}
-				*/
+
 			
 				if (currentChainVisible) {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
-					/*
-					if (chunkWord2) {
-						if (chainType == "rezChain") {
-							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 - (currentWordStringHeight2 / 2), 2);
-						}
-						else if (chainType == "trackChain") {
-							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
-						}
-					}
-					else{*/
+
 					if (chainType == "rezChain") {
 						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
 					}
@@ -246,8 +191,7 @@ function scr_drawChains() {
 					}
 					
 				}
-				// I need to modify this with the Chunk's wordRectBuffer
-				//chunkWord2 = 0;
+
 			}
 		}
 	
