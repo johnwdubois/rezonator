@@ -81,11 +81,13 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	var mouseOverCurrentSpeakerLabel = (point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2));
 	if (mouseOverCurrentSpeakerLabel) {
 		obj_control.mouseoverSpeakerLabel = true;
+		obj_control.hoverUnitID = unitID;
 	}
+
 
 	
 	// click on speaker label
-	if (device_mouse_check_button_released(0, mb_left) && mouseOverCurrentSpeakerLabel && touchReleaseCheck && !obj_control.speakerLabelHoldingDelay && ds_list_size(inRectUnitIDList) <= 1) {
+	if (device_mouse_check_button_released(0, mb_left) && mouseOverCurrentSpeakerLabel && touchReleaseCheck && !obj_control.speakerLabelHoldingDelay && ds_list_size(inRectUnitIDList) <= 1 and !obj_control.mouseoverPanelPane) {
 		if (obj_control.ctrlHold) {
 			// combine chains
 			var inChainsList = unitSubMap[?"inChainsList"];

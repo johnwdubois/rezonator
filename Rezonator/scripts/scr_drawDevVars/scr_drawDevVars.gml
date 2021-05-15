@@ -51,7 +51,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 15), "focusedChain's vizSetIDList: " + ((ds_exists(focusedChainVizSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainVizSetIDList) : ""));
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
-	draw_text(devVarX, wordTopMargin + (strHeight * 17), "focusedChainWordID: " + string(obj_chain.focusedChainWordID));
+	draw_text(devVarX, wordTopMargin + (strHeight * 17), "showSpeakerName: " + string(showSpeakerName));
 	draw_text(devVarX, wordTopMargin + (strHeight * 18), "tokenFieldList: " + scr_getStringOfList(tokenFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "navTokenFieldList: " + scr_getStringOfList(navTokenFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "navUnitFieldList: " + scr_getStringOfList(navUnitFieldList));
@@ -80,6 +80,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 7), "currentTool: " + string(obj_toolPane.currentTool));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "chainShowList: " + string(scr_getStringOfList(obj_chain.chainShowList)));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "rightClickID: " + string(obj_control.rightClickID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 10), "hoverUnitID: " + string(obj_control.hoverUnitID));
 
 	
 	// reset halign to left

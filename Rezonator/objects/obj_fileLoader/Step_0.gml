@@ -1,17 +1,3 @@
-/*
-	obj_fileLoader: Step
-	
-	Last Updated: 2019-02-14
-	
-	Called from: Every frame of the game
-	
-	Purpose: Load words in XML doc into Rez as fast as possible
-	
-	Mechanism: Speed up or slow down the calling of functions depending on the FPS
-	
-	Author: Terry DuBois
-*/
-
 fileLoadRate = ceil(fps);
 
 if (not inititalAutosave) {

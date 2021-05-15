@@ -88,7 +88,7 @@ function scr_loadREZ() {
 					global.unitImportUnitDelimColName = ds_map_find_value(map, "unitImportUnitDelimColName");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
 					global.wordImportWordDelimColName = ds_map_find_value(map, "wordImportWordDelimColName");
-					global.unitImportTranslationColName = ds_map_find_value(map, "unitImportTranslationColName");
+					global.currentTranslation = ds_map_find_value(map, "currentTranslation");
 					global.unitImportSpeakerColName = ds_map_find_value(map, "unitImportSpeakerColName");
 					global.unitImportUnitEndColName = ds_map_find_value(map, "unitImportUnitEndColName");
 					global.unitImportUnitStartColName = ds_map_find_value(map, "unitImportUnitStartColName");
@@ -103,10 +103,10 @@ function scr_loadREZ() {
 						global.tokenImportDisplayTokenColName = "~text";
 					}
 					
-
+					
+					global.translationList = ds_map_find_value(map, "translationList");
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
-				
 					global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList");
 					global.wordImportColNameList = ds_map_find_value(map, "wordImportColNameList");
 					global.unitImportColNameList = ds_map_find_value(map, "unitImportColNameList");
@@ -139,6 +139,10 @@ function scr_loadREZ() {
 					}
 					else {
 						global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
+					}
+					
+					if (global.translationList  == undefined) {
+						global.translationList  = ds_list_create();
 					}
 					
 				

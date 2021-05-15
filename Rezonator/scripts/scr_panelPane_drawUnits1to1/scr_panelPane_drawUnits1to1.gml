@@ -55,24 +55,25 @@ function scr_panelPane_drawUnits1to1() {
 	
 	
 	// loop across unit fields
-	var plusX = 0;
-	for (var i = 0; i < headerListSize; i++) {
+	var i = 0;
+	repeat(headerListSize) {
 		
 		var currentField = headerList[| i];
 		textPlusY = 0;
 		drawDropDowns = false;
 		
 		var colWidth = windowWidth / headerListSize;
-	    var colRectX1 = x + (colWidth * i);
+	    var colRectX1 = (lineStateLTR)? x + (colWidth * i): x + windowWidth - (colWidth * (i+1));
 	    var colRectY1 = y;
 	    var colRectX2 = colRectX1 + colWidth;
 	    var colRectY2 = colRectY1 + headerHeight;
-		
+
+/*
 		// if this is the last column, extend it to the end of the window
 		if (i == headerListSize - 1) {
-			colRectX2 = x + windowWidth;
+			colRectX2 = (lineStateLTR)? x + windowWidth : x;
 		}
-    
+*/  
 
 		// loop down units for this field
 		for (var j = 0; j < displayUnitListSize; j++) {
@@ -125,7 +126,12 @@ function scr_panelPane_drawUnits1to1() {
 			
 				// dropdown buttons
 				var dropDownButtonX1 = colRectX2 - sprite_get_width(spr_dropDown) - 4;
-				if (i == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
+				if (lineStateLTR){
+					if(i == headerListSize - 1) dropDownButtonX1 -= global.scrollBarWidth;
+				}
+				else {
+					if(i == 0) dropDownButtonX1 -= global.scrollBarWidth;
+				}
 				var dropDownButtonY1 = unitRectY1;
 				var dropDownButtonX2 = dropDownButtonX1 + sprite_get_width(spr_dropDown);
 				var dropDownButtonY2 = unitRectY2;
@@ -200,7 +206,7 @@ function scr_panelPane_drawUnits1to1() {
 			}
 			
 			// leave room for scrollbar if we're in RTL and on the last column
-			if (!lineStateLTR && i == headerListSize-1) {
+			if (!lineStateLTR && i == 0) {
 				textX -= global.scrollBarWidth;
 			}
 			
@@ -217,9 +223,17 @@ function scr_panelPane_drawUnits1to1() {
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
 	
-	if(i > 0){	
-		draw_set_color(global.colorThemeBorders);
-		draw_line_width(x + (colWidth * i)- clipX, y - clipY, x + (colWidth * i) - clipX, y + windowHeight - clipY, 1);
+	if(lineStateLTR){	
+		if(i > 0){
+			draw_set_color(global.colorThemeBorders);
+			draw_line_width(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + windowHeight - clipY, 1);
+		}
+	}
+	else{
+		if(i < headerListSize-1){
+			draw_set_color(global.colorThemeBorders);
+			draw_line_width(colRectX1+1 - clipX, y - clipY, colRectX1+1 - clipX, y + windowHeight - clipY, 1);
+		}
 	}
 	
 	
@@ -308,7 +322,7 @@ function scr_panelPane_drawUnits1to1() {
 
 		draw_text( headertextX - clipX, floor(mean(colRectY1,colRectY2)) - clipY, currentField);
 	
-	
+		i ++;
 	}
 	
 

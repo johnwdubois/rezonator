@@ -3,17 +3,6 @@ function scr_drawDialogueBox() {
 	/*
 		Purpose: draw custom search box for multiple options
 	*/
-	
-		var boxHeight = max(270, camera_get_view_height(camera_get_active())/4); 
-		var boxWidth = max(640, camera_get_view_width(camera_get_active())/3);
-		//replaced buffers with vars for width and height so that offsets can be calculated off that
-		var searchBarXOffset = boxWidth * 0.45;
-		var searchBarYOffset = 20;
-		var buttonXOffset = 50;
-		var buttonYOffset = 25;
-		
-		var cameraMidpointX = camera_get_view_width(camera_get_active())/2;
-		var cameraMidpointY = camera_get_view_height(camera_get_active())/2;
 		
 		//Setting input prompt
 		if (obj_control.changeAuthor) {
@@ -80,7 +69,21 @@ function scr_drawDialogueBox() {
 		}
 		
 		if (obj_control.newTagCategory) {
-			dialogueBoxTest = scr_get_translation("msg_new-category");
+			dialogueBoxText = scr_get_translation("msg_new-category");
+		}
+		var boxHeight = max(270, camera_get_view_height(camera_get_active())/4); 
+		var boxWidth = max(640, camera_get_view_width(camera_get_active())/3);
+		//replaced buffers with vars for width and height so that offsets can be calculated off that
+		var searchBarXOffset = boxWidth * 0.45;
+		var searchBarYOffset = 20;
+		var buttonXOffset = 50;
+		var buttonYOffset = 25;
+		
+		var cameraMidpointX = camera_get_view_width(camera_get_active())/2;
+		var cameraMidpointY = camera_get_view_height(camera_get_active())/2;
+		
+		if(boxWidth <= string_width(dialogueBoxText)){
+			boxHeight += string_height(dialogueBoxText) + 5;
 		}
 		
 		var dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
@@ -88,29 +91,212 @@ function scr_drawDialogueBox() {
 		var dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
 		var dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
 		
-
+		var dialogueBoxTextX = floor(dialogueBoxRectX1 + (boxWidth*0.05));
+		var dialogueBoxTextY = floor(dialogueBoxRectY1 + (boxHeight*0.25));
+		var booleanBoxWidth = (boxWidth*0.04);
+		
+		var okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+		var okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+		var okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+		var okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+		
+		if(obj_control.fPressed){
+			var caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			var caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+			var caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
+			var caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
+	
+			var caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
+			var caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
+			
+			var inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			var inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
+			var inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
+			var inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
+	
+			var inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
+			var inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
+			
+			var RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
+			var RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
+			var RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
+			var RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
+	
+			var RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
+			var RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
+			
+			var regExBoolText = scr_get_translation("search_dialogue_regEx");
+			var caseSensitiveBoolText = scr_get_translation("search_dialogue_case");
+			var inChainBoolText = scr_get_translation("search_dialogue_current-unit");
+			scr_adaptFont(regExBoolText, "M");
+			if(RegExBoleanTextX + string_width(regExBoolText) >= dialogueBoxRectX2){
+				boxWidth +=	RegExBoleanTextX + string_width(regExBoolText) - dialogueBoxRectX2 + 5;
+				
+				//reset dialogue box parameters
+				dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
+				dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
+				dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
+				dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
+				
+				//reset search box locations
+				caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
+				caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
+	
+				caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
+				caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
+			
+				inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
+				inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
+				inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
+	
+				inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
+				inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
+			
+				RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
+				RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
+				RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
+				RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
+	
+				RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
+				RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
+				
+				okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+				okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+				okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+			}
+			scr_adaptFont(dialogueBoxText, "M");
+			if(dialogueBoxTextX + string_width(dialogueBoxText) >= RegExBoxRectX1){
+				boxWidth += (dialogueBoxTextX + string_width(dialogueBoxText)) - RegExBoxRectX1 + 5;
+				
+				//reset dialogue box parameters
+				dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
+				dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
+				dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
+				dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
+				
+				//reset search box locations
+				caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
+				caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
+	
+				caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
+				caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
+			
+				inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
+				inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
+				inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
+	
+				inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
+				inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
+			
+				RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
+				RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
+				RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
+				RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
+	
+				RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
+				RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
+				
+				okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+				okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+				okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+			}
+			scr_adaptFont(caseSensitiveBoolText, "S");
+			if(caseSensitiveBoleanTextX + string_width(caseSensitiveBoolText) >= okBoxRectX1){
+				boxWidth += (caseSensitiveBoleanTextX + string_width(caseSensitiveBoolText)) - caseSensitiveBoleanTextX + 5;
+				
+				//reset dialogue box parameters
+				dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
+				dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
+				dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
+				dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
+				
+				//reset search box locations
+				caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
+				caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
+	
+				caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
+				caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
+			
+				inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
+				inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
+				inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
+	
+				inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
+				inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
+			
+				RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
+				RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
+				RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
+				RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
+	
+				RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
+				RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
+				
+				okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+				okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+				okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+			}
+			scr_adaptFont(inChainBoolText, "S");
+			if(inChainBoleanTextX + string_width(inChainBoolText) >= okBoxRectX1){
+				boxWidth += (inChainBoleanTextX + string_width(inChainBoolText)) - inChainBoleanTextX + 5;
+				
+				//reset dialogue box parameters
+				dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
+				dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
+				dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
+				dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
+				
+				//reset search box locations
+				caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
+				caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
+	
+				caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
+				caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
+			
+				inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+				inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
+				inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
+				inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
+	
+				inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
+				inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
+			
+				RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
+				RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
+				RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
+				RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
+	
+				RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
+				RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
+				
+				okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+				okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+				okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+				okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+			}
+		}
+		
+		
 
 	if (obj_control.dialogueBoxActive) {
-			obj_control.mouseoverPanelPane = true;
-			obj_control.quickLinkAllowed = false;
+		obj_control.mouseoverPanelPane = true;
+		obj_control.quickLinkAllowed = false;
 	
-		var overlapFlag = false;
-		//this loop checks for any overlaps and breaks after adjusting parameters
-		while(overlapFlag){
-			
-	
-			//OK box parameters
-			var okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
-			var okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
-			var okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
-			var okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
-			
-			//readjust dialogue box parameters for next pass through
-			dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
-			dialogueBoxRectY1 = cameraMidpointY - boxHeight/2;
-			dialogueBoxRectX2 = cameraMidpointX + boxWidth/2;
-			dialogueBoxRectY2 = cameraMidpointY + boxHeight/2;
-		}
+		
 
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
@@ -157,10 +343,10 @@ function scr_drawDialogueBox() {
 
 
 
-		var okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
-		var okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
-		var okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
-		var okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
+		okBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.5);
+		okBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+		okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
+		okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
 		
 		// draw buttons for OK and Cancel
 		draw_set_colour(global.colorThemeBG);
@@ -197,13 +383,13 @@ function scr_drawDialogueBox() {
 		
 		draw_set_halign(fa_left);
 		// Set instruction text Position
-		var dialogueBoxTextX = floor(dialogueBoxRectX1 + (boxWidth*0.05));
-		var dialogueBoxTextY = floor(dialogueBoxRectY1 + (boxHeight*0.25));
-		var booleanBoxWidth = (boxWidth*0.04);
+		dialogueBoxTextX = floor(dialogueBoxRectX1 + (boxWidth*0.05));
+		dialogueBoxTextY = floor(dialogueBoxRectY1 + (boxHeight*0.25));
+		booleanBoxWidth = (boxWidth*0.04);
 	
 		
 		// WHERE THE DIALOGUE BOX TEXT IS DRAWN
-		draw_text(dialogueBoxTextX, dialogueBoxTextY, obj_dialogueBox.dialogueBoxText);
+		draw_text_ext(dialogueBoxTextX, dialogueBoxTextY, dialogueBoxText, string_height(dialogueBoxText), boxWidth - ((dialogueBoxTextX - dialogueBoxRectX1) * 2));
 		
 	
 		
@@ -325,29 +511,29 @@ function scr_drawDialogueBox() {
 		if(obj_control.fPressed) {
 	
 			
-			var caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
-			var caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
-			var caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
-			var caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
+			 caseSensitiveBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			 caseSensitiveBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.7);
+			 caseSensitiveBoxRectX2 = caseSensitiveBoxRectX1 + booleanBoxWidth;
+			 caseSensitiveBoxRectY2 = caseSensitiveBoxRectY1 + booleanBoxWidth;
 	
-			var caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
-			var caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
+			 caseSensitiveBoleanTextX = caseSensitiveBoxRectX2 + (boxWidth*0.025);
+			 caseSensitiveBoleanTextY = floor(mean(caseSensitiveBoxRectY1,caseSensitiveBoxRectY2));
 			
-			var inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
-			var inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
-			var inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
-			var inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
+			 inChainBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.05);
+			 inChainBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.85);
+			 inChainBoxRectX2 = inChainBoxRectX1 + booleanBoxWidth;
+			 inChainBoxRectY2 = inChainBoxRectY1 + booleanBoxWidth;
 	
-			var inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
-			var inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
+			 inChainBoleanTextX = inChainBoxRectX2 + (boxWidth*0.025);
+			 inChainBoleanTextY = floor(mean(inChainBoxRectY1,inChainBoxRectY2));
 			
-			var RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
-			var RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
-			var RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
-			var RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
+			 RegExBoxRectX1 = dialogueBoxRectX1 + (boxWidth*0.6);
+			 RegExBoxRectY1 = dialogueBoxRectY1 + (boxHeight*0.2);
+			 RegExBoxRectX2 = RegExBoxRectX1 + booleanBoxWidth;
+			 RegExBoxRectY2 = RegExBoxRectY1 + booleanBoxWidth;
 	
-			var RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
-			var RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
+			 RegExBoleanTextX = RegExBoxRectX2 + (boxWidth*0.025);
+			 RegExBoleanTextY = floor(mean(RegExBoxRectY1,RegExBoxRectY2));
 			
 			//search functionality
 			if (!obj_control.regExCheck) {
@@ -374,8 +560,8 @@ function scr_drawDialogueBox() {
 			//draw boolean options text
 			scr_adaptFont(scr_get_translation("search_dialogue_regEx"), "S");
 			if (!obj_control.regExCheck) {
-				draw_text(caseSensitiveBoleanTextX, caseSensitiveBoleanTextY, scr_get_translation("search_dialogue_case"));
-				draw_text(inChainBoleanTextX, inChainBoleanTextY, scr_get_translation("search_dialogue_current-unit"));
+				draw_text(caseSensitiveBoleanTextX, caseSensitiveBoleanTextY, caseSensitiveBoolText);
+				draw_text(inChainBoleanTextX, inChainBoleanTextY, inChainBoolText);
 			}
 			draw_text(RegExBoleanTextX, RegExBoleanTextY, scr_get_translation("search_dialogue_regEx"));
 	

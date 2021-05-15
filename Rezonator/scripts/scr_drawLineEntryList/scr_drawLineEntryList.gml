@@ -103,7 +103,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			obj_control.hoverTokenID = currentToken;
 			
 			// click on token
-			if(device_mouse_check_button_released(0, mb_left)) {
+			if(device_mouse_check_button_released(0, mb_left) and !obj_control.mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
 				var focusedchainIDSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
 				
 				// if focused chain is a stack, deselect it

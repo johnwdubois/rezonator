@@ -55,6 +55,9 @@ importCSVWordIDList = ds_list_create();
 subLineGridBeginning = 0;
 subLineGridEnd = 0;
 
+//draw autosave text
+drawAutosaveText = false;
+
 loadingCSV = true;
 if (ds_grid_height(global.importCSVGrid) > 0) {
 	var importCSVGridHeight = ds_grid_height(global.importCSVGrid);

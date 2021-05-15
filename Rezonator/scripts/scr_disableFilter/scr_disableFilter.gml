@@ -21,6 +21,8 @@ function scr_disableFilter(){
 
 	// set the displayUnitList to be the filterUnitList
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
-	discourseSubMap[? "displayUnitList"] = discourseSubMap[? "unitList"];
+	var unitList = discourseSubMap[? "unitList"];
+	discourseSubMap[? "displayUnitList"] = unitList;
+	scr_setValueForAllNodesInList(unitList, "active", true);
 
 }
