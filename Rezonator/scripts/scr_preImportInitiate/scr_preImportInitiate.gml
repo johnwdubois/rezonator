@@ -21,7 +21,7 @@ function scr_preImportInitiate(){
 			// example
 			ds_list_add(exampleList, "We shall overcome,","We shall overcome,","We shall overcome someday.","","Oh, deep in my heart I do believe","We shall overcome someday.","","We'll walk hand in hand,","we'll walk hand in hand,","We'll walk hand in hand someday.","","Oh, deep in my heart I do believe","We shall overcome someday.","","We shall live in peace,","we shall live in peace,","We shall live in peace someday.","","Oh, deep in my heart I do believe","We shall overcome someday.","","We shall brothers be,","we shall brothers be,","We shall brothers be someday.","","Oh, deep in my heart I do believe","We shall overcome someday.","","We shall organize,","we shall organize,","We shall organize today.","","Oh, deep in my heart I do believe","We shall overcome someday.","","The truth shall make us free,","truth shall make us free,","The truth shall make us free someday.","","Oh, deep in my heart I do believe","We shall overcome someday.","","We are not afraid,","we are not afraid,","We are not afraid today.","","Oh, deep in my heart I do believe,","We shall overcome someday.","","We shall overcome,","We shall overcome,","We shall overcome someday.","","Oh, deep in my heart I do believe","We shall overcome someday.");
 			// description
-			ds_list_add(descriptionList, "• file extension: *.txt", "• songs, poems, etc.", "• short meaningful lines");
+			ds_list_add(descriptionList, "• short lines of text","• line breaks are meaningful","• no word wrap","• split words on whitespace","• file type: plain text (.txt)");
 			// links
 			ds_list_add(linksList, "https://rezonator.com", "https://genius.com");
 		}
@@ -32,7 +32,7 @@ function scr_preImportInitiate(){
 			// example
 			ds_list_add(exampleList, "--","Wuthering Heights  ","by Emily Brontë ","---","","---","CHAPTER I ","---","","1801—I have just returned from a visit to my landlord—the solitary neighbour","that I shall be troubled with. This is certainly a beautiful country! In all England,","I do not believe that I could have fixed on a situation so completely removed from the","stir of society. A perfect misanthropist’s Heaven—and Mr. Heathcliff and I are such a","suitable pair to divide the desolation between us. A capital fellow! He little imagined","how my heart warmed towards him when I beheld his black eyes withdraw so suspiciously","under their brows, as I rode up, and when his fingers sheltered themselves, with a","jealous resolution, still further in his waistcoat, as I announced my name.  ","“Mr. Heathcliff?” I said.  ","A nod was the answer.  ","“Mr. Lockwood, your new tenant, sir. I do myself the honour of calling as soon","as possible after my arrival, to express the hope that I have not inconvenienced","you by my perseverance in soliciting the occupation of Thrushcross Grange: I heard","yesterday you had had some thoughts—”", "“Thrushcross Grange is my own, sir,” he interrupted, wincing. “I should not allow", "any one to inconvenience me, if I could hinder it—walk in!”");
 			// description
-			ds_list_add(descriptionList, "• file extension: *.txt", "• songs, poems, etc.", "• short meaningful lines");
+			ds_list_add(descriptionList, "• long paragraphs of text","• one hard return (newline) at end of paragraph","• words wrap to fit on page or screen","• split words on whitespace","• file type: plain text (.txt)");
 			// links
 			ds_list_add(linksList, "https://rezonator.com", "https://genius.com");
 		}
@@ -48,7 +48,7 @@ function scr_preImportInitiate(){
 			ds_list_add(exampleList, transcriptionCol1, transcriptionCol2);
 			
 			// description
-			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by tabs");			
+			ds_list_add(descriptionList, "• one unit per line","• text reads normally","• tab for speaker labels","• tab for timestamps (optional)","• split words on whitespace","• file type: tab-delimited text (.txt, .csv)");			
 			// links
 			ds_list_add(linksList, "https://rezonator.com");
 		}
@@ -68,7 +68,7 @@ function scr_preImportInitiate(){
 			ds_list_add(exampleList, tabDelimCol1, tabDelimCol2, tabDelimCol3, tabDelimCol4);
 			
 			// description
-			ds_list_add(descriptionList, "• file extension: *.txt", "• fields separated by tabs");			
+			ds_list_add(descriptionList, "• one unit per block","• blocks have 1+ lines","• text reads normally","• tab for speaker labels","• tab for timestamps","• split words on whitespace","• file type: tab-delimited text (.txt)");			
 			// links
 			ds_list_add(linksList, "https://rezonator.com");
 		}
@@ -91,7 +91,7 @@ function scr_preImportInitiate(){
 			
 			//ds_list_add(exampleList, "\\ref","\\m","\\gl","\\tln","","1","(...) (H) Ee x-Ø-inw-il-anh ,","(...) (H) FOC CP-3.ABS-1.ERG-see-TV ,","(...) (H) What I saw was","","2","(.) x-Ø-aq'hn jun achenh ,","(.) CP-3.ABS-ascend one man ,","(.) a man climbed up, ","","3","(.) ch-u' chee' ,","(.) at-top tree ,","(.) in a tree,","","4","(...) (H) x-Ø-a-r: (...) ch'up-o' niky'aj péera-s .","(...) (H) CP-3.ABS-LAT-3.ERG (...) pick-DEP some pear-PL .","(...) (H) he went and (...) picked some pears.","","5","(...) Tik'ara' Ø-Ø-qaaj-uu:l ,","(...) then CP-3.ABS-descend-hither ,","(...) Then he came dow:n,","","6","(...) Ø-Ø-r-su' r-iij juu:n ,","(...) CP-3.ABS-3.ERG-wipe 3.ERG-back one ,","(...) he wiped one off,","","7","(...) (H) ii despwee:s ,","(...) (H) and then ,","(...) (H) and the:n,","","8","(...) (H) x-Ø-r-ya' qaj p l chikech ,","(...) (H) CP-3.ABS-3.ERG-put down at the basket ,","(...) (H) he put it in the basket,","","9","Ø-Ø-r-alsa-aj p l r:- (...) komo ber gabaacha .","CP-3.ABS-3.ERG-remove-TV at the 3.ERG (...) like see apron .","he removed it from his: (...) um like apron.","","10","(...) Despwees tik'ara' ,","(...) then then ,","(...) Then,","","11","(...) Ø-Ø-pee jun aj-laab' ,","(...) CP-3.ABS-come one DIM-boy ,","(...) a little boy came,","","12","(.) ch-ij bisikleeta ,","(.) at-back bicycle ,","(.) on a bicycle,","","13","(...) (H) xaq x-Ø-a-r-k'am-a' jun chkech peera .","(...) (H) just CP-3.ABS-LAT-3.ERG-take-DEP one basket pear .","(...) (H) he just came and took a basket of pears.");
 			// description
-			ds_list_add(descriptionList, "• one unit per block","• blocks have 2+ lines","• blocks separated by a blank line","• split morphs on whitespace & hyphen","• file type: plain text (.txt)","• example: Nuuchanulth");
+			ds_list_add(descriptionList, "• one unit per block","• blocks have 2+ lines","• blocks separated by a blank line","• split morphs on whitespace & hyphen","• file type: plain text (.txt)");
 			// links
 			ds_list_add(linksList, "https://scription.digitallinguistics.io/");
 		}
@@ -117,7 +117,7 @@ function scr_preImportInitiate(){
 			ds_list_add(exampleList, csvCol1, csvCol2, csvCol3, csvCol4, csvCol5, csvCol6, csvCol7);
 			
 			// description
-			ds_list_add(descriptionList, "• file extension: *.csv", "• one word per line", "• unit delimiting field is required");
+			ds_list_add(descriptionList, "• columns and rows","• text column reads vertically","• each row represents 1 word (token)","• each column shows a word feature","• file type: spreadsheet (.csv)");
 			// links
 			ds_list_add(linksList, "https://rezonator.com");
 		}
@@ -149,7 +149,7 @@ function scr_preImportInitiate(){
 			ds_list_add(exampleList, conlluCol1, conlluCol2, conlluCol3, conlluCol4, conlluCol5, conlluCol6, conlluCol7, conlluCol8, conlluCol9, conlluCol10);
 			
 			// description
-			ds_list_add(descriptionList, "• file extension: *.txt", "• unit fields denoted with # character", "• token fields delimited by tabs");
+			ds_list_add(descriptionList, "• columns and rows","• text column reads vertically","• each row represents 1 word (token)","• each column shows a word feature","• hashtag lines mark unit features","• file type: spreadsheet (.csv)");
 			// links
 			ds_list_add(linksList, "https://universaldependencies.org/format.html");
 		}

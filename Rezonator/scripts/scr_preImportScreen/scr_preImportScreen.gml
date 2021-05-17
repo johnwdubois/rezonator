@@ -23,6 +23,7 @@ function scr_preImportScreen(){
 	var textBufferTop = strHeight / 2;
 	var infoAlpha = 0.5;
 	
+	var tabHeight = strHeight*1.5;
 	// get the currentPreImportMap from obj_preImportFileType
 	if (!instance_exists(obj_preImportFileType)) {
 		exit;
@@ -43,6 +44,7 @@ function scr_preImportScreen(){
 	var backgroundWindowX2 = floor(camWidth * 0.96);
 	var backgroundWindowY2 = floor(camHeight * 0.8);
 	
+	var tabTextY = backgroundWindowY1 - tabHeight/2 - (strHeight)/2;
 
 	// draw window border
 	draw_set_color(global.colorThemeBG);
@@ -55,8 +57,21 @@ function scr_preImportScreen(){
 	
 	var backgroundWidth = backgroundWindowX2 - backgroundWindowX1;
 	
+	
+	var dataTabX1 = backgroundWindowX1;
+	var dataTabY1 = backgroundWindowY1 - tabHeight;
+	var dataTabX2 = backgroundWidth* 0.315;
+	var dataTabY2 = backgroundWindowY1 + tabHeight/2;
+	
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(dataTabX1, dataTabY1, dataTabX2, dataTabY2, false);
+	
+	
 	draw_set_color(global.colorThemeText);
-	draw_text(backgroundWindowX1, floor(backgroundWindowY1 - (strHeight)), "Data");
+	draw_text(dataTabX1 + textBufferLeft, floor(tabTextY), "Data");
 		
 	///////////// DESCRIPTION WINDOW ////////////////
 
@@ -65,10 +80,24 @@ function scr_preImportScreen(){
 	var descriptionWindowX2 = backgroundWidth* 0.66;
 	var descriptionWindowY2 = backgroundWindowY2;
 	
+	var descriptionTabX1 = descriptionWindowX1;
+	var descriptionTabY1 = descriptionWindowY1 - tabHeight;
+	var descriptionTabX2 = backgroundWidth* 0.645;
+	var descriptionTabY2 = descriptionWindowY1 + tabHeight/2;
+	
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(descriptionTabX1, descriptionTabY1, descriptionTabX2, descriptionTabY2, false);
+	
 	// draw window title
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
-	draw_text(descriptionWindowX1, floor(descriptionWindowY1 - (strHeight)), "Description");
+	draw_text(descriptionWindowX1 + textBufferLeft, floor(tabTextY), "Description");
+	
+	
+	
 	
 	// draw window border
 	draw_set_color(global.colorThemeBG);
@@ -107,11 +136,25 @@ function scr_preImportScreen(){
 	var exampleWindowY2 = backgroundWindowY2;
 	
 	
+		
+	var exampleTabX1 = descriptionWindowX2;
+	var exampleTabY1 = descriptionWindowY1 - tabHeight;
+	var exampleTabX2 = backgroundWindowX2;
+	var exampleTabY2 = descriptionWindowY1 + tabHeight/2;
+	
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(exampleTabX1, exampleTabY1, exampleTabX2, exampleTabY2, false);
+	
+	
+	
 	// draw window title
 	scr_adaptFont(scr_get_translation("msg_example"), "L");
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
-	draw_text(exampleWindowX1, floor(backgroundWindowY1 - (strHeight)), scr_get_translation("msg_example"));
+	draw_text(exampleTabX1+textBufferLeft, floor(tabTextY), scr_get_translation("msg_example"));
 	
 	
 	
@@ -266,10 +309,6 @@ function scr_preImportScreen(){
 		global.openProject = false;
 		global.neworOpen = true;
 	}
-	
 
-	
-	
-	
 	
 }
