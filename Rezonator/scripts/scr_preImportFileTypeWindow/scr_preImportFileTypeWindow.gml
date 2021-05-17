@@ -81,6 +81,8 @@ function scr_preImportFileTypeWindow(){
 	var heightOfBox = windowHeight/preImportInfoGridHeight;
 	var plusY = 0;
 	
+	draw_set_color(global.colorThemeSelected1);
+	draw_rectangle(tableX1,tableY1,tableX2,tableY1+windowHeight, false);
 	
 	
 	for (var i = 0; i < preImportInfoGridHeight; i++) {
@@ -93,8 +95,9 @@ function scr_preImportFileTypeWindow(){
 		else{
 
 			draw_set_color(global.colorThemeBG);
+			draw_rectangle(tableX1,boxY1,tableX2,boxY2, false);
 		}
-		draw_rectangle(tableX1,boxY1,tableX2,boxY2, false);
+
 		
 		var mouseOverOption = point_in_rectangle(mouse_x,mouse_y, tableX1,boxY1,tableX2,boxY2);
 		
@@ -112,8 +115,12 @@ function scr_preImportFileTypeWindow(){
 		}
 		if(currentImportTypeSelected){
 			draw_set_color(rezonatorPink);
-			draw_line_width(tableX1, boxY1-1, tableX1, boxY2, 4);
+			draw_line_width(tableX1, boxY1, tableX1, boxY2, 4);
 		}
+		
+		draw_set_color(global.colorThemeBG)
+		draw_line_width(tableX1,boxY1,tableX2,boxY1, 2);
+		draw_line_width(tableX1,boxY2,tableX2,boxY2, 2);
 		
 		draw_set_color(global.colorThemeText);
 		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)), string(currentImportType) );
@@ -142,9 +149,14 @@ function scr_preImportFileTypeWindow(){
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	scr_adaptFont( scr_get_translation("msg_choose_import"), "L");
-	draw_text(fileTypeWindowX1, floor(fileTypeWindowY1 - (strHeight)*3), "Choose the data type that best matches your file:");
+	draw_text(fileTypeWindowX1, floor(0 + (strHeight)), "Choose the data type that best matches your file:");
 	
-
+	
+	draw_set_color(rezonatorPink)
+	draw_line_width(backgroundWindowX1,y,backgroundWindowX2,y, 1)
+	
+	
+	
 
 	
 }
