@@ -37,25 +37,25 @@ function scr_fileOptions(optionSelected) {
 			break;
 		case "menu_import":
 			
-			audio_stop_all();
+			if(room == rm_mainScreen){
+				audio_stop_all();
+				scr_saveINI();
 	
-
-			scr_saveINI();
-	
-			if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+				if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
 		
-				if (os_type == os_macosx) {
+					if (os_type == os_macosx) {
 
-					with (obj_fileLoader) {
-						scr_saveREZ(false);
-					}
-		
-				}
-				else {
-					scr_adaptFont(scr_get_translation("question_save_before_import"), "M");
-					if (show_question(scr_get_translation("question_save_before_import"))) {
 						with (obj_fileLoader) {
 							scr_saveREZ(false);
+						}
+		
+					}
+					else {
+						scr_adaptFont(scr_get_translation("question_save_before_import"), "M");
+						if (show_question(scr_get_translation("question_save_before_import"))) {
+							with (obj_fileLoader) {
+								scr_saveREZ(false);
+							}
 						}
 					}
 				}

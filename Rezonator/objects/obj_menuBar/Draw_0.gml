@@ -52,7 +52,6 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	var menuHeaderRectY1 = 0;
 	var menuHeaderRectX2 = (global.lang_codes[| global.lang_index] == "he") ? prevXBuffer : xBuffer;
 	var menuHeaderRectY2 = menuHeight;
-	
 	if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
 		
 		// draw hover rectangle
@@ -91,7 +90,6 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	if (!instance_exists(obj_dropDown)) {
 		ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, false);
 	}
-	
 	
 	draw_text(floor(mean(menuHeaderRectX1, menuHeaderRectX2)), floor(mean(menuHeaderRectY1, menuHeaderRectY2)), scr_get_translation(headerString));
 }
