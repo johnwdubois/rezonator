@@ -349,6 +349,20 @@ ds_map_add(global.expandableDropDownMap, "menu_language", true);
 ds_map_add(global.expandableDropDownMap, "Recolor", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 
+global.openingScreenDropDownMap = ds_map_create();
+ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_docs", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-en", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-es", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-he", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-it", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-ja", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-vi", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-zh", true);
+
+
+
 
 scr_dropDownOptionListTypeInit();
 

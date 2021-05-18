@@ -23,6 +23,7 @@ function scr_openingMenu() {
 
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
+	draw_set_alpha(1);
 	draw_set_color(merge_color(global.colorThemeSelected1, c_white, .4));
 	draw_rectangle(0,0,camWidth,camHeight,false);
 
@@ -52,12 +53,23 @@ function scr_openingMenu() {
 
 	draw_set_color(global.colorThemeRezPurple);
 	draw_roundrect(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
+
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
+	draw_set_color(global.colorThemeText);
+	draw_text(openProjectButtonX1, openProjectButtonY1 - string_height("0"),  "Get Started");
 	
+	
+	
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
 	draw_set_color(mouseOverOpen ? global.colorThemeBG : global.colorThemeText);
 	draw_sprite_ext(spr_openingMenuOpen,global.fontSize,mean(openProjectButtonX1,openProjectButtonX2),openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.38,1,1,0,(mouseOverOpen)? c_white: global.colorThemeRezPurple,1);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8,  scr_get_translation("help_label_open"));
 	
+
 
 
 	// import new file selection
@@ -133,9 +145,9 @@ function scr_openingMenu() {
 	var stringWidth = string_width(signInText);
 	var stringHeight = string_height(signInText);
 	var userSignInBoxX2 = camWidth * 0.95 ;	
-	var userSignInBoxY1 = camHeight * 0.9;
+	var userSignInBoxY1 = camHeight * 0.85;
 	var userSignInBoxX1 = userSignInBoxX2 - stringWidth - stringBuffer*2 ;
-	var userSignInBoxY2 = userSignInBoxY1 + stringHeight;
+	var userSignInBoxY2 = userSignInBoxY1 + stringHeight*1.5;
 
 
 	draw_set_color(global.colorThemeBG);

@@ -143,6 +143,8 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_rectangle(optionRectX1 - clipX, optionRectY1 - clipY, optionRectX2 - clipX, optionRectY2 - clipY, false);
 	
 	
+	var isOpeningScreenOption = ds_map_exists(global.openingScreenDropDownMap,optionText);
+	
 	
 	// check whether this option is expandable
 	var isExpandable = false;
@@ -161,7 +163,7 @@ for (var i = 0; i < optionListSize; i++) {
 			isExpandable = false;
 		}
 	}
-	
+	var unClickable = (room == rm_openingScreen and !isOpeningScreenOption);
 	// gray out option if it begins with ~
 	draw_set_color(global.colorThemeText);
 	if (room == rm_mainScreen) {
@@ -170,6 +172,9 @@ for (var i = 0; i < optionListSize; i++) {
 				draw_set_color(global.colorThemeSelected2);
 			}
 		}
+	}
+	if(unClickable){
+		draw_set_color(global.colorThemeSelected2);
 	}
 	
 	// draw option text
@@ -237,22 +242,26 @@ for (var i = 0; i < optionListSize; i++) {
 	draw_set_halign(fa_left);
 	draw_set_alpha(1);
 	
+	
 	// click on option
 	if (mouseoverCurrentOption and ableToClick and mouse_check_button_released(mb_left)) {
-		optionCurrent = i;
-		var optionSelected = ds_list_find_value(optionList, i);
-		scr_dropDownSelect(optionSelected);
+		if(!unClickable){
+			optionCurrent = i;
+			var optionSelected = ds_list_find_value(optionList, i);
+			scr_dropDownSelect(optionSelected);
+		}
 	}
 	
 	// draw arrow if expandable
 	if (isExpandable) {
 		var expandArrowX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 		var expandArrowY = floor(mean(optionRectY1, optionRectY2));
+		var arrowColor = (unClickable)? global.colorThemeSelected1 : global.colorThemeText;
 		if(global.lang_codes[| global.lang_index] == "he"){
-			draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 90, global.colorThemeText, 1);
+			draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 90, arrowColor, 1);
 		}
 		else{
-			draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, global.colorThemeText, 1);
+			draw_sprite_ext(spr_ascend, 0, expandArrowX - clipX, expandArrowY - clipY, 1, 1, 270, arrowColor, 1);
 		}
 	}
 }
