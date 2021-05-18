@@ -1,17 +1,4 @@
 function scr_loadINI() {
-	/*
-		scr_loadRez();
-	
-		Last Updated: 2020-01-01
-	
-		Called from: obj_fileLoader
-	
-		Purpose: Load data from a Rez file into Rezonator
-	
-		Mechanism: Separate the JSON string into its different maps, then load the data from those maps into all the grids.
-	
-		Author: Terry DuBois
-	*/
 
 
 

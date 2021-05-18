@@ -1,18 +1,7 @@
-/*
-	scr_jumpToLine(discoID, lineStr);
-	
-	Last Updated: 2019-12-27
-	
-	Called from: obj_control
-	
-	Purpose: Send the user to a specific line in the discourse
-	
-	Mechanism: find the specified line within the currentActiveLineGrid and set the 
-		scrollPlusYDest to that line's Y value
-	
-	Author: ?
-*/
 function scr_jumpToLine(discoID, lineStr) {
+	
+	show_debug_message("scr_jumpToLine ... discoID: " + string(discoID) + ", lineStr: " + string(lineStr));
+	
 	// Get the current Discourse and specified line string
 	discoID = obj_panelPane.selectedDiscoID;
 
