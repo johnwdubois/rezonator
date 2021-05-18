@@ -456,6 +456,7 @@
     {"id":{"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},"order":1,},
     {"id":{"name":"spr_audioTool","path":"sprites/spr_audioTool/spr_audioTool.yy",},"order":6,},
     {"id":{"name":"rm_importScreen","path":"rooms/rm_importScreen/rm_importScreen.yy",},"order":2,},
+    {"id":{"name":"scr_copyListToMap","path":"scripts/scr_copyListToMap/scr_copyListToMap.yy",},"order":13,},
     {"id":{"name":"scr_dropDownOptionListTypeInit","path":"scripts/scr_dropDownOptionListTypeInit/scr_dropDownOptionListTypeInit.yy",},"order":52,},
     {"id":{"name":"scr_getChunkText","path":"scripts/scr_getChunkText/scr_getChunkText.yy",},"order":5,},
     {"id":{"name":"compatibility_report_010119_2032583258","path":"notes/compatibility_report_010119_2032583258/compatibility_report_010119_2032583258.yy",},"order":0,},

@@ -73,7 +73,7 @@ function scr_saveREZ(autosave) {
 		if (object_index == obj_control) {
 
 		
-		
+			/*
 			var mapFileLineRipGrid = scr_gridToJSONLists(global.fileLineRipGrid);
 			var mapWordGrid = scr_gridToJSONLists(wordGrid);
 			var mapWordGridColList = scr_getListOfGridCols(wordGrid);
@@ -89,6 +89,7 @@ function scr_saveREZ(autosave) {
 			var mapunitImport = scr_gridToJSONLists(global.unitImportGrid);
 			var mapDiscoImport = scr_gridToJSONLists(global.discoImportGrid);
 			var mapCustomLabelGrid = scr_gridToJSONLists(global.customLabelGrid);
+			
 		
 			ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
 			ds_map_add_list(map, "wordGrid", mapWordGrid);
@@ -101,98 +102,41 @@ function scr_saveREZ(autosave) {
 			ds_map_add_list(map, "importCSVGrid", mapimportCSVGrid);
 			ds_map_add(map, "importGridWidth", global.importGridWidth);
 			ds_map_add(map, "importCSVGridWidth", global.importCSVGridWidth);
-			ds_map_add_list(map, "morphGrid", mapMorphGrid);
-			var tempList = ds_list_create();
-			if (global.importGridColNameList != undefined) {
-				ds_list_copy(tempList, global.importGridColNameList);
-			}
-			ds_map_add_list(map, "importGridColNameList", tempList);
-		
+			*/
+			
+			
 
-
-		
 
 
 		
 			//custom label saves
+			/*
 			ds_map_add_list(map, "tokenImport", maptokenImport);
 			ds_map_add_list(map, "wordImport", mapwordImport);
 			ds_map_add_list(map, "unitImport", mapunitImport);
 			ds_map_add_list(map, "discoImport", mapDiscoImport);
 			ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
-			
-			var tempTokenImportColNameList = ds_list_create();
-			if (scr_isNumericAndExists(global.tokenImportColNameList, ds_type_list)) {
-				ds_list_copy(tempTokenImportColNameList, global.tokenImportColNameList);
-			}
-			ds_map_add_list(map, "tokenImportColNameList", tempTokenImportColNameList);
+			*/
 
-			var tempUnitImportColNameList = ds_list_create();
-			if (scr_isNumericAndExists(global.unitImportColNameList, ds_type_list)) {
-				ds_list_copy(tempUnitImportColNameList, global.unitImportColNameList);
-			}
-			ds_map_add_list(map, "unitImportColNameList", tempUnitImportColNameList);
-		
-			var tempCurrentDisplayTokenColsList = ds_list_create();
-			if (scr_isNumericAndExists(obj_control.currentDisplayTokenColsList, ds_type_list)) {
-				ds_list_copy(tempCurrentDisplayTokenColsList, obj_control.currentDisplayTokenColsList);
-			}
-			ds_map_add_list(map, "currentDisplayTokenColsList", tempCurrentDisplayTokenColsList);
-		
-			var tempCurrentDisplayUnitColsList = ds_list_create();
-			if (scr_isNumericAndExists(obj_control.currentDisplayTokenColsList, ds_type_list)) {
-				ds_list_copy(tempCurrentDisplayUnitColsList, obj_control.currentDisplayUnitColsList);
-			}
-			ds_map_add_list(map, "currentDisplayUnitColsList", tempCurrentDisplayUnitColsList);		
+
+
+			var tempImportGridColNameList = scr_copyListToMap(global.importGridColNameList, map, "importGridColNameList");
+			var tempTokenImportColNameList = scr_copyListToMap(global.tokenImportColNameList, map, "tokenImportColNameList");
+			var tempUnitImportColNameList = scr_copyListToMap(global.unitImportColNameList, map, "unitImportColNameList");
+			var tempCurrentDisplayTokenColsList = scr_copyListToMap(obj_control.currentDisplayTokenColsList, map, "currentDisplayTokenColsList");
+			var tempCurrentDisplayUnitColsList = scr_copyListToMap(obj_control.currentDisplayUnitColsList, map, "currentDisplayUnitColsList");
+			var tempWordImportColNameList = scr_copyListToMap(global.wordImportColNameList, map, "wordImportColNameList");
+			var tempChainEntryFieldList = scr_copyListToMap(global.chainEntryFieldList, map, "chainEntryFieldList");
+			var tempChainFieldList = scr_copyListToMap(global.chainFieldList, map, "chainFieldList");
+			var tempNavTokenFieldList = scr_copyListToMap(navTokenFieldList, map, "navTokenFieldList");
+			var tempTokenFieldList = scr_copyListToMap(tokenFieldList, map, "tokenFieldList");
+			var tempNavUnitFieldList = scr_copyListToMap(navUnitFieldList, map, "navUnitFieldList");
+			var tempUnitFieldList = scr_copyListToMap(unitFieldList, map, "unitFieldList");
+			var tempTranslationList = scr_copyListToMap(global.translationList, map, "translationList");
 			
-			var tempWordImportColNameList = ds_list_create();
-			if (scr_isNumericAndExists(global.wordImportColNameList, ds_type_list)) {
-				ds_list_copy(tempWordImportColNameList, global.wordImportColNameList);
-			}
-			ds_map_add_list(map, "wordImportColNameList", tempWordImportColNameList);
 			
-			var tempChainEntryFieldList = ds_list_create();
-			if (scr_isNumericAndExists(global.chainEntryFieldList, ds_type_list)) {
-				ds_list_copy(tempChainEntryFieldList, global.chainEntryFieldList);
-			}
-			ds_map_add_list(map, "chainEntryFieldList", tempChainEntryFieldList);
 			
-			var tempChainFieldList = ds_list_create();
-			if (scr_isNumericAndExists(global.chainFieldList, ds_type_list)) {
-				ds_list_copy(tempChainFieldList, global.chainFieldList);
-			}
-			ds_map_add_list(map, "chainFieldList", tempChainFieldList);
-			
-			var tempNavTokenFieldList = ds_list_create();
-			if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) {
-				ds_list_copy(tempNavTokenFieldList, navTokenFieldList);
-			}
-			ds_map_add_list(map, "navTokenFieldList", tempNavTokenFieldList);
-			
-			var tempTokenFieldList = ds_list_create();
-			if (scr_isNumericAndExists(tokenFieldList, ds_type_list)) {
-				ds_list_copy(tempTokenFieldList, tokenFieldList);
-			}
-			ds_map_add_list(map, "tokenFieldList", tempTokenFieldList);
-			
-			var tempNavUnitFieldList = ds_list_create();
-			if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) {
-				ds_list_copy(tempNavUnitFieldList, navUnitFieldList);
-			}
-			ds_map_add_list(map, "navUnitFieldList", tempNavUnitFieldList);
-			
-			var tempUnitFieldList = ds_list_create();
-			if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
-				ds_list_copy(tempUnitFieldList, unitFieldList);
-			}
-			ds_map_add_list(map, "unitFieldList", tempUnitFieldList);
-			
-			var tempTranslationList = ds_list_create();
-			if (scr_isNumericAndExists(global.translationList, ds_type_list)) {
-				ds_list_copy(tempTranslationList, global.translationList);
-			}
-			ds_map_add_list(map, "translationList", tempTranslationList);
-		
+
 		
 			//save special feild colnames
 			ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
@@ -265,8 +209,6 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "chainColorID1", chainColorID[1]);
 			ds_map_add(map, "chainColorID2", chainColorID[2]);
 			ds_map_add(map, "chainColorID3", chainColorID[3]);
-			
-		
 		}
 
 	}
@@ -340,6 +282,7 @@ function scr_saveREZ(autosave) {
 	ds_map_destroy(stackTagMapCopy);
 	ds_map_destroy(entryFieldMapCopy);
 	ds_map_destroy(chainFieldMapCopy);
+	ds_list_destroy(tempImportGridColNameList);
 	ds_list_destroy(tempTokenImportColNameList);
 	ds_list_destroy(tempUnitImportColNameList);
 	ds_list_destroy(tempCurrentDisplayTokenColsList);
@@ -352,6 +295,7 @@ function scr_saveREZ(autosave) {
 	ds_list_destroy(tempTokenFieldList);
 	ds_list_destroy(tempUnitFieldList);
 	ds_list_destroy(tempTranslationList);
+	
 	
 	
 	// set allSaved to true so user does not get prompted to save when they quit
