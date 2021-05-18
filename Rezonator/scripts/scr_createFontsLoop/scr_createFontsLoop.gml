@@ -25,6 +25,7 @@ function scr_createFontsLoop(){
 			alarm[4] = 2;
 		}
 		else {
+			scr_createFonts(CKJFont_file_name_full, 6);
 			global.fontsLoaded = true;
 		}
 	}

@@ -1,7 +1,10 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_adaptFont(inputString, size){
-	
+function scr_adaptFont(inputString, size, isTitle){
+	var setTitleFont = false;
+	if(argument_count >2){
+		setTitleFont = isTitle;
+	}
 	// make sure we're dealing with a string
 	if (!is_string(inputString)) inputString = string(inputString);
 
@@ -121,6 +124,9 @@ function scr_adaptFont(inputString, size){
 				fontScaledName = global.localeCJK_L_5;
 			} 
 		}
+		if(setTitleFont){
+			fontScaledName = global.localeCJK_Title;
+		}
 
 	}
 		
@@ -187,6 +193,9 @@ function scr_adaptFont(inputString, size){
 			else if( global.fontSize == 5 ){
 				fontScaledName = global.localeEN_L_5;
 			} 
+		}
+		if(setTitleFont){
+			fontScaledName = global.localeEN_Title;
 		}
 	}
 		

@@ -11,7 +11,6 @@
 	
 	Author: Terry DuBois
 */
-
 scr_colorThemeControl();
 
 importWindowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -24,10 +23,6 @@ importWindowY2 = importWindowY1 + importWindowHeight;
 scr_windowCameraAdjust();
 
 
-// draw Rezonator logo with version number
-if !(global.newProject and not global.openProject) {
-	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 4, true);
-}
 
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
@@ -73,5 +68,11 @@ if not (global.newProject or global.openProject) {
 }
 else if (not global.newProject and global.openProject) {
 	room_goto(rm_mainScreen);
+}
+
+
+// draw Rezonator logo with version number
+if !(global.newProject and not global.openProject) {
+	scr_drawLogo(camera_get_view_width(camera_get_active()) * .05, camera_get_view_height(camera_get_active()) * .08, true);
 }
 

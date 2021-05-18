@@ -47,4 +47,11 @@ function scr_createFonts(filePath, i){
 		show_debug_message("Loop 5 CLEAR");
 	}	
 	
+	else if( i == 6){		
+	//Title font 	
+		global.localeCJK_Title = font_add(filePath,30,false,false,32,127);
+		show_debug_message("Loop 5 CLEAR");
+	}	
+	
+	
 }

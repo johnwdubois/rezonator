@@ -89,8 +89,16 @@ function scr_preImportFileTypeWindow(){
 		
 		var boxY1 = tableY1 + plusY;
 		var boxY2 = boxY1 + heightOfBox;
+		
+		var mouseOverOption = point_in_rectangle(mouse_x,mouse_y, tableX1,boxY1,tableX2,boxY2);
+		
+		
 		if(ds_grid_get(preImportInfoGrid, obj_openingScreen.preImportInfoGrid_colChoose, i) == false){
 			draw_set_color(global.colorThemeSelected1);
+			if(mouseOverOption){
+				draw_set_color(merge_color(global.colorThemeSelected1, c_white, .4));
+				draw_rectangle(tableX1,boxY1,tableX2,boxY2, false);
+			}
 		}
 		else{
 
@@ -99,7 +107,7 @@ function scr_preImportFileTypeWindow(){
 		}
 
 		
-		var mouseOverOption = point_in_rectangle(mouse_x,mouse_y, tableX1,boxY1,tableX2,boxY2);
+
 		
 
 		
