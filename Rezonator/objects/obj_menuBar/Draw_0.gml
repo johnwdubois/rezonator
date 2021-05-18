@@ -5,9 +5,16 @@
 var camWidth = camera_get_view_width(camera_get_active());
 
 // draw drop shadow if both nav windows are hidden
-var drawDropShadow = !obj_panelPane.showNav || (!obj_panelPane.showNavLeft && !obj_panelPane.showNavRight);
-if (drawDropShadow) scr_dropShadow(-10, 0, camWidth - global.toolPaneWidth, menuHeight);
-
+var drawDropShadow = true;
+if(instance_exists(obj_panelPane)){
+	drawDropShadow = !obj_panelPane.showNav || (!obj_panelPane.showNavLeft && !obj_panelPane.showNavRight);
+}
+if(instance_exists(obj_control)){
+	if (drawDropShadow) scr_dropShadow(-10, 0, camWidth - global.toolPaneWidth, menuHeight);
+}
+else{
+	if (drawDropShadow) scr_dropShadow(-10, 0, camWidth, menuHeight);
+}
 
 draw_set_alpha(1);
 var firstheaderString = ds_grid_get(menuBarGrid, menuBarGrid_colString, 0);
@@ -53,8 +60,9 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(1);
 		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2-20, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
-		
-		obj_control.mouseoverPanelPane = true;		
+		with(obj_control){
+			mouseoverPanelPane = true;	
+		}
 		instance_destroy(obj_dropDown);
 		
 		if(mouse_check_button_released(mb_left) and menuClickedIn){
@@ -95,67 +103,67 @@ draw_set_valign(fa_middle);
 
 var sizeOfButtons = menuHeight * 0.6
 
-var maximizeX2 = (global.lang_codes[| global.lang_index] == "he") ? string_width("0") : camera_get_view_width(camera_get_active()) - string_width("0");
-var maximizeX1 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX2 + sizeOfButtons :  maximizeX2 - sizeOfButtons;
-var maximizeY2 = y + menuHeight *.66  +sizeOfButtons/2;
-var maximizeY1 = maximizeY2 - sizeOfButtons;
+	var maximizeX2 = (global.lang_codes[| global.lang_index] == "he") ? string_width("0") : camera_get_view_width(camera_get_active()) - string_width("0");
+	var maximizeX1 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX2 + sizeOfButtons :  maximizeX2 - sizeOfButtons;
+	var maximizeY2 = y + menuHeight *.66  +sizeOfButtons/2;
+	var maximizeY1 = maximizeY2 - sizeOfButtons;
 
+if(instance_exists(obj_control)){
+	draw_set_color(c_white);
 
-draw_set_color(c_white);
+	var mouseOverMax = point_in_circle(mouse_x, mouse_y,floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)),sizeOfButtons/2 );
 
-var mouseOverMax = point_in_circle(mouse_x, mouse_y,floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)),sizeOfButtons/2 );
+	draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , true);
 
-draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , true);
-
-if(mouseOverMax){
-	draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , false);
-	draw_set_color(global.colorThemeText);
-	scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("Maximize"), obj_tooltip.arrowFaceUp);
+	if(mouseOverMax){
+		draw_circle(floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)), sizeOfButtons/2 , false);
+		draw_set_color(global.colorThemeText);
+		scr_createTooltip(floor(mean(maximizeX1, maximizeX2)), maximizeY2, scr_get_translation("Maximize"), obj_tooltip.arrowFaceUp);
 	
-	if (mouse_check_button_released(mb_left)) {
-		with (obj_panelPane) {
-			showNav = true;
-			showNavRight = true;
-			showNavLeft = true;
+		if (mouse_check_button_released(mb_left)) {
+			with (obj_panelPane) {
+				showNav = true;
+				showNavRight = true;
+				showNavLeft = true;
+			}
 		}
 	}
+
+	if(global.lang_codes[| global.lang_index] == "he"){
+		scr_drawRectWidth(maximizeX1 - sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 + sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
+	}else{
+		scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
+	}
+
 }
 
-if(global.lang_codes[| global.lang_index] == "he"){
-	scr_drawRectWidth(maximizeX1 - sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 + sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
-}else{
-	scr_drawRectWidth(maximizeX1 +sizeOfButtons/4,maximizeY1+sizeOfButtons/4,maximizeX2 - sizeOfButtons/4, maximizeY2-sizeOfButtons/4, 2 , false)
-}
 
+	var minimizeY1 = maximizeY1
+	var minimizeX2 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
+	var minimizeX1 = (global.lang_codes[| global.lang_index] == "he") ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
+	var minimizeY2 = maximizeY2
+if(instance_exists(obj_control)){
+	draw_set_color(c_white);
 
+	var mouseOverMin = point_in_circle(mouse_x, mouse_y,floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)),sizeOfButtons/2 );
 
+	draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2, true);
 
-var minimizeY1 = maximizeY1
-var minimizeX2 = (global.lang_codes[| global.lang_index] == "he") ? maximizeX1 + sizeOfButtons/2 : maximizeX1 - sizeOfButtons/2;
-var minimizeX1 = (global.lang_codes[| global.lang_index] == "he") ? minimizeX2 + sizeOfButtons : minimizeX2 - sizeOfButtons;
-var minimizeY2 = maximizeY2
-
-draw_set_color(c_white);
-
-var mouseOverMin = point_in_circle(mouse_x, mouse_y,floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)),sizeOfButtons/2 );
-
-draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2, true);
-
-if(mouseOverMin){
-	draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2 , false);
-	draw_set_color(global.colorThemeText);
-	scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("Minimize"), obj_tooltip.arrowFaceUp);
-	if(mouse_check_button_released(mb_left)){
-		with (obj_panelPane) {
-			showNav = false;
-			showNavRight = false;
-			showNavLeft = false;
+	if(mouseOverMin){
+		draw_circle(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2)), sizeOfButtons/2 , false);
+		draw_set_color(global.colorThemeText);
+		scr_createTooltip(floor(mean(minimizeX1, minimizeX2)), minimizeY2, scr_get_translation("Minimize"), obj_tooltip.arrowFaceUp);
+		if(mouse_check_button_released(mb_left)){
+			with (obj_panelPane) {
+				showNav = false;
+				showNavRight = false;
+				showNavLeft = false;
+			}
 		}
 	}
+
+	draw_text(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2) - menuHeight *.05), "-");
 }
-
-draw_text(floor(mean(minimizeX1, minimizeX2)),floor(mean(minimizeY1, minimizeY2) - menuHeight *.05), "-");
-
 var spriteScale = 0.4;
 var sizeOfSave = sprite_get_width(spr_saveWarning)*spriteScale;
 
@@ -211,48 +219,50 @@ var fpsTextX = minimizeX1- sizeOfButtons;
 
 
 draw_set_color(c_white);
-
-if (obj_control.showFPS) {
-	if(!obj_control.allSaved){
-		fpsTextX = saveIconX1 - string_width("0");
+if(instance_exists(obj_control)){
+	if (obj_control.showFPS) {
+		if(!obj_control.allSaved){
+			fpsTextX = saveIconX1 - string_width("0");
+		}
+		draw_set_halign(fa_right);
+		draw_set_valign(fa_middle);
+		draw_text(saveIconX1, fpsTextY, "FPS: " + string(fps));
 	}
+
+	// show unsaved warning
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_middle);
-	draw_text(saveIconX1, fpsTextY, "FPS: " + string(fps));
-}
 
-
-
-
-
-
-// show unsaved warning
-draw_set_halign(fa_right);
-draw_set_valign(fa_middle);
-
-if(obj_control.allSaved){
-	saveTextAlpha -= 0.01;
-	saveTextAlpha = clamp(saveTextAlpha,0 ,1);
-	draw_set_alpha(saveTextAlpha);	
-	if(global.lang_codes[| global.lang_index] == "he"){
-		draw_text(saveIconX1 + string_width("0"), fpsTextY, scr_get_translation("Saved!"));   // felt too close to lang button, so I added string_width("0")
-	}else{
-		draw_text(saveIconX2,fpsTextY, scr_get_translation("Saved!"));
+	if(obj_control.allSaved){
+		saveTextAlpha -= 0.01;
+		saveTextAlpha = clamp(saveTextAlpha,0 ,1);
+		draw_set_alpha(saveTextAlpha);	
+		if(global.lang_codes[| global.lang_index] == "he"){
+			draw_text(saveIconX1 + string_width("0"), fpsTextY, scr_get_translation("Saved!"));   // felt too close to lang button, so I added string_width("0")
+		}else{
+			draw_text(saveIconX2,fpsTextY, scr_get_translation("Saved!"));
+		}
 	}
-}
-else{
-	if(global.lang_codes[| global.lang_index] == "he") and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ){
-		scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceLeft);
-	}else if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
-		scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceRight);
+	else{
+		if(global.lang_codes[| global.lang_index] == "he") and point_in_rectangle(mouse_x, mouse_y,saveIconX2,saveIconY1,saveIconX1,saveIconY2 ){
+			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceLeft);
+		}else if (point_in_rectangle(mouse_x, mouse_y,saveIconX1,saveIconY1,saveIconX2,saveIconY2 )) {
+			scr_createTooltip(saveIconX1,fpsTextY, scr_get_translation("Unsaved Changes!"), obj_tooltip.arrowFaceRight);
+		}
+		draw_sprite_ext(spr_saveWarning,0,floor(mean(saveIconX1, saveIconX2)) ,fpsTextY,spriteScale,spriteScale, 0,c_white , 1)
+		saveTextAlpha = 1;	
 	}
-	draw_sprite_ext(spr_saveWarning,0,floor(mean(saveIconX1, saveIconX2)) ,fpsTextY,spriteScale,spriteScale, 0,c_white , 1)
-	saveTextAlpha = 1;	
-}
 
+
+}
 // draw border if nav is collapsed
 if (drawDropShadow) {
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeBorders);
-	draw_line(0, menuHeight, camWidth - global.toolPaneWidth, menuHeight);
+	if(instance_exists(obj_control)){
+		draw_line(0, menuHeight, camWidth - global.toolPaneWidth, menuHeight);
+	}
+	else{
+		draw_line(0, menuHeight, camWidth, menuHeight);
+	}
 }
