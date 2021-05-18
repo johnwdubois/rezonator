@@ -13,8 +13,7 @@ function scr_preImportScreen(){
 	draw_set_color(global.colorThemeNegSpace);
 	draw_rectangle(0, 0, camWidth, camHeight, false);
 	
-	scr_drawBackArrow();
-	
+	var rezonatorPink = make_color_rgb(193, 30, 93);
 	
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
@@ -24,6 +23,7 @@ function scr_preImportScreen(){
 	var textBufferTop = strHeight / 2;
 	var infoAlpha = 0.5;
 	
+	var tabHeight = strHeight*1.5;
 	// get the currentPreImportMap from obj_preImportFileType
 	if (!instance_exists(obj_preImportFileType)) {
 		exit;
@@ -37,29 +37,127 @@ function scr_preImportScreen(){
 	
 	
 	
-	///////////// EXAMPLE WINDOW ////////////////
+	///////////// Background WINDOW ////////////////
 	
-	var exampleWindowX1 = floor(camWidth * 0.512);
-	var exampleWindowY1 = floor(camHeight * 0.25);
-	var exampleWindowX2 = floor(camWidth * 0.96);
-	var exampleWindowY2 = floor(camHeight * 0.8);
+	var backgroundWindowX1 = floor(camWidth * 0.04);
+	var backgroundWindowY1 = floor(camHeight * 0.15);
+	var backgroundWindowX2 = floor(camWidth * 0.96);
+	var backgroundWindowY2 = floor(camHeight * 0.8);
 	
-	// draw window title
-	scr_adaptFont(scr_get_translation("msg_example"), "M");
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(1);
-	draw_text(exampleWindowX1, floor(exampleWindowY1 - (strHeight)), scr_get_translation("msg_example"));
-	
+	var tabTextY = backgroundWindowY1 - tabHeight/2 - (strHeight)/2;
+
 	// draw window border
 	draw_set_color(global.colorThemeBG);
 	draw_set_alpha(1);
-	draw_roundrect(exampleWindowX1, exampleWindowY1, exampleWindowX2, exampleWindowY2, false);
+	draw_rectangle(backgroundWindowX1, backgroundWindowY1, backgroundWindowX2, backgroundWindowY2, false);
 	
 	// draw example content
 	var exampleWindowList = ds_map_find_value(currentPreImportMap, "example");
 	var exampleWindowListSize = ds_list_size(exampleWindowList);
 	
+	var backgroundWidth = backgroundWindowX2 - backgroundWindowX1;
+	
+	
+	var dataTabX1 = backgroundWindowX1;
+	var dataTabY1 = backgroundWindowY1 - tabHeight;
+	var dataTabX2 = backgroundWidth* 0.315;
+	var dataTabY2 = backgroundWindowY1 + tabHeight/2;
+	
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(dataTabX1, dataTabY1, dataTabX2, dataTabY2, false);
+	
+	
+	draw_set_color(global.colorThemeText);
+	draw_text(dataTabX1 + textBufferLeft, floor(tabTextY), "Data");
+		
+	///////////// DESCRIPTION WINDOW ////////////////
 
+	var descriptionWindowX1 = backgroundWidth* 0.33;
+	var descriptionWindowY1 = backgroundWindowY1;
+	var descriptionWindowX2 = backgroundWidth* 0.66;
+	var descriptionWindowY2 = backgroundWindowY2;
+	
+	var descriptionTabX1 = descriptionWindowX1;
+	var descriptionTabY1 = descriptionWindowY1 - tabHeight;
+	var descriptionTabX2 = backgroundWidth* 0.645;
+	var descriptionTabY2 = descriptionWindowY1 + tabHeight/2;
+	
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(descriptionTabX1, descriptionTabY1, descriptionTabX2, descriptionTabY2, false);
+	
+	// draw window title
+	draw_set_color(global.colorThemeText);
+	draw_set_alpha(1);
+	draw_text(descriptionWindowX1 + textBufferLeft, floor(tabTextY), "Description");
+	
+	
+	
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(descriptionWindowX1, descriptionWindowY1, descriptionWindowX2, descriptionWindowY2, false);
+	
+	// draw description content
+	var descriptionWindowList = ds_map_find_value(currentPreImportMap, "description");
+	var descriptionWindowListSize = ds_list_size(descriptionWindowList);
+	draw_set_font(global.fontMain);
+	draw_set_color(global.colorThemeText);
+	draw_set_alpha(infoAlpha);
+	for (var i = 0; i < descriptionWindowListSize; i++) {
+		var currentText = ds_list_find_value(descriptionWindowList, i);
+		var currentTextX = floor(descriptionWindowX1 + textBufferLeft);
+		var currentTextY = floor(descriptionWindowY1 + textBufferTop + (strHeight * i));
+		if (currentTextY < descriptionWindowY2 - (strHeight / 1.5)) {
+			draw_text(currentTextX, currentTextY, currentText);
+		}
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	///////////// EXAMPLE WINDOW ////////////////
+	
+	var exampleWindowX1 = backgroundWidth* 0.66;
+	var exampleWindowY1 = backgroundWindowY1;
+	var exampleWindowX2 = backgroundWindowX2;
+	var exampleWindowY2 = backgroundWindowY2;
+	
+	
+		
+	var exampleTabX1 = descriptionWindowX2;
+	var exampleTabY1 = descriptionWindowY1 - tabHeight;
+	var exampleTabX2 = backgroundWindowX2;
+	var exampleTabY2 = descriptionWindowY1 + tabHeight/2;
+	
+	
+	// draw window border
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	draw_roundrect(exampleTabX1, exampleTabY1, exampleTabX2, exampleTabY2, false);
+	
+	
+	
+	// draw window title
+	scr_adaptFont(scr_get_translation("msg_example"), "L");
+	draw_set_color(global.colorThemeText);
+	draw_set_alpha(1);
+	draw_text(exampleTabX1+textBufferLeft, floor(tabTextY), scr_get_translation("msg_example"));
+	
+	
+	
 	var currentTextX = floor(exampleWindowX1 + textBufferLeft);
 	for (var i = 0; i < exampleWindowListSize; i++) {
 		
@@ -130,42 +228,7 @@ function scr_preImportScreen(){
 	
 	
 	
-	
-	///////////// DESCRIPTION WINDOW ////////////////
-	/*
-	var descriptionWindowX1 = floor(camWidth * 0.44);
-	var descriptionWindowY1 = floor(camHeight * 0.25);
-	var descriptionWindowX2 = floor(camWidth * 0.9);
-	var descriptionWindowY2 = floor(camHeight * 0.40);
-	
-	// draw window title
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(1);
-	draw_text(descriptionWindowX1, floor(descriptionWindowY1 - (strHeight)), "Description");
-	
-	// draw window border
-	draw_set_color(global.colorThemeBG);
-	draw_set_alpha(1);
-	draw_roundrect(descriptionWindowX1, descriptionWindowY1, descriptionWindowX2, descriptionWindowY2, false);
-	
-	// draw description content
-	var descriptionWindowList = ds_map_find_value(currentPreImportMap, "description");
-	var descriptionWindowListSize = ds_list_size(descriptionWindowList);
-	draw_set_font(global.fontMain);
-	draw_set_color(global.colorThemeText);
-	draw_set_alpha(infoAlpha);
-	for (var i = 0; i < descriptionWindowListSize; i++) {
-		var currentText = ds_list_find_value(descriptionWindowList, i);
-		var currentTextX = floor(descriptionWindowX1 + textBufferLeft);
-		var currentTextY = floor(descriptionWindowY1 + textBufferTop + (strHeight * i));
-		if (currentTextY < descriptionWindowY2 - (strHeight / 1.5)) {
-			draw_text(currentTextX, currentTextY, currentText);
-		}
-	}
-	*/
-	
-	
+
 	
 	
 	
@@ -173,7 +236,7 @@ function scr_preImportScreen(){
 	
 	
 	// cover-up rectangle
-	var coverupRectX1 = exampleWindowX2 + 2;
+	var coverupRectX1 = backgroundWindowX2 + 2;
 	var coverupRectY1 = 0;
 	var coverupRectX2 = camWidth;
 	var coverupRectY2 = camHeight;
@@ -193,40 +256,59 @@ function scr_preImportScreen(){
 	// continue button
 	var buttonRectWidth = camera_get_view_width(camera_get_active()) / 6;
 	var buttonRectHeight = camera_get_view_height(camera_get_active()) / 20;
-	var buttonRectX1 = (camera_get_view_width(camera_get_active()) / 2) - (buttonRectWidth / 2);
+	var buttonRectX1 = (camera_get_view_width(camera_get_active()) * .8) - (buttonRectWidth / 2);
 	var buttonRectY1 = (camera_get_view_height(camera_get_active()) * 0.85);
 	var buttonRectX2 = buttonRectX1 + buttonRectWidth;
 	var buttonRectY2 = buttonRectY1 + buttonRectHeight;
 	var mouseoverContinue = point_in_rectangle(mouse_x, mouse_y, buttonRectX1, buttonRectY1, buttonRectX2, buttonRectY2);
 	
 	draw_set_alpha(1);
-	draw_set_color(mouseoverContinue ? global.colorThemeSelected1 : global.colorThemeBG);
-	draw_rectangle(buttonRectX1, buttonRectY1, buttonRectX2, buttonRectY2, false);
-	draw_set_color(global.colorThemeBorders);
-	draw_rectangle(buttonRectX1, buttonRectY1, buttonRectX2, buttonRectY2, true);
+	draw_set_color(mouseoverContinue ? merge_color(global.colorThemeSelected1, rezonatorPink, 50)  : rezonatorPink);
+	draw_roundrect(buttonRectX1, buttonRectY1, buttonRectX2, buttonRectY2, false);
+	draw_set_color(rezonatorPink);
+	draw_roundrect(buttonRectX1, buttonRectY1, buttonRectX2, buttonRectY2, true);
 	
-	draw_set_color(global.colorThemeText);
+	draw_set_color(global.colorThemeBG);
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	scr_adaptFont(scr_get_translation("msg_continue"), "M");
 	draw_text(floor(mean(buttonRectX1, buttonRectX2)), floor(mean(buttonRectY1, buttonRectY2)), scr_get_translation("msg_continue"));
 	
 	// click on continue button
-	if (mouseoverContinue && mouse_check_button_released(mb_left)) {
-		
+	if (mouseoverContinue && mouse_check_button_released(mb_left)) {		
 		global.currentDirString = global.previousImportDirectory;
 		scr_openFile();
 		
 	}
 	
 	
-	// draw logo higher than usual
-	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 9, false);
+	// continue button
+	var backButtonRectWidth = camera_get_view_width(camera_get_active()) / 6;
+	var backButtonRectHeight = camera_get_view_height(camera_get_active()) / 20;
+	var backButtonRectX1 = (camera_get_view_width(camera_get_active()) * .2) - (backButtonRectWidth / 2);
+	var backButtonRectY1 = (camera_get_view_height(camera_get_active()) * 0.85);
+	var backButtonRectX2 = backButtonRectX1 + backButtonRectWidth;
+	var backButtonRectY2 = backButtonRectY1 + backButtonRectHeight;
+	var mouseoverBack = point_in_rectangle(mouse_x, mouse_y, backButtonRectX1, backButtonRectY1, backButtonRectX2, backButtonRectY2);
+	
+	draw_set_alpha(1);
+	draw_set_color(mouseoverBack ? global.colorThemeSelected1 : global.colorThemeBG);
+	draw_roundrect(backButtonRectX1, backButtonRectY1, backButtonRectX2, backButtonRectY2, false);
+	draw_set_color(rezonatorPink);
+	draw_roundrect(backButtonRectX1, backButtonRectY1, backButtonRectX2, backButtonRectY2, true);
+	
+	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("msg_continue"), "M");
+	draw_text(floor(mean(backButtonRectX1, backButtonRectX2)), floor(mean(backButtonRectY1, backButtonRectY2)), "Back");
+	
+	// click on continue button
+	if (mouseoverBack && mouse_check_button_released(mb_left)) {		
+		global.newProject = false;
+		global.openProject = false;
+		global.neworOpen = true;
+	}
 
-	
-	
-	
-	
-	
 	
 }
