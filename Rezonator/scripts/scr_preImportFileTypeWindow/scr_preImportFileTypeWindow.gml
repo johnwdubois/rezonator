@@ -157,7 +157,7 @@ function scr_preImportFileTypeWindow(){
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	scr_adaptFont( scr_get_translation("msg_choose_import"), "L");
-	draw_text(fileTypeWindowX1, floor(0 + (strHeight)), "Choose the data type that best matches your file:");
+	draw_text(fileTypeWindowX1, floor(obj_menuBar.menuHeight + strHeight), "Choose the data type that best matches your file:");
 	
 	
 	draw_set_color(rezonatorPink)
