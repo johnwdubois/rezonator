@@ -14,7 +14,7 @@ if (!obj_control.gridView) {
 else{
 	notRefreshed = false;
 }
-
+obj_control.hoverTokenID = "";
 
 var scrollTogetherButtonX = 100;
 var scrollTogetherButtonY = 100;
