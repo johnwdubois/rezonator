@@ -1,8 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-/// @description quick zero
-// You can write your code in this editor
-
 if(!obj_control.dialogueBoxActive){
 	if(obj_control.hoverTokenID != ""){
 		var fillWord = "";
@@ -21,7 +18,7 @@ if(!obj_control.dialogueBoxActive){
 		else{
 			fillWord = "<0>";
 		}
-		obj_control.before = true;
+		obj_control.before = false;
 		scr_newToken(fillWord,obj_control.hoverTokenID);
 	}
 }

@@ -87,7 +87,9 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 
 	
 	// click on speaker label
-	if (device_mouse_check_button_released(0, mb_left) && mouseOverCurrentSpeakerLabel && touchReleaseCheck && !obj_control.speakerLabelHoldingDelay && ds_list_size(inRectUnitIDList) <= 1 and !obj_control.mouseoverPanelPane) {
+	if (device_mouse_check_button_released(0, mb_left) and mouseOverCurrentSpeakerLabel and
+	touchReleaseCheck and !obj_control.speakerLabelHoldingDelay and ds_list_size(inRectUnitIDList) <= 1 and 
+	!obj_control.mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
 		if (obj_control.ctrlHold) {
 			// combine chains
 			var inChainsList = unitSubMap[?"inChainsList"];
