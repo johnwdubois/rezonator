@@ -142,9 +142,13 @@ function scr_panelPane_drawTabs() {
 				
 				
 				if (functionChainList_currentTab != functionChainList_tabShow) {
-					with(obj_panelPane){
-						functionChainList_playShowID = "";
-					}	
+					if(functionChainList_playShowID != ""){
+						scr_setValueForAllChains("stackChain", "filter", false);
+						with(obj_panelPane){
+							functionChainList_playShowID = "";
+						}
+						scr_disableFilter();
+					}
 				}
 				
 				filterList = scr_getFilterList();

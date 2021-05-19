@@ -46,7 +46,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 
 	}
 	var lineHeight = string_height(string(fieldName)) + 5;
-	plusY += lineHeight;
+
 
 
 	boxWidth = maxPlusX;	// Box width fits the whole row
@@ -77,6 +77,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 	draw_set_color(make_color_rgb(245, 245, 245) );
 	draw_rectangle(boxX1, boxY1, boxX2, boxY2, false);
 
+/*
 	// Draw the header's fill color
 	draw_set_color(make_color_rgb(220, 220, 220) );
 	draw_rectangle(boxX1, boxY1 + lineHeight, boxX2, boxY2, false);
@@ -84,7 +85,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 	// Draw the header and column separator lines
 	draw_set_color(c_grey);
 	draw_line(boxX1, boxY1 + lineHeight, boxX2, boxY1 + lineHeight);	// Header line
-
+*/
 
 	// Set params for drawing text
 	draw_set_halign(fa_left);
@@ -94,10 +95,11 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 
 	var col1X = boxX1 + 5
 	var col2X = boxX1 + colX2Max; 
-	var valueY = boxY1 + lineHeight + string_height(string(fieldName))/2;
+	var valueY = boxY1 + string_height(string(fieldName))/2;
 	// Draw the attribute grid
-	for(var i = 0; i < sizeOfFieldList+1; i++)
+	for(var i = 0; i < sizeOfFieldList; i++)
 	{		
+		/*
 		if(i == 0){
 			// Draw the headers
 			var headerTextY = mean(boxY1 + lineHeight, boxY1);
@@ -105,23 +107,24 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 			draw_text(col2X,floor(headerTextY), "Value");
 		}
 		else{
-			var fieldName = fieldList[|i-1];
-			var fieldValue = tagMap[?fieldName];
+		*/
+		var fieldName = fieldList[|i];
+		var fieldValue = tagMap[?fieldName];
 
-			scr_adaptFont(fieldName, "M");
+		scr_adaptFont(fieldName, "M");
 	
-			// Draw the attribute name
-			draw_text(col1X, floor(valueY), fieldName);
+		// Draw the attribute name
+		draw_text(col1X, floor(valueY), fieldName);
 	
-			scr_adaptFont(fieldValue, "M");
+		scr_adaptFont(fieldValue, "M");
 	
-			// Draw the attribute value to the right
-			draw_text(col2X, floor(valueY), fieldValue);
-			if(i < sizeOfFieldList){
-				valueY += lineHeight;
-			}
-	
+		// Draw the attribute value to the right
+		draw_text(col2X, floor(valueY), fieldValue);
+		if(i < sizeOfFieldList){
+			valueY += lineHeight;
 		}
+	
+		
 	}
 }
 else{

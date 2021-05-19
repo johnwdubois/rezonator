@@ -78,4 +78,8 @@ function scr_newToken(newTokenStr, refTokenID) {
 		currentTokenSubMap[? "discourseTokenSeq"]++;
 	}
 	
+	if(obj_chain.currentFocusedChainID != ""){
+		scr_newLink(newTokenID);
+	}
+	
 }
