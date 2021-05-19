@@ -93,14 +93,20 @@ function scr_loadSchema(autoload) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, i, levelFromMap);
 			}
 			if (!is_undefined(specialFieldFromMap)) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
+				if (specialFieldFromMap == "Display Token" || specialFieldFromMap == "Token Delimiter"
+				|| specialFieldFromMap == "Unit Delimiter") {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, specialFieldFromMap);
+				}
+				else {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
+				}
 			}
 		}
 	}
 	
 	
-	var rowOfDisplayToken = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
-	var rowOfWordDelimiter = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+	var rowOfDisplayToken = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Display Token");
+	var rowOfWordDelimiter = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
 	if (rowOfDisplayToken > -1) {
 		obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, rowOfDisplayToken);
 	}

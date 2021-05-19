@@ -2,42 +2,7 @@ function scr_fillTokenImportGridCoNLLU() {
 	// fill tokenImport with UnitID, WordID, token, and transcript information
 
 
-/*
-	// fill unitImport with UnitID information
-	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
-	var unitGridHeight = ds_grid_height(obj_control.unitGrid);
-	ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, unitGridHeight);
 
-
-	for (var i = 0; i < unitGridHeight; i++) {
-		//set unit ID
-		var currentUnitID = ds_grid_get(obj_control.unitGrid, obj_control.unitGrid_colUnitID, i);
-
-		ds_grid_set(global.unitImportGrid, global.unitImport_colUnitID, i, currentUnitID);
-	
-
-		var currentParticipant = ds_grid_get(obj_control.unitGrid,obj_control.unitGrid_colParticipantName,i);
-
-		ds_grid_set(global.unitImportGrid, global.unitImport_colParticipant, i, currentParticipant);
-	}
-
-
-
-
-
-
-	// check if transcript info is available in wordGrid
-	with (obj_control) {
-		transcriptAvailable = false;
-		var wordGridHeight = ds_grid_height(obj_control.wordGrid);
-		for (var i = 0; i < wordGridHeight; i++) {
-			if (ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, i) != 0) {
-				transcriptAvailable = true;
-				break;
-			}
-		}
-	}
-	*/
 
 	if (ds_list_size(global.tokenImportColNameList) < 4) {
 		ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
@@ -72,20 +37,20 @@ function scr_fillTokenImportGridCoNLLU() {
 	}
 	
 	
-		var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
-		var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
-		var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
+	var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Display Token");
+	var displayTokenMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+	var importGrid_colDisplayToken = ds_list_find_index(global.importGridColNameList, displayTokenMarkerStr);
 		
 
-		var transcriptMarkerStr = "";
-		if(global.tokenImportTranscriptColName != "" or global.tokenImportTranscriptColName != undefined){
-			transcriptMarkerStr = global.tokenImportTranscriptColName
-		}
-		var importGrid_colTranscript = ds_list_find_index(global.importGridColNameList, transcriptMarkerStr);
+	var transcriptMarkerStr = "";
+	if(global.tokenImportTranscriptColName != "" or global.tokenImportTranscriptColName != undefined){
+		transcriptMarkerStr = global.tokenImportTranscriptColName
+	}
+	var importGrid_colTranscript = ds_list_find_index(global.importGridColNameList, transcriptMarkerStr);
 	
-		var displayUnitRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
-		var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
-		var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
+	var displayUnitRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Speaker");
+	var displayUnitMarkerStr = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayUnitRow);
+	var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
 	
 	
 	
