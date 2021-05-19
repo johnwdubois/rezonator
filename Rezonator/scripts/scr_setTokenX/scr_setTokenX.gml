@@ -17,6 +17,7 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		else {
 			// Left Grid
 			tokenPixelXDest = wordLeftMargin + scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth;
+			//tokenPixelXDest = wordLeftMargin + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
 		}
 	}
 	else if (justify == justifyCenter) {
