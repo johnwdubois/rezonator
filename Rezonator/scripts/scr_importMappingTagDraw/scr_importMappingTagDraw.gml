@@ -27,8 +27,8 @@ function scr_importMappingTagDraw() {
 
 		for (var i = 0 ; i < tagGridHeight; i++ ){
 			if( j == 0 ){	
-				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-				if(cutTest == scr_get_translation("import_mapping_fields_displaytoken")){
+				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
+				if(cutTest == "Display Token"){
 					obj_importMapping.canContinueDisplayToken = true;
 					i = tagGridHeight;
 				}
@@ -38,7 +38,7 @@ function scr_importMappingTagDraw() {
 			}
 			else{
 				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-				if(cutTest == scr_get_translation("import_mapping_fields_speaker")){
+				if(cutTest == "Speaker"){
 					obj_importMapping.canContinueUnit = true;
 					i = tagGridHeight;
 				}
@@ -108,7 +108,7 @@ function scr_importMappingTagDraw() {
 		
 		var errorMessage = "";
 		if (!obj_importMapping.canContinueDisplayToken) {
-			errorMessage = scr_get_translation("import_mapping_selectmessage");
+			errorMessage = "Please select a field to be the Display Token using the Special Fields section.";
 		}
 		else if (!obj_importMapping.canContinueToken1to1) {
 			errorMessage = "Token fields do not align 1-to-1 with Display Token.";
@@ -138,9 +138,9 @@ function scr_importMappingTagDraw() {
 	var buttonBuffer = 20;
 
 
-	var loadPreviousButtonWidth = max(200, string_width(scr_get_translation("msg_last-schema")));
+	var loadPreviousButtonWidth = max(200, string_width(" Use Last Import Schema "));
 	var loadPreviousButtonHeight = 30;
-	var loadPreviousButtonRectX1 = xBuffer + string_width(scr_get_translation("menu_import_fields"));
+	var loadPreviousButtonRectX1 = xBuffer + string_width("ImportFields    ");
 	var loadPreviousButtonRectY1 = yBuffer + 50 - (loadPreviousButtonHeight / 2);
 	var loadPreviousButtonRectX2 = loadPreviousButtonRectX1 + loadPreviousButtonWidth;
 	var loadPreviousButtonRectY2 = loadPreviousButtonRectY1 + loadPreviousButtonHeight;
@@ -153,26 +153,8 @@ function scr_importMappingTagDraw() {
 		if (mouse_check_button_pressed(mb_left)) {
 			
 			scr_updateSchemaLists();
-
-			if (global.importType == global.importType_IGT) {
-				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), scr_get_translation("import_mapping_fields_displaytoken"));
-				var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+			scr_calculateTokenThreshold();
 			
-				if(wordDelimRow != -1){
-					obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, wordDelimRow);
-					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
-					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
-					obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
-				}
-				if(displayTokenRow != -1){
-				
-					obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
-					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
-					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
-					obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
-				}
-				obj_importMapping.updatedErrorCol = false;
-			}
 		}
 	}
 	
@@ -205,26 +187,8 @@ function scr_importMappingTagDraw() {
 		if (mouse_check_button_pressed(mb_left)) {
 			
 			scr_loadSchema(false);
-	
-			if (global.importType == global.importType_IGT) {
-				var displayTokenRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), scr_get_translation("import_mapping_fields_displaytoken"));
-				var wordDelimRow = ds_grid_value_y(global.tagInfoGrid,global.tagInfoGrid_colSpecialFields,0,global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
 			
-				if (wordDelimRow != -1) {
-					obj_importMapping.wordDelimMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, wordDelimRow);
-					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
-					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
-					obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
-				}
-				if (displayTokenRow != -1) {	
-			
-					obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
-					var indexForHelper = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
-					var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
-					obj_importMapping.currentTokenThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
-				}
-			}
-			obj_importMapping.updatedErrorCol = false;
+			scr_calculateTokenThreshold();
 		}
 	}
 

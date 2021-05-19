@@ -184,17 +184,30 @@ global.importFileRipList = ds_list_create();
 
 
 
-global.tagInfoGridWidth = 10;
+global.tagInfoGridWidth = 11;
 global.tagInfoGrid_colMarker = 0;
-global.tagInfoGrid_colExample = 1;
-global.tagInfoGrid_colMarkerPercent = 2;
-global.tagInfoGrid_colSingleTokenMarker = 3;
-global.tagInfoGrid_colTokenCount = 4;
-global.tagInfoGrid_colLevelSchema = 5;
-global.tagInfoGrid_colLevelPredict = 6;
-global.tagInfoGrid_colSpecialFields = 7;
-global.tagInfoGrid_colLevel = 8;
-global.tagInfoGrid_colError = 9;
+global.tagInfoGrid_colLevel = 1;
+global.tagInfoGrid_colKey = 2;
+global.tagInfoGrid_colSpecialFields = 3;
+
+global.tagInfoGrid_colLevelSchema = 4;
+global.tagInfoGrid_colLevelPredict = 5;
+
+global.tagInfoGrid_colTokenCount = 6;
+global.tagInfoGrid_colMarkerPercent = 7;
+global.tagInfoGrid_colSingleTokenMarker = 8;
+global.tagInfoGrid_colSplit = 9;
+
+global.tagInfoGrid_colError = 10;
+
+
+
+
+
+
+
+
+
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 

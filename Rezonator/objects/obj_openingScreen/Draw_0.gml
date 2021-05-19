@@ -1,16 +1,3 @@
-/*
-	obj_openingScreen: Draw
-	
-	Last Updated: 2019-02-14
-	
-	Called from: Every frame of the game
-	
-	Purpose: Control the layout and functionality of the opening screen
-	
-	Mechanism: Draw the text, import window, and send the user to the main screen once ready
-	
-	Author: Terry DuBois
-*/
 scr_colorThemeControl();
 
 importWindowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -44,15 +31,9 @@ if (obj_openingScreen.showDevVars) {
 
 if(!global.fontsLoaded){
 	if(!global.loadingScreenCreated){
-	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
-	instLoading.loadSprite = spr_loading;
-	global.loadingScreenCreated = true;
-	}
-	else{
-
-
-
-
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+		instLoading.loadSprite = spr_loading;
+		global.loadingScreenCreated = true;
 	}
 }
 
