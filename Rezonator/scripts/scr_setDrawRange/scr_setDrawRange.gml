@@ -27,6 +27,7 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	if (drawRangeStart - 1 >= 0) {
 		currentUnit = displayUnitList[| drawRangeStart - 1];
 		currentUnitSubMap = global.nodeMap[? currentUnit];
+
 		currentUnitPixelY = currentUnitSubMap[? "pixelY"];
 		
 		while (currentUnitPixelY > topY) {
@@ -48,22 +49,24 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	
 	var firstUnit = displayUnitList[| drawRangeStart];
 	var firstUnitSubMap = global.nodeMap[? firstUnit];
-	var firstUnitPixelY = firstUnitSubMap[? "pixelY"];
-	while (firstUnitPixelY > -gridSpaceVertical && drawRangeStart - 1 >= 0) {
-		drawRangeStart--;
-		drawRangeExtraStepsBack++;
+	if(scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){ 
 		
-		if (drawRangeStart - 1 < 0) {
-			break;
+		var firstUnitPixelY = firstUnitSubMap[? "pixelY"];
+		while (firstUnitPixelY > -gridSpaceVertical && drawRangeStart - 1 >= 0) {
+			drawRangeStart--;
+			drawRangeExtraStepsBack++;
+		
+			if (drawRangeStart - 1 < 0) {
+				break;
+			}
+			else {
+				firstUnit = displayUnitList[| drawRangeStart];
+				firstUnitSubMap = global.nodeMap[? firstUnit];
+				firstUnitPixelY = firstUnitSubMap[? "pixelY"];
+			}
 		}
-		else {
-			firstUnit = displayUnitList[| drawRangeStart];
-			firstUnitSubMap = global.nodeMap[? firstUnit];
-			firstUnitPixelY = firstUnitSubMap[? "pixelY"];
-		}
+	
 	}
-	
-	
 
 	
 	

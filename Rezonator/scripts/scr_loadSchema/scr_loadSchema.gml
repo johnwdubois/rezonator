@@ -94,7 +94,7 @@ function scr_loadSchema(autoload) {
 			}
 			if (!is_undefined(specialFieldFromMap)) {
 				if (specialFieldFromMap == "Display Token" || specialFieldFromMap == "Token Delimiter"
-				|| specialFieldFromMap == "Unit Delimiter") {
+				|| specialFieldFromMap == "Unit Delimiter" || specialFieldFromMap == "Word Delimiter") {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, specialFieldFromMap);
 				}
 				else {
