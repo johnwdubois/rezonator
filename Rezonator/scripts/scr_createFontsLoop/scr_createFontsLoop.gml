@@ -2,10 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createFontsLoop(){
 	
-	// CHANGE THIS VAR WHEN MAKING A BUILD
-	// if build is true --> CJK fonts will be loaded
-	// if build is false --> CJK fonts will not be loaded
-	var build = false;
+
 	
 	// find font file
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
@@ -13,7 +10,7 @@ function scr_createFontsLoop(){
 	var CKJFont_file_name_full = "IncludedFiles" + delimiter + "Fonts" + delimiter + CKJFont_file_name;
 	
 	// continue creating CJK fonts if build is true
-	if (build) {
+	if (global.build) {
 		if (CJKLoopIteration <= 5) {
 			scr_createFonts(CKJFont_file_name_full, CJKLoopIteration);
 
