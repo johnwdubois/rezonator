@@ -52,7 +52,7 @@ for (var i = 0; i < optionListSize; i++) {
 }
 windowWidth = maxStrWidth;
 
-if( x + windowWidth > camWidth ){
+if( x + windowWidth > camWidth and !(global.lang_codes[| global.lang_index] == "he") ){
 	x = camWidth - windowWidth;
 }
 
@@ -78,9 +78,6 @@ draw_clear_alpha(c_black, 0);
 
 
 
-
-
-
 if (ds_list_size(optionList) <= 0) {
 	show_debug_message("obj_dropDown Draw ... ds_list_size(optionList) <= 0");
 	instance_destroy();
@@ -98,11 +95,14 @@ for (var i = 0; i < optionListSize; i++) {
 	var optionText = ds_list_find_value(optionList, i);
 	
 	// optionRect coordinates
+	//var optionRectX1 = (global.lang_codes[| global.lang_index] == "he") ? x - windowWidth : x;
 	var optionRectX1 = x;
 	var optionRectY1 = y + (optionSpacing * i) + scrollPlusY;
-	var optionRectX2 = x + windowWidth;
+	var optionRectX2 = optionRectX1 + windowWidth;
 	var optionRectY2 = optionRectY1 + optionSpacing;
 	var mouseoverRectX2 = (showScrollBar) ? optionRectX2 - global.scrollBarWidth : optionRectX2;
+	
+	
 	
 	var mouseoverCurrentOption = false;
 	if (instance_exists(obj_panelPane)) {
