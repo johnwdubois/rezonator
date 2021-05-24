@@ -427,6 +427,7 @@
     {"id":{"name":"scr_stringReverse","path":"scripts/scr_stringReverse/scr_stringReverse.yy",},"order":23,},
     {"id":{"name":"scr_createShow","path":"scripts/scr_createShow/scr_createShow.yy",},"order":41,},
     {"id":{"name":"obj_importMapping","path":"objects/obj_importMapping/obj_importMapping.yy",},"order":3,},
+    {"id":{"name":"spr_backArrowWhite","path":"sprites/spr_backArrowWhite/spr_backArrowWhite.yy",},"order":33,},
     {"id":{"name":"obj_importMappingTagInfo","path":"objects/obj_importMappingTagInfo/obj_importMappingTagInfo.yy",},"order":5,},
     {"id":{"name":"scr_handleVoid","path":"scripts/scr_handleVoid/scr_handleVoid.yy",},"order":8,},
     {"id":{"name":"scr_setMap","path":"scripts/scr_setMap/scr_setMap.yy",},"order":17,},
