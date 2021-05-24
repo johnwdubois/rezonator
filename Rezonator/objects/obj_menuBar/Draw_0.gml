@@ -47,16 +47,20 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 	var menuHeaderRectY2 = menuHeight;
 	
 	if (point_in_rectangle(mouse_x, mouse_y, menuHeaderRectX1, menuHeaderRectY1, menuHeaderRectX2, menuHeaderRectY2)) {
-		
+		var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
 		// draw hover rectangle
 		var roundedRectBuffer = 4;
 		draw_set_color(global.colorThemeSelected1);
 		draw_set_alpha(1);
 		draw_roundrect(menuHeaderRectX1 + roundedRectBuffer, menuHeaderRectY1 + roundedRectBuffer/2-20, menuHeaderRectX2 - roundedRectBuffer, menuHeaderRectY2 - roundedRectBuffer, false);
 		
-		obj_control.mouseoverPanelPane = true;		
-		instance_destroy(obj_dropDown);
+		obj_control.mouseoverPanelPane = true;
 		
+		with(obj_dropDown){
+			if(dropDownOptionList != optionList){
+				instance_destroy();	
+			}
+		}
 		if(mouse_check_button_released(mb_left) and menuClickedIn){
 			menuClickedIn = false;
 		}
@@ -66,9 +70,14 @@ for (var menuHeaderLoop = 0; menuHeaderLoop < menuBarGridHeight; menuHeaderLoop+
 			ds_grid_set_region(menuBarGrid, menuBarGrid_colMouseOver, 0, menuBarGrid_colMouseOver, menuBarGridHeight, false);
 			ds_grid_set(menuBarGrid, menuBarGrid_colMouseOver, menuHeaderLoop, true);
 			
-			var dropDownOptionList = ds_grid_get(menuBarGrid, menuBarGrid_colOptionList, menuHeaderLoop);
-			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
+			
+			if (ds_list_size(dropDownOptionList) > 0 and instance_number(obj_dropDown) == 0) {
+				if(global.lang_codes[| global.lang_index] == "he"){
+					scr_createDropDown(menuHeaderRectX2, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
+				}
+				else{
+					scr_createDropDown(menuHeaderRectX1, menuHeight, dropDownOptionList, ds_grid_get(menuBarGrid, menuBarGrid_colOptionListType, menuHeaderLoop), true);
+				}
 			}
 		}
 	}
@@ -249,6 +258,8 @@ else{
 	draw_sprite_ext(spr_saveWarning,0,floor(mean(saveIconX1, saveIconX2)) ,fpsTextY,spriteScale,spriteScale, 0,c_white , 1)
 	saveTextAlpha = 1;	
 }
+
+show_debug_message("amount of dropdown instances: " + string(instance_number(obj_dropDown)));
 
 // draw border if nav is collapsed
 if (drawDropShadow) {

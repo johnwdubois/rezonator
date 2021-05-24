@@ -15,6 +15,37 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	var dropDownInst = instance_create_depth(dropDownX, dropDownY, dropDownDepth, obj_dropDown);
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
+	with(obj_dropDown){
+		var optionListSize = ds_list_size(optionList);
+		var maxStrWidth = originalWindowWidth;
+		for (var i = 0; i < optionListSize; i++) {
+			var currentOptionStr = string(ds_list_find_value(optionList, i));
+			var shortcutStr = "";
+			if(ds_map_exists(global.keyboardShortcutMap, currentOptionStr)){
+				shortcutStr = ds_map_find_value(global.keyboardShortcutMap, currentOptionStr);	
+			}
+	
+			currentOptionStr = scr_get_translation(currentOptionStr);
+	
+			var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
+			if (currentOptionStrWidth > maxStrWidth) {
+				maxStrWidth = currentOptionStrWidth;
+			}
+		}
+		windowWidth = maxStrWidth;	
+		
+	}
+	//if(global.lang_codes[| global.lang_index] == "he" and instance_number(obj_dropDown) == 1){
+	//		dropDownInst.x -= dropDownInst.windowWidth;
+	//	}
+	//	if(global.lang_codes[| global.lang_index] == "he" and instance_number(obj_dropDown) == 2){
+	//		dropDownInst.x -= 2*windowWidth;
+	//	}
+		
+	if(global.lang_codes[| global.lang_index] == "he"){
+			dropDownInst.x -= instance_number(obj_dropDown) * dropDownInst.windowWidth;
+		}
+	//dropDownInst.alarm[2] = 2;
 	
 	if (room == rm_mainScreen && instance_exists(obj_control)) {
 		obj_control.ableToCreateDropDown = false;
