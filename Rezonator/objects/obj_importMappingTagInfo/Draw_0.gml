@@ -4,4 +4,3 @@ if (gridViewing == global.tagInfoGrid) {
 else {
 	scr_importDebugGridDraw();
 }
-

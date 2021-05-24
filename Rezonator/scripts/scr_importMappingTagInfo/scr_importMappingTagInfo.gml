@@ -51,6 +51,9 @@ function scr_importMappingTagInfo() {
 
 	var buttonRectSize = rowHeight - 10;
 	var mouseoverAnyRow = false;
+	var fieldXBuffer = string_width("     ");
+	
+	var plusX = 40;
 
 
 
@@ -60,12 +63,19 @@ function scr_importMappingTagInfo() {
 	draw_set_valign(fa_middle);
 
 	for (var i = 0; i < colAmount; i++) {
-		var colX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * i);
+		
+		var colWidth = windowWidth * (importFieldsColRatioList[| i] / 100);
+		var colX = plusX;
 		var plusY = tagInfoWindowRectY1 + rowHeight;
-	
-		var realNextColX = tagInfoWindowRectX1 + ((windowWidth / (colAmount)) * (i + 1));
+		
+		
+		var cellRectX1 = colX;
+		var cellRectX2 = colX + colWidth;
+		
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(colX - clipX, tagInfoWindowRectY1 - clipY, realNextColX - clipX, tagInfoWindowRectY2 - clipY, false);
+		draw_rectangle(cellRectX1 - clipX, tagInfoWindowRectY1 - clipY, cellRectX2 - clipX, tagInfoWindowRectY2 - clipY, false);
+		
+		
 		
 		for (var j = 0; j < tagInfoGridHeight; j++) {
 			
@@ -87,9 +97,8 @@ function scr_importMappingTagInfo() {
 				wordDelimiterEncountered = true;
 			}
 		
-			var cellRectX1 = colX;
+			
 			var cellRectY1 = plusY + scrollPlusY;
-			var cellRectX2 = cellRectX1 + (windowWidth / colAmount);
 			var cellRectY2 = cellRectY1 + rowHeight;
 			
 
@@ -116,10 +125,8 @@ function scr_importMappingTagInfo() {
 					mouseoverAnyRow = true;
 				}
 			}
-			if (obj_importMapping.mouseoverRow == j) {
-				draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
-				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
-			}
+			
+
 			
 			if (currentError) {
 				draw_set_color(c_red);
@@ -321,17 +328,43 @@ function scr_importMappingTagInfo() {
 			
 					draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, -1, 0, global.colorThemeText, 1);
 				}
+			}
 			
+			
+			
+			var currentCellStr = string(currentCell);
+			var textX = (i == 0) ? floor(colX + fieldXBuffer) : floor(mean(cellRectX1, cellRectX2));
+			draw_set_halign((i == 0) ? fa_left : fa_center);
+			
+			
+			// mouseover & click on row
+			if (obj_importMapping.mouseoverRow == j && i== 0) {
+				draw_set_color(global.colorThemeBorders);
+				draw_line_width(textX - clipX, cellRectY2 - clipY, textX + string_width(currentCellStr) - clipX, cellRectY2 - clipY, 3);
+				
+				if (mouse_check_button_released(mb_left)) {
+					fieldSelected = currentMarker;
+					show_debug_message("fieldSelected: " + string(fieldSelected));
+				}
+			}
+			
+			// selected pink line
+			if (i == 0) {
+				if (fieldSelected == currentMarker) {
+					draw_set_color(global.colorThemeRezPink);
+					draw_line_width(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX1 - clipX, cellRectY2 - clipY, 10);
+				}
 			}
 
 		
 		
 			draw_set_color(global.colorThemeText);
-			scr_adaptFont(string(currentCell), "M");
-			draw_text(floor(colX + 5 - clipX), floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), string(currentCell));
+			draw_text(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), currentCellStr);
 
 			plusY += rowHeight;
 		}
+		
+		plusX += colWidth;
 	}
 
 
@@ -341,16 +374,20 @@ function scr_importMappingTagInfo() {
 
 
 	// draw header for column
+	plusX = 40;
 	draw_set_color(global.colorThemeBG);
 	draw_set_alpha(1);
 	draw_rectangle(tagInfoWindowRectX1 - clipX, tagInfoWindowRectY1 - clipY, tagInfoWindowRectX2 - clipX, tagInfoWindowRectY1 + rowHeight - clipY, false);
 	for (var i = 0; i < colAmount; i++) {
-		var colWidth = windowWidth / colAmount;
-		var colX = tagInfoWindowRectX1 + (colWidth * i);
+		
+		var colWidth = windowWidth * (importFieldsColRatioList[| i] / 100);
+		var colX1 = plusX;
+		var colX2 = colX1 + colWidth;
 		var headerStr = "";
 		
+		
 		if (i == global.tagInfoGrid_colMarker) {
-			headerStr = "Marker";
+			headerStr = "Mark";
 		}
 		else if (i == global.tagInfoGrid_colLevel) {
 			headerStr = "Level";
@@ -379,10 +416,13 @@ function scr_importMappingTagInfo() {
 		
 		// draw header text
 		draw_set_color(global.colorThemeText);
+		draw_set_halign(fa_center);
 		scr_adaptFont(headerStr, "L");
-		draw_text(floor(colX + 5 - clipX), floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
+		draw_text(floor(mean(colX1, colX2)) - clipX, floor(tagInfoWindowRectY1 + (rowHeight / 2) - clipY), headerStr);
 	
-		
+	
+	
+		plusX += colWidth;
 	}
 	
 	draw_set_color(global.colorThemeSelected2);
