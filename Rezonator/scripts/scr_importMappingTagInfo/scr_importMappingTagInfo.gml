@@ -1,10 +1,9 @@
 function scr_importMappingTagInfo() {
 	
-
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
-	var colAmount = global.tagInfoGrid_colSpecialFields + 1; // we subtract 2 so we don't show the currentLevel column or the error column
+	var colAmount = ds_list_size(importFieldsColRatioList);
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
 
 	scr_windowCameraAdjust();
@@ -51,7 +50,7 @@ function scr_importMappingTagInfo() {
 
 	var buttonRectSize = rowHeight - 10;
 	var mouseoverAnyRow = false;
-	var fieldXBuffer = string_width("     ");
+	var fieldXBuffer = string_width("   ");
 	
 	var plusX = 40;
 
@@ -129,12 +128,7 @@ function scr_importMappingTagInfo() {
 			
 
 			
-			if (currentError) {
-				draw_set_color(c_red);
-				draw_set_alpha(.5);
-				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
-				draw_set_alpha(1);
-			}
+	
 		
 		
 			var currentCell = ds_grid_get(global.tagInfoGrid, i, j);
@@ -389,10 +383,19 @@ function scr_importMappingTagInfo() {
 			}
 
 		
+			if(i != global.tagInfoGrid_colError){
+				draw_set_color(global.colorThemeText);
+				draw_text(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), currentCellStr);
+			}
+			else{
+				if(currentError){
+					draw_set_color(c_red);
+					draw_circle(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY),string_height("!")/2.2, false);
+					draw_set_color(global.colorThemeBG);
+					draw_text(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), "!");
+				}
+			}
 		
-			draw_set_color(global.colorThemeText);
-			draw_text(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), currentCellStr);
-
 			plusY += rowHeight;
 		}
 		

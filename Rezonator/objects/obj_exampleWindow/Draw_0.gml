@@ -60,6 +60,7 @@ for (var i = 0; i < exampleCount; i++) {
 	
 	draw_set_color(global.colorThemeText);
 	draw_text(textX - exampleTextBuffer - clipX, textY - clipY, string(i + 1));
+	currentExample = scr_adaptFont(currentExample, "M");
 	draw_text(textX - clipX, textY - clipY, currentExample);
 	
 	draw_set_color(global.colorThemeBG);
