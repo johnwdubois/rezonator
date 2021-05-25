@@ -2,9 +2,9 @@
 var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 x = (camWidth * 0.52);
-y = (camHeight * 0.06);
+y = obj_summaryWindow.fileInfoWindowRectY1;
 var windowX2 = camWidth * 0.98;
-var windowY2 = camHeight * 0.35;
+var windowY2 = obj_summaryWindow.fileInfoWindowRectY2;
 windowWidth = (windowX2 - x);
 windowHeight = (windowY2 - y);
 var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, windowX2, windowY2);
@@ -37,7 +37,7 @@ var tabY2 = y + 5;
 draw_set_color(global.colorThemeBG);
 draw_roundrect(tabX1, tabY1, tabX2, tabY2, false);
 draw_set_color(global.colorThemeRezPurple);
-var tabTextY = mean(tabY1, tabY2) - 4;
+var tabTextY = floor(mean(tabY1, tabY2) - 4);
 draw_text(tabX1 + spaceWidth, tabTextY, tabStr);
 draw_line_width(tabX1 + spaceWidth, tabTextY + (strHeight * 0.3), tabX2 - spaceWidth, tabTextY + (strHeight * 0.3), 3);
 
