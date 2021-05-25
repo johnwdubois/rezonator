@@ -41,7 +41,9 @@ function scr_surfaceStart() {
 			with (obj_control){
 				mouseoverPanelPane = true;
 			}
-			window_set_cursor(cr_size_ns);
+			if (room != rm_importScreen) {
+				window_set_cursor(cr_size_ns);
+			}
 			if (mouse_check_button_pressed(mb_left)) {
 				windowResizeYHolding = true;
 			}

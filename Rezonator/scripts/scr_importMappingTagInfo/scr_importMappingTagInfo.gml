@@ -107,6 +107,7 @@ function scr_importMappingTagInfo() {
 			var cellRectClickableX2 = cellRectX2 - 4;
 			var cellRectClickableY2 = cellRectY2 - 4;
 			var mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectClickableX1, cellRectClickableY1, cellRectClickableX2, cellRectClickableY2);
+			var drawDropDown = false;
 			
 			
 			// get color for clickable rect
@@ -149,10 +150,19 @@ function scr_importMappingTagInfo() {
 			}
 			else if (i == global.tagInfoGrid_colLevel) {
 				
+				drawDropDown = true;
 				
 				// draw the clickable rect for currentLevel column
-				draw_set_color(mouseoverDropDown ? merge_color(cellRectClickableColor, c_white, 0.25) : cellRectClickableColor);
+				var cellColor = cellRectClickableColor;
+				if (drawDropDown) cellColor = mouseoverDropDown ? merge_color(cellRectClickableColor, c_white, 0.25) : cellRectClickableColor;
+				draw_set_color(cellColor);
 				draw_roundrect(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, false);
+				
+				// draw border if this cell is clicked in
+				if (obj_importMapping.colToChange == i && obj_importMapping.rowToChange == j && instance_exists(obj_dropDown)) {
+					draw_set_color(global.colorThemeBorders);
+					scr_drawRectWidth(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, 2, true);
+				}
 				
 					
 				// draw dropdown option for currentLevel column
@@ -199,18 +209,8 @@ function scr_importMappingTagInfo() {
 			}
 			else if (i == global.tagInfoGrid_colKey) {
 				
-				// draw the clickable rect for currentLevel column
-				draw_set_color(mouseoverDropDown ? merge_color(cellRectClickableColor, c_white, 0.25) : cellRectClickableColor);
-				draw_roundrect(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, false);
-				
-				// remove 0s from column
-				if (currentCell == "0" || currentCell == 0) {
-					currentCell = "";
-				}
-				
-
-				
-				var drawDropDown = true;
+				// determine if dropdown should be drawn for this key cell
+				drawDropDown = true;
 				if (currentLevel == global.levelUnit) {
 					drawDropDown = false;
 					if (global.importType == global.importType_CSV or global.importType == global.importType_CoNLLU or global.importType == global.importType_TabDelimited) {
@@ -226,7 +226,29 @@ function scr_importMappingTagInfo() {
 				else if (currentLevel == global.levelToken) {
 					drawDropDown = true;
 				}
-				if(drawDropDown){
+				
+				
+				// draw the clickable rect for currentLevel column
+				var cellColor = cellRectClickableColor;
+				if (drawDropDown) cellColor = mouseoverDropDown ? merge_color(cellRectClickableColor, c_white, 0.25) : cellRectClickableColor;
+				draw_set_color(cellColor);
+				draw_roundrect(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, false);
+				
+				// draw border if this cell is clicked in
+				if (obj_importMapping.colToChange == i && obj_importMapping.rowToChange == j && instance_exists(obj_dropDown)) {
+					draw_set_color(global.colorThemeBorders);
+					scr_drawRectWidth(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, 2, true);
+				}
+				
+				// remove 0s from column
+				if (currentCell == "0" || currentCell == 0) {
+					currentCell = "";
+				}
+				
+
+
+				
+				if (drawDropDown) {
 					
 					// if this field has a currentLevel with a delimiter, we draw a dropdown
 					if ((currentLevel == global.levelToken || currentLevel == global.levelUnit || currentLevel == global.levelWord)) {
@@ -276,9 +298,19 @@ function scr_importMappingTagInfo() {
 			}
 			else if (i == global.tagInfoGrid_colSpecialFields) {
 				
+				drawDropDown = (currentLevel == global.levelToken || currentLevel == global.levelUnit);
+				
 				// draw the clickable rect for currentLevel column
-				draw_set_color(mouseoverDropDown ? merge_color(cellRectClickableColor, c_white, 0.25) : cellRectClickableColor);
+				var cellColor = cellRectClickableColor;
+				if (drawDropDown) cellColor = mouseoverDropDown ? merge_color(cellRectClickableColor, c_white, 0.25) : cellRectClickableColor;
+				draw_set_color(cellColor);
 				draw_roundrect(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, false);
+				
+				// draw border if this cell is clicked in
+				if (obj_importMapping.colToChange == i && obj_importMapping.rowToChange == j && instance_exists(obj_dropDown)) {
+					draw_set_color(global.colorThemeBorders);
+					scr_drawRectWidth(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, 2, true);
+				}
 				
 			
 				if (currentCell == "0") {
@@ -286,7 +318,7 @@ function scr_importMappingTagInfo() {
 				}
 				
 				// draw dropdown for special fields column
-				if (currentLevel == global.levelToken || currentLevel == global.levelUnit) {
+				if (drawDropDown) {
 			
 					var dropDownButtonX1 = floor(colX + colWidth - 4 - global.scrollBarWidth - buttonRectSize);
 					var dropDownButtonY1 = floor(plusY + 5 + scrollPlusY);

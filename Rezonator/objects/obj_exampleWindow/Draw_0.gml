@@ -7,8 +7,10 @@ var windowX2 = camWidth * 0.98;
 var windowY2 = camHeight * 0.35;
 windowWidth = (windowX2 - x);
 windowHeight = (windowY2 - y);
+var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, windowX2, windowY2);
 
 draw_set_color(global.colorThemeBG);
+draw_set_alpha(1);
 draw_rectangle(x, y, windowX2, windowY2, false);
 
 
@@ -71,4 +73,13 @@ scr_scrollBar(exampleCount, 0, strHeight, 0,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 
 
+if (mouseoverWindow) {
+	if (mouse_wheel_down()) {
+		scrollPlusYDest -= 16;
+	}
+	if (mouse_wheel_up()) {
+		scrollPlusYDest += 16;
+	}
+}
+	
 scr_surfaceEnd();
