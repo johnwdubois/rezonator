@@ -1,4 +1,4 @@
-fieldSelected = -1;
+fieldSelected = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, 2);
 
 scr_scrollBarInit();
 
