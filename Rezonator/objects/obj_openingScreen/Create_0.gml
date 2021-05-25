@@ -190,15 +190,16 @@ global.tagInfoGrid_colLevel = 1;
 global.tagInfoGrid_colKey = 2;
 global.tagInfoGrid_colSpecialFields = 3;
 
-global.tagInfoGrid_colLevelSchema = 4;
-global.tagInfoGrid_colLevelPredict = 5;
+global.tagInfoGrid_colError = 4;
+global.tagInfoGrid_colLevelSchema = 5;
+global.tagInfoGrid_colLevelPredict = 6;
 
-global.tagInfoGrid_colTokenCount = 6;
-global.tagInfoGrid_colMarkerPercent = 7;
-global.tagInfoGrid_colSingleTokenMarker = 8;
-global.tagInfoGrid_colSplit = 9;
+global.tagInfoGrid_colTokenCount = 7;
+global.tagInfoGrid_colMarkerPercent = 8;
+global.tagInfoGrid_colSingleTokenMarker = 9;
+global.tagInfoGrid_colSplit = 10;
 
-global.tagInfoGrid_colError = 10;
+
 
 
 

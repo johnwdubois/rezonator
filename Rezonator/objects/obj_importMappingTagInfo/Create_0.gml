@@ -16,4 +16,4 @@ if(currentMarkerCount != undefined){
 
 // this list contains the ratio widths of the columns in the import fields window... these must add up to be 100%
 importFieldsColRatioList = ds_list_create();
-ds_list_add(importFieldsColRatioList, 15, 15, 35, 35);
+ds_list_add(importFieldsColRatioList, 15, 15, 32, 32,6);
