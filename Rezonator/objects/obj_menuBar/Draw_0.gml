@@ -259,7 +259,8 @@ else{
 	saveTextAlpha = 1;	
 }
 
-show_debug_message("amount of dropdown instances: " + string(instance_number(obj_dropDown)));
+//debug for RTL dropdown
+//show_debug_message("amount of dropdown instances: " + string(instance_number(obj_dropDown)));
 
 // draw border if nav is collapsed
 if (drawDropShadow) {
