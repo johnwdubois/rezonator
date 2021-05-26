@@ -3,15 +3,17 @@ var camWidth = camera_get_view_width(view_camera[0]);
 var camHeight = camera_get_view_height(view_camera[0]);
 x = (camWidth * 0.52);
 y = obj_summaryWindow.fileInfoWindowRectY1;
-var windowX2 = camWidth * 0.98;
-var windowY2 = obj_summaryWindow.fileInfoWindowRectY2;
-windowWidth = (windowX2 - x);
-windowHeight = (windowY2 - y);
-var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, windowX2, windowY2);
+exampleWindowX1 = x;
+exampleWindowY1 = y;
+exampleWindowX2 = camWidth * 0.98;
+exampleWindowY2 = obj_summaryWindow.fileInfoWindowRectY2;
+windowWidth = (exampleWindowX2 - x);
+windowHeight = (exampleWindowY2 - y);
+var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, exampleWindowX2, exampleWindowY2);
 
 draw_set_color(global.colorThemeBG);
 draw_set_alpha(1);
-draw_rectangle(x, y, windowX2, windowY2, false);
+draw_rectangle(x, y, exampleWindowX2, exampleWindowY2, false);
 
 
 // setup string drawing stuff
@@ -50,7 +52,7 @@ scr_surfaceStart();
 // draw the little speaker label rectangle for the line numbers
 var exampleTextBuffer = string_width("       ");
 draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
-draw_rectangle(x - clipX, y - clipY, x + exampleTextBuffer - clipX, windowY2 - clipY, false);
+draw_rectangle(x - clipX, y - clipY, x + exampleTextBuffer - clipX, exampleWindowY2 - clipY, false);
 
 // loop through the example field and display its contents from importGrid
 for (var i = 0; i < exampleCount; i++) {

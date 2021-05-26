@@ -399,6 +399,7 @@
     {"id":{"name":"scr_editOptions","path":"scripts/scr_editOptions/scr_editOptions.yy",},"order":40,},
     {"id":{"name":"scr_fillHelpMenuGrid","path":"scripts/scr_fillHelpMenuGrid/scr_fillHelpMenuGrid.yy",},"order":26,},
     {"id":{"name":"scr_audioStackUpdate","path":"scripts/scr_audioStackUpdate/scr_audioStackUpdate.yy",},"order":2,},
+    {"id":{"name":"obj_fieldSummaryWindow","path":"objects/obj_fieldSummaryWindow/obj_fieldSummaryWindow.yy",},"order":16,},
     {"id":{"name":"scr_sentStackerLoop","path":"scripts/scr_sentStackerLoop/scr_sentStackerLoop.yy",},"order":14,},
     {"id":{"name":"scr_sortVizSetIDList","path":"scripts/scr_sortVizSetIDList/scr_sortVizSetIDList.yy",},"order":32,},
     {"id":{"name":"obj_saveParent","path":"objects/obj_saveParent/obj_saveParent.yy",},"order":1,},

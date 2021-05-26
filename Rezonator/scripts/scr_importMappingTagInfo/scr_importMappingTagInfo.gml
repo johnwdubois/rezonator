@@ -13,17 +13,17 @@ function scr_importMappingTagInfo() {
 
 
 	// Tag Info window
-	var tagInfoWindowRectX1 = 40;
-	var tagInfoWindowRectY1 = (camHeight / 2) - 100;
-	var tagInfoWindowRectX2 = (camWidth * 0.5) - 40;
-	var tagInfoWindowRectY2 = camHeight - 150;
+	tagInfoWindowRectX1 = 40;
+	tagInfoWindowRectY1 = (camHeight / 2) - 100;
+	tagInfoWindowRectX2 = (camWidth * 0.5) - 40;
+	tagInfoWindowRectY2 = camHeight - 150;
 
 	windowWidth = max(tagInfoWindowRectX2 - tagInfoWindowRectX1, 48);
 	windowHeight = max(tagInfoWindowRectY2 - tagInfoWindowRectY1, 48);
 	clipWidth = windowWidth;
 	clipHeight = windowHeight;
 
-	var rowHeight = string_height("A") * 1.3;
+	rowHeight = string_height("A") * 1.3;
 	var colWidth = windowWidth / colAmount;
 	
 	windowX = x;
@@ -386,12 +386,12 @@ function scr_importMappingTagInfo() {
 			}
 
 		
-			if(i != global.tagInfoGrid_colError){
+			if (i != global.tagInfoGrid_colError) {
 				draw_set_color(global.colorThemeText);
 				draw_text(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), currentCellStr);
 			}
-			else{
-				if(currentError){
+			else {
+				if (currentError) {
 					draw_set_color(c_red);
 					draw_circle(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY),string_height("!")/2.2, false);
 					draw_set_color(global.colorThemeBG);
