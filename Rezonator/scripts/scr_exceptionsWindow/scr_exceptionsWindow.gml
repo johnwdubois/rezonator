@@ -11,6 +11,17 @@ function scr_exceptionsWindow() {
 		draw_text(floor(fileInfoWindowRectX1 + 20) - clipX, floor(fileInfoWindowRectY1 + plusY + scrollPlusY) - clipY, string(currentExceptionString));
 		plusY += string_height("0");
 	}
+	
+	
+	// mousewheel input
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (mouse_wheel_up()) {
+			scrollPlusYDest += 16;
+		}
+		if (mouse_wheel_down()) {
+			scrollPlusYDest -= 16;
+		}
+	}
 
 	scr_scrollBar(ds_list_size(exceptionStringList) + 1, -1, string_height("0"), 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
