@@ -42,13 +42,14 @@ scr_windowCameraAdjust();
 surface_set_target(clipSurface);
 draw_clear_alpha(c_black, 0);
 
-if(selectedTab == 0){
+
+if(selectedTab == "menu_file"){
 	scr_fileWindow();
 }
-else if(selectedTab == 1){
+else if(selectedTab == "menu_summary"){
 	scr_summaryWindow();
 }
-else if(selectedTab == 2){
+else if(selectedTab == "label_exceptions"){
 	scr_exceptionsWindow();
 }
 

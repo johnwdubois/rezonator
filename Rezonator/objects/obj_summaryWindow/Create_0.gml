@@ -23,7 +23,7 @@ fileInfoWindowRectY2 = (camHeight / 2) - 180;
 
 tabList = ds_list_create();
 ds_list_add(tabList, "menu_file", "menu_summary", "label_exceptions");
-selectedTab = 0;
+selectedTab = tabList[| 0];
 
 
 // make list of line strings that have been marked as exceptions

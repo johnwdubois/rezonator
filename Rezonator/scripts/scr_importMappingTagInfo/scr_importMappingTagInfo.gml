@@ -89,6 +89,9 @@ function scr_importMappingTagInfo() {
 			var currentSpecialField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, j);
 			var currentKey = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, j);
 			
+			var currentCellSelected = (obj_importMapping.colToChange == i && obj_importMapping.rowToChange == j && instance_exists(obj_dropDown));
+			
+			
 			if (i == 0 && currentLevel == global.levelWord) {
 				wordFieldCount++;
 			}
@@ -100,12 +103,12 @@ function scr_importMappingTagInfo() {
 			var cellRectY1 = plusY + scrollPlusY;
 			var cellRectY2 = cellRectY1 + rowHeight;
 			
-
+			// get coordinates for clickable cell
 			var cellRectClickableX1 = cellRectX1 + 4;
 			var cellRectClickableY1 = cellRectY1 + 4;
 			var cellRectClickableX2 = cellRectX2 - 4;
 			var cellRectClickableY2 = cellRectY2 - 4;
-			var mouseoverDropDown = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectClickableX1, cellRectClickableY1, cellRectClickableX2, cellRectClickableY2);
+			var mouseoverDropDown = (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectClickableX1, cellRectClickableY1, cellRectClickableX2, cellRectClickableY2) && !instance_exists(obj_dropDown)) || currentCellSelected;
 			var drawDropDown = false;
 			
 			
@@ -153,7 +156,7 @@ function scr_importMappingTagInfo() {
 				draw_roundrect(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, false);
 				
 				// draw border if this cell is clicked in
-				if (obj_importMapping.colToChange == i && obj_importMapping.rowToChange == j && instance_exists(obj_dropDown)) {
+				if (currentCellSelected) {
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, 2, true);
 				}
@@ -229,7 +232,7 @@ function scr_importMappingTagInfo() {
 				draw_roundrect(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, false);
 				
 				// draw border if this cell is clicked in
-				if (obj_importMapping.colToChange == i && obj_importMapping.rowToChange == j && instance_exists(obj_dropDown)) {
+				if (currentCellSelected) {
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, 2, true);
 				}
@@ -301,7 +304,7 @@ function scr_importMappingTagInfo() {
 				draw_roundrect(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, false);
 				
 				// draw border if this cell is clicked in
-				if (obj_importMapping.colToChange == i && obj_importMapping.rowToChange == j && instance_exists(obj_dropDown)) {
+				if (currentCellSelected) {
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(cellRectClickableX1 - clipX, cellRectClickableY1 - clipY, cellRectClickableX2 - clipX, cellRectClickableY2 - clipY, 2, true);
 				}
