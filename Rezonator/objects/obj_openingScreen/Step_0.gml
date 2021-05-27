@@ -19,7 +19,7 @@ if (keyboard_check(vk_shift) && keyboard_check(vk_control) && keyboard_check_rel
 		show_message("global.importGroupFileList: " + scr_getStringOfList(global.importGroupFileList));
 	}
 	
-	global.importGroupSchemaFile = get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema");
+	global.importGroupSchemaFile = get_open_filename_ext("SCHEMA file|*.json", "", global.rezonatorSchemaDirString, "Open Schema");
 	show_debug_message("global.importGroupSchemaFile: " + string(global.importGroupSchemaFile) + ", file exists: " + string(file_exists(global.importGroupSchemaFile)));
 }
 

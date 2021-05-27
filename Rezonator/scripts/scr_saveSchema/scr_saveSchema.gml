@@ -1,29 +1,17 @@
 function scr_saveSchema() {
-	/*
-		scr_saveRzs();
-	
-		Last Updated: 2020-08-19
-	
-		Called from: obj_fileLoader
-	
-		Purpose: Save all user defined feilds durring import for easy reuse
-	
-		Mechanism: Organize the data into maps, then transfer those maps as JSON strings into the user specified file location
-	
-		Author: Brady Moore
-	*/
 
-
-	var fileName = get_save_filename_ext("Schema file|*.rzs", string_lettersdigits("Schema"), global.rezonatorSchemaDirString, scr_get_translation("msg_save_schema_file"));
+	var fileName = get_save_filename_ext("Schema file|*.json", string_lettersdigits("Schema"), global.rezonatorSchemaDirString, scr_get_translation("msg_save_schema_file"));
+	
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
 		show_message(scr_get_translation("save_error"));
 		exit;
 	}
-
-
-
-
+	
+	global.schemaFileName = filename_name(fileName);
+	
+	
+	
 
 	var rootList = ds_list_create();
 

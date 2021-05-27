@@ -1,9 +1,6 @@
 function scr_loadINI() {
 
 
-
-	//var fileName = get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema");
-
 	if (os_type == os_macosx) {
 		var fileName = global.rezonatorDirString + "/~usersettings.ini";
 	}

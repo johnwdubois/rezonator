@@ -37,17 +37,18 @@ function scr_fileWindow() {
 	var loadSchemaButtonRectY1 = schemaTextY - loadSchemaButtonWidth/2;
 	var loadSchemaButtonRectX2 = loadSchemaButtonRectX1 + loadSchemaButtonWidth;
 	var loadSchemaButtonRectY2 = loadSchemaButtonRectY1 + loadSchemaButtonHeight;
+	var mouseoverLoadSchema = point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButtonRectY1, loadSchemaButtonRectX2, loadSchemaButtonRectY2);
 
-	draw_sprite_ext(spr_dropDown,0,floor(mean(loadSchemaButtonRectX1,loadSchemaButtonRectX2))- clipX, floor(mean(loadSchemaButtonRectY1,loadSchemaButtonRectY2))- clipY,1,1,0,global.colorThemeText, 1);
+	draw_sprite_ext(spr_dropDown, 0, floor(mean(loadSchemaButtonRectX1, loadSchemaButtonRectX2)) - clipX, floor(mean(loadSchemaButtonRectY1, loadSchemaButtonRectY2)) - clipY, 1, 1, 0, global.colorThemeText, 1);
+	
 	// Load from File
-	if (point_in_rectangle(mouse_x, mouse_y, loadSchemaButtonRectX1, loadSchemaButtonRectY1, loadSchemaButtonRectX2, loadSchemaButtonRectY2)) {
+	if (mouseoverLoadSchema) {
 		draw_set_color(global.colorThemeSelected1);
-		draw_rectangle(loadSchemaButtonRectX1- clipX, loadSchemaButtonRectY1- clipY, loadSchemaButtonRectX2- clipX, loadSchemaButtonRectY2- clipY, true);
+		draw_rectangle(loadSchemaButtonRectX1 - clipX, loadSchemaButtonRectY1 - clipY, loadSchemaButtonRectX2 - clipX, loadSchemaButtonRectY2 - clipY, true);
 	
 		if (mouse_check_button_pressed(mb_left)) {
 			
 			scr_loadSchema(false);
-			
 			scr_calculateTokenThreshold();
 		}
 	}
@@ -64,11 +65,14 @@ function scr_fileWindow() {
 		var saveSchemaButtonRectY1 = loadSchemaButtonRectY1;
 		var saveSchemaButtonRectX2 = saveSchemaButtonRectX1 + saveSchemaButtonWidth;
 		var saveSchemaButtonRectY2 = saveSchemaButtonRectY1 + saveSchemaButtonHeight;
+		var mouseoverSaveSchema = point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2);
+		
+		draw_sprite_ext(spr_saveIcon, 0, floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)) - clipX, floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)) - clipY, 1, 1, 0, global.colorThemeText, 1);
 
 		// Save to File
-		if (point_in_rectangle(mouse_x, mouse_y, saveSchemaButtonRectX1, saveSchemaButtonRectY1, saveSchemaButtonRectX2, saveSchemaButtonRectY2)) {
+		if (mouseoverSaveSchema) {
 			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(saveSchemaButtonRectX1- clipX, saveSchemaButtonRectY1- clipY, saveSchemaButtonRectX2- clipX, saveSchemaButtonRectY2- clipY, true);
+			draw_rectangle(saveSchemaButtonRectX1 - clipX, saveSchemaButtonRectY1 - clipY, saveSchemaButtonRectX2 - clipX, saveSchemaButtonRectY2 - clipY, true);
 	
 			if (mouse_check_button_pressed(mb_left)) {
 		
