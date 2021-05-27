@@ -30,6 +30,7 @@ var markerPercentX = floor(x + (windowWidth * mean(0.25, 0.5)));
 var soloX = floor(x + (windowWidth * mean(0.5, 0.75)));
 var splitX = floor(x + (windowWidth * mean(0.75, 1)));
 var plusY = fieldSummaryWindowY1 + (rowHeight * 1.5);
+var spaceWidth = string_width("   ");
 scrollPlusY = obj_importMappingTagInfo.scrollPlusY;
 
 
@@ -49,11 +50,25 @@ for (var i = 0; i < tagInfoGridHeight; i++) {
 	var currentKey = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
 	var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
 	
+	// draw text for this field
 	var textY = floor(plusY + scrollPlusY);
+	draw_set_color(global.colorThemeText);
 	draw_text(tokenCountX - clipX, textY - clipY, string(currentTokenCount));
 	draw_text(markerPercentX - clipX, textY - clipY, string(currentMarkerPercent));
 	if (currentSolo) draw_text(soloX - clipX, textY - clipY, "Yes");
 	draw_text(splitX - clipX, textY - clipY, (string(currentKey) != "0" || currentLevel == "token") ? "Yes" : "No");
+	
+	// draw line dividing each row
+	if (i < tagInfoGridHeight - 1) {
+		var lineY = textY + (rowHeight * 0.5);
+		draw_set_color(global.colorThemeSelected1);
+		draw_line(fieldSummaryWindowX1 + spaceWidth - clipX, lineY - clipY, fieldSummaryWindowX2 - spaceWidth - clipX, lineY - clipY);
+	}
+	
+	// check for mouseover
+	var mouseover = point_in_rectangle(mouse_x, mouse_y, fieldSummaryWindowX1, textY - (rowHeight * 0.5), fieldSummaryWindowX2, textY + (rowHeight * 0.5));
+	if (mouseover) obj_importMapping.mouseoverRow = i;
+	
 	
 	plusY += rowHeight;
 }

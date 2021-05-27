@@ -1,19 +1,10 @@
 function scr_openingMenu() {
-	/*
-		scr_openingMenu();
-	
-		Last Updated: 2020-01-23
-	
-		Called from: obj_openingScreen
-	
-		Purpose: Display the opening menu UI to the user
-	
-		Mechanism: Display a multitude of buttons and track the user's clicks
-	*/
+
 
 	scr_fontSizeControlOpeningScreen();
+	
 
-	//Work in here to set the new menu buttons
+
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 
@@ -25,10 +16,13 @@ function scr_openingMenu() {
 	var camHeight = camera_get_view_height(camera_get_active());
 	draw_set_alpha(1);
 	draw_set_color(merge_color(global.colorThemeSelected1, c_white, .4));
-	draw_rectangle(0,0,camWidth,camHeight,false);
+	draw_rectangle(0, 0, camWidth, camHeight, false);
 
 	var buttonWidth = (camWidth*.8) /3;
 	var buttonHeight = (camHeight*.3);
+	
+	
+	
 	
 	// open rez selection
 	var openProjectButtonX1 = (camWidth * 0.10); 
@@ -36,39 +30,33 @@ function scr_openingMenu() {
 	var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 	var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
 	var mouseOverOpen = point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2);
-	if (mouseOverOpen)
-	{
+	if (mouseOverOpen) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, false);
 	
-		if (device_mouse_check_button_released(0, mb_left))
-		{
+		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = false;
 			global.openProject = true;
 		}
 	}
 	
-	draw_set_color(mouseOverOpen ? global.colorThemeRezPurple : global.colorThemeBG);
+	// draw open button
+	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeRezPurple, hoverColorMergeOpen));
 	draw_roundrect(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, false);
-
 	draw_set_color(global.colorThemeRezPurple);
 	draw_roundrect(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, true);
 
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_middle);
-	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
-	draw_set_color(global.colorThemeText);
-	draw_text(openProjectButtonX1, openProjectButtonY1 - string_height("0"),  "Get Started");
-	
-	
-	
+	// open button sprite & text
 	draw_set_halign(fa_center);
 	draw_set_valign(fa_middle);
 	draw_set_color(mouseOverOpen ? global.colorThemeBG : global.colorThemeText);
-	draw_sprite_ext(spr_openingMenuOpen,global.fontSize,mean(openProjectButtonX1,openProjectButtonX2),openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.38,1,1,0,(mouseOverOpen)? c_white: global.colorThemeRezPurple,1);
+	draw_sprite_ext(spr_openingMenuOpen, global.fontSize, mean(openProjectButtonX1,openProjectButtonX2), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeOpen), 1);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_text(floor(mean(openProjectButtonX1, openProjectButtonX2)), openProjectButtonY1 + (openProjectButtonY2 - openProjectButtonY1)*.8,  scr_get_translation("help_label_open"));
 	
+
+
+
 
 
 
@@ -78,25 +66,25 @@ function scr_openingMenu() {
 	var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 	var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
 	var mouseOverImport = point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2);
-	if (mouseOverImport)
-	{
+	if (mouseOverImport) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
 	
-		if (device_mouse_check_button_released(0, mb_left))
-		{
+		if (device_mouse_check_button_released(0, mb_left)) {
 			global.newProject = true;
 			global.openProject = false;
 		}
 	}
-	draw_set_color(mouseOverImport ? global.colorThemeRezPurple : global.colorThemeBG);
-
+	
+	// draw import button
+	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeRezPurple, hoverColorMergeImport));
 	draw_roundrect(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
 	draw_set_color(global.colorThemeRezPurple);
 	draw_roundrect(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, true);
 	
+	// import button sprite & text
 	draw_set_color(mouseOverImport ? global.colorThemeBG : global.colorThemeText);
-	draw_sprite_ext(spr_openingMenuImport,global.fontSize,mean(newProjectButtonX1,newProjectButtonX2),newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1)*.38,1,1,0,(mouseOverImport)? c_white: global.colorThemeRezPurple,1);
+	draw_sprite_ext(spr_openingMenuImport, global.fontSize, mean(newProjectButtonX1,newProjectButtonX2), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeImport), 1);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_text(floor(mean(newProjectButtonX1, newProjectButtonX2)), newProjectButtonY1 + (newProjectButtonY2 - newProjectButtonY1)*.8,  scr_get_translation("menu_import"));
 	
@@ -104,7 +92,7 @@ function scr_openingMenu() {
 
 
 
-
+	// help/documentation button
 	draw_set_alpha(1);
 	scr_adaptFont(scr_get_translation("msg_open_docs"),"M");
 	var documentationStr = scr_get_translation("menu_help");
@@ -114,15 +102,15 @@ function scr_openingMenu() {
 	var documentationButtonY2 = documentationButtonY1 + buttonHeight;
 	var mouseoverDocumenation = point_in_rectangle(mouse_x, mouse_y, documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2);
 
-
-	draw_set_color(mouseoverDocumenation ? global.colorThemeRezPurple : global.colorThemeBG);
-
+	// draw help button
+	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeRezPurple, hoverColorMergeHelp));
 	draw_roundrect(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, false);
 	draw_set_color(global.colorThemeRezPurple);
 	draw_roundrect(documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2, true);
 
+	// help button sprite & text
 	draw_set_color(mouseoverDocumenation ? global.colorThemeBG : global.colorThemeText);
-	draw_sprite_ext(spr_openingMenuDoc,global.fontSize,mean(documentationButtonX1,documentationButtonX2),documentationButtonY1 + (documentationButtonY2 - documentationButtonY1)*.38,1,1,0,(mouseoverDocumenation)? c_white: global.colorThemeRezPurple,1);
+	draw_sprite_ext(spr_openingMenuDoc, global.fontSize, mean(documentationButtonX1, documentationButtonX2), documentationButtonY1 + (documentationButtonY2 - documentationButtonY1) * 0.38, 1, 1, 0, merge_color(global.colorThemeRezPurple, global.colorThemeBG, hoverColorMergeHelp), 1);
 	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
 	draw_text(floor(mean(documentationButtonX1, documentationButtonX2)), documentationButtonY1 + (documentationButtonY2 - documentationButtonY1)*.8, documentationStr);
 
@@ -136,8 +124,6 @@ function scr_openingMenu() {
 
 
 	var stringBuffer = string_width("   ");
-
-
 	var signInXBuffer = 20;
 	var signInYBuffer = 25;
 	var signInText = scr_get_translation("msg_signin")
@@ -179,28 +165,28 @@ function scr_openingMenu() {
 	var remeberMeBoxY2 = remeberMeBoxY1 + rememberMeButtonWidth;
 
 
-		draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2,remeberMeBoxY2, true);
-		if (global.rememberMe) {
-			draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2, false);	
-		}
+	draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2,remeberMeBoxY2, true);
+	if (global.rememberMe) {
+		draw_rectangle(remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2, false);	
+	}
 
-		if (point_in_rectangle(mouse_x, mouse_y,userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)){
-				if (device_mouse_check_button_released(0, mb_left)) {
-					obj_openingScreen.clickedIn = true;
-				}
-		}
-
-		// current chain boolean switch
-		else if (point_in_rectangle(mouse_x, mouse_y,remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2)){
-				if (device_mouse_check_button_released(0, mb_left)) {
-					global.rememberMe = !global.rememberMe;	
-				}
-		}
-		else {
+	if (point_in_rectangle(mouse_x, mouse_y,userSignInBoxX1, userSignInBoxY1, userSignInBoxX2, userSignInBoxY2)){
 			if (device_mouse_check_button_released(0, mb_left)) {
-				obj_openingScreen.clickedIn = false;
+				obj_openingScreen.clickedIn = true;
 			}
+	}
+
+	// current chain boolean switch
+	else if (point_in_rectangle(mouse_x, mouse_y,remeberMeBoxX1, remeberMeBoxY1, remeberMeBoxX2, remeberMeBoxY2)){
+			if (device_mouse_check_button_released(0, mb_left)) {
+				global.rememberMe = !global.rememberMe;	
+			}
+	}
+	else {
+		if (device_mouse_check_button_released(0, mb_left)) {
+			obj_openingScreen.clickedIn = false;
 		}
+	}
 	
 
 
@@ -374,7 +360,25 @@ function scr_openingMenu() {
 	
 		global.userName = obj_openingScreen.inputText;
 	}
-
-
+	
+	
+	
+	// draw "get started" text
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
+	scr_adaptFont(scr_get_translation("menu_import"),"L", true);
+	draw_set_color(global.colorThemeText);
+	draw_text(openProjectButtonX1, openProjectButtonY1 - string_height("0"),  "Get Started");
+	
+	
+	
+	// make button colors fade on mouseover
+	var mergeColorRate = 0.1;
+	hoverColorMergeOpen += (mouseOverOpen) ? mergeColorRate : -mergeColorRate;
+	hoverColorMergeImport += (mouseOverImport) ? mergeColorRate : -mergeColorRate;
+	hoverColorMergeHelp += (mouseoverDocumenation) ? mergeColorRate : -mergeColorRate;
+	hoverColorMergeOpen = clamp(hoverColorMergeOpen, 0, 1);
+	hoverColorMergeImport = clamp(hoverColorMergeImport, 0, 1);
+	hoverColorMergeHelp = clamp(hoverColorMergeHelp, 0, 1);
 
 }

@@ -1,5 +1,6 @@
 function scr_importMappingTagInfo() {
 	
+	
 	var camWidth = camera_get_view_width(camera_get_active());
 	var camHeight = camera_get_view_height(camera_get_active());
 
@@ -23,8 +24,9 @@ function scr_importMappingTagInfo() {
 	clipWidth = windowWidth;
 	clipHeight = windowHeight;
 
-	rowHeight = string_height("A") * 1.3;
+	rowHeight = string_height("A") * 1.6;
 	var colWidth = windowWidth / colAmount;
+	var clickableRectBuffer = floor(rowHeight * 0.11);
 	
 	windowX = x;
 	windowY = y;
@@ -53,6 +55,10 @@ function scr_importMappingTagInfo() {
 	var fieldXBuffer = string_width("   ");
 	
 	var plusX = 40;
+	
+	var underlineX1 = 0;
+	var underlineX2 = 0;
+	var underlineY = 0;
 
 
 
@@ -104,10 +110,10 @@ function scr_importMappingTagInfo() {
 			var cellRectY2 = cellRectY1 + rowHeight;
 			
 			// get coordinates for clickable cell
-			var cellRectClickableX1 = cellRectX1 + 4;
-			var cellRectClickableY1 = cellRectY1 + 4;
-			var cellRectClickableX2 = cellRectX2 - 4;
-			var cellRectClickableY2 = cellRectY2 - 4;
+			var cellRectClickableX1 = cellRectX1 + clickableRectBuffer;
+			var cellRectClickableY1 = cellRectY1 + clickableRectBuffer;
+			var cellRectClickableX2 = cellRectX2 - clickableRectBuffer;
+			var cellRectClickableY2 = cellRectY2 - clickableRectBuffer;
 			var mouseoverDropDown = (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectClickableX1, cellRectClickableY1, cellRectClickableX2, cellRectClickableY2) && !instance_exists(obj_dropDown)) || currentCellSelected;
 			var drawDropDown = false;
 			
@@ -363,19 +369,33 @@ function scr_importMappingTagInfo() {
 			
 			var currentCellStr = string(currentCell);
 			var textX = (i == 0) ? floor(colX + fieldXBuffer) : floor(mean(cellRectX1, cellRectX2));
+			var textY = floor(plusY + (rowHeight / 2) + scrollPlusY);
 			draw_set_halign((i == 0) ? fa_left : fa_center);
 			
+			// draw line dividing each row
+			if (i == colAmount - 1 && j < tagInfoGridHeight - 1) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_line(x + fieldXBuffer - clipX, textY + (rowHeight * 0.5) - clipY, tagInfoWindowRectX2 - fieldXBuffer - clipX, textY + (rowHeight * 0.5) - clipY);
+			}
 			
 			// mouseover & click on row
-			if (obj_importMapping.mouseoverRow == j && i== 0) {
-				draw_set_color(global.colorThemeBorders);
-				draw_line_width(textX - clipX, cellRectY2 - clipY, textX + string_width(currentCellStr) - clipX, cellRectY2 - clipY, 3);
-				
-				if (mouse_check_button_released(mb_left)) {
-					fieldSelected = currentMarker;
-					show_debug_message("fieldSelected: " + string(fieldSelected));
+			if (obj_importMapping.mouseoverRow == j) {
+				if (i == 0) {
+					underlineX1 = textX;
+					underlineX2 = textX + string_width(currentCellStr);
+					underlineY = cellRectY2;
+					if (mouse_check_button_released(mb_left)) {
+						fieldSelected = currentMarker;
+						show_debug_message("fieldSelected: " + string(fieldSelected));
+					}
+				}
+				else if (i == colAmount - 1) {
+					draw_set_color(global.colorThemeBorders);
+					draw_line_width(underlineX1 - clipX, underlineY  - clipY, underlineX2 - clipX, underlineY - clipY, 3);
 				}
 			}
+			
+			
 			
 			// selected pink line
 			if (i == 0) {
@@ -385,19 +405,21 @@ function scr_importMappingTagInfo() {
 				}
 			}
 
-		
+			// draw text for this cell
 			if (i != global.tagInfoGrid_colError) {
 				draw_set_color(global.colorThemeText);
-				draw_text(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), currentCellStr);
+				draw_text(textX - clipX, textY - clipY, currentCellStr);
 			}
 			else {
 				if (currentError) {
 					draw_set_color(c_red);
 					draw_circle(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY),string_height("!")/2.2, false);
 					draw_set_color(global.colorThemeBG);
-					draw_text(textX - clipX, floor(plusY + (rowHeight / 2) + scrollPlusY - clipY), "!");
+					draw_text(textX - clipX, textY - clipY, "!");
 				}
 			}
+			
+			
 		
 			plusY += rowHeight;
 		}
