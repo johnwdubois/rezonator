@@ -40,7 +40,7 @@ function scr_loadSchema(autoload) {
 		fileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
 	}
 	
-	
+	global.schemaFileName = filename_name(fileName);
 	show_debug_message("scr_loadSchema, schema fileName: " + string(fileName));
 
 	// make sure the file exists
