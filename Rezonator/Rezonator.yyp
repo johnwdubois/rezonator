@@ -437,6 +437,7 @@
     {"id":{"name":"spr_backArrowWhite","path":"sprites/spr_backArrowWhite/spr_backArrowWhite.yy",},"order":33,},
     {"id":{"name":"obj_importMappingTagInfo","path":"objects/obj_importMappingTagInfo/obj_importMappingTagInfo.yy",},"order":5,},
     {"id":{"name":"scr_handleVoid","path":"scripts/scr_handleVoid/scr_handleVoid.yy",},"order":8,},
+    {"id":{"name":"scr_fieldSummaryWindow","path":"scripts/scr_fieldSummaryWindow/scr_fieldSummaryWindow.yy",},"order":10,},
     {"id":{"name":"scr_setMap","path":"scripts/scr_setMap/scr_setMap.yy",},"order":17,},
     {"id":{"name":"obj_importPlainTextInfo","path":"objects/obj_importPlainTextInfo/obj_importPlainTextInfo.yy",},"order":6,},
     {"id":{"name":"scr_dialogueBoxNewCustomTagChain","path":"scripts/scr_dialogueBoxNewCustomTagChain/scr_dialogueBoxNewCustomTagChain.yy",},"order":16,},
