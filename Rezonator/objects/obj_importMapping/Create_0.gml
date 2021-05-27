@@ -47,6 +47,7 @@ cursorViz = false;
 inputText = "";
 cursorTimer = 20;
 global.givenSpeaker = "";
+global.schemaFileName = "";
 
 maxDisplaySize = 12;
 canDelete = true;

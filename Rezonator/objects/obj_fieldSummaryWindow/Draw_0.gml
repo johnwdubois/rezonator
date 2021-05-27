@@ -64,7 +64,7 @@ else {
 			
 			// draw text for this cell
 			var cellStr = string(ds_grid_get(obj_importMappingTagInfo.gridViewing, j, i));
-			draw_text(textX - clipX, textY - clipY, cellStr);
+			draw_text(textX - clipX, floor(textY - clipY), cellStr);
 		}
 		
 		plusY += rowHeight;

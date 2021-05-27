@@ -23,10 +23,10 @@ function scr_fieldSummaryWindow(tokenCountX, markerPercentX, soloX, splitX, rowH
 		// draw text for this field
 		var textY = floor(plusY + scrollPlusY);
 		draw_set_color(global.colorThemeText);
-		draw_text(tokenCountX - clipX, textY - clipY, string(currentTokenCount));
-		draw_text(markerPercentX - clipX, textY - clipY, string(currentMarkerPercent));
-		if (currentSolo) draw_text(soloX - clipX, textY - clipY, "Yes");
-		draw_text(splitX - clipX, textY - clipY, (string(currentKey) != "0" || currentLevel == "token") ? "Yes" : "No");
+		draw_text(tokenCountX - clipX, floor(textY - clipY), string(currentTokenCount));
+		draw_text(markerPercentX - clipX, floor(textY - clipY), string(currentMarkerPercent));
+		if (currentSolo) draw_text(soloX - clipX, floor(textY - clipY), "Yes");
+		draw_text(splitX - clipX, floor(textY - clipY), (string(currentKey) != "0" || currentLevel == "token") ? "Yes" : "No");
 	
 		// draw line dividing each row
 		if (i < tagInfoGridHeight - 1) {
@@ -36,7 +36,7 @@ function scr_fieldSummaryWindow(tokenCountX, markerPercentX, soloX, splitX, rowH
 		}
 	
 		// check for mouseover
-		var mouseover = point_in_rectangle(mouse_x, mouse_y, fieldSummaryWindowX1, textY - (rowHeight * 0.5), fieldSummaryWindowX2, textY + (rowHeight * 0.5));
+		var mouseover = point_in_rectangle(mouse_x, mouse_y, fieldSummaryWindowX1, floor(textY - (rowHeight * 0.5)), fieldSummaryWindowX2, floor(textY + (rowHeight * 0.5)));
 		if (mouseover) obj_importMapping.mouseoverRow = i;
 	
 	

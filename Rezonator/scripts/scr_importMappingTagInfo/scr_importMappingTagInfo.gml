@@ -375,7 +375,7 @@ function scr_importMappingTagInfo() {
 			// draw line dividing each row
 			if (i == colAmount - 1 && j < tagInfoGridHeight - 1) {
 				draw_set_color(global.colorThemeSelected1);
-				draw_line(x + fieldXBuffer - clipX, textY + (rowHeight * 0.5) - clipY, tagInfoWindowRectX2 - fieldXBuffer - clipX, textY + (rowHeight * 0.5) - clipY);
+				draw_line(x + fieldXBuffer - clipX, floor(textY + (rowHeight * 0.5)) - clipY, tagInfoWindowRectX2 - fieldXBuffer - clipX, floor(textY + (rowHeight * 0.5)) - clipY);
 			}
 			
 			// mouseover & click on row
@@ -408,7 +408,7 @@ function scr_importMappingTagInfo() {
 			// draw text for this cell
 			if (i != global.tagInfoGrid_colError) {
 				draw_set_color(global.colorThemeText);
-				draw_text(textX - clipX, textY - clipY, currentCellStr);
+				draw_text(textX - clipX, floor(textY - clipY), currentCellStr);
 			}
 			else {
 				if (currentError) {

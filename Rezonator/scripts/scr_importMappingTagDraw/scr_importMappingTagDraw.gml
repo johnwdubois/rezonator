@@ -1,6 +1,4 @@
 function scr_importMappingTagDraw() {
-	
-
 	scr_fontSizeControlOpeningScreen();
 
 	var camWidth = camera_get_view_width(camera_get_active());
@@ -136,7 +134,7 @@ function scr_importMappingTagDraw() {
 	draw_text(floor(xBuffer), floor(yBuffer + 50), scr_get_translation("menu_import_fields"));
 
 	var buttonBuffer = 20;
-
+/*
 
 	var loadPreviousButtonWidth = max(200, string_width(" Use Last Import Schema "));
 	var loadPreviousButtonHeight = 30;
@@ -191,19 +189,8 @@ function scr_importMappingTagDraw() {
 			scr_calculateTokenThreshold();
 		}
 	}
-
-	// if this is an importGroup, load the schema file automatically and then goto main screen
-	if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
-		scr_loadSchema(false);
-		importGroupSchemaLoaded = true;
-
-		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
-		instLoading.loadSprite = spr_loading;
-		scr_setSpecialFieldsVariables();
-		scr_storeSchemaLists();
 	
-		alarm[2] = 3;
-	}
+
 	
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(1);
@@ -252,6 +239,22 @@ function scr_importMappingTagDraw() {
 		scr_adaptFont(scr_get_translation("msg_save-schema"), "M");
 		draw_text(floor(mean(saveSchemaButtonRectX1, saveSchemaButtonRectX2)), floor(mean(saveSchemaButtonRectY1, saveSchemaButtonRectY2)), scr_get_translation("msg_save-schema"));
 	}
+	*/
+
+
+	// if this is an importGroup, load the schema file automatically and then goto main screen
+	if (global.importGroupSchemaFile != "" && !importGroupSchemaLoaded) {
+		scr_loadSchema(false);
+		importGroupSchemaLoaded = true;
+
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+		instLoading.loadSprite = spr_loading;
+		scr_setSpecialFieldsVariables();
+		scr_storeSchemaLists();
+	
+		alarm[2] = 3;
+	}
+
 	
 	// if in IGT allow user to sitch grids
 	if( global.importType == global.importType_IGT){
@@ -260,7 +263,7 @@ function scr_importMappingTagDraw() {
 		var changeGridButtonHeight = 30;
 		var changeGridButtonRectX2 = (camWidth) - 50;
 		var changeGridButtonRectX1 = changeGridButtonRectX2 - changeGridButtonWidth;
-		var changeGridButtonRectY1 = loadPreviousButtonRectY1;
+		var changeGridButtonRectY1 = yBuffer + 50 - (changeGridButtonHeight / 2);
 		var changeGridButtonRectY2 = changeGridButtonRectY1 + changeGridButtonHeight;
 
 
