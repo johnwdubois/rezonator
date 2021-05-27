@@ -1,34 +1,34 @@
 function scr_loadSchema(autoload) {
 
 
-	var fileName = "";
+	var fileName = global.schemaFileName;
 	
-	// if this is an autoload, Rezonator will try to get the RZS file from the program directory, otherwise prompt the user to select a file
+	// if this is an autoload, Rezonator will try to get the schema file from the program directory, otherwise prompt the user to select a file
 	if (autoload) {
 		
 		show_debug_message("scr_loadSchema, AUTOLOAD");
 		if (global.importType == global.importType_IGT) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/igt_schema.rzs";
+				fileName = global.rezonatorDirString + "/Schemas/igt_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\IGT Schema.rzs";
+				fileName = global.rezonatorDirString + "\\Schemas\\IGT Schema.json";
 			}
 		}
 		else if (global.importType == global.importType_CSV) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/csv_schema.rzs";
+				fileName = global.rezonatorDirString + "/Schemas/csv_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\CSV Schema.rzs";
+				fileName = global.rezonatorDirString + "\\Schemas\\CSV Schema.json";
 			}
 		}
 		else if (global.importType == global.importType_CoNLLU) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/conll-u_schema.rzs";
+				fileName = global.rezonatorDirString + "/Schemas/conll-u_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\CoNLL-U Schema.rzs";
+				fileName = global.rezonatorDirString + "\\Schemas\\CoNLL-U Schema.json";
 			}
 		}
 		else {
@@ -37,7 +37,10 @@ function scr_loadSchema(autoload) {
 		
 	}
 	else {
-		fileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+		var openFileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.json", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+		if (openFileName != "") {
+			fileName = openFileName;
+		}
 	}
 	
 	global.schemaFileName = filename_name(fileName);

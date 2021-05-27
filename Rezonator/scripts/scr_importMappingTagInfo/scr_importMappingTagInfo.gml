@@ -177,7 +177,7 @@ function scr_importMappingTagInfo() {
 					
 				
 				if (!instance_exists(obj_dropDown) && mouseoverDropDown) {
-					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change currentLevel", obj_tooltip.arrowFaceUp);
+					scr_createTooltip(mean(dropDownButtonX1, dropDownButtonX2), dropDownButtonY2, "Change Level", obj_tooltip.arrowFaceUp);
 
 					mouseOverLevel = true;
 					if (mouse_check_button_pressed(mb_left)) {
