@@ -302,6 +302,9 @@ and !mouseInDropDown and !scrollBarHoldingDelay) {
 	if (room == rm_mainScreen) {
 		obj_menuBar.menuClickedIn = false;
 	}
+	else if (room == rm_importScreen) {
+		obj_fieldSummaryWindow.clickedIn = false;
+	}
 	show_debug_message("obj_dropDown Draw ... destroying dropdowns");
 	with (obj_dropDown) {
 		instance_destroy();

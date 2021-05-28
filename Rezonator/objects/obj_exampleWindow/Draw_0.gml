@@ -11,9 +11,6 @@ windowWidth = (exampleWindowX2 - x);
 windowHeight = (exampleWindowY2 - y);
 var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, exampleWindowX2, exampleWindowY2);
 
-draw_set_color(global.colorThemeBG);
-draw_set_alpha(1);
-draw_rectangle(x, y, exampleWindowX2, exampleWindowY2, false);
 
 
 // setup string drawing stuff
@@ -44,6 +41,12 @@ draw_set_color(global.colorThemeRezPurple);
 var tabTextY = floor(mean(tabY1, tabY2));
 draw_text(tabX1 + spaceWidth, tabTextY, tabStr);
 draw_line_width(tabX1 + spaceWidth, tabTextY + (strHeight * 0.6), tabX2 - spaceWidth, tabTextY + (strHeight * 0.6), 3);
+
+
+draw_set_color(global.colorThemeBG);
+draw_set_alpha(1);
+draw_rectangle(x, y, exampleWindowX2, exampleWindowY2, false);
+
 
 if (fieldColSelected < 0) {
 	exit;
