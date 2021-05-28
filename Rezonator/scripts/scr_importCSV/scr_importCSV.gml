@@ -5,6 +5,8 @@ function scr_importCSV(filename) {
 	//load csv into grid
 	global.importCSVGrid = load_csv(filename);
 	show_debug_message("scr_importCSV()... global.importCSVGridWidth: " + string(ds_grid_width(global.importCSVGrid)) + " global.importCSVGridHeight: " + string(ds_grid_height(global.importCSVGrid)));
+	
+	global.importFilename = filename;
 
 
 	//copy headers into list
