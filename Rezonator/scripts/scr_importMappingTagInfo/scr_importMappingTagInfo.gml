@@ -198,9 +198,7 @@ function scr_importMappingTagInfo() {
 							ds_list_add(dropDownOptionList, "Token", "Unit", "Discourse", "EXCEPTION");
 						}
 						if (ds_list_size(dropDownOptionList) > 0) {
-							var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY), -999, obj_dropDown);
-							dropDownInst.optionList = dropDownOptionList;
-							dropDownInst.optionListType = global.optionListTypeMappingTag;
+							scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeMappingTag);
 						}
 					}
 				}
@@ -293,9 +291,7 @@ function scr_importMappingTagInfo() {
 								ds_list_add(dropDownOptionList, "Word Delimiter");
 							}
 							if (ds_list_size(dropDownOptionList) > 0) {
-								var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
-								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = global.optionListTypeSpecialFields;
+								scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeSpecialFields);
 							}
 						}
 					}
@@ -344,22 +340,20 @@ function scr_importMappingTagInfo() {
 					
 							var dropDownOptionList = ds_list_create();
 						
-							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelUnit) {
+							if (currentLevel == global.levelUnit) {
 								ds_list_add(dropDownOptionList, "Speaker", "Turn Delimiter", "Translation");
-								if(global.importType != global.importType_Transcription){
+								if (global.importType != global.importType_TabDelimited) {
 									ds_list_add(dropDownOptionList, "Unit Start", "Unit End");
 								}
 							}
-							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelToken) {
+							if (currentLevel == global.levelToken) {
 								ds_list_add(dropDownOptionList, "Transcript");
 							}
-							if (ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j) == global.levelWord) {
+							if (currentLevel == global.levelWord) {
 								ds_list_add(dropDownOptionList, "Word Delimiter");
 							}
 							if (ds_list_size(dropDownOptionList) > 0) {
-								var dropDownInst = instance_create_depth(colX, floor(plusY + rowHeight  + scrollPlusY) , -999, obj_dropDown);
-								dropDownInst.optionList = dropDownOptionList;
-								dropDownInst.optionListType = global.optionListTypeSpecialFields;
+								scr_createDropDown(colX, floor(plusY + rowHeight  + scrollPlusY), dropDownOptionList, global.optionListTypeSpecialFields);
 							}
 						}
 					}

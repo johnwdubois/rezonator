@@ -45,3 +45,9 @@ windowResizeXHolding = false;
 windowResizeYHolding = false;
 canResizeWindowX = false;
 canResizeWindowY = false;
+
+// run stacker for song & verse
+if (global.importType == global.importType_PlainText) {
+	currentStackerFuntion = stackerFunctionGroup;
+	alarm[5] = 3;
+}
