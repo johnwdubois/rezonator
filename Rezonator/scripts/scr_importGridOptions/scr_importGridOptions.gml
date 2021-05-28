@@ -4,7 +4,7 @@ function scr_importGridOptions(optionSelected){
 	switch(optionSelected){
 		
 		case "Field Info":
-			obj_importMapping.currentGridName = "Field Info";
+			obj_importMapping.currentGridName = "Field Summary";
 			obj_importMappingTagInfo.gridViewing = global.tagInfoGrid;
 
 		break;

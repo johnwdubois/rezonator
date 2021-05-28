@@ -42,6 +42,7 @@ function scr_importInfoGrid() {
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, 100);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, false);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, ds_grid_height(global.importCSVGrid));
 		
 		}
 	

@@ -47,6 +47,8 @@ function scr_importMappingTagInfo() {
 
 	x = tagInfoWindowRectX1;
 	y = tagInfoWindowRectY1;
+	
+	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, tagInfoWindowRectX2, y + rowHeight);
 
 
 
@@ -115,6 +117,7 @@ function scr_importMappingTagInfo() {
 			var cellRectClickableX2 = cellRectX2 - clickableRectBuffer;
 			var cellRectClickableY2 = cellRectY2 - clickableRectBuffer;
 			var mouseoverDropDown = (scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectClickableX1, cellRectClickableY1, cellRectClickableX2, cellRectClickableY2) && !instance_exists(obj_dropDown)) || currentCellSelected;
+			if (mouseoverHeaderRegion) mouseoverDropDown = false;
 			var drawDropDown = false;
 			
 			
