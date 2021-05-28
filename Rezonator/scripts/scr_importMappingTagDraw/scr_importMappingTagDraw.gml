@@ -1,4 +1,6 @@
 function scr_importMappingTagDraw() {
+
+	
 	scr_fontSizeControlOpeningScreen();
 
 	var camWidth = camera_get_view_width(camera_get_active());
@@ -57,10 +59,10 @@ function scr_importMappingTagDraw() {
 	
 	
 	// Continue button
-	var continueButtonWidth = 150;
-	var continueButtonHeight = 40;
-	var continueButtonRectX1 = (camWidth* 0.9) - (continueButtonWidth)/2;
-	var continueButtonRectY1 = (camHeight * 0.9) - (continueButtonHeight / 2);
+	var continueButtonWidth = camWidth / 6;
+	var continueButtonHeight = camHeight / 20;
+	var continueButtonRectX1 = obj_fieldSummaryWindow.fieldSummaryWindowX2 - continueButtonWidth;
+	var continueButtonRectY1 = mean(obj_importMappingTagInfo.tagInfoWindowRectY2, camHeight) - (continueButtonHeight / 2);
 	var continueButtonRectX2 = continueButtonRectX1 + continueButtonWidth;
 	var continueButtonRectY2 = continueButtonRectY1 + continueButtonHeight;
 	var mouseOverContinue = point_in_rectangle(mouse_x, mouse_y, continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2);
@@ -139,14 +141,13 @@ function scr_importMappingTagDraw() {
 	}
 
 
-
 	// back button
-	var backButtonWidth = 150;
-	var backButtonHeight = 40;
-	var backButtonRectX2 = (camWidth* 0.1) + (backButtonWidth)/2; 
-	var backButtonRectX1 = backButtonRectX2 - backButtonWidth;
-	var backButtonRectY1 = (camHeight * 0.9) - (backButtonHeight / 2);
-	var backButtonRectY2 = backButtonRectY1 + backButtonHeight;
+	var backButtonWidth = continueButtonWidth;
+	var backButtonHeight = continueButtonHeight;
+	var backButtonRectX1 = obj_importMappingTagInfo.tagInfoWindowRectX1;
+	var backButtonRectY1 = continueButtonRectY1;
+	var backButtonRectX2 = backButtonRectX1 + backButtonWidth;
+	var backButtonRectY2 = continueButtonRectY2;
 
 	var mouseOverBack = point_in_rectangle(mouse_x, mouse_y, backButtonRectX1, backButtonRectY1, backButtonRectX2, backButtonRectY2);
 	

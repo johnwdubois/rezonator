@@ -1,5 +1,3 @@
-
-
 camWidth = camera_get_view_width(camera_get_active());
 camHeight = camera_get_view_height(camera_get_active());
 
@@ -7,7 +5,7 @@ camHeight = camera_get_view_height(camera_get_active());
 	
 // File window
 fileInfoWindowRectX1 = 40;
-fileInfoWindowRectY1 = 80 + string_height("0");
+fileInfoWindowRectY1 = max(80 + string_height("0"), camHeight * 0.08);
 fileInfoWindowRectX2 = (camWidth * 0.5) - 20;
 fileInfoWindowRectY2 = (camHeight / 2) - 180;
 

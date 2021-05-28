@@ -24,8 +24,8 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Import_Export",
-    "path": "folders/Objects/Import_Export.yy",
+    "name": "Rezonator",
+    "path": "Rezonator.yyp",
   },
   "resourceVersion": "1.0",
   "name": "obj_exampleWindow",

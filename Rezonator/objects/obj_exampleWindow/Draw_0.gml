@@ -20,7 +20,9 @@ draw_rectangle(x, y, exampleWindowX2, exampleWindowY2, false);
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
 scr_adaptFont("", "M");
-var strHeight = string_height("0") * 2;
+var strHeight = string_height("0");
+var strHeightAdjust = strHeight * 2;
+var tabHeight = strHeight * 1.5;
 
 // get the field to display examples for
 var fieldSelected = string(obj_importMappingTagInfo.fieldSelected);
@@ -33,15 +35,15 @@ var exampleCount = min(50, ds_grid_height(global.importGrid));
 var spaceWidth = string_width("  ");
 var tabStr = "Example: " + fieldSelected;
 var tabX1 = x;
-var tabY1 = y - strHeight;
+var tabY1 = y - tabHeight;
 var tabX2 = tabX1 + string_width(tabStr) + (spaceWidth * 2);
 var tabY2 = y + 5;
 draw_set_color(global.colorThemeBG);
 draw_roundrect(tabX1, tabY1, tabX2, tabY2, false);
 draw_set_color(global.colorThemeRezPurple);
-var tabTextY = floor(mean(tabY1, tabY2) - 4);
+var tabTextY = floor(mean(tabY1, tabY2));
 draw_text(tabX1 + spaceWidth, tabTextY, tabStr);
-draw_line_width(tabX1 + spaceWidth, tabTextY + (strHeight * 0.3), tabX2 - spaceWidth, tabTextY + (strHeight * 0.3), 3);
+draw_line_width(tabX1 + spaceWidth, tabTextY + (strHeight * 0.6), tabX2 - spaceWidth, tabTextY + (strHeight * 0.6), 3);
 
 if (fieldColSelected < 0) {
 	exit;
@@ -58,7 +60,7 @@ draw_rectangle(x - clipX, y - clipY, x + exampleTextBuffer - clipX, exampleWindo
 for (var i = 0; i < exampleCount; i++) {
 	var currentExample = string(ds_grid_get(global.importGrid, fieldColSelected, i));
 	var textX = floor(x + 10 + exampleTextBuffer);
-	var textY = floor(y + 10 + ((i) * strHeight) + scrollPlusY);
+	var textY = floor(y + 10 + (i * strHeightAdjust) + scrollPlusY);
 	
 	draw_set_color(global.colorThemeText);
 	draw_text(textX - exampleTextBuffer - clipX, textY - clipY, string(i + 1));
@@ -66,12 +68,12 @@ for (var i = 0; i < exampleCount; i++) {
 	draw_text(textX - clipX, textY - clipY, currentExample);
 	
 	draw_set_color(global.colorThemeBG);
-	draw_line_width(x - clipX, textY + (strHeight * 0.5) - clipY, x + exampleTextBuffer - clipX, textY + (strHeight * 0.5) - clipY, 3);
+	draw_line_width(x - clipX, textY + (strHeightAdjust * 0.5) - clipY, x + exampleTextBuffer - clipX, textY + (strHeightAdjust * 0.5) - clipY, 3);
 }
 
 
 
-scr_scrollBar(exampleCount, 0, strHeight, 0,
+scr_scrollBar(exampleCount, 0, strHeightAdjust, 0,
 	global.colorThemeSelected2, global.colorThemeSelected2,
 	global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 

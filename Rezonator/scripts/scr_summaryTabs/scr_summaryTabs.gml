@@ -1,6 +1,5 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_summaryTabs(){
+
 
 	var tabAmount = ds_list_size(tabList);
 	var tabWidth = string_width("  Exceptions  ");
@@ -15,7 +14,7 @@ function scr_summaryTabs(){
 		
 		// tab coordinates
 		var tabX1 = x + plusX;
-		var tabY1 = y - string_height("0") * 1.5;
+		var tabY1 = y - (strHeight * 1.5);
 		var tabX2 = tabX1 + tabWidth;
 		var tabY2 = y + 5;
 		var tabTextX = floor(mean(tabX1, tabX2));
