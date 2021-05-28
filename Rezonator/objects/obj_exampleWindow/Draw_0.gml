@@ -13,9 +13,12 @@ var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, exampleWindowX2
 
 
 
+
+
 // setup string drawing stuff
 draw_set_halign(fa_left);
 draw_set_valign(fa_middle);
+draw_set_alpha(1);
 scr_adaptFont("", "M");
 var strHeight = string_height("0");
 var strHeightAdjust = strHeight * 2;

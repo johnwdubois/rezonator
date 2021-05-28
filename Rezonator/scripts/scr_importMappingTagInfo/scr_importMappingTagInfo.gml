@@ -93,7 +93,7 @@ function scr_importMappingTagInfo() {
 				continue;
 			}
 			var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, j);
-			var currentError = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colError, j) and (currentLevel == global.levelToken or currentLevel == global.levelWord);
+			var currentError = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colError, j) and (currentLevel == global.levelToken or currentLevel == global.levelWord or currentLevel == global.levelUnit);
 			var currentSpecialField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, j);
 			var currentKey = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, j);
 			

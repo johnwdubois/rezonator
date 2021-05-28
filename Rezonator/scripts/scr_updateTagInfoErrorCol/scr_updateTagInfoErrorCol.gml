@@ -11,9 +11,20 @@ function scr_updateTagInfoErrorCol(){
 		zeroRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, 0, global.tagInfoGrid_colLevelSchema, ds_grid_height(global.tagInfoGrid), 0);
 	}
 	
+	// check if unit delimiter is needed but not specified
+	var unitDelimNeeded = false;
+	if (global.importType == global.importType_CoNLLU || global.importType == global.importType_CSV) {
+		var unitDelimRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Unit Delimiter");
+		if (unitDelimRow < 0) {
+			unitDelimNeeded = true;
+		}
+		obj_importMapping.canContinueUnit = !unitDelimNeeded;
+	}
 	
-	var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker)-2;
-	var indexOfWordDelim = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker)-2;
+	
+	
+	var indexOfDisplayMarker = ds_list_find_index(global.importGridColNameList, obj_importMapping.displayMarker) - 2;
+	var indexOfWordDelim = ds_list_find_index(global.importGridColNameList, obj_importMapping.wordDelimMarker) - 2;
 			
 	obj_importMapping.canContinueToken1to1 = true;
 	obj_importMapping.canContinueWord1to1 = true;
@@ -64,6 +75,11 @@ function scr_updateTagInfoErrorCol(){
 				if (!obj_importMapping.canContinueWordDelimiter) {
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, true);
 				}
+			}
+		}
+		else if (levelOfField == global.levelUnit) {
+			if (unitDelimNeeded) {
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, true);
 			}
 		}
 		
