@@ -285,7 +285,7 @@ function scr_preImportScreen(){
 	}
 	
 	
-	// continue button
+	// back button
 	var backButtonRectWidth = camera_get_view_width(camera_get_active()) / 6;
 	var backButtonRectHeight = camera_get_view_height(camera_get_active()) / 20;
 	var backButtonRectX1 = (camera_get_view_width(camera_get_active()) * .2) - (backButtonRectWidth / 2);
