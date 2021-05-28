@@ -1,8 +1,18 @@
 function scr_setSpeakerLabelColWidth() {
 	
-	/*
-		Purpose: Adapt the Speaker Label width based on the font size of the Speaker Name
-	*/
+	// if we're not showing speaker name, don't show speaker name rect!
+	if (obj_control.showSpeakerName) {
+		if (ds_list_size(obj_control.speakerLabelColXList) == 1) {
+			var prevColX = obj_control.speakerLabelColXList[| 0];
+			ds_list_add(obj_control.speakerLabelColXList, prevColX * 2);
+		}
+	}
+	else {
+		while (ds_list_size(obj_control.speakerLabelColXList) > 1) {
+			ds_list_delete(obj_control.speakerLabelColXList, 1);
+		}
+	}
+
 
 	if (object_index != obj_control) {
 		exit;

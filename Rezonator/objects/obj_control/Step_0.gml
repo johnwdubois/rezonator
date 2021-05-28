@@ -638,11 +638,6 @@ else {
 	mouseOverUI = true;
 }
 
-if not (obj_toolPane.currentTool == obj_toolPane.toolNewWord) or not (currentActiveLineGrid == lineGrid) {
-	//newWordHoverUnitID = -1;
-	//newWordHoverWordSeq = -1;
-	//newWordHoverWordID = -1;
-}
 
 
 if (instance_exists(obj_dropDown)) {
