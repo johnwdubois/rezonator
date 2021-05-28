@@ -24,7 +24,6 @@ function scr_importMappingTagDraw() {
 
 	var tagGridHeight = ds_grid_height(global.tagInfoGrid);
 	for (var j = 0 ; j < 2; j++){
-
 		for (var i = 0 ; i < tagGridHeight; i++ ){
 			if( j == 0 ){	
 				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
@@ -36,22 +35,15 @@ function scr_importMappingTagDraw() {
 					obj_importMapping.canContinueDisplayToken = false;
 				}
 			}
-			else{
-				var cutTest = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-				if(cutTest == "Speaker"){
-					obj_importMapping.canContinueUnit = true;
-					i = tagGridHeight;
-				}
-				else{
-					obj_importMapping.canContinueUnit = false;
-				}
-			}
 		}
-
 	}
 	
+	// check all the errors that need to be solved, depending on import type
 	if (global.importType == global.importType_IGT) {
 		canContinueAll = (canContinueDisplayToken && canContinueToken1to1 && canContinueWordDelimiter && canContinueWord1to1);
+	}
+	else if (global.importType == global.importType_CoNLLU || global.importType == global.importType_CSV) {
+		canContinueAll = (canContinueDisplayToken && canContinueUnit);
 	}
 	else {
 		canContinueAll = canContinueDisplayToken;
@@ -117,20 +109,23 @@ function scr_importMappingTagDraw() {
 	
 		var errorMessage = "";
 		if (!obj_importMapping.canContinueDisplayToken) {
-			errorMessage = "Please select a field to be the Display Token using the Special Fields section.";
+			errorMessage = "Please select a field to be the Display Token using the Key section.";
 		}
 		else if (!obj_importMapping.canContinueToken1to1) {
 			errorMessage = "Token fields do not align 1-to-1 with Display Token.";
 		}
 		else if (!obj_importMapping.canContinueWordDelimiter) {
-			errorMessage = "Please select a field to be the Word Delimiter using the Special Fields section.";
+			errorMessage = "Please select a field to be the Word Delimiter using the Key section.";
 		}
 		else if (!obj_importMapping.canContinueWord1to1) {
 			errorMessage = "Word fields do not align 1-to-1 with Word Delimiter.";
 		}
+		else if (!obj_importMapping.canContinueUnit) {
+			errorMessage = "Please select a field to be the Unit Delimiter using the Key section.";
+		}
 		
 		var errorTextX = floor(camWidth / 2);
-		var errorTextY = floor(camHeight * 0.9);
+		var errorTextY = floor(mean(obj_importMappingTagInfo.tagInfoWindowRectY2, camHeight));
 
 	
 
