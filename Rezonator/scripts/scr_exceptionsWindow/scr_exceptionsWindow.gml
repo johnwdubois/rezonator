@@ -1,72 +1,32 @@
 function scr_exceptionsWindow() {
-
-	var camWidth = camera_get_view_width(camera_get_active());
-	var camHeight = camera_get_view_height(camera_get_active());
-
-
-	// Exceptions window
-	var exceptionsInfoWindowRectX1 = (camWidth * 0.5) + 20;
-	var exceptionsInfoWindowRectY1 = 80 + string_height("0");
-	var exceptionsInfoWindowRectX2 = camWidth - 50;
-	var exceptionsInfoWindowRectY2 = (camHeight / 2) - 180;
-
-	draw_set_color(global.colorThemeBorders);
-	draw_set_alpha(1);
-	draw_rectangle(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1, exceptionsInfoWindowRectX2, exceptionsInfoWindowRectY2, true);
+	// draw all exception lines
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
-	scr_adaptFont(scr_get_translation("label_exceptions"), "L");
-	draw_text(exceptionsInfoWindowRectX1, exceptionsInfoWindowRectY1 - string_height("0"), scr_get_translation("label_exceptions"));
-
-
-
-	// abbreviated surfaceStart()
-	windowWidth = clamp(exceptionsInfoWindowRectX2 - exceptionsInfoWindowRectX1, 48, 2000);
-	windowHeight = clamp(exceptionsInfoWindowRectY2 - exceptionsInfoWindowRectY1, 48, 1500);
-	clipWidth = windowWidth;
-	clipHeight = windowHeight;
-
-	x = exceptionsInfoWindowRectX1;
-	y = exceptionsInfoWindowRectY1;
-	windowX = x;
-	windowY = y;
-	clipX = x;
-	clipY = y;
-
-	if (!surface_exists(clipSurface)) {
-	    clipSurface = surface_create(clipWidth, clipHeight);
-	}
-
-	scr_windowCameraAdjust();
-
-	surface_set_target(clipSurface);
-	draw_clear_alpha(c_black, 0);
-
-
-
-
-
-
-	// draw all exception lines
 	var plusY = string_height("0");
 	var exceptionStringListSize = ds_list_size(exceptionStringList);
 	for (var i = 0; i < exceptionStringListSize; i++) {
 		var currentExceptionString = ds_list_find_value(exceptionStringList, i);
 		scr_adaptFont(string(currentExceptionString), "S");
-		draw_text(floor(exceptionsInfoWindowRectX1 + 20) - clipX, floor(exceptionsInfoWindowRectY1 + plusY + scrollPlusY) - clipY, string(currentExceptionString));
+		draw_text(floor(fileInfoWindowRectX1 + 20) - clipX, floor(fileInfoWindowRectY1 + plusY + scrollPlusY) - clipY, string(currentExceptionString));
 		plusY += string_height("0");
 	}
-
-
+	
+	
+	// mousewheel input
+	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
+		if (mouse_wheel_up()) {
+			scrollPlusYDest += 16;
+		}
+		if (mouse_wheel_down()) {
+			scrollPlusYDest -= 16;
+		}
+	}
 
 	scr_scrollBar(ds_list_size(exceptionStringList) + 1, -1, string_height("0"), 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	scrollPlusY = min(scrollPlusY, 0);
-
-	scr_surfaceEnd();
-
 
 }

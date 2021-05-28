@@ -1,17 +1,3 @@
-/*
-	obj_openingScreen: Draw
-	
-	Last Updated: 2019-02-14
-	
-	Called from: Every frame of the game
-	
-	Purpose: Control the layout and functionality of the opening screen
-	
-	Mechanism: Draw the text, import window, and send the user to the main screen once ready
-	
-	Author: Terry DuBois
-*/
-
 scr_colorThemeControl();
 
 importWindowWidth = camera_get_view_width(camera_get_active()) / 2;
@@ -24,10 +10,6 @@ importWindowY2 = importWindowY1 + importWindowHeight;
 scr_windowCameraAdjust();
 
 
-// draw Rezonator logo with version number
-if !(global.newProject and not global.openProject) {
-	scr_drawLogo(camera_get_view_width(camera_get_active()) / 2, camera_get_view_height(camera_get_active()) / 4, true);
-}
 
 
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
@@ -49,15 +31,9 @@ if (obj_openingScreen.showDevVars) {
 
 if(!global.fontsLoaded){
 	if(!global.loadingScreenCreated){
-	var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
-	instLoading.loadSprite = spr_loading;
-	global.loadingScreenCreated = true;
-	}
-	else{
-
-
-
-
+		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
+		instLoading.loadSprite = spr_loading;
+		global.loadingScreenCreated = true;
 	}
 }
 
@@ -73,5 +49,11 @@ if not (global.newProject or global.openProject) {
 }
 else if (not global.newProject and global.openProject) {
 	room_goto(rm_mainScreen);
+}
+
+
+// draw Rezonator logo with version number
+if !(global.newProject and not global.openProject) {
+	scr_drawLogo(camera_get_view_width(camera_get_active()) * .05, camera_get_view_height(camera_get_active()) * .08, true);
 }
 

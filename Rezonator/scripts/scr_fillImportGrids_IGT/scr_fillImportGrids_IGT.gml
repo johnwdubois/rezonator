@@ -57,7 +57,7 @@ function scr_fillImportGrids_IGT(){
 	
 	// get the display token field
 	var displayTokenField = "";
-	var displayTokenFieldRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
+	var displayTokenFieldRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Display Token");
 	if (displayTokenFieldRow >= 0) {
 		displayTokenField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenFieldRow);
 	}

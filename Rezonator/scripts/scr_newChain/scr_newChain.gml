@@ -38,7 +38,7 @@ function scr_newChain(ID) {
 		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
 			obj_chain.trackChainNameCounter++;
 			chainSeq = obj_chain.trackChainNameCounter;
-			chainName = "Track " + string(obj_chain.trackChainNameCounter);
+			chainName = "Trail " + string(obj_chain.trackChainNameCounter);
 			chainType = "trackChain";
 		}
 	}

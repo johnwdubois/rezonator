@@ -42,6 +42,10 @@ function scr_initializeFonts(){
 		global.localeEN_S_5 = font_add(font_file_name_full,20,false,false,32,127);		
 		global.localeEN_M_5 = font_add(font_file_name_full,22,false,false,32,127);		
 		global.localeEN_L_5 = font_add(font_file_name_full,24,false,false,32,127);		
+		
+	//special sizes
+		global.localeEN_Title = font_add(font_file_name_full,30,false,false,32,127);		
+
 
 		
 		//size_0
@@ -77,5 +81,9 @@ function scr_initializeFonts(){
 		global.localeCJK_S_5 = 0;		
 		global.localeCJK_M_5 = 0;
 		global.localeCJK_L_5 = 0;
+		
+		
+		//special sizes
+		global.localeCJK_Title = 0;
 
 }

@@ -1,17 +1,5 @@
 function scr_saveINI() {
-	/*
-		scr_saveRzs();
-	
-		Last Updated: 2020-08-19
-	
-		Called from: obj_fileLoader
-	
-		Purpose: Save all user defined feilds durring import for easy reuse
-	
-		Mechanism: Organize the data into maps, then transfer those maps as JSON strings into the user specified file location
-	
-		Author: Brady Moore
-	*/
+
 
 
 	if (os_type == os_macosx) {

@@ -48,6 +48,7 @@ inputText = "";
 cursorTimer = 20;
 global.givenSpeaker = "";
 
+
 maxDisplaySize = 12;
 canDelete = true;
 canDeleteHoldingCounter = 0;
@@ -86,7 +87,12 @@ wordDelimMarker = "";
 levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 
 gridList = ds_list_create();
-ds_list_add(gridList, "Field Info", "Import Source", "Block Type", "Blocks", "Field Relations");
+ds_list_add(gridList, "Field Info", "Import Source");
+
+if(global.importType == global.importType_IGT){
+ds_list_add(gridList,"Block Type", "Blocks", "Field Relations");
+
+}
 currentGridName = "Field Info";
 
 alarm[5] = 2;

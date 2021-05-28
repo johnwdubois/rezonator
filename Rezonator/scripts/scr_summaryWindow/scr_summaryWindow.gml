@@ -1,51 +1,6 @@
 function scr_summaryWindow() {
-
-	var camWidth = camera_get_view_width(camera_get_active());
-	var camHeight = camera_get_view_height(camera_get_active());
-
-
-
-
-
 	
-	// File window
-	var fileInfoWindowRectX1 = 40;
-	var fileInfoWindowRectY1 = 80 + string_height("0");
-	var fileInfoWindowRectX2 = (camWidth * 0.5) - 20;
-	var fileInfoWindowRectY2 = (camHeight / 2) - 180;
 
-	draw_set_color(global.colorThemeBorders);
-	draw_set_alpha(1);
-	draw_rectangle(fileInfoWindowRectX1, fileInfoWindowRectY1, fileInfoWindowRectX2, fileInfoWindowRectY2, true);
-	draw_set_color(global.colorThemeText);
-
-	draw_set_halign(fa_left);
-	draw_set_valign(fa_middle);
-	scr_adaptFont(scr_get_translation("menu_summary"), "M");
-	draw_text(fileInfoWindowRectX1, fileInfoWindowRectY1 - string_height("0"), scr_get_translation("menu_summary"));
-	
-	
-	
-	// abbreviated surfaceStart()
-	windowWidth = clamp(fileInfoWindowRectX2 - fileInfoWindowRectX1, 48, 2000);
-	windowHeight = clamp(fileInfoWindowRectY2 - fileInfoWindowRectY1, 48, 1500);
-	clipWidth = windowWidth;
-	clipHeight = windowHeight;
-
-	x = fileInfoWindowRectX1;
-	y = fileInfoWindowRectY1;
-	windowX = x;
-	windowY = y;
-	clipX = x;
-	clipY = y;
-
-	if (!surface_exists(clipSurface)) {
-	    clipSurface = surface_create(clipWidth, clipHeight);
-	}
-	scr_windowCameraAdjust();
-	surface_set_target(clipSurface);
-	draw_clear_alpha(c_black, 0);
-	
 	
 	var stringHeight = string_height("0");
 	var filename = filename_name(global.importFilename);
@@ -63,9 +18,9 @@ function scr_summaryWindow() {
 	else if (global.importType == global.importType_IGT) {
 		fieldCount -= 2;
 	}
-	
-	scr_adaptFont(scr_get_translation("label_user_file_name"), "M");
-	draw_text(fileInfoWindowRectX1 + 20 - clipX, fileInfoWindowRectY1 + stringHeight - clipY  + scrollPlusY, scr_get_translation("label_user_file_name") + string(filename));
+	draw_set_color(global.colorThemeText)
+	draw_set_halign(fa_left);
+	draw_set_valign(fa_middle);
 	var actualIterations = 0;
 	for (var i = 0; i < 5; i++) {
 		
@@ -92,7 +47,7 @@ function scr_summaryWindow() {
 		}
 		
 		var textX = floor(fileInfoWindowRectX1 + 20);
-		var textY = floor(fileInfoWindowRectY1 + (stringHeight * (actualIterations + 2)));
+		var textY = floor(fileInfoWindowRectY1 + (stringHeight * (actualIterations + 1)));
 		
 		draw_text(textX - clipX, textY - clipY  + scrollPlusY, currentStr);
 		actualIterations++;
@@ -109,7 +64,7 @@ function scr_summaryWindow() {
 	
 	scrollPlusY = min(scrollPlusY, 0);
 
-	scr_surfaceEnd();
+
 
 
 }

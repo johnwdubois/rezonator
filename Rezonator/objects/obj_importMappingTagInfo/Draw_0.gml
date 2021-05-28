@@ -1,7 +1,2 @@
-if (gridViewing == global.tagInfoGrid) {
-	scr_importMappingTagInfo();
-}
-else {
-	scr_importDebugGridDraw();
-}
-
+scr_adaptFont("","M");
+scr_importMappingTagInfo();

@@ -2,9 +2,11 @@
 	Purpose: Help Rez load files without interruptions
 */
 
-if (global.openProject and ds_grid_height(obj_control.wordGrid) < 1) {
+
+if (global.openProject and (global.discourseNode == "" or !ds_map_exists(global.nodeMap, global.discourseNode))) {
 	scr_loadREZ();
 }
+
 
 if (keyboard_check(vk_control) and keyboard_check_pressed(ord("S")) and ableToHotkey) {
 

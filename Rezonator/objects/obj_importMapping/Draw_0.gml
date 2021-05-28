@@ -1,5 +1,4 @@
 scr_windowCameraAdjust();
-scr_drawBackArrow();
 
 	
 if (keyboard_check(vk_alt) and keyboard_check(vk_shift)

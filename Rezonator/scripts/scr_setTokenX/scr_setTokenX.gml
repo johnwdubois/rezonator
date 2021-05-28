@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unitWidth, shapeTextX, camWidth) {
 	
-	var spaceWidth = string_width("   ");
+	var spaceWidth = string_width("    ");
 	var tokenPixelX = tokenSubMap[? "pixelX"];
 	var tokenPixelXDest = 0;
 	
@@ -17,6 +17,9 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		else {
 			// Left Grid
 			tokenPixelXDest = wordLeftMargin + scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth;
+			if(obj_control.drawLineState != obj_control.lineState_ltr){
+				tokenPixelXDest = wordLeftMargin + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
+			}
 		}
 	}
 	else if (justify == justifyCenter) {

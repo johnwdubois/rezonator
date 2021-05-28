@@ -39,10 +39,10 @@ function scr_importInfoGrid() {
 			var currentTag = ds_list_find_value(global.importGridColNameList, i);
 			ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
-			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, "");
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, 100);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, false);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colTokenCount, i, ds_grid_height(global.importCSVGrid));
 		
 		}
 	
@@ -95,7 +95,6 @@ function scr_importInfoGrid() {
 
 			ds_grid_resize(global.tagInfoGrid, global.tagInfoGridWidth, ds_grid_height(global.tagInfoGrid) + 1);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarker, i, currentTag);
-			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colExample, i, currentExample);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colMarkerPercent, i, currentConsistency);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSingleTokenMarker, i, OneTokenPerGroup);
 			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, "");
@@ -162,6 +161,18 @@ function scr_importInfoGrid() {
 	}
 
 	show_debug_message("scr_importInfoGrid, END... " + scr_printTime());
+	
+	
+	// copy predict and schema values over to the actual level column
+	ds_grid_set_grid_region(global.tagInfoGrid, global.tagInfoGrid, global.tagInfoGrid_colLevelPredict, 0, global.tagInfoGrid_colLevelPredict, ds_grid_height(global.tagInfoGrid), global.tagInfoGrid_colLevel, 0);
+	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);
+	for (var i = 0; i < tagInfoGridHeight; i++) {
+		var currentLevelSchema = string(ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, i));
+		if (string_length(string(currentLevelSchema)) > 0 && currentLevelSchema != global.levelUnknown && currentLevelSchema != "0") {
+			ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, currentLevelSchema);
+		}
+	}
+	
 
 
 }

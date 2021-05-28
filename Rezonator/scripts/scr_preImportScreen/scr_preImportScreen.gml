@@ -18,6 +18,7 @@ function scr_preImportScreen(){
 	draw_set_color(global.colorThemeText);
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_top);
+	scr_adaptFont("", "M");
 	var strHeight = string_height("0");
 	var textBufferLeft = strHeight / 2;
 	var textBufferTop = strHeight / 2;
@@ -71,6 +72,7 @@ function scr_preImportScreen(){
 	
 	
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont("Data", "L");
 	draw_text(dataTabX1 + textBufferLeft, floor(tabTextY), "Data");
 		
 	///////////// DESCRIPTION WINDOW ////////////////
@@ -93,6 +95,7 @@ function scr_preImportScreen(){
 	
 	// draw window title
 	draw_set_color(global.colorThemeText);
+	scr_adaptFont("Description", "L");
 	draw_set_alpha(1);
 	draw_text(descriptionWindowX1 + textBufferLeft, floor(tabTextY), "Description");
 	
@@ -107,7 +110,6 @@ function scr_preImportScreen(){
 	// draw description content
 	var descriptionWindowList = ds_map_find_value(currentPreImportMap, "description");
 	var descriptionWindowListSize = ds_list_size(descriptionWindowList);
-	draw_set_font(global.fontMain);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(infoAlpha);
 	for (var i = 0; i < descriptionWindowListSize; i++) {
@@ -115,6 +117,7 @@ function scr_preImportScreen(){
 		var currentTextX = floor(descriptionWindowX1 + textBufferLeft);
 		var currentTextY = floor(descriptionWindowY1 + textBufferTop + (strHeight * i));
 		if (currentTextY < descriptionWindowY2 - (strHeight / 1.5)) {
+			scr_adaptFont(currentText, "M");
 			draw_text(currentTextX, currentTextY, currentText);
 		}
 	}
@@ -282,7 +285,7 @@ function scr_preImportScreen(){
 	}
 	
 	
-	// continue button
+	// back button
 	var backButtonRectWidth = camera_get_view_width(camera_get_active()) / 6;
 	var backButtonRectHeight = camera_get_view_height(camera_get_active()) / 20;
 	var backButtonRectX1 = (camera_get_view_width(camera_get_active()) * .2) - (backButtonRectWidth / 2);

@@ -128,7 +128,7 @@ function scr_panelPane_drawChains1ToMany() {
 			if (!is_string(currentID)) continue;
 			var IDSubMap = global.nodeMap[?currentID];
 			var unitID = (chainType == "stackChain") ? currentID : IDSubMap[? "unit"];
-			var unitIDSubMap = global.nodeMap[?unitID];
+			var unitIDSubMap = global.nodeMap[? unitID];
 		
 			// Set size of rectangle around word
 			var rectX1 = x;
@@ -159,9 +159,12 @@ function scr_panelPane_drawChains1ToMany() {
 				if (device_mouse_check_button_released(0, mb_left)) {
 					if (doubleClickTimer > -1) {
 				
-					
-						var linePixelY = unitIDSubMap[?"pixelY"];
-						obj_control.scrollPlusYDest = -linePixelY;
+						if (scr_isNumericAndExists(unitIDSubMap, ds_type_map)) {
+							var linePixelY = unitIDSubMap[?"pixelY"];
+							if (is_numeric(linePixelY)) {
+								obj_control.scrollPlusYDest = -linePixelY;
+							}
+						}
 						
 					}
 					else {

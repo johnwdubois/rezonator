@@ -15,7 +15,7 @@ global.versionString = string(game_display_name);
 global.versionString = string_delete(global.versionString, 1, string_length("Rezonator"));
 global.versionString = "Version" + global.versionString;
 
-
+global.schemaFileName = "";
 
 global.fileLineRipList = ds_list_create();
 
@@ -184,17 +184,31 @@ global.importFileRipList = ds_list_create();
 
 
 
-global.tagInfoGridWidth = 10;
+global.tagInfoGridWidth = 11;
 global.tagInfoGrid_colMarker = 0;
-global.tagInfoGrid_colExample = 1;
-global.tagInfoGrid_colMarkerPercent = 2;
-global.tagInfoGrid_colSingleTokenMarker = 3;
-global.tagInfoGrid_colTokenCount = 4;
+global.tagInfoGrid_colLevel = 1;
+global.tagInfoGrid_colKey = 2;
+global.tagInfoGrid_colSpecialFields = 3;
+
+global.tagInfoGrid_colError = 4;
 global.tagInfoGrid_colLevelSchema = 5;
 global.tagInfoGrid_colLevelPredict = 6;
-global.tagInfoGrid_colSpecialFields = 7;
-global.tagInfoGrid_colLevel = 8;
-global.tagInfoGrid_colError = 9;
+
+global.tagInfoGrid_colTokenCount = 7;
+global.tagInfoGrid_colMarkerPercent = 8;
+global.tagInfoGrid_colSingleTokenMarker = 9;
+global.tagInfoGrid_colSplit = 10;
+
+
+
+
+
+
+
+
+
+
+
 
 global.tagInfoGrid = ds_grid_create(global.tagInfoGridWidth, 0);
 
@@ -349,6 +363,20 @@ ds_map_add(global.expandableDropDownMap, "menu_language", true);
 ds_map_add(global.expandableDropDownMap, "Recolor", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 
+global.openingScreenDropDownMap = ds_map_create();
+ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_docs", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_about", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-en", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-es", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-he", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-it", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-ja", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-vi", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-zh", true);
+
+
+
 
 scr_dropDownOptionListTypeInit();
 
@@ -387,3 +415,7 @@ global.tokenCountTotal = 0;
 global.discourseNode = "";
 
 alarm[5] = 2;
+
+hoverColorMergeOpen = 0;
+hoverColorMergeImport = 0;
+hoverColorMergeHelp = 0;

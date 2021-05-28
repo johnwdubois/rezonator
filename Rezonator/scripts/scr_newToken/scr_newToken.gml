@@ -38,7 +38,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 			indexToAdd = i;
 		}
 	}
-	
+	indexToAdd += newTokenSeqIncr;
 	
 	
 	// make entry node for newToken
@@ -76,6 +76,15 @@ function scr_newToken(newTokenStr, refTokenID) {
 		
 		// increment discourseTokenSeq
 		currentTokenSubMap[? "discourseTokenSeq"]++;
+	}
+	
+	if(obj_chain.currentFocusedChainID != ""){
+		var chainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
+		if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
+			if(chainSubMap[?"type"] != "stackChain"){
+				scr_newLink(newTokenID);
+			}
+		}
 	}
 	
 }

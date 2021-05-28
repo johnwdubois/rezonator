@@ -1,46 +1,34 @@
 function scr_loadSchema(autoload) {
-	/*
-		scr_loadRez();
-	
-		Last Updated: 2020-01-01
-	
-		Called from: obj_fileLoader
-	
-		Purpose: Load data from a Rez file into Rezonator
-	
-		Mechanism: Separate the JSON string into its different maps, then load the data from those maps into all the grids.
-	
-		Author: Terry DuBois
-	*/
 
-	var fileName = "";
+
+	var fileName = global.schemaFileName;
 	
-	// if this is an autoload, Rezonator will try to get the RZS file from the program directory, otherwise prompt the user to select a file
+	// if this is an autoload, Rezonator will try to get the schema file from the program directory, otherwise prompt the user to select a file
 	if (autoload) {
 		
 		show_debug_message("scr_loadSchema, AUTOLOAD");
 		if (global.importType == global.importType_IGT) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/igt_schema.rzs";
+				fileName = global.rezonatorDirString + "/Schemas/igt_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\IGT Schema.rzs";
+				fileName = global.rezonatorDirString + "\\Schemas\\IGT Schema.json";
 			}
 		}
 		else if (global.importType == global.importType_CSV) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/csv_schema.rzs";
+				fileName = global.rezonatorDirString + "/Schemas/csv_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\CSV Schema.rzs";
+				fileName = global.rezonatorDirString + "\\Schemas\\CSV Schema.json";
 			}
 		}
 		else if (global.importType == global.importType_CoNLLU) {
 			if (os_type == os_macosx) {
-				fileName = global.rezonatorDirString + "/Schemas/conll-u_schema.rzs";
+				fileName = global.rezonatorDirString + "/Schemas/conll-u_schema.json";
 			}
 			else {
-				fileName = global.rezonatorDirString + "\\Schemas\\CoNLL-U Schema.rzs";
+				fileName = global.rezonatorDirString + "\\Schemas\\CoNLL-U Schema.json";
 			}
 		}
 		else {
@@ -49,10 +37,13 @@ function scr_loadSchema(autoload) {
 		
 	}
 	else {
-		fileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.rzs", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+		var openFileName = (global.importGroupSchemaFile == "") ? get_open_filename_ext("SCHEMA file|*.json", "", global.rezonatorSchemaDirString, "Open Schema") : global.importGroupSchemaFile;
+		if (openFileName != "") {
+			fileName = openFileName;
+		}
 	}
 	
-	
+	global.schemaFileName = filename_name(fileName);
 	show_debug_message("scr_loadSchema, schema fileName: " + string(fileName));
 
 	// make sure the file exists
@@ -105,14 +96,20 @@ function scr_loadSchema(autoload) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, i, levelFromMap);
 			}
 			if (!is_undefined(specialFieldFromMap)) {
-				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
+				if (specialFieldFromMap == "Display Token" || specialFieldFromMap == "Token Delimiter"
+				|| specialFieldFromMap == "Unit Delimiter" || specialFieldFromMap == "Word Delimiter") {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, specialFieldFromMap);
+				}
+				else {
+					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
+				}
 			}
 		}
 	}
 	
 	
-	var rowOfDisplayToken = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Display Token");
-	var rowOfWordDelimiter = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, 0, global.tagInfoGrid_colSpecialFields, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
+	var rowOfDisplayToken = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Display Token");
+	var rowOfWordDelimiter = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Word Delimiter");
 	if (rowOfDisplayToken > -1) {
 		obj_importMapping.displayMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, rowOfDisplayToken);
 	}

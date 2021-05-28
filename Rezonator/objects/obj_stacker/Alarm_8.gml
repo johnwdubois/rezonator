@@ -25,5 +25,4 @@ with(obj_panelPane) {
 */
 
 currentStackerFuntion = stackerFunctionGroup;
-
 alarm[5] = 2;

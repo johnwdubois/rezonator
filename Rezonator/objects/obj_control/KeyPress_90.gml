@@ -21,6 +21,7 @@ if(!obj_control.dialogueBoxActive){
 		else{
 			fillWord = "<0>";
 		}
+		obj_control.before = true;
 		scr_newToken(fillWord,obj_control.hoverTokenID);
 	}
 }

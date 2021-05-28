@@ -2,6 +2,7 @@ function scr_loadREZ() {
 	/*
 		Purpose: Load data from a Rez file into Rezonator
 	*/
+	
 
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
@@ -275,7 +276,8 @@ function scr_loadREZ() {
 					originalWordGridHeight = ds_grid_height(wordGrid);
 					originalUnitGridHeight = ds_grid_height(unitGrid);
 					originalLineGridHeight = ds_grid_height(lineGrid);
-				
+					
+					
 					scr_loadAnotherREZ(global.fileLineRipGrid, map, "fileLineRipGrid");
 					scr_loadAnotherREZ(wordGrid, map, "wordGrid");
 					scr_loadAnotherREZ(dynamicWordGrid, map, "dynaWordGrid");
@@ -294,7 +296,7 @@ function scr_loadREZ() {
 					scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
 					scr_loadAnotherREZ(global.discoImportGrid, map, "discoImport");
 					scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
-
+					
 				
 					global.totalUnitAmount = scr_getTotalUnitAmount();
 					
@@ -427,6 +429,9 @@ function scr_loadREZ() {
 	if (scr_isNumericAndExists(discourseNodeSubMap, ds_type_map)) {
 		obj_control.displayUnitList = discourseNodeSubMap[? "displayUnitList"];
 	}
+	
+	// set whether to draw speaker name
+	scr_showSpeakerName(obj_control.showSpeakerName);
 
 
 }
