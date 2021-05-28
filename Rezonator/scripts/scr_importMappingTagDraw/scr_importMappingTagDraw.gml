@@ -201,39 +201,6 @@ function scr_importMappingTagDraw() {
 	}
 
 	
-	// if in IGT allow user to sitch grids
-	if( global.importType == global.importType_IGT){
-	
-		var changeGridButtonWidth = max(200, string_width(" Save Import Schema "));
-		var changeGridButtonHeight = 30;
-		var changeGridButtonRectX2 = (camWidth) - 50;
-		var changeGridButtonRectX1 = changeGridButtonRectX2 - changeGridButtonWidth;
-		var changeGridButtonRectY1 = yBuffer + 50 - (changeGridButtonHeight / 2);
-		var changeGridButtonRectY2 = changeGridButtonRectY1 + changeGridButtonHeight;
-
-
-	
-		if (point_in_rectangle(mouse_x, mouse_y, changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2)) {
-			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2, false);
-	
-			if (mouse_check_button_pressed(mb_left)) {
-			
-				scr_createDropDown(changeGridButtonRectX1,changeGridButtonRectY2,gridList, global.optionListTypeImportGrid);
-			}
-		}
-	
-		draw_set_color(global.colorThemeBorders);
-		draw_set_alpha(1);
-		draw_rectangle(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2, true);
-
-
-		draw_set_halign(fa_center);
-		draw_set_color(global.colorThemeText);
-		scr_adaptFont(string(obj_importMapping.currentGridName), "M");
-		draw_text(floor(mean(changeGridButtonRectX1, changeGridButtonRectX2)), floor(mean(changeGridButtonRectY1, changeGridButtonRectY2)), string(obj_importMapping.currentGridName));
-
-	}
 
 	if (tagGridHeight == 1) {
 		room_goto(rm_mainScreen)

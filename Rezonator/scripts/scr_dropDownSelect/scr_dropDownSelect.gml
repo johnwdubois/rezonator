@@ -270,6 +270,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeImportGrid) //46
 	{
 	    scr_importGridOptions(optionSelected);
+		obj_fieldSummaryWindow.clickedIn = false;
 		instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeChain1ToManyField) //47

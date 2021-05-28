@@ -7,10 +7,48 @@ x = fieldSummaryWindowX1;
 y = fieldSummaryWindowY1;
 windowWidth = fieldSummaryWindowX2 - fieldSummaryWindowX1;
 windowHeight = fieldSummaryWindowY2 - fieldSummaryWindowY1;
-
+var textXBuffer = 10;
 // draw field summary window BG
 draw_set_color(global.colorThemeBG);
 draw_rectangle(fieldSummaryWindowX1, fieldSummaryWindowY1, fieldSummaryWindowX2, fieldSummaryWindowY2, false);
+
+
+var changeGridButtonWidth = sprite_get_width(spr_ascend)*1.75;
+var changeGridButtonHeight = changeGridButtonWidth;
+
+
+var changeGridButtonRectX1 = x;
+var changeGridButtonRectX2 = changeGridButtonRectX1 + changeGridButtonWidth;
+var changeGridButtonRectY1 = y - changeGridButtonHeight;
+var changeGridButtonRectY2 = y;
+var buttonBuffer = 5;
+
+draw_set_color(global.colorThemeBG);
+draw_roundrect(changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2+10, false);
+	
+	
+draw_sprite_ext(spr_ascend,0,mean(changeGridButtonRectX1,changeGridButtonRectX2), mean(changeGridButtonRectY1,changeGridButtonRectY2),1,1,(clickedIn)? 180:0,global.colorThemeSelected1,1);
+
+var mouseOverChangeGrid =point_in_rectangle(mouse_x, mouse_y, changeGridButtonRectX1, changeGridButtonRectY1, changeGridButtonRectX2, changeGridButtonRectY2);
+if(clickedIn or mouseOverChangeGrid){
+	draw_set_color(global.colorThemeSelected1);
+	scr_drawRectWidth(changeGridButtonRectX1+ buttonBuffer, changeGridButtonRectY1+ buttonBuffer, changeGridButtonRectX2- buttonBuffer, changeGridButtonRectY2 - buttonBuffer,3, true);
+}
+
+if (mouseOverChangeGrid) {
+	if (mouse_check_button_pressed(mb_left)) {
+		clickedIn = true;
+		scr_createDropDown(changeGridButtonRectX1,changeGridButtonRectY2,obj_importMapping.gridList, global.optionListTypeImportGrid);
+	}
+}
+
+
+draw_set_halign(fa_left);
+draw_set_color(global.colorThemeText);
+scr_adaptFont(string(obj_importMapping.currentGridName), "M");
+draw_text(changeGridButtonRectX2 + textXBuffer, floor(mean(changeGridButtonRectY1, changeGridButtonRectY2)), string(obj_importMapping.currentGridName));
+
+
 
 
 scr_surfaceStart();
@@ -24,7 +62,7 @@ scr_adaptFont("", "M");
 
 // calculate x & y values for text
 var rowHeight = obj_importMappingTagInfo.rowHeight;
-var textXBuffer = 10;
+
 var tokenCountX = floor(x + (windowWidth * mean(0, 0.25)));
 var markerPercentX = floor(x + (windowWidth * mean(0.25, 0.5)));
 var soloX = floor(x + (windowWidth * mean(0.5, 0.75)));
