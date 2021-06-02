@@ -714,3 +714,7 @@ displayUnitList = -1;
 filterUnitList = ds_list_create();
 
 listOfWords = ds_list_create();
+
+
+panelPaneTabList = ds_list_create();
+with (obj_alarm2) alarm[1] = 2;

@@ -67,7 +67,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "searchGridActive: " + string(searchGridActive));
-	draw_text(devVarX, wordTopMargin + (strHeight * 33), "listOfWords: " + scr_getStringOfList(listOfWords));
+	draw_text(devVarX, wordTopMargin + (strHeight * 33), "panelPaneTabList: " + scr_getStringOfList(panelPaneTabList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "functionChainContents_showID: " + string(obj_panelPane.functionChainContents_showID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	

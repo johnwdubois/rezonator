@@ -203,11 +203,6 @@ function scr_panelPane_drawChainsList() {
 								obj_chain.currentFocusedChainID = currentChainID;
 				
 			
-								// Set scroll range in the chain list
-								with (obj_panelPane) {
-									functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
-									functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
-								}
 								if (doubleClickTimer > -1) {	
 									var currentUnitIDList = -1;
 									var currentUnitID = -1;
