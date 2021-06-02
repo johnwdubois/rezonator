@@ -209,26 +209,24 @@ function scr_panelPane_drawChainsList() {
 									functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
 								}
 								if (doubleClickTimer > -1) {	
-									var rowInLineGrid = -1;
 									var currentUnitIDList = -1;
 									var currentUnitID = -1;
 									var currentEntry = ds_list_find_value(setIDList, 0);
 									var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 						
 									if (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush) {
-										var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
-										currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+										var currentTokenID = currentEntrySubMap[? "token"];
+										var currentTokenSubMap = global.nodeMap[? currentTokenID];
+										currentUnitID = currentTokenSubMap[? "unit"]
 									}
 									else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-										currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
+										currentUnitID = currentEntrySubMap[? "unit"];
 									}
 					
-									rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-					
 									// Set first unit of the double clicked chain to center display row, if possible
-									if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.lineGrid)) {
-										// Replacement of centerDisplayRow
-										var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
+									var currentUnitSubMap = global.nodeMap[? currentUnitID];
+									if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
+										var linePixelY = currentUnitSubMap[? "pixelY"];
 										obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 									}
 								}

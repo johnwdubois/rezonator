@@ -27,20 +27,22 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	if (drawRangeStart - 1 >= 0) {
 		currentUnit = displayUnitList[| drawRangeStart - 1];
 		currentUnitSubMap = global.nodeMap[? currentUnit];
+		if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
 
-		currentUnitPixelY = currentUnitSubMap[? "pixelY"];
+			currentUnitPixelY = currentUnitSubMap[? "pixelY"];
 		
-		while (currentUnitPixelY > topY) {
-			drawRangeStart--;
-			drawRangeExtraStepsBack++;
+			while (currentUnitPixelY > topY) {
+				drawRangeStart--;
+				drawRangeExtraStepsBack++;
 		
-			if (drawRangeStart - 1 < 0) {
-				break;
-			}
-			else {
-				currentUnit = displayUnitList[| drawRangeStart - 1];
-				currentUnitSubMap = global.nodeMap[? currentUnit];
-				currentUnitPixelY = currentUnitSubMap[? "pixelY"];
+				if (drawRangeStart - 1 < 0) {
+					break;
+				}
+				else {
+					currentUnit = displayUnitList[| drawRangeStart - 1];
+					currentUnitSubMap = global.nodeMap[? currentUnit];
+					currentUnitPixelY = currentUnitSubMap[? "pixelY"];
+				}
 			}
 		}
 	}
@@ -49,7 +51,7 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	
 	var firstUnit = displayUnitList[| drawRangeStart];
 	var firstUnitSubMap = global.nodeMap[? firstUnit];
-	if(scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){ 
+	if (scr_isNumericAndExists(firstUnitSubMap, ds_type_map)) { 
 		
 		var firstUnitPixelY = firstUnitSubMap[? "pixelY"];
 		while (firstUnitPixelY > -gridSpaceVertical && drawRangeStart - 1 >= 0) {
@@ -65,7 +67,6 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 				firstUnitPixelY = firstUnitSubMap[? "pixelY"];
 			}
 		}
-	
 	}
 
 	
@@ -82,19 +83,22 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	if (drawRangeEnd + 1 < displayUnitListSize) {
 		currentUnit = displayUnitList[| drawRangeEnd + 1];
 		currentUnitSubMap = global.nodeMap[? currentUnit];
-		currentUnitPixelY = currentUnitSubMap[? "pixelY"];
+		if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
+			currentUnitPixelY = currentUnitSubMap[? "pixelY"];
 		
-		while (currentUnitPixelY < bottomY) {
-			drawRangeEnd++;
-			drawRangeExtraStepsForward++;
 		
-			if (drawRangeEnd + 1 >= displayUnitListSize) {
-				break;
-			}
-			else {
-				currentUnit = displayUnitList[| drawRangeEnd + 1];
-				currentUnitSubMap = global.nodeMap[? currentUnit];
-				currentUnitPixelY = currentUnitSubMap[? "pixelY"];
+			while (currentUnitPixelY < bottomY) {
+				drawRangeEnd++;
+				drawRangeExtraStepsForward++;
+		
+				if (drawRangeEnd + 1 >= displayUnitListSize) {
+					break;
+				}
+				else {
+					currentUnit = displayUnitList[| drawRangeEnd + 1];
+					currentUnitSubMap = global.nodeMap[? currentUnit];
+					currentUnitPixelY = currentUnitSubMap[? "pixelY"];
+				}
 			}
 		}
 	}
