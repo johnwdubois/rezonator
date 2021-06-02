@@ -28,6 +28,9 @@ function scr_panelPaneDrawBranch(){
 				else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 					scr_panelPane_drawUnitsList();
 				}
+				else if (functionChainList_currentTab == functionChainList_tabField) {
+					scr_panelPane_drawFieldList();
+				}
 				else {
 					scr_panelPane_drawChainsList();
 				}
@@ -41,6 +44,8 @@ function scr_panelPaneDrawBranch(){
 				scrollBarClickLock = true;	
 			}
 			break;
+			
+			
 			
 		// RIGHT NAV WINDOW
 		case functionChainContents:
@@ -80,6 +85,9 @@ function scr_panelPaneDrawBranch(){
 					}
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabField) {
+						scr_panelPane_drawFieldTags();
 					}
 					else {
 						scr_panelPane_drawChains1ToMany();
@@ -129,6 +137,10 @@ function scr_panelPaneDrawBranch(){
 				scrollBarClickLock = true;	
 			}
 			break;
+			
+			
+		
+		
 			
 			
 		case functionTabs:

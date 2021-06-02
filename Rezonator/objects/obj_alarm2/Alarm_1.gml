@@ -6,5 +6,5 @@ with (obj_control) {
 		obj_panelPane.functionChainList_tabTrackBrush,
 		obj_panelPane.functionChainList_tabStackBrush,
 		obj_panelPane.functionChainList_tabShow,
-		obj_panelPane.functionChainList_tabTag);	
+		obj_panelPane.functionChainList_tabField);	
 }
