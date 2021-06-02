@@ -36,7 +36,7 @@ functionChainList_tabRezBrush = "menu_rez";
 functionChainList_tabTrackBrush = "menu_track";
 functionChainList_tabStackBrush = "menu_stack";
 functionChainList_tabShow = "Show";
-functionChainList_tabTag = "Tag";
+functionChainList_tabField = "Field";
 functionChainList_tabTranslations = "Translations";
 functionChainList_tabClique = -1;
 
@@ -183,6 +183,9 @@ chainViewOneToMany = true;
 
 previousChainContentsRow = -1;
 
+functionField_fieldSelected = "";
+functionField_tagSelected = "";
+
 
 hoverTime[0] = 0;
 hoverTime[1] = 0;
@@ -190,7 +193,7 @@ hoverTime[2] = 0;
 hoverTime[3] = 0;
 
 
-errorText = ""
+errorText = "";
 
 
 
