@@ -137,8 +137,10 @@ function scr_drawNodeList(){
 				
 				if (typeFilter) {
 					var currentNodeSubMap = global.nodeMap[? currentNode];
-					if (currentNodeSubMap[? "type"] == type) {
-						addNode = true;
+					if (scr_isNumericAndExists(currentNodeSubMap, ds_type_map)) {
+						if (currentNodeSubMap[? "type"] == type) {
+							addNode = true;
+						}
 					}
 				}
 				else {
