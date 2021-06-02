@@ -47,7 +47,7 @@ canResizeWindowX = false;
 canResizeWindowY = false;
 
 // run stacker for song & verse
-if (global.importType == global.importType_PlainText) {
+if (global.importType == global.importType_PlainText && !global.openProject) {
 	currentStackerFuntion = stackerFunctionGroup;
 	alarm[5] = 3;
 }

@@ -1,6 +1,8 @@
 scr_createRezDirectory();
 
 global.currentDirString = global.rezonatorDirString;
+global.fontSize = 0;
+
 
 scr_loadINI();
 
@@ -12,7 +14,7 @@ global.importGroupSchemaFile = "";
 global.skipToImportScreen = false;
 global.skipToPlayandLearn = false;
 
-global.fontSize = 0;
+
 scr_initializeFonts();
 scr_fontGlobalUpdate();
 
