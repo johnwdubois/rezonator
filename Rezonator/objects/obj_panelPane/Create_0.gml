@@ -31,22 +31,24 @@ functionTabs = "tabs";
 
 
 
-functionChainList_tabLine = 0;
-functionChainList_tabRezBrush = 2;
-functionChainList_tabTrackBrush = 1;
-functionChainList_tabStackBrush = 3;
-functionChainList_tabShow = 4;
-functionChainList_tabTranslations = 5;
+functionChainList_tabLine = "menu_read";
+functionChainList_tabRezBrush = "menu_rez";
+functionChainList_tabTrackBrush = "menu_track";
+functionChainList_tabStackBrush = "menu_stack";
+functionChainList_tabShow = "Show";
+functionChainList_tabTag = "Tag";
+functionChainList_tabTranslations = "Translations";
 functionChainList_tabClique = -1;
 
 
+
+
+
+
+
+
+
 functionChainList_currentTab = functionChainList_tabLine;
-functionChainList_tabName[0] = "menu_read";
-functionChainList_tabName[2] = "menu_rez";
-functionChainList_tabName[1] = "menu_track";
-functionChainList_tabName[3] = "menu_stack";
-functionChainList_tabName[4] = "Show";
-functionChainList_tabName[5] = "Translations";
 functionTabs_tabHeight = 16;
 functionChainList_sortAsc[0] = true;
 functionChainList_sortAsc[1] = true;
@@ -60,12 +62,15 @@ functionChainList_lineGridDisplayYList = ds_list_create();
 functionChainList_focusedChainIndex = -1;
 functionChainList_playShowID = "";
 
+
+	
+	
+
+
+
 functionChainContents_BGColor = global.colorThemePaneBG;
 functionChainContents_IDList = 0;
 functionChainContents_infoCol = 0;
-functionChainContents_maxScrollRange = 8;
-functionChainContents_scrollRangeMin[0] = 0;
-functionChainContents_scrollRangeMax[0] = functionChainContents_maxScrollRange;
 functionChainContents_hop = -1;
 functionChainContents_lineGridRowFocused = -1;
 functionChainContents_sortedCol = -1;
