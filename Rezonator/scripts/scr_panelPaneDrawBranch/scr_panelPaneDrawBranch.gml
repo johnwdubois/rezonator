@@ -102,6 +102,9 @@ function scr_panelPaneDrawBranch(){
 					}
 					else if (functionChainList_currentTab == functionChainList_tabShow) {
 					}
+					else if (functionChainList_currentTab == functionChainList_tabField) {
+						scr_panelPane_drawFieldTags();
+					}
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
 					}

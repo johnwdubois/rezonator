@@ -23,8 +23,16 @@ function scr_panelPane_drawFieldTags(){
 	scr_surfaceStart();
 	
 	
-	var tokenTagMap = global.nodeMap[? "tokenTagMap"];
-	var fieldSubMap = tokenTagMap[? functionField_fieldSelected];
+
+	if(chainViewOneToMany){
+		var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+		var fieldSubMap = tokenTagMap[? functionField_tokenFieldSelected];
+	}
+	else{
+		var unitTagMap = global.nodeMap[? "unitTagMap"];
+		var fieldSubMap = unitTagMap[? functionField_unitFieldSelected];
+	}
+
 	if (scr_isNumericAndExists(fieldSubMap, ds_type_map)){
 	
 	
@@ -46,16 +54,31 @@ function scr_panelPane_drawFieldTags(){
 					draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 					draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 					if (mouse_check_button_released(mb_left)) {
-						with(obj_panelPane){
-							functionField_tagSelected = tagList[| i];
+						if(chainViewOneToMany){
+							with(obj_panelPane){
+								functionField_tokenTagSelected = tagList[| i];
+							}
+						}
+						else{
+							with(obj_panelPane){
+								functionField_unitTagSelected = tagList[| i];
+							}
 						}
 					}
 				}
 		
 				//check if this row/field has been selected
-				if (functionField_tagSelected == tagList[| i]) {
-					draw_set_color(c_red);
-					draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+				if(chainViewOneToMany){
+					if (functionField_tokenTagSelected == tagList[| i]) {
+						draw_set_color(c_red);
+						draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+					}
+				}
+				else{
+					if (functionField_unitTagSelected == tagList[| i]) {
+						draw_set_color(c_red);
+						draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+					}
 				}
 		
 				// draw #

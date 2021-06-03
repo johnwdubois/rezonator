@@ -183,8 +183,11 @@ chainViewOneToMany = true;
 
 previousChainContentsRow = -1;
 
-functionField_fieldSelected = "";
-functionField_tagSelected = "";
+functionField_tokenFieldSelected = "";
+functionField_tokenTagSelected = "";
+
+functionField_unitFieldSelected = "";
+functionField_unitTagSelected = "";
 
 
 hoverTime[0] = 0;
