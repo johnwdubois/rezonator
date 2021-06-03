@@ -41,6 +41,19 @@ function scr_unitClicked(unitID){
 			exit;
 		}
 	}
+	
+	// set field/tags if in read mode
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+		if (obj_panelPane.functionField_unitFieldSelected != "" && obj_panelPane.functionField_unitTagSelected != ""
+		&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
+			var unitTagMap = unitSubMap[? "tagMap"];
+			if (scr_isNumericAndExists(unitTagMap, ds_type_map)) {
+				unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = obj_panelPane.functionField_unitTagSelected;
+				show_debug_message("scr_unitClicked ... setting unit: " + string(unitID) + ", field:" + string(obj_panelPane.functionField_unitFieldSelected) + ", tag: " + string(obj_panelPane.functionField_unitTagSelected));
+			}
+		}
+	}
+	
 
 
 	// if there is not a focused chain, we create a new chain

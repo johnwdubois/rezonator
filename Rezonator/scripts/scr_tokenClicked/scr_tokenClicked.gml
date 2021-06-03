@@ -7,7 +7,7 @@ function scr_tokenClicked(tokenID){
 	// get this token's submap and make sure it exists
 	var tokenSubMap = global.nodeMap[?tokenID];
 	if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}
-	show_debug_message("scr_tokenClicked()... tokenID: " + string(tokenID));
+	show_debug_message("scr_tokenClicked ... tokenID: " + string(tokenID));
 	
 	var unitID = tokenSubMap[?"unit"];
 
@@ -19,7 +19,6 @@ function scr_tokenClicked(tokenID){
 			}
 		}
 		if (shouldExit) {
-			show_debug_message("scr_wordClicked() ... exit 1...");
 			exit;
 		}
 	}
@@ -43,7 +42,7 @@ function scr_tokenClicked(tokenID){
 	}
 	
 	var inChainsList = tokenSubMap[?"inChainsList"];
-	show_debug_message("scr_tokenClicked() inChainsList: " + scr_getStringOfList(inChainsList));
+	show_debug_message("scr_tokenClicked ... inChainsList: " + scr_getStringOfList(inChainsList));
 	
 	
 	// loop through the chains that this token is already in (if any) to refocus that chain
@@ -67,12 +66,22 @@ function scr_tokenClicked(tokenID){
 		}
 	}
 	
+	// set field/tags if in read mode
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+		if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
+		&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
+			var tokenTagMap = tokenSubMap[? "tagMap"];
+			if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
+				tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = obj_panelPane.functionField_tokenTagSelected;
+				show_debug_message("scr_tokenClicked ... setting token: " + string(tokenID) + ", field:" + string(obj_panelPane.functionField_tokenFieldSelected) + ", tag: " + string(obj_panelPane.functionField_tokenTagSelected));
+			}
+		}
+	}
 	
-	
-	if(obj_toolPane.currentMode == obj_toolPane.modeRead){
+	// if we are in read mode, don't go any further
+	if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 		exit;
 	}
-
 
 	// if there is not a focused chain, we create a new chain
 	if (!ds_map_exists(global.nodeMap, obj_chain.currentFocusedChainID)) {
