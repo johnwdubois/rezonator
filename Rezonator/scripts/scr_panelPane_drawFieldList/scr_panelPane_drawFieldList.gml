@@ -34,7 +34,7 @@ function scr_panelPane_drawFieldList(){
 		
 		var currentRowY1 = y + plusY + scrollPlusY - 16;
 		var currentRowY2 = currentRowY1 + strHeight;
-		var mouseoverRow = point_in_rectangle(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2);
+		var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2);
 		
 		// mouseover & click
 		if (mouseoverRow && mouseoverWindow) {

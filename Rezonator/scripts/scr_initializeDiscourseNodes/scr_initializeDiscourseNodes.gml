@@ -154,13 +154,14 @@ function scr_initializeDiscourseNodes(){
 				}
 			}
 			else{
-				var currentUnitFieldMap = unitTagMap[?currentField];
+				var currentUnitFieldMap = unitTagMap[? currentField];
 				var currentTagList = currentUnitFieldMap[? "tagSet"];
-				if(currentTag != "" && ds_list_size(currentTagList) < 50){
+				if (currentTag != "" && ds_list_size(currentTagList) < 50) {
 					scr_addToListOnce(currentTagList, currentTag);
 				}
-			}
+				
 
+			}
 		}
 
 		// add values to unit node

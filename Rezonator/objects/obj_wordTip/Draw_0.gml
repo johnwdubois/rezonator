@@ -110,10 +110,21 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 		*/
 		var fieldName = fieldList[|i];
 		var fieldValue = tagMap[?fieldName];
+		
+		// draw highlight if field is selected
+		if ((IDType == "token" && fieldName == obj_panelPane.functionField_tokenFieldSelected)
+		|| (IDType == "unit" && fieldName == obj_panelPane.functionField_unitFieldSelected)) {
+			var rectY1 = valueY - (lineHeight * 0.5);
+			var rectY2 = rectY1 + lineHeight;
+			draw_set_color(c_yellow);
+			draw_rectangle(boxX1, rectY1, boxX2, rectY2, false);
+		}
+		
 
 		scr_adaptFont(fieldName, "M");
 	
 		// Draw the attribute name
+		draw_set_color(global.colorThemeText);
 		draw_text(col1X, floor(valueY), fieldName);
 	
 		scr_adaptFont(fieldValue, "M");

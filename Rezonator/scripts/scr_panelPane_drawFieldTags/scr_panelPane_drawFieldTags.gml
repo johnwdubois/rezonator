@@ -47,7 +47,7 @@ function scr_panelPane_drawFieldTags(){
 		
 				var currentRowY1 = y + plusY + scrollPlusY - 16;
 				var currentRowY2 = currentRowY1 + strHeight;
-				var mouseoverRow = point_in_rectangle(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2);
+				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2);
 				
 				// mouseover & click
 				if (mouseoverRow) {
@@ -104,6 +104,7 @@ function scr_panelPane_drawFieldTags(){
 	var headerTextY = floor(mean(y, y + headerHeight));
 	
 	// checkbox header
+	draw_set_halign(fa_left);
 	draw_set_color(global.colorThemeBG);
 	draw_rectangle(checkboxColX, y, checkboxColX + checkboxColWidth, y + headerHeight, false);
 	draw_set_color(global.colorThemeBorders);
