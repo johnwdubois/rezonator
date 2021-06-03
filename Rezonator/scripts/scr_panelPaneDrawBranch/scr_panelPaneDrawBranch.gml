@@ -64,7 +64,7 @@ function scr_panelPaneDrawBranch(){
 						functionChainContents_BGColor = global.colorThemeBG;
 					}
 					// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
-					if (functionChainContents_BGColor != global.colorThemeBG) {
+					if (functionChainContents_BGColor != global.colorThemeBG && functionChainList_currentTab != functionChainList_tabField) {
 						draw_set_alpha(1);
 						draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, 0.9));
 						draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);

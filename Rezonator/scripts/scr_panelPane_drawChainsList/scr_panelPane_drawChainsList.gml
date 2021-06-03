@@ -275,7 +275,7 @@ function scr_panelPane_drawChainsList() {
 					}
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, 2, false);
-					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, c_white, 1);
+					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
 					
 					// click on checkbox
 					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !mouseoverCancel) {
@@ -557,7 +557,7 @@ function scr_panelPane_drawChainsList() {
 			if (allChainsSelected) {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.6));
 				draw_rectangle(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, false);
-				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
+				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
 			}
 			
 			draw_set_color(global.colorThemeBorders);
