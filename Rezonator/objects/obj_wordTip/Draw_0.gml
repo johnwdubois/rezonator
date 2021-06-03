@@ -116,7 +116,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 		|| (IDType == "unit" && fieldName == obj_panelPane.functionField_unitFieldSelected)) {
 			var rectY1 = valueY - (lineHeight * 0.5);
 			var rectY2 = rectY1 + lineHeight;
-			draw_set_color(c_yellow);
+			draw_set_color(merge_color(c_yellow, global.colorThemeBG, 0.4));
 			draw_rectangle(boxX1, rectY1, boxX2, rectY2, false);
 		}
 		

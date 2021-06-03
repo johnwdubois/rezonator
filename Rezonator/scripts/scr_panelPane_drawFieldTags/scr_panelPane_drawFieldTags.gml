@@ -11,14 +11,16 @@ function scr_panelPane_drawFieldTags(){
 	var spaceWidth = string_width(" ");
 	var headerHeight = functionTabs_tabHeight;
 	var checkboxColX = x;
-	var checkboxColWidth = windowWidth * 0.1;
+	var checkboxColWidth = windowWidth * 0.05;
+	var checkboxSize = checkboxColWidth * 0.35;
 	var numColX = checkboxColX + checkboxColWidth;
 	var numColWidth = windowWidth * 0.1;
 	var tagNameColX = numColX + numColWidth;
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
-	
-	//show_debug_message("BUH")
-	
+	var checkboxX1 = mean(checkboxColX, checkboxColX + checkboxColWidth) - (checkboxSize * 0.5);
+	var checkboxX2 = checkboxX1 + checkboxSize;
+	var tagSelectedColor = merge_color(c_yellow, global.colorThemeBG, 0.4);
+
 
 	scr_surfaceStart();
 	
@@ -47,7 +49,7 @@ function scr_panelPane_drawFieldTags(){
 		
 				var currentRowY1 = y + plusY + scrollPlusY - 16;
 				var currentRowY2 = currentRowY1 + strHeight;
-				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2);
+				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown);
 				
 				// mouseover & click
 				if (mouseoverRow) {
@@ -68,18 +70,34 @@ function scr_panelPane_drawFieldTags(){
 				}
 		
 				//check if this row/field has been selected
+				var tagSelected = false;
 				if(chainViewOneToMany){
 					if (functionField_tokenTagSelected == tagList[| i]) {
-						draw_set_color(c_red);
+						tagSelected = true;
+						draw_set_color(tagSelectedColor);
 						draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 					}
 				}
 				else{
 					if (functionField_unitTagSelected == tagList[| i]) {
-						draw_set_color(c_red);
+						tagSelected = true;
+						draw_set_color(tagSelectedColor);
 						draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 					}
 				}
+				
+				
+				// draw checkbox
+				var checkboxY1 = mean(currentRowY1, currentRowY2) - (checkboxSize * 0.5);
+				var checkboxY2 = checkboxY1 + checkboxSize;
+				if (tagSelected) {
+					draw_set_color(global.colorThemeBG);
+					draw_rectangle(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, false);
+					draw_sprite_ext(spr_checkmark, 0, mean(checkboxX1, checkboxX2) - clipX, mean(checkboxY1, checkboxY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+				}
+				draw_set_color(global.colorThemeBorders);
+				scr_drawRectWidth(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, 2, false);
+				
 		
 				// draw #
 				draw_set_color(global.colorThemeText);
@@ -116,6 +134,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_rectangle(numColX, y, numColX + numColWidth, y + headerHeight, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(numColX, y, numColX + numColWidth, y + headerHeight, true);
+	draw_set_color(global.colorThemeText);
 	draw_text(floor(numColX + spaceWidth), headerTextY, "#");
 	
 	// field name header
@@ -123,6 +142,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_rectangle(tagNameColX, y, x + windowWidth, y + headerHeight, false);
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(tagNameColX, y, x + windowWidth, y + headerHeight, true);
+	draw_set_color(global.colorThemeText);
 	draw_text(floor(tagNameColX + spaceWidth), headerTextY, "Tag name");
 	
 	

@@ -272,7 +272,7 @@ function scr_audioDraw() {
 	if (audioJumpOnWordClick) {
 		draw_set_color(merge_color(global.colorThemeBG, bgColor, 0.5));
 		draw_rectangle(jumpUnitStartRectX1, jumpUnitStartRectY1, jumpUnitStartRectX2, jumpUnitStartRectY2, false);
-		draw_sprite_ext(spr_checkmark, 0, mean(jumpUnitStartRectX1, jumpUnitStartRectX2), mean(jumpUnitStartRectY1, jumpUnitStartRectY2), 1, 1, 0, c_white, 1);
+		draw_sprite_ext(spr_checkmark, 0, mean(jumpUnitStartRectX1, jumpUnitStartRectX2), mean(jumpUnitStartRectY1, jumpUnitStartRectY2), 1, 1, 0, global.colorThemeText, 1);
 	}
 	
 	draw_set_color(global.colorThemeBG);
