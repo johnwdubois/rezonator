@@ -17,7 +17,13 @@ function scr_panelPane_drawFieldList(){
 	var fieldNameColX = numColX + numColWidth;
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	
-	var fieldList = obj_control.tokenFieldList;
+	if(chainViewOneToMany){
+		var fieldList = obj_control.tokenFieldList;
+	}
+	else{
+		var fieldList = obj_control.unitFieldList;
+	}
+	
 	if (!scr_isNumericAndExists(fieldList, ds_type_list)) exit;
 	var fieldListSize = ds_list_size(fieldList);
 	
@@ -35,22 +41,45 @@ function scr_panelPane_drawFieldList(){
 			draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 			draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 			if (mouse_check_button_released(mb_left)) {
-				if(functionField_fieldSelected != fieldList[| i]){
+				
+				if(chainViewOneToMany){
+					if(functionField_tokenFieldSelected != fieldList[| i]){
+						with(obj_panelPane){
+							functionField_tokenTagSelected = "";
+						}
+					}
 					with(obj_panelPane){
-						functionField_tagSelected = "";
+						functionField_tokenFieldSelected = fieldList[| i];
 					}
 				}
-				with(obj_panelPane){
-					functionField_fieldSelected = fieldList[| i];
+				else{
+					if(functionField_unitFieldSelected != fieldList[| i]){
+						with(obj_panelPane){
+							functionField_unitTagSelected = "";
+						}
+					}
+					with(obj_panelPane){
+						functionField_unitFieldSelected = fieldList[| i];
+					}
 				}
+				
+				
 
 			}
 		}
 		
 		// check if this row/field has been selected
-		if (functionField_fieldSelected == fieldList[| i]) {
-			draw_set_color(c_yellow);
-			draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+		if(chainViewOneToMany){
+			if (functionField_tokenFieldSelected == fieldList[| i]) {
+				draw_set_color(c_yellow);
+				draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+			}	
+		}
+		else{
+			if (functionField_unitFieldSelected == fieldList[| i]) {
+				draw_set_color(c_yellow);
+				draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+			}
 		}
 		
 		// draw #

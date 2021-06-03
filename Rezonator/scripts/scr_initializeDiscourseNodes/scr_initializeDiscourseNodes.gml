@@ -119,7 +119,6 @@ function scr_initializeDiscourseNodes(){
 
 		
 		// make tag map for unit & copy tags from unitImportGrid
-		show_debug_message("scr_initializeDiscourseNodes... speakerField: " + string(global.speakerField));
 		var tagMap = ds_map_create();
 		ds_map_add_map(currentUnitSubMap, "tagMap", tagMap);
 		var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
