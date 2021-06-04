@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_saveTagJson(){
 	
-	var fileName = get_save_filename_ext("Tag file|*.json", "tag", global.rezonatorSchemaDirString, "Open Tag");
+	var fileName = get_save_filename_ext("Tag file|*.json", "tag", global.rezonatorSchemaDirString, "Save Tag JSON");
 	
 	// Check if the name is valid, or if the user exited the window
 	if (fileName == "" or fileName == "undefined") {
@@ -23,6 +23,10 @@ function scr_saveTagJson(){
 	var unitTagMap = global.nodeMap[? "unitTagMap"];
 	ds_map_add_map(map, "tokenTagMap", json_decode(json_encode(tokenTagMap)));
 	ds_map_add_map(map, "unitTagMap", json_decode(json_encode(unitTagMap)));
+	
+	// copy chain tag maps into tag json
+	ds_map_add_map(map, "chainFieldMap", json_decode(json_encode(global.chainFieldMap)));
+	ds_map_add_map(map, "entryFieldMap", json_decode(json_encode(global.entryFieldMap)));
 	
 	
 	
