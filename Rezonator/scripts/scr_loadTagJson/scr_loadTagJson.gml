@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_loadTagJson(){
 	
-	var fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag");
+	var fileName = get_open_filename_ext("Tag file|*.json", "", global.rezonatorSchemaDirString, "Open Tag JSON");
 	
 	// make sure the file exists
 	if (fileName == "" or not file_exists(fileName)) {
@@ -25,15 +25,22 @@ function scr_loadTagJson(){
 	}
 	
 	// the map will be the one and only item in the rootList
-	var map = ds_list_find_value(list, 0);
+	var map = list[| 0];
 	
 	
 	
 	// get the tag maps that the user currently has
 	var originalTokenTagMap = global.nodeMap[? "tokenTagMap"];
-	var tokenTagMapJson = map[? "tokenTagMap"];
 	var originalUnitTagMap = global.nodeMap[? "unitTagMap"];
+	var originalChainFieldMap = global.chainFieldMap;
+	var originalEntryFieldMap = global.entryFieldMap;
+	
+	
+	// get the tag maps from the json
+	var tokenTagMapJson = map[? "tokenTagMap"];
 	var unitTagMapJson = map[? "unitTagMap"];
+	var chainFieldMapJson = map[? "chainFieldMap"];
+	var entryFieldMapJson = map[? "entryFieldMap"];
 	
 	
 	// get tokenList & unitList
@@ -42,11 +49,12 @@ function scr_loadTagJson(){
 	var unitList = discourseSubMap[? "unitList"];
 	
 	
-	scr_loadTagJsonFields(originalTokenTagMap, tokenTagMapJson, obj_control.tokenFieldList, tokenList);
-	scr_loadTagJsonFields(originalUnitTagMap, unitTagMapJson, obj_control.unitFieldList, unitList);
+	scr_loadTagJsonFields(originalTokenTagMap, obj_control.tokenFieldList, tokenTagMapJson, tokenList);
+	scr_loadTagJsonFields(originalUnitTagMap, obj_control.unitFieldList, unitTagMapJson, unitList);
 	
 	
-
+	scr_loadTagJsonFields(global.chainFieldMap, global.chainFieldList, chainFieldMapJson, "chain");
+	scr_loadTagJsonFields(global.entryFieldMap, global.chainEntryFieldList, entryFieldMapJson, "entry");
 
 	
 }
