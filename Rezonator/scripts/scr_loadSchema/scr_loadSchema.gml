@@ -53,20 +53,19 @@ function scr_loadSchema(autoload) {
 	}
 
 	var wrapper = scr_loadJSONBuffer(fileName);
-	
-	if (not ds_exists(wrapper, ds_type_map)) {
+	if (!scr_isNumericAndExists(wrapper, ds_type_map)) {
 		show_message("Error loading " + fileName);
 		room_goto(rm_openingScreen);
 		exit;
 	}
 	
 	var list = ds_map_find_value(wrapper, "ROOT");
-	
-	if (is_undefined(list)) {
+	if (!scr_isNumericAndExists(list, ds_type_list)) {
 		show_message("Error loading " + fileName);
 		room_goto(rm_openingScreen);
 		exit;
 	}
+	
 	obj_importMapping.levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 	
 	// clear all Special Fields

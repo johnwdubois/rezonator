@@ -14,7 +14,6 @@ function scr_saveSchema() {
 	
 
 	var rootList = ds_list_create();
-
 	var map = ds_map_create();
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
@@ -41,32 +40,9 @@ function scr_saveSchema() {
 	
 	
 	
-	
-	/*
-	var tempList = ds_list_create();
-	if (global.previousLevelEstimates != undefined) {
-		ds_list_copy(tempList, global.previousLevelEstimates);
-	}
-	ds_map_add_list(map, "previousLevelEstimates", tempList);
-		
 
+	
 
-	var tempList2 = ds_list_create();
-	if (global.previousSpecialFields  != undefined) {
-		ds_list_copy(tempList2, global.previousSpecialFields);
-	}
-	ds_map_add_list(map, "previousSpecialFields", tempList2);
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		
 
 	var wrapper = ds_map_create();
@@ -74,9 +50,6 @@ function scr_saveSchema() {
 
 	var jsonString = json_encode(wrapper);
 	jsonString = scr_jsonBeautify(jsonString);
-
-
-
 
 
 	scr_saveFileBuffer(working_directory + filename_name(fileName), fileName, jsonString);
