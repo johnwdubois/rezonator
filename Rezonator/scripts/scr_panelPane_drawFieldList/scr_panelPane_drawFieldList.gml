@@ -13,9 +13,14 @@ function scr_panelPane_drawFieldList(){
 	var checkboxColX = x;
 	var checkboxColWidth = windowWidth * 0.05;
 	var checkboxSize = checkboxColWidth * 0.35;
+	var checkBoxScale = (checkboxColWidth* 0.5)/checkboxColWidth;
 	var numColX = checkboxColX + checkboxColWidth;
 	var numColWidth = windowWidth * 0.1;
 	var fieldNameColX = numColX + numColWidth;
+	var fieldNameColWidth = windowWidth * 0.7;
+	var deleteColX = fieldNameColX + fieldNameColWidth;
+	var deleteColWidth = windowWidth - (deleteColX - x);
+
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var fieldSelectedColor = merge_color(c_yellow, global.colorThemeBG, 0.4);
 	
@@ -35,12 +40,14 @@ function scr_panelPane_drawFieldList(){
 	var checkboxX2 = checkboxX1 + checkboxSize;
 	
 	var plusY = strHeight;
-	for (var i = 0; i < fieldListSize; i++) {
+	for (var i = 0; i < fieldListSize+1; i++) {
 		
 		var currentRowY1 = y + plusY + scrollPlusY - 16;
 		var currentRowY2 = currentRowY1 + strHeight;
 		var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown);
 		
+				
+		if(i < fieldListSize){
 		
 		// mouseover & click
 		if (mouseoverRow && mouseoverWindow) {
@@ -68,6 +75,7 @@ function scr_panelPane_drawFieldList(){
 						functionField_unitFieldSelected = fieldList[| i];
 					}
 				}
+				
 			}
 		}
 		
@@ -95,10 +103,49 @@ function scr_panelPane_drawFieldList(){
 		if (fieldSelected) {
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, false);
-			draw_sprite_ext(spr_checkmark, 0, mean(checkboxX1, checkboxX2) - clipX, mean(checkboxY1, checkboxY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
+			draw_sprite_ext(spr_checkmark, 0, mean(checkboxX1, checkboxX2) - clipX, mean(checkboxY1, checkboxY2) - clipY, checkBoxScale, checkBoxScale, 0, global.colorThemeText, 1);
 		}
 		draw_set_color(global.colorThemeBorders);
 		scr_drawRectWidth(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, 2, false);
+		
+		
+		
+		
+		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
+		var delButtonY = currentRowY1 + (strHeight * 0.5);
+		var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		var trashAlpha = .5;
+
+								
+		// mouseover & click on sequence arrows
+		if (mouseOverDel) {
+			draw_set_color(global.colorThemeSelected2);
+			draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
+			if (mouse_check_button_released(mb_left)) {
+				
+				scr_deleteField(fieldList[| i]);
+				
+				
+				if(chainViewOneToMany){
+					if (functionField_tokenFieldSelected == fieldList[| i]) {
+						functionField_tokenFieldSelected = "";
+					}
+				}
+				else{
+					if (functionField_unitFieldSelected == fieldList[| i]) {
+						functionField_unitFieldSelected = ""
+					}
+				}
+				
+			}
+			scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
+		}
+									
+			trashAlpha = 1;
+
+								
+		draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+			
 		
 		
 		
@@ -108,12 +155,51 @@ function scr_panelPane_drawFieldList(){
 		
 		// draw field name
 		draw_text(floor(fieldNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(fieldList[| i]));
+		}
+		
+		else{
+			// mouseover & click
+		if (mouseoverRow && mouseoverWindow) {
+			draw_set_color(merge_color(c_green, global.colorThemeBG, 0.5));
+			draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+			if (mouse_check_button_released(mb_left)) {
+				if(chainViewOneToMany){
+					// prompt user for name of new token field/marker
+					obj_control.newCustomFieldToken = true;
+					obj_control.dialogueBoxActive = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					}
+				}
+				else{
+					
+					// prompt user for name of new token field/marker
+
+					obj_control.newCustomFieldUnit = true;
+					obj_control.dialogueBoxActive = true;
+
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					}
+					
+				}	
+			}
+		}
 	
+		// draw #
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "+");
+		
+		// draw field name
+		draw_text(floor(fieldNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Field");
+		
+		}
 	
 		plusY += strHeight;
 	}
 	
-	scr_scrollBar(fieldListSize, -1, strHeight, headerHeight,
+	scr_scrollBar(fieldListSize+1, -1, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
