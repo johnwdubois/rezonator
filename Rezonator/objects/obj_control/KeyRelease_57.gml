@@ -1,3 +1,4 @@
 if (keyboard_check(vk_alt) && keyboard_check(vk_shift)) {
-	scr_saveTagJson();
+	var discourseSubMap = global.nodeMap[? global.discourseNode];
+	scr_miniClipFile(discourseSubMap[? "unitList"], 60, 80);
 }

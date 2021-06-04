@@ -11,7 +11,7 @@ function scr_panelPane_drawFieldTags(){
 	var spaceWidth = string_width(" ");
 	var headerHeight = functionTabs_tabHeight;
 	var checkboxColX = x;
-	var checkboxColWidth = windowWidth * 0.05;
+	var checkboxColWidth = strHeight * 1.2;
 	var checkboxSize = checkboxColWidth * 0.35;
 	var checkBoxScale = (checkboxColWidth* 0.5)/checkboxColWidth;
 	var numColX = checkboxColX + checkboxColWidth;
@@ -21,6 +21,7 @@ function scr_panelPane_drawFieldTags(){
 	var deleteColX = tagNameColX + tagNameColWidth;
 	var deleteColWidth = windowWidth - (deleteColX - x);
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
+	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	var checkboxX1 = mean(checkboxColX, checkboxColX + checkboxColWidth) - (checkboxSize * 0.5);
 	var checkboxX2 = checkboxX1 + checkboxSize;
 	var tagSelectedColor = merge_color(c_yellow, global.colorThemeBG, 0.4);
@@ -52,16 +53,12 @@ function scr_panelPane_drawFieldTags(){
 			for (var i = 0; i < tagListSize+1; i++) {
 		
 
-					var currentRowY1 = y + plusY + scrollPlusY - 16;
-					var currentRowY2 = currentRowY1 + strHeight;
-					var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown);
-				
-				
-				
-				
-				
+				var currentRowY1 = y + plusY + scrollPlusY - 16;
+				var currentRowY2 = currentRowY1 + strHeight;
+				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !mouseoverHeader;
+
 						
-					if(i < tagListSize){
+				if(i < tagListSize){
 				
 				
 				
@@ -128,14 +125,10 @@ function scr_panelPane_drawFieldTags(){
 						if (mouse_check_button_released(mb_left)) {
 							scr_deleteFromList(tagList, tagList[| i]);
 							if(chainViewOneToMany){
-								if (functionField_tokenTagSelected == tagList[| i]) {
-									functionField_tokenTagSelected = "";
-								}
+								with (obj_panelPane) functionField_tokenTagSelected = "";
 							}
 							else{
-								if (functionField_unitTagSelected == tagList[| i]) {
-									functionField_unitTagSelected = ""
-								}
+								with (obj_panelPane) functionField_unitTagSelected = "";
 							}
 						}
 						scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
@@ -157,10 +150,12 @@ function scr_panelPane_drawFieldTags(){
 				}
 				else{
 					
+					// new tag row
+					draw_set_color(merge_color(c_green, global.colorThemeBG, mouseoverRow ? 0.25 : 0.5));
+					draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+					
 					// mouseover & click
 					if (mouseoverRow) {
-						draw_set_color(merge_color(c_green, global.colorThemeBG, 0.5));
-						draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
 							if(chainViewOneToMany){
 								obj_control.newCustomTagToken = true;
@@ -195,9 +190,9 @@ function scr_panelPane_drawFieldTags(){
 
 	
 	
-		scr_scrollBar(tagListSize+1, -1, strHeight, headerHeight,
-				global.colorThemeSelected1, global.colorThemeSelected2,
-				global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+			scr_scrollBar(tagListSize+1, -1, strHeight, headerHeight,
+					global.colorThemeSelected1, global.colorThemeSelected2,
+					global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 		}
 	}
 	
