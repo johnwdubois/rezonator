@@ -108,6 +108,12 @@ function scr_miniClipFile(unitList, startIndex, endIndex){
 		}
 	}
 	
+	// copy tokenTagMap & unitTagMap unit the miniMap
+	var tokenTagMapCopy = json_decode(json_encode(global.nodeMap[? "tokenTagMap"]));
+	var unitTagMapCopy = json_decode(json_encode(global.nodeMap[? "unitTagMap"]));
+	ds_map_add_map(miniMap, "tokenTagMap", tokenTagMapCopy);
+	ds_map_add_map(miniMap, "unitTagMap", unitTagMapCopy);
+	
 	// temporarily change the nodeMap to be our miniMap, then save the nodeMap, and finally change the nodeMap back
 	global.fileSaveName = "";
 	var tempNodeMap = global.nodeMap;
