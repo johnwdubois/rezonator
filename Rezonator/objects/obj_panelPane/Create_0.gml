@@ -189,6 +189,12 @@ functionField_tokenTagSelected = "";
 functionField_unitFieldSelected = "";
 functionField_unitTagSelected = "";
 
+functionField_entryFieldSelected = "";
+functionField_entryTagSelected = "";
+
+functionField_chainFieldSelected = "";
+functionField_chainTagSelected = "";
+
 
 hoverTime[0] = 0;
 hoverTime[1] = 0;
