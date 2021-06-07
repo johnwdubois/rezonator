@@ -23,6 +23,7 @@ function scr_updateChainShowList(inChainsList, chainShowList, inBoxList, chunkSh
 			var chainSubMap = global.nodeMap[?currentChain];
 			var chainColor = chainSubMap[?"chainColor"];
 			var chainType = chainSubMap[?"type"];
+			var chainVisible = chainSubMap[? "visible"];
 				
 			// draw filled in rect if this is the focused entry of the focused chain
 			if (obj_chain.mouseLineWordID == tokenID && obj_chain.currentFocusedChainID == currentChain) {
@@ -34,9 +35,11 @@ function scr_updateChainShowList(inChainsList, chainShowList, inBoxList, chunkSh
 			}
 				
 			// draw border around token if its in a chain
-			draw_set_color(chainColor);
-			draw_set_alpha(1);
-			scr_drawRectWidth(rectX1, rectY1, rectX2, rectY2, 2, chainType == "trackChain");
+			if (chainVisible) {
+				draw_set_color(chainColor);
+				draw_set_alpha(1);
+				scr_drawRectWidth(rectX1, rectY1, rectX2, rectY2, 2, chainType == "trackChain");
+			}
 			
 			
 		}
