@@ -7,16 +7,15 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
-	var plusX = x
+	var colWidth = windowWidth / ds_list_size(headerList);
+	var plusX = x;
 	for (var i = 0; i < headerListSize; i++) {
 		
 		// get header coordinates
-		var colWidth = windowWidth / ds_list_size(headerList);
 		var headerRectX1 = plusX;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
-		var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2);
 		
 		// get column name/current field
 		var currentField = headerList[| i];
@@ -38,25 +37,20 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		scr_adaptFont(currentField, "M");
-		var headertextX = headerRectX1 + textMarginLeft;
+		var headerTextX = headerRectX1 + textMarginLeft;
+		var headerTextY = floor(y + (headerHeight / 2));
 		if(!lineStateLTR){
 			draw_set_halign(fa_right);
-			headertextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize*2;
+			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize*2;
 		}
-		draw_text(headertextX, floor(y + (headerHeight / 2)), currentField);
+		draw_text(headerTextX, headerTextY, currentField);
 	
 		// draw displayToken button
 		var displayTokenButtonSize = (headerHeight / 4);
 		var displayTokenButtonX = headerRectX2 - displayTokenButtonSize - 4;
 		var displayTokenButtonY = mean(headerRectY1, headerRectY2);
-		var mouseoverDisplayToken = point_in_circle(mouse_x, mouse_y, displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize);
-	
-
-		var dropDownRectX1 = displayTokenButtonX - 16 - dropDownButtonSize;
-		var dropDownRectY1 = headerRectY1 + (dropDownButtonSize * 0.25);
-		var dropDownRectX2 = dropDownRectX1 + dropDownButtonSize;
-		var dropDownRectY2 = headerRectY2 - (dropDownButtonSize * 0.25);
-		var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2);
+		var mouseoverDisplayToken = point_in_circle(mouse_x, mouse_y, displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize) && !instance_exists(obj_dropDown);
+		var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverDisplayToken && !instance_exists(obj_dropDown);
 		
 		// right clicking on header
 		if (mouseoverHeader) {
@@ -75,11 +69,17 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			}
 		}
 
-		// user interaction for token selection
-		if (mouseoverDropDownButton && !instance_exists(obj_dropDown)) {
-			scr_createTooltip(mean(dropDownRectX1, dropDownRectX2), dropDownRectY2, "Change field", obj_tooltip.arrowFaceUp);
+		// user interaction for header click
+		if (mouseoverHeader) {
+			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, "Change field", obj_tooltip.arrowFaceUp);
+			
+			// draw underline
+			var underlineX1 = headerTextX;
+			var underlineX2 = headerTextX + string_width(currentField);
+			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
-			draw_rectangle(dropDownRectX1, dropDownRectY1, dropDownRectX2, dropDownRectY2, true);
+			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
+			
 			if (mouse_check_button_released(mb_left)) {
 				with (obj_panelPane) {
 					chosenCol = i;
@@ -90,9 +90,9 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeTokenSelection);
 			}
 		}
-	
+		
 		// change display token
-		if (mouseoverDisplayToken && !instance_exists(obj_dropDown)) {
+		if (mouseoverDisplayToken) {
 				
 			scr_createTooltip(displayTokenButtonX, displayTokenButtonY + displayTokenButtonSize, "Display token", obj_tooltip.arrowFaceUp);
 			draw_set_color(global.colorThemeSelected1);
@@ -105,7 +105,6 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 
 		draw_set_color(global.colorThemeBorders);
 		draw_circle(displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize, true);
-		draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2), mean(dropDownRectY1, dropDownRectY2), 1, 1, 0, global.colorThemeText, 1);
 
 		if (global.displayTokenField == currentField) {
 			draw_set_color(merge_color(global.colorThemeBorders, global.colorThemeBG, 0.1));
