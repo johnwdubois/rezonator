@@ -29,7 +29,12 @@ function scr_panelPaneDrawBranch(){
 					scr_panelPane_drawUnitsList();
 				}
 				else if (functionChainList_currentTab == functionChainList_tabField) {
-					scr_panelPane_drawFieldList();
+					if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
+						scr_panelPane_drawFieldList();
+					}
+					else{
+						scr_panelPane_drawChainFieldList();
+					}
 				}
 				else {
 					scr_panelPane_drawChainsList();
@@ -87,7 +92,12 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawLineTranslationLoopClipped();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						scr_panelPane_drawFieldTags();
+						if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
+							scr_panelPane_drawFieldTags();
+						}
+						else{
+							scr_panelPane_drawChainFieldTags();
+						}
 					}
 					else {
 						scr_panelPane_drawChains1ToMany();
@@ -103,7 +113,12 @@ function scr_panelPaneDrawBranch(){
 					else if (functionChainList_currentTab == functionChainList_tabShow) {
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						scr_panelPane_drawFieldTags();
+						if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
+							scr_panelPane_drawFieldTags();
+						}
+						else{
+							scr_panelPane_drawChainFieldTags();
+						}
 					}
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
