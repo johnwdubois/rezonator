@@ -211,6 +211,7 @@ function scr_panelPane_drawFieldList(){
 	
 	
 	
+	
 	var headerTextY = floor(mean(y, y + headerHeight));
 	
 	// checkbox header
@@ -236,6 +237,8 @@ function scr_panelPane_drawFieldList(){
 	draw_rectangle(fieldNameColX, y, x + windowWidth, y + headerHeight, true);
 	draw_set_color(global.colorThemeText);
 	draw_text(floor(fieldNameColX + spaceWidth), headerTextY, "Field name");
+	
+	
 	
 	
 	if (mouseoverWindow && mouse_wheel_down()) {

@@ -198,7 +198,7 @@ hoverTime[3] = 0;
 
 errorText = "";
 
-
+fieldPaneSwitchButton = "Discourse";
 
 
 #macro EVENT_TICK 0
