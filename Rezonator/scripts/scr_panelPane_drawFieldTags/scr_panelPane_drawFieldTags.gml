@@ -198,6 +198,10 @@ function scr_panelPane_drawFieldTags(){
 	
 	scr_surfaceEnd();
 	
+	
+	
+	
+	
 	var headerTextY = floor(mean(y, y + headerHeight));
 	
 	// checkbox header
@@ -223,6 +227,105 @@ function scr_panelPane_drawFieldTags(){
 	draw_rectangle(tagNameColX, y, x + windowWidth, y + headerHeight, true);
 	draw_set_color(global.colorThemeText);
 	draw_text(floor(tagNameColX + spaceWidth), headerTextY, "Tag name");
+	
+	//json tag saving button
+	var spriteSize = sprite_get_width(spr_saveIcon);
+	var saveRectX2 = x + windowWidth - spaceWidth*3;
+	var saveRectX1 = saveRectX2 - spriteSize;
+	var saveRectY1 =  mean(y ,y + headerHeight) - spriteSize/2;
+	var saveRectY2 = saveRectY1 + spriteSize;
+	
+	var saveSpriteX = floor(mean(saveRectX1,saveRectX2));
+	var saveSpriteY = floor(mean(saveRectY1,saveRectY2)+1);
+	
+	var mouseOverSave = point_in_rectangle(mouse_x,mouse_y,saveRectX1,saveRectY1,saveRectX2,saveRectY2)
+	
+	if(mouseOverSave){
+		draw_rectangle(saveRectX1,saveRectY1,saveRectX2,saveRectY2, true);
+		if(device_mouse_check_button_released(0,mb_left)){
+			scr_saveTagJson();
+		}
+		scr_createTooltip(saveSpriteX, saveRectY2,"Save Tag JSON", obj_tooltip.arrowFaceUp);
+	}
+	draw_sprite_ext(spr_saveIcon,0,saveSpriteX,saveSpriteY,1,1,0,global.colorThemeText, 1);
+	
+	// json tag loading button
+	var spriteSize = sprite_get_width(spr_loadingIcon);
+	var loadRectX2 = saveRectX1 - spaceWidth*3;
+	var loadRectX1 = loadRectX2 - spriteSize;
+	var loadRectY1 =  mean(y ,y + headerHeight) - spriteSize/2;
+	var loadRectY2 = loadRectY1 + spriteSize;
+	
+	var loadSpriteX = floor(mean(loadRectX1,loadRectX2));
+	var loadSpriteY = floor(mean(loadRectY1,loadRectY2)+1);
+	
+	var mouseOverload = point_in_rectangle(mouse_x,mouse_y,loadRectX1,loadRectY1,loadRectX2,loadRectY2)
+	
+	if(mouseOverload){
+		draw_rectangle(loadRectX1,loadRectY1,loadRectX2,loadRectY2, true);
+		if(device_mouse_check_button_released(0,mb_left)){
+			scr_loadTagJson();
+		}
+		scr_createTooltip(loadSpriteX, loadRectY2,"Load Tag JSON", obj_tooltip.arrowFaceUp);
+	}
+	draw_sprite_ext(spr_loadingIcon,0,loadSpriteX,loadSpriteY,1,1,0,global.colorThemeText, 1);
+	
+	
+	// toggle Discourse / Chains Button
+	
+	var switchPaneRButtonSizeX = string_width("Discourse") + spaceWidth*4;
+	var switchPaneRButtonSizeY = string_height("Discourse");
+	var switchPaneRRectX2 = loadRectX1 - spaceWidth*3;
+	var switchPaneRRectX1 = switchPaneRRectX2 - switchPaneRButtonSizeX;
+	var switchPaneRRectY1 =  mean(y ,y + headerHeight) - switchPaneRButtonSizeY/2;
+	var switchPaneRRectY2 = switchPaneRRectY1 + switchPaneRButtonSizeY;
+	
+	var mouseOverswitchPaneR = point_in_rectangle(mouse_x,mouse_y,switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2)
+	
+	draw_set_color(global.colorThemeRezPurple);
+	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, true);
+	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, fieldPaneSwitchButton != "Discourse");
+	if(mouseOverswitchPaneR){
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Discourse") {
+			with (obj_panelPane) fieldPaneSwitchButton = "Discourse";
+		}
+	}
+	
+	var switchPaneRTextX = floor(mean(switchPaneRRectX1,switchPaneRRectX2));
+	var switchPaneRTextY = floor(mean(switchPaneRRectY1,switchPaneRRectY2)+1);
+	
+	draw_set_halign(fa_center);
+	draw_set_color((fieldPaneSwitchButton == "Discourse") ? global.colorThemeBG : global.colorThemeText);
+	draw_text(switchPaneRTextX,switchPaneRTextY,"Discourse");
+	
+	
+	// toggle Discourse / Chains Button
+	
+	var switchPaneLButtonSizeX = string_width("Discourse")+ spaceWidth*4;
+	var switchPaneLButtonSizeY = string_height("Discourse");
+	var switchPaneLRectX2 = switchPaneRRectX1-2;
+	var switchPaneLRectX1 = switchPaneLRectX2 - switchPaneLButtonSizeX;
+	var switchPaneLRectY1 =  mean(y ,y + headerHeight) - switchPaneLButtonSizeY/2;
+	var switchPaneLRectY2 = switchPaneLRectY1 + switchPaneLButtonSizeY;
+	
+	var mouseOverswitchPaneL = point_in_rectangle(mouse_x,mouse_y,switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2)
+	
+	draw_set_color(global.colorThemeRezPurple);
+	draw_rectangle(switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2, true);
+	draw_rectangle(switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2, fieldPaneSwitchButton != "Chain");
+	if(mouseOverswitchPaneL){
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Chain") {
+			with (obj_panelPane) fieldPaneSwitchButton = "Chain";
+		}
+	}
+	
+	var switchPaneLTextX = floor(mean(switchPaneLRectX1,switchPaneLRectX2));
+	var switchPaneLTextY = floor(mean(switchPaneLRectY1,switchPaneLRectY2)+1);
+	
+	draw_set_halign(fa_center);
+	draw_set_color((fieldPaneSwitchButton == "Chain") ? global.colorThemeBG : global.colorThemeText);
+	draw_text(switchPaneLTextX,switchPaneLTextY,"Chain");
+	
 	
 	
 	
