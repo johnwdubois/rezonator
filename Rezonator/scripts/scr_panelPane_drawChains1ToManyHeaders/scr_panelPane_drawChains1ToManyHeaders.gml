@@ -26,23 +26,36 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			}
 		}
 	}
-	if(ds_exists(chain1toManyColFieldList, ds_type_list)){
+	
+	if (scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
+		
 		// draw headers for chainContents columns
 		var chainContents1toManyFieldListSize = ds_list_size(chain1toManyColFieldList);
 		var colAmount = 3 + chainContents1toManyFieldListSize;
 		var i = 0;
 		repeat(colAmount) {
 			
-			
+			// get coordinates for header rect
 			var colWidth = windowWidth / colAmount;
-			var colRectX1 = (lineStateLTR)? x + (colWidth * i): x + windowWidth - (colWidth * (i+1));
-			var colRectY1 = y;
-			var colRectX2 = colRectX1 + colWidth;
+			var headerRectX1 = (lineStateLTR)? x + (colWidth * i): x + windowWidth - (colWidth * (i+1));
+			var headerRectY1 = y;
+			var headerRectX2 = headerRectX1 + colWidth;
 			if (colAmount == 3 && i == 2) {
-				var colRectX2 = colRectX1 + (windowWidth);	
+				var headerRectX2 = headerRectX1 + (windowWidth);	
 			}
-			var colRectY2 = colRectY1 + windowHeight;
-			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight);
+			var headerRectY2 = headerRectY1 + tabHeight;
+			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+			
+			// get coordinates for header text
+			var headerTextX = headerRectX1 + textMarginLeft;
+			if (!lineStateLTR){
+				draw_set_halign(fa_right);
+				headerTextX = headerRectX2 - (textMarginLeft)
+				if(i >= 3){
+					headerTextX = headerTextX - dropDownButtonSize;
+				}
+			}
+			var headerTextY = y + (tabHeight / 2);
 	
 			// get header string for static columns
 			var colName = "";
@@ -74,7 +87,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 		
 			// make headers not overlap with each other
 			draw_set_color(global.colorThemeBG);
-			draw_rectangle(colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight, false);
+			draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + tabHeight, false);
 		
 			// headers for dynamic columns
 			if (i >= 3) {
@@ -83,20 +96,20 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					colName = currentField;
 				}
 			
-				// dropdown button to switch dynamic fields
-				var dropDownButtonX1 = colRectX1 + ((colRectX2 - colRectX1) * 0.8);
-				var dropDownButtonY1 = colRectY1 + (tabHeight * 0.25);
-				var dropDownButtonX2 = colRectX1 + ((colRectX2 - colRectX1) * 0.95);
-				var dropDownButtonY2 = colRectY1 + (tabHeight * 0.75);
-				var mouseoverDropDownButton = point_in_rectangle(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
-				draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) , mean(dropDownButtonY1, dropDownButtonY2) , 1, 1, 0, global.colorThemeText, 1);
-				if (mouseoverDropDownButton && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
+
+				if (mouseoverColHeader) {
+					scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, "Change field", obj_tooltip.arrowFaceUp);
+					
+					// draw underline
+					var underlineX1 = headerTextX;
+					var underlineX2 = headerTextX + string_width(currentField);
+					var underlineY = headerTextY + (tabHeight * 0.25);
 					draw_set_color(global.colorThemeBorders);
-					draw_set_alpha(1);
-					draw_rectangle(dropDownButtonX1, dropDownButtonY1, dropDownButtonX2 , dropDownButtonY2 , true);
+					draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
+					
 					if (mouse_check_button_released(mb_left)) {
 						obj_control.chain1ToManyColFieldToChange = i - 3;
-						scr_createDropDown(colRectX1, colRectY1 + tabHeight, scr_getChainEntryFieldList(chainType), global.optionListTypeChain1ToManyField);
+						scr_createDropDown(headerRectX1, headerRectY1 + tabHeight, scr_getChainEntryFieldList(chainType), global.optionListTypeChain1ToManyField);
 					}
 				}
 			
@@ -105,7 +118,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					obj_control.chain1ToManyColFieldToChange = i - 3;
 					var headerRightClickList = ds_list_create();
 					ds_list_add(headerRightClickList, "Create Field");
-					scr_createDropDown(colRectX1, colRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1ToManyHeaderRightClick);
+					scr_createDropDown(headerRectX1, headerRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1ToManyHeaderRightClick);
 				}
 			}
 		
@@ -115,34 +128,26 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			draw_set_halign(fa_left);
 			scr_adaptFont(colName, "M");
 			
-			var headertextX = colRectX1 + textMarginLeft;
-			if(!lineStateLTR){
-				draw_set_halign(fa_right);
-				headertextX = colRectX2 - (textMarginLeft)
-				if(i >= 3){
-					headertextX = headertextX - dropDownButtonSize;
-				}
-			}
+
 			
-			draw_text(headertextX , y + tabHeight/2 , colName);
+			draw_text(headerTextX, headerTextY, colName);
 		
 	
 			if(lineStateLTR){	
 				if(i > 0){
 					draw_set_color(global.colorThemeBorders);
-					draw_line_width(colRectX1, y, colRectX1, y + windowHeight, 1);
+					draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
 				}
 			}
 			else{
 				if(i < colAmount-1){
 					draw_set_color(global.colorThemeBorders);
-					draw_line_width(colRectX1+1, y, colRectX1+1, y + windowHeight, 1);
+					draw_line_width(headerRectX1+1, y, headerRectX1+1, y + windowHeight, 1);
 				}
 			}
 			
 			i++;
 		}
-		
 
 
 		// draw horizontal line between headers and contents

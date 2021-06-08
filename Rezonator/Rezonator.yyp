@@ -429,6 +429,7 @@
     {"id":{"name":"obj_menuBar","path":"objects/obj_menuBar/obj_menuBar.yy",},"order":3,},
     {"id":{"name":"obj_audioUI","path":"objects/obj_audioUI/obj_audioUI.yy",},"order":4,},
     {"id":{"name":"obj_openingScreen","path":"objects/obj_openingScreen/obj_openingScreen.yy",},"order":6,},
+    {"id":{"name":"scr_panelPane_drawChains1To1Headers","path":"scripts/scr_panelPane_drawChains1To1Headers/scr_panelPane_drawChains1To1Headers.yy",},"order":33,},
     {"id":{"name":"obj_loadingScreen","path":"objects/obj_loadingScreen/obj_loadingScreen.yy",},"order":7,},
     {"id":{"name":"obj_fileLoader","path":"objects/obj_fileLoader/obj_fileLoader.yy",},"order":0,},
     {"id":{"name":"scr_alignChain2ElectricBoogaloo","path":"scripts/scr_alignChain2ElectricBoogaloo/scr_alignChain2ElectricBoogaloo.yy",},"order":1,},

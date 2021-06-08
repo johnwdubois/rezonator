@@ -37,9 +37,9 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		scr_adaptFont(currentField, "M");
-		var headerTextX = headerRectX1 + textMarginLeft;
+		var headerTextX = floor(headerRectX1 + textMarginLeft);
 		var headerTextY = floor(y + (headerHeight / 2));
-		if(!lineStateLTR){
+		if (!lineStateLTR) {
 			draw_set_halign(fa_right);
 			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize*2;
 		}
