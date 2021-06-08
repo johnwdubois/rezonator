@@ -51,23 +51,6 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		var displayTokenButtonY = mean(headerRectY1, headerRectY2);
 		var mouseoverDisplayToken = point_in_circle(mouse_x, mouse_y, displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize) && !instance_exists(obj_dropDown);
 		var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverDisplayToken && !instance_exists(obj_dropDown);
-		
-		// right clicking on header
-		if (mouseoverHeader) {
-			if (mouse_check_button_released(mb_right)) {
-				with (obj_dropDown) {
-					instance_destroy();
-				}
-				with(obj_panelPane) {
-					chosenCol = i;
-				}
-				//obj_control.tokenImportColToChange = ds_list_find_index(global.tokenImportcurrentFieldList, currentField);
-				obj_control.tokenFieldToChange = currentField;
-				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "Set as Transcription" , "Create Field", "Add new Tag");
-				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeTokenMarker);
-			}
-		}
 
 		// user interaction for header click
 		if (mouseoverHeader) {
@@ -84,10 +67,11 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 				with (obj_panelPane) {
 					chosenCol = i;
 				}
+				obj_control.tokenFieldToChange = currentField;
 
 				var dropDownOptionList = ds_list_create();
-				ds_list_copy(dropDownOptionList, obj_control.tokenFieldList);
-				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeTokenSelection);
+				ds_list_add(dropDownOptionList, "Set Field", "Create Field", "Add new Tag", "Remove From Tag Set");
+				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1ToMany);
 			}
 		}
 		

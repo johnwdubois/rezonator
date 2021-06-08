@@ -64,24 +64,19 @@ function scr_panelPane_drawUnits1To1Headers(){
 			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, "Change field", obj_tooltip.arrowFaceUp);
 			
 			if (mouse_check_button_released(mb_left)) {
+				obj_control.unitFieldToChange = currentField;
 				with (obj_panelPane) {
 					chosenCol = i;
 				}
-
-				scr_createDropDown(headerRectX1, headerRectY2, obj_control.unitFieldList, global.optionListTypeUnitSelection);
+				
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "Set Field", "Create Field", "Add new Tag", "Remove From Tag Set", "Set as Translation");
+				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1To1);
 			}
 		}
 
 		
-		
-		// right-click on header
-		if (mouseoverHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-			obj_control.unitFieldToChange = currentField;
-			var headerRightClickList = ds_list_create();
-			ds_list_add(headerRightClickList, "Create Field","Add new Tag","Set as Translation");
-			scr_createDropDown(headerRectX1, headerRectY2, headerRightClickList, global.optionListTypeUnitMarker);
-		}
-	
+
 	
 		// change display unit
 		if (mouseoverDisplayUnit && !instance_exists(obj_dropDown)) {

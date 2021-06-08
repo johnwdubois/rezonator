@@ -362,6 +362,8 @@ ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
 ds_map_add(global.expandableDropDownMap, "Recolor", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
+ds_map_add(global.expandableDropDownMap, "Set Field", true);
+ds_map_add(global.expandableDropDownMap, "Remove From Tag Set", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);

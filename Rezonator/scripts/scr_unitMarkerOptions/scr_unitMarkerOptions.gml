@@ -1,5 +1,4 @@
-function scr_unitMarkerOptions() {
-	var optionSelected = argument[0];
+function scr_unitMarkerOptions(optionSelected) {
 
 	if (optionSelected == "Create Field") {
 
@@ -17,8 +16,10 @@ function scr_unitMarkerOptions() {
 		scr_unitTagMapOptions("Add new Tag");
 	}
 	else if(optionSelected == "Set as Translation"){
-		scr_addToListOnce(global.translationList,obj_control.unitFieldToChange);
+		scr_addToListOnce(global.translationList, obj_control.unitFieldToChange);
 		global.currentTranslation = obj_control.unitFieldToChange;
+		with (obj_dropDown) instance_destroy();
+		scr_addToListOnce(obj_control.panelPaneTabList, obj_panelPane.functionChainList_tabTranslations);
 	}
 
 

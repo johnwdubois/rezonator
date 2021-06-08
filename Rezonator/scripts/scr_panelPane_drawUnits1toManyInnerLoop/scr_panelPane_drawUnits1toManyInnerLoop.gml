@@ -12,6 +12,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 	var fieldListSize = ds_list_size(fieldList);
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var spaceWidth = string_width(" ");
+	var mouseoverCancel = (instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox));
 	
 	// draw BG highlight for the entire windowWidth (if we have less than 6 columns)
 	if (highlight && fieldListSize < 6) {
@@ -41,7 +42,7 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 		var colWidth = windowWidth / fieldListSize;
 		var cellRectX1 = plusX;
 		var cellRectX2 = cellRectX1 + colWidth;
-		var mouseoverCell = point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2);
+		var mouseoverCell = point_in_rectangle(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && !mouseoverCancel;
 		
 		// draw BG rect for this cell
 		draw_set_color(highlight ? merge_color(global.colorThemeBG, global.colorThemeText, 0.15) : global.colorThemeBG);
@@ -111,7 +112,6 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 						// create dropdown
 						var dropDownOptionList = ds_list_create();
 						ds_list_copy(dropDownOptionList, tagSet);
-						ds_list_add(dropDownOptionList, "Add new Tag");
 
 						obj_control.tokenToChange = tokenID;
 						obj_control.tokenFieldToChange = currentField;
