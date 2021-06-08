@@ -93,6 +93,84 @@ function scr_speakerLabelOptions(optionSelected) {
 
 					instance_destroy(obj_dropDown);
 					break;
+					
+			case "Tag Chain":
+			
+			// set field/tags
+			if (obj_control.rightClickID != "") {
+				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+				if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+					
+					var inChainsList = unitSubMap[? "inChainsList"];
+					var inChainsListSize = ds_list_size(inChainsList);
+
+					for(var i = 0; i < inChainsListSize; i++){
+						var currentChainID = inChainsList[| i];
+						var chainSubMap = global.nodeMap[? currentChainID];						
+						if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+							var chainType = chainSubMap[? "type"];							
+							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
+							&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
+								var chainTagMap = chainSubMap[? "tagMap"];
+								if (scr_isNumericAndExists(chainTagMap, ds_type_map)) {
+									chainTagMap[? obj_panelPane.functionField_chainFieldSelected] = obj_panelPane.functionField_chainTagSelected;
+									show_debug_message("scr_unitRightClicked ... setting ChainSubMap: " + string(currentChainID) + ", field:" + string(obj_panelPane.functionField_chainFieldSelected) + ", tag: " + string(obj_panelPane.functionField_chainTagSelected));
+								}
+							}			
+						}						
+					}
+				}
+			}
+			
+
+			instance_destroy(obj_dropDown);
+			break;
+		case "Tag Entry":
+			
+			// set field/tags
+			if (obj_control.rightClickID != "") {
+				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+				if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+					var inChainsList = unitSubMap[? "inChainsList"];
+					var inChainsListSize = ds_list_size(inChainsList);
+					
+					for(var i = 0; i < inChainsListSize; i++){
+						var currentChainID = inChainsList[| i];
+						var chainSubMap = global.nodeMap[? currentChainID];	
+						
+						if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+							var chainType = chainSubMap[? "type"];		
+							
+	
+							var chainSetList = chainSubMap[? "setIDList"];
+							var sizeOfSetList = ds_list_size(chainSetList);
+								 
+							for(var j = 0 ; j < sizeOfSetList ; j ++){
+								var currentEntry = chainSetList[|j];
+								var currentEntrySubMap = global.nodeMap[?currentEntry];
+									
+								if(scr_isNumericAndExists(currentEntrySubMap , ds_type_map)){
+									var currentunitID = currentEntrySubMap[?"unit"];
+										
+									if(currentunitID == obj_control.rightClickID){
+										if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
+										&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
+											var currentEntryTagMap = currentEntrySubMap[? "tagMap"];
+											if (scr_isNumericAndExists(currentEntryTagMap, ds_type_map)) {
+												currentEntryTagMap[? obj_panelPane.functionField_entryFieldSelected] = obj_panelPane.functionField_entryTagSelected;
+												show_debug_message("scr_unitRightClicked ... setting ChainSubMap: " + string(currentEntry) + ", field:" + string(obj_panelPane.functionField_entryFieldSelected) + ", tag: " + string(obj_panelPane.functionField_entryTagSelected));
+											}
+										}
+									}
+								}
+							}									
+						}						
+					}
+				}
+			}
+
+			instance_destroy(obj_dropDown);
+			break;
 				default:
 					break;
 			}
