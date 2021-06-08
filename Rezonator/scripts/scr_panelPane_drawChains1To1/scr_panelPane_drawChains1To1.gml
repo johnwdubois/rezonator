@@ -195,84 +195,14 @@ function scr_panelPane_drawChains1To1(){
 	
 	
 	
-	// Create the column headers
-	for (var i = 0; i < chain1to1ColFieldListSize; i++) {
-		
-		// header coordinates
-		var colRectX1 = x + (i * (windowWidth / chain1to1ColFieldListSize));
-		var colRectY1 = y;
-		var colRectX2 = colRectX1 + (windowWidth / chain1to1ColFieldListSize);
-		var colRectY2 = colRectY1 + windowHeight;
-		var mouseoverColHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, colRectX1, colRectY1, colRectX2, colRectY1 + tabHeight);
-		
-		// get header column name
-		var colName = string(ds_list_find_value(chain1to1ColFieldList, i));
-		
-		// BG & outline rects
-		draw_set_color(global.colorThemeBG);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, false);
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY1 + tabHeight - clipY, true);
-		// draw line to separate column headers from data
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(x - clipX, colRectY1 - clipY, x + windowWidth - clipX, colRectY1 + tabHeight - clipY, true);
+	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
+		global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
-		
-		
-		// draw header name
-		draw_set_color(global.colorThemeText);
-		draw_set_valign(fa_middle);
-		scr_adaptFont(colName, "M");
-		
-				
-		var headertextX = colRectX1 + (textMarginLeft);
-		if(!lineStateLTR){
-			draw_set_halign(fa_right);
-			headertextX = colRectX2 - (textMarginLeft)*2 - dropDownButtonWidth*2;
-		}
-		
-		draw_text(headertextX - clipX, y + tabHeight/2 - clipY, colName);
-		
-		// draw lines for dividing columns
-		if(lineStateLTR){	
-			if(i > 0){
-				draw_set_color(global.colorThemeBorders);
-				draw_line_width(colRectX1 - clipX, y - clipY, colRectX1 - clipX, y + windowHeight - clipY, 1);
-			}
-		}
-		else{
-			if(i > 0 && i < chain1to1ColFieldListSize){
-				draw_set_color(global.colorThemeBorders);
-				draw_line_width(colRectX1 + 1 - clipX, y - clipY, colRectX1 + 1 - clipX, y + windowHeight - clipY, 1);
-			}
-		}
-		
-		// dropdown button to switch dynamic fields
-		var dropDownButtonX1 = colRectX2 - (textMarginLeft) - dropDownButtonWidth*2;
-		var dropDownButtonY1 = colRectY1 + (tabHeight * 0.25);
-		var dropDownButtonX2 = colRectX2 - (textMarginLeft) - dropDownButtonWidth;
-		var dropDownButtonY2 = colRectY1 + (tabHeight * 0.75);
-		var mouseoverDropDownButton = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, dropDownButtonX1, dropDownButtonY1, dropDownButtonX2, dropDownButtonY2);
-		draw_sprite_ext(spr_dropDown, 0, mean(dropDownButtonX1, dropDownButtonX2) - clipX, mean(dropDownButtonY1, dropDownButtonY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
-		if (mouseoverDropDownButton && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-			draw_set_color(global.colorThemeBorders);
-			draw_set_alpha(1);
-			draw_rectangle(dropDownButtonX1 - clipX, dropDownButtonY1 - clipY, dropDownButtonX2 - clipX, dropDownButtonY2 - clipY, true);
-			if (mouse_check_button_released(mb_left)) {
-				obj_control.chain1To1ColFieldToChange = i;
-				scr_createDropDown(colRectX1, colRectY1 + tabHeight, scr_getChainFieldList(chainType), global.optionListTypeChain1To1Field);
-			}
-		}
-		
-		
-		// right-click on header
-		if (mouseoverColHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-			obj_control.chain1To1ColFieldToChange = i;
-			var headerRightClickList = ds_list_create();
-			ds_list_add(headerRightClickList, "Create Field");
-			scr_createDropDown(colRectX1, colRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1To1HeaderRightClick);
-		}
-	}
+	
+	scr_surfaceEnd();
+	
+	scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType);
 	
 	
 	
@@ -345,17 +275,8 @@ function scr_panelPane_drawChains1To1(){
 		}
 	}
 	
-	
-	
 
-	
-	
-	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-	
-	
-	scr_surfaceEnd();
+
 
 
 }
