@@ -38,14 +38,23 @@ var optionListSize = ds_list_size(optionList);
 var maxStrWidth = originalWindowWidth;
 for (var i = 0; i < optionListSize; i++) {
 	var currentOptionStr = string(ds_list_find_value(optionList, i));
+	
+	// get keyboard shortcut if provided
 	var shortcutStr = "";
 	if(ds_map_exists(global.keyboardShortcutMap, currentOptionStr)){
 		shortcutStr = ds_map_find_value(global.keyboardShortcutMap, currentOptionStr);	
 	}
 	
+	// get width of current string
 	currentOptionStr = scr_get_translation(currentOptionStr);
-	
 	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
+	
+	// add some width if this is an expandable dropdown
+	if(ds_map_exists(global.expandableDropDownMap, currentOptionStr)){
+		currentOptionStrWidth += sprite_get_width(spr_ascend);
+	}
+	
+	// check if this is the widest string so far
 	if (currentOptionStrWidth > maxStrWidth) {
 		maxStrWidth = currentOptionStrWidth;
 	}

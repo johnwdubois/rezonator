@@ -165,7 +165,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeTokenSelection) //27
 	{
 	    scr_tokenSelection(optionSelected);
-	    instance_destroy();
+	    with (obj_dropDown) instance_destroy();
 	}
 	//stack selection
 	else if (optionListType == global.optionListTypeStack) //28
@@ -189,7 +189,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeUnitSelection) //31
 	{
 	    scr_unitSelection(optionSelected);
-	    instance_destroy();
+	    with (obj_dropDown) instance_destroy();
 	}
 	//import special fields selection
 	else if (optionListType == global.optionListTypeSpecialFields) //32
@@ -333,6 +333,24 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeTranslation) //59
 	{
 		scr_translationOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeFieldUnits1ToMany) // 60
+	{
+		scr_fieldUnits1ToManyOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1ToMany) // 61
+	{
+		scr_removeFromTagSetOptions(optionSelected, "token");
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeFieldUnits1To1) // 62
+	{
+		scr_fieldUnits1To1Options(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1To1) // 62
+	{
+		scr_removeFromTagSetOptions(optionSelected, "unit");
+		with (obj_dropDown) instance_destroy();
 	}
 
 }

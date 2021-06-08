@@ -62,5 +62,10 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeJustifyProse = 57;
 	global.optionListType1to1 = 58;
 	global.optionListTypeTranslation = 59;
+	global.optionListTypeFieldUnits1ToMany = 60;
+	global.optionListTypeRemoveFromTagSetUnits1ToMany = 61;
+	global.optionListTypeFieldUnits1To1 = 62;
+	global.optionListTypeRemoveFromTagSetUnits1To1 = 63;
+
 
 }

@@ -1,0 +1,26 @@
+// Script assets have changed for v2.3.0 see
+// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+function scr_removeFromTagSetOptions(optionSelected, type){
+	
+	// determine tagMap based on type
+	var tagMap = -1;
+	if (type == "token") tagMap = global.nodeMap[? "tokenTagMap"];
+	else if (type == "unit") tagMap = global.nodeMap[? "unitTagMap"];
+	if (!scr_isNumericAndExists(tagMap, ds_type_map)) exit;
+	
+	// determine fieldToChange and tagSubMap based on type
+	var fieldToChange = "";
+	if (type == "token") fieldToChange = obj_control.tokenFieldToChange;
+	else if (type == "unit") fieldToChange = obj_control.unitFieldToChange;
+	var tagSubMap = tagMap[? fieldToChange];
+	if (!scr_isNumericAndExists(tagSubMap, ds_type_map)) exit;
+	
+	// get tagSet for selected field
+	var tagSet = tagSubMap[? "tagSet"];
+	if (!scr_isNumericAndExists(tagSet, ds_type_list)) exit;
+	show_debug_message("scr_removeFromTagSetOptions ... tagSet: " + scr_getStringOfList(tagSet));
+	
+	// remove the tag from the tagSet
+	scr_deleteFromList(tagSet, optionSelected);
+	
+}
