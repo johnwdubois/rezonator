@@ -107,7 +107,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			}
 			
 			with (obj_chain) {
-				if(!object_exists(obj_dropDown)){
+				if(!instance_exists(obj_dropDown)){
 					scr_unitClicked(unitID);
 				}
 			}

@@ -5,6 +5,7 @@ function scr_getUnitText(unitSubMap){
 	// get entryList for this unit
 	var unitText = "";
 	var entryList = unitSubMap[? "entryList"];
+	if(!scr_isNumericAndExists(entryList, ds_type_list)){return "";}
 	var entryListSize = ds_list_size(entryList);
 	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
 	

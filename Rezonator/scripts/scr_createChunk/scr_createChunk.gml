@@ -58,7 +58,15 @@ function scr_createChunk(){
 		if(obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack){
 			//chain is already seleceted
 			if(obj_chain.currentFocusedChainID != ""){
-				scr_newLink(chunkID);
+				var focusedChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
+				
+				if(focusedChainSubMap[?"type"] != "stackChain"){
+					scr_newLink(chunkID);
+				}
+				else{
+					scr_newChain(chunkID);
+					scr_newLink(chunkID);
+				}
 			}
 			else{
 				scr_newChain(chunkID);
