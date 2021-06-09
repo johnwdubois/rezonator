@@ -18,8 +18,6 @@ function scr_dialogueBoxNewCustomTagChain(){
 	
 	// add the new tag to the tagSet
 	ds_list_insert(tagSet, ds_list_size(tagSet), newTag);
-	
-	// set the chain with the new tag
-	scr_chain1To1TagOptions(newTag);
+
 	
 }

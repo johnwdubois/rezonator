@@ -147,7 +147,6 @@ function scr_panelPane_drawUnits1to1() {
 							// create dropdown
 							var dropDownOptionList = ds_list_create();
 							ds_list_copy(dropDownOptionList, tagSet);
-							ds_list_add(dropDownOptionList, "Add new Tag");
 
 							obj_control.unitToChange = currentUnitID;
 							obj_control.unitFieldToChange = currentField;
