@@ -6,12 +6,16 @@ function scr_removeFromTagSetOptions(optionSelected, type){
 	var tagMap = -1;
 	if (type == "token") tagMap = global.nodeMap[? "tokenTagMap"];
 	else if (type == "unit") tagMap = global.nodeMap[? "unitTagMap"];
+	else if (type == "entry") tagMap = global.entryFieldMap;
+	else if (type == "chain") tagMap = global.chainFieldMap;
 	if (!scr_isNumericAndExists(tagMap, ds_type_map)) exit;
 	
 	// determine fieldToChange and tagSubMap based on type
 	var fieldToChange = "";
 	if (type == "token") fieldToChange = obj_control.tokenFieldToChange;
 	else if (type == "unit") fieldToChange = obj_control.unitFieldToChange;
+	else if (type == "entry") fieldToChange = obj_control.chain1toManyFieldToChange;
+	else if (type == "chain") fieldToChange = obj_control.chain1to1FieldToChange;
 	var tagSubMap = tagMap[? fieldToChange];
 	if (!scr_isNumericAndExists(tagSubMap, ds_type_map)) exit;
 	

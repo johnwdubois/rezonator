@@ -74,19 +74,27 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
 
 			if (mouse_check_button_released(mb_left)) {
+				with (obj_panelPane) fieldChains1To1ChainType = chainType;
 				obj_control.chain1To1ColFieldToChange = i;
-				scr_createDropDown(headerRectX1, headerRectY1 + tabHeight, scr_getChainFieldList(chainType), global.optionListTypeChain1To1Field);
+				obj_control.chain1to1FieldToChange = currentField;
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "Set Field", "Create Field"); 
+				
+				// check if this field has a finite tagSet, and therefore we should put in "add new tag" and "remove tag"
+				var tagSubMap = global.chainFieldMap[? currentField];
+				if (scr_isNumericAndExists(tagSubMap, ds_type_map)) {
+					var fieldHasTagSet = ds_map_exists(tagSubMap, "tagSet");
+					if (fieldHasTagSet) {
+						ds_list_add(dropDownOptionList, "Add new Tag", "Remove From Tag Set");
+					}
+				}
+				
+				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldChains1To1);
 			}
 		}
 		
-		
-		// right-click on header
-		if (mouseoverColHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-			obj_control.chain1To1ColFieldToChange = i;
-			var headerRightClickList = ds_list_create();
-			ds_list_add(headerRightClickList, "Create Field");
-			scr_createDropDown(headerRectX1, headerRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1To1HeaderRightClick);
-		}
+
+
 	}
 
 }

@@ -47,15 +47,15 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 			
 			// get coordinates for header text
-			var headerTextX = headerRectX1 + textMarginLeft;
+			var headerTextX = floor(headerRectX1 + textMarginLeft);
 			if (!lineStateLTR){
 				draw_set_halign(fa_right);
 				headerTextX = headerRectX2 - (textMarginLeft)
 				if(i >= 3){
-					headerTextX = headerTextX - dropDownButtonSize;
+					headerTextX = floor(headerTextX - dropDownButtonSize);
 				}
 			}
-			var headerTextY = y + (tabHeight / 2);
+			var headerTextY = floor(y + (tabHeight / 2));
 	
 			// get header string for static columns
 			var colName = "";
@@ -108,17 +108,23 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
 					
 					if (mouse_check_button_released(mb_left)) {
+						with (obj_panelPane) fieldChains1ToManyChainType = chainType;
 						obj_control.chain1ToManyColFieldToChange = i - 3;
-						scr_createDropDown(headerRectX1, headerRectY1 + tabHeight, scr_getChainEntryFieldList(chainType), global.optionListTypeChain1ToManyField);
+						obj_control.chain1toManyFieldToChange = currentField;
+						var dropDownOptionList = ds_list_create();
+						ds_list_add(dropDownOptionList, "Set Field", "Create Field");
+						
+						// check if this field has a finite tagSet, and therefore we should put in "add new tag" and "remove tag"
+						var tagSubMap = global.entryFieldMap[? currentField];
+						if (scr_isNumericAndExists(tagSubMap, ds_type_map)) {
+							var fieldHasTagSet = ds_map_exists(tagSubMap, "tagSet");
+							if (fieldHasTagSet) {
+								ds_list_add(dropDownOptionList, "Add new Tag", "Remove From Tag Set");
+							}
+						}
+						
+						scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldChains1ToMany);
 					}
-				}
-			
-				// right-click on header
-				if (mouseoverColHeader && mouse_check_button_released(mb_right) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox)) {
-					obj_control.chain1ToManyColFieldToChange = i - 3;
-					var headerRightClickList = ds_list_create();
-					ds_list_add(headerRightClickList, "Create Field");
-					scr_createDropDown(headerRectX1, headerRectY1 + tabHeight, headerRightClickList, global.optionListTypeChain1ToManyHeaderRightClick);
 				}
 			}
 		

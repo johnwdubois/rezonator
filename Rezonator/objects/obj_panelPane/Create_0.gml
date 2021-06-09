@@ -205,6 +205,8 @@ hoverTime[3] = 0;
 errorText = "";
 
 fieldPaneSwitchButton = "Discourse";
+fieldChains1ToManyChainType = "";
+fieldChains1To1ChainType = "";
 
 
 #macro EVENT_TICK 0

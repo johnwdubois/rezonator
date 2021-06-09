@@ -37,7 +37,7 @@ function scr_panelPane_drawTabs() {
 	var edgeBufferY = 0;
 	var edgeBufferX = 3;
 	var tabRectY1 = y+edgeBufferY;
-	var tabRectY2 = tabRectY1 + functionTabs_tabHeight-edgeBufferY;
+	var tabRectY2 = tabRectY1 + functionTabs_tabHeight - edgeBufferY;
 	draw_set_color(make_color_rgb(125, 125, 128));
 	draw_rectangle(x, y, x + windowWidth, tabRectY2, false);
 
