@@ -98,7 +98,7 @@ function scr_rightClickWordOptions(optionSelected) {
 					for(var i = 0; i < inChainsListSize; i++){
 						var currentChainID = inChainsList[| i];
 						var chainSubMap = global.nodeMap[? currentChainID];						
-						if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+						if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 							var chainType = chainSubMap[? "type"];							
 							if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
 							or (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
@@ -132,7 +132,7 @@ function scr_rightClickWordOptions(optionSelected) {
 						var currentChainID = inChainsList[| i];
 						var chainSubMap = global.nodeMap[? currentChainID];	
 						
-						if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+						if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 							var chainType = chainSubMap[? "type"];		
 							
 							if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
@@ -166,6 +166,27 @@ function scr_rightClickWordOptions(optionSelected) {
 			}
 
 			instance_destroy();
+			break;
+			
+			case "Tag Token":
+			
+			// set field/tags
+			if (obj_control.rightClickID != "") {
+				var tokenSubMap = global.nodeMap[? obj_control.rightClickID];
+				if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+					if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
+					&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
+						var tokenTagMap = tokenSubMap[? "tagMap"];
+						if (scr_isNumericAndExists(tokenTagMap, ds_type_map)) {
+							tokenTagMap[? obj_panelPane.functionField_tokenFieldSelected] = obj_panelPane.functionField_tokenTagSelected;
+							show_debug_message("scr_tokenRightClicked ... setting tokenSubMap: " + string(obj_control.rightClickID) + ", field:" + string(obj_panelPane.functionField_tokenFieldSelected) + ", tag: " + string(obj_panelPane.functionField_tokenTagSelected));
+						}
+					}			
+				}
+			}
+			
+
+			instance_destroy(obj_dropDown);
 			break;
 			
 		case "Delete Chunk":

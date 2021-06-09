@@ -68,6 +68,12 @@ function scr_tokenRightClicked(){
 		else{
 	
 		}
+		
+		if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
+			&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
+				scr_addToListOnce(dropDownOptionList , "Tag Token");
+		}
+		
 		ds_list_add(dropDownOptionList, "New Token", "Delete Token");
 		if (!firstWordInLine && obj_control.showDevVars) {
 			//ds_list_add(dropDownOptionList, "Split Line");

@@ -107,7 +107,7 @@ function scr_speakerLabelOptions(optionSelected) {
 					for(var i = 0; i < inChainsListSize; i++){
 						var currentChainID = inChainsList[| i];
 						var chainSubMap = global.nodeMap[? currentChainID];						
-						if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+						if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 							var chainType = chainSubMap[? "type"];							
 							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
 							&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
@@ -119,6 +119,26 @@ function scr_speakerLabelOptions(optionSelected) {
 							}			
 						}						
 					}
+				}
+			}
+			
+
+			instance_destroy(obj_dropDown);
+			break;
+			case "Tag Unit":
+			
+			// set field/tags
+			if (obj_control.rightClickID != "") {
+				var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+				if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+					if (obj_panelPane.functionField_unitFieldSelected != "" && obj_panelPane.functionField_unitTagSelected != ""
+					&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
+						var unitTagMap = unitSubMap[? "tagMap"];
+						if (scr_isNumericAndExists(unitTagMap, ds_type_map)) {
+							unitTagMap[? obj_panelPane.functionField_unitFieldSelected] = obj_panelPane.functionField_unitTagSelected;
+							show_debug_message("scr_unitRightClicked ... setting unitSubMap: " + string(obj_control.rightClickID) + ", field:" + string(obj_panelPane.functionField_unitFieldSelected) + ", tag: " + string(obj_panelPane.functionField_unitTagSelected));
+						}
+					}			
 				}
 			}
 			
@@ -138,7 +158,7 @@ function scr_speakerLabelOptions(optionSelected) {
 						var currentChainID = inChainsList[| i];
 						var chainSubMap = global.nodeMap[? currentChainID];	
 						
-						if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+						if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 							var chainType = chainSubMap[? "type"];		
 							
 	
