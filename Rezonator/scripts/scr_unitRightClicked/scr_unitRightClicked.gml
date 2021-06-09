@@ -47,8 +47,10 @@ function scr_unitRightClicked(){
 					
 		}
 
-		//ds_list_add(dropDownOptionList, "Delete Chunk");
-
+		if (obj_panelPane.functionField_unitFieldSelected != "" && obj_panelPane.functionField_unitTagSelected != ""
+			&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
+				scr_addToListOnce(dropDownOptionList , "Tag Unit");
+		}
 				
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

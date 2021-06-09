@@ -47,7 +47,38 @@ for (var i = 0; i < optionListSize; i++) {
 	
 	// get width of current string
 	currentOptionStr = scr_get_translation(currentOptionStr);
+
 	var currentOptionStrWidth = string_width(currentOptionStr) + string_width(shortcutStr) + (textBuffer * 2);
+	
+	var isTagOption = string_count("Tag", currentOptionStr) > 0;
+	var tagWidth = 0;
+	if(isTagOption){
+		var isTokenOption = string_count("Token", currentOptionStr) > 0;
+		var isUnitOption = string_count("Unit", currentOptionStr) > 0;
+		var isChainOption = string_count("Chain", currentOptionStr) > 0;
+		var isEntryOption = string_count("Entry", currentOptionStr) > 0;
+	
+		if(isTokenOption){
+
+			var tokenTagText =  "   (" + string(obj_panelPane.functionField_tokenTagSelected) + " : " + string(obj_panelPane.functionField_tokenFieldSelected) + ")";
+			tagWidth = string_width(tokenTagText); 
+		}
+		if(isUnitOption){
+			var unitTagText =  "   (" + string(obj_panelPane.functionField_unitTagSelected) + " : " + string(obj_panelPane.functionField_unitFieldSelected) + ")";
+			tagWidth = string_width(unitTagText); 
+		}
+		if(isChainOption){
+			var chainTagText =  "   (" + string(obj_panelPane.functionField_chainTagSelected) + " : " + string(obj_panelPane.functionField_chainFieldSelected) + ")";
+			tagWidth = string_width(chainTagText); 
+		}
+		if(isEntryOption){
+			var entryTagText =  "   (" + string(obj_panelPane.functionField_entryTagSelected) + " : " + string(obj_panelPane.functionField_entryFieldSelected) + ")";
+			tagWidth = string_width(entryTagText); 
+		}
+	
+	}
+	currentOptionStrWidth += tagWidth;
+	
 	
 	// add some width if this is an expandable dropdown
 	if(ds_map_exists(global.expandableDropDownMap, currentOptionStr)){
@@ -225,7 +256,12 @@ for (var i = 0; i < optionListSize; i++) {
 	if(global.lang_codes[| global.lang_index] == "he"){
 		draw_set_halign(fa_right);	
 	}
+	
+
+
 	draw_text(optionTextX - clipX, optionTextY - clipY, optionTextStr);
+	
+	
 
 	if(global.lang_codes[| global.lang_index] == "he"){
 		draw_set_halign(fa_left);	
@@ -246,6 +282,35 @@ for (var i = 0; i < optionListSize; i++) {
 		else{
 			draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
 		}
+	}
+	
+	//add tag info to option
+	var isTagOption = string_count("Tag", optionTextStr) > 0;
+	var tagWidth = 0;
+	var tagText = "";
+	if(isTagOption){
+		var isTokenOption = string_count("Token", optionTextStr) > 0;
+		var isUnitOption = string_count("Unit", optionTextStr) > 0;
+		var isChainOption = string_count("Chain", optionTextStr) > 0;
+		var isEntryOption = string_count("Entry", optionTextStr) > 0;
+	
+		if(isTokenOption){
+			tagText =  "   (" + string(obj_panelPane.functionField_tokenFieldSelected) + " :  " + string(obj_panelPane.functionField_tokenTagSelected) + ")";
+		}
+		if(isUnitOption){
+			tagText =  "   (" + string(obj_panelPane.functionField_unitFieldSelected) + " : " + string(obj_panelPane.functionField_unitTagSelected) + ")";
+		}
+		if(isChainOption){
+			tagText =  "   (" + string(obj_panelPane.functionField_chainFieldSelected) + " : " + string(obj_panelPane.functionField_chainTagSelected) + ")";
+		}
+		if(isEntryOption){
+			tagText =  "   (" + string(obj_panelPane.functionField_entryFieldSelected) + " : " + string(obj_panelPane.functionField_entryTagSelected) + ")";
+		}
+
+	draw_set_color(merge_color(global.colorThemeText, global.colorThemeBG, 0.3));
+
+	draw_text(shortcutTextX - clipX, optionTextY - clipY, tagText);	
+	
 	}
 
 	draw_set_halign(fa_left);
