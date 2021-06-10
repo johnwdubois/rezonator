@@ -83,6 +83,7 @@ function scr_morphToUnitGrid() {
 				var currentGloss = ds_grid_get(obj_control.morphGrid, obj_control.morphGrid_colGloss, currentWordIDNewWord - 1);
 			
 				//show_message(string(currentMorph));
+				
 				ds_grid_resize(obj_control.wordGrid, obj_control.wordGridWidth, ds_grid_height(obj_control.wordGrid) + 1);
 				var currentRowWordGrid = ds_grid_height(obj_control.wordGrid) - 1;
 			
@@ -94,34 +95,11 @@ function scr_morphToUnitGrid() {
 				ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordToken, currentRowWordGrid, currentMorph);
 				ds_grid_set(obj_control.wordGrid, obj_control.wordGrid_colWordTranscript, currentRowWordGrid, currentGloss);
 			
-				scr_loadDynamicWordGridIndividual(currentRowWordGrid);
+				//scr_loadDynamicWordGridIndividual(currentRowWordGrid);
+				
 			}
-		
-			// add row to lineGrid
-			var currentLineY = (currentUnitID - 1) * obj_control.gridSpaceVertical;
-		
-			ds_grid_resize(obj_control.lineGrid, obj_control.lineGridWidth, ds_grid_height(obj_control.lineGrid) + 1);
-			var currentRowLineGrid = ds_grid_height(obj_control.lineGrid) - 1;
-		
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colDisplayRow, currentRowLineGrid, currentRowLineGrid);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colWordIDList, currentRowLineGrid, currentWordIDListNewUnit);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineState, currentRowLineGrid, 0);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitID, currentRowLineGrid, currentUnitID);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelY, currentRowLineGrid, currentLineY);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, currentRowLineGrid, currentLineY);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colDiscoID, currentRowLineGrid, 0);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colLineNumberLabel, currentRowLineGrid, currentUnitID);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colAlignedWordID, currentRowLineGrid, ds_list_find_value(currentWordIDListNewUnit, 0));
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitStart, currentRowLineGrid, currentUnitStart);
-			ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colUnitEnd, currentRowLineGrid, currentUnitEnd);
 	
 	
-			// add row to unitInStackGrid
-			var unitInStackGridCurrentRow = ds_grid_height(obj_chain.unitInStackGrid);
-			ds_grid_resize(obj_chain.unitInStackGrid, obj_chain.unitInStackGridWidth, unitInStackGridCurrentRow + 1);
-			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colUnitID, unitInStackGridCurrentRow, currentUnitID);
-			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStack, unitInStackGridCurrentRow, -1);
-			ds_grid_set(obj_chain.unitInStackGrid, obj_chain.unitInStackGrid_colStackType, unitInStackGridCurrentRow, -1);
 		}	
 	}
 

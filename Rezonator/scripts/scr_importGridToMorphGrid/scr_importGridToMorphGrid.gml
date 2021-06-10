@@ -56,6 +56,7 @@ function scr_importGridToMorphGrid() {
 				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colGloss, ds_grid_height(obj_control.morphGrid) - 1, currentMorph);
 			}
 		}
+		show_debug_message("scr_importGridToMorphGrid ... Splitting complete " + scr_printTime());
 
 
 	}
