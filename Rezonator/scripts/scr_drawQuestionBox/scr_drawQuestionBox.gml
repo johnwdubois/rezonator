@@ -145,6 +145,19 @@ function scr_drawQuestionBox() {
 		if (removeTagUnit) scr_removeFromTagSetOptions(string(stringToBeRemoved), "unit");
 		if (removeTagEntry) scr_removeFromTagSetOptions(string(stringToBeRemoved), "entry");
 		if (removeTagChain) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chain");
+		
+		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain) {
+			// delete the field
+			scr_deleteField(stringToBeRemoved);
+				
+			// deselect fields
+			if (removeFieldToken) with (obj_panelPane) functionField_tokenFieldSelected = "";
+			if (removeFieldEntry) with (obj_panelPane) functionField_entryFieldSelected = "";
+			if (removeFieldUnit) with (obj_panelPane) functionField_unitFieldSelected = "";
+			if (removeFieldChain) with (obj_panelPane) functionField_chainFieldSelected = "";
+		}
+		
+		
 			
 		
 

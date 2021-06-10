@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteField(fieldName){
 	
-	if(chainViewOneToMany){
+	if(obj_panelPane.chainViewOneToMany){
 		var fieldList = obj_control.tokenFieldList;
 		var navWindowList = obj_control.navTokenFieldList;
 	}
