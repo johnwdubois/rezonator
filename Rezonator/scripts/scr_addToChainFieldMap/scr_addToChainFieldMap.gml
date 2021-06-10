@@ -71,7 +71,7 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 	if (is_numeric(tagSet)) {
 		if (ds_exists(tagSet, ds_type_list)) {
 			show_debug_message("scr_addToChainFieldMap() ... tagSet: " + scr_getStringOfList(tagSet));
-			//ds_list_add(tagSet, "Add to tag set", "Remove tag");
+			//ds_list_add(tagSet, "Add to tag set", "Remove from tag set");
 			ds_map_add_list(subMap, "tagSet", tagSet);
 		}
 	}

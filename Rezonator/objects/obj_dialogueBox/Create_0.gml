@@ -25,6 +25,15 @@ clearChain = false;
 clearShow = false;
 layerLink = false;
 combineChains = false;
+removeTagToken = false;
+removeTagUnit = false;
+removeTagEntry = false;
+removeTagChain = false;
+removeFieldToken = false;
+removeFieldUnit = false;
+removeFieldEntry = false;
+removeFieldChain = false;
+stringToBeRemoved = "";
 
 canDelete = true;
 canDeleteHoldingCounter = 0;

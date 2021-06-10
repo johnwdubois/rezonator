@@ -26,8 +26,8 @@ function scr_chain1To1TagOptions(optionSelected){
 	if (!is_numeric(chainTagMap)) exit;
 	if (!ds_exists(chainTagMap, ds_type_map)) exit;
 	
-	if (optionSelected == "Remove tag") {
-		// if user selected "Remove tag" then we delete the tag from this chain's tagmap
+	if (optionSelected == "Remove from tag set") {
+		// if user selected "Remove from tag set" then we delete the tag from this chain's tagmap
 		ds_map_delete(chainTagMap, fieldToChange);
 	}
 	else {

@@ -112,16 +112,18 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 						obj_control.chain1ToManyColFieldToChange = i - 3;
 						obj_control.chain1toManyFieldToChange = currentField;
 						var dropDownOptionList = ds_list_create();
-						ds_list_add(dropDownOptionList, "Set Field", "Create Field");
 						
-						// check if this field has a finite tagSet, and therefore we should put in "add new tag" and "remove tag"
+						// check if this field has a finite tagSet, and therefore we should put in "Add to tag set" and "Remove from tag set"
 						var tagSubMap = global.entryFieldMap[? currentField];
 						if (scr_isNumericAndExists(tagSubMap, ds_type_map)) {
 							var fieldHasTagSet = ds_map_exists(tagSubMap, "tagSet");
 							if (fieldHasTagSet) {
-								ds_list_add(dropDownOptionList, "Add new Tag", "Remove From Tag Set");
+								ds_list_add(dropDownOptionList, "Add to tag set", "Remove from tag set");
 							}
 						}
+						
+						// add the rest of the dropDown options
+						ds_list_add(dropDownOptionList, "Select field", "Create new field");
 						
 						scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldChains1ToMany);
 					}

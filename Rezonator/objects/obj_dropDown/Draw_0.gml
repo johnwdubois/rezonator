@@ -172,7 +172,7 @@ for (var i = 0; i < optionListSize; i++) {
 	if (optionText == "Add to tag set") {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(60, 230, 65), 0.5);
 	}
-	else if (optionText == "Remove tag") {
+	else if (optionText == "Remove from tag set") {
 		optionBGColor = merge_color(global.colorThemeBG, make_color_rgb(247, 129, 148), 0.5);
 	}
 	if (mouseoverCurrentOption or (optionCurrent == i && !mouseOverDropDown)) {
