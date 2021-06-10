@@ -340,7 +340,7 @@ function scr_dropDownSelect(optionSelected) {
 	}
 	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1ToMany) // 61
 	{
-		scr_removeFromTagSetOptions(optionSelected, "token");
+		scr_removeFieldTagQuestionPrompt("tag", "unit", "1toMany", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeFieldUnits1To1) // 62
@@ -349,7 +349,7 @@ function scr_dropDownSelect(optionSelected) {
 	}
 	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1To1) // 63
 	{
-		scr_removeFromTagSetOptions(optionSelected, "unit");
+		scr_removeFieldTagQuestionPrompt("tag", "unit", "1to1", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeFieldChains1ToMany) // 64
@@ -358,7 +358,7 @@ function scr_dropDownSelect(optionSelected) {
 	}
 	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1ToMany) // 65
 	{
-		scr_removeFromTagSetOptions(optionSelected, "entry");
+		scr_removeFieldTagQuestionPrompt("tag", "chain", "1toMany", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeFieldChains1To1) // 66
@@ -367,7 +367,7 @@ function scr_dropDownSelect(optionSelected) {
 	}
 	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1To1) // 67
 	{
-		scr_removeFromTagSetOptions(optionSelected, "chain");
+		scr_removeFieldTagQuestionPrompt("tag", "chain", "1to1", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
 

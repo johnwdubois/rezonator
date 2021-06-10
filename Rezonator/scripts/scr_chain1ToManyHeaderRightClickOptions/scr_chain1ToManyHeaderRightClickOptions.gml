@@ -3,7 +3,7 @@
 function scr_chain1ToManyHeaderRightClickOptions(optionSelected){
 	
 	switch (optionSelected) {
-		case "Create Field":
+		case "Create new field":
 			
 			obj_control.newCustomFieldEntry = true;
 			obj_control.dialogueBoxActive = true;

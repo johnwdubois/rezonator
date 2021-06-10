@@ -8,7 +8,7 @@ function scr_importTagMaps() {
 		var gridWidth = ds_grid_width(global.unitImportGrid);
 		for (var i = 0 ; i < gridWidth; i++) {
 			var tempList = ds_list_create();
-			ds_list_add(tempList, "Add new Tag");
+			ds_list_add(tempList, "Add to tag set");
 			var mapKey = ds_list_find_value(global.unitImportColNameList, i);
 			ds_map_add_list(global.unitImportTagMap, mapKey, tempList);
 		}
@@ -21,7 +21,7 @@ function scr_importTagMaps() {
 		var gridWidth = ds_grid_width(global.tokenImportGrid);
 		for (var i = 0 ; i < gridWidth; i++) {
 			var tempList = ds_list_create();
-			ds_list_add(tempList, "Add new Tag");
+			ds_list_add(tempList, "Add to tag set");
 			var mapKey = ds_list_find_value(global.tokenImportColNameList, i);
 			ds_map_add_list(global.tokenImportTagMap, mapKey, tempList);
 		}

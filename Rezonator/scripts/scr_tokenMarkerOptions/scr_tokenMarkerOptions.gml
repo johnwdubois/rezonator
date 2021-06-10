@@ -1,6 +1,6 @@
 function scr_tokenMarkerOptions(optionSelected) {
 
-	if (optionSelected == "Create Field") {
+	if (optionSelected == "Create new field") {
 
 		// prompt user for name of new token field/marker
 
@@ -12,8 +12,8 @@ function scr_tokenMarkerOptions(optionSelected) {
 		}
 	
 	}
-	else if (optionSelected == "Add new Tag") {
-		scr_tokenTagMapOptions("Add new Tag");
+	else if (optionSelected == "Add to tag set") {
+		scr_tokenTagMapOptions("Add to tag set");
 	}
 	else if(optionSelected == "Set as Transcription"){
 		

@@ -1,7 +1,7 @@
 function scr_unitTagMapOptions() {
 	var optionSelected = argument[0];
 
-	if (optionSelected == "Add new Tag") {
+	if (optionSelected == "Add to tag set") {
 
 
 		obj_control.newCustomTagUnit = true;

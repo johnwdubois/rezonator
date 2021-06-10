@@ -63,7 +63,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			tokenRectX1 -= currentTokenStringWidth;
 			tokenRectX2 -= currentTokenStringWidth;
 		}
-		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane;
+		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		
 		// draw background tokenRect
 		draw_set_color(global.colorThemeBG);
