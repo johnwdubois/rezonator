@@ -25,11 +25,13 @@ function scr_panelPane_drawFieldList(){
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	var fieldSelectedColor = merge_color(c_yellow, global.colorThemeBG, 0.4);
 	
+	// determine which field list to use depending on 1to1 vs 1toMany and Chain vs Discourse
+	var fieldList = -1;
 	if(chainViewOneToMany){
-		var fieldList = obj_control.tokenFieldList;
+		fieldList = fieldPaneSwitchButton == "Discourse" ? obj_control.tokenFieldList : global.chainEntryFieldList;
 	}
 	else{
-		var fieldList = obj_control.unitFieldList;
+		fieldList = fieldPaneSwitchButton == "Discourse" ? obj_control.unitFieldList : global.chainFieldList;
 	}
 	
 	if (!scr_isNumericAndExists(fieldList, ds_type_list)) exit;
@@ -40,101 +42,123 @@ function scr_panelPane_drawFieldList(){
 	var checkboxX1 = mean(checkboxColX, checkboxColX + checkboxColWidth) - (checkboxSize * 0.5);
 	var checkboxX2 = checkboxX1 + checkboxSize;
 	
+	// loop down the list of fields and draw a row for each one
 	var plusY = strHeight;
 	for (var i = 0; i < fieldListSize+1; i++) {
 		
 		var currentRowY1 = y + plusY + scrollPlusY - 16;
 		var currentRowY2 = currentRowY1 + strHeight;
-		var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !mouseoverHeader;
+		var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar;
 		
 				
-		if(i < fieldListSize){
+		if (i < fieldListSize) {
 		
-		// mouseover & click
-		if (mouseoverRow && mouseoverWindow) {
-			draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
-			draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
-			if (mouse_check_button_released(mb_left)) {
+			// mouseover & click
+			if (mouseoverRow && mouseoverWindow) {
+				draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
+				draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+				if (mouse_check_button_released(mb_left)) {
 				
-				if(chainViewOneToMany){
-					if(functionField_tokenFieldSelected != fieldList[| i]){
-						with(obj_panelPane){
-							functionField_tokenTagSelected = "";
+					// set field to be selected when clicked
+					if (chainViewOneToMany) {
+						if (fieldPaneSwitchButton == "Discourse") {
+							if (functionField_tokenFieldSelected != fieldList[| i]) {
+								with(obj_panelPane) functionField_tokenTagSelected = "";
+							}
+							with(obj_panelPane) functionField_tokenFieldSelected = fieldList[| i];
+						}
+						else {
+							if(functionField_entryFieldSelected != fieldList[| i]){
+								with(obj_panelPane) functionField_entryTagSelected = "";
+							}
+							with(obj_panelPane) functionField_entryFieldSelected = fieldList[| i];
 						}
 					}
-					with(obj_panelPane){
-						functionField_tokenFieldSelected = fieldList[| i];
-					}
-				}
-				else{
-					if(functionField_unitFieldSelected != fieldList[| i]){
-						with(obj_panelPane){
-							functionField_unitTagSelected = "";
+					else {
+						if (fieldPaneSwitchButton == "Discourse") {
+							if (functionField_unitFieldSelected != fieldList[| i]) {
+								with(obj_panelPane) functionField_unitTagSelected = "";
+							}
+							with(obj_panelPane) functionField_unitFieldSelected = fieldList[| i];
+						}
+						else {
+							if(functionField_chainFieldSelected != fieldList[| i]){
+								with(obj_panelPane) functionField_chainTagSelected = "";
+							}
+							with(obj_panelPane) functionField_chainFieldSelected = fieldList[| i];
 						}
 					}
-					with(obj_panelPane){
-						functionField_unitFieldSelected = fieldList[| i];
-					}
 				}
-				
 			}
-		}
 		
 
-		// check if this row/field has been selected
-		var fieldSelected = false;
-		if(chainViewOneToMany){
-			if (functionField_tokenFieldSelected == fieldList[| i]) {
-				fieldSelected = true;
-				draw_set_color(fieldSelectedColor);
-				draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
-			}	
-		}
-		else{
-			if (functionField_unitFieldSelected == fieldList[| i]) {
-				fieldSelected = true;
+			// check if this field has been selected
+			var fieldSelected = false;
+			if (chainViewOneToMany) {
+				if (fieldPaneSwitchButton == "Discourse") {
+					if (functionField_tokenFieldSelected == fieldList[| i]) fieldSelected = true;
+				}
+				else {
+					if (functionField_entryFieldSelected == fieldList[| i]) fieldSelected = true;
+				}
+			}
+			else {
+				if (fieldPaneSwitchButton == "Discourse") {
+					if (functionField_unitFieldSelected == fieldList[| i]) fieldSelected = true;
+				}
+				else {
+					if (functionField_chainFieldSelected == fieldList[| i]) fieldSelected = true;
+				}
+			}
+		
+		
+			// draw highlight if this field is selected
+			if (fieldSelected) {
 				draw_set_color(fieldSelectedColor);
 				draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 			}
-		}
-		
-		// draw checkbox
-		var checkboxY1 = mean(currentRowY1, currentRowY2) - (checkboxSize * 0.5);
-		var checkboxY2 = checkboxY1 + checkboxSize;
-		if (fieldSelected) {
-			draw_set_color(global.colorThemeBG);
-			draw_rectangle(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, false);
-			draw_sprite_ext(spr_checkmark, 0, mean(checkboxX1, checkboxX2) - clipX, mean(checkboxY1, checkboxY2) - clipY, checkBoxScale, checkBoxScale, 0, global.colorThemeText, 1);
-		}
-		draw_set_color(global.colorThemeBorders);
-		scr_drawRectWidth(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, 2, false);
 		
 		
 		
+			// draw checkbox
+			var checkboxY1 = mean(currentRowY1, currentRowY2) - (checkboxSize * 0.5);
+			var checkboxY2 = checkboxY1 + checkboxSize;
+			if (fieldSelected) {
+				draw_set_color(global.colorThemeBG);
+				draw_rectangle(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, false);
+				draw_sprite_ext(spr_checkmark, 0, mean(checkboxX1, checkboxX2) - clipX, mean(checkboxY1, checkboxY2) - clipY, checkBoxScale, checkBoxScale, 0, global.colorThemeText, 1);
+			}
+			draw_set_color(global.colorThemeBorders);
+			scr_drawRectWidth(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, 2, false);
 		
-		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
-		var delButtonY = currentRowY1 + (strHeight * 0.5);
-		var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
-		var trashAlpha = .5;
+		
+			// get coordinates for delete button
+			var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
+			var delButtonY = currentRowY1 + (strHeight * 0.5);
+			var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2) && mouseoverRow;
+			var trashAlpha = .5;
 
 								
-		// mouseover & click on sequence arrows
-		if (mouseOverDel) {
+			// mouseover & click on sequence arrows
+			if (mouseOverDel) {
 				draw_set_color(global.colorThemeSelected2);
 				draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
 				if (mouse_check_button_released(mb_left)) {
-				
-					scr_deleteField(fieldList[| i]);
-				
-				
-					if(chainViewOneToMany){
-						with (obj_panelPane) functionField_tokenFieldSelected = "";
+					
+					
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						if (chainViewOneToMany && fieldPaneSwitchButton == "Discourse") obj_dialogueBox.removeFieldToken = true;
+						else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldEntry = true;
+						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Discourse") obj_dialogueBox.removeFieldUnit = true;
+						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldChain = true;
+						obj_dialogueBox.questionWindowActive = true;
+						obj_dialogueBox.stringToBeRemoved = fieldList[| i];
 					}
-					else{
-						with (obj_panelPane) functionField_unitFieldSelected = "";
-					}
-				
+
+					
 				}
+				
 				scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
 			}
 									
@@ -150,6 +174,7 @@ function scr_panelPane_drawFieldList(){
 		
 			// draw field name
 			draw_text(floor(fieldNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(fieldList[| i]));
+		
 		}
 		else{
 			
@@ -165,26 +190,27 @@ function scr_panelPane_drawFieldList(){
 						chosenCol = -1;
 					}
 					
-					if(chainViewOneToMany){
+					if (chainViewOneToMany) {
+						
 						// prompt user for name of new token field/marker
-						obj_control.newCustomFieldToken = true;
+						if (fieldPaneSwitchButton == "Discourse") obj_control.newCustomFieldToken = true;
+						else obj_control.newCustomFieldEntry = true;
 						obj_control.dialogueBoxActive = true;
 
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						}
 					}
-					else{
+					else {
 					
 						// prompt user for name of new token field/marker
-
-						obj_control.newCustomFieldUnit = true;
+						if (fieldPaneSwitchButton == "Discourse") obj_control.newCustomFieldUnit = true;
+						else obj_control.newCustomFieldChain = true;
 						obj_control.dialogueBoxActive = true;
 
 						if (!instance_exists(obj_dialogueBox)) {
 							instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						}
-					
 					}	
 				}
 			}

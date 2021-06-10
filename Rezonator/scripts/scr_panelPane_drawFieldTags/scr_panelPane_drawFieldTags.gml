@@ -55,7 +55,7 @@ function scr_panelPane_drawFieldTags(){
 
 				var currentRowY1 = y + plusY + scrollPlusY - 16;
 				var currentRowY2 = currentRowY1 + strHeight;
-				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !mouseoverHeader;
+				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar;
 
 						
 				if(i < tagListSize){
@@ -114,7 +114,7 @@ function scr_panelPane_drawFieldTags(){
 		
 					var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 					var delButtonY = currentRowY1 + (strHeight * 0.5);
-					var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2) && mouseoverRow;
 					var trashAlpha = .5;
 
 								

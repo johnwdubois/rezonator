@@ -10,6 +10,7 @@ function scr_scrollBarInit(){
 	scrollPlusY = 0;
 	scrollPlusYDest = 0;
 	scrollBarPlusY = 0;
+	mouseoverScrollBar = false;
 
 	windowHeight = 299;
 	windowWidth = 360;

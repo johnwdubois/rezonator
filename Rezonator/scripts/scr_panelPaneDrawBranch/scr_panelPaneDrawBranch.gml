@@ -29,12 +29,7 @@ function scr_panelPaneDrawBranch(){
 					scr_panelPane_drawUnitsList();
 				}
 				else if (functionChainList_currentTab == functionChainList_tabField) {
-					if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
-						scr_panelPane_drawFieldList();
-					}
-					else{
-						scr_panelPane_drawChainFieldList();
-					}
+					scr_panelPane_drawFieldList();
 				}
 				else {
 					scr_panelPane_drawChainsList();
