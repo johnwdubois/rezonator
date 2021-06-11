@@ -54,7 +54,7 @@ function scr_panelPane_drawChainFieldTags(){
 
 				var currentRowY1 = y + plusY + scrollPlusY - 16;
 				var currentRowY2 = currentRowY1 + strHeight;
-				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !mouseoverHeader;
+				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !mouseoverHeader && !mouseoverScrollBar && !scrollBarHolding;
 
 						
 				if(i < tagListSize){
@@ -122,13 +122,9 @@ function scr_panelPane_drawChainFieldTags(){
 						draw_set_color(global.colorThemeSelected2);
 						draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
-							scr_deleteFromList(tagList, tagList[| i]);
-							if(chainViewOneToMany){
-								with (obj_panelPane) functionField_entryTagSelected = "";
-							}
-							else{
-								with (obj_panelPane) functionField_chainTagSelected = "";
-							}
+							if (chainViewOneToMany) obj_control.chain1toManyFieldToChange = functionField_entryFieldSelected;
+							else obj_control.chain1to1FieldToChange = functionField_chainFieldSelected;
+							scr_removeFieldTagQuestionPrompt("tag", "chain", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
 						}
 						scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
 					}

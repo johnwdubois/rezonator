@@ -1,9 +1,5 @@
 function scr_panelPane_drawUnitsList() {
-	/*
-		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
-				set chainContents panelPane to look at that chain
-	*/
-	
+
 
 	
 
@@ -40,7 +36,7 @@ function scr_panelPane_drawUnitsList() {
 	}
 	
 	// if mouse is hovered on header region, make sure there is no line highlighted
-	if (mouseoverHeaderRegion) {
+	if (mouseoverHeaderRegion || !obj_control.mouseoverPanelPane) {
 		with (obj_panelPane) {
 			functionChainList_highlightUnit = "";
 		}

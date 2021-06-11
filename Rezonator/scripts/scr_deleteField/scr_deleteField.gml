@@ -1,38 +1,45 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteField(fieldName){
+
+	// determine the list that this field is in
+	var chainViewOneToMany = obj_panelPane.chainViewOneToMany;
+	var fieldPaneSwitchButton = obj_panelPane.fieldPaneSwitchButton;
+	var fieldList = -1;
+	var navWindowList1 = -1;
+	var navWindowList2 = -1;
+	var navWindowList3 = -1;
 	
-	if(obj_panelPane.chainViewOneToMany){
-		var fieldList = obj_control.tokenFieldList;
-		var navWindowList = obj_control.navTokenFieldList;
-	}
-	else{
-		var fieldList = obj_control.unitFieldList;
-		var navWindowList = obj_control.navUnitFieldList;
-	}
 	
+	if (chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+		fieldList = obj_control.tokenFieldList;
+		navWindowList1 = obj_control.navTokenFieldList;
+	}
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+		fieldList = obj_control.unitFieldList;
+		navWindowList1 = obj_control.navUnitFieldList;
+	}
+	else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+		fieldList = global.chainEntryFieldList;
+		navWindowList1 = obj_control.chain1toManyColFieldListRez;
+		navWindowList2 = obj_control.chain1toManyColFieldListTrack;
+		navWindowList3 = obj_control.chain1toManyColFieldListStack;
+	}
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+		fieldList = global.chainFieldList;
+		navWindowList1 = obj_control.chain1to1ColFieldListRez;
+		navWindowList2 = obj_control.chain1to1ColFieldListTrack;
+		navWindowList3 = obj_control.chain1to1ColFieldListStack;
+	}
 	var fieldListSize = ds_list_size(fieldList);
 
-
+	// delete field from field list
 	scr_deleteFromList(fieldList, fieldName);
 	
-	var placeInNavList = ds_list_find_index(navWindowList, fieldName);
-	if( placeInNavList != -1){
-		var i = 0;
-		var isInNavList = (ds_list_find_index(navWindowList, fieldList[|i]) == -1);
-		while (!isInNavList and i < fieldListSize-1){
-			i++;
-			isInNavList = (ds_list_find_index(navWindowList, fieldList[|i]) == -1);
 	
-		}
-		if(fieldList[|i] != undefined){
-			ds_list_replace(navWindowList,placeInNavList, fieldList[|i] );
-		}
-		else{
-			ds_list_delete(navWindowList,placeInNavList);
-		}
-	}
-	
+	scr_deleteFieldFromNavWindowList(navWindowList1, fieldList, fieldName);
+	scr_deleteFieldFromNavWindowList(navWindowList2, fieldList, fieldName);
+	scr_deleteFieldFromNavWindowList(navWindowList3, fieldList, fieldName);
 
 
 }
