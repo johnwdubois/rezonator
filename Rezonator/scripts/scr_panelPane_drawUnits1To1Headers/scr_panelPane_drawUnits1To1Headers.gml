@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawUnits1To1Headers(){
 	
+
+	
 	var headerList = obj_control.navUnitFieldList;
 	var headerListSize = ds_list_size(headerList);
 	var headerHeight = functionTabs_tabHeight;
@@ -19,9 +21,9 @@ function scr_panelPane_drawUnits1To1Headers(){
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
-		var headerTextX = headerRectX1 + (textMarginLeft);
+		var headerTextX = headerRectX1 + (textMarginLeft*2) + dropDownButtonSize;
 		if (!lineStateLTR) {
-			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize;
+			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize - (textMarginLeft * 2);
 		}
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));
 		
@@ -37,7 +39,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 			}
 		}
 		else{
-			if(i < headerListSize-1){
+			if(i < headerListSize){
 				draw_set_color(global.colorThemeBorders);
 				draw_line_width(headerRectX1 + 1, headerRectY1, headerRectX1 + 1, y + windowHeight, 1);
 			}
@@ -47,7 +49,10 @@ function scr_panelPane_drawUnits1To1Headers(){
 		
 		// draw displayUnit button
 		var displayUnitButtonSize = (headerHeight / 4);
-		var displayUnitButtonX = headerRectX1 + (colWidth - displayUnitButtonSize / 2) - (textMarginLeft * 2);
+		var displayUnitButtonX = headerRectX1 + (displayUnitButtonSize) + (textMarginLeft);
+		if (!lineStateLTR) {
+			displayUnitButtonX = headerRectX2 - (displayUnitButtonSize) - (textMarginLeft);
+		}
 		var displayUnitButtonY = mean(headerRectY1, headerRectY2);
 		var mouseoverDisplayUnit = point_in_circle(mouse_x, mouse_y, displayUnitButtonX, displayUnitButtonY, displayUnitButtonSize) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		var mouseoverHeader = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverDisplayUnit;
