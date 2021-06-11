@@ -123,8 +123,12 @@ function scr_panelPane_drawFieldTags(){
 						draw_set_color(global.colorThemeSelected2);
 						draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
-							if (chainViewOneToMany) obj_control.tokenFieldToChange = functionField_tokenFieldSelected;
-							else obj_control.unitFieldToChange = functionField_unitFieldSelected;
+							if (chainViewOneToMany) {
+								obj_control.tokenFieldToChange = functionField_tokenFieldSelected;
+							}
+							else {
+								obj_control.unitFieldToChange = functionField_unitFieldSelected;
+							}
 							scr_removeFieldTagQuestionPrompt("tag", "unit", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
 						}
 						scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);

@@ -52,7 +52,7 @@ function scr_drawToolPane(toolSprScale) {
 		
 		if (mouse_check_button_released(mb_left)) {
 			var toolOptionList = ds_list_create();
-			ds_list_add(toolOptionList, "menu_read", "menu_track", "menu_rez");
+			ds_list_add(toolOptionList, "help_label_tag", "menu_track", "menu_rez");
 			scr_createFlyout(toolButtonRectX1 - flyoutXBuffer, toolButtonY, toolOptionList, global.optionListTypeToolButton, spr_toolsNew, false);
 		}
 	}
