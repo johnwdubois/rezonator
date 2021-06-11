@@ -229,6 +229,7 @@
     {"id":{"name":"scr_getSearchUnitList","path":"scripts/scr_getSearchUnitList/scr_getSearchUnitList.yy",},"order":4,},
     {"id":{"name":"scr_importPlainTXT","path":"scripts/scr_importPlainTXT/scr_importPlainTXT.yy",},"order":13,},
     {"id":{"name":"scr_get_translation","path":"scripts/scr_get_translation/scr_get_translation.yy",},"order":0,},
+    {"id":{"name":"scr_deleteFieldFromNavWindowList","path":"scripts/scr_deleteFieldFromNavWindowList/scr_deleteFieldFromNavWindowList.yy",},"order":25,},
     {"id":{"name":"utf8_read","path":"scripts/utf8_read/utf8_read.yy",},"order":1,},
     {"id":{"name":"scr_updateDisplayRow","path":"scripts/scr_updateDisplayRow/scr_updateDisplayRow.yy",},"order":22,},
     {"id":{"name":"spr_checkmark","path":"sprites/spr_checkmark/spr_checkmark.yy",},"order":21,},

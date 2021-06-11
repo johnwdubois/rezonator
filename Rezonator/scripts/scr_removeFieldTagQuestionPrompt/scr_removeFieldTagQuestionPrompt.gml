@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_removeFieldTagQuestionPrompt(fieldOrTag, unitOrChain, oneManyOrOneOne, optionSelected){
 	
+	show_debug_message("scr_removeFieldTagQuestionPromp... fieldOrTag: " + string(fieldOrTag) + ", unitOrChain: " + string(unitOrChain) + ", oneManyOrOneOne: " + string(oneManyOrOneOne) + ", optionSelected: " + string(optionSelected));
 
 	if (!instance_exists(obj_dialogueBox)) {
 		instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);

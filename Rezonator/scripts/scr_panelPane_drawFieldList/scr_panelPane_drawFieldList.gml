@@ -27,13 +27,26 @@ function scr_panelPane_drawFieldList(){
 	
 	// determine which field list to use depending on 1to1 vs 1toMany and Chain vs Discourse
 	var fieldList = -1;
-	if(chainViewOneToMany){
-		fieldList = fieldPaneSwitchButton == "Discourse" ? obj_control.tokenFieldList : global.chainEntryFieldList;
+	var fieldMap = -1;
+	if (chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+		fieldList = obj_control.tokenFieldList;
+		fieldMap = global.nodeMap[? "tokenTagMap"];
 	}
-	else{
-		fieldList = fieldPaneSwitchButton == "Discourse" ? obj_control.unitFieldList : global.chainFieldList;
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+		fieldList = obj_control.unitFieldList;
+		fieldMap = global.nodeMap[? "unitTagMap"];
 	}
+	else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+		fieldList = global.chainEntryFieldList;
+		fieldMap = global.entryFieldMap;
+	}
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+		fieldList = global.chainFieldList;
+		fieldMap = global.chainFieldMap;
+	}
+
 	
+	// make sure the field list is valid
 	if (!scr_isNumericAndExists(fieldList, ds_type_list)) exit;
 	var fieldListSize = ds_list_size(fieldList);
 	
@@ -46,9 +59,24 @@ function scr_panelPane_drawFieldList(){
 	var plusY = strHeight;
 	for (var i = 0; i < fieldListSize+1; i++) {
 		
+		// get current field from list
+		var currentField = "";
+		var removable = false;
+		if (i < fieldListSize) {
+			currentField = fieldList[| i];
+			var currentFieldSubMap = fieldMap[? currentField];
+			var currentTagSet = currentFieldSubMap[? "tagSet"];
+			if (scr_isNumericAndExists(currentTagSet, ds_type_list)) {
+				removable = true;
+			}
+		}
+		
+		
+		
+		// get y values for this row
 		var currentRowY1 = y + plusY + scrollPlusY - 16;
 		var currentRowY2 = currentRowY1 + strHeight;
-		var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar;
+		var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeader && !mouseoverScrollBar && !scrollBarHolding;
 		
 				
 		if (i < fieldListSize) {
@@ -62,30 +90,30 @@ function scr_panelPane_drawFieldList(){
 					// set field to be selected when clicked
 					if (chainViewOneToMany) {
 						if (fieldPaneSwitchButton == "Discourse") {
-							if (functionField_tokenFieldSelected != fieldList[| i]) {
+							if (functionField_tokenFieldSelected != currentField) {
 								with(obj_panelPane) functionField_tokenTagSelected = "";
 							}
-							with(obj_panelPane) functionField_tokenFieldSelected = fieldList[| i];
+							with(obj_panelPane) functionField_tokenFieldSelected = currentField;
 						}
 						else {
-							if(functionField_entryFieldSelected != fieldList[| i]){
+							if(functionField_entryFieldSelected != currentField){
 								with(obj_panelPane) functionField_entryTagSelected = "";
 							}
-							with(obj_panelPane) functionField_entryFieldSelected = fieldList[| i];
+							with(obj_panelPane) functionField_entryFieldSelected = currentField;
 						}
 					}
 					else {
 						if (fieldPaneSwitchButton == "Discourse") {
-							if (functionField_unitFieldSelected != fieldList[| i]) {
+							if (functionField_unitFieldSelected != currentField) {
 								with(obj_panelPane) functionField_unitTagSelected = "";
 							}
-							with(obj_panelPane) functionField_unitFieldSelected = fieldList[| i];
+							with(obj_panelPane) functionField_unitFieldSelected = currentField;
 						}
 						else {
-							if(functionField_chainFieldSelected != fieldList[| i]){
+							if(functionField_chainFieldSelected != currentField){
 								with(obj_panelPane) functionField_chainTagSelected = "";
 							}
-							with(obj_panelPane) functionField_chainFieldSelected = fieldList[| i];
+							with(obj_panelPane) functionField_chainFieldSelected = currentField;
 						}
 					}
 				}
@@ -96,18 +124,18 @@ function scr_panelPane_drawFieldList(){
 			var fieldSelected = false;
 			if (chainViewOneToMany) {
 				if (fieldPaneSwitchButton == "Discourse") {
-					if (functionField_tokenFieldSelected == fieldList[| i]) fieldSelected = true;
+					if (functionField_tokenFieldSelected == currentField) fieldSelected = true;
 				}
 				else {
-					if (functionField_entryFieldSelected == fieldList[| i]) fieldSelected = true;
+					if (functionField_entryFieldSelected == currentField) fieldSelected = true;
 				}
 			}
 			else {
 				if (fieldPaneSwitchButton == "Discourse") {
-					if (functionField_unitFieldSelected == fieldList[| i]) fieldSelected = true;
+					if (functionField_unitFieldSelected == currentField) fieldSelected = true;
 				}
 				else {
-					if (functionField_chainFieldSelected == fieldList[| i]) fieldSelected = true;
+					if (functionField_chainFieldSelected == currentField) fieldSelected = true;
 				}
 			}
 		
@@ -135,8 +163,8 @@ function scr_panelPane_drawFieldList(){
 			// get coordinates for delete button
 			var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 			var delButtonY = currentRowY1 + (strHeight * 0.5);
-			var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2) && mouseoverRow;
-			var trashAlpha = .5;
+			var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2) && mouseoverRow && removable;
+			var trashAlpha = (removable) ? 1 : 0.5;
 
 								
 			// mouseover & click on sequence arrows
@@ -149,11 +177,11 @@ function scr_panelPane_drawFieldList(){
 					if (!instance_exists(obj_dialogueBox)) {
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						if (chainViewOneToMany && fieldPaneSwitchButton == "Discourse") obj_dialogueBox.removeFieldToken = true;
-						else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldEntry = true;
 						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Discourse") obj_dialogueBox.removeFieldUnit = true;
+						else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldEntry = true;
 						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldChain = true;
 						obj_dialogueBox.questionWindowActive = true;
-						obj_dialogueBox.stringToBeRemoved = fieldList[| i];
+						obj_dialogueBox.stringToBeRemoved = currentField;
 					}
 
 					
@@ -161,8 +189,7 @@ function scr_panelPane_drawFieldList(){
 				
 				scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
 			}
-									
-			trashAlpha = 1;
+			
 
 								
 			draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
@@ -173,7 +200,7 @@ function scr_panelPane_drawFieldList(){
 			draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
 		
 			// draw field name
-			draw_text(floor(fieldNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(fieldList[| i]));
+			draw_text(floor(fieldNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(currentField));
 		
 		}
 		else{

@@ -92,6 +92,9 @@ function scr_drawQuestionBox() {
 	if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain) {
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the option to mark tag " + string(stringToBeRemoved));
 	}
+	if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain) {
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the tag set for Field:  " + string(stringToBeRemoved));
+	}
 
 	draw_text(floor(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active())/2 - verticleBuffer + 105), scr_get_translation("msg_ask_sure"));
 
