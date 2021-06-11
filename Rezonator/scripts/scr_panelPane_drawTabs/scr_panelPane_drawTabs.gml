@@ -23,8 +23,8 @@ function scr_panelPane_drawTabs() {
 
 	var buttonScale = (1+global.fontSize/10);
 
-	var translationListSize = ds_list_size(global.translationList);
-	var hasTranslation = (translationListSize > 0);
+
+	
 	
 	var tabList = obj_control.panelPaneTabList;
 	var tabAmount = ds_list_size(tabList);

@@ -34,7 +34,6 @@ function scr_specialFieldsOptions(optionSelected) {
 			global.unitImportUnitEndColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Translation":
-		global.translationList = ds_list_create();
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Translation") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
