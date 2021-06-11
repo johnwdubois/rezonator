@@ -33,6 +33,7 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 	}
 	else if (optionSelected == "Show in main screen") {
 		global.displayTokenField = obj_control.tokenFieldToChange;
+		instance_destroy();
 	}
 	
 
