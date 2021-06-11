@@ -37,17 +37,20 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_middle);
 		scr_adaptFont(currentField, "M");
-		var headerTextX = floor(headerRectX1 + textMarginLeft);
+		var headerTextX = floor(headerRectX1 + (textMarginLeft*2) + dropDownButtonSize);
 		var headerTextY = floor(y + (headerHeight / 2));
 		if (!lineStateLTR) {
 			draw_set_halign(fa_right);
-			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize;
+			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize - (textMarginLeft * 2);
 		}
 		draw_text(headerTextX, headerTextY, currentField);
 	
 		// draw displayToken button
 		var displayTokenButtonSize = (headerHeight / 4);
-		var displayTokenButtonX = headerRectX2 - displayTokenButtonSize - 4;
+		var displayTokenButtonX = headerRectX1 + (displayTokenButtonSize) + (textMarginLeft);
+		if (!lineStateLTR) {
+			displayTokenButtonX = headerRectX2 - (displayTokenButtonSize) - (textMarginLeft);
+		}
 		var displayTokenButtonY = mean(headerRectY1, headerRectY2);
 		var mouseoverDisplayToken = point_in_circle(mouse_x, mouse_y, displayTokenButtonX, displayTokenButtonY, displayTokenButtonSize) && !instance_exists(obj_dropDown);
 		var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !mouseoverDisplayToken && !instance_exists(obj_dropDown);
