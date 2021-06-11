@@ -68,7 +68,12 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 			
 			// draw underline
 			var underlineX1 = headerTextX;
-			var underlineX2 = headerTextX + string_width(currentField);
+			if(lineStateLTR){
+				var underlineX2 = headerTextX + string_width(currentField);
+			}
+			else{
+				var underlineX2 = headerTextX - string_width(currentField);
+			}
 			var underlineY = headerTextY + (tabHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
 			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);

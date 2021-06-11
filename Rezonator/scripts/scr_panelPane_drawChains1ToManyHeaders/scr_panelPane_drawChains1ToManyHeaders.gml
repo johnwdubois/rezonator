@@ -51,9 +51,6 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			if (!lineStateLTR){
 				draw_set_halign(fa_right);
 				headerTextX = headerRectX2 - (textMarginLeft)
-				if(i >= 3){
-					headerTextX = floor(headerTextX - dropDownButtonSize);
-				}
 			}
 			var headerTextY = floor(y + (tabHeight / 2));
 	
@@ -102,7 +99,12 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 					
 					// draw underline
 					var underlineX1 = headerTextX;
-					var underlineX2 = headerTextX + string_width(currentField);
+					if(lineStateLTR){
+						var underlineX2 = headerTextX + string_width(currentField);
+					}
+					else{
+						var underlineX2 = headerTextX - string_width(currentField);
+					}
 					var underlineY = headerTextY + (tabHeight * 0.25);
 					draw_set_color(global.colorThemeBorders);
 					draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
@@ -133,7 +135,6 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			// draw header name
 			draw_set_color(global.colorThemeText);
 			draw_set_valign(fa_middle);
-			draw_set_halign(fa_left);
 			scr_adaptFont(colName, "M");
 			
 

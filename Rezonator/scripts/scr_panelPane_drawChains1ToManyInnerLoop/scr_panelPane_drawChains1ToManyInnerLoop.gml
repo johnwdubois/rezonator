@@ -12,7 +12,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 	var isChunk = scr_isChunk(ID);
 	var unitID = "";
 	var tokenID = "";
-		var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
+	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var IDsubMap = global.nodeMap[?ID];
 	var type = IDsubMap[?"type"];
 	if(type == "unit"){

@@ -9,6 +9,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var textMarginLeft = 8;
 	var plusX = x;
+	var dropDownButtonSize = sprite_get_width(spr_dropDown);
 	for (var i = 0; i < headerListSize; i++) {
 		
 		var currentField = headerList[| i];
@@ -20,7 +21,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		var headerRectY2 = headerRectY1 + headerHeight;
 		var headerTextX = headerRectX1 + (textMarginLeft);
 		if (!lineStateLTR) {
-			headerTextX = headerRectX2 - (textMarginLeft);
+			headerTextX = headerRectX2 - (textMarginLeft) - dropDownButtonSize;
 		}
 		var headerTextY = floor(mean(headerRectY1, headerRectY2));
 		
@@ -57,7 +58,12 @@ function scr_panelPane_drawUnits1To1Headers(){
 			
 			// draw underline
 			var underlineX1 = headerTextX;
-			var underlineX2 = headerTextX + string_width(currentField);
+			if(lineStateLTR){
+				var underlineX2 = headerTextX + string_width(currentField);
+			}
+			else{
+				var underlineX2 = headerTextX - string_width(currentField);
+			}
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
 			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
