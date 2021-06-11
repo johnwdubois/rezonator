@@ -229,8 +229,44 @@ function scr_panelPane_drawFieldTags(){
 	draw_text(floor(tagNameColX + spaceWidth), headerTextY, "Tag name");
 	
 	//json tag saving button
+	var spriteScale = 0.4;
+	var spriteSize = sprite_get_width(spr_oneToOneTool)* spriteScale;
+	var oneToOneRectX2 = x + windowWidth - spaceWidth*3;
+	var oneToOneRectX1 = oneToOneRectX2 - spriteSize;
+	var oneToOneRectY1 =  mean(y ,y + headerHeight) - spriteSize/2;
+	var oneToOneRectY2 = oneToOneRectY1 + spriteSize;
+	
+	var oneToOneSpriteX = floor(mean(oneToOneRectX1,oneToOneRectX2));
+	var oneToOneSpriteY = floor(mean(oneToOneRectY1,oneToOneRectY2)+1);
+	
+	var oneToOneImageIndex = !obj_control.showUnitTags;
+	
+	var mouseOveroneToOne = point_in_rectangle(mouse_x,mouse_y,oneToOneRectX1,oneToOneRectY1,oneToOneRectX2,oneToOneRectY2)
+	
+	if(mouseOveroneToOne){
+		draw_rectangle(oneToOneRectX1,oneToOneRectY1,oneToOneRectX2,oneToOneRectY2, true);
+		if(device_mouse_check_button_released(0,mb_left)){
+			if(obj_panelPane.chainViewOneToMany == true){
+				scr_1to1Options("One to one");
+			}
+			else{
+				scr_1to1Options("One to many");
+			}
+
+		}
+			if(obj_panelPane.chainViewOneToMany == true){
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Token Fields", obj_tooltip.arrowFaceUp);
+			}
+			else{
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Unit Fields", obj_tooltip.arrowFaceUp);
+			}
+		
+	}
+	draw_sprite_ext(spr_oneToOneTool,oneToOneImageIndex,oneToOneSpriteX,oneToOneSpriteY,spriteScale,spriteScale,0,global.colorThemeText, 1);
+	
+	//json tag saving button
 	var spriteSize = sprite_get_width(spr_saveIcon);
-	var saveRectX2 = x + windowWidth - spaceWidth*3;
+	var saveRectX2 = oneToOneRectX1 - spaceWidth*3;
 	var saveRectX1 = saveRectX2 - spriteSize;
 	var saveRectY1 =  mean(y ,y + headerHeight) - spriteSize/2;
 	var saveRectY2 = saveRectY1 + spriteSize;
