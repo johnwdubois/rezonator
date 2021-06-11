@@ -12,10 +12,22 @@ function scr_removeFromTagSetOptions(optionSelected, type){
 	
 	// determine fieldToChange and tagSubMap based on type
 	var fieldToChange = "";
-	if (type == "token") fieldToChange = obj_control.tokenFieldToChange;
-	else if (type == "unit") fieldToChange = obj_control.unitFieldToChange;
-	else if (type == "entry") fieldToChange = obj_control.chain1toManyFieldToChange;
-	else if (type == "chain") fieldToChange = obj_control.chain1to1FieldToChange;
+	if (type == "token") {
+		fieldToChange = obj_control.tokenFieldToChange;
+		with (obj_panelPane) functionField_tokenTagSelected = "";
+	}
+	else if (type == "unit") {
+		fieldToChange = obj_control.unitFieldToChange;
+		with (obj_panelPane) functionField_unitTagSelected = "";
+	}
+	else if (type == "entry") {
+		fieldToChange = obj_control.chain1toManyFieldToChange;
+		with (obj_panelPane) functionField_entryTagSelected = "";
+	}
+	else if (type == "chain") {
+		fieldToChange = obj_control.chain1to1FieldToChange;
+		with (obj_panelPane) functionField_chainTagSelected = "";
+	}
 	var tagSubMap = tagMap[? fieldToChange];
 	if (!scr_isNumericAndExists(tagSubMap, ds_type_map)) exit;
 	
