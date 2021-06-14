@@ -19,6 +19,7 @@ function scr_panelPaneDrawBranch(){
 				draw_set_color(global.colorThemePaneBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
+				// all the possible left panes
 				if (functionChainList_currentTab == functionChainList_tabLine) {
 					scr_panelPane_drawUnitsList();
 				}
@@ -30,6 +31,12 @@ function scr_panelPaneDrawBranch(){
 				}
 				else if (functionChainList_currentTab == functionChainList_tabField) {
 					scr_panelPane_drawFieldList();
+				}
+				else if (functionChainList_currentTab == functionChainList_tabSearch) {
+					scr_panelPane_drawSearchList();
+				}			
+				else if (functionChainList_currentTab == functionChainList_tabChunk) {
+					scr_panelPane_drawChunkList();
 				}
 				else {
 					scr_panelPane_drawChainsList();
@@ -94,6 +101,11 @@ function scr_panelPaneDrawBranch(){
 							scr_panelPane_drawChainFieldTags();
 						}
 					}
+					else if (functionChainList_currentTab == functionChainList_tabSearch) {
+						scr_panelPane_drawSearch1ToMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabChunk) {
+					}
 					else {
 						scr_panelPane_drawChains1ToMany();
 						scr_panelPane_drawChains1ToManyHeaders();
@@ -117,6 +129,11 @@ function scr_panelPaneDrawBranch(){
 					}
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabSearch) {
+					}
+					else if (functionChainList_currentTab == functionChainList_tabChunk) {
+						scr_panelPane_drawChunks1To1();
 					}
 					else {
 						scr_panelPane_drawChains1To1();

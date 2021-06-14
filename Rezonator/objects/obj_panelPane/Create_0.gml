@@ -38,6 +38,8 @@ functionChainList_tabStackBrush = "menu_stack";
 functionChainList_tabShow = "Show";
 functionChainList_tabField = "Field";
 functionChainList_tabTranslations = "Translations";
+functionChainList_tabSearch = "Search";
+functionChainList_tabChunk = "Chunk";
 functionChainList_tabClique = -1;
 
 
