@@ -70,6 +70,7 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeRemoveFromTagSetChains1ToMany = 65;
 	global.optionListTypeFieldChains1To1 = 66;
 	global.optionListTypeRemoveFromTagSetChains1To1 = 67;
+	global.optionListTypeChunk1To1Tag = 68;
 
 
 }

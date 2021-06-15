@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunkList(){
 
-	
+	var drawScrollbar = chainViewOneToMany;
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
@@ -12,6 +12,14 @@ function scr_panelPane_drawChunkList(){
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	
+	// get the instance ID for the chainContents pane so we can easily reference it
+	var chainContentsPanelPaneInst = 0;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainContents) {
+			chainContentsPanelPaneInst = self.id;
+		}
+	}
 	
 	// get the chunk list & make sure it exists
 	var chunkList = global.nodeMap[? "chunkList"];
@@ -48,13 +56,14 @@ function scr_panelPane_drawChunkList(){
 		
 		// mouseover & click
 		if (mouseoverRowRect) {
+			with (obj_panelPane) functionChainList_chunkMouseover = currentChunk;
 			if (device_mouse_check_button_pressed(0, mb_left)) {
 				with (obj_panelPane) functionChainList_chunkSelected = currentChunk;
 			}
 		}
 		
 		// draw rect
-		var rectColor = (mouseoverRowRect) ? global.colorThemeSelected1 : global.colorThemeBG;
+		var rectColor = (mouseoverRowRect || functionChainList_chunkMouseover == currentChunk) ? global.colorThemeSelected1 : global.colorThemeBG;
 		if (functionChainList_chunkSelected == currentChunk) rectColor = c_yellow;
 		var textColor = global.colorThemeText;
 		draw_set_color(rectColor);
@@ -72,9 +81,14 @@ function scr_panelPane_drawChunkList(){
 		textPlusY += strHeight;
 	}
 	
-	scr_scrollBar(chunkListSize, -1, strHeight, headerHeight,
-		global.colorThemeSelected1, global.colorThemeSelected2,
-		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	if (drawScrollbar) {
+		scr_scrollBar(chunkListSize, -1, strHeight, headerHeight,
+			global.colorThemeSelected1, global.colorThemeSelected2,
+			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+	}
+	else {
+		scrollPlusY = chainContentsPanelPaneInst.scrollPlusY;
+	}
 	
 	
 	scr_surfaceEnd();

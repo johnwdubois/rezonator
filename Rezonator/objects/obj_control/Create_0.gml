@@ -598,8 +598,10 @@ updatedSpeakerLabel = false;
 
 navTokenFieldList = ds_list_create();
 navUnitFieldList = ds_list_create();
+navChunkFieldList = ds_list_create();
 ds_list_add(navTokenFieldList, "~text");
 ds_list_add(navUnitFieldList, "~Participant");
+ds_list_add(navChunkFieldList, "~text");
 currentDisplayTokenColsList = ds_list_create();
 currentDisplayUnitColsList = ds_list_create();
 ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
@@ -650,6 +652,9 @@ chain1ToManyColFieldToChange = -1;
 chain1to1ChainToChange = "";
 chain1to1FieldToChange = "";
 chain1To1ColFieldToChange = -1;
+
+chunk1to1ChunkToChange = "";
+chunk1to1FieldToChange = "";
 
 chain1to1ColFieldListRez = ds_list_create(); // list of the dynamic columns in the rezChain 1-1 pane
 chain1to1ColFieldListTrack = ds_list_create(); // list of the dynamic columns in the trackChain 1-1 pane
