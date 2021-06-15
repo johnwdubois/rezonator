@@ -97,7 +97,7 @@ function scr_panelPaneDrawBranch(){
 						if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
 							scr_panelPane_drawFieldTags();
 						}
-						else{
+						else {
 							scr_panelPane_drawChainFieldTags();
 						}
 					}
