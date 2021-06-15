@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 	
-	var tabHeight = functionTabs_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
 	var chain1to1ColFieldListSize = ds_list_size(chain1to1ColFieldList);
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
@@ -14,7 +14,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 		var headerRectX1 = x + (i * (windowWidth / chain1to1ColFieldListSize));
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + (windowWidth / chain1to1ColFieldListSize);
-		var headerRectY2 = headerRectY1 + tabHeight;
+		var headerRectY2 = headerRectY1 + headerHeight;
 		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		
 		// get header column name
@@ -22,13 +22,13 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 		
 		// BG & outline rects
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + tabHeight, false);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, false);
 		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + tabHeight, true);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, true);
 		
 		// draw line to separate column headers from data
 		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(x, headerRectY1, x + windowWidth, headerRectY1 + tabHeight, true);
+		draw_rectangle(x, headerRectY1, x + windowWidth, headerRectY2, true);
 		
 		
 		// draw header name
@@ -42,7 +42,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 			draw_set_halign(fa_right);
 			headerTextX = floor(headerRectX2 - (textMarginLeft * 2));
 		}
-		var headerTextY = floor(y + (tabHeight / 2));
+		var headerTextY = floor(y + (headerHeight / 2));
 		
 		draw_set_color(global.colorThemeText);
 		draw_text(headerTextX, headerTextY, currentField);
@@ -74,7 +74,7 @@ function scr_panelPane_drawChains1To1Headers(chain1to1ColFieldList, chainType){
 			else{
 				var underlineX2 = headerTextX - string_width(currentField);
 			}
-			var underlineY = headerTextY + (tabHeight * 0.25);
+			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
 			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
 
