@@ -27,7 +27,7 @@ function scr_createChunk(){
 		var chunkSubMap = global.nodeMap[? chunkID];
 		ds_map_add_list(chunkSubMap, "tokenList", tokenIDList);
 		ds_map_add_list(chunkSubMap, "inChainsList", inChainsList);
-		
+			
 		//set to focused chunk
 		obj_chain.currentFocusedChunkID = chunkID;
 		
@@ -48,7 +48,24 @@ function scr_createChunk(){
 		
 		// add the new chunk to the chunkList
 		var chunkList = global.nodeMap[? "chunkList"];
-		if (ds_list_find_index(chunkList, chunkID) == -1) ds_list_add(chunkList, chunkID);
+		if (scr_isNumericAndExists(chunkList, ds_type_list)) {
+			if (ds_list_find_index(chunkList, chunkID) == -1) ds_list_add(chunkList, chunkID);
+		
+			// give the chunk a name
+			chunkSubMap[? "name"] = "Chunk " + string(ds_list_size(chunkList));
+		}
+		
+		
+		// give the chunk a tagMap
+		var chunkTagMap = ds_map_create();
+		ds_map_add_map(chunkSubMap, "tagMap", chunkTagMap);
+		var tokenFieldListSize = ds_list_size(obj_control.tokenFieldList);
+		for (var i = 0; i < tokenFieldListSize; i++) {
+			var currentTokenField = obj_control.tokenFieldList[| i];
+			if (is_string(currentTokenField)) {
+				chunkTagMap[? currentTokenField] = "";
+			}
+		}
 	}
 	
 	

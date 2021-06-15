@@ -42,6 +42,7 @@ function scr_panelPane_drawShowList(){
 	draw_set_alpha(1);
 	var setList = "";
 	var setListSize = 0;
+	
 	// loop over shows
 	for (var i = 0; i < showListSize; i++) {
 		
