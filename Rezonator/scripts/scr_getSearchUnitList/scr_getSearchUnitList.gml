@@ -1,8 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_getSearchUnitList(){
+function scr_getSearchUnitList(searchTermList){
 	
-	var searchedTokensList = obj_control.listOfWords;
+	var searchedTokensList = searchTermList;
 	var searchedTokensListSize = ds_list_size(searchedTokensList);
 	
 	// get list of units to be searched

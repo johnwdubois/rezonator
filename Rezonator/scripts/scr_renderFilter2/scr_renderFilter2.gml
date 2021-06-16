@@ -17,7 +17,7 @@ function scr_renderFilter2(){
 	var search = obj_control.searchGridActive;
 	if (search) {
 		show_debug_message("scr_renderFilter2 search, listOfWords: " + scr_getStringOfList(obj_control.listOfWords));
-		list = scr_getSearchUnitList();
+		list = scr_getSearchUnitList(obj_control.listOfWords);
 		show_debug_message("scr_renderFilter2 search, list: " + scr_getStringOfList(list));
 	}
 	
