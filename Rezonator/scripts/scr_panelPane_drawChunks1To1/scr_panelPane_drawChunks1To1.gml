@@ -2,7 +2,9 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunks1To1(){
 	
-
+	// draw BG
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
 	// get the instance ID for the chainList pane so we can easily reference it
 	var chainListPanelPaneInst = 0;

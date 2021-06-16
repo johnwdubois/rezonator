@@ -2,7 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunks1To1Headers(fieldList){
 	
-	
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
 	var fieldListSize = ds_list_size(fieldList);
@@ -17,6 +16,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 		var headerRectX2 = headerRectX1 + (windowWidth / fieldListSize);
 		var headerRectY2 = headerRectY1 + headerHeight;
 		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+		
 		
 		// get field name
 		var currentField = string(fieldList[| i]);
@@ -44,6 +44,31 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 		}
 		var headerTextY = floor(y + (headerHeight / 2));
 		
+		
+		if (mouseoverColHeader) {
+			scr_createTooltip(mean(headerRectX1, headerRectX2), headerRectY2, "Change field", obj_tooltip.arrowFaceUp);
+			
+			// draw underline
+			var underlineX1 = headerTextX;
+			if(lineStateLTR){
+				var underlineX2 = headerTextX + string_width(currentField);
+			}
+			else{
+				var underlineX2 = headerTextX - string_width(currentField);
+			}
+			var underlineY = headerTextY + (headerHeight * 0.25);
+			draw_set_color(global.colorThemeBorders);
+			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
+			
+			if (mouse_check_button_released(mb_left)) {
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "Add to tag set", "Remove from tag set", "Select field", "Create new field");
+				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1ToMany);
+			}
+		}
+		
+		
+		// draw header text
 		draw_set_color(global.colorThemeText);
 		draw_text(headerTextX, headerTextY, currentField);
 		
