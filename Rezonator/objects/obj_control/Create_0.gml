@@ -498,6 +498,7 @@ lastAddedWord = "";
 hitIDCounter = 1;
 
 selectedChainID = "";
+selectedSearchID = "";
 
 dialogueBoxActive = false;
 newWordCreated = false;

@@ -140,18 +140,25 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		}
 		
 		// draw the token's text
-		var wordFound = currentTokenSubMap[?"searched"];
-		if(wordFound){
-			draw_set_color(make_color_rgb(20, 146, 181));
+		var wordFound = false;
+		
+		var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
+		if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
+			
+			var searchedTokenList = searchSubMap[?"displayTokenList"];
+			
+			wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
+			
 		}
-		else{
-			draw_set_color(global.colorThemeText);
-		}
+		
+
+		draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
+
 		draw_set_alpha(1);
 		draw_text(currentPixelX, pixelY, currentDisplayStr);
 		
 		// run through the loop forward or backward depending on if LTR or RTL
-		if (drawLineState = lineState_ltr) i++;
+		if (drawLineState == lineState_ltr) i++;
 		else i--;
 		j++;
 		
