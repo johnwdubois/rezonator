@@ -83,6 +83,7 @@ function scr_initializeDiscourseNodes(){
 							if(k == 3 and (global.tokenImportTranscriptColName == "" or global.tokenImportTranscriptColName == undefined)){}
 							else{
 								ds_list_add(obj_control.navTokenFieldList, currentField);
+								ds_list_add(obj_control.navChunkFieldList, currentField);
 							}
 						}
 					}

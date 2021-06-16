@@ -370,5 +370,10 @@ function scr_dropDownSelect(optionSelected) {
 		scr_removeFieldTagQuestionPrompt("tag", "chain", "1to1", optionSelected);
 		with (obj_dropDown) instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeChunk1To1Tag) //68
+	{
+	    scr_chunk1To1TagOptions(optionSelected);
+		instance_destroy();
+	}
 
 }

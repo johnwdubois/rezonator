@@ -15,13 +15,13 @@ function scr_panelPane_drawChains1To1(){
 		obj_control.mouseoverTagShortcut = "";
 	}
 	
-	var tabHeight = functionTabs_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	
 	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
 	
-	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + tabHeight, x + windowWidth, y + windowHeight);
+	var mouseoverScrollBar = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y + headerHeight, x + windowWidth, y + windowHeight);
 	
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var dropDownButtonWidth = sprite_get_width(spr_dropDown);
@@ -69,11 +69,10 @@ function scr_panelPane_drawChains1To1(){
 	// Set text margin area
 	var textMarginLeft = 8;
 
-	var textMarginTop = functionTabs_tabHeight;
 	var textPlusY = 0;
 
 	var drawDropDowns = false;
-	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, y + tabHeight, x + windowWidth, y + windowHeight)) {
+	if (!instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, y + headerHeight, x + windowWidth, y + windowHeight)) {
 		with (obj_panelPane) {
 			chainTagsHighlightRow = -1;
 		}
@@ -99,34 +98,32 @@ function scr_panelPane_drawChains1To1(){
 		for (var i = 0; i < listOfChainsSize; i++) {
 			
 			// don't bother drawing this stuff if it won't be on screen
-			if (y + textMarginTop + scrollPlusY + textPlusY < y - strHeight
-			or y + textMarginTop + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+			if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
+			or y + headerHeight + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
 			    textPlusY += strHeight;
 			    continue;
 			}
 
 			// get chainID & tagMap for the chain (and make sure it all exists)
-			var chainID = ds_list_find_value(listOfChains, i);
-			var chainSubMap = ds_map_find_value(global.nodeMap, chainID);
-			if (!is_numeric(chainSubMap)) continue;
-			if (!ds_exists(chainSubMap, ds_type_map)) continue;
-			var tagMap = ds_map_find_value(chainSubMap, "tagMap");
-			if (!is_numeric(tagMap)) continue;
-			if (!ds_exists(tagMap, ds_type_map)) continue;
+			var chainID = listOfChains[| i];
+			var chainSubMap = global.nodeMap[? chainID];
+			if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) continue;
+			var tagMap = chainSubMap[? "tagMap"];
+			if (!scr_isNumericAndExists(tagMap, ds_type_map)) continue;
 			
 			// get coordinates for cell rectangle
 			var cellRectX1 = x + (j * (windowWidth / chain1to1ColFieldListSize));
-			var cellRectY1 = y + textMarginTop + textPlusY + scrollPlusY - (strHeight / 2);
+			var cellRectY1 = y + headerHeight + textPlusY + scrollPlusY - (strHeight / 2);
 			var cellRectX2 = cellRectX1 + (windowWidth / chain1to1ColFieldListSize);
 			var cellRectY2 = cellRectY1 + strHeight;
-			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + tabHeight), cellRectX2, cellRectY2) && !mouseoverScrollBar;
+			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, max(cellRectY1, y + headerHeight), cellRectX2, cellRectY2) && !mouseoverScrollBar && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown);
 			var focusedCell = (obj_chain.currentFocusedChainID == chainID);
 			var highlightCell = (focusedCell || chainTagsHighlightRow == i);
 			
 			if (focusedCell) {
 				focusedRowRectY1 = cellRectY1;
 				focusedRowRectY2 = cellRectY2;
-				focusedElementY = y + textMarginTop + scrollPlusY + textPlusY;
+				focusedElementY = y + headerHeight + scrollPlusY + textPlusY;
 			}
 			
 			var chainColor = ds_map_find_value(chainSubMap, "chainColor");
@@ -136,7 +133,7 @@ function scr_panelPane_drawChains1To1(){
 			draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 			
 			// Check mouse clicks to focus a line in the list
-			if (mouseoverCell && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
+			if (mouseoverCell) {
 				drawDropDowns = true;
 				with (obj_panelPane) {
 					chainTagsHighlightRow = i;
@@ -152,7 +149,7 @@ function scr_panelPane_drawChains1To1(){
 			// check if this chain has a tag filled in for this field
 			var tagStr = "";
 			if (ds_map_exists(tagMap, currentField)) {
-				tagStr = ds_map_find_value(tagMap, currentField);
+				tagStr = tagMap[? currentField];
 			}
 			
 			// draw text for chain tag
@@ -177,7 +174,7 @@ function scr_panelPane_drawChains1To1(){
 				textX -= global.scrollBarWidth;
 			}
 			
-			draw_text(textX  - clipX, y + textMarginTop + scrollPlusY + textPlusY - clipY, string(tagStr));
+			draw_text(textX - clipX, y + headerHeight + scrollPlusY + textPlusY - clipY, string(tagStr));
 			
 			textPlusY += strHeight;
 								
@@ -195,7 +192,7 @@ function scr_panelPane_drawChains1To1(){
 	
 	
 	
-	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, textMarginTop,
+	scr_scrollBar(listOfChainsSize, focusedElementY, strHeight, headerHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
@@ -217,9 +214,9 @@ function scr_panelPane_drawChains1To1(){
 				var newFocusedChainID = ds_list_find_value(listOfChains, functionChainList_focusedChainIndex);
 				obj_chain.currentFocusedChainID = newFocusedChainID;
 				
-				if (focusedElementY <= y + textMarginTop + strHeight) {
+				if (focusedElementY <= y + headerHeight + strHeight) {
 					with (instToScroll) {
-						scrollPlusYDest += max(abs(focusedElementY - (y + textMarginTop + strHeight)) + strHeight, strHeight);
+						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
 					}
 				}
 			}

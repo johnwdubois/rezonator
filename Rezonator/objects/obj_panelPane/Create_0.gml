@@ -195,6 +195,7 @@ functionField_chainFieldSelected = "";
 functionField_chainTagSelected = "";
 
 functionChainList_chunkSelected = "";
+functionChainList_chunkMouseover = "";
 
 
 
