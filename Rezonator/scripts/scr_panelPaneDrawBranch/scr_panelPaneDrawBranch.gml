@@ -105,6 +105,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawSearch1ToMany();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabChunk) {
+						scr_panelPane_drawChunks1To1();
 					}
 					else {
 						scr_panelPane_drawChains1ToMany();
@@ -118,6 +119,7 @@ function scr_panelPaneDrawBranch(){
 						
 					}
 					else if (functionChainList_currentTab == functionChainList_tabShow) {
+						scr_panelPane_drawShow1toMany();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
 						if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
@@ -131,6 +133,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawLineTranslationLoopClipped();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabSearch) {
+						scr_panelPane_drawSearch1ToMany();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabChunk) {
 						scr_panelPane_drawChunks1To1();

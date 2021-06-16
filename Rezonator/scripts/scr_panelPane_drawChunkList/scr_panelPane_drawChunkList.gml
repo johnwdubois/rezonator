@@ -2,7 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunkList(){
 	
-	if (live_call()) return live_result;
 
 	var drawScrollbar = chainViewOneToMany;
 	var strHeight = string_height("0") * 1.5;
