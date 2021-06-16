@@ -7,7 +7,20 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
 		ds_list_copy(dropDownOptionList, obj_control.tokenFieldList);
-		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 3), dropDownOptionList, global.optionListTypeTokenSelection);
+		
+		
+		// check if the Unit tab or Chunk tab is selected, so we know where to draw the secondary dropDown out of
+		var optionSpacingMulti = 3;
+		with (obj_panelPane) {
+			if (currentFunction == functionChainList) {
+				if (functionChainList_currentTab == functionChainList_tabChunk) {
+					var optionSpacingMulti = 2;
+				}
+			}
+		}
+		
+		
+		scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * optionSpacingMulti), dropDownOptionList, global.optionListTypeTokenSelection);
 		
 	}
 	else if (optionSelected == "Create new field"

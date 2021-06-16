@@ -80,7 +80,7 @@ function scr_mapViewerDrawNodeData(){
 										|| (subMapKey == "tagMap" && global.speakerField == subsubMapKey));
 					
 					
-					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList");
+					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" || subsubMapKey == "typeList");
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);
 					}
