@@ -135,9 +135,10 @@ function scr_panelPane_drawTabs() {
 					tabFilterActive = obj_control.filterActiveStack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabShow) {
-					with (obj_panelPane) {
-						chainViewOneToMany = true;
-					}
+					with (obj_panelPane) chainViewOneToMany = true;
+				}
+				else if (functionChainList_currentTab == functionChainList_tabChunk) {
+					with (obj_panelPane) chainViewOneToMany = false;
 				}
 				
 				

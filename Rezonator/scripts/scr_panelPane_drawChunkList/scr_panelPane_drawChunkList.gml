@@ -1,12 +1,16 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunkList(){
+	
+	if (live_call()) return live_result;
 
 	var drawScrollbar = chainViewOneToMany;
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var nameColX = numColX + numColWidth;
+	var nameColWidth = windowWidth * 0.3;
+	var textColX = nameColX + nameColWidth;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
@@ -63,9 +67,9 @@ function scr_panelPane_drawChunkList(){
 		}
 		
 		// draw rect
-		var rectColor = (mouseoverRowRect || functionChainList_chunkMouseover == currentChunk) ? global.colorThemeSelected1 : global.colorThemeBG;
-		if (functionChainList_chunkSelected == currentChunk) rectColor = c_yellow;
-		var textColor = global.colorThemeText;
+		var rectColor = merge_color(global.colorThemeBG, global.colorThemeSelected1, (mouseoverRowRect || functionChainList_chunkMouseover == currentChunk) ? 0.8 : 0.4);
+		if (functionChainList_chunkSelected == currentChunk) rectColor = global.colorThemeSelected2;
+		var textColor = (functionChainList_chunkSelected == currentChunk) ? global.colorThemeBG : global.colorThemeText;
 		draw_set_color(rectColor);
 		draw_rectangle(rowRectX1 - clipX, rowRectY1 - clipY, rowRectX2 - clipX, rowRectY2 - clipY, false);
 
@@ -76,6 +80,10 @@ function scr_panelPane_drawChunkList(){
 		// name column
 		draw_set_color(textColor);
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentChunkName));
+		
+		// text column
+		draw_set_color(textColor);
+		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, scr_getChunkText(currentChunk));
 
 		// increment plusY
 		textPlusY += strHeight;
@@ -106,8 +114,12 @@ function scr_panelPane_drawChunkList(){
 			colText = "#";
 		}
 		else if (i == 1) {
-			colWidth = windowWidth - nameColX;
+			colWidth = nameColWidth;
 			colText = "Name";
+		}
+		else if (i == 2) {
+			colWidth = windowWidth - textColX;
+			colText = "Text";
 		}
 
 		

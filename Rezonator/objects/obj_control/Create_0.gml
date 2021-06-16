@@ -326,7 +326,6 @@ gridView = false;
 showDevVars = false;
 showFPS = false;
 showTranslation = false;
-showUnitTags = false;
 
 
 // Initialize the values to hold the hover word info

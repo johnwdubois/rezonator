@@ -239,7 +239,7 @@ function scr_panelPane_drawFieldTags(){
 	var oneToOneSpriteX = floor(mean(oneToOneRectX1,oneToOneRectX2));
 	var oneToOneSpriteY = floor(mean(oneToOneRectY1,oneToOneRectY2)+1);
 	
-	var oneToOneImageIndex = !obj_control.showUnitTags;
+	var oneToOneImageIndex = chainViewOneToMany;
 	
 	var mouseOveroneToOne = point_in_rectangle(mouse_x,mouse_y,oneToOneRectX1,oneToOneRectY1,oneToOneRectX2,oneToOneRectY2)
 	

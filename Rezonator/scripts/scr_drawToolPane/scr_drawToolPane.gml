@@ -207,7 +207,7 @@ function scr_drawToolPane(toolSprScale) {
 	var oneToOneButtonRectY1 = floor(oneToOneButtonY - (toolSprHeight / 2) - toolButtonRectBuffer);
 	var oneToOneButtonRectX2 = floor(toolButtonX + (toolSprWidth / 2) + toolButtonRectBuffer);
 	var oneToOneButtonRectY2 = floor(oneToOneButtonY + (toolSprHeight / 2) + toolButtonRectBuffer);
-	var oneToOneImageIndex = !obj_control.showUnitTags;
+	var oneToOneImageIndex = obj_panelPane.chainViewOneToMany;
 	if (obj_panelPane.functionChainList_currentTab != obj_panelPane.functionChainList_tabLine) oneToOneImageIndex = obj_panelPane.chainViewOneToMany;
 	
 	var mouseoverOneToOne = point_in_rectangle(mouse_x, mouse_y, oneToOneButtonRectX1, oneToOneButtonRectY1, oneToOneButtonRectX2, oneToOneButtonRectY2) && !mouseoverCancel;
@@ -218,7 +218,7 @@ function scr_drawToolPane(toolSprScale) {
 	}
 	
 	if (mouseoverOneToOne) {
-		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, obj_control.showUnitTags ? "One to one" : "One to many", obj_tooltip.arrowFaceRight);
+		scr_createTooltip(oneToOneButtonRectX1, oneToOneButtonY, !obj_panelPane.chainViewOneToMany ? "One to one" : "One to many", obj_tooltip.arrowFaceRight);
 		
 		if (mouse_check_button_released(mb_left)) {
 			var oneToOneOptionList = ds_list_create();
