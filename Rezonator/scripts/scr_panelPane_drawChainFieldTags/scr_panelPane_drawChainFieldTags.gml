@@ -18,8 +18,8 @@ function scr_panelPane_drawChainFieldTags(){
 	var numColWidth = windowWidth * 0.1;
 	var tagNameColX = numColX + numColWidth;
 	var tagNameColWidth = windowWidth * 0.7;
-	var deleteColX = tagNameColX + tagNameColWidth;
-	var deleteColWidth = windowWidth - (deleteColX - x);
+	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
+	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	var checkboxX1 = mean(checkboxColX, checkboxColX + checkboxColWidth) - (checkboxSize * 0.5);
@@ -113,7 +113,7 @@ function scr_panelPane_drawChainFieldTags(){
 		
 					var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 					var delButtonY = currentRowY1 + (strHeight * 0.5);
-					var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth - global.scrollBarWidth, currentRowY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
+					var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth, currentRowY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 					var trashAlpha = .5;
 
 								
