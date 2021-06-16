@@ -57,8 +57,8 @@ for (var i = 0; i < imageNum; i++) {
 		else if (optionStr == "menu_track") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeTrack);
 	}
 	else if (optionListType == global.optionListType1to1) {
-		if (optionStr == "One to one") currentOptionSelected = (obj_control.showUnitTags);
-		else if (optionStr == "One to many") currentOptionSelected = (!obj_control.showUnitTags);
+		if (optionStr == "One to one") currentOptionSelected = (!obj_panelPane.chainViewOneToMany);
+		else if (optionStr == "One to many") currentOptionSelected = (obj_panelPane.chainViewOneToMany);
 	}
 	
 	

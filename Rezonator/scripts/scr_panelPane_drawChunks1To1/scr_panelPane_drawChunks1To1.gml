@@ -71,12 +71,12 @@ function scr_panelPane_drawChunks1To1(){
 			var cellRectY1 = y + headerHeight + textPlusY + scrollPlusY - (strHeight / 2);
 			var cellRectX2 = cellRectX1 + (windowWidth / chunkFieldListSize);
 			var cellRectY2 = cellRectY1 + strHeight;
-			var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, max(cellRectY1, y + headerHeight), x + windowWidth, cellRectY2) && !mouseoverScrollBar && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scrollBarHolding;
+			var mouseoverRow = point_in_rectangle(mouse_x, mouse_y, 0, max(cellRectY1, y + headerHeight), x + windowWidth, min(cellRectY2, y + windowHeight)) && !mouseoverScrollBar && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scrollBarHolding;
 			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && mouseoverRow;
 			var focusedCell = (functionChainList_chunkSelected == currentChunk);
 			
 			if (mouseoverRow || functionChainList_chunkMouseover == currentChunk) {
-				draw_set_color(global.colorThemeSelected1);
+				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.8));
 				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 			}
 			

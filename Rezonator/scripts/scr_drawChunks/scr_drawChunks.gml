@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawChunks(){
+
 	obj_chain.mouseOverAnyChunk = false;
 	obj_control.hoverChunkID = "";
 	// loop through all the chunks currently on screen, and draw them!
@@ -57,6 +58,7 @@ function scr_drawChunks(){
 			chunkRectY1 = pixelY - strHeight;
 			chunkRectY2 = pixelY + strHeight;
 		}
+		
 		
 		// draw BG rect
 		draw_set_color(global.colorThemeBG);

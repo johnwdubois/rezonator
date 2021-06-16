@@ -1,5 +1,5 @@
 // Draw all chains within view
-if (!obj_control.gridView && !obj_control.searchGridActive) {
+if (!obj_control.gridView) {
 	scr_drawChains();
 	scr_drawChunks();
 }

@@ -9,7 +9,7 @@ if (!obj_control.mouseoverPanelPane) {
 if (currentFunction != functionChainList) {
 	if (point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight)) {
 		if (currentFunction == functionChainContents) {
-			if (!obj_control.showUnitTags) {
+			if (chainViewOneToMany) {
 				with (obj_panelPane) {
 					unitTagsHighlightRow = -1;
 				}

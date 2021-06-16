@@ -15,7 +15,7 @@ function scr_panelPane_drawUnits1to1() {
 
 
 	var strHeight = string_height("0") * 1.5;
-	var drawScrollbar = (obj_control.showUnitTags);
+	var drawScrollbar = !chainViewOneToMany;
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
 	
 
@@ -225,7 +225,7 @@ function scr_panelPane_drawUnits1to1() {
 	scr_panelPane_unitScroll(focusedElementY, strHeight);
 	
 	
-	if (obj_control.showUnitTags) {
+	if (!chainViewOneToMany) {
 		scr_scrollBar(displayUnitListSize, focusedElementY, strHeight, headerHeight,
 		    global.colorThemeSelected1, global.colorThemeSelected2,
 		    global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);

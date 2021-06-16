@@ -14,7 +14,7 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 	}
 	
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
-	var instToScroll = (!obj_control.showUnitTags) ? leftNavInst : rightNavInst;
+	var instToScroll = (chainViewOneToMany) ? leftNavInst : rightNavInst;
 	
 	if (clickedIn && obj_control.mouseoverPanelPane) {	
 		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
