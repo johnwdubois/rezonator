@@ -1,14 +1,25 @@
 function scr_tokenSelection(optionSelected) {
 	
+	var navFieldList = obj_control.navTokenFieldList;
+	
+	// check if the Unit tab or Chunk tab is selected
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
+			if (functionChainList_currentTab == functionChainList_tabChunk) {
+				navFieldList = obj_control.navChunkFieldList;
+			}
+		}
+	}
+	
 	// check whether or not to update display token
-	var updateDisplayToken = (ds_list_find_index(obj_control.navTokenFieldList, global.displayTokenField) == obj_panelPane.chosenCol);
+	var updateDisplayToken = (ds_list_find_index(navFieldList, global.displayTokenField) == obj_panelPane.chosenCol);
 	
 	// change the field list
-	var colListIndex = obj_panelPane.chosenCol; 
-	ds_list_set(obj_control.navTokenFieldList, colListIndex, optionSelected);
+	var colListIndex = obj_panelPane.chosenCol;
+	ds_list_set(navFieldList, colListIndex, optionSelected);
 	
 	// update display token if need be
-	if (updateDisplayToken) {
+	if (updateDisplayToken && navFieldList == obj_control.navTokenFieldList) {
 		global.displayTokenField = optionSelected
 	}
 

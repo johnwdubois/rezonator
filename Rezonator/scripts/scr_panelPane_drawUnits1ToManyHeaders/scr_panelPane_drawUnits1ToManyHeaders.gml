@@ -61,11 +61,12 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 			
 			// draw underline
 			var underlineX1 = headerTextX;
+			var underlineX2 = 0;
 			if(lineStateLTR){
-				var underlineX2 = headerTextX + string_width(currentField);
+				underlineX2 = headerTextX + string_width(currentField);
 			}
 			else{
-				var underlineX2 = headerTextX - string_width(currentField);
+				underlineX2 = headerTextX - string_width(currentField);
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);

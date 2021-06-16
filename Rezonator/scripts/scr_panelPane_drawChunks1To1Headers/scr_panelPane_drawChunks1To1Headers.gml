@@ -50,17 +50,24 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 			
 			// draw underline
 			var underlineX1 = headerTextX;
-			if(lineStateLTR){
-				var underlineX2 = headerTextX + string_width(currentField);
+			var underlineX2 = 0;
+			if (lineStateLTR) {
+				underlineX2 = headerTextX + string_width(currentField);
 			}
 			else{
-				var underlineX2 = headerTextX - string_width(currentField);
+				underlineX2 = headerTextX - string_width(currentField);
 			}
 			var underlineY = headerTextY + (headerHeight * 0.25);
 			draw_set_color(global.colorThemeBorders);
 			draw_line_width(underlineX1, underlineY, underlineX2, underlineY, 2);
 			
 			if (mouse_check_button_released(mb_left)) {
+				
+				with (obj_panelPane) {
+					chosenCol = i;
+				}
+				obj_control.tokenFieldToChange = currentField;
+				
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "Add to tag set", "Remove from tag set", "Select field", "Create new field");
 				scr_createDropDown(headerRectX1, headerRectY2, dropDownOptionList, global.optionListTypeFieldUnits1ToMany);

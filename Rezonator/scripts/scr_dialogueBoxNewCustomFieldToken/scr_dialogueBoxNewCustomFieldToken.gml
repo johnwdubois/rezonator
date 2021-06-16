@@ -14,6 +14,9 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	// create a new submap for this field
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
+	var newFieldMapTypeList = ds_list_create();
+	ds_list_add(newFieldMapTypeList, "token", "chunk");
+	ds_map_add_list(newFieldMap, "typeList", newFieldMapTypeList);
 	
 	// add our new field's submap to the tagMap
 	var tagMap = global.nodeMap[? "tokenTagMap"];

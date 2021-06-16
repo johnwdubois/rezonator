@@ -79,6 +79,10 @@ function scr_initializeDiscourseNodes(){
 						var currentTokenFieldMap = ds_map_create();
 						ds_map_add_map(tokenTagMap, currentField, currentTokenFieldMap);
 						ds_map_add_list(currentTokenFieldMap, "tagSet", ds_list_create());
+						var currentTokenFieldMapTypeList = ds_list_create();
+						ds_list_add(currentTokenFieldMapTypeList, "token", "chunk");
+						ds_map_add_list(currentTokenFieldMap, "typeList", currentTokenFieldMapTypeList);
+						
 						if(k < 8 and (ds_list_find_index(obj_control.navTokenFieldList, currentField) == -1) ){
 							if(k == 3 and (global.tokenImportTranscriptColName == "" or global.tokenImportTranscriptColName == undefined)){}
 							else{
