@@ -52,7 +52,7 @@ for (var i = 0; i < imageNum; i++) {
 		else if (optionStr == "Right Grid") currentOptionSelected = (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock);
 	}
 	else if (optionListType == global.optionListTypeToolButton) {
-		if (optionStr == "menu_read") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRead);
+		if (optionStr == "help_label_tag") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRead);
 		else if (optionStr == "menu_rez") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeRez);
 		else if (optionStr == "menu_track") currentOptionSelected = (obj_toolPane.currentMode == obj_toolPane.modeTrack);
 	}

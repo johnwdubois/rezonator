@@ -498,6 +498,7 @@ hitIDCounter = 1;
 
 selectedChainID = "";
 selectedSearchID = "";
+selectedSearchTokenID = "";
 
 dialogueBoxActive = false;
 newWordCreated = false;

@@ -200,6 +200,8 @@ functionChainList_chunkMouseover = "";
 
 functionSearchList_searchSelected = "";
 functionSearchList_searchMouseover = "";
+functionSearchList_tokenSelected = "";
+functionSearchList_tokenMouseover = "";
 
 
 
