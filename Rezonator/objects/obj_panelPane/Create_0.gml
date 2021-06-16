@@ -198,6 +198,10 @@ functionChainList_chunkSelected = "";
 functionChainList_chunkMouseover = "";
 
 
+functionSearchList_searchSelected = "";
+functionSearchList_searchMouseover = "";
+
+
 
 
 

@@ -229,7 +229,7 @@
     {"id":{"name":"scr_importTabbedTXT","path":"scripts/scr_importTabbedTXT/scr_importTabbedTXT.yy",},"order":14,},
     {"id":{"name":"scr_importTXTExceptions","path":"scripts/scr_importTXTExceptions/scr_importTXTExceptions.yy",},"order":17,},
     {"id":{"name":"scr_adaptFont","path":"scripts/scr_adaptFont/scr_adaptFont.yy",},"order":21,},
-    {"id":{"name":"scr_getSearchUnitList","path":"scripts/scr_getSearchUnitList/scr_getSearchUnitList.yy",},"order":4,},
+    {"id":{"name":"scr_getSearchLists","path":"scripts/scr_getSearchLists/scr_getSearchLists.yy",},"order":4,},
     {"id":{"name":"scr_importPlainTXT","path":"scripts/scr_importPlainTXT/scr_importPlainTXT.yy",},"order":13,},
     {"id":{"name":"scr_get_translation","path":"scripts/scr_get_translation/scr_get_translation.yy",},"order":0,},
     {"id":{"name":"scr_deleteFieldFromNavWindowList","path":"scripts/scr_deleteFieldFromNavWindowList/scr_deleteFieldFromNavWindowList.yy",},"order":25,},

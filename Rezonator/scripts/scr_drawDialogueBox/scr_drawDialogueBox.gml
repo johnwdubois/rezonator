@@ -794,12 +794,8 @@ function scr_drawDialogueBox() {
 		if (obj_control.fPressed) {
 			
 			// creating list of words if user inputed multiple words
-			obj_control.listOfWords = ds_list_create();
 			var listOfWordsInput = scr_splitString(obj_control.inputText, "&");
 			scr_createNewSearch(listOfWordsInput);
-			ds_list_copy(obj_control.listOfWords, listOfWordsInput);
-			ds_list_destroy(listOfWordsInput);
-			
 			obj_control.searchGridActive = true;
 			scr_renderFilter2();
 			//scr_searchForWord(obj_control.inputText);

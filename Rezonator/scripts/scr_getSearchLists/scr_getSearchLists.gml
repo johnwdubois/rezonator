@@ -1,6 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_getSearchUnitList(searchTermList){
+function scr_getSearchLists(searchTermList){
+	
+	var listOfResultLists = ds_list_create();
 	
 	var searchedTokensList = searchTermList;
 	var searchedTokensListSize = ds_list_size(searchedTokensList);
@@ -9,12 +11,13 @@ function scr_getSearchUnitList(searchTermList){
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	var unitList = discourseSubMap[? "unitList"];
 	if (!scr_isNumericAndExists(unitList, ds_type_list)) {
-		show_debug_message("scr_getSearchUnitList unitList does not exist");
+		show_debug_message("scr_getSearchLists unitList does not exist");
 		exit;
 	}
 	var unitListSize = ds_list_size(unitList);
 	
 	var searchUnitList = ds_list_create();
+	var searchTokenList = ds_list_create();
 	
 	
 	
@@ -39,8 +42,6 @@ function scr_getSearchUnitList(searchTermList){
 				var currentToken = currentEntrySubMap[? "token"];
 				var currentTokenSubMap = global.nodeMap[? currentToken];
 				
-				//reset seached value for all tokens
-				currentTokenSubMap[?"searched"] = false;
 				
 				// get tagmap for this token
 				var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
@@ -52,13 +53,14 @@ function scr_getSearchUnitList(searchTermList){
 				
 				if (caseSensitiveMatch || nonCaseSensitiveMatch) {
 					scr_addToListOnce(searchUnitList, currentUnit);
-					currentTokenSubMap[?"searched"] = true;
+					scr_addToListOnce(searchTokenList, currentToken);
 				}
 			}
 		}
 	}
+	ds_list_add(listOfResultLists,searchUnitList);
+	ds_list_add(listOfResultLists,searchTokenList);
 	
-	
-	return searchUnitList;
+	return listOfResultLists;
 
 }

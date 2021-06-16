@@ -6,7 +6,7 @@
     "path": "folders/Scripts/functions/search.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_getSearchUnitList",
+  "name": "scr_getSearchLists",
   "tags": [],
   "resourceType": "GMScript",
 }
