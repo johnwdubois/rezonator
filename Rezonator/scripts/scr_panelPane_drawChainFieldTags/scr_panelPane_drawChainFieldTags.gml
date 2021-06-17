@@ -24,8 +24,6 @@ function scr_panelPane_drawChainFieldTags(){
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	var checkboxX1 = mean(checkboxColX, checkboxColX + checkboxColWidth) - (checkboxSize * 0.5);
 	var checkboxX2 = checkboxX1 + checkboxSize;
-	var tagSelectedColor = merge_color(c_yellow, global.colorThemeBG, 0.4);
-
 
 	
 	scr_surfaceStart();
@@ -74,17 +72,19 @@ function scr_panelPane_drawChainFieldTags(){
 					if(chainViewOneToMany){
 						if (functionField_entryTagSelected == tagList[| i]) {
 							tagSelected = true;
-							draw_set_color(tagSelectedColor);
+							draw_set_color(global.colorThemeSelected2);
 							draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 						}
 					}
 					else {
 						if (functionField_chainTagSelected == tagList[| i]) {
 							tagSelected = true;
-							draw_set_color(tagSelectedColor);
+							draw_set_color(global.colorThemeSelected2);
 							draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 						}
 					}
+					
+					var textColor = tagSelected ? global.colorThemeBG : global.colorThemeText;
 				
 				
 					// draw checkbox
@@ -108,7 +108,7 @@ function scr_panelPane_drawChainFieldTags(){
 								
 					// mouseover delete
 					if (mouseOverDel) {
-						draw_set_color(global.colorThemeSelected2);
+						draw_set_color(global.colorThemeSelected1);
 						draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
 							if (chainViewOneToMany) {
@@ -128,7 +128,7 @@ function scr_panelPane_drawChainFieldTags(){
 			
 		
 					// draw #
-					draw_set_color(global.colorThemeText);
+					draw_set_color(textColor);
 					draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
 		
 					// draw field name
