@@ -21,9 +21,7 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 				}
 			}
 			if (doubleClickTimer > -1) {
-				var unitSubMap = global.nodeMap[? unitID];
-				var linePixelY = unitSubMap[? "pixelY"];
-				obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
+				scr_jumpToUnit(unitID);
 			}
 			else {		
 				doubleClickTimer = 0;

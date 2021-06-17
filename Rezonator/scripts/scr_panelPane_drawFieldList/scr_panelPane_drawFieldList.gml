@@ -23,7 +23,6 @@ function scr_panelPane_drawFieldList(){
 
 	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeader = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
-	var fieldSelectedColor = merge_color(c_yellow, global.colorThemeBG, 0.4);
 	
 	// determine which field list to use depending on 1to1 vs 1toMany and Chain vs Discourse
 	var fieldList = -1;
@@ -138,11 +137,12 @@ function scr_panelPane_drawFieldList(){
 					if (functionField_chainFieldSelected == currentField) fieldSelected = true;
 				}
 			}
-		
-		
+			
+			var textColor = fieldSelected ? global.colorThemeBG : global.colorThemeText;
+			
 			// draw highlight if this field is selected
 			if (fieldSelected) {
-				draw_set_color(fieldSelectedColor);
+				draw_set_color(global.colorThemeSelected2);
 				draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 			}
 		
@@ -169,7 +169,7 @@ function scr_panelPane_drawFieldList(){
 								
 			// mouseover & click on sequence arrows
 			if (mouseOverDel) {
-				draw_set_color(global.colorThemeSelected2);
+				draw_set_color(global.colorThemeSelected1);
 				draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
 				if (mouse_check_button_released(mb_left)) {
 					
@@ -196,7 +196,7 @@ function scr_panelPane_drawFieldList(){
 			
 		
 			// draw #
-			draw_set_color(global.colorThemeText);
+			draw_set_color(textColor);
 			draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
 		
 			// draw field name

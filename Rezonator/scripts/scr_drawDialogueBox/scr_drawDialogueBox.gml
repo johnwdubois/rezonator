@@ -818,7 +818,7 @@ function scr_drawDialogueBox() {
 					scr_jumpToTime(obj_control.inputText);
 				}
 				else{
-					scr_jumpToUnit(obj_control.inputText);
+					scr_jumpToUnit(real(string_digits(obj_control.inputText)));
 				}
 			}
 
