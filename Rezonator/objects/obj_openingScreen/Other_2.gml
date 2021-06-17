@@ -34,7 +34,7 @@ global.strToLangMap = ds_map_create();
 // CREATING THE LEGENDARY NODE MAP
 global.nodeMap = ds_map_create();
 
-
+global.searchMap = -1;
 
 window_set_min_width(800);
 window_set_min_height(720);

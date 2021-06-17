@@ -10,6 +10,9 @@ function scr_panelPane_drawSearchList(){
 	var nameColWidth = windowWidth * 0.3;
 	var termColX = nameColX + nameColWidth;
 	
+	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
+	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
+	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
@@ -116,6 +119,42 @@ function scr_panelPane_drawSearchList(){
 		// ListOfTerms column
 		draw_set_color(textColor);
 		draw_text(floor(termColX + textBuffer) - clipX, textY - clipY, scr_getStringOfList(currentSearchTermList));
+
+
+
+	
+		// get coordinates for delete button
+		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
+		var delButtonY = searchRectY1 + (strHeight * 0.5);
+		var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, searchRectY1, deleteColX + deleteColWidth, searchRectY2);
+		var trashAlpha =  1;
+
+								
+		// mouseover & click on sequence arrows
+		if (mouseOverDel) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(deleteColX - clipX, searchRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, searchRectY2 - clipY, false);
+			if (mouse_check_button_released(mb_left)) {
+					
+					
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					obj_dialogueBox.removeSearch = true
+					obj_dialogueBox.questionWindowActive = true;
+					obj_dialogueBox.searchToBeRemoved = currentSearch;
+				}
+
+					
+			}
+				
+			scr_createTooltip(delButtonX, searchRectY2, "Remove", obj_tooltip.arrowFaceUp);
+		}
+			
+
+								
+		draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+			
+
 
 		
 	
