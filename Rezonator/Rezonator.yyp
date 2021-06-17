@@ -140,6 +140,7 @@
     {"id":{"name":"scr_splitLine","path":"scripts/scr_splitLine/scr_splitLine.yy",},"order":13,},
     {"id":{"name":"scr_swapLine","path":"scripts/scr_swapLine/scr_swapLine.yy",},"order":9,},
     {"id":{"name":"scr_currentTopLine","path":"scripts/scr_currentTopLine/scr_currentTopLine.yy",},"order":10,},
+    {"id":{"name":"scr_autoCreateChunks","path":"scripts/scr_autoCreateChunks/scr_autoCreateChunks.yy",},"order":7,},
     {"id":{"name":"scr_renderFilter","path":"scripts/scr_renderFilter/scr_renderFilter.yy",},"order":1,},
     {"id":{"name":"scr_drawChunks","path":"scripts/scr_drawChunks/scr_drawChunks.yy",},"order":2,},
     {"id":{"name":"scr_scrollBarInit","path":"scripts/scr_scrollBarInit/scr_scrollBarInit.yy",},"order":8,},
