@@ -30,26 +30,22 @@ function scr_panelPane_drawChainFieldTags(){
 	
 	scr_surfaceStart();
 	
+	// get submap for selected field
+	var fieldSubMap = -1;
+	if (chainViewOneToMany) fieldSubMap = global.entryFieldMap[? functionField_entryFieldSelected];
+	else fieldSubMap = global.chainFieldMap[? functionField_chainFieldSelected];
 	
 
-	if(chainViewOneToMany){
-		var fieldSubMap = global.entryFieldMap[? functionField_entryFieldSelected];
-	}
-	else{
-		var fieldSubMap = global.chainFieldMap[? functionField_chainFieldSelected];
-	}
-
-	if (scr_isNumericAndExists(fieldSubMap, ds_type_map)){
+	if (scr_isNumericAndExists(fieldSubMap, ds_type_map)) {
 	
-	
+		// get tagSet for selected field
 		var tagList = fieldSubMap[? "tagSet"];
-		if (scr_isNumericAndExists(tagList, ds_type_list)){
-		var tagListSize = ds_list_size(tagList);
-	
-	
+		if (scr_isNumericAndExists(tagList, ds_type_list)) {
+			var tagListSize = ds_list_size(tagList);
+			
 			
 			var plusY = strHeight;
-			for (var i = 0; i < tagListSize+1; i++) {
+			for (var i = 0; i < tagListSize + 1; i++) {
 		
 
 				var currentRowY1 = y + plusY + scrollPlusY - 16;
@@ -57,24 +53,18 @@ function scr_panelPane_drawChainFieldTags(){
 				var mouseoverRow = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, x, currentRowY1, x + windowWidth, currentRowY2) && !instance_exists(obj_dropDown) && !mouseoverHeader && !mouseoverScrollBar && !scrollBarHolding;
 
 						
-				if(i < tagListSize){
-				
-				
+				if (i < tagListSize) {
 				
 					// mouseover & click
 					if (mouseoverRow) {
 						draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 						draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
-							if(chainViewOneToMany){
-								with(obj_panelPane){
-									functionField_entryTagSelected = tagList[| i];
-								}
+							if (chainViewOneToMany) {
+								with(obj_panelPane) functionField_entryTagSelected = tagList[| i];
 							}
 							else{
-								with(obj_panelPane){
-									functionField_chainTagSelected = tagList[| i];
-								}
+								with(obj_panelPane)	functionField_chainTagSelected = tagList[| i];
 							}
 						}
 					}
@@ -88,7 +78,7 @@ function scr_panelPane_drawChainFieldTags(){
 							draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 						}
 					}
-					else{
+					else {
 						if (functionField_chainTagSelected == tagList[| i]) {
 							tagSelected = true;
 							draw_set_color(tagSelectedColor);
@@ -109,15 +99,14 @@ function scr_panelPane_drawChainFieldTags(){
 					scr_drawRectWidth(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, 2, false);
 				
 		
-		
-		
+					// delete button coordinates
 					var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 					var delButtonY = currentRowY1 + (strHeight * 0.5);
 					var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, currentRowY1, deleteColX + deleteColWidth, currentRowY2)  && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 					var trashAlpha = .5;
 
 								
-					// mouseover & click on sequence arrows
+					// mouseover delete
 					if (mouseOverDel) {
 						draw_set_color(global.colorThemeSelected2);
 						draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
@@ -132,13 +121,11 @@ function scr_panelPane_drawChainFieldTags(){
 						}
 						scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
 					}
-									
-						trashAlpha = 1;
-
-								
+							
+							
+					trashAlpha = 1;
 					draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
 			
-		
 		
 					// draw #
 					draw_set_color(global.colorThemeText);
@@ -147,7 +134,7 @@ function scr_panelPane_drawChainFieldTags(){
 					// draw field name
 					draw_text(floor(tagNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(tagList[| i]));
 				}
-				else{
+				else {
 					
 					// new tag row
 					draw_set_color(merge_color(c_green, global.colorThemeBG, mouseoverRow ? 0.25 : 0.5));
@@ -176,15 +163,16 @@ function scr_panelPane_drawChainFieldTags(){
 							}
 						}
 					}
-					// add new tag
-					// draw #
-					draw_set_color(global.colorThemeText);
-					draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
+				
+						// add new tag
+						// draw #
+						draw_set_color(global.colorThemeText);
+						draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
 					
-					draw_text(floor(tagNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Tag");
+						draw_text(floor(tagNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Tag");
 				}
 	
-				plusY += strHeight;
+					plusY += strHeight;
 			}
 
 	
@@ -192,6 +180,7 @@ function scr_panelPane_drawChainFieldTags(){
 			scr_scrollBar(tagListSize+1, -1, strHeight, headerHeight,
 					global.colorThemeSelected1, global.colorThemeSelected2,
 					global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+				
 		}
 	}
 	
@@ -230,7 +219,7 @@ function scr_panelPane_drawChainFieldTags(){
 	
 	
 	
-		//json tag saving button
+	//json tag saving button
 	var spriteScale = 0.4;
 	var spriteSize = sprite_get_width(spr_oneToOneTool)* spriteScale;
 	var oneToOneRectX2 = x + windowWidth - spaceWidth*3;
@@ -256,12 +245,12 @@ function scr_panelPane_drawChainFieldTags(){
 			}
 
 		}
-			if(obj_panelPane.chainViewOneToMany == true){
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Entry Fields", obj_tooltip.arrowFaceUp);
-			}
-			else{
-				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Chain Fields", obj_tooltip.arrowFaceUp);
-			}
+		if(obj_panelPane.chainViewOneToMany == true){
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Entry Fields", obj_tooltip.arrowFaceUp);
+		}
+		else{
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Chain Fields", obj_tooltip.arrowFaceUp);
+		}
 		
 	}
 	draw_sprite_ext(spr_oneToOneTool,oneToOneImageIndex,oneToOneSpriteX,oneToOneSpriteY,spriteScale,spriteScale,0,global.colorThemeText, 1);
