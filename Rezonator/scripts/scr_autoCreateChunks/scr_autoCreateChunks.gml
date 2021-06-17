@@ -59,5 +59,8 @@ function scr_autoCreateChunks(){
 	with (obj_control) scr_createChunk();
 	ds_list_clear(inRectTokenIDList);
 	ds_list_clear(inRectUnitIDList);
+	
+	// set user back to track mode
+	obj_toolPane.currentMode = obj_toolPane.modeTrack;
 
 }

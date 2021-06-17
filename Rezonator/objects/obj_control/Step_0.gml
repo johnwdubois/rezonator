@@ -403,7 +403,7 @@ if (shortcutsEnabled) {
 						ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 					}
 					if (string_length(string_digits(prevCenterDisplayRow)) == string_length(prevCenterDisplayRow)) {
-						scr_jumpToLine("", prevCenterDisplayRow);
+						scr_jumpToUnit(prevCenterDisplayRow);
 					}
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
@@ -435,7 +435,7 @@ if (shortcutsEnabled) {
 						ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 					}
 					if (string_length(string_digits(prevCenterDisplayRow)) == string_length(prevCenterDisplayRow)) {
-						scr_jumpToLine("", prevCenterDisplayRow);
+						scr_jumpToUnit(prevCenterDisplayRow);
 					}
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
@@ -470,7 +470,7 @@ if (shortcutsEnabled) {
 						ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 					}
 					if (string_length(string_digits(prevCenterDisplayRow)) == string_length(prevCenterDisplayRow)) {
-						scr_jumpToLine("", prevCenterDisplayRow);
+						scr_jumpToUnit(prevCenterDisplayRow);
 					}
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
@@ -504,7 +504,7 @@ if (shortcutsEnabled) {
 						ds_grid_multiply_region(filterGrid, lineGrid_colPixelYOriginal, 0, lineGrid_colPixelYOriginal, ds_grid_height(filterGrid), gridSpaceRatio);
 					}
 					if (string_length(string_digits(prevCenterDisplayRow)) == string_length(prevCenterDisplayRow)) {
-						scr_jumpToLine("", prevCenterDisplayRow);
+						scr_jumpToUnit(prevCenterDisplayRow);
 					}
 					// reset the ratio
 					prevGridSpaceVertical = gridSpaceVertical;
