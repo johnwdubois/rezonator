@@ -21,8 +21,9 @@ function scr_panelPane_drawSearchList(){
 	
 	var anyOptionMousedOver = false;
 	var mouseoverScrollBar = (drawScrollbar) ? point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight) : false;
+	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	
-	
+	var currentSelectedSearchIndex = -1;
 	
 	
 	
@@ -59,13 +60,19 @@ function scr_panelPane_drawSearchList(){
 		
 		// get data for currentSearch
 		var currentSearch = searchList[| i];
-		if(!scr_isNumericAndExists( global.searchMap, ds_type_map)){exit;}
+		if(!scr_isNumericAndExists( global.searchMap, ds_type_map)){
+			scr_surfaceEnd();
+			exit;
+		}
 		var currentSearchSubMap = global.searchMap[? currentSearch];
 		if (!scr_isNumericAndExists(currentSearchSubMap, ds_type_map)) continue;
 		
 		var currentSearchName = currentSearchSubMap[? "name"];
 		var currentSearchTermList = currentSearchSubMap[? "searchTermList"];
 		var currentSearchSelected = (functionSearchList_searchSelected == currentSearch);
+		if(currentSearchSelected){
+			currentSelectedSearchIndex = i;
+		}
 		
 		
 		// Get dimensions of rectangle around search name
@@ -73,7 +80,7 @@ function scr_panelPane_drawSearchList(){
 		var searchRectY1 = y + headerHeight + relativeScrollPlusY + textPlusY - (strHeight / 2);
 		var searchRectX2 = x + windowWidth;
 		var searchRectY2 = searchRectY1 + strHeight;
-		var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar;
+		var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
 		var highlight = (mouseoverSearchRect || functionSearchList_searchMouseover == currentSearch);
 		var textY = floor(mean(searchRectY1, searchRectY2));
 		
@@ -83,6 +90,7 @@ function scr_panelPane_drawSearchList(){
 			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
 				with (obj_panelPane) functionSearchList_searchSelected = currentSearch;
 				obj_control.selectedSearchID = functionSearchList_searchSelected;
+				obj_control.searchGridActive = true;
 				scr_renderFilter2();
 			}
 			
@@ -126,7 +134,7 @@ function scr_panelPane_drawSearchList(){
 		// get coordinates for delete button
 		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 		var delButtonY = searchRectY1 + (strHeight * 0.5);
-		var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, searchRectY1, deleteColX + deleteColWidth, searchRectY2);
+		var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, searchRectY1, deleteColX + deleteColWidth, searchRectY2) && mouseoverSearchRect;
 		var trashAlpha =  1;
 
 								
@@ -263,5 +271,53 @@ function scr_panelPane_drawSearchList(){
 		headerPlusX += colWidth;
 	}
 	
+
+	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+	var instToScroll = self.id;
+	if (clickedIn) {
+		if (mouse_wheel_up()){
+			scrollPlusYDest += strHeight/2;
+		}
+		if ( keyboard_check(vk_up) and (holdUp < 2 or holdUp > 30)) {
+			with (instToScroll) {
+				scrollPlusYDest += strHeight;
+				
+			}
+		}
+		
+		if (mouse_wheel_down()){
+			scrollPlusYDest -= strHeight/2;
+		}
+		
+		if ( keyboard_check(vk_down) and (holdDown < 2 || holdDown > 30)) {
+			with (instToScroll) {
+				scrollPlusYDest -= strHeight;
+			}
+		}
+	
+		// CTRL+UP and CTRL+DOWN
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+			with (instToScroll) {
+				scrollPlusYDest = 100;
+			}
+		}
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+			with (instToScroll) {
+				scrollPlusYDest = -999999999999;
+			}
+		}
+	
+		// PAGEUP and PAGEDOWN
+		if (keyboard_check_pressed(vk_pageup)) {
+			with (instToScroll) {
+				scrollPlusYDest += (windowHeight);
+			}
+		}
+		if (keyboard_check_pressed(vk_pagedown)) {
+			with (instToScroll) {
+				scrollPlusYDest -= (windowHeight);
+			}
+		}
+	}
 
 }

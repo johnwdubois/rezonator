@@ -51,7 +51,7 @@ function scr_refocusChainEntry(ID){
 			if (tokenID == currentChainEntryID or unitID == currentChainEntryID or chunkID == currentChainEntryID) {
 				entryToFocus = currentChainEntry;
 			}
-			show_debug_message("entryToFocus:  " + string(entryToFocus));
+			
 			/*
 			drawing of rez/tracks chains come back later
 			if(chainType == "rezChain" or chainType == "trackChain"){
