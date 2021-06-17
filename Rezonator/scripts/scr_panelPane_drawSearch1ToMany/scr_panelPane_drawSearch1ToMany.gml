@@ -15,20 +15,21 @@ function scr_panelPane_drawSearch1ToMany(){
 	var drawScrollbar = true;	
 	var strHeight = string_height("0") * 1.5;
 	
-	var contextColWidth = windowWidth * 0.4;
+	var unitColWidth = windowWidth * 0.1;
+	var contextColWidth = windowWidth * 0.35;
 	var hitColWidth = windowWidth * 0.2;
 
 	
 	var anyOptionMousedOver = false;
 	var mouseoverScrollBar = (drawScrollbar) ? point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight) : false;
 	
-	var beforeColX = x;
-	var beforeColWidth = windowWidth * 0.4;
-	var hitColX = beforeColX + beforeColWidth;
-	var hitColWidth = windowWidth * 0.2;
+	var unitColX = x;
+	var beforeColX = unitColX + unitColWidth;
+	var hitColX = beforeColX + contextColWidth;
 	var afterColX = hitColX + hitColWidth;
 	
-	var beforeTextX = beforeColX + beforeColWidth - textBuffer;
+	var unitTextX = mean(unitColX, unitColX+unitColWidth);
+	var beforeTextX = beforeColX + contextColWidth - textBuffer;
 	var hitTextX = mean(hitColX, hitColX+hitColWidth);
 	var afterTextX = afterColX + textBuffer;
 
@@ -77,6 +78,12 @@ function scr_panelPane_drawSearch1ToMany(){
 		
 				var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 				var currentTokenText = currentTokenTagMap[? global.displayTokenField];
+				var currentUnitID = currentTokenSubMap[? "unit"];
+				var unitSeq = "NULL";
+				var unitSubMap = global.nodeMap[? currentUnitID];
+				if(scr_isNumericAndExists(unitSubMap, ds_type_map)){
+					unitSeq = unitSubMap[?"unitSeq"];
+				}
 				var currentTokenIndex = ds_list_find_index(tokenList, currentToken);
 				var currentTokenSelected = (functionSearchList_tokenSelected == currentToken);
 		
@@ -140,6 +147,11 @@ function scr_panelPane_drawSearch1ToMany(){
 					}
 				}
 
+
+				var unitRectX1 = searchRectX1
+				var unitRectY1 = searchRectY1
+				var unitRectX2 = searchRectX1 + unitColWidth;
+				var unitRectY2 = searchRectY2
 		
 		
 				// draw rect
@@ -147,11 +159,23 @@ function scr_panelPane_drawSearch1ToMany(){
 				var textColor = (currentTokenSelected) ? global.colorThemeBG : global.colorThemeText;
 				draw_set_color(rectColor);
 				draw_rectangle(searchRectX1 - clipX, searchRectY1 - clipY, searchRectX2 - clipX, searchRectY2 - clipY, false);
-		
+
+
+
 				// before column
 				draw_set_halign(fa_right);
 				draw_set_color(textColor);
 				draw_text(beforeTextX - clipX, textY - clipY, scr_getSearchString(beforeTokenList, true));
+
+				//draw rect to clip before text
+				draw_set_color(rectColor);
+				draw_rectangle(unitRectX1 - clipX, unitRectY1 - clipY, unitRectX2 - clipX, unitRectY2 - clipY, false);
+
+
+				// unit column
+				draw_set_halign(fa_center);
+				draw_set_color(textColor);
+				draw_text(unitTextX - clipX, textY - clipY, string(unitSeq));
 
 				// text column
 				draw_set_halign(fa_center);
@@ -192,11 +216,14 @@ function scr_panelPane_drawSearch1ToMany(){
 
 
 	var headerPlusX = 0;
-	var colAmount = 3;
-	for (var i = 0; i < 3; i++) {
+	var colAmount = 4;
+	for (var i = 0; i < colAmount; i++) {
 		var colWidth = 0;
 		// get coordinates for header rect
-		if(i == 0  or i == 2){
+		if(i == 0){
+			colWidth = unitColWidth;
+		}
+		else if(i == 1  or i == 3){
 			colWidth = contextColWidth;
 		}
 		else{
@@ -211,16 +238,20 @@ function scr_panelPane_drawSearch1ToMany(){
 		// get coordinates for header text
 		var headerTextX = 0;
 		if(i == 0 ){
+					draw_set_halign(fa_center);
+			var headerTextX = floor(mean(headerRectX2 , headerRectX1));
+		}
+		else if(i == 1 ){
 					draw_set_halign(fa_right);
 			var headerTextX = floor(headerRectX2 - textMarginLeft);
 		}
 		
-		else if(i == 1 ){
+		else if(i == 2 ){
 					draw_set_halign(fa_center);
 			var headerTextX = floor(mean(headerRectX2 , headerRectX1));
 		}
 		
-		else if(i == 2 ){
+		else if(i == 3 ){
 					draw_set_halign(fa_left);
 			var headerTextX = floor(headerRectX1 + textMarginLeft);
 		}
@@ -232,12 +263,15 @@ function scr_panelPane_drawSearch1ToMany(){
 		var colName = "";
 		switch (i) {
 			case 0:
-				colName = "before";
+				colName = "unit";
 				break;
 			case 1:
-				colName = "hit"; // stacks
+				colName = "before"; // stacks
 				break;
 			case 2:
+				colName = "hit"; // stacks
+				break;
+			case 3:
 				colName = "after"; // stacks
 				break;
 			default:

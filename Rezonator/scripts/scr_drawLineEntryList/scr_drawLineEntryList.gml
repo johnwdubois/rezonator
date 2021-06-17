@@ -141,14 +141,15 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		
 		// draw the token's text
 		var wordFound = false;
-		
-		var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
-		if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
+		if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
+			var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
+			if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
 			
-			var searchedTokenList = searchSubMap[?"displayTokenList"];
+				var searchedTokenList = searchSubMap[?"displayTokenList"];
 			
-			wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
+				wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
 			
+			}
 		}
 		
 
