@@ -14,10 +14,12 @@ function scr_panelPane_drawChunks1To1(){
 		}
 	}
 	
+	
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var strHeight = string_height("0") * 1.5;
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
+	var focusedElementY = -1;
 	var focusedRowRectY1 = -1;
 	var focusedRowRectY2 = -1;
 	with (obj_panelPane) functionChainList_chunkMouseover = "";
@@ -33,6 +35,7 @@ function scr_panelPane_drawChunks1To1(){
 	// get chunk field list
 	var chunkFieldList = obj_control.navChunkFieldList;
 	var chunkFieldListSize = ds_list_size(chunkFieldList);
+	var selectedChunkIndex = -1;
 	
 	scr_surfaceStart();
 	
@@ -74,6 +77,7 @@ function scr_panelPane_drawChunks1To1(){
 			var mouseoverRow = point_in_rectangle(mouse_x, mouse_y, 0, max(cellRectY1, y + headerHeight), x + windowWidth, min(cellRectY2, y + windowHeight)) && !mouseoverScrollBar && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !scrollBarHolding;
 			var mouseoverCell = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, cellRectX1, cellRectY1, cellRectX2, cellRectY2) && mouseoverRow;
 			var focusedCell = (functionChainList_chunkSelected == currentChunk);
+			if (focusedCell) selectedChunkIndex = j;
 			
 			if (mouseoverRow || functionChainList_chunkMouseover == currentChunk) {
 				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.8));
@@ -97,6 +101,7 @@ function scr_panelPane_drawChunks1To1(){
 			if (focusedCell) {
 				focusedRowRectY1 = cellRectY1;
 				focusedRowRectY2 = cellRectY2;
+				focusedElementY = focusedRowRectY1;
 			}
 			
 			
@@ -148,12 +153,90 @@ function scr_panelPane_drawChunks1To1(){
 		draw_line_width(x - clipX, focusedRowRectY2 - clipY, x + windowWidth - clipX, focusedRowRectY2 - clipY, 4);
 	}
 	
-	scr_scrollBar(chunkListSize, -1, strHeight, headerHeight,
+	scr_scrollBar(chunkListSize, focusedElementY, strHeight, headerHeight,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	
 	scr_surfaceEnd();
 	
 	scr_panelPane_drawChunks1To1Headers(chunkFieldList);
+	
+	
+	
+	
+	
+	
+	
+	
+	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+	var instToScroll = self.id;
+	if (clickedIn || chainListPanelPaneInst.clickedIn) {	
+		if ((mouse_wheel_up() or keyboard_check(vk_up)) and (holdUp < 2 or holdUp > 30)) {
+
+			if (selectedChunkIndex > 0 and selectedChunkIndex < chunkListSize) {
+				
+				selectedChunkIndex--;
+				var newSelectedChunk = chunkList[| selectedChunkIndex];
+				with (obj_panelPane) functionChainList_chunkSelected = newSelectedChunk;
+				
+				if (focusedElementY <= y + headerHeight + strHeight) {
+					with (instToScroll) {
+						scrollPlusYDest += max(abs(focusedElementY - (y + headerHeight + strHeight)) + strHeight, strHeight);
+					}
+				}
+			}
+			else {
+				with (instToScroll) {
+					scrollPlusYDest += 4;
+				}
+			}
+		}
+		
+		if ((mouse_wheel_down() || keyboard_check(vk_down)) and (holdDown < 2 || holdDown > 30)) {
+			
+			if (selectedChunkIndex < chunkListSize - 1 and selectedChunkIndex >= 0) {
+
+				selectedChunkIndex++;
+				var newSelectedChunk = chunkList[| selectedChunkIndex];
+				with (obj_panelPane) functionChainList_chunkSelected = newSelectedChunk;
+				
+				if (focusedElementY >= y + windowHeight - strHeight) {
+					with (instToScroll) {
+						scrollPlusYDest -= max(abs(focusedElementY - (y + windowHeight - strHeight)) + strHeight, strHeight);
+					}
+				}
+			}
+			else {
+				with (instToScroll) {
+					scrollPlusYDest -= 4;
+				}
+			}
+		}
+	
+		// CTRL+UP and CTRL+DOWN
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+			with (instToScroll) {
+				scrollPlusYDest = 100;
+			}
+		}
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+			with (instToScroll) {
+				scrollPlusYDest = -999999999999;
+			}
+		}
+	
+		// PAGEUP and PAGEDOWN
+		if (keyboard_check_pressed(vk_pageup)) {
+			with (instToScroll) {
+				scrollPlusYDest += (windowHeight);
+			}
+		}
+		if (keyboard_check_pressed(vk_pagedown)) {
+			with (instToScroll) {
+				scrollPlusYDest -= (windowHeight);
+			}
+		}
+	}
+	
 
 }

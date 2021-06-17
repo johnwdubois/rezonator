@@ -80,7 +80,7 @@ function scr_mapViewerDrawNodeData(){
 										|| (subMapKey == "tagMap" && global.speakerField == subsubMapKey));
 					
 					
-					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" || subsubMapKey == "displayTokenList"|| subsubMapKey == "typeList");
+					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" || subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList");
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);
 					}
