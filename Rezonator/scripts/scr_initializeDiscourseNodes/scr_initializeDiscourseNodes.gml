@@ -213,18 +213,6 @@ function scr_initializeDiscourseNodes(){
 	ds_list_add(global.nodeMap[? "nodeList"], "unitTagMap");
 	
 	
-	// create the SEARCH MAP
-	global.searchMap = ds_map_create();
-
-	// add searchNodeList to nodeMap
-	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
-
-	// add search map to nodeMap
-	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
-	
-	// add search map to nodeList
-	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
-
 	
 	// set default displayTokenField
 	global.displayTokenField = "~text";
