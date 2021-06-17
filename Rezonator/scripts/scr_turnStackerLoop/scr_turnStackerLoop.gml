@@ -1,16 +1,3 @@
-/*
-	scr_turnStackerLoop();
-	
-	Last Updated: 2020-10-26
-	
-	Called from: obj_stacker
-	
-	Purpose: Create stacks throughout the whole discourse, from sets of lines delimited by Turn Order
-	
-	Mechanism: Loop through all lines in the discourse, create sets of lines delimited by turn order, then once line sets are created generate stacks from those line sets.
-	
-	Author: Terry DuBois, Georgio Klironomos
-*/
 function scr_turnStackerLoop(){
 	
 	// Set script variables
@@ -23,7 +10,7 @@ function scr_turnStackerLoop(){
 
 		if (string(ds_list_find_value(global.unitImportColNameList, turnColLoop)) == "turnSeq") {
 			turnCol = turnColLoop;
-			show_debug_message("scr_turnStackerLoop() ... turnCol: " + string(turnCol));
+			show_debug_message("scr_turnStackerLoop ... turnCol: " + string(turnCol));
 			break;
 		}
 	}

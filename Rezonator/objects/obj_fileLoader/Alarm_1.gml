@@ -44,6 +44,7 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 	scr_importTagMaps();
 	scr_transferSpecialFields();
 	scr_initializeDiscourseNodes();
+	scr_autoCreateChunks();
 }
 alarm[7] = 1;
 alarm[1] = global.autosaveTimer;
