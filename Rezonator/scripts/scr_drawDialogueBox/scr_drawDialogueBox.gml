@@ -810,7 +810,7 @@ function scr_drawDialogueBox() {
 					scr_jumpToTime(obj_control.inputText);
 				}
 				else{
-					scr_jumpToLine(obj_panelPane.selectedDiscoID, obj_control.inputText);
+					scr_jumpToUnit(obj_panelPane.selectedDiscoID, obj_control.inputText);
 				}
 			}
 			else {
@@ -818,7 +818,7 @@ function scr_drawDialogueBox() {
 					scr_jumpToTime(obj_control.inputText);
 				}
 				else{
-					scr_jumpToLine("",obj_control.inputText);
+					scr_jumpToUnit(obj_control.inputText);
 				}
 			}
 

@@ -1,7 +1,4 @@
 function scr_panelPane_drawUnits1toMany() {
-	/*
-		Purpose: whatever Line is focused on in the lineList panelPane, draw information on the individual words of that Line
-	*/
 	
 	scr_surfaceStart();
 
@@ -99,9 +96,8 @@ function scr_panelPane_drawUnits1toMany() {
 				if (mouseoverRect) {
 					if (device_mouse_check_button_released(0, mb_left)) {
 						if (doubleClickTimer > -1) {
-							// scroll to focused unit if the user double clicks 
-							var linePixelY = unitSubMap[? "pixelY"];
-							obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
+							// scroll to focused unit if the user double clicks
+							scr_jumpToUnit(functionChainList_focusedUnit);
 						}
 					}
 					else {

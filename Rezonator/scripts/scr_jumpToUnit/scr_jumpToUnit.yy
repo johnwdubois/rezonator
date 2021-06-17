@@ -6,7 +6,7 @@
     "path": "folders/Scripts/functions/navigation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_jumpToLine",
+  "name": "scr_jumpToUnit",
   "tags": [],
   "resourceType": "GMScript",
 }
