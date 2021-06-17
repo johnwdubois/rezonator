@@ -8,7 +8,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	var textMarginLeft = 8;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
 	
-	var tabHeight = functionTabs_tabHeight;
+	var headerHeight = functionTabs_tabHeight;
 	var textBuffer = 8;
 	var textPlusY = 0;
 	var textAdjustY = 0;
@@ -22,6 +22,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	
 	var anyOptionMousedOver = false;
 	var mouseoverScrollBar = (drawScrollbar) ? point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight) : false;
+	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	
 	var unitColX = x;
 	var beforeColX = unitColX + unitColWidth;
@@ -34,8 +35,8 @@ function scr_panelPane_drawSearch1ToMany(){
 	var afterTextX = afterColX + textBuffer;
 
 	
-	
-	
+	var sizeOfLine = 0;
+	var currentSelectedTokenIndex = -1;
 	
 	// get the instance ID for the searchContents pane so we can easily reference it
 	var chainContentsPanelPaneInst = 0;
@@ -46,6 +47,8 @@ function scr_panelPane_drawSearch1ToMany(){
 	}
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : chainContentsPanelPaneInst.scrollPlusY;
 	
+	
+
 	
 	if(scr_isNumericAndExists( global.searchMap, ds_type_map)){
 		// get the search list & make sure it exists
@@ -70,6 +73,14 @@ function scr_panelPane_drawSearch1ToMany(){
 
 			// loop over searchs
 			for (var i = 0; i < tokenDisplayListSize; i++) {
+				
+				
+				// don't bother drawing this stuff if it won't be on screen
+				if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
+				or y + headerHeight + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+					textPlusY += strHeight;
+					continue;
+				}
 		
 				// get data for currentSearch
 				var currentToken = tokenDisplayList[| i];
@@ -86,7 +97,9 @@ function scr_panelPane_drawSearch1ToMany(){
 				}
 				var currentTokenIndex = ds_list_find_index(tokenList, currentToken);
 				var currentTokenSelected = (functionSearchList_tokenSelected == currentToken);
-		
+				if(currentTokenSelected){
+					currentSelectedTokenIndex = i;
+				}
 				var beforeTokenList = ds_list_create();
 				var afterTokenList = ds_list_create();
 				var contextAmount = 6;
@@ -120,21 +133,25 @@ function scr_panelPane_drawSearch1ToMany(){
 		
 				// Get dimensions of rectangle around search name
 				var searchRectX1 = x;
-				var searchRectY1 = y + tabHeight + relativeScrollPlusY + textPlusY - (strHeight / 2);
+				var searchRectY1 = y + headerHeight + relativeScrollPlusY + textPlusY - (strHeight / 2);
 				var searchRectX2 = x + windowWidth;
 				var searchRectY2 = searchRectY1 + strHeight;
-				var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar;
+				var mouseoverSearchRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, searchRectX1, searchRectY1, searchRectX2, searchRectY2) && !mouseoverScrollBar && !scrollBarHolding && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverHeaderRegion;
 				var highlight = (mouseoverSearchRect || functionSearchList_tokenMouseover == currentToken);
 				var textY = floor(mean(searchRectY1, searchRectY2));
 		
 		
-		
+				
+				sizeOfLine = (searchRectY2 - searchRectY1);
+				
+				
 				// click on search name
 				if (mouseoverSearchRect) {
 					anyOptionMousedOver = true;
 					if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
 						with (obj_panelPane) functionSearchList_tokenSelected = currentToken;
 						obj_control.selectedSearchTokenID = functionSearchList_tokenSelected;
+						scr_jumpToUnit(currentUnitID);
 					}
 			
 					if (mouse_check_button_released(mb_right)) {
@@ -201,9 +218,9 @@ function scr_panelPane_drawSearch1ToMany(){
 			}
 	
 	
-			// only search a scrollbar if we're in 1toMany
+			// only search a scrollbar 
 			if (drawScrollbar) {
-				scr_scrollBar(tokenDisplayListSize, -1, strHeight, tabHeight,
+				scr_scrollBar(tokenDisplayListSize, -1, strHeight, headerHeight,
 					global.colorThemeSelected1, global.colorThemeSelected2,
 					global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 			}
@@ -236,7 +253,7 @@ function scr_panelPane_drawSearch1ToMany(){
 		var headerRectX1 =  x + headerPlusX;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
-		var headerRectY2 = headerRectY1 + tabHeight;
+		var headerRectY2 = headerRectY1 + headerHeight;
 		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 			
 		// get coordinates for header text
@@ -261,7 +278,7 @@ function scr_panelPane_drawSearch1ToMany(){
 		}
 		
 
-		var headerTextY = floor(y + (tabHeight / 2));
+		var headerTextY = floor(y + (headerHeight / 2));
 	
 		// get header string for static columns
 		var colName = "";
@@ -285,7 +302,7 @@ function scr_panelPane_drawSearch1ToMany(){
 
 		// make headers not overlap with each other
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + tabHeight, false);
+		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + headerHeight, false);
 		
 		
 		// draw header name
@@ -313,7 +330,61 @@ function scr_panelPane_drawSearch1ToMany(){
 
 
 	// draw horizontal line between headers and contents
-	draw_line(x , y + tabHeight , x + windowWidth , y + tabHeight);
+	draw_line(x , y + headerHeight , x + windowWidth , y + headerHeight);
+
+
+
+
+	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
+	var instToScroll = self.id;
+	if (clickedIn) {
+		if (mouse_wheel_up()){
+			scrollPlusYDest += sizeOfLine/2;
+		}
+		if ( keyboard_check(vk_up) and (holdUp < 2 or holdUp > 30)) {
+			with (instToScroll) {
+				scrollPlusYDest += sizeOfLine;
+				
+			}
+		}
+		
+		if (mouse_wheel_down()){
+			scrollPlusYDest -= sizeOfLine/2;
+		}
+		
+		if ( keyboard_check(vk_down) and (holdDown < 2 || holdDown > 30)) {
+			with (instToScroll) {
+				scrollPlusYDest -= sizeOfLine;
+			}
+		}
+	
+		// CTRL+UP and CTRL+DOWN
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
+			with (instToScroll) {
+				scrollPlusYDest = 100;
+			}
+		}
+		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
+			with (instToScroll) {
+				scrollPlusYDest = -999999999999;
+			}
+		}
+	
+		// PAGEUP and PAGEDOWN
+		if (keyboard_check_pressed(vk_pageup)) {
+			with (instToScroll) {
+				scrollPlusYDest += (windowHeight);
+			}
+		}
+		if (keyboard_check_pressed(vk_pagedown)) {
+			with (instToScroll) {
+				scrollPlusYDest -= (windowHeight);
+			}
+		}
+	}
+
+
+
 
 
 }
