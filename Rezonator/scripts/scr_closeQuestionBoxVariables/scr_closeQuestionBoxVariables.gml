@@ -20,6 +20,8 @@ function scr_closeQuestionBoxVariables(){
 	removeFieldEntry = false;
 	removeFieldChain = false;
 	stringToBeRemoved = "";
+	removeSearch = false;
+	searchToBeRemoved = "";
 	
 	obj_control.stackMerged = false;
 	obj_control.combineChainsFocused = "";

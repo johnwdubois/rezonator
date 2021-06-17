@@ -27,6 +27,7 @@
     {"id":{"name":"scr_closeQuestionBoxVariables","path":"scripts/scr_closeQuestionBoxVariables/scr_closeQuestionBoxVariables.yy",},"order":19,},
     {"id":{"name":"spr_viewIcons","path":"sprites/spr_viewIcons/spr_viewIcons.yy",},"order":8,},
     {"id":{"name":"scr_deleteToken","path":"scripts/scr_deleteToken/scr_deleteToken.yy",},"order":11,},
+    {"id":{"name":"scr_removeSearch","path":"scripts/scr_removeSearch/scr_removeSearch.yy",},"order":6,},
     {"id":{"name":"scr_setChainAutoTags","path":"scripts/scr_setChainAutoTags/scr_setChainAutoTags.yy",},"order":40,},
     {"id":{"name":"scr_renderQuickFilter","path":"scripts/scr_renderQuickFilter/scr_renderQuickFilter.yy",},"order":3,},
     {"id":{"name":"spr_playPause","path":"sprites/spr_playPause/spr_playPause.yy",},"order":9,},

@@ -33,7 +33,9 @@ removeFieldToken = false;
 removeFieldUnit = false;
 removeFieldEntry = false;
 removeFieldChain = false;
+removeSearch = false;
 stringToBeRemoved = "";
+searchToBeRemoved = "";
 
 canDelete = true;
 canDeleteHoldingCounter = 0;

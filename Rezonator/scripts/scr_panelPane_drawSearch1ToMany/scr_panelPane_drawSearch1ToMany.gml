@@ -94,10 +94,12 @@ function scr_panelPane_drawSearch1ToMany(){
 				repeat(contextAmount){
 					var newTokenID = tokenList[| currentTokenIndex - itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
-					var newTokenTagMap = newTokenSubMap[? "tagMap"];
-					var newTokenText = newTokenTagMap[? global.displayTokenField];
-					if(newTokenText != undefined && newTokenText != ""){
-						ds_list_add(beforeTokenList, newTokenText);
+					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+						var newTokenTagMap = newTokenSubMap[? "tagMap"];
+						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						if(newTokenText != undefined && newTokenText != ""){
+							ds_list_add(beforeTokenList, newTokenText);
+						}
 					}
 					itterator ++;
 				}
@@ -105,10 +107,12 @@ function scr_panelPane_drawSearch1ToMany(){
 				repeat(contextAmount){
 					var newTokenID = tokenList[| currentTokenIndex + itterator];
 					var newTokenSubMap = global.nodeMap[? newTokenID];
-					var newTokenTagMap = newTokenSubMap[? "tagMap"];
-					var newTokenText = newTokenTagMap[? global.displayTokenField];
-					if(newTokenText != undefined && newTokenText != ""){
-						ds_list_add(afterTokenList, newTokenText);
+					if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+						var newTokenTagMap = newTokenSubMap[? "tagMap"];
+						var newTokenText = newTokenTagMap[? global.displayTokenField];
+						if(newTokenText != undefined && newTokenText != ""){
+							ds_list_add(afterTokenList, newTokenText);
+						}
 					}
 					itterator ++;
 				}
