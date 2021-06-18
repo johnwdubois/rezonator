@@ -12,6 +12,8 @@ flick_power_calibration = 4;
 flick_power_reduction_each_step = 3;
 //multiTouch = false;
 
+doubleClickTimer = -1;
+
 // Keep track of which line the "camera" is centered on
 currentCenterDisplayRow = 0;
 prevCenterYDest = 0;

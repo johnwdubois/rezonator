@@ -8,9 +8,8 @@ function scr_jumpToUnit(unitOrSeq) {
 	var fullUnitList = discourseSubMap[? "unitList"];
 	if (!scr_isNumericAndExists(fullUnitList, ds_type_list)) exit;
 	
-	// check whether this function was given the unitID (string) or the unitIndex (number)
+	// check whether this function was given the unitID (string) or the unitSeq (number)
 	var unitID = "";
-	var unitIndex = -1;
 	var unitSubMap = global.nodeMap[? unitOrSeq];
 	if (is_string(unitOrSeq) && scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 		// if we are given a unitID, we are good
@@ -22,7 +21,7 @@ function scr_jumpToUnit(unitOrSeq) {
 	}
 	
 	// now we can search the displayUnitList to get the unitIndex
-	unitIndex = ds_list_find_index(displayUnitList, unitID);
+	var unitIndex = ds_list_find_index(displayUnitList, unitID);
 	unitSubMap = global.nodeMap[? unitID];
 	show_debug_message("scr_jumpToUnit: unitID: " + string(unitID) + ", unitIndex: " + string(unitIndex));
 	

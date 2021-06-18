@@ -203,7 +203,7 @@ function scr_panelPane_drawChainsList() {
 								obj_chain.currentFocusedChainID = currentChainID;
 				
 			
-								if (doubleClickTimer > -1) {	
+								if (obj_control.doubleClickTimer > -1) {	
 									var currentUnitIDList = -1;
 									var currentUnitID = -1;
 									var currentEntry = ds_list_find_value(setIDList, 0);
@@ -226,7 +226,7 @@ function scr_panelPane_drawChainsList() {
 									}
 								}
 								else {
-									doubleClickTimer = 0;
+									obj_control.doubleClickTimer = 0;
 								}
 							}
 						}
