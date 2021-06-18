@@ -71,6 +71,9 @@ function scr_createNewSearch(searchTermList){
 					}
 				}
 			}
+			else{
+				show_message("No Results found");
+			}
 		}
 	}
 }

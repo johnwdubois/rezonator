@@ -110,6 +110,7 @@
     {"id":{"name":"scr_justifyWords","path":"scripts/scr_justifyWords/scr_justifyWords.yy",},"order":4,},
     {"id":{"name":"scr_toggleTranscriptionMulti","path":"scripts/scr_toggleTranscriptionMulti/scr_toggleTranscriptionMulti.yy",},"order":5,},
     {"id":{"name":"scr_toggleUnitMulti","path":"scripts/scr_toggleUnitMulti/scr_toggleUnitMulti.yy",},"order":6,},
+    {"id":{"name":"scr_findNext","path":"scripts/scr_findNext/scr_findNext.yy",},"order":7,},
     {"id":{"name":"scr_fontSizeControl","path":"scripts/scr_fontSizeControl/scr_fontSizeControl.yy",},"order":0,},
     {"id":{"name":"scr_1to1Options","path":"scripts/scr_1to1Options/scr_1to1Options.yy",},"order":59,},
     {"id":{"name":"spr_justifyOptions","path":"sprites/spr_justifyOptions/spr_justifyOptions.yy",},"order":30,},
