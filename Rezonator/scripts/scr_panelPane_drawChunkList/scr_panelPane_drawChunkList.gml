@@ -41,6 +41,14 @@ function scr_panelPane_drawChunkList(){
 	// loop over chunks
 	for (var i = 0; i < chunkListSize; i++) {
 		
+		// don't bother drawing this stuff if it won't be on screen
+		if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
+		or y + headerHeight + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+			textPlusY += strHeight;
+			continue;
+		}
+		
+	
 		// get data for currentShow
 		var currentChunk = chunkList[| i];
 		var currentChunkSubMap = global.nodeMap[? currentChunk];

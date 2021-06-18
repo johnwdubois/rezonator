@@ -38,7 +38,7 @@ function scr_panelPane_drawChunks1To1(){
 	var selectedChunkIndex = -1;
 	
 	scr_surfaceStart();
-	
+
 
 	
 	// loop across fields
@@ -54,9 +54,10 @@ function scr_panelPane_drawChunks1To1(){
 			// don't bother drawing this stuff if it won't be on screen
 			if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
 			or y + headerHeight + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
-				//textPlusY += strHeight;
-				//continue;
+				textPlusY += strHeight;
+				continue;
 			}
+
 			
 			// get chunkID & tagMap for the chunk (and make sure it all exists)
 			var currentChunk = chunkList[| j];
@@ -64,8 +65,6 @@ function scr_panelPane_drawChunks1To1(){
 			if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) continue;
 			var tagMap = chainSubMap[? "tagMap"];
 			if (!scr_isNumericAndExists(tagMap, ds_type_map)) continue;
-			
-			//show_debug_message("currentChunk: " + string(currentChunk));
 			
 			
 			
@@ -144,6 +143,7 @@ function scr_panelPane_drawChunks1To1(){
 		}
 		
 	}
+
 	
 	
 	// draw focus outline
