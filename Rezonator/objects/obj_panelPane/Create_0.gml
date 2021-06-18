@@ -82,8 +82,6 @@ functionChainContents_showID = "";
 
 alarm[8] = 5;
 
-functionChainContents_colXList = ds_list_create();
-
 
 
 
