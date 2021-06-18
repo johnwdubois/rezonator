@@ -97,7 +97,7 @@ function scr_drawChunks(){
 		}
 		
 		// draw selection box		
-		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverTokenID == "" && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
+		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverTokenID == "" && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_flyout);
 		if (mouseOverChunk) {
 			obj_control.hoverChunkID = currentChunkID;
 			obj_control.mouseoverNeutralSpace = false;
