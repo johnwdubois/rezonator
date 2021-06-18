@@ -39,9 +39,7 @@ function scr_panelPane_drawChains1ToMany() {
 		obj_control.mouseoverTagShortcut = "";
 	}
 
-	if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_colXList)) {
-		exit;
-	}
+
 
 	scr_surfaceStart();
 	
