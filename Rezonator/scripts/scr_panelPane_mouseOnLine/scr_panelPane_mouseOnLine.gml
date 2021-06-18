@@ -20,12 +20,7 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 					functionChainContents_lineGridRowFocused = -1;
 				}
 			}
-			if (doubleClickTimer > -1) {
-				scr_jumpToUnit(unitID);
-			}
-			else {		
-				doubleClickTimer = 0;
-			}
+			scr_jumpToUnitDoubleClick(unitID);
 		}
 	}
 }

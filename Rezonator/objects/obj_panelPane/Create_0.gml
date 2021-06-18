@@ -134,7 +134,6 @@ currentTopViewRow = 0;
 
 showAdvancedNav = false;
 
-doubleClickTimer = -1;
 
 selectedDiscoID = "";
 discoIDSelected = false;

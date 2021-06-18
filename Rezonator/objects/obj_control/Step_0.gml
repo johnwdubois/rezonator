@@ -14,6 +14,19 @@ if (hideAll) {
 	gridView = false;
 }
 
+// handle double click timer
+if (doubleClickTimer > -1) {
+	if (doubleClickTimer < 20) {
+		doubleClickTimer++;
+	}
+	else {
+		doubleClickTimer = -1;
+	}
+}
+
+
+
+
 ctrlHold = false;
 if(os_type == os_macosx){
 	if ( keyboard_check(vk_rcommand) or keyboard_check(vk_lcommand)) {

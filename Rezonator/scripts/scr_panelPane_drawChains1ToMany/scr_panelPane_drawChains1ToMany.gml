@@ -155,19 +155,7 @@ function scr_panelPane_drawChains1ToMany() {
 			// Check for double click
 			if (mouseover) {
 				if (device_mouse_check_button_released(0, mb_left)) {
-					if (doubleClickTimer > -1) {
-				
-						if (scr_isNumericAndExists(unitIDSubMap, ds_type_map)) {
-							var linePixelY = unitIDSubMap[?"pixelY"];
-							if (is_numeric(linePixelY)) {
-								obj_control.scrollPlusYDest = -linePixelY;
-							}
-						}
-						
-					}
-					else {
-						doubleClickTimer = 0;
-					}
+					scr_jumpToUnitDoubleClick(unitID);
 				}	
 			}
 				

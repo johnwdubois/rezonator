@@ -88,13 +88,7 @@ function scr_panelPane_drawUnits1toMany() {
 				// Check for double click
 				if (mouseoverRect) {
 					if (device_mouse_check_button_released(0, mb_left)) {
-						if (doubleClickTimer > -1) {
-							// scroll to focused unit if the user double clicks
-							scr_jumpToUnit(functionChainList_focusedUnit);
-						}
-					}
-					else {
-						doubleClickTimer = 0;
+						scr_jumpToUnitDoubleClick(functionChainList_focusedUnit);
 					}
 				}
 					

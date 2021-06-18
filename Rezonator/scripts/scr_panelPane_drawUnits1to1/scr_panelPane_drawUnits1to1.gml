@@ -87,10 +87,11 @@ function scr_panelPane_drawUnits1to1() {
 		    var unitRectY2 = unitRectY1 + strHeight;
 			var mouseoverunitRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, unitRectX1, max(unitRectY1, y + headerHeight), unitRectX2, unitRectY2) && !mouseoverScrollBar;
     
-					// highlight rect
-				draw_set_color(global.colorThemeBG);
-				draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
+			// highlight rect
+			draw_set_color(global.colorThemeBG);
+			draw_rectangle(colRectX1 - clipX, unitRectY1 - clipY, colRectX2 - clipX, unitRectY2 - clipY, false);
 				
+			
 	
 		    //Check mouse clicks to focus a line in the list
 		    if (mouseoverunitRect && !instance_exists(obj_dialogueBox) && !instance_exists(obj_dropDown)) {
@@ -104,6 +105,13 @@ function scr_panelPane_drawUnits1to1() {
 						functionChainList_focusedUnitIndex = j;
 						functionChainList_focusedUnit = currentUnitID;
 		            }
+					if (obj_control.doubleClickTimer > 2) {
+						// scroll to focused unit if the user double clicks
+						scr_jumpToUnit(currentUnitID);
+					}
+					else {
+						obj_control.doubleClickTimer = 0;
+					}
 		        }
 		    }
 			
