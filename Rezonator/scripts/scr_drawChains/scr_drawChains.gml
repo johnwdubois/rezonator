@@ -56,27 +56,7 @@ function scr_drawChains() {
 			if (chainType == "rezChain") showRezBorder = true;
 			else if (chainType == "trackChain") showTrackBorder = true;
 		}
-	
-		// find minimum word width so we know the X position of the chain
-		for (var j = 0; j < currentSetIDListSize; j++) {
-			var currentEntry = ds_list_find_value(currentSetIDList, j);
-			var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-			var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
-			var tokenSubMap = global.nodeMap[?currentWordID];
-			var currentWordWidth = 0;
-			if (scr_isNumericAndExists(tokenSubMap, ds_type_map)){
-				var tagMap = tokenSubMap[?"tagMap"];
-				if (scr_isNumericAndExists(tagMap, ds_type_map)){
-					currentWordWidth = string_width(string(tagMap[?global.displayTokenField]));
-				}
-			}
-			currentWordWidth = max(currentWordWidth, 0);
-		
-			if (currentWordWidth < minWordWidth) {
-				minWordWidth = currentWordWidth;
-				linePlusX = minWordWidth;
-			}
-		}
+
 	
 		var tokensInSameLine = false;
 		var firstTokenInLine = "";
@@ -173,8 +153,8 @@ function scr_drawChains() {
 				
 				// check if text is right aligned
 				if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
-					lineX1 -= currentWordStringWidth1;
-					lineX2 -= currentWordStringWidth2;
+					//lineX1 -= currentWordStringWidth1;
+					//lineX2 -= currentWordStringWidth2;
 				}
 				
 
@@ -189,9 +169,7 @@ function scr_drawChains() {
 					else if (chainType == "trackChain") {
 						scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
 					}
-					
 				}
-
 			}
 		}
 	
