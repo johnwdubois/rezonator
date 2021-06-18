@@ -259,21 +259,21 @@ function scr_panelPane_drawSearch1ToMany(){
 		// get coordinates for header text
 		var headerTextX = 0;
 		if(i == 0 ){
-					draw_set_halign(fa_center);
+			draw_set_halign(fa_center);
 			var headerTextX = floor(mean(headerRectX2 , headerRectX1));
 		}
 		else if(i == 1 ){
-					draw_set_halign(fa_right);
+			draw_set_halign(fa_right);
 			var headerTextX = floor(headerRectX2 - textMarginLeft);
 		}
 		
 		else if(i == 2 ){
-					draw_set_halign(fa_center);
+			draw_set_halign(fa_center);
 			var headerTextX = floor(mean(headerRectX2 , headerRectX1));
 		}
 		
 		else if(i == 3 ){
-					draw_set_halign(fa_left);
+			draw_set_halign(fa_left);
 			var headerTextX = floor(headerRectX1 + textMarginLeft);
 		}
 		
@@ -316,6 +316,12 @@ function scr_panelPane_drawSearch1ToMany(){
 			
 		draw_text(headerTextX, headerTextY, colName);
 		
+
+			
+			
+	
+	
+				
 	
 
 
@@ -333,19 +339,104 @@ function scr_panelPane_drawSearch1ToMany(){
 	draw_line(x , y + headerHeight , x + windowWidth , y + headerHeight);
 
 
+	var instToScroll = self.id;
+
+		
+	// show buttons (next) 
+	var showNextButtonText = "  >  ";
+	scr_adaptFont(showNextButtonText, "M");
+	var showNextButtonX2 = afterColX - 20;
+	var showNextButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
+	var showNextButtonX1 = showNextButtonX2 - string_width(showNextButtonText);
+	var showNextButtonY2 = showNextButtonY1 + strHeight/2;			
+		
+	// show buttons (prev)
+	var showPrevButtonText = "  <  ";
+	var showPrevButtonX1 = hitColX + 20;
+	var showPrevButtonY1 = showNextButtonY1;
+	var showPrevButtonX2 = showPrevButtonX1 + string_width(showPrevButtonText);
+	var showPrevButtonY2 = showNextButtonY2;
+		
+		
+	// show buttons (prev)
+	var mouseoverShowPrevButton = point_in_rectangle(mouse_x, mouse_y, showPrevButtonX1, showPrevButtonY1, showPrevButtonX2, showPrevButtonY2);
+	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowPrevButton ? 0 : 0.5));
+	draw_roundrect(showPrevButtonX1, showPrevButtonY1, showPrevButtonX2, showPrevButtonY2, false);
+	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(floor(mean(showPrevButtonX1, showPrevButtonX2)), floor(mean(showPrevButtonY1, showPrevButtonY2)), showPrevButtonText);
+		
+	if (mouseoverShowPrevButton) {scr_createTooltip(mean(showPrevButtonX1, showPrevButtonX2), showPrevButtonY2, "find previous", obj_tooltip.arrowFaceUp);}
+		
+
+	if (mouse_check_button_released(mb_left) && mouseoverShowPrevButton) {
+		
+		var newSelectedToken = scr_findNext(functionSearchList_tokenSelected,true);
+			
+		var newTokenSubMap = global.nodeMap[?newSelectedToken];
+				
+		if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+			scrollPlusYDest += sizeOfLine;	
+			
+			with(obj_panelPane){
+				functionSearchList_tokenSelected = newSelectedToken;
+			}
+			var newUnitID = newTokenSubMap[?"unit"];
+
+			scr_jumpToUnit(newUnitID);				
+
+
+
+		}	
+	}
+	
+		
+		
+	// show buttons (next)
+	var mouseoverShowNextButton = point_in_rectangle(mouse_x, mouse_y, showNextButtonX1, showNextButtonY1, showNextButtonX2, showNextButtonY2);
+	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, mouseoverShowNextButton ? 0 : 0.5));
+	draw_roundrect(showNextButtonX1, showNextButtonY1, showNextButtonX2, showNextButtonY2, false);
+	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_center);
+	draw_set_valign(fa_middle);
+	draw_text(floor(mean(showNextButtonX1, showNextButtonX2)), floor(mean(showNextButtonY1, showNextButtonY2)), showNextButtonText);
+	
+	if(mouseoverShowNextButton){scr_createTooltip(mean(showNextButtonX1, showNextButtonX2),showNextButtonY2, "find next",obj_tooltip.arrowFaceUp);}
+	
+
+	if (mouse_check_button_released(mb_left) && mouseoverShowNextButton) {
+		var newSelectedToken = scr_findNext(functionSearchList_tokenSelected,false);
+			
+		var newTokenSubMap = global.nodeMap[?newSelectedToken];
+				
+		if(scr_isNumericAndExists(newTokenSubMap, ds_type_map)){
+			scrollPlusYDest -= sizeOfLine;
+			
+			with(obj_panelPane){
+				functionSearchList_tokenSelected = newSelectedToken;
+			}
+			var newUnitID = newTokenSubMap[?"unit"];
+
+			scr_jumpToUnit(newUnitID);
+					
+			
+
+
+				
+		}	
+	}
+
 
 
 	// Allows use of arrow keys, pgUp/pgDwn, and ctrl+key in chain list if clicked in chainList
-	var instToScroll = self.id;
+
 	if (clickedIn) {
 		if (mouse_wheel_up()){
 			scrollPlusYDest += sizeOfLine/2;
 		}
 		if ( keyboard_check(vk_up) and (holdUp < 2 or holdUp > 30)) {
-			with (instToScroll) {
-				scrollPlusYDest += sizeOfLine;
-				
-			}
+			scrollPlusYDest += sizeOfLine;
 		}
 		
 		if (mouse_wheel_down()){
@@ -353,33 +444,23 @@ function scr_panelPane_drawSearch1ToMany(){
 		}
 		
 		if ( keyboard_check(vk_down) and (holdDown < 2 || holdDown > 30)) {
-			with (instToScroll) {
-				scrollPlusYDest -= sizeOfLine;
-			}
+			scrollPlusYDest -= sizeOfLine;
 		}
 	
 		// CTRL+UP and CTRL+DOWN
 		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_up)) {
-			with (instToScroll) {
-				scrollPlusYDest = 100;
-			}
+			scrollPlusYDest = 100;
 		}
 		if (keyboard_check(vk_control) && keyboard_check_pressed(vk_down)) {
-			with (instToScroll) {
-				scrollPlusYDest = -999999999999;
-			}
+			scrollPlusYDest = -999999999999;
 		}
 	
 		// PAGEUP and PAGEDOWN
 		if (keyboard_check_pressed(vk_pageup)) {
-			with (instToScroll) {
-				scrollPlusYDest += (windowHeight);
-			}
+			scrollPlusYDest += (windowHeight);
 		}
 		if (keyboard_check_pressed(vk_pagedown)) {
-			with (instToScroll) {
-				scrollPlusYDest -= (windowHeight);
-			}
+			scrollPlusYDest -= (windowHeight);
 		}
 	}
 
