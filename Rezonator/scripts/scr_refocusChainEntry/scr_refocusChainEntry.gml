@@ -15,7 +15,9 @@ function scr_refocusChainEntry(ID){
 		var entryList = IDsubMap[?"entryList"];
 		var firstEntry = entryList[|0];
 		var entrySubMap = global.nodeMap[?firstEntry];
-		tokenID = entrySubMap[?"token"]
+		if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
+			tokenID = entrySubMap[?"token"]
+		}
 	}
 	else if(type == "token"){	
 		unitID = IDsubMap[?"unit"];

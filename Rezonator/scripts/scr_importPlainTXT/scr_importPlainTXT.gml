@@ -16,7 +16,6 @@ function scr_importPlainTXT() {
 
 	var txtGridHeight = ds_grid_height(global.importTXTLineGrid);
 	
-	show_message("global.importTXTLineGrid hieght:  " + string(txtGridHeight));
 	//var newRow = false;
 	var currentLine = 0;
 	//var blankRow = true;

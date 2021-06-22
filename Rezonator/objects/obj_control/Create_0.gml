@@ -597,13 +597,20 @@ justify = justifyLeft;
 hideAll = false;
 
 updatedSpeakerLabel = false;
-
+tokenFieldList = ds_list_create();
+unitFieldList = ds_list_create();
 navTokenFieldList = ds_list_create();
 navUnitFieldList = ds_list_create();
 navChunkFieldList = ds_list_create();
-ds_list_add(navTokenFieldList, "~text");
-ds_list_add(navUnitFieldList, "~Participant");
+
+ds_list_copy(tokenFieldList, global.tokenFieldList);
+ds_list_copy(unitFieldList, global.unitFieldList);
+
+
+ds_list_copy(navTokenFieldList, global.tokenFieldList);
+ds_list_copy(navUnitFieldList, global.unitFieldList);
 ds_list_add(navChunkFieldList, "~text");
+
 currentDisplayTokenColsList = ds_list_create();
 currentDisplayUnitColsList = ds_list_create();
 ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
@@ -673,8 +680,6 @@ ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 
-tokenFieldList = ds_list_create();
-unitFieldList = ds_list_create();
 
 
 

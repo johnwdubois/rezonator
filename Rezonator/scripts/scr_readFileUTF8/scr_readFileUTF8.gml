@@ -28,7 +28,7 @@ function scr_readFileUTF8(filename){
 	while (buffer_tell(buffer) < size) {
 		var currentLetter = utf8_read(buffer);
 		totalBufferCharCount++;
-		if( currentLetter != "\n" ){
+		if(currentLetter != "\n"){
 			textUTF8 += currentLetter;
 		}
 		else{
@@ -36,7 +36,9 @@ function scr_readFileUTF8(filename){
 			textUTF8 = "";
 		}
 	}
-	textUTF8 += currentLetter;
+	if(currentLetter != "\n"){
+		textUTF8 += currentLetter;
+	}
 	ds_list_add(lineList, textUTF8);
 	buffer_delete(buffer);
 

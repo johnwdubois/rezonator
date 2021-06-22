@@ -10,7 +10,7 @@ if (importGridRow >= ds_grid_height(global.importGrid) && !finished) {
 	
 	// copy unitList into displayUnitList
 	ds_list_copy(displayUnitList, unitList);
-	
+
 	room_goto(rm_mainScreen);
 }
 else {

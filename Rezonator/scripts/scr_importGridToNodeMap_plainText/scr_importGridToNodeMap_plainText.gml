@@ -19,12 +19,15 @@ function scr_importGridToNodeMap_plainText(row){
 		var newUnitFieldMap = ds_map_create();
 		ds_map_add_map(unitFieldMap, "unitStr", newUnitFieldMap);
 		ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
-		
+		ds_list_add(global.unitFieldList, "unitStr");
 		
 		var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
 		var newTokenFieldMap = ds_map_create();
 		ds_map_add_map(tokenFieldMap, "~text", newTokenFieldMap);
 		ds_map_add_list(newTokenFieldMap, "tagSet", ds_list_create());
+		global.displayTokenField = "~text";
+		ds_list_add(global.tokenFieldList, "~text");
+		
 	}
 	var entryList = ds_list_create();
 	if (scr_isNumericAndExists(splitList, ds_type_list)) {

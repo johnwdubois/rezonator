@@ -14,6 +14,10 @@ unitList = ds_list_create();
 displayUnitList = ds_list_create();
 
 
+global.tokenFieldList = ds_list_create();
+global.unitFieldList = ds_list_create();
+
+
 // create discourse node
 global.discourseNode = scr_addToNodeMap("Discourse");
 var discourseSubMap = global.nodeMap[? global.discourseNode];
@@ -22,8 +26,8 @@ ds_map_add_list(discourseSubMap, "unitList", unitList);
 ds_map_add_list(discourseSubMap, "displayUnitList", displayUnitList);
 
 
-var tokenTagMap = ds_map_create();
-	var unitTagMap  = ds_map_create();
+tokenTagMap = ds_map_create();
+unitTagMap  = ds_map_create();
 
 
 prevNodeMapSize = 0;

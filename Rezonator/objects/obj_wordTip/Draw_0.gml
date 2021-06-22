@@ -37,7 +37,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 		var fieldNameWidth = string_width(string(fieldName));
 		var fieldValue = tagMap[?fieldName];
 		var fieldValueWidth = string_width(string(fieldValue));
-		plusY += string_height(string(fieldName)) + 5;
+		plusY += string_height(string("0")) + 5;
 		var lineWidth = fieldNameWidth + fieldValueWidth + spaceGap;
 	
 		colX2Max = max(fieldNameWidth + spaceGap,colX2Max);
@@ -45,7 +45,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 
 
 	}
-	var lineHeight = string_height(string(fieldName)) + 5;
+	var lineHeight = string_height(string("0")) + 5;
 
 
 
@@ -95,7 +95,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_to
 
 	var col1X = boxX1 + 5
 	var col2X = boxX1 + colX2Max; 
-	var valueY = boxY1 + string_height(string(fieldName))/2;
+	var valueY = boxY1 + string_height(string("0"))/2;
 	// Draw the attribute grid
 	for(var i = 0; i < sizeOfFieldList; i++)
 	{		
