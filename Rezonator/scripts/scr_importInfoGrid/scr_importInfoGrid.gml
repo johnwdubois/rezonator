@@ -112,7 +112,7 @@ function scr_importInfoGrid() {
 				}
 			}
 			else {
-				show_debug_message("scr_importInfoGrid() Setting field estimates...");
+				show_debug_message("scr_importInfoGrid Setting field estimates...");
 				// if this label is < 5% consistency and 1 token per group, it is probably discourse level
 				// if this label is >= 90% consistency and 1 token per group, it is probably unit level
 				// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
@@ -149,7 +149,7 @@ function scr_importInfoGrid() {
 	// check if there are any Token level fields
 	var anyTokenFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
 	var anyWordFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
-	show_debug_message("scr_importInfoGrid() ... anyTokenFields: " + string(anyTokenFields) + ", anyWordFields: " + string(anyWordFields));
+	show_debug_message("scr_importInfoGrid ... anyTokenFields: " + string(anyTokenFields) + ", anyWordFields: " + string(anyWordFields));
 	
 	// if there are no Token level fields but there are Word level fields, let's change the Word fields to Tokens fields
 	if (!anyTokenFields && anyWordFields) {

@@ -416,6 +416,8 @@ global.tokenCountTotal = 0;
 
 global.discourseNode = "";
 
+global.prevTimePrinted = current_time;
+
 alarm[5] = 2;
 
 hoverColorMergeOpen = 0;

@@ -9,7 +9,12 @@ function scr_createChunk(){
 	// Place all captured unit and token info into the box grid
 	var inRectTokenIDListSize = ds_list_size(inRectTokenIDList);
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
-	if (inRectTokenIDListSize <= 1) exit;
+	
+	// only allow single-token chunks if this is an IGT file with a word delimiter
+	if (inRectTokenIDListSize <= 1) {
+		if (global.importType != global.importType_IGT) exit;
+		if (global.wordImportWordDelimColName == "" || !is_string(global.wordImportWordDelimColName)) exit;
+	}
 	
 	
 	if (inRectUnitIDListSize > 0 && inRectTokenIDListSize > 0) { // Make sure the box captured something

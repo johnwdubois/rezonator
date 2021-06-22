@@ -126,7 +126,7 @@ function scr_panelPane_drawChunkList(){
 		}
 		else if (i == 2) {
 			colWidth = windowWidth - textColX;
-			colText = "Text";
+			colText = "Word";
 		}
 
 		

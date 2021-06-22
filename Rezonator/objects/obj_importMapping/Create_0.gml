@@ -29,10 +29,9 @@ rowToChange = -1;
 colToChange = -1;
 
 
-if (global.plainText) {	
+if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {	
 	scr_importInfoGrid();
-	instance_create_layer(0, 0, "InstancesDialogue", obj_importPlainTextInfo);
-	room_goto(rm_mainScreen);
+	room_goto(rm_loadingScreen);
 }
 else{
 	instance_create_layer(0, 0, "InstancesDialogue", obj_importException);

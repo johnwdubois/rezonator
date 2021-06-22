@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_readFileUTF8(filename){
 	
-	show_debug_message("scr_readFileUTF8() ... START, " + scr_printTime());
+	show_debug_message("scr_readFileUTF8 ... START, " + scr_printTime());
 	
 	// read a file in using GM's file_text functions
 	// and then read it in again using UTF8 functions
@@ -28,7 +28,7 @@ function scr_readFileUTF8(filename){
 	while (buffer_tell(buffer) < size) {
 		var currentLetter = utf8_read(buffer);
 		totalBufferCharCount++;
-		if( currentLetter != "\n"){
+		if( currentLetter != "\n" ){
 			textUTF8 += currentLetter;
 		}
 		else{
@@ -36,11 +36,13 @@ function scr_readFileUTF8(filename){
 			textUTF8 = "";
 		}
 	}
+	textUTF8 += currentLetter;
+	ds_list_add(lineList, textUTF8);
 	buffer_delete(buffer);
 
 	//check two file sizes for differences
 	if(totalGMCharCount != totalBufferCharCount){
-		show_message("This file contains characters that are not encoded in UTF-8. Some characters may be missing in Rezonator.")
+		show_debug_message("This file contains characters that are not encoded in UTF-8. Some characters may be missing in Rezonator.")
 	}
 	
 	//return list of lines in file

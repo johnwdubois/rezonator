@@ -299,7 +299,7 @@ randomise();
 //cursorBoxY = 0;
 
 // Initialize the camera's draw range
-drawRange = 12;
+drawRange = 8;
 drawRangeStart = 0;
 drawRangeEnd = 0;
 lineSpacing = 6;
@@ -563,7 +563,6 @@ showSpeakerName = false;
 //audioTrackIndex = -1;
 
 
-
 combineChainsFocused = "";
 combineChainsSelected = "";
 stackMerged = false;
@@ -683,21 +682,6 @@ with (obj_alarm) {
 	alarm[10] = 8;
 }
 
-// add chainLists to nodeMap
-ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
-ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
-ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
-
-// add showList to nodeMap
-var showList = ds_list_create();
-ds_map_add_list(global.nodeMap, "showList", showList);
-
-// add chunkList to nodeMap
-ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
-
-// add NodeList to nodeMap
-ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
-
 
 
 
@@ -728,3 +712,10 @@ listOfWords = ds_list_create();
 
 panelPaneTabList = ds_list_create();
 with (obj_alarm2) alarm[1] = 2;
+
+
+// set display unit list
+var discourseSubMap = global.nodeMap[? global.discourseNode];
+if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
+	displayUnitList = discourseSubMap[? "displayUnitList"];
+}

@@ -3,8 +3,8 @@
 */
 function scr_saveREZ(autosave) {
 
-	show_debug_message("scr_saveREZ(), STARTING... " + scr_printTime());
-	show_debug_message("scr_saveREZ(), global.fileSaveName: " + string(global.fileSaveName));
+	show_debug_message("scr_saveREZ, STARTING... " + scr_printTime());
+	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName));
 	
 	// get fileSaveName if we don't already have it
 	if (not autosave) {
@@ -73,51 +73,6 @@ function scr_saveREZ(autosave) {
 		if (object_index == obj_control) {
 
 		
-			/*
-			var mapFileLineRipGrid = scr_gridToJSONLists(global.fileLineRipGrid);
-			var mapWordGrid = scr_gridToJSONLists(wordGrid);
-			var mapWordGridColList = scr_getListOfGridCols(wordGrid);
-			var mapDynaWordGrid = scr_gridToJSONLists(dynamicWordGrid);
-			var mapWordDrawGrid = scr_gridToJSONLists(wordDrawGrid);
-			var mapUnitGrid = scr_gridToJSONLists(unitGrid);
-			var mapLineGrid = scr_gridToJSONLists(lineGrid);
-			var mapimportGrid = scr_gridToJSONLists(global.importGrid);
-			var mapimportCSVGrid = scr_gridToJSONLists(global.importCSVGrid);
-			var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
-			var maptokenImport = scr_gridToJSONLists(global.tokenImportGrid);
-			var mapwordImport = scr_gridToJSONLists(global.wordImportGrid);
-			var mapunitImport = scr_gridToJSONLists(global.unitImportGrid);
-			var mapDiscoImport = scr_gridToJSONLists(global.discoImportGrid);
-			var mapCustomLabelGrid = scr_gridToJSONLists(global.customLabelGrid);
-			
-		
-			ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
-			ds_map_add_list(map, "wordGrid", mapWordGrid);
-			ds_map_add_list(map, "wordGridColList", mapWordGridColList);
-			ds_map_add_list(map, "dynaWordGrid", mapDynaWordGrid);
-			ds_map_add_list(map, "wordDrawGrid", mapWordDrawGrid);
-			ds_map_add_list(map, "unitGrid", mapUnitGrid);
-			ds_map_add_list(map, "lineGrid", mapLineGrid);
-			ds_map_add_list(map, "importGrid", mapimportGrid);
-			ds_map_add_list(map, "importCSVGrid", mapimportCSVGrid);
-			ds_map_add(map, "importGridWidth", global.importGridWidth);
-			ds_map_add(map, "importCSVGridWidth", global.importCSVGridWidth);
-			*/
-			
-			
-
-
-
-		
-			//custom label saves
-			/*
-			ds_map_add_list(map, "tokenImport", maptokenImport);
-			ds_map_add_list(map, "wordImport", mapwordImport);
-			ds_map_add_list(map, "unitImport", mapunitImport);
-			ds_map_add_list(map, "discoImport", mapDiscoImport);
-			ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
-			*/
-
 
 
 			var tempImportGridColNameList = scr_copyListToMap(global.importGridColNameList, map, "importGridColNameList");
@@ -196,15 +151,6 @@ function scr_saveREZ(autosave) {
 		
 		}
 		else if (object_index == obj_chain) {
-			var mapUnitInStackGrid = scr_gridToJSONLists(unitInStackGrid);
-			var mapCliqueGrid = scr_gridToJSONLists(cliqueGrid);
-			var mapGoldStandardGrid = scr_gridToJSONLists(goldStandardGrid);
-		
-
-			ds_map_add_list(map, "unitInStackGrid", mapUnitInStackGrid);
-			ds_map_add_list(map, "cliqueGrid", mapCliqueGrid);
-			ds_map_add_list(map, "goldStandardGrid", mapGoldStandardGrid);
-		
 		
 			ds_map_add(map, "chainColorID1", chainColorID[1]);
 			ds_map_add(map, "chainColorID2", chainColorID[2]);
@@ -303,7 +249,7 @@ function scr_saveREZ(autosave) {
 		obj_control.allSaved = true;
 	}
 
-	show_debug_message("scr_saveREZ(), END... " + scr_printTime());
+	show_debug_message("scr_saveREZ, END... " + scr_printTime());
 	
 	// if this is a batch import, loop back to opening screen to auto-import another file
 	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {

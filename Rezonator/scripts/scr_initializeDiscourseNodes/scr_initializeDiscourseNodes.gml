@@ -106,7 +106,7 @@ function scr_initializeDiscourseNodes(){
 
 				
 				
-				//add each token to the totoal token's List
+				//add each token to the total token's List
 				ds_list_add(tokenList, currentTokenNode);
 				
 				// make entry node

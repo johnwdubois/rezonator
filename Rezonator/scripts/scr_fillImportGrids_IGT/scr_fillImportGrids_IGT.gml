@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fillImportGrids_IGT(){
 	
-	show_debug_message("scr_fillImportGrids_IGT() ... START. Time is: " + scr_printTime());
+	show_debug_message("scr_fillImportGrids_IGT ... START. Time is: " + scr_printTime());
 
 	
 	// resize & reset disco/unit/token importGrids to how they should be
@@ -300,7 +300,7 @@ function scr_fillImportGrids_IGT(){
 	scr_fillCustomLabelGrid();
 	fillMorphGrid_IGT();
 
-	show_debug_message("scr_fillImportGrids_IGT() ... END. Time is: " + scr_printTime());
+	show_debug_message("scr_fillImportGrids_IGT ... END. Time is: " + scr_printTime());
 
 }
 

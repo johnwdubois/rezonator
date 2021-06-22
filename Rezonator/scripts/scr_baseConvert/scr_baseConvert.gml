@@ -15,7 +15,7 @@ function scr_baseConvert(number, oldbase, newbase) {
 	
 	// convert base
     var out = "";
-    number = string_upper(number);
+    number = string(number);
  
     var len, tab;
     len = string_length(number);
