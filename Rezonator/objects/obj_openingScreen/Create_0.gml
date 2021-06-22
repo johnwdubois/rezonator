@@ -386,4 +386,11 @@ global.tokenCountTotal = 0;
 
 global.discourseNode = "";
 
+
 alarm[5] = 2;
+
+hoverColorMergeOpen = 0;
+hoverColorMergeImport = 0;
+hoverColorMergeHelp = 0;
+
+global.prevTimePrinted = current_time;

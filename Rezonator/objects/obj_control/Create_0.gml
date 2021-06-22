@@ -70,6 +70,8 @@ wordTopMargin = 0;
 
 
 
+
+
 // Make light blue
 c_ltblue = make_color_rgb(183, 183, 255);
 
@@ -269,7 +271,10 @@ morphGrid_colGloss = 7;
 
 morphGrid = ds_grid_create(morphGridWidth, 0);
 
+show_debug_message("unitGridHeight: " + string(ds_grid_height(unitGrid)));
+show_debug_message("wordGridHeight: " + string(ds_grid_height(wordGrid)));
 with (obj_alarm) {
+	show_debug_message("obj_control calling obj_alarm alarm 5");
 	alarm[5] = 1;
 }
 
@@ -297,7 +302,7 @@ randomise();
 //cursorBoxY = 0;
 
 // Initialize the camera's draw range
-drawRange = 12;
+drawRange = 8;
 drawRangeStart = 0;
 drawRangeEnd = 0;
 lineSpacing = 6;
@@ -559,6 +564,7 @@ showSpeakerName = false;
 //audioTrackStream = -1;
 //audioTrackIndex = -1;
 
+scr_nodeMapDefaultData();
 
 
 combineChainsFocused = "";
@@ -675,20 +681,7 @@ with (obj_alarm) {
 	alarm[10] = 8;
 }
 
-// add chainLists to nodeMap
-ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
-ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
-ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 
-// add showList to nodeMap
-var showList = ds_list_create();
-ds_map_add_list(global.nodeMap, "showList", showList);
-
-// add chunkList to nodeMap
-ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
-
-// add NodeList to nodeMap
-ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 
 
 global.delayInput = 0;
@@ -713,4 +706,16 @@ menuDepth = -1;
 displayUnitList = -1;
 filterUnitList = ds_list_create();
 
+
 listOfWords = ds_list_create();
+
+
+panelPaneTabList = ds_list_create();
+with (obj_alarm2) alarm[1] = 2;
+
+
+// set display unit list
+var discourseSubMap = global.nodeMap[? global.discourseNode];
+if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
+	displayUnitList = discourseSubMap[? "displayUnitList"];
+}

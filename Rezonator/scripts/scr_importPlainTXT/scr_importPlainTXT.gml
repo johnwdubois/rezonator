@@ -1,4 +1,6 @@
 function scr_importPlainTXT(filename) {
+	show_debug_message("scr_importPlainTXT, filename: " + string(filename));
+	
 	global.importFilename = filename;
 
 	var fileOpenRead = file_text_open_read(filename);

@@ -1,13 +1,19 @@
 function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
+
 	
 	// set range of lines that we want to draw
-	var relativeScrollBarHeight = camHeight - wordTopMargin - (global.scrollBarWidth * 2) - 25;
-	var relativeScrollBarPlusY = scrollBarPlusY - 15;
+	var relativeScrollBarHeight = camHeight - wordTopMargin;
+	var relativeScrollBarPlusY = scrollBarPlusY - (camHeight / 100);
+	
+	show_debug_message("relativeScrollBarHeight: " + string(relativeScrollBarHeight) + ", relativeScrollBarPlusY: " + string(relativeScrollBarPlusY) + ", camHeight" + string(camHeight));
+	show_debug_message("displayUnitListSize: " + string(displayUnitListSize));
 
 	// still broke, gotta fix
 	drawRangeCenter = ((relativeScrollBarPlusY) * displayUnitListSize) / relativeScrollBarHeight;
 	drawRangeCenter = round(drawRangeCenter) - 5;
 	drawRangeCenter = clamp(drawRangeCenter, 0, displayUnitListSize - 1);
+	
+	show_debug_message("drawRangeCenter: " + string(drawRangeCenter));
 	
 	// make sure the draw range is clamped to not go past lineGrid
 	drawRangeStart = clamp(drawRangeCenter - drawRange, 0, displayUnitListSize - 1);
@@ -95,6 +101,7 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 			}
 		}
 	}
+
 
 	
 }

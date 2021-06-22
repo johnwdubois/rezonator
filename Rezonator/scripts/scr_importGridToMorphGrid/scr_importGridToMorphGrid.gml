@@ -1,5 +1,5 @@
 function scr_importGridToMorphGrid() {
-	show_debug_message("scr_importGridToMorphGrid() START ... " + scr_printTime());
+	show_debug_message("scr_importGridToMorphGrid START ... " + scr_printTime());
 	var RTL = false;
 	if (ds_grid_height(global.importGrid) < 1) {
 		exit;
@@ -10,6 +10,7 @@ function scr_importGridToMorphGrid() {
 	var unitEndCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitEndColName);
 
 	if (global.plainText) {
+		/*
 		
 		unitCounter = 0;
 	
@@ -57,7 +58,7 @@ function scr_importGridToMorphGrid() {
 			}
 		}
 
-
+		*/
 	}
 
 	else if (global.importType == global.importType_CoNLLU){
@@ -95,7 +96,7 @@ function scr_importGridToMorphGrid() {
 		var importGridHeight = ds_grid_height(global.importGrid);
 		var currentParticipant = "";
 		for (var i = 0; i < importGridHeight; i++) {
-			show_debug_message("scr_importGridToMorphGrid() ... i: " + string(i));
+			show_debug_message("scr_importGridToMorphGrid ... i: " + string(i));
 
 			if(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i) == undefined or ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i) == 0
 			or string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i)) == "undefined" or string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i)) == "0"){
@@ -322,5 +323,5 @@ function scr_importGridToMorphGrid() {
 	}
 	scr_morphToUnitGrid();
 	
-	show_debug_message("scr_importGridToMorphGrid() END ... " + scr_printTime());
+	show_debug_message("scr_importGridToMorphGrid END ... " + scr_printTime());
 }

@@ -1,7 +1,4 @@
 function scr_loadREZ() {
-	/*
-		Purpose: Load data from a Rez file into Rezonator
-	*/
 
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
@@ -312,12 +309,6 @@ function scr_loadREZ() {
 					
 				}
 				else if (objectIndex == "obj_chain") {
-				
-
-					scr_loadREZGridReset(obj_chain.unitInStackGrid, map, "unitInStackGrid");
-					scr_loadREZGridReset(obj_chain.cliqueGrid, map, "cliqueGrid");
-					scr_loadREZGridReset(obj_chain.goldStandardGrid, map, "goldStandardGrid");
-				
 
 				
 					obj_chain.chainColorID[1] = ds_map_find_value(map, "chainColorID1");

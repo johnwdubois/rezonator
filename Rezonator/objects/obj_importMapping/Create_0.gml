@@ -31,8 +31,8 @@ colToChange = -1;
 
 if (global.plainText) {	
 	scr_importInfoGrid();
-	instance_create_layer(0, 0, "InstancesDialogue", obj_importPlainTextInfo);
-	room_goto(rm_mainScreen);
+	show_debug_message("obj_importMapping Create");
+	room_goto(rm_loadingScreen);
 }
 else{
 	instance_create_layer(0, 0, "InstancesDialogue", obj_importException);

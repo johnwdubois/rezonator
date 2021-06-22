@@ -23,6 +23,7 @@ function scr_importTXT(filename) {
 		ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colException, i, false);
 	}
 	
+	ds_list_destroy(fileLineList);
 	
 	// automatically mark comment lines as exceptions in importTXTGrid
 	scr_markAutoExceptions();

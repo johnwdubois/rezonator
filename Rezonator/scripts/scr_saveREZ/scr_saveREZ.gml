@@ -3,8 +3,8 @@
 */
 function scr_saveREZ(autosave) {
 
-	show_debug_message("scr_saveREZ(), STARTING... " + scr_printTime());
-	show_debug_message("scr_saveREZ(), global.fileSaveName: " + string(global.fileSaveName));
+	show_debug_message("scr_saveREZ, STARTING... " + scr_printTime());
+	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName));
 	
 	// get fileSaveName if we don't already have it
 	if (not autosave) {
@@ -71,61 +71,6 @@ function scr_saveREZ(autosave) {
 	
 	
 		if (object_index == obj_control) {
-
-		
-		
-			var mapFileLineRipGrid = scr_gridToJSONLists(global.fileLineRipGrid);
-			var mapWordGrid = scr_gridToJSONLists(wordGrid);
-			var mapWordGridColList = scr_getListOfGridCols(wordGrid);
-			var mapDynaWordGrid = scr_gridToJSONLists(dynamicWordGrid);
-			var mapWordDrawGrid = scr_gridToJSONLists(wordDrawGrid);
-			var mapUnitGrid = scr_gridToJSONLists(unitGrid);
-			var mapLineGrid = scr_gridToJSONLists(lineGrid);
-			var mapimportGrid = scr_gridToJSONLists(global.importGrid);
-			var mapimportCSVGrid = scr_gridToJSONLists(global.importCSVGrid);
-			var mapMorphGrid = scr_gridToJSONLists(obj_control.morphGrid);
-			var maptokenImport = scr_gridToJSONLists(global.tokenImportGrid);
-			var mapwordImport = scr_gridToJSONLists(global.wordImportGrid);
-			var mapunitImport = scr_gridToJSONLists(global.unitImportGrid);
-			var mapDiscoImport = scr_gridToJSONLists(global.discoImportGrid);
-			var mapCustomLabelGrid = scr_gridToJSONLists(global.customLabelGrid);
-		
-			ds_map_add_list(map, "fileLineRipGrid", mapFileLineRipGrid);
-			ds_map_add_list(map, "wordGrid", mapWordGrid);
-			ds_map_add_list(map, "wordGridColList", mapWordGridColList);
-			ds_map_add_list(map, "dynaWordGrid", mapDynaWordGrid);
-			ds_map_add_list(map, "wordDrawGrid", mapWordDrawGrid);
-			ds_map_add_list(map, "unitGrid", mapUnitGrid);
-			ds_map_add_list(map, "lineGrid", mapLineGrid);
-			ds_map_add_list(map, "importGrid", mapimportGrid);
-			ds_map_add_list(map, "importCSVGrid", mapimportCSVGrid);
-			ds_map_add(map, "importGridWidth", global.importGridWidth);
-			ds_map_add(map, "importCSVGridWidth", global.importCSVGridWidth);
-			ds_map_add_list(map, "morphGrid", mapMorphGrid);
-			var tempList = ds_list_create();
-			if (global.importGridColNameList != undefined) {
-				ds_list_copy(tempList, global.importGridColNameList);
-			}
-			ds_map_add_list(map, "importGridColNameList", tempList);
-		
-
-
-		
-
-
-		
-			//custom label saves
-			ds_map_add_list(map, "tokenImport", maptokenImport);
-			ds_map_add_list(map, "wordImport", mapwordImport);
-			ds_map_add_list(map, "unitImport", mapunitImport);
-			ds_map_add_list(map, "discoImport", mapDiscoImport);
-			ds_map_add_list(map, "CustomLabelGrid", mapCustomLabelGrid);
-			
-			var tempTokenImportColNameList = ds_list_create();
-			if (scr_isNumericAndExists(global.tokenImportColNameList, ds_type_list)) {
-				ds_list_copy(tempTokenImportColNameList, global.tokenImportColNameList);
-			}
-			ds_map_add_list(map, "tokenImportColNameList", tempTokenImportColNameList);
 
 			var tempUnitImportColNameList = ds_list_create();
 			if (scr_isNumericAndExists(global.unitImportColNameList, ds_type_list)) {
@@ -225,22 +170,27 @@ function scr_saveREZ(autosave) {
 			// deep-copy tokenImportTagMap
 			tokenImportTagMapCopy = json_decode(json_encode(global.tokenImportTagMap));
 			ds_map_add_map(map, "tokenImportTagMap", tokenImportTagMapCopy);
+			show_debug_message("scr_saveREZ, tokenImportTagMap deep copy finish... " + scr_printTime());
 			
 			// deep-copy unitImportTagMap
 			unitImportTagMapCopy = json_decode(json_encode(global.unitImportTagMap));
 			ds_map_add_map(map, "unitImportTagMap", unitImportTagMapCopy);
+			show_debug_message("scr_saveREZ, unitImportTagMap deep copy finish... " + scr_printTime());
 			
 			// deep-copy entryFieldMap
 			entryFieldMapCopy = json_decode(json_encode(global.entryFieldMap));
 			ds_map_add_map(map, "entryFieldMap", entryFieldMapCopy);
+			show_debug_message("scr_saveREZ, entryFieldMap deep copy finish... " + scr_printTime());
 			
 			// deep-copy chainFieldMap
 			chainFieldMapCopy = json_decode(json_encode(global.chainFieldMap));
 			ds_map_add_map(map, "chainFieldMap", chainFieldMapCopy);
+			show_debug_message("scr_saveREZ, chainFieldMap deep copy finish... " + scr_printTime());
 			
 			// deep-copy nodeMap
 			nodeMapCopy = json_decode(json_encode(global.nodeMap));
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);
+			show_debug_message("scr_saveREZ, nodeMap deep copy finish... " + scr_printTime());
 			
 		 	
 			// save the displayTokenField & speakerField
@@ -252,15 +202,6 @@ function scr_saveREZ(autosave) {
 		
 		}
 		else if (object_index == obj_chain) {
-			var mapUnitInStackGrid = scr_gridToJSONLists(unitInStackGrid);
-			var mapCliqueGrid = scr_gridToJSONLists(cliqueGrid);
-			var mapGoldStandardGrid = scr_gridToJSONLists(goldStandardGrid);
-		
-
-			ds_map_add_list(map, "unitInStackGrid", mapUnitInStackGrid);
-			ds_map_add_list(map, "cliqueGrid", mapCliqueGrid);
-			ds_map_add_list(map, "goldStandardGrid", mapGoldStandardGrid);
-		
 		
 			ds_map_add(map, "chainColorID1", chainColorID[1]);
 			ds_map_add(map, "chainColorID2", chainColorID[2]);
@@ -274,17 +215,20 @@ function scr_saveREZ(autosave) {
 	// wrap the root list in a map
 	var wrapper = ds_map_create();
 	ds_map_add_list(wrapper, "ROOT", rootList);
-	show_debug_message("After map created");
+	show_debug_message("scr_saveREZ, rootList is wrapped");
 
 	// encode the wrapper to a json
 	var jsonString = json_encode(wrapper);
-	show_debug_message("After json encoded");
+	show_debug_message("scr_saveREZ, JSON is encoded");
 
 	// beautify/stylize the json if this is not an auto-save
 	if (not autosave) {
 		jsonString = scr_jsonBeautify(jsonString);
 		show_debug_message("After json beautified");
 	}
+	
+	
+	show_debug_message("scr_saveREZ, save JSON START " + scr_printTime());
 
 	// save the file with the JSON encoded string
 	if (autosave) {
@@ -319,6 +263,9 @@ function scr_saveREZ(autosave) {
 	else {
 		scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
 	}
+	
+	show_debug_message("scr_saveREZ, save JSON END " + scr_printTime());
+	
 
 	for(var i = 0; i < ds_list_size(rootList); i++)
 	{
@@ -359,7 +306,7 @@ function scr_saveREZ(autosave) {
 		obj_control.allSaved = true;
 	}
 
-	show_debug_message("scr_saveREZ(), END... " + scr_printTime());
+	show_debug_message("scr_saveREZ, END... " + scr_printTime());
 	
 	// if this is a batch import, loop back to opening screen to auto-import another file
 	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
