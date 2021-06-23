@@ -2,7 +2,9 @@ function scr_drawGridViewerClipped() {
 	/*
 		Purpose: display Rezonator's backend grids for debugging and research purposes
 	*/
-
+	
+	var camWidth = camera_get_view_width(view_get_camera(0));
+	var camHeight = camera_get_view_height(view_get_camera(0));
 
 	windowX = x;
 	windowY = y;
@@ -26,8 +28,13 @@ function scr_drawGridViewerClipped() {
 	}
 
 
-	windowWidth = (camera_get_view_width(view_get_camera(0)) - (windowX) - 40);		
-	windowHeight = (camera_get_view_height(view_get_camera(0)) - (windowY*1.5));
+	windowWidth = (camWidth - windowX - 40);		
+	windowHeight = (camHeight - (windowY*1.5));
+	
+	
+
+	
+	
 
 
 	scr_surfaceStart();
@@ -68,13 +75,13 @@ function scr_drawGridViewerClipped() {
 	}
 	var gridColXListSize = ds_list_size(gridColXList);
 	
-	// spread the columns to be evenly spaced across the window width
-	if (keyboard_check(vk_alt) && keyboard_check(vk_shift) && keyboard_check_released(ord("Z"))) {
-		for (var i = 0; i < gridColXListSize; i++) {
-			var currentColX = windowX1 + (((windowWidth / gridColXListSize) + 1) * i);
-			ds_list_set(gridColXList, i, currentColX);
-		}
-	}
+
+
+	
+	
+	
+	
+	
 	
 	
 	if (gridColXListSize < gridWidth) {
@@ -242,6 +249,29 @@ function scr_drawGridViewerClipped() {
 	draw_set_color(global.colorThemeBorders);
 	draw_line(windowX1, windowY1 + colNameHeight, windowX2, windowY1 + colNameHeight);
 
+
+	// spread button
+	var spreadX2 = camWidth - 20;
+	var spreadX1 = spreadX2 - string_width(" Spread ");
+	var spreadY1 = obj_menuBar.menuHeight + 20;
+	var spreadY2 = spreadY1 + string_height("0");
+	var mouseoverSpread = point_in_rectangle(mouse_x, mouse_y, spreadX1, spreadY1, spreadX2, spreadY2);
+	draw_set_color(mouseoverSpread ? global.colorThemeSelected1 : global.colorThemeBG);
+	draw_rectangle(spreadX1, spreadY1, spreadX2, spreadY2, false);
+	draw_set_color(global.colorThemeBorders);
+	draw_rectangle(spreadX1, spreadY1, spreadX2, spreadY2, true);
+	draw_set_color(global.colorThemeText);
+	draw_set_halign(fa_center);
+	draw_text(mean(spreadX1, spreadX2), mean(spreadY1, spreadY2), "Spread");
+	var spreadHotkey = keyboard_check(vk_alt) && keyboard_check(vk_shift) && keyboard_check_released(ord("Z"));
+	
+	// spread the columns to be evenly spaced across the window width
+	if (spreadHotkey || (mouseoverSpread && mouse_check_button_released(mb_left))) {
+		for (var i = 0; i < gridColXListSize; i++) {
+			var currentColX = windowX1 + (((windowWidth / gridColXListSize) + 1) * i);
+			ds_list_set(gridColXList, i, currentColX);
+		}
+	}
 
 	// debug
 	if (obj_control.showDevVars) {
