@@ -1,16 +1,16 @@
-function scr_importTabbedTXT(filename, delimiter) {
+function scr_importTabbedTXT(delimiter) {
 	show_debug_message("scr_importTabbedTXT");
-	global.importFilename = filename;
 
-	var fileOpenRead = file_text_open_read(filename);
 	var colListCreated = false;
-
 	var widthOfImportGrid = 0;
-	while (not file_text_eof(fileOpenRead)) {
+	var importTXTLineGridHeight = ds_grid_height(global.importTXTLineGrid);
+	var i = 0;
 	
-		var lineInFile = file_text_readln(fileOpenRead);
+	repeat(importTXTLineGridHeight) {
+	
+		var lineStr = global.importTXTLineGrid[# global.importTXTLineGrid_colLine, i];
 		var listOfColumns = ds_list_create();
-		listOfColumns = scr_splitString(lineInFile, delimiter);
+		listOfColumns = scr_splitString(lineStr, delimiter);
 		var listOfColumnsSize = ds_list_size(listOfColumns);
 		
 		/*
@@ -49,7 +49,7 @@ function scr_importTabbedTXT(filename, delimiter) {
 	
 	
 		//show_message(scr_getStringOfList(listOfColumns));
-	
+		i++;
 	}
 	
 	if(!colListCreated){

@@ -47,6 +47,8 @@ function scr_readFileUTF8(filename){
 		show_debug_message("This file contains characters that are not encoded in UTF-8. Some characters may be missing in Rezonator.")
 	}
 	
+	show_debug_message("scr_readFileUTF8 ... END, " + scr_printTime());
+	
 	//return list of lines in file
 	return lineList;
 

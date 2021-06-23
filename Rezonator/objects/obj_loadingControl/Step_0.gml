@@ -18,7 +18,7 @@ else {
 		repeat(fps) scr_importGridToNodeMap_plainText(importGridRow);
 	}
 	else if (global.importType == global.importType_IGT || global.importType == global.importType_Transcription || global.importType == global.importType_TabDelimited) {
-		
+				repeat(fps) scr_importGridToNodeMap_fieldsRowUnit(importGridRow);
 	}
 	else if (global.importType == global.importType_CoNLLU || global.importType == global.importType_CSV) {
 		

@@ -29,7 +29,8 @@ rowToChange = -1;
 colToChange = -1;
 
 
-if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {	
+if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
+	show_debug_message("obj_importMapping Create ... Skipping import screen");
 	scr_importInfoGrid();
 	room_goto(rm_loadingScreen);
 }

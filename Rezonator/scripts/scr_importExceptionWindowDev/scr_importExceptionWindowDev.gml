@@ -170,7 +170,8 @@ function scr_importExceptionWindowDev() {
 		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
 	
 		if (mouse_check_button_released(mb_left)) {
-		
+			
+			show_debug_message("scr_importExceptionWindowDev ... mb_left released");
 			scr_importTXTExceptions();
 			scr_importInfoGrid();
 		
