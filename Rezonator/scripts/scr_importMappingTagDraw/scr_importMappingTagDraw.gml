@@ -195,12 +195,7 @@ function scr_importMappingTagDraw() {
 		alarm[2] = 3;
 	}
 
-	
 
-	if (tagGridHeight == 1) {
-		room_goto(rm_mainScreen)
-	}
-	
 	if (!obj_importMapping.updatedErrorCol) {
 		with (obj_importMapping) {
 			alarm[4] = 2;

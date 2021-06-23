@@ -12,7 +12,7 @@ function scr_checkTokenCount() {
 		for (var j = 0; j < importGridHeight; j++) {
 		
 			var currentCell = ds_grid_get(global.importGrid, i, j);
-			var currentTokenList = scr_splitStringImport(currentCell);
+			var currentTokenList = scr_splitStringImport(currentCell, " ");
 			tokenCount += ds_list_size(currentTokenList);
 			ds_list_destroy(currentTokenList);
 		}

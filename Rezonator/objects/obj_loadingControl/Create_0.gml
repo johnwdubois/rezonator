@@ -3,6 +3,7 @@ show_debug_message("obj_loadingControl Create! nodeMap size: " + string(ds_map_s
 
 importGridRow = 0;
 importGridHeight = ds_grid_height(global.importGrid);
+importGridWidth = ds_grid_width(global.importGrid);
 c_ltblue = make_color_rgb(183, 183, 255);
 finished = false;
 
@@ -12,6 +13,9 @@ scr_nodeMapDefaultData();
 tokenList = ds_list_create();
 unitList = ds_list_create();
 displayUnitList = ds_list_create();
+
+indexOfDisplayToken = ds_list_find_index(global.importGridColNameList, global.displayTokenField);
+
 
 
 global.tokenFieldList = ds_list_create();

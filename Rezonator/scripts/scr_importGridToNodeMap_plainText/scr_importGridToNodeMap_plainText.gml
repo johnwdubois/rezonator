@@ -7,7 +7,7 @@ function scr_importGridToNodeMap_plainText(row){
 	
 	// get unit string and split it
 	var unitStr = ds_grid_get(global.importGrid, 0, row);
-	var splitList = scr_splitStringImport(unitStr);
+	var splitList = scr_splitStringImport(unitStr, " ");
 	
 	// make a new unit node for this row
 	var unitNode = scr_addToNodeMap("unit");

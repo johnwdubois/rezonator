@@ -10,55 +10,7 @@ function scr_importGridToMorphGrid() {
 	var unitEndCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitEndColName);
 
 	if (global.plainText) {
-		/*	
-		unitCounter = 0;
 	
-
-		// get importGrid columns
-		var morphCol = global.plainTextInfoGrid_colText;
-	
-		
-		// build morphGrid!
-		var plainTextInfoGridHeight = ds_grid_height(global.plainTextInfoGrid);
-		for (var i = 0; i < plainTextInfoGridHeight; i++) {
-	
-			var currentParticipant = string(global.givenSpeaker);
-			var currentMorphFullStr = string(ds_grid_get(global.plainTextInfoGrid, morphCol, i));
-			var currentMorphList = scr_splitStringImport(currentMorphFullStr);
-			var currentGlossFullStr = "";
-		
-			currentGlossFullStr = string(ds_grid_get(global.importGrid, global.plainTextInfoGrid_colText, i));
-		
-		
-	
-			var currentUnitStart = 0;
-			var currentUnitEnd = 0;
-
-
-			unitCounter++;
-		
-			var currentMorphListSize = ds_list_size(currentMorphList);
-			for (var j = 0; j < currentMorphListSize; j++) {
-		
-				ds_grid_resize(obj_control.morphGrid, obj_control.morphGridWidth, ds_grid_height(obj_control.morphGrid) + 1);
-		
-				var currentMorph = ds_list_find_value(currentMorphList, j);
-				if (!RTL) {
-					RTL = scr_isStrRTL(currentMorph);
-				}
-		
-				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitID, ds_grid_height(obj_control.morphGrid) - 1, unitCounter);
-				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colWordID, ds_grid_height(obj_control.morphGrid) - 1, ds_grid_height(obj_control.morphGrid));
-				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colMorph, ds_grid_height(obj_control.morphGrid) - 1, currentMorph);
-				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colParticipant, ds_grid_height(obj_control.morphGrid) - 1, currentParticipant);
-				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitStart, ds_grid_height(obj_control.morphGrid) - 1, currentUnitStart);
-				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colUnitEnd, ds_grid_height(obj_control.morphGrid) - 1, currentUnitEnd);
-				ds_grid_set(obj_control.morphGrid, obj_control.morphGrid_colGloss, ds_grid_height(obj_control.morphGrid) - 1, currentMorph);
-			}
-		}
-		show_debug_message("scr_importGridToMorphGrid ... Splitting complete " + scr_printTime());
-
-		*/
 	}
 
 	else if (global.importType == global.importType_CoNLLU){
@@ -111,7 +63,7 @@ function scr_importGridToMorphGrid() {
 			if (glossCol >= 0) {
 				currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));
 			}
-			var currentGlossList = scr_splitStringImport(currentGlossFullStr);
+			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ");
 	
 			/*if (currentParticipant == 0) {
 				continue;
@@ -199,12 +151,12 @@ function scr_importGridToMorphGrid() {
 	
 			var currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
 			var currentMorphFullStr = string(ds_grid_get(global.importGrid, importGrid_colDisplayToken, i));
-			var currentMorphList = scr_splitStringImport(currentMorphFullStr);
+			var currentMorphList = scr_splitStringImport(currentMorphFullStr, " ");
 			var currentGlossFullStr = "";
 			if (glossCol >= 0) {
 				currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));
 			}
-			var currentGlossList = scr_splitStringImport(currentGlossFullStr);
+			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ");
 	
 			if (currentParticipant == 0) {
 				continue;
@@ -277,12 +229,12 @@ function scr_importGridToMorphGrid() {
 	
 			var currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
 			var currentMorphFullStr = string(ds_grid_get(global.importGrid, importGrid_colDisplayToken, i));
-			var currentMorphList = scr_splitStringImport(currentMorphFullStr);
+			var currentMorphList = scr_splitStringImport(currentMorphFullStr, " ");
 			var currentGlossFullStr = "";
 			if (glossCol >= 0) {
 				currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));
 			}
-			var currentGlossList = scr_splitStringImport(currentGlossFullStr);
+			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ");
 			if (currentParticipant == 0) {
 				continue;
 			}

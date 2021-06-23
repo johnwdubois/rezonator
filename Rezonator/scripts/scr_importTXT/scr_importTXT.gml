@@ -40,7 +40,7 @@ function scr_importTXT(filename) {
 		// tab delimited/elan/transcription import
 		var fileExt = filename_ext(obj_openingScreen.openedFile);
 		var delimiter = (string_count("csv", fileExt) > 0) ? "," : chr(9);
-		scr_importTabbedTXT(filename, delimiter);
+		scr_importTabbedTXT(delimiter);
 	}
 	else if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {	
 		// plain text import

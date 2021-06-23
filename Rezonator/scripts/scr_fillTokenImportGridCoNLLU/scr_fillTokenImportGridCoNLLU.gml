@@ -168,7 +168,7 @@ function scr_fillTokenImportGridCoNLLU() {
 				for (var j = 0; j < importGridHeight; j++) {
 			
 					var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
-					var currentLineTokenList = scr_splitStringImport(currentLine);
+					var currentLineTokenList = scr_splitStringImport(currentLine, " ");
 					var currentLineTokenListSize = ds_list_size(currentLineTokenList);
 
 					if(currentLineTokenListSize == 0){

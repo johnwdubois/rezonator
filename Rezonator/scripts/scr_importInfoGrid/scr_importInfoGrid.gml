@@ -48,7 +48,8 @@ function scr_importInfoGrid() {
 	
 	}
 	else {
-	
+		show_debug_message("global.importGridColNameList: " + scr_getStringOfList(global.importGridColNameList));
+		show_debug_message("importGridWidth : " + string(importGridWidth) + "importGridHeight : " + string(importGridHeight));
 		for (var i = 0; i < importGridWidth; i++) {
 	
 			var currentTag = ds_list_find_value(global.importGridColNameList, i);
@@ -78,7 +79,7 @@ function scr_importInfoGrid() {
 			var tokenCount = -1;
 			for (var j = 0; j < importGridHeight; j++) {
 				if (ds_grid_get(global.importGrid, i, j) != "0") {
-					var currentList = scr_splitStringImport(ds_grid_get(global.importGrid, i, j));
+					var currentList = scr_splitStringImport(ds_grid_get(global.importGrid, i, j), " ");
 					if (tokenCount < 0) {
 						tokenCount = ds_list_size(currentList);
 					}
