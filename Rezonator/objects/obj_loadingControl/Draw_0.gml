@@ -9,6 +9,11 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 draw_text(camWidth * 0.5, camHeight * 0.1, "YOURE IN THE LOADING SCREENENE");
 
+
+var currentLineText = global.importTXTLineGrid[# 0, importGridRow];
+
+draw_text(camWidth * 0.5, camHeight * 0.3, currentLineText);
+
 // draw progress bar
 var barBackBorder = 2;
 var barBackWidth = camWidth * 0.5;

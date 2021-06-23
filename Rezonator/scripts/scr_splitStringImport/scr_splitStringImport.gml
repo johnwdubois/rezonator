@@ -1,22 +1,18 @@
 function scr_splitStringImport(str, delim) {
+	//script credit to: yellow afterlife : https://yal.cc/gamemaker-split-string/
+	
 	str = string(str);
 	var list = ds_list_create();
 
-	var partIndex = 1;
-	var firstCopyComplete = false;
-	
-	var strLen = string_length(str);
-	for (var i = 1; i <= strLen; i++) {
-		if (string_char_at(str, i) ==  delim && i - partIndex > 0) {
-			ds_list_add(list, string_copy(str, firstCopyComplete ? partIndex + 1 : partIndex, firstCopyComplete ? i - partIndex - 1 : i - partIndex));
-			partIndex = i;
-			firstCopyComplete = true;
-		}
+	var p = string_pos(delim, str);
+	var dl = string_length(delim);
+	if (dl) while (p) {
+	    p -= 1;
+	    ds_list_add(list, string_copy(str, 1, p));
+	    str = string_delete(str, 1, p + dl);
+	    p = string_pos(delim, str);
 	}
-	if (partIndex < strLen) {
-		ds_list_add(list, string_copy(str, partIndex, strLen - partIndex));
-	}
-	
-	return list;
+	ds_list_add(list, str);
 
+	return list;
 }

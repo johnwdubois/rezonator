@@ -39,8 +39,6 @@ function scr_importTabbedTXT(delimiter) {
 			ds_grid_set(global.importGrid, i , ds_grid_height(global.importGrid) -1, fullColString);
 		}
 	
-	
-		//show_message(scr_getStringOfList(listOfColumns));
 		j++;
 	}
 	

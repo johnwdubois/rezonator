@@ -599,6 +599,8 @@ navTokenFieldList = ds_list_create();
 navUnitFieldList = ds_list_create();
 navChunkFieldList = ds_list_create();
 
+show_debug_message("obj_control, copying field lists... global.tokenFieldList: " + scr_getStringOfList(global.tokenFieldList));
+show_debug_message("obj_control, copying field lists... global.unitFieldList: " + scr_getStringOfList(global.unitFieldList));
 ds_list_copy(tokenFieldList, global.tokenFieldList);
 ds_list_copy(unitFieldList, global.unitFieldList);
 
@@ -719,4 +721,8 @@ with (obj_alarm2) alarm[1] = 2;
 var discourseSubMap = global.nodeMap[? global.discourseNode];
 if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
 	displayUnitList = discourseSubMap[? "displayUnitList"];
+}
+
+if(global.speakerField != "" ){
+	scr_showSpeakerName(true);
 }
