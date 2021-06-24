@@ -148,17 +148,7 @@ lineGrid_colPixelYOriginal = 12;
 lineGrid = ds_grid_create(lineGridWidth, 0);
 lineGridBackup = ds_grid_create(lineGridWidth, 0);
 
-// if we are importing a corpus CSV file, we should resize the unit & line grids to be filled in
-if (global.importCSVUnitGridHeight > 0) {
-	//ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight);
-	//ds_grid_resize(lineGrid, lineGridWidth, global.importCSVUnitGridHeight);
-	
-	//ds_grid_clear(unitGrid, -1);
-	//ds_grid_clear(lineGrid, -1);
-	global.totalUnitAmount = global.importCSVUnitGridHeight;
-	ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight - 1);
-	ds_grid_clear(unitGrid, -1);
-}
+
 
 
 //lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
@@ -609,10 +599,6 @@ ds_list_copy(navTokenFieldList, global.tokenFieldList);
 ds_list_copy(navUnitFieldList, global.unitFieldList);
 ds_list_add(navChunkFieldList, "~text");
 
-currentDisplayTokenColsList = ds_list_create();
-currentDisplayUnitColsList = ds_list_create();
-ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
-ds_list_add(currentDisplayUnitColsList,1,2,3,4,5);
 
 
 
@@ -716,12 +702,8 @@ listOfWords = ds_list_create();
 panelPaneTabList = ds_list_create();
 with (obj_alarm2) alarm[1] = 2;
 
+displayUnitList = -1
 
-// set display unit list
-var discourseSubMap = global.nodeMap[? global.discourseNode];
-if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
-	displayUnitList = discourseSubMap[? "displayUnitList"];
-}
 
 if(global.speakerField != "" && is_string(global.speakerField) ){
 	scr_showSpeakerName(true);

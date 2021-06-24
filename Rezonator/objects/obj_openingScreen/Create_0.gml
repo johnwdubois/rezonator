@@ -19,16 +19,6 @@ global.schemaFileName = "";
 
 global.fileLineRipList = ds_list_create();
 
-global.fileLineRipGripWidth = 7;
-global.fileLineRipGrid_colDiscoID = 0;
-global.fileLineRipGrid_colFileLineRipList = 1;
-global.fileLineRipGrid_colUnitAmount = 2;
-global.fileLineRipGrid_colParticipantList = 3;
-global.fileLineRipGrid_colColorList = 4;
-global.fileLineRipGrid_colParticipantIDList = 5;
-global.fileLineRipGrid = ds_grid_create(global.fileLineRipGripWidth, 0);
-
-global.totalUnitAmount = 0;
 
 global.participantColorList = ds_list_create();
 

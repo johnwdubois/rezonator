@@ -48,7 +48,7 @@ if not (global.newProject or global.openProject) {
 	scr_openingMenu();
 }
 else if (not global.newProject and global.openProject) {
-	room_goto(rm_mainScreen);
+	room_goto(rm_loadingScreen);
 }
 
 

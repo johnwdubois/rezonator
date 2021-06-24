@@ -5,6 +5,15 @@
 #macro vk_rcommand 91
 #macro vk_lcommand 92
 
+if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
+	// set display unit list if it does not exist
+	var discourseSubMap = global.nodeMap[? global.discourseNode];
+	if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
+		 displayUnitList = discourseSubMap[? "displayUnitList"];
+	}
+}
+
+
 shortcutsEnabled = true;
 cameraBottomLine = camera_get_view_height(view_get_camera(0));
 
@@ -349,25 +358,6 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	}
 	
 	
-	// replace word
-	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("X"))) {
-		if (hoverTokenID > -1 and hoverTokenID  < ds_grid_height(wordGrid)) {
-				
-				if (!obj_control.dialogueBoxActive) {
-					keyboard_string = "";
-					obj_control.replace = true;
-				}
-
-
-				obj_control.dialogueBoxActive = true;
-
-				if (!instance_exists(obj_dialogueBox)) {
-					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-				}
-		
-		}
-
-	}
 
 	
 	if (wordDrawGridFocusedAnimationInc) {
@@ -542,7 +532,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 	audio_stop_all();
 	scr_saveINI();
 	
-	if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+	if (!allSaved) {
 		
 		if (os_type == os_macosx) {
 

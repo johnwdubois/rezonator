@@ -79,8 +79,6 @@ function scr_loadREZ() {
 				if (objectIndex == "obj_control") {
 					obj_control.currentCenterDisplayRow = 0;
 			
-					obj_fileLoader.subLineGridBeginning = ds_map_find_value(map, "subLineGridBeginning");
-					obj_fileLoader.subLineGridEnd = ds_map_find_value(map, "subLineGridEnd");
 					global.importGridWidth = ds_map_find_value(map, "importGridWidth");
 					global.importCSVGridWidth = ds_map_find_value(map, "importCSVGridWidth");
 				
@@ -106,67 +104,19 @@ function scr_loadREZ() {
 					global.translationList = ds_map_find_value(map, "translationList");
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
-					global.tokenImportColNameList = ds_map_find_value(map, "tokenImportColNameList");
-					global.wordImportColNameList = ds_map_find_value(map, "wordImportColNameList");
-					global.unitImportColNameList = ds_map_find_value(map, "unitImportColNameList");
-					obj_control.currentDisplayTokenColsList = ds_map_find_value(map, "currentDisplayTokenColsList");
-					obj_control.currentDisplayUnitColsList = ds_map_find_value(map, "currentDisplayUnitColsList");
 				
-					if (ds_map_find_value(map, "showParticipantName") != undefined) {
+					if (ds_map_find_value(map, "showSpeakerName") != undefined) {
 						obj_control.showSpeakerName = ds_map_find_value(map, "showParticipantName");
 					}
 					if (ds_map_find_value(map, "justify") != undefined) {
 						obj_control.justify = ds_map_find_value(map, "justify");
 					}
-				
-					if (global.tokenImportColNameList == undefined) {
-						global.tokenImportColNameList = ds_list_create();
-					}
-					else {
-						global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
-					}
 					
-					if (global.wordImportColNameList == undefined) {
-						global.wordImportColNameList = ds_list_create();
+					if (global.translationList == undefined) {
+						global.translationList = ds_list_create();
 					}
-					else {
-						global.wordImportGridWidth = ds_list_size(global.wordImportColNameList);
-					}
-					
-					if (global.unitImportColNameList == undefined) {
-						global.unitImportColNameList = ds_list_create();
-					}
-					else {
-						global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
-					}
-					
-					if (global.translationList  == undefined) {
-						global.translationList  = ds_list_create();
-					}
-					
-				
-					global.tokenImportTagMap = ds_map_find_value(map, "tokenImportTagMap");
-					global.unitImportTagMap = ds_map_find_value(map, "unitImportTagMap");
-					global.nodeMap = ds_map_find_value(map, "nodeMap");
-					
-				
-					if (is_undefined(global.tokenImportTagMap)) {
-						show_debug_message("scr_loadREZ() ... global.tokenImportTagMap is undefined");
-						global.tokenImportTagMap = ds_map_create();
-					}
-					else {
-						global.tokenTagMapFilled = true;
-					}
-					
-					if (is_undefined(global.unitImportTagMap)) {
-						show_debug_message("scr_loadREZ() ... global.unitImportTagMap is undefined");
-						global.unitImportTagMap = ds_map_create();
-					}
-					else {
-						global.unitTagMapFilled = true;
-					}
-					
-					
+
+					global.nodeMap = ds_map_find_value(map, "nodeMap");			
 					if (is_undefined(global.nodeMap)) {
 						show_debug_message("scr_loadREZ() ... global.nodeMap is undefined");
 						global.nodeMap = ds_map_create();
@@ -178,36 +128,9 @@ function scr_loadREZ() {
 					}
 				
 				
-				
-					if (is_undefined(global.tokenImportColNameList)) {
-						var tempList = ds_list_create();
-						global.tokenImportColNameList = tempList;
-						ds_list_add(global.tokenImportColNameList, "~UnitID", "~TokenID", "~text", "~transcript");
-					}
-					if (is_undefined(global.wordImportColNameList)) {
-						var tempList = ds_list_create();
-						global.wordImportColNameList = tempList;
-						ds_list_add(global.wordImportColNameList, "~UnitID", "~WordID");
-					}
-					if (is_undefined(global.unitImportColNameList)) {
-						var tempList2 = ds_list_create();
-						global.unitImportColNameList = tempList2;
-						ds_list_add(global.tokenImportColNameList, "~UnitID", "~Participant");
-					}
 					if (is_undefined(global.importGridColNameList)) {
 						var tempList3 = ds_list_create();
 						global.importGridColNameList = tempList3;
-					}
-					if (is_undefined(obj_control.currentDisplayTokenColsList)) {
-						var tempList4 = ds_list_create();
-						obj_control.currentDisplayTokenColsList = tempList4;
-						ds_list_add(obj_control.currentDisplayTokenColsList,2,4,5,6,7);
-
-					}
-					if (is_undefined(obj_control.currentDisplayUnitColsList)) {
-						var tempList5 = ds_list_create();
-						obj_control.currentDisplayUnitColsList = tempList5;
-						ds_list_add(obj_control.currentDisplayUnitColsList,1,2,3,4,5);
 					}
 					
 					
@@ -233,7 +156,7 @@ function scr_loadREZ() {
 						obj_control.navUnitFieldList = navUnitFieldList;
 					}
 					
-										// get navTokenFieldList, if supplied
+					// get navTokenFieldList, if supplied
 					var unitFieldList = ds_map_find_value(map, "unitFieldList");
 					if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
 						ds_list_destroy(obj_control.unitFieldList);
@@ -268,35 +191,9 @@ function scr_loadREZ() {
 						ds_map_destroy(global.chainFieldMap);
 						global.chainFieldMap = chainFieldMap;
 					}
-
+					
+					
 	
-				
-					originalWordGridHeight = ds_grid_height(wordGrid);
-					originalUnitGridHeight = ds_grid_height(unitGrid);
-					originalLineGridHeight = ds_grid_height(lineGrid);
-					
-					
-					scr_loadAnotherREZ(global.fileLineRipGrid, map, "fileLineRipGrid");
-					scr_loadAnotherREZ(wordGrid, map, "wordGrid");
-					scr_loadAnotherREZ(dynamicWordGrid, map, "dynaWordGrid");
-					scr_loadAnotherREZ(wordDrawGrid, map, "wordDrawGrid");
-					scr_loadAnotherREZ(unitGrid, map, "unitGrid");
-					scr_loadAnotherREZ(lineGrid, map, "lineGrid");
-					scr_loadAnotherREZ(global.importGrid, map, "importGrid");
-					scr_loadAnotherREZ(global.importCSVGrid, map, "importCSVGrid");
-					scr_loadAnotherREZ(obj_control.morphGrid, map, "morphGrid");
-					ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, 0);
-					ds_grid_resize(global.wordImportGrid, global.wordImportGridWidth, 0);
-					ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, 0);
-				
-					scr_loadAnotherREZ(global.tokenImportGrid, map, "tokenImport");
-					scr_loadAnotherREZ(global.wordImportGrid, map, "wordImport");
-					scr_loadAnotherREZ(global.unitImportGrid, map, "unitImport");
-					scr_loadAnotherREZ(global.discoImportGrid, map, "discoImport");
-					scr_loadAnotherREZ(global.customLabelGrid, map, "CustomLabelGrid");
-					
-				
-					global.totalUnitAmount = scr_getTotalUnitAmount();
 					
 					// get displayTokenField & speakerField
 					var getDisplayTokenField = ds_map_find_value(map, "displayTokenField");
@@ -309,17 +206,6 @@ function scr_loadREZ() {
 					if (!ds_map_exists(global.nodeMap, global.discourseNode)) {
 						scr_initializeDiscourseNodes();
 					}
-					
-				}
-				else if (objectIndex == "obj_chain") {
-				
-
-				
-					obj_chain.chainColorID[1] = ds_map_find_value(map, "chainColorID1");
-					obj_chain.chainColorID[2] = ds_map_find_value(map, "chainColorID2");
-					obj_chain.chainColorID[3] = ds_map_find_value(map, "chainColorID3");
-				
-				
 				}
 			}		
 		}
@@ -356,75 +242,6 @@ function scr_loadREZ() {
 		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 	}
 	
-	
-	
-	// update the filtered chain lists now that we have those good ol chain lists loaded
-	scr_updateFilteredChainLists();
-
-
-	obj_chain.rezChainNameCounter = ds_list_size(rezChainList);
-	obj_chain.trackChainNameCounter = ds_list_size(trackChainList);
-	obj_chain.stackChainNameCounter = ds_list_size(stackChainList);
-
-
-
-
-	if (ds_grid_height(obj_control.lineGrid) > 1) {
-	
-		var newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
-		if (newGridSpaceVertical < 60) {
-			scr_refreshLineGridPixelY();
-			newGridSpaceVertical = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 1) - ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelY, 0); 
-		}
-		if (newGridSpaceVertical != obj_control.gridSpaceVertical) {
-			obj_control.gridSpaceVertical = newGridSpaceVertical;
-			obj_control.prevGridSpaceVertical = newGridSpaceVertical;
-		}
-	}
-
-	if (obj_fileLoader.subLineGridBeginning != undefined and obj_fileLoader.subLineGridEnd != undefined) {
-		if (obj_fileLoader.subLineGridBeginning > -1 and obj_fileLoader.subLineGridEnd > -1) {
-			scr_gridDeleteRange(obj_control.lineGrid, obj_control.lineGrid_colUnitID, obj_fileLoader.subLineGridBeginning, obj_fileLoader.subLineGridEnd);
-			var lineGridHeight = ds_grid_height(obj_control.lineGrid);
-			for (var i = 0; i < lineGridHeight; i++) {
-				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelY, i, i * obj_control.gridSpaceVertical);
-				ds_grid_set(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, i, i * obj_control.gridSpaceVertical);
-			}
-			scr_refreshLineGridDisplayRow(obj_control.lineGrid);
-		}
-	}
-
-	ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
-
-
-	// update tokenImport
-	if (ds_list_size(global.tokenImportColNameList) > 4 || ds_list_size(global.unitImportColNameList) > 0) {
-		if (ds_list_size(global.tokenImportColNameList) > 4) {
-			global.tokenImportGridWidth = ds_list_size(global.tokenImportColNameList);
-		}
-		if (ds_list_size(global.unitImportColNameList) > 0) {
-			global.unitImportGridWidth = ds_list_size(global.unitImportColNameList);
-		}
-		with (obj_gridViewer) {
-			alarm[2] = 1;
-		}
-	}
-
-	if (ds_grid_height(global.tokenImportGrid) <= ds_grid_height(obj_control.wordGrid)) {
-		ds_grid_resize(global.tokenImportGrid, global.tokenImportGridWidth, ds_grid_height(obj_control.wordGrid));
-	}
-	if (ds_grid_height(global.unitImportGrid) <= ds_grid_height(obj_control.unitGrid)) {
-		ds_grid_resize(global.unitImportGrid, global.unitImportGridWidth, ds_grid_height(obj_control.unitGrid));
-	}
-	
-	// update displayUnitList
-	var discourseNodeSubMap = global.nodeMap[? global.discourseNode];
-	if (scr_isNumericAndExists(discourseNodeSubMap, ds_type_map)) {
-		obj_control.displayUnitList = discourseNodeSubMap[? "displayUnitList"];
-	}
-	
-	// set whether to draw speaker name
-	scr_showSpeakerName(obj_control.showSpeakerName);
 
 
 }

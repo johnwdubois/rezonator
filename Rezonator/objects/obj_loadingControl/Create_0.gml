@@ -1,5 +1,5 @@
-
 show_debug_message("obj_loadingControl Create! nodeMap size: " + string(ds_map_size(global.nodeMap)) + scr_printTime());
+
 
 importGridRow = 0;
 importGridHeight = ds_grid_height(global.importGrid);

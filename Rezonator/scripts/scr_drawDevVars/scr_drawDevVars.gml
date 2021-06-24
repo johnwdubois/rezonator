@@ -43,8 +43,6 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 6), "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 7), "hoverTokenID: " + string(hoverTokenID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 8), "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	draw_text(devVarX, wordTopMargin + (strHeight * 9), "currentDisplayTokenColsList: " + scr_getStringOfList(currentDisplayTokenColsList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 10), "currentDisplayUnitColsList: " + scr_getStringOfList(currentDisplayUnitColsList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
 	draw_text(devVarX, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 	draw_text(devVarX, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));

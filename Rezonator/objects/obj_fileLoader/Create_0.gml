@@ -1,3 +1,8 @@
+if (global.openProject) {
+	show_debug_message("obj_loadingControl Create ... loading REZ");
+	scr_loadREZ();
+}
+
 discourseProcessing = 0;
 fileLineRipListElement = 0;
 

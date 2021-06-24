@@ -56,22 +56,5 @@ function scr_importCSV(filename) {
 	room_goto(rm_importScreen);
 
 
-	/*
-	var unitCounter = 0;
-	var previousUID = -1;
-
-	for (var i = 0; i < importCSVGridHeight; i++) {
-	
-		var currentUID = real(ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, i));
-		if (previousUID != currentUID) {
-			previousUID = currentUID;
-			unitCounter++;
-		}
-	}
-	global.importCSVUnitGridHeight = unitCounter;
-	global.totalUnitAmount = unitCounter;
-	*/
-
-
 
 }

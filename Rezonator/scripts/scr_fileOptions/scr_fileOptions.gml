@@ -41,7 +41,7 @@ function scr_fileOptions(optionSelected) {
 				audio_stop_all();
 				scr_saveINI();
 	
-				if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+				if (!obj_control.allSaved) {
 		
 					if (os_type == os_macosx) {
 
@@ -112,7 +112,7 @@ function scr_fileOptions(optionSelected) {
 			scr_saveINI();
 	
 	
-			if (!obj_control.allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+			if (!obj_control.allSaved) {
 		
 				if (os_type == os_macosx) {
 

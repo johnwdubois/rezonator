@@ -51,9 +51,6 @@ function scr_saveREZ(autosave) {
 	
 	// create maps to hold copies of other maps we want in the REZ file
 	var nodeMapCopy = ds_map_create();
-	var tokenImportTagMapCopy = ds_map_create();
-	var unitImportTagMapCopy = ds_map_create();
-	var stackTagMapCopy = ds_map_create();
 	var entryFieldMapCopy = ds_map_create();
 	var chainFieldMapCopy = ds_map_create();
 
@@ -72,15 +69,7 @@ function scr_saveREZ(autosave) {
 	
 		if (object_index == obj_control) {
 
-		
-
-
 			var tempImportGridColNameList = scr_copyListToMap(global.importGridColNameList, map, "importGridColNameList");
-			var tempTokenImportColNameList = scr_copyListToMap(global.tokenImportColNameList, map, "tokenImportColNameList");
-			var tempUnitImportColNameList = scr_copyListToMap(global.unitImportColNameList, map, "unitImportColNameList");
-			var tempCurrentDisplayTokenColsList = scr_copyListToMap(obj_control.currentDisplayTokenColsList, map, "currentDisplayTokenColsList");
-			var tempCurrentDisplayUnitColsList = scr_copyListToMap(obj_control.currentDisplayUnitColsList, map, "currentDisplayUnitColsList");
-			var tempWordImportColNameList = scr_copyListToMap(global.wordImportColNameList, map, "wordImportColNameList");
 			var tempChainEntryFieldList = scr_copyListToMap(global.chainEntryFieldList, map, "chainEntryFieldList");
 			var tempChainFieldList = scr_copyListToMap(global.chainFieldList, map, "chainFieldList");
 			var tempNavTokenFieldList = scr_copyListToMap(navTokenFieldList, map, "navTokenFieldList");
@@ -88,7 +77,6 @@ function scr_saveREZ(autosave) {
 			var tempNavUnitFieldList = scr_copyListToMap(navUnitFieldList, map, "navUnitFieldList");
 			var tempUnitFieldList = scr_copyListToMap(unitFieldList, map, "unitFieldList");
 			var tempTranslationList = scr_copyListToMap(global.translationList, map, "translationList");
-			
 			
 			
 
@@ -104,30 +92,12 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "tokenImportDisplayTokenColName", global.tokenImportDisplayTokenColName);
 		
 			// mainscreen display information
-			ds_map_add(map, "showParticipantName", obj_control.showSpeakerName);
+			ds_map_add(map, "showSpeakerName", obj_control.showSpeakerName);
 			ds_map_add(map, "justify", obj_control.justify);
 			
 			ds_map_add(map, "functionChainList_focusedUnit", obj_panelPane.functionChainList_focusedUnit);
 			ds_map_add(map, "functionChainList_focusedUnitIndex", obj_panelPane.functionChainList_focusedUnitIndex);
 			
-		
-			if (global.stackGrabSave) {
-				ds_map_add(map, "subLineGridBeginning", obj_fileLoader.subLineGridBeginning);
-				ds_map_add(map, "subLineGridEnd", obj_fileLoader.subLineGridEnd);
-			}
-			else {
-				ds_map_add(map, "subLineGridBeginning", -1);
-				ds_map_add(map, "subLineGridEnd", -1);
-			}
-			
-			
-			// deep-copy tokenImportTagMap
-			tokenImportTagMapCopy = json_decode(json_encode(global.tokenImportTagMap));
-			ds_map_add_map(map, "tokenImportTagMap", tokenImportTagMapCopy);
-			
-			// deep-copy unitImportTagMap
-			unitImportTagMapCopy = json_decode(json_encode(global.unitImportTagMap));
-			ds_map_add_map(map, "unitImportTagMap", unitImportTagMapCopy);
 			
 			// deep-copy entryFieldMap
 			entryFieldMapCopy = json_decode(json_encode(global.entryFieldMap));
@@ -140,7 +110,6 @@ function scr_saveREZ(autosave) {
 			// deep-copy nodeMap
 			nodeMapCopy = json_decode(json_encode(global.nodeMap));
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);
-			
 		 	
 			// save the displayTokenField & speakerField
 			ds_map_add(map, "displayTokenField", global.displayTokenField);
@@ -148,15 +117,14 @@ function scr_saveREZ(autosave) {
 			
 			// save discourse node
 			ds_map_add(map, "discourseNode", global.discourseNode);
+			
+			// save import type
+			ds_map_add(map, "importType", global.importType);
+			
+			// save version num
+			ds_map_add(map, "version", global.versionString);
 		
 		}
-		else if (object_index == obj_chain) {
-		
-			ds_map_add(map, "chainColorID1", chainColorID[1]);
-			ds_map_add(map, "chainColorID2", chainColorID[2]);
-			ds_map_add(map, "chainColorID3", chainColorID[3]);
-		}
-
 	}
 
 	// wrap the root list in a map
@@ -207,33 +175,15 @@ function scr_saveREZ(autosave) {
 	else {
 		scr_saveFileBuffer(working_directory + filename_name(global.fileSaveName), global.fileSaveName, jsonString);
 	}
-
-	for(var i = 0; i < ds_list_size(rootList); i++)
-	{
-	    var map = rootList[| i];
-	    map[? "importGridColNameList"] = undefined;
-	    map[? "tokenImportColNameList"] = undefined;
-	    map[? "unitImportColNameList"] = undefined;
-	    map[? "tokenImportTagMap"] = undefined;
-	    map[? "unitImportTagMap"] = undefined;
-		map[? "stackTagMap"] = undefined;
-	}
+	
 
 	ds_map_destroy(wrapper);
 	
 	// destroy various map/list deep-copies
 	ds_map_destroy(nodeMapCopy);
-	ds_map_destroy(tokenImportTagMapCopy);
-	ds_map_destroy(unitImportTagMapCopy);
-	ds_map_destroy(stackTagMapCopy);
 	ds_map_destroy(entryFieldMapCopy);
 	ds_map_destroy(chainFieldMapCopy);
 	ds_list_destroy(tempImportGridColNameList);
-	ds_list_destroy(tempTokenImportColNameList);
-	ds_list_destroy(tempUnitImportColNameList);
-	ds_list_destroy(tempCurrentDisplayTokenColsList);
-	ds_list_destroy(tempCurrentDisplayUnitColsList);
-	ds_list_destroy(tempWordImportColNameList);
 	ds_list_destroy(tempChainEntryFieldList);
 	ds_list_destroy(tempChainFieldList);
 	ds_list_destroy(tempNavTokenFieldList);
