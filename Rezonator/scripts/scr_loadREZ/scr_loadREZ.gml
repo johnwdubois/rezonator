@@ -82,7 +82,7 @@ function scr_loadREZ() {
 					global.importGridWidth = ds_map_find_value(map, "importGridWidth");
 					global.importCSVGridWidth = ds_map_find_value(map, "importCSVGridWidth");
 				
-					global.unitImportUnitDelimColName = ds_map_find_value(map, "unitImportUnitDelimColName");
+					global.unitDelimField = ds_map_find_value(map, "unitDelimField");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
 					global.wordImportWordDelimColName = ds_map_find_value(map, "wordImportWordDelimColName");
 					global.currentTranslation = ds_map_find_value(map, "currentTranslation");

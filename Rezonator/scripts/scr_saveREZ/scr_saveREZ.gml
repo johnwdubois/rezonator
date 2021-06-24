@@ -82,7 +82,7 @@ function scr_saveREZ(autosave) {
 
 		
 			//save special feild colnames
-			ds_map_add(map, "unitImportUnitDelimColName", global.unitImportUnitDelimColName);
+			ds_map_add(map, "unitDelimField", global.unitDelimField);
 			ds_map_add(map, "unitImportTurnDelimColName", global.unitImportTurnDelimColName);
 			ds_map_add(map, "wordImportWordDelimColName", global.wordImportWordDelimColName);
 			ds_map_add(map, "unitImportUnitEndColName", global.unitImportUnitEndColName);

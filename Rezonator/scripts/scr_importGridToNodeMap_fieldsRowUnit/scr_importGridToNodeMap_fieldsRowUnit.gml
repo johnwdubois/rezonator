@@ -52,9 +52,6 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				ds_map_add_list(newTokenFieldMap, "tagSet", ds_list_create());
 			}
 		}
-		
-
-		
 	}
 	
 	
@@ -89,8 +86,8 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 			ds_map_add_map(currentTokenSubMap, "tagMap", currentTokenTagMap);
 			ds_map_add(currentTokenTagMap, global.displayTokenField, splitList[| i]);
 			
-			//add to list of token tag meps for other token fields
-			ds_list_add(tokenTagMapList,currentTokenTagMap);
+			//add to list of token tag maps for other token fields
+			ds_list_add(tokenTagMapList, currentTokenTagMap);
 			
 			//add each token to the total token's List
 			ds_list_add(tokenList, currentTokenNode);
@@ -115,7 +112,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 		var unitStr = ds_grid_get(global.importGrid, i, row);
 		var splitList = scr_splitStringImport(unitStr, " ", true);
 		show_debug_message(scr_getStringOfList(splitList));
-		var currentField = ds_list_find_value(global.importGridColNameList, i);
+		var currentField = global.importGridColNameList[| i];
 		var currentLevel = global.fieldLevelMap[? currentField];
 
 	
@@ -140,7 +137,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 			ds_map_add(unitTagMap, currentField, unitStr);
 		}
 		else{
-		//gross word data BARF!
+			//gross word data BARF!
 		}			
 			
 	}

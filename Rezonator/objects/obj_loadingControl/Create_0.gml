@@ -15,7 +15,7 @@ unitList = ds_list_create();
 displayUnitList = ds_list_create();
 
 indexOfDisplayToken = ds_list_find_index(global.importGridColNameList, global.displayTokenField);
-
+indexOfUnitDelim = ds_list_find_index(global.importGridColNameList, global.unitDelimField);
 
 
 global.tokenFieldList = ds_list_create();
@@ -33,7 +33,12 @@ ds_map_add_list(discourseSubMap, "displayUnitList", displayUnitList);
 tokenTagMap = ds_map_create();
 unitTagMap  = ds_map_create();
 
+currentUnitID = "";
+currentEntryList = -1;
+
 
 prevNodeMapSize = 0;
 nodesPerSec = 0;
 alarm[0] = fps;
+
+prevFieldMap = ds_map_create();

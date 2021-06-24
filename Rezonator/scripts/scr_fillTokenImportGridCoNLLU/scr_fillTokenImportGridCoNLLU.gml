@@ -68,7 +68,7 @@ function scr_fillTokenImportGridCoNLLU() {
 		alarm[2] = 1;
 	}
 
-	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
+	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitDelimField);
 	var curUID = 0;
 	var prevUID = 0;
 	var unitCounter = 0;

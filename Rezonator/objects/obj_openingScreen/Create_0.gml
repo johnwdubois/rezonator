@@ -296,7 +296,7 @@ global.readHintHide = false;
 
 global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
-global.unitImportUnitDelimColName = "";
+global.unitDelimField = "";
 global.unitImportTurnDelimColName = "";
 global.wordImportWordDelimColName = "";
 global.currentTranslation = "";

@@ -34,7 +34,7 @@ function scr_importGridToMorphGrid() {
 	
 	
 		//hardcoded for now
-		var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
+		var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitDelimField);
 
 
 		var glossCol = ds_list_find_index(global.importGridColNameList, global.tokenImportTranscriptColName);
@@ -136,7 +136,7 @@ function scr_importGridToMorphGrid() {
 		var importGrid_colDisplayUnit = ds_list_find_index(global.importGridColNameList, displayUnitMarkerStr);
 	
 	
-		var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
+		var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitDelimField);
 		glossCol = ds_list_find_index(global.importGridColNameList, global.tokenImportTranscriptColName);
 	
 	

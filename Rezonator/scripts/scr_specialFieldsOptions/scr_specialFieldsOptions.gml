@@ -54,14 +54,14 @@ function scr_specialFieldsOptions(optionSelected) {
 
 		
 		case "Unit Delimiter":
-		global.unitImportUnitDelimColName = "";
+		global.unitDelimField = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit Delimiter") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit Delimiter");
-			global.unitImportUnitDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			global.unitDelimField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Turn Delimiter":
 		global.unitImportTurnDelimColName = "";

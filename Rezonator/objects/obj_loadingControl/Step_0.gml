@@ -14,13 +14,14 @@ if (importGridRow >= ds_grid_height(global.importGrid) && !finished) {
 	room_goto(rm_mainScreen);
 }
 else {
+	var iterations = fps;
 	if (global.importType == global.importType_PlainText || global.importType == global.importType_Paragraph) {
-		repeat(fps) scr_importGridToNodeMap_plainText(importGridRow);
+		repeat(iterations) scr_importGridToNodeMap_plainText(importGridRow);
 	}
 	else if (global.importType == global.importType_IGT || global.importType == global.importType_Transcription || global.importType == global.importType_TabDelimited) {
-		repeat(fps) scr_importGridToNodeMap_fieldsRowUnit(importGridRow);
+		repeat(iterations) scr_importGridToNodeMap_fieldsRowUnit(importGridRow);
 	}
 	else if (global.importType == global.importType_CoNLLU || global.importType == global.importType_CSV) {
-		
+		repeat(iterations) scr_importGridToNodeMap_fieldsRowToken(importGridRow);
 	}
 }
