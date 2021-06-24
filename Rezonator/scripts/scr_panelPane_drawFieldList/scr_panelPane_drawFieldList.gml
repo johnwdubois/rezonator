@@ -64,9 +64,11 @@ function scr_panelPane_drawFieldList(){
 		if (i < fieldListSize) {
 			currentField = fieldList[| i];
 			var currentFieldSubMap = fieldMap[? currentField];
-			var currentTagSet = currentFieldSubMap[? "tagSet"];
-			if (scr_isNumericAndExists(currentTagSet, ds_type_list)) {
-				removable = true;
+			if (scr_isNumericAndExists(currentFieldSubMap, ds_type_map)) {
+				var currentTagSet = currentFieldSubMap[? "tagSet"];
+				if (scr_isNumericAndExists(currentTagSet, ds_type_list)) {
+					removable = true;
+				}
 			}
 		}
 		

@@ -31,24 +31,25 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	if(row == 0){
 		
 		var unitFieldMap = global.nodeMap[?"unitTagMap"];
-		var newUnitFieldMap = ds_map_create();
-		ds_map_add_map(unitFieldMap, "unitStr", newUnitFieldMap);
-		ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
-
-		
 		var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
-		var newTokenFieldMap = ds_map_create();
-		ds_map_add_map(tokenFieldMap, global.displayTokenField, newTokenFieldMap);
-		ds_map_add_list(newTokenFieldMap, "tagSet", ds_list_create());
 
 		//add all fields to appropriate field lists
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
 			var fieldName = global.importGridColNameList[| i];
 			if(global.fieldLevelMap[? fieldName] == "unit"){
+				if(fieldName == "~blockID"){continue;}
 				ds_list_add(global.unitFieldList, fieldName);
+				
+				var newUnitFieldMap = ds_map_create();
+				ds_map_add_map(unitFieldMap,fieldName, newUnitFieldMap);
+				ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
 			}
 			else if(global.fieldLevelMap[? fieldName] == "token"){
 				ds_list_add(global.tokenFieldList, fieldName);
+				
+				var newTokenFieldMap = ds_map_create();
+				ds_map_add_map(tokenFieldMap, fieldName, newTokenFieldMap);
+				ds_map_add_list(newTokenFieldMap, "tagSet", ds_list_create());
 			}
 		}
 		
@@ -59,7 +60,8 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	
 	//split display token col to make the unit's tokens
 	var displayUnitStr = ds_grid_get(global.importGrid, indexOfDisplayToken, row);
-	var splitList = scr_splitStringImport(displayUnitStr, " ");
+	var splitList = scr_splitStringImport(displayUnitStr, " ", true);
+	show_debug_message(scr_getStringOfList(splitList));
 	
 	var tokenTagMapList = ds_list_create();
 	
@@ -111,7 +113,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 
 		// get unit string and split it
 		var unitStr = ds_grid_get(global.importGrid, i, row);
-		var splitList = scr_splitStringImport(unitStr, " ");
+		var splitList = scr_splitStringImport(unitStr, " ", true);
 		show_debug_message(scr_getStringOfList(splitList));
 		var currentField = ds_list_find_value(global.importGridColNameList, i);
 		var currentLevel = global.fieldLevelMap[? currentField];
@@ -125,13 +127,16 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					// fill token node tag map
 
 					var currentTokenTagMap = tokenTagMapList[|j];
-					ds_map_add(currentTokenTagMap, currentField, splitList[| j]);
+					if (scr_isNumericAndExists(currentTokenTagMap, ds_type_map)) {
+						ds_map_add(currentTokenTagMap, currentField, splitList[| j]);
+					}
 					
 				}
 				
 			}			
 		}
 		else if(currentLevel == "unit"){
+			if(currentField == "~blockID"){continue;}
 			ds_map_add(unitTagMap, currentField, unitStr);
 		}
 		else{

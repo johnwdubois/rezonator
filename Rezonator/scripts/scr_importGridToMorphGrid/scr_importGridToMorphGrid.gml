@@ -63,7 +63,7 @@ function scr_importGridToMorphGrid() {
 			if (glossCol >= 0) {
 				currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));
 			}
-			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ");
+			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ", false);
 	
 			/*if (currentParticipant == 0) {
 				continue;
@@ -151,12 +151,12 @@ function scr_importGridToMorphGrid() {
 	
 			var currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
 			var currentMorphFullStr = string(ds_grid_get(global.importGrid, importGrid_colDisplayToken, i));
-			var currentMorphList = scr_splitStringImport(currentMorphFullStr, " ");
+			var currentMorphList = scr_splitStringImport(currentMorphFullStr, " ", false);
 			var currentGlossFullStr = "";
 			if (glossCol >= 0) {
 				currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));
 			}
-			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ");
+			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ", false);
 	
 			if (currentParticipant == 0) {
 				continue;
@@ -229,12 +229,12 @@ function scr_importGridToMorphGrid() {
 	
 			var currentParticipant = string(ds_grid_get(global.importGrid, importGrid_colDisplayUnit, i));
 			var currentMorphFullStr = string(ds_grid_get(global.importGrid, importGrid_colDisplayToken, i));
-			var currentMorphList = scr_splitStringImport(currentMorphFullStr, " ");
+			var currentMorphList = scr_splitStringImport(currentMorphFullStr, " ", false);
 			var currentGlossFullStr = "";
 			if (glossCol >= 0) {
 				currentGlossFullStr = string(ds_grid_get(global.importGrid, glossCol, i));
 			}
-			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ");
+			var currentGlossList = scr_splitStringImport(currentGlossFullStr, " ", false);
 			if (currentParticipant == 0) {
 				continue;
 			}

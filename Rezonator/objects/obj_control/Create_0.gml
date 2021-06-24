@@ -723,6 +723,6 @@ if (scr_isNumericAndExists(discourseSubMap, ds_type_map)) {
 	displayUnitList = discourseSubMap[? "displayUnitList"];
 }
 
-if(global.speakerField != "" ){
+if(global.speakerField != "" && is_string(global.speakerField) ){
 	scr_showSpeakerName(true);
 }

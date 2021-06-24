@@ -10,7 +10,7 @@ function scr_importTabbedTXT(delimiter) {
 	
 		var lineStr = global.importTXTLineGrid[# global.importTXTLineGrid_colLine, j];
 		var listOfColumns = ds_list_create();
-		listOfColumns = scr_splitStringImport(lineStr, delimiter);
+		listOfColumns = scr_splitStringImport(lineStr, delimiter, false);
 		var listOfColumnsSize = ds_list_size(listOfColumns);
 		
 		
