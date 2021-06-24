@@ -28,18 +28,22 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		var sectionRectX1 = plusX;
 		var sectionRectX2 = speakerLabelColXList[| i];
 		
+		// get section text
+		var sectionText = "";
+		if (i == 0) sectionText = string(unitSubMap[? "unitSeq"]);
+		else if (i == 1) sectionText = string(tagMap[? global.speakerField]);
+		
 		// get rectangle color
 		var sectionColor = global.colorThemeSelected1;
-		if (i == 1) sectionColor = unitSubMap[? "speakerColor"];
+		if (i == 1) {
+			sectionColor = scr_strToColor(sectionText);
+		}
 		
 		// draw rectangle
 		draw_set_color(sectionColor);
 		draw_rectangle(sectionRectX1, sectionRectY1, sectionRectX2, sectionRectY2, false);
 		
-		// get section text
-		var sectionText = "";
-		if (i == 0) sectionText = string(unitSubMap[? "unitSeq"]);
-		else if (i == 1) sectionText = string(tagMap[? global.speakerField]);
+
 		
 		// cut off section text if its too long
 		var cutoffs = 0;

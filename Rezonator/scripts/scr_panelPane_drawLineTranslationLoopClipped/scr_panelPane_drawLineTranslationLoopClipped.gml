@@ -107,7 +107,7 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 				
 				
 				drawingSpeaker = true;
-				draw_set_color(merge_color(unitSubMap[?"speakerColor"], global.colorThemeBG, 0.4)); //soften the color
+				draw_set_color(merge_color(global.colorMap[? lineSpeaker], global.colorThemeBG, 0.4)); //soften the color
 				draw_rectangle(unitColX2 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 				draw_set_color(global.colorThemeText);
 		

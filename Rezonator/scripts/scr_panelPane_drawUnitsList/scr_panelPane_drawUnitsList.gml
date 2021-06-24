@@ -84,7 +84,7 @@ function scr_panelPane_drawUnitsList() {
 		// get data from unit
 		var currentUnitSeq = currentUnitSubMap[? "unitSeq"];
 		var currentSpeaker = currentTagMap[? global.speakerField];
-		var currentSpeakerColor = currentUnitSubMap[? "speakerColor"];
+		var currentSpeakerColor = scr_strToColor(currentSpeaker);
 		if (!is_numeric(currentSpeakerColor)) currentSpeakerColor = global.colorThemeSelected1;
 		var currentEntryList = currentUnitSubMap[? "entryList"];
 		var currentEntryListSize = 0;

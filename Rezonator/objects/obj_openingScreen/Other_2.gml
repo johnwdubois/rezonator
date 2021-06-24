@@ -33,6 +33,11 @@ global.strToLangMap = ds_map_create();
 // CREATING THE LEGENDARY NODE MAP
 global.nodeMap = ds_map_create();
 
+
+
+// CREATING THE NOT SO LEGENDARY COLOR MAP
+global.colorMap = -1;
+
 global.searchMap = -1;
 
 window_set_min_width(800);

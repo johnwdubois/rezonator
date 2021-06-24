@@ -31,6 +31,9 @@ function scr_nodeMapDefaultData(){
 	
 	// create the SEARCH MAP
 	global.searchMap = ds_map_create();
+	
+	// create the color MAP
+	global.colorMap = ds_map_create();
 
 	// add searchNodeList to nodeMap
 	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
@@ -40,4 +43,10 @@ function scr_nodeMapDefaultData(){
 	
 	// add search map to nodeList
 	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
+	
+	// add color map to nodeMap
+	ds_map_add_map(global.nodeMap, "searchMap", global.colorMap);
+	
+	// add color map to nodeList
+	ds_list_add(global.nodeMap[? "nodeList"], "colorMap");
 }
