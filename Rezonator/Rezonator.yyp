@@ -55,6 +55,7 @@
     {"id":{"name":"spr_justifyTool","path":"sprites/spr_justifyTool/spr_justifyTool.yy",},"order":2,},
     {"id":{"name":"scr_jumpToUnit","path":"scripts/scr_jumpToUnit/scr_jumpToUnit.yy",},"order":0,},
     {"id":{"name":"scr_panelPaneDrawBranch","path":"scripts/scr_panelPaneDrawBranch/scr_panelPaneDrawBranch.yy",},"order":27,},
+    {"id":{"name":"scr_textColorDarkOrLight","path":"scripts/scr_textColorDarkOrLight/scr_textColorDarkOrLight.yy",},"order":2,},
     {"id":{"name":"scr_jumpToEnd","path":"scripts/scr_jumpToEnd/scr_jumpToEnd.yy",},"order":1,},
     {"id":{"name":"scr_tokenClicked","path":"scripts/scr_tokenClicked/scr_tokenClicked.yy",},"order":9,},
     {"id":{"name":"scr_jumpToTime","path":"scripts/scr_jumpToTime/scr_jumpToTime.yy",},"order":2,},
