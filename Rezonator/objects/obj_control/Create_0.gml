@@ -597,6 +597,11 @@ ds_list_copy(unitFieldList, global.unitFieldList);
 
 ds_list_copy(navTokenFieldList, global.tokenFieldList);
 ds_list_copy(navUnitFieldList, global.unitFieldList);
+
+// we shouldn't have more than 6 columns in our nav panes
+while (ds_list_size(navTokenFieldList) > 6) ds_list_delete(navTokenFieldList, ds_list_size(navTokenFieldList) - 1);
+while (ds_list_size(navUnitFieldList) > 6) ds_list_delete(navUnitFieldList, ds_list_size(navTokenFieldList) - 1);
+
 ds_list_add(navChunkFieldList, "~text");
 
 
