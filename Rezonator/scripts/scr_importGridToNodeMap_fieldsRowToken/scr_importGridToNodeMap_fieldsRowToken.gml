@@ -7,7 +7,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	
 	// get current unit delimiter cell value
 	var unitDelimValue = global.importGrid[# indexOfUnitDelim, row];
-	if (unitDelimValue == "") unitDelimValue = prevFieldMap[? global.unitDelimField];
+	if (unitDelimValue == "" || unitDelimValue == "0") unitDelimValue = prevFieldMap[? global.unitDelimField];
 	else prevFieldMap[? global.unitDelimField] = unitDelimValue;
 	
 	
@@ -19,14 +19,12 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		currentUnitDelimValue = currentUnitTagMap[? global.unitDelimField];
 	}
 	
-	show_debug_message("scr_importGridToNodeMap_fieldsRowToken ... unitDelimValue: " + string(unitDelimValue) + ", currentUnitDelimValue: " + string(currentUnitDelimValue));
 	
 	var unitTagMap = -1;
 	var newUnitMade = false;
 	if (unitDelimValue != currentUnitDelimValue) {
 		
 		newUnitMade = true;
-		show_debug_message("scr_importGridToNodeMap_fieldsRowToken ... new unit!");
 		
 		// make a new unit node for this row
 		var unitNode = scr_addToNodeMap("unit");
