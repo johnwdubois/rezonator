@@ -4,7 +4,7 @@ function scr_autoCreateChunks(){
 	
 	// check if we are in an IGT import and that a Word Delimiter is specified
 	if (global.importType != global.importType_IGT) exit;
-	if (global.wordImportWordDelimColName == "" || !is_string(global.wordImportWordDelimColName)) exit;
+	if (global.wordDelimField == "" || !is_string(global.wordDelimField)) exit;
 	
 	show_debug_message("scr_autoCreateChunks");
 	

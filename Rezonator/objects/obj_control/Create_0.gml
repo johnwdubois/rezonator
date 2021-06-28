@@ -591,18 +591,38 @@ navChunkFieldList = ds_list_create();
 
 show_debug_message("obj_control, copying field lists... global.tokenFieldList: " + scr_getStringOfList(global.tokenFieldList));
 show_debug_message("obj_control, copying field lists... global.unitFieldList: " + scr_getStringOfList(global.unitFieldList));
-ds_list_copy(tokenFieldList, global.tokenFieldList);
+
+
+tokenFieldList = ds_list_create();
+chunkFieldList = ds_list_create();
+var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+var tokenFieldListSize = ds_list_size(global.tokenFieldList);
+for (var i = 0; i < tokenFieldListSize; i++) {
+	var currentField = global.tokenFieldList[| i];
+	var currentFieldSubMap = tokenTagMap[? currentField];
+	var currentTargetSet = currentFieldSubMap[? "targetList"];
+	if (ds_list_find_index(currentTargetSet, "token") >= 0) {
+		scr_addToListOnce(tokenFieldList, currentField);
+		scr_addToListOnce(chunkFieldList, currentField);
+	}
+	if (ds_list_find_index(currentTargetSet, "chunk") >= 0) {
+		scr_addToListOnce(chunkFieldList, currentField);
+	}
+}
+
+//ds_list_copy(tokenFieldList, global.tokenFieldList);
 ds_list_copy(unitFieldList, global.unitFieldList);
 
 
-ds_list_copy(navTokenFieldList, global.tokenFieldList);
+ds_list_copy(navTokenFieldList, tokenFieldList);
 ds_list_copy(navUnitFieldList, global.unitFieldList);
+ds_list_copy(navChunkFieldList, chunkFieldList);
 
 // we shouldn't have more than 6 columns in our nav panes
 while (ds_list_size(navTokenFieldList) > 6) ds_list_delete(navTokenFieldList, ds_list_size(navTokenFieldList) - 1);
 while (ds_list_size(navUnitFieldList) > 6) ds_list_delete(navUnitFieldList, ds_list_size(navTokenFieldList) - 1);
+while (ds_list_size(navChunkFieldList) > 6) ds_list_delete(navChunkFieldList, ds_list_size(navChunkFieldList) - 1);
 
-ds_list_add(navChunkFieldList, "~text");
 
 
 
@@ -713,3 +733,5 @@ displayUnitList = -1
 if(global.speakerField != "" && is_string(global.speakerField) ){
 	scr_showSpeakerName(true);
 }
+
+selectFieldChunk = false;

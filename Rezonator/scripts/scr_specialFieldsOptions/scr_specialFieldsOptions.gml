@@ -74,7 +74,7 @@ function scr_specialFieldsOptions(optionSelected) {
 			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Word Delimiter":
-		global.wordImportWordDelimColName = "";
+		global.wordDelimField = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Word Delimiter") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
@@ -87,7 +87,7 @@ function scr_specialFieldsOptions(optionSelected) {
 				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
 				obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
 			}
-			global.wordImportWordDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			global.wordDelimField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 			
 		case "Display Token":

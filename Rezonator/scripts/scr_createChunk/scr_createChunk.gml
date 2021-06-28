@@ -13,7 +13,7 @@ function scr_createChunk(){
 	// only allow single-token chunks if this is an IGT file with a word delimiter
 	if (inRectTokenIDListSize <= 1) {
 		if (global.importType != global.importType_IGT) exit;
-		if (global.wordImportWordDelimColName == "" || !is_string(global.wordImportWordDelimColName)) exit;
+		if (global.wordDelimField == "" || !is_string(global.wordDelimField)) exit;
 	}
 	
 	

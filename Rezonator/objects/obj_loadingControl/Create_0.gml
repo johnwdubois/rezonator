@@ -16,6 +16,7 @@ displayUnitList = ds_list_create();
 
 indexOfDisplayToken = ds_list_find_index(global.importGridColNameList, global.displayTokenField);
 indexOfUnitDelim = ds_list_find_index(global.importGridColNameList, global.unitDelimField);
+indexOfWordDelim = ds_list_find_index(global.importGridColNameList, global.wordDelimField);
 
 
 global.tokenFieldList = ds_list_create();

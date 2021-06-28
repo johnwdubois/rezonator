@@ -6,7 +6,7 @@ function scr_fieldUnits1ToManyOptions(optionSelected){
 		
 		scr_destroyAllDropDownsOtherThanSelf();
 		var dropDownOptionList = ds_list_create();
-		ds_list_copy(dropDownOptionList, obj_control.tokenFieldList);
+		ds_list_copy(dropDownOptionList, obj_control.selectFieldChunk ? obj_control.chunkFieldList : obj_control.tokenFieldList);
 		
 		
 		// check if the Unit tab or Chunk tab is selected, so we know where to draw the secondary dropDown out of

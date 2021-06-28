@@ -78,10 +78,14 @@ function scr_panelPane_drawChunks1To1(){
 			var focusedCell = (functionChainList_chunkSelected == currentChunk);
 			if (focusedCell) selectedChunkIndex = j;
 			
+			// draw BG for this cell
 			if (mouseoverRow || functionChainList_chunkMouseover == currentChunk) {
 				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.8));
-				draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 			}
+			else {
+				draw_set_color(global.colorThemeBG);
+			}
+			draw_rectangle(cellRectX1 - clipX, cellRectY1 - clipY, cellRectX2 - clipX, cellRectY2 - clipY, false);
 			
 			// mouseover and click on row
 			if (mouseoverRow) {

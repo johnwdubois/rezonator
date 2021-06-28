@@ -67,6 +67,7 @@ function scr_panelPane_drawChunks1To1Headers(fieldList){
 					chosenCol = i;
 				}
 				obj_control.tokenFieldToChange = currentField;
+				obj_control.selectFieldChunk = true;
 				
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "Add to tag set", "Remove from tag set", "Select field", "Create new field");

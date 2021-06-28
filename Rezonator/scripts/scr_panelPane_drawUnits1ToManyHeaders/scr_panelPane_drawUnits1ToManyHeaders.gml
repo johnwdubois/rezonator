@@ -77,6 +77,7 @@ function scr_panelPane_drawUnits1ToManyHeaders(){
 					chosenCol = i;
 				}
 				obj_control.tokenFieldToChange = currentField;
+				obj_control.selectFieldChunk = false;
 
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "Add to tag set", "Remove from tag set", "Show in main screen", "Select field", "Create new field");
