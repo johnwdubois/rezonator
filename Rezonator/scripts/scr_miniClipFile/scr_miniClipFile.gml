@@ -10,20 +10,26 @@ function scr_miniClipFile(unitList, startIndex, endIndex){
 		exit;
 	}
 	
+	// get complete node list
+	var nodeList = global.nodeMap[? "nodeList"];
+	
 	// create minimap
 	var miniMap = ds_map_create();
 	
 	// add default lists to minimap
+	
 	var miniNodeList = ds_list_create();
 	var miniRezChainList = ds_list_create();
 	var miniTrackChainList = ds_list_create();
 	var miniStackChainList = ds_list_create();
 	var miniShowList = ds_list_create();
+	var miniChunkList = ds_list_create();
 	ds_map_add_list(miniMap, "nodeList", miniNodeList);
 	ds_map_add_list(miniMap, "rezChainList", miniRezChainList);
 	ds_map_add_list(miniMap, "trackChainList", miniTrackChainList);
 	ds_map_add_list(miniMap, "stackChainList", miniStackChainList);
 	ds_map_add_list(miniMap, "showList", miniShowList);
+	ds_map_add_list(miniMap, "chunkList", miniChunkList);
 	
 	
 	// create a new discourse submap (it can have the same node ID as the regular one)
@@ -107,6 +113,49 @@ function scr_miniClipFile(unitList, startIndex, endIndex){
 			discourseTokenSeq++;
 		}
 	}
+	
+	
+	// collect chains/entries/links
+	var nodeListSize = ds_list_size(nodeList);
+	for (var i = 0; i < nodeListSize; i++) {
+		
+		// get current node, make sure it exists
+		var currentNode = nodeList[| i];
+		var currentNodeSubMap = global.nodeMap[? currentNode];
+		if (!scr_isNumericAndExists(currentNodeSubMap, ds_type_map)) continue;
+		
+		// check to see if type is something we want to copy
+		var currentNodeType = currentNodeSubMap[? "type"];
+		if (currentNodeType == "rezChain" || currentNodeType == "rez"
+		|| currentNodeType == "trackChain" || currentNodeType == "track"
+		|| currentNodeType == "stackChain" || currentNodeType == "stack"
+		|| currentNodeType == "link" || currentNodeType == "chunk") {
+			
+			// copy this node
+			var currentNodeSubMapCopy = json_decode(json_encode(currentNodeSubMap));
+			ds_map_add_map(miniMap, currentNode, currentNodeSubMapCopy);
+			ds_list_add(miniNodeList, currentNode);
+			
+			if (currentNodeType == "rezChain") ds_list_add(miniRezChainList, currentNode);
+			if (currentNodeType == "trackChain") ds_list_add(miniTrackChainList, currentNode);
+			if (currentNodeType == "stackChain") ds_list_add(miniStackChainList, currentNode);
+			
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// copy tokenTagMap & unitTagMap unit the miniMap
 	var tokenTagMapCopy = json_decode(json_encode(global.nodeMap[? "tokenTagMap"]));

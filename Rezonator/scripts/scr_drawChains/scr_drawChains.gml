@@ -81,8 +81,8 @@ function scr_drawChains() {
 			// get tokenSubMaps
 			var currentToken1SubMap = global.nodeMap[? currentTokenID1];
 			var currentToken2SubMap = global.nodeMap[? currentTokenID2];
-			if (!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)) {show_debug_message("TRERRY IS A DINGLE1") continue;}
-			if (!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){ show_debug_message("TRERRY IS A DINGLE2") continue;}
+			if (!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)) {show_debug_message("scr_drawChains ... currentToken1SubMap does not exist") continue;}
+			if (!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){ show_debug_message("scr_drawChains ... currentToken2SubMap does not exist") continue;}
 				
 			// get tokenTagSubMaps
 			var currentTagSubMap1 = currentToken1SubMap[? "tagMap"];
