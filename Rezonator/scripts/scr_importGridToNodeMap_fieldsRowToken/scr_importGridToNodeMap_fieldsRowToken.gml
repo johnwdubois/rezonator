@@ -13,6 +13,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	
 	// check if this unit delim value is the same as the "current unit"
 	var currentUnitSubMap = global.nodeMap[? currentUnitID];
+	
 	var currentUnitDelimValue = "";
 	if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
 		var currentUnitTagMap = currentUnitSubMap[? "tagMap"];

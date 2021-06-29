@@ -6,12 +6,22 @@ var camHeight = camera_get_view_height(view_camera[0]);
 draw_set_color(global.colorThemeText);
 draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
-draw_text(camWidth * 0.5, camHeight * 0.1, "YOURE IN THE LOADING SCREENENE");
+draw_text(camWidth * 0.5, camHeight * 0.1, "Importing : " + string(filename_name(global.importFilename)));
 
 
-var currentLineText = global.importTXTLineGrid[# 0, importGridRow];
 
-draw_text(camWidth * 0.5, camHeight * 0.3, currentLineText);
+
+draw_set_halign(fa_left);
+
+for(var i = 0; i < 6; i++){
+	var textRow = importGridRow - i;
+	if(textRow >= 0 && textRow < importGridHeight){
+		var currentLineText = (global.importType == global.importType_CSV) ? global.importCSVGrid[# indexOfDisplayToken, importGridRow - i] : global.importTXTLineGrid[# 0, importGridRow - i];
+		draw_text(camWidth * 0.35, camHeight * 0.2 + (i *string_height(currentLineText)* 1.5), currentLineText);
+		draw_text(camWidth * 0.3, camHeight * 0.2 + (i *string_height(currentLineText)* 1.5), string(textRow));
+	}
+}
+
 
 // draw progress bar
 var barBackBorder = 2;
@@ -33,4 +43,4 @@ draw_rectangle(barBackX1, barBackY1, barFillX2, barBackY2, false);
 // draw unit count
 draw_set_color(global.colorThemeText);
 draw_text(camWidth / 2, camHeight * 0.6, string(importGridRow) + " / " + string(importGridHeight));
-draw_text(camWidth / 2, camHeight * 0.5, "nodeMap size: " + string(ds_map_size(global.nodeMap)) + "\nFPS: " + string(fps) + "\n Nodes per sec: " + string(nodesPerSec));
+//draw_text(camWidth / 2, camHeight * 0.5, "nodeMap size: " + string(ds_map_size(global.nodeMap)) + "\nFPS: " + string(fps) + "\n Nodes per sec: " + string(nodesPerSec));

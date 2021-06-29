@@ -7,6 +7,9 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	
 	var entryList = ds_list_create();
 	
+	var speakerValue = "";
+	
+
 	// make a new unit node for this row
 	var unitNode = scr_addToNodeMap("unit");
 	var unitSubMap = global.nodeMap[? unitNode];
@@ -15,6 +18,18 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	// make tag map for unit
 	var unitTagMap = ds_map_create();
 	ds_map_add_map(unitSubMap, "tagMap", unitTagMap);
+	
+	
+	// get current unit delimiter cell value
+	if(indexOfSpeaker >= 0){
+		speakerValue = global.importGrid[# indexOfSpeaker, row];
+		if (speakerValue == "" || speakerValue == "0") speakerValue = prevFieldMap[? global.speakerField];
+		else prevFieldMap[? global.speakerField] = speakerValue;
+		
+		ds_map_add(unitTagMap,global.speakerField, speakerValue);
+	}
+	
+	
 	
 	// add values to unit node
 	ds_map_add(unitSubMap, "unitSeq", importGridRow + 1);
@@ -73,7 +88,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	if (indexOfWordDelim >= 0) {
 		var displayUnitStr = ds_grid_get(global.importGrid, indexOfWordDelim, row);
 		var wordSplitList = scr_splitStringImport(displayUnitStr, " ", true);
-		show_debug_message(scr_getStringOfList(wordSplitList));
+
 	
 		if (scr_isNumericAndExists(wordSplitList, ds_type_list)) {
 			var wordSplitListSize = ds_list_size(wordSplitList);
@@ -114,7 +129,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	//split display token col to make the unit's tokens
 	var displayUnitStr = ds_grid_get(global.importGrid, indexOfDisplayToken, row);
 	var splitList = scr_splitStringImport(displayUnitStr, " ", true);
-	show_debug_message(scr_getStringOfList(splitList));
+
 	
 	var tokenTagMapList = ds_list_create();
 	
@@ -203,7 +218,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 		// get unit string and split it
 		var unitStr = ds_grid_get(global.importGrid, i, row);
 		var splitList = scr_splitStringImport(unitStr, " ", true);
-		show_debug_message(scr_getStringOfList(splitList));
+
 		var currentField = global.importGridColNameList[| i];
 		var currentLevel = global.fieldLevelMap[? currentField];
 
@@ -227,8 +242,6 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					
 					// fill token node tag map
 					var hyphenSplitList = scr_splitStringWhitespaceAndHyphen(splitList[| j]);
-					show_debug_message("currentField: " + string(currentField) + ", hyphenSplitList: " + scr_getStringOfList(hyphenSplitList));
-					show_debug_message("tokenTagMapList: " + scr_getStringOfList(tokenTagMapList));
 					
 					if (scr_isNumericAndExists(hyphenSplitList, ds_type_list)) {
 						var hyphenSplitListSize = ds_list_size(hyphenSplitList);
@@ -246,7 +259,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 			}			
 		}
 		else if(currentLevel == "unit"){
-			if(currentField == "~blockID"){continue;}
+			if(currentField == "~blockID" || currentField == global.speakerField){continue;}
 			ds_map_add(unitTagMap, currentField, unitStr);
 		}
 		else if(currentLevel == "word"){

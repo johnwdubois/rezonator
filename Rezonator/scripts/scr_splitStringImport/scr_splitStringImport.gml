@@ -10,9 +10,6 @@ function scr_splitStringImport(str, delim, skipDelim) {
 	    p -= 1;
 		
 		var strCopy = string_copy(str, 1, p);
-		if(skipDelim){
-			show_debug_message("str copy: "+string(strCopy) + ",  delim: "+ string(delim));
-		}
 		if !(skipDelim && strCopy == "") {
 			ds_list_add(list, strCopy);
 		}
