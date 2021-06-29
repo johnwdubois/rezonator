@@ -77,6 +77,9 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 				var newTokenFieldMap = ds_map_create();
 				ds_map_add_map(tokenFieldMap, fieldName, newTokenFieldMap);
 				ds_map_add_list(newTokenFieldMap, "tagSet", ds_list_create());
+				var targetList = ds_list_create();
+				ds_map_add_list(newTokenFieldMap, "targetList", targetList);
+				ds_list_add(targetList, "token", "chunk");
 			}
 		}
 	}

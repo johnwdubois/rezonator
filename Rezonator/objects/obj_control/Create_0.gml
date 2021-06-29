@@ -601,12 +601,14 @@ for (var i = 0; i < tokenFieldListSize; i++) {
 	var currentField = global.tokenFieldList[| i];
 	var currentFieldSubMap = tokenTagMap[? currentField];
 	var currentTargetSet = currentFieldSubMap[? "targetList"];
-	if (ds_list_find_index(currentTargetSet, "token") >= 0) {
-		scr_addToListOnce(tokenFieldList, currentField);
-		scr_addToListOnce(chunkFieldList, currentField);
-	}
-	if (ds_list_find_index(currentTargetSet, "chunk") >= 0) {
-		scr_addToListOnce(chunkFieldList, currentField);
+	if (scr_isNumericAndExists(currentTargetSet, ds_type_list)) {
+		if (ds_list_find_index(currentTargetSet, "token") >= 0) {
+			scr_addToListOnce(tokenFieldList, currentField);
+			scr_addToListOnce(chunkFieldList, currentField);
+		}
+		if (ds_list_find_index(currentTargetSet, "chunk") >= 0) {
+			scr_addToListOnce(chunkFieldList, currentField);
+		}
 	}
 }
 

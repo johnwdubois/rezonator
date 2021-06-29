@@ -123,6 +123,9 @@ function scr_saveREZ(autosave) {
 			
 			// save version num
 			ds_map_add(map, "version", global.versionString);
+			
+			// save user ID
+			ds_map_add(map, "userID", global.userName);
 		
 		}
 	}
