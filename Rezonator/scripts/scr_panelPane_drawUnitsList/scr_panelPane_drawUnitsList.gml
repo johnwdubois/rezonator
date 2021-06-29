@@ -142,7 +142,7 @@ function scr_panelPane_drawUnitsList() {
 			draw_rectangle(speakerRectX1 - clipX, currentUnitRectY1 - clipY, speakerRectX2 - clipX, currentUnitRectY2 - clipY - 2, false);
 			
 			currentSpeaker = scr_adaptFont(currentSpeaker, "M");
-			draw_set_color(global.colorThemeText);
+			draw_set_color(scr_textColorDarkOrLight(currentSpeakerColor));
 			draw_set_halign(lineStateLTR ? fa_left : fa_right);
 			var speakerTextX = lineStateLTR ? floor(speakerRectX1 + textBuffer) : floor(speakerRectX2);
 			draw_text(speakerTextX - clipX, textY - clipY, currentSpeaker);

@@ -27,11 +27,11 @@ function scr_panelPane_drawFieldList(){
 	// determine which field list to use depending on 1to1 vs 1toMany and Chain vs Discourse
 	var fieldList = -1;
 	var fieldMap = -1;
-	if (chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+	if (chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
 		fieldList = obj_control.tokenFieldList;
 		fieldMap = global.nodeMap[? "tokenTagMap"];
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
 		fieldList = obj_control.unitFieldList;
 		fieldMap = global.nodeMap[? "unitTagMap"];
 	}
@@ -90,7 +90,7 @@ function scr_panelPane_drawFieldList(){
 				
 					// set field to be selected when clicked
 					if (chainViewOneToMany) {
-						if (fieldPaneSwitchButton == "Discourse") {
+						if (fieldPaneSwitchButton == "Doc") {
 							if (functionField_tokenFieldSelected != currentField) {
 								with(obj_panelPane) functionField_tokenTagSelected = "";
 							}
@@ -104,7 +104,7 @@ function scr_panelPane_drawFieldList(){
 						}
 					}
 					else {
-						if (fieldPaneSwitchButton == "Discourse") {
+						if (fieldPaneSwitchButton == "Doc") {
 							if (functionField_unitFieldSelected != currentField) {
 								with(obj_panelPane) functionField_unitTagSelected = "";
 							}
@@ -124,7 +124,7 @@ function scr_panelPane_drawFieldList(){
 			// check if this field has been selected
 			var fieldSelected = false;
 			if (chainViewOneToMany) {
-				if (fieldPaneSwitchButton == "Discourse") {
+				if (fieldPaneSwitchButton == "Doc") {
 					if (functionField_tokenFieldSelected == currentField) fieldSelected = true;
 				}
 				else {
@@ -132,7 +132,7 @@ function scr_panelPane_drawFieldList(){
 				}
 			}
 			else {
-				if (fieldPaneSwitchButton == "Discourse") {
+				if (fieldPaneSwitchButton == "Doc") {
 					if (functionField_unitFieldSelected == currentField) fieldSelected = true;
 				}
 				else {
@@ -178,8 +178,8 @@ function scr_panelPane_drawFieldList(){
 					
 					if (!instance_exists(obj_dialogueBox)) {
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-						if (chainViewOneToMany && fieldPaneSwitchButton == "Discourse") obj_dialogueBox.removeFieldToken = true;
-						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Discourse") obj_dialogueBox.removeFieldUnit = true;
+						if (chainViewOneToMany && fieldPaneSwitchButton == "Doc") obj_dialogueBox.removeFieldToken = true;
+						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Doc") obj_dialogueBox.removeFieldUnit = true;
 						else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldEntry = true;
 						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldChain = true;
 						obj_dialogueBox.questionWindowActive = true;
@@ -222,7 +222,7 @@ function scr_panelPane_drawFieldList(){
 					if (chainViewOneToMany) {
 						
 						// prompt user for name of new token field/marker
-						if (fieldPaneSwitchButton == "Discourse") obj_control.newCustomFieldToken = true;
+						if (fieldPaneSwitchButton == "Doc") obj_control.newCustomFieldToken = true;
 						else obj_control.newCustomFieldEntry = true;
 						obj_control.dialogueBoxActive = true;
 
@@ -233,7 +233,7 @@ function scr_panelPane_drawFieldList(){
 					else {
 					
 						// prompt user for name of new token field/marker
-						if (fieldPaneSwitchButton == "Discourse") obj_control.newCustomFieldUnit = true;
+						if (fieldPaneSwitchButton == "Doc") obj_control.newCustomFieldUnit = true;
 						else obj_control.newCustomFieldChain = true;
 						obj_control.dialogueBoxActive = true;
 

@@ -212,7 +212,7 @@ hoverTime[3] = 0;
 
 errorText = "";
 
-fieldPaneSwitchButton = "Discourse";
+fieldPaneSwitchButton = "Doc";
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
 

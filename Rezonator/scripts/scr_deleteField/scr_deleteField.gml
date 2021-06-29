@@ -11,11 +11,11 @@ function scr_deleteField(fieldName){
 	var navWindowList3 = -1;
 	
 	
-	if (chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+	if (chainViewOneToMany && fieldPaneSwitchButton == "doc") {
 		fieldList = obj_control.tokenFieldList;
 		navWindowList1 = obj_control.navTokenFieldList;
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Discourse") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == "doc") {
 		fieldList = obj_control.unitFieldList;
 		navWindowList1 = obj_control.navUnitFieldList;
 	}

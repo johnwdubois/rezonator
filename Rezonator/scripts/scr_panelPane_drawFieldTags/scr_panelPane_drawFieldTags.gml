@@ -311,8 +311,8 @@ function scr_panelPane_drawFieldTags(){
 	
 	// toggle Discourse / Chains Button
 	
-	var switchPaneRButtonSizeX = string_width("Discourse") + spaceWidth*4;
-	var switchPaneRButtonSizeY = string_height("Discourse");
+	var switchPaneRButtonSizeX = string_width("Doc") + spaceWidth*4;
+	var switchPaneRButtonSizeY = string_height("Doc");
 	var switchPaneRRectX2 = loadRectX1 - spaceWidth*3;
 	var switchPaneRRectX1 = switchPaneRRectX2 - switchPaneRButtonSizeX;
 	var switchPaneRRectY1 =  mean(y ,y + headerHeight) - switchPaneRButtonSizeY/2;
@@ -322,10 +322,10 @@ function scr_panelPane_drawFieldTags(){
 	
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, true);
-	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, fieldPaneSwitchButton != "Discourse");
+	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, fieldPaneSwitchButton != "Doc");
 	if(mouseOverswitchPaneR){
-		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Discourse") {
-			with (obj_panelPane) fieldPaneSwitchButton = "Discourse";
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Doc") {
+			with (obj_panelPane) fieldPaneSwitchButton = "Doc";
 		}
 	}
 	
@@ -333,14 +333,14 @@ function scr_panelPane_drawFieldTags(){
 	var switchPaneRTextY = floor(mean(switchPaneRRectY1,switchPaneRRectY2)+1);
 	
 	draw_set_halign(fa_center);
-	draw_set_color((fieldPaneSwitchButton == "Discourse") ? global.colorThemeBG : global.colorThemeText);
-	draw_text(switchPaneRTextX,switchPaneRTextY,"Discourse");
+	draw_set_color((fieldPaneSwitchButton == "Doc") ? global.colorThemeBG : global.colorThemeText);
+	draw_text(switchPaneRTextX,switchPaneRTextY,"Doc");
 	
 	
 	// toggle Discourse / Chains Button
 	
-	var switchPaneLButtonSizeX = string_width("Discourse")+ spaceWidth*4;
-	var switchPaneLButtonSizeY = string_height("Discourse");
+	var switchPaneLButtonSizeX = string_width("Doc")+ spaceWidth*4;
+	var switchPaneLButtonSizeY = string_height("Doc");
 	var switchPaneLRectX2 = switchPaneRRectX1-2;
 	var switchPaneLRectX1 = switchPaneLRectX2 - switchPaneLButtonSizeX;
 	var switchPaneLRectY1 =  mean(y ,y + headerHeight) - switchPaneLButtonSizeY/2;

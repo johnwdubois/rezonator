@@ -47,7 +47,8 @@ function scr_mapViewerDrawNodeData(){
 			var isList = (subMapKey == "goalLinkList" || subMapKey == "linkIDList" || subMapKey == "vizSetIDList"
 							|| subMapKey == "setIDList"  || subMapKey == "inChainsList" || subMapKey == "tokenList"
 							|| subMapKey == "entryList"|| subMapKey == "unitList" || subMapKey == "displayUnitList"
-							|| subMapKey == "inChunkList"|| subMapKey == "tagSet" )  ;
+							|| subMapKey == "inChunkList"|| subMapKey == "tagSet" || subMapKey == "targetList"
+							|| subMapKey == "docList")  ;
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}

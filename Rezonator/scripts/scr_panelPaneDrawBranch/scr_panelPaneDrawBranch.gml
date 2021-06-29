@@ -94,7 +94,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawLineTranslationLoopClipped();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
+						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
 							scr_panelPane_drawFieldTags();
 						}
 						else {
@@ -122,7 +122,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawShow1toMany();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						if(obj_panelPane.fieldPaneSwitchButton == "Discourse"){
+						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
 							scr_panelPane_drawFieldTags();
 						}
 						else{

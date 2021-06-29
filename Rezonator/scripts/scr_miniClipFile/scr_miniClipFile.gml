@@ -32,11 +32,20 @@ function scr_miniClipFile(unitList, startIndex, endIndex){
 	ds_map_add_list(miniMap, "chunkList", miniChunkList);
 	
 	
-	// create a new discourse submap (it can have the same node ID as the regular one)
+	// create a new discourse & corpus submap (it can have the same node ID as the regular one)
+	var miniCorpusSubMap = ds_map_create();
+	var miniCorpusDocList = ds_list_create();
+	ds_map_add_list(miniCorpusSubMap, "docList", miniCorpusDocList);
 	var miniDiscourseSubMap = ds_map_create();
-	ds_map_add(miniDiscourseSubMap, "type", "Discourse");
+	ds_map_add(miniCorpusSubMap, "type", "corpus");
+	ds_map_add(miniDiscourseSubMap, "type", "doc");
+	ds_map_add_map(miniMap, global.corpusNode, miniCorpusSubMap);
 	ds_map_add_map(miniMap, global.discourseNode, miniDiscourseSubMap);
+	ds_list_add(miniNodeList, global.corpusNode);
 	ds_list_add(miniNodeList, global.discourseNode);
+	ds_list_add(miniCorpusDocList, global.discourseNode);
+	
+	
 	
 	
 	// add unitList, tokenList, and displayUnitList to new discourse node
@@ -129,7 +138,8 @@ function scr_miniClipFile(unitList, startIndex, endIndex){
 		if (currentNodeType == "rezChain" || currentNodeType == "rez"
 		|| currentNodeType == "trackChain" || currentNodeType == "track"
 		|| currentNodeType == "stackChain" || currentNodeType == "stack"
-		|| currentNodeType == "link" || currentNodeType == "chunk") {
+		|| currentNodeType == "link" || currentNodeType == "chunk"
+		|| currentNodeType == "map") {
 			
 			// copy this node
 			var currentNodeSubMapCopy = json_decode(json_encode(currentNodeSubMap));
@@ -162,6 +172,8 @@ function scr_miniClipFile(unitList, startIndex, endIndex){
 	var unitTagMapCopy = json_decode(json_encode(global.nodeMap[? "unitTagMap"]));
 	ds_map_add_map(miniMap, "tokenTagMap", tokenTagMapCopy);
 	ds_map_add_map(miniMap, "unitTagMap", unitTagMapCopy);
+	
+	
 	
 	// temporarily change the nodeMap to be our miniMap, then save the nodeMap, and finally change the nodeMap back
 	global.fileSaveName = "";

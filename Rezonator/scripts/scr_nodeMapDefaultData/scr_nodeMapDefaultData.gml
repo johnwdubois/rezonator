@@ -20,6 +20,8 @@ function scr_nodeMapDefaultData(){
 	
 	var tokenTagMap = ds_map_create();
 	var unitTagMap = ds_map_create();
+	ds_map_add(tokenTagMap, "type", "map");
+	ds_map_add(unitTagMap, "type", "map");
 	
 	ds_map_add_map(global.nodeMap, "tokenTagMap", tokenTagMap);
 	ds_map_add_map(global.nodeMap, "unitTagMap", unitTagMap);
@@ -31,9 +33,11 @@ function scr_nodeMapDefaultData(){
 	
 	// create the SEARCH MAP
 	global.searchMap = ds_map_create();
+	ds_map_add(global.searchMap, "type", "map");
 	
 	// create the color MAP
 	global.colorMap = ds_map_create();
+	ds_map_add(global.colorMap, "type", "map");
 
 	// add searchNodeList to nodeMap
 	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
@@ -45,7 +49,7 @@ function scr_nodeMapDefaultData(){
 	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
 	
 	// add color map to nodeMap
-	ds_map_add_map(global.nodeMap, "searchMap", global.colorMap);
+	ds_map_add_map(global.nodeMap, "colorMap", global.colorMap);
 	
 	// add color map to nodeList
 	ds_list_add(global.nodeMap[? "nodeList"], "colorMap");

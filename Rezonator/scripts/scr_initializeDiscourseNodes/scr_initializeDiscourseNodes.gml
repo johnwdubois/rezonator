@@ -5,7 +5,7 @@ function scr_initializeDiscourseNodes(){
 	show_debug_message("scr_initializeDiscourseNodes ... START " + scr_printTime());
 	
 	// create discourse node
-	var currentDiscourseNode = scr_addToNodeMap("Discourse");
+	var currentDiscourseNode = scr_addToNodeMap("doc");
 	var currentDiscourseSubMap = global.nodeMap[? currentDiscourseNode];
 	global.discourseNode = currentDiscourseNode;
 	
