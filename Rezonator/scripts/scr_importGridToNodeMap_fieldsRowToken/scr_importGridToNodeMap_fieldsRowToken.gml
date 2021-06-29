@@ -109,6 +109,8 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	ds_map_add(currentEntrySubMap, "unit", currentUnitID);
 	ds_list_add(currentEntryList, currentEntryNode);
 	
+	//add each token to the total token's List
+	ds_list_add(tokenList, currentTokenNode);
 	
 	// make tag map for token
 	var currentTokenTagMap = ds_map_create();
