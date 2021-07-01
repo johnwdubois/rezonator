@@ -21,6 +21,18 @@ function scr_getSearchLists(searchTermList){
 	
 	
 	
+	
+	if(obj_control.regExCheck){
+		// if user input regEx string
+		obj_control.RegEx = ds_list_create();
+
+		var regExFromString = scr_regularExpressionCreate(searchTermList[|0]);
+		if (scr_isNumericAndExists(regExFromString, ds_type_list) && obj_control.regExCheck) {
+			ds_list_copy(obj_control.RegEx, scr_regularExpressionCreate(searchTermList[|0]));
+		}
+	}
+
+	
 	for (var i = 0; i < searchedTokensListSize; i++) {
 		
 		var currentSearchToken = searchedTokensList[| i];
@@ -50,14 +62,32 @@ function scr_getSearchLists(searchTermList){
 				// check if this token's display string matches our searched token
 				var caseSensitiveMatch = (currentDisplayStr == currentSearchToken && obj_control.caseSensitive);
 				var nonCaseSensitiveMatch = (string_lower(currentDisplayStr) == string_lower(currentSearchToken));
-				
-				if (caseSensitiveMatch || nonCaseSensitiveMatch) {
-					scr_addToListOnce(searchUnitList, currentUnit);
-					scr_addToListOnce(searchTokenList, currentToken);
+				if(obj_control.caseSensitive){
+					if (caseSensitiveMatch) {
+						scr_addToListOnce(searchUnitList, currentUnit);
+						scr_addToListOnce(searchTokenList, currentToken);
+					}
+				}
+				else if (obj_control.regExCheck) {
+					if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)){
+						var regExMatch = (scr_regularExpressionMatch(obj_control.RegEx, currentDisplayStr));
+						if(regExMatch){
+							scr_addToListOnce(searchUnitList, currentUnit);
+							scr_addToListOnce(searchTokenList, currentToken);
+						}
+					}
+				}
+				else{
+					if(nonCaseSensitiveMatch || caseSensitiveMatch){
+						scr_addToListOnce(searchUnitList, currentUnit);
+						scr_addToListOnce(searchTokenList, currentToken);
+					}
 				}
 			}
 		}
 	}
+	obj_control.regExCheck = false;
+	
 	ds_list_add(listOfResultLists,searchUnitList);
 	ds_list_add(listOfResultLists,searchTokenList);
 	

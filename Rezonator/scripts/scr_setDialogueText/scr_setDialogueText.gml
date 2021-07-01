@@ -136,7 +136,7 @@ function scr_setDialogueText(){
 				descriptionText = scr_get_translation("msg_input_regex");
 			}
 			else{
-				titleText = scr_get_translation("Search Discourse");
+				titleText = scr_get_translation("Search Doc");
 				descriptionText = scr_get_translation("search_dialogue_word");
 			}
 		}

@@ -1,17 +1,103 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawDialogueBox_input(){
-	
+
 	// draw title text
 	if(!instance_exists(obj_inputBox)){
 		instance_create_layer(0,0,"InstancesInput", obj_inputBox);
 	}
 	with(obj_inputBox){
 		x =  floor(obj_dialogueBox.boxRectX1 + (obj_dialogueBox.boxWidth * 0.1));
-		y = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.35));
+		y = floor(obj_dialogueBox.boxRectY1 + (obj_dialogueBox.boxHeight * 0.22));
 		windowWidth = obj_dialogueBox.boxWidth * 0.8;
 		
 	}
 	obj_control.inputText = obj_inputBox.str;
+	
+	
+	// UI for search control
+	var dropDownHeight = string_height("0");
+	var dropDownXBuffer = 10;
+	var checkboxSize = dropDownHeight * 0.7;
+	draw_set_valign(fa_middle);
+	draw_set_alpha(1);
+	if (obj_control.fPressed) {
+		
+		// field rect
+		var fieldRectX1 = boxRectX1 + (boxWidth * 0.25);
+		var fieldRectY1 = obj_inputBox.y + obj_inputBox.windowHeight + dropDownXBuffer;
+		var fieldRectX2 = boxRectX1 + (boxWidth * 0.75);
+		var fieldRectY2 = fieldRectY1 + dropDownHeight;
+		var mouseoverFieldRect = point_in_rectangle(mouse_x, mouse_y, fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2);
+		draw_set_color(mouseoverFieldRect ? global.colorThemeSelected1 : global.colorThemeBG);
+		draw_rectangle(fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2, false);
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2, true);
+		
+		// field text
+		draw_set_color(global.colorThemeText);
+		var selectedField = string(global.displayTokenField);
+		scr_adaptFont(selectedField, "S", false);
+		draw_set_halign(fa_left);
+		draw_text(floor(fieldRectX1 + dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), selectedField);
+		draw_set_halign(fa_right);
+		draw_text(floor(fieldRectX1 - dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), "Field: ");
+		
+		// range rect
+		var rangeRectX1 = boxRectX1 + (boxWidth * 0.25);
+		var rangeRectY1 = fieldRectY2 + dropDownXBuffer;
+		var rangeRectX2 = boxRectX1 + (boxWidth * 0.75);
+		var rangeRectY2 = rangeRectY1 + dropDownHeight;
+		var mouseoverRangeRect = point_in_rectangle(mouse_x, mouse_y, rangeRectX1, rangeRectY1, rangeRectX2, rangeRectY2);
+		draw_set_color(mouseoverRangeRect ? global.colorThemeSelected1 : global.colorThemeBG);
+		draw_rectangle(rangeRectX1, rangeRectY1, rangeRectX2, rangeRectY2, false);
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(rangeRectX1, rangeRectY1, rangeRectX2, rangeRectY2, true);
+		
+		// range text
+		draw_set_color(global.colorThemeText);
+		var selectedRange = "Everywhere";
+		scr_adaptFont(selectedRange, "S", false);
+		draw_set_halign(fa_left);
+		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), selectedRange);
+		draw_set_halign(fa_right);
+		draw_text(floor(rangeRectX1 - dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), "Range: ");
+		
+		// case-sensitive checkbox
+		var caseCheckboxX1 = obj_inputBox.x;
+		var caseCheckboxY1 = rangeRectY2 + dropDownXBuffer;
+		var caseCheckboxX2 = caseCheckboxX1 + checkboxSize;
+		var caseCheckboxY2 = caseCheckboxY1 + checkboxSize;
+		var mouseoverCaseCheckbox = point_in_rectangle(mouse_x, mouse_y, caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2);
+		if (mouseoverCaseCheckbox && mouse_check_button_released(mb_left)) obj_control.caseSensitive = !obj_control.caseSensitive;
+		if (obj_control.caseSensitive) draw_sprite_ext(spr_checkmark, 0, mean(caseCheckboxX1, caseCheckboxX2), mean(caseCheckboxY1, caseCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2, true);
+		
+		// case-sensitive text
+		draw_set_color(global.colorThemeText);
+		draw_set_halign(fa_left);
+		draw_text(floor(caseCheckboxX2 + checkboxSize), floor(mean(caseCheckboxY1, caseCheckboxY2)), scr_get_translation("search_dialogue_case"));
+		
+		
+		// regex checkbox
+		var regexCheckboxX1 = obj_inputBox.x;
+		var regexCheckboxY1 = caseCheckboxY2 + dropDownXBuffer;
+		var regexCheckboxX2 = regexCheckboxX1 + checkboxSize;
+		var regexCheckboxY2 = regexCheckboxY1 + checkboxSize;
+		var mouseoverRegexCheckbox = point_in_rectangle(mouse_x, mouse_y, regexCheckboxX1, regexCheckboxY1, regexCheckboxX2, regexCheckboxY2);
+		if (mouseoverRegexCheckbox && mouse_check_button_released(mb_left)) obj_control.regExCheck = !obj_control.regExCheck;
+		if (obj_control.regExCheck) draw_sprite_ext(spr_checkmark, 0, mean(regexCheckboxX1, regexCheckboxX2), mean(regexCheckboxY1, regexCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
+		draw_set_color(global.colorThemeBorders);
+		draw_rectangle(regexCheckboxX1, regexCheckboxY1, regexCheckboxX2, regexCheckboxY2, true);
+		
+		// regex text
+		draw_set_color(global.colorThemeText);
+		draw_set_halign(fa_left);
+		draw_text(floor(regexCheckboxX2 + checkboxSize), floor(mean(regexCheckboxY1, regexCheckboxY2)), scr_get_translation("search_dialogue_regEx"));
+
+	}
+
+
 
 }

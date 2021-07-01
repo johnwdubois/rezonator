@@ -36,8 +36,10 @@ draw_set_halign(fa_center);
 draw_set_valign(fa_middle);
 scr_adaptFont(titleText, "L",false);
 draw_text(titleTextX, titleTextY, titleText);
-scr_adaptFont(titleText, "M", );
-draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText), boxWidth * 0.8);
+if(!inputWindowActive) {	
+	scr_adaptFont(titleText, "M", );
+	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText), boxWidth * 0.8);
+}
 	
 if(!promptWindowActive) {	
 	// cancel button

@@ -75,7 +75,7 @@ function scr_inputBoxDraw(){
 	cursorX = textX + string_width(strToCursor);
 	var cursorY1 = textY;
 	var cursorY2 = cursorY1 + strHeight;
-	draw_set_color(c_fuchsia);
+	draw_set_color(global.colorThemeRezPink);
 	var drawCursorReal = false;
 	if (drawCursor || keyboard_check(vk_anykey)) drawCursorReal = true;
 	if (drawCursorReal) draw_line_width(cursorX - clipX, cursorY1 - clipY, cursorX - clipX, cursorY2 - clipY, 2);
@@ -102,6 +102,6 @@ function scr_inputBoxDraw(){
 
 
 	// outline rect
-	draw_set_color(c_red);
+	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight, true);
 }
