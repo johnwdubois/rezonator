@@ -25,7 +25,6 @@ function scr_inputBoxStep(){
 	var paste = controlHold && keyboard_check_pressed(ord("V"));
 	if (paste) {
 		if (clipboard_has_text()) input = clipboard_get_text();
-		show_debug_message("pasted: " + string(input));
 	}
 
 
@@ -85,7 +84,6 @@ function scr_inputBoxStep(){
 			// single char backspace
 			if (deleteLen == 0) {
 				var strToDel = string_copy(str, cursorIndex, 1);
-				show_debug_message("strToDel: " + string(strToDel) + string(current_time));
 				str = string_delete(str, cursorIndex, 1);
 				cursorIndex--;
 				highlightIndex = cursorIndex;

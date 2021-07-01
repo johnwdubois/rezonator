@@ -23,23 +23,42 @@ function scr_drawDialogueBox_input(){
 	draw_set_alpha(1);
 	if (obj_control.fPressed) {
 		
+		// description text
+		if (instance_exists(obj_inputBox)) {
+			if (string_length(obj_inputBox.str) < 1) {
+				var descTextX = obj_inputBox.x + (dropDownXBuffer * 2);
+				var descTextY = floor(mean(obj_inputBox.y, obj_inputBox.y + obj_inputBox.windowHeight));
+				var descText = scr_get_translation("search_dialogue_word");
+				draw_set_color(global.colorThemeSelected2);
+				draw_set_halign(fa_left);
+				scr_adaptFont(descText, "S", false);
+				draw_text(descTextX, descTextY, descText);
+			}
+		}
+		
 		// field rect
 		var fieldRectX1 = boxRectX1 + (boxWidth * 0.25);
 		var fieldRectY1 = obj_inputBox.y + obj_inputBox.windowHeight + dropDownXBuffer;
 		var fieldRectX2 = boxRectX1 + (boxWidth * 0.75);
 		var fieldRectY2 = fieldRectY1 + dropDownHeight;
-		var mouseoverFieldRect = point_in_rectangle(mouse_x, mouse_y, fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2);
+		var mouseoverFieldRect = point_in_rectangle(mouse_x, mouse_y, fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2) && !instance_exists(obj_dropDown);
 		draw_set_color(mouseoverFieldRect ? global.colorThemeSelected1 : global.colorThemeBG);
 		draw_rectangle(fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2, false);
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(fieldRectX1, fieldRectY1, fieldRectX2, fieldRectY2, true);
 		
+		// click field dropdown
+		if (mouseoverFieldRect && mouse_check_button_released(mb_left)) {
+			var tokenFieldListCopy = ds_list_create();
+			ds_list_copy(tokenFieldListCopy, obj_control.tokenFieldList);
+			scr_createDropDown(fieldRectX1, fieldRectY2, tokenFieldListCopy, global.optionListTypeSearchField);
+		}
+		
 		// field text
 		draw_set_color(global.colorThemeText);
-		var selectedField = string(global.displayTokenField);
-		scr_adaptFont(selectedField, "S", false);
+		scr_adaptFont(obj_control.searchField, "S", false);
 		draw_set_halign(fa_left);
-		draw_text(floor(fieldRectX1 + dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), selectedField);
+		draw_text(floor(fieldRectX1 + dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), obj_control.searchField);
 		draw_set_halign(fa_right);
 		draw_text(floor(fieldRectX1 - dropDownXBuffer), floor(mean(fieldRectY1, fieldRectY2)), "Field: ");
 		
@@ -48,7 +67,7 @@ function scr_drawDialogueBox_input(){
 		var rangeRectY1 = fieldRectY2 + dropDownXBuffer;
 		var rangeRectX2 = boxRectX1 + (boxWidth * 0.75);
 		var rangeRectY2 = rangeRectY1 + dropDownHeight;
-		var mouseoverRangeRect = point_in_rectangle(mouse_x, mouse_y, rangeRectX1, rangeRectY1, rangeRectX2, rangeRectY2);
+		var mouseoverRangeRect = point_in_rectangle(mouse_x, mouse_y, rangeRectX1, rangeRectY1, rangeRectX2, rangeRectY2) && !instance_exists(obj_dropDown);
 		draw_set_color(mouseoverRangeRect ? global.colorThemeSelected1 : global.colorThemeBG);
 		draw_rectangle(rangeRectX1, rangeRectY1, rangeRectX2, rangeRectY2, false);
 		draw_set_color(global.colorThemeBorders);
@@ -68,7 +87,7 @@ function scr_drawDialogueBox_input(){
 		var caseCheckboxY1 = rangeRectY2 + dropDownXBuffer;
 		var caseCheckboxX2 = caseCheckboxX1 + checkboxSize;
 		var caseCheckboxY2 = caseCheckboxY1 + checkboxSize;
-		var mouseoverCaseCheckbox = point_in_rectangle(mouse_x, mouse_y, caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2);
+		var mouseoverCaseCheckbox = point_in_rectangle(mouse_x, mouse_y, caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2) && !instance_exists(obj_dropDown);
 		if (mouseoverCaseCheckbox && mouse_check_button_released(mb_left)) obj_control.caseSensitive = !obj_control.caseSensitive;
 		if (obj_control.caseSensitive) draw_sprite_ext(spr_checkmark, 0, mean(caseCheckboxX1, caseCheckboxX2), mean(caseCheckboxY1, caseCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
 		draw_set_color(global.colorThemeBorders);
@@ -85,7 +104,7 @@ function scr_drawDialogueBox_input(){
 		var regexCheckboxY1 = caseCheckboxY2 + dropDownXBuffer;
 		var regexCheckboxX2 = regexCheckboxX1 + checkboxSize;
 		var regexCheckboxY2 = regexCheckboxY1 + checkboxSize;
-		var mouseoverRegexCheckbox = point_in_rectangle(mouse_x, mouse_y, regexCheckboxX1, regexCheckboxY1, regexCheckboxX2, regexCheckboxY2);
+		var mouseoverRegexCheckbox = point_in_rectangle(mouse_x, mouse_y, regexCheckboxX1, regexCheckboxY1, regexCheckboxX2, regexCheckboxY2) && !instance_exists(obj_dropDown);
 		if (mouseoverRegexCheckbox && mouse_check_button_released(mb_left)) obj_control.regExCheck = !obj_control.regExCheck;
 		if (obj_control.regExCheck) draw_sprite_ext(spr_checkmark, 0, mean(regexCheckboxX1, regexCheckboxX2), mean(regexCheckboxY1, regexCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
 		draw_set_color(global.colorThemeBorders);

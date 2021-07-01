@@ -51,7 +51,7 @@ if(!promptWindowActive) {
 	var buttonY1 = buttonY2 - buttonHeight;
 	var cancelRectX2 = camMidX - buttonXBuffer;
 	var cancelRectX1 = cancelRectX2 - buttonWidth;
-	mouseoverCancel = point_in_rectangle(mouse_x, mouse_y, cancelRectX1, buttonY1, cancelRectX2, buttonY2);
+	mouseoverCancel = point_in_rectangle(mouse_x, mouse_y, cancelRectX1, buttonY1, cancelRectX2, buttonY2) && !instance_exists(obj_dropDown);
 	draw_set_color(mouseoverCancel ? global.colorThemeSelected1 : global.colorThemeBG);
 	draw_roundrect(cancelRectX1, buttonY1, cancelRectX2, buttonY2, false);
 	draw_set_color(global.colorThemeRezPink);
@@ -67,7 +67,7 @@ var buttonY2 = boxRectY2 - buttonYBuffer;
 var buttonY1 = buttonY2 - buttonHeight;
 var okRectX1 = camMidX + buttonXBuffer;
 var okRectX2 = okRectX1 + buttonWidth;
-mouseoverOk = point_in_rectangle(mouse_x, mouse_y, okRectX1, buttonY1, okRectX2, buttonY2);
+mouseoverOk = point_in_rectangle(mouse_x, mouse_y, okRectX1, buttonY1, okRectX2, buttonY2) && !instance_exists(obj_dropDown);
 draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverOk ? 0.2 : 0));
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);

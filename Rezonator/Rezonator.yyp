@@ -33,6 +33,7 @@
     {"id":{"name":"scr_renderQuickFilter","path":"scripts/scr_renderQuickFilter/scr_renderQuickFilter.yy",},"order":3,},
     {"id":{"name":"spr_playPause","path":"sprites/spr_playPause/spr_playPause.yy",},"order":9,},
     {"id":{"name":"scr_tokenCalculateVoid","path":"scripts/scr_tokenCalculateVoid/scr_tokenCalculateVoid.yy",},"order":7,},
+    {"id":{"name":"scr_searchFieldOptions","path":"scripts/scr_searchFieldOptions/scr_searchFieldOptions.yy",},"order":67,},
     {"id":{"name":"spr_toolsNew","path":"sprites/spr_toolsNew/spr_toolsNew.yy",},"order":4,},
     {"id":{"name":"scr_deleteChain","path":"scripts/scr_deleteChain/scr_deleteChain.yy",},"order":16,},
     {"id":{"name":"obj_loadingControl","path":"objects/obj_loadingControl/obj_loadingControl.yy",},"order":14,},
