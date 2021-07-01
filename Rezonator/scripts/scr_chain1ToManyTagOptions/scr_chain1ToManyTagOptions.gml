@@ -10,6 +10,7 @@ function scr_chain1ToManyTagOptions(optionSelected){
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		obj_dialogueBox.inputWindowActive = true;
 		exit;
 	}
 	

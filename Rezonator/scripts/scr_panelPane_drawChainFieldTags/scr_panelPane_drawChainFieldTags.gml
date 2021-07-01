@@ -151,6 +151,7 @@ function scr_panelPane_drawChainFieldTags(){
 								if (!instance_exists(obj_dialogueBox)) {
 									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 								}
+								obj_dialogueBox.inputWindowActive = true;
 							}
 							else{
 								obj_control.newCustomTagChain = true;
@@ -160,6 +161,7 @@ function scr_panelPane_drawChainFieldTags(){
 								if (!instance_exists(obj_dialogueBox)) {
 									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 								}
+								obj_dialogueBox.inputWindowActive = true;
 							}
 						}
 					}

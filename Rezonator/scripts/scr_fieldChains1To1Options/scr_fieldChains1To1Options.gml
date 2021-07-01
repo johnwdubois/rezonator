@@ -30,6 +30,7 @@ function scr_fieldChains1To1Options(optionSelected){
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		obj_dialogueBox.inputWindowActive = true;
 	}
 	else if (optionSelected == "Remove from tag set") {
 		

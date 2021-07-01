@@ -165,6 +165,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				if (!instance_exists(obj_dialogueBox)) {
 					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				}
+				obj_dialogueBox.inputWindowActive = true;
 			}
 		}
 
