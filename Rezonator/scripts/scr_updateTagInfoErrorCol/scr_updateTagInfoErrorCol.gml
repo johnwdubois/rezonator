@@ -32,19 +32,19 @@ function scr_updateTagInfoErrorCol(){
 			
 	var tagGridHeight = ds_grid_height(global.tagInfoGrid);
 	for(var i  = 0; i <= tagGridHeight; i++) {
-		var TargetMarker = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
-		var indexOfTargetMarker = ds_list_find_index(global.importGridColNameList, TargetMarker)-2;
-		var levelOfField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
+		var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
+		var currentFieldIndex = ds_list_find_index(global.importGridColNameList, currentField)-2;
+		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
 		
-		show_debug_message("scr_updateTagInfoErrorCol() ... targetMarker: " + string(indexOfTargetMarker) + ", levelOfField: " + string(levelOfField));
+		show_debug_message("scr_updateTagInfoErrorCol() ... currentField: " + string(currentField) + ", currentFieldIndex: " + string(currentFieldIndex) + ", currentLevel: " + string(currentLevel));
 				
 		// set every field to have no error by default
 		ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, false);
 				
-		if (levelOfField == global.levelToken) {
+		if (currentLevel == global.levelToken) {
 				
 			if (global.importType == global.importType_IGT) {
-				var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, indexOfTargetMarker, indexOfDisplayMarker);
+				var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, currentFieldIndex, indexOfDisplayMarker);
 				var targetThresholdError = (targetThreshold < obj_importMapping.currentTokenThreshold);
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, targetThresholdError);
 					
@@ -58,11 +58,11 @@ function scr_updateTagInfoErrorCol(){
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, true);
 			}
 		}
-		else if (levelOfField == global.levelWord) {
+		else if (currentLevel == global.levelWord) {
 					
 			if (global.importType == global.importType_IGT) {
 				if (indexOfWordDelim > -1) {
-					var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, indexOfTargetMarker, indexOfWordDelim);
+					var targetThreshold = ds_grid_get(global.fieldRelationHelperGrid, currentFieldIndex, indexOfWordDelim);
 					var targetThresholdError = (targetThreshold < obj_importMapping.currentWordThreshold);
 					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, targetThresholdError);
 					
@@ -77,7 +77,7 @@ function scr_updateTagInfoErrorCol(){
 				}
 			}
 		}
-		else if (levelOfField == global.levelUnit) {
+		else if (currentLevel == global.levelUnit) {
 			if (unitDelimNeeded) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colError, i, true);
 			}
@@ -86,15 +86,15 @@ function scr_updateTagInfoErrorCol(){
 		// check if there is an error with the special fields
 		var specialFieldsError = false;
 		var currentSpecialFields = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
-		if (  (currentSpecialFields == "Unit Start" && levelOfField != global.levelUnit)
-		   || (currentSpecialFields == "Unit End" && levelOfField != global.levelUnit)
-		   || (currentSpecialFields == "Speaker" && levelOfField != global.levelUnit)
-		   || (currentSpecialFields == "Unit Delimiter" && levelOfField != global.levelUnit)
-		   || (currentSpecialFields == "Turn Delimiter" && levelOfField != global.levelUnit)
-		   || (currentSpecialFields == "Translation" && levelOfField != global.levelUnit)
-		   || (currentSpecialFields == "Display Token" && levelOfField != global.levelToken)
-		   || (currentSpecialFields == "Transcript" && levelOfField != global.levelToken)
-		   || (currentSpecialFields == "Word Delimiter" && levelOfField != global.levelWord)
+		if (  (currentSpecialFields == "Unit Start" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "Unit End" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "Speaker" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "Unit Delimiter" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "Turn Delimiter" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "Translation" && currentLevel != global.levelUnit)
+		   || (currentSpecialFields == "Display Token" && currentLevel != global.levelToken)
+		   || (currentSpecialFields == "Transcript" && currentLevel != global.levelToken)
+		   || (currentSpecialFields == "Word Delimiter" && currentLevel != global.levelWord)
 		   ) {
 			   specialFieldsError = true;
 		   }
