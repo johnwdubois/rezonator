@@ -10,6 +10,7 @@ function scr_panelPane_drawSearchList(){
 	var nameColWidth = windowWidth * 0.3;
 	var termColX = nameColX + nameColWidth;
 	
+	
 	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
 	
@@ -19,6 +20,7 @@ function scr_panelPane_drawSearchList(){
 	var textAdjustY = 0;
 	var drawScrollbar = true;
 	
+	var mouseOverDel = false;
 	var anyOptionMousedOver = false;
 	var mouseoverScrollBar = (drawScrollbar) ? point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight) : false;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
@@ -87,7 +89,7 @@ function scr_panelPane_drawSearchList(){
 		// click on search name
 		if (mouseoverSearchRect) {
 			anyOptionMousedOver = true;
-			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
+			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown) && !mouseOverDel) {
 				with (obj_panelPane) functionSearchList_searchSelected = currentSearch;
 				obj_control.selectedSearchID = functionSearchList_searchSelected;
 				obj_control.searchGridActive = true;
@@ -134,7 +136,7 @@ function scr_panelPane_drawSearchList(){
 		// get coordinates for delete button
 		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 		var delButtonY = searchRectY1 + (strHeight * 0.5);
-		var mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, searchRectY1, deleteColX + deleteColWidth, searchRectY2) && mouseoverSearchRect;
+		mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, searchRectY1, deleteColX + deleteColWidth, searchRectY2) && mouseoverSearchRect;
 		var trashAlpha =  1;
 
 								

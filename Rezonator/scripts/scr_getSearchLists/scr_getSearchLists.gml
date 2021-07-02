@@ -31,6 +31,52 @@ function scr_getSearchLists(searchTermList){
 			ds_list_copy(obj_control.RegEx, scr_regularExpressionCreate(searchTermList[|0]));
 		}
 	}
+	
+	show_debug_message(string(obj_chain.currentFocusedChainID))
+	
+	var focusedChainTokenIDList = ds_list_create();
+	var trackChainTokenIDList = ds_list_create();
+	var rezChainTokenIDList = ds_list_create();
+	var stackChainTokenIDList = ds_list_create();
+	var chainTokenIDList = ds_list_create();
+	
+	if(obj_control.searchRange == "Current Chain"){
+		focusedChainTokenIDList = scr_getTokensOfChain(obj_chain.currentFocusedChainID);
+	}
+	else if(obj_control.searchRange != "Current Chain" && obj_control.searchRange != "Doc") {
+		
+		var listOfChains = "";
+		if(obj_control.searchRange == "Stacks"){
+			listOfChains = global.nodeMap[?"stackChainList"];
+			var listToAddTo = stackChainTokenIDList;
+		}
+		else if(obj_control.searchRange == "Rez Chains"){
+			listOfChains = global.nodeMap[?"rezChainList"];
+			var listToAddTo = rezChainTokenIDList;
+		}
+		else if(obj_control.searchRange == "Trails"){
+			listOfChains = global.nodeMap[?"trackChainList"];
+			var listToAddTo = trackChainTokenIDList;
+		}
+		else{
+			show_debug_message("NO RANGE GIVEN")
+			listOfChains = global.nodeMap[?"rezChainList"];
+			var listToAddTo = rezChainTokenIDList;
+		}
+		
+		var chainListSize = ds_list_size(listOfChains);
+		for(var i = 0 ; i < chainListSize; i++){
+			var currentTokenList = scr_getTokensOfChain(listOfChains[| i]);
+			var tokenListSize = ds_list_size(currentTokenList);
+			for(var j = 0 ; j < tokenListSize; j ++){
+				ds_list_add(listToAddTo,currentTokenList[| j]);
+			}	
+			
+		}
+		show_debug_message(scr_getStringOfList(rezChainTokenIDList));
+	}
+
+	
 
 	
 	for (var i = 0; i < searchedTokensListSize; i++) {
@@ -57,28 +103,79 @@ function scr_getSearchLists(searchTermList){
 				
 				// get tagmap for this token
 				var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
-				var currentDisplayStr = currentTokenTagMap[? global.displayTokenField];
+				var currentDisplayStr = currentTokenTagMap[? obj_control.searchField];
 				
 				// check if this token's display string matches our searched token
-				var caseSensitiveMatch = (currentDisplayStr == currentSearchToken && obj_control.caseSensitive);
+				var caseSensitiveMatch = (currentDisplayStr == currentSearchToken);
 				var nonCaseSensitiveMatch = (string_lower(currentDisplayStr) == string_lower(currentSearchToken));
-				if(obj_control.caseSensitive){
-					if (caseSensitiveMatch) {
-						scr_addToListOnce(searchUnitList, currentUnit);
-						scr_addToListOnce(searchTokenList, currentToken);
+
+
+				// check for current chain range
+				if (obj_control.searchRange != "Doc") {
+					
+					if(obj_control.searchRange == "Stacks"){
+						ds_list_copy(chainTokenIDList, stackChainTokenIDList);
 					}
+					else if(obj_control.searchRange == "Rez Chains"){
+						ds_list_copy(chainTokenIDList, rezChainTokenIDList);
+					}
+					else if(obj_control.searchRange == "Trails"){
+						ds_list_copy(chainTokenIDList, trackChainTokenIDList);
+					}
+					else if(obj_control.searchRange == "Current Chain"){
+						ds_list_copy(chainTokenIDList, focusedChainTokenIDList);
+					}
+					
+					
+					if (scr_isNumericAndExists(chainTokenIDList, ds_type_list)){
+						var inChainMatch = (ds_list_find_index(chainTokenIDList, currentToken) >= 0)
+						if(inChainMatch){
+							// reg ex check
+							if (obj_control.regExCheck) {
+								if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)){
+									var regExMatch = (scr_regularExpressionMatch(obj_control.RegEx, currentDisplayStr));
+									if(regExMatch){
+										scr_addToListOnce(searchUnitList, currentUnit);
+										scr_addToListOnce(searchTokenList, currentToken);
+									}
+								}
+							}
+							else if(obj_control.caseSensitive){
+								if(caseSensitiveMatch){
+									scr_addToListOnce(searchUnitList, currentUnit);
+									scr_addToListOnce(searchTokenList, currentToken);
+								}
+							}
+							else{
+								if(nonCaseSensitiveMatch){
+									scr_addToListOnce(searchUnitList, currentUnit);
+									scr_addToListOnce(searchTokenList, currentToken);
+								}
+							}
+						}
+					}	
 				}
-				else if (obj_control.regExCheck) {
-					if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)){
-						var regExMatch = (scr_regularExpressionMatch(obj_control.RegEx, currentDisplayStr));
-						if(regExMatch){
+				// Doc search
+				else{
+					// reg ex check
+					if (obj_control.regExCheck) {
+						if (scr_isNumericAndExists(obj_control.RegEx, ds_type_list)){
+							var regExMatch = (scr_regularExpressionMatch(obj_control.RegEx, currentDisplayStr));
+							if(regExMatch){
+								scr_addToListOnce(searchUnitList, currentUnit);
+								scr_addToListOnce(searchTokenList, currentToken);
+							}
+						}
+					}
+
+					// case sensitive check
+					else if(obj_control.caseSensitive){ 
+						if (caseSensitiveMatch) {
 							scr_addToListOnce(searchUnitList, currentUnit);
 							scr_addToListOnce(searchTokenList, currentToken);
 						}
 					}
-				}
-				else{
-					if(nonCaseSensitiveMatch || caseSensitiveMatch){
+					else if(nonCaseSensitiveMatch || caseSensitiveMatch){
 						scr_addToListOnce(searchUnitList, currentUnit);
 						scr_addToListOnce(searchTokenList, currentToken);
 					}
@@ -87,6 +184,7 @@ function scr_getSearchLists(searchTermList){
 		}
 	}
 	obj_control.regExCheck = false;
+
 	
 	ds_list_add(listOfResultLists,searchUnitList);
 	ds_list_add(listOfResultLists,searchTokenList);

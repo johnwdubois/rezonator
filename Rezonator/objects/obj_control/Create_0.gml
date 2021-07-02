@@ -738,3 +738,4 @@ if(global.speakerField != "" && is_string(global.speakerField) ){
 
 selectFieldChunk = false;
 searchField = global.displayTokenField;
+searchRange = "Doc";

@@ -380,5 +380,10 @@ function scr_dropDownSelect(optionSelected) {
 		scr_searchFieldOptions(optionSelected);
 		instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeSearchRange) //69
+	{
+		scr_searchRangeOptions(optionSelected);
+		instance_destroy();
+	}
 
 }

@@ -53,7 +53,7 @@ function scr_drawDialogueBox_input(){
 			ds_list_copy(tokenFieldListCopy, obj_control.tokenFieldList);
 			scr_createDropDown(fieldRectX1, fieldRectY2, tokenFieldListCopy, global.optionListTypeSearchField);
 		}
-		
+		if(string_length(obj_control.searchField) < 1){obj_control.searchField = global.displayTokenField;}
 		// field text
 		draw_set_color(global.colorThemeText);
 		scr_adaptFont(obj_control.searchField, "S", false);
@@ -73,35 +73,25 @@ function scr_drawDialogueBox_input(){
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(rangeRectX1, rangeRectY1, rangeRectX2, rangeRectY2, true);
 		
+		// click range dropdown
+		if (mouseoverRangeRect && mouse_check_button_released(mb_left)) {
+			var availableRanges = ds_list_create();
+			ds_list_add(availableRanges, "Doc", "Current Chain", "Trails", "Rez Chains", "Stacks");
+			scr_createDropDown(rangeRectX1, rangeRectY2, availableRanges, global.optionListTypeSearchRange);
+		}
+		
 		// range text
 		draw_set_color(global.colorThemeText);
-		var selectedRange = "Everywhere";
-		scr_adaptFont(selectedRange, "S", false);
+		scr_adaptFont(obj_control.searchRange, "S", false);
 		draw_set_halign(fa_left);
-		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), selectedRange);
+		draw_text(floor(rangeRectX1 + dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), obj_control.searchRange);
 		draw_set_halign(fa_right);
 		draw_text(floor(rangeRectX1 - dropDownXBuffer), floor(mean(rangeRectY1, rangeRectY2)), "Range: ");
-		
-		// case-sensitive checkbox
-		var caseCheckboxX1 = obj_inputBox.x;
-		var caseCheckboxY1 = rangeRectY2 + dropDownXBuffer;
-		var caseCheckboxX2 = caseCheckboxX1 + checkboxSize;
-		var caseCheckboxY2 = caseCheckboxY1 + checkboxSize;
-		var mouseoverCaseCheckbox = point_in_rectangle(mouse_x, mouse_y, caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2) && !instance_exists(obj_dropDown);
-		if (mouseoverCaseCheckbox && mouse_check_button_released(mb_left)) obj_control.caseSensitive = !obj_control.caseSensitive;
-		if (obj_control.caseSensitive) draw_sprite_ext(spr_checkmark, 0, mean(caseCheckboxX1, caseCheckboxX2), mean(caseCheckboxY1, caseCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
-		draw_set_color(global.colorThemeBorders);
-		draw_rectangle(caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2, true);
-		
-		// case-sensitive text
-		draw_set_color(global.colorThemeText);
-		draw_set_halign(fa_left);
-		draw_text(floor(caseCheckboxX2 + checkboxSize), floor(mean(caseCheckboxY1, caseCheckboxY2)), scr_get_translation("search_dialogue_case"));
 		
 		
 		// regex checkbox
 		var regexCheckboxX1 = obj_inputBox.x;
-		var regexCheckboxY1 = caseCheckboxY2 + dropDownXBuffer;
+		var regexCheckboxY1 = rangeRectY2 + dropDownXBuffer;
 		var regexCheckboxX2 = regexCheckboxX1 + checkboxSize;
 		var regexCheckboxY2 = regexCheckboxY1 + checkboxSize;
 		var mouseoverRegexCheckbox = point_in_rectangle(mouse_x, mouse_y, regexCheckboxX1, regexCheckboxY1, regexCheckboxX2, regexCheckboxY2) && !instance_exists(obj_dropDown);
@@ -114,6 +104,26 @@ function scr_drawDialogueBox_input(){
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
 		draw_text(floor(regexCheckboxX2 + checkboxSize), floor(mean(regexCheckboxY1, regexCheckboxY2)), scr_get_translation("search_dialogue_regEx"));
+
+		
+		if(!obj_control.regExCheck){
+			// case-sensitive checkbox
+			var caseCheckboxX1 = obj_inputBox.x;
+			var caseCheckboxY1 = regexCheckboxY2 + dropDownXBuffer;
+			var caseCheckboxX2 = caseCheckboxX1 + checkboxSize;
+			var caseCheckboxY2 = caseCheckboxY1 + checkboxSize;
+			var mouseoverCaseCheckbox = point_in_rectangle(mouse_x, mouse_y, caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2) && !instance_exists(obj_dropDown);
+			if (mouseoverCaseCheckbox && mouse_check_button_released(mb_left)) obj_control.caseSensitive = !obj_control.caseSensitive;
+			if (obj_control.caseSensitive) draw_sprite_ext(spr_checkmark, 0, mean(caseCheckboxX1, caseCheckboxX2), mean(caseCheckboxY1, caseCheckboxY2), 1, 1, 0, global.colorThemeText, 1);
+			draw_set_color(global.colorThemeBorders);
+			draw_rectangle(caseCheckboxX1, caseCheckboxY1, caseCheckboxX2, caseCheckboxY2, true);
+		
+			// case-sensitive text
+			draw_set_color(global.colorThemeText);
+			draw_set_halign(fa_left);
+			draw_text(floor(caseCheckboxX2 + checkboxSize), floor(mean(caseCheckboxY1, caseCheckboxY2)), scr_get_translation("search_dialogue_case"));
+		}
+		
 
 	}
 
