@@ -206,6 +206,8 @@ function scr_saveREZ(autosave) {
 	
 	// if this is a batch import, loop back to opening screen to auto-import another file
 	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
+		ds_map_clear(global.nodeMap);
+		ds_grid_destroy(global.importGrid);
 		room_goto(rm_openingScreen);
 	}
 

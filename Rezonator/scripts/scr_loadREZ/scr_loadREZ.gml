@@ -106,7 +106,8 @@ function scr_loadREZ() {
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
 					if (ds_map_find_value(map, "showSpeakerName") != undefined) {
-						obj_control.showSpeakerName = ds_map_find_value(map, "showParticipantName");
+						obj_control.showSpeakerName = ds_map_find_value(map, "showSpeakerName");
+						show_debug_message("scr_loadREZ, showSpeakerName: " + string(obj_control.showSpeakerName));
 					}
 					if (ds_map_find_value(map, "justify") != undefined) {
 						obj_control.justify = ds_map_find_value(map, "justify");
@@ -240,6 +241,11 @@ function scr_loadREZ() {
 	}
 	if (!is_numeric(nodeList)) {
 		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
+	}
+	
+	// set focused unit in panelPane
+	with (obj_panelPane) {
+		alarm[9] = 2;
 	}
 	
 

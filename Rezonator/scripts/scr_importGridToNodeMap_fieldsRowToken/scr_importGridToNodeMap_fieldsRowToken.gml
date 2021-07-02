@@ -123,7 +123,6 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		var currentField = global.importGridColNameList[| i];
 		var currentLevel = global.fieldLevelMap[? currentField];
 		
-		
 		if (currentLevel == "token") {
 			if (scr_isNumericAndExists(currentTokenTagMap, ds_type_map)) {
 				ds_map_add(currentTokenTagMap, currentField, currentCell);
