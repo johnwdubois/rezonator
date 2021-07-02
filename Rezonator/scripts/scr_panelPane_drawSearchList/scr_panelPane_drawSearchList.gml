@@ -48,7 +48,6 @@ function scr_panelPane_drawSearchList(){
 		exit;
 	}
 	var searchListSize = ds_list_size(searchList);
-	
 	scr_surfaceStart();
 	
 	draw_set_halign(fa_left);
@@ -57,17 +56,23 @@ function scr_panelPane_drawSearchList(){
 	var setList = "";
 	var setListSize = 0;
 	
+	// make sure search map exists
+	global.searchMap = global.nodeMap[? "searchMap"];
+	if(!scr_isNumericAndExists( global.searchMap, ds_type_map)){
+		scr_surfaceEnd();
+		exit;
+	}
+	
 	// loop over searchs
 	for (var i = 0; i < searchListSize; i++) {
 		
 		// get data for currentSearch
 		var currentSearch = searchList[| i];
-		if(!scr_isNumericAndExists( global.searchMap, ds_type_map)){
-			scr_surfaceEnd();
-			exit;
-		}
+	
 		var currentSearchSubMap = global.searchMap[? currentSearch];
-		if (!scr_isNumericAndExists(currentSearchSubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(currentSearchSubMap, ds_type_map)) {
+			continue;
+		}
 		
 		var currentSearchName = currentSearchSubMap[? "name"];
 		var currentSearchTermList = currentSearchSubMap[? "searchTermList"];

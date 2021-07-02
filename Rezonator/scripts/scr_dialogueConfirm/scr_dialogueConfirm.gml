@@ -198,6 +198,7 @@ function scr_dialogueConfirm(){
 			}
 		}
 		
+		
 		if (removeTagToken) scr_removeFromTagSetOptions(string(stringToBeRemoved), "token");
 		if (removeTagUnit) scr_removeFromTagSetOptions(string(stringToBeRemoved), "unit");
 		if (removeTagEntry) scr_removeFromTagSetOptions(string(stringToBeRemoved), "entry");
