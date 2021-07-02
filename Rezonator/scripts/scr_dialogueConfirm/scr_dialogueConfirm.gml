@@ -45,7 +45,11 @@ function scr_dialogueConfirm(){
 					scr_jumpToTime(obj_control.inputText);
 				}
 				else{
-					scr_jumpToUnit(real(string_digits(obj_control.inputText)));
+					var strDigits = string_digits(obj_control.inputText);
+					if (string_length(strDigits) > 0) {
+						var realDigits = real(strDigits);
+						scr_jumpToUnit(realDigits);
+					}
 				}
 			}
 
