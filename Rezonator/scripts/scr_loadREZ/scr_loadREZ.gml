@@ -157,6 +157,19 @@ function scr_loadREZ() {
 						obj_control.navUnitFieldList = navUnitFieldList;
 					}
 					
+					// get navChunkFieldList, if supplied
+					var navChunkFieldList = ds_map_find_value(map, "navChunkFieldList");
+					if (scr_isNumericAndExists(navChunkFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.navChunkFieldList);
+						obj_control.navChunkFieldList = navChunkFieldList;
+					}
+					// get chunkFieldList, if supplied
+					var chunkFieldList = ds_map_find_value(map, "chunkFieldList");
+					if (scr_isNumericAndExists(chunkFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.chunkFieldList);
+						obj_control.chunkFieldList = chunkFieldList;
+					}
+					
 					// get navTokenFieldList, if supplied
 					var unitFieldList = ds_map_find_value(map, "unitFieldList");
 					if (scr_isNumericAndExists(unitFieldList, ds_type_list)) {
