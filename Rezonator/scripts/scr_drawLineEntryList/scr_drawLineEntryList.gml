@@ -22,7 +22,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	}
 	
 	var entryListSize = ds_list_size(entryList);
-	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	//var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	var i = (obj_control.justify == obj_control.justifyLeft) ? 0 : entryListSize-1;
 	var j = 0;
 
 	repeat(entryListSize) {
@@ -44,6 +45,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		
 		// get & set pixelX value
 		scr_tokenCalculateVoid(currentToken);
+		
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth);
 		scr_adaptFont(currentDisplayStr,"M");
@@ -136,7 +138,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 
 			}
 			
-			
+			if (keyboard_check_released(ord("N"))) {
+				if (ds_list_size(inChainsList) > 0) {
+					scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
+				}
+			}
 		}
 		
 		// draw the token's text
@@ -156,10 +162,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
 
 		draw_set_alpha(1);
-		draw_text(currentPixelX, pixelY, currentDisplayStr);
+		draw_text(currentPixelX, pixelY, currentDisplayStr + "," + string(currentDisplayCol));
 		
 		// run through the loop forward or backward depending on if LTR or RTL
-		if (drawLineState == lineState_ltr) i++;
+		//if (drawLineState == lineState_ltr) i++;
+		if (justify == justifyLeft) i++;
 		else i--;
 		j++;
 		

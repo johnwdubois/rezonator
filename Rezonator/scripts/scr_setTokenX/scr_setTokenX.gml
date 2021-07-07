@@ -17,9 +17,7 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		else {
 			// Left Grid
 			tokenPixelXDest = wordLeftMargin + scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth;
-			if(obj_control.drawLineState != obj_control.lineState_ltr){
-				tokenPixelXDest = wordLeftMargin + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
-			}
+
 		}
 	}
 	else if (justify == justifyCenter) {
@@ -44,7 +42,8 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		}
 		else {
 			// Right Grid
-			tokenPixelXDest = camWidth - global.scrollBarWidth - (entryListSize * gridSpaceHorizontal) + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
+			//tokenPixelXDest = camWidth - global.scrollBarWidth - (entryListSize * gridSpaceHorizontal) + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
+			tokenPixelXDest = wordLeftMargin + scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth;
 		}
 	}
 	
