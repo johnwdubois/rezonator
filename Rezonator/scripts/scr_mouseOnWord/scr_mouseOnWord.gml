@@ -26,7 +26,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 			draw_rectangle(wordRectX1, wordRectY1, wordRectX2, wordRectY2, true);
 			
 			// Word clicked with a Chain tool selected
-			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and obj_toolPane.currentMode != obj_toolPane.modeRead) {
+			if ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck and obj_toolPane.currentMode != obj_toolPane.modeRead and !instance_exists(obj_dialogueBox)) {
 				var focusedchainIDSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
 				
 				//dont allow words to be added to stacks by deselecting them
@@ -52,7 +52,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				
 			}
 			// If in Read Mode, focus line in Nav window
-			else if (obj_toolPane.currentMode == obj_toolPane.modeRead and ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck)) {
+			else if (obj_toolPane.currentMode == obj_toolPane.modeRead and ((device_mouse_check_button_released(0, mb_left) and not mouseRectExists) and obj_control.touchReleaseCheck)and !instance_exists(obj_dialogueBox)) {
 				
 				// With Audio, jump to this line's start time in the Audio File
 				if (instance_exists(obj_audioUI)) {
@@ -165,6 +165,7 @@ function scr_mouseOnWord(currentWordID, wordRectX1, wordRectY1, wordRectX2, word
 				if (!instance_exists(obj_dialogueBox)) {
 					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 				}
+				obj_dialogueBox.inputWindowActive = true;
 			}
 		}
 

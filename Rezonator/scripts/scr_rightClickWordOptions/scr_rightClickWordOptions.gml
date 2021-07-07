@@ -18,6 +18,7 @@ function scr_rightClickWordOptions(optionSelected) {
 					if (!instance_exists(obj_dialogueBox)) {
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 					}
+					obj_dialogueBox.inputWindowActive = true;
 		
 			}
 			
@@ -42,6 +43,7 @@ function scr_rightClickWordOptions(optionSelected) {
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 						
 					}
+					obj_dialogueBox.inputWindowActive = true;
 		
 			}
 			instance_destroy();

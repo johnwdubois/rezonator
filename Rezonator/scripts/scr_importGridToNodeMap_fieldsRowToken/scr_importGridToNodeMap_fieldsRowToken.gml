@@ -109,6 +109,8 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	ds_map_add(currentEntrySubMap, "unit", currentUnitID);
 	ds_list_add(currentEntryList, currentEntryNode);
 	
+	//add each token to the total token's List
+	ds_list_add(tokenList, currentTokenNode);
 	
 	// make tag map for token
 	var currentTokenTagMap = ds_map_create();
@@ -120,7 +122,6 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		var currentCell = global.importGrid[# i, row];
 		var currentField = global.importGridColNameList[| i];
 		var currentLevel = global.fieldLevelMap[? currentField];
-		
 		
 		if (currentLevel == "token") {
 			if (scr_isNumericAndExists(currentTokenTagMap, ds_type_map)) {

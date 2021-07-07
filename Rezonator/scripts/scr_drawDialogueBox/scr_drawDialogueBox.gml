@@ -6,42 +6,42 @@ function scr_drawDialogueBox() {
 		
 		//Setting input prompt
 		if (obj_control.changeAuthor) {
-			dialogueBoxText = scr_get_translation("msg_input_creator");
+			descriptionText = scr_get_translation("msg_input_creator");
 		}
 		if (obj_control.changeZero) {
-			dialogueBoxText = scr_get_translation("msg_input_new-string");
+			descriptionText = scr_get_translation("msg_input_new-string");
 		}
 		if (obj_control.swapLine) {
-			dialogueBoxText = scr_get_translation("msg_input_line_number");
+			descriptionText = scr_get_translation("msg_input_line_number");
 		}
 		if (obj_control.replace) {
 			if(obj_control.splitWord){
-				dialogueBoxText = scr_get_translation("msg_input_split_words");
+				descriptionText = scr_get_translation("msg_input_split_words");
 			}
 			else{
-				dialogueBoxText = scr_get_translation("msg_input_new-word");
+				descriptionText = scr_get_translation("msg_input_new-word");
 			}
 		}
 		if (obj_control.newWordCreated) {
-			dialogueBoxText = scr_get_translation("msg_input_add_new-word");
+			descriptionText = scr_get_translation("msg_input_add_new-word");
 		}
 		
 		if(obj_control.caption){
-			dialogueBoxText = scr_get_translation("msg_input_caption");
+			descriptionText = scr_get_translation("msg_input_caption");
 		}	
 		if (obj_control.rename) {
-			dialogueBoxText = scr_get_translation("msg_input_chain-name");
+			descriptionText = scr_get_translation("msg_input_chain-name");
 		}
 		if (obj_control.recolor) {
-			dialogueBoxText = scr_get_translation("msg_input_chain-color");
+			descriptionText = scr_get_translation("msg_input_chain-color");
 		}
 		
 		if (obj_control.gPressed) {
 			if(obj_control.goToTime){
-				dialogueBoxText = scr_get_translation("msg_input_time-jump");
+				descriptionText = scr_get_translation("msg_input_time-jump");
 			}
 			else{
-				dialogueBoxText = scr_get_translation("msg_input_line-jump");
+				descriptionText = scr_get_translation("msg_input_line-jump");
 			}
 		}
 		
@@ -49,27 +49,27 @@ function scr_drawDialogueBox() {
 		var drawNewTagText = (obj_control.newCustomTagToken || obj_control.newCustomTagUnit || obj_control.newCustomTagEntry || obj_control.newCustomTagChain);
 		
 		if (drawNewFieldText) {
-			dialogueBoxText = scr_get_translation("search_custom-field");
+			descriptionText = scr_get_translation("search_custom-field");
 		}
 		else if (drawNewTagText) {
-			dialogueBoxText = scr_get_translation("search_custom-tag");
+			descriptionText = scr_get_translation("search_custom-tag");
 		}
 		if (obj_control.ePressed) {
-			dialogueBoxText = scr_get_translation("search_beginning-line");
+			descriptionText = scr_get_translation("search_beginning-line");
 		}
 		
 		if(obj_control.fPressed) {
 			// draw background text
 			if(obj_control.regExCheck){
-				dialogueBoxText = scr_get_translation("msg_input_regex");
+				descriptionText = scr_get_translation("msg_input_regex");
 			}
 			else{
-				dialogueBoxText = scr_get_translation("search_dialogue_word");
+				descriptionText = scr_get_translation("search_dialogue_word");
 			}
 		}
 		
 		if (obj_control.newTagCategory) {
-			dialogueBoxText = scr_get_translation("msg_new-category");
+			descriptionText = scr_get_translation("msg_new-category");
 		}
 		var boxHeight = max(270, camera_get_view_height(camera_get_active())/4); 
 		var boxWidth = max(640, camera_get_view_width(camera_get_active())/3);
@@ -82,8 +82,8 @@ function scr_drawDialogueBox() {
 		var cameraMidpointX = camera_get_view_width(camera_get_active())/2;
 		var cameraMidpointY = camera_get_view_height(camera_get_active())/2;
 		
-		if(boxWidth <= string_width(dialogueBoxText)){
-			boxHeight += string_height(dialogueBoxText) + 5;
+		if(boxWidth <= string_width(descriptionText)){
+			boxHeight += string_height(descriptionText) + 5;
 		}
 		
 		var dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
@@ -168,9 +168,9 @@ function scr_drawDialogueBox() {
 				okBoxRectX2 = dialogueBoxRectX1 + (boxWidth*0.7);
 				okBoxRectY2 = dialogueBoxRectY1 + (boxHeight*0.95);
 			}
-			scr_adaptFont(dialogueBoxText, "M");
-			if(dialogueBoxTextX + string_width(dialogueBoxText) >= RegExBoxRectX1){
-				boxWidth += (dialogueBoxTextX + string_width(dialogueBoxText)) - RegExBoxRectX1 + 5;
+			scr_adaptFont(descriptionText, "M");
+			if(dialogueBoxTextX + string_width(descriptionText) >= RegExBoxRectX1){
+				boxWidth += (dialogueBoxTextX + string_width(descriptionText)) - RegExBoxRectX1 + 5;
 				
 				//reset dialogue box parameters
 				dialogueBoxRectX1 = cameraMidpointX - boxWidth/2;
@@ -389,7 +389,7 @@ function scr_drawDialogueBox() {
 	
 		
 		// WHERE THE DIALOGUE BOX TEXT IS DRAWN
-		draw_text_ext(dialogueBoxTextX, dialogueBoxTextY, dialogueBoxText, string_height(dialogueBoxText), boxWidth - ((dialogueBoxTextX - dialogueBoxRectX1) * 2));
+		draw_text_ext(dialogueBoxTextX, dialogueBoxTextY, descriptionText, string_height(descriptionText), boxWidth - ((dialogueBoxTextX - dialogueBoxRectX1) * 2));
 		
 	
 		

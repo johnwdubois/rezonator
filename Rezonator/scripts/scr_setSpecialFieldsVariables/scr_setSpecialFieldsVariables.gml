@@ -42,6 +42,9 @@ function scr_setSpecialFieldsVariables() {
 	var displayTokenRow = ds_grid_value_y(global.tagInfoGrid, global.tagInfoGrid_colKey, 0, global.tagInfoGrid_colKey, ds_grid_height(global.tagInfoGrid), "Display Token");
 	global.tokenImportDisplayTokenColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
 	global.displayTokenField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, displayTokenRow);
+	
+	show_debug_message("scr_setSpecialFieldsVariables ... displayTokenField: " + string(global.displayTokenField));
+	show_debug_message("scr_setSpecialFieldsVariables ... speakerField: " + string(global.speakerField));
 
 
 }

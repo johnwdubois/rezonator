@@ -106,7 +106,8 @@ function scr_loadREZ() {
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
 					if (ds_map_find_value(map, "showSpeakerName") != undefined) {
-						obj_control.showSpeakerName = ds_map_find_value(map, "showParticipantName");
+						obj_control.showSpeakerName = ds_map_find_value(map, "showSpeakerName");
+						show_debug_message("scr_loadREZ, showSpeakerName: " + string(obj_control.showSpeakerName));
 					}
 					if (ds_map_find_value(map, "justify") != undefined) {
 						obj_control.justify = ds_map_find_value(map, "justify");
@@ -154,6 +155,19 @@ function scr_loadREZ() {
 					if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) {
 						ds_list_destroy(obj_control.navUnitFieldList);
 						obj_control.navUnitFieldList = navUnitFieldList;
+					}
+					
+					// get navChunkFieldList, if supplied
+					var navChunkFieldList = ds_map_find_value(map, "navChunkFieldList");
+					if (scr_isNumericAndExists(navChunkFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.navChunkFieldList);
+						obj_control.navChunkFieldList = navChunkFieldList;
+					}
+					// get chunkFieldList, if supplied
+					var chunkFieldList = ds_map_find_value(map, "chunkFieldList");
+					if (scr_isNumericAndExists(chunkFieldList, ds_type_list)) {
+						ds_list_destroy(obj_control.chunkFieldList);
+						obj_control.chunkFieldList = chunkFieldList;
 					}
 					
 					// get navTokenFieldList, if supplied
@@ -240,6 +254,11 @@ function scr_loadREZ() {
 	}
 	if (!is_numeric(nodeList)) {
 		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
+	}
+	
+	// set focused unit in panelPane
+	with (obj_panelPane) {
+		alarm[9] = 2;
 	}
 	
 

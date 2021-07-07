@@ -86,6 +86,7 @@ function scr_fileOptions(optionSelected) {
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			}
+			obj_dialogueBox.inputWindowActive = true;
 			//show_message("BUH 3");
 			break;
 		case "menu_media":

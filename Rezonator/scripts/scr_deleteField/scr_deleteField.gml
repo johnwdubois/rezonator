@@ -11,11 +11,11 @@ function scr_deleteField(fieldName){
 	var navWindowList3 = -1;
 	
 	
-	if (chainViewOneToMany && fieldPaneSwitchButton == "doc") {
+	if (chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
 		fieldList = obj_control.tokenFieldList;
 		navWindowList1 = obj_control.navTokenFieldList;
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "doc") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
 		fieldList = obj_control.unitFieldList;
 		navWindowList1 = obj_control.navUnitFieldList;
 	}
@@ -31,15 +31,16 @@ function scr_deleteField(fieldName){
 		navWindowList2 = obj_control.chain1to1ColFieldListTrack;
 		navWindowList3 = obj_control.chain1to1ColFieldListStack;
 	}
-	var fieldListSize = ds_list_size(fieldList);
 
+	if(!scr_isNumericAndExists(fieldList, ds_type_list)){exit;}
+	
 	// delete field from field list
 	scr_deleteFromList(fieldList, fieldName);
 	
-	
+	// delete from nav field list
 	scr_deleteFieldFromNavWindowList(navWindowList1, fieldList, fieldName);
 	scr_deleteFieldFromNavWindowList(navWindowList2, fieldList, fieldName);
 	scr_deleteFieldFromNavWindowList(navWindowList3, fieldList, fieldName);
-
+	
 
 }

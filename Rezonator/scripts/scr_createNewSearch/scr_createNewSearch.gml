@@ -13,8 +13,9 @@ function scr_createNewSearch(searchTermList){
 		var displayUnitList = searchLists[|0];
 		var displayTokenList = searchLists[|1];
 		if(scr_isNumericAndExists(displayTokenList, ds_type_list)){
-	
+
 			if(ds_list_size(displayTokenList) > 0){
+				global.displayTokenField = obj_control.searchField;
 				// type variable should be a string that declares what "type" of Node this is
 				// for example, "Chain", "Link", "Unit", etc.
 				var searchNodeList = global.nodeMap[?"searchNodeList"];

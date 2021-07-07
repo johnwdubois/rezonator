@@ -167,6 +167,7 @@ function scr_panelPane_drawFieldTags(){
 								if (!instance_exists(obj_dialogueBox)) {
 									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 								}
+								obj_dialogueBox.inputWindowActive = true;
 							}
 							else{
 								obj_control.newCustomTagUnit = true;
@@ -176,6 +177,7 @@ function scr_panelPane_drawFieldTags(){
 								if (!instance_exists(obj_dialogueBox)) {
 									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 								}
+								obj_dialogueBox.inputWindowActive = true;
 							}
 						}
 					}

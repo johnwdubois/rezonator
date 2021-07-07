@@ -109,6 +109,7 @@ function scr_regularExpressionCreate(argument0) {
 	                postfix += chars; i += 3;
 	                if (natom > 1) postfix += "("; else ++natom; break;
 	            }
+				
 	            return "Backslash character not followed by an accepted symbol.";
             
 	        default:

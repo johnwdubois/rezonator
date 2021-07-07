@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "search",
-    "path": "folders/Scripts/functions/search.yy",
+    "name": "dialogueBox",
+    "path": "folders/Scripts/UI/dialogueBox.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_addToSearchGrid",
+  "name": "scr_drawDialogueBox_input",
   "tags": [],
   "resourceType": "GMScript",
 }

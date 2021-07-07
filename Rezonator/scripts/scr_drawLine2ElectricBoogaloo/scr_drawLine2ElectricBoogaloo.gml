@@ -97,7 +97,7 @@ function scr_drawLine2ElectricBoogaloo(){
 		unitPlusY += gridSpaceVertical;
 	}
 	
-	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !(instance_exists(obj_dropDown) and obj_control.rightClicked)){
+	if(!obj_control.mouseoverSpeakerLabel and obj_control.hoverTokenID == "" and obj_control.hoverChunkID == "" and !obj_control.mouseoverPanelPane and !(instance_exists(obj_dropDown) and obj_control.rightClicked) and !instance_exists(obj_dialogueBox)){
 		if(device_mouse_check_button_released(0, mb_left)){
 			if (global.delayInput <= 0) {
 				scr_chainDeselect();

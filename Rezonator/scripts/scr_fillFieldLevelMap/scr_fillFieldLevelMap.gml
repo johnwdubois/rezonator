@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_fillFieldLevelMap(){
-
+	show_debug_message("scr_fillFieldLevelMap");
 	
 	// store the level for every field in a map, so they can be quickly referenced by name
 	var tagInfoGridHeight = ds_grid_height(global.tagInfoGrid);

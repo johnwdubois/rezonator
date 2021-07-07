@@ -375,5 +375,15 @@ function scr_dropDownSelect(optionSelected) {
 	    scr_chunk1To1TagOptions(optionSelected);
 		instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeSearchField) //69
+	{
+		scr_searchFieldOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeSearchRange) //69
+	{
+		scr_searchRangeOptions(optionSelected);
+		instance_destroy();
+	}
 
 }

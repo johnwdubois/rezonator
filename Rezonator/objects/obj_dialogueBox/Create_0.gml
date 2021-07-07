@@ -6,11 +6,20 @@ scr_scrollBarInit();
 
 
 maxDisplaySize = 30;
+
 displayText = "";
-dialogueBoxText = "";
 
 
+
+titleText = "";
+descriptionText = "";
+
+inputWindowActive = false;
 questionWindowActive = false;
+promptWindowActive = false;
+
+mouseoverCancel = false;
+mouseoverOk = false;
 
 holdUp = 0;
 holdDown = 0;
@@ -51,3 +60,16 @@ loopItterations = 0;
 with (obj_dropDown) {
 	instance_destroy();
 }
+
+
+camWidth = camera_get_view_width(camera_get_active());
+camHeight = camera_get_view_height(camera_get_active());
+camMidX = camWidth / 2;
+camMidY = camHeight / 2;
+boxHeight = max(270, camWidth / 4); 
+boxWidth = max(640, camHeight / 3);
+boxRectX1 = camMidX - boxWidth/2;
+boxRectY1 = camMidY - boxHeight/2;
+boxRectX2 = camMidX + boxWidth/2;
+boxRectY2 = camMidY + boxHeight/2;
+

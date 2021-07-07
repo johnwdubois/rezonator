@@ -71,6 +71,8 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeFieldChains1To1 = 66;
 	global.optionListTypeRemoveFromTagSetChains1To1 = 67;
 	global.optionListTypeChunk1To1Tag = 68;
+	global.optionListTypeSearchField = 69;
+	global.optionListTypeSearchRange = 70;
 
 
 }

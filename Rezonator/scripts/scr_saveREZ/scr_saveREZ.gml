@@ -72,6 +72,8 @@ function scr_saveREZ(autosave) {
 			var tempImportGridColNameList = scr_copyListToMap(global.importGridColNameList, map, "importGridColNameList");
 			var tempChainEntryFieldList = scr_copyListToMap(global.chainEntryFieldList, map, "chainEntryFieldList");
 			var tempChainFieldList = scr_copyListToMap(global.chainFieldList, map, "chainFieldList");
+			var tempChunkFieldList = scr_copyListToMap(chunkFieldList, map, "chunkFieldList");
+			var tempChunkFieldList = scr_copyListToMap(navChunkFieldList, map, "navChunkFieldList");
 			var tempNavTokenFieldList = scr_copyListToMap(navTokenFieldList, map, "navTokenFieldList");
 			var tempTokenFieldList = scr_copyListToMap(tokenFieldList, map, "tokenFieldList");
 			var tempNavUnitFieldList = scr_copyListToMap(navUnitFieldList, map, "navUnitFieldList");
@@ -206,6 +208,8 @@ function scr_saveREZ(autosave) {
 	
 	// if this is a batch import, loop back to opening screen to auto-import another file
 	if (autosave && directory_exists(global.importGroupOutputDir) && global.importGroupOutputDir != "") {
+		ds_map_clear(global.nodeMap);
+		ds_grid_destroy(global.importGrid);
 		room_goto(rm_openingScreen);
 	}
 
