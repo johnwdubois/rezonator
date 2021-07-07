@@ -25,7 +25,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 	
 	
 	// first, find the word with furthest display col in chain
-	var furthestDisplayCol = (obj_control.justify == obj_control.justifyLeft) ? -1 : 9999999;
+	var furthestDisplayCol = (scr_checkNativeJustification()) ? -1 : 9999999;
 	var currentChunkFirstWord = -1;
 	var setIDList = chainSubMap[? "vizSetIDList"];
 	var setIDListSize = ds_list_size(setIDList);
@@ -47,7 +47,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 			
 			var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			if (!is_numeric(currentDisplayCol)) continue;
-			if (obj_control.justify == obj_control.justifyLeft) {
+			if (scr_checkNativeJustification()) {
 				if (currentDisplayCol > furthestDisplayCol) furthestDisplayCol = currentDisplayCol;
 			}
 			else {

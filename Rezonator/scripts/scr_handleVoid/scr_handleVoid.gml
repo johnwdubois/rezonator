@@ -44,7 +44,7 @@ function scr_handleVoid(setList) {
 			var currentTokenSubMap = global.nodeMap[? currentTokenID];
 			
 			var currentDisplayCol = currentTokenSubMap[? "displayCol"];
-			currentTokenSubMap[? "displayCol"] = (justify == justifyLeft) ? currentDisplayCol - 1 : currentDisplayCol + 1;
+			currentTokenSubMap[? "displayCol"] = (scr_checkNativeJustification()) ? currentDisplayCol - 1 : currentDisplayCol + 1;
 		}
 	}
 	else {
@@ -56,7 +56,7 @@ function scr_handleVoid(setList) {
 			var currentVoid = currentTokenSubMap[? "void"];
 			if (currentVoid > 1) {
 				var currentDisplayCol = currentTokenSubMap[? "displayCol"];
-				currentTokenSubMap[? "displayCol"] = (justify == justifyLeft) ? currentDisplayCol - 1 : currentDisplayCol + 1;
+				currentTokenSubMap[? "displayCol"] = (scr_checkNativeJustification()) ? currentDisplayCol - 1 : currentDisplayCol + 1;
 			}							
 		}
 	}

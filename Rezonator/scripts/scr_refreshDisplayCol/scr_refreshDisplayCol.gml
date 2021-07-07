@@ -20,7 +20,7 @@ function scr_refreshDisplayCol(){
 			
 
 			var currentDisplayCol = 0;
-			if (obj_control.justify == obj_control.justifyLeft) {
+			if (scr_checkNativeJustification()) {
 				currentDisplayCol = j;
 			}
 			else {
@@ -32,5 +32,6 @@ function scr_refreshDisplayCol(){
 		}
 	}
 	
+	obj_control.scrollPlusXDest = 0;
 	scr_refreshAlignment();
 }

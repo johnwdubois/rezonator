@@ -16,7 +16,7 @@ function scr_prevTokenInSequence(tokenID) {
 	var discourseTokenList = discourseSubMap[? "tokenList"];
 	
 	// get previous token
-	if (obj_control.justify == obj_control.justifyLeft) {
+	if (scr_checkNativeJustification()) {
 		if (discourseTokenSeq > 0) {
 		
 			// go back one step in discourseTokenList, and then check if that token is in the same unit
