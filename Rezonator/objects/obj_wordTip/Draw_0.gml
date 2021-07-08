@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and obj_toolPane.currentMode == obj_toolPane.modeRead) {
+if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTipDisplay == true) {
 
 	if(obj_control.hoverUnitID != ""){
 		currentID = obj_control.hoverUnitID;
