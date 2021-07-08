@@ -8,6 +8,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		newestEntrySubMap[? "stretch"] = true;
 		exit;
 	}
+	
 	ds_list_add(obj_control.chainStretchCheckList, chainID);
 	show_debug_message("scr_alignChain2() ... chainID: " + string(chainID));
 	
@@ -22,7 +23,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 	
 	
 	// first, find the word with furthest display col in chain
-	var furthestDisplayCol = -1;
+	var furthestDisplayCol = (scr_checkNativeJustification()) ? -1 : 9999999;
 	var currentChunkFirstWord = -1;
 	var setIDList = chainSubMap[? "vizSetIDList"];
 	var setIDListSize = ds_list_size(setIDList);
@@ -44,7 +45,12 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 			
 			var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			if (!is_numeric(currentDisplayCol)) continue;
-			if (currentDisplayCol > furthestDisplayCol) furthestDisplayCol = currentDisplayCol;
+			if (scr_checkNativeJustification()) {
+				if (currentDisplayCol > furthestDisplayCol) furthestDisplayCol = currentDisplayCol;
+			}
+			else {
+				if (currentDisplayCol < furthestDisplayCol) furthestDisplayCol = currentDisplayCol;
+			}
 		}
 	}
 	
@@ -72,6 +78,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		if (ds_list_find_index(unitList, currentUnitID) == -1) {
 			ds_list_add(unitList, currentUnitID);
 			currentTokenSubMap[? "displayCol"] = furthestDisplayCol;
+			show_debug_message("setting token " + string(currentTokenID) + " to displayCol " + string(furthestDisplayCol));
 		}
 	}
 	

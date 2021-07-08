@@ -8,7 +8,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	
 	// set halign
 	var halign = fa_left;
-	if (justify == justifyRight && shape == shapeBlock) halign = fa_right;
+	if (justify == justifyRight) halign = fa_right;
 	draw_set_halign(halign);
 	
 	var camWidth = camera_get_view_width(camera_get_active());
@@ -22,7 +22,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	}
 	
 	var entryListSize = ds_list_size(entryList);
-	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	//var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	
+	var i = (obj_control.justify == obj_control.justifyLeft) ? 0 : entryListSize-1;
+	var isBAD = (obj_control.justify == obj_control.justifyLeft && obj_control.drawLineState == obj_control.lineState_rtl && obj_control.shape == obj_control.shapeText);
+	if (isBAD) i = entryListSize-1;
 	var j = 0;
 
 	repeat(entryListSize) {
@@ -41,14 +45,16 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(currentTagMap, ds_type_map)) continue;
 		var currentDisplayStr = string(currentTagMap[? global.displayTokenField]);
-		
+
 		// get & set pixelX value
 		scr_tokenCalculateVoid(currentToken);
-		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
-		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth);
-		scr_adaptFont(currentDisplayStr,"M");
-		shapeTextX += string_width(currentDisplayStr) + spaceWidth;
 		
+		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
+		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth,currentDisplayStr);
+		scr_adaptFont(currentDisplayStr,"M");
+		var wordDistance = string_width(currentDisplayStr) + spaceWidth;
+		shapeTextX += wordDistance;
+		unitWidth -= wordDistance;
 		
 		//mouseover Token check
 		currentDisplayStr = scr_adaptFont(currentDisplayStr,"M");
@@ -136,7 +142,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 
 			}
 			
-			
+			if (keyboard_check_released(ord("N"))) {
+				if (ds_list_size(inChainsList) > 0) {
+					scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
+				}
+			}
 		}
 		
 		// draw the token's text
@@ -159,8 +169,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		draw_text(currentPixelX, pixelY, currentDisplayStr);
 		
 		// run through the loop forward or backward depending on if LTR or RTL
-		if (drawLineState == lineState_ltr) i++;
+		//if (drawLineState == lineState_ltr) i++;
+		if (justify == justifyLeft) i++;
 		else i--;
+		
+		if(isBAD) i -= 2;
 		j++;
 		
 	}

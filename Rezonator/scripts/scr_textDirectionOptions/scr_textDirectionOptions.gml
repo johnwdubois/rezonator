@@ -14,5 +14,5 @@ function scr_textDirectionOptions(optionSelected){
 			instance_destroy(obj_dropDown);
 		break;
 	}
-	
+		scr_refreshDisplayCol();
 }

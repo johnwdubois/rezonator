@@ -10,22 +10,19 @@ function scr_justifyOptions(optionSelected) {
 		case "menu_right": // right justified
 			if (obj_control.justify != obj_control.justifyRight) {
 				obj_control.justify = obj_control.justifyRight;
-				var alignChains = (obj_control.justify == obj_control.justifyLeft);
-			    scr_setValueForAllChains("rezChain", "alignChain", false);
-			    scr_setValueForAllChains("trackChain", "alignChain", false);
 			}
 			break;
 		case "menu_center": // center justified
 			if (obj_control.justify != obj_control.justifyCenter) {
 				obj_control.justify = obj_control.justifyCenter;
-				var alignChains = (obj_control.justify == obj_control.justifyLeft);
-			    scr_setValueForAllChains("rezChain", "alignChain", false);
-			    scr_setValueForAllChains("trackChain", "alignChain", false);
 			}
 			break;
 		default: 
 			break;
 	}
+	
+
+	scr_refreshDisplayCol();
 
 
 }

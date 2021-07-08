@@ -16,16 +16,32 @@ function scr_prevTokenInSequence(tokenID) {
 	var discourseTokenList = discourseSubMap[? "tokenList"];
 	
 	// get previous token
-	if (discourseTokenSeq > 0) {
+	if (scr_checkNativeJustification()) {
+		if (discourseTokenSeq > 0) {
 		
-		// go back one step in discourseTokenList, and then check if that token is in the same unit
-		var previousTokenID = discourseTokenList[| discourseTokenSeq - 2];
-		var previousTokenSubMap = global.nodeMap[? previousTokenID];
-		if (scr_isNumericAndExists(previousTokenSubMap, ds_type_map)) {
-			var previousUnitID = previousTokenSubMap[? "unit"];
-			return (previousUnitID == unitID) ? previousTokenID : "";
+			// go back one step in discourseTokenList, and then check if that token is in the same unit
+			// we go -2 because discourseTokenSeq is 1-indexed
+			var previousTokenID = discourseTokenList[| discourseTokenSeq - 2];
+			var previousTokenSubMap = global.nodeMap[? previousTokenID];
+			if (scr_isNumericAndExists(previousTokenSubMap, ds_type_map)) {
+				var previousUnitID = previousTokenSubMap[? "unit"];
+				return (previousUnitID == unitID) ? previousTokenID : "";
+			}
 		}
 	}
+	else {
+		if (discourseTokenSeq < ds_list_size(discourseTokenList) - 1) {
+		
+			// go back one step in discourseTokenList, and then check if that token is in the same unit
+			var previousTokenID = discourseTokenList[| discourseTokenSeq];
+			var previousTokenSubMap = global.nodeMap[? previousTokenID];
+			if (scr_isNumericAndExists(previousTokenSubMap, ds_type_map)) {
+				var previousUnitID = previousTokenSubMap[? "unit"];
+				return (previousUnitID == unitID) ? previousTokenID : "";
+			}
+		}
+	}
+	
 	
 	// if could not find anything, return blank string
 	return "";
