@@ -711,7 +711,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas","resourceVersion":"1.0","name":"CSV Schema.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Schemas","resourceVersion":"1.0","name":"CoNLL-U Schema.json","resourceType":"GMIncludedFile",},
-
   ],
   "MetaData": {
     "IDEVersion": "2.3.3.570",

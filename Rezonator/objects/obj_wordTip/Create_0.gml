@@ -4,6 +4,9 @@
 boxHeight = 0;
 boxWidth = 0;
 
+// Boolean for displaying wordtip
+wordTipDisplay = false;
+
 // Current token whose attributes are being displayed
 currentID = -1;	
 

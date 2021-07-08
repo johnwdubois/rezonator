@@ -283,7 +283,13 @@ for (var i = 0; i < optionListSize; i++) {
 			draw_text(shortcutTextX - clipX, optionTextY - clipY, shortcutStr);
 		}
 	}
-	
+	if(instance_exists(obj_wordTip)){
+		if(optionText == "Word Tip" and obj_wordTip.wordTipDisplay == true){
+			var checkX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
+			var checkY = floor(mean(optionRectY1, optionRectY2));
+			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1)
+		}
+	}
 	//add tag info to option
 	var isTagOption = string_count("Tag", optionTextStr) > 0;
 	var tagWidth = 0;
@@ -340,6 +346,8 @@ for (var i = 0; i < optionListSize; i++) {
 	}
 }
 
+	
+
 if (showScrollBar) {
 	scr_scrollBar(optionListSize, -1, optionSpacing, 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
@@ -353,6 +361,8 @@ if (showScrollBar) {
 		scrollPlusYDest -= strHeight;
 	}
 }
+
+
 
 scr_surfaceEnd();
 

@@ -110,6 +110,18 @@ function scr_viewOptions(optionSelected) {
 	
 		break;
 		
+		case "Word Tip":
+		
+			if(obj_wordTip.wordTipDisplay){
+				obj_wordTip.wordTipDisplay = false;
+			}
+			else{
+				obj_wordTip.wordTipDisplay = true;
+			}
+			
+			instance_destroy(obj_dropDown);
+		break;
+		
 		case "Text Direction":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();

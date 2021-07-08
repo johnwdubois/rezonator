@@ -54,6 +54,7 @@ ds_list_add(viewOptionList, "menu_window",
 							"menu_justify",
 							"menu_prose",
 							"menu_hide",
+							"Word Tip",
 							"Text Direction");
 
 filterOptionList = ds_list_create();
