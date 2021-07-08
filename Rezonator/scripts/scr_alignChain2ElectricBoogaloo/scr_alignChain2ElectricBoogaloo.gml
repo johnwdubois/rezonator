@@ -2,14 +2,12 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_alignChain2ElectricBoogaloo(chainID){
 	
-	/*
 	if (scr_appearancesInList(obj_control.chainStretchCheckList, chainID) > 3) {
 		var newestEntrySubMap = global.nodeMap[? obj_control.newestEntry];
 		if (!scr_isNumericAndExists(newestEntrySubMap, ds_type_map)) exit;
 		newestEntrySubMap[? "stretch"] = true;
 		exit;
 	}
-	*/
 	
 	ds_list_add(obj_control.chainStretchCheckList, chainID);
 	show_debug_message("scr_alignChain2() ... chainID: " + string(chainID));
