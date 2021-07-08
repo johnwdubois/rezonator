@@ -1,22 +1,24 @@
-function scr_splitStringImport(argument0) {
-	var listUntrimmed = scr_splitString(argument0, " ");
-	var listTrimmed = ds_list_create();
+function scr_splitStringImport(str, delim, skipDelim) {
+	//script credit to: yellow afterlife : https://yal.cc/gamemaker-split-string/
 	
-	var listUntrimmedSize = ds_list_size(listUntrimmed);
-	for (var j = 0; j < listUntrimmedSize; j++) {
-		if (global.importType != global.importType_CSV) {
-			if (string_length(string(ds_list_find_value(listUntrimmed, j))) > 0) {
-				ds_list_add(listTrimmed, string(ds_list_find_value(listUntrimmed, j)));
-			}
+	str = string(str);
+	var list = ds_list_create();
+
+	var p = string_pos(delim, str);
+	var dl = string_length(delim);
+	if (dl) while (p) {
+	    p -= 1;
+		
+		var strCopy = string_copy(str, 1, p);
+		if !(skipDelim && strCopy == "") {
+			ds_list_add(list, strCopy);
 		}
-		else {
-			ds_list_add(listTrimmed, string(ds_list_find_value(listUntrimmed, j)));
-		}
+
+		
+	    str = string_delete(str, 1, p + dl);
+	    p = string_pos(delim, str);
 	}
-	
-	ds_list_destroy(listUntrimmed);
+	ds_list_add(list, str);
 
-	return listTrimmed;
-
-
+	return list;
 }

@@ -190,17 +190,13 @@ function scr_importMappingTagDraw() {
 		var instLoading = instance_create_layer(0, 0, "InstanceLoading", obj_loadingScreen);
 		instLoading.loadSprite = spr_loading;
 		scr_setSpecialFieldsVariables();
+		scr_fillFieldLevelMap();
 		scr_storeSchemaLists();
 	
 		alarm[2] = 3;
 	}
 
-	
 
-	if (tagGridHeight == 1) {
-		room_goto(rm_mainScreen)
-	}
-	
 	if (!obj_importMapping.updatedErrorCol) {
 		with (obj_importMapping) {
 			alarm[4] = 2;

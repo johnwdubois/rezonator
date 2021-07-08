@@ -23,29 +23,33 @@ function scr_tokenRightClicked(){
 
 		var firstWordInLine = (firstEntrySubMap[?"token"] == obj_control.rightClickID);
 
-		
+		var tokenInChainsListSize = ds_list_size(tokenInChainsList);
 
 		// Options for a word in a Chain
-		if(ds_list_size(tokenInChainsList) > 0){
-			if(obj_control.searchGridActive){
-				ds_list_add(dropDownOptionList, "Delete Link");
-			}
-			else{
-				//"Split Word", "New Word",
-				ds_list_add(dropDownOptionList,  "Delete Link");
-				if (!firstWordInLine && obj_control.showDevVars) {
-					//ds_list_add(dropDownOptionList, "Split Line");
-				}
-			}
-			
-			//ds_list_add(dropDownOptionList, "Delete New Word", "Replace Word", "Restore Word");
+		if(tokenInChainsListSize > 0){
 
+			ds_list_add(dropDownOptionList,  "Delete Link");
+			
 			
 			for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
 				var chainID = tokenInChainsList[|i];
 				var chainSubMap = global.nodeMap[?chainID];
 				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
 					var chainType = chainSubMap[?"type"];
+					
+					//ds_list_add(dropDownOptionList, "Delete New Word", "Replace Word", "Restore Word");
+					if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
+						or (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
+							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
+								&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
+									scr_addToListOnce(dropDownOptionList , "Tag Chain");
+							}
+							if (obj_panelPane.functionField_entryFieldSelected != "" && obj_panelPane.functionField_entryTagSelected != ""
+								&& is_string(obj_panelPane.functionField_entryFieldSelected) && is_string(obj_panelPane.functionField_entryTagSelected)) {
+									scr_addToListOnce(dropDownOptionList , "Tag Entry");
+							}
+					}
+					
 				}
 			
 				// check whether we should refocus this word's entry or not
@@ -62,22 +66,18 @@ function scr_tokenRightClicked(){
 		}
 		// Options for a chainless word
 		else{
-			if(obj_control.searchGridActive){
-				obj_control.ableToCreateDropDown = false;
-			}
-			else{
-
-				//ds_list_add(dropDownOptionList, "Split Word", "New Word");
-				if (!firstWordInLine && obj_control.showDevVars) {
-					//ds_list_add(dropDownOptionList, "Split Line");
-				}
-				
-			}
-
-			//ds_list_add(dropDownOptionList, "Delete Word", "Replace Word");
-			
+	
 		}
-		ds_list_add(dropDownOptionList, "New Token", "Delete Token");		
+		
+		if (obj_panelPane.functionField_tokenFieldSelected != "" && obj_panelPane.functionField_tokenTagSelected != ""
+			&& is_string(obj_panelPane.functionField_tokenFieldSelected) && is_string(obj_panelPane.functionField_tokenTagSelected)) {
+				scr_addToListOnce(dropDownOptionList , "Tag Token");
+		}
+		
+		ds_list_add(dropDownOptionList, "New Token", "Delete Token");
+		if (!firstWordInLine && obj_control.showDevVars) {
+			//ds_list_add(dropDownOptionList, "Split Line");
+		}
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {
 			scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeRightClickWord);

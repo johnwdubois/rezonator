@@ -12,7 +12,7 @@ function scr_mappingTagOptions(optionSelected) {
 		case "Unit":
 			levelToSet = global.levelUnit;
 			break;
-		case "Discourse":	
+		case "doc":	
 			levelToSet = global.levelDiscourse;
 			break;
 		case "EXCEPTION":

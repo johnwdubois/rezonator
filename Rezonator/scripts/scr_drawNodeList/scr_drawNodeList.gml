@@ -137,8 +137,10 @@ function scr_drawNodeList(){
 				
 				if (typeFilter) {
 					var currentNodeSubMap = global.nodeMap[? currentNode];
-					if (currentNodeSubMap[? "type"] == type) {
-						addNode = true;
+					if (scr_isNumericAndExists(currentNodeSubMap, ds_type_map)) {
+						if (currentNodeSubMap[? "type"] == type) {
+							addNode = true;
+						}
 					}
 				}
 				else {
@@ -153,16 +155,21 @@ function scr_drawNodeList(){
 		}
 	}
 	
-	if( keyboard_check(vk_control) and keyboard_check_pressed(vk_down)){
-		
+	var ctrlKey = os_type == os_macosx ? vk_lcommand : vk_control;
+	
+	if( keyboard_check(ctrlKey) and keyboard_check_pressed(vk_down)){
 		scrollPlusYDest -= 999999;
-	
 	}
-	if( keyboard_check(vk_control) and keyboard_check_pressed(vk_up)){
+	if( keyboard_check(ctrlKey) and keyboard_check_pressed(vk_up)){
 		scrollPlusYDest += 999999;
-	
 	}
 	
+	if (os_type == os_macosx) {
+		if (keyboard_check_released(vk_rcommand) || keyboard_check_released(vk_lcommand)) {
+			keyboard_key_release(vk_up);
+			keyboard_key_release(vk_down);
+		}
+	}
 
 	
 }

@@ -1,9 +1,6 @@
 function scr_panelPane_drawTabs() {
-	/*
-		Purpose: draw Rez, Track, and Stack tabs on chainList panel pane
-	*/
-	
-	
+
+
 	
 	// Set opacity, font, and alignment of text in chain tabs
 	draw_set_alpha(1);
@@ -26,12 +23,12 @@ function scr_panelPane_drawTabs() {
 
 	var buttonScale = (1+global.fontSize/10);
 
-	var tabAmount = 5;
-	var translationListSize = ds_list_size(global.translationList);
-	var hasTranslation = (translationListSize > 0)
-	if(hasTranslation){
-		tabAmount = 6;
-	}
+
+	
+	
+	var tabList = obj_control.panelPaneTabList;
+	var tabAmount = ds_list_size(tabList);
+	
 
 	x = 0;
 	if (obj_panelPane.showNav) {
@@ -40,12 +37,14 @@ function scr_panelPane_drawTabs() {
 	var edgeBufferY = 0;
 	var edgeBufferX = 3;
 	var tabRectY1 = y+edgeBufferY;
-	var tabRectY2 = tabRectY1 + functionTabs_tabHeight-edgeBufferY;
+	var tabRectY2 = tabRectY1 + functionTabs_tabHeight - edgeBufferY;
 	draw_set_color(make_color_rgb(125, 125, 128));
 	draw_rectangle(x, y, x + windowWidth, tabRectY2, false);
 
 	// loop over tabs
 	for (var i = 0; i < tabAmount; i++) {
+		
+		var currentTab = tabList[| i];
 
 		// set dimensions for tabs
 		var tabRectX1 = x + (i * (windowWidth / (tabAmount+2)));
@@ -54,7 +53,7 @@ function scr_panelPane_drawTabs() {
 
 		var buttonSize = sprite_get_width(spr_oneToOne) * buttonScale;
 	
-		if (i != functionChainList_currentTab) {
+		if (currentTab != functionChainList_currentTab) {
 			edgeBufferY = functionTabs_tabHeight * 0.3;
 		}
 		else{
@@ -72,7 +71,7 @@ function scr_panelPane_drawTabs() {
 		
 		
 		// highlight current tab
-		if (i == functionChainList_currentTab) {
+		if (currentTab == functionChainList_currentTab) {
 			draw_set_color(global.colorThemeBG);
 			draw_roundrect(tabRectX1+edgeBufferX, tabRectY1+edgeBufferY, tabRectX2-edgeBufferX, tabRectY2 +edgeBufferY, false);
 		}
@@ -82,10 +81,11 @@ function scr_panelPane_drawTabs() {
 		draw_rectangle(tabRectX1+edgeBufferX, tabRectY2, tabRectX2-edgeBufferX+1, y+ windowHeight, false);
 		
 		
-		if (i != functionChainList_currentTab) {
+		if (currentTab != functionChainList_currentTab) {
 			draw_set_color(global.colorThemeBorders)
 			draw_line(tabRectX1-edgeBufferX,tabRectY2,tabRectX2+edgeBufferX*2,tabRectY2)
 		}
+		
 		// determine tabChainType for this tab
 		var chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);
 		var tabChainType = "";
@@ -118,7 +118,7 @@ function scr_panelPane_drawTabs() {
 				
 				// switch tab
 				with (obj_panelPane) {
-					functionChainList_currentTab = i;
+					functionChainList_currentTab = currentTab;
 				}
 				
 				// re-determine tab data (now that we've switched tabs)
@@ -135,9 +135,10 @@ function scr_panelPane_drawTabs() {
 					tabFilterActive = obj_control.filterActiveStack;
 				}
 				else if (functionChainList_currentTab == functionChainList_tabShow) {
-					with (obj_panelPane) {
-						chainViewOneToMany = true;
-					}
+					with (obj_panelPane) chainViewOneToMany = true;
+				}
+				else if (functionChainList_currentTab == functionChainList_tabChunk) {
+					with (obj_panelPane) chainViewOneToMany = false;
 				}
 				
 				
@@ -179,10 +180,10 @@ function scr_panelPane_drawTabs() {
 		//draw_set_color(global.colorThemeBorders);
 		//draw_rectangle(tabRectX1, tabRectY1, tabRectX2, tabRectY2, true);
 		draw_set_color(global.colorThemeText);
-		scr_adaptFont(scr_get_translation(functionChainList_tabName[i]), "M");
+		scr_adaptFont(scr_get_translation(currentTab), "M");
 		draw_set_halign(fa_center);
 		draw_set_valign(fa_middle);
-		draw_text(floor(mean(tabRectX2, tabRectX1)),floor(mean(tabRectY2, tabRectY1+edgeBufferY)), scr_get_translation(functionChainList_tabName[i]));
+		draw_text(floor(mean(tabRectX2, tabRectX1)),floor(mean(tabRectY2, tabRectY1+edgeBufferY)), scr_get_translation(currentTab));
 
 	}
 	

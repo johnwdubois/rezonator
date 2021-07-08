@@ -48,6 +48,7 @@ function scr_settingsOptions(optionSelected) {
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			}
+			obj_dialogueBox.inputWindowActive = true;
 			instance_destroy(obj_dropDown);
 		break;
 		case "menu_zero":
@@ -63,6 +64,7 @@ function scr_settingsOptions(optionSelected) {
 			if (!instance_exists(obj_dialogueBox)) {
 				instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 			}
+			obj_dialogueBox.inputWindowActive = true;
 			instance_destroy(obj_dropDown);
 		break;
 		case "menu_restore-hints":

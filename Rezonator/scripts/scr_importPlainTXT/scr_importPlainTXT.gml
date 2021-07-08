@@ -1,7 +1,8 @@
-function scr_importPlainTXT(filename) {
-	global.importFilename = filename;
+function scr_importPlainTXT() {
+	
 
-	var fileOpenRead = file_text_open_read(filename);
+
+
 	ds_grid_clear(global.importGrid, 0);
 	global.importGridWidth = 2
 	ds_grid_resize(global.importGrid, global.importGridWidth, ds_grid_height(global.importGrid));
@@ -13,16 +14,17 @@ function scr_importPlainTXT(filename) {
 	ds_list_add(global.importGridColNameList, "Group");
 	ds_map_add(global.importGridColMap, "Group", 1);
 
-
+	var txtGridHeight = ds_grid_height(global.importTXTLineGrid);
+	
 	//var newRow = false;
 	var currentLine = 0;
 	//var blankRow = true;
 	var group = 1;
-	while (not file_text_eof(fileOpenRead)) {
+	repeat (txtGridHeight) {
 	
-		currentLine++;
+
 	
-		var lineInFile = file_text_readln(fileOpenRead);
+		var lineInFile = global.importTXTLineGrid[# global.importTXTLineGrid_colLine,currentLine];
 		var col = 0;
 
 	
@@ -51,13 +53,12 @@ function scr_importPlainTXT(filename) {
 		}
 	
 
-
+		currentLine++;
 	}
 
 
 	global.plainText = true;
 
-	//show_message(ds_grid_height(global.importGrid));
 
 	room_goto(rm_importScreen);
 

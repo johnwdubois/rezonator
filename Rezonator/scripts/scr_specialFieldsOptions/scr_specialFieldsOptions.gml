@@ -34,7 +34,6 @@ function scr_specialFieldsOptions(optionSelected) {
 			global.unitImportUnitEndColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Translation":
-		global.translationList = ds_list_create();
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Translation") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
@@ -55,14 +54,14 @@ function scr_specialFieldsOptions(optionSelected) {
 
 		
 		case "Unit Delimiter":
-		global.unitImportUnitDelimColName = "";
+		global.unitDelimField = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Unit Delimiter") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
 				}
 			}
 			ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, obj_importMapping.rowToChange, "Unit Delimiter");
-			global.unitImportUnitDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			global.unitDelimField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Turn Delimiter":
 		global.unitImportTurnDelimColName = "";
@@ -75,7 +74,7 @@ function scr_specialFieldsOptions(optionSelected) {
 			global.unitImportTurnDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 		case "Word Delimiter":
-		global.wordImportWordDelimColName = "";
+		global.wordDelimField = "";
 			for (var i = 0; i < tagInfoGridHeight; i++) {
 				if (ds_grid_get(global.tagInfoGrid, obj_importMapping.colToChange, i) == "Word Delimiter") {
 					ds_grid_set(global.tagInfoGrid, obj_importMapping.colToChange, i, 0);
@@ -88,7 +87,7 @@ function scr_specialFieldsOptions(optionSelected) {
 				var currentMarkerCount = ds_grid_get(global.fieldRelationHelperGrid,indexForHelper,indexForHelper);
 				obj_importMapping.currentWordThreshold = (currentMarkerCount * obj_importMapping.tokenRatio);
 			}
-			global.wordImportWordDelimColName = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
+			global.wordDelimField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, obj_importMapping.rowToChange);
 			break;
 			
 		case "Display Token":

@@ -3,17 +3,41 @@ function scr_dialogueBoxNewCustomFieldToken() {
 	var newField = obj_control.inputText;
 	
 	// add new field to the list of token fields
-	ds_list_add(obj_control.tokenFieldList, newField);
+	if (!obj_control.selectFieldChunk) {
+		ds_list_add(obj_control.tokenFieldList, newField);
+	}
+	ds_list_add(obj_control.chunkFieldList, newField);
 	
 	//add to nav window list if
 	var sizeOfNavTokenList = ds_list_size(obj_control.navTokenFieldList);
-	if(sizeOfNavTokenList < 6){
-		ds_list_add(obj_control.navTokenFieldList, newField);
+	if (!obj_control.selectFieldChunk) {
+		if(sizeOfNavTokenList < 6){
+			ds_list_add(obj_control.navTokenFieldList, newField);
+		}
+		if(sizeOfNavTokenList == 6){
+			scr_tokenSelection(newField);
+		}
 	}
+	
+	var sizeOfNavChunkList = ds_list_size(obj_control.navChunkFieldList);
+	if(sizeOfNavChunkList < 6){
+		ds_list_add(obj_control.navChunkFieldList, newField);
+	}
+	
+	
+	
+	
+	
 	
 	// create a new submap for this field
 	var newFieldMap = ds_map_create();
 	ds_map_add_list(newFieldMap, "tagSet", ds_list_create());
+	var newFieldMapTypeList = ds_list_create();
+	if (!obj_control.selectFieldChunk) {
+		ds_list_add(newFieldMapTypeList, "token");
+	}
+	ds_list_add(newFieldMapTypeList, "chunk");
+	ds_map_add_list(newFieldMap, "targetList", newFieldMapTypeList);
 	
 	// add our new field's submap to the tagMap
 	var tagMap = global.nodeMap[? "tokenTagMap"];
@@ -42,9 +66,7 @@ function scr_dialogueBoxNewCustomFieldToken() {
 		}
 	}
 	
-	if(sizeOfNavTokenList == 6){
-		scr_tokenSelection(newField);
-	}
+
 	
 
 

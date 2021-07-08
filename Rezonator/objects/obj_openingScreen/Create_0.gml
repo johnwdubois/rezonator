@@ -19,16 +19,6 @@ global.schemaFileName = "";
 
 global.fileLineRipList = ds_list_create();
 
-global.fileLineRipGripWidth = 7;
-global.fileLineRipGrid_colDiscoID = 0;
-global.fileLineRipGrid_colFileLineRipList = 1;
-global.fileLineRipGrid_colUnitAmount = 2;
-global.fileLineRipGrid_colParticipantList = 3;
-global.fileLineRipGrid_colColorList = 4;
-global.fileLineRipGrid_colParticipantIDList = 5;
-global.fileLineRipGrid = ds_grid_create(global.fileLineRipGripWidth, 0);
-
-global.totalUnitAmount = 0;
 
 global.participantColorList = ds_list_create();
 
@@ -306,9 +296,9 @@ global.readHintHide = false;
 
 global.unitImportUnitStartColName = "";
 global.unitImportUnitEndColName = "";
-global.unitImportUnitDelimColName = "";
+global.unitDelimField = "";
 global.unitImportTurnDelimColName = "";
-global.wordImportWordDelimColName = "";
+global.wordDelimField = "";
 global.currentTranslation = "";
 global.unitImportSpeakerColName = "";
 global.tokenImportTranscriptColName = "";
@@ -362,6 +352,8 @@ ds_map_add(global.expandableDropDownMap, "menu_advanced", true);
 ds_map_add(global.expandableDropDownMap, "menu_language", true);
 ds_map_add(global.expandableDropDownMap, "Recolor", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
+ds_map_add(global.expandableDropDownMap, "Select field", true);
+ds_map_add(global.expandableDropDownMap, "Remove from tag set", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
@@ -413,6 +405,8 @@ showPreImportScreen = false;
 global.tokenCountTotal = 0;
 
 global.discourseNode = "";
+
+global.prevTimePrinted = current_time;
 
 alarm[5] = 2;
 

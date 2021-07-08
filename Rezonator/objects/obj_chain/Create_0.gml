@@ -64,11 +64,10 @@ stackTier = 3;
 
 
 
-rezChainNameCounter = 0;
-trackChainNameCounter = 0;
-stackChainNameCounter = 0;
-placeChainNameCounter = 0;
-//chunkNameCounter = 0;
+rezChainNameCounter = ds_list_size(global.nodeMap[? "rezChainList"]);
+trackChainNameCounter = ds_list_size(global.nodeMap[? "trackChainList"]);
+stackChainNameCounter = ds_list_size(global.nodeMap[? "stackChainList"]);
+
 
 currentFocusedChainID = "";
 currentFocusedChunkID = "";
@@ -179,3 +178,7 @@ trackGrid = ds_grid_create(trackGridWidth, 0);
 rezGrid = ds_grid_create(trackGridWidth, 0);
 
 mouseOverAnyChunk = false;
+
+
+// update the filtered chain lists now that we have those good ol chain lists loaded
+scr_updateFilteredChainLists();

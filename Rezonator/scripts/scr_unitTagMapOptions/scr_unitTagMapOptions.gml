@@ -1,7 +1,7 @@
 function scr_unitTagMapOptions() {
 	var optionSelected = argument[0];
 
-	if (optionSelected == "Add new Tag") {
+	if (optionSelected == "Add to tag set") {
 
 
 		obj_control.newCustomTagUnit = true;
@@ -10,6 +10,7 @@ function scr_unitTagMapOptions() {
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		obj_dialogueBox.inputWindowActive = true;
 	
 	}
 	else {

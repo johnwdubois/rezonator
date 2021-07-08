@@ -28,18 +28,22 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		var sectionRectX1 = plusX;
 		var sectionRectX2 = speakerLabelColXList[| i];
 		
+		// get section text
+		var sectionText = "";
+		if (i == 0) sectionText = string(unitSubMap[? "unitSeq"]);
+		else if (i == 1) sectionText = string(tagMap[? global.speakerField]);
+		
 		// get rectangle color
 		var sectionColor = global.colorThemeSelected1;
-		if (i == 1) sectionColor = unitSubMap[? "speakerColor"];
+		if (i == 1) {
+			sectionColor = scr_strToColor(sectionText);
+		}
 		
 		// draw rectangle
 		draw_set_color(sectionColor);
 		draw_rectangle(sectionRectX1, sectionRectY1, sectionRectX2, sectionRectY2, false);
 		
-		// get section text
-		var sectionText = "";
-		if (i == 0) sectionText = string(unitSubMap[? "unitSeq"]);
-		else if (i == 1) sectionText = string(tagMap[? global.speakerField]);
+
 		
 		// cut off section text if its too long
 		var cutoffs = 0;
@@ -54,7 +58,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 		
 		// draw section text
 		sectionText = scr_adaptFont(sectionText, "M");
-		draw_set_color(global.colorThemeText);
+		draw_set_color(scr_textColorDarkOrLight(sectionColor));
 		draw_set_halign(fa_left);
 		if(obj_control.drawLineState == obj_control.lineState_ltr){
 			draw_text(floor(sectionRectX1 + spaceWidth), floor(pixelY), sectionText);
@@ -64,6 +68,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			draw_text(floor(sectionRectX2 - spaceWidth - string_length(sectionText)), floor(pixelY), sectionText);
 			
 		}
+		
 		draw_set_halign(fa_left);
 		// if this is the last section, let's draw a horizontal line to divide units
 		if (i == speakerLabelColXListSize - 1) {
@@ -78,7 +83,7 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	}
 	
 	
-	var mouseOverCurrentSpeakerLabel = (point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2));
+	var mouseOverCurrentSpeakerLabel = (point_in_rectangle(mouse_x,mouse_y,0,sectionRectY1,wordLeftMargin,sectionRectY2) && !obj_control.mouseoverPanelPane);
 	if (mouseOverCurrentSpeakerLabel) {
 		obj_control.mouseoverSpeakerLabel = true;
 		obj_control.hoverUnitID = unitID;
@@ -107,7 +112,9 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			}
 			
 			with (obj_chain) {
-				scr_unitClicked(unitID);
+				if(!instance_exists(obj_dropDown)){
+					scr_unitClicked(unitID);
+				}
 			}
 		}
 	}

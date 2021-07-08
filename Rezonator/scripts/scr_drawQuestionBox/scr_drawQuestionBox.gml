@@ -1,19 +1,5 @@
 function scr_drawQuestionBox() {
 
-	/*
-		scr_drawQuestionBox();
-	
-		Last Updated: 2019-06-25
-	
-		Called from: obj_control
-	
-		Purpose: draw custom search box for multiple options
-	
-		Mechanism: draws multiple rectangles and text to represent options to the user when they search,
-		this includes booleans for a case sensitive search, transcript search, and a search within a chain
-				
-		Author: Brady Moore
-	*/
 	
 	if (!questionWindowActive) {
 		exit;
@@ -103,6 +89,17 @@ function scr_drawQuestionBox() {
 			draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, scr_get_translation("msg_warning_merge_chains"));
 		}
 	}
+	if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain) {
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the option to mark tag " + string(stringToBeRemoved));
+	}
+	if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain) {
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the tag set for Field:  " + string(stringToBeRemoved));
+	}
+	if (removeSearch) {
+		var searchSubMap = global.searchMap[?searchToBeRemoved];
+		var searchTermList = searchSubMap[?"searchTermList"];
+		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the Search :  " + scr_getStringOfList(searchTermList));
+	}
 
 	draw_text(floor(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25), floor(camera_get_view_height(camera_get_active())/2 - verticleBuffer + 105), scr_get_translation("msg_ask_sure"));
 
@@ -151,6 +148,24 @@ function scr_drawQuestionBox() {
 				scr_deleteFromList(chainList, currentChainID); // safety check to eliminate infinite loop
 			}
 		}
+		
+		if (removeTagToken) scr_removeFromTagSetOptions(string(stringToBeRemoved), "token");
+		if (removeTagUnit) scr_removeFromTagSetOptions(string(stringToBeRemoved), "unit");
+		if (removeTagEntry) scr_removeFromTagSetOptions(string(stringToBeRemoved), "entry");
+		if (removeTagChain) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chain");
+		
+		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain) {
+			// delete the field
+			scr_deleteField(stringToBeRemoved);
+				
+			// deselect fields
+			if (removeFieldToken) with (obj_panelPane) functionField_tokenFieldSelected = "";
+			if (removeFieldEntry) with (obj_panelPane) functionField_entryFieldSelected = "";
+			if (removeFieldUnit) with (obj_panelPane) functionField_unitFieldSelected = "";
+			if (removeFieldChain) with (obj_panelPane) functionField_chainFieldSelected = "";
+		}
+		
+		
 			
 		
 
@@ -159,7 +174,9 @@ function scr_drawQuestionBox() {
 		}
 		if (clearShow) {
 			scr_deleteShow(obj_control.selectedChainID);
-
+		}
+		if (removeSearch) {
+			scr_removeSearch(searchToBeRemoved);
 		}
 		
 			
@@ -176,18 +193,7 @@ function scr_drawQuestionBox() {
 			scr_combineChains(obj_control.combineChainsFocused, obj_control.combineChainsSelected);
 		}
 		
-		questionWindowActive = false;
-		clearAllStacks = false;
-		clearAllTracks = false;
-		clearAllRez = false;
-		clearAllLinks = false;
-		clearChain = false;
-		layerLink = false;
-		combineChains = false;
-		obj_control.stackMerged = false;
-		obj_control.combineChainsFocused = "";
-		obj_control.combineChainsSelected = "";
-			
+		scr_closeQuestionBoxVariables();
 		instance_destroy();
 
 
@@ -200,16 +206,7 @@ function scr_drawQuestionBox() {
 	if (clickCancel || keyboard_check_pressed(vk_escape)) {
 		obj_control.alarm[11] = 60;
 			
-		questionWindowActive = false;
-		clearAllStacks = false;
-		clearAllTracks = false;
-		clearAllRez = false;
-		clearAllLinks = false;
-		clearChain = false;
-		layerLink = false;
-		combineChains = false;
-		obj_control.stackMerged = false;
-			
+		scr_closeQuestionBoxVariables();
 		instance_destroy();
 	}
 

@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawChunks(){
+
 	obj_chain.mouseOverAnyChunk = false;
 	obj_control.hoverChunkID = "";
 	// loop through all the chunks currently on screen, and draw them!
@@ -31,32 +32,56 @@ function scr_drawChunks(){
 		
 		
 		
-		// get x coordinates of words
-		var firstTokenLeftX = currentChunkFirstTokenSubMap[?"pixelX"];		
-		var lastTokenLeftX = currentChunkLastTokenSubMap[?"pixelX"];	
-		var lastTokenDisplayStr = currentChunkLastTokenTagMap[?global.displayTokenField];	
-		var lastTokenStrWidth = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
-		var lastTokenRightX = lastTokenLeftX + lastTokenStrWidth;
-		var displayUnit = currentChunkFirstTokenSubMap[?"unit"];
+		// get x coordinates of tokens & chunks
+		var firstTokenLeftX = -1;
+		var lastTokenLeftX = -1;
+		var firstTokenRightX = -1;
+		var lastTokenRightX = -1;
+		var chunkXBorder = 10;
+		var chunkRectX1 = -1;
+		var chunkRectX2 = -1;
+		var firstTokenDisplayStr = currentChunkFirstTokenTagMap[? global.displayTokenField];
+		var lastTokenDisplayStr = currentChunkLastTokenTagMap[? global.displayTokenField];
+		
+		// get coordinates based on tokens and their justifications
+		if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
+			var firstTokenStrWidth = (is_string(firstTokenDisplayStr)) ? string_width(firstTokenDisplayStr) : 0;
+			
+			firstTokenRightX = currentChunkFirstTokenSubMap[? "pixelX"];
+			firstTokenLeftX = firstTokenRightX - firstTokenStrWidth;
+			lastTokenRightX = currentChunkLastTokenSubMap[? "pixelX"];
+		}
+		else {
+			var lastTokenStrWidth = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
+			
+			firstTokenLeftX = currentChunkFirstTokenSubMap[? "pixelX"];
+			lastTokenLeftX = currentChunkLastTokenSubMap[? "pixelX"];
+			lastTokenRightX = lastTokenLeftX + lastTokenStrWidth;
+		}
+		
+		// set chunk x coordinates
+		if (is_numeric(firstTokenLeftX)) chunkRectX1 = firstTokenLeftX - chunkXBorder;
+		if (is_numeric(lastTokenRightX)) chunkRectX2 = lastTokenRightX + chunkXBorder;
+	
+		var displayUnit = currentChunkFirstTokenSubMap[? "unit"];
 		
 		
 		scr_adaptFont(lastTokenDisplayStr, "M");
 		var strHeight = (is_string(lastTokenDisplayStr)) ? string_height(lastTokenDisplayStr) : 0;
 		
 		// set rect coordinates for chunk
-		var chunkRectX1 = -1;
 		var chunkRectY1 = -1;
-		var chunkRectX2 = -1;
 		var chunkRectY2 = -1;
 		
-		if (is_numeric(firstTokenLeftX)) chunkRectX1 = firstTokenLeftX - 10;
-		if (is_numeric(lastTokenRightX)) chunkRectX2 = lastTokenRightX + 10;
+
 		if (displayUnit != "" and is_string(displayUnit)) {
 			var unitSubMap = global.nodeMap[?displayUnit];
 			var pixelY = unitSubMap[?"pixelY"]
 			chunkRectY1 = pixelY - strHeight;
 			chunkRectY2 = pixelY + strHeight;
 		}
+
+		
 		
 		// draw BG rect
 		draw_set_color(global.colorThemeBG);
@@ -72,7 +97,7 @@ function scr_drawChunks(){
 		}
 		
 		// draw selection box		
-		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverTokenID == "" && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane);
+		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverTokenID == "" && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_flyout);
 		if (mouseOverChunk) {
 			obj_control.hoverChunkID = currentChunkID;
 			obj_control.mouseoverNeutralSpace = false;

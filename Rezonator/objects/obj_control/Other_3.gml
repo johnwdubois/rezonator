@@ -7,7 +7,7 @@ scr_saveINI();
 
 
 
-if (!allSaved and ds_grid_height(obj_control.unitGrid) >= global.totalUnitAmount) {
+if (!allSaved) {
 
 /*
 		while(obj_dialogueBox.questionWindowActive){

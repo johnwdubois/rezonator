@@ -10,6 +10,7 @@ function scr_chain1ToManyTagOptions(optionSelected){
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		obj_dialogueBox.inputWindowActive = true;
 		exit;
 	}
 	
@@ -26,8 +27,8 @@ function scr_chain1ToManyTagOptions(optionSelected){
 	if (!is_numeric(entryTagMap)) exit;
 	if (!ds_exists(entryTagMap, ds_type_map)) exit;
 	
-	if (optionSelected == "Remove tag") {
-		// if user selected "Remove tag" then we delete the tag from this entry's tagmap
+	if (optionSelected == "Remove from tag set") {
+		// if user selected "Remove from tag set" then we delete the tag from this entry's tagmap
 		ds_map_delete(entryTagMap, fieldToChange);
 	}
 	else {

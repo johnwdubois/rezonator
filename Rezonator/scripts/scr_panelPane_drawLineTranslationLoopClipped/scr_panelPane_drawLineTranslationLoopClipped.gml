@@ -1,17 +1,4 @@
 function scr_panelPane_drawLineTranslationLoopClipped() {
-	/*
-		scr_panelPane_drawLineTranslationLoop();
-	
-		Last Updated: 2019-12-28
-	
-		Called from: obj_panelPane
-	
-		Purpose: Draw the translation of each line in the Nav window
-	
-		Mechanism: loop through LineGrid and translate each line
-	
-		Author: Georgio Klironomos
-	*/
 
 	scr_surfaceStart();
 	// Access the lineList panelPane object to get it's scrollPlusY
@@ -105,12 +92,11 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 		//Color codes the line lists for User
 			if(string_length(lineSpeaker) > 0){
 				
-				
+				var speakerColor = global.colorMap[? lineSpeaker];
 				drawingSpeaker = true;
-				draw_set_color(merge_color(unitSubMap[?"speakerColor"], global.colorThemeBG, 0.4)); //soften the color
+				draw_set_color(merge_color(speakerColor, global.colorThemeBG, 0.4)); //soften the color
 				draw_rectangle(unitColX2 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
-				draw_set_color(global.colorThemeText);
-		
+				draw_set_color(scr_textColorDarkOrLight(speakerColor));
 				lineSpeaker = scr_adaptFont(lineSpeaker, "M");
 				draw_text(unitColX2 + (textMarginLeft) - clipX , textY - clipY, lineSpeaker);
 			}

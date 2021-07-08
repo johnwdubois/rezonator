@@ -121,7 +121,7 @@ function scr_fillTokenImportGridCSV() {
 
 	//show_message("global.tokenImportGridWidth: " + string(ds_grid_width(global.tokenImportGrid)));
 
-	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
+	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitDelimField);
 
 
 	var transcriptMarkerStr = "";

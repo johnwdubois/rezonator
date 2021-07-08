@@ -165,7 +165,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeTokenSelection) //27
 	{
 	    scr_tokenSelection(optionSelected);
-	    instance_destroy();
+	    with (obj_dropDown) instance_destroy();
 	}
 	//stack selection
 	else if (optionListType == global.optionListTypeStack) //28
@@ -189,7 +189,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeUnitSelection) //31
 	{
 	    scr_unitSelection(optionSelected);
-	    instance_destroy();
+	    with (obj_dropDown) instance_destroy();
 	}
 	//import special fields selection
 	else if (optionListType == global.optionListTypeSpecialFields) //32
@@ -276,7 +276,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeChain1ToManyField) //47
 	{
 	    scr_chain1ToManyFieldOptions(optionSelected);
-		instance_destroy();
+		with (obj_dropDown) instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeChain1ToManyTag) //48
 	{
@@ -296,7 +296,7 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeChain1To1Field) //51
 	{
 	    scr_chain1To1FieldOptions(optionSelected);
-		instance_destroy();
+		with (obj_dropDown) instance_destroy();
 	}
 	else if (optionListType == global.optionListTypeChain1To1Tag) //52
 	{
@@ -333,6 +333,57 @@ function scr_dropDownSelect(optionSelected) {
 	else if (optionListType == global.optionListTypeTranslation) //59
 	{
 		scr_translationOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeFieldUnits1ToMany) // 60
+	{
+		scr_fieldUnits1ToManyOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1ToMany) // 61
+	{
+		scr_removeFieldTagQuestionPrompt("tag", "unit", "1toMany", optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeFieldUnits1To1) // 62
+	{
+		scr_fieldUnits1To1Options(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeRemoveFromTagSetUnits1To1) // 63
+	{
+		scr_removeFieldTagQuestionPrompt("tag", "unit", "1to1", optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeFieldChains1ToMany) // 64
+	{
+		scr_fieldChains1ToManyOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1ToMany) // 65
+	{
+		scr_removeFieldTagQuestionPrompt("tag", "chain", "1toMany", optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeFieldChains1To1) // 66
+	{
+		scr_fieldChains1To1Options(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeRemoveFromTagSetChains1To1) // 67
+	{
+		scr_removeFieldTagQuestionPrompt("tag", "chain", "1to1", optionSelected);
+		with (obj_dropDown) instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeChunk1To1Tag) //68
+	{
+	    scr_chunk1To1TagOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeSearchField) //69
+	{
+		scr_searchFieldOptions(optionSelected);
+		instance_destroy();
+	}
+	else if (optionListType == global.optionListTypeSearchRange) //69
+	{
+		scr_searchRangeOptions(optionSelected);
+		instance_destroy();
 	}
 
 }

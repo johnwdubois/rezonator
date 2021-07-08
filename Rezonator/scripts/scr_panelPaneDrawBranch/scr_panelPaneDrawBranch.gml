@@ -19,6 +19,7 @@ function scr_panelPaneDrawBranch(){
 				draw_set_color(global.colorThemePaneBG);
 				draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
 
+				// all the possible left panes
 				if (functionChainList_currentTab == functionChainList_tabLine) {
 					scr_panelPane_drawUnitsList();
 				}
@@ -27,6 +28,15 @@ function scr_panelPaneDrawBranch(){
 				}
 				else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 					scr_panelPane_drawUnitsList();
+				}
+				else if (functionChainList_currentTab == functionChainList_tabField) {
+					scr_panelPane_drawFieldList();
+				}
+				else if (functionChainList_currentTab == functionChainList_tabSearch) {
+					scr_panelPane_drawSearchList();
+				}			
+				else if (functionChainList_currentTab == functionChainList_tabChunk) {
+					scr_panelPane_drawChunkList();
 				}
 				else {
 					scr_panelPane_drawChainsList();
@@ -41,6 +51,8 @@ function scr_panelPaneDrawBranch(){
 				scrollBarClickLock = true;	
 			}
 			break;
+			
+			
 			
 		// RIGHT NAV WINDOW
 		case functionChainContents:
@@ -59,7 +71,7 @@ function scr_panelPaneDrawBranch(){
 						functionChainContents_BGColor = global.colorThemeBG;
 					}
 					// if the BG color is not regular, draw a rectangle with the color of the corresponding chain
-					if (functionChainContents_BGColor != global.colorThemeBG) {
+					if (functionChainContents_BGColor != global.colorThemeBG && functionChainList_currentTab != functionChainList_tabField) {
 						draw_set_alpha(1);
 						draw_set_color(merge_color(functionChainContents_BGColor, global.colorThemeBG, 0.9));
 						draw_rectangle(x, y, x + windowWidth, y + windowHeight, false);
@@ -81,6 +93,20 @@ function scr_panelPaneDrawBranch(){
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
 					}
+					else if (functionChainList_currentTab == functionChainList_tabField) {
+						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
+							scr_panelPane_drawFieldTags();
+						}
+						else {
+							scr_panelPane_drawChainFieldTags();
+						}
+					}
+					else if (functionChainList_currentTab == functionChainList_tabSearch) {
+						scr_panelPane_drawSearch1ToMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabChunk) {
+						scr_panelPane_drawChunks1To1();
+					}
 					else {
 						scr_panelPane_drawChains1ToMany();
 						scr_panelPane_drawChains1ToManyHeaders();
@@ -93,9 +119,24 @@ function scr_panelPaneDrawBranch(){
 						
 					}
 					else if (functionChainList_currentTab == functionChainList_tabShow) {
+						scr_panelPane_drawShow1toMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabField) {
+						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
+							scr_panelPane_drawFieldTags();
+						}
+						else{
+							scr_panelPane_drawChainFieldTags();
+						}
 					}
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabSearch) {
+						scr_panelPane_drawSearch1ToMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabChunk) {
+						scr_panelPane_drawChunks1To1();
 					}
 					else {
 						scr_panelPane_drawChains1To1();
@@ -129,6 +170,10 @@ function scr_panelPaneDrawBranch(){
 				scrollBarClickLock = true;	
 			}
 			break;
+			
+			
+		
+		
 			
 			
 		case functionTabs:

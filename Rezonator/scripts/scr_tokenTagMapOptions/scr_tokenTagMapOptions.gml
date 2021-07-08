@@ -1,6 +1,6 @@
 function scr_tokenTagMapOptions(optionSelected) {
 
-	if (optionSelected == "Add new Tag"){
+	if (optionSelected == "Add to tag set"){
 
 		obj_control.newCustomTagToken = true;
 		obj_control.dialogueBoxActive = true;
@@ -8,6 +8,7 @@ function scr_tokenTagMapOptions(optionSelected) {
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		obj_dialogueBox.inputWindowActive = true;
 	
 	}
 	else {

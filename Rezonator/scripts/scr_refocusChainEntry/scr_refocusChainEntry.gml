@@ -15,7 +15,9 @@ function scr_refocusChainEntry(ID){
 		var entryList = IDsubMap[?"entryList"];
 		var firstEntry = entryList[|0];
 		var entrySubMap = global.nodeMap[?firstEntry];
-		tokenID = entrySubMap[?"token"]
+		if(scr_isNumericAndExists(entrySubMap, ds_type_map)){
+			tokenID = entrySubMap[?"token"]
+		}
 	}
 	else if(type == "token"){	
 		unitID = IDsubMap[?"unit"];
@@ -51,7 +53,7 @@ function scr_refocusChainEntry(ID){
 			if (tokenID == currentChainEntryID or unitID == currentChainEntryID or chunkID == currentChainEntryID) {
 				entryToFocus = currentChainEntry;
 			}
-			show_debug_message("entryToFocus:  " + string(entryToFocus));
+			
 			/*
 			drawing of rez/tracks chains come back later
 			if(chainType == "rezChain" or chainType == "trackChain"){

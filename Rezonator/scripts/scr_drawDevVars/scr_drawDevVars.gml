@@ -43,8 +43,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 6), "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 7), "hoverTokenID: " + string(hoverTokenID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 8), "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	draw_text(devVarX, wordTopMargin + (strHeight * 9), "currentDisplayTokenColsList: " + scr_getStringOfList(currentDisplayTokenColsList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 10), "currentDisplayUnitColsList: " + scr_getStringOfList(currentDisplayUnitColsList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 9), "panelPane focusedUnit: " + string(obj_panelPane.functionChainList_focusedUnit));
+	draw_text(devVarX, wordTopMargin + (strHeight * 10), "panelPane focusedUnitIndex: " + string(obj_panelPane.functionChainList_focusedUnitIndex));
 	draw_text(devVarX, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
 	draw_text(devVarX, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 	draw_text(devVarX, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
@@ -61,13 +61,13 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "inRectTokenIDList: " + scr_getStringOfList(inRectTokenIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseRectXY: " + string(mouseHoldRectX1) + ", " + string(mouseHoldRectY1));
-	draw_text(devVarX, wordTopMargin + (strHeight * 27), "mouseoverNeutralSpace: " + string(mouseoverNeutralSpace));
-	draw_text(devVarX, wordTopMargin + (strHeight * 28), "mouseoverSpeakerLabel: " + string(mouseoverSpeakerLabel));
+	draw_text(devVarX, wordTopMargin + (strHeight * 27), "panelPane tokenFieldSelected: " + string(obj_panelPane.functionField_tokenFieldSelected));
+	draw_text(devVarX, wordTopMargin + (strHeight * 28), "panelPane tokenTagSelected: " + string(obj_panelPane.functionField_tokenTagSelected));
 	draw_text(devVarX, wordTopMargin + (strHeight * 29), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "searchGridActive: " + string(searchGridActive));
-	draw_text(devVarX, wordTopMargin + (strHeight * 33), "listOfWords: " + scr_getStringOfList(listOfWords));
+	draw_text(devVarX, wordTopMargin + (strHeight * 33), "doubleClickTimer: " + string(doubleClickTimer));
 	draw_text(devVarX, wordTopMargin + (strHeight * 34), "functionChainContents_showID: " + string(obj_panelPane.functionChainContents_showID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 35), "functionChainList_playShowID: " + string(obj_panelPane.functionChainList_playShowID));
 	

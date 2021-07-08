@@ -53,20 +53,19 @@ function scr_loadSchema(autoload) {
 	}
 
 	var wrapper = scr_loadJSONBuffer(fileName);
-	
-	if (not ds_exists(wrapper, ds_type_map)) {
+	if (!scr_isNumericAndExists(wrapper, ds_type_map)) {
 		show_message("Error loading " + fileName);
 		room_goto(rm_openingScreen);
 		exit;
 	}
 	
 	var list = ds_map_find_value(wrapper, "ROOT");
-	
-	if (is_undefined(list)) {
+	if (!scr_isNumericAndExists(list, ds_type_list)) {
 		show_message("Error loading " + fileName);
 		room_goto(rm_openingScreen);
 		exit;
 	}
+	
 	obj_importMapping.levelEstimateColumnSelected = global.tagInfoGrid_colLevelSchema;
 	
 	// clear all Special Fields
@@ -90,20 +89,22 @@ function scr_loadSchema(autoload) {
 			// get this field's level & special field from this field's map
 			var levelFromMap = ds_map_find_value(currentFieldMap, "level");
 			var specialFieldFromMap = ds_map_find_value(currentFieldMap, "specialField");
+			var keyFromMap = ds_map_find_value(currentFieldMap, "key");
+			show_debug_message("scr_loadSchema ... currentField: " + string(currentField) + ", levelFromMap: " + string(levelFromMap) + ", specialFieldFromMap: " + string(specialFieldFromMap) + ", keyFromMap: " + string(keyFromMap));
 			
 			// set level & special field (if they were found in this field's map)
 			if (!is_undefined(levelFromMap)) {
 				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevelSchema, i, levelFromMap);
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colLevel, i, levelFromMap);
 			}
 			if (!is_undefined(specialFieldFromMap)) {
-				if (specialFieldFromMap == "Display Token" || specialFieldFromMap == "Token Delimiter"
-				|| specialFieldFromMap == "Unit Delimiter" || specialFieldFromMap == "Word Delimiter") {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, specialFieldFromMap);
-				}
-				else {
-					ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
-				}
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i, specialFieldFromMap);
 			}
+			if (!is_undefined(keyFromMap)) {
+				ds_grid_set(global.tagInfoGrid, global.tagInfoGrid_colKey, i, keyFromMap);
+			}
+			
+			
 		}
 	}
 	

@@ -48,7 +48,8 @@ function scr_importInfoGrid() {
 	
 	}
 	else {
-	
+		show_debug_message("global.importGridColNameList: " + scr_getStringOfList(global.importGridColNameList));
+		show_debug_message("importGridWidth : " + string(importGridWidth) + "importGridHeight : " + string(importGridHeight));
 		for (var i = 0; i < importGridWidth; i++) {
 	
 			var currentTag = ds_list_find_value(global.importGridColNameList, i);
@@ -78,7 +79,7 @@ function scr_importInfoGrid() {
 			var tokenCount = -1;
 			for (var j = 0; j < importGridHeight; j++) {
 				if (ds_grid_get(global.importGrid, i, j) != "0") {
-					var currentList = scr_splitStringImport(ds_grid_get(global.importGrid, i, j));
+					var currentList = scr_splitStringImport(ds_grid_get(global.importGrid, i, j), " ", false);
 					if (tokenCount < 0) {
 						tokenCount = ds_list_size(currentList);
 					}
@@ -112,7 +113,7 @@ function scr_importInfoGrid() {
 				}
 			}
 			else {
-				show_debug_message("scr_importInfoGrid() Setting field estimates...");
+				show_debug_message("scr_importInfoGrid Setting field estimates...");
 				// if this label is < 5% consistency and 1 token per group, it is probably discourse level
 				// if this label is >= 90% consistency and 1 token per group, it is probably unit level
 				// if this label is >= 90% consistency and has inconsistent amount of tokens, it is probably token level
@@ -149,7 +150,7 @@ function scr_importInfoGrid() {
 	// check if there are any Token level fields
 	var anyTokenFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
 	var anyWordFields = ds_grid_value_exists(global.tagInfoGrid, global.tagInfoGrid_colLevel, 0, global.tagInfoGrid_colLevel, ds_grid_height(global.tagInfoGrid), "token");
-	show_debug_message("scr_importInfoGrid() ... anyTokenFields: " + string(anyTokenFields) + ", anyWordFields: " + string(anyWordFields));
+	show_debug_message("scr_importInfoGrid ... anyTokenFields: " + string(anyTokenFields) + ", anyWordFields: " + string(anyWordFields));
 	
 	// if there are no Token level fields but there are Word level fields, let's change the Word fields to Tokens fields
 	if (!anyTokenFields && anyWordFields) {

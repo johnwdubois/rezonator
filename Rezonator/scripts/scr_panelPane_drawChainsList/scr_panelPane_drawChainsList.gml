@@ -203,37 +203,30 @@ function scr_panelPane_drawChainsList() {
 								obj_chain.currentFocusedChainID = currentChainID;
 				
 			
-								// Set scroll range in the chain list
-								with (obj_panelPane) {
-									functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
-									functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
-								}
-								if (doubleClickTimer > -1) {	
-									var rowInLineGrid = -1;
+								if (obj_control.doubleClickTimer > -1) {	
 									var currentUnitIDList = -1;
 									var currentUnitID = -1;
 									var currentEntry = ds_list_find_value(setIDList, 0);
 									var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
 						
 									if (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush) {
-										var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
-										currentUnitID = ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
+										var currentTokenID = currentEntrySubMap[? "token"];
+										var currentTokenSubMap = global.nodeMap[? currentTokenID];
+										currentUnitID = currentTokenSubMap[? "unit"]
 									}
 									else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-										currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
+										currentUnitID = currentEntrySubMap[? "unit"];
 									}
 					
-									rowInLineGrid = ds_grid_value_y(obj_control.lineGrid, obj_control.lineGrid_colUnitID, 0, obj_control.lineGrid_colUnitID, ds_grid_height(obj_control.lineGrid), currentUnitID);
-					
 									// Set first unit of the double clicked chain to center display row, if possible
-									if (rowInLineGrid >= 0 and rowInLineGrid < ds_grid_height(obj_control.lineGrid)) {
-										// Replacement of centerDisplayRow
-										var linePixelY = ds_grid_get(obj_control.lineGrid, obj_control.lineGrid_colPixelYOriginal, rowInLineGrid);
+									var currentUnitSubMap = global.nodeMap[? currentUnitID];
+									if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
+										var linePixelY = currentUnitSubMap[? "pixelY"];
 										obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
 									}
 								}
 								else {
-									doubleClickTimer = 0;
+									obj_control.doubleClickTimer = 0;
 								}
 							}
 						}
@@ -282,7 +275,7 @@ function scr_panelPane_drawChainsList() {
 					}
 					draw_set_color(global.colorThemeBorders);
 					scr_drawRectWidth(checkboxRectX1 - clipX, checkboxRectY1 - clipY, checkboxRectX2 - clipX, checkboxRectY2 - clipY, 2, false);
-					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, c_white, 1);
+					if (currentChainSelected) draw_sprite_ext(spr_checkmark, 0, mean(checkboxRectX1, checkboxRectX2) - clipX, mean(checkboxRectY1, checkboxRectY2) - clipY, checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
 					
 					// click on checkbox
 					if (mouseoverCheckbox && mouse_check_button_released(mb_left) && !mouseoverCancel) {
@@ -564,7 +557,7 @@ function scr_panelPane_drawChainsList() {
 			if (allChainsSelected) {
 				draw_set_color(merge_color(global.colorThemeSelected2, global.colorThemeBG, 0.6));
 				draw_rectangle(headerCheckboxX1, headerCheckboxY1, headerCheckboxX2, headerCheckboxY2, false);
-				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
+				draw_sprite_ext(spr_checkmark, 0, mean(headerCheckboxX1, headerCheckboxX2), mean(headerCheckboxY1, headerCheckboxY2), checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
 			}
 			
 			draw_set_color(global.colorThemeBorders);

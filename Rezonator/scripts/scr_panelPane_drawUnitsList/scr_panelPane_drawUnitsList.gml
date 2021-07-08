@@ -1,16 +1,12 @@
 function scr_panelPane_drawUnitsList() {
-	/*
-		Purpose: draw the chains for whatever tab you are on, if a user clicks on a chain then focus it and
-				set chainContents panelPane to look at that chain
-	*/
-	
+
 
 	
 
 	var strHeight = string_height("0") * 1.5;
 	var spaceWidth = string_width(" ");
 	
-	var drawScrollbar = ((!obj_control.showUnitTags) or functionChainList_currentTab == functionChainList_tabTranslations);
+	var drawScrollbar = (chainViewOneToMany or functionChainList_currentTab == functionChainList_tabTranslations);
 	var scrollBarWidth = global.scrollBarWidth;
 	
 	// get the instance ID for the lineContents pane so we can easily reference it
@@ -40,7 +36,7 @@ function scr_panelPane_drawUnitsList() {
 	}
 	
 	// if mouse is hovered on header region, make sure there is no line highlighted
-	if (mouseoverHeaderRegion) {
+	if (mouseoverHeaderRegion || !obj_control.mouseoverPanelPane) {
 		with (obj_panelPane) {
 			functionChainList_highlightUnit = "";
 		}
@@ -87,8 +83,8 @@ function scr_panelPane_drawUnitsList() {
 		
 		// get data from unit
 		var currentUnitSeq = currentUnitSubMap[? "unitSeq"];
-		var currentSpeaker = currentTagMap[? "~Participant"];
-		var currentSpeakerColor = currentUnitSubMap[? "speakerColor"];
+		var currentSpeaker = currentTagMap[? global.speakerField];
+		var currentSpeakerColor = scr_strToColor(currentSpeaker);
 		if (!is_numeric(currentSpeakerColor)) currentSpeakerColor = global.colorThemeSelected1;
 		var currentEntryList = currentUnitSubMap[? "entryList"];
 		var currentEntryListSize = 0;
@@ -146,7 +142,7 @@ function scr_panelPane_drawUnitsList() {
 			draw_rectangle(speakerRectX1 - clipX, currentUnitRectY1 - clipY, speakerRectX2 - clipX, currentUnitRectY2 - clipY - 2, false);
 			
 			currentSpeaker = scr_adaptFont(currentSpeaker, "M");
-			draw_set_color(global.colorThemeText);
+			draw_set_color(scr_textColorDarkOrLight(currentSpeakerColor));
 			draw_set_halign(lineStateLTR ? fa_left : fa_right);
 			var speakerTextX = lineStateLTR ? floor(speakerRectX1 + textBuffer) : floor(speakerRectX2);
 			draw_text(speakerTextX - clipX, textY - clipY, currentSpeaker);

@@ -242,6 +242,7 @@ function scr_importPlainTextDraw() {
 		draw_rectangle(continueButtonRectX1, continueButtonRectY1, continueButtonRectX2, continueButtonRectY2, false);
 	
 		if (mouse_check_button_pressed(mb_left)) {
+			show_debug_message("import plain text draw")
 			room_goto(rm_mainScreen);
 		}
 	}

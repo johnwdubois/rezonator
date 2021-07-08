@@ -8,7 +8,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	
 	// set halign
 	var halign = fa_left;
-	if (justify == justifyRight && shape == shapeBlock) halign = fa_right;
+	if (justify == justifyRight) halign = fa_right;
 	draw_set_halign(halign);
 	
 	var camWidth = camera_get_view_width(camera_get_active());
@@ -22,7 +22,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	}
 	
 	var entryListSize = ds_list_size(entryList);
-	var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	//var i = (obj_control.drawLineState == obj_control.lineState_ltr)? 0 : entryListSize-1;
+	
+	var i = (obj_control.justify == obj_control.justifyLeft) ? 0 : entryListSize-1;
+	var isBAD = (obj_control.justify == obj_control.justifyLeft && obj_control.drawLineState == obj_control.lineState_rtl && obj_control.shape == obj_control.shapeText);
+	if (isBAD) i = entryListSize-1;
 	var j = 0;
 
 	repeat(entryListSize) {
@@ -41,14 +45,16 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentTagMap = currentTokenSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(currentTagMap, ds_type_map)) continue;
 		var currentDisplayStr = string(currentTagMap[? global.displayTokenField]);
-		
+
 		// get & set pixelX value
 		scr_tokenCalculateVoid(currentToken);
-		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
-		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth);
-		scr_adaptFont(currentDisplayStr,"M");
-		shapeTextX += string_width(currentDisplayStr) + spaceWidth;
 		
+		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
+		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth,currentDisplayStr);
+		scr_adaptFont(currentDisplayStr,"M");
+		var wordDistance = string_width(currentDisplayStr) + spaceWidth;
+		shapeTextX += wordDistance;
+		unitWidth -= wordDistance;
 		
 		//mouseover Token check
 		currentDisplayStr = scr_adaptFont(currentDisplayStr,"M");
@@ -63,7 +69,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 			tokenRectX1 -= currentTokenStringWidth;
 			tokenRectX2 -= currentTokenStringWidth;
 		}
-		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane;
+		var mouseOverToken = point_in_rectangle(mouse_x,mouse_y, tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2) && hoverTokenID == "" && !mouseoverPanelPane && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		
 		// draw background tokenRect
 		draw_set_color(global.colorThemeBG);
@@ -136,23 +142,38 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 
 			}
 			
-			
+			if (keyboard_check_released(ord("N"))) {
+				if (ds_list_size(inChainsList) > 0) {
+					scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
+				}
+			}
 		}
 		
 		// draw the token's text
-		var wordFound = currentTokenSubMap[?"searched"];
-		if(wordFound){
-			draw_set_color(make_color_rgb(20, 146, 181));
+		var wordFound = false;
+		if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
+			var searchSubMap  = global.searchMap[?obj_panelPane.functionSearchList_searchSelected];
+			if(scr_isNumericAndExists(searchSubMap, ds_type_map)){
+			
+				var searchedTokenList = searchSubMap[?"displayTokenList"];
+			
+				wordFound = (ds_list_find_index(searchedTokenList,currentToken) != -1);
+			
+			}
 		}
-		else{
-			draw_set_color(global.colorThemeText);
-		}
+		
+
+		draw_set_color((wordFound) ? make_color_rgb(20, 146, 181) : global.colorThemeText );
+
 		draw_set_alpha(1);
 		draw_text(currentPixelX, pixelY, currentDisplayStr);
 		
 		// run through the loop forward or backward depending on if LTR or RTL
-		if (drawLineState = lineState_ltr) i++;
+		//if (drawLineState == lineState_ltr) i++;
+		if (justify == justifyLeft) i++;
 		else i--;
+		
+		if(isBAD) i -= 2;
 		j++;
 		
 	}

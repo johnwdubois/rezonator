@@ -41,14 +41,7 @@ switch (currentFunction) {
 		break;
 }
 
-if (doubleClickTimer > -1) {
-	if (doubleClickTimer < 20) {
-		doubleClickTimer++;
-	}
-	else {
-		doubleClickTimer = -1;
-	}
-}
+
 
 if (keyboard_check(vk_down)) {
 	holdDown++;	

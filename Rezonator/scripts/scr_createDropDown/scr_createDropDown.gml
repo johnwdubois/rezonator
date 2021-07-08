@@ -1,6 +1,18 @@
 // Create Dropdown Lists
 
 function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOptionListType){
+	
+	// validate dropdownoptionlist
+	if (!scr_isNumericAndExists(dropDownOptionList, ds_type_list)) {
+		show_debug_message("scr_createDropDown ... invalid dropDownOptionList. Exiting");
+		exit;
+	}
+	var dropDownOptionListSize = ds_list_size(dropDownOptionList);
+	if (dropDownOptionListSize < 1) {
+		show_debug_message("scr_createDropDown ... dropDownOptionList is empty. Exiting");
+		exit;
+	}
+	
 
 	var dropDownHeight = ds_list_size(dropDownOptionList) * string_height("0") * 1.25;
 	var camViewHeight = camera_get_view_height(view_get_camera(0));
@@ -16,9 +28,9 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	dropDownInst.optionList = dropDownOptionList;
 	dropDownInst.optionListType = dropDownOptionListType;
 	with(obj_dropDown){
-		var optionListSize = ds_list_size(optionList);
+		
 		var maxStrWidth = originalWindowWidth;
-		for (var i = 0; i < optionListSize; i++) {
+		for (var i = 0; i < dropDownOptionListSize; i++) {
 			var currentOptionStr = string(ds_list_find_value(optionList, i));
 			var shortcutStr = "";
 			if(ds_map_exists(global.keyboardShortcutMap, currentOptionStr)){

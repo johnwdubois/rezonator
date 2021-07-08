@@ -36,7 +36,9 @@ function scr_tokenCalculateVoid(tokenID){
 
 
 	// set the void for this token
-	var tokenVoid = tokenDisplayCol - prevTokenDisplayCol;
+	var tokenVoid = 0;
+	if (scr_checkNativeJustification()) tokenVoid = tokenDisplayCol - prevTokenDisplayCol;
+	else tokenVoid = prevTokenDisplayCol - tokenDisplayCol;
 	tokenSubMap[? "void"] = tokenVoid;
 	
 	
@@ -44,9 +46,10 @@ function scr_tokenCalculateVoid(tokenID){
 	var alignedChunkChainID = scr_firstWordInAlignedChunk(tokenID);
 	
 	
-		
+	
 	if (tokenVoid < 1 && prevTokenID != "") {
-		tokenDisplayCol++;
+		if (scr_checkNativeJustification()) tokenDisplayCol++;
+		else tokenDisplayCol--;
 		tokenSubMap[? "displayCol"] = tokenDisplayCol;
 			
 		// if we are pushing a word in a chain, realign that chain
@@ -57,12 +60,10 @@ function scr_tokenCalculateVoid(tokenID){
 			}
 		}
 		
-		
 		// if we are pushing a word in an aligned chunk, realign that chain too!
 		if (alignedChunkChainID != "") scr_alignChain2ElectricBoogaloo(alignedChunkChainID);
 	}
-	
-	
+
 	
 	// if this token is not in a chain, but has a void greater than 1, bring it back!!
 	if (tokenVoid > 1) {
@@ -70,7 +71,8 @@ function scr_tokenCalculateVoid(tokenID){
 		if (alignedChainID == "" && alignedChunkChainID == "") {
 			
 			// if this token is not in an aligned chain and not in an aligned chunk, then it's displayCol should be the previous displayCol + 1
-			tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol + 1;
+			if (scr_checkNativeJustification()) tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol + 1;
+			else tokenDisplayCol = (tokenSeq == 0) ? 0 : prevTokenDisplayCol - 1;
 			tokenSubMap[? "displayCol"] = tokenDisplayCol;
 			
 		}
@@ -97,14 +99,13 @@ function scr_tokenCalculateVoid(tokenID){
 		
 		
 		// if this word is in an aligned chunk, we should check the aligned chain that the chunk is in to make sure it has a small void
-
 		if (alignedChunkChainID != "") {
 			var alignedChunkChainSubMap = global.nodeMap[? alignedChunkChainID];
 			if (scr_isNumericAndExists(alignedChunkChainSubMap, ds_type_map)) {
 				scr_handleVoid(alignedChunkChainSubMap[? "vizSetIDList"]);
 			}
 		}
-
-		
 	}
+	
+	
 }

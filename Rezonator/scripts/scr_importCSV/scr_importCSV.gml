@@ -13,7 +13,19 @@ function scr_importCSV(filename) {
 	var importCSVGridWidth = ds_grid_width(global.importCSVGrid);
 	for (var i = 0; i < importCSVGridWidth; i++) {
 		var colHeader = ds_grid_get(global.importCSVGrid, i, 0);
-		if (string_length(colHeader) > 0) {
+		var strLen = string_length(colHeader);
+		
+		// check if header contains bad character
+		var colHeaderNew = "";
+		for (var j = 1; j <= strLen; j++) {
+			var char = string_char_at(colHeader, j);
+			if (ord(char) != 65279) colHeaderNew += char;
+		}
+		colHeader = colHeaderNew;
+		strLen = string_length(colHeader);
+		
+		
+		if (strLen > 0) {
 			ds_list_add(global.importGridColNameList, colHeader);
 			ds_map_add(global.importGridColMap, colHeader, i);
 		}
@@ -54,23 +66,6 @@ function scr_importCSV(filename) {
 
 
 	room_goto(rm_importScreen);
-
-
-	/*
-	var unitCounter = 0;
-	var previousUID = -1;
-
-	for (var i = 0; i < importCSVGridHeight; i++) {
-	
-		var currentUID = real(ds_grid_get(global.importCSVGrid, global.importCSVGrid_colUID, i));
-		if (previousUID != currentUID) {
-			previousUID = currentUID;
-			unitCounter++;
-		}
-	}
-	global.importCSVUnitGridHeight = unitCounter;
-	global.totalUnitAmount = unitCounter;
-	*/
 
 
 

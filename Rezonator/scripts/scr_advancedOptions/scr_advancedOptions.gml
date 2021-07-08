@@ -26,7 +26,6 @@ function scr_advancedOptions(optionSelected) {
 		case "Shuffle":
 
 				scr_shuffleDisplayRows();
-				scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 				instance_destroy(obj_dropDown);
 		
 		break;
@@ -34,8 +33,6 @@ function scr_advancedOptions(optionSelected) {
 		case "Restore":
 		
 				ds_grid_copy(obj_control.lineGrid, obj_control.lineGridBackup);
-				scr_refreshLineGridPixelY();
-				scr_refreshLineGridDisplayRow(obj_control.lineGrid);
 
 		
 				instance_destroy(obj_dropDown);

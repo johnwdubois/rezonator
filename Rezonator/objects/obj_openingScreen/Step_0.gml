@@ -42,15 +42,6 @@ if (global.skipToImportScreen) {
 	global.currentDirString = global.previousImportDirectory;
 }
 
-// skipping to import screen by clicking "Import" in file menu
-if (global.skipToPlayandLearn) {
-	global.skipToPlayandLearn = false;
-	
-	global.newProject = false;
-	global.openProject = true;
-	room_goto(rm_mainScreen);
-}
-
 if (keyboard_check(vk_control) && keyboard_check_pressed(ord("U"))) {
 	global.importType = global.importType_IGT;
 	show_debug_message("global.importType = global.importType_IGT");

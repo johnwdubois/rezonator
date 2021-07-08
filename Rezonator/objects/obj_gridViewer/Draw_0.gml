@@ -42,7 +42,7 @@ draw_set_color(global.colorThemeBorders);
 draw_set_color(global.colorThemeText);
 var checkBoxScale = 1* max(global.fontSize,3)/5;
 scr_drawRectWidth(mapViewerButtonRectX1, mapViewerButtonRectY1, mapViewerButtonRectX2, mapViewerButtonRectY2, 3, true);
-if(!mapViewActive) draw_sprite_ext(spr_checkmark, 0, mean(mapViewerButtonRectX1, mapViewerButtonRectX2), mean(mapViewerButtonRectY1, mapViewerButtonRectY2), checkBoxScale , checkBoxScale , 0, c_white, 1);
+if(!mapViewActive) draw_sprite_ext(spr_checkmark, 0, mean(mapViewerButtonRectX1, mapViewerButtonRectX2), mean(mapViewerButtonRectY1, mapViewerButtonRectY2), checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
 
 
 draw_text(mapViewerButtonRectX2 + 10, mean(mapViewerButtonRectY1, mapViewerButtonRectY2), (mapViewActive)? "MapView":"GridView");

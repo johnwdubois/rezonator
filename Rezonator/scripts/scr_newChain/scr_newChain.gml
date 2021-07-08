@@ -87,10 +87,6 @@ function scr_newChain(ID) {
 
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
 
-	with (obj_panelPane) {
-		functionChainContents_scrollRangeMin[functionChainList_currentTab] = 0;
-		functionChainContents_scrollRangeMax[functionChainList_currentTab] = functionChainContents_maxScrollRange;
-	}
 
 	with (obj_panelPane) {
 		var willHop = (functionChainList_currentTab == functionChainList_tabRezBrush && obj_toolPane.currentMode == obj_toolPane.modeRez)

@@ -14,7 +14,6 @@ function scr_saveSchema() {
 	
 
 	var rootList = ds_list_create();
-
 	var map = ds_map_create();
 	ds_list_add(rootList, map);
 	ds_list_mark_as_map(rootList, ds_list_size(rootList) - 1);
@@ -29,11 +28,13 @@ function scr_saveSchema() {
 		var currentField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colMarker, i);
 		var currentLevel = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colLevel, i);
 		var currentSpecialField = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colSpecialFields, i);
+		var currentKey = ds_grid_get(global.tagInfoGrid, global.tagInfoGrid_colKey, i);
 		
 		// for every field, make a map that contains the level and special field
 		var currentFieldMap = ds_map_create();
 		ds_map_add(currentFieldMap, "level", currentLevel);
 		ds_map_add(currentFieldMap, "specialField", currentSpecialField);
+		ds_map_add(currentFieldMap, "key", currentKey);
 		
 		// add currentFieldMap to the overall Map (with the key being the name of the field)
 		ds_map_add_map(map, currentField, currentFieldMap);
@@ -41,32 +42,9 @@ function scr_saveSchema() {
 	
 	
 	
-	
-	/*
-	var tempList = ds_list_create();
-	if (global.previousLevelEstimates != undefined) {
-		ds_list_copy(tempList, global.previousLevelEstimates);
-	}
-	ds_map_add_list(map, "previousLevelEstimates", tempList);
-		
 
+	
 
-	var tempList2 = ds_list_create();
-	if (global.previousSpecialFields  != undefined) {
-		ds_list_copy(tempList2, global.previousSpecialFields);
-	}
-	ds_map_add_list(map, "previousSpecialFields", tempList2);
-	*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 		
 
 	var wrapper = ds_map_create();
@@ -74,9 +52,6 @@ function scr_saveSchema() {
 
 	var jsonString = json_encode(wrapper);
 	jsonString = scr_jsonBeautify(jsonString);
-
-
-
 
 
 	scr_saveFileBuffer(working_directory + filename_name(fileName), fileName, jsonString);

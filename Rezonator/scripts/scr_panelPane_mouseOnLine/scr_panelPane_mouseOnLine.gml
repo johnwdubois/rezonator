@@ -20,14 +20,7 @@ function scr_panelPane_mouseOnLine(rectX1, rectY1, rectX2, rectY2, unitID, i, li
 					functionChainContents_lineGridRowFocused = -1;
 				}
 			}
-			if (doubleClickTimer > -1) {
-				var unitSubMap = global.nodeMap[? unitID];
-				var linePixelY = unitSubMap[? "pixelY"];
-				obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-			}
-			else {		
-				doubleClickTimer = 0;
-			}
+			scr_jumpToUnitDoubleClick(unitID);
 		}
 	}
 }

@@ -17,9 +17,7 @@ function scr_dialogueBoxNewCustomTagEntry(){
 	if (!ds_exists(tagSet, ds_type_list)) exit;
 	
 	// add the new tag to the tagSet
-	ds_list_insert(tagSet, ds_list_size(tagSet) - 2, newTag);
+	ds_list_insert(tagSet, ds_list_size(tagSet), newTag);
 	
-	// set the entry with the new tag
-	scr_chain1ToManyTagOptions(newTag);
 	
 }

@@ -1,10 +1,11 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unitWidth, shapeTextX, camWidth) {
-	
+function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unitWidth, shapeTextX, camWidth, tokenString) {
 	var spaceWidth = string_width("    ");
 	var tokenPixelX = tokenSubMap[? "pixelX"];
 	var tokenPixelXDest = 0;
+	
+
 	
 	
 	if (justify == justifyLeft) {
@@ -13,13 +14,18 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		if (shape == shapeText) {
 			// Left Prose
 			tokenPixelXDest = wordLeftMargin + scrollPlusX + shapeTextX + spaceWidth;
+
 		}
 		else {
 			// Left Grid
-			tokenPixelXDest = wordLeftMargin + scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth;
-			if(obj_control.drawLineState != obj_control.lineState_ltr){
-				tokenPixelXDest = wordLeftMargin + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
+			if(obj_control.drawLineState == obj_control.lineState_ltr){	
+				tokenPixelXDest = wordLeftMargin + scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth;
 			}
+			else{
+				tokenPixelXDest = camWidth - (scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth);
+			}
+			
+
 		}
 	}
 	else if (justify == justifyCenter) {
@@ -40,11 +46,22 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		
 		if (shape == shapeText) {
 			// Right Prose
-			tokenPixelXDest = camWidth - global.scrollBarWidth - unitWidth + shapeTextX + scrollPlusX - gridSpaceHorizontal;
+			if(obj_control.drawLineState == obj_control.lineState_ltr){	
+				tokenPixelXDest = camWidth - global.scrollBarWidth*2 - shapeTextX + scrollPlusX - gridSpaceHorizontal;
+			}
+			else{
+				tokenPixelXDest = camWidth - global.scrollBarWidth - unitWidth + string_width(tokenString) +scrollPlusX - gridSpaceHorizontal*2;
+			}
 		}
 		else {
 			// Right Grid
-			tokenPixelXDest = camWidth - global.scrollBarWidth - (entryListSize * gridSpaceHorizontal) + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
+			//tokenPixelXDest = camWidth - global.scrollBarWidth - (entryListSize * gridSpaceHorizontal) + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
+			if(obj_control.drawLineState == obj_control.lineState_ltr){	
+				tokenPixelXDest = scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth + gridSpaceHorizontal*2;
+			}
+			else{
+				tokenPixelXDest = camWidth - (scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth + gridSpaceHorizontal*2);
+			}
 		}
 	}
 	

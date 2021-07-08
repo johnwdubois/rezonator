@@ -117,8 +117,10 @@ var sizeOfButtons = menuHeight * 0.6
 	var maximizeY2 = y + menuHeight *.66  +sizeOfButtons/2;
 	var maximizeY1 = maximizeY2 - sizeOfButtons;
 
+
 if(instance_exists(obj_control)){
 	draw_set_color(c_white);
+
 
 	var mouseOverMax = point_in_circle(mouse_x, mouse_y,floor(mean(maximizeX1, maximizeX2)),floor(mean(maximizeY1, maximizeY2)),sizeOfButtons/2 );
 
@@ -242,6 +244,7 @@ if(instance_exists(obj_control)){
 	draw_set_halign(fa_right);
 	draw_set_valign(fa_middle);
 
+
 	if(obj_control.allSaved){
 		saveTextAlpha -= 0.01;
 		saveTextAlpha = clamp(saveTextAlpha,0 ,1);
@@ -265,7 +268,6 @@ if(instance_exists(obj_control)){
 
 
 }
-
 // draw border if nav is collapsed
 if (drawDropShadow) {
 	draw_set_alpha(1);

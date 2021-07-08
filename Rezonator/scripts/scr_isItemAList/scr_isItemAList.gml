@@ -42,13 +42,6 @@ function scr_isItemAList(grid, col, row) {
 			itemList = currentCell;
 		}
 	}
-	else if (grid == global.fileLineRipGrid) {
-		if (col == global.fileLineRipGrid_colFileLineRipList
-		or col == global.fileLineRipGrid_colParticipantList
-		or col == global.fileLineRipGrid_colColorList) {
-			itemList = currentCell;
-		}
-	}
 	else if (grid == global.customLabelGrid) {
 		if (col == global.customLabelGrid_colTagList) {
 			itemList = currentCell;

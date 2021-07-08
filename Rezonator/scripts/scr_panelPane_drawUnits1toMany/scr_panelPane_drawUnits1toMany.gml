@@ -1,7 +1,4 @@
 function scr_panelPane_drawUnits1toMany() {
-	/*
-		Purpose: whatever Line is focused on in the lineList panelPane, draw information on the individual words of that Line
-	*/
 	
 	scr_surfaceStart();
 
@@ -20,10 +17,6 @@ function scr_panelPane_drawUnits1toMany() {
 
 
 
-
-	if (functionChainContents_colXList == -1 or is_undefined(functionChainContents_colXList)) {
-		exit;
-	}
 
 
 	var rowInLineGrid = functionChainList_lineGridRowFocused;
@@ -49,6 +42,8 @@ function scr_panelPane_drawUnits1toMany() {
 	// check if focused unit exists
 	if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 		
+
+	
 		// get entryList for this unit
 		with (obj_panelPane) {
 			functionChainContents_IDList = unitSubMap[? "entryList"];
@@ -56,6 +51,7 @@ function scr_panelPane_drawUnits1toMany() {
 		
 		
 		if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {
+			
 		
 			scrollBarListSize = ds_list_size(functionChainContents_IDList);
 		
@@ -69,15 +65,9 @@ function scr_panelPane_drawUnits1toMany() {
 				drawDropDowns = false;
 				
 				// get currentTokenID
-				var currentTokenID = "";	
-				if (obj_control.searchGridActive) {
-					// return to search stuff later!
-					var hitID = functionChainContents_IDList[| i];
-					currentTokenID = hitID;
-				}
-				else {
-					currentTokenID = currentEntrySubMap[? "token"];
-				}
+				var currentTokenID = currentEntrySubMap[? "token"];	
+
+
 		
 				// get coordinates of rect
 				var rectX1 = x;
@@ -98,14 +88,7 @@ function scr_panelPane_drawUnits1toMany() {
 				// Check for double click
 				if (mouseoverRect) {
 					if (device_mouse_check_button_released(0, mb_left)) {
-						if (doubleClickTimer > -1) {
-							// scroll to focused unit if the user double clicks 
-							var linePixelY = unitSubMap[? "pixelY"];
-							obj_control.scrollPlusYDest = -linePixelY + (camera_get_view_height(camera_get_active()) / 2) - 100;
-						}
-					}
-					else {
-						doubleClickTimer = 0;
+						scr_jumpToUnitDoubleClick(functionChainList_focusedUnit);
 					}
 				}
 					

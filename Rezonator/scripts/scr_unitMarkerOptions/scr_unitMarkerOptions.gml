@@ -1,7 +1,6 @@
-function scr_unitMarkerOptions() {
-	var optionSelected = argument[0];
+function scr_unitMarkerOptions(optionSelected) {
 
-	if (optionSelected == "Create Field") {
+	if (optionSelected == "Create new field") {
 
 		// prompt user for name of new unit field/marker
 
@@ -11,14 +10,17 @@ function scr_unitMarkerOptions() {
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		obj_dialogueBox.inputWindowActive = true;
 	
 	}
-	else if (optionSelected == "Add new Tag") {
-		scr_unitTagMapOptions("Add new Tag");
+	else if (optionSelected == "Add to tag set") {
+		scr_unitTagMapOptions("Add to tag set");
 	}
-	else if(optionSelected == "Set as Translation"){
-		scr_addToListOnce(global.translationList,obj_control.unitFieldToChange);
+	else if(optionSelected == "Show in translation tab"){
+		scr_addToListOnce(global.translationList, obj_control.unitFieldToChange);
 		global.currentTranslation = obj_control.unitFieldToChange;
+		with (obj_dropDown) instance_destroy();
+		scr_addToListOnce(obj_control.panelPaneTabList, obj_panelPane.functionChainList_tabTranslations);
 	}
 
 

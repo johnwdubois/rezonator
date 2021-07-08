@@ -13,6 +13,7 @@ function scr_stackTagOptions(){
 		if (!instance_exists(obj_dialogueBox)) {
 			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 		}
+		obj_dialogueBox.inputWindowActive = true;
 	}
 	else {
 		// set selected tag in stackChainGrid

@@ -5,13 +5,17 @@ function scr_initializeDiscourseNodes(){
 	show_debug_message("scr_initializeDiscourseNodes ... START " + scr_printTime());
 	
 	// create discourse node
-	var currentDiscourseNode = scr_addToNodeMap("Discourse");
+	var currentDiscourseNode = scr_addToNodeMap("doc");
 	var currentDiscourseSubMap = global.nodeMap[? currentDiscourseNode];
 	global.discourseNode = currentDiscourseNode;
 	
 	var unitList = ds_list_create();
 	var tokenList = ds_list_create();
 	var displayUnitList = ds_list_create();
+	
+	
+	var tokenTagMap = ds_map_create();
+	var unitTagMap  = ds_map_create();
 	
 	
 	var discourseTokenSeq = 1;
@@ -66,18 +70,43 @@ function scr_initializeDiscourseNodes(){
 					var currentField = string(global.tokenImportColNameList[| k]);
 					var currentTag = ds_grid_get(global.tokenImportGrid, k, discourseTokenSeq - 1);
 					ds_map_add(tagMap, currentField, currentTag);
+					
+					
+					
+					
+					
 					if(i == 0){
+						var currentTokenFieldMap = ds_map_create();
+						ds_map_add_map(tokenTagMap, currentField, currentTokenFieldMap);
+						ds_map_add_list(currentTokenFieldMap, "tagSet", ds_list_create());
+						var currentTokenFieldMapTypeList = ds_list_create();
+						ds_list_add(currentTokenFieldMapTypeList, "token", "chunk");
+						ds_map_add_list(currentTokenFieldMap, "targetList", currentTokenFieldMapTypeList);
+						
 						if(k < 8 and (ds_list_find_index(obj_control.navTokenFieldList, currentField) == -1) ){
 							if(k == 3 and (global.tokenImportTranscriptColName == "" or global.tokenImportTranscriptColName == undefined)){}
 							else{
 								ds_list_add(obj_control.navTokenFieldList, currentField);
+								ds_list_add(obj_control.navChunkFieldList, currentField);
 							}
 						}
 					}
+					else{
+						var currentTokenFieldMap = tokenTagMap[?currentField];
+						var currentTagList = currentTokenFieldMap[? "tagSet"];
+						if(currentTag != "" && ds_list_size(currentTagList) < 50){
+							scr_addToListOnce(currentTagList, currentTag);
+						}
+					}
+	
+							
 					
 				}
 				
-				//add each token to the totoal token's List
+
+				
+				
+				//add each token to the total token's List
 				ds_list_add(tokenList, currentTokenNode);
 				
 				// make entry node
@@ -95,7 +124,6 @@ function scr_initializeDiscourseNodes(){
 
 		
 		// make tag map for unit & copy tags from unitImportGrid
-		show_debug_message("scr_initializeDiscourseNodes... speakerField: " + string(global.speakerField));
 		var tagMap = ds_map_create();
 		ds_map_add_map(currentUnitSubMap, "tagMap", tagMap);
 		var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
@@ -103,7 +131,7 @@ function scr_initializeDiscourseNodes(){
 			var currentField = string(global.unitImportColNameList[| j]);
 			var currentTag = ds_grid_get(global.unitImportGrid, j, i);
 			
-			show_debug_message("scr_initializeDiscourseNodes... currentField: " + string(currentField));
+			//show_debug_message("scr_initializeDiscourseNodes... currentField: " + string(currentField));
 			
 			ds_map_add(tagMap, currentField, currentTag);
 			
@@ -114,19 +142,30 @@ function scr_initializeDiscourseNodes(){
 				ds_map_add(currentUnitSubMap, "unitEnd", currentTag);
 			}
 			if (currentField == global.speakerField) {
-				show_debug_message("boyyyy");
 				if (is_string(currentTag)) {
 					if (string_length(currentTag) >= 1) {
-						show_debug_message("scr_initializeDiscourseNodes ... showSpeakerName is true!");
+						//show_debug_message("scr_initializeDiscourseNodes ... showSpeakerName is true!");
 						scr_showSpeakerName(true);
 					}
 				}
 			}
 			
 			if(i == 0){
+				var currentUnitFieldMap = ds_map_create();
+				ds_map_add_map(unitTagMap, currentField, currentUnitFieldMap);
+				ds_map_add_list(currentUnitFieldMap, "tagSet", ds_list_create());
 				if(j < 7 and ds_list_find_index(obj_control.navUnitFieldList, currentField) == -1){
 					ds_list_add(obj_control.navUnitFieldList, currentField);
 				}
+			}
+			else{
+				var currentUnitFieldMap = unitTagMap[? currentField];
+				var currentTagList = currentUnitFieldMap[? "tagSet"];
+				if (currentTag != "" && ds_list_size(currentTagList) < 50) {
+					scr_addToListOnce(currentTagList, currentTag);
+				}
+				
+
 			}
 		}
 
@@ -167,7 +206,27 @@ function scr_initializeDiscourseNodes(){
 		ds_list_add(obj_control.unitFieldList, global.unitImportColNameList[|j]);
 	}
 	
-	scr_initializeDiscourseTagSet();
+	ds_map_add_map(global.nodeMap, "tokenTagMap", tokenTagMap);
+	ds_map_add_map(global.nodeMap, "unitTagMap", unitTagMap);
+	
+	ds_list_add(global.nodeMap[? "nodeList"], "tokenTagMap");
+	ds_list_add(global.nodeMap[? "nodeList"], "unitTagMap");
+	
+	
+	
+	// create the SEARCH MAP
+	global.searchMap = ds_map_create();
+
+	// add searchNodeList to nodeMap
+	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
+
+	// add search map to nodeMap
+	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
+	
+	// add search map to nodeList
+	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
+
+	
 	
 	// set default displayTokenField
 	global.displayTokenField = "~text";

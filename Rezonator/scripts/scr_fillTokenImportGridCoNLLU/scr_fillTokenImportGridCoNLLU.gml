@@ -68,7 +68,7 @@ function scr_fillTokenImportGridCoNLLU() {
 		alarm[2] = 1;
 	}
 
-	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitImportUnitDelimColName);
+	var deliminaterCol = ds_list_find_index(global.importGridColNameList, global.unitDelimField);
 	var curUID = 0;
 	var prevUID = 0;
 	var unitCounter = 0;
@@ -168,7 +168,7 @@ function scr_fillTokenImportGridCoNLLU() {
 				for (var j = 0; j < importGridHeight; j++) {
 			
 					var currentLine = ds_grid_get(global.importGrid, importGridCol, j);
-					var currentLineTokenList = scr_splitStringImport(currentLine);
+					var currentLineTokenList = scr_splitStringImport(currentLine, " ", false);
 					var currentLineTokenListSize = ds_list_size(currentLineTokenList);
 
 					if(currentLineTokenListSize == 0){

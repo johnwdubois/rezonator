@@ -40,7 +40,6 @@ function scr_swapLine() {
 
 	ds_grid_destroy(swappedLineGrid);
 
-	scr_refreshLineGridPixelY();
 
 
 }

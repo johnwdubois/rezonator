@@ -70,8 +70,8 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 	// if a valid tagSet was provided, let's add it to this field's submap
 	if (is_numeric(tagSet)) {
 		if (ds_exists(tagSet, ds_type_list)) {
-			show_debug_message("scr_addToChainFieldMap() ... tagSet: " + scr_getStringOfList(tagSet));
-			ds_list_add(tagSet, "Add to tag set", "Remove tag");
+			//show_debug_message("scr_addToChainFieldMap() ... tagSet: " + scr_getStringOfList(tagSet));
+			//ds_list_add(tagSet, "Add to tag set", "Remove from tag set");
 			ds_map_add_list(subMap, "tagSet", tagSet);
 		}
 	}
@@ -79,7 +79,7 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 	// if a valid shortcutSet was provided, let's add it to this field's submap
 	if (is_numeric(shortcutSet)) {
 		if (ds_exists(shortcutSet, ds_type_list)) {
-			show_debug_message("scr_addToChainFieldMap() ... shortcutSet: " + scr_getStringOfList(shortcutSet));
+			//show_debug_message("scr_addToChainFieldMap() ... shortcutSet: " + scr_getStringOfList(shortcutSet));
 			ds_map_add_list(subMap, "shortcutSet", shortcutSet);
 		}
 	}

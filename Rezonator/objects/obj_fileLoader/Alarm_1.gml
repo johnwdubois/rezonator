@@ -1,17 +1,3 @@
-///@description Autosave
-/*
-	obj_fileLoader: Alarm 1
-	
-	Last Updated: 2019-02-26
-	
-	Called from: itself (looping alarm)
-	
-	Purpose: Auto-save Rezonator
-	
-	Mechanism: Call saveRez();
-	
-	Author: Terry DuBois
-*/
 
 show_debug_message("obj_fileLoader Alarm 1, STARTING... " + scr_printTime());
 
@@ -40,10 +26,10 @@ if (ds_grid_height(global.tokenImportGrid) < ds_grid_height(obj_control.wordGrid
 		obj_control.updatedSpeakerLabel = true;
 	}
 	
-	
-	scr_importTagMaps();
-	scr_transferSpecialFields();
-	scr_initializeDiscourseNodes();
+
+	//scr_transferSpecialFields();
+	//scr_initializeDiscourseNodes();
+	scr_autoCreateChunks();
 }
 alarm[7] = 1;
 alarm[1] = global.autosaveTimer;

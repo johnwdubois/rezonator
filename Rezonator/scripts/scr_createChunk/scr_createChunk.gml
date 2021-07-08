@@ -9,7 +9,11 @@ function scr_createChunk(){
 	// Place all captured unit and token info into the box grid
 	var inRectTokenIDListSize = ds_list_size(inRectTokenIDList);
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
-	if (inRectTokenIDListSize <= 1) exit;
+	
+	// only allow single-token chunks if this is an IGT file with a word delimiter
+	if (inRectTokenIDListSize <= 1) {
+		if(!instance_exists(obj_loadingControl)) exit;
+	}
 	
 	
 	if (inRectUnitIDListSize > 0 && inRectTokenIDListSize > 0) { // Make sure the box captured something
@@ -27,7 +31,7 @@ function scr_createChunk(){
 		var chunkSubMap = global.nodeMap[? chunkID];
 		ds_map_add_list(chunkSubMap, "tokenList", tokenIDList);
 		ds_map_add_list(chunkSubMap, "inChainsList", inChainsList);
-		
+			
 		//set to focused chunk
 		obj_chain.currentFocusedChunkID = chunkID;
 		
@@ -48,7 +52,24 @@ function scr_createChunk(){
 		
 		// add the new chunk to the chunkList
 		var chunkList = global.nodeMap[? "chunkList"];
-		if (ds_list_find_index(chunkList, chunkID) == -1) ds_list_add(chunkList, chunkID);
+		if (scr_isNumericAndExists(chunkList, ds_type_list)) {
+			if (ds_list_find_index(chunkList, chunkID) == -1) ds_list_add(chunkList, chunkID);
+		
+			// give the chunk a name
+			chunkSubMap[? "name"] = "Chunk " + string(ds_list_size(chunkList));
+		}
+		
+		
+		// give the chunk a tagMap
+		var chunkTagMap = ds_map_create();
+		ds_map_add_map(chunkSubMap, "tagMap", chunkTagMap);
+		var tokenFieldListSize = ds_list_size(obj_control.tokenFieldList);
+		for (var i = 0; i < tokenFieldListSize; i++) {
+			var currentTokenField = obj_control.tokenFieldList[| i];
+			if (is_string(currentTokenField)) {
+				chunkTagMap[? currentTokenField] = "";
+			}
+		}
 	}
 	
 	
@@ -58,7 +79,15 @@ function scr_createChunk(){
 		if(obj_toolPane.currentMode == obj_toolPane.modeRez || obj_toolPane.currentMode == obj_toolPane.modeTrack){
 			//chain is already seleceted
 			if(obj_chain.currentFocusedChainID != ""){
-				scr_newLink(chunkID);
+				var focusedChainSubMap = global.nodeMap[?obj_chain.currentFocusedChainID];
+				
+				if(focusedChainSubMap[?"type"] != "stackChain"){
+					scr_newLink(chunkID);
+				}
+				else{
+					scr_newChain(chunkID);
+					scr_newLink(chunkID);
+				}
 			}
 			else{
 				scr_newChain(chunkID);

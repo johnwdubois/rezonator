@@ -12,6 +12,8 @@ flick_power_calibration = 4;
 flick_power_reduction_each_step = 3;
 //multiTouch = false;
 
+doubleClickTimer = -1;
+
 // Keep track of which line the "camera" is centered on
 currentCenterDisplayRow = 0;
 prevCenterYDest = 0;
@@ -146,17 +148,7 @@ lineGrid_colPixelYOriginal = 12;
 lineGrid = ds_grid_create(lineGridWidth, 0);
 lineGridBackup = ds_grid_create(lineGridWidth, 0);
 
-// if we are importing a corpus CSV file, we should resize the unit & line grids to be filled in
-if (global.importCSVUnitGridHeight > 0) {
-	//ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight);
-	//ds_grid_resize(lineGrid, lineGridWidth, global.importCSVUnitGridHeight);
-	
-	//ds_grid_clear(unitGrid, -1);
-	//ds_grid_clear(lineGrid, -1);
-	global.totalUnitAmount = global.importCSVUnitGridHeight;
-	ds_grid_resize(unitGrid, global.unitGridWidth, global.importCSVUnitGridHeight - 1);
-	ds_grid_clear(unitGrid, -1);
-}
+
 
 
 //lineGridBackup = ds_grid_copy(obj_control.lineGridBackup, obj_control.lineGrid);
@@ -269,10 +261,6 @@ morphGrid_colGloss = 7;
 
 morphGrid = ds_grid_create(morphGridWidth, 0);
 
-with (obj_alarm) {
-	alarm[5] = 1;
-}
-
 
 
 
@@ -297,7 +285,7 @@ randomise();
 //cursorBoxY = 0;
 
 // Initialize the camera's draw range
-drawRange = 12;
+drawRange = 8;
 drawRangeStart = 0;
 drawRangeEnd = 0;
 lineSpacing = 6;
@@ -326,7 +314,6 @@ gridView = false;
 showDevVars = false;
 showFPS = false;
 showTranslation = false;
-showUnitTags = false;
 
 
 // Initialize the values to hold the hover word info
@@ -498,6 +485,8 @@ lastAddedWord = "";
 hitIDCounter = 1;
 
 selectedChainID = "";
+selectedSearchID = "";
+selectedSearchTokenID = "";
 
 dialogueBoxActive = false;
 newWordCreated = false;
@@ -560,7 +549,6 @@ showSpeakerName = false;
 //audioTrackIndex = -1;
 
 
-
 combineChainsFocused = "";
 combineChainsSelected = "";
 stackMerged = false;
@@ -595,15 +583,49 @@ justify = justifyLeft;
 hideAll = false;
 
 updatedSpeakerLabel = false;
-
+tokenFieldList = ds_list_create();
+unitFieldList = ds_list_create();
 navTokenFieldList = ds_list_create();
 navUnitFieldList = ds_list_create();
-ds_list_add(navTokenFieldList, "~text");
-ds_list_add(navUnitFieldList, "~Participant");
-currentDisplayTokenColsList = ds_list_create();
-currentDisplayUnitColsList = ds_list_create();
-ds_list_add(currentDisplayTokenColsList,2,4,5,6,7);
-ds_list_add(currentDisplayUnitColsList,1,2,3,4,5);
+navChunkFieldList = ds_list_create();
+
+show_debug_message("obj_control, copying field lists... global.tokenFieldList: " + scr_getStringOfList(global.tokenFieldList));
+show_debug_message("obj_control, copying field lists... global.unitFieldList: " + scr_getStringOfList(global.unitFieldList));
+
+
+tokenFieldList = ds_list_create();
+chunkFieldList = ds_list_create();
+var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+var tokenFieldListSize = ds_list_size(global.tokenFieldList);
+for (var i = 0; i < tokenFieldListSize; i++) {
+	var currentField = global.tokenFieldList[| i];
+	var currentFieldSubMap = tokenTagMap[? currentField];
+	var currentTargetSet = currentFieldSubMap[? "targetList"];
+	if (scr_isNumericAndExists(currentTargetSet, ds_type_list)) {
+		if (ds_list_find_index(currentTargetSet, "token") >= 0) {
+			scr_addToListOnce(tokenFieldList, currentField);
+			scr_addToListOnce(chunkFieldList, currentField);
+		}
+		if (ds_list_find_index(currentTargetSet, "chunk") >= 0) {
+			scr_addToListOnce(chunkFieldList, currentField);
+		}
+	}
+}
+
+//ds_list_copy(tokenFieldList, global.tokenFieldList);
+ds_list_copy(unitFieldList, global.unitFieldList);
+
+
+ds_list_copy(navTokenFieldList, tokenFieldList);
+ds_list_copy(navUnitFieldList, global.unitFieldList);
+ds_list_copy(navChunkFieldList, chunkFieldList);
+
+// we shouldn't have more than 6 columns in our nav panes
+while (ds_list_size(navTokenFieldList) > 6) ds_list_delete(navTokenFieldList, ds_list_size(navTokenFieldList) - 1);
+while (ds_list_size(navUnitFieldList) > 6) ds_list_delete(navUnitFieldList, ds_list_size(navTokenFieldList) - 1);
+while (ds_list_size(navChunkFieldList) > 6) ds_list_delete(navChunkFieldList, ds_list_size(navChunkFieldList) - 1);
+
+
 
 
 
@@ -635,6 +657,7 @@ wordWrap = false;
 
 chainVoidCheckList = ds_list_create();
 chainStretchCheckList = ds_list_create();
+chainStretchCheck = true;
 newestEntry = "";
 
 //draw Line directional states
@@ -651,6 +674,9 @@ chain1to1ChainToChange = "";
 chain1to1FieldToChange = "";
 chain1To1ColFieldToChange = -1;
 
+chunk1to1ChunkToChange = "";
+chunk1to1FieldToChange = "";
+
 chain1to1ColFieldListRez = ds_list_create(); // list of the dynamic columns in the rezChain 1-1 pane
 chain1to1ColFieldListTrack = ds_list_create(); // list of the dynamic columns in the trackChain 1-1 pane
 chain1to1ColFieldListStack = ds_list_create(); // list of the dynamic columns in the stackChain 1-1 pane
@@ -666,8 +692,6 @@ ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 
-tokenFieldList = ds_list_create();
-unitFieldList = ds_list_create();
 
 
 
@@ -675,20 +699,7 @@ with (obj_alarm) {
 	alarm[10] = 8;
 }
 
-// add chainLists to nodeMap
-ds_map_add_list(global.nodeMap, "rezChainList", ds_list_create());
-ds_map_add_list(global.nodeMap, "trackChainList", ds_list_create());
-ds_map_add_list(global.nodeMap, "stackChainList", ds_list_create());
 
-// add showList to nodeMap
-var showList = ds_list_create();
-ds_map_add_list(global.nodeMap, "showList", showList);
-
-// add chunkList to nodeMap
-ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
-
-// add NodeList to nodeMap
-ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 
 
 global.delayInput = 0;
@@ -714,3 +725,18 @@ displayUnitList = -1;
 filterUnitList = ds_list_create();
 
 listOfWords = ds_list_create();
+
+
+panelPaneTabList = ds_list_create();
+with (obj_alarm2) alarm[1] = 2;
+
+displayUnitList = -1
+
+
+if(global.speakerField != "" && is_string(global.speakerField) ){
+	scr_showSpeakerName(true);
+}
+
+selectFieldChunk = false;
+searchField = global.displayTokenField;
+searchRange = "Doc";
