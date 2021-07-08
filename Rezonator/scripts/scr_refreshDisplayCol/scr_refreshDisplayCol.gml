@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_refreshDisplayCol(){
 	
+	obj_control.chainStretchCheck = false;
+	with (obj_alarm2) alarm[2] = 15;
 	var camWidth = camera_get_view_width(view_camera[0]);
 	var docSubMap = global.nodeMap[? global.discourseNode];
 	var unitList = docSubMap[? "unitList"];
