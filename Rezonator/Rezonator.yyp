@@ -726,7 +726,6 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc004_rez_v2.02.csv","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/CSV","resourceVersion":"1.0","name":"sbc006_rez_v2.02.csv","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_en.json","resourceType":"GMIncludedFile",},
-
   ],
   "MetaData": {
     "IDEVersion": "2.3.3.574",
