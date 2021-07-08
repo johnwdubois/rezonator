@@ -49,6 +49,15 @@ function scr_drawLine2ElectricBoogaloo(){
 	ds_list_clear(inRectUnitIDList);
 	
 	
+	var oobRectX1 = (justify == justifyLeft) ? 0 : camWidth;
+	var oobRectY1 = 0;
+	var oobRectX2 = (justify == justifyLeft) ? wordLeftMargin + scrollPlusX : camWidth - global.toolPaneWidth + scrollPlusX;
+	var oobRectY2 = camHeight;
+
+	draw_set_alpha(1);
+	draw_set_color(global.colorThemeOutOfBounds);
+	draw_rectangle(oobRectX1,oobRectY1,oobRectX2,oobRectY2,false);
+	
 	// loop through units
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);
 	for (var i = 0; i < displayUnitListSize; i++) {

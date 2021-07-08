@@ -21,8 +21,6 @@ if (point_in_rectangle(mouse_x, mouse_y, camera_get_view_width(camera_get_active
 
 
 
-
-
 // Turns on a grid of lines
 if (showDisplayCols) {
 	draw_set_alpha(0.25);

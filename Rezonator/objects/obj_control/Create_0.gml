@@ -646,7 +646,7 @@ unitToChange = "";
 
 quickPickedChainID = "";
 
-activeStackType = 0;
+activeStackType = "Default";
 readModeHints = 0;
 
 mouseOverUI = false;

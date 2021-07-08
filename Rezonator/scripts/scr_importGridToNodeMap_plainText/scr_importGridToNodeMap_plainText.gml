@@ -83,6 +83,7 @@ function scr_importGridToNodeMap_plainText(row){
 	ds_map_add(unitSubMap, "speakerColor", 0);
 	ds_map_add(unitSubMap, "filter", false);
 	ds_map_add(unitSubMap, "active", true);
+	ds_map_add(unitSubMap, "doc", global.discourseNode);
 	if (!ds_map_exists(unitSubMap, "unitStart")) ds_map_add(unitSubMap, "unitStart", "");
 	if (!ds_map_exists(unitSubMap, "unitEnd")) ds_map_add(unitSubMap, "unitEnd", "");
 	
