@@ -51,7 +51,19 @@ function scr_drawLine2ElectricBoogaloo(){
 	
 	var oobRectX1 = (justify == justifyLeft) ? 0 : camWidth;
 	var oobRectY1 = 0;
-	var oobRectX2 = (justify == justifyLeft) ? wordLeftMargin + scrollPlusX : camWidth - global.toolPaneWidth + scrollPlusX;
+	var oobRectX2 = 0;			
+	if(justify == justifyLeft){
+		if((drawLineState == lineState_rtl && shape == shapeBlock)){
+			oobRectX2 = wordLeftMargin - scrollPlusX - gridSpaceHorizontal;
+		}
+		else{
+			oobRectX2 = wordLeftMargin + scrollPlusX;
+		}
+	}
+	else{
+		oobRectX2 = (drawLineState == lineState_rtl && shape == shapeBlock) ? camWidth - global.toolPaneWidth - scrollPlusX : camWidth - global.toolPaneWidth + scrollPlusX;
+	}
+	
 	var oobRectY2 = camHeight;
 
 	draw_set_alpha(1);
