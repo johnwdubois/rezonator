@@ -11,8 +11,7 @@ function scr_drawChunks(){
 		// get submap of chunk and make sure it exists
 		var currentChunkID = chunkShowList[| i];
 		var currentChunkSubMap = global.nodeMap[? currentChunkID];
-		if (!is_numeric(currentChunkSubMap)) continue;
-		if (!ds_exists(currentChunkSubMap, ds_type_map)) continue;
+		if (!scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) continue;
 		
 		// get tokenList & inChainsList of current chunk
 		var currentChunkTokenList = currentChunkSubMap[? "tokenList"];
@@ -111,11 +110,9 @@ function scr_drawChunks(){
 					obj_chain.currentFocusedChunkID = currentChunkID;
 					if (obj_chain.currentFocusedChainID != "") {						
 						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-						if (is_numeric(chainSubMap)) {
-							if (ds_exists(chainSubMap, ds_type_map)) {
-								scr_newLink(currentChunkID);
-								global.delayInput = 5;
-							}
+						if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+							scr_newLink(currentChunkID);
+							global.delayInput = 5;
 						}
 					}
 					else{
