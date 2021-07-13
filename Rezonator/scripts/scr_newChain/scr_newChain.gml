@@ -85,6 +85,7 @@ function scr_newChain(ID) {
 		ds_map_add(newChainSubMap, "stackType", obj_control.activeStackType);
 	}
 
+
 	obj_chain.currentFocusedChainID = obj_chain.currentChainID;
 
 

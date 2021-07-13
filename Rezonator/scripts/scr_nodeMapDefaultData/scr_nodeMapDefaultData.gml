@@ -35,6 +35,10 @@ function scr_nodeMapDefaultData(){
 	global.searchMap = ds_map_create();
 	ds_map_add(global.searchMap, "type", "map");
 	
+	// create the Clique MAP
+	global.cliqueMap = ds_map_create();
+	ds_map_add(global.cliqueMap, "type", "map");
+	
 	// create the color MAP
 	global.colorMap = ds_map_create();
 	ds_map_add(global.colorMap, "type", "map");
@@ -44,9 +48,15 @@ function scr_nodeMapDefaultData(){
 
 	// add search map to nodeMap
 	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
+
+	// add search map to nodeMap
+	ds_map_add_map(global.nodeMap, "cliqueMap", global.cliqueMap);
 	
 	// add search map to nodeList
 	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
+	
+	// add clique map to nodeList
+	ds_list_add(global.nodeMap[? "nodeList"], "cliqueMap");
 	
 	// add color map to nodeMap
 	ds_map_add_map(global.nodeMap, "colorMap", global.colorMap);

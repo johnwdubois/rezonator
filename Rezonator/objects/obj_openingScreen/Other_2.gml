@@ -40,6 +40,8 @@ global.colorMap = -1;
 
 global.searchMap = -1;
 
+global.cliqueMap = -1;
+
 window_set_min_width(800);
 window_set_min_height(720);
 
