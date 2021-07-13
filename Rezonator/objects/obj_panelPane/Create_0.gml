@@ -40,7 +40,7 @@ functionChainList_tabField = "Field";
 functionChainList_tabTranslations = "Translations";
 functionChainList_tabSearch = "Search";
 functionChainList_tabChunk = "Chunk";
-functionChainList_tabClique = -1;
+functionChainList_tabClique = "menu_clique";
 
 
 
@@ -197,6 +197,7 @@ functionChainList_chunkMouseover = "";
 
 functionSearchList_searchSelected = "";
 functionSearchList_searchMouseover = "";
+functionClique_cliqueSelected = "";
 functionSearchList_tokenSelected = "";
 functionSearchList_tokenMouseover = "";
 

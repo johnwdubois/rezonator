@@ -58,7 +58,7 @@ function scr_panelPane_drawSearchList(){
 	
 	// make sure search map exists
 	global.searchMap = global.nodeMap[? "searchMap"];
-	if(!scr_isNumericAndExists( global.searchMap, ds_type_map)){
+	if(!scr_isNumericAndExists(global.searchMap, ds_type_map)){
 		scr_surfaceEnd();
 		exit;
 	}
@@ -260,7 +260,7 @@ function scr_panelPane_drawSearchList(){
 		var headerRectY2 = headerRectY1 + headerHeight;
 		
 		// draw header rects
-		draw_set_color(global.colorThemeBG);
+		draw_set_color(global.colorThemeBG);;
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, false);
 		draw_set_color(global.colorThemeBorders);
 		draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY2, true);

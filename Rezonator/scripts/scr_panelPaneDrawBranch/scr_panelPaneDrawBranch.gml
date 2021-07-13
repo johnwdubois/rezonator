@@ -38,6 +38,9 @@ function scr_panelPaneDrawBranch(){
 				else if (functionChainList_currentTab == functionChainList_tabChunk) {
 					scr_panelPane_drawChunkList();
 				}
+				else if (functionChainList_currentTab == functionChainList_tabClique) {
+					scr_panelPane_drawCliqueList();
+				}
 				else {
 					scr_panelPane_drawChainsList();
 				}
