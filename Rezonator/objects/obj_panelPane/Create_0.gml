@@ -197,9 +197,9 @@ functionChainList_chunkMouseover = "";
 
 functionSearchList_searchSelected = "";
 functionSearchList_searchMouseover = "";
-functionClique_cliqueSelected = "";
 functionSearchList_tokenSelected = "";
 functionSearchList_tokenMouseover = "";
+functionClique_cliqueSelected = "";
 
 
 
@@ -216,6 +216,7 @@ errorText = "";
 fieldPaneSwitchButton = "Doc";
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
+cliquePaneSwitchButton = "Chains";
 
 
 #macro EVENT_TICK 0

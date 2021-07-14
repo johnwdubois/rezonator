@@ -92,19 +92,11 @@ function scr_panelPane_drawCliqueList(){
 
 
 
-
-
-
-
-
-
 	scr_scrollBar(cliqueListSize, -1, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
 	scr_surfaceEnd();
 	
-	
-
 
 
 	// draw column headers

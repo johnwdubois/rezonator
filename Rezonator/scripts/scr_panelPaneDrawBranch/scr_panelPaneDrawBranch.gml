@@ -110,6 +110,9 @@ function scr_panelPaneDrawBranch(){
 					else if (functionChainList_currentTab == functionChainList_tabChunk) {
 						scr_panelPane_drawChunks1To1();
 					}
+					else if (functionChainList_currentTab == functionChainList_tabClique) {
+						scr_panelPane_drawCliques1ToMany();
+					}
 					else {
 						scr_panelPane_drawChains1ToMany();
 						scr_panelPane_drawChains1ToManyHeaders();
@@ -140,6 +143,9 @@ function scr_panelPaneDrawBranch(){
 					}
 					else if (functionChainList_currentTab == functionChainList_tabChunk) {
 						scr_panelPane_drawChunks1To1();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabClique) {
+						scr_panelPane_drawCliques1ToMany();
 					}
 					else {
 						scr_panelPane_drawChains1To1();

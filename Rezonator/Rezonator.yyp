@@ -92,6 +92,7 @@
     {"id":{"name":"scr_fillTokenImportGridCoNLLU","path":"scripts/scr_fillTokenImportGridCoNLLU/scr_fillTokenImportGridCoNLLU.yy",},"order":17,},
     {"id":{"name":"scr_summaryWindow","path":"scripts/scr_summaryWindow/scr_summaryWindow.yy",},"order":6,},
     {"id":{"name":"scr_isItemAList","path":"scripts/scr_isItemAList/scr_isItemAList.yy",},"order":0,},
+    {"id":{"name":"scr_panelPane_drawCliques1ToMany","path":"scripts/scr_panelPane_drawCliques1ToMany/scr_panelPane_drawCliques1ToMany.yy",},"order":41,},
     {"id":{"name":"scr_getStringOfList","path":"scripts/scr_getStringOfList/scr_getStringOfList.yy",},"order":1,},
     {"id":{"name":"scr_compareLists","path":"scripts/scr_compareLists/scr_compareLists.yy",},"order":4,},
     {"id":{"name":"scr_splitString","path":"scripts/scr_splitString/scr_splitString.yy",},"order":2,},
