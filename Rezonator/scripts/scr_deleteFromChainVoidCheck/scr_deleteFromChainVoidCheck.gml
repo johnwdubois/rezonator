@@ -63,7 +63,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			//if(currentChunkFirstWord > 0){
 			//	currentTokenID = currentChunkFirstWord;
 			//}
-
+			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 			var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
 			var currentDisplayColDest = 0;
 			if (deletedTokenSeq > 1) {
@@ -118,6 +118,7 @@ function scr_deleteFromChainVoidCheck(chainID, deletedTokenID, deletedTokenPushB
 			}
 			var currentTokenSubMap = global.nodeMap[? currentTokenID];
 			
+			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 			var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
 			var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			

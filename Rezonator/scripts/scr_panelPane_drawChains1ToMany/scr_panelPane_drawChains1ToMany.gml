@@ -125,6 +125,10 @@ function scr_panelPane_drawChains1ToMany() {
 			var currentID = currentEntrySubMap[? (chainType == "stackChain") ? "unit" : "token"];
 			if (!is_string(currentID)) continue;
 			var IDSubMap = global.nodeMap[?currentID];
+			
+			// make sure IDSubMap exists
+			if (!scr_isNumericAndExists(IDSubMap, ds_type_map)) continue;
+			
 			var unitID = (chainType == "stackChain") ? currentID : IDSubMap[? "unit"];
 			var unitIDSubMap = global.nodeMap[? unitID];
 		

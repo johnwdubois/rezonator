@@ -153,7 +153,8 @@ function scr_panelPane_drawChainsList() {
 							if (currentChainType == "stackChain") {
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 								var currentUnitSubMap = global.nodeMap[?currentUnitID];
-								currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
+								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map))
+									currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
 							}
 							else {
 								currentChainCaption = "";
