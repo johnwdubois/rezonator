@@ -6,5 +6,5 @@ function scr_clearCliqueMap(){
 	}
 	ds_list_clear(obj_chain.cliqueList);
 	ds_map_clear(global.cliqueMap);
-	ds_map_add(global.cliqueMap, "type", "map")
+	ds_map_add(global.cliqueMap, "type", "map");
 }

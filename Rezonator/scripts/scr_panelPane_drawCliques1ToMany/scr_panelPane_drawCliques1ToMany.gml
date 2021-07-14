@@ -12,6 +12,8 @@ function scr_panelPane_drawCliques1ToMany(){
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var textColX = numColX + numColWidth;
+	var textColWidth = windowWidth * 0.3;
+	var chainOrderColX = textColX + textColWidth;
 	
 	var mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
@@ -47,6 +49,7 @@ function scr_panelPane_drawCliques1ToMany(){
 				var currentItem = list[| i];
 				var currentItemNum = "";
 				var currentItemText = "";
+				var currentChainOrderListNames = ds_list_create();
 				var currentItemSubMap = global.nodeMap[? currentItem];
 				var rectColor = global.colorThemeBG;
 				if (scr_isNumericAndExists(currentItemSubMap, ds_type_map)) {
@@ -54,6 +57,13 @@ function scr_panelPane_drawCliques1ToMany(){
 						currentItemNum = string(i + 1);
 						currentItemText = string(currentItemSubMap[? "name"]);
 						rectColor = currentItemSubMap[? "chainColor"];
+						var currentChainOrderList = cliqueSubMap[? currentItem];
+						var currentChainOrderListSize = ds_list_size(currentChainOrderList);
+						for (var j = 0; j < currentChainOrderListSize; j++) {
+							var currentChain = currentChainOrderList[| j];
+							var currentChainSubMap = global.nodeMap[? currentChain];
+							ds_list_add(currentChainOrderListNames, currentChainSubMap[? "name"]);
+						}
 					}
 					else {
 						currentItemNum = string(currentItemSubMap[? "unitSeq"]);
@@ -86,6 +96,9 @@ function scr_panelPane_drawCliques1ToMany(){
 				// text column
 				draw_text(textColX + textBuffer - clipX, textY - clipY, currentItemText);
 				
+				// chain order column
+				draw_text(chainOrderColX + textBuffer - clipX, textY - clipY, scr_getStringOfList(currentChainOrderListNames));
+				ds_list_destroy(currentChainOrderListNames);
 				
 				// increment plusY
 				textPlusY += strHeight;
@@ -102,7 +115,7 @@ function scr_panelPane_drawCliques1ToMany(){
 	
 	
 	var headerPlusX = 0;
-	var colAmount = 2;
+	var colAmount = 3;
 	draw_set_halign(fa_left);
 	for (var i = 0; i < colAmount; i++) {
 		var colWidth = 0;
@@ -113,8 +126,12 @@ function scr_panelPane_drawCliques1ToMany(){
 			colName = "#";
 		}
 		else if (i == 1) {
-			colWidth = x + windowWidth - textColX;
+			colWidth = textColWidth;
 			colName = (cliquePaneSwitchButton == "Chains") ? "Chain" : "Text";
+		}
+		else if (i == 2) {
+			colWidth = x + windowWidth - chainOrderColX;
+			colName = (cliquePaneSwitchButton == "Chains") ? "Chain Order" : "";
 		}
 		
 		var headerRectX1 = x + headerPlusX;
@@ -124,13 +141,7 @@ function scr_panelPane_drawCliques1ToMany(){
 		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 			
 		// get coordinates for header text
-		var headerTextX = 0;
-		if (i == 0) {
-			headerTextX = floor(headerRectX1 + textBuffer);
-		}
-		else if (i == 1) {
-			headerTextX = floor(headerRectX1 + textBuffer);
-		}
+		var headerTextX = floor(headerRectX1 + textBuffer);
 		var headerTextY = floor(y + (headerHeight / 2));
 	
 
