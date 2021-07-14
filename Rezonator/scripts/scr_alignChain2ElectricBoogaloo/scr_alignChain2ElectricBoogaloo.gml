@@ -40,6 +40,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		var currentTokenID = currentEntrySubMap[? "token"];
 		if(scr_isChunk(currentTokenID)){currentTokenID = scr_getFirstWordOfChunk(currentTokenID);}
 		var currentTokenSubMap = global.nodeMap[? currentTokenID];
+		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 		var currentUnitID = currentTokenSubMap[? "unit"];
 		
 		// check if we've seen this unit before
@@ -76,6 +77,7 @@ function scr_alignChain2ElectricBoogaloo(chainID){
 		var currentTokenID = currentEntrySubMap[? "token"];
 		if(scr_isChunk(currentTokenID)){currentTokenID = scr_getFirstWordOfChunk(currentTokenID);}
 		var currentTokenSubMap = global.nodeMap[? currentTokenID];
+		if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 		var currentUnitID = currentTokenSubMap[? "unit"];
 		
 		if (ds_list_find_index(unitList, currentUnitID) == -1) {

@@ -102,11 +102,13 @@ function scr_renderFilter2(){
 						var currentTokenID = currentEntrySubMap[? "token"];
 						if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
 						var tokenSubMap = global.nodeMap[? currentTokenID];
-						var currentUnitID = tokenSubMap[? "unit"];
-						var currentUnitSubMap = global.nodeMap[? currentUnitID];
-						if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
-							scr_addToListOnce(filterUnitList, currentUnitID);
-							currentUnitSubMap[? "active"] = true;
+						if (scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+							var currentUnitID = tokenSubMap[? "unit"];
+							var currentUnitSubMap = global.nodeMap[? currentUnitID];	
+							if (scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {
+								scr_addToListOnce(filterUnitList, currentUnitID);
+								currentUnitSubMap[? "active"] = true;
+							}
 						}
 					}
 				}
