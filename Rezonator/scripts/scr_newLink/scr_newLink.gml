@@ -245,6 +245,7 @@ function scr_newLink(ID) {
 	}
 	
 	if (focusedChainType == "rezChain") {
+		
 		scr_refreshCliques();
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}

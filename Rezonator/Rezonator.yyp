@@ -179,6 +179,7 @@
     {"id":{"name":"scr_chainTagInit","path":"scripts/scr_chainTagInit/scr_chainTagInit.yy",},"order":36,},
     {"id":{"name":"scr_playandLearnOptions","path":"scripts/scr_playandLearnOptions/scr_playandLearnOptions.yy",},"order":42,},
     {"id":{"name":"scr_loadDynamicWordGrid","path":"scripts/scr_loadDynamicWordGrid/scr_loadDynamicWordGrid.yy",},"order":0,},
+    {"id":{"name":"scr_cycleDetection","path":"scripts/scr_cycleDetection/scr_cycleDetection.yy",},"order":5,},
     {"id":{"name":"scr_panelPane_drawChunkList","path":"scripts/scr_panelPane_drawChunkList/scr_panelPane_drawChunkList.yy",},"order":35,},
     {"id":{"name":"scr_loadDynamicWordGridIndividual","path":"scripts/scr_loadDynamicWordGridIndividual/scr_loadDynamicWordGridIndividual.yy",},"order":4,},
     {"id":{"name":"scr_loadLineGridSection","path":"scripts/scr_loadLineGridSection/scr_loadLineGridSection.yy",},"order":6,},

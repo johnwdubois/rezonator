@@ -5,5 +5,19 @@ function scr_refreshCliques(){
 	scr_clearCliqueMap();
 	scr_cliqueDetection();
 	scr_chainOrderMap();
+	var cliqueListSize = ds_list_size(obj_chain.cliqueList);
+	
+	var cliqueSubMap = -1;
+	for(var i = 0 ; i < cliqueListSize; i ++){
+		cliqueSubMap = global.cliqueMap[? obj_chain.cliqueList[| i ]];
+		if(ds_map_exists(cliqueSubMap, obj_chain.currentFocusedChainID)){
+			obj_chain.currentClique = obj_chain.cliqueList[| i ];
+			break;
+		}
+		
+	}
+	scr_cycleDetection(cliqueSubMap[? obj_chain.currentFocusedChainID]);
+	
+	
 	show_debug_message("scr_refreshCliques, END" + scr_printTime());
 }

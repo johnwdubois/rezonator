@@ -59,7 +59,9 @@ function scr_chainOrderMap(){
 								var _currentChain = _currentInChainsList[| m];
 								var _currentChainSubMap = global.nodeMap[? _currentChain];
 								if (_currentChainSubMap[? "type"] == "rezChain") {
-									scr_addToListOnce(currentChainOrderList, _currentChain);
+									if (!currentEntrySubMap[? "stretch"]) {
+										scr_addToListOnce(currentChainOrderList, _currentChain);
+									}
 									breakLoop = true;
 								}
 							}

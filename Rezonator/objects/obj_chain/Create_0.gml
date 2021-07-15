@@ -111,7 +111,7 @@ encounteredTokenList = ds_list_create();
 encounteredChainList = ds_list_create();
 traversedUnitList = ds_list_create();
 cliqueList =  ds_list_create();
-
+currentClique = "";
 
 
 rezChainGridRowToRefreshTilt = -1;
