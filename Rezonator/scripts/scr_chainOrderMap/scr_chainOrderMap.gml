@@ -43,8 +43,21 @@ function scr_chainOrderMap(){
 						var currentUnitEntryListSize = ds_list_size(currentUnitEntryList);
 						var currentTokenSeq = currentTokenSubMap[? "tokenSeq"];
 						
+						
 						// check if there is a token in the chain that will be pushed by this chain
-						for (var l = currentTokenSeq; l < currentUnitEntryListSize; l++) {
+						var startJustify = scr_checkNativeJustification();
+						var l = startJustify ? currentTokenSeq : currentTokenSeq - 2; // subtract 2 for end-justify because tokenSeq is 1 indexed
+						var repeatAmount = 0;
+						if (startJustify) repeatAmount = currentUnitEntryListSize - currentTokenSeq;
+						else repeatAmount = currentUnitEntryListSize - (currentUnitEntryListSize - (currentTokenSeq - 1));
+
+						repeat(repeatAmount) {
+							
+							if ((startJustify && l < currentTokenSeq) || (!startJustify && l > currentTokenSeq)) {
+								l += startJustify ? 1 : -1;
+								continue;
+							}
+							
 							
 							var breakLoop = false;
 							var _currentEntry = currentUnitEntryList[| l];
@@ -66,8 +79,16 @@ function scr_chainOrderMap(){
 								}
 							}
 							
+							// continue through unit
+							l += startJustify ? 1 : -1;
+							
 							if (breakLoop) break;
 						}
+						
+						
+						
+						//for (var l = currentTokenSeq; l < currentUnitEntryListSize; l++) {	
+						//}
 					}
 				}
 			}

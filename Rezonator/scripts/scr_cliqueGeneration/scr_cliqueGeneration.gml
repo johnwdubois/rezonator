@@ -84,8 +84,7 @@ function scr_cliqueGeneration(){
 				var tokenSubMap = global.nodeMap[? tokenID];
 			}
 			var unitID = tokenSubMap[? "unit"];
-			var stretch = rezNode[? "stretch"];
-			if(ds_list_find_index(obj_chain.traversedUnitList, unitID) == -1 && !stretch){
+			if(ds_list_find_index(obj_chain.traversedUnitList, unitID) == -1){
 				scr_addToListOnce(obj_chain.encounteredTokenList,tokenID);
 			}
 		}
