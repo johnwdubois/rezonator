@@ -40,16 +40,16 @@ function scr_cliqueGeneration(){
 			
 				for(var j = 0; j < inChunkListSize; j ++){
 					var chunkID =  inChunkList[|j];
-					var chunkSubMap = global.nodeMap[? chunkID];
-					var inChainsList = chunkSubMap[? "inChainsList"];
-				
-					var inChainsListSize = ds_list_size(inChainsList);
-			
-					for(var k = 0; k < inChainsListSize; k ++){
-						var currentChainID = inChainsList[|k];
-						if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
-							if(ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1){
-								scr_addToListOnce(obj_chain.encounteredChainList, currentChainID);
+					if (scr_getFirstWordOfChunk(chunkID) == tokenID) {
+						var chunkSubMap = global.nodeMap[? chunkID];
+						var chunkInChainsList = chunkSubMap[? "inChainsList"];
+						var chunkInChainsListSize = ds_list_size(chunkInChainsList);
+						for(var k = 0; k < chunkInChainsListSize; k ++){
+							var currentChainID = chunkInChainsList[|k];
+							if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
+								if(ds_list_find_index(obj_chain.encounteredUnitList, unitID) == -1){
+									scr_addToListOnce(obj_chain.encounteredChainList, currentChainID);
+								}
 							}
 						}
 					}

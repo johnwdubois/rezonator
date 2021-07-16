@@ -188,6 +188,7 @@
     {"id":{"name":"scr_setFocusedChainWordID","path":"scripts/scr_setFocusedChainWordID/scr_setFocusedChainWordID.yy",},"order":45,},
     {"id":{"name":"scr_firstWordInAlignedChunk","path":"scripts/scr_firstWordInAlignedChunk/scr_firstWordInAlignedChunk.yy",},"order":6,},
     {"id":{"name":"scr_saveINI","path":"scripts/scr_saveINI/scr_saveINI.yy",},"order":10,},
+    {"id":{"name":"scr_checkSideLink","path":"scripts/scr_checkSideLink/scr_checkSideLink.yy",},"order":46,},
     {"id":{"name":"scr_exportChainTempGrid","path":"scripts/scr_exportChainTempGrid/scr_exportChainTempGrid.yy",},"order":8,},
     {"id":{"name":"spr_saveIcon","path":"sprites/spr_saveIcon/spr_saveIcon.yy",},"order":35,},
     {"id":{"name":"scr_chunkRightClicked","path":"scripts/scr_chunkRightClicked/scr_chunkRightClicked.yy",},"order":6,},

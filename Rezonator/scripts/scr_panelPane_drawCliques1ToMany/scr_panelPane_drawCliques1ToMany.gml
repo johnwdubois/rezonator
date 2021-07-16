@@ -18,7 +18,7 @@ function scr_panelPane_drawCliques1ToMany(){
 	var mouseoverScrollBar = point_in_rectangle(mouse_x, mouse_y, x + windowWidth - global.scrollBarWidth, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	
-	if (!scr_isNumericAndExists( global.cliqueMap, ds_type_map)) exit;
+	if (!scr_isNumericAndExists(global.cliqueMap, ds_type_map)) exit;
 
 	
 	// get the clique list & make sure it exists

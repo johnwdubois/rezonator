@@ -36,6 +36,7 @@ function scr_chainOrderMap(){
 						var currentEntry = currentChainSetIDList[| k];
 						var currentEntrySubMap = global.nodeMap[? currentEntry];
 						var currentToken = currentEntrySubMap[? "token"];
+						if (scr_isChunk(currentToken)) currentToken = scr_getFirstWordOfChunk(currentToken);
 						var currentTokenSubMap = global.nodeMap[? currentToken];
 						var currentUnit = currentTokenSubMap[? "unit"];
 						var currentUnitSubMap = global.nodeMap[? currentUnit];
@@ -67,28 +68,61 @@ function scr_chainOrderMap(){
 							var _currentInChainsList = _currentTokenSubMap[? "inChainsList"];
 							var _currentInChainsListSize = ds_list_size(_currentInChainsList);
 							
+							var currentInChunkList = _currentTokenSubMap[? "inChunkList"];
+							var currentInChunkListSize = ds_list_size(currentInChunkList);
+							
 							// check everything in this token's inChainsList to see if it is a rezChain
 							for (var m = 0; m < _currentInChainsListSize; m++) {
 								var _currentChain = _currentInChainsList[| m];
-								var _currentChainSubMap = global.nodeMap[? _currentChain];
-								if (_currentChainSubMap[? "type"] == "rezChain") {
-									if (!currentEntrySubMap[? "stretch"]) {
-										scr_addToListOnce(currentChainOrderList, _currentChain);
+								// make sure our original chain is not finding itself (side-links)
+								if (!scr_checkSideLink(_currentChain, _currentToken)) {
+									var _currentChainSubMap = global.nodeMap[? _currentChain];
+									if (_currentChainSubMap[? "type"] == "rezChain") {
+										if (!currentEntrySubMap[? "stretch"]) {
+											scr_addToListOnce(currentChainOrderList, _currentChain);
+										}
+										breakLoop = true;
 									}
-									breakLoop = true;
 								}
 							}
+							
+							if (!breakLoop) {
+								for (var m = 0; m < currentInChunkListSize; m++) {
+									var currentChunk = currentInChunkList[| m];
+									if (scr_getFirstWordOfChunk(currentChunk) == _currentToken) {
+										
+										var currentChunkSubMap = global.nodeMap[? currentChunk];
+										var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+										var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+										
+										// check everything in this token's inChainsList to see if it is a rezChain
+										for (var n = 0; n < currentChunkInChainsListSize; n++) {
+											var chunksCurrentChain = currentChunkInChainsList[| n];
+								
+												var chunksCurrentChainSubMap = global.nodeMap[? chunksCurrentChain];
+												if (chunksCurrentChainSubMap[? "type"] == "rezChain") {
+													if (!currentEntrySubMap[? "stretch"]) {
+														scr_addToListOnce(currentChainOrderList, chunksCurrentChain);
+													}
+													breakLoop = true;
+												}
+
+										}
+									}
+								}
+							}
+							
+							
+							
+							
+							
+							
 							
 							// continue through unit
 							l += startJustify ? 1 : -1;
 							
 							if (breakLoop) break;
 						}
-						
-						
-						
-						//for (var l = currentTokenSeq; l < currentUnitEntryListSize; l++) {	
-						//}
 					}
 				}
 			}

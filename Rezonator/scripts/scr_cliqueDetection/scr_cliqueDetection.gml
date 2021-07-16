@@ -22,7 +22,6 @@ function scr_cliqueDetection(){
 				var tokenID = entrySubMap[? "token"];
 				var tokenSubMap = global.nodeMap[? tokenID];
 				var inChainsList = tokenSubMap[? "inChainsList"];
-				
 				var inChainsListSize = ds_list_size(inChainsList);
 			
 				for(var k = 0; k < inChainsListSize; k ++){
@@ -30,9 +29,33 @@ function scr_cliqueDetection(){
 					if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
 						// found rez in unit lets create a clique based off this token
 						ds_list_add(obj_chain.encounteredTokenList, tokenID);
-						
 					}
 				}
+				
+				var inChunkList = tokenSubMap[? "inChunkList"];
+				var inChunkListSize = ds_list_size(inChunkList);
+				
+				for(var k = 0; k < inChunkListSize; k++){
+					var chunkID =  inChunkList[|k];
+					if (scr_getFirstWordOfChunk(chunkID) == tokenID) {
+						var chunkSubMap = global.nodeMap[? chunkID];
+						var chunkInChainsList = chunkSubMap[? "inChainsList"];
+						var chunkInChainsListSize = ds_list_size(chunkInChainsList);
+						for(var l = 0; l < chunkInChainsListSize; l++){
+							var currentChainID = chunkInChainsList[|l];
+							if(ds_list_find_index(global.nodeMap[? "rezChainList"], currentChainID) >= 0){
+								// found rez in unit lets create a clique based off this token
+								ds_list_add(obj_chain.encounteredTokenList, tokenID);
+							}
+						}
+					}
+				}
+				
+				
+				
+				
+				
+				
 			}
 			scr_cliqueGeneration()
 		}
