@@ -16,8 +16,10 @@ function scr_refreshCliques(){
 		}
 		
 	}
-	scr_cycleDetection(cliqueSubMap[? obj_chain.currentFocusedChainID]);
 	
-	
+	if(scr_isNumericAndExists(cliqueSubMap,ds_type_map)){
+		scr_cycleDetection(cliqueSubMap[? obj_chain.currentFocusedChainID],obj_chain.currentFocusedChainID);
+	}
+	obj_chain.cycleDetected = false;
 	show_debug_message("scr_refreshCliques, END" + scr_printTime());
 }

@@ -112,6 +112,7 @@ encounteredChainList = ds_list_create();
 traversedUnitList = ds_list_create();
 cliqueList =  ds_list_create();
 currentClique = "";
+cycleDetected = false;
 
 
 rezChainGridRowToRefreshTilt = -1;
