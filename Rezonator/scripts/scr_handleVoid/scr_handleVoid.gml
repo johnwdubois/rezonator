@@ -19,7 +19,9 @@ function scr_handleVoid(setList) {
 		var currentTokenID = currentEntrySubMap[? "token"];
 		if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
 		var currentTokenSubMap = global.nodeMap[? currentTokenID];
-		
+		if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){
+			continue;	
+		}
 		var currentUnit = currentTokenSubMap[? "unit"];
 		if (ds_list_find_index(unitList, currentUnit) == -1) {
 			ds_list_add(unitList, currentUnit);
