@@ -32,7 +32,6 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 				
 				var tokenSubMap = global.nodeMap[? currentToken];
 				
-				
 				if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
 					discourseTokenSeq = tokenSubMap[? "discourseTokenSeq"];
 					var tokenUnitID = tokenSubMap[? "unit"];
@@ -76,8 +75,13 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 						currentTokenCount = ds_list_size(chunkSubMap[?"tokenList"]);
 					}
 					else{
-						var tokenTagMap = tokenSubMap[? "tagMap"];
-						var currentDisplayStr = tokenTagMap[? global.displayTokenField];
+						if(scr_isNumericAndExists(tokenSubMap, ds_type_map)){
+							var tokenTagMap = tokenSubMap[? "tagMap"];
+							var currentDisplayStr = tokenTagMap[? global.displayTokenField];
+						}
+						else{
+							var currentDisplayStr = "";	
+						}
 					}
 					
 					
