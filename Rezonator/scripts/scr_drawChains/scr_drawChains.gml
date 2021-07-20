@@ -167,8 +167,14 @@ function scr_drawChains() {
 						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
 						
 						// mark stretches visually with a circle
-						if (currentEntry1SubMap[? "stretch"]) draw_circle(lineX1, lineY1, 15, false);
-						if (currentEntry2SubMap[? "stretch"]) draw_circle(lineX2, lineY2, 15, false);
+						if (currentEntry1SubMap[? "stretch"] && currentEntry1SubMap != currentEntry2SubMap) {
+							draw_set_color(c_red);
+							draw_circle(lineX1, lineY1, 15, false);
+						}
+						if (currentEntry2SubMap[? "stretch"]) {
+							draw_set_color(c_blue);
+							draw_circle(lineX2, lineY2, 15, false);
+						}
 
 					}
 					else if (chainType == "trackChain") {

@@ -102,12 +102,14 @@ function scr_chainOrderMap(){
 										
 										var chunksCurrentChain = currentChunkInChainsList[| n];
 										var chunksCurrentChainSubMap = global.nodeMap[? chunksCurrentChain];
+										if (!scr_checkSideLink(chunksCurrentChain, currentChunk)) {
 										
-										if (chunksCurrentChainSubMap[? "type"] == "rezChain") {
-											if (!_currentEntrySubMap[? "stretch"]) {
-												scr_addToListOnce(currentChainOrderList, chunksCurrentChain);
-												breakLoop = true;
-											}	
+											if (chunksCurrentChainSubMap[? "type"] == "rezChain") {
+												if (!_currentEntrySubMap[? "stretch"]) {
+													scr_addToListOnce(currentChainOrderList, chunksCurrentChain);
+													breakLoop = true;
+												}	
+											}
 										}
 									}
 								}
