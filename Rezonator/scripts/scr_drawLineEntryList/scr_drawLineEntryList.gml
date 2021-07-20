@@ -142,11 +142,11 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 
 			}
 			
-			if (keyboard_check_released(ord("N"))) {
-				if (ds_list_size(inChainsList) > 0) {
-					scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
-				}
-			}
+			//if (keyboard_check_released(ord("N"))) {
+			//	if (ds_list_size(inChainsList) > 0) {
+			//		scr_alignChain2ElectricBoogaloo(inChainsList[| 0]);
+			//	}
+			//}
 		}
 		
 		// draw the token's text
