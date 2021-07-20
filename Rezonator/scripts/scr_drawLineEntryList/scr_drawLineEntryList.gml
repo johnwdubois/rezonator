@@ -80,8 +80,9 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var mouseRectExists = (mouseHoldRectX1 >= 0 && mouseHoldRectY1 >= 0);
 		var inMouseRect = false;
 		if (mouseRectExists) {
-			inMouseRect = rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1));
-			if (inMouseRect && !mouse_check_button_released(mb_left)) {
+			inMouseRect = (rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1))
+			&&  (mouse_x > mouseHoldRectX1 + 25));
+			if (mouseRectExists && inMouseRect && !mouse_check_button_released(mb_left)) {
 				ds_list_add(inRectTokenIDList, currentToken);
 				scr_addToListOnce(inRectUnitIDList, unitID);
 			}
