@@ -32,6 +32,7 @@ function scr_chainRecolorOptions(optionSelected) {
 				else if (optionSelected == "Green") colorToSet = real(string_digits(65280));
 				else if (optionSelected == "Gold") colorToSet = real(string_digits(4235000));
 				ds_map_replace(chainSubMap, "chainColor", colorToSet);
+
 			}
 			else if (optionSelected == "Custom") {
 				if (!obj_control.dialogueBoxActive) {
