@@ -60,6 +60,9 @@ function scr_stringReverse(inputString){
 				if(i == 1){
 					var nonReverseletterCount = string_length(nonReverseChars);
 					for(var j = nonReverseletterCount;j > 0; j--){
+						if(j == nonReverseletterCount){
+							newNonReverseChars += " ";
+						}
 						newNonReverseChars += string_char_at(nonReverseChars,j);
 					}
 					newString += newNonReverseChars;
