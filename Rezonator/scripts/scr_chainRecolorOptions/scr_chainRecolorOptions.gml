@@ -39,7 +39,9 @@ function scr_chainRecolorOptions(optionSelected) {
 					}
 				}
 				
-				ds_map_replace(chainSubMap, "chainColor", colorToSet);
+				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
+					ds_map_replace(chainSubMap, "chainColor", colorToSet);
+				}
 
 			}
 			else if (optionSelected == "Custom") {

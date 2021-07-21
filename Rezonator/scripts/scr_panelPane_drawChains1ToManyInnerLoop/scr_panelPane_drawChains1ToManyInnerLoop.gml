@@ -30,7 +30,9 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 
 		tokenID = scr_getFirstWordOfChunk(ID);
 		var firstTokenSubMap = global.nodeMap[?tokenID];
-		unitID = firstTokenSubMap[?"unit"];
+		if(scr_isNumericAndExists(firstTokenSubMap,ds_type_map)){
+			unitID = firstTokenSubMap[?"unit"];
+		}
 	}
 	
 	
@@ -61,7 +63,8 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 			var tagMap = unitSubMap[?"tagMap"];
 		}
 		else{
-			var tagMap = tokenSubMap[?"tagMap"];
+			if(!scr_isNumericAndExists(tokenSubMap,ds_type_map)) continue;
+				var tagMap = tokenSubMap[?"tagMap"];
 		}
 		
 		// get string of data
@@ -69,6 +72,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		switch (i) {
 			// unitSeq
 			case 0:
+				if(!scr_isNumericAndExists(unitSubMap, ds_type_map)) continue;
 				cellText = string(unitSubMap[?"unitSeq"]);
 				break;
 			// tokenSeq / speaker

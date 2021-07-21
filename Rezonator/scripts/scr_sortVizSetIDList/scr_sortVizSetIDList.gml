@@ -49,7 +49,7 @@ function scr_sortVizSetIDList(chainID){
 					currentWordID = currentTokenIDTokenList[| 0];
 					currentTokenIDSubMap = global.nodeMap[? currentWordID];
 				}
-	
+				if(scr_isNumericAndExists(currentTokenIDSubMap, ds_type_map)) continue;
 				var currentUnitSubMap = currentTokenIDSubMap[? "unit"];   
 				if(scr_isNumericAndExists(currentUnitSubMap, ds_type_map)){
 					currentUnitSeq = currentUnitSubMap[?"unitSeq"];//= ds_grid_get(obj_control.wordGrid, obj_control.wordGrid_colUnitID, currentWordID - 1);
