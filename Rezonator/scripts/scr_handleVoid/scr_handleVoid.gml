@@ -44,7 +44,7 @@ function scr_handleVoid(setList) {
 			var currentTokenID = currentEntrySubMap[? "token"];
 			if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
 			var currentTokenSubMap = global.nodeMap[? currentTokenID];
-			
+			if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 			var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 			currentTokenSubMap[? "displayCol"] = (scr_checkNativeJustification()) ? currentDisplayCol - 1 : currentDisplayCol + 1;
 		}

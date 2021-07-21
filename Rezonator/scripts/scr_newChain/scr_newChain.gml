@@ -28,7 +28,7 @@ function scr_newChain(ID) {
 			aligned = true;
 			obj_chain.rezChainNameCounter++;
 			chainSeq = obj_chain.rezChainNameCounter;
-			chainName = "Rez " + string(obj_chain.rezChainNameCounter);
+			chainName = "Rez " + string(ds_list_size(global.nodeMap[?"rezChainList"]));
 			chainType = "rezChain";
 			if(obj_control.shapeStartText == true) {
 				obj_control.shapeStartText = false;
@@ -38,14 +38,14 @@ function scr_newChain(ID) {
 		else if (obj_toolPane.currentMode == obj_toolPane.modeTrack) {
 			obj_chain.trackChainNameCounter++;
 			chainSeq = obj_chain.trackChainNameCounter;
-			chainName = "Trail " + string(obj_chain.trackChainNameCounter);
+			chainName = "Trail " + string(ds_list_size(global.nodeMap[?"trackChainList"]));
 			chainType = "trackChain";
 		}
 	}
 	else if (idType == "unit") {
 		obj_chain.stackChainNameCounter++;
 		chainSeq = obj_chain.stackChainNameCounter;
-		chainName = "Stack " + string(obj_chain.stackChainNameCounter);
+		chainName = "Stack " + string(ds_list_size(global.nodeMap[?"stackChainList"]));
 		chainType = "stackChain";	
 	}
 
