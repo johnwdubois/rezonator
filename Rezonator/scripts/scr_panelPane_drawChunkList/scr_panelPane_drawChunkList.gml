@@ -15,6 +15,7 @@ function scr_panelPane_drawChunkList(){
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
+	var focusedElementY = -1;
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
 	
 	// get the instance ID for the chainContents pane so we can easily reference it
@@ -69,6 +70,7 @@ function scr_panelPane_drawChunkList(){
 			}
 		}
 		
+		
 		// Get dimensions of rectangle around row
 		var rowRectX1 = x;
 		var rowRectY1 = y + headerHeight + scrollPlusY + textPlusY - (strHeight / 2);
@@ -76,6 +78,11 @@ function scr_panelPane_drawChunkList(){
 		var rowRectY2 = rowRectY1 + strHeight;
 		var mouseoverRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rowRectX1, rowRectY1, rowRectX2, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		var textY = floor(mean(rowRectY1, rowRectY2));
+		
+		if (functionChainList_chunkSelected == currentChunk) {
+			with (obj_panelPane) functionChainList_focusedUnit = currentChunk;
+			focusedElementY = textY;
+		}
 		
 		// mouseover & click
 		if (mouseoverRowRect) {
@@ -122,7 +129,7 @@ function scr_panelPane_drawChunkList(){
 		scrollPlusY = chainContentsPanelPaneInst.scrollPlusY;
 	}
 	
-	
+	scr_panelPane_chunkScroll(focusedElementY, strHeight);
 	scr_surfaceEnd();
 	
 	

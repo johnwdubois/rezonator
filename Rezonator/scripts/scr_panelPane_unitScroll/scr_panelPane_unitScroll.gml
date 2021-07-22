@@ -5,7 +5,6 @@ function scr_panelPane_unitScroll(focusedElementY, strHeight) {
 	var displayUnitListSize = ds_list_size(obj_control.displayUnitList);
 	var headerHeight = functionTabs_tabHeight;
 	
-	
 	var leftNavInst = -1;
 	var rightNavInst = -1;
 	with (obj_panelPane) {

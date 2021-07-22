@@ -31,7 +31,7 @@ functionTabs = "tabs";
 
 
 
-functionChainList_tabLine = "menu_read";
+functionChainList_tabLine = "import_line_unit";
 functionChainList_tabRezBrush = "menu_rez";
 functionChainList_tabTrackBrush = "menu_track";
 functionChainList_tabStackBrush = "menu_stack";

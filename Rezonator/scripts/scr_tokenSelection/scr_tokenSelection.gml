@@ -4,7 +4,7 @@ function scr_tokenSelection(optionSelected) {
 	
 	// check if the Unit tab or Chunk tab is selected
 	with (obj_panelPane) {
-		if (currentFunction == functionChainList) {
+		if (currentFunction == functionChainList && !obj_panelPane.chainViewOneToMany) {
 			if (functionChainList_currentTab == functionChainList_tabChunk) {
 				navFieldList = obj_control.navChunkFieldList;
 			}

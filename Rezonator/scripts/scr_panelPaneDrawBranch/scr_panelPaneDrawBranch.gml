@@ -108,7 +108,8 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawSearch1ToMany();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabChunk) {
-						scr_panelPane_drawChunks1To1();
+						scr_panelPane_drawUnits1toMany();
+						scr_panelPane_drawUnits1ToManyHeaders();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabClique) {
 						scr_panelPane_drawCliques1ToMany();
