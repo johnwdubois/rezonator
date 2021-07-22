@@ -387,6 +387,7 @@
     {"id":{"name":"scr_tokenSelection","path":"scripts/scr_tokenSelection/scr_tokenSelection.yy",},"order":27,},
     {"id":{"name":"scr_unitSelection","path":"scripts/scr_unitSelection/scr_unitSelection.yy",},"order":28,},
     {"id":{"name":"scr_tokenTagMapOptions","path":"scripts/scr_tokenTagMapOptions/scr_tokenTagMapOptions.yy",},"order":29,},
+    {"id":{"name":"scr_expandChunk","path":"scripts/scr_expandChunk/scr_expandChunk.yy",},"order":8,},
     {"id":{"name":"scr_unitTagMapOptions","path":"scripts/scr_unitTagMapOptions/scr_unitTagMapOptions.yy",},"order":30,},
     {"id":{"name":"scr_importIGT","path":"scripts/scr_importIGT/scr_importIGT.yy",},"order":7,},
     {"id":{"name":"scr_tokenMarkerOptions","path":"scripts/scr_tokenMarkerOptions/scr_tokenMarkerOptions.yy",},"order":31,},

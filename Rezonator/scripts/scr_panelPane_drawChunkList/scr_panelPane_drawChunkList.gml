@@ -11,6 +11,8 @@ function scr_panelPane_drawChunkList(){
 	var nameColX = unitColX + unitColWidth;
 	var nameColWidth = windowWidth * 0.25;
 	var textColX = nameColX + nameColWidth;
+	var textColWidth = windowWidth * 0.4;
+	var nestColX = textColX + textColWidth;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
@@ -69,6 +71,7 @@ function scr_panelPane_drawChunkList(){
 				currentChunkUnitSeq = string(currentChunkUnitSubMap[? "unitSeq"]);
 			}
 		}
+		var currentChunkNest = currentChunkSubMap[? "nest"];
 		
 		
 		// Get dimensions of rectangle around row
@@ -105,16 +108,16 @@ function scr_panelPane_drawChunkList(){
 		draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 		// unit column
-		draw_set_color(textColor);
 		draw_text(floor(unitColX + textBuffer) - clipX, textY - clipY, string(currentChunkUnitSeq));
 		
 		// name column
-		draw_set_color(textColor);
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentChunkName));
 		
 		// text column
-		draw_set_color(textColor);
 		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, scr_getChunkText(currentChunk));
+		
+		// nest column
+		draw_text(floor(nestColX + textBuffer) - clipX, textY - clipY, string(currentChunkNest));
 
 		// increment plusY
 		textPlusY += strHeight;
@@ -135,7 +138,7 @@ function scr_panelPane_drawChunkList(){
 	
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 5; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -153,8 +156,12 @@ function scr_panelPane_drawChunkList(){
 			colText = "Name";
 		}
 		else if (i == 3) {
-			colWidth = windowWidth - textColX;
+			colWidth = textColWidth;
 			colText = "Word";
+		}
+		else if (i == 4) {
+			colWidth = windowWidth - nestColX;
+			colText = "Nest";
 		}
 
 		
