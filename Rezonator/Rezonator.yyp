@@ -773,6 +773,8 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc016_rez_v2.02.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc012_rez_v2.02.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc005_rez_v2.02.rez","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_gu.json","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_hy.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.3.574",
