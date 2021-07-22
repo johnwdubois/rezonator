@@ -2,6 +2,9 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_refreshCliques(){
 	show_debug_message("scr_refreshCliques, START" + scr_printTime());
+	
+	obj_chain.cliqueCount = 1;
+	
 	scr_clearCliqueMap();
 	scr_cliqueDetection();
 	scr_chainOrderMap();

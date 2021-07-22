@@ -123,5 +123,4 @@ function scr_cliqueGeneration(){
 			obj_chain.cliqueCount++;
 		}
 	}
-
 }

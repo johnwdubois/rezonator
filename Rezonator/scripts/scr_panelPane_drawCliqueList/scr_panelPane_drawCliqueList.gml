@@ -9,6 +9,10 @@ function scr_panelPane_drawCliqueList(){
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var nameColX = numColX + numColWidth;
+	var nameColWidth = windowWidth * 0.3;
+	var chainCountColX = nameColX + nameColWidth;
+	var chainCountColWidth = windowWidth * 0.3;
+	var unitCountColX = chainCountColX + chainCountColWidth;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
@@ -49,7 +53,8 @@ function scr_panelPane_drawCliqueList(){
 		}
 		
 
-		
+		var currentCliqueChainList = currentCliqueSubMap[? "chainList"];
+		var currentCliqueUnitList = currentCliqueSubMap[? "unitList"];
 		var currentCliqueSelected = (functionClique_cliqueSelected == currentClique);
 		
 		// Get dimensions of rectangle around clique name
@@ -80,10 +85,13 @@ function scr_panelPane_drawCliqueList(){
 		draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 		// name column
-		draw_set_color(textColor);
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentClique));
 		
+		// chain count column
+		draw_text(floor(chainCountColX + textBuffer) - clipX, textY - clipY, string(ds_list_size(currentCliqueChainList)));
 		
+		// unit count column
+		draw_text(floor(unitCountColX + textBuffer) - clipX, textY - clipY, string(ds_list_size(currentCliqueUnitList)));
 		
 		// increment plusY
 		textPlusY += strHeight;
@@ -101,7 +109,7 @@ function scr_panelPane_drawCliqueList(){
 
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i < 2; i++) {
+	for (var i = 0; i < 4; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -111,8 +119,16 @@ function scr_panelPane_drawCliqueList(){
 			colText = "#";
 		}
 		else if (i == 1) {
-			colWidth = windowWidth - nameColX;
+			colWidth = nameColWidth;
 			colText = "Name";
+		}
+		else if (i == 2) {
+			colWidth = chainCountColWidth;
+			colText = "Chain Count";
+		}
+		else if (i == 3) {
+			colWidth = windowWidth - unitCountColX;
+			colText = "Unit Count";
 		}
 		
 		// get header coordinates

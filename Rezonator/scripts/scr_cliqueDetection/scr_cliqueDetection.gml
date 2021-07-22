@@ -50,14 +50,9 @@ function scr_cliqueDetection(){
 						}
 					}
 				}
-				
-				
-				
-				
-				
-				
+
 			}
-			scr_cliqueGeneration()
+			scr_cliqueGeneration();
 		}
 	}
 	ds_list_clear(obj_chain.encounteredUnitList);
