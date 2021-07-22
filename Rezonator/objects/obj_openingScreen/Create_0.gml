@@ -366,6 +366,8 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-it", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-ja", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-vi", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-zh", true);
+ds_map_add(global.openingScreenDropDownMap, "Armenian", true);
+ds_map_add(global.openingScreenDropDownMap, "Gujarati", true);
 
 
 
