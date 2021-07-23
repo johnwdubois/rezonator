@@ -2,8 +2,9 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_openURL(url){
 	
-	if (os_type == os_macosx) {
+	//if (os_type == os_macosx) {
 		url_open(url);
+		/*
 	}
 	else {
 		var path = game_save_id + "/shortcut.url";
@@ -16,5 +17,6 @@ function scr_openURL(url){
 		file_text_close(file);
 		execute_shell_simple(path);
 	}
+	*/
 
 }
