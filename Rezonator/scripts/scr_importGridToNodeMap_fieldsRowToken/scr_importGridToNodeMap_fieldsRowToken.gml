@@ -127,6 +127,10 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		if (currentLevel == "token") {
 			if (scr_isNumericAndExists(currentTokenTagMap, ds_type_map)) {
 				ds_map_add(currentTokenTagMap, currentField, currentCell);
+				//check if token is rtl
+				if (!global.RTLFound) {
+					global.RTLFound = scr_isStrRTL(currentCell);
+				}
 			}
 		}
 		else if (currentLevel == "unit" && newUnitMade) {

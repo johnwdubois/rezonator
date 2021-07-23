@@ -100,6 +100,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				var currentChunkNode = scr_addToNodeMap("chunk");
 				var currentChunkSubMap = global.nodeMap[? currentChunkNode];
 				ds_map_add(currentChunkSubMap, "name", "Chunk " + string(ds_list_size(global.nodeMap[? "chunkList"]) + 1));
+				ds_map_add(currentChunkSubMap, "nest", 1);
 				ds_map_add_list(currentChunkSubMap, "inChainsList", ds_list_create());
 				ds_map_add_list(currentChunkSubMap, "tokenList", ds_list_create());
 			
@@ -172,7 +173,14 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					var currentTokenTagMap = ds_map_create();
 					ds_map_add_map(currentTokenSubMap, "tagMap", currentTokenTagMap);
 					ds_map_add(currentTokenTagMap, global.displayTokenField, hyphenSplitList[| j]);
-			
+					
+					//check if token is rtl
+					if (!global.RTLFound) {
+						global.RTLFound = scr_isStrRTL(hyphenSplitList[| j]);
+					}
+					
+					
+					
 					//add to list of token tag maps for other token fields
 					ds_list_add(tokenTagMapList, currentTokenTagMap);
 			

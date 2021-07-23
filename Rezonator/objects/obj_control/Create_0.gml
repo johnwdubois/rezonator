@@ -740,3 +740,8 @@ if(global.speakerField != "" && is_string(global.speakerField) ){
 selectFieldChunk = false;
 searchField = global.displayTokenField;
 searchRange = "Doc";
+
+if(global.RTLFound){
+	drawLineState = lineState_rtl;
+	justify = justifyRight;
+}

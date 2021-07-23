@@ -56,6 +56,11 @@ function scr_importGridToNodeMap_plainText(row){
 			ds_map_add_map(currentTokenSubMap, "tagMap", currentTokenTagMap);
 			ds_map_add(currentTokenTagMap, "~text", splitList[| i]);
 			
+			//check if token is rtl
+			if (!global.RTLFound) {
+				global.RTLFound = scr_isStrRTL(splitList[| i]);
+			}
+			
 			//add each token to the total token's List
 			ds_list_add(tokenList, currentTokenNode);
 				
@@ -89,5 +94,7 @@ function scr_importGridToNodeMap_plainText(row){
 	
 	ds_list_destroy(splitList);
 	
+
+
 	importGridRow++;
 }

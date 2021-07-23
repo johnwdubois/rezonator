@@ -51,3 +51,5 @@ nodesPerSec = 0;
 alarm[0] = fps;
 
 prevFieldMap = ds_map_create();
+
+global.RTLFound =  false;
