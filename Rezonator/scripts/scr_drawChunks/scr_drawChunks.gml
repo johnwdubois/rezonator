@@ -154,7 +154,7 @@ function scr_drawChunks(){
 	}
 	
 	// unfocus chunks if user clicks anywhere else
-	if(!obj_chain.mouseOverAnyChunk){
+	if(!obj_chain.mouseOverAnyChunk && obj_panelPane.functionChainList_chunkMouseover == ""){
 		if(device_mouse_check_button_released(0, mb_left)){
 			obj_chain.currentFocusedChunkID = "";
 		}
@@ -182,23 +182,22 @@ function scr_drawChunks(){
 		}
 	}
 	
+	
+	// the moused over chunk
 	if (lowestNestChunk != "") {
 		obj_control.hoverChunkID = lowestNestChunk;
 		// draw fill for hovered chunk
 		var hoverChunkSubMap = global.nodeMap[? obj_control.hoverChunkID];
-		var hoverChunkX1 = hoverChunkSubMap[? "x1"];
-		var hoverChunkY1 = hoverChunkSubMap[? "y1"];
-		var hoverChunkX2 = hoverChunkSubMap[? "x2"];
-		var hoverChunkY2 = hoverChunkSubMap[? "y2"];
 		var hoverChunkInChainsList = hoverChunkSubMap[? "inChainsList"];
 
 		obj_control.mouseoverNeutralSpace = false;
-		draw_set_color(global.colorThemeSelected1);
-		draw_set_alpha(.5);
-		draw_rectangle(hoverChunkX1, hoverChunkY1, hoverChunkX2, hoverChunkY2, false);
 
 		// click on chunk
 		if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
+			
+			// focus chunk in panelPane
+			with (obj_panelPane) functionChainList_chunkSelected = obj_control.hoverChunkID;
+			
 			// add chunk to pre-existing chain
 			if (ds_list_size(hoverChunkInChainsList) < 1) {
 				obj_chain.currentFocusedChunkID = obj_control.hoverChunkID;
@@ -248,6 +247,25 @@ function scr_drawChunks(){
 	else {
 		obj_control.hoverChunkID = "";
 	}
+	
+	
+	
+	if (obj_control.hoverChunkID != "" || obj_panelPane.functionChainList_chunkMouseover != "") {
+		var highlightChunkID = (obj_control.hoverChunkID != "") ? obj_control.hoverChunkID : obj_panelPane.functionChainList_chunkMouseover;
+		var hoverChunkSubMap = global.nodeMap[? highlightChunkID];
+		if (scr_isNumericAndExists(hoverChunkSubMap, ds_type_map)) {
+			var highlightChunkX1 = hoverChunkSubMap[? "x1"];
+			var highlightChunkY1 = hoverChunkSubMap[? "y1"];
+			var highlightChunkX2 = hoverChunkSubMap[? "x2"];
+			var highlightChunkY2 = hoverChunkSubMap[? "y2"];
+			
+			draw_set_color(global.colorThemeSelected1);
+			draw_set_alpha(.5);
+			draw_rectangle(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);
+		}
+	}
+	
+	
 	
 	
 	ds_list_destroy(mouseoverChunkList);

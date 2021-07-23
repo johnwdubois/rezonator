@@ -18,7 +18,12 @@ function scr_panelPane_drawChunkList(){
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
 	var focusedElementY = -1;
+	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	
+	if (!mouseoverWindow) {
+		with (obj_panelPane) functionChainList_chunkMouseover = "";
+	}
 	
 	// get the instance ID for the chainContents pane so we can easily reference it
 	var chainContentsPanelPaneInst = 0;
@@ -93,6 +98,7 @@ function scr_panelPane_drawChunkList(){
 			if (device_mouse_check_button_pressed(0, mb_left)) {
 				with (obj_panelPane) functionChainList_chunkSelected = currentChunk;
 				scr_jumpToUnitDoubleClick(currentChunkUnit);
+				obj_chain.currentFocusedChunkID = currentChunk;
 			}
 		}
 		
