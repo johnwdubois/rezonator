@@ -11,11 +11,19 @@ function scr_panelPane_drawChunkList(){
 	var nameColX = unitColX + unitColWidth;
 	var nameColWidth = windowWidth * 0.25;
 	var textColX = nameColX + nameColWidth;
+	var textColWidth = windowWidth * 0.4;
+	var nestColX = textColX + textColWidth;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
+	var focusedElementY = -1;
+	var mouseoverWindow = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + windowHeight);
 	var mouseoverHeaderRegion = point_in_rectangle(mouse_x, mouse_y, x, y, x + windowWidth, y + headerHeight);
+	
+	if (!mouseoverWindow) {
+		with (obj_panelPane) functionChainList_chunkMouseover = "";
+	}
 	
 	// get the instance ID for the chainContents pane so we can easily reference it
 	var chainContentsPanelPaneInst = 0;
@@ -68,6 +76,8 @@ function scr_panelPane_drawChunkList(){
 				currentChunkUnitSeq = string(currentChunkUnitSubMap[? "unitSeq"]);
 			}
 		}
+		var currentChunkNest = currentChunkSubMap[? "nest"];
+		
 		
 		// Get dimensions of rectangle around row
 		var rowRectX1 = x;
@@ -77,12 +87,19 @@ function scr_panelPane_drawChunkList(){
 		var mouseoverRowRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, rowRectX1, rowRectY1, rowRectX2, rowRectY2) && !mouseoverScrollBar && !scrollBarHolding && !mouseoverHeaderRegion && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		var textY = floor(mean(rowRectY1, rowRectY2));
 		
+		if (functionChainList_chunkSelected == currentChunk) {
+			with (obj_panelPane) functionChainList_focusedUnit = currentChunk;
+			with (obj_panelPane) functionChainList_focusedChunkIndex = i;
+			focusedElementY = textY;
+		}
+		
 		// mouseover & click
 		if (mouseoverRowRect) {
 			with (obj_panelPane) functionChainList_chunkMouseover = currentChunk;
 			if (device_mouse_check_button_pressed(0, mb_left)) {
 				with (obj_panelPane) functionChainList_chunkSelected = currentChunk;
 				scr_jumpToUnitDoubleClick(currentChunkUnit);
+				obj_chain.currentFocusedChunkID = currentChunk;
 			}
 		}
 		
@@ -98,16 +115,16 @@ function scr_panelPane_drawChunkList(){
 		draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
 		
 		// unit column
-		draw_set_color(textColor);
 		draw_text(floor(unitColX + textBuffer) - clipX, textY - clipY, string(currentChunkUnitSeq));
 		
 		// name column
-		draw_set_color(textColor);
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentChunkName));
 		
 		// text column
-		draw_set_color(textColor);
 		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, scr_getChunkText(currentChunk));
+		
+		// nest column
+		draw_text(floor(nestColX + textBuffer) - clipX, textY - clipY, string(currentChunkNest));
 
 		// increment plusY
 		textPlusY += strHeight;
@@ -122,13 +139,13 @@ function scr_panelPane_drawChunkList(){
 		scrollPlusY = chainContentsPanelPaneInst.scrollPlusY;
 	}
 	
-	
+	scr_panelPane_chunkScroll(focusedElementY, strHeight);
 	scr_surfaceEnd();
 	
 	
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < 5; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -146,8 +163,12 @@ function scr_panelPane_drawChunkList(){
 			colText = "Name";
 		}
 		else if (i == 3) {
-			colWidth = windowWidth - textColX;
+			colWidth = textColWidth;
 			colText = "Word";
+		}
+		else if (i == 4) {
+			colWidth = windowWidth - nestColX;
+			colText = "Nest";
 		}
 
 		

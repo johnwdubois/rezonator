@@ -2,10 +2,16 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawChunks(){
 
+	var mouseoverChunkList = ds_list_create();
+	var mouseoverChunkX1 = -1;
+	var mouseoverChunkY1 = -1;
+	var mouseoverChunkX2 = -1;
+	var mouseoverChunkY2 = -1;
+
 	obj_chain.mouseOverAnyChunk = false;
-	obj_control.hoverChunkID = "";
+	
 	// loop through all the chunks currently on screen, and draw them!
-	var chunkShowListSize = ds_list_size(chunkShowList);
+	var chunkShowListSize = ds_list_size(chunkShowList);	
 	for (var i = 0; i < chunkShowListSize; i++) {
 		
 		// get submap of chunk and make sure it exists
@@ -16,6 +22,7 @@ function scr_drawChunks(){
 		// get tokenList & inChainsList of current chunk
 		var currentChunkTokenList = currentChunkSubMap[? "tokenList"];
 		var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+		var currentChunkNest = currentChunkSubMap[? "nest"];
 		if (!is_numeric(currentChunkTokenList) || !is_numeric(currentChunkInChainsList)) continue;
 		if (!ds_exists(currentChunkTokenList, ds_type_list) || !ds_exists(currentChunkInChainsList, ds_type_list)) continue;
 		
@@ -79,13 +86,22 @@ function scr_drawChunks(){
 			chunkRectY1 = pixelY - strHeight;
 			chunkRectY2 = pixelY + strHeight;
 		}
+		var nestBuffer = 5 * currentChunkNest;
 
+		chunkRectX1 = chunkRectX1 - nestBuffer;
+		chunkRectX2 = chunkRectX2 + nestBuffer;
+		chunkRectY1 = chunkRectY1 - nestBuffer;
+		chunkRectY2 = chunkRectY2 + nestBuffer;
+		currentChunkSubMap[? "x1"] = chunkRectX1;
+		currentChunkSubMap[? "y1"] = chunkRectY1;
+		currentChunkSubMap[? "x2"] = chunkRectX2;
+		currentChunkSubMap[? "y2"] = chunkRectY2;
 		
 		
 		// draw BG rect
 		draw_set_color(global.colorThemeBG);
 		draw_set_alpha(1);
-		draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
+		//draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
 		
 		// check whether this chunk is in a focused chain
 		var chunkInFocusedChain = false;
@@ -94,63 +110,14 @@ function scr_drawChunks(){
 				if (obj_chain.currentFocusedChainID == currentChunkInChainsList[| j]) chunkInFocusedChain = true;
 			}
 		}
-		
+
 		// draw selection box		
 		var mouseOverChunk = (point_in_rectangle(mouse_x,mouse_y,chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2) && obj_control.hoverTokenID == "" && not obj_control.mouseoverPanelPane && not obj_toolPane.mouseOverToolPane) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !instance_exists(obj_flyout);
 		if (mouseOverChunk) {
-			obj_control.hoverChunkID = currentChunkID;
-			obj_control.mouseoverNeutralSpace = false;
-			draw_set_color(global.colorThemeSelected1);
-			draw_set_alpha(.5);
-			draw_rectangle(chunkRectX1, chunkRectY1, chunkRectX2, chunkRectY2, false);
-			// click on chunk
-			if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
-				// add chunk to pre-existing chain
-				if (ds_list_size(currentChunkInChainsList) < 1) {
-					obj_chain.currentFocusedChunkID = currentChunkID;
-					if (obj_chain.currentFocusedChainID != "") {						
-						var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
-						if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
-							scr_newLink(currentChunkID);
-							global.delayInput = 5;
-						}
-					}
-					else{
-						scr_newChain(currentChunkID);
-						scr_newLink(currentChunkID);
-						global.delayInput = 5;
-					}
-					// if there is a focused chain, unfocus the chunk
-					if (obj_chain.currentFocusedChainID != "") {
-						obj_chain.currentFocusedChunkID = "";
-					}
-					
-				}
-				else {
-					// if this chunk is in at least 1 chain, we will focus the first chain its inChainsList
-					obj_chain.currentFocusedChunkID = "";
-					var chainToRefocus = currentChunkInChainsList[| 0];
-					if (is_string(chainToRefocus) && ds_map_exists(global.nodeMap, chainToRefocus)) {
-						obj_chain.currentFocusedChainID = chainToRefocus;
-						scr_refocusChainEntry(currentChunkID);
-					}
-				}
-			}
-			
-			// Check for rightMouseClick
-			if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
-				
-				obj_control.rightClickID = currentChunkID;
-	
-				// wait 1 frame and then show the right click dropdown
-				with (obj_alarm) {
-					alarm[11] = 2;
-				}
-
-			}
-			
-			obj_chain.mouseOverAnyChunk = true;
+			ds_list_add(mouseoverChunkList, currentChunkID);
 		}
+		
+
 		
 		var colorOfRect = global.colorThemeSelected2;	
 		var typeOfChain = "rezChain";
@@ -187,12 +154,121 @@ function scr_drawChunks(){
 	}
 	
 	// unfocus chunks if user clicks anywhere else
-	if(!obj_chain.mouseOverAnyChunk){
+	if(!obj_chain.mouseOverAnyChunk && obj_panelPane.functionChainList_chunkMouseover == ""){
 		if(device_mouse_check_button_released(0, mb_left)){
 			obj_chain.currentFocusedChunkID = "";
 		}
 	}
 
-		draw_set_alpha(1);
-		
+	draw_set_alpha(1);
+	
+	
+	
+	
+	
+	
+	
+	// determine which chunk should be moused over
+	var lowestNestChunk = "";
+	var lowestNest = 999999999999;
+	var mouseoverChunkListSize = ds_list_size(mouseoverChunkList);
+	for (var i = 0; i < mouseoverChunkListSize; i++) {
+		var currentChunk = mouseoverChunkList[| i];
+		var currentChunkSubMap = global.nodeMap[? currentChunk];
+		var currentChunkNest = currentChunkSubMap[? "nest"];
+		if (currentChunkNest < lowestNest) {
+			lowestNest = currentChunkNest;
+			lowestNestChunk = currentChunk;
+		}
+	}
+	
+	
+	// the moused over chunk
+	if (lowestNestChunk != "") {
+		obj_control.hoverChunkID = lowestNestChunk;
+		// draw fill for hovered chunk
+		var hoverChunkSubMap = global.nodeMap[? obj_control.hoverChunkID];
+		var hoverChunkInChainsList = hoverChunkSubMap[? "inChainsList"];
+
+		obj_control.mouseoverNeutralSpace = false;
+
+		// click on chunk
+		if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
+			
+			// focus chunk in panelPane
+			with (obj_panelPane) functionChainList_chunkSelected = obj_control.hoverChunkID;
+			
+			// add chunk to pre-existing chain
+			if (ds_list_size(hoverChunkInChainsList) < 1) {
+				obj_chain.currentFocusedChunkID = obj_control.hoverChunkID;
+				if (obj_chain.currentFocusedChainID != "") {						
+					var chainSubMap = global.nodeMap[? obj_chain.currentFocusedChainID];
+					if (scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+						scr_newLink(obj_control.hoverChunkID);
+						global.delayInput = 5;
+					}
+				}
+				else{
+					scr_newChain(obj_control.hoverChunkID);
+					scr_newLink(obj_control.hoverChunkID);
+					global.delayInput = 5;
+				}
+				// if there is a focused chain, unfocus the chunk
+				if (obj_chain.currentFocusedChainID != "") {
+					obj_chain.currentFocusedChunkID = "";
+				}
+					
+			}
+			else {
+				// if this chunk is in at least 1 chain, we will focus the first chain its inChainsList
+				obj_chain.currentFocusedChunkID = "";
+				var chainToRefocus = hoverChunkInChainsList[| 0];
+				if (is_string(chainToRefocus) && ds_map_exists(global.nodeMap, chainToRefocus)) {
+					obj_chain.currentFocusedChainID = chainToRefocus;
+					scr_refocusChainEntry(obj_control.hoverChunkID);
+				}
+			}
+		}
+			
+		// Check for rightMouseClick
+		if (device_mouse_check_button_released(0, mb_right) and !instance_exists(obj_dialogueBox)) {
+				
+			obj_control.rightClickID = obj_control.hoverChunkID;
+	
+			// wait 1 frame and then show the right click dropdown
+			with (obj_alarm) {
+				alarm[11] = 2;
+			}
+
+		}
+			
+		obj_chain.mouseOverAnyChunk = true;
+	}
+	else {
+		obj_control.hoverChunkID = "";
+	}
+	
+	
+	// highlight chunk: either highlight the chunk being moused over in the main screen, or highlight the chunk being moused over in the chunk pane
+	if (obj_control.hoverChunkID != "" || obj_panelPane.functionChainList_chunkMouseover != "") {
+		var highlightChunkID = (obj_control.hoverChunkID != "") ? obj_control.hoverChunkID : obj_panelPane.functionChainList_chunkMouseover;
+		var hoverChunkSubMap = global.nodeMap[? highlightChunkID];
+		if (scr_isNumericAndExists(hoverChunkSubMap, ds_type_map)) {
+			var highlightChunkX1 = hoverChunkSubMap[? "x1"];
+			var highlightChunkY1 = hoverChunkSubMap[? "y1"];
+			var highlightChunkX2 = hoverChunkSubMap[? "x2"];
+			var highlightChunkY2 = hoverChunkSubMap[? "y2"];
+			
+			draw_set_color(global.colorThemeSelected1);
+			draw_set_alpha(.5);
+			if (is_numeric(highlightChunkX1) && is_numeric(highlightChunkY1) && is_numeric(highlightChunkX2) && is_numeric(highlightChunkY2)) {
+				draw_rectangle(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);
+			}
+		}
+	}
+	
+	
+	
+	
+	ds_list_destroy(mouseoverChunkList);
 }

@@ -200,7 +200,7 @@ if(mouseOverLang){
 	}
 	if(mouse_check_button_released(mb_left)){
 		var dropDownOptionList = ds_list_create();
-		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh");
+		ds_list_add(dropDownOptionList, "menu_language-en", "menu_language-it", "menu_language-es", "menu_language-he", "menu_language-vi", "menu_language-ja", "menu_language-zh","Gujarati","Armenian");
 						
 		if (ds_list_size(dropDownOptionList) > 0) {
 			if(global.lang_codes[| global.lang_index] == "he"){

@@ -43,11 +43,11 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	ds_map_add(unitSubMap, "doc", global.discourseNode);
 	if (!ds_map_exists(unitSubMap, "unitStart")) ds_map_add(unitSubMap, "unitStart", "");
 	if (!ds_map_exists(unitSubMap, "unitEnd")) ds_map_add(unitSubMap, "unitEnd", "");
+	
+	var unitFieldMap = global.nodeMap[?"unitTagMap"];
+	var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
 
 	if(row == 0){
-		
-		var unitFieldMap = global.nodeMap[?"unitTagMap"];
-		var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
 
 		//add all fields to appropriate field lists
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
@@ -100,6 +100,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				var currentChunkNode = scr_addToNodeMap("chunk");
 				var currentChunkSubMap = global.nodeMap[? currentChunkNode];
 				ds_map_add(currentChunkSubMap, "name", "Chunk " + string(ds_list_size(global.nodeMap[? "chunkList"]) + 1));
+				ds_map_add(currentChunkSubMap, "nest", 1);
 				ds_map_add_list(currentChunkSubMap, "inChainsList", ds_list_create());
 				ds_map_add_list(currentChunkSubMap, "tokenList", ds_list_create());
 			
@@ -107,6 +108,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				var currentChunkTagMap = ds_map_create();
 				ds_map_add_map(currentChunkSubMap, "tagMap", currentChunkTagMap);
 				ds_map_add(currentChunkTagMap, global.wordDelimField, wordSplitList[| i]);
+				scr_addAutoTag(global.wordDelimField, wordSplitList[| i], tokenFieldMap);
 			
 				//add this chunk's submap to our list of chunk maps
 				ds_list_add(chunkSubMapList, currentChunkSubMap);
@@ -172,7 +174,16 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					var currentTokenTagMap = ds_map_create();
 					ds_map_add_map(currentTokenSubMap, "tagMap", currentTokenTagMap);
 					ds_map_add(currentTokenTagMap, global.displayTokenField, hyphenSplitList[| j]);
-			
+					
+					//check if token is rtl
+					if (!global.RTLFound) {
+						global.RTLFound = scr_isStrRTL(hyphenSplitList[| j]);
+					}
+					
+					scr_addAutoTag(global.displayTokenField, hyphenSplitList[| j], tokenFieldMap);
+					
+					
+					
 					//add to list of token tag maps for other token fields
 					ds_list_add(tokenTagMapList, currentTokenTagMap);
 			
@@ -251,6 +262,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 							var currentTokenTagMap = tokenTagMapList[| tokenCount];
 							if (scr_isNumericAndExists(currentTokenTagMap, ds_type_map)) {
 								ds_map_add(currentTokenTagMap, currentField, hyphenSplitList[| k]);
+								scr_addAutoTag(currentField, hyphenSplitList[| k], tokenFieldMap);
 							}
 							
 							tokenCount++;
@@ -262,6 +274,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 		else if(currentLevel == "unit"){
 			if(currentField == "~blockID" || currentField == global.speakerField){continue;}
 			ds_map_add(unitTagMap, currentField, unitStr);
+			scr_addAutoTag(currentField, unitStr, unitFieldMap);
 		}
 		else if(currentLevel == "word"){
 			
@@ -275,6 +288,7 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 					currentChunkTagMap = currentChunkSubMap[? "tagMap"];
 					if (scr_isNumericAndExists(currentChunkTagMap, ds_type_map)) {
 						ds_map_add(currentChunkTagMap, currentField, splitList[| j]);
+						scr_addAutoTag(currentField, splitList[| j], tokenFieldMap);
 					}
 				}
 			}

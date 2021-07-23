@@ -36,17 +36,22 @@ function scr_panelPane_drawUnits1toMany() {
 	}
 	
 	var unitSubMap = global.nodeMap[? functionChainList_focusedUnit];
-
-
+	
 
 	// check if focused unit exists
 	if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
 		
-
+		var unitType = unitSubMap[? "type"];
 	
-		// get entryList for this unit
+		// get entryList for this unit (or if it's a chunk, just get its tokenList)
 		with (obj_panelPane) {
-			functionChainContents_IDList = unitSubMap[? "entryList"];
+			if (unitType == "unit") functionChainContents_IDList = unitSubMap[? "entryList"];
+			else if (unitType == "chunk") functionChainContents_IDList = unitSubMap[? "tokenList"];
+		}
+		if ((unitType == "unit" && obj_panelPane.functionChainList_currentTab == functionChainList_tabChunk)
+		|| (unitType == "chunk" && obj_panelPane.functionChainList_currentTab == functionChainList_tabLine)) {
+			scr_surfaceEnd();
+			exit;
 		}
 		
 		
@@ -59,13 +64,14 @@ function scr_panelPane_drawUnits1toMany() {
 			var IDListSize = ds_list_size(functionChainContents_IDList);
 			for (var i = 0; i < IDListSize; i++) {
 				
-				// get current entry
+				// get current entry (if this is an entry)
 				var currentEntry = functionChainContents_IDList[| i];
 				var currentEntrySubMap = global.nodeMap[? currentEntry];
+				var currentEntryType = currentEntrySubMap[? "type"];
 				drawDropDowns = false;
 				
 				// get currentTokenID
-				var currentTokenID = currentEntrySubMap[? "token"];	
+				var currentTokenID = (currentEntryType == "token") ? currentEntry : currentEntrySubMap[? "token"];	
 
 
 		

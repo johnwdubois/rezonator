@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createChunk(){
 	
-	show_debug_message("scr_createChunk()");
+	show_debug_message("\n\n\n....scr_createChunk()");
 	
 	var chunkID = "";
 	
@@ -10,9 +10,20 @@ function scr_createChunk(){
 	var inRectTokenIDListSize = ds_list_size(inRectTokenIDList);
 	var inRectUnitIDListSize = ds_list_size(inRectUnitIDList);
 	
-	// only allow single-token chunks if this is an IGT file with a word delimiter
-	if (inRectTokenIDListSize <= 1) {
-		//if(!instance_exists(obj_loadingControl)) exit;
+	for(var i = 0; i < inRectTokenIDListSize; i++){
+		var tokenToCheck = inRectTokenIDList[|i];
+		var tokenSubMap = global.nodeMap[? tokenToCheck];
+		var tokenInChunkList = tokenSubMap[? "inChunkList"];
+		var tokenInChunkListSize = ds_list_size(tokenInChunkList);
+		for(var j =0; j < tokenInChunkListSize; j++){
+			var chunkToCheck = tokenInChunkList[|j];
+			var chunkSubMap = global.nodeMap[?chunkToCheck];
+			var tokenList = chunkSubMap[? "tokenList"];
+			if(scr_compareLists(tokenList, inRectTokenIDList)){
+				show_debug_message("CHUNK ALREADY EXISTS")
+				exit;
+			}
+		}
 	}
 	
 	
@@ -31,6 +42,20 @@ function scr_createChunk(){
 		var chunkSubMap = global.nodeMap[? chunkID];
 		ds_map_add_list(chunkSubMap, "tokenList", tokenIDList);
 		ds_map_add_list(chunkSubMap, "inChainsList", inChainsList);
+		
+		var firstToken = tokenIDList[| 0];
+		var firstTokenSubMap = global.nodeMap[? firstToken];
+		var lastToken = tokenIDList[| ds_list_size(tokenIDList)-1];
+		var lastTokenSubMap = global.nodeMap[? lastToken];
+		
+		var startDocOrder = firstTokenSubMap[? "discourseTokenSeq"];
+		var endDocOrder = lastTokenSubMap[? "discourseTokenSeq"];
+		
+		var highestNest = 0;
+		var lowestEncapsulatingNest = 999999999999999;
+		var lowestEncapsulatingChunk = "";
+		var highestEncapsulatedNest = 0;
+		var highestEncapsulatedChunk = "";
 			
 		//set to focused chunk
 		obj_chain.currentFocusedChunkID = chunkID;
@@ -43,12 +68,88 @@ function scr_createChunk(){
 			if (scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) {
 				var currentTokenInChunkList = currentTokenSubMap[? "inChunkList"];
 				if (scr_isNumericAndExists(currentTokenInChunkList, ds_type_list)) {
-					if (ds_list_find_index(currentTokenInChunkList, chunkID) == -1) {
-						ds_list_add(currentTokenInChunkList, chunkID);
-					}
+					
+					scr_addToListOnce(currentTokenInChunkList, chunkID);
+					
+					var chunkListSize =  ds_list_size(currentTokenInChunkList);
+					//find highestNestedlevel for all chunks
+					for(var j  = 0 ; j < chunkListSize; j++){
+						var currentChunk = currentTokenInChunkList[|j]
+						//skip over newest created chunk while calculating nesting
+						if(currentChunk == chunkID){continue;}
+						var currentChunkSubMap = global.nodeMap[? currentChunk];
+						var currentChunkNest = currentChunkSubMap[? "nest"];
+						
+						var currentChunkTokenList = currentChunkSubMap[? "tokenList"];
+						
+						var currentChunkFirstToken = currentChunkTokenList[| 0];
+						var currentChunkFirstTokenSubMap = global.nodeMap[? currentChunkFirstToken];
+						var currentChunkLastToken = currentChunkTokenList[| ds_list_size(currentChunkTokenList)-1];
+						var currentChunkLastTokenSubMap = global.nodeMap[? currentChunkLastToken];
+							
+						
+						//get token seq of current chunk for comaparison
+						var currentChunkStartDocOrder = currentChunkFirstTokenSubMap[? "discourseTokenSeq"];
+						var currentChunkEndDocOrder = currentChunkLastTokenSubMap[? "discourseTokenSeq"];
+						
+						//the chunk is encapsulating the new chunk
+						if(currentChunkStartDocOrder <= startDocOrder && currentChunkEndDocOrder >= endDocOrder){
+							if(currentChunkNest < lowestEncapsulatingNest) {
+								lowestEncapsulatingChunk = currentChunk;
+								lowestEncapsulatingNest = currentChunkNest;
+							}
+						}
+						
+						
+						////the new chunk is contains any part of the currentChunk
+						else if(startDocOrder <= currentChunkStartDocOrder  && endDocOrder >= currentChunkEndDocOrder){
+							if(currentChunkNest > highestEncapsulatedNest) {
+								highestEncapsulatedChunk = currentChunk;
+								highestEncapsulatedNest = currentChunkNest;
+							}
+						}
+						
+						//check the semi encapsulated tokens
+						else if ((currentChunkStartDocOrder >= startDocOrder && currentChunkStartDocOrder <= endDocOrder) xor (currentChunkEndDocOrder >= startDocOrder && currentChunkEndDocOrder <= endDocOrder)) {
+							if(currentChunkNest > highestEncapsulatedNest) {
+								highestEncapsulatedChunk = currentChunk;
+								highestEncapsulatedNest = currentChunkNest;
+								show_debug_message("SEMI ENCAPSULATED");
+							}
+						}
+
+
+
+						highestNest = max(highestNest,currentChunkNest);	
+					}	
 				}
 			}
 		}
+		
+		if(lowestEncapsulatingChunk == ""){
+			// give the chunk it's nested level
+			chunkSubMap[? "nest"] = highestNest + 1;
+			show_debug_message("no lowestEncapsulatingChunk");
+			
+		}
+		else{
+			
+			show_debug_message("highestEncapsulatedNest: " + string(highestEncapsulatedNest));
+			show_debug_message("lowestEncapsulatingNest: " + string(lowestEncapsulatingNest));
+
+			chunkSubMap[? "nest"] = highestEncapsulatedNest + 1;
+			
+			ds_list_clear(obj_chain.encounteredChunkList);
+			if(highestEncapsulatedNest + 1 >= lowestEncapsulatingNest ){
+
+				ds_list_add(obj_chain.encounteredChunkList,chunkID);
+				scr_expandChunk(lowestEncapsulatingChunk);
+			}
+		}
+		
+		
+
+		
 		
 		// add the new chunk to the chunkList
 		var chunkList = global.nodeMap[? "chunkList"];
@@ -99,6 +200,13 @@ function scr_createChunk(){
 	// if there is a focused chain, unfocus the chunk
 	if (obj_chain.currentFocusedChainID != "") {
 		obj_chain.currentFocusedChunkID = "";
+	}
+	
+	with (obj_panelPane) {
+		functionChainList_chunkSelected = chunkID;
+		if (currentFunction == functionChainList) {
+			scrollPlusYDest = -9999999999999;
+		}
 	}
 
 	global.delayInput = 5;

@@ -45,7 +45,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 8), "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
 	draw_text(devVarX, wordTopMargin + (strHeight * 9), "panelPane focusedUnit: " + string(obj_panelPane.functionChainList_focusedUnit));
 	draw_text(devVarX, wordTopMargin + (strHeight * 10), "panelPane focusedUnitIndex: " + string(obj_panelPane.functionChainList_focusedUnitIndex));
-	draw_text(devVarX, wordTopMargin + (strHeight * 11), "window width: " + string(window_get_width()));
+	draw_text(devVarX, wordTopMargin + (strHeight * 11), "currentFocusedChunkID: " + string(obj_chain.currentFocusedChunkID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
 	draw_text(devVarX, wordTopMargin + (strHeight * 13), "currentFocusedChainID: " + string(obj_chain.currentFocusedChainID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 14), "focusedChain's setIDList: " + ((ds_exists(focusedChainSetIDList, ds_type_list)) ? scr_getStringOfList(focusedChainSetIDList) : ""));

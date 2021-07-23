@@ -5,6 +5,13 @@ function scr_refreshCliques(){
 	
 	obj_chain.cliqueCount = 1;
 	
+	// if cliqueMap doesn't exist, try to find it in the nodeMap
+	// if it still doesn't exist, just exit
+	if (!scr_isNumericAndExists(global.cliqueMap, ds_type_map)) {
+		global.cliqueMap = global.nodeMap[? "cliqueMap"];
+		if (!scr_isNumericAndExists(global.cliqueMap, ds_type_map)) exit;
+	}
+	
 	scr_clearCliqueMap();
 	scr_cliqueDetection();
 	scr_chainOrderMap();

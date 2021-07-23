@@ -70,8 +70,11 @@ function scr_drawChains() {
 			var currentEntry2 = currentSetIDList[| j + 1];
 			var currentEntry2SubMap = global.nodeMap[? currentEntry2];
 			
-			var currentTokenID1 = currentEntry1SubMap[? "token"];;
-			var currentTokenID2 = currentEntry2SubMap[? "token"];;
+			if (!scr_isNumericAndExists(currentEntry1SubMap, ds_type_map)) continue;
+			if (!scr_isNumericAndExists(currentEntry2SubMap, ds_type_map)) continue;
+			
+			var currentTokenID1 = currentEntry1SubMap[? "token"];
+			var currentTokenID2 = currentEntry2SubMap[? "token"];
 			
 			// if this token is a chunk, we will just draw the line coming out of the chunk's first token
 			if (scr_isChunk(currentTokenID1)) currentTokenID1 =scr_getFirstWordOfChunk(currentTokenID1);

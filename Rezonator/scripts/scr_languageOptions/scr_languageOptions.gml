@@ -47,6 +47,21 @@ function scr_languageOptions(optionSelected){
 			global.lang_index = indexOfLanguage;
 		
 		break;
+		case "Gujarati" :
+		
+			var indexOfLanguage = ds_list_find_index(global.lang_codes, "gu")
+			show_debug_message(string(indexOfLanguage))
+			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
+			global.lang_index = indexOfLanguage;
+		
+		break;	
+		case "Armenian" :
+		
+			var indexOfLanguage = ds_list_find_index(global.lang_codes, "hy")
+			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
+			global.lang_index = indexOfLanguage;
+		
+		break;	
 		case "menu_language-zh" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "zh")
