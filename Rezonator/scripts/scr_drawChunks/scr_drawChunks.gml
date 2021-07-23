@@ -249,7 +249,7 @@ function scr_drawChunks(){
 	}
 	
 	
-	
+	// highlight chunk: either highlight the chunk being moused over in the main screen, or highlight the chunk being moused over in the chunk pane
 	if (obj_control.hoverChunkID != "" || obj_panelPane.functionChainList_chunkMouseover != "") {
 		var highlightChunkID = (obj_control.hoverChunkID != "") ? obj_control.hoverChunkID : obj_panelPane.functionChainList_chunkMouseover;
 		var hoverChunkSubMap = global.nodeMap[? highlightChunkID];
@@ -261,7 +261,9 @@ function scr_drawChunks(){
 			
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(.5);
-			draw_rectangle(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);
+			if (is_numeric(highlightChunkX1) && is_numeric(highlightChunkY1) && is_numeric(highlightChunkX2) && is_numeric(highlightChunkY2)) {
+				draw_rectangle(highlightChunkX1, highlightChunkY1, highlightChunkX2, highlightChunkY2, false);
+			}
 		}
 	}
 	

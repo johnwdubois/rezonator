@@ -48,6 +48,11 @@ function scr_panelPane_drawUnits1toMany() {
 			if (unitType == "unit") functionChainContents_IDList = unitSubMap[? "entryList"];
 			else if (unitType == "chunk") functionChainContents_IDList = unitSubMap[? "tokenList"];
 		}
+		if ((unitType == "unit" && obj_panelPane.functionChainList_currentTab == functionChainList_tabChunk)
+		|| (unitType == "chunk" && obj_panelPane.functionChainList_currentTab == functionChainList_tabLine)) {
+			scr_surfaceEnd();
+			exit;
+		}
 		
 		
 		if (scr_isNumericAndExists(functionChainContents_IDList, ds_type_list)) {

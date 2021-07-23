@@ -201,6 +201,13 @@ function scr_createChunk(){
 	if (obj_chain.currentFocusedChainID != "") {
 		obj_chain.currentFocusedChunkID = "";
 	}
+	
+	with (obj_panelPane) {
+		functionChainList_chunkSelected = chunkID;
+		if (currentFunction == functionChainList) {
+			scrollPlusYDest = -9999999999999;
+		}
+	}
 
 	global.delayInput = 5;
 }

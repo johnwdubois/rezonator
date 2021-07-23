@@ -89,6 +89,7 @@ function scr_panelPane_drawChunkList(){
 		
 		if (functionChainList_chunkSelected == currentChunk) {
 			with (obj_panelPane) functionChainList_focusedUnit = currentChunk;
+			with (obj_panelPane) functionChainList_focusedChunkIndex = i;
 			focusedElementY = textY;
 		}
 		
