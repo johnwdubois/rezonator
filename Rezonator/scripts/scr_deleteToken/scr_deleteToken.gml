@@ -46,8 +46,40 @@ function scr_deleteToken(tokenID){
 	
 	// remove this token from all chains that it is in
 	var inChainsList = tokenSubMap[?"inChainsList"];
-	while (ds_list_size(inChainsList) > 0) {
-		scr_deleteFromChain(true);
+	if (scr_isNumericAndExists(inChainsList, ds_type_list)) {
+		while (ds_list_size(inChainsList) > 0) {
+			scr_deleteFromChain(true);
+		}
+	}
+	
+	// remove this token from all chunks it is in
+	var inChunkList = tokenSubMap[? "inChunkList"];
+	if (scr_isNumericAndExists(inChunkList, ds_type_list)) {
+		while (ds_list_size(inChunkList) > 0) {
+			var currentChunk = inChunkList[| 0];
+			var currentChunkSubMap = global.nodeMap[? currentChunk];
+			if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map)) {
+				var currentChunkTokenList = currentChunkSubMap[? "tokenList"];
+				if (scr_isNumericAndExists(currentChunkTokenList, ds_type_list)) {
+					var realignChunk = (currentChunkTokenList[| 0] == tokenID);
+					scr_deleteFromList(currentChunkTokenList, tokenID);
+					if (ds_list_size(currentChunkTokenList) <= 0) {
+						scr_deleteChunk(currentChunk);
+					}
+					else if (realignChunk) {
+						// if we are deleting a token that was the first token in a chunk, we need to see if that chunk was in any chains and if so realign them
+						var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
+						if (scr_isNumericAndExists(currentChunkInChainsList, ds_type_list)) {
+							var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
+							for (var i = 0; i < currentChunkInChainsListSize; i++) {
+								scr_alignChain2ElectricBoogaloo(currentChunkInChainsList[| i]);
+							}
+						}
+					}
+				}
+			}
+			scr_deleteFromList(inChunkList, currentChunk);
+		}
 	}
 	
 	
@@ -63,7 +95,6 @@ function scr_deleteToken(tokenID){
 	// collect & destroy all of this token's sub-data structures
 	var tagMap = tokenSubMap[? "tagMap"];
 	var inChainsList = tokenSubMap[? "inChainsList"];
-	var inChunkList = tokenSubMap[? "inChunkList"];
 	if (scr_isNumericAndExists(tagMap, ds_type_map)) ds_map_destroy(tagMap);
 	if (scr_isNumericAndExists(inChainsList, ds_type_list)) ds_list_destroy(inChainsList);
 	if (scr_isNumericAndExists(inChunkList, ds_type_list)) ds_list_destroy(inChunkList);

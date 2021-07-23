@@ -14,8 +14,8 @@ function scr_handleVoid(setList) {
 		var currentEntry = setList[| j];
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
 		if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
-		var currentStretch = currentEntrySubMap[? "stretch"];
-		if (currentStretch) continue;
+		//var currentStretch = currentEntrySubMap[? "stretch"];
+		//if (currentStretch) continue;
 		var currentTokenID = currentEntrySubMap[? "token"];
 		if (scr_isChunk(currentTokenID)) currentTokenID = scr_getFirstWordOfChunk(currentTokenID);
 		var currentTokenSubMap = global.nodeMap[? currentTokenID];

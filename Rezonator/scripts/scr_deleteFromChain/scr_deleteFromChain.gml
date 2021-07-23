@@ -57,8 +57,11 @@ function scr_deleteFromChain(sortVizSetList) {
 			// remove the focusedEntry from this word's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				var focusedEntryToken = focusedEntrySubMap[? "token"];
-				
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+				
+				if(focusedEntryType == "rez"){
+					scr_refreshCliques();
+				}
 			}
 			else if (focusedEntryType == "stack"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
@@ -108,6 +111,9 @@ function scr_deleteFromChain(sortVizSetList) {
 			// remove the focusedEntry from this token's inChainsList (if it is a rez or track)
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+				if(focusedEntryType == "rez" ){
+					scr_refreshCliques();
+				}
 			}
 			else if (focusedEntryType == "stack"){
 				var focusedEntryUnit = focusedEntrySubMap[? "unit"];
@@ -199,6 +205,9 @@ function scr_deleteFromChain(sortVizSetList) {
 	// removed chain from focusedEntry's word's inChainsList (if it is a rez or track)
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
+		if(focusedEntryType == "rez" ){
+			scr_refreshCliques();
+		}
 	}
 	else if (focusedEntryType == "stack"){
 		var focusedEntryUnit = ds_map_find_value(focusedEntrySubMap, "unit");

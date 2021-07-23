@@ -1,14 +1,15 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawChunkList(){
-	
 
 	var drawScrollbar = chainViewOneToMany;
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
-	var nameColX = numColX + numColWidth;
-	var nameColWidth = windowWidth * 0.3;
+	var unitColX = numColX + numColWidth;
+	var unitColWidth = windowWidth * 0.15;
+	var nameColX = unitColX + unitColWidth;
+	var nameColWidth = windowWidth * 0.25;
 	var textColX = nameColX + nameColWidth;
 	
 	var textBuffer = 8;
@@ -56,6 +57,17 @@ function scr_panelPane_drawChunkList(){
 		
 		// get chunk variables
 		var currentChunkName = currentChunkSubMap[? "name"];
+		var currentChunkFirstToken = scr_getFirstWordOfChunk(currentChunk);
+		var currentChunkFirstTokenSubMap = global.nodeMap[? currentChunkFirstToken];
+		var currentChunkUnit = "";
+		var currentChunkUnitSeq = "";
+		if (scr_isNumericAndExists(currentChunkFirstTokenSubMap, ds_type_map)) {
+			currentChunkUnit = currentChunkFirstTokenSubMap[? "unit"];
+			var currentChunkUnitSubMap = global.nodeMap[? currentChunkUnit];
+			if (scr_isNumericAndExists(currentChunkUnitSubMap, ds_type_map)) {
+				currentChunkUnitSeq = string(currentChunkUnitSubMap[? "unitSeq"]);
+			}
+		}
 		
 		// Get dimensions of rectangle around row
 		var rowRectX1 = x;
@@ -70,6 +82,7 @@ function scr_panelPane_drawChunkList(){
 			with (obj_panelPane) functionChainList_chunkMouseover = currentChunk;
 			if (device_mouse_check_button_pressed(0, mb_left)) {
 				with (obj_panelPane) functionChainList_chunkSelected = currentChunk;
+				scr_jumpToUnitDoubleClick(currentChunkUnit);
 			}
 		}
 		
@@ -83,6 +96,10 @@ function scr_panelPane_drawChunkList(){
 		// # column
 		draw_set_color(textColor);
 		draw_text(floor(numColX + textBuffer) - clipX, textY - clipY, string(i + 1));
+		
+		// unit column
+		draw_set_color(textColor);
+		draw_text(floor(unitColX + textBuffer) - clipX, textY - clipY, string(currentChunkUnitSeq));
 		
 		// name column
 		draw_set_color(textColor);
@@ -111,7 +128,7 @@ function scr_panelPane_drawChunkList(){
 	
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i < 3; i++) {
+	for (var i = 0; i < 4; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -121,10 +138,14 @@ function scr_panelPane_drawChunkList(){
 			colText = "#";
 		}
 		else if (i == 1) {
+			colWidth = unitColWidth;
+			colText = "Unit";
+		}
+		else if (i == 2) {
 			colWidth = nameColWidth;
 			colText = "Name";
 		}
-		else if (i == 2) {
+		else if (i == 3) {
 			colWidth = windowWidth - textColX;
 			colText = "Word";
 		}

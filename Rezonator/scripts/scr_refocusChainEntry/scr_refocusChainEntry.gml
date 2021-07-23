@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_refocusChainEntry(ID){
 	
-	
+	show_debug_message("scr_refocusChainEntry, ID: " + string(ID));
 	
 		
 	var unitID = "";
@@ -27,7 +27,12 @@ function scr_refocusChainEntry(ID){
 		chunkID = ID;
 		tokenID = scr_getFirstWordOfChunk(ID);
 		var tokenSubMap = global.nodeMap[?tokenID];
-		unitID = tokenSubMap[?"unit"];
+		if (scr_isNumericAndExists(tokenSubMap, ds_type_map)) {
+			unitID = tokenSubMap[?"unit"];
+		}
+		else {
+			unitID = "";
+		}
 		
 	}
 	

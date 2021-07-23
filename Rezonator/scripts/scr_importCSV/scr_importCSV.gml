@@ -8,7 +8,7 @@ function scr_importCSV(filename) {
 	
 	global.importFilename = filename;
 
-
+	var blankCount = 0;
 	//copy headers into list
 	var importCSVGridWidth = ds_grid_width(global.importCSVGrid);
 	for (var i = 0; i < importCSVGridWidth; i++) {
@@ -28,6 +28,12 @@ function scr_importCSV(filename) {
 		if (strLen > 0) {
 			ds_list_add(global.importGridColNameList, colHeader);
 			ds_map_add(global.importGridColMap, colHeader, i);
+		}
+		else{
+			colHeader = "Col " + string(blankCount)
+			ds_list_add(global.importGridColNameList, colHeader);
+			ds_map_add(global.importGridColMap, colHeader, i);
+			blankCount++;
 		}
 	}
 

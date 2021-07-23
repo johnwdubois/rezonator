@@ -105,6 +105,16 @@ cliqueGridRowToCheckBreak = -1;
 cliqueGridRowToRefreshFlanks = -1;
 
 
+cliqueCount = 0;
+encounteredUnitList = ds_list_create();
+encounteredTokenList = ds_list_create();
+encounteredChainList = ds_list_create();
+traversedUnitList = ds_list_create();
+cliqueList =  ds_list_create();
+currentClique = "";
+cycleDetected = false;
+
+
 rezChainGridRowToRefreshTilt = -1;
 
 

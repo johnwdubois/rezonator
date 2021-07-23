@@ -45,7 +45,7 @@ scr_drawRectWidth(mapViewerButtonRectX1, mapViewerButtonRectY1, mapViewerButtonR
 if(!mapViewActive) draw_sprite_ext(spr_checkmark, 0, mean(mapViewerButtonRectX1, mapViewerButtonRectX2), mean(mapViewerButtonRectY1, mapViewerButtonRectY2), checkBoxScale , checkBoxScale , 0, global.colorThemeText, 1);
 
 
-draw_text(mapViewerButtonRectX2 + 10, mean(mapViewerButtonRectY1, mapViewerButtonRectY2), (mapViewActive)? "MapView":"GridView");
+draw_text(mapViewerButtonRectX2 + 10, mapViewerButtonRectY1 - 10, (mapViewActive)? "MapView":"GridView");
 
 
 

@@ -47,10 +47,10 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 		if (shape == shapeText) {
 			// Right Prose
 			if(obj_control.drawLineState == obj_control.lineState_ltr){	
-				tokenPixelXDest = camWidth - global.scrollBarWidth*2 - shapeTextX + scrollPlusX - gridSpaceHorizontal;
+				tokenPixelXDest = camWidth - global.scrollBarWidth - global.toolPaneWidth - shapeTextX + scrollPlusX;
 			}
 			else{
-				tokenPixelXDest = camWidth - global.scrollBarWidth - unitWidth + string_width(tokenString) +scrollPlusX - gridSpaceHorizontal*2;
+				tokenPixelXDest = camWidth - global.scrollBarWidth - global.toolPaneWidth - unitWidth + string_width(tokenString) + scrollPlusX;
 			}
 		}
 		else {
