@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_createChunk(){
 	
-	show_debug_message("scr_createChunk()");
+	show_debug_message("\n\n\n....scr_createChunk()");
 	
 	var chunkID = "";
 	
@@ -98,30 +98,27 @@ function scr_createChunk(){
 								lowestEncapsulatingChunk = currentChunk;
 								lowestEncapsulatingNest = currentChunkNest;
 							}
-						}	
+						}
 						
 						
 						////the new chunk is contains any part of the currentChunk
-						//if(startDocOrder <= currentChunkStartDocOrder  && endDocOrder >= currentChunkEndDocOrder){
-							
-						//	if(currentChunkNest > highestEncapsulatedNest) {
-						//		highestEncapsulatedChunk = currentChunk;
-						//		highestEncapsulatedNest = currentChunkNest;
-						//	}
-							
-						//}
-						
-						//check the semi encapsulated tokens
-						if((currentChunkStartDocOrder > startDocOrder && currentChunkStartDocOrder < startDocOrder) or (currentChunkEndDocOrder > endDocOrder && currentChunkEndDocOrder < endDocOrder) ){
-							
+						else if(startDocOrder <= currentChunkStartDocOrder  && endDocOrder >= currentChunkEndDocOrder){
 							if(currentChunkNest > highestEncapsulatedNest) {
 								highestEncapsulatedChunk = currentChunk;
 								highestEncapsulatedNest = currentChunkNest;
 							}
-							
-						}	
+						}
 						
-					
+						//check the semi encapsulated tokens
+						else if ((currentChunkStartDocOrder >= startDocOrder && currentChunkStartDocOrder <= endDocOrder) xor (currentChunkEndDocOrder >= startDocOrder && currentChunkEndDocOrder <= endDocOrder)) {
+							if(currentChunkNest > highestEncapsulatedNest) {
+								highestEncapsulatedChunk = currentChunk;
+								highestEncapsulatedNest = currentChunkNest;
+								show_debug_message("SEMI ENCAPSULATED");
+							}
+						}
+
+
 
 						highestNest = max(highestNest,currentChunkNest);	
 					}	
@@ -132,9 +129,13 @@ function scr_createChunk(){
 		if(lowestEncapsulatingChunk == ""){
 			// give the chunk it's nested level
 			chunkSubMap[? "nest"] = highestNest + 1;
+			show_debug_message("no lowestEncapsulatingChunk");
+			
 		}
 		else{
-
+			
+			show_debug_message("highestEncapsulatedNest: " + string(highestEncapsulatedNest));
+			show_debug_message("lowestEncapsulatingNest: " + string(lowestEncapsulatingNest));
 
 			chunkSubMap[? "nest"] = highestEncapsulatedNest + 1;
 			

@@ -8,6 +8,8 @@ function scr_chainOrderMap(){
 	var cliqueListSize = ds_list_size(cliqueList);
 	var cliqueMap = global.nodeMap[? "cliqueMap"];
 	
+	if (!scr_isNumericAndExists(cliqueMap, ds_type_map)) exit;
+	
 	// loop over every clique
 	for (var i = 0; i < cliqueListSize; i++) {
 		
