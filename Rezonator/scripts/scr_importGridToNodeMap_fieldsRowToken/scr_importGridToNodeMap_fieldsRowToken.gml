@@ -54,14 +54,12 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 	}
 	
 	
-	
+	var unitFieldMap = global.nodeMap[?"unitTagMap"];
+	var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
 	
 	// some essentials
 	if(row == 0){
 		
-		var unitFieldMap = global.nodeMap[?"unitTagMap"];
-		var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
-
 		//add all fields to appropriate field lists
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
 			var fieldName = global.importGridColNameList[| i];
@@ -131,10 +129,12 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 				if (!global.RTLFound) {
 					global.RTLFound = scr_isStrRTL(currentCell);
 				}
+				scr_addAutoTag(currentField, currentCell, tokenFieldMap);
 			}
 		}
 		else if (currentLevel == "unit" && newUnitMade) {
 			ds_map_add(unitTagMap, currentField, currentCell);
+			scr_addAutoTag(currentField, currentCell, unitFieldMap);
 		}
 	}
 

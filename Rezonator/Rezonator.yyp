@@ -145,6 +145,7 @@
     {"id":{"name":"scr_setDrawRange","path":"scripts/scr_setDrawRange/scr_setDrawRange.yy",},"order":6,},
     {"id":{"name":"scr_createFlyout","path":"scripts/scr_createFlyout/scr_createFlyout.yy",},"order":2,},
     {"id":{"name":"e_UTF8","path":"scripts/e_UTF8/e_UTF8.yy",},"order":2,},
+    {"id":{"name":"scr_addAutoTag","path":"scripts/scr_addAutoTag/scr_addAutoTag.yy",},"order":29,},
     {"id":{"name":"scr_toggleFilterForAllChains","path":"scripts/scr_toggleFilterForAllChains/scr_toggleFilterForAllChains.yy",},"order":29,},
     {"id":{"name":"scr_shuffleDisplayRows","path":"scripts/scr_shuffleDisplayRows/scr_shuffleDisplayRows.yy",},"order":8,},
     {"id":{"name":"scr_splitLine","path":"scripts/scr_splitLine/scr_splitLine.yy",},"order":13,},

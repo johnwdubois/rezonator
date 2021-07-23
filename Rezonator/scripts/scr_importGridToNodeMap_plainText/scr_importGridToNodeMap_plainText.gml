@@ -13,15 +13,16 @@ function scr_importGridToNodeMap_plainText(row){
 	var unitNode = scr_addToNodeMap("unit");
 	var unitSubMap = global.nodeMap[? unitNode];
 	ds_list_add(unitList, unitNode);
+	
+	var unitFieldMap = global.nodeMap[?"unitTagMap"];
+	var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
 	if(row == 0){
 		
-		var unitFieldMap = global.nodeMap[?"unitTagMap"];
 		var newUnitFieldMap = ds_map_create();
-		ds_map_add_map(unitFieldMap, "unitStr", newUnitFieldMap);
+		ds_map_add_map(unitFieldMap, "~unitStr", newUnitFieldMap);
 		ds_map_add_list(newUnitFieldMap, "tagSet", ds_list_create());
-		ds_list_add(global.unitFieldList, "unitStr");
+		ds_list_add(global.unitFieldList, "~unitStr");
 		
-		var tokenFieldMap = global.nodeMap[?"tokenTagMap"];
 		var newTokenFieldMap = ds_map_create();
 		ds_map_add_map(tokenFieldMap, "~text", newTokenFieldMap);
 		ds_map_add_list(newTokenFieldMap, "tagSet", ds_list_create());
@@ -54,7 +55,11 @@ function scr_importGridToNodeMap_plainText(row){
 			// make tag map for token
 			var currentTokenTagMap = ds_map_create();
 			ds_map_add_map(currentTokenSubMap, "tagMap", currentTokenTagMap);
-			ds_map_add(currentTokenTagMap, "~text", splitList[| i]);
+			var currentTag = splitList[| i];
+			currentTag = string_replace_all(currentTag, "\r", "");
+			currentTag = string_replace_all(currentTag, "\n", "");
+			ds_map_add(currentTokenTagMap, "~text", currentTag);
+			scr_addAutoTag("~text", currentTag, tokenFieldMap);
 			
 			//check if token is rtl
 			if (!global.RTLFound) {
@@ -77,7 +82,7 @@ function scr_importGridToNodeMap_plainText(row){
 	// make tag map for unit
 	var unitTagMap = ds_map_create();
 	ds_map_add_map(unitSubMap, "tagMap", unitTagMap);
-	ds_map_add(unitTagMap, "unitStr", unitStr);
+	ds_map_add(unitTagMap, "~unitStr", unitStr);
 	
 	// add values to unit node
 	ds_map_add(unitSubMap, "unitSeq", importGridRow + 1);
