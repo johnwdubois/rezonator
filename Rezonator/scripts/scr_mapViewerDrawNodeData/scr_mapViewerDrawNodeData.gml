@@ -48,13 +48,14 @@ function scr_mapViewerDrawNodeData(){
 							|| subMapKey == "setIDList"  || subMapKey == "inChainsList" || subMapKey == "tokenList"
 							|| subMapKey == "entryList"|| subMapKey == "unitList" || subMapKey == "displayUnitList"
 							|| subMapKey == "inChunkList"|| subMapKey == "tagSet" || subMapKey == "targetList"
-							|| subMapKey == "docList")  ;
+							|| subMapKey == "docList") ;
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}
 			
+			
 			// check if this value is a map
-			var isMap = (subMapKey == "tagMap" or nodeShow == "tokenTagMap" or nodeShow == "unitTagMap" or nodeShow == "searchMap" or nodeShow == "cliqueMap");
+			var isMap = (subMapKey == "tagMap" or nodeShow == "tokenTagMap" or nodeShow == "unitTagMap" or nodeShow == "searchMap" or nodeShow == "cliqueMap" or nodeShow == "treeMap");
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;
@@ -82,7 +83,8 @@ function scr_mapViewerDrawNodeData(){
 					
 					
 					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" 
-									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList");
+									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"
+									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList");
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);
 					}

@@ -56,7 +56,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "navTokenFieldList: " + scr_getStringOfList(navTokenFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "navUnitFieldList: " + scr_getStringOfList(navUnitFieldList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
-	draw_text(devVarX, wordTopMargin + (strHeight * 22), "rezChainList: " + scr_getStringOfList(global.nodeMap[? "rezChainList"]));
+	draw_text(devVarX, wordTopMargin + (strHeight * 22), "treeList: " + scr_getStringOfList(global.nodeMap[? "treeList"]));
 	draw_text(devVarX, wordTopMargin + (strHeight * 23), "showNav: " + string(obj_panelPane.showNav));
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "inRectTokenIDList: " + scr_getStringOfList(inRectTokenIDList));

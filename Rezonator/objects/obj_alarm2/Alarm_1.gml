@@ -9,7 +9,8 @@ with (obj_control) {
 		obj_panelPane.functionChainList_tabField,
 		obj_panelPane.functionChainList_tabSearch,
 		obj_panelPane.functionChainList_tabChunk,
-		obj_panelPane.functionChainList_tabClique
+		obj_panelPane.functionChainList_tabClique,
+		obj_panelPane.functionChainList_tabTree
 		);	
 		
 	var translationListSize = ds_list_size(global.translationList);

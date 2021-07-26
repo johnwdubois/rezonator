@@ -3,8 +3,6 @@
 function scr_panelPane_drawCliqueList(){
 	
 
-
-			
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;

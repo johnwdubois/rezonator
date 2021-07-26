@@ -41,6 +41,9 @@ function scr_panelPaneDrawBranch(){
 				else if (functionChainList_currentTab == functionChainList_tabClique) {
 					scr_panelPane_drawCliqueList();
 				}
+				else if (functionChainList_currentTab == functionChainList_tabTree) {
+					scr_panelPane_drawTreeList();
+				}
 				else {
 					scr_panelPane_drawChainsList();
 				}
@@ -114,6 +117,9 @@ function scr_panelPaneDrawBranch(){
 					else if (functionChainList_currentTab == functionChainList_tabClique) {
 						scr_panelPane_drawCliques1ToMany();
 					}
+					else if (functionChainList_currentTab == functionChainList_tabTree) {
+						scr_panelPane_drawTree1ToMany();
+					}
 					else {
 						scr_panelPane_drawChains1ToMany();
 						scr_panelPane_drawChains1ToManyHeaders();
@@ -147,6 +153,9 @@ function scr_panelPaneDrawBranch(){
 					}
 					else if (functionChainList_currentTab == functionChainList_tabClique) {
 						scr_panelPane_drawCliques1ToMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabTree) {
+						scr_panelPane_drawTree1ToMany();
 					}
 					else {
 						scr_panelPane_drawChains1To1();

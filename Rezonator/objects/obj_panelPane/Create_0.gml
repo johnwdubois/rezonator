@@ -36,11 +36,12 @@ functionChainList_tabRezBrush = "menu_rez";
 functionChainList_tabTrackBrush = "menu_track";
 functionChainList_tabStackBrush = "menu_stack";
 functionChainList_tabShow = "Show";
-functionChainList_tabField = "Field";
-functionChainList_tabTranslations = "Translations";
-functionChainList_tabSearch = "Search";
+functionChainList_tabField = "help_label_tag";
+functionChainList_tabTranslations = "import_mapping_fields_trnaslation";
+functionChainList_tabSearch = "help_header_search";
 functionChainList_tabChunk = "Chunk";
 functionChainList_tabClique = "menu_clique";
+functionChainList_tabTree = "Tree";
 
 
 
@@ -201,6 +202,7 @@ functionSearchList_searchMouseover = "";
 functionSearchList_tokenSelected = "";
 functionSearchList_tokenMouseover = "";
 functionClique_cliqueSelected = "";
+functionTree_treeSelected = "";
 
 
 
