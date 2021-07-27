@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Tree.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_createTree",
+  "name": "scr_createTreeLink",
   "tags": [],
   "resourceType": "GMScript",
 }

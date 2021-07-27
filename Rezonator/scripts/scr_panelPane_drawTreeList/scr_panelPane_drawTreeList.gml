@@ -2,8 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTreeList(){
 	
-	
-	
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
@@ -49,10 +47,11 @@ function scr_panelPane_drawTreeList(){
 		var highlight = mouseoverTreeRect;
 		var textY = floor(mean(treeRectY1, treeRectY2));
 		
-		// click on clique name
+		// click on tree name
 		if (mouseoverTreeRect) {
 			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
 				with (obj_panelPane) functionTree_treeSelected = currentTree;
+				obj_chain.currentFocusedEntryID = "";
 			}
 		}
 		

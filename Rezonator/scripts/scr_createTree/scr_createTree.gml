@@ -28,6 +28,7 @@ function scr_createTree(tokenList){
 	ds_map_add_list(treeSubMap, "linkIDList", treeLinkIDList);
 	ds_map_add_list(treeSubMap, "setIDList", treeSetIDList);
 	ds_map_add(treeSubMap, "name", "Tree " + string(ds_list_size(treeList)));
+	ds_map_add(treeSubMap, "type", "tree");
 	
 	// add some dope entries to this tree
 	var tokenListSize = ds_list_size(tokenList);
@@ -37,12 +38,17 @@ function scr_createTree(tokenList){
 		// get random hex and make a subMap for each entry
 		var currentEntry = scr_generateRandomHex();
 		var currentEntrySubMap = ds_map_create();
-		ds_map_add_map(treeSubMap, currentEntry, currentEntrySubMap);
+		ds_map_add_map(global.treeMap, currentEntry, currentEntrySubMap);
 		
 		// give the entry some data
 		ds_map_add(currentEntrySubMap, "token", currentToken);
 		ds_map_add(currentEntrySubMap, "order", i);
 		ds_map_add(currentEntrySubMap, "level", -1);
+		ds_map_add(currentEntrySubMap, "type", "entry");
+		ds_map_add(currentEntrySubMap, "entryX1", -1);
+		ds_map_add(currentEntrySubMap, "entryY1", -1);
+		ds_map_add(currentEntrySubMap, "entryX2", -1);
+		ds_map_add(currentEntrySubMap, "entryY2", -1);
 		ds_map_add(currentEntrySubMap, "sourceLink", "");
 		ds_map_add(currentEntrySubMap, "goalLinkList", ds_list_create());
 		
