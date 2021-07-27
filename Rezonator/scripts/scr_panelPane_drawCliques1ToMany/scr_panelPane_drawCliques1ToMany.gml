@@ -108,8 +108,9 @@ function scr_panelPane_drawCliques1ToMany(){
 		scr_scrollBar(listSize, -1, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
-			
+		scr_scrollMouseControls(strHeight);
 		scr_surfaceEnd();
+		
 	}
 	
 	

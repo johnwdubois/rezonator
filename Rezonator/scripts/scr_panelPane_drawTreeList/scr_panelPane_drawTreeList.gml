@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTreeList(){
 	
+
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
@@ -76,6 +77,8 @@ function scr_panelPane_drawTreeList(){
 	scr_scrollBar(treeListSize, -1, strHeight, headerHeight,
 			global.colorThemeSelected1, global.colorThemeSelected2,
 			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight);
+			
+	scr_scrollMouseControls(strHeight);
 	scr_surfaceEnd();
 	
 	
