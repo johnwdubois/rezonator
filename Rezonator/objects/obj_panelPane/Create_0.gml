@@ -216,7 +216,10 @@ hoverTime[3] = 0;
 
 errorText = "";
 
-fieldPaneSwitchButton = "Doc";
+
+fieldPaneDocMode = "Doc";
+fieldPaneChainMode = "Chain";
+fieldPaneSwitchButton = fieldPaneDocMode;
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
 cliquePaneSwitchButton = "Chains";

@@ -27,12 +27,7 @@ function scr_panelPane_drawChainFieldTags(){
 
 	
 	scr_surfaceStart();
-	
-	// get submap for selected field
-	var fieldSubMap = -1;
-	if (chainViewOneToMany) fieldSubMap = global.entryFieldMap[? functionField_entryFieldSelected];
-	else fieldSubMap = global.chainFieldMap[? functionField_chainFieldSelected];
-	
+
 
 	if (scr_isNumericAndExists(fieldSubMap, ds_type_map)) {
 	
@@ -166,12 +161,12 @@ function scr_panelPane_drawChainFieldTags(){
 						}
 					}
 				
-						// add new tag
-						// draw #
-						draw_set_color(global.colorThemeText);
-						draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
+					// add new tag
+					// draw #
+					draw_set_color(global.colorThemeText);
+					draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
 					
-						draw_text(floor(tagNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Tag");
+					draw_text(floor(tagNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Tag");
 				}
 	
 					plusY += strHeight;
@@ -317,10 +312,10 @@ function scr_panelPane_drawChainFieldTags(){
 	
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, true);
-	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, fieldPaneSwitchButton != "Doc");
+	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, fieldPaneSwitchButton != fieldPaneDocMode);
 	if(mouseOverswitchPaneR){
-		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Doc") {
-			with (obj_panelPane) fieldPaneSwitchButton = "Doc";
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != fieldPaneDocMode) {
+			with (obj_panelPane) fieldPaneSwitchButton = fieldPaneDocMode;
 		}
 	}
 	
@@ -328,7 +323,7 @@ function scr_panelPane_drawChainFieldTags(){
 	var switchPaneRTextY = floor(mean(switchPaneRRectY1,switchPaneRRectY2)+1);
 	
 	draw_set_halign(fa_center);
-	draw_set_color((fieldPaneSwitchButton == "Doc") ? global.colorThemeBG : global.colorThemeText);
+	draw_set_color((fieldPaneSwitchButton == fieldPaneDocMode) ? global.colorThemeBG : global.colorThemeText);
 	draw_text(switchPaneRTextX,switchPaneRTextY,"Doc");
 	
 	
@@ -345,10 +340,10 @@ function scr_panelPane_drawChainFieldTags(){
 	
 	draw_set_color(global.colorThemeRezPurple);
 	draw_rectangle(switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2, true);
-	draw_rectangle(switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2, fieldPaneSwitchButton != "Chain");
+	draw_rectangle(switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2, fieldPaneSwitchButton != fieldPaneChainMode);
 	if(mouseOverswitchPaneL){
-		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Chain") {
-			with (obj_panelPane) fieldPaneSwitchButton = "Chain";
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != fieldPaneChainMode) {
+			with (obj_panelPane) fieldPaneSwitchButton = fieldPaneChainMode;
 		}
 	}
 	
@@ -356,7 +351,7 @@ function scr_panelPane_drawChainFieldTags(){
 	var switchPaneLTextY = floor(mean(switchPaneLRectY1,switchPaneLRectY2)+1);
 	
 	draw_set_halign(fa_center);
-	draw_set_color((fieldPaneSwitchButton == "Chain") ? global.colorThemeBG : global.colorThemeText);
+	draw_set_color((fieldPaneSwitchButton == fieldPaneChainMode) ? global.colorThemeBG : global.colorThemeText);
 	draw_text(switchPaneLTextX,switchPaneLTextY,"Chain");
 	
 	

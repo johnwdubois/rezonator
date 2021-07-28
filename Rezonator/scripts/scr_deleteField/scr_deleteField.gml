@@ -11,21 +11,21 @@ function scr_deleteField(fieldName){
 	var navWindowList3 = -1;
 	
 	
-	if (chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
+	if (chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode) {
 		fieldList = obj_control.tokenFieldList;
 		navWindowList1 = obj_control.navTokenFieldList;
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode) {
 		fieldList = obj_control.unitFieldList;
 		navWindowList1 = obj_control.navUnitFieldList;
 	}
-	else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+	else if (chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneChainMode) {
 		fieldList = global.chainEntryFieldList;
 		navWindowList1 = obj_control.chain1toManyColFieldListRez;
 		navWindowList2 = obj_control.chain1toManyColFieldListTrack;
 		navWindowList3 = obj_control.chain1toManyColFieldListStack;
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneChainMode) {
 		fieldList = global.chainFieldList;
 		navWindowList1 = obj_control.chain1to1ColFieldListRez;
 		navWindowList2 = obj_control.chain1to1ColFieldListTrack;

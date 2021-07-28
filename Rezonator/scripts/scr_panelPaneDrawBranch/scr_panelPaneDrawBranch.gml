@@ -100,12 +100,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawLineTranslationLoopClipped();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
-							scr_panelPane_drawFieldTags();
-						}
-						else {
-							scr_panelPane_drawChainFieldTags();
-						}
+						scr_panelPane_drawFieldTags();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabSearch) {
 						scr_panelPane_drawSearch1ToMany();
@@ -135,12 +130,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawShow1toMany();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
 							scr_panelPane_drawFieldTags();
-						}
-						else{
-							scr_panelPane_drawChainFieldTags();
-						}
 					}
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
