@@ -151,6 +151,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 	// draw leaf row
 	plusX = originalPlusX;
+	var maxPlusX = plusX;
 	for (var i = 0; i < setIDListSize; i++) {
 		
 		var currentEntry = setIDList[| i];
@@ -215,6 +216,7 @@ function scr_panelPane_drawTree1ToMany(){
 		
 		plusX += boxWidth;
 	}
+	maxPlusX = plusX;
 	plusX = originalPlusX;
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeSelected2);
@@ -274,6 +276,7 @@ function scr_panelPane_drawTree1ToMany(){
 			scrollPlusX -= 8;
 		}
 	}
+	scrollPlusX = clamp(scrollPlusX, -maxPlusX + windowWidth, 0);
 	
 
 

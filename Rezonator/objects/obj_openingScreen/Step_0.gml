@@ -1,7 +1,13 @@
 // CSV group import
 if (keyboard_check(vk_shift) && keyboard_check(vk_control) && keyboard_check_released(ord("I"))) {
 	
-	global.importGroupOutputDir = get_string("Type in output directory for REZ files", "");
+	if (os_type == os_macosx) {
+		global.importGroupOutputDir = "/Users/terry/Desktop/newrez";
+	}
+	else {
+		global.importGroupOutputDir = get_string("Type in output directory for REZ files", "");
+	}
+	
 	show_message("Directory exists: " + string(directory_exists(global.importGroupOutputDir)));
 	
 	var filename = "";
