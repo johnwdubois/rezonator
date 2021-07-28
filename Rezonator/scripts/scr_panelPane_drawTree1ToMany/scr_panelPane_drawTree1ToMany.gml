@@ -53,8 +53,6 @@ function scr_panelPane_drawTree1ToMany(){
 	
 
 	
-	scr_drawTreeLinks();
-	
 	
 
 	
@@ -135,7 +133,7 @@ function scr_panelPane_drawTree1ToMany(){
 		plusX += boxWidth;
 	}
 
-	
+	scr_drawTreeLinks();
 	treeSubMap[?"maxLevel"] = maxLevel;
 
 	// draw horizontal lines for each row
@@ -279,7 +277,7 @@ function scr_panelPane_drawTree1ToMany(){
 	scrollPlusX = clamp(scrollPlusX, -maxPlusX + windowWidth, 0);
 	
 
-
+	
 	if(keyboard_check_released(vk_escape)){
 		obj_chain.currentFocusedEntryID = "";
 	}

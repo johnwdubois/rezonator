@@ -23,8 +23,10 @@ else {
 	with(obj_panelPane){
 		if(functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != ""){
 			scr_deleteShow(obj_control.selectedChainID);
-		}
-	
+		}	
+	}
+	if(deleteEntryPressed == false){
+		scr_deleteTreeLink();
 	}
 	
 	scr_deleteFromChain(true);

@@ -745,3 +745,5 @@ if(global.RTLFound){
 	drawLineState = lineState_rtl;
 	justify = justifyRight;
 }
+
+deleteEntryPressed = false;

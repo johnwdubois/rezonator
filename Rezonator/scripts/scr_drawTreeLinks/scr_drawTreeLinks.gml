@@ -12,25 +12,19 @@ function scr_drawTreeLinks(){
 		
 		var currentLink = linkList[| i];
 		var linkSubMap = global.treeMap[? currentLink];
+		if(!scr_isNumericAndExists(linkSubMap,ds_type_map)){continue;}
 		var source = linkSubMap[?"source"];
 		var goal = linkSubMap[?"goal"];
 		
 		var sourceSubMap = global.treeMap[? source];
 		var goalSubMap = global.treeMap[? goal];
 		
+		if(!scr_isNumericAndExists(sourceSubMap,ds_type_map) or !scr_isNumericAndExists(goalSubMap,ds_type_map)){continue;}
 
-		var arrowX1 = mean(sourceSubMap[? "entryX1"],sourceSubMap[? "entryX2"]) ;
+		var arrowX1 = mean(sourceSubMap[? "entryX1"],sourceSubMap[? "entryX2"]);
 		var arrowY1 = sourceSubMap[? "entryY2"];
 		
-		/*
-		if(goalSubMap[? "entryX1"] <= sourceSubMap[? "entryX1"]){
-			var arrowX2 = goalSubMap[? "entryX2"];
-		}
-		else{
-			var arrowX2 = goalSubMap[? "entryX1"];
-		}
-		*/
-		var arrowX2 = mean(goalSubMap[? "entryX1"],goalSubMap[? "entryX2"]) ;
+		var arrowX2 = mean(goalSubMap[? "entryX1"], goalSubMap[? "entryX2"]);
 		var arrowY2 = goalSubMap[? "entryY1"];
 		
 		

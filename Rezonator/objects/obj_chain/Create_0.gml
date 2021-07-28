@@ -76,6 +76,7 @@ focusedChainWordID = "";
 focusedChainWrongTool = false;
 
 
+
 mouseLineHide = false;
 
 mouseLineWordID = "";

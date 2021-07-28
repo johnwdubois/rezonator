@@ -81,10 +81,9 @@ function scr_mapViewerDrawNodeData(){
 					var specialField = ((subMapKey == "tagMap" && global.displayTokenField == subsubMapKey)
 										|| (subMapKey == "tagMap" && global.speakerField == subsubMapKey));
 					
-					
 					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" 
 									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"
-									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList");
+									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList" ||subsubMapKey == "goalLinkList");
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);
 					}
