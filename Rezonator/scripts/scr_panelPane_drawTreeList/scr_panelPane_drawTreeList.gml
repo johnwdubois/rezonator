@@ -53,6 +53,9 @@ function scr_panelPane_drawTreeList(){
 			if (mouse_check_button_released(mb_left) && !instance_exists(obj_dropDown)) {
 				with (obj_panelPane) functionTree_treeSelected = currentTree;
 				obj_chain.currentFocusedEntryID = "";
+				with (obj_panelPane) {
+					if (currentFunction == functionChainContents) scrollPlusX = 0;
+				}
 			}
 		}
 		

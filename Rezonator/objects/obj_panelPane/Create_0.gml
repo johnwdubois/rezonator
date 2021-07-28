@@ -221,6 +221,8 @@ fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
 cliquePaneSwitchButton = "Chains";
 
+scrollPlusX = 0;
+
 
 #macro EVENT_TICK 0
 #macro EVENT_STOP 1

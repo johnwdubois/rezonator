@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTree1ToMany(){
+
 	
 
 	var mouseOverEntryID = "";
@@ -43,22 +44,14 @@ function scr_panelPane_drawTree1ToMany(){
 	var currentScrollPlusY = scrollPlusY-16;
 	
 	var maxLevel = -1;
-	if(ds_map_exists(treeSubMap, "maxLevel")){
+	if (ds_map_exists(treeSubMap, "maxLevel")) {
 		maxLevel = treeSubMap[?"maxLevel"];
 	}
 		
-	// draw numbers for each level
-	draw_set_halign(fa_center);
-	for (var i = 0; i <= maxLevel; i++) {
-		
-		var levelY = rootY + (strHeight * i);
-		draw_set_color(global.colorThemeBG);
-		draw_text(floor(mean(x, x + originalPlusX)) - clipX, levelY - clipY + currentScrollPlusY, (i == 0) ? "Root" : string(i));
-		
-		draw_set_color(global.colorThemeBG);
-		draw_line(x - clipX, levelY - clipY - (strHeight / 2) + currentScrollPlusY, x + windowWidth - clipX, levelY - clipY - (strHeight / 2) + currentScrollPlusY);
-	}
+
 	draw_set_halign(fa_left);
+	
+
 	
 	scr_drawTreeLinks();
 	
@@ -89,13 +82,14 @@ function scr_panelPane_drawTree1ToMany(){
 		var strWidth = string_width(currentDisplayToken);
 		var realStrheight = string_height(currentDisplayToken);
 		
-			//get entry box demensions
+		//get entry box demensions
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
-		
-		var tokenX1 = x + plusX;
+		var tokenX1 = x + plusX + scrollPlusX;
 		var tokenY1 = currentEntryY - realStrheight/1.8 + currentScrollPlusY;
-		var tokenX2 = x + plusX + boxWidth;
+		var tokenX2 = tokenX1 + boxWidth;
 		var tokenY2 = currentEntryY + realStrheight/1.8 + currentScrollPlusY;
+		
+		
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect_ext(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 20,20, false);
@@ -103,39 +97,40 @@ function scr_panelPane_drawTree1ToMany(){
 			draw_set_color(global.colorThemeBorders);
 			scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 		}
-		//mouse over for entry
-		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "");
 		
+		// save pixel values to map for drawing links
 		currentEntrySubMap[?"entryX1"] = tokenX1;
 		currentEntrySubMap[?"entryY1"] = tokenY1;
 		currentEntrySubMap[?"entryX2"] = tokenX2;
 		currentEntrySubMap[?"entryY2"] = tokenY2;
 		
-		
+		//mouse over for entry
+		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "");
 		if(mouseOverEntry){
 			
 			mouseOverEntryID = currentEntry;
 			
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeSelected1);
-			draw_roundrect_ext(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 20,20,false );
+			draw_roundrect_ext(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 20,20,false);
+			
 			if(obj_chain.currentFocusedEntryID == currentEntry){
 				draw_set_color(global.colorThemeBorders);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 			}
+			
+			// click to focus entry
 			if(device_mouse_check_button_released(0,mb_left)){
 				draw_set_color(global.colorThemeBorders);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 				obj_chain.currentFocusedEntryID = currentEntry;
 			}
-			
 		}
 		
-		
+		// draw text of current entry
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_center);
 		draw_text(floor(mean(tokenX1,tokenX2)) - clipX, currentEntryY - clipY + currentScrollPlusY, currentDisplayToken);
-	
 
 		plusX += boxWidth;
 	}
@@ -143,18 +138,19 @@ function scr_panelPane_drawTree1ToMany(){
 	
 	treeSubMap[?"maxLevel"] = maxLevel;
 
+	// draw horizontal lines for each row
+	draw_set_color(global.colorThemeBG);
+	draw_set_alpha(1);
+	for (var i = 0; i <= maxLevel; i++) {
+		var levelY = rootY + (strHeight * i);
+		var lineY = levelY  - (strHeight / 2) + currentScrollPlusY;
+		draw_line(x - clipX, lineY - clipY, x + windowWidth - clipX, lineY - clipY);
+	}
+			
 
-	scr_scrollBar(maxLevel +1, -1, strHeight, 0,
-			global.colorThemeSelected1, global.colorThemeSelected2,
-			global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight - strHeight);
-
-	scr_surfaceEnd();
-	
-	
 	
 	// draw leaf row
 	plusX = originalPlusX;
-	draw_set_halign(fa_left);
 	for (var i = 0; i < setIDListSize; i++) {
 		
 		var currentEntry = setIDList[| i];
@@ -167,27 +163,27 @@ function scr_panelPane_drawTree1ToMany(){
 		//get entry box demensions
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
 		
-		var tokenX1 = x + plusX;
+		var tokenX1 = x + plusX + scrollPlusX;
 		var tokenY1 = leafY;
-		var tokenX2 = x + plusX + boxWidth;
+		var tokenX2 = tokenX1 + boxWidth;
 		var tokenY2 = y + windowHeight;
 		
 		
 		draw_set_alpha(1);
 		draw_set_color(global.colorThemeBG);
-		draw_rectangle(tokenX1,tokenY1,tokenX2,tokenY2,false);
+		draw_rectangle(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, false);
 		
 		
 		//mouse over for entry
 		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1)
-		
-		
 		if(mouseOverEntry){
 			
 			mouseOverEntryID = currentEntry;
 			draw_set_alpha(1);
 			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(tokenX1,tokenY1,tokenX2,tokenY2,false);
+			draw_rectangle(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, false);
+			
+			// click on entry
 			if(device_mouse_check_button_released(0,mb_left)){
 			
 				if(obj_chain.currentFocusedEntryID == ""){
@@ -201,32 +197,21 @@ function scr_panelPane_drawTree1ToMany(){
 					}
 				}
 				
-				
-			
 				obj_chain.currentFocusedEntryID = currentEntry;
 			}
 		}
 		
-
 	
 		draw_set_color(global.colorThemeText);
-		if(currentEntrySubMap[?"level"] >= 0){
-			draw_set_alpha(0.5);
-		}
-		else{	
-			draw_set_alpha(1);
-		}
-		draw_text(floor(x + plusX + spaceWidth), leafTextY, currentDisplayToken);
+		draw_set_alpha((currentEntrySubMap[?"level"] >= 0) ? 0.5 : 1);
+		draw_set_halign(fa_center);
+		draw_text(floor(mean(tokenX1, tokenX2)) - clipX, leafTextY - clipY, currentDisplayToken);
 		
+		// draw vertical line for each column
 		draw_set_color(global.colorThemeBG);
 		draw_set_alpha(0.5);
-		draw_line(x + plusX, y, x + plusX, y + windowHeight);
-		
-		
-
-		
-		
-		
+		var lineX = x + plusX + scrollPlusX;
+		draw_line(lineX - clipX, y - clipY, lineX - clipX, y + windowHeight - clipY);
 		
 		plusX += boxWidth;
 	}
@@ -234,7 +219,41 @@ function scr_panelPane_drawTree1ToMany(){
 	draw_set_alpha(1);
 	draw_set_color(global.colorThemeSelected2);
 	draw_rectangle(x, leafY, x + plusX, y + windowHeight, false);
-
+	
+	
+	draw_set_color(global.colorThemeSelected2);
+	draw_rectangle(x - clipX, y - clipY, x + originalPlusX - clipX, y + windowHeight - clipY, false);
+	
+	// draw numbers for each level
+	draw_set_halign(fa_center);
+	for (var i = 0; i <= maxLevel; i++) {
+		
+		// draw number text
+		var levelY = rootY + (strHeight * i);
+		draw_set_color(global.colorThemeBG);
+		draw_text(floor(mean(x, x + originalPlusX)) - clipX, floor(levelY + currentScrollPlusY) - clipY, (i == 0) ? "Root" : string(i));
+		
+		// draw horizontal line for each row
+		draw_set_color(global.colorThemeBG);
+		var lineY = levelY  - (strHeight / 2) + currentScrollPlusY;
+		draw_line(x - clipX, lineY - clipY, x + originalPlusX - clipX, lineY - clipY);
+	}
+	
+	
+	
+	
+	scr_scrollBar(maxLevel +1, -1, strHeight, 0,
+		global.colorThemeSelected1, global.colorThemeSelected2,
+		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight - strHeight);
+	scr_surfaceEnd();
+	
+	
+	
+	
+	
+	// draw Leaf BG
+	draw_set_color(global.colorThemeSelected2);
+	draw_rectangle(x, leafY, x + originalPlusX, y + windowHeight, false);
 
 	// draw "Leaf" text
 	draw_set_halign(fa_left);
@@ -246,6 +265,16 @@ function scr_panelPane_drawTree1ToMany(){
 	draw_line(x, leafY, x + windowWidth, leafY);
 
 	scr_scrollMouseControls(strHeight);
+	
+	if (clickedIn) {
+		if (keyboard_check(vk_left)) {
+			scrollPlusX += 8;
+		}
+		if (keyboard_check(vk_right)) {
+			scrollPlusX -= 8;
+		}
+	}
+	
 
 
 	if(keyboard_check_released(vk_escape)){

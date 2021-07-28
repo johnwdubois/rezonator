@@ -22,14 +22,15 @@ function scr_drawTreeLinks(){
 		var arrowX1 = mean(sourceSubMap[? "entryX1"],sourceSubMap[? "entryX2"]) ;
 		var arrowY1 = sourceSubMap[? "entryY2"];
 		
+		/*
 		if(goalSubMap[? "entryX1"] <= sourceSubMap[? "entryX1"]){
 			var arrowX2 = goalSubMap[? "entryX2"];
 		}
 		else{
 			var arrowX2 = goalSubMap[? "entryX1"];
 		}
-		
-
+		*/
+		var arrowX2 = mean(goalSubMap[? "entryX1"],goalSubMap[? "entryX2"]) ;
 		var arrowY2 = goalSubMap[? "entryY1"];
 		
 		
