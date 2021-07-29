@@ -68,20 +68,13 @@ function scr_addToChainFieldMap(map, key, tagSet, shortcutSet, rezTag, trackTag,
 	ds_map_add_map(map, key, subMap);
 	
 	// if a valid tagSet was provided, let's add it to this field's submap
-	if (is_numeric(tagSet)) {
-		if (ds_exists(tagSet, ds_type_list)) {
-			//show_debug_message("scr_addToChainFieldMap() ... tagSet: " + scr_getStringOfList(tagSet));
-			//ds_list_add(tagSet, "Add to tag set", "Remove from tag set");
-			ds_map_add_list(subMap, "tagSet", tagSet);
-		}
+	if (scr_isNumericAndExists(tagSet, ds_type_list)) {
+		ds_map_add_list(subMap, "tagSet", tagSet);
 	}
 	
 	// if a valid shortcutSet was provided, let's add it to this field's submap
-	if (is_numeric(shortcutSet)) {
-		if (ds_exists(shortcutSet, ds_type_list)) {
-			//show_debug_message("scr_addToChainFieldMap() ... shortcutSet: " + scr_getStringOfList(shortcutSet));
-			ds_map_add_list(subMap, "shortcutSet", shortcutSet);
-		}
+	if (scr_isNumericAndExists(shortcutSet, ds_type_list)) {
+		ds_map_add_list(subMap, "shortcutSet", shortcutSet);
 	}
 	
 	// set whether this tag can be applied to rez/track/stack

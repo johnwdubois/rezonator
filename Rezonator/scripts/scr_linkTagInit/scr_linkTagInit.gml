@@ -15,12 +15,17 @@ function scr_linkTagInit(){
 	// list of all of the chain/entry level fields
 	global.linkFieldList = ds_list_create();
 	
-	// entityType (chain-level)
+	
+	// link type
+	ds_list_add(global.linkFieldList, "linkType");
+	var linkTypeSubMap = ds_map_create();
+	ds_map_add_map(global.linkFieldMap, "linkType", linkTypeSubMap);
 	var linkTypeTagSet = ds_list_create();
-	var linkTypeShortcutSet = ds_list_create();
-	ds_list_add(linkTypeTagSet, "person", "location", "organization", "thing", "event", "abstract", "substance", "quantity", "number", "date/time", "animal", "plant");
-	ds_list_add(linkTypeShortcutSet, "P", "L", "O", "T", "E", "A", "S", "Q", "N", "D", "M", "");
-	scr_addToChainFieldMap(global.linkFieldMap, "linkType", linkTypeTagSet, linkTypeShortcutSet, true, true, true);
-
-
+	ds_list_add(linkTypeTagSet, "linkTag1", "linkTag2", "linkTag3");
+	ds_map_add_list(linkTypeSubMap, "tagSet", linkTypeTagSet);
+	
+	show_debug_message("global.linkFieldList: " + scr_getStringOfList(global.linkFieldList));
+	
+	
+	
 }

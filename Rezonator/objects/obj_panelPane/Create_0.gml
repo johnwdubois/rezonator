@@ -222,6 +222,9 @@ functionSearchList_tokenSelected = "";
 functionSearchList_tokenMouseover = "";
 functionClique_cliqueSelected = "";
 functionTree_treeSelected = "";
+functionTree_treeMouseoverLinkArea = false;
+functionTree_treeLinkMouseover = "";
+functionTree_treeLinkSelected = "";
 
 
 

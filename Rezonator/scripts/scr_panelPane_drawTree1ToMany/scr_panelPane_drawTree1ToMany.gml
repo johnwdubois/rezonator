@@ -37,6 +37,8 @@ function scr_panelPane_drawTree1ToMany(){
 	draw_line(x, y, x, y + headerHeight);
 	
 
+	functionTree_treeMouseoverLinkArea = point_in_rectangle(mouse_x, mouse_y, x + originalPlusX, y, x + windowWidth - global.scrollBarWidth, leafY);
+
 	
 
 	scr_surfaceStart();
