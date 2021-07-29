@@ -14,6 +14,9 @@ function scr_deleteField(fieldName){
 	if (chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode) {
 		fieldList = obj_control.tokenFieldList;
 		navWindowList1 = obj_control.navTokenFieldList;
+		var tokenTagMap =  global.nodeMap[? "tokenTagMap"];
+		var fieldSubMap = tokenTagMap[?fieldName];
+		scr_deleteFromList(fieldSubMap[? "targetList"], "Token");
 	}
 	else if (!chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode) {
 		fieldList = obj_control.unitFieldList;
@@ -30,6 +33,13 @@ function scr_deleteField(fieldName){
 		navWindowList1 = obj_control.chain1to1ColFieldListRez;
 		navWindowList2 = obj_control.chain1to1ColFieldListTrack;
 		navWindowList3 = obj_control.chain1to1ColFieldListStack;
+	}
+	else if (fieldPaneSwitchButton == obj_panelPane.fieldPaneChunkMode) {
+		fieldList = obj_control.chunkFieldList;
+		navWindowList1 = obj_control.navChunkFieldList;
+		var tokenTagMap =  global.nodeMap[? "tokenTagMap"];
+		var fieldSubMap = tokenTagMap[?fieldName];
+		scr_deleteFromList(fieldSubMap[? "targetList"], "Chunk");
 	}
 
 	if(!scr_isNumericAndExists(fieldList, ds_type_list)){exit;}

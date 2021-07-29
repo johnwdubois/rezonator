@@ -15,10 +15,12 @@ function scr_closeQuestionBoxVariables(){
 	removeTagUnit = false;
 	removeTagEntry = false;
 	removeTagChain = false;
+	removeTagChunk = false;
 	removeFieldToken = false;
 	removeFieldUnit = false;
 	removeFieldEntry = false;
 	removeFieldChain = false;
+	removeFieldChunk = false;
 	stringToBeRemoved = "";
 	removeSearch = false;
 	searchToBeRemoved = "";

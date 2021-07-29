@@ -29,6 +29,8 @@ function scr_closeDialogueBoxVariables(){
 			newCustomTagChain = false;
 			newCustomFieldEntry = false;
 			newCustomFieldChain = false;
+			newCustomFieldChunk = false;
+			newCustomTagChunk = false;
 			fromDropDown = false;
 			inputText = "";
 			cursorPos = 1;
@@ -49,10 +51,12 @@ function scr_closeDialogueBoxVariables(){
 		removeTagUnit = false;
 		removeTagEntry = false;
 		removeTagChain = false;
+		removeTagChunk = false;
 		removeFieldToken = false;
 		removeFieldUnit = false;
 		removeFieldEntry = false;
 		removeFieldChain = false;
+		removeFieldChunk = false;
 		stringToBeRemoved = "";
 		removeSearch = false;
 		searchToBeRemoved = "";

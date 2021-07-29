@@ -869,6 +869,13 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomFieldChain) {
 			scr_dialogueBoxNewCustomFieldChain();
 		}
+		if (obj_control.newCustomTagChunk) {
+			scr_dialogueBoxNewCustomTagToken();
+		}
+		if (obj_control.newCustomFieldChunk) {
+			obj_control.selectFieldChunk = true;
+			scr_dialogueBoxNewCustomFieldToken();
+		}
 		
 
 		if (obj_control.recolor) {

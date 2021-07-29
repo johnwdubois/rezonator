@@ -100,6 +100,13 @@ function scr_dialogueConfirm(){
 		if (obj_control.newCustomFieldChain) {
 			scr_dialogueBoxNewCustomFieldChain();
 		}
+		if (obj_control.newCustomTagChunk) {
+			scr_dialogueBoxNewCustomTagToken();
+		}
+		if (obj_control.newCustomFieldChunk) {
+			obj_control.selectFieldChunk = true;
+			scr_dialogueBoxNewCustomFieldToken();
+		}
 		
 
 		if (obj_control.recolor) {
@@ -203,8 +210,9 @@ function scr_dialogueConfirm(){
 		if (removeTagUnit) scr_removeFromTagSetOptions(string(stringToBeRemoved), "unit");
 		if (removeTagEntry) scr_removeFromTagSetOptions(string(stringToBeRemoved), "entry");
 		if (removeTagChain) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chain");
+		if (removeTagChunk) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chunk");
 		
-		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain) {
+		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk) {
 			// delete the field
 			scr_deleteField(stringToBeRemoved);
 				
@@ -213,6 +221,7 @@ function scr_dialogueConfirm(){
 			if (removeFieldEntry) with (obj_panelPane) functionField_entryFieldSelected = "";
 			if (removeFieldUnit) with (obj_panelPane) functionField_unitFieldSelected = "";
 			if (removeFieldChain) with (obj_panelPane) functionField_chainFieldSelected = "";
+			if (removeFieldChunk) with (obj_panelPane) functionField_chunkFieldSelected = "";
 		}
 		
 		

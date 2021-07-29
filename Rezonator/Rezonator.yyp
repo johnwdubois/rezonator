@@ -526,7 +526,6 @@
     {"id":{"name":"scr_fieldChains1ToManyOptions","path":"scripts/scr_fieldChains1ToManyOptions/scr_fieldChains1ToManyOptions.yy",},"order":64,},
     {"id":{"name":"scr_refocusChainEntry","path":"scripts/scr_refocusChainEntry/scr_refocusChainEntry.yy",},"order":20,},
     {"id":{"name":"obj_stacker","path":"objects/obj_stacker/obj_stacker.yy",},"order":7,},
-    {"id":{"name":"scr_panelPane_drawChainFieldTags","path":"scripts/scr_panelPane_drawChainFieldTags/scr_panelPane_drawChainFieldTags.yy",},"order":32,},
     {"id":{"name":"rm_openingScreen","path":"rooms/rm_openingScreen/rm_openingScreen.yy",},"order":0,},
     {"id":{"name":"rm_mainScreen","path":"rooms/rm_mainScreen/rm_mainScreen.yy",},"order":1,},
     {"id":{"name":"spr_audioTool","path":"sprites/spr_audioTool/spr_audioTool.yy",},"order":6,},

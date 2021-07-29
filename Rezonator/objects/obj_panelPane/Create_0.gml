@@ -207,6 +207,10 @@ functionField_entryFieldSelected = "";
 functionField_entryTagSelected = "";
 functionField_chainFieldSelected = "";
 functionField_chainTagSelected = "";
+functionField_chunkFieldSelected = "";
+functionField_chunkTagSelected = "";
+functionField_linkFieldSelected = "";
+functionField_linkTagSelected = "";
 
 functionChainList_chunkSelected = "";
 functionChainList_chunkMouseover = "";
@@ -234,6 +238,8 @@ errorText = "";
 
 fieldPaneDocMode = "Doc";
 fieldPaneChainMode = "Chain";
+fieldPaneChunkMode = "Chunk";
+fieldPaneLinkMode = "Link";
 fieldPaneSwitchButton = fieldPaneDocMode;
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
