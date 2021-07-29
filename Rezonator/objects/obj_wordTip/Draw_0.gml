@@ -47,7 +47,7 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTi
 	}
 	var lineHeight = string_height(string("0")) + 5;
 
-
+	
 
 	boxWidth = maxPlusX;	// Box width fits the whole row
 	boxHeight = plusY;	// Box width fits the whole row
@@ -56,8 +56,10 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTi
 
 	var boxX1 = x;
 	var boxY1 = y;
-	var boxX2 = x + boxWidth;
+	var boxX2 = (obj_control.drawLineState == obj_control.lineState_rtl) ? x - boxWidth : x + boxWidth;
 	var boxY2 = y + boxHeight;
+	
+	
 
 
 	// Handle the case where the box clips off the bottom of the screen
@@ -96,6 +98,10 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTi
 	var col1X = boxX1 + 5
 	var col2X = boxX1 + colX2Max; 
 	var valueY = boxY1 + string_height(string("0"))/2;
+	if(obj_control.drawLineState == obj_control.lineState_rtl){
+		col1X -= boxWidth;
+		col2X -= boxWidth;
+	}
 	// Draw the attribute grid
 	for(var i = 0; i < sizeOfFieldList; i++)
 	{		
@@ -130,7 +136,11 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTi
 		scr_adaptFont(fieldValue, "M");
 	
 		// Draw the attribute value to the right
-		draw_text(col2X, floor(valueY), fieldValue);
+		if(!scr_isStrRTL(string(fieldValue)))
+			draw_text(col2X, floor(valueY), fieldValue);
+		else
+			draw_text(col2X, floor(valueY), scr_stringReverse(fieldValue));
+			
 		if(i < sizeOfFieldList){
 			valueY += lineHeight;
 		}
