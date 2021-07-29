@@ -101,14 +101,6 @@ function scr_saveREZ(autosave) {
 			ds_map_add(map, "functionChainList_focusedUnitIndex", obj_panelPane.functionChainList_focusedUnitIndex);
 			
 			
-			// deep-copy entryFieldMap
-			entryFieldMapCopy = json_decode(json_encode(global.entryFieldMap));
-			ds_map_add_map(map, "entryFieldMap", entryFieldMapCopy);
-			
-			// deep-copy chainFieldMap
-			chainFieldMapCopy = json_decode(json_encode(global.chainFieldMap));
-			ds_map_add_map(map, "chainFieldMap", chainFieldMapCopy);
-			
 			// deep-copy nodeMap
 			nodeMapCopy = json_decode(json_encode(global.nodeMap));
 			ds_map_add_map(map, "nodeMap", nodeMapCopy);

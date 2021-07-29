@@ -375,8 +375,6 @@ ds_map_add(global.openingScreenDropDownMap, "Gujarati", true);
 scr_dropDownOptionListTypeInit();
 
 
-scr_chainTagInit();
-
 
 //this map stores all the keyboard shortcuts to be displayed on the tooltip
 global.keyboardShortcutMap = ds_map_create();

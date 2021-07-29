@@ -6,6 +6,14 @@ function scr_chainTagInit(){
 	global.chainFieldMap = ds_map_create();
 	global.entryFieldMap = ds_map_create();
 	
+	global.chainFieldMap[?"type"] =  "map";
+	global.entryFieldMap[?"type"] =  "map";
+	
+	ds_map_add_map(global.nodeMap,"chainFieldMap",global.chainFieldMap);
+	ds_map_add_map(global.nodeMap,"entryFieldMap",global.entryFieldMap);
+	
+	ds_list_add(global.nodeMap[?"nodeList"], "chainFieldMap", "entryFieldMap");
+	
 	// list of all of the chain/entry level fields
 	global.chainFieldList = ds_list_create();
 	global.chainEntryFieldList = ds_list_create();
