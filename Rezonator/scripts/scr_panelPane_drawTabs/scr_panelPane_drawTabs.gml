@@ -116,9 +116,11 @@ function scr_panelPane_drawTabs() {
 				
 				show_debug_message("scr_panelPane_drawTabs() ... switch to tab " + string(i));
 				
+				var paneToSaveScroll = chainViewOneToMany ? functionChainList : functionChainContents;
+				
 				// before we switch tabs, let's save the scroll position if the user returns to their old tab, we can restore their scroll
 				with (obj_panelPane) {
-					if (currentFunction == functionChainList) {
+					if (currentFunction == paneToSaveScroll) {
 						var myScrollPlusY = scrollPlusY;
 						if (functionChainList_currentTab == functionChainList_tabLine) with (obj_panelPane) scrollPlusY_tabUnit = myScrollPlusY;
 						else if (functionChainList_currentTab == functionChainList_tabRezBrush) with (obj_panelPane) scrollPlusY_tabRez = myScrollPlusY;
@@ -140,8 +142,10 @@ function scr_panelPane_drawTabs() {
 				}
 				
 				// now that we have switched tabs, let's restore their saved scroll position
+				var leftPaneInst = -1;
 				with (obj_panelPane) {
 					if (currentFunction == functionChainList) {
+						leftPaneInst = self.id;
 						if (functionChainList_currentTab == functionChainList_tabLine) scrollPlusY = scrollPlusY_tabUnit;
 						else if (functionChainList_currentTab == functionChainList_tabRezBrush) scrollPlusY = scrollPlusY_tabRez;
 						else if (functionChainList_currentTab == functionChainList_tabTrackBrush) scrollPlusY = scrollPlusY_tabTrack;
@@ -154,6 +158,15 @@ function scr_panelPane_drawTabs() {
 						else if (functionChainList_currentTab == functionChainList_tabClique) scrollPlusY =  scrollPlusY_tabClique;
 						else if (functionChainList_currentTab == functionChainList_tabTree) scrollPlusY = scrollPlusY_tabTree;
 						scrollPlusYDest = scrollPlusY;
+					}
+				}
+				
+				if (!chainViewOneToMany) {
+					with (obj_panelPane) {
+						if (currentFunction == functionChainContents) {
+							scrollPlusY = leftPaneInst.scrollPlusY;
+							scrollPlusYDest = scrollPlusY;
+						}
 					}
 				}
 				
