@@ -22,7 +22,7 @@ function scr_getUnitText(unitSubMap){
 				
 		// concatenate the UnitText string
 		unitText += scr_adaptFont(currentDisplayStr, "M");
-		if (i < entryListSize - 1) unitText += " ";
+		if (i < entryListSize) unitText += " ";
 		
 		if(obj_control.drawLineState = obj_control.lineState_ltr){ i++; }
 		else{i--;}

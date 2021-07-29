@@ -102,6 +102,7 @@ function scr_loadREZ() {
 					
 					
 					global.translationList = ds_map_find_value(map, "translationList");
+					obj_control.drawLineState = ds_map_find_value(map, "textDirection");
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
@@ -258,6 +259,8 @@ function scr_loadREZ() {
 	if (!is_numeric(nodeList)) {
 		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 	}
+	
+	
 	
 	// set focused unit in panelPane
 	with (obj_panelPane) {
