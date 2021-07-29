@@ -106,6 +106,7 @@ function scr_dialogueConfirm(){
 		if (obj_control.newCustomFieldChunk) {
 			obj_control.selectFieldChunk = true;
 			scr_dialogueBoxNewCustomFieldToken();
+			obj_control.selectFieldChunk = false;
 		}
 		
 
