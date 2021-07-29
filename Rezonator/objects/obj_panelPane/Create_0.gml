@@ -44,6 +44,21 @@ functionChainList_tabClique = "menu_clique";
 functionChainList_tabTree = "Tree";
 
 
+var defaultScrollPlusY = 16;
+scrollPlusY_tabUnit = defaultScrollPlusY;
+scrollPlusY_tabRez = defaultScrollPlusY;
+scrollPlusY_tabTrack = defaultScrollPlusY;
+scrollPlusY_tabStack = defaultScrollPlusY;
+scrollPlusY_tabShow = defaultScrollPlusY;
+scrollPlusY_tabField = defaultScrollPlusY;
+scrollPlusY_tabTranslations = defaultScrollPlusY;
+scrollPlusY_tabSearch = defaultScrollPlusY;
+scrollPlusY_tabChunk = defaultScrollPlusY;
+scrollPlusY_tabClique = defaultScrollPlusY;
+scrollPlusY_tabTree = defaultScrollPlusY;
+
+with (obj_alarm2) alarm[4] = 2;
+
 
 
 

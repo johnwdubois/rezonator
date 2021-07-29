@@ -103,9 +103,9 @@ function scr_panelPane_drawTabs() {
 			tabChainType = "stackChain";
 			tabFilterActive = obj_control.filterActiveStack;
 		}
-
-
 		
+		
+
 		draw_set_alpha(1);
 		draw_set_halign(fa_left);
 		draw_set_valign(fa_top);
@@ -116,10 +116,47 @@ function scr_panelPane_drawTabs() {
 				
 				show_debug_message("scr_panelPane_drawTabs() ... switch to tab " + string(i));
 				
+				// before we switch tabs, let's save the scroll position if the user returns to their old tab, we can restore their scroll
+				with (obj_panelPane) {
+					if (currentFunction == functionChainList) {
+						var myScrollPlusY = scrollPlusY;
+						if (functionChainList_currentTab == functionChainList_tabLine) with (obj_panelPane) scrollPlusY_tabUnit = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabRezBrush) with (obj_panelPane) scrollPlusY_tabRez = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabTrackBrush) with (obj_panelPane) scrollPlusY_tabTrack = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabStackBrush) with (obj_panelPane) scrollPlusY_tabStack = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabShow) with (obj_panelPane) scrollPlusY_tabShow = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabField) with (obj_panelPane) scrollPlusY_tabField = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabTranslations) with (obj_panelPane) scrollPlusY_tabTranslations = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabSearch) with (obj_panelPane) scrollPlusY_tabSearch = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabChunk) with (obj_panelPane) scrollPlusY_tabChunk = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabClique) with (obj_panelPane) scrollPlusY_tabClique = myScrollPlusY;
+						else if (functionChainList_currentTab == functionChainList_tabTree) with (obj_panelPane) scrollPlusY_tabTree = myScrollPlusY;
+					}
+				}
+				
 				// switch tab
 				with (obj_panelPane) {
 					functionChainList_currentTab = currentTab;
 				}
+				
+				// now that we have switched tabs, let's restore their saved scroll position
+				with (obj_panelPane) {
+					if (currentFunction == functionChainList) {
+						if (functionChainList_currentTab == functionChainList_tabLine) scrollPlusY = scrollPlusY_tabUnit;
+						else if (functionChainList_currentTab == functionChainList_tabRezBrush) scrollPlusY = scrollPlusY_tabRez;
+						else if (functionChainList_currentTab == functionChainList_tabTrackBrush) scrollPlusY = scrollPlusY_tabTrack;
+						else if (functionChainList_currentTab == functionChainList_tabStackBrush) scrollPlusY = scrollPlusY_tabStack;
+						else if (functionChainList_currentTab == functionChainList_tabShow) scrollPlusY = scrollPlusY_tabShow;
+						else if (functionChainList_currentTab == functionChainList_tabField) scrollPlusY = scrollPlusY_tabField;
+						else if (functionChainList_currentTab == functionChainList_tabTranslations) scrollPlusY = scrollPlusY_tabTranslations;
+						else if (functionChainList_currentTab == functionChainList_tabSearch) scrollPlusY =  scrollPlusY_tabSearch;
+						else if (functionChainList_currentTab == functionChainList_tabChunk) scrollPlusY = scrollPlusY_tabChunk;
+						else if (functionChainList_currentTab == functionChainList_tabClique) scrollPlusY =  scrollPlusY_tabClique;
+						else if (functionChainList_currentTab == functionChainList_tabTree) scrollPlusY = scrollPlusY_tabTree;
+						scrollPlusYDest = scrollPlusY;
+					}
+				}
+				
 				
 				// re-determine tab data (now that we've switched tabs)
 				if (functionChainList_currentTab == functionChainList_tabRezBrush) {
