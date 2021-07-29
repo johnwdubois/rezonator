@@ -4,5 +4,6 @@ if (!shortcutsEnabled || dialogueBoxActive) {
 }
 
 if (not keyboard_check(vk_shift) and not keyboard_check(vk_alt)) {
-	scr_justifyWords();
+	var justifyOption = (justify == justifyLeft) ? "menu_right" : "menu_left";
+	scr_justifyOptions(justifyOption);
 }

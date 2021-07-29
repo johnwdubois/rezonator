@@ -191,7 +191,7 @@ function scr_drawToolPane(toolSprScale) {
 		
 		if (mouse_check_button_released(mb_left)) {
 			var justifyOptionList = ds_list_create();
-			ds_list_add(justifyOptionList, "Left Prose", "Left Grid", "Center Prose", "Center Grid", "Right Prose", "Right Grid");
+			ds_list_add(justifyOptionList, "Left Prose", "Left Grid", "Right Prose", "Right Grid");
 			scr_createFlyout(justifyButtonRectX1 - flyoutXBuffer, justifyButtonY, justifyOptionList, global.optionListTypeJustifyProse, spr_justifyOptions, false);
 		}
 	}
