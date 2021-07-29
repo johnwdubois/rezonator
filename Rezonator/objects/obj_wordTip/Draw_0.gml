@@ -127,19 +127,21 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTi
 		}
 		
 
-		scr_adaptFont(fieldName, "M");
+		fieldName = scr_adaptFont(fieldName, "M");
 	
 		// Draw the attribute name
 		draw_set_color(global.colorThemeText);
 		draw_text(col1X, floor(valueY), fieldName);
 	
-		scr_adaptFont(fieldValue, "M");
+		fieldValue = scr_adaptFont(fieldValue, "M");
 	
 		// Draw the attribute value to the right
-		if(!scr_isStrRTL(string(fieldValue)))
-			draw_text(col2X, floor(valueY), fieldValue);
-		else
-			draw_text(col2X, floor(valueY), scr_stringReverse(fieldValue));
+		draw_text(col2X, floor(valueY), fieldValue);
+		
+		//if(!scr_isStrRTL(string(fieldValue)))
+		//	draw_text(col2X, floor(valueY), fieldValue);
+		//else
+		//	draw_text(col2X, floor(valueY), scr_stringReverse(fieldValue));
 			
 		if(i < sizeOfFieldList){
 			valueY += lineHeight;
