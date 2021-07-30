@@ -2,8 +2,7 @@ function scr_newToken(newTokenStr, refTokenID) {
 	/*
 		Purpose: Create a new word within the discourse based on user string input
 	*/
-	
-
+	if(string_length(string(newTokenStr)) <= 0 or newTokenStr == undefined){exit;}
 
 	var refTokenSubMap = global.nodeMap[?refTokenID];
 	if(!scr_isNumericAndExists(refTokenSubMap, ds_type_map)){ exit; }
