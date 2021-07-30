@@ -155,9 +155,9 @@ function scr_drawChains() {
 			&& unit1Active && unit2Active && inDrawRange1 && inDrawRange2) {
 				
 				// check if text is right aligned
-				if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
-					//lineX1 -= currentWordStringWidth1;
-					//lineX2 -= currentWordStringWidth2;
+				if (obj_control.justify == obj_control.justifyRight) {
+					lineX1 -= currentWordStringWidth1;
+					lineX2 -= currentWordStringWidth2;
 				}
 				
 
@@ -184,6 +184,7 @@ function scr_drawChains() {
 					}
 					else if (chainType == "trackChain") {
 						scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						
 					}
 				}
 			}
@@ -209,7 +210,7 @@ function scr_drawChains() {
 				if (is_numeric(wordPixelX) and is_numeric(wordPixelY)) {
 					mouseLineX = wordPixelX + (mouseLineWordStringWidth / 2);
 					mouseLineY = wordPixelY + (mouseLineWordStringHeight / 2);
-					if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
+					if (obj_control.justify == obj_control.justifyRight) {
 						mouseLineX -= mouseLineWordStringWidth;
 					}
 				}
