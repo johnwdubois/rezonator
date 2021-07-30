@@ -47,8 +47,8 @@ function scr_panelPane_drawTabs() {
 		var currentTab = tabList[| i];
 
 		// set dimensions for tabs
-		var tabRectX1 = x + (i * (windowWidth / (tabAmount+2)));
-		var tabRectX2 = tabRectX1 + (windowWidth / (tabAmount+2));
+		var tabRectX1 = x + (i * (windowWidth / (tabAmount+0.5)));
+		var tabRectX2 = tabRectX1 + (windowWidth / (tabAmount+0.5));
 		var mouseoverTab = point_in_rectangle(mouse_x, mouse_y, tabRectX1, tabRectY1, tabRectX2, tabRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 
 		var buttonSize = sprite_get_width(spr_oneToOne) * buttonScale;
