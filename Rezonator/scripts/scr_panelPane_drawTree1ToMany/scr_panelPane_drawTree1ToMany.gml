@@ -120,7 +120,7 @@ function scr_panelPane_drawTree1ToMany(){
 			}
 			
 			// click to focus entry
-			if(device_mouse_check_button_released(0,mb_left) && !object_exists(obj_dropDown)){
+			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
 				draw_set_color(global.colorThemeBorders);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 				obj_chain.currentFocusedEntryID = currentEntry;
