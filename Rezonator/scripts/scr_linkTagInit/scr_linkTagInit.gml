@@ -7,10 +7,10 @@ function scr_linkTagInit(){
 
 	global.linkFieldMap[?"type"] =  "map";
 	
-	ds_map_add_map(global.nodeMap,"linkFieldMap",global.linkFieldMap);
+	ds_map_add_map(global.nodeMap,"linkTagMap",global.linkFieldMap);
 
 	
-	ds_list_add(global.nodeMap[?"nodeList"], "linkFieldMap");
+	ds_list_add(global.nodeMap[?"nodeList"], "linkTagMap");
 	
 	// list of all of the chain/entry level fields
 	global.linkFieldList = ds_list_create();

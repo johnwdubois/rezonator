@@ -27,8 +27,9 @@ global.unitFieldList = ds_list_create();
 //create tag maps
 tokenTagMap = ds_map_create();
 unitTagMap  = ds_map_create();
-scr_chainTagInit();
 scr_linkTagInit();
+scr_chainTagInit();
+
 
 
 // create corpus node

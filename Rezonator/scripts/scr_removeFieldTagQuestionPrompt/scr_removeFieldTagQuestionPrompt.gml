@@ -24,6 +24,9 @@ function scr_removeFieldTagQuestionPrompt(fieldOrTag, unitOrChain, oneManyOrOneO
 		else if (unitOrChain == "chunk") {
 			obj_dialogueBox.removeTagChunk = true;
 		}
+		else if (unitOrChain == "link") {
+			obj_dialogueBox.removeTagLink = true;
+		}
 	}
 	// remove fields
 	else if (fieldOrTag == "field") {
@@ -37,6 +40,9 @@ function scr_removeFieldTagQuestionPrompt(fieldOrTag, unitOrChain, oneManyOrOneO
 		}
 		else if (unitOrChain == "chunk") {
 			obj_dialogueBox.removeFieldChunk = true;
+		}
+		else if (unitOrChain == "link") {
+			obj_dialogueBox.removeFieldLink = true;
 		}
 	}
 	

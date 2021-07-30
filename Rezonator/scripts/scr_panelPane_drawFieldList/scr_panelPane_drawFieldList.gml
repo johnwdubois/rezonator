@@ -37,22 +37,27 @@ function scr_panelPane_drawFieldList(){
 	}
 	else if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) {
 		fieldList = global.chainEntryFieldList;
-		fieldMap = global.entryFieldMap;
+		fieldMap = global.nodeMap[? "entryTagMap"];
 	}
 	else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) {
 		fieldList = global.chainFieldList;
-		fieldMap = global.chainFieldMap;
+		fieldMap = global.nodeMap[? "chainTagMap"];
 	}
 	else if (fieldPaneSwitchButton == fieldPaneChunkMode) {
 		fieldList = obj_control.chunkFieldList;
 		fieldMap = global.nodeMap[? "tokenTagMap"];
+	}
+	else if (fieldPaneSwitchButton == fieldPaneLinkMode) {
+		fieldList = global.linkFieldList;
+		fieldMap = global.nodeMap[? "linkTagMap"];
 	}
 
 	
 	// make sure the field list is valid
 	if (!scr_isNumericAndExists(fieldList, ds_type_list)) exit;
 	var fieldListSize = ds_list_size(fieldList);
-	
+
+
 	scr_surfaceStart();
 	
 	var checkboxX1 = mean(checkboxColX, checkboxColX + checkboxColWidth) - (checkboxSize * 0.5);
@@ -112,6 +117,12 @@ function scr_panelPane_drawFieldList(){
 							}
 							with(obj_panelPane) functionField_chunkFieldSelected = currentField;
 						}
+						else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+							if(functionField_linkFieldSelected != currentField){
+								with(obj_panelPane) functionField_linkTagSelected = "";
+							}
+							with(obj_panelPane) functionField_linkFieldSelected = currentField;
+						}
 					}
 					else {
 						if (fieldPaneSwitchButton == fieldPaneDocMode) {
@@ -132,6 +143,12 @@ function scr_panelPane_drawFieldList(){
 							}
 							with(obj_panelPane) functionField_chunkFieldSelected = currentField;
 						}
+						else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+							if(functionField_linkFieldSelected != currentField){
+								with(obj_panelPane) functionField_linkTagSelected = "";
+							}
+							with(obj_panelPane) functionField_linkFieldSelected = currentField;
+						}
 					}
 				}
 			}
@@ -149,6 +166,9 @@ function scr_panelPane_drawFieldList(){
 				else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
 					if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
 				}
+				else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
+					if (functionField_linkFieldSelected == currentField) fieldSelected = true;
+				}
 			}
 			else {
 				if (fieldPaneSwitchButton == fieldPaneDocMode) {
@@ -159,6 +179,9 @@ function scr_panelPane_drawFieldList(){
 				}
 				else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
 					if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
+					if (functionField_linkFieldSelected == currentField) fieldSelected = true;
 				}
 			}
 			
@@ -205,6 +228,7 @@ function scr_panelPane_drawFieldList(){
 						else if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) obj_dialogueBox.removeFieldEntry = true;
 						else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) obj_dialogueBox.removeFieldChain = true;
 						else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_dialogueBox.removeFieldChunk = true;
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_dialogueBox.removeFieldLink = true;
 						obj_dialogueBox.questionWindowActive = true;
 						obj_dialogueBox.stringToBeRemoved = currentField;
 					}
@@ -248,6 +272,7 @@ function scr_panelPane_drawFieldList(){
 						if (fieldPaneSwitchButton == fieldPaneDocMode) obj_control.newCustomFieldToken = true;
 						else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_control.newCustomFieldEntry = true;
 						else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_control.newCustomFieldChunk = true;
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_control.newCustomFieldLink = true;
 						obj_control.dialogueBoxActive = true;
 
 						if (!instance_exists(obj_dialogueBox)) {
@@ -261,6 +286,7 @@ function scr_panelPane_drawFieldList(){
 						if (fieldPaneSwitchButton == fieldPaneDocMode) obj_control.newCustomFieldUnit = true;
 						else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_control.newCustomFieldChain = true;
 						else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_control.newCustomFieldChunk = true;
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_control.newCustomFieldLink = true;
 						obj_control.dialogueBoxActive = true;
 
 						if (!instance_exists(obj_dialogueBox)) {

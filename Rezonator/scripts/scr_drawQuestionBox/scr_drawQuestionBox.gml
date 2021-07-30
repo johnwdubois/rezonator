@@ -92,7 +92,7 @@ function scr_drawQuestionBox() {
 	if (removeTagToken || removeTagUnit || removeTagEntry || removeTagChain) {
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the option to mark tag " + string(stringToBeRemoved));
 	}
-	if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk) {
+	if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 		draw_text(camera_get_view_width(camera_get_active())/2 - horizontalBuffer + 25, camera_get_view_height(camera_get_active())/2 - verticleBuffer + 75, "This will permanently remove the tag set for Field:  " + string(stringToBeRemoved));
 	}
 	if (removeSearch) {
@@ -154,8 +154,9 @@ function scr_drawQuestionBox() {
 		if (removeTagEntry) scr_removeFromTagSetOptions(string(stringToBeRemoved), "entry");
 		if (removeTagChain) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chain");
 		if (removeTagChunk) scr_removeFromTagSetOptions(string(stringToBeRemoved), "chunk");
+		if (removeTagLink) scr_removeFromTagSetOptions(string(stringToBeRemoved), "link");
 		
-		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk) {
+		if (removeFieldToken || removeFieldUnit || removeFieldEntry || removeFieldChain || removeFieldChunk || removeFieldLink) {
 			// delete the field
 			scr_deleteField(stringToBeRemoved);
 				
@@ -165,6 +166,7 @@ function scr_drawQuestionBox() {
 			if (removeFieldUnit) with (obj_panelPane) functionField_unitFieldSelected = "";
 			if (removeFieldChain) with (obj_panelPane) functionField_chainFieldSelected = "";
 			if (removeFieldChunk) with (obj_panelPane) functionField_chunkFieldSelected = "";
+			if (removeFieldLink) with (obj_panelPane) functionField_linkFieldSelected = "";
 		}
 		
 		

@@ -56,7 +56,7 @@ function scr_mapViewerDrawNodeData(){
 			
 			// check if this value is a map
 			var isMap = (subMapKey == "tagMap" or nodeShow == "tokenTagMap" or nodeShow == "unitTagMap" or nodeShow == "searchMap" or nodeShow == "cliqueMap"
-				or nodeShow == "treeMap" or nodeShow == "chainFieldMap" or nodeShow == "entryFieldMap" or nodeShow == "linkFieldMap");
+				or nodeShow == "treeMap" or nodeShow == "chainTagMap" or nodeShow == "entryTagMap" or nodeShow == "linkTagMap");
 			if (isMap && scr_isNumericAndExists(subMapVal, ds_type_map)) {
 				subMapValStr = "";
 				plusY += strHeight;

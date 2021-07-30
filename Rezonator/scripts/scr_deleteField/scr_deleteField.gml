@@ -41,6 +41,10 @@ function scr_deleteField(fieldName){
 		var fieldSubMap = tokenTagMap[?fieldName];
 		scr_deleteFromList(fieldSubMap[? "targetList"], "Chunk");
 	}
+	else if (fieldPaneSwitchButton == obj_panelPane.fieldPaneLinkMode) {
+		fieldList = global.linkFieldList;
+		var tokenTagMap =  global.nodeMap[? "linkTagMap"];
+	}
 
 	if(!scr_isNumericAndExists(fieldList, ds_type_list)){exit;}
 	
