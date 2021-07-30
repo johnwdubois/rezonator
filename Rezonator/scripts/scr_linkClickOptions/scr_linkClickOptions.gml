@@ -28,7 +28,7 @@ function scr_linkClickOptions(optionSelected){
 				var dropDownOptionList = ds_list_create();
 				
 				ds_list_copy(dropDownOptionList, linkTagSet);
-				ds_list_insert(dropDownOptionList, 0, "Add new tag");
+				//ds_list_insert(dropDownOptionList, 0, "Add new tag");
 				
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * (indexOfList + 1)), dropDownOptionList, global.optionListTypeLinkTag);
 			}
