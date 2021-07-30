@@ -16,6 +16,9 @@ function scr_createTreeLink(clickedEntry){
 	ds_map_add(linkMap, "source", obj_chain.currentFocusedEntryID);
 	ds_map_add(linkMap, "goal", clickedEntry);
 	
+	// give the link a tag map
+	ds_map_add_map(linkMap, "tagMap", ds_map_create());
+	
 	//add link node to treeeeee map
 	ds_map_add_map(global.treeMap, linkID,linkMap);
 	

@@ -645,6 +645,7 @@ unitFieldToChange = "";
 tokenToChange = "";
 unitToChange = "";
 
+linkFieldSelected = "";
 
 
 

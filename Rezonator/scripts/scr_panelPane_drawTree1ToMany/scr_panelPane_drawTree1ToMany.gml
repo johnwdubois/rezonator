@@ -105,7 +105,7 @@ function scr_panelPane_drawTree1ToMany(){
 		currentEntrySubMap[?"entryY2"] = tokenY2;
 		
 		//mouse over for entry
-		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "");
+		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "") && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		if(mouseOverEntry){
 			
 			mouseOverEntryID = currentEntry;

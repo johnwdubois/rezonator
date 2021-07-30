@@ -380,11 +380,20 @@ function scr_dropDownSelect(optionSelected) {
 		scr_searchFieldOptions(optionSelected);
 		instance_destroy();
 	}
-	else if (optionListType == global.optionListTypeSearchRange) //69
+	else if (optionListType == global.optionListTypeSearchRange) //70
 	{
 		scr_searchRangeOptions(optionSelected);
 		instance_destroy();
 	}
+	else if (optionListType == global.optionListTypeLinkFields) //71
+	{
+		scr_linkClickOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeLinkTag) //72
+	{
+		scr_linkTagOptions(optionSelected);
+	}
+
 
 
 }

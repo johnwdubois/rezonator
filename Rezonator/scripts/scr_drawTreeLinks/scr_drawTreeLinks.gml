@@ -52,7 +52,7 @@ function scr_drawTreeLinks(){
 				var dropDownOptionList = ds_list_create();
 				ds_list_copy(dropDownOptionList, global.linkFieldList);
 				ds_list_insert(dropDownOptionList, 0, "Create new field");
-				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeLinkTag);
+				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeLinkFields);
 			}
 		}
 		

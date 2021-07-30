@@ -24,8 +24,6 @@ function scr_linkTagInit(){
 	ds_list_add(linkTypeTagSet, "linkTag1", "linkTag2", "linkTag3");
 	ds_map_add_list(linkTypeSubMap, "tagSet", linkTypeTagSet);
 	
-	show_debug_message("global.linkFieldList: " + scr_getStringOfList(global.linkFieldList));
-	
 	
 	
 }
