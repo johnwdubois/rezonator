@@ -47,7 +47,7 @@ function scr_drawTreeLinks(){
 		
 		// click on link
 		if (mouseover) {
-			if (mouse_check_button_released(mb_left)) {
+			if (mouse_check_button_released(mb_right) or mouse_check_button_released(mb_left)) {
 				with (obj_panelPane) functionTree_treeLinkSelected = currentLink;
 				var dropDownOptionList = ds_list_create();
 				ds_list_copy(dropDownOptionList, global.linkFieldList);

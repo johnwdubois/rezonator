@@ -5,6 +5,13 @@ function scr_linkClickOptions(optionSelected){
 	show_debug_message("scr_linkClickOptions, optionSelected: " + string(optionSelected));
 	
 	if (optionSelected == "Create new field") {
+		obj_control.newCustomFieldLink = true;
+		obj_control.dialogueBoxActive = true;
+
+		if (!instance_exists(obj_dialogueBox)) {
+			instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+		}
+		obj_dialogueBox.inputWindowActive = true;
 		instance_destroy();
 	}
 	else {
@@ -19,8 +26,9 @@ function scr_linkClickOptions(optionSelected){
 			if (scr_isNumericAndExists(linkTagSet, ds_type_list)) {
 		
 				var dropDownOptionList = ds_list_create();
+				
 				ds_list_copy(dropDownOptionList, linkTagSet);
-				//ds_list_insert(dropDownOptionList, 0, "Add new tag");  will add this back in soon
+				ds_list_insert(dropDownOptionList, 0, "Add new tag");
 				
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * (indexOfList + 1)), dropDownOptionList, global.optionListTypeLinkTag);
 			}
