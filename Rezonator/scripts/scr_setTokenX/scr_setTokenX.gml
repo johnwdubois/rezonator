@@ -60,7 +60,7 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 				tokenPixelXDest = scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth + gridSpaceHorizontal*2;
 			}
 			else{
-				tokenPixelXDest = camWidth - ((displayCol * gridSpaceHorizontal) + spaceWidth + gridSpaceHorizontal*2 - scrollPlusX);
+				tokenPixelXDest = camWidth - (scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth + gridSpaceHorizontal*2);
 			}
 		}
 	}
