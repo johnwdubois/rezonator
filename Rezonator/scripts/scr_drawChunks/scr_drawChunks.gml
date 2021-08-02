@@ -197,6 +197,17 @@ function scr_drawChunks(){
 			
 			// focus chunk in panelPane
 			with (obj_panelPane) functionChainList_chunkSelected = obj_control.hoverChunkID;
+			// set field/tags if in read mode
+			if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+				if (obj_panelPane.functionField_chunkFieldSelected != "" && obj_panelPane.functionField_chunkTagSelected != ""
+				&& is_string(obj_panelPane.functionField_chunkFieldSelected) && is_string(obj_panelPane.functionField_chunkTagSelected)) {
+					var chunkTagMap = currentChunkSubMap[? "tagMap"];
+					if (scr_isNumericAndExists(chunkTagMap, ds_type_map)) {
+						chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = obj_panelPane.functionField_chunkTagSelected;
+						show_debug_message("scr_tokenClicked ... setting token: " + string(currentChunk) + ", field:" + string(obj_panelPane.functionField_chunkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_chunkTagSelected));
+					}
+				}
+			}
 			
 			// add chunk to pre-existing chain
 			if (ds_list_size(hoverChunkInChainsList) < 1) {

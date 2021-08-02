@@ -1,18 +1,30 @@
 /// @description Insert description here
 // You can write your code in this editor
-if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTipDisplay == true) {
+if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "" or obj_control.hoverChunkID != "" or obj_panelPane.functionTree_treeLinkMouseover != "") and wordTipDisplay == true) {
 
 	if(obj_control.hoverUnitID != ""){
 		currentID = obj_control.hoverUnitID;
 	}
-	else{
+	else if(obj_control.hoverTokenID != ""){
 		// Make the box display the word at the mouse cursor
 		currentID = obj_control.hoverTokenID;
 	}
+	else if(obj_control.hoverChunkID != ""){
+		currentID = obj_control.hoverChunkID;
+	}
+	else if(obj_panelPane.functionTree_treeLinkMouseover != ""){
+		currentID = obj_panelPane.functionTree_treeLinkMouseover;
+	}
+	
 	x = floor(mouse_x + mouseCursorWidth);
 	y = floor(mouse_y + mouseCursorHeight);
 
-	var IDSubMap = global.nodeMap[?currentID];
+	if(obj_panelPane.functionTree_treeLinkMouseover != ""){
+		var IDSubMap = global.treeMap[?currentID];
+	}
+	else{
+		var IDSubMap = global.nodeMap[?currentID];
+	}
 	var IDType = IDSubMap[?"type"];
 	var tagMap = IDSubMap[?"tagMap"];
 	var plusY = 0;
@@ -22,11 +34,23 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTi
 
 	/* --- determine size of box by field names and values to display --- */
 	var sizeOfFieldList = 0;
-	var fieldList = obj_control.tokenFieldList;
+	var fieldList = -1;
+	
 	if(IDType == "unit"){
 		fieldList = obj_control.unitFieldList;
 	}
-
+	else if(IDType == "token"){
+		fieldList = obj_control.tokenFieldList;
+	}
+	else if(IDType == "chunk"){
+		fieldList = obj_control.chunkFieldList;
+	}
+	else if(IDType == "link"){
+		fieldList = global.linkFieldList;
+	}
+	
+	if(!scr_isNumericAndExists(fieldList, ds_type_list)){exit;}
+	
 	sizeOfFieldList = ds_list_size(fieldList);
 
 	var spaceGap = string_width("   ");
@@ -119,7 +143,9 @@ if ((obj_control.hoverTokenID != "" or obj_control.hoverUnitID != "") and wordTi
 		
 		// draw highlight if field is selected
 		if ((IDType == "token" && fieldName == obj_panelPane.functionField_tokenFieldSelected)
-		|| (IDType == "unit" && fieldName == obj_panelPane.functionField_unitFieldSelected)) {
+		|| (IDType == "unit" && fieldName == obj_panelPane.functionField_unitFieldSelected)
+		|| (IDType == "chunk" && fieldName == obj_panelPane.functionField_chunkFieldSelected)
+		|| (IDType == "link" && fieldName == obj_panelPane.functionField_linkFieldSelected)) {
 			var rectY1 = valueY - (lineHeight * 0.5);
 			var rectY2 = rectY1 + lineHeight;
 			draw_set_color(merge_color(c_yellow, global.colorThemeBG, 0.4));
