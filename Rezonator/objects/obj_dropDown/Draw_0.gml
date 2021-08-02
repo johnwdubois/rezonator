@@ -287,7 +287,18 @@ for (var i = 0; i < optionListSize; i++) {
 		if(optionText == "Word Tip" and obj_wordTip.wordTipDisplay == true){
 			var checkX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + (sprite_get_width(spr_ascend) / 2)) : floor(optionRectX2 - (sprite_get_width(spr_ascend) / 2));
 			var checkY = floor(mean(optionRectY1, optionRectY2));
-			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1)
+			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+		}
+	}
+	
+	if(optionListType == global.optionListTypeTextDirection){
+		var checkX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX1 + textBuffer) : floor(optionRectX2 - textBuffer);
+		var checkY = floor(mean(optionRectY1, optionRectY2));
+		if(optionText == "Right To Left" and obj_control.drawLineState == obj_control.lineState_rtl){
+			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
+		}
+		if(optionText == "Left To Right" and obj_control.drawLineState == obj_control.lineState_ltr){
+			draw_sprite_ext(spr_checkmark, 0, checkX - clipX, checkY - clipY, 0.8, 0.8, 0, c_black, 1);
 		}
 	}
 	//add tag info to option
