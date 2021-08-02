@@ -241,7 +241,7 @@ function scr_panelPane_drawChainsList() {
 
 						var dropDownOptionList = ds_list_create();
 						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
-							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip");
+							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip", "Create Tree");
 						}
 						else {
 							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete");
