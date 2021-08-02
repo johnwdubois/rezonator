@@ -120,6 +120,9 @@ function scr_saveREZ(autosave) {
 			
 			// save user ID
 			ds_map_add(map, "userID", global.userName);
+			
+			// save text direction
+			ds_map_add(map, "textDirection", obj_control.drawLineState);
 		
 		}
 	}
