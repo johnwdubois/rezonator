@@ -149,7 +149,7 @@ global.importCSVGrid_colUnitEnd = 23;
 
 global.importCSVUnitGridHeight = 0;
 
-
+global.RTLFound =  false;
 
 global.importGridWidth = 0;
 global.importCSVGridWidth = 0;

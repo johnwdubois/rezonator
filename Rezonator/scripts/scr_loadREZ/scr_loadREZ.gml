@@ -102,7 +102,10 @@ function scr_loadREZ() {
 					
 					
 					global.translationList = ds_map_find_value(map, "translationList");
-					obj_control.drawLineState = ds_map_find_value(map, "textDirection");
+					var lineState = ds_map_find_value(map, "textDirection");
+					if(is_bool(lineState)){
+						obj_control.drawLineState = lineState;						
+					}
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
