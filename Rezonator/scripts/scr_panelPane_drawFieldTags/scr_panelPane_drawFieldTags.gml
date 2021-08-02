@@ -413,9 +413,11 @@ function scr_panelPane_drawFieldTags(){
 		}
 		else if(fieldPaneSwitchButton == fieldPaneChainMode){
 			if(obj_panelPane.chainViewOneToMany == true){
+				
 				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Entry Fields", obj_tooltip.arrowFaceUp);
 			}
 			else{
+				
 				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Chain Fields", obj_tooltip.arrowFaceUp);
 			}
 		}
