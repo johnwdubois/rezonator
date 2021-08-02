@@ -102,7 +102,10 @@ function scr_loadREZ() {
 					
 					
 					global.translationList = ds_map_find_value(map, "translationList");
-					obj_control.drawLineState = ds_map_find_value(map, "textDirection");
+					var lineState = ds_map_find_value(map, "textDirection");
+					if(is_bool(lineState)){
+						obj_control.drawLineState = lineState;						
+					}
 				
 					global.importGridColNameList = ds_map_find_value(map, "importGridColNameList");
 				
@@ -189,12 +192,6 @@ function scr_loadREZ() {
 						global.chainEntryFieldList = chainEntryFieldList;
 					}
 					
-					// get entry field map, if supplied
-					var entryFieldMap = ds_map_find_value(map, "entryFieldMap");
-					if (!is_undefined(entryFieldMap)) {
-						ds_map_destroy(global.entryFieldMap);
-						global.entryFieldMap = entryFieldMap;
-					}
 					
 					// get chainFieldList, if supplied
 					var chainFieldList = ds_map_find_value(map, "chainFieldList");
@@ -203,12 +200,7 @@ function scr_loadREZ() {
 						global.chainFieldList = chainFieldList;
 					}
 					
-					// get chain field map, if supplied
-					var chainFieldMap = ds_map_find_value(map, "chainFieldMap");
-					if (!is_undefined(chainFieldMap)) {
-						ds_map_destroy(global.chainFieldMap);
-						global.chainFieldMap = chainFieldMap;
-					}
+
 					
 					
 	
@@ -238,6 +230,21 @@ function scr_loadREZ() {
 	var showList = global.nodeMap[? "showList"];
 	var chunkList = global.nodeMap[? "chunkList"];
 	var nodeList = global.nodeMap[? "nodeList"];
+	
+	// get chain field map, if supplied
+	var chainFieldMap = global.nodeMap[? "chainFieldMap"];
+	if (scr_isNumericAndExists(chainFieldMap, ds_type_map)) {
+		ds_map_destroy(global.chainFieldMap);
+		global.chainFieldMap = chainFieldMap;
+	}
+	// get entry field map, if supplied
+	var entryFieldMap = global.nodeMap[? "entryFieldMap"];
+	if (scr_isNumericAndExists(entryFieldMap, ds_type_map)) {
+		ds_map_destroy(global.entryFieldMap);
+		global.entryFieldMap = entryFieldMap;
+	}
+	
+	
 	if (!is_numeric(rezChainList)) {
 		rezChainList = ds_list_create();
 		ds_map_add_list(global.nodeMap, "rezChainList", rezChainList);

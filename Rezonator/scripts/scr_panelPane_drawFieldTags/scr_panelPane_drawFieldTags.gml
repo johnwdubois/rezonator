@@ -29,15 +29,32 @@ function scr_panelPane_drawFieldTags(){
 
 	scr_surfaceStart();
 	
-	
-
-	if(chainViewOneToMany){
-		var tokenTagMap = global.nodeMap[? "tokenTagMap"];
-		var fieldSubMap = tokenTagMap[? functionField_tokenFieldSelected];
+	var fieldSubMap = -1;
+	if(fieldPaneSwitchButton == fieldPaneChainMode){
+		// get submap for selected field
+		if (chainViewOneToMany) fieldSubMap = global.entryFieldMap[? functionField_entryFieldSelected];
+		else fieldSubMap = global.chainFieldMap[? functionField_chainFieldSelected];
 	}
-	else{
-		var unitTagMap = global.nodeMap[? "unitTagMap"];
-		var fieldSubMap = unitTagMap[? functionField_unitFieldSelected];
+	
+	else if(fieldPaneSwitchButton == fieldPaneDocMode){
+		if(chainViewOneToMany){
+			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+			fieldSubMap = tokenTagMap[? functionField_tokenFieldSelected];
+		}
+		else{
+			var unitTagMap = global.nodeMap[? "unitTagMap"];
+			fieldSubMap = unitTagMap[? functionField_unitFieldSelected];
+		}
+	}
+	
+	else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+			fieldSubMap = tokenTagMap[? functionField_chunkFieldSelected];
+	}
+
+	else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+			var linkTagMap = global.nodeMap[? "linkTagMap"];
+			fieldSubMap = linkTagMap[? functionField_linkFieldSelected];
 	}
 
 	if (scr_isNumericAndExists(fieldSubMap, ds_type_map)){
@@ -67,30 +84,83 @@ function scr_panelPane_drawFieldTags(){
 						draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.5));
 						draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
-							if(chainViewOneToMany){
-								with(obj_panelPane){
-									functionField_tokenTagSelected = tagList[| i];
+							if(fieldPaneSwitchButton == fieldPaneDocMode){
+								if(chainViewOneToMany){
+									with(obj_panelPane){
+										functionField_tokenTagSelected = tagList[| i];
+									}
+								}
+								else{
+									with(obj_panelPane){
+										functionField_unitTagSelected = tagList[| i];
+									}
 								}
 							}
-							else{
-								with(obj_panelPane){
-									functionField_unitTagSelected = tagList[| i];
+							else if(fieldPaneSwitchButton == fieldPaneChainMode){
+								if (chainViewOneToMany) {
+									with(obj_panelPane) functionField_entryTagSelected = tagList[| i];
 								}
+								else{
+									with(obj_panelPane)	functionField_chainTagSelected = tagList[| i];
+								}
+							}
+							else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+								with(obj_panelPane)	functionField_chunkTagSelected = tagList[| i];
+							}
+							else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+								with(obj_panelPane)	functionField_linkTagSelected = tagList[| i];
 							}
 						}
 					}
 		
 					//check if this row/field has been selected
 					var tagSelected = false;
-					if(chainViewOneToMany){
-						if (functionField_tokenTagSelected == tagList[| i]) {
+					
+					if(fieldPaneSwitchButton == fieldPaneDocMode){
+						
+						if(chainViewOneToMany){
+							if (functionField_tokenTagSelected == tagList[| i]) {
+								tagSelected = true;
+								draw_set_color(global.colorThemeSelected2);
+								draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+							}
+						}
+						else{
+							if (functionField_unitTagSelected == tagList[| i]) {
+								tagSelected = true;
+								draw_set_color(global.colorThemeSelected2);
+								draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+							}
+						}
+					}
+					
+					else if(fieldPaneSwitchButton == fieldPaneChainMode){
+						if(chainViewOneToMany){
+							if (functionField_entryTagSelected == tagList[| i]) {
+								tagSelected = true;
+								draw_set_color(global.colorThemeSelected2);
+								draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+							}
+						}
+						else {
+							if (functionField_chainTagSelected == tagList[| i]) {
+								tagSelected = true;
+								draw_set_color(global.colorThemeSelected2);
+								draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
+							}
+						}
+					}
+					
+					else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+						if (functionField_chunkTagSelected == tagList[| i]) {
 							tagSelected = true;
 							draw_set_color(global.colorThemeSelected2);
 							draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
 						}
 					}
-					else{
-						if (functionField_unitTagSelected == tagList[| i]) {
+					
+					else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+						if (functionField_linkTagSelected == tagList[| i]) {
 							tagSelected = true;
 							draw_set_color(global.colorThemeSelected2);
 							draw_rectangle(x - clipX, currentRowY1 - clipY, x + windowWidth - clipX, currentRowY2 - clipY, false);
@@ -125,13 +195,39 @@ function scr_panelPane_drawFieldTags(){
 						draw_set_color(global.colorThemeSelected1);
 						draw_rectangle(deleteColX - clipX, currentRowY1 - clipY, deleteColX + deleteColWidth - clipX, currentRowY2 - clipY, false);
 						if (mouse_check_button_released(mb_left)) {
-							if (chainViewOneToMany) {
-								obj_control.tokenFieldToChange = functionField_tokenFieldSelected;
+							if(fieldPaneSwitchButton == fieldPaneDocMode){
+								if (chainViewOneToMany) {
+									obj_control.tokenFieldToChange = functionField_tokenFieldSelected;
+								}
+								else {
+									obj_control.unitFieldToChange = functionField_unitFieldSelected;
+								}
+								scr_removeFieldTagQuestionPrompt("tag", "unit", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
 							}
-							else {
-								obj_control.unitFieldToChange = functionField_unitFieldSelected;
+							else if(fieldPaneSwitchButton == fieldPaneChainMode){
+								if (chainViewOneToMany) {
+									obj_control.chain1toManyFieldToChange = functionField_entryFieldSelected;
+								}
+								else {
+									obj_control.chain1to1FieldToChange = functionField_chainFieldSelected;
+								}
+								scr_removeFieldTagQuestionPrompt("tag", "chain", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
 							}
-							scr_removeFieldTagQuestionPrompt("tag", "unit", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
+
+							else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+
+								obj_control.tokenFieldToChange = functionField_chunkFieldSelected;
+
+								scr_removeFieldTagQuestionPrompt("tag", "chunk", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
+							}
+							
+							else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+
+								obj_control.tokenFieldToChange = functionField_linkFieldSelected;
+
+								scr_removeFieldTagQuestionPrompt("tag", "link", chainViewOneToMany ? "1toMany" : "1to1", tagList[| i]);
+							}
+
 						}
 						scr_createTooltip(delButtonX, currentRowY2, "Remove", obj_tooltip.arrowFaceUp);
 					}
@@ -159,25 +255,74 @@ function scr_panelPane_drawFieldTags(){
 					// mouseover & click
 					if (mouseoverRow) {
 						if (mouse_check_button_released(mb_left)) {
-							if(chainViewOneToMany){
-								obj_control.newCustomTagToken = true;
-								obj_control.dialogueBoxActive = true;
-								obj_control.tokenFieldToChange = functionField_tokenFieldSelected;
+							if(fieldPaneSwitchButton == fieldPaneDocMode){
+								if(chainViewOneToMany){
+									obj_control.newCustomTagToken = true;
+									obj_control.dialogueBoxActive = true;
+									obj_control.tokenFieldToChange = functionField_tokenFieldSelected;
 
-								if (!instance_exists(obj_dialogueBox)) {
-									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+									if (!instance_exists(obj_dialogueBox)) {
+										instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+									}
+									obj_dialogueBox.inputWindowActive = true;
 								}
-								obj_dialogueBox.inputWindowActive = true;
+								else{
+									obj_control.newCustomTagUnit = true;
+									obj_control.dialogueBoxActive = true;
+									obj_control.unitFieldToChange = functionField_unitFieldSelected;
+								
+									if (!instance_exists(obj_dialogueBox)) {
+										instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+									}
+									obj_dialogueBox.inputWindowActive = true;
+								}
 							}
-							else{
-								obj_control.newCustomTagUnit = true;
+							else if(fieldPaneSwitchButton == fieldPaneChainMode){
+								
+								if(chainViewOneToMany){
+									obj_control.newCustomTagEntry = true;
+									obj_control.dialogueBoxActive = true;
+									obj_control.chain1toManyFieldToChange = functionField_entryFieldSelected;
+
+									if (!instance_exists(obj_dialogueBox)) {
+										instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+									}
+									obj_dialogueBox.inputWindowActive = true;
+								}
+								else{
+									obj_control.newCustomTagChain = true;
+									obj_control.dialogueBoxActive = true;
+									obj_control.chain1to1FieldToChange = functionField_chainFieldSelected;
+								
+									if (!instance_exists(obj_dialogueBox)) {
+										instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+									}
+									obj_dialogueBox.inputWindowActive = true;
+								}
+							}
+							else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+								
+								obj_control.newCustomTagChunk = true;
 								obj_control.dialogueBoxActive = true;
-								obj_control.unitFieldToChange = functionField_unitFieldSelected;
+								obj_control.tokenFieldToChange = functionField_chunkFieldSelected;
 								
 								if (!instance_exists(obj_dialogueBox)) {
 									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
 								}
 								obj_dialogueBox.inputWindowActive = true;
+								
+							}
+							else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+								
+								obj_control.newCustomTagLink = true;
+								obj_control.dialogueBoxActive = true;
+								obj_control.tokenFieldToChange = functionField_linkFieldSelected;
+								
+								if (!instance_exists(obj_dialogueBox)) {
+									instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+								}
+								obj_dialogueBox.inputWindowActive = true;
+								
 							}
 						}
 					}
@@ -258,12 +403,30 @@ function scr_panelPane_drawFieldTags(){
 			}
 
 		}
+		if(fieldPaneSwitchButton == fieldPaneDocMode){
 			if(obj_panelPane.chainViewOneToMany == true){
 				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Token Fields", obj_tooltip.arrowFaceUp);
 			}
 			else{
 				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Unit Fields", obj_tooltip.arrowFaceUp);
 			}
+		}
+		else if(fieldPaneSwitchButton == fieldPaneChainMode){
+			if(obj_panelPane.chainViewOneToMany == true){
+				
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Entry Fields", obj_tooltip.arrowFaceUp);
+			}
+			else{
+				
+				scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Chain Fields", obj_tooltip.arrowFaceUp);
+			}
+		}
+		else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Chunk Fields", obj_tooltip.arrowFaceUp);
+		}
+		else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+			scr_createTooltip(oneToOneSpriteX, oneToOneRectY2,"Link Fields", obj_tooltip.arrowFaceUp);
+		}
 		
 	}
 	draw_sprite_ext(spr_oneToOneTool,oneToOneImageIndex,oneToOneSpriteX,oneToOneSpriteY,spriteScale,spriteScale,0,global.colorThemeText, 1);
@@ -311,61 +474,116 @@ function scr_panelPane_drawFieldTags(){
 	draw_sprite_ext(spr_loadingIcon,0,loadSpriteX,loadSpriteY,1,1,0,global.colorThemeText, 1);
 	
 	
-	// toggle Discourse / Chains Button
+	// toggle DOC / Chains / chunk / link Button
 	
-	var switchPaneRButtonSizeX = string_width("Doc") + spaceWidth*4;
-	var switchPaneRButtonSizeY = string_height("Doc");
-	var switchPaneRRectX2 = loadRectX1 - spaceWidth*3;
-	var switchPaneRRectX1 = switchPaneRRectX2 - switchPaneRButtonSizeX;
-	var switchPaneRRectY1 =  mean(y ,y + headerHeight) - switchPaneRButtonSizeY/2;
-	var switchPaneRRectY2 = switchPaneRRectY1 + switchPaneRButtonSizeY;
+	var switchPaneDocButtonSizeX = string_width("Doc") + spaceWidth*4;
+	var switchPaneDocButtonSizeY = string_height("Doc");
+	var switchPaneDocRectX2 = loadRectX1 - spaceWidth*3;
+	var switchPaneDocRectX1 = switchPaneDocRectX2 - switchPaneDocButtonSizeX;
+	var switchPaneDocRectY1 =  mean(y ,y + headerHeight) - switchPaneDocButtonSizeY/2;
+	var switchPaneDocRectY2 = switchPaneDocRectY1 + switchPaneDocButtonSizeY;
 	
-	var mouseOverswitchPaneR = point_in_rectangle(mouse_x,mouse_y,switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2)
+	var mouseOverswitchPaneDoc = point_in_rectangle(mouse_x,mouse_y,switchPaneDocRectX1,switchPaneDocRectY1,switchPaneDocRectX2,switchPaneDocRectY2)
 	
 	draw_set_color(global.colorThemeRezPurple);
-	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, true);
-	draw_rectangle(switchPaneRRectX1,switchPaneRRectY1,switchPaneRRectX2,switchPaneRRectY2, fieldPaneSwitchButton != "Doc");
-	if(mouseOverswitchPaneR){
-		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Doc") {
-			with (obj_panelPane) fieldPaneSwitchButton = "Doc";
+	draw_rectangle(switchPaneDocRectX1,switchPaneDocRectY1,switchPaneDocRectX2,switchPaneDocRectY2, true);
+	draw_rectangle(switchPaneDocRectX1,switchPaneDocRectY1,switchPaneDocRectX2,switchPaneDocRectY2, fieldPaneSwitchButton != fieldPaneDocMode);
+	if(mouseOverswitchPaneDoc){
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != fieldPaneDocMode) {
+			with (obj_panelPane) fieldPaneSwitchButton = fieldPaneDocMode;
 		}
 	}
 	
-	var switchPaneRTextX = floor(mean(switchPaneRRectX1,switchPaneRRectX2));
-	var switchPaneRTextY = floor(mean(switchPaneRRectY1,switchPaneRRectY2)+1);
+	var switchPaneDocTextX = floor(mean(switchPaneDocRectX1,switchPaneDocRectX2));
+	var switchPaneDocTextY = floor(mean(switchPaneDocRectY1,switchPaneDocRectY2)+1);
 	
 	draw_set_halign(fa_center);
-	draw_set_color((fieldPaneSwitchButton == "Doc") ? global.colorThemeBG : global.colorThemeText);
-	draw_text(switchPaneRTextX,switchPaneRTextY,"Doc");
+	draw_set_color((fieldPaneSwitchButton == fieldPaneDocMode) ? global.colorThemeBG : global.colorThemeText);
+	draw_text(switchPaneDocTextX,switchPaneDocTextY,"Doc");
 	
 	
-	// toggle Discourse / Chains Button
+	// toggle Doc / CHAINS / chunk / link Button
 	
-	var switchPaneLButtonSizeX = string_width("Doc")+ spaceWidth*4;
-	var switchPaneLButtonSizeY = string_height("Doc");
-	var switchPaneLRectX2 = switchPaneRRectX1-2;
-	var switchPaneLRectX1 = switchPaneLRectX2 - switchPaneLButtonSizeX;
-	var switchPaneLRectY1 =  mean(y ,y + headerHeight) - switchPaneLButtonSizeY/2;
-	var switchPaneLRectY2 = switchPaneLRectY1 + switchPaneLButtonSizeY;
+	var switchPaneChainButtonSizeX = string_width("Chain")+ spaceWidth*4;
+	var switchPaneChainButtonSizeY = string_height("Doc");
+	var switchPaneChainRectX2 = switchPaneDocRectX1-2;
+	var switchPaneChainRectX1 = switchPaneChainRectX2 - switchPaneChainButtonSizeX;
+	var switchPaneChainRectY1 =  mean(y ,y + headerHeight) - switchPaneChainButtonSizeY/2;
+	var switchPaneChainRectY2 = switchPaneChainRectY1 + switchPaneChainButtonSizeY;
 	
-	var mouseOverswitchPaneL = point_in_rectangle(mouse_x,mouse_y,switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2)
+	var mouseOverswitchPaneChain = point_in_rectangle(mouse_x,mouse_y,switchPaneChainRectX1,switchPaneChainRectY1,switchPaneChainRectX2,switchPaneChainRectY2)
 	
 	draw_set_color(global.colorThemeRezPurple);
-	draw_rectangle(switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2, true);
-	draw_rectangle(switchPaneLRectX1,switchPaneLRectY1,switchPaneLRectX2,switchPaneLRectY2, fieldPaneSwitchButton != "Chain");
-	if(mouseOverswitchPaneL){
-		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != "Chain") {
-			with (obj_panelPane) fieldPaneSwitchButton = "Chain";
+	draw_rectangle(switchPaneChainRectX1,switchPaneChainRectY1,switchPaneChainRectX2,switchPaneChainRectY2, true);
+	draw_rectangle(switchPaneChainRectX1,switchPaneChainRectY1,switchPaneChainRectX2,switchPaneChainRectY2, fieldPaneSwitchButton != fieldPaneChainMode);
+	if(mouseOverswitchPaneChain){
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != fieldPaneChainMode) {
+			with (obj_panelPane) fieldPaneSwitchButton = fieldPaneChainMode;
 		}
 	}
 	
-	var switchPaneLTextX = floor(mean(switchPaneLRectX1,switchPaneLRectX2));
-	var switchPaneLTextY = floor(mean(switchPaneLRectY1,switchPaneLRectY2)+1);
+	var switchPaneChainTextX = floor(mean(switchPaneChainRectX1,switchPaneChainRectX2));
+	var switchPaneChainTextY = floor(mean(switchPaneChainRectY1,switchPaneChainRectY2)+1);
 	
 	draw_set_halign(fa_center);
-	draw_set_color((fieldPaneSwitchButton == "Chain") ? global.colorThemeBG : global.colorThemeText);
-	draw_text(switchPaneLTextX,switchPaneLTextY,"Chain");
+	draw_set_color((fieldPaneSwitchButton == fieldPaneChainMode) ? global.colorThemeBG : global.colorThemeText);
+	draw_text(switchPaneChainTextX,switchPaneChainTextY,"Chain");
 	
+	
+	// toggle Doc / Chains / CHUNK / link Button
+	
+	var switchPaneChunkButtonSizeX = string_width("Chunk")+ spaceWidth*4;
+	var switchPaneChunkButtonSizeY = string_height("Doc");
+	var switchPaneChunkRectX2 = switchPaneChainRectX1-2;
+	var switchPaneChunkRectX1 = switchPaneChunkRectX2 - switchPaneChunkButtonSizeX;
+	var switchPaneChunkRectY1 =  mean(y ,y + headerHeight) - switchPaneChunkButtonSizeY/2;
+	var switchPaneChunkRectY2 = switchPaneChunkRectY1 + switchPaneChunkButtonSizeY;
+	
+	var mouseOverswitchPaneChunk = point_in_rectangle(mouse_x,mouse_y,switchPaneChunkRectX1,switchPaneChunkRectY1,switchPaneChunkRectX2,switchPaneChunkRectY2)
+	
+	draw_set_color(global.colorThemeRezPurple);
+	draw_rectangle(switchPaneChunkRectX1,switchPaneChunkRectY1,switchPaneChunkRectX2,switchPaneChunkRectY2, true);
+	draw_rectangle(switchPaneChunkRectX1,switchPaneChunkRectY1,switchPaneChunkRectX2,switchPaneChunkRectY2, fieldPaneSwitchButton != fieldPaneChunkMode);
+	if(mouseOverswitchPaneChunk){
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != fieldPaneChunkMode) {
+			with (obj_panelPane) fieldPaneSwitchButton = fieldPaneChunkMode;
+		}
+	}
+	
+	var switchPaneChunkTextX = floor(mean(switchPaneChunkRectX1,switchPaneChunkRectX2));
+	var switchPaneChunkTextY = floor(mean(switchPaneChunkRectY1,switchPaneChunkRectY2)+1);
+	
+	draw_set_halign(fa_center);
+	draw_set_color((fieldPaneSwitchButton == fieldPaneChunkMode) ? global.colorThemeBG : global.colorThemeText);
+	draw_text(switchPaneChunkTextX,switchPaneChunkTextY,"Chunk");
+	
+	
+	// toggle Doc / Chains / Chunk / LINK Button
+	
+	var switchPaneLinkButtonSizeX = string_width("Link")+ spaceWidth*4;
+	var switchPaneLinkButtonSizeY = string_height("Doc");
+	var switchPaneLinkRectX2 = switchPaneChunkRectX1-2;
+	var switchPaneLinkRectX1 = switchPaneLinkRectX2 - switchPaneLinkButtonSizeX;
+	var switchPaneLinkRectY1 =  mean(y ,y + headerHeight) - switchPaneLinkButtonSizeY/2;
+	var switchPaneLinkRectY2 = switchPaneLinkRectY1 + switchPaneLinkButtonSizeY;
+	
+	var mouseOverswitchPaneLink = point_in_rectangle(mouse_x,mouse_y,switchPaneLinkRectX1,switchPaneLinkRectY1,switchPaneLinkRectX2,switchPaneLinkRectY2)
+	
+	draw_set_color(global.colorThemeRezPurple);
+	draw_rectangle(switchPaneLinkRectX1,switchPaneLinkRectY1,switchPaneLinkRectX2,switchPaneLinkRectY2, true);
+	draw_rectangle(switchPaneLinkRectX1,switchPaneLinkRectY1,switchPaneLinkRectX2,switchPaneLinkRectY2, fieldPaneSwitchButton != fieldPaneLinkMode);
+	if(mouseOverswitchPaneLink){
+		if (device_mouse_check_button_released(0,mb_left) && fieldPaneSwitchButton != fieldPaneLinkMode) {
+			with (obj_panelPane) fieldPaneSwitchButton = fieldPaneLinkMode;
+		}
+	}
+	
+	var switchPaneLinkTextX = floor(mean(switchPaneLinkRectX1,switchPaneLinkRectX2));
+	var switchPaneLinkTextY = floor(mean(switchPaneLinkRectY1,switchPaneLinkRectY2)+1);
+	
+	draw_set_halign(fa_center);
+	draw_set_color((fieldPaneSwitchButton == fieldPaneLinkMode) ? global.colorThemeBG : global.colorThemeText);
+	draw_text(switchPaneLinkTextX,switchPaneLinkTextY,"Link");
 	
 	
 	

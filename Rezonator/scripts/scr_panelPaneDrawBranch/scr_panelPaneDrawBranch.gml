@@ -41,6 +41,9 @@ function scr_panelPaneDrawBranch(){
 				else if (functionChainList_currentTab == functionChainList_tabClique) {
 					scr_panelPane_drawCliqueList();
 				}
+				else if (functionChainList_currentTab == functionChainList_tabTree) {
+					scr_panelPane_drawTreeList();
+				}
 				else {
 					scr_panelPane_drawChainsList();
 				}
@@ -97,12 +100,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawLineTranslationLoopClipped();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
-							scr_panelPane_drawFieldTags();
-						}
-						else {
-							scr_panelPane_drawChainFieldTags();
-						}
+						scr_panelPane_drawFieldTags();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabSearch) {
 						scr_panelPane_drawSearch1ToMany();
@@ -113,6 +111,9 @@ function scr_panelPaneDrawBranch(){
 					}
 					else if (functionChainList_currentTab == functionChainList_tabClique) {
 						scr_panelPane_drawCliques1ToMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabTree) {
+						scr_panelPane_drawTree1ToMany();
 					}
 					else {
 						scr_panelPane_drawChains1ToMany();
@@ -129,12 +130,7 @@ function scr_panelPaneDrawBranch(){
 						scr_panelPane_drawShow1toMany();
 					}
 					else if (functionChainList_currentTab == functionChainList_tabField) {
-						if(obj_panelPane.fieldPaneSwitchButton == "Doc"){
 							scr_panelPane_drawFieldTags();
-						}
-						else{
-							scr_panelPane_drawChainFieldTags();
-						}
 					}
 					else if (functionChainList_currentTab == functionChainList_tabTranslations) {
 						scr_panelPane_drawLineTranslationLoopClipped();
@@ -147,6 +143,9 @@ function scr_panelPaneDrawBranch(){
 					}
 					else if (functionChainList_currentTab == functionChainList_tabClique) {
 						scr_panelPane_drawCliques1ToMany();
+					}
+					else if (functionChainList_currentTab == functionChainList_tabTree) {
+						scr_panelPane_drawTree1ToMany();
 					}
 					else {
 						scr_panelPane_drawChains1To1();

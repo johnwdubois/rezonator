@@ -71,8 +71,10 @@ stackChainNameCounter = ds_list_size(global.nodeMap[? "stackChainList"]);
 
 currentFocusedChainID = "";
 currentFocusedChunkID = "";
+currentFocusedEntryID = "";
 focusedChainWordID = "";
 focusedChainWrongTool = false;
+
 
 
 mouseLineHide = false;

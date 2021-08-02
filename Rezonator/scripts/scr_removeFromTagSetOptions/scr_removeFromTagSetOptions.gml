@@ -8,6 +8,8 @@ function scr_removeFromTagSetOptions(optionSelected, type){
 	else if (type == "unit") tagMap = global.nodeMap[? "unitTagMap"];
 	else if (type == "entry") tagMap = global.entryFieldMap;
 	else if (type == "chain") tagMap = global.chainFieldMap;
+	else if (type == "chunk") tagMap = global.nodeMap[? "tokenTagMap"];
+	else if (type == "link") tagMap = global.nodeMap[? "linkTagMap"];
 	if (!scr_isNumericAndExists(tagMap, ds_type_map)) exit;
 	
 	// determine fieldToChange and tagSubMap based on type
@@ -27,6 +29,16 @@ function scr_removeFromTagSetOptions(optionSelected, type){
 	else if (type == "chain") {
 		fieldToChange = obj_control.chain1to1FieldToChange;
 		with (obj_panelPane) functionField_chainTagSelected = "";
+	}
+	else if (type == "chunk") {
+		fieldToChange = obj_control.tokenFieldToChange;
+		with (obj_panelPane) functionField_chunkTagSelected = "";
+		show_debug_message(string(fieldToChange));
+	}
+	else if (type == "link") {
+		fieldToChange = obj_control.tokenFieldToChange;
+		with (obj_panelPane) functionField_linkTagSelected = "";
+		show_debug_message(string(fieldToChange));
 	}
 	var tagSubMap = tagMap[? fieldToChange];
 	if (!scr_isNumericAndExists(tagSubMap, ds_type_map)) exit;

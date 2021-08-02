@@ -126,6 +126,37 @@ function scr_drawDialogueBox_input(){
 		
 
 	}
+	
+	if (obj_control.newWordCreated) {
+			
+		var insertBeforeBoxRectX1 = obj_inputBox.x;
+		var insertBeforeBoxRectY1 = obj_inputBox.y + obj_inputBox.windowHeight + dropDownXBuffer;
+		var insertBeforeBoxRectX2 = insertBeforeBoxRectX1 + checkboxSize;
+		var insertBeforeBoxRectY2 = insertBeforeBoxRectY1 + checkboxSize;
+	
+		var insertBeforeBoleanTextX = floor(insertBeforeBoxRectX2 + checkboxSize);
+		var insertBeforeBoleanTextY = floor(mean(insertBeforeBoxRectY1,insertBeforeBoxRectY2));
+	
+		// draw boolean option check boxes
+		draw_set_colour(global.colorThemeText);
+		draw_set_halign(fa_left);
+		scr_adaptFont(scr_get_translation("msg_insert_before"), "S");
+		draw_text(insertBeforeBoleanTextX, insertBeforeBoleanTextY , scr_get_translation("msg_insert_before"));
+		
+		draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, true);
+		if (obj_control.before) {
+			draw_rectangle(insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2, false);	
+		}
+		
+		// insert before boolean switch
+		if (point_in_rectangle(mouse_x, mouse_y, insertBeforeBoxRectX1, insertBeforeBoxRectY1, insertBeforeBoxRectX2, insertBeforeBoxRectY2)){
+			scr_drawBoolHover(obj_control.before);
+			if (mouse_check_button_pressed(mb_left)) {
+				obj_control.before = !obj_control.before;
+			}
+		}
+	
+	}
 
 
 

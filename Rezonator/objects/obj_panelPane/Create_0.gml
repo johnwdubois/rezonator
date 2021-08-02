@@ -36,12 +36,28 @@ functionChainList_tabRezBrush = "menu_rez";
 functionChainList_tabTrackBrush = "menu_track";
 functionChainList_tabStackBrush = "menu_stack";
 functionChainList_tabShow = "Show";
-functionChainList_tabField = "Field";
-functionChainList_tabTranslations = "Translations";
-functionChainList_tabSearch = "Search";
+functionChainList_tabField = "help_label_tag";
+functionChainList_tabTranslations = "import_mapping_fields_trnaslation";
+functionChainList_tabSearch = "help_header_search";
 functionChainList_tabChunk = "Chunk";
 functionChainList_tabClique = "menu_clique";
+functionChainList_tabTree = "Tree";
 
+
+var defaultScrollPlusY = 16;
+scrollPlusY_tabUnit = defaultScrollPlusY;
+scrollPlusY_tabRez = defaultScrollPlusY;
+scrollPlusY_tabTrack = defaultScrollPlusY;
+scrollPlusY_tabStack = defaultScrollPlusY;
+scrollPlusY_tabShow = defaultScrollPlusY;
+scrollPlusY_tabField = defaultScrollPlusY;
+scrollPlusY_tabTranslations = defaultScrollPlusY;
+scrollPlusY_tabSearch = defaultScrollPlusY;
+scrollPlusY_tabChunk = defaultScrollPlusY;
+scrollPlusY_tabClique = defaultScrollPlusY;
+scrollPlusY_tabTree = defaultScrollPlusY;
+
+with (obj_alarm2) alarm[4] = 2;
 
 
 
@@ -191,6 +207,10 @@ functionField_entryFieldSelected = "";
 functionField_entryTagSelected = "";
 functionField_chainFieldSelected = "";
 functionField_chainTagSelected = "";
+functionField_chunkFieldSelected = "";
+functionField_chunkTagSelected = "";
+functionField_linkFieldSelected = "";
+functionField_linkTagSelected = "";
 
 functionChainList_chunkSelected = "";
 functionChainList_chunkMouseover = "";
@@ -201,6 +221,10 @@ functionSearchList_searchMouseover = "";
 functionSearchList_tokenSelected = "";
 functionSearchList_tokenMouseover = "";
 functionClique_cliqueSelected = "";
+functionTree_treeSelected = "";
+functionTree_treeMouseoverLinkArea = false;
+functionTree_treeLinkMouseover = "";
+functionTree_treeLinkSelected = "";
 
 
 
@@ -214,10 +238,17 @@ hoverTime[3] = 0;
 
 errorText = "";
 
-fieldPaneSwitchButton = "Doc";
+
+fieldPaneDocMode = "Doc";
+fieldPaneChainMode = "Chain";
+fieldPaneChunkMode = "Chunk";
+fieldPaneLinkMode = "Link";
+fieldPaneSwitchButton = fieldPaneDocMode;
 fieldChains1ToManyChainType = "";
 fieldChains1To1ChainType = "";
 cliquePaneSwitchButton = "Chains";
+
+scrollPlusX = 0;
 
 
 #macro EVENT_TICK 0

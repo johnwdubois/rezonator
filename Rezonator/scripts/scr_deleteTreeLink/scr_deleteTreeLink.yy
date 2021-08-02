@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "panelPane",
-    "path": "folders/Scripts/UI/panelPane.yy",
+    "name": "Tree",
+    "path": "folders/Scripts/Tree.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_drawFieldTags",
+  "name": "scr_deleteTreeLink",
   "tags": [],
   "resourceType": "GMScript",
 }

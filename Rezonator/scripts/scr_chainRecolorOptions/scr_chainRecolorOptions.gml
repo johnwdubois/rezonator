@@ -31,17 +31,7 @@ function scr_chainRecolorOptions(optionSelected) {
 				else if (optionSelected == "Blue") colorToSet = real(string_digits(16711680));
 				else if (optionSelected == "Green") colorToSet = real(string_digits(65280));
 				else if (optionSelected == "Gold") colorToSet = real(string_digits(4235000));
-				
-				if (chainType == "rezChain" || chainType == "trackChain") {
-					for (var i = 0; i < listOfWordIDSize; i++) {
-						var currentWordID = ds_list_find_value(listOfWordID, i);
-						ds_grid_set(obj_control.wordDrawGrid, obj_control.wordDrawGrid_colEffectColor, currentWordID - 1, colorToSet);
-					}
-				}
-				
-				if(scr_isNumericAndExists(chainSubMap, ds_type_map)){
-					ds_map_replace(chainSubMap, "chainColor", colorToSet);
-				}
+				ds_map_replace(chainSubMap, "chainColor", colorToSet);
 
 			}
 			else if (optionSelected == "Custom") {

@@ -50,7 +50,12 @@ function scr_chainTagDropDown(fieldMap, field, IDtoChange, cellRectX1, cellRectY
 								obj_control.chain1to1FieldToChange = field;
 								optionListType = global.optionListTypeChain1To1Tag;
 							}
-							scr_createDropDown(cellRectX1, cellRectY2, fieldTagSet, optionListType);
+							
+							var dropDownOptionList = ds_list_create();
+							ds_list_copy(dropDownOptionList, fieldTagSet);
+							ds_list_insert(dropDownOptionList, 0, "Add to tag set");
+							
+							scr_createDropDown(cellRectX1, cellRectY2, dropDownOptionList, optionListType);
 						}
 					}
 						

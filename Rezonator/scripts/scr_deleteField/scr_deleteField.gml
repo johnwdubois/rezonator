@@ -11,25 +11,39 @@ function scr_deleteField(fieldName){
 	var navWindowList3 = -1;
 	
 	
-	if (chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
+	if (chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode) {
 		fieldList = obj_control.tokenFieldList;
 		navWindowList1 = obj_control.navTokenFieldList;
+		var tokenTagMap =  global.nodeMap[? "tokenTagMap"];
+		var fieldSubMap = tokenTagMap[?fieldName];
+		scr_deleteFromList(fieldSubMap[? "targetList"], "Token");
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneDocMode) {
 		fieldList = obj_control.unitFieldList;
 		navWindowList1 = obj_control.navUnitFieldList;
 	}
-	else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+	else if (chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneChainMode) {
 		fieldList = global.chainEntryFieldList;
 		navWindowList1 = obj_control.chain1toManyColFieldListRez;
 		navWindowList2 = obj_control.chain1toManyColFieldListTrack;
 		navWindowList3 = obj_control.chain1toManyColFieldListStack;
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == obj_panelPane.fieldPaneChainMode) {
 		fieldList = global.chainFieldList;
 		navWindowList1 = obj_control.chain1to1ColFieldListRez;
 		navWindowList2 = obj_control.chain1to1ColFieldListTrack;
 		navWindowList3 = obj_control.chain1to1ColFieldListStack;
+	}
+	else if (fieldPaneSwitchButton == obj_panelPane.fieldPaneChunkMode) {
+		fieldList = obj_control.chunkFieldList;
+		navWindowList1 = obj_control.navChunkFieldList;
+		var tokenTagMap =  global.nodeMap[? "tokenTagMap"];
+		var fieldSubMap = tokenTagMap[?fieldName];
+		scr_deleteFromList(fieldSubMap[? "targetList"], "Chunk");
+	}
+	else if (fieldPaneSwitchButton == obj_panelPane.fieldPaneLinkMode) {
+		fieldList = global.linkFieldList;
+		var tokenTagMap =  global.nodeMap[? "linkTagMap"];
 	}
 
 	if(!scr_isNumericAndExists(fieldList, ds_type_list)){exit;}

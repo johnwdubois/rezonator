@@ -466,6 +466,10 @@ newCustomTagEntry = false;
 newCustomFieldEntry = false;
 newCustomTagChain = false;
 newCustomFieldChain = false;
+newCustomTagChunk = false;
+newCustomFieldChunk = false;
+newCustomTagLink = false;
+newCustomFieldLink = false;
 quickLinkAllowed = true;
 inChainBool = false;
 transcriptSearch = false;
@@ -641,6 +645,7 @@ unitFieldToChange = "";
 tokenToChange = "";
 unitToChange = "";
 
+linkFieldSelected = "";
 
 
 
@@ -742,6 +747,9 @@ searchField = global.displayTokenField;
 searchRange = "Doc";
 
 if(global.RTLFound){
+
 	drawLineState = lineState_rtl;
 	justify = justifyRight;
 }
+
+deleteEntryPressed = false;

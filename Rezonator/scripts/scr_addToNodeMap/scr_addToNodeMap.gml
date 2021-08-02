@@ -5,18 +5,7 @@ function scr_addToNodeMap(type){
 	// type variable should be a string that declares what "type" of Node this is
 	// for example, "Chain", "Link", "Unit", etc.
 	
-	// generate a random number and turn it into a hex string
-	var nodeKeyMin = 1000;
-	var nodeKeyMax = 1000000000000000;
-	var nodeKey = irandom_range(nodeKeyMin, nodeKeyMax);
-	nodeKey = scr_baseConvert(nodeKey, 10, 16);
-	
-	// continue generating random hex strings until we find one that is not
-	// already a key in the NodeMap
-	while (ds_map_exists(global.nodeMap, nodeKey)) {
-		nodeKey = irandom_range(nodeKeyMin, nodeKeyMax);
-		nodeKey = scr_baseConvert(nodeKey, 10, 16);
-	}
+	var nodeKey = scr_generateRandomHex();
 	
 	// now that we have the key for the Node, we need its value which
 	// is another sub-map. this map will contain any attributes we want

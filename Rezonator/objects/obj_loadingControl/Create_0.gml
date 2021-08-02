@@ -24,6 +24,14 @@ global.tokenFieldList = ds_list_create();
 global.unitFieldList = ds_list_create();
 
 
+//create tag maps
+tokenTagMap = ds_map_create();
+unitTagMap  = ds_map_create();
+scr_linkTagInit();
+scr_chainTagInit();
+
+
+
 // create corpus node
 global.corpusNode = scr_addToNodeMap("corpus");
 var corpusSubMap = global.nodeMap[? global.corpusNode];
@@ -39,8 +47,6 @@ ds_map_add_list(discourseSubMap, "displayUnitList", displayUnitList);
 ds_list_add(discourseList, global.discourseNode);
 
 
-tokenTagMap = ds_map_create();
-unitTagMap  = ds_map_create();
 
 currentUnitID = "";
 currentEntryList = -1;

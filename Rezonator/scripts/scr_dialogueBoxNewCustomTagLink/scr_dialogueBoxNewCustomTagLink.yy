@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "panelPane",
-    "path": "folders/Scripts/UI/panelPane.yy",
+    "name": "dialogueBox",
+    "path": "folders/Scripts/UI/dialogueBox.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_panelPane_drawChainFieldTags",
+  "name": "scr_dialogueBoxNewCustomTagLink",
   "tags": [],
   "resourceType": "GMScript",
 }

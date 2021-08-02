@@ -149,7 +149,7 @@ global.importCSVGrid_colUnitEnd = 23;
 
 global.importCSVUnitGridHeight = 0;
 
-
+global.RTLFound =  false;
 
 global.importGridWidth = 0;
 global.importCSVGridWidth = 0;
@@ -374,8 +374,6 @@ ds_map_add(global.openingScreenDropDownMap, "Gujarati", true);
 
 scr_dropDownOptionListTypeInit();
 
-
-scr_chainTagInit();
 
 
 //this map stores all the keyboard shortcuts to be displayed on the tooltip

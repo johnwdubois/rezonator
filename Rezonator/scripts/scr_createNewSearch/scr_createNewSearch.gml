@@ -20,22 +20,8 @@ function scr_createNewSearch(searchTermList){
 				// for example, "Chain", "Link", "Unit", etc.
 				var searchNodeList = global.nodeMap[?"searchNodeList"];
 				if(scr_isNumericAndExists(searchNodeList, ds_type_list)){
-					// generate a random number and turn it into a hex string
-					var nodeKeyMin = 1000;
-					var nodeKeyMax = 1000000000000000;
-					var nodeKey = irandom_range(nodeKeyMin, nodeKeyMax);
-					nodeKey = scr_baseConvert(nodeKey, 10, 16);
-	
-					// continue generating random hex strings until we find one that is not
-					// already a key in the NodeMap
-					while (ds_map_exists(global.nodeMap, nodeKey)) {
-						nodeKey = irandom_range(nodeKeyMin, nodeKeyMax);
-						nodeKey = scr_baseConvert(nodeKey, 10, 16);
-					}
-	
-					// now that we have the key for the Node, we need its value which
-					// is another sub-map. this map will contain any attributes we want
-					// to attach, for example the type
+					
+					var nodeKey = scr_generateRandomHex();
 
 					var sizeOfSearchList = ds_list_size(searchNodeList) + 1;
 	

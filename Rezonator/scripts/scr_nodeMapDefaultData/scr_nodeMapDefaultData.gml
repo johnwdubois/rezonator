@@ -42,25 +42,25 @@ function scr_nodeMapDefaultData(){
 	// create the color MAP
 	global.colorMap = ds_map_create();
 	ds_map_add(global.colorMap, "type", "map");
+	
+	// create the color MAP
+	global.treeMap = ds_map_create();
+	ds_map_add(global.treeMap, "type", "map");
 
-	// add searchNodeList to nodeMap
+
+	// create lists of nodes for these panes
 	ds_map_add_list(global.nodeMap, "searchNodeList", ds_list_create());
+	ds_map_add_list(global.nodeMap, "treeList", ds_list_create());
 
-	// add search map to nodeMap
+	// add map to nodeMap
 	ds_map_add_map(global.nodeMap, "searchMap", global.searchMap);
-
-	// add search map to nodeMap
 	ds_map_add_map(global.nodeMap, "cliqueMap", global.cliqueMap);
-	
-	// add search map to nodeList
-	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
-	
-	// add clique map to nodeList
-	ds_list_add(global.nodeMap[? "nodeList"], "cliqueMap");
-	
-	// add color map to nodeMap
 	ds_map_add_map(global.nodeMap, "colorMap", global.colorMap);
+	ds_map_add_map(global.nodeMap, "treeMap", global.treeMap);
 	
-	// add color map to nodeList
+	// add map to nodeList, so they're viewable in nodeMapViewer
+	ds_list_add(global.nodeMap[? "nodeList"], "searchMap");
+	ds_list_add(global.nodeMap[? "nodeList"], "cliqueMap");
+	ds_list_add(global.nodeMap[? "nodeList"], "treeMap");
 	ds_list_add(global.nodeMap[? "nodeList"], "colorMap");
 }

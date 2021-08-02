@@ -7,8 +7,8 @@ function scr_scrollBarInit(){
 	scrollBarUpButtonHeld = false;
 	scrollBarDownButtonHeld = false;
 	scrollBarHeight = 0;
-	scrollPlusY = 0;
-	scrollPlusYDest = 0;
+	scrollPlusY = 999;
+	scrollPlusYDest = 999;
 	scrollBarPlusY = 0;
 	mouseoverScrollBar = false;
 

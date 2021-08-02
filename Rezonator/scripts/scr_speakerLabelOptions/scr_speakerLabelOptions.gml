@@ -1,12 +1,9 @@
 function scr_speakerLabelOptions(optionSelected) {
 
-	with (obj_panelPane)
-	{
-		if (currentFunction == functionChainList)
-		{
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
 			
-			switch (optionSelected)
-			{
+			switch (optionSelected) {
 				//"Red", "Blue", "Green", "Gold", "Custom"
 				case "Swap":
 					if (!obj_control.dialogueBoxActive) {
@@ -26,6 +23,23 @@ function scr_speakerLabelOptions(optionSelected) {
 					instance_destroy(obj_dropDown);
 					//return true;
 					break;
+					
+				case "Create Tree":
+					var unitSubMap = global.nodeMap[? obj_control.rightClickID];
+					if (scr_isNumericAndExists(unitSubMap, ds_type_map)) {
+						var tokenList = ds_list_create();
+						var entryList = unitSubMap[? "entryList"];
+						var entryListSize = ds_list_size(entryList);
+						
+						for (var i = 0; i < entryListSize; i++) {
+							var currentEntry = entryList[| i];
+							var currentEntrySubMap = global.nodeMap[? currentEntry];
+							var currentToken = currentEntrySubMap[? "token"];
+							ds_list_add(tokenList, currentToken);
+						}
+						
+						scr_createTree(tokenList);
+					}
 						
 				case "Shuffle":	
 				

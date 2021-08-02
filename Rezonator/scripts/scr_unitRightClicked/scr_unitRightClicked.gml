@@ -51,6 +51,8 @@ function scr_unitRightClicked(){
 			&& is_string(obj_panelPane.functionField_unitFieldSelected) && is_string(obj_panelPane.functionField_unitTagSelected)) {
 				scr_addToListOnce(dropDownOptionList , "Tag Unit");
 		}
+		
+		ds_list_add(dropDownOptionList, "Create Tree");
 				
 		// Create the dropdown
 		if (ds_list_size(dropDownOptionList) > 0 and obj_control.ableToCreateDropDown) {

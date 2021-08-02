@@ -21,6 +21,12 @@ function scr_removeFieldTagQuestionPrompt(fieldOrTag, unitOrChain, oneManyOrOneO
 			if (oneManyOrOneOne == "1toMany") obj_dialogueBox.removeTagEntry = true;
 			else if (oneManyOrOneOne == "1to1") obj_dialogueBox.removeTagChain = true;
 		}
+		else if (unitOrChain == "chunk") {
+			obj_dialogueBox.removeTagChunk = true;
+		}
+		else if (unitOrChain == "link") {
+			obj_dialogueBox.removeTagLink = true;
+		}
 	}
 	// remove fields
 	else if (fieldOrTag == "field") {
@@ -31,6 +37,12 @@ function scr_removeFieldTagQuestionPrompt(fieldOrTag, unitOrChain, oneManyOrOneO
 		else if (unitOrChain == "chain") {
 			if (oneManyOrOneOne == "1toMany") obj_dialogueBox.removeFieldEntry = true;
 			else if (oneManyOrOneOne == "1to1") obj_dialogueBox.removeFieldChain = true;
+		}
+		else if (unitOrChain == "chunk") {
+			obj_dialogueBox.removeFieldChunk = true;
+		}
+		else if (unitOrChain == "link") {
+			obj_dialogueBox.removeFieldLink = true;
 		}
 	}
 	

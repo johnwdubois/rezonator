@@ -27,28 +27,37 @@ function scr_panelPane_drawFieldList(){
 	// determine which field list to use depending on 1to1 vs 1toMany and Chain vs Discourse
 	var fieldList = -1;
 	var fieldMap = -1;
-	if (chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
+	if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) {
 		fieldList = obj_control.tokenFieldList;
 		fieldMap = global.nodeMap[? "tokenTagMap"];
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Doc") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) {
 		fieldList = obj_control.unitFieldList;
 		fieldMap = global.nodeMap[? "unitTagMap"];
 	}
-	else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+	else if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) {
 		fieldList = global.chainEntryFieldList;
-		fieldMap = global.entryFieldMap;
+		fieldMap = global.nodeMap[? "entryTagMap"];
 	}
-	else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") {
+	else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) {
 		fieldList = global.chainFieldList;
-		fieldMap = global.chainFieldMap;
+		fieldMap = global.nodeMap[? "chainTagMap"];
+	}
+	else if (fieldPaneSwitchButton == fieldPaneChunkMode) {
+		fieldList = obj_control.chunkFieldList;
+		fieldMap = global.nodeMap[? "tokenTagMap"];
+	}
+	else if (fieldPaneSwitchButton == fieldPaneLinkMode) {
+		fieldList = global.linkFieldList;
+		fieldMap = global.nodeMap[? "linkTagMap"];
 	}
 
 	
 	// make sure the field list is valid
 	if (!scr_isNumericAndExists(fieldList, ds_type_list)) exit;
 	var fieldListSize = ds_list_size(fieldList);
-	
+
+
 	scr_surfaceStart();
 	
 	var checkboxX1 = mean(checkboxColX, checkboxColX + checkboxColWidth) - (checkboxSize * 0.5);
@@ -90,31 +99,55 @@ function scr_panelPane_drawFieldList(){
 				
 					// set field to be selected when clicked
 					if (chainViewOneToMany) {
-						if (fieldPaneSwitchButton == "Doc") {
+						if (fieldPaneSwitchButton == fieldPaneDocMode) {
 							if (functionField_tokenFieldSelected != currentField) {
 								with(obj_panelPane) functionField_tokenTagSelected = "";
 							}
 							with(obj_panelPane) functionField_tokenFieldSelected = currentField;
 						}
-						else {
+						else if(fieldPaneSwitchButton == fieldPaneChainMode){
 							if(functionField_entryFieldSelected != currentField){
 								with(obj_panelPane) functionField_entryTagSelected = "";
 							}
 							with(obj_panelPane) functionField_entryFieldSelected = currentField;
 						}
+						else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+							if(functionField_chunkFieldSelected != currentField){
+								with(obj_panelPane) functionField_chunkTagSelected = "";
+							}
+							with(obj_panelPane) functionField_chunkFieldSelected = currentField;
+						}
+						else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+							if(functionField_linkFieldSelected != currentField){
+								with(obj_panelPane) functionField_linkTagSelected = "";
+							}
+							with(obj_panelPane) functionField_linkFieldSelected = currentField;
+						}
 					}
 					else {
-						if (fieldPaneSwitchButton == "Doc") {
+						if (fieldPaneSwitchButton == fieldPaneDocMode) {
 							if (functionField_unitFieldSelected != currentField) {
 								with(obj_panelPane) functionField_unitTagSelected = "";
 							}
 							with(obj_panelPane) functionField_unitFieldSelected = currentField;
 						}
-						else {
+						else if(fieldPaneSwitchButton == fieldPaneChainMode){
 							if(functionField_chainFieldSelected != currentField){
 								with(obj_panelPane) functionField_chainTagSelected = "";
 							}
 							with(obj_panelPane) functionField_chainFieldSelected = currentField;
+						}
+						else if(fieldPaneSwitchButton == fieldPaneChunkMode){
+							if(functionField_chunkFieldSelected != currentField){
+								with(obj_panelPane) functionField_chunkTagSelected = "";
+							}
+							with(obj_panelPane) functionField_chunkFieldSelected = currentField;
+						}
+						else if(fieldPaneSwitchButton == fieldPaneLinkMode){
+							if(functionField_linkFieldSelected != currentField){
+								with(obj_panelPane) functionField_linkTagSelected = "";
+							}
+							with(obj_panelPane) functionField_linkFieldSelected = currentField;
 						}
 					}
 				}
@@ -124,19 +157,31 @@ function scr_panelPane_drawFieldList(){
 			// check if this field has been selected
 			var fieldSelected = false;
 			if (chainViewOneToMany) {
-				if (fieldPaneSwitchButton == "Doc") {
+				if (fieldPaneSwitchButton == fieldPaneDocMode) {
 					if (functionField_tokenFieldSelected == currentField) fieldSelected = true;
 				}
-				else {
+				else if(fieldPaneSwitchButton == fieldPaneChainMode) {
 					if (functionField_entryFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
+					if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
+					if (functionField_linkFieldSelected == currentField) fieldSelected = true;
 				}
 			}
 			else {
-				if (fieldPaneSwitchButton == "Doc") {
+				if (fieldPaneSwitchButton == fieldPaneDocMode) {
 					if (functionField_unitFieldSelected == currentField) fieldSelected = true;
 				}
-				else {
+				else if(fieldPaneSwitchButton == fieldPaneChainMode) {
 					if (functionField_chainFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneChunkMode) {
+					if (functionField_chunkFieldSelected == currentField) fieldSelected = true;
+				}
+				else if(fieldPaneSwitchButton == fieldPaneLinkMode) {
+					if (functionField_linkFieldSelected == currentField) fieldSelected = true;
 				}
 			}
 			
@@ -178,10 +223,12 @@ function scr_panelPane_drawFieldList(){
 					
 					if (!instance_exists(obj_dialogueBox)) {
 						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-						if (chainViewOneToMany && fieldPaneSwitchButton == "Doc") obj_dialogueBox.removeFieldToken = true;
-						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Doc") obj_dialogueBox.removeFieldUnit = true;
-						else if (chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldEntry = true;
-						else if (!chainViewOneToMany && fieldPaneSwitchButton == "Chain") obj_dialogueBox.removeFieldChain = true;
+						if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) obj_dialogueBox.removeFieldToken = true;
+						else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneDocMode) obj_dialogueBox.removeFieldUnit = true;
+						else if (chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) obj_dialogueBox.removeFieldEntry = true;
+						else if (!chainViewOneToMany && fieldPaneSwitchButton == fieldPaneChainMode) obj_dialogueBox.removeFieldChain = true;
+						else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_dialogueBox.removeFieldChunk = true;
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_dialogueBox.removeFieldLink = true;
 						obj_dialogueBox.questionWindowActive = true;
 						obj_dialogueBox.stringToBeRemoved = currentField;
 					}
@@ -222,8 +269,10 @@ function scr_panelPane_drawFieldList(){
 					if (chainViewOneToMany) {
 						
 						// prompt user for name of new token field/marker
-						if (fieldPaneSwitchButton == "Doc") obj_control.newCustomFieldToken = true;
-						else obj_control.newCustomFieldEntry = true;
+						if (fieldPaneSwitchButton == fieldPaneDocMode) obj_control.newCustomFieldToken = true;
+						else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_control.newCustomFieldEntry = true;
+						else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_control.newCustomFieldChunk = true;
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_control.newCustomFieldLink = true;
 						obj_control.dialogueBoxActive = true;
 
 						if (!instance_exists(obj_dialogueBox)) {
@@ -234,8 +283,10 @@ function scr_panelPane_drawFieldList(){
 					else {
 					
 						// prompt user for name of new token field/marker
-						if (fieldPaneSwitchButton == "Doc") obj_control.newCustomFieldUnit = true;
-						else obj_control.newCustomFieldChain = true;
+						if (fieldPaneSwitchButton == fieldPaneDocMode) obj_control.newCustomFieldUnit = true;
+						else if (fieldPaneSwitchButton == fieldPaneChainMode) obj_control.newCustomFieldChain = true;
+						else if (fieldPaneSwitchButton == fieldPaneChunkMode) obj_control.newCustomFieldChunk = true;
+						else if (fieldPaneSwitchButton == fieldPaneLinkMode) obj_control.newCustomFieldLink = true;
 						obj_control.dialogueBoxActive = true;
 
 						if (!instance_exists(obj_dialogueBox)) {

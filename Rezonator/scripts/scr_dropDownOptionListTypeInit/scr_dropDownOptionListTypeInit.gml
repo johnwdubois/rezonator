@@ -73,6 +73,8 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeChunk1To1Tag = 68;
 	global.optionListTypeSearchField = 69;
 	global.optionListTypeSearchRange = 70;
+	global.optionListTypeLinkFields = 71;
+	global.optionListTypeLinkTag = 72;
 
 
 }

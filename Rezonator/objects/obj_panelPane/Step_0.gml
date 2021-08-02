@@ -1,16 +1,3 @@
-/*
-	obj_panelPane: Step
-	
-	Last Updated: 2019-02-14
-	
-	Called from: Every frame of the game
-	
-	Purpose: Keep panel pane running smoothly
-	
-	Mechanism: Ensure correct funtion is being used, keep time for double clicks and scrolling
-	
-	Author: Terry DuBois
-*/
 
 if (obj_control.showDevVars) {
 	if (keyboard_check(vk_control) and keyboard_check(vk_alt) and keyboard_check_pressed(vk_numpad0)

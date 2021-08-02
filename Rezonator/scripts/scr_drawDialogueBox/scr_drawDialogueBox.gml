@@ -869,6 +869,20 @@ function scr_drawDialogueBox() {
 		if (obj_control.newCustomFieldChain) {
 			scr_dialogueBoxNewCustomFieldChain();
 		}
+		if (obj_control.newCustomTagChunk) {
+			scr_dialogueBoxNewCustomTagToken();
+		}
+		if (obj_control.newCustomTagLink) {
+			scr_dialogueBoxNewCustomTagLink();
+		}
+		if (obj_control.newCustomFieldChunk) {
+			obj_control.selectFieldChunk = true;
+			scr_dialogueBoxNewCustomFieldToken();
+			obj_control.selectFieldChunk =false;
+		}
+		if (obj_control.newCustomFieldLink) {
+			scr_dialogueBoxNewCustomFieldLink();
+		}
 		
 
 		if (obj_control.recolor) {
