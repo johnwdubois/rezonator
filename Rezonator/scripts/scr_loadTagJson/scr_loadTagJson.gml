@@ -32,29 +32,32 @@ function scr_loadTagJson(){
 	// get the tag maps that the user currently has
 	var originalTokenTagMap = global.nodeMap[? "tokenTagMap"];
 	var originalUnitTagMap = global.nodeMap[? "unitTagMap"];
-	var originalChainFieldMap = global.chainFieldMap;
-	var originalEntryFieldMap = global.entryFieldMap;
+	var originalChainFieldMap = global.nodeMap[? "chainTagMap"];
+	var originalEntryFieldMap = global.nodeMap[? "entryTagMap"];
+	var originalLinkFieldMap = global.nodeMap[? "linkTagMap"];
 	
 	
 	// get the tag maps from the json
 	var tokenTagMapJson = map[? "tokenTagMap"];
 	var unitTagMapJson = map[? "unitTagMap"];
-	var chainFieldMapJson = map[? "chainFieldMap"];
-	var entryFieldMapJson = map[? "entryFieldMap"];
+	var chainFieldMapJson = map[? "chainTagMap"];
+	var entryFieldMapJson = map[? "entryTagMap"];
+	var linkFieldMapJson = map[? "linkTagMap"];
 	
 	
-	// get tokenList & unitList
-	var discourseSubMap = global.nodeMap[? global.discourseNode];
-	var tokenList = discourseSubMap[? "tokenList"];
-	var unitList = discourseSubMap[? "unitList"];
+
 	
 	
-	scr_loadTagJsonFields(originalTokenTagMap, obj_control.tokenFieldList, tokenTagMapJson, tokenList);
-	scr_loadTagJsonFields(originalUnitTagMap, obj_control.unitFieldList, unitTagMapJson, unitList);
+	scr_loadTagJsonFields(originalTokenTagMap, obj_control.tokenFieldList, tokenTagMapJson, "token");
+	scr_loadTagJsonFields(originalTokenTagMap, obj_control.chunkFieldList, tokenTagMapJson, "chunk");
+	scr_loadTagJsonFields(originalUnitTagMap, obj_control.unitFieldList, unitTagMapJson, "unit");
 	
 	
-	scr_loadTagJsonFields(global.chainFieldMap, global.chainFieldList, chainFieldMapJson, "chain");
-	scr_loadTagJsonFields(global.entryFieldMap, global.chainEntryFieldList, entryFieldMapJson, "entry");
+	scr_loadTagJsonFields(originalChainFieldMap, global.chainFieldList, chainFieldMapJson, "chain");
+	scr_loadTagJsonFields(originalEntryFieldMap, global.chainEntryFieldList, entryFieldMapJson, "entry");
+	
+	
+	scr_loadTagJsonFields(originalLinkFieldMap, global.linkFieldList, linkFieldMapJson, "link");
 
 	
 }

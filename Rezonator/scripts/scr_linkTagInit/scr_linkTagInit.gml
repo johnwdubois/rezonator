@@ -15,6 +15,7 @@ function scr_linkTagInit(){
 	// list of all of the chain/entry level fields
 	global.linkFieldList = ds_list_create();
 	
+	ds_map_add_list(global.nodeMap,"linkFieldList",global.linkFieldList);
 	
 	// link type
 	ds_list_add(global.linkFieldList, "linkType");

@@ -18,6 +18,10 @@ function scr_linkTagOptions(optionSelected){
 		var linkTagMap = linkSubMap[? "tagMap"];
 		if (!scr_isNumericAndExists(linkTagMap, ds_type_map)) exit;
 		linkTagMap[? obj_control.linkFieldSelected] = optionSelected;
+		with(obj_panelPane){
+			functionField_linkFieldSelected = obj_control.linkFieldSelected;
+			functionField_linkTagSelected = optionSelected;
+		}
 	}
 	with (obj_dropDown) instance_destroy();
 	
