@@ -121,6 +121,16 @@ function scr_panelPane_drawTree1ToMany(){
 			
 			// click to focus entry
 			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
+				/*
+				//allow clicking on root level
+				if(currentLevel == 0) {
+					if(obj_chain.currentFocusedEntryID != ""){
+						if(obj_chain.currentFocusedEntryID != currentEntry){
+							scr_createTreeLink(currentEntry);
+						}
+					}
+				}
+				*/
 				draw_set_color(global.colorThemeBorders);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 				obj_chain.currentFocusedEntryID = currentEntry;
