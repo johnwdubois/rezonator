@@ -185,7 +185,7 @@ function scr_panelPane_drawTree1ToMany(){
 			draw_rectangle(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, false);
 			
 			// click on entry
-			if(device_mouse_check_button_released(0,mb_left)){
+			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
 			
 				if(obj_chain.currentFocusedEntryID == ""){
 					currentEntrySubMap[?"level"] = 0;

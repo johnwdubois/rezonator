@@ -39,35 +39,44 @@ function scr_drawChunks(){
 		
 		
 		// get x coordinates of tokens & chunks
-		var firstTokenLeftX = -1;
-		var lastTokenLeftX = -1;
-		var firstTokenRightX = -1;
-		var lastTokenRightX = -1;
+		var firstTokenX = -1;
+		var lastTokenX = -1;
 		var chunkXBorder = 10;
 		var chunkRectX1 = -1;
 		var chunkRectX2 = -1;
 		var firstTokenDisplayStr = currentChunkFirstTokenTagMap[? global.displayTokenField];
 		var lastTokenDisplayStr = currentChunkLastTokenTagMap[? global.displayTokenField];
 		
+		var firstTokenStrWidth = (is_string(firstTokenDisplayStr)) ? string_width(firstTokenDisplayStr) : 0;
+		var lastTokenStrWidth = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
+		
 		// get coordinates based on tokens and their justifications
-		if (obj_control.justify == obj_control.justifyRight && obj_control.shape == obj_control.shapeBlock) {
-			var firstTokenStrWidth = (is_string(firstTokenDisplayStr)) ? string_width(firstTokenDisplayStr) : 0;
-			
-			firstTokenRightX = currentChunkFirstTokenSubMap[? "pixelX"];
-			firstTokenLeftX = firstTokenRightX - firstTokenStrWidth;
-			lastTokenRightX = currentChunkLastTokenSubMap[? "pixelX"];
+		if (obj_control.drawLineState == obj_control.lineState_ltr) {
+
+				firstTokenX = currentChunkFirstTokenSubMap[? "pixelX"];
+				//firstTokenLeftX = firstTokenRightX - firstTokenStrWidth;
+				lastTokenX = currentChunkLastTokenSubMap[? "pixelX"];
+
 		}
 		else {
-			var lastTokenStrWidth = (is_string(lastTokenDisplayStr)) ? string_width(lastTokenDisplayStr) : 0;
-			
-			firstTokenLeftX = currentChunkFirstTokenSubMap[? "pixelX"];
-			lastTokenLeftX = currentChunkLastTokenSubMap[? "pixelX"];
-			lastTokenRightX = lastTokenLeftX + lastTokenStrWidth;
+
+				firstTokenX = currentChunkLastTokenSubMap[? "pixelX"];
+				lastTokenX = currentChunkFirstTokenSubMap[? "pixelX"];
+				//lastTokenRightX = lastTokenLeftX + lastTokenStrWidth;
+
 		}
+
 		
 		// set chunk x coordinates
-		if (is_numeric(firstTokenLeftX)) chunkRectX1 = firstTokenLeftX - chunkXBorder;
-		if (is_numeric(lastTokenRightX)) chunkRectX2 = lastTokenRightX + chunkXBorder;
+		if (is_numeric(firstTokenX)) chunkRectX1 = firstTokenX - chunkXBorder;
+		if (is_numeric(lastTokenX)) chunkRectX2 = lastTokenX + chunkXBorder;
+		
+		if(obj_control.justify == obj_control.justifyLeft){
+			chunkRectX2 = chunkRectX2 + lastTokenStrWidth;
+		}
+		else{
+			chunkRectX1 = chunkRectX1 - firstTokenStrWidth;
+		}
 	
 		var displayUnit = currentChunkFirstTokenSubMap[? "unit"];
 		
@@ -197,6 +206,17 @@ function scr_drawChunks(){
 			
 			// focus chunk in panelPane
 			with (obj_panelPane) functionChainList_chunkSelected = obj_control.hoverChunkID;
+			// set field/tags if in read mode
+			if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
+				if (obj_panelPane.functionField_chunkFieldSelected != "" && obj_panelPane.functionField_chunkTagSelected != ""
+				&& is_string(obj_panelPane.functionField_chunkFieldSelected) && is_string(obj_panelPane.functionField_chunkTagSelected)) {
+					var chunkTagMap = currentChunkSubMap[? "tagMap"];
+					if (scr_isNumericAndExists(chunkTagMap, ds_type_map)) {
+						chunkTagMap[? obj_panelPane.functionField_chunkFieldSelected] = obj_panelPane.functionField_chunkTagSelected;
+						show_debug_message("scr_tokenClicked ... setting token: " + string(currentChunk) + ", field:" + string(obj_panelPane.functionField_chunkFieldSelected) + ", tag: " + string(obj_panelPane.functionField_chunkTagSelected));
+					}
+				}
+			}
 			
 			// add chunk to pre-existing chain
 			if (ds_list_size(hoverChunkInChainsList) < 1) {

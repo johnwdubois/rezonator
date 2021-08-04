@@ -24,13 +24,17 @@ function scr_saveTagJson(){
 	ds_map_add_map(map, "tokenTagMap", json_decode(json_encode(tokenTagMap)));
 	ds_map_add_map(map, "unitTagMap", json_decode(json_encode(unitTagMap)));
 	
-	// copy chain tag maps into tag json
-	ds_map_add_map(map, "chainFieldMap", json_decode(json_encode(global.chainFieldMap)));
-	ds_map_add_map(map, "entryFieldMap", json_decode(json_encode(global.entryFieldMap)));
+	// copy chain & entry tag maps into tag json
+	var chainFieldMap = global.nodeMap[? "chainTagMap"];
+	var entryFieldMap = global.nodeMap[? "entryTagMap"];
+	ds_map_add_map(map, "chainTagMap", json_decode(json_encode(chainFieldMap)));
+	ds_map_add_map(map, "entryTagMap", json_decode(json_encode(entryFieldMap)));
 	
-	
-	
-	
+	// copy Link tag maps into tag json
+	var linkFieldMap = global.nodeMap[? "linkTagMap"];
+	ds_map_add_map(map, "linkTagMap", json_decode(json_encode(linkFieldMap)));
+
+
 	// save json
 	var wrapper = ds_map_create();
 	ds_map_add_list(wrapper, "ROOT", rootList);
