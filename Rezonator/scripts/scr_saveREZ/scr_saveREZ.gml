@@ -51,8 +51,6 @@ function scr_saveREZ(autosave) {
 	
 	// create maps to hold copies of other maps we want in the REZ file
 	var nodeMapCopy = ds_map_create();
-	var entryFieldMapCopy = ds_map_create();
-	var chainFieldMapCopy = ds_map_create();
 
 	// create a list to contain all of the data we will save	
 	var rootList = ds_list_create();
@@ -72,8 +70,9 @@ function scr_saveREZ(autosave) {
 			var tempImportGridColNameList = scr_copyListToMap(global.importGridColNameList, map, "importGridColNameList");
 			var tempChainEntryFieldList = scr_copyListToMap(global.chainEntryFieldList, map, "chainEntryFieldList");
 			var tempChainFieldList = scr_copyListToMap(global.chainFieldList, map, "chainFieldList");
+			var tempLinkFieldList = scr_copyListToMap(global.linkFieldList, map, "linkFieldList");
 			var tempChunkFieldList = scr_copyListToMap(chunkFieldList, map, "chunkFieldList");
-			var tempChunkFieldList = scr_copyListToMap(navChunkFieldList, map, "navChunkFieldList");
+			var tempNavChunkFieldList = scr_copyListToMap(navChunkFieldList, map, "navChunkFieldList");
 			var tempNavTokenFieldList = scr_copyListToMap(navTokenFieldList, map, "navTokenFieldList");
 			var tempTokenFieldList = scr_copyListToMap(tokenFieldList, map, "tokenFieldList");
 			var tempNavUnitFieldList = scr_copyListToMap(navUnitFieldList, map, "navUnitFieldList");
@@ -111,6 +110,7 @@ function scr_saveREZ(autosave) {
 			
 			// save discourse node
 			ds_map_add(map, "discourseNode", global.discourseNode);
+			
 			
 			// save import type
 			ds_map_add(map, "importType", global.importType);
@@ -181,8 +181,6 @@ function scr_saveREZ(autosave) {
 	
 	// destroy various map/list deep-copies
 	ds_map_destroy(nodeMapCopy);
-	ds_map_destroy(entryFieldMapCopy);
-	ds_map_destroy(chainFieldMapCopy);
 	ds_list_destroy(tempImportGridColNameList);
 	ds_list_destroy(tempChainEntryFieldList);
 	ds_list_destroy(tempChainFieldList);

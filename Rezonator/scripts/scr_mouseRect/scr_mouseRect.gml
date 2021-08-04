@@ -13,6 +13,7 @@ function scr_mouseRect() {
 		else if (ds_list_size(inRectTokenIDList) > 0) {
 			// create chunk
 			if (ds_list_size(inRectUnitIDList) == 1) {
+				inRectTokenIDList = scr_discourseSort(inRectTokenIDList);
 				scr_createChunk();
 			}
 			// quicklinks

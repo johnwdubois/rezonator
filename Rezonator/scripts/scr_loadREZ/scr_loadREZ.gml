@@ -129,6 +129,7 @@ function scr_loadREZ() {
 					
 					global.cliqueMap = global.nodeMap[? "cliqueMap"];
 					global.searchMap = global.nodeMap[? "searchMap"];		
+					global.treeMap = global.nodeMap[? "treeMap"];		
 					
 					if(!scr_isNumericAndExists( global.nodeMap[?"nodeList"], ds_type_list)){
 						var nodeList = ds_list_create();
@@ -199,6 +200,7 @@ function scr_loadREZ() {
 						ds_list_destroy(global.chainFieldList);
 						global.chainFieldList = chainFieldList;
 					}
+
 					
 
 					
@@ -230,18 +232,26 @@ function scr_loadREZ() {
 	var showList = global.nodeMap[? "showList"];
 	var chunkList = global.nodeMap[? "chunkList"];
 	var nodeList = global.nodeMap[? "nodeList"];
+	var linkFieldList = global.nodeMap[? "linkFieldList"];
 	
+
 	// get chain field map, if supplied
-	var chainFieldMap = global.nodeMap[? "chainFieldMap"];
+	var chainFieldMap = global.nodeMap[? "chainTagMap"];
 	if (scr_isNumericAndExists(chainFieldMap, ds_type_map)) {
 		ds_map_destroy(global.chainFieldMap);
 		global.chainFieldMap = chainFieldMap;
 	}
 	// get entry field map, if supplied
-	var entryFieldMap = global.nodeMap[? "entryFieldMap"];
+	var entryFieldMap = global.nodeMap[? "entryTagMap"];
 	if (scr_isNumericAndExists(entryFieldMap, ds_type_map)) {
 		ds_map_destroy(global.entryFieldMap);
 		global.entryFieldMap = entryFieldMap;
+	}
+	// get entry field map, if supplied
+	var linkFieldMap = global.nodeMap[? "linkTagMap"];
+	if (scr_isNumericAndExists(linkFieldMap, ds_type_map)) {
+		ds_map_destroy(global.linkFieldMap);
+		global.linkFieldMap = linkFieldMap;
 	}
 	
 	
@@ -266,6 +276,10 @@ function scr_loadREZ() {
 	if (!is_numeric(nodeList)) {
 		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
 	}
+	if(is_numeric(linkFieldList)){
+		global.linkFieldList = linkFieldList;
+	}
+
 	
 	
 	
