@@ -406,6 +406,7 @@ inRectWordIDList = ds_list_create();
 inRectWordIDListCopy = ds_list_create();
 inRectHitIDList = ds_list_create();
 inRectUnitIDList = ds_list_create();
+inRectEntryIDList = ds_list_create();
 quickStackAbleToInitiate = true;
 quickStackAbleToSwitch = true;
 mouseRectWithinLine = false;
@@ -416,6 +417,7 @@ mouseRectBeginBetweenWords = -1;
 mouseRectBeginInSpeakerLabel = false;
 mouseoverNeutralSpace = false;	
 lineContainsMouseYPos = -1;
+entryRectListCopy = ds_list_create();
 
 
 

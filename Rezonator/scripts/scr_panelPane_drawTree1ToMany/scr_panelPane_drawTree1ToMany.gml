@@ -1,8 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTree1ToMany(){
-
 	
+	ds_list_clear(obj_control.inRectEntryIDList);
 
 	var mouseOverEntryID = "";
 	// get tree submap, make sure it exists
@@ -64,10 +64,15 @@ function scr_panelPane_drawTree1ToMany(){
 		// get current entry and all its goodies
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.treeMap[? currentEntry];
-		var currentToken = currentEntrySubMap[? "token"];
-		var currentTokenSubMap = global.nodeMap[? currentToken];
-		var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
-		var currentDisplayToken = string(currentTokenTagMap[? global.displayTokenField]);	
+		var tokenList = currentEntrySubMap[? "tokenList"];
+		var tokenListSize = ds_list_size(tokenList);
+		var currentDisplayToken = "";
+		for(var j = 0; j < tokenListSize; j ++){
+			var currentToken = tokenList[|j];
+			var currentTokenSubMap = global.nodeMap[? currentToken];
+			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
+			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
+		}
 		var currentLevel = currentEntrySubMap[? "level"];
 		if (currentLevel < 0) {
 			plusX += string_width(currentDisplayToken) + (spaceWidth * 8);
@@ -158,7 +163,7 @@ function scr_panelPane_drawTree1ToMany(){
 	}
 			
 
-	
+
 	// draw leaf row
 	plusX = originalPlusX;
 	var maxPlusX = plusX;
@@ -166,10 +171,15 @@ function scr_panelPane_drawTree1ToMany(){
 		
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.treeMap[? currentEntry];
-		var currentToken = currentEntrySubMap[? "token"];
-		var currentTokenSubMap = global.nodeMap[? currentToken];
-		var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
-		var currentDisplayToken = string(currentTokenTagMap[? global.displayTokenField]);
+		var tokenList = currentEntrySubMap[? "tokenList"];
+		var tokenListSize = ds_list_size(tokenList);
+		currentDisplayToken = "";
+		for(var j = 0; j < tokenListSize; j ++){
+			var currentToken = tokenList[|j];
+			var currentTokenSubMap = global.nodeMap[? currentToken];
+			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
+			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
+		}
 	
 		//get entry box demensions
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
@@ -184,9 +194,23 @@ function scr_panelPane_drawTree1ToMany(){
 		draw_set_color(global.colorThemeBG);
 		draw_rectangle(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, false);
 		
+
 		
 		//mouse over for entry
 		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1)
+		
+		// check if this entry should be added to entryRectList
+		var mouseRectExists = (obj_control.mouseHoldRectX1 >= 10 && obj_control.mouseHoldRectY1 >= 0);
+		var inMouseRect = false;
+		if (mouseRectExists) {
+			inMouseRect = (rectangle_in_rectangle(tokenX1, tokenY1, tokenX2, tokenY2, min(mouse_x, obj_control.mouseHoldRectX1), min(mouse_y, obj_control.mouseHoldRectY1), max(mouse_x, obj_control.mouseHoldRectX1), max(mouse_y, obj_control.mouseHoldRectY1))
+			&& (mouse_x > obj_control.mouseHoldRectX1 + 5 || mouse_x < obj_control.mouseHoldRectX1 - 5));
+			if (mouseRectExists && inMouseRect) {
+				scr_addToListOnce(obj_control.inRectEntryIDList, currentEntry);
+
+			}
+		}
+
 		if(mouseOverEntry){
 			
 			mouseOverEntryID = currentEntry;
@@ -194,8 +218,11 @@ function scr_panelPane_drawTree1ToMany(){
 			draw_set_color(global.colorThemeSelected1);
 			draw_rectangle(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, false);
 			
+
+			
+			
 			// click on entry
-			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
+			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && ds_list_size(obj_control.entryRectListCopy) <= 1 ){
 			
 				if(obj_chain.currentFocusedEntryID == ""){
 					currentEntrySubMap[?"level"] = 0;
@@ -259,9 +286,41 @@ function scr_panelPane_drawTree1ToMany(){
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight - strHeight);
 	scr_surfaceEnd();
 	
+
+	
+	// is user releases mousedrag, do something!
+	if (mouse_check_button_released(mb_left) && !instance_exists(obj_dialogueBox)) {
+		show_debug_message(string(ds_list_size(obj_control.entryRectListCopy))+ "   ON REALEASE");
+		if (ds_list_size(obj_control.entryRectListCopy) > 1) {
+			scr_combineLeafs(obj_control.entryRectListCopy);
+			//scr_createTreeLink(obj_control.entryRectListCopy[|0]);
+		}
+		
+		ds_list_clear(obj_control.entryRectListCopy);
+		// reset mouserect variables
+		obj_control.mouseHoldRectX1 = -1;
+		obj_control.mouseHoldRectY1 = -1;
+	}
+	
+	ds_list_copy(obj_control.entryRectListCopy, obj_control.inRectEntryIDList);
 	
 	
+	// if user clicks, save the position of their mouse
+	var canMakeMouseRect = obj_control.mouseoverPanelPane &&  mouse_check_button_pressed(mb_left) && !obj_control.mouseoverScrollBar;
+	if (canMakeMouseRect) {
+		obj_control.mouseHoldRectX1 = mouse_x;
+		obj_control.mouseHoldRectY1 = mouse_y;
+	}
 	
+	// if user is making a mouse rect, let's draw it
+	if (obj_control.mouseHoldRectX1 >= 0 && obj_control.mouseHoldRectY1 >= 0) {
+		
+		// draw mouse rect border
+		draw_set_color(global.colorThemeSelected1);
+		draw_set_alpha(0.7);
+		scr_drawRectWidth(obj_control.mouseHoldRectX1, obj_control.mouseHoldRectY1, mouse_x, mouse_y, 2, false);
+		draw_set_alpha(1);
+	}
 	
 	// draw Leaf BG
 	draw_set_color(global.colorThemeSelected2);
