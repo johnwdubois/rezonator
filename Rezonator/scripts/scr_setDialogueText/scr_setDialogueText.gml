@@ -57,6 +57,11 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Remove Search");
 			descriptionText = scr_getStringOfList(searchTermList);
 		}
+		if (removeTree) {
+			var searchSubMap = global.treeMap[?stringToBeRemoved];
+			titleText = scr_get_translation("Remove Tree");
+			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]);
+		}
 	}
 		
 	if(obj_dialogueBox.inputWindowActive){

@@ -16,6 +16,7 @@ function scr_combineLeafs(leafList){
 			var currentEntry = leafList[|i];
 			var currentEntrySubMap = global.treeMap[?currentEntry];
 			if(!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)){continue;}
+			if(currentEntrySubMap[? "level"] > -1){exit;}
 			var currentEntryTokenList = currentEntrySubMap[? "tokenList"];
 			var currentEntryTokenListSize = ds_list_size(currentEntryTokenList);
 			for(var j = 0; j < currentEntryTokenListSize; j ++){	

@@ -263,6 +263,7 @@
     {"id":{"name":"spr_checkmark","path":"sprites/spr_checkmark/spr_checkmark.yy",},"order":21,},
     {"id":{"name":"scr_openingMenu","path":"scripts/scr_openingMenu/scr_openingMenu.yy",},"order":8,},
     {"id":{"name":"scr_drawStack","path":"scripts/scr_drawStack/scr_drawStack.yy",},"order":28,},
+    {"id":{"name":"scr_deleteTree","path":"scripts/scr_deleteTree/scr_deleteTree.yy",},"order":6,},
     {"id":{"name":"scr_importMappingGridsInit","path":"scripts/scr_importMappingGridsInit/scr_importMappingGridsInit.yy",},"order":9,},
     {"id":{"name":"utf8_unit_info","path":"scripts/utf8_unit_info/utf8_unit_info.yy",},"order":3,},
     {"id":{"name":"scr_importMappingTagInfo","path":"scripts/scr_importMappingTagInfo/scr_importMappingTagInfo.yy",},"order":5,},
