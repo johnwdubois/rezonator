@@ -16,15 +16,11 @@ function scr_panelPane_drawTree1ToMany(){
 	// draw light BG rect
 	var strHeight = string_height("0") * 2.5;
 	var headerHeight = functionTabs_tabHeight;
-	draw_set_color(merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.4));
+	var topBkgColor = merge_color(global.colorThemeSelected1, global.colorThemeBG, 0.4);
+	draw_set_color(topBkgColor);
 	draw_rectangle(x, y, x + windowWidth, y + windowHeight - strHeight, false);
 	
-	// draw rectangle dividing numbers from text
-	var spaceWidth = string_width(" ");
-	var originalPlusX = string_width("Leaf") + (spaceWidth * 5)
-	var plusX = originalPlusX;
-	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(x, y, x + plusX, y + windowHeight, false);
+
 
 
 	// draw line for leaf level
@@ -33,8 +29,18 @@ function scr_panelPane_drawTree1ToMany(){
 	var leafTextY = floor(mean(leafY, y + windowHeight));
 	draw_set_color(global.colorThemeBorders);
 	draw_set_alpha(1);
-
+	
+	
+	// draw rectangle dividing numbers from text
+	var spaceWidth = string_width(" ");
+	var originalPlusX = string_width("Leaf") + (spaceWidth * 5)
+	var plusX = originalPlusX;
+	draw_set_color(topBkgColor);
+	draw_rectangle(x, y, x + plusX, leafY, false);
+	
+	draw_set_color(global.colorThemeBorders);
 	draw_line(x, y, x, y + headerHeight);
+
 	
 
 	functionTree_treeMouseoverLinkArea = point_in_rectangle(mouse_x, mouse_y, x + originalPlusX, y, x + windowWidth - global.scrollBarWidth, leafY);
@@ -99,7 +105,7 @@ function scr_panelPane_drawTree1ToMany(){
 		draw_set_color(global.colorThemeBG);
 		draw_roundrect_ext(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 20,20, false);
 		if(obj_chain.currentFocusedEntryID == currentEntry){
-			draw_set_color(global.colorThemeBorders);
+			draw_set_color(global.colorThemeRezPink);
 			scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 		}
 		
@@ -120,25 +126,56 @@ function scr_panelPane_drawTree1ToMany(){
 			draw_roundrect_ext(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 20,20,false);
 			
 			if(obj_chain.currentFocusedEntryID == currentEntry){
-				draw_set_color(global.colorThemeBorders);
+				draw_set_color(global.colorThemeRezPink);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 			}
 			
 			// click to focus entry
 			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
-				/*
+				var isCycle = false;
 				//allow clicking on root level
 				if(currentLevel == 0) {
 					if(obj_chain.currentFocusedEntryID != ""){
 						if(obj_chain.currentFocusedEntryID != currentEntry){
-							scr_createTreeLink(currentEntry);
+							isCycle = scr_checkTreeCycle(currentEntry);
+							if(!isCycle){
+								scr_createTreeLink(currentEntry);
+								obj_chain.currentFocusedEntryID = currentEntry;
+								
+								var setIDList = treeSubMap[? "setIDList"];
+								var setIDListSize = ds_list_size(setIDList);
+								treeSubMap[? "maxLevel"] = -1;
+								for (var i = 0; i < setIDListSize; i++) {
+									var currentEntry = setIDList[| i];
+									var currentEntrySubMap = global.treeMap[? currentEntry];
+									var currentEntrySource = currentEntrySubMap[? "sourceLink"];
+									var currentEntryLevel = currentEntrySubMap[? "level"];
+									show_debug_message("currentEntry: " + string(currentEntry) + ", currentEntrySource: " + string(currentEntrySource) + ", currentEntryLevel: " + string(currentEntryLevel));
+									if (currentEntrySource == "" && currentEntryLevel >= 0) {
+										show_debug_message("TIME TO REFRESH")
+										scr_treeRefreshLevel(obj_panelPane.functionTree_treeSelected, currentEntry, 0);
+									}
+								}
+							}
+							else{
+								obj_chain.currentFocusedEntryID = currentEntry;
+							}
+						}
+						else{
+							obj_chain.currentFocusedEntryID = currentEntry;
 						}
 					}
+					else{
+						obj_chain.currentFocusedEntryID = currentEntry;
+					}
 				}
-				*/
+				else{
+					obj_chain.currentFocusedEntryID = currentEntry;
+				}
+				
 				draw_set_color(global.colorThemeBorders);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
-				obj_chain.currentFocusedEntryID = currentEntry;
+				
 			}
 		}
 		
@@ -151,6 +188,14 @@ function scr_panelPane_drawTree1ToMany(){
 	}
 
 	scr_drawTreeLinks();
+	
+		
+	if(functionTree_treeLinkMouseover == "" && mouseOverEntryID == "" && functionTree_treeMouseoverLinkArea){
+		if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
+			obj_chain.currentFocusedEntryID = "";
+		}
+	}
+	
 	treeSubMap[?"maxLevel"] = maxLevel;
 
 	// draw horizontal lines for each row
@@ -159,10 +204,31 @@ function scr_panelPane_drawTree1ToMany(){
 	for (var i = 0; i <= maxLevel; i++) {
 		var levelY = rootY + (strHeight * i);
 		var lineY = levelY  - (strHeight / 2) + currentScrollPlusY;
-		draw_line(x - clipX, lineY - clipY, x + windowWidth - clipX, lineY - clipY);
+		//draw_line(x - clipX, lineY - clipY, x + windowWidth - clipX, lineY - clipY);
 	}
-			
-
+	
+	
+	draw_set_alpha(1);	
+	draw_set_color(topBkgColor);
+	draw_rectangle(x - clipX, y - clipY, x + originalPlusX - clipX, y + windowHeight - clipY, false);
+	// draw numbers for each level		
+	draw_set_halign(fa_center);
+	for (var i = 0; i <= maxLevel; i++) {
+		
+		// draw number text
+		var levelY = rootY + (strHeight * i);
+		draw_set_color(global.colorThemeText);
+		draw_text(floor(mean(x, x + originalPlusX)) - clipX, floor(levelY + currentScrollPlusY) - clipY, string(i));
+		
+		// draw horizontal line for each row
+		draw_set_color(global.colorThemeBG);
+		var lineY = levelY  - (strHeight / 2) + currentScrollPlusY;
+		//draw_line(x - clipX, lineY - clipY, x + originalPlusX - clipX, lineY - clipY);
+	}
+	
+	
+	draw_set_color(global.colorThemeBG);
+	draw_rectangle(x- clipX, leafY - clipY, x + originalPlusX- clipX, y + windowHeight - clipY, false);
 
 	// draw leaf row
 	plusX = originalPlusX;
@@ -222,7 +288,7 @@ function scr_panelPane_drawTree1ToMany(){
 			
 			
 			// click on entry
-			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && ds_list_size(obj_control.entryRectListCopy) <= 1 ){
+			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && ds_list_size(obj_control.entryRectListCopy) <= 1 && !functionTree_treeMouseoverLinkArea ){
 			
 				if(obj_chain.currentFocusedEntryID == ""){
 					currentEntrySubMap[?"level"] = 0;
@@ -231,10 +297,20 @@ function scr_panelPane_drawTree1ToMany(){
 					if(obj_chain.currentFocusedEntryID != currentEntry){
 						if(currentEntrySubMap[?"level"] == -1){
 							scr_createTreeLink(currentEntry);
+							var nextLevelHeight = (currentEntrySubMap[?"level"] - 1) * strHeight;
+							
+							
+							show_debug_message(nextLevelHeight)
+							currentScrollPlusY =nextLevelHeight;
+							
+							show_debug_message("click on leaf ... setting scroll from " + string(scrollPlusYDest) + " to " + string(nextLevelHeight));
+							scrollPlusYDest = -nextLevelHeight;
+							scrollPlusY = -nextLevelHeight;
+
+							
 						}
 					}
 				}
-				
 				obj_chain.currentFocusedEntryID = currentEntry;
 			}
 		}
@@ -249,45 +325,22 @@ function scr_panelPane_drawTree1ToMany(){
 		draw_set_color(global.colorThemeBG);
 		draw_set_alpha(0.5);
 		var lineX = x + plusX + scrollPlusX;
-		draw_line(lineX - clipX, y - clipY, lineX - clipX, y + windowHeight - clipY);
+		//draw_line(lineX - clipX, y - clipY, lineX - clipX, y + windowHeight - clipY);
 		
 		plusX += boxWidth;
 	}
 	maxPlusX = plusX;
 	plusX = originalPlusX;
-	draw_set_alpha(1);
-	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(x, leafY, x + plusX, y + windowHeight, false);
+
+
 	
-	
-	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(x - clipX, y - clipY, x + originalPlusX - clipX, y + windowHeight - clipY, false);
-	
-	// draw numbers for each level
-	draw_set_halign(fa_center);
-	for (var i = 0; i <= maxLevel; i++) {
-		
-		// draw number text
-		var levelY = rootY + (strHeight * i);
-		draw_set_color(global.colorThemeBG);
-		draw_text(floor(mean(x, x + originalPlusX)) - clipX, floor(levelY + currentScrollPlusY) - clipY, (i == 0) ? "Root" : string(i));
-		
-		// draw horizontal line for each row
-		draw_set_color(global.colorThemeBG);
-		var lineY = levelY  - (strHeight / 2) + currentScrollPlusY;
-		draw_line(x - clipX, lineY - clipY, x + originalPlusX - clipX, lineY - clipY);
-	}
-	
-	
-	
-	
-	scr_scrollBar(maxLevel +1, -1, strHeight, 0,
+	scr_scrollBar(maxLevel + 2, -1, strHeight, 0,
 		global.colorThemeSelected1, global.colorThemeSelected2,
 		global.colorThemeSelected1, global.colorThemeSelected2, spr_ascend, windowWidth, windowHeight - strHeight);
 	scr_surfaceEnd();
 	
 
-	
+	draw_line(x + originalPlusX + 1, y, x + originalPlusX + 1, leafY);
 	// is user releases mousedrag, do something!
 	if (mouse_check_button_released(mb_left) && !instance_exists(obj_dialogueBox)) {
 		show_debug_message(string(ds_list_size(obj_control.entryRectListCopy))+ "   ON REALEASE");
@@ -322,18 +375,16 @@ function scr_panelPane_drawTree1ToMany(){
 		draw_set_alpha(1);
 	}
 	
-	// draw Leaf BG
-	draw_set_color(global.colorThemeSelected2);
-	draw_rectangle(x, leafY, x + originalPlusX, y + windowHeight, false);
-
+	//draw_set_color(global.colorThemeBorders);
+	//draw_line(x, leafY, x + windowWidth, leafY);
+	
 	// draw "Leaf" text
 	draw_set_halign(fa_left);
 	draw_set_valign(fa_middle);
 	draw_set_color(global.colorThemeBG);
-	draw_text(floor(x + spaceWidth), leafTextY, "Leaf");
+	//draw_text(floor(x + spaceWidth), leafTextY, "Leaf");
 	
-	draw_set_color(global.colorThemeBorders);
-	draw_line(x, leafY, x + windowWidth, leafY);
+
 
 	scr_scrollMouseControls(strHeight);
 	

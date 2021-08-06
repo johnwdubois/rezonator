@@ -25,7 +25,6 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 				tokenPixelXDest = camWidth - (scrollPlusX + (displayCol * gridSpaceHorizontal) + spaceWidth);
 			}
 			
-
 		}
 	}
 	else if (justify == justifyCenter) {

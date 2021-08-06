@@ -354,6 +354,7 @@
     {"id":{"name":"scr_chainRecolorOptions","path":"scripts/scr_chainRecolorOptions/scr_chainRecolorOptions.yy",},"order":2,},
     {"id":{"name":"scr_speakerLabelOptions","path":"scripts/scr_speakerLabelOptions/scr_speakerLabelOptions.yy",},"order":3,},
     {"id":{"name":"scr_panelPane_drawShowList","path":"scripts/scr_panelPane_drawShowList/scr_panelPane_drawShowList.yy",},"order":23,},
+    {"id":{"name":"scr_checkTreeCycle","path":"scripts/scr_checkTreeCycle/scr_checkTreeCycle.yy",},"order":7,},
     {"id":{"name":"scr_chain1To1FieldOptions","path":"scripts/scr_chain1To1FieldOptions/scr_chain1To1FieldOptions.yy",},"order":50,},
     {"id":{"name":"obj_wordTip","path":"objects/obj_wordTip/obj_wordTip.yy",},"order":10,},
     {"id":{"name":"scr_fileOptions","path":"scripts/scr_fileOptions/scr_fileOptions.yy",},"order":4,},
