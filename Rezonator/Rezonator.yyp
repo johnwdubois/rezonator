@@ -66,6 +66,7 @@
     {"id":{"name":"scr_panelPane_drawChains1ToManyInnerLoop","path":"scripts/scr_panelPane_drawChains1ToManyInnerLoop/scr_panelPane_drawChains1ToManyInnerLoop.yy",},"order":19,},
     {"id":{"name":"scr_jumpToLineCalled","path":"scripts/scr_jumpToLineCalled/scr_jumpToLineCalled.yy",},"order":4,},
     {"id":{"name":"spr_filterTool","path":"sprites/spr_filterTool/spr_filterTool.yy",},"order":1,},
+    {"id":{"name":"scr_objControlKeyDelete","path":"scripts/scr_objControlKeyDelete/scr_objControlKeyDelete.yy",},"order":27,},
     {"id":{"name":"scr_gridMultiColSort","path":"scripts/scr_gridMultiColSort/scr_gridMultiColSort.yy",},"order":0,},
     {"id":{"name":"scr_gridMultiColSortPart","path":"scripts/scr_gridMultiColSortPart/scr_gridMultiColSortPart.yy",},"order":1,},
     {"id":{"name":"scr_findInGridTwoParameters","path":"scripts/scr_findInGridTwoParameters/scr_findInGridTwoParameters.yy",},"order":2,},
