@@ -52,7 +52,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth,currentDisplayStr);
 		scr_adaptFont(currentDisplayStr,"M");
-		var wordDistance = string_width(currentDisplayStr) + spaceWidth;
+		var wordDistance = string_width(currentDisplayStr) + spaceWidth * (gridSpaceHorizontal/8);
 		shapeTextX += wordDistance;
 		unitWidth -= wordDistance;
 		
