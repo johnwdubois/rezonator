@@ -64,6 +64,7 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 		for(var i = 0 ; i < ds_list_size(global.importGridColNameList); i++){
 			var fieldName = global.importGridColNameList[| i];
 			if(global.fieldLevelMap[? fieldName] == "unit"){
+				
 				if(fieldName == "~blockID"){continue;}
 				ds_list_add(global.unitFieldList, fieldName);
 				
@@ -133,6 +134,9 @@ function scr_importGridToNodeMap_fieldsRowToken(row){
 			}
 		}
 		else if (currentLevel == "unit" && newUnitMade) {
+			if(currentField == global.unitImportUnitStartColName){unitSubMap[?"unitStart"] = currentCell;}
+			if(currentField == global.unitImportUnitEndColName){unitSubMap[?"unitEnd"] = currentCell;}
+			
 			ds_map_add(unitTagMap, currentField, currentCell);
 			scr_addAutoTag(currentField, currentCell, unitFieldMap);
 		}

@@ -47,7 +47,7 @@ function scr_languageOptions(optionSelected){
 			global.lang_index = indexOfLanguage;
 		
 		break;
-		case "Gujarati" :
+		case "menu_language-gu" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "gu")
 			show_debug_message(string(indexOfLanguage))
@@ -55,7 +55,7 @@ function scr_languageOptions(optionSelected){
 			global.lang_index = indexOfLanguage;
 		
 		break;	
-		case "Armenian" :
+		case "menu_language-hy" :
 		
 			var indexOfLanguage = ds_list_find_index(global.lang_codes, "hy")
 			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
@@ -69,6 +69,20 @@ function scr_languageOptions(optionSelected){
 			global.lang_index = indexOfLanguage;
 		
 		break;	
+		case "menu_language-kk" :
+		
+			var indexOfLanguage = ds_list_find_index(global.lang_codes, "kk")
+			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
+			global.lang_index = indexOfLanguage;
+		
+		break;
+		case "menu_language-ru" :
+		
+			var indexOfLanguage = ds_list_find_index(global.lang_codes, "ru")
+			global.locale_gloss = global.locale_map[? global.lang_codes[| indexOfLanguage]];	
+			global.lang_index = indexOfLanguage;
+		
+		break;
 		
 	}
 	scr_fontGlobalUpdate();

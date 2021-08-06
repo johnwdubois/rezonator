@@ -47,8 +47,10 @@ removeFieldChain = false;
 removeFieldChunk = false;
 removeFieldLink = false;
 removeSearch = false;
+removeTree = false;
 stringToBeRemoved = "";
 searchToBeRemoved = "";
+
 
 canDelete = true;
 canDeleteHoldingCounter = 0;

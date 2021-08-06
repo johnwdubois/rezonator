@@ -7,7 +7,11 @@ function scr_panelPane_drawTreeList(){
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var nameColX = numColX + numColWidth;
-
+	
+	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
+	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
+	var mouseOverDel = false;
+	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
 	var textPlusY = 0;
@@ -71,6 +75,46 @@ function scr_panelPane_drawTreeList(){
 		
 		// name column
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentTreeName));
+		
+		
+		
+		
+		
+		
+	
+		// get coordinates for delete button
+		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
+		var delButtonY = treeRectY1 + (strHeight * 0.5);
+		mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, treeRectY1, deleteColX + deleteColWidth, treeRectY2) && mouseoverTreeRect;
+		var trashAlpha =  1;
+
+								
+		// mouseover & click on sequence arrows
+		if (mouseOverDel) {
+			draw_set_color(global.colorThemeSelected1);
+			draw_rectangle(deleteColX - clipX, treeRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, treeRectY2 - clipY, false);
+			if (mouse_check_button_released(mb_left)) {
+					
+					
+				if (!instance_exists(obj_dialogueBox)) {
+					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+					obj_dialogueBox.removeTree = true
+					obj_dialogueBox.questionWindowActive = true;
+					obj_dialogueBox.stringToBeRemoved = currentTree;
+				}
+
+					
+			}
+				
+			scr_createTooltip(delButtonX, treeRectY2, "Remove", obj_tooltip.arrowFaceUp);
+		}
+			
+
+								
+		draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+			
+		
+		
 		
 		// increment plusY
 		textPlusY += strHeight;

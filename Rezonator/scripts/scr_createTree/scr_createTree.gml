@@ -38,10 +38,12 @@ function scr_createTree(tokenList){
 		// get random hex and make a subMap for each entry
 		var currentEntry = scr_generateRandomHex();
 		var currentEntrySubMap = ds_map_create();
+		var currentTokenList = ds_list_create();
+		ds_list_add(currentTokenList,currentToken)
 		ds_map_add_map(global.treeMap, currentEntry, currentEntrySubMap);
 		
 		// give the entry some data
-		ds_map_add(currentEntrySubMap, "token", currentToken);
+		ds_map_add_list(currentEntrySubMap, "tokenList", currentTokenList);
 		ds_map_add(currentEntrySubMap, "order", i);
 		ds_map_add(currentEntrySubMap, "level", -1);
 		ds_map_add(currentEntrySubMap, "type", "entry");

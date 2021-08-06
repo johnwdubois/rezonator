@@ -1,6 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteTreeLink(){
+	
+	
 	obj_control.deleteEntryPressed = true;
 	show_debug_message(string(obj_chain.currentFocusedEntryID))
 	if(obj_chain.currentFocusedEntryID == "") {
@@ -52,13 +54,22 @@ function scr_deleteTreeLink(){
 				*/
 				
 				if(sourceEntryID != ""){
+					/*
 					currentGoalLinkSubMap[? "source"] = sourceEntryID;
 					scr_addToListOnce(goalLinkList, currentGoalLink);
+					*/
+					currentGoalLinkSubMap[? "source"] = "";
+					var currentGoalEntry = currentGoalLinkSubMap[? "goal"];
+					var currentGoalEntrySubMap = global.treeMap[?currentGoalEntry];
+					currentGoalEntrySubMap[? "sourceLink"] = "";
+					currentGoalEntrySubMap[? "level"] = 0;
+					//scr_addToListOnce(goalLinkList, currentGoalLink);
+					scr_deleteFromList(treeLinkList, currentGoalLink);
+					ds_map_delete(global.treeMap, currentGoalLink);
+					ds_map_destroy(currentGoalLinkSubMap);
 					
 				}
 				else{
-					// COME BACK TO TOMORROW
-	
 					//delete all goals node goal list if it had no source
 					
 					// if we're deleting a root, let's delete all of its goal links
@@ -76,8 +87,8 @@ function scr_deleteTreeLink(){
 					
 
 					//delete from tree node link list
-					//scr_deleteFromList(treeLinkList, currentGoalLink);
-					//ds_map_destroy(currentGoalLinkSubMap);
+					scr_deleteFromList(treeLinkList, currentGoalLink);
+					ds_map_destroy(currentGoalLinkSubMap);
 				}
 			}
 		}
@@ -103,6 +114,7 @@ function scr_deleteTreeLink(){
 		var currentEntryLevel = currentEntrySubMap[? "level"];
 		show_debug_message("currentEntry: " + string(currentEntry) + ", currentEntrySource: " + string(currentEntrySource) + ", currentEntryLevel: " + string(currentEntryLevel));
 		if (currentEntrySource == "" && currentEntryLevel >= 0) {
+			show_debug_message("TIME TO REFRESH")
 			scr_treeRefreshLevel(obj_panelPane.functionTree_treeSelected, currentEntry, 0);
 		}
 	}
