@@ -76,6 +76,7 @@ function scr_deleteTreeEntry(){
 					for (var j = 0; j < focusedGoalLinkListSize; j++) {
 						var currentGoalLinkDelete = focusedGoalLinkList[| j];
 						var currentGoalLinkDeleteSubMap = global.treeMap[? currentGoalLinkDelete];
+						if(!scr_isNumericAndExists(currentGoalLinkDeleteSubMap, ds_type_map)){exit;}
 						var currentGoalLinkDeleteEntry = currentGoalLinkDeleteSubMap[? "goal"];
 						var currentGoalLinkDeleteEntrySubMap = global.treeMap[? currentGoalLinkDeleteEntry];
 						ds_map_delete(global.treeMap, currentGoalLinkDelete);
