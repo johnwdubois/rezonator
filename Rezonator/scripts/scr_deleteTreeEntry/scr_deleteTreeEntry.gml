@@ -63,6 +63,7 @@ function scr_deleteTreeEntry(){
 					var currentGoalEntrySubMap = global.treeMap[?currentGoalEntry];
 					currentGoalEntrySubMap[? "sourceLink"] = "";
 					currentGoalEntrySubMap[? "level"] = 0;
+					
 					//scr_addToListOnce(goalLinkList, currentGoalLink);
 					scr_deleteFromList(treeLinkList, currentGoalLink);
 					ds_map_delete(global.treeMap, currentGoalLink);
@@ -81,7 +82,7 @@ function scr_deleteTreeEntry(){
 						var currentGoalLinkDeleteEntrySubMap = global.treeMap[? currentGoalLinkDeleteEntry];
 						ds_map_delete(global.treeMap, currentGoalLinkDelete);
 						ds_map_destroy(currentGoalLinkDeleteSubMap);
-						scr_deleteFromList(treeLinkList, currentGoalLink);
+						scr_deleteFromList(treeLinkList, currentGoalLinkDelete);
 						currentGoalLinkDeleteEntrySubMap[? "sourceLink"] = "";
 						show_debug_message("currentGoalLinkDeleteEntry: " + string(currentGoalLinkDeleteEntry));
 					}

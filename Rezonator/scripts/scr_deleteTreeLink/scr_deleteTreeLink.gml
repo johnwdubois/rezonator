@@ -8,7 +8,7 @@ var sourceEntry = linkSubMap[? "source"];
 var goalEntry = linkSubMap[? "goal"];
 
 var sourceEntrySubMap = global.treeMap[? sourceEntry];
-scr_deleteFromList(treeSubMap[? "goalLinkList"], obj_panelPane.functionTree_treeLinkSelected);
+scr_deleteFromList(sourceEntrySubMap[? "goalLinkList"], obj_panelPane.functionTree_treeLinkSelected);
 
 var goalEntrySubMap = global.treeMap[? goalEntry];
 goalEntrySubMap[? "sourceLink"] = "";
