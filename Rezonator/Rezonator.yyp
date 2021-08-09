@@ -465,6 +465,7 @@
     {"id":{"name":"obj_fieldSummaryWindow","path":"objects/obj_fieldSummaryWindow/obj_fieldSummaryWindow.yy",},"order":12,},
     {"id":{"name":"scr_sentStackerLoop","path":"scripts/scr_sentStackerLoop/scr_sentStackerLoop.yy",},"order":14,},
     {"id":{"name":"scr_sortVizSetIDList","path":"scripts/scr_sortVizSetIDList/scr_sortVizSetIDList.yy",},"order":32,},
+    {"id":{"name":"scr_removeHyphenSpacing","path":"scripts/scr_removeHyphenSpacing/scr_removeHyphenSpacing.yy",},"order":30,},
     {"id":{"name":"obj_saveParent","path":"objects/obj_saveParent/obj_saveParent.yy",},"order":1,},
     {"id":{"name":"obj_flyout","path":"objects/obj_flyout/obj_flyout.yy",},"order":11,},
     {"id":{"name":"scr_openFile","path":"scripts/scr_openFile/scr_openFile.yy",},"order":24,},
