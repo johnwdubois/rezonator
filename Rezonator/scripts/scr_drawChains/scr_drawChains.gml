@@ -141,7 +141,7 @@ function scr_drawChains() {
 			}
 		
 			// get the pixel X values for each token
-			lineX2 = currentToken2SubMap[? "pixelX"];
+			lineX2 = currentToken2SubMap[?"pixelX"];
 			lineY2 = tokenUnitID2SubMap[? "pixelY"];
 		
 
@@ -154,20 +154,17 @@ function scr_drawChains() {
 			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2)
 			&& unit1Active && unit2Active && inDrawRange1 && inDrawRange2) {
 				
-				// check if text is right aligned
-				if (obj_control.justify == obj_control.justifyRight) {
-					lineX1 -= currentWordStringWidth1;
-					lineX2 -= currentWordStringWidth2;
-				}
-				
-
-			
 				if (currentChainVisible) {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
 
 					if (chainType == "rezChain") {
-						draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+						if(obj_control.drawLineState == obj_control.lineState_rtl){
+							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2)
+						}
+						else{
+							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+						}
 						
 						// mark stretches visually with a circle
 						if (obj_control.showDevVars) {
@@ -183,7 +180,12 @@ function scr_drawChains() {
 
 					}
 					else if (chainType == "trackChain") {
-						scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						if(obj_control.justify == obj_control.justifyLeft){
+							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						}
+						else{
+							scr_drawCurvedLine(lineX1 - (currentWordStringWidth1 / 2), lineY1, lineX2 - (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						}
 						
 					}
 				}

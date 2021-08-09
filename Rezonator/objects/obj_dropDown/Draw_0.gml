@@ -248,6 +248,9 @@ for (var i = 0; i < optionListSize; i++) {
 	if((optionText == "menu_rez" or optionText == "menu_track") and optionListType != global.optionListTypeTools){
 		shortcutStr = "";	
 	}
+	if(optionText == "menu_prose" and optionListType != global.optionListTypeView){
+		shortcutStr = "";	
+	}
 	
 	var optionTextX = (global.lang_codes[| global.lang_index] == "he") ? floor(optionRectX2 - textBuffer) : floor(optionRectX1 + textBuffer);
 	var optionTextY = floor(mean(optionRectY1, optionRectY2));
