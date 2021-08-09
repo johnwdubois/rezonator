@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_treeRefreshLevel(tree, entry, level){
-
+	show_debug_message("LOOP ON LEVEL: " + string(level))
 	// get tree & entry, make sure they exist
 	var treeSubMap = global.treeMap[? tree];
 	if (!scr_isNumericAndExists(treeSubMap, ds_type_map)) exit;

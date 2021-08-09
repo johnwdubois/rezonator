@@ -273,6 +273,8 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 		}
 		else if(currentLevel == "unit"){
 			if(currentField == "~blockID" || currentField == global.speakerField){continue;}
+			if(currentField == global.unitImportUnitStartColName){unitSubMap[?"unitStart"] = unitStr}
+			if(currentField == global.unitImportUnitEndColName){unitSubMap[?"unitEnd"] = unitStr}
 			ds_map_add(unitTagMap, currentField, unitStr);
 			scr_addAutoTag(currentField, unitStr, unitFieldMap);
 		}

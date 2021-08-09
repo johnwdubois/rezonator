@@ -48,7 +48,7 @@ function scr_mapViewerDrawNodeData(){
 							|| subMapKey == "setIDList"  || subMapKey == "inChainsList" || subMapKey == "tokenList"
 							|| subMapKey == "entryList"|| subMapKey == "unitList" || subMapKey == "displayUnitList"
 							|| subMapKey == "inChunkList"|| subMapKey == "tagSet" || subMapKey == "targetList"
-							|| subMapKey == "docList" ||subMapKey == "goalLinkList") ;
+							|| subMapKey == "docList" ||subMapKey == "tokenList") ;
 			if (isList && scr_isNumericAndExists(subMapVal, ds_type_list)) {
 				subMapValStr = scr_getStringOfList(subMapVal);
 			}
@@ -84,7 +84,8 @@ function scr_mapViewerDrawNodeData(){
 					
 					var isList = (subsubMapKey == "tagSet" || subsubMapKey == "searchTermList" || subsubMapKey == "displayUnitList" 
 									|| subsubMapKey == "displayTokenList"|| subsubMapKey == "targetList"|| subsubMapKey == "unitList"|| subsubMapKey == "chainList"
-									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList" ||subsubMapKey == "goalLinkList"||subsubMapKey == "shortcutSet");
+									|| subsubMapKey == "linkIDList" || subsubMapKey == "setIDList" ||subsubMapKey == "goalLinkList"||subsubMapKey == "shortcutSet"
+									||subsubMapKey == "tokenList");
 					if (isList && scr_isNumericAndExists(subsubMapVal, ds_type_list)) {
 						subsubMapValStr = scr_getStringOfList(subsubMapVal);
 					}

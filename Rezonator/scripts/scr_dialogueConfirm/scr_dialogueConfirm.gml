@@ -246,6 +246,9 @@ function scr_dialogueConfirm(){
 		if (removeSearch) {
 			scr_removeSearch(searchToBeRemoved);
 		}
+		if (removeTree) {
+			scr_deleteTree(stringToBeRemoved);
+		}
 		
 			
 		if(layerLink) {

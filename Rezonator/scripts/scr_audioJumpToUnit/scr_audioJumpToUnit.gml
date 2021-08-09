@@ -11,6 +11,7 @@ function scr_audioJumpToUnit(unitID) {
 				if(!scr_isNumericAndExists(unitSubMap, ds_type_map)){exit;}
 				
 				var unitStart = unitSubMap[?"unitStart"];
+				if(string_length(string_digits(unitStart)) < 1){exit;}
 				unitStart = real(unitStart);
 				
 				if (unitStart != undefined and unitStart > 0) {

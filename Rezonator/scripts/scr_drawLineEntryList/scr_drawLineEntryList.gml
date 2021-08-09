@@ -52,7 +52,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth,currentDisplayStr);
 		scr_adaptFont(currentDisplayStr,"M");
-		var wordDistance = string_width(currentDisplayStr) + spaceWidth;
+		var wordDistance = string_width(currentDisplayStr) + spaceWidth * (gridSpaceHorizontal/8);
 		shapeTextX += wordDistance;
 		unitWidth -= wordDistance;
 		
@@ -81,7 +81,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var inMouseRect = false;
 		if (mouseRectExists) {
 			inMouseRect = (rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1))
-			&& (mouse_x > mouseHoldRectX1 + 25 || mouse_x < mouseHoldRectX1 - 25));
+			&& (mouse_x > mouseHoldRectX1 + 10 || mouse_x < mouseHoldRectX1 - 10));
 			if (mouseRectExists && inMouseRect && !mouse_check_button_released(mb_left)) {
 				ds_list_add(inRectTokenIDList, currentToken);
 				scr_addToListOnce(inRectUnitIDList, unitID);

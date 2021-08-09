@@ -63,7 +63,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseRectXY: " + string(mouseHoldRectX1) + ", " + string(mouseHoldRectY1));
 	draw_text(devVarX, wordTopMargin + (strHeight * 27), "panelPane scrollPlusY_tabUnit: " + string(obj_panelPane.scrollPlusY_tabUnit));
 	draw_text(devVarX, wordTopMargin + (strHeight * 28), "panelPane tokenTagSelected: " + string(obj_panelPane.functionField_tokenTagSelected));
-	draw_text(devVarX, wordTopMargin + (strHeight * 29), "inRectUnitIDList: " + scr_getStringOfList(inRectUnitIDList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 29), "inRectEntryIDList: " + scr_getStringOfList(inRectEntryIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 30), "speakerLabelColXHolding: " + string(speakerLabelColXHolding));
 	draw_text(devVarX, wordTopMargin + (strHeight * 31), "speakerLabelColXHoldingDiff: " + string(speakerLabelColXHoldingDiff));
 	draw_text(devVarX, wordTopMargin + (strHeight * 32), "searchGridActive: " + string(searchGridActive));
@@ -81,6 +81,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 8), "chainShowList: " + string(scr_getStringOfList(obj_chain.chainShowList)));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "rightClickID: " + string(obj_control.rightClickID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 10), "hoverUnitID: " + string(obj_control.hoverUnitID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 11), "currentFocusedEntryID: " + string(obj_chain.currentFocusedEntryID));
 
 	
 	// reset halign to left

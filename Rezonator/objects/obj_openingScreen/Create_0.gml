@@ -366,8 +366,10 @@ ds_map_add(global.openingScreenDropDownMap, "menu_language-it", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-ja", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-vi", true);
 ds_map_add(global.openingScreenDropDownMap, "menu_language-zh", true);
-ds_map_add(global.openingScreenDropDownMap, "Armenian", true);
-ds_map_add(global.openingScreenDropDownMap, "Gujarati", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-hy", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-gu", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-kk", true);
+ds_map_add(global.openingScreenDropDownMap, "menu_language-ru", true);
 
 
 
