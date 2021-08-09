@@ -28,7 +28,7 @@ function scr_objControlKeyDelete(){
 			}	
 		}
 		if(deleteEntryPressed == false){
-			scr_deleteTreeLink();
+			scr_deleteTreeEntry();
 		}
 	
 		scr_deleteFromChain(true);
