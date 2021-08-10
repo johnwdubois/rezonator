@@ -105,6 +105,12 @@ function scr_speakerLabelOptions(optionSelected) {
 
 					instance_destroy(obj_dropDown);
 					break;
+				case "Set Chain Name":
+		
+					scr_setChainName();
+
+					instance_destroy(obj_dropDown);
+					break;
 					
 			case "Tag Chain":
 			

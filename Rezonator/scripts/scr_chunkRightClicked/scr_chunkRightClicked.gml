@@ -16,7 +16,7 @@ function scr_chunkRightClicked(){
 		// Options for a word in a Chain
 		if(ds_list_size(tokenInChainsList) > 0){
 					
-			ds_list_add(dropDownOptionList,  "Delete Link");
+			ds_list_add(dropDownOptionList,  "Delete Link", "Set Chain Name");
 
 			for(var i = 0; i < ds_list_size(tokenInChainsList); i++){
 				var chainID = tokenInChainsList[|i];
@@ -28,7 +28,6 @@ function scr_chunkRightClicked(){
 					//ds_list_add(dropDownOptionList, "Delete New Word", "Replace Word", "Restore Word");
 					if((chainType == "trackChain" && obj_toolPane.currentMode == obj_toolPane.modeTrack or obj_toolPane.currentMode == obj_toolPane.modeRead)
 						or (chainType == "rezChain" && obj_toolPane.currentMode == obj_toolPane.modeRez or obj_toolPane.currentMode == obj_toolPane.modeRead)){
-							show_debug_message("AASDSSASSSSHOLEEEEES")
 							if (obj_panelPane.functionField_chainFieldSelected != "" && obj_panelPane.functionField_chainTagSelected != ""
 								&& is_string(obj_panelPane.functionField_chainFieldSelected) && is_string(obj_panelPane.functionField_chainTagSelected)) {
 									scr_addToListOnce(dropDownOptionList , "Tag Chain");
