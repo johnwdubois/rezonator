@@ -5,6 +5,8 @@ function scr_sortCustom(chainID){
 	var chainSubMap = global.nodeMap[? chainID];
 	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) exit;
 	
+	var asc = obj_control.chain1toManyCustomSortAsc;
+	
 	var chainType = chainSubMap[? "type"];
 	var setIDList = chainSubMap[? "setIDList"];
 	var customSetIDList = chainSubMap[? "customSetIDList"];
@@ -16,12 +18,29 @@ function scr_sortCustom(chainID){
 	var tempGrid_colVal = 1;
 	
 	var fieldIndex = obj_control.chain1toManyCustomSortColIndex;
+	var fieldList = -1;
+	with (obj_panelPane) {
+		if (currentFunction == functionChainList) {
+			if (functionChainList_currentTab == functionChainList_tabRezBrush) {
+				fieldList = obj_control.chain1toManyColFieldListRez;
+			}
+			else if (functionChainList_currentTab == functionChainList_tabTrackBrush) {
+				fieldList = obj_control.chain1toManyColFieldListTrack;
+			}
+			else if (functionChainList_currentTab == functionChainList_tabStackBrush) {
+				fieldList = obj_control.chain1toManyColFieldListStack;
+			}
+		}
+	}
+	if (!scr_isNumericAndExists(fieldList, ds_type_list)) exit;
+
 	
 
 	
 	// fill up temp grid with the entry IDs and the values you want to sort
 	for (var i = 0; i < setIDListSize; i++) {
 		
+		// get all the nodes/maps/stuff that we will need to gather the values we want to sort
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
 		var currentEntryTagMap = currentEntrySubMap[? "tagMap"];
@@ -31,18 +50,13 @@ function scr_sortCustom(chainID){
 			currentChunk = (scr_isChunk(currentEntryToken)) ? currentEntryToken : "";
 			if (currentChunk != "") {currentEntryToken = scr_getFirstWordOfChunk(currentEntryToken)}
 		}
-
-		
 		var currentEntryTokenSubMap = global.nodeMap[? currentEntryToken];
 		var currentEntryTokenSeq = currentEntryTokenSubMap[? "tokenSeq"];
-		
 		var currentEntryUnit = (chainType == "stackChain") ? currentEntryToken : currentEntryTokenSubMap[? "unit"];
 		var currentEntryUnitSubMap = global.nodeMap[? currentEntryUnit];
 		var currentEntryUnitTagMap = currentEntryUnitSubMap[? "tagMap"];
 		var currentEntryUnitSeq = currentEntryUnitSubMap[? "unitSeq"];
-		
 		var currentEntryTokenTagMap = currentEntryTokenSubMap[? "tagMap"];
-		
 
 		var currentVal = -1;
 		
@@ -63,10 +77,11 @@ function scr_sortCustom(chainID){
 			}
 		}
 		else {
-			var field = obj_control.chain1toManyColFieldListTrack[| fieldIndex - 3];
+			var field = fieldList[| fieldIndex - 3];
 
 			if (ds_map_exists(currentEntryTagMap, field)) {
 				currentVal = currentEntryTagMap[? field];
+				show_debug_message("currentVal found in tagmap, currentVal: " + string(currentVal));
 				
 				if (field == "gapUnits" || field == "gapWords") {
 					if (!is_numeric(currentVal)) currentVal = "";
@@ -109,13 +124,9 @@ function scr_sortCustom(chainID){
 
 	}
 	
-	// sort the tempgrid
-	ds_grid_sort(tempStrGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAsc);
-	ds_grid_sort(tempDigitGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAsc);
-	
-	
-	// sorted list of values FOR DEBUGGING ONLY
-	var sortedValList = ds_list_create();
+	// sort the tempGrids based on their value columns
+	ds_grid_sort(tempStrGrid, tempGrid_colVal, asc);
+	ds_grid_sort(tempDigitGrid, tempGrid_colVal, asc);
 	
 	
 	
@@ -126,22 +137,29 @@ function scr_sortCustom(chainID){
 		var tempStrGridHeight = ds_grid_height(tempStrGrid);
 		var tempDigitGridHeight = ds_grid_height(tempDigitGrid);
 		
-		for (var i = 0; i < tempStrGridHeight; i++) {
-			ds_list_add(customSetIDList, tempStrGrid[# tempGrid_colID, i]);
-			ds_list_add(sortedValList, tempStrGrid[# tempGrid_colID, i]);
+		// if sort is ascending, sort the strings first, otherwise sort the digits first
+		if (asc) {
+			for (var i = 0; i < tempStrGridHeight; i++) {
+				ds_list_add(customSetIDList, tempStrGrid[# tempGrid_colID, i]);
+			}
+			for (var i = 0; i < tempDigitGridHeight; i++) {
+				ds_list_add(customSetIDList, tempDigitGrid[# tempGrid_colID, i]);
+			}
 		}
-		for (var i = 0; i < tempDigitGridHeight; i++) {
-			ds_list_add(customSetIDList, tempDigitGrid[# tempGrid_colID, i]);
-			ds_list_add(sortedValList, tempDigitGrid[# tempGrid_colID, i]);
+		else {
+			for (var i = 0; i < tempDigitGridHeight; i++) {
+				ds_list_add(customSetIDList, tempDigitGrid[# tempGrid_colID, i]);
+			}
+			for (var i = 0; i < tempStrGridHeight; i++) {
+				ds_list_add(customSetIDList, tempStrGrid[# tempGrid_colID, i]);
+			}
 		}
 	}
-	
 
 	
-	// we don't need the tempGrid anymore
+	// we don't need the tempGrids anymore
 	ds_grid_destroy(tempStrGrid);
 	ds_grid_destroy(tempDigitGrid);
-	ds_list_destroy(sortedValList);
 	
 	
 }
