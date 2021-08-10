@@ -16,7 +16,7 @@ function scr_unitRightClicked(){
 		// Options for a word in a Chain
 		if(ds_list_size(unitInChainsList) > 0){
 					
-			ds_list_add(dropDownOptionList,  "Delete Link");
+			ds_list_add(dropDownOptionList,  "Delete Link", "Set Chain Name");
 		
 			for(var i = 0; i < ds_list_size(unitInChainsList); i++){
 				var chainID = unitInChainsList[|i];
