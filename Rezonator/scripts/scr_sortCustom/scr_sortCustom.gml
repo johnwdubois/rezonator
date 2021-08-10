@@ -7,11 +7,13 @@ function scr_sortCustom(chainID){
 	var customSetIDList = chainSubMap[? "customSetIDList"];
 	
 	var setIDListSize = ds_list_size(setIDList);
-	var tempGrid = ds_grid_create(2, setIDListSize);
+	var tempStrGrid = ds_grid_create(2, 0);
+	var tempDigitGrid = ds_grid_create(2, 0);
 	var tempGrid_colID = 0;
 	var tempGrid_colVal = 1;
 	
 	var fieldIndex = obj_control.chain1toManyCustomSortColIndexTrack;
+	
 
 	
 	// fill up temp grid with the entry IDs and the values you want to sort
@@ -23,7 +25,7 @@ function scr_sortCustom(chainID){
 		var currentEntryToken = currentEntrySubMap[? "token"];
 		var currentChunk = (scr_isChunk(currentEntryToken)) ? currentEntryToken : "";
 		if (currentChunk != "") {currentEntryToken = scr_getFirstWordOfChunk(currentEntryToken)}
-		show_debug_message("currentEntryToken: " + string(currentEntryToken) + ", fieldIndex: " + string(fieldIndex));
+
 		
 		var currentEntryTokenSubMap = global.nodeMap[? currentEntryToken];
 		var currentEntryTokenSeq = currentEntryTokenSubMap[? "tokenSeq"];
@@ -50,29 +52,84 @@ function scr_sortCustom(chainID){
 		}
 		else {
 			var field = obj_control.chain1toManyColFieldListTrack[| fieldIndex - 3];
-			currentVal = currentEntryTagMap[? field];
+
+			if (ds_map_exists(currentEntryTagMap, field)) {
+				currentVal = currentEntryTagMap[? field];
+				
+				if (field == "gapUnits" || field == "gapWords") {
+					if (!is_numeric(currentVal)) currentVal = "";
+				}
+				else if (is_string(currentVal)) {
+					
+					// if this string is actually just a number, let's treat it as a number in the sort
+					var strLen = string_length(currentVal);
+					if (strLen >= 1) {
+						
+						var strDigits = string_digits(currentVal);
+						var strLenDigits = string_length(strDigits);
+						if (strLenDigits >= 1) {
+							if (strLen == strLenDigits) {
+								currentVal = real(currentVal);
+							}
+							else if (strLen == strLenDigits + 1) {
+								if (string_char_at(currentVal, 1) == "-") {
+									currentVal = -real(strDigits);
+								}
+							}
+						}
+					}
+				}
+			}
+			else {
+				currentVal = "";
+			}			
 		}
 		
-		show_debug_message("currentVal: " + string(currentVal));
+		
+		
 		if (!is_string(currentVal) && !is_numeric(currentVal)) currentVal = "";
+		
+		// put the currentVal into either the tempStrGrid or tempDigitGrid
+		var grid = (is_string(currentVal)) ? tempStrGrid : tempDigitGrid;
+		ds_grid_resize(grid, 2, ds_grid_height(grid) + 1);
+		grid[# tempGrid_colID, ds_grid_height(grid) - 1] = currentEntry;
+		grid[# tempGrid_colVal, ds_grid_height(grid) - 1] = currentVal;
 
-		tempGrid[# tempGrid_colID, i] = currentEntry;
-		tempGrid[# tempGrid_colVal, i] = currentVal;
 	}
 	
 	// sort the tempgrid
-	ds_grid_sort(tempGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAscTrack);
+	ds_grid_sort(tempStrGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAscTrack);
+	ds_grid_sort(tempDigitGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAscTrack);
+	
+	
+	// sorted list of values FOR DEBUGGING ONLY
+	var sortedValList = ds_list_create();
+	
+	
 	
 	// refill the customSetIDList
 	if (scr_isNumericAndExists(customSetIDList, ds_type_list)) {
 		ds_list_clear(customSetIDList);
-		for (var i = 0; i < setIDListSize; i++) {
-			ds_list_add(customSetIDList, tempGrid[# tempGrid_colID, i]);
+		
+		var tempStrGridHeight = ds_grid_height(tempStrGrid);
+		var tempDigitGridHeight = ds_grid_height(tempDigitGrid);
+		
+		for (var i = 0; i < tempStrGridHeight; i++) {
+			ds_list_add(customSetIDList, tempStrGrid[# tempGrid_colID, i]);
+			ds_list_add(sortedValList, tempStrGrid[# tempGrid_colID, i]);
+		}
+		for (var i = 0; i < tempDigitGridHeight; i++) {
+			ds_list_add(customSetIDList, tempDigitGrid[# tempGrid_colID, i]);
+			ds_list_add(sortedValList, tempDigitGrid[# tempGrid_colID, i]);
 		}
 	}
 	
+
+	
 	// we don't need the tempGrid anymore
-	ds_grid_destroy(tempGrid);
+	ds_grid_destroy(tempStrGrid);
+	ds_grid_destroy(tempDigitGrid);
+	ds_list_destroy(sortedValList);
 	
 	
 }
