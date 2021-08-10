@@ -47,7 +47,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 			var sortArrowX = headerRectX2 - sprite_get_width(spr_linkArrow);
 			var sortArrowY = floor(mean(headerRectY1, headerRectY2));
-			var mouseoverSortArrow = point_in_circle(mouse_x, mouse_y, sortArrowX, sortArrowY, sprite_get_width(spr_linkArrow) * 0.5) && chainType != "stackChain";
+			var mouseoverSortArrow = point_in_circle(mouse_x, mouse_y, sortArrowX, sortArrowY, sprite_get_width(spr_linkArrow) * 0.5);
 			
 			var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox) && !mouseoverSortArrow;
 			
@@ -92,38 +92,36 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			draw_rectangle(headerRectX1, headerRectY1, headerRectX2, headerRectY1 + tabHeight, false);
 			
 			// draw sort arrow
-			if (chainType != "stackChain") {
-				if (mouseoverColHeader || mouseoverSortArrow || obj_control.chain1toManyCustomSortColIndexTrack == i) {
-					var sortArrowScale = 0.5;
-					if (mouseoverSortArrow) {
-						scr_createTooltip(sortArrowX, sortArrowY + (sprite_get_height(spr_linkArrow) * 0.25), "Sort", obj_tooltip.arrowFaceUp);
-						sortArrowScale *= 1.25;
-						if (mouse_check_button_released(mb_left)) {
-							if (obj_control.chain1toManyCustomSortColIndexTrack == -1) {
-								obj_control.chain1toManyCustomSortColIndexTrack = i;
-								obj_control.chain1toManyCustomSortAscTrack = true;
-							}
-							else {
-								if (obj_control.chain1toManyCustomSortColIndexTrack == i) {
-									if (obj_control.chain1toManyCustomSortAscTrack) {
-										obj_control.chain1toManyCustomSortAscTrack = false;
-									}
-									else {
-										obj_control.chain1toManyCustomSortColIndexTrack = -1;
-									}
+			if (mouseoverColHeader || mouseoverSortArrow || obj_control.chain1toManyCustomSortColIndex == i) {
+				var sortArrowScale = 0.5;
+				if (mouseoverSortArrow) {
+					scr_createTooltip(sortArrowX, sortArrowY + (sprite_get_height(spr_linkArrow) * 0.25), "Sort", obj_tooltip.arrowFaceUp);
+					sortArrowScale *= 1.25;
+					if (mouse_check_button_released(mb_left)) {
+						if (obj_control.chain1toManyCustomSortColIndex == -1) {
+							obj_control.chain1toManyCustomSortColIndex = i;
+							obj_control.chain1toManyCustomSortAsc = true;
+						}
+						else {
+							if (obj_control.chain1toManyCustomSortColIndex == i) {
+								if (obj_control.chain1toManyCustomSortAsc) {
+									obj_control.chain1toManyCustomSortAsc = false;
 								}
 								else {
-									obj_control.chain1toManyCustomSortColIndexTrack = i;
+									obj_control.chain1toManyCustomSortColIndex = -1;
 								}
+							}
+							else {
+								obj_control.chain1toManyCustomSortColIndex = i;
 							}
 						}
 					}
-					var sortArrowAngle = 0;
-					if (obj_control.chain1toManyCustomSortColIndexTrack == i) {
-						sortArrowAngle = obj_control.chain1toManyCustomSortAscTrack ? 270 : 90;
-					}
-					draw_sprite_ext(spr_linkArrow, 0, sortArrowX, sortArrowY, sortArrowScale, sortArrowScale, sortArrowAngle, mouseoverSortArrow && mouse_check_button(mb_left) ? global.colorThemeSelected2 : global.colorThemeText, 1);
 				}
+				var sortArrowAngle = 0;
+				if (obj_control.chain1toManyCustomSortColIndex == i) {
+					sortArrowAngle = obj_control.chain1toManyCustomSortAsc ? 270 : 90;
+				}
+				draw_sprite_ext(spr_linkArrow, 0, sortArrowX, sortArrowY, sortArrowScale, sortArrowScale, sortArrowAngle, mouseoverSortArrow && mouse_check_button(mb_left) ? global.colorThemeSelected2 : global.colorThemeText, 1);
 			}
 			
 		

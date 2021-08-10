@@ -700,13 +700,8 @@ ds_list_add(chain1toManyColFieldListStack, "gapUnits");
 
 
 
-chain1toManyCustomSortColIndexTrack = -1;
-chain1toManyCustomSortAscTrack = true;
-chain1toManyCustomSortColIndexRez = -1;
-chain1toManyCustomSortAscRez = true;
-chain1toManyCustomSortColIndexStack = -1;
-chain1toManyCustomSortAscStack = true;
-
+chain1toManyCustomSortColIndex = -1;
+chain1toManyCustomSortAsc = true;
 
 
 

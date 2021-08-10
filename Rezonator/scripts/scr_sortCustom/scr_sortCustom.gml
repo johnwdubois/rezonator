@@ -3,6 +3,9 @@
 function scr_sortCustom(chainID){
 	
 	var chainSubMap = global.nodeMap[? chainID];
+	if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) exit;
+	
+	var chainType = chainSubMap[? "type"];
 	var setIDList = chainSubMap[? "setIDList"];
 	var customSetIDList = chainSubMap[? "customSetIDList"];
 	
@@ -12,7 +15,7 @@ function scr_sortCustom(chainID){
 	var tempGrid_colID = 0;
 	var tempGrid_colVal = 1;
 	
-	var fieldIndex = obj_control.chain1toManyCustomSortColIndexTrack;
+	var fieldIndex = obj_control.chain1toManyCustomSortColIndex;
 	
 
 	
@@ -22,16 +25,20 @@ function scr_sortCustom(chainID){
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.nodeMap[? currentEntry];
 		var currentEntryTagMap = currentEntrySubMap[? "tagMap"];
-		var currentEntryToken = currentEntrySubMap[? "token"];
-		var currentChunk = (scr_isChunk(currentEntryToken)) ? currentEntryToken : "";
-		if (currentChunk != "") {currentEntryToken = scr_getFirstWordOfChunk(currentEntryToken)}
+		var currentEntryToken = (chainType == "stackChain") ? currentEntrySubMap[? "unit"] : currentEntrySubMap[? "token"];
+		var currentChunk = false;
+		if (chainType != "stackChain") {
+			currentChunk = (scr_isChunk(currentEntryToken)) ? currentEntryToken : "";
+			if (currentChunk != "") {currentEntryToken = scr_getFirstWordOfChunk(currentEntryToken)}
+		}
 
 		
 		var currentEntryTokenSubMap = global.nodeMap[? currentEntryToken];
 		var currentEntryTokenSeq = currentEntryTokenSubMap[? "tokenSeq"];
 		
-		var currentEntryUnit = currentEntryTokenSubMap[? "unit"];
+		var currentEntryUnit = (chainType == "stackChain") ? currentEntryToken : currentEntryTokenSubMap[? "unit"];
 		var currentEntryUnitSubMap = global.nodeMap[? currentEntryUnit];
+		var currentEntryUnitTagMap = currentEntryUnitSubMap[? "tagMap"];
 		var currentEntryUnitSeq = currentEntryUnitSubMap[? "unitSeq"];
 		
 		var currentEntryTokenTagMap = currentEntryTokenSubMap[? "tagMap"];
@@ -44,11 +51,16 @@ function scr_sortCustom(chainID){
 			currentVal = currentEntryUnitSeq;
 		}
 		else if (fieldIndex == 1) {
-			currentVal = currentEntryTokenSeq;
+			currentVal = (chainType == "stackChain") ? currentEntryUnitTagMap[? global.speakerField] : currentEntryTokenSeq;
 		}
 		else if (fieldIndex == 2) {
-			if (currentChunk != "") currentVal = scr_getChunkText(currentChunk);
-			else currentVal = currentEntryTokenTagMap[? global.displayTokenField];
+			if (chainType == "stackChain") {
+				currentVal = scr_getUnitText(currentEntryUnitSubMap);
+			}
+			else {
+				if (currentChunk != "") currentVal = scr_getChunkText(currentChunk);
+				else currentVal = currentEntryTokenTagMap[? global.displayTokenField];
+			}
 		}
 		else {
 			var field = obj_control.chain1toManyColFieldListTrack[| fieldIndex - 3];
@@ -98,8 +110,8 @@ function scr_sortCustom(chainID){
 	}
 	
 	// sort the tempgrid
-	ds_grid_sort(tempStrGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAscTrack);
-	ds_grid_sort(tempDigitGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAscTrack);
+	ds_grid_sort(tempStrGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAsc);
+	ds_grid_sort(tempDigitGrid, tempGrid_colVal, obj_control.chain1toManyCustomSortAsc);
 	
 	
 	// sorted list of values FOR DEBUGGING ONLY

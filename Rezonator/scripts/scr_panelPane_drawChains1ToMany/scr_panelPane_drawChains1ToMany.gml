@@ -91,12 +91,12 @@ function scr_panelPane_drawChains1ToMany() {
 	}
 	
 	// whether or not we need to do a custom sort on this chain
-	if (obj_control.chain1toManyCustomSortColIndexTrack >= 0) {
+	if (obj_control.chain1toManyCustomSortColIndex >= 0) {
 		scr_sortCustom(chainID);
 	}
 	
 	// Get vizSetIDList list for the focused chain
-	var chainListKey = (obj_control.chain1toManyCustomSortColIndexTrack == -1) ? "vizSetIDList" : "customSetIDList";
+	var chainListKey = (obj_control.chain1toManyCustomSortColIndex == -1) ? "vizSetIDList" : "customSetIDList";
 	with (obj_panelPane) {
 		functionChainContents_IDList = chainSubMap[? chainListKey];
 		if (functionChainContents_IDList != undefined) {
