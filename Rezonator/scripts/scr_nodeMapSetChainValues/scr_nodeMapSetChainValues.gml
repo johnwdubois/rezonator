@@ -19,7 +19,7 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 		// set alignment
 		var type = ds_map_find_value(subMap, "type");
 		if (type == "rezChain" || type == "trackChain") {
-			ds_map_add(subMap, "alignChain", (type == "rezChain") ? true : false);
+			ds_map_add(subMap, "alignChain", (type == "rezChain"));
 		}
 		
 		if (type == "stackChain") {
@@ -31,6 +31,8 @@ function scr_nodeMapSetChainValues(nodeID, chainName, chainColor, chainSeq) {
 		ds_map_add_list(subMap, "setIDList", setIDList);
 		var vizSetIDList = ds_list_create();
 		ds_map_add_list(subMap, "vizSetIDList", vizSetIDList);
+		var customSetIDList = ds_list_create();
+		ds_map_add_list(subMap, "customSetIDList", customSetIDList);
 		var linkIDList = ds_list_create();
 		ds_map_add_list(subMap, "linkIDList", linkIDList);
 		
