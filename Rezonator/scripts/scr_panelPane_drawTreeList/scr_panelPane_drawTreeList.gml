@@ -2,15 +2,18 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTreeList(){
 	
-
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var nameColX = numColX + numColWidth;
+	var nameColWidth = windowWidth * 0.25;
+	var captionColX = nameColX + nameColWidth;
 	
 	var deleteColWidth = clamp(windowWidth * 0.15, sprite_get_width(spr_trash), sprite_get_width(spr_trash) * 2);
 	var deleteColX = x + windowWidth - deleteColWidth - global.scrollBarWidth;
 	var mouseOverDel = false;
+	
+	var maxCaptionSize = deleteColX-captionColX;
 	
 	var textBuffer = 8;
 	var headerHeight = functionTabs_tabHeight;
@@ -42,6 +45,7 @@ function scr_panelPane_drawTreeList(){
 		
 		var currentTreeName = currentTreeSubMap[? "name"];
 		var currentTreeSelected = (functionTree_treeSelected == currentTree);
+		var tokenList = currentTreeSubMap[? "tokenList"];
 		
 		// Get dimensions of rectangle around tree name
 		var treeRectX1 = x;
@@ -76,11 +80,28 @@ function scr_panelPane_drawTreeList(){
 		// name column
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentTreeName));
 		
+		// name column
+		var fullTreeStr = ""
+		var tokenListSize = ds_list_size(tokenList);
+		for(var j = 0 ; j < tokenListSize; j++ ){
+			var currentTokenSubMap = global.nodeMap[? tokenList[| j]];
+			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
+			var tokenTagMap = currentTokenSubMap[? "tagMap"];
+			fullTreeStr += (string(tokenTagMap[? global.displayTokenField]) + " ");
+		}
 		
+		// cut off section text if its too long
+		var cutoffs = 0;
+		while (string_width(fullTreeStr + "... ") > maxCaptionSize and cutoffs < 100) {
+			fullTreeStr = string_delete(fullTreeStr, string_length(fullTreeStr), 1);
+			cutoffs++;
+		}
+		if (cutoffs > 0) {
+			fullTreeStr += "... ";
+		}
 		
-		
-		
-		
+				
+		draw_text(floor(captionColX + textBuffer) - clipX, textY - clipY, string(fullTreeStr));	
 	
 		// get coordinates for delete button
 		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
@@ -131,7 +152,7 @@ function scr_panelPane_drawTreeList(){
 	
 	// draw column headers
 	var headerPlusX = 0;
-	for (var i = 0; i < 2; i++) {
+	for (var i = 0; i <= 2; i++) {
 		
 		// get column data
 		var colWidth = 0;
@@ -141,8 +162,12 @@ function scr_panelPane_drawTreeList(){
 			colText = "#";
 		}
 		else if (i == 1) {
-			colWidth = windowWidth - numColX;
+			colWidth = nameColWidth;
 			colText = "Name";
+		}
+		else if (i == 2) {
+			colWidth = windowWidth - nameColX;
+			colText = "Text";
 		}
 
 		
