@@ -51,6 +51,7 @@ function scr_sortCustom(chainID){
 			if (currentChunk != "") {currentEntryToken = scr_getFirstWordOfChunk(currentEntryToken)}
 		}
 		var currentEntryTokenSubMap = global.nodeMap[? currentEntryToken];
+		if(!scr_isNumericAndExists(currentEntryTokenSubMap, ds_type_map)){continue;}
 		var currentEntryTokenSeq = currentEntryTokenSubMap[? "tokenSeq"];
 		var currentEntryUnit = (chainType == "stackChain") ? currentEntryToken : currentEntryTokenSubMap[? "unit"];
 		var currentEntryUnitSubMap = global.nodeMap[? currentEntryUnit];
