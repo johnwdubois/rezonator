@@ -2,6 +2,9 @@ function scr_exportGrids() {
 	
 	// Get the default name for the CSV folder
 	var filenameNoExt = filename_change_ext(global.fileSaveName, "");
+	if(global.fileSaveName == "undefined" or is_undefined(global.fileSaveName)){
+		filenameNoExt = filename_change_ext(global.importFilename, "");
+	}
 	var exportDirDefault = filenameNoExt + " CSV Export";
 	show_debug_message("scr_exportGrids() ... exportDirDefault: " + string(exportDirDefault));
 	
@@ -54,15 +57,13 @@ function scr_exportGrids() {
 	var tempTrackGrid = scr_exportChainEntryGrid(global.nodeMap[? "trackChainList"], tempEntryGridHeaderList);
 	var tempRezGrid = scr_exportChainEntryGrid(global.nodeMap[? "rezChainList"], tempEntryGridHeaderList);
 
-	// make temporary pick/quickpick grid (so we can add an extra col)
-	var tempPickGrid = scr_exportLineTempGrid(obj_control.filterGrid);
-	var tempQuickPickGrid = scr_exportLineTempGrid(obj_control.quickFilterGrid);
-	
-	// make temporary chain grids
+
+	// make temporary export grids
 	var tempRezChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "rezChainList"));
 	var tempTrackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "trackChainList"));
 	var tempStackChainGrid = scr_exportChainTempGrid(ds_map_find_value(global.nodeMap, "stackChainList"));
 	var tempChunkGrid = scr_exportChunkTempGrid();
+	var tempSearchGrid = scr_exportSearchTempGrid();
 	
 	// header list for temp chaingrids
 	var tempChainGridHeaderList = ds_list_create();
@@ -70,15 +71,13 @@ function scr_exportGrids() {
 	
 	var tempChunkGridHeaderList = ds_list_create();
 	ds_list_add(tempChunkGridHeaderList, "chunkID", "tokenList", "Display Text");
+	var tempSearchGridHeaderList = ds_list_create();
+	ds_list_add(tempSearchGridHeaderList, "name", "searched words", "hit tokens");
 	
-	var tempLineGridHeaderList = ds_list_create();
-	for (var i = 0; i < ds_grid_width(obj_control.filterGrid); i++) {
-		ds_list_add(tempLineGridHeaderList, scr_getColNameString(obj_control.filterGrid, i));
-	}
-	ds_list_add(tempLineGridHeaderList, "lineText");
+
 
 	// Save the CSVs to the folder
-	scr_gridToCSV(obj_control.searchGrid, exportDir + "\\search.csv", tempLineGridHeaderList);
+	scr_gridToCSV(tempSearchGrid, exportDir + "\\search.csv", tempSearchGridHeaderList);
 	scr_gridToCSV(tempTokenGrid, exportDir + "\\token.csv", tempTokenGridHeaderList);
 	scr_gridToCSV(tempUnitGrid, exportDir + "\\unit.csv", tempUnitGridHeaderList);
 	scr_gridToCSV(tempTrackGrid, exportDir + "\\track.csv", tempEntryGridHeaderList);
@@ -86,18 +85,15 @@ function scr_exportGrids() {
 	scr_gridToCSV(tempRezChainGrid, exportDir + "\\rezChain.csv", tempChainGridHeaderList);
 	scr_gridToCSV(tempTrackChainGrid, exportDir + "\\trackChain.csv", tempChainGridHeaderList);
 	scr_gridToCSV(tempStackChainGrid, exportDir + "\\stackChain.csv", tempChainGridHeaderList);
-	scr_gridToCSV(tempPickGrid, exportDir + "\\pick.csv", tempLineGridHeaderList);
-	scr_gridToCSV(tempQuickPickGrid, exportDir + "\\quickPick.csv", tempLineGridHeaderList);
 	scr_gridToCSV(tempChunkGrid, exportDir + "\\chunk.csv", tempChunkGridHeaderList);
 
 	// destroy temp grids
+	ds_grid_destroy(tempSearchGrid);
 	ds_grid_destroy(tempTokenGrid);
 	ds_grid_destroy(tempUnitGrid);
 	ds_grid_destroy(tempRezChainGrid);
 	ds_grid_destroy(tempTrackChainGrid);
 	ds_grid_destroy(tempStackChainGrid);
-	ds_grid_destroy(tempPickGrid);
-	ds_grid_destroy(tempQuickPickGrid);
 	ds_grid_destroy(tempChunkGrid);
 	ds_grid_destroy(tempTrackGrid);
 	ds_grid_destroy(tempRezGrid);
@@ -105,5 +101,5 @@ function scr_exportGrids() {
 	
 	// destroy temp header lists
 	ds_list_destroy(tempChainGridHeaderList);
-	ds_list_destroy(tempLineGridHeaderList);
+	ds_list_destroy(tempSearchGridHeaderList);
 }
