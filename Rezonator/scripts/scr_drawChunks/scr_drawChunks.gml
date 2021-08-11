@@ -195,6 +195,9 @@ function scr_drawChunks(){
 	// the moused over chunk
 	if (lowestNestChunk != "") {
 		obj_control.hoverChunkID = lowestNestChunk;
+
+		obj_control.hoverTextCopy = scr_getChunkText(lowestNestChunk);
+		
 		// draw fill for hovered chunk
 		var hoverChunkSubMap = global.nodeMap[? obj_control.hoverChunkID];
 		var hoverChunkInChainsList = hoverChunkSubMap[? "inChainsList"];

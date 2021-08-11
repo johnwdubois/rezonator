@@ -47,6 +47,11 @@ function scr_importIGT(){
 					currentLineStr = string_delete(currentLineStr, 1, string_length(currentField));
 					ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colLine, currentLineIndex, currentLineStr);
 				}
+
+				currentLineStr = scr_removeHyphenSpacing(currentLineStr);
+				ds_grid_set(global.importTXTLineGrid, global.importTXTLineGrid_colLine, currentLineIndex, currentLineStr);
+				
+				
 					
 				// Now we will put this line in the importGrid. If we can find the currentField string in the importGridColMap map,
 				// then we get the importGrid column from that key in the map. If we cannot find the currentField string in importGridColMap,

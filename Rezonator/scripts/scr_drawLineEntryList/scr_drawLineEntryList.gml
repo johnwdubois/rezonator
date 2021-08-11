@@ -17,7 +17,10 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	
 	// get unit width
 	var unitWidth = 0;
-	if (justify != justifyLeft) {
+	if (justify == justifyRight && drawLineState == lineState_rtl && shape == shapeText) {
+		unitWidth = scr_getUnitTextStupid(unitSubMap);
+	}
+	else if (justify != justifyLeft) {
 		unitWidth = string_width(scr_getUnitText(unitSubMap));
 	}
 	
@@ -52,9 +55,28 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		var currentDisplayCol = currentTokenSubMap[? "displayCol"];
 		var currentPixelX = scr_setTokenX(currentTokenSubMap, currentDisplayCol, entryListSize, j, unitWidth, shapeTextX, camWidth,currentDisplayStr);
 		scr_adaptFont(currentDisplayStr,"M");
-		var wordDistance = string_width(currentDisplayStr) + spaceWidth * (gridSpaceHorizontal/8);
-		shapeTextX += wordDistance;
-		unitWidth -= wordDistance;
+		var wordDistance = string_width(currentDisplayStr) + (spaceWidth * (gridSpaceHorizontal/8));
+		if (justify == justifyRight && drawLineState == lineState_rtl && shape == shapeText && i >= 1) {
+			
+			var nextEntry = entryList[| i - 1]
+			var nextEntrySubMap = global.nodeMap[? nextEntry];
+			var nextToken = nextEntrySubMap[? "token"];
+			var nextTokenSubMap = global.nodeMap[? nextToken];
+			var nextTagMap = nextTokenSubMap[? "tagMap"];
+			var nextDisplayStr = nextTagMap[? global.displayTokenField];
+			var nextWordDistance = string_width(nextDisplayStr) + (spaceWidth * (gridSpaceHorizontal/8));
+			
+			shapeTextX += nextWordDistance;
+			
+		}
+		else {
+			shapeTextX += wordDistance;
+		}
+		//unitWidth -= wordDistance;
+		
+		
+		
+		
 		
 		//mouseover Token check
 		currentDisplayStr = scr_adaptFont(currentDisplayStr,"M");
@@ -109,6 +131,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
 			}
 			obj_control.hoverTokenID = currentToken;
+			var tokenTagMap = currentTokenSubMap[?"tagMap"];
+			obj_control.hoverTextCopy = tokenTagMap[? global.displayTokenField];
 			
 			// click on token
 			if(device_mouse_check_button_released(0, mb_left) and !obj_control.mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {
@@ -178,5 +202,5 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		j++;
 		
 	}
-
+	
 }

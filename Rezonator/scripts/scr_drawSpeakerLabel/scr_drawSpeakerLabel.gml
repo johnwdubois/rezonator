@@ -87,6 +87,9 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 	if (mouseOverCurrentSpeakerLabel) {
 		obj_control.mouseoverSpeakerLabel = true;
 		obj_control.hoverUnitID = unitID;
+		var unitTagMap = unitSubMap[?"tagMap"];
+		obj_control.hoverTextCopy = unitTagMap[? global.speakerField];
+		
 	}
 
 

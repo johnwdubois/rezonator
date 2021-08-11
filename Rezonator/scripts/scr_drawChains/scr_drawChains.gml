@@ -60,6 +60,7 @@ function scr_drawChains() {
 	
 		var tokensInSameLine = false;
 		var firstTokenInLine = "";
+		var token2IsChunk = false;
 	
 		// loop through current chain's wordIDList to draw the lines of the chain
 		for (var j = 0; j < currentSetIDListSize - 1; j++) {
@@ -78,7 +79,10 @@ function scr_drawChains() {
 			
 			// if this token is a chunk, we will just draw the line coming out of the chunk's first token
 			if (scr_isChunk(currentTokenID1)) currentTokenID1 =scr_getFirstWordOfChunk(currentTokenID1);
-			if (scr_isChunk(currentTokenID2)) currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
+			if (scr_isChunk(currentTokenID2)) {
+				currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
+				token2IsChunk = true;
+			}
 
 			
 			// get tokenSubMaps
@@ -153,18 +157,79 @@ function scr_drawChains() {
 			// only draw line if every value is real and we are in the draw range
 			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2)
 			&& unit1Active && unit2Active && inDrawRange1 && inDrawRange2) {
+
+				// check if text is right aligned
+				if (obj_control.justify == obj_control.justifyRight) {
+					lineX1 -= currentWordStringWidth1;
+					lineX2 -= currentWordStringWidth2;
+				}
 				
+				
+				
+				var rezChainLineX1 = lineX1 + linePlusX;
+				var rezChainLineY1 = lineY1 + (currentWordStringHeight1 / 2);
+				var rezChainLineX2 = lineX2 + linePlusX;
+				var rezChainLineY2 = lineY2 + (currentWordStringHeight2 / 2);
+				var trackChainLineX1 = lineX1 + (currentWordStringWidth1 / 2);
+				var trackChainLineY1 = lineY1 + currentWordStringHeight1;
+				var trackChainLineX2 = lineX2 + (currentWordStringWidth2 / 2);
+				var lineLen = -1;
+				var arrowDir = -1;
+				var arrowScale = 0.5;
+				var arrowX = -1;
+				var arrowY = -1;
+				
+				if (chainType == "rezChain") {
+					lineLen = point_distance(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2);
+					arrowDir = point_direction(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2);
+					arrowX = rezChainLineX1 + lengthdir_x(lineLen - (currentWordStringHeight2 * 1.5), arrowDir);
+					arrowY = rezChainLineY1 + lengthdir_y(lineLen - (currentWordStringHeight2 * 1.5), arrowDir);
+				}
+				else {
+					/*
+					if (abs(trackChainLineX1 - trackChainLineX2) < max(currentWordStringWidth1, currentWordStringWidth2) * 0.5) {
+						arrowDir = 270;
+					}
+					else if (trackChainLineX1 > trackChainLineX2) {
+						arrowDir = 180;
+					}
+					else {
+						arrowDir = 0;
+					}
+					arrowX = (trackChainLineX1 - ((trackChainLineX1 - trackChainLineX2) / 2));
+					arrowY = (lineY1 - ((lineY1 - lineY2) / 2));
+					*/
+					
+					lineLen = point_distance(trackChainLineX1, lineY1, trackChainLineX2, lineY2);
+					arrowDir = mean(point_direction(trackChainLineX1, lineY1, trackChainLineX2, lineY2), 270, 270, 270);
+					arrowX = trackChainLineX2;
+					arrowY = lineY2 - currentWordStringHeight2;
+					
+					if (sideLink) {
+						arrowDir = 0;
+						arrowX = trackChainLineX2 - sprite_get_width(spr_linkArrow);
+						arrowY = mean(lineY1, lineY2);
+					}
+				}
+
+
+			
+
 				if (currentChainVisible) {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
 
 					if (chainType == "rezChain") {
+
 						if(obj_control.drawLineState == obj_control.lineState_rtl){
 							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2)
 						}
 						else{
 							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
 						}
+
+						draw_line_width(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2, 2);
+
 						
 						// mark stretches visually with a circle
 						if (obj_control.showDevVars) {
@@ -187,7 +252,12 @@ function scr_drawChains() {
 							scr_drawCurvedLine(lineX1 - (currentWordStringWidth1 / 2), lineY1, lineX2 - (currentWordStringWidth2 / 2), lineY2, currentChainColor);
 						}
 						
+
+						scr_drawCurvedLine(trackChainLineX1, lineY1, trackChainLineX2, lineY2, currentChainColor);
+
 					}
+					
+					draw_sprite_ext(spr_linkArrow, 0, arrowX, arrowY, arrowScale, arrowScale, arrowDir, currentChainColor, 1);
 				}
 			}
 		}

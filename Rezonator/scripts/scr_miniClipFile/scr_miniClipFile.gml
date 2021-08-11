@@ -1,8 +1,12 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function scr_miniClipFile(unitList, startIndex, endIndex){
+function scr_miniClipFile(chosenUnitList){
+	var discourseSubMap = global.nodeMap[? global.discourseNode];
+	var unitList = discourseSubMap[? "unitList"];
+	show_debug_message("scr_miniClipFile ... list of units: " + scr_getStringOfList(chosenUnitList));
 	
-	show_debug_message("scr_miniClipFile ... start: " + string(startIndex) + " ... end: " + string(endIndex));
+	var startIndex = ds_list_find_index(unitList,chosenUnitList[|0]);
+	var endIndex = ds_list_find_index(unitList, chosenUnitList[| ds_list_size(chosenUnitList)-1]);
 	
 	// check if we have a valid unitList
 	if (!scr_isNumericAndExists(unitList, ds_type_list)) {
@@ -63,10 +67,11 @@ function scr_miniClipFile(unitList, startIndex, endIndex){
 	var unitListSize = ds_list_size(unitList);
 	startIndex = clamp(startIndex, 0, unitListSize);
 	endIndex = clamp(endIndex, 0, unitListSize);
-	for (var i = startIndex; i < endIndex; i++) {
+	for (var i = startIndex; i < endIndex+1; i++) {
 		
 		// get current unit, make sure it exists
 		var currentUnit = unitList[| i];
+		if(ds_list_find_index(chosenUnitList, currentUnit) == -1){continue;}
 		show_debug_message("scr_miniClipFile ... copying unit " + string(currentUnit));
 		var currentUnitSubMap = json_decode(json_encode(global.nodeMap[? currentUnit]));
 		if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) {

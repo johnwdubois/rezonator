@@ -78,6 +78,8 @@ function scr_panelPane_drawChunks1To1(){
 			var focusedCell = (functionChainList_chunkSelected == currentChunk);
 			if (focusedCell) selectedChunkIndex = j;
 			
+
+			
 			// draw BG for this cell
 			if (mouseoverRow || functionChainList_chunkMouseover == currentChunk) {
 				draw_set_color(merge_color(global.colorThemeBG, global.colorThemeSelected1, 0.8));
@@ -112,6 +114,10 @@ function scr_panelPane_drawChunks1To1(){
 			var tagStr = "";
 			if (ds_map_exists(tagMap, currentField)) {
 				tagStr = tagMap[? currentField];
+			}
+			
+			if(mouseoverCell){
+				obj_control.hoverTextCopy = tagStr;
 			}
 			
 			// draw text for chain tag

@@ -81,10 +81,7 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 					cellText = string(tagMap[?global.speakerField]);
 				}
 				else {
-
 					cellText = string(tokenSubMap[?"tokenSeq"]);
-
-				
 				}
 				break;
 			// text
@@ -151,6 +148,11 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		var drawStr = string(cellText);
 		drawStr = string_replace_all(drawStr, "\r", "");
 		drawStr = string_replace_all(drawStr, "\n", "");
+		
+		if(mouseoverCell){
+			obj_control.hoverTextCopy = drawStr;
+		}
+		
 		
 		// finally, draw the string in the cell
 		draw_set_color(global.colorThemeText);

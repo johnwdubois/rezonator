@@ -48,6 +48,8 @@ function scr_drawTreeLinks(){
 		// click on link
 		if (mouseover) {
 			if(mouse_check_button_released(mb_left)){
+				obj_chain.currentFocusedEntryID = "";
+				with (obj_panelPane) functionTree_treeLinkSelected = currentLink;
 				// set field/tags if in read mode
 				if (obj_panelPane.functionField_linkFieldSelected != "" && obj_panelPane.functionField_linkTagSelected != ""
 				&& is_string(obj_panelPane.functionField_linkFieldSelected) && is_string(obj_panelPane.functionField_linkTagSelected)) {
@@ -59,9 +61,11 @@ function scr_drawTreeLinks(){
 				}
 			}
 			if (mouse_check_button_released(mb_right)) {
+				obj_chain.currentFocusedEntryID = "";
 				with (obj_panelPane) functionTree_treeLinkSelected = currentLink;
 				var dropDownOptionList = ds_list_create();
 				ds_list_copy(dropDownOptionList, global.linkFieldList);
+				ds_list_insert(dropDownOptionList, 0, "Delete Link");
 				ds_list_insert(dropDownOptionList, 0, "Create new field");
 				scr_createDropDown(mouse_x, mouse_y, dropDownOptionList, global.optionListTypeLinkFields);
 			}
@@ -80,7 +84,7 @@ function scr_drawTreeLinks(){
 	
 	// reset selected link
 	if (functionTree_treeLinkSelected != "" && !instance_exists(obj_dropDown)) {
-		functionTree_treeLinkSelected = "";
+		//functionTree_treeLinkSelected = "";
 	}
 	
 }

@@ -53,8 +53,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 16), "focusedChainEntry: " + string(focusedChainFocused));
 	draw_text(devVarX, wordTopMargin + (strHeight * 17), "showSpeakerName: " + string(showSpeakerName));
 	draw_text(devVarX, wordTopMargin + (strHeight * 18), "tokenFieldList: " + scr_getStringOfList(tokenFieldList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 19), "navTokenFieldList: " + scr_getStringOfList(navTokenFieldList));
-	draw_text(devVarX, wordTopMargin + (strHeight * 20), "navUnitFieldList: " + scr_getStringOfList(navUnitFieldList));
+	draw_text(devVarX, wordTopMargin + (strHeight * 19), "chain1toManyColFieldListTrack: " + scr_getStringOfList(obj_control.chain1toManyColFieldListTrack));
+	draw_text(devVarX, wordTopMargin + (strHeight * 20), "chain1toManyCustomSortColIndex: " + string(chain1toManyCustomSortColIndex));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "treeList: " + scr_getStringOfList(global.nodeMap[? "treeList"]));
 	draw_text(devVarX, wordTopMargin + (strHeight * 23), "showNav: " + string(obj_panelPane.showNav));

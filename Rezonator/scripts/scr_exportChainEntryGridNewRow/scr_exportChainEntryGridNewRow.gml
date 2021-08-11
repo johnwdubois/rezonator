@@ -41,10 +41,10 @@ function scr_exportChainEntryGridNewRow(grid, chainID, chainName, entry, tokenID
 		}
 		else {
 			tokenTagMap = tokenSubMap[? "tagMap"];
-			text = tokenTagMap[? "~text"];
-			transcript = tokenTagMap[? "~transcript"];
+			text = tokenTagMap[? global.displayTokenField];
+			transcript = tokenTagMap[? global.tokenImportTranscriptColName];
 		}
-		if (transcript == 0 || transcript == "0"|| transcript == undefined) transcript = "";
+		if (transcript == 0 || transcript == "0"|| transcript == undefined || transcript == "undefined") transcript = "";
 			
 		// get UnitText
 		var unitText = scr_getUnitText(global.nodeMap[? unitID]);

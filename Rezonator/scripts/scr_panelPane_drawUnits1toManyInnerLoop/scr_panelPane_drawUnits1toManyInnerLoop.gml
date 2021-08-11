@@ -88,7 +88,9 @@ function scr_panelPane_drawUnits1toManyInnerLoop(tokenID, drawDropDowns, strHeig
 			draw_sprite_ext(spr_dropDown, 0, mean(dropDownRectX1, dropDownRectX2) - clipX, mean(dropDownRectY1, dropDownRectY2) - clipY, 1, 1, 0, global.colorThemeText, 1);
 		}
 	
-
+		if(mouseoverCell){
+			obj_control.hoverTextCopy = currentStr;
+		}
 			
 
 		if (drawDropDowns && !isTildaField) {

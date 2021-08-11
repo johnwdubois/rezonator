@@ -14,6 +14,10 @@ function scr_linkClickOptions(optionSelected){
 		obj_dialogueBox.inputWindowActive = true;
 		instance_destroy();
 	}
+	else if (optionSelected == "Delete Link") {
+		scr_deleteTreeLink();
+		instance_destroy();
+	}
 	else {
 		scr_destroyAllDropDownsOtherThanSelf();
 		

@@ -61,7 +61,7 @@ function scr_panelPane_drawUnitsList() {
 	scr_surfaceStart();
 	
 
-	//really super wanna set a draw range for this guy!!
+
 	var mouseInPane = obj_control.mouseoverPanelPane;
 	for (var i = 0; i < displayUnitListSize; i++) {
 	
@@ -104,7 +104,7 @@ function scr_panelPane_drawUnitsList() {
 			draw_rectangle(currentUnitRectX1 - clipX, currentUnitRectY1 - clipY, currentUnitRectX2 + scrollBarWidth - clipX, currentUnitRectY2 - clipY, false);
 		}
 	
-		scr_panelPane_mouseOnLine(currentUnitRectX1, currentUnitRectY1, currentUnitRectX2, currentUnitRectY2, currentUnitID, i, currentSpeakerColor, mouseoverHeaderRegion, mouseoverScrollBar);
+		scr_panelPane_mouseOnLine(currentUnitRectX1, currentUnitRectY1, currentUnitRectX2, currentUnitRectY2, currentUnitID, i, currentSpeakerColor, mouseoverHeaderRegion, mouseoverScrollBar,currentUnitText);
 		
 	
 	
