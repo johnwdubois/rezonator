@@ -249,7 +249,7 @@ function scr_drawChains() {
 							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
 						}
 						else{
-							scr_drawCurvedLine(lineX1 - (currentWordStringWidth1 / 2), lineY1, lineX2 - (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+							//scr_drawCurvedLine(lineX1 - (currentWordStringWidth1 / 2), lineY1, lineX2 - (currentWordStringWidth2 / 2), lineY2, currentChainColor);
 						}
 						
 
