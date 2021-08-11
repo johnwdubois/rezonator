@@ -82,7 +82,6 @@ function scr_sortCustom(chainID){
 
 			if (ds_map_exists(currentEntryTagMap, field)) {
 				currentVal = currentEntryTagMap[? field];
-				show_debug_message("currentVal found in tagmap, currentVal: " + string(currentVal));
 				
 				if (field == "gapUnits" || field == "gapWords") {
 					if (!is_numeric(currentVal)) currentVal = "";
@@ -113,9 +112,9 @@ function scr_sortCustom(chainID){
 			}			
 		}
 		
-		
-		
+
 		if (!is_string(currentVal) && !is_numeric(currentVal)) currentVal = "";
+		if (is_string(currentVal)) currentVal = string_lower(currentVal);
 		
 		// put the currentVal into either the tempStrGrid or tempDigitGrid
 		var grid = (is_string(currentVal)) ? tempStrGrid : tempDigitGrid;
