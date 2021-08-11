@@ -71,6 +71,10 @@ function scr_exportGrids() {
 	
 	var tempChunkGridHeaderList = ds_list_create();
 	ds_list_add(tempChunkGridHeaderList, "chunkID", "tokenList", "Display Text");
+	var chunkFieldListSize = ds_list_size(obj_control.chunkFieldList);
+	for (var i = 0; i < chunkFieldListSize; i++) {
+		ds_list_add(tempChunkGridHeaderList, obj_control.chunkFieldList[| i]);
+	}
 	var tempSearchGridHeaderList = ds_list_create();
 	ds_list_add(tempSearchGridHeaderList, "name", "searched words", "hit tokens");
 	
