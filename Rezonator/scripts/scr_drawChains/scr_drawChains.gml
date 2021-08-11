@@ -185,7 +185,8 @@ function scr_drawChains() {
 					arrowX = rezChainLineX1 + lengthdir_x(lineLen - (currentWordStringHeight2 * 1.5), arrowDir);
 					arrowY = rezChainLineY1 + lengthdir_y(lineLen - (currentWordStringHeight2 * 1.5), arrowDir);
 				}
-				else {					
+				else {
+					/*
 					if (abs(trackChainLineX1 - trackChainLineX2) < max(currentWordStringWidth1, currentWordStringWidth2) * 0.5) {
 						arrowDir = 270;
 					}
@@ -195,16 +196,20 @@ function scr_drawChains() {
 					else {
 						arrowDir = 0;
 					}
-					
+					arrowX = (trackChainLineX1 - ((trackChainLineX1 - trackChainLineX2) / 2));
+					arrowY = (lineY1 - ((lineY1 - lineY2) / 2));
+					*/
 					
 					lineLen = point_distance(trackChainLineX1, lineY1, trackChainLineX2, lineY2);
 					arrowDir = mean(point_direction(trackChainLineX1, lineY1, trackChainLineX2, lineY2), 270, 270, 270);
 					arrowX = trackChainLineX2;
 					arrowY = lineY2 - currentWordStringHeight2;
 					
-					
-					//arrowX = (trackChainLineX1 - ((trackChainLineX1 - trackChainLineX2) / 2));
-					//arrowY = (lineY1 - ((lineY1 - lineY2) / 2));
+					if (sideLink) {
+						arrowDir = 0;
+						arrowX = trackChainLineX2 - sprite_get_width(spr_linkArrow);
+						arrowY = mean(lineY1, lineY2);
+					}
 				}
 
 
