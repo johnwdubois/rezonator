@@ -149,6 +149,11 @@ function scr_panelPane_drawChains1ToManyInnerLoop(chain1toManyColFieldList, entr
 		drawStr = string_replace_all(drawStr, "\r", "");
 		drawStr = string_replace_all(drawStr, "\n", "");
 		
+		if(mouseoverCell){
+			obj_control.hoverTextCopy = drawStr;
+		}
+		
+		
 		// finally, draw the string in the cell
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha(1);

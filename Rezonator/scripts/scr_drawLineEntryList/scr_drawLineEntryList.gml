@@ -109,6 +109,8 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 				draw_rectangle(tokenRectX1,tokenRectY1,tokenRectX2,tokenRectY2, true);
 			}
 			obj_control.hoverTokenID = currentToken;
+			var tokenTagMap = currentTokenSubMap[?"tagMap"];
+			obj_control.hoverTextCopy = tokenTagMap[? global.displayTokenField];
 			
 			// click on token
 			if(device_mouse_check_button_released(0, mb_left) and !obj_control.mouseoverPanelPane and !instance_exists(obj_dialogueBox)) {

@@ -181,7 +181,11 @@ function scr_panelPane_drawUnits1to1() {
 			//draw cell
 			draw_set_color(global.colorThemeBG);
 			draw_rectangle(colRectX1 - clipX, colRectY1 - clipY, colRectX2 - clipX, colRectY2 - clipY, false);
-		
+			
+			var mouseOverCell = scr_pointInRectangleClippedWindow(mouse_x,mouse_y, colRectX1, unitRectY1, colRectX2, unitRectY2);
+			if(mouseOverCell){
+				obj_control.hoverTextCopy = currentStr;
+			}
 
     
 		    // Draw text of unit tags

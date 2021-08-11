@@ -324,6 +324,7 @@ newWordHoverWordID = -1;
 hoverTokenID = "";
 hoverChunkID = "";
 hoverUnitID = "";
+hoverTextCopy = "";
 showMouseLine = false;
 linkDeleted = false;
 

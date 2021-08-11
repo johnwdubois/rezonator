@@ -168,6 +168,7 @@ function scr_panelPane_drawChainsList() {
 					var chainNameRectX2 = x + windowWidth - scrollbarWidth;
 					var chainNameRectY2 = chainNameRectY1 + strHeight;
 					var mouseoverChainNameRect = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, chainNameRectX1, chainNameRectY1, chainNameRectX2, chainNameRectY2) && !mouseoverHeaderRegion && !mouseoverScrollBar;
+
 					
 					// get dimensions of checkbox rect
 					var checkboxRectX1 = checkboxColX + (checkboxColWidth / 2) - (checkboxSize / 2);
@@ -178,6 +179,9 @@ function scr_panelPane_drawChainsList() {
 					
 					// Check mouse clicks to focus a chain in the list
 					if (mouseoverChainNameRect) {
+						
+						obj_control.hoverTextCopy = currentChainName;
+						
 						if (obj_control.showDevVars) {
 							draw_set_color(c_red);
 							draw_circle(mouse_x, mouse_y, 5, true);
