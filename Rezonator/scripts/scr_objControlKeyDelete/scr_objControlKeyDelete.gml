@@ -28,6 +28,9 @@ function scr_objControlKeyDelete(){
 			}	
 		}
 		if(deleteEntryPressed == false){
+			scr_deleteTreeEntry();
+		}
+		if(obj_panelPane.functionTree_treeLinkSelected != ""){
 			scr_deleteTreeLink();
 		}
 	

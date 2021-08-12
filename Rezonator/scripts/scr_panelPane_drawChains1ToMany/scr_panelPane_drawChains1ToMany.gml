@@ -90,12 +90,15 @@ function scr_panelPane_drawChains1ToMany() {
 		exit;
 	}
 	
+	// whether or not we need to do a custom sort on this chain
+	if (obj_control.chain1toManyCustomSortColIndex >= 0) {
+		scr_sortCustom(chainID);
+	}
+	
 	// Get vizSetIDList list for the focused chain
+	var chainListKey = (obj_control.chain1toManyCustomSortColIndex == -1) ? "vizSetIDList" : "customSetIDList";
 	with (obj_panelPane) {
-		var focusedChainSubMap = ds_map_find_value(global.nodeMap, obj_chain.currentFocusedChainID);
-		if (scr_isNumericAndExists(focusedChainSubMap, ds_type_map)) {
-			functionChainContents_IDList = ds_map_find_value(focusedChainSubMap, "vizSetIDList");
-		}
+		functionChainContents_IDList = chainSubMap[? chainListKey];
 		if (functionChainContents_IDList != undefined) {
 			// Select top of the content list
 			if (functionChainContents_hop > -1) {
@@ -103,7 +106,7 @@ function scr_panelPane_drawChains1ToMany() {
 			}
 		}
 	}
-		
+	
 
 		
 	// loop over the vizSetIDList and draw the data in each of the chain entries

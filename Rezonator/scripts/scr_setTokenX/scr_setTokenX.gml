@@ -5,6 +5,8 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 	var tokenPixelX = tokenSubMap[? "pixelX"];
 	var tokenPixelXDest = 0;
 	
+	var tokenTagMap = tokenSubMap[? "tagMap"];
+	//show_debug_message(string(tokenTagMap[? global.displayTokenField]) + " ... shapeTextX: " + string(shapeTextX));
 
 	
 	
@@ -27,20 +29,7 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 			
 		}
 	}
-	else if (justify == justifyCenter) {
-		// CENTER JUSTIFY
-		
-		if (shape == shapeText) {
-			// Center Prose
-			tokenPixelXDest = (camWidth / 2) - (unitWidth / 2) + shapeTextX + scrollPlusX;
-		}
-		else {
-			// Center Grid
-			tokenPixelXDest = (camWidth / 2) - ((entryListSize / 2) * gridSpaceHorizontal) + (indexOfList * gridSpaceHorizontal) + scrollPlusX;
-		}
-		
-	}
-	else if (justify == justifyRight) {
+	else {
 		// RIGHT JUSTIFY
 		
 		if (shape == shapeText) {
@@ -49,7 +38,8 @@ function scr_setTokenX(tokenSubMap, displayCol, entryListSize, indexOfList, unit
 				tokenPixelXDest = camWidth - global.scrollBarWidth - global.toolPaneWidth - shapeTextX + scrollPlusX;
 			}
 			else{
-				tokenPixelXDest = camWidth - global.scrollBarWidth - global.toolPaneWidth - unitWidth + string_width(tokenString) + scrollPlusX;
+				tokenPixelXDest = camWidth - global.scrollBarWidth - global.toolPaneWidth - unitWidth + shapeTextX + scrollPlusX;
+				//tokenPixelXDest = camWidth - ((shapeTextX) + spaceWidth + gridSpaceHorizontal*2 - scrollPlusX);
 			}
 		}
 		else {

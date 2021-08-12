@@ -27,6 +27,7 @@ function scr_createTree(tokenList){
 	var treeSetIDList = ds_list_create();
 	ds_map_add_list(treeSubMap, "linkIDList", treeLinkIDList);
 	ds_map_add_list(treeSubMap, "setIDList", treeSetIDList);
+	ds_map_add_list(treeSubMap, "tokenList", tokenList);
 	ds_map_add(treeSubMap, "name", "Tree " + string(ds_list_size(treeList)));
 	ds_map_add(treeSubMap, "type", "tree");
 	

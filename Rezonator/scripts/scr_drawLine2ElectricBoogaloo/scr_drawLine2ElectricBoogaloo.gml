@@ -38,6 +38,7 @@ function scr_drawLine2ElectricBoogaloo(){
 	hoverTokenID = "";
 	hoverUnitID = "";
 
+
 	mouseoverSpeakerLabel = false;
 	
 	// clear lists that are meant to be refreshed each frame

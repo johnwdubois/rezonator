@@ -217,12 +217,10 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 	
 	
 	
-	
-	
-	
-	tokenCount = 0;
 
 	for(var i = 0; i < importGridWidth; i++){
+		
+		tokenCount = 0;
 		
 		if(i == indexOfDisplayToken) {continue;}
 		if(i == indexOfWordDelim) {continue;}
@@ -241,35 +239,38 @@ function scr_importGridToNodeMap_fieldsRowUnit(row){
 				var splitListSize = ds_list_size(splitList);
 				for (var j = 0; j < splitListSize; j++) {
 					
+					var currentWordTag = splitList[| j];
+					
 					// add this token field to chunk (not yet split on hyphens)
 					var currentChunkSubMap = chunkSubMapList[| j];
 					var currentChunkTagMap = -1;
 					if (scr_isNumericAndExists(currentChunkSubMap, ds_type_map) && indexOfWordDelim >= 0) {
 						currentChunkTagMap = currentChunkSubMap[? "tagMap"];
 						if (scr_isNumericAndExists(currentChunkTagMap, ds_type_map)) {
-							ds_map_add(currentChunkTagMap, currentField, splitList[| j]);
+							ds_map_add(currentChunkTagMap, currentField, currentWordTag);
 						}
 					}
 					
 					
 					// fill token node tag map
-					var hyphenSplitList = scr_splitStringWhitespaceAndHyphen(splitList[| j]);
+					var hyphenSplitList = scr_splitStringWhitespaceAndHyphen(currentWordTag);
 					
 					if (scr_isNumericAndExists(hyphenSplitList, ds_type_list)) {
 						var hyphenSplitListSize = ds_list_size(hyphenSplitList);
 						for (var k = 0; k < hyphenSplitListSize; k++) {
 							
+							var currentTokenTag = hyphenSplitList[| k];
 							var currentTokenTagMap = tokenTagMapList[| tokenCount];
 							if (scr_isNumericAndExists(currentTokenTagMap, ds_type_map)) {
-								ds_map_add(currentTokenTagMap, currentField, hyphenSplitList[| k]);
-								scr_addAutoTag(currentField, hyphenSplitList[| k], tokenFieldMap);
+								ds_map_add(currentTokenTagMap, currentField, currentTokenTag);
+								scr_addAutoTag(currentField, currentTokenTag, tokenFieldMap);
 							}
 							
 							tokenCount++;
 						}
 					}
 				}
-			}			
+			}		
 		}
 		else if(currentLevel == "unit"){
 			if(currentField == "~blockID" || currentField == global.speakerField){continue;}

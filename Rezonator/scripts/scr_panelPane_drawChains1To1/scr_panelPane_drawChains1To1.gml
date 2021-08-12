@@ -174,6 +174,10 @@ function scr_panelPane_drawChains1To1(){
 				textX -= global.scrollBarWidth;
 			}
 			
+			if(mouseoverCell){
+				obj_control.hoverTextCopy = tagStr;
+			}
+			
 			draw_text(textX - clipX, y + headerHeight + scrollPlusY + textPlusY - clipY, string(tagStr));
 			
 			textPlusY += strHeight;

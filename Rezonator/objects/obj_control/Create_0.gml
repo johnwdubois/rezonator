@@ -324,6 +324,7 @@ newWordHoverWordID = -1;
 hoverTokenID = "";
 hoverChunkID = "";
 hoverUnitID = "";
+hoverTextCopy = "";
 showMouseLine = false;
 linkDeleted = false;
 
@@ -697,6 +698,11 @@ chain1toManyColFieldListStack = ds_list_create(); // list of the dynamic columns
 ds_list_add(chain1toManyColFieldListRez, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListTrack, "gapUnits", "gapWords", "charCount");
 ds_list_add(chain1toManyColFieldListStack, "gapUnits");
+
+
+
+chain1toManyCustomSortColIndex = -1;
+chain1toManyCustomSortAsc = true;
 
 
 

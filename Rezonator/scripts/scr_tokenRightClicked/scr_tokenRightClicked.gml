@@ -28,7 +28,7 @@ function scr_tokenRightClicked(){
 		// Options for a word in a Chain
 		if(tokenInChainsListSize > 0){
 
-			ds_list_add(dropDownOptionList,  "Delete Link");
+			ds_list_add(dropDownOptionList,  "Delete Link", "Set Chain Name");
 			
 			
 			for(var i = 0; i < ds_list_size(tokenInChainsList); i++){

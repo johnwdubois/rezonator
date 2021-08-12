@@ -78,11 +78,14 @@ function scr_rightClickWordOptions(optionSelected) {
 			break;
 			
 		case "Delete Link":
-			
+		
 			scr_deleteFromChain(true);
-			
-			
 
+			instance_destroy();
+			break;
+		case "Set Chain Name":
+		
+			scr_setChainName();
 
 			instance_destroy();
 			break;
