@@ -207,4 +207,8 @@ function scr_saveREZ(autosave) {
 	}
 
 	global.stackGrabSave = false;
+	
+	with (obj_fileLoader) {
+		drawAutosaveText = false;
+	}
 }
