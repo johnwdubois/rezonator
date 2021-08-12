@@ -277,8 +277,8 @@ loopItterations = 0;
 
 
 //ini variables
-
-global.autosaveTimer = 36000;
+global.autosaveTimerFull = 30;
+global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
 global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";

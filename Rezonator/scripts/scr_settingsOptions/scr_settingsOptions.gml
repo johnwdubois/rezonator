@@ -84,7 +84,7 @@ function scr_settingsOptions(optionSelected) {
 		case "menu_autosave":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();
-			ds_list_add(dropDownOptionList, "menu_5-min", "menu_10-min", "menu_20-min", "menu_30-min", "Off");
+			ds_list_add(dropDownOptionList, "menu_5-min", "menu_10-min", "menu_20-min", "menu_30-min", "menu_off");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
 				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 6), dropDownOptionList, global.optionListTypeAutosave);
