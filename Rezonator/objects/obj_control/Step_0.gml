@@ -338,7 +338,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
-			scr_jumpToEnd(false);
+			scr_homeEnd(false);
 		}
 
 
@@ -348,12 +348,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_home) and not keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
-			if (searchGridActive) {
-				scr_jumpToEnd(true);
-			}
-			else {
-				wordLeftMarginDest = speakerLabelMargin + 20;
-			}
+			scr_homeEnd(true);
 		}
 	}
 }

@@ -277,7 +277,7 @@ loopItterations = 0;
 
 
 //ini variables
-global.autosaveTimerFull = 30;
+global.autosaveTimerFull = 600;
 global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
