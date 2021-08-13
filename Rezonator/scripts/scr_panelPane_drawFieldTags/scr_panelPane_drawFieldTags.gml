@@ -34,26 +34,31 @@ function scr_panelPane_drawFieldTags(){
 		// get submap for selected field
 		if (chainViewOneToMany) fieldSubMap = global.entryFieldMap[? functionField_entryFieldSelected];
 		else fieldSubMap = global.chainFieldMap[? functionField_chainFieldSelected];
+		if (!scr_isNumericAndExists(fieldSubMap, ds_type_map)){scr_surfaceEnd(); exit;}
 	}
 	
 	else if(fieldPaneSwitchButton == fieldPaneDocMode){
 		if(chainViewOneToMany){
 			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+			if (!scr_isNumericAndExists(tokenTagMap, ds_type_map)){scr_surfaceEnd(); exit;}
 			fieldSubMap = tokenTagMap[? functionField_tokenFieldSelected];
 		}
 		else{
 			var unitTagMap = global.nodeMap[? "unitTagMap"];
+			if (!scr_isNumericAndExists(unitTagMap, ds_type_map)){scr_surfaceEnd(); exit;}
 			fieldSubMap = unitTagMap[? functionField_unitFieldSelected];
 		}
 	}
 	
 	else if(fieldPaneSwitchButton == fieldPaneChunkMode){
 			var tokenTagMap = global.nodeMap[? "tokenTagMap"];
+			if (!scr_isNumericAndExists(tokenTagMap, ds_type_map)){scr_surfaceEnd(); exit;}
 			fieldSubMap = tokenTagMap[? functionField_chunkFieldSelected];
 	}
 
 	else if(fieldPaneSwitchButton == fieldPaneLinkMode){
 			var linkTagMap = global.nodeMap[? "linkTagMap"];
+			if (!scr_isNumericAndExists(linkTagMap, ds_type_map)){scr_surfaceEnd(); exit;}
 			fieldSubMap = linkTagMap[? functionField_linkFieldSelected];
 	}
 
