@@ -58,6 +58,29 @@ function scr_loadTagJson(){
 	
 	
 	scr_loadTagJsonFields(originalLinkFieldMap, global.linkFieldList, linkFieldMapJson, "link");
+	
+	
+	#region set nav window lists based on the lists found in tag json
+	var navTokenFieldList = map[? "navTokenFieldList"];
+	var navUnitFieldList = map[? "navUnitFieldList"];
+	var navChunkFieldList = map[? "navChunkFieldList"];
+	var navRez1toManyFieldList = map[? "navRez1toManyFieldList"];
+	var navTrack1toManyFieldList = map[? "navTrack1toManyFieldList"];
+	var navStack1toManyFieldList = map[? "navStack1toManyFieldList"];
+	var navRez1to1FieldList = map[? "navRez1to1FieldList"];
+	var navTrack1to1FieldList = map[? "navTrack1to1FieldList"];
+	var navStack1to1FieldList = map[? "navStack1to1FieldList"];	
+	
+	if (scr_isNumericAndExists(navTokenFieldList, ds_type_list)) obj_control.navTokenFieldList = navTokenFieldList;
+	if (scr_isNumericAndExists(navUnitFieldList, ds_type_list)) obj_control.navUnitFieldList = navUnitFieldList;
+	if (scr_isNumericAndExists(navChunkFieldList, ds_type_list)) obj_control.navChunkFieldList = navChunkFieldList;
+	if (scr_isNumericAndExists(navRez1toManyFieldList, ds_type_list)) obj_control.chain1toManyColFieldListRez = navRez1toManyFieldList;
+	if (scr_isNumericAndExists(navTrack1toManyFieldList, ds_type_list)) obj_control.chain1toManyColFieldListTrack = navTrack1toManyFieldList;
+	if (scr_isNumericAndExists(navStack1toManyFieldList, ds_type_list)) obj_control.chain1toManyColFieldListStack = navStack1toManyFieldList;
+	if (scr_isNumericAndExists(navRez1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListRez = navRez1to1FieldList;
+	if (scr_isNumericAndExists(navTrack1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListTrack = navTrack1to1FieldList;
+	if (scr_isNumericAndExists(navStack1to1FieldList, ds_type_list)) obj_control.chain1to1ColFieldListStack = navStack1to1FieldList;
+	#endregion
 
 	
 }
