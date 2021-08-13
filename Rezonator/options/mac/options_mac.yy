@@ -1,7 +1,7 @@
 {
-  "option_mac_display_name": "Rezonator 0.19.0",
+  "option_mac_display_name": "Rezonator 0.20.0",
   "option_mac_app_id": "com.company.game",
-  "option_mac_version": "0.19.0",
+  "option_mac_version": "0.20.0",
   "option_mac_output_dir": "~/GameMakerStudio2/Mac",
   "option_mac_team_id": "SGU37PG886",
   "option_mac_signing_identity": "Terrence DuBois",
