@@ -202,6 +202,9 @@ for (var i = 0; i < optionListSize; i++) {
 		else if (optionText == "menu_nav" && ds_list_size(optionList) == 5) {
 			isExpandable = false;
 		}
+		if (optionListType == global.optionListTypeLinkFields) {
+			if (ds_list_find_index(global.linkFieldList, optionText) >= 0) isExpandable = true;
+		}
 	}
 	var unClickable = (room == rm_openingScreen and !isOpeningScreenOption);
 	// gray out option if it begins with ~

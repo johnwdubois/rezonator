@@ -256,7 +256,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 		
 		//mouse over for entry
-		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1)
+		var mouseOverEntry = point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1 && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		
 		// check if this entry should be added to entryRectList
 		var mouseRectExists = (obj_control.mouseHoldRectX1 >= 10 && obj_control.mouseHoldRectY1 >= 0);
