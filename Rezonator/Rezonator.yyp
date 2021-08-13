@@ -79,6 +79,7 @@
     {"id":{"name":"spr_oneToOne","path":"sprites/spr_oneToOne/spr_oneToOne.yy",},"order":20,},
     {"id":{"name":"scr_discourseSort","path":"scripts/scr_discourseSort/scr_discourseSort.yy",},"order":41,},
     {"id":{"name":"spr_justifyCenter","path":"sprites/spr_justifyCenter/spr_justifyCenter.yy",},"order":24,},
+    {"id":{"name":"scr_verifyRez","path":"scripts/scr_verifyRez/scr_verifyRez.yy",},"order":14,},
     {"id":{"name":"scr_gridDeleteRange","path":"scripts/scr_gridDeleteRange/scr_gridDeleteRange.yy",},"order":9,},
     {"id":{"name":"scr_createDropDown","path":"scripts/scr_createDropDown/scr_createDropDown.yy",},"order":7,},
     {"id":{"name":"scr_importGridToMorphGrid","path":"scripts/scr_importGridToMorphGrid/scr_importGridToMorphGrid.yy",},"order":11,},

@@ -6,6 +6,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 	var mouseOverEntryID = "";
 	// get tree submap, make sure it exists
+	if(!scr_isNumericAndExists(global.treeMap, ds_type_map)){exit;}
 	var treeSubMap = global.treeMap[? functionTree_treeSelected];
 	if (!scr_isNumericAndExists(treeSubMap, ds_type_map)) exit;
 	var setIDList = treeSubMap[? "setIDList"];
