@@ -4,6 +4,7 @@ function scr_homeEnd(home) {
 	
 	var ltr = obj_control.drawLineState == obj_control.lineState_ltr;
 	var startJustify = scr_checkNativeJustification();
+	var gridJustify = obj_control.shape == obj_control.shapeBlock;
 	
 	if ((home && startJustify) || (!home && !startJustify)) {
 		obj_control.scrollPlusXDest = 0;
@@ -57,10 +58,28 @@ function scr_homeEnd(home) {
 		}
 	}
 	
-
+	var ltrEndJustityHomeCheck = ltr && !startJustify && home;
+	if (ltrEndJustityHomeCheck && firstPixelX > obj_control.wordLeftMargin) {
+		exit;
+	}
 	
+	var rtlStartJustityEndCheck = !ltr && startJustify && !home;
+	if (rtlStartJustityEndCheck && lastPixelX > obj_control.wordLeftMargin) {
+		exit;
+	}
+	
+	
+	
+	
+	show_debug_message("firstPixelX: " + string(firstPixelX) + ", lastPixelX: " + string(lastPixelX));
+
 	var reverseScreen = (!ltr && !home) || (ltr && home);
-	var isBad = !ltr && home && !startJustify;
+	var isBad = !ltr && home && !startJustify && !gridJustify;
+	var isReallyBad = !ltr && home && !startJustify && gridJustify;
+	
+	show_debug_message("reverseScreen: " + string(reverseScreen) + ", isBad: " + string(isBad));
+	
+	
 	
 	var adjustedCamWidth = camWidth - global.toolPaneWidth - global.scrollBarWidth;
 	if (reverseScreen) adjustedCamWidth = -obj_control.wordLeftMargin - obj_control.gridSpaceHorizontal;
@@ -73,6 +92,7 @@ function scr_homeEnd(home) {
 	
 	var distToScroll = max(abs(adjustedPixelX) - adjustedCamWidth, 0);
 	if (!reverseScreen) distToScroll = -distToScroll;
+	if (isReallyBad) distToScroll = -distToScroll;
 	
 	
 	obj_control.scrollPlusXDest += distToScroll;
