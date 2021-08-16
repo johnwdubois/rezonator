@@ -77,6 +77,7 @@ function scr_panelPane_drawTree1ToMany(){
 		for(var j = 0; j < tokenListSize; j ++){
 			var currentToken = tokenList[|j];
 			var currentTokenSubMap = global.nodeMap[? currentToken];
+			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
@@ -253,6 +254,7 @@ function scr_panelPane_drawTree1ToMany(){
 		for(var j = 0; j < tokenListSize; j ++){
 			var currentToken = tokenList[|j];
 			var currentTokenSubMap = global.nodeMap[? currentToken];
+			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
