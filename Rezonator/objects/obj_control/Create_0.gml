@@ -443,7 +443,10 @@ shortcutsEnabled = true;
 
 // Keep track of session length
 sessionStartTime = current_time;
-//currentSessionTime = 0;
+currentSessionLength = 0;
+fullSessionLength = 0;
+loadSessionLength = 0;
+
 
 // Search box variables
 fPressed = false;

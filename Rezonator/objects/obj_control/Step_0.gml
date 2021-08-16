@@ -5,6 +5,8 @@
 #macro vk_rcommand 91
 #macro vk_lcommand 92
 
+sessionCurrentTime = (current_time - sessionStartTime) + current_time;
+
 if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 	// set display unit list if it does not exist
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
