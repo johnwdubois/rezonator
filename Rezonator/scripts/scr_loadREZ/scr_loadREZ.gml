@@ -216,6 +216,12 @@ function scr_loadREZ() {
 					global.discourseNode = map[? "discourseNode"];
 					if (!ds_map_exists(global.nodeMap, global.discourseNode)) {
 					}
+					
+					
+					if (ds_map_exists(map, "sessionLength")) {
+						var sessionLength = map[? "sessionLength"];
+						if (is_numeric(sessionLength)) obj_control.loadSessionLength = sessionLength;
+					}
 				}
 			}		
 		}

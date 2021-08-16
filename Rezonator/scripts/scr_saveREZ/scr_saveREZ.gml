@@ -123,7 +123,10 @@ function scr_saveREZ(autosave) {
 			
 			// save text direction
 			ds_map_add(map, "textDirection", obj_control.drawLineState);
-		
+			
+			// save session length
+			scr_getCurrentSessionTime();
+			ds_map_add(map, "sessionLength", obj_control.fullSessionLength);
 		}
 	}
 

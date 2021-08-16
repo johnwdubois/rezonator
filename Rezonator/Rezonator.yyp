@@ -324,6 +324,7 @@
     {"id":{"name":"scr_initializeDiscourseTagSet","path":"scripts/scr_initializeDiscourseTagSet/scr_initializeDiscourseTagSet.yy",},"order":26,},
     {"id":{"name":"scr_deleteFromList","path":"scripts/scr_deleteFromList/scr_deleteFromList.yy",},"order":5,},
     {"id":{"name":"scr_deleteFromChain","path":"scripts/scr_deleteFromChain/scr_deleteFromChain.yy",},"order":21,},
+    {"id":{"name":"scr_getCurrentSessionTime","path":"scripts/scr_getCurrentSessionTime/scr_getCurrentSessionTime.yy",},"order":29,},
     {"id":{"name":"scr_drawChains","path":"scripts/scr_drawChains/scr_drawChains.yy",},"order":0,},
     {"id":{"name":"scr_dropShadow","path":"scripts/scr_dropShadow/scr_dropShadow.yy",},"order":24,},
     {"id":{"name":"spr_contextOptions","path":"sprites/spr_contextOptions/spr_contextOptions.yy",},"order":29,},
