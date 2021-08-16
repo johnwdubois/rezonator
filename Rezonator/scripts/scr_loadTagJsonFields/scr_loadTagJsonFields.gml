@@ -1,6 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, nodeList){
+	
 	if(!scr_isNumericAndExists(originalTagMap, ds_type_map)  or !scr_isNumericAndExists(tagMapJson, ds_type_map)){
 		exit;
 	}
