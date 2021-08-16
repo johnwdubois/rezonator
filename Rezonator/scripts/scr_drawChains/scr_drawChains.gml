@@ -256,8 +256,9 @@ function scr_drawChains() {
 						scr_drawCurvedLine(trackChainLineX1, lineY1, trackChainLineX2, lineY2, currentChainColor);
 
 					}
-					
-					draw_sprite_ext(spr_linkArrow, 0, arrowX, arrowY, arrowScale, arrowScale, arrowDir, currentChainColor, 1);
+					if((obj_chain.showRezArrows and chainType = "rezChain") or (obj_chain.showTrackArrows and chainType = "trackChain")){
+						draw_sprite_ext(spr_linkArrow, 0, arrowX, arrowY, arrowScale, arrowScale, arrowDir, currentChainColor, 1);
+					}
 				}
 			}
 		}
@@ -314,7 +315,7 @@ function scr_drawChains() {
 						else if (chainType == "trackChain") {
 							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
 						}
-						if (obj_chain.showChainArrows) {
+						if ((obj_chain.showRezArrows and chainType = "rezChain") or (obj_chain.showTrackArrows and chainType = "trackChain")) {
 							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
 							draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
 						}

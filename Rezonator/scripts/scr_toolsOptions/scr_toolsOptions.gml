@@ -50,6 +50,14 @@ function scr_toolsOptions(optionSelected) {
 				instance_destroy();
 			}
 			break;
+		case "Tag":
+			with(obj_panelPane){
+				
+			}
+			with (obj_toolPane){
+				currentMode = modeRead;
+			}
+			break;
 		case "menu_stack":
 			scr_destroyAllDropDownsOtherThanSelf();
 			var dropDownOptionList = ds_list_create();

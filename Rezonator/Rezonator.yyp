@@ -405,6 +405,7 @@
     {"id":{"name":"scr_panelPane_drawChains1To1","path":"scripts/scr_panelPane_drawChains1To1/scr_panelPane_drawChains1To1.yy",},"order":18,},
     {"id":{"name":"scr_tokenSelection","path":"scripts/scr_tokenSelection/scr_tokenSelection.yy",},"order":27,},
     {"id":{"name":"scr_unitSelection","path":"scripts/scr_unitSelection/scr_unitSelection.yy",},"order":28,},
+    {"id":{"name":"scr_arrowOptions","path":"scripts/scr_arrowOptions/scr_arrowOptions.yy",},"order":71,},
     {"id":{"name":"scr_tokenTagMapOptions","path":"scripts/scr_tokenTagMapOptions/scr_tokenTagMapOptions.yy",},"order":29,},
     {"id":{"name":"scr_expandChunk","path":"scripts/scr_expandChunk/scr_expandChunk.yy",},"order":8,},
     {"id":{"name":"scr_unitTagMapOptions","path":"scripts/scr_unitTagMapOptions/scr_unitTagMapOptions.yy",},"order":30,},

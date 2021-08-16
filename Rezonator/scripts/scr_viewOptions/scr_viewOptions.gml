@@ -111,16 +111,19 @@ function scr_viewOptions(optionSelected) {
 		break;
 		
 		case "Word Tip":
-		
-			if(obj_wordTip.wordTipDisplay){
-				obj_wordTip.wordTipDisplay = false;
-			}
-			else{
-				obj_wordTip.wordTipDisplay = true;
-			}
-			
+			obj_wordTip.wordTipDisplay = !obj_wordTip.wordTipDisplay;			
 			instance_destroy(obj_dropDown);
 		break;
+		
+		case "Arrowheads":
+			scr_destroyAllDropDownsOtherThanSelf();
+			var dropDownOptionList = ds_list_create();
+			
+			ds_list_add(dropDownOptionList,"All", "Track Arrows", "Rez Arrows");
+			if (ds_list_size(dropDownOptionList) > 0) {
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 5), dropDownOptionList, global.optionListTypeArrows);
+			}
+			break;
 		
 		case "Text Direction":
 			scr_destroyAllDropDownsOtherThanSelf();
@@ -129,7 +132,7 @@ function scr_viewOptions(optionSelected) {
 			ds_list_add(dropDownOptionList, "Left To Right","Right To Left");
 				
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 5), dropDownOptionList, global.optionListTypeTextDirection);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 6), dropDownOptionList, global.optionListTypeTextDirection);
 			}
 		
 		break;

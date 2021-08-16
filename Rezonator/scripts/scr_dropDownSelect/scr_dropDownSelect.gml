@@ -393,6 +393,10 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_linkTagOptions(optionSelected);
 	}
+	else if (optionListType == global.optionListTypeArrows)
+	{
+		scr_arrowOptions(optionSelected);	
+	}
 
 
 
