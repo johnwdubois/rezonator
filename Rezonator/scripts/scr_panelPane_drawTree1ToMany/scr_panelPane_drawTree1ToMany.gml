@@ -173,6 +173,7 @@ function scr_panelPane_drawTree1ToMany(){
 		// draw text of current entry
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_center);
+		scr_adaptFont(currentDisplayToken, "M");
 		draw_text(floor(mean(tokenX1,tokenX2)) - clipX, currentEntryY - clipY + currentScrollPlusY, currentDisplayToken);
 
 		plusX += boxWidth;
@@ -212,6 +213,7 @@ function scr_panelPane_drawTree1ToMany(){
 		// draw number text
 		var levelY = rootY + (strHeight * i);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(string(i), "M");
 		draw_text(floor(mean(x, x + originalPlusX)) - clipX, floor(levelY + currentScrollPlusY) - clipY, string(i));
 		
 		// draw horizontal line for each row
@@ -316,6 +318,7 @@ function scr_panelPane_drawTree1ToMany(){
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha((currentEntrySubMap[?"level"] >= 0) ? 0.5 : 1);
 		draw_set_halign(fa_center);
+		scr_adaptFont(currentDisplayToken, "M");
 		draw_text(floor(mean(tokenX1, tokenX2)) - clipX, leafTextY - clipY, currentDisplayToken);
 		
 		// draw vertical line for each column

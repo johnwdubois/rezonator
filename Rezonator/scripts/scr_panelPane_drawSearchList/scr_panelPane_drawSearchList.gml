@@ -133,6 +133,7 @@ function scr_panelPane_drawSearchList(){
 		
 		// ListOfTerms column
 		draw_set_color(textColor);
+		scr_adaptFont(scr_getStringOfList(currentSearchTermList), "M");
 		draw_text(floor(termColX + textBuffer) - clipX, textY - clipY, scr_getStringOfList(currentSearchTermList));
 
 

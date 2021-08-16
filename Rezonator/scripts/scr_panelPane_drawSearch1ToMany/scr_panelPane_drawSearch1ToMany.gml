@@ -186,7 +186,9 @@ function scr_panelPane_drawSearch1ToMany(){
 				// before column
 				draw_set_halign(fa_right);
 				draw_set_color(textColor);
-				draw_text(beforeTextX - clipX, textY - clipY, scr_getSearchString(beforeTokenList, true));
+				var beforeText = scr_getSearchString(beforeTokenList, true);
+				scr_adaptFont(beforeText, "M");
+				draw_text(beforeTextX - clipX, textY - clipY,beforeText);
 
 				//draw rect to clip before text
 				draw_set_color(rectColor);
@@ -201,12 +203,16 @@ function scr_panelPane_drawSearch1ToMany(){
 				// text column
 				draw_set_halign(fa_center);
 				draw_set_color( (currentTokenSelected) ? global.colorThemeBG : make_color_rgb(20, 146, 181));
+				scr_adaptFont(string(currentTokenText), "M");
 				draw_text(hitTextX - clipX, textY - clipY, string(currentTokenText));
 
 				// after column
 				draw_set_halign(fa_left);
 				draw_set_color(textColor);
-				draw_text(afterTextX - clipX, textY - clipY, scr_getSearchString(afterTokenList, false));
+				
+				var afterText = scr_getSearchString(afterTokenList, false);
+				scr_adaptFont(afterText, "M");
+				draw_text(afterTextX - clipX, textY - clipY, afterText);
 
 	
 				// increment plusY

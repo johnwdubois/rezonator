@@ -94,10 +94,13 @@ function scr_panelPane_drawCliques1ToMany(){
 				draw_text(numColX + textBuffer - clipX, textY - clipY, currentItemNum);
 				
 				// text column
+				scr_adaptFont(currentItemText, "M");
 				draw_text(textColX + textBuffer - clipX, textY - clipY, currentItemText);
 				
 				// chain order column
-				draw_text(chainOrderColX + textBuffer - clipX, textY - clipY, scr_getStringOfList(currentChainOrderListNames));
+				var chainOrderListStr = scr_getStringOfList(currentChainOrderListNames);
+				scr_adaptFont(chainOrderListStr, "M");
+				draw_text(chainOrderColX + textBuffer - clipX, textY - clipY, chainOrderListStr);
 				ds_list_destroy(currentChainOrderListNames);
 				
 				// increment plusY
