@@ -171,6 +171,8 @@ function scr_panelPane_drawTree1ToMany(){
 			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown)){
 				obj_chain.currentFocusedEntryID = currentEntry;
 				
+				obj_control.rightClickID = currentEntry;
+				
 				var dropDownOptionList = ds_list_create();
 				ds_list_add(dropDownOptionList, "Delete Branch");
 						
@@ -328,6 +330,7 @@ function scr_panelPane_drawTree1ToMany(){
 			//right click on leaf entry
 			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown)){
 				if(tokenListSize > 1){
+					obj_control.rightClickID = currentEntry;
 					var dropDownOptionList = ds_list_create();
 					ds_list_add(dropDownOptionList, "Separate Chunk");
 						
