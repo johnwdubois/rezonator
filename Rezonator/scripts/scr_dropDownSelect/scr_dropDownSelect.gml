@@ -393,6 +393,14 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_linkTagOptions(optionSelected);
 	}
+	else if (optionListType == global.optionListTypeTreeEntry) //73
+	{
+		scr_treeEntryOptions(optionSelected);
+	}
+	else if (optionListType == global.optionListTypeTreeLeaf) //74
+	{
+		scr_treeLeafOptions(optionSelected);
+	}
 
 
 
