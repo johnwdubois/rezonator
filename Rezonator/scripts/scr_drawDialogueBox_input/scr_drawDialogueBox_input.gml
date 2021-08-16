@@ -103,6 +103,7 @@ function scr_drawDialogueBox_input(){
 		// regex text
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_left);
+		scr_adaptFont(scr_get_translation("search_dialogue_regEx"), "M");
 		draw_text(floor(regexCheckboxX2 + checkboxSize), floor(mean(regexCheckboxY1, regexCheckboxY2)), scr_get_translation("search_dialogue_regEx"));
 
 		
@@ -121,6 +122,7 @@ function scr_drawDialogueBox_input(){
 			// case-sensitive text
 			draw_set_color(global.colorThemeText);
 			draw_set_halign(fa_left);
+			scr_adaptFont(scr_get_translation("search_dialogue_case"), "M");
 			draw_text(floor(caseCheckboxX2 + checkboxSize), floor(mean(caseCheckboxY1, caseCheckboxY2)), scr_get_translation("search_dialogue_case"));
 		}
 		

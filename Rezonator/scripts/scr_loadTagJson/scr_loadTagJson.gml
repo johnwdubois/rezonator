@@ -37,6 +37,7 @@ function scr_loadTagJson(){
 	var originalLinkFieldMap = global.nodeMap[? "linkTagMap"];
 	
 	
+	
 	// get the tag maps from the json
 	var tokenTagMapJson = map[? "tokenTagMap"];
 	var unitTagMapJson = map[? "unitTagMap"];
@@ -47,16 +48,12 @@ function scr_loadTagJson(){
 	
 
 	
-	
+
 	scr_loadTagJsonFields(originalTokenTagMap, obj_control.tokenFieldList, tokenTagMapJson, "token");
 	scr_loadTagJsonFields(originalTokenTagMap, obj_control.chunkFieldList, tokenTagMapJson, "chunk");
 	scr_loadTagJsonFields(originalUnitTagMap, obj_control.unitFieldList, unitTagMapJson, "unit");
-	
-	
 	scr_loadTagJsonFields(originalChainFieldMap, global.chainFieldList, chainFieldMapJson, "chain");
 	scr_loadTagJsonFields(originalEntryFieldMap, global.chainEntryFieldList, entryFieldMapJson, "entry");
-	
-	
 	scr_loadTagJsonFields(originalLinkFieldMap, global.linkFieldList, linkFieldMapJson, "link");
 	
 	

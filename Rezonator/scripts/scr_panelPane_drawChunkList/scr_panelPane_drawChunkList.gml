@@ -143,7 +143,9 @@ function scr_panelPane_drawChunkList(){
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentChunkName));
 		
 		// text column
-		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, scr_getChunkText(currentChunk));
+		var chunkText = scr_getChunkText(currentChunk);
+		scr_adaptFont(chunkText, "M");
+		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, chunkText);
 		
 		// nest column
 		draw_text(floor(nestColX + textBuffer) - clipX, textY - clipY, string(currentChunkNest));

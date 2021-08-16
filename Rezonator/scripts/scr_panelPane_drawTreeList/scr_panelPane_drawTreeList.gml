@@ -100,7 +100,7 @@ function scr_panelPane_drawTreeList(){
 			fullTreeStr += "... ";
 		}
 		
-				
+		scr_adaptFont(string(fullTreeStr), "M");
 		draw_text(floor(captionColX + textBuffer) - clipX, textY - clipY, string(fullTreeStr));	
 	
 		// get coordinates for delete button
