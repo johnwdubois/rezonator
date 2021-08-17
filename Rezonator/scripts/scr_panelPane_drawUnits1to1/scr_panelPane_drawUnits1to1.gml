@@ -14,7 +14,7 @@ function scr_panelPane_drawUnits1to1() {
 
 
 
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 	var drawScrollbar = !chainViewOneToMany;
 	var relativeScrollPlusY = (drawScrollbar) ? scrollPlusY : lineListPanelPaneInst.scrollPlusY;
 	
