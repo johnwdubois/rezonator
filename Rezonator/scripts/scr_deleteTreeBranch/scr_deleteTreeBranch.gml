@@ -33,6 +33,8 @@ function scr_deleteTreeBranch(){
 	
 	scr_resetTreeLevel(selectedEntry)
 	
+	
+	scr_treeRefresh(treeSubMap);
 	obj_chain.currentFocusedEntryID = "";
 	
 }
