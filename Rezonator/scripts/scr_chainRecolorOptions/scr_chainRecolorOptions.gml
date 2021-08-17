@@ -3,35 +3,23 @@ function scr_chainRecolorOptions(optionSelected) {
 	with (obj_panelPane) {
 		if (currentFunction == functionChainList) {
 			
+			// get chain and its submap, make sure they exist
 			obj_control.selectedChainID = obj_chain.currentFocusedChainID;
-			var listOfWordID = ds_list_create();
-			
 			var chainType = "";
-			var chainSubMap = ds_map_find_value(global.nodeMap, obj_control.selectedChainID);
-			if (is_numeric(chainSubMap)) {
-				if (ds_exists(chainSubMap, ds_type_map)) {
-					chainType = ds_map_find_value(chainSubMap, "type");
-					var setIDList = ds_map_find_value(chainSubMap, "setIDList");
-					var setIDListSize = ds_list_size(setIDList);
-					for (var i = 0; i < setIDListSize; i++) {
-						var currentEntry = ds_list_find_value(setIDList, i);
-						var currentEntrySubMap = ds_map_find_value(global.nodeMap, currentEntry);
-						var currentWordID = ds_map_find_value(currentEntrySubMap, "token");
-						ds_list_add(listOfWordID, currentWordID);
-					}
-				}
+			var chainSubMap = global.nodeMap[? obj_control.selectedChainID];		
+			if (!scr_isNumericAndExists(chainSubMap, ds_type_map)) {
+				show_debug_message("scr_chainRecolorOptions, chain does not exist");
+				exit;
 			}
-			var listOfWordIDSize = ds_list_size(listOfWordID);
-			
 			
 			
 			if (optionSelected == "Red" || optionSelected == "Blue" || optionSelected == "Green" || optionSelected == "Gold") {
 				var colorToSet = 0;
-				if (optionSelected == "Red") colorToSet = real(string_digits(255));
-				else if (optionSelected == "Blue") colorToSet = real(string_digits(16711680));
-				else if (optionSelected == "Green") colorToSet = real(string_digits(65280));
-				else if (optionSelected == "Gold") colorToSet = real(string_digits(4235000));
-				ds_map_replace(chainSubMap, "chainColor", colorToSet);
+				if (optionSelected == "Red") colorToSet = 255;
+				else if (optionSelected == "Blue") colorToSet = 16711680;
+				else if (optionSelected == "Green") colorToSet = 65280;
+				else if (optionSelected == "Gold") colorToSet = 4235000;
+				chainSubMap[? "chainColor"] = colorToSet;
 
 			}
 			else if (optionSelected == "Custom") {
@@ -49,8 +37,6 @@ function scr_chainRecolorOptions(optionSelected) {
 			}
 			
 			
-
-			ds_list_destroy(listOfWordID);
 		}
 	}
 }
