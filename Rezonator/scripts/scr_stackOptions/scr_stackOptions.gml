@@ -21,12 +21,20 @@ function scr_stackOptions(optionSelected) {
 			}
 			instance_destroy();
 			break;
+		case "Clip All":
+			scr_clipAllStacks();
+			instance_destroy(obj_dropDown);
+			break;
+		case "Tree All":
+			scr_treeAllStacks();
+			instance_destroy(obj_dropDown);
+			break;
 		case "menu_stacker":
 			var dropDownOptionList = ds_list_create();
 			//, "menu_sentence"
 			ds_list_add(dropDownOptionList,  "menu_turn", "menu_random");
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(x + windowWidth, y + (optionSpacing ), dropDownOptionList, global.optionListTypeCreateStack);
+				scr_createDropDown(x + windowWidth, y, dropDownOptionList, global.optionListTypeCreateStack);
 			}
 			break;
 		default:
