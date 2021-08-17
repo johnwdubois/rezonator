@@ -17,6 +17,7 @@ function scr_createRezDirectory() {
 	global.rezonatorSchemaDirString = global.rezonatorDirString + delimiter + "Schemas";
 	
 	// copy directory to user's Documents folder
+	ds_list_clear(global.dirCopyDebugList);
 	if (directory_exists(global.documentsDirString)) {
 		var includedFilesDir = working_directory + delimiter + "IncludedFiles";
 		if (os_type == os_macosx) {
@@ -36,6 +37,24 @@ function scr_createRezDirectory() {
 			}
 		}
 	}
+	
+	// save dirCopy debug file
+	var dirCopyFilePath = working_directory + "dirCopyDebug.txt";
+	var dirCopyDebugFile = file_text_open_write(dirCopyFilePath);
+	var dirCopyDebugListSize = ds_list_size(global.dirCopyDebugList);
+	for (var i = 0; i < dirCopyDebugListSize; i++) {
+		var currentDebugStr = string(global.dirCopyDebugList[| i]);
+		show_debug_message("currentDebugStr: " + string(currentDebugStr))
+		file_text_write_string(dirCopyDebugFile, currentDebugStr);
+		file_text_writeln(dirCopyDebugFile);
+	}
+	file_text_close(dirCopyDebugFile);
+	show_debug_message("dirCopyFilePath: " + string(dirCopyFilePath));
+	show_debug_message("dirCopyDebugFile exists: " + string(file_exists(dirCopyFilePath)));
+	if (file_exists(dirCopyFilePath)) file_copy(dirCopyFilePath, global.rezonatorDirString + delimiter + "dirCopyDebug.txt");
+	
+	
+	
 	
 	
 	// create autosave & schema directory

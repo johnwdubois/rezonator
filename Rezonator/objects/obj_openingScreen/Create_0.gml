@@ -415,3 +415,5 @@ alarm[5] = 2;
 hoverColorMergeOpen = 0;
 hoverColorMergeImport = 0;
 hoverColorMergeHelp = 0;
+
+global.dirCopyDebugList = ds_list_create();

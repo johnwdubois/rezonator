@@ -1,12 +1,16 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_directoryCopy(sourceDir, destDir, debugTab){
-
-	show_debug_message(debugTab + "scr_directoryCopy START ... sourceDir: " + string(sourceDir) + ", destDir: " + string(destDir));
+	
+	var dbMessage = debugTab + "scr_directoryCopy START ... sourceDir: " + string(sourceDir) + ", destDir: " + string(destDir);
+	ds_list_add(global.dirCopyDebugList, dbMessage);
+	show_debug_message(dbMessage);
 
 	// make sure the source dir exists
 	if (!directory_exists(sourceDir)) {
-		show_debug_message(debugTab + "sourceDir " + string(sourceDir) + " does not exist");
+		dbMessage = debugTab + "sourceDir " + string(sourceDir) + " does not exist";
+		ds_list_add(global.dirCopyDebugList, dbMessage);
+		show_debug_message(dbMessage);
 		exit;
 	}
 
@@ -24,7 +28,9 @@ function scr_directoryCopy(sourceDir, destDir, debugTab){
 	// find first sourceFile in source dir
 	var sourceFile = file_find_first(sourceDir + delimiter + "*", fa_directory);
 	if (sourceFile == ".DS_Store") sourceFile = file_find_next();
-	show_debug_message(debugTab + "FIRST sourceFile: " + string(sourceFile));
+	dbMessage = debugTab + "FIRST sourceFile: " + string(sourceFile);
+	ds_list_add(global.dirCopyDebugList, dbMessage);
+	show_debug_message(dbMessage);
 
 
 	var dirList = ds_list_create();
@@ -38,7 +44,9 @@ function scr_directoryCopy(sourceDir, destDir, debugTab){
 		// get file path, check if it's a directory
 		var filePathFull = sourceDir + delimiter + sourceFile;
 		var isDirectory = directory_exists(filePathFull);
-		show_debug_message(debugTab + "filePathFull: " + string(filePathFull) + ", isDir: " + string(isDirectory));
+		dbMessage = debugTab + "filePathFull: " + string(filePathFull) + ", isDir: " + string(isDirectory);
+		ds_list_add(global.dirCopyDebugList, dbMessage);
+		show_debug_message(dbMessage);
 		
 		
 		if (isDirectory) {
@@ -54,14 +62,18 @@ function scr_directoryCopy(sourceDir, destDir, debugTab){
 
 		// find the next sourceFile in source dir
 		sourceFile = file_find_next();
-		show_debug_message(debugTab + "next sourceFile: " + string(sourceFile));
+		dbMessage = debugTab + "next sourceFile: " + string(sourceFile);
+		ds_list_add(global.dirCopyDebugList, dbMessage);
+		show_debug_message(dbMessage);
 	}
 	
 	// close the sourceDir
 	file_find_close();
 
 	// copy all the sub-directories
-	show_debug_message(debugTab + "dirList: " + scr_getStringOfList(dirList));
+	dbMessage = debugTab + "dirList: " + scr_getStringOfList(dirList);
+	ds_list_add(global.dirCopyDebugList, dbMessage);
+	show_debug_message(dbMessage);
 	var dirListSize = ds_list_size(dirList);
 	for (var i = 0; i < dirListSize; i++) {
 		var currentDir = dirList[| i];
@@ -82,7 +94,9 @@ function scr_directoryCopy(sourceDir, destDir, debugTab){
 	// close the destDir
 	file_find_close();
 	
-	show_debug_message(debugTab + "scr_directoryCopy END ... sourceDir: " + string(sourceDir) + ", sourceFileCount: " + string(sourceFileCount) + ", destFileCount:" + string(destFileCount));
+	dbMessage = debugTab + "scr_directoryCopy END ... sourceDir: " + string(sourceDir) + ", sourceFileCount: " + string(sourceFileCount) + ", destFileCount:" + string(destFileCount);
+	ds_list_add(global.dirCopyDebugList, dbMessage);
+	show_debug_message(dbMessage);
 
 	
 
