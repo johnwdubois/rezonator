@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTree1ToMany(){
-	
+	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	ds_list_clear(obj_control.inRectEntryIDList);
 
 	var mouseOverEntryID = "";
@@ -63,10 +63,10 @@ function scr_panelPane_drawTree1ToMany(){
 
 	
 	
-
-	
+	var i = (ltr)? 0 : setIDListSize-1;
+	repeat(setIDListSize){
 	// loop over entries, draw each entry at its respective row (level)
-	for (var i = 0; i < setIDListSize; i++) {
+	//for (var i = 0; i < setIDListSize; i++) {
 		
 		// get current entry and all its goodies
 		var currentEntry = setIDList[| i];
@@ -84,10 +84,10 @@ function scr_panelPane_drawTree1ToMany(){
 		var currentLevel = currentEntrySubMap[? "level"];
 		if (currentLevel < 0) {
 			plusX += string_width(currentDisplayToken) + (spaceWidth * 8);
+			i = (ltr)? i+1 : i-1;
 			continue;
 		}
 		maxLevel = max(maxLevel, currentLevel);
-		
 		
 		// draw entry at its level
 		var currentEntryY = rootY + (strHeight * currentLevel);
@@ -192,6 +192,7 @@ function scr_panelPane_drawTree1ToMany(){
 		draw_text(floor(mean(tokenX1,tokenX2)) - clipX, currentEntryY - clipY + currentScrollPlusY, currentDisplayToken);
 
 		plusX += boxWidth;
+		i = (ltr)? i+1 : i-1;
 	}
 
 	scr_drawTreeLinks();
@@ -244,7 +245,9 @@ function scr_panelPane_drawTree1ToMany(){
 	// draw leaf row
 	plusX = originalPlusX;
 	var maxPlusX = plusX;
-	for (var i = 0; i < setIDListSize; i++) {
+	var i = (ltr)? 0 : setIDListSize-1;
+	repeat(setIDListSize){
+	//for (var i = 0; i < setIDListSize; i++) {
 		
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.treeMap[? currentEntry];
@@ -358,6 +361,7 @@ function scr_panelPane_drawTree1ToMany(){
 		//draw_line(lineX - clipX, y - clipY, lineX - clipX, y + windowHeight - clipY);
 		
 		plusX += boxWidth;
+		i = (ltr)? i+1 : i-1;
 	}
 	maxPlusX = plusX;
 	plusX = originalPlusX;
