@@ -17,7 +17,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	
 	var unitColWidth = windowWidth * 0.1;
 	var contextColWidth = windowWidth * 0.35;
-	var hitColWidth = windowWidth * 0.2;
+	var hitColWidth = string_width("m") * 2;
 
 	
 	var anyOptionMousedOver = false;
@@ -290,7 +290,7 @@ function scr_panelPane_drawSearch1ToMany(){
 				colName = "before"; // stacks
 				break;
 			case 2:
-				colName = "hit"; // stacks
+				colName = ""; // stacks
 				break;
 			case 3:
 				colName = "after"; // stacks
@@ -345,14 +345,14 @@ function scr_panelPane_drawSearch1ToMany(){
 	// show buttons (next) 
 	var showNextButtonText = "  >  ";
 	scr_adaptFont(showNextButtonText, "M");
-	var showNextButtonX2 = afterColX - 20;
+	var showNextButtonX2 = camera_get_view_width(view_camera[0]) - textBuffer;
 	var showNextButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
 	var showNextButtonX1 = showNextButtonX2 - string_width(showNextButtonText);
 	var showNextButtonY2 = showNextButtonY1 + strHeight/2;			
 		
 	// show buttons (prev)
 	var showPrevButtonText = "  <  ";
-	var showPrevButtonX1 = hitColX + 20;
+	var showPrevButtonX1 = beforeColX + 5;
 	var showPrevButtonY1 = showNextButtonY1;
 	var showPrevButtonX2 = showPrevButtonX1 + string_width(showPrevButtonText);
 	var showPrevButtonY2 = showNextButtonY2;
