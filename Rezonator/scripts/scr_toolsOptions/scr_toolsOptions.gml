@@ -52,10 +52,15 @@ function scr_toolsOptions(optionSelected) {
 			break;
 		case "Tag":
 			with(obj_panelPane){
-				
+				if(currentFunction = functionChainList){
+					functionChainList_currentTab = functionChainList_tabField;
+				}
 			}
 			with (obj_toolPane){
 				currentMode = modeRead;
+			}
+			with(obj_dropDown){
+				instance_destroy();	
 			}
 			break;
 		case "menu_stack":
