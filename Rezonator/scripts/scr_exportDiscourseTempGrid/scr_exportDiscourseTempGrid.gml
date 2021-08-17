@@ -31,6 +31,7 @@ function scr_exportDiscourseTempGrid(headerList, fieldList){
 		var currentUnit = (currentType == "unit") ? currentNode : currentNodeSubMap[? "unit"];
 		var currentUnitSubMap = global.nodeMap[? currentUnit];
 		
+		
 		var currentTagMap = currentNodeSubMap[? "tagMap"];
 		
 		
@@ -63,7 +64,7 @@ function scr_exportDiscourseTempGrid(headerList, fieldList){
 			}
 			
 			// set the current cell's value in the token export grid
-			if (cellValue == "undefined") cellValue = "";
+			//if (cellValue == "undefined") cellValue = "";
 			ds_grid_set(exportGrid, j, i, cellValue);
 		}
 	}

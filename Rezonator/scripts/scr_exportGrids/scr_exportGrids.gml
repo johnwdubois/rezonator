@@ -42,6 +42,11 @@ function scr_exportGrids() {
 		ds_list_add(tempTokenGridHeaderList, obj_control.tokenFieldList[| i]);
 	}
 	
+	var unitFieldSize = ds_list_size(obj_control.unitFieldList);
+	for (var i = 0; i < unitFieldSize; i++) {
+		ds_list_add(tempUnitGridHeaderList, obj_control.unitFieldList[| i]);
+	}
+	
 	var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
 	for (var i = 2; i < unitImportColNameListSize; i++) {
 		ds_list_add(tempUnitGridHeaderList, global.unitImportColNameList[| i]);
