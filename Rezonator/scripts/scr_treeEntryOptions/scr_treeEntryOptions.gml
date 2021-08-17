@@ -5,6 +5,9 @@ function scr_treeEntryOptions(optionSelected){
 	if(optionSelected == "Delete Branch"){
 		scr_deleteTreeBranch()
 	}
+	if(optionSelected == "Delete Entry"){
+		scr_deleteTreeEntry()
+	}
 	
 	with (obj_dropDown) instance_destroy();
 }
