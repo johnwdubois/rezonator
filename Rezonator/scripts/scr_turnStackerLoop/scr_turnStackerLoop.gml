@@ -3,26 +3,16 @@ function scr_turnStackerLoop(){
 	// Set script variables
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
-	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
-	var turnCol = -1;
 
-	for (var turnColLoop = 0; turnColLoop < ds_list_size(global.unitImportColNameList); turnColLoop++) {
-
-		if (string(ds_list_find_value(global.unitImportColNameList, turnColLoop)) == "turnSeq") {
-			turnCol = turnColLoop;
-			show_debug_message("scr_turnStackerLoop ... turnCol: " + string(turnCol));
-			break;
-		}
-	}
 
 	// Exit script if no turnOrder column was found
-	if (turnCol == -1) {
+	if (global.unitImportTurnDelimColName == "" or is_undefined(global.unitImportTurnDelimColName)) {
 		show_message(scr_get_translation("msg_order-notfound"));
 		splitSave = false;
 
 		exit;	
 	}
-
+	show_debug_message(global.unitImportTurnDelimColName)
 	//Set variables for loop
 	var currentTurnOrder = 0;
 	var previousTurnOrder = 0;
@@ -35,7 +25,8 @@ function scr_turnStackerLoop(){
 		var currentUnit = unitList[|importLoop];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
 		var unitTagMap = currentUnitSubMap[?"tagMap"];
-		currentTurnOrder = unitTagMap[?"turnSeq"];
+		currentTurnOrder = unitTagMap[?global.unitImportTurnDelimColName];
+		show_debug_message(currentTurnOrder);
 		previousTurnOrder = currentTurnOrder;
 		
 		// Loop through lines until we hit a new turn order
@@ -44,7 +35,7 @@ function scr_turnStackerLoop(){
 
 			currentUnitSubMap = global.nodeMap[?currentUnit];
 			unitTagMap = currentUnitSubMap[?"tagMap"];
-			currentTurnOrder = unitTagMap[?"turnSeq"];
+			currentTurnOrder = unitTagMap[?global.unitImportTurnDelimColName];
 			if((currentTurnOrder == previousTurnOrder)){
 				ds_list_add(currentUnitList, currentUnit);
 				importLoop++;
