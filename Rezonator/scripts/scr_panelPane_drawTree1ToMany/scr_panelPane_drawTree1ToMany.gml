@@ -175,7 +175,7 @@ function scr_panelPane_drawTree1ToMany(){
 				obj_control.rightClickID = currentEntry;
 				
 				var dropDownOptionList = ds_list_create();
-				ds_list_add(dropDownOptionList, "Delete Branch");
+				ds_list_add(dropDownOptionList, "Delete Entry", "Delete Branch");
 						
 				if (ds_list_size(dropDownOptionList) > 0) {
 					scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeEntry);
