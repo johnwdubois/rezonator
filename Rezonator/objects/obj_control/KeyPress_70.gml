@@ -1,8 +1,9 @@
 ///@description Activate Search
 if (!shortcutsEnabled || obj_panelPane.discoSelectionActive || mouseoverTagShortcut != ""
-|| instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || gridView) {
+|| instance_exists(obj_dropDown) || instance_exists(obj_dialogueBox) || gridView || keyboard_check(vk_alt)) {
 	exit;
 }
+
 
 // Activates word searching using search grid
 preSwitchDisplayRow = obj_control.scrollPlusYDest;
