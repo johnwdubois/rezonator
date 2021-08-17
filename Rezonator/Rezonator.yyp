@@ -41,7 +41,7 @@
     {"id":{"name":"scr_stackTagOptions","path":"scripts/scr_stackTagOptions/scr_stackTagOptions.yy",},"order":39,},
     {"id":{"name":"spr_gridViewToggle","path":"sprites/spr_gridViewToggle/spr_gridViewToggle.yy",},"order":10,},
     {"id":{"name":"spr_justifyToggle","path":"sprites/spr_justifyToggle/spr_justifyToggle.yy",},"order":11,},
-    {"id":{"name":"scr_exportTokenTempGrid","path":"scripts/scr_exportTokenTempGrid/scr_exportTokenTempGrid.yy",},"order":12,},
+    {"id":{"name":"scr_exportDiscourseTempGrid","path":"scripts/scr_exportDiscourseTempGrid/scr_exportDiscourseTempGrid.yy",},"order":12,},
     {"id":{"name":"scr_fieldChains1To1Options","path":"scripts/scr_fieldChains1To1Options/scr_fieldChains1To1Options.yy",},"order":65,},
     {"id":{"name":"spr_helpToggle","path":"sprites/spr_helpToggle/spr_helpToggle.yy",},"order":12,},
     {"id":{"name":"scr_removeFieldTagQuestionPrompt","path":"scripts/scr_removeFieldTagQuestionPrompt/scr_removeFieldTagQuestionPrompt.yy",},"order":24,},
