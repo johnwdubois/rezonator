@@ -360,6 +360,12 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		showFPS = !showFPS;
 	}
 	
+	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("F"))) {
+		if (!instance_exists(obj_fileDiagnostics)) {
+			instance_create_layer(0, 0, "InstanceLoading", obj_fileDiagnostics);
+		}
+	}
+	
 	
 
 	

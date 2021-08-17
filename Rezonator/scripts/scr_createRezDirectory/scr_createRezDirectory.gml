@@ -26,12 +26,12 @@ function scr_createRezDirectory() {
 				}
 			}
 			directory_create(global.rezonatorDirString);
-			scr_directoryCopy(includedFilesDir, global.rezonatorDirString);
+			scr_directoryCopy(includedFilesDir, global.rezonatorDirString, "");
 		}
 		else {
 			if (directory_exists(includedFilesDir)) {
 				if (!directory_exists(global.rezonatorDirString)) {
-					scr_directoryCopy(includedFilesDir, global.rezonatorDirString);
+					scr_directoryCopy(includedFilesDir, global.rezonatorDirString, "");
 				}
 			}
 		}
