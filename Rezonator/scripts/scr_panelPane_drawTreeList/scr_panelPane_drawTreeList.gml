@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTreeList(){
-	
+	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var strHeight = string_height("0") * 1.5;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
@@ -83,11 +83,14 @@ function scr_panelPane_drawTreeList(){
 		// name column
 		var fullTreeStr = ""
 		var tokenListSize = ds_list_size(tokenList);
-		for(var j = 0 ; j < tokenListSize; j++ ){
+		var j = (ltr) ? 0 : tokenListSize-1;
+		repeat(tokenListSize){
+		//for(var j = 0 ; j < tokenListSize; j++ ){
 			var currentTokenSubMap = global.nodeMap[? tokenList[| j]];
-			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
+			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){j = (ltr) ? j+1: j-1;continue;}
 			var tokenTagMap = currentTokenSubMap[? "tagMap"];
 			fullTreeStr += (string(tokenTagMap[? global.displayTokenField]) + " ");
+			j = (ltr) ? j+1: j-1;
 		}
 		
 		// cut off section text if its too long
