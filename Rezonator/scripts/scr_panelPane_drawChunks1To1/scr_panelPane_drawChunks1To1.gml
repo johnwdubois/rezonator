@@ -16,7 +16,7 @@ function scr_panelPane_drawChunks1To1(){
 	
 	
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 	var headerHeight = functionTabs_tabHeight;
 	var textMarginLeft = 8;
 	var focusedElementY = -1;

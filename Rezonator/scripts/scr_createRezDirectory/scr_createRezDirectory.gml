@@ -39,19 +39,18 @@ function scr_createRezDirectory() {
 	}
 	
 	// save dirCopy debug file
-	var dirCopyFilePath = working_directory + "dirCopyDebug.txt";
+	var dirCopyFilePath = working_directory + "~dir.txt";
 	var dirCopyDebugFile = file_text_open_write(dirCopyFilePath);
 	var dirCopyDebugListSize = ds_list_size(global.dirCopyDebugList);
 	for (var i = 0; i < dirCopyDebugListSize; i++) {
 		var currentDebugStr = string(global.dirCopyDebugList[| i]);
-		show_debug_message("currentDebugStr: " + string(currentDebugStr))
 		file_text_write_string(dirCopyDebugFile, currentDebugStr);
 		file_text_writeln(dirCopyDebugFile);
 	}
 	file_text_close(dirCopyDebugFile);
 	show_debug_message("dirCopyFilePath: " + string(dirCopyFilePath));
 	show_debug_message("dirCopyDebugFile exists: " + string(file_exists(dirCopyFilePath)));
-	if (file_exists(dirCopyFilePath)) file_copy(dirCopyFilePath, global.rezonatorDirString + delimiter + "dirCopyDebug.txt");
+	if (file_exists(dirCopyFilePath)) file_copy(dirCopyFilePath, global.rezonatorDirString + delimiter + "~dir.txt");
 	
 	
 	
