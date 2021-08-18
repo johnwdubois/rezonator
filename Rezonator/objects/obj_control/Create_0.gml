@@ -764,3 +764,6 @@ if(global.RTLFound){
 }
 
 deleteEntryPressed = false;
+
+clipStackDir = "";
+clipStackName = "";
