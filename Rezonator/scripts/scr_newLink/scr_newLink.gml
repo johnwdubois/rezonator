@@ -22,9 +22,11 @@ function scr_newLink(ID) {
 	if(type == "unit"){
 		unitID = ID
 		var entryList = IDsubMap[?"entryList"];
+		if (!scr_isNumericAndExists(entryList, ds_type_list)) exit;
+		if (ds_list_size(entryList) < 1) exit;
 		var firstEntry = entryList[|0];
 		var entrySubMap = global.nodeMap[?firstEntry];
-		tokenID = entrySubMap[?"token"]
+		tokenID = entrySubMap[?"token"];
 	}
 	else if(type == "token"){	
 		unitID = IDsubMap[?"unit"];
