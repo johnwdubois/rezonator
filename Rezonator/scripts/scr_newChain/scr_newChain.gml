@@ -52,12 +52,17 @@ function scr_newChain(ID) {
 	
 	show_debug_message("scr_newChain() ... chainType: " + string(chainType) + ", chainName:" + string(chainName));
 	
-	
-	
 
 	// get random hex chainID
 	obj_chain.currentChainID = scr_addToNodeMap(chainType);
 	var newChainSubMap = global.nodeMap[? obj_chain.currentChainID];
+	
+	// if user is doing a quickstack, and they are starting the quickstack on a unit that is not in a chain, and this is the first chain being made, let's save this chain
+	show_debug_message("dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
+	if (chainType == "stackChain" && obj_chain.dragStartOriginalChain == "") {
+		obj_chain.dragStartOriginalChain = obj_chain.currentChainID;
+		show_debug_message("...dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
+	}
 	
 	// get list of chains from nodeMap and add to it
 	var listOfChainsKey = "rezChainList";

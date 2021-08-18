@@ -21,7 +21,19 @@ function scr_quickStackCreation(){
 		
 		// click on every unit in inRectUnitIDList
 		for (var i = 0; i < inRectUnitIDListSize; i++) {
+			
+			// get current unit, make sure it exists
 			var currentUnit = inRectUnitIDList[| i];
+			var currentUnitSubMap = global.nodeMap[? currentUnit];
+			if (!scr_isNumericAndExists(currentUnitSubMap, ds_type_map)) continue;
+			
+			// if the quickstack started on a unit that was not in a stack, and this unit is not in a stack, and there is a dragStartOriginalChain defined, let's refocus it
+			var currentUnitInChainsList = currentUnitSubMap[? "inChainsList"];
+			if (!scr_isNumericAndExists(currentUnitInChainsList, ds_type_list)) continue;
+			if (ds_list_size(currentUnitInChainsList) == 0 && obj_chain.dragStartOriginalChain != "") {
+				obj_chain.currentFocusedChainID = obj_chain.dragStartOriginalChain;
+			}
+			
 			scr_unitClicked(currentUnit);
 		}
 		

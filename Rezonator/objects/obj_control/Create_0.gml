@@ -773,3 +773,4 @@ deleteEntryPressed = false;
 clipStackDir = "";
 clipStackName = "";
 
+unitClosestToMouse = "";
