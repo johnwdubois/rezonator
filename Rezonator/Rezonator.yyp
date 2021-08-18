@@ -678,9 +678,7 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_es.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_he.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_it.json","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_vi.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_ja.json","resourceType":"GMIncludedFile",},
-    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_zh.json","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles","resourceVersion":"1.0","name":"README.txt","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles","resourceVersion":"1.0","name":"~usersettings.ini","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles","resourceVersion":"1.0","name":".DS_Store","resourceType":"GMIncludedFile",},
@@ -819,6 +817,8 @@
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc001_rez_v2.02.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc002_rez_v2.02.rez","resourceType":"GMIncludedFile",},
     {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Data/SBCorpus/REZ","resourceVersion":"1.0","name":"sbc003_rez_v2.02.rez","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_zh.json","resourceType":"GMIncludedFile",},
+    {"CopyToMask":-1,"filePath":"datafiles/IncludedFiles/Localization","resourceVersion":"1.0","name":"locale_vi.json","resourceType":"GMIncludedFile",},
   ],
   "MetaData": {
     "IDEVersion": "2.3.3.574",
