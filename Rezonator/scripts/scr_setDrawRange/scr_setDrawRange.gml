@@ -13,6 +13,7 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 	drawRangeStart = clamp(drawRangeCenter - drawRange, 0, displayUnitListSize - 1);
 	drawRangeEnd = clamp(drawRangeCenter + drawRange, 0, displayUnitListSize - 1);
 	
+
 	var topY = wordTopMargin -(gridSpaceVertical * 5);
 	var bottomY = camHeight + (gridSpaceVertical * 5);
 	
@@ -103,5 +104,9 @@ function scr_setDrawRange(camHeight, displayUnitList, displayUnitListSize) {
 		}
 	}
 
+	if(drawRangeStartMax != -1 && drawRangeEndMin != -1){
+		drawRangeStart = min(drawRangeStartMax,drawRangeStart);
+		drawRangeEnd = max(drawRangeEndMin,drawRangeEnd);
+	}
 	
 }

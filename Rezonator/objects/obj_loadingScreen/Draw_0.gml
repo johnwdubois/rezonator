@@ -4,7 +4,17 @@ y = camera_get_view_height(camera_get_active()) / 2;
 camWidth = camera_get_view_width(camera_get_active());
 camHeight = camera_get_view_height(camera_get_active());
 draw_sprite_ext(spr_pixel, 0, 0, 0, camWidth, camHeight, 0, c_white, (loadSprite == spr_saving) ? 0 : myAlpha);
-draw_sprite_ext(loadSprite, 0, x, y, 1, 1, 0, c_white, myAlpha * 0.75);
+
+var text = "";
+if (loadSprite == spr_saving) text = scr_get_translation("save_saving");
+else if (loadSprite == spr_loading) text = "Loading..."
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
+draw_set_alpha(myAlpha);
+draw_set_color(global.colorThemeRezPurple);
+scr_adaptFont(text, "L", true);
+draw_text(camWidth / 2, camHeight * 0.3, text);
+
 
 if(room == rm_openingScreen){
 	
