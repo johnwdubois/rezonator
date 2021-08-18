@@ -178,10 +178,10 @@ function scr_miniClipFile(chosenUnitList){
 	ds_map_add_map(miniMap, "tokenTagMap", tokenTagMapCopy);
 	ds_map_add_map(miniMap, "unitTagMap", unitTagMapCopy);
 	
-	
+	show_debug_message(directory_exists(obj_control.clipStackDir));
 	
 	// temporarily change the nodeMap to be our miniMap, then save the nodeMap, and finally change the nodeMap back
-	global.fileSaveName = "";
+	global.fileSaveName = (directory_exists(obj_control.clipStackDir))? obj_control.clipStackDir+ "\\"+string(obj_control.clipStackName)+".rez" : "";
 	var tempNodeMap = global.nodeMap;
 	global.nodeMap = miniMap;
 	scr_saveREZ(false);
