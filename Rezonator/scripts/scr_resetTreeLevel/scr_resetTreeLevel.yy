@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "navigation",
-    "path": "folders/Scripts/functions/navigation.yy",
+    "name": "Tree",
+    "path": "folders/Scripts/Tree.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_jumpToEnd",
+  "name": "scr_resetTreeLevel",
   "tags": [],
   "resourceType": "GMScript",
 }

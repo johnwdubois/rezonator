@@ -4,7 +4,9 @@ function scr_clipFromStack(selectedStackID) {
 	// gather the beginning and the end of the Stack
 	var unitIDList = scr_getChainTempList(selectedStackID, false);
 
-	
-	scr_miniClipFile(unitIDList)
+	if(scr_isNumericAndExists(unitIDList, ds_type_list)){
+		scr_miniClipFile(unitIDList);
+		ds_list_destroy(unitIDList);
+	}
 
 }

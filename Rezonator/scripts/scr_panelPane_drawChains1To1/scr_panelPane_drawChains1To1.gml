@@ -64,7 +64,7 @@ function scr_panelPane_drawChains1To1(){
 	scr_surfaceStart();
 	
 	
-	var strHeight = string_height("0") * 1.5;
+	var strHeight = leftPaneStrHeight;
 
 	// Set text margin area
 	var textMarginLeft = 8;

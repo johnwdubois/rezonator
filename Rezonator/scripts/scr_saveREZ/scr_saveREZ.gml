@@ -5,13 +5,12 @@ function scr_saveREZ(autosave) {
 
 	show_debug_message("scr_saveREZ, STARTING... " + scr_printTime());
 	show_debug_message("scr_saveREZ, autosave: " + string(autosave) + ", global.fileSaveName: " + string(global.fileSaveName));
-	
+
 	// get fileSaveName if we don't already have it
 	if (not autosave) {
 		if (global.fileSaveName == "undefined"
 		|| string_length(global.fileSaveName) < 1
-		|| (!file_exists(global.fileSaveName) && !obj_stacker.splitSave)
-		|| global.stackGrabSave) {
+		|| (!file_exists(global.fileSaveName) && !directory_exists(obj_control.clipStackDir))) {
 			
 			show_debug_message("scr_saveREZ(), not autosave, loading new file");
 			global.fileSaveName = get_save_filename_ext("REZ file|*.rez", "", program_directory, "Save REZ");
@@ -123,7 +122,10 @@ function scr_saveREZ(autosave) {
 			
 			// save text direction
 			ds_map_add(map, "textDirection", obj_control.drawLineState);
-		
+			
+			// save session length
+			scr_getCurrentSessionTime();
+			ds_map_add(map, "sessionLength", obj_control.fullSessionLength);
 		}
 	}
 
@@ -207,4 +209,8 @@ function scr_saveREZ(autosave) {
 	}
 
 	global.stackGrabSave = false;
+	
+	with (obj_fileLoader) {
+		drawAutosaveText = false;
+	}
 }

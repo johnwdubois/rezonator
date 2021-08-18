@@ -4,6 +4,7 @@ function scr_panelPane_drawChunkList(){
 
 	var drawScrollbar = chainViewOneToMany;
 	var strHeight = string_height("0") * 1.5;
+	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var unitColX = numColX + numColWidth;
@@ -143,7 +144,9 @@ function scr_panelPane_drawChunkList(){
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentChunkName));
 		
 		// text column
-		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, scr_getChunkText(currentChunk));
+		var chunkText = scr_getChunkText(currentChunk);
+		scr_adaptFont(chunkText, "M");
+		draw_text(floor(textColX + textBuffer) - clipX, textY - clipY, chunkText);
 		
 		// nest column
 		draw_text(floor(nestColX + textBuffer) - clipX, textY - clipY, string(currentChunkNest));

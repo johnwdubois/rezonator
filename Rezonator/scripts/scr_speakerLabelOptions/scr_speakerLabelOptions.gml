@@ -40,6 +40,7 @@ function scr_speakerLabelOptions(optionSelected) {
 						
 						scr_createTree(tokenList);
 					}
+					ds_list_destroy(tokenList);
 						
 				case "Shuffle":	
 				

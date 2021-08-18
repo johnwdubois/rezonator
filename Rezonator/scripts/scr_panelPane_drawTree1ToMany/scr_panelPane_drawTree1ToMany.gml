@@ -1,11 +1,12 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_panelPane_drawTree1ToMany(){
-	
+	var ltr = (obj_control.drawLineState == obj_control.lineState_ltr);
 	ds_list_clear(obj_control.inRectEntryIDList);
 
 	var mouseOverEntryID = "";
 	// get tree submap, make sure it exists
+	if(!scr_isNumericAndExists(global.treeMap, ds_type_map)){exit;}
 	var treeSubMap = global.treeMap[? functionTree_treeSelected];
 	if (!scr_isNumericAndExists(treeSubMap, ds_type_map)) exit;
 	var setIDList = treeSubMap[? "setIDList"];
@@ -62,10 +63,10 @@ function scr_panelPane_drawTree1ToMany(){
 
 	
 	
-
-	
+	var i = (ltr)? 0 : setIDListSize-1;
+	repeat(setIDListSize){
 	// loop over entries, draw each entry at its respective row (level)
-	for (var i = 0; i < setIDListSize; i++) {
+	//for (var i = 0; i < setIDListSize; i++) {
 		
 		// get current entry and all its goodies
 		var currentEntry = setIDList[| i];
@@ -76,16 +77,17 @@ function scr_panelPane_drawTree1ToMany(){
 		for(var j = 0; j < tokenListSize; j ++){
 			var currentToken = tokenList[|j];
 			var currentTokenSubMap = global.nodeMap[? currentToken];
+			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
 		var currentLevel = currentEntrySubMap[? "level"];
 		if (currentLevel < 0) {
 			plusX += string_width(currentDisplayToken) + (spaceWidth * 8);
+			i = (ltr)? i+1 : i-1;
 			continue;
 		}
 		maxLevel = max(maxLevel, currentLevel);
-		
 		
 		// draw entry at its level
 		var currentEntryY = rootY + (strHeight * currentLevel);
@@ -167,14 +169,30 @@ function scr_panelPane_drawTree1ToMany(){
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 				
 			}
+			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown)){
+				obj_chain.currentFocusedEntryID = currentEntry;
+				
+				obj_control.rightClickID = currentEntry;
+				
+				var dropDownOptionList = ds_list_create();
+				ds_list_add(dropDownOptionList, "Delete Entry", "Delete Branch");
+						
+				if (ds_list_size(dropDownOptionList) > 0) {
+					scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeEntry);
+				}
+				
+			}
+			
 		}
 		
 		// draw text of current entry
 		draw_set_color(global.colorThemeText);
 		draw_set_halign(fa_center);
+		scr_adaptFont(currentDisplayToken, "M");
 		draw_text(floor(mean(tokenX1,tokenX2)) - clipX, currentEntryY - clipY + currentScrollPlusY, currentDisplayToken);
 
 		plusX += boxWidth;
+		i = (ltr)? i+1 : i-1;
 	}
 
 	scr_drawTreeLinks();
@@ -211,6 +229,7 @@ function scr_panelPane_drawTree1ToMany(){
 		// draw number text
 		var levelY = rootY + (strHeight * i);
 		draw_set_color(global.colorThemeText);
+		scr_adaptFont(string(i), "M");
 		draw_text(floor(mean(x, x + originalPlusX)) - clipX, floor(levelY + currentScrollPlusY) - clipY, string(i));
 		
 		// draw horizontal line for each row
@@ -226,7 +245,9 @@ function scr_panelPane_drawTree1ToMany(){
 	// draw leaf row
 	plusX = originalPlusX;
 	var maxPlusX = plusX;
-	for (var i = 0; i < setIDListSize; i++) {
+	var i = (ltr)? 0 : setIDListSize-1;
+	repeat(setIDListSize){
+	//for (var i = 0; i < setIDListSize; i++) {
 		
 		var currentEntry = setIDList[| i];
 		var currentEntrySubMap = global.treeMap[? currentEntry];
@@ -236,6 +257,7 @@ function scr_panelPane_drawTree1ToMany(){
 		for(var j = 0; j < tokenListSize; j ++){
 			var currentToken = tokenList[|j];
 			var currentTokenSubMap = global.nodeMap[? currentToken];
+			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){continue;}
 			var currentTokenTagMap = currentTokenSubMap[? "tagMap"];
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
@@ -256,7 +278,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 		
 		//mouse over for entry
-		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1)
+		var mouseOverEntry = point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "" && currentEntrySubMap[?"level"] == -1 && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		
 		// check if this entry should be added to entryRectList
 		var mouseRectExists = (obj_control.mouseHoldRectX1 >= 10 && obj_control.mouseHoldRectY1 >= 0);
@@ -309,12 +331,27 @@ function scr_panelPane_drawTree1ToMany(){
 				}
 				obj_chain.currentFocusedEntryID = currentEntry;
 			}
+			
+			//right click on leaf entry
+			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown)){
+				if(tokenListSize > 1){
+					obj_control.rightClickID = currentEntry;
+					var dropDownOptionList = ds_list_create();
+					ds_list_add(dropDownOptionList, "Separate Chunk");
+						
+					if (ds_list_size(dropDownOptionList) > 0) {
+						scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeLeaf);
+					}
+				}
+			}
+		
 		}
 		
 	
 		draw_set_color(global.colorThemeText);
 		draw_set_alpha((currentEntrySubMap[?"level"] >= 0) ? 0.5 : 1);
 		draw_set_halign(fa_center);
+		scr_adaptFont(currentDisplayToken, "M");
 		draw_text(floor(mean(tokenX1, tokenX2)) - clipX, leafTextY - clipY, currentDisplayToken);
 		
 		// draw vertical line for each column
@@ -324,6 +361,7 @@ function scr_panelPane_drawTree1ToMany(){
 		//draw_line(lineX - clipX, y - clipY, lineX - clipX, y + windowHeight - clipY);
 		
 		plusX += boxWidth;
+		i = (ltr)? i+1 : i-1;
 	}
 	maxPlusX = plusX;
 	plusX = originalPlusX;

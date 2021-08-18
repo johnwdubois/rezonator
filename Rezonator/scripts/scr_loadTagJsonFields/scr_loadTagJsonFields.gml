@@ -1,8 +1,12 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, nodeList){
-	
-		// get tokenList & unitList
+
+	if(!scr_isNumericAndExists(originalTagMap, ds_type_map)  or !scr_isNumericAndExists(tagMapJson, ds_type_map)){
+		exit;
+	}
+
+	// get tokenList & unitList
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
 	
 

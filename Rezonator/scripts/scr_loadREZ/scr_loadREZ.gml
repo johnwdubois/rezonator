@@ -1,5 +1,4 @@
 function scr_loadREZ() {
-
 	
 
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
@@ -39,7 +38,7 @@ function scr_loadREZ() {
 	
 
 
-
+	var rezFileVerison = 0;
 
 	global.fileSaveName = fileName;
 	if (filename_path(global.fileSaveName) == global.rezonatorDefaultDiscourseDirString + "\\") {
@@ -81,6 +80,7 @@ function scr_loadREZ() {
 			
 					global.importGridWidth = ds_map_find_value(map, "importGridWidth");
 					global.importCSVGridWidth = ds_map_find_value(map, "importCSVGridWidth");
+					rezFileVerison = ds_map_find_value(map, "version");
 				
 					global.unitDelimField = ds_map_find_value(map, "unitDelimField");
 					global.unitImportTurnDelimColName = ds_map_find_value(map, "unitImportTurnDelimColName");
@@ -126,15 +126,14 @@ function scr_loadREZ() {
 						show_debug_message("scr_loadREZ() ... global.nodeMap is undefined");
 						global.nodeMap = ds_map_create();
 					}
-					
-					global.cliqueMap = global.nodeMap[? "cliqueMap"];
-					global.searchMap = global.nodeMap[? "searchMap"];		
-					global.treeMap = global.nodeMap[? "treeMap"];		
-					
 					if(!scr_isNumericAndExists( global.nodeMap[?"nodeList"], ds_type_list)){
 						var nodeList = ds_list_create();
 						ds_map_add_list(global.nodeMap, "nodeList", nodeList);
 					}
+					
+					global.cliqueMap = global.nodeMap[? "cliqueMap"];
+					global.searchMap = global.nodeMap[? "searchMap"];		
+					global.treeMap = global.nodeMap[? "treeMap"];
 				
 				
 					if (is_undefined(global.importGridColNameList)) {
@@ -216,7 +215,12 @@ function scr_loadREZ() {
 					// get discourse node
 					global.discourseNode = map[? "discourseNode"];
 					if (!ds_map_exists(global.nodeMap, global.discourseNode)) {
-						scr_initializeDiscourseNodes();
+					}
+					
+					
+					if (ds_map_exists(map, "sessionLength")) {
+						var sessionLength = map[? "sessionLength"];
+						if (is_numeric(sessionLength)) obj_control.loadSessionLength = sessionLength;
 					}
 				}
 			}		
@@ -224,63 +228,9 @@ function scr_loadREZ() {
 	}
 
 	ds_list_destroy(newInstList);
-	
-	// get chain lists from nodeMap, and if they aren't provided in the nodeMap then we'll make them!
-	var rezChainList = global.nodeMap[? "rezChainList"];
-	var trackChainList = global.nodeMap[? "trackChainList"];
-	var stackChainList = global.nodeMap[? "stackChainList"];
-	var showList = global.nodeMap[? "showList"];
-	var chunkList = global.nodeMap[? "chunkList"];
-	var nodeList = global.nodeMap[? "nodeList"];
-	var linkFieldList = global.nodeMap[? "linkFieldList"];
-	
 
-	// get chain field map, if supplied
-	var chainFieldMap = global.nodeMap[? "chainTagMap"];
-	if (scr_isNumericAndExists(chainFieldMap, ds_type_map)) {
-		ds_map_destroy(global.chainFieldMap);
-		global.chainFieldMap = chainFieldMap;
-	}
-	// get entry field map, if supplied
-	var entryFieldMap = global.nodeMap[? "entryTagMap"];
-	if (scr_isNumericAndExists(entryFieldMap, ds_type_map)) {
-		ds_map_destroy(global.entryFieldMap);
-		global.entryFieldMap = entryFieldMap;
-	}
-	// get entry field map, if supplied
-	var linkFieldMap = global.nodeMap[? "linkTagMap"];
-	if (scr_isNumericAndExists(linkFieldMap, ds_type_map)) {
-		ds_map_destroy(global.linkFieldMap);
-		global.linkFieldMap = linkFieldMap;
-	}
-	
-	
-	if (!is_numeric(rezChainList)) {
-		rezChainList = ds_list_create();
-		ds_map_add_list(global.nodeMap, "rezChainList", rezChainList);
-	}
-	if (!is_numeric(trackChainList)) {
-		trackChainList = ds_list_create();
-		ds_map_add_list(global.nodeMap, "trackChainList", trackChainList);
-	}
-	if (!is_numeric(stackChainList)) {
-		stackChainList = ds_list_create();
-		ds_map_add_list(global.nodeMap, "stackChainList", stackChainList);
-	}
-	if (!is_numeric(showList)) {
-		ds_map_add_list(global.nodeMap, "showList", ds_list_create());
-	}
-	if (!is_numeric(chunkList)) {
-		ds_map_add_list(global.nodeMap, "chunkList", ds_list_create());
-	}
-	if (!is_numeric(nodeList)) {
-		ds_map_add_list(global.nodeMap, "nodeList", ds_list_create());
-	}
-	if(is_numeric(linkFieldList)){
-		global.linkFieldList = linkFieldList;
-	}
 
-	
+	scr_verifyRez(rezFileVerison);
 	
 	
 	// set focused unit in panelPane

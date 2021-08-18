@@ -82,9 +82,4 @@ function scr_drawTreeLinks(){
 		draw_sprite_ext(spr_linkArrow, 0, arrowX2 - clipX, arrowY2 - clipY, arrowScale, arrowScale, arrowDir, (mouseover || currentLinkSelected) ? mouseoverLinkColor : global.colorThemeBorders, 1);
 	}
 	
-	// reset selected link
-	if (functionTree_treeLinkSelected != "" && !instance_exists(obj_dropDown)) {
-		//functionTree_treeLinkSelected = "";
-	}
-	
 }

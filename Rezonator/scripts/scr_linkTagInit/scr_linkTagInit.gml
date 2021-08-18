@@ -17,12 +17,12 @@ function scr_linkTagInit(){
 	
 	ds_map_add_list(global.nodeMap,"linkFieldList",global.linkFieldList);
 	
-	// link type
-	ds_list_add(global.linkFieldList, "linkType");
+	// DepRel
+	ds_list_add(global.linkFieldList, "Relation");
 	var linkTypeSubMap = ds_map_create();
-	ds_map_add_map(global.linkFieldMap, "linkType", linkTypeSubMap);
+	ds_map_add_map(global.linkFieldMap, "Relation", linkTypeSubMap);
 	var linkTypeTagSet = ds_list_create();
-	ds_list_add(linkTypeTagSet, "linkTag1", "linkTag2", "linkTag3");
+	ds_list_add(linkTypeTagSet, "Pred", "Arg", "Adjunct", "X", "n/a");
 	ds_map_add_list(linkTypeSubMap, "tagSet", linkTypeTagSet);
 	
 	

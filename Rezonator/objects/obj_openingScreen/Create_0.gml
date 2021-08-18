@@ -277,8 +277,8 @@ loopItterations = 0;
 
 
 //ini variables
-
-global.autosaveTimer = 36000;
+global.autosaveTimerFull = 600;
+global.autosaveTimer = global.autosaveTimerFull;
 global.previousRezDirectory = "";
 global.previousImportDirectory = "";
 global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";
@@ -420,3 +420,5 @@ alarm[5] = 2;
 hoverColorMergeOpen = 0;
 hoverColorMergeImport = 0;
 hoverColorMergeHelp = 0;
+
+global.dirCopyDebugList = ds_list_create();

@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "export",
-    "path": "folders/Scripts/export.yy",
+    "name": "navigation",
+    "path": "folders/Scripts/functions/navigation.yy",
   },
   "resourceVersion": "1.0",
-  "name": "scr_exportTokenTempGrid",
+  "name": "scr_homeEnd",
   "tags": [],
   "resourceType": "GMScript",
 }

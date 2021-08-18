@@ -20,10 +20,6 @@ function scr_importConlluTXT(filename) {
 	var tokenColListCreated = false;
 	var lineInFile = file_text_readln(fileOpenRead);
 	var first3Char = string_char_at(lineInFile, 1) + string_char_at(lineInFile, 2) + string_char_at(lineInFile, 3);
-	
-		if (string_char_at(lineInFile, 1) != "#" and first3Char != "GUM") {
-			exit;
-		}
 
 	global.importType = global.importType_CoNLLU;
 

@@ -1,8 +1,5 @@
 ///autosaving warning before calling to save
+show_debug_message("obj_fileLoader alarm7 STARTING ...");
 drawAutosaveText = true;
-show_debug_message("Object_loader alarm7 STARTING ...");
 
 alarm[6] = 180;
-
-
-

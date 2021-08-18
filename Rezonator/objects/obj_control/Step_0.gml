@@ -5,6 +5,8 @@
 #macro vk_rcommand 91
 #macro vk_lcommand 92
 
+sessionCurrentTime = (current_time - sessionStartTime) + current_time;
+
 if (!scr_isNumericAndExists(displayUnitList, ds_type_list)) {
 	// set display unit list if it does not exist
 	var discourseSubMap = global.nodeMap[? global.discourseNode];
@@ -338,7 +340,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_right) and keyboard_check(vk_alt))) {
-			scr_jumpToEnd(false);
+			scr_homeEnd(false);
 		}
 
 
@@ -348,12 +350,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_home) and not keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_left) and keyboard_check(vk_alt)) ) {
-			if (searchGridActive) {
-				scr_jumpToEnd(true);
-			}
-			else {
-				wordLeftMarginDest = speakerLabelMargin + 20;
-			}
+			scr_homeEnd(true);
 		}
 	}
 }
@@ -361,6 +358,12 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("D"))) {
 		showDevVars = !showDevVars;
 		showFPS = !showFPS;
+	}
+	
+	if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_pressed(ord("F"))) {
+		if (!instance_exists(obj_fileDiagnostics)) {
+			instance_create_layer(0, 0, "InstanceLoading", obj_fileDiagnostics);
+		}
 	}
 	
 	

@@ -55,6 +55,7 @@ function scr_panelPane_drawChainsList() {
 	
 	listOfChains = ds_map_find_value(global.nodeMap, listOfChainsKey);
 	var strHeight = string_height("0") * 1.5;
+	with (obj_panelPane) leftPaneStrHeight = strHeight;
 	
 
 	// Set text margin area

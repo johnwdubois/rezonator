@@ -4,6 +4,8 @@ function scr_createChunk(){
 	
 	show_debug_message("\n\n\n....scr_createChunk()");
 	
+	if (obj_control.mouseoverPanelPane) exit;
+	
 	var chunkID = "";
 	
 	// Place all captured unit and token info into the box grid

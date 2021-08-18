@@ -11,6 +11,11 @@ function scr_drawStack(unitID, unitSubMap, camWidth, pixelY){
 		}
 	}
 	
+	// if this stack cannot be found in the nodeMap, it should be taken out of the unit's inChainsList
+	if (!ds_map_exists(global.nodeMap, chainID)) {
+		scr_deleteFromList(unitsInChainsList, chainID);
+	}
+	
 	// determine if this unit is in unitInRectList
 	var unitInRect = false;
 	if (ds_list_size(inRectUnitIDList) > 0 && mouse_x < wordLeftMargin) {

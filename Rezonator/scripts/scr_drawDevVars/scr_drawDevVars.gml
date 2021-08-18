@@ -35,7 +35,7 @@ function scr_drawDevVars(){
 	
 	// draw dev vars
 	var devVarX = camWidth - global.toolPaneWidth - global.scrollBarWidth - 20;
-	draw_text(devVarX, wordTopMargin + (strHeight * 1), "allSaved: " + string(allSaved));
+	draw_text(devVarX, wordTopMargin + (strHeight * 1), "autosaveTimer: " + string(global.autosaveTimer) + ", autosaveTimerFull: " + string(global.autosaveTimerFull));
 	draw_text(devVarX, wordTopMargin + (strHeight * 2), "rightClickID: " + string(rightClickID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 3), "mouseOverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 4), "wordTopMargin: " + string(wordTopMargin));
@@ -43,7 +43,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 6), "speakerLabelColXList: " + scr_getStringOfList(speakerLabelColXList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 7), "hoverTokenID: " + string(hoverTokenID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 8), "mouseXY: (" + string(mouse_x) + ", " + string(mouse_y) + ")");
-	draw_text(devVarX, wordTopMargin + (strHeight * 9), "panelPane focusedUnit: " + string(obj_panelPane.functionChainList_focusedUnit));
+	draw_text(devVarX, wordTopMargin + (strHeight * 9), "scrollPlusX: " + string(scrollPlusX));
 	draw_text(devVarX, wordTopMargin + (strHeight * 10), "panelPane focusedUnitIndex: " + string(obj_panelPane.functionChainList_focusedUnitIndex));
 	draw_text(devVarX, wordTopMargin + (strHeight * 11), "currentFocusedChunkID: " + string(obj_chain.currentFocusedChunkID));
 	draw_text(devVarX, wordTopMargin + (strHeight * 12), "drawRange: " + string(drawRangeStart) + " ... " + string(drawRangeEnd));
@@ -56,8 +56,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 19), "chain1toManyColFieldListTrack: " + scr_getStringOfList(obj_control.chain1toManyColFieldListTrack));
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "chain1toManyCustomSortColIndex: " + string(chain1toManyCustomSortColIndex));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
-	draw_text(devVarX, wordTopMargin + (strHeight * 22), "treeList: " + scr_getStringOfList(global.nodeMap[? "treeList"]));
-	draw_text(devVarX, wordTopMargin + (strHeight * 23), "showNav: " + string(obj_panelPane.showNav));
+	draw_text(devVarX, wordTopMargin + (strHeight * 22), "loadSessionLength: " + string(loadSessionLength));
+	draw_text(devVarX, wordTopMargin + (strHeight * 23), "currentSessionLength: " + string(currentSessionLength));
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "inRectTokenIDList: " + scr_getStringOfList(inRectTokenIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseRectXY: " + string(mouseHoldRectX1) + ", " + string(mouseHoldRectY1));
