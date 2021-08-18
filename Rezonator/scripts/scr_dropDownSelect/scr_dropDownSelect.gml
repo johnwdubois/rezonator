@@ -401,7 +401,9 @@ function scr_dropDownSelect(optionSelected) {
 	{
 		scr_treeLeafOptions(optionSelected);
 	}
-
-
+	else if (optionListType == global.optionListTypeArrows) // 75
+	{
+		scr_arrowOptions(optionSelected);	
+	}
 
 }

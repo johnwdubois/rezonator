@@ -103,7 +103,7 @@ function scr_loadREZ() {
 					
 					global.translationList = ds_map_find_value(map, "translationList");
 					var lineState = ds_map_find_value(map, "textDirection");
-					if(is_bool(lineState)){
+					if(is_string(lineState)){
 						obj_control.drawLineState = lineState;						
 					}
 				

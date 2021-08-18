@@ -354,6 +354,7 @@ ds_map_add(global.expandableDropDownMap, "Recolor", true);
 ds_map_add(global.expandableDropDownMap, "Text Direction", true);
 ds_map_add(global.expandableDropDownMap, "Select field", true);
 ds_map_add(global.expandableDropDownMap, "Remove from tag set", true);
+ds_map_add(global.expandableDropDownMap, "Arrowheads", true);
 
 global.openingScreenDropDownMap = ds_map_create();
 ds_map_add(global.openingScreenDropDownMap, "menu_import", true);
@@ -400,6 +401,10 @@ ds_map_add(global.keyboardShortcutMap, "menu_filter", "CTRL+P");
 ds_map_add(global.keyboardShortcutMap, "menu_track", "T");
 ds_map_add(global.keyboardShortcutMap, "menu_rez", "R");
 ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
+
+
+//to abstract dropdown options with checks later on. I've been doing them case by case so far
+global.checkDropdownMap = ds_map_create();
 
 scr_preImportInitiate();
 showPreImportScreen = false;

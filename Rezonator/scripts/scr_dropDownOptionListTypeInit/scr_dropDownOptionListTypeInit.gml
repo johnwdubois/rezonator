@@ -77,6 +77,8 @@ function scr_dropDownOptionListTypeInit(){
 	global.optionListTypeLinkTag = 72;
 	global.optionListTypeTreeEntry = 73;
 	global.optionListTypeTreeLeaf = 74;
+	global.optionListTypeArrows = 75;
+
 
 
 }

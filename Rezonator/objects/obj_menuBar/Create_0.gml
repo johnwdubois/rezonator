@@ -55,6 +55,7 @@ ds_list_add(viewOptionList, "menu_window",
 							"menu_prose",
 							"menu_hide",
 							"Word Tip",
+							"Arrowheads",
 							"Text Direction");
 
 filterOptionList = ds_list_create();
@@ -69,6 +70,7 @@ toolsOptionList = ds_list_create();
 ds_list_add(toolsOptionList,"menu_search", 
 							"menu_track",
 							"menu_rez",
+							"Tag",
 							"menu_stack");
 
 settingsOptionList = ds_list_create();

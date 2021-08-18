@@ -145,7 +145,7 @@ function scr_drawChains() {
 			}
 		
 			// get the pixel X values for each token
-			lineX2 = currentToken2SubMap[? "pixelX"];
+			lineX2 = currentToken2SubMap[?"pixelX"];
 			lineY2 = tokenUnitID2SubMap[? "pixelY"];
 		
 
@@ -157,7 +157,7 @@ function scr_drawChains() {
 			// only draw line if every value is real and we are in the draw range
 			if (is_numeric(lineX1) && is_numeric(lineY1) && is_numeric(lineX2) && is_numeric(lineY2)
 			&& unit1Active && unit2Active && inDrawRange1 && inDrawRange2) {
-				
+
 				// check if text is right aligned
 				if (obj_control.justify == obj_control.justifyRight) {
 					lineX1 -= currentWordStringWidth1;
@@ -214,12 +214,22 @@ function scr_drawChains() {
 
 
 			
+
 				if (currentChainVisible) {
 					draw_set_color(currentChainColor);
 					draw_set_alpha(1);
 
 					if (chainType == "rezChain") {
+
+						if(obj_control.drawLineState == obj_control.lineState_rtl){
+							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2)
+						}
+						else{
+							draw_line_width(lineX1 + linePlusX, lineY1 + (currentWordStringHeight1 / 2), lineX2 + linePlusX, lineY2 + (currentWordStringHeight2 / 2), 2);
+						}
+
 						draw_line_width(rezChainLineX1, rezChainLineY1, rezChainLineX2, rezChainLineY2, 2);
+
 						
 						// mark stretches visually with a circle
 						if (obj_control.showDevVars) {
@@ -235,10 +245,20 @@ function scr_drawChains() {
 
 					}
 					else if (chainType == "trackChain") {
+						if(obj_control.justify == obj_control.justifyLeft){
+							scr_drawCurvedLine(lineX1 + (currentWordStringWidth1 / 2), lineY1, lineX2 + (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						}
+						else{
+							//scr_drawCurvedLine(lineX1 - (currentWordStringWidth1 / 2), lineY1, lineX2 - (currentWordStringWidth2 / 2), lineY2, currentChainColor);
+						}
+						
+
 						scr_drawCurvedLine(trackChainLineX1, lineY1, trackChainLineX2, lineY2, currentChainColor);
+
 					}
-					
-					draw_sprite_ext(spr_linkArrow, 0, arrowX, arrowY, arrowScale, arrowScale, arrowDir, currentChainColor, 1);
+					if((obj_chain.showRezArrows and chainType = "rezChain") or (obj_chain.showTrackArrows and chainType = "trackChain")){
+						draw_sprite_ext(spr_linkArrow, 0, arrowX, arrowY, arrowScale, arrowScale, arrowDir, currentChainColor, 1);
+					}
 				}
 			}
 		}
@@ -295,7 +315,7 @@ function scr_drawChains() {
 						else if (chainType == "trackChain") {
 							scr_drawCurvedLine(mouseLineX, mouseLineY, mouse_x, mouse_y, currentChainColor);
 						}
-						if (obj_chain.showChainArrows) {
+						if ((obj_chain.showRezArrows and chainType = "rezChain") or (obj_chain.showTrackArrows and chainType = "trackChain")) {
 							var arrowAngle = point_direction(mouseLineX, mouseLineY, mouse_x, mouse_y);
 							draw_sprite_ext(spr_linkArrow, 1, mouse_x, mouse_y, arrowSize, arrowSize, arrowAngle, currentChainColor, 1);
 						}
