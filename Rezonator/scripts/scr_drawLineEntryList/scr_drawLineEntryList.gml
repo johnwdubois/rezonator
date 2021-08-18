@@ -99,7 +99,7 @@ function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 		draw_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, false);
 		
 		// check if this token is in mouse rect
-		var mouseRectExists = (mouseHoldRectX1 >= 0 && mouseHoldRectY1 >= 0);
+		var mouseRectExists = makingRect;
 		var inMouseRect = false;
 		if (mouseRectExists) {
 			inMouseRect = (rectangle_in_rectangle(tokenRectX1, tokenRectY1, tokenRectX2, tokenRectY2, min(mouse_x, mouseHoldRectX1), min(mouse_y, mouseHoldRectY1), max(mouse_x, mouseHoldRectX1), max(mouse_y, mouseHoldRectY1))

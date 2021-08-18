@@ -288,6 +288,11 @@ randomise();
 drawRange = 8;
 drawRangeStart = 0;
 drawRangeEnd = 0;
+drawRangeStartMax = -1;
+drawRangeEndMin = -1;
+scrollPlusYHold = -1;
+mouseHoldRectY1Hold = -1;
+makingRect = false;
 lineSpacing = 6;
 
 // Instantiate the display row ascending variable, currently unused
@@ -767,3 +772,4 @@ deleteEntryPressed = false;
 
 clipStackDir = "";
 clipStackName = "";
+

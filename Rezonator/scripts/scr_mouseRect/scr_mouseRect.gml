@@ -2,6 +2,7 @@
 	Purpose: draw a rectangle for creating quickLinks/quickStacks
 */
 function scr_mouseRect() {
+
 	if(instance_exists(obj_dialogueBox))exit;
 	// is user releases mouse, do something!
 	if (mouse_check_button_released(mb_left)) {
@@ -24,25 +25,36 @@ function scr_mouseRect() {
 		
 		
 		// reset mouserect variables
+		drawRangeStartMax = -1;
+		drawRangeEndMin = -1;
 		mouseHoldRectX1 = -1;
 		mouseHoldRectY1 = -1;
+		makingRect = false;
 	}
 	
 	// if user clicks, save the position of their mouse
 	var canMakeMouseRect = !mouseoverPanelPane && mouseoverNeutralSpace && mouse_check_button_pressed(mb_left) && !mouseoverScrollBar;
 	if (canMakeMouseRect) {
+		drawRangeStartMax = drawRangeStart;
+		drawRangeEndMin = drawRangeEnd;
+		scrollPlusYHold = scrollPlusY;
+		mouseHoldRectY1Hold = mouse_y;
+		makingRect = true;
+		
 		mouseHoldRectX1 = mouse_x;
 		mouseHoldRectY1 = mouse_y;
 	}
 	
 	// if user is making a mouse rect, let's draw it
-	if (mouseHoldRectX1 >= 0 && mouseHoldRectY1 >= 0) {
-		
+	if (makingRect) {
+		var scrollPlusYDiff = scrollPlusY - scrollPlusYHold;
+
+		mouseHoldRectY1 = mouseHoldRectY1Hold + scrollPlusYDiff;
 		// if the mouseRect contains multiple units, let's fill it in
 		if (ds_list_size(inRectUnitIDList) > 1) {
 			draw_set_color(global.colorThemeSelected1);
 			draw_set_alpha(0.3);
-			draw_rectangle(mouseHoldRectX1, mouseHoldRectY1, mouse_x, mouse_y, false);
+			draw_rectangle(mouseHoldRectX1, mouseHoldRectY1 , mouse_x, mouse_y, false);
 		}
 		
 		// draw mouse rect border
@@ -51,5 +63,7 @@ function scr_mouseRect() {
 		scr_drawRectWidth(mouseHoldRectX1, mouseHoldRectY1, mouse_x, mouse_y, 2, false);
 		draw_set_alpha(1);
 	}
+	
+
 	
 }

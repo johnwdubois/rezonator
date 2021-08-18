@@ -82,6 +82,8 @@ function scr_drawDevVars(){
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 9), "rightClickID: " + string(obj_control.rightClickID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 10), "hoverUnitID: " + string(obj_control.hoverUnitID));
 	draw_text(devVarX - 580, wordTopMargin + (strHeight * 11), "currentFocusedEntryID: " + string(obj_chain.currentFocusedEntryID));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 12), "startRangeMax: " + string(obj_control.drawRangeStartMax));
+	draw_text(devVarX - 580, wordTopMargin + (strHeight * 13), "endRangeMin: " + string(obj_control.drawRangeEndMin));
 
 	
 	// reset halign to left
