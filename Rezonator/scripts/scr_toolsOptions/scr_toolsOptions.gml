@@ -64,7 +64,7 @@ function scr_toolsOptions(optionSelected) {
 			ds_list_add(dropDownOptionList, "menu_stacker", "Clip All", "Tree All");
 						
 			if (ds_list_size(dropDownOptionList) > 0) {
-				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 3), dropDownOptionList, global.optionListTypeStack);
+				scr_createDropDown(obj_dropDown.x + obj_dropDown.windowWidth, obj_dropDown.y + (obj_dropDown.optionSpacing * 4), dropDownOptionList, global.optionListTypeStack);
 			}
 			break;
 		default:

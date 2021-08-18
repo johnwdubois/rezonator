@@ -243,7 +243,8 @@ function scr_panelPane_drawChainsList() {
 
 						obj_chain.currentFocusedChainID = currentChainID;
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
-
+						obj_control.rightClicked = true;
+						
 						var dropDownOptionList = ds_list_create();
 						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip", "Create Tree");

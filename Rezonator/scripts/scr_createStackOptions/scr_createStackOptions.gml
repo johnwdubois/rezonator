@@ -59,7 +59,8 @@ function scr_createStackOptions(optionSelected) {
 				confirmStack = true;
 			}
 			else {
-				obj_stacker.showEndNoteWindow = true;
+				obj_stacker.splitSave = true;
+				obj_stacker.alarm[6] = 1;
 			}
 			obj_stacker.createStacksSentence = true;
 			instance_destroy(obj_dropDown);
