@@ -80,12 +80,11 @@ function scr_panelPane_drawTreeList(){
 		// name column
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentTreeName));
 		
-		// name column
+		// text column
 		var fullTreeStr = ""
 		var tokenListSize = ds_list_size(tokenList);
 		var j = (ltr) ? 0 : tokenListSize-1;
 		repeat(tokenListSize){
-		//for(var j = 0 ; j < tokenListSize; j++ ){
 			var currentTokenSubMap = global.nodeMap[? tokenList[| j]];
 			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){j = (ltr) ? j+1: j-1;continue;}
 			var tokenTagMap = currentTokenSubMap[? "tagMap"];
