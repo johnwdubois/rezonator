@@ -12,7 +12,9 @@ function scr_dialogueBoxNewCustomFieldChain() {
 			else if (functionChainList_currentTab == functionChainList_tabStackBrush) chain1to1ColFieldList = obj_control.chain1to1ColFieldListStack;
 		}
 	}
-	if (ds_exists(chain1to1ColFieldList, ds_type_list)) {
+	
+	
+	if (scr_isNumericAndExists(chain1to1ColFieldList, ds_type_list)) {
 		var sizeofList = ds_list_size(chain1to1ColFieldList);
 		if(sizeofList == 6){
 			ds_list_set(chain1to1ColFieldList, obj_control.chain1To1ColFieldToChange, newField);

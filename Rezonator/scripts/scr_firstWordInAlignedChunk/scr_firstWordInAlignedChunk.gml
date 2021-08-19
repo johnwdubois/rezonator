@@ -24,7 +24,9 @@ function scr_firstWordInAlignedChunk(tokenID){
 							for (var j = 0; j < currentChunkInChainsListSize; j++) {
 								var currentChunkInChain = currentChunkInChainsList[| j];
 								var currentChunkInChainSubMap = global.nodeMap[? currentChunkInChain];
-								if (currentChunkInChainSubMap[? "alignChain"]) alignedChunkChainID = currentChunkInChain;
+								if (scr_isNumericAndExists(currentChunkInChainSubMap, ds_type_map)) {
+									if (currentChunkInChainSubMap[? "alignChain"]) alignedChunkChainID = currentChunkInChain;
+								}
 							}
 						}
 					}

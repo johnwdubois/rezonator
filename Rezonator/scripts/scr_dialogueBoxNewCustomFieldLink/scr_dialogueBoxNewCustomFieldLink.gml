@@ -2,6 +2,7 @@ function scr_dialogueBoxNewCustomFieldLink() {
 	
 	// set the new field to be viewed in the chainContents pane
 	var newField = obj_control.inputText;
+	if (ds_list_find_index(global.linkFieldList, newField) != -1) exit;
 	show_debug_message("scr_dialogueBoxNewCustomFieldLink(), newField: " + string(newField));
 	
 	
