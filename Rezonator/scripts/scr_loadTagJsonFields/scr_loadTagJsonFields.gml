@@ -16,7 +16,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 	
 	// load the tagMapJson from the json
 	var tagMapJsonSize = ds_map_size(tagMapJson);
-	show_debug_message("tags found from map: " + string(tagMapJsonSize));
+	//show_debug_message("tags found from map: " + string(tagMapJsonSize));
 	var currentJsonField = ds_map_find_first(tagMapJson);
 	for (var i = 0; i < tagMapJsonSize; i++) {
 		
@@ -35,7 +35,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 		}
 		var currentJsonTagSetSize = ds_list_size(currentJsonTagSet);
 		
-		show_debug_message("scr_loadTagJson ... currentJsonTagSet: " + scr_getStringOfList(currentJsonTagSet));
+		//show_debug_message("scr_loadTagJson ... currentJsonTagSet: " + scr_getStringOfList(currentJsonTagSet));
 		
 		
 		if (ds_map_exists(originalTagMap, currentJsonField)) {
@@ -43,15 +43,33 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 			if(nodeList == "token"){
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[?"targetList"];
+				show_debug_message("field in map TOKEN targetList: " + scr_getStringOfList(typeList));
 				if(ds_list_find_index(typeList, "token") >= 0){
-					scr_addToListOnce(originalFieldList, currentJsonField);
+					// if this field is already in the originalTagMap, we will add any tag from the json that is not already there
+					var originalFieldSubMap = originalTagMap[? currentJsonField];
+					var originalTagSet = originalFieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(originalTagSet, ds_type_list)) {
+						for (var j = 0; j < currentJsonTagSetSize; j++) {
+							var currentJsonTag = currentJsonTagSet[| j];
+							scr_addToListOnce(originalTagSet, currentJsonTag);
+						}
+					}
 				}
 			}
 			else if(nodeList == "chunk"){
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[?"targetList"];
+				show_debug_message("field in map CHUNK targetList: " + scr_getStringOfList(typeList));
 				if(ds_list_find_index(typeList, "chunk") >= 0){
-					scr_addToListOnce(originalFieldList, currentJsonField);
+					// if this field is already in the originalTagMap, we will add any tag from the json that is not already there
+					var originalFieldSubMap = originalTagMap[? currentJsonField];
+					var originalTagSet = originalFieldSubMap[? "tagSet"];
+					if (scr_isNumericAndExists(originalTagSet, ds_type_list)) {
+						for (var j = 0; j < currentJsonTagSetSize; j++) {
+							var currentJsonTag = currentJsonTagSet[| j];
+							scr_addToListOnce(originalTagSet, currentJsonTag);
+						}
+					}
 				}
 			}
 			else{
@@ -75,6 +93,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 			if(nodeList == "token"){
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[?"targetList"];
+				show_debug_message("field not in map TOKEN targetList: " + scr_getStringOfList(typeList));
 				if(ds_list_find_index(typeList, "token") >= 0){
 					// if this field is not in the originalTagMap at all, we will add its entire submap
 					ds_map_add_map(originalTagMap, currentJsonField, currentJsonMap);
@@ -86,6 +105,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 
 				if(!scr_isNumericAndExists(currentJsonMap, ds_type_map)){continue;}
 				var typeList = currentJsonMap[? "targetList"];
+				show_debug_message("field not in map CHUNK targetList: " + scr_getStringOfList(typeList));
 				if(ds_list_find_index(typeList, "chunk") >= 0){
 					// if this field is not in the originalTagMap at all, we will add its entire submap
 					ds_map_add_map(originalTagMap, currentJsonField, currentJsonMap);
@@ -134,7 +154,7 @@ function scr_loadTagJsonFields(originalTagMap, originalFieldList, tagMapJson, no
 	// loop through the given nodeList to add new fields
 	var nodeListSize = ds_list_size(nodeList);
 	var newFieldListSize = ds_list_size(newFieldList);
-	show_debug_message(""+string(newFieldListSize))
+	//show_debug_message(""+string(newFieldListSize))
 	for (var i = 0; i < nodeListSize; i++) {
 		var currentNode = nodeList[| i];
 		if (linkField){		
