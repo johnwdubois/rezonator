@@ -144,33 +144,34 @@ function scr_panelPane_drawSearchList(){
 		var delButtonY = searchRectY1 + (strHeight * 0.5);
 		mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, searchRectY1, deleteColX + deleteColWidth, searchRectY2) && mouseoverSearchRect;
 		var trashAlpha =  1;
-
+		
+		if (mouseoverSearchRect || currentSearchSelected) {
 								
-		// mouseover & click on sequence arrows
-		if (mouseOverDel) {
-			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(deleteColX - clipX, searchRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, searchRectY2 - clipY, false);
-			if (mouse_check_button_released(mb_left)) {
+			// mouseover & click on sequence arrows
+			if (mouseOverDel) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_rectangle(deleteColX - clipX, searchRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, searchRectY2 - clipY, false);
+				if (mouse_check_button_released(mb_left)) {
 					
 					
-				if (!instance_exists(obj_dialogueBox)) {
-					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					obj_dialogueBox.removeSearch = true
-					obj_dialogueBox.questionWindowActive = true;
-					obj_dialogueBox.searchToBeRemoved = currentSearch;
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						obj_dialogueBox.removeSearch = true
+						obj_dialogueBox.questionWindowActive = true;
+						obj_dialogueBox.searchToBeRemoved = currentSearch;
+					}
+
+					
 				}
-
-					
-			}
 				
-			scr_createTooltip(delButtonX, searchRectY2, "Remove", obj_tooltip.arrowFaceUp);
-		}
+				scr_createTooltip(delButtonX, searchRectY2, "Remove", obj_tooltip.arrowFaceUp);
+			}
 			
 
 								
-		draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+			draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
 			
-
+		}
 
 		
 	

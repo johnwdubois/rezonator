@@ -8,13 +8,14 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_valign(fa_middle);
 	
 	var strHeight = string_height("0") * 1.5;
+	var textBuffer = 8;
 	var spaceWidth = string_width(" ");
 	var headerHeight = functionTabs_tabHeight;
 	var checkboxColX = x;
 	var checkboxColWidth = strHeight * 1.2;
 	var checkboxSize = checkboxColWidth * 0.35;
 	var checkBoxScale = (checkboxColWidth* 0.5)/checkboxColWidth;
-	var numColX = checkboxColX + checkboxColWidth;
+	var numColX = x;
 	var numColWidth = windowWidth * 0.1;
 	var tagNameColX = numColX + numColWidth;
 	var tagNameColWidth = windowWidth * 0.7;
@@ -191,7 +192,7 @@ function scr_panelPane_drawFieldTags(){
 					
 						var textColor = tagSelected ? global.colorThemeBG : global.colorThemeText;
 				
-				
+						/*
 						// draw checkbox
 						var checkboxY1 = mean(currentRowY1, currentRowY2) - (checkboxSize * 0.5);
 						var checkboxY2 = checkboxY1 + checkboxSize;
@@ -202,9 +203,7 @@ function scr_panelPane_drawFieldTags(){
 						}
 						draw_set_color(global.colorThemeBorders);
 						scr_drawRectWidth(checkboxX1 - clipX, checkboxY1 - clipY, checkboxX2 - clipX, checkboxY2 - clipY, 2, false);
-				
-		
-		
+						*/
 		
 						var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
 						var delButtonY = currentRowY1 + (strHeight * 0.5);
@@ -256,17 +255,17 @@ function scr_panelPane_drawFieldTags(){
 									
 						trashAlpha = 1;
 
-								
-						draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
-			
+						if (mouseoverRow || tagSelected) {		
+							draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+						}
 		
 		
 						// draw #
 						draw_set_color(textColor);
-						draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
+						draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(i + 1));
 		
 						// draw field name
-						draw_text(floor(tagNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(tagList[| i]));
+						draw_text(floor(tagNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, string(tagList[| i]));
 					}
 					else{
 					
@@ -351,9 +350,9 @@ function scr_panelPane_drawFieldTags(){
 						// add new tag
 						// draw #
 						draw_set_color(global.colorThemeText);
-						draw_text(floor(numColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
+						draw_text(floor(numColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY,"+");
 					
-						draw_text(floor(tagNameColX + spaceWidth) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Tag");
+						draw_text(floor(tagNameColX + textBuffer) - clipX, floor(mean(currentRowY1, currentRowY2)) - clipY, "New Tag");
 					}
 	
 					plusY += strHeight;
@@ -389,7 +388,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(numColX, y, numColX + numColWidth, y + headerHeight, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(numColX + spaceWidth), headerTextY, "#");
+	draw_text(floor(numColX + textBuffer), headerTextY, "#");
 	
 	// field name header
 	draw_set_color(global.colorThemeBG);
@@ -397,7 +396,7 @@ function scr_panelPane_drawFieldTags(){
 	draw_set_color(global.colorThemeBorders);
 	draw_rectangle(tagNameColX, y, x + windowWidth, y + headerHeight, true);
 	draw_set_color(global.colorThemeText);
-	draw_text(floor(tagNameColX + spaceWidth), headerTextY, "Tag name");
+	draw_text(floor(tagNameColX + textBuffer), headerTextY, "Tag name");
 	
 	//json tag saving button
 	var spriteScale = 0.4;

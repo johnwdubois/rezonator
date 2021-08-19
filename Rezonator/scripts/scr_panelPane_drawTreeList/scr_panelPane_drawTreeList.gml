@@ -122,31 +122,31 @@ function scr_panelPane_drawTreeList(){
 		mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, treeRectY1, deleteColX + deleteColWidth, treeRectY2) && mouseoverTreeRect;
 		var trashAlpha =  1;
 
-								
-		// mouseover & click on sequence arrows
-		if (mouseOverDel) {
-			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(deleteColX - clipX, treeRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, treeRectY2 - clipY, false);
-			if (mouse_check_button_released(mb_left)) {
+		if (mouseoverTreeRect || currentTreeSelected) {					
+			// mouseover & click on sequence arrows
+			if (mouseOverDel) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_rectangle(deleteColX - clipX, treeRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, treeRectY2 - clipY, false);
+				if (mouse_check_button_released(mb_left)) {
 					
 					
-				if (!instance_exists(obj_dialogueBox)) {
-					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					obj_dialogueBox.removeTree = true
-					obj_dialogueBox.questionWindowActive = true;
-					obj_dialogueBox.stringToBeRemoved = currentTree;
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						obj_dialogueBox.removeTree = true
+						obj_dialogueBox.questionWindowActive = true;
+						obj_dialogueBox.stringToBeRemoved = currentTree;
+					}
+
+					
 				}
-
-					
-			}
 				
-			scr_createTooltip(delButtonX, treeRectY2, "Remove", obj_tooltip.arrowFaceUp);
-		}
+				scr_createTooltip(delButtonX, treeRectY2, "Remove", obj_tooltip.arrowFaceUp);
+			}
 			
 
 								
-		draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
-			
+			draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+		}
 		
 		
 		
