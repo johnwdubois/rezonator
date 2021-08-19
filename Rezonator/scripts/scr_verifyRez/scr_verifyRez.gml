@@ -6,7 +6,7 @@ if(rezFileVerison != global.versionString){
 }
 var nodeMapSize = ds_map_size(global.nodeMap);
 //if only thing in node map is node list then we need to return to opening screen
-if(nodeMapSize <= 1){
+if(!ds_map_exists(global.nodeMap, global.discourseNode)){
 	show_debug_message("scr_loadREZ() ... global.nodeMap is undefined- jumping to opening screen");
 	room_goto(rm_openingScreen);
 }
