@@ -1,6 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_setDialogueText(){
+	
+	if (room == rm_openingScreen) {
+		titleText = "";
+		var newVersionNum = instance_exists(obj_DBcontrol) ? obj_DBcontrol.newestVersionNum : "";
+		descriptionText = "A new version of Rezonator (version " + string(newVersionNum) + ") is available! Would you like to download it?";
+		exit;
+	}
 
 	
 	if(obj_dialogueBox.questionWindowActive){

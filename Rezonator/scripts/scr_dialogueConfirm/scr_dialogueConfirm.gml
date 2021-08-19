@@ -1,6 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_dialogueConfirm(){
+	
+	// check if they are trying to download newest version of rezonator
+	if (room == rm_openingScreen) {
+		scr_openURL("https://rezonator.com/download/");
+		instance_destroy();
+		exit;
+	}
 
 	if(inputWindowActive){
 		

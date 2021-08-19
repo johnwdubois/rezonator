@@ -57,8 +57,10 @@ if(!promptWindowActive) {
 	draw_set_color(global.colorThemeRezPink);
 	draw_roundrect(cancelRectX1, buttonY1, cancelRectX2, buttonY2, true);
 	draw_set_color(global.colorThemeText);
-	scr_adaptFont("Cancel", "M", false);
-	draw_text(floor(mean(cancelRectX1, cancelRectX2)), floor(mean(buttonY1, buttonY2)), "Cancel");
+	var cancelText = (room == rm_openingScreen) ? "msg_continue" : "msg_cancel";
+	cancelText = scr_get_translation(cancelText);
+	scr_adaptFont(cancelText, "M", false);
+	draw_text(floor(mean(cancelRectX1, cancelRectX2)), floor(mean(buttonY1, buttonY2)), cancelText);
 }
 // ok button
 var buttonXBuffer = boxWidth * 0.1;
@@ -71,7 +73,9 @@ mouseoverOk = point_in_rectangle(mouse_x, mouse_y, okRectX1, buttonY1, okRectX2,
 draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverOk ? 0.2 : 0));
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
-draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), "OK");
+var okText = (room == rm_openingScreen) ? "help_label_download" : "OK";
+okText = scr_get_translation(okText);
+draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), okText);
 
 
 
@@ -100,7 +104,7 @@ var clickCancel = mouseoverCancel && mouse_check_button_released(mb_left);
 
 // cancel button check
 if (clickCancel || keyboard_check_pressed(vk_escape)) {
-	obj_control.alarm[11] = 60;
+	with (obj_control) alarm[11] = 60;
 			
 	scr_closeDialogueBoxVariables();
 	instance_destroy();
