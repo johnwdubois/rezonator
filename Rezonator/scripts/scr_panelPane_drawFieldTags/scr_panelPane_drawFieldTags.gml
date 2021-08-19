@@ -91,6 +91,13 @@ function scr_panelPane_drawFieldTags(){
 			
 				var plusY = strHeight;
 				for (var i = 0; i < tagListSize+1; i++) {
+					
+					// don't bother drawing this stuff if it won't be on screen
+					if (y + headerHeight + scrollPlusY + plusY < y - strHeight
+					or y + headerHeight + scrollPlusY + plusY > y + windowHeight + strHeight) {
+						plusY += strHeight;
+						continue;
+					}
 		
 
 					var currentRowY1 = y + plusY + scrollPlusY - 16;

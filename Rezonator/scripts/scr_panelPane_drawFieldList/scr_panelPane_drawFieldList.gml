@@ -67,6 +67,14 @@ function scr_panelPane_drawFieldList(){
 		// loop down the list of fields and draw a row for each one
 		var plusY = strHeight;
 		for (var i = 0; i < fieldListSize+1; i++) {
+			
+			// don't bother drawing this stuff if it won't be on screen
+			if (y + headerHeight + scrollPlusY + plusY < y - strHeight
+			or y + headerHeight + scrollPlusY + plusY > y + windowHeight + strHeight) {
+				plusY += strHeight;
+				continue;
+			}
+		
 		
 			// get current field from list
 			var currentField = "";
@@ -81,7 +89,8 @@ function scr_panelPane_drawFieldList(){
 					}
 				}
 			}
-		
+			
+
 		
 		
 			// get y values for this row

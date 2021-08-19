@@ -35,7 +35,7 @@ function scr_panelPane_drawCliques1ToMany(){
 		if (scr_isNumericAndExists(list, ds_type_list)) {
 			var listSize = ds_list_size(list);
 			
-			// loop over searchs
+			// loop over chains in clique
 			for (var i = 0; i < listSize; i++) {
 				
 				// don't bother drawing this stuff if it won't be on screen
