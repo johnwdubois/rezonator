@@ -62,11 +62,9 @@ function scr_panelPane_drawTree1ToMany(){
 	
 
 	
-	
+	// loop over entries, draw each entry at its respective row (level)
 	var i = (ltr)? 0 : setIDListSize-1;
 	repeat(setIDListSize){
-	// loop over entries, draw each entry at its respective row (level)
-	//for (var i = 0; i < setIDListSize; i++) {
 		
 		// get current entry and all its goodies
 		var currentEntry = setIDList[| i];
@@ -95,12 +93,28 @@ function scr_panelPane_drawTree1ToMany(){
 		var strWidth = string_width(currentDisplayToken);
 		var realStrheight = string_height(currentDisplayToken);
 		
-		//get entry box demensions
+		//get entry box dimensions, check if this entry is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
 		var tokenX1 = x + plusX + scrollPlusX;
 		var tokenY1 = currentEntryY - realStrheight/1.8 + currentScrollPlusY;
 		var tokenX2 = tokenX1 + boxWidth;
 		var tokenY2 = currentEntryY + realStrheight/1.8 + currentScrollPlusY;
+		
+		// save pixel values to map for drawing links
+		currentEntrySubMap[?"entryX1"] = tokenX1;
+		currentEntrySubMap[?"entryY1"] = tokenY1;
+		currentEntrySubMap[?"entryX2"] = tokenX2;
+		currentEntrySubMap[?"entryY2"] = tokenY2;
+		
+		
+		if (tokenX2 < x || tokenX1 > x + windowWidth) {
+			plusX += boxWidth;
+			i = (ltr)? i+1 : i-1;
+			continue;
+		}
+		
+
+		
 		
 		
 		draw_set_alpha(1);
@@ -111,12 +125,7 @@ function scr_panelPane_drawTree1ToMany(){
 			scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 		}
 		
-		// save pixel values to map for drawing links
-		currentEntrySubMap[?"entryX1"] = tokenX1;
-		currentEntrySubMap[?"entryY1"] = tokenY1;
-		currentEntrySubMap[?"entryX2"] = tokenX2;
-		currentEntrySubMap[?"entryY2"] = tokenY2;
-		
+
 		//mouse over for entry
 		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "") && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		if(mouseOverEntry){
@@ -262,12 +271,16 @@ function scr_panelPane_drawTree1ToMany(){
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
 	
-		//get entry box demensions
+		//get entry box demensions, check if this token is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
-		
 		var tokenX1 = x + plusX + scrollPlusX;
-		var tokenY1 = leafY;
 		var tokenX2 = tokenX1 + boxWidth;
+		if (tokenX2 < x || tokenX1 > x + windowWidth) {
+			plusX += boxWidth;
+			i = (ltr)? i+1 : i-1;
+			continue;
+		}
+		var tokenY1 = leafY;
 		var tokenY2 = y + windowHeight;
 		
 		

@@ -33,6 +33,8 @@ function scr_panelPane_drawTreeList(){
 	draw_set_valign(fa_middle);
 	draw_set_alpha(1);
 	
+	var maxTokenListSize = 15;
+	
 	// loop over trees
 	for (var i = 0; i < treeListSize; i++) {
 		
@@ -91,13 +93,15 @@ function scr_panelPane_drawTreeList(){
 		var fullTreeStr = ""
 		var tokenListSize = ds_list_size(tokenList);
 		var j = (ltr) ? 0 : tokenListSize-1;
-		repeat(tokenListSize){
+		var textRepeatCount = min(tokenListSize, maxTokenListSize);
+		repeat(textRepeatCount){
 			var currentTokenSubMap = global.nodeMap[? tokenList[| j]];
 			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){j = (ltr) ? j+1: j-1;continue;}
 			var tokenTagMap = currentTokenSubMap[? "tagMap"];
 			fullTreeStr += (string(tokenTagMap[? global.displayTokenField]) + " ");
 			j = (ltr) ? j+1: j-1;
 		}
+		if (tokenListSize > maxTokenListSize) fullTreeStr += "...";
 		
 		// cut off section text if its too long
 		var cutoffs = 0;
