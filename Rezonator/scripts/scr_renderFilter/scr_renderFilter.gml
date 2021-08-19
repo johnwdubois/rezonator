@@ -271,9 +271,6 @@ function scr_renderFilter() {
 		filterGridActive = true;
 		currentActiveLineGrid = filterGrid;
 		wordLeftMarginDest = 170; // Make sure the margin is placed correctly
-		with (obj_alarm) {
-			alarm[1] = 5;
-		}
 	
 	}
 

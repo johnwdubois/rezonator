@@ -47,10 +47,6 @@ function scr_paneOptions(optionSelected) {
 					obj_control.filterGridActive = false;
 					obj_control.currentActiveLineGrid = obj_control.lineGrid
 
-		
-					with (obj_alarm) {
-						alarm[1] = 5;
-					}
 				}
 			}
 			instance_destroy();

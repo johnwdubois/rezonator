@@ -63,10 +63,6 @@ for (var i = 0; i < 2; i++) {
 }
 
 
-with (obj_alarm) {
-	alarm[1] = 5;
-}
-
 wordTopMargin = 0;
 
 
