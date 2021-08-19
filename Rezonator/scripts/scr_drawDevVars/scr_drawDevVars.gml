@@ -57,6 +57,7 @@ function scr_drawDevVars(){
 	draw_text(devVarX, wordTopMargin + (strHeight * 20), "chain1toManyCustomSortColIndex: " + string(chain1toManyCustomSortColIndex));
 	draw_text(devVarX, wordTopMargin + (strHeight * 21), "nodeMap size: " + string(ds_map_size(global.nodeMap)));
 	draw_text(devVarX, wordTopMargin + (strHeight * 22), "unitClosestToMouse: " + string(unitClosestToMouse));
+	draw_text(devVarX, wordTopMargin + (strHeight * 23), "dragStartOriginalChain: " + string(obj_chain.dragStartOriginalChain));
 	draw_text(devVarX, wordTopMargin + (strHeight * 24), "mouseoverPanelPane: " + string(mouseoverPanelPane));
 	draw_text(devVarX, wordTopMargin + (strHeight * 25), "inRectTokenIDList: " + scr_getStringOfList(inRectTokenIDList));
 	draw_text(devVarX, wordTopMargin + (strHeight * 26), "mouseRectXY: " + string(mouseHoldRectX1) + ", " + string(mouseHoldRectY1));
