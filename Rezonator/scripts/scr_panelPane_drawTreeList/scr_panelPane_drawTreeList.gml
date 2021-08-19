@@ -36,6 +36,13 @@ function scr_panelPane_drawTreeList(){
 	// loop over trees
 	for (var i = 0; i < treeListSize; i++) {
 		
+		// don't bother drawing this stuff if it won't be on screen
+		if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
+		or y + headerHeight + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+			textPlusY += strHeight;
+			continue;
+		}
+		
 		// get data for currentClique
 		var currentTree = treeList[| i];
 		var currentTreeSubMap = global.treeMap[? currentTree];
