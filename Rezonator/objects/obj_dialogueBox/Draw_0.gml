@@ -75,6 +75,7 @@ draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), "OK"
 
 
 
+
 if (inputWindowActive) {
 	scr_drawDialogueBox_input();
 }

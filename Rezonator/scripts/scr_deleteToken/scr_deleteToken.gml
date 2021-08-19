@@ -51,6 +51,12 @@ function scr_deleteToken(tokenID){
 		}
 	}
 	
+	entryListSize = ds_list_size(entryList);
+	if (entryListSize <= 1) {
+		scr_unitClicked(unitID);
+		scr_objControlKeyDelete();
+	}
+	
 	// remove this token from all chunks it is in
 	var inChunkList = tokenSubMap[? "inChunkList"];
 	if (scr_isNumericAndExists(inChunkList, ds_type_list)) {
@@ -113,6 +119,8 @@ function scr_deleteToken(tokenID){
 						obj_chain.currentFocusedEntryID = currentEntry;
 						scr_deleteTreeEntry();
 						scr_deleteFromList(currentSetList, currentEntry);
+						
+						// now we have to update all the sequence values from this tree
 					}
 				}
 			}

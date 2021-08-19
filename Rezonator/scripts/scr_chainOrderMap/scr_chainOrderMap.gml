@@ -40,6 +40,7 @@ function scr_chainOrderMap(){
 						var currentToken = currentEntrySubMap[? "token"];
 						if (scr_isChunk(currentToken)) currentToken = scr_getFirstWordOfChunk(currentToken);
 						var currentTokenSubMap = global.nodeMap[? currentToken];
+						if (!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)) continue;
 						var currentUnit = currentTokenSubMap[? "unit"];
 						var currentUnitSubMap = global.nodeMap[? currentUnit];
 						var currentUnitEntryList = currentUnitSubMap[? "entryList"];

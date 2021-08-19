@@ -5,7 +5,7 @@ function scr_objControlKeyDelete(){
 	// putting this stuff in its own script so that it's the same for Windows & Mac
 	
 
-	if (gridView || instance_exists(obj_dialogueBox)) {
+	if (obj_control.gridView || instance_exists(obj_dialogueBox)) {
 		exit;	
 	}
 
@@ -27,7 +27,7 @@ function scr_objControlKeyDelete(){
 				scr_deleteShow(obj_control.selectedChainID);
 			}	
 		}
-		if(deleteEntryPressed == false){
+		if(obj_control.deleteEntryPressed == false){
 			scr_deleteTreeEntry();
 		}
 		if(obj_panelPane.functionTree_treeLinkSelected != ""){
