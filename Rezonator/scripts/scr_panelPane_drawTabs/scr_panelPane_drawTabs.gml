@@ -196,6 +196,10 @@ function scr_panelPane_drawTabs() {
 						scr_disableFilter();
 					}
 				}
+				if (functionChainList_currentTab != functionChainList_tabShow) {
+					obj_panelPane.functionTree_treeLinkSelected = "";
+					obj_chain.currentFocusedEntryID = "";
+				}
 				
 				filterList = scr_getFilterList();
 				chainTab = (functionChainList_currentTab == functionChainList_tabRezBrush || functionChainList_currentTab == functionChainList_tabTrackBrush || functionChainList_currentTab == functionChainList_tabStackBrush);

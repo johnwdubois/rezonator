@@ -223,6 +223,7 @@ functionSearchList_tokenMouseover = "";
 functionClique_cliqueSelected = "";
 functionTree_treeSelected = "";
 functionTree_treeMouseoverLinkArea = false;
+functionTree_treeMouseoverArea = false;
 functionTree_treeLinkMouseover = "";
 functionTree_treeLinkSelected = "";
 

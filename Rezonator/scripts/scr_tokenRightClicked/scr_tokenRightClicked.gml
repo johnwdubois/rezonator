@@ -6,6 +6,9 @@ function scr_tokenRightClicked(){
 		
 		var tokenSubMap = global.nodeMap[?obj_control.rightClickID];
 		if(!scr_isNumericAndExists(tokenSubMap, ds_type_map)){exit;}
+		//deselect tree pane chain entities
+		obj_panelPane.functionTree_treeLinkSelected = "";
+		obj_chain.currentFocusedEntryID = "";
 		
 		var tokenInChainsList = tokenSubMap[?"inChainsList"];
 		var unitID = tokenSubMap[?"unit"]

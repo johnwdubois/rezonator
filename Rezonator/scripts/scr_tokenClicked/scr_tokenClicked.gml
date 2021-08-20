@@ -23,6 +23,10 @@ function scr_tokenClicked(tokenID){
 		}
 	}
 	
+	//deselect tree pane chain entities
+	obj_panelPane.functionTree_treeLinkSelected = "";
+	obj_chain.currentFocusedEntryID = "";
+	
 
 	// jump audio position to unitStart time (if audioUI is visible)
 	if (instance_exists(obj_audioUI)) {
