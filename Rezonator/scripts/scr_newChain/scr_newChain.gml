@@ -73,13 +73,12 @@ function scr_newChain(ID) {
 	ds_list_add(listOfChains, obj_chain.currentChainID);
 
 
-	var chainColor = ds_list_find_value(obj_chain.chainColorList, obj_chain.chainColorID[obj_toolPane.currentTool]);
-	
-	obj_chain.chainColorID[obj_toolPane.currentTool]++;
-
-	if (obj_chain.chainColorID[obj_toolPane.currentTool] >= ds_list_size(obj_chain.chainColorList)) {
-		obj_chain.chainColorID[obj_toolPane.currentTool] = 0;
+	var chainColor = make_color_hsv(obj_chain.chainHue, random_range(220, 255), random_range(220, 255));
+	obj_chain.chainHue += random_range(50, 60);
+	if (obj_chain.chainHue > 255) {
+		obj_chain.chainHue -= 255;
 	}
+	
 	
 	// set values in nodeMap
 	scr_nodeMapSetChainValues(obj_chain.currentChainID, chainName, chainColor, chainSeq);

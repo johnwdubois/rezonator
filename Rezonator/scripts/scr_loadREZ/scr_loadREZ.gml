@@ -134,6 +134,7 @@ function scr_loadREZ() {
 					global.cliqueMap = global.nodeMap[? "cliqueMap"];
 					global.searchMap = global.nodeMap[? "searchMap"];		
 					global.treeMap = global.nodeMap[? "treeMap"];
+					global.colorMap = global.nodeMap[? "colorMap"];
 				
 				
 					if (is_undefined(global.importGridColNameList)) {

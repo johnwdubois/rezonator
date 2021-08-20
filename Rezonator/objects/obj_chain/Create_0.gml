@@ -198,3 +198,6 @@ mouseOverAnyChunk = false;
 scr_updateFilteredChainLists();
 
 dragStartOriginalChain = "";
+
+randomize();
+chainHue = random(255);

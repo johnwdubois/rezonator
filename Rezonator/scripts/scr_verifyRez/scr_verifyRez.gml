@@ -97,6 +97,7 @@ else{
 	
 	//no color map found
 	if(is_undefined(global.nodeMap[? "colorMap"])){
+		show_debug_message("no color map found");
 		global.colorMap = ds_map_create();
 		ds_map_add(global.colorMap, "type", "map");
 		scr_addToListOnce(nodeList,"colorMap");
