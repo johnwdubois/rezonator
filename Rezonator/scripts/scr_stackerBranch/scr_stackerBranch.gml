@@ -11,7 +11,7 @@ function scr_stackerBranch(){
 			alarm[4] = 1;
 		}
 		else if (createStacksSentence) {
-			showEndNoteWindow = true;
+			alarm[6] = 1;
 		}
 		createStacksRandom = false;
 		createStacksTurn = false;

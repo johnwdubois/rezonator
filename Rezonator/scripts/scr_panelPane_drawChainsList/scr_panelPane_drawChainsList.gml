@@ -157,10 +157,7 @@ function scr_panelPane_drawChainsList() {
 								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
 									currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
 								}
-								if (string_width(currentChainCaption) > windowWidth) {
-									currentChainCaption += "...";
-									break;
-								}
+								if (string_width(currentChainCaption) > windowWidth) break;
 							}
 							else {
 								currentChainCaption = "";
