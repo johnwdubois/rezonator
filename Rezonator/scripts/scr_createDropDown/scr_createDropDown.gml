@@ -57,7 +57,7 @@ function scr_createDropDown(dropDownX, dropDownY, dropDownOptionList, dropDownOp
 	if(global.lang_codes[| global.lang_index] == "he"){
 		dropDownInst.x -= instance_number(obj_dropDown) * dropDownInst.windowWidth;
 		if(instance_number(obj_dropDown) == 3){
-			dropDownInst.x += windowWidth;	
+			dropDownInst.x += dropDownInst.windowWidth;	
 		}
 	}
 	
