@@ -264,9 +264,5 @@ function scr_renderQuickFilter() {
 	currentActiveLineGrid = quickFilterGrid;
 	wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 
-	with (obj_alarm) {
-		alarm[1] = 5;
-	}
-
 }
 

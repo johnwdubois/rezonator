@@ -50,9 +50,6 @@ function scr_toggleFilterForAllChains(chainType){
 				obj_toolPane.currentMode = obj_toolPane.setModeMain;
 				wordLeftMarginDest = 170; // Make sure the margin is placed correctly
 
-				with (obj_alarm) {
-					alarm[1] = 5;
-				}
 			}
 		}
 	}

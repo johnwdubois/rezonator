@@ -69,5 +69,6 @@ function scr_closeDialogueBoxVariables(){
 		obj_control.combineChainsFocused = "";
 		obj_control.combineChainsSelected = "";
 		
+		with (obj_stacker) confirmStackCreate = false;
 	}
 }

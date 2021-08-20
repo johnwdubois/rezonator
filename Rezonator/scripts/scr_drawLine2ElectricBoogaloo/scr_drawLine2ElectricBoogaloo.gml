@@ -71,6 +71,9 @@ function scr_drawLine2ElectricBoogaloo(){
 	draw_set_color(global.colorThemeOutOfBounds);
 	draw_rectangle(oobRectX1,oobRectY1,oobRectX2,oobRectY2,false);
 	
+	unitClosestToMouse = "";
+	var minUnitDistToMouse = 999999999999;
+	
 	// loop through units
 	var unitPlusY = wordTopMargin + (gridSpaceVertical * 0.5);
 	for (var i = 0; i < displayUnitListSize; i++) {
@@ -103,6 +106,13 @@ function scr_drawLine2ElectricBoogaloo(){
 			if (inMouseHoldRect) {
 				scr_addToListOnce(inRectUnitIDList, currentUnit);
 			}
+		}
+		
+		// check if this is the closest unit to the mouse
+		var currentUnitDistToMouse = point_distance(mouse_x, currentPixelY, mouse_x, mouse_y);
+		if (currentUnitDistToMouse < minUnitDistToMouse) {
+			minUnitDistToMouse = currentUnitDistToMouse;
+			unitClosestToMouse = currentUnit;
 		}
 
 		// draw this unit's stack if its has one

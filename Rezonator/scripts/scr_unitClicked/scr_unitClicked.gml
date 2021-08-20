@@ -11,6 +11,10 @@ function scr_unitClicked(unitID){
 	show_debug_message("scr_unitClicked ... unitID: " + string(unitID));
 	
 	
+	//deselect tree pane chain entities
+	obj_panelPane.functionTree_treeLinkSelected = "";
+	obj_chain.currentFocusedEntryID = "";
+	
 	// With Audio, jump to this line's start time in the Audio File
 	if (instance_exists(obj_audioUI)) {
 		if (obj_audioUI.visible and file_exists(obj_audioUI.audioFile) and obj_audioUI.audioSound != -1) {

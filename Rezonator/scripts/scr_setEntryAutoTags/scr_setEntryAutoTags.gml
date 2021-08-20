@@ -84,8 +84,9 @@ function scr_setEntryAutoTags(grid, gridCol, vizSetIDList, chainType){
 						}
 					}
 					
-					
-					currentCharCount = string_length(currentDisplayStr);
+					if (is_string(currentDisplayStr)) {
+						currentCharCount = string_length(currentDisplayStr);
+					}
 
 				}
 			}

@@ -4,6 +4,7 @@ if (showEndNoteWindow) {
 	scr_drawEndNoteWindow();
 }
 
-if (confirmStackCreate) {
-	scr_drawConfirmStackCreate();
+if (confirmStackCreate && !instance_exists(obj_dialogueBox)) {
+	var inst = instance_create_layer(0, 0, "InstancesDialogue", obj_dialogueBox);
+	inst.questionWindowActive = true;
 }

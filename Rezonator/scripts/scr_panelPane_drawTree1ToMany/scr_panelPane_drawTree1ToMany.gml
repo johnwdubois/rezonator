@@ -45,6 +45,7 @@ function scr_panelPane_drawTree1ToMany(){
 	
 
 	functionTree_treeMouseoverLinkArea = point_in_rectangle(mouse_x, mouse_y, x + originalPlusX, y, x + windowWidth - global.scrollBarWidth, leafY);
+	functionTree_treeMouseoverArea = point_in_rectangle(mouse_x, mouse_y, x + originalPlusX, y, x + windowWidth - global.scrollBarWidth, y + windowHeight);
 
 	
 
@@ -62,11 +63,9 @@ function scr_panelPane_drawTree1ToMany(){
 	
 
 	
-	
+	// loop over entries, draw each entry at its respective row (level)
 	var i = (ltr)? 0 : setIDListSize-1;
 	repeat(setIDListSize){
-	// loop over entries, draw each entry at its respective row (level)
-	//for (var i = 0; i < setIDListSize; i++) {
 		
 		// get current entry and all its goodies
 		var currentEntry = setIDList[| i];
@@ -95,12 +94,28 @@ function scr_panelPane_drawTree1ToMany(){
 		var strWidth = string_width(currentDisplayToken);
 		var realStrheight = string_height(currentDisplayToken);
 		
-		//get entry box demensions
+		//get entry box dimensions, check if this entry is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
 		var tokenX1 = x + plusX + scrollPlusX;
 		var tokenY1 = currentEntryY - realStrheight/1.8 + currentScrollPlusY;
 		var tokenX2 = tokenX1 + boxWidth;
 		var tokenY2 = currentEntryY + realStrheight/1.8 + currentScrollPlusY;
+		
+		// save pixel values to map for drawing links
+		currentEntrySubMap[?"entryX1"] = tokenX1;
+		currentEntrySubMap[?"entryY1"] = tokenY1;
+		currentEntrySubMap[?"entryX2"] = tokenX2;
+		currentEntrySubMap[?"entryY2"] = tokenY2;
+		
+		
+		if (tokenX2 < x || tokenX1 > x + windowWidth) {
+			plusX += boxWidth;
+			i = (ltr)? i+1 : i-1;
+			continue;
+		}
+		
+
+		
 		
 		
 		draw_set_alpha(1);
@@ -111,12 +126,7 @@ function scr_panelPane_drawTree1ToMany(){
 			scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
 		}
 		
-		// save pixel values to map for drawing links
-		currentEntrySubMap[?"entryX1"] = tokenX1;
-		currentEntrySubMap[?"entryY1"] = tokenY1;
-		currentEntrySubMap[?"entryX2"] = tokenX2;
-		currentEntrySubMap[?"entryY2"] = tokenY2;
-		
+
 		//mouse over for entry
 		var mouseOverEntry = (point_in_rectangle(mouse_x, mouse_y,tokenX1,tokenY1,tokenX2,tokenY2) && mouseOverEntryID == "") && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 		if(mouseOverEntry){
@@ -133,7 +143,7 @@ function scr_panelPane_drawTree1ToMany(){
 			}
 			
 			// click to focus entry
-			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
+			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
 				with(obj_panelPane){
 					functionTree_treeLinkSelected = "";
 				}
@@ -167,9 +177,11 @@ function scr_panelPane_drawTree1ToMany(){
 				
 				draw_set_color(global.colorThemeBorders);
 				scr_drawRectWidth(tokenX1 - clipX, tokenY1 - clipY, tokenX2 - clipX, tokenY2 - clipY, 2,true);
+				obj_chain.currentFocusedChainID = "";
 				
 			}
-			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown)){
+			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
+				obj_chain.currentFocusedChainID = "";
 				obj_chain.currentFocusedEntryID = currentEntry;
 				
 				obj_control.rightClickID = currentEntry;
@@ -199,11 +211,12 @@ function scr_panelPane_drawTree1ToMany(){
 	
 		
 	if(functionTree_treeLinkMouseover == "" && mouseOverEntryID == "" && functionTree_treeMouseoverLinkArea){
-		if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown)){
+		if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
 			with(obj_panelPane){
 				functionTree_treeLinkSelected = "";
 			}
 			obj_chain.currentFocusedEntryID = "";
+			obj_chain.currentFocusedChainID = "";
 		}
 	}
 	
@@ -262,12 +275,16 @@ function scr_panelPane_drawTree1ToMany(){
 			currentDisplayToken += (" " + string(currentTokenTagMap[? global.displayTokenField]));
 		}
 	
-		//get entry box demensions
+		//get entry box demensions, check if this token is in draw range
 		var boxWidth = string_width(currentDisplayToken) + (spaceWidth * 8);
-		
 		var tokenX1 = x + plusX + scrollPlusX;
-		var tokenY1 = leafY;
 		var tokenX2 = tokenX1 + boxWidth;
+		if (tokenX2 < x || tokenX1 > x + windowWidth) {
+			plusX += boxWidth;
+			i = (ltr)? i+1 : i-1;
+			continue;
+		}
+		var tokenY1 = leafY;
 		var tokenY2 = y + windowHeight;
 		
 		
@@ -303,7 +320,7 @@ function scr_panelPane_drawTree1ToMany(){
 			
 			
 			// click on entry
-			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && ds_list_size(obj_control.entryRectListCopy) <= 1 && !functionTree_treeMouseoverLinkArea ){
+			if(device_mouse_check_button_released(0,mb_left) && !instance_exists(obj_dropDown) && ds_list_size(obj_control.entryRectListCopy) <= 1 && !functionTree_treeMouseoverLinkArea && functionTree_treeMouseoverArea){
 			
 				if(obj_chain.currentFocusedEntryID == ""){
 					currentEntrySubMap[?"level"] = 0;
@@ -330,10 +347,11 @@ function scr_panelPane_drawTree1ToMany(){
 					functionTree_treeLinkSelected = "";
 				}
 				obj_chain.currentFocusedEntryID = currentEntry;
+				obj_chain.currentFocusedChainID = "";
 			}
 			
 			//right click on leaf entry
-			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown)){
+			if(device_mouse_check_button_released(0,mb_right) && !instance_exists(obj_dropDown) && functionTree_treeMouseoverArea){
 				if(tokenListSize > 1){
 					obj_control.rightClickID = currentEntry;
 					var dropDownOptionList = ds_list_create();
@@ -343,6 +361,7 @@ function scr_panelPane_drawTree1ToMany(){
 						scr_createDropDown(tokenX1, tokenY2, dropDownOptionList, global.optionListTypeTreeLeaf);
 					}
 				}
+				obj_chain.currentFocusedChainID = "";
 			}
 		
 		}
@@ -376,7 +395,7 @@ function scr_panelPane_drawTree1ToMany(){
 
 	draw_line(x + originalPlusX + 1, y, x + originalPlusX + 1, leafY);
 	// is user releases mousedrag, do something!
-	if (mouse_check_button_released(mb_left) && !instance_exists(obj_dialogueBox)) {
+	if (mouse_check_button_released(mb_left) && !instance_exists(obj_dialogueBox) && functionTree_treeMouseoverArea) {
 		show_debug_message(string(ds_list_size(obj_control.entryRectListCopy))+ "   ON REALEASE");
 		if (ds_list_size(obj_control.entryRectListCopy) > 1) {
 			scr_combineLeafs(obj_control.entryRectListCopy);
@@ -387,6 +406,7 @@ function scr_panelPane_drawTree1ToMany(){
 		// reset mouserect variables
 		obj_control.mouseHoldRectX1 = -1;
 		obj_control.mouseHoldRectY1 = -1;
+		obj_chain.currentFocusedChainID = "";
 	}
 	
 	ds_list_copy(obj_control.entryRectListCopy, obj_control.inRectEntryIDList);

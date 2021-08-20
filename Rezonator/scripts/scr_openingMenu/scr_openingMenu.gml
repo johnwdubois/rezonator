@@ -21,6 +21,7 @@ function scr_openingMenu() {
 	var buttonWidth = (camWidth*.8) /3;
 	var buttonHeight = (camHeight*.3);
 	
+	var mouseoverCancel = instance_exists(obj_dialogueBox);
 	
 	
 	
@@ -29,7 +30,7 @@ function scr_openingMenu() {
 	var openProjectButtonY1 = camHeight * 0.4;
 	var openProjectButtonX2 = openProjectButtonX1 + buttonWidth;
 	var openProjectButtonY2 = openProjectButtonY1 + buttonHeight;
-	var mouseOverOpen = point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2);
+	var mouseOverOpen = point_in_rectangle(mouse_x, mouse_y, openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2) && !mouseoverCancel;
 	if (mouseOverOpen) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(openProjectButtonX1, openProjectButtonY1, openProjectButtonX2, openProjectButtonY2, false);
@@ -65,7 +66,7 @@ function scr_openingMenu() {
 	var newProjectButtonY1 = openProjectButtonY1;
 	var newProjectButtonX2 = newProjectButtonX1 + buttonWidth;
 	var newProjectButtonY2 = newProjectButtonY1 + buttonHeight;
-	var mouseOverImport = point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2);
+	var mouseOverImport = point_in_rectangle(mouse_x, mouse_y, newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2) && !mouseoverCancel;
 	if (mouseOverImport) {
 		draw_set_color(global.colorThemeSelected1);
 		draw_rectangle(newProjectButtonX1, newProjectButtonY1, newProjectButtonX2, newProjectButtonY2, false);
@@ -100,7 +101,7 @@ function scr_openingMenu() {
 	var documentationButtonY1 = openProjectButtonY1;
 	var documentationButtonX2 = documentationButtonX1 + buttonWidth;
 	var documentationButtonY2 = documentationButtonY1 + buttonHeight;
-	var mouseoverDocumenation = point_in_rectangle(mouse_x, mouse_y, documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2);
+	var mouseoverDocumenation = point_in_rectangle(mouse_x, mouse_y, documentationButtonX1, documentationButtonY1, documentationButtonX2, documentationButtonY2) && !mouseoverCancel;
 
 	// draw help button
 	draw_set_color(merge_color(global.colorThemeBG, global.colorThemeRezPurple, hoverColorMergeHelp));

@@ -60,5 +60,11 @@ function scr_createTree(tokenList){
 		
 	}
 	
+	// set the new tree to be focused in nav window
+	with (obj_panelPane) {
+		functionTree_treeSelected = treeNode;
+	}
+	
+	
 	
 }

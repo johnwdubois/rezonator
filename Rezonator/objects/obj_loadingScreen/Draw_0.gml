@@ -44,11 +44,6 @@ if (alphaDrop) {
 	myAlpha -= 0.05;
 	
 	if (myAlpha <= 0) {
-		if (room == rm_mainScreen && instance_exists(obj_alarm)) {
-			with (obj_alarm) {
-				alarm[1] = 2;
-			}
-		}
 		instance_destroy();
 	}
 }

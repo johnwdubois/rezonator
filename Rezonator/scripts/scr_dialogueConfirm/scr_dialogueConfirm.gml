@@ -1,6 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_dialogueConfirm(){
+	
+	// check if they are trying to download newest version of rezonator
+	if (room == rm_openingScreen) {
+		scr_openURL("https://rezonator.com/download/");
+		instance_destroy();
+		exit;
+	}
 
 	if(inputWindowActive){
 		
@@ -182,34 +189,18 @@ function scr_dialogueConfirm(){
 				
 			// delete all stack chains!
 			show_debug_message("scr_drawQuestionBox() ... clearAllStacks");
-			var chainList = ds_map_find_value(global.nodeMap, "stackChainList");
-			while (ds_list_size(chainList) > 0) {
-				var currentChainID = ds_list_find_value(chainList, 0);
-				scr_deleteChain(currentChainID);
-				scr_deleteFromList(chainList, currentChainID); // safety check to eliminate infinite loop
-			}
+			scr_deleteAllChains(global.nodeMap[? "stackChainList"]);
 		}
 		if (clearAllRez || clearAllLinks) {
 				
 			// delete all rez chains!!
 			show_debug_message("scr_drawQuestionBox() ... clearAllRez");
-			var chainList = ds_map_find_value(global.nodeMap, "rezChainList");
-			while (ds_list_size(chainList) > 0) {
-				var currentChainID = ds_list_find_value(chainList, 0);
-				scr_deleteChain(currentChainID);
-				scr_deleteFromList(chainList, currentChainID); // safety check to eliminate infinite loop
-			}
+			scr_deleteAllChains(global.nodeMap[? "rezChainList"]);
 		}
 		if (clearAllTracks || clearAllLinks) {
 				
 			// delete all track chains!!
-			show_debug_message("scr_drawQuestionBox() ... clearAllTracks");
-			var chainList = ds_map_find_value(global.nodeMap, "trackChainList");
-			while (ds_list_size(chainList) > 0) {
-				var currentChainID = ds_list_find_value(chainList, 0);
-				scr_deleteChain(currentChainID);
-				scr_deleteFromList(chainList, currentChainID); // safety check to eliminate infinite loop
-			}
+			scr_deleteAllChains(global.nodeMap[? "trackChainList"]);
 		}
 		
 		
@@ -262,6 +253,13 @@ function scr_dialogueConfirm(){
 		
 		if(combineChains){
 			scr_combineChains(obj_control.combineChainsFocused, obj_control.combineChainsSelected);
+		}
+		
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackCreate) {
+				scr_deleteAllChains(global.nodeMap[? "stackChainList"]);
+				scr_stackerBranch();
+			}
 		}
 		
 		scr_closeQuestionBoxVariables();

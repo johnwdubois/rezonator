@@ -89,7 +89,7 @@ function scr_panelPane_drawUnits1To1Headers(){
 		
 
 	
-		// change display unit
+		// change display unit (speaker)
 		if (mouseoverDisplayUnit && !instance_exists(obj_dropDown)) {
 				
 			scr_createTooltip(displayUnitButtonX, displayUnitButtonY + displayUnitButtonSize, "Display Unit", obj_tooltip.arrowFaceUp);

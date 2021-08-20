@@ -20,6 +20,9 @@ promptWindowActive = false;
 
 mouseoverCancel = false;
 mouseoverOk = false;
+mouseoverNo = false;
+
+noButtonActive = false;
 
 holdUp = 0;
 holdDown = 0;

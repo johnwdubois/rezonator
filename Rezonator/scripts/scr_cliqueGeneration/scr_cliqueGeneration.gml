@@ -83,6 +83,7 @@ function scr_cliqueGeneration(){
 			else{
 				var tokenSubMap = global.nodeMap[? tokenID];
 			}
+			if (!scr_isNumericAndExists(tokenSubMap, ds_type_map)) continue;
 			var unitID = tokenSubMap[? "unit"];
 			if(ds_list_find_index(obj_chain.traversedUnitList, unitID) == -1){
 				scr_addToListOnce(obj_chain.encounteredTokenList,tokenID);

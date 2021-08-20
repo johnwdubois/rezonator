@@ -13,40 +13,20 @@
 	Author: Terry DuBois, Georgio Klironomos
 */
 function scr_sentStackerLoop(){
-	
-	// Set oft used variables
+
+	// Set script variables
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
-	var unitImportGridHeight = ds_grid_height(global.unitImportGrid);
-	var unitImportColNameListSize = ds_list_size(global.unitImportColNameList);
-	var tokenImportColNameListSize = ds_list_size(global.tokenImportColNameList);
-	var tokenImportGridHeight = ds_grid_height(global.tokenImportGrid);
-	var unitCol = -1;
-	var turnCol = -1;
-	var endNoteTagsGridHeight = ds_grid_height(endNoteTagsGrid);
-	var endNoteTagMatch = false;
 
-	// Find the UnitID column and TurnID column within the UnitImportGrid
-	for (var unitColLoop = 0; unitColLoop < unitImportColNameListSize; unitColLoop++) {
-
-
-		if (string(ds_list_find_value(global.unitImportColNameList, unitColLoop)) == "turnSeq") {
-			turnCol = unitColLoop;
-			show_debug_message("scr_sentStackerLoop() ... turnCol: " + string(turnCol));
-			continue;
-		}
-
-	}
 
 	// Exit script if no turnOrder column was found
-	if (turnCol == -1) {
+	if (global.speakerField == "" or is_undefined(global.speakerField)) {
 		show_message(scr_get_translation("msg_order-notfound"));
 		splitSave = false;
 
 		exit;	
 	}
-	
-	
+	show_debug_message(global.speakerField)
 	//Set variables for loop
 	var currentTurnOrder = 0;
 	var previousTurnOrder = 0;
@@ -59,42 +39,25 @@ function scr_sentStackerLoop(){
 		var currentUnit = unitList[|importLoop];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
 		var unitTagMap = currentUnitSubMap[?"tagMap"];
-		currentTurnOrder = unitTagMap[?"turnSeq"];
+		currentTurnOrder = unitTagMap[?global.speakerField];
+		show_debug_message(currentTurnOrder);
 		previousTurnOrder = currentTurnOrder;
 		
 		// Loop through lines until we hit a new turn order
-		while ((currentTurnOrder == previousTurnOrder) and (importLoop < unitListSize)) { 
+		while ((currentTurnOrder == previousTurnOrder) and (importLoop < unitListSize)) { 	
 			currentUnit = unitList[|importLoop];
+
 			currentUnitSubMap = global.nodeMap[?currentUnit];
-			var entryList = currentUnitSubMap[?"entryList"];
-			// Get the WordIDList
-			var randWordIDList = entryList;
-			var randWordIDListSize = ds_list_size(randWordIDList);
-			var loopBreak = false;
-			
-			//Loop through the wordID list to check for designated endNotes
-			for (var wordListLoop = 0; wordListLoop < randWordIDListSize; wordListLoop++) {
-				var currentWordID = ds_list_find_value(randWordIDList, wordListLoop);
-				var currentEndNoteTag = ds_grid_get(global.tokenImportGrid, endCol, currentWordID - 1);
-				
-				// Check if the word's endNote tag is one of the user designated end notes
-				for (var endTagsLoop = 0; endTagsLoop < endNoteTagsGridHeight; endTagsLoop++) {
-					if(ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colChecked, endTagsLoop)) {
-						if(string_lower(currentEndNoteTag) == ds_grid_get(endNoteTagsGrid, endNoteTagsGrid_colTag, endTagsLoop)) {
-							endNoteTagMatch = true;
-							loopBreak = true;
-							break;
-						//	show_debug_message("true");
-							//break;
-						}
-					}
-				}
-				
-				if(loopBreak) {
-					break;
-				}
+			unitTagMap = currentUnitSubMap[?"tagMap"];
+			currentTurnOrder = unitTagMap[?global.speakerField];
+			if((currentTurnOrder == previousTurnOrder)){
+				ds_list_add(currentUnitList, currentUnit);
+				importLoop++;
 			}
+
+			show_debug_message(currentTurnOrder);
 		}
+		importLoop--;
 
 	
 		// Create a Stack based on the current Set of Lines
@@ -121,10 +84,10 @@ function scr_sentStackerLoop(){
 			// Unfocus all links and chains
 			scr_unFocusAllChains();
 
+
 		}
 	
 		ds_list_clear(currentUnitList);
-		endNoteTagMatch = false;
 	}
 	splitSave = false;
 }

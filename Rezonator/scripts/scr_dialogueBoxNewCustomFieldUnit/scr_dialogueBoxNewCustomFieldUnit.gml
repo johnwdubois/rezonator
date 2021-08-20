@@ -2,8 +2,9 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	
 	var newField = obj_control.inputText;
 	
-	// add new field to the list of token fields
-	ds_list_add(obj_control.unitFieldList, newField);
+	// add new field to the list of unit fields
+	if (ds_list_find_index(obj_control.unitFieldList, newField) != -1) exit;
+	scr_addToListOnce(obj_control.unitFieldList, newField);
 	
 	// create a new submap for this field
 	var newFieldMap = ds_map_create();
@@ -12,7 +13,7 @@ function scr_dialogueBoxNewCustomFieldUnit() {
 	//add to nav window list if
 	var sizeOfNavUnitList = ds_list_size(obj_control.navUnitFieldList);
 	if(sizeOfNavUnitList < 6){
-		ds_list_add(obj_control.navUnitFieldList, newField);
+		scr_addToListOnce(obj_control.navUnitFieldList, newField);
 	}
 	
 	

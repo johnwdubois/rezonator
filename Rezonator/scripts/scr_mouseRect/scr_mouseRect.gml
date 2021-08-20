@@ -30,6 +30,7 @@ function scr_mouseRect() {
 		mouseHoldRectX1 = -1;
 		mouseHoldRectY1 = -1;
 		makingRect = false;
+		obj_chain.dragStartOriginalChain = "";
 	}
 	
 	// if user clicks, save the position of their mouse
@@ -43,6 +44,17 @@ function scr_mouseRect() {
 		
 		mouseHoldRectX1 = mouse_x;
 		mouseHoldRectY1 = mouse_y;
+		
+		// check if the unit being clicked is in a stack
+		var unitClosestToMouseSubMap = global.nodeMap[? unitClosestToMouse];
+		if (scr_isNumericAndExists(unitClosestToMouseSubMap, ds_type_map)) {
+			var unitClosestToMouseInChainsList = unitClosestToMouseSubMap[? "inChainsList"];
+			if (scr_isNumericAndExists(unitClosestToMouseInChainsList, ds_type_list)) {
+				if (ds_list_size(unitClosestToMouseInChainsList) > 0) {
+					obj_chain.dragStartOriginalChain = unitClosestToMouseInChainsList[| 0];
+				}
+			}
+		}
 	}
 	
 	// if user is making a mouse rect, let's draw it

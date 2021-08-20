@@ -94,6 +94,10 @@ function scr_panelPane_drawLineTranslationLoopClipped() {
 				
 				var speakerColor = global.colorMap[? lineSpeaker];
 				drawingSpeaker = true;
+				if(is_undefined(speakerColor)){
+					//error in epaker color found
+					speakerColor = c_red;
+				}
 				draw_set_color(merge_color(speakerColor, global.colorThemeBG, 0.4)); //soften the color
 				draw_rectangle(unitColX2 - clipX, lineNameRectY1 - clipY, lineNameRectX2 - clipX, lineNameRectY2 - clipY - 2, false);
 				draw_set_color(scr_textColorDarkOrLight(speakerColor));

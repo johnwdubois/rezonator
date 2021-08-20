@@ -27,7 +27,7 @@ function scr_strToColor(str){
     return color;
 }
 */
-
+/*
 	// BORFY'S colors
 	if (ds_map_exists(global.colorMap, str)) {
         return global.colorMap[? str];
@@ -51,6 +51,20 @@ function scr_strToColor(str){
 	var color = make_color_rgb(rValue,gValue,bValue);
 	ds_map_add(global.colorMap, str, color);
 	return color;
+*/
+
+	if (ds_map_exists(global.colorMap, str)) {
+        return global.colorMap[? str];
+    }
+	var col = make_color_hsv(obj_chain.chainHue, random_range(220, 255), random_range(220, 255));
+	obj_chain.chainHue += random_range(30, 70);
+	if (obj_chain.chainHue > 255) {
+		obj_chain.chainHue -= 255;
+	}
+	col = merge_color(col, c_white, 0.5);
+	ds_map_add(global.colorMap, str, col);
+	return col;
+
 }
 
 function scr_findHash(str,key){

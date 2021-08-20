@@ -5,7 +5,7 @@ function scr_objControlKeyDelete(){
 	// putting this stuff in its own script so that it's the same for Windows & Mac
 	
 
-	if (gridView || instance_exists(obj_dialogueBox)) {
+	if (obj_control.gridView || instance_exists(obj_dialogueBox)) {
 		exit;	
 	}
 
@@ -22,22 +22,25 @@ function scr_objControlKeyDelete(){
 	else {
 
 	
-		with(obj_panelPane){
-			if(functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != ""){
-				scr_deleteShow(obj_control.selectedChainID);
-			}	
-		}
-		if(deleteEntryPressed == false){
-			scr_deleteTreeEntry();
-		}
-		if(obj_panelPane.functionTree_treeLinkSelected != ""){
-			scr_deleteTreeLink();
-		}
-	
 		scr_deleteFromChain(true);
 	
 		if (obj_chain.currentFocusedChunkID != "") {
 			scr_deleteChunk(obj_chain.currentFocusedChunkID);
+		}
+		
+		with(obj_panelPane){
+			if(functionChainList_currentTab == functionChainList_tabShow && functionChainContents_showID != ""){
+				scr_deleteShow(obj_control.selectedChainID);
+			}	
+			if(functionChainList_currentTab == functionChainList_tabTree && obj_panelPane.functionTree_treeLinkSelected != ""){
+				scr_deleteTreeLink();
+				exit;
+			}
+			if(functionChainList_currentTab == functionChainList_tabTree && obj_control.deleteEntryPressed == false){
+				scr_deleteTreeEntry();
+				exit;
+			}
+
 		}
 	
 	}

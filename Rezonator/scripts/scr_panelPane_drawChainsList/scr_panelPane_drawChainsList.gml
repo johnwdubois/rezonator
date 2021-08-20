@@ -154,8 +154,10 @@ function scr_panelPane_drawChainsList() {
 							if (currentChainType == "stackChain") {
 								var currentUnitID = ds_map_find_value(currentEntrySubMap, "unit");
 								var currentUnitSubMap = global.nodeMap[?currentUnitID];
-								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map))
+								if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)) {
 									currentChainCaption += scr_getUnitText(currentUnitSubMap) + " ";
+								}
+								if (string_width(currentChainCaption) > windowWidth) break;
 							}
 							else {
 								currentChainCaption = "";
@@ -243,7 +245,8 @@ function scr_panelPane_drawChainsList() {
 
 						obj_chain.currentFocusedChainID = currentChainID;
 						obj_control.selectedChainID = obj_chain.currentFocusedChainID 
-
+						obj_control.rightClicked = true;
+						
 						var dropDownOptionList = ds_list_create();
 						if (functionChainList_currentTab == functionChainList_tabStackBrush) {
 							ds_list_add(dropDownOptionList, "Rename", "Recolor", "Delete", "Caption", "Clip", "Create Tree");

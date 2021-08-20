@@ -162,6 +162,27 @@ function scr_renderFilter2(){
 	// set the displayUnitList to be the filterUnitList
 	discourseSubMap[? "displayUnitList"] = filterUnitList;
 	
+	var displayUnitList = discourseSubMap[? "displayUnitList"];
+	var drawRangeUnit = displayUnitList[|0];
+	var drawRangeUnitSubMap = global.nodeMap[?drawRangeUnit];
+	var drawRangeUnitSeq = drawRangeUnitSubMap[?"unitSeq"];
+	
+	var unitListSize = ds_list_size(unitList);
+	for(var i = 0; i < unitListSize; i ++){
+		
+		var currentUnit = unitList[|i];
+		var currentUnitSubMap = global.nodeMap[?currentUnit];
+		var unitSeq = currentUnitSubMap[?"unitSeq"];	
+
+		if(unitSeq < drawRangeUnitSeq){
+			currentUnitSubMap[? "pixelY"] = -9999;
+		}
+		else{
+			currentUnitSubMap[? "pixelY"] = 9999;
+		}	
+		
+	}
+	
 	if (quickpick) {
 		ds_list_destroy(list);
 	}

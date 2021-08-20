@@ -2,6 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteTreeEntry(){
 	
+	show_debug_message("scr_deleteTreeEntry");
 	
 	obj_control.deleteEntryPressed = true;
 	show_debug_message(string(obj_chain.currentFocusedEntryID))

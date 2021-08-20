@@ -12,12 +12,15 @@ function scr_dialogueBoxNewCustomFieldEntry() {
 			else if (functionChainList_currentTab == functionChainList_tabStackBrush) chain1toManyColFieldList = obj_control.chain1toManyColFieldListStack;
 		}
 	}
-	if (ds_exists(chain1toManyColFieldList, ds_type_list)) {
+	
+	
+	if (scr_isNumericAndExists(chain1toManyColFieldList, ds_type_list)) {
 		var sizeofList = ds_list_size(chain1toManyColFieldList);
 		if(sizeofList == 6){
 			ds_list_set(chain1toManyColFieldList, obj_control.chain1ToManyColFieldToChange, newField);
 		}
 	}
+
 	
 	// create a new tagSet and shortcutSet for the new field
 	var tagSet = ds_list_create();

@@ -33,8 +33,17 @@ function scr_panelPane_drawTreeList(){
 	draw_set_valign(fa_middle);
 	draw_set_alpha(1);
 	
+	var maxTokenListSize = 15;
+	
 	// loop over trees
 	for (var i = 0; i < treeListSize; i++) {
+		
+		// don't bother drawing this stuff if it won't be on screen
+		if (y + headerHeight + scrollPlusY + textPlusY < y - strHeight
+		or y + headerHeight + scrollPlusY + textPlusY > y + windowHeight + strHeight) {
+			textPlusY += strHeight;
+			continue;
+		}
 		
 		// get data for currentClique
 		var currentTree = treeList[| i];
@@ -80,18 +89,19 @@ function scr_panelPane_drawTreeList(){
 		// name column
 		draw_text(floor(nameColX + textBuffer) - clipX, textY - clipY, string(currentTreeName));
 		
-		// name column
+		// text column
 		var fullTreeStr = ""
 		var tokenListSize = ds_list_size(tokenList);
 		var j = (ltr) ? 0 : tokenListSize-1;
-		repeat(tokenListSize){
-		//for(var j = 0 ; j < tokenListSize; j++ ){
+		var textRepeatCount = min(tokenListSize, maxTokenListSize);
+		repeat(textRepeatCount){
 			var currentTokenSubMap = global.nodeMap[? tokenList[| j]];
 			if(!scr_isNumericAndExists(currentTokenSubMap, ds_type_map)){j = (ltr) ? j+1: j-1;continue;}
 			var tokenTagMap = currentTokenSubMap[? "tagMap"];
 			fullTreeStr += (string(tokenTagMap[? global.displayTokenField]) + " ");
 			j = (ltr) ? j+1: j-1;
 		}
+		if (tokenListSize > maxTokenListSize) fullTreeStr += "...";
 		
 		// cut off section text if its too long
 		var cutoffs = 0;
@@ -112,31 +122,31 @@ function scr_panelPane_drawTreeList(){
 		mouseOverDel = scr_pointInRectangleClippedWindow(mouse_x, mouse_y, deleteColX, treeRectY1, deleteColX + deleteColWidth, treeRectY2) && mouseoverTreeRect;
 		var trashAlpha =  1;
 
-								
-		// mouseover & click on sequence arrows
-		if (mouseOverDel) {
-			draw_set_color(global.colorThemeSelected1);
-			draw_rectangle(deleteColX - clipX, treeRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, treeRectY2 - clipY, false);
-			if (mouse_check_button_released(mb_left)) {
+		if (mouseoverTreeRect || currentTreeSelected) {					
+			// mouseover & click on sequence arrows
+			if (mouseOverDel) {
+				draw_set_color(global.colorThemeSelected1);
+				draw_rectangle(deleteColX - clipX, treeRectY1 - clipY, deleteColX + deleteColWidth + global.scrollBarWidth - clipX, treeRectY2 - clipY, false);
+				if (mouse_check_button_released(mb_left)) {
 					
 					
-				if (!instance_exists(obj_dialogueBox)) {
-					instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
-					obj_dialogueBox.removeTree = true
-					obj_dialogueBox.questionWindowActive = true;
-					obj_dialogueBox.stringToBeRemoved = currentTree;
+					if (!instance_exists(obj_dialogueBox)) {
+						instance_create_layer(x, y, "InstancesDialogue", obj_dialogueBox);
+						obj_dialogueBox.removeTree = true
+						obj_dialogueBox.questionWindowActive = true;
+						obj_dialogueBox.stringToBeRemoved = currentTree;
+					}
+
+					
 				}
-
-					
-			}
 				
-			scr_createTooltip(delButtonX, treeRectY2, "Remove", obj_tooltip.arrowFaceUp);
-		}
+				scr_createTooltip(delButtonX, treeRectY2, "Remove", obj_tooltip.arrowFaceUp);
+			}
 			
 
 								
-		draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
-			
+			draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
+		}
 		
 		
 		

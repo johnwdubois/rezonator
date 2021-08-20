@@ -1,6 +1,13 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_setDialogueText(){
+	
+	if (room == rm_openingScreen) {
+		titleText = "";
+		var newVersionNum = instance_exists(obj_DBcontrol) ? obj_DBcontrol.newestVersionNum : "";
+		descriptionText = "A new version of Rezonator (version " + string(newVersionNum) + ") is available! Would you like to download it?";
+		exit;
+	}
 
 	
 	if(obj_dialogueBox.questionWindowActive){
@@ -61,6 +68,16 @@ function scr_setDialogueText(){
 			var searchSubMap = global.treeMap[?stringToBeRemoved];
 			titleText = scr_get_translation("Remove Tree");
 			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]);
+		}
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackCreate) {
+				var stackChainList = global.nodeMap[? "stackChainList"];
+				if (scr_isNumericAndExists(stackChainList, ds_type_list)) {
+					var stackChainListSize = ds_list_size(stackChainList);
+					descriptionText =  scr_get_translation("msg_stacks_created-1") + string(stackChainListSize) + scr_get_translation("msg_stacks_created-2");
+					noButtonActive = true;
+				}
+			}
 		}
 	}
 		

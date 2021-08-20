@@ -196,3 +196,8 @@ mouseOverAnyChunk = false;
 
 // update the filtered chain lists now that we have those good ol chain lists loaded
 scr_updateFilteredChainLists();
+
+dragStartOriginalChain = "";
+
+randomize();
+chainHue = random(255);

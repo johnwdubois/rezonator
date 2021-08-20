@@ -5,8 +5,10 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var textMarginLeft = 8;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
+	var camWidth = camera_get_view_width(view_camera[0]);
 	
-	
+	var sortArrowScale = 0.4;
+	if(camWidth > 2000){sortArrowScale *= 1.25;}
 	var tabHeight = functionTabs_tabHeight;
 	var chain1toManyColFieldList = -1;
 	var chainType = "";
@@ -45,7 +47,7 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			}
 			var headerRectY2 = headerRectY1 + tabHeight;
 			
-			var sortArrowX = headerRectX2 - sprite_get_width(spr_linkArrow);
+			var sortArrowX = headerRectX2 - sprite_get_width(spr_linkArrow)*sortArrowScale;
 			var sortArrowY = floor(mean(headerRectY1, headerRectY2));
 			var mouseoverSortArrow = point_in_circle(mouse_x, mouse_y, sortArrowX, sortArrowY, sprite_get_width(spr_linkArrow) * 0.5);
 			
@@ -93,7 +95,6 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 			// draw sort arrow
 			if (mouseoverColHeader || mouseoverSortArrow || obj_control.chain1toManyCustomSortColIndex == i) {
-				var sortArrowScale = 0.5;
 				if (mouseoverSortArrow) {
 					scr_createTooltip(sortArrowX, sortArrowY + (sprite_get_height(spr_linkArrow) * 0.25), "Sort", obj_tooltip.arrowFaceUp);
 					sortArrowScale *= 1.25;
