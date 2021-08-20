@@ -7,14 +7,20 @@ function scr_arrowOptions(optionSelected){
 			if(obj_chain.showTrackArrows and obj_chain.showRezArrows){
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;
+				instance_destroy(obj_dropDown);
+				break;
 			}
 			else if(!obj_chain.showTrackArrows and !obj_chain.showRezArrows){
 				obj_chain.showTrackArrows = true;
 				obj_chain.showRezArrows = true;	
+				instance_destroy(obj_dropDown);
+				break;
 			}
 			else{
 				obj_chain.showTrackArrows = false;
 				obj_chain.showRezArrows = false;
+				instance_destroy(obj_dropDown);
+				break;
 			}
 		
 		case "Track Arrows":

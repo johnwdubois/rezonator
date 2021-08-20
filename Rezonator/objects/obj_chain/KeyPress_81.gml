@@ -2,16 +2,19 @@
 // End chain adding/use
 if(keyboard_check(vk_control)) {
 	if(obj_chain.showTrackArrows and obj_chain.showRezArrows){
-				obj_chain.showTrackArrows = false;
-				obj_chain.showRezArrows = false;
+		obj_chain.showTrackArrows = false;
+		obj_chain.showRezArrows = false;
+		exit;
 	}
 	else if(!obj_chain.showTrackArrows and !obj_chain.showRezArrows){
 		obj_chain.showTrackArrows = true;
 		obj_chain.showRezArrows = true;	
+		exit;
 	}
 	else{
 		obj_chain.showTrackArrows = false;
 		obj_chain.showRezArrows = false;
+		exit;
 	}
 }
 else {
