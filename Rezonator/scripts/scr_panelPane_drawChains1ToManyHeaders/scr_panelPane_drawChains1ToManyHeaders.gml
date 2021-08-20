@@ -5,8 +5,10 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 	var lineStateLTR = (obj_control.drawLineState == obj_control.lineState_ltr);
 	var textMarginLeft = 8;
 	var dropDownButtonSize = sprite_get_width(spr_dropDown);
+	var camWidth = camera_get_view_width(view_camera[0]);
 	
 	var sortArrowScale = 0.4;
+	if(camWidth > 2000){sortArrowScale *= 1.25;}
 	var tabHeight = functionTabs_tabHeight;
 	var chain1toManyColFieldList = -1;
 	var chainType = "";
@@ -93,10 +95,9 @@ function scr_panelPane_drawChains1ToManyHeaders(){
 			
 			// draw sort arrow
 			if (mouseoverColHeader || mouseoverSortArrow || obj_control.chain1toManyCustomSortColIndex == i) {
-				
 				if (mouseoverSortArrow) {
 					scr_createTooltip(sortArrowX, sortArrowY + (sprite_get_height(spr_linkArrow) * 0.25), "Sort", obj_tooltip.arrowFaceUp);
-					if(windowWidth > 2000){sortArrowScale *= 1.25;}
+					sortArrowScale *= 1.25;
 					if (mouse_check_button_released(mb_left)) {
 						if (obj_control.chain1toManyCustomSortColIndex == -1) {
 							obj_control.chain1toManyCustomSortColIndex = i;
