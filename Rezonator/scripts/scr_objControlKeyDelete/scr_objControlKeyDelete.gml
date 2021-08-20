@@ -27,7 +27,7 @@ function scr_objControlKeyDelete(){
 				scr_deleteShow(obj_control.selectedChainID);
 			}	
 		}
-		if(obj_control.deleteEntryPressed == false){
+		if(!obj_control.deleteEntryPressed){
 			scr_deleteTreeEntry();
 		}
 		if(obj_panelPane.functionTree_treeLinkSelected != ""){

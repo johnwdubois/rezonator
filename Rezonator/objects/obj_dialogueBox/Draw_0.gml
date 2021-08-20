@@ -40,15 +40,16 @@ if(!inputWindowActive) {
 	scr_adaptFont(titleText, "M", );
 	draw_text_ext(titleTextX, descriptionTextY, descriptionText, string_height(descriptionText), boxWidth * 0.8);
 }
-	
+
+var buttonXBuffer = noButtonActive ? boxWidth * 0.2 : boxWidth * 0.07;
+var buttonYBuffer = boxHeight * 0.07;
+var buttonWidth = noButtonActive ? boxWidth * 0.25 : boxWidth * 0.3;
+var buttonHeight = boxHeight * 0.15;
+var buttonY2 = boxRectY2 - buttonYBuffer;
+var buttonY1 = buttonY2 - buttonHeight;
+
 if(!promptWindowActive) {	
 	// cancel button
-	var buttonXBuffer = boxWidth * 0.05;
-	var buttonYBuffer = boxHeight * 0.07;
-	var buttonWidth = boxWidth * 0.3;
-	var buttonHeight = boxHeight * 0.15;
-	var buttonY2 = boxRectY2 - buttonYBuffer;
-	var buttonY1 = buttonY2 - buttonHeight;
 	var cancelRectX2 = camMidX - buttonXBuffer;
 	var cancelRectX1 = cancelRectX2 - buttonWidth;
 	mouseoverCancel = point_in_rectangle(mouse_x, mouse_y, cancelRectX1, buttonY1, cancelRectX2, buttonY2) && !instance_exists(obj_dropDown);
@@ -63,19 +64,41 @@ if(!promptWindowActive) {
 	draw_text(floor(mean(cancelRectX1, cancelRectX2)), floor(mean(buttonY1, buttonY2)), cancelText);
 }
 // ok button
-var buttonXBuffer = boxWidth * 0.1;
-var buttonYBuffer = boxHeight * 0.07;
-var buttonY2 = boxRectY2 - buttonYBuffer;
-var buttonY1 = buttonY2 - buttonHeight;
 var okRectX1 = camMidX + buttonXBuffer;
 var okRectX2 = okRectX1 + buttonWidth;
 mouseoverOk = point_in_rectangle(mouse_x, mouse_y, okRectX1, buttonY1, okRectX2, buttonY2) && !instance_exists(obj_dropDown);
 draw_set_color(merge_color(global.colorThemeRezPink, global.colorThemeBG, mouseoverOk ? 0.2 : 0));
 draw_roundrect(okRectX1, buttonY1, okRectX2, buttonY2, false);
 draw_set_color(global.colorThemeBG);
-var okText = (room == rm_openingScreen) ? "help_label_download" : "OK";
+var okText = "OK";
+if (room == rm_openingScreen) okText = "help_label_download";
+else if (noButtonActive) okText = "msg_yes";
 okText = scr_get_translation(okText);
 draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), okText);
+
+if (noButtonActive) {
+	
+	var noRectX1 = camMidX - (buttonWidth * 0.5);
+	var noRectX2 = noRectX1 + buttonWidth;
+	mouseoverNo = point_in_rectangle(mouse_x, mouse_y, noRectX1, buttonY1, noRectX2, buttonY2) && !instance_exists(obj_dropDown);
+	
+	draw_set_color(mouseoverNo ? global.colorThemeSelected1 : global.colorThemeBG);
+	draw_roundrect(noRectX1, buttonY1, noRectX2, buttonY2, false);
+	draw_set_color(global.colorThemeRezPink);
+	draw_roundrect(noRectX1, buttonY1, noRectX2, buttonY2, true);
+	draw_set_color(global.colorThemeText);
+	var noText = "msg_no";
+	noText = scr_get_translation(noText);
+	scr_adaptFont(noText, "M", false);
+	draw_text(floor(mean(noRectX1, noRectX2)), floor(mean(buttonY1, buttonY2)), noText);
+	
+}
+
+
+
+
+
+
 
 
 
@@ -83,27 +106,28 @@ draw_text(floor(mean(okRectX1, okRectX2)), floor(mean(buttonY1, buttonY2)), okTe
 if (inputWindowActive) {
 	scr_drawDialogueBox_input();
 }
-
 else if(questionWindowActive) {
 	scr_drawDialogueBox_question();
 }
-
 else if(promptWindowActive) {
 	scr_drawDialogueBox_question();
 }
 
 //selection paths
 var clickOk = mouseoverOk && mouse_check_button_released(mb_left);
+var clickNo = mouseoverNo && mouse_check_button_released(mb_left);
+var clickCancel = mouseoverCancel && mouse_check_button_released(mb_left);
 
 // ok button check
 if (clickOk || keyboard_check_pressed(vk_enter)) {
 	scr_dialogueConfirm();
 }
-	
-var clickCancel = mouseoverCancel && mouse_check_button_released(mb_left);
-
-// cancel button check
-if (clickCancel || keyboard_check_pressed(vk_escape)) {
+else if (clickNo) {
+	scr_dialogueNo();
+}
+else if (clickCancel || keyboard_check_pressed(vk_escape)) {
+	// cancel button check
+	show_debug_message("closing dialogue box...");
 	with (obj_control) alarm[11] = 60;
 			
 	scr_closeDialogueBoxVariables();

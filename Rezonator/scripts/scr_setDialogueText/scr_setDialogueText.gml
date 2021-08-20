@@ -69,6 +69,16 @@ function scr_setDialogueText(){
 			titleText = scr_get_translation("Remove Tree");
 			descriptionText =  "This will permanently delete the tree:  " + string(searchSubMap[? "name"]);
 		}
+		if (instance_exists(obj_stacker)) {
+			if (obj_stacker.confirmStackCreate) {
+				var stackChainList = global.nodeMap[? "stackChainList"];
+				if (scr_isNumericAndExists(stackChainList, ds_type_list)) {
+					var stackChainListSize = ds_list_size(stackChainList);
+					descriptionText =  scr_get_translation("msg_stacks_created-1") + string(stackChainListSize) + scr_get_translation("msg_stacks_created-2");
+					noButtonActive = true;
+				}
+			}
+		}
 	}
 		
 	if(obj_dialogueBox.inputWindowActive){
