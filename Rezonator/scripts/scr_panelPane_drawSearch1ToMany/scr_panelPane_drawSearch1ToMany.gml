@@ -14,10 +14,27 @@ function scr_panelPane_drawSearch1ToMany(){
 	var textAdjustY = 0;
 	var drawScrollbar = true;	
 	var strHeight = string_height("0") * 1.5;
+	var spaceWidth = string_width(" ");
 	
+	// get hit col width by finding the longest string width in the search's search term list
 	var unitColWidth = windowWidth * 0.1;
+	var hitColWidth = windowWidth * 0.05;
 	var contextColWidth = windowWidth * 0.35;
-	var hitColWidth = windowWidth * 0.2;
+	if(scr_isNumericAndExists(global.searchMap, ds_type_map)){
+		var searchSubMap = global.searchMap[? obj_panelPane.functionSearchList_searchSelected];
+		if (scr_isNumericAndExists(searchSubMap, ds_type_map)) {
+			var searchTermList = searchSubMap[? "searchTermList"];
+			if (scr_isNumericAndExists(searchTermList, ds_type_list)) {
+				var searchTermListSize = ds_list_size(searchTermList);
+				for (var i = 0; i < searchTermListSize; i++) {
+					var strWidth = string_width(searchTermList[| i]) + (spaceWidth * 2);
+					hitColWidth = max(hitColWidth, strWidth);
+				}
+			}
+		}
+	}
+	hitColWidth = clamp(hitColWidth, windowWidth * 0.05, windowWidth * 0.4);
+
 
 	
 	var anyOptionMousedOver = false;
@@ -256,10 +273,15 @@ function scr_panelPane_drawSearch1ToMany(){
 		else{
 			colWidth = hitColWidth;
 		}
+		
 		var headerRectX1 =  x + headerPlusX;
 		var headerRectY1 = y;
 		var headerRectX2 = headerRectX1 + colWidth;
 		var headerRectY2 = headerRectY1 + headerHeight;
+		if (i == 3) {
+			headerRectX2 = windowX + windowWidth;
+			colWidth = headerRectX2 - headerRectX1;
+		}
 		var mouseoverColHeader = point_in_rectangle(mouse_x, mouse_y, headerRectX1, headerRectY1, headerRectX2, headerRectY2) && !instance_exists(obj_dropDown) && !instance_exists(obj_dialogueBox);
 			
 		// get coordinates for header text
@@ -288,23 +310,7 @@ function scr_panelPane_drawSearch1ToMany(){
 	
 		// get header string for static columns
 		var colName = "";
-		switch (i) {
-			case 0:
-				colName = "unit";
-				break;
-			case 1:
-				colName = "before"; // stacks
-				break;
-			case 2:
-				colName = "hit"; // stacks
-				break;
-			case 3:
-				colName = "after"; // stacks
-				break;
-			default:
-				colName = "N/A";
-				break;
-		}
+		if (i == 0) colName = scr_get_translation("error_unit");
 
 		// make headers not overlap with each other
 		draw_set_color(global.colorThemeBG);
@@ -329,10 +335,11 @@ function scr_panelPane_drawSearch1ToMany(){
 	
 				
 	
-
-
-		draw_set_color(global.colorThemeBorders);
-		draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
+		// draw vertical line separating unit column from the others
+		if (i <= 1) {
+			draw_set_color(global.colorThemeBorders);
+			draw_line_width(headerRectX1, y, headerRectX1, y + windowHeight, 1);
+		}
 
 
 		
@@ -350,17 +357,18 @@ function scr_panelPane_drawSearch1ToMany(){
 		
 	// show buttons (next) 
 	var showNextButtonText = "  >  ";
+	var buttonWidth = string_width(showNextButtonText)
 	scr_adaptFont(showNextButtonText, "M");
-	var showNextButtonX2 = afterColX - 20;
+	var showNextButtonX2 = windowX + windowWidth - 20;
 	var showNextButtonY1 = y + (functionTabs_tabHeight * 0.5) - (strHeight * 0.25);
-	var showNextButtonX1 = showNextButtonX2 - string_width(showNextButtonText);
+	var showNextButtonX1 = showNextButtonX2 - buttonWidth;
 	var showNextButtonY2 = showNextButtonY1 + strHeight/2;			
 		
 	// show buttons (prev)
 	var showPrevButtonText = "  <  ";
-	var showPrevButtonX1 = hitColX + 20;
+	var showPrevButtonX2 = showNextButtonX1 - (buttonWidth / 2);
+	var showPrevButtonX1 = showPrevButtonX2 - buttonWidth;
 	var showPrevButtonY1 = showNextButtonY1;
-	var showPrevButtonX2 = showPrevButtonX1 + string_width(showPrevButtonText);
 	var showPrevButtonY2 = showNextButtonY2;
 		
 		

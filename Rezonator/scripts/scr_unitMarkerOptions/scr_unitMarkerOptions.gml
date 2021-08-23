@@ -22,7 +22,7 @@ function scr_unitMarkerOptions(optionSelected) {
 		with (obj_dropDown) instance_destroy();
 		var indexOfTranslation = ds_list_find_index(obj_control.panelPaneTabList, obj_panelPane.functionChainList_tabTranslations);
 		if(indexOfTranslation < 0){
-			ds_list_insert(obj_control.panelPaneTabList, 8, obj_panelPane.functionChainList_tabTranslations);
+			ds_list_insert(obj_control.panelPaneTabList, 2, obj_panelPane.functionChainList_tabTranslations);
 		}
 	}
 

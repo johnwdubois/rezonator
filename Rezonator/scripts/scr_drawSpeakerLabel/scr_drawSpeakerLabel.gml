@@ -39,6 +39,11 @@ function scr_drawSpeakerLabel(unitID, unitSubMap, pixelY) {
 			sectionColor = scr_strToColor(sectionText);
 		}
 		
+		// dim the speaker color if we're in dark theme
+		if (global.colorTheme == 1 && i == 1) {
+			sectionColor = merge_color(sectionColor, global.colorThemeBG, 0.3);
+		}
+		
 		// draw rectangle
 		draw_set_color(sectionColor);
 		draw_rectangle(sectionRectX1, sectionRectY1, sectionRectX2, sectionRectY2, false);
