@@ -133,6 +133,15 @@ function scr_panelPane_drawChains1ToMany() {
 			if (!scr_isNumericAndExists(IDSubMap, ds_type_map)) continue;
 			
 			var unitID = (chainType == "stackChain") ? currentID : IDSubMap[? "unit"];
+			if (chainType != "stackChain") {
+				if (scr_isChunk(IDSubMap)) {
+					var chunkFirstToken = scr_getFirstWordOfChunk(IDSubMap);
+					var chunkFirstTokenSubMap = global.nodeMap[? chunkFirstToken];
+					if (scr_isNumericAndExists(chunkFirstTokenSubMap, ds_type_map)) {
+						unitID = chunkFirstTokenSubMap[? "unit"];
+					}
+				}
+			}
 			var unitIDSubMap = global.nodeMap[? unitID];
 		
 			// Set size of rectangle around word
