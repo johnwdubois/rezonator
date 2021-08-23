@@ -27,7 +27,7 @@ function scr_getUnitTextStupid(unitSubMap){
 		else{i--;}
 	}
 	
-	var width = string_width(unitText) + (string_width(" ") * (gridSpaceHorizontal/8) * repeatAmount);
+	var width = string_width(unitText) + (string_width(" ") * (gridSpaceHorizontal/10) * repeatAmount);
 	
 	return width;
 }

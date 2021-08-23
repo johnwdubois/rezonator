@@ -4,7 +4,7 @@ function scr_openFile() {
 
 	if(global.previousImportDirectory == ""){
 	
-	var discourseDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Transcript";
+		var discourseDirString = global.rezonatorDirString + "\\Data\\SBCorpus\\Transcript";
 		if (os_type == os_macosx) {
 			discourseDirString = global.currentDirString + "/Data/SBCorpus/Transcript";
 		}
