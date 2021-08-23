@@ -2,7 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_refreshAlignment(){
 	
-	
 	// refresh alignment for all rez chains
 	var rezChainList = global.nodeMap[? "rezChainList"];
 	if (scr_isNumericAndExists(rezChainList, ds_type_list)) {

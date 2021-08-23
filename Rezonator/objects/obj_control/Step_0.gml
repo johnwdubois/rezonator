@@ -335,7 +335,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 		}
 		
 		if (keyboard_check_pressed(vk_right) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			scrollPlusXDest += gridSpaceHorizontal;
+			scrollPlusXDest -= gridSpaceHorizontal;
 		}
 		if ((keyboard_check_pressed(vk_right) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_end) and not keyboard_check(vk_control))
@@ -345,7 +345,7 @@ if (!clickedInChainList and !clickedInChainContents and not mouseoverHelpPane an
 
 
 		if (keyboard_check_pressed(vk_left) and not keyboard_check(vk_control) and not dialogueBoxActive) {
-			scrollPlusXDest -= gridSpaceHorizontal;
+			scrollPlusXDest += gridSpaceHorizontal;
 		}
 		if ((keyboard_check_pressed(vk_left) and keyboard_check(vk_control))
 		or (keyboard_check_pressed(vk_home) and not keyboard_check(vk_control))

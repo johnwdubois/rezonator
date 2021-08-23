@@ -46,11 +46,13 @@ function scr_fontSizeControl() {
 				//Horizontal			
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal -= 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			else {
 				if (!gridView) {
 					gridSpaceHorizontal -= 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			canPressPlus = false;
@@ -98,11 +100,13 @@ function scr_fontSizeControl() {
 				//horizontal
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal += 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			else {
 				if (!gridView) {
 					gridSpaceHorizontal += 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			canPressMinus = false;
@@ -112,6 +116,7 @@ function scr_fontSizeControl() {
 		or keyboard_check(vk_control) and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 			}
 		}
 	
@@ -160,11 +165,13 @@ function scr_fontSizeControl() {
 				//Horizontal			
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal -= 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			else {
 				if (!gridView) {
 					gridSpaceHorizontal -= 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			canPressPlus = false;
@@ -212,11 +219,13 @@ function scr_fontSizeControl() {
 				//horizontal
 				if (!obj_control.gridView) {
 					obj_control.gridSpaceHorizontal += 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			else {
 				if (!gridView) {
 					gridSpaceHorizontal += 20;
+					if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 				}
 			}
 			canPressMinus = false;
@@ -226,6 +235,7 @@ function scr_fontSizeControl() {
 		or keyboard_check(vk_control) and keyboard_check_pressed(ord("0"))) {
 			if (!gridView) {
 				gridSpaceHorizontal = 100;
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 			}
 		}
 	
