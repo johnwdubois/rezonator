@@ -24,17 +24,19 @@ function scr_zoomOptions(optionSelected) {
 		
 			if (!obj_control.gridView) {
 				obj_control.gridSpaceHorizontal += 20;
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 			}
 		
-			//show_message("BUH 4");
+			show_debug_message("BUH 4");
 			break;
 		case "menu_narrow":
 		
 			if (!obj_control.gridView) {
 				obj_control.gridSpaceHorizontal -= 20;
+				if (!scr_checkNativeJustification() && obj_control.shape == obj_control.shapeBlock) scr_refreshDisplayCol();
 			}
 		
-			//show_message("BUH 5");
+			show_debug_message("BUH 5");
 			break;
 		case "help_label_tall-rows":
 			

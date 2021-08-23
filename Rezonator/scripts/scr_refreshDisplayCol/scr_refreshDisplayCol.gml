@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_refreshDisplayCol(){
 	
+	show_debug_message("scr_refreshDisplayCol");
+	
 	obj_control.chainStretchCheck = false;
 	with (obj_alarm2) alarm[2] = 15;
 	var camWidth = camera_get_view_width(view_camera[0]);
