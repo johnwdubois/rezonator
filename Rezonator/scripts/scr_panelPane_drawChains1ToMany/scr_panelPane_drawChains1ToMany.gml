@@ -134,8 +134,8 @@ function scr_panelPane_drawChains1ToMany() {
 			
 			var unitID = (chainType == "stackChain") ? currentID : IDSubMap[? "unit"];
 			if (chainType != "stackChain") {
-				if (scr_isChunk(IDSubMap)) {
-					var chunkFirstToken = scr_getFirstWordOfChunk(IDSubMap);
+				if (scr_isChunk(currentID)) {
+					var chunkFirstToken = scr_getFirstWordOfChunk(currentID);
 					var chunkFirstTokenSubMap = global.nodeMap[? chunkFirstToken];
 					if (scr_isNumericAndExists(chunkFirstTokenSubMap, ds_type_map)) {
 						unitID = chunkFirstTokenSubMap[? "unit"];

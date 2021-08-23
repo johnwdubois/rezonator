@@ -1,5 +1,6 @@
 function scr_jumpToUnit(unitOrSeq) {
 	
+	show_debug_message("scr_jumpToUnit: " + string(unitOrSeq));
 	if( unitOrSeq == "" || unitOrSeq == undefined ){exit;}
 	
 	// get display unit list
