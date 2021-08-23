@@ -49,12 +49,22 @@ function scr_panelPane_drawTreeList(){
 		var currentTree = treeList[| i];
 		var currentTreeSubMap = global.treeMap[? currentTree];
 		if (!scr_isNumericAndExists(currentTreeSubMap, ds_type_map)) {
+			textPlusY += strHeight;
 			continue;
 		}
 		
+		// get tree name and its token list, and make sure that exists
 		var currentTreeName = currentTreeSubMap[? "name"];
 		var currentTreeSelected = (functionTree_treeSelected == currentTree);
 		var tokenList = currentTreeSubMap[? "tokenList"];
+		if (!scr_isNumericAndExists(tokenList, ds_type_list)) {
+			textPlusY += strHeight;
+			continue;
+		}
+		if (ds_list_size(tokenList) < 1) {
+			textPlusY += strHeight;
+			continue;
+		}
 		
 		// Get dimensions of rectangle around tree name
 		var treeRectX1 = x;
@@ -114,7 +124,15 @@ function scr_panelPane_drawTreeList(){
 		}
 		
 		scr_adaptFont(string(fullTreeStr), "M");
-		draw_text(floor(captionColX + textBuffer) - clipX, textY - clipY, string(fullTreeStr));	
+		draw_text(floor(captionColX + textBuffer) - clipX, textY - clipY, string(fullTreeStr));
+		
+		// get unitID of the first token, for double-click to jump
+		var unitToJumpTo = "";
+		var firstToken = tokenList[| 0];
+		var firstTokenSubMap = global.nodeMap[? firstToken];
+		if (scr_isNumericAndExists(firstTokenSubMap, ds_type_map)) {
+			unitToJumpTo = firstTokenSubMap[? "unit"];
+		}
 	
 		// get coordinates for delete button
 		var delButtonX = mean(deleteColX, deleteColX + deleteColWidth);
@@ -137,16 +155,21 @@ function scr_panelPane_drawTreeList(){
 						obj_dialogueBox.stringToBeRemoved = currentTree;
 					}
 
-					
 				}
 				
 				scr_createTooltip(delButtonX, treeRectY2, "Remove", obj_tooltip.arrowFaceUp);
+			}
+			else {
+				if (mouse_check_button_released(mb_left)) {
+					scr_jumpToUnitDoubleClick(unitToJumpTo);
+				}
 			}
 			
 
 								
 			draw_sprite_ext(spr_trash, 0, delButtonX - clipX, delButtonY - clipY, .7, .7, 0, global.colorThemeText, trashAlpha);
 		}
+		
 		
 		
 		

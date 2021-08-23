@@ -109,6 +109,8 @@ function scr_deleteToken(tokenID){
 				if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
 				
 				var currentEntryTokenList = currentEntrySubMap[? "tokenList"];
+				if (!scr_isNumericAndExists(currentEntryTokenList, ds_type_list)) continue;
+				
 				if (ds_list_find_index(currentEntryTokenList, tokenID) >= 0) {				
 					
 					// we have found the corresponding tree entry, let's remove it from the entry's tokenList
@@ -120,13 +122,33 @@ function scr_deleteToken(tokenID){
 						scr_deleteTreeEntry();
 						scr_deleteFromList(currentSetList, currentEntry);
 						
-						// now we have to update all the sequence values from this tree
+						// now we must destroy the entrySubMap itself, everything data structure it contains, and remove it from the treeMap
+						ds_map_delete(global.treeMap, currentEntry);
+						var currentEntryGoalLinkList = currentEntrySubMap[? "goalLinkList"];
+						if (scr_isNumericAndExists(currentEntryGoalLinkList, ds_type_list)) ds_list_destroy(currentEntryGoalLinkList);
+						ds_list_destroy(currentEntryTokenList);
+						ds_map_destroy(currentEntrySubMap);
 					}
 				}
 			}
 			
 			// remove the token from the tree's tokenList
 			scr_deleteFromList(currentTokenList, tokenID);
+			
+			// if there is nothing else in this tree, let's delete the entire tree
+			if (ds_list_size(currentTokenList) < 1) {
+				scr_deleteTree(currentTree);
+			}
+			else {
+				// now we have to update all the order values from this tree
+				var currentSetListSize = ds_list_size(currentSetList);
+				for (var j = 0; j < currentSetListSize; j++) {
+					var currentEntry = currentSetList[| j];
+					var currentEntrySubMap = global.treeMap[? currentEntry];
+					if (!scr_isNumericAndExists(currentEntrySubMap, ds_type_map)) continue;
+					currentEntrySubMap[? "order"] = j;
+				}
+			}
 		}
 	}
 	
