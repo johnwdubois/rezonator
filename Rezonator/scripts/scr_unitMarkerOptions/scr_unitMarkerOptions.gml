@@ -20,7 +20,10 @@ function scr_unitMarkerOptions(optionSelected) {
 		scr_addToListOnce(global.translationList, obj_control.unitFieldToChange);
 		global.currentTranslation = obj_control.unitFieldToChange;
 		with (obj_dropDown) instance_destroy();
-		ds_list_insert(obj_control.panelPaneTabList, 8, obj_panelPane.functionChainList_tabTranslations);
+		var indexOfTranslation = ds_list_find_index(obj_control.panelPaneTabList, obj_panelPane.functionChainList_tabTranslations);
+		if(indexOfTranslation < 0){
+			ds_list_insert(obj_control.panelPaneTabList, 8, obj_panelPane.functionChainList_tabTranslations);
+		}
 	}
 
 
