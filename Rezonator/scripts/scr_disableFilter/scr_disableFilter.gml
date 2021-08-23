@@ -22,7 +22,10 @@ function scr_disableFilter(){
 	var displayUnitList = discourseSubMap[? "displayUnitList"];
 	var drawRangeUnit = displayUnitList[|0];
 	var drawRangeUnitSubMap = global.nodeMap[?drawRangeUnit];
-	var drawRangeUnitSeq = drawRangeUnitSubMap[?"unitSeq"];
+	var drawRangeUnitSeq = 0;
+	if(scr_isNumericAndExists(drawRangeUnitSubMap,ds_type_map)){
+		drawRangeUnitSeq = drawRangeUnitSubMap[?"unitSeq"];
+	}
 	var unitList = discourseSubMap[? "unitList"];
 	
 	
@@ -36,14 +39,16 @@ function scr_disableFilter(){
 		
 		var currentUnit = unitList[|i];
 		var currentUnitSubMap = global.nodeMap[?currentUnit];
-		var unitSeq = currentUnitSubMap[?"unitSeq"];	
+		if(scr_isNumericAndExists(currentUnitSubMap,ds_type_map)){
+			var unitSeq = currentUnitSubMap[?"unitSeq"];	
 
-		if(unitSeq < drawRangeUnitSeq){
-			currentUnitSubMap[? "pixelY"] = -9999;
+			if(unitSeq < drawRangeUnitSeq){
+				currentUnitSubMap[? "pixelY"] = -9999;
+			}
+			else{
+				currentUnitSubMap[? "pixelY"] = 9999;
+			}	
 		}
-		else{
-			currentUnitSubMap[? "pixelY"] = 9999;
-		}	
 		
 	}
 	
