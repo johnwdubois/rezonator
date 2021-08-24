@@ -2,6 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_drawLineEntryList(unitID, unitSubMap, entryList, pixelY){
 	
+	if (pixelY + gridSpaceVertical < wordTopMargin || pixelY - gridSpaceVertical > camera_get_view_height(view_camera[0])) exit;
+	
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	draw_set_valign(fa_middle);

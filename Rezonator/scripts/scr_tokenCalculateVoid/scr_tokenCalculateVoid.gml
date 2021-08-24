@@ -25,11 +25,17 @@ function scr_tokenCalculateVoid(tokenID){
 	var tokenDisplayCol = tokenSubMap[? "displayCol"];
 
 	// get displayCol of previous token
-	var prevTokenID = scr_prevTokenInSequence(tokenID);
+	var prevTokenID = tokenSubMap[? "prevToken"];
+	if (is_undefined(prevTokenID)) tokenSubMap[? "prevToken"] = scr_prevTokenInSequence(tokenID);
 	var prevTokenDisplayCol = -1;
 	if (prevTokenID != "" && tokenSeq > 0) {
 		var prevTokenSubMap = global.nodeMap[? prevTokenID];
-		prevTokenDisplayCol = prevTokenSubMap[? "displayCol"];
+		if (is_undefined(prevTokenSubMap)) {
+			tokenSubMap[? "prevToken"] = scr_prevTokenInSequence(tokenID);
+		}
+		else {
+			prevTokenDisplayCol = prevTokenSubMap[? "displayCol"];
+		}
 	}
 	
 

@@ -86,4 +86,15 @@ function scr_newToken(newTokenStr, refTokenID) {
 		}
 	}
 	
+	// run through unit again and refresh each token's prevToken
+	sizeOfEntryList = ds_list_size(unitEntryList);
+	for (var i = 0; i < sizeOfEntryList; i++) {
+		var currentEntry = unitEntryList[| i];
+		var currentEntrySubMap = global.nodeMap[? currentEntry];
+		var currentToken = currentEntrySubMap[? "token"];
+		var currentTokenSubMap = global.nodeMap[? currentToken];
+		
+		currentTokenSubMap[? "prevToken"] = scr_prevTokenInSequence(currentToken);
+	}
+	
 }
