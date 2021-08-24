@@ -91,22 +91,20 @@ function scr_chainOrderMap(){
 								}
 							}
 							
-							
+						
 							for (var m = 0; m < currentInChunkListSize; m++) {
 								var currentChunk = currentInChunkList[| m];
 								if (scr_getFirstWordOfChunk(currentChunk) == _currentToken) {
-										
 									var currentChunkSubMap = global.nodeMap[? currentChunk];
 									var currentChunkInChainsList = currentChunkSubMap[? "inChainsList"];
 									var currentChunkInChainsListSize = ds_list_size(currentChunkInChainsList);
 										
-									// check everything in this token's inChainsList to see if it is a rezChain
+									// check everything in this chunk's inChainsList to see if it is in a rezChain
 									for (var n = 0; n < currentChunkInChainsListSize; n++) {
 										
 										var chunksCurrentChain = currentChunkInChainsList[| n];
 										var chunksCurrentChainSubMap = global.nodeMap[? chunksCurrentChain];
-										if (!scr_checkSideLink(chunksCurrentChain, currentChunk)) {
-										
+										if (!scr_checkSideLink(chunksCurrentChain, _currentToken)) {
 											if (chunksCurrentChainSubMap[? "type"] == "rezChain") {
 												if (!_currentEntrySubMap[? "stretch"]) {
 													scr_addToListOnce(currentChainOrderList, chunksCurrentChain);
