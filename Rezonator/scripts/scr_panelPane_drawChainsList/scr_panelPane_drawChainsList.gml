@@ -62,7 +62,7 @@ function scr_panelPane_drawChainsList() {
 	var filterRectMargin = 8;
 	var filterRectSize = (strHeight / 2) + 5;
 	var checkboxColX = x;
-	var checkboxColWidth = filterRectMargin + (filterRectSize * 2);
+	var checkboxColWidth = 0;//filterRectMargin + (filterRectSize * 2);
 	var checkboxSize = checkboxColWidth * 0.35;
 	var optionsColX = checkboxColX + checkboxColWidth;
 	var optionsColWidth = windowWidth * 0.14;
