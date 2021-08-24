@@ -507,6 +507,7 @@ if (keyboard_check(vk_alt) and keyboard_check(vk_shift) and keyboard_check_press
 	}
 	keyboard_string = "";
 	room_goto(rm_openingScreen);
+	scr_loadINI();
 }
 
 

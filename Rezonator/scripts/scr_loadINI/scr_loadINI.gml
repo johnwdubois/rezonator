@@ -54,6 +54,10 @@ function scr_loadINI() {
 			if(room == rm_openingScreen){
 
 				global.rememberMe = ds_map_find_value(map, "rememberMe");
+				
+				if(ds_map_find_value(map, "importType") != undefined){
+					global.importType = ds_map_find_value(map, "importType");
+				}
 			
 				if(ds_map_find_value(map, "readHintHide") != undefined){
 					global.readHintHide = ds_map_find_value(map, "readHintHide");
@@ -115,7 +119,7 @@ function scr_loadINI() {
 				global.fontSize = ds_map_find_value(map, "fontSize"); 
 
 			
-			
+			/*
 				if (instance_exists(obj_gridViewer)) {
 					if (is_numeric(obj_gridViewer.gridViewColXListMap)) {
 						if (ds_exists(obj_gridViewer.gridViewColXListMap, ds_type_map)) {
@@ -136,7 +140,7 @@ function scr_loadINI() {
 					}
 				
 				}
-
+			*/
 		
 
 			}

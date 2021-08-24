@@ -78,17 +78,14 @@ function scr_drawChains() {
 			var currentTokenID2 = currentEntry2SubMap[? "token"];
 			
 			// if this token is a chunk, we will just draw the line coming out of the chunk's first token
-			if (scr_isChunk(currentTokenID1)) currentTokenID1 =scr_getFirstWordOfChunk(currentTokenID1);
-			if (scr_isChunk(currentTokenID2)) {
-				currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
-				token2IsChunk = true;
-			}
+			if (scr_isChunk(currentTokenID1)) currentTokenID1 = scr_getFirstWordOfChunk(currentTokenID1);
+			if (scr_isChunk(currentTokenID2)) currentTokenID2 = scr_getFirstWordOfChunk(currentTokenID2);
 
 			
 			// get tokenSubMaps
 			var currentToken1SubMap = global.nodeMap[? currentTokenID1];
 			var currentToken2SubMap = global.nodeMap[? currentTokenID2];
-			if (!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)) {show_debug_message("scr_drawChains ... currentToken1SubMap does not exist") continue;}
+			if (!scr_isNumericAndExists(currentToken1SubMap, ds_type_map)) { show_debug_message("scr_drawChains ... currentToken1SubMap does not exist") continue;}
 			if (!scr_isNumericAndExists(currentToken2SubMap, ds_type_map)){ show_debug_message("scr_drawChains ... currentToken2SubMap does not exist") continue;}
 				
 			// get tokenTagSubMaps
@@ -104,6 +101,13 @@ function scr_drawChains() {
 			var tokenUnitID1SubMap = global.nodeMap[? tokenUnitID1];
 			var tokenUnitID2SubMap = global.nodeMap[? tokenUnitID2];
 			
+			
+			lineY1 = tokenUnitID1SubMap[?"pixelY"];
+			if (lineY1 < 0 or lineY1 > camHeight) continue;
+			
+			lineX1 = currentToken1SubMap[?"pixelX"];
+			
+			
 			// check if the units are active
 			var unit1Active = tokenUnitID1SubMap[? "active"];
 			var unit2Active = tokenUnitID2SubMap[? "active"];
@@ -112,8 +116,7 @@ function scr_drawChains() {
 			var currentWordStringWidth1 = string_width(string(currentTagSubMap1[? global.displayTokenField]));
 			var currentWordStringWidth2 = string_width(string(currentTagSubMap2[? global.displayTokenField]));
 		
-			lineX1 = currentToken1SubMap[?"pixelX"];
-			lineY1 = tokenUnitID1SubMap[?"pixelY"];
+
 		
 	
 			var sideLink = false;

@@ -33,28 +33,7 @@ global.neworOpen = false;
 
 
 
-global.importType_Default = 0;
-global.importType_CSV = "One Word per Line";
-global.importType_CoNLLU = "CoNLL-U";
-global.importType_IGT = "Interlinear Glossed Text";
-global.importType_PlainText = "Song & Verse";
-global.importType_TabDelimited = "Elan (tab-delimited)";
-global.importType_Paragraph = "Prose";
-global.importType_Transcription = "Transcription";
 
-// create list to hold all the import types (so we can loop over them easily)
-global.importTypeList = ds_list_create();
-ds_list_add(global.importTypeList,
-	global.importType_PlainText,
-	global.importType_Paragraph,
-	global.importType_CSV,
-	global.importType_CoNLLU,
-	global.importType_Transcription,
-	global.importType_TabDelimited,
-	global.importType_IGT);
-
-// by default, we will set importType to be the first item in the importTypeList
-global.importType = ds_list_find_value(global.importTypeList, 0);
 
 
 
@@ -276,18 +255,7 @@ loopItterations = 0;
 
 
 
-//ini variables
-global.autosaveTimerFull = 600;
-global.autosaveTimer = global.autosaveTimerFull;
-global.previousRezDirectory = "";
-global.previousImportDirectory = "";
-global.fileExtentionOrder = "TXT file|*.txt|XML file|*.xml|CSV file|*.csv|JSON file|*.json";
-global.previousLevelEstimates = ds_list_create();
-global.previousSpecialFields = ds_list_create();
-ds_list_clear(global.previousLevelEstimates);
-ds_list_clear(global.previousSpecialFields);
 
-global.readHintHide = false;
 
 
 
@@ -406,7 +374,8 @@ ds_map_add(global.keyboardShortcutMap, "menu_developer", "ALT+SHIFT+D");
 //to abstract dropdown options with checks later on. I've been doing them case by case so far
 global.checkDropdownMap = ds_map_create();
 
-scr_preImportInitiate();
+
+
 showPreImportScreen = false;
 
 global.tokenCountTotal = 0;
@@ -422,3 +391,4 @@ hoverColorMergeImport = 0;
 hoverColorMergeHelp = 0;
 
 global.dirCopyDebugList = ds_list_create();
+

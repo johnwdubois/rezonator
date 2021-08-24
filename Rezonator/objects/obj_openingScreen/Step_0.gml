@@ -48,10 +48,6 @@ if (global.skipToImportScreen) {
 	global.currentDirString = global.previousImportDirectory;
 }
 
-if (keyboard_check(vk_control) && keyboard_check_pressed(ord("U"))) {
-	global.importType = global.importType_IGT;
-	show_debug_message("global.importType = global.importType_IGT");
-}
 
 
 

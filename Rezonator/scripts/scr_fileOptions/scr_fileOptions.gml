@@ -60,10 +60,10 @@ function scr_fileOptions(optionSelected) {
 					}
 				}
 			}
-			
+
 			global.skipToImportScreen = true;
 			room_goto(rm_openingScreen);
-			
+			scr_loadINI();
 			break;
 		case "menu_export":
 			
@@ -135,7 +135,7 @@ function scr_fileOptions(optionSelected) {
 
 			keyboard_string = "";
 			room_goto(rm_openingScreen);
-		
+			scr_loadINI();
 			//show_message("BUH 5");
 			break;
 		default:

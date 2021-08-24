@@ -68,7 +68,7 @@ function scr_preImportFileTypeWindow(){
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(1);
 	
-	var preImportInfoGrid = obj_openingScreen.preImportInfoGrid;
+	var preImportInfoGrid = global.preImportInfoGrid;
 	var preImportInfoGridWidth = ds_grid_width(preImportInfoGrid);
 	var preImportInfoGridHeight = ds_grid_height(preImportInfoGrid);
 	var strHeight = string_height("A") * 1.1;
@@ -93,7 +93,7 @@ function scr_preImportFileTypeWindow(){
 		var mouseOverOption = point_in_rectangle(mouse_x,mouse_y, tableX1,boxY1,tableX2,boxY2);
 		
 		
-		if(ds_grid_get(preImportInfoGrid, obj_openingScreen.preImportInfoGrid_colChoose, i) == false){
+		if(ds_grid_get(preImportInfoGrid, global.preImportInfoGrid_colChoose, i) == false){
 			draw_set_color(global.colorThemeSelected1);
 			if(mouseOverOption){
 				draw_set_color(merge_color(global.colorThemeSelected1, c_white, .4));
@@ -112,7 +112,7 @@ function scr_preImportFileTypeWindow(){
 
 		
 		var plusX = 0;
-		var currentImportType = ds_grid_get(preImportInfoGrid, obj_openingScreen.preImportInfoGrid_colDataType, i);
+		var currentImportType = ds_grid_get(preImportInfoGrid, global.preImportInfoGrid_colDataType, i);
 		var currentImportTypeSelected = (global.importType == currentImportType);
 		
 		
@@ -134,7 +134,7 @@ function scr_preImportFileTypeWindow(){
 		draw_text(tableX1 +textBuffer,floor(mean(boxY1,boxY2)), string(currentImportType) );
 		plusY += heightOfBox;
 		// set choose column value
-		ds_grid_set(preImportInfoGrid, obj_openingScreen.preImportInfoGrid_colChoose, i, currentImportTypeSelected);
+		ds_grid_set(preImportInfoGrid, global.preImportInfoGrid_colChoose, i, currentImportTypeSelected);
 	}
 	
 
@@ -144,7 +144,7 @@ function scr_preImportFileTypeWindow(){
 	}
 	
 	// set currentPreImportMap
-	currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType);
+	global.currentPreImportMap = ds_map_find_value(global.preImportMap, global.importType);
 	
 	
 	

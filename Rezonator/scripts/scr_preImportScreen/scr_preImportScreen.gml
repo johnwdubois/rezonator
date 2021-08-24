@@ -29,7 +29,6 @@ function scr_preImportScreen(){
 	if (!instance_exists(obj_preImportFileType)) {
 		exit;
 	}
-	var currentPreImportMap = obj_preImportFileType.currentPreImportMap;
 	
 	
 	
@@ -53,7 +52,7 @@ function scr_preImportScreen(){
 	draw_rectangle(backgroundWindowX1, backgroundWindowY1, backgroundWindowX2, backgroundWindowY2, false);
 	
 	// draw example content
-	var exampleWindowList = ds_map_find_value(currentPreImportMap, "example");
+	var exampleWindowList = ds_map_find_value(global.currentPreImportMap, "example");
 	var exampleWindowListSize = ds_list_size(exampleWindowList);
 	
 	var backgroundWidth = backgroundWindowX2 - backgroundWindowX1;
@@ -108,7 +107,7 @@ function scr_preImportScreen(){
 	draw_roundrect(descriptionWindowX1, descriptionWindowY1, descriptionWindowX2, descriptionWindowY2, false);
 	
 	// draw description content
-	var descriptionWindowList = ds_map_find_value(currentPreImportMap, "description");
+	var descriptionWindowList = ds_map_find_value(global.currentPreImportMap, "description");
 	var descriptionWindowListSize = ds_list_size(descriptionWindowList);
 	draw_set_color(global.colorThemeText);
 	draw_set_alpha(infoAlpha);

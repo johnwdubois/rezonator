@@ -27,6 +27,7 @@ function scr_saveINI() {
 
 
 	ds_map_add(map,"rememberMe",global.rememberMe);
+	ds_map_add(map,"importType",global.importType);
 	ds_map_add(map,"readHintHide",global.readHintHide)
 	ds_map_add(map,"userName", global.userName);
 	ds_map_add(map,"autosaveTimer", global.autosaveTimer);

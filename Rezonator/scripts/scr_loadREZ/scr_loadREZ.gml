@@ -4,6 +4,7 @@ function scr_loadREZ() {
 	var delimiter = (os_type == os_macosx) ? "/" : "\\";
 	var RezDirString = global.rezonatorDirString + delimiter + "Data" + delimiter + "SBCorpus" + delimiter + "REZ";
 
+show_debug_message("global.previousRezDirectory:  "+string(global.previousRezDirectory));
 	if (global.previousRezDirectory != "") {
 		RezDirString = global.previousRezDirectory;
 	
