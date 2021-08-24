@@ -105,6 +105,9 @@ function scr_refocusChainEntry(ID){
 			chainListTab = obj_panelPane.functionChainList_tabStackBrush;
 			chainMode = obj_toolPane.modeRez;
 		}
+		scr_scrollNavToID(chainListTab, obj_chain.currentFocusedChainID);
 	}
+	
+	
 
 }

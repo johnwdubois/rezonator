@@ -400,6 +400,7 @@
     {"id":{"name":"scr_clearOptions","path":"scripts/scr_clearOptions/scr_clearOptions.yy",},"order":18,},
     {"id":{"name":"scr_justifyProseOptions","path":"scripts/scr_justifyProseOptions/scr_justifyProseOptions.yy",},"order":58,},
     {"id":{"name":"scr_importGridToNodeMap_plainText","path":"scripts/scr_importGridToNodeMap_plainText/scr_importGridToNodeMap_plainText.yy",},"order":27,},
+    {"id":{"name":"scr_scrollNavToID","path":"scripts/scr_scrollNavToID/scr_scrollNavToID.yy",},"order":45,},
     {"id":{"name":"scr_settingsOptions","path":"scripts/scr_settingsOptions/scr_settingsOptions.yy",},"order":19,},
     {"id":{"name":"scr_getChainEntryFieldList","path":"scripts/scr_getChainEntryFieldList/scr_getChainEntryFieldList.yy",},"order":38,},
     {"id":{"name":"scr_panelPane_drawSearchList","path":"scripts/scr_panelPane_drawSearchList/scr_panelPane_drawSearchList.yy",},"order":34,},

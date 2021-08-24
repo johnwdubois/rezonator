@@ -208,7 +208,14 @@ function scr_drawChunks(){
 		if (device_mouse_check_button_released(0, mb_left) and !(global.delayInput > 0)and !instance_exists(obj_dropDown)) {
 			
 			// focus chunk in panelPane
-			with (obj_panelPane) functionChainList_chunkSelected = obj_control.hoverChunkID;
+			with (obj_panelPane) {
+				functionChainList_chunkSelected = obj_control.hoverChunkID;
+				if (currentFunction == functionChainList) {
+					scr_scrollNavToID(functionChainList_tabChunk, obj_control.hoverChunkID);
+				}
+			}
+			
+			
 			// set field/tags if in read mode
 			if (obj_toolPane.currentMode == obj_toolPane.modeRead) {
 				if (obj_panelPane.functionField_chunkFieldSelected != "" && obj_panelPane.functionField_chunkTagSelected != ""
