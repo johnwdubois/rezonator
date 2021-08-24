@@ -213,7 +213,10 @@ function scr_newLink(ID) {
 	}
 	
 	if (focusedChainType == "rezChain") {
-		scr_refreshCliques();
+		show_debug_message("obj_chain.quickLinkCreated:  "+ string(obj_chain.quickLinkCreated))
+		if(obj_chain.quickLinkCreated == false){
+			scr_refreshCliques();
+		}
 		scr_alignChain2ElectricBoogaloo(obj_chain.currentFocusedChainID);
 	}
 	

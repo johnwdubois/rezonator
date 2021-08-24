@@ -12,7 +12,7 @@
 	Author: Terry DuBois, Georgio Klironomos, Brady Moore
 */
 function scr_randomChainLoop() {
-	
+	obj_chain.quickLinkCreated = true;
 	// Set script variables
 	var currentUnitList = ds_list_create();
 	ds_list_clear(currentUnitList);
@@ -22,7 +22,9 @@ function scr_randomChainLoop() {
 	var encounteredTokens = ds_list_create();
 	var amountOfTokens = floor(irandom(15));
 	for(var i  = 0 ; i < tokenListSize; i++){
-		
+		if(i == tokenListSize-1){
+			obj_chain.quickLinkCreated = false;
+		}
 		var currentToken = tokenList[| i];
 		
 		scr_tokenClicked(currentToken);

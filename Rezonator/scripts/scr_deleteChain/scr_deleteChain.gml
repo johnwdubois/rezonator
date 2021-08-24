@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_deleteChain(chainID){
-	
+	obj_chain.quickLinkDeleted = true;
 
 	if (!ds_map_exists(global.nodeMap,chainID)) {
 		show_debug_message("scr_deleteChain()... chainID does not exists in nodeMap, exiting...");
@@ -29,6 +29,9 @@ function scr_deleteChain(chainID){
 	// remove every entry from this chain
 	var sizeOfEntryList = ds_list_size(setIDList);
 	while (sizeOfEntryList > 0) {
+		if(sizeOfEntryList == 1){
+			obj_chain.quickLinkDeleted = false;
+		}
 		var currentEntry = ds_list_find_value(setIDList, 0);
 		ds_map_replace(chainSubMap, "focused", currentEntry);
 		scr_deleteFromChain(false);

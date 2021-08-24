@@ -201,3 +201,6 @@ dragStartOriginalChain = "";
 
 randomize();
 chainHue = random(255);
+
+quickLinkCreated = false;
+quickLinkDeleted = false;

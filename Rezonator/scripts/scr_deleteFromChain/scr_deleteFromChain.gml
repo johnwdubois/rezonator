@@ -60,7 +60,9 @@ function scr_deleteFromChain(sortVizSetList) {
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
 				
 				if(focusedEntryType == "rez"){
-					scr_refreshCliques();
+					if(obj_chain.quickLinkDeleted == false){
+						scr_refreshCliques();
+					}
 				}
 			}
 			else if (focusedEntryType == "stack"){
@@ -112,7 +114,9 @@ function scr_deleteFromChain(sortVizSetList) {
 			if (focusedEntryType == "rez" || focusedEntryType == "track") {
 				scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
 				if(focusedEntryType == "rez" ){
-					scr_refreshCliques();
+					if(obj_chain.quickLinkDeleted == false){
+						scr_refreshCliques();
+					}
 				}
 			}
 			else if (focusedEntryType == "stack"){
@@ -206,7 +210,9 @@ function scr_deleteFromChain(sortVizSetList) {
 	if (focusedEntryType == "rez" || focusedEntryType == "track") {
 		scr_removeChainFromInChainsList(obj_chain.currentFocusedChainID, focusedEntryToken);
 		if(focusedEntryType == "rez" ){
-			scr_refreshCliques();
+			if(obj_chain.quickLinkDeleted == false){
+				scr_refreshCliques();
+			}
 		}
 	}
 	else if (focusedEntryType == "stack"){

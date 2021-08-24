@@ -1,7 +1,7 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function scr_quickLinkCreation(){
-	
+	obj_chain.quickLinkCreated = true;
 	var quickLinkTokenIDList = inRectTokenIDList;
 	show_debug_message("scr_quickLinkCreation() ... quickLinkTokenIDList: " + scr_getStringOfList(quickLinkTokenIDList));
 	
@@ -143,6 +143,10 @@ function scr_quickLinkCreation(){
 		obj_chain.currentFocusedChainID = "";
 		var gridOfFutureChainsHeight = ds_grid_height(gridOfFutureChains);
 		for (var i = 0; i < gridOfFutureChainsHeight; i++) {
+			if(i == gridOfFutureChainsHeight-1){
+				obj_chain.quickLinkCreated = false;
+			}
+			
 			var currentTokenIDList = ds_grid_get(gridOfFutureChains, gridOfFutureChains_colTokenIDList, i);
 			var currentTokenIDListSize = ds_list_size(currentTokenIDList);
 
